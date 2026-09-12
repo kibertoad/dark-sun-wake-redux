@@ -139,6 +139,25 @@
   repeated-ID, extension-tail, dimension, and field-contract coverage;
   whole-catalog validation against the owned archive.
 
+### DATA-GOG-UI-002 - Character-generation image controls
+
+- **Question:** Which image-backed controls belong to character generation?
+- **Method:** Resolve every child of `WIND` #19503 through bounded `BUTN` and
+  `ICON` records, inspect all frames locally, and compare palette candidates
+  without retaining previews in Git.
+- **Finding:** `BUTN` #2002-#2009 reference three-frame `ICON` resources with
+  the eight class labels; #18302/#19304 reference four-frame EXIT/DONE icons
+  #18109/#19100. Their coordinates, separate control/art dimensions, and frame
+  counts are recorded in `OriginalContent.CharacterGenerationButtons`.
+  Palette #11011 renders the complete family coherently.
+- **Confidence:** verified for identities, labels, coordinates, dimensions, and
+  frame counts; medium for palette #11011; unknown for frame-state semantics,
+  hit boundaries, focus, and dynamic fields.
+- **Implementation:** all ten image sets are transactionally converted to DSIX
+  in the verified pack; runtime composition remains pending the rest of the shell.
+- **Tests:** exact unique mappings, canvas bounds, frame contracts, synthetic
+  extraction, manifest provenance, real-pack verification, and content smoke.
+
 ## Initial rules
 
 ### RULE-INPUT-001 - Mouse-first interaction

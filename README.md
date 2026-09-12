@@ -32,10 +32,10 @@ implemented yet.
 | Area | Supported now | Current limitations |
 |---|---|---|
 | Legal source | Explicit verification of English GOG product `1432903719`, build `52095422060333615` | Other GOG revisions and storefronts are unsupported until separately fingerprinted |
-| Asset extraction | Separate `DarkSunWakeRedux.Extractor` executable; versioned exact-inventory contract; bounded readers; transactional seven-asset startup pack | Title, start-window buttons, interface font, and ID-preserving text catalog are extracted; the rest of the Slice 2 minimum pack is incomplete |
+| Asset extraction | Separate `DarkSunWakeRedux.Extractor` executable; versioned exact-inventory contract; bounded readers; transactional 17-asset Slice 2 pack | Title, start buttons, ten character-generation controls, interface font, and text catalog are extracted; remaining dynamic/shell assets are incomplete |
 | Gameplay | Assetless startup smoke test, MonoGame shell, deterministic party invariants, and command-driven start flow in Core | No player-visible game slice yet; disputed race/class pairs await shipped-screen observation |
 | Saves and compatibility | Versioned start-flow snapshots and hash-verified deterministic replay | Native save-file I/O, whole-game replays, original saves, and Shattered Lands party transfer are not implemented |
-| Presentation | Verified-pack startup and nearest-neighbor display of the extracted 320x200 title and four start-window button images | Button frame-state semantics, party screens, pixel-aspect validation, animation, audio, video, and controls await observation and extraction |
+| Presentation | Verified-pack startup and nearest-neighbor display of the title/start window; character-generation class and EXIT/DONE art extracted | Frame states, dynamic party screens, pixel aspect, animation, audio, video, and controls await observation and implementation |
 | Text resources | Bounded FONT decoding/DSFT extraction plus all 62 short `TEXT` records decoded into deterministic DSTX | Palette, spacing, text-ID routing, layout, and runtime rendering remain open |
 
 ## Developer quick start

@@ -9,7 +9,7 @@ independently written measurements and diagrams.
 |---|---|---|---|
 | Title image | Game identity and title text | `RESOURCE.GFF` `BMP ` #11011 with `PAL ` #11011 is one 320x200 frame | Extracted transactionally and displayed from the verified pack; pixel aspect and preceding/following timing unverified |
 | Start window | Start Game and Create Characters are documented | `WIND` #19500 is 320x200; controls begin at (94,70), (50,87), (64,104), and (92,120), sized 127x12, 220x12, 192x12, and 127x12; mapped icon frames differ only for Load Saved Game at 191x13 | title plus first icon frames composed through one logical-canvas transform; interaction/frame states not implemented |
-| Party creation/modification | Four-character create/select/modify flow | `WIND` #19501 contains 320x200 and 28x16 application frames at (0,0) and (10,10); `WIND` #19503 is the mapped character-generation window with a 95x8 edit box | bounded shell mapped; dynamic content and interaction not implemented |
+| Party creation/modification | Four-character create/select/modify flow | `WIND` #19501 contains 320x200 and 28x16 application frames at (0,0)/(10,10); `WIND` #19503 has a 95x8 edit box, eight class-label controls at x217/y10..66, EXIT at (258,154), and DONE at (243,174) | all ten image-backed generation controls extracted; shell composition, dynamic content, and interaction not implemented |
 | Exploration | Leader-only or expanded party, edge scrolling, cursor modes | unknown | not implemented |
 | Character view and inventory | Dedicated character/inventory screens | unknown | not implemented |
 | Spells, psionics, and effects | Cast/use and current-effects screens | unknown | not implemented |

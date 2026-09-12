@@ -13,7 +13,7 @@ The smoke modes have distinct purposes:
 - `--smoke-test` exits before content or graphics initialization and is safe on
   a content-free CI worker.
 - `--content-smoke-test --asset-pack <path>` verifies the exact pack inventory,
-  opens all five DSIX startup images, the DSFT interface font, and the DSTX text
+  opens all fifteen DSIX UI images, the DSFT interface font, and the DSTX text
   catalog, and checks their frame, geometry, glyph, and inventory contracts
   without a window.
 - `--platform-smoke-test` creates the MonoGame platform surface and exits; it is

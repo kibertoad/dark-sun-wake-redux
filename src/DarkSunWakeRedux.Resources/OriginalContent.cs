@@ -96,6 +96,24 @@ public sealed record StartMenuButtonAsset(
         }).All(matches => matches);
 }
 
+public sealed record CharacterGenerationButtonAsset(
+    string Name,
+    string Path,
+    uint ButtonResourceNumber,
+    uint ImageResourceNumber,
+    int X,
+    int Y,
+    int ControlWidth,
+    int ControlHeight,
+    int FrameWidth,
+    int FrameHeight,
+    int FrameCount)
+{
+    public bool HasExpectedFrames(IReadOnlyList<IndexedImageFrame> frames) =>
+        frames.Count == FrameCount && frames.All(frame =>
+            frame.Width == FrameWidth && frame.Height == FrameHeight);
+}
+
 public sealed record SourceIdentification(
     SourceManifest? Edition,
     IReadOnlyList<ContentDiagnostic> Diagnostics)
@@ -105,7 +123,7 @@ public sealed record SourceIdentification(
 
 public static class OriginalContent
 {
-    public const int AssetPackFormatVersion = 4;
+    public const int AssetPackFormatVersion = 5;
     public const string GameId = "dark-sun-wake-redux";
     public const string TitleImageAssetPath = "images/title.dsix";
     public const string InterfaceFontAssetPath = "fonts/interface.dsft";
@@ -118,6 +136,20 @@ public static class OriginalContent
         new("create-characters", "images/start-menu/create-characters.dsix", 19112, 50, 87, 220, 12, 220, 12, true),
         new("load-saved-game", "images/start-menu/load-saved-game.dsix", 19113, 64, 104, 192, 12, 191, 13, true),
         new("exit-to-dos", "images/start-menu/exit-to-dos.dsix", 19114, 92, 120, 127, 12, 127, 12, true)
+    ];
+
+    public static IReadOnlyList<CharacterGenerationButtonAsset> CharacterGenerationButtons { get; } =
+    [
+        new("cleric", "images/character-generation/cleric.dsix", 2002, 2002, 217, 10, 64, 6, 54, 7, 3),
+        new("druid", "images/character-generation/druid.dsix", 2003, 2003, 217, 18, 56, 6, 50, 7, 3),
+        new("fighter", "images/character-generation/fighter.dsix", 2004, 2004, 217, 26, 72, 6, 64, 7, 3),
+        new("gladiator", "images/character-generation/gladiator.dsix", 2005, 2005, 217, 34, 88, 6, 79, 7, 3),
+        new("preserver", "images/character-generation/preserver.dsix", 2006, 2006, 217, 42, 88, 6, 88, 7, 3),
+        new("psionicist", "images/character-generation/psionicist.dsix", 2007, 2007, 217, 50, 94, 6, 78, 7, 3),
+        new("ranger", "images/character-generation/ranger.dsix", 2008, 2008, 217, 58, 64, 6, 63, 7, 3),
+        new("thief", "images/character-generation/thief.dsix", 2009, 2009, 217, 66, 56, 6, 48, 7, 3),
+        new("exit", "images/character-generation/exit.dsix", 18302, 18109, 258, 154, 44, 15, 44, 15, 4),
+        new("done", "images/character-generation/done.dsix", 19304, 19100, 243, 174, 59, 18, 59, 18, 4)
     ];
 
     public static string DefaultAssetPackPath() => Path.Combine(
