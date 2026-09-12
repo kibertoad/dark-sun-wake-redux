@@ -72,27 +72,33 @@
 
 - **Question:** How does the owned build identify and place the first start-menu
   controls over the title screen?
-- **Method:** Independently inspect bounded `WIND` and `BUTN` payloads in the
+- **Method:** Independently inspect bounded `WIND`, `BUTN`, `APFM`, and `EBOX` payloads in the
   fingerprinted `RESOURCE.GFF`, compare repeated record structure across every
   resource of those tags, validate every nonzero child/image reference, and
   render the referenced `ICON` frames with plausible palettes under ignored
   `analysis/original/` paths.
-- **Finding:** All 28 `WIND` and 139 `BUTN` resources parse within bounds and
-  their references resolve. `WIND` #19500 is 320x200 and places `BUTN` #19300,
+- **Finding:** All 28 `WIND`, 139 `BUTN`, 97 `APFM`, and 7 `EBOX` resources parse
+  within bounds and their references resolve. `WIND` #19500 is 320x200 and places `BUTN` #19300,
   #19301, #19302, and #19303 at (94,70), (50,87), (64,104), and (92,120).
   Those buttons are 127x12, 220x12, 192x13, and 127x12 and reference four-frame
   `ICON` #19111 through #19114, visibly labelled START GAME, CREATE CHARACTERS,
   LOAD SAVED GAME, and EXIT TO DOS. Palette #1000 visibly corrupts the title;
   the title palette #11011 also renders these overlays plausibly, which is
   evidence that it remains active, but runtime confirmation is still required.
+  `WIND` #19501 contains `APFM` #19200 (320x200) at (0,0) and #19201 (28x16)
+  at (10,10), establishing the bounded shell of the next party-flow screen.
+  `WIND` #19503 contains a 95x8 `EBOX` and controls whose referenced icons spell
+  out all eight class names, the three psionic disciplines, and cleric spheres,
+  establishing it as the character-generation window without assigning meaning
+  to its still-uninterpreted control fields.
 - **Confidence:** verified for resource identities, dimensions, references, and
   logical coordinates in GOG-1432903719; medium for the active palette; unknown
   for frame-state meanings, focus, hit boundaries, and transitions.
-- **Implementation:** bounded `UiWindowResource` and `UiButtonResource` readers
-  plus the read-only `ui-catalog` inspection command. Runtime composition waits
-  for an OBS-GOG state observation.
+- **Implementation:** bounded window, button, application-frame, and edit-box
+  readers plus the read-only `ui-catalog` inspection command. Runtime
+  composition waits for an OBS-GOG state observation.
 - **Tests:** synthetic signature, size, child-record, printable-tag, coordinate,
-  repeated-ID, extension-tail, dimension, and reference-contract coverage;
+  repeated-ID, extension-tail, dimension, and field-contract coverage;
   whole-catalog validation against the owned archive.
 
 ## Initial rules

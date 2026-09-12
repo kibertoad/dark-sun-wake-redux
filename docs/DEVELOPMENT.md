@@ -47,7 +47,8 @@ The first command emits path, size, and SHA-256 inventory. The second emits only
 bounded GFF resource descriptors (tag, number, offset, and size). The third
 validates all indexed images and palettes in one GFF and emits dimensions and
 counts, but no proprietary pixel or palette content. The fourth validates
-bounded window/button records and their resource references.
+bounded window, button, application-frame, and edit-box records and their
+resource references.
 
 Verify the runtime-side derived asset without opening a window:
 

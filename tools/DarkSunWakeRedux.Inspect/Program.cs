@@ -30,13 +30,33 @@ if (args.Length == 2 && args[0].Equals("ui-catalog", StringComparison.OrdinalIgn
                 throw new InvalidDataException($"{args[1]}:{resource.Tag}#{resource.Number}: ICON #{button.ImageResourceNumber} does not exist.");
             return button;
         }).ToArray();
+        var applicationFrames = archive.Resources.Where(resource => resource.Tag == "APFM").Select(resource =>
+        {
+            var frame = UiApplicationFrameResource.Read(archive.GetResource(resource.Tag, resource.Number),
+                $"{args[1]}:{resource.Tag}#{resource.Number}");
+            if (frame.ResourceNumber != resource.Number)
+                throw new InvalidDataException($"{args[1]}:{resource.Tag}#{resource.Number}: embedded resource number is {frame.ResourceNumber}.");
+            return frame;
+        }).ToArray();
+        var editBoxes = archive.Resources.Where(resource => resource.Tag == "EBOX").Select(resource =>
+        {
+            var editBox = UiEditBoxResource.Read(archive.GetResource(resource.Tag, resource.Number),
+                $"{args[1]}:{resource.Tag}#{resource.Number}");
+            if (editBox.ResourceNumber != resource.Number)
+                throw new InvalidDataException($"{args[1]}:{resource.Tag}#{resource.Number}: embedded resource number is {editBox.ResourceNumber}.");
+            return editBox;
+        }).ToArray();
         Console.WriteLine(JsonSerializer.Serialize(new
         {
             path = Path.GetFullPath(args[1]),
             windowCount = windows.Length,
             buttonCount = buttons.Length,
+            applicationFrameCount = applicationFrames.Length,
+            editBoxCount = editBoxes.Length,
             windows,
-            buttons
+            buttons,
+            applicationFrames,
+            editBoxes
         }, new JsonSerializerOptions { WriteIndented = true }));
         return 0;
     }

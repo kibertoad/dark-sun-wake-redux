@@ -43,8 +43,7 @@ public sealed record UiWindowResource(
 
         var width = reader.UInt16(190, "width");
         var height = reader.UInt16(192, "height");
-        if (width is 0 or > IndexedImage.MaximumDimension || height is 0 or > IndexedImage.MaximumDimension)
-            throw reader.Error($"has invalid dimensions {width}x{height}");
+        reader.RequireDimensions(width, height);
 
         return new(reader.UInt32(8, "resource number"), width, height, children);
     }
@@ -76,10 +75,52 @@ public sealed record UiButtonResource(
 
         var width = reader.UInt16(40, "width");
         var height = reader.UInt16(42, "height");
-        if (width is 0 or > IndexedImage.MaximumDimension || height is 0 or > IndexedImage.MaximumDimension)
-            throw reader.Error($"has invalid dimensions {width}x{height}");
+        reader.RequireDimensions(width, height);
 
         return new(resourceNumber, width, height, reader.UInt32(100, "image resource number"));
+    }
+}
+
+public sealed record UiApplicationFrameResource(uint ResourceNumber, ushort Width, ushort Height)
+{
+    public const int RecordSize = 116;
+
+    public static UiApplicationFrameResource Read(
+        ReadOnlyMemory<byte> payload,
+        string sourceName = "APFM resource")
+    {
+        var reader = new UiResourceReader(payload, sourceName);
+        reader.RequireSignature("APFM");
+        reader.RequireExactDeclaredSize();
+        if (payload.Length != RecordSize)
+            throw reader.Error($"has unsupported size {payload.Length}; expected {RecordSize}");
+        var width = reader.UInt16(40, "width");
+        var height = reader.UInt16(42, "height");
+        reader.RequireDimensions(width, height);
+        return new(reader.UInt32(8, "resource number"), width, height);
+    }
+}
+
+public sealed record UiEditBoxResource(uint ResourceNumber, ushort Width, ushort Height)
+{
+    public const int RecordSize = 168;
+
+    public static UiEditBoxResource Read(ReadOnlyMemory<byte> payload, string sourceName = "EBOX resource")
+    {
+        var reader = new UiResourceReader(payload, sourceName);
+        reader.RequireSignature("EBOX");
+        reader.RequireExactDeclaredSize();
+        if (payload.Length != RecordSize)
+            throw reader.Error($"has unsupported size {payload.Length}; expected {RecordSize}");
+
+        var resourceNumber = reader.UInt32(8, "resource number");
+        var repeatedResourceNumber = reader.UInt32(24, "repeated resource number");
+        if (repeatedResourceNumber != resourceNumber)
+            throw reader.Error($"resource number {resourceNumber} conflicts with repeated value {repeatedResourceNumber}");
+        var width = reader.UInt16(34, "width");
+        var height = reader.UInt16(36, "height");
+        reader.RequireDimensions(width, height);
+        return new(resourceNumber, width, height);
     }
 }
 
@@ -105,6 +146,12 @@ internal sealed class UiResourceReader
         var declaredSize = UInt32(4, "declared size");
         if (declaredSize != _bytes.Length)
             throw Error($"declares size {declaredSize}, but contains {_bytes.Length} bytes");
+    }
+
+    public void RequireDimensions(ushort width, ushort height)
+    {
+        if (width is 0 or > IndexedImage.MaximumDimension || height is 0 or > IndexedImage.MaximumDimension)
+            throw Error($"has invalid dimensions {width}x{height}");
     }
 
     public ushort UInt16(int offset, string field)

@@ -106,6 +106,41 @@ public sealed class UiResourceTests
         Assert.Contains("invalid dimensions", exception.Message, StringComparison.Ordinal);
     }
 
+    [Fact]
+    public void ReadsApplicationFrameGeometry()
+    {
+        var frame = UiApplicationFrameResource.Read(
+            FixedRecord("APFM", UiApplicationFrameResource.RecordSize, 19200, 320, 200),
+            "synthetic APFM #19200");
+
+        Assert.Equal(new UiApplicationFrameResource(19200, 320, 200), frame);
+    }
+
+    [Fact]
+    public void ReadsEditBoxGeometryAndRepeatedIdentity()
+    {
+        var bytes = FixedRecord("EBOX", UiEditBoxResource.RecordSize, 4003, 95, 8);
+        BitConverter.GetBytes(4003U).CopyTo(bytes, 24);
+        BitConverter.GetBytes((ushort)95).CopyTo(bytes, 34);
+        BitConverter.GetBytes((ushort)8).CopyTo(bytes, 36);
+
+        var editBox = UiEditBoxResource.Read(bytes, "synthetic EBOX #4003");
+
+        Assert.Equal(new UiEditBoxResource(4003, 95, 8), editBox);
+    }
+
+    [Fact]
+    public void RejectsMalformedApplicationFrameAndEditBox()
+    {
+        var shortFrame = FixedRecord("APFM", UiApplicationFrameResource.RecordSize - 1, 1, 10, 10);
+        Assert.Throws<InvalidDataException>(() => UiApplicationFrameResource.Read(shortFrame, "short.apfm"));
+
+        var editBox = FixedRecord("EBOX", UiEditBoxResource.RecordSize, 4, 10, 10);
+        BitConverter.GetBytes(5U).CopyTo(editBox, 24);
+        var exception = Assert.Throws<InvalidDataException>(() => UiEditBoxResource.Read(editBox, "identity.ebox"));
+        Assert.Contains("conflicts", exception.Message, StringComparison.Ordinal);
+    }
+
     private static byte[] Window(uint number, ushort width, ushort height,
         params (string Tag, uint Number, short X, short Y)[] children)
     {
@@ -136,6 +171,17 @@ public sealed class UiResourceTests
         BitConverter.GetBytes(height).CopyTo(bytes, 42);
         BitConverter.GetBytes(number).CopyTo(bytes, 90);
         BitConverter.GetBytes(imageNumber).CopyTo(bytes, 100);
+        return bytes;
+    }
+
+    private static byte[] FixedRecord(string tag, int size, uint number, ushort width, ushort height)
+    {
+        var bytes = new byte[size];
+        Encoding.ASCII.GetBytes(tag).CopyTo(bytes, 0);
+        BitConverter.GetBytes((uint)size).CopyTo(bytes, 4);
+        BitConverter.GetBytes(number).CopyTo(bytes, 8);
+        BitConverter.GetBytes(width).CopyTo(bytes, 40);
+        BitConverter.GetBytes(height).CopyTo(bytes, 42);
         return bytes;
     }
 }
