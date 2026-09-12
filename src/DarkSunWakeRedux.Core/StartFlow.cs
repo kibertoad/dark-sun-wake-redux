@@ -28,7 +28,16 @@ public sealed class StartFlow
 {
     public StartFlowScreen Screen { get; private set; } = StartFlowScreen.StartWindow;
     public PartyOrigin PartyOrigin { get; private set; }
-    public Party Party { get; } = new();
+    public Party Party { get; }
+
+    public StartFlow() => Party = new();
+
+    internal StartFlow(StartFlowSnapshot snapshot)
+    {
+        Screen = snapshot.Screen;
+        PartyOrigin = snapshot.PartyOrigin;
+        Party = new(snapshot.PartyMembers);
+    }
 
     public IReadOnlyList<PartyDiagnostic> Choose(StartWindowChoice choice)
     {

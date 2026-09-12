@@ -72,6 +72,10 @@ public sealed class Party
     public const int MaximumSize = 4;
     private readonly List<CharacterDraft> _members = [];
 
+    public Party() { }
+
+    internal Party(IEnumerable<CharacterDraft> members) => _members.AddRange(members);
+
     public IReadOnlyList<CharacterDraft> Members => _members;
     public bool CanStart => _members.Count is >= 1 and <= MaximumSize;
 

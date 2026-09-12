@@ -224,7 +224,9 @@ decoder rather than being guessed now.
 - **Automated tests.** Synthetic parser boundary/fuzz tests; traversal and
   decompression-bomb limits; deterministic extraction; exact output inventory;
   pack verification, stale-file removal, atomic promotion/rollback; party
-  invariants and menu-transition tests.
+  invariants and menu-transition tests. Implemented start-flow commands produce
+  sequenced events, versioned snapshots, stable hashes, and verified replays;
+  gameplay-wide replay remains a later-slice requirement.
 - **Observed parity.** Compare boot, start, create/select/cancel, and quit state
   transitions and UI measurements against the supported GOG build.
 

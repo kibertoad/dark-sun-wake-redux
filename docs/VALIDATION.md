@@ -4,6 +4,9 @@ CI and routine repository checks require no proprietary content. Synthetic GFF,
 indexed-image, palette, indexed-font, text, DSIX, and DSFT fixtures exercise successful decoding plus
 truncation, bounds, invalid-component, unsafe-path, inventory, and transactional
 replacement failures. Core rule tests use explicit inputs and no ambient state.
+Start-flow tests also prove identical seeds and commands yield identical events
+and state hashes, snapshots restore exactly, rejected commands are sequenced,
+and replay stops at the first divergent hash.
 
 The smoke modes have distinct purposes:
 

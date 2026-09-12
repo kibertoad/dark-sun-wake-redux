@@ -36,7 +36,8 @@ and `docs/CUSTOMIZATION.md` documents every configuration knob.
 ## Implement
 
 - [ ] Add deterministic commands, events, seed control, snapshots, and replay to
-      Core.
+      Core. The start/party flow now has all five; keep this open until gameplay
+      commands and persistence use the same contract.
 - [ ] Fill in architecture, format, analysis, fidelity, and validation docs as
       the answers arrive.
 

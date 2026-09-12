@@ -36,9 +36,9 @@ write into a unique sibling staging directory, generate a manifest containing
 format/extractor versions and exact output inventory, re-open and hash every
 output, reject unexpected files, then atomically replace the installed pack.
 If any step fails, staging is removed and the last verified pack is restored.
-Current code exercises this transaction for the evidenced title and four
-start-window button images; later Slice 2 resources will extend the exact
-inventory only after their mappings are recorded.
+Current code exercises this transaction for the evidenced title, four
+start-window button images, and interface font; later Slice 2 resources will
+extend the exact inventory only after their mappings are recorded.
 
 ## Runtime startup
 
@@ -50,9 +50,11 @@ local technical details, and a command to run the Extractor.
 
 ## Determinism
 
-Rules accept explicit commands and RNG state and emit events. Rendering and
-audio consume events but cannot mutate rules according to frame rate. Stable
-state encoding and replay hashes will be versioned before gameplay expands.
+Rules accept explicit commands and seed state and emit sequenced events.
+Rendering and audio consume events but cannot mutate rules according to frame
+rate. The start/party flow now has versioned snapshots, canonical state hashes,
+and replay divergence checks; later systems must extend this contract without
+introducing ambient randomness or presentation state.
 
 ## ADR-001 - Separate Extractor and verified pack
 

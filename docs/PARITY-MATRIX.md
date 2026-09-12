@@ -16,7 +16,7 @@ States are `unknown`, `researched`, `implemented`, `partially validated`,
 | Opening combat | manual + FAQ route | not implemented | not implemented | unknown | none | planned | not started | researched |
 | Character rules | manual + FAQ conflicts | not implemented | not implemented | unknown | none | planned | not started | researched |
 | Campaign/quests | FAQ route index | not implemented | not implemented | unknown | none | planned | not started | researched |
-| Saves/replays | manual intent | deterministic seed scaffold only | not implemented | not applicable | not implemented | scaffold test | not started | unknown |
+| Saves/replays | manual intent | start-flow commands/events, explicit seed, versioned snapshots, and verified replay | not implemented | not applicable | in-memory start-flow replay only | deterministic hash, restore, rejection, and divergence tests | native format and whole-game coverage not started | partially implemented |
 | Full audiovisual parity | inventory only | not applicable | not implemented | not implemented | not applicable | planned | not started | unknown |
 | Packaging | configured scripts | not applicable | project identity configured | not applicable | app identity configured | build/smoke planned | not started | researched |
 
