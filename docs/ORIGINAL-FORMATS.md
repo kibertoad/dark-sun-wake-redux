@@ -6,7 +6,9 @@ semantics.
 
 | Format/family | Observed role | Current knowledge | Confidence | Required failure behavior |
 |---|---|---|---|---|
-| `*.GFF` | Shared resources, numbered regions, and legacy saves | Little-endian version `0x00030000` container directory is decoded; resource-payload semantics remain tag-specific and mostly unknown | verified for the directory layout in the owned build | Bound file size and every count/offset/length; reject overflow, truncation, invalid secondary references, duplicate keys, and partial overlaps with source context |
+| `*.GFF` | Shared resources, numbered regions, and legacy saves | Little-endian version `0x00030000` container directory is decoded; indexed-image and palette payloads are decoded, while other tag semantics remain mostly unknown | verified for the directory layout and recorded image/palette families in the owned build | Bound file size and every count/offset/length; reject overflow, truncation, invalid secondary references, duplicate keys, and partial overlaps with source context |
+| GFF `BMP `, `CBMP`, `ICON` | Indexed image frames | Shared size/frame envelope plus sparse row, `PLAN`, and `PLNR` encodings are decoded to palette indices and alpha | verified for all matching resources in the owned build | Bound payload, frame count, offsets, dimensions, total pixels, compressed runs, dictionaries, and bitstreams; reject malformed input with resource identity |
+| GFF `PAL ` | 256-color palettes | Exactly 256 RGB triples with 6-bit VGA components, scaled by four to 8-bit channels | verified for all matching resources in the owned build | Require exactly 768 bytes and reject components outside `0..63` |
 | `*.FLI` | Four observed cinematics | Likely animation resources by extension only; dimensions, palette changes, frame timing, and exact variant are unverified | low | Bound frames, chunks, dimensions, decoded bytes, and timing; unsupported chunk types fail explicitly |
 | `*.VOC` | Speech and sound-effect files | Creative Labs VOC is suggested by extension; headers, codecs, sample rates, and block use must be verified per file | low | Bound blocks and decoded samples; reject unsupported codecs and malformed terminators |
 | `MUSIC/*.ogg` | 39 GOG-supplied music files | Ogg container presence is observed; mapping, loop points, provenance, and relationship to original media are unknown | low | Validate stream metadata and decode limits; unknown track mapping remains data, not a guessed rule |
@@ -56,5 +58,37 @@ The reader caps files at 512 MiB, tag tables at 4,096, and total resources at
 1,000,000. It validates all arithmetic and referenced table bounds before
 exposing payload bytes. Exact aliases are accepted because the owned files may
 address one byte range more than once; non-identical overlapping ranges are
-rejected. Payload structures, compression, palette semantics, and cross-tag
-relationships remain open and require separate evidence entries and tests.
+rejected. Other payload structures and cross-tag relationships remain open and
+require separate evidence entries and tests.
+
+## Indexed images and palettes
+
+**Evidence:** `DATA-GOG-IMAGE-001`, corroborated by `DSUN-MUSIC`.
+
+Bounded inspection decoded every `BMP `, `CBMP`, `ICON`, and `PAL ` resource in
+all 26 installed GFF files. `RESOURCE.GFF` contains 653 image resources with
+1,109 frames and 20 palettes; `OBJEX.GFF` contains 3,857 image resources with
+8,170 frames; 20 region GFFs each contain one palette. The observed total is
+4,510 images, 9,279 frames, and 40 palettes. These counts validate the payload
+readers, not the semantic purpose or correct palette pairing of each resource.
+
+An image payload begins with its exact 32-bit byte size, a 16-bit frame count,
+and one strictly increasing 32-bit frame offset per frame. Each frame begins
+with a 16-bit width and height. Frames then use one of these observed forms:
+
+- Sparse rows name a row, then one or more bounded runs. Each run records its
+  horizontal start, final-run/high-X flags, decoded length, encoded length, and
+  PackBits-like literal or repeated palette-index data. Pixels not covered by a
+  run remain transparent.
+- `0xff` plus `PLAN` selects an MSB-first packed-symbol stream over a local
+  palette-index dictionary.
+- `0xff` plus `PLNR` uses the same dictionary and bit order with repeated-symbol
+  commands. A decoded dictionary value of zero is transparent in both planar
+  variants.
+
+The reader caps a payload at 64 MiB, a frame count and either dimension at
+4,096, one frame at 16 Mi pixels, and all frames in an image at 64 Mi pixels.
+Palette payloads contain exactly 256 RGB triples. Each stored component is in
+the VGA range `0..63`; multiplying by four produces the decoded channel range
+`0..252`. Resource-to-palette mapping, display composition, frame origins, and
+animation timing remain open.

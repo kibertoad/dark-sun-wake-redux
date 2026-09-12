@@ -8,6 +8,7 @@ States are `unknown`, `researched`, `implemented`, `partially validated`,
 | GOG source recognition | exact local hashes | not applicable | Extractor diagnostics | not applicable | source manifest | synthetic mismatch tests | owned build verifies | partially validated |
 | Extracted asset pack | approved contract | not applicable | missing-pack startup guidance | unknown | versioned manifest | exact inventory/hash tests | no real pack yet | implemented |
 | Start and party flow | `MANUAL-1994`, `CONFLICT-PARTY-001` | party bounds, sex/alignment/ability/class invariants implemented; conflicting eligibility unresolved | not implemented | unknown | none | 13 focused Core tests | shipped menus not yet observed | partially implemented |
+| Indexed graphics resources | `DATA-GOG-IMAGE-001`, `DSUN-MUSIC` | not applicable | bounded indexed-image and palette readers; mapping/rendering not implemented | not applicable | not applicable | synthetic decoding and malformed-input tests | all owned matching resources decode | partially validated |
 | Tyr exploration/dialogue | manual + FAQ route | not implemented | not implemented | unknown | none | planned | not started | researched |
 | Opening combat | manual + FAQ route | not implemented | not implemented | unknown | none | planned | not started | researched |
 | Character rules | manual + FAQ conflicts | not implemented | not implemented | unknown | none | planned | not started | researched |
@@ -18,7 +19,7 @@ States are `unknown`, `researched`, `implemented`, `partially validated`,
 
 ## Blockers
 
-- No bounded Dark Sun format decoder or extracted pack exists.
+- No extracted asset pack or player-visible renderer exists.
 - The exact underlying DOS revision in the GOG build is unknown.
 - Native resolution, palettes, timing, audio mapping, and screen geometry are
   unobserved.

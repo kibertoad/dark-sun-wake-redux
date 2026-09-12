@@ -30,6 +30,26 @@
 - **Tests:** synthetic primary, primary-only, segmented-secondary, truncation,
   out-of-range, and partial-overlap cases.
 
+### DATA-GOG-IMAGE-001 - Indexed images and palettes
+
+- **Question:** Which bounded image and palette payload structures occur in the
+  owned build's GFF resources?
+- **Method:** Compare the DSUN-MUSIC image/palette research with bounded samples
+  from the fingerprinted installation, independently implement defensive
+  readers, and decode every matching resource in all 26 installed GFF files
+  without retaining or committing decoded content.
+- **Finding:** `BMP `, `CBMP`, and `ICON` share a framed indexed-image envelope
+  with sparse-row, `PLAN`, and `PLNR` encodings. `PAL ` contains 256 three-byte
+  VGA colors. The readers decode 4,510 images containing 9,279 frames and all
+  40 palettes in the installed build.
+- **Confidence:** verified for these payload structures and counts in
+  GOG-1432903719; resource meaning, palette pairing, placement, and timing are
+  still unknown.
+- **Implementation:** `DarkSunWakeRedux.Resources.IndexedImage`,
+  `IndexedPalette`, and the read-only `image-catalog` inspection command.
+- **Tests:** synthetic row/planar decoding, transparency, palette conversion,
+  and malformed size, bounds, component, and bitstream cases.
+
 ## Initial rules
 
 ### RULE-INPUT-001 - Mouse-first interaction

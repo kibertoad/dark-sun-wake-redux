@@ -12,19 +12,20 @@ on the original executable or DOSBox.
 ## Current status
 
 The repository is configured and the first foundation slice is complete. Work
-on the second slice has begun with a bounded GFF container-directory reader.
-The supported GOG build can be identified by exact fingerprints, asset-pack
-contracts and diagnostics are implemented, and assetless smoke testing works.
-Game-specific resource decoders and playable gameplay are not implemented yet,
-so the Extractor deliberately writes no output.
+on the second slice includes bounded GFF directory, indexed-image, and palette
+readers. The supported GOG build can be identified by exact fingerprints,
+asset-pack contracts and diagnostics are implemented, and assetless smoke
+testing works. Resource-to-screen mapping, transactional pack creation, and
+playable gameplay are not implemented yet, so the Extractor deliberately writes
+no output.
 
 | Area | Supported now | Current limitations |
 |---|---|---|
 | Legal source | Explicit verification of English GOG product `1432903719`, build `52095422060333615` | Other GOG revisions and storefronts are unsupported until separately fingerprinted |
-| Asset extraction | Separate `DarkSunWakeRedux.Extractor` executable; versioned exact-inventory pack contract, bounded GFF directory reader, and actionable diagnostics | GFF payload decoders and transactional pack creation are not implemented |
+| Asset extraction | Separate `DarkSunWakeRedux.Extractor` executable; versioned exact-inventory pack contract; bounded GFF, indexed-image, and palette readers; actionable diagnostics | Resource mapping and transactional pack creation are not implemented |
 | Gameplay | Assetless startup smoke test, MonoGame shell, and deterministic party-creation invariants in Core | No player-visible game slice yet; disputed race/class pairs await shipped-screen observation |
 | Saves and compatibility | Deterministic Core seed/state scaffold | Native saves, replays, original saves, and Shattered Lands party transfer are not implemented |
-| Presentation | Window and startup-failure reporting scaffold | Original resolution, graphics, animation, audio, video, and controls await observation and extraction |
+| Presentation | Window and startup-failure reporting scaffold; original indexed pixels and VGA palettes can be decoded for future extraction | Palette/resource mapping, composition, animation, audio, video, and controls await observation and extraction |
 
 ## Developer quick start
 

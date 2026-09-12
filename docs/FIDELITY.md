@@ -7,13 +7,14 @@ Status values: `unknown`, `documented`, `observed`, `implemented`, and
 |---|---|---|---|
 | Legal-source recognition | implemented | `GOG-1432903719`, synthetic tests | One English GOG build has six exact fingerprint anchors |
 | Asset-pack contract | implemented | synthetic tests | Version, game/source identity, exact inventory, hashes, provenance, media type, conversion, and unexpected files are checked |
-| Asset extraction | unknown | plan only | No Dark Sun decoder or output pack exists yet |
+| Asset extraction | unknown | plan plus image/palette readers | No output pack exists yet; implemented resource readers are not wired into transactional extraction |
 | GFF container directories | implemented | `DATA-GOG-GFF-001`, `DSUN-MUSIC`, synthetic tests | Bounded metadata parsing succeeds for all 26 GFF files in the owned build; payload semantics are not implied |
+| Indexed images and palettes | implemented | `DATA-GOG-IMAGE-001`, `DSUN-MUSIC`, synthetic tests | All 4,510 matching images (9,279 frames) and 40 palettes decode within bounds; semantic mapping and visual comparison remain open |
 | Rules | implemented | `MANUAL-1994`, `FAQ-81038`, Core tests | Initial party-creation invariants are implemented; disputed eligibility and all later gameplay rules remain unresolved |
 | AI | unknown | none | Not researched |
 | Controls | documented | `MANUAL-1994` | Semantic actions known; coordinates and runtime behavior unobserved |
 | Persistence | unknown | none | Native saves/replays and legacy import are not implemented |
-| Layout/graphics | unknown | none | Logical dimensions, palette, mapping, and rendering are unobserved |
+| Layout/graphics | researched | `DATA-GOG-IMAGE-001` | Indexed pixels and VGA palette colors decode; palette pairing, composition, origins, and rendering remain unobserved |
 | Animation timing | unknown | none | FLI and gameplay cadence are unverified |
 | Text | unknown | none | Storage, encoding, layout, and route mapping are unverified |
 | Sound/speech | unknown | file inventory only | VOC files observed; mappings/codecs/timing unverified |
