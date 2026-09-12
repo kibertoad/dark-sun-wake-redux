@@ -26,7 +26,7 @@ and `docs/CUSTOMIZATION.md` documents every configuration knob.
 - [x] Decide what may be clean-room/open data and what must remain user-imported.
 - [x] Add explicit/manual source selection first; add storefront, registry,
       media, or archive discovery as optional adapters.
-- [ ] Implement read-only inventory in `Inspect` before extraction.
+- [x] Implement read-only inventory in `Inspect` before extraction.
 - [ ] Implement bounded format readers in `Resources` with synthetic fixtures.
 - [ ] Transform rather than copy original executables whenever decoded data is
       sufficient.

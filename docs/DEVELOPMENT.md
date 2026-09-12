@@ -29,6 +29,16 @@ Exceptional builds can disable it explicitly with
 `DisableSourceFileLineLimit=true`; routine development should split oversized
 responsibilities instead.
 
+Read source metadata without extracting proprietary payloads using Inspect:
+
+```powershell
+dotnet run --project tools/DarkSunWakeRedux.Inspect -- "C:\path\to\gog-installation"
+dotnet run --project tools/DarkSunWakeRedux.Inspect -- gff "C:\path\to\RESOURCE.GFF"
+```
+
+The first command emits path, size, and SHA-256 inventory. The second emits only
+bounded GFF resource descriptors (tag, number, offset, and size).
+
 ## Repository projects
 
 - `DarkSunWakeRedux.Core`: deterministic rules and serializable state.

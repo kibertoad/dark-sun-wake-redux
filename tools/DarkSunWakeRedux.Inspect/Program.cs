@@ -1,9 +1,33 @@
 using System.Security.Cryptography;
 using System.Text.Json;
+using DarkSunWakeRedux.Resources;
+
+if (args.Length == 2 && args[0].Equals("gff", StringComparison.OrdinalIgnoreCase))
+{
+    try
+    {
+        await using var stream = File.OpenRead(args[1]);
+        var archive = GffArchive.Read(stream, args[1]);
+        Console.WriteLine(JsonSerializer.Serialize(new
+        {
+            path = Path.GetFullPath(args[1]),
+            resourceCount = archive.Resources.Count,
+            resources = archive.Resources
+        }, new JsonSerializerOptions { WriteIndented = true }));
+        return 0;
+    }
+    catch (Exception exception) when (exception is InvalidDataException or IOException or UnauthorizedAccessException)
+    {
+        Console.Error.WriteLine($"[gff_unreadable] {exception.Message}");
+        return 2;
+    }
+}
 
 if (args.Length != 1 || !Directory.Exists(args[0]))
 {
-    Console.Error.WriteLine("Usage: DarkSunWakeRedux.Inspect <owned-original-directory>");
+    Console.Error.WriteLine("Usage:");
+    Console.Error.WriteLine("  DarkSunWakeRedux.Inspect <owned-original-directory>");
+    Console.Error.WriteLine("  DarkSunWakeRedux.Inspect gff <owned-original.gff>");
     return 64;
 }
 

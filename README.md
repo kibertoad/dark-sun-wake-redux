@@ -11,8 +11,8 @@ on the original executable or DOSBox.
 
 ## Current status
 
-The repository is configured and the first foundation slice is complete. The
-next slice will implement bounded decoders for the verified original formats.
+The repository is configured and the first foundation slice is complete. Work
+on the second slice has begun with a bounded GFF container-directory reader.
 The supported GOG build can be identified by exact fingerprints, asset-pack
 contracts and diagnostics are implemented, and assetless smoke testing works.
 Game-specific resource decoders and playable gameplay are not implemented yet,
@@ -21,7 +21,7 @@ so the Extractor deliberately writes no output.
 | Area | Supported now | Current limitations |
 |---|---|---|
 | Legal source | Explicit verification of English GOG product `1432903719`, build `52095422060333615` | Other GOG revisions and storefronts are unsupported until separately fingerprinted |
-| Asset extraction | Separate `DarkSunWakeRedux.Extractor` executable; versioned exact-inventory pack contract and actionable diagnostics | Dark Sun resource decoders and transactional pack creation are planned, not implemented |
+| Asset extraction | Separate `DarkSunWakeRedux.Extractor` executable; versioned exact-inventory pack contract, bounded GFF directory reader, and actionable diagnostics | GFF payload decoders and transactional pack creation are not implemented |
 | Gameplay | Assetless startup smoke test and MonoGame shell | No player-visible game slice yet |
 | Saves and compatibility | Deterministic Core seed/state scaffold | Native saves, replays, original saves, and Shattered Lands party transfer are not implemented |
 | Presentation | Window and startup-failure reporting scaffold | Original resolution, graphics, animation, audio, video, and controls await observation and extraction |

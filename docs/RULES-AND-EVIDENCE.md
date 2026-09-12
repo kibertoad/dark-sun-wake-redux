@@ -7,8 +7,28 @@
 | `MANUAL-1994` | `C:\GOG Games\Dark Sun 2\ds_wakerave_manual_pdf.pdf` (local only) | original rule book | Intended controls, menus, party and character rules, combat commands, magic, psionics, advancement, credits | high for documented intent; not proof of shipped edge cases |
 | `GOG-1432903719` | English GOG build `52095422060333615` | owned release | Exact source fingerprints and future runtime/data observations | verified for recorded hashes and metadata |
 | `FAQ-81038` | kibbitz, GameFAQs guide v1.13 | community research | Mechanics, route/branch index, reported bugs and manual conflicts | medium; confirm with controlled observations |
+| `DSUN-MUSIC` | John Glassmyer, [`dsun_music`](https://github.com/JohnGlassmyer/dsun_music), MIT licensed | community technical research | GFF, image, region, and XMI structure and resource identification | medium; confirm each applicable result against the fingerprinted owned build |
 | `OBS-GOG-*` | Future controlled runs | runtime observation | Player-visible state transitions, coordinates, timing, outcomes | unknown until recorded per finding |
-| `DATA-GOG-*` | Future bounded inspection | data fact | Format fields and resource relationships | unknown until recorded per finding |
+| `DATA-GOG-*` | Bounded inspection of the owned build | data fact | Format fields and resource relationships | recorded per finding |
+
+### DATA-GOG-GFF-001 - GFF container directory
+
+- **Question:** How are resource identities, offsets, and lengths represented in
+  the owned build's `.GFF` containers?
+- **Method:** Fingerprint the supported edition, inspect bounded header/index
+  windows, compare the DSUN-MUSIC GFF results, implement an independently
+  bounded reader, and enumerate metadata from every installed `.GFF` without
+  retaining payload bytes.
+- **Finding:** Version `0x00030000` uses a 28-byte header and little-endian
+  primary/secondary tag tables as specified in `docs/ORIGINAL-FORMATS.md`.
+  All 26 installed GFF files parse, producing 16,168 bounded descriptors.
+- **Confidence:** verified for directory structure and counts in
+  GOG-1432903719; tag payload semantics remain unknown unless separately
+  recorded.
+- **Implementation:** `DarkSunWakeRedux.Resources.GffArchive` and the read-only
+  `DarkSunWakeRedux.Inspect gff` command.
+- **Tests:** synthetic primary, primary-only, segmented-secondary, truncation,
+  out-of-range, and partial-overlap cases.
 
 ## Initial rules
 

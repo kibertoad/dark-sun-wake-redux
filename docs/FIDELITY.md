@@ -8,6 +8,7 @@ Status values: `unknown`, `documented`, `observed`, `implemented`, and
 | Legal-source recognition | implemented | `GOG-1432903719`, synthetic tests | One English GOG build has six exact fingerprint anchors |
 | Asset-pack contract | implemented | synthetic tests | Version, game/source identity, exact inventory, hashes, provenance, media type, conversion, and unexpected files are checked |
 | Asset extraction | unknown | plan only | No Dark Sun decoder or output pack exists yet |
+| GFF container directories | implemented | `DATA-GOG-GFF-001`, `DSUN-MUSIC`, synthetic tests | Bounded metadata parsing succeeds for all 26 GFF files in the owned build; payload semantics are not implied |
 | Rules | documented | `MANUAL-1994`, `FAQ-81038` | Initial input/party/combat intent recorded; no gameplay implemented |
 | AI | unknown | none | Not researched |
 | Controls | documented | `MANUAL-1994` | Semantic actions known; coordinates and runtime behavior unobserved |
