@@ -1,7 +1,7 @@
 # Validation
 
 CI and routine repository checks require no proprietary content. Synthetic GFF,
-indexed-image, palette, indexed-font, DSIX, and DSFT fixtures exercise successful decoding plus
+indexed-image, palette, indexed-font, text, DSIX, and DSFT fixtures exercise successful decoding plus
 truncation, bounds, invalid-component, unsafe-path, inventory, and transactional
 replacement failures. Core rule tests use explicit inputs and no ambient state.
 

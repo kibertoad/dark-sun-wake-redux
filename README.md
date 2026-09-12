@@ -18,7 +18,7 @@ default `C:\GOG Games\Dark Sun 2` location.
 
 The repository is configured and the first foundation slice is complete. Work
 on the second slice includes bounded GFF directory, indexed-image, palette,
-indexed-font, and UI layout readers. The supported GOG build can be identified by exact
+indexed-font, short-text, and UI layout readers. The supported GOG build can be identified by exact
 fingerprints,
 asset-pack contracts and diagnostics are implemented, and assetless smoke
 testing works. The startup pack now transactionally extracts and displays the
@@ -35,7 +35,7 @@ implemented yet.
 | Gameplay | Assetless startup smoke test, MonoGame shell, and deterministic party-creation invariants in Core | No player-visible game slice yet; disputed race/class pairs await shipped-screen observation |
 | Saves and compatibility | Deterministic Core seed/state scaffold | Native saves, replays, original saves, and Shattered Lands party transfer are not implemented |
 | Presentation | Verified-pack startup and nearest-neighbor display of the extracted 320x200 title and four start-window button images | Button frame-state semantics, party screens, pixel-aspect validation, animation, audio, video, and controls await observation and extraction |
-| Text resources | Bounded decoding and DSFT extraction of the owned build's 256-glyph indexed `FONT` #100 | Encoding, palette, spacing, strings, layout, and runtime rendering remain open |
+| Text resources | Bounded FONT decoding/DSFT extraction plus all 62 short `TEXT` records decoded | Palette, spacing, text-ID routing, layout, and runtime rendering remain open |
 
 ## Developer quick start
 

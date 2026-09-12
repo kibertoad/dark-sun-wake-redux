@@ -87,6 +87,21 @@
 - **Tests:** synthetic valid, zero-width, invalid-header, offset, dimension,
   and record-length cases.
 
+### DATA-GOG-TEXT-001 - TEXT resource envelope
+
+- **Question:** What bounded text encoding occurs in `RESOURCE.GFF`?
+- **Method:** Validate every `TEXT` payload from the fingerprinted archive with
+  an independent reader while emitting only resource and line metadata.
+- **Finding:** All 62 resources (2,994 bytes total) are printable 7-bit ASCII,
+  use CRLF-delimited lines, have a final CRLF, contain 316 lines, and have a
+  maximum observed line length of 18 bytes. No NUL or extended bytes occur.
+- **Confidence:** verified for `TEXT` resources in GOG-1432903719; resource-ID
+  meanings, string interpolation, and screen routing remain open.
+- **Implementation:** `DarkSunWakeRedux.Resources.GffTextResource` and the
+  metadata-only `text-catalog` inspection command.
+- **Tests:** synthetic multiline/empty-line parsing and invalid terminator,
+  control-byte, non-ASCII, and size-limit cases.
+
 ### DATA-GOG-UI-001 - Start-window and button resource mapping
 
 - **Question:** How does the owned build identify and place the first start-menu

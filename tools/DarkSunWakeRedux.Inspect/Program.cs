@@ -2,6 +2,33 @@ using System.Security.Cryptography;
 using System.Text.Json;
 using DarkSunWakeRedux.Resources;
 
+if (args.Length == 2 && args[0].Equals("text-catalog", StringComparison.OrdinalIgnoreCase))
+{
+    try
+    {
+        await using var stream = File.OpenRead(args[1]);
+        var archive = GffArchive.Read(stream, args[1]);
+        var texts = archive.Resources.Where(resource => resource.Tag == "TEXT").Select(resource =>
+        {
+            var text = GffTextResource.Read(archive.GetResource(resource.Tag, resource.Number),
+                $"{args[1]}:{resource.Tag}#{resource.Number}");
+            return new { resource.Number, resource.Size, lineCount = text.Lines.Count,
+                maximumLineLength = text.Lines.Count == 0 ? 0 : text.Lines.Max(line => line.Length) };
+        }).ToArray();
+        Console.WriteLine(JsonSerializer.Serialize(new
+        {
+            path = Path.GetFullPath(args[1]), textCount = texts.Length,
+            totalLines = texts.Sum(text => text.lineCount), texts
+        }, new JsonSerializerOptions { WriteIndented = true }));
+        return 0;
+    }
+    catch (Exception exception) when (exception is InvalidDataException or IOException or UnauthorizedAccessException)
+    {
+        Console.Error.WriteLine($"[text_catalog_unreadable] {exception.Message}");
+        return 2;
+    }
+}
+
 if (args.Length == 2 && args[0].Equals("font-catalog", StringComparison.OrdinalIgnoreCase))
 {
     try
@@ -173,6 +200,7 @@ if (args.Length != 1 || !Directory.Exists(args[0]))
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect <owned-original-directory>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect gff <owned-original.gff>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect image-catalog <owned-original.gff>");
+    Console.Error.WriteLine("  DarkSunWakeRedux.Inspect text-catalog <owned-original.gff>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect font-catalog <owned-original.gff>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect ui-catalog <owned-original.gff>");
     return 64;

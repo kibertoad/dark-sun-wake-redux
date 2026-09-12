@@ -10,6 +10,7 @@ semantics.
 | GFF `BMP `, `CBMP`, `ICON` | Indexed image frames | Shared size/frame envelope plus sparse row, `PLAN`, and `PLNR` encodings are decoded to palette indices and alpha | verified for all matching resources in the owned build | Bound payload, frame count, offsets, dimensions, total pixels, compressed runs, dictionaries, and bitstreams; reject malformed input with resource identity |
 | GFF `PAL ` | 256-color palettes | Exactly 256 RGB triples with 6-bit VGA components, scaled by four to 8-bit channels | verified for all matching resources in the owned build | Require exactly 768 bytes and reject components outside `0..63` |
 | GFF `FONT` | Indexed bitmap glyphs | A shared-height 256-glyph table with character map, absolute offsets, widths, and palette-index pixels is decoded | verified for `FONT` #100 in `RESOURCE.GFF` | Bound payload, count, height, offsets, widths, total pixels, and exact record ends |
+| GFF `TEXT` | Short text tables | Printable 7-bit ASCII lines with mandatory CRLF delimiters and final terminator | verified for all 62 records in `RESOURCE.GFF` | Bound payload, line count, and line length; reject unsupported bytes and bare/missing terminators |
 | GFF `WIND`, `BUTN`, `APFM`, `EBOX` | UI layout and controls | Bounded common fields and references are decoded; unknown fixed fields and variable button tails remain uninterpreted | verified for all matching resources in `RESOURCE.GFF` | Require signatures and exact declared sizes; bound fixed records, complete child records, dimensions, tags, repeated identities, and references |
 | Pack `*.dsix` | Derived indexed-image asset | `DSIX` v1 stores one decoded 256-color palette plus bounded indexed frames and binary alpha | implemented; title asset round-trip and extraction validated | Bound file size, version, frame count, dimensions, pixels, alpha, and trailing data; reject non-binary alpha |
 | Pack `*.dsft` | Derived indexed-font asset | `DSFT` v1 stores a character map, shared height, widths, and bounded indexed glyph pixels | implemented; interface-font round-trip and extraction validated | Bound file size, version, glyph count, height, widths, pixel counts, and trailing data |
@@ -112,6 +113,16 @@ valid and contain no pixels. The final record must end exactly at payload end.
 The reader caps payloads at 1 MiB, height at 64, width at 256, and total decoded
 pixels at 4 MiB. The map's semantic encoding, the four unknown header bytes,
 palette pairing, advance/spacing rules, strings, and presentation remain open.
+
+## TEXT resources
+
+**Evidence:** `DATA-GOG-TEXT-001`.
+
+All 62 `TEXT` records in `RESOURCE.GFF` satisfy a narrow printable-ASCII and
+CRLF line contract. They total 2,994 bytes and 316 lines; the maximum observed
+line is 18 bytes. The reader caps payloads at 1 MiB, lines at 65,536, and each
+line at 4,096 bytes. Empty lines are preserved. Resource-number semantics and
+relationships to UI controls remain unassigned until separately evidenced.
 
 ## UI windows and buttons
 
