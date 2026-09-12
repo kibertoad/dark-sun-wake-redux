@@ -14,6 +14,7 @@ semantics.
 | GFF `WIND`, `BUTN`, `APFM`, `EBOX` | UI layout and controls | Bounded common fields and references are decoded; unknown fixed fields and variable button tails remain uninterpreted | verified for all matching resources in `RESOURCE.GFF` | Require signatures and exact declared sizes; bound fixed records, complete child records, dimensions, tags, repeated identities, and references |
 | Pack `*.dsix` | Derived indexed-image asset | `DSIX` v1 stores one decoded 256-color palette plus bounded indexed frames and binary alpha | implemented; title asset round-trip and extraction validated | Bound file size, version, frame count, dimensions, pixels, alpha, and trailing data; reject non-binary alpha |
 | Pack `*.dsft` | Derived indexed-font asset | `DSFT` v1 stores a character map, shared height, widths, and bounded indexed glyph pixels | implemented; interface-font round-trip and extraction validated | Bound file size, version, glyph count, height, widths, pixel counts, and trailing data |
+| Pack `*.dstx` | Derived text catalog | `DSTX` v1 deterministically stores original resource IDs and printable ASCII lines | implemented; full TEXT catalog round-trip and extraction validated | Bound file size, version, resource/line counts and lengths; reject duplicates, unsupported bytes, and trailing data |
 | `*.FLI` | Four observed cinematics | Likely animation resources by extension only; dimensions, palette changes, frame timing, and exact variant are unverified | low | Bound frames, chunks, dimensions, decoded bytes, and timing; unsupported chunk types fail explicitly |
 | `*.VOC` | Speech and sound-effect files | Creative Labs VOC is suggested by extension; headers, codecs, sample rates, and block use must be verified per file | low | Bound blocks and decoded samples; reject unsupported codecs and malformed terminators |
 | `MUSIC/*.ogg` | 39 GOG-supplied music files | Ogg container presence is observed; mapping, loop points, provenance, and relationship to original media are unknown | low | Validate stream metadata and decode limits; unknown track mapping remains data, not a guessed rule |
@@ -180,3 +181,13 @@ palette-index bytes. The reader requires each pixel count to equal width times
 height, applies the original FONT dimension and aggregate-pixel limits, caps the
 file at 8 MiB, and rejects truncation and trailing bytes. Palette selection and
 text layout deliberately remain outside this asset until separately evidenced.
+
+## Derived DSTX text-catalog asset
+
+DSTX is an original deterministic pack format. Version 1 starts with ASCII
+`DSTX`, a 16-bit version, and a 32-bit resource count. Resources are written
+in ascending numeric-ID order; each stores its 32-bit original resource ID, a
+32-bit line count, then lines as 16-bit byte lengths and printable ASCII bytes.
+CRLF delimiters are removed because line boundaries are explicit. The reader
+caps files at 8 MiB, resource/line counts at 65,536, and lines at 4,096 bytes,
+and rejects duplicate IDs, unsupported bytes, truncation, and trailing data.

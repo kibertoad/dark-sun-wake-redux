@@ -1,7 +1,7 @@
 # Validation
 
 CI and routine repository checks require no proprietary content. Synthetic GFF,
-indexed-image, palette, indexed-font, text, DSIX, and DSFT fixtures exercise successful decoding plus
+indexed-image, palette, indexed-font, text, DSIX, DSFT, and DSTX fixtures exercise successful decoding plus
 truncation, bounds, invalid-component, unsafe-path, inventory, and transactional
 replacement failures. Core rule tests use explicit inputs and no ambient state.
 Start-flow tests also prove identical seeds and commands yield identical events
@@ -13,8 +13,9 @@ The smoke modes have distinct purposes:
 - `--smoke-test` exits before content or graphics initialization and is safe on
   a content-free CI worker.
 - `--content-smoke-test --asset-pack <path>` verifies the exact pack inventory,
-  opens all five DSIX startup images plus the DSFT interface font, and checks
-  their frame, geometry, and glyph contracts without a window.
+  opens all five DSIX startup images, the DSFT interface font, and the DSTX text
+  catalog, and checks their frame, geometry, glyph, and inventory contracts
+  without a window.
 - `--platform-smoke-test` creates the MonoGame platform surface and exits; it is
   reserved for installed-package environments with a display server.
 - Normal startup verifies the pack before opening a window and renders the

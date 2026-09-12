@@ -97,8 +97,8 @@
   maximum observed line length of 18 bytes. No NUL or extended bytes occur.
 - **Confidence:** verified for `TEXT` resources in GOG-1432903719; resource-ID
   meanings, string interpolation, and screen routing remain open.
-- **Implementation:** `DarkSunWakeRedux.Resources.GffTextResource` and the
-  metadata-only `text-catalog` inspection command.
+- **Implementation:** `DarkSunWakeRedux.Resources.GffTextResource`, deterministic
+  ID-preserving DSTX v1 extraction, and the metadata-only `text-catalog` command.
 - **Tests:** synthetic multiline/empty-line parsing and invalid terminator,
   control-byte, non-ASCII, and size-limit cases.
 

@@ -50,6 +50,7 @@ public static class StartupAssetExtractor
         var font = IndexedBitmapFont.Read(archive.GetResource(FontTag, FontNumber),
             $"{SourcePath}:{FontTag}#{FontNumber}");
         files.Add(await WriteFontAsync(stagingRoot, font, cancellationToken));
+        files.Add(await WriteTextCatalogAsync(stagingRoot, archive, cancellationToken));
 
         return new AssetPackManifest(
             OriginalContent.AssetPackFormatVersion,
@@ -58,6 +59,29 @@ public static class StartupAssetExtractor
             edition.Fingerprint(),
             extractorVersion,
             files);
+    }
+
+    private static async Task<AssetPackFile> WriteTextCatalogAsync(
+        string stagingRoot,
+        GffArchive archive,
+        CancellationToken cancellationToken)
+    {
+        var resources = archive.Resources.Where(resource => resource.Tag == "TEXT")
+            .OrderBy(resource => resource.Number)
+            .ToDictionary(resource => resource.Number, resource =>
+                (IReadOnlyList<string>)GffTextResource.Read(
+                    archive.GetResource(resource.Tag, resource.Number),
+                    $"{SourcePath}:{resource.Tag}#{resource.Number}").Lines.ToArray());
+        var target = Path.Combine(stagingRoot,
+            OriginalContent.TextCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
+        Directory.CreateDirectory(Path.GetDirectoryName(target)!);
+        await using (var output = File.Create(target)) new PackedTextCatalog(resources).Write(output);
+        await using var verify = File.OpenRead(target);
+        PackedTextCatalog.Read(verify, OriginalContent.TextCatalogAssetPath);
+        verify.Position = 0;
+        var hash = Convert.ToHexStringLower(await SHA256.HashDataAsync(verify, cancellationToken));
+        return new(OriginalContent.TextCatalogAssetPath, verify.Length, hash, SourcePath,
+            "application/vnd.dark-sun-wake-redux.text-catalog", "all TEXT resources -> DSTX v1");
     }
 
     private static async Task<AssetPackFile> WriteFontAsync(

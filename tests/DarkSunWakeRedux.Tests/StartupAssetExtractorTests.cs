@@ -44,7 +44,7 @@ public sealed class StartupAssetExtractorTests
             var manifest = await AssetPackInstaller.InstallAsync(output, staging =>
                 StartupAssetExtractor.WritePackAsync(sourceRoot, staging, edition, "test"));
 
-            Assert.Equal(6, manifest.Files.Count);
+            Assert.Equal(7, manifest.Files.Count);
             var asset = Assert.Single(manifest.Files, item => item.Path == OriginalContent.TitleImageAssetPath);
             Assert.Contains("BMP #11011", asset.Conversion, StringComparison.Ordinal);
             foreach (var button in OriginalContent.StartMenuButtons)
@@ -63,6 +63,11 @@ public sealed class StartupAssetExtractorTests
             {
                 Assert.Equal(IndexedBitmapFont.CharacterCount,
                     PackedIndexedBitmapFont.Read(fontStream).Glyphs.Count);
+            }
+            using (var textStream = File.OpenRead(Path.Combine(output,
+                       OriginalContent.TextCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar))))
+            {
+                Assert.Equal(["Synthetic"], PackedTextCatalog.Read(textStream).Resources[7]);
             }
             Assert.Empty(await OriginalContent.VerifyInstalledAsync(
                 output, TestContext.Current.CancellationToken));
@@ -90,7 +95,9 @@ public sealed class StartupAssetExtractorTests
             .ToArray();
         var palette = new byte[IndexedPalette.EncodedLength];
         var font = Font();
-        var indexOffset = 28 + title.Length + icons.Sum(item => item.Bytes.Length) + palette.Length + font.Length;
+        var text = Encoding.ASCII.GetBytes("Synthetic\r\n");
+        var indexOffset = 28 + title.Length + icons.Sum(item => item.Bytes.Length) + palette.Length +
+            font.Length + text.Length;
         using var stream = new MemoryStream();
         using var writer = new BinaryWriter(stream, Encoding.ASCII, leaveOpen: true);
         writer.Write(Encoding.ASCII.GetBytes("GFFI"));
@@ -111,13 +118,16 @@ public sealed class StartupAssetExtractorTests
         writer.Write(palette);
         var fontOffset = checked((int)stream.Position);
         writer.Write(font);
+        var textOffset = checked((int)stream.Position);
+        writer.Write(text);
         writer.Write(0U);
         writer.Write(0U);
-        writer.Write((ushort)4);
+        writer.Write((ushort)5);
         WriteTable(writer, "BMP ", [(StartupAssetExtractor.TitleImageNumber, titleOffset, title.Length)]);
         WriteTable(writer, "ICON", iconEntries);
         WriteTable(writer, "PAL ", [(StartupAssetExtractor.PaletteNumber, paletteOffset, palette.Length)]);
         WriteTable(writer, "FONT", [(StartupAssetExtractor.FontNumber, fontOffset, font.Length)]);
+        WriteTable(writer, "TEXT", [(7U, textOffset, text.Length)]);
         return stream.ToArray();
     }
 

@@ -44,6 +44,11 @@ try
             var font = PackedIndexedBitmapFont.Read(fontStream, OriginalContent.InterfaceFontAssetPath);
             if (font.Glyphs.Count != IndexedBitmapFont.CharacterCount)
                 throw new InvalidDataException("The installed interface font has an unexpected glyph count.");
+            var textPath = Path.Combine(assetPack,
+                OriginalContent.TextCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
+            using var textStream = File.OpenRead(textPath);
+            if (PackedTextCatalog.Read(textStream, OriginalContent.TextCatalogAssetPath).Resources.Count == 0)
+                throw new InvalidDataException("The installed text catalog is empty.");
             Console.WriteLine($"Verified runtime startup assets at {assetPack}.");
             return 0;
         }
