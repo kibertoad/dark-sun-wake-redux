@@ -148,9 +148,9 @@ inspection command additionally verifies embedded/directory identities and all
 nonzero child and image references.
 
 An `APFM` application-frame payload is exactly 116 bytes and stores its embedded
-resource number at offset 8, dimensions at 40/42, and a 16-bit appearance code
-at offset 88. `AppearanceCode` is deliberately neutral: the supported build
-proves that the field varies, but not what it means. An `EBOX` edit-box payload
+resource number at offset 8, dimensions at 40/42, and a 16-bit event mask at
+offset 88. The executable tests this word against a caller-supplied mask before
+building a dispatch record; individual bit meanings remain unknown. An `EBOX` edit-box payload
 is exactly 168 bytes, repeats its offset-8 resource number at offset 24, and
 stores dimensions at 34/36. All other fields remain deliberately uninterpreted.
 Every one of the 97 `APFM` and 7 `EBOX` resources in the owned `RESOURCE.GFF`

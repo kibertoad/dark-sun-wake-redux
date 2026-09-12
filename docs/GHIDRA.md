@@ -112,6 +112,26 @@ proof by itself. Never redirect broad output into the repository.
 
 ## Evidence record
 
+### EXE-GOG-UI-001 - APFM offset 88 is an event mask
+
+- **Question:** Does the varying 16-bit `APFM` field at payload offset 88
+  describe appearance, a resource, or dispatch behavior?
+- **Target:** GOG-1432903719 `DSUN.EXE`, 634,416 bytes, SHA-256
+  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Bounded finding:** Function `3d72:0515` compares the input tag with the
+  little-endian `APFM` scalar at `3d72:0529`. At `3d72:054d` it bit-tests the
+  word at structure offset `0x58` against a caller-supplied word, branches when
+  no requested bit is present, and otherwise begins assembling a dispatch
+  record containing the resource identity. This rejects an appearance/resource
+  interpretation and supports an event-mask role.
+- **Corroboration:** all 97 owned `APFM` records vary only at identity,
+  dimensions, and offset 88; #19200/#19201 store masks 494/486. Those values do
+  not resolve as resource numbers in `RESOURCE.GFF`.
+- **Confidence:** high for event-mask role; unknown for individual bits.
+- **Implementation:** `UiApplicationFrameResource.EventMask`, synthetic
+  decoding test, and UI catalog output; no bit-level behavior is assigned.
+
 For each useful finding, add a concise entry here or in the relevant
 `docs/RULES-AND-EVIDENCE.md` / `docs/ORIGINAL-FORMATS.md` section with:
 

@@ -87,7 +87,7 @@ public sealed record UiApplicationFrameResource(
     uint ResourceNumber,
     ushort Width,
     ushort Height,
-    ushort AppearanceCode)
+    ushort EventMask)
 {
     public const int RecordSize = 116;
 
@@ -104,7 +104,7 @@ public sealed record UiApplicationFrameResource(
         var height = reader.UInt16(42, "height");
         reader.RequireDimensions(width, height);
         return new(reader.UInt32(8, "resource number"), width, height,
-            reader.UInt16(88, "appearance code"));
+            reader.UInt16(88, "event mask"));
     }
 }
 

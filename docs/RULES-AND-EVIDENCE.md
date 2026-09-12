@@ -188,7 +188,7 @@
 - **Tests:** unique mappings, frame contracts, deterministic synthetic
   extraction, provenance, owned-pack verification, and content smoke.
 
-### DATA-GOG-UI-005 - Application-frame appearance field
+### DATA-GOG-UI-005 - Application-frame event mask
 
 - **Question:** Which non-geometry data varies across bounded `APFM` records?
 - **Method:** Compare every 16-bit-aligned field in all 97 exact-size `APFM`
@@ -197,13 +197,16 @@
 - **Finding:** Apart from identity and dimensions, only the 16-bit value at
   offset 88 varies. Ten values occur. The party frames use 494 for `APFM`
   #19200 and 486 for #19201; neither resolves as a resource number.
-- **Confidence:** verified for GOG-1432903719 as stored data; meaning unknown.
-- **Implementation:** `UiApplicationFrameResource.AppearanceCode` preserves the
-  value and the UI catalog reports it. No renderer interprets it.
+- **Executable evidence:** `EXE-GOG-UI-001` verifies the field is a mask used
+  during APFM dispatch, not an appearance parameter.
+- **Confidence:** verified for GOG-1432903719 as stored data and high for the
+  mask role; individual bit meanings remain unknown.
+- **Implementation:** `UiApplicationFrameResource.EventMask` preserves the
+  value and the UI catalog reports it. No input handler interprets its bits.
 - **Tests:** synthetic nonzero appearance-code decoding and the existing exact
   size/dimension boundaries.
-- **Uncertainty:** Whether the value encodes colors, flags, a style, or another
-  drawing parameter requires executable/runtime evidence.
+- **Uncertainty:** Map each bit to its event/input meaning with bounded call-site
+  evidence and controlled runtime observations.
 
 ## Initial rules
 
