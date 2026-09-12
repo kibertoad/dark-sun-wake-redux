@@ -23,8 +23,9 @@ fingerprints,
 asset-pack contracts and diagnostics are implemented, and assetless smoke
 testing works. The first evidenced mapping now transactionally extracts and
 displays the original 320x200 title image. The original start-window resources
-and coordinates are mapped, but their runtime behavior, party-screen mapping,
-and playable gameplay are not implemented yet.
+and coordinates are mapped, and deterministic start/party menu semantics are
+implemented in Core. Runtime interaction, dynamic party content, and playable
+gameplay are not implemented yet.
 
 | Area | Supported now | Current limitations |
 |---|---|---|

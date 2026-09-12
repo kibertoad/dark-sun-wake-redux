@@ -130,6 +130,29 @@
 - **Uncertainty:** Exact pregenerated party data, on-disk created-character
   format, cancellation state, and shipped edge behavior require observation.
 
+### RULE-START-FLOW-001 - Start and party-creation routing
+
+- **Behavior:** The Start Window offers START GAME, CREATE CHARACTERS, LOAD
+  SAVED GAME, and EXIT TO DOS. START GAME immediately enters play with the
+  supplied pregenerated party. CREATE CHARACTERS opens View Character with four
+  empty slots. Activating an empty slot offers NEW, ADD, and CANCEL; NEW opens
+  character generation, ADD selects a previously created character, and CANCEL
+  closes the menu. DONE accepts a valid new character. A created party may begin
+  with one through four members.
+- **Evidence:** MANUAL-1994, quick-start and "Creating Your Party," pages 2 and
+  7-10; `DATA-GOG-UI-001` corroborates the four start controls and the bounded
+  start/party/character-generation window families.
+- **Confidence:** high for documented semantic destinations; exact input event,
+  focus, animation, and transition timing require OBS-GOG evidence.
+- **Implementation:** deterministic `StartFlow` screen transitions with stable
+  rejection diagnostics and integration with the existing `Party` validation.
+- **Tests:** every start choice, NEW/ADD/CANCEL routing, valid and invalid
+  completion, empty/nonempty party start, cancellation, and wrong-screen
+  rejection.
+- **Uncertainty:** Pregenerated member records, saved/created-character formats,
+  the exact early-start control, and shipped cancellation edge cases remain
+  unimplemented until their data and runtime behavior are observed.
+
 ### RULE-PARTY-002 - Character creation invariants
 
 - **Behavior:** Creation offers human, dwarf, elf, half-elf, half-giant,

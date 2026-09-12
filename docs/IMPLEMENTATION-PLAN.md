@@ -160,7 +160,7 @@ original game.
 | # | Slice | Player-visible outcome | Depends on | Status |
 |---|---|---|---|---|
 | 1 | Identity, source recognition, and diagnostic boot | The named runtime starts, finds a verified pack or explains how to create one, and quits cleanly; the separate Extractor recognizes the supported GOG copy | approval | complete |
-| 2 | Extraction and title-to-party flow | The Extractor creates a verified local pack; the runtime reaches the start flow and creates/selects a four-character party | 1 | planned |
+| 2 | Extraction and title-to-party flow | The Extractor creates a verified local pack; the runtime reaches the start flow and creates/selects a four-character party | 1 | in progress - title extraction/display, UI resource mapping, party invariants, and semantic start routing implemented |
 | 3 | First Tyr exploration and conversation | The party enters Tyr, moves, interacts, completes the opening conversation, and uses character/inventory/game menus | 2 | planned |
 | 4 | First deterministic combat | The opening encounter is playable through victory or defeat | 3 | planned |
 | 5 | Full character systems | Equipment, advancement, magic, psionics, camping, and training work from evidenced rules | 4 | planned |
