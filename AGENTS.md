@@ -121,6 +121,27 @@ dotnet build <Project>.slnx        # full solution
 dotnet run --project src/<Project>.Game -- --smoke-test
 ```
 
+## Post-commit orphan-process audit
+
+After every commit, inspect running processes for orphaned work launched while
+building, testing, validating, rendering, or analyzing this repository. Check at
+least PowerShell (`powershell` and `pwsh`), Ghidra/Java, .NET (`dotnet` and
+`testhost`), DOSBox when used for controlled original-game observation, and any
+other process family started during the completed batch.
+
+A process belongs to this work only when its command line, parent process,
+task/session, or source paths connect it to this repository or to the authorized
+reference installation at `C:\GOG Games\Dark Sun 2`. Never terminate a process
+merely because its executable name matches. Preserve user/IDE/system processes,
+work for other repositories or games, and validation intentionally still in
+progress. If ownership is uncertain, leave the process running.
+
+Stop only confirmed orphaned processes. Whenever one is stopped, append an
+entry to `orphanCleanupLog.md` with the local timestamp and UTC offset, PID,
+process name, start time or task/session when known, the evidence that made it
+an orphan, and any related process deliberately left running. If the audit
+finds nothing to stop, do not create a log entry.
+
 ## Definition of done
 
 A change is finished when the solution builds, `./tools/Test.ps1` passes, new
