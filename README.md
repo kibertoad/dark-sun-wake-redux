@@ -98,6 +98,13 @@ Its credited research contributors include **Seraphiel**, **@revcrussell**,
 is treated as secondary evidence and checked against controlled observations
 where possible.
 
+Special thanks also to **John Glassmyer** for the MIT-licensed
+[`dsun_music` project](https://github.com/JohnGlassmyer/dsun_music), including
+its GFF, image, region, and XMI research tools for the Dark Sun games. This
+restoration uses useful format and resource-identification results from that
+project as credited secondary technical evidence, validates them against the
+fingerprinted owned copy, and records any direct code reuse under its license.
+
 These acknowledgements do not imply that any original creator, rights holder,
 storefront, guide author, or contributor endorses this project.
 

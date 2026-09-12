@@ -17,7 +17,7 @@ behavior remains an open question until evidence closes it.
 | Original release year | 1994 |
 | Genre | Single-player, party-based computer role-playing game using AD&D 2nd Edition rules in the Dark Sun setting |
 | Editions available for validation | Legally owned English GOG installation at `C:\GOG Games\Dark Sun 2`, GOG product ID `1432903719`, installed build ID `52095422060333615`. The underlying DOS game-data revision is not yet established. |
-| Existing research relied on | Local manual: `C:\GOG Games\Dark Sun 2\ds_wakerave_manual_pdf.pdf`; kibbitz, *Dark Sun: Wake of the Ravager - Guide and Walkthrough*, v1.13, GameFAQs FAQ 81038, updated 2026-06-18: <https://gamefaqs.gamespot.com/pc/564927-dark-sun-wake-of-the-ravager/faqs/81038>; read-only inspection and reproducible runtime observations of the owned GOG copy |
+| Existing research relied on | Local manual: `C:\GOG Games\Dark Sun 2\ds_wakerave_manual_pdf.pdf`; kibbitz, *Dark Sun: Wake of the Ravager - Guide and Walkthrough*, v1.13, GameFAQs FAQ 81038, updated 2026-06-18: <https://gamefaqs.gamespot.com/pc/564927-dark-sun-wake-of-the-ravager/faqs/81038>; John Glassmyer's MIT-licensed `dsun_music` resource tools and research: <https://github.com/JohnGlassmyer/dsun_music>; read-only inspection and reproducible runtime observations of the owned GOG copy |
 
 ### Durable original-analysis source
 
@@ -52,6 +52,16 @@ and must never enter Git, CI artifacts, or distributed packages.
   Runtime confirmation is required where feasible. The guide credits
   contributors Seraphiel, @revcrussell, UndeadHalfOrc, classiccola, GHostLPs,
   and rattus 128.
+- **DSUN-MUSIC.** John Glassmyer's MIT-licensed `dsun_music` project, whose
+  `gff-tool`, `image-tool`, `region-tool`, and `xmi-tool` describe and extract
+  resources used by *Shattered Lands*, *Wake of the Ravager*, and *Crimson
+  Sands*. The repository owner explicitly authorizes reuse of useful results
+  from this project. Treat its format descriptions, resource tags, mappings,
+  and tool behavior as secondary technical evidence: credit the project, note
+  any directly reused code under its license, and confirm applicable facts
+  against the fingerprinted GOG-1432903719 files before making a verified
+  format or parity claim. Production readers must still satisfy this plan's
+  bounds, diagnostics, synthetic-test, and clean-room requirements.
 - **OBS-GOG-*.** Reproducible observations recorded from controlled runs of the
   supported copy. Original screenshots, recordings, and saves stay outside Git;
   measurements and clean-room diagrams may be committed.
@@ -359,8 +369,11 @@ decoder rather than being guessed now.
 
 - **Unknown containers.** The observed installation contains `.GFF`, `.FLI`,
   `.VOC`, `.BIN`, and disc-image resources whose exact roles/layouts are not yet
-  established. Start with read-only inventory, bound every field, use synthetic
-  fixtures, and extract the smallest complete vertical slice before breadth.
+  fully established. Use DSUN-MUSIC as a starting point where it covers the
+  format, validate those results against this exact build, then preserve the
+  evidence in our own format notes. Start with read-only inventory, bound every
+  field, use synthetic fixtures, and extract the smallest complete vertical
+  slice before breadth.
 - **Storefront drift.** GOG may change files without changing the product name.
   Match exact manifests; retain product/build metadata only as provenance.
 - **Defects and conflicts.** FAQ-81038 reports manual discrepancies, performance
