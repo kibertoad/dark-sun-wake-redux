@@ -19,6 +19,25 @@ behavior remains an open question until evidence closes it.
 | Editions available for validation | Legally owned English GOG installation at `C:\GOG Games\Dark Sun 2`, GOG product ID `1432903719`, installed build ID `52095422060333615`. The underlying DOS game-data revision is not yet established. |
 | Existing research relied on | Local manual: `C:\GOG Games\Dark Sun 2\ds_wakerave_manual_pdf.pdf`; kibbitz, *Dark Sun: Wake of the Ravager - Guide and Walkthrough*, v1.13, GameFAQs FAQ 81038, updated 2026-06-18: <https://gamefaqs.gamespot.com/pc/564927-dark-sun-wake-of-the-ravager/faqs/81038>; read-only inspection and reproducible runtime observations of the owned GOG copy |
 
+### Durable original-analysis source
+
+The repository owner confirms that agents may always rely on the legally owned
+installation at `C:\GOG Games\Dark Sun 2` being available for read-only analysis
+throughout this migration, including focused analysis of
+`C:\GOG Games\Dark Sun 2\DSUN.EXE`. Agents do not need to ask again before using
+that installation for in-scope evidence work. Before interpreting executable
+addresses or data offsets, verify the file against the supported-edition
+manifest. The current `DSUN.EXE` is 634,416 bytes with SHA-256
+`ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`.
+If the path is unavailable or the fingerprint changes, record the mismatch and
+stop drawing edition-specific conclusions until the source-edition record is
+updated; never silently substitute another copy.
+
+This availability does not relax the clean-room boundary: the installation is
+an evidence source only. Original executables, assets, extracted bytes, analysis
+projects, disassembly, decompiler output, screenshots, and saves remain local
+and must never enter Git, CI artifacts, or distributed packages.
+
 ### Initial evidence register
 
 - **MANUAL-1994.** The locally installed 41-page landscape PDF rule book (77
