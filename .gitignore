@@ -18,5 +18,6 @@ reference/original/
 .env
 CodeCoverage/
 coverage/
+orphanCleanupLog.md
 ~$*
 *~
