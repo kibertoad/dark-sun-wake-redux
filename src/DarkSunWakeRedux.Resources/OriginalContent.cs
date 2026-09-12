@@ -86,6 +86,7 @@ public static class OriginalContent
 {
     public const int AssetPackFormatVersion = 1;
     public const string GameId = "dark-sun-wake-redux";
+    public const string TitleImageAssetPath = "images/title.dsix";
     public const long MaximumManifestBytes = 4 * 1024 * 1024;
 
     public static string DefaultAssetPackPath() => Path.Combine(

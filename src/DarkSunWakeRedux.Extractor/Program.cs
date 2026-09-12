@@ -1,4 +1,5 @@
 using System.Reflection;
+using DarkSunWakeRedux.Extractor;
 using DarkSunWakeRedux.Resources;
 
 return await RunAsync(args);
@@ -39,11 +40,11 @@ static async Task<int> RunAsync(string[] args)
         if (command != "extract") return Usage();
 
         var version = Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "unknown";
-        Console.WriteLine($"Verified {identification.Edition!.SourceEdition} with Extractor {version}.");
-        Console.Error.WriteLine("[asset_decoders_unavailable] Source verification succeeded, but the first " +
-            "bounded Dark Sun asset decoders have not been implemented yet. No output was written and any " +
-            "existing asset pack was left unchanged.");
-        return 4;
+        var manifest = await AssetPackInstaller.InstallAsync(output, staging =>
+            TitleAssetExtractor.WritePackAsync(source, staging, identification.Edition!, version));
+        Console.WriteLine($"Installed verified asset pack for {manifest.SourceEdition} at {output}.");
+        Console.WriteLine($"Extracted {manifest.Files.Count} file(s) transactionally.");
+        return 0;
     }
     catch (Exception exception)
     {

@@ -9,6 +9,7 @@ semantics.
 | `*.GFF` | Shared resources, numbered regions, and legacy saves | Little-endian version `0x00030000` container directory is decoded; indexed-image and palette payloads are decoded, while other tag semantics remain mostly unknown | verified for the directory layout and recorded image/palette families in the owned build | Bound file size and every count/offset/length; reject overflow, truncation, invalid secondary references, duplicate keys, and partial overlaps with source context |
 | GFF `BMP `, `CBMP`, `ICON` | Indexed image frames | Shared size/frame envelope plus sparse row, `PLAN`, and `PLNR` encodings are decoded to palette indices and alpha | verified for all matching resources in the owned build | Bound payload, frame count, offsets, dimensions, total pixels, compressed runs, dictionaries, and bitstreams; reject malformed input with resource identity |
 | GFF `PAL ` | 256-color palettes | Exactly 256 RGB triples with 6-bit VGA components, scaled by four to 8-bit channels | verified for all matching resources in the owned build | Require exactly 768 bytes and reject components outside `0..63` |
+| Pack `*.dsix` | Derived indexed-image asset | `DSIX` v1 stores one decoded 256-color palette plus bounded indexed frames and binary alpha | implemented; title asset round-trip and extraction validated | Bound file size, version, frame count, dimensions, pixels, alpha, and trailing data; reject non-binary alpha |
 | `*.FLI` | Four observed cinematics | Likely animation resources by extension only; dimensions, palette changes, frame timing, and exact variant are unverified | low | Bound frames, chunks, dimensions, decoded bytes, and timing; unsupported chunk types fail explicitly |
 | `*.VOC` | Speech and sound-effect files | Creative Labs VOC is suggested by extension; headers, codecs, sample rates, and block use must be verified per file | low | Bound blocks and decoded samples; reject unsupported codecs and malformed terminators |
 | `MUSIC/*.ogg` | 39 GOG-supplied music files | Ogg container presence is observed; mapping, loop points, provenance, and relationship to original media are unknown | low | Validate stream metadata and decode limits; unknown track mapping remains data, not a guessed rule |
@@ -92,3 +93,22 @@ Palette payloads contain exactly 256 RGB triples. Each stored component is in
 the VGA range `0..63`; multiplying by four produces the decoded channel range
 `0..252`. Resource-to-palette mapping, display composition, frame origins, and
 animation timing remain open.
+
+## Derived DSIX indexed-image asset
+
+DSIX is an original, versioned pack format; it is not an original-game format.
+It keeps the decoded indexed pixels and palette explicit so the runtime need not
+parse GFF data. Version 1 is little-endian:
+
+| Offset/sequence | Field |
+|---|---|
+| `0x00` | ASCII `DSIX` signature |
+| `0x04` | 16-bit format version (`1`) |
+| `0x06` | 16-bit frame count |
+| `0x08` | 256 RGB triples using decoded 8-bit components |
+| per frame | 16-bit width, 16-bit height, 32-bit pixel count, then all palette-index bytes followed by all binary-alpha bytes |
+
+The pack reader applies the same frame/dimension/pixel limits as the original
+image decoder, caps the file at 160 MiB, requires the declared pixel count to
+equal width times height, accepts alpha values only at 0 or 255, and rejects
+trailing bytes.

@@ -15,17 +15,17 @@ The repository is configured and the first foundation slice is complete. Work
 on the second slice includes bounded GFF directory, indexed-image, and palette
 readers. The supported GOG build can be identified by exact fingerprints,
 asset-pack contracts and diagnostics are implemented, and assetless smoke
-testing works. Resource-to-screen mapping, transactional pack creation, and
-playable gameplay are not implemented yet, so the Extractor deliberately writes
-no output.
+testing works. The first evidenced mapping now transactionally extracts and
+displays the original 320x200 title image. Start-menu resources, party-screen
+mapping, and playable gameplay are not implemented yet.
 
 | Area | Supported now | Current limitations |
 |---|---|---|
 | Legal source | Explicit verification of English GOG product `1432903719`, build `52095422060333615` | Other GOG revisions and storefronts are unsupported until separately fingerprinted |
-| Asset extraction | Separate `DarkSunWakeRedux.Extractor` executable; versioned exact-inventory pack contract; bounded GFF, indexed-image, and palette readers; actionable diagnostics | Resource mapping and transactional pack creation are not implemented |
+| Asset extraction | Separate `DarkSunWakeRedux.Extractor` executable; versioned exact-inventory contract; bounded readers; transactional title-image pack creation | Only the evidenced title image/palette mapping is extracted; the Slice 2 minimum pack is incomplete |
 | Gameplay | Assetless startup smoke test, MonoGame shell, and deterministic party-creation invariants in Core | No player-visible game slice yet; disputed race/class pairs await shipped-screen observation |
 | Saves and compatibility | Deterministic Core seed/state scaffold | Native saves, replays, original saves, and Shattered Lands party transfer are not implemented |
-| Presentation | Window and startup-failure reporting scaffold; original indexed pixels and VGA palettes can be decoded for future extraction | Palette/resource mapping, composition, animation, audio, video, and controls await observation and extraction |
+| Presentation | Verified-pack startup and nearest-neighbor display of the extracted 320x200 original title image | Start/party screens, pixel-aspect validation, animation, audio, video, and controls await observation and extraction |
 
 ## Developer quick start
 
@@ -43,10 +43,10 @@ dotnet run --project src/DarkSunWakeRedux.Game -- --smoke-test
 powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\Test.ps1
 ```
 
-Normal runtime startup requires a fully verified extracted pack. Until the
-first decoders land, `extract` verifies the licensed source, reports that the
-decoders are unavailable, leaves any existing pack unchanged, and exits with a
-failure code rather than copying raw original files.
+Normal runtime startup requires a fully verified extracted pack. `extract`
+currently writes the evidenced title image as a versioned derived indexed-image
+asset, verifies its exact inventory and hashes, and transactionally replaces the
+previous pack. It never copies the executable or raw GFF payloads.
 
 ## Architecture
 

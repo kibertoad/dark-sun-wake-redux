@@ -6,9 +6,10 @@ States are `unknown`, `researched`, `implemented`, `partially validated`,
 | Feature | Evidence | Core/rules | Presentation/input | Audio/video | Persistence | Automated validation | Manual validation | Status |
 |---|---|---|---|---|---|---|---|---|
 | GOG source recognition | exact local hashes | not applicable | Extractor diagnostics | not applicable | source manifest | synthetic mismatch tests | owned build verifies | partially validated |
-| Extracted asset pack | approved contract | not applicable | missing-pack startup guidance | unknown | versioned manifest | exact inventory/hash tests | no real pack yet | implemented |
+| Extracted asset pack | approved contract, `DATA-GOG-TITLE-001` | not applicable | missing-pack startup guidance | title asset only | versioned manifest | exact inventory/hash and transactional tests | owned title pack verifies; remaining Slice 2 inventory unknown | partially validated |
 | Start and party flow | `MANUAL-1994`, `CONFLICT-PARTY-001` | party bounds, sex/alignment/ability/class invariants implemented; conflicting eligibility unresolved | not implemented | unknown | none | 13 focused Core tests | shipped menus not yet observed | partially implemented |
-| Indexed graphics resources | `DATA-GOG-IMAGE-001`, `DSUN-MUSIC` | not applicable | bounded indexed-image and palette readers; mapping/rendering not implemented | not applicable | not applicable | synthetic decoding and malformed-input tests | all owned matching resources decode | partially validated |
+| Indexed graphics resources | `DATA-GOG-IMAGE-001`, `DSUN-MUSIC` | not applicable | bounded indexed-image and palette readers; only the title mapping/rendering is implemented | not applicable | not applicable | synthetic decoding and malformed-input tests | all owned matching resources decode | partially validated |
+| Static title image | `DATA-GOG-TITLE-001` | not applicable | 320x200 title asset extracted and rendered with point sampling | preceding/following timing unknown | verified DSIX asset | synthetic mapping/pack tests and content smoke | owned resource/palette inspected; runtime visual comparison pending | partially validated |
 | Tyr exploration/dialogue | manual + FAQ route | not implemented | not implemented | unknown | none | planned | not started | researched |
 | Opening combat | manual + FAQ route | not implemented | not implemented | unknown | none | planned | not started | researched |
 | Character rules | manual + FAQ conflicts | not implemented | not implemented | unknown | none | planned | not started | researched |

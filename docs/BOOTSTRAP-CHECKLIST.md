@@ -27,11 +27,11 @@ and `docs/CUSTOMIZATION.md` documents every configuration knob.
 - [x] Add explicit/manual source selection first; add storefront, registry,
       media, or archive discovery as optional adapters.
 - [x] Implement read-only inventory in `Inspect` before extraction.
-- [ ] Implement bounded format readers in `Resources` with synthetic fixtures.
-- [ ] Transform rather than copy original executables whenever decoded data is
+- [x] Implement bounded format readers in `Resources` with synthetic fixtures.
+- [x] Transform rather than copy original executables whenever decoded data is
       sufficient.
-- [ ] Verify generated files before committing the staged `UserContent` directory.
-- [ ] Make missing content produce an actionable GUI error and local diagnostic log.
+- [x] Verify generated files before committing the staged `UserContent` directory.
+- [x] Make missing content produce an actionable GUI error and local diagnostic log.
 
 ## Implement
 

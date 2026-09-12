@@ -7,14 +7,14 @@ Status values: `unknown`, `documented`, `observed`, `implemented`, and
 |---|---|---|---|
 | Legal-source recognition | implemented | `GOG-1432903719`, synthetic tests | One English GOG build has six exact fingerprint anchors |
 | Asset-pack contract | implemented | synthetic tests | Version, game/source identity, exact inventory, hashes, provenance, media type, conversion, and unexpected files are checked |
-| Asset extraction | unknown | plan plus image/palette readers | No output pack exists yet; implemented resource readers are not wired into transactional extraction |
+| Asset extraction | implemented | `DATA-GOG-TITLE-001`, synthetic extraction test, owned-build verification | The title image is converted to DSIX, staged, fully pack-verified, and promoted transactionally; remaining Slice 2 assets are not mapped |
 | GFF container directories | implemented | `DATA-GOG-GFF-001`, `DSUN-MUSIC`, synthetic tests | Bounded metadata parsing succeeds for all 26 GFF files in the owned build; payload semantics are not implied |
 | Indexed images and palettes | implemented | `DATA-GOG-IMAGE-001`, `DSUN-MUSIC`, synthetic tests | All 4,510 matching images (9,279 frames) and 40 palettes decode within bounds; semantic mapping and visual comparison remain open |
 | Rules | implemented | `MANUAL-1994`, `FAQ-81038`, Core tests | Initial party-creation invariants are implemented; disputed eligibility and all later gameplay rules remain unresolved |
 | AI | unknown | none | Not researched |
 | Controls | documented | `MANUAL-1994` | Semantic actions known; coordinates and runtime behavior unobserved |
 | Persistence | unknown | none | Native saves/replays and legacy import are not implemented |
-| Layout/graphics | researched | `DATA-GOG-IMAGE-001` | Indexed pixels and VGA palette colors decode; palette pairing, composition, origins, and rendering remain unobserved |
+| Layout/graphics | implemented | `DATA-GOG-IMAGE-001`, `DATA-GOG-TITLE-001` | The evidenced 320x200 title resource/palette is displayed with nearest-neighbor scaling; pixel aspect, timing, and later screens remain unvalidated |
 | Animation timing | unknown | none | FLI and gameplay cadence are unverified |
 | Text | unknown | none | Storage, encoding, layout, and route mapping are unverified |
 | Sound/speech | unknown | file inventory only | VOC files observed; mappings/codecs/timing unverified |

@@ -13,9 +13,10 @@ dotnet run --project src/DarkSunWakeRedux.Game -- --smoke-test
 ```
 
 Extraction will be transactional: a new content pack is staged and fully
-verified before it replaces the previous verified pack. The current first slice
-verifies the source and pack contract but writes no pack until bounded Dark Sun
-decoders exist. Extracted content is ignored by Git and must not be redistributed.
+verified before it replaces the previous verified pack. The current partial
+Slice 2 pack contains the evidenced 320x200 title image; later screens remain
+blocked on resource mapping. Extracted content is ignored by Git and must not be
+redistributed.
 
 Build and test the complete solution with:
 
@@ -41,6 +42,12 @@ The first command emits path, size, and SHA-256 inventory. The second emits only
 bounded GFF resource descriptors (tag, number, offset, and size). The third
 validates all indexed images and palettes in one GFF and emits dimensions and
 counts, but no proprietary pixel or palette content.
+
+Verify the runtime-side derived asset without opening a window:
+
+```powershell
+dotnet run --project src/DarkSunWakeRedux.Game -- --content-smoke-test --asset-pack "C:\path\to\UserContent"
+```
 
 ## Repository projects
 

@@ -50,6 +50,24 @@
 - **Tests:** synthetic row/planar decoding, transparency, palette conversion,
   and malformed size, bounds, component, and bitstream cases.
 
+### DATA-GOG-TITLE-001 - Title image resource mapping
+
+- **Question:** Which resource and palette form the static game-title image?
+- **Method:** Decode the full-screen `BMP ` candidates and all plausible palette
+  pairings from the fingerprinted `RESOURCE.GFF`, render previews under ignored
+  `analysis/original/`, and inspect them without retaining original content in
+  Git. DSUN-MUSIC corroborates the image and palette decoding method, while the
+  mapping is established from the owned build.
+- **Finding:** `BMP ` #11011 is one 320x200 frame containing the *Dark Sun: Wake
+  of the Ravager* title artwork, and `PAL ` #11011 supplies its correct colors.
+- **Confidence:** verified for GOG-1432903719 by exact resource identity and
+  locally rendered content; sequence timing and menu overlay behavior remain
+  unknown.
+- **Implementation:** transactional conversion to `images/title.dsix` and
+  verified-pack runtime display.
+- **Tests:** original-free DSIX round trips and rejection cases, plus synthetic
+  GFF-to-verified-pack extraction using the recorded resource identities.
+
 ## Initial rules
 
 ### RULE-INPUT-001 - Mouse-first interaction
