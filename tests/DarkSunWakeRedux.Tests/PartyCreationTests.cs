@@ -140,6 +140,20 @@ public sealed class PartyCreationTests
         }), item => item.Code == "clerical_sphere_unavailable");
     }
 
+    [Fact]
+    public void ReplacementIsValidatedBeforeMutatingParty()
+    {
+        var party = new Party();
+        Assert.Empty(party.Add(Draft()));
+
+        Assert.Contains(party.ReplaceAt(0, Draft(name: "")),
+            item => item.Code == "character_name_missing");
+        Assert.Equal("Rikus", party.Members[0].Name);
+
+        Assert.Empty(party.ReplaceAt(0, Draft(name: "Sadira")));
+        Assert.Equal("Sadira", party.Members[0].Name);
+    }
+
     private static CharacterDraft Draft(
         string name = "Rikus",
         CharacterRace race = CharacterRace.Human,

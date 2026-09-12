@@ -112,6 +112,15 @@ public sealed class Party
         _members.RemoveAt(index);
         return member;
     }
+
+    public IReadOnlyList<PartyDiagnostic> ReplaceAt(int index, CharacterDraft character)
+    {
+        if ((uint)index >= (uint)_members.Count)
+            return [new("party_member_missing", "The selected party member does not exist.")];
+        var diagnostics = PartyCreationRules.Validate(character);
+        if (diagnostics.Count == 0) _members[index] = character;
+        return diagnostics;
+    }
 }
 
 public static class PartyCreationRules

@@ -9,11 +9,13 @@ count, accepted/rejected commands, validation results, and a canonical state has
 each step or phase boundary. Loading must replay and reject divergence. Keep support for
 older versions explicit and tested; never deserialize arbitrary runtime types.
 
-The implemented start-flow foundation uses snapshot schema `2`, an explicit
+The implemented start-flow foundation uses snapshot schema `3`, an explicit
 seed, a sequence number that advances for accepted and rejected commands,
 immutable snapshot copies, and a canonical binary state encoding hashed with
-SHA-256. Schema 2 includes each member's psionic disciplines and optional
-clerical sphere. The in-memory replay format remains version `1`; it stores each
+SHA-256. Schema 3 includes each member's psionic disciplines and optional
+clerical sphere, the active occupied-slot edit target, and the bounded list of
+characters dropped from the party for later ADD. The in-memory replay format
+remains version `1`; it stores each
 semantic command and expected resulting hash, and rejects the first mismatch.
 This is not yet the public native file
 format: maximum file size, atomic I/O, migrations, RNG consumption, and

@@ -26,7 +26,9 @@ original 320x200 title with its four start-window button images at recorded
 coordinates, and carries the decoded interface font for later text rendering.
 Deterministic start/party menu semantics, commands, events, snapshots, and
 hash-verified replay are implemented in Core, including the manual-documented
-psionic-discipline and clerical-sphere creation constraints.
+psionic-discipline and clerical-sphere creation constraints. Pre-adventure
+party members can be edited atomically or dropped to recreation-native storage
+and added back; dual-classing still awaits advancement state.
 The start buttons now accept scale-independent mouse clicks and route through
 Core; their destination screens, dynamic party content, and playable gameplay
 are not implemented yet.
@@ -35,8 +37,8 @@ are not implemented yet.
 |---|---|---|
 | Legal source | Explicit verification of English GOG product `1432903719`, build `52095422060333615` | Other GOG revisions and storefronts are unsupported until separately fingerprinted |
 | Asset extraction | Separate Extractor with versioned exact inventory, bounded readers, and transactional 28-asset Slice 2 pack | Title/start assets, generation controls and modal labels, shared window image, font, and text catalog are extracted; dynamic/shell assets remain incomplete |
-| Gameplay | Assetless startup smoke test, MonoGame shell, deterministic party invariants including discipline/sphere choices, and command-driven start flow in Core | No player-visible game slice yet; disputed race/class pairs and shipped creation defaults await observation |
-| Saves and compatibility | Start-flow snapshot schema 2 and hash-verified deterministic replay | Native save-file I/O, whole-game replays, original saves, and Shattered Lands party transfer are not implemented |
+| Gameplay | Assetless startup smoke test, MonoGame shell, deterministic party invariants including discipline/sphere choices and occupied-slot edit/drop/add, and command-driven start flow in Core | No player-visible game slice yet; DUAL, disputed race/class pairs, and shipped creation defaults await observation |
+| Saves and compatibility | Start-flow snapshot schema 3 with dropped-character storage and hash-verified deterministic replay | Native save-file I/O, whole-game replays, original saves, and Shattered Lands party transfer are not implemented |
 | Presentation | Verified-pack title/start window with scale-independent declared-rectangle mouse routing; generation control art extracted | Destination screens are not rendered; hit-edge parity, frame states, pixel aspect, animation, audio, and video await observation |
 | Text resources | Bounded FONT decoding/DSFT extraction plus all 62 short `TEXT` records decoded into deterministic DSTX | Palette, spacing, text-ID routing, layout, and runtime rendering remain open |
 

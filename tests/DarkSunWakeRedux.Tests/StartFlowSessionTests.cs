@@ -95,6 +95,23 @@ public sealed class StartFlowSessionTests
         Assert.NotEqual(air.StateSha256(), fire.StateSha256());
     }
 
+    [Fact]
+    public void SnapshotPreservesOccupiedSlotEditTarget()
+    {
+        var session = SessionWith(new("Rikus", CharacterRace.Human, CharacterSex.Male,
+            CharacterAlignment.NeutralGood, new(15, 15, 15, 15, 15, 15), [CharacterClass.Fighter]));
+        session.Execute(StartFlowCommand.OpenOccupiedSlot(0));
+        session.Execute(StartFlowCommand.Choose(OccupiedSlotChoice.Edit));
+
+        var restored = StartFlowSession.Restore(session.Snapshot());
+        var result = restored.Execute(StartFlowCommand.Complete(
+            session.Snapshot().PartyMembers[0] with { Name = "Edited" }));
+
+        Assert.True(result.Accepted);
+        Assert.Single(restored.Snapshot().PartyMembers);
+        Assert.Equal("Edited", restored.Snapshot().PartyMembers[0].Name);
+    }
+
     private static (StartFlowSession Session, StartFlowEvent[] Events) Run(int seed)
     {
         var session = new StartFlowSession(seed);

@@ -10,6 +10,9 @@ and replay stops at the first divergent hash.
 Party-rule coverage includes the manual-documented all-three Psionicist rule,
 the exactly-one discipline rule for other characters, Cleric-only elemental
 spheres, and canonical hash sensitivity to the selected sphere.
+Start-flow coverage also proves occupied-slot edits replace rather than append,
+invalid replacements are atomic, DROP moves a member to character storage, ADD
+restores it, and an active edit target survives snapshot restore.
 Presentation-independent input tests prove viewport letterboxing cannot change
 the logical start-button choice and exercise declared exclusive rectangle edges.
 

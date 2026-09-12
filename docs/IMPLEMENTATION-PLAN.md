@@ -215,7 +215,8 @@ decoder rather than being guessed now.
   selection, and derived initial state follow recorded evidence. A fixed seed
   makes allowed random generation repeatable. The manual-documented discipline
   and sphere cardinality is implemented; shipped selection behavior remains to
-  be observed.
+  be observed. Pre-adventure occupied-slot EDIT and DROP-to-ADD storage are
+  implemented; DUAL awaits evidenced level and advancement state.
 - **Acceptance - presentation.** Start/party screens preserve measured logical
   coordinates, aspect treatment, palette semantics, focus order, mouse hit
   regions, and Escape behavior; scaling cannot change rules or hit testing.
@@ -231,7 +232,8 @@ decoder rather than being guessed now.
   pack verification, stale-file removal, atomic promotion/rollback; party
   invariants and menu-transition tests. Implemented start-flow commands produce
   sequenced events, versioned snapshots, stable hashes, and verified replays.
-  Snapshot schema 2 includes psionic disciplines and clerical sphere;
+  Snapshot schema 3 includes psionic disciplines, clerical sphere, the active
+  edit target, and recreation-native stored characters;
   gameplay-wide replay remains a later-slice requirement.
 - **Observed parity.** Compare boot, start, create/select/cancel, and quit state
   transitions and UI measurements against the supported GOG build.

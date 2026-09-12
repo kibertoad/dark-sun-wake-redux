@@ -7,7 +7,10 @@ public enum StartFlowCommandKind
 {
     ChooseStart,
     OpenEmptySlot,
+    OpenOccupiedSlot,
     ChooseEmptySlot,
+    ChooseOccupiedSlot,
+    AddStoredCharacter,
     CompleteCharacter,
     BeginCreatedParty,
     Cancel
@@ -17,14 +20,22 @@ public sealed record StartFlowCommand(
     StartFlowCommandKind Kind,
     StartWindowChoice? StartChoice = null,
     EmptySlotChoice? EmptySlotChoice = null,
-    CharacterDraft? Character = null)
+    CharacterDraft? Character = null,
+    int? MemberIndex = null,
+    OccupiedSlotChoice? OccupiedSlotChoice = null)
 {
     public static StartFlowCommand Choose(StartWindowChoice choice) => new(StartFlowCommandKind.ChooseStart, choice);
     public static StartFlowCommand OpenEmptySlot() => new(StartFlowCommandKind.OpenEmptySlot);
+    public static StartFlowCommand OpenOccupiedSlot(int index) =>
+        new(StartFlowCommandKind.OpenOccupiedSlot, MemberIndex: index);
     public static StartFlowCommand Choose(EmptySlotChoice choice) =>
         new(StartFlowCommandKind.ChooseEmptySlot, EmptySlotChoice: choice);
     public static StartFlowCommand Complete(CharacterDraft character) =>
         new(StartFlowCommandKind.CompleteCharacter, Character: character);
+    public static StartFlowCommand Choose(OccupiedSlotChoice choice) =>
+        new(StartFlowCommandKind.ChooseOccupiedSlot, OccupiedSlotChoice: choice);
+    public static StartFlowCommand AddStoredCharacter(int index) =>
+        new(StartFlowCommandKind.AddStoredCharacter, MemberIndex: index);
     public static StartFlowCommand BeginParty() => new(StartFlowCommandKind.BeginCreatedParty);
     public static StartFlowCommand Cancel() => new(StartFlowCommandKind.Cancel);
 }
@@ -35,9 +46,11 @@ public sealed record StartFlowSnapshot(
     long Sequence,
     StartFlowScreen Screen,
     PartyOrigin PartyOrigin,
-    IReadOnlyList<CharacterDraft> PartyMembers)
+    IReadOnlyList<CharacterDraft> PartyMembers,
+    int? ActiveMemberIndex,
+    IReadOnlyList<CharacterDraft> StoredCharacters)
 {
-    public const int CurrentSchemaVersion = 2;
+    public const int CurrentSchemaVersion = 3;
 }
 
 public sealed record StartFlowEvent(
@@ -87,7 +100,10 @@ public sealed class StartFlowSession
         {
             StartFlowCommandKind.ChooseStart => _flow.Choose(command.StartChoice!.Value),
             StartFlowCommandKind.OpenEmptySlot => _flow.OpenEmptySlotMenu(),
+            StartFlowCommandKind.OpenOccupiedSlot => _flow.OpenOccupiedSlotMenu(command.MemberIndex!.Value),
             StartFlowCommandKind.ChooseEmptySlot => _flow.Choose(command.EmptySlotChoice!.Value),
+            StartFlowCommandKind.ChooseOccupiedSlot => _flow.Choose(command.OccupiedSlotChoice!.Value),
+            StartFlowCommandKind.AddStoredCharacter => _flow.AddStoredCharacter(command.MemberIndex!.Value),
             StartFlowCommandKind.CompleteCharacter => _flow.CompleteCharacter(command.Character!),
             StartFlowCommandKind.BeginCreatedParty => _flow.BeginCreatedParty(),
             StartFlowCommandKind.Cancel => _flow.Cancel(),
@@ -97,19 +113,24 @@ public sealed class StartFlowSession
         return new(Sequence, command.Kind, before, _flow.Screen, diagnostics.ToArray());
     }
 
-    private static bool HasValidPayload(StartFlowCommand command) => command.Kind switch
+    private static bool HasValidPayload(StartFlowCommand command)
     {
-        StartFlowCommandKind.ChooseStart => command.StartChoice is not null &&
-            command.EmptySlotChoice is null && command.Character is null,
-        StartFlowCommandKind.ChooseEmptySlot => command.StartChoice is null &&
-            command.EmptySlotChoice is not null && command.Character is null,
-        StartFlowCommandKind.CompleteCharacter => command.StartChoice is null &&
-            command.EmptySlotChoice is null && command.Character is not null,
-        StartFlowCommandKind.OpenEmptySlot or StartFlowCommandKind.BeginCreatedParty or
-            StartFlowCommandKind.Cancel => command.StartChoice is null &&
-            command.EmptySlotChoice is null && command.Character is null,
-        _ => false
-    };
+        var count = (command.StartChoice is null ? 0 : 1) + (command.EmptySlotChoice is null ? 0 : 1) +
+            (command.Character is null ? 0 : 1) + (command.MemberIndex is null ? 0 : 1) +
+            (command.OccupiedSlotChoice is null ? 0 : 1);
+        return command.Kind switch
+        {
+            StartFlowCommandKind.ChooseStart => count == 1 && command.StartChoice is not null,
+            StartFlowCommandKind.OpenOccupiedSlot or StartFlowCommandKind.AddStoredCharacter =>
+                count == 1 && command.MemberIndex is not null,
+            StartFlowCommandKind.ChooseEmptySlot => count == 1 && command.EmptySlotChoice is not null,
+            StartFlowCommandKind.ChooseOccupiedSlot => count == 1 && command.OccupiedSlotChoice is not null,
+            StartFlowCommandKind.CompleteCharacter => count == 1 && command.Character is not null,
+            StartFlowCommandKind.OpenEmptySlot or StartFlowCommandKind.BeginCreatedParty or
+                StartFlowCommandKind.Cancel => count == 0,
+            _ => false
+        };
+    }
 
     public StartFlowSnapshot Snapshot() => new(
         StartFlowSnapshot.CurrentSchemaVersion,
@@ -117,7 +138,9 @@ public sealed class StartFlowSession
         Sequence,
         _flow.Screen,
         _flow.PartyOrigin,
-        _flow.Party.Members.Select(Copy).ToArray());
+        _flow.Party.Members.Select(Copy).ToArray(),
+        _flow.ActiveMemberIndex,
+        _flow.StoredCharacters.Select(Copy).ToArray());
 
     public string StateSha256() => Convert.ToHexStringLower(SHA256.HashData(Encode(Snapshot())));
 
@@ -148,8 +171,16 @@ public sealed class StartFlowSession
         writer.Write(snapshot.Sequence);
         writer.Write((int)snapshot.Screen);
         writer.Write((int)snapshot.PartyOrigin);
-        writer.Write(snapshot.PartyMembers.Count);
-        foreach (var member in snapshot.PartyMembers)
+        writer.Write(snapshot.ActiveMemberIndex ?? -1);
+        WriteCharacters(writer, snapshot.PartyMembers);
+        WriteCharacters(writer, snapshot.StoredCharacters);
+        return stream.ToArray();
+    }
+
+    private static void WriteCharacters(BinaryWriter writer, IReadOnlyList<CharacterDraft> members)
+    {
+        writer.Write(members.Count);
+        foreach (var member in members)
         {
             WriteString(writer, member.Name);
             writer.Write((int)member.Race);
@@ -161,7 +192,6 @@ public sealed class StartFlowSession
             writer.Write((int)member.PsionicDisciplines);
             writer.Write(member.ClericalSphere is null ? -1 : (int)member.ClericalSphere.Value);
         }
-        return stream.ToArray();
     }
 
     private static void WriteString(BinaryWriter writer, string value)
@@ -186,8 +216,19 @@ public sealed class StartFlowSession
             throw new InvalidDataException("Snapshot contains an invalid start-flow state.");
         if (snapshot.PartyMembers is null || snapshot.PartyMembers.Count > Party.MaximumSize)
             throw new InvalidDataException("Snapshot contains an invalid party size.");
+        if (snapshot.StoredCharacters is null || snapshot.StoredCharacters.Count > 1024)
+            throw new InvalidDataException("Snapshot contains an invalid stored-character count.");
+        if (snapshot.Screen == StartFlowScreen.OccupiedSlotMenu && snapshot.ActiveMemberIndex is null)
+            throw new InvalidDataException("Snapshot occupied-slot menu has no active party member.");
+        if (snapshot.ActiveMemberIndex is { } index &&
+            ((uint)index >= (uint)snapshot.PartyMembers.Count ||
+             snapshot.Screen is not (StartFlowScreen.OccupiedSlotMenu or StartFlowScreen.CharacterGeneration)))
+            throw new InvalidDataException("Snapshot contains an invalid active party member.");
         foreach (var member in snapshot.PartyMembers)
             if (PartyCreationRules.Validate(member).Count != 0)
                 throw new InvalidDataException("Snapshot contains an invalid party member.");
+        foreach (var member in snapshot.StoredCharacters)
+            if (PartyCreationRules.Validate(member).Count != 0)
+                throw new InvalidDataException("Snapshot contains an invalid stored character.");
     }
 }

@@ -236,12 +236,15 @@
   focus, animation, and transition timing require OBS-GOG evidence.
 - **Implementation:** deterministic `StartFlow` screen transitions with stable
   rejection diagnostics and integration with the existing `Party` validation.
+  Occupied-slot EDIT replaces the selected member atomically; DROP transfers
+  the member to bounded recreation-native character storage and ADD can restore
+  it. DUAL remains unavailable until level/advancement state is implemented.
 - **Tests:** every start choice, NEW/ADD/CANCEL routing, valid and invalid
-  completion, empty/nonempty party start, cancellation, and wrong-screen
-  rejection.
+  completion, occupied-slot edit/drop/add, atomic replacement, persisted edit
+  target, empty/nonempty party start, cancellation, and wrong-screen rejection.
 - **Uncertainty:** Pregenerated member records, saved/created-character formats,
-  the exact early-start control, and shipped cancellation edge cases remain
-  unimplemented until their data and runtime behavior are observed.
+  DUAL state, the exact early-start control, and shipped cancellation edge cases
+  remain unimplemented until their data and runtime behavior are observed.
 
 ### RULE-PARTY-002 - Character creation invariants
 
@@ -289,7 +292,7 @@
   initial selections and selection transitions have not yet been observed.
 - **Implementation:** `CharacterDraft` records both choices and
   `PartyCreationRules` validates their class-dependent cardinality. Both fields
-  participate in the canonical start-flow state hash and snapshot schema 2.
+  participate in the canonical start-flow state hash and snapshot schema 3.
 - **Tests:** all-three Psionicist requirement, exactly-one non-Psionicist
   requirement, Cleric-only elemental sphere, and sphere-sensitive state hashes.
 - **Uncertainty:** Shipped defaults, control-state frames, click transitions,

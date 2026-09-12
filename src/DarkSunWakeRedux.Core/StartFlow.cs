@@ -7,6 +7,7 @@ public enum StartFlowScreen
     EmptySlotMenu,
     CharacterGeneration,
     AddExistingCharacter,
+    OccupiedSlotMenu,
     LoadSavedGame,
     Gameplay,
     ExitRequested
@@ -21,14 +22,18 @@ public enum StartWindowChoice
 }
 
 public enum EmptySlotChoice { New, Add, Cancel }
+public enum OccupiedSlotChoice { Edit, Drop, Dual }
 
 public enum PartyOrigin { None, Pregenerated, Created }
 
 public sealed class StartFlow
 {
+    private readonly List<CharacterDraft> _storedCharacters = [];
     public StartFlowScreen Screen { get; private set; } = StartFlowScreen.StartWindow;
     public PartyOrigin PartyOrigin { get; private set; }
+    public int? ActiveMemberIndex { get; private set; }
     public Party Party { get; }
+    public IReadOnlyList<CharacterDraft> StoredCharacters => _storedCharacters;
 
     public StartFlow() => Party = new();
 
@@ -36,7 +41,9 @@ public sealed class StartFlow
     {
         Screen = snapshot.Screen;
         PartyOrigin = snapshot.PartyOrigin;
+        ActiveMemberIndex = snapshot.ActiveMemberIndex;
         Party = new(snapshot.PartyMembers);
+        _storedCharacters.AddRange(snapshot.StoredCharacters);
     }
 
     public IReadOnlyList<PartyDiagnostic> Choose(StartWindowChoice choice)
@@ -73,6 +80,38 @@ public sealed class StartFlow
         return [];
     }
 
+    public IReadOnlyList<PartyDiagnostic> OpenOccupiedSlotMenu(int index)
+    {
+        if (Screen != StartFlowScreen.PartyOverview) return WrongScreen("open_occupied_slot");
+        if ((uint)index >= (uint)Party.Members.Count)
+            return [new("party_member_missing", "The selected party member does not exist.")];
+        ActiveMemberIndex = index;
+        Screen = StartFlowScreen.OccupiedSlotMenu;
+        return [];
+    }
+
+    public IReadOnlyList<PartyDiagnostic> Choose(OccupiedSlotChoice choice)
+    {
+        if (Screen != StartFlowScreen.OccupiedSlotMenu || ActiveMemberIndex is null)
+            return WrongScreen("occupied_slot_choice");
+        switch (choice)
+        {
+            case OccupiedSlotChoice.Edit:
+                Screen = StartFlowScreen.CharacterGeneration;
+                return [];
+            case OccupiedSlotChoice.Drop:
+                _storedCharacters.Add(Party.RemoveAt(ActiveMemberIndex.Value));
+                ActiveMemberIndex = null;
+                Screen = StartFlowScreen.PartyOverview;
+                return [];
+            case OccupiedSlotChoice.Dual:
+                return [new("dual_class_unavailable",
+                    "Dual-classing requires evidenced level and advancement state.")];
+            default:
+                return [new("occupied_slot_choice_invalid", "The selected party-member action is invalid.")];
+        }
+    }
+
     public IReadOnlyList<PartyDiagnostic> Choose(EmptySlotChoice choice)
     {
         if (Screen != StartFlowScreen.EmptySlotMenu) return WrongScreen("empty_slot_choice");
@@ -95,10 +134,30 @@ public sealed class StartFlow
 
     public IReadOnlyList<PartyDiagnostic> CompleteCharacter(CharacterDraft character)
     {
-        if (Screen is not (StartFlowScreen.CharacterGeneration or StartFlowScreen.AddExistingCharacter))
+        if (Screen != StartFlowScreen.CharacterGeneration)
             return WrongScreen("complete_character");
-        var diagnostics = Party.Add(character);
-        if (diagnostics.Count == 0) Screen = StartFlowScreen.PartyOverview;
+        var diagnostics = ActiveMemberIndex is { } index
+            ? Party.ReplaceAt(index, character)
+            : Party.Add(character);
+        if (diagnostics.Count == 0)
+        {
+            ActiveMemberIndex = null;
+            Screen = StartFlowScreen.PartyOverview;
+        }
+        return diagnostics;
+    }
+
+    public IReadOnlyList<PartyDiagnostic> AddStoredCharacter(int index)
+    {
+        if (Screen != StartFlowScreen.AddExistingCharacter) return WrongScreen("add_stored_character");
+        if ((uint)index >= (uint)_storedCharacters.Count)
+            return [new("stored_character_missing", "The selected stored character does not exist.")];
+        var diagnostics = Party.Add(_storedCharacters[index]);
+        if (diagnostics.Count == 0)
+        {
+            _storedCharacters.RemoveAt(index);
+            Screen = StartFlowScreen.PartyOverview;
+        }
         return diagnostics;
     }
 
@@ -118,6 +177,8 @@ public sealed class StartFlow
             case StartFlowScreen.EmptySlotMenu:
             case StartFlowScreen.CharacterGeneration:
             case StartFlowScreen.AddExistingCharacter:
+            case StartFlowScreen.OccupiedSlotMenu:
+                ActiveMemberIndex = null;
                 Screen = StartFlowScreen.PartyOverview;
                 return [];
             case StartFlowScreen.LoadSavedGame:

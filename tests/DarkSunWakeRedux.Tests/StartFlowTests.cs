@@ -105,10 +105,68 @@ public sealed class StartFlowTests
         Assert.Equal(StartFlowScreen.StartWindow, flow.Screen);
     }
 
+    [Fact]
+    public void OccupiedSlotCanBeEditedWithoutAddingAnotherMember()
+    {
+        var flow = FlowWithMember();
+
+        Assert.Empty(flow.OpenOccupiedSlotMenu(0));
+        Assert.Empty(flow.Choose(OccupiedSlotChoice.Edit));
+        Assert.Equal(StartFlowScreen.CharacterGeneration, flow.Screen);
+        Assert.Empty(flow.CompleteCharacter(Draft("Sadira")));
+
+        Assert.Single(flow.Party.Members);
+        Assert.Equal("Sadira", flow.Party.Members[0].Name);
+        Assert.Null(flow.ActiveMemberIndex);
+    }
+
+    [Fact]
+    public void OccupiedSlotCanBeDroppedToStorageAndAddedBack()
+    {
+        var flow = FlowWithMember();
+
+        Assert.Equal("party_member_missing", Assert.Single(flow.OpenOccupiedSlotMenu(1)).Code);
+        Assert.Empty(flow.OpenOccupiedSlotMenu(0));
+        Assert.Empty(flow.Choose(OccupiedSlotChoice.Drop));
+
+        Assert.Empty(flow.Party.Members);
+        Assert.Single(flow.StoredCharacters);
+        Assert.Equal(StartFlowScreen.PartyOverview, flow.Screen);
+
+        flow.OpenEmptySlotMenu();
+        flow.Choose(EmptySlotChoice.Add);
+        Assert.Empty(flow.AddStoredCharacter(0));
+
+        Assert.Single(flow.Party.Members);
+        Assert.Empty(flow.StoredCharacters);
+        Assert.Equal("Rikus", flow.Party.Members[0].Name);
+    }
+
+    [Fact]
+    public void DualClassChoiceRemainsOpenWithoutInventingLevelState()
+    {
+        var flow = FlowWithMember();
+        flow.OpenOccupiedSlotMenu(0);
+
+        var diagnostic = Assert.Single(flow.Choose(OccupiedSlotChoice.Dual));
+
+        Assert.Equal("dual_class_unavailable", diagnostic.Code);
+        Assert.Equal(StartFlowScreen.OccupiedSlotMenu, flow.Screen);
+    }
+
     private static StartFlow CreatedPartyFlow()
     {
         var flow = new StartFlow();
         flow.Choose(StartWindowChoice.CreateCharacters);
+        return flow;
+    }
+
+    private static StartFlow FlowWithMember()
+    {
+        var flow = CreatedPartyFlow();
+        flow.OpenEmptySlotMenu();
+        flow.Choose(EmptySlotChoice.New);
+        flow.CompleteCharacter(Draft());
         return flow;
     }
 
