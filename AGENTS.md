@@ -134,7 +134,11 @@ task/session, or source paths connect it to this repository or to the authorized
 reference installation at `C:\GOG Games\Dark Sun 2`. Never terminate a process
 merely because its executable name matches. Preserve user/IDE/system processes,
 work for other repositories or games, and validation intentionally still in
-progress. If ownership is uncertain, leave the process running.
+progress. Reusable .NET/MSBuild/test workers (including MSBuild nodes started
+with `nodeReuse:true`) are expected to remain alive by design and are not
+orphans unless separate evidence shows they are stuck, abandoned, and tied
+exclusively to failed repository work. If ownership is uncertain, leave the
+process running.
 
 Stop only confirmed orphaned processes. Whenever one is stopped, append an
 entry to `orphanCleanupLog.md` with the local timestamp and UTC offset, PID,
