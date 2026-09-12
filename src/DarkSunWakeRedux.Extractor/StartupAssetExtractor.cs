@@ -82,6 +82,7 @@ public static class StartupAssetExtractor
             $"{SourcePath}:{FontTag}#{FontNumber}");
         files.Add(await WriteFontAsync(stagingRoot, font, cancellationToken));
         files.Add(await WriteTextCatalogAsync(stagingRoot, archive, cancellationToken));
+        files.Add(await WriteUiCatalogAsync(stagingRoot, archive, cancellationToken));
 
         return new AssetPackManifest(
             OriginalContent.AssetPackFormatVersion,
@@ -90,6 +91,58 @@ public static class StartupAssetExtractor
             edition.Fingerprint(),
             extractorVersion,
             files);
+    }
+
+    private static async Task<AssetPackFile> WriteUiCatalogAsync(
+        string stagingRoot,
+        GffArchive archive,
+        CancellationToken cancellationToken)
+    {
+        var windows = OriginalContent.StartFlowWindowResourceNumbers.Select(number =>
+            UiWindowResource.Read(archive.GetResource("WIND", number),
+                $"{SourcePath}:WIND#{number}")).ToArray();
+        if (!windows.Select(window => window.ResourceNumber)
+            .SequenceEqual(OriginalContent.StartFlowWindowResourceNumbers))
+            throw new InvalidDataException("A start-flow WIND record contains the wrong embedded resource number.");
+        var children = windows.SelectMany(window => window.Children).ToArray();
+        var unsupported = children.Select(child => child.Tag)
+            .Distinct(StringComparer.Ordinal)
+            .Where(tag => tag is not ("BUTN" or "APFM" or "EBOX"))
+            .ToArray();
+        if (unsupported.Length != 0)
+            throw new InvalidDataException(
+                $"Start-flow windows contain unsupported child tags: {string.Join(", ", unsupported)}.");
+        var buttonNumbers = children.Where(child => child.Tag == "BUTN")
+            .Select(child => child.ResourceNumber).Distinct().ToArray();
+        var buttons = buttonNumbers.Select(number =>
+                UiButtonResource.Read(archive.GetResource("BUTN", number),
+                    $"{SourcePath}:BUTN#{number}")).ToArray();
+        var frameNumbers = children.Where(child => child.Tag == "APFM")
+            .Select(child => child.ResourceNumber).Distinct().ToArray();
+        var frames = frameNumbers.Select(number =>
+                UiApplicationFrameResource.Read(archive.GetResource("APFM", number),
+                    $"{SourcePath}:APFM#{number}")).ToArray();
+        var editBoxNumbers = children.Where(child => child.Tag == "EBOX")
+            .Select(child => child.ResourceNumber).Distinct().ToArray();
+        var editBoxes = editBoxNumbers.Select(number =>
+                UiEditBoxResource.Read(archive.GetResource("EBOX", number),
+                    $"{SourcePath}:EBOX#{number}")).ToArray();
+        if (!buttons.Select(item => item.ResourceNumber).SequenceEqual(buttonNumbers) ||
+            !frames.Select(item => item.ResourceNumber).SequenceEqual(frameNumbers) ||
+            !editBoxes.Select(item => item.ResourceNumber).SequenceEqual(editBoxNumbers))
+            throw new InvalidDataException("A start-flow child record contains the wrong embedded resource number.");
+        var catalog = new PackedUiCatalog(windows, buttons, frames, editBoxes);
+        var relativePath = OriginalContent.StartFlowUiCatalogAssetPath;
+        var target = Path.Combine(stagingRoot, relativePath.Replace('/', Path.DirectorySeparatorChar));
+        Directory.CreateDirectory(Path.GetDirectoryName(target)!);
+        await using (var output = File.Create(target)) catalog.Write(output);
+        await using var verify = File.OpenRead(target);
+        PackedUiCatalog.Read(verify, relativePath);
+        verify.Position = 0;
+        var hash = Convert.ToHexStringLower(await SHA256.HashDataAsync(verify, cancellationToken));
+        return new(relativePath, verify.Length, hash, SourcePath,
+            "application/vnd.dark-sun-wake-redux.ui-catalog",
+            $"WIND#19500-19505 resolved child graph -> DSUI v{PackedUiCatalog.FormatVersion}");
     }
 
     private static async Task<AssetPackFile> WriteTextCatalogAsync(

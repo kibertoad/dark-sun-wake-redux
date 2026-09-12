@@ -1,7 +1,7 @@
 # Validation
 
 CI and routine repository checks require no proprietary content. Synthetic GFF,
-indexed-image, palette, indexed-font, text, DSIX, DSFT, and DSTX fixtures exercise successful decoding plus
+indexed-image, palette, indexed-font, text, DSIX, DSFT, DSTX, and DSUI fixtures exercise successful decoding plus
 truncation, bounds, invalid-component, unsafe-path, inventory, and transactional
 replacement failures. Core rule tests use explicit inputs and no ambient state.
 Start-flow tests also prove identical seeds and commands yield identical events
@@ -26,8 +26,9 @@ The smoke modes have distinct purposes:
 - `--smoke-test` exits before content or graphics initialization and is safe on
   a content-free CI worker.
 - `--content-smoke-test --asset-pack <path>` verifies the exact pack inventory,
-  opens all twenty-six DSIX UI images, the DSFT interface font, and the DSTX text
-  catalog, and checks their frame, geometry, glyph, and inventory contracts
+  opens all twenty-six DSIX UI images, the DSFT interface font, the DSTX text
+  catalog, and the resolved six-window DSUI graph, and checks their frame,
+  geometry, glyph, reference, and inventory contracts
   without a window.
 - `--platform-smoke-test` creates the MonoGame platform surface and exits; it is
   reserved for installed-package environments with a display server.
@@ -37,7 +38,10 @@ The smoke modes have distinct purposes:
 Owned-build validation currently targets GOG product `1432903719`, installed
 build `52095422060333615`. Metadata-only FONT inspection verifies that all 256
 character-map entries are identity values and summarizes its pixel-index range
-without emitting glyph pixels. Local-only decoded previews established the title
+without emitting glyph pixels. A temporary owned-source extraction produced and
+verified the exact 29-asset manifest including all six windows and 39 controls;
+the runtime content-smoke path opened that pack successfully, after which the
+temporary pack was removed. Local-only decoded previews established the title
 and start-window mappings recorded as `DATA-GOG-TITLE-001` and
 `DATA-GOG-UI-001`; screenshots and decoded outputs stay
 under ignored `analysis/original/` and never become golden files. Presentation

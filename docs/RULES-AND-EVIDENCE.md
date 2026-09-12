@@ -137,10 +137,11 @@
   logical coordinates in GOG-1432903719; medium for the active palette; unknown
   for frame-state meanings, focus, hit boundaries, and transitions.
 - **Implementation:** bounded window, button, application-frame, and edit-box
-  readers plus the read-only `ui-catalog` inspection command. The four complete
-  icon frame sets are extracted with palette #11011 and their first frames are
-  composed at the recorded logical coordinates; frame-state interaction remains
-  gated on OBS-GOG evidence.
+  readers plus the read-only `ui-catalog` inspection command. DSUI v1
+  transactionally extracts #19500-#19505 and all 39 referenced controls as a
+  resolved runtime graph. The four complete start icon frame sets are extracted
+  with palette #11011 and their first frames are composed at the recorded logical
+  coordinates; frame-state interaction remains gated on OBS-GOG evidence.
 - **Tests:** synthetic signature, size, child-record, printable-tag, coordinate,
   repeated-ID, extension-tail, dimension, and field-contract coverage;
   whole-catalog validation against the owned archive.

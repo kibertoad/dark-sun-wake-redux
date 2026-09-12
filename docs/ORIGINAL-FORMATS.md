@@ -15,6 +15,7 @@ semantics.
 | Pack `*.dsix` | Derived indexed-image asset | `DSIX` v1 stores one decoded 256-color palette plus bounded indexed frames and binary alpha | implemented; title asset round-trip and extraction validated | Bound file size, version, frame count, dimensions, pixels, alpha, and trailing data; reject non-binary alpha |
 | Pack `*.dsft` | Derived indexed-font asset | `DSFT` v1 stores a character map, shared height, widths, and bounded indexed glyph pixels | implemented; interface-font round-trip and extraction validated | Bound file size, version, glyph count, height, widths, pixel counts, and trailing data |
 | Pack `*.dstx` | Derived text catalog | `DSTX` v1 deterministically stores original resource IDs and printable ASCII lines | implemented; full TEXT catalog round-trip and extraction validated | Bound file size, version, resource/line counts and lengths; reject duplicates, unsupported bytes, and trailing data |
+| Pack `*.dsui` | Derived UI catalog | `DSUI` v1 deterministically stores the six start-flow windows and their resolved BUTN/APFM/EBOX graph | implemented; synthetic round-trip and owned extraction validated | Bound file size, per-type counts, child counts, tags, dimensions, identities, references, and trailing data |
 | `*.FLI` | Four observed cinematics | Likely animation resources by extension only; dimensions, palette changes, frame timing, and exact variant are unverified | low | Bound frames, chunks, dimensions, decoded bytes, and timing; unsupported chunk types fail explicitly |
 | `*.VOC` | Speech and sound-effect files | Creative Labs VOC is suggested by extension; headers, codecs, sample rates, and block use must be verified per file | low | Bound blocks and decoded samples; reject unsupported codecs and malformed terminators |
 | `MUSIC/*.ogg` | 39 GOG-supplied music files | Ogg container presence is observed; mapping, loop points, provenance, and relationship to original media are unknown | low | Validate stream metadata and decode limits; unknown track mapping remains data, not a guessed rule |
@@ -186,6 +187,24 @@ The pack reader applies the same frame/dimension/pixel limits as the original
 image decoder, caps the file at 160 MiB, requires the declared pixel count to
 equal width times height, accepts alpha values only at 0 or 255, and rejects
 trailing bytes.
+
+## Derived DSUI start-flow UI catalog
+
+DSUI is an original, versioned pack format that removes uninterpreted UI bytes
+while preserving the verified runtime-facing graph. Version 1 begins with ASCII
+`DSUI`, a 16-bit version, then 16-bit counts for windows, buttons, application
+frames, and edit boxes. Window records store resource/image IDs, dimensions,
+and ordered children as a four-byte tag, resource ID, and signed coordinates.
+Control records store their resource ID, dimensions, and event mask; buttons
+also store their image resource ID. Records of each type are written in numeric
+resource order for deterministic output.
+
+The reader caps the file at 4 MiB and each record family and window child list
+at 4,096 entries. It rejects non-printable or unsupported child tags, duplicate
+same-type identities, invalid dimensions, unresolved children, truncation, and
+trailing bytes. The Slice 2 pack contains `WIND` #19500 through #19505 plus all
+of their referenced `BUTN`, `APFM`, and `EBOX` records. Unknown source fields,
+button tails, palette assumptions, and shell draw semantics are not carried.
 
 ## Derived DSFT indexed-font asset
 

@@ -64,7 +64,7 @@ public sealed class StartupAssetExtractorTests
             var manifest = await AssetPackInstaller.InstallAsync(output, staging =>
                 StartupAssetExtractor.WritePackAsync(sourceRoot, staging, edition, "test"));
 
-            Assert.Equal(28, manifest.Files.Count);
+            Assert.Equal(29, manifest.Files.Count);
             var asset = Assert.Single(manifest.Files, item => item.Path == OriginalContent.TitleImageAssetPath);
             Assert.Contains("BMP #11011", asset.Conversion, StringComparison.Ordinal);
             foreach (var button in OriginalContent.StartMenuButtons)
@@ -105,6 +105,15 @@ public sealed class StartupAssetExtractorTests
             {
                 Assert.Equal(["Synthetic"], PackedTextCatalog.Read(textStream).Resources[7]);
             }
+            var uiAsset = Assert.Single(manifest.Files,
+                item => item.Path == OriginalContent.StartFlowUiCatalogAssetPath);
+            Assert.Contains("WIND#19500-19505", uiAsset.Conversion, StringComparison.Ordinal);
+            using (var uiStream = File.OpenRead(Path.Combine(output,
+                       OriginalContent.StartFlowUiCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar))))
+            {
+                Assert.Equal(OriginalContent.StartFlowWindowResourceNumbers,
+                    PackedUiCatalog.Read(uiStream).Windows.Select(window => window.ResourceNumber));
+            }
             Assert.Empty(await OriginalContent.VerifyInstalledAsync(
                 output, TestContext.Current.CancellationToken));
             using var packedStream = File.OpenRead(Path.Combine(output, "images", "title.dsix"));
@@ -143,9 +152,12 @@ public sealed class StartupAssetExtractorTests
         var palette = new byte[IndexedPalette.EncodedLength];
         var font = Font();
         var text = Encoding.ASCII.GetBytes("Synthetic\r\n");
+        var windows = OriginalContent.StartFlowWindowResourceNumbers
+            .Select(number => (Number: number, Bytes: Window(number))).ToArray();
         var indexOffset = 28 + title.Length + windowImage.Length + icons.Sum(item => item.Bytes.Length) +
             characterIcons.Sum(item => item.Bytes.Length) + palette.Length +
-            modalIcons.Sum(item => item.Bytes.Length) + font.Length + text.Length;
+            modalIcons.Sum(item => item.Bytes.Length) + font.Length + text.Length +
+            windows.Sum(item => item.Bytes.Length);
         using var stream = new MemoryStream();
         using var writer = new BinaryWriter(stream, Encoding.ASCII, leaveOpen: true);
         writer.Write(Encoding.ASCII.GetBytes("GFFI"));
@@ -182,9 +194,16 @@ public sealed class StartupAssetExtractorTests
         writer.Write(font);
         var textOffset = checked((int)stream.Position);
         writer.Write(text);
+        var windowEntries = new List<(uint Number, int Offset, int Size)>();
+        foreach (var window in windows)
+        {
+            var offset = checked((int)stream.Position);
+            writer.Write(window.Bytes);
+            windowEntries.Add((window.Number, offset, window.Bytes.Length));
+        }
         writer.Write(0U);
         writer.Write(0U);
-        writer.Write((ushort)5);
+        writer.Write((ushort)6);
         WriteTable(writer, "BMP ",
         [
             (StartupAssetExtractor.TitleImageNumber, titleOffset, title.Length),
@@ -194,7 +213,20 @@ public sealed class StartupAssetExtractorTests
         WriteTable(writer, "PAL ", [(StartupAssetExtractor.PaletteNumber, paletteOffset, palette.Length)]);
         WriteTable(writer, "FONT", [(StartupAssetExtractor.FontNumber, fontOffset, font.Length)]);
         WriteTable(writer, "TEXT", [(7U, textOffset, text.Length)]);
+        WriteTable(writer, "WIND", windowEntries);
         return stream.ToArray();
+    }
+
+    private static byte[] Window(uint number)
+    {
+        var bytes = new byte[UiWindowResource.FixedSize];
+        Encoding.ASCII.GetBytes("WIND").CopyTo(bytes, 0);
+        BitConverter.GetBytes((uint)bytes.Length).CopyTo(bytes, 4);
+        BitConverter.GetBytes(number).CopyTo(bytes, 8);
+        BitConverter.GetBytes(StartupAssetExtractor.PartyWindowImageNumber).CopyTo(bytes, 58);
+        BitConverter.GetBytes((ushort)320).CopyTo(bytes, 190);
+        BitConverter.GetBytes((ushort)200).CopyTo(bytes, 192);
+        return bytes;
     }
 
     private static byte[] Font()

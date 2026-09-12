@@ -79,6 +79,13 @@ try
             using var textStream = File.OpenRead(textPath);
             if (PackedTextCatalog.Read(textStream, OriginalContent.TextCatalogAssetPath).Resources.Count == 0)
                 throw new InvalidDataException("The installed text catalog is empty.");
+            var uiPath = Path.Combine(assetPack,
+                OriginalContent.StartFlowUiCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
+            using var uiStream = File.OpenRead(uiPath);
+            var ui = PackedUiCatalog.Read(uiStream, OriginalContent.StartFlowUiCatalogAssetPath);
+            if (!ui.Windows.Select(window => window.ResourceNumber)
+                .SequenceEqual(OriginalContent.StartFlowWindowResourceNumbers))
+                throw new InvalidDataException("The installed start-flow UI catalog has unexpected windows.");
             Console.WriteLine($"Verified runtime startup assets at {assetPack}.");
             return 0;
         }
