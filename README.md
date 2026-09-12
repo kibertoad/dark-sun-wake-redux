@@ -32,8 +32,10 @@ psionic-discipline and clerical-sphere creation constraints. Pre-adventure
 party members can be edited atomically or dropped to recreation-native storage
 and added back; dual-classing still awaits advancement state.
 The start buttons now accept scale-independent mouse clicks and route through
-Core; their destination screens, dynamic party content, and playable gameplay
-are not implemented yet.
+Core. A shared resolver materializes every extracted start-flow window's typed
+control geometry, event mask, and optional image reference for subsequent
+screens; their dynamic party content and playable gameplay are not implemented
+yet.
 
 | Area | Supported now | Current limitations |
 |---|---|---|
@@ -41,7 +43,7 @@ are not implemented yet.
 | Asset extraction | Separate Extractor with versioned exact inventory, bounded readers, and transactional 29-asset Slice 2 pack | Title/start assets, generation controls and modal labels, shared window image, font, text, and resolved six-window UI graph are extracted; dynamic content and shell draw semantics remain incomplete |
 | Gameplay | Assetless startup smoke test, MonoGame shell, deterministic party invariants including discipline/sphere choices and occupied-slot edit/drop/add, and command-driven start flow in Core | No player-visible game slice yet; DUAL, disputed race/class pairs, and shipped creation defaults await observation |
 | Saves and compatibility | Start-flow snapshot schema 3 with dropped-character storage and hash-verified deterministic replay | Native save-file I/O, whole-game replays, original saves, and Shattered Lands party transfer are not implemented |
-| Presentation | Verified-pack title/start window whose placement and scale-independent hit regions come from DSUI WIND/BUTN records; generation control art extracted | Destination screens are not rendered; hit-edge parity, frame states, pixel aspect, animation, audio, and video await observation |
+| Presentation | Verified-pack title/start window whose placement and scale-independent hit regions come from DSUI WIND/BUTN records; all six extracted window graphs resolve to typed controls; generation control art extracted | Destination screens are not rendered; hit-edge parity, frame states, pixel aspect, animation, audio, and video await observation |
 | Text resources | Bounded FONT decoding/DSFT extraction, verified owned-font identity map, deterministic indexed-glyph-run rasterization, and all 62 printable-ASCII `TEXT` records decoded into DSTX | Generalized map semantics, authentic spacing, palette, text-ID routing, multiline layout, and runtime rendering remain open |
 
 ## Developer quick start

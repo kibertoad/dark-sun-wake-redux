@@ -139,7 +139,10 @@
 - **Implementation:** bounded window, button, application-frame, and edit-box
   readers plus the read-only `ui-catalog` inspection command. DSUI v1
   transactionally extracts #19500-#19505 and all 39 referenced controls as a
-  resolved runtime graph. The four complete start icon frame sets are extracted
+  resolved runtime graph. A shared runtime graph resolver validates identity and
+  dimensions and preserves each window's ordered typed controls, coordinates,
+  event masks, and optional image reference without assigning unknown behavior.
+  The four complete start icon frame sets are extracted
   with palette #11011 and their first frames are composed at the recorded logical
   coordinates; frame-state interaction remains gated on OBS-GOG evidence.
 - **Tests:** synthetic signature, size, child-record, printable-tag, coordinate,

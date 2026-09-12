@@ -86,6 +86,10 @@ try
             if (!ui.Windows.Select(window => window.ResourceNumber)
                 .SequenceEqual(OriginalContent.StartFlowWindowResourceNumbers))
                 throw new InvalidDataException("The installed start-flow UI catalog has unexpected windows.");
+            var resolvedControlCount = OriginalContent.StartFlowWindowResourceNumbers.Sum(number =>
+                UiWindowGraphResolver.Resolve(ui, number).Controls.Count);
+            if (resolvedControlCount != 39)
+                throw new InvalidDataException("The installed start-flow UI graph does not resolve all 39 controls.");
             if (StartMenuInput.Resolve(ui).Count != OriginalContent.StartMenuButtons.Count)
                 throw new InvalidDataException("The installed start-window UI graph is incomplete.");
             Console.WriteLine($"Verified runtime startup assets at {assetPack}.");

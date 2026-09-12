@@ -42,30 +42,26 @@ public static class StartMenuInput
     public static IReadOnlyList<StartMenuControl> Resolve(PackedUiCatalog catalog)
     {
         ArgumentNullException.ThrowIfNull(catalog);
-        var window = catalog.Windows.SingleOrDefault(item => item.ResourceNumber == WindowResourceNumber)
-            ?? throw new InvalidDataException($"UI catalog does not contain WIND #{WindowResourceNumber}.");
+        var window = UiWindowGraphResolver.Resolve(catalog, WindowResourceNumber);
         if (window.Width != LogicalCanvasTransform.LogicalWidth ||
             window.Height != LogicalCanvasTransform.LogicalHeight)
             throw new InvalidDataException(
                 $"WIND #{WindowResourceNumber} has unexpected dimensions {window.Width}x{window.Height}.");
 
         var assets = OriginalContent.StartMenuButtons.ToDictionary(item => item.ButtonResourceNumber);
-        var buttons = catalog.Buttons.ToDictionary(item => item.ResourceNumber);
-        var result = new List<StartMenuControl>(window.Children.Count);
-        foreach (var child in window.Children)
+        var result = new List<StartMenuControl>(window.Controls.Count);
+        foreach (var child in window.Controls)
         {
-            if (child.Tag != "BUTN" || !Choices.TryGetValue(child.ResourceNumber, out var choice) ||
+            if (child.Kind != ResolvedUiControlKind.Button ||
+                !Choices.TryGetValue(child.ResourceNumber, out var choice) ||
                 !assets.TryGetValue(child.ResourceNumber, out var asset))
                 throw new InvalidDataException(
-                    $"WIND #{WindowResourceNumber} contains unexpected child {child.Tag} #{child.ResourceNumber}.");
-            if (!buttons.TryGetValue(child.ResourceNumber, out var button))
+                    $"WIND #{WindowResourceNumber} contains unexpected child {child.Kind} #{child.ResourceNumber}.");
+            if (child.ImageResourceNumber != asset.ImageResourceNumber)
                 throw new InvalidDataException(
-                    $"WIND #{WindowResourceNumber} references missing BUTN #{child.ResourceNumber}.");
-            if (button.ImageResourceNumber != asset.ImageResourceNumber)
-                throw new InvalidDataException(
-                    $"BUTN #{button.ResourceNumber} references unexpected ICON #{button.ImageResourceNumber}.");
-            result.Add(new(choice, asset.Path, button.ResourceNumber, button.ImageResourceNumber,
-                child.X, child.Y, button.Width, button.Height));
+                    $"BUTN #{child.ResourceNumber} references unexpected ICON #{child.ImageResourceNumber}.");
+            result.Add(new(choice, asset.Path, child.ResourceNumber, child.ImageResourceNumber.Value,
+                child.X, child.Y, child.Width, child.Height));
         }
         if (result.Count != Choices.Count ||
             result.Select(item => item.ButtonResourceNumber).Distinct().Count() != Choices.Count)
