@@ -36,6 +36,11 @@ public sealed class StartupAssetExtractorTests
             Assert.InRange(button.X + button.FrameWidth, 1, 320);
             Assert.InRange(button.Y + button.FrameHeight, 1, 200);
         });
+        Assert.Equal(10, OriginalContent.CharacterGenerationModalButtons.Count);
+        Assert.Equal(10, OriginalContent.CharacterGenerationModalButtons
+            .Select(button => button.Path).Distinct().Count());
+        Assert.All(OriginalContent.CharacterGenerationModalButtons,
+            button => Assert.Equal(3, button.FrameCount));
     }
 
     [Fact]
@@ -59,7 +64,7 @@ public sealed class StartupAssetExtractorTests
             var manifest = await AssetPackInstaller.InstallAsync(output, staging =>
                 StartupAssetExtractor.WritePackAsync(sourceRoot, staging, edition, "test"));
 
-            Assert.Equal(18, manifest.Files.Count);
+            Assert.Equal(28, manifest.Files.Count);
             var asset = Assert.Single(manifest.Files, item => item.Path == OriginalContent.TitleImageAssetPath);
             Assert.Contains("BMP #11011", asset.Conversion, StringComparison.Ordinal);
             foreach (var button in OriginalContent.StartMenuButtons)
@@ -77,6 +82,11 @@ public sealed class StartupAssetExtractorTests
                 using var buttonStream = File.OpenRead(Path.Combine(output,
                     button.Path.Replace('/', Path.DirectorySeparatorChar)));
                 Assert.Equal(button.FrameCount, PackedIndexedImage.Read(buttonStream).Frames.Count);
+            }
+            foreach (var button in OriginalContent.CharacterGenerationModalButtons)
+            {
+                var buttonAsset = Assert.Single(manifest.Files, item => item.Path == button.Path);
+                Assert.Contains($"ICON#{button.ImageResourceNumber}", buttonAsset.Conversion, StringComparison.Ordinal);
             }
             var windowAsset = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.PartyWindowImageAssetPath);
@@ -125,12 +135,17 @@ public sealed class StartupAssetExtractorTests
                 Bytes: TransparentImage(Enumerable.Repeat(
                     (Width: button.FrameWidth, Height: button.FrameHeight), button.FrameCount).ToArray())))
             .ToArray();
+        var modalIcons = OriginalContent.CharacterGenerationModalButtons
+            .Select(button => (button.ImageResourceNumber,
+                Bytes: TransparentImage(Enumerable.Repeat(
+                    (Width: button.FrameWidth, Height: button.FrameHeight), button.FrameCount).ToArray())))
+            .ToArray();
         var palette = new byte[IndexedPalette.EncodedLength];
         var font = Font();
         var text = Encoding.ASCII.GetBytes("Synthetic\r\n");
         var indexOffset = 28 + title.Length + windowImage.Length + icons.Sum(item => item.Bytes.Length) +
             characterIcons.Sum(item => item.Bytes.Length) + palette.Length +
-            font.Length + text.Length;
+            modalIcons.Sum(item => item.Bytes.Length) + font.Length + text.Length;
         using var stream = new MemoryStream();
         using var writer = new BinaryWriter(stream, Encoding.ASCII, leaveOpen: true);
         writer.Write(Encoding.ASCII.GetBytes("GFFI"));
@@ -150,6 +165,12 @@ public sealed class StartupAssetExtractorTests
             iconEntries.Add((icon.ImageResourceNumber, offset, icon.Bytes.Length));
         }
         foreach (var icon in characterIcons)
+        {
+            var offset = checked((int)stream.Position);
+            writer.Write(icon.Bytes);
+            iconEntries.Add((icon.ImageResourceNumber, offset, icon.Bytes.Length));
+        }
+        foreach (var icon in modalIcons)
         {
             var offset = checked((int)stream.Position);
             writer.Write(icon.Bytes);

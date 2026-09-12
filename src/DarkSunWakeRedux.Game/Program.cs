@@ -48,6 +48,16 @@ try
                     throw new InvalidDataException(
                         $"The installed character-generation {button.Name} image has unexpected geometry.");
             }
+            foreach (var button in OriginalContent.CharacterGenerationModalButtons)
+            {
+                var buttonPath = Path.Combine(assetPack,
+                    button.Path.Replace('/', Path.DirectorySeparatorChar));
+                using var buttonStream = File.OpenRead(buttonPath);
+                var image = PackedIndexedImage.Read(buttonStream, button.Path);
+                if (!button.HasExpectedFrames(image.Frames))
+                    throw new InvalidDataException(
+                        $"The installed character-generation modal {button.Name} image has unexpected geometry.");
+            }
             var windowImagePath = Path.Combine(assetPack,
                 OriginalContent.PartyWindowImageAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using (var windowImageStream = File.OpenRead(windowImagePath))

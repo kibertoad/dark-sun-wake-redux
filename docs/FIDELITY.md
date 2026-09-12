@@ -7,7 +7,7 @@ Status values: `unknown`, `documented`, `observed`, `implemented`, and
 |---|---|---|---|
 | Legal-source recognition | implemented | `GOG-1432903719`, synthetic tests | One English GOG build has six exact fingerprint anchors |
 | Asset-pack contract | implemented | synthetic tests | Version, game/source identity, exact inventory, hashes, provenance, media type, conversion, and unexpected files are checked |
-| Asset extraction | implemented | `DATA-GOG-TITLE-001`, `DATA-GOG-UI-001/002/003`, `DATA-GOG-FONT-001`, `DATA-GOG-TEXT-001`, tests, owned-build verification | Title, controls, and shared window image become DSIX, font DSFT, and TEXT DSTX; all 18 assets are staged, verified, and promoted transactionally |
+| Asset extraction | implemented | `DATA-GOG-TITLE-001`, `DATA-GOG-UI-001`-`004`, `DATA-GOG-FONT-001`, `DATA-GOG-TEXT-001`, tests, owned build | Title, twenty-four controls, and window image become DSIX, font DSFT, and TEXT DSTX; all 28 assets are transactionally verified |
 | GFF container directories | implemented | `DATA-GOG-GFF-001`, `DSUN-MUSIC`, synthetic tests | Bounded metadata parsing succeeds for all 26 GFF files in the owned build; payload semantics are not implied |
 | Indexed images and palettes | implemented | `DATA-GOG-IMAGE-001`, `DSUN-MUSIC`, synthetic tests | All 4,510 matching images (9,279 frames) and 40 palettes decode within bounds; semantic mapping and visual comparison remain open |
 | Indexed bitmap fonts | implemented | `DATA-GOG-FONT-001`, synthetic tests | `FONT` #100 decodes as 256 bounded indexed glyphs and round-trips through derived DSFT; encoding, palette, spacing, strings, and presentation remain open |

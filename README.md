@@ -33,7 +33,7 @@ are not implemented yet.
 | Area | Supported now | Current limitations |
 |---|---|---|
 | Legal source | Explicit verification of English GOG product `1432903719`, build `52095422060333615` | Other GOG revisions and storefronts are unsupported until separately fingerprinted |
-| Asset extraction | Separate `DarkSunWakeRedux.Extractor` executable; versioned exact-inventory contract; bounded readers; transactional 18-asset Slice 2 pack | Title, start buttons, ten generation controls, shared window image, font, and text catalog are extracted; remaining dynamic/shell assets are incomplete |
+| Asset extraction | Separate Extractor with versioned exact inventory, bounded readers, and transactional 28-asset Slice 2 pack | Title/start assets, generation controls and modal labels, shared window image, font, and text catalog are extracted; dynamic/shell assets remain incomplete |
 | Gameplay | Assetless startup smoke test, MonoGame shell, deterministic party invariants, and command-driven start flow in Core | No player-visible game slice yet; disputed race/class pairs await shipped-screen observation |
 | Saves and compatibility | Versioned start-flow snapshots and hash-verified deterministic replay | Native save-file I/O, whole-game replays, original saves, and Shattered Lands party transfer are not implemented |
 | Presentation | Verified-pack title/start window with scale-independent declared-rectangle mouse routing; generation control art extracted | Destination screens are not rendered; hit-edge parity, frame states, pixel aspect, animation, audio, and video await observation |

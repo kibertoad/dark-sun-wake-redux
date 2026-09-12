@@ -58,6 +58,16 @@ public static class StartupAssetExtractor
             files.Add(await WriteImageAsync(stagingRoot, mapping.Path, image, palette,
                 $"{ImageTag}#{mapping.ImageResourceNumber} all frames + {PaletteTag}#{PaletteNumber}", cancellationToken));
         }
+        foreach (var mapping in OriginalContent.CharacterGenerationModalButtons)
+        {
+            var image = IndexedImage.Read(archive.GetResource(ImageTag, mapping.ImageResourceNumber),
+                $"{SourcePath}:{ImageTag}#{mapping.ImageResourceNumber}");
+            if (!mapping.HasExpectedFrames(image.Frames))
+                throw new InvalidDataException(
+                    $"The mapped character-generation modal {mapping.Name} image has unexpected frame geometry.");
+            files.Add(await WriteImageAsync(stagingRoot, mapping.Path, image, palette,
+                $"{ImageTag}#{mapping.ImageResourceNumber} all frames + {PaletteTag}#{PaletteNumber}", cancellationToken));
+        }
 
         var windowImage = IndexedImage.Read(archive.GetResource(TitleImageTag, PartyWindowImageNumber),
             $"{SourcePath}:{TitleImageTag}#{PartyWindowImageNumber}");

@@ -172,6 +172,22 @@
 - **Tests:** synthetic field parsing, whole-catalog reference validation,
   exact frame contract, extraction provenance, and content smoke.
 
+### DATA-GOG-UI-004 - Character-generation modal controls
+
+- **Question:** Which image controls compose `WIND` #19504 and #19505?
+- **Method:** Resolve their ten BUTN/ICON pairs, decode every frame, and inspect
+  local-only previews with the established provisional palette.
+- **Finding:** #19504 contains PSIONICS, SPELLS, HALF-GIANTS, one visually blank
+  control, and VIEW SPHERES; #19505 contains AIR, EARTH, FIRE, WATER, and VIEW
+  PSIONICS. All icons have three 7-pixel-high frames; exact control/art widths
+  and modal-relative coordinates are recorded in `OriginalContent`.
+- **Confidence:** verified for identities, labels, geometry, and frame counts;
+  medium for palette #11011; semantic effects and state transitions unknown.
+- **Implementation:** all ten icon sets are transactionally extracted as DSIX;
+  no rule behavior is assigned from labels alone.
+- **Tests:** unique mappings, frame contracts, deterministic synthetic
+  extraction, provenance, owned-pack verification, and content smoke.
+
 ## Initial rules
 
 ### RULE-INPUT-001 - Mouse-first interaction

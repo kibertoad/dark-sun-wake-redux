@@ -123,7 +123,7 @@ public sealed record SourceIdentification(
 
 public static class OriginalContent
 {
-    public const int AssetPackFormatVersion = 6;
+    public const int AssetPackFormatVersion = 7;
     public const string GameId = "dark-sun-wake-redux";
     public const string TitleImageAssetPath = "images/title.dsix";
     public const string InterfaceFontAssetPath = "fonts/interface.dsft";
@@ -151,6 +151,20 @@ public static class OriginalContent
         new("thief", "images/character-generation/thief.dsix", 2009, 2009, 217, 66, 56, 6, 48, 7, 3),
         new("exit", "images/character-generation/exit.dsix", 18302, 18109, 258, 154, 44, 15, 44, 15, 4),
         new("done", "images/character-generation/done.dsix", 19304, 19100, 243, 174, 59, 18, 59, 18, 4)
+    ];
+
+    public static IReadOnlyList<CharacterGenerationButtonAsset> CharacterGenerationModalButtons { get; } =
+    [
+        new("psionics", "images/character-generation/modal/psionics.dsix", 2038, 2038, 7, 15, 73, 7, 73, 7, 3),
+        new("spells", "images/character-generation/modal/spells.dsix", 2039, 2039, 7, 23, 64, 7, 64, 7, 3),
+        new("half-giants", "images/character-generation/modal/half-giants.dsix", 2040, 2040, 7, 31, 88, 7, 88, 7, 3),
+        new("blank", "images/character-generation/modal/blank.dsix", 2041, 2041, 7, 39, 90, 7, 90, 7, 3),
+        new("view-spheres", "images/character-generation/modal/view-spheres.dsix", 2046, 2046, 7, 47, 90, 7, 93, 7, 3),
+        new("air", "images/character-generation/modal/air.dsix", 2042, 2042, 7, 15, 33, 7, 33, 7, 3),
+        new("earth", "images/character-generation/modal/earth.dsix", 2043, 2043, 7, 23, 52, 7, 52, 7, 3),
+        new("fire", "images/character-generation/modal/fire.dsix", 2044, 2044, 7, 31, 40, 7, 40, 7, 3),
+        new("water", "images/character-generation/modal/water.dsix", 2045, 2045, 7, 39, 55, 7, 55, 7, 3),
+        new("view-psionics", "images/character-generation/modal/view-psionics.dsix", 2047, 2047, 7, 47, 90, 7, 93, 7, 3)
     ];
 
     public static string DefaultAssetPackPath() => Path.Combine(
