@@ -18,9 +18,15 @@ public sealed class StartupAssetExtractorTests
         {
             Assert.InRange(button.X, 0, 319);
             Assert.InRange(button.Y, 0, 199);
-            Assert.InRange(button.X + button.Width, 1, 320);
-            Assert.InRange(button.Y + button.Height, 1, 200);
+            Assert.InRange(button.X + button.ControlWidth, 1, 320);
+            Assert.InRange(button.Y + button.ControlHeight, 1, 200);
+            Assert.InRange(button.X + button.FrameWidth, 1, 320);
+            Assert.InRange(button.Y + button.FrameHeight, 1, 200);
         });
+        var load = Assert.Single(OriginalContent.StartMenuButtons,
+            button => button.Name == "load-saved-game");
+        Assert.Equal((192, 12), (load.ControlWidth, load.ControlHeight));
+        Assert.Equal((191, 13), (load.FrameWidth, load.FrameHeight));
     }
 
     [Fact]
@@ -91,7 +97,7 @@ public sealed class StartupAssetExtractorTests
                 Bytes: TransparentImage(Enumerable.Range(0, 4).Select(index =>
                     index == 2 && button.ThirdFrameIsPlaceholder
                         ? (Width: 1, Height: 1)
-                        : (button.Width, button.Height)).ToArray())))
+                        : (Width: button.FrameWidth, Height: button.FrameHeight)).ToArray())))
             .ToArray();
         var palette = new byte[IndexedPalette.EncodedLength];
         var font = Font();

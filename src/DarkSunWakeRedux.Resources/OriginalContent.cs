@@ -81,15 +81,18 @@ public sealed record StartMenuButtonAsset(
     uint ImageResourceNumber,
     int X,
     int Y,
-    int Width,
-    int Height,
+    int ControlWidth,
+    int ControlHeight,
+    int FrameWidth,
+    int FrameHeight,
     bool ThirdFrameIsPlaceholder)
 {
     public bool HasExpectedFrames(IReadOnlyList<IndexedImageFrame> frames) =>
         frames.Count == 4 && frames.Select((frame, index) =>
         {
             var placeholder = index == 2 && ThirdFrameIsPlaceholder;
-            return frame.Width == (placeholder ? 1 : Width) && frame.Height == (placeholder ? 1 : Height);
+            return frame.Width == (placeholder ? 1 : FrameWidth) &&
+                frame.Height == (placeholder ? 1 : FrameHeight);
         }).All(matches => matches);
 }
 
@@ -111,10 +114,10 @@ public static class OriginalContent
 
     public static IReadOnlyList<StartMenuButtonAsset> StartMenuButtons { get; } =
     [
-        new("start-game", "images/start-menu/start-game.dsix", 19111, 94, 70, 127, 12, false),
-        new("create-characters", "images/start-menu/create-characters.dsix", 19112, 50, 87, 220, 12, true),
-        new("load-saved-game", "images/start-menu/load-saved-game.dsix", 19113, 64, 104, 191, 13, true),
-        new("exit-to-dos", "images/start-menu/exit-to-dos.dsix", 19114, 92, 120, 127, 12, true)
+        new("start-game", "images/start-menu/start-game.dsix", 19111, 94, 70, 127, 12, 127, 12, false),
+        new("create-characters", "images/start-menu/create-characters.dsix", 19112, 50, 87, 220, 12, 220, 12, true),
+        new("load-saved-game", "images/start-menu/load-saved-game.dsix", 19113, 64, 104, 192, 12, 191, 13, true),
+        new("exit-to-dos", "images/start-menu/exit-to-dos.dsix", 19114, 92, 120, 127, 12, 127, 12, true)
     ];
 
     public static string DefaultAssetPackPath() => Path.Combine(

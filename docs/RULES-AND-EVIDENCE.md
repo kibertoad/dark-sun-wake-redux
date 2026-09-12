@@ -114,9 +114,11 @@
 - **Finding:** All 28 `WIND`, 139 `BUTN`, 97 `APFM`, and 7 `EBOX` resources parse
   within bounds and their references resolve. `WIND` #19500 is 320x200 and places `BUTN` #19300,
   #19301, #19302, and #19303 at (94,70), (50,87), (64,104), and (92,120).
-  Those buttons are 127x12, 220x12, 192x13, and 127x12 and reference four-frame
+  Those controls are 127x12, 220x12, 192x12, and 127x12 and reference four-frame
   `ICON` #19111 through #19114, visibly labelled START GAME, CREATE CHARACTERS,
-  LOAD SAVED GAME, and EXIT TO DOS. Palette #1000 visibly corrupts the title;
+  LOAD SAVED GAME, and EXIT TO DOS. The corresponding visible frame sizes are
+  127x12, 220x12, 191x13, and 127x12, so the third control and art bounds differ
+  by one pixel in both axes. Palette #1000 visibly corrupts the title;
   the title palette #11011 also renders these overlays plausibly, which is
   evidence that it remains active, but runtime confirmation is still required.
   `WIND` #19501 contains `APFM` #19200 (320x200) at (0,0) and #19201 (28x16)
