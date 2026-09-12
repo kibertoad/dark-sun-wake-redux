@@ -134,7 +134,9 @@ A `WIND` payload begins with its ASCII tag, exact 32-bit byte size, and embedded
 sequence of complete 30-byte child references. Each interpreted child record
 contains a printable four-byte tag at relative offset 4, its resource number at
 8, and signed 16-bit logical x/y coordinates at 12/14. Window width and height
-occur at fixed offsets 190/192. Other fixed fields remain unknown.
+occur at fixed offsets 190/192. Offset 58 is a possibly-zero `BMP` resource
+reference; every nonzero value in the owned archive resolves. Other fixed
+fields remain unknown.
 
 A `BUTN` payload has the same tag/size/resource prefix and a fixed 110-byte
 known portion. Width and height occur at offsets 40/42, the resource number is

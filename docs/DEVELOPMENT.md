@@ -19,8 +19,9 @@ documented source default with `DARK_SUN_WAKE_PATH` when necessary.
 Extraction will be transactional: a new content pack is staged and fully
 verified before it replaces the previous verified pack. The current partial
 Slice 2 pack contains the evidenced 320x200 title, four start buttons, ten
-character-generation button images, indexed interface font, and deterministic
-ID-preserving text catalog; dynamic party fields and shell composition remain.
+character-generation button images, shared party-window image, indexed font,
+and deterministic ID-preserving text catalog; dynamic party fields and the
+window image's composition semantics remain.
 Extracted
 content is ignored by Git and must not be redistributed.
 

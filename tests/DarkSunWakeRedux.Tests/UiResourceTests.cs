@@ -9,11 +9,12 @@ public sealed class UiResourceTests
     [Fact]
     public void ReadsWindowGeometryAndChildReferences()
     {
-        var bytes = Window(19500, 320, 200, ("BUTN", 19300U, (short)94, (short)70));
+        var bytes = Window(19500, 320, 200, 19004, ("BUTN", 19300U, (short)94, (short)70));
 
         var window = UiWindowResource.Read(bytes, "synthetic WIND #19500");
 
         Assert.Equal(19500U, window.ResourceNumber);
+        Assert.Equal(19004U, window.ImageResourceNumber);
         Assert.Equal((ushort)320, window.Width);
         Assert.Equal((ushort)200, window.Height);
         var child = Assert.Single(window.Children);
@@ -43,7 +44,7 @@ public sealed class UiResourceTests
     [Fact]
     public void RejectsWindowPartialChildRecord()
     {
-        var bytes = Window(1, 320, 200, ("BUTN", 2U, (short)0, (short)0));
+        var bytes = Window(1, 320, 200, 0, ("BUTN", 2U, (short)0, (short)0));
         Array.Resize(ref bytes, bytes.Length - 1);
         BitConverter.GetBytes((uint)bytes.Length).CopyTo(bytes, 4);
 
@@ -55,7 +56,7 @@ public sealed class UiResourceTests
     [Fact]
     public void RejectsNonPrintableChildTag()
     {
-        var bytes = Window(1, 320, 200, ("BUTN", 2U, (short)0, (short)0));
+        var bytes = Window(1, 320, 200, 0, ("BUTN", 2U, (short)0, (short)0));
         bytes[UiWindowResource.FixedSize + 4] = 0;
 
         var exception = Assert.Throws<InvalidDataException>(() => UiWindowResource.Read(bytes, "bad-tag.wind"));
@@ -77,7 +78,7 @@ public sealed class UiResourceTests
     [Fact]
     public void RejectsBadSignatureAndDeclaredSize()
     {
-        var window = Window(1, 320, 200);
+        var window = Window(1, 320, 200, 0);
         window[0] = (byte)'X';
         Assert.Throws<InvalidDataException>(() => UiWindowResource.Read(window, "signature.wind"));
 
@@ -99,7 +100,7 @@ public sealed class UiResourceTests
     [Fact]
     public void RejectsZeroWindowDimension()
     {
-        var bytes = Window(1, 0, 200);
+        var bytes = Window(1, 0, 200, 0);
 
         var exception = Assert.Throws<InvalidDataException>(() => UiWindowResource.Read(bytes, "zero.wind"));
 
@@ -141,13 +142,14 @@ public sealed class UiResourceTests
         Assert.Contains("conflicts", exception.Message, StringComparison.Ordinal);
     }
 
-    private static byte[] Window(uint number, ushort width, ushort height,
+    private static byte[] Window(uint number, ushort width, ushort height, uint imageNumber,
         params (string Tag, uint Number, short X, short Y)[] children)
     {
         var bytes = new byte[UiWindowResource.FixedSize + children.Length * UiWindowResource.ChildRecordSize];
         Encoding.ASCII.GetBytes("WIND").CopyTo(bytes, 0);
         BitConverter.GetBytes((uint)bytes.Length).CopyTo(bytes, 4);
         BitConverter.GetBytes(number).CopyTo(bytes, 8);
+        BitConverter.GetBytes(imageNumber).CopyTo(bytes, 58);
         BitConverter.GetBytes(width).CopyTo(bytes, 190);
         BitConverter.GetBytes(height).CopyTo(bytes, 192);
         for (var index = 0; index < children.Length; index++)

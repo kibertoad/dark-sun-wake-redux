@@ -13,6 +13,7 @@ public static class StartupAssetExtractor
     public const uint PaletteNumber = 11011;
     public const string FontTag = "FONT";
     public const uint FontNumber = 100;
+    public const uint PartyWindowImageNumber = 19004;
 
     public static async Task<AssetPackManifest> WritePackAsync(
         string sourceRoot,
@@ -57,6 +58,15 @@ public static class StartupAssetExtractor
             files.Add(await WriteImageAsync(stagingRoot, mapping.Path, image, palette,
                 $"{ImageTag}#{mapping.ImageResourceNumber} all frames + {PaletteTag}#{PaletteNumber}", cancellationToken));
         }
+
+        var windowImage = IndexedImage.Read(archive.GetResource(TitleImageTag, PartyWindowImageNumber),
+            $"{SourcePath}:{TitleImageTag}#{PartyWindowImageNumber}");
+        if (windowImage.Frames.Count != 1 || windowImage.Frames[0].Width != 96 ||
+            windowImage.Frames[0].Height != 9)
+            throw new InvalidDataException("The mapped party-window image must contain one 96x9 frame.");
+        files.Add(await WriteImageAsync(stagingRoot, OriginalContent.PartyWindowImageAssetPath,
+            windowImage, palette, $"{TitleImageTag}#{PartyWindowImageNumber} frame 0 + " +
+            $"{PaletteTag}#{PaletteNumber}", cancellationToken));
 
         var font = IndexedBitmapFont.Read(archive.GetResource(FontTag, FontNumber),
             $"{SourcePath}:{FontTag}#{FontNumber}");

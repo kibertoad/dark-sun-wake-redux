@@ -7,6 +7,7 @@ public sealed record UiChildReference(string Tag, uint ResourceNumber, short X, 
 
 public sealed record UiWindowResource(
     uint ResourceNumber,
+    uint ImageResourceNumber,
     ushort Width,
     ushort Height,
     IReadOnlyList<UiChildReference> Children)
@@ -45,7 +46,8 @@ public sealed record UiWindowResource(
         var height = reader.UInt16(192, "height");
         reader.RequireDimensions(width, height);
 
-        return new(reader.UInt32(8, "resource number"), width, height, children);
+        return new(reader.UInt32(8, "resource number"), reader.UInt32(58, "image resource number"),
+            width, height, children);
     }
 }
 

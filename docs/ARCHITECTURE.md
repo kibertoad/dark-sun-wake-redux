@@ -37,14 +37,14 @@ format/extractor versions and exact output inventory, re-open and hash every
 output, reject unexpected files, then atomically replace the installed pack.
 If any step fails, staging is removed and the last verified pack is restored.
 Current code exercises this transaction for the evidenced title, four
-start-window buttons, ten character-generation controls, interface font, and
-text catalog; later Slice 2 resources will
+start-window buttons, ten character-generation controls, shared window image,
+interface font, and text catalog; later Slice 2 resources will
 extend the exact inventory only after their mappings are recorded.
 
 ## Runtime startup
 
 `--smoke-test` is assetless for CI. `--content-smoke-test` verifies and opens the
-17 derived Slice 2 assets without creating a window. Normal startup verifies
+18 derived Slice 2 assets without creating a window. Normal startup verifies
 the default or explicit `--asset-pack` directory before creating the game window
 and displays the title plus start controls. Failure is reported with stable diagnostic codes,
 local technical details, and a command to run the Extractor.

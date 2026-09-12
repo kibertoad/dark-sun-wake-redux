@@ -158,6 +158,20 @@
 - **Tests:** exact unique mappings, canvas bounds, frame contracts, synthetic
   extraction, manifest provenance, real-pack verification, and content smoke.
 
+### DATA-GOG-UI-003 - Shared party-window image reference
+
+- **Question:** Does the WIND fixed record name a shared image resource?
+- **Method:** Compare offset 58 across all 28 bounded WIND records and resolve
+  every nonzero value against the archive before inspecting decoded images.
+- **Finding:** Offset 58 is zero in 20 windows, `BMP` #10002 in two, and `BMP`
+  #19004 in all six #19500-#19505 windows. #19004 is one 96x9 UI bar/fill frame.
+- **Confidence:** verified for the field, references, dimensions, and local
+  appearance; medium for palette #11011; unknown for tiling and draw role.
+- **Implementation:** `UiWindowResource.ImageResourceNumber`; #19004 is
+  extracted as DSIX without assigning presentation semantics.
+- **Tests:** synthetic field parsing, whole-catalog reference validation,
+  exact frame contract, extraction provenance, and content smoke.
+
 ## Initial rules
 
 ### RULE-INPUT-001 - Mouse-first interaction

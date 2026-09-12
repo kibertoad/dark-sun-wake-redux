@@ -75,6 +75,9 @@ if (args.Length == 2 && args[0].Equals("ui-catalog", StringComparison.OrdinalIgn
                 $"{args[1]}:{resource.Tag}#{resource.Number}");
             if (window.ResourceNumber != resource.Number)
                 throw new InvalidDataException($"{args[1]}:{resource.Tag}#{resource.Number}: embedded resource number is {window.ResourceNumber}.");
+            if (window.ImageResourceNumber != 0 &&
+                !archive.Resources.Any(candidate => candidate.Tag == "BMP " && candidate.Number == window.ImageResourceNumber))
+                throw new InvalidDataException($"{args[1]}:{resource.Tag}#{resource.Number}: BMP #{window.ImageResourceNumber} does not exist.");
             foreach (var child in window.Children)
                 if (!archive.Resources.Any(candidate => candidate.Tag == child.Tag && candidate.Number == child.ResourceNumber))
                     throw new InvalidDataException($"{args[1]}:{resource.Tag}#{resource.Number}: child {child.Tag}#{child.ResourceNumber} does not exist.");

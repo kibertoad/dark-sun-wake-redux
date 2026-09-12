@@ -48,6 +48,16 @@ try
                     throw new InvalidDataException(
                         $"The installed character-generation {button.Name} image has unexpected geometry.");
             }
+            var windowImagePath = Path.Combine(assetPack,
+                OriginalContent.PartyWindowImageAssetPath.Replace('/', Path.DirectorySeparatorChar));
+            using (var windowImageStream = File.OpenRead(windowImagePath))
+            {
+                var windowImage = PackedIndexedImage.Read(windowImageStream,
+                    OriginalContent.PartyWindowImageAssetPath);
+                var frame = AssertSingleFrame(windowImage.Frames, "party-window image");
+                if (frame.Width != 96 || frame.Height != 9)
+                    throw new InvalidDataException("The installed party-window image is not 96x9.");
+            }
             var fontPath = Path.Combine(assetPack,
                 OriginalContent.InterfaceFontAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using var fontStream = File.OpenRead(fontPath);
@@ -78,3 +88,6 @@ static string? Option(string[] values, string name)
     var index = Array.FindIndex(values, value => value.Equals(name, StringComparison.OrdinalIgnoreCase));
     return index >= 0 && index + 1 < values.Length ? values[index + 1] : null;
 }
+
+static IndexedImageFrame AssertSingleFrame(IReadOnlyList<IndexedImageFrame> frames, string name) =>
+    frames.Count == 1 ? frames[0] : throw new InvalidDataException($"The installed {name} must have one frame.");
