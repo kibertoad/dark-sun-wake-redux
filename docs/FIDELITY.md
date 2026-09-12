@@ -7,10 +7,10 @@ Status values: `unknown`, `documented`, `observed`, `implemented`, and
 |---|---|---|---|
 | Legal-source recognition | implemented | `GOG-1432903719`, synthetic tests | One English GOG build has six exact fingerprint anchors |
 | Asset-pack contract | implemented | synthetic tests | Version, game/source identity, exact inventory, hashes, provenance, media type, conversion, and unexpected files are checked |
-| Asset extraction | implemented | `DATA-GOG-TITLE-001`, `DATA-GOG-UI-001`, synthetic extraction test, owned-build verification | The title and four start-window icon sets are converted to DSIX, staged, fully pack-verified, and promoted transactionally; remaining Slice 2 assets are not mapped |
+| Asset extraction | implemented | `DATA-GOG-TITLE-001`, `DATA-GOG-UI-001`, `DATA-GOG-FONT-001`, synthetic extraction test, owned-build verification | The title and four start-window icon sets are converted to DSIX and the interface font to DSFT, staged, fully pack-verified, and promoted transactionally; remaining Slice 2 assets are not mapped |
 | GFF container directories | implemented | `DATA-GOG-GFF-001`, `DSUN-MUSIC`, synthetic tests | Bounded metadata parsing succeeds for all 26 GFF files in the owned build; payload semantics are not implied |
 | Indexed images and palettes | implemented | `DATA-GOG-IMAGE-001`, `DSUN-MUSIC`, synthetic tests | All 4,510 matching images (9,279 frames) and 40 palettes decode within bounds; semantic mapping and visual comparison remain open |
-| Indexed bitmap fonts | implemented | `DATA-GOG-FONT-001`, synthetic tests | `FONT` #100 decodes as 256 bounded indexed glyphs; encoding, palette, spacing, strings, and presentation remain open |
+| Indexed bitmap fonts | implemented | `DATA-GOG-FONT-001`, synthetic tests | `FONT` #100 decodes as 256 bounded indexed glyphs and round-trips through derived DSFT; encoding, palette, spacing, strings, and presentation remain open |
 | UI resource layouts | implemented | `DATA-GOG-UI-001`, synthetic tests | All 28 WIND, 139 BUTN, 97 APFM, and 7 EBOX resources in RESOURCE.GFF parse and resolve; start and character-generation shells are mapped, while runtime state/frame behavior remains unobserved |
 | Rules | implemented | `MANUAL-1994`, `FAQ-81038`, `DATA-GOG-UI-001`, Core tests | Initial party-creation invariants and semantic start/party routing are implemented; disputed eligibility and all later gameplay rules remain unresolved |
 | AI | unknown | none | Not researched |

@@ -11,6 +11,8 @@ public static class StartupAssetExtractor
     public const string ImageTag = "ICON";
     public const string PaletteTag = "PAL ";
     public const uint PaletteNumber = 11011;
+    public const string FontTag = "FONT";
+    public const uint FontNumber = 100;
 
     public static async Task<AssetPackManifest> WritePackAsync(
         string sourceRoot,
@@ -45,6 +47,10 @@ public static class StartupAssetExtractor
                 $"{ImageTag}#{mapping.ImageResourceNumber} all frames + {PaletteTag}#{PaletteNumber}", cancellationToken));
         }
 
+        var font = IndexedBitmapFont.Read(archive.GetResource(FontTag, FontNumber),
+            $"{SourcePath}:{FontTag}#{FontNumber}");
+        files.Add(await WriteFontAsync(stagingRoot, font, cancellationToken));
+
         return new AssetPackManifest(
             OriginalContent.AssetPackFormatVersion,
             OriginalContent.GameId,
@@ -52,6 +58,25 @@ public static class StartupAssetExtractor
             edition.Fingerprint(),
             extractorVersion,
             files);
+    }
+
+    private static async Task<AssetPackFile> WriteFontAsync(
+        string stagingRoot,
+        IndexedBitmapFont font,
+        CancellationToken cancellationToken)
+    {
+        var relativePath = OriginalContent.InterfaceFontAssetPath;
+        var target = Path.Combine(stagingRoot, relativePath.Replace('/', Path.DirectorySeparatorChar));
+        Directory.CreateDirectory(Path.GetDirectoryName(target)!);
+        await using (var output = File.Create(target))
+            PackedIndexedBitmapFont.From(font).Write(output);
+        await using var verify = File.OpenRead(target);
+        PackedIndexedBitmapFont.Read(verify, relativePath);
+        verify.Position = 0;
+        var hash = Convert.ToHexStringLower(await SHA256.HashDataAsync(verify, cancellationToken));
+        return new(relativePath, verify.Length, hash, SourcePath,
+            "application/vnd.dark-sun-wake-redux.indexed-font",
+            $"{FontTag}#{FontNumber} -> DSFT v{PackedIndexedBitmapFont.FormatVersion}");
     }
 
     private static async Task<AssetPackFile> WriteImageAsync(

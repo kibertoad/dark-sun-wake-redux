@@ -44,7 +44,7 @@ public sealed class StartupAssetExtractorTests
             var manifest = await AssetPackInstaller.InstallAsync(output, staging =>
                 StartupAssetExtractor.WritePackAsync(sourceRoot, staging, edition, "test"));
 
-            Assert.Equal(5, manifest.Files.Count);
+            Assert.Equal(6, manifest.Files.Count);
             var asset = Assert.Single(manifest.Files, item => item.Path == OriginalContent.TitleImageAssetPath);
             Assert.Contains("BMP #11011", asset.Conversion, StringComparison.Ordinal);
             foreach (var button in OriginalContent.StartMenuButtons)
@@ -54,6 +54,15 @@ public sealed class StartupAssetExtractorTests
                 using var buttonStream = File.OpenRead(Path.Combine(output,
                     button.Path.Replace('/', Path.DirectorySeparatorChar)));
                 Assert.Equal(4, PackedIndexedImage.Read(buttonStream).Frames.Count);
+            }
+            var fontAsset = Assert.Single(manifest.Files,
+                item => item.Path == OriginalContent.InterfaceFontAssetPath);
+            Assert.Contains("FONT#100", fontAsset.Conversion, StringComparison.Ordinal);
+            using (var fontStream = File.OpenRead(Path.Combine(output,
+                       OriginalContent.InterfaceFontAssetPath.Replace('/', Path.DirectorySeparatorChar))))
+            {
+                Assert.Equal(IndexedBitmapFont.CharacterCount,
+                    PackedIndexedBitmapFont.Read(fontStream).Glyphs.Count);
             }
             Assert.Empty(await OriginalContent.VerifyInstalledAsync(
                 output, TestContext.Current.CancellationToken));
@@ -80,7 +89,8 @@ public sealed class StartupAssetExtractorTests
                         : (button.Width, button.Height)).ToArray())))
             .ToArray();
         var palette = new byte[IndexedPalette.EncodedLength];
-        var indexOffset = 28 + title.Length + icons.Sum(item => item.Bytes.Length) + palette.Length;
+        var font = Font();
+        var indexOffset = 28 + title.Length + icons.Sum(item => item.Bytes.Length) + palette.Length + font.Length;
         using var stream = new MemoryStream();
         using var writer = new BinaryWriter(stream, Encoding.ASCII, leaveOpen: true);
         writer.Write(Encoding.ASCII.GetBytes("GFFI"));
@@ -99,13 +109,31 @@ public sealed class StartupAssetExtractorTests
         }
         var paletteOffset = checked((int)stream.Position);
         writer.Write(palette);
+        var fontOffset = checked((int)stream.Position);
+        writer.Write(font);
         writer.Write(0U);
         writer.Write(0U);
-        writer.Write((ushort)3);
+        writer.Write((ushort)4);
         WriteTable(writer, "BMP ", [(StartupAssetExtractor.TitleImageNumber, titleOffset, title.Length)]);
         WriteTable(writer, "ICON", iconEntries);
         WriteTable(writer, "PAL ", [(StartupAssetExtractor.PaletteNumber, paletteOffset, palette.Length)]);
+        WriteTable(writer, "FONT", [(StartupAssetExtractor.FontNumber, fontOffset, font.Length)]);
         return stream.ToArray();
+    }
+
+    private static byte[] Font()
+    {
+        const ushort height = 1;
+        var bytes = new byte[IndexedBitmapFont.HeaderSize + IndexedBitmapFont.CharacterCount * 2];
+        BitConverter.GetBytes((ushort)IndexedBitmapFont.CharacterCount).CopyTo(bytes, 0);
+        BitConverter.GetBytes(height).CopyTo(bytes, 2);
+        for (var index = 0; index < IndexedBitmapFont.CharacterCount; index++)
+        {
+            bytes[8 + index] = (byte)index;
+            var offset = IndexedBitmapFont.HeaderSize + index * 2;
+            BitConverter.GetBytes(checked((ushort)offset)).CopyTo(bytes, 264 + index * 2);
+        }
+        return bytes;
     }
 
     private static byte[] TransparentImage(int width, int height) =>

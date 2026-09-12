@@ -38,6 +38,12 @@ try
                 if (!button.HasExpectedFrames(image.Frames))
                     throw new InvalidDataException($"The installed {button.Name} image has unexpected geometry.");
             }
+            var fontPath = Path.Combine(assetPack,
+                OriginalContent.InterfaceFontAssetPath.Replace('/', Path.DirectorySeparatorChar));
+            using var fontStream = File.OpenRead(fontPath);
+            var font = PackedIndexedBitmapFont.Read(fontStream, OriginalContent.InterfaceFontAssetPath);
+            if (font.Glyphs.Count != IndexedBitmapFont.CharacterCount)
+                throw new InvalidDataException("The installed interface font has an unexpected glyph count.");
             Console.WriteLine($"Verified runtime startup assets at {assetPack}.");
             return 0;
         }

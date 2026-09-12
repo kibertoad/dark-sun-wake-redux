@@ -43,7 +43,7 @@ inventory only after their mappings are recorded.
 ## Runtime startup
 
 `--smoke-test` is assetless for CI. `--content-smoke-test` verifies and opens the
-five derived startup assets without creating a window. Normal startup verifies
+six derived startup assets without creating a window. Normal startup verifies
 the default or explicit `--asset-pack` directory before creating the game window
 and displays the title plus start controls. Failure is reported with stable diagnostic codes,
 local technical details, and a command to run the Extractor.

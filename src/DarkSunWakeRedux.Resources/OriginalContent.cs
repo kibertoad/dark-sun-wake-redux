@@ -102,9 +102,10 @@ public sealed record SourceIdentification(
 
 public static class OriginalContent
 {
-    public const int AssetPackFormatVersion = 2;
+    public const int AssetPackFormatVersion = 3;
     public const string GameId = "dark-sun-wake-redux";
     public const string TitleImageAssetPath = "images/title.dsix";
+    public const string InterfaceFontAssetPath = "fonts/interface.dsft";
     public const long MaximumManifestBytes = 4 * 1024 * 1024;
 
     public static IReadOnlyList<StartMenuButtonAsset> StartMenuButtons { get; } =

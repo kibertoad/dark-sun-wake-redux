@@ -82,8 +82,8 @@
   is 8,299 bytes, has height 9, and balances exactly through its final record.
 - **Confidence:** verified for `FONT` #100 in GOG-1432903719; character
   encoding, palette selection, string storage, spacing, and layout remain open.
-- **Implementation:** `DarkSunWakeRedux.Resources.IndexedBitmapFont` and the
-  metadata-only `font-catalog` inspection command.
+- **Implementation:** `DarkSunWakeRedux.Resources.IndexedBitmapFont`, derived
+  DSFT v1 extraction, and the metadata-only `font-catalog` inspection command.
 - **Tests:** synthetic valid, zero-width, invalid-header, offset, dimension,
   and record-length cases.
 

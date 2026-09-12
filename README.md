@@ -23,18 +23,19 @@ fingerprints,
 asset-pack contracts and diagnostics are implemented, and assetless smoke
 testing works. The startup pack now transactionally extracts and displays the
 original 320x200 title with its four start-window button images at recorded
-coordinates. Deterministic start/party menu semantics are implemented in Core.
+coordinates, and carries the decoded interface font for later text rendering.
+Deterministic start/party menu semantics are implemented in Core.
 Runtime interaction, dynamic party content, and playable gameplay are not
 implemented yet.
 
 | Area | Supported now | Current limitations |
 |---|---|---|
 | Legal source | Explicit verification of English GOG product `1432903719`, build `52095422060333615` | Other GOG revisions and storefronts are unsupported until separately fingerprinted |
-| Asset extraction | Separate `DarkSunWakeRedux.Extractor` executable; versioned exact-inventory contract; bounded readers; transactional five-image startup pack | Title and start-window button mappings are extracted; the rest of the Slice 2 minimum pack is incomplete |
+| Asset extraction | Separate `DarkSunWakeRedux.Extractor` executable; versioned exact-inventory contract; bounded readers; transactional six-asset startup pack | Title, start-window buttons, and interface font are extracted; the rest of the Slice 2 minimum pack is incomplete |
 | Gameplay | Assetless startup smoke test, MonoGame shell, and deterministic party-creation invariants in Core | No player-visible game slice yet; disputed race/class pairs await shipped-screen observation |
 | Saves and compatibility | Deterministic Core seed/state scaffold | Native saves, replays, original saves, and Shattered Lands party transfer are not implemented |
 | Presentation | Verified-pack startup and nearest-neighbor display of the extracted 320x200 title and four start-window button images | Button frame-state semantics, party screens, pixel-aspect validation, animation, audio, video, and controls await observation and extraction |
-| Text resources | Bounded decoding of the owned build's 256-glyph indexed `FONT` #100 | Encoding, palette, spacing, strings, layout, and runtime rendering remain open |
+| Text resources | Bounded decoding and DSFT extraction of the owned build's 256-glyph indexed `FONT` #100 | Encoding, palette, spacing, strings, layout, and runtime rendering remain open |
 
 ## Developer quick start
 
