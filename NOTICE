@@ -1,0 +1,13 @@
+{{DISPLAY_NAME}}
+{{PROJECT_SUMMARY}}
+
+Copyright (C) {{COPYRIGHT_YEAR}} {{COPYRIGHT_HOLDER}}
+
+The original code in this repository is licensed under the MIT License. See the
+LICENSE file for the full license text.
+
+The MIT License covers the original code in this repository. It does not cover
+or grant rights to original-game assets. Those assets are not distributed by
+this project and must be imported locally from a legally owned copy.
+
+Project contact: {{REPOSITORY_URL}}/issues
