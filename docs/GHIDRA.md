@@ -131,6 +131,13 @@ proof by itself. Never redirect broad output into the repository.
 - **Confidence:** high for event-mask role; unknown for individual bits.
 - **Implementation:** `UiApplicationFrameResource.EventMask`, synthetic
   decoding test, and UI catalog output; no bit-level behavior is assigned.
+- **Shared-layout corroboration:** the sibling dispatcher at `3d72:0fd4`
+  verifies a `BUTN` tag and tests the same structure offset `0x58` against bit 4
+  at `3d72:0fea`; its next `BUTN` branch tests bit 2 at `3d72:100e`.
+  `UiButtonResource.EventMask` therefore preserves the same field.
+- **Edit-box corroboration:** after verifying `EBOX` at `3d72:10b3`, the same
+  dispatcher tests bit 2 at edit-box structure offset `0x96` at `3d72:10c1`.
+  This is preserved as `UiEditBoxResource.EventMask`.
 
 For each useful finding, add a concise entry here or in the relevant
 `docs/RULES-AND-EVIDENCE.md` / `docs/ORIGINAL-FORMATS.md` section with:

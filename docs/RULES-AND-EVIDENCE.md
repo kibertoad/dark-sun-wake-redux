@@ -196,15 +196,21 @@
   resource numbers in that archive.
 - **Finding:** Apart from identity and dimensions, only the 16-bit value at
   offset 88 varies. Ten values occur. The party frames use 494 for `APFM`
-  #19200 and 486 for #19201; neither resolves as a resource number.
+  #19200 and 486 for #19201; neither resolves as a resource number. `BUTN`
+  shares offset 88, although all four start buttons store zero there and only
+  one currently mapped generation/modal control stores a nonzero value (`BUTN`
+  #2046 stores 2). EBOX uses offset 150; the seven owned edit boxes store masks
+  0, 4, or 10, including mask 10 on generation-name `EBOX` #4003.
 - **Executable evidence:** `EXE-GOG-UI-001` verifies the field is a mask used
   during APFM dispatch, not an appearance parameter.
 - **Confidence:** verified for GOG-1432903719 as stored data and high for the
   mask role; individual bit meanings remain unknown.
-- **Implementation:** `UiApplicationFrameResource.EventMask` preserves the
-  value and the UI catalog reports it. No input handler interprets its bits.
-- **Tests:** synthetic nonzero appearance-code decoding and the existing exact
-  size/dimension boundaries.
+- **Implementation:** `UiApplicationFrameResource.EventMask` and
+  `UiButtonResource.EventMask` preserve the shared field and the UI catalog
+  reports it; `UiEditBoxResource.EventMask` preserves EBOX's corresponding
+  field at offset 150. No input handler interprets their bits.
+- **Tests:** synthetic nonzero event-mask decoding for all three record types and the
+  existing exact size/dimension boundaries.
 - **Uncertainty:** Map each bit to its event/input meaning with bounded call-site
   evidence and controlled runtime observations.
 

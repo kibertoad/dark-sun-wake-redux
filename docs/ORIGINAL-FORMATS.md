@@ -140,7 +140,8 @@ fields remain unknown.
 
 A `BUTN` payload has the same tag/size/resource prefix and a fixed 110-byte
 known portion. Width and height occur at offsets 40/42, the resource number is
-repeated at 90, and a possibly-zero `ICON` resource reference occurs at 100.
+followed by the shared 16-bit event mask at 88, the resource number is repeated
+at 90, and a possibly-zero `ICON` resource reference occurs at 100.
 Observed payloads range from 110 to 163 bytes; bytes after the fixed portion are
 preserved as uninterpreted rather than assigned guessed semantics. The reader
 caps a standalone payload at 1 MiB and validates nonzero dimensions. The
@@ -150,11 +151,14 @@ nonzero child and image references.
 An `APFM` application-frame payload is exactly 116 bytes and stores its embedded
 resource number at offset 8, dimensions at 40/42, and a 16-bit event mask at
 offset 88. The executable tests this word against a caller-supplied mask before
-building a dispatch record; individual bit meanings remain unknown. An `EBOX` edit-box payload
-is exactly 168 bytes, repeats its offset-8 resource number at offset 24, and
-stores dimensions at 34/36. All other fields remain deliberately uninterpreted.
+building a dispatch record; individual bit meanings remain unknown. An `EBOX`
+edit-box payload is exactly 168 bytes, repeats its offset-8 resource number at
+offset 24, and stores dimensions at 34/36 plus its event mask at 150. All other
+fields remain deliberately uninterpreted.
 Every one of the 97 `APFM` and 7 `EBOX` resources in the owned `RESOURCE.GFF`
-matches these bounded contracts.
+matches these bounded contracts. All four start-window `BUTN` records store a
+zero event mask, so bit semantics or runtime initialization cannot be inferred
+from their serialized values alone.
 
 ## Derived DSIX indexed-image asset
 

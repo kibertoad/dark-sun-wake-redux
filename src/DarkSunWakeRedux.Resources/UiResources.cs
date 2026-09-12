@@ -55,7 +55,8 @@ public sealed record UiButtonResource(
     uint ResourceNumber,
     ushort Width,
     ushort Height,
-    uint ImageResourceNumber)
+    uint ImageResourceNumber,
+    ushort EventMask)
 {
     public const int FixedSize = 110;
     public const int MaximumPayloadBytes = 1024 * 1024;
@@ -79,7 +80,8 @@ public sealed record UiButtonResource(
         var height = reader.UInt16(42, "height");
         reader.RequireDimensions(width, height);
 
-        return new(resourceNumber, width, height, reader.UInt32(100, "image resource number"));
+        return new(resourceNumber, width, height, reader.UInt32(100, "image resource number"),
+            reader.UInt16(88, "event mask"));
     }
 }
 
@@ -108,7 +110,11 @@ public sealed record UiApplicationFrameResource(
     }
 }
 
-public sealed record UiEditBoxResource(uint ResourceNumber, ushort Width, ushort Height)
+public sealed record UiEditBoxResource(
+    uint ResourceNumber,
+    ushort Width,
+    ushort Height,
+    ushort EventMask)
 {
     public const int RecordSize = 168;
 
@@ -127,7 +133,7 @@ public sealed record UiEditBoxResource(uint ResourceNumber, ushort Width, ushort
         var width = reader.UInt16(34, "width");
         var height = reader.UInt16(36, "height");
         reader.RequireDimensions(width, height);
-        return new(resourceNumber, width, height);
+        return new(resourceNumber, width, height, reader.UInt16(150, "event mask"));
     }
 }
 

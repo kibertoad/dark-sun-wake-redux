@@ -22,11 +22,11 @@ public sealed class UiResourceTests
     }
 
     [Fact]
-    public void ReadsButtonGeometryAndImageReference()
+    public void ReadsButtonGeometryImageReferenceAndEventMask()
     {
-        var button = UiButtonResource.Read(Button(19300, 127, 12, 19111), "synthetic BUTN #19300");
+        var button = UiButtonResource.Read(Button(19300, 127, 12, 19111, 486), "synthetic BUTN #19300");
 
-        Assert.Equal(new UiButtonResource(19300, 127, 12, 19111), button);
+        Assert.Equal(new UiButtonResource(19300, 127, 12, 19111, 486), button);
     }
 
     [Fact]
@@ -126,10 +126,11 @@ public sealed class UiResourceTests
         BitConverter.GetBytes(4003U).CopyTo(bytes, 24);
         BitConverter.GetBytes((ushort)95).CopyTo(bytes, 34);
         BitConverter.GetBytes((ushort)8).CopyTo(bytes, 36);
+        BitConverter.GetBytes((ushort)2).CopyTo(bytes, 150);
 
         var editBox = UiEditBoxResource.Read(bytes, "synthetic EBOX #4003");
 
-        Assert.Equal(new UiEditBoxResource(4003, 95, 8), editBox);
+        Assert.Equal(new UiEditBoxResource(4003, 95, 8, 2), editBox);
     }
 
     [Fact]
@@ -165,7 +166,8 @@ public sealed class UiResourceTests
         return bytes;
     }
 
-    private static byte[] Button(uint number, ushort width, ushort height, uint imageNumber)
+    private static byte[] Button(
+        uint number, ushort width, ushort height, uint imageNumber, ushort eventMask = 0)
     {
         var bytes = new byte[UiButtonResource.FixedSize];
         Encoding.ASCII.GetBytes("BUTN").CopyTo(bytes, 0);
@@ -173,6 +175,7 @@ public sealed class UiResourceTests
         BitConverter.GetBytes(number).CopyTo(bytes, 8);
         BitConverter.GetBytes(width).CopyTo(bytes, 40);
         BitConverter.GetBytes(height).CopyTo(bytes, 42);
+        BitConverter.GetBytes(eventMask).CopyTo(bytes, 88);
         BitConverter.GetBytes(number).CopyTo(bytes, 90);
         BitConverter.GetBytes(imageNumber).CopyTo(bytes, 100);
         return bytes;
