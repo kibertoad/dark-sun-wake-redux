@@ -13,10 +13,10 @@ Status values: `unknown`, `documented`, `observed`, `implemented`, and
 | Indexed bitmap fonts | implemented | `DATA-GOG-FONT-001`, synthetic tests | `FONT` #100 decodes as 256 bounded indexed glyphs and round-trips through derived DSFT; encoding, palette, spacing, strings, and presentation remain open |
 | Text resources | implemented | `DATA-GOG-TEXT-001`, synthetic tests | All 62 RESOURCE.GFF TEXT records decode and round-trip in deterministic DSTX with IDs preserved; ID meanings and UI routing remain open |
 | UI resource layouts | implemented | `DATA-GOG-UI-001/002/003`, synthetic tests | All UI records parse and resolve, including WIND image references; start/generation controls are mapped while shell draw and runtime state behavior remain unobserved |
-| Rules | implemented | `MANUAL-1994`, `FAQ-81038`, `DATA-GOG-UI-001`, Core tests | Initial party-creation invariants and semantic start/party routing are implemented; disputed eligibility and all later gameplay rules remain unresolved |
+| Rules | implemented | `MANUAL-1994`, `FAQ-81038`, `DATA-GOG-UI-001`, Core tests | Initial party-creation invariants, psionic disciplines, clerical spheres, and semantic start/party routing are implemented; disputed eligibility and all later gameplay rules remain unresolved |
 | AI | unknown | none | Not researched |
 | Controls | implemented | `MANUAL-1994`, `DATA-GOG-UI-001`, tests | Start-window mouse clicks use declared rectangles under scale-independent hit testing; original edge behavior, focus, keyboard access, and later controls remain unobserved |
-| Persistence | implemented | Core tests | Start-flow snapshots and hash-verified replay are implemented; native files, whole-game coverage, migration, and legacy import remain open |
+| Persistence | implemented | Core tests | Start-flow snapshot schema 2 covers discipline/sphere choices and hash-verified replay is implemented; native files, whole-game coverage, migration, and legacy import remain open |
 | Layout/graphics | implemented | `DATA-GOG-IMAGE-001`, `DATA-GOG-TITLE-001`, `DATA-GOG-UI-001` | The evidenced 320x200 title and first frames of all four start controls are displayed with one nearest-neighbor canvas transform; frame-state semantics, pixel aspect, and timing remain unvalidated |
 | Animation timing | unknown | none | FLI and gameplay cadence are unverified |
 | Text | researched | `DATA-GOG-FONT-001`, `DATA-GOG-TEXT-001` | Glyph and short-text envelopes are verified; palette, spacing, resource meanings, layout, and route mapping are unverified |

@@ -1,3 +1,5 @@
+using System.Numerics;
+
 namespace DarkSunWakeRedux.Core;
 
 public enum CharacterRace
@@ -36,6 +38,18 @@ public enum CharacterAlignment
     ChaoticNeutral
 }
 
+[Flags]
+public enum PsionicDisciplines
+{
+    None = 0,
+    Psychokinesis = 1,
+    Psychometabolism = 2,
+    Telepathy = 4,
+    All = Psychokinesis | Psychometabolism | Telepathy
+}
+
+public enum ClericalSphere { Air, Earth, Fire, Water }
+
 public enum ClassEligibility { Allowed, Prohibited, EvidenceConflict }
 
 public sealed record AbilityScores(
@@ -63,7 +77,11 @@ public sealed record CharacterDraft(
     CharacterSex Sex,
     CharacterAlignment Alignment,
     AbilityScores Abilities,
-    IReadOnlyList<CharacterClass> Classes);
+    IReadOnlyList<CharacterClass> Classes)
+{
+    public PsionicDisciplines PsionicDisciplines { get; init; } = PsionicDisciplines.Psychokinesis;
+    public ClericalSphere? ClericalSphere { get; init; }
+}
 
 public sealed record PartyDiagnostic(string Code, string Message);
 
@@ -207,7 +225,33 @@ public static class PartyCreationRules
                 ValidateMinimums(selectedClass, character.Abilities, diagnostics);
             }
         }
+        ValidatePsionicsAndSphere(character, diagnostics);
         return diagnostics;
+    }
+
+    private static void ValidatePsionicsAndSphere(
+        CharacterDraft character, ICollection<PartyDiagnostic> diagnostics)
+    {
+        var disciplines = character.PsionicDisciplines;
+        var validFlags = (disciplines & ~PsionicDisciplines.All) == 0;
+        var selectedCount = validFlags ? BitOperations.PopCount((uint)disciplines) : 0;
+        if (character.Classes?.Contains(CharacterClass.Psionicist) == true)
+        {
+            if (!validFlags || disciplines != PsionicDisciplines.All)
+                diagnostics.Add(new("psionicist_disciplines_invalid",
+                    "Psionicists must specialize in all three psionic disciplines."));
+        }
+        else if (!validFlags || selectedCount != 1)
+            diagnostics.Add(new("psionic_discipline_count_invalid",
+                "A non-psionicist must select exactly one psionic discipline."));
+
+        var isCleric = character.Classes?.Contains(CharacterClass.Cleric) == true;
+        if (isCleric && character.ClericalSphere is null)
+            diagnostics.Add(new("clerical_sphere_missing", "A cleric must select an elemental sphere."));
+        else if (character.ClericalSphere is { } sphere && !Enum.IsDefined(sphere))
+            diagnostics.Add(new("clerical_sphere_invalid", "The selected clerical sphere is invalid."));
+        else if (!isCleric && character.ClericalSphere is not null)
+            diagnostics.Add(new("clerical_sphere_unavailable", "Only clerics select a clerical sphere."));
     }
 
     private static void ValidateMinimums(

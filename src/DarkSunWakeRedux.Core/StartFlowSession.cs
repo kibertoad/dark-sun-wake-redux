@@ -37,7 +37,7 @@ public sealed record StartFlowSnapshot(
     PartyOrigin PartyOrigin,
     IReadOnlyList<CharacterDraft> PartyMembers)
 {
-    public const int CurrentSchemaVersion = 1;
+    public const int CurrentSchemaVersion = 2;
 }
 
 public sealed record StartFlowEvent(
@@ -158,6 +158,8 @@ public sealed class StartFlowSession
             foreach (var (_, value) in member.Abilities.All()) writer.Write(value);
             writer.Write(member.Classes.Count);
             foreach (var characterClass in member.Classes) writer.Write((int)characterClass);
+            writer.Write((int)member.PsionicDisciplines);
+            writer.Write(member.ClericalSphere is null ? -1 : (int)member.ClericalSphere.Value);
         }
         return stream.ToArray();
     }

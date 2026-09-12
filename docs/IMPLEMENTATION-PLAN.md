@@ -211,8 +211,11 @@ decoder rather than being guessed now.
   for party-screen resource mapping; OBS-GOG for screen states,
   coordinates, and navigation.
 - **Acceptance - rules.** Party size, available races/classes, ability/alignment
-  constraints, cancellation, selection, and derived initial state follow
-  recorded evidence. A fixed seed makes allowed random generation repeatable.
+  constraints, psionic-discipline and clerical-sphere choices, cancellation,
+  selection, and derived initial state follow recorded evidence. A fixed seed
+  makes allowed random generation repeatable. The manual-documented discipline
+  and sphere cardinality is implemented; shipped selection behavior remains to
+  be observed.
 - **Acceptance - presentation.** Start/party screens preserve measured logical
   coordinates, aspect treatment, palette semantics, focus order, mouse hit
   regions, and Escape behavior; scaling cannot change rules or hit testing.
@@ -227,7 +230,8 @@ decoder rather than being guessed now.
   decompression-bomb limits; deterministic extraction; exact output inventory;
   pack verification, stale-file removal, atomic promotion/rollback; party
   invariants and menu-transition tests. Implemented start-flow commands produce
-  sequenced events, versioned snapshots, stable hashes, and verified replays;
+  sequenced events, versioned snapshots, stable hashes, and verified replays.
+  Snapshot schema 2 includes psionic disciplines and clerical sphere;
   gameplay-wide replay remains a later-slice requirement.
 - **Observed parity.** Compare boot, start, create/select/cancel, and quit state
   transitions and UI measurements against the supported GOG build.

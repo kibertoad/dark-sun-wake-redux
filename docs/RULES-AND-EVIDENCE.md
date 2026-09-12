@@ -277,6 +277,25 @@
 - **Resolution needed:** record the selectable class list for every race in the
   fingerprinted GOG build, then update the matrix and tests.
 
+### RULE-PARTY-003 - Psionic disciplines and clerical spheres
+
+- **Behavior:** A psionicist specializes in Psychokinesis, Psychometabolism,
+  and Telepathy. Every other character selects exactly one of those disciplines,
+  with Psychokinesis documented as the initial selection. A cleric selects one
+  elemental sphere from Air, Earth, Fire, and Water, with Air documented as the
+  initial selection; non-clerics do not select a clerical sphere.
+- **Evidence:** MANUAL-1994, character-generation instructions on pages 7-9.
+- **Confidence:** high for documented intent; the supported executable's
+  initial selections and selection transitions have not yet been observed.
+- **Implementation:** `CharacterDraft` records both choices and
+  `PartyCreationRules` validates their class-dependent cardinality. Both fields
+  participate in the canonical start-flow state hash and snapshot schema 2.
+- **Tests:** all-three Psionicist requirement, exactly-one non-Psionicist
+  requirement, Cleric-only elemental sphere, and sphere-sensitive state hashes.
+- **Uncertainty:** Shipped defaults, control-state frames, click transitions,
+  and whether any exceptional class combination changes these rules need
+  OBS-GOG evidence.
+
 ### RULE-COMBAT-001 - Party expansion on combat entry
 
 - **Behavior:** Exploration may show only the leader; combat makes all four party

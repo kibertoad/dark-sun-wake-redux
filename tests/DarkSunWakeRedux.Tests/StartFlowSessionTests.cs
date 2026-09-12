@@ -83,10 +83,32 @@ public sealed class StartFlowSessionTests
         Assert.Equal(StartFlowScreen.StartWindow, session.Snapshot().Screen);
     }
 
+    [Fact]
+    public void ClericalSphereContributesToCanonicalStateHash()
+    {
+        var cleric = new CharacterDraft("Sadia", CharacterRace.Human, CharacterSex.Female,
+            CharacterAlignment.LawfulGood, new(15, 15, 15, 15, 15, 15), [CharacterClass.Cleric]);
+
+        var air = SessionWith(cleric with { ClericalSphere = ClericalSphere.Air });
+        var fire = SessionWith(cleric with { ClericalSphere = ClericalSphere.Fire });
+
+        Assert.NotEqual(air.StateSha256(), fire.StateSha256());
+    }
+
     private static (StartFlowSession Session, StartFlowEvent[] Events) Run(int seed)
     {
         var session = new StartFlowSession(seed);
         return (session, Commands().Select(session.Execute).ToArray());
+    }
+
+    private static StartFlowSession SessionWith(CharacterDraft character)
+    {
+        var session = new StartFlowSession(11);
+        session.Execute(StartFlowCommand.Choose(StartWindowChoice.CreateCharacters));
+        session.Execute(StartFlowCommand.OpenEmptySlot());
+        session.Execute(StartFlowCommand.Choose(EmptySlotChoice.New));
+        Assert.True(session.Execute(StartFlowCommand.Complete(character)).Accepted);
+        return session;
     }
 
     private static StartFlowCommand[] Commands() =>

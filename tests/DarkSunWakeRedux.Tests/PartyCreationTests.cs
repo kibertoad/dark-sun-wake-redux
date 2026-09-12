@@ -99,6 +99,47 @@ public sealed class PartyCreationTests
         Assert.Contains(diagnostics, item => item.Code == "ability_out_of_range");
     }
 
+    [Fact]
+    public void PsionicistMustReceiveAllThreeDisciplines()
+    {
+        var incomplete = Draft(classes: [CharacterClass.Psionicist]);
+
+        Assert.Contains(PartyCreationRules.Validate(incomplete),
+            item => item.Code == "psionicist_disciplines_invalid");
+        Assert.DoesNotContain(PartyCreationRules.Validate(incomplete with
+        {
+            PsionicDisciplines = PsionicDisciplines.All
+        }), item => item.Code == "psionicist_disciplines_invalid");
+    }
+
+    [Theory]
+    [InlineData(PsionicDisciplines.None)]
+    [InlineData(PsionicDisciplines.All)]
+    public void NonPsionicistMustReceiveExactlyOneDiscipline(PsionicDisciplines disciplines)
+    {
+        var draft = Draft() with { PsionicDisciplines = disciplines };
+
+        Assert.Contains(PartyCreationRules.Validate(draft),
+            item => item.Code == "psionic_discipline_count_invalid");
+    }
+
+    [Fact]
+    public void OnlyClericsChooseAnElementalSphere()
+    {
+        var cleric = Draft(classes: [CharacterClass.Cleric]);
+
+        Assert.Contains(PartyCreationRules.Validate(cleric),
+            item => item.Code == "clerical_sphere_missing");
+        Assert.DoesNotContain(PartyCreationRules.Validate(cleric with
+        {
+            ClericalSphere = ClericalSphere.Air
+        }), item => item.Code.StartsWith("clerical_sphere_", StringComparison.Ordinal));
+        Assert.Contains(PartyCreationRules.Validate(Draft() with
+        {
+            ClericalSphere = ClericalSphere.Fire
+        }), item => item.Code == "clerical_sphere_unavailable");
+    }
+
     private static CharacterDraft Draft(
         string name = "Rikus",
         CharacterRace race = CharacterRace.Human,

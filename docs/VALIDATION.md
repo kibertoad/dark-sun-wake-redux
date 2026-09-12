@@ -7,6 +7,9 @@ replacement failures. Core rule tests use explicit inputs and no ambient state.
 Start-flow tests also prove identical seeds and commands yield identical events
 and state hashes, snapshots restore exactly, rejected commands are sequenced,
 and replay stops at the first divergent hash.
+Party-rule coverage includes the manual-documented all-three Psionicist rule,
+the exactly-one discipline rule for other characters, Cleric-only elemental
+spheres, and canonical hash sensitivity to the selected sphere.
 Presentation-independent input tests prove viewport letterboxing cannot change
 the logical start-button choice and exercise declared exclusive rectangle edges.
 
