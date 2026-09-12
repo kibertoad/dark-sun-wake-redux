@@ -68,6 +68,33 @@
 - **Tests:** original-free DSIX round trips and rejection cases, plus synthetic
   GFF-to-verified-pack extraction using the recorded resource identities.
 
+### DATA-GOG-UI-001 - Start-window and button resource mapping
+
+- **Question:** How does the owned build identify and place the first start-menu
+  controls over the title screen?
+- **Method:** Independently inspect bounded `WIND` and `BUTN` payloads in the
+  fingerprinted `RESOURCE.GFF`, compare repeated record structure across every
+  resource of those tags, validate every nonzero child/image reference, and
+  render the referenced `ICON` frames with plausible palettes under ignored
+  `analysis/original/` paths.
+- **Finding:** All 28 `WIND` and 139 `BUTN` resources parse within bounds and
+  their references resolve. `WIND` #19500 is 320x200 and places `BUTN` #19300,
+  #19301, #19302, and #19303 at (94,70), (50,87), (64,104), and (92,120).
+  Those buttons are 127x12, 220x12, 192x13, and 127x12 and reference four-frame
+  `ICON` #19111 through #19114, visibly labelled START GAME, CREATE CHARACTERS,
+  LOAD SAVED GAME, and EXIT TO DOS. Palette #1000 visibly corrupts the title;
+  the title palette #11011 also renders these overlays plausibly, which is
+  evidence that it remains active, but runtime confirmation is still required.
+- **Confidence:** verified for resource identities, dimensions, references, and
+  logical coordinates in GOG-1432903719; medium for the active palette; unknown
+  for frame-state meanings, focus, hit boundaries, and transitions.
+- **Implementation:** bounded `UiWindowResource` and `UiButtonResource` readers
+  plus the read-only `ui-catalog` inspection command. Runtime composition waits
+  for an OBS-GOG state observation.
+- **Tests:** synthetic signature, size, child-record, printable-tag, coordinate,
+  repeated-ID, extension-tail, dimension, and reference-contract coverage;
+  whole-catalog validation against the owned archive.
+
 ## Initial rules
 
 ### RULE-INPUT-001 - Mouse-first interaction

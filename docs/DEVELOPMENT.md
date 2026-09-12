@@ -12,6 +12,10 @@ dotnet run --project src/DarkSunWakeRedux.Extractor -- verify-pack
 dotnet run --project src/DarkSunWakeRedux.Game -- --smoke-test
 ```
 
+On Windows, `play.bat` performs a full solution build, verifies or creates the
+default local asset pack, and launches the current game build. Override its
+documented source default with `DARK_SUN_WAKE_PATH` when necessary.
+
 Extraction will be transactional: a new content pack is staged and fully
 verified before it replaces the previous verified pack. The current partial
 Slice 2 pack contains the evidenced 320x200 title image; later screens remain
@@ -36,12 +40,14 @@ Read source metadata without extracting proprietary payloads using Inspect:
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- "C:\path\to\gog-installation"
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- gff "C:\path\to\RESOURCE.GFF"
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- image-catalog "C:\path\to\RESOURCE.GFF"
+dotnet run --project tools/DarkSunWakeRedux.Inspect -- ui-catalog "C:\path\to\RESOURCE.GFF"
 ```
 
 The first command emits path, size, and SHA-256 inventory. The second emits only
 bounded GFF resource descriptors (tag, number, offset, and size). The third
 validates all indexed images and palettes in one GFF and emits dimensions and
-counts, but no proprietary pixel or palette content.
+counts, but no proprietary pixel or palette content. The fourth validates
+bounded window/button records and their resource references.
 
 Verify the runtime-side derived asset without opening a window:
 

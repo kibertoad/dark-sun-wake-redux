@@ -9,15 +9,22 @@ copy, then will decode its proprietary resources into a local asset pack. The
 reimplemented runtime consumes only that verified pack; it never runs or depends
 on the original executable or DOSBox.
 
+On Windows, run `play.bat` from the repository root to build the solution,
+create or verify the local asset pack, and launch the current game build. Set
+`DARK_SUN_WAKE_PATH` only when the owned installation is not at the documented
+default `C:\GOG Games\Dark Sun 2` location.
+
 ## Current status
 
 The repository is configured and the first foundation slice is complete. Work
-on the second slice includes bounded GFF directory, indexed-image, and palette
-readers. The supported GOG build can be identified by exact fingerprints,
+on the second slice includes bounded GFF directory, indexed-image, palette, and
+UI layout readers. The supported GOG build can be identified by exact
+fingerprints,
 asset-pack contracts and diagnostics are implemented, and assetless smoke
 testing works. The first evidenced mapping now transactionally extracts and
-displays the original 320x200 title image. Start-menu resources, party-screen
-mapping, and playable gameplay are not implemented yet.
+displays the original 320x200 title image. The original start-window resources
+and coordinates are mapped, but their runtime behavior, party-screen mapping,
+and playable gameplay are not implemented yet.
 
 | Area | Supported now | Current limitations |
 |---|---|---|

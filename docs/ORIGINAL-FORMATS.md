@@ -9,6 +9,7 @@ semantics.
 | `*.GFF` | Shared resources, numbered regions, and legacy saves | Little-endian version `0x00030000` container directory is decoded; indexed-image and palette payloads are decoded, while other tag semantics remain mostly unknown | verified for the directory layout and recorded image/palette families in the owned build | Bound file size and every count/offset/length; reject overflow, truncation, invalid secondary references, duplicate keys, and partial overlaps with source context |
 | GFF `BMP `, `CBMP`, `ICON` | Indexed image frames | Shared size/frame envelope plus sparse row, `PLAN`, and `PLNR` encodings are decoded to palette indices and alpha | verified for all matching resources in the owned build | Bound payload, frame count, offsets, dimensions, total pixels, compressed runs, dictionaries, and bitstreams; reject malformed input with resource identity |
 | GFF `PAL ` | 256-color palettes | Exactly 256 RGB triples with 6-bit VGA components, scaled by four to 8-bit channels | verified for all matching resources in the owned build | Require exactly 768 bytes and reject components outside `0..63` |
+| GFF `WIND`, `BUTN` | UI layout and controls | Bounded common fields and references are decoded; unknown fixed fields and variable button tails remain uninterpreted | verified for all matching resources in `RESOURCE.GFF` | Require signatures and exact declared sizes; bound fixed records, complete child records, dimensions, tags, and references |
 | Pack `*.dsix` | Derived indexed-image asset | `DSIX` v1 stores one decoded 256-color palette plus bounded indexed frames and binary alpha | implemented; title asset round-trip and extraction validated | Bound file size, version, frame count, dimensions, pixels, alpha, and trailing data; reject non-binary alpha |
 | `*.FLI` | Four observed cinematics | Likely animation resources by extension only; dimensions, palette changes, frame timing, and exact variant are unverified | low | Bound frames, chunks, dimensions, decoded bytes, and timing; unsupported chunk types fail explicitly |
 | `*.VOC` | Speech and sound-effect files | Creative Labs VOC is suggested by extension; headers, codecs, sample rates, and block use must be verified per file | low | Bound blocks and decoded samples; reject unsupported codecs and malformed terminators |
@@ -93,6 +94,26 @@ Palette payloads contain exactly 256 RGB triples. Each stored component is in
 the VGA range `0..63`; multiplying by four produces the decoded channel range
 `0..252`. Resource-to-palette mapping, display composition, frame origins, and
 animation timing remain open.
+
+## UI windows and buttons
+
+**Evidence:** `DATA-GOG-UI-001`.
+
+A `WIND` payload begins with its ASCII tag, exact 32-bit byte size, and embedded
+32-bit resource number. The fixed record occupies 261 bytes; the remainder is a
+sequence of complete 30-byte child references. Each interpreted child record
+contains a printable four-byte tag at relative offset 4, its resource number at
+8, and signed 16-bit logical x/y coordinates at 12/14. Window width and height
+occur at fixed offsets 190/192. Other fixed fields remain unknown.
+
+A `BUTN` payload has the same tag/size/resource prefix and a fixed 110-byte
+known portion. Width and height occur at offsets 40/42, the resource number is
+repeated at 90, and a possibly-zero `ICON` resource reference occurs at 100.
+Observed payloads range from 110 to 163 bytes; bytes after the fixed portion are
+preserved as uninterpreted rather than assigned guessed semantics. The reader
+caps a standalone payload at 1 MiB and validates nonzero dimensions. The
+inspection command additionally verifies embedded/directory identities and all
+nonzero child and image references.
 
 ## Derived DSIX indexed-image asset
 

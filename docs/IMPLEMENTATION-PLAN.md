@@ -206,7 +206,8 @@ decoder rather than being guessed now.
 - **Evidence.** MANUAL-1994 sections on quick start, party creation, character
   options, and menus; `DATA-GOG-GFF-001` and `DATA-GOG-IMAGE-001`, corroborated
   by DSUN-MUSIC, for bounded container, indexed-image, and palette structures;
-  further DATA-GOG for resource mapping; OBS-GOG for screen states,
+  `DATA-GOG-UI-001` for bounded start-window/button mappings; further DATA-GOG
+  for party-screen resource mapping; OBS-GOG for screen states,
   coordinates, and navigation.
 - **Acceptance - rules.** Party size, available races/classes, ability/alignment
   constraints, cancellation, selection, and derived initial state follow
