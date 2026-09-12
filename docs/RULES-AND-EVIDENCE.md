@@ -188,6 +188,23 @@
 - **Tests:** unique mappings, frame contracts, deterministic synthetic
   extraction, provenance, owned-pack verification, and content smoke.
 
+### DATA-GOG-UI-005 - Application-frame appearance field
+
+- **Question:** Which non-geometry data varies across bounded `APFM` records?
+- **Method:** Compare every 16-bit-aligned field in all 97 exact-size `APFM`
+  payloads from `RESOURCE.GFF`, then test whether observed values resolve as
+  resource numbers in that archive.
+- **Finding:** Apart from identity and dimensions, only the 16-bit value at
+  offset 88 varies. Ten values occur. The party frames use 494 for `APFM`
+  #19200 and 486 for #19201; neither resolves as a resource number.
+- **Confidence:** verified for GOG-1432903719 as stored data; meaning unknown.
+- **Implementation:** `UiApplicationFrameResource.AppearanceCode` preserves the
+  value and the UI catalog reports it. No renderer interprets it.
+- **Tests:** synthetic nonzero appearance-code decoding and the existing exact
+  size/dimension boundaries.
+- **Uncertainty:** Whether the value encodes colors, flags, a style, or another
+  drawing parameter requires executable/runtime evidence.
+
 ## Initial rules
 
 ### RULE-INPUT-001 - Mouse-first interaction

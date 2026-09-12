@@ -110,11 +110,13 @@ public sealed class UiResourceTests
     [Fact]
     public void ReadsApplicationFrameGeometry()
     {
+        var bytes = FixedRecord("APFM", UiApplicationFrameResource.RecordSize, 19200, 320, 200);
+        BitConverter.GetBytes((ushort)494).CopyTo(bytes, 88);
         var frame = UiApplicationFrameResource.Read(
-            FixedRecord("APFM", UiApplicationFrameResource.RecordSize, 19200, 320, 200),
+            bytes,
             "synthetic APFM #19200");
 
-        Assert.Equal(new UiApplicationFrameResource(19200, 320, 200), frame);
+        Assert.Equal(new UiApplicationFrameResource(19200, 320, 200, 494), frame);
     }
 
     [Fact]

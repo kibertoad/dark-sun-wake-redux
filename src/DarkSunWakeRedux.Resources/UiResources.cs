@@ -83,7 +83,11 @@ public sealed record UiButtonResource(
     }
 }
 
-public sealed record UiApplicationFrameResource(uint ResourceNumber, ushort Width, ushort Height)
+public sealed record UiApplicationFrameResource(
+    uint ResourceNumber,
+    ushort Width,
+    ushort Height,
+    ushort AppearanceCode)
 {
     public const int RecordSize = 116;
 
@@ -99,7 +103,8 @@ public sealed record UiApplicationFrameResource(uint ResourceNumber, ushort Widt
         var width = reader.UInt16(40, "width");
         var height = reader.UInt16(42, "height");
         reader.RequireDimensions(width, height);
-        return new(reader.UInt32(8, "resource number"), width, height);
+        return new(reader.UInt32(8, "resource number"), width, height,
+            reader.UInt16(88, "appearance code"));
     }
 }
 
