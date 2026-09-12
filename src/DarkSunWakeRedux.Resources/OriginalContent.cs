@@ -75,6 +75,24 @@ public sealed record ContentDiagnostic(
     string? Expected = null,
     string? Actual = null);
 
+public sealed record StartMenuButtonAsset(
+    string Name,
+    string Path,
+    uint ImageResourceNumber,
+    int X,
+    int Y,
+    int Width,
+    int Height,
+    bool ThirdFrameIsPlaceholder)
+{
+    public bool HasExpectedFrames(IReadOnlyList<IndexedImageFrame> frames) =>
+        frames.Count == 4 && frames.Select((frame, index) =>
+        {
+            var placeholder = index == 2 && ThirdFrameIsPlaceholder;
+            return frame.Width == (placeholder ? 1 : Width) && frame.Height == (placeholder ? 1 : Height);
+        }).All(matches => matches);
+}
+
 public sealed record SourceIdentification(
     SourceManifest? Edition,
     IReadOnlyList<ContentDiagnostic> Diagnostics)
@@ -84,10 +102,18 @@ public sealed record SourceIdentification(
 
 public static class OriginalContent
 {
-    public const int AssetPackFormatVersion = 1;
+    public const int AssetPackFormatVersion = 2;
     public const string GameId = "dark-sun-wake-redux";
     public const string TitleImageAssetPath = "images/title.dsix";
     public const long MaximumManifestBytes = 4 * 1024 * 1024;
+
+    public static IReadOnlyList<StartMenuButtonAsset> StartMenuButtons { get; } =
+    [
+        new("start-game", "images/start-menu/start-game.dsix", 19111, 94, 70, 127, 12, false),
+        new("create-characters", "images/start-menu/create-characters.dsix", 19112, 50, 87, 220, 12, true),
+        new("load-saved-game", "images/start-menu/load-saved-game.dsix", 19113, 64, 104, 191, 13, true),
+        new("exit-to-dos", "images/start-menu/exit-to-dos.dsix", 19114, 92, 120, 127, 12, true)
+    ];
 
     public static string DefaultAssetPackPath() => Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),

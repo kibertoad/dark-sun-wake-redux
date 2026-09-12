@@ -29,7 +29,16 @@ try
             var titleFrame = title.Frames.Single();
             if (titleFrame.Width != 320 || titleFrame.Height != 200)
                 throw new InvalidDataException("The installed title image is not the required 320x200 frame.");
-            Console.WriteLine($"Verified runtime title asset at {titlePath}.");
+            foreach (var button in OriginalContent.StartMenuButtons)
+            {
+                var buttonPath = Path.Combine(assetPack,
+                    button.Path.Replace('/', Path.DirectorySeparatorChar));
+                using var buttonStream = File.OpenRead(buttonPath);
+                var image = PackedIndexedImage.Read(buttonStream, button.Path);
+                if (!button.HasExpectedFrames(image.Frames))
+                    throw new InvalidDataException($"The installed {button.Name} image has unexpected geometry.");
+            }
+            Console.WriteLine($"Verified runtime startup assets at {assetPack}.");
             return 0;
         }
     }

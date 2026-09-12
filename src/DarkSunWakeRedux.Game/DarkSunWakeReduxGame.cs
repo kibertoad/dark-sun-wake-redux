@@ -11,6 +11,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     private readonly GraphicsDeviceManager _graphics;
     private SpriteBatch? _spriteBatch;
     private Texture2D? _titleTexture;
+    private readonly List<(StartMenuButtonAsset Mapping, Texture2D Texture)> _startMenuButtons = [];
 
     public DarkSunWakeReduxGame(string? assetPack = null, bool platformSmoke = false)
     {
@@ -40,16 +41,29 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             OriginalContent.TitleImageAssetPath.Replace('/', Path.DirectorySeparatorChar));
         using var stream = File.OpenRead(path);
         var title = PackedIndexedImage.Read(stream, OriginalContent.TitleImageAssetPath);
-        var frame = title.Frames.Single();
+        _titleTexture = CreateTexture(title, title.Frames.Single());
+        foreach (var button in OriginalContent.StartMenuButtons)
+        {
+            var buttonPath = Path.Combine(_assetPack,
+                button.Path.Replace('/', Path.DirectorySeparatorChar));
+            using var buttonStream = File.OpenRead(buttonPath);
+            var image = PackedIndexedImage.Read(buttonStream, button.Path);
+            _startMenuButtons.Add((button, CreateTexture(image, image.Frames[0])));
+        }
+        _spriteBatch = new SpriteBatch(GraphicsDevice);
+    }
+
+    private Texture2D CreateTexture(PackedIndexedImage image, IndexedImageFrame frame)
+    {
         var colors = new Color[frame.Pixels.Length];
         for (var index = 0; index < colors.Length; index++)
         {
-            var color = title.Palette[frame.Pixels[index]];
+            var color = image.Palette[frame.Pixels[index]];
             colors[index] = new Color(color.Red, color.Green, color.Blue, frame.Alpha[index]);
         }
-        _titleTexture = new Texture2D(GraphicsDevice, frame.Width, frame.Height);
-        _titleTexture.SetData(colors);
-        _spriteBatch = new SpriteBatch(GraphicsDevice);
+        var texture = new Texture2D(GraphicsDevice, frame.Width, frame.Height);
+        texture.SetData(colors);
+        return texture;
     }
 
     protected override void Draw(GameTime gameTime)
@@ -69,6 +83,15 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                 height);
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             _spriteBatch.Draw(_titleTexture, destination, Color.White);
+            foreach (var (mapping, texture) in _startMenuButtons)
+            {
+                var buttonDestination = new Rectangle(
+                    destination.X + (int)MathF.Floor(mapping.X * scale),
+                    destination.Y + (int)MathF.Floor(mapping.Y * scale),
+                    Math.Max(1, (int)MathF.Floor(texture.Width * scale)),
+                    Math.Max(1, (int)MathF.Floor(texture.Height * scale)));
+                _spriteBatch.Draw(texture, buttonDestination, Color.White);
+            }
             _spriteBatch.End();
         }
         base.Draw(gameTime);
@@ -77,6 +100,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     protected override void UnloadContent()
     {
         _titleTexture?.Dispose();
+        foreach (var (_, texture) in _startMenuButtons) texture.Dispose();
         _spriteBatch?.Dispose();
         base.UnloadContent();
     }

@@ -36,16 +36,16 @@ write into a unique sibling staging directory, generate a manifest containing
 format/extractor versions and exact output inventory, re-open and hash every
 output, reject unexpected files, then atomically replace the installed pack.
 If any step fails, staging is removed and the last verified pack is restored.
-Current code exercises this transaction for the first evidenced title asset;
-later Slice 2 resources will extend the exact inventory only after their mappings
-are recorded.
+Current code exercises this transaction for the evidenced title and four
+start-window button images; later Slice 2 resources will extend the exact
+inventory only after their mappings are recorded.
 
 ## Runtime startup
 
 `--smoke-test` is assetless for CI. `--content-smoke-test` verifies and opens the
-derived title asset without creating a window. Normal startup verifies the
-default or explicit `--asset-pack` directory before creating the game window and
-displays the title asset. Failure is reported with stable diagnostic codes,
+five derived startup assets without creating a window. Normal startup verifies
+the default or explicit `--asset-pack` directory before creating the game window
+and displays the title plus start controls. Failure is reported with stable diagnostic codes,
 local technical details, and a command to run the Extractor.
 
 ## Determinism

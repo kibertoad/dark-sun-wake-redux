@@ -41,7 +41,7 @@ static async Task<int> RunAsync(string[] args)
 
         var version = Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "unknown";
         var manifest = await AssetPackInstaller.InstallAsync(output, staging =>
-            TitleAssetExtractor.WritePackAsync(source, staging, identification.Edition!, version));
+            StartupAssetExtractor.WritePackAsync(source, staging, identification.Edition!, version));
         Console.WriteLine($"Installed verified asset pack for {manifest.SourceEdition} at {output}.");
         Console.WriteLine($"Extracted {manifest.Files.Count} file(s) transactionally.");
         return 0;

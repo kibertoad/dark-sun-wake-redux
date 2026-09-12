@@ -85,7 +85,8 @@ if (args.Length == 2 && args[0].Equals("image-catalog", StringComparison.Ordinal
                 resource.Size,
                 frameCount = image.Frames.Count,
                 maxWidth = image.Frames.Count == 0 ? 0 : image.Frames.Max(frame => frame.Width),
-                maxHeight = image.Frames.Count == 0 ? 0 : image.Frames.Max(frame => frame.Height)
+                maxHeight = image.Frames.Count == 0 ? 0 : image.Frames.Max(frame => frame.Height),
+                frames = image.Frames.Select(frame => new { frame.Width, frame.Height })
             };
         }).ToArray();
         var palettes = archive.Resources.Where(resource => resource.Tag == "PAL ").Select(resource =>
