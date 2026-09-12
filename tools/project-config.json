@@ -1,23 +1,23 @@
 {
-  "$schema-note": "Single source of truth for this project's identity. Fill this in, then run ./tools/Configure-Project.ps1 (no arguments needed). Leave a value empty to accept the derived default described in docs/CUSTOMIZATION.md.",
-  "configured": false,
-  "projectName": "",
-  "displayName": "",
-  "gameId": "",
-  "packageId": "",
-  "appDataDirectory": "",
-  "appId": "",
-  "bundleId": "",
-  "shortcutName": "",
-  "publisher": "kibertoad",
-  "copyrightHolder": "",
-  "copyrightYear": 0,
-  "repositoryUrl": "",
-  "summary": "",
-  "original": {
-    "title": "",
-    "developer": "",
-    "releaseYear": "",
-    "genre": ""
-  }
+    "$schema-note":  "Resolved identity for this project. Re-run ./tools/Configure-Project.ps1 -Force after changing projectName; other values are already substituted into the repository and must be updated in place.",
+    "configured":  true,
+    "projectName":  "DarkSunWakeRedux",
+    "displayName":  "Dark Sun: Wake of the Ravager Redux",
+    "gameId":  "dark-sun-wake-redux",
+    "packageId":  "DarkSunWakeRedux",
+    "appDataDirectory":  "DarkSunWakeRedux",
+    "appId":  "{AC0D7A51-461B-46E9-9651-E55235DA3646}",
+    "bundleId":  "io.github.kibertoad.darksunwakeredux",
+    "shortcutName":  "Dark Sun - Wake of the Ravager Redux",
+    "publisher":  "kibertoad",
+    "copyrightHolder":  "kibertoad",
+    "copyrightYear":  2026,
+    "repositoryUrl":  "https://github.com/kibertoad/dark-sun-wake-redux",
+    "summary":  "A clean-room MonoGame restoration of SSI\u0027s 1994 computer role-playing game Dark Sun: Wake of the Ravager.",
+    "original":  {
+                     "title":  "Dark Sun: Wake of the Ravager",
+                     "developer":  "Strategic Simulations, Inc.",
+                     "releaseYear":  "1994",
+                     "genre":  "party-based computer role-playing game"
+                 }
 }

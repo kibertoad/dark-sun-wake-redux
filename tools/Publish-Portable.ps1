@@ -10,7 +10,7 @@ $ErrorActionPreference = 'Stop'
 $repositoryRoot = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..')).Path
 $artifactsRoot = [IO.Path]::GetFullPath((Join-Path $repositoryRoot 'artifacts'))
 if (-not $OutputDirectory) {
-    $OutputDirectory = Join-Path $artifactsRoot "{{PACKAGE_ID}}-$Runtime"
+    $OutputDirectory = Join-Path $artifactsRoot "DarkSunWakeRedux-$Runtime"
 }
 $packageRoot = [IO.Path]::GetFullPath($OutputDirectory)
 $artifactsPrefix = $artifactsRoot.TrimEnd([IO.Path]::DirectorySeparatorChar) +
@@ -54,10 +54,10 @@ $common = @(
     '--artifacts-path', $buildRoot,
     '--verbosity', 'minimal'
 )
-& dotnet publish (Join-Path $repositoryRoot 'src/Restoration.Game/Restoration.Game.csproj') @common --output $gameOutput
+& dotnet publish (Join-Path $repositoryRoot 'src/DarkSunWakeRedux.Game/DarkSunWakeRedux.Game.csproj') @common --output $gameOutput
 if ($LASTEXITCODE -ne 0) { throw 'Game publish failed.' }
-& dotnet publish (Join-Path $repositoryRoot 'tools/Restoration.Import/Restoration.Import.csproj') @common --output $toolOutput
-if ($LASTEXITCODE -ne 0) { throw 'Importer publish failed.' }
+& dotnet publish (Join-Path $repositoryRoot 'src/DarkSunWakeRedux.Extractor/DarkSunWakeRedux.Extractor.csproj') @common --output $toolOutput
+if ($LASTEXITCODE -ne 0) { throw 'Asset Extractor publish failed.' }
 Remove-Item -LiteralPath $buildRoot -Recurse -Force
 
 Copy-Item -LiteralPath (Join-Path $repositoryRoot 'README.md') -Destination $packageRoot
@@ -67,15 +67,15 @@ if (Test-Path -LiteralPath (Join-Path $packageRoot 'UserContent')) {
     throw 'The portable package contains imported original content.'
 }
 
-$gameExecutable = Join-Path $gameOutput 'Restoration.Game'
-$importExecutable = Join-Path $toolOutput 'Restoration.Import'
+$gameExecutable = Join-Path $gameOutput 'DarkSunWakeRedux.Game'
+$extractorExecutable = Join-Path $toolOutput 'DarkSunWakeRedux.Extractor'
 if (-not (Test-Path -LiteralPath $gameExecutable -PathType Leaf)) {
     throw "Packaged game is missing at '$gameExecutable'."
 }
-if (-not (Test-Path -LiteralPath $importExecutable -PathType Leaf)) {
-    throw "Packaged importer is missing at '$importExecutable'."
+if (-not (Test-Path -LiteralPath $extractorExecutable -PathType Leaf)) {
+    throw "Packaged Asset Extractor is missing at '$extractorExecutable'."
 }
-& chmod 755 $gameExecutable $importExecutable
+& chmod 755 $gameExecutable $extractorExecutable
 if ($LASTEXITCODE -ne 0) { throw 'Could not mark packaged executables as executable.' }
 & $gameExecutable --smoke-test
 if ($LASTEXITCODE -ne 0) { throw 'Packaged game smoke check failed.' }

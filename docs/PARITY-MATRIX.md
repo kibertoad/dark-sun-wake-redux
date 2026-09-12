@@ -1,7 +1,27 @@
 # Parity matrix
 
-Track each feature across evidence, rules/core, presentation, input, audio/video,
-persistence, automated validation, manual validation, and status. Use explicit states:
-`unknown`, `researched`, `implemented`, `partially validated`, `validated`, `intentional
-deviation`, and `not applicable`. List blockers beneath the matrix and prohibit broad
-parity claims while any required row lacks evidence or validation.
+States are `unknown`, `researched`, `implemented`, `partially validated`,
+`validated`, `intentional deviation`, and `not applicable`.
+
+| Feature | Evidence | Core/rules | Presentation/input | Audio/video | Persistence | Automated validation | Manual validation | Status |
+|---|---|---|---|---|---|---|---|---|
+| GOG source recognition | exact local hashes | not applicable | Extractor diagnostics | not applicable | source manifest | synthetic mismatch tests | owned build verifies | partially validated |
+| Extracted asset pack | approved contract | not applicable | missing-pack startup guidance | unknown | versioned manifest | exact inventory/hash tests | no real pack yet | implemented |
+| Start and party flow | manual | not implemented | not implemented | unknown | none | planned | not started | researched |
+| Tyr exploration/dialogue | manual + FAQ route | not implemented | not implemented | unknown | none | planned | not started | researched |
+| Opening combat | manual + FAQ route | not implemented | not implemented | unknown | none | planned | not started | researched |
+| Character rules | manual + FAQ conflicts | not implemented | not implemented | unknown | none | planned | not started | researched |
+| Campaign/quests | FAQ route index | not implemented | not implemented | unknown | none | planned | not started | researched |
+| Saves/replays | manual intent | deterministic seed scaffold only | not implemented | not applicable | not implemented | scaffold test | not started | unknown |
+| Full audiovisual parity | inventory only | not applicable | not implemented | not implemented | not applicable | planned | not started | unknown |
+| Packaging | configured scripts | not applicable | project identity configured | not applicable | app identity configured | build/smoke planned | not started | researched |
+
+## Blockers
+
+- No bounded Dark Sun format decoder or extracted pack exists.
+- The exact underlying DOS revision in the GOG build is unknown.
+- Native resolution, palettes, timing, audio mapping, and screen geometry are
+  unobserved.
+- No gameplay rule has yet passed original-reference validation.
+
+No broad parity claim is permitted while these rows remain unvalidated.

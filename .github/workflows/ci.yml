@@ -30,11 +30,11 @@ jobs:
       - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
         with:
           dotnet-version: 10.0.400
-      - run: dotnet restore Restoration.slnx
-      - run: dotnet build Restoration.slnx --no-restore -v minimal
-      - run: dotnet test --project tests/Restoration.Tests/Restoration.Tests.csproj --no-restore --no-progress -v minimal
-      - run: dotnet publish src/Restoration.Game/Restoration.Game.csproj --no-restore -c Release --output artifacts/assetless-game -v minimal
-      - run: dotnet artifacts/assetless-game/Restoration.Game.dll --smoke-test
+      - run: dotnet restore DarkSunWakeRedux.slnx
+      - run: dotnet build DarkSunWakeRedux.slnx --no-restore -v minimal
+      - run: dotnet test --project tests/DarkSunWakeRedux.Tests/DarkSunWakeRedux.Tests.csproj --no-restore --no-progress -v minimal
+      - run: dotnet publish src/DarkSunWakeRedux.Game/DarkSunWakeRedux.Game.csproj --no-restore -c Release --output artifacts/assetless-game -v minimal
+      - run: dotnet artifacts/assetless-game/DarkSunWakeRedux.Game.dll --smoke-test
       - name: Prove original content is absent
         shell: pwsh
         run: if (Test-Path artifacts/assetless-game/UserContent) { throw 'Assetless package contains UserContent.' }

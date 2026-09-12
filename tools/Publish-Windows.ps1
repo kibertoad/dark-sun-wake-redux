@@ -8,7 +8,7 @@ $ErrorActionPreference = 'Stop'
 $repositoryRoot = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..')).Path
 $artifactsRoot = [IO.Path]::GetFullPath((Join-Path $repositoryRoot 'artifacts'))
 if (-not $OutputDirectory) {
-    $OutputDirectory = Join-Path $artifactsRoot '{{PACKAGE_ID}}-win-x64'
+    $OutputDirectory = Join-Path $artifactsRoot 'DarkSunWakeRedux-win-x64'
 }
 $packageRoot = [IO.Path]::GetFullPath($OutputDirectory)
 $artifactsPrefix = $artifactsRoot.TrimEnd([IO.Path]::DirectorySeparatorChar) +
@@ -44,23 +44,23 @@ $common = @(
     '--artifacts-path', $buildRoot,
     '--verbosity', 'minimal'
 )
-& dotnet publish (Join-Path $repositoryRoot 'src/Restoration.Game/Restoration.Game.csproj') @common --output $gameOutput
+& dotnet publish (Join-Path $repositoryRoot 'src/DarkSunWakeRedux.Game/DarkSunWakeRedux.Game.csproj') @common --output $gameOutput
 if ($LASTEXITCODE -ne 0) { throw 'Game publish failed.' }
-& dotnet publish (Join-Path $repositoryRoot 'tools/Restoration.Import/Restoration.Import.csproj') @common '-p:PublishSingleFile=true' --output $toolOutput
-if ($LASTEXITCODE -ne 0) { throw 'Importer publish failed.' }
+& dotnet publish (Join-Path $repositoryRoot 'src/DarkSunWakeRedux.Extractor/DarkSunWakeRedux.Extractor.csproj') @common '-p:PublishSingleFile=true' --output $toolOutput
+if ($LASTEXITCODE -ne 0) { throw 'Asset Extractor publish failed.' }
 Remove-Item -LiteralPath $buildRoot -Recurse -Force
 
 Copy-Item -LiteralPath (Join-Path $repositoryRoot 'README.md') -Destination $packageRoot
 Copy-Item -LiteralPath (Join-Path $repositoryRoot 'LICENSE') -Destination $packageRoot
 Copy-Item -LiteralPath (Join-Path $repositoryRoot 'NOTICE') -Destination $packageRoot
-Copy-Item -LiteralPath (Join-Path $repositoryRoot 'packaging/windows/Import Original Resources.bat') -Destination $packageRoot
+Copy-Item -LiteralPath (Join-Path $repositoryRoot 'packaging/windows/Extract Original Resources.bat') -Destination $packageRoot
 
 if (Test-Path -LiteralPath (Join-Path $packageRoot 'UserContent')) {
     throw 'The portable package contains imported original content.'
 }
-& (Join-Path $gameOutput 'Restoration.Game.exe') --smoke-test
+& (Join-Path $gameOutput 'DarkSunWakeRedux.Game.exe') --smoke-test
 if ($LASTEXITCODE -ne 0) { throw 'Packaged game smoke check failed.' }
-& (Join-Path $gameOutput 'Restoration.Game.exe') --platform-smoke-test
+& (Join-Path $gameOutput 'DarkSunWakeRedux.Game.exe') --platform-smoke-test
 if ($LASTEXITCODE -ne 0) {
     throw 'Packaged game could not initialize its native platform libraries.'
 }
@@ -69,8 +69,8 @@ foreach ($nativeLibrary in @('SDL2.dll', 'openal.dll')) {
         throw "Packaged game is missing native library '$nativeLibrary'."
     }
 }
-if (-not (Test-Path -LiteralPath (Join-Path $toolOutput 'Restoration.Import.exe') -PathType Leaf)) {
-    throw 'Packaged importer is missing.'
+if (-not (Test-Path -LiteralPath (Join-Path $toolOutput 'DarkSunWakeRedux.Extractor.exe') -PathType Leaf)) {
+    throw 'Packaged Asset Extractor is missing.'
 }
 
 if (-not $SkipArchive) {

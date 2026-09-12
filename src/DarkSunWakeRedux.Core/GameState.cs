@@ -1,4 +1,4 @@
-namespace Restoration.Core;
+namespace DarkSunWakeRedux.Core;
 
 /// <summary>Replace with the smallest deterministic state needed by the first vertical slice.</summary>
 public sealed record GameState(int Turn, int Seed)

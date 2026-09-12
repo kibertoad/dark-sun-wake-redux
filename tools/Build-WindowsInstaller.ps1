@@ -17,8 +17,8 @@ if (-not $SkipPackage) {
     if ($LASTEXITCODE -ne 0) { throw 'Portable package creation failed.' }
 }
 
-$packageRoot = Join-Path $repositoryRoot 'artifacts/{{PACKAGE_ID}}-win-x64'
-if (-not (Test-Path -LiteralPath (Join-Path $packageRoot 'Game/Restoration.Game.exe') -PathType Leaf)) {
+$packageRoot = Join-Path $repositoryRoot 'artifacts/DarkSunWakeRedux-win-x64'
+if (-not (Test-Path -LiteralPath (Join-Path $packageRoot 'Game/DarkSunWakeRedux.Game.exe') -PathType Leaf)) {
     throw "The verified portable package is missing at '$packageRoot'."
 }
 
@@ -45,11 +45,11 @@ if ($LASTEXITCODE -ne 0 -or $compilerVersion -ne $requiredCompilerVersion) {
     throw "Inno Setup $requiredCompilerVersion is required; '$Compiler' reports '$compilerVersion'."
 }
 
-$script = Join-Path $repositoryRoot 'packaging/windows/Restoration.iss'
+$script = Join-Path $repositoryRoot 'packaging/windows/DarkSunWakeRedux.iss'
 & $Compiler "/DMyAppVersion=$Version" $script
 if ($LASTEXITCODE -ne 0) { throw 'Inno Setup compilation failed.' }
 
-$installer = Join-Path $repositoryRoot "artifacts/{{PACKAGE_ID}}-Setup-$Version.exe"
+$installer = Join-Path $repositoryRoot "artifacts/DarkSunWakeRedux-Setup-$Version.exe"
 if (-not (Test-Path -LiteralPath $installer -PathType Leaf)) {
     throw "Expected installer was not created at '$installer'."
 }

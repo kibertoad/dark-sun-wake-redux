@@ -8,7 +8,8 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.9.0" />
     <PackageReference Include="xunit.v3" Version="4.0.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="4.0.0" />
-    <ProjectReference Include="../../src/Restoration.Core/Restoration.Core.csproj" />
-    <ProjectReference Include="../../src/Restoration.Resources/Restoration.Resources.csproj" />
+    <ProjectReference Include="../../src/DarkSunWakeRedux.Core/DarkSunWakeRedux.Core.csproj" />
+    <ProjectReference Include="../../src/DarkSunWakeRedux.Extractor/DarkSunWakeRedux.Extractor.csproj" />
+    <ProjectReference Include="../../src/DarkSunWakeRedux.Resources/DarkSunWakeRedux.Resources.csproj" />
   </ItemGroup>
 </Project>

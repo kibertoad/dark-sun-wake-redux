@@ -3,18 +3,19 @@
 ## Run from source
 
 Install the .NET 10 SDK and obtain a supported legal copy of the original game,
-then verify and import its content:
+then verify it with the separate Asset Extractor:
 
 ```powershell
-dotnet run --project tools/Restoration.Import -- verify-source --source "C:\path\to\original"
-dotnet run --project tools/Restoration.Import -- import --source "C:\path\to\original"
-dotnet run --project tools/Restoration.Import -- verify-output
-dotnet run --project src/Restoration.Game
+dotnet run --project src/DarkSunWakeRedux.Extractor -- verify-source --source "C:\path\to\gog-installation"
+dotnet run --project src/DarkSunWakeRedux.Extractor -- extract --source "C:\path\to\gog-installation"
+dotnet run --project src/DarkSunWakeRedux.Extractor -- verify-pack
+dotnet run --project src/DarkSunWakeRedux.Game -- --smoke-test
 ```
 
-Import is transactional: a new content pack is staged and fully verified before
-it replaces the previous verified pack. Imported content is ignored by Git and
-must not be redistributed.
+Extraction will be transactional: a new content pack is staged and fully
+verified before it replaces the previous verified pack. The current first slice
+verifies the source and pack contract but writes no pack until bounded Dark Sun
+decoders exist. Extracted content is ignored by Git and must not be redistributed.
 
 Build and test the complete solution with:
 
@@ -30,12 +31,12 @@ responsibilities instead.
 
 ## Repository projects
 
-- `Restoration.Core`: deterministic rules and serializable state.
-- `Restoration.Resources`: bounded binary parsing and original-content contracts.
-- `Restoration.Game`: MonoGame DesktopGL presentation with assetless smoke modes.
-- `Restoration.Import`: legal-copy verification and transactional extraction.
-- `Restoration.Inspect`: read-only inventory and research output.
-- `Restoration.Tests`: architecture, safety, and behavioral tests.
+- `DarkSunWakeRedux.Core`: deterministic rules and serializable state.
+- `DarkSunWakeRedux.Resources`: bounded binary parsing and original-content contracts.
+- `DarkSunWakeRedux.Game`: MonoGame DesktopGL presentation with assetless smoke modes.
+- `DarkSunWakeRedux.Extractor`: separate legal-copy verification and transactional extraction executable.
+- `DarkSunWakeRedux.Inspect`: read-only inventory and research output.
+- `DarkSunWakeRedux.Tests`: architecture, safety, and behavioral tests.
 
 New repositories start with `tools/project-config.json` and
 `./tools/Configure-Project.ps1`; `docs/CUSTOMIZATION.md` documents every field,

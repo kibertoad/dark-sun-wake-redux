@@ -1,0 +1,36 @@
+{
+  "gameId": "dark-sun-wake-redux",
+  "sourceEdition": "GOG English build 52095422060333615 (product 1432903719)",
+  "files": [
+    {
+      "path": "DSUN.EXE",
+      "size": 634416,
+      "sha256": "ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c"
+    },
+    {
+      "path": "game.ins",
+      "size": 2988,
+      "sha256": "ebc4cf386c3cfedb11c3c368d4a06d2c83b90535443425f7635b62063464b26e"
+    },
+    {
+      "path": "GPLDATA.GFF",
+      "size": 2191945,
+      "sha256": "be5efb2b76a5f77b9858b9583bd34c452ea86869f0c866436cf8e298ad96fbb8"
+    },
+    {
+      "path": "ITEMS.BIN",
+      "size": 936,
+      "sha256": "d0560dd273bd95590e993a1969f6a6c2b8b5c82d73858e4f3204f9e8730f55c3"
+    },
+    {
+      "path": "OBJEX.GFF",
+      "size": 6816516,
+      "sha256": "8e1e2db24df80dd605bb1d55df709cc550cc8b379dc4d2c2c23becaa5975b9a6"
+    },
+    {
+      "path": "RESOURCE.GFF",
+      "size": 5724669,
+      "sha256": "828455c0627998ef1101c6ee4ee66f270a1a8de6d862bba78c7b0e723352730d"
+    }
+  ]
+}

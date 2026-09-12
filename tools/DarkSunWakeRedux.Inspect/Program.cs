@@ -3,7 +3,7 @@ using System.Text.Json;
 
 if (args.Length != 1 || !Directory.Exists(args[0]))
 {
-    Console.Error.WriteLine("Usage: Restoration.Inspect <owned-original-directory>");
+    Console.Error.WriteLine("Usage: DarkSunWakeRedux.Inspect <owned-original-directory>");
     return 64;
 }
 

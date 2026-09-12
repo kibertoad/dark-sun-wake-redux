@@ -5,26 +5,26 @@ and `docs/CUSTOMIZATION.md` documents every configuration knob.
 
 ## Plan
 
-- [ ] Record the original title, developer, release year, genre, and the
+- [x] Record the original title, developer, release year, genre, and the
       editions available for validation.
-- [ ] Fill in `docs/IMPLEMENTATION-PLAN.md` and have it approved before writing
+- [x] Fill in `docs/IMPLEMENTATION-PLAN.md` and have it approved before writing
       implementation code.
 
 ## Configure
 
-- [ ] Fill in `tools/project-config.json` and run `./tools/Configure-Project.ps1`.
-- [ ] Run `./tools/Verify-Configuration.ps1` and resolve every finding.
-- [ ] Customize the player-facing README, acknowledgements, NOTICE description,
+- [x] Fill in `tools/project-config.json` and run `./tools/Configure-Project.ps1`.
+- [x] Run `./tools/Verify-Configuration.ps1` and resolve every finding.
+- [x] Customize the player-facing README, acknowledgements, NOTICE description,
       and the supported/limited feature table.
 
 ## Original content
 
-- [ ] Replace the sample manifest and add one fingerprint manifest per supported
+- [x] Replace the sample manifest and add one fingerprint manifest per supported
       edition.
-- [ ] Extend `tools/repository-policy.json` with the extensions the original
+- [x] Extend `tools/repository-policy.json` with the extensions the original
       game actually uses.
-- [ ] Decide what may be clean-room/open data and what must remain user-imported.
-- [ ] Add explicit/manual source selection first; add storefront, registry,
+- [x] Decide what may be clean-room/open data and what must remain user-imported.
+- [x] Add explicit/manual source selection first; add storefront, registry,
       media, or archive discovery as optional adapters.
 - [ ] Implement read-only inventory in `Inspect` before extraction.
 - [ ] Implement bounded format readers in `Resources` with synthetic fixtures.

@@ -2,19 +2,19 @@
   #define MyAppVersion "0.1.0"
 #endif
 
-#define MyAppName "{{DISPLAY_NAME}}"
-#define MyAppGroupName "{{SHORTCUT_NAME}}"
-#define MyAppShortcutName "{{SHORTCUT_NAME}}"
-#define MyAppPublisher "{{PUBLISHER}}"
-#define MyAppExeName "Restoration.Game.exe"
-#define PackageRoot "..\..\artifacts\{{PACKAGE_ID}}-win-x64"
+#define MyAppName "Dark Sun: Wake of the Ravager Redux"
+#define MyAppGroupName "Dark Sun - Wake of the Ravager Redux"
+#define MyAppShortcutName "Dark Sun - Wake of the Ravager Redux"
+#define MyAppPublisher "kibertoad"
+#define MyAppExeName "DarkSunWakeRedux.Game.exe"
+#define PackageRoot "..\..\artifacts\DarkSunWakeRedux-win-x64"
 
 [Setup]
-AppId={{{APP_ID}}
+AppId={{AC0D7A51-461B-46E9-9651-E55235DA3646}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 AppPublisher={#MyAppPublisher}
-DefaultDirName={localappdata}\Programs\{{PACKAGE_ID}}
+DefaultDirName={localappdata}\Programs\DarkSunWakeRedux
 DisableDirPage=no
 DefaultGroupName={#MyAppGroupName}
 DisableProgramGroupPage=yes
@@ -24,7 +24,7 @@ Compression=lzma2/max
 SolidCompression=yes
 WizardStyle=modern
 OutputDir=..\..\artifacts
-OutputBaseFilename={{PACKAGE_ID}}-Setup-{#MyAppVersion}
+OutputBaseFilename=DarkSunWakeRedux-Setup-{#MyAppVersion}
 UninstallDisplayIcon={app}\Game\{#MyAppExeName}
 SetupLogging=yes
 InfoBeforeFile={#PackageRoot}\NOTICE
@@ -36,7 +36,7 @@ Source: "{#PackageRoot}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdir
 [Icons]
 Name: "{group}\{#MyAppShortcutName}"; Filename: "{app}\Game\{#MyAppExeName}"; WorkingDir: "{app}\Game"
 Name: "{autodesktop}\{#MyAppShortcutName}"; Filename: "{app}\Game\{#MyAppExeName}"; WorkingDir: "{app}\Game"; Tasks: desktopicon
-Name: "{group}\Import or Manage Original Resources"; Filename: "{app}\Import Original Resources.bat"; WorkingDir: "{app}"
+Name: "{group}\Extract or Manage Original Resources"; Filename: "{app}\Extract Original Resources.bat"; WorkingDir: "{app}"
 
 [Tasks]
 Name: "desktopicon"; Description: "Create a desktop shortcut"; GroupDescription: "Additional shortcuts:"
@@ -53,7 +53,7 @@ var
 
 function NoImportRequested: Boolean;
 begin
-  Result := CompareText(ExpandConstant('{param:NOIMPORT|0}'), '1') = 0;
+  Result := CompareText(ExpandConstant('{param:NOEXTRACT|0}'), '1') = 0;
 end;
 
 function SelectedSource: String;
@@ -66,10 +66,10 @@ procedure InitializeWizard;
 begin
   SourcePage := CreateInputDirPage(wpSelectDir,
     'Original game resources',
-    'Import resources from a supported legal copy.',
+    'Extract resources from a supported legal copy.',
     'Select the installation, mounted media, or extracted directory for a supported edition. ' +
-    'Setup verifies and imports its resources without modifying the original source. Clear the ' +
-    'import option to install the assetless runtime.', False, '');
+    'Setup verifies and extracts its resources without modifying the original source. Clear the ' +
+    'extraction option to install the assetless runtime.', False, '');
   SourcePage.Add('Original source:');
   SourcePage.Values[0] := ExpandConstant('{param:ORIGINAL|}');
   if SourcePage.Values[0] = '' then
@@ -80,7 +80,7 @@ begin
   ImportCheckBox.Left := SourcePage.Edits[0].Left;
   ImportCheckBox.Top := SourcePage.Edits[0].Top + SourcePage.Edits[0].Height + ScaleY(20);
   ImportCheckBox.Width := SourcePage.SurfaceWidth;
-  ImportCheckBox.Caption := 'Import resources from my legally owned original copy';
+  ImportCheckBox.Caption := 'Extract resources from my legally owned original copy';
   ImportCheckBox.Checked := not NoImportRequested;
 end;
 
@@ -111,7 +111,7 @@ begin
   Line := Trim(S);
   if Line = '' then exit;
   if Error then Line := 'ERROR: ' + Line;
-  Log('Resource importer: ' + Line);
+  Log('Asset Extractor: ' + Line);
   ImportOutput := ImportOutput + Line + #13#10;
   if Length(ImportOutput) > 12000 then
     Delete(ImportOutput, 1, Length(ImportOutput) - 12000);
@@ -124,9 +124,9 @@ var
   Importer, OutputPath, Parameters: String;
   Started: Boolean;
 begin
-  Importer := ExpandConstant('{app}\Tools\Restoration.Import.exe');
-  OutputPath := ExpandConstant('{localappdata}\{{APP_DATA_DIRECTORY}}\UserContent');
-  Parameters := 'import --source "' + Source + '" --output "' + OutputPath + '"';
+  Importer := ExpandConstant('{app}\Tools\DarkSunWakeRedux.Extractor.exe');
+  OutputPath := ExpandConstant('{localappdata}\DarkSunWakeRedux\UserContent');
+  Parameters := 'extract --source "' + Source + '" --output "' + OutputPath + '"';
   ImportOutput := '';
   Failure := '';
   ResultCode := -1;
@@ -136,15 +136,15 @@ begin
       ewWaitUntilTerminated, ResultCode, @ImportLogLine);
   except
     Started := False;
-    Failure := 'The resource importer could not be started: ' + GetExceptionMessage;
+    Failure := 'The Asset Extractor could not be started: ' + GetExceptionMessage;
   end;
   if not Started and (Failure = '') then
-    Failure := 'The resource importer could not be started.';
+    Failure := 'The Asset Extractor could not be started.';
   if Started and (ResultCode <> 0) then
-    Failure := 'Resource import failed with error ' + IntToStr(ResultCode) + '.' + #13#10#13#10 +
+    Failure := 'Asset extraction failed with error ' + IntToStr(ResultCode) + '.' + #13#10#13#10 +
       ImportOutput;
   if Started and (ResultCode = 0) and not FileExists(OutputPath + '\manifest.json') then
-    Failure := 'Resource import reported success, but UserContent\manifest.json was not created.';
+    Failure := 'Asset extraction reported success, but UserContent\manifest.json was not created.';
   Result := Started and (ResultCode = 0) and (Failure = '');
 end;
 
@@ -171,12 +171,12 @@ begin
 
     repeat
       if not BrowseForFolder('Select a supported original source:', Source, False) then
-        RaiseImportFailure('Resource import failed and no replacement source was selected.');
+        RaiseImportFailure('Asset extraction failed and no replacement source was selected.');
       if not DirExists(Source) then
         MsgBox('The selected original-source directory does not exist.', mbError, MB_OK);
     until DirExists(Source);
   end;
-  WizardForm.StatusLabel.Caption := 'Original resources imported and verified.';
+  WizardForm.StatusLabel.Caption := 'Original resources extracted and verified.';
 end;
 
 function GetCustomSetupExitCode: Integer;

@@ -1,7 +1,10 @@
-{{DISPLAY_NAME}}
-{{PROJECT_SUMMARY}}
+Dark Sun: Wake of the Ravager Redux
+A clean-room MonoGame restoration of SSI's 1994 computer role-playing game
+Dark Sun: Wake of the Ravager. A separate Asset Extractor requires a supported,
+legally owned GOG copy and creates a local asset pack; no original resources are
+distributed with this project.
 
-Copyright (C) {{COPYRIGHT_YEAR}} {{COPYRIGHT_HOLDER}}
+Copyright (C) 2026 kibertoad
 
 The original code in this repository is licensed under the MIT License. See the
 LICENSE file for the full license text.
@@ -10,4 +13,4 @@ The MIT License covers the original code in this repository. It does not cover
 or grant rights to original-game assets. Those assets are not distributed by
 this project and must be imported locally from a legally owned copy.
 
-Project contact: {{REPOSITORY_URL}}/issues
+Project contact: https://github.com/kibertoad/dark-sun-wake-redux/issues

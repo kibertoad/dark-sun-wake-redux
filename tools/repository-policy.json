@@ -2,8 +2,9 @@
   "deniedRoots": ["UserContent/", "analysis/original/", "reference/original/"],
   "restrictedExtensions": [
     ".666", ".bmp", ".csf", ".cue", ".dat", ".dib", ".exe", ".fnt", ".gob",
-    ".gif", ".ico", ".iso", ".jpeg", ".jpg", ".low", ".mid", ".midi", ".mp3",
-    ".ogg", ".pal", ".pcc", ".pcx", ".png", ".rat", ".res", ".smk", ".wav"
+    ".fli", ".gff", ".gif", ".gog", ".ico", ".ins", ".iso", ".jpeg", ".jpg",
+    ".low", ".mid", ".midi", ".mp3", ".ogg", ".pal", ".pcc", ".pcx", ".pdf",
+    ".png", ".rat", ".res", ".rtp", ".smk", ".voc", ".wav"
   ],
   "approvedRestrictedRoots": ["assets/clean-room/", "tests/fixtures/synthetic/"],
   "maximumTrackedFileBytes": 1048576,

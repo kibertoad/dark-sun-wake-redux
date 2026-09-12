@@ -1,14 +1,14 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Restoration.Game;
+namespace DarkSunWakeRedux.Game;
 
-public sealed class RestorationGame : Microsoft.Xna.Framework.Game
+public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
 {
     private readonly bool _platformSmoke;
     private readonly GraphicsDeviceManager _graphics;
 
-    public RestorationGame(bool platformSmoke = false)
+    public DarkSunWakeReduxGame(bool platformSmoke = false)
     {
         _platformSmoke = platformSmoke;
         _graphics = new GraphicsDeviceManager(this)
@@ -17,7 +17,7 @@ public sealed class RestorationGame : Microsoft.Xna.Framework.Game
             PreferredBackBufferHeight = 540
         };
         IsMouseVisible = true;
-        Window.Title = "{{DISPLAY_NAME}}";
+        Window.Title = "Dark Sun: Wake of the Ravager Redux";
     }
 
     protected override void Initialize()
