@@ -77,12 +77,9 @@ public sealed record ContentDiagnostic(
 
 public sealed record StartMenuButtonAsset(
     string Name,
+    uint ButtonResourceNumber,
     string Path,
     uint ImageResourceNumber,
-    int X,
-    int Y,
-    int ControlWidth,
-    int ControlHeight,
     int FrameWidth,
     int FrameHeight,
     bool ThirdFrameIsPlaceholder)
@@ -137,10 +134,10 @@ public static class OriginalContent
 
     public static IReadOnlyList<StartMenuButtonAsset> StartMenuButtons { get; } =
     [
-        new("start-game", "images/start-menu/start-game.dsix", 19111, 94, 70, 127, 12, 127, 12, false),
-        new("create-characters", "images/start-menu/create-characters.dsix", 19112, 50, 87, 220, 12, 220, 12, true),
-        new("load-saved-game", "images/start-menu/load-saved-game.dsix", 19113, 64, 104, 192, 12, 191, 13, true),
-        new("exit-to-dos", "images/start-menu/exit-to-dos.dsix", 19114, 92, 120, 127, 12, 127, 12, true)
+        new("start-game", 19300, "images/start-menu/start-game.dsix", 19111, 127, 12, false),
+        new("create-characters", 19301, "images/start-menu/create-characters.dsix", 19112, 220, 12, true),
+        new("load-saved-game", 19302, "images/start-menu/load-saved-game.dsix", 19113, 191, 13, true),
+        new("exit-to-dos", 19303, "images/start-menu/exit-to-dos.dsix", 19114, 127, 12, true)
     ];
 
     public static IReadOnlyList<CharacterGenerationButtonAsset> CharacterGenerationButtons { get; } =

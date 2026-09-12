@@ -220,8 +220,9 @@ decoder rather than being guessed now.
 - **Acceptance - presentation.** Start/party screens preserve measured logical
   coordinates, aspect treatment, palette semantics, focus order, mouse hit
   regions, and Escape behavior; scaling cannot change rules or hit testing.
-  Implemented start-window clicks use declared BUTN bounds and a single inverse
-  canvas transform. Encoding-neutral DSFT glyph-run composition and the owned
+  Implemented start-window drawing and clicks resolve child coordinates,
+  dimensions, image identities, and semantic button identities from DSUI, then
+  use a single inverse canvas transform. Encoding-neutral DSFT glyph-run composition and the owned
   font's identity map are verified; generalized map semantics, shipped spacing,
   palette, edge/focus behavior, and later screens remain open.
 - **Acceptance - original content.** Readers bound offsets, counts, sizes,
@@ -236,8 +237,8 @@ decoder rather than being guessed now.
   sequenced events, versioned snapshots, stable hashes, and verified replays.
   Snapshot schema 3 includes psionic disciplines, clerical sphere, the active
   edit target, and recreation-native stored characters;
-  DSUI round-trip, malformed graph, deterministic ordering, synthetic extraction,
-  content-smoke, and owned 29-asset pack verification cover the derived
+  DSUI round-trip, malformed graph, deterministic ordering, resource-ID routing,
+  rectangle-edge, synthetic extraction, content-smoke, and owned 29-asset pack verification cover the derived
   start-flow layout contract;
   gameplay-wide replay remains a later-slice requirement.
 - **Observed parity.** Compare boot, start, create/select/cancel, and quit state

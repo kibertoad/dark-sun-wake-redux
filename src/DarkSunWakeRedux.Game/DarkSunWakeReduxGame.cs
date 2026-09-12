@@ -13,7 +13,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     private readonly GraphicsDeviceManager _graphics;
     private SpriteBatch? _spriteBatch;
     private Texture2D? _titleTexture;
-    private readonly List<(StartMenuButtonAsset Mapping, Texture2D Texture)> _startMenuButtons = [];
+    private readonly List<(StartMenuControl Control, Texture2D Texture)> _startMenuControls = [];
     private readonly StartFlowSession _startFlow = new(0);
     private MouseState _previousMouse;
     private KeyboardState _previousKeyboard;
@@ -47,13 +47,18 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         using var stream = File.OpenRead(path);
         var title = PackedIndexedImage.Read(stream, OriginalContent.TitleImageAssetPath);
         _titleTexture = CreateTexture(title, title.Frames.Single());
-        foreach (var button in OriginalContent.StartMenuButtons)
+        var uiPath = Path.Combine(_assetPack,
+            OriginalContent.StartFlowUiCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
+        using var uiStream = File.OpenRead(uiPath);
+        var controls = StartMenuInput.Resolve(PackedUiCatalog.Read(
+            uiStream, OriginalContent.StartFlowUiCatalogAssetPath));
+        foreach (var control in controls)
         {
             var buttonPath = Path.Combine(_assetPack,
-                button.Path.Replace('/', Path.DirectorySeparatorChar));
+                control.AssetPath.Replace('/', Path.DirectorySeparatorChar));
             using var buttonStream = File.OpenRead(buttonPath);
-            var image = PackedIndexedImage.Read(buttonStream, button.Path);
-            _startMenuButtons.Add((button, CreateTexture(image, image.Frames[0])));
+            var image = PackedIndexedImage.Read(buttonStream, control.AssetPath);
+            _startMenuControls.Add((control, CreateTexture(image, image.Frames[0])));
         }
         _spriteBatch = new SpriteBatch(GraphicsDevice);
     }
@@ -82,7 +87,8 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                 var transform = new LogicalCanvasTransform(
                     GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
                 if (transform.TryToLogical(mouse.X, mouse.Y, out var x, out var y) &&
-                    StartMenuInput.HitTest(x, y) is { } choice)
+                    StartMenuInput.HitTest(_startMenuControls.Select(item => item.Control).ToArray(), x, y)
+                        is { } choice)
                     _startFlow.Execute(StartFlowCommand.Choose(choice));
             }
             var keyboard = Keyboard.GetState();
@@ -106,11 +112,11 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             var destination = new Rectangle(transform.X, transform.Y, transform.Width, transform.Height);
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             _spriteBatch.Draw(_titleTexture, destination, Color.White);
-            foreach (var (mapping, texture) in _startMenuButtons)
+            foreach (var (control, texture) in _startMenuControls)
             {
                 var buttonDestination = new Rectangle(
-                    destination.X + (int)MathF.Floor(mapping.X * transform.Scale),
-                    destination.Y + (int)MathF.Floor(mapping.Y * transform.Scale),
+                    destination.X + (int)MathF.Floor(control.X * transform.Scale),
+                    destination.Y + (int)MathF.Floor(control.Y * transform.Scale),
                     Math.Max(1, (int)MathF.Floor(texture.Width * transform.Scale)),
                     Math.Max(1, (int)MathF.Floor(texture.Height * transform.Scale)));
                 _spriteBatch.Draw(texture, buttonDestination, Color.White);
@@ -123,7 +129,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     protected override void UnloadContent()
     {
         _titleTexture?.Dispose();
-        foreach (var (_, texture) in _startMenuButtons) texture.Dispose();
+        foreach (var (_, texture) in _startMenuControls) texture.Dispose();
         _spriteBatch?.Dispose();
         base.UnloadContent();
     }

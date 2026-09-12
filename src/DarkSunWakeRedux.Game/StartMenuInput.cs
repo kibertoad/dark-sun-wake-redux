@@ -28,23 +28,72 @@ public readonly record struct LogicalCanvasTransform(int ViewportWidth, int View
 
 public static class StartMenuInput
 {
-    private static readonly StartWindowChoice[] Choices =
-    [
-        StartWindowChoice.StartGame,
-        StartWindowChoice.CreateCharacters,
-        StartWindowChoice.LoadSavedGame,
-        StartWindowChoice.ExitToDos
-    ];
+    public const uint WindowResourceNumber = 19500;
 
-    public static StartWindowChoice? HitTest(int logicalX, int logicalY)
-    {
-        for (var index = 0; index < OriginalContent.StartMenuButtons.Count; index++)
+    private static readonly IReadOnlyDictionary<uint, StartWindowChoice> Choices =
+        new Dictionary<uint, StartWindowChoice>
         {
-            var button = OriginalContent.StartMenuButtons[index];
-            if (logicalX >= button.X && logicalX < button.X + button.ControlWidth &&
-                logicalY >= button.Y && logicalY < button.Y + button.ControlHeight)
-                return Choices[index];
+            [19300] = StartWindowChoice.StartGame,
+            [19301] = StartWindowChoice.CreateCharacters,
+            [19302] = StartWindowChoice.LoadSavedGame,
+            [19303] = StartWindowChoice.ExitToDos
+        };
+
+    public static IReadOnlyList<StartMenuControl> Resolve(PackedUiCatalog catalog)
+    {
+        ArgumentNullException.ThrowIfNull(catalog);
+        var window = catalog.Windows.SingleOrDefault(item => item.ResourceNumber == WindowResourceNumber)
+            ?? throw new InvalidDataException($"UI catalog does not contain WIND #{WindowResourceNumber}.");
+        if (window.Width != LogicalCanvasTransform.LogicalWidth ||
+            window.Height != LogicalCanvasTransform.LogicalHeight)
+            throw new InvalidDataException(
+                $"WIND #{WindowResourceNumber} has unexpected dimensions {window.Width}x{window.Height}.");
+
+        var assets = OriginalContent.StartMenuButtons.ToDictionary(item => item.ButtonResourceNumber);
+        var buttons = catalog.Buttons.ToDictionary(item => item.ResourceNumber);
+        var result = new List<StartMenuControl>(window.Children.Count);
+        foreach (var child in window.Children)
+        {
+            if (child.Tag != "BUTN" || !Choices.TryGetValue(child.ResourceNumber, out var choice) ||
+                !assets.TryGetValue(child.ResourceNumber, out var asset))
+                throw new InvalidDataException(
+                    $"WIND #{WindowResourceNumber} contains unexpected child {child.Tag} #{child.ResourceNumber}.");
+            if (!buttons.TryGetValue(child.ResourceNumber, out var button))
+                throw new InvalidDataException(
+                    $"WIND #{WindowResourceNumber} references missing BUTN #{child.ResourceNumber}.");
+            if (button.ImageResourceNumber != asset.ImageResourceNumber)
+                throw new InvalidDataException(
+                    $"BUTN #{button.ResourceNumber} references unexpected ICON #{button.ImageResourceNumber}.");
+            result.Add(new(choice, asset.Path, button.ResourceNumber, button.ImageResourceNumber,
+                child.X, child.Y, button.Width, button.Height));
         }
+        if (result.Count != Choices.Count ||
+            result.Select(item => item.ButtonResourceNumber).Distinct().Count() != Choices.Count)
+            throw new InvalidDataException(
+                $"WIND #{WindowResourceNumber} must contain each supported start control exactly once.");
+        return result;
+    }
+
+    public static StartWindowChoice? HitTest(
+        IReadOnlyList<StartMenuControl> controls,
+        int logicalX,
+        int logicalY)
+    {
+        ArgumentNullException.ThrowIfNull(controls);
+        foreach (var control in controls)
+            if (logicalX >= control.X && logicalX < control.X + control.Width &&
+                logicalY >= control.Y && logicalY < control.Y + control.Height)
+                return control.Choice;
         return null;
     }
 }
+
+public sealed record StartMenuControl(
+    StartWindowChoice Choice,
+    string AssetPath,
+    uint ButtonResourceNumber,
+    uint ImageResourceNumber,
+    int X,
+    int Y,
+    int Width,
+    int Height);

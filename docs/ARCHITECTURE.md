@@ -47,7 +47,8 @@ extend the exact inventory only after their mappings are recorded.
 `--smoke-test` is assetless for CI. `--content-smoke-test` verifies and opens the
 29 derived Slice 2 assets without creating a window. Normal startup verifies
 the default or explicit `--asset-pack` directory before creating the game window
-and displays the title plus start controls. Failure is reported with stable diagnostic codes,
+and displays the title plus start controls resolved from the verified DSUI graph.
+Failure is reported with stable diagnostic codes,
 local technical details, and a command to run the Extractor.
 
 ## Determinism

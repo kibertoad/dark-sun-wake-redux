@@ -9,23 +9,19 @@ namespace DarkSunWakeRedux.Tests;
 public sealed class StartupAssetExtractorTests
 {
     [Fact]
-    public void StartMenuMappingsAreUniqueAndInsideLogicalCanvas()
+    public void StartMenuAssetMappingsAreUniqueAndBounded()
     {
         Assert.Equal(4, OriginalContent.StartMenuButtons.Count);
         Assert.Equal(4, OriginalContent.StartMenuButtons.Select(button => button.Path).Distinct().Count());
+        Assert.Equal(4, OriginalContent.StartMenuButtons.Select(button => button.ButtonResourceNumber).Distinct().Count());
         Assert.Equal(4, OriginalContent.StartMenuButtons.Select(button => button.ImageResourceNumber).Distinct().Count());
         Assert.All(OriginalContent.StartMenuButtons, button =>
         {
-            Assert.InRange(button.X, 0, 319);
-            Assert.InRange(button.Y, 0, 199);
-            Assert.InRange(button.X + button.ControlWidth, 1, 320);
-            Assert.InRange(button.Y + button.ControlHeight, 1, 200);
-            Assert.InRange(button.X + button.FrameWidth, 1, 320);
-            Assert.InRange(button.Y + button.FrameHeight, 1, 200);
+            Assert.InRange(button.FrameWidth, 1, 320);
+            Assert.InRange(button.FrameHeight, 1, 200);
         });
         var load = Assert.Single(OriginalContent.StartMenuButtons,
             button => button.Name == "load-saved-game");
-        Assert.Equal((192, 12), (load.ControlWidth, load.ControlHeight));
         Assert.Equal((191, 13), (load.FrameWidth, load.FrameHeight));
         Assert.Equal(10, OriginalContent.CharacterGenerationButtons.Count);
         Assert.Equal(10, OriginalContent.CharacterGenerationButtons.Select(button => button.Path).Distinct().Count());

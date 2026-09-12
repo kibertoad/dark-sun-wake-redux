@@ -233,11 +233,13 @@
 - **Evidence:** MANUAL-1994, introduction and "How to Play".
 - **Confidence:** high for intended behavior; exact hit regions and shipped edge
   behavior are unknown.
-- **Implementation:** start-window clicks map the declared BUTN rectangles
-  through a single letterboxed logical-canvas transform into semantic Core
-  commands; later screens remain unimplemented.
-- **Tests:** rectangle edges, wide/tall letterboxing, inverse coordinates, and
-  resulting Core routing.
+- **Implementation:** the runtime resolves WIND #19500 child coordinates and
+  BUTN dimensions/image references from DSUI, maps original button resource IDs
+  to semantic choices, and routes clicks through a single letterboxed
+  logical-canvas transform into Core commands; later screens remain unimplemented.
+- **Tests:** graph completeness and unexpected identities, catalog order,
+  image-reference matching, rectangle edges, wide/tall letterboxing, inverse
+  coordinates, resulting Core routing, and owned-pack content smoke.
 - **Uncertainty:** Cursor art, complete mode transitions, right-click behavior,
   and coordinate boundaries require OBS-GOG evidence.
 

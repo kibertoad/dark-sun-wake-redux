@@ -14,7 +14,8 @@ Start-flow coverage also proves occupied-slot edits replace rather than append,
 invalid replacements are atomic, DROP moves a member to character storage, ADD
 restores it, and an active edit target survives snapshot restore.
 Presentation-independent input tests prove viewport letterboxing cannot change
-the logical start-button choice and exercise declared exclusive rectangle edges.
+the logical start-button choice, exercise DSUI-derived exclusive rectangle edges,
+and reject incomplete, unexpected, or image-mismatched start-window graphs.
 UI-resource tests also cover the executable-evidenced nonzero-intersection rule
 for serialized/runtime event masks without assigning speculative names to bits.
 Font tests compose variable-width indexed glyph runs, preserve palette-index
