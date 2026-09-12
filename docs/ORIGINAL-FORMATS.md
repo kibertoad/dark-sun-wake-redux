@@ -9,6 +9,7 @@ semantics.
 | `*.GFF` | Shared resources, numbered regions, and legacy saves | Little-endian version `0x00030000` container directory is decoded; indexed-image and palette payloads are decoded, while other tag semantics remain mostly unknown | verified for the directory layout and recorded image/palette families in the owned build | Bound file size and every count/offset/length; reject overflow, truncation, invalid secondary references, duplicate keys, and partial overlaps with source context |
 | GFF `BMP `, `CBMP`, `ICON` | Indexed image frames | Shared size/frame envelope plus sparse row, `PLAN`, and `PLNR` encodings are decoded to palette indices and alpha | verified for all matching resources in the owned build | Bound payload, frame count, offsets, dimensions, total pixels, compressed runs, dictionaries, and bitstreams; reject malformed input with resource identity |
 | GFF `PAL ` | 256-color palettes | Exactly 256 RGB triples with 6-bit VGA components, scaled by four to 8-bit channels | verified for all matching resources in the owned build | Require exactly 768 bytes and reject components outside `0..63` |
+| GFF `FONT` | Indexed bitmap glyphs | A shared-height 256-glyph table with character map, absolute offsets, widths, and palette-index pixels is decoded | verified for `FONT` #100 in `RESOURCE.GFF` | Bound payload, count, height, offsets, widths, total pixels, and exact record ends |
 | GFF `WIND`, `BUTN`, `APFM`, `EBOX` | UI layout and controls | Bounded common fields and references are decoded; unknown fixed fields and variable button tails remain uninterpreted | verified for all matching resources in `RESOURCE.GFF` | Require signatures and exact declared sizes; bound fixed records, complete child records, dimensions, tags, repeated identities, and references |
 | Pack `*.dsix` | Derived indexed-image asset | `DSIX` v1 stores one decoded 256-color palette plus bounded indexed frames and binary alpha | implemented; title asset round-trip and extraction validated | Bound file size, version, frame count, dimensions, pixels, alpha, and trailing data; reject non-binary alpha |
 | `*.FLI` | Four observed cinematics | Likely animation resources by extension only; dimensions, palette changes, frame timing, and exact variant are unverified | low | Bound frames, chunks, dimensions, decoded bytes, and timing; unsupported chunk types fail explicitly |
@@ -94,6 +95,22 @@ Palette payloads contain exactly 256 RGB triples. Each stored component is in
 the VGA range `0..63`; multiplying by four produces the decoded channel range
 `0..252`. Resource-to-palette mapping, display composition, frame origins, and
 animation timing remain open.
+
+## Indexed bitmap fonts
+
+**Evidence:** `DATA-GOG-FONT-001`.
+
+`FONT` #100 in the fingerprinted `RESOURCE.GFF` is 8,299 bytes. Its little-endian
+header starts with a 16-bit glyph count of 256 and a shared 16-bit height of 9;
+four bytes remain uninterpreted. A 256-byte character map begins at offset 8,
+followed at offset 264 by 256 absolute 16-bit glyph offsets. The first glyph
+record begins at offset 776. Each strictly increasing record contains a 16-bit
+width and exactly `width * height` palette-index bytes. Zero-width glyphs are
+valid and contain no pixels. The final record must end exactly at payload end.
+
+The reader caps payloads at 1 MiB, height at 64, width at 256, and total decoded
+pixels at 4 MiB. The map's semantic encoding, the four unknown header bytes,
+palette pairing, advance/spacing rules, strings, and presentation remain open.
 
 ## UI windows and buttons
 

@@ -206,7 +206,8 @@ decoder rather than being guessed now.
 - **Evidence.** MANUAL-1994 sections on quick start, party creation, character
   options, and menus; `DATA-GOG-GFF-001` and `DATA-GOG-IMAGE-001`, corroborated
   by DSUN-MUSIC, for bounded container, indexed-image, and palette structures;
-  `DATA-GOG-UI-001` for bounded start-window/button mappings; further DATA-GOG
+  `DATA-GOG-FONT-001` for bounded indexed glyphs; `DATA-GOG-UI-001` for bounded
+  start-window/button mappings; further DATA-GOG
   for party-screen resource mapping; OBS-GOG for screen states,
   coordinates, and navigation.
 - **Acceptance - rules.** Party size, available races/classes, ability/alignment
@@ -360,7 +361,7 @@ decoder rather than being guessed now.
 | Q1 | Is `DarkSunWakeRedux` / `Dark Sun: Wake of the Ravager Redux` the approved identity? | configuration | repository owner | closed - approved 2026-09-12 |
 | Q2 | Is the installed GOG build the only initial supported edition, with later revisions represented by separate manifests? | slices 1, 7 | repository owner | closed - initial work targets the supplied GOG build; later revisions require separate fingerprints |
 | Q3 | Which underlying DOS/CD-ROM revision is in GOG build `52095422060333615`? | slices 1, 4, 6 | evidence investigation | open |
-| Q4 | Which source files and GFF/resource records are required, and what are their bounded structures? | slices 1-3 | evidence investigation | open - GFF directories, indexed-image/palette payloads, and `WIND`/`BUTN`/`APFM`/`EBOX` UI records are bounded; `RESOURCE.GFF` maps the title, start window, and character-generation shell; dynamic party data and the rest of the minimum pack remain unknown |
+| Q4 | Which source files and GFF/resource records are required, and what are their bounded structures? | slices 1-3 | evidence investigation | open - GFF directories, indexed-image/palette payloads, `FONT` #100 glyphs, and `WIND`/`BUTN`/`APFM`/`EBOX` UI records are bounded; `RESOURCE.GFF` maps the title, start window, and character-generation shell; strings, text presentation, dynamic party data, and the rest of the minimum pack remain unknown |
 | Q5 | What are the logical resolution, pixel aspect, palettes, cursor geometry, animation cadence, and audio timing? | slices 2-7 | runtime observation | open |
 | Q6 | For each verified manual/guide/runtime conflict or original defect, should compatibility preserve it, fix it, or expose an option? | slices 4-7 | repository owner after evidence | open |
 | Q7 | Are original save compatibility and Shattered Lands party transfer desired once their formats are evidenced? | slice 7 | repository owner | open |

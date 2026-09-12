@@ -31,5 +31,7 @@ The title and the mapped start/party windows establish a recurring 320x200
 logical canvas, but whether all screens share it and how DOS pixel aspect should
 be reproduced remain open. Palette behavior, viewport, panel bounds,
 cursor hotspot, layer/draw order, frame counts, animation cadence, dialogue hit
-rectangles, and scaling tolerances are all `unknown`. Slice 2 must record them
+rectangles, text palette/spacing/layout, and scaling tolerances are all
+`unknown`. `DATA-GOG-FONT-001` maps one glyph bitmap structure but does not
+settle those presentation details. Slice 2 must record them
 from controlled GOG runs before presentation parity is claimed.

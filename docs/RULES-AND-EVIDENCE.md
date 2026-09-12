@@ -68,6 +68,25 @@
 - **Tests:** original-free DSIX round trips and rejection cases, plus synthetic
   GFF-to-verified-pack extraction using the recorded resource identities.
 
+### DATA-GOG-FONT-001 - Indexed bitmap font structure
+
+- **Question:** How is the indexed glyph data in the owned build's `FONT`
+  resource represented?
+- **Method:** Inspect `FONT` #100 from the fingerprinted `RESOURCE.GFF`, account
+  for every byte using a bounded independent reader, and validate the structure
+  without retaining or committing the payload.
+- **Finding:** The payload declares 256 glyphs of a shared height, followed by
+  an eight-byte prefix, a 256-byte character map, and 256 absolute 16-bit glyph
+  offsets. Each glyph record is a 16-bit width followed by exactly width times
+  height palette-index bytes; zero-width control glyphs are valid. `FONT` #100
+  is 8,299 bytes, has height 9, and balances exactly through its final record.
+- **Confidence:** verified for `FONT` #100 in GOG-1432903719; character
+  encoding, palette selection, string storage, spacing, and layout remain open.
+- **Implementation:** `DarkSunWakeRedux.Resources.IndexedBitmapFont` and the
+  metadata-only `font-catalog` inspection command.
+- **Tests:** synthetic valid, zero-width, invalid-header, offset, dimension,
+  and record-length cases.
+
 ### DATA-GOG-UI-001 - Start-window and button resource mapping
 
 - **Question:** How does the owned build identify and place the first start-menu
