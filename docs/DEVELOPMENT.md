@@ -55,7 +55,8 @@ counts, but no proprietary pixel or palette content. The fourth validates
 bounded window, button, application-frame, and edit-box records and their
 resource references.
 The fifth validates indexed bitmap-font records and emits glyph counts,
-dimensions, and resource metadata without emitting proprietary glyph pixels.
+dimensions, character-map identity/hash, and pixel-index range metadata without
+emitting proprietary glyph pixels.
 The sixth validates TEXT line envelopes and emits only counts and lengths.
 
 Verify the runtime-side derived asset without opening a window:

@@ -33,8 +33,9 @@ logical canvas, but whether all screens share it and how DOS pixel aspect should
 be reproduced remain open. Palette behavior, viewport, panel bounds,
 cursor hotspot, layer/draw order, frame counts, animation cadence, dialogue hit
 rectangles, text palette/spacing/layout, and scaling tolerances are all
-`unknown`. `DATA-GOG-FONT-001` maps one glyph bitmap structure, and the derived
-rasterizer can compose explicit glyph indices without altering them, but neither
-settles character mapping, authentic spacing, color, or other presentation
-details. Slice 2 must record them
+`unknown`. `DATA-GOG-FONT-001` maps one glyph bitmap structure and verifies that
+the supported font's character map is identity; the derived rasterizer can
+compose explicit glyph indices without altering them. These facts still do not
+settle generalized map semantics, authentic spacing, color, or other
+presentation details. Slice 2 must record them
 from controlled GOG runs before presentation parity is claimed.

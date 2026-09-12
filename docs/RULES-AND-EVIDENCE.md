@@ -80,11 +80,16 @@
   offsets. Each glyph record is a 16-bit width followed by exactly width times
   height palette-index bytes; zero-width control glyphs are valid. `FONT` #100
   is 8,299 bytes, has height 9, and balances exactly through its final record.
-- **Confidence:** verified for `FONT` #100 in GOG-1432903719; character
-  encoding, palette selection, string storage, spacing, and layout remain open.
+  Its 256 character-map entries are the identity sequence `00` through `FF`
+  (SHA-256 `40aff2e9d2d8922e47afd4648e6967497158785fbd1da870e7110266bf944880`),
+  so direct and map-mediated byte indexing are equivalent for this edition.
+  Glyph pixels use three distinct palette indices spanning 0 through 254.
+- **Confidence:** verified for `FONT` #100 in GOG-1432903719; the map field's
+  generalized semantics, palette selection, spacing, and layout remain open.
 - **Implementation:** `DarkSunWakeRedux.Resources.IndexedBitmapFont`, derived
   DSFT v1 extraction, encoding-neutral bounded glyph-run rasterization, and the
-  metadata-only `font-catalog` inspection command.
+  metadata-only `font-catalog` inspection command, including map identity/hash
+  and pixel-index range summaries.
 - **Tests:** synthetic valid, zero-width, invalid-header, offset, dimension,
   record-length, glyph composition, spacing, and raster-output-bound cases.
 

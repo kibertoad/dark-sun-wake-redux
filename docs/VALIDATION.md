@@ -35,7 +35,9 @@ The smoke modes have distinct purposes:
   extracted title and start-window controls.
 
 Owned-build validation currently targets GOG product `1432903719`, installed
-build `52095422060333615`. Local-only decoded previews established the title
+build `52095422060333615`. Metadata-only FONT inspection verifies that all 256
+character-map entries are identity values and summarizes its pixel-index range
+without emitting glyph pixels. Local-only decoded previews established the title
 and start-window mappings recorded as `DATA-GOG-TITLE-001` and
 `DATA-GOG-UI-001`; screenshots and decoded outputs stay
 under ignored `analysis/original/` and never become golden files. Presentation

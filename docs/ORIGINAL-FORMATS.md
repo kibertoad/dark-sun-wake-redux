@@ -110,10 +110,18 @@ followed at offset 264 by 256 absolute 16-bit glyph offsets. The first glyph
 record begins at offset 776. Each strictly increasing record contains a 16-bit
 width and exactly `width * height` palette-index bytes. Zero-width glyphs are
 valid and contain no pixels. The final record must end exactly at payload end.
+In the supported owned build, all 256 character-map entries are identity values
+(`00` through `FF`) with SHA-256
+`40aff2e9d2d8922e47afd4648e6967497158785fbd1da870e7110266bf944880`.
+Consequently, direct byte indexing and lookup through this particular map select
+the same glyph. The glyph pixels use three distinct palette indices with a
+range of 0 through 254; their exact values and visual roles are not inferred by
+the metadata-only catalog.
 
 The reader caps payloads at 1 MiB, height at 64, width at 256, and total decoded
-pixels at 4 MiB. The map's semantic encoding, the four unknown header bytes,
-palette pairing, advance/spacing rules, strings, and presentation remain open.
+pixels at 4 MiB. The map field's generalized semantics, the four unknown header
+bytes, palette pairing, advance/spacing rules, strings, and presentation remain
+open.
 
 ## TEXT resources
 

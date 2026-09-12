@@ -45,7 +45,19 @@ if (args.Length == 2 && args[0].Equals("font-catalog", StringComparison.OrdinalI
                 resource.Size,
                 glyphCount = font.Glyphs.Count,
                 glyphHeight = font.Glyphs[0].Height,
-                maximumGlyphWidth = font.Glyphs.Max(glyph => glyph.Width)
+                maximumGlyphWidth = font.Glyphs.Max(glyph => glyph.Width),
+                identityCharacterMappings = font.CharacterMap
+                    .Select((glyph, character) => glyph == character)
+                    .Count(matches => matches),
+                distinctMappedGlyphs = font.CharacterMap.Distinct().Count(),
+                characterMapSha256 = Convert.ToHexString(
+                    SHA256.HashData(font.CharacterMap.ToArray())).ToLowerInvariant(),
+                distinctPixelIndices = font.Glyphs.SelectMany(glyph => glyph.Pixels)
+                    .Distinct().Count(),
+                minimumPixelIndex = font.Glyphs.SelectMany(glyph => glyph.Pixels)
+                    .DefaultIfEmpty().Min(),
+                maximumPixelIndex = font.Glyphs.SelectMany(glyph => glyph.Pixels)
+                    .DefaultIfEmpty().Max()
             };
         }).ToArray();
         Console.WriteLine(JsonSerializer.Serialize(new

@@ -42,7 +42,7 @@ are not implemented yet.
 | Gameplay | Assetless startup smoke test, MonoGame shell, deterministic party invariants including discipline/sphere choices and occupied-slot edit/drop/add, and command-driven start flow in Core | No player-visible game slice yet; DUAL, disputed race/class pairs, and shipped creation defaults await observation |
 | Saves and compatibility | Start-flow snapshot schema 3 with dropped-character storage and hash-verified deterministic replay | Native save-file I/O, whole-game replays, original saves, and Shattered Lands party transfer are not implemented |
 | Presentation | Verified-pack title/start window with scale-independent declared-rectangle mouse routing; generation control art extracted | Destination screens are not rendered; hit-edge parity, frame states, pixel aspect, animation, audio, and video await observation |
-| Text resources | Bounded FONT decoding/DSFT extraction, deterministic indexed-glyph-run rasterization, and all 62 short `TEXT` records decoded into DSTX | Character encoding, authentic spacing, palette, text-ID routing, multiline layout, and runtime rendering remain open |
+| Text resources | Bounded FONT decoding/DSFT extraction, verified owned-font identity map, deterministic indexed-glyph-run rasterization, and all 62 printable-ASCII `TEXT` records decoded into DSTX | Generalized map semantics, authentic spacing, palette, text-ID routing, multiline layout, and runtime rendering remain open |
 
 ## Developer quick start
 
