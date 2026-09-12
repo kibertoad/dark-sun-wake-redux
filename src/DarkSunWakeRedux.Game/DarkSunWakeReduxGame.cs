@@ -1,5 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using DarkSunWakeRedux.Core;
 using DarkSunWakeRedux.Resources;
 
 namespace DarkSunWakeRedux.Game;
@@ -12,6 +14,9 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     private SpriteBatch? _spriteBatch;
     private Texture2D? _titleTexture;
     private readonly List<(StartMenuButtonAsset Mapping, Texture2D Texture)> _startMenuButtons = [];
+    private readonly StartFlowSession _startFlow = new(0);
+    private MouseState _previousMouse;
+    private KeyboardState _previousKeyboard;
 
     public DarkSunWakeReduxGame(string? assetPack = null, bool platformSmoke = false)
     {
@@ -66,30 +71,48 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         return texture;
     }
 
+    protected override void Update(GameTime gameTime)
+    {
+        if (!_platformSmoke)
+        {
+            var mouse = Mouse.GetState();
+            if (_startFlow.Snapshot().Screen == StartFlowScreen.StartWindow &&
+                mouse.LeftButton == ButtonState.Pressed && _previousMouse.LeftButton == ButtonState.Released)
+            {
+                var transform = new LogicalCanvasTransform(
+                    GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+                if (transform.TryToLogical(mouse.X, mouse.Y, out var x, out var y) &&
+                    StartMenuInput.HitTest(x, y) is { } choice)
+                    _startFlow.Execute(StartFlowCommand.Choose(choice));
+            }
+            var keyboard = Keyboard.GetState();
+            if (keyboard.IsKeyDown(Keys.Escape) && _previousKeyboard.IsKeyUp(Keys.Escape))
+                _startFlow.Execute(StartFlowCommand.Cancel());
+            _previousMouse = mouse;
+            _previousKeyboard = keyboard;
+            if (_startFlow.Snapshot().Screen == StartFlowScreen.ExitRequested) Exit();
+        }
+        base.Update(gameTime);
+    }
+
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.Black);
-        if (_titleTexture is not null && _spriteBatch is not null)
+        if (_titleTexture is not null && _spriteBatch is not null &&
+            _startFlow.Snapshot().Screen == StartFlowScreen.StartWindow)
         {
-            var scale = Math.Min(
-                GraphicsDevice.Viewport.Width / (float)_titleTexture.Width,
-                GraphicsDevice.Viewport.Height / (float)_titleTexture.Height);
-            var width = Math.Max(1, (int)MathF.Floor(_titleTexture.Width * scale));
-            var height = Math.Max(1, (int)MathF.Floor(_titleTexture.Height * scale));
-            var destination = new Rectangle(
-                (GraphicsDevice.Viewport.Width - width) / 2,
-                (GraphicsDevice.Viewport.Height - height) / 2,
-                width,
-                height);
+            var transform = new LogicalCanvasTransform(
+                GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+            var destination = new Rectangle(transform.X, transform.Y, transform.Width, transform.Height);
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             _spriteBatch.Draw(_titleTexture, destination, Color.White);
             foreach (var (mapping, texture) in _startMenuButtons)
             {
                 var buttonDestination = new Rectangle(
-                    destination.X + (int)MathF.Floor(mapping.X * scale),
-                    destination.Y + (int)MathF.Floor(mapping.Y * scale),
-                    Math.Max(1, (int)MathF.Floor(texture.Width * scale)),
-                    Math.Max(1, (int)MathF.Floor(texture.Height * scale)));
+                    destination.X + (int)MathF.Floor(mapping.X * transform.Scale),
+                    destination.Y + (int)MathF.Floor(mapping.Y * transform.Scale),
+                    Math.Max(1, (int)MathF.Floor(texture.Width * transform.Scale)),
+                    Math.Max(1, (int)MathF.Floor(texture.Height * transform.Scale)));
                 _spriteBatch.Draw(texture, buttonDestination, Color.White);
             }
             _spriteBatch.End();

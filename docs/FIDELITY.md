@@ -15,7 +15,7 @@ Status values: `unknown`, `documented`, `observed`, `implemented`, and
 | UI resource layouts | implemented | `DATA-GOG-UI-001/002/003`, synthetic tests | All UI records parse and resolve, including WIND image references; start/generation controls are mapped while shell draw and runtime state behavior remain unobserved |
 | Rules | implemented | `MANUAL-1994`, `FAQ-81038`, `DATA-GOG-UI-001`, Core tests | Initial party-creation invariants and semantic start/party routing are implemented; disputed eligibility and all later gameplay rules remain unresolved |
 | AI | unknown | none | Not researched |
-| Controls | documented | `MANUAL-1994` | Semantic actions known; coordinates and runtime behavior unobserved |
+| Controls | implemented | `MANUAL-1994`, `DATA-GOG-UI-001`, tests | Start-window mouse clicks use declared rectangles under scale-independent hit testing; original edge behavior, focus, keyboard access, and later controls remain unobserved |
 | Persistence | implemented | Core tests | Start-flow snapshots and hash-verified replay are implemented; native files, whole-game coverage, migration, and legacy import remain open |
 | Layout/graphics | implemented | `DATA-GOG-IMAGE-001`, `DATA-GOG-TITLE-001`, `DATA-GOG-UI-001` | The evidenced 320x200 title and first frames of all four start controls are displayed with one nearest-neighbor canvas transform; frame-state semantics, pixel aspect, and timing remain unvalidated |
 | Animation timing | unknown | none | FLI and gameplay cadence are unverified |

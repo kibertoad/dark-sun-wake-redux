@@ -26,8 +26,9 @@ original 320x200 title with its four start-window button images at recorded
 coordinates, and carries the decoded interface font for later text rendering.
 Deterministic start/party menu semantics, commands, events, snapshots, and
 hash-verified replay are implemented in Core.
-Runtime interaction, dynamic party content, and playable gameplay are not
-implemented yet.
+The start buttons now accept scale-independent mouse clicks and route through
+Core; their destination screens, dynamic party content, and playable gameplay
+are not implemented yet.
 
 | Area | Supported now | Current limitations |
 |---|---|---|
@@ -35,7 +36,7 @@ implemented yet.
 | Asset extraction | Separate `DarkSunWakeRedux.Extractor` executable; versioned exact-inventory contract; bounded readers; transactional 18-asset Slice 2 pack | Title, start buttons, ten generation controls, shared window image, font, and text catalog are extracted; remaining dynamic/shell assets are incomplete |
 | Gameplay | Assetless startup smoke test, MonoGame shell, deterministic party invariants, and command-driven start flow in Core | No player-visible game slice yet; disputed race/class pairs await shipped-screen observation |
 | Saves and compatibility | Versioned start-flow snapshots and hash-verified deterministic replay | Native save-file I/O, whole-game replays, original saves, and Shattered Lands party transfer are not implemented |
-| Presentation | Verified-pack startup and nearest-neighbor display of the title/start window; character-generation class and EXIT/DONE art extracted | Frame states, dynamic party screens, pixel aspect, animation, audio, video, and controls await observation and implementation |
+| Presentation | Verified-pack title/start window with scale-independent declared-rectangle mouse routing; generation control art extracted | Destination screens are not rendered; hit-edge parity, frame states, pixel aspect, animation, audio, and video await observation |
 | Text resources | Bounded FONT decoding/DSFT extraction plus all 62 short `TEXT` records decoded into deterministic DSTX | Palette, spacing, text-ID routing, layout, and runtime rendering remain open |
 
 ## Developer quick start
@@ -76,9 +77,10 @@ The approved roadmap and evidence gates are in
 
 ## Controls
 
-No playable controls are implemented yet. The original manual documents a
-mouse-first interface plus keyboard shortcuts; mappings will be added only as
-their screens become playable and validated.
+The four start-window buttons accept mouse clicks through the 320x200 logical
+canvas and semantic Core commands. The original manual documents a broader
+mouse-first interface plus keyboard shortcuts; exact edge behavior and all
+later mappings remain subject to controlled validation.
 
 ## Acknowledgements
 

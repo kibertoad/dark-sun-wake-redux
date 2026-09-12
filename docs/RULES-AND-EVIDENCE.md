@@ -182,8 +182,11 @@
 - **Evidence:** MANUAL-1994, introduction and "How to Play".
 - **Confidence:** high for intended behavior; exact hit regions and shipped edge
   behavior are unknown.
-- **Implementation:** not implemented.
-- **Tests:** planned semantic-input and menu-routing tests.
+- **Implementation:** start-window clicks map the declared BUTN rectangles
+  through a single letterboxed logical-canvas transform into semantic Core
+  commands; later screens remain unimplemented.
+- **Tests:** rectangle edges, wide/tall letterboxing, inverse coordinates, and
+  resulting Core routing.
 - **Uncertainty:** Cursor art, complete mode transitions, right-click behavior,
   and coordinate boundaries require OBS-GOG evidence.
 

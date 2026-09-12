@@ -216,6 +216,8 @@ decoder rather than being guessed now.
 - **Acceptance - presentation.** Start/party screens preserve measured logical
   coordinates, aspect treatment, palette semantics, focus order, mouse hit
   regions, and Escape behavior; scaling cannot change rules or hit testing.
+  Implemented start-window clicks use declared BUTN bounds and a single inverse
+  canvas transform; shipped edge/focus behavior and later screens remain open.
 - **Acceptance - original content.** Readers bound offsets, counts, sizes,
   decompression, names, and output paths. The pack records extractor/format
   version, source fingerprint, output inventory, per-file hashes, media types,

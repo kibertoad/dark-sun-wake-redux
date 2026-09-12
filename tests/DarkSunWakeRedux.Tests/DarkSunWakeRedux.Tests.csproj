@@ -10,6 +10,7 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="4.0.0" />
     <ProjectReference Include="../../src/DarkSunWakeRedux.Core/DarkSunWakeRedux.Core.csproj" />
     <ProjectReference Include="../../src/DarkSunWakeRedux.Extractor/DarkSunWakeRedux.Extractor.csproj" />
+    <ProjectReference Include="../../src/DarkSunWakeRedux.Game/DarkSunWakeRedux.Game.csproj" />
     <ProjectReference Include="../../src/DarkSunWakeRedux.Resources/DarkSunWakeRedux.Resources.csproj" />
   </ItemGroup>
 </Project>
