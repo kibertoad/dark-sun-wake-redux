@@ -364,6 +364,7 @@ decoder rather than being guessed now.
 | Q8 | Are Windows, Linux, and macOS all first-release targets, or should the initial release target Windows? | slice 7 | repository owner | open |
 | Q9 | May the installed clue book be consulted as an additional local secondary source? | slices 4-7 | repository owner | open |
 | Q10 | What measured tolerances define acceptable visual, input, animation, and audio parity? | slices 2-7 | repository owner/evidence investigation | open |
+| Q11 | Which race/class eligibility list does the shipped creation screen enforce where manual pages 17-18 conflict with pages 19-22 (half-giant ranger/thief, mul druid, thri-kreen druid/thief)? | slice 2 | OBS-GOG evidence investigation | open - Core preserves these as `EvidenceConflict` |
 
 ## Risks
 

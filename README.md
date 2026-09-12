@@ -22,7 +22,7 @@ so the Extractor deliberately writes no output.
 |---|---|---|
 | Legal source | Explicit verification of English GOG product `1432903719`, build `52095422060333615` | Other GOG revisions and storefronts are unsupported until separately fingerprinted |
 | Asset extraction | Separate `DarkSunWakeRedux.Extractor` executable; versioned exact-inventory pack contract, bounded GFF directory reader, and actionable diagnostics | GFF payload decoders and transactional pack creation are not implemented |
-| Gameplay | Assetless startup smoke test and MonoGame shell | No player-visible game slice yet |
+| Gameplay | Assetless startup smoke test, MonoGame shell, and deterministic party-creation invariants in Core | No player-visible game slice yet; disputed race/class pairs await shipped-screen observation |
 | Saves and compatibility | Deterministic Core seed/state scaffold | Native saves, replays, original saves, and Shattered Lands party transfer are not implemented |
 | Presentation | Window and startup-failure reporting scaffold | Original resolution, graphics, animation, audio, video, and controls await observation and extraction |
 

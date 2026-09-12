@@ -47,14 +47,51 @@
 
 ### RULE-PARTY-001 - Four-character party
 
-- **Behavior:** The start flow supports a pre-generated party or creation and
-  selection of four characters.
-- **Evidence:** MANUAL-1994, quick-start and party-creation sections.
-- **Confidence:** high for intended party size and flow.
-- **Implementation:** not implemented.
-- **Tests:** planned party-size and selection invariant tests.
-- **Uncertainty:** Exact defaults, random generation, cancellation, and invalid
-  combinations require observation.
+- **Behavior:** The creation flow accepts one to four characters and recommends
+  four. An empty party cannot start and a fifth character cannot be added.
+- **Evidence:** MANUAL-1994, quick-start and party-creation sections, pages 2 and
+  7-9.
+- **Confidence:** high for intended party bounds and flow.
+- **Implementation:** deterministic Core party aggregate and validation result;
+  start/menu presentation is not implemented.
+- **Tests:** empty/one/four/fifth-member boundaries and invalid-character
+  rejection.
+- **Uncertainty:** Exact pregenerated party data, on-disk created-character
+  format, cancellation state, and shipped edge behavior require observation.
+
+### RULE-PARTY-002 - Character creation invariants
+
+- **Behavior:** Creation offers human, dwarf, elf, half-elf, half-giant,
+  halfling, mul, and thri-kreen. Muls are male and thri-kreen female in the
+  creation flow. Characters use one of six good/neutral alignments, ability
+  scores fall from 9 through 24, and each class has the documented ability
+  minima. Humans begin single-classed; non-humans may select as many as three
+  classes; cleric and druid cannot be combined.
+- **Evidence:** MANUAL-1994, pages 7-9 and 16-23.
+- **Confidence:** high for documented intent; not yet observed in the shipped
+  build.
+- **Implementation:** `PartyCreationRules` exposes stable diagnostics and
+  rejects unsupported drafts without I/O or presentation dependencies.
+- **Tests:** sex, alignment/enum, ability range and class minima, human
+  multiclass, class count/duplicates, cleric+druid, and agreed eligibility
+  constraints.
+- **Uncertainty:** Initial HP adjustment, ability-generation distribution,
+  racial adjustments during editing, valid multiclass combinations, and exact
+  screen defaults need DATA-GOG/OBS-GOG evidence.
+
+### CONFLICT-PARTY-001 - Manual race/class eligibility lists
+
+- **Claim A:** The race descriptions list the classes allowed for each race.
+- **Claim B:** The class descriptions independently list allowed races.
+- **Conflict:** The lists disagree for half-giant ranger and thief, mul druid,
+  and thri-kreen druid and thief. They may contain additional combination rules
+  that prose alone does not expose.
+- **Evidence:** MANUAL-1994, race descriptions on pages 17-18 and class
+  descriptions on pages 19-22.
+- **Implementation:** these pairs return `EvidenceConflict` and validation emits
+  `class_race_unresolved`; no eligibility is guessed.
+- **Resolution needed:** record the selectable class list for every race in the
+  fingerprinted GOG build, then update the matrix and tests.
 
 ### RULE-COMBAT-001 - Party expansion on combat entry
 

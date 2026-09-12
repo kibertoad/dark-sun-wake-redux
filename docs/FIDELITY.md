@@ -9,7 +9,7 @@ Status values: `unknown`, `documented`, `observed`, `implemented`, and
 | Asset-pack contract | implemented | synthetic tests | Version, game/source identity, exact inventory, hashes, provenance, media type, conversion, and unexpected files are checked |
 | Asset extraction | unknown | plan only | No Dark Sun decoder or output pack exists yet |
 | GFF container directories | implemented | `DATA-GOG-GFF-001`, `DSUN-MUSIC`, synthetic tests | Bounded metadata parsing succeeds for all 26 GFF files in the owned build; payload semantics are not implied |
-| Rules | documented | `MANUAL-1994`, `FAQ-81038` | Initial input/party/combat intent recorded; no gameplay implemented |
+| Rules | implemented | `MANUAL-1994`, `FAQ-81038`, Core tests | Initial party-creation invariants are implemented; disputed eligibility and all later gameplay rules remain unresolved |
 | AI | unknown | none | Not researched |
 | Controls | documented | `MANUAL-1994` | Semantic actions known; coordinates and runtime behavior unobserved |
 | Persistence | unknown | none | Native saves/replays and legacy import are not implemented |
