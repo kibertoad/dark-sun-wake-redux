@@ -87,11 +87,13 @@
 - **Confidence:** verified for `FONT` #100 in GOG-1432903719; the map field's
   generalized semantics, palette selection, spacing, and layout remain open.
 - **Implementation:** `DarkSunWakeRedux.Resources.IndexedBitmapFont`, derived
-  DSFT v1 extraction, encoding-neutral bounded glyph-run rasterization, and the
+  DSFT v1 extraction, encoding-neutral bounded glyph-run and multiline-block
+  rasterization with caller-selected spacing, and the
   metadata-only `font-catalog` inspection command, including map identity/hash
   and pixel-index range summaries.
 - **Tests:** synthetic valid, zero-width, invalid-header, offset, dimension,
-  record-length, glyph composition, spacing, and raster-output-bound cases.
+  record-length, run/block composition, blank-line, explicit-spacing, and
+  raster-output-bound cases.
 
 ### DATA-GOG-TEXT-001 - TEXT resource envelope
 

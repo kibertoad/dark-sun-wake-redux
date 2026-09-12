@@ -18,9 +18,10 @@ the logical start-button choice, exercise DSUI-derived exclusive rectangle edges
 and reject incomplete, unexpected, or image-mismatched start-window graphs.
 UI-resource tests also cover the executable-evidenced nonzero-intersection rule
 for serialized/runtime event masks without assigning speculative names to bits.
-Font tests compose variable-width indexed glyph runs, preserve palette-index
-bytes, zero-fill explicit spacing, accept zero-width glyphs, and reject
-malformed fonts, negative spacing, and oversized output.
+Font tests compose variable-width indexed glyph runs and multiline blocks,
+preserve palette-index bytes, zero-fill explicit glyph/line spacing, retain
+blank lines, accept zero-width glyphs, and reject malformed fonts, negative
+spacing, and oversized output.
 
 The smoke modes have distinct purposes:
 

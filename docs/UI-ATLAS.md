@@ -34,8 +34,9 @@ be reproduced remain open. Palette behavior, viewport, panel bounds,
 cursor hotspot, layer/draw order, frame counts, animation cadence, dialogue hit
 rectangles, text palette/spacing/layout, and scaling tolerances are all
 `unknown`. `DATA-GOG-FONT-001` maps one glyph bitmap structure and verifies that
-the supported font's character map is identity; the derived rasterizer can
-compose explicit glyph indices without altering them. These facts still do not
-settle generalized map semantics, authentic spacing, color, or other
+the supported font's character map is identity; the derived rasterizers can
+compose explicit glyph-index runs and multiline blocks without altering them,
+using spacing supplied by the caller. These facts still do not settle
+generalized map semantics, authentic spacing/alignment, color, or other
 presentation details. Slice 2 must record them
 from controlled GOG runs before presentation parity is claimed.
