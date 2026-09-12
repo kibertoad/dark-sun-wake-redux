@@ -6,6 +6,17 @@ namespace DarkSunWakeRedux.Tests;
 
 public sealed class UiResourceTests
 {
+    [Theory]
+    [InlineData(0x01ee, 0x0008, true)]
+    [InlineData(0x01e6, 0x0008, false)]
+    [InlineData(0x0000, 0x0002, false)]
+    [InlineData(0x000a, 0x0002, true)]
+    public void EventMasksMatchOnlyWhenAtLeastOneRequestedBitIsPresent(
+        ushort configured, ushort requested, bool expected)
+    {
+        Assert.Equal(expected, UiEventMasks.Matches(configured, requested));
+    }
+
     [Fact]
     public void ReadsWindowGeometryAndChildReferences()
     {

@@ -204,13 +204,15 @@
 - **Executable evidence:** `EXE-GOG-UI-001` verifies the field is a mask used
   during APFM dispatch, not an appearance parameter.
 - **Confidence:** verified for GOG-1432903719 as stored data and high for the
-  mask role; individual bit meanings remain unknown.
+  mask role and nonzero-intersection matching; individual bit meanings remain
+  unknown.
 - **Implementation:** `UiApplicationFrameResource.EventMask` and
   `UiButtonResource.EventMask` preserve the shared field and the UI catalog
   reports it; `UiEditBoxResource.EventMask` preserves EBOX's corresponding
-  field at offset 150. No input handler interprets their bits.
-- **Tests:** synthetic nonzero event-mask decoding for all three record types and the
-  existing exact size/dimension boundaries.
+  field at offset 150. `UiEventMasks.Matches` implements the evidenced nonzero
+  intersection rule. No input handler assigns meanings to the bits.
+- **Tests:** synthetic nonzero event-mask decoding for all three record types,
+  intersection/non-intersection cases, and existing size/dimension boundaries.
 - **Uncertainty:** Map each bit to its event/input meaning with bounded call-site
   evidence and controlled runtime observations.
 

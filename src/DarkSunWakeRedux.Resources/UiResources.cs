@@ -3,6 +3,12 @@ using System.Text;
 
 namespace DarkSunWakeRedux.Resources;
 
+public static class UiEventMasks
+{
+    public static bool Matches(ushort configuredMask, ushort requestedMask) =>
+        (configuredMask & requestedMask) != 0;
+}
+
 public sealed record UiChildReference(string Tag, uint ResourceNumber, short X, short Y);
 
 public sealed record UiWindowResource(

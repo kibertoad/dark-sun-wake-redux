@@ -138,6 +138,13 @@ proof by itself. Never redirect broad output into the repository.
 - **Edit-box corroboration:** after verifying `EBOX` at `3d72:10b3`, the same
   dispatcher tests bit 2 at edit-box structure offset `0x96` at `3d72:10c1`.
   This is preserved as `UiEditBoxResource.EventMask`.
+- **Mutation corroboration:** APFM helper `3f96:02f8` resolves the record by
+  tag/identity, then mutates offset `0x58`: operation 1 ORs in the supplied
+  bits, operation 2 ANDs with their complement, and operation 3 clears the
+  word. This independently confirms mutable event registration rather than
+  appearance data.
+- **Matching rule:** handlers use nonzero bit intersection, implemented
+  independently as `UiEventMasks.Matches`. Numeric bit meanings remain unnamed.
 
 For each useful finding, add a concise entry here or in the relevant
 `docs/RULES-AND-EVIDENCE.md` / `docs/ORIGINAL-FORMATS.md` section with:
