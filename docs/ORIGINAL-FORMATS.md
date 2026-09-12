@@ -190,6 +190,13 @@ height, applies the original FONT dimension and aggregate-pixel limits, caps the
 file at 8 MiB, and rejects truncation and trailing bytes. Palette selection and
 text layout deliberately remain outside this asset until separately evidenced.
 
+`IndexedGlyphRunRasterizer` is a presentation-independent derived operation over
+DSFT. It accepts explicit glyph indices and caller-selected nonnegative spacing,
+copies the original palette-index pixels into a single shared-height row, and
+caps output at 4,096 pixels wide. Zero-width glyphs remain valid. It deliberately
+does not consult the uninterpreted character map or assign transparent/color
+semantics, so it introduces no claim about source string encoding or appearance.
+
 ## Derived DSTX text-catalog asset
 
 DSTX is an original deterministic pack format. Version 1 starts with ASCII

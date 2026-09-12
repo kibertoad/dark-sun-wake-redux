@@ -83,9 +83,10 @@
 - **Confidence:** verified for `FONT` #100 in GOG-1432903719; character
   encoding, palette selection, string storage, spacing, and layout remain open.
 - **Implementation:** `DarkSunWakeRedux.Resources.IndexedBitmapFont`, derived
-  DSFT v1 extraction, and the metadata-only `font-catalog` inspection command.
+  DSFT v1 extraction, encoding-neutral bounded glyph-run rasterization, and the
+  metadata-only `font-catalog` inspection command.
 - **Tests:** synthetic valid, zero-width, invalid-header, offset, dimension,
-  and record-length cases.
+  record-length, glyph composition, spacing, and raster-output-bound cases.
 
 ### DATA-GOG-TEXT-001 - TEXT resource envelope
 

@@ -17,6 +17,9 @@ Presentation-independent input tests prove viewport letterboxing cannot change
 the logical start-button choice and exercise declared exclusive rectangle edges.
 UI-resource tests also cover the executable-evidenced nonzero-intersection rule
 for serialized/runtime event masks without assigning speculative names to bits.
+Font tests compose variable-width indexed glyph runs, preserve palette-index
+bytes, zero-fill explicit spacing, accept zero-width glyphs, and reject
+malformed fonts, negative spacing, and oversized output.
 
 The smoke modes have distinct purposes:
 

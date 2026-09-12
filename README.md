@@ -23,7 +23,9 @@ fingerprints,
 asset-pack contracts and diagnostics are implemented, and assetless smoke
 testing works. The startup pack now transactionally extracts and displays the
 original 320x200 title with its four start-window button images at recorded
-coordinates, and carries the decoded interface font for later text rendering.
+coordinates, and carries the decoded interface font. A bounded glyph-index run
+rasterizer can now compose its original palette indices for later text rendering
+without guessing the game's character encoding, spacing, or colors.
 Deterministic start/party menu semantics, commands, events, snapshots, and
 hash-verified replay are implemented in Core, including the manual-documented
 psionic-discipline and clerical-sphere creation constraints. Pre-adventure
@@ -40,7 +42,7 @@ are not implemented yet.
 | Gameplay | Assetless startup smoke test, MonoGame shell, deterministic party invariants including discipline/sphere choices and occupied-slot edit/drop/add, and command-driven start flow in Core | No player-visible game slice yet; DUAL, disputed race/class pairs, and shipped creation defaults await observation |
 | Saves and compatibility | Start-flow snapshot schema 3 with dropped-character storage and hash-verified deterministic replay | Native save-file I/O, whole-game replays, original saves, and Shattered Lands party transfer are not implemented |
 | Presentation | Verified-pack title/start window with scale-independent declared-rectangle mouse routing; generation control art extracted | Destination screens are not rendered; hit-edge parity, frame states, pixel aspect, animation, audio, and video await observation |
-| Text resources | Bounded FONT decoding/DSFT extraction plus all 62 short `TEXT` records decoded into deterministic DSTX | Palette, spacing, text-ID routing, layout, and runtime rendering remain open |
+| Text resources | Bounded FONT decoding/DSFT extraction, deterministic indexed-glyph-run rasterization, and all 62 short `TEXT` records decoded into DSTX | Character encoding, authentic spacing, palette, text-ID routing, multiline layout, and runtime rendering remain open |
 
 ## Developer quick start
 
