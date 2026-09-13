@@ -46,7 +46,7 @@ extend the exact inventory only after their mappings are recorded.
 ## Runtime startup
 
 `--smoke-test` is assetless for CI. `--content-smoke-test` verifies and opens the
-41 derived Slice 2 assets without creating a window. Normal startup verifies
+59 derived startup/Tyr/Game Menu assets without creating a window. Normal startup verifies
 the default or explicit `--asset-pack` directory before creating the game window
 and displays the measured start shell plus controls, the party-overview shell,
 and the ADD-list shell reached through their Core states. Title sequencing and

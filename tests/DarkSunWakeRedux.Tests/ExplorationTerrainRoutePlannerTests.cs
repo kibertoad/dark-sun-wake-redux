@@ -26,6 +26,17 @@ public sealed class ExplorationTerrainRoutePlannerTests
     }
 
     [Fact]
+    public void MapsActiveWalkClickToAReusableMovementCommand()
+    {
+        var command = ExplorationTerrainRoutePlanner.CommandAt(
+            Navigation(), Snapshot(cameraX: 16, cameraY: 32),
+            logicalX: 36, logicalY: 20);
+
+        Assert.Equal(ExplorationMoveCommandKind.PlanRoute, command!.Kind);
+        Assert.Equal(new GridPoint(3, 3), command.Destination);
+    }
+
+    [Fact]
     public void ReportsBlockedDestinationAsUnreachable()
     {
         var navigation = Navigation((2, 2));

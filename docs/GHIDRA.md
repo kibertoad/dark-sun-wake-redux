@@ -239,8 +239,12 @@ proof by itself. Never redirect broad output into the repository.
   The placement helper at `25af:05aa` refuses an already-`0x40` cell and sets
   `0x60`; removal helper `25af:05fb` requires `0x20` and clears `0x60`. This
   independently identifies `0x40` as the shared blocked/occupied bit and
-  `0x20` as paired dynamic occupancy metadata. A separate `0x80` test at
-  `2778:0006` does not participate in this movement predicate.
+  `0x20` as paired dynamic occupancy metadata. Coordinator `25af:0969`
+  selects those removal/placement helpers, and callers `2d40:0f89`,
+  `2d40:1045`, `2d40:32c5`, and `2d40:3388` iterate coordinate cells while
+  invoking it. This corroborates per-cell footprint mutation without yet
+  establishing a footprint shape, actor category, or update timing. A separate
+  `0x80` test at `2778:0006` does not participate in this movement predicate.
 - **Corroboration:** fingerprinted Tyr `GMAP` contains only `00`, `40`, `80`,
   and `c0`, with respective counts 8,131, 2,044, 38, and 2,331. Its low five
   bits are therefore always zero; 8,169 cells are terrain-open when only the
@@ -251,8 +255,10 @@ proof by itself. Never redirect broad output into the repository.
 - **Implementation consequence:** `RegionTerrainGrid` interprets only `0x40`,
   preserves and exposes every raw flag, treats out-of-bounds as closed, and is
   combined with the independent deterministic pathfinder by
-  `ExplorationTerrainRoutePlanner`. No spawn, dynamic occupancy, movement
-  cadence, or animation is inferred.
+  `ExplorationTerrainRoutePlanner`. The Core route session rechecks its supplied
+  passability predicate immediately before each semantic step, including both
+  diagonal side cells, but does not infer a spawn, footprint, occupancy store,
+  movement cadence, or animation.
 
 For each useful finding, add a concise entry here or in the relevant
 `docs/RULES-AND-EVIDENCE.md` / `docs/ORIGINAL-FORMATS.md` section with:

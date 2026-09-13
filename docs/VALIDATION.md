@@ -38,6 +38,10 @@ the independent `0x80` flag, close out-of-bounds cells, validate pixel/cell
 edges and centers, and reject malformed planes. Planner tests prove stable
 camera-to-cell Walk routes, obstacle detours, unreachable destinations, and
 inactive mode/view/outside-canvas rejection without assigning route cadence.
+Movement-session tests prove deterministic command/event traces, exactly one
+semantic step per advance, atomic replanning failure, cancellation/completion,
+snapshot isolation, and interruption when a step or diagonal side becomes
+blocked after planning.
 
 The smoke modes have distinct purposes:
 

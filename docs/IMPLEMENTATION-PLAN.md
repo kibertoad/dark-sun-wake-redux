@@ -304,11 +304,13 @@ decoder rather than being guessed now.
   DSUI-resolved semantic page object; evidenced destinations and mode/return
   actions are clickable. Native panel-origin validation, five remaining menu
   actions, other destination presentation, animation, party/interface overlays,
-  and route execution remain pending. `EXE-GOG-REGION-001` now establishes
+  and runtime route wiring remain pending. `EXE-GOG-REGION-001` now establishes
   `GMAP` bit `0x40` as the terrain/occupancy block. A bounded terrain grid and
-  reusable camera-to-grid Walk-click planner connect Tyr to deterministic A*
-  without guessing the opening spawn, actor footprint, dynamic blockers,
-  cadence, or animation.
+  reusable camera-to-grid Walk-click planner connect Tyr to deterministic A*.
+  A clock-free Core movement session now covers atomic plan/replan, one-cell
+  advancement, cancellation, completion, and newly blocked route interruption
+  without guessing the opening spawn, actor footprint/occupancy store, cadence,
+  or animation.
 - **Automated tests.** Synthetic-map navigation/collision, deterministic command
   traces, dialogue branches, inventory conservation, menu routing, invalid
   resource reference, and malformed-region tests.

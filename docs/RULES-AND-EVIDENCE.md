@@ -526,15 +526,20 @@
   `GMAP` bit `0x40` as terrain/occupancy blocking, so `RegionTerrainGrid`
   supplies the bounded static terrain predicate and
   `ExplorationTerrainRoutePlanner` maps active Walk-mode canvas clicks through
-  the deterministic camera to terrain routes. Route execution remains gated on
-  spawn, footprint, dynamic-blocker, and cadence evidence.
+  the deterministic camera to reusable plan-route commands. The clock-free
+  `ExplorationMovementSession` atomically plans/replans, advances exactly one
+  semantic cell per command, completes or cancels routes, and interrupts before
+  entering a newly blocked step or diagonal corner. Runtime movement remains
+  gated on spawn, footprint/occupancy state, and presentation cadence evidence.
 - **Tests:** optimal open-grid route, stable obstacle detour, blocked endpoint,
   zero-length route, diagonal corner, endpoint bounds, maximum-grid limits,
   exact flag/bounds/pixel-cell semantics, stable camera-to-destination routing,
-  and inactive-mode rejection.
+  inactive-mode rejection, deterministic command/event order, atomic rejected
+  replanning, per-step blocker revalidation, cancellation, and snapshot
+  isolation.
 - **Uncertainty:** Actor-specific low-bit policy outside Tyr, moving blockers,
   actor footprint, opening spawn, movement cadence, and destination tolerance
-  remain open; none are inferred by the terrain grid or route planner.
+  remain open; none are inferred by the terrain grid, planner, or route session.
 
 ### RULE-PARTY-001 - Four-character party
 

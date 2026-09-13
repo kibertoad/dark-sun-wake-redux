@@ -16,14 +16,13 @@ On Windows, `play.bat` performs a full solution build, verifies or creates the
 default local asset pack, and launches the current game build. Override its
 documented source default with `DARK_SUN_WAKE_PATH` when necessary.
 
-Extraction will be transactional: a new content pack is staged and fully
-verified before it replaces the previous verified pack. The current partial
-Slice 2 pack contains the evidenced 320x200 title, four start buttons, twenty
-character-generation/main-and-modal images, shared party-window image, indexed font,
-and deterministic ID-preserving text catalog; dynamic party fields and the
-window image's composition semantics remain.
-Extracted
-content is ignored by Git and must not be redistributed.
+Extraction is transactional: a new content pack is staged and fully verified
+before it replaces the previous verified pack. The ignored default
+`UserContent` pack is persistent; keep and reuse it unless extractor or pack
+contract changes require a refresh. The current 59-asset pack contains the
+evidenced startup, party, ADD-list, Tyr, and Game Menu content described in the
+README status table. Extracted content is ignored by Git and must not be
+redistributed.
 
 Build and test the complete solution with:
 
