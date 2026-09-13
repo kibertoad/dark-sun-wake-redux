@@ -41,8 +41,10 @@
   without retaining or committing decoded content.
 - **Finding:** `BMP `, `CBMP`, and `ICON` share a framed indexed-image envelope
   with sparse-row, `PLAN`, and `PLNR` encodings. `PAL ` contains 256 three-byte
-  VGA colors. The readers decode 4,510 images containing 9,279 frames and all
-  40 palettes in the installed build.
+  VGA colors. Each six-bit channel expands to eight bits by repeating its high
+  two bits into the low two positions; this matches the native DOSBox palette
+  rather than leaving full intensity at 252. The readers decode 4,510 images
+  containing 9,279 frames and all 40 palettes in the installed build.
 - **Confidence:** verified for these payload structures and counts in
   GOG-1432903719; resource meaning, palette pairing, placement, and timing are
   still unknown.
@@ -126,25 +128,38 @@
   `79b692770caebda3de685feaf42906aae31572d1`, including its note that the
   object procedure was informed by the original Shattered Lands executable,
   against the independently decoded DSRG/DSOB structures. Implement the same
-  transform with strict clipping and synthetic pixel-level tests. Do not use it
-  to infer the opening camera or animation cadence.
+  transform with strict clipping and synthetic pixel-level tests. Then start
+  the fingerprinted owned build in the GOG overlay, select the shipped party,
+  skip the opening cinematics, capture the first stable 320x200 gameplay frame,
+  and compare 808 background samples against every valid Tyr viewport while
+  excluding the party, pointer, and interface button.
 - **Finding:** Terrain `MAP ` entry `(x,y)` places its 16x16 tile at
   `(x*16,y*16)`. After terrain, ETAB entries compose in stored order using the
   first referenced BMP frame. The frame's top-left is
   `(entityX-objectXOffset, entityY-objectYOffset-verticalOffset)`, and ETAB flag
   bit `0x80` mirrors it horizontally. Tyr's GMAP low five bits are zero, so the
   corroborating renderer's wall-resource branch does not add wall images there.
+  Controlled observation `OBS-GOG-SCENE-001` used `DSUN.EXE` SHA-256
+  `CE02EE1F31C2339FC3E16926E370639AF782A5ECD6C8A6081140FA23445FC92C`;
+  its ignored native frame SHA-256 is
+  `C4C75F4CDCAA19EBD825EE560887E0667984E5A3878D695703587863F535CED9`.
+  The first stable gameplay background matches Tyr origin `(1024,1368)` on
+  807 of 808 sampled pixels; the sole difference is a dynamic overlay sample.
 - **Confidence:** high for tile placement from the format and all owned map
   dimensions; medium for object placement, first-frame choice, ETAB order, and
-  mirror bit from community executable-informed research; visual parity with
-  the supported owned build remains unvalidated.
+  mirror bit from community executable-informed research; verified for the
+  opening static background in the supported owned build. Animation, party
+  placement, pointer, and interface overlays remain unvalidated.
 - **Implementation:** `RegionSceneRasterizer` produces a bounded indexed/alpha
-  viewport at an explicit caller-supplied world origin. It does not select a
-  camera, mutate state, interpret collision, or advance animation.
+  viewport at an explicit caller-supplied world origin. `OpeningTyrScene`
+  records the observed `(1024,1368)` 320x200 viewport, and Gameplay displays
+  that static background. The compositor does not mutate state, interpret
+  collision, draw the party/interface, or advance animation.
 - **Tests:** synthetic cross-tile cropping, offsets, vertical adjustment,
   horizontal mirroring, transparent pixels, ETAB overdraw order, edge clipping,
   viewport bounds, malformed region data, and disconnected object references;
-  owned no-window content smoke rasterizes both opposite map corners.
+  owned no-window content smoke rasterizes both opposite map corners and the
+  evidenced opening viewport.
 
 ### DATA-GOG-TITLE-001 - Title image resource mapping
 
@@ -555,7 +570,7 @@
   supported GOG build; runtime selection and remaining field semantics are
   unknown.
 - **Implementation:** `PackedCharacterCatalog` plus transactional extraction to
-  `characters/catalog.dsch`; the asset-pack manifest is version 15 and records
+  `characters/catalog.dsch`; the asset-pack manifest is version 16 and records
   `CHARSAVE.GFF` provenance.
 - **Tests:** synthetic round-trip and deterministic ordering; duplicate,
   malformed-field, noncanonical-order, truncation, and trailing-data rejection;

@@ -17,6 +17,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     private readonly List<(UiImagePlacement Placement, Texture2D Texture)> _addExistingImages = [];
     private readonly List<(StartMenuControl Control, Texture2D Texture)> _startMenuControls = [];
     private IReadOnlyList<AddExistingControl> _addExistingControls = [];
+    private Texture2D? _openingTyrSceneTexture;
     private readonly StartFlowSession _startFlow = new(0);
     private MouseState _previousMouse;
     private KeyboardState _previousKeyboard;
@@ -86,18 +87,41 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             var image = PackedIndexedImage.Read(buttonStream, control.AssetPath);
             _startMenuControls.Add((control, CreateTexture(image, image.Frames[0])));
         }
+        var regionPath = AssetPath(OriginalContent.TyrRegionAssetPath);
+        using var regionStream = File.OpenRead(regionPath);
+        var region = PackedRegion.Read(regionStream, OriginalContent.TyrRegionAssetPath);
+        var objectPath = AssetPath(OriginalContent.TyrObjectCatalogAssetPath);
+        using var objectStream = File.OpenRead(objectPath);
+        var objects = PackedObjectFrameCatalog.Read(
+            objectStream, OriginalContent.TyrObjectCatalogAssetPath);
+        _openingTyrSceneTexture = CreateTexture(region.Palette,
+            OpeningTyrScene.Rasterize(region, objects));
         _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+        string AssetPath(string relativePath) => Path.Combine(_assetPack,
+            relativePath.Replace('/', Path.DirectorySeparatorChar));
     }
 
     private Texture2D CreateTexture(PackedIndexedImage image, IndexedImageFrame frame)
+        => CreateTexture(image.Palette, frame.Pixels, frame.Alpha, frame.Width, frame.Height);
+
+    private Texture2D CreateTexture(IReadOnlyList<Rgb24> palette, IndexedRegionViewport viewport)
+        => CreateTexture(palette, viewport.Pixels, viewport.Alpha, viewport.Width, viewport.Height);
+
+    private Texture2D CreateTexture(
+        IReadOnlyList<Rgb24> palette,
+        byte[] pixels,
+        byte[] alpha,
+        int width,
+        int height)
     {
-        var colors = new Color[frame.Pixels.Length];
+        var colors = new Color[pixels.Length];
         for (var index = 0; index < colors.Length; index++)
         {
-            var color = image.Palette[frame.Pixels[index]];
-            colors[index] = new Color(color.Red, color.Green, color.Blue, frame.Alpha[index]);
+            var color = palette[pixels[index]];
+            colors[index] = new Color(color.Red, color.Green, color.Blue, alpha[index]);
         }
-        var texture = new Texture2D(GraphicsDevice, frame.Width, frame.Height);
+        var texture = new Texture2D(GraphicsDevice, width, height);
         texture.SetData(colors);
         return texture;
     }
@@ -148,6 +172,8 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                     (item.Layer.X, item.Layer.Y, item.Texture)),
                 StartFlowScreen.AddExistingCharacter => _addExistingImages.Select(item =>
                     (item.Placement.X, item.Placement.Y, item.Texture)),
+                StartFlowScreen.Gameplay when _openingTyrSceneTexture is not null =>
+                    [(0, 0, _openingTyrSceneTexture)],
                 _ => []
             };
             var placedImages = images.ToArray();
@@ -177,6 +203,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         foreach (var texture in _addExistingImages.Select(item => item.Texture).Distinct())
             texture.Dispose();
         foreach (var (_, texture) in _startMenuControls) texture.Dispose();
+        _openingTyrSceneTexture?.Dispose();
         _spriteBatch?.Dispose();
         base.UnloadContent();
     }

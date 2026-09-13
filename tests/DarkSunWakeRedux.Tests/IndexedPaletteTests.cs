@@ -15,7 +15,7 @@ public sealed class IndexedPaletteTests
 
         var palette = IndexedPalette.Read(payload, "synthetic-pal");
 
-        Assert.Equal(new Rgb24(252, 128, 4), palette.Colors[1]);
+        Assert.Equal(new Rgb24(255, 130, 4), palette.Colors[1]);
     }
 
     [Fact]

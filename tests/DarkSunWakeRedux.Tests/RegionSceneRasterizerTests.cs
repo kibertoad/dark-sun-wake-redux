@@ -85,6 +85,16 @@ public sealed class RegionSceneRasterizerTests
         Assert.Contains("12544-byte terrain map", Error(badMap, Objects(), 0, 0, 1, 1));
     }
 
+    [Fact]
+    public void OpeningTyrSceneUsesObservedViewport()
+    {
+        var viewport = OpeningTyrScene.Rasterize(Region(), Objects());
+
+        Assert.Equal((1024, 1368, 320, 200),
+            (viewport.OriginX, viewport.OriginY, viewport.Width, viewport.Height));
+        Assert.Equal(64_000, viewport.Pixels.Length);
+    }
+
     private static string Error(
         PackedRegion region,
         PackedObjectFrameCatalog objects,

@@ -124,7 +124,9 @@ try
                 RegionSceneRasterizer.WorldWidth - LogicalCanvasTransform.LogicalWidth,
                 RegionSceneRasterizer.WorldHeight - LogicalCanvasTransform.LogicalHeight,
                 LogicalCanvasTransform.LogicalWidth, LogicalCanvasTransform.LogicalHeight);
-            if (topLeft.Pixels.Length != 64_000 || bottomRight.Pixels.Length != 64_000)
+            var opening = OpeningTyrScene.Rasterize(region, objects);
+            if (topLeft.Pixels.Length != 64_000 || bottomRight.Pixels.Length != 64_000 ||
+                opening.Pixels.Length != 64_000)
                 throw new InvalidDataException("The Tyr scene compositor returned incomplete viewports.");
             var uiPath = Path.Combine(assetPack,
                 OriginalContent.StartFlowUiCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));

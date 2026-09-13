@@ -22,8 +22,10 @@ public sealed record IndexedPalette(IReadOnlyList<Rgb24> Colors)
             if (red > 63 || green > 63 || blue > 63)
                 throw new InvalidDataException(
                     $"{sourceName}: color {index} contains a component outside the 6-bit VGA range.");
-            colors[index] = new((byte)(red * 4), (byte)(green * 4), (byte)(blue * 4));
+            colors[index] = new(Expand(red), Expand(green), Expand(blue));
         }
         return new(colors);
     }
+
+    private static byte Expand(byte component) => (byte)((component << 2) | (component >> 4));
 }
