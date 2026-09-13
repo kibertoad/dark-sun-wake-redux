@@ -287,6 +287,9 @@ decoder rather than being guessed now.
 - **Acceptance - original content.** Required map, region, sprite, palette, text,
   portrait, and item resources are extracted. Unknown records remain explicitly
   unknown; dangling references and corrupt bounds produce contextual errors.
+  `DATA-GOG-REGION-001` now bounds the shared region identity, 128x98 map and
+  geometry planes, 16x16 local tiles, and eight-byte external-object references;
+  extraction and gameplay semantics remain pending.
 - **Automated tests.** Synthetic-map navigation/collision, deterministic command
   traces, dialogue branches, inventory conservation, menu routing, invalid
   resource reference, and malformed-region tests.
@@ -403,7 +406,7 @@ decoder rather than being guessed now.
 | Q1 | Is `DarkSunWakeRedux` / `Dark Sun: Wake of the Ravager Redux` the approved identity? | configuration | repository owner | closed - approved 2026-09-12 |
 | Q2 | Is the installed GOG build the only initial supported edition, with later revisions represented by separate manifests? | slices 1, 7 | repository owner | closed - initial work targets the supplied GOG build; later revisions require separate fingerprints |
 | Q3 | Which underlying DOS/CD-ROM revision is in GOG build `52095422060333615`? | slices 1, 4, 6 | evidence investigation | open |
-| Q4 | Which source files and GFF/resource records are required, and what are their bounded structures? | slices 1-3 | evidence investigation | open - GFF, image/palette, FONT, TEXT, core UI records, the versioned `CHAR` envelope/identity/ability fields, and raw `PSIN` companion envelope are bounded; title/start, the start shell's #20028/#20029 layers, the party overview's #11000/#20079 layers, interface palette #1000, twenty generation/modal controls, shared window image, all six start-flow window graphs, APFM event masks, the owned font's identity map, and encoding-neutral glyph-run/block composition are mapped; the generic WIND engine does not consume its image field, so #19004 still awaits an app-specific consumer or observation; remaining `CHAR` header/tail state, `PSIN` bit meanings, generalized map semantics, authentic text spacing/palette/routing/alignment, mask-bit meanings, dynamic party data, later-window shell drawing semantics, and the rest of the minimum pack remain unknown |
+| Q4 | Which source files and GFF/resource records are required, and what are their bounded structures? | slices 1-3 | evidence investigation | open - GFF, image/palette, FONT, TEXT, core UI records, the versioned `CHAR` envelope/identity/ability fields, raw `PSIN` companion envelope, and region `RNME`/`PAL `/`MAP `/`GMAP`/`TILE`/`ETAB` structures and references are bounded; title/start, party overview, ADD-list, interface palette, generation/modal controls, shared window image, start-flow window graphs, APFM event masks, the owned font's identity map, and encoding-neutral glyph composition are mapped; #19004 still awaits an app-specific consumer; remaining character state, mask/geometry/entity meanings, authentic text presentation, dynamic party data, later-window semantics, region extraction dependencies, and the rest of the minimum packs remain unknown |
 | Q5 | What are the logical resolution, pixel aspect, palettes, cursor geometry, animation cadence, and audio timing? | slices 2-7 | runtime observation | open |
 | Q6 | For each verified manual/guide/runtime conflict or original defect, should compatibility preserve it, fix it, or expose an option? | slices 4-7 | repository owner after evidence | open |
 | Q7 | Are original save compatibility and Shattered Lands party transfer desired once their formats are evidenced? | slice 7 | repository owner | open |

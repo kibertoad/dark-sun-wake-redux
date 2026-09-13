@@ -47,6 +47,7 @@ dotnet run --project tools/DarkSunWakeRedux.Inspect -- ui-catalog "C:\path\to\RE
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- font-catalog "C:\path\to\RESOURCE.GFF"
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- text-catalog "C:\path\to\RESOURCE.GFF"
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- character-catalog "C:\path\to\CHARSAVE.GFF"
+dotnet run --project tools/DarkSunWakeRedux.Inspect -- region-catalog "C:\path\to\RGN032.GFF" "C:\path\to\OBJEX.GFF"
 ```
 
 The first command emits path, size, and SHA-256 inventory. The second emits only
@@ -58,7 +59,10 @@ resource references.
 The fifth validates indexed bitmap-font records and emits glyph counts,
 dimensions, character-map identity/hash, and pixel-index range metadata without
 emitting proprietary glyph pixels.
-The sixth validates TEXT line envelopes and emits only counts and lengths.
+The sixth validates TEXT line envelopes and emits only counts and lengths. The
+seventh validates bounded character metadata. The eighth validates a region's
+identity, planes, decoded tiles, entity records, and external object references,
+then emits only structural counts.
 
 Verify the runtime-side derived asset without opening a window:
 

@@ -14,6 +14,7 @@ semantics.
 | GFF `CHAR` envelope, identity, and abilities | Original character records | Version 1 has a 79-byte fixed header followed by a byte-counted sequence of 33-byte uninterpreted tail records; six one-byte ability scores at offsets 35..40 follow manual Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma order; the name is printable ASCII, NUL-terminated within a 16-byte slot at offset 43; remaining fields are uninterpreted | high across all 19 records in the owned `CHARSAVE.GFF`; not runtime-validated | Require version 1 and exact `79 + count * 33` size; bound score range and name slot; stop at the first NUL because later slot bytes may be stale; reject trailing data, out-of-range scores, and empty, unterminated, or non-printable names |
 | GFF `PSIN` | Character companion mask | Same-number companion for every owned `CHAR`; exactly one byte using a nonzero subset of the low three bits | high for record correlation and structural mask envelope; individual and combined bit meanings remain unknown | Require exactly one byte, reject zero and bits outside `0..2`, and require one-to-one correlation in catalog inspection |
 | GFF `WIND`, `BUTN`, `APFM`, `EBOX` | UI layout and controls | Bounded common fields and references are decoded; unknown fixed fields and variable button tails remain uninterpreted | verified for all matching resources in `RESOURCE.GFF` | Require signatures and exact declared sizes; bound fixed records, complete child records, dimensions, tags, repeated identities, and references |
+| GFF `RNME`, `PAL `, `MAP `, `GMAP`, `TILE`, `ETAB` | Region identity, palette, terrain grid, geometry plane, tile images, and placed-object references | Same-number region records, exact 128x98 byte planes, single-frame 16x16 tiles, and eight-byte entity records are decoded; geometry and entity-flag meanings remain unknown | verified structurally across all 20 owned region files; field roles corroborated by `DSUN-MUSIC` | Require exactly one matching region record per tag; bound names, planes, tile images, entity counts, and every local `TILE`/external `OJFF` reference |
 | Pack `*.dsix` | Derived indexed-image asset | `DSIX` v1 stores one decoded 256-color palette plus bounded indexed frames and binary alpha | implemented; title asset round-trip and extraction validated | Bound file size, version, frame count, dimensions, pixels, alpha, and trailing data; reject non-binary alpha |
 | Pack `*.dsft` | Derived indexed-font asset | `DSFT` v1 stores a character map, shared height, widths, and bounded indexed glyph pixels | implemented; interface-font round-trip and extraction validated | Bound file size, version, glyph count, height, widths, pixel counts, and trailing data |
 | Pack `*.dstx` | Derived text catalog | `DSTX` v1 deterministically stores original resource IDs and printable ASCII lines | implemented; full TEXT catalog round-trip and extraction validated | Bound file size, version, resource/line counts and lengths; reject duplicates, unsupported bytes, and trailing data |
@@ -70,6 +71,29 @@ exposing payload bytes. Exact aliases are accepted because the owned files may
 address one byte range more than once; non-identical overlapping ranges are
 rejected. Other payload structures and cross-tag relationships remain open and
 require separate evidence entries and tests.
+
+## Region maps
+
+**Evidence:** `DATA-GOG-REGION-001`, corroborated by `DSUN-MUSIC`.
+
+Each of the 20 owned `RGN*.GFF` containers has a single region number shared by
+`RNME`, `PAL `, `MAP `, `GMAP`, and `ETAB`. `RNME` is a printable ASCII name
+terminated by NUL. `MAP ` and `GMAP` are each exactly 12,544 bytes, indexed in
+row-major order over 128 columns and 98 rows. Every `MAP ` value is a byte-sized
+resource number naming a local `TILE`; all 3,043 owned tiles decode as one 16x16
+indexed-image frame. `GMAP` values are preserved verbatim because their
+collision and wall-bit meanings have not yet been established for this build.
+
+`ETAB` contains consecutive eight-byte records. The independently decoded
+structural fields are signed 16-bit X and Y, a signed vertical-offset byte, an
+uninterpreted flags byte, and a signed 16-bit object number. The absolute object
+number of all 13,559 owned records resolves to an `OJFF` resource in the
+fingerprinted `OBJEX.GFF`. The sign and flags are retained; no mirroring,
+interaction, ordering, or collision behavior is inferred from them yet.
+
+The reader caps the region name at 64 bytes and the entity table at 16,384
+records, requires the exact map dimensions and 16x16 tile frames, and rejects
+missing local tiles or external objects with region/resource context.
 
 ## Indexed images and palettes
 

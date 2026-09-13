@@ -51,6 +51,37 @@
 - **Tests:** synthetic row/planar decoding, transparency, palette conversion,
   and malformed size, bounds, component, and bitstream cases.
 
+### DATA-GOG-REGION-001 - Region map structural catalog
+
+- **Question:** Which bounded region structures identify Tyr and supply its
+  terrain grid, geometry bytes, tile images, and placed-object references?
+- **Method:** Compare DSUN-MUSIC commit
+  `79b692770caebda3de685feaf42906aae31572d1` with an independent bounded
+  reader, then inspect all 20 owned `RGN*.GFF` files against the fingerprinted
+  `OBJEX.GFF`. Record only structural summaries; do not retain decoded maps or
+  images in Git.
+- **Finding:** Every region contains one same-number `RNME`, `PAL `, `MAP `,
+  `GMAP`, and `ETAB`. `RNME` is printable ASCII terminated by NUL. Both map
+  planes contain exactly 12,544 bytes arranged as 128 columns by 98 rows.
+  Every `MAP ` byte resolves to a local, single-frame 16x16 `TILE`. `ETAB` is a
+  sequence of eight-byte records containing two signed 16-bit coordinates, a
+  signed vertical-offset byte, a flags byte, and a signed 16-bit object number;
+  the absolute object number resolves to `OJFF` in `OBJEX.GFF`. The geometry
+  bytes and entity flags are retained without assigning gameplay meaning.
+  Across the owned set, 3,043 tiles decode and 13,559 entity references resolve.
+  `RGN032.GFF` (64,641 bytes, SHA-256
+  `6224aefe947062141f2102bfa1098d9e7fa0e1f6eab8d385eaf2a7d2a434d04e`)
+  identifies resource #50 as `Tyr`.
+- **Confidence:** verified for sizes, identities, decoding, and reference
+  integrity in GOG-1432903719; medium for coordinate/vertical-field names from
+  the corroborating research; unknown for geometry bits, entity flags, map
+  collision semantics, and the opening spawn.
+- **Implementation:** `DarkSunWakeRedux.Resources.GffRegion` and the read-only
+  `region-catalog` inspection command. No region content enters the asset pack
+  in this finding.
+- **Tests:** synthetic successful decoding plus malformed name, plane length,
+  tile frame, partial entity record, missing tile, and missing object cases.
+
 ### DATA-GOG-TITLE-001 - Title image resource mapping
 
 - **Question:** Which resource and palette form the static game-title image?

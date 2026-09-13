@@ -2,6 +2,39 @@ using System.Security.Cryptography;
 using System.Text.Json;
 using DarkSunWakeRedux.Resources;
 
+if (args.Length == 3 && args[0].Equals("region-catalog", StringComparison.OrdinalIgnoreCase))
+{
+    try
+    {
+        await using var regionStream = File.OpenRead(args[1]);
+        await using var objectStream = File.OpenRead(args[2]);
+        var regionArchive = GffArchive.Read(regionStream, args[1]);
+        var objectArchive = GffArchive.Read(objectStream, args[2]);
+        var region = GffRegion.Read(regionArchive, objectArchive, args[1]);
+        Console.WriteLine(JsonSerializer.Serialize(new
+        {
+            path = Path.GetFullPath(args[1]),
+            region.ResourceNumber,
+            region.Name,
+            mapWidth = GffRegion.TileColumns,
+            mapHeight = GffRegion.TileRows,
+            tileCount = region.Tiles.Count,
+            usedTileCount = region.TileMap.Distinct().Count(),
+            geometryValueCount = region.GeometryMap.Distinct().Count(),
+            entityCount = region.Entities.Count,
+            referencedObjectCount = region.Entities.Select(entity => entity.ObjectResourceNumber)
+                .Distinct().Count()
+        }, new JsonSerializerOptions { WriteIndented = true }));
+        return 0;
+    }
+    catch (Exception exception) when (exception is InvalidDataException or IOException or
+                                      UnauthorizedAccessException or KeyNotFoundException)
+    {
+        Console.Error.WriteLine($"[region_catalog_unreadable] {exception.Message}");
+        return 2;
+    }
+}
+
 if (args.Length == 2 && args[0].Equals("character-catalog", StringComparison.OrdinalIgnoreCase))
 {
     try
@@ -241,6 +274,7 @@ if (args.Length != 1 || !Directory.Exists(args[0]))
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect text-catalog <owned-original.gff>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect font-catalog <owned-original.gff>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect ui-catalog <owned-original.gff>");
+    Console.Error.WriteLine("  DarkSunWakeRedux.Inspect region-catalog <owned-region.gff> <owned-objects.gff>");
     return 64;
 }
 

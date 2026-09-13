@@ -63,6 +63,7 @@ yet.
 | Saves and compatibility | Start-flow snapshot schema 4 with class progression, dropped-character storage, and hash-verified deterministic replay | Native save-file I/O, whole-game replays, original saves, and Shattered Lands party transfer are not implemented |
 | Presentation | Verified-pack start window composes two measured interface-palette layers and DSUI-derived controls over black; CREATE CHARACTERS reaches the two-layer original party-overview shell; the ADD state renders its measured list shell and controls; all seven extracted window graphs resolve to typed controls | Party portraits/fields, ADD list content/interactions, and other destination screens are incomplete; title sequencing, hit-edge parity, frame states, pixel aspect, animation, audio, and video await observation |
 | Text resources | Bounded FONT decoding/DSFT extraction, verified owned-font identity map, deterministic indexed run/block rasterization, and all 62 printable-ASCII `TEXT` records decoded into DSTX | Generalized map semantics, authentic glyph/line spacing, palette, text-ID routing, alignment, and runtime rendering remain open |
+| Region data | Read-only bounded catalogs validate all 20 owned regions, including Tyr's exact 128x98 terrain/geometry planes, local 16x16 tiles, and external object references | Region extraction, rendering, collision/geometry semantics, entities, opening placement, and gameplay are not implemented |
 
 ## Developer quick start
 
