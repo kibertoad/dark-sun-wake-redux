@@ -102,6 +102,22 @@ public sealed record UiLayerAsset(
     int FrameWidth,
     int FrameHeight);
 
+public sealed record UiImageAsset(
+    string Name,
+    string Path,
+    string Tag,
+    uint ResourceNumber,
+    int FrameWidth,
+    int FrameHeight,
+    int FrameCount)
+{
+    public bool HasExpectedFrames(IReadOnlyList<IndexedImageFrame> frames) =>
+        frames.Count == FrameCount && frames.All(frame =>
+            frame.Width == FrameWidth && frame.Height == FrameHeight);
+}
+
+public sealed record UiImagePlacement(string AssetPath, int X, int Y);
+
 public sealed record CharacterGenerationButtonAsset(
     string Name,
     string Path,
@@ -129,7 +145,7 @@ public sealed record SourceIdentification(
 
 public static class OriginalContent
 {
-    public const int AssetPackFormatVersion = 11;
+    public const int AssetPackFormatVersion = 12;
     public const string GameId = "dark-sun-wake-redux";
     public const string TitleImageAssetPath = "images/title.dsix";
     public const string InterfaceFontAssetPath = "fonts/interface.dsft";
@@ -153,6 +169,38 @@ public static class OriginalContent
         new("party-overview-base", "images/party-overview/base.dsix", 11000, 0, 0, 320, 200),
         new("view-character-title", "images/party-overview/view-character-title.dsix",
             20079, 55, 0, 210, 23)
+    ];
+
+    public static IReadOnlyList<UiImageAsset> AddExistingCharacterAssets { get; } =
+    [
+        new("base", "images/add-existing/base.dsix", "BMP ", 10005, 320, 200, 1),
+        new("title", "images/add-existing/title.dsix", "ICON", 18103, 104, 23, 1),
+        new("add", "images/add-existing/add.dsix", "ICON", 18104, 44, 15, 4),
+        new("delete", "images/add-existing/delete.dsix", "ICON", 18110, 62, 15, 4),
+        new("row", "images/add-existing/row.dsix", "ICON", 18100, 165, 11, 4),
+        new("scroll-up", "images/add-existing/scroll-up.dsix", "ICON", 12102, 14, 10, 4),
+        new("scroll-down", "images/add-existing/scroll-down.dsix", "ICON", 12101, 14, 14, 4)
+    ];
+
+    public static IReadOnlyList<UiImagePlacement> AddExistingCharacterPlacements { get; } =
+    [
+        new("images/add-existing/base.dsix", 0, 0),
+        new("images/add-existing/row.dsix", 46, 31),
+        new("images/add-existing/row.dsix", 46, 42),
+        new("images/add-existing/row.dsix", 46, 53),
+        new("images/add-existing/row.dsix", 46, 64),
+        new("images/add-existing/row.dsix", 46, 75),
+        new("images/add-existing/row.dsix", 46, 86),
+        new("images/add-existing/row.dsix", 46, 97),
+        new("images/add-existing/row.dsix", 46, 108),
+        new("images/add-existing/row.dsix", 46, 119),
+        new("images/add-existing/row.dsix", 46, 130),
+        new("images/add-existing/scroll-up.dsix", 215, 30),
+        new("images/add-existing/scroll-down.dsix", 215, 130),
+        new("images/add-existing/add.dsix", 231, 30),
+        new("images/character-generation/exit.dsix", 231, 50),
+        new("images/add-existing/delete.dsix", 215, 148),
+        new("images/add-existing/title.dsix", 110, 0)
     ];
 
     public static IReadOnlyList<StartMenuButtonAsset> StartMenuButtons { get; } =

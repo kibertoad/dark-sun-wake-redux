@@ -13,6 +13,17 @@ games. A checkout is in one of two states, and
 - **Configured project** (`"configured": true`): a restoration of one specific
   game. Changes here are game-specific and must keep the evidence trail intact.
 
+### Terminology mapping
+
+The original game and manuals use **race** as the conventional fantasy term for
+peoples such as humans, elves, dwarves, and similar character origins. It is
+not intended by this project in an offensive or real-world racial sense. The
+reimplementation maps original **race** terminology to **origin** so that new
+code, APIs, UI, tests, and project-authored descriptions use respectful modern
+language. Evidence records may retain **race** or **racial** only when quoting
+or naming an original heading, table, field, or claim; those source terms map
+to **origin** and **origin-based** in implementation.
+
 ## Plan before you build
 
 **Do not write implementation code before `docs/IMPLEMENTATION-PLAN.md`

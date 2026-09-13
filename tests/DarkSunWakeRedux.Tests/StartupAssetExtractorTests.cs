@@ -27,6 +27,23 @@ public sealed class StartupAssetExtractorTests
             new UiLayerAsset("view-character-title",
                 "images/party-overview/view-character-title.dsix", 20079, 55, 0, 210, 23)
         ], OriginalContent.PartyOverviewLayers);
+        Assert.Equal(7, OriginalContent.AddExistingCharacterAssets.Count);
+        Assert.Equal(17, OriginalContent.AddExistingCharacterPlacements.Count);
+        Assert.Equal(7, OriginalContent.AddExistingCharacterAssets
+            .Select(asset => asset.Path).Distinct().Count());
+        Assert.All(OriginalContent.AddExistingCharacterAssets, asset =>
+        {
+            Assert.Contains(asset.Tag, new[] { "BMP ", "ICON" });
+            Assert.InRange(asset.FrameWidth, 1, 320);
+            Assert.InRange(asset.FrameHeight, 1, 200);
+            Assert.InRange(asset.FrameCount, 1, 4);
+        });
+        var addAssetPaths = OriginalContent.AddExistingCharacterAssets
+            .Select(asset => asset.Path)
+            .Append("images/character-generation/exit.dsix")
+            .ToHashSet(StringComparer.Ordinal);
+        Assert.All(OriginalContent.AddExistingCharacterPlacements, placement =>
+            Assert.Contains(placement.AssetPath, addAssetPaths));
         Assert.All(OriginalContent.StartMenuLayers, layer =>
         {
             Assert.InRange(layer.X, 0, 319);
@@ -85,7 +102,7 @@ public sealed class StartupAssetExtractorTests
             var manifest = await AssetPackInstaller.InstallAsync(output, staging =>
                 StartupAssetExtractor.WritePackAsync(sourceRoot, staging, edition, "test"));
 
-            Assert.Equal(34, manifest.Files.Count);
+            Assert.Equal(41, manifest.Files.Count);
             var asset = Assert.Single(manifest.Files, item => item.Path == OriginalContent.TitleImageAssetPath);
             Assert.Contains("BMP #11011", asset.Conversion, StringComparison.Ordinal);
             Assert.Contains("PAL #11011", asset.Conversion, StringComparison.Ordinal);
@@ -102,6 +119,16 @@ public sealed class StartupAssetExtractorTests
                 Assert.Contains($"BMP #{layer.ImageResourceNumber}", layerAsset.Conversion,
                     StringComparison.Ordinal);
                 Assert.Contains("PAL #1000", layerAsset.Conversion, StringComparison.Ordinal);
+            }
+            foreach (var image in OriginalContent.AddExistingCharacterAssets)
+            {
+                var imageAsset = Assert.Single(manifest.Files, item => item.Path == image.Path);
+                Assert.Contains($"{image.Tag}#{image.ResourceNumber}",
+                    imageAsset.Conversion, StringComparison.Ordinal);
+                Assert.Contains("PAL #1000", imageAsset.Conversion, StringComparison.Ordinal);
+                using var imageStream = File.OpenRead(Path.Combine(output,
+                    image.Path.Replace('/', Path.DirectorySeparatorChar)));
+                Assert.Equal(image.FrameCount, PackedIndexedImage.Read(imageStream).Frames.Count);
             }
             foreach (var button in OriginalContent.StartMenuButtons)
             {
@@ -228,6 +255,11 @@ public sealed class StartupAssetExtractorTests
                         ? (Width: 1, Height: 1)
                         : (Width: button.FrameWidth, Height: button.FrameHeight)).ToArray())))
             .ToArray();
+        var addExistingImages = OriginalContent.AddExistingCharacterAssets
+            .Select(asset => (Asset: asset,
+                Bytes: TransparentImage(Enumerable.Repeat(
+                    (Width: asset.FrameWidth, Height: asset.FrameHeight), asset.FrameCount).ToArray())))
+            .ToArray();
         var characterIcons = OriginalContent.CharacterGenerationButtons
             .Select(button => (button.ImageResourceNumber,
                 Bytes: TransparentImage(Enumerable.Repeat(
@@ -247,6 +279,7 @@ public sealed class StartupAssetExtractorTests
         var windows = OriginalContent.StartFlowWindowResourceNumbers
             .Select(number => (Number: number, Bytes: Window(number))).ToArray();
         var indexOffset = 28 + title.Length + windowImage.Length + menuLayers.Sum(item => item.Bytes.Length) +
+            addExistingImages.Sum(item => item.Bytes.Length) +
             icons.Sum(item => item.Bytes.Length) + characterIcons.Sum(item => item.Bytes.Length) +
             titlePalette.Length + interfacePalette.Length +
             modalIcons.Sum(item => item.Bytes.Length) + font.Length + text.Length +
@@ -274,6 +307,14 @@ public sealed class StartupAssetExtractorTests
             bitmapEntries.Add((layer.ImageResourceNumber, offset, layer.Bytes.Length));
         }
         var iconEntries = new List<(uint Number, int Offset, int Size)>();
+        foreach (var image in addExistingImages)
+        {
+            var offset = checked((int)stream.Position);
+            writer.Write(image.Bytes);
+            var entry = (image.Asset.ResourceNumber, offset, image.Bytes.Length);
+            if (image.Asset.Tag == "BMP ") bitmapEntries.Add(entry);
+            else iconEntries.Add(entry);
+        }
         foreach (var icon in icons)
         {
             var offset = checked((int)stream.Position);

@@ -57,6 +57,17 @@ public static class StartupAssetExtractor
         foreach (var layer in OriginalContent.PartyOverviewLayers)
             files.Add(await ExtractLayerAsync(archive, interfacePalette, stagingRoot,
                 layer, "party-overview", cancellationToken));
+        foreach (var asset in OriginalContent.AddExistingCharacterAssets)
+        {
+            var image = IndexedImage.Read(archive.GetResource(asset.Tag, asset.ResourceNumber),
+                $"{SourcePath}:{asset.Tag}#{asset.ResourceNumber}");
+            if (!asset.HasExpectedFrames(image.Frames))
+                throw new InvalidDataException(
+                    $"The mapped add-existing {asset.Name} image has unexpected frame geometry.");
+            files.Add(await WriteImageAsync(stagingRoot, asset.Path, image, interfacePalette,
+                $"{asset.Tag}#{asset.ResourceNumber} all frames + " +
+                $"{PaletteTag}#{InterfacePaletteNumber}", cancellationToken));
+        }
 
         foreach (var mapping in OriginalContent.StartMenuButtons)
         {

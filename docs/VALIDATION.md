@@ -34,27 +34,28 @@ The smoke modes have distinct purposes:
 - `--smoke-test` exits before content or graphics initialization and is safe on
   a content-free CI worker.
 - `--content-smoke-test --asset-pack <path>` verifies the exact pack inventory,
-  opens all twenty-six DSIX UI images, the DSFT interface font, the DSTX text
+  opens all thirty-three DSIX UI images, the DSFT interface font, the DSTX text
   catalog, the resolved six-window DSUI graph, and the DSCH character metadata
   catalog, and checks their frame, geometry, glyph, reference, and inventory contracts
   without a window.
 - `--platform-smoke-test` creates the MonoGame platform surface and exits; it is
   reserved for installed-package environments with a display server.
 - Normal startup verifies the pack before opening a window and renders the
-  evidenced start shell/controls and party-overview shell; title sequencing
-  remains pending.
+  evidenced start shell/controls, party-overview shell, and ADD-list shell;
+  title sequencing and ADD-list content/interaction remain pending.
 
 Owned-build validation currently targets GOG product `1432903719`, installed
 build `52095422060333615`. Metadata-only FONT inspection verifies that all 256
 character-map entries are identity values and summarizes its pixel-index range
 without emitting glyph pixels. A temporary owned-source extraction produced and
-verified the exact 34-asset manifest including both start-shell layers, both
-party-overview layers, all six windows, 39 controls, and
+verified the exact 41-asset manifest including both start-shell layers, both
+party-overview layers, the ADD-list base and control family, all six windows, 39 controls, and
 19 bounded character metadata entries;
 the runtime content-smoke path opened that pack successfully, after which the
 temporary pack was removed. Local-only decoded previews established the title
 and start-window mappings recorded as `DATA-GOG-TITLE-001`,
-`DATA-GOG-UI-001`, `DATA-GOG-UI-006`, and `DATA-GOG-UI-007`; screenshots and decoded outputs stay
+`DATA-GOG-UI-001`, `DATA-GOG-UI-006`, `DATA-GOG-UI-007`, and
+`DATA-GOG-UI-008`; screenshots and decoded outputs stay
 under ignored `analysis/original/` and never become golden files. Presentation
 goldens in Git must use synthetic stand-ins. Visual comparison, input traces,
 animation timing, and audiovisual synchronization remain open and will be

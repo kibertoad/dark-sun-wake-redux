@@ -273,12 +273,40 @@
   palette; medium for coordinates because the public capture is compressed and
   its precise source revision is not identified.
 - **Implementation:** both layers are transactionally extracted as DSIX in
-  asset-pack format 11 and rendered when Core enters `PartyOverview`.
+  asset-pack format 12 and rendered when Core enters `PartyOverview`.
 - **Tests:** exact mapping/order/geometry, synthetic extraction provenance,
-  exact 34-file inventory, pack verification, and content smoke.
+  exact 41-file inventory, pack verification, and content smoke.
 - **Uncertainty:** Party portraits, status fields, empty-slot art, BEGIN and
   slot interaction, focus, and the runtime label substitutions visible in the
   separate ADD list remain open.
+
+### DATA-GOG-UI-008 - Add-existing-character shell composition
+
+- **Question:** Which original resources and placements compose the list shown
+  after choosing ADD for an empty party slot?
+- **Method:** Decode `WIND` #18501 and its referenced controls from the
+  fingerprinted owned archive, inspect geometry-matched `BMP ` and `ICON`
+  resources with `PAL ` #1000, and correlate the result against
+  `PLAYTHROUGH-VIDEO-001` near 2:30-2:40.
+- **Finding:** `BMP ` #10005 is the complete 320x200 base. Ten instances of
+  four-frame `ICON` #18100 (165x11) occupy x=46 and y=31 through 130 in 11-pixel
+  steps. Up/down controls use #12102 at (215,30) and #12101 at (215,130);
+  ADD, EXIT, and DELETE use #18104 at (231,30), #18109 at (231,50), and #18110
+  at (215,148); the ADD title uses #18103 at (110,0). The static WIND records
+  name SAVE imagery for two reused controls, while the observed ADD screen uses
+  the listed ADD imagery, so those runtime substitutions are recorded explicitly.
+- **Confidence:** high for owned resource identities, frame dimensions,
+  interface palette, and WIND geometry; medium for runtime substitution because
+  the corroborating public capture's exact source revision is unidentified.
+- **Implementation:** seven newly mapped images are transactionally extracted
+  as DSIX in asset-pack format 12. Their first frames, plus the already extracted
+  EXIT image, render when Core enters `AddExistingCharacter`.
+- **Tests:** exact asset and placement contracts, frame bounds, synthetic
+  extraction provenance, exact 41-file inventory, pack verification, and
+  content smoke.
+- **Uncertainty:** Stored-character names and portraits, row selection,
+  scrolling, focus, frame-state transitions, ADD/DELETE behavior, and the
+  party-slot interaction that reaches this state remain open.
 
 ## Initial rules
 
@@ -424,7 +452,7 @@
   supported GOG build; runtime selection and remaining field semantics are
   unknown.
 - **Implementation:** `PackedCharacterCatalog` plus transactional extraction to
-  `characters/catalog.dsch`; the asset-pack manifest is version 11 and records
+  `characters/catalog.dsch`; the asset-pack manifest is version 12 and records
   `CHARSAVE.GFF` provenance.
 - **Tests:** synthetic round-trip and deterministic ordering; duplicate,
   malformed-field, noncanonical-order, truncation, and trailing-data rejection;

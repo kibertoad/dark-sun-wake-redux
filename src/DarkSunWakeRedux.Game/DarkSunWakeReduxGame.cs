@@ -14,6 +14,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     private SpriteBatch? _spriteBatch;
     private readonly List<(UiLayerAsset Layer, Texture2D Texture)> _startMenuLayers = [];
     private readonly List<(UiLayerAsset Layer, Texture2D Texture)> _partyOverviewLayers = [];
+    private readonly List<(UiImagePlacement Placement, Texture2D Texture)> _addExistingImages = [];
     private readonly List<(StartMenuControl Control, Texture2D Texture)> _startMenuControls = [];
     private readonly StartFlowSession _startFlow = new(0);
     private MouseState _previousMouse;
@@ -55,6 +56,20 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             using var layerStream = File.OpenRead(layerPath);
             var image = PackedIndexedImage.Read(layerStream, layer.Path);
             return CreateTexture(image, image.Frames.Single());
+        }
+        var addExistingTextures = new Dictionary<string, Texture2D>(StringComparer.Ordinal);
+        foreach (var placement in OriginalContent.AddExistingCharacterPlacements)
+        {
+            if (!addExistingTextures.TryGetValue(placement.AssetPath, out var texture))
+            {
+                var path = Path.Combine(_assetPack,
+                    placement.AssetPath.Replace('/', Path.DirectorySeparatorChar));
+                using var stream = File.OpenRead(path);
+                var image = PackedIndexedImage.Read(stream, placement.AssetPath);
+                texture = CreateTexture(image, image.Frames[0]);
+                addExistingTextures.Add(placement.AssetPath, texture);
+            }
+            _addExistingImages.Add((placement, texture));
         }
         var uiPath = Path.Combine(_assetPack,
             OriginalContent.StartFlowUiCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
@@ -116,21 +131,26 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         if (_spriteBatch is not null)
         {
             var screen = _startFlow.Snapshot().Screen;
-            var layers = screen switch
+            var images = screen switch
             {
-                StartFlowScreen.StartWindow => _startMenuLayers,
-                StartFlowScreen.PartyOverview => _partyOverviewLayers,
-                _ => null
+                StartFlowScreen.StartWindow => _startMenuLayers.Select(item =>
+                    (item.Layer.X, item.Layer.Y, item.Texture)),
+                StartFlowScreen.PartyOverview => _partyOverviewLayers.Select(item =>
+                    (item.Layer.X, item.Layer.Y, item.Texture)),
+                StartFlowScreen.AddExistingCharacter => _addExistingImages.Select(item =>
+                    (item.Placement.X, item.Placement.Y, item.Texture)),
+                _ => []
             };
-            if (layers is not null)
+            var placedImages = images.ToArray();
+            if (placedImages.Length > 0)
             {
                 var transform = new LogicalCanvasTransform(
                     GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
                 var destination = new Rectangle(transform.X, transform.Y, transform.Width, transform.Height);
                 _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-                foreach (var (layer, texture) in layers)
+                foreach (var (x, y, texture) in placedImages)
                     _spriteBatch.Draw(texture, ScaledRectangle(destination, transform,
-                        layer.X, layer.Y, texture.Width, texture.Height), Color.White);
+                        x, y, texture.Width, texture.Height), Color.White);
                 if (screen == StartFlowScreen.StartWindow)
                     foreach (var (control, texture) in _startMenuControls)
                         _spriteBatch.Draw(texture, ScaledRectangle(destination, transform,
@@ -145,6 +165,8 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     {
         foreach (var (_, texture) in _startMenuLayers) texture.Dispose();
         foreach (var (_, texture) in _partyOverviewLayers) texture.Dispose();
+        foreach (var texture in _addExistingImages.Select(item => item.Texture).Distinct())
+            texture.Dispose();
         foreach (var (_, texture) in _startMenuControls) texture.Dispose();
         _spriteBatch?.Dispose();
         base.UnloadContent();
