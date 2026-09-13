@@ -1,3 +1,4 @@
+using DarkSunWakeRedux.Core;
 using DarkSunWakeRedux.Game;
 using DarkSunWakeRedux.Resources;
 using Xunit;
@@ -63,6 +64,26 @@ public sealed class AddExistingCharacterInputTests
                 Children = catalog.Windows[0].Children.Reverse().ToArray()
             }]
         }));
+    }
+
+    [Fact]
+    public void OnlyTheEvidencedExitControlMapsToACoreCommand()
+    {
+        var controls = AddExistingCharacterInput.Resolve(Catalog());
+        var exit = Assert.Single(controls, control => control.Kind == AddExistingControlKind.Exit);
+        var add = Assert.Single(controls, control => control.Kind == AddExistingControlKind.Add);
+
+        Assert.Equal(StartFlowCommand.Cancel(), AddExistingCharacterInput.CommandFor(exit));
+        Assert.Null(AddExistingCharacterInput.CommandFor(add));
+
+        var session = new StartFlowSession(0);
+        session.Execute(StartFlowCommand.Choose(StartWindowChoice.CreateCharacters));
+        session.Execute(StartFlowCommand.OpenEmptySlot());
+        session.Execute(StartFlowCommand.Choose(EmptySlotChoice.Add));
+        var result = session.Execute(AddExistingCharacterInput.CommandFor(exit)!);
+
+        Assert.True(result.Accepted);
+        Assert.Equal(StartFlowScreen.PartyOverview, session.Snapshot().Screen);
     }
 
     private static PackedUiCatalog Catalog()

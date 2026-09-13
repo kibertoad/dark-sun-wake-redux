@@ -304,7 +304,9 @@
   EXIT image, render when Core enters `AddExistingCharacter`. WIND #18501 and
   its 17-child graph are retained in DSUI; a dedicated resolver validates the
   320x181 shell, static #10002/source-image references, runtime substitutions, child order,
-  event masks, and exclusive hit rectangles without assigning unresolved actions.
+  event masks, and exclusive hit rectangles. The unambiguous EXIT control maps
+  to Core cancellation; row, scroll, ADD, DELETE, title, and edit-box behavior
+  remain deliberately unassigned.
 - **Tests:** exact asset, graph, substitution, placement, and hit contracts; frame bounds; synthetic
   extraction provenance, exact 41-file inventory, pack verification, and
   content smoke.

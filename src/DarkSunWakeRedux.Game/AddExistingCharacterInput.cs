@@ -1,3 +1,4 @@
+using DarkSunWakeRedux.Core;
 using DarkSunWakeRedux.Resources;
 
 namespace DarkSunWakeRedux.Game;
@@ -109,6 +110,14 @@ public static class AddExistingCharacterInput
                 return control;
         }
         return null;
+    }
+
+    public static StartFlowCommand? CommandFor(AddExistingControl control)
+    {
+        ArgumentNullException.ThrowIfNull(control);
+        return control.Kind == AddExistingControlKind.Exit
+            ? StartFlowCommand.Cancel()
+            : null;
     }
 
     private static ExpectedControl Row(int index, uint resourceNumber, short y) =>

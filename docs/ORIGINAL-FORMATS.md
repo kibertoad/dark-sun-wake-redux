@@ -208,8 +208,8 @@ resource order for deterministic output.
 The reader caps the file at 4 MiB and each record family and window child list
 at 4,096 entries. It rejects non-printable or unsupported child tags, duplicate
 same-type identities, invalid dimensions, unresolved children, truncation, and
-trailing bytes. The Slice 2 pack contains `WIND` #19500 through #19505 plus all
-of their referenced `BUTN`, `APFM`, and `EBOX` records. Unknown source fields,
+trailing bytes. The Slice 2 pack contains `WIND` #18501 and #19500 through #19505
+plus all 56 of their referenced `BUTN`, `APFM`, and `EBOX` records. Unknown source fields,
 button tails, palette assumptions, and shell draw semantics are not carried.
 
 ## Derived DSCH character-metadata catalog

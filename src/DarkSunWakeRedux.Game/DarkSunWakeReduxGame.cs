@@ -16,6 +16,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     private readonly List<(UiLayerAsset Layer, Texture2D Texture)> _partyOverviewLayers = [];
     private readonly List<(UiImagePlacement Placement, Texture2D Texture)> _addExistingImages = [];
     private readonly List<(StartMenuControl Control, Texture2D Texture)> _startMenuControls = [];
+    private IReadOnlyList<AddExistingControl> _addExistingControls = [];
     private readonly StartFlowSession _startFlow = new(0);
     private MouseState _previousMouse;
     private KeyboardState _previousKeyboard;
@@ -74,8 +75,9 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         var uiPath = Path.Combine(_assetPack,
             OriginalContent.StartFlowUiCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
         using var uiStream = File.OpenRead(uiPath);
-        var controls = StartMenuInput.Resolve(PackedUiCatalog.Read(
-            uiStream, OriginalContent.StartFlowUiCatalogAssetPath));
+        var uiCatalog = PackedUiCatalog.Read(uiStream, OriginalContent.StartFlowUiCatalogAssetPath);
+        var controls = StartMenuInput.Resolve(uiCatalog);
+        _addExistingControls = AddExistingCharacterInput.Resolve(uiCatalog);
         foreach (var control in controls)
         {
             var buttonPath = Path.Combine(_assetPack,
@@ -105,15 +107,22 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         if (!_platformSmoke)
         {
             var mouse = Mouse.GetState();
-            if (_startFlow.Snapshot().Screen == StartFlowScreen.StartWindow &&
-                mouse.LeftButton == ButtonState.Pressed && _previousMouse.LeftButton == ButtonState.Released)
+            var screen = _startFlow.Snapshot().Screen;
+            if (mouse.LeftButton == ButtonState.Pressed && _previousMouse.LeftButton == ButtonState.Released)
             {
                 var transform = new LogicalCanvasTransform(
                     GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
-                if (transform.TryToLogical(mouse.X, mouse.Y, out var x, out var y) &&
-                    StartMenuInput.HitTest(_startMenuControls.Select(item => item.Control).ToArray(), x, y)
-                        is { } choice)
-                    _startFlow.Execute(StartFlowCommand.Choose(choice));
+                if (transform.TryToLogical(mouse.X, mouse.Y, out var x, out var y))
+                {
+                    if (screen == StartFlowScreen.StartWindow &&
+                        StartMenuInput.HitTest(
+                            _startMenuControls.Select(item => item.Control).ToArray(), x, y) is { } choice)
+                        _startFlow.Execute(StartFlowCommand.Choose(choice));
+                    else if (screen == StartFlowScreen.AddExistingCharacter &&
+                        AddExistingCharacterInput.HitTest(_addExistingControls, x, y) is { } control &&
+                        AddExistingCharacterInput.CommandFor(control) is { } command)
+                        _startFlow.Execute(command);
+                }
             }
             var keyboard = Keyboard.GetState();
             if (keyboard.IsKeyDown(Keys.Escape) && _previousKeyboard.IsKeyUp(Keys.Escape))
