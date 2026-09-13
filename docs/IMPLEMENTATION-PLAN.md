@@ -244,7 +244,9 @@ decoder rather than being guessed now.
   then use a single inverse canvas transform. A shared bounded resolver now
   materializes typed controls for each of the seven extracted start-flow windows
   while preserving child order, geometry, event masks, and optional image
-  references. Encoding-neutral DSFT glyph-run and multiline-block composition and the owned
+  references. The party screen's full-canvas #2099 application surface is
+  validated exactly, while its internal slot partition remains gated on
+  application-specific observation. Encoding-neutral DSFT glyph-run and multiline-block composition and the owned
   font's identity map are verified; generalized map semantics, shipped spacing,
   palette, edge/focus behavior, and later screens remain open.
 - **Acceptance - original content.** Readers bound offsets, counts, sizes,

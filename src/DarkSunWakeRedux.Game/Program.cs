@@ -115,6 +115,7 @@ try
                 throw new InvalidDataException("The installed start-window UI graph is incomplete.");
             if (AddExistingCharacterInput.Resolve(ui).Count != 17)
                 throw new InvalidDataException("The installed ADD-list UI graph is incomplete.");
+            _ = PartyOverviewInput.Resolve(ui);
             Console.WriteLine($"Verified runtime startup assets at {assetPack}.");
             return 0;
         }

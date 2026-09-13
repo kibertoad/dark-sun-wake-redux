@@ -174,6 +174,34 @@ proof by itself. Never redirect broad output into the repository.
   the extracted DSIX asset, but do not tile, stretch, or draw it until an
   app-specific consumer or controlled observation establishes the operation.
 
+### EXE-GOG-UI-003 - Party surface delegates slot meaning to application logic
+
+- **Question:** Does the single full-canvas control under `WIND` #19502 expose
+  the character-slot hit regions or semantic actions used by the party screen?
+- **Target:** GOG-1432903719 `DSUN.EXE`, 634,416 bytes, SHA-256
+  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Bounded finding:** owned data inspection establishes that `WIND` #19502
+  contains only image-less, event-mask-zero `BUTN` #2099 at (0,0), sized
+  319x199. Exact scalar searches for 19502 and 2099 found no executable use.
+  The generic window registry at `3a8e:02b3` clears optional callback fields at
+  runtime offsets `0xf9` and `0xfd` (`3a8e:05d5`/`05df`). Activation
+  `3a8e:060d` tests/calls `0xfd` at `06fa`/`0707`, dispatches resolved children,
+  then tests/calls `0xf9` at `08aa`/`08b7`. A whole-program structure-offset
+  query found only those reads, the registry clears, and generic setters at
+  `3a8e:0d0c`/`0d3c`; the sole direct activation caller is the registered-window
+  scan at `3a8e:1048` (`107a`).
+- **Interpretation:** the serialized graph establishes one application surface,
+  not the internal party-slot rectangles or their actions. Those semantics are
+  installed or dispatched indirectly at runtime and remain unknown; panel art
+  alone is insufficient evidence for hit boundaries.
+- **Confidence:** high for the serialized surface, generic callback lifecycle,
+  and absence of the two direct scalar constants; unknown for the application
+  callback and slot partition.
+- **Implementation consequence:** validate the exact 319x199 exclusive surface
+  from DSUI and keep it semantically inert until controlled observation or a
+  bounded indirect-call finding establishes the slot partition and actions.
+
 ### EXE-GOG-CHAR-001 - No adjacent default-party identity table established
 
 - **Question:** Does the supported executable contain either disc character

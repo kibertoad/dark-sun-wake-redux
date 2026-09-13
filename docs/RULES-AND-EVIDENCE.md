@@ -278,7 +278,9 @@
   exact 41-file inventory, pack verification, and content smoke.
 - **Uncertainty:** Party portraits, status fields, empty-slot art, BEGIN and
   slot interaction, focus, and the runtime label substitutions visible in the
-  separate ADD list remain open.
+  separate ADD list remain open. `EXE-GOG-UI-003` narrows the input boundary to
+  the exact 319x199 `BUTN` #2099 application surface but does not establish its
+  internal slot partition.
 
 ### DATA-GOG-UI-008 - Add-existing-character shell composition
 
