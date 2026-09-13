@@ -46,6 +46,9 @@ Occupancy-session tests prove canonical immutable multi-cell footprints,
 deterministic occupant ordering, atomic place/move/remove and explicit rejected
 transitions, terrain/bounds/overlap exclusion, own-cell movement overlap, live
 whole-footprint passability, and composition with route planning.
+Actor-movement tests prove route/occupancy lockstep, whole-footprint detours,
+atomic step commits, rejection and dynamic-blocker interruption without partial
+movement, repeatable traces, immutable snapshots, and external drift detection.
 
 The smoke modes have distinct purposes:
 

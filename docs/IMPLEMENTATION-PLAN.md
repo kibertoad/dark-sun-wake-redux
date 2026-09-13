@@ -312,8 +312,10 @@ decoder rather than being guessed now.
   without guessing the opening spawn or cadence. A separate deterministic
   occupancy session atomically places, moves, and removes caller-supplied
   multi-cell footprints over terrain and supplies live whole-footprint route
-  predicates. The concrete party/NPC footprints, opening anchors, integration,
-  cadence, and animation remain open.
+  predicates. A Core actor-movement aggregate now keeps route and occupancy
+  anchors synchronized and interrupts rejected commits. The concrete party/NPC
+  footprints, opening anchors, runtime integration, cadence, and animation
+  remain open.
 - **Automated tests.** Synthetic-map navigation/collision, deterministic command
   traces, dialogue branches, inventory conservation, menu routing, invalid
   resource reference, and malformed-region tests.

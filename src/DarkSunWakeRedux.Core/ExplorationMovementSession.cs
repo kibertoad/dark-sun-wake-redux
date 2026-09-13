@@ -52,6 +52,7 @@ public sealed class ExplorationMovementSession
     private readonly int _width;
     private readonly int _height;
     private readonly Func<GridPoint, bool> _isPassable;
+    private readonly Func<GridPoint, bool> _tryCommitStep;
     private GridPoint _position;
     private GridPoint? _destination;
     private readonly List<GridPoint> _remainingSteps = [];
@@ -60,7 +61,8 @@ public sealed class ExplorationMovementSession
         int width,
         int height,
         GridPoint position,
-        Func<GridPoint, bool> isPassable)
+        Func<GridPoint, bool> isPassable,
+        Func<GridPoint, bool>? tryCommitStep = null)
     {
         ArgumentNullException.ThrowIfNull(isPassable);
         var validation = GridPathfinder.FindPath(width, height, position, position, isPassable);
@@ -71,10 +73,11 @@ public sealed class ExplorationMovementSession
         _height = height;
         _position = position;
         _isPassable = isPassable;
+        _tryCommitStep = tryCommitStep ?? (_ => true);
     }
 
     public ExplorationMoveSnapshot Snapshot() =>
-        new(_position, _destination, _remainingSteps.ToArray());
+        new(_position, _destination, Array.AsReadOnly(_remainingSteps.ToArray()));
 
     public ExplorationMoveTransition Execute(ExplorationMoveCommand command)
     {
@@ -90,7 +93,8 @@ public sealed class ExplorationMovementSession
                 "Unknown exploration movement command kind.")
         };
         var after = Snapshot();
-        return new(before, command, after, events, Changed(before, after));
+        return new(before, command, after, Array.AsReadOnly(events.ToArray()),
+            Changed(before, after));
     }
 
     private IReadOnlyList<ExplorationMoveEvent> Plan(GridPoint destination)
@@ -116,7 +120,7 @@ public sealed class ExplorationMovementSession
     {
         if (_remainingSteps.Count == 0) return [];
         var next = _remainingSteps[0];
-        if (!CanEnter(next))
+        if (!CanEnter(next) || !_tryCommitStep(next))
         {
             _remainingSteps.Clear();
             _destination = null;

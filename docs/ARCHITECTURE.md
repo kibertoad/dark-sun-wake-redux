@@ -60,7 +60,9 @@ Rendering and audio consume events but cannot mutate rules according to frame
 rate. The start/party flow now has versioned snapshots, canonical state hashes,
 and replay divergence checks. Exploration camera/view, route, and occupancy
 sessions likewise transition only from explicit commands; route advancement is
-one semantic cell per command and configurable multi-cell placement is atomic.
+one semantic cell per command, configurable multi-cell placement is atomic, and
+the actor aggregate commits both in lockstep or interrupts without partial
+advancement.
 Later systems must extend this contract without introducing ambient randomness,
 wall-clock decisions, or presentation state.
 

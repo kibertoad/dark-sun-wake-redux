@@ -259,8 +259,9 @@ proof by itself. Never redirect broad output into the repository.
   passability predicate immediately before each semantic step, including both
   diagonal side cells. `ExplorationOccupancySession` supplies bounded atomic
   per-cell placement for caller-provided immutable footprints and a live
-  whole-footprint path predicate, but does not infer a spawn, concrete actor
-  footprint, movement cadence, or animation.
+  whole-footprint path predicate. `ExplorationActorMovementSession` commits that
+  occupancy atomically with each accepted semantic route step, but does not
+  infer a spawn, concrete actor footprint, movement cadence, or animation.
 
 For each useful finding, add a concise entry here or in the relevant
 `docs/RULES-AND-EVIDENCE.md` / `docs/ORIGINAL-FORMATS.md` section with:

@@ -99,6 +99,22 @@ public sealed class ExplorationMovementSessionTests
     }
 
     [Fact]
+    public void RejectedStepCommitInterruptsWithoutAdvancingRouteState()
+    {
+        var session = new ExplorationMovementSession(
+            5, 5, new(0, 0), _ => true, _ => false);
+        session.Execute(ExplorationMoveCommand.Plan(new(2, 0)));
+
+        var interrupted = session.Execute(ExplorationMoveCommand.Advance());
+
+        Assert.Equal(new GridPoint(0, 0), interrupted.After.Position);
+        Assert.Null(interrupted.After.Destination);
+        Assert.Empty(interrupted.After.RemainingSteps);
+        Assert.Equal(ExplorationMoveEventKind.RouteInterrupted,
+            Assert.Single(interrupted.Events).Kind);
+    }
+
+    [Fact]
     public void CancellationAndIdleAdvanceAreIdempotent()
     {
         var session = Session(new(0, 0));
@@ -139,6 +155,8 @@ public sealed class ExplorationMovementSessionTests
 
         Assert.Equal(new GridPoint(0, 0), snapshot.Position);
         Assert.Equal([new(1, 0), new(2, 0)], snapshot.RemainingSteps);
+        Assert.Throws<NotSupportedException>(() =>
+            ((IList<GridPoint>)snapshot.RemainingSteps).Clear());
     }
 
     [Fact]

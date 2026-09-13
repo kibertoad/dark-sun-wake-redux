@@ -538,8 +538,11 @@
   the deterministic camera to reusable plan-route commands. The clock-free
   `ExplorationMovementSession` atomically plans/replans, advances exactly one
   semantic cell per command, completes or cancels routes, and interrupts before
-  entering a newly blocked step or diagonal corner. Runtime movement remains
-  gated on spawn, footprint/occupancy state, and presentation cadence evidence.
+  entering a newly blocked step or diagonal corner. Its optional step-commit
+  boundary lets `ExplorationActorMovementSession` keep route and occupancy
+  anchors synchronized or interrupt without partial advancement. Runtime
+  movement remains gated on spawn, concrete footprint, and presentation cadence
+  evidence.
 - **Tests:** optimal open-grid route, stable obstacle detour, blocked endpoint,
   zero-length route, diagonal corner, endpoint bounds, maximum-grid limits,
   exact flag/bounds/pixel-cell semantics, stable camera-to-destination routing,
@@ -565,12 +568,15 @@
   canonically ordered. `ExplorationOccupancySession` applies place/move/remove
   commands atomically over bounded terrain, emits deterministic events and
   explicit rejection reasons, snapshots placements in occupant-ID order, and
-  exposes a live whole-footprint anchor predicate to pathfinding. No concrete
-  party or NPC footprint is assigned yet.
+  exposes a live whole-footprint anchor predicate to pathfinding.
+  `ExplorationActorMovementSession` composes that predicate and the route
+  session, commits each accepted route step to occupancy, and detects external
+  anchor drift. No concrete party or NPC footprint is assigned yet.
 - **Tests:** multi-cell placement, own-cell overlap during movement, terrain,
   bounds and other-occupant rejection without partial mutation, cell release,
   missing-occupant handling, snapshot isolation/order, invalid payloads, live
-  blocker updates, and route planning through the composed predicate.
+  blocker updates, route planning through the composed predicate, synchronized
+  actor advancement, commit rejection, interruption, and drift detection.
 - **Uncertainty:** Opening occupant IDs, anchor convention, party formation,
   actor-specific footprints, NPC placement, and movement timing remain open.
 

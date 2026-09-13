@@ -121,6 +121,9 @@ public sealed class ExplorationOccupancySession
     public int? OccupantAt(GridPoint point) =>
         _occupiedCells.TryGetValue(point, out var occupantId) ? occupantId : null;
 
+    public ExplorationOccupantPlacement? PlacementOf(int occupantId) =>
+        _placements.GetValueOrDefault(occupantId);
+
     public bool IsCellOpen(GridPoint point, int? exceptOccupantId = null) =>
         InBounds(point) && _isTerrainPassable(point) &&
         (!_occupiedCells.TryGetValue(point, out var occupantId) ||
@@ -155,7 +158,8 @@ public sealed class ExplorationOccupancySession
                 "Unknown exploration occupancy command kind.")
         };
         var after = Snapshot();
-        return new(before, command, after, events, Changed(before, after));
+        return new(before, command, after, Array.AsReadOnly(events.ToArray()),
+            Changed(before, after));
     }
 
     private IReadOnlyList<ExplorationOccupancyEvent> Place(
