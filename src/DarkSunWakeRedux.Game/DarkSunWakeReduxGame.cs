@@ -23,6 +23,8 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     private Texture2D? _openingLeaderTexture;
     private PackedRegion? _tyrRegion;
     private PackedObjectFrameCatalog? _tyrObjects;
+    private RegionTerrainGrid? _tyrTerrain;
+    private ExplorationActorController? _leaderController;
     private readonly ExplorationSession _exploration = new(
         RegionSceneRasterizer.WorldWidth,
         RegionSceneRasterizer.WorldHeight,
@@ -30,11 +32,13 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         OpeningTyrScene.Height,
         OpeningTyrScene.OriginX,
         OpeningTyrScene.OriginY);
-    private readonly ExplorationActorPresentation _openingLeader = new(
-        OpeningTyrScene.LeaderWorldX,
-        OpeningTyrScene.LeaderWorldY,
+    private readonly ExplorationActorPresentation _leaderPresentation = new(
         OpeningTyrScene.LeaderWidth,
-        OpeningTyrScene.LeaderHeight);
+        OpeningTyrScene.LeaderHeight,
+        OpeningTyrScene.LeaderWorldX -
+            OpeningTyrScene.LeaderAnchorCellX * GffRegion.TilePixelSize,
+        OpeningTyrScene.LeaderWorldY -
+            OpeningTyrScene.LeaderAnchorCellY * GffRegion.TilePixelSize);
     private readonly StartFlowSession _startFlow = new(0);
     private MouseState _previousMouse;
     private KeyboardState _previousKeyboard;
@@ -114,6 +118,17 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         var regionPath = AssetPath(OriginalContent.TyrRegionAssetPath);
         using var regionStream = File.OpenRead(regionPath);
         _tyrRegion = PackedRegion.Read(regionStream, OriginalContent.TyrRegionAssetPath);
+        _tyrTerrain = new(_tyrRegion);
+        var occupancy = new ExplorationOccupancySession(
+            _tyrTerrain.Width, _tyrTerrain.Height,
+            point => _tyrTerrain.IsTerrainOpen(point.X, point.Y));
+        var leaderPlacement = occupancy.Execute(ExplorationOccupancyCommand.PlaceAt(
+            1, new(OpeningTyrScene.LeaderAnchorCellX,
+                OpeningTyrScene.LeaderAnchorCellY), GridFootprint.SingleCell));
+        if (!leaderPlacement.Applied)
+            throw new InvalidDataException(
+                "The evidenced opening leader anchor is not passable in Tyr.");
+        _leaderController = new(_tyrTerrain, occupancy, occupantId: 1);
         var objectPath = AssetPath(OriginalContent.TyrObjectCatalogAssetPath);
         using var objectStream = File.OpenRead(objectPath);
         _tyrObjects = PackedObjectFrameCatalog.Read(
@@ -173,6 +188,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         {
             var mouse = Mouse.GetState();
             var screen = _startFlow.Snapshot().Screen;
+            var explorationMenuConsumedLeftClick = false;
             if (mouse.LeftButton == ButtonState.Pressed && _previousMouse.LeftButton == ButtonState.Released)
             {
                 var transform = new LogicalCanvasTransform(
@@ -192,7 +208,10 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                         GameMenuInput.HitTest(
                             _gameMenuControls.Select(item => item.Control).ToArray(), x, y) is { } menuControl &&
                         GameMenuInput.CommandFor(menuControl) is { } explorationCommand)
+                    {
                         _exploration.Execute(explorationCommand);
+                        explorationMenuConsumedLeftClick = true;
+                    }
                 }
             }
             var keyboard = Keyboard.GetState();
@@ -200,7 +219,8 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                 keyboard.IsKeyDown(Keys.Escape) && _previousKeyboard.IsKeyUp(Keys.Escape))
                 _startFlow.Execute(StartFlowCommand.Cancel());
             if (screen == StartFlowScreen.Gameplay)
-                UpdateExploration(mouse, keyboard);
+                UpdateExploration(mouse, keyboard, gameTime.ElapsedGameTime,
+                    explorationMenuConsumedLeftClick);
             _previousMouse = mouse;
             _previousKeyboard = keyboard;
             if (_startFlow.Snapshot().Screen == StartFlowScreen.ExitRequested) Exit();
@@ -208,8 +228,14 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         base.Update(gameTime);
     }
 
-    private void UpdateExploration(MouseState mouse, KeyboardState keyboard)
+    private void UpdateExploration(
+        MouseState mouse,
+        KeyboardState keyboard,
+        TimeSpan elapsed,
+        bool suppressWalkClick)
     {
+        if (_tyrTerrain is null || _leaderController is null)
+            throw new InvalidOperationException("The Tyr movement controller is not loaded.");
         var before = _exploration.Snapshot();
         if (ExplorationHotkeys.Resolve(keyboard, _previousKeyboard) is { } hotkey)
             _exploration.Execute(hotkey);
@@ -221,9 +247,17 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         var transform = new LogicalCanvasTransform(
             GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
         if (_exploration.Snapshot().View == ExplorationView.World &&
+            !suppressWalkClick &&
+            mouse.LeftButton == ButtonState.Pressed &&
+            _previousMouse.LeftButton == ButtonState.Released &&
+            transform.TryToLogical(mouse.X, mouse.Y, out var walkX, out var walkY))
+            _leaderController.PlanAt(_exploration.Snapshot(), walkX, walkY);
+        if (_exploration.Snapshot().View == ExplorationView.World &&
             transform.TryToLogical(mouse.X, mouse.Y, out var x, out var y) &&
             ExplorationInput.ScrollAtEdge(x, y) is { } scroll)
             _exploration.Execute(scroll);
+        if (_exploration.Snapshot().View == ExplorationView.World)
+            _leaderController.Advance(elapsed);
         var after = _exploration.Snapshot();
         if (after.View == ExplorationView.ExitRequested)
             Exit();
@@ -260,10 +294,13 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                 _ => []
             };
             var placedImages = images.ToArray();
-            if (screen == StartFlowScreen.Gameplay && _openingLeaderTexture is not null)
+            if (screen == StartFlowScreen.Gameplay && _openingLeaderTexture is not null &&
+                _leaderController is not null)
             {
                 var camera = _exploration.Snapshot();
-                var bounds = _openingLeader.AtCamera(camera.CameraX, camera.CameraY);
+                var bounds = _leaderPresentation.AtAnchor(
+                    _leaderController.Snapshot().Position,
+                    camera.CameraX, camera.CameraY, GffRegion.TilePixelSize);
                 if (bounds.Intersects(OpeningTyrScene.Width, OpeningTyrScene.Height))
                     placedImages = placedImages.Append(
                         (bounds.X, bounds.Y, _openingLeaderTexture)).ToArray();

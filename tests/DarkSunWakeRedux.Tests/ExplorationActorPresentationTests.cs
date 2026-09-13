@@ -9,12 +9,13 @@ public sealed class ExplorationActorPresentationTests
     [Fact]
     public void MapsWorldSpriteBoundsThroughAnyCamera()
     {
-        var actor = new ExplorationActorPresentation(1_184, 1_459, 17, 35);
+        var actor = new ExplorationActorPresentation(17, 35, 0, 3);
 
         Assert.Equal(new LogicalSpriteBounds(160, 91, 17, 35),
-            actor.AtCamera(OpeningTyrScene.OriginX, OpeningTyrScene.OriginY));
+            actor.AtAnchor(new(74, 91), OpeningTyrScene.OriginX,
+                OpeningTyrScene.OriginY, GffRegion.TilePixelSize));
         Assert.Equal(new LogicalSpriteBounds(-16, -41, 17, 35),
-            actor.AtCamera(1_200, 1_500));
+            actor.AtAnchor(new(74, 91), 1_200, 1_500, GffRegion.TilePixelSize));
     }
 
     [Theory]

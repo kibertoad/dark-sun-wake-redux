@@ -80,8 +80,8 @@
   integrity in GOG-1432903719; medium for coordinate/vertical-field names from
   the corroborating research; high for the separately recorded `0x40`
   terrain-blocking meaning; unknown for other geometry bits, entity flags other
-  than the separately corroborated mirror bit, actor-specific collision, and
-  the opening spawn.
+  than the separately corroborated mirror bit and actor-specific collision;
+  the opening actor anchor is established separately by `DATA-GOG-ACTOR-001`.
 - **Implementation:** `DarkSunWakeRedux.Resources.GffRegion`, canonical bounded
   `PackedRegion` DSRG v1, the read-only `region-catalog` inspection command, and
   transactional extraction of region #50 to `regions/tyr.dsrg`. The pack keeps
@@ -196,8 +196,9 @@
 - **Implementation:** pack v18 adds
   `images/exploration/opening-leader.dsix`, preserving OBJEX and Tyr-palette
   provenance. Gameplay draws frame 0 through reusable world-to-camera actor
-  placement, with viewport-edge culling. It is intentionally stationary until
-  runtime movement state and animation evidence are connected.
+  placement, with viewport-edge culling. Runtime Walk clicks now move its
+  authoritative anchor; frame 0 remains static until animation evidence is
+  connected.
 - **Tests:** synthetic OJFF/BMP extraction, exact provenance/palette/geometry,
   camera translation, rectangle-edge visibility, anchor constants, pack
   inventory verification, and owned no-window content smoke.
@@ -540,8 +541,8 @@
   cast/psionic, current-effects, overhead-map, and game-menu views. Escape
   returns from any such view and requests exit only from the world; world input
   is suspended while a view is open. The original Game Menu shell and controls
-  now render and route evidenced actions; party sprites and destination shells
-  remain pending.
+  now render and route evidenced actions; expanded-party sprites and destination
+  shells remain pending.
 - **Tests:** initial state, all four edges and diagonal corners, interior/outside
   coordinates, map clamping, mode-cycle order, display idempotence, and invalid
   scroll deltas; every documented view and alias, ordered rising-edge hotkeys,
@@ -569,9 +570,12 @@
   semantic cell per command, completes or cancels routes, and interrupts before
   entering a newly blocked step or diagonal corner. Its optional step-commit
   boundary lets `ExplorationActorMovementSession` keep route and occupancy
-  anchors synchronized or interrupt without partial advancement. Runtime
-  movement remains gated on spawn, concrete footprint, and presentation cadence
-  evidence.
+  anchors synchronized or interrupt without partial advancement.
+  `ExplorationActorController` composes the evidenced opening anchor, logical
+  click routing, shared live occupancy, and bounded fixed-step advancement; the
+  runtime placement currently supplies a provisional single-cell footprint.
+  Its 125 ms semantic step and four-step catch-up cap are explicit modern
+  runtime policies, not original-parity claims.
 - **Tests:** optimal open-grid route, stable obstacle detour, blocked endpoint,
   zero-length route, diagonal corner, endpoint bounds, maximum-grid limits,
   exact flag/bounds/pixel-cell semantics, stable camera-to-destination routing,
@@ -579,8 +583,9 @@
   replanning, per-step blocker revalidation, cancellation, and snapshot
   isolation.
 - **Uncertainty:** Actor-specific low-bit policy outside Tyr, moving blockers,
-  actor footprint, opening spawn, movement cadence, and destination tolerance
-  remain open; none are inferred by the terrain grid, planner, or route session.
+  native actor footprint, movement cadence, destination tolerance, animation,
+  and interpolation remain open; none are inferred by the terrain grid,
+  planner, or route session.
 
 ### RULE-EXPLORATION-002 - Atomic dynamic occupancy
 
@@ -588,11 +593,12 @@
   removal mutate each cell in an actor's footprint as one logical operation;
   another actor cannot overlap those cells or blocked terrain.
 - **Evidence:** `EXE-GOG-REGION-001` establishes the `0x40`/`0x20` dynamic pair
-  and a coordinator called once per iterated footprint cell. It does not yet
-  establish actor-specific footprints, opening anchors, or mutation cadence.
+  and a coordinator called once per iterated footprint cell. The same bounded
+  analysis establishes the opening anchor relationship, but not actor-specific
+  footprints or mutation cadence.
 - **Confidence:** high for per-cell occupied/open exclusion in the supported
   executable; implementation-policy for atomic rejection and stable ordering;
-  unknown for concrete actor shapes and anchors.
+  unknown for concrete actor shapes beyond the evidenced opening anchor.
 - **Implementation:** `GridFootprint` is immutable, duplicate-free, and
   canonically ordered. `ExplorationOccupancySession` applies place/move/remove
   commands atomically over bounded terrain, emits deterministic events and
@@ -600,14 +606,17 @@
   exposes a live whole-footprint anchor predicate to pathfinding.
   `ExplorationActorMovementSession` composes that predicate and the route
   session, commits each accepted route step to occupancy, and detects external
-  anchor drift. No concrete party or NPC footprint is assigned yet.
+  anchor drift. Runtime assigns the opening leader a documented provisional
+  single-cell footprint; no evidence-backed party or NPC shape is claimed.
 - **Tests:** multi-cell placement, own-cell overlap during movement, terrain,
   bounds and other-occupant rejection without partial mutation, cell release,
   missing-occupant handling, snapshot isolation/order, invalid payloads, live
   blocker updates, route planning through the composed predicate, synchronized
   actor advancement, commit rejection, interruption, and drift detection.
-- **Uncertainty:** Opening occupant IDs, anchor convention, party formation,
-  actor-specific footprints, NPC placement, and movement timing remain open.
+- **Uncertainty:** Native occupant IDs, party formation, actor-specific
+  footprints, NPC placement, and movement timing remain open. The opening
+  anchor convention itself is now evidenced by `DATA-GOG-ACTOR-001` and
+  `EXE-GOG-REGION-001`.
 
 ### RULE-PARTY-001 - Four-character party
 

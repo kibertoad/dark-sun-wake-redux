@@ -298,8 +298,10 @@ decoder rather than being guessed now.
   camera at `(1024,1368)` and the static viewport is visibly integrated.
   `DATA-GOG-ACTOR-001` identifies, extracts, and displays the exact opening
   leader at its observed world position through reusable camera-relative actor
-  placement; its collision anchor cell is evidenced, while its footprint and
-  animation cadence remain open.
+  placement; its collision anchor cell is evidenced. Active Walk clicks now
+  plan and execute from that anchor through a reusable controller, with a
+  documented provisional single-cell footprint and 125 ms semantic step while
+  native footprint, cadence, and animation remain open.
   Manual-defined edge scrolling now drives a clamped deterministic Core camera
   and rerasterizes that viewport. Reusable ordered hotkey bindings and Core
   navigation now cover character, inventory, cast/psionic, current-effects,
@@ -307,19 +309,20 @@ decoder rather than being guessed now.
   original Game Menu base and 14 controls now extract and render through a
   DSUI-resolved semantic page object; evidenced destinations and mode/return
   actions are clickable. Native panel-origin validation, five remaining menu
-  actions, other destination presentation, animation, party/interface overlays,
-  and runtime route wiring remain pending. `EXE-GOG-REGION-001` now establishes
+  actions, other destination presentation, animation, and party/interface
+  overlays remain pending. `EXE-GOG-REGION-001` now establishes
   `GMAP` bit `0x40` as the terrain/occupancy block. A bounded terrain grid and
   reusable camera-to-grid Walk-click planner connect Tyr to deterministic A*.
   A clock-free Core movement session now covers atomic plan/replan, one-cell
   advancement, cancellation, completion, and newly blocked route interruption
-  without guessing the opening spawn or cadence. A separate deterministic
+  independently of runtime timing. A separate deterministic
   occupancy session atomically places, moves, and removes caller-supplied
   multi-cell footprints over terrain and supplies live whole-footprint route
   predicates. A Core actor-movement aggregate now keeps route and occupancy
-  anchors synchronized and interrupts rejected commits. The concrete party/NPC
-  footprints, opening anchors, runtime integration, cadence, and animation
-  remain open.
+  anchors synchronized and interrupts rejected commits. A reusable runtime
+  actor controller now executes those commands from the evidenced opening
+  anchor, bounds catch-up work, and drives the sprite position. Native
+  party/NPC footprints, cadence, animation, and interpolation remain open.
 - **Automated tests.** Synthetic-map navigation/collision, deterministic command
   traces, dialogue branches, inventory conservation, menu routing, invalid
   resource reference, and malformed-region tests.

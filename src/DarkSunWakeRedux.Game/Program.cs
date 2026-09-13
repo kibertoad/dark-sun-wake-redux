@@ -1,3 +1,4 @@
+using DarkSunWakeRedux.Core;
 using DarkSunWakeRedux.Game;
 using DarkSunWakeRedux.Resources;
 
@@ -138,6 +139,36 @@ try
                 terrain.IsTerrainOpen(60, 84) || !terrain.IsTerrainOpen(74, 94))
                 throw new InvalidDataException(
                     "The installed Tyr geometry plane does not match the verified navigation contract.");
+            var occupancy = new ExplorationOccupancySession(
+                terrain.Width, terrain.Height,
+                point => terrain.IsTerrainOpen(point.X, point.Y));
+            var actorPlacement = occupancy.Execute(ExplorationOccupancyCommand.PlaceAt(
+                1, new(OpeningTyrScene.LeaderAnchorCellX,
+                    OpeningTyrScene.LeaderAnchorCellY), GridFootprint.SingleCell));
+            if (!actorPlacement.Applied)
+                throw new InvalidDataException(
+                    "The opening leader cannot occupy its evidenced Tyr anchor.");
+            var actor = new ExplorationActorController(terrain, occupancy, 1);
+            var exploration = new ExplorationSnapshot(
+                OpeningTyrScene.OriginX, OpeningTyrScene.OriginY,
+                ExplorationCursorMode.Walk, PartyDisplayMode.LeaderOnly,
+                ExplorationView.World);
+            var targetCellX = OpeningTyrScene.LeaderAnchorCellX + 1;
+            var targetLogicalX = targetCellX * GffRegion.TilePixelSize +
+                GffRegion.TilePixelSize / 2 - OpeningTyrScene.OriginX;
+            var targetLogicalY = OpeningTyrScene.LeaderAnchorCellY *
+                GffRegion.TilePixelSize + GffRegion.TilePixelSize / 2 -
+                OpeningTyrScene.OriginY;
+            var plannedMovement = actor.PlanAt(
+                exploration, targetLogicalX, targetLogicalY);
+            var advancedMovement = actor.Advance(
+                ExplorationActorController.DefaultStepInterval);
+            if (plannedMovement is null || !plannedMovement.Applied ||
+                advancedMovement.Count != 1 ||
+                actor.Snapshot().Position != new GridPoint(
+                    targetCellX, OpeningTyrScene.LeaderAnchorCellY))
+                throw new InvalidDataException(
+                    "The installed Tyr content does not support the opening actor movement contract.");
             var objectPath = Path.Combine(assetPack,
                 OriginalContent.TyrObjectCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using var objectStream = File.OpenRead(objectPath);

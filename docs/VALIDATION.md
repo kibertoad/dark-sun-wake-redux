@@ -38,6 +38,11 @@ the independent `0x80` flag, close out-of-bounds cells, validate pixel/cell
 edges and centers, and reject malformed planes. Planner tests prove stable
 camera-to-cell Walk routes, obstacle detours, unreachable destinations, and
 inactive mode/view/outside-canvas rejection without assigning route cadence.
+Actor-controller tests compose those boundaries through logical Walk clicks,
+prove fixed-step accumulation is independent of frame chunking, cap catch-up
+work without discarding backlog, reset partial cadence on replanning, require
+a placed actor, interrupt on a new blocker in shared occupancy, and drive the
+camera-relative sprite from the same anchor.
 Movement-session tests prove deterministic command/event traces, exactly one
 semantic step per advance, atomic replanning failure, cancellation/completion,
 snapshot isolation, and interruption when a step or diagonal side becomes
@@ -79,6 +84,10 @@ runtime content-smoke path opens that pack and rasterizes 320x200 viewports at
 both opposite region corners successfully. It also verifies Tyr's exact four
 `GMAP` values and 8,169 terrain-open cells through the bounded navigation
 contract; these diagnostic checks are not a claim about party spawn.
+The no-window smoke also plans and advances one real Tyr step from the evidenced
+opening anchor through the runtime actor controller. Its provisional
+single-cell footprint and 125 ms step are implementation policies, not native
+timing or footprint evidence.
 Exact comparison of the retained ignored native opening frame against the
 compositor at `(1024,1368)` isolates the visible leader to a 367-differing-pixel
 component bounded by logical `(160,91)`-`(176,125)`. Exhaustive same-geometry
