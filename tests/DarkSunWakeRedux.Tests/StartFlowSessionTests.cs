@@ -96,6 +96,85 @@ public sealed class StartFlowSessionTests
     }
 
     [Fact]
+    public void DualClassCommandAndProgressionSurviveSnapshotRestore()
+    {
+        var fighter = new CharacterDraft("Rikus", CharacterRace.Human, CharacterSex.Male,
+            CharacterAlignment.NeutralGood, new(15, 15, 15, 15, 15, 15), [CharacterClass.Fighter])
+        {
+            ClassProgression = DualClassProgression.Begin(CharacterClass.Fighter, 3)
+        };
+        var session = new StartFlowSession(11);
+        session.Execute(StartFlowCommand.Choose(StartWindowChoice.CreateCharacters));
+        session.Execute(StartFlowCommand.OpenEmptySlot());
+        session.Execute(StartFlowCommand.Choose(EmptySlotChoice.New));
+        session.Execute(StartFlowCommand.Complete(fighter));
+        session.Execute(StartFlowCommand.OpenOccupiedSlot(0));
+        session.Execute(StartFlowCommand.Choose(OccupiedSlotChoice.Dual));
+
+        var result = session.Execute(StartFlowCommand.ChooseDualClass(CharacterClass.Preserver));
+        var restored = StartFlowSession.Restore(session.Snapshot());
+
+        Assert.True(result.Accepted);
+        Assert.Equal(StartFlowSnapshot.CurrentSchemaVersion, restored.Snapshot().SchemaVersion);
+        Assert.Equal([CharacterClass.Fighter, CharacterClass.Preserver],
+            restored.Snapshot().PartyMembers[0].Classes);
+        Assert.Equal([3, 1], restored.Snapshot().PartyMembers[0].ClassProgression!.Careers
+            .Select(item => item.Level));
+        Assert.Equal(session.StateSha256(), restored.StateSha256());
+    }
+
+    [Fact]
+    public void DualClassSelectionSurvivesSnapshotRestore()
+    {
+        var fighter = new CharacterDraft("Rikus", CharacterRace.Human, CharacterSex.Male,
+            CharacterAlignment.NeutralGood, new(15, 15, 15, 15, 15, 15), [CharacterClass.Fighter])
+        {
+            ClassProgression = DualClassProgression.Begin(CharacterClass.Fighter, 3)
+        };
+        var session = SessionWith(fighter);
+        session.Execute(StartFlowCommand.OpenOccupiedSlot(0));
+        session.Execute(StartFlowCommand.Choose(OccupiedSlotChoice.Dual));
+
+        var restored = StartFlowSession.Restore(session.Snapshot());
+        var result = restored.Execute(StartFlowCommand.ChooseDualClass(CharacterClass.Preserver));
+
+        Assert.True(result.Accepted);
+        Assert.Equal(StartFlowScreen.PartyOverview, restored.Snapshot().Screen);
+        Assert.Equal([CharacterClass.Fighter, CharacterClass.Preserver],
+            restored.Snapshot().PartyMembers[0].Classes);
+    }
+
+    [Fact]
+    public void DualClassChoiceRequiresExactlyItsOwnPayload()
+    {
+        var session = new StartFlowSession(3);
+
+        var result = session.Execute(new(StartFlowCommandKind.ChooseDualClass,
+            StartChoice: StartWindowChoice.StartGame,
+            DualClassChoice: CharacterClass.Preserver));
+
+        Assert.Equal("start_flow_command_invalid", Assert.Single(result.Diagnostics).Code);
+        Assert.Equal(StartFlowScreen.StartWindow, session.Snapshot().Screen);
+    }
+
+    [Fact]
+    public void ClassProgressionContributesToCanonicalStateHash()
+    {
+        var fighter = new CharacterDraft("Rikus", CharacterRace.Human, CharacterSex.Male,
+            CharacterAlignment.NeutralGood, new(15, 15, 15, 15, 15, 15), [CharacterClass.Fighter]);
+        var levelThree = SessionWith(fighter with
+        {
+            ClassProgression = DualClassProgression.Begin(CharacterClass.Fighter, 3)
+        });
+        var levelFour = SessionWith(fighter with
+        {
+            ClassProgression = DualClassProgression.Begin(CharacterClass.Fighter, 4)
+        });
+
+        Assert.NotEqual(levelThree.StateSha256(), levelFour.StateSha256());
+    }
+
+    [Fact]
     public void SnapshotPreservesOccupiedSlotEditTarget()
     {
         var session = SessionWith(new("Rikus", CharacterRace.Human, CharacterSex.Male,

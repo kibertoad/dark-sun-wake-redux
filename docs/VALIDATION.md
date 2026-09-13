@@ -11,7 +11,10 @@ Party-rule coverage includes the manual-documented all-three Psionicist rule,
 the exactly-one discipline rule for other characters, Cleric-only elemental
 spheres, canonical hash sensitivity to the selected sphere, and immutable
 dual-class progression across the human-only, level-three, repeated-career,
-three-career, monotonic-advancement, and former-benefit boundaries.
+three-career, monotonic-advancement, and former-benefit boundaries. It also
+proves ordered class/progression consistency, atomic DUAL selection and
+cancellation, exact command payloads, progression-sensitive hashes, and
+snapshot restore both during and after selection.
 Start-flow coverage also proves occupied-slot edits replace rather than append,
 invalid replacements are atomic, DROP moves a member to character storage, ADD
 restores it, and an active edit target survives snapshot restore.

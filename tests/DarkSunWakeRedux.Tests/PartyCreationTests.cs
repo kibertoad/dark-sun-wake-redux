@@ -154,6 +154,26 @@ public sealed class PartyCreationTests
         Assert.Equal("Sadira", party.Members[0].Name);
     }
 
+    [Fact]
+    public void SequentialHumanCareersMustMatchProgressionState()
+    {
+        var progression = DualClassProgression.Begin(CharacterClass.Fighter, 3)
+            .TryStartNext(CharacterRace.Human, CharacterClass.Preserver).Progression;
+        var valid = Draft(classes: [CharacterClass.Fighter, CharacterClass.Preserver]) with
+        {
+            ClassProgression = progression
+        };
+
+        Assert.DoesNotContain(PartyCreationRules.Validate(valid),
+            item => item.Code is "human_multiclass_invalid" or "dual_class_state_mismatch");
+        Assert.Contains(PartyCreationRules.Validate(valid with
+        {
+            Classes = [CharacterClass.Fighter, CharacterClass.Thief]
+        }), item => item.Code == "dual_class_state_mismatch");
+        Assert.Contains(PartyCreationRules.Validate(valid with { Race = CharacterRace.Elf }),
+            item => item.Code == "dual_class_human_only");
+    }
+
     private static CharacterDraft Draft(
         string name = "Rikus",
         CharacterRace race = CharacterRace.Human,

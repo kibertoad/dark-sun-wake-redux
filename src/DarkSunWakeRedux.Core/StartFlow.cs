@@ -8,6 +8,7 @@ public enum StartFlowScreen
     CharacterGeneration,
     AddExistingCharacter,
     OccupiedSlotMenu,
+    DualClassSelection,
     LoadSavedGame,
     Gameplay,
     ExitRequested
@@ -105,8 +106,13 @@ public sealed class StartFlow
                 Screen = StartFlowScreen.PartyOverview;
                 return [];
             case OccupiedSlotChoice.Dual:
-                return [new("dual_class_unavailable",
-                    "Dual-classing requires evidenced level and advancement state.")];
+                var member = Party.Members[ActiveMemberIndex.Value];
+                if (member.ClassProgression is null)
+                    return [new("dual_class_progression_missing",
+                        "Dual-classing requires class-level progression state.")];
+                var diagnostics = member.ClassProgression.ValidateCanStartNext(member.Race);
+                if (diagnostics.Count == 0) Screen = StartFlowScreen.DualClassSelection;
+                return diagnostics;
             default:
                 return [new("occupied_slot_choice_invalid", "The selected party-member action is invalid.")];
         }
@@ -161,6 +167,30 @@ public sealed class StartFlow
         return diagnostics;
     }
 
+    public IReadOnlyList<PartyDiagnostic> ChooseDualClass(CharacterClass nextClass)
+    {
+        if (Screen != StartFlowScreen.DualClassSelection || ActiveMemberIndex is null)
+            return WrongScreen("choose_dual_class");
+        var member = Party.Members[ActiveMemberIndex.Value];
+        if (member.ClassProgression is null)
+            return [new("dual_class_progression_missing",
+                "Dual-classing requires class-level progression state.")];
+        var transition = member.ClassProgression.TryStartNext(member.Race, nextClass);
+        if (!transition.Accepted) return transition.Diagnostics;
+        var updated = member with
+        {
+            Classes = transition.Progression.Careers.Select(item => item.CharacterClass).ToArray(),
+            ClassProgression = transition.Progression
+        };
+        var diagnostics = Party.ReplaceAt(ActiveMemberIndex.Value, updated);
+        if (diagnostics.Count == 0)
+        {
+            ActiveMemberIndex = null;
+            Screen = StartFlowScreen.PartyOverview;
+        }
+        return diagnostics;
+    }
+
     public IReadOnlyList<PartyDiagnostic> BeginCreatedParty()
     {
         if (Screen != StartFlowScreen.PartyOverview) return WrongScreen("begin_created_party");
@@ -178,6 +208,7 @@ public sealed class StartFlow
             case StartFlowScreen.CharacterGeneration:
             case StartFlowScreen.AddExistingCharacter:
             case StartFlowScreen.OccupiedSlotMenu:
+            case StartFlowScreen.DualClassSelection:
                 ActiveMemberIndex = null;
                 Screen = StartFlowScreen.PartyOverview;
                 return [];

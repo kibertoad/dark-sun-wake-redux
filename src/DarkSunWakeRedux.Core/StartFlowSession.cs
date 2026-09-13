@@ -10,6 +10,7 @@ public enum StartFlowCommandKind
     OpenOccupiedSlot,
     ChooseEmptySlot,
     ChooseOccupiedSlot,
+    ChooseDualClass,
     AddStoredCharacter,
     CompleteCharacter,
     BeginCreatedParty,
@@ -22,7 +23,8 @@ public sealed record StartFlowCommand(
     EmptySlotChoice? EmptySlotChoice = null,
     CharacterDraft? Character = null,
     int? MemberIndex = null,
-    OccupiedSlotChoice? OccupiedSlotChoice = null)
+    OccupiedSlotChoice? OccupiedSlotChoice = null,
+    CharacterClass? DualClassChoice = null)
 {
     public static StartFlowCommand Choose(StartWindowChoice choice) => new(StartFlowCommandKind.ChooseStart, choice);
     public static StartFlowCommand OpenEmptySlot() => new(StartFlowCommandKind.OpenEmptySlot);
@@ -34,6 +36,8 @@ public sealed record StartFlowCommand(
         new(StartFlowCommandKind.CompleteCharacter, Character: character);
     public static StartFlowCommand Choose(OccupiedSlotChoice choice) =>
         new(StartFlowCommandKind.ChooseOccupiedSlot, OccupiedSlotChoice: choice);
+    public static StartFlowCommand ChooseDualClass(CharacterClass choice) =>
+        new(StartFlowCommandKind.ChooseDualClass, DualClassChoice: choice);
     public static StartFlowCommand AddStoredCharacter(int index) =>
         new(StartFlowCommandKind.AddStoredCharacter, MemberIndex: index);
     public static StartFlowCommand BeginParty() => new(StartFlowCommandKind.BeginCreatedParty);
@@ -50,7 +54,7 @@ public sealed record StartFlowSnapshot(
     int? ActiveMemberIndex,
     IReadOnlyList<CharacterDraft> StoredCharacters)
 {
-    public const int CurrentSchemaVersion = 3;
+    public const int CurrentSchemaVersion = 4;
 }
 
 public sealed record StartFlowEvent(
@@ -103,6 +107,7 @@ public sealed class StartFlowSession
             StartFlowCommandKind.OpenOccupiedSlot => _flow.OpenOccupiedSlotMenu(command.MemberIndex!.Value),
             StartFlowCommandKind.ChooseEmptySlot => _flow.Choose(command.EmptySlotChoice!.Value),
             StartFlowCommandKind.ChooseOccupiedSlot => _flow.Choose(command.OccupiedSlotChoice!.Value),
+            StartFlowCommandKind.ChooseDualClass => _flow.ChooseDualClass(command.DualClassChoice!.Value),
             StartFlowCommandKind.AddStoredCharacter => _flow.AddStoredCharacter(command.MemberIndex!.Value),
             StartFlowCommandKind.CompleteCharacter => _flow.CompleteCharacter(command.Character!),
             StartFlowCommandKind.BeginCreatedParty => _flow.BeginCreatedParty(),
@@ -117,7 +122,7 @@ public sealed class StartFlowSession
     {
         var count = (command.StartChoice is null ? 0 : 1) + (command.EmptySlotChoice is null ? 0 : 1) +
             (command.Character is null ? 0 : 1) + (command.MemberIndex is null ? 0 : 1) +
-            (command.OccupiedSlotChoice is null ? 0 : 1);
+            (command.OccupiedSlotChoice is null ? 0 : 1) + (command.DualClassChoice is null ? 0 : 1);
         return command.Kind switch
         {
             StartFlowCommandKind.ChooseStart => count == 1 && command.StartChoice is not null,
@@ -125,6 +130,7 @@ public sealed class StartFlowSession
                 count == 1 && command.MemberIndex is not null,
             StartFlowCommandKind.ChooseEmptySlot => count == 1 && command.EmptySlotChoice is not null,
             StartFlowCommandKind.ChooseOccupiedSlot => count == 1 && command.OccupiedSlotChoice is not null,
+            StartFlowCommandKind.ChooseDualClass => count == 1 && command.DualClassChoice is not null,
             StartFlowCommandKind.CompleteCharacter => count == 1 && command.Character is not null,
             StartFlowCommandKind.OpenEmptySlot or StartFlowCommandKind.BeginCreatedParty or
                 StartFlowCommandKind.Cancel => count == 0,
@@ -191,6 +197,16 @@ public sealed class StartFlowSession
             foreach (var characterClass in member.Classes) writer.Write((int)characterClass);
             writer.Write((int)member.PsionicDisciplines);
             writer.Write(member.ClericalSphere is null ? -1 : (int)member.ClericalSphere.Value);
+            writer.Write(member.ClassProgression is not null);
+            if (member.ClassProgression is not null)
+            {
+                writer.Write(member.ClassProgression.Careers.Count);
+                foreach (var career in member.ClassProgression.Careers)
+                {
+                    writer.Write((int)career.CharacterClass);
+                    writer.Write(career.Level);
+                }
+            }
         }
     }
 
@@ -218,11 +234,13 @@ public sealed class StartFlowSession
             throw new InvalidDataException("Snapshot contains an invalid party size.");
         if (snapshot.StoredCharacters is null || snapshot.StoredCharacters.Count > 1024)
             throw new InvalidDataException("Snapshot contains an invalid stored-character count.");
-        if (snapshot.Screen == StartFlowScreen.OccupiedSlotMenu && snapshot.ActiveMemberIndex is null)
-            throw new InvalidDataException("Snapshot occupied-slot menu has no active party member.");
+        if ((snapshot.Screen is StartFlowScreen.OccupiedSlotMenu or StartFlowScreen.DualClassSelection) &&
+            snapshot.ActiveMemberIndex is null)
+            throw new InvalidDataException("Snapshot member-action screen has no active party member.");
         if (snapshot.ActiveMemberIndex is { } index &&
             ((uint)index >= (uint)snapshot.PartyMembers.Count ||
-             snapshot.Screen is not (StartFlowScreen.OccupiedSlotMenu or StartFlowScreen.CharacterGeneration)))
+             snapshot.Screen is not (StartFlowScreen.OccupiedSlotMenu or
+                 StartFlowScreen.CharacterGeneration or StartFlowScreen.DualClassSelection)))
             throw new InvalidDataException("Snapshot contains an invalid active party member.");
         foreach (var member in snapshot.PartyMembers)
             if (PartyCreationRules.Validate(member).Count != 0)
@@ -230,5 +248,8 @@ public sealed class StartFlowSession
         foreach (var member in snapshot.StoredCharacters)
             if (PartyCreationRules.Validate(member).Count != 0)
                 throw new InvalidDataException("Snapshot contains an invalid stored character.");
+        if (snapshot.Screen == StartFlowScreen.DualClassSelection &&
+            snapshot.PartyMembers[snapshot.ActiveMemberIndex!.Value].ClassProgression is null)
+            throw new InvalidDataException("Snapshot dual-class selection has no class progression.");
     }
 }

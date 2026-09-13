@@ -217,9 +217,10 @@ decoder rather than being guessed now.
   and sphere cardinality is implemented; shipped selection behavior remains to
   be observed. Pre-adventure occupied-slot EDIT and DROP-to-ADD storage are
   implemented. The manual-evidenced human dual-class level gates, sequential
-  career limit, and former-benefit boundary are deterministic Core rules; DUAL
-  menu/save integration awaits the runtime character progression model and
-  shipped initial-level evidence.
+  career limit, former-benefit boundary, DUAL selection command, and atomic
+  party update are deterministic Core rules. Class progression participates in
+  snapshots and state hashes; player-visible DUAL presentation and shipped
+  initial-level evidence remain open.
 - **Acceptance - presentation.** Start/party screens preserve measured logical
   coordinates, aspect treatment, palette semantics, focus order, mouse hit
   regions, and Escape behavior; scaling cannot change rules or hit testing.
@@ -241,8 +242,9 @@ decoder rather than being guessed now.
   pack verification, stale-file removal, atomic promotion/rollback; party
   invariants and menu-transition tests. Implemented start-flow commands produce
   sequenced events, versioned snapshots, stable hashes, and verified replays.
-  Snapshot schema 3 includes psionic disciplines, clerical sphere, the active
-  edit target, and recreation-native stored characters;
+  Snapshot schema 4 includes psionic disciplines, clerical sphere, ordered
+  class/level progression, the active member during DUAL selection or editing,
+  and recreation-native stored characters;
   DSUI round-trip, malformed graph, deterministic ordering, mixed-control graph resolution, resource-ID routing,
   rectangle-edge, synthetic extraction, content-smoke, and owned 29-asset pack verification cover the derived
   start-flow layout contract;

@@ -33,13 +33,22 @@ public sealed record DualClassProgression
 
     public DualClassTransition TryStartNext(CharacterRace race, CharacterClass nextClass)
     {
-        var diagnostics = new List<PartyDiagnostic>();
-        if (!Enum.IsDefined(race) || race != CharacterRace.Human)
-            diagnostics.Add(new("dual_class_human_only", "Only humans may become dual-classed."));
+        var diagnostics = ValidateCanStartNext(race).ToList();
         if (!Enum.IsDefined(nextClass))
             diagnostics.Add(new("dual_class_invalid", "The selected new class is invalid."));
         else if (_careers.Any(item => item.CharacterClass == nextClass))
             diagnostics.Add(new("dual_class_duplicate", "A character cannot return to a previous class."));
+
+        return diagnostics.Count == 0
+            ? new(new([.. _careers, new CharacterClassLevel(nextClass, 1)]), [])
+            : new(this, diagnostics.ToArray());
+    }
+
+    public IReadOnlyList<PartyDiagnostic> ValidateCanStartNext(CharacterRace race)
+    {
+        var diagnostics = new List<PartyDiagnostic>();
+        if (!Enum.IsDefined(race) || race != CharacterRace.Human)
+            diagnostics.Add(new("dual_class_human_only", "Only humans may become dual-classed."));
         if (Current.Level < MinimumCurrentLevel)
             diagnostics.Add(new("dual_class_level_too_low",
                 $"The current class must reach level {MinimumCurrentLevel} before changing class."));
@@ -47,9 +56,7 @@ public sealed record DualClassProgression
             diagnostics.Add(new("dual_class_limit_reached",
                 "A human may change class at most twice, for three total classes."));
 
-        return diagnostics.Count == 0
-            ? new(new([.. _careers, new CharacterClassLevel(nextClass, 1)]), [])
-            : new(this, diagnostics.ToArray());
+        return diagnostics;
     }
 
     public DualClassTransition TryAdvanceCurrentTo(int level)

@@ -143,15 +143,51 @@ public sealed class StartFlowTests
     }
 
     [Fact]
-    public void DualClassChoiceRemainsOpenWithoutInventingLevelState()
+    public void DualClassChoiceRemainsOpenWithoutProgressionState()
     {
         var flow = FlowWithMember();
         flow.OpenOccupiedSlotMenu(0);
 
         var diagnostic = Assert.Single(flow.Choose(OccupiedSlotChoice.Dual));
 
-        Assert.Equal("dual_class_unavailable", diagnostic.Code);
+        Assert.Equal("dual_class_progression_missing", diagnostic.Code);
         Assert.Equal(StartFlowScreen.OccupiedSlotMenu, flow.Screen);
+    }
+
+    [Fact]
+    public void EligibleDualClassChoiceAppliesSelectedClassAtomically()
+    {
+        var flow = FlowWithMember(Draft(progression:
+            DualClassProgression.Begin(CharacterClass.Fighter, 3)));
+        flow.OpenOccupiedSlotMenu(0);
+
+        Assert.Empty(flow.Choose(OccupiedSlotChoice.Dual));
+        Assert.Equal(StartFlowScreen.DualClassSelection, flow.Screen);
+        Assert.Equal("dual_class_duplicate",
+            Assert.Single(flow.ChooseDualClass(CharacterClass.Fighter)).Code);
+        Assert.Equal([CharacterClass.Fighter], flow.Party.Members[0].Classes);
+
+        Assert.Empty(flow.ChooseDualClass(CharacterClass.Preserver));
+        Assert.Equal(StartFlowScreen.PartyOverview, flow.Screen);
+        Assert.Null(flow.ActiveMemberIndex);
+        Assert.Equal([CharacterClass.Fighter, CharacterClass.Preserver],
+            flow.Party.Members[0].Classes);
+        Assert.Equal(1, flow.Party.Members[0].ClassProgression!.Current.Level);
+    }
+
+    [Fact]
+    public void DualClassSelectionCanBeCancelledWithoutMutation()
+    {
+        var flow = FlowWithMember(Draft(progression:
+            DualClassProgression.Begin(CharacterClass.Fighter, 3)));
+        flow.OpenOccupiedSlotMenu(0);
+        flow.Choose(OccupiedSlotChoice.Dual);
+
+        Assert.Empty(flow.Cancel());
+
+        Assert.Equal(StartFlowScreen.PartyOverview, flow.Screen);
+        Assert.Null(flow.ActiveMemberIndex);
+        Assert.Equal([CharacterClass.Fighter], flow.Party.Members[0].Classes);
     }
 
     private static StartFlow CreatedPartyFlow()
@@ -161,16 +197,21 @@ public sealed class StartFlowTests
         return flow;
     }
 
-    private static StartFlow FlowWithMember()
+    private static StartFlow FlowWithMember(CharacterDraft? character = null)
     {
         var flow = CreatedPartyFlow();
         flow.OpenEmptySlotMenu();
         flow.Choose(EmptySlotChoice.New);
-        flow.CompleteCharacter(Draft());
+        flow.CompleteCharacter(character ?? Draft());
         return flow;
     }
 
-    private static CharacterDraft Draft(string name = "Rikus") =>
+    private static CharacterDraft Draft(
+        string name = "Rikus",
+        DualClassProgression? progression = null) =>
         new(name, CharacterRace.Human, CharacterSex.Male, CharacterAlignment.NeutralGood,
-            new(15, 15, 15, 15, 15, 15), [CharacterClass.Fighter]);
+            new(15, 15, 15, 15, 15, 15), [CharacterClass.Fighter])
+        {
+            ClassProgression = progression
+        };
 }

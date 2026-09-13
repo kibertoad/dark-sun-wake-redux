@@ -81,6 +81,7 @@ public sealed record CharacterDraft(
 {
     public PsionicDisciplines PsionicDisciplines { get; init; } = PsionicDisciplines.Psychokinesis;
     public ClericalSphere? ClericalSphere { get; init; }
+    public DualClassProgression? ClassProgression { get; init; }
 }
 
 public sealed record PartyDiagnostic(string Code, string Message);
@@ -209,7 +210,9 @@ public static class PartyCreationRules
         {
             if (character.Classes.Count > 3)
                 diagnostics.Add(new("class_count_invalid", "At most three classes may be selected."));
-            if (character.Race == CharacterRace.Human && character.Classes.Count != 1)
+            var hasSequentialCareers = character.ClassProgression is { Careers.Count: > 1 };
+            if (character.Race == CharacterRace.Human && character.Classes.Count != 1 &&
+                !hasSequentialCareers)
                 diagnostics.Add(new("human_multiclass_invalid", "Humans begin with one class and may dual-class later."));
             if (character.Classes.Distinct().Count() != character.Classes.Count)
                 diagnostics.Add(new("class_duplicate", "A class cannot be selected more than once."));
@@ -234,8 +237,21 @@ public static class PartyCreationRules
                 ValidateMinimums(selectedClass, character.Abilities, diagnostics);
             }
         }
+        ValidateClassProgression(character, diagnostics);
         ValidatePsionicsAndSphere(character, diagnostics);
         return diagnostics;
+    }
+
+    private static void ValidateClassProgression(
+        CharacterDraft character, ICollection<PartyDiagnostic> diagnostics)
+    {
+        if (character.ClassProgression is null) return;
+        if (character.Race != CharacterRace.Human)
+            diagnostics.Add(new("dual_class_human_only", "Only humans may carry dual-class progression."));
+        if (character.Classes is null || !character.Classes.SequenceEqual(
+                character.ClassProgression.Careers.Select(item => item.CharacterClass)))
+            diagnostics.Add(new("dual_class_state_mismatch",
+                "Selected classes must match the ordered dual-class careers."));
     }
 
     private static void ValidatePsionicsAndSphere(

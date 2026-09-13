@@ -283,15 +283,17 @@
   rejection diagnostics and integration with the existing `Party` validation.
   Occupied-slot EDIT replaces the selected member atomically; DROP transfers
   the member to bounded recreation-native character storage and ADD can restore
-  it. DUAL remains unavailable in `StartFlow` until character progression is
-  carried by party members; the separate evidenced progression rule is
-  implemented by `RULE-PARTY-004`.
+  it. When a party member carries eligible class progression, DUAL enters a
+  dedicated selection state and atomically applies an accepted next class; the
+  separate evidenced progression rule is implemented by `RULE-PARTY-004`.
 - **Tests:** every start choice, NEW/ADD/CANCEL routing, valid and invalid
-  completion, occupied-slot edit/drop/add, atomic replacement, persisted edit
-  target, empty/nonempty party start, cancellation, and wrong-screen rejection.
+  completion, occupied-slot edit/drop/add/DUAL, atomic replacement, persisted
+  edit and DUAL targets, empty/nonempty party start, cancellation, and
+  wrong-screen rejection.
 - **Uncertainty:** Pregenerated member records, saved/created-character formats,
-  DUAL menu integration, the exact early-start control, and shipped cancellation edge cases
-  remain unimplemented until their data and runtime behavior are observed.
+  DUAL presentation/class-choice filtering, the exact early-start control, and
+  shipped cancellation edge cases remain unimplemented until their data and
+  runtime behavior are observed.
 
 ### RULE-PARTY-002 - Character creation invariants
 
@@ -339,7 +341,7 @@
   initial selections and selection transitions have not yet been observed.
 - **Implementation:** `CharacterDraft` records both choices and
   `PartyCreationRules` validates their class-dependent cardinality. Both fields
-  participate in the canonical start-flow state hash and snapshot schema 3.
+  participate in the canonical start-flow state hash and snapshot schema 4.
 - **Tests:** all-three Psionicist requirement, exactly-one non-Psionicist
   requirement, Cleric-only elemental sphere, and sphere-sensitive state hashes.
 - **Uncertainty:** Shipped defaults, control-state frames, click transitions,
@@ -361,13 +363,18 @@
 - **Implementation:** immutable `DualClassProgression` records ordered
   class/level careers, starts accepted new careers at level one, advances only
   the current career, reports stable rejection diagnostics, and evaluates the
-  documented strict level-exceeds boundary for former benefits.
+  documented strict level-exceeds boundary for former benefits. `CharacterDraft`
+  carries that progression, validates it against the ordered class list, and
+  `StartFlow` exposes a deterministic DUAL selection command. Snapshot schema 4
+  and the canonical state hash include every career and level.
 - **Tests:** human-only and level-three gates, duplicate-class and three-career
   limits, transition immutability, monotonic current-level advancement, and
-  equal/exceeded former-level boundaries.
-- **Uncertainty:** Integrating progression into the runtime character/save
-  model, initial shipped class levels/experience, XP thresholds, and exact DUAL
-  UI choices require later Slice 2/5 data and observations.
+  equal/exceeded former-level boundaries, class/progression consistency,
+  atomic DUAL selection, cancellation, command payload validation, snapshot
+  restore, and progression-sensitive state hashes.
+- **Uncertainty:** Player-visible selection, native-save integration, initial
+  shipped class levels/experience, XP thresholds, and exact DUAL UI choices
+  require later Slice 2/5 data and observations.
 
 ### RULE-COMBAT-001 - Party expansion on combat entry
 
