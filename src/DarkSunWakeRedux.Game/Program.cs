@@ -100,6 +100,13 @@ try
             if (PackedCharacterCatalog.Read(
                     characterStream, OriginalContent.CharacterCatalogAssetPath).Characters.Count == 0)
                 throw new InvalidDataException("The installed character catalog is empty.");
+            var regionPath = Path.Combine(assetPack,
+                OriginalContent.TyrRegionAssetPath.Replace('/', Path.DirectorySeparatorChar));
+            using var regionStream = File.OpenRead(regionPath);
+            var region = PackedRegion.Read(regionStream, OriginalContent.TyrRegionAssetPath);
+            if (region.ResourceNumber != 50 || region.Name != "Tyr" ||
+                region.Tiles.Count != 94 || region.Entities.Count != 867)
+                throw new InvalidDataException("The installed Tyr region catalog is incomplete.");
             var uiPath = Path.Combine(assetPack,
                 OriginalContent.StartFlowUiCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using var uiStream = File.OpenRead(uiPath);

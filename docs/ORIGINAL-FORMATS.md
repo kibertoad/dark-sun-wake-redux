@@ -20,6 +20,7 @@ semantics.
 | Pack `*.dstx` | Derived text catalog | `DSTX` v1 deterministically stores original resource IDs and printable ASCII lines | implemented; full TEXT catalog round-trip and extraction validated | Bound file size, version, resource/line counts and lengths; reject duplicates, unsupported bytes, and trailing data |
 | Pack `*.dsui` | Derived UI catalog | `DSUI` v1 deterministically stores the six start-flow windows and their resolved BUTN/APFM/EBOX graph | implemented; synthetic round-trip and owned extraction validated | Bound file size, per-type counts, child counts, tags, dimensions, identities, references, and trailing data |
 | Pack `*.dsch` | Derived character metadata catalog | `DSCH` v1 deterministically stores only the bounded `CHAR`/`PSIN` subset: resource ID, neutral tail-record count, name, six ordered abilities, and raw mask | implemented; synthetic round-trip and owned extraction validated | Bound file size, version, record/name counts, ability range, raw mask, canonical order, and trailing data; reject duplicates and do not carry uninterpreted source bytes |
+| Pack `*.dsrg` | Derived region catalog | `DSRG` v1 canonically stores the region identity, decoded palette and tiles, exact terrain/geometry planes, and raw ordered entity records | implemented; synthetic round-trip and owned Tyr extraction validated | Bound file size, version, fixed dimensions, counts, names, binary alpha, canonical tile order, map references, and exact content length |
 | `*.FLI` | Four observed cinematics | Likely animation resources by extension only; dimensions, palette changes, frame timing, and exact variant are unverified | low | Bound frames, chunks, dimensions, decoded bytes, and timing; unsupported chunk types fail explicitly |
 | `*.VOC` | Speech and sound-effect files | Creative Labs VOC is suggested by extension; headers, codecs, sample rates, and block use must be verified per file | low | Bound blocks and decoded samples; reject unsupported codecs and malformed terminators |
 | `MUSIC/*.ogg` | 39 GOG-supplied music files | Ogg container presence is observed; mapping, loop points, provenance, and relationship to original media are unknown | low | Validate stream metadata and decode limits; unknown track mapping remains data, not a guessed rule |
@@ -252,6 +253,25 @@ nonzero raw mask limited to the low three bits. It rejects duplicate or
 noncanonical resource ordering, truncation, and trailing data. No
 uninterpreted `CHAR` header or tail bytes enter the pack, and PSIN bit meanings
 remain deliberately unassigned.
+
+## Derived DSRG region catalog
+
+DSRG is an original deterministic pack format containing only the bounded
+region subset. Version 1 begins with ASCII `DSRG`, a 16-bit version, the 32-bit
+region number, fixed 16-bit map width/height/tile size values, 16-bit name and
+tile counts, and a 32-bit entity count. The printable ASCII name is followed by
+256 decoded RGB triples, the exact terrain and geometry planes, then tiles in
+ascending byte resource-number order. Each tile stores its number, 256 palette
+indices, and 256 binary-alpha bytes. Ordered entity records retain the original
+two signed coordinates, signed vertical offset, flags byte, and signed object
+resource number.
+
+The reader caps files at 2 MiB, names at 63 bytes, tiles at 256, and entities at
+16,384. It requires the 128x98 planes, 16x16 tile geometry, canonical unique tile
+order, binary alpha, complete map-to-tile references, and an exact computed file
+length. DSRG carries no GFF offsets or uninterpreted container bytes. Version 1
+does not assign collision meaning to geometry values or behavior to entity
+flags and object references.
 
 ## Derived DSFT indexed-font asset
 

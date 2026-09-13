@@ -65,7 +65,7 @@ public sealed class GffRegionTests
         return GffArchive.Read(stream, "synthetic.gff");
     }
 
-    private static byte[] RegionArchive(
+    internal static byte[] RegionArchive(
         string name = "Tyr\0",
         int mapLength = GffRegion.MapByteCount,
         byte mapValue = 2,
@@ -84,7 +84,7 @@ public sealed class GffRegionTests
             ("TILE", 7, TileImage(16)));
     }
 
-    private static byte[] ObjectArchive(bool includeEleven = true)
+    internal static byte[] ObjectArchive(bool includeEleven = true)
     {
         var resources = new List<(string Tag, uint Number, byte[] Bytes)>
         {

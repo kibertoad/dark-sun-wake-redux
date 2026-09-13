@@ -92,17 +92,21 @@ public sealed class StartupAssetExtractorTests
             var characterSourcePath = Path.Combine(sourceRoot, StartupAssetExtractor.CharacterSourcePath);
             await File.WriteAllBytesAsync(
                 characterSourcePath, CharacterArchive(), TestContext.Current.CancellationToken);
-            string hash;
-            await using (var sourceStream = File.OpenRead(sourcePath))
-                hash = Convert.ToHexStringLower(await SHA256.HashDataAsync(
-                    sourceStream, TestContext.Current.CancellationToken));
+            var objectSourcePath = Path.Combine(sourceRoot, StartupAssetExtractor.ObjectSourcePath);
+            await File.WriteAllBytesAsync(objectSourcePath, GffRegionTests.ObjectArchive(),
+                TestContext.Current.CancellationToken);
+            var regionSourcePath = Path.Combine(sourceRoot, StartupAssetExtractor.TyrRegionSourcePath);
+            await File.WriteAllBytesAsync(regionSourcePath, GffRegionTests.RegionArchive(),
+                TestContext.Current.CancellationToken);
             var edition = new SourceManifest(OriginalContent.GameId, "synthetic-title-edition",
-                [new SourceFile(StartupAssetExtractor.SourcePath, new FileInfo(sourcePath).Length, hash)]);
+                [await FingerprintAsync(sourceRoot, StartupAssetExtractor.SourcePath),
+                    await FingerprintAsync(sourceRoot, StartupAssetExtractor.ObjectSourcePath),
+                    await FingerprintAsync(sourceRoot, StartupAssetExtractor.TyrRegionSourcePath)]);
 
             var manifest = await AssetPackInstaller.InstallAsync(output, staging =>
                 StartupAssetExtractor.WritePackAsync(sourceRoot, staging, edition, "test"));
 
-            Assert.Equal(41, manifest.Files.Count);
+            Assert.Equal(42, manifest.Files.Count);
             var asset = Assert.Single(manifest.Files, item => item.Path == OriginalContent.TitleImageAssetPath);
             Assert.Contains("BMP #11011", asset.Conversion, StringComparison.Ordinal);
             Assert.Contains("PAL #11011", asset.Conversion, StringComparison.Ordinal);
@@ -180,6 +184,18 @@ public sealed class StartupAssetExtractorTests
                 Assert.Equal("Hero", character.Name);
                 Assert.Equal(15, character.AbilityScores.Strength);
                 Assert.Equal(1, character.RawPsionicMask);
+            }
+            var regionAsset = Assert.Single(manifest.Files,
+                item => item.Path == OriginalContent.TyrRegionAssetPath);
+            Assert.Equal(StartupAssetExtractor.TyrRegionSourcePath, regionAsset.SourcePath);
+            Assert.Contains("OBJEX.GFF:OJFF", regionAsset.Conversion, StringComparison.Ordinal);
+            Assert.Contains("DSRG v1", regionAsset.Conversion, StringComparison.Ordinal);
+            using (var regionStream = File.OpenRead(Path.Combine(output,
+                       OriginalContent.TyrRegionAssetPath.Replace('/', Path.DirectorySeparatorChar))))
+            {
+                var region = PackedRegion.Read(regionStream);
+                Assert.Equal((50U, "Tyr", 2, 2),
+                    (region.ResourceNumber, region.Name, region.Tiles.Count, region.Entities.Count));
             }
             var uiAsset = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.StartFlowUiCatalogAssetPath);
@@ -418,6 +434,15 @@ public sealed class StartupAssetExtractorTests
         WriteTable(writer, "CHAR", [(7U, characterOffset, character.Length)]);
         WriteTable(writer, "PSIN", [(7U, psionicOffset, 1)]);
         return stream.ToArray();
+    }
+
+    private static async Task<SourceFile> FingerprintAsync(string root, string relativePath)
+    {
+        var path = Path.Combine(root, relativePath);
+        await using var stream = File.OpenRead(path);
+        var hash = Convert.ToHexStringLower(await SHA256.HashDataAsync(
+            stream, TestContext.Current.CancellationToken));
+        return new(relativePath, stream.Length, hash);
     }
 
     private static byte[] Window(uint number)

@@ -7,6 +7,8 @@ public static class StartupAssetExtractor
 {
     public const string SourcePath = "RESOURCE.GFF";
     public const string CharacterSourcePath = "CHARSAVE.GFF";
+    public const string ObjectSourcePath = "OBJEX.GFF";
+    public const string TyrRegionSourcePath = "RGN032.GFF";
     public const string TitleImageTag = "BMP ";
     public const uint TitleImageNumber = 11011;
     public const string ImageTag = "ICON";
@@ -35,6 +37,16 @@ public static class StartupAssetExtractor
         await using var characterSource = File.OpenRead(characterSourcePath);
         var characterArchive = GffArchive.Read(characterSource, characterSourcePath);
         var characters = GffCharacterCatalog.Read(characterArchive, CharacterSourcePath);
+        var objectSourcePath = Path.Combine(sourceRoot, ObjectSourcePath);
+        await using var objectSource = File.OpenRead(objectSourcePath);
+        var objectArchive = GffArchive.Read(objectSource, objectSourcePath);
+        var regionSourcePath = Path.Combine(sourceRoot, TyrRegionSourcePath);
+        await using var regionSource = File.OpenRead(regionSourcePath);
+        var regionArchive = GffArchive.Read(regionSource, regionSourcePath);
+        var tyrRegion = GffRegion.Read(regionArchive, objectArchive, TyrRegionSourcePath);
+        if (tyrRegion.ResourceNumber != 50 || tyrRegion.Name != "Tyr")
+            throw new InvalidDataException(
+                $"{TyrRegionSourcePath} does not contain the expected Tyr region #50.");
         var titlePalette = IndexedPalette.Read(
             archive.GetResource(PaletteTag, TitlePaletteNumber).Span,
             $"{SourcePath}:{PaletteTag}#{TitlePaletteNumber}");
@@ -119,6 +131,7 @@ public static class StartupAssetExtractor
         files.Add(await WriteTextCatalogAsync(stagingRoot, archive, cancellationToken));
         files.Add(await WriteUiCatalogAsync(stagingRoot, archive, cancellationToken));
         files.Add(await WriteCharacterCatalogAsync(stagingRoot, characters, cancellationToken));
+        files.Add(await WriteRegionAsync(stagingRoot, tyrRegion, cancellationToken));
 
         return new AssetPackManifest(
             OriginalContent.AssetPackFormatVersion,
@@ -168,6 +181,30 @@ public static class StartupAssetExtractor
         return new(relativePath, verify.Length, hash, CharacterSourcePath,
             "application/vnd.dark-sun-wake-redux.character-catalog",
             $"CHAR identity/abilities/envelope + PSIN mask -> DSCH v{PackedCharacterCatalog.FormatVersion}");
+    }
+
+    private static async Task<AssetPackFile> WriteRegionAsync(
+        string stagingRoot,
+        GffRegion region,
+        CancellationToken cancellationToken)
+    {
+        var packed = PackedRegion.From(region);
+        var relativePath = OriginalContent.TyrRegionAssetPath;
+        var target = Path.Combine(stagingRoot,
+            relativePath.Replace('/', Path.DirectorySeparatorChar));
+        Directory.CreateDirectory(Path.GetDirectoryName(target)!);
+        await using (var output = File.Create(target)) packed.Write(output);
+        await using var verify = File.OpenRead(target);
+        var decoded = PackedRegion.Read(verify, relativePath);
+        if (decoded.ResourceNumber != 50 || decoded.Name != "Tyr")
+            throw new InvalidDataException("The derived Tyr region failed identity verification.");
+        verify.Position = 0;
+        var hash = Convert.ToHexStringLower(
+            await SHA256.HashDataAsync(verify, cancellationToken));
+        return new(relativePath, verify.Length, hash, TyrRegionSourcePath,
+            "application/vnd.dark-sun-wake-redux.region",
+            $"RNME/PAL/MAP/GMAP/TILE/ETAB + {ObjectSourcePath}:OJFF references -> " +
+            $"DSRG v{PackedRegion.FormatVersion}");
     }
 
     private static async Task<AssetPackFile> WriteUiCatalogAsync(

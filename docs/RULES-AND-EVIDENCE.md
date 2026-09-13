@@ -76,11 +76,16 @@
   integrity in GOG-1432903719; medium for coordinate/vertical-field names from
   the corroborating research; unknown for geometry bits, entity flags, map
   collision semantics, and the opening spawn.
-- **Implementation:** `DarkSunWakeRedux.Resources.GffRegion` and the read-only
-  `region-catalog` inspection command. No region content enters the asset pack
-  in this finding.
+- **Implementation:** `DarkSunWakeRedux.Resources.GffRegion`, canonical bounded
+  `PackedRegion` DSRG v1, the read-only `region-catalog` inspection command, and
+  transactional extraction of region #50 to `regions/tyr.dsrg`. The pack keeps
+  decoded data only and records `RGN032.GFF` plus `OBJEX.GFF` reference-validation
+  provenance; it does not copy GFF payloads.
 - **Tests:** synthetic successful decoding plus malformed name, plane length,
-  tile frame, partial entity record, missing tile, and missing object cases.
+  tile frame, partial entity record, missing tile, and missing object cases;
+  DSRG round-trip, deterministic tile order, exact length/header/dimensions,
+  map reference, and binary-alpha rejection; synthetic transactional extraction
+  and owned pack/content-smoke validation.
 
 ### DATA-GOG-TITLE-001 - Title image resource mapping
 
@@ -304,9 +309,9 @@
   palette; medium for coordinates because the public capture is compressed and
   its precise source revision is not identified.
 - **Implementation:** both layers are transactionally extracted as DSIX in
-  asset-pack format 13 and rendered when Core enters `PartyOverview`.
+  asset-pack format 14 and rendered when Core enters `PartyOverview`.
 - **Tests:** exact mapping/order/geometry, synthetic extraction provenance,
-  exact 41-file inventory, pack verification, and content smoke.
+  exact 42-file inventory, pack verification, and content smoke.
 - **Uncertainty:** Party portraits, status fields, empty-slot art, BEGIN and
   slot interaction, focus, and the runtime label substitutions visible in the
   separate ADD list remain open. `EXE-GOG-UI-003` narrows the input boundary to
@@ -333,7 +338,7 @@
   interface palette, and WIND geometry; medium for runtime substitution because
   the corroborating public capture's exact source revision is unidentified.
 - **Implementation:** seven newly mapped images are transactionally extracted
-  as DSIX in asset-pack format 13. Their first frames, plus the already extracted
+  as DSIX in asset-pack format 14. Their first frames, plus the already extracted
   EXIT image, render when Core enters `AddExistingCharacter`. WIND #18501 and
   its 17-child graph are retained in DSUI; a dedicated resolver validates the
   320x181 shell, static #10002/source-image references, runtime substitutions, child order,
@@ -341,7 +346,7 @@
   to Core cancellation; row, scroll, ADD, DELETE, title, and edit-box behavior
   remain deliberately unassigned.
 - **Tests:** exact asset, graph, substitution, placement, and hit contracts; frame bounds; synthetic
-  extraction provenance, exact 41-file inventory, pack verification, and
+  extraction provenance, exact 42-file inventory, pack verification, and
   content smoke.
 - **Uncertainty:** Stored-character names and portraits, row selection,
   scrolling, focus, frame-state transitions, ADD/DELETE behavior, and the
@@ -491,7 +496,7 @@
   supported GOG build; runtime selection and remaining field semantics are
   unknown.
 - **Implementation:** `PackedCharacterCatalog` plus transactional extraction to
-  `characters/catalog.dsch`; the asset-pack manifest is version 13 and records
+  `characters/catalog.dsch`; the asset-pack manifest is version 14 and records
   `CHARSAVE.GFF` provenance.
 - **Tests:** synthetic round-trip and deterministic ordering; duplicate,
   malformed-field, noncanonical-order, truncation, and trailing-data rejection;

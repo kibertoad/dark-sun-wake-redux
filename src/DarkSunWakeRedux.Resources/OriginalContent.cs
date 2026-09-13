@@ -145,7 +145,7 @@ public sealed record SourceIdentification(
 
 public static class OriginalContent
 {
-    public const int AssetPackFormatVersion = 13;
+    public const int AssetPackFormatVersion = 14;
     public const string GameId = "dark-sun-wake-redux";
     public const string TitleImageAssetPath = "images/title.dsix";
     public const string InterfaceFontAssetPath = "fonts/interface.dsft";
@@ -153,6 +153,7 @@ public static class OriginalContent
     public const string PartyWindowImageAssetPath = "images/party/window-image.dsix";
     public const string StartFlowUiCatalogAssetPath = "ui/start-flow.dsui";
     public const string CharacterCatalogAssetPath = "characters/catalog.dsch";
+    public const string TyrRegionAssetPath = "regions/tyr.dsrg";
     public const long MaximumManifestBytes = 4 * 1024 * 1024;
 
     public static IReadOnlyList<uint> StartFlowWindowResourceNumbers { get; } =

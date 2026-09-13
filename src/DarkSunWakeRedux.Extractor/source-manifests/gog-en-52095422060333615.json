@@ -31,6 +31,11 @@
       "path": "RESOURCE.GFF",
       "size": 5724669,
       "sha256": "828455c0627998ef1101c6ee4ee66f270a1a8de6d862bba78c7b0e723352730d"
+    },
+    {
+      "path": "RGN032.GFF",
+      "size": 64641,
+      "sha256": "6224aefe947062141f2102bfa1098d9e7fa0e1f6eab8d385eaf2a7d2a434d04e"
     }
   ]
 }
