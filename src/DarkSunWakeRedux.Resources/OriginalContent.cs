@@ -136,6 +136,22 @@ public sealed record CharacterGenerationButtonAsset(
             frame.Width == FrameWidth && frame.Height == FrameHeight);
 }
 
+public sealed record GameMenuButtonAsset(
+    string Name,
+    string Path,
+    uint ButtonResourceNumber,
+    uint ImageResourceNumber,
+    int X,
+    int Y,
+    int FrameWidth,
+    int FrameHeight,
+    int FrameCount)
+{
+    public bool HasExpectedFrames(IReadOnlyList<IndexedImageFrame> frames) =>
+        frames.Count == FrameCount && frames.All(frame =>
+            frame.Width == FrameWidth && frame.Height == FrameHeight);
+}
+
 public sealed record SourceIdentification(
     SourceManifest? Edition,
     IReadOnlyList<ContentDiagnostic> Diagnostics)
@@ -145,13 +161,14 @@ public sealed record SourceIdentification(
 
 public static class OriginalContent
 {
-    public const int AssetPackFormatVersion = 16;
+    public const int AssetPackFormatVersion = 17;
     public const string GameId = "dark-sun-wake-redux";
     public const string TitleImageAssetPath = "images/title.dsix";
     public const string InterfaceFontAssetPath = "fonts/interface.dsft";
     public const string TextCatalogAssetPath = "text/resources.dstx";
     public const string PartyWindowImageAssetPath = "images/party/window-image.dsix";
     public const string StartFlowUiCatalogAssetPath = "ui/start-flow.dsui";
+    public const string GameMenuUiCatalogAssetPath = "ui/game-menu.dsui";
     public const string CharacterCatalogAssetPath = "characters/catalog.dsch";
     public const string TyrRegionAssetPath = "regions/tyr.dsrg";
     public const string TyrObjectCatalogAssetPath = "regions/tyr-objects.dsob";
@@ -159,6 +176,43 @@ public static class OriginalContent
 
     public static IReadOnlyList<uint> StartFlowWindowResourceNumbers { get; } =
         [18501, 19500, 19501, 19502, 19503, 19504, 19505];
+
+    public const uint GameMenuWindowResourceNumber = 10500;
+
+    public static UiLayerAsset GameMenuLayer { get; } =
+        new("game-menu", "images/game-menu/base.dsix", 10000, 55, 42, 210, 116);
+
+    public static IReadOnlyList<GameMenuButtonAsset> GameMenuButtons { get; } =
+    [
+        new("view-character", "images/game-menu/view-character.dsix",
+            10300, 10100, 49, 24, 16, 16, 4),
+        new("view-inventory", "images/game-menu/view-inventory.dsix",
+            11304, 11102, 81, 24, 16, 16, 4),
+        new("cast-spells-use-psionics", "images/game-menu/cast-spells-use-psionics.dsix",
+            11305, 11103, 113, 24, 16, 16, 4),
+        new("current-spell-effects", "images/game-menu/current-spell-effects.dsix",
+            11306, 11104, 145, 24, 16, 16, 4),
+        new("exit-to-dos", "images/game-menu/exit-to-dos.dsix",
+            10301, 10101, 49, 51, 16, 16, 4),
+        new("load-save", "images/game-menu/load-save.dsix",
+            10302, 10102, 73, 51, 16, 16, 4),
+        new("preferences", "images/game-menu/preferences.dsix",
+            10303, 10103, 97, 51, 16, 16, 4),
+        new("overhead-map", "images/game-menu/overhead-map.dsix",
+            10305, 10105, 121, 51, 16, 16, 3),
+        new("center-on-leader", "images/game-menu/center-on-leader.dsix",
+            10306, 10106, 145, 51, 16, 16, 4),
+        new("collapse-party", "images/game-menu/collapse-party.dsix",
+            10313, 10113, 44, 78, 28, 16, 4),
+        new("walk", "images/game-menu/walk.dsix",
+            10310, 10110, 76, 78, 16, 16, 4),
+        new("look", "images/game-menu/look.dsix",
+            10311, 10111, 97, 78, 16, 16, 4),
+        new("attack", "images/game-menu/attack.dsix",
+            10312, 10112, 116, 78, 16, 16, 4),
+        new("return-to-game", "images/game-menu/return-to-game.dsix",
+            10308, 10108, 139, 78, 28, 16, 2)
+    ];
 
     public static IReadOnlyList<UiLayerAsset> StartMenuLayers { get; } =
     [

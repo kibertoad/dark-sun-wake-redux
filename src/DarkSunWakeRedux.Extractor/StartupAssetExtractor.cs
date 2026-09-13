@@ -117,6 +117,19 @@ public static class StartupAssetExtractor
                 $"{ImageTag}#{mapping.ImageResourceNumber} all frames + " +
                 $"{PaletteTag}#{InterfacePaletteNumber}", cancellationToken));
         }
+        files.Add(await ExtractLayerAsync(archive, interfacePalette, stagingRoot,
+            OriginalContent.GameMenuLayer, "game-menu", cancellationToken));
+        foreach (var mapping in OriginalContent.GameMenuButtons)
+        {
+            var image = IndexedImage.Read(archive.GetResource(ImageTag, mapping.ImageResourceNumber),
+                $"{SourcePath}:{ImageTag}#{mapping.ImageResourceNumber}");
+            if (!mapping.HasExpectedFrames(image.Frames))
+                throw new InvalidDataException(
+                    $"The mapped game-menu {mapping.Name} image has unexpected frame geometry.");
+            files.Add(await WriteImageAsync(stagingRoot, mapping.Path, image, interfacePalette,
+                $"{ImageTag}#{mapping.ImageResourceNumber} all frames + " +
+                $"{PaletteTag}#{InterfacePaletteNumber}", cancellationToken));
+        }
 
         var windowImage = IndexedImage.Read(archive.GetResource(TitleImageTag, PartyWindowImageNumber),
             $"{SourcePath}:{TitleImageTag}#{PartyWindowImageNumber}");
@@ -131,7 +144,12 @@ public static class StartupAssetExtractor
             $"{SourcePath}:{FontTag}#{FontNumber}");
         files.Add(await WriteFontAsync(stagingRoot, font, cancellationToken));
         files.Add(await WriteTextCatalogAsync(stagingRoot, archive, cancellationToken));
-        files.Add(await WriteUiCatalogAsync(stagingRoot, archive, cancellationToken));
+        files.Add(await WriteUiCatalogAsync(stagingRoot, archive,
+            OriginalContent.StartFlowUiCatalogAssetPath,
+            OriginalContent.StartFlowWindowResourceNumbers, "start-flow", cancellationToken));
+        files.Add(await WriteUiCatalogAsync(stagingRoot, archive,
+            OriginalContent.GameMenuUiCatalogAssetPath,
+            [OriginalContent.GameMenuWindowResourceNumber], "game-menu", cancellationToken));
         files.Add(await WriteCharacterCatalogAsync(stagingRoot, characters, cancellationToken));
         files.Add(await WriteRegionAsync(stagingRoot, tyrRegion, cancellationToken));
         files.Add(await WriteObjectCatalogAsync(stagingRoot, tyrObjects, cancellationToken));
@@ -237,14 +255,18 @@ public static class StartupAssetExtractor
     private static async Task<AssetPackFile> WriteUiCatalogAsync(
         string stagingRoot,
         GffArchive archive,
+        string relativePath,
+        IReadOnlyList<uint> windowResourceNumbers,
+        string family,
         CancellationToken cancellationToken)
     {
-        var windows = OriginalContent.StartFlowWindowResourceNumbers.Select(number =>
+        var windows = windowResourceNumbers.Select(number =>
             UiWindowResource.Read(archive.GetResource("WIND", number),
                 $"{SourcePath}:WIND#{number}")).ToArray();
         if (!windows.Select(window => window.ResourceNumber)
-            .SequenceEqual(OriginalContent.StartFlowWindowResourceNumbers))
-            throw new InvalidDataException("A start-flow WIND record contains the wrong embedded resource number.");
+            .SequenceEqual(windowResourceNumbers))
+            throw new InvalidDataException(
+                $"A {family} WIND record contains the wrong embedded resource number.");
         var children = windows.SelectMany(window => window.Children).ToArray();
         var unsupported = children.Select(child => child.Tag)
             .Distinct(StringComparer.Ordinal)
@@ -252,7 +274,7 @@ public static class StartupAssetExtractor
             .ToArray();
         if (unsupported.Length != 0)
             throw new InvalidDataException(
-                $"Start-flow windows contain unsupported child tags: {string.Join(", ", unsupported)}.");
+                $"{family} windows contain unsupported child tags: {string.Join(", ", unsupported)}.");
         var buttonNumbers = children.Where(child => child.Tag == "BUTN")
             .Select(child => child.ResourceNumber).Distinct().ToArray();
         var buttons = buttonNumbers.Select(number =>
@@ -271,9 +293,9 @@ public static class StartupAssetExtractor
         if (!buttons.Select(item => item.ResourceNumber).SequenceEqual(buttonNumbers) ||
             !frames.Select(item => item.ResourceNumber).SequenceEqual(frameNumbers) ||
             !editBoxes.Select(item => item.ResourceNumber).SequenceEqual(editBoxNumbers))
-            throw new InvalidDataException("A start-flow child record contains the wrong embedded resource number.");
+            throw new InvalidDataException(
+                $"A {family} child record contains the wrong embedded resource number.");
         var catalog = new PackedUiCatalog(windows, buttons, frames, editBoxes);
-        var relativePath = OriginalContent.StartFlowUiCatalogAssetPath;
         var target = Path.Combine(stagingRoot, relativePath.Replace('/', Path.DirectorySeparatorChar));
         Directory.CreateDirectory(Path.GetDirectoryName(target)!);
         await using (var output = File.Create(target)) catalog.Write(output);
@@ -283,7 +305,7 @@ public static class StartupAssetExtractor
         var hash = Convert.ToHexStringLower(await SHA256.HashDataAsync(verify, cancellationToken));
         return new(relativePath, verify.Length, hash, SourcePath,
             "application/vnd.dark-sun-wake-redux.ui-catalog",
-            $"WIND#{string.Join(',', OriginalContent.StartFlowWindowResourceNumbers)} " +
+            $"WIND#{string.Join(',', windowResourceNumbers)} " +
             $"resolved child graph -> DSUI v{PackedUiCatalog.FormatVersion}");
     }
 

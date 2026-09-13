@@ -19,7 +19,7 @@ semantics.
 | Pack `*.dsix` | Derived indexed-image asset | `DSIX` v1 stores one decoded 256-color palette plus bounded indexed frames and binary alpha | implemented; title asset round-trip and extraction validated | Bound file size, version, frame count, dimensions, pixels, alpha, and trailing data; reject non-binary alpha |
 | Pack `*.dsft` | Derived indexed-font asset | `DSFT` v1 stores a character map, shared height, widths, and bounded indexed glyph pixels | implemented; interface-font round-trip and extraction validated | Bound file size, version, glyph count, height, widths, pixel counts, and trailing data |
 | Pack `*.dstx` | Derived text catalog | `DSTX` v1 deterministically stores original resource IDs and printable ASCII lines | implemented; full TEXT catalog round-trip and extraction validated | Bound file size, version, resource/line counts and lengths; reject duplicates, unsupported bytes, and trailing data |
-| Pack `*.dsui` | Derived UI catalog | `DSUI` v1 deterministically stores the six start-flow windows and their resolved BUTN/APFM/EBOX graph | implemented; synthetic round-trip and owned extraction validated | Bound file size, per-type counts, child counts, tags, dimensions, identities, references, and trailing data |
+| Pack `*.dsui` | Derived UI catalog | `DSUI` v1 deterministically stores selected window families and their resolved BUTN/APFM/EBOX graphs | implemented; start-flow and Game Menu synthetic round-trip and owned extraction validated | Bound file size, per-type counts, child counts, tags, dimensions, identities, references, and trailing data |
 | Pack `*.dsch` | Derived character metadata catalog | `DSCH` v1 deterministically stores only the bounded `CHAR`/`PSIN` subset: resource ID, neutral tail-record count, name, six ordered abilities, and raw mask | implemented; synthetic round-trip and owned extraction validated | Bound file size, version, record/name counts, ability range, raw mask, canonical order, and trailing data; reject duplicates and do not carry uninterpreted source bytes |
 | Pack `*.dsrg` | Derived region catalog | `DSRG` v1 canonically stores the region identity, decoded palette and tiles, exact terrain/geometry planes, and raw ordered entity records | implemented; synthetic round-trip and owned Tyr extraction validated | Bound file size, version, fixed dimensions, counts, names, binary alpha, canonical tile order, map references, and exact content length |
 | Pack `*.dsob` | Derived object-frame catalog | `DSOB` v1 canonically stores bounded OJFF fields plus deduplicated decoded indexed frames; the region supplies the palette | implemented; synthetic round-trip and owned Tyr extraction validated | Bound file size, version, definition/image/frame/pixel counts, dimensions, binary alpha, canonical ordering, complete references, and exact content length |
@@ -267,7 +267,7 @@ image decoder, caps the file at 160 MiB, requires the declared pixel count to
 equal width times height, accepts alpha values only at 0 or 255, and rejects
 trailing bytes.
 
-## Derived DSUI start-flow UI catalog
+## Derived DSUI UI catalogs
 
 DSUI is an original, versioned pack format that removes uninterpreted UI bytes
 while preserving the verified runtime-facing graph. Version 1 begins with ASCII
@@ -281,9 +281,11 @@ resource order for deterministic output.
 The reader caps the file at 4 MiB and each record family and window child list
 at 4,096 entries. It rejects non-printable or unsupported child tags, duplicate
 same-type identities, invalid dimensions, unresolved children, truncation, and
-trailing bytes. The Slice 2 pack contains `WIND` #18501 and #19500 through #19505
-plus all 56 of their referenced `BUTN`, `APFM`, and `EBOX` records. Unknown source fields,
-button tails, palette assumptions, and shell draw semantics are not carried.
+trailing bytes. The pack contains a start-flow catalog with `WIND` #18501 and
+#19500 through #19505 plus all 56 referenced controls, and a separate Game Menu
+catalog with `WIND` #10500 and all 30 ordered referenced `BUTN`/`APFM` records.
+Unknown source fields, button tails, palette assumptions, and unmeasured shell
+placement semantics are not carried.
 
 ## Derived DSCH character-metadata catalog
 

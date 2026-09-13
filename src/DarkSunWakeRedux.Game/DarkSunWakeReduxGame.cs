@@ -17,6 +17,8 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     private readonly List<(UiImagePlacement Placement, Texture2D Texture)> _addExistingImages = [];
     private readonly List<(StartMenuControl Control, Texture2D Texture)> _startMenuControls = [];
     private IReadOnlyList<AddExistingControl> _addExistingControls = [];
+    private Texture2D? _gameMenuBase;
+    private readonly List<(GameMenuControl Control, Texture2D Texture)> _gameMenuControls = [];
     private Texture2D? _explorationSceneTexture;
     private PackedRegion? _tyrRegion;
     private PackedObjectFrameCatalog? _tyrObjects;
@@ -96,6 +98,13 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             var image = PackedIndexedImage.Read(buttonStream, control.AssetPath);
             _startMenuControls.Add((control, CreateTexture(image, image.Frames[0])));
         }
+        _gameMenuBase = LoadImageTexture(OriginalContent.GameMenuLayer.Path);
+        var gameMenuUiPath = AssetPath(OriginalContent.GameMenuUiCatalogAssetPath);
+        using var gameMenuUiStream = File.OpenRead(gameMenuUiPath);
+        var gameMenuUi = PackedUiCatalog.Read(
+            gameMenuUiStream, OriginalContent.GameMenuUiCatalogAssetPath);
+        foreach (var control in GameMenuInput.Resolve(gameMenuUi))
+            _gameMenuControls.Add((control, LoadImageTexture(control.AssetPath)));
         var regionPath = AssetPath(OriginalContent.TyrRegionAssetPath);
         using var regionStream = File.OpenRead(regionPath);
         _tyrRegion = PackedRegion.Read(regionStream, OriginalContent.TyrRegionAssetPath);
@@ -109,6 +118,13 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
 
         string AssetPath(string relativePath) => Path.Combine(_assetPack,
             relativePath.Replace('/', Path.DirectorySeparatorChar));
+
+        Texture2D LoadImageTexture(string relativePath)
+        {
+            using var stream = File.OpenRead(AssetPath(relativePath));
+            var image = PackedIndexedImage.Read(stream, relativePath);
+            return CreateTexture(image, image.Frames[0]);
+        }
     }
 
     private Texture2D CreateTexture(PackedIndexedImage image, IndexedImageFrame frame)
@@ -164,6 +180,12 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                         AddExistingCharacterInput.HitTest(_addExistingControls, x, y) is { } control &&
                         AddExistingCharacterInput.CommandFor(control) is { } command)
                         _startFlow.Execute(command);
+                    else if (screen == StartFlowScreen.Gameplay &&
+                        _exploration.Snapshot().View == ExplorationView.GameMenu &&
+                        GameMenuInput.HitTest(
+                            _gameMenuControls.Select(item => item.Control).ToArray(), x, y) is { } menuControl &&
+                        GameMenuInput.CommandFor(menuControl) is { } explorationCommand)
+                        _exploration.Execute(explorationCommand);
                 }
             }
             var keyboard = Keyboard.GetState();
@@ -231,6 +253,17 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                 _ => []
             };
             var placedImages = images.ToArray();
+            if (screen == StartFlowScreen.Gameplay &&
+                _exploration.Snapshot().View == ExplorationView.GameMenu &&
+                _gameMenuBase is not null)
+            {
+                placedImages = placedImages
+                    .Append((OriginalContent.GameMenuLayer.X,
+                        OriginalContent.GameMenuLayer.Y, _gameMenuBase))
+                    .Concat(_gameMenuControls.Select(item =>
+                        (item.Control.X, item.Control.Y, item.Texture)))
+                    .ToArray();
+            }
             if (placedImages.Length > 0)
             {
                 var transform = new LogicalCanvasTransform(
@@ -257,6 +290,8 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         foreach (var texture in _addExistingImages.Select(item => item.Texture).Distinct())
             texture.Dispose();
         foreach (var (_, texture) in _startMenuControls) texture.Dispose();
+        _gameMenuBase?.Dispose();
+        foreach (var (_, texture) in _gameMenuControls) texture.Dispose();
         _explorationSceneTexture?.Dispose();
         _spriteBatch?.Dispose();
         base.UnloadContent();

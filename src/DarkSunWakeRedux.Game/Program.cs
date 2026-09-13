@@ -73,6 +73,18 @@ try
                     throw new InvalidDataException(
                         $"The installed character-generation modal {button.Name} image has unexpected geometry.");
             }
+            var gameMenuLayer = ReadImage(assetPack, OriginalContent.GameMenuLayer.Path);
+            var gameMenuFrame = AssertSingleFrame(gameMenuLayer.Frames, "game-menu base");
+            if (gameMenuFrame.Width != OriginalContent.GameMenuLayer.FrameWidth ||
+                gameMenuFrame.Height != OriginalContent.GameMenuLayer.FrameHeight)
+                throw new InvalidDataException("The installed game-menu base has unexpected geometry.");
+            foreach (var button in OriginalContent.GameMenuButtons)
+            {
+                var image = ReadImage(assetPack, button.Path);
+                if (!button.HasExpectedFrames(image.Frames))
+                    throw new InvalidDataException(
+                        $"The installed game-menu {button.Name} image has unexpected geometry.");
+            }
             var windowImagePath = Path.Combine(assetPack,
                 OriginalContent.PartyWindowImageAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using (var windowImageStream = File.OpenRead(windowImagePath))
@@ -144,6 +156,13 @@ try
             if (AddExistingCharacterInput.Resolve(ui).Count != 17)
                 throw new InvalidDataException("The installed ADD-list UI graph is incomplete.");
             _ = PartyOverviewInput.Resolve(ui);
+            var gameMenuUiPath = Path.Combine(assetPack,
+                OriginalContent.GameMenuUiCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
+            using var gameMenuUiStream = File.OpenRead(gameMenuUiPath);
+            var gameMenuUi = PackedUiCatalog.Read(
+                gameMenuUiStream, OriginalContent.GameMenuUiCatalogAssetPath);
+            if (GameMenuInput.Resolve(gameMenuUi).Count != OriginalContent.GameMenuButtons.Count)
+                throw new InvalidDataException("The installed game-menu UI graph is incomplete.");
             Console.WriteLine($"Verified runtime startup assets at {assetPack}.");
             return 0;
         }

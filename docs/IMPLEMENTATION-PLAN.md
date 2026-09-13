@@ -264,7 +264,7 @@ decoder rather than being guessed now.
   class/level progression, the active member during DUAL selection or editing,
   and recreation-native stored characters;
   DSUI round-trip, malformed graph, deterministic ordering, mixed-control graph resolution, resource-ID routing,
-  rectangle-edge, synthetic extraction, content-smoke, and owned 43-asset pack verification cover the derived
+  rectangle-edge, synthetic extraction, content-smoke, and owned 59-asset pack verification cover the derived
   start-flow layout contract;
   gameplay-wide replay remains a later-slice requirement.
 - **Observed parity.** Compare boot, start, create/select/cancel, and quit state
@@ -300,8 +300,11 @@ decoder rather than being guessed now.
   and rerasterizes that viewport. Reusable ordered hotkey bindings and Core
   navigation now cover character, inventory, cast/psionic, current-effects,
   overhead-map, and game-menu views plus menu-return/exit semantics. Their
-  original presentation, animation, party/interface overlays, click-to-walk,
-  collision, and other gameplay semantics remain pending.
+  original Game Menu base and 14 controls now extract and render through a
+  DSUI-resolved semantic page object; evidenced destinations and mode/return
+  actions are clickable. Native panel-origin validation, five remaining menu
+  actions, other destination presentation, animation, party/interface overlays,
+  click-to-walk, collision, and other gameplay semantics remain pending.
 - **Automated tests.** Synthetic-map navigation/collision, deterministic command
   traces, dialogue branches, inventory conservation, menu routing, invalid
   resource reference, and malformed-region tests.

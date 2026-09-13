@@ -383,9 +383,9 @@
   palette; medium for coordinates because the public capture is compressed and
   its precise source revision is not identified.
 - **Implementation:** both layers are transactionally extracted as DSIX in
-  asset-pack format 14 and rendered when Core enters `PartyOverview`.
+  the current asset-pack format and rendered when Core enters `PartyOverview`.
 - **Tests:** exact mapping/order/geometry, synthetic extraction provenance,
-  exact 42-file inventory, pack verification, and content smoke.
+  exact current-pack inventory, pack verification, and content smoke.
 - **Uncertainty:** Party portraits, status fields, empty-slot art, BEGIN and
   slot interaction, focus, and the runtime label substitutions visible in the
   separate ADD list remain open. `EXE-GOG-UI-003` narrows the input boundary to
@@ -412,7 +412,7 @@
   interface palette, and WIND geometry; medium for runtime substitution because
   the corroborating public capture's exact source revision is unidentified.
 - **Implementation:** seven newly mapped images are transactionally extracted
-  as DSIX in asset-pack format 14. Their first frames, plus the already extracted
+  as DSIX in the current asset-pack format. Their first frames, plus the already extracted
   EXIT image, render when Core enters `AddExistingCharacter`. WIND #18501 and
   its 17-child graph are retained in DSUI; a dedicated resolver validates the
   320x181 shell, static #10002/source-image references, runtime substitutions, child order,
@@ -420,11 +420,44 @@
   to Core cancellation; row, scroll, ADD, DELETE, title, and edit-box behavior
   remain deliberately unassigned.
 - **Tests:** exact asset, graph, substitution, placement, and hit contracts; frame bounds; synthetic
-  extraction provenance, exact 42-file inventory, pack verification, and
+  extraction provenance, exact current-pack inventory, pack verification, and
   content smoke.
 - **Uncertainty:** Stored-character names and portraits, row selection,
   scrolling, focus, frame-state transitions, ADD/DELETE behavior, and the
   party-slot interaction that reaches this state remain open.
+
+### DATA-GOG-UI-009 - Game Menu graph and artwork
+
+- **Question:** Which owned resources compose the Game Menu opened during
+  exploration, and which controls can be mapped without guessing behavior?
+- **Method:** Decode `WIND` #10500 and its complete child graph from the
+  fingerprinted `RESOURCE.GFF`; correlate its geometry with `BMP ` #10000,
+  decode every referenced `ICON` with `PAL ` #1000, and compare their visible
+  symbols and relative positions with MANUAL-1994 pages 14-16.
+- **Finding:** `WIND` #10500 and `BMP ` #10000 are both 210x116. The window has
+  30 ordered children: 14 `BUTN` controls and 16 `APFM` records. The controls
+  form exact 4/5/5 rows and their decoded symbols identify View Character,
+  View Inventory, Cast Spells/Use Psionics, Current Spell/Effects, Exit to DOS,
+  Load/Save, Preferences, Overhead Map, Center on Leader, Collapse Party, Walk,
+  Look, Attack, and Return to Game. Every button identity, coordinate,
+  dimension, image reference, and frame count is bounded.
+- **Confidence:** verified for owned graph/image identity and geometry; high for
+  semantics from the manual/image correlation. The source graph contains no
+  canvas origin. Centering the 210x116 panel on the 320x200 canvas at (55,42) is
+  a provisional presentation choice pending controlled native measurement.
+- **Implementation:** asset-pack format 17 adds the base, all 14 button images,
+  and `ui/game-menu.dsui`. `GameMenuInput` resolves the DSUI graph into semantic
+  absolute hit rectangles; MonoGame draws first frames over the Tyr viewport.
+  Character, inventory, cast/psionic, effects, overhead-map, Walk/Look/Attack,
+  and Return route to existing deterministic Core commands. Exit, Load/Save,
+  Preferences, Center, and Collapse remain visibly inert until their destination
+  or missing world-state behavior is implemented.
+- **Tests:** exact unique mapping, synthetic transactional extraction and
+  provenance, complete graph resolution, image/frame contracts, absolute and
+  exclusive hit rectangles, semantic routing, explicitly inert actions,
+  malformed image references, pack verification, and no-window content smoke.
+- **Uncertainty:** Native panel origin, frame-state selection, hover/press timing,
+  description-bar text, five pending actions, and destination-screen presentation.
 
 ## Initial rules
 
@@ -465,13 +498,16 @@
   update the Core display mode. Documented hotkeys open character, inventory,
   cast/psionic, current-effects, overhead-map, and game-menu views. Escape
   returns from any such view and requests exit only from the world; world input
-  is suspended while a view is open. Party sprites and menu shells remain pending.
+  is suspended while a view is open. The original Game Menu shell and controls
+  now render and route evidenced actions; party sprites and destination shells
+  remain pending.
 - **Tests:** initial state, all four edges and diagonal corners, interior/outside
   coordinates, map clamping, mode-cycle order, display idempotence, and invalid
   scroll deltas; every documented view and alias, ordered rising-edge hotkeys,
   menu escape/exit behavior, suspended world input, and explicit mode selection.
 - **Uncertainty:** Scroll timing, cursor imagery, party sprite composition,
-  menu presentation/geometry, and center-on-leader behavior remain open.
+  Game Menu frame states/origin, destination-menu presentation, and
+  center-on-leader behavior remain open.
 
 ### COMPAT-PATH-001 - Modern deterministic pathfinding
 
@@ -615,7 +651,7 @@
   supported GOG build; runtime selection and remaining field semantics are
   unknown.
 - **Implementation:** `PackedCharacterCatalog` plus transactional extraction to
-  `characters/catalog.dsch`; the asset-pack manifest is version 16 and records
+  `characters/catalog.dsch`; the asset-pack manifest is version 17 and records
   `CHARSAVE.GFF` provenance.
 - **Tests:** synthetic round-trip and deterministic ordering; duplicate,
   malformed-field, noncanonical-order, truncation, and trailing-data rejection;
