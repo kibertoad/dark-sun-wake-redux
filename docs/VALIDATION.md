@@ -42,7 +42,10 @@ Actor-controller tests compose those boundaries through logical Walk clicks,
 prove fixed-step accumulation is independent of frame chunking, cap catch-up
 work without discarding backlog, reset partial cadence on replanning, require
 a placed actor, interrupt on a new blocker in shared occupancy, and drive the
-camera-relative sprite from the same anchor.
+camera-relative sprite from the same anchor. Presentation tests cover exact
+fixed-point forward, reverse, and diagonal interpolation plus malformed progress
+and interval rejection; controller tests prove continuity across a semantic
+step boundary.
 Exploration command tests also center on arbitrary world points with both-edge
 clamping, reject partial/out-of-world targets, suspend centering outside world
 and Game Menu views, and restore leader-only display through Collapse Party.
@@ -84,8 +87,8 @@ assets, all seven start-flow windows and 56 controls, the 210x116 Game Menu base
 its 14 button images and 30-control graph, and 19 bounded character metadata entries,
 plus the bounded Tyr region with 94 tiles
 and 867 entity records, its 287 definitions, 246 images, and 477 frames, and
-the exact 17x35 opening-leader image. The
-runtime content-smoke path opens that pack and rasterizes 320x200 viewports at
+the exact 13-frame opening-leader image. The runtime content-smoke path verifies
+all 13 frame dimensions plus frame 0's 367-pixel alpha coverage and rasterizes 320x200 viewports at
 both opposite region corners successfully. It also verifies Tyr's exact four
 `GMAP` values and 8,169 terrain-open cells through the bounded navigation
 contract; these diagnostic checks are not a claim about party spawn.

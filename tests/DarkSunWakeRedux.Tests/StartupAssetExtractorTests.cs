@@ -254,7 +254,8 @@ public sealed class StartupAssetExtractorTests
                            '/', Path.DirectorySeparatorChar))))
             {
                 var leader = PackedIndexedImage.Read(leaderStream);
-                Assert.Equal((17, 35), (leader.Frames[0].Width, leader.Frames[0].Height));
+                Assert.Equal(OpeningTyrScene.LeaderFrameGeometry,
+                    leader.Frames.Select(frame => (frame.Width, frame.Height)));
                 Assert.Equal((byte)0, leader.Palette[0].Red);
             }
             var uiAsset = Assert.Single(manifest.Files,

@@ -185,7 +185,10 @@
   its render and collision call paths.
 - **Finding:** Of 12 same-geometry orientation candidates, unmirrored OJFF #305
   -> BMP #599 frame 0 is the unique exact match: all 17x35 pixels agree and 367
-  are opaque. Its top-left is logical `(160,91)` at the observed camera, hence
+  are opaque. The BMP contains 13 frames with dimensions
+  `17x35,17x36,11x33,18x38,18x38,16x38,16x38,13x33,22x32,15x32,20x32,28x30,28x27`;
+  their state/direction meanings are not established. Frame 0's top-left is
+  logical `(160,91)` at the observed camera, hence
   world `(1184,1459)`. The executable reads the same stored actor X/Y fields
   for rendering and shifts them right by four before footprint enumeration, so
   the evidenced collision anchor is cell `(74,91)`.
@@ -197,8 +200,9 @@
   `images/exploration/opening-leader.dsix`, preserving OBJEX and Tyr-palette
   provenance. Gameplay draws frame 0 through reusable world-to-camera actor
   placement, with viewport-edge culling. Runtime Walk clicks now move its
-  authoritative anchor; frame 0 remains static until animation evidence is
-  connected.
+  authoritative anchor. Fixed-point interpolation moves that verified frame
+  continuously toward the next semantic route anchor without affecting Core
+  occupancy or route timing; other frame selection remains evidence-gated.
 - **Tests:** synthetic OJFF/BMP extraction, exact provenance/palette/geometry,
   camera translation, rectangle-edge visibility, anchor constants, pack
   inventory verification, and owned no-window content smoke.
@@ -588,9 +592,10 @@
   replanning, per-step blocker revalidation, cancellation, and snapshot
   isolation.
 - **Uncertainty:** Actor-specific low-bit policy outside Tyr, moving blockers,
-  native actor footprint, movement cadence, destination tolerance, animation,
-  and interpolation remain open; none are inferred by the terrain grid,
-  planner, or route session.
+  native actor footprint, movement cadence, destination tolerance, and
+  sprite-frame animation remain open; none are inferred by the terrain grid,
+  planner, or route session. Fixed-point positional interpolation is an
+  explicit presentation policy.
 
 ### RULE-EXPLORATION-002 - Atomic dynamic occupancy
 

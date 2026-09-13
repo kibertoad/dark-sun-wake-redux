@@ -3,6 +3,12 @@ using DarkSunWakeRedux.Resources;
 
 namespace DarkSunWakeRedux.Game;
 
+public readonly record struct ExplorationActorVisualSnapshot(
+    GridPoint Anchor,
+    GridPoint TargetAnchor,
+    long ProgressTicks,
+    long StepTicks);
+
 public sealed class ExplorationActorController
 {
     public static readonly TimeSpan DefaultStepInterval = TimeSpan.FromMilliseconds(125);
@@ -38,6 +44,18 @@ public sealed class ExplorationActorController
     }
 
     public ExplorationActorMovementSnapshot Snapshot() => _movement.Snapshot();
+
+    public ExplorationActorVisualSnapshot VisualSnapshot()
+    {
+        var movement = _movement.Snapshot();
+        var target = movement.RemainingSteps.Count == 0
+            ? movement.Position
+            : movement.RemainingSteps[0];
+        var progress = target == movement.Position
+            ? 0
+            : Math.Min(_accumulatedTicks, _stepTicks);
+        return new(movement.Position, target, progress, _stepTicks);
+    }
 
     public ExplorationActorMovementTransition? PlanAt(
         ExplorationSnapshot exploration,

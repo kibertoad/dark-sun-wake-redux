@@ -103,7 +103,9 @@ all interaction and collision behavior remain uninterpreted.
 The opening leader is independently identified as OJFF #305 referencing BMP
 #599. Its unmirrored first 17x35 frame, colored with Tyr's PAL #50, exactly
 matches the 367 opaque actor pixels in `OBS-GOG-SCENE-001`; this image is packed
-separately because it is not referenced by Tyr's static ETAB object graph.
+separately because it is not referenced by Tyr's static ETAB object graph. The
+BMP has 13 variable-size frames (17x35 through a maximum 28x38); only frame 0's
+opening role is established, so later-frame semantics remain unknown.
 
 The reader caps the region name at 64 bytes and the entity table at 16,384
 records, requires the exact map dimensions and 16x16 tile frames, and rejects

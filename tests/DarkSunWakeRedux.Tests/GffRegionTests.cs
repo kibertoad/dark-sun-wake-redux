@@ -92,7 +92,7 @@ public sealed class GffRegionTests
             ("BMP ", 5, TileImage(16)),
             ("OJFF", OriginalContent.OpeningLeaderObjectResourceNumber,
                 ObjectFrame(checked((ushort)OriginalContent.OpeningLeaderImageResourceNumber))),
-            ("BMP ", OriginalContent.OpeningLeaderImageResourceNumber, Image(17, 35))
+            ("BMP ", OriginalContent.OpeningLeaderImageResourceNumber, LeaderImage())
         };
         if (includeEleven) resources.Add(("OJFF", 11, ObjectFrame(5)));
         return WriteArchive(resources.ToArray());
@@ -125,18 +125,27 @@ public sealed class GffRegionTests
     }
 
     private static byte[] TileImage(ushort width)
-        => Image(width, 16);
+        => Image([(width, 16)]);
 
-    private static byte[] Image(ushort width, ushort height)
+    private static byte[] LeaderImage() => Image(OpeningTyrScene.LeaderFrameGeometry
+        .Select(frame => (checked((ushort)frame.Width), checked((ushort)frame.Height)))
+        .ToArray());
+
+    private static byte[] Image(IReadOnlyList<(ushort Width, ushort Height)> frames)
     {
         using var stream = new MemoryStream();
         using var writer = new BinaryWriter(stream, Encoding.ASCII, leaveOpen: true);
-        writer.Write(15U);
-        writer.Write((ushort)1);
-        writer.Write(10U);
-        writer.Write(width);
-        writer.Write(height);
-        writer.Write((byte)0xff);
+        var tableEnd = 6 + frames.Count * 4;
+        writer.Write(checked((uint)(tableEnd + frames.Count * 5)));
+        writer.Write(checked((ushort)frames.Count));
+        for (var index = 0; index < frames.Count; index++)
+            writer.Write(checked((uint)(tableEnd + index * 5)));
+        foreach (var frame in frames)
+        {
+            writer.Write(frame.Width);
+            writer.Write(frame.Height);
+            writer.Write((byte)0xff);
+        }
         return stream.ToArray();
     }
 

@@ -88,7 +88,9 @@ try
             }
             var openingLeader = ReadImage(assetPack, OriginalContent.OpeningLeaderImageAssetPath);
             var openingLeaderFrame = openingLeader.Frames[0];
-            if (openingLeaderFrame.Width != OpeningTyrScene.LeaderWidth ||
+            if (!openingLeader.Frames.Select(frame => (frame.Width, frame.Height))
+                    .SequenceEqual(OpeningTyrScene.LeaderFrameGeometry) ||
+                openingLeaderFrame.Width != OpeningTyrScene.LeaderWidth ||
                 openingLeaderFrame.Height != OpeningTyrScene.LeaderHeight ||
                 openingLeaderFrame.Alpha.Count(value => value != 0) != 367)
                 throw new InvalidDataException(

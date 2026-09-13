@@ -301,7 +301,9 @@ decoder rather than being guessed now.
   placement; its collision anchor cell is evidenced. Active Walk clicks now
   plan and execute from that anchor through a reusable controller, with a
   documented provisional single-cell footprint and 125 ms semantic step while
-  native footprint, cadence, and animation remain open.
+  fixed-point presentation interpolates toward the next route anchor. Native
+  footprint/cadence and the extracted 13-frame image's animation semantics
+  remain open.
   Manual-defined edge scrolling now drives a clamped deterministic Core camera
   and rerasterizes that viewport. Reusable ordered hotkey bindings and Core
   navigation now cover character, inventory, cast/psionic, current-effects,
@@ -323,8 +325,9 @@ decoder rather than being guessed now.
   predicates. A Core actor-movement aggregate now keeps route and occupancy
   anchors synchronized and interrupts rejected commits. A reusable runtime
   actor controller now executes those commands from the evidenced opening
-  anchor, bounds catch-up work, and drives the sprite position. Native
-  party/NPC footprints, cadence, animation, and interpolation remain open.
+  anchor, bounds catch-up work, and exposes fixed-point progress used to
+  interpolate the sprite without changing Core state. Native party/NPC
+  footprints, cadence, and sprite-frame animation remain open.
 - **Automated tests.** Synthetic-map navigation/collision, deterministic command
   traces, dialogue branches, inventory conservation, menu routing, invalid
   resource reference, and malformed-region tests.

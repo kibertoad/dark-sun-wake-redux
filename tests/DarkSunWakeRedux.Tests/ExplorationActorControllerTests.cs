@@ -25,6 +25,26 @@ public sealed class ExplorationActorControllerTests
     }
 
     [Fact]
+    public void ExposesFixedPointVisualProgressTowardTheNextSemanticStep()
+    {
+        var controller = Controller();
+        controller.PlanAt(Snapshot(), 56, 24);
+
+        controller.Advance(TimeSpan.FromTicks(
+            ExplorationActorController.DefaultStepInterval.Ticks / 2));
+        var halfway = controller.VisualSnapshot();
+
+        Assert.Equal(new GridPoint(1, 1), halfway.Anchor);
+        Assert.Equal(new GridPoint(2, 1), halfway.TargetAnchor);
+        Assert.Equal(halfway.StepTicks / 2, halfway.ProgressTicks);
+
+        controller.Advance(TimeSpan.FromTicks(halfway.StepTicks / 2));
+        var committed = controller.VisualSnapshot();
+        Assert.Equal(new GridPoint(2, 1), committed.Anchor);
+        Assert.Equal(0, committed.ProgressTicks);
+    }
+
+    [Fact]
     public void AccumulationIsIndependentOfFrameChunking()
     {
         var first = Controller();
@@ -110,6 +130,7 @@ public sealed class ExplorationActorControllerTests
         Assert.Equal(ExplorationMoveEventKind.RouteInterrupted,
             Assert.Single(transition.MovementEvents).Kind);
         Assert.Equal(new GridPoint(1, 1), transition.After.Position);
+        Assert.Equal(new GridPoint(1, 1), controller.VisualSnapshot().TargetAnchor);
     }
 
     private static ExplorationActorController Controller(

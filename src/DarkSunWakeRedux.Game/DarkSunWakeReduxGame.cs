@@ -285,8 +285,8 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     {
         if (_leaderController is null)
             throw new InvalidOperationException("The leader movement controller is not loaded.");
-        return _leaderPresentation.WorldCenterAtAnchor(
-            _leaderController.Snapshot().Position, GffRegion.TilePixelSize);
+        return _leaderPresentation.WorldCenterAtMovement(
+            _leaderController.VisualSnapshot(), GffRegion.TilePixelSize);
     }
 
     private ExplorationCommand? CommandForGameMenuControl(GameMenuControl control)
@@ -320,8 +320,8 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                 _leaderController is not null)
             {
                 var camera = _exploration.Snapshot();
-                var bounds = _leaderPresentation.AtAnchor(
-                    _leaderController.Snapshot().Position,
+                var bounds = _leaderPresentation.AtMovement(
+                    _leaderController.VisualSnapshot(),
                     camera.CameraX, camera.CameraY, GffRegion.TilePixelSize);
                 if (bounds.Intersects(OpeningTyrScene.Width, OpeningTyrScene.Height))
                     placedImages = placedImages.Append(
