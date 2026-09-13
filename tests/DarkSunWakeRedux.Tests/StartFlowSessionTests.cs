@@ -86,7 +86,7 @@ public sealed class StartFlowSessionTests
     [Fact]
     public void ClericalSphereContributesToCanonicalStateHash()
     {
-        var cleric = new CharacterDraft("Sadia", CharacterRace.Human, CharacterSex.Female,
+        var cleric = new CharacterDraft("Sadia", CharacterOrigin.Human, CharacterSex.Female,
             CharacterAlignment.LawfulGood, new(15, 15, 15, 15, 15, 15), [CharacterClass.Cleric]);
 
         var air = SessionWith(cleric with { ClericalSphere = ClericalSphere.Air });
@@ -98,7 +98,7 @@ public sealed class StartFlowSessionTests
     [Fact]
     public void DualClassCommandAndProgressionSurviveSnapshotRestore()
     {
-        var fighter = new CharacterDraft("Rikus", CharacterRace.Human, CharacterSex.Male,
+        var fighter = new CharacterDraft("Rikus", CharacterOrigin.Human, CharacterSex.Male,
             CharacterAlignment.NeutralGood, new(15, 15, 15, 15, 15, 15), [CharacterClass.Fighter])
         {
             ClassProgression = DualClassProgression.Begin(CharacterClass.Fighter, 3)
@@ -126,7 +126,7 @@ public sealed class StartFlowSessionTests
     [Fact]
     public void DualClassSelectionSurvivesSnapshotRestore()
     {
-        var fighter = new CharacterDraft("Rikus", CharacterRace.Human, CharacterSex.Male,
+        var fighter = new CharacterDraft("Rikus", CharacterOrigin.Human, CharacterSex.Male,
             CharacterAlignment.NeutralGood, new(15, 15, 15, 15, 15, 15), [CharacterClass.Fighter])
         {
             ClassProgression = DualClassProgression.Begin(CharacterClass.Fighter, 3)
@@ -160,7 +160,7 @@ public sealed class StartFlowSessionTests
     [Fact]
     public void ClassProgressionContributesToCanonicalStateHash()
     {
-        var fighter = new CharacterDraft("Rikus", CharacterRace.Human, CharacterSex.Male,
+        var fighter = new CharacterDraft("Rikus", CharacterOrigin.Human, CharacterSex.Male,
             CharacterAlignment.NeutralGood, new(15, 15, 15, 15, 15, 15), [CharacterClass.Fighter]);
         var levelThree = SessionWith(fighter with
         {
@@ -177,7 +177,7 @@ public sealed class StartFlowSessionTests
     [Fact]
     public void SnapshotPreservesOccupiedSlotEditTarget()
     {
-        var session = SessionWith(new("Rikus", CharacterRace.Human, CharacterSex.Male,
+        var session = SessionWith(new("Rikus", CharacterOrigin.Human, CharacterSex.Male,
             CharacterAlignment.NeutralGood, new(15, 15, 15, 15, 15, 15), [CharacterClass.Fighter]));
         session.Execute(StartFlowCommand.OpenOccupiedSlot(0));
         session.Execute(StartFlowCommand.Choose(OccupiedSlotChoice.Edit));
@@ -212,7 +212,7 @@ public sealed class StartFlowSessionTests
         StartFlowCommand.Choose(StartWindowChoice.CreateCharacters),
         StartFlowCommand.OpenEmptySlot(),
         StartFlowCommand.Choose(EmptySlotChoice.New),
-        StartFlowCommand.Complete(new("Rikus", CharacterRace.Human, CharacterSex.Male,
+        StartFlowCommand.Complete(new("Rikus", CharacterOrigin.Human, CharacterSex.Male,
             CharacterAlignment.NeutralGood, new(15, 15, 15, 15, 15, 15), [CharacterClass.Fighter])),
         StartFlowCommand.BeginParty()
     ];

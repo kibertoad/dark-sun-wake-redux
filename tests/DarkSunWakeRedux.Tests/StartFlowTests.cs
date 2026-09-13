@@ -209,7 +209,7 @@ public sealed class StartFlowTests
     private static CharacterDraft Draft(
         string name = "Rikus",
         DualClassProgression? progression = null) =>
-        new(name, CharacterRace.Human, CharacterSex.Male, CharacterAlignment.NeutralGood,
+        new(name, CharacterOrigin.Human, CharacterSex.Male, CharacterAlignment.NeutralGood,
             new(15, 15, 15, 15, 15, 15), [CharacterClass.Fighter])
         {
             ClassProgression = progression

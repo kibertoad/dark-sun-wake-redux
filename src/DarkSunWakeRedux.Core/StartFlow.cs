@@ -110,7 +110,7 @@ public sealed class StartFlow
                 if (member.ClassProgression is null)
                     return [new("dual_class_progression_missing",
                         "Dual-classing requires class-level progression state.")];
-                var diagnostics = member.ClassProgression.ValidateCanStartNext(member.Race);
+                var diagnostics = member.ClassProgression.ValidateCanStartNext(member.Origin);
                 if (diagnostics.Count == 0) Screen = StartFlowScreen.DualClassSelection;
                 return diagnostics;
             default:
@@ -175,7 +175,7 @@ public sealed class StartFlow
         if (member.ClassProgression is null)
             return [new("dual_class_progression_missing",
                 "Dual-classing requires class-level progression state.")];
-        var transition = member.ClassProgression.TryStartNext(member.Race, nextClass);
+        var transition = member.ClassProgression.TryStartNext(member.Origin, nextClass);
         if (!transition.Accepted) return transition.Diagnostics;
         var updated = member with
         {

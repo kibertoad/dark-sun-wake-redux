@@ -312,11 +312,11 @@
   multiclass, class count/duplicates, cleric+druid, and agreed eligibility
   constraints.
 - **Uncertainty:** Initial HP adjustment, ability-generation distribution,
-  racial-modifier application timing/caps during generation and editing, valid
+  origin-modifier application timing/caps during generation and editing, valid
   multiclass combinations, and exact screen defaults need DATA-GOG/OBS-GOG
   evidence. The modifier values themselves are recorded by `RULE-PARTY-005`.
 
-### CONFLICT-PARTY-001 - Manual race/class eligibility lists
+### CONFLICT-PARTY-001 - Manual origin/class eligibility lists
 
 - **Claim A:** The race descriptions list the classes allowed for each race.
 - **Claim B:** The class descriptions independently list allowed races.
@@ -326,8 +326,8 @@
 - **Evidence:** MANUAL-1994, race descriptions on pages 17-18 and class
   descriptions on pages 19-22.
 - **Implementation:** these pairs return `EvidenceConflict` and validation emits
-  `class_race_unresolved`; no eligibility is guessed.
-- **Resolution needed:** record the selectable class list for every race in the
+  `class_origin_unresolved`; no eligibility is guessed.
+- **Resolution needed:** record the selectable class list for every origin in the
   fingerprinted GOG build, then update the matrix and tests.
 
 ### RULE-PARTY-003 - Psionic disciplines and clerical spheres
@@ -377,7 +377,7 @@
   shipped class levels/experience, XP thresholds, and exact DUAL UI choices
   require later Slice 2/5 data and observations.
 
-### RULE-PARTY-005 - Racial ability modifiers
+### RULE-PARTY-005 - Origin ability modifiers
 
 - **Behavior:** Human ability scores are unmodified. Dwarves receive Strength
   +1, Dexterity -1, Constitution +2, and Charisma -2; elves receive Dexterity
@@ -392,11 +392,11 @@
 - **Confidence:** high for the published modifiers; application order, edit
   behavior, and whether final scores are capped remain unobserved.
 - **Implementation:** `PartyCreationRules.AbilityModifiers` returns an immutable
-  six-field modifier value for every defined race and rejects undefined enum
+  six-field modifier value for every defined origin and rejects undefined enum
   values. It does not mutate `CharacterDraft` or invent generation behavior.
-- **Tests:** exact six-ability values for all eight races, complete enum
-  coverage, and undefined-race rejection.
-- **Uncertainty:** Observe generation and editing at racial and global score
+- **Tests:** exact six-ability values for all eight origins, complete enum
+  coverage, and undefined-origin rejection.
+- **Uncertainty:** Observe generation and editing at origin-specific and global score
   boundaries before applying the table to final character state.
 
 ### RULE-COMBAT-001 - Party expansion on combat entry

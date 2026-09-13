@@ -14,6 +14,16 @@ create or verify the local asset pack, and launch the current game build. Set
 `DARK_SUN_WAKE_PATH` only when the owned installation is not at the documented
 default `C:\GOG Games\Dark Sun 2` location.
 
+## Terminology
+
+The original game and its manuals use **race** for fantasy character origins
+such as humans, elves, dwarves, and similar peoples. That historical fantasy
+usage is not intended here in an offensive or real-world racial sense. To keep
+the reimplementation's modern terminology respectful, new code, APIs, UI, and
+project-authored prose use **origin** instead. When an evidence record quotes or
+names an original manual heading or table that says **race** or **racial**, read
+that term as **origin** or **origin-based** in our implementation.
+
 ## Current status
 
 The repository is configured and the first foundation slice is complete. Work
@@ -30,7 +40,7 @@ guessing the game's character encoding, authentic spacing, or colors.
 Deterministic start/party menu semantics, commands, events, snapshots, and
 hash-verified replay are implemented in Core, including the manual-documented
 psionic-discipline and clerical-sphere creation constraints. The complete
-manual racial ability-modifier table is queryable without guessing when the
+manual origin ability-modifier table is queryable without guessing when the
 original applies or caps it. Pre-adventure
 party members can be edited atomically or dropped to recreation-native storage
 and added back. Manual-evidenced human dual-class level gates, sequential
@@ -47,7 +57,7 @@ yet.
 |---|---|---|
 | Legal source | Explicit verification of English GOG product `1432903719`, build `52095422060333615` | Other GOG revisions and storefronts are unsupported until separately fingerprinted |
 | Asset extraction | Separate Extractor with versioned exact inventory, bounded readers, and transactional 29-asset Slice 2 pack | Title/start assets, generation controls and modal labels, shared window image, font, text, and resolved six-window UI graph are extracted; dynamic content and shell draw semantics remain incomplete |
-| Gameplay | Assetless startup smoke test, MonoGame shell, deterministic party invariants including discipline/sphere choices and racial modifier facts, occupied-slot edit/drop/add, human dual-class progression and selection, and command-driven start flow in Core | No player-visible game slice yet; modifier application/caps, DUAL presentation, disputed race/class pairs, random generation, and shipped creation defaults await observation |
+| Gameplay | Assetless startup smoke test, MonoGame shell, deterministic party invariants including discipline/sphere choices and origin modifier facts, occupied-slot edit/drop/add, human dual-class progression and selection, and command-driven start flow in Core | No player-visible game slice yet; modifier application/caps, DUAL presentation, disputed origin/class pairs, random generation, and shipped creation defaults await observation |
 | Saves and compatibility | Start-flow snapshot schema 4 with class progression, dropped-character storage, and hash-verified deterministic replay | Native save-file I/O, whole-game replays, original saves, and Shattered Lands party transfer are not implemented |
 | Presentation | Verified-pack title/start window whose placement and scale-independent hit regions come from DSUI WIND/BUTN records; all six extracted window graphs resolve to typed controls; generation control art extracted | Destination screens are not rendered; hit-edge parity, frame states, pixel aspect, animation, audio, and video await observation |
 | Text resources | Bounded FONT decoding/DSFT extraction, verified owned-font identity map, deterministic indexed run/block rasterization, and all 62 printable-ASCII `TEXT` records decoded into DSTX | Generalized map semantics, authentic glyph/line spacing, palette, text-ID routing, alignment, and runtime rendering remain open |

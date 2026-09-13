@@ -31,9 +31,9 @@ public sealed record DualClassProgression
         return new([new(characterClass, level)]);
     }
 
-    public DualClassTransition TryStartNext(CharacterRace race, CharacterClass nextClass)
+    public DualClassTransition TryStartNext(CharacterOrigin origin, CharacterClass nextClass)
     {
-        var diagnostics = ValidateCanStartNext(race).ToList();
+        var diagnostics = ValidateCanStartNext(origin).ToList();
         if (!Enum.IsDefined(nextClass))
             diagnostics.Add(new("dual_class_invalid", "The selected new class is invalid."));
         else if (_careers.Any(item => item.CharacterClass == nextClass))
@@ -44,10 +44,10 @@ public sealed record DualClassProgression
             : new(this, diagnostics.ToArray());
     }
 
-    public IReadOnlyList<PartyDiagnostic> ValidateCanStartNext(CharacterRace race)
+    public IReadOnlyList<PartyDiagnostic> ValidateCanStartNext(CharacterOrigin origin)
     {
         var diagnostics = new List<PartyDiagnostic>();
-        if (!Enum.IsDefined(race) || race != CharacterRace.Human)
+        if (!Enum.IsDefined(origin) || origin != CharacterOrigin.Human)
             diagnostics.Add(new("dual_class_human_only", "Only humans may become dual-classed."));
         if (Current.Level < MinimumCurrentLevel)
             diagnostics.Add(new("dual_class_level_too_low",

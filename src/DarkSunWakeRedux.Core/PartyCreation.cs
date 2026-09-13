@@ -2,7 +2,7 @@ using System.Numerics;
 
 namespace DarkSunWakeRedux.Core;
 
-public enum CharacterRace
+public enum CharacterOrigin
 {
     Human,
     Dwarf,
@@ -71,7 +71,7 @@ public sealed record AbilityScores(
     }
 }
 
-public sealed record RacialAbilityModifiers(
+public sealed record OriginAbilityModifiers(
     int Strength,
     int Dexterity,
     int Constitution,
@@ -81,7 +81,7 @@ public sealed record RacialAbilityModifiers(
 
 public sealed record CharacterDraft(
     string Name,
-    CharacterRace Race,
+    CharacterOrigin Origin,
     CharacterSex Sex,
     CharacterAlignment Alignment,
     AbilityScores Abilities,
@@ -150,72 +150,72 @@ public static class PartyCreationRules
             [CharacterClass.Psionicist] = Scores(constitution: 11, intelligence: 12, wisdom: 15)
         };
 
-    private static readonly IReadOnlyDictionary<CharacterRace, RacialAbilityModifiers> RaceAbilityModifiers =
-        new Dictionary<CharacterRace, RacialAbilityModifiers>
+    private static readonly IReadOnlyDictionary<CharacterOrigin, OriginAbilityModifiers> OriginAbilityModifiersByOrigin =
+        new Dictionary<CharacterOrigin, OriginAbilityModifiers>
         {
-            [CharacterRace.Human] = Modifiers(),
-            [CharacterRace.Dwarf] = Modifiers(strength: 1, dexterity: -1, constitution: 2, charisma: -2),
-            [CharacterRace.Elf] = Modifiers(dexterity: 2, constitution: -2, intelligence: 1, wisdom: -1),
-            [CharacterRace.HalfElf] = Modifiers(dexterity: 1, constitution: -1),
-            [CharacterRace.HalfGiant] = Modifiers(strength: 4, constitution: 2,
+            [CharacterOrigin.Human] = Modifiers(),
+            [CharacterOrigin.Dwarf] = Modifiers(strength: 1, dexterity: -1, constitution: 2, charisma: -2),
+            [CharacterOrigin.Elf] = Modifiers(dexterity: 2, constitution: -2, intelligence: 1, wisdom: -1),
+            [CharacterOrigin.HalfElf] = Modifiers(dexterity: 1, constitution: -1),
+            [CharacterOrigin.HalfGiant] = Modifiers(strength: 4, constitution: 2,
                 intelligence: -2, wisdom: -2, charisma: -2),
-            [CharacterRace.Halfling] = Modifiers(strength: -2, dexterity: 2,
+            [CharacterOrigin.Halfling] = Modifiers(strength: -2, dexterity: 2,
                 constitution: -1, wisdom: 2, charisma: -1),
-            [CharacterRace.Mul] = Modifiers(strength: 2, constitution: 1,
+            [CharacterOrigin.Mul] = Modifiers(strength: 2, constitution: 1,
                 intelligence: -1, charisma: -2),
-            [CharacterRace.ThriKreen] = Modifiers(dexterity: 2,
+            [CharacterOrigin.ThriKreen] = Modifiers(dexterity: 2,
                 intelligence: -1, wisdom: 1, charisma: -2)
         };
 
-    private static readonly IReadOnlyDictionary<CharacterRace, HashSet<CharacterClass>> RaceSectionClaims =
-        new Dictionary<CharacterRace, HashSet<CharacterClass>>
+    private static readonly IReadOnlyDictionary<CharacterOrigin, HashSet<CharacterClass>> OriginSectionClaims =
+        new Dictionary<CharacterOrigin, HashSet<CharacterClass>>
         {
-            [CharacterRace.Human] = Set(Enum.GetValues<CharacterClass>()),
-            [CharacterRace.Dwarf] = Set(CharacterClass.Fighter, CharacterClass.Gladiator,
+            [CharacterOrigin.Human] = Set(Enum.GetValues<CharacterClass>()),
+            [CharacterOrigin.Dwarf] = Set(CharacterClass.Fighter, CharacterClass.Gladiator,
                 CharacterClass.Cleric, CharacterClass.Thief, CharacterClass.Psionicist),
-            [CharacterRace.Elf] = Set(CharacterClass.Fighter, CharacterClass.Gladiator,
+            [CharacterOrigin.Elf] = Set(CharacterClass.Fighter, CharacterClass.Gladiator,
                 CharacterClass.Ranger, CharacterClass.Preserver, CharacterClass.Cleric,
                 CharacterClass.Thief, CharacterClass.Psionicist),
-            [CharacterRace.HalfElf] = Set(Enum.GetValues<CharacterClass>()),
-            [CharacterRace.HalfGiant] = Set(CharacterClass.Fighter, CharacterClass.Gladiator,
+            [CharacterOrigin.HalfElf] = Set(Enum.GetValues<CharacterClass>()),
+            [CharacterOrigin.HalfGiant] = Set(CharacterClass.Fighter, CharacterClass.Gladiator,
                 CharacterClass.Ranger, CharacterClass.Cleric, CharacterClass.Psionicist),
-            [CharacterRace.Halfling] = Set(CharacterClass.Fighter, CharacterClass.Gladiator,
+            [CharacterOrigin.Halfling] = Set(CharacterClass.Fighter, CharacterClass.Gladiator,
                 CharacterClass.Ranger, CharacterClass.Cleric, CharacterClass.Druid,
                 CharacterClass.Thief, CharacterClass.Psionicist),
-            [CharacterRace.Mul] = Set(CharacterClass.Fighter, CharacterClass.Gladiator,
+            [CharacterOrigin.Mul] = Set(CharacterClass.Fighter, CharacterClass.Gladiator,
                 CharacterClass.Cleric, CharacterClass.Thief, CharacterClass.Psionicist),
-            [CharacterRace.ThriKreen] = Set(CharacterClass.Fighter, CharacterClass.Gladiator,
+            [CharacterOrigin.ThriKreen] = Set(CharacterClass.Fighter, CharacterClass.Gladiator,
                 CharacterClass.Ranger, CharacterClass.Cleric, CharacterClass.Psionicist)
         };
 
-    private static readonly IReadOnlyDictionary<CharacterClass, HashSet<CharacterRace>> ClassSectionClaims =
-        new Dictionary<CharacterClass, HashSet<CharacterRace>>
+    private static readonly IReadOnlyDictionary<CharacterClass, HashSet<CharacterOrigin>> ClassSectionClaims =
+        new Dictionary<CharacterClass, HashSet<CharacterOrigin>>
         {
-            [CharacterClass.Fighter] = Set(Enum.GetValues<CharacterRace>()),
-            [CharacterClass.Gladiator] = Set(Enum.GetValues<CharacterRace>()),
-            [CharacterClass.Ranger] = Set(CharacterRace.Elf, CharacterRace.HalfElf,
-                CharacterRace.Halfling, CharacterRace.Human, CharacterRace.ThriKreen),
-            [CharacterClass.Preserver] = Set(CharacterRace.Elf, CharacterRace.HalfElf, CharacterRace.Human),
-            [CharacterClass.Cleric] = Set(Enum.GetValues<CharacterRace>()),
-            [CharacterClass.Druid] = Set(CharacterRace.HalfElf, CharacterRace.Halfling,
-                CharacterRace.Human, CharacterRace.Mul, CharacterRace.ThriKreen),
-            [CharacterClass.Thief] = Set(Enum.GetValues<CharacterRace>()),
-            [CharacterClass.Psionicist] = Set(Enum.GetValues<CharacterRace>())
+            [CharacterClass.Fighter] = Set(Enum.GetValues<CharacterOrigin>()),
+            [CharacterClass.Gladiator] = Set(Enum.GetValues<CharacterOrigin>()),
+            [CharacterClass.Ranger] = Set(CharacterOrigin.Elf, CharacterOrigin.HalfElf,
+                CharacterOrigin.Halfling, CharacterOrigin.Human, CharacterOrigin.ThriKreen),
+            [CharacterClass.Preserver] = Set(CharacterOrigin.Elf, CharacterOrigin.HalfElf, CharacterOrigin.Human),
+            [CharacterClass.Cleric] = Set(Enum.GetValues<CharacterOrigin>()),
+            [CharacterClass.Druid] = Set(CharacterOrigin.HalfElf, CharacterOrigin.Halfling,
+                CharacterOrigin.Human, CharacterOrigin.Mul, CharacterOrigin.ThriKreen),
+            [CharacterClass.Thief] = Set(Enum.GetValues<CharacterOrigin>()),
+            [CharacterClass.Psionicist] = Set(Enum.GetValues<CharacterOrigin>())
         };
 
-    public static ClassEligibility Eligibility(CharacterRace race, CharacterClass characterClass)
+    public static ClassEligibility Eligibility(CharacterOrigin origin, CharacterClass characterClass)
     {
-        var raceAllows = RaceSectionClaims[race].Contains(characterClass);
-        var classAllows = ClassSectionClaims[characterClass].Contains(race);
-        return raceAllows == classAllows
-            ? raceAllows ? ClassEligibility.Allowed : ClassEligibility.Prohibited
+        var originAllows = OriginSectionClaims[origin].Contains(characterClass);
+        var classAllows = ClassSectionClaims[characterClass].Contains(origin);
+        return originAllows == classAllows
+            ? originAllows ? ClassEligibility.Allowed : ClassEligibility.Prohibited
             : ClassEligibility.EvidenceConflict;
     }
 
-    public static RacialAbilityModifiers AbilityModifiers(CharacterRace race)
+    public static OriginAbilityModifiers AbilityModifiers(CharacterOrigin origin)
     {
-        if (!Enum.IsDefined(race)) throw new ArgumentOutOfRangeException(nameof(race));
-        return RaceAbilityModifiers[race];
+        if (!Enum.IsDefined(origin)) throw new ArgumentOutOfRangeException(nameof(origin));
+        return OriginAbilityModifiersByOrigin[origin];
     }
 
     public static IReadOnlyList<PartyDiagnostic> Validate(CharacterDraft character)
@@ -223,12 +223,12 @@ public static class PartyCreationRules
         var diagnostics = new List<PartyDiagnostic>();
         if (string.IsNullOrWhiteSpace(character.Name))
             diagnostics.Add(new("character_name_missing", "A character name is required."));
-        var validRace = Enum.IsDefined(character.Race);
-        if (!validRace || !Enum.IsDefined(character.Sex) || !Enum.IsDefined(character.Alignment))
-            diagnostics.Add(new("character_option_invalid", "Race, sex, or alignment is invalid."));
-        if (character.Race == CharacterRace.Mul && character.Sex != CharacterSex.Male)
+        var validOrigin = Enum.IsDefined(character.Origin);
+        if (!validOrigin || !Enum.IsDefined(character.Sex) || !Enum.IsDefined(character.Alignment))
+            diagnostics.Add(new("character_option_invalid", "Origin, sex, or alignment is invalid."));
+        if (character.Origin == CharacterOrigin.Mul && character.Sex != CharacterSex.Male)
             diagnostics.Add(new("mul_sex_invalid", "The manual permits only male mul player characters."));
-        if (character.Race == CharacterRace.ThriKreen && character.Sex != CharacterSex.Female)
+        if (character.Origin == CharacterOrigin.ThriKreen && character.Sex != CharacterSex.Female)
             diagnostics.Add(new("thri_kreen_sex_invalid", "The manual permits only female thri-kreen player characters."));
 
         foreach (var (name, value) in character.Abilities.All())
@@ -242,7 +242,7 @@ public static class PartyCreationRules
             if (character.Classes.Count > 3)
                 diagnostics.Add(new("class_count_invalid", "At most three classes may be selected."));
             var hasSequentialCareers = character.ClassProgression is { Careers.Count: > 1 };
-            if (character.Race == CharacterRace.Human && character.Classes.Count != 1 &&
+            if (character.Origin == CharacterOrigin.Human && character.Classes.Count != 1 &&
                 !hasSequentialCareers)
                 diagnostics.Add(new("human_multiclass_invalid", "Humans begin with one class and may dual-class later."));
             if (character.Classes.Distinct().Count() != character.Classes.Count)
@@ -257,13 +257,13 @@ public static class PartyCreationRules
                     diagnostics.Add(new("class_invalid", "A selected class is invalid."));
                     continue;
                 }
-                if (validRace)
+                if (validOrigin)
                 {
-                    var eligibility = Eligibility(character.Race, selectedClass);
+                    var eligibility = Eligibility(character.Origin, selectedClass);
                     if (eligibility == ClassEligibility.Prohibited)
-                        diagnostics.Add(new("class_race_prohibited", $"{character.Race} cannot be a {selectedClass}."));
+                        diagnostics.Add(new("class_origin_prohibited", $"{character.Origin} cannot be a {selectedClass}."));
                     if (eligibility == ClassEligibility.EvidenceConflict)
-                        diagnostics.Add(new("class_race_unresolved", $"Manual sections conflict about {character.Race} {selectedClass} eligibility."));
+                        diagnostics.Add(new("class_origin_unresolved", $"Manual sections conflict about {character.Origin} {selectedClass} eligibility."));
                 }
                 ValidateMinimums(selectedClass, character.Abilities, diagnostics);
             }
@@ -277,7 +277,7 @@ public static class PartyCreationRules
         CharacterDraft character, ICollection<PartyDiagnostic> diagnostics)
     {
         if (character.ClassProgression is null) return;
-        if (character.Race != CharacterRace.Human)
+        if (character.Origin != CharacterOrigin.Human)
             diagnostics.Add(new("dual_class_human_only", "Only humans may carry dual-class progression."));
         if (character.Classes is null || !character.Classes.SequenceEqual(
                 character.ClassProgression.Careers.Select(item => item.CharacterClass)))
@@ -328,7 +328,7 @@ public static class PartyCreationRules
         int charisma = MinimumAbility) =>
         new(strength, dexterity, constitution, intelligence, wisdom, charisma);
 
-    private static RacialAbilityModifiers Modifiers(
+    private static OriginAbilityModifiers Modifiers(
         int strength = 0,
         int dexterity = 0,
         int constitution = 0,

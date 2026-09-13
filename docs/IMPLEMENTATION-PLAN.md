@@ -38,6 +38,17 @@ an evidence source only. Original executables, assets, extracted bytes, analysis
 projects, disassembly, decompiler output, screenshots, and saves remain local
 and must never enter Git, CI artifacts, or distributed packages.
 
+### Terminology mapping
+
+The original game and manuals use **race** as the conventional fantasy term for
+peoples such as humans, elves, dwarves, and similar character origins. It is
+not intended by this project in an offensive or real-world racial sense. The
+reimplementation maps original **race** terminology to **origin** so that new
+code, APIs, UI, tests, and project-authored descriptions use respectful modern
+language. Evidence records may retain **race** or **racial** only when quoting
+or naming an original heading, table, field, or claim; those source terms map
+to **origin** and **origin-based** in implementation.
+
 ### Initial evidence register
 
 - **MANUAL-1994.** The locally installed 41-page landscape PDF rule book (77
@@ -210,12 +221,12 @@ decoder rather than being guessed now.
   start-window/button mappings; further DATA-GOG
   for party-screen resource mapping; OBS-GOG for screen states,
   coordinates, and navigation.
-- **Acceptance - rules.** Party size, available races/classes, ability/alignment
+- **Acceptance - rules.** Party size, available origins/classes, ability/alignment
   constraints, psionic-discipline and clerical-sphere choices, cancellation,
   selection, and derived initial state follow recorded evidence. A fixed seed
   makes allowed random generation repeatable. The manual-documented discipline
   and sphere cardinality is implemented; shipped selection behavior remains to
-  be observed. The manual's complete racial ability-modifier table is exposed
+  be observed. The manual's complete origin ability-modifier table is exposed
   as immutable Core data without assuming application order or score caps.
   Pre-adventure occupied-slot EDIT and DROP-to-ADD storage are
   implemented. The manual-evidenced human dual-class level gates, sequential
@@ -242,7 +253,7 @@ decoder rather than being guessed now.
 - **Automated tests.** Synthetic parser boundary/fuzz tests; traversal and
   decompression-bomb limits; deterministic extraction; exact output inventory;
   pack verification, stale-file removal, atomic promotion/rollback; party
-  invariants, exact racial-modifier table, and menu-transition tests.
+  invariants, exact origin-modifier table, and menu-transition tests.
   Implemented start-flow commands produce
   sequenced events, versioned snapshots, stable hashes, and verified replays.
   Snapshot schema 4 includes psionic disciplines, clerical sphere, ordered
@@ -395,7 +406,7 @@ decoder rather than being guessed now.
 | Q8 | Are Windows, Linux, and macOS all first-release targets, or should the initial release target Windows? | slice 7 | repository owner | open |
 | Q9 | May the installed clue book be consulted as an additional local secondary source? | slices 4-7 | repository owner | open |
 | Q10 | What measured tolerances define acceptable visual, input, animation, and audio parity? | slices 2-7 | repository owner/evidence investigation | open |
-| Q11 | Which race/class eligibility list does the shipped creation screen enforce where manual pages 17-18 conflict with pages 19-22 (half-giant ranger/thief, mul druid, thri-kreen druid/thief)? | slice 2 | OBS-GOG evidence investigation | open - Core preserves these as `EvidenceConflict` |
+| Q11 | Which origin/class eligibility list does the shipped creation screen enforce where the original manual's race descriptions on pages 17-18 conflict with its class descriptions on pages 19-22 (half-giant ranger/thief, mul druid, thri-kreen druid/thief)? | slice 2 | OBS-GOG evidence investigation | open - Core preserves these as `EvidenceConflict` |
 
 ## Risks
 

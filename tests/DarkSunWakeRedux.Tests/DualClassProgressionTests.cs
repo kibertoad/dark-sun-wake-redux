@@ -10,7 +10,7 @@ public sealed class DualClassProgressionTests
     {
         var original = DualClassProgression.Begin(CharacterClass.Fighter, level: 3);
 
-        var transition = original.TryStartNext(CharacterRace.Human, CharacterClass.Preserver);
+        var transition = original.TryStartNext(CharacterOrigin.Human, CharacterClass.Preserver);
 
         Assert.True(transition.Accepted);
         Assert.Equal([
@@ -24,18 +24,18 @@ public sealed class DualClassProgressionTests
     }
 
     [Theory]
-    [InlineData(CharacterRace.Elf, CharacterClass.Preserver, 3, "dual_class_human_only")]
-    [InlineData(CharacterRace.Human, CharacterClass.Preserver, 2, "dual_class_level_too_low")]
-    [InlineData(CharacterRace.Human, CharacterClass.Fighter, 3, "dual_class_duplicate")]
+    [InlineData(CharacterOrigin.Elf, CharacterClass.Preserver, 3, "dual_class_human_only")]
+    [InlineData(CharacterOrigin.Human, CharacterClass.Preserver, 2, "dual_class_level_too_low")]
+    [InlineData(CharacterOrigin.Human, CharacterClass.Fighter, 3, "dual_class_duplicate")]
     public void IneligibleTransitionReturnsDiagnosticsWithoutMutation(
-        CharacterRace race,
+        CharacterOrigin origin,
         CharacterClass nextClass,
         int level,
         string code)
     {
         var original = DualClassProgression.Begin(CharacterClass.Fighter, level);
 
-        var transition = original.TryStartNext(race, nextClass);
+        var transition = original.TryStartNext(origin, nextClass);
 
         Assert.False(transition.Accepted);
         Assert.Contains(transition.Diagnostics, item => item.Code == code);
@@ -46,7 +46,7 @@ public sealed class DualClassProgressionTests
     public void FormerBenefitsReactivateOnlyAfterNewClassExceedsFormerLevel()
     {
         var changed = DualClassProgression.Begin(CharacterClass.Fighter, 3)
-            .TryStartNext(CharacterRace.Human, CharacterClass.Preserver).Progression;
+            .TryStartNext(CharacterOrigin.Human, CharacterClass.Preserver).Progression;
 
         Assert.False(changed.AreCareerBenefitsActive(0));
         Assert.True(changed.AreCareerBenefitsActive(1));
@@ -60,13 +60,13 @@ public sealed class DualClassProgressionTests
     public void HumanMayChangeClassTwiceButNotThreeTimes()
     {
         var second = DualClassProgression.Begin(CharacterClass.Fighter, 3)
-            .TryStartNext(CharacterRace.Human, CharacterClass.Thief).Progression
+            .TryStartNext(CharacterOrigin.Human, CharacterClass.Thief).Progression
             .TryAdvanceCurrentTo(3).Progression;
-        var third = second.TryStartNext(CharacterRace.Human, CharacterClass.Psionicist);
+        var third = second.TryStartNext(CharacterOrigin.Human, CharacterClass.Psionicist);
 
         Assert.True(third.Accepted);
         var rejected = third.Progression.TryAdvanceCurrentTo(3).Progression
-            .TryStartNext(CharacterRace.Human, CharacterClass.Cleric);
+            .TryStartNext(CharacterOrigin.Human, CharacterClass.Cleric);
         Assert.False(rejected.Accepted);
         Assert.Equal("dual_class_limit_reached", Assert.Single(rejected.Diagnostics).Code);
     }

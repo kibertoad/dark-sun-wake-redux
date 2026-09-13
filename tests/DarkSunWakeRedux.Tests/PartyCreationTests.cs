@@ -31,12 +31,12 @@ public sealed class PartyCreationTests
     }
 
     [Theory]
-    [InlineData(CharacterRace.Mul, CharacterSex.Female, "mul_sex_invalid")]
-    [InlineData(CharacterRace.ThriKreen, CharacterSex.Male, "thri_kreen_sex_invalid")]
+    [InlineData(CharacterOrigin.Mul, CharacterSex.Female, "mul_sex_invalid")]
+    [InlineData(CharacterOrigin.ThriKreen, CharacterSex.Male, "thri_kreen_sex_invalid")]
     public void ManualSexRestrictionsAreEnforced(
-        CharacterRace race, CharacterSex sex, string expectedCode)
+        CharacterOrigin origin, CharacterSex sex, string expectedCode)
     {
-        var diagnostics = PartyCreationRules.Validate(Draft(race: race, sex: sex));
+        var diagnostics = PartyCreationRules.Validate(Draft(origin: origin, sex: sex));
 
         Assert.Contains(diagnostics, item => item.Code == expectedCode);
     }
@@ -61,32 +61,32 @@ public sealed class PartyCreationTests
     }
 
     [Fact]
-    public void AgreedRaceClassProhibitionIsEnforced()
+    public void AgreedOriginClassProhibitionIsEnforced()
     {
         Assert.Equal(ClassEligibility.Prohibited,
-            PartyCreationRules.Eligibility(CharacterRace.Dwarf, CharacterClass.Preserver));
+            PartyCreationRules.Eligibility(CharacterOrigin.Dwarf, CharacterClass.Preserver));
 
         var diagnostics = PartyCreationRules.Validate(Draft(
-            race: CharacterRace.Dwarf, classes: [CharacterClass.Preserver]));
-        Assert.Contains(diagnostics, item => item.Code == "class_race_prohibited");
+            origin: CharacterOrigin.Dwarf, classes: [CharacterClass.Preserver]));
+        Assert.Contains(diagnostics, item => item.Code == "class_origin_prohibited");
     }
 
     [Theory]
-    [InlineData(CharacterRace.HalfGiant, CharacterClass.Ranger)]
-    [InlineData(CharacterRace.Mul, CharacterClass.Druid)]
-    [InlineData(CharacterRace.ThriKreen, CharacterClass.Druid)]
-    [InlineData(CharacterRace.HalfGiant, CharacterClass.Thief)]
-    public void ManualRaceAndClassSectionsRemainExplicitConflicts(
-        CharacterRace race, CharacterClass characterClass)
+    [InlineData(CharacterOrigin.HalfGiant, CharacterClass.Ranger)]
+    [InlineData(CharacterOrigin.Mul, CharacterClass.Druid)]
+    [InlineData(CharacterOrigin.ThriKreen, CharacterClass.Druid)]
+    [InlineData(CharacterOrigin.HalfGiant, CharacterClass.Thief)]
+    public void ManualOriginAndClassSectionsRemainExplicitConflicts(
+        CharacterOrigin origin, CharacterClass characterClass)
     {
         Assert.Equal(ClassEligibility.EvidenceConflict,
-            PartyCreationRules.Eligibility(race, characterClass));
+            PartyCreationRules.Eligibility(origin, characterClass));
 
         var diagnostics = PartyCreationRules.Validate(Draft(
-            race: race,
-            sex: race == CharacterRace.ThriKreen ? CharacterSex.Female : CharacterSex.Male,
+            origin: origin,
+            sex: origin == CharacterOrigin.ThriKreen ? CharacterSex.Female : CharacterSex.Male,
             classes: [characterClass]));
-        Assert.Contains(diagnostics, item => item.Code == "class_race_unresolved");
+        Assert.Contains(diagnostics, item => item.Code == "class_origin_unresolved");
     }
 
     [Theory]
@@ -100,25 +100,25 @@ public sealed class PartyCreationTests
     }
 
     [Fact]
-    public void ManualRacialAbilityModifiersAreRecordedWithoutGenerationAssumptions()
+    public void ManualOriginAbilityModifiersAreRecordedWithoutGenerationAssumptions()
     {
-        var expected = new Dictionary<CharacterRace, RacialAbilityModifiers>
+        var expected = new Dictionary<CharacterOrigin, OriginAbilityModifiers>
         {
-            [CharacterRace.Human] = new(0, 0, 0, 0, 0, 0),
-            [CharacterRace.Dwarf] = new(1, -1, 2, 0, 0, -2),
-            [CharacterRace.Elf] = new(0, 2, -2, 1, -1, 0),
-            [CharacterRace.HalfElf] = new(0, 1, -1, 0, 0, 0),
-            [CharacterRace.HalfGiant] = new(4, 0, 2, -2, -2, -2),
-            [CharacterRace.Halfling] = new(-2, 2, -1, 0, 2, -1),
-            [CharacterRace.Mul] = new(2, 0, 1, -1, 0, -2),
-            [CharacterRace.ThriKreen] = new(0, 2, 0, -1, 1, -2)
+            [CharacterOrigin.Human] = new(0, 0, 0, 0, 0, 0),
+            [CharacterOrigin.Dwarf] = new(1, -1, 2, 0, 0, -2),
+            [CharacterOrigin.Elf] = new(0, 2, -2, 1, -1, 0),
+            [CharacterOrigin.HalfElf] = new(0, 1, -1, 0, 0, 0),
+            [CharacterOrigin.HalfGiant] = new(4, 0, 2, -2, -2, -2),
+            [CharacterOrigin.Halfling] = new(-2, 2, -1, 0, 2, -1),
+            [CharacterOrigin.Mul] = new(2, 0, 1, -1, 0, -2),
+            [CharacterOrigin.ThriKreen] = new(0, 2, 0, -1, 1, -2)
         };
 
-        Assert.Equal(Enum.GetValues<CharacterRace>(), expected.Keys.Order());
-        foreach (var (race, modifiers) in expected)
-            Assert.Equal(modifiers, PartyCreationRules.AbilityModifiers(race));
+        Assert.Equal(Enum.GetValues<CharacterOrigin>(), expected.Keys.Order());
+        foreach (var (origin, modifiers) in expected)
+            Assert.Equal(modifiers, PartyCreationRules.AbilityModifiers(origin));
         Assert.Throws<ArgumentOutOfRangeException>(() =>
-            PartyCreationRules.AbilityModifiers((CharacterRace)999));
+            PartyCreationRules.AbilityModifiers((CharacterOrigin)999));
     }
 
     [Fact]
@@ -180,7 +180,7 @@ public sealed class PartyCreationTests
     public void SequentialHumanCareersMustMatchProgressionState()
     {
         var progression = DualClassProgression.Begin(CharacterClass.Fighter, 3)
-            .TryStartNext(CharacterRace.Human, CharacterClass.Preserver).Progression;
+            .TryStartNext(CharacterOrigin.Human, CharacterClass.Preserver).Progression;
         var valid = Draft(classes: [CharacterClass.Fighter, CharacterClass.Preserver]) with
         {
             ClassProgression = progression
@@ -192,16 +192,16 @@ public sealed class PartyCreationTests
         {
             Classes = [CharacterClass.Fighter, CharacterClass.Thief]
         }), item => item.Code == "dual_class_state_mismatch");
-        Assert.Contains(PartyCreationRules.Validate(valid with { Race = CharacterRace.Elf }),
+        Assert.Contains(PartyCreationRules.Validate(valid with { Origin = CharacterOrigin.Elf }),
             item => item.Code == "dual_class_human_only");
     }
 
     private static CharacterDraft Draft(
         string name = "Rikus",
-        CharacterRace race = CharacterRace.Human,
+        CharacterOrigin origin = CharacterOrigin.Human,
         CharacterSex sex = CharacterSex.Male,
         IReadOnlyList<CharacterClass>? classes = null,
         AbilityScores? abilities = null) =>
-        new(name, race, sex, CharacterAlignment.NeutralGood, abilities ?? new(15, 15, 15, 15, 15, 15),
+        new(name, origin, sex, CharacterAlignment.NeutralGood, abilities ?? new(15, 15, 15, 15, 15, 15),
             classes ?? [CharacterClass.Fighter]);
 }

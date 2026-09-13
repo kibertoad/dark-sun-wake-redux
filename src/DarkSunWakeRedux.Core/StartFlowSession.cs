@@ -189,7 +189,7 @@ public sealed class StartFlowSession
         foreach (var member in members)
         {
             WriteString(writer, member.Name);
-            writer.Write((int)member.Race);
+            writer.Write((int)member.Origin);
             writer.Write((int)member.Sex);
             writer.Write((int)member.Alignment);
             foreach (var (_, value) in member.Abilities.All()) writer.Write(value);
