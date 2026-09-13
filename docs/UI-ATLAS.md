@@ -12,7 +12,7 @@ independently written measurements and diagrams.
 | Party creation/modification | Four-character create/select/modify flow | `BMP ` #11000 is the complete 320x200 overview base with four slot panels and a bottom bar; #20079 overlays the VIEW CHARACTER title at (55,0); `WIND` #19501 contains 320x200 and 28x16 application frames at (0,0)/(10,10), with event masks 494/486; `WIND` #19502 delegates a 319x199 surface to image-less `BUTN` #2099; all #19500-#19505 windows reference 96x9 `BMP` #19004, but the original generic WIND path does not read that field; #19503 maps the edit box, class labels, EXIT, and DONE | the overview shell renders on entry from CREATE CHARACTERS; the complete seven-window/56-control start-flow graph, image-backed controls, shared window image, and exclusive #2099 surface bounds are validated; its internal slot partition remains unknown, while portraits, status fields, later shells, dynamic content, and interaction remain unimplemented |
 | Add existing character | ADD from an empty party slot | `BMP ` #10005 is the complete 320x200 runtime base despite static `WIND` #18501 naming #10002; it places ten 163x11 row controls at (46,31) through (46,130), backed by 165x11 art, up/down controls at (215,30)/(215,130), ADD/EXIT at (231,30)/(231,50), DELETE at (215,148), and the ADD title at (110,0); runtime imagery uses `ICON` #18100/#12102/#12101/#18104/#18109/#18110/#18103 with `PAL ` #1000 | the static first frames render whenever Core enters `AddExistingCharacter`; the exact graph, substitutions, and exclusive hit rectangles resolve, and EXIT returns to the party overview; stored-character names, scrolling, selection, focus, frame states, ADD/DELETE actions, and the party-slot click path remain unimplemented |
 | Character-generation modals | Manual documents spell, psionic, and cleric-sphere choices | `WIND` #19504/#19505 are 110x64 five-control windows; their ten icons label psionics/spells/half-giants/spheres and four elements/psionics, including one blank control | all three-frame labels extracted; owning transitions, selection semantics, and rendering remain unknown |
-| Exploration | Leader-only or expanded party, edge scrolling, cursor modes | unknown | not implemented |
+| Exploration | Leader-only by default; right-click cycles Walk/Attack/Look; screen edges scroll; 5/6 select expanded/leader-only display | the observed opening background is Tyr `(1024,1368)` on the 320x200 logical canvas; exact scroll rate, cursor art/hotspot, and party sprites remain unknown | deterministic Core camera/mode/display commands are implemented; the outermost logical row/column scrolls and rerasterizes a clamped Tyr viewport; party and cursor rendering remain pending |
 | Character view and inventory | Dedicated character/inventory screens | unknown | not implemented |
 | Spells, psionics, and effects | Cast/use and current-effects screens | unknown | not implemented |
 | Game menu and overhead map | Menu routing and map command documented | unknown | not implemented |
@@ -32,8 +32,8 @@ their screens enter a slice.
 The title and mapped start/party windows establish a recurring 320x200
 logical canvas, but whether all screens share it and how DOS pixel aspect should
 be reproduced remain open. Static region tile/object composition is bounded by
-`DATA-GOG-SCENE-001`; opening camera, palette behavior, viewport panel bounds,
-cursor hotspot, layer/draw order, frame counts, animation cadence, dialogue hit
+`DATA-GOG-SCENE-001`; the opening camera and full-canvas viewport are observed,
+while cursor hotspot, dynamic layer/draw order, frame counts, animation cadence, dialogue hit
 rectangles, text palette/spacing/layout, and scaling tolerances are all
 `unknown`. `DATA-GOG-FONT-001` maps one glyph bitmap structure and verifies that
 the supported font's character map is identity; the derived rasterizers can

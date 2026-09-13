@@ -17,7 +17,16 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     private readonly List<(UiImagePlacement Placement, Texture2D Texture)> _addExistingImages = [];
     private readonly List<(StartMenuControl Control, Texture2D Texture)> _startMenuControls = [];
     private IReadOnlyList<AddExistingControl> _addExistingControls = [];
-    private Texture2D? _openingTyrSceneTexture;
+    private Texture2D? _explorationSceneTexture;
+    private PackedRegion? _tyrRegion;
+    private PackedObjectFrameCatalog? _tyrObjects;
+    private readonly ExplorationSession _exploration = new(
+        RegionSceneRasterizer.WorldWidth,
+        RegionSceneRasterizer.WorldHeight,
+        OpeningTyrScene.Width,
+        OpeningTyrScene.Height,
+        OpeningTyrScene.OriginX,
+        OpeningTyrScene.OriginY);
     private readonly StartFlowSession _startFlow = new(0);
     private MouseState _previousMouse;
     private KeyboardState _previousKeyboard;
@@ -89,13 +98,13 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         }
         var regionPath = AssetPath(OriginalContent.TyrRegionAssetPath);
         using var regionStream = File.OpenRead(regionPath);
-        var region = PackedRegion.Read(regionStream, OriginalContent.TyrRegionAssetPath);
+        _tyrRegion = PackedRegion.Read(regionStream, OriginalContent.TyrRegionAssetPath);
         var objectPath = AssetPath(OriginalContent.TyrObjectCatalogAssetPath);
         using var objectStream = File.OpenRead(objectPath);
-        var objects = PackedObjectFrameCatalog.Read(
+        _tyrObjects = PackedObjectFrameCatalog.Read(
             objectStream, OriginalContent.TyrObjectCatalogAssetPath);
-        _openingTyrSceneTexture = CreateTexture(region.Palette,
-            OpeningTyrScene.Rasterize(region, objects));
+        var explorationViewport = OpeningTyrScene.Rasterize(_tyrRegion, _tyrObjects);
+        _explorationSceneTexture = CreateTexture(_tyrRegion.Palette, explorationViewport);
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
         string AssetPath(string relativePath) => Path.Combine(_assetPack,
@@ -115,15 +124,24 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         int width,
         int height)
     {
+        var colors = CreateColors(palette, pixels, alpha);
+        var texture = new Texture2D(GraphicsDevice, width, height);
+        texture.SetData(colors);
+        return texture;
+    }
+
+    private static Color[] CreateColors(
+        IReadOnlyList<Rgb24> palette,
+        byte[] pixels,
+        byte[] alpha)
+    {
         var colors = new Color[pixels.Length];
         for (var index = 0; index < colors.Length; index++)
         {
             var color = palette[pixels[index]];
             colors[index] = new Color(color.Red, color.Green, color.Blue, alpha[index]);
         }
-        var texture = new Texture2D(GraphicsDevice, width, height);
-        texture.SetData(colors);
-        return texture;
+        return colors;
     }
 
     protected override void Update(GameTime gameTime)
@@ -151,11 +169,44 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             var keyboard = Keyboard.GetState();
             if (keyboard.IsKeyDown(Keys.Escape) && _previousKeyboard.IsKeyUp(Keys.Escape))
                 _startFlow.Execute(StartFlowCommand.Cancel());
+            if (screen == StartFlowScreen.Gameplay)
+                UpdateExploration(mouse, keyboard);
             _previousMouse = mouse;
             _previousKeyboard = keyboard;
             if (_startFlow.Snapshot().Screen == StartFlowScreen.ExitRequested) Exit();
         }
         base.Update(gameTime);
+    }
+
+    private void UpdateExploration(MouseState mouse, KeyboardState keyboard)
+    {
+        var before = _exploration.Snapshot();
+        if (mouse.RightButton == ButtonState.Pressed &&
+            _previousMouse.RightButton == ButtonState.Released)
+            _exploration.Execute(new(ExplorationCommandKind.CycleCursorMode));
+        if (keyboard.IsKeyDown(Keys.D5) && _previousKeyboard.IsKeyUp(Keys.D5))
+            _exploration.Execute(new(ExplorationCommandKind.ShowExpandedParty));
+        if (keyboard.IsKeyDown(Keys.D6) && _previousKeyboard.IsKeyUp(Keys.D6))
+            _exploration.Execute(new(ExplorationCommandKind.ShowLeaderOnly));
+
+        var transform = new LogicalCanvasTransform(
+            GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+        if (transform.TryToLogical(mouse.X, mouse.Y, out var x, out var y) &&
+            ExplorationInput.ScrollAtEdge(x, y) is { } scroll)
+            _exploration.Execute(scroll);
+        var after = _exploration.Snapshot();
+        if ((before.CameraX, before.CameraY) != (after.CameraX, after.CameraY))
+            RefreshExplorationScene(after);
+    }
+
+    private void RefreshExplorationScene(ExplorationSnapshot snapshot)
+    {
+        if (_tyrRegion is null || _tyrObjects is null || _explorationSceneTexture is null)
+            throw new InvalidOperationException("The Tyr exploration scene is not loaded.");
+        var viewport = RegionSceneRasterizer.Rasterize(_tyrRegion, _tyrObjects,
+            snapshot.CameraX, snapshot.CameraY, OpeningTyrScene.Width, OpeningTyrScene.Height);
+        _explorationSceneTexture.SetData(CreateColors(_tyrRegion.Palette,
+            viewport.Pixels, viewport.Alpha));
     }
 
     protected override void Draw(GameTime gameTime)
@@ -172,8 +223,8 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                     (item.Layer.X, item.Layer.Y, item.Texture)),
                 StartFlowScreen.AddExistingCharacter => _addExistingImages.Select(item =>
                     (item.Placement.X, item.Placement.Y, item.Texture)),
-                StartFlowScreen.Gameplay when _openingTyrSceneTexture is not null =>
-                    [(0, 0, _openingTyrSceneTexture)],
+                StartFlowScreen.Gameplay when _explorationSceneTexture is not null =>
+                    [(0, 0, _explorationSceneTexture)],
                 _ => []
             };
             var placedImages = images.ToArray();
@@ -203,7 +254,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         foreach (var texture in _addExistingImages.Select(item => item.Texture).Distinct())
             texture.Dispose();
         foreach (var (_, texture) in _startMenuControls) texture.Dispose();
-        _openingTyrSceneTexture?.Dispose();
+        _explorationSceneTexture?.Dispose();
         _spriteBatch?.Dispose();
         base.UnloadContent();
     }

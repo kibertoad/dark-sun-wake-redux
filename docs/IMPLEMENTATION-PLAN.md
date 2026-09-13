@@ -280,7 +280,9 @@ decoder rather than being guessed now.
   OBS-GOG opening traces.
 - **Acceptance - rules.** Click-to-walk, collision, leader selection, party
   placement, interaction eligibility, dialogue choices, item transfer, and
-  initial quest flags are deterministic Core commands/events.
+  initial quest flags are deterministic Core commands/events. Per
+  `COMPAT-PATH-001`, routes may use modern deterministic pathfinding rather than
+  reproduce the original planner's deficiencies.
 - **Acceptance - presentation.** Viewport and scrolling, cursor modes and target
   hotspot, dialogue/menu layering, portraits, and control states match measured
   atlas entries within recorded tolerances.
@@ -294,8 +296,9 @@ decoder rather than being guessed now.
   implemented for Tyr. `DATA-GOG-SCENE-001` now supplies a clipped static
   tile/first-object-frame compositor; controlled observation fixes the opening
   camera at `(1024,1368)` and the static viewport is visibly integrated.
-  Animation, party/interface overlays, scrolling, and gameplay semantics remain
-  pending.
+  Manual-defined edge scrolling now drives a clamped deterministic Core camera
+  and rerasterizes that viewport. Animation, party/interface overlays,
+  click-to-walk, collision, and other gameplay semantics remain pending.
 - **Automated tests.** Synthetic-map navigation/collision, deterministic command
   traces, dialogue branches, inventory conservation, menu routing, invalid
   resource reference, and malformed-region tests.
@@ -421,6 +424,7 @@ decoder rather than being guessed now.
 | Q10 | What measured tolerances define acceptable visual, input, animation, and audio parity? | slices 2-7 | repository owner/evidence investigation | open |
 | Q11 | Which origin/class eligibility list does the shipped creation screen enforce where the original manual's race descriptions on pages 17-18 conflict with its class descriptions on pages 19-22 (half-giant ranger/thief, mul druid, thri-kreen druid/thief)? | slice 2 | OBS-GOG evidence investigation | open - Core preserves these as `EvidenceConflict` |
 | Q12 | Which four disc `CHAR` resources does START GAME select as the supplied pregenerated party? | slice 2 | OBS-GOG/DATA-GOG evidence investigation | open - disc blocks #40-#43 and #50-#53 are bounded; one independently reported default member maps to #43, but the other three selections are not established |
+| Q13 | Must pathfinding reproduce the original route planner verbatim? | slice 3 | repository owner | closed - no; owner approved a modern fit-for-purpose implementation on 2026-09-13 |
 
 ## Risks
 

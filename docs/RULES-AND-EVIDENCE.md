@@ -439,12 +439,52 @@
 - **Implementation:** the runtime resolves WIND #19500 child coordinates and
   BUTN dimensions/image references from DSUI, maps original button resource IDs
   to semantic choices, and routes clicks through a single letterboxed
-  logical-canvas transform into Core commands; later screens remain unimplemented.
+  logical-canvas transform into Core commands. In exploration, right-click
+  deterministically cycles Walk, Attack, and Look modes.
 - **Tests:** graph completeness and unexpected identities, catalog order,
   image-reference matching, rectangle edges, wide/tall letterboxing, inverse
   coordinates, resulting Core routing, and owned-pack content smoke.
-- **Uncertainty:** Cursor art, complete mode transitions, right-click behavior,
-  and coordinate boundaries require OBS-GOG evidence.
+- **Uncertainty:** Cursor art, mode-specific target eligibility, and shipped
+  coordinate boundaries require OBS-GOG evidence.
+
+### RULE-EXPLORATION-001 - Camera and party-display controls
+
+- **Behavior:** Moving the pointer to a screen edge scrolls continuously in that
+  direction until the pointer leaves the edge or the map boundary is reached.
+  The default exploration display shows only the leader; hotkeys 5 and 6 select
+  the expanded-party and leader-only displays respectively.
+- **Preconditions:** Exploration is active on a bounded region map.
+- **Evidence:** MANUAL-1994, "How to Play" pages 4-5 and the hotkey table.
+- **Confidence:** high for intended direction, stopping conditions, default,
+  and hotkey meanings; exact scroll rate and shipped edge thickness are unknown.
+- **Implementation:** `ExplorationSession` owns deterministic camera, cursor,
+  and party-display state. One-pixel scroll commands clamp to the region bounds;
+  the MonoGame input adapter emits them from the outermost logical-canvas row or
+  column and rerasterizes the Tyr viewport. Keys 5 and 6 update the Core display
+  mode, while party sprites remain pending.
+- **Tests:** initial state, all four edges and diagonal corners, interior/outside
+  coordinates, map clamping, mode-cycle order, display idempotence, and invalid
+  scroll deltas.
+- **Uncertainty:** Scroll timing, cursor imagery, party sprite composition, and
+  center-on-leader behavior remain open.
+
+### COMPAT-PATH-001 - Modern deterministic pathfinding
+
+- **Decision:** Pathfinding does not need to reproduce the original route
+  planner verbatim. A modern implementation may replace it as long as reachable
+  targets are served correctly and movement retains the game's evidenced world
+  and collision constraints.
+- **Authority:** Repository owner, 2026-09-13.
+- **Implementation:** `GridPathfinder` provides bounded deterministic
+  eight-direction A* with octile costs, stable tie-breaking, explicit
+  unreachable results, and diagonal corner-cut prevention. It accepts a
+  caller-supplied passability predicate and remains disconnected from gameplay
+  until GMAP collision semantics are established.
+- **Tests:** optimal open-grid route, stable obstacle detour, blocked endpoint,
+  zero-length route, diagonal corner, endpoint bounds, and maximum-grid limits.
+- **Uncertainty:** GMAP passability bits, moving blockers, actor footprint,
+  movement cadence, and destination tolerance remain open; none are inferred by
+  the generic pathfinder.
 
 ### RULE-PARTY-001 - Four-character party
 
