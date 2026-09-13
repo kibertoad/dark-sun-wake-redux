@@ -79,6 +79,12 @@ try
             using var textStream = File.OpenRead(textPath);
             if (PackedTextCatalog.Read(textStream, OriginalContent.TextCatalogAssetPath).Resources.Count == 0)
                 throw new InvalidDataException("The installed text catalog is empty.");
+            var characterPath = Path.Combine(assetPack,
+                OriginalContent.CharacterCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
+            using var characterStream = File.OpenRead(characterPath);
+            if (PackedCharacterCatalog.Read(
+                    characterStream, OriginalContent.CharacterCatalogAssetPath).Characters.Count == 0)
+                throw new InvalidDataException("The installed character catalog is empty.");
             var uiPath = Path.Combine(assetPack,
                 OriginalContent.StartFlowUiCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using var uiStream = File.OpenRead(uiPath);

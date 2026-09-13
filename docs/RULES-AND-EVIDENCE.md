@@ -359,6 +359,28 @@
   truncated header; truncated tail; trailing byte; and integration through the
   identity, ability, and catalog readers.
 
+### DATA-GOG-CHAR-005 - Bounded derived character catalog
+
+- **Question:** Can the verified character subset be extracted for later start
+  flow work without preserving unknown original state or guessing which records
+  form the supplied party?
+- **Method:** Correlate same-number `CHAR` and `PSIN` records, retain only the
+  separately evidenced identity, ordered abilities, neutral tail count, and raw
+  mask, then round-trip that subset through a canonical derived format. Validate
+  the complete result during a temporary owned-source extraction.
+- **Finding:** All 19 correlated records convert to deterministic `DSCH` v1 in
+  numeric resource order. The derived catalog contains no uninterpreted source
+  bytes and makes no claim about party membership or PSIN bit meanings.
+- **Confidence:** verified for extraction of the bounded subset from the
+  supported GOG build; runtime selection and remaining field semantics are
+  unknown.
+- **Implementation:** `PackedCharacterCatalog` plus transactional extraction to
+  `characters/catalog.dsch`; the asset-pack manifest is version 9 and records
+  `CHARSAVE.GFF` provenance.
+- **Tests:** synthetic round-trip and deterministic ordering; duplicate,
+  malformed-field, noncanonical-order, truncation, and trailing-data rejection;
+  synthetic extraction and content-smoke validation without original content.
+
 ### RULE-START-FLOW-001 - Start and party-creation routing
 
 - **Behavior:** The Start Window offers START GAME, CREATE CHARACTERS, LOAD

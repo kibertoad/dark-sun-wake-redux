@@ -50,6 +50,9 @@ public sealed class StartupAssetExtractorTests
         {
             var sourcePath = Path.Combine(sourceRoot, StartupAssetExtractor.SourcePath);
             await File.WriteAllBytesAsync(sourcePath, StartupArchive(), TestContext.Current.CancellationToken);
+            var characterSourcePath = Path.Combine(sourceRoot, StartupAssetExtractor.CharacterSourcePath);
+            await File.WriteAllBytesAsync(
+                characterSourcePath, CharacterArchive(), TestContext.Current.CancellationToken);
             string hash;
             await using (var sourceStream = File.OpenRead(sourcePath))
                 hash = Convert.ToHexStringLower(await SHA256.HashDataAsync(
@@ -60,7 +63,7 @@ public sealed class StartupAssetExtractorTests
             var manifest = await AssetPackInstaller.InstallAsync(output, staging =>
                 StartupAssetExtractor.WritePackAsync(sourceRoot, staging, edition, "test"));
 
-            Assert.Equal(29, manifest.Files.Count);
+            Assert.Equal(30, manifest.Files.Count);
             var asset = Assert.Single(manifest.Files, item => item.Path == OriginalContent.TitleImageAssetPath);
             Assert.Contains("BMP #11011", asset.Conversion, StringComparison.Ordinal);
             foreach (var button in OriginalContent.StartMenuButtons)
@@ -101,6 +104,18 @@ public sealed class StartupAssetExtractorTests
             {
                 Assert.Equal(["Synthetic"], PackedTextCatalog.Read(textStream).Resources[7]);
             }
+            var characterAsset = Assert.Single(manifest.Files,
+                item => item.Path == OriginalContent.CharacterCatalogAssetPath);
+            Assert.Equal(StartupAssetExtractor.CharacterSourcePath, characterAsset.SourcePath);
+            Assert.Contains("DSCH v1", characterAsset.Conversion, StringComparison.Ordinal);
+            using (var characterStream = File.OpenRead(Path.Combine(output,
+                       OriginalContent.CharacterCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar))))
+            {
+                var character = Assert.Single(PackedCharacterCatalog.Read(characterStream).Characters);
+                Assert.Equal("Hero", character.Name);
+                Assert.Equal(15, character.AbilityScores.Strength);
+                Assert.Equal(1, character.RawPsionicMask);
+            }
             var uiAsset = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.StartFlowUiCatalogAssetPath);
             Assert.Contains("WIND#19500-19505", uiAsset.Conversion, StringComparison.Ordinal);
@@ -117,6 +132,39 @@ public sealed class StartupAssetExtractorTests
             var frame = Assert.Single(packed.Frames);
             Assert.Equal(320, frame.Width);
             Assert.Equal(200, frame.Height);
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public async Task RejectsMissingCharacterStorageBeforeWritingAssets()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "dark-sun-title-tests", Guid.NewGuid().ToString("N"));
+        var sourceRoot = Path.Combine(root, "source");
+        var stagingRoot = Path.Combine(root, "staging");
+        Directory.CreateDirectory(sourceRoot);
+        Directory.CreateDirectory(stagingRoot);
+        try
+        {
+            var sourcePath = Path.Combine(sourceRoot, StartupAssetExtractor.SourcePath);
+            await File.WriteAllBytesAsync(
+                sourcePath, StartupArchive(), TestContext.Current.CancellationToken);
+            string hash;
+            await using (var sourceStream = File.OpenRead(sourcePath))
+                hash = Convert.ToHexStringLower(await SHA256.HashDataAsync(
+                    sourceStream, TestContext.Current.CancellationToken));
+            var edition = new SourceManifest(OriginalContent.GameId, "synthetic-title-edition",
+                [new SourceFile(StartupAssetExtractor.SourcePath, new FileInfo(sourcePath).Length, hash)]);
+
+            var exception = await Assert.ThrowsAsync<FileNotFoundException>(() =>
+                StartupAssetExtractor.WritePackAsync(
+                    sourceRoot, stagingRoot, edition, "test", TestContext.Current.CancellationToken));
+
+            Assert.Contains(StartupAssetExtractor.CharacterSourcePath, exception.Message);
+            Assert.Empty(Directory.EnumerateFileSystemEntries(stagingRoot));
         }
         finally
         {
@@ -210,6 +258,33 @@ public sealed class StartupAssetExtractorTests
         WriteTable(writer, "FONT", [(StartupAssetExtractor.FontNumber, fontOffset, font.Length)]);
         WriteTable(writer, "TEXT", [(7U, textOffset, text.Length)]);
         WriteTable(writer, "WIND", windowEntries);
+        return stream.ToArray();
+    }
+
+    private static byte[] CharacterArchive()
+    {
+        var character = new byte[GffCharacterRecordEnvelope.FixedHeaderSize];
+        character[0] = GffCharacterRecordEnvelope.SupportedVersion;
+        Array.Fill(character, (byte)15, GffCharacterAbilityScores.ScoresOffset,
+            GffCharacterAbilityScores.ScoreCount);
+        Encoding.ASCII.GetBytes("Hero").CopyTo(character, GffCharacterIdentity.NameOffset);
+        var indexOffset = GffArchive.HeaderSize + character.Length + 1;
+        using var stream = new MemoryStream();
+        using var writer = new BinaryWriter(stream, Encoding.ASCII, leaveOpen: true);
+        writer.Write(Encoding.ASCII.GetBytes("GFFI"));
+        writer.Write(0x0003_0000U);
+        writer.Write((uint)GffArchive.HeaderSize);
+        writer.Write((uint)indexOffset);
+        writer.Write(new byte[12]);
+        var characterOffset = checked((int)stream.Position);
+        writer.Write(character);
+        var psionicOffset = checked((int)stream.Position);
+        writer.Write((byte)1);
+        writer.Write(0U);
+        writer.Write(0U);
+        writer.Write((ushort)2);
+        WriteTable(writer, "CHAR", [(7U, characterOffset, character.Length)]);
+        WriteTable(writer, "PSIN", [(7U, psionicOffset, 1)]);
         return stream.ToArray();
     }
 

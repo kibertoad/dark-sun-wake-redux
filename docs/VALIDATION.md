@@ -35,8 +35,8 @@ The smoke modes have distinct purposes:
   a content-free CI worker.
 - `--content-smoke-test --asset-pack <path>` verifies the exact pack inventory,
   opens all twenty-six DSIX UI images, the DSFT interface font, the DSTX text
-  catalog, and the resolved six-window DSUI graph, and checks their frame,
-  geometry, glyph, reference, and inventory contracts
+  catalog, the resolved six-window DSUI graph, and the DSCH character metadata
+  catalog, and checks their frame, geometry, glyph, reference, and inventory contracts
   without a window.
 - `--platform-smoke-test` creates the MonoGame platform surface and exits; it is
   reserved for installed-package environments with a display server.
@@ -47,7 +47,8 @@ Owned-build validation currently targets GOG product `1432903719`, installed
 build `52095422060333615`. Metadata-only FONT inspection verifies that all 256
 character-map entries are identity values and summarizes its pixel-index range
 without emitting glyph pixels. A temporary owned-source extraction produced and
-verified the exact 29-asset manifest including all six windows and 39 controls;
+verified the exact 30-asset manifest including all six windows, 39 controls, and
+19 bounded character metadata entries;
 the runtime content-smoke path opened that pack successfully, after which the
 temporary pack was removed. Local-only decoded previews established the title
 and start-window mappings recorded as `DATA-GOG-TITLE-001` and

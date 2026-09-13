@@ -180,7 +180,7 @@ original game.
 
 ### Slice 1 - Identity, source recognition, and diagnostic boot
 
-**Status:** complete on 2026-09-12. The source manifest uses six exact
+**Status:** complete on 2026-09-12. The source manifest uses six exact immutable
 fingerprint anchors; full extraction-input coverage expands with each bounded
 decoder rather than being guessed now.
 
@@ -260,7 +260,7 @@ decoder rather than being guessed now.
   class/level progression, the active member during DUAL selection or editing,
   and recreation-native stored characters;
   DSUI round-trip, malformed graph, deterministic ordering, mixed-control graph resolution, resource-ID routing,
-  rectangle-edge, synthetic extraction, content-smoke, and owned 29-asset pack verification cover the derived
+  rectangle-edge, synthetic extraction, content-smoke, and owned 30-asset pack verification cover the derived
   start-flow layout contract;
   gameplay-wide replay remains a later-slice requirement.
 - **Observed parity.** Compare boot, start, create/select/cancel, and quit state

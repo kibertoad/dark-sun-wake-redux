@@ -6,6 +6,7 @@ namespace DarkSunWakeRedux.Extractor;
 public static class StartupAssetExtractor
 {
     public const string SourcePath = "RESOURCE.GFF";
+    public const string CharacterSourcePath = "CHARSAVE.GFF";
     public const string TitleImageTag = "BMP ";
     public const uint TitleImageNumber = 11011;
     public const string ImageTag = "ICON";
@@ -25,6 +26,14 @@ public static class StartupAssetExtractor
         var sourcePath = Path.Combine(sourceRoot, SourcePath);
         await using var source = File.OpenRead(sourcePath);
         var archive = GffArchive.Read(source, sourcePath);
+        var characterSourcePath = Path.Combine(sourceRoot, CharacterSourcePath);
+        if (!File.Exists(characterSourcePath))
+            throw new FileNotFoundException(
+                $"Required character storage is missing: {CharacterSourcePath}.",
+                characterSourcePath);
+        await using var characterSource = File.OpenRead(characterSourcePath);
+        var characterArchive = GffArchive.Read(characterSource, characterSourcePath);
+        var characters = GffCharacterCatalog.Read(characterArchive, CharacterSourcePath);
         var palette = IndexedPalette.Read(archive.GetResource(PaletteTag, PaletteNumber).Span,
             $"{SourcePath}:{PaletteTag}#{PaletteNumber}");
         var files = new List<AssetPackFile>();
@@ -83,6 +92,7 @@ public static class StartupAssetExtractor
         files.Add(await WriteFontAsync(stagingRoot, font, cancellationToken));
         files.Add(await WriteTextCatalogAsync(stagingRoot, archive, cancellationToken));
         files.Add(await WriteUiCatalogAsync(stagingRoot, archive, cancellationToken));
+        files.Add(await WriteCharacterCatalogAsync(stagingRoot, characters, cancellationToken));
 
         return new AssetPackManifest(
             OriginalContent.AssetPackFormatVersion,
@@ -91,6 +101,27 @@ public static class StartupAssetExtractor
             edition.Fingerprint(),
             extractorVersion,
             files);
+    }
+
+    private static async Task<AssetPackFile> WriteCharacterCatalogAsync(
+        string stagingRoot,
+        IReadOnlyList<GffCharacterCatalogEntry> characters,
+        CancellationToken cancellationToken)
+    {
+        var catalog = PackedCharacterCatalog.From(characters);
+        var relativePath = OriginalContent.CharacterCatalogAssetPath;
+        var target = Path.Combine(stagingRoot,
+            relativePath.Replace('/', Path.DirectorySeparatorChar));
+        Directory.CreateDirectory(Path.GetDirectoryName(target)!);
+        await using (var output = File.Create(target)) catalog.Write(output);
+        await using var verify = File.OpenRead(target);
+        PackedCharacterCatalog.Read(verify, relativePath);
+        verify.Position = 0;
+        var hash = Convert.ToHexStringLower(
+            await SHA256.HashDataAsync(verify, cancellationToken));
+        return new(relativePath, verify.Length, hash, CharacterSourcePath,
+            "application/vnd.dark-sun-wake-redux.character-catalog",
+            $"CHAR identity/abilities/envelope + PSIN mask -> DSCH v{PackedCharacterCatalog.FormatVersion}");
     }
 
     private static async Task<AssetPackFile> WriteUiCatalogAsync(

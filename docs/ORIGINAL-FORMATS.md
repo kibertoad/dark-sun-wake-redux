@@ -18,6 +18,7 @@ semantics.
 | Pack `*.dsft` | Derived indexed-font asset | `DSFT` v1 stores a character map, shared height, widths, and bounded indexed glyph pixels | implemented; interface-font round-trip and extraction validated | Bound file size, version, glyph count, height, widths, pixel counts, and trailing data |
 | Pack `*.dstx` | Derived text catalog | `DSTX` v1 deterministically stores original resource IDs and printable ASCII lines | implemented; full TEXT catalog round-trip and extraction validated | Bound file size, version, resource/line counts and lengths; reject duplicates, unsupported bytes, and trailing data |
 | Pack `*.dsui` | Derived UI catalog | `DSUI` v1 deterministically stores the six start-flow windows and their resolved BUTN/APFM/EBOX graph | implemented; synthetic round-trip and owned extraction validated | Bound file size, per-type counts, child counts, tags, dimensions, identities, references, and trailing data |
+| Pack `*.dsch` | Derived character metadata catalog | `DSCH` v1 deterministically stores only the bounded `CHAR`/`PSIN` subset: resource ID, neutral tail-record count, name, six ordered abilities, and raw mask | implemented; synthetic round-trip and owned extraction validated | Bound file size, version, record/name counts, ability range, raw mask, canonical order, and trailing data; reject duplicates and do not carry uninterpreted source bytes |
 | `*.FLI` | Four observed cinematics | Likely animation resources by extension only; dimensions, palette changes, frame timing, and exact variant are unverified | low | Bound frames, chunks, dimensions, decoded bytes, and timing; unsupported chunk types fail explicitly |
 | `*.VOC` | Speech and sound-effect files | Creative Labs VOC is suggested by extension; headers, codecs, sample rates, and block use must be verified per file | low | Bound blocks and decoded samples; reject unsupported codecs and malformed terminators |
 | `MUSIC/*.ogg` | 39 GOG-supplied music files | Ogg container presence is observed; mapping, loop points, provenance, and relationship to original media are unknown | low | Validate stream metadata and decode limits; unknown track mapping remains data, not a guessed rule |
@@ -210,6 +211,23 @@ same-type identities, invalid dimensions, unresolved children, truncation, and
 trailing bytes. The Slice 2 pack contains `WIND` #19500 through #19505 plus all
 of their referenced `BUTN`, `APFM`, and `EBOX` records. Unknown source fields,
 button tails, palette assumptions, and shell draw semantics are not carried.
+
+## Derived DSCH character-metadata catalog
+
+DSCH is an original deterministic pack format that carries only fields with a
+recorded bounded interpretation. Version 1 starts with ASCII `DSCH`, a 16-bit
+version, and a 32-bit character count. Records are written in ascending numeric
+resource-ID order and contain the 32-bit source resource ID, one-byte neutral
+tail-record count, one-byte ASCII name length plus the name bytes, the six
+ability bytes in Strength, Dexterity, Constitution, Intelligence, Wisdom, and
+Charisma order, and the unchanged one-byte raw PSIN mask.
+
+The reader caps files at 64 KiB and catalogs at 256 records. It requires names
+of 1 through 15 printable ASCII bytes, abilities from 9 through 24, and a
+nonzero raw mask limited to the low three bits. It rejects duplicate or
+noncanonical resource ordering, truncation, and trailing data. No
+uninterpreted `CHAR` header or tail bytes enter the pack, and PSIN bit meanings
+remain deliberately unassigned.
 
 ## Derived DSFT indexed-font asset
 

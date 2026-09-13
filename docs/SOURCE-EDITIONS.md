@@ -8,7 +8,7 @@ runtime defaults or committed content.
 
 | Field | Value |
 |---|---|
-| Status | Source recognition implemented; extraction not yet implemented |
+| Status | Source recognition and bounded 30-asset Slice 2 extraction implemented |
 | Acquisition | Legally owned GOG release, *Dungeons & Dragons: Dark Sun Series* |
 | Local validation path | `C:\GOG Games\Dark Sun 2` |
 | GOG product ID | `1432903719` |
@@ -17,12 +17,18 @@ runtime defaults or committed content.
 | Underlying DOS revision | Unknown; investigation required |
 | Manifest | `src/DarkSunWakeRedux.Extractor/source-manifests/gog-en-52095422060333615.json` |
 
-The recognition manifest currently uses six independent anchors:
+The recognition manifest currently uses six independent immutable anchors:
 `DSUN.EXE`, `game.ins`, `GPLDATA.GFF`, `ITEMS.BIN`, `OBJEX.GFF`, and
 `RESOURCE.GFF`. It records exact sizes and SHA-256 values. These anchors identify
 the owned build but are not a claim that they are the complete extraction input
 set. Each decoder slice must add every source file it consumes to the supported
 edition contract before extraction can succeed.
+
+`CHARSAVE.GFF` is required supplemental extraction input, but it is character
+storage and therefore is not an immutable edition fingerprint. The Extractor
+requires the file, validates its complete bounded GFF/`CHAR`/`PSIN` structure,
+and records it as DSCH provenance only after the six immutable anchors identify
+the supported installation.
 
 The GOG installation also contains DOSBox integration, manuals, a clue book,
 region GFF files, FLI cinematics, VOC speech/effects, and Ogg music. Presence is
