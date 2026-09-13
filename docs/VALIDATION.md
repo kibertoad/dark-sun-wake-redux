@@ -42,6 +42,10 @@ Movement-session tests prove deterministic command/event traces, exactly one
 semantic step per advance, atomic replanning failure, cancellation/completion,
 snapshot isolation, and interruption when a step or diagonal side becomes
 blocked after planning.
+Occupancy-session tests prove canonical immutable multi-cell footprints,
+deterministic occupant ordering, atomic place/move/remove and explicit rejected
+transitions, terrain/bounds/overlap exclusion, own-cell movement overlap, live
+whole-footprint passability, and composition with route planning.
 
 The smoke modes have distinct purposes:
 
@@ -71,6 +75,10 @@ runtime content-smoke path opens that pack and rasterizes 320x200 viewports at
 both opposite region corners successfully. It also verifies Tyr's exact four
 `GMAP` values and 8,169 terrain-open cells through the bounded navigation
 contract; these diagnostic checks are not a claim about party spawn.
+Exact comparison of the retained ignored native opening frame against the
+compositor at `(1024,1368)` isolates the visible leader to a 367-differing-pixel
+component bounded by logical `(160,91)`-`(176,125)`; this is not treated as
+evidence of its collision anchor or footprint.
 Local-only decoded previews established the title
 and start-window mappings recorded as `DATA-GOG-TITLE-001`,
 `DATA-GOG-UI-001`, `DATA-GOG-UI-006`, `DATA-GOG-UI-007`,

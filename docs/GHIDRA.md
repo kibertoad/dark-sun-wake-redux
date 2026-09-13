@@ -257,8 +257,10 @@ proof by itself. Never redirect broad output into the repository.
   combined with the independent deterministic pathfinder by
   `ExplorationTerrainRoutePlanner`. The Core route session rechecks its supplied
   passability predicate immediately before each semantic step, including both
-  diagonal side cells, but does not infer a spawn, footprint, occupancy store,
-  movement cadence, or animation.
+  diagonal side cells. `ExplorationOccupancySession` supplies bounded atomic
+  per-cell placement for caller-provided immutable footprints and a live
+  whole-footprint path predicate, but does not infer a spawn, concrete actor
+  footprint, movement cadence, or animation.
 
 For each useful finding, add a concise entry here or in the relevant
 `docs/RULES-AND-EVIDENCE.md` / `docs/ORIGINAL-FORMATS.md` section with:

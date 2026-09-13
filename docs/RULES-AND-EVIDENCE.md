@@ -135,7 +135,9 @@
   the fingerprinted owned build in the GOG overlay, select the shipped party,
   skip the opening cinematics, capture the first stable 320x200 gameplay frame,
   and compare 808 background samples against every valid Tyr viewport while
-  excluding the party, pointer, and interface button.
+  excluding the party, pointer, and interface button. At the winning origin,
+  compare all 64,000 RGB pixels with the compositor and enumerate the
+  eight-connected components of differing pixels.
 - **Finding:** Terrain `MAP ` entry `(x,y)` places its 16x16 tile at
   `(x*16,y*16)`. After terrain, ETAB entries compose in stored order using the
   first referenced BMP frame. The frame's top-left is
@@ -148,11 +150,18 @@
   `C4C75F4CDCAA19EBD825EE560887E0667984E5A3878D695703587863F535CED9`.
   The first stable gameplay background matches Tyr origin `(1024,1368)` on
   807 of 808 sampled pixels; the sole difference is a dynamic overlay sample.
+  An exact full-frame comparison at that origin identifies 1,028 pixels that
+  differ from the static compositor. The visually identified party-leader
+  component contains 367 differing pixels in logical bounds
+  `(160,91)`-`(176,125)`, corresponding to world bounds
+  `(1184,1459)`-`(1200,1493)`. This measures the visible overlay, not its
+  collision anchor or occupied cells.
 - **Confidence:** high for tile placement from the format and all owned map
   dimensions; medium for object placement, first-frame choice, ETAB order, and
   mirror bit from community executable-informed research; verified for the
   opening static background in the supported owned build. Animation, party
-  placement, pointer, and interface overlays remain unvalidated.
+  collision anchoring, sprite resource identity, pointer, and interface
+  overlays remain unvalidated.
 - **Implementation:** `RegionSceneRasterizer` produces a bounded indexed/alpha
   viewport at an explicit caller-supplied world origin. `OpeningTyrScene`
   records the observed `(1024,1368)` 320x200 viewport, and Gameplay displays
@@ -540,6 +549,30 @@
 - **Uncertainty:** Actor-specific low-bit policy outside Tyr, moving blockers,
   actor footprint, opening spawn, movement cadence, and destination tolerance
   remain open; none are inferred by the terrain grid, planner, or route session.
+
+### RULE-EXPLORATION-002 - Atomic dynamic occupancy
+
+- **Behavior:** Dynamic actors occupy one or more region cells. Placement and
+  removal mutate each cell in an actor's footprint as one logical operation;
+  another actor cannot overlap those cells or blocked terrain.
+- **Evidence:** `EXE-GOG-REGION-001` establishes the `0x40`/`0x20` dynamic pair
+  and a coordinator called once per iterated footprint cell. It does not yet
+  establish actor-specific footprints, opening anchors, or mutation cadence.
+- **Confidence:** high for per-cell occupied/open exclusion in the supported
+  executable; implementation-policy for atomic rejection and stable ordering;
+  unknown for concrete actor shapes and anchors.
+- **Implementation:** `GridFootprint` is immutable, duplicate-free, and
+  canonically ordered. `ExplorationOccupancySession` applies place/move/remove
+  commands atomically over bounded terrain, emits deterministic events and
+  explicit rejection reasons, snapshots placements in occupant-ID order, and
+  exposes a live whole-footprint anchor predicate to pathfinding. No concrete
+  party or NPC footprint is assigned yet.
+- **Tests:** multi-cell placement, own-cell overlap during movement, terrain,
+  bounds and other-occupant rejection without partial mutation, cell release,
+  missing-occupant handling, snapshot isolation/order, invalid payloads, live
+  blocker updates, and route planning through the composed predicate.
+- **Uncertainty:** Opening occupant IDs, anchor convention, party formation,
+  actor-specific footprints, NPC placement, and movement timing remain open.
 
 ### RULE-PARTY-001 - Four-character party
 

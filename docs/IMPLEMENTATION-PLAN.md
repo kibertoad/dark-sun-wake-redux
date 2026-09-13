@@ -309,8 +309,11 @@ decoder rather than being guessed now.
   reusable camera-to-grid Walk-click planner connect Tyr to deterministic A*.
   A clock-free Core movement session now covers atomic plan/replan, one-cell
   advancement, cancellation, completion, and newly blocked route interruption
-  without guessing the opening spawn, actor footprint/occupancy store, cadence,
-  or animation.
+  without guessing the opening spawn or cadence. A separate deterministic
+  occupancy session atomically places, moves, and removes caller-supplied
+  multi-cell footprints over terrain and supplies live whole-footprint route
+  predicates. The concrete party/NPC footprints, opening anchors, integration,
+  cadence, and animation remain open.
 - **Automated tests.** Synthetic-map navigation/collision, deterministic command
   traces, dialogue branches, inventory conservation, menu routing, invalid
   resource reference, and malformed-region tests.

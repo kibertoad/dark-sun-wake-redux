@@ -36,12 +36,11 @@ write into a unique sibling staging directory, generate a manifest containing
 format/extractor versions and exact output inventory, re-open and hash every
 output, reject unexpected files, then atomically replace the installed pack.
 If any step fails, staging is removed and the last verified pack is restored.
-Current code exercises this transaction for the evidenced title, two
-start-window shell layers, two party-overview layers, four start-window
-buttons, twenty character-generation and modal controls, shared
-window image, interface font, text catalog, and resolved seven-window UI graph;
-later Slice 2 resources will
-extend the exact inventory only after their mappings are recorded.
+Current code exercises this transaction for the exact 59-asset startup, party,
+ADD-list, Tyr, and Game Menu pack: indexed UI images and font, text and
+character catalogs, separate resolved UI graphs, the canonical Tyr region, and
+its object-frame graph. Later resources extend this inventory only after their
+mappings are recorded.
 
 ## Runtime startup
 
@@ -59,8 +58,11 @@ local technical details, and a command to run the Extractor.
 Rules accept explicit commands and seed state and emit sequenced events.
 Rendering and audio consume events but cannot mutate rules according to frame
 rate. The start/party flow now has versioned snapshots, canonical state hashes,
-and replay divergence checks; later systems must extend this contract without
-introducing ambient randomness or presentation state.
+and replay divergence checks. Exploration camera/view, route, and occupancy
+sessions likewise transition only from explicit commands; route advancement is
+one semantic cell per command and configurable multi-cell placement is atomic.
+Later systems must extend this contract without introducing ambient randomness,
+wall-clock decisions, or presentation state.
 
 ## ADR-001 - Separate Extractor and verified pack
 
