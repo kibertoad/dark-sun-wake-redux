@@ -265,6 +265,26 @@
 - **Uncertainty:** Exact pregenerated party data, on-disk created-character
   format, cancellation state, and shipped edge behavior require observation.
 
+### DATA-GOG-CHAR-001 - Character identity slot
+
+- **Question:** Can original character records be identified without assigning
+  meanings to unknown character-state fields?
+- **Method:** Enumerate every `CHAR` resource in the fingerprinted owned
+  `CHARSAVE.GFF`, compare the repeated header region, and validate the candidate
+  name slot independently for bounds, termination, and printable bytes.
+- **Finding:** All 19 records contain a non-empty printable ASCII name beginning
+  at offset 43 and terminated within a 16-byte slot. Several records retain
+  unrelated nonzero bytes after the first terminator, so those bytes are not
+  part of the name and must be ignored. Record sizes vary from 145 to 1,036
+  bytes; no other field is assigned semantics by this finding.
+- **Confidence:** high for the owned GOG build's name slot; unknown for other
+  editions and for every remaining `CHAR` field.
+- **Implementation:** bounded `GffCharacterIdentity` parsing and a metadata-only
+  `character-catalog` Inspect command. No original record bytes enter the
+  derived asset pack or Git.
+- **Tests:** minimum/maximum resource bounds, first-NUL behavior, maximum name
+  length, empty name, missing terminator, and non-printable byte rejection.
+
 ### RULE-START-FLOW-001 - Start and party-creation routing
 
 - **Behavior:** The Start Window offers START GAME, CREATE CHARACTERS, LOAD

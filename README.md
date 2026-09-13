@@ -27,7 +27,8 @@ that term as **origin** or **origin-based** in our implementation.
 ## Current status
 
 The repository is configured and the first foundation slice is complete. Work
-on the second slice includes bounded GFF directory, indexed-image, palette,
+on the second slice includes bounded GFF directory, character identity,
+indexed-image, palette,
 indexed-font, short-text, and UI layout readers. The supported GOG build can be identified by exact
 fingerprints,
 asset-pack contracts and diagnostics are implemented, and assetless smoke
