@@ -215,7 +215,9 @@ decoder rather than being guessed now.
   selection, and derived initial state follow recorded evidence. A fixed seed
   makes allowed random generation repeatable. The manual-documented discipline
   and sphere cardinality is implemented; shipped selection behavior remains to
-  be observed. Pre-adventure occupied-slot EDIT and DROP-to-ADD storage are
+  be observed. The manual's complete racial ability-modifier table is exposed
+  as immutable Core data without assuming application order or score caps.
+  Pre-adventure occupied-slot EDIT and DROP-to-ADD storage are
   implemented. The manual-evidenced human dual-class level gates, sequential
   career limit, former-benefit boundary, DUAL selection command, and atomic
   party update are deterministic Core rules. Class progression participates in
@@ -240,7 +242,8 @@ decoder rather than being guessed now.
 - **Automated tests.** Synthetic parser boundary/fuzz tests; traversal and
   decompression-bomb limits; deterministic extraction; exact output inventory;
   pack verification, stale-file removal, atomic promotion/rollback; party
-  invariants and menu-transition tests. Implemented start-flow commands produce
+  invariants, exact racial-modifier table, and menu-transition tests.
+  Implemented start-flow commands produce
   sequenced events, versioned snapshots, stable hashes, and verified replays.
   Snapshot schema 4 includes psionic disciplines, clerical sphere, ordered
   class/level progression, the active member during DUAL selection or editing,

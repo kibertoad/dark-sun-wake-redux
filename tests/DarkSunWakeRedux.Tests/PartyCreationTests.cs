@@ -100,6 +100,28 @@ public sealed class PartyCreationTests
     }
 
     [Fact]
+    public void ManualRacialAbilityModifiersAreRecordedWithoutGenerationAssumptions()
+    {
+        var expected = new Dictionary<CharacterRace, RacialAbilityModifiers>
+        {
+            [CharacterRace.Human] = new(0, 0, 0, 0, 0, 0),
+            [CharacterRace.Dwarf] = new(1, -1, 2, 0, 0, -2),
+            [CharacterRace.Elf] = new(0, 2, -2, 1, -1, 0),
+            [CharacterRace.HalfElf] = new(0, 1, -1, 0, 0, 0),
+            [CharacterRace.HalfGiant] = new(4, 0, 2, -2, -2, -2),
+            [CharacterRace.Halfling] = new(-2, 2, -1, 0, 2, -1),
+            [CharacterRace.Mul] = new(2, 0, 1, -1, 0, -2),
+            [CharacterRace.ThriKreen] = new(0, 2, 0, -1, 1, -2)
+        };
+
+        Assert.Equal(Enum.GetValues<CharacterRace>(), expected.Keys.Order());
+        foreach (var (race, modifiers) in expected)
+            Assert.Equal(modifiers, PartyCreationRules.AbilityModifiers(race));
+        Assert.Throws<ArgumentOutOfRangeException>(() =>
+            PartyCreationRules.AbilityModifiers((CharacterRace)999));
+    }
+
+    [Fact]
     public void PsionicistMustReceiveAllThreeDisciplines()
     {
         var incomplete = Draft(classes: [CharacterClass.Psionicist]);

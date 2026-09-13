@@ -9,7 +9,8 @@ and state hashes, snapshots restore exactly, rejected commands are sequenced,
 and replay stops at the first divergent hash.
 Party-rule coverage includes the manual-documented all-three Psionicist rule,
 the exactly-one discipline rule for other characters, Cleric-only elemental
-spheres, canonical hash sensitivity to the selected sphere, and immutable
+spheres, canonical hash sensitivity to the selected sphere, the exact
+six-ability modifier values for all eight races, and immutable
 dual-class progression across the human-only, level-three, repeated-career,
 three-career, monotonic-advancement, and former-benefit boundaries. It also
 proves ordered class/progression consistency, atomic DUAL selection and

@@ -312,8 +312,9 @@
   multiclass, class count/duplicates, cleric+druid, and agreed eligibility
   constraints.
 - **Uncertainty:** Initial HP adjustment, ability-generation distribution,
-  racial adjustments during editing, valid multiclass combinations, and exact
-  screen defaults need DATA-GOG/OBS-GOG evidence.
+  racial-modifier application timing/caps during generation and editing, valid
+  multiclass combinations, and exact screen defaults need DATA-GOG/OBS-GOG
+  evidence. The modifier values themselves are recorded by `RULE-PARTY-005`.
 
 ### CONFLICT-PARTY-001 - Manual race/class eligibility lists
 
@@ -375,6 +376,28 @@
 - **Uncertainty:** Player-visible selection, native-save integration, initial
   shipped class levels/experience, XP thresholds, and exact DUAL UI choices
   require later Slice 2/5 data and observations.
+
+### RULE-PARTY-005 - Racial ability modifiers
+
+- **Behavior:** Human ability scores are unmodified. Dwarves receive Strength
+  +1, Dexterity -1, Constitution +2, and Charisma -2; elves receive Dexterity
+  +2, Constitution -2, Intelligence +1, and Wisdom -1; half-elves receive
+  Dexterity +1 and Constitution -1; half-giants receive Strength +4,
+  Constitution +2, Intelligence -2, Wisdom -2, and Charisma -2; halflings
+  receive Strength -2, Dexterity +2, Constitution -1, Wisdom +2, and Charisma
+  -1; muls receive Strength +2, Constitution +1, Intelligence -1, and Charisma
+  -2; thri-kreen receive Dexterity +2, Intelligence -1, Wisdom +1, and Charisma
+  -2. Unlisted abilities receive zero.
+- **Evidence:** MANUAL-1994, "Racial Ability Adjustments Table," page 77.
+- **Confidence:** high for the published modifiers; application order, edit
+  behavior, and whether final scores are capped remain unobserved.
+- **Implementation:** `PartyCreationRules.AbilityModifiers` returns an immutable
+  six-field modifier value for every defined race and rejects undefined enum
+  values. It does not mutate `CharacterDraft` or invent generation behavior.
+- **Tests:** exact six-ability values for all eight races, complete enum
+  coverage, and undefined-race rejection.
+- **Uncertainty:** Observe generation and editing at racial and global score
+  boundaries before applying the table to final character state.
 
 ### RULE-COMBAT-001 - Party expansion on combat entry
 

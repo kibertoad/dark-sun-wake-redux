@@ -71,6 +71,14 @@ public sealed record AbilityScores(
     }
 }
 
+public sealed record RacialAbilityModifiers(
+    int Strength,
+    int Dexterity,
+    int Constitution,
+    int Intelligence,
+    int Wisdom,
+    int Charisma);
+
 public sealed record CharacterDraft(
     string Name,
     CharacterRace Race,
@@ -142,6 +150,23 @@ public static class PartyCreationRules
             [CharacterClass.Psionicist] = Scores(constitution: 11, intelligence: 12, wisdom: 15)
         };
 
+    private static readonly IReadOnlyDictionary<CharacterRace, RacialAbilityModifiers> RaceAbilityModifiers =
+        new Dictionary<CharacterRace, RacialAbilityModifiers>
+        {
+            [CharacterRace.Human] = Modifiers(),
+            [CharacterRace.Dwarf] = Modifiers(strength: 1, dexterity: -1, constitution: 2, charisma: -2),
+            [CharacterRace.Elf] = Modifiers(dexterity: 2, constitution: -2, intelligence: 1, wisdom: -1),
+            [CharacterRace.HalfElf] = Modifiers(dexterity: 1, constitution: -1),
+            [CharacterRace.HalfGiant] = Modifiers(strength: 4, constitution: 2,
+                intelligence: -2, wisdom: -2, charisma: -2),
+            [CharacterRace.Halfling] = Modifiers(strength: -2, dexterity: 2,
+                constitution: -1, wisdom: 2, charisma: -1),
+            [CharacterRace.Mul] = Modifiers(strength: 2, constitution: 1,
+                intelligence: -1, charisma: -2),
+            [CharacterRace.ThriKreen] = Modifiers(dexterity: 2,
+                intelligence: -1, wisdom: 1, charisma: -2)
+        };
+
     private static readonly IReadOnlyDictionary<CharacterRace, HashSet<CharacterClass>> RaceSectionClaims =
         new Dictionary<CharacterRace, HashSet<CharacterClass>>
         {
@@ -185,6 +210,12 @@ public static class PartyCreationRules
         return raceAllows == classAllows
             ? raceAllows ? ClassEligibility.Allowed : ClassEligibility.Prohibited
             : ClassEligibility.EvidenceConflict;
+    }
+
+    public static RacialAbilityModifiers AbilityModifiers(CharacterRace race)
+    {
+        if (!Enum.IsDefined(race)) throw new ArgumentOutOfRangeException(nameof(race));
+        return RaceAbilityModifiers[race];
     }
 
     public static IReadOnlyList<PartyDiagnostic> Validate(CharacterDraft character)
@@ -295,6 +326,15 @@ public static class PartyCreationRules
         int intelligence = MinimumAbility,
         int wisdom = MinimumAbility,
         int charisma = MinimumAbility) =>
+        new(strength, dexterity, constitution, intelligence, wisdom, charisma);
+
+    private static RacialAbilityModifiers Modifiers(
+        int strength = 0,
+        int dexterity = 0,
+        int constitution = 0,
+        int intelligence = 0,
+        int wisdom = 0,
+        int charisma = 0) =>
         new(strength, dexterity, constitution, intelligence, wisdom, charisma);
 
     private static HashSet<T> Set<T>(params T[] values) where T : struct, Enum => [.. values];
