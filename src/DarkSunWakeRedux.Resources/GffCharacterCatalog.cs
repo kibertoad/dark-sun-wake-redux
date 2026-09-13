@@ -3,7 +3,9 @@ namespace DarkSunWakeRedux.Resources;
 public sealed record GffCharacterCatalogEntry(
     uint ResourceNumber,
     uint ResourceSize,
+    byte TailRecordCount,
     string Name,
+    GffCharacterAbilityScores AbilityScores,
     byte RawPsionicMask);
 
 public static class GffCharacterCatalog
@@ -21,14 +23,21 @@ public static class GffCharacterCatalog
             .OrderBy(resource => resource.Number)
             .Select(resource =>
             {
+                var data = archive.GetResource(resource.Tag, resource.Number);
+                var envelope = GffCharacterRecordEnvelope.Read(
+                    data, $"{sourceName}:{resource.Tag}#{resource.Number}");
                 var identity = GffCharacterIdentity.Read(
-                    archive.GetResource(resource.Tag, resource.Number),
+                    data,
+                    $"{sourceName}:{resource.Tag}#{resource.Number}");
+                var abilityScores = GffCharacterAbilityScores.Read(
+                    data,
                     $"{sourceName}:{resource.Tag}#{resource.Number}");
                 if (!selections.Remove(resource.Number, out var selection))
                     throw new InvalidDataException(
                         $"{sourceName}: CHAR #{resource.Number} has no matching PSIN resource.");
                 return new GffCharacterCatalogEntry(
-                    resource.Number, resource.Size, identity.Name, selection.RawMask);
+                    resource.Number, resource.Size, envelope.TailRecordCount,
+                    identity.Name, abilityScores, selection.RawMask);
             }).ToArray();
         if (selections.Count != 0)
             throw new InvalidDataException(

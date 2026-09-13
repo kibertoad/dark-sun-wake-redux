@@ -25,17 +25,6 @@ public sealed class GffCharacterIdentityTests
         Assert.Equal("123456789012345", identity.Name);
     }
 
-    [Theory]
-    [InlineData(GffCharacterIdentity.MinimumResourceSize - 1)]
-    [InlineData(GffCharacterIdentity.MaximumResourceSize + 1)]
-    public void RejectsResourceOutsideBounds(int size)
-    {
-        var exception = Assert.Throws<InvalidDataException>(() =>
-            GffCharacterIdentity.Read(new byte[size], "synthetic"));
-
-        Assert.Contains("synthetic", exception.Message);
-    }
-
     [Fact]
     public void RejectsNameWithoutTerminator()
     {
@@ -65,7 +54,8 @@ public sealed class GffCharacterIdentityTests
 
     private static byte[] Resource(string name)
     {
-        var data = new byte[GffCharacterIdentity.MinimumResourceSize];
+        var data = new byte[GffCharacterRecordEnvelope.FixedHeaderSize];
+        data[0] = GffCharacterRecordEnvelope.SupportedVersion;
         var encoded = System.Text.Encoding.ASCII.GetBytes(name);
         encoded.CopyTo(data, GffCharacterIdentity.NameOffset);
         return data;

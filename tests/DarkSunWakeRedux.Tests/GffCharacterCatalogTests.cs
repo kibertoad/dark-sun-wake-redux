@@ -19,7 +19,9 @@ public sealed class GffCharacterCatalogTests
             "synthetic.gff");
 
         Assert.Equal([3U, 7U], catalog.Select(item => item.ResourceNumber));
+        Assert.All(catalog, item => Assert.Equal(0, item.TailRecordCount));
         Assert.Equal(["Hero", "Scholar"], catalog.Select(item => item.Name));
+        Assert.All(catalog, item => Assert.Equal(15, item.AbilityScores.Strength));
         Assert.Equal([7, 4], catalog.Select(item => item.RawPsionicMask));
     }
 
@@ -53,7 +55,10 @@ public sealed class GffCharacterCatalogTests
 
     private static byte[] Character(string name)
     {
-        var data = new byte[GffCharacterIdentity.MinimumResourceSize];
+        var data = new byte[GffCharacterRecordEnvelope.FixedHeaderSize];
+        data[0] = GffCharacterRecordEnvelope.SupportedVersion;
+        Array.Fill(data, (byte)15, GffCharacterAbilityScores.ScoresOffset,
+            GffCharacterAbilityScores.ScoreCount);
         Encoding.ASCII.GetBytes(name).CopyTo(data, GffCharacterIdentity.NameOffset);
         return data;
     }

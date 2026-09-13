@@ -276,14 +276,15 @@
   at offset 43 and terminated within a 16-byte slot. Several records retain
   unrelated nonzero bytes after the first terminator, so those bytes are not
   part of the name and must be ignored. Record sizes vary from 145 to 1,036
-  bytes; no other field is assigned semantics by this finding.
+  bytes; no other field is assigned semantics by this finding. Later findings
+  separately cover the record envelope and ability-score fields.
 - **Confidence:** high for the owned GOG build's name slot; unknown for other
-  editions and for every remaining `CHAR` field.
+  editions. Other `CHAR` fields are tracked by their own evidence entries.
 - **Implementation:** bounded `GffCharacterIdentity` parsing and a metadata-only
   `character-catalog` Inspect command. No original record bytes enter the
   derived asset pack or Git.
-- **Tests:** minimum/maximum resource bounds, first-NUL behavior, maximum name
-  length, empty name, missing terminator, and non-printable byte rejection.
+- **Tests:** exact versioned-envelope validation, first-NUL behavior, maximum
+  name length, empty name, missing terminator, and non-printable byte rejection.
 
 ### DATA-GOG-CHAR-002 - Raw PSIN companion mask
 
@@ -313,6 +314,50 @@
 - **Tests:** all observed values, the unobserved in-envelope combination, zero,
   unknown bits, wrong lengths, deterministic identity ordering, and missing or
   orphan companion rejection in synthetic GFF archives.
+
+### DATA-GOG-CHAR-003 - Ordered ability scores
+
+- **Question:** Does the fixed `CHAR` header store the six player ability scores,
+  and in which order?
+- **Method:** Compare bytes 35 through 40 across all 19 owned `CHAR` records,
+  check every value against the manual's documented 9..24 score range, compare
+  tuples for repeated character identities, and retain the manual's presentation
+  order rather than assigning fields from value plausibility alone.
+- **Finding:** Every record has six values within 9..24 at offsets 35..40. The
+  manual introduces its six ability descriptions in Strength, Dexterity,
+  Constitution, Intelligence, Wisdom, and Charisma order. Repeated identities
+  preserve the same tuple in three groups; another variant changes only one score.
+- **Evidence:** MANUAL-1994, "Ability Scores," page 16; fingerprinted owned
+  `CHARSAVE.GFF` metadata inspection.
+- **Confidence:** high for the six fields, their order, and the supported GOG
+  build; runtime presentation and generation behavior remain unobserved.
+- **Implementation:** bounded `GffCharacterAbilityScores` parsing with named
+  ordered fields; `GffCharacterCatalog` exposes the value without translating
+  it into Core character state or applying origin modifiers.
+- **Tests:** exact order, inclusive manual bounds, lower/upper rejection,
+  resource-size limits, and synthetic catalog integration.
+- **Uncertainty:** Ability generation distribution, origin-modifier application
+  order and caps, edit behavior, and the supplied-party record selection remain
+  open.
+
+### DATA-GOG-CHAR-004 - Versioned record envelope
+
+- **Question:** What structural boundary contains the fixed `CHAR` header and
+  its still-uninterpreted variable tail?
+- **Method:** Compare the first two bytes and total resource size across all 19
+  owned records, testing a single fixed-header-plus-repeated-record equation.
+- **Finding:** Byte 0 is version 1 in every record. Byte 1 ranges from 2 through
+  29, and every resource size exactly equals `79 + byte1 * 33`; there are no
+  residual bytes or exceptions. The repeated tail record's meaning is unknown.
+- **Confidence:** verified for the supported GOG archive's structural envelope;
+  unknown for other versions and tail semantics.
+- **Implementation:** `GffCharacterRecordEnvelope` requires version 1, a
+  complete 79-byte header, the exact byte-counted tail size, and no trailing
+  data. Identity and ability readers validate this envelope before interpreting
+  their fields; the catalog exposes the neutral `TailRecordCount`.
+- **Tests:** zero, ordinary, and maximum byte counts; unsupported version;
+  truncated header; truncated tail; trailing byte; and integration through the
+  identity, ability, and catalog readers.
 
 ### RULE-START-FLOW-001 - Start and party-creation routing
 
