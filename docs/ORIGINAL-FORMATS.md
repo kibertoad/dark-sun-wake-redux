@@ -23,7 +23,7 @@ semantics.
 | `*.VOC` | Speech and sound-effect files | Creative Labs VOC is suggested by extension; headers, codecs, sample rates, and block use must be verified per file | low | Bound blocks and decoded samples; reject unsupported codecs and malformed terminators |
 | `MUSIC/*.ogg` | 39 GOG-supplied music files | Ogg container presence is observed; mapping, loop points, provenance, and relationship to original media are unknown | low | Validate stream metadata and decode limits; unknown track mapping remains data, not a guessed rule |
 | `ITEMS.BIN` | Small game data file | Size is 936 bytes in the supported build; record layout and meaning are unknown | unknown | Require exact supported source fingerprint before any reader; bound all table dimensions |
-| `game.gog` / `game.ins` | GOG disc-image payload and descriptor | Presence and exact sizes observed; extractor relevance is unknown | low | Never mount/execute automatically; parse only if a later slice documents a bounded need |
+| `game.gog` / `game.ins` | GOG disc-image payload and descriptor | Bounded Mode 2/2352 ISO 9660 inspection located the disc character archive for `DATA-GOG-CHAR-006`; broader extractor relevance is unknown | medium for that bounded observation | Never mount/execute automatically; parse only when a documented evidence question requires it, bound sectors/directories/extents, and keep temporary original bytes outside Git |
 | `DSUN.EXE` | Original DOS executable | Fingerprinted research oracle; never an extraction output or runtime dependency | verified inventory only | Never execute, load, copy into the pack, or commit; Ghidra findings remain independent evidence |
 
 The GFF directory is the first implemented format layer. Which payload tags and

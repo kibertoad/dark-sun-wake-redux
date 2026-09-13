@@ -407,6 +407,7 @@ decoder rather than being guessed now.
 | Q9 | May the installed clue book be consulted as an additional local secondary source? | slices 4-7 | repository owner | open |
 | Q10 | What measured tolerances define acceptable visual, input, animation, and audio parity? | slices 2-7 | repository owner/evidence investigation | open |
 | Q11 | Which origin/class eligibility list does the shipped creation screen enforce where the original manual's race descriptions on pages 17-18 conflict with its class descriptions on pages 19-22 (half-giant ranger/thief, mul druid, thri-kreen druid/thief)? | slice 2 | OBS-GOG evidence investigation | open - Core preserves these as `EvidenceConflict` |
+| Q12 | Which four disc `CHAR` resources does START GAME select as the supplied pregenerated party? | slice 2 | OBS-GOG/DATA-GOG evidence investigation | open - disc blocks #40-#43 and #50-#53 are bounded; one independently reported default member maps to #43, but the other three selections are not established |
 
 ## Risks
 

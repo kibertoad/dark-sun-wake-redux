@@ -174,6 +174,28 @@ proof by itself. Never redirect broad output into the repository.
   the extracted DSIX asset, but do not tile, stretch, or draw it until an
   app-specific consumer or controlled observation establishes the operation.
 
+### EXE-GOG-CHAR-001 - No adjacent default-party identity table established
+
+- **Question:** Does the supported executable contain either disc character
+  block #40-#43 or #50-#53 as an adjacent default-party lookup table?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with SHA-256
+  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.
+- **Bounded finding:** exact four-byte and eight-byte little-endian searches
+  found no #40-#43 sequence and no 16-bit representation of either block. Two
+  four-byte #50-#53 matches at `5000:a368` and `5000:a379` lie inside the
+  executable's upper- and lower-case hexadecimal digit strings, not a character
+  table. The apparent matches were therefore rejected.
+- **Corroboration:** `DATA-GOG-CHAR-006` establishes that both blocks occur on
+  the disc and that one independently reported default member maps to #43, but
+  does not establish the remaining selection.
+- **Confidence:** high for rejecting these exact adjacent-table encodings;
+  unknown for an indirect, computed, flagged, or non-adjacent selection.
+- **Implementation consequence:** no default-party mapping is derived from this
+  query. `ReportBytePattern`, `ReportDataBytes`, `ReportReferences`, and
+  `ReportScalarConstants` retain bounded, reusable navigation methods for later
+  evidence questions.
+
 For each useful finding, add a concise entry here or in the relevant
 `docs/RULES-AND-EVIDENCE.md` / `docs/ORIGINAL-FORMATS.md` section with:
 

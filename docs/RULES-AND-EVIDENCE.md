@@ -381,6 +381,39 @@
   malformed-field, noncanonical-order, truncation, and trailing-data rejection;
   synthetic extraction and content-smoke validation without original content.
 
+### DATA-GOG-CHAR-006 - Disc and installed character sets
+
+- **Question:** Which character resources are immutable disc data, which were
+  added by the installed 1.1-era files, and does either set identify the four
+  members selected by START GAME?
+- **Method:** Parse `game.gog` as a bounded Mode 2/2352 ISO 9660 image, inspect
+  only its 3,864-byte `CHARSAVE.GFF`, compare the resulting resource identities
+  with the installed 11,735-byte archive, and remove the temporary extraction.
+  The original files and character names were not retained. A public gameplay
+  report that identifies one named default member was correlated locally by
+  identity, but only numeric resource facts are recorded here.
+- **Finding:** The disc archive contains exactly eight correlated `CHAR`/`PSIN`
+  pairs: #40-#43 and #50-#53. The installed archive contains 19 pairs:
+  #29-#43 and #50-#53. The externally identified default member matches disc
+  resource #43 and an installed duplicate at #33; the report also identifies
+  that character as a half-giant gladiator. This establishes one default member
+  and shows that installed character storage is not an immutable edition
+  fingerprint, but it does not prove which other three records START GAME uses.
+- **Static cross-check:** In the fingerprinted executable, neither candidate
+  block appears as four adjacent 16-bit little-endian values. The byte sequence
+  for #40-#43 is absent. Two byte-sequence matches for #50-#53 at `5000:a368`
+  and `5000:a379` are the upper- and lower-case ASCII hexadecimal digit tables,
+  so they were rejected as false positives.
+- **Evidence:** fingerprinted GOG `game.gog` and installed `CHARSAVE.GFF`;
+  `EXE-GOG-CHAR-001`; secondary corroboration from the Steam community review
+  at <https://steamcommunity.com/profiles/76561198045525236/recommended/1904580>.
+- **Confidence:** verified for both resource inventories; medium for #43 as one
+  default member because independent gameplay reporting and the disc identity
+  agree; unknown for the complete four-member selection.
+- **Implementation consequence:** keep `CHARSAVE.GFF` structural and mutable,
+  preserve numeric identities in DSCH, and do not encode a default-party table
+  until runtime or another independent source establishes all four members.
+
 ### RULE-START-FLOW-001 - Start and party-creation routing
 
 - **Behavior:** The Start Window offers START GAME, CREATE CHARACTERS, LOAD

@@ -30,6 +30,14 @@ requires the file, validates its complete bounded GFF/`CHAR`/`PSIN` structure,
 and records it as DSCH provenance only after the six immutable anchors identify
 the supported installation.
 
+Bounded inspection of the fingerprinted `game.gog` image found a 3,864-byte
+disc `CHARSAVE.GFF` containing eight paired character resources (#40-#43 and
+#50-#53). The installed 11,735-byte character storage contains 19 pairs
+(#29-#43 and #50-#53). This difference is further evidence that the installed
+file must remain supplemental mutable input rather than a seventh exact anchor.
+See `DATA-GOG-CHAR-006`; neither block is yet designated as the complete
+pregenerated party.
+
 The GOG installation also contains DOSBox integration, manuals, a clue book,
 region GFF files, FLI cinematics, VOC speech/effects, and Ogg music. Presence is
 observed; format semantics and required/optional status remain unknown.
