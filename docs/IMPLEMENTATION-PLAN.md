@@ -264,7 +264,7 @@ decoder rather than being guessed now.
   class/level progression, the active member during DUAL selection or editing,
   and recreation-native stored characters;
   DSUI round-trip, malformed graph, deterministic ordering, mixed-control graph resolution, resource-ID routing,
-  rectangle-edge, synthetic extraction, content-smoke, and owned 60-asset pack verification cover the derived
+  rectangle-edge, synthetic extraction, content-smoke, and owned 62-asset pack verification cover the derived
   start-flow layout contract;
   gameplay-wide replay remains a later-slice requirement.
 - **Observed parity.** Compare boot, start, create/select/cancel, and quit state
@@ -312,9 +312,12 @@ decoder rather than being guessed now.
   DSUI-resolved semantic page object; evidenced destinations and mode/return
   actions are clickable. Center on Leader now targets the authoritative moving
   sprite center through a deterministic clamped Core camera command, and
-  Collapse Party returns to leader-only play. Native panel/centering validation,
-  Exit, Load/Save, Preferences, other destination presentation, animation, and
-  party/interface overlays remain pending. `EXE-GOG-REGION-001` now establishes
+  Collapse Party returns to leader-only play. Character and inventory now render
+  their resource-backed shells and route the
+  five shared bottom-navigation controls through one reusable destination page
+  object. Their dynamic fields/interior actions, Exit, Load/Save, Preferences,
+  other destination presentation, native panel/centering validation, animation,
+  and party/interface overlays remain pending. `EXE-GOG-REGION-001` now establishes
   `GMAP` bit `0x40` as the terrain/occupancy block. A bounded terrain grid and
   reusable camera-to-grid Walk-click planner connect Tyr to deterministic A*.
   A clock-free Core movement session now covers atomic plan/replan, one-cell

@@ -19,6 +19,10 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     private IReadOnlyList<AddExistingControl> _addExistingControls = [];
     private Texture2D? _gameMenuBase;
     private readonly List<(GameMenuControl Control, Texture2D Texture)> _gameMenuControls = [];
+    private Texture2D? _inventoryBase;
+    private readonly Dictionary<ExplorationView,
+        List<(ExplorationDestinationControl Control, Texture2D Texture)>>
+        _explorationDestinationControls = [];
     private Texture2D? _explorationSceneTexture;
     private Texture2D? _openingLeaderTexture;
     private PackedRegion? _tyrRegion;
@@ -115,6 +119,28 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             gameMenuUiStream, OriginalContent.GameMenuUiCatalogAssetPath);
         foreach (var control in GameMenuInput.Resolve(gameMenuUi))
             _gameMenuControls.Add((control, LoadImageTexture(control.AssetPath)));
+        _inventoryBase = LoadImageTexture(OriginalContent.InventoryLayer.Path);
+        var destinationUiPath = AssetPath(
+            OriginalContent.ExplorationDestinationUiCatalogAssetPath);
+        using var destinationUiStream = File.OpenRead(destinationUiPath);
+        var destinationUi = PackedUiCatalog.Read(destinationUiStream,
+            OriginalContent.ExplorationDestinationUiCatalogAssetPath);
+        var destinationTextures = new Dictionary<string, Texture2D>(StringComparer.Ordinal);
+        foreach (var view in new[]
+                 { ExplorationView.ViewCharacter, ExplorationView.ViewInventory })
+        {
+            var pageControls = new List<(ExplorationDestinationControl, Texture2D)>();
+            foreach (var control in ExplorationDestinationInput.Resolve(destinationUi, view))
+            {
+                if (!destinationTextures.TryGetValue(control.AssetPath, out var texture))
+                {
+                    texture = LoadImageTexture(control.AssetPath);
+                    destinationTextures.Add(control.AssetPath, texture);
+                }
+                pageControls.Add((control, texture));
+            }
+            _explorationDestinationControls.Add(view, pageControls);
+        }
         var regionPath = AssetPath(OriginalContent.TyrRegionAssetPath);
         using var regionStream = File.OpenRead(regionPath);
         _tyrRegion = PackedRegion.Read(regionStream, OriginalContent.TyrRegionAssetPath);
@@ -212,6 +238,13 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                         ExecuteExplorationCommand(explorationCommand);
                         explorationMenuConsumedLeftClick = true;
                     }
+                    else if (screen == StartFlowScreen.Gameplay &&
+                        _explorationDestinationControls.TryGetValue(
+                            _exploration.Snapshot().View, out var pageControls) &&
+                        ExplorationDestinationInput.HitTest(
+                            pageControls.Select(item => item.Control).ToArray(), x, y) is { } destinationControl)
+                        ExecuteExplorationCommand(
+                            ExplorationDestinationInput.CommandFor(destinationControl));
                 }
             }
             var keyboard = Keyboard.GetState();
@@ -311,12 +344,23 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                     (item.Layer.X, item.Layer.Y, item.Texture)),
                 StartFlowScreen.AddExistingCharacter => _addExistingImages.Select(item =>
                     (item.Placement.X, item.Placement.Y, item.Texture)),
+                StartFlowScreen.Gameplay when
+                    _exploration.Snapshot().View == ExplorationView.ViewCharacter =>
+                    _partyOverviewLayers.Select(item =>
+                        (item.Layer.X, item.Layer.Y, item.Texture)),
+                StartFlowScreen.Gameplay when
+                    _exploration.Snapshot().View == ExplorationView.ViewInventory &&
+                    _inventoryBase is not null =>
+                    [(OriginalContent.InventoryLayer.X,
+                        OriginalContent.InventoryLayer.Y, _inventoryBase)],
                 StartFlowScreen.Gameplay when _explorationSceneTexture is not null =>
                     [(0, 0, _explorationSceneTexture)],
                 _ => []
             };
             var placedImages = images.ToArray();
-            if (screen == StartFlowScreen.Gameplay && _openingLeaderTexture is not null &&
+            if (screen == StartFlowScreen.Gameplay &&
+                _exploration.Snapshot().View is ExplorationView.World or ExplorationView.GameMenu &&
+                _openingLeaderTexture is not null &&
                 _leaderController is not null)
             {
                 var camera = _exploration.Snapshot();
@@ -338,6 +382,11 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                         (item.Control.X, item.Control.Y, item.Texture)))
                     .ToArray();
             }
+            if (screen == StartFlowScreen.Gameplay &&
+                _explorationDestinationControls.TryGetValue(
+                    _exploration.Snapshot().View, out var destinationControls))
+                placedImages = placedImages.Concat(destinationControls.Select(item =>
+                    (item.Control.X, item.Control.Y, item.Texture))).ToArray();
             if (placedImages.Length > 0)
             {
                 var transform = new LogicalCanvasTransform(
@@ -366,6 +415,10 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         foreach (var (_, texture) in _startMenuControls) texture.Dispose();
         _gameMenuBase?.Dispose();
         foreach (var (_, texture) in _gameMenuControls) texture.Dispose();
+        _inventoryBase?.Dispose();
+        foreach (var texture in _explorationDestinationControls.Values
+                     .SelectMany(controls => controls.Select(item => item.Texture)).Distinct())
+            texture.Dispose();
         _explorationSceneTexture?.Dispose();
         _openingLeaderTexture?.Dispose();
         _spriteBatch?.Dispose();

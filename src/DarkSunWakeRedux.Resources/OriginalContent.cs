@@ -161,7 +161,7 @@ public sealed record SourceIdentification(
 
 public static class OriginalContent
 {
-    public const int AssetPackFormatVersion = 18;
+    public const int AssetPackFormatVersion = 19;
     public const string GameId = "dark-sun-wake-redux";
     public const string TitleImageAssetPath = "images/title.dsix";
     public const string InterfaceFontAssetPath = "fonts/interface.dsft";
@@ -169,6 +169,8 @@ public static class OriginalContent
     public const string PartyWindowImageAssetPath = "images/party/window-image.dsix";
     public const string StartFlowUiCatalogAssetPath = "ui/start-flow.dsui";
     public const string GameMenuUiCatalogAssetPath = "ui/game-menu.dsui";
+    public const string ExplorationDestinationUiCatalogAssetPath =
+        "ui/exploration-destinations.dsui";
     public const string CharacterCatalogAssetPath = "characters/catalog.dsch";
     public const string TyrRegionAssetPath = "regions/tyr.dsrg";
     public const string TyrObjectCatalogAssetPath = "regions/tyr-objects.dsob";
@@ -182,8 +184,14 @@ public static class OriginalContent
 
     public const uint GameMenuWindowResourceNumber = 10500;
 
+    public static IReadOnlyList<uint> ExplorationDestinationWindowResourceNumbers { get; } =
+        [11500, 13500];
+
     public static UiLayerAsset GameMenuLayer { get; } =
         new("game-menu", "images/game-menu/base.dsix", 10000, 55, 42, 210, 116);
+
+    public static UiLayerAsset InventoryLayer { get; } =
+        new("inventory", "images/exploration/inventory-base.dsix", 13001, 0, 0, 320, 200);
 
     public static IReadOnlyList<GameMenuButtonAsset> GameMenuButtons { get; } =
     [

@@ -196,7 +196,7 @@
   opening position, and visible pixels in GOG-1432903719; high for the anchor
   relationship from bounded executable paths. Footprint, animation sequence,
   cadence, and later actor state remain unknown.
-- **Implementation:** pack v18 adds
+- **Implementation:** pack v19 retains
   `images/exploration/opening-leader.dsix`, preserving OBJEX and Tyr-palette
   provenance. Gameplay draws frame 0 through reusable world-to-camera actor
   placement, with viewport-edge culling. Runtime Walk clicks now move its
@@ -491,7 +491,7 @@
   semantics from the manual/image correlation. The source graph contains no
   canvas origin. Centering the 210x116 panel on the 320x200 canvas at (55,42) is
   a provisional presentation choice pending controlled native measurement.
-- **Implementation:** asset-pack format 18 includes the base, all 14 button images,
+- **Implementation:** asset-pack format 19 includes the base, all 14 button images,
   and `ui/game-menu.dsui`. `GameMenuInput` resolves the DSUI graph into semantic
   absolute hit rectangles; MonoGame draws first frames over the Tyr viewport.
   Character, inventory, cast/psionic, effects, overhead-map, Walk/Look/Attack,
@@ -508,6 +508,40 @@
 - **Uncertainty:** Native panel origin, frame-state selection, hover/press timing,
   description-bar text, three pending actions, exact native centering policy,
   and destination-screen presentation.
+
+### DATA-GOG-UI-010 - Character and inventory destination graphs
+
+- **Question:** Which owned UI resources establish the character and inventory
+  destination shells and their reusable navigation boundary?
+- **Method:** Decode every `WIND`, `BUTN`, `APFM`, and `EBOX` record in the
+  fingerprinted `RESOURCE.GFF`; compare the 11xxx and 13xxx resource families,
+  their 320-wide geometry, decoded `BMP ` artwork under `PAL ` #1000, and the
+  shared button identities already correlated with MANUAL-1994.
+- **Finding:** `WIND` #11500 is 320x189 with 86 ordered controls and shares
+  BUTN #10300/#11304/#11305/#11306/#10308 at `(43,155)`, `(67,155)`,
+  `(91,155)`, `(114,155)`, and `(253,155)`. Its character shell is the already
+  mapped 320x200 `BMP ` #11000 plus the VIEW CHARACTER title. `WIND` #13500 is
+  320x200 with 89 controls and places those same five navigation identities at
+  `(163,181)`, `(187,181)`, `(211,181)`, `(235,181)`, and `(288,181)` over the
+  320x200 `BMP ` #13001 inventory shell. The shared identities preserve View
+  Character, View Inventory, Cast/Use Psionics, Current Effects, and Return.
+- **Confidence:** verified for resource identity, geometry, image decoding,
+  graph membership, and shared navigation semantics; character/inventory
+  association is high from resource-family structure, artwork, and manual
+  function. Interior-control meaning, dynamic draw order, and frame states are
+  unknown.
+- **Implementation:** pack format 19 adds the inventory base and a separate
+  two-window destination DSUI while reusing the already extracted character
+  shell and five icon assets. `ExplorationDestinationInput` is one semantic
+  page object for both layouts. MonoGame renders each shell, routes only those
+  five established controls, and leaves all uninterpreted controls inert.
+- **Tests:** page selection, exact window/button/image/geometry contracts,
+  exclusive hit rectangles, semantic commands, malformed-page rejection,
+  synthetic transactional extraction, complete owned graph counts, pack
+  verification, and no-window content smoke.
+- **Uncertainty:** Character fields, inventory objects and transfers, party
+  selection, interior actions, native focus/hover/press frames, and the
+  cast/effects destination shells remain open.
 
 ## Initial rules
 

@@ -51,6 +51,10 @@ clamping, reject partial/out-of-world targets, suspend centering outside world
 and Game Menu views, and restore leader-only display through Collapse Party.
 Game Menu routing tests supply the moving actor's visual center only to the
 context-dependent Center action and keep the three unsupported actions inert.
+Destination-page tests resolve both the character and inventory WIND graphs
+through one semantic page object, prove exact shared-button placement and image
+identity, exclusive hit rectangles, cross-page navigation/return commands, and
+malformed-page rejection.
 Movement-session tests prove deterministic command/event traces, exactly one
 semantic step per advance, atomic replanning failure, cancellation/completion,
 snapshot isolation, and interruption when a step or diagonal side becomes
@@ -68,23 +72,25 @@ The smoke modes have distinct purposes:
 - `--smoke-test` exits before content or graphics initialization and is safe on
   a content-free CI worker.
 - `--content-smoke-test --asset-pack <path>` verifies the exact pack inventory,
-  opens all fifty-three DSIX images, the DSFT interface font, the DSTX text
-  catalog, the resolved start-flow and Game Menu DSUI graphs, and DSCH character metadata
+  opens all fifty-four DSIX images, the DSFT interface font, the DSTX text
+  catalog, the resolved start-flow, Game Menu, and character/inventory DSUI graphs, and DSCH character metadata
   catalog, opens the DSRG Tyr region and DSOB object-frame graph, and checks their
   frame, geometry, glyph, reference, and inventory contracts without a window.
 - `--platform-smoke-test` creates the MonoGame platform surface and exits; it is
   reserved for installed-package environments with a display server.
 - Normal startup verifies the pack before opening a window and renders the
   evidenced start shell/controls, party-overview shell, ADD-list shell, Tyr,
-  and Game Menu; title sequencing, ADD-list content, and destination screens remain pending.
+  Game Menu, character shell, and inventory shell; title sequencing, ADD-list
+  content, dynamic destination content, and remaining destinations remain pending.
 
 Owned-build validation currently targets GOG product `1432903719`, installed
 build `52095422060333615`. Metadata-only FONT inspection verifies that all 256
 character-map entries are identity values and summarizes its pixel-index range
 without emitting glyph pixels. The retained ignored owned-source pack has been
-transactionally refreshed and verifies as the exact 60-asset manifest including start/party/ADD
+transactionally refreshed and verifies as the exact 62-asset manifest including start/party/ADD
 assets, all seven start-flow windows and 56 controls, the 210x116 Game Menu base,
-its 14 button images and 30-control graph, and 19 bounded character metadata entries,
+its 14 button images and 30-control graph, the 320x200 inventory base, the
+86-control character and 89-control inventory graphs, and 19 bounded character metadata entries,
 plus the bounded Tyr region with 94 tiles
 and 867 entity records, its 287 definitions, 246 images, and 477 frames, and
 the exact 13-frame opening-leader image. The runtime content-smoke path verifies
@@ -105,7 +111,7 @@ anchor cell `(74,91)`. The multi-cell footprint remains unknown.
 Local-only decoded previews established the title
 and start-window mappings recorded as `DATA-GOG-TITLE-001`,
 `DATA-GOG-UI-001`, `DATA-GOG-UI-006`, `DATA-GOG-UI-007`,
-`DATA-GOG-UI-008`, and `DATA-GOG-UI-009`; screenshots and decoded outputs stay
+`DATA-GOG-UI-008` through `DATA-GOG-UI-010`; screenshots and decoded outputs stay
 under ignored `analysis/original/` and never become golden files. Presentation
 goldens in Git must use synthetic stand-ins. Visual comparison, input traces,
 animation timing, and audiovisual synchronization remain open and will be

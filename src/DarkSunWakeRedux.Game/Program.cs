@@ -86,6 +86,12 @@ try
                     throw new InvalidDataException(
                         $"The installed game-menu {button.Name} image has unexpected geometry.");
             }
+            var inventoryLayer = ReadImage(assetPack, OriginalContent.InventoryLayer.Path);
+            var inventoryFrame = AssertSingleFrame(inventoryLayer.Frames, "inventory base");
+            if (inventoryFrame.Width != OriginalContent.InventoryLayer.FrameWidth ||
+                inventoryFrame.Height != OriginalContent.InventoryLayer.FrameHeight)
+                throw new InvalidDataException(
+                    "The installed inventory base has unexpected geometry.");
             var openingLeader = ReadImage(assetPack, OriginalContent.OpeningLeaderImageAssetPath);
             var openingLeaderFrame = openingLeader.Frames[0];
             if (!openingLeader.Frames.Select(frame => (frame.Width, frame.Height))
@@ -215,6 +221,22 @@ try
                 gameMenuUiStream, OriginalContent.GameMenuUiCatalogAssetPath);
             if (GameMenuInput.Resolve(gameMenuUi).Count != OriginalContent.GameMenuButtons.Count)
                 throw new InvalidDataException("The installed game-menu UI graph is incomplete.");
+            var destinationUiPath = Path.Combine(assetPack,
+                OriginalContent.ExplorationDestinationUiCatalogAssetPath.Replace(
+                    '/', Path.DirectorySeparatorChar));
+            using var destinationUiStream = File.OpenRead(destinationUiPath);
+            var destinationUi = PackedUiCatalog.Read(destinationUiStream,
+                OriginalContent.ExplorationDestinationUiCatalogAssetPath);
+            if (!destinationUi.Windows.Select(window => window.ResourceNumber)
+                    .SequenceEqual(OriginalContent.ExplorationDestinationWindowResourceNumbers) ||
+                UiWindowGraphResolver.Resolve(destinationUi, 11500).Controls.Count != 86 ||
+                UiWindowGraphResolver.Resolve(destinationUi, 13500).Controls.Count != 89 ||
+                ExplorationDestinationInput.Resolve(
+                    destinationUi, ExplorationView.ViewCharacter).Count != 5 ||
+                ExplorationDestinationInput.Resolve(
+                    destinationUi, ExplorationView.ViewInventory).Count != 5)
+                throw new InvalidDataException(
+                    "The installed exploration-destination UI graphs are incomplete.");
             Console.WriteLine($"Verified runtime startup assets at {assetPack}.");
             return 0;
         }

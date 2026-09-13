@@ -131,6 +131,8 @@ public static class StartupAssetExtractor
         }
         files.Add(await ExtractLayerAsync(archive, interfacePalette, stagingRoot,
             OriginalContent.GameMenuLayer, "game-menu", cancellationToken));
+        files.Add(await ExtractLayerAsync(archive, interfacePalette, stagingRoot,
+            OriginalContent.InventoryLayer, "inventory", cancellationToken));
         foreach (var mapping in OriginalContent.GameMenuButtons)
         {
             var image = IndexedImage.Read(archive.GetResource(ImageTag, mapping.ImageResourceNumber),
@@ -162,6 +164,10 @@ public static class StartupAssetExtractor
         files.Add(await WriteUiCatalogAsync(stagingRoot, archive,
             OriginalContent.GameMenuUiCatalogAssetPath,
             [OriginalContent.GameMenuWindowResourceNumber], "game-menu", cancellationToken));
+        files.Add(await WriteUiCatalogAsync(stagingRoot, archive,
+            OriginalContent.ExplorationDestinationUiCatalogAssetPath,
+            OriginalContent.ExplorationDestinationWindowResourceNumbers,
+            "exploration-destination", cancellationToken));
         files.Add(await WriteCharacterCatalogAsync(stagingRoot, characters, cancellationToken));
         files.Add(await WriteImageAsync(stagingRoot, OriginalContent.OpeningLeaderImageAssetPath,
             openingLeader.Image, tyrRegion.Palette,

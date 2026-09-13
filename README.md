@@ -26,42 +26,29 @@ that term as **origin** or **origin-based** in our implementation.
 
 ## Current status
 
-The repository is configured and the first foundation slice is complete. Work
-on the second slice includes bounded GFF directory, character identity,
-indexed-image, palette,
-indexed-font, short-text, and UI layout readers. The supported GOG build can be identified by exact
-fingerprints,
-asset-pack contracts and diagnostics are implemented, and assetless smoke
-testing works. The startup pack now transactionally extracts the original
-320x200 title and displays the observed black-backed start window with its two
-stone/flame layers and four button images. The controls are placed from the
-derived WIND/BUTN graph, and the pack carries the decoded interface font. Bounded
-glyph-index run and multiline-block rasterizers can compose its original
-palette indices with caller-selected spacing for later text rendering without
-guessing the game's character encoding, authentic spacing, or colors.
-Deterministic start/party menu semantics, commands, events, snapshots, and
-hash-verified replay are implemented in Core, including the manual-documented
-psionic-discipline and clerical-sphere creation constraints. The complete
-manual origin ability-modifier table is queryable without guessing when the
-original applies or caps it. Pre-adventure
-party members can be edited atomically or dropped to recreation-native storage
-and added back. Manual-evidenced human dual-class level gates, sequential
-career state, DUAL selection commands, and deterministic snapshot/hash
-persistence are implemented in Core; player-visible selection and native-save
-integration are still pending.
-The start buttons now accept scale-independent mouse clicks and route through
-Core. A shared resolver materializes every extracted start-flow window's typed
-control geometry, event mask, and optional image reference for subsequent
-screens; their dynamic party content and playable gameplay are not implemented
-yet.
+The repository is configured, foundations and startup-flow work are in place,
+and Slice 3 is active. The supported GOG build is identified by exact
+fingerprints and converted transactionally into a verified local-only pack.
+Bounded readers cover the current GFF, image, palette, font, text, character,
+region, object, and UI subsets. Core implements deterministic party creation,
+human dual-class progression, snapshots/replay, exploration view state,
+collision-aware pathfinding, occupancy, and actor movement.
+
+The runtime enters the observed Tyr viewport, scrolls, changes mouse modes,
+opens the authentic Game Menu, moves the exact opening leader through a modern
+deterministic route, and renders character and inventory destination shells
+with shared navigation. Dynamic character/inventory content, cursor art,
+interaction, the opening conversation, and the rest of the campaign remain
+unfinished; status claims below and in the parity matrix intentionally keep
+those boundaries explicit.
 
 | Area | Supported now | Current limitations |
 |---|---|---|
 | Legal source | Explicit verification of English GOG product `1432903719`, build `52095422060333615` | Other GOG revisions and storefronts are unsupported until separately fingerprinted |
-| Asset extraction | Separate Extractor with versioned exact inventory, bounded readers, and transactional 60-asset startup/Tyr/Game Menu pack | Title, evidenced start, party-overview, ADD-list, and Game Menu layers/controls, two resolved UI catalogs, font, text, bounded character metadata, Tyr region data/object catalog, and the exact opening-leader sprite are extracted; dynamic list content, character selection mapping, broader actor animation, and later-window shells remain incomplete |
-| Gameplay | Assetless startup smoke test, deterministic party/start flow, the observed Tyr viewport with bounded edge scrolling, mode/display controls, documented hotkeys, an authentic clickable Game Menu including Center on Leader and Collapse Party, evidenced `GMAP` terrain collision, and runtime click-to-walk using stable A*, atomic occupancy, the evidenced leader anchor, bounded fixed-step advancement, and fixed-point visual interpolation | Exit, Load/Save, Preferences, and destination screens remain pending; the opening leader currently uses an explicit provisional single-cell footprint and 125 ms semantic step, while native footprint/cadence, sprite-frame animation semantics, NPCs, remaining party/pointer/interface rendering, interaction, conversation, modifier application/caps, DUAL presentation, disputed origin/class pairs, random generation, and shipped creation defaults remain open |
+| Asset extraction | Separate Extractor with versioned exact inventory, bounded readers, and transactional 62-asset startup/Tyr/menu pack | Title, evidenced start, party-overview, ADD-list, Game Menu, and inventory layers/controls, three resolved UI catalogs, font, text, bounded character metadata, Tyr region data/object catalog, and the exact opening-leader sprite are extracted; dynamic character/inventory content, broader actor animation, and later-window shells remain incomplete |
+| Gameplay | Assetless startup smoke test, deterministic party/start flow, the observed Tyr viewport with bounded edge scrolling, mode/display controls, documented hotkeys, an authentic clickable Game Menu including Center on Leader and Collapse Party, clickable character/inventory destination navigation, evidenced `GMAP` terrain collision, and runtime click-to-walk using stable A*, atomic occupancy, the evidenced leader anchor, bounded fixed-step advancement, and fixed-point visual interpolation | Exit, Load/Save, Preferences, remaining destination screens, and destination content/actions remain pending; the opening leader currently uses an explicit provisional single-cell footprint and 125 ms semantic step, while native footprint/cadence, sprite-frame animation semantics, NPCs, remaining party/pointer/interface rendering, interaction, conversation, modifier application/caps, DUAL presentation, disputed origin/class pairs, random generation, and shipped creation defaults remain open |
 | Saves and compatibility | Start-flow snapshot schema 4 with class progression, dropped-character storage, and hash-verified deterministic replay | Native save-file I/O, whole-game replays, original saves, and Shattered Lands party transfer are not implemented |
-| Presentation | Verified-pack start, party-overview, ADD-list, and 210x116 Game Menu shells compose original indexed assets through typed DSUI controls; Game Menu actions use one reusable semantic page object | The Game Menu's centered origin is provisional; party portraits/fields, ADD content/actions, destination screens, title sequencing, frame states, pixel aspect, animation, audio, and video await observation |
+| Presentation | Verified-pack start, party-overview, ADD-list, 210x116 Game Menu, character, and inventory shells compose original indexed assets through typed DSUI controls; reusable semantic page objects route Game Menu and shared destination navigation | The Game Menu's centered origin is provisional; character/inventory dynamic fields and most controls, party portraits, ADD content/actions, remaining destinations, title sequencing, frame states, pixel aspect, animation, audio, and video await observation |
 | Text resources | Bounded FONT decoding/DSFT extraction, verified owned-font identity map, deterministic indexed run/block rasterization, and all 62 printable-ASCII `TEXT` records decoded into DSTX | Generalized map semantics, authentic glyph/line spacing, palette, text-ID routing, alignment, and runtime rendering remain open |
 | Region data | Read-only bounded catalogs validate all 20 owned regions and all 4,479 object-frame definitions; Tyr's DSRG/DSOB graph feeds a clipped compositor, controlled observation validates the opening `(1024,1368)` background, uniquely identifies and displays its exact leader sprite, and executable evidence identifies `GMAP` bit `0x40` plus opening anchor cell `(74,91)` | Other geometry bits, concrete actor footprints, animation, entity behavior, remaining party/interface rendering, scroll timing, and later camera anchors remain open |
 
@@ -99,14 +86,17 @@ or raw GFF payloads.
 - `DarkSunWakeRedux.Inspect` is read-only research tooling.
 
 The approved roadmap and evidence gates are in
-[docs/IMPLEMENTATION-PLAN.md](docs/IMPLEMENTATION-PLAN.md).
+[docs/IMPLEMENTATION-PLAN.md](docs/IMPLEMENTATION-PLAN.md). The current
+continuation notes are in [docs/HANDOVER.md](docs/HANDOVER.md).
 
 ## Controls
 
-The four start-window buttons accept mouse clicks through the 320x200 logical
-canvas and semantic Core commands. The original manual documents a broader
-mouse-first interface plus keyboard shortcuts; exact edge behavior and all
-later mappings remain subject to controlled validation.
+Start, Game Menu, and shared character/inventory navigation controls accept
+mouse clicks through the 320x200 logical canvas and semantic Core commands.
+Exploration supports documented view hotkeys, Walk/Attack/Look cycling,
+edge-scroll input, party display selection, and click-to-walk. Cursor artwork,
+target eligibility, frame states, and many later actions still require
+controlled validation.
 
 ## Acknowledgements
 
