@@ -84,8 +84,13 @@ Each of the 20 owned `RGN*.GFF` containers has a single region number shared by
 terminated by NUL. `MAP ` and `GMAP` are each exactly 12,544 bytes, indexed in
 row-major order over 128 columns and 98 rows. Every `MAP ` value is a byte-sized
 resource number naming a local `TILE`; all 3,043 owned tiles decode as one 16x16
-indexed-image frame. `GMAP` values are preserved verbatim because their
-collision and wall-bit meanings have not yet been established for this build.
+indexed-image frame. `GMAP` values remain preserved verbatim.
+`EXE-GOG-REGION-001` establishes that the supported executable treats
+out-of-bounds cells and in-bounds bit `0x40` as movement-blocking. The same bit
+is temporarily paired with dynamic `0x20` for occupied cells. Tyr contains only
+`00`, `40`, `80`, and `c0` (8,131/2,044/38/2,331 cells), so its static terrain
+grid has 8,169 open cells. Bit `0x80` and actor-specific low-bit policy in other
+regions remain uninterpreted.
 
 `ETAB` contains consecutive eight-byte records. The independently decoded
 structural fields are signed 16-bit X and Y, a signed vertical-offset byte, an

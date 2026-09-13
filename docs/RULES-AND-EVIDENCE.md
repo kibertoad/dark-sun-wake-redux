@@ -69,16 +69,19 @@
   sequence of eight-byte records containing two signed 16-bit coordinates, a
   signed vertical-offset byte, a flags byte, and a signed 16-bit object number;
   the absolute object number resolves to `OJFF` in `OBJEX.GFF`. The geometry
-  bytes and entity flags are retained without assigning gameplay meaning.
+  bytes and entity flags are retained without assigning gameplay meaning at
+  this structural layer. `EXE-GOG-REGION-001` separately establishes geometry
+  bit `0x40` as the movement-blocking bit.
   Across the owned set, 3,043 tiles decode and 13,559 entity references resolve.
   `RGN032.GFF` (64,641 bytes, SHA-256
   `6224aefe947062141f2102bfa1098d9e7fa0e1f6eab8d385eaf2a7d2a434d04e`)
   identifies resource #50 as `Tyr`.
 - **Confidence:** verified for sizes, identities, decoding, and reference
   integrity in GOG-1432903719; medium for coordinate/vertical-field names from
-  the corroborating research; unknown for geometry bits, entity flags other
-  than the separately corroborated mirror bit, map collision semantics, and the
-  opening spawn.
+  the corroborating research; high for the separately recorded `0x40`
+  terrain-blocking meaning; unknown for other geometry bits, entity flags other
+  than the separately corroborated mirror bit, actor-specific collision, and
+  the opening spawn.
 - **Implementation:** `DarkSunWakeRedux.Resources.GffRegion`, canonical bounded
   `PackedRegion` DSRG v1, the read-only `region-catalog` inspection command, and
   transactional extraction of region #50 to `regions/tyr.dsrg`. The pack keeps
@@ -519,13 +522,19 @@
 - **Implementation:** `GridPathfinder` provides bounded deterministic
   eight-direction A* with octile costs, stable tie-breaking, explicit
   unreachable results, and diagonal corner-cut prevention. It accepts a
-  caller-supplied passability predicate and remains disconnected from gameplay
-  until GMAP collision semantics are established.
+  caller-supplied passability predicate. `EXE-GOG-REGION-001` establishes
+  `GMAP` bit `0x40` as terrain/occupancy blocking, so `RegionTerrainGrid`
+  supplies the bounded static terrain predicate and
+  `ExplorationTerrainRoutePlanner` maps active Walk-mode canvas clicks through
+  the deterministic camera to terrain routes. Route execution remains gated on
+  spawn, footprint, dynamic-blocker, and cadence evidence.
 - **Tests:** optimal open-grid route, stable obstacle detour, blocked endpoint,
-  zero-length route, diagonal corner, endpoint bounds, and maximum-grid limits.
-- **Uncertainty:** GMAP passability bits, moving blockers, actor footprint,
-  movement cadence, and destination tolerance remain open; none are inferred by
-  the generic pathfinder.
+  zero-length route, diagonal corner, endpoint bounds, maximum-grid limits,
+  exact flag/bounds/pixel-cell semantics, stable camera-to-destination routing,
+  and inactive-mode rejection.
+- **Uncertainty:** Actor-specific low-bit policy outside Tyr, moving blockers,
+  actor footprint, opening spawn, movement cadence, and destination tolerance
+  remain open; none are inferred by the terrain grid or route planner.
 
 ### RULE-PARTY-001 - Four-character party
 

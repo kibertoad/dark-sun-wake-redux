@@ -119,6 +119,18 @@ try
             if (region.ResourceNumber != 50 || region.Name != "Tyr" ||
                 region.Tiles.Count != 94 || region.Entities.Count != 867)
                 throw new InvalidDataException("The installed Tyr region catalog is incomplete.");
+            var geometryCounts = region.GeometryMap.GroupBy(value => value)
+                .ToDictionary(group => group.Key, group => group.Count());
+            var terrain = new RegionTerrainGrid(region);
+            if (geometryCounts.Count != 4 ||
+                geometryCounts.GetValueOrDefault((byte)0x00) != 8_131 ||
+                geometryCounts.GetValueOrDefault((byte)0x40) != 2_044 ||
+                geometryCounts.GetValueOrDefault((byte)0x80) != 38 ||
+                geometryCounts.GetValueOrDefault((byte)0xc0) != 2_331 ||
+                terrain.OpenCellCount != 8_169 ||
+                terrain.IsTerrainOpen(60, 84) || !terrain.IsTerrainOpen(74, 94))
+                throw new InvalidDataException(
+                    "The installed Tyr geometry plane does not match the verified navigation contract.");
             var objectPath = Path.Combine(assetPack,
                 OriginalContent.TyrObjectCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using var objectStream = File.OpenRead(objectPath);

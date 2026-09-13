@@ -224,6 +224,36 @@ proof by itself. Never redirect broad output into the repository.
   `ReportScalarConstants` retain bounded, reusable navigation methods for later
   evidence questions.
 
+### EXE-GOG-REGION-001 - GMAP bit 0x40 blocks traversable cells
+
+- **Question:** Which `GMAP` bit is consulted when the supported executable
+  decides whether an in-bounds map cell blocks movement?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with SHA-256
+  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Bounded finding:** region loader `362c:01fa` requests tag scalar
+  `0x50414d47` (`GMAP`) at `362c:0322`. The dedicated predicate at
+  `25af:00e1` treats X outside 0..127 or Y outside 0..97 as blocked. After an
+  optional actor-specific test of the low three bits, its in-bounds result is
+  the cell byte masked with `0x40`. Seven bounded call sites use the predicate.
+  The placement helper at `25af:05aa` refuses an already-`0x40` cell and sets
+  `0x60`; removal helper `25af:05fb` requires `0x20` and clears `0x60`. This
+  independently identifies `0x40` as the shared blocked/occupied bit and
+  `0x20` as paired dynamic occupancy metadata. A separate `0x80` test at
+  `2778:0006` does not participate in this movement predicate.
+- **Corroboration:** fingerprinted Tyr `GMAP` contains only `00`, `40`, `80`,
+  and `c0`, with respective counts 8,131, 2,044, 38, and 2,331. Its low five
+  bits are therefore always zero; 8,169 cells are terrain-open when only the
+  evidenced `0x40` block is applied.
+- **Confidence:** high for bounds, `0x40` terrain/occupancy blocking, and the
+  `0x20` dynamic pairing in this executable; unknown for `0x80`, actor-specific
+  low-bit policy in other regions, moving blockers, and actor footprint.
+- **Implementation consequence:** `RegionTerrainGrid` interprets only `0x40`,
+  preserves and exposes every raw flag, treats out-of-bounds as closed, and is
+  combined with the independent deterministic pathfinder by
+  `ExplorationTerrainRoutePlanner`. No spawn, dynamic occupancy, movement
+  cadence, or animation is inferred.
+
 For each useful finding, add a concise entry here or in the relevant
 `docs/RULES-AND-EVIDENCE.md` / `docs/ORIGINAL-FORMATS.md` section with:
 

@@ -33,6 +33,11 @@ Region-scene tests prove row-major tile placement, clipped cross-tile viewports,
 the corroborated OJFF/ETAB offset transform and mirror bit, first-frame selection,
 transparent-pixel preservation, ordered object overdraw, and rejection of
 invalid viewport, tile, frame, and cross-catalog references.
+Terrain-grid tests prove the executable-evidenced `GMAP` `0x40` mask, preserve
+the independent `0x80` flag, close out-of-bounds cells, validate pixel/cell
+edges and centers, and reject malformed planes. Planner tests prove stable
+camera-to-cell Walk routes, obstacle detours, unreachable destinations, and
+inactive mode/view/outside-canvas rejection without assigning route cadence.
 
 The smoke modes have distinct purposes:
 
@@ -59,8 +64,9 @@ its 14 button images and 30-control graph, and 19 bounded character metadata ent
 plus the bounded Tyr region with 94 tiles
 and 867 entity records and its 287 definitions, 246 images, and 477 frames. The
 runtime content-smoke path opens that pack and rasterizes 320x200 viewports at
-both opposite region corners successfully; these diagnostic origins are not a
-claim about the original opening camera.
+both opposite region corners successfully. It also verifies Tyr's exact four
+`GMAP` values and 8,169 terrain-open cells through the bounded navigation
+contract; these diagnostic checks are not a claim about party spawn.
 Local-only decoded previews established the title
 and start-window mappings recorded as `DATA-GOG-TITLE-001`,
 `DATA-GOG-UI-001`, `DATA-GOG-UI-006`, `DATA-GOG-UI-007`,
