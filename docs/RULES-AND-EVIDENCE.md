@@ -87,6 +87,33 @@
   map reference, and binary-alpha rejection; synthetic transactional extraction
   and owned pack/content-smoke validation.
 
+### DATA-GOG-OBJECT-001 - Object-frame structural catalog
+
+- **Question:** Which bounded object definitions and indexed images are
+  referenced by Tyr's placed-object table?
+- **Method:** Compare DSUN-MUSIC commit
+  `79b692770caebda3de685feaf42906aae31572d1` with an independent bounded
+  reader, validate every `OJFF` in the fingerprinted `OBJEX.GFF`, and then
+  restrict the same validation to the absolute object numbers referenced by
+  Tyr's `ETAB`. Record metadata summaries only; do not retain decoded images.
+- **Finding:** Every owned `OJFF` is exactly 16 bytes. Signed 16-bit X and Y
+  offsets occur at bytes 2 and 4, an unsigned 16-bit `BMP ` resource reference
+  occurs at byte 12, and the final word is zero. Words at bytes 0, 6, 8, and 10
+  remain uninterpreted and are preserved raw. All 4,479 definitions resolve to
+  decodable images: 3,002 distinct images containing 5,600 frames, with maximum
+  dimensions 64x64. Tyr references 287 definitions, resolving to 246 distinct
+  images and 477 frames, also no larger than 64x64.
+- **Confidence:** verified for record size, zero final word, reference integrity,
+  image decoding, counts, and dimensions in GOG-1432903719; medium for the X/Y
+  offset names from corroborating research; unknown for the raw words, frame
+  animation, draw order, anchoring, collision, and interaction semantics.
+- **Implementation:** `DarkSunWakeRedux.Resources.GffObjectFrameCatalog` and the
+  read-only `object-catalog` inspection command. No object image is extracted
+  into the asset pack yet.
+- **Tests:** synthetic full/subset decoding, canonical order, shared-image cache,
+  and malformed length, reserved word, missing definition/reference, and empty
+  image rejection.
+
 ### DATA-GOG-TITLE-001 - Title image resource mapping
 
 - **Question:** Which resource and palette form the static game-title image?

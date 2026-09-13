@@ -15,6 +15,7 @@ semantics.
 | GFF `PSIN` | Character companion mask | Same-number companion for every owned `CHAR`; exactly one byte using a nonzero subset of the low three bits | high for record correlation and structural mask envelope; individual and combined bit meanings remain unknown | Require exactly one byte, reject zero and bits outside `0..2`, and require one-to-one correlation in catalog inspection |
 | GFF `WIND`, `BUTN`, `APFM`, `EBOX` | UI layout and controls | Bounded common fields and references are decoded; unknown fixed fields and variable button tails remain uninterpreted | verified for all matching resources in `RESOURCE.GFF` | Require signatures and exact declared sizes; bound fixed records, complete child records, dimensions, tags, repeated identities, and references |
 | GFF `RNME`, `PAL `, `MAP `, `GMAP`, `TILE`, `ETAB` | Region identity, palette, terrain grid, geometry plane, tile images, and placed-object references | Same-number region records, exact 128x98 byte planes, single-frame 16x16 tiles, and eight-byte entity records are decoded; geometry and entity-flag meanings remain unknown | verified structurally across all 20 owned region files; field roles corroborated by `DSUN-MUSIC` | Require exactly one matching region record per tag; bound names, planes, tile images, entity counts, and every local `TILE`/external `OJFF` reference |
+| GFF `OJFF` | Object-frame definitions | Exact 16-byte records expose signed X/Y offsets and a `BMP ` resource reference; four other words remain raw and uninterpreted | verified structurally across all 4,479 owned definitions; offset/reference roles corroborated by `DSUN-MUSIC` | Require exact record size, a zero final word, a present nonempty referenced image, bounded requested IDs, and contextual errors |
 | Pack `*.dsix` | Derived indexed-image asset | `DSIX` v1 stores one decoded 256-color palette plus bounded indexed frames and binary alpha | implemented; title asset round-trip and extraction validated | Bound file size, version, frame count, dimensions, pixels, alpha, and trailing data; reject non-binary alpha |
 | Pack `*.dsft` | Derived indexed-font asset | `DSFT` v1 stores a character map, shared height, widths, and bounded indexed glyph pixels | implemented; interface-font round-trip and extraction validated | Bound file size, version, glyph count, height, widths, pixel counts, and trailing data |
 | Pack `*.dstx` | Derived text catalog | `DSTX` v1 deterministically stores original resource IDs and printable ASCII lines | implemented; full TEXT catalog round-trip and extraction validated | Bound file size, version, resource/line counts and lengths; reject duplicates, unsupported bytes, and trailing data |
@@ -95,6 +96,32 @@ interaction, ordering, or collision behavior is inferred from them yet.
 The reader caps the region name at 64 bytes and the entity table at 16,384
 records, requires the exact map dimensions and 16x16 tile frames, and rejects
 missing local tiles or external objects with region/resource context.
+
+## Object-frame definitions
+
+**Evidence:** `DATA-GOG-OBJECT-001`, corroborated by `DSUN-MUSIC`.
+
+`OBJEX.GFF` contains 4,479 exact 16-byte `OJFF` records. Each record has this
+little-endian layout:
+
+| Offset | Size | Meaning | Confidence |
+|---:|---:|---|---|
+| `0x00` | 2 | uninterpreted word | unknown |
+| `0x02` | 2 | signed X offset | medium |
+| `0x04` | 2 | signed Y offset | medium |
+| `0x06` | 2 | uninterpreted word | unknown |
+| `0x08` | 2 | uninterpreted word | unknown |
+| `0x0a` | 2 | uninterpreted word | unknown |
+| `0x0c` | 2 | unsigned `BMP ` resource number | verified |
+| `0x0e` | 2 | zero reserved word | verified |
+
+Every referenced `BMP ` decodes to at least one indexed-image frame. Across the
+owned archive, the definitions resolve to 3,002 distinct images and 5,600
+frames, no larger than 64x64. The 287 definitions referenced by Tyr resolve to
+246 images and 477 frames. The reader can validate the complete catalog or a
+bounded requested subset, caches shared images, preserves the four unknown
+words raw, and assigns no animation, draw-order, anchor, collision, or
+interaction meaning.
 
 ## Indexed images and palettes
 

@@ -2,6 +2,49 @@ using System.Security.Cryptography;
 using System.Text.Json;
 using DarkSunWakeRedux.Resources;
 
+if (args.Length is 2 or 3 && args[0].Equals("object-catalog", StringComparison.OrdinalIgnoreCase))
+{
+    try
+    {
+        await using var objectStream = File.OpenRead(args[1]);
+        var objectArchive = GffArchive.Read(objectStream, args[1]);
+        IEnumerable<uint>? requiredNumbers = null;
+        string? regionName = null;
+        if (args.Length == 3)
+        {
+            await using var regionStream = File.OpenRead(args[2]);
+            var regionArchive = GffArchive.Read(regionStream, args[2]);
+            var region = GffRegion.Read(regionArchive, objectArchive, args[2]);
+            regionName = region.Name;
+            requiredNumbers = region.Entities.Select(entity => entity.ObjectResourceNumber);
+        }
+        var catalog = GffObjectFrameCatalog.Read(objectArchive, requiredNumbers, args[1]);
+        var images = catalog.Entries.GroupBy(entry => entry.ImageResourceNumber)
+            .Select(group => group.First().Image).ToArray();
+        Console.WriteLine(JsonSerializer.Serialize(new
+        {
+            path = Path.GetFullPath(args[1]),
+            region = regionName,
+            definitionCount = catalog.Entries.Count,
+            imageCount = images.Length,
+            frameCount = images.Sum(image => image.Frames.Count),
+            maximumFrameWidth = images.SelectMany(image => image.Frames).Max(frame => frame.Width),
+            maximumFrameHeight = images.SelectMany(image => image.Frames).Max(frame => frame.Height),
+            distinctRawWord0 = catalog.Entries.Select(entry => entry.RawWord0).Distinct().Count(),
+            distinctRawWord6 = catalog.Entries.Select(entry => entry.RawWord6).Distinct().Count(),
+            distinctRawWord8 = catalog.Entries.Select(entry => entry.RawWord8).Distinct().Count(),
+            distinctRawWord10 = catalog.Entries.Select(entry => entry.RawWord10).Distinct().Count()
+        }, new JsonSerializerOptions { WriteIndented = true }));
+        return 0;
+    }
+    catch (Exception exception) when (exception is InvalidDataException or IOException or
+                                      UnauthorizedAccessException or KeyNotFoundException)
+    {
+        Console.Error.WriteLine($"[object_catalog_unreadable] {exception.Message}");
+        return 2;
+    }
+}
+
 if (args.Length == 3 && args[0].Equals("region-catalog", StringComparison.OrdinalIgnoreCase))
 {
     try
@@ -275,6 +318,7 @@ if (args.Length != 1 || !Directory.Exists(args[0]))
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect font-catalog <owned-original.gff>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect ui-catalog <owned-original.gff>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect region-catalog <owned-region.gff> <owned-objects.gff>");
+    Console.Error.WriteLine("  DarkSunWakeRedux.Inspect object-catalog <owned-objects.gff> [owned-region.gff]");
     return 64;
 }
 
