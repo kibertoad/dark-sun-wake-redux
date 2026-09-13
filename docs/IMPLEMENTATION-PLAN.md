@@ -297,8 +297,11 @@ decoder rather than being guessed now.
   tile/first-object-frame compositor; controlled observation fixes the opening
   camera at `(1024,1368)` and the static viewport is visibly integrated.
   Manual-defined edge scrolling now drives a clamped deterministic Core camera
-  and rerasterizes that viewport. Animation, party/interface overlays,
-  click-to-walk, collision, and other gameplay semantics remain pending.
+  and rerasterizes that viewport. Reusable ordered hotkey bindings and Core
+  navigation now cover character, inventory, cast/psionic, current-effects,
+  overhead-map, and game-menu views plus menu-return/exit semantics. Their
+  original presentation, animation, party/interface overlays, click-to-walk,
+  collision, and other gameplay semantics remain pending.
 - **Automated tests.** Synthetic-map navigation/collision, deterministic command
   traces, dialogue branches, inventory conservation, menu routing, invalid
   resource reference, and malformed-region tests.

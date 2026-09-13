@@ -12,7 +12,8 @@ public sealed class ExplorationSessionTests
         var session = Session();
 
         Assert.Equal(new ExplorationSnapshot(1024, 1368,
-            ExplorationCursorMode.Walk, PartyDisplayMode.LeaderOnly), session.Snapshot());
+            ExplorationCursorMode.Walk, PartyDisplayMode.LeaderOnly,
+            ExplorationView.World), session.Snapshot());
     }
 
     [Fact]
@@ -77,8 +78,73 @@ public sealed class ExplorationSessionTests
     [InlineData(2, 0)]
     [InlineData(0, 0)]
     public void RejectsInvalidScrollDeltas(int x, int y) =>
-        Assert.Throws<ArgumentOutOfRangeException>(() => Session().Execute(
+        Assert.ThrowsAny<ArgumentException>(() => Session().Execute(
             ExplorationCommand.Scroll(x, y)));
+
+    [Theory]
+    [InlineData(ExplorationView.ViewCharacter)]
+    [InlineData(ExplorationView.ViewInventory)]
+    [InlineData(ExplorationView.CastSpellsOrUsePsionics)]
+    [InlineData(ExplorationView.CurrentSpellEffects)]
+    [InlineData(ExplorationView.OverheadMap)]
+    [InlineData(ExplorationView.GameMenu)]
+    public void OpensEveryDocumentedExplorationView(ExplorationView view)
+    {
+        var session = Session();
+
+        Assert.True(session.Execute(ExplorationCommand.Open(view)).Applied);
+        Assert.Equal(view, session.Snapshot().View);
+        Assert.True(session.Execute(new(ExplorationCommandKind.Escape)).Applied);
+        Assert.Equal(ExplorationView.World, session.Snapshot().View);
+    }
+
+    [Fact]
+    public void EscapeFromWorldRequestsExit()
+    {
+        var session = Session();
+
+        session.Execute(new(ExplorationCommandKind.Escape));
+
+        Assert.Equal(ExplorationView.ExitRequested, session.Snapshot().View);
+    }
+
+    [Fact]
+    public void GameMenuModeSelectionReturnsToWorld()
+    {
+        var session = Session();
+        session.Execute(ExplorationCommand.Open(ExplorationView.GameMenu));
+
+        session.Execute(ExplorationCommand.SelectMode(ExplorationCursorMode.Look));
+
+        Assert.Equal(ExplorationCursorMode.Look, session.Snapshot().CursorMode);
+        Assert.Equal(ExplorationView.World, session.Snapshot().View);
+    }
+
+    [Fact]
+    public void WorldCommandsAreSuspendedWhileMenuIsOpen()
+    {
+        var session = Session();
+        session.Execute(ExplorationCommand.Open(ExplorationView.ViewInventory));
+
+        Assert.False(session.Execute(ExplorationCommand.Scroll(1, 0)).Applied);
+        Assert.False(session.Execute(new(ExplorationCommandKind.CycleCursorMode)).Applied);
+        Assert.False(session.Execute(new(ExplorationCommandKind.ShowExpandedParty)).Applied);
+    }
+
+    [Theory]
+    [MemberData(nameof(InvalidCommands))]
+    public void RejectsMismatchedCommandPayloads(ExplorationCommand command) =>
+        Assert.Throws<ArgumentException>(() => Session().Execute(command));
+
+    public static TheoryData<ExplorationCommand> InvalidCommands => new()
+    {
+        new ExplorationCommand(ExplorationCommandKind.OpenView),
+        ExplorationCommand.Open(ExplorationView.World),
+        new ExplorationCommand(ExplorationCommandKind.Escape,
+            View: ExplorationView.GameMenu),
+        new ExplorationCommand(ExplorationCommandKind.SelectCursorMode,
+            CursorMode: (ExplorationCursorMode)99)
+    };
 
     private static ExplorationSession Session() =>
         new(2048, 1568, 320, 200, 1024, 1368);

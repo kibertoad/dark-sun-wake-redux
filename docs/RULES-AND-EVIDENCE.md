@@ -440,7 +440,8 @@
   BUTN dimensions/image references from DSUI, maps original button resource IDs
   to semantic choices, and routes clicks through a single letterboxed
   logical-canvas transform into Core commands. In exploration, right-click
-  deterministically cycles Walk, Attack, and Look modes.
+  deterministically cycles Walk, Attack, and Look modes. A reusable ordered
+  hotkey table maps V/I/C/U/E/O/Tab and Escape to Core navigation commands.
 - **Tests:** graph completeness and unexpected identities, catalog order,
   image-reference matching, rectangle edges, wide/tall letterboxing, inverse
   coordinates, resulting Core routing, and owned-pack content smoke.
@@ -458,15 +459,19 @@
 - **Confidence:** high for intended direction, stopping conditions, default,
   and hotkey meanings; exact scroll rate and shipped edge thickness are unknown.
 - **Implementation:** `ExplorationSession` owns deterministic camera, cursor,
-  and party-display state. One-pixel scroll commands clamp to the region bounds;
-  the MonoGame input adapter emits them from the outermost logical-canvas row or
-  column and rerasterizes the Tyr viewport. Keys 5 and 6 update the Core display
-  mode, while party sprites remain pending.
+  party-display, and active-view state. One-pixel scroll commands clamp to the
+  region bounds; the MonoGame input adapter emits them from the outermost
+  logical-canvas row or column and rerasterizes the Tyr viewport. Keys 5 and 6
+  update the Core display mode. Documented hotkeys open character, inventory,
+  cast/psionic, current-effects, overhead-map, and game-menu views. Escape
+  returns from any such view and requests exit only from the world; world input
+  is suspended while a view is open. Party sprites and menu shells remain pending.
 - **Tests:** initial state, all four edges and diagonal corners, interior/outside
   coordinates, map clamping, mode-cycle order, display idempotence, and invalid
-  scroll deltas.
-- **Uncertainty:** Scroll timing, cursor imagery, party sprite composition, and
-  center-on-leader behavior remain open.
+  scroll deltas; every documented view and alias, ordered rising-edge hotkeys,
+  menu escape/exit behavior, suspended world input, and explicit mode selection.
+- **Uncertainty:** Scroll timing, cursor imagery, party sprite composition,
+  menu presentation/geometry, and center-on-leader behavior remain open.
 
 ### COMPAT-PATH-001 - Modern deterministic pathfinding
 

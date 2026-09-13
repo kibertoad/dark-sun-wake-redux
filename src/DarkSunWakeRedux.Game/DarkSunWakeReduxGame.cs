@@ -167,7 +167,8 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                 }
             }
             var keyboard = Keyboard.GetState();
-            if (keyboard.IsKeyDown(Keys.Escape) && _previousKeyboard.IsKeyUp(Keys.Escape))
+            if (screen != StartFlowScreen.Gameplay &&
+                keyboard.IsKeyDown(Keys.Escape) && _previousKeyboard.IsKeyUp(Keys.Escape))
                 _startFlow.Execute(StartFlowCommand.Cancel());
             if (screen == StartFlowScreen.Gameplay)
                 UpdateExploration(mouse, keyboard);
@@ -181,20 +182,22 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     private void UpdateExploration(MouseState mouse, KeyboardState keyboard)
     {
         var before = _exploration.Snapshot();
-        if (mouse.RightButton == ButtonState.Pressed &&
+        if (ExplorationHotkeys.Resolve(keyboard, _previousKeyboard) is { } hotkey)
+            _exploration.Execute(hotkey);
+        if (_exploration.Snapshot().View == ExplorationView.World &&
+            mouse.RightButton == ButtonState.Pressed &&
             _previousMouse.RightButton == ButtonState.Released)
             _exploration.Execute(new(ExplorationCommandKind.CycleCursorMode));
-        if (keyboard.IsKeyDown(Keys.D5) && _previousKeyboard.IsKeyUp(Keys.D5))
-            _exploration.Execute(new(ExplorationCommandKind.ShowExpandedParty));
-        if (keyboard.IsKeyDown(Keys.D6) && _previousKeyboard.IsKeyUp(Keys.D6))
-            _exploration.Execute(new(ExplorationCommandKind.ShowLeaderOnly));
 
         var transform = new LogicalCanvasTransform(
             GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
-        if (transform.TryToLogical(mouse.X, mouse.Y, out var x, out var y) &&
+        if (_exploration.Snapshot().View == ExplorationView.World &&
+            transform.TryToLogical(mouse.X, mouse.Y, out var x, out var y) &&
             ExplorationInput.ScrollAtEdge(x, y) is { } scroll)
             _exploration.Execute(scroll);
         var after = _exploration.Snapshot();
+        if (after.View == ExplorationView.ExitRequested)
+            Exit();
         if ((before.CameraX, before.CameraY) != (after.CameraX, after.CameraY))
             RefreshExplorationScene(after);
     }
