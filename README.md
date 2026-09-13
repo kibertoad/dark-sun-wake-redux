@@ -32,9 +32,10 @@ indexed-image, palette,
 indexed-font, short-text, and UI layout readers. The supported GOG build can be identified by exact
 fingerprints,
 asset-pack contracts and diagnostics are implemented, and assetless smoke
-testing works. The startup pack now transactionally extracts and displays the
-original 320x200 title with its four start-window button images placed from the
-derived WIND/BUTN graph, and carries the decoded interface font. Bounded
+testing works. The startup pack now transactionally extracts the original
+320x200 title and displays the observed black-backed start window with its two
+stone/flame layers and four button images. The controls are placed from the
+derived WIND/BUTN graph, and the pack carries the decoded interface font. Bounded
 glyph-index run and multiline-block rasterizers can compose its original
 palette indices with caller-selected spacing for later text rendering without
 guessing the game's character encoding, authentic spacing, or colors.
@@ -57,10 +58,10 @@ yet.
 | Area | Supported now | Current limitations |
 |---|---|---|
 | Legal source | Explicit verification of English GOG product `1432903719`, build `52095422060333615` | Other GOG revisions and storefronts are unsupported until separately fingerprinted |
-| Asset extraction | Separate Extractor with versioned exact inventory, bounded readers, and transactional 30-asset Slice 2 pack | Title/start assets, generation controls and modal labels, shared window image, font, text, resolved six-window UI graph, and bounded character metadata are extracted; dynamic content, character selection mapping, and shell draw semantics remain incomplete |
+| Asset extraction | Separate Extractor with versioned exact inventory, bounded readers, and transactional 32-asset Slice 2 pack | Title, evidenced start-shell layers, start/generation controls and modal labels, shared window image, font, text, resolved six-window UI graph, and bounded character metadata are extracted; dynamic content, character selection mapping, and later-window shell draw semantics remain incomplete |
 | Gameplay | Assetless startup smoke test, MonoGame shell, deterministic party invariants including discipline/sphere choices and origin modifier facts, occupied-slot edit/drop/add, human dual-class progression and selection, and command-driven start flow in Core | No player-visible game slice yet; modifier application/caps, DUAL presentation, disputed origin/class pairs, random generation, and shipped creation defaults await observation |
 | Saves and compatibility | Start-flow snapshot schema 4 with class progression, dropped-character storage, and hash-verified deterministic replay | Native save-file I/O, whole-game replays, original saves, and Shattered Lands party transfer are not implemented |
-| Presentation | Verified-pack title/start window whose placement and scale-independent hit regions come from DSUI WIND/BUTN records; all six extracted window graphs resolve to typed controls; generation control art extracted | Destination screens are not rendered; hit-edge parity, frame states, pixel aspect, animation, audio, and video await observation |
+| Presentation | Verified-pack start window composes two measured interface-palette layers and DSUI-derived controls over black; scale-independent hit regions come from WIND/BUTN records; all six extracted window graphs resolve to typed controls | Title sequencing and destination screens are not rendered; hit-edge parity, frame states, pixel aspect, animation, audio, and video await observation |
 | Text resources | Bounded FONT decoding/DSFT extraction, verified owned-font identity map, deterministic indexed run/block rasterization, and all 62 printable-ASCII `TEXT` records decoded into DSTX | Generalized map semantics, authentic glyph/line spacing, palette, text-ID routing, alignment, and runtime rendering remain open |
 
 ## Developer quick start
@@ -80,8 +81,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\Test.ps1
 ```
 
 Normal runtime startup requires a fully verified extracted pack. `extract`
-currently writes the evidenced title and four start-window buttons as versioned
-derived indexed-image assets, verifies their exact inventory and hashes, and
+currently writes the evidenced title, two start-window shell layers, and four
+start-window buttons as versioned derived indexed-image assets, verifies their exact inventory and hashes, and
 transactionally replaces the previous pack. It never copies the executable or
 raw GFF payloads.
 

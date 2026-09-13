@@ -36,8 +36,8 @@ write into a unique sibling staging directory, generate a manifest containing
 format/extractor versions and exact output inventory, re-open and hash every
 output, reject unexpected files, then atomically replace the installed pack.
 If any step fails, staging is removed and the last verified pack is restored.
-Current code exercises this transaction for the evidenced title, four
-start-window buttons, twenty character-generation and modal controls, shared
+Current code exercises this transaction for the evidenced title, two
+start-window shell layers, four start-window buttons, twenty character-generation and modal controls, shared
 window image, interface font, text catalog, and resolved six-window UI graph;
 later Slice 2 resources will
 extend the exact inventory only after their mappings are recorded.
@@ -45,9 +45,10 @@ extend the exact inventory only after their mappings are recorded.
 ## Runtime startup
 
 `--smoke-test` is assetless for CI. `--content-smoke-test` verifies and opens the
-30 derived Slice 2 assets without creating a window. Normal startup verifies
+32 derived Slice 2 assets without creating a window. Normal startup verifies
 the default or explicit `--asset-pack` directory before creating the game window
-and displays the title plus start controls resolved from the verified DSUI graph.
+and displays the measured start-shell layers plus controls resolved from the
+verified DSUI graph. Title sequencing remains pending.
 Failure is reported with stable diagnostic codes,
 local technical details, and a command to run the Extractor.
 

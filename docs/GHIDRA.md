@@ -166,8 +166,8 @@ proof by itself. Never redirect broad output into the repository.
   an automatic tiled, stretched, or full-window background. The field may be
   consumed by screen-specific code or may serve another role. Both remain open.
 - **Corroboration:** all six start-flow WIND records carry #19004 although the
-  observed start window visibly uses title `BMP` #11011 beneath its buttons;
-  #19004 itself is only 96x9.
+  observed start window instead composes `BMP` #20029, #20028, and four controls
+  over black; #19004 itself is only 96x9.
 - **Confidence:** high for absence from the inspected generic path; unknown for
   the field's actual presentation role.
 - **Implementation consequence:** preserve the resource identity in DSUI and

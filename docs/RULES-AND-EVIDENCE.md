@@ -8,6 +8,7 @@
 | `GOG-1432903719` | English GOG build `52095422060333615` | owned release | Exact source fingerprints and future runtime/data observations | verified for recorded hashes and metadata |
 | `FAQ-81038` | kibbitz, GameFAQs guide v1.13 | community research | Mechanics, route/branch index, reported bugs and manual conflicts | medium; confirm with controlled observations |
 | `DSUN-MUSIC` | John Glassmyer, [`dsun_music`](https://github.com/JohnGlassmyer/dsun_music), MIT licensed | community technical research | GFF, image, region, and XMI structure and resource identification | medium; confirm each applicable result against the fingerprinted owned build |
+| `PLAYTHROUGH-VIDEO-001` | [Public YouTube playthrough](https://www.youtube.com/watch?v=FLoMVOSHeOM) | community runtime capture | Corroborating start-window composition and sequence | medium for visible composition; precise source edition and capture conditions unknown |
 | `OBS-GOG-*` | Future controlled runs | runtime observation | Player-visible state transitions, coordinates, timing, outcomes | unknown until recorded per finding |
 | `DATA-GOG-*` | Bounded inspection of the owned build | data fact | Format fields and resource relationships | recorded per finding |
 
@@ -63,8 +64,9 @@
 - **Confidence:** verified for GOG-1432903719 by exact resource identity and
   locally rendered content; sequence timing and menu overlay behavior remain
   unknown.
-- **Implementation:** transactional conversion to `images/title.dsix` and
-  verified-pack runtime display.
+- **Implementation:** transactional conversion to `images/title.dsix`. Runtime
+  sequencing and display are pending evidence that distinguishes the title
+  interval from the later start window.
 - **Tests:** original-free DSIX round trips and rejection cases, plus synthetic
   GFF-to-verified-pack extraction using the recorded resource identities.
 
@@ -126,9 +128,9 @@
   `ICON` #19111 through #19114, visibly labelled START GAME, CREATE CHARACTERS,
   LOAD SAVED GAME, and EXIT TO DOS. The corresponding visible frame sizes are
   127x12, 220x12, 191x13, and 127x12, so the third control and art bounds differ
-  by one pixel in both axes. Palette #1000 visibly corrupts the title;
-  the title palette #11011 also renders these overlays plausibly, which is
-  evidence that it remains active, but runtime confirmation is still required.
+  by one pixel in both axes. Later start-window composition evidence establishes
+  interface palette #1000 for these controls; title palette #11011 is limited to
+  the separate title image.
   `WIND` #19501 contains `APFM` #19200 (320x200) at (0,0) and #19201 (28x16)
   at (10,10), establishing the bounded shell of the next party-flow screen.
   `WIND` #19503 contains a 95x8 `EBOX` and controls whose referenced icons spell
@@ -145,8 +147,8 @@
   dimensions and preserves each window's ordered typed controls, coordinates,
   event masks, and optional image reference without assigning unknown behavior.
   The four complete start icon frame sets are extracted
-  with palette #11011 and their first frames are composed at the recorded logical
-  coordinates; frame-state interaction remains gated on OBS-GOG evidence.
+  with interface palette #1000 and their first frames are composed at the recorded
+  logical coordinates; frame-state interaction remains gated on OBS-GOG evidence.
 - **Tests:** synthetic signature, size, child-record, printable-tag, coordinate,
   repeated-ID, extension-tail, dimension, and field-contract coverage;
   whole-catalog validation against the owned archive.
@@ -161,9 +163,9 @@
   the eight class labels; #18302/#19304 reference four-frame EXIT/DONE icons
   #18109/#19100. Their coordinates, separate control/art dimensions, and frame
   counts are recorded in `OriginalContent.CharacterGenerationButtons`.
-  Palette #11011 renders the complete family coherently.
+  Interface palette #1000 renders the complete family coherently.
 - **Confidence:** verified for identities, labels, coordinates, dimensions, and
-  frame counts; medium for palette #11011; unknown for frame-state semantics,
+  frame counts; medium for palette #1000; unknown for frame-state semantics,
   hit boundaries, focus, and dynamic fields.
 - **Implementation:** all ten image sets are transactionally converted to DSIX
   in the verified pack; runtime composition remains pending the rest of the shell.
@@ -178,7 +180,7 @@
 - **Finding:** Offset 58 is zero in 20 windows, `BMP` #10002 in two, and `BMP`
   #19004 in all six #19500-#19505 windows. #19004 is one 96x9 UI bar/fill frame.
 - **Confidence:** verified for the field, references, dimensions, and local
-  appearance; medium for palette #11011. `EXE-GOG-UI-002` establishes that the
+  appearance; medium for palette #1000. `EXE-GOG-UI-002` establishes that the
   generic WIND lookup/register/redraw/activate path does not consume this field;
   an app-specific consumer and its draw role remain unknown.
 - **Implementation:** `UiWindowResource.ImageResourceNumber`; #19004 is
@@ -197,7 +199,7 @@
   PSIONICS. All icons have three 7-pixel-high frames; exact control/art widths
   and modal-relative coordinates are recorded in `OriginalContent`.
 - **Confidence:** verified for identities, labels, geometry, and frame counts;
-  medium for palette #11011; semantic effects and state transitions unknown.
+  medium for palette #1000; semantic effects and state transitions unknown.
 - **Implementation:** all ten icon sets are transactionally extracted as DSIX;
   no rule behavior is assigned from labels alone.
 - **Tests:** unique mappings, frame contracts, deterministic synthetic
@@ -230,6 +232,30 @@
   intersection/non-intersection cases, and existing size/dimension boundaries.
 - **Uncertainty:** Map each bit to its event/input meaning with bounded call-site
   evidence and controlled runtime observations.
+
+### DATA-GOG-UI-006 - Start-window composition and interface palette
+
+- **Question:** What surrounds the four start controls, and which palette colors
+  that composed window?
+- **Method:** Decode bounded single-frame `BMP ` resources from the fingerprinted
+  owned `RESOURCE.GFF`, compare palette candidates locally, and correlate exact
+  resource geometry against `PLAYTHROUGH-VIDEO-001` near 2:10.
+- **Finding:** `BMP ` #20029 is a 314x112 stone shell placed at (3,44), and
+  `BMP ` #20028 is a 222x33 flame-and-medallion overlay placed at (47,24), on a
+  black 320x200 canvas. Both layers and the four start controls use `PAL ` #1000.
+  The title image appears earlier in the public sequence rather than beneath the
+  controls.
+- **Confidence:** high for owned resource identity, dimensions, and palette;
+  medium for placement and sequencing because the corroborating playthrough's
+  precise source revision is not identified and its video is compressed.
+- **Implementation:** the two layers are transactionally extracted as DSIX in
+  asset-pack format 10. The runtime draws them in recorded order, then draws the
+  DSUI-resolved controls, through the shared point-sampled logical transform.
+- **Tests:** exact mapping/order/geometry, distinct synthetic title/interface
+  palettes, extraction provenance, exact inventory, pack verification, and
+  content smoke.
+- **Uncertainty:** Exact title-to-start timing, animation state, pixel aspect,
+  audio, and frame-state transitions still require controlled observation.
 
 ## Initial rules
 
@@ -375,7 +401,7 @@
   supported GOG build; runtime selection and remaining field semantics are
   unknown.
 - **Implementation:** `PackedCharacterCatalog` plus transactional extraction to
-  `characters/catalog.dsch`; the asset-pack manifest is version 9 and records
+  `characters/catalog.dsch`; the asset-pack manifest is version 10 and records
   `CHARSAVE.GFF` provenance.
 - **Tests:** synthetic round-trip and deterministic ordering; duplicate,
   malformed-field, noncanonical-order, truncation, and trailing-data rejection;

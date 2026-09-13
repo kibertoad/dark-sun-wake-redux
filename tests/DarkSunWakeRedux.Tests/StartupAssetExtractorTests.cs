@@ -12,6 +12,21 @@ public sealed class StartupAssetExtractorTests
     public void StartMenuAssetMappingsAreUniqueAndBounded()
     {
         Assert.Equal(4, OriginalContent.StartMenuButtons.Count);
+        Assert.Equal(2, OriginalContent.StartMenuLayers.Count);
+        Assert.Equal(
+        [
+            new StartMenuLayerAsset("stone-shell", "images/start-menu/stone-shell.dsix",
+                20029, 3, 44, 314, 112),
+            new StartMenuLayerAsset("flame-ornament", "images/start-menu/flame-ornament.dsix",
+                20028, 47, 24, 222, 33)
+        ], OriginalContent.StartMenuLayers);
+        Assert.All(OriginalContent.StartMenuLayers, layer =>
+        {
+            Assert.InRange(layer.X, 0, 319);
+            Assert.InRange(layer.Y, 0, 199);
+            Assert.InRange(layer.X + layer.FrameWidth, 1, 320);
+            Assert.InRange(layer.Y + layer.FrameHeight, 1, 200);
+        });
         Assert.Equal(4, OriginalContent.StartMenuButtons.Select(button => button.Path).Distinct().Count());
         Assert.Equal(4, OriginalContent.StartMenuButtons.Select(button => button.ButtonResourceNumber).Distinct().Count());
         Assert.Equal(4, OriginalContent.StartMenuButtons.Select(button => button.ImageResourceNumber).Distinct().Count());
@@ -63,13 +78,22 @@ public sealed class StartupAssetExtractorTests
             var manifest = await AssetPackInstaller.InstallAsync(output, staging =>
                 StartupAssetExtractor.WritePackAsync(sourceRoot, staging, edition, "test"));
 
-            Assert.Equal(30, manifest.Files.Count);
+            Assert.Equal(32, manifest.Files.Count);
             var asset = Assert.Single(manifest.Files, item => item.Path == OriginalContent.TitleImageAssetPath);
             Assert.Contains("BMP #11011", asset.Conversion, StringComparison.Ordinal);
+            Assert.Contains("PAL #11011", asset.Conversion, StringComparison.Ordinal);
+            foreach (var layer in OriginalContent.StartMenuLayers)
+            {
+                var layerAsset = Assert.Single(manifest.Files, item => item.Path == layer.Path);
+                Assert.Contains($"BMP #{layer.ImageResourceNumber}", layerAsset.Conversion,
+                    StringComparison.Ordinal);
+                Assert.Contains("PAL #1000", layerAsset.Conversion, StringComparison.Ordinal);
+            }
             foreach (var button in OriginalContent.StartMenuButtons)
             {
                 var buttonAsset = Assert.Single(manifest.Files, item => item.Path == button.Path);
                 Assert.Contains($"ICON#{button.ImageResourceNumber}", buttonAsset.Conversion, StringComparison.Ordinal);
+                Assert.Contains("PAL #1000", buttonAsset.Conversion, StringComparison.Ordinal);
                 using var buttonStream = File.OpenRead(Path.Combine(output,
                     button.Path.Replace('/', Path.DirectorySeparatorChar)));
                 Assert.Equal(4, PackedIndexedImage.Read(buttonStream).Frames.Count);
@@ -132,6 +156,10 @@ public sealed class StartupAssetExtractorTests
             var frame = Assert.Single(packed.Frames);
             Assert.Equal(320, frame.Width);
             Assert.Equal(200, frame.Height);
+            Assert.Equal((byte)4, packed.Palette[0].Red);
+            using var shellStream = File.OpenRead(Path.Combine(output,
+                OriginalContent.StartMenuLayers[0].Path.Replace('/', Path.DirectorySeparatorChar)));
+            Assert.Equal((byte)8, PackedIndexedImage.Read(shellStream).Palette[0].Red);
         }
         finally
         {
@@ -176,6 +204,9 @@ public sealed class StartupAssetExtractorTests
     {
         var title = TransparentImage(320, 200);
         var windowImage = TransparentImage(96, 9);
+        var menuLayers = OriginalContent.StartMenuLayers
+            .Select(layer => (layer.ImageResourceNumber,
+                Bytes: TransparentImage(layer.FrameWidth, layer.FrameHeight))).ToArray();
         var icons = OriginalContent.StartMenuButtons
             .Select(button => (button.ImageResourceNumber,
                 Bytes: TransparentImage(Enumerable.Range(0, 4).Select(index =>
@@ -193,13 +224,17 @@ public sealed class StartupAssetExtractorTests
                 Bytes: TransparentImage(Enumerable.Repeat(
                     (Width: button.FrameWidth, Height: button.FrameHeight), button.FrameCount).ToArray())))
             .ToArray();
-        var palette = new byte[IndexedPalette.EncodedLength];
+        var titlePalette = new byte[IndexedPalette.EncodedLength];
+        titlePalette[0] = 1;
+        var interfacePalette = new byte[IndexedPalette.EncodedLength];
+        interfacePalette[0] = 2;
         var font = Font();
         var text = Encoding.ASCII.GetBytes("Synthetic\r\n");
         var windows = OriginalContent.StartFlowWindowResourceNumbers
             .Select(number => (Number: number, Bytes: Window(number))).ToArray();
-        var indexOffset = 28 + title.Length + windowImage.Length + icons.Sum(item => item.Bytes.Length) +
-            characterIcons.Sum(item => item.Bytes.Length) + palette.Length +
+        var indexOffset = 28 + title.Length + windowImage.Length + menuLayers.Sum(item => item.Bytes.Length) +
+            icons.Sum(item => item.Bytes.Length) + characterIcons.Sum(item => item.Bytes.Length) +
+            titlePalette.Length + interfacePalette.Length +
             modalIcons.Sum(item => item.Bytes.Length) + font.Length + text.Length +
             windows.Sum(item => item.Bytes.Length);
         using var stream = new MemoryStream();
@@ -213,6 +248,17 @@ public sealed class StartupAssetExtractorTests
         writer.Write(title);
         var windowImageOffset = checked((int)stream.Position);
         writer.Write(windowImage);
+        var bitmapEntries = new List<(uint Number, int Offset, int Size)>
+        {
+            (StartupAssetExtractor.TitleImageNumber, titleOffset, title.Length),
+            (StartupAssetExtractor.PartyWindowImageNumber, windowImageOffset, windowImage.Length)
+        };
+        foreach (var layer in menuLayers)
+        {
+            var offset = checked((int)stream.Position);
+            writer.Write(layer.Bytes);
+            bitmapEntries.Add((layer.ImageResourceNumber, offset, layer.Bytes.Length));
+        }
         var iconEntries = new List<(uint Number, int Offset, int Size)>();
         foreach (var icon in icons)
         {
@@ -232,8 +278,10 @@ public sealed class StartupAssetExtractorTests
             writer.Write(icon.Bytes);
             iconEntries.Add((icon.ImageResourceNumber, offset, icon.Bytes.Length));
         }
-        var paletteOffset = checked((int)stream.Position);
-        writer.Write(palette);
+        var titlePaletteOffset = checked((int)stream.Position);
+        writer.Write(titlePalette);
+        var interfacePaletteOffset = checked((int)stream.Position);
+        writer.Write(interfacePalette);
         var fontOffset = checked((int)stream.Position);
         writer.Write(font);
         var textOffset = checked((int)stream.Position);
@@ -248,13 +296,13 @@ public sealed class StartupAssetExtractorTests
         writer.Write(0U);
         writer.Write(0U);
         writer.Write((ushort)6);
-        WriteTable(writer, "BMP ",
-        [
-            (StartupAssetExtractor.TitleImageNumber, titleOffset, title.Length),
-            (StartupAssetExtractor.PartyWindowImageNumber, windowImageOffset, windowImage.Length)
-        ]);
+        WriteTable(writer, "BMP ", bitmapEntries);
         WriteTable(writer, "ICON", iconEntries);
-        WriteTable(writer, "PAL ", [(StartupAssetExtractor.PaletteNumber, paletteOffset, palette.Length)]);
+        WriteTable(writer, "PAL ",
+        [
+            (StartupAssetExtractor.TitlePaletteNumber, titlePaletteOffset, titlePalette.Length),
+            (StartupAssetExtractor.InterfacePaletteNumber, interfacePaletteOffset, interfacePalette.Length)
+        ]);
         WriteTable(writer, "FONT", [(StartupAssetExtractor.FontNumber, fontOffset, font.Length)]);
         WriteTable(writer, "TEXT", [(7U, textOffset, text.Length)]);
         WriteTable(writer, "WIND", windowEntries);

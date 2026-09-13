@@ -93,6 +93,15 @@ public sealed record StartMenuButtonAsset(
         }).All(matches => matches);
 }
 
+public sealed record StartMenuLayerAsset(
+    string Name,
+    string Path,
+    uint ImageResourceNumber,
+    int X,
+    int Y,
+    int FrameWidth,
+    int FrameHeight);
+
 public sealed record CharacterGenerationButtonAsset(
     string Name,
     string Path,
@@ -120,7 +129,7 @@ public sealed record SourceIdentification(
 
 public static class OriginalContent
 {
-    public const int AssetPackFormatVersion = 9;
+    public const int AssetPackFormatVersion = 10;
     public const string GameId = "dark-sun-wake-redux";
     public const string TitleImageAssetPath = "images/title.dsix";
     public const string InterfaceFontAssetPath = "fonts/interface.dsft";
@@ -132,6 +141,12 @@ public static class OriginalContent
 
     public static IReadOnlyList<uint> StartFlowWindowResourceNumbers { get; } =
         [19500, 19501, 19502, 19503, 19504, 19505];
+
+    public static IReadOnlyList<StartMenuLayerAsset> StartMenuLayers { get; } =
+    [
+        new("stone-shell", "images/start-menu/stone-shell.dsix", 20029, 3, 44, 314, 112),
+        new("flame-ornament", "images/start-menu/flame-ornament.dsix", 20028, 47, 24, 222, 33)
+    ];
 
     public static IReadOnlyList<StartMenuButtonAsset> StartMenuButtons { get; } =
     [

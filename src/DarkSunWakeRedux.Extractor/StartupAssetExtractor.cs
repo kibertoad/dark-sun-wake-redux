@@ -11,7 +11,8 @@ public static class StartupAssetExtractor
     public const uint TitleImageNumber = 11011;
     public const string ImageTag = "ICON";
     public const string PaletteTag = "PAL ";
-    public const uint PaletteNumber = 11011;
+    public const uint TitlePaletteNumber = 11011;
+    public const uint InterfacePaletteNumber = 1000;
     public const string FontTag = "FONT";
     public const uint FontNumber = 100;
     public const uint PartyWindowImageNumber = 19004;
@@ -34,8 +35,12 @@ public static class StartupAssetExtractor
         await using var characterSource = File.OpenRead(characterSourcePath);
         var characterArchive = GffArchive.Read(characterSource, characterSourcePath);
         var characters = GffCharacterCatalog.Read(characterArchive, CharacterSourcePath);
-        var palette = IndexedPalette.Read(archive.GetResource(PaletteTag, PaletteNumber).Span,
-            $"{SourcePath}:{PaletteTag}#{PaletteNumber}");
+        var titlePalette = IndexedPalette.Read(
+            archive.GetResource(PaletteTag, TitlePaletteNumber).Span,
+            $"{SourcePath}:{PaletteTag}#{TitlePaletteNumber}");
+        var interfacePalette = IndexedPalette.Read(
+            archive.GetResource(PaletteTag, InterfacePaletteNumber).Span,
+            $"{SourcePath}:{PaletteTag}#{InterfacePaletteNumber}");
         var files = new List<AssetPackFile>();
 
         var title = IndexedImage.Read(archive.GetResource(TitleImageTag, TitleImageNumber),
@@ -43,8 +48,22 @@ public static class StartupAssetExtractor
         if (title.Frames.Count != 1 || title.Frames[0].Width != 320 || title.Frames[0].Height != 200)
             throw new InvalidDataException(
                 $"The mapped title image must contain exactly one 320x200 frame; found {title.Frames.Count} frame(s).");
-        files.Add(await WriteImageAsync(stagingRoot, OriginalContent.TitleImageAssetPath, title, palette,
-            $"{TitleImageTag}#{TitleImageNumber} frame 0 + {PaletteTag}#{PaletteNumber}", cancellationToken));
+        files.Add(await WriteImageAsync(stagingRoot, OriginalContent.TitleImageAssetPath, title, titlePalette,
+            $"{TitleImageTag}#{TitleImageNumber} frame 0 + {PaletteTag}#{TitlePaletteNumber}", cancellationToken));
+
+        foreach (var layer in OriginalContent.StartMenuLayers)
+        {
+            var image = IndexedImage.Read(
+                archive.GetResource(TitleImageTag, layer.ImageResourceNumber),
+                $"{SourcePath}:{TitleImageTag}#{layer.ImageResourceNumber}");
+            if (image.Frames.Count != 1 || image.Frames[0].Width != layer.FrameWidth ||
+                image.Frames[0].Height != layer.FrameHeight)
+                throw new InvalidDataException(
+                    $"The mapped start-menu {layer.Name} image has unexpected frame geometry.");
+            files.Add(await WriteImageAsync(stagingRoot, layer.Path, image, interfacePalette,
+                $"{TitleImageTag}#{layer.ImageResourceNumber} frame 0 + " +
+                $"{PaletteTag}#{InterfacePaletteNumber}", cancellationToken));
+        }
 
         foreach (var mapping in OriginalContent.StartMenuButtons)
         {
@@ -53,8 +72,9 @@ public static class StartupAssetExtractor
             if (!mapping.HasExpectedFrames(image.Frames))
                 throw new InvalidDataException(
                     $"The mapped {mapping.Name} image does not match its four-frame geometry contract.");
-            files.Add(await WriteImageAsync(stagingRoot, mapping.Path, image, palette,
-                $"{ImageTag}#{mapping.ImageResourceNumber} all frames + {PaletteTag}#{PaletteNumber}", cancellationToken));
+            files.Add(await WriteImageAsync(stagingRoot, mapping.Path, image, interfacePalette,
+                $"{ImageTag}#{mapping.ImageResourceNumber} all frames + " +
+                $"{PaletteTag}#{InterfacePaletteNumber}", cancellationToken));
         }
 
         foreach (var mapping in OriginalContent.CharacterGenerationButtons)
@@ -64,8 +84,9 @@ public static class StartupAssetExtractor
             if (!mapping.HasExpectedFrames(image.Frames))
                 throw new InvalidDataException(
                     $"The mapped character-generation {mapping.Name} image has unexpected frame geometry.");
-            files.Add(await WriteImageAsync(stagingRoot, mapping.Path, image, palette,
-                $"{ImageTag}#{mapping.ImageResourceNumber} all frames + {PaletteTag}#{PaletteNumber}", cancellationToken));
+            files.Add(await WriteImageAsync(stagingRoot, mapping.Path, image, interfacePalette,
+                $"{ImageTag}#{mapping.ImageResourceNumber} all frames + " +
+                $"{PaletteTag}#{InterfacePaletteNumber}", cancellationToken));
         }
         foreach (var mapping in OriginalContent.CharacterGenerationModalButtons)
         {
@@ -74,8 +95,9 @@ public static class StartupAssetExtractor
             if (!mapping.HasExpectedFrames(image.Frames))
                 throw new InvalidDataException(
                     $"The mapped character-generation modal {mapping.Name} image has unexpected frame geometry.");
-            files.Add(await WriteImageAsync(stagingRoot, mapping.Path, image, palette,
-                $"{ImageTag}#{mapping.ImageResourceNumber} all frames + {PaletteTag}#{PaletteNumber}", cancellationToken));
+            files.Add(await WriteImageAsync(stagingRoot, mapping.Path, image, interfacePalette,
+                $"{ImageTag}#{mapping.ImageResourceNumber} all frames + " +
+                $"{PaletteTag}#{InterfacePaletteNumber}", cancellationToken));
         }
 
         var windowImage = IndexedImage.Read(archive.GetResource(TitleImageTag, PartyWindowImageNumber),
@@ -84,8 +106,8 @@ public static class StartupAssetExtractor
             windowImage.Frames[0].Height != 9)
             throw new InvalidDataException("The mapped party-window image must contain one 96x9 frame.");
         files.Add(await WriteImageAsync(stagingRoot, OriginalContent.PartyWindowImageAssetPath,
-            windowImage, palette, $"{TitleImageTag}#{PartyWindowImageNumber} frame 0 + " +
-            $"{PaletteTag}#{PaletteNumber}", cancellationToken));
+            windowImage, interfacePalette, $"{TitleImageTag}#{PartyWindowImageNumber} frame 0 + " +
+            $"{PaletteTag}#{InterfacePaletteNumber}", cancellationToken));
 
         var font = IndexedBitmapFont.Read(archive.GetResource(FontTag, FontNumber),
             $"{SourcePath}:{FontTag}#{FontNumber}");

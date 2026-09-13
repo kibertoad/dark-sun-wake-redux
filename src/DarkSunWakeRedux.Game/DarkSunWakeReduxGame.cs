@@ -12,7 +12,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     private readonly bool _platformSmoke;
     private readonly GraphicsDeviceManager _graphics;
     private SpriteBatch? _spriteBatch;
-    private Texture2D? _titleTexture;
+    private readonly List<(StartMenuLayerAsset Layer, Texture2D Texture)> _startMenuLayers = [];
     private readonly List<(StartMenuControl Control, Texture2D Texture)> _startMenuControls = [];
     private readonly StartFlowSession _startFlow = new(0);
     private MouseState _previousMouse;
@@ -42,11 +42,14 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         if (_platformSmoke) return;
         if (string.IsNullOrWhiteSpace(_assetPack))
             throw new InvalidOperationException("The verified asset-pack path was not supplied.");
-        var path = Path.Combine(_assetPack,
-            OriginalContent.TitleImageAssetPath.Replace('/', Path.DirectorySeparatorChar));
-        using var stream = File.OpenRead(path);
-        var title = PackedIndexedImage.Read(stream, OriginalContent.TitleImageAssetPath);
-        _titleTexture = CreateTexture(title, title.Frames.Single());
+        foreach (var layer in OriginalContent.StartMenuLayers)
+        {
+            var layerPath = Path.Combine(_assetPack,
+                layer.Path.Replace('/', Path.DirectorySeparatorChar));
+            using var layerStream = File.OpenRead(layerPath);
+            var image = PackedIndexedImage.Read(layerStream, layer.Path);
+            _startMenuLayers.Add((layer, CreateTexture(image, image.Frames.Single())));
+        }
         var uiPath = Path.Combine(_assetPack,
             OriginalContent.StartFlowUiCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
         using var uiStream = File.OpenRead(uiPath);
@@ -104,23 +107,18 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.Black);
-        if (_titleTexture is not null && _spriteBatch is not null &&
-            _startFlow.Snapshot().Screen == StartFlowScreen.StartWindow)
+        if (_spriteBatch is not null && _startFlow.Snapshot().Screen == StartFlowScreen.StartWindow)
         {
             var transform = new LogicalCanvasTransform(
                 GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
             var destination = new Rectangle(transform.X, transform.Y, transform.Width, transform.Height);
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            _spriteBatch.Draw(_titleTexture, destination, Color.White);
+            foreach (var (layer, texture) in _startMenuLayers)
+                _spriteBatch.Draw(texture, ScaledRectangle(destination, transform,
+                    layer.X, layer.Y, texture.Width, texture.Height), Color.White);
             foreach (var (control, texture) in _startMenuControls)
-            {
-                var buttonDestination = new Rectangle(
-                    destination.X + (int)MathF.Floor(control.X * transform.Scale),
-                    destination.Y + (int)MathF.Floor(control.Y * transform.Scale),
-                    Math.Max(1, (int)MathF.Floor(texture.Width * transform.Scale)),
-                    Math.Max(1, (int)MathF.Floor(texture.Height * transform.Scale)));
-                _spriteBatch.Draw(texture, buttonDestination, Color.White);
-            }
+                _spriteBatch.Draw(texture, ScaledRectangle(destination, transform,
+                    control.X, control.Y, texture.Width, texture.Height), Color.White);
             _spriteBatch.End();
         }
         base.Draw(gameTime);
@@ -128,9 +126,16 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
 
     protected override void UnloadContent()
     {
-        _titleTexture?.Dispose();
+        foreach (var (_, texture) in _startMenuLayers) texture.Dispose();
         foreach (var (_, texture) in _startMenuControls) texture.Dispose();
         _spriteBatch?.Dispose();
         base.UnloadContent();
     }
+
+    private static Rectangle ScaledRectangle(
+        Rectangle canvas, LogicalCanvasTransform transform, int x, int y, int width, int height) =>
+        new(canvas.X + (int)MathF.Floor(x * transform.Scale),
+            canvas.Y + (int)MathF.Floor(y * transform.Scale),
+            Math.Max(1, (int)MathF.Floor(width * transform.Scale)),
+            Math.Max(1, (int)MathF.Floor(height * transform.Scale)));
 }
