@@ -19,7 +19,7 @@ documented source default with `DARK_SUN_WAKE_PATH` when necessary.
 Extraction is transactional: a new content pack is staged and fully verified
 before it replaces the previous verified pack. The ignored default
 `UserContent` pack is persistent; keep and reuse it unless extractor or pack
-contract changes require a refresh. The current 59-asset pack contains the
+contract changes require a refresh. The current 60-asset pack contains the
 evidenced startup, party, ADD-list, Tyr, and Game Menu content described in the
 README status table. Extracted content is ignored by Git and must not be
 redistributed.

@@ -100,6 +100,11 @@ fingerprinted `OBJEX.GFF`. The sign and flags are retained. `DATA-GOG-SCENE-001`
 corroborates flag bit `0x80` as horizontal mirroring; the object-number sign and
 all interaction and collision behavior remain uninterpreted.
 
+The opening leader is independently identified as OJFF #305 referencing BMP
+#599. Its unmirrored first 17x35 frame, colored with Tyr's PAL #50, exactly
+matches the 367 opaque actor pixels in `OBS-GOG-SCENE-001`; this image is packed
+separately because it is not referenced by Tyr's static ETAB object graph.
+
 The reader caps the region name at 64 bytes and the entity table at 16,384
 records, requires the exact map dimensions and 16x16 tile frames, and rejects
 missing local tiles or external objects with region/resource context.

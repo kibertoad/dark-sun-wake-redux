@@ -55,7 +55,7 @@ The smoke modes have distinct purposes:
 - `--smoke-test` exits before content or graphics initialization and is safe on
   a content-free CI worker.
 - `--content-smoke-test --asset-pack <path>` verifies the exact pack inventory,
-  opens all fifty-two DSIX UI images, the DSFT interface font, the DSTX text
+  opens all fifty-three DSIX images, the DSFT interface font, the DSTX text
   catalog, the resolved start-flow and Game Menu DSUI graphs, and DSCH character metadata
   catalog, opens the DSRG Tyr region and DSOB object-frame graph, and checks their
   frame, geometry, glyph, reference, and inventory contracts without a window.
@@ -69,19 +69,22 @@ Owned-build validation currently targets GOG product `1432903719`, installed
 build `52095422060333615`. Metadata-only FONT inspection verifies that all 256
 character-map entries are identity values and summarizes its pixel-index range
 without emitting glyph pixels. The retained ignored owned-source pack has been
-transactionally refreshed and verifies as the exact 59-asset manifest including start/party/ADD
+transactionally refreshed and verifies as the exact 60-asset manifest including start/party/ADD
 assets, all seven start-flow windows and 56 controls, the 210x116 Game Menu base,
 its 14 button images and 30-control graph, and 19 bounded character metadata entries,
 plus the bounded Tyr region with 94 tiles
-and 867 entity records and its 287 definitions, 246 images, and 477 frames. The
+and 867 entity records, its 287 definitions, 246 images, and 477 frames, and
+the exact 17x35 opening-leader image. The
 runtime content-smoke path opens that pack and rasterizes 320x200 viewports at
 both opposite region corners successfully. It also verifies Tyr's exact four
 `GMAP` values and 8,169 terrain-open cells through the bounded navigation
 contract; these diagnostic checks are not a claim about party spawn.
 Exact comparison of the retained ignored native opening frame against the
 compositor at `(1024,1368)` isolates the visible leader to a 367-differing-pixel
-component bounded by logical `(160,91)`-`(176,125)`; this is not treated as
-evidence of its collision anchor or footprint.
+component bounded by logical `(160,91)`-`(176,125)`. Exhaustive same-geometry
+resource comparison identifies OJFF #305/BMP #599 frame 0 as an exact match;
+bounded executable analysis ties its world top-left `(1184,1459)` to collision
+anchor cell `(74,91)`. The multi-cell footprint remains unknown.
 Local-only decoded previews established the title
 and start-window mappings recorded as `DATA-GOG-TITLE-001`,
 `DATA-GOG-UI-001`, `DATA-GOG-UI-006`, `DATA-GOG-UI-007`,

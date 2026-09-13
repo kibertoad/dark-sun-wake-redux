@@ -20,6 +20,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     private Texture2D? _gameMenuBase;
     private readonly List<(GameMenuControl Control, Texture2D Texture)> _gameMenuControls = [];
     private Texture2D? _explorationSceneTexture;
+    private Texture2D? _openingLeaderTexture;
     private PackedRegion? _tyrRegion;
     private PackedObjectFrameCatalog? _tyrObjects;
     private readonly ExplorationSession _exploration = new(
@@ -29,6 +30,11 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         OpeningTyrScene.Height,
         OpeningTyrScene.OriginX,
         OpeningTyrScene.OriginY);
+    private readonly ExplorationActorPresentation _openingLeader = new(
+        OpeningTyrScene.LeaderWorldX,
+        OpeningTyrScene.LeaderWorldY,
+        OpeningTyrScene.LeaderWidth,
+        OpeningTyrScene.LeaderHeight);
     private readonly StartFlowSession _startFlow = new(0);
     private MouseState _previousMouse;
     private KeyboardState _previousKeyboard;
@@ -114,6 +120,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             objectStream, OriginalContent.TyrObjectCatalogAssetPath);
         var explorationViewport = OpeningTyrScene.Rasterize(_tyrRegion, _tyrObjects);
         _explorationSceneTexture = CreateTexture(_tyrRegion.Palette, explorationViewport);
+        _openingLeaderTexture = LoadImageTexture(OriginalContent.OpeningLeaderImageAssetPath);
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
         string AssetPath(string relativePath) => Path.Combine(_assetPack,
@@ -253,6 +260,14 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                 _ => []
             };
             var placedImages = images.ToArray();
+            if (screen == StartFlowScreen.Gameplay && _openingLeaderTexture is not null)
+            {
+                var camera = _exploration.Snapshot();
+                var bounds = _openingLeader.AtCamera(camera.CameraX, camera.CameraY);
+                if (bounds.Intersects(OpeningTyrScene.Width, OpeningTyrScene.Height))
+                    placedImages = placedImages.Append(
+                        (bounds.X, bounds.Y, _openingLeaderTexture)).ToArray();
+            }
             if (screen == StartFlowScreen.Gameplay &&
                 _exploration.Snapshot().View == ExplorationView.GameMenu &&
                 _gameMenuBase is not null)
@@ -293,6 +308,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         _gameMenuBase?.Dispose();
         foreach (var (_, texture) in _gameMenuControls) texture.Dispose();
         _explorationSceneTexture?.Dispose();
+        _openingLeaderTexture?.Dispose();
         _spriteBatch?.Dispose();
         base.UnloadContent();
     }

@@ -154,24 +154,53 @@
   differ from the static compositor. The visually identified party-leader
   component contains 367 differing pixels in logical bounds
   `(160,91)`-`(176,125)`, corresponding to world bounds
-  `(1184,1459)`-`(1200,1493)`. This measures the visible overlay, not its
-  collision anchor or occupied cells.
+  `(1184,1459)`-`(1200,1493)`. `DATA-GOG-ACTOR-001` identifies its exact
+  source image and `EXE-GOG-REGION-001` ties the stored top-left to collision
+  anchor cell `(74,91)`; the occupied-cell footprint remains unknown.
 - **Confidence:** high for tile placement from the format and all owned map
   dimensions; medium for object placement, first-frame choice, ETAB order, and
   mirror bit from community executable-informed research; verified for the
   opening static background in the supported owned build. Animation, party
-  collision anchoring, sprite resource identity, pointer, and interface
-  overlays remain unvalidated.
+  footprint, pointer, and interface overlays remain unvalidated.
 - **Implementation:** `RegionSceneRasterizer` produces a bounded indexed/alpha
   viewport at an explicit caller-supplied world origin. `OpeningTyrScene`
   records the observed `(1024,1368)` 320x200 viewport, and Gameplay displays
-  that static background. The compositor does not mutate state, interpret
-  collision, draw the party/interface, or advance animation.
+  that static background. The exact leader is a separate actor overlay; the
+  compositor does not mutate state, interpret collision, draw the interface,
+  or advance animation.
 - **Tests:** synthetic cross-tile cropping, offsets, vertical adjustment,
   horizontal mirroring, transparent pixels, ETAB overdraw order, edge clipping,
   viewport bounds, malformed region data, and disconnected object references;
   owned no-window content smoke rasterizes both opposite map corners and the
   evidenced opening viewport.
+
+### DATA-GOG-ACTOR-001 - Opening leader resource and placement
+
+- **Question:** Which owned sprite produces the isolated opening leader, and
+  how do its visible and collision coordinates relate?
+- **Method:** Compare every decoded `OBJEX.GFF` OJFF/BMP frame having the
+  measured 17x35 geometry, in both orientations, over the exact Tyr compositor
+  background against the ignored native observation `OBS-GOG-SCENE-001`.
+  Independently trace the supported executable's actor coordinate fields into
+  its render and collision call paths.
+- **Finding:** Of 12 same-geometry orientation candidates, unmirrored OJFF #305
+  -> BMP #599 frame 0 is the unique exact match: all 17x35 pixels agree and 367
+  are opaque. Its top-left is logical `(160,91)` at the observed camera, hence
+  world `(1184,1459)`. The executable reads the same stored actor X/Y fields
+  for rendering and shifts them right by four before footprint enumeration, so
+  the evidenced collision anchor is cell `(74,91)`.
+- **Confidence:** verified for the resource, first-frame orientation, palette,
+  opening position, and visible pixels in GOG-1432903719; high for the anchor
+  relationship from bounded executable paths. Footprint, animation sequence,
+  cadence, and later actor state remain unknown.
+- **Implementation:** pack v18 adds
+  `images/exploration/opening-leader.dsix`, preserving OBJEX and Tyr-palette
+  provenance. Gameplay draws frame 0 through reusable world-to-camera actor
+  placement, with viewport-edge culling. It is intentionally stationary until
+  runtime movement state and animation evidence are connected.
+- **Tests:** synthetic OJFF/BMP extraction, exact provenance/palette/geometry,
+  camera translation, rectangle-edge visibility, anchor constants, pack
+  inventory verification, and owned no-window content smoke.
 
 ### DATA-GOG-TITLE-001 - Title image resource mapping
 

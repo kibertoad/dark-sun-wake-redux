@@ -242,16 +242,24 @@ proof by itself. Never redirect broad output into the repository.
   `0x20` as paired dynamic occupancy metadata. Coordinator `25af:0969`
   selects those removal/placement helpers, and callers `2d40:0f89`,
   `2d40:1045`, `2d40:32c5`, and `2d40:3388` iterate coordinate cells while
-  invoking it. This corroborates per-cell footprint mutation without yet
-  establishing a footprint shape, actor category, or update timing. A separate
+  invoking it. The footprint enumerator at `2d40:0f89` uses a 0x25-byte actor
+  record and is called at `2d40:1143` and `2d40:118e`. Their enclosing path at
+  `2d40:10ae` reads the actor X/Y fields, shifts each right by four, and passes
+  the resulting cell coordinates to that enumerator. The rendering path
+  `31e0:2bb9` -> `31e0:2837` reads the same actor X/Y fields as the sprite
+  rectangle's world top-left and uses the stored width/height. Combined with
+  `DATA-GOG-ACTOR-001`'s exact `(1184,1459)` top-left, this establishes opening
+  anchor cell `(74,91)`. This corroborates per-cell footprint mutation without
+  establishing the footprint shape, actor category, or update timing. A separate
   `0x80` test at `2778:0006` does not participate in this movement predicate.
 - **Corroboration:** fingerprinted Tyr `GMAP` contains only `00`, `40`, `80`,
   and `c0`, with respective counts 8,131, 2,044, 38, and 2,331. Its low five
   bits are therefore always zero; 8,169 cells are terrain-open when only the
   evidenced `0x40` block is applied.
-- **Confidence:** high for bounds, `0x40` terrain/occupancy blocking, and the
-  `0x20` dynamic pairing in this executable; unknown for `0x80`, actor-specific
-  low-bit policy in other regions, moving blockers, and actor footprint.
+- **Confidence:** high for bounds, `0x40` terrain/occupancy blocking, the
+  `0x20` dynamic pairing, and the opening anchor relationship in this
+  executable; unknown for `0x80`, actor-specific low-bit policy in other
+  regions, moving blockers, and actor footprint.
 - **Implementation consequence:** `RegionTerrainGrid` interprets only `0x40`,
   preserves and exposes every raw flag, treats out-of-bounds as closed, and is
   combined with the independent deterministic pathfinder by
@@ -261,7 +269,9 @@ proof by itself. Never redirect broad output into the repository.
   per-cell placement for caller-provided immutable footprints and a live
   whole-footprint path predicate. `ExplorationActorMovementSession` commits that
   occupancy atomically with each accepted semantic route step, but does not
-  infer a spawn, concrete actor footprint, movement cadence, or animation.
+  infer a concrete actor footprint, movement cadence, or animation. The
+  resource-exact opening actor uses the evidenced anchor `(74,91)` independently
+  of those still-open behaviors.
 
 For each useful finding, add a concise entry here or in the relevant
 `docs/RULES-AND-EVIDENCE.md` / `docs/ORIGINAL-FORMATS.md` section with:

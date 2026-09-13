@@ -264,7 +264,7 @@ decoder rather than being guessed now.
   class/level progression, the active member during DUAL selection or editing,
   and recreation-native stored characters;
   DSUI round-trip, malformed graph, deterministic ordering, mixed-control graph resolution, resource-ID routing,
-  rectangle-edge, synthetic extraction, content-smoke, and owned 59-asset pack verification cover the derived
+  rectangle-edge, synthetic extraction, content-smoke, and owned 60-asset pack verification cover the derived
   start-flow layout contract;
   gameplay-wide replay remains a later-slice requirement.
 - **Observed parity.** Compare boot, start, create/select/cancel, and quit state
@@ -296,6 +296,10 @@ decoder rather than being guessed now.
   implemented for Tyr. `DATA-GOG-SCENE-001` now supplies a clipped static
   tile/first-object-frame compositor; controlled observation fixes the opening
   camera at `(1024,1368)` and the static viewport is visibly integrated.
+  `DATA-GOG-ACTOR-001` identifies, extracts, and displays the exact opening
+  leader at its observed world position through reusable camera-relative actor
+  placement; its collision anchor cell is evidenced, while its footprint and
+  animation cadence remain open.
   Manual-defined edge scrolling now drives a clamped deterministic Core camera
   and rerasterizes that viewport. Reusable ordered hotkey bindings and Core
   navigation now cover character, inventory, cast/psionic, current-effects,

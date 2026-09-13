@@ -36,16 +36,17 @@ write into a unique sibling staging directory, generate a manifest containing
 format/extractor versions and exact output inventory, re-open and hash every
 output, reject unexpected files, then atomically replace the installed pack.
 If any step fails, staging is removed and the last verified pack is restored.
-Current code exercises this transaction for the exact 59-asset startup, party,
+Current code exercises this transaction for the exact 60-asset startup, party,
 ADD-list, Tyr, and Game Menu pack: indexed UI images and font, text and
 character catalogs, separate resolved UI graphs, the canonical Tyr region, and
-its object-frame graph. Later resources extend this inventory only after their
+its object-frame graph, and the independently identified opening-leader image.
+Later resources extend this inventory only after their
 mappings are recorded.
 
 ## Runtime startup
 
 `--smoke-test` is assetless for CI. `--content-smoke-test` verifies and opens the
-59 derived startup/Tyr/Game Menu assets without creating a window. Normal startup verifies
+60 derived startup/Tyr/Game Menu assets without creating a window. Normal startup verifies
 the default or explicit `--asset-pack` directory before creating the game window
 and displays the measured start shell plus controls, the party-overview shell,
 and the ADD-list shell reached through their Core states. Title sequencing and

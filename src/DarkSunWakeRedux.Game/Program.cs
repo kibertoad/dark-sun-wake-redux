@@ -85,6 +85,13 @@ try
                     throw new InvalidDataException(
                         $"The installed game-menu {button.Name} image has unexpected geometry.");
             }
+            var openingLeader = ReadImage(assetPack, OriginalContent.OpeningLeaderImageAssetPath);
+            var openingLeaderFrame = openingLeader.Frames[0];
+            if (openingLeaderFrame.Width != OpeningTyrScene.LeaderWidth ||
+                openingLeaderFrame.Height != OpeningTyrScene.LeaderHeight ||
+                openingLeaderFrame.Alpha.Count(value => value != 0) != 367)
+                throw new InvalidDataException(
+                    "The installed opening-leader image has unexpected geometry or alpha coverage.");
             var windowImagePath = Path.Combine(assetPack,
                 OriginalContent.PartyWindowImageAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using (var windowImageStream = File.OpenRead(windowImagePath))

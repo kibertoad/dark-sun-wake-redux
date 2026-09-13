@@ -89,7 +89,10 @@ public sealed class GffRegionTests
         var resources = new List<(string Tag, uint Number, byte[] Bytes)>
         {
             ("OJFF", 10, ObjectFrame(5)),
-            ("BMP ", 5, TileImage(16))
+            ("BMP ", 5, TileImage(16)),
+            ("OJFF", OriginalContent.OpeningLeaderObjectResourceNumber,
+                ObjectFrame(checked((ushort)OriginalContent.OpeningLeaderImageResourceNumber))),
+            ("BMP ", OriginalContent.OpeningLeaderImageResourceNumber, Image(17, 35))
         };
         if (includeEleven) resources.Add(("OJFF", 11, ObjectFrame(5)));
         return WriteArchive(resources.ToArray());
@@ -122,6 +125,9 @@ public sealed class GffRegionTests
     }
 
     private static byte[] TileImage(ushort width)
+        => Image(width, 16);
+
+    private static byte[] Image(ushort width, ushort height)
     {
         using var stream = new MemoryStream();
         using var writer = new BinaryWriter(stream, Encoding.ASCII, leaveOpen: true);
@@ -129,7 +135,7 @@ public sealed class GffRegionTests
         writer.Write((ushort)1);
         writer.Write(10U);
         writer.Write(width);
-        writer.Write((ushort)16);
+        writer.Write(height);
         writer.Write((byte)0xff);
         return stream.ToArray();
     }

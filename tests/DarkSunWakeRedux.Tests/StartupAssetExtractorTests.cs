@@ -123,7 +123,7 @@ public sealed class StartupAssetExtractorTests
             var manifest = await AssetPackInstaller.InstallAsync(output, staging =>
                 StartupAssetExtractor.WritePackAsync(sourceRoot, staging, edition, "test"));
 
-            Assert.Equal(59, manifest.Files.Count);
+            Assert.Equal(60, manifest.Files.Count);
             var asset = Assert.Single(manifest.Files, item => item.Path == OriginalContent.TitleImageAssetPath);
             Assert.Contains("BMP #11011", asset.Conversion, StringComparison.Ordinal);
             Assert.Contains("PAL #11011", asset.Conversion, StringComparison.Ordinal);
@@ -242,6 +242,20 @@ public sealed class StartupAssetExtractorTests
                     objects.Images.Sum(image => image.Frames.Count)));
                 Assert.Equal([10U, 11U],
                     objects.Definitions.Select(item => item.ResourceNumber));
+            }
+            var leaderAsset = Assert.Single(manifest.Files,
+                item => item.Path == OriginalContent.OpeningLeaderImageAssetPath);
+            Assert.Equal(StartupAssetExtractor.ObjectSourcePath, leaderAsset.SourcePath);
+            Assert.Contains("OJFF #305", leaderAsset.Conversion, StringComparison.Ordinal);
+            Assert.Contains("BMP #599", leaderAsset.Conversion, StringComparison.Ordinal);
+            Assert.Contains("RGN032.GFF:PAL #50", leaderAsset.Conversion, StringComparison.Ordinal);
+            using (var leaderStream = File.OpenRead(Path.Combine(output,
+                       OriginalContent.OpeningLeaderImageAssetPath.Replace(
+                           '/', Path.DirectorySeparatorChar))))
+            {
+                var leader = PackedIndexedImage.Read(leaderStream);
+                Assert.Equal((17, 35), (leader.Frames[0].Width, leader.Frames[0].Height));
+                Assert.Equal((byte)0, leader.Palette[0].Red);
             }
             var uiAsset = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.StartFlowUiCatalogAssetPath);

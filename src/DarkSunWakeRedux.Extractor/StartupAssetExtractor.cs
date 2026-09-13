@@ -49,6 +49,18 @@ public static class StartupAssetExtractor
                 $"{TyrRegionSourcePath} does not contain the expected Tyr region #50.");
         var tyrObjects = GffObjectFrameCatalog.Read(objectArchive,
             tyrRegion.Entities.Select(entity => entity.ObjectResourceNumber), ObjectSourcePath);
+        var openingLeader = GffObjectFrameCatalog.Read(objectArchive,
+            [OriginalContent.OpeningLeaderObjectResourceNumber], ObjectSourcePath).Entries.Single();
+        if (openingLeader.ImageResourceNumber != OriginalContent.OpeningLeaderImageResourceNumber)
+            throw new InvalidDataException(
+                $"{ObjectSourcePath}:OJFF #{OriginalContent.OpeningLeaderObjectResourceNumber} " +
+                $"must reference BMP #{OriginalContent.OpeningLeaderImageResourceNumber}.");
+        var openingLeaderFrame = openingLeader.Image.Frames[0];
+        if (openingLeaderFrame.Width != OpeningTyrScene.LeaderWidth ||
+            openingLeaderFrame.Height != OpeningTyrScene.LeaderHeight)
+            throw new InvalidDataException(
+                $"The mapped opening leader frame must be {OpeningTyrScene.LeaderWidth}x" +
+                $"{OpeningTyrScene.LeaderHeight} pixels.");
         var titlePalette = IndexedPalette.Read(
             archive.GetResource(PaletteTag, TitlePaletteNumber).Span,
             $"{SourcePath}:{PaletteTag}#{TitlePaletteNumber}");
@@ -151,6 +163,12 @@ public static class StartupAssetExtractor
             OriginalContent.GameMenuUiCatalogAssetPath,
             [OriginalContent.GameMenuWindowResourceNumber], "game-menu", cancellationToken));
         files.Add(await WriteCharacterCatalogAsync(stagingRoot, characters, cancellationToken));
+        files.Add(await WriteImageAsync(stagingRoot, OriginalContent.OpeningLeaderImageAssetPath,
+            openingLeader.Image, tyrRegion.Palette,
+            $"OJFF #{OriginalContent.OpeningLeaderObjectResourceNumber} -> " +
+            $"BMP #{OriginalContent.OpeningLeaderImageResourceNumber} all frames + " +
+            $"{TyrRegionSourcePath}:PAL #{tyrRegion.ResourceNumber}", cancellationToken,
+            ObjectSourcePath));
         files.Add(await WriteRegionAsync(stagingRoot, tyrRegion, cancellationToken));
         files.Add(await WriteObjectCatalogAsync(stagingRoot, tyrObjects, cancellationToken));
 
@@ -357,7 +375,8 @@ public static class StartupAssetExtractor
         IndexedImage image,
         IndexedPalette palette,
         string sourceMapping,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken,
+        string sourcePath = SourcePath)
     {
         var target = Path.Combine(stagingRoot, relativePath.Replace('/', Path.DirectorySeparatorChar));
         Directory.CreateDirectory(Path.GetDirectoryName(target)!);
@@ -367,7 +386,7 @@ public static class StartupAssetExtractor
         PackedIndexedImage.Read(verify, relativePath);
         verify.Position = 0;
         var hash = Convert.ToHexStringLower(await SHA256.HashDataAsync(verify, cancellationToken));
-        return new(relativePath, verify.Length, hash, SourcePath,
+        return new(relativePath, verify.Length, hash, sourcePath,
             "application/vnd.dark-sun-wake-redux.indexed-image",
             $"{sourceMapping} -> DSIX v{PackedIndexedImage.FormatVersion}");
     }
