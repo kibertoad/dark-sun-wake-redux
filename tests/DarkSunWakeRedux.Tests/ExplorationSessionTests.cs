@@ -121,6 +121,50 @@ public sealed class ExplorationSessionTests
     }
 
     [Fact]
+    public void CentersCameraOnAWorldPointAndReturnsFromGameMenu()
+    {
+        var session = Session();
+        session.Execute(ExplorationCommand.Open(ExplorationView.GameMenu));
+
+        var transition = session.Execute(ExplorationCommand.CenterOn(1_192, 1_476));
+
+        Assert.True(transition.Applied);
+        Assert.Equal((1_032, 1_368, ExplorationView.World),
+            (transition.After.CameraX, transition.After.CameraY, transition.After.View));
+    }
+
+    [Fact]
+    public void CollapsePartyReturnsFromGameMenuInLeaderOnlyMode()
+    {
+        var session = Session();
+        session.Execute(new(ExplorationCommandKind.ShowExpandedParty));
+        session.Execute(ExplorationCommand.Open(ExplorationView.GameMenu));
+
+        var collapsed = session.Execute(
+            new(ExplorationCommandKind.ShowLeaderOnly));
+
+        Assert.True(collapsed.Applied);
+        Assert.Equal((PartyDisplayMode.LeaderOnly, ExplorationView.World),
+            (collapsed.After.PartyDisplay, collapsed.After.View));
+    }
+
+    [Theory]
+    [InlineData(0, 0, 0, 0)]
+    [InlineData(2_047, 1_567, 1_728, 1_368)]
+    public void ClampsCenteredCameraAtWorldEdges(
+        int worldX,
+        int worldY,
+        int expectedCameraX,
+        int expectedCameraY)
+    {
+        var centered = Session().Execute(
+            ExplorationCommand.CenterOn(worldX, worldY)).After;
+
+        Assert.Equal((expectedCameraX, expectedCameraY),
+            (centered.CameraX, centered.CameraY));
+    }
+
+    [Fact]
     public void WorldCommandsAreSuspendedWhileMenuIsOpen()
     {
         var session = Session();
@@ -129,6 +173,7 @@ public sealed class ExplorationSessionTests
         Assert.False(session.Execute(ExplorationCommand.Scroll(1, 0)).Applied);
         Assert.False(session.Execute(new(ExplorationCommandKind.CycleCursorMode)).Applied);
         Assert.False(session.Execute(new(ExplorationCommandKind.ShowExpandedParty)).Applied);
+        Assert.False(session.Execute(ExplorationCommand.CenterOn(100, 100)).Applied);
     }
 
     [Theory]
@@ -143,7 +188,11 @@ public sealed class ExplorationSessionTests
         new ExplorationCommand(ExplorationCommandKind.Escape,
             View: ExplorationView.GameMenu),
         new ExplorationCommand(ExplorationCommandKind.SelectCursorMode,
-            CursorMode: (ExplorationCursorMode)99)
+            CursorMode: (ExplorationCursorMode)99),
+        new ExplorationCommand(ExplorationCommandKind.CenterCamera,
+            TargetWorldX: 100),
+        ExplorationCommand.CenterOn(-1, 0),
+        ExplorationCommand.CenterOn(2_048, 0)
     };
 
     private static ExplorationSession Session() =>

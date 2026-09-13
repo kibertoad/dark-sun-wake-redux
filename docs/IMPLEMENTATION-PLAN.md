@@ -308,9 +308,11 @@ decoder rather than being guessed now.
   overhead-map, and game-menu views plus menu-return/exit semantics. Their
   original Game Menu base and 14 controls now extract and render through a
   DSUI-resolved semantic page object; evidenced destinations and mode/return
-  actions are clickable. Native panel-origin validation, five remaining menu
-  actions, other destination presentation, animation, and party/interface
-  overlays remain pending. `EXE-GOG-REGION-001` now establishes
+  actions are clickable. Center on Leader now targets the authoritative moving
+  sprite center through a deterministic clamped Core camera command, and
+  Collapse Party returns to leader-only play. Native panel/centering validation,
+  Exit, Load/Save, Preferences, other destination presentation, animation, and
+  party/interface overlays remain pending. `EXE-GOG-REGION-001` now establishes
   `GMAP` bit `0x40` as the terrain/occupancy block. A bounded terrain grid and
   reusable camera-to-grid Walk-click planner connect Tyr to deterministic A*.
   A clock-free Core movement session now covers atomic plan/replan, one-cell

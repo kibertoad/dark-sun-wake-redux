@@ -33,6 +33,7 @@ public enum ExplorationCommandKind
     ShowExpandedParty,
     OpenView,
     SelectCursorMode,
+    CenterCamera,
     Escape
 }
 
@@ -41,7 +42,9 @@ public sealed record ExplorationCommand(
     int DeltaX = 0,
     int DeltaY = 0,
     ExplorationView? View = null,
-    ExplorationCursorMode? CursorMode = null)
+    ExplorationCursorMode? CursorMode = null,
+    int? TargetWorldX = null,
+    int? TargetWorldY = null)
 {
     public static ExplorationCommand Scroll(int deltaX, int deltaY) =>
         new(ExplorationCommandKind.ScrollCamera, deltaX, deltaY);
@@ -51,6 +54,10 @@ public sealed record ExplorationCommand(
 
     public static ExplorationCommand SelectMode(ExplorationCursorMode mode) =>
         new(ExplorationCommandKind.SelectCursorMode, CursorMode: mode);
+
+    public static ExplorationCommand CenterOn(int worldX, int worldY) =>
+        new(ExplorationCommandKind.CenterCamera,
+            TargetWorldX: worldX, TargetWorldY: worldY);
 }
 
 public sealed record ExplorationSnapshot(
@@ -70,6 +77,10 @@ public sealed class ExplorationSession
 {
     private readonly int _maximumCameraX;
     private readonly int _maximumCameraY;
+    private readonly int _worldWidth;
+    private readonly int _worldHeight;
+    private readonly int _viewportWidth;
+    private readonly int _viewportHeight;
     private ExplorationSnapshot _snapshot;
 
     public ExplorationSession(
@@ -86,6 +97,10 @@ public sealed class ExplorationSession
                 "Exploration world and viewport dimensions must be positive and the viewport must fit.");
         _maximumCameraX = worldWidth - viewportWidth;
         _maximumCameraY = worldHeight - viewportHeight;
+        _worldWidth = worldWidth;
+        _worldHeight = worldHeight;
+        _viewportWidth = viewportWidth;
+        _viewportHeight = viewportHeight;
         if (cameraX < 0 || cameraY < 0 || cameraX > _maximumCameraX || cameraY > _maximumCameraY)
             throw new ArgumentOutOfRangeException(nameof(cameraX),
                 "The initial exploration camera must fit within the world.");
@@ -113,8 +128,13 @@ public sealed class ExplorationSession
                     _ => ExplorationCursorMode.Walk
                 }
             },
-            ExplorationCommandKind.ShowLeaderOnly when IsWorldActive => _snapshot with
-                { PartyDisplay = PartyDisplayMode.LeaderOnly },
+            ExplorationCommandKind.ShowLeaderOnly when
+                _snapshot.View is ExplorationView.World or ExplorationView.GameMenu =>
+                _snapshot with
+                {
+                    PartyDisplay = PartyDisplayMode.LeaderOnly,
+                    View = ExplorationView.World
+                },
             ExplorationCommandKind.ShowExpandedParty when IsWorldActive => _snapshot with
                 { PartyDisplay = PartyDisplayMode.Expanded },
             ExplorationCommandKind.OpenView => _snapshot with { View = command.View!.Value },
@@ -123,12 +143,16 @@ public sealed class ExplorationSession
                 CursorMode = command.CursorMode!.Value,
                 View = ExplorationView.World
             },
+            ExplorationCommandKind.CenterCamera when
+                _snapshot.View is ExplorationView.World or ExplorationView.GameMenu =>
+                CenterOn(command.TargetWorldX!.Value, command.TargetWorldY!.Value),
             ExplorationCommandKind.Escape => _snapshot with
             {
                 View = IsWorldActive ? ExplorationView.ExitRequested : ExplorationView.World
             },
             ExplorationCommandKind.ScrollCamera or ExplorationCommandKind.CycleCursorMode or
-                ExplorationCommandKind.ShowLeaderOnly or ExplorationCommandKind.ShowExpandedParty =>
+                ExplorationCommandKind.ShowLeaderOnly or ExplorationCommandKind.ShowExpandedParty or
+                ExplorationCommandKind.CenterCamera =>
                 _snapshot,
             _ => throw new ArgumentOutOfRangeException(nameof(command), command.Kind,
                 "Unknown exploration command kind.")
@@ -138,11 +162,12 @@ public sealed class ExplorationSession
 
     private bool IsWorldActive => _snapshot.View == ExplorationView.World;
 
-    private static void Validate(ExplorationCommand command)
+    private void Validate(ExplorationCommand command)
     {
         var hasMovement = command.DeltaX != 0 || command.DeltaY != 0;
+        var hasTarget = command.TargetWorldX is not null || command.TargetWorldY is not null;
         var payloadCount = (hasMovement ? 1 : 0) + (command.View is null ? 0 : 1) +
-            (command.CursorMode is null ? 0 : 1);
+            (command.CursorMode is null ? 0 : 1) + (hasTarget ? 1 : 0);
         var valid = command.Kind switch
         {
             ExplorationCommandKind.ScrollCamera => payloadCount == 1 && hasMovement,
@@ -150,6 +175,9 @@ public sealed class ExplorationSession
                 command.View is >= ExplorationView.ViewCharacter and <= ExplorationView.GameMenu,
             ExplorationCommandKind.SelectCursorMode => payloadCount == 1 &&
                 command.CursorMode is not null && Enum.IsDefined(command.CursorMode.Value),
+            ExplorationCommandKind.CenterCamera => payloadCount == 1 &&
+                command.TargetWorldX is >= 0 && command.TargetWorldX < _worldWidth &&
+                command.TargetWorldY is >= 0 && command.TargetWorldY < _worldHeight,
             ExplorationCommandKind.CycleCursorMode or ExplorationCommandKind.ShowLeaderOnly or
                 ExplorationCommandKind.ShowExpandedParty or ExplorationCommandKind.Escape =>
                 payloadCount == 0,
@@ -171,4 +199,11 @@ public sealed class ExplorationSession
             CameraY = Math.Clamp(_snapshot.CameraY + deltaY, 0, _maximumCameraY)
         };
     }
+
+    private ExplorationSnapshot CenterOn(int worldX, int worldY) => _snapshot with
+    {
+        CameraX = Math.Clamp(worldX - _viewportWidth / 2, 0, _maximumCameraX),
+        CameraY = Math.Clamp(worldY - _viewportHeight / 2, 0, _maximumCameraY),
+        View = ExplorationView.World
+    };
 }

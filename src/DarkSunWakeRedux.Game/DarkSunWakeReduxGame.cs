@@ -207,9 +207,9 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                         _exploration.Snapshot().View == ExplorationView.GameMenu &&
                         GameMenuInput.HitTest(
                             _gameMenuControls.Select(item => item.Control).ToArray(), x, y) is { } menuControl &&
-                        GameMenuInput.CommandFor(menuControl) is { } explorationCommand)
+                        CommandForGameMenuControl(menuControl) is { } explorationCommand)
                     {
-                        _exploration.Execute(explorationCommand);
+                        ExecuteExplorationCommand(explorationCommand);
                         explorationMenuConsumedLeftClick = true;
                     }
                 }
@@ -236,13 +236,12 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     {
         if (_tyrTerrain is null || _leaderController is null)
             throw new InvalidOperationException("The Tyr movement controller is not loaded.");
-        var before = _exploration.Snapshot();
         if (ExplorationHotkeys.Resolve(keyboard, _previousKeyboard) is { } hotkey)
-            _exploration.Execute(hotkey);
+            ExecuteExplorationCommand(hotkey);
         if (_exploration.Snapshot().View == ExplorationView.World &&
             mouse.RightButton == ButtonState.Pressed &&
             _previousMouse.RightButton == ButtonState.Released)
-            _exploration.Execute(new(ExplorationCommandKind.CycleCursorMode));
+            ExecuteExplorationCommand(new(ExplorationCommandKind.CycleCursorMode));
 
         var transform = new LogicalCanvasTransform(
             GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
@@ -255,14 +254,21 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         if (_exploration.Snapshot().View == ExplorationView.World &&
             transform.TryToLogical(mouse.X, mouse.Y, out var x, out var y) &&
             ExplorationInput.ScrollAtEdge(x, y) is { } scroll)
-            _exploration.Execute(scroll);
+            ExecuteExplorationCommand(scroll);
         if (_exploration.Snapshot().View == ExplorationView.World)
             _leaderController.Advance(elapsed);
         var after = _exploration.Snapshot();
         if (after.View == ExplorationView.ExitRequested)
             Exit();
-        if ((before.CameraX, before.CameraY) != (after.CameraX, after.CameraY))
-            RefreshExplorationScene(after);
+    }
+
+    private ExplorationTransition ExecuteExplorationCommand(ExplorationCommand command)
+    {
+        var transition = _exploration.Execute(command);
+        if ((transition.Before.CameraX, transition.Before.CameraY) !=
+            (transition.After.CameraX, transition.After.CameraY))
+            RefreshExplorationScene(transition.After);
+        return transition;
     }
 
     private void RefreshExplorationScene(ExplorationSnapshot snapshot)
@@ -273,6 +279,22 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             snapshot.CameraX, snapshot.CameraY, OpeningTyrScene.Width, OpeningTyrScene.Height);
         _explorationSceneTexture.SetData(CreateColors(_tyrRegion.Palette,
             viewport.Pixels, viewport.Alpha));
+    }
+
+    private (int X, int Y) LeaderWorldCenter()
+    {
+        if (_leaderController is null)
+            throw new InvalidOperationException("The leader movement controller is not loaded.");
+        return _leaderPresentation.WorldCenterAtAnchor(
+            _leaderController.Snapshot().Position, GffRegion.TilePixelSize);
+    }
+
+    private ExplorationCommand? CommandForGameMenuControl(GameMenuControl control)
+    {
+        if (control.Action != GameMenuAction.CenterOnLeader)
+            return GameMenuInput.CommandFor(control);
+        var center = LeaderWorldCenter();
+        return GameMenuInput.CommandFor(control, center.X, center.Y);
     }
 
     protected override void Draw(GameTime gameTime)

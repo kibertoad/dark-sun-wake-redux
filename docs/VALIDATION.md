@@ -43,6 +43,11 @@ prove fixed-step accumulation is independent of frame chunking, cap catch-up
 work without discarding backlog, reset partial cadence on replanning, require
 a placed actor, interrupt on a new blocker in shared occupancy, and drive the
 camera-relative sprite from the same anchor.
+Exploration command tests also center on arbitrary world points with both-edge
+clamping, reject partial/out-of-world targets, suspend centering outside world
+and Game Menu views, and restore leader-only display through Collapse Party.
+Game Menu routing tests supply the moving actor's visual center only to the
+context-dependent Center action and keep the three unsupported actions inert.
 Movement-session tests prove deterministic command/event traces, exactly one
 semantic step per advance, atomic replanning failure, cancellation/completion,
 snapshot isolation, and interruption when a step or diagonal side becomes

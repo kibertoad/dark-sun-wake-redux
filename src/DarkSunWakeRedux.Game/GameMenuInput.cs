@@ -81,12 +81,22 @@ public static class GameMenuInput
         GameMenuAction.CurrentSpellEffects =>
             ExplorationCommand.Open(ExplorationView.CurrentSpellEffects),
         GameMenuAction.OverheadMap => ExplorationCommand.Open(ExplorationView.OverheadMap),
+        GameMenuAction.CollapseParty =>
+            new(ExplorationCommandKind.ShowLeaderOnly),
         GameMenuAction.Walk => ExplorationCommand.SelectMode(ExplorationCursorMode.Walk),
         GameMenuAction.Look => ExplorationCommand.SelectMode(ExplorationCursorMode.Look),
         GameMenuAction.Attack => ExplorationCommand.SelectMode(ExplorationCursorMode.Attack),
         GameMenuAction.ReturnToGame => new(ExplorationCommandKind.Escape),
         _ => null
     };
+
+    public static ExplorationCommand? CommandFor(
+        GameMenuControl control,
+        int leaderWorldX,
+        int leaderWorldY) =>
+        control.Action == GameMenuAction.CenterOnLeader
+            ? ExplorationCommand.CenterOn(leaderWorldX, leaderWorldY)
+            : CommandFor(control);
 
     private static GameMenuAction Action(string name) => name switch
     {

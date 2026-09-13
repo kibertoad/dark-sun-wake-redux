@@ -23,4 +23,8 @@ public sealed record ExplorationActorPresentation(
         new(checked(anchor.X * cellPixelSize + AnchorPixelOffsetX - cameraX),
             checked(anchor.Y * cellPixelSize + AnchorPixelOffsetY - cameraY),
             Width, Height);
+
+    public (int X, int Y) WorldCenterAtAnchor(GridPoint anchor, int cellPixelSize) =>
+        (checked(anchor.X * cellPixelSize + AnchorPixelOffsetX + Width / 2),
+            checked(anchor.Y * cellPixelSize + AnchorPixelOffsetY + Height / 2));
 }

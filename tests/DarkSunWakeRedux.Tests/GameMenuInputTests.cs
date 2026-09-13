@@ -81,12 +81,37 @@ public sealed class GameMenuInputTests
         {
             GameMenuAction.ExitToDos,
             GameMenuAction.LoadSave,
-            GameMenuAction.Preferences,
-            GameMenuAction.CenterOnLeader,
-            GameMenuAction.CollapseParty
+            GameMenuAction.Preferences
         };
         Assert.All(controls.Where(item => pending.Contains(item.Action)),
             item => Assert.Null(GameMenuInput.CommandFor(item)));
+    }
+
+    [Fact]
+    public void RoutesCollapsePartyToLeaderOnlyDisplay()
+    {
+        var control = Assert.Single(GameMenuInput.Resolve(Catalog()),
+            item => item.Action == GameMenuAction.CollapseParty);
+
+        var command = Assert.IsType<ExplorationCommand>(
+            GameMenuInput.CommandFor(control));
+
+        Assert.Equal(ExplorationCommandKind.ShowLeaderOnly, command.Kind);
+    }
+
+    [Fact]
+    public void RoutesCenterOnLeaderWithRuntimeActorContext()
+    {
+        var control = Assert.Single(GameMenuInput.Resolve(Catalog()),
+            item => item.Action == GameMenuAction.CenterOnLeader);
+
+        Assert.Null(GameMenuInput.CommandFor(control));
+        var command = Assert.IsType<ExplorationCommand>(
+            GameMenuInput.CommandFor(control, 1_192, 1_476));
+
+        Assert.Equal(ExplorationCommandKind.CenterCamera, command.Kind);
+        Assert.Equal((1_192, 1_476),
+            (command.TargetWorldX, command.TargetWorldY));
     }
 
     [Fact]

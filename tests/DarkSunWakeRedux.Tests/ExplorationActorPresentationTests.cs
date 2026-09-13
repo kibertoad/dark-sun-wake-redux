@@ -35,4 +35,13 @@ public sealed class ExplorationActorPresentationTests
         Assert.Equal((74, 91),
             (OpeningTyrScene.LeaderAnchorCellX, OpeningTyrScene.LeaderAnchorCellY));
     }
+
+    [Fact]
+    public void ResolvesWorldCenterFromTheSameAnchorGeometry()
+    {
+        var actor = new ExplorationActorPresentation(17, 35, 0, 3);
+
+        Assert.Equal((1_192, 1_476),
+            actor.WorldCenterAtAnchor(new(74, 91), GffRegion.TilePixelSize));
+    }
 }

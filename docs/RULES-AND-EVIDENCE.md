@@ -487,19 +487,23 @@
   semantics from the manual/image correlation. The source graph contains no
   canvas origin. Centering the 210x116 panel on the 320x200 canvas at (55,42) is
   a provisional presentation choice pending controlled native measurement.
-- **Implementation:** asset-pack format 17 adds the base, all 14 button images,
+- **Implementation:** asset-pack format 18 includes the base, all 14 button images,
   and `ui/game-menu.dsui`. `GameMenuInput` resolves the DSUI graph into semantic
   absolute hit rectangles; MonoGame draws first frames over the Tyr viewport.
   Character, inventory, cast/psionic, effects, overhead-map, Walk/Look/Attack,
-  and Return route to existing deterministic Core commands. Exit, Load/Save,
-  Preferences, Center, and Collapse remain visibly inert until their destination
-  or missing world-state behavior is implemented.
+  and Return route to existing deterministic Core commands. Center on Leader
+  supplies the moving sprite's world center to a bounded Core camera command;
+  Collapse Party restores leader-only display and both return to play. Exit,
+  Load/Save, and Preferences remain visibly inert until their destination or
+  missing world-state behavior is implemented.
 - **Tests:** exact unique mapping, synthetic transactional extraction and
   provenance, complete graph resolution, image/frame contracts, absolute and
   exclusive hit rectangles, semantic routing, explicitly inert actions,
+  actor-relative center routing, camera clamping/menu return, collapse state,
   malformed image references, pack verification, and no-window content smoke.
 - **Uncertainty:** Native panel origin, frame-state selection, hover/press timing,
-  description-bar text, five pending actions, and destination-screen presentation.
+  description-bar text, three pending actions, exact native centering policy,
+  and destination-screen presentation.
 
 ## Initial rules
 
@@ -548,8 +552,9 @@
   scroll deltas; every documented view and alias, ordered rising-edge hotkeys,
   menu escape/exit behavior, suspended world input, and explicit mode selection.
 - **Uncertainty:** Scroll timing, cursor imagery, party sprite composition,
-  Game Menu frame states/origin, destination-menu presentation, and
-  center-on-leader behavior remain open.
+  Game Menu frame states/origin, destination-menu presentation, and exact native
+  center-on-leader pixel policy remain open; deterministic visual-center
+  targeting is the current implementation policy.
 
 ### COMPAT-PATH-001 - Modern deterministic pathfinding
 
