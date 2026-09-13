@@ -283,12 +283,14 @@
   rejection diagnostics and integration with the existing `Party` validation.
   Occupied-slot EDIT replaces the selected member atomically; DROP transfers
   the member to bounded recreation-native character storage and ADD can restore
-  it. DUAL remains unavailable until level/advancement state is implemented.
+  it. DUAL remains unavailable in `StartFlow` until character progression is
+  carried by party members; the separate evidenced progression rule is
+  implemented by `RULE-PARTY-004`.
 - **Tests:** every start choice, NEW/ADD/CANCEL routing, valid and invalid
   completion, occupied-slot edit/drop/add, atomic replacement, persisted edit
   target, empty/nonempty party start, cancellation, and wrong-screen rejection.
 - **Uncertainty:** Pregenerated member records, saved/created-character formats,
-  DUAL state, the exact early-start control, and shipped cancellation edge cases
+  DUAL menu integration, the exact early-start control, and shipped cancellation edge cases
   remain unimplemented until their data and runtime behavior are observed.
 
 ### RULE-PARTY-002 - Character creation invariants
@@ -343,6 +345,29 @@
 - **Uncertainty:** Shipped defaults, control-state frames, click transitions,
   and whether any exceptional class combination changes these rules need
   OBS-GOG evidence.
+
+### RULE-PARTY-004 - Human dual-class progression
+
+- **Behavior:** Only humans may become dual-classed. The current class must be
+  at least level three before changing; the new class begins at level one and
+  the old class never advances again. Former-class abilities remain unavailable
+  until the new class level exceeds the former level. A human may repeat the
+  process once, for at most three sequential careers.
+- **Evidence:** MANUAL-1994, party-modification instructions on pages 9-10 and
+  "Character Classes" on page 19.
+- **Confidence:** high for documented intent; XP thresholds, shipped DUAL
+  availability, class-choice filtering, and multi-career edge behavior remain
+  unobserved.
+- **Implementation:** immutable `DualClassProgression` records ordered
+  class/level careers, starts accepted new careers at level one, advances only
+  the current career, reports stable rejection diagnostics, and evaluates the
+  documented strict level-exceeds boundary for former benefits.
+- **Tests:** human-only and level-three gates, duplicate-class and three-career
+  limits, transition immutability, monotonic current-level advancement, and
+  equal/exceeded former-level boundaries.
+- **Uncertainty:** Integrating progression into the runtime character/save
+  model, initial shipped class levels/experience, XP thresholds, and exact DUAL
+  UI choices require later Slice 2/5 data and observations.
 
 ### RULE-COMBAT-001 - Party expansion on combat entry
 

@@ -216,7 +216,10 @@ decoder rather than being guessed now.
   makes allowed random generation repeatable. The manual-documented discipline
   and sphere cardinality is implemented; shipped selection behavior remains to
   be observed. Pre-adventure occupied-slot EDIT and DROP-to-ADD storage are
-  implemented; DUAL awaits evidenced level and advancement state.
+  implemented. The manual-evidenced human dual-class level gates, sequential
+  career limit, and former-benefit boundary are deterministic Core rules; DUAL
+  menu/save integration awaits the runtime character progression model and
+  shipped initial-level evidence.
 - **Acceptance - presentation.** Start/party screens preserve measured logical
   coordinates, aspect treatment, palette semantics, focus order, mouse hit
   regions, and Escape behavior; scaling cannot change rules or hit testing.
