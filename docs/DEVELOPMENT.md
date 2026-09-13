@@ -46,6 +46,7 @@ dotnet run --project tools/DarkSunWakeRedux.Inspect -- image-catalog "C:\path\to
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- ui-catalog "C:\path\to\RESOURCE.GFF"
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- font-catalog "C:\path\to\RESOURCE.GFF"
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- text-catalog "C:\path\to\RESOURCE.GFF"
+dotnet run --project tools/DarkSunWakeRedux.Inspect -- character-catalog "C:\path\to\CHARSAVE.GFF"
 ```
 
 The first command emits path, size, and SHA-256 inventory. The second emits only

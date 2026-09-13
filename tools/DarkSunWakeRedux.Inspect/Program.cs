@@ -8,19 +8,11 @@ if (args.Length == 2 && args[0].Equals("character-catalog", StringComparison.Ord
     {
         await using var stream = File.OpenRead(args[1]);
         var archive = GffArchive.Read(stream, args[1]);
-        var characters = archive.Resources.Where(resource => resource.Tag == "CHAR")
-            .OrderBy(resource => resource.Number)
-            .Select(resource =>
-            {
-                var identity = GffCharacterIdentity.Read(
-                    archive.GetResource(resource.Tag, resource.Number),
-                    $"{args[1]}:{resource.Tag}#{resource.Number}");
-                return new { resource.Number, resource.Size, identity.Name };
-            }).ToArray();
+        var characters = GffCharacterCatalog.Read(archive, args[1]);
         Console.WriteLine(JsonSerializer.Serialize(new
         {
             path = Path.GetFullPath(args[1]),
-            characterCount = characters.Length,
+            characterCount = characters.Count,
             characters
         }, new JsonSerializerOptions { WriteIndented = true }));
         return 0;

@@ -285,6 +285,35 @@
 - **Tests:** minimum/maximum resource bounds, first-NUL behavior, maximum name
   length, empty name, missing terminator, and non-printable byte rejection.
 
+### DATA-GOG-CHAR-002 - Raw PSIN companion mask
+
+- **Question:** Does each original character record have a bounded same-number
+  `PSIN` companion independently of the variable `CHAR` body?
+- **Method:** Enumerate `PSIN` and `CHAR` resources in the fingerprinted owned
+  `CHARSAVE.GFF`, compare identities and lengths, and inspect the complete
+  one-byte value domain without assigning names to bits.
+- **Finding:** Every one of the 19 `CHAR` identities has exactly one same-number
+  `PSIN` companion and there are no unmatched companions. Every `PSIN` payload
+  is exactly one byte; the owned values are 1, 2, 4, 5, 6, and 7, all nonzero
+  subsets of the low three bits. Value 3 is the only in-envelope combination
+  not present in this archive.
+- **Corroboration:** MANUAL-1994 documents three psionic disciplines, exactly
+  one selection for created non-psionicists, and all three for created
+  psionicists. That supports investigating a three-bit relationship, but owned
+  values 5 and 6 show that the complete archive cannot be interpreted as only
+  those creation-screen cardinalities; NPC data or different semantics remain
+  possible.
+- **Confidence:** high for one-to-one resource correlation, one-byte size, and
+  the nonzero three-bit structural envelope; unknown for individual or combined
+  bit meanings and whether other supported editions use the same representation.
+- **Implementation:** bounded `GffPsionicMask` raw-mask parsing and a
+  shared `GffCharacterCatalog` that requires exact `CHAR`/`PSIN` correlation;
+  the metadata-only Inspect command reports the catalog's raw mask. Core
+  discipline names are deliberately not inferred.
+- **Tests:** all observed values, the unobserved in-envelope combination, zero,
+  unknown bits, wrong lengths, deterministic identity ordering, and missing or
+  orphan companion rejection in synthetic GFF archives.
+
 ### RULE-START-FLOW-001 - Start and party-creation routing
 
 - **Behavior:** The Start Window offers START GAME, CREATE CHARACTERS, LOAD

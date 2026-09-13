@@ -96,6 +96,7 @@ Adapt the reusable headless scripts and methodology from
 `C:\sources\rechaos-overlords\tools\ghidra` or their shared upstream source;
 do not copy game-specific findings. Preferred scripts are deliberately bounded:
 
+- explicit byte-pattern searches capped to a reviewable result count;
 - function summaries for a small explicit address list;
 - references to explicit addresses or symbols;
 - no more than 256 data bytes from one explicit address;
