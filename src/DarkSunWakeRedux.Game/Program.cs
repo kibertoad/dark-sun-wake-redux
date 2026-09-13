@@ -118,6 +118,14 @@ try
             var objectNumbers = objects.Definitions.Select(item => item.ResourceNumber).ToHashSet();
             if (region.Entities.Any(entity => !objectNumbers.Contains(entity.ObjectResourceNumber)))
                 throw new InvalidDataException("The Tyr region references a missing object definition.");
+            var topLeft = RegionSceneRasterizer.Rasterize(region, objects, 0, 0,
+                LogicalCanvasTransform.LogicalWidth, LogicalCanvasTransform.LogicalHeight);
+            var bottomRight = RegionSceneRasterizer.Rasterize(region, objects,
+                RegionSceneRasterizer.WorldWidth - LogicalCanvasTransform.LogicalWidth,
+                RegionSceneRasterizer.WorldHeight - LogicalCanvasTransform.LogicalHeight,
+                LogicalCanvasTransform.LogicalWidth, LogicalCanvasTransform.LogicalHeight);
+            if (topLeft.Pixels.Length != 64_000 || bottomRight.Pixels.Length != 64_000)
+                throw new InvalidDataException("The Tyr scene compositor returned incomplete viewports.");
             var uiPath = Path.Combine(assetPack,
                 OriginalContent.StartFlowUiCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using var uiStream = File.OpenRead(uiPath);

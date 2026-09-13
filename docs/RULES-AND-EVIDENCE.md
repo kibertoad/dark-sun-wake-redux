@@ -74,8 +74,9 @@
   identifies resource #50 as `Tyr`.
 - **Confidence:** verified for sizes, identities, decoding, and reference
   integrity in GOG-1432903719; medium for coordinate/vertical-field names from
-  the corroborating research; unknown for geometry bits, entity flags, map
-  collision semantics, and the opening spawn.
+  the corroborating research; unknown for geometry bits, entity flags other
+  than the separately corroborated mirror bit, map collision semantics, and the
+  opening spawn.
 - **Implementation:** `DarkSunWakeRedux.Resources.GffRegion`, canonical bounded
   `PackedRegion` DSRG v1, the read-only `region-catalog` inspection command, and
   transactional extraction of region #50 to `regions/tyr.dsrg`. The pack keeps
@@ -116,6 +117,34 @@
   DSOB round-trip/extraction, and malformed length, ordering, reserved word,
   disconnected reference, frame, alpha, missing definition/reference, empty
   image, and trailing-data rejection; owned pack/content-smoke validation.
+
+### DATA-GOG-SCENE-001 - Static region composition
+
+- **Question:** How do the bounded terrain tiles and first object frames compose
+  into region pixel coordinates without inferring gameplay behavior?
+- **Method:** Compare the region renderer at DSUN-MUSIC commit
+  `79b692770caebda3de685feaf42906aae31572d1`, including its note that the
+  object procedure was informed by the original Shattered Lands executable,
+  against the independently decoded DSRG/DSOB structures. Implement the same
+  transform with strict clipping and synthetic pixel-level tests. Do not use it
+  to infer the opening camera or animation cadence.
+- **Finding:** Terrain `MAP ` entry `(x,y)` places its 16x16 tile at
+  `(x*16,y*16)`. After terrain, ETAB entries compose in stored order using the
+  first referenced BMP frame. The frame's top-left is
+  `(entityX-objectXOffset, entityY-objectYOffset-verticalOffset)`, and ETAB flag
+  bit `0x80` mirrors it horizontally. Tyr's GMAP low five bits are zero, so the
+  corroborating renderer's wall-resource branch does not add wall images there.
+- **Confidence:** high for tile placement from the format and all owned map
+  dimensions; medium for object placement, first-frame choice, ETAB order, and
+  mirror bit from community executable-informed research; visual parity with
+  the supported owned build remains unvalidated.
+- **Implementation:** `RegionSceneRasterizer` produces a bounded indexed/alpha
+  viewport at an explicit caller-supplied world origin. It does not select a
+  camera, mutate state, interpret collision, or advance animation.
+- **Tests:** synthetic cross-tile cropping, offsets, vertical adjustment,
+  horizontal mirroring, transparent pixels, ETAB overdraw order, edge clipping,
+  viewport bounds, malformed region data, and disconnected object references;
+  owned no-window content smoke rasterizes both opposite map corners.
 
 ### DATA-GOG-TITLE-001 - Title image resource mapping
 

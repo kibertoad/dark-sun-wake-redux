@@ -91,8 +91,9 @@ collision and wall-bit meanings have not yet been established for this build.
 structural fields are signed 16-bit X and Y, a signed vertical-offset byte, an
 uninterpreted flags byte, and a signed 16-bit object number. The absolute object
 number of all 13,559 owned records resolves to an `OJFF` resource in the
-fingerprinted `OBJEX.GFF`. The sign and flags are retained; no mirroring,
-interaction, ordering, or collision behavior is inferred from them yet.
+fingerprinted `OBJEX.GFF`. The sign and flags are retained. `DATA-GOG-SCENE-001`
+corroborates flag bit `0x80` as horizontal mirroring; the object-number sign and
+all interaction and collision behavior remain uninterpreted.
 
 The reader caps the region name at 64 bytes and the entity table at 16,384
 records, requires the exact map dimensions and 16x16 tile frames, and rejects
@@ -123,6 +124,25 @@ frames, no larger than 64x64. The 287 definitions referenced by Tyr resolve to
 bounded requested subset, caches shared images, preserves the four unknown
 words raw, and assigns no animation, draw-order, anchor, collision, or
 interaction meaning.
+
+## Static region composition
+
+**Evidence:** `DATA-GOG-SCENE-001`, corroborated by `DSUN-MUSIC`.
+
+The static indexed scene places each terrain tile at its row-major MAP coordinate
+times 16, then overlays ETAB objects in stored order. Each object uses the first
+frame of its DSOB image at `entityX - objectXOffset` and
+`entityY - objectYOffset - entityVerticalOffset`; entity flag bit `0x80` mirrors
+the frame horizontally. Transparent source pixels leave the prior terrain or
+object pixel unchanged, and drawing clips to the requested viewport.
+
+`RegionSceneRasterizer` requires an explicit viewport origin within the
+2048x1568 region and caps output at 4096 pixels per dimension and 16,777,216
+pixels. This is a static structural composition only. It does not select
+the opening camera, advance multi-frame images, interpret other entity flags,
+or assign collision, depth, or interaction semantics. Tyr's observed GMAP has
+zero in its low five bits for every cell, so no wall resource participates in
+this region under the corroborating wall-number rule.
 
 ## Indexed images and palettes
 

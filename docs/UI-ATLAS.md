@@ -31,7 +31,8 @@ their screens enter a slice.
 
 The title and mapped start/party windows establish a recurring 320x200
 logical canvas, but whether all screens share it and how DOS pixel aspect should
-be reproduced remain open. Palette behavior, viewport, panel bounds,
+be reproduced remain open. Static region tile/object composition is bounded by
+`DATA-GOG-SCENE-001`; opening camera, palette behavior, viewport panel bounds,
 cursor hotspot, layer/draw order, frame counts, animation cadence, dialogue hit
 rectangles, text palette/spacing/layout, and scaling tolerances are all
 `unknown`. `DATA-GOG-FONT-001` maps one glyph bitmap structure and verifies that

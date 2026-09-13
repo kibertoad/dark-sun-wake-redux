@@ -29,6 +29,10 @@ Font tests compose variable-width indexed glyph runs and multiline blocks,
 preserve palette-index bytes, zero-fill explicit glyph/line spacing, retain
 blank lines, accept zero-width glyphs, and reject malformed fonts, negative
 spacing, and oversized output.
+Region-scene tests prove row-major tile placement, clipped cross-tile viewports,
+the corroborated OJFF/ETAB offset transform and mirror bit, first-frame selection,
+transparent-pixel preservation, ordered object overdraw, and rejection of
+invalid viewport, tile, frame, and cross-catalog references.
 
 The smoke modes have distinct purposes:
 
@@ -53,7 +57,9 @@ transactionally refreshed and verifies as the exact 43-asset manifest including 
 party-overview layers, the ADD-list base and control family, all seven windows, 56 controls, and
 19 bounded character metadata entries, plus the bounded Tyr region with 94 tiles
 and 867 entity records and its 287 definitions, 246 images, and 477 frames. The
-runtime content-smoke path opens that pack successfully.
+runtime content-smoke path opens that pack and rasterizes 320x200 viewports at
+both opposite region corners successfully; these diagnostic origins are not a
+claim about the original opening camera.
 Local-only decoded previews established the title
 and start-window mappings recorded as `DATA-GOG-TITLE-001`,
 `DATA-GOG-UI-001`, `DATA-GOG-UI-006`, `DATA-GOG-UI-007`, and
