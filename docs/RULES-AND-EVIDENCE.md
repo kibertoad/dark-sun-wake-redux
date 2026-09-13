@@ -178,9 +178,12 @@
 - **Finding:** Offset 58 is zero in 20 windows, `BMP` #10002 in two, and `BMP`
   #19004 in all six #19500-#19505 windows. #19004 is one 96x9 UI bar/fill frame.
 - **Confidence:** verified for the field, references, dimensions, and local
-  appearance; medium for palette #11011; unknown for tiling and draw role.
+  appearance; medium for palette #11011. `EXE-GOG-UI-002` establishes that the
+  generic WIND lookup/register/redraw/activate path does not consume this field;
+  an app-specific consumer and its draw role remain unknown.
 - **Implementation:** `UiWindowResource.ImageResourceNumber`; #19004 is
-  extracted as DSIX without assigning presentation semantics.
+  extracted as DSIX without assigning presentation semantics or treating the
+  field as an automatic tile/stretch instruction.
 - **Tests:** synthetic field parsing, whole-catalog reference validation,
   exact frame contract, extraction provenance, and content smoke.
 

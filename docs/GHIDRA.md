@@ -146,6 +146,33 @@ proof by itself. Never redirect broad output into the repository.
 - **Matching rule:** handlers use nonzero bit intersection, implemented
   independently as `UiEventMasks.Matches`. Numeric bit meanings remain unnamed.
 
+### EXE-GOG-UI-002 - WIND image field is not a generic background command
+
+- **Question:** Does the nonzero resource number at WIND payload offset 58
+  (`0x3a`) tell the generic window engine to tile or stretch that image as the
+  window background?
+- **Target:** GOG-1432903719 `DSUN.EXE`, 634,416 bytes, SHA-256
+  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Bounded finding:** the resource resolver's exact `WIND` branch at
+  `39d1:04bc` searches a dedicated linked registry by identity at structure
+  offset 8 and link at `0xee`. Complete bounded inspection of registration
+  `3a8e:02b3`, redraw `3a8e:0003`, and activation `3a8e:060d` found no read of
+  offset `0x3a`. Registration resolves each child by its tag and identity;
+  redraw restores/clips registered rectangles; activation invokes an optional
+  callback and then dispatches the resolved children.
+- **Interpretation:** the generic WIND path does not establish `BMP` #19004 as
+  an automatic tiled, stretched, or full-window background. The field may be
+  consumed by screen-specific code or may serve another role. Both remain open.
+- **Corroboration:** all six start-flow WIND records carry #19004 although the
+  observed start window visibly uses title `BMP` #11011 beneath its buttons;
+  #19004 itself is only 96x9.
+- **Confidence:** high for absence from the inspected generic path; unknown for
+  the field's actual presentation role.
+- **Implementation consequence:** preserve the resource identity in DSUI and
+  the extracted DSIX asset, but do not tile, stretch, or draw it until an
+  app-specific consumer or controlled observation establishes the operation.
+
 For each useful finding, add a concise entry here or in the relevant
 `docs/RULES-AND-EVIDENCE.md` / `docs/ORIGINAL-FORMATS.md` section with:
 

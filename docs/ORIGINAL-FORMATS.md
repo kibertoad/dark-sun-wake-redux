@@ -144,8 +144,11 @@ sequence of complete 30-byte child references. Each interpreted child record
 contains a printable four-byte tag at relative offset 4, its resource number at
 8, and signed 16-bit logical x/y coordinates at 12/14. Window width and height
 occur at fixed offsets 190/192. Offset 58 is a possibly-zero `BMP` resource
-reference; every nonzero value in the owned archive resolves. Other fixed
-fields remain unknown.
+reference; every nonzero value in the owned archive resolves. Targeted
+executable analysis (`EXE-GOG-UI-002`) found no read of this field in the
+complete generic WIND lookup, registration, redraw, or activation paths, so it
+must not be interpreted as an automatic background draw command. Other fixed
+fields and any app-specific consumer remain unknown.
 
 A `BUTN` payload has the same tag/size/resource prefix and a fixed 110-byte
 known portion. Width and height occur at offsets 40/42, the resource number is
@@ -217,12 +220,14 @@ height, applies the original FONT dimension and aggregate-pixel limits, caps the
 file at 8 MiB, and rejects truncation and trailing bytes. Palette selection and
 text layout deliberately remain outside this asset until separately evidenced.
 
-`IndexedGlyphRunRasterizer` is a presentation-independent derived operation over
-DSFT. It accepts explicit glyph indices and caller-selected nonnegative spacing,
-copies the original palette-index pixels into a single shared-height row, and
-caps output at 4,096 pixels wide. Zero-width glyphs remain valid. It deliberately
-does not consult the uninterpreted character map or assign transparent/color
-semantics, so it introduces no claim about source string encoding or appearance.
+`IndexedGlyphRunRasterizer` and `IndexedGlyphBlockRasterizer` are
+presentation-independent derived operations over DSFT. They accept explicit
+glyph indices and caller-selected nonnegative glyph/line spacing, copy the
+original palette-index pixels into a single row or ordered multiline block, and
+cap output dimensions and area. Zero-width glyphs and blank lines remain valid.
+They deliberately do not consult the uninterpreted character map or assign
+transparent/color semantics, so they introduce no claim about source string
+encoding or authentic appearance.
 
 ## Derived DSTX text-catalog asset
 
