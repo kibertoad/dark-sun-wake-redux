@@ -52,18 +52,11 @@ public static class StartupAssetExtractor
             $"{TitleImageTag}#{TitleImageNumber} frame 0 + {PaletteTag}#{TitlePaletteNumber}", cancellationToken));
 
         foreach (var layer in OriginalContent.StartMenuLayers)
-        {
-            var image = IndexedImage.Read(
-                archive.GetResource(TitleImageTag, layer.ImageResourceNumber),
-                $"{SourcePath}:{TitleImageTag}#{layer.ImageResourceNumber}");
-            if (image.Frames.Count != 1 || image.Frames[0].Width != layer.FrameWidth ||
-                image.Frames[0].Height != layer.FrameHeight)
-                throw new InvalidDataException(
-                    $"The mapped start-menu {layer.Name} image has unexpected frame geometry.");
-            files.Add(await WriteImageAsync(stagingRoot, layer.Path, image, interfacePalette,
-                $"{TitleImageTag}#{layer.ImageResourceNumber} frame 0 + " +
-                $"{PaletteTag}#{InterfacePaletteNumber}", cancellationToken));
-        }
+            files.Add(await ExtractLayerAsync(archive, interfacePalette, stagingRoot,
+                layer, "start-menu", cancellationToken));
+        foreach (var layer in OriginalContent.PartyOverviewLayers)
+            files.Add(await ExtractLayerAsync(archive, interfacePalette, stagingRoot,
+                layer, "party-overview", cancellationToken));
 
         foreach (var mapping in OriginalContent.StartMenuButtons)
         {
@@ -123,6 +116,26 @@ public static class StartupAssetExtractor
             edition.Fingerprint(),
             extractorVersion,
             files);
+    }
+
+    private static async Task<AssetPackFile> ExtractLayerAsync(
+        GffArchive archive,
+        IndexedPalette palette,
+        string stagingRoot,
+        UiLayerAsset layer,
+        string family,
+        CancellationToken cancellationToken)
+    {
+        var image = IndexedImage.Read(
+            archive.GetResource(TitleImageTag, layer.ImageResourceNumber),
+            $"{SourcePath}:{TitleImageTag}#{layer.ImageResourceNumber}");
+        if (image.Frames.Count != 1 || image.Frames[0].Width != layer.FrameWidth ||
+            image.Frames[0].Height != layer.FrameHeight)
+            throw new InvalidDataException(
+                $"The mapped {family} {layer.Name} image has unexpected frame geometry.");
+        return await WriteImageAsync(stagingRoot, layer.Path, image, palette,
+            $"{TitleImageTag}#{layer.ImageResourceNumber} frame 0 + " +
+            $"{PaletteTag}#{InterfacePaletteNumber}", cancellationToken);
     }
 
     private static async Task<AssetPackFile> WriteCharacterCatalogAsync(

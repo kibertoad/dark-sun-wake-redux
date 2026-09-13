@@ -249,13 +249,36 @@
   medium for placement and sequencing because the corroborating playthrough's
   precise source revision is not identified and its video is compressed.
 - **Implementation:** the two layers are transactionally extracted as DSIX in
-  asset-pack format 10. The runtime draws them in recorded order, then draws the
+  the current asset pack. The runtime draws them in recorded order, then draws the
   DSUI-resolved controls, through the shared point-sampled logical transform.
 - **Tests:** exact mapping/order/geometry, distinct synthetic title/interface
   palettes, extraction provenance, exact inventory, pack verification, and
   content smoke.
 - **Uncertainty:** Exact title-to-start timing, animation state, pixel aspect,
   audio, and frame-state transitions still require controlled observation.
+
+### DATA-GOG-UI-007 - Party-overview shell composition
+
+- **Question:** Which original images compose the first screen reached by CREATE
+  CHARACTERS before individual character generation begins?
+- **Method:** Decode geometry-matched `BMP ` resources from the fingerprinted
+  owned archive with interface palette #1000, layer transparent candidates, and
+  correlate their structural edges against `PLAYTHROUGH-VIDEO-001` around
+  2:40-2:50.
+- **Finding:** `BMP ` #11000 is the complete 320x200 party-overview base,
+  including the outer shell, four character-slot panels, status regions, and
+  bottom bar. `BMP ` #20079 overlays its 210x23 VIEW CHARACTER title at (55,0).
+  This order reproduces the public frame without stretching source images.
+- **Confidence:** high for owned image identities, dimensions, draw order, and
+  palette; medium for coordinates because the public capture is compressed and
+  its precise source revision is not identified.
+- **Implementation:** both layers are transactionally extracted as DSIX in
+  asset-pack format 11 and rendered when Core enters `PartyOverview`.
+- **Tests:** exact mapping/order/geometry, synthetic extraction provenance,
+  exact 34-file inventory, pack verification, and content smoke.
+- **Uncertainty:** Party portraits, status fields, empty-slot art, BEGIN and
+  slot interaction, focus, and the runtime label substitutions visible in the
+  separate ADD list remain open.
 
 ## Initial rules
 
@@ -401,7 +424,7 @@
   supported GOG build; runtime selection and remaining field semantics are
   unknown.
 - **Implementation:** `PackedCharacterCatalog` plus transactional extraction to
-  `characters/catalog.dsch`; the asset-pack manifest is version 10 and records
+  `characters/catalog.dsch`; the asset-pack manifest is version 11 and records
   `CHARSAVE.GFF` provenance.
 - **Tests:** synthetic round-trip and deterministic ordering; duplicate,
   malformed-field, noncanonical-order, truncation, and trailing-data rejection;

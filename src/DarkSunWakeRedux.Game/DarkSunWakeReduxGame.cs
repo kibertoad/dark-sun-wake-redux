@@ -12,7 +12,8 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     private readonly bool _platformSmoke;
     private readonly GraphicsDeviceManager _graphics;
     private SpriteBatch? _spriteBatch;
-    private readonly List<(StartMenuLayerAsset Layer, Texture2D Texture)> _startMenuLayers = [];
+    private readonly List<(UiLayerAsset Layer, Texture2D Texture)> _startMenuLayers = [];
+    private readonly List<(UiLayerAsset Layer, Texture2D Texture)> _partyOverviewLayers = [];
     private readonly List<(StartMenuControl Control, Texture2D Texture)> _startMenuControls = [];
     private readonly StartFlowSession _startFlow = new(0);
     private MouseState _previousMouse;
@@ -43,12 +44,17 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         if (string.IsNullOrWhiteSpace(_assetPack))
             throw new InvalidOperationException("The verified asset-pack path was not supplied.");
         foreach (var layer in OriginalContent.StartMenuLayers)
+            _startMenuLayers.Add((layer, LoadTexture(layer)));
+        foreach (var layer in OriginalContent.PartyOverviewLayers)
+            _partyOverviewLayers.Add((layer, LoadTexture(layer)));
+
+        Texture2D LoadTexture(UiLayerAsset layer)
         {
             var layerPath = Path.Combine(_assetPack,
                 layer.Path.Replace('/', Path.DirectorySeparatorChar));
             using var layerStream = File.OpenRead(layerPath);
             var image = PackedIndexedImage.Read(layerStream, layer.Path);
-            _startMenuLayers.Add((layer, CreateTexture(image, image.Frames.Single())));
+            return CreateTexture(image, image.Frames.Single());
         }
         var uiPath = Path.Combine(_assetPack,
             OriginalContent.StartFlowUiCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
@@ -107,19 +113,30 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.Black);
-        if (_spriteBatch is not null && _startFlow.Snapshot().Screen == StartFlowScreen.StartWindow)
+        if (_spriteBatch is not null)
         {
-            var transform = new LogicalCanvasTransform(
-                GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
-            var destination = new Rectangle(transform.X, transform.Y, transform.Width, transform.Height);
-            _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            foreach (var (layer, texture) in _startMenuLayers)
-                _spriteBatch.Draw(texture, ScaledRectangle(destination, transform,
-                    layer.X, layer.Y, texture.Width, texture.Height), Color.White);
-            foreach (var (control, texture) in _startMenuControls)
-                _spriteBatch.Draw(texture, ScaledRectangle(destination, transform,
-                    control.X, control.Y, texture.Width, texture.Height), Color.White);
-            _spriteBatch.End();
+            var screen = _startFlow.Snapshot().Screen;
+            var layers = screen switch
+            {
+                StartFlowScreen.StartWindow => _startMenuLayers,
+                StartFlowScreen.PartyOverview => _partyOverviewLayers,
+                _ => null
+            };
+            if (layers is not null)
+            {
+                var transform = new LogicalCanvasTransform(
+                    GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+                var destination = new Rectangle(transform.X, transform.Y, transform.Width, transform.Height);
+                _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+                foreach (var (layer, texture) in layers)
+                    _spriteBatch.Draw(texture, ScaledRectangle(destination, transform,
+                        layer.X, layer.Y, texture.Width, texture.Height), Color.White);
+                if (screen == StartFlowScreen.StartWindow)
+                    foreach (var (control, texture) in _startMenuControls)
+                        _spriteBatch.Draw(texture, ScaledRectangle(destination, transform,
+                            control.X, control.Y, texture.Width, texture.Height), Color.White);
+                _spriteBatch.End();
+            }
         }
         base.Draw(gameTime);
     }
@@ -127,6 +144,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     protected override void UnloadContent()
     {
         foreach (var (_, texture) in _startMenuLayers) texture.Dispose();
+        foreach (var (_, texture) in _partyOverviewLayers) texture.Dispose();
         foreach (var (_, texture) in _startMenuControls) texture.Dispose();
         _spriteBatch?.Dispose();
         base.UnloadContent();

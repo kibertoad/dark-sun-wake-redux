@@ -41,19 +41,20 @@ The smoke modes have distinct purposes:
 - `--platform-smoke-test` creates the MonoGame platform surface and exits; it is
   reserved for installed-package environments with a display server.
 - Normal startup verifies the pack before opening a window and renders the
-  two evidenced start-shell layers and start-window controls; title sequencing
+  evidenced start shell/controls and party-overview shell; title sequencing
   remains pending.
 
 Owned-build validation currently targets GOG product `1432903719`, installed
 build `52095422060333615`. Metadata-only FONT inspection verifies that all 256
 character-map entries are identity values and summarizes its pixel-index range
 without emitting glyph pixels. A temporary owned-source extraction produced and
-verified the exact 32-asset manifest including both start-shell layers, all six windows, 39 controls, and
+verified the exact 34-asset manifest including both start-shell layers, both
+party-overview layers, all six windows, 39 controls, and
 19 bounded character metadata entries;
 the runtime content-smoke path opened that pack successfully, after which the
 temporary pack was removed. Local-only decoded previews established the title
 and start-window mappings recorded as `DATA-GOG-TITLE-001`,
-`DATA-GOG-UI-001`, and `DATA-GOG-UI-006`; screenshots and decoded outputs stay
+`DATA-GOG-UI-001`, `DATA-GOG-UI-006`, and `DATA-GOG-UI-007`; screenshots and decoded outputs stay
 under ignored `analysis/original/` and never become golden files. Presentation
 goldens in Git must use synthetic stand-ins. Visual comparison, input traces,
 animation timing, and audiovisual synchronization remain open and will be

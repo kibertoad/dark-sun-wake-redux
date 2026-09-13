@@ -93,7 +93,7 @@ public sealed record StartMenuButtonAsset(
         }).All(matches => matches);
 }
 
-public sealed record StartMenuLayerAsset(
+public sealed record UiLayerAsset(
     string Name,
     string Path,
     uint ImageResourceNumber,
@@ -129,7 +129,7 @@ public sealed record SourceIdentification(
 
 public static class OriginalContent
 {
-    public const int AssetPackFormatVersion = 10;
+    public const int AssetPackFormatVersion = 11;
     public const string GameId = "dark-sun-wake-redux";
     public const string TitleImageAssetPath = "images/title.dsix";
     public const string InterfaceFontAssetPath = "fonts/interface.dsft";
@@ -142,10 +142,17 @@ public static class OriginalContent
     public static IReadOnlyList<uint> StartFlowWindowResourceNumbers { get; } =
         [19500, 19501, 19502, 19503, 19504, 19505];
 
-    public static IReadOnlyList<StartMenuLayerAsset> StartMenuLayers { get; } =
+    public static IReadOnlyList<UiLayerAsset> StartMenuLayers { get; } =
     [
         new("stone-shell", "images/start-menu/stone-shell.dsix", 20029, 3, 44, 314, 112),
         new("flame-ornament", "images/start-menu/flame-ornament.dsix", 20028, 47, 24, 222, 33)
+    ];
+
+    public static IReadOnlyList<UiLayerAsset> PartyOverviewLayers { get; } =
+    [
+        new("party-overview-base", "images/party-overview/base.dsix", 11000, 0, 0, 320, 200),
+        new("view-character-title", "images/party-overview/view-character-title.dsix",
+            20079, 55, 0, 210, 23)
     ];
 
     public static IReadOnlyList<StartMenuButtonAsset> StartMenuButtons { get; } =

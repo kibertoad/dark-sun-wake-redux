@@ -15,11 +15,18 @@ public sealed class StartupAssetExtractorTests
         Assert.Equal(2, OriginalContent.StartMenuLayers.Count);
         Assert.Equal(
         [
-            new StartMenuLayerAsset("stone-shell", "images/start-menu/stone-shell.dsix",
+            new UiLayerAsset("stone-shell", "images/start-menu/stone-shell.dsix",
                 20029, 3, 44, 314, 112),
-            new StartMenuLayerAsset("flame-ornament", "images/start-menu/flame-ornament.dsix",
+            new UiLayerAsset("flame-ornament", "images/start-menu/flame-ornament.dsix",
                 20028, 47, 24, 222, 33)
         ], OriginalContent.StartMenuLayers);
+        Assert.Equal(
+        [
+            new UiLayerAsset("party-overview-base", "images/party-overview/base.dsix",
+                11000, 0, 0, 320, 200),
+            new UiLayerAsset("view-character-title",
+                "images/party-overview/view-character-title.dsix", 20079, 55, 0, 210, 23)
+        ], OriginalContent.PartyOverviewLayers);
         Assert.All(OriginalContent.StartMenuLayers, layer =>
         {
             Assert.InRange(layer.X, 0, 319);
@@ -78,11 +85,18 @@ public sealed class StartupAssetExtractorTests
             var manifest = await AssetPackInstaller.InstallAsync(output, staging =>
                 StartupAssetExtractor.WritePackAsync(sourceRoot, staging, edition, "test"));
 
-            Assert.Equal(32, manifest.Files.Count);
+            Assert.Equal(34, manifest.Files.Count);
             var asset = Assert.Single(manifest.Files, item => item.Path == OriginalContent.TitleImageAssetPath);
             Assert.Contains("BMP #11011", asset.Conversion, StringComparison.Ordinal);
             Assert.Contains("PAL #11011", asset.Conversion, StringComparison.Ordinal);
             foreach (var layer in OriginalContent.StartMenuLayers)
+            {
+                var layerAsset = Assert.Single(manifest.Files, item => item.Path == layer.Path);
+                Assert.Contains($"BMP #{layer.ImageResourceNumber}", layerAsset.Conversion,
+                    StringComparison.Ordinal);
+                Assert.Contains("PAL #1000", layerAsset.Conversion, StringComparison.Ordinal);
+            }
+            foreach (var layer in OriginalContent.PartyOverviewLayers)
             {
                 var layerAsset = Assert.Single(manifest.Files, item => item.Path == layer.Path);
                 Assert.Contains($"BMP #{layer.ImageResourceNumber}", layerAsset.Conversion,
@@ -204,7 +218,7 @@ public sealed class StartupAssetExtractorTests
     {
         var title = TransparentImage(320, 200);
         var windowImage = TransparentImage(96, 9);
-        var menuLayers = OriginalContent.StartMenuLayers
+        var menuLayers = OriginalContent.StartMenuLayers.Concat(OriginalContent.PartyOverviewLayers)
             .Select(layer => (layer.ImageResourceNumber,
                 Bytes: TransparentImage(layer.FrameWidth, layer.FrameHeight))).ToArray();
         var icons = OriginalContent.StartMenuButtons

@@ -171,7 +171,7 @@ original game.
 | # | Slice | Player-visible outcome | Depends on | Status |
 |---|---|---|---|---|
 | 1 | Identity, source recognition, and diagnostic boot | The named runtime starts, finds a verified pack or explains how to create one, and quits cleanly; the separate Extractor recognizes the supported GOG copy | approval | complete |
-| 2 | Extraction and title-to-party flow | The Extractor creates a verified local pack; the runtime reaches the start flow and creates/selects a four-character party | 1 | in progress - title extraction, evidenced start-window composition, UI resource mapping, party invariants, and semantic start routing implemented |
+| 2 | Extraction and title-to-party flow | The Extractor creates a verified local pack; the runtime reaches the start flow and creates/selects a four-character party | 1 | in progress - title extraction, evidenced start/party-overview composition, UI resource mapping, party invariants, and semantic start routing implemented |
 | 3 | First Tyr exploration and conversation | The party enters Tyr, moves, interacts, completes the opening conversation, and uses character/inventory/game menus | 2 | planned |
 | 4 | First deterministic combat | The opening encounter is playable through victory or defeat | 3 | planned |
 | 5 | Full character systems | Equipment, advancement, magic, psionics, camping, and training work from evidenced rules | 4 | planned |
@@ -218,8 +218,8 @@ decoder rather than being guessed now.
   options, and menus; `DATA-GOG-GFF-001` and `DATA-GOG-IMAGE-001`, corroborated
   by DSUN-MUSIC, for bounded container, indexed-image, and palette structures;
   `DATA-GOG-FONT-001` for bounded indexed glyphs; `DATA-GOG-UI-001` and
-  `DATA-GOG-UI-006` for bounded start-window/button mappings, composition, and
-  interface palette; further DATA-GOG
+  `DATA-GOG-UI-006`-`007` for bounded start-window/button mappings, composition,
+  party-overview shell, and interface palette; further DATA-GOG
   for party-screen resource mapping; OBS-GOG for screen states,
   coordinates, and navigation.
 - **Acceptance - rules.** Party size, available origins/classes, ability/alignment
@@ -262,7 +262,7 @@ decoder rather than being guessed now.
   class/level progression, the active member during DUAL selection or editing,
   and recreation-native stored characters;
   DSUI round-trip, malformed graph, deterministic ordering, mixed-control graph resolution, resource-ID routing,
-  rectangle-edge, synthetic extraction, content-smoke, and owned 32-asset pack verification cover the derived
+  rectangle-edge, synthetic extraction, content-smoke, and owned 34-asset pack verification cover the derived
   start-flow layout contract;
   gameplay-wide replay remains a later-slice requirement.
 - **Observed parity.** Compare boot, start, create/select/cancel, and quit state
@@ -401,7 +401,7 @@ decoder rather than being guessed now.
 | Q1 | Is `DarkSunWakeRedux` / `Dark Sun: Wake of the Ravager Redux` the approved identity? | configuration | repository owner | closed - approved 2026-09-12 |
 | Q2 | Is the installed GOG build the only initial supported edition, with later revisions represented by separate manifests? | slices 1, 7 | repository owner | closed - initial work targets the supplied GOG build; later revisions require separate fingerprints |
 | Q3 | Which underlying DOS/CD-ROM revision is in GOG build `52095422060333615`? | slices 1, 4, 6 | evidence investigation | open |
-| Q4 | Which source files and GFF/resource records are required, and what are their bounded structures? | slices 1-3 | evidence investigation | open - GFF, image/palette, FONT, TEXT, core UI records, the versioned `CHAR` envelope/identity/ability fields, and raw `PSIN` companion envelope are bounded; title/start, the start shell's #20028/#20029 layers and interface palette #1000, twenty generation/modal controls, shared window image, all six start-flow window graphs, APFM event masks, the owned font's identity map, and encoding-neutral glyph-run/block composition are mapped; the generic WIND engine does not consume its image field, so #19004 still awaits an app-specific consumer or observation; remaining `CHAR` header/tail state, `PSIN` bit meanings, generalized map semantics, authentic text spacing/palette/routing/alignment, mask-bit meanings, dynamic party data, later-window shell drawing semantics, and the rest of the minimum pack remain unknown |
+| Q4 | Which source files and GFF/resource records are required, and what are their bounded structures? | slices 1-3 | evidence investigation | open - GFF, image/palette, FONT, TEXT, core UI records, the versioned `CHAR` envelope/identity/ability fields, and raw `PSIN` companion envelope are bounded; title/start, the start shell's #20028/#20029 layers, the party overview's #11000/#20079 layers, interface palette #1000, twenty generation/modal controls, shared window image, all six start-flow window graphs, APFM event masks, the owned font's identity map, and encoding-neutral glyph-run/block composition are mapped; the generic WIND engine does not consume its image field, so #19004 still awaits an app-specific consumer or observation; remaining `CHAR` header/tail state, `PSIN` bit meanings, generalized map semantics, authentic text spacing/palette/routing/alignment, mask-bit meanings, dynamic party data, later-window shell drawing semantics, and the rest of the minimum pack remain unknown |
 | Q5 | What are the logical resolution, pixel aspect, palettes, cursor geometry, animation cadence, and audio timing? | slices 2-7 | runtime observation | open |
 | Q6 | For each verified manual/guide/runtime conflict or original defect, should compatibility preserve it, fix it, or expose an option? | slices 4-7 | repository owner after evidence | open |
 | Q7 | Are original save compatibility and Shattered Lands party transfer desired once their formats are evidenced? | slice 7 | repository owner | open |
