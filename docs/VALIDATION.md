@@ -1,7 +1,8 @@
 # Validation
 
 CI and routine repository checks require no proprietary content. Synthetic GFF,
-indexed-image, palette, indexed-font, text, DSIX, DSFT, DSTX, and DSUI fixtures exercise successful decoding plus
+indexed-image, palette, indexed-font, text, DSIX, DSFT, DSTX, DSUI, DSRG, and
+DSOB fixtures exercise successful decoding plus
 truncation, bounds, invalid-component, unsafe-path, inventory, and transactional
 replacement failures. Core rule tests use explicit inputs and no ambient state.
 Start-flow tests also prove identical seeds and commands yield identical events
@@ -36,8 +37,8 @@ The smoke modes have distinct purposes:
 - `--content-smoke-test --asset-pack <path>` verifies the exact pack inventory,
   opens all thirty-seven DSIX UI images, the DSFT interface font, the DSTX text
   catalog, the resolved seven-window DSUI graph, and the DSCH character metadata
-  catalog, opens the DSRG Tyr region, and checks their frame, geometry, glyph,
-  reference, and inventory contracts without a window.
+  catalog, opens the DSRG Tyr region and DSOB object-frame graph, and checks their
+  frame, geometry, glyph, reference, and inventory contracts without a window.
 - `--platform-smoke-test` creates the MonoGame platform surface and exits; it is
   reserved for installed-package environments with a display server.
 - Normal startup verifies the pack before opening a window and renders the
@@ -48,10 +49,11 @@ Owned-build validation currently targets GOG product `1432903719`, installed
 build `52095422060333615`. Metadata-only FONT inspection verifies that all 256
 character-map entries are identity values and summarizes its pixel-index range
 without emitting glyph pixels. The retained ignored owned-source pack has been
-transactionally refreshed and verifies as the exact 42-asset manifest including both start-shell layers, both
+transactionally refreshed and verifies as the exact 43-asset manifest including both start-shell layers, both
 party-overview layers, the ADD-list base and control family, all seven windows, 56 controls, and
 19 bounded character metadata entries, plus the bounded Tyr region with 94 tiles
-and 867 entity records. The runtime content-smoke path opens that pack successfully.
+and 867 entity records and its 287 definitions, 246 images, and 477 frames. The
+runtime content-smoke path opens that pack successfully.
 Local-only decoded previews established the title
 and start-window mappings recorded as `DATA-GOG-TITLE-001`,
 `DATA-GOG-UI-001`, `DATA-GOG-UI-006`, `DATA-GOG-UI-007`, and

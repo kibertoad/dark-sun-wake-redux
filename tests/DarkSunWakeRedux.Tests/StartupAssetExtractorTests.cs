@@ -106,7 +106,7 @@ public sealed class StartupAssetExtractorTests
             var manifest = await AssetPackInstaller.InstallAsync(output, staging =>
                 StartupAssetExtractor.WritePackAsync(sourceRoot, staging, edition, "test"));
 
-            Assert.Equal(42, manifest.Files.Count);
+            Assert.Equal(43, manifest.Files.Count);
             var asset = Assert.Single(manifest.Files, item => item.Path == OriginalContent.TitleImageAssetPath);
             Assert.Contains("BMP #11011", asset.Conversion, StringComparison.Ordinal);
             Assert.Contains("PAL #11011", asset.Conversion, StringComparison.Ordinal);
@@ -196,6 +196,21 @@ public sealed class StartupAssetExtractorTests
                 var region = PackedRegion.Read(regionStream);
                 Assert.Equal((50U, "Tyr", 2, 2),
                     (region.ResourceNumber, region.Name, region.Tiles.Count, region.Entities.Count));
+            }
+            var objectAsset = Assert.Single(manifest.Files,
+                item => item.Path == OriginalContent.TyrObjectCatalogAssetPath);
+            Assert.Equal(StartupAssetExtractor.ObjectSourcePath, objectAsset.SourcePath);
+            Assert.Contains("RGN032.GFF:ETAB", objectAsset.Conversion, StringComparison.Ordinal);
+            Assert.Contains("OBJEX.GFF:OJFF/BMP", objectAsset.Conversion, StringComparison.Ordinal);
+            Assert.Contains("DSOB v1", objectAsset.Conversion, StringComparison.Ordinal);
+            using (var objectStream = File.OpenRead(Path.Combine(output,
+                       OriginalContent.TyrObjectCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar))))
+            {
+                var objects = PackedObjectFrameCatalog.Read(objectStream);
+                Assert.Equal((2, 1, 1), (objects.Definitions.Count, objects.Images.Count,
+                    objects.Images.Sum(image => image.Frames.Count)));
+                Assert.Equal([10U, 11U],
+                    objects.Definitions.Select(item => item.ResourceNumber));
             }
             var uiAsset = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.StartFlowUiCatalogAssetPath);

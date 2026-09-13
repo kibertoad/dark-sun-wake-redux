@@ -107,6 +107,17 @@ try
             if (region.ResourceNumber != 50 || region.Name != "Tyr" ||
                 region.Tiles.Count != 94 || region.Entities.Count != 867)
                 throw new InvalidDataException("The installed Tyr region catalog is incomplete.");
+            var objectPath = Path.Combine(assetPack,
+                OriginalContent.TyrObjectCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
+            using var objectStream = File.OpenRead(objectPath);
+            var objects = PackedObjectFrameCatalog.Read(
+                objectStream, OriginalContent.TyrObjectCatalogAssetPath);
+            if (objects.Definitions.Count != 287 || objects.Images.Count != 246 ||
+                objects.Images.Sum(image => image.Frames.Count) != 477)
+                throw new InvalidDataException("The installed Tyr object-frame catalog is incomplete.");
+            var objectNumbers = objects.Definitions.Select(item => item.ResourceNumber).ToHashSet();
+            if (region.Entities.Any(entity => !objectNumbers.Contains(entity.ObjectResourceNumber)))
+                throw new InvalidDataException("The Tyr region references a missing object definition.");
             var uiPath = Path.Combine(assetPack,
                 OriginalContent.StartFlowUiCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using var uiStream = File.OpenRead(uiPath);

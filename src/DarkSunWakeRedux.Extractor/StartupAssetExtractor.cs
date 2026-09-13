@@ -47,6 +47,8 @@ public static class StartupAssetExtractor
         if (tyrRegion.ResourceNumber != 50 || tyrRegion.Name != "Tyr")
             throw new InvalidDataException(
                 $"{TyrRegionSourcePath} does not contain the expected Tyr region #50.");
+        var tyrObjects = GffObjectFrameCatalog.Read(objectArchive,
+            tyrRegion.Entities.Select(entity => entity.ObjectResourceNumber), ObjectSourcePath);
         var titlePalette = IndexedPalette.Read(
             archive.GetResource(PaletteTag, TitlePaletteNumber).Span,
             $"{SourcePath}:{PaletteTag}#{TitlePaletteNumber}");
@@ -132,6 +134,7 @@ public static class StartupAssetExtractor
         files.Add(await WriteUiCatalogAsync(stagingRoot, archive, cancellationToken));
         files.Add(await WriteCharacterCatalogAsync(stagingRoot, characters, cancellationToken));
         files.Add(await WriteRegionAsync(stagingRoot, tyrRegion, cancellationToken));
+        files.Add(await WriteObjectCatalogAsync(stagingRoot, tyrObjects, cancellationToken));
 
         return new AssetPackManifest(
             OriginalContent.AssetPackFormatVersion,
@@ -205,6 +208,30 @@ public static class StartupAssetExtractor
             "application/vnd.dark-sun-wake-redux.region",
             $"RNME/PAL/MAP/GMAP/TILE/ETAB + {ObjectSourcePath}:OJFF references -> " +
             $"DSRG v{PackedRegion.FormatVersion}");
+    }
+
+    private static async Task<AssetPackFile> WriteObjectCatalogAsync(
+        string stagingRoot,
+        GffObjectFrameCatalog objects,
+        CancellationToken cancellationToken)
+    {
+        var packed = PackedObjectFrameCatalog.From(objects);
+        var relativePath = OriginalContent.TyrObjectCatalogAssetPath;
+        var target = Path.Combine(stagingRoot,
+            relativePath.Replace('/', Path.DirectorySeparatorChar));
+        Directory.CreateDirectory(Path.GetDirectoryName(target)!);
+        await using (var output = File.Create(target)) packed.Write(output);
+        await using var verify = File.OpenRead(target);
+        var decoded = PackedObjectFrameCatalog.Read(verify, relativePath);
+        if (decoded.Definitions.Count != objects.Entries.Count)
+            throw new InvalidDataException("The derived Tyr object catalog failed count verification.");
+        verify.Position = 0;
+        var hash = Convert.ToHexStringLower(
+            await SHA256.HashDataAsync(verify, cancellationToken));
+        return new(relativePath, verify.Length, hash, ObjectSourcePath,
+            "application/vnd.dark-sun-wake-redux.object-frame-catalog",
+            $"{TyrRegionSourcePath}:ETAB referenced {ObjectSourcePath}:OJFF/BMP -> " +
+            $"DSOB v{PackedObjectFrameCatalog.FormatVersion}");
     }
 
     private static async Task<AssetPackFile> WriteUiCatalogAsync(

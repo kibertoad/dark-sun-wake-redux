@@ -22,6 +22,7 @@ semantics.
 | Pack `*.dsui` | Derived UI catalog | `DSUI` v1 deterministically stores the six start-flow windows and their resolved BUTN/APFM/EBOX graph | implemented; synthetic round-trip and owned extraction validated | Bound file size, per-type counts, child counts, tags, dimensions, identities, references, and trailing data |
 | Pack `*.dsch` | Derived character metadata catalog | `DSCH` v1 deterministically stores only the bounded `CHAR`/`PSIN` subset: resource ID, neutral tail-record count, name, six ordered abilities, and raw mask | implemented; synthetic round-trip and owned extraction validated | Bound file size, version, record/name counts, ability range, raw mask, canonical order, and trailing data; reject duplicates and do not carry uninterpreted source bytes |
 | Pack `*.dsrg` | Derived region catalog | `DSRG` v1 canonically stores the region identity, decoded palette and tiles, exact terrain/geometry planes, and raw ordered entity records | implemented; synthetic round-trip and owned Tyr extraction validated | Bound file size, version, fixed dimensions, counts, names, binary alpha, canonical tile order, map references, and exact content length |
+| Pack `*.dsob` | Derived object-frame catalog | `DSOB` v1 canonically stores bounded OJFF fields plus deduplicated decoded indexed frames; the region supplies the palette | implemented; synthetic round-trip and owned Tyr extraction validated | Bound file size, version, definition/image/frame/pixel counts, dimensions, binary alpha, canonical ordering, complete references, and exact content length |
 | `*.FLI` | Four observed cinematics | Likely animation resources by extension only; dimensions, palette changes, frame timing, and exact variant are unverified | low | Bound frames, chunks, dimensions, decoded bytes, and timing; unsupported chunk types fail explicitly |
 | `*.VOC` | Speech and sound-effect files | Creative Labs VOC is suggested by extension; headers, codecs, sample rates, and block use must be verified per file | low | Bound blocks and decoded samples; reject unsupported codecs and malformed terminators |
 | `MUSIC/*.ogg` | 39 GOG-supplied music files | Ogg container presence is observed; mapping, loop points, provenance, and relationship to original media are unknown | low | Validate stream metadata and decode limits; unknown track mapping remains data, not a guessed rule |
@@ -299,6 +300,25 @@ order, binary alpha, complete map-to-tile references, and an exact computed file
 length. DSRG carries no GFF offsets or uninterpreted container bytes. Version 1
 does not assign collision meaning to geometry values or behavior to entity
 flags and object references.
+
+## Derived DSOB object-frame catalog
+
+DSOB is an original deterministic pack format containing the object definitions
+referenced by one extracted region and their deduplicated decoded images. Version
+1 begins with ASCII `DSOB`, a 16-bit version, and 32-bit definition/image counts.
+Definitions follow in ascending resource-number order as the resource number,
+four preserved raw 16-bit words, signed X/Y offsets, and a 32-bit image resource
+number. Images follow in ascending resource-number order with a 16-bit frame
+count; each frame stores 16-bit dimensions, a 32-bit pixel count, palette-index
+bytes, and equally sized binary-alpha bytes. The companion DSRG palette supplies
+colors, so DSOB does not duplicate it.
+
+The reader caps files at 64 MiB, definitions/images at 65,536 each, total frames
+at 65,536, and total decoded pixels at 32 MiB. It requires canonical unique
+ordering, valid nonempty frames, exact dimensions and lengths, binary alpha,
+every definition-to-image reference to resolve, every stored image to be used,
+and no trailing data. Version 1 deliberately assigns no meaning to the four raw
+words or to animation, draw order, anchoring, collision, and interaction.
 
 ## Derived DSFT indexed-font asset
 

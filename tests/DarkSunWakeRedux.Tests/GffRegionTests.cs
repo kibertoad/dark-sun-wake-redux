@@ -88,10 +88,18 @@ public sealed class GffRegionTests
     {
         var resources = new List<(string Tag, uint Number, byte[] Bytes)>
         {
-            ("OJFF", 10, [1])
+            ("OJFF", 10, ObjectFrame(5)),
+            ("BMP ", 5, TileImage(16))
         };
-        if (includeEleven) resources.Add(("OJFF", 11, [2]));
+        if (includeEleven) resources.Add(("OJFF", 11, ObjectFrame(5)));
         return WriteArchive(resources.ToArray());
+    }
+
+    private static byte[] ObjectFrame(ushort imageNumber)
+    {
+        var bytes = new byte[GffObjectFrameCatalog.RecordSize];
+        BitConverter.GetBytes(imageNumber).CopyTo(bytes, 12);
+        return bytes;
     }
 
     private static byte[] EntityBytes()

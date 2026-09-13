@@ -8,7 +8,7 @@ runtime defaults or committed content.
 
 | Field | Value |
 |---|---|
-| Status | Source recognition and bounded 42-asset startup/Tyr extraction implemented |
+| Status | Source recognition and bounded 43-asset startup/Tyr extraction implemented |
 | Acquisition | Legally owned GOG release, *Dungeons & Dragons: Dark Sun Series* |
 | Local validation path | `C:\GOG Games\Dark Sun 2` |
 | GOG product ID | `1432903719` |

@@ -58,12 +58,12 @@ yet.
 | Area | Supported now | Current limitations |
 |---|---|---|
 | Legal source | Explicit verification of English GOG product `1432903719`, build `52095422060333615` | Other GOG revisions and storefronts are unsupported until separately fingerprinted |
-| Asset extraction | Separate Extractor with versioned exact inventory, bounded readers, and transactional 42-asset startup/Tyr pack | Title, evidenced start, party-overview, and ADD-list layers, start/generation/ADD controls and modal labels, shared window image, font, text, resolved seven-window UI graph, bounded character metadata, and the Tyr region catalog are extracted; dynamic list content, character selection mapping, object graphics, and later-window shell draw semantics remain incomplete |
+| Asset extraction | Separate Extractor with versioned exact inventory, bounded readers, and transactional 43-asset startup/Tyr pack | Title, evidenced start, party-overview, and ADD-list layers, start/generation/ADD controls and modal labels, shared window image, font, text, resolved seven-window UI graph, bounded character metadata, Tyr region data, and its object-frame catalog are extracted; dynamic list content, character selection mapping, object behavior, and later-window shell draw semantics remain incomplete |
 | Gameplay | Assetless startup smoke test, MonoGame shell, deterministic party invariants including discipline/sphere choices and origin modifier facts, occupied-slot edit/drop/add, human dual-class progression and selection, and command-driven start flow in Core | No player-visible game slice yet; modifier application/caps, DUAL presentation, disputed origin/class pairs, random generation, and shipped creation defaults await observation |
 | Saves and compatibility | Start-flow snapshot schema 4 with class progression, dropped-character storage, and hash-verified deterministic replay | Native save-file I/O, whole-game replays, original saves, and Shattered Lands party transfer are not implemented |
 | Presentation | Verified-pack start window composes two measured interface-palette layers and DSUI-derived controls over black; CREATE CHARACTERS reaches the two-layer original party-overview shell; the ADD state renders its measured list shell and controls; all seven extracted window graphs resolve to typed controls | Party portraits/fields, ADD list content/interactions, and other destination screens are incomplete; title sequencing, hit-edge parity, frame states, pixel aspect, animation, audio, and video await observation |
 | Text resources | Bounded FONT decoding/DSFT extraction, verified owned-font identity map, deterministic indexed run/block rasterization, and all 62 printable-ASCII `TEXT` records decoded into DSTX | Generalized map semantics, authentic glyph/line spacing, palette, text-ID routing, alignment, and runtime rendering remain open |
-| Region data | Read-only bounded catalogs validate all 20 owned regions and all 4,479 object-frame definitions; Tyr's exact 128x98 terrain/geometry planes, 94 local 16x16 tiles, and 867 raw entity records extract to verified DSRG, while its bounded object graph identifies 287 definitions, 246 images, and 477 frames | Region rendering, object-image extraction, animation, collision/geometry semantics, entity behavior, opening placement, and gameplay are not implemented |
+| Region data | Read-only bounded catalogs validate all 20 owned regions and all 4,479 object-frame definitions; Tyr's exact 128x98 terrain/geometry planes, 94 local 16x16 tiles, and 867 raw entity records extract to DSRG, while its 287 definitions, 246 images, and 477 frames extract to DSOB | Region/object rendering, animation, collision/geometry semantics, entity behavior, opening placement, and gameplay are not implemented |
 
 ## Developer quick start
 
@@ -82,11 +82,10 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\Test.ps1
 ```
 
 Normal runtime startup requires a fully verified extracted pack. `extract`
-currently writes the evidenced title, two start-window shell layers, three
-party-overview layers, and four start-window buttons as versioned derived
-indexed-image assets, verifies their exact inventory and hashes, and
-transactionally replaces the previous pack. It never copies the executable or
-raw GFF payloads.
+writes the evidenced startup/UI, character, text, Tyr region, and Tyr object
+subsets as versioned derived assets, verifies their exact inventory and hashes,
+and transactionally replaces the previous pack. It never copies the executable
+or raw GFF payloads.
 
 ## Architecture
 

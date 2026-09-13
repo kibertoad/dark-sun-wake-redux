@@ -107,12 +107,15 @@
   image decoding, counts, and dimensions in GOG-1432903719; medium for the X/Y
   offset names from corroborating research; unknown for the raw words, frame
   animation, draw order, anchoring, collision, and interaction semantics.
-- **Implementation:** `DarkSunWakeRedux.Resources.GffObjectFrameCatalog` and the
-  read-only `object-catalog` inspection command. No object image is extracted
-  into the asset pack yet.
+- **Implementation:** `DarkSunWakeRedux.Resources.GffObjectFrameCatalog`, the
+  read-only `object-catalog` inspection command, and canonical transactional
+  extraction of Tyr's bounded graph to `regions/tyr-objects.dsob`. DSOB retains
+  decoded indices/alpha and bounded raw definition words, but no source offsets
+  or GFF payload envelope.
 - **Tests:** synthetic full/subset decoding, canonical order, shared-image cache,
-  and malformed length, reserved word, missing definition/reference, and empty
-  image rejection.
+  DSOB round-trip/extraction, and malformed length, ordering, reserved word,
+  disconnected reference, frame, alpha, missing definition/reference, empty
+  image, and trailing-data rejection; owned pack/content-smoke validation.
 
 ### DATA-GOG-TITLE-001 - Title image resource mapping
 
@@ -523,7 +526,7 @@
   supported GOG build; runtime selection and remaining field semantics are
   unknown.
 - **Implementation:** `PackedCharacterCatalog` plus transactional extraction to
-  `characters/catalog.dsch`; the asset-pack manifest is version 14 and records
+  `characters/catalog.dsch`; the asset-pack manifest is version 15 and records
   `CHARSAVE.GFF` provenance.
 - **Tests:** synthetic round-trip and deterministic ordering; duplicate,
   malformed-field, noncanonical-order, truncation, and trailing-data rejection;
