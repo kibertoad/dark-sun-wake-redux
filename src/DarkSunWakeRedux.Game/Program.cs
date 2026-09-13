@@ -29,6 +29,21 @@ try
             var titleFrame = title.Frames.Single();
             if (titleFrame.Width != 320 || titleFrame.Height != 200)
                 throw new InvalidDataException("The installed title image is not the required 320x200 frame.");
+            foreach (var layer in OriginalContent.StartMenuLayers.Concat(OriginalContent.PartyOverviewLayers))
+            {
+                var image = ReadImage(assetPack, layer.Path);
+                var frame = AssertSingleFrame(image.Frames, layer.Name);
+                if (frame.Width != layer.FrameWidth || frame.Height != layer.FrameHeight)
+                    throw new InvalidDataException(
+                        $"The installed {layer.Name} image has unexpected geometry.");
+            }
+            foreach (var asset in OriginalContent.AddExistingCharacterAssets)
+            {
+                var image = ReadImage(assetPack, asset.Path);
+                if (!asset.HasExpectedFrames(image.Frames))
+                    throw new InvalidDataException(
+                        $"The installed add-existing {asset.Name} image has unexpected geometry.");
+            }
             foreach (var button in OriginalContent.StartMenuButtons)
             {
                 var buttonPath = Path.Combine(assetPack,
@@ -94,10 +109,12 @@ try
                 throw new InvalidDataException("The installed start-flow UI catalog has unexpected windows.");
             var resolvedControlCount = OriginalContent.StartFlowWindowResourceNumbers.Sum(number =>
                 UiWindowGraphResolver.Resolve(ui, number).Controls.Count);
-            if (resolvedControlCount != 39)
-                throw new InvalidDataException("The installed start-flow UI graph does not resolve all 39 controls.");
+            if (resolvedControlCount != 56)
+                throw new InvalidDataException("The installed start-flow UI graph does not resolve all 56 controls.");
             if (StartMenuInput.Resolve(ui).Count != OriginalContent.StartMenuButtons.Count)
                 throw new InvalidDataException("The installed start-window UI graph is incomplete.");
+            if (AddExistingCharacterInput.Resolve(ui).Count != 17)
+                throw new InvalidDataException("The installed ADD-list UI graph is incomplete.");
             Console.WriteLine($"Verified runtime startup assets at {assetPack}.");
             return 0;
         }
@@ -120,3 +137,10 @@ static string? Option(string[] values, string name)
 
 static IndexedImageFrame AssertSingleFrame(IReadOnlyList<IndexedImageFrame> frames, string name) =>
     frames.Count == 1 ? frames[0] : throw new InvalidDataException($"The installed {name} must have one frame.");
+
+static PackedIndexedImage ReadImage(string assetPack, string assetPath)
+{
+    var path = Path.Combine(assetPack, assetPath.Replace('/', Path.DirectorySeparatorChar));
+    using var stream = File.OpenRead(path);
+    return PackedIndexedImage.Read(stream, assetPath);
+}

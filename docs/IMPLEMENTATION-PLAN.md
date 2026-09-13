@@ -218,8 +218,8 @@ decoder rather than being guessed now.
   options, and menus; `DATA-GOG-GFF-001` and `DATA-GOG-IMAGE-001`, corroborated
   by DSUN-MUSIC, for bounded container, indexed-image, and palette structures;
   `DATA-GOG-FONT-001` for bounded indexed glyphs; `DATA-GOG-UI-001` and
-  `DATA-GOG-UI-006`-`007` for bounded start-window/button mappings, composition,
-  party-overview shell, and interface palette; further DATA-GOG
+  `DATA-GOG-UI-006`-`008` for bounded start-window/button mappings, composition,
+  party-overview and ADD-list shells, and interface palette; further DATA-GOG
   for party-screen resource mapping; OBS-GOG for screen states,
   coordinates, and navigation.
 - **Acceptance - rules.** Party size, available origins/classes, ability/alignment
@@ -242,7 +242,7 @@ decoder rather than being guessed now.
   shell layers and DSUI-resolved controls over black. Clicks resolve child
   coordinates, dimensions, image identities, and semantic button identities,
   then use a single inverse canvas transform. A shared bounded resolver now
-  materializes typed controls for each of the six extracted start-flow windows
+  materializes typed controls for each of the seven extracted start-flow windows
   while preserving child order, geometry, event masks, and optional image
   references. Encoding-neutral DSFT glyph-run and multiline-block composition and the owned
   font's identity map are verified; generalized map semantics, shipped spacing,

@@ -183,12 +183,17 @@ public sealed class StartupAssetExtractorTests
             }
             var uiAsset = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.StartFlowUiCatalogAssetPath);
-            Assert.Contains("WIND#19500-19505", uiAsset.Conversion, StringComparison.Ordinal);
+            Assert.Contains("WIND#18501,19500,19501,19502,19503,19504,19505",
+                uiAsset.Conversion, StringComparison.Ordinal);
             using (var uiStream = File.OpenRead(Path.Combine(output,
                        OriginalContent.StartFlowUiCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar))))
             {
+                var ui = PackedUiCatalog.Read(uiStream);
                 Assert.Equal(OriginalContent.StartFlowWindowResourceNumbers,
-                    PackedUiCatalog.Read(uiStream).Windows.Select(window => window.ResourceNumber));
+                    ui.Windows.Select(window => window.ResourceNumber));
+                var addWindow = UiWindowGraphResolver.Resolve(ui, 18501);
+                Assert.Equal((320, 181, 17),
+                    ((int)addWindow.Width, (int)addWindow.Height, addWindow.Controls.Count));
             }
             Assert.Empty(await OriginalContent.VerifyInstalledAsync(
                 output, TestContext.Current.CancellationToken));
@@ -278,12 +283,20 @@ public sealed class StartupAssetExtractorTests
         var text = Encoding.ASCII.GetBytes("Synthetic\r\n");
         var windows = OriginalContent.StartFlowWindowResourceNumbers
             .Select(number => (Number: number, Bytes: Window(number))).ToArray();
+        var addWindowButtons = AddExistingButtons()
+            .Select(button => (Number: button.ResourceNumber, Bytes: Button(button))).ToArray();
+        var addWindowEditBox = new UiEditBoxResource(18401, 164, 12, 10);
+        var addWindowEditBoxes = new[]
+        {
+            (Number: addWindowEditBox.ResourceNumber, Bytes: EditBox(addWindowEditBox))
+        };
         var indexOffset = 28 + title.Length + windowImage.Length + menuLayers.Sum(item => item.Bytes.Length) +
             addExistingImages.Sum(item => item.Bytes.Length) +
             icons.Sum(item => item.Bytes.Length) + characterIcons.Sum(item => item.Bytes.Length) +
             titlePalette.Length + interfacePalette.Length +
             modalIcons.Sum(item => item.Bytes.Length) + font.Length + text.Length +
-            windows.Sum(item => item.Bytes.Length);
+            windows.Sum(item => item.Bytes.Length) + addWindowButtons.Sum(item => item.Bytes.Length) +
+            addWindowEditBoxes.Sum(item => item.Bytes.Length);
         using var stream = new MemoryStream();
         using var writer = new BinaryWriter(stream, Encoding.ASCII, leaveOpen: true);
         writer.Write(Encoding.ASCII.GetBytes("GFFI"));
@@ -348,9 +361,23 @@ public sealed class StartupAssetExtractorTests
             writer.Write(window.Bytes);
             windowEntries.Add((window.Number, offset, window.Bytes.Length));
         }
+        var buttonEntries = new List<(uint Number, int Offset, int Size)>();
+        foreach (var button in addWindowButtons)
+        {
+            var offset = checked((int)stream.Position);
+            writer.Write(button.Bytes);
+            buttonEntries.Add((button.Number, offset, button.Bytes.Length));
+        }
+        var editBoxEntries = new List<(uint Number, int Offset, int Size)>();
+        foreach (var editBox in addWindowEditBoxes)
+        {
+            var offset = checked((int)stream.Position);
+            writer.Write(editBox.Bytes);
+            editBoxEntries.Add((editBox.Number, offset, editBox.Bytes.Length));
+        }
         writer.Write(0U);
         writer.Write(0U);
-        writer.Write((ushort)6);
+        writer.Write((ushort)8);
         WriteTable(writer, "BMP ", bitmapEntries);
         WriteTable(writer, "ICON", iconEntries);
         WriteTable(writer, "PAL ",
@@ -361,6 +388,8 @@ public sealed class StartupAssetExtractorTests
         WriteTable(writer, "FONT", [(StartupAssetExtractor.FontNumber, fontOffset, font.Length)]);
         WriteTable(writer, "TEXT", [(7U, textOffset, text.Length)]);
         WriteTable(writer, "WIND", windowEntries);
+        WriteTable(writer, "BUTN", buttonEntries);
+        WriteTable(writer, "EBOX", editBoxEntries);
         return stream.ToArray();
     }
 
@@ -393,13 +422,91 @@ public sealed class StartupAssetExtractorTests
 
     private static byte[] Window(uint number)
     {
-        var bytes = new byte[UiWindowResource.FixedSize];
+        var children = number == 18501 ? AddExistingChildren() : [];
+        var bytes = new byte[UiWindowResource.FixedSize + children.Length * UiWindowResource.ChildRecordSize];
         Encoding.ASCII.GetBytes("WIND").CopyTo(bytes, 0);
         BitConverter.GetBytes((uint)bytes.Length).CopyTo(bytes, 4);
         BitConverter.GetBytes(number).CopyTo(bytes, 8);
-        BitConverter.GetBytes(StartupAssetExtractor.PartyWindowImageNumber).CopyTo(bytes, 58);
+        BitConverter.GetBytes(number == 18501 ? 10002U : StartupAssetExtractor.PartyWindowImageNumber)
+            .CopyTo(bytes, 58);
         BitConverter.GetBytes((ushort)320).CopyTo(bytes, 190);
-        BitConverter.GetBytes((ushort)200).CopyTo(bytes, 192);
+        BitConverter.GetBytes((ushort)(number == 18501 ? 181 : 200)).CopyTo(bytes, 192);
+        for (var index = 0; index < children.Length; index++)
+        {
+            var offset = UiWindowResource.FixedSize + index * UiWindowResource.ChildRecordSize;
+            Encoding.ASCII.GetBytes(children[index].Tag).CopyTo(bytes, offset + 4);
+            BitConverter.GetBytes(children[index].ResourceNumber).CopyTo(bytes, offset + 8);
+            BitConverter.GetBytes(children[index].X).CopyTo(bytes, offset + 12);
+            BitConverter.GetBytes(children[index].Y).CopyTo(bytes, offset + 14);
+        }
+        return bytes;
+    }
+
+    private static UiChildReference[] AddExistingChildren() =>
+    [
+        new("BUTN", 18300, 110, 0),
+        new("BUTN", 18301, 231, 30),
+        new("BUTN", 18302, 231, 50),
+        new("BUTN", 18303, 215, 148),
+        new("BUTN", 18304, 46, 31),
+        new("BUTN", 18305, 46, 42),
+        new("BUTN", 18306, 46, 53),
+        new("BUTN", 18307, 46, 64),
+        new("BUTN", 18308, 46, 75),
+        new("BUTN", 18309, 46, 86),
+        new("BUTN", 18310, 46, 97),
+        new("BUTN", 18311, 46, 108),
+        new("BUTN", 18312, 46, 119),
+        new("BUTN", 18313, 46, 130),
+        new("BUTN", 10314, 215, 30),
+        new("BUTN", 10315, 215, 130),
+        new("EBOX", 18401, 49, 147)
+    ];
+
+    private static UiButtonResource[] AddExistingButtons() =>
+    [
+        new(18300, 67, 23, 18107, 4),
+        new(18301, 44, 15, 18108, 0),
+        new(18302, 44, 15, 18109, 0),
+        new(18303, 62, 15, 18110, 0),
+        new(18304, 163, 11, 18100, 208),
+        new(18305, 163, 11, 18100, 208),
+        new(18306, 163, 11, 18100, 208),
+        new(18307, 163, 11, 18100, 208),
+        new(18308, 163, 11, 18100, 208),
+        new(18309, 163, 11, 18100, 208),
+        new(18310, 163, 11, 18100, 208),
+        new(18311, 163, 11, 18100, 208),
+        new(18312, 163, 11, 18100, 208),
+        new(18313, 163, 11, 18100, 208),
+        new(10314, 14, 14, 12102, 0),
+        new(10315, 14, 14, 12101, 0)
+    ];
+
+    private static byte[] Button(UiButtonResource button)
+    {
+        var bytes = new byte[UiButtonResource.FixedSize];
+        Encoding.ASCII.GetBytes("BUTN").CopyTo(bytes, 0);
+        BitConverter.GetBytes((uint)bytes.Length).CopyTo(bytes, 4);
+        BitConverter.GetBytes(button.ResourceNumber).CopyTo(bytes, 8);
+        BitConverter.GetBytes(button.Width).CopyTo(bytes, 40);
+        BitConverter.GetBytes(button.Height).CopyTo(bytes, 42);
+        BitConverter.GetBytes(button.EventMask).CopyTo(bytes, 88);
+        BitConverter.GetBytes(button.ResourceNumber).CopyTo(bytes, 90);
+        BitConverter.GetBytes(button.ImageResourceNumber).CopyTo(bytes, 100);
+        return bytes;
+    }
+
+    private static byte[] EditBox(UiEditBoxResource editBox)
+    {
+        var bytes = new byte[UiEditBoxResource.RecordSize];
+        Encoding.ASCII.GetBytes("EBOX").CopyTo(bytes, 0);
+        BitConverter.GetBytes((uint)bytes.Length).CopyTo(bytes, 4);
+        BitConverter.GetBytes(editBox.ResourceNumber).CopyTo(bytes, 8);
+        BitConverter.GetBytes(editBox.ResourceNumber).CopyTo(bytes, 24);
+        BitConverter.GetBytes(editBox.Width).CopyTo(bytes, 34);
+        BitConverter.GetBytes(editBox.Height).CopyTo(bytes, 36);
+        BitConverter.GetBytes(editBox.EventMask).CopyTo(bytes, 150);
         return bytes;
     }
 

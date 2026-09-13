@@ -142,7 +142,7 @@
   for frame-state meanings, focus, hit boundaries, and transitions.
 - **Implementation:** bounded window, button, application-frame, and edit-box
   readers plus the read-only `ui-catalog` inspection command. DSUI v1
-  transactionally extracts #19500-#19505 and all 39 referenced controls as a
+  transactionally extracts #18501 and #19500-#19505 with all 56 referenced controls as a
   resolved runtime graph. A shared runtime graph resolver validates identity and
   dimensions and preserves each window's ordered typed controls, coordinates,
   event masks, and optional image reference without assigning unknown behavior.
@@ -273,7 +273,7 @@
   palette; medium for coordinates because the public capture is compressed and
   its precise source revision is not identified.
 - **Implementation:** both layers are transactionally extracted as DSIX in
-  asset-pack format 12 and rendered when Core enters `PartyOverview`.
+  asset-pack format 13 and rendered when Core enters `PartyOverview`.
 - **Tests:** exact mapping/order/geometry, synthetic extraction provenance,
   exact 41-file inventory, pack verification, and content smoke.
 - **Uncertainty:** Party portraits, status fields, empty-slot art, BEGIN and
@@ -288,9 +288,10 @@
   fingerprinted owned archive, inspect geometry-matched `BMP ` and `ICON`
   resources with `PAL ` #1000, and correlate the result against
   `PLAYTHROUGH-VIDEO-001` near 2:30-2:40.
-- **Finding:** `BMP ` #10005 is the complete 320x200 base. Ten instances of
-  four-frame `ICON` #18100 (165x11) occupy x=46 and y=31 through 130 in 11-pixel
-  steps. Up/down controls use #12102 at (215,30) and #12101 at (215,130);
+- **Finding:** `BMP ` #10005 is the complete 320x200 runtime base even though
+  the static WIND image field names #10002. Ten 163x11 controls,
+  backed by four-frame `ICON` #18100 (165x11), occupy x=46 and y=31 through 130
+  in 11-pixel steps. Up/down controls use #12102 at (215,30) and #12101 at (215,130);
   ADD, EXIT, and DELETE use #18104 at (231,30), #18109 at (231,50), and #18110
   at (215,148); the ADD title uses #18103 at (110,0). The static WIND records
   name SAVE imagery for two reused controls, while the observed ADD screen uses
@@ -299,9 +300,12 @@
   interface palette, and WIND geometry; medium for runtime substitution because
   the corroborating public capture's exact source revision is unidentified.
 - **Implementation:** seven newly mapped images are transactionally extracted
-  as DSIX in asset-pack format 12. Their first frames, plus the already extracted
-  EXIT image, render when Core enters `AddExistingCharacter`.
-- **Tests:** exact asset and placement contracts, frame bounds, synthetic
+  as DSIX in asset-pack format 13. Their first frames, plus the already extracted
+  EXIT image, render when Core enters `AddExistingCharacter`. WIND #18501 and
+  its 17-child graph are retained in DSUI; a dedicated resolver validates the
+  320x181 shell, static #10002/source-image references, runtime substitutions, child order,
+  event masks, and exclusive hit rectangles without assigning unresolved actions.
+- **Tests:** exact asset, graph, substitution, placement, and hit contracts; frame bounds; synthetic
   extraction provenance, exact 41-file inventory, pack verification, and
   content smoke.
 - **Uncertainty:** Stored-character names and portraits, row selection,
@@ -452,7 +456,7 @@
   supported GOG build; runtime selection and remaining field semantics are
   unknown.
 - **Implementation:** `PackedCharacterCatalog` plus transactional extraction to
-  `characters/catalog.dsch`; the asset-pack manifest is version 12 and records
+  `characters/catalog.dsch`; the asset-pack manifest is version 13 and records
   `CHARSAVE.GFF` provenance.
 - **Tests:** synthetic round-trip and deterministic ordering; duplicate,
   malformed-field, noncanonical-order, truncation, and trailing-data rejection;

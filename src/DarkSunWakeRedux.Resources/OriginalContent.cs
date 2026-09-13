@@ -145,7 +145,7 @@ public sealed record SourceIdentification(
 
 public static class OriginalContent
 {
-    public const int AssetPackFormatVersion = 12;
+    public const int AssetPackFormatVersion = 13;
     public const string GameId = "dark-sun-wake-redux";
     public const string TitleImageAssetPath = "images/title.dsix";
     public const string InterfaceFontAssetPath = "fonts/interface.dsft";
@@ -156,7 +156,7 @@ public static class OriginalContent
     public const long MaximumManifestBytes = 4 * 1024 * 1024;
 
     public static IReadOnlyList<uint> StartFlowWindowResourceNumbers { get; } =
-        [19500, 19501, 19502, 19503, 19504, 19505];
+        [18501, 19500, 19501, 19502, 19503, 19504, 19505];
 
     public static IReadOnlyList<UiLayerAsset> StartMenuLayers { get; } =
     [

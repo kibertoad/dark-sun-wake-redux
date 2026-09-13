@@ -39,7 +39,7 @@ If any step fails, staging is removed and the last verified pack is restored.
 Current code exercises this transaction for the evidenced title, two
 start-window shell layers, two party-overview layers, four start-window
 buttons, twenty character-generation and modal controls, shared
-window image, interface font, text catalog, and resolved six-window UI graph;
+window image, interface font, text catalog, and resolved seven-window UI graph;
 later Slice 2 resources will
 extend the exact inventory only after their mappings are recorded.
 

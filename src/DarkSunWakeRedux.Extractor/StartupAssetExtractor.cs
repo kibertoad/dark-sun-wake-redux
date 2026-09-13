@@ -219,7 +219,8 @@ public static class StartupAssetExtractor
         var hash = Convert.ToHexStringLower(await SHA256.HashDataAsync(verify, cancellationToken));
         return new(relativePath, verify.Length, hash, SourcePath,
             "application/vnd.dark-sun-wake-redux.ui-catalog",
-            $"WIND#19500-19505 resolved child graph -> DSUI v{PackedUiCatalog.FormatVersion}");
+            $"WIND#{string.Join(',', OriginalContent.StartFlowWindowResourceNumbers)} " +
+            $"resolved child graph -> DSUI v{PackedUiCatalog.FormatVersion}");
     }
 
     private static async Task<AssetPackFile> WriteTextCatalogAsync(

@@ -34,8 +34,8 @@ The smoke modes have distinct purposes:
 - `--smoke-test` exits before content or graphics initialization and is safe on
   a content-free CI worker.
 - `--content-smoke-test --asset-pack <path>` verifies the exact pack inventory,
-  opens all thirty-three DSIX UI images, the DSFT interface font, the DSTX text
-  catalog, the resolved six-window DSUI graph, and the DSCH character metadata
+  opens all thirty-seven DSIX UI images, the DSFT interface font, the DSTX text
+  catalog, the resolved seven-window DSUI graph, and the DSCH character metadata
   catalog, and checks their frame, geometry, glyph, reference, and inventory contracts
   without a window.
 - `--platform-smoke-test` creates the MonoGame platform surface and exits; it is
@@ -49,7 +49,7 @@ build `52095422060333615`. Metadata-only FONT inspection verifies that all 256
 character-map entries are identity values and summarizes its pixel-index range
 without emitting glyph pixels. A temporary owned-source extraction produced and
 verified the exact 41-asset manifest including both start-shell layers, both
-party-overview layers, the ADD-list base and control family, all six windows, 39 controls, and
+party-overview layers, the ADD-list base and control family, all seven windows, 56 controls, and
 19 bounded character metadata entries;
 the runtime content-smoke path opened that pack successfully, after which the
 temporary pack was removed. Local-only decoded previews established the title
