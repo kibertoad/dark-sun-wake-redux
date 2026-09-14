@@ -60,6 +60,9 @@ trouble target at 1825 is bounded through three prints, local flag 6 clear, a
 local-flag-16 equals-zero condition, local flag 10 set, and return. Core
 evaluates the condition atomically; the fresh-opening path changes the visible
 source order from 1, 3, 5, 6 to 2, 3, 5, 6 and presents the transcript. The
+newly enabled king-history target 3479 is bounded through three prints, local
+flag 16 set, local flag 10 clear, and return; it presents its transcript and
+leaves second-page source order 3, 5, 6. The
 fixed portrait/window/control chrome and
 projected initial literal speech render over the live aspect-expanded map.
 Wrapping, conversation entry, remaining second-menu response branches, and

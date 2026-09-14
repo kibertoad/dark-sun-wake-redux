@@ -131,6 +131,7 @@ try
             FirstTyrDialogueResponseProjection fourthDialogueResponse;
             FirstTyrDialogueResponseProjection fifthDialogueResponse;
             FirstTyrDialogueResponseProjection troubleDialogueResponse;
+            FirstTyrDialogueResponseProjection kingDialogueResponse;
             using (var scriptStream = File.OpenRead(Path.Combine(assetPack,
                        OriginalContent.FirstTyrDialogueScriptAssetPath.Replace(
                            '/', Path.DirectorySeparatorChar))))
@@ -149,6 +150,8 @@ try
                 fifthDialogueResponse = FirstTyrDialogueResponseProjectionReader.ReadFifth(script);
                 troubleDialogueResponse =
                     FirstTyrDialogueResponseProjectionReader.ReadTrouble(script);
+                kingDialogueResponse =
+                    FirstTyrDialogueResponseProjectionReader.ReadKing(script);
                 if (dialogueProjection.PortraitResourceNumber !=
                         OriginalContent.FirstTyrDialoguePortraitResourceNumber ||
                     dialogueProjection.SpeechVariants.Count != 2 ||
@@ -346,6 +349,18 @@ try
                     "The installed first Tyr trouble response did not apply its effects.");
             _ = DialoguePreviewText.Create(font, dialogueProjection,
                 troubleDialogue.After, dialogueVariables, troubleDialogueResponse.Output);
+            identitySession.Execute(DialogueCommand.Select(0));
+            var kingDialogue = identitySession.Execute(DialogueCommand.Apply(
+                DialogueSessionAdapter.ToCore(kingDialogueResponse)));
+            if (!kingDialogue.Applied ||
+                !kingDialogue.After.Variables.LocalFlags[16] ||
+                kingDialogue.After.Variables.LocalFlags[10] ||
+                !kingDialogue.After.Choices.Select(choice => choice.SourceIndex)
+                    .SequenceEqual([3, 5, 6]))
+                throw new InvalidDataException(
+                    "The installed first Tyr king response did not apply its effects.");
+            _ = DialoguePreviewText.Create(font, dialogueProjection,
+                kingDialogue.After, dialogueVariables, kingDialogueResponse.Output);
             var textPath = Path.Combine(assetPack,
                 OriginalContent.TextCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using var textStream = File.OpenRead(textPath);

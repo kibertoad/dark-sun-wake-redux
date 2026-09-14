@@ -85,6 +85,9 @@ true, and the second menu resolves as 1, 3, 5, and 6.
 That path then selects target 1825, verifies local flag 6 clears, local flag 10
 is enabled from fresh-opening local flag 16, the page becomes 2, 3, 5, 6, and
 the extracted transcript fits the speech area.
+The same owned path selects newly enabled target 3479, verifies local flag 16
+sets and local flag 10 clears, resolves page order 3, 5, 6, and rasterizes its
+three-part transcript. Synthetic tests reject either assignment or return drift.
 The owned smoke also rasterizes all five implemented returned transcripts with
 the extracted font, including choice 0's explicit blank line, within the bounded
 speech area.

@@ -62,6 +62,9 @@ public static class FirstTyrDialogueResponseProjectionReader
     public const int TroubleSourceChoiceIndex = 1;
     public const int TroubleEntryOffset = 1825;
     public const int TroubleReturnOffset = 1995;
+    public const int KingSourceChoiceIndex = 2;
+    public const int KingEntryOffset = 3479;
+    public const int KingReturnOffset = 3685;
     public const byte PrintStringOpcode = 0x4f;
     public const byte PrintNewLineOpcode = 0x51;
     public const byte LoadVariableOpcode = 0x16;
@@ -194,6 +197,30 @@ public static class FirstTyrDialogueResponseProjectionReader
         {
             ConditionalLocalFlagAssignmentsFromLocalFlags = [conditional]
         };
+    }
+
+    public static FirstTyrDialogueResponseProjection ReadKing(
+        PackedGplScript script)
+    {
+        ValidateScript(script);
+        var bytes = script.Bytecode.AsSpan();
+        var position = KingEntryOffset;
+        var output = new[]
+        {
+            ReadLiteralPrint(bytes, ref position, 3544),
+            ReadLiteralPrint(bytes, ref position, 3611),
+            ReadLiteralPrint(bytes, ref position, 3675)
+        };
+        var assignments = new[]
+        {
+            ReadFlagAssignment(bytes, ref position, 16, true),
+            ReadFlagAssignment(bytes, ref position, 10, false)
+        };
+        if (position != KingReturnOffset)
+            throw Error($"king response effects end at {position}, not {KingReturnOffset}");
+        RequireOpcode(bytes, ref position, LocalReturnOpcode, "king response local return");
+        return new(KingSourceChoiceIndex, KingEntryOffset, output,
+            assignments, [], true);
     }
 
     private static FirstTyrDialogueResponseProjection ReadIncrementing(

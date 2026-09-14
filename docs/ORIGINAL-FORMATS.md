@@ -405,6 +405,9 @@ Second-menu target 1825 is bounded through its return at 1995: three
 compressed-literal prints, immediate zero to local flag 6, a local flag 16
 equals-zero condition guarding immediate one to local flag 10, and a local
 return.
+The newly enabled target 3479 is bounded through its return at 3685: three
+compressed-literal prints, immediate one to local flag 16, immediate zero to
+local flag 10, and a local return.
 
 The only decoded primitive is a bounded packed string used for future script
 interpretation. Marker `0x01` represents the active character name, marker
@@ -423,7 +426,7 @@ the exact print destinations, instruction boundaries, flag target/value,
 choice 2/3 counter target, choice 4's flag/number assignments, the exact
 post-menu control flow and second-menu conditions, choice 1's exact extended
 global reference and branch target, target 1825's local condition and assignment,
-and local return. Decoding these structures does not
+target 3479's two flag assignments, and local return. Decoding these structures does not
 authorize executing other
 instructions or assigning condition and state-mutation semantics.
 

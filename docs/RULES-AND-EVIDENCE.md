@@ -705,6 +705,8 @@
   with opening source choice 7.
   Its target 1825 prints three literals, clears local flag 6, conditionally sets
   local flag 10 when local flag 16 is zero, and returns.
+  Target 3479 then prints three literals, sets local flag 16, clears local flag
+  10, and returns.
 - **Confidence:** verified for the captured layouts, first exchange's GPL chunk,
   and visible response text; high for the static UI graph; medium for the
   opening-only local number 0, local flags 9/16, and global flag 357 initial values
@@ -767,6 +769,9 @@
   flag 10 set, and local return. Core resolves the local condition before any
   mutation; the fresh-opening path returns to page two with source order
   2, 3, 5, 6 and presents the projected transcript.
+  Target 3479 has an exact bounded projection through offset 3685: three literal
+  prints, local flag 16 set, local flag 10 clear, and local return. It presents
+  the transcript and recomputes page two as source order 3, 5, 6.
   Choice 7's target has an exact bounded projection at offsets 2905–2920: print
   GSTRING #5, assign immediate one to local flags 14 and 4, then return locally.
   Core validates the selected identity before applying both flags atomically and
@@ -781,8 +786,8 @@
   selection, retained branch identities and invalid selection immutability,
   response/completion opcode/operand/offset/truncation drift, choice 4's
   assignment path, opening continuation and second-menu projection, caller-page
-  return, target-1825 local-condition/assignment drift, explicit-newline
-  transcript rendering and malformed-output rejection,
+  return, target-1825 local-condition/assignment drift, target-3479 flag/return
+  drift, explicit-newline transcript rendering and malformed-output rejection,
   atomic flag
   application, conditional global-flag effects, deterministic menu reselection,
   unknown local-number/global-condition rejection, mismatched-branch rejection,

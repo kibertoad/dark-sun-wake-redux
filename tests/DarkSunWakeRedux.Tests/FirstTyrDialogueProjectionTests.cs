@@ -291,6 +291,40 @@ public sealed class FirstTyrDialogueProjectionTests
             }));
     }
 
+    [Fact]
+    public void ProjectsKingResponseFlagTransition()
+    {
+        var projection = FirstTyrDialogueResponseProjectionReader.ReadKing(
+            ScriptWithKingResponse());
+
+        Assert.Equal((2, 3479),
+            (projection.SourceChoiceIndex, projection.EntryOffset));
+        Assert.Equal([67, 69, 66], projection.Output
+            .Select(output => output.Text!.Text.Length));
+        Assert.Equal([(16, true), (10, false)], projection.LocalFlagAssignments
+            .Select(assignment => ((int)assignment.VariableId, assignment.Value)));
+        Assert.True(projection.ReturnsToMenu);
+    }
+
+    [Fact]
+    public void RejectsKingResponseAssignmentAndReturnDrift()
+    {
+        var driftedAssignment = ScriptWithKingResponse();
+        driftedAssignment.Bytecode[3679] = 0x11;
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadKing(driftedAssignment));
+        var driftedReturn = ScriptWithKingResponse();
+        driftedReturn.Bytecode[3685] = 0;
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadKing(driftedReturn));
+        var truncated = ScriptWithKingResponse();
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadKing(truncated with
+            {
+                Bytecode = truncated.Bytecode[..3685]
+            }));
+    }
+
     private static PackedGplScript Script()
     {
         var bytes = new byte[1000];
@@ -417,6 +451,23 @@ public sealed class FirstTyrDialogueProjectionTests
             0x3e, 0x07, 0xca,
             0x16, 0x8f, 0x01, 0x8e, 0x0a,
             0x67,
+            0x15
+        ]);
+        return script with { Bytecode = bytes };
+    }
+
+    private static PackedGplScript ScriptWithKingResponse()
+    {
+        var script = Script();
+        var bytes = new byte[3686];
+        script.Bytecode.CopyTo(bytes, 0);
+        WritePrint(bytes, 3479, new string('O', 67));
+        WritePrint(bytes, 3544, new string('P', 69));
+        WritePrint(bytes, 3611, new string('Q', 66));
+        Write(bytes, 3675,
+        [
+            0x16, 0x8f, 0x01, 0x8e, 0x10,
+            0x16, 0x8f, 0x00, 0x8e, 0x0a,
             0x15
         ]);
         return script with { Bytecode = bytes };
