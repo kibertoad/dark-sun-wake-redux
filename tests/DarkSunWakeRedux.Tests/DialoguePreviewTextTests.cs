@@ -153,7 +153,7 @@ public sealed class DialoguePreviewTextTests
             projection, FirstTyrDialogueObservedState.Create(), 5);
         session.Execute(DialogueCommand.Select(0));
         session.Execute(DialogueCommand.Apply(new(0, 1017,
-            DialogueBranchDisposition.ReturnThroughFirstTyrOpeningMenu,
+            DialogueBranchDisposition.ReturnThroughFirstTyrMenu,
             new Dictionary<ushort, bool> { [0] = false })));
 
         var content = DialoguePreviewText.Create(Font(), projection, session.Snapshot());
@@ -162,6 +162,49 @@ public sealed class DialoguePreviewTextTests
             content.Responses.Select(response => response.ChoiceIndex));
         Assert.Equal([1597, 2905],
             content.Responses.Select(response => response.TargetOffset));
+    }
+
+    [Fact]
+    public void PresentsProjectedResponseOutputWithExplicitBlankLines()
+    {
+        var projection = new FirstTyrDialogueProjection(18, [Literal("opening")],
+        [
+            Choice("leave", 2905, GplDialogueConditionKind.Constant, 0, 1)
+        ]);
+        var output = new GplDialogueOutput[]
+        {
+            new(GplDialogueOutputKind.Text, Literal("one")),
+            new(GplDialogueOutputKind.NewLine, null),
+            new(GplDialogueOutputKind.NewLine, null),
+            new(GplDialogueOutputKind.Text, Literal("two three"))
+        };
+        var session = DialogueSessionAdapter.Create(
+            projection, DialogueVariableSnapshot.Empty, 5);
+
+        var content = DialoguePreviewText.Create(
+            Font(), projection, session.Snapshot(), speechOutput: output);
+
+        Assert.Equal(9, content.Speech.Width);
+        Assert.Equal(6, content.Speech.Height);
+        Assert.All(content.Speech.Pixels.AsSpan(9 * 2, 9).ToArray(),
+            pixel => Assert.Equal(0, pixel));
+    }
+
+    [Fact]
+    public void RejectsMalformedOrEmptyProjectedResponseOutput()
+    {
+        var projection = new FirstTyrDialogueProjection(18, [Literal("opening")],
+        [
+            Choice("leave", 2905, GplDialogueConditionKind.Constant, 0, 1)
+        ]);
+        var snapshot = DialogueSessionAdapter.Create(
+            projection, DialogueVariableSnapshot.Empty, 5).Snapshot();
+
+        Assert.Throws<InvalidDataException>(() => DialoguePreviewText.Create(
+            Font(), projection, snapshot, speechOutput: []));
+        Assert.Throws<InvalidDataException>(() => DialoguePreviewText.Create(
+            Font(), projection, snapshot,
+            speechOutput: [new(GplDialogueOutputKind.Text, null)]));
     }
 
     private static GplDialogueTextSource Literal(string text) =>

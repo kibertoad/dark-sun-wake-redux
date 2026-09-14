@@ -1,5 +1,6 @@
 using DarkSunWakeRedux.Core;
 using DarkSunWakeRedux.Resources;
+using System.Text;
 
 namespace DarkSunWakeRedux.Game;
 
@@ -34,7 +35,8 @@ public static class DialoguePreviewText
         PackedIndexedBitmapFont font,
         FirstTyrDialogueProjection projection,
         DialogueSnapshot dialogue,
-        IReadOnlyDictionary<GplDialogueVariable, string>? variableText = null)
+        IReadOnlyDictionary<GplDialogueVariable, string>? variableText = null,
+        IReadOnlyList<GplDialogueOutput>? speechOutput = null)
     {
         ArgumentNullException.ThrowIfNull(font);
         ArgumentNullException.ThrowIfNull(projection);
@@ -44,12 +46,10 @@ public static class DialoguePreviewText
                 OriginalContent.FirstTyrDialogueScriptResourceNumber)
             throw new InvalidDataException(
                 "The dialogue preview state has an unexpected script identity.");
-        var speechSource = projection.SpeechVariants.FirstOrDefault(source =>
-            source.Kind == GplDialogueTextSourceKind.Literal)
-            ?? throw new InvalidDataException(
-                "The dialogue preview has no literal opening speech source.");
-        var speechLines = Wrap(font, speechSource.Text, SpeechWidth, MaximumSpeechLines);
-        if (speechLines.Count == 0)
+        var speechLines = speechOutput is null
+            ? OpeningSpeech(font, projection)
+            : ResponseSpeech(font, speechOutput, variableText);
+        if (speechLines.Count == 0 || speechLines.All(line => line.IsEmpty))
             throw new InvalidDataException("The dialogue preview speech is empty.");
         var speech = IndexedGlyphBlockRasterizer.Rasterize(font, speechLines);
         var responses = dialogue.Choices
@@ -71,6 +71,64 @@ public static class DialoguePreviewText
             })
             .ToArray();
         return new(speech, responses);
+    }
+
+    private static IReadOnlyList<ReadOnlyMemory<byte>> OpeningSpeech(
+        PackedIndexedBitmapFont font,
+        FirstTyrDialogueProjection projection)
+    {
+        var source = projection.SpeechVariants.FirstOrDefault(candidate =>
+            candidate.Kind == GplDialogueTextSourceKind.Literal)
+            ?? throw new InvalidDataException(
+                "The dialogue preview has no literal opening speech source.");
+        return Wrap(font, source.Text, SpeechWidth, MaximumSpeechLines);
+    }
+
+    private static IReadOnlyList<ReadOnlyMemory<byte>> ResponseSpeech(
+        PackedIndexedBitmapFont font,
+        IReadOnlyList<GplDialogueOutput> output,
+        IReadOnlyDictionary<GplDialogueVariable, string> variableText)
+    {
+        ArgumentNullException.ThrowIfNull(output);
+        var text = new StringBuilder();
+        foreach (var item in output)
+        {
+            if (item is null)
+                throw new InvalidDataException("Dialogue response output contains a null item.");
+            switch (item.Kind)
+            {
+                case GplDialogueOutputKind.Text when item.Text is not null:
+                    text.Append(Resolve(item.Text, variableText));
+                    break;
+                case GplDialogueOutputKind.NewLine when item.Text is null:
+                    text.Append('\n');
+                    break;
+                case GplDialogueOutputKind.Text:
+                    throw new InvalidDataException(
+                        "Dialogue text output has no text source.");
+                case GplDialogueOutputKind.NewLine:
+                    throw new InvalidDataException(
+                        "Dialogue newline output unexpectedly has a text source.");
+                default:
+                    throw new InvalidDataException(
+                        $"Dialogue output kind {item.Kind} is unsupported.");
+            }
+        }
+        var lines = new List<ReadOnlyMemory<byte>>();
+        foreach (var paragraph in text.ToString().Split('\n'))
+        {
+            if (lines.Count == MaximumSpeechLines)
+                throw new InvalidDataException(
+                    $"Dialogue speech exceeds the {MaximumSpeechLines}-line preview area.");
+            if (paragraph.Length == 0)
+            {
+                lines.Add(ReadOnlyMemory<byte>.Empty);
+                continue;
+            }
+            lines.AddRange(Wrap(font, paragraph, SpeechWidth,
+                MaximumSpeechLines - lines.Count));
+        }
+        return lines;
     }
 
     private static GplDialogueChoice ResolveChoice(

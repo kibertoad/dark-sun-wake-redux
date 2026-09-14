@@ -391,8 +391,9 @@ zero assignment to its matching local flag, a word increment of local number 0,
 and a local return.
 Choice 4 is bounded at offsets 1232-1394: three compressed-literal prints,
 immediate one to local flag 9, immediate zero to local number 0, and a local
-return. The post-menu block at offsets 547-740 derives local flags 4 and 5,
-decides whether to repeat the opening menu, and, when advancing, derives local
+return. The post-menu block at offsets 547-740 reads local flags 1, 2, 3, and 9,
+derives local flags 4 and 5, decides whether to repeat the opening menu, and,
+when advancing, derives local
 flags 1, 6, 7, and 8 from global flag 357. The following seven-entry menu starts
 at offset 750 and uses local flags 1, 6, 10, 7, 11, and 8 plus constant exit
 choice 6 targeting the same completion branch at 2905.

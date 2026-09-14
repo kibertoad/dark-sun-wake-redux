@@ -345,8 +345,11 @@ decoder rather than being guessed now.
   prints, sets local flag 9, resets local number 0, and advances through the
   same continuation. The completion target works from both menus despite their
   reused source indexes because runtime branch dispatch is keyed by target.
-  Response transcript presentation, the remaining second-menu branches, and
-  generalized GPL execution remain open. The hook renders the
+  Returned choices 0-4 now replace the speech with their projected output,
+  retaining explicit print-newline instructions; target 1597 returns to its
+  calling page, and unprojected visible targets remain inert without partially
+  selecting the session. The remaining second-menu branches and generalized
+  GPL execution remain open. The hook renders the
   first literal speech and filtered labels with bounded provisional
   wrapping in the extracted font. Reusable ordered hotkey bindings and Core
   navigation now cover character, inventory, cast/psionic, current-effects,

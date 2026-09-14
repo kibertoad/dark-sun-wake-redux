@@ -27,7 +27,7 @@ public sealed class FirstTyrDialogueFlowTests
             LocalFlags = new Dictionary<ushort, bool>
             {
                 [0] = true, [1] = true, [2] = false, [3] = false,
-                [4] = false, [5] = false
+                [4] = false, [5] = false, [9] = false
             },
             LocalNumbers = new Dictionary<ushort, int> { [0] = 2 }
         };
@@ -46,7 +46,8 @@ public sealed class FirstTyrDialogueFlowTests
         {
             LocalFlags = new Dictionary<ushort, bool>
             {
-                [0] = true, [1] = true, [3] = true, [4] = false, [5] = false
+                [0] = true, [1] = true, [3] = true, [4] = false, [5] = false,
+                [9] = false
             }
         };
 
@@ -76,13 +77,40 @@ public sealed class FirstTyrDialogueFlowTests
         session.Execute(DialogueCommand.Select(0));
 
         var transition = session.Execute(DialogueCommand.Apply(new(0, 1017,
-            DialogueBranchDisposition.ReturnThroughFirstTyrOpeningMenu,
+            DialogueBranchDisposition.ReturnThroughFirstTyrMenu,
             new Dictionary<ushort, bool> { [0] = false })));
 
         Assert.Equal([0, 5, 6],
             transition.After.Choices.Select(choice => choice.SourceIndex));
         Assert.Equal([1597, 2415, 2905],
             transition.After.Choices.Select(choice => choice.BranchTargetOffset));
+    }
+
+    [Fact]
+    public void ReturningBranchOnSecondPageDoesNotRerunTheOpeningContinuation()
+    {
+        var first = new[] { Definition(0, 1017, 0) };
+        var second = new[]
+        {
+            Definition(0, 1597, 1),
+            new DialogueChoiceDefinition(1, 2905,
+                new(DialogueConditionKind.Constant, 0, 1))
+        };
+        var session = new DialogueSession(135, first,
+            FirstTyrDialogueObservedState.Create(), 5, second);
+        session.Execute(DialogueCommand.Select(0));
+        session.Execute(DialogueCommand.Apply(new(0, 1017,
+            DialogueBranchDisposition.ReturnThroughFirstTyrMenu,
+            new Dictionary<ushort, bool> { [0] = false })));
+        session.Execute(DialogueCommand.Select(0));
+
+        var transition = session.Execute(DialogueCommand.Apply(new(0, 1597,
+            DialogueBranchDisposition.ReturnThroughFirstTyrMenu,
+            new Dictionary<ushort, bool> { [1] = false },
+            localNumberAssignments: new Dictionary<ushort, int> { [0] = 2 })));
+
+        Assert.Equal([1], transition.After.Choices.Select(choice => choice.SourceIndex));
+        Assert.False(transition.After.Variables.LocalFlags[5]);
     }
 
     private static DialogueChoiceDefinition Definition(

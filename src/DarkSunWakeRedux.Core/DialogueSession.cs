@@ -14,7 +14,7 @@ public sealed record DialogueChoiceDefinition(
 public enum DialogueBranchDisposition
 {
     ReturnToChoices,
-    ReturnThroughFirstTyrOpeningMenu,
+    ReturnThroughFirstTyrMenu,
     Completed
 }
 
@@ -130,6 +130,7 @@ public sealed class DialogueSession
     private IReadOnlyList<DialogueChoiceDefinition> _definitions;
     private readonly IReadOnlyList<DialogueChoiceDefinition>? _secondPageDefinitions;
     private readonly int _maximumChoices;
+    private bool _onSecondPage;
     private DialogueSnapshot _snapshot;
 
     public DialogueSession(
@@ -220,18 +221,23 @@ public sealed class DialogueSession
             globalFlags[assignment.Key] = assignment.Value;
         var variables = Copy(new(flags, numbers) { GlobalFlags = globalFlags });
         var nextDefinitions = _definitions;
-        if (result.Disposition == DialogueBranchDisposition.ReturnThroughFirstTyrOpeningMenu)
+        var onSecondPage = _onSecondPage;
+        if (result.Disposition == DialogueBranchDisposition.ReturnThroughFirstTyrMenu &&
+            !_onSecondPage)
         {
             var continuation = FirstTyrDialogueFlow.ContinueOpeningMenu(variables);
             variables = continuation.Variables;
             if (continuation.AdvancesToSecondMenu)
+            {
                 nextDefinitions = _secondPageDefinitions ?? throw new InvalidOperationException(
                     "The second dialogue page is unavailable.");
+                onSecondPage = true;
+            }
         }
         _snapshot = result.Disposition switch
         {
             DialogueBranchDisposition.ReturnToChoices or
-                DialogueBranchDisposition.ReturnThroughFirstTyrOpeningMenu => _snapshot with
+                DialogueBranchDisposition.ReturnThroughFirstTyrMenu => _snapshot with
             {
                 Phase = DialoguePhase.AwaitingChoice,
                 Choices = SelectVisible(variables, nextDefinitions),
@@ -248,6 +254,7 @@ public sealed class DialogueSession
                 "Unknown dialogue branch disposition.")
         };
         _definitions = nextDefinitions;
+        _onSecondPage = onSecondPage;
     }
 
     private IReadOnlyList<DialogueChoiceIdentity> SelectVisible(

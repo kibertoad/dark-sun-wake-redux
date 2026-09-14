@@ -18,9 +18,10 @@ public static class FirstTyrDialogueFlow
         var firstQuestionRemains = RequiredFlag(flags, 1);
         var secondQuestionRemains = RequiredFlag(flags, 2);
         var thirdQuestionRemains = RequiredFlag(flags, 3);
+        var followUpRemains = RequiredFlag(flags, 9);
         var counter = RequiredNumber(numbers, 0);
         var anyQuestionRemains = firstQuestionRemains || secondQuestionRemains ||
-            thirdQuestionRemains;
+            thirdQuestionRemains || followUpRemains;
         if (anyQuestionRemains)
         {
             if (counter == 0) flags[4] = true;

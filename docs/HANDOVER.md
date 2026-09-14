@@ -48,14 +48,18 @@ flag 1, conditionally sets local flags 6/7 from global flag 357, sets that globa
 flag, and returns; Core applies the conditional and assignments atomically.
 Choice 4 validates three prints, sets local flag 9, resets local number 0, and
 returns through the same continuation into the second menu. That continuation
-also preserves the paired counter path on the opening menu by setting local
-flag 5 at count two. The second menu is bounded at offset 750, has seven source
-choices, and reuses the completion target at 2905; runtime dispatches by branch
-target so reused menu indexes cannot collide. The
+reads local flags 1, 2, 3, and 9 and preserves the paired counter path on the
+opening menu by setting local flag 5 at count two. The second menu is bounded at
+offset 750, has seven source choices, and reuses the completion target at 2905;
+runtime dispatches by branch
+target so reused menu indexes cannot collide, and target 1597 returns to its
+calling page. Implemented returned branches replace the speech with their
+bounded projected output while retaining explicit newlines; unimplemented
+visible targets are inert and cannot strand the Core session. The
 fixed portrait/window/control chrome and
 projected initial literal speech render over the live aspect-expanded map.
-Wrapping, conversation entry, response transcript presentation, second-menu
-response branches, and broader GPL instruction execution remain pending.
+Wrapping, conversation entry, second-menu response branches, and broader GPL
+instruction execution remain pending.
 
 ## Previous cohesive batch
 
@@ -96,8 +100,8 @@ research output remain under ignored `analysis/original/`.
 
 Continue Slice 3 from evidence, preferably in this order:
 
-1. project the bounded response paths selected by the second menu and present
-   response transcripts before adding quest consequences;
+1. project the bounded response paths selected by the second menu before adding
+   quest consequences;
 2. establish the Preferences setting ranges/defaults and About destination,
    then implement deterministic setting mutations and frame-state feedback;
 3. generalize attack/look target eligibility and select ranged versus melee

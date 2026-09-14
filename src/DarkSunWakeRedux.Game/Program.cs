@@ -213,12 +213,13 @@ try
             var dialogueSession = DialogueSessionAdapter.Create(
                 dialogueProjection, FirstTyrDialogueObservedState.Create(),
                 DialoguePreviewText.MaximumResponses);
+            var dialogueVariables = new Dictionary<GplDialogueVariable, string>
+            {
+                [globalString.Destination] = globalString.Text
+            };
             var dialogueText = DialoguePreviewText.Create(
                 font, dialogueProjection, dialogueSession.Snapshot(),
-                new Dictionary<GplDialogueVariable, string>
-                {
-                    [globalString.Destination] = globalString.Text
-                });
+                dialogueVariables);
             if (dialogueText.Speech.Width is <= 0 or > DialoguePreviewText.SpeechWidth ||
                 !visibleDialogueChoices.SequenceEqual([0, 1, 2, 3, 7]) ||
                 dialogueText.Responses.Count != 5 ||
@@ -256,7 +257,19 @@ try
                     .SequenceEqual([0, 5, 6]))
                 throw new InvalidDataException(
                     "The installed first Tyr response did not advance to the second menu.");
-            returningSession.Execute(DialogueCommand.Select(2));
+            _ = DialoguePreviewText.Create(font, dialogueProjection,
+                returnedDialogue.After, dialogueVariables, firstDialogueResponse.Output);
+            returningSession.Execute(DialogueCommand.Select(0));
+            var repeatedIdentity = returningSession.Execute(DialogueCommand.Apply(
+                DialogueSessionAdapter.ToCore(secondDialogueResponse).ForSourceIndex(0)));
+            if (!repeatedIdentity.Applied ||
+                !repeatedIdentity.After.Choices.Select(choice => choice.SourceIndex)
+                    .SequenceEqual([1, 3, 5, 6]))
+                throw new InvalidDataException(
+                    "The installed shared identity branch did not stay on the second menu.");
+            _ = DialoguePreviewText.Create(font, dialogueProjection,
+                repeatedIdentity.After, dialogueVariables, secondDialogueResponse.Output);
+            returningSession.Execute(DialogueCommand.Select(3));
             var secondMenuCompletion = returningSession.Execute(DialogueCommand.Apply(
                 DialogueSessionAdapter.ToCore(dialogueCompletion).ForSourceIndex(6)));
             if (!secondMenuCompletion.Applied ||
@@ -268,8 +281,10 @@ try
                 dialogueProjection, FirstTyrDialogueObservedState.Create(),
                 DialoguePreviewText.MaximumResponses);
             counterSession.Execute(DialogueCommand.Select(2));
-            counterSession.Execute(DialogueCommand.Apply(
+            var firstCounterDialogue = counterSession.Execute(DialogueCommand.Apply(
                 DialogueSessionAdapter.ToCore(thirdDialogueResponse)));
+            _ = DialoguePreviewText.Create(font, dialogueProjection,
+                firstCounterDialogue.After, dialogueVariables, thirdDialogueResponse.Output);
             counterSession.Execute(DialogueCommand.Select(2));
             var progressedDialogue = counterSession.Execute(DialogueCommand.Apply(
                 DialogueSessionAdapter.ToCore(fourthDialogueResponse)));
@@ -281,6 +296,8 @@ try
                     .SequenceEqual([0, 1, 4, 6, 7]))
                 throw new InvalidDataException(
                     "The installed first Tyr counter responses did not reveal the next choice.");
+            _ = DialoguePreviewText.Create(font, dialogueProjection,
+                progressedDialogue.After, dialogueVariables, fourthDialogueResponse.Output);
             counterSession.Execute(DialogueCommand.Select(2));
             var secondMenuDialogue = counterSession.Execute(DialogueCommand.Apply(
                 DialogueSessionAdapter.ToCore(fifthDialogueResponse)));
@@ -295,6 +312,8 @@ try
                     $"flag9={secondMenuDialogue.After.Variables.LocalFlags[9]}, " +
                     $"choices={string.Join(',', secondMenuDialogue.After.Choices.Select(
                         choice => choice.SourceIndex))}.");
+            _ = DialoguePreviewText.Create(font, dialogueProjection,
+                secondMenuDialogue.After, dialogueVariables, fifthDialogueResponse.Output);
             var identitySession = DialogueSessionAdapter.Create(
                 dialogueProjection, FirstTyrDialogueObservedState.Create(),
                 DialoguePreviewText.MaximumResponses);
@@ -310,6 +329,8 @@ try
                     .SequenceEqual([1, 3, 5, 6]))
                 throw new InvalidDataException(
                     "The installed first Tyr identity response did not apply its effects.");
+            _ = DialoguePreviewText.Create(font, dialogueProjection,
+                identifiedDialogue.After, dialogueVariables, secondDialogueResponse.Output);
             var textPath = Path.Combine(assetPack,
                 OriginalContent.TextCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using var textStream = File.OpenRead(textPath);

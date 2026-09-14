@@ -57,7 +57,7 @@ public sealed class DialogueSessionAdapterTests
 
         var result = DialogueSessionAdapter.ToCore(projection);
 
-        Assert.Equal(DialogueBranchDisposition.ReturnThroughFirstTyrOpeningMenu,
+        Assert.Equal(DialogueBranchDisposition.ReturnThroughFirstTyrMenu,
             result.Disposition);
         Assert.False(result.LocalFlagAssignments[0]);
         Assert.Empty(result.LocalNumberIncrements);

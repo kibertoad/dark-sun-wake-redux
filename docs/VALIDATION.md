@@ -52,11 +52,13 @@ physical input back into the expanded slice, and retain fixed 320x200
 letterboxing when expansion is disabled. Dialogue-layout tests prove the exact
 two window rectangles, portrait anchor, four scrollbar controls, five response
 strip placements, F9 rising-edge toggle contract, bounded greedy wrapping,
-five-label preview selection, overflow rejection, and unsupported-character
+five-label preview selection, projected response output with retained blank
+lines, malformed/empty-output rejection, overflow rejection, and unsupported-character
 handling. Dialogue-session tests prove stable page identities, atomic one-shot
 row selection, rejection without mutation, original branch retention, matching
-branch enforcement, atomic local-flag application, and deterministic menu
-reselection after a returning branch. Unknown local-number increments are
+branch enforcement, atomic local-flag application, deterministic menu
+reselection after a returning branch, and caller-page retention for a target
+shared by both menus. Unknown local-number increments are
 rejected before mutation. Synthetic projection tests reject drift in choice
 0's prints, newlines, assignment, offsets, and local return; choices 2/3's
 prints, matching flag clears, local-number-0 increments, offsets, and returns;
@@ -79,6 +81,9 @@ sets local flag 9, resets local number 0, and enters second-menu order 0, 5, 6.
 Another owned-pack path selects choice 1 and verifies local flag 1 clears, local
 flags 6/7 become true from the fresh-opening condition, global flag 357 becomes
 true, and the second menu resolves as 1, 3, 5, and 6.
+The owned smoke also rasterizes all five implemented returned transcripts with
+the extracted font, including choice 0's explicit blank line, within the bounded
+speech area.
 Exploration command tests also center on arbitrary world points with both-edge
 clamping, reject partial/out-of-world targets, suspend centering outside world
 and Game Menu views, and restore leader-only display through Collapse Party.

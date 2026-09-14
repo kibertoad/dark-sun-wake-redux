@@ -698,13 +698,15 @@
   this supports a fresh-opening-only false value for global flag 357, not a
   generic saved-game assumption.
   Choice 4 prints three literals, sets local flag 9, resets local number 0, and
-  returns. The common post-menu block derives flags 4/5 and either repeats the
+  returns. The common post-menu block reads local flags 1/2/3/9, derives flags
+  4/5, and either repeats the
   opening menu or initializes flags 1/6/7/8 before entering the seven-entry
   second menu. That menu's source choice 6 shares the completion target at 2905
   with opening source choice 7.
 - **Confidence:** verified for the captured layouts, first exchange's GPL chunk,
   and visible response text; high for the static UI graph; medium for the
-  opening-only local number 0 and global flag 357 initial values because they
+  opening-only local number 0, local flag 9, and global flag 357 initial values
+  because they
   combine corpus/script structure with a secondary clean-room implementation.
   The award-producing script path, the second-menu response consequences,
   generic variable initialization, and generic GPL
@@ -728,8 +730,9 @@
   choice's original index and branch offset, and selects indices 0, 1, 2, 3,
   and 7. A second fail-closed projection validates MAS #99's byte-20 assignment
   to type-6 global string #5 and supplies that label only from the ignored owned
-  pack. The capture-correlated opening state now includes local number 0 as zero
-  and global flag 357 as false; generic initialization remains unknown. Core dialogue state stores
+  pack. The capture-correlated opening state now includes local number 0 as zero,
+  local flag 9 as false, and global flag 357 as false; generic initialization
+  remains unknown. Core dialogue state stores
   all choice definitions and the script identity, derives stable visible
   source-index/branch-offset pairs, accepts one bounded physical-row selection,
   and preserves the selected pair atomically. Choice 0 has an exact bounded
@@ -737,7 +740,8 @@
   immediate zero to local flag 0, and a local return. Core applies that effect
   only to the matching branch. The bounded offsets 547-740 continuation derives
   flags 4/5 and advances to the seven-choice menu at offset 750; Game rebuilds
-  its filtered response rows. The projected transcript is not yet presented.
+  its filtered response rows and replaces the speech with the projected output,
+  preserving the two explicit newlines.
   Source choices 2 and 3 have exact bounded projections at offsets
   1148-1182 and 1183-1231: each prints one literal, clears its matching local
   flag, increments local number 0, and returns. Applying both in either menu
@@ -752,7 +756,10 @@
   1232-1394: three literal prints, local flag 9 set, local number 0 reset, and
   local return; it then advances through the common continuation. The second
   menu's conditions and targets are projected fail-closed. Runtime branch
-  dispatch follows branch targets so reused source indexes cannot collide.
+  dispatch follows branch targets so reused source indexes cannot collide;
+  target 1597 returns to its calling page. All implemented returned branches
+  replace the speech with bounded projected output, while unprojected visible
+  targets remain inert without selecting the session.
   Choice 7's target has an exact bounded projection at offsets 2905–2920: print
   GSTRING #5, assign immediate one to local flags 14 and 4, then return locally.
   Core validates the selected identity before applying both flags atomically and
@@ -766,7 +773,9 @@
   condition mapping, known/unknown evaluation, ordered/bounded fail-closed
   selection, retained branch identities and invalid selection immutability,
   response/completion opcode/operand/offset/truncation drift, choice 4's
-  assignment path, opening continuation and second-menu projection, atomic flag
+  assignment path, opening continuation and second-menu projection, caller-page
+  return, explicit-newline transcript rendering and malformed-output rejection,
+  atomic flag
   application, conditional global-flag effects, deterministic menu reselection,
   unknown local-number/global-condition rejection, mismatched-branch rejection,
   bounded MAS assignment/drift cases, variable-label resolution, and owned content smoke proving portrait,

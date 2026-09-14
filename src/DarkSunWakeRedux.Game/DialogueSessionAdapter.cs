@@ -43,7 +43,7 @@ public static class DialogueSessionAdapter
         if (!projection.ReturnsToOpeningMenu)
             throw new InvalidDataException("The dialogue response does not return to its menu.");
         return new(projection.SourceChoiceIndex, projection.EntryOffset,
-            DialogueBranchDisposition.ReturnThroughFirstTyrOpeningMenu,
+            DialogueBranchDisposition.ReturnThroughFirstTyrMenu,
             projection.LocalFlagAssignments.ToDictionary(
                 assignment => assignment.VariableId,
                 assignment => assignment.Value),
