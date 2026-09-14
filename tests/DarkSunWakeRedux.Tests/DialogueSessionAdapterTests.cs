@@ -57,7 +57,8 @@ public sealed class DialogueSessionAdapterTests
 
         var result = DialogueSessionAdapter.ToCore(projection);
 
-        Assert.Equal(DialogueBranchDisposition.ReturnToChoices, result.Disposition);
+        Assert.Equal(DialogueBranchDisposition.ReturnThroughFirstTyrOpeningMenu,
+            result.Disposition);
         Assert.False(result.LocalFlagAssignments[0]);
         Assert.Empty(result.LocalNumberIncrements);
         Assert.Throws<InvalidDataException>(() =>
@@ -85,5 +86,20 @@ public sealed class DialogueSessionAdapterTests
             result.ConditionalLocalFlagAssignments.Select(assignment => (
                 (int)assignment.Condition.VariableId, assignment.Condition.Value,
                 (int)assignment.VariableId, assignment.Value)));
+    }
+
+    [Fact]
+    public void MapsLocalNumberAssignmentsSeparatelyFromIncrements()
+    {
+        var projection = new FirstTyrDialogueResponseProjection(4, 1232, [],
+            [new(9, true)], [], true)
+        {
+            LocalNumberAssignments = [new(0, 0)]
+        };
+
+        var result = DialogueSessionAdapter.ToCore(projection);
+
+        Assert.Equal(0, result.LocalNumberAssignments[0]);
+        Assert.Empty(result.LocalNumberIncrements);
     }
 }

@@ -40,8 +40,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     private readonly List<(int X, int Y, Texture2D Texture)> _dialogueResponseText = [];
     private IReadOnlyList<DialogueResponseControl> _dialogueResponseControls = [];
     private DialogueSession? _dialogueSession;
-    private DialogueBranchResult? _dialogueCompletionBranch;
-    private readonly Dictionary<int, DialogueBranchResult> _dialogueReturnBranches = [];
+    private readonly Dictionary<int, DialogueBranchResult> _dialogueBranchesByTarget = [];
     private PackedIndexedBitmapFont? _dialogueFont;
     private FirstTyrDialogueProjection? _dialogueProjection;
     private IReadOnlyList<Rgb24> _dialogueTextPalette = [];
@@ -198,20 +197,23 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                 PackedGplScript.Read(globalsStream,
                     OriginalContent.DialogueGlobalStringsScriptAssetPath));
             _dialogueProjection = FirstTyrDialogueProjectionReader.Read(script);
-            _dialogueCompletionBranch = DialogueSessionAdapter.ToCore(
-                FirstTyrDialogueCompletionProjectionReader.Read(script));
+            AddDialogueBranch(DialogueSessionAdapter.ToCore(
+                FirstTyrDialogueCompletionProjectionReader.Read(script)));
             var firstResponse = DialogueSessionAdapter.ToCore(
                 FirstTyrDialogueResponseProjectionReader.ReadFirst(script));
-            _dialogueReturnBranches.Add(firstResponse.SourceIndex, firstResponse);
+            AddDialogueBranch(firstResponse);
             var secondResponse = DialogueSessionAdapter.ToCore(
                 FirstTyrDialogueResponseProjectionReader.ReadSecond(script));
-            _dialogueReturnBranches.Add(secondResponse.SourceIndex, secondResponse);
+            AddDialogueBranch(secondResponse);
             var thirdResponse = DialogueSessionAdapter.ToCore(
                 FirstTyrDialogueResponseProjectionReader.ReadThird(script));
-            _dialogueReturnBranches.Add(thirdResponse.SourceIndex, thirdResponse);
+            AddDialogueBranch(thirdResponse);
             var fourthResponse = DialogueSessionAdapter.ToCore(
                 FirstTyrDialogueResponseProjectionReader.ReadFourth(script));
-            _dialogueReturnBranches.Add(fourthResponse.SourceIndex, fourthResponse);
+            AddDialogueBranch(fourthResponse);
+            var fifthResponse = DialogueSessionAdapter.ToCore(
+                FirstTyrDialogueResponseProjectionReader.ReadFifth(script));
+            AddDialogueBranch(fifthResponse);
             _dialogueSession = DialogueSessionAdapter.Create(
                 _dialogueProjection, FirstTyrDialogueObservedState.Create(),
                 DialoguePreviewText.MaximumResponses);
@@ -365,19 +367,18 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                     {
                         var selection = _dialogueSession!.Execute(
                             DialogueCommand.Select(response.Index));
-                        if (selection.Applied && selection.After.SelectedSourceIndex ==
-                                _dialogueCompletionBranch!.SourceIndex)
+                        if (selection.Applied && _dialogueBranchesByTarget.TryGetValue(
+                                selection.After.BranchTargetOffset!.Value,
+                                out var branchTemplate))
                         {
-                            _dialogueSession.Execute(
-                                DialogueCommand.Apply(_dialogueCompletionBranch));
-                            _dialoguePreviewVisible = false;
-                        }
-                        else if (selection.Applied && _dialogueReturnBranches.TryGetValue(
-                                     selection.After.SelectedSourceIndex!.Value,
-                                     out var returningBranch))
-                        {
-                            _dialogueSession.Execute(DialogueCommand.Apply(returningBranch));
-                            RebuildDialogueText();
+                            var branch = branchTemplate.ForSourceIndex(
+                                selection.After.SelectedSourceIndex!.Value);
+                            var applied = _dialogueSession.Execute(
+                                DialogueCommand.Apply(branch));
+                            if (applied.After.Phase == DialoguePhase.Completed)
+                                _dialoguePreviewVisible = false;
+                            else
+                                RebuildDialogueText();
                         }
                         explorationOverlayConsumedLeftClick = true;
                     }
@@ -825,6 +826,13 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     {
         var alpha = pixels.Select(pixel => pixel == 0 ? (byte)0 : (byte)255).ToArray();
         return CreateTexture(palette, pixels, alpha, width, height);
+    }
+
+    private void AddDialogueBranch(DialogueBranchResult branch)
+    {
+        if (!_dialogueBranchesByTarget.TryAdd(branch.BranchTargetOffset, branch))
+            throw new InvalidDataException(
+                $"Dialogue branch target {branch.BranchTargetOffset} is duplicated.");
     }
 
     private void RebuildDialogueText()

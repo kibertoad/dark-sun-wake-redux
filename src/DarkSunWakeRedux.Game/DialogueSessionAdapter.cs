@@ -14,8 +14,13 @@ public static class DialogueSessionAdapter
         var definitions = projection.InitialChoices.Select((choice, index) =>
             new DialogueChoiceDefinition(index, choice.TargetOffset,
                 DialogueConditionAdapter.ToCore(choice.Condition))).ToArray();
+        var secondDefinitions = projection.SecondChoices.Count == 0
+            ? null
+            : projection.SecondChoices.Select((choice, index) =>
+                new DialogueChoiceDefinition(index, choice.TargetOffset,
+                    DialogueConditionAdapter.ToCore(choice.Condition))).ToArray();
         return new(OriginalContent.FirstTyrDialogueScriptResourceNumber,
-            definitions, variables, maximumResponses);
+            definitions, variables, maximumResponses, secondDefinitions);
     }
 
     public static DialogueBranchResult ToCore(
@@ -38,7 +43,7 @@ public static class DialogueSessionAdapter
         if (!projection.ReturnsToOpeningMenu)
             throw new InvalidDataException("The dialogue response does not return to its menu.");
         return new(projection.SourceChoiceIndex, projection.EntryOffset,
-            DialogueBranchDisposition.ReturnToChoices,
+            DialogueBranchDisposition.ReturnThroughFirstTyrOpeningMenu,
             projection.LocalFlagAssignments.ToDictionary(
                 assignment => assignment.VariableId,
                 assignment => assignment.Value),
@@ -51,6 +56,9 @@ public static class DialogueSessionAdapter
             projection.ConditionalLocalFlagAssignments.Select(assignment =>
                 new DialogueConditionalLocalFlagAssignment(
                     new(assignment.Condition.VariableId, assignment.Condition.Value),
-                    assignment.VariableId, assignment.Value)).ToArray());
+                    assignment.VariableId, assignment.Value)).ToArray(),
+            projection.LocalNumberAssignments.ToDictionary(
+                assignment => assignment.VariableId,
+                assignment => assignment.Value));
     }
 }

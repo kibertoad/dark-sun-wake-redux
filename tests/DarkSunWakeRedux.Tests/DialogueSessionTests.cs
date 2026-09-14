@@ -218,6 +218,21 @@ public sealed class DialogueSessionTests
         IReadOnlyDictionary<ushort, bool> flags) =>
         new(index, target, disposition, flags);
 
+    [Fact]
+    public void ReidentifiesAProjectedBranchWithoutChangingItsEffects()
+    {
+        var result = new DialogueBranchResult(7, 2905,
+            DialogueBranchDisposition.Completed,
+            new Dictionary<ushort, bool> { [14] = true });
+
+        var reidentified = result.ForSourceIndex(6);
+
+        Assert.Equal(6, reidentified.SourceIndex);
+        Assert.Equal(2905, reidentified.BranchTargetOffset);
+        Assert.Equal(DialogueBranchDisposition.Completed, reidentified.Disposition);
+        Assert.True(reidentified.LocalFlagAssignments[14]);
+    }
+
     private static DialogueTransition ApplyCounterResponse(
         DialogueSession session,
         int sourceIndex)

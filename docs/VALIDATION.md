@@ -69,14 +69,16 @@ Owned content smoke additionally proves the actual projected first page fits
 the measured text widths with the extracted font, selects its fifth row as
 original choice 7 with the projected branch target intact, and reaches the
 completed state with local flags 14 and 4 set. A separate owned-pack path selects
-choice 0, clears local flag 0, returns to `AwaitingChoice`, and verifies the
-remaining source order 1, 2, 3, and 7.
+choice 0, clears local flag 0, returns to `AwaitingChoice`, advances through the
+opening continuation, and verifies second-menu source order 0, 5, and 6. It
+then reidentifies the shared target-2905 completion for source 6 and completes.
 A counter-progression path selects source choices 2 and 3, verifies both flag
 clears and increments, and proves that local number 0 reaches 2 while source
-choice 4 becomes visible in the resulting 0, 1, 4, and 7 order.
+choice 4 becomes visible in the resulting 0, 1, 4, 6, and 7 order. Selecting it
+sets local flag 9, resets local number 0, and enters second-menu order 0, 5, 6.
 Another owned-pack path selects choice 1 and verifies local flag 1 clears, local
 flags 6/7 become true from the fresh-opening condition, global flag 357 becomes
-true, and the initial page recomputes as 0, 2, 3, and 7.
+true, and the second menu resolves as 1, 3, 5, and 6.
 Exploration command tests also center on arbitrary world points with both-edge
 clamping, reject partial/out-of-world targets, suspend centering outside world
 and Game Menu views, and restore leader-only display through Collapse Party.

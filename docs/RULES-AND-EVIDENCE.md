@@ -697,12 +697,17 @@
   The secondary implementation clears global flags to zero at state startup;
   this supports a fresh-opening-only false value for global flag 357, not a
   generic saved-game assumption.
+  Choice 4 prints three literals, sets local flag 9, resets local number 0, and
+  returns. The common post-menu block derives flags 4/5 and either repeats the
+  opening menu or initializes flags 1/6/7/8 before entering the seven-entry
+  second menu. That menu's source choice 6 shares the completion target at 2905
+  with opening source choice 7.
 - **Confidence:** verified for the captured layouts, first exchange's GPL chunk,
   and visible response text; high for the static UI graph; medium for the
   opening-only local number 0 and global flag 357 initial values because they
   combine corpus/script structure with a secondary clean-room implementation.
-  The award-producing script path, choice 4 consequences, generic variable
-  initialization, and generic GPL
+  The award-producing script path, the second-menu response consequences,
+  generic variable initialization, and generic GPL
   execution semantics remain open.
 - **Implementation:** pack format 24 stores the byte-identical GPL #135 and MAS
   #99 payloads in bounded versioned DSGP envelopes, extracts `PORT` #18 with
@@ -730,22 +735,29 @@
   and preserves the selected pair atomically. Choice 0 has an exact bounded
   projection at offsets 1017-1147: three literal prints with two newlines,
   immediate zero to local flag 0, and a local return. Core applies that effect
-  only to the matching branch and recomputes the menu as choices 1, 2, 3, and
-  7; Game rebuilds the response rows. The projected transcript is not yet
-  presented. Source choices 2 and 3 have exact bounded projections at offsets
+  only to the matching branch. The bounded offsets 547-740 continuation derives
+  flags 4/5 and advances to the seven-choice menu at offset 750; Game rebuilds
+  its filtered response rows. The projected transcript is not yet presented.
+  Source choices 2 and 3 have exact bounded projections at offsets
   1148-1182 and 1183-1231: each prints one literal, clears its matching local
   flag, increments local number 0, and returns. Applying both in either menu
-  order advances the known counter to 2 and reveals source choice 4.
+  order advances the known counter to 2, sets local flag 5, and reveals source
+  choice 4 while retaining the opening menu.
   Source choice 1 has an exact bounded projection at offsets 1597-1824: three
   literal prints, local flag 1 clear, global flag 357 equals-zero conditional,
   conditional local flag 6/7 sets, global flag 357 set, and local return. Core
   resolves the known global condition before mutation, applies all effects
-  atomically, and rejects an unknown global input without mutation.
+  atomically, rejects an unknown global input without mutation, and advances
+  to the second menu. Choice 4 has an exact bounded projection at offsets
+  1232-1394: three literal prints, local flag 9 set, local number 0 reset, and
+  local return; it then advances through the common continuation. The second
+  menu's conditions and targets are projected fail-closed. Runtime branch
+  dispatch follows branch targets so reused source indexes cannot collide.
   Choice 7's target has an exact bounded projection at offsets 2905–2920: print
   GSTRING #5, assign immediate one to local flags 14 and 4, then return locally.
   Core validates the selected identity before applying both flags atomically and
-  entering `Completed`; Game closes the preview. Choice 4, other GPL instruction paths,
-  consequence mutations, and generalized text routing remain
+  entering `Completed`; Game closes the preview from either menu. Other GPL
+  instruction paths, second-menu consequence mutations, and generalized text routing remain
   next Slice 3 work.
 - **Tests:** DSGP identity/payload round-trip and malformed envelopes; packed
   string empty/text/control-byte decoding and malformed inputs; exact dialogue
@@ -753,7 +765,8 @@
   transactional extraction, synthetic projection/drift/malformed cases,
   condition mapping, known/unknown evaluation, ordered/bounded fail-closed
   selection, retained branch identities and invalid selection immutability,
-  response/completion opcode/operand/offset/truncation drift, atomic flag
+  response/completion opcode/operand/offset/truncation drift, choice 4's
+  assignment path, opening continuation and second-menu projection, atomic flag
   application, conditional global-flag effects, deterministic menu reselection,
   unknown local-number/global-condition rejection, mismatched-branch rejection,
   bounded MAS assignment/drift cases, variable-label resolution, and owned content smoke proving portrait,

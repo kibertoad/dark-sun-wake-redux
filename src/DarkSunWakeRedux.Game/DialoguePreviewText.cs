@@ -55,13 +55,7 @@ public static class DialoguePreviewText
         var responses = dialogue.Choices
             .Select(identity =>
             {
-                if (identity.SourceIndex >= projection.InitialChoices.Count)
-                    throw new InvalidDataException(
-                        "The dialogue preview choice index is outside the projection.");
-                var choice = projection.InitialChoices[identity.SourceIndex];
-                if (choice.TargetOffset != identity.BranchTargetOffset)
-                    throw new InvalidDataException(
-                        "The dialogue preview branch identity has drifted.");
+                var choice = ResolveChoice(projection, identity);
                 return (Index: identity.SourceIndex, Choice: choice);
             })
             .Select(item =>
@@ -77,6 +71,20 @@ public static class DialoguePreviewText
             })
             .ToArray();
         return new(speech, responses);
+    }
+
+    private static GplDialogueChoice ResolveChoice(
+        FirstTyrDialogueProjection projection,
+        DialogueChoiceIdentity identity)
+    {
+        foreach (var page in new[] { projection.InitialChoices, projection.SecondChoices })
+        {
+            if (identity.SourceIndex < page.Count &&
+                page[identity.SourceIndex].TargetOffset == identity.BranchTargetOffset)
+                return page[identity.SourceIndex];
+        }
+        throw new InvalidDataException(
+            "The dialogue preview choice identity is outside the projected pages.");
     }
 
     private static string Resolve(

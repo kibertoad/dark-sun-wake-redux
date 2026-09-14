@@ -33,7 +33,10 @@ public sealed record GplDialogueCondition(
 public sealed record FirstTyrDialogueProjection(
     uint PortraitResourceNumber,
     IReadOnlyList<GplDialogueTextSource> SpeechVariants,
-    IReadOnlyList<GplDialogueChoice> InitialChoices);
+    IReadOnlyList<GplDialogueChoice> InitialChoices)
+{
+    public IReadOnlyList<GplDialogueChoice> SecondChoices { get; init; } = [];
+}
 
 public static class FirstTyrDialogueProjectionReader
 {
@@ -41,6 +44,7 @@ public static class FirstTyrDialogueProjectionReader
     public const int FirstSpeechInstructionOffset = 118;
     public const int SecondSpeechInstructionOffset = 199;
     public const int InitialMenuInstructionOffset = 253;
+    public const int SecondMenuInstructionOffset = 750;
     public const byte ShowPortraitOpcode = 0x54;
     public const byte PrintStringOpcode = 0x4f;
     public const byte MenuOpcode = 0x48;
@@ -61,7 +65,8 @@ public static class FirstTyrDialogueProjectionReader
             ReadPrintedText(bytes, SecondSpeechInstructionOffset)
         };
         var choices = ReadMenu(bytes, InitialMenuInstructionOffset);
-        return new(portrait, speech, choices);
+        var secondChoices = ReadMenu(bytes, SecondMenuInstructionOffset);
+        return new(portrait, speech, choices) { SecondChoices = secondChoices };
     }
 
     private static uint ReadPortrait(ReadOnlySpan<byte> bytes, int offset)

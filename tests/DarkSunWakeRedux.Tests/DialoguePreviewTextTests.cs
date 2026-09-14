@@ -130,6 +130,40 @@ public sealed class DialoguePreviewTextTests
             content.Responses.Select(response => response.TargetOffset));
     }
 
+    [Fact]
+    public void ResolvesResponseLabelsFromTheSecondProjectedMenu()
+    {
+        var projection = new FirstTyrDialogueProjection(18, [Literal("speech")],
+        [
+            Choice("first response", 1017, GplDialogueConditionKind.LocalFlag, 0, 1),
+            Choice("identity", 1597, GplDialogueConditionKind.LocalFlag, 1, 1),
+            Choice("witness", 1148, GplDialogueConditionKind.LocalFlag, 2, 1),
+            Choice("victim", 1183, GplDialogueConditionKind.LocalFlag, 3, 1)
+        ])
+        {
+            SecondChoices =
+            [
+                Choice("identity again", 1597,
+                    GplDialogueConditionKind.LocalFlag, 1, 1),
+                Choice("trouble", 1825, GplDialogueConditionKind.LocalFlag, 6, 1),
+                Choice("leave", 2905, GplDialogueConditionKind.Constant, 0, 1)
+            ]
+        };
+        var session = DialogueSessionAdapter.Create(
+            projection, FirstTyrDialogueObservedState.Create(), 5);
+        session.Execute(DialogueCommand.Select(0));
+        session.Execute(DialogueCommand.Apply(new(0, 1017,
+            DialogueBranchDisposition.ReturnThroughFirstTyrOpeningMenu,
+            new Dictionary<ushort, bool> { [0] = false })));
+
+        var content = DialoguePreviewText.Create(Font(), projection, session.Snapshot());
+
+        Assert.Equal([0, 2],
+            content.Responses.Select(response => response.ChoiceIndex));
+        Assert.Equal([1597, 2905],
+            content.Responses.Select(response => response.TargetOffset));
+    }
+
     private static GplDialogueTextSource Literal(string text) =>
         new(GplDialogueTextSourceKind.Literal, text, 0, 0);
 

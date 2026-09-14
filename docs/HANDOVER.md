@@ -36,20 +36,26 @@ deterministic Core dialogue session now owns all choice definitions and derives
 the visible source-index/branch-target pairs; runtime
 row clicks select one pair atomically and cannot leak through as world movement.
 Choice 0 has a bounded projection validating its three literal prints, two
-newlines, local-flag 0 clear, and local return; Core applies the effect only to
-that selection and recomputes the menu as choices 1, 2, 3, and 7, while Game
-rebuilds the rows. Choice 7 has an additional bounded projection validating its
+newlines, local-flag 0 clear, and local return; the bounded post-menu continuation
+sets local flag 4 and advances to the second menu, while Game rebuilds its
+filtered rows. Choice 7 has an additional bounded projection validating its
 print, local-flag 14/4 assignments, and local return; Core applies the
 flags/completion only to the matching selected branch and Game closes the
 preview. Choices 2 and 3 also have bounded single-print, matching flag-clear,
 local-number-0 increment, and return projections. Applying both reveals source
 choice 4 in the recomputed page. Choice 1 validates three prints, clears local
 flag 1, conditionally sets local flags 6/7 from global flag 357, sets that global
-flag, and returns; Core applies the conditional and assignments atomically. The
+flag, and returns; Core applies the conditional and assignments atomically.
+Choice 4 validates three prints, sets local flag 9, resets local number 0, and
+returns through the same continuation into the second menu. That continuation
+also preserves the paired counter path on the opening menu by setting local
+flag 5 at count two. The second menu is bounded at offset 750, has seven source
+choices, and reuses the completion target at 2905; runtime dispatches by branch
+target so reused menu indexes cannot collide. The
 fixed portrait/window/control chrome and
 projected initial literal speech render over the live aspect-expanded map.
-Wrapping, conversation entry, response transcript presentation, choice 4, and
-broader GPL instruction execution remain pending.
+Wrapping, conversation entry, response transcript presentation, second-menu
+response branches, and broader GPL instruction execution remain pending.
 
 ## Previous cohesive batch
 
@@ -90,8 +96,8 @@ research output remain under ignored `analysis/original/`.
 
 Continue Slice 3 from evidence, preferably in this order:
 
-1. project choice 4's bounded path and the second menu it enters; present the
-   projected response transcripts before adding quest consequences;
+1. project the bounded response paths selected by the second menu and present
+   response transcripts before adding quest consequences;
 2. establish the Preferences setting ranges/defaults and About destination,
    then implement deterministic setting mutations and frame-state feedback;
 3. generalize attack/look target eligibility and select ranged versus melee

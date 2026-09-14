@@ -28,7 +28,10 @@ public sealed record FirstTyrDialogueResponseProjection(
     public IReadOnlyList<GplGlobalFlagAssignment> GlobalFlagAssignments { get; init; } = [];
     public IReadOnlyList<GplConditionalLocalFlagAssignment>
         ConditionalLocalFlagAssignments { get; init; } = [];
+    public IReadOnlyList<GplLocalNumberAssignment> LocalNumberAssignments { get; init; } = [];
 }
+
+public sealed record GplLocalNumberAssignment(ushort VariableId, int Value);
 
 public static class FirstTyrDialogueResponseProjectionReader
 {
@@ -44,6 +47,9 @@ public static class FirstTyrDialogueResponseProjectionReader
     public const int FourthChoiceIndex = 3;
     public const int FourthEntryOffset = 1183;
     public const int FourthReturnOffset = 1231;
+    public const int FifthChoiceIndex = 4;
+    public const int FifthEntryOffset = 1232;
+    public const int FifthReturnOffset = 1394;
     public const byte PrintStringOpcode = 0x4f;
     public const byte PrintNewLineOpcode = 0x51;
     public const byte LoadVariableOpcode = 0x16;
@@ -119,6 +125,29 @@ public static class FirstTyrDialogueResponseProjectionReader
         {
             GlobalFlagAssignments = [globalAssignment],
             ConditionalLocalFlagAssignments = conditional
+        };
+    }
+
+    public static FirstTyrDialogueResponseProjection ReadFifth(
+        PackedGplScript script)
+    {
+        ValidateScript(script);
+        var bytes = script.Bytecode.AsSpan();
+        var position = FifthEntryOffset;
+        var output = new[]
+        {
+            ReadLiteralPrint(bytes, ref position, 1292),
+            ReadLiteralPrint(bytes, ref position, 1359),
+            ReadLiteralPrint(bytes, ref position, 1384)
+        };
+        var flagAssignment = ReadFlagAssignment(bytes, ref position, 9, true);
+        var numberAssignment = ReadNumberAssignment(bytes, ref position, 0, 0);
+        if (position != FifthReturnOffset)
+            throw Error($"choice 4 effects end at {position}, not {FifthReturnOffset}");
+        RequireOpcode(bytes, ref position, LocalReturnOpcode, "choice 4 local return");
+        return new(FifthChoiceIndex, FifthEntryOffset, output, [flagAssignment], [], true)
+        {
+            LocalNumberAssignments = [numberAssignment]
         };
     }
 
@@ -205,6 +234,20 @@ public static class FirstTyrDialogueResponseProjectionReader
             [0x8f, value, 0xcd, checked((byte)(expectedId >> 8)),
                 checked((byte)(expectedId & 0xff))],
             $"global flag #{expectedId} assignment");
+        return new(expectedId, expectedValue);
+    }
+
+    private static GplLocalNumberAssignment ReadNumberAssignment(
+        ReadOnlySpan<byte> bytes,
+        ref int position,
+        ushort expectedId,
+        int expectedValue)
+    {
+        RequireOpcode(bytes, ref position, LoadVariableOpcode,
+            $"local number #{expectedId} assignment");
+        RequireSequence(bytes, ref position,
+            [0x8f, checked((byte)expectedValue), 0x82, checked((byte)expectedId)],
+            $"local number #{expectedId} assignment");
         return new(expectedId, expectedValue);
     }
 

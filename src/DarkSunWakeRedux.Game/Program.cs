@@ -129,6 +129,7 @@ try
             FirstTyrDialogueResponseProjection secondDialogueResponse;
             FirstTyrDialogueResponseProjection thirdDialogueResponse;
             FirstTyrDialogueResponseProjection fourthDialogueResponse;
+            FirstTyrDialogueResponseProjection fifthDialogueResponse;
             using (var scriptStream = File.OpenRead(Path.Combine(assetPack,
                        OriginalContent.FirstTyrDialogueScriptAssetPath.Replace(
                            '/', Path.DirectorySeparatorChar))))
@@ -144,10 +145,12 @@ try
                 secondDialogueResponse = FirstTyrDialogueResponseProjectionReader.ReadSecond(script);
                 thirdDialogueResponse = FirstTyrDialogueResponseProjectionReader.ReadThird(script);
                 fourthDialogueResponse = FirstTyrDialogueResponseProjectionReader.ReadFourth(script);
+                fifthDialogueResponse = FirstTyrDialogueResponseProjectionReader.ReadFifth(script);
                 if (dialogueProjection.PortraitResourceNumber !=
                         OriginalContent.FirstTyrDialoguePortraitResourceNumber ||
                     dialogueProjection.SpeechVariants.Count != 2 ||
                     dialogueProjection.InitialChoices.Count != 8 ||
+                    dialogueProjection.SecondChoices.Count != 7 ||
                     !dialogueProjection.InitialChoices.Select(choice =>
                             (choice.Condition.Kind, choice.Condition.VariableId,
                                 choice.Condition.Value))
@@ -250,9 +253,17 @@ try
                 returnedDialogue.After.Phase != DialoguePhase.AwaitingChoice ||
                 returnedDialogue.After.Variables.LocalFlags[0] ||
                 !returnedDialogue.After.Choices.Select(choice => choice.SourceIndex)
-                    .SequenceEqual([1, 2, 3, 7]))
+                    .SequenceEqual([0, 5, 6]))
                 throw new InvalidDataException(
-                    "The installed first Tyr response did not return to the reduced menu.");
+                    "The installed first Tyr response did not advance to the second menu.");
+            returningSession.Execute(DialogueCommand.Select(2));
+            var secondMenuCompletion = returningSession.Execute(DialogueCommand.Apply(
+                DialogueSessionAdapter.ToCore(dialogueCompletion).ForSourceIndex(6)));
+            if (!secondMenuCompletion.Applied ||
+                secondMenuCompletion.After.Phase != DialoguePhase.Completed ||
+                !secondMenuCompletion.After.Variables.LocalFlags[14])
+                throw new InvalidDataException(
+                    "The installed first Tyr second-menu exit did not complete the dialogue.");
             var counterSession = DialogueSessionAdapter.Create(
                 dialogueProjection, FirstTyrDialogueObservedState.Create(),
                 DialoguePreviewText.MaximumResponses);
@@ -267,9 +278,23 @@ try
                 progressedDialogue.After.Variables.LocalFlags[2] ||
                 progressedDialogue.After.Variables.LocalFlags[3] ||
                 !progressedDialogue.After.Choices.Select(choice => choice.SourceIndex)
-                    .SequenceEqual([0, 1, 4, 7]))
+                    .SequenceEqual([0, 1, 4, 6, 7]))
                 throw new InvalidDataException(
                     "The installed first Tyr counter responses did not reveal the next choice.");
+            counterSession.Execute(DialogueCommand.Select(2));
+            var secondMenuDialogue = counterSession.Execute(DialogueCommand.Apply(
+                DialogueSessionAdapter.ToCore(fifthDialogueResponse)));
+            if (!secondMenuDialogue.Applied ||
+                secondMenuDialogue.After.Variables.LocalNumbers[0] != 0 ||
+                !secondMenuDialogue.After.Variables.LocalFlags[9] ||
+                !secondMenuDialogue.After.Choices.Select(choice => choice.SourceIndex)
+                    .SequenceEqual([0, 5, 6]))
+                throw new InvalidDataException(
+                    "The installed first Tyr follow-up did not enter the second menu: " +
+                    $"number={secondMenuDialogue.After.Variables.LocalNumbers[0]}, " +
+                    $"flag9={secondMenuDialogue.After.Variables.LocalFlags[9]}, " +
+                    $"choices={string.Join(',', secondMenuDialogue.After.Choices.Select(
+                        choice => choice.SourceIndex))}.");
             var identitySession = DialogueSessionAdapter.Create(
                 dialogueProjection, FirstTyrDialogueObservedState.Create(),
                 DialoguePreviewText.MaximumResponses);
@@ -282,7 +307,7 @@ try
                 !identifiedDialogue.After.Variables.LocalFlags[7] ||
                 !identifiedDialogue.After.Variables.GlobalFlags[357] ||
                 !identifiedDialogue.After.Choices.Select(choice => choice.SourceIndex)
-                    .SequenceEqual([0, 2, 3, 7]))
+                    .SequenceEqual([1, 3, 5, 6]))
                 throw new InvalidDataException(
                     "The installed first Tyr identity response did not apply its effects.");
             var textPath = Path.Combine(assetPack,

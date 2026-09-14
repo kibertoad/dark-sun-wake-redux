@@ -329,18 +329,24 @@ decoder rather than being guessed now.
   records one physical-row selection atomically; runtime row clicks are consumed
   before world movement. Choice 0's straight-line target is now bounded at
   offsets 1017-1147: it validates three literal prints separated by two
-  newlines, clears local flag 0, returns locally, and causes Core to recompute
-  the visible menu as choices 1, 2, 3, and 7. Its transcript is projected but
-  is not yet presented. Choice 7's target is a bounded completion projection:
+  newlines, clears local flag 0, and returns locally. The bounded opening-menu
+  continuation at offsets 547-740 then sets local flag 4 and advances into the
+  seven-entry second menu projected at offset 750. Its transcript is projected
+  but is not yet presented. Choice 7's target is a bounded completion projection:
   it validates a GSTRING #5 print followed by local flag 14/4 assignments and
   a return, advances Core with those effects to completed, and closes the
   preview. Choices 2 and 3 now validate their literal-print, matching flag-clear,
   local-number-0 increment, and local-return paths; after both execute, Core
-  deterministically reveals source choice 4. Choice 1 validates three prints,
+  deterministically reveals source choice 4 while the continuation sets local
+  flag 5 and retains the opening menu. Choice 1 validates three prints,
   its flag clear, the global-357 conditional local flag 6/7 effects, the global
   assignment, and return; Core applies these atomically from the known opening
-  global state. Response transcript presentation, choice 4, and generalized GPL execution
-  remain open. The hook renders the
+  global state before advancing to the second menu. Choice 4 validates three
+  prints, sets local flag 9, resets local number 0, and advances through the
+  same continuation. The completion target works from both menus despite their
+  reused source indexes because runtime branch dispatch is keyed by target.
+  Response transcript presentation, the remaining second-menu branches, and
+  generalized GPL execution remain open. The hook renders the
   first literal speech and filtered labels with bounded provisional
   wrapping in the extracted font. Reusable ordered hotkey bindings and Core
   navigation now cover character, inventory, cast/psionic, current-effects,

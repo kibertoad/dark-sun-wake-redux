@@ -11,7 +11,12 @@ public sealed record DialogueChoiceDefinition(
     int BranchTargetOffset,
     DialogueCondition Condition);
 
-public enum DialogueBranchDisposition { ReturnToChoices, Completed }
+public enum DialogueBranchDisposition
+{
+    ReturnToChoices,
+    ReturnThroughFirstTyrOpeningMenu,
+    Completed
+}
 
 public sealed record DialogueGlobalFlagCondition(ushort VariableId, bool Value);
 
@@ -30,7 +35,8 @@ public sealed record DialogueBranchResult
         IReadOnlyDictionary<ushort, int>? localNumberIncrements = null,
         IReadOnlyDictionary<ushort, bool>? globalFlagAssignments = null,
         IReadOnlyList<DialogueConditionalLocalFlagAssignment>?
-            conditionalLocalFlagAssignments = null)
+            conditionalLocalFlagAssignments = null,
+        IReadOnlyDictionary<ushort, int>? localNumberAssignments = null)
     {
         if (sourceIndex < 0) throw new ArgumentOutOfRangeException(nameof(sourceIndex));
         if (branchTargetOffset < 0)
@@ -41,9 +47,14 @@ public sealed record DialogueBranchResult
         localNumberIncrements ??= new Dictionary<ushort, int>();
         globalFlagAssignments ??= new Dictionary<ushort, bool>();
         conditionalLocalFlagAssignments ??= [];
+        localNumberAssignments ??= new Dictionary<ushort, int>();
         if (localNumberIncrements.Any(pair => pair.Value == 0))
             throw new ArgumentException("Dialogue number increments cannot be zero.",
                 nameof(localNumberIncrements));
+        if (localNumberAssignments.Keys.Intersect(localNumberIncrements.Keys).Any())
+            throw new ArgumentException(
+                "A dialogue result cannot assign and increment the same local number.",
+                nameof(localNumberAssignments));
         if (conditionalLocalFlagAssignments.Any(assignment =>
                 assignment is null || assignment.Condition is null))
             throw new ArgumentException(
@@ -57,6 +68,7 @@ public sealed record DialogueBranchResult
         GlobalFlagAssignments = ReadOnlyCopy(globalFlagAssignments);
         ConditionalLocalFlagAssignments = Array.AsReadOnly(
             conditionalLocalFlagAssignments.ToArray());
+        LocalNumberAssignments = ReadOnlyCopy(localNumberAssignments);
     }
 
     public int SourceIndex { get; }
@@ -67,6 +79,17 @@ public sealed record DialogueBranchResult
     public IReadOnlyDictionary<ushort, bool> GlobalFlagAssignments { get; }
     public IReadOnlyList<DialogueConditionalLocalFlagAssignment>
         ConditionalLocalFlagAssignments { get; }
+    public IReadOnlyDictionary<ushort, int> LocalNumberAssignments { get; }
+
+    public DialogueBranchResult ForSourceIndex(int sourceIndex) => new(
+        sourceIndex,
+        BranchTargetOffset,
+        Disposition,
+        LocalFlagAssignments,
+        LocalNumberIncrements,
+        GlobalFlagAssignments,
+        ConditionalLocalFlagAssignments,
+        LocalNumberAssignments);
 
     private static IReadOnlyDictionary<TKey, TValue> ReadOnlyCopy<TKey, TValue>(
         IReadOnlyDictionary<TKey, TValue> source) where TKey : notnull =>
@@ -104,7 +127,8 @@ public sealed record DialogueTransition(
 
 public sealed class DialogueSession
 {
-    private readonly IReadOnlyList<DialogueChoiceDefinition> _definitions;
+    private IReadOnlyList<DialogueChoiceDefinition> _definitions;
+    private readonly IReadOnlyList<DialogueChoiceDefinition>? _secondPageDefinitions;
     private readonly int _maximumChoices;
     private DialogueSnapshot _snapshot;
 
@@ -112,7 +136,8 @@ public sealed class DialogueSession
         uint scriptResourceNumber,
         IReadOnlyList<DialogueChoiceDefinition> definitions,
         DialogueVariableSnapshot variables,
-        int maximumChoices)
+        int maximumChoices,
+        IReadOnlyList<DialogueChoiceDefinition>? secondPageDefinitions = null)
     {
         if (scriptResourceNumber == 0)
             throw new ArgumentOutOfRangeException(nameof(scriptResourceNumber));
@@ -122,21 +147,14 @@ public sealed class DialogueSession
         ArgumentNullException.ThrowIfNull(variables.LocalNumbers);
         ArgumentNullException.ThrowIfNull(variables.GlobalFlags);
         if (maximumChoices <= 0) throw new ArgumentOutOfRangeException(nameof(maximumChoices));
-        if (definitions.Count == 0)
-            throw new ArgumentException("A dialogue requires at least one choice definition.",
-                nameof(definitions));
-        if (definitions.Any(definition => definition is null || definition.SourceIndex < 0 ||
-                definition.BranchTargetOffset < 0 || definition.Condition is null) ||
-            definitions.Select(definition => definition.SourceIndex).Distinct().Count() !=
-                definitions.Count)
-            throw new ArgumentException(
-                "Dialogue definitions require unique non-negative source indexes, " +
-                "branch targets, and conditions.", nameof(definitions));
-        _definitions = Array.AsReadOnly(definitions.ToArray());
+        _definitions = ValidateDefinitions(definitions, nameof(definitions));
+        _secondPageDefinitions = secondPageDefinitions is null
+            ? null
+            : ValidateDefinitions(secondPageDefinitions, nameof(secondPageDefinitions));
         _maximumChoices = maximumChoices;
         var stableVariables = Copy(variables);
         _snapshot = new(scriptResourceNumber, DialoguePhase.AwaitingChoice,
-            SelectVisible(stableVariables), null, null, stableVariables);
+            SelectVisible(stableVariables, _definitions), null, null, stableVariables);
     }
 
     public DialogueSnapshot Snapshot() => _snapshot;
@@ -188,6 +206,8 @@ public sealed class DialogueSession
         foreach (var assignment in conditionalAssignments)
             flags[assignment.VariableId] = assignment.Value;
         var numbers = new Dictionary<ushort, int>(_snapshot.Variables.LocalNumbers);
+        foreach (var assignment in result.LocalNumberAssignments)
+            numbers[assignment.Key] = assignment.Value;
         foreach (var increment in result.LocalNumberIncrements)
         {
             if (!numbers.TryGetValue(increment.Key, out var value))
@@ -199,12 +219,22 @@ public sealed class DialogueSession
         foreach (var assignment in result.GlobalFlagAssignments)
             globalFlags[assignment.Key] = assignment.Value;
         var variables = Copy(new(flags, numbers) { GlobalFlags = globalFlags });
+        var nextDefinitions = _definitions;
+        if (result.Disposition == DialogueBranchDisposition.ReturnThroughFirstTyrOpeningMenu)
+        {
+            var continuation = FirstTyrDialogueFlow.ContinueOpeningMenu(variables);
+            variables = continuation.Variables;
+            if (continuation.AdvancesToSecondMenu)
+                nextDefinitions = _secondPageDefinitions ?? throw new InvalidOperationException(
+                    "The second dialogue page is unavailable.");
+        }
         _snapshot = result.Disposition switch
         {
-            DialogueBranchDisposition.ReturnToChoices => _snapshot with
+            DialogueBranchDisposition.ReturnToChoices or
+                DialogueBranchDisposition.ReturnThroughFirstTyrOpeningMenu => _snapshot with
             {
                 Phase = DialoguePhase.AwaitingChoice,
-                Choices = SelectVisible(variables),
+                Choices = SelectVisible(variables, nextDefinitions),
                 SelectedSourceIndex = null,
                 BranchTargetOffset = null,
                 Variables = variables
@@ -217,17 +247,19 @@ public sealed class DialogueSession
             _ => throw new ArgumentOutOfRangeException(nameof(result), result.Disposition,
                 "Unknown dialogue branch disposition.")
         };
+        _definitions = nextDefinitions;
     }
 
     private IReadOnlyList<DialogueChoiceIdentity> SelectVisible(
-        DialogueVariableSnapshot variables)
+        DialogueVariableSnapshot variables,
+        IReadOnlyList<DialogueChoiceDefinition> definitions)
     {
         var selected = DialogueChoiceSelector.SelectVisible(
-            _definitions.Select(definition => definition.Condition).ToArray(),
+            definitions.Select(definition => definition.Condition).ToArray(),
             variables, _maximumChoices);
         return Array.AsReadOnly(selected.Select(index =>
         {
-            var definition = _definitions[index];
+            var definition = definitions[index];
             return new DialogueChoiceIdentity(
                 definition.SourceIndex, definition.BranchTargetOffset);
         }).ToArray());
@@ -262,4 +294,21 @@ public sealed class DialogueSession
         GlobalFlags = new ReadOnlyDictionary<ushort, bool>(
             new Dictionary<ushort, bool>(variables.GlobalFlags))
     };
+
+    private static IReadOnlyList<DialogueChoiceDefinition> ValidateDefinitions(
+        IReadOnlyList<DialogueChoiceDefinition> definitions,
+        string parameterName)
+    {
+        if (definitions.Count == 0)
+            throw new ArgumentException("A dialogue requires at least one choice definition.",
+                parameterName);
+        if (definitions.Any(definition => definition is null || definition.SourceIndex < 0 ||
+                definition.BranchTargetOffset < 0 || definition.Condition is null) ||
+            definitions.Select(definition => definition.SourceIndex).Distinct().Count() !=
+                definitions.Count)
+            throw new ArgumentException(
+                "Dialogue definitions require unique non-negative source indexes, " +
+                "branch targets, and conditions.", parameterName);
+        return Array.AsReadOnly(definitions.ToArray());
+    }
 }

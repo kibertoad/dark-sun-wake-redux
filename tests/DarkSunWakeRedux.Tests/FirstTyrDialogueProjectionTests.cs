@@ -28,6 +28,7 @@ public sealed class FirstTyrDialogueProjectionTests
         Assert.Equal(2905, projection.InitialChoices[1].TargetOffset);
         Assert.Equal(new(GplDialogueConditionKind.LocalNumberEquals, 0, 2),
             projection.InitialChoices[1].Condition);
+        Assert.Equal(2, projection.SecondChoices.Count);
     }
 
     [Fact]
@@ -220,9 +221,40 @@ public sealed class FirstTyrDialogueProjectionTests
             }));
     }
 
+    [Fact]
+    public void ProjectsFifthResponseFlagAndCounterReset()
+    {
+        var projection = FirstTyrDialogueResponseProjectionReader.ReadFifth(
+            ScriptWithFifthResponse());
+
+        Assert.Equal((4, 1232),
+            (projection.SourceChoiceIndex, projection.EntryOffset));
+        Assert.Equal([61, 69, 21], projection.Output
+            .Select(output => output.Text!.Text.Length));
+        Assert.Equal([(9, true)], projection.LocalFlagAssignments
+            .Select(assignment => ((int)assignment.VariableId, assignment.Value)));
+        Assert.Equal([(0, 0)], projection.LocalNumberAssignments
+            .Select(assignment => ((int)assignment.VariableId, assignment.Value)));
+    }
+
+    [Fact]
+    public void RejectsFifthResponseCounterAndReturnDrift()
+    {
+        var drifted = ScriptWithFifthResponse();
+        drifted.Bytecode[1392] = 0x83;
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadFifth(drifted));
+        var truncated = ScriptWithFifthResponse();
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadFifth(truncated with
+            {
+                Bytecode = truncated.Bytecode[..1394]
+            }));
+    }
+
     private static PackedGplScript Script()
     {
-        var bytes = new byte[500];
+        var bytes = new byte[1000];
         Write(bytes, FirstTyrDialogueProjectionReader.PortraitInstructionOffset,
             [FirstTyrDialogueProjectionReader.ShowPortraitOpcode, 0x8f, 18]);
         WritePrint(bytes, FirstTyrDialogueProjectionReader.FirstSpeechInstructionOffset,
@@ -241,6 +273,17 @@ public sealed class FirstTyrDialogueProjectionTests
         menu.AddRange([0xe2, 0x82, 0, 0xd7, 0x8f, 2, 0xe1]);
         menu.Add(FirstTyrDialogueProjectionReader.MenuTerminator);
         Write(bytes, FirstTyrDialogueProjectionReader.InitialMenuInstructionOffset, menu);
+        var secondMenu = new List<byte>
+        {
+            FirstTyrDialogueProjectionReader.MenuOpcode,
+            0x86, 4
+        };
+        secondMenu.AddRange(TextExpression("Second choice"));
+        secondMenu.AddRange([0x03, 0xe9, 0x8e, 6]);
+        secondMenu.AddRange(TextExpression("Leave"));
+        secondMenu.AddRange([0x0b, 0x59, 0x00, 0x01]);
+        secondMenu.Add(FirstTyrDialogueProjectionReader.MenuTerminator);
+        Write(bytes, FirstTyrDialogueProjectionReader.SecondMenuInstructionOffset, secondMenu);
         return new(OriginalContent.FirstTyrDialogueScriptResourceNumber, bytes);
     }
 
@@ -304,6 +347,19 @@ public sealed class FirstTyrDialogueProjectionTests
             0x16, 0x8f, 0x01, 0xcd, 0x01, 0x65,
             0x15
         ]);
+        return script with { Bytecode = bytes };
+    }
+
+    private static PackedGplScript ScriptWithFifthResponse()
+    {
+        var script = Script();
+        var bytes = new byte[1395];
+        script.Bytecode.CopyTo(bytes, 0);
+        WritePrint(bytes, 1232, new string('I', 61));
+        WritePrint(bytes, 1292, new string('J', 69));
+        WritePrint(bytes, 1359, new string('K', 21));
+        Write(bytes, 1384,
+            [0x16, 0x8f, 0x01, 0x8e, 0x09, 0x16, 0x8f, 0x00, 0x82, 0x00, 0x15]);
         return script with { Bytecode = bytes };
     }
 
