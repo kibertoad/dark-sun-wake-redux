@@ -79,6 +79,9 @@ public static class FirstTyrDialogueResponseProjectionReader
     public const int CitySourceChoiceIndex = 5;
     public const int CityEntryOffset = 2415;
     public const int ThirdMenuOffset = 2616;
+    public const int ThirdMenuFirstSourceChoiceIndex = 0;
+    public const int ThirdMenuFirstEntryOffset = 2921;
+    public const int ThirdMenuFirstReturnOffset = 3088;
     public const byte PrintStringOpcode = 0x4f;
     public const byte PrintNewLineOpcode = 0x51;
     public const byte LoadVariableOpcode = 0x16;
@@ -328,6 +331,28 @@ public static class FirstTyrDialogueResponseProjectionReader
             ConditionalLocalFlagAssignmentsFromLocalFlags = [conditional],
             AdvancesToThirdMenu = true
         };
+    }
+
+    public static FirstTyrDialogueResponseProjection ReadThirdMenuFirst(
+        PackedGplScript script)
+    {
+        ValidateScript(script);
+        var bytes = script.Bytecode.AsSpan();
+        var position = ThirdMenuFirstEntryOffset;
+        var output = new[]
+        {
+            ReadLiteralPrint(bytes, ref position, 2986),
+            ReadLiteralPrint(bytes, ref position, 3053),
+            ReadLiteralPrint(bytes, ref position, 3083)
+        };
+        var assignment = ReadFlagAssignment(bytes, ref position, 12, false);
+        if (position != ThirdMenuFirstReturnOffset)
+            throw Error($"third-menu choice 0 effects end at {position}, " +
+                $"not {ThirdMenuFirstReturnOffset}");
+        RequireOpcode(bytes, ref position, LocalReturnOpcode,
+            "third-menu choice 0 local return");
+        return new(ThirdMenuFirstSourceChoiceIndex, ThirdMenuFirstEntryOffset,
+            output, [assignment], [], true);
     }
 
     private static FirstTyrDialogueResponseProjection ReadIncrementing(

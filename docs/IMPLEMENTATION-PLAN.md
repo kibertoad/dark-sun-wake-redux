@@ -363,8 +363,10 @@ decoder rather than being guessed now.
   then validates three prints, sets local flags 12/13, conditionally sets flag
   10 from flag 16, and advances through the local-flag-8 loop header to the
   projected seven-entry third menu at offset 2616. On the path where target
-  3479 already set flag 16, its visible source order is 0, 1, and 6. Remaining
-  third-menu responses, the second-menu alternate branch, and generalized GPL
+  3479 already set flag 16, its visible source order is 0, 1, and 6. Third-menu
+  target 2921 then validates three prints, clears local flag 12, returns, and
+  leaves source choices 1 and 6. Remaining third-menu responses, the
+  second-menu alternate branch, and generalized GPL
   execution remain open. The hook renders the
   first literal speech and filtered labels with bounded provisional
   wrapping in the extracted font. Reusable ordered hotkey bindings and Core

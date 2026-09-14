@@ -72,6 +72,8 @@ order 5, 6. Target 2415 then presents three prints, sets local flags 12/13,
 conditionally sets local flag 10 when flag 16 is false, and advances through
 the validated loop header to the seven-entry third menu at offset 2616. The
 owned path has flag 16 set and therefore resolves third-page order 0, 1, 6. The
+first third-page target at 2921 prints three literals, clears local flag 12,
+returns with source order 1, 6, and presents its transcript. The
 fixed portrait/window/control chrome and
 projected initial literal speech render over the live aspect-expanded map.
 Wrapping, conversation entry, remaining third-menu response branches, and

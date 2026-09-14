@@ -101,6 +101,9 @@ remains clear because the owned path already set flag 16, advances to third-menu
 source order 0, 1, 6, resolves its GSTRING #6 exit label, and rasterizes the
 three-part transcript. Synthetic tests cover the opposite conditional outcome,
 the exact menu identities, transition legality, and control-flow/truncation drift.
+The owned path next selects target 2921, verifies local flag 12 clears, resolves
+third-page source order 1, 6, and rasterizes its three-part transcript;
+synthetic tests reject assignment, return, and truncation drift.
 The owned smoke also rasterizes all five implemented returned transcripts with
 the extracted font, including choice 0's explicit blank line, within the bounded
 speech area.

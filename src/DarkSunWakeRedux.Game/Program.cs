@@ -135,6 +135,7 @@ try
             FirstTyrDialogueResponseProjection caravanDialogueResponse;
             FirstTyrDialogueResponseProjection acarDialogueResponse;
             FirstTyrDialogueResponseProjection cityDialogueResponse;
+            FirstTyrDialogueResponseProjection thirdMenuFirstDialogueResponse;
             using (var scriptStream = File.OpenRead(Path.Combine(assetPack,
                        OriginalContent.FirstTyrDialogueScriptAssetPath.Replace(
                            '/', Path.DirectorySeparatorChar))))
@@ -161,6 +162,8 @@ try
                     FirstTyrDialogueResponseProjectionReader.ReadAcar(script);
                 cityDialogueResponse =
                     FirstTyrDialogueResponseProjectionReader.ReadCityIntroduction(script);
+                thirdMenuFirstDialogueResponse =
+                    FirstTyrDialogueResponseProjectionReader.ReadThirdMenuFirst(script);
                 if (dialogueProjection.PortraitResourceNumber !=
                         OriginalContent.FirstTyrDialoguePortraitResourceNumber ||
                     dialogueProjection.SpeechVariants.Count != 2 ||
@@ -425,6 +428,18 @@ try
                     "The installed first Tyr city response did not enter the third menu.");
             _ = DialoguePreviewText.Create(font, dialogueProjection,
                 cityDialogue.After, dialogueVariables, cityDialogueResponse.Output);
+            identitySession.Execute(DialogueCommand.Select(0));
+            var thirdMenuFirstDialogue = identitySession.Execute(DialogueCommand.Apply(
+                DialogueSessionAdapter.ToCore(thirdMenuFirstDialogueResponse)));
+            if (!thirdMenuFirstDialogue.Applied ||
+                thirdMenuFirstDialogue.After.Variables.LocalFlags[12] ||
+                !thirdMenuFirstDialogue.After.Choices.Select(choice => choice.SourceIndex)
+                    .SequenceEqual([1, 6]))
+                throw new InvalidDataException(
+                    "The installed first Tyr third-menu response did not apply its effects.");
+            _ = DialoguePreviewText.Create(font, dialogueProjection,
+                thirdMenuFirstDialogue.After, dialogueVariables,
+                thirdMenuFirstDialogueResponse.Output);
             var textPath = Path.Combine(assetPack,
                 OriginalContent.TextCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using var textStream = File.OpenRead(textPath);

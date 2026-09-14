@@ -422,6 +422,8 @@ compressed-literal prints, immediate one to local flags 12 and 13, a local flag
 16 equals-zero condition guarding immediate one to local flag 10, and the
 local-flag-8 loop header. The following seven-entry menu uses local flags 12,
 13, 15, 10, 17, and 18 plus a constant source choice 6 targeting offset 3976.
+Its source-choice-0 target at 2921 is bounded through local return at 3088:
+three compressed-literal prints followed by immediate zero to local flag 12.
 
 The only decoded primitive is a bounded packed string used for future script
 interpretation. Marker `0x01` represents the active character name, marker
@@ -441,8 +443,8 @@ choice 2/3 counter target, choice 4's flag/number assignments, the exact
 post-menu control flow and second-menu conditions, choice 1's exact extended
 global reference and branch target, target 1825's local condition and assignment,
 target 3479's two flag assignments, target 1996's guarded opening path, target
-2352's flag clear, target 2415's assignments/condition/loop bridge, and each
-applicable local return. Decoding these structures does not
+2352's flag clear, target 2415's assignments/condition/loop bridge, target
+2921's flag clear, and each applicable local return. Decoding these structures does not
 authorize executing other
 instructions or assigning condition and state-mutation semantics.
 

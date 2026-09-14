@@ -717,6 +717,8 @@
   local-flag-8 while header into the seven-entry menu at offset 2616. That menu
   is gated by local flags 12/13/15/10/17/18 and has a constant final choice
   whose label is MAS #99 global string #6.
+  Its source-choice-0 target at 2921 prints three literals, clears local flag
+  12, and returns.
 - **Confidence:** verified for the captured layouts, first exchange's GPL chunk,
   and visible response text; high for the static UI graph; medium for the
   opening-only local number 0, local flags 9/16, global flag 357, and global
@@ -798,6 +800,9 @@
   legal second-to-third-page transition and filters the projected seven-entry
   menu. The owned path already has flag 16 set, so it presents third-page source
   order 0, 1, 6 and resolves the final label from GSTRING #6.
+  Target 2921 has an exact three-print, local-flag-12-clear, and local-return
+  projection through offset 3088. Runtime presents it and recomputes the third
+  page as source order 1, 6.
   Choice 7's target has an exact bounded projection at offsets 2905–2920: print
   GSTRING #5, assign immediate one to local flags 14 and 4, then return locally.
   Core validates the selected identity before applying both flags atomically and
@@ -816,6 +821,7 @@
   drift, target-1996 condition/control-flow/return drift, global-number
   prerequisite success and atomic rejection, target-2352 assignment/return
   drift, target-2415 assignment/conditional/loop/menu-transition drift,
+  target-2921 print/assignment/return drift,
   explicit-newline transcript rendering and malformed-output rejection,
   atomic flag
   application, conditional global-flag effects, deterministic menu reselection,

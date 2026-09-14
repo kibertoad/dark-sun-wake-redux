@@ -439,6 +439,41 @@ public sealed class FirstTyrDialogueProjectionTests
             }));
     }
 
+    [Fact]
+    public void ProjectsFirstThirdMenuResponseFlagClear()
+    {
+        var projection = FirstTyrDialogueResponseProjectionReader.ReadThirdMenuFirst(
+            ScriptWithThirdMenuFirstResponse());
+
+        Assert.Equal((0, 2921),
+            (projection.SourceChoiceIndex, projection.EntryOffset));
+        Assert.Equal([67, 69, 27],
+            projection.Output.Select(item => item.Text!.Text.Length));
+        Assert.Equal([(12, false)], projection.LocalFlagAssignments
+            .Select(assignment => ((int)assignment.VariableId, assignment.Value)));
+        Assert.True(projection.ReturnsToMenu);
+    }
+
+    [Fact]
+    public void RejectsFirstThirdMenuResponseAssignmentAndReturnDrift()
+    {
+        var driftedAssignment = ScriptWithThirdMenuFirstResponse();
+        driftedAssignment.Bytecode[3087] = 13;
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadThirdMenuFirst(
+                driftedAssignment));
+        var driftedReturn = ScriptWithThirdMenuFirstResponse();
+        driftedReturn.Bytecode[3088] = 0;
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadThirdMenuFirst(driftedReturn));
+        var truncated = ScriptWithThirdMenuFirstResponse();
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadThirdMenuFirst(truncated with
+            {
+                Bytecode = truncated.Bytecode[..3088]
+            }));
+    }
+
     private static PackedGplScript Script()
     {
         var bytes = new byte[2905];
@@ -647,6 +682,18 @@ public sealed class FirstTyrDialogueProjectionTests
             0x18, 0x8e, 0x08,
             0x63, 0x0b, 0x58
         ]);
+        return script with { Bytecode = bytes };
+    }
+
+    private static PackedGplScript ScriptWithThirdMenuFirstResponse()
+    {
+        var script = Script();
+        var bytes = Expand(script, 3089);
+        WritePrint(bytes, 2921, new string('X', 67));
+        WritePrint(bytes, 2986, new string('Y', 69));
+        WritePrint(bytes, 3053, new string('Z', 27));
+        Write(bytes, 3083,
+            [0x16, 0x8f, 0x00, 0x8e, 0x0c, 0x15]);
         return script with { Bytecode = bytes };
     }
 
