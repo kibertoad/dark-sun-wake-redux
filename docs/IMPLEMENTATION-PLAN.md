@@ -348,8 +348,11 @@ decoder rather than being guessed now.
   Returned choices 0-4 now replace the speech with their projected output,
   retaining explicit print-newline instructions; target 1597 returns to its
   calling page, and unprojected visible targets remain inert without partially
-  selecting the session. The remaining second-menu branches and generalized
-  GPL execution remain open. The hook renders the
+  selecting the session. Second-menu target 1825 is bounded through three
+  prints, local flag 6 clear, and a local-flag-16 condition that sets local flag
+  10; Core evaluates that condition before mutation and runtime returns to the
+  second page with the newly enabled choice. The remaining second-menu branches
+  and generalized GPL execution remain open. The hook renders the
   first literal speech and filtered labels with bounded provisional
   wrapping in the extracted font. Reusable ordered hotkey bindings and Core
   navigation now cover character, inventory, cast/psionic, current-effects,

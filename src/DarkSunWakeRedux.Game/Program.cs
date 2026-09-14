@@ -130,6 +130,7 @@ try
             FirstTyrDialogueResponseProjection thirdDialogueResponse;
             FirstTyrDialogueResponseProjection fourthDialogueResponse;
             FirstTyrDialogueResponseProjection fifthDialogueResponse;
+            FirstTyrDialogueResponseProjection troubleDialogueResponse;
             using (var scriptStream = File.OpenRead(Path.Combine(assetPack,
                        OriginalContent.FirstTyrDialogueScriptAssetPath.Replace(
                            '/', Path.DirectorySeparatorChar))))
@@ -146,6 +147,8 @@ try
                 thirdDialogueResponse = FirstTyrDialogueResponseProjectionReader.ReadThird(script);
                 fourthDialogueResponse = FirstTyrDialogueResponseProjectionReader.ReadFourth(script);
                 fifthDialogueResponse = FirstTyrDialogueResponseProjectionReader.ReadFifth(script);
+                troubleDialogueResponse =
+                    FirstTyrDialogueResponseProjectionReader.ReadTrouble(script);
                 if (dialogueProjection.PortraitResourceNumber !=
                         OriginalContent.FirstTyrDialoguePortraitResourceNumber ||
                     dialogueProjection.SpeechVariants.Count != 2 ||
@@ -331,6 +334,18 @@ try
                     "The installed first Tyr identity response did not apply its effects.");
             _ = DialoguePreviewText.Create(font, dialogueProjection,
                 identifiedDialogue.After, dialogueVariables, secondDialogueResponse.Output);
+            identitySession.Execute(DialogueCommand.Select(0));
+            var troubleDialogue = identitySession.Execute(DialogueCommand.Apply(
+                DialogueSessionAdapter.ToCore(troubleDialogueResponse)));
+            if (!troubleDialogue.Applied ||
+                troubleDialogue.After.Variables.LocalFlags[6] ||
+                !troubleDialogue.After.Variables.LocalFlags[10] ||
+                !troubleDialogue.After.Choices.Select(choice => choice.SourceIndex)
+                    .SequenceEqual([2, 3, 5, 6]))
+                throw new InvalidDataException(
+                    "The installed first Tyr trouble response did not apply its effects.");
+            _ = DialoguePreviewText.Create(font, dialogueProjection,
+                troubleDialogue.After, dialogueVariables, troubleDialogueResponse.Output);
             var textPath = Path.Combine(assetPack,
                 OriginalContent.TextCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using var textStream = File.OpenRead(textPath);

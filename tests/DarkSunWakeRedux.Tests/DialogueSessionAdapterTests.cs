@@ -50,7 +50,7 @@ public sealed class DialogueSessionAdapterTests
     }
 
     [Fact]
-    public void MapsReturnedResponseEffectsBackToTheOpeningMenu()
+    public void MapsReturnedResponseEffectsBackToTheCallingMenu()
     {
         var projection = new FirstTyrDialogueResponseProjection(0, 1017, [],
             [new(0, false)], [], true);
@@ -62,7 +62,7 @@ public sealed class DialogueSessionAdapterTests
         Assert.False(result.LocalFlagAssignments[0]);
         Assert.Empty(result.LocalNumberIncrements);
         Assert.Throws<InvalidDataException>(() =>
-            DialogueSessionAdapter.ToCore(projection with { ReturnsToOpeningMenu = false }));
+            DialogueSessionAdapter.ToCore(projection with { ReturnsToMenu = false }));
     }
 
     [Fact]
@@ -101,5 +101,26 @@ public sealed class DialogueSessionAdapterTests
 
         Assert.Equal(0, result.LocalNumberAssignments[0]);
         Assert.Empty(result.LocalNumberIncrements);
+    }
+
+    [Fact]
+    public void MapsConditionalEffectsFromLocalFlags()
+    {
+        var projection = new FirstTyrDialogueResponseProjection(1, 1825, [],
+            [new(6, false)], [], true)
+        {
+            ConditionalLocalFlagAssignmentsFromLocalFlags =
+            [
+                new(new(16, false), 10, true)
+            ]
+        };
+
+        var result = DialogueSessionAdapter.ToCore(projection);
+
+        var assignment = Assert.Single(
+            result.ConditionalLocalFlagAssignmentsFromLocalFlags);
+        Assert.Equal((16, false, 10, true), (
+            (int)assignment.Condition.VariableId, assignment.Condition.Value,
+            (int)assignment.VariableId, assignment.Value));
     }
 }

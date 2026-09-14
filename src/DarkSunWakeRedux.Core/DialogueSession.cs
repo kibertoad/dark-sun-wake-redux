@@ -20,8 +20,15 @@ public enum DialogueBranchDisposition
 
 public sealed record DialogueGlobalFlagCondition(ushort VariableId, bool Value);
 
+public sealed record DialogueLocalFlagCondition(ushort VariableId, bool Value);
+
 public sealed record DialogueConditionalLocalFlagAssignment(
     DialogueGlobalFlagCondition Condition,
+    ushort VariableId,
+    bool Value);
+
+public sealed record DialogueConditionalLocalFlagAssignmentFromLocalFlag(
+    DialogueLocalFlagCondition Condition,
     ushort VariableId,
     bool Value);
 
@@ -36,7 +43,9 @@ public sealed record DialogueBranchResult
         IReadOnlyDictionary<ushort, bool>? globalFlagAssignments = null,
         IReadOnlyList<DialogueConditionalLocalFlagAssignment>?
             conditionalLocalFlagAssignments = null,
-        IReadOnlyDictionary<ushort, int>? localNumberAssignments = null)
+        IReadOnlyDictionary<ushort, int>? localNumberAssignments = null,
+        IReadOnlyList<DialogueConditionalLocalFlagAssignmentFromLocalFlag>?
+            conditionalLocalFlagAssignmentsFromLocalFlags = null)
     {
         if (sourceIndex < 0) throw new ArgumentOutOfRangeException(nameof(sourceIndex));
         if (branchTargetOffset < 0)
@@ -48,6 +57,7 @@ public sealed record DialogueBranchResult
         globalFlagAssignments ??= new Dictionary<ushort, bool>();
         conditionalLocalFlagAssignments ??= [];
         localNumberAssignments ??= new Dictionary<ushort, int>();
+        conditionalLocalFlagAssignmentsFromLocalFlags ??= [];
         if (localNumberIncrements.Any(pair => pair.Value == 0))
             throw new ArgumentException("Dialogue number increments cannot be zero.",
                 nameof(localNumberIncrements));
@@ -60,6 +70,11 @@ public sealed record DialogueBranchResult
             throw new ArgumentException(
                 "Conditional dialogue assignments require conditions.",
                 nameof(conditionalLocalFlagAssignments));
+        if (conditionalLocalFlagAssignmentsFromLocalFlags.Any(assignment =>
+                assignment is null || assignment.Condition is null))
+            throw new ArgumentException(
+                "Conditional dialogue assignments require local-flag conditions.",
+                nameof(conditionalLocalFlagAssignmentsFromLocalFlags));
         SourceIndex = sourceIndex;
         BranchTargetOffset = branchTargetOffset;
         Disposition = disposition;
@@ -69,6 +84,8 @@ public sealed record DialogueBranchResult
         ConditionalLocalFlagAssignments = Array.AsReadOnly(
             conditionalLocalFlagAssignments.ToArray());
         LocalNumberAssignments = ReadOnlyCopy(localNumberAssignments);
+        ConditionalLocalFlagAssignmentsFromLocalFlags = Array.AsReadOnly(
+            conditionalLocalFlagAssignmentsFromLocalFlags.ToArray());
     }
 
     public int SourceIndex { get; }
@@ -80,6 +97,8 @@ public sealed record DialogueBranchResult
     public IReadOnlyList<DialogueConditionalLocalFlagAssignment>
         ConditionalLocalFlagAssignments { get; }
     public IReadOnlyDictionary<ushort, int> LocalNumberAssignments { get; }
+    public IReadOnlyList<DialogueConditionalLocalFlagAssignmentFromLocalFlag>
+        ConditionalLocalFlagAssignmentsFromLocalFlags { get; }
 
     public DialogueBranchResult ForSourceIndex(int sourceIndex) => new(
         sourceIndex,
@@ -89,7 +108,8 @@ public sealed record DialogueBranchResult
         LocalNumberIncrements,
         GlobalFlagAssignments,
         ConditionalLocalFlagAssignments,
-        LocalNumberAssignments);
+        LocalNumberAssignments,
+        ConditionalLocalFlagAssignmentsFromLocalFlags);
 
     private static IReadOnlyDictionary<TKey, TValue> ReadOnlyCopy<TKey, TValue>(
         IReadOnlyDictionary<TKey, TValue> source) where TKey : notnull =>
@@ -201,10 +221,23 @@ public sealed class DialogueSession
             if (value == assignment.Condition.Value)
                 conditionalAssignments.Add(assignment);
         }
+        var conditionalLocalAssignments =
+            new List<DialogueConditionalLocalFlagAssignmentFromLocalFlag>();
+        foreach (var assignment in result.ConditionalLocalFlagAssignmentsFromLocalFlags)
+        {
+            if (!_snapshot.Variables.LocalFlags.TryGetValue(
+                    assignment.Condition.VariableId, out var value))
+                throw new InvalidOperationException(
+                    $"Local dialogue flag #{assignment.Condition.VariableId} is unknown.");
+            if (value == assignment.Condition.Value)
+                conditionalLocalAssignments.Add(assignment);
+        }
         var flags = new Dictionary<ushort, bool>(_snapshot.Variables.LocalFlags);
         foreach (var assignment in result.LocalFlagAssignments)
             flags[assignment.Key] = assignment.Value;
         foreach (var assignment in conditionalAssignments)
+            flags[assignment.VariableId] = assignment.Value;
+        foreach (var assignment in conditionalLocalAssignments)
             flags[assignment.VariableId] = assignment.Value;
         var numbers = new Dictionary<ushort, int>(_snapshot.Variables.LocalNumbers);
         foreach (var assignment in result.LocalNumberAssignments)

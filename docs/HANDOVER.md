@@ -55,11 +55,15 @@ runtime dispatches by branch
 target so reused menu indexes cannot collide, and target 1597 returns to its
 calling page. Implemented returned branches replace the speech with their
 bounded projected output while retaining explicit newlines; unimplemented
-visible targets are inert and cannot strand the Core session. The
+visible targets are inert and cannot strand the Core session. The second-menu
+trouble target at 1825 is bounded through three prints, local flag 6 clear, a
+local-flag-16 equals-zero condition, local flag 10 set, and return. Core
+evaluates the condition atomically; the fresh-opening path changes the visible
+source order from 1, 3, 5, 6 to 2, 3, 5, 6 and presents the transcript. The
 fixed portrait/window/control chrome and
 projected initial literal speech render over the live aspect-expanded map.
-Wrapping, conversation entry, second-menu response branches, and broader GPL
-instruction execution remain pending.
+Wrapping, conversation entry, remaining second-menu response branches, and
+broader GPL instruction execution remain pending.
 
 ## Previous cohesive batch
 

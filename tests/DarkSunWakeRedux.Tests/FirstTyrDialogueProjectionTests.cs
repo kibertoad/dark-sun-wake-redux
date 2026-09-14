@@ -117,7 +117,7 @@ public sealed class FirstTyrDialogueProjectionTests
         Assert.Equal([(0, false)], projection.LocalFlagAssignments
             .Select(assignment => ((int)assignment.VariableId, assignment.Value)));
         Assert.Empty(projection.LocalNumberIncrements);
-        Assert.True(projection.ReturnsToOpeningMenu);
+        Assert.True(projection.ReturnsToMenu);
     }
 
     [Fact]
@@ -159,8 +159,8 @@ public sealed class FirstTyrDialogueProjectionTests
             .Select(assignment => ((int)assignment.VariableId, assignment.Value)));
         Assert.Equal([(0, 1)], fourth.LocalNumberIncrements
             .Select(increment => ((int)increment.VariableId, increment.Amount)));
-        Assert.True(third.ReturnsToOpeningMenu);
-        Assert.True(fourth.ReturnsToOpeningMenu);
+        Assert.True(third.ReturnsToMenu);
+        Assert.True(fourth.ReturnsToMenu);
     }
 
     [Fact]
@@ -249,6 +249,45 @@ public sealed class FirstTyrDialogueProjectionTests
             FirstTyrDialogueResponseProjectionReader.ReadFifth(truncated with
             {
                 Bytecode = truncated.Bytecode[..1394]
+            }));
+    }
+
+    [Fact]
+    public void ProjectsTroubleResponseConditionalLocalFlagEffects()
+    {
+        var projection = FirstTyrDialogueResponseProjectionReader.ReadTrouble(
+            ScriptWithTroubleResponse());
+
+        Assert.Equal((1, 1825),
+            (projection.SourceChoiceIndex, projection.EntryOffset));
+        Assert.Equal([70, 72, 8], projection.Output
+            .Select(output => output.Text!.Text.Length));
+        Assert.Equal([(6, false)], projection.LocalFlagAssignments
+            .Select(assignment => ((int)assignment.VariableId, assignment.Value)));
+        var conditional = Assert.Single(
+            projection.ConditionalLocalFlagAssignmentsFromLocalFlags);
+        Assert.Equal((16, false, 10, true), (
+            (int)conditional.Condition.VariableId, conditional.Condition.Value,
+            (int)conditional.VariableId, conditional.Value));
+        Assert.True(projection.ReturnsToMenu);
+    }
+
+    [Fact]
+    public void RejectsTroubleResponseConditionAssignmentAndReturnDrift()
+    {
+        var driftedCondition = ScriptWithTroubleResponse();
+        driftedCondition.Bytecode[1982] = 0x11;
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadTrouble(driftedCondition));
+        var driftedAssignment = ScriptWithTroubleResponse();
+        driftedAssignment.Bytecode[1993] = 0x0b;
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadTrouble(driftedAssignment));
+        var truncated = ScriptWithTroubleResponse();
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadTrouble(truncated with
+            {
+                Bytecode = truncated.Bytecode[..1995]
             }));
     }
 
@@ -360,6 +399,26 @@ public sealed class FirstTyrDialogueProjectionTests
         WritePrint(bytes, 1359, new string('K', 21));
         Write(bytes, 1384,
             [0x16, 0x8f, 0x01, 0x8e, 0x09, 0x16, 0x8f, 0x00, 0x82, 0x00, 0x15]);
+        return script with { Bytecode = bytes };
+    }
+
+    private static PackedGplScript ScriptWithTroubleResponse()
+    {
+        var script = Script();
+        var bytes = new byte[1996];
+        script.Bytecode.CopyTo(bytes, 0);
+        WritePrint(bytes, 1825, new string('L', 70));
+        WritePrint(bytes, 1893, new string('M', 72));
+        WritePrint(bytes, 1962, new string('N', 8));
+        Write(bytes, 1975,
+        [
+            0x16, 0x8f, 0x00, 0x8e, 0x06,
+            0x18, 0x8e, 0x10, 0xd7, 0x8f, 0x00,
+            0x3e, 0x07, 0xca,
+            0x16, 0x8f, 0x01, 0x8e, 0x0a,
+            0x67,
+            0x15
+        ]);
         return script with { Bytecode = bytes };
     }
 

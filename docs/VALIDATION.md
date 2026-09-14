@@ -59,7 +59,8 @@ row selection, rejection without mutation, original branch retention, matching
 branch enforcement, atomic local-flag application, deterministic menu
 reselection after a returning branch, and caller-page retention for a target
 shared by both menus. Unknown local-number increments are
-rejected before mutation. Synthetic projection tests reject drift in choice
+rejected before mutation. Conditional local-flag tests prove both outcomes and
+unknown-input rejection without mutation. Synthetic projection tests reject drift in choice
 0's prints, newlines, assignment, offsets, and local return; choices 2/3's
 prints, matching flag clears, local-number-0 increments, offsets, and returns;
 and choice 7's print, assignments, offsets, and local return.
@@ -81,6 +82,9 @@ sets local flag 9, resets local number 0, and enters second-menu order 0, 5, 6.
 Another owned-pack path selects choice 1 and verifies local flag 1 clears, local
 flags 6/7 become true from the fresh-opening condition, global flag 357 becomes
 true, and the second menu resolves as 1, 3, 5, and 6.
+That path then selects target 1825, verifies local flag 6 clears, local flag 10
+is enabled from fresh-opening local flag 16, the page becomes 2, 3, 5, 6, and
+the extracted transcript fits the speech area.
 The owned smoke also rasterizes all five implemented returned transcripts with
 the extracted font, including choice 0's explicit blank line, within the bounded
 speech area.

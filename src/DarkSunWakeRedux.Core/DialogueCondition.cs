@@ -42,7 +42,8 @@ public static class FirstTyrDialogueObservedState
             [3] = true,
             [4] = false,
             [5] = false,
-            [9] = false
+            [9] = false,
+            [16] = false
         },
         new Dictionary<ushort, int> { [0] = 0 })
     {

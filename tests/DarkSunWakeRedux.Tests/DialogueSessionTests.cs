@@ -152,6 +152,52 @@ public sealed class DialogueSessionTests
         Assert.Same(before, session.Snapshot());
     }
 
+    [Theory]
+    [InlineData(false, true)]
+    [InlineData(true, false)]
+    public void AppliesConditionalLocalEffectsFromAKnownLocalFlag(
+        bool initialConditionValue,
+        bool expectsAssignment)
+    {
+        var variables = new DialogueVariableSnapshot(
+            new Dictionary<ushort, bool> { [6] = true, [16] = initialConditionValue },
+            new Dictionary<ushort, int>());
+        var session = Session([Definition(1, 1825)], variables);
+        session.Execute(DialogueCommand.Select(0));
+        var result = new DialogueBranchResult(1, 1825,
+            DialogueBranchDisposition.ReturnToChoices,
+            new Dictionary<ushort, bool> { [6] = false },
+            conditionalLocalFlagAssignmentsFromLocalFlags:
+            [
+                new(new(16, false), 10, true)
+            ]);
+
+        var transition = session.Execute(DialogueCommand.Apply(result));
+
+        Assert.False(transition.After.Variables.LocalFlags[6]);
+        Assert.Equal(expectsAssignment,
+            transition.After.Variables.LocalFlags.ContainsKey(10));
+    }
+
+    [Fact]
+    public void RejectsUnknownConditionalLocalFlagWithoutMutation()
+    {
+        var session = Session([Definition(1, 1825)]);
+        session.Execute(DialogueCommand.Select(0));
+        var before = session.Snapshot();
+        var result = new DialogueBranchResult(1, 1825,
+            DialogueBranchDisposition.ReturnToChoices,
+            new Dictionary<ushort, bool> { [6] = false },
+            conditionalLocalFlagAssignmentsFromLocalFlags:
+            [
+                new(new(16, false), 10, true)
+            ]);
+
+        Assert.Throws<InvalidOperationException>(() =>
+            session.Execute(DialogueCommand.Apply(result)));
+        Assert.Same(before, session.Snapshot());
+    }
+
     [Fact]
     public void RejectsInvalidConstructionSelectionAndMismatchedBranch()
     {
@@ -223,7 +269,11 @@ public sealed class DialogueSessionTests
     {
         var result = new DialogueBranchResult(7, 2905,
             DialogueBranchDisposition.Completed,
-            new Dictionary<ushort, bool> { [14] = true });
+            new Dictionary<ushort, bool> { [14] = true },
+            conditionalLocalFlagAssignmentsFromLocalFlags:
+            [
+                new(new(16, false), 10, true)
+            ]);
 
         var reidentified = result.ForSourceIndex(6);
 
@@ -231,6 +281,7 @@ public sealed class DialogueSessionTests
         Assert.Equal(2905, reidentified.BranchTargetOffset);
         Assert.Equal(DialogueBranchDisposition.Completed, reidentified.Disposition);
         Assert.True(reidentified.LocalFlagAssignments[14]);
+        Assert.Single(reidentified.ConditionalLocalFlagAssignmentsFromLocalFlags);
     }
 
     private static DialogueTransition ApplyCounterResponse(

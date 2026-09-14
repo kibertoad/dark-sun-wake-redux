@@ -10,8 +10,15 @@ public sealed record GplLocalNumberIncrement(ushort VariableId, int Amount);
 
 public sealed record GplGlobalFlagCondition(ushort VariableId, bool Value);
 
+public sealed record GplLocalFlagCondition(ushort VariableId, bool Value);
+
 public sealed record GplConditionalLocalFlagAssignment(
     GplGlobalFlagCondition Condition,
+    ushort VariableId,
+    bool Value);
+
+public sealed record GplConditionalLocalFlagAssignmentFromLocalFlag(
+    GplLocalFlagCondition Condition,
     ushort VariableId,
     bool Value);
 
@@ -23,12 +30,14 @@ public sealed record FirstTyrDialogueResponseProjection(
     IReadOnlyList<GplDialogueOutput> Output,
     IReadOnlyList<GplLocalFlagAssignment> LocalFlagAssignments,
     IReadOnlyList<GplLocalNumberIncrement> LocalNumberIncrements,
-    bool ReturnsToOpeningMenu)
+    bool ReturnsToMenu)
 {
     public IReadOnlyList<GplGlobalFlagAssignment> GlobalFlagAssignments { get; init; } = [];
     public IReadOnlyList<GplConditionalLocalFlagAssignment>
         ConditionalLocalFlagAssignments { get; init; } = [];
     public IReadOnlyList<GplLocalNumberAssignment> LocalNumberAssignments { get; init; } = [];
+    public IReadOnlyList<GplConditionalLocalFlagAssignmentFromLocalFlag>
+        ConditionalLocalFlagAssignmentsFromLocalFlags { get; init; } = [];
 }
 
 public sealed record GplLocalNumberAssignment(ushort VariableId, int Value);
@@ -50,6 +59,9 @@ public static class FirstTyrDialogueResponseProjectionReader
     public const int FifthChoiceIndex = 4;
     public const int FifthEntryOffset = 1232;
     public const int FifthReturnOffset = 1394;
+    public const int TroubleSourceChoiceIndex = 1;
+    public const int TroubleEntryOffset = 1825;
+    public const int TroubleReturnOffset = 1995;
     public const byte PrintStringOpcode = 0x4f;
     public const byte PrintNewLineOpcode = 0x51;
     public const byte LoadVariableOpcode = 0x16;
@@ -148,6 +160,39 @@ public static class FirstTyrDialogueResponseProjectionReader
         return new(FifthChoiceIndex, FifthEntryOffset, output, [flagAssignment], [], true)
         {
             LocalNumberAssignments = [numberAssignment]
+        };
+    }
+
+    public static FirstTyrDialogueResponseProjection ReadTrouble(
+        PackedGplScript script)
+    {
+        ValidateScript(script);
+        var bytes = script.Bytecode.AsSpan();
+        var position = TroubleEntryOffset;
+        var output = new[]
+        {
+            ReadLiteralPrint(bytes, ref position, 1893),
+            ReadLiteralPrint(bytes, ref position, 1962),
+            ReadLiteralPrint(bytes, ref position, 1975)
+        };
+        var assignment = ReadFlagAssignment(bytes, ref position, 6, false);
+        RequireOpcode(bytes, ref position, LoadAccumulatorOpcode,
+            "trouble response local-flag condition");
+        RequireSequence(bytes, ref position, [0x8e, 0x10, 0xd7, 0x8f, 0x00],
+            "local flag #16 equals zero condition");
+        RequireOpcode(bytes, ref position, IfOpcode, "trouble response conditional branch");
+        RequireImmediate14(bytes, ref position, 1994, "trouble response endif target");
+        var conditional = new GplConditionalLocalFlagAssignmentFromLocalFlag(
+            new(16, false), 10, true);
+        _ = ReadFlagAssignment(bytes, ref position, 10, true);
+        RequireOpcode(bytes, ref position, EndIfOpcode, "trouble response endif");
+        if (position != TroubleReturnOffset)
+            throw Error($"trouble response effects end at {position}, not {TroubleReturnOffset}");
+        RequireOpcode(bytes, ref position, LocalReturnOpcode, "trouble response local return");
+        return new(TroubleSourceChoiceIndex, TroubleEntryOffset, output,
+            [assignment], [], true)
+        {
+            ConditionalLocalFlagAssignmentsFromLocalFlags = [conditional]
         };
     }
 

@@ -40,7 +40,7 @@ public static class DialogueSessionAdapter
         FirstTyrDialogueResponseProjection projection)
     {
         ArgumentNullException.ThrowIfNull(projection);
-        if (!projection.ReturnsToOpeningMenu)
+        if (!projection.ReturnsToMenu)
             throw new InvalidDataException("The dialogue response does not return to its menu.");
         return new(projection.SourceChoiceIndex, projection.EntryOffset,
             DialogueBranchDisposition.ReturnThroughFirstTyrMenu,
@@ -59,6 +59,10 @@ public static class DialogueSessionAdapter
                     assignment.VariableId, assignment.Value)).ToArray(),
             projection.LocalNumberAssignments.ToDictionary(
                 assignment => assignment.VariableId,
-                assignment => assignment.Value));
+                assignment => assignment.Value),
+            projection.ConditionalLocalFlagAssignmentsFromLocalFlags.Select(assignment =>
+                new DialogueConditionalLocalFlagAssignmentFromLocalFlag(
+                    new(assignment.Condition.VariableId, assignment.Condition.Value),
+                    assignment.VariableId, assignment.Value)).ToArray());
     }
 }
