@@ -41,6 +41,12 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     private IReadOnlyList<DialogueResponseControl> _dialogueResponseControls = [];
     private DialogueSession? _dialogueSession;
     private DialogueBranchResult? _dialogueCompletionBranch;
+    private readonly Dictionary<int, DialogueBranchResult> _dialogueReturnBranches = [];
+    private PackedIndexedBitmapFont? _dialogueFont;
+    private FirstTyrDialogueProjection? _dialogueProjection;
+    private IReadOnlyList<Rgb24> _dialogueTextPalette = [];
+    private IReadOnlyDictionary<GplDialogueVariable, string> _dialogueVariableText =
+        new Dictionary<GplDialogueVariable, string>();
     private bool _dialoguePreviewVisible;
     private PackedRegion? _tyrRegion;
     private PackedObjectFrameCatalog? _tyrObjects;
@@ -161,6 +167,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         {
             dialoguePortraitImage = PackedIndexedImage.Read(
                 portraitStream, OriginalContent.FirstTyrDialoguePortraitAssetPath);
+            _dialogueTextPalette = dialoguePortraitImage.Palette;
             _dialoguePortrait = CreateTexture(
                 dialoguePortraitImage, dialoguePortraitImage.Frames[0]);
         }
@@ -183,40 +190,27 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         using (var globalsStream = File.OpenRead(AssetPath(
                    OriginalContent.DialogueGlobalStringsScriptAssetPath)))
         {
-            var font = PackedIndexedBitmapFont.Read(
+            _dialogueFont = PackedIndexedBitmapFont.Read(
                 fontStream, OriginalContent.InterfaceFontAssetPath);
             var script = PackedGplScript.Read(
                 scriptStream, OriginalContent.FirstTyrDialogueScriptAssetPath);
             var globalString = GplGlobalStringProjectionReader.Read(
                 PackedGplScript.Read(globalsStream,
                     OriginalContent.DialogueGlobalStringsScriptAssetPath));
-            var projection = FirstTyrDialogueProjectionReader.Read(script);
+            _dialogueProjection = FirstTyrDialogueProjectionReader.Read(script);
             _dialogueCompletionBranch = DialogueSessionAdapter.ToCore(
                 FirstTyrDialogueCompletionProjectionReader.Read(script));
+            var firstResponse = DialogueSessionAdapter.ToCore(
+                FirstTyrDialogueResponseProjectionReader.ReadFirst(script));
+            _dialogueReturnBranches.Add(firstResponse.SourceIndex, firstResponse);
             _dialogueSession = DialogueSessionAdapter.Create(
-                projection, FirstTyrDialogueObservedState.Create(),
+                _dialogueProjection, FirstTyrDialogueObservedState.Create(),
                 DialoguePreviewText.MaximumResponses);
-            var previewText = DialoguePreviewText.Create(
-                font, projection, _dialogueSession.Snapshot(),
-                new Dictionary<GplDialogueVariable, string>
-                {
-                    [globalString.Destination] = globalString.Text
-                });
-            _dialogueSpeechText = CreateTextTexture(
-                dialoguePortraitImage.Palette, previewText.Speech.Pixels,
-                previewText.Speech.Width, previewText.Speech.Height);
-            var responsePlacements = _dialogueOverlay.Images
-                .Where(image => image.ResourceNumber is >= 2076 and <= 2080)
-                .OrderBy(image => image.ResourceNumber).ToArray();
-            for (var index = 0; index < previewText.Responses.Count; index++)
+            _dialogueVariableText = new Dictionary<GplDialogueVariable, string>
             {
-                var text = previewText.Responses[index].Text;
-                _dialogueResponseText.Add((
-                    responsePlacements[index].X + 2,
-                    responsePlacements[index].Y + Math.Max(0, (10 - text.Height) / 2),
-                    CreateTextTexture(dialoguePortraitImage.Palette,
-                        text.Pixels, text.Width, text.Height)));
-            }
+                [globalString.Destination] = globalString.Text
+            };
+            RebuildDialogueText();
         }
         var preferencesTextures = new Dictionary<string, Texture2D>(StringComparer.Ordinal);
         foreach (var control in PreferencesInput.Resolve(gameMenuUi))
@@ -356,7 +350,9 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                     if (screen == StartFlowScreen.Gameplay &&
                         _exploration.Snapshot().View == ExplorationView.World &&
                         _dialoguePreviewVisible &&
-                        DialogueInput.HitTest(_dialogueResponseControls, x, y) is { } response)
+                        DialogueInput.HitTest(_dialogueResponseControls.Take(
+                            _dialogueSession!.Snapshot().Choices.Count).ToArray(), x, y)
+                            is { } response)
                     {
                         var selection = _dialogueSession!.Execute(
                             DialogueCommand.Select(response.Index));
@@ -364,8 +360,15 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                                 _dialogueCompletionBranch!.SourceIndex)
                         {
                             _dialogueSession.Execute(
-                                DialogueCommand.Complete(_dialogueCompletionBranch));
+                                DialogueCommand.Apply(_dialogueCompletionBranch));
                             _dialoguePreviewVisible = false;
+                        }
+                        else if (selection.Applied && _dialogueReturnBranches.TryGetValue(
+                                     selection.After.SelectedSourceIndex!.Value,
+                                     out var returningBranch))
+                        {
+                            _dialogueSession.Execute(DialogueCommand.Apply(returningBranch));
+                            RebuildDialogueText();
                         }
                         explorationOverlayConsumedLeftClick = true;
                     }
@@ -813,5 +816,33 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     {
         var alpha = pixels.Select(pixel => pixel == 0 ? (byte)0 : (byte)255).ToArray();
         return CreateTexture(palette, pixels, alpha, width, height);
+    }
+
+    private void RebuildDialogueText()
+    {
+        if (_dialogueFont is null || _dialogueProjection is null ||
+            _dialogueSession is null || _dialogueOverlay is null)
+            throw new InvalidOperationException("Dialogue preview content is not loaded.");
+        var previewText = DialoguePreviewText.Create(
+            _dialogueFont, _dialogueProjection, _dialogueSession.Snapshot(),
+            _dialogueVariableText);
+        _dialogueSpeechText?.Dispose();
+        _dialogueSpeechText = CreateTextTexture(
+            _dialogueTextPalette, previewText.Speech.Pixels,
+            previewText.Speech.Width, previewText.Speech.Height);
+        foreach (var (_, _, texture) in _dialogueResponseText) texture.Dispose();
+        _dialogueResponseText.Clear();
+        var responsePlacements = _dialogueOverlay.Images
+            .Where(image => image.ResourceNumber is >= 2076 and <= 2080)
+            .OrderBy(image => image.ResourceNumber).ToArray();
+        for (var index = 0; index < previewText.Responses.Count; index++)
+        {
+            var text = previewText.Responses[index].Text;
+            _dialogueResponseText.Add((
+                responsePlacements[index].X + 2,
+                responsePlacements[index].Y + Math.Max(0, (10 - text.Height) / 2),
+                CreateTextTexture(_dialogueTextPalette,
+                    text.Pixels, text.Width, text.Height)));
+        }
     }
 }

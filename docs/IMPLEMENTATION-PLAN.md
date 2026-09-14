@@ -323,10 +323,14 @@ decoder rather than being guessed now.
   the ignored owned pack without committing its text. A deterministic Core
   dialogue session owns the visible source-index/branch-target identities and
   records one physical-row selection atomically; runtime row clicks are consumed
-  before world movement. Choice 7's target is now a bounded completion projection:
+  before world movement. Choice 0's straight-line target is now bounded at
+  offsets 1017-1147: it validates three literal prints separated by two
+  newlines, clears local flag 0, returns locally, and causes Core to recompute
+  the visible menu as choices 1, 2, 3, and 7. Its transcript is projected but
+  is not yet presented. Choice 7's target is a bounded completion projection:
   it validates a GSTRING #5 print followed by local flag 14/4 assignments and
   a return, advances Core with those effects to completed, and closes the
-  preview. Transcript presentation, choices 0–3, and generalized GPL execution
+  preview. Choice 0 transcript presentation, choices 1-3, and generalized GPL execution
   remain open. The hook renders the
   first literal speech and filtered labels with bounded provisional
   wrapping in the extracted font. Reusable ordered hotkey bindings and Core

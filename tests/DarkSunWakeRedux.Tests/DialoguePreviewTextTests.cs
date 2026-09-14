@@ -103,6 +103,33 @@ public sealed class DialoguePreviewTextTests
             Font(), projection, FirstTyrDialogueObservedState.Create()));
     }
 
+    [Fact]
+    public void RendersTheRecomputedChoicesAfterAResponseReturns()
+    {
+        var projection = new FirstTyrDialogueProjection(18, [Literal("speech")],
+        [
+            Choice("first", 10, GplDialogueConditionKind.LocalFlag, 0, 1),
+            Choice("second", 11, GplDialogueConditionKind.LocalFlag, 1, 1),
+            Choice("third", 12, GplDialogueConditionKind.LocalFlag, 2, 1),
+            Choice("fourth", 13, GplDialogueConditionKind.LocalFlag, 3, 1),
+            Choice("exit", 14, GplDialogueConditionKind.Constant, 0, 1)
+        ]);
+        var session = DialogueSessionAdapter.Create(
+            projection, FirstTyrDialogueObservedState.Create(), 5);
+        session.Execute(DialogueCommand.Select(0));
+        session.Execute(DialogueCommand.Apply(new(0, 10,
+            DialogueBranchDisposition.ReturnToChoices,
+            new Dictionary<ushort, bool> { [0] = false })));
+
+        var content = DialoguePreviewText.Create(
+            Font(), projection, session.Snapshot());
+
+        Assert.Equal([1, 2, 3, 4],
+            content.Responses.Select(response => response.ChoiceIndex));
+        Assert.Equal([11, 12, 13, 14],
+            content.Responses.Select(response => response.TargetOffset));
+    }
+
     private static GplDialogueTextSource Literal(string text) =>
         new(GplDialogueTextSourceKind.Literal, text, 0, 0);
 

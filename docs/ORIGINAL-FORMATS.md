@@ -381,6 +381,10 @@ portrait selection, two conditional speech sources, and the initial menu, plus
 MAS #99's string-copy assignment at offset 20. A second GPL #135 projection
 validates opening choice 7's target at 2905: print GSTRING #5, assign immediate
 one to local flags 14 and 4, and return locally at 2920.
+Another bounded projection validates choice 0 at offsets 1017-1147: three
+compressed-literal prints with two intervening newline opcodes, immediate zero
+to local flag 0, and a local return. This establishes the response output and
+menu-return effects without embedding its text in Git.
 
 The only decoded primitive is a bounded packed string used for future script
 interpretation. Marker `0x01` represents the active character name, marker
@@ -394,7 +398,9 @@ number equality. It fails closed on any other condition shape, drift, or
 truncation. The MAS projection additionally requires the assignment to end at
 offset 33 and target type-6 string slot 5. The completion projection accepts
 only its exact immediate/short-variable forms and rejects opcode, operand,
-offset, or truncation drift. Decoding these structures does not authorize executing other
+offset, or truncation drift. The choice 0 response projection likewise requires
+the exact print destinations, instruction boundaries, flag target/value, and
+local return. Decoding these structures does not authorize executing other
 instructions or assigning condition and state-mutation semantics.
 
 DSGP is an original deterministic envelope that preserves a selected script

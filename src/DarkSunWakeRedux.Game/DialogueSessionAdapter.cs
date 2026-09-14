@@ -11,11 +11,11 @@ public static class DialogueSessionAdapter
         int maximumResponses)
     {
         ArgumentNullException.ThrowIfNull(projection);
-        var visible = DialogueConditionAdapter.SelectVisibleChoices(
-            projection.InitialChoices, variables, maximumResponses);
+        var definitions = projection.InitialChoices.Select((choice, index) =>
+            new DialogueChoiceDefinition(index, choice.TargetOffset,
+                DialogueConditionAdapter.ToCore(choice.Condition))).ToArray();
         return new(OriginalContent.FirstTyrDialogueScriptResourceNumber,
-            visible.Select(index => new DialogueChoiceIdentity(
-                index, projection.InitialChoices[index].TargetOffset)).ToArray(), variables);
+            definitions, variables, maximumResponses);
     }
 
     public static DialogueBranchResult ToCore(
@@ -25,8 +25,25 @@ public static class DialogueSessionAdapter
         if (!projection.ReturnsFromLocalBranch)
             throw new InvalidDataException("The dialogue completion branch does not return.");
         return new(projection.SourceChoiceIndex, projection.EntryOffset,
+            DialogueBranchDisposition.Completed,
             projection.LocalFlagAssignments.ToDictionary(
                 assignment => assignment.VariableId,
                 assignment => assignment.Value));
+    }
+
+    public static DialogueBranchResult ToCore(
+        FirstTyrDialogueResponseProjection projection)
+    {
+        ArgumentNullException.ThrowIfNull(projection);
+        if (!projection.ReturnsToOpeningMenu)
+            throw new InvalidDataException("The dialogue response does not return to its menu.");
+        return new(projection.SourceChoiceIndex, projection.EntryOffset,
+            DialogueBranchDisposition.ReturnToChoices,
+            projection.LocalFlagAssignments.ToDictionary(
+                assignment => assignment.VariableId,
+                assignment => assignment.Value),
+            projection.LocalNumberIncrements.ToDictionary(
+                increment => increment.VariableId,
+                increment => increment.Amount));
     }
 }

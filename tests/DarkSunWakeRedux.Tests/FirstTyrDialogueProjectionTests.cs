@@ -95,6 +95,49 @@ public sealed class FirstTyrDialogueProjectionTests
             FirstTyrDialogueCompletionProjectionReader.Read(truncated));
     }
 
+    [Fact]
+    public void ProjectsFirstStraightLineResponseWithoutOriginalTextFixtures()
+    {
+        var projection = FirstTyrDialogueResponseProjectionReader.ReadFirst(
+            ScriptWithFirstResponse());
+
+        Assert.Equal((0, 1017),
+            (projection.SourceChoiceIndex, projection.EntryOffset));
+        Assert.Equal([
+                GplDialogueOutputKind.Text,
+                GplDialogueOutputKind.NewLine,
+                GplDialogueOutputKind.NewLine,
+                GplDialogueOutputKind.Text,
+                GplDialogueOutputKind.Text
+            ], projection.Output.Select(output => output.Kind));
+        Assert.Equal([23, 74, 23], projection.Output
+            .Where(output => output.Text is not null)
+            .Select(output => output.Text!.Text.Length));
+        Assert.Equal([(0, false)], projection.LocalFlagAssignments
+            .Select(assignment => ((int)assignment.VariableId, assignment.Value)));
+        Assert.Empty(projection.LocalNumberIncrements);
+        Assert.True(projection.ReturnsToOpeningMenu);
+    }
+
+    [Fact]
+    public void RejectsFirstResponseOffsetOpcodeAndAssignmentDrift()
+    {
+        var driftedPrint = ScriptWithFirstResponse();
+        driftedPrint.Bytecode[1043] = 0;
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadFirst(driftedPrint));
+        var driftedFlag = ScriptWithFirstResponse();
+        driftedFlag.Bytecode[1146] = 1;
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadFirst(driftedFlag));
+        var truncated = ScriptWithFirstResponse();
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadFirst(truncated with
+            {
+                Bytecode = truncated.Bytecode[..1147]
+            }));
+    }
+
     private static PackedGplScript Script()
     {
         var bytes = new byte[500];
@@ -131,6 +174,20 @@ public sealed class FirstTyrDialogueProjectionTests
             0x16, 0x8f, 0x01, 0x8e, 0x04,
             0x15
         ]);
+        return script with { Bytecode = bytes };
+    }
+
+    private static PackedGplScript ScriptWithFirstResponse()
+    {
+        var script = Script();
+        var bytes = new byte[1148];
+        script.Bytecode.CopyTo(bytes, 0);
+        WritePrint(bytes, 1017, new string('A', 23));
+        bytes[1043] = 0x51;
+        bytes[1044] = 0x51;
+        WritePrint(bytes, 1045, new string('B', 74));
+        WritePrint(bytes, 1116, new string('C', 23));
+        Write(bytes, 1142, [0x16, 0x8f, 0x00, 0x8e, 0x00, 0x15]);
         return script with { Bytecode = bytes };
     }
 

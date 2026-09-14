@@ -702,12 +702,18 @@
   and 7. A second fail-closed projection validates MAS #99's byte-20 assignment
   to type-6 global string #5 and supplies that label only from the ignored owned
   pack. Generic local initialization remains unknown. Core dialogue state stores
-  the script identity and stable visible source-index/branch-offset pairs, accepts
-  one bounded physical-row selection, and preserves the selected pair atomically.
+  all choice definitions and the script identity, derives stable visible
+  source-index/branch-offset pairs, accepts one bounded physical-row selection,
+  and preserves the selected pair atomically. Choice 0 has an exact bounded
+  projection at offsets 1017-1147: three literal prints with two newlines,
+  immediate zero to local flag 0, and a local return. Core applies that effect
+  only to the matching branch and recomputes the menu as choices 1, 2, 3, and
+  7; Game rebuilds the response rows. The projected transcript is not yet
+  presented.
   Choice 7's target has an exact bounded projection at offsets 2905–2920: print
   GSTRING #5, assign immediate one to local flags 14 and 4, then return locally.
   Core validates the selected identity before applying both flags atomically and
-  entering `Completed`; Game closes the preview. Other GPL instruction paths,
+  entering `Completed`; Game closes the preview. Choices 1-3, other GPL instruction paths,
   consequence mutations, and generalized text routing remain
   next Slice 3 work.
 - **Tests:** DSGP identity/payload round-trip and malformed envelopes; packed
@@ -716,8 +722,9 @@
   transactional extraction, synthetic projection/drift/malformed cases,
   condition mapping, known/unknown evaluation, ordered/bounded fail-closed
   selection, retained branch identities and invalid selection immutability,
-  completion opcode/operand/offset/truncation drift, atomic flag application,
-  mismatched-branch rejection,
+  response/completion opcode/operand/offset/truncation drift, atomic flag
+  application, deterministic menu reselection, unknown local-number increment
+  rejection, mismatched-branch rejection,
   bounded MAS assignment/drift cases, variable-label resolution, and owned content smoke proving portrait,
   speech-source, five-row menu, and ordered condition contracts.
 
@@ -817,13 +824,14 @@
   proven-visible choices in the extracted bitmap font on that fixed canvas over
   the expanded Tyr slice. Greedy wrapping is provisional. The capture-correlated
   opening flags are explicit; all other variables remain unknown and fail closed.
-  Clicking a response stores its source index and branch target in Core, but the
-  hook claims only choice 7's bounded completion projection, not generalized
-  GPL branch execution or quest consequences.
+  Clicking a response stores its source index and branch target in Core. The
+  hook claims only choice 0's bounded flag-clear/menu-return projection and
+  choice 7's bounded completion projection, not generalized GPL branch execution
+  or quest consequences.
 - **Tests:** wide, tall, edge-clamped, and fixed viewport layout/inverse mapping;
   exact dialogue window, portrait, control-image, and response-row placement;
-  bounded wrapping/selection and malformed text; F9 rising-edge behavior;
-  owned content-smoke fit and graph validation.
+  bounded wrapping/selection, returned-menu rebuilding, and malformed text; F9
+  rising-edge behavior; owned content-smoke fit and graph validation.
 - **Parity boundary:** the extra visible map and preview key are modern
   conveniences. Original 320x200 UI geometry remains unchanged.
 

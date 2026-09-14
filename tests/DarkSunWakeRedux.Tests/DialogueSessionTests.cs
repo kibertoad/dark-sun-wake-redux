@@ -8,12 +8,8 @@ public sealed class DialogueSessionTests
     [Fact]
     public void SelectsPhysicalResponseAndRetainsSourceBranchIdentity()
     {
-        var session = new DialogueSession(135,
-        [
-            new(0, 1017),
-            new(3, 1183),
-            new(7, 2905)
-        ]);
+        var session = Session([Definition(0, 1017), Definition(3, 1183),
+            Definition(7, 2905)]);
 
         var transition = session.Execute(DialogueCommand.Select(1));
 
@@ -29,64 +25,121 @@ public sealed class DialogueSessionTests
     [Fact]
     public void CompletesTheSelectedBranchAndAppliesLocalFlagsAtomically()
     {
-        var variables = new DialogueVariableSnapshot(
-            new Dictionary<ushort, bool> { [0] = true },
-            new Dictionary<ushort, int>());
-        var session = new DialogueSession(135, [new(7, 2905)], variables);
+        var session = Session([Definition(7, 2905)],
+            new(new Dictionary<ushort, bool> { [0] = true },
+                new Dictionary<ushort, int>()));
         session.Execute(DialogueCommand.Select(0));
-        var result = new DialogueBranchResult(7, 2905,
+        var result = Result(7, 2905, DialogueBranchDisposition.Completed,
             new Dictionary<ushort, bool> { [14] = true, [4] = true });
 
-        var transition = session.Execute(DialogueCommand.Complete(result));
+        var transition = session.Execute(DialogueCommand.Apply(result));
 
         Assert.True(transition.Applied);
         Assert.Equal(DialoguePhase.Completed, transition.After.Phase);
         Assert.True(transition.After.Variables.LocalFlags[0]);
         Assert.True(transition.After.Variables.LocalFlags[14]);
         Assert.True(transition.After.Variables.LocalFlags[4]);
-        Assert.False(session.Execute(DialogueCommand.Complete(result)).Applied);
+        Assert.False(session.Execute(DialogueCommand.Apply(result)).Applied);
     }
 
     [Fact]
-    public void RejectsInvalidConstructionAndSelectionWithoutMutation()
+    public void ReturnedBranchReevaluatesAllDefinitionsInSourceOrder()
     {
-        Assert.Throws<ArgumentOutOfRangeException>(() => new DialogueSession(0, [new(0, 1)]));
-        Assert.Throws<ArgumentException>(() => new DialogueSession(1, []));
-        Assert.Throws<ArgumentException>(() => new DialogueSession(1, [new(0, 1), new(0, 2)]));
-        Assert.Throws<ArgumentException>(() => new DialogueSession(1, [new(-1, 1)]));
-        Assert.Throws<ArgumentException>(() => new DialogueSession(1, [new(0, -1)]));
-        var session = new DialogueSession(135, [new(7, 2905)]);
+        var session = Session(
+        [
+            Definition(0, 100, DialogueConditionKind.LocalFlag, 0),
+            Definition(1, 200, DialogueConditionKind.LocalFlag, 1),
+            Definition(7, 700)
+        ], new(new Dictionary<ushort, bool> { [0] = true, [1] = true },
+            new Dictionary<ushort, int>()));
+        session.Execute(DialogueCommand.Select(0));
 
+        var transition = session.Execute(DialogueCommand.Apply(Result(
+            0, 100, DialogueBranchDisposition.ReturnToChoices,
+            new Dictionary<ushort, bool> { [0] = false })));
+
+        Assert.True(transition.Applied);
+        Assert.Equal(DialoguePhase.AwaitingChoice, transition.After.Phase);
+        Assert.Null(transition.After.SelectedSourceIndex);
+        Assert.Equal([1, 7], transition.After.Choices.Select(choice => choice.SourceIndex));
+    }
+
+    [Fact]
+    public void RejectsUnknownNumberIncrementWithoutMutation()
+    {
+        var session = Session([Definition(2, 1148)]);
+        session.Execute(DialogueCommand.Select(0));
+        var before = session.Snapshot();
+        var result = new DialogueBranchResult(2, 1148,
+            DialogueBranchDisposition.ReturnToChoices,
+            new Dictionary<ushort, bool> { [2] = false },
+            new Dictionary<ushort, int> { [0] = 1 });
+
+        Assert.Throws<InvalidOperationException>(() =>
+            session.Execute(DialogueCommand.Apply(result)));
+        Assert.Same(before, session.Snapshot());
+    }
+
+    [Fact]
+    public void RejectsInvalidConstructionSelectionAndMismatchedBranch()
+    {
+        var variables = DialogueVariableSnapshot.Empty;
+        Assert.Throws<ArgumentOutOfRangeException>(() =>
+            new DialogueSession(0, [Definition(0, 1)], variables, 5));
+        Assert.Throws<ArgumentException>(() => new DialogueSession(1, [], variables, 5));
+        Assert.Throws<ArgumentException>(() => new DialogueSession(1,
+            [Definition(0, 1), Definition(0, 2)], variables, 5));
+        Assert.Throws<ArgumentException>(() => new DialogueSession(1,
+            [Definition(-1, 1)], variables, 5));
+        var session = Session([Definition(7, 2905)]);
         Assert.Throws<ArgumentOutOfRangeException>(() =>
             session.Execute(DialogueCommand.Select(1)));
-        Assert.Equal(DialoguePhase.AwaitingChoice, session.Snapshot().Phase);
-
-        var other = new DialogueBranchResult(6, 2905,
-            new Dictionary<ushort, bool> { [4] = true });
         session.Execute(DialogueCommand.Select(0));
+        var other = Result(6, 2905, DialogueBranchDisposition.Completed,
+            new Dictionary<ushort, bool> { [4] = true });
+
         Assert.Throws<InvalidOperationException>(() =>
-            session.Execute(DialogueCommand.Complete(other)));
+            session.Execute(DialogueCommand.Apply(other)));
         Assert.Equal(DialoguePhase.BranchSelected, session.Snapshot().Phase);
     }
 
     [Fact]
     public void CopiesCallerOwnedCollectionsAtDeterministicBoundaries()
     {
-        var choices = new[] { new DialogueChoiceIdentity(7, 2905) };
+        var definitions = new[] { Definition(7, 2905) };
         var flags = new Dictionary<ushort, bool> { [0] = true };
         var assignments = new Dictionary<ushort, bool> { [4] = true };
-        var session = new DialogueSession(135, choices,
+        var session = Session(definitions,
             new(flags, new Dictionary<ushort, int>()));
-        var result = new DialogueBranchResult(7, 2905, assignments);
-        choices[0] = new(1, 2);
+        var result = Result(7, 2905, DialogueBranchDisposition.Completed, assignments);
+        definitions[0] = Definition(1, 2);
         flags[0] = false;
         assignments[4] = false;
 
         session.Execute(DialogueCommand.Select(0));
-        session.Execute(DialogueCommand.Complete(result));
+        session.Execute(DialogueCommand.Apply(result));
 
         Assert.Equal(7, session.Snapshot().SelectedSourceIndex);
         Assert.True(session.Snapshot().Variables.LocalFlags[0]);
         Assert.True(session.Snapshot().Variables.LocalFlags[4]);
     }
+
+    private static DialogueSession Session(
+        IReadOnlyList<DialogueChoiceDefinition> definitions,
+        DialogueVariableSnapshot? variables = null) =>
+        new(135, definitions, variables ?? DialogueVariableSnapshot.Empty, 5);
+
+    private static DialogueChoiceDefinition Definition(
+        int index,
+        int target,
+        DialogueConditionKind kind = DialogueConditionKind.Constant,
+        ushort variableId = 0) =>
+        new(index, target, new(kind, variableId, 1));
+
+    private static DialogueBranchResult Result(
+        int index,
+        int target,
+        DialogueBranchDisposition disposition,
+        IReadOnlyDictionary<ushort, bool> flags) =>
+        new(index, target, disposition, flags);
 }

@@ -47,4 +47,19 @@ public sealed class DialogueSessionAdapterTests
         Assert.Throws<InvalidDataException>(() =>
             DialogueSessionAdapter.ToCore(projection with { ReturnsFromLocalBranch = false }));
     }
+
+    [Fact]
+    public void MapsReturnedResponseEffectsBackToTheOpeningMenu()
+    {
+        var projection = new FirstTyrDialogueResponseProjection(0, 1017, [],
+            [new(0, false)], [], true);
+
+        var result = DialogueSessionAdapter.ToCore(projection);
+
+        Assert.Equal(DialogueBranchDisposition.ReturnToChoices, result.Disposition);
+        Assert.False(result.LocalFlagAssignments[0]);
+        Assert.Empty(result.LocalNumberIncrements);
+        Assert.Throws<InvalidDataException>(() =>
+            DialogueSessionAdapter.ToCore(projection with { ReturnsToOpeningMenu = false }));
+    }
 }

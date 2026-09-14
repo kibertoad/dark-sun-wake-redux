@@ -55,12 +55,17 @@ strip placements, F9 rising-edge toggle contract, bounded greedy wrapping,
 five-label preview selection, overflow rejection, and unsupported-character
 handling. Dialogue-session tests prove stable page identities, atomic one-shot
 row selection, rejection without mutation, original branch retention, matching
-completion enforcement, and atomic local-flag application. Synthetic projection
-tests reject drift in choice 7's print, assignments, offsets, and local return.
+branch enforcement, atomic local-flag application, and deterministic menu
+reselection after a returning branch. Unknown local-number increments are
+rejected before mutation. Synthetic projection tests reject drift in choice
+0's prints, newlines, assignment, offsets, and local return as well as choice
+7's print, assignments, offsets, and local return.
 Owned content smoke additionally proves the actual projected first page fits
 the measured text widths with the extracted font, selects its fifth row as
 original choice 7 with the projected branch target intact, and reaches the
-completed state with local flags 14 and 4 set.
+completed state with local flags 14 and 4 set. A separate owned-pack path selects
+choice 0, clears local flag 0, returns to `AwaitingChoice`, and verifies the
+remaining source order 1, 2, 3, and 7.
 Exploration command tests also center on arbitrary world points with both-edge
 clamping, reject partial/out-of-world targets, suspend centering outside world
 and Game Menu views, and restore leader-only display through Collapse Party.

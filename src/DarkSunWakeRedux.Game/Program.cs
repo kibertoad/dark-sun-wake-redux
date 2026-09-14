@@ -125,6 +125,7 @@ try
                     "The installed first Tyr dialogue portrait has unexpected geometry.");
             FirstTyrDialogueProjection dialogueProjection;
             FirstTyrDialogueCompletionProjection dialogueCompletion;
+            FirstTyrDialogueResponseProjection firstDialogueResponse;
             using (var scriptStream = File.OpenRead(Path.Combine(assetPack,
                        OriginalContent.FirstTyrDialogueScriptAssetPath.Replace(
                            '/', Path.DirectorySeparatorChar))))
@@ -136,6 +137,7 @@ try
                         "The installed first Tyr dialogue script has unexpected identity.");
                 dialogueProjection = FirstTyrDialogueProjectionReader.Read(script);
                 dialogueCompletion = FirstTyrDialogueCompletionProjectionReader.Read(script);
+                firstDialogueResponse = FirstTyrDialogueResponseProjectionReader.ReadFirst(script);
                 if (dialogueProjection.PortraitResourceNumber !=
                         OriginalContent.FirstTyrDialoguePortraitResourceNumber ||
                     dialogueProjection.SpeechVariants.Count != 2 ||
@@ -222,7 +224,7 @@ try
                     dialogueProjection.InitialChoices[7].TargetOffset)
                 throw new InvalidDataException(
                     "The installed first Tyr dialogue branch identity was not retained.");
-            var completedDialogue = dialogueSession.Execute(DialogueCommand.Complete(
+            var completedDialogue = dialogueSession.Execute(DialogueCommand.Apply(
                 DialogueSessionAdapter.ToCore(dialogueCompletion)));
             if (!completedDialogue.Applied ||
                 completedDialogue.After.Phase != DialoguePhase.Completed ||
@@ -232,6 +234,19 @@ try
                 !flag4)
                 throw new InvalidDataException(
                     "The installed first Tyr dialogue completion did not apply its local flags.");
+            var returningSession = DialogueSessionAdapter.Create(
+                dialogueProjection, FirstTyrDialogueObservedState.Create(),
+                DialoguePreviewText.MaximumResponses);
+            returningSession.Execute(DialogueCommand.Select(0));
+            var returnedDialogue = returningSession.Execute(DialogueCommand.Apply(
+                DialogueSessionAdapter.ToCore(firstDialogueResponse)));
+            if (!returnedDialogue.Applied ||
+                returnedDialogue.After.Phase != DialoguePhase.AwaitingChoice ||
+                returnedDialogue.After.Variables.LocalFlags[0] ||
+                !returnedDialogue.After.Choices.Select(choice => choice.SourceIndex)
+                    .SequenceEqual([1, 2, 3, 7]))
+                throw new InvalidDataException(
+                    "The installed first Tyr response did not return to the reduced menu.");
             var textPath = Path.Combine(assetPack,
                 OriginalContent.TextCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using var textStream = File.OpenRead(textPath);
