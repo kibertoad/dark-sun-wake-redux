@@ -42,6 +42,7 @@ public sealed record FirstTyrDialogueResponseProjection(
         ConditionalLocalFlagAssignmentsFromLocalFlags { get; init; } = [];
     public IReadOnlyList<GplGlobalNumberCondition> RequiredGlobalNumberConditions
         { get; init; } = [];
+    public bool AdvancesToThirdMenu { get; init; }
 }
 
 public sealed record GplLocalNumberAssignment(ushort VariableId, int Value);
@@ -75,6 +76,9 @@ public static class FirstTyrDialogueResponseProjectionReader
     public const int AcarSourceChoiceIndex = 4;
     public const int AcarEntryOffset = 2352;
     public const int AcarReturnOffset = 2414;
+    public const int CitySourceChoiceIndex = 5;
+    public const int CityEntryOffset = 2415;
+    public const int ThirdMenuOffset = 2616;
     public const byte PrintStringOpcode = 0x4f;
     public const byte PrintNewLineOpcode = 0x51;
     public const byte LoadVariableOpcode = 0x16;
@@ -83,6 +87,7 @@ public static class FirstTyrDialogueResponseProjectionReader
     public const byte IfOpcode = 0x3e;
     public const byte ElseOpcode = 0x3f;
     public const byte EndIfOpcode = 0x67;
+    public const byte WhileOpcode = 0x63;
     public const byte LocalReturnOpcode = 0x15;
 
     public static FirstTyrDialogueResponseProjection ReadFirst(
@@ -280,6 +285,49 @@ public static class FirstTyrDialogueResponseProjectionReader
         RequireOpcode(bytes, ref position, LocalReturnOpcode, "Acar response local return");
         return new(AcarSourceChoiceIndex, AcarEntryOffset, output,
             [assignment], [], true);
+    }
+
+    public static FirstTyrDialogueResponseProjection ReadCityIntroduction(
+        PackedGplScript script)
+    {
+        ValidateScript(script);
+        var bytes = script.Bytecode.AsSpan();
+        var position = CityEntryOffset;
+        var output = new[]
+        {
+            ReadLiteralPrint(bytes, ref position, 2481),
+            ReadLiteralPrint(bytes, ref position, 2547),
+            ReadLiteralPrint(bytes, ref position, 2585)
+        };
+        var assignments = new[]
+        {
+            ReadFlagAssignment(bytes, ref position, 12, true),
+            ReadFlagAssignment(bytes, ref position, 13, true)
+        };
+        RequireOpcode(bytes, ref position, LoadAccumulatorOpcode,
+            "city response local-flag condition");
+        RequireSequence(bytes, ref position, [0x8e, 0x10, 0xd7, 0x8f, 0x00],
+            "local flag #16 equals zero condition");
+        RequireOpcode(bytes, ref position, IfOpcode, "city response conditional branch");
+        RequireImmediate14(bytes, ref position, 2609, "city response endif target");
+        var conditional = new GplConditionalLocalFlagAssignmentFromLocalFlag(
+            new(16, false), 10, true);
+        _ = ReadFlagAssignment(bytes, ref position, 10, true);
+        RequireOpcode(bytes, ref position, EndIfOpcode, "city response endif");
+        RequireOpcode(bytes, ref position, LoadAccumulatorOpcode,
+            "third-menu loop condition");
+        RequireSequence(bytes, ref position, [0x8e, 0x08],
+            "third-menu loop local flag #8");
+        RequireOpcode(bytes, ref position, WhileOpcode, "third-menu loop");
+        RequireImmediate14(bytes, ref position, 2904, "third-menu loop end target");
+        if (position != ThirdMenuOffset)
+            throw Error($"city response reaches offset {position}, not {ThirdMenuOffset}");
+        return new(CitySourceChoiceIndex, CityEntryOffset, output,
+            assignments, [], false)
+        {
+            ConditionalLocalFlagAssignmentsFromLocalFlags = [conditional],
+            AdvancesToThirdMenu = true
+        };
     }
 
     private static FirstTyrDialogueResponseProjection ReadIncrementing(

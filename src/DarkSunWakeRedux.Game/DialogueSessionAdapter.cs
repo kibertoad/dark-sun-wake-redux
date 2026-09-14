@@ -19,8 +19,13 @@ public static class DialogueSessionAdapter
             : projection.SecondChoices.Select((choice, index) =>
                 new DialogueChoiceDefinition(index, choice.TargetOffset,
                     DialogueConditionAdapter.ToCore(choice.Condition))).ToArray();
+        var thirdDefinitions = projection.ThirdChoices.Count == 0
+            ? null
+            : projection.ThirdChoices.Select((choice, index) =>
+                new DialogueChoiceDefinition(index, choice.TargetOffset,
+                    DialogueConditionAdapter.ToCore(choice.Condition))).ToArray();
         return new(OriginalContent.FirstTyrDialogueScriptResourceNumber,
-            definitions, variables, maximumResponses, secondDefinitions);
+            definitions, variables, maximumResponses, secondDefinitions, thirdDefinitions);
     }
 
     public static DialogueBranchResult ToCore(
@@ -40,10 +45,13 @@ public static class DialogueSessionAdapter
         FirstTyrDialogueResponseProjection projection)
     {
         ArgumentNullException.ThrowIfNull(projection);
-        if (!projection.ReturnsToMenu)
-            throw new InvalidDataException("The dialogue response does not return to its menu.");
+        if (projection.ReturnsToMenu == projection.AdvancesToThirdMenu)
+            throw new InvalidDataException(
+                "The dialogue response must have exactly one supported menu destination.");
         return new(projection.SourceChoiceIndex, projection.EntryOffset,
-            DialogueBranchDisposition.ReturnThroughFirstTyrMenu,
+            projection.AdvancesToThirdMenu
+                ? DialogueBranchDisposition.AdvanceToThirdPage
+                : DialogueBranchDisposition.ReturnThroughFirstTyrMenu,
             projection.LocalFlagAssignments.ToDictionary(
                 assignment => assignment.VariableId,
                 assignment => assignment.Value),

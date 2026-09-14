@@ -114,6 +114,62 @@ public sealed class FirstTyrDialogueFlowTests
         Assert.False(transition.After.Variables.LocalFlags[5]);
     }
 
+    [Fact]
+    public void CityBranchAdvancesFromSecondToFilteredThirdPage()
+    {
+        var first = new[] { Definition(0, 1017, 0) };
+        var second = new[] { Definition(5, 2415, 8) };
+        var third = new[]
+        {
+            Definition(0, 2921, 12), Definition(1, 3089, 13),
+            Definition(2, 3257, 15), Definition(3, 3479, 10),
+            new DialogueChoiceDefinition(6, 3976,
+                new(DialogueConditionKind.Constant, 0, 1))
+        };
+        var session = new DialogueSession(135, first,
+            FirstTyrDialogueObservedState.Create(), 5, second, third);
+        session.Execute(DialogueCommand.Select(0));
+        session.Execute(DialogueCommand.Apply(new(0, 1017,
+            DialogueBranchDisposition.ReturnThroughFirstTyrMenu,
+            new Dictionary<ushort, bool> { [0] = false })));
+        session.Execute(DialogueCommand.Select(0));
+
+        var transition = session.Execute(DialogueCommand.Apply(new(5, 2415,
+            DialogueBranchDisposition.AdvanceToThirdPage,
+            new Dictionary<ushort, bool> { [12] = true, [13] = true },
+            conditionalLocalFlagAssignmentsFromLocalFlags:
+            [
+                new(new(16, false), 10, true)
+            ])));
+
+        Assert.Equal([0, 1, 3, 6],
+            transition.After.Choices.Select(choice => choice.SourceIndex));
+        Assert.True(transition.After.Variables.LocalFlags[10]);
+    }
+
+    [Fact]
+    public void ThirdPageTransitionCannotSkipTheSecondPage()
+    {
+        var third = new[]
+        {
+            new DialogueChoiceDefinition(6, 3976,
+                new(DialogueConditionKind.Constant, 0, 1))
+        };
+        var session = new DialogueSession(135,
+            [new DialogueChoiceDefinition(5, 2415,
+                new(DialogueConditionKind.Constant, 0, 1))],
+            FirstTyrDialogueObservedState.Create(), 5,
+            thirdPageDefinitions: third);
+        session.Execute(DialogueCommand.Select(0));
+        var before = session.Snapshot();
+
+        Assert.Throws<InvalidOperationException>(() => session.Execute(
+            DialogueCommand.Apply(new(5, 2415,
+                DialogueBranchDisposition.AdvanceToThirdPage,
+                new Dictionary<ushort, bool> { [12] = true }))));
+        Assert.Same(before, session.Snapshot());
+    }
+
     private static DialogueChoiceDefinition Definition(
         int sourceIndex,
         int target,

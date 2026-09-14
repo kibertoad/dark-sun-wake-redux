@@ -27,8 +27,8 @@ conditions. Game maps these to Core's true/false/unknown evaluator. A bounded
 selector now keeps proven-true choices in source order, hides false/unknown
 choices, limits them to five physical rows, and retains original choice indexes
 and branch targets. The capture-correlated opening state selects choices 0, 1,
-2, 3, and 7, while a bounded MAS #99 projection supplies choice 7's global
-string #5 label from the ignored owned pack. GPL #135's paired counter branches
+2, 3, and 7, while bounded MAS #99 projections supply the global string #5 and
+#6 exit labels from the ignored owned pack. GPL #135's paired counter branches
 and MIT libgff's state-clear behavior establish local number 0 as zero and
 global flag 357 as false for this fresh opening only; generic variable
 initialization remains unresolved. A
@@ -68,10 +68,13 @@ as an explicit Core prerequisite, validates two prints, sets local flag 11,
 clears local flag 7, presents the transcript, and leaves source order 4, 5, 6.
 Its alternate global-number path remains unimplemented. Target 2352 prints its
 Acar response, clears local flag 11, presents the transcript, and leaves source
-order 5, 6. The
+order 5, 6. Target 2415 then presents three prints, sets local flags 12/13,
+conditionally sets local flag 10 when flag 16 is false, and advances through
+the validated loop header to the seven-entry third menu at offset 2616. The
+owned path has flag 16 set and therefore resolves third-page order 0, 1, 6. The
 fixed portrait/window/control chrome and
 projected initial literal speech render over the live aspect-expanded map.
-Wrapping, conversation entry, remaining second-menu response branches, and
+Wrapping, conversation entry, remaining third-menu response branches, and
 broader GPL instruction execution remain pending.
 
 ## Previous cohesive batch
@@ -113,7 +116,7 @@ research output remain under ignored `analysis/original/`.
 
 Continue Slice 3 from evidence, preferably in this order:
 
-1. project the bounded response paths selected by the second menu before adding
+1. project the bounded response paths selected by the third menu before adding
    quest consequences;
 2. establish the Preferences setting ranges/defaults and About destination,
    then implement deterministic setting mutations and frame-state feedback;

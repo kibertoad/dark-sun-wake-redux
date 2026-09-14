@@ -135,7 +135,12 @@ public static class DialoguePreviewText
         FirstTyrDialogueProjection projection,
         DialogueChoiceIdentity identity)
     {
-        foreach (var page in new[] { projection.InitialChoices, projection.SecondChoices })
+        foreach (var page in new[]
+                 {
+                     projection.InitialChoices,
+                     projection.SecondChoices,
+                     projection.ThirdChoices
+                 })
         {
             if (identity.SourceIndex < page.Count &&
                 page[identity.SourceIndex].TargetOffset == identity.BranchTargetOffset)

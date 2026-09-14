@@ -134,6 +134,7 @@ try
             FirstTyrDialogueResponseProjection kingDialogueResponse;
             FirstTyrDialogueResponseProjection caravanDialogueResponse;
             FirstTyrDialogueResponseProjection acarDialogueResponse;
+            FirstTyrDialogueResponseProjection cityDialogueResponse;
             using (var scriptStream = File.OpenRead(Path.Combine(assetPack,
                        OriginalContent.FirstTyrDialogueScriptAssetPath.Replace(
                            '/', Path.DirectorySeparatorChar))))
@@ -158,11 +159,27 @@ try
                     FirstTyrDialogueResponseProjectionReader.ReadOpeningCaravan(script);
                 acarDialogueResponse =
                     FirstTyrDialogueResponseProjectionReader.ReadAcar(script);
+                cityDialogueResponse =
+                    FirstTyrDialogueResponseProjectionReader.ReadCityIntroduction(script);
                 if (dialogueProjection.PortraitResourceNumber !=
                         OriginalContent.FirstTyrDialoguePortraitResourceNumber ||
                     dialogueProjection.SpeechVariants.Count != 2 ||
                     dialogueProjection.InitialChoices.Count != 8 ||
                     dialogueProjection.SecondChoices.Count != 7 ||
+                    dialogueProjection.ThirdChoices.Count != 7 ||
+                    !dialogueProjection.ThirdChoices.Select(choice =>
+                            (choice.TargetOffset, choice.Condition.Kind,
+                                choice.Condition.VariableId, choice.Condition.Value))
+                        .SequenceEqual(new (int, GplDialogueConditionKind, ushort, int)[]
+                        {
+                            (2921, GplDialogueConditionKind.LocalFlag, 12, 1),
+                            (3089, GplDialogueConditionKind.LocalFlag, 13, 1),
+                            (3257, GplDialogueConditionKind.LocalFlag, 15, 1),
+                            (3479, GplDialogueConditionKind.LocalFlag, 10, 1),
+                            (3686, GplDialogueConditionKind.LocalFlag, 17, 1),
+                            (3786, GplDialogueConditionKind.LocalFlag, 18, 1),
+                            (3976, GplDialogueConditionKind.Constant, 0, 1)
+                        }) ||
                     !dialogueProjection.InitialChoices.Select(choice =>
                             (choice.Condition.Kind, choice.Condition.VariableId,
                                 choice.Condition.Value))
@@ -181,15 +198,19 @@ try
                         "The installed first Tyr dialogue projection has drifted.");
             }
             GplGlobalStringProjection globalString;
+            GplGlobalStringProjection thirdMenuExit;
             using (var globalsStream = File.OpenRead(Path.Combine(assetPack,
                        OriginalContent.DialogueGlobalStringsScriptAssetPath.Replace(
                            '/', Path.DirectorySeparatorChar))))
             {
-                globalString = GplGlobalStringProjectionReader.Read(
-                    PackedGplScript.Read(globalsStream,
-                        OriginalContent.DialogueGlobalStringsScriptAssetPath));
+                var globals = PackedGplScript.Read(globalsStream,
+                    OriginalContent.DialogueGlobalStringsScriptAssetPath);
+                globalString = GplGlobalStringProjectionReader.Read(globals);
+                thirdMenuExit = GplGlobalStringProjectionReader.ReadThirdMenuExit(globals);
                 if (globalString.Destination != new GplDialogueVariable(6, 5) ||
-                    string.IsNullOrWhiteSpace(globalString.Text))
+                    string.IsNullOrWhiteSpace(globalString.Text) ||
+                    thirdMenuExit.Destination != new GplDialogueVariable(6, 6) ||
+                    string.IsNullOrWhiteSpace(thirdMenuExit.Text))
                     throw new InvalidDataException(
                         "The installed dialogue global-string projection has drifted.");
             }
@@ -227,7 +248,8 @@ try
                 DialoguePreviewText.MaximumResponses);
             var dialogueVariables = new Dictionary<GplDialogueVariable, string>
             {
-                [globalString.Destination] = globalString.Text
+                [globalString.Destination] = globalString.Text,
+                [thirdMenuExit.Destination] = thirdMenuExit.Text
             };
             var dialogueText = DialoguePreviewText.Create(
                 font, dialogueProjection, dialogueSession.Snapshot(),
@@ -390,6 +412,19 @@ try
                     "The installed first Tyr Acar response did not apply its effects.");
             _ = DialoguePreviewText.Create(font, dialogueProjection,
                 acarDialogue.After, dialogueVariables, acarDialogueResponse.Output);
+            identitySession.Execute(DialogueCommand.Select(0));
+            var cityDialogue = identitySession.Execute(DialogueCommand.Apply(
+                DialogueSessionAdapter.ToCore(cityDialogueResponse)));
+            if (!cityDialogue.Applied ||
+                !cityDialogue.After.Variables.LocalFlags[12] ||
+                !cityDialogue.After.Variables.LocalFlags[13] ||
+                cityDialogue.After.Variables.LocalFlags[10] ||
+                !cityDialogue.After.Choices.Select(choice => choice.SourceIndex)
+                    .SequenceEqual([0, 1, 6]))
+                throw new InvalidDataException(
+                    "The installed first Tyr city response did not enter the third menu.");
+            _ = DialoguePreviewText.Create(font, dialogueProjection,
+                cityDialogue.After, dialogueVariables, cityDialogueResponse.Output);
             var textPath = Path.Combine(assetPack,
                 OriginalContent.TextCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using var textStream = File.OpenRead(textPath);

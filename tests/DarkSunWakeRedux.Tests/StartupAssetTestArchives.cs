@@ -82,9 +82,14 @@ internal static class StartupAssetTestArchives
 
     public static byte[] GlobalStringScript()
     {
-        var bytes = new byte[GplGlobalStringProjectionReader.NextInstructionOffset];
+        var bytes = new byte[
+            GplGlobalStringProjectionReader.ThirdMenuExitNextInstructionOffset];
         byte[] instruction = [0x0a, 0x86, 0x05, 0x92, .. EncodePacked("Depart!!")];
         instruction.CopyTo(bytes, GplGlobalStringProjectionReader.AssignmentInstructionOffset);
+        byte[] thirdMenuExit =
+            [0x0a, 0x86, 0x06, 0x92, .. EncodePacked("Continue exploring Tyr!!!")];
+        thirdMenuExit.CopyTo(bytes,
+            GplGlobalStringProjectionReader.ThirdMenuExitAssignmentInstructionOffset);
         return bytes;
     }
 

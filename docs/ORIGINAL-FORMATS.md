@@ -374,11 +374,13 @@ words or to animation, draw order, anchoring, collision, and interaction.
 
 `GPLDATA.GFF` contains 330 `GPL ` resources and 20 `MAS ` resources. `GPL` #135
 is 4,124 bytes and is independently tied to the first captured Tyr conversation.
-MAS #99 initializes the global string #5 label used by the final menu choice.
+MAS #99 initializes global string #5 for the first two menus' exit label and
+global string #6 for the third menu's exit label.
 The extractor preserves both complete bytecode chunks as opaque; runtime readers now
-projects only the evidenced opening structure at offsets 16, 118, 199, and 253:
+project only the bounded dialogue structures described below, beginning with
+the evidenced opening at offsets 16, 118, 199, and 253:
 portrait selection, two conditional speech sources, and the initial menu, plus
-MAS #99's string-copy assignment at offset 20. A second GPL #135 projection
+MAS #99's string-copy assignments at offsets 20 and 66. A second GPL #135 projection
 validates opening choice 7's target at 2905: print GSTRING #5, assign immediate
 one to local flags 14 and 4, and return locally at 2920.
 Another bounded projection validates choice 0 at offsets 1017-1147: three
@@ -415,6 +417,11 @@ body, immediate zero to local flag 7, and local return at 2351. The alternate
 global-number path remains unimplemented.
 Target 2352 is bounded through local return at 2414: one compressed-literal
 print followed by immediate zero to local flag 11.
+Target 2415 is bounded through the third-menu entry at 2616: three
+compressed-literal prints, immediate one to local flags 12 and 13, a local flag
+16 equals-zero condition guarding immediate one to local flag 10, and the
+local-flag-8 loop header. The following seven-entry menu uses local flags 12,
+13, 15, 10, 17, and 18 plus a constant source choice 6 targeting offset 3976.
 
 The only decoded primitive is a bounded packed string used for future script
 interpretation. Marker `0x01` represents the active character name, marker
@@ -425,8 +432,8 @@ rejected. The menu projection bounds choices to 24, accepts only the expression
 forms needed by this observed menu, captures labels and branch offsets, and
 projects its three observed condition shapes: constant, local flag, and local
 number equality. It fails closed on any other condition shape, drift, or
-truncation. The MAS projection additionally requires the assignment to end at
-offset 33 and target type-6 string slot 5. The completion projection accepts
+truncation. The MAS projections additionally require the assignments to end at
+offsets 33 and 94 and target type-6 string slots 5 and 6. The completion projection accepts
 only its exact immediate/short-variable forms and rejects opcode, operand,
 offset, or truncation drift. The choice 0 response projection likewise requires
 the exact print destinations, instruction boundaries, flag target/value,
@@ -434,7 +441,8 @@ choice 2/3 counter target, choice 4's flag/number assignments, the exact
 post-menu control flow and second-menu conditions, choice 1's exact extended
 global reference and branch target, target 1825's local condition and assignment,
 target 3479's two flag assignments, target 1996's guarded opening path, target
-2352's flag clear, and local return. Decoding these structures does not
+2352's flag clear, target 2415's assignments/condition/loop bridge, and each
+applicable local return. Decoding these structures does not
 authorize executing other
 instructions or assigning condition and state-mutation semantics.
 

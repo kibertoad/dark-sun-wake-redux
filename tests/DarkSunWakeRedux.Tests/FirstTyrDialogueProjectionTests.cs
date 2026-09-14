@@ -29,6 +29,7 @@ public sealed class FirstTyrDialogueProjectionTests
         Assert.Equal(new(GplDialogueConditionKind.LocalNumberEquals, 0, 2),
             projection.InitialChoices[1].Condition);
         Assert.Equal(2, projection.SecondChoices.Count);
+        Assert.Equal(2, projection.ThirdChoices.Count);
     }
 
     [Fact]
@@ -41,6 +42,11 @@ public sealed class FirstTyrDialogueProjectionTests
         drifted.Bytecode[FirstTyrDialogueProjectionReader.PortraitInstructionOffset] = 0;
         Assert.Throws<InvalidDataException>(() =>
             FirstTyrDialogueProjectionReader.Read(drifted));
+        var driftedThirdMenu = Script();
+        driftedThirdMenu.Bytecode[
+            FirstTyrDialogueProjectionReader.ThirdMenuInstructionOffset] = 0;
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueProjectionReader.Read(driftedThirdMenu));
     }
 
     [Fact]
@@ -393,9 +399,49 @@ public sealed class FirstTyrDialogueProjectionTests
             }));
     }
 
+    [Fact]
+    public void ProjectsCityResponseAndThirdMenuTransition()
+    {
+        var projection = FirstTyrDialogueResponseProjectionReader.ReadCityIntroduction(
+            ScriptWithCityResponse());
+
+        Assert.Equal((5, 2415),
+            (projection.SourceChoiceIndex, projection.EntryOffset));
+        Assert.Equal([68, 68, 36],
+            projection.Output.Select(item => item.Text!.Text.Length));
+        Assert.Equal([(12, true), (13, true)], projection.LocalFlagAssignments
+            .Select(assignment => ((int)assignment.VariableId, assignment.Value)));
+        Assert.Equal((16, false, 10, true), projection
+            .ConditionalLocalFlagAssignmentsFromLocalFlags
+            .Select(assignment => ((int)assignment.Condition.VariableId,
+                assignment.Condition.Value, (int)assignment.VariableId,
+                assignment.Value)).Single());
+        Assert.False(projection.ReturnsToMenu);
+        Assert.True(projection.AdvancesToThirdMenu);
+    }
+
+    [Fact]
+    public void RejectsCityResponseControlFlowDriftAndTruncation()
+    {
+        var driftedCondition = ScriptWithCityResponse();
+        driftedCondition.Bytecode[2597] = 15;
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadCityIntroduction(driftedCondition));
+        var driftedLoop = ScriptWithCityResponse();
+        driftedLoop.Bytecode[2613] = 0;
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadCityIntroduction(driftedLoop));
+        var truncated = ScriptWithCityResponse();
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadCityIntroduction(truncated with
+            {
+                Bytecode = truncated.Bytecode[..2615]
+            }));
+    }
+
     private static PackedGplScript Script()
     {
-        var bytes = new byte[1000];
+        var bytes = new byte[2905];
         Write(bytes, FirstTyrDialogueProjectionReader.PortraitInstructionOffset,
             [FirstTyrDialogueProjectionReader.ShowPortraitOpcode, 0x8f, 18]);
         WritePrint(bytes, FirstTyrDialogueProjectionReader.FirstSpeechInstructionOffset,
@@ -425,14 +471,24 @@ public sealed class FirstTyrDialogueProjectionTests
         secondMenu.AddRange([0x0b, 0x59, 0x00, 0x01]);
         secondMenu.Add(FirstTyrDialogueProjectionReader.MenuTerminator);
         Write(bytes, FirstTyrDialogueProjectionReader.SecondMenuInstructionOffset, secondMenu);
+        var thirdMenu = new List<byte>
+        {
+            FirstTyrDialogueProjectionReader.MenuOpcode,
+            0x86, 4
+        };
+        thirdMenu.AddRange(TextExpression("Third choice"));
+        thirdMenu.AddRange([0x0b, 0x69, 0x8e, 12]);
+        thirdMenu.AddRange([0x86, 6, 0x0f, 0x88, 0x00, 0x01]);
+        thirdMenu.Add(FirstTyrDialogueProjectionReader.MenuTerminator);
+        Write(bytes, FirstTyrDialogueProjectionReader.ThirdMenuInstructionOffset, thirdMenu);
         return new(OriginalContent.FirstTyrDialogueScriptResourceNumber, bytes);
     }
 
     private static PackedGplScript ScriptWithCompletion()
     {
         var script = Script();
-        var bytes = new byte[FirstTyrDialogueCompletionProjectionReader.ReturnOffset + 1];
-        script.Bytecode.CopyTo(bytes, 0);
+        var bytes = Expand(script,
+            FirstTyrDialogueCompletionProjectionReader.ReturnOffset + 1);
         Write(bytes, FirstTyrDialogueCompletionProjectionReader.EntryOffset,
         [
             0x4f, 0x00, 0x73, 0x86, 0x05,
@@ -446,8 +502,7 @@ public sealed class FirstTyrDialogueProjectionTests
     private static PackedGplScript ScriptWithFirstResponse()
     {
         var script = Script();
-        var bytes = new byte[1148];
-        script.Bytecode.CopyTo(bytes, 0);
+        var bytes = Expand(script, 1148);
         WritePrint(bytes, 1017, new string('A', 23));
         bytes[1043] = 0x51;
         bytes[1044] = 0x51;
@@ -460,8 +515,7 @@ public sealed class FirstTyrDialogueProjectionTests
     private static PackedGplScript ScriptWithReturningResponses()
     {
         var first = ScriptWithFirstResponse();
-        var bytes = new byte[1232];
-        first.Bytecode.CopyTo(bytes, 0);
+        var bytes = Expand(first, 1232);
         WritePrint(bytes, 1148, new string('D', 23));
         Write(bytes, 1174, [0x16, 0x8f, 0x00, 0x8e, 0x02, 0x06, 0x82, 0x00, 0x15]);
         WritePrint(bytes, 1183, new string('E', 38));
@@ -472,8 +526,7 @@ public sealed class FirstTyrDialogueProjectionTests
     private static PackedGplScript ScriptWithSecondResponse()
     {
         var script = Script();
-        var bytes = new byte[1825];
-        script.Bytecode.CopyTo(bytes, 0);
+        var bytes = Expand(script, 1825);
         WritePrint(bytes, 1597, new string('F', 67));
         WritePrint(bytes, 1662, new string('G', 72));
         WritePrint(bytes, 1731, new string('H', 63));
@@ -494,8 +547,7 @@ public sealed class FirstTyrDialogueProjectionTests
     private static PackedGplScript ScriptWithFifthResponse()
     {
         var script = Script();
-        var bytes = new byte[1395];
-        script.Bytecode.CopyTo(bytes, 0);
+        var bytes = Expand(script, 1395);
         WritePrint(bytes, 1232, new string('I', 61));
         WritePrint(bytes, 1292, new string('J', 69));
         WritePrint(bytes, 1359, new string('K', 21));
@@ -507,8 +559,7 @@ public sealed class FirstTyrDialogueProjectionTests
     private static PackedGplScript ScriptWithTroubleResponse()
     {
         var script = Script();
-        var bytes = new byte[1996];
-        script.Bytecode.CopyTo(bytes, 0);
+        var bytes = Expand(script, 1996);
         WritePrint(bytes, 1825, new string('L', 70));
         WritePrint(bytes, 1893, new string('M', 72));
         WritePrint(bytes, 1962, new string('N', 8));
@@ -527,8 +578,7 @@ public sealed class FirstTyrDialogueProjectionTests
     private static PackedGplScript ScriptWithKingResponse()
     {
         var script = Script();
-        var bytes = new byte[3686];
-        script.Bytecode.CopyTo(bytes, 0);
+        var bytes = Expand(script, 3686);
         WritePrint(bytes, 3479, new string('O', 67));
         WritePrint(bytes, 3544, new string('P', 69));
         WritePrint(bytes, 3611, new string('Q', 66));
@@ -544,8 +594,7 @@ public sealed class FirstTyrDialogueProjectionTests
     private static PackedGplScript ScriptWithOpeningCaravanResponse()
     {
         var script = Script();
-        var bytes = new byte[2352];
-        script.Bytecode.CopyTo(bytes, 0);
+        var bytes = Expand(script, 2352);
         Write(bytes, 1996,
         [
             0x18, 0x87, 0x16, 0xd7, 0x8f, 0x01,
@@ -570,8 +619,7 @@ public sealed class FirstTyrDialogueProjectionTests
     private static PackedGplScript ScriptWithAcarResponse()
     {
         var script = Script();
-        var bytes = new byte[2415];
-        script.Bytecode.CopyTo(bytes, 0);
+        var bytes = Expand(script, 2415);
         WritePrint(bytes, 2352, new string('T', 58));
         Write(bytes, 2409,
         [
@@ -579,6 +627,34 @@ public sealed class FirstTyrDialogueProjectionTests
             0x15
         ]);
         return script with { Bytecode = bytes };
+    }
+
+    private static PackedGplScript ScriptWithCityResponse()
+    {
+        var script = Script();
+        var bytes = Expand(script, 2616);
+        WritePrint(bytes, 2415, new string('U', 68));
+        WritePrint(bytes, 2481, new string('V', 68));
+        WritePrint(bytes, 2547, new string('W', 36));
+        Write(bytes, 2585,
+        [
+            0x16, 0x8f, 0x01, 0x8e, 0x0c,
+            0x16, 0x8f, 0x01, 0x8e, 0x0d,
+            0x18, 0x8e, 0x10, 0xd7, 0x8f, 0x00,
+            0x3e, 0x0a, 0x31,
+            0x16, 0x8f, 0x01, 0x8e, 0x0a,
+            0x67,
+            0x18, 0x8e, 0x08,
+            0x63, 0x0b, 0x58
+        ]);
+        return script with { Bytecode = bytes };
+    }
+
+    private static byte[] Expand(PackedGplScript script, int minimumLength)
+    {
+        var bytes = new byte[Math.Max(script.Bytecode.Length, minimumLength)];
+        script.Bytecode.CopyTo(bytes, 0);
+        return bytes;
     }
 
     private static void WritePrint(byte[] bytes, int offset, string text)

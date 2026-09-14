@@ -712,13 +712,18 @@
   1996's matching branch prints two literals, sets local flag 11, skips its
   alternate body, clears local flag 7, and returns.
   Target 2352 prints one literal, clears local flag 11, and returns.
+  Target 2415 prints three literals, sets local flags 12 and 13, conditionally
+  sets local flag 10 when local flag 16 is zero, and flows through a
+  local-flag-8 while header into the seven-entry menu at offset 2616. That menu
+  is gated by local flags 12/13/15/10/17/18 and has a constant final choice
+  whose label is MAS #99 global string #6.
 - **Confidence:** verified for the captured layouts, first exchange's GPL chunk,
   and visible response text; high for the static UI graph; medium for the
   opening-only local number 0, local flags 9/16, global flag 357, and global
   number 22 initial values
   because they
   combine corpus/script structure with a secondary clean-room implementation.
-  The award-producing script path, the remaining second-menu response consequences,
+  The award-producing script path, the remaining third-menu response consequences,
   generic variable initialization, and generic GPL
   execution semantics remain open.
 - **Implementation:** pack format 24 stores the byte-identical GPL #135 and MAS
@@ -738,9 +743,9 @@
   false and unknown conditions are both hidden without conflating their states.
   The preview passes the capture-correlated opening state, retains each selected
   choice's original index and branch offset, and selects indices 0, 1, 2, 3,
-  and 7. A second fail-closed projection validates MAS #99's byte-20 assignment
-  to type-6 global string #5 and supplies that label only from the ignored owned
-  pack. The capture-correlated opening state now includes local number 0 as zero,
+  and 7. Fail-closed projections validate MAS #99's byte-20 and byte-66
+  assignments to type-6 global strings #5 and #6 and supply those labels only
+  from the ignored owned pack. The capture-correlated opening state now includes local number 0 as zero,
   local flags 9/16 as false, global flag 357 as false, and global number 22 as
   one; generic initialization
   remains unknown. Core dialogue state stores
@@ -787,11 +792,17 @@
   Target 2352 has an exact bounded print, local-flag-11 clear, and return
   projection through offset 2414; runtime presents it and recomputes page two
   as source order 5, 6.
+  Target 2415 has an exact bounded projection through the third-menu entry at
+  2616: three literal prints, local flags 12/13 set, a local-flag-16 conditional
+  local-flag-10 set, and the local-flag-8 while header. Core exposes this as a
+  legal second-to-third-page transition and filters the projected seven-entry
+  menu. The owned path already has flag 16 set, so it presents third-page source
+  order 0, 1, 6 and resolves the final label from GSTRING #6.
   Choice 7's target has an exact bounded projection at offsets 2905–2920: print
   GSTRING #5, assign immediate one to local flags 14 and 4, then return locally.
   Core validates the selected identity before applying both flags atomically and
   entering `Completed`; Game closes the preview from either menu. Other GPL
-  instruction paths, second-menu consequence mutations, and generalized text routing remain
+  instruction paths, third-menu consequence mutations, and generalized text routing remain
   next Slice 3 work.
 - **Tests:** DSGP identity/payload round-trip and malformed envelopes; packed
   string empty/text/control-byte decoding and malformed inputs; exact dialogue
@@ -804,12 +815,14 @@
   return, target-1825 local-condition/assignment drift, target-3479 flag/return
   drift, target-1996 condition/control-flow/return drift, global-number
   prerequisite success and atomic rejection, target-2352 assignment/return
-  drift, explicit-newline transcript rendering and malformed-output rejection,
+  drift, target-2415 assignment/conditional/loop/menu-transition drift,
+  explicit-newline transcript rendering and malformed-output rejection,
   atomic flag
   application, conditional global-flag effects, deterministic menu reselection,
   unknown local-number/global-condition rejection, mismatched-branch rejection,
-  bounded MAS assignment/drift cases, variable-label resolution, and owned content smoke proving portrait,
-  speech-source, five-row menu, and ordered condition contracts.
+  bounded MAS #5/#6 assignment/drift cases, variable-label resolution, and
+  owned content smoke proving portrait, speech-source, three-menu transitions,
+  five-row bounds, and ordered condition contracts.
 
 ## Initial rules
 

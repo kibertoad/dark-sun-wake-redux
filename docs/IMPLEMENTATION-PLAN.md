@@ -323,7 +323,8 @@ decoder rather than being guessed now.
   0 value of zero. A corpus-wide reference sweep plus the same implementation's
   global reset support fresh-opening global flag 357 as false; generic
   initialization remains open. A bounded MAS #99
-  projection resolves choice 7's global string #5 from
+  projection resolves choice 7's global string #5 and the third menu's global
+  string #6 exit label from
   the ignored owned pack without committing its text. A deterministic Core
   dialogue session owns the visible source-index/branch-target identities and
   records one physical-row selection atomically; runtime row clicks are consumed
@@ -358,8 +359,13 @@ decoder rather than being guessed now.
   1996's matching path is bounded through its two prints, local flag 11 set,
   local flag 7 clear, and return, leaving source choices 4, 5, and 6; the
   alternate global-number path remains open. Target 2352 then prints its Acar
-  answer, clears local flag 11, and leaves source choices 5 and 6. The remaining second-menu branches
-  and generalized GPL execution remain open. The hook renders the
+  answer, clears local flag 11, and leaves source choices 5 and 6. Target 2415
+  then validates three prints, sets local flags 12/13, conditionally sets flag
+  10 from flag 16, and advances through the local-flag-8 loop header to the
+  projected seven-entry third menu at offset 2616. On the path where target
+  3479 already set flag 16, its visible source order is 0, 1, and 6. Remaining
+  third-menu responses, the second-menu alternate branch, and generalized GPL
+  execution remain open. The hook renders the
   first literal speech and filtered labels with bounded provisional
   wrapping in the extracted font. Reusable ordered hotkey bindings and Core
   navigation now cover character, inventory, cast/psionic, current-effects,

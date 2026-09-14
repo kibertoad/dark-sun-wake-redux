@@ -66,6 +66,23 @@ public sealed class DialogueSessionAdapterTests
     }
 
     [Fact]
+    public void MapsThirdMenuTransitionSeparatelyFromReturnedResponses()
+    {
+        var projection = new FirstTyrDialogueResponseProjection(5, 2415, [],
+            [new(12, true), new(13, true)], [], false)
+        {
+            AdvancesToThirdMenu = true
+        };
+
+        var result = DialogueSessionAdapter.ToCore(projection);
+
+        Assert.Equal(DialogueBranchDisposition.AdvanceToThirdPage,
+            result.Disposition);
+        Assert.Throws<InvalidDataException>(() => DialogueSessionAdapter.ToCore(
+            projection with { ReturnsToMenu = true }));
+    }
+
+    [Fact]
     public void MapsConditionalAndGlobalResponseEffects()
     {
         var projection = new FirstTyrDialogueResponseProjection(1, 1597, [],

@@ -15,6 +15,7 @@ public enum DialogueBranchDisposition
 {
     ReturnToChoices,
     ReturnThroughFirstTyrMenu,
+    AdvanceToThirdPage,
     Completed
 }
 
@@ -164,8 +165,9 @@ public sealed class DialogueSession
 {
     private IReadOnlyList<DialogueChoiceDefinition> _definitions;
     private readonly IReadOnlyList<DialogueChoiceDefinition>? _secondPageDefinitions;
+    private readonly IReadOnlyList<DialogueChoiceDefinition>? _thirdPageDefinitions;
     private readonly int _maximumChoices;
-    private bool _onSecondPage;
+    private int _pageIndex;
     private DialogueSnapshot _snapshot;
 
     public DialogueSession(
@@ -173,7 +175,8 @@ public sealed class DialogueSession
         IReadOnlyList<DialogueChoiceDefinition> definitions,
         DialogueVariableSnapshot variables,
         int maximumChoices,
-        IReadOnlyList<DialogueChoiceDefinition>? secondPageDefinitions = null)
+        IReadOnlyList<DialogueChoiceDefinition>? secondPageDefinitions = null,
+        IReadOnlyList<DialogueChoiceDefinition>? thirdPageDefinitions = null)
     {
         if (scriptResourceNumber == 0)
             throw new ArgumentOutOfRangeException(nameof(scriptResourceNumber));
@@ -188,6 +191,9 @@ public sealed class DialogueSession
         _secondPageDefinitions = secondPageDefinitions is null
             ? null
             : ValidateDefinitions(secondPageDefinitions, nameof(secondPageDefinitions));
+        _thirdPageDefinitions = thirdPageDefinitions is null
+            ? null
+            : ValidateDefinitions(thirdPageDefinitions, nameof(thirdPageDefinitions));
         _maximumChoices = maximumChoices;
         var stableVariables = Copy(variables);
         _snapshot = new(scriptResourceNumber, DialoguePhase.AwaitingChoice,
@@ -284,9 +290,9 @@ public sealed class DialogueSession
             GlobalNumbers = _snapshot.Variables.GlobalNumbers
         });
         var nextDefinitions = _definitions;
-        var onSecondPage = _onSecondPage;
+        var pageIndex = _pageIndex;
         if (result.Disposition == DialogueBranchDisposition.ReturnThroughFirstTyrMenu &&
-            !_onSecondPage)
+            _pageIndex == 0)
         {
             var continuation = FirstTyrDialogueFlow.ContinueOpeningMenu(variables);
             variables = continuation.Variables;
@@ -294,13 +300,23 @@ public sealed class DialogueSession
             {
                 nextDefinitions = _secondPageDefinitions ?? throw new InvalidOperationException(
                     "The second dialogue page is unavailable.");
-                onSecondPage = true;
+                pageIndex = 1;
             }
+        }
+        else if (result.Disposition == DialogueBranchDisposition.AdvanceToThirdPage)
+        {
+            if (_pageIndex != 1)
+                throw new InvalidOperationException(
+                    "The third dialogue page can only follow the second page.");
+            nextDefinitions = _thirdPageDefinitions ?? throw new InvalidOperationException(
+                "The third dialogue page is unavailable.");
+            pageIndex = 2;
         }
         _snapshot = result.Disposition switch
         {
             DialogueBranchDisposition.ReturnToChoices or
-                DialogueBranchDisposition.ReturnThroughFirstTyrMenu => _snapshot with
+                DialogueBranchDisposition.ReturnThroughFirstTyrMenu or
+                DialogueBranchDisposition.AdvanceToThirdPage => _snapshot with
             {
                 Phase = DialoguePhase.AwaitingChoice,
                 Choices = SelectVisible(variables, nextDefinitions),
@@ -317,7 +333,7 @@ public sealed class DialogueSession
                 "Unknown dialogue branch disposition.")
         };
         _definitions = nextDefinitions;
-        _onSecondPage = onSecondPage;
+        _pageIndex = pageIndex;
     }
 
     private IReadOnlyList<DialogueChoiceIdentity> SelectVisible(

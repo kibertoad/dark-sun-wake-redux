@@ -194,9 +194,10 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                 fontStream, OriginalContent.InterfaceFontAssetPath);
             var script = PackedGplScript.Read(
                 scriptStream, OriginalContent.FirstTyrDialogueScriptAssetPath);
-            var globalString = GplGlobalStringProjectionReader.Read(
-                PackedGplScript.Read(globalsStream,
-                    OriginalContent.DialogueGlobalStringsScriptAssetPath));
+            var globals = PackedGplScript.Read(globalsStream,
+                OriginalContent.DialogueGlobalStringsScriptAssetPath);
+            var globalString = GplGlobalStringProjectionReader.Read(globals);
+            var thirdMenuExit = GplGlobalStringProjectionReader.ReadThirdMenuExit(globals);
             _dialogueProjection = FirstTyrDialogueProjectionReader.Read(script);
             AddDialogueBranch(DialogueSessionAdapter.ToCore(
                 FirstTyrDialogueCompletionProjectionReader.Read(script)), []);
@@ -210,12 +211,15 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             AddDialogueBranch(
                 FirstTyrDialogueResponseProjectionReader.ReadOpeningCaravan(script));
             AddDialogueBranch(FirstTyrDialogueResponseProjectionReader.ReadAcar(script));
+            AddDialogueBranch(
+                FirstTyrDialogueResponseProjectionReader.ReadCityIntroduction(script));
             _dialogueSession = DialogueSessionAdapter.Create(
                 _dialogueProjection, FirstTyrDialogueObservedState.Create(),
                 DialoguePreviewText.MaximumResponses);
             _dialogueVariableText = new Dictionary<GplDialogueVariable, string>
             {
-                [globalString.Destination] = globalString.Text
+                [globalString.Destination] = globalString.Text,
+                [thirdMenuExit.Destination] = thirdMenuExit.Text
             };
             RebuildDialogueText();
         }
