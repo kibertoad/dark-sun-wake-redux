@@ -72,7 +72,7 @@ The smoke modes have distinct purposes:
 - `--smoke-test` exits before content or graphics initialization and is safe on
   a content-free CI worker.
 - `--content-smoke-test --asset-pack <path>` verifies the exact pack inventory,
-  opens all seventy-one DSIX images, the DSFT interface font, the DSTX text
+  opens all seventy-eight DSIX images, the DSFT interface font, the DSTX text
   catalog, the resolved start-flow, Game Menu/Preferences, and
   character/inventory/Cast/Effects and hostile-interaction DSUI graphs, and DSCH character metadata
   catalog, opens the DSRG Tyr region and DSOB object-frame graph, and checks their
@@ -89,7 +89,7 @@ Owned-build validation currently targets GOG product `1432903719`, installed
 build `52095422060333615`. Metadata-only FONT inspection verifies that all 256
 character-map entries are identity values and summarizes its pixel-index range
 without emitting glyph pixels. The retained ignored owned-source pack has been
-transactionally refreshed and verifies as the exact 90-asset manifest including start/party/ADD
+transactionally refreshed and verifies as the exact 98-asset manifest including start/party/ADD
 assets, all seven start-flow windows and 56 controls, the 210x116 Game Menu/Preferences base,
 the 14-button/30-control Game Menu and 13-button/15-control Preferences graphs,
 the 320x200 inventory base, the observed USE/EFFECTS title images, the
@@ -97,8 +97,9 @@ the 320x200 inventory base, the observed USE/EFFECTS title images, the
 plus the bounded Tyr region with 94 tiles
 and 867 entity records, its 287 definitions, 246 images, and 477 frames, and
 the exact 13-frame opening-leader image and all ten `ICON` #19101-#19110 cursor
-images with their exact one-frame geometry, plus the hostile interaction graph
-and seven active/disabled/dismiss control images. The runtime content-smoke path verifies
+images with their exact one-frame geometry, plus the three-window interaction/dialogue graph,
+thirteen action/dialogue control images, `PORT` #18 portrait, and `GPL` #135 DSGP script.
+The runtime content-smoke path verifies
 all 13 frame dimensions plus frame 0's 367-pixel alpha coverage and rasterizes 320x200 viewports at
 both opposite region corners successfully. It also verifies Tyr's exact four
 `GMAP` values and 8,169 terrain-open cells through the bounded navigation

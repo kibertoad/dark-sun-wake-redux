@@ -7,6 +7,7 @@ public static class StartupAssetExtractor
 {
     public const string SourcePath = "RESOURCE.GFF";
     public const string CharacterSourcePath = "CHARSAVE.GFF";
+    public const string GplSourcePath = "GPLDATA.GFF";
     public const string ObjectSourcePath = "OBJEX.GFF";
     public const string TyrRegionSourcePath = "RGN032.GFF";
     public const string TitleImageTag = "BMP ";
@@ -37,6 +38,9 @@ public static class StartupAssetExtractor
         await using var characterSource = File.OpenRead(characterSourcePath);
         var characterArchive = GffArchive.Read(characterSource, characterSourcePath);
         var characters = GffCharacterCatalog.Read(characterArchive, CharacterSourcePath);
+        var gplSourcePath = Path.Combine(sourceRoot, GplSourcePath);
+        await using var gplSource = File.OpenRead(gplSourcePath);
+        var gplArchive = GffArchive.Read(gplSource, gplSourcePath);
         var objectSourcePath = Path.Combine(sourceRoot, ObjectSourcePath);
         await using var objectSource = File.OpenRead(objectSourcePath);
         var objectArchive = GffArchive.Read(objectSource, objectSourcePath);
@@ -172,6 +176,19 @@ public static class StartupAssetExtractor
                 $"{ImageTag}#{asset.ImageResourceNumber} all frames + " +
                 $"{PaletteTag}#{InterfacePaletteNumber}", cancellationToken));
         }
+        var dialoguePortrait = IndexedImage.Read(gplArchive.GetResource(
+                "PORT", OriginalContent.FirstTyrDialoguePortraitResourceNumber),
+            $"{GplSourcePath}:PORT#{OriginalContent.FirstTyrDialoguePortraitResourceNumber}");
+        if (dialoguePortrait.Frames.Count != 1 ||
+            dialoguePortrait.Frames[0].Width != 72 || dialoguePortrait.Frames[0].Height != 72)
+            throw new InvalidDataException(
+                "The mapped first Tyr dialogue portrait must contain one 72x72 frame.");
+        files.Add(await WriteImageAsync(stagingRoot,
+            OriginalContent.FirstTyrDialoguePortraitAssetPath, dialoguePortrait,
+            interfacePalette,
+            $"PORT#{OriginalContent.FirstTyrDialoguePortraitResourceNumber} frame 0 + " +
+            $"{SourcePath}:{PaletteTag}#{InterfacePaletteNumber}", cancellationToken,
+            GplSourcePath));
 
         var windowImage = IndexedImage.Read(archive.GetResource(TitleImageTag, PartyWindowImageNumber),
             $"{SourcePath}:{TitleImageTag}#{PartyWindowImageNumber}");
@@ -200,6 +217,7 @@ public static class StartupAssetExtractor
             OriginalContent.InteractionUiCatalogAssetPath,
             OriginalContent.InteractionWindowResourceNumbers,
             "interaction", cancellationToken));
+        files.Add(await WriteGplScriptAsync(stagingRoot, gplArchive, cancellationToken));
         files.Add(await WriteCharacterCatalogAsync(stagingRoot, characters, cancellationToken));
         files.Add(await WriteImageAsync(stagingRoot, OriginalContent.OpeningLeaderImageAssetPath,
             openingLeader.Image, tyrRegion.Palette,
@@ -258,6 +276,32 @@ public static class StartupAssetExtractor
         return new(relativePath, verify.Length, hash, CharacterSourcePath,
             "application/vnd.dark-sun-wake-redux.character-catalog",
             $"CHAR identity/abilities/envelope + PSIN mask -> DSCH v{PackedCharacterCatalog.FormatVersion}");
+    }
+
+    private static async Task<AssetPackFile> WriteGplScriptAsync(
+        string stagingRoot,
+        GffArchive archive,
+        CancellationToken cancellationToken)
+    {
+        var number = OriginalContent.FirstTyrDialogueScriptResourceNumber;
+        var packed = new PackedGplScript(number,
+            archive.GetResource("GPL ", number).ToArray());
+        var relativePath = OriginalContent.FirstTyrDialogueScriptAssetPath;
+        var target = Path.Combine(stagingRoot,
+            relativePath.Replace('/', Path.DirectorySeparatorChar));
+        Directory.CreateDirectory(Path.GetDirectoryName(target)!);
+        await using (var output = File.Create(target)) packed.Write(output);
+        await using var verify = File.OpenRead(target);
+        var decoded = PackedGplScript.Read(verify, relativePath);
+        if (decoded.ResourceNumber != number || !decoded.Bytecode.SequenceEqual(packed.Bytecode))
+            throw new InvalidDataException(
+                "The derived first Tyr dialogue script failed verification.");
+        verify.Position = 0;
+        var hash = Convert.ToHexStringLower(
+            await SHA256.HashDataAsync(verify, cancellationToken));
+        return new(relativePath, verify.Length, hash, GplSourcePath,
+            "application/vnd.dark-sun-wake-redux.gpl-script",
+            $"GPL #{number} bytecode -> DSGP v{PackedGplScript.FormatVersion}");
     }
 
     private static async Task<AssetPackFile> WriteRegionAsync(

@@ -648,8 +648,8 @@
 - **Confidence:** verified for the owned panel identity, origin, control graph,
   disabled hostile state, visible name/level, and action semantics; unknown for
   how arbitrary OJFF/GPL records determine hostility and capabilities.
-- **Implementation:** pack format 22 extracts the seven active/disabled/dismiss
-  interaction images plus `WIND` #3020 as a bounded DSUI graph. Core models
+- **Implementation:** pack format 23 extracts the seven active/disabled/dismiss
+  interaction images plus `WIND` #3020 as part of a bounded DSUI graph. Core models
   validated creature/object targets, enabled actions, the documented sole-object
   shortcut, inert disabled selections, and deterministic dismissal. Runtime
   presentation and target-to-capability derivation remain pending.
@@ -673,15 +673,26 @@
   occur in `GPL` #135; the script's first response says “sniveling,” confirming
   the native pixels and correcting the earlier informal transcription.
   `WIND` #12500 owns the speech edit box and vertical controls; #12501 owns five
-  response-row buttons and its own vertical controls.
+  response-row buttons and its own vertical controls. The script's preceding
+  `showpic 18` instruction identifies `PORT` #18; all 178 owned PORT chunks
+  decode through the bounded image reader, and #18 is one 72x72 frame.
 - **Confidence:** verified for the captured layouts, first exchange's GPL chunk,
   and visible response text; high for the static UI graph. The award-producing
-  script path, portrait resource ID, conditions, response consequences, and
+  award script path, conditions, response consequences, and
   generic GPL execution semantics remain open.
-- **Implementation:** evidence only. Original dialogue text remains local to the
-  licensed source and is not embedded in Git. A bounded GPL/string extraction
-  contract, dialogue state machine, portrait extraction, UI assets, and runtime
-  rendering are the next Slice 3 work.
+- **Implementation:** pack format 23 stores the byte-identical 4,124-byte GPL
+  #135 payload in a bounded versioned DSGP envelope, extracts `PORT` #18 with
+  the interface palette, and expands the interaction DSUI with #12500/#12501
+  plus six dialogue-control images. The response adapter validates the speech
+  edit box, exact five row resources, measured origin `(1,142)`, overlapping
+  hit priority, and exclusive edges. A bounded decoder covers GPL's 7-bit
+  compressed string primitive without embedding original dialogue text in Git.
+  Instruction execution, conditions, state mutations, text routing, and runtime
+  rendering remain next Slice 3 work.
+- **Tests:** DSGP identity/payload round-trip and malformed envelopes; packed
+  string empty/text/control-byte decoding and malformed inputs; exact dialogue
+  window/control/image geometry, response order/hit boundaries, synthetic
+  transactional extraction, and owned content smoke.
 
 ## Initial rules
 

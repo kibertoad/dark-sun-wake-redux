@@ -109,6 +109,30 @@ try
                     throw new InvalidDataException(
                         $"The installed exploration cursor {cursor.Name} has unexpected geometry.");
             }
+            foreach (var interaction in OriginalContent.InteractionButtonAssets)
+            {
+                var image = ReadImage(assetPack, interaction.Path);
+                if (!interaction.HasExpectedFrames(image.Frames))
+                    throw new InvalidDataException(
+                        $"The installed interaction image {interaction.Name} has unexpected geometry.");
+            }
+            var dialoguePortrait = ReadImage(assetPack,
+                OriginalContent.FirstTyrDialoguePortraitAssetPath);
+            if (dialoguePortrait.Frames.Count != 1 ||
+                dialoguePortrait.Frames[0].Width != 72 ||
+                dialoguePortrait.Frames[0].Height != 72)
+                throw new InvalidDataException(
+                    "The installed first Tyr dialogue portrait has unexpected geometry.");
+            using (var scriptStream = File.OpenRead(Path.Combine(assetPack,
+                       OriginalContent.FirstTyrDialogueScriptAssetPath.Replace(
+                           '/', Path.DirectorySeparatorChar))))
+            {
+                var script = PackedGplScript.Read(scriptStream,
+                    OriginalContent.FirstTyrDialogueScriptAssetPath);
+                if (script.ResourceNumber != OriginalContent.FirstTyrDialogueScriptResourceNumber)
+                    throw new InvalidDataException(
+                        "The installed first Tyr dialogue script has unexpected identity.");
+            }
             var openingLeader = ReadImage(assetPack, OriginalContent.OpeningLeaderImageAssetPath);
             var openingLeaderFrame = openingLeader.Frames[0];
             if (!openingLeader.Frames.Select(frame => (frame.Width, frame.Height))
@@ -278,7 +302,11 @@ try
                 OriginalContent.InteractionUiCatalogAssetPath);
             if (!interactionUi.Windows.Select(window => window.ResourceNumber)
                     .SequenceEqual(OriginalContent.InteractionWindowResourceNumbers) ||
-                InteractionOptionsInput.Resolve(interactionUi).Count != 4)
+                InteractionOptionsInput.Resolve(interactionUi).Count != 4 ||
+                UiWindowGraphResolver.Resolve(interactionUi,
+                    OriginalContent.DialogueSpeechWindowResourceNumber).Controls.Count != 4 ||
+                UiWindowGraphResolver.Resolve(interactionUi,
+                    OriginalContent.DialogueResponseWindowResourceNumber).Controls.Count != 7)
                 throw new InvalidDataException(
                     "The installed interaction UI graph is incomplete.");
             Console.WriteLine($"Verified runtime startup assets at {assetPack}.");

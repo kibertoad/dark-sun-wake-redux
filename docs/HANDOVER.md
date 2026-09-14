@@ -17,10 +17,12 @@ Owner captures now distinguish hostile Look, a one-way 10,000-experience award,
 and the first full conversation. `DATA-GOG-INTERACTION-001` maps hostile
 `WIND` #3020 and its disabled actions; `OBS-GOG-DIALOGUE-001` maps the upper and
 lower dialogue windows and ties the captured exchange to `GPL` #135 without
-committing original text or screenshots. Pack format 22 contains the bounded
-interaction graph and seven action images, and Core contains the deterministic
-interaction/sole-action contract. Runtime presentation and dialogue execution
-remain pending.
+committing original text or screenshots. Pack format 23 contains the bounded
+three-window interaction/dialogue graph, thirteen control images, `PORT` #18,
+and byte-identical `GPL` #135 in a DSGP envelope. Core contains the deterministic
+interaction/sole-action contract; Resources decodes the packed-string primitive;
+Game validates the measured five-row response layout. Runtime presentation and
+GPL instruction execution remain pending.
 
 ## Previous cohesive batch
 
@@ -51,8 +53,9 @@ research output remain under ignored `analysis/original/`.
 
 Continue Slice 3 from evidence, preferably in this order:
 
-1. bound the first eligible interaction and dialogue resource chain, then model
-   deterministic Core interaction/dialogue commands and quest flags;
+1. implement only the bounded GPL instruction subset needed to present the
+   first conversation, then model its deterministic dialogue choices and quest
+   consequences as each behavior is evidenced;
 2. establish the Preferences setting ranges/defaults and About destination,
    then implement deterministic setting mutations and frame-state feedback;
 3. generalize attack/look target eligibility and select ranged versus melee

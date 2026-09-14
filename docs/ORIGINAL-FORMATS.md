@@ -7,13 +7,14 @@ semantics.
 | Format/family | Observed role | Current knowledge | Confidence | Required failure behavior |
 |---|---|---|---|---|
 | `*.GFF` | Shared resources, numbered regions, and legacy saves | Little-endian version `0x00030000` container directory is decoded; indexed-image and palette payloads are decoded, while other tag semantics remain mostly unknown | verified for the directory layout and recorded image/palette families in the owned build | Bound file size and every count/offset/length; reject overflow, truncation, invalid secondary references, duplicate keys, and partial overlaps with source context |
-| GFF `BMP `, `CBMP`, `ICON` | Indexed image frames | Shared size/frame envelope plus sparse row, `PLAN`, and `PLNR` encodings are decoded to palette indices and alpha | verified for all matching resources in the owned build | Bound payload, frame count, offsets, dimensions, total pixels, compressed runs, dictionaries, and bitstreams; reject malformed input with resource identity |
+| GFF `BMP `, `CBMP`, `ICON`, `PORT` | Indexed image frames | Shared size/frame envelope plus sparse row, `PLAN`, and `PLNR` encodings are decoded to palette indices and alpha | verified for all matching resources in the owned build, including all 178 `PORT` records | Bound payload, frame count, offsets, dimensions, total pixels, compressed runs, dictionaries, and bitstreams; reject malformed input with resource identity |
 | GFF `PAL ` | 256-color palettes | Exactly 256 RGB triples with 6-bit VGA components, scaled by four to 8-bit channels | verified for all matching resources in the owned build | Require exactly 768 bytes and reject components outside `0..63` |
 | GFF `FONT` | Indexed bitmap glyphs | A shared-height 256-glyph table with character map, absolute offsets, widths, and palette-index pixels is decoded | verified for `FONT` #100 in `RESOURCE.GFF` | Bound payload, count, height, offsets, widths, total pixels, and exact record ends |
 | GFF `TEXT` | Short text tables | Printable 7-bit ASCII lines with mandatory CRLF delimiters and final terminator | verified for all 62 records in `RESOURCE.GFF` | Bound payload, line count, and line length; reject unsupported bytes and bare/missing terminators |
 | GFF `CHAR` envelope, identity, and abilities | Original character records | Version 1 has a 79-byte fixed header followed by a byte-counted sequence of 33-byte uninterpreted tail records; six one-byte ability scores at offsets 35..40 follow manual Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma order; the name is printable ASCII, NUL-terminated within a 16-byte slot at offset 43; remaining fields are uninterpreted | high across all 19 records in the owned `CHARSAVE.GFF`; not runtime-validated | Require version 1 and exact `79 + count * 33` size; bound score range and name slot; stop at the first NUL because later slot bytes may be stale; reject trailing data, out-of-range scores, and empty, unterminated, or non-printable names |
 | GFF `PSIN` | Character companion mask | Same-number companion for every owned `CHAR`; exactly one byte using a nonzero subset of the low three bits | high for record correlation and structural mask envelope; individual and combined bit meanings remain unknown | Require exactly one byte, reject zero and bits outside `0..2`, and require one-to-one correlation in catalog inspection |
 | GFF `WIND`, `BUTN`, `APFM`, `EBOX` | UI layout and controls | Bounded common fields and references are decoded; unknown fixed fields and variable button tails remain uninterpreted | verified for all matching resources in `RESOURCE.GFF` | Require signatures and exact declared sizes; bound fixed records, complete child records, dimensions, tags, repeated identities, and references |
+| GFF `GPL ` | Game-program bytecode | `GPLDATA.GFF` contains 330 opaque scripts; script #135 is tied to the first captured Tyr conversation, and its packed-string primitive is decoded without assigning instruction semantics | verified for resource identity/size and packed-string decoding; instruction execution remains unknown | Bound script and string lengths, reject unsupported markers, truncated bitstreams, invalid back-references, and unterminated strings; never execute source bytes during extraction |
 | GFF `RNME`, `PAL `, `MAP `, `GMAP`, `TILE`, `ETAB` | Region identity, palette, terrain grid, geometry plane, tile images, and placed-object references | Same-number region records, exact 128x98 byte planes, single-frame 16x16 tiles, and eight-byte entity records are decoded; geometry and entity-flag meanings remain unknown | verified structurally across all 20 owned region files; field roles corroborated by `DSUN-MUSIC` | Require exactly one matching region record per tag; bound names, planes, tile images, entity counts, and every local `TILE`/external `OJFF` reference |
 | GFF `OJFF` | Object-frame definitions | Exact 16-byte records expose signed X/Y offsets and a `BMP ` resource reference; four other words remain raw and uninterpreted | verified structurally across all 4,479 owned definitions; offset/reference roles corroborated by `DSUN-MUSIC` | Require exact record size, a zero final word, a present nonempty referenced image, bounded requested IDs, and contextual errors |
 | Pack `*.dsix` | Derived indexed-image asset | `DSIX` v1 stores one decoded 256-color palette plus bounded indexed frames and binary alpha | implemented; title asset round-trip and extraction validated | Bound file size, version, frame count, dimensions, pixels, alpha, and trailing data; reject non-binary alpha |
@@ -23,6 +24,7 @@ semantics.
 | Pack `*.dsch` | Derived character metadata catalog | `DSCH` v1 deterministically stores only the bounded `CHAR`/`PSIN` subset: resource ID, neutral tail-record count, name, six ordered abilities, and raw mask | implemented; synthetic round-trip and owned extraction validated | Bound file size, version, record/name counts, ability range, raw mask, canonical order, and trailing data; reject duplicates and do not carry uninterpreted source bytes |
 | Pack `*.dsrg` | Derived region catalog | `DSRG` v1 canonically stores the region identity, decoded palette and tiles, exact terrain/geometry planes, and raw ordered entity records | implemented; synthetic round-trip and owned Tyr extraction validated | Bound file size, version, fixed dimensions, counts, names, binary alpha, canonical tile order, map references, and exact content length |
 | Pack `*.dsob` | Derived object-frame catalog | `DSOB` v1 canonically stores bounded OJFF fields plus deduplicated decoded indexed frames; the region supplies the palette | implemented; synthetic round-trip and owned Tyr extraction validated | Bound file size, version, definition/image/frame/pixel counts, dimensions, binary alpha, canonical ordering, complete references, and exact content length |
+| Pack `*.dsgp` | Derived opaque GPL script | `DSGP` v1 stores one verified source resource number and its byte-identical bounded bytecode | implemented; synthetic round-trip and owned GPL #135 extraction validated | Bound file and bytecode sizes, require nonzero identity and nonempty payload, and reject unsupported versions, truncation, and trailing data |
 | `*.FLI` | Four observed cinematics | Likely animation resources by extension only; dimensions, palette changes, frame timing, and exact variant are unverified | low | Bound frames, chunks, dimensions, decoded bytes, and timing; unsupported chunk types fail explicitly |
 | `*.VOC` | Speech and sound-effect files | Creative Labs VOC is suggested by extension; headers, codecs, sample rates, and block use must be verified per file | low | Bound blocks and decoded samples; reject unsupported codecs and malformed terminators |
 | `MUSIC/*.ogg` | 39 GOG-supplied music files | Ogg container presence is observed; mapping, loop points, provenance, and relationship to original media are unknown | low | Validate stream metadata and decode limits; unknown track mapping remains data, not a guessed rule |
@@ -187,6 +189,14 @@ Palette payloads contain exactly 256 RGB triples. Each stored component is in
 the VGA range `0..63`; multiplying by four produces the decoded channel range
 `0..252`. Resource-to-palette mapping, display composition, frame origins, and
 animation timing remain open.
+
+The same indexed-image envelope also decodes all 178 `PORT` records in
+`GPLDATA.GFF`. `PORT` #18 is one 72x72 frame and is independently associated
+with the first captured Tyr conversation by `GPL` #135's preceding portrait
+selection instruction. `GPLDATA.GFF` contains no palette record, so the derived
+dialogue portrait currently uses the separately evidenced interface palette
+`PAL ` #1000. This correlation establishes the captured composition only; it
+does not establish a universal palette rule for every portrait.
 
 ## Indexed bitmap fonts
 
@@ -357,6 +367,29 @@ ordering, valid nonempty frames, exact dimensions and lengths, binary alpha,
 every definition-to-image reference to resolve, every stored image to be used,
 and no trailing data. Version 1 deliberately assigns no meaning to the four raw
 words or to animation, draw order, anchoring, collision, and interaction.
+
+## GPL scripts and derived DSGP assets
+
+**Evidence:** `OBS-GOG-DIALOGUE-001`.
+
+`GPLDATA.GFF` contains 330 `GPL ` resources and 20 `MAS ` resources. `GPL` #135
+is 4,124 bytes and is independently tied to the first captured Tyr conversation;
+the current extractor deliberately treats the complete bytecode as opaque.
+
+The only decoded primitive is a bounded packed string used for future script
+interpretation. Marker `0x01` represents the active character name, marker
+`0x05` begins a seven-bit compressed string, and `0x03` terminates it. The
+sliding dictionary/back-reference form is bounded to 1,024 decoded bytes.
+Marker `0x02`, malformed references, truncation, and missing terminators are
+rejected. Decoding this primitive does not authorize executing instructions or
+assigning conditions, choices, or state mutations.
+
+DSGP is an original deterministic envelope that preserves a selected script
+without teaching the runtime to parse GFF. Version 1 consists of ASCII `DSGP`,
+a 16-bit version, a 32-bit source resource number, a 32-bit payload length, and
+the byte-identical source payload. The reader caps bytecode at 1 MiB, requires a
+nonzero resource number and nonempty payload, and rejects truncation or trailing
+data. No original dialogue text or executable interpretation is added to Git.
 
 ## Derived DSFT indexed-font asset
 

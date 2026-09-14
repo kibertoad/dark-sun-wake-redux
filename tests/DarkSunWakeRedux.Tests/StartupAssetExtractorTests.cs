@@ -145,7 +145,12 @@ public sealed class StartupAssetExtractorTests
             await File.WriteAllBytesAsync(sourcePath, StartupArchive(), TestContext.Current.CancellationToken);
             var characterSourcePath = Path.Combine(sourceRoot, StartupAssetExtractor.CharacterSourcePath);
             await File.WriteAllBytesAsync(
-                characterSourcePath, CharacterArchive(), TestContext.Current.CancellationToken);
+                characterSourcePath, StartupAssetTestArchives.Character(),
+                TestContext.Current.CancellationToken);
+            var gplSourcePath = Path.Combine(sourceRoot, StartupAssetExtractor.GplSourcePath);
+            await File.WriteAllBytesAsync(
+                gplSourcePath, StartupAssetTestArchives.Dialogue(),
+                TestContext.Current.CancellationToken);
             var objectSourcePath = Path.Combine(sourceRoot, StartupAssetExtractor.ObjectSourcePath);
             await File.WriteAllBytesAsync(objectSourcePath, GffRegionTests.ObjectArchive(),
                 TestContext.Current.CancellationToken);
@@ -154,13 +159,14 @@ public sealed class StartupAssetExtractorTests
                 TestContext.Current.CancellationToken);
             var edition = new SourceManifest(OriginalContent.GameId, "synthetic-title-edition",
                 [await FingerprintAsync(sourceRoot, StartupAssetExtractor.SourcePath),
+                    await FingerprintAsync(sourceRoot, StartupAssetExtractor.GplSourcePath),
                     await FingerprintAsync(sourceRoot, StartupAssetExtractor.ObjectSourcePath),
                     await FingerprintAsync(sourceRoot, StartupAssetExtractor.TyrRegionSourcePath)]);
 
             var manifest = await AssetPackInstaller.InstallAsync(output, staging =>
                 StartupAssetExtractor.WritePackAsync(sourceRoot, staging, edition, "test"));
 
-            Assert.Equal(90, manifest.Files.Count);
+            Assert.Equal(98, manifest.Files.Count);
             var asset = Assert.Single(manifest.Files, item => item.Path == OriginalContent.TitleImageAssetPath);
             Assert.Contains("BMP #11011", asset.Conversion, StringComparison.Ordinal);
             Assert.Contains("PAL #11011", asset.Conversion, StringComparison.Ordinal);
@@ -244,6 +250,23 @@ public sealed class StartupAssetExtractorTests
                     item => item.Path == interaction.Path);
                 Assert.Contains($"ICON#{interaction.ImageResourceNumber}",
                     interactionAsset.Conversion, StringComparison.Ordinal);
+            }
+            var portraitAsset = Assert.Single(manifest.Files,
+                item => item.Path == OriginalContent.FirstTyrDialoguePortraitAssetPath);
+            Assert.Equal(StartupAssetExtractor.GplSourcePath, portraitAsset.SourcePath);
+            Assert.Contains("PORT#18", portraitAsset.Conversion, StringComparison.Ordinal);
+            var scriptAsset = Assert.Single(manifest.Files,
+                item => item.Path == OriginalContent.FirstTyrDialogueScriptAssetPath);
+            Assert.Equal(StartupAssetExtractor.GplSourcePath, scriptAsset.SourcePath);
+            Assert.Contains("GPL #135", scriptAsset.Conversion, StringComparison.Ordinal);
+            using (var scriptStream = File.OpenRead(Path.Combine(output,
+                       OriginalContent.FirstTyrDialogueScriptAssetPath.Replace(
+                           '/', Path.DirectorySeparatorChar))))
+            {
+                var script = PackedGplScript.Read(scriptStream);
+                Assert.Equal(OriginalContent.FirstTyrDialogueScriptResourceNumber,
+                    script.ResourceNumber);
+                Assert.Equal([0x19, 0x31], script.Bytecode);
             }
             var inventoryLayer = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.InventoryLayer.Path);
@@ -373,7 +396,7 @@ public sealed class StartupAssetExtractorTests
             }
             var interactionUiAsset = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.InteractionUiCatalogAssetPath);
-            Assert.Contains("WIND#3020", interactionUiAsset.Conversion,
+            Assert.Contains("WIND#3020,12500,12501", interactionUiAsset.Conversion,
                 StringComparison.Ordinal);
             using (var uiStream = File.OpenRead(Path.Combine(output,
                        OriginalContent.InteractionUiCatalogAssetPath.Replace(
@@ -383,6 +406,8 @@ public sealed class StartupAssetExtractorTests
                 Assert.Equal(OriginalContent.InteractionWindowResourceNumbers,
                     ui.Windows.Select(window => window.ResourceNumber));
                 Assert.Equal(4, InteractionOptionsInput.Resolve(ui).Count);
+                Assert.Equal((318, 72, 4), Geometry(ui, 12500));
+                Assert.Equal((318, 58, 7), Geometry(ui, 12501));
             }
             Assert.Empty(await OriginalContent.VerifyInstalledAsync(
                 output, TestContext.Current.CancellationToken));
@@ -395,6 +420,13 @@ public sealed class StartupAssetExtractorTests
             using var shellStream = File.OpenRead(Path.Combine(output,
                 OriginalContent.StartMenuLayers[0].Path.Replace('/', Path.DirectorySeparatorChar)));
             Assert.Equal((byte)8, PackedIndexedImage.Read(shellStream).Palette[0].Red);
+
+            static (int Width, int Height, int Controls) Geometry(
+                PackedUiCatalog catalog, uint number)
+            {
+                var window = UiWindowGraphResolver.Resolve(catalog, number);
+                return (window.Width, window.Height, window.Controls.Count);
+            }
         }
         finally
         {
@@ -502,11 +534,12 @@ public sealed class StartupAssetExtractorTests
         var applicationFrames = GameMenuFrames()
             .Append(new UiApplicationFrameResource(15200, 145, 87, 486))
             .Select(frame => (Number: frame.ResourceNumber, Bytes: ApplicationFrame(frame))).ToArray();
-        var addWindowEditBox = new UiEditBoxResource(18401, 164, 12, 10);
-        var addWindowEditBoxes = new[]
+        var editBoxes = new[]
         {
-            (Number: addWindowEditBox.ResourceNumber, Bytes: EditBox(addWindowEditBox))
-        };
+            new UiEditBoxResource(18401, 164, 12, 10),
+            new UiEditBoxResource(12400, 236, 46, 4)
+        }.Select(editBox =>
+            (Number: editBox.ResourceNumber, Bytes: EditBox(editBox))).ToArray();
         var indexOffset = 28 + title.Length + windowImage.Length + menuLayers.Sum(item => item.Bytes.Length) +
             addExistingImages.Sum(item => item.Bytes.Length) +
             icons.Sum(item => item.Bytes.Length) + characterIcons.Sum(item => item.Bytes.Length) +
@@ -517,7 +550,7 @@ public sealed class StartupAssetExtractorTests
             font.Length + text.Length + windows.Sum(item => item.Bytes.Length) +
             windowButtons.Sum(item => item.Bytes.Length) +
             applicationFrames.Sum(item => item.Bytes.Length) +
-            addWindowEditBoxes.Sum(item => item.Bytes.Length);
+            editBoxes.Sum(item => item.Bytes.Length);
         using var stream = new MemoryStream();
         using var writer = new BinaryWriter(stream, Encoding.ASCII, leaveOpen: true);
         writer.Write(Encoding.ASCII.GetBytes("GFFI"));
@@ -615,7 +648,7 @@ public sealed class StartupAssetExtractorTests
             applicationFrameEntries.Add((frame.Number, offset, frame.Bytes.Length));
         }
         var editBoxEntries = new List<(uint Number, int Offset, int Size)>();
-        foreach (var editBox in addWindowEditBoxes)
+        foreach (var editBox in editBoxes)
         {
             var offset = checked((int)stream.Position);
             writer.Write(editBox.Bytes);
@@ -640,33 +673,6 @@ public sealed class StartupAssetExtractorTests
         return stream.ToArray();
     }
 
-    private static byte[] CharacterArchive()
-    {
-        var character = new byte[GffCharacterRecordEnvelope.FixedHeaderSize];
-        character[0] = GffCharacterRecordEnvelope.SupportedVersion;
-        Array.Fill(character, (byte)15, GffCharacterAbilityScores.ScoresOffset,
-            GffCharacterAbilityScores.ScoreCount);
-        Encoding.ASCII.GetBytes("Hero").CopyTo(character, GffCharacterIdentity.NameOffset);
-        var indexOffset = GffArchive.HeaderSize + character.Length + 1;
-        using var stream = new MemoryStream();
-        using var writer = new BinaryWriter(stream, Encoding.ASCII, leaveOpen: true);
-        writer.Write(Encoding.ASCII.GetBytes("GFFI"));
-        writer.Write(0x0003_0000U);
-        writer.Write((uint)GffArchive.HeaderSize);
-        writer.Write((uint)indexOffset);
-        writer.Write(new byte[12]);
-        var characterOffset = checked((int)stream.Position);
-        writer.Write(character);
-        var psionicOffset = checked((int)stream.Position);
-        writer.Write((byte)1);
-        writer.Write(0U);
-        writer.Write(0U);
-        writer.Write((ushort)2);
-        WriteTable(writer, "CHAR", [(7U, characterOffset, character.Length)]);
-        WriteTable(writer, "PSIN", [(7U, psionicOffset, 1)]);
-        return stream.ToArray();
-    }
-
     private static async Task<SourceFile> FingerprintAsync(string root, string relativePath)
     {
         var path = Path.Combine(root, relativePath);
@@ -687,7 +693,12 @@ public sealed class StartupAssetExtractorTests
                 [(43, 155), (67, 155), (91, 155), (114, 155), (253, 155)]),
             13500 => DestinationChildren(
                 [(163, 181), (187, 181), (211, 181), (235, 181), (288, 181)]),
-            OriginalContent.HostileInteractionWindowResourceNumber => InteractionChildren(),
+            OriginalContent.HostileInteractionWindowResourceNumber =>
+                StartupAssetTestArchives.InteractionChildren(),
+            OriginalContent.DialogueSpeechWindowResourceNumber =>
+                StartupAssetTestArchives.DialogueSpeechChildren(),
+            OriginalContent.DialogueResponseWindowResourceNumber =>
+                StartupAssetTestArchives.DialogueResponseChildren(),
             _ => []
         };
         var bytes = new byte[UiWindowResource.FixedSize + children.Length * UiWindowResource.ChildRecordSize];
@@ -699,7 +710,9 @@ public sealed class StartupAssetExtractorTests
                 18501 => 10002U,
                 OriginalContent.GameMenuWindowResourceNumber or
                     OriginalContent.PreferencesWindowResourceNumber or 11500 or 13500 or
-                    OriginalContent.HostileInteractionWindowResourceNumber => 0U,
+                    OriginalContent.HostileInteractionWindowResourceNumber or
+                    OriginalContent.DialogueSpeechWindowResourceNumber or
+                    OriginalContent.DialogueResponseWindowResourceNumber => 0U,
                 _ => StartupAssetExtractor.PartyWindowImageNumber
             })
             .CopyTo(bytes, 58);
@@ -707,7 +720,9 @@ public sealed class StartupAssetExtractorTests
             OriginalContent.GameMenuWindowResourceNumber or
             OriginalContent.PreferencesWindowResourceNumber
             ? OriginalContent.GameMenuLayer.FrameWidth :
-            number == OriginalContent.HostileInteractionWindowResourceNumber ? 92 : 320)))
+            number == OriginalContent.HostileInteractionWindowResourceNumber ? 92 :
+            number is OriginalContent.DialogueSpeechWindowResourceNumber or
+                OriginalContent.DialogueResponseWindowResourceNumber ? 318 : 320)))
             .CopyTo(bytes, 190);
         BitConverter.GetBytes(checked((ushort)(number switch
             {
@@ -717,6 +732,8 @@ public sealed class StartupAssetExtractorTests
                     OriginalContent.GameMenuLayer.FrameHeight,
                 11500 => 189,
                 OriginalContent.HostileInteractionWindowResourceNumber => 77,
+                OriginalContent.DialogueSpeechWindowResourceNumber => 72,
+                OriginalContent.DialogueResponseWindowResourceNumber => 58,
                 _ => 200
             }))).CopyTo(bytes, 192);
         for (var index = 0; index < children.Length; index++)
@@ -833,21 +850,22 @@ public sealed class StartupAssetExtractorTests
                 positions[index].X, positions[index].Y)).ToArray();
     }
 
-    private static UiChildReference[] InteractionChildren() =>
-    [
-        new("BUTN", 15308, 23, 59),
-        new("BUTN", 15307, 43, 59),
-        new("BUTN", 15306, 3, 59),
-        new("BUTN", 15309, 61, 60),
-        new("APFM", 15200, 0, 0)
-    ];
-
     private static UiButtonResource[] InteractionButtons() =>
     [
         new(15306, 15, 15, 15105, 0),
         new(15307, 15, 15, 15106, 0),
         new(15308, 15, 15, 15107, 0),
-        new(15309, 27, 11, 15109, 84)
+        new(15309, 27, 11, 15109, 84),
+        new(12300, 300, 58, 0, 0),
+        new(2093, 14, 14, 12102, 0),
+        new(2094, 14, 35, 12100, 0),
+        new(2096, 14, 35, 12100, 0),
+        new(2076, 300, 10, 12104, 0),
+        new(2077, 300, 10, 12105, 0),
+        new(2078, 300, 10, 12106, 0),
+        new(2079, 300, 10, 12107, 0),
+        new(2080, 300, 10, 12108, 0),
+        new(2095, 14, 14, 12102, 0)
     ];
 
     private static UiButtonResource[] MenuButtons() =>

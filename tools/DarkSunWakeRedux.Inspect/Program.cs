@@ -247,7 +247,7 @@ if (args.Length == 2 && args[0].Equals("image-catalog", StringComparison.Ordinal
     {
         await using var stream = File.OpenRead(args[1]);
         var archive = GffArchive.Read(stream, args[1]);
-        var imageTags = new HashSet<string>(["BMP ", "CBMP", "ICON"], StringComparer.Ordinal);
+        var imageTags = new HashSet<string>(["BMP ", "CBMP", "ICON", "PORT"], StringComparer.Ordinal);
         var images = archive.Resources.Where(resource => imageTags.Contains(resource.Tag)).Select(resource =>
         {
             var image = IndexedImage.Read(archive.GetResource(resource.Tag, resource.Number),

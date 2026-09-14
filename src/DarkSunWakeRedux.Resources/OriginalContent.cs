@@ -174,7 +174,7 @@ public sealed record SourceIdentification(
 
 public static class OriginalContent
 {
-    public const int AssetPackFormatVersion = 22;
+    public const int AssetPackFormatVersion = 23;
     public const string GameId = "dark-sun-wake-redux";
     public const string TitleImageAssetPath = "images/title.dsix";
     public const string InterfaceFontAssetPath = "fonts/interface.dsft";
@@ -185,6 +185,9 @@ public static class OriginalContent
     public const string ExplorationDestinationUiCatalogAssetPath =
         "ui/exploration-destinations.dsui";
     public const string InteractionUiCatalogAssetPath = "ui/interaction.dsui";
+    public const string FirstTyrDialogueScriptAssetPath = "dialogue/gpl-135.dsgp";
+    public const string FirstTyrDialoguePortraitAssetPath =
+        "images/dialogue/portrait-18.dsix";
     public const string CharacterCatalogAssetPath = "characters/catalog.dsch";
     public const string TyrRegionAssetPath = "regions/tyr.dsrg";
     public const string TyrObjectCatalogAssetPath = "regions/tyr-objects.dsob";
@@ -207,9 +210,17 @@ public static class OriginalContent
         [11500, 13500];
 
     public const uint HostileInteractionWindowResourceNumber = 3020;
+    public const uint DialogueSpeechWindowResourceNumber = 12500;
+    public const uint DialogueResponseWindowResourceNumber = 12501;
+    public const uint FirstTyrDialogueScriptResourceNumber = 135;
+    public const uint FirstTyrDialoguePortraitResourceNumber = 18;
 
     public static IReadOnlyList<uint> InteractionWindowResourceNumbers { get; } =
-        [HostileInteractionWindowResourceNumber];
+    [
+        HostileInteractionWindowResourceNumber,
+        DialogueSpeechWindowResourceNumber,
+        DialogueResponseWindowResourceNumber
+    ];
 
     public static IReadOnlyList<InteractionButtonAsset> InteractionButtonAssets { get; } =
     [
@@ -219,7 +230,13 @@ public static class OriginalContent
         new("talk-disabled", "images/interaction/talk-disabled.dsix", 15105, 16, 15, 4),
         new("use-disabled", "images/interaction/use-disabled.dsix", 15106, 16, 15, 4),
         new("pick-up-disabled", "images/interaction/pick-up-disabled.dsix", 15107, 16, 15, 4),
-        new("dismiss", "images/interaction/dismiss.dsix", 15109, 28, 11, 1)
+        new("dismiss", "images/interaction/dismiss.dsix", 15109, 28, 11, 1),
+        new("dialogue-more", "images/dialogue/more.dsix", 12100, 14, 35, 4),
+        new("dialogue-response-1", "images/dialogue/response-1.dsix", 12104, 302, 10, 1),
+        new("dialogue-response-2", "images/dialogue/response-2.dsix", 12105, 302, 10, 1),
+        new("dialogue-response-3", "images/dialogue/response-3.dsix", 12106, 302, 10, 1),
+        new("dialogue-response-4", "images/dialogue/response-4.dsix", 12107, 302, 10, 1),
+        new("dialogue-response-5", "images/dialogue/response-5.dsix", 12108, 302, 10, 1)
     ];
 
     public static IReadOnlyList<UiImageAsset> ExplorationCursorAssets { get; } =
