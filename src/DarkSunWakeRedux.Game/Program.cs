@@ -123,6 +123,7 @@ try
                 dialoguePortrait.Frames[0].Height != 72)
                 throw new InvalidDataException(
                     "The installed first Tyr dialogue portrait has unexpected geometry.");
+            FirstTyrDialogueProjection dialogueProjection;
             using (var scriptStream = File.OpenRead(Path.Combine(assetPack,
                        OriginalContent.FirstTyrDialogueScriptAssetPath.Replace(
                            '/', Path.DirectorySeparatorChar))))
@@ -132,11 +133,11 @@ try
                 if (script.ResourceNumber != OriginalContent.FirstTyrDialogueScriptResourceNumber)
                     throw new InvalidDataException(
                         "The installed first Tyr dialogue script has unexpected identity.");
-                var dialogue = FirstTyrDialogueProjectionReader.Read(script);
-                if (dialogue.PortraitResourceNumber !=
+                dialogueProjection = FirstTyrDialogueProjectionReader.Read(script);
+                if (dialogueProjection.PortraitResourceNumber !=
                         OriginalContent.FirstTyrDialoguePortraitResourceNumber ||
-                    dialogue.SpeechVariants.Count != 2 ||
-                    dialogue.InitialChoices.Count != 8)
+                    dialogueProjection.SpeechVariants.Count != 2 ||
+                    dialogueProjection.InitialChoices.Count != 8)
                     throw new InvalidDataException(
                         "The installed first Tyr dialogue projection has drifted.");
             }
@@ -165,6 +166,13 @@ try
             var font = PackedIndexedBitmapFont.Read(fontStream, OriginalContent.InterfaceFontAssetPath);
             if (font.Glyphs.Count != IndexedBitmapFont.CharacterCount)
                 throw new InvalidDataException("The installed interface font has an unexpected glyph count.");
+            var dialogueText = DialoguePreviewText.Create(font, dialogueProjection);
+            if (dialogueText.Speech.Width is <= 0 or > DialoguePreviewText.SpeechWidth ||
+                dialogueText.Responses.Count != DialoguePreviewText.MaximumResponses ||
+                dialogueText.Responses.Any(response =>
+                    response.Width is <= 0 or > DialoguePreviewText.ResponseWidth))
+                throw new InvalidDataException(
+                    "The installed first Tyr dialogue text does not fit its preview layout.");
             var textPath = Path.Combine(assetPack,
                 OriginalContent.TextCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using var textStream = File.OpenRead(textPath);

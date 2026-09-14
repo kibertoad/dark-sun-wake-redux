@@ -791,11 +791,14 @@
   clamps at region boundaries, and fills the whole backbuffer. Menus and other
   fixed screens still use the centered 320x200 transform. A temporary F9
   validation hook draws the measured dialogue windows, portrait #18, scrollbar
-  controls, and five response strips on that fixed canvas over the expanded Tyr
-  slice; it does not claim that conversation execution or text is implemented.
+  controls, five response strips, and the projected first literal speech/choice
+  page in the extracted bitmap font on that fixed canvas over the expanded Tyr
+  slice. Greedy wrapping and raw first-five literal selection are provisional;
+  the hook does not claim conversation or condition execution.
 - **Tests:** wide, tall, edge-clamped, and fixed viewport layout/inverse mapping;
   exact dialogue window, portrait, control-image, and response-row placement;
-  F9 rising-edge behavior; content-smoke graph validation.
+  bounded wrapping/selection and malformed text; F9 rising-edge behavior;
+  owned content-smoke fit and graph validation.
 - **Parity boundary:** the extra visible map and preview key are modern
   conveniences. Original 320x200 UI geometry remains unchanged.
 

@@ -33,9 +33,11 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     private readonly Dictionary<ExplorationCursorVisual, Texture2D> _cursorTextures = [];
     private DialogueOverlayLayout? _dialogueOverlay;
     private Texture2D? _dialoguePortrait;
+    private Texture2D? _dialogueSpeechText;
     private Texture2D? _solidPixel;
     private readonly List<(DialogueOverlayImage Placement, Texture2D Texture)>
         _dialogueOverlayImages = [];
+    private readonly List<(int X, int Y, Texture2D Texture)> _dialogueResponseText = [];
     private bool _dialoguePreviewVisible;
     private PackedRegion? _tyrRegion;
     private PackedObjectFrameCatalog? _tyrObjects;
@@ -149,8 +151,15 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                 interactionUiStream, OriginalContent.InteractionUiCatalogAssetPath);
             _dialogueOverlay = DialogueInput.ResolveOverlay(interactionUi);
         }
-        _dialoguePortrait = LoadImageTexture(
-            OriginalContent.FirstTyrDialoguePortraitAssetPath);
+        PackedIndexedImage dialoguePortraitImage;
+        using (var portraitStream = File.OpenRead(AssetPath(
+                   OriginalContent.FirstTyrDialoguePortraitAssetPath)))
+        {
+            dialoguePortraitImage = PackedIndexedImage.Read(
+                portraitStream, OriginalContent.FirstTyrDialoguePortraitAssetPath);
+            _dialoguePortrait = CreateTexture(
+                dialoguePortraitImage, dialoguePortraitImage.Frames[0]);
+        }
         var dialogueTextures = new Dictionary<string, Texture2D>(StringComparer.Ordinal);
         foreach (var placement in _dialogueOverlay.Images)
         {
@@ -163,6 +172,33 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         }
         _solidPixel = new Texture2D(GraphicsDevice, 1, 1);
         _solidPixel.SetData([Color.White]);
+        using (var fontStream = File.OpenRead(AssetPath(
+                   OriginalContent.InterfaceFontAssetPath)))
+        using (var scriptStream = File.OpenRead(AssetPath(
+                   OriginalContent.FirstTyrDialogueScriptAssetPath)))
+        {
+            var font = PackedIndexedBitmapFont.Read(
+                fontStream, OriginalContent.InterfaceFontAssetPath);
+            var script = PackedGplScript.Read(
+                scriptStream, OriginalContent.FirstTyrDialogueScriptAssetPath);
+            var previewText = DialoguePreviewText.Create(
+                font, FirstTyrDialogueProjectionReader.Read(script));
+            _dialogueSpeechText = CreateTextTexture(
+                dialoguePortraitImage.Palette, previewText.Speech.Pixels,
+                previewText.Speech.Width, previewText.Speech.Height);
+            var responsePlacements = _dialogueOverlay.Images
+                .Where(image => image.ResourceNumber is >= 2076 and <= 2080)
+                .OrderBy(image => image.ResourceNumber).ToArray();
+            for (var index = 0; index < previewText.Responses.Count; index++)
+            {
+                var text = previewText.Responses[index];
+                _dialogueResponseText.Add((
+                    responsePlacements[index].X + 2,
+                    responsePlacements[index].Y + Math.Max(0, (10 - text.Height) / 2),
+                    CreateTextTexture(dialoguePortraitImage.Palette,
+                        text.Pixels, text.Width, text.Height)));
+            }
+        }
         var preferencesTextures = new Dictionary<string, Texture2D>(StringComparer.Ordinal);
         foreach (var control in PreferencesInput.Resolve(gameMenuUi))
         {
@@ -646,6 +682,15 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                             ScaledRectangle(fixedCanvas, transform,
                                 placement.X, placement.Y, texture.Width, texture.Height),
                             Color.White);
+                    if (_dialogueSpeechText is not null)
+                        _spriteBatch.Draw(_dialogueSpeechText,
+                            ScaledRectangle(fixedCanvas, transform,
+                                77, 6, _dialogueSpeechText.Width,
+                                _dialogueSpeechText.Height), Color.White);
+                    foreach (var (x, y, texture) in _dialogueResponseText)
+                        _spriteBatch.Draw(texture,
+                            ScaledRectangle(fixedCanvas, transform,
+                                x, y, texture.Width, texture.Height), Color.White);
 
                     void DrawDialogueWindow(DialogueOverlayRectangle window) =>
                         _spriteBatch.Draw(_solidPixel,
@@ -696,9 +741,11 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         _openingLeaderTexture?.Dispose();
         foreach (var texture in _cursorTextures.Values) texture.Dispose();
         _dialoguePortrait?.Dispose();
+        _dialogueSpeechText?.Dispose();
         _solidPixel?.Dispose();
         foreach (var texture in _dialogueOverlayImages.Select(item => item.Texture).Distinct())
             texture.Dispose();
+        foreach (var (_, _, texture) in _dialogueResponseText) texture.Dispose();
         _spriteBatch?.Dispose();
         base.UnloadContent();
     }
@@ -720,5 +767,15 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         var bottom = (int)Math.Ceiling(
             (y + height) * (double)layout.ViewportHeight / layout.LogicalHeight);
         return new(left, top, Math.Max(1, right - left), Math.Max(1, bottom - top));
+    }
+
+    private Texture2D CreateTextTexture(
+        IReadOnlyList<Rgb24> palette,
+        byte[] pixels,
+        int width,
+        int height)
+    {
+        var alpha = pixels.Select(pixel => pixel == 0 ? (byte)0 : (byte)255).ToArray();
+        return CreateTexture(palette, pixels, alpha, width, height);
     }
 }

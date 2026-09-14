@@ -24,8 +24,10 @@ interaction/sole-action contract; Resources decodes the packed-string primitive
 and projects GPL #135's evidenced opening portrait, two conditional speech
 sources, and eight-entry menu while leaving conditions opaque;
 Game validates the measured five-row response layout and F9 previews the fixed
-portrait/window/control chrome over the live aspect-expanded map. Text,
-conversation entry, and GPL instruction execution remain pending.
+portrait/window/control chrome plus the projected first literal speech/response
+page in the extracted font over the live aspect-expanded map. Wrapping and raw
+first-five selection are provisional; condition filtering, conversation entry,
+and GPL instruction execution remain pending.
 
 ## Previous cohesive batch
 

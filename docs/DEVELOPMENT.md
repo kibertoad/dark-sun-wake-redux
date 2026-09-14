@@ -26,8 +26,10 @@ dialogue controls, first portrait, and opaque GPL #135 script. Extracted content
 redistributed.
 
 During the active Tyr slice, Alt+Enter toggles native-resolution fullscreen and
-F9 toggles a development preview of the measured dialogue portrait and chrome
-over the live map. The preview intentionally contains no dialogue text yet.
+F9 toggles a development preview of the measured dialogue portrait, chrome,
+and resource-derived first speech/response page over the live map. Its greedy
+wrapping and raw first-five literal choice selection are validation aids, not
+yet evidence-backed dialogue condition execution.
 
 Build and test the complete solution with:
 
