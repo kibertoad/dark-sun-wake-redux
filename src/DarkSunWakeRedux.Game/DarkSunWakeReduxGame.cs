@@ -209,6 +209,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             AddDialogueBranch(FirstTyrDialogueResponseProjectionReader.ReadKing(script));
             AddDialogueBranch(
                 FirstTyrDialogueResponseProjectionReader.ReadOpeningCaravan(script));
+            AddDialogueBranch(FirstTyrDialogueResponseProjectionReader.ReadAcar(script));
             _dialogueSession = DialogueSessionAdapter.Create(
                 _dialogueProjection, FirstTyrDialogueObservedState.Create(),
                 DialoguePreviewText.MaximumResponses);

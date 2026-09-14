@@ -357,7 +357,8 @@ decoder rather than being guessed now.
   equals one because that condition selects the opening-menu subroutine. Target
   1996's matching path is bounded through its two prints, local flag 11 set,
   local flag 7 clear, and return, leaving source choices 4, 5, and 6; the
-  alternate global-number path remains open. The remaining second-menu branches
+  alternate global-number path remains open. Target 2352 then prints its Acar
+  answer, clears local flag 11, and leaves source choices 5 and 6. The remaining second-menu branches
   and generalized GPL execution remain open. The hook renders the
   first literal speech and filtered labels with bounded provisional
   wrapping in the extracted font. Reusable ordered hotkey bindings and Core

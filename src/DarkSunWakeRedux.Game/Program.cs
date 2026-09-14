@@ -133,6 +133,7 @@ try
             FirstTyrDialogueResponseProjection troubleDialogueResponse;
             FirstTyrDialogueResponseProjection kingDialogueResponse;
             FirstTyrDialogueResponseProjection caravanDialogueResponse;
+            FirstTyrDialogueResponseProjection acarDialogueResponse;
             using (var scriptStream = File.OpenRead(Path.Combine(assetPack,
                        OriginalContent.FirstTyrDialogueScriptAssetPath.Replace(
                            '/', Path.DirectorySeparatorChar))))
@@ -155,6 +156,8 @@ try
                     FirstTyrDialogueResponseProjectionReader.ReadKing(script);
                 caravanDialogueResponse =
                     FirstTyrDialogueResponseProjectionReader.ReadOpeningCaravan(script);
+                acarDialogueResponse =
+                    FirstTyrDialogueResponseProjectionReader.ReadAcar(script);
                 if (dialogueProjection.PortraitResourceNumber !=
                         OriginalContent.FirstTyrDialoguePortraitResourceNumber ||
                     dialogueProjection.SpeechVariants.Count != 2 ||
@@ -376,6 +379,17 @@ try
                     "The installed first Tyr caravan response did not apply its effects.");
             _ = DialoguePreviewText.Create(font, dialogueProjection,
                 caravanDialogue.After, dialogueVariables, caravanDialogueResponse.Output);
+            identitySession.Execute(DialogueCommand.Select(0));
+            var acarDialogue = identitySession.Execute(DialogueCommand.Apply(
+                DialogueSessionAdapter.ToCore(acarDialogueResponse)));
+            if (!acarDialogue.Applied ||
+                acarDialogue.After.Variables.LocalFlags[11] ||
+                !acarDialogue.After.Choices.Select(choice => choice.SourceIndex)
+                    .SequenceEqual([5, 6]))
+                throw new InvalidDataException(
+                    "The installed first Tyr Acar response did not apply its effects.");
+            _ = DialoguePreviewText.Create(font, dialogueProjection,
+                acarDialogue.After, dialogueVariables, acarDialogueResponse.Output);
             var textPath = Path.Combine(assetPack,
                 OriginalContent.TextCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using var textStream = File.OpenRead(textPath);

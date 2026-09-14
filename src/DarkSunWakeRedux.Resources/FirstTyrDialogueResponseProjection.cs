@@ -72,6 +72,9 @@ public static class FirstTyrDialogueResponseProjectionReader
     public const int CaravanSourceChoiceIndex = 3;
     public const int CaravanEntryOffset = 1996;
     public const int CaravanReturnOffset = 2351;
+    public const int AcarSourceChoiceIndex = 4;
+    public const int AcarEntryOffset = 2352;
+    public const int AcarReturnOffset = 2414;
     public const byte PrintStringOpcode = 0x4f;
     public const byte PrintNewLineOpcode = 0x51;
     public const byte LoadVariableOpcode = 0x16;
@@ -262,6 +265,21 @@ public static class FirstTyrDialogueResponseProjectionReader
         {
             RequiredGlobalNumberConditions = [new(22, 1)]
         };
+    }
+
+    public static FirstTyrDialogueResponseProjection ReadAcar(
+        PackedGplScript script)
+    {
+        ValidateScript(script);
+        var bytes = script.Bytecode.AsSpan();
+        var position = AcarEntryOffset;
+        var output = new[] { ReadLiteralPrint(bytes, ref position, 2409) };
+        var assignment = ReadFlagAssignment(bytes, ref position, 11, false);
+        if (position != AcarReturnOffset)
+            throw Error($"Acar response effects end at {position}, not {AcarReturnOffset}");
+        RequireOpcode(bytes, ref position, LocalReturnOpcode, "Acar response local return");
+        return new(AcarSourceChoiceIndex, AcarEntryOffset, output,
+            [assignment], [], true);
     }
 
     private static FirstTyrDialogueResponseProjection ReadIncrementing(

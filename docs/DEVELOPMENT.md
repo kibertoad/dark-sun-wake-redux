@@ -30,8 +30,9 @@ F9 toggles a development preview of the measured dialogue portrait, chrome,
 and resource-derived first speech/response page over the live map. Its greedy
 wrapping is a validation aid. Response rows are condition-filtered in source
 order through deterministic Core evaluation; unknown variables fail closed and
-the preview intentionally starts from an empty variable snapshot until native
-initialization is evidenced. Choice execution is not implemented.
+the preview uses the bounded observed opening-state snapshot. Implemented
+choices and response targets execute atomically; visible targets whose effects
+remain unprojected are inert.
 
 Build and test the complete solution with:
 

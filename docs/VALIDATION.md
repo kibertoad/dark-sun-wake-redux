@@ -93,6 +93,9 @@ verifies local flag 11 sets and local flag 7 clears, resolves page order 4, 5,
 6, and rasterizes its two-part transcript. Core tests reject missing or different
 global-number prerequisites without mutation; synthetic tests reject condition,
 control-flow, or return drift.
+It next selects target 2352, verifies local flag 11 clears, resolves page order
+5, 6, and rasterizes the single-part transcript; synthetic tests reject its
+assignment or return drift.
 The owned smoke also rasterizes all five implemented returned transcripts with
 the extracted font, including choice 0's explicit blank line, within the bounded
 speech area.

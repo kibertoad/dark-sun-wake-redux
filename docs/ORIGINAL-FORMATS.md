@@ -413,6 +413,8 @@ to one. It validates that condition and branch targets, two compressed-literal
 prints, immediate one to local flag 11, the jump over the unselected alternate
 body, immediate zero to local flag 7, and local return at 2351. The alternate
 global-number path remains unimplemented.
+Target 2352 is bounded through local return at 2414: one compressed-literal
+print followed by immediate zero to local flag 11.
 
 The only decoded primitive is a bounded packed string used for future script
 interpretation. Marker `0x01` represents the active character name, marker
@@ -431,8 +433,8 @@ the exact print destinations, instruction boundaries, flag target/value,
 choice 2/3 counter target, choice 4's flag/number assignments, the exact
 post-menu control flow and second-menu conditions, choice 1's exact extended
 global reference and branch target, target 1825's local condition and assignment,
-target 3479's two flag assignments, target 1996's guarded opening path, and local
-return. Decoding these structures does not
+target 3479's two flag assignments, target 1996's guarded opening path, target
+2352's flag clear, and local return. Decoding these structures does not
 authorize executing other
 instructions or assigning condition and state-mutation semantics.
 

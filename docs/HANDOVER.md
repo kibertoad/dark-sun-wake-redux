@@ -66,7 +66,9 @@ leaves second-page source order 3, 5, 6. The
 captured opening selects the `GNUM22 == 1` entry path. Target 1996 preserves that
 as an explicit Core prerequisite, validates two prints, sets local flag 11,
 clears local flag 7, presents the transcript, and leaves source order 4, 5, 6.
-Its alternate global-number path remains unimplemented. The
+Its alternate global-number path remains unimplemented. Target 2352 prints its
+Acar response, clears local flag 11, presents the transcript, and leaves source
+order 5, 6. The
 fixed portrait/window/control chrome and
 projected initial literal speech render over the live aspect-expanded map.
 Wrapping, conversation entry, remaining second-menu response branches, and

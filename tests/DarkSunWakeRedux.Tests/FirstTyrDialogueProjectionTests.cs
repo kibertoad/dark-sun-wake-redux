@@ -361,6 +361,38 @@ public sealed class FirstTyrDialogueProjectionTests
             }));
     }
 
+    [Fact]
+    public void ProjectsAcarResponseFlagClear()
+    {
+        var projection = FirstTyrDialogueResponseProjectionReader.ReadAcar(
+            ScriptWithAcarResponse());
+
+        Assert.Equal((4, 2352, 58), (projection.SourceChoiceIndex,
+            projection.EntryOffset, projection.Output.Single().Text!.Text.Length));
+        Assert.Equal([(11, false)], projection.LocalFlagAssignments
+            .Select(assignment => ((int)assignment.VariableId, assignment.Value)));
+        Assert.True(projection.ReturnsToMenu);
+    }
+
+    [Fact]
+    public void RejectsAcarResponseAssignmentAndReturnDrift()
+    {
+        var driftedAssignment = ScriptWithAcarResponse();
+        driftedAssignment.Bytecode[2413] = 0x0c;
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadAcar(driftedAssignment));
+        var driftedReturn = ScriptWithAcarResponse();
+        driftedReturn.Bytecode[2414] = 0;
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadAcar(driftedReturn));
+        var truncated = ScriptWithAcarResponse();
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadAcar(truncated with
+            {
+                Bytecode = truncated.Bytecode[..2414]
+            }));
+    }
+
     private static PackedGplScript Script()
     {
         var bytes = new byte[1000];
@@ -530,6 +562,20 @@ public sealed class FirstTyrDialogueProjectionTests
         [
             0x67,
             0x16, 0x8f, 0x00, 0x8e, 0x07,
+            0x15
+        ]);
+        return script with { Bytecode = bytes };
+    }
+
+    private static PackedGplScript ScriptWithAcarResponse()
+    {
+        var script = Script();
+        var bytes = new byte[2415];
+        script.Bytecode.CopyTo(bytes, 0);
+        WritePrint(bytes, 2352, new string('T', 58));
+        Write(bytes, 2409,
+        [
+            0x16, 0x8f, 0x00, 0x8e, 0x0b,
             0x15
         ]);
         return script with { Bytecode = bytes };

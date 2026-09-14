@@ -711,6 +711,7 @@
   entry, so the captured opening establishes that value for this path. Target
   1996's matching branch prints two literals, sets local flag 11, skips its
   alternate body, clears local flag 7, and returns.
+  Target 2352 prints one literal, clears local flag 11, and returns.
 - **Confidence:** verified for the captured layouts, first exchange's GPL chunk,
   and visible response text; high for the static UI graph; medium for the
   opening-only local number 0, local flags 9/16, global flag 357, and global
@@ -783,6 +784,9 @@
   jumps, two literal prints, local flag 11 set, local flag 7 clear, and return
   at 2351. Core rejects missing or different prerequisite state before mutation;
   the owned path presents the transcript and recomputes page two as 4, 5, 6.
+  Target 2352 has an exact bounded print, local-flag-11 clear, and return
+  projection through offset 2414; runtime presents it and recomputes page two
+  as source order 5, 6.
   Choice 7's target has an exact bounded projection at offsets 2905–2920: print
   GSTRING #5, assign immediate one to local flags 14 and 4, then return locally.
   Core validates the selected identity before applying both flags atomically and
@@ -799,7 +803,8 @@
   assignment path, opening continuation and second-menu projection, caller-page
   return, target-1825 local-condition/assignment drift, target-3479 flag/return
   drift, target-1996 condition/control-flow/return drift, global-number
-  prerequisite success and atomic rejection, explicit-newline transcript rendering and malformed-output rejection,
+  prerequisite success and atomic rejection, target-2352 assignment/return
+  drift, explicit-newline transcript rendering and malformed-output rejection,
   atomic flag
   application, conditional global-flag effects, deterministic menu reselection,
   unknown local-number/global-condition rejection, mismatched-branch rejection,
