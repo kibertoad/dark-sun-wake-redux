@@ -87,6 +87,7 @@ public sealed class ExplorationSessionTests
     [InlineData(ExplorationView.CastSpellsOrUsePsionics)]
     [InlineData(ExplorationView.CurrentSpellEffects)]
     [InlineData(ExplorationView.OverheadMap)]
+    [InlineData(ExplorationView.Preferences)]
     [InlineData(ExplorationView.GameMenu)]
     public void OpensEveryDocumentedExplorationView(ExplorationView view)
     {

@@ -80,6 +80,7 @@ public static class GameMenuInput
             ExplorationCommand.Open(ExplorationView.CastSpellsOrUsePsionics),
         GameMenuAction.CurrentSpellEffects =>
             ExplorationCommand.Open(ExplorationView.CurrentSpellEffects),
+        GameMenuAction.Preferences => ExplorationCommand.Open(ExplorationView.Preferences),
         GameMenuAction.OverheadMap => ExplorationCommand.Open(ExplorationView.OverheadMap),
         GameMenuAction.CollapseParty =>
             new(ExplorationCommandKind.ShowLeaderOnly),

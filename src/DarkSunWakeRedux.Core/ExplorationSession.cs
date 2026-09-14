@@ -21,6 +21,7 @@ public enum ExplorationView
     CastSpellsOrUsePsionics,
     CurrentSpellEffects,
     OverheadMap,
+    Preferences,
     GameMenu,
     ExitRequested
 }

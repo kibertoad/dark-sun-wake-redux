@@ -133,7 +133,12 @@ public static class StartupAssetExtractor
             OriginalContent.GameMenuLayer, "game-menu", cancellationToken));
         files.Add(await ExtractLayerAsync(archive, interfacePalette, stagingRoot,
             OriginalContent.InventoryLayer, "inventory", cancellationToken));
-        foreach (var mapping in OriginalContent.GameMenuButtons)
+        foreach (var layer in OriginalContent.ExplorationDestinationTitleLayers)
+            files.Add(await ExtractLayerAsync(archive, interfacePalette, stagingRoot,
+                layer, "exploration-destination", cancellationToken));
+        foreach (var mapping in OriginalContent.GameMenuButtons
+                     .Concat(OriginalContent.PreferencesButtons)
+                     .DistinctBy(asset => asset.Path))
         {
             var image = IndexedImage.Read(archive.GetResource(ImageTag, mapping.ImageResourceNumber),
                 $"{SourcePath}:{ImageTag}#{mapping.ImageResourceNumber}");
@@ -163,7 +168,7 @@ public static class StartupAssetExtractor
             OriginalContent.StartFlowWindowResourceNumbers, "start-flow", cancellationToken));
         files.Add(await WriteUiCatalogAsync(stagingRoot, archive,
             OriginalContent.GameMenuUiCatalogAssetPath,
-            [OriginalContent.GameMenuWindowResourceNumber], "game-menu", cancellationToken));
+            OriginalContent.GameMenuWindowResourceNumbers, "game-menu", cancellationToken));
         files.Add(await WriteUiCatalogAsync(stagingRoot, archive,
             OriginalContent.ExplorationDestinationUiCatalogAssetPath,
             OriginalContent.ExplorationDestinationWindowResourceNumbers,

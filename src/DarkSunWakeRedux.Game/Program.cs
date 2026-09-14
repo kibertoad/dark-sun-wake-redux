@@ -79,7 +79,9 @@ try
             if (gameMenuFrame.Width != OriginalContent.GameMenuLayer.FrameWidth ||
                 gameMenuFrame.Height != OriginalContent.GameMenuLayer.FrameHeight)
                 throw new InvalidDataException("The installed game-menu base has unexpected geometry.");
-            foreach (var button in OriginalContent.GameMenuButtons)
+            foreach (var button in OriginalContent.GameMenuButtons
+                         .Concat(OriginalContent.PreferencesButtons)
+                         .DistinctBy(asset => asset.Path))
             {
                 var image = ReadImage(assetPack, button.Path);
                 if (!button.HasExpectedFrames(image.Frames))
@@ -92,6 +94,14 @@ try
                 inventoryFrame.Height != OriginalContent.InventoryLayer.FrameHeight)
                 throw new InvalidDataException(
                     "The installed inventory base has unexpected geometry.");
+            foreach (var layer in OriginalContent.ExplorationDestinationTitleLayers)
+            {
+                var image = ReadImage(assetPack, layer.Path);
+                var frame = AssertSingleFrame(image.Frames, layer.Name);
+                if (frame.Width != layer.FrameWidth || frame.Height != layer.FrameHeight)
+                    throw new InvalidDataException(
+                        $"The installed {layer.Name} image has unexpected geometry.");
+            }
             var openingLeader = ReadImage(assetPack, OriginalContent.OpeningLeaderImageAssetPath);
             var openingLeaderFrame = openingLeader.Frames[0];
             if (!openingLeader.Frames.Select(frame => (frame.Width, frame.Height))
@@ -219,7 +229,11 @@ try
             using var gameMenuUiStream = File.OpenRead(gameMenuUiPath);
             var gameMenuUi = PackedUiCatalog.Read(
                 gameMenuUiStream, OriginalContent.GameMenuUiCatalogAssetPath);
-            if (GameMenuInput.Resolve(gameMenuUi).Count != OriginalContent.GameMenuButtons.Count)
+            if (!gameMenuUi.Windows.Select(window => window.ResourceNumber)
+                    .SequenceEqual(OriginalContent.GameMenuWindowResourceNumbers) ||
+                GameMenuInput.Resolve(gameMenuUi).Count != OriginalContent.GameMenuButtons.Count ||
+                PreferencesInput.Resolve(gameMenuUi).Count !=
+                    OriginalContent.PreferencesButtons.Count)
                 throw new InvalidDataException("The installed game-menu UI graph is incomplete.");
             var destinationUiPath = Path.Combine(assetPack,
                 OriginalContent.ExplorationDestinationUiCatalogAssetPath.Replace(
@@ -234,7 +248,11 @@ try
                 ExplorationDestinationInput.Resolve(
                     destinationUi, ExplorationView.ViewCharacter).Count != 5 ||
                 ExplorationDestinationInput.Resolve(
-                    destinationUi, ExplorationView.ViewInventory).Count != 5)
+                    destinationUi, ExplorationView.ViewInventory).Count != 5 ||
+                ExplorationDestinationInput.Resolve(destinationUi,
+                    ExplorationView.CastSpellsOrUsePsionics).Count != 5 ||
+                ExplorationDestinationInput.Resolve(destinationUi,
+                    ExplorationView.CurrentSpellEffects).Count != 5)
                 throw new InvalidDataException(
                     "The installed exploration-destination UI graphs are incomplete.");
             Console.WriteLine($"Verified runtime startup assets at {assetPack}.");

@@ -39,6 +39,7 @@ public sealed class GameMenuInputTests
     [InlineData(GameMenuAction.CastSpellsOrUsePsionics,
         ExplorationView.CastSpellsOrUsePsionics)]
     [InlineData(GameMenuAction.CurrentSpellEffects, ExplorationView.CurrentSpellEffects)]
+    [InlineData(GameMenuAction.Preferences, ExplorationView.Preferences)]
     [InlineData(GameMenuAction.OverheadMap, ExplorationView.OverheadMap)]
     public void RoutesImplementedDestinationActions(
         GameMenuAction action, ExplorationView expected)
@@ -77,12 +78,7 @@ public sealed class GameMenuInputTests
         Assert.Equal(ExplorationCommandKind.Escape,
             GameMenuInput.CommandFor(returnControl)!.Kind);
 
-        var pending = new[]
-        {
-            GameMenuAction.ExitToDos,
-            GameMenuAction.LoadSave,
-            GameMenuAction.Preferences
-        };
+        var pending = new[] { GameMenuAction.ExitToDos, GameMenuAction.LoadSave };
         Assert.All(controls.Where(item => pending.Contains(item.Action)),
             item => Assert.Null(GameMenuInput.CommandFor(item)));
     }

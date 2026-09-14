@@ -23,15 +23,7 @@ public static class ExplorationDestinationInput
     private static readonly IReadOnlyDictionary<ExplorationView, Page> Pages =
         new Dictionary<ExplorationView, Page>
         {
-            [ExplorationView.ViewCharacter] = new(11500, 320, 189,
-                new Dictionary<uint, (int, int)>
-                {
-                    [10300] = (43, 155),
-                    [11304] = (67, 155),
-                    [11305] = (91, 155),
-                    [11306] = (114, 155),
-                    [10308] = (253, 155)
-                }),
+            [ExplorationView.ViewCharacter] = CharacterPage(),
             [ExplorationView.ViewInventory] = new(13500, 320, 200,
                 new Dictionary<uint, (int, int)>
                 {
@@ -40,8 +32,20 @@ public static class ExplorationDestinationInput
                     [11305] = (211, 181),
                     [11306] = (235, 181),
                     [10308] = (288, 181)
-                })
+                }),
+            [ExplorationView.CastSpellsOrUsePsionics] = CharacterPage(),
+            [ExplorationView.CurrentSpellEffects] = CharacterPage()
         };
+
+    private static Page CharacterPage() => new(11500, 320, 189,
+        new Dictionary<uint, (int, int)>
+        {
+            [10300] = (43, 155),
+            [11304] = (67, 155),
+            [11305] = (91, 155),
+            [11306] = (114, 155),
+            [10308] = (253, 155)
+        });
 
     private static readonly IReadOnlyDictionary<uint, ExplorationView> Destinations =
         new Dictionary<uint, ExplorationView>
@@ -60,7 +64,7 @@ public static class ExplorationDestinationInput
         ArgumentNullException.ThrowIfNull(catalog);
         if (!Pages.TryGetValue(pageView, out var page))
             throw new ArgumentOutOfRangeException(nameof(pageView), pageView,
-                "Only character and inventory destination pages have mapped UI graphs.");
+                "The requested exploration destination page has no mapped UI graph.");
         var window = UiWindowGraphResolver.Resolve(catalog, page.WindowResourceNumber);
         if (window.Width != page.Width || window.Height != page.Height)
             throw new InvalidDataException(

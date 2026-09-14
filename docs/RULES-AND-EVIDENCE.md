@@ -196,7 +196,7 @@
   opening position, and visible pixels in GOG-1432903719; high for the anchor
   relationship from bounded executable paths. Footprint, animation sequence,
   cadence, and later actor state remain unknown.
-- **Implementation:** pack v19 retains
+- **Implementation:** pack v20 retains
   `images/exploration/opening-leader.dsix`, preserving OBJEX and Tyr-palette
   provenance. Gameplay draws frame 0 through reusable world-to-camera actor
   placement, with viewport-edge culling. Runtime Walk clicks now move its
@@ -491,22 +491,21 @@
   semantics from the manual/image correlation. The source graph contains no
   canvas origin. Centering the 210x116 panel on the 320x200 canvas at (55,42) is
   a provisional presentation choice pending controlled native measurement.
-- **Implementation:** asset-pack format 19 includes the base, all 14 button images,
+- **Implementation:** asset-pack format 20 includes the base, all 14 button images,
   and `ui/game-menu.dsui`. `GameMenuInput` resolves the DSUI graph into semantic
   absolute hit rectangles; MonoGame draws first frames over the Tyr viewport.
   Character, inventory, cast/psionic, effects, overhead-map, Walk/Look/Attack,
-  and Return route to existing deterministic Core commands. Center on Leader
+  Preferences, and Return route to existing deterministic Core commands. Center on Leader
   supplies the moving sprite's world center to a bounded Core camera command;
-  Collapse Party restores leader-only display and both return to play. Exit,
-  Load/Save, and Preferences remain visibly inert until their destination or
-  missing world-state behavior is implemented.
+  Collapse Party restores leader-only display and both return to play. Exit and
+  Load/Save remain visibly inert until their destination behavior is implemented.
 - **Tests:** exact unique mapping, synthetic transactional extraction and
   provenance, complete graph resolution, image/frame contracts, absolute and
   exclusive hit rectangles, semantic routing, explicitly inert actions,
   actor-relative center routing, camera clamping/menu return, collapse state,
   malformed image references, pack verification, and no-window content smoke.
 - **Uncertainty:** Native panel origin, frame-state selection, hover/press timing,
-  description-bar text, three pending actions, exact native centering policy,
+  description-bar text, two pending actions, exact native centering policy,
   and destination-screen presentation.
 
 ### DATA-GOG-UI-010 - Character and inventory destination graphs
@@ -530,7 +529,7 @@
   association is high from resource-family structure, artwork, and manual
   function. Interior-control meaning, dynamic draw order, and frame states are
   unknown.
-- **Implementation:** pack format 19 adds the inventory base and a separate
+- **Implementation:** pack format 20 includes the inventory base and a separate
   two-window destination DSUI while reusing the already extracted character
   shell and five icon assets. `ExplorationDestinationInput` is one semantic
   page object for both layouts. MonoGame renders each shell, routes only those
@@ -540,8 +539,62 @@
   synthetic transactional extraction, complete owned graph counts, pack
   verification, and no-window content smoke.
 - **Uncertainty:** Character fields, inventory objects and transfers, party
-  selection, interior actions, native focus/hover/press frames, and the
-  cast/effects destination shells remain open.
+  selection, interior actions, and native focus/hover/press frames remain open.
+
+### OBS-GOG-UI-001 - Cast and Current Effects stable screens
+
+- **Question:** Which shell, title resources, and shared controls are visibly
+  active after the documented C/U and E hotkeys?
+- **Method:** Run the supported GOG build in DOSBox, enter Tyr with the supplied
+  party, select leader AR'ANDA, invoke C and E separately, and retain the two
+  resulting 320x200 captures only under ignored `analysis/original/`. Compare
+  their stable pixels and control placement with the bounded RESOURCE.GFF
+  image and UI catalogs.
+- **Finding:** Cast Spells / Use PSI reuses the 320x200 `BMP ` #11000 character
+  shell, centers 104x23 `BMP ` #20080 (USE) at `(108,0)`, and retains the
+  `WIND` #11500 bottom navigation. Current Spell / Effects reuses the same
+  shell and navigation, centering 152x23 `BMP ` #20075 (EFFECTS) at `(84,0)`.
+  Their populated interior regions differ, but those fields and actions are not
+  established by these two captures.
+- **Confidence:** verified for the observed owned-build composition and title
+  placement; high for the shared navigation association corroborated by the
+  manual and exact #11500 graph. Dynamic content and state-dependent variation
+  remain unknown.
+- **Implementation:** pack format 20 extracts both title images. The runtime
+  composes each title over the shared character base and resolves the same five
+  #11500 navigation controls for Character, Cast, and Effects destinations.
+- **Tests:** exact title identity/geometry/placement, transactional extraction,
+  shared page resolution, semantic navigation, pack verification, and
+  no-window content smoke.
+
+### DATA-GOG-UI-011 - Preferences graph and artwork
+
+- **Question:** Which owned resources form the Preferences destination, and
+  which interactions are safe to expose before setting ranges are measured?
+- **Method:** Decode `WIND` #16500 and every referenced `BUTN`, `APFM`, and
+  `ICON` from the fingerprinted `RESOURCE.GFF`; render with `PAL ` #1000 and
+  correlate the graph with MANUAL-1994 page 15.
+- **Finding:** #16500 is 210x116 with 15 ordered children: two application
+  frames and 13 buttons. It reuses `BMP ` #10000 at the same provisional
+  centered origin as Game Menu. The graph identifies music, sound-effects,
+  animations, voice-effects, About, paired music/sound/difficulty controls,
+  Game Menu, and Return. All identities, positions, dimensions, images, and
+  frame counts are bounded. The manual establishes the toggle and slider roles
+  but not their numeric ranges, increments, defaults beyond Average difficulty,
+  or exact frame-state policy.
+- **Confidence:** verified for the owned graph/image contracts; high for the
+  labeled roles and navigation from the manual. Numeric setting behavior and
+  panel-origin parity remain open.
+- **Implementation:** pack format 20 expands `ui/game-menu.dsui` with #16500,
+  extracts eight additional unique images, and renders the authentic base and
+  first frames. `PreferencesInput` supplies exclusive absolute hit rectangles;
+  Game Menu and Return navigate deterministically while setting mutations stay
+  inert until their boundaries are evidenced.
+- **Tests:** exact graph/button/image geometry, duplicate/drift rejection,
+  exclusive hit edges, navigation and inert-action routing, transactional
+  extraction, content smoke, and exact owned-pack verification.
+- **Uncertainty:** numeric ranges, adjustment steps, toggle defaults, About
+  destination, selected/disabled frames, description text, and native origin.
 
 ## Initial rules
 

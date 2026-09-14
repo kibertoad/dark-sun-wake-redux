@@ -161,7 +161,7 @@ public sealed record SourceIdentification(
 
 public static class OriginalContent
 {
-    public const int AssetPackFormatVersion = 19;
+    public const int AssetPackFormatVersion = 20;
     public const string GameId = "dark-sun-wake-redux";
     public const string TitleImageAssetPath = "images/title.dsix";
     public const string InterfaceFontAssetPath = "fonts/interface.dsft";
@@ -184,6 +184,11 @@ public static class OriginalContent
 
     public const uint GameMenuWindowResourceNumber = 10500;
 
+    public const uint PreferencesWindowResourceNumber = 16500;
+
+    public static IReadOnlyList<uint> GameMenuWindowResourceNumbers { get; } =
+        [GameMenuWindowResourceNumber, PreferencesWindowResourceNumber];
+
     public static IReadOnlyList<uint> ExplorationDestinationWindowResourceNumbers { get; } =
         [11500, 13500];
 
@@ -192,6 +197,14 @@ public static class OriginalContent
 
     public static UiLayerAsset InventoryLayer { get; } =
         new("inventory", "images/exploration/inventory-base.dsix", 13001, 0, 0, 320, 200);
+
+    public static IReadOnlyList<UiLayerAsset> ExplorationDestinationTitleLayers { get; } =
+    [
+        new("effects-title", "images/exploration/effects-title.dsix",
+            20075, 84, 0, 152, 23),
+        new("use-title", "images/exploration/use-title.dsix",
+            20080, 108, 0, 104, 23)
+    ];
 
     public static IReadOnlyList<GameMenuButtonAsset> GameMenuButtons { get; } =
     [
@@ -223,6 +236,36 @@ public static class OriginalContent
             10312, 10112, 116, 78, 16, 16, 4),
         new("return-to-game", "images/game-menu/return-to-game.dsix",
             10308, 10108, 139, 78, 28, 16, 2)
+    ];
+
+    public static IReadOnlyList<GameMenuButtonAsset> PreferencesButtons { get; } =
+    [
+        new("music-on-off", "images/preferences/music-on-off.dsix",
+            16300, 16100, 49, 24, 16, 16, 4),
+        new("music-volume-increase", "images/preferences/increase.dsix",
+            16304, 16104, 159, 29, 9, 8, 4),
+        new("music-volume-decrease", "images/preferences/decrease.dsix",
+            16305, 16105, 66, 29, 9, 8, 4),
+        new("sound-effects-on-off", "images/preferences/sound-effects-on-off.dsix",
+            16301, 16101, 49, 43, 16, 16, 4),
+        new("sound-effects-volume-increase", "images/preferences/increase.dsix",
+            16306, 16104, 159, 48, 9, 8, 4),
+        new("sound-effects-volume-decrease", "images/preferences/decrease.dsix",
+            16307, 16105, 66, 48, 9, 8, 4),
+        new("animations-on-off", "images/preferences/animations-on-off.dsix",
+            16302, 16102, 67, 78, 16, 16, 4),
+        new("about", "images/preferences/about.dsix",
+            16303, 16103, 49, 78, 16, 16, 4),
+        new("difficulty-increase", "images/preferences/increase.dsix",
+            16308, 16104, 149, 67, 9, 8, 4),
+        new("difficulty-decrease", "images/preferences/decrease.dsix",
+            16309, 16105, 56, 67, 9, 8, 4),
+        new("game-menu", "images/preferences/game-menu.dsix",
+            11308, 11101, 109, 78, 28, 16, 3),
+        new("return-to-game", "images/game-menu/return-to-game.dsix",
+            10308, 10108, 139, 78, 28, 16, 2),
+        new("voice-effects-on-off", "images/preferences/voice-effects-on-off.dsix",
+            16310, 16106, 85, 78, 16, 16, 4)
     ];
 
     public static IReadOnlyList<UiLayerAsset> StartMenuLayers { get; } =

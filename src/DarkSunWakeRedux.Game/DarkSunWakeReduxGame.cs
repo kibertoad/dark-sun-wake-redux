@@ -19,7 +19,10 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     private IReadOnlyList<AddExistingControl> _addExistingControls = [];
     private Texture2D? _gameMenuBase;
     private readonly List<(GameMenuControl Control, Texture2D Texture)> _gameMenuControls = [];
+    private readonly List<(PreferencesControl Control, Texture2D Texture)> _preferencesControls = [];
     private Texture2D? _inventoryBase;
+    private readonly Dictionary<ExplorationView, (UiLayerAsset Layer, Texture2D Texture)>
+        _explorationDestinationTitles = [];
     private readonly Dictionary<ExplorationView,
         List<(ExplorationDestinationControl Control, Texture2D Texture)>>
         _explorationDestinationControls = [];
@@ -119,7 +122,28 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             gameMenuUiStream, OriginalContent.GameMenuUiCatalogAssetPath);
         foreach (var control in GameMenuInput.Resolve(gameMenuUi))
             _gameMenuControls.Add((control, LoadImageTexture(control.AssetPath)));
+        var preferencesTextures = new Dictionary<string, Texture2D>(StringComparer.Ordinal);
+        foreach (var control in PreferencesInput.Resolve(gameMenuUi))
+        {
+            if (!preferencesTextures.TryGetValue(control.AssetPath, out var texture))
+            {
+                texture = LoadImageTexture(control.AssetPath);
+                preferencesTextures.Add(control.AssetPath, texture);
+            }
+            _preferencesControls.Add((control, texture));
+        }
         _inventoryBase = LoadImageTexture(OriginalContent.InventoryLayer.Path);
+        foreach (var layer in OriginalContent.ExplorationDestinationTitleLayers)
+        {
+            var view = layer.Name switch
+            {
+                "use-title" => ExplorationView.CastSpellsOrUsePsionics,
+                "effects-title" => ExplorationView.CurrentSpellEffects,
+                _ => throw new InvalidDataException(
+                    $"Unknown exploration destination title '{layer.Name}'.")
+            };
+            _explorationDestinationTitles.Add(view, (layer, LoadTexture(layer)));
+        }
         var destinationUiPath = AssetPath(
             OriginalContent.ExplorationDestinationUiCatalogAssetPath);
         using var destinationUiStream = File.OpenRead(destinationUiPath);
@@ -127,7 +151,12 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             OriginalContent.ExplorationDestinationUiCatalogAssetPath);
         var destinationTextures = new Dictionary<string, Texture2D>(StringComparer.Ordinal);
         foreach (var view in new[]
-                 { ExplorationView.ViewCharacter, ExplorationView.ViewInventory })
+                 {
+                     ExplorationView.ViewCharacter,
+                     ExplorationView.ViewInventory,
+                     ExplorationView.CastSpellsOrUsePsionics,
+                     ExplorationView.CurrentSpellEffects
+                 })
         {
             var pageControls = new List<(ExplorationDestinationControl, Texture2D)>();
             foreach (var control in ExplorationDestinationInput.Resolve(destinationUi, view))
@@ -214,7 +243,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         {
             var mouse = Mouse.GetState();
             var screen = _startFlow.Snapshot().Screen;
-            var explorationMenuConsumedLeftClick = false;
+            var explorationOverlayConsumedLeftClick = false;
             if (mouse.LeftButton == ButtonState.Pressed && _previousMouse.LeftButton == ButtonState.Released)
             {
                 var transform = new LogicalCanvasTransform(
@@ -236,7 +265,16 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                         CommandForGameMenuControl(menuControl) is { } explorationCommand)
                     {
                         ExecuteExplorationCommand(explorationCommand);
-                        explorationMenuConsumedLeftClick = true;
+                        explorationOverlayConsumedLeftClick = true;
+                    }
+                    else if (screen == StartFlowScreen.Gameplay &&
+                        _exploration.Snapshot().View == ExplorationView.Preferences &&
+                        PreferencesInput.HitTest(
+                            _preferencesControls.Select(item => item.Control).ToArray(), x, y) is { } preferencesControl &&
+                        PreferencesInput.CommandFor(preferencesControl) is { } preferencesCommand)
+                    {
+                        ExecuteExplorationCommand(preferencesCommand);
+                        explorationOverlayConsumedLeftClick = true;
                     }
                     else if (screen == StartFlowScreen.Gameplay &&
                         _explorationDestinationControls.TryGetValue(
@@ -253,7 +291,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                 _startFlow.Execute(StartFlowCommand.Cancel());
             if (screen == StartFlowScreen.Gameplay)
                 UpdateExploration(mouse, keyboard, gameTime.ElapsedGameTime,
-                    explorationMenuConsumedLeftClick);
+                    explorationOverlayConsumedLeftClick);
             _previousMouse = mouse;
             _previousKeyboard = keyboard;
             if (_startFlow.Snapshot().Screen == StartFlowScreen.ExitRequested) Exit();
@@ -336,6 +374,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         if (_spriteBatch is not null)
         {
             var screen = _startFlow.Snapshot().Screen;
+            var explorationView = _exploration.Snapshot().View;
             var images = screen switch
             {
                 StartFlowScreen.StartWindow => _startMenuLayers.Select(item =>
@@ -345,21 +384,29 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                 StartFlowScreen.AddExistingCharacter => _addExistingImages.Select(item =>
                     (item.Placement.X, item.Placement.Y, item.Texture)),
                 StartFlowScreen.Gameplay when
-                    _exploration.Snapshot().View == ExplorationView.ViewCharacter =>
+                    explorationView == ExplorationView.ViewCharacter =>
                     _partyOverviewLayers.Select(item =>
                         (item.Layer.X, item.Layer.Y, item.Texture)),
                 StartFlowScreen.Gameplay when
-                    _exploration.Snapshot().View == ExplorationView.ViewInventory &&
+                    explorationView == ExplorationView.ViewInventory &&
                     _inventoryBase is not null =>
                     [(OriginalContent.InventoryLayer.X,
                         OriginalContent.InventoryLayer.Y, _inventoryBase)],
+                StartFlowScreen.Gameplay when
+                    _explorationDestinationTitles.TryGetValue(
+                        explorationView, out var destinationTitle) =>
+                    _partyOverviewLayers.Take(1).Select(item =>
+                            (item.Layer.X, item.Layer.Y, item.Texture))
+                        .Append((destinationTitle.Layer.X, destinationTitle.Layer.Y,
+                            destinationTitle.Texture)),
                 StartFlowScreen.Gameplay when _explorationSceneTexture is not null =>
                     [(0, 0, _explorationSceneTexture)],
                 _ => []
             };
             var placedImages = images.ToArray();
             if (screen == StartFlowScreen.Gameplay &&
-                _exploration.Snapshot().View is ExplorationView.World or ExplorationView.GameMenu &&
+                _exploration.Snapshot().View is ExplorationView.World or ExplorationView.GameMenu or
+                    ExplorationView.Preferences &&
                 _openingLeaderTexture is not null &&
                 _leaderController is not null)
             {
@@ -379,6 +426,17 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                     .Append((OriginalContent.GameMenuLayer.X,
                         OriginalContent.GameMenuLayer.Y, _gameMenuBase))
                     .Concat(_gameMenuControls.Select(item =>
+                        (item.Control.X, item.Control.Y, item.Texture)))
+                    .ToArray();
+            }
+            if (screen == StartFlowScreen.Gameplay &&
+                _exploration.Snapshot().View == ExplorationView.Preferences &&
+                _gameMenuBase is not null)
+            {
+                placedImages = placedImages
+                    .Append((OriginalContent.GameMenuLayer.X,
+                        OriginalContent.GameMenuLayer.Y, _gameMenuBase))
+                    .Concat(_preferencesControls.Select(item =>
                         (item.Control.X, item.Control.Y, item.Texture)))
                     .ToArray();
             }
@@ -415,7 +473,11 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         foreach (var (_, texture) in _startMenuControls) texture.Dispose();
         _gameMenuBase?.Dispose();
         foreach (var (_, texture) in _gameMenuControls) texture.Dispose();
+        foreach (var texture in _preferencesControls.Select(item => item.Texture).Distinct())
+            texture.Dispose();
         _inventoryBase?.Dispose();
+        foreach (var (_, texture) in _explorationDestinationTitles.Values)
+            texture.Dispose();
         foreach (var texture in _explorationDestinationControls.Values
                      .SelectMany(controls => controls.Select(item => item.Texture)).Distinct())
             texture.Dispose();

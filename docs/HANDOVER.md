@@ -13,20 +13,21 @@ and incomplete; later slices are not complete.
 
 ## Latest cohesive batch
 
-The character and inventory destination foundations now use owned-resource
-evidence rather than one-off coordinate handling:
+Controlled owned screenshots and the complete Preferences graph extend the
+destination foundation without guessing dynamic behavior:
 
-- pack format 19 adds the 320x200 inventory shell and a dedicated DSUI catalog
-  containing complete `WIND` #11500 and #13500 graphs;
-- the runtime reuses the existing character shell and shared icon assets;
-- one `ExplorationDestinationInput` page object validates and routes the five
-  shared navigation controls on both layouts;
-- character and inventory shells render while unknown interior controls remain
-  deliberately inert;
-- presentation no longer draws the moving world actor over destination pages.
+- `OBS-GOG-UI-001` proves Cast/Use and Current Effects reuse the character
+  shell and `WIND` #11500 navigation, with exact USE #20080 and EFFECTS #20075
+  title placement;
+- pack format 20 extracts both titles, `WIND` #16500, and eight unique
+  Preferences images into the exact 72-asset pack;
+- `ExplorationDestinationInput` now routes the same five controls across
+  character, inventory, Cast, and Effects screens;
+- `PreferencesInput` renders all 13 exact controls and safely routes Game Menu
+  and Return while setting mutations remain inert pending numeric evidence.
 
-`DATA-GOG-UI-010`, `docs/UI-ATLAS.md`, `docs/FIDELITY.md`, and
-`docs/PARITY-MATRIX.md` record the evidence boundary and remaining uncertainty.
+`DATA-GOG-UI-011`, `OBS-GOG-UI-001`, `docs/UI-ATLAS.md`, `docs/FIDELITY.md`,
+and `docs/PARITY-MATRIX.md` record the evidence boundary and remaining uncertainty.
 
 ## Local-only content
 
@@ -39,13 +40,14 @@ research output remain under ignored `analysis/original/`.
 
 Continue Slice 3 from evidence, preferably in this order:
 
-1. establish and render the cast/psionic and current-effects destination shells
-   using their owned WIND/art families and the shared navigation abstraction;
-2. identify cursor resources/hotspots and implement visible Walk/Look/Attack
+1. identify cursor resources/hotspots and implement visible Walk/Look/Attack
    feedback without assigning unevidenced frame semantics;
-3. bound the first eligible interaction and dialogue resource chain, then model
+2. bound the first eligible interaction and dialogue resource chain, then model
    deterministic Core interaction/dialogue commands and quest flags;
-4. fill character/inventory dynamic fields and item-transfer behavior only as
+3. establish the Preferences setting ranges/defaults and About destination,
+   then implement deterministic setting mutations and frame-state feedback;
+4. fill character/inventory/Cast/Effects dynamic fields and item-transfer or
+   spell behavior only as
    their record meanings become evidenced.
 
 Do not cycle the other twelve BMP #599 frames speculatively. The opening actor's

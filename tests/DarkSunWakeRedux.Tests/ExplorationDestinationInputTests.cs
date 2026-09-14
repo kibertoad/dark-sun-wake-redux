@@ -10,6 +10,8 @@ public sealed class ExplorationDestinationInputTests
     [Theory]
     [InlineData(ExplorationView.ViewCharacter, 43, 155, 253, 155)]
     [InlineData(ExplorationView.ViewInventory, 163, 181, 288, 181)]
+    [InlineData(ExplorationView.CastSpellsOrUsePsionics, 43, 155, 253, 155)]
+    [InlineData(ExplorationView.CurrentSpellEffects, 43, 155, 253, 155)]
     public void ResolvesSharedNavigationAsPageRelativeControls(
         ExplorationView page, int firstX, int firstY, int returnX, int returnY)
     {

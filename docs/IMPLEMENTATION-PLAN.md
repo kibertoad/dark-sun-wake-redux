@@ -264,7 +264,7 @@ decoder rather than being guessed now.
   class/level progression, the active member during DUAL selection or editing,
   and recreation-native stored characters;
   DSUI round-trip, malformed graph, deterministic ordering, mixed-control graph resolution, resource-ID routing,
-  rectangle-edge, synthetic extraction, content-smoke, and owned 62-asset pack verification cover the derived
+  rectangle-edge, synthetic extraction, content-smoke, and owned 72-asset pack verification cover the derived
   start-flow layout contract;
   gameplay-wide replay remains a later-slice requirement.
 - **Observed parity.** Compare boot, start, create/select/cancel, and quit state
@@ -315,7 +315,11 @@ decoder rather than being guessed now.
   Collapse Party returns to leader-only play. Character and inventory now render
   their resource-backed shells and route the
   five shared bottom-navigation controls through one reusable destination page
-  object. Their dynamic fields/interior actions, Exit, Load/Save, Preferences,
+  object. Controlled owned observation establishes that Cast/Use and Current
+  Effects reuse the character shell and #11500 navigation with exact
+  #20080/#20075 title placement; both now render. The Preferences #16500 graph
+  and artwork now render and its Game Menu/Return actions route deterministically.
+  Dynamic fields/interior actions, Exit, Load/Save, setting mutations,
   other destination presentation, native panel/centering validation, animation,
   and party/interface overlays remain pending. `EXE-GOG-REGION-001` now establishes
   `GMAP` bit `0x40` as the terrain/occupancy block. A bounded terrain grid and
