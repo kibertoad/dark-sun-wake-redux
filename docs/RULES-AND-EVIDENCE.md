@@ -687,12 +687,17 @@
   edit box, exact five row resources, measured origin `(1,142)`, overlapping
   hit priority, and exclusive edges. A bounded decoder covers GPL's 7-bit
   compressed string primitive without embedding original dialogue text in Git.
+  A fail-closed first-conversation reader validates the independently observed
+  `showpic` at offset 16, two conditional print sources at 118/199, and the
+  eight-entry initial menu at 253. It projects literal/variable labels and
+  branch offsets while deliberately leaving menu conditions opaque.
   Instruction execution, conditions, state mutations, text routing, and runtime
-  rendering remain next Slice 3 work.
+  text rendering remain next Slice 3 work.
 - **Tests:** DSGP identity/payload round-trip and malformed envelopes; packed
   string empty/text/control-byte decoding and malformed inputs; exact dialogue
   window/control/image geometry, response order/hit boundaries, synthetic
-  transactional extraction, and owned content smoke.
+  transactional extraction, synthetic projection/drift/malformed cases, and
+  owned content smoke proving portrait, speech-source, and menu counts.
 
 ## Initial rules
 

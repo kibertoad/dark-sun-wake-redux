@@ -132,6 +132,13 @@ try
                 if (script.ResourceNumber != OriginalContent.FirstTyrDialogueScriptResourceNumber)
                     throw new InvalidDataException(
                         "The installed first Tyr dialogue script has unexpected identity.");
+                var dialogue = FirstTyrDialogueProjectionReader.Read(script);
+                if (dialogue.PortraitResourceNumber !=
+                        OriginalContent.FirstTyrDialoguePortraitResourceNumber ||
+                    dialogue.SpeechVariants.Count != 2 ||
+                    dialogue.InitialChoices.Count != 8)
+                    throw new InvalidDataException(
+                        "The installed first Tyr dialogue projection has drifted.");
             }
             var openingLeader = ReadImage(assetPack, OriginalContent.OpeningLeaderImageAssetPath);
             var openingLeaderFrame = openingLeader.Frames[0];

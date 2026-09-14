@@ -20,7 +20,9 @@ lower dialogue windows and ties the captured exchange to `GPL` #135 without
 committing original text or screenshots. Pack format 23 contains the bounded
 three-window interaction/dialogue graph, thirteen control images, `PORT` #18,
 and byte-identical `GPL` #135 in a DSGP envelope. Core contains the deterministic
-interaction/sole-action contract; Resources decodes the packed-string primitive;
+interaction/sole-action contract; Resources decodes the packed-string primitive
+and projects GPL #135's evidenced opening portrait, two conditional speech
+sources, and eight-entry menu while leaving conditions opaque;
 Game validates the measured five-row response layout and F9 previews the fixed
 portrait/window/control chrome over the live aspect-expanded map. Text,
 conversation entry, and GPL instruction execution remain pending.
@@ -64,9 +66,9 @@ research output remain under ignored `analysis/original/`.
 
 Continue Slice 3 from evidence, preferably in this order:
 
-1. implement only the bounded GPL instruction subset needed to present the
-   first conversation, then model its deterministic dialogue choices and quest
-   consequences as each behavior is evidenced;
+1. extend the bounded GPL #135 projection with evidenced condition evaluation,
+   then route the resulting text and choices through deterministic Core dialogue
+   state before adding quest consequences;
 2. establish the Preferences setting ranges/defaults and About destination,
    then implement deterministic setting mutations and frame-state feedback;
 3. generalize attack/look target eligibility and select ranged versus melee

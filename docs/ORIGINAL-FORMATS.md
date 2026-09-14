@@ -373,16 +373,21 @@ words or to animation, draw order, anchoring, collision, and interaction.
 **Evidence:** `OBS-GOG-DIALOGUE-001`.
 
 `GPLDATA.GFF` contains 330 `GPL ` resources and 20 `MAS ` resources. `GPL` #135
-is 4,124 bytes and is independently tied to the first captured Tyr conversation;
-the current extractor deliberately treats the complete bytecode as opaque.
+is 4,124 bytes and is independently tied to the first captured Tyr conversation.
+The extractor preserves the complete bytecode as opaque; a runtime reader now
+projects only the evidenced opening structure at offsets 16, 118, 199, and 253:
+portrait selection, two conditional speech sources, and the initial menu.
 
 The only decoded primitive is a bounded packed string used for future script
 interpretation. Marker `0x01` represents the active character name, marker
 `0x05` begins a seven-bit compressed string, and `0x03` terminates it. The
 sliding dictionary/back-reference form is bounded to 1,024 decoded bytes.
 Marker `0x02`, malformed references, truncation, and missing terminators are
-rejected. Decoding this primitive does not authorize executing instructions or
-assigning conditions, choices, or state mutations.
+rejected. The menu projection bounds choices to 24, accepts only the expression
+forms needed by this observed menu, captures labels and branch offsets, skips
+but does not interpret its condition expressions, and fails closed on drift or
+truncation. Decoding these structures does not authorize executing other
+instructions or assigning condition and state-mutation semantics.
 
 DSGP is an original deterministic envelope that preserves a selected script
 without teaching the runtime to parse GFF. Version 1 consists of ASCII `DSGP`,

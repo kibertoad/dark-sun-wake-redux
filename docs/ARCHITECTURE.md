@@ -41,7 +41,7 @@ ADD-list, Tyr, Game Menu/Preferences, character, inventory, Cast, Effects, and
 first-dialogue pack: indexed UI images and font, text and character catalogs,
 separate resolved UI graphs, the canonical Tyr region and its object-frame
 graph, the independently identified opening-leader image, the complete
-ten-image exploration cursor family, the first portrait, and its opaque GPL
+ten-image exploration cursor family, the first portrait, and its GPL
 script envelope.
 Later resources extend this inventory only after their
 mappings are recorded.

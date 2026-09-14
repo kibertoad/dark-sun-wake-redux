@@ -311,7 +311,9 @@ decoder rather than being guessed now.
   native-resolution fullscreen on a single chord edge. `COMPAT-DISPLAY-001`
   expands the bounded world slice to the physical aspect ratio while fixed UI
   remains on the original canvas; F9 previews the measured dialogue chrome over
-  that live world pending conversation routing and text. Reusable ordered hotkey bindings and Core
+  that live world pending conversation routing and text. A fail-closed GPL #135
+  reader projects the evidenced portrait, two conditional speech sources, and
+  eight-entry initial menu without yet assigning condition semantics. Reusable ordered hotkey bindings and Core
   navigation now cover character, inventory, cast/psionic, current-effects,
   overhead-map, and game-menu views plus menu-return/exit semantics. Their
   original Game Menu base and 14 controls now extract and render through a
