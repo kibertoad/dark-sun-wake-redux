@@ -21,9 +21,16 @@ public static class FirstTyrDialogueResponseProjectionReader
     public const int FirstChoiceIndex = 0;
     public const int FirstEntryOffset = 1017;
     public const int FirstReturnOffset = 1147;
+    public const int ThirdChoiceIndex = 2;
+    public const int ThirdEntryOffset = 1148;
+    public const int ThirdReturnOffset = 1182;
+    public const int FourthChoiceIndex = 3;
+    public const int FourthEntryOffset = 1183;
+    public const int FourthReturnOffset = 1231;
     public const byte PrintStringOpcode = 0x4f;
     public const byte PrintNewLineOpcode = 0x51;
     public const byte LoadVariableOpcode = 0x16;
+    public const byte WordIncrementOpcode = 0x06;
     public const byte LocalReturnOpcode = 0x15;
 
     public static FirstTyrDialogueResponseProjection ReadFirst(
@@ -47,6 +54,35 @@ public static class FirstTyrDialogueResponseProjectionReader
             throw Error($"choice 0 effects end at {position}, not {FirstReturnOffset}");
         RequireOpcode(bytes, ref position, LocalReturnOpcode, "choice 0 local return");
         return new(FirstChoiceIndex, FirstEntryOffset, output, [assignment], [], true);
+    }
+
+    public static FirstTyrDialogueResponseProjection ReadThird(
+        PackedGplScript script) => ReadIncrementing(
+        script, ThirdChoiceIndex, ThirdEntryOffset, 1174, ThirdReturnOffset, 2);
+
+    public static FirstTyrDialogueResponseProjection ReadFourth(
+        PackedGplScript script) => ReadIncrementing(
+        script, FourthChoiceIndex, FourthEntryOffset, 1223, FourthReturnOffset, 3);
+
+    private static FirstTyrDialogueResponseProjection ReadIncrementing(
+        PackedGplScript script,
+        int choiceIndex,
+        int entryOffset,
+        int printEndOffset,
+        int returnOffset,
+        ushort flagId)
+    {
+        ValidateScript(script);
+        var bytes = script.Bytecode.AsSpan();
+        var position = entryOffset;
+        var output = new[] { ReadLiteralPrint(bytes, ref position, printEndOffset) };
+        var assignment = ReadFlagAssignment(bytes, ref position, flagId, false);
+        var increment = ReadNumberIncrement(bytes, ref position, 0);
+        if (position != returnOffset)
+            throw Error($"choice {choiceIndex} effects end at {position}, not {returnOffset}");
+        RequireOpcode(bytes, ref position, LocalReturnOpcode,
+            $"choice {choiceIndex} local return");
+        return new(choiceIndex, entryOffset, output, [assignment], [increment], true);
     }
 
     private static GplDialogueOutput ReadLiteralPrint(
@@ -83,6 +119,19 @@ public static class FirstTyrDialogueResponseProjectionReader
             bytes[position++] != 0x8e || bytes[position++] != expectedId)
             throw Error($"local flag #{expectedId} is not assigned immediate {value}");
         return new(expectedId, expectedValue);
+    }
+
+    private static GplLocalNumberIncrement ReadNumberIncrement(
+        ReadOnlySpan<byte> bytes,
+        ref int position,
+        ushort expectedId)
+    {
+        RequireOpcode(bytes, ref position, WordIncrementOpcode,
+            $"local number #{expectedId} increment");
+        Require(bytes, position, 2, $"local number #{expectedId} increment");
+        if (bytes[position++] != 0x82 || bytes[position++] != expectedId)
+            throw Error($"word increment does not target local number #{expectedId}");
+        return new(expectedId, 1);
     }
 
     private static void ValidateScript(PackedGplScript script)

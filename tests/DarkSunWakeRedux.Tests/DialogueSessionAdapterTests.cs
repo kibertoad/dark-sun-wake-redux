@@ -30,6 +30,7 @@ public sealed class DialogueSessionAdapterTests
             snapshot.Choices.Select(choice => choice.BranchTargetOffset));
         Assert.Equal([0, 1, 2, 3], snapshot.Variables.LocalFlags
             .Where(pair => pair.Value).Select(pair => (int)pair.Key).Order());
+        Assert.Equal(0, snapshot.Variables.LocalNumbers[0]);
     }
 
     [Fact]

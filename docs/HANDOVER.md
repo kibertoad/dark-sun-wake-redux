@@ -28,9 +28,11 @@ selector now keeps proven-true choices in source order, hides false/unknown
 choices, limits them to five physical rows, and retains original choice indexes
 and branch targets. The capture-correlated opening state selects choices 0, 1,
 2, 3, and 7, while a bounded MAS #99 projection supplies choice 7's global
-string #5 label from the ignored owned pack. Generic variable initialization
-remains unresolved. A deterministic Core dialogue session now owns all choice
-definitions and derives the visible source-index/branch-target pairs; runtime
+string #5 label from the ignored owned pack. GPL #135's paired counter branches
+and MIT libgff's local-clear behavior establish local number 0 as zero for this
+opening only; generic variable initialization remains unresolved. A
+deterministic Core dialogue session now owns all choice definitions and derives
+the visible source-index/branch-target pairs; runtime
 row clicks select one pair atomically and cannot leak through as world movement.
 Choice 0 has a bounded projection validating its three literal prints, two
 newlines, local-flag 0 clear, and local return; Core applies the effect only to
@@ -38,10 +40,12 @@ that selection and recomputes the menu as choices 1, 2, 3, and 7, while Game
 rebuilds the rows. Choice 7 has an additional bounded projection validating its
 print, local-flag 14/4 assignments, and local return; Core applies the
 flags/completion only to the matching selected branch and Game closes the
-preview. The fixed portrait/window/control chrome and projected initial literal
-speech render over the live aspect-expanded map. Wrapping, conversation entry,
-choice 0 transcript presentation, choices 1-3, and broader GPL instruction
-execution remain pending.
+preview. Choices 2 and 3 also have bounded single-print, matching flag-clear,
+local-number-0 increment, and return projections. Applying both reveals source
+choice 4 in the recomputed page. The fixed portrait/window/control chrome and
+projected initial literal speech render over the live aspect-expanded map.
+Wrapping, conversation entry, response transcript presentation, choices 1 and
+4, and broader GPL instruction execution remain pending.
 
 ## Previous cohesive batch
 
@@ -82,10 +86,9 @@ research output remain under ignored `analysis/original/`.
 
 Continue Slice 3 from evidence, preferably in this order:
 
-1. project choices 1-3's bounded speech/flag/return paths, first establishing
-   local numeric initialization and global-flag ownership where those branches
-   require them; present choice 0's projected transcript before adding quest
-   consequences;
+1. project choices 1 and 4's bounded paths, first establishing global-flag
+   ownership for choice 1; present the projected response transcripts before
+   adding quest consequences;
 2. establish the Preferences setting ranges/defaults and About destination,
    then implement deterministic setting mutations and frame-state feedback;
 3. generalize attack/look target eligibility and select ranged versus melee

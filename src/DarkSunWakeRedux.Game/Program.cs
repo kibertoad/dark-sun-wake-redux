@@ -126,6 +126,8 @@ try
             FirstTyrDialogueProjection dialogueProjection;
             FirstTyrDialogueCompletionProjection dialogueCompletion;
             FirstTyrDialogueResponseProjection firstDialogueResponse;
+            FirstTyrDialogueResponseProjection thirdDialogueResponse;
+            FirstTyrDialogueResponseProjection fourthDialogueResponse;
             using (var scriptStream = File.OpenRead(Path.Combine(assetPack,
                        OriginalContent.FirstTyrDialogueScriptAssetPath.Replace(
                            '/', Path.DirectorySeparatorChar))))
@@ -138,6 +140,8 @@ try
                 dialogueProjection = FirstTyrDialogueProjectionReader.Read(script);
                 dialogueCompletion = FirstTyrDialogueCompletionProjectionReader.Read(script);
                 firstDialogueResponse = FirstTyrDialogueResponseProjectionReader.ReadFirst(script);
+                thirdDialogueResponse = FirstTyrDialogueResponseProjectionReader.ReadThird(script);
+                fourthDialogueResponse = FirstTyrDialogueResponseProjectionReader.ReadFourth(script);
                 if (dialogueProjection.PortraitResourceNumber !=
                         OriginalContent.FirstTyrDialoguePortraitResourceNumber ||
                     dialogueProjection.SpeechVariants.Count != 2 ||
@@ -247,6 +251,23 @@ try
                     .SequenceEqual([1, 2, 3, 7]))
                 throw new InvalidDataException(
                     "The installed first Tyr response did not return to the reduced menu.");
+            var counterSession = DialogueSessionAdapter.Create(
+                dialogueProjection, FirstTyrDialogueObservedState.Create(),
+                DialoguePreviewText.MaximumResponses);
+            counterSession.Execute(DialogueCommand.Select(2));
+            counterSession.Execute(DialogueCommand.Apply(
+                DialogueSessionAdapter.ToCore(thirdDialogueResponse)));
+            counterSession.Execute(DialogueCommand.Select(2));
+            var progressedDialogue = counterSession.Execute(DialogueCommand.Apply(
+                DialogueSessionAdapter.ToCore(fourthDialogueResponse)));
+            if (!progressedDialogue.Applied ||
+                progressedDialogue.After.Variables.LocalNumbers[0] != 2 ||
+                progressedDialogue.After.Variables.LocalFlags[2] ||
+                progressedDialogue.After.Variables.LocalFlags[3] ||
+                !progressedDialogue.After.Choices.Select(choice => choice.SourceIndex)
+                    .SequenceEqual([0, 1, 4, 7]))
+                throw new InvalidDataException(
+                    "The installed first Tyr counter responses did not reveal the next choice.");
             var textPath = Path.Combine(assetPack,
                 OriginalContent.TextCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using var textStream = File.OpenRead(textPath);

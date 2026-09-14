@@ -38,7 +38,7 @@ public static class FirstTyrDialogueObservedState
             [2] = true,
             [3] = true
         },
-        new Dictionary<ushort, int>());
+        new Dictionary<ushort, int> { [0] = 0 });
 }
 
 public static class DialogueConditionEvaluator

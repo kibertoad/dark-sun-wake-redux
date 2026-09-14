@@ -80,6 +80,29 @@ public sealed class DialogueSessionTests
         Assert.Same(before, session.Snapshot());
     }
 
+    [Theory]
+    [InlineData(2, 3)]
+    [InlineData(3, 2)]
+    public void ReturnedBranchesAdvanceAKnownNumberAndRevealItsChoice(
+        int firstSource,
+        int secondSource)
+    {
+        var session = Session(
+        [
+            Definition(2, 200, DialogueConditionKind.LocalFlag, 2),
+            Definition(3, 300, DialogueConditionKind.LocalFlag, 3),
+            new(4, 400, new(DialogueConditionKind.LocalNumberEquals, 0, 2)),
+            Definition(7, 700)
+        ], new(new Dictionary<ushort, bool> { [2] = true, [3] = true },
+            new Dictionary<ushort, int> { [0] = 0 }));
+
+        ApplyCounterResponse(session, firstSource);
+        var transition = ApplyCounterResponse(session, secondSource);
+
+        Assert.Equal(2, transition.After.Variables.LocalNumbers[0]);
+        Assert.Equal([4, 7], transition.After.Choices.Select(choice => choice.SourceIndex));
+    }
+
     [Fact]
     public void RejectsInvalidConstructionSelectionAndMismatchedBranch()
     {
@@ -142,4 +165,17 @@ public sealed class DialogueSessionTests
         DialogueBranchDisposition disposition,
         IReadOnlyDictionary<ushort, bool> flags) =>
         new(index, target, disposition, flags);
+
+    private static DialogueTransition ApplyCounterResponse(
+        DialogueSession session,
+        int sourceIndex)
+    {
+        var responseIndex = session.Snapshot().Choices.ToList()
+            .FindIndex(choice => choice.SourceIndex == sourceIndex);
+        session.Execute(DialogueCommand.Select(responseIndex));
+        return session.Execute(DialogueCommand.Apply(new(sourceIndex, sourceIndex * 100,
+            DialogueBranchDisposition.ReturnToChoices,
+            new Dictionary<ushort, bool> { [checked((ushort)sourceIndex)] = false },
+            new Dictionary<ushort, int> { [0] = 1 })));
+    }
 }

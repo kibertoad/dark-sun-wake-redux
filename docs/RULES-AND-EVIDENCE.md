@@ -665,7 +665,12 @@
   correlate them with `WIND` #12500/#12501 and their controls, and disassemble
   all 350 aligned `GPL`/`MAS` chunks from the fingerprinted `GPLDATA.GFF` using
   the public MIT-licensed OpenDS GPL disassembler. Search decoded instruction
-  strings for the captured opening sentence and response labels.
+  strings for the captured opening sentence and response labels. Inspect
+  the public MIT-licensed `dsoageofheroes/libgff` commit
+  `839b11d0ac63492e28f70968cfc3d967828958f5`, `src/gpl/state.c`, as a
+  secondary clean-room implementation reference for
+  local-variable reset behavior, then compare that behavior with GPL #135's
+  own counter-gated menu structure.
 - **Finding:** the 10,000-experience award is a one-way upper notification with
   an empty portrait well and no lower response window. Conversation uses the
   upper 318x72 portrait/speech window and a distinct lower 318x58 response
@@ -677,11 +682,19 @@
   `showpic 18` instruction identifies `PORT` #18; all 178 owned PORT chunks
   decode through the bounded image reader, and #18 is one 72x72 frame. The five
   captured response rows correlate to GPL #135 choices 0, 1, 2, 3, and 7. MAS
-  #99 assigns the variable-backed final label to global string slot 5.
+  #99 assigns the variable-backed final label to global string slot 5. Choice
+  source indexes 2 and 3 each print one literal, clear their matching local
+  flag, increment local number 0, and return. Choice 4 becomes visible exactly
+  when that number equals 2. The secondary libgff implementation clears local
+  16-bit numbers to zero; together these establish an opening-only initial
+  value of zero for local number 0, but not a generic native initialization
+  rule.
 - **Confidence:** verified for the captured layouts, first exchange's GPL chunk,
-  and visible response text; high for the static UI graph. The award-producing
-  award script path, conditions, response consequences, and
-  generic GPL execution semantics remain open.
+  and visible response text; high for the static UI graph; medium for the
+  opening-only local number 0 initial value because it combines script structure
+  with a secondary clean-room implementation. The award-producing script path,
+  choice 1 and 4 consequences, generic local initialization, and generic GPL
+  execution semantics remain open.
 - **Implementation:** pack format 24 stores the byte-identical GPL #135 and MAS
   #99 payloads in bounded versioned DSGP envelopes, extracts `PORT` #18 with
   the interface palette, and expands the interaction DSUI with #12500/#12501
@@ -701,7 +714,8 @@
   choice's original index and branch offset, and selects indices 0, 1, 2, 3,
   and 7. A second fail-closed projection validates MAS #99's byte-20 assignment
   to type-6 global string #5 and supplies that label only from the ignored owned
-  pack. Generic local initialization remains unknown. Core dialogue state stores
+  pack. The capture-correlated opening state now includes local number 0 as zero;
+  generic local initialization remains unknown. Core dialogue state stores
   all choice definitions and the script identity, derives stable visible
   source-index/branch-offset pairs, accepts one bounded physical-row selection,
   and preserves the selected pair atomically. Choice 0 has an exact bounded
@@ -709,11 +723,14 @@
   immediate zero to local flag 0, and a local return. Core applies that effect
   only to the matching branch and recomputes the menu as choices 1, 2, 3, and
   7; Game rebuilds the response rows. The projected transcript is not yet
-  presented.
+  presented. Source choices 2 and 3 have exact bounded projections at offsets
+  1148-1182 and 1183-1231: each prints one literal, clears its matching local
+  flag, increments local number 0, and returns. Applying both in either menu
+  order advances the known counter to 2 and reveals source choice 4.
   Choice 7's target has an exact bounded projection at offsets 2905–2920: print
   GSTRING #5, assign immediate one to local flags 14 and 4, then return locally.
   Core validates the selected identity before applying both flags atomically and
-  entering `Completed`; Game closes the preview. Choices 1-3, other GPL instruction paths,
+  entering `Completed`; Game closes the preview. Choices 1 and 4, other GPL instruction paths,
   consequence mutations, and generalized text routing remain
   next Slice 3 work.
 - **Tests:** DSGP identity/payload round-trip and malformed envelopes; packed

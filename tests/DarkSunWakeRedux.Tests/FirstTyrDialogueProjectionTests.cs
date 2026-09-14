@@ -138,6 +138,49 @@ public sealed class FirstTyrDialogueProjectionTests
             }));
     }
 
+    [Fact]
+    public void ProjectsThirdAndFourthResponsesWithCounterProgression()
+    {
+        var script = ScriptWithReturningResponses();
+
+        var third = FirstTyrDialogueResponseProjectionReader.ReadThird(script);
+        var fourth = FirstTyrDialogueResponseProjectionReader.ReadFourth(script);
+
+        Assert.Equal((2, 1148, 23), (third.SourceChoiceIndex,
+            third.EntryOffset, third.Output.Single().Text!.Text.Length));
+        Assert.Equal([(2, false)], third.LocalFlagAssignments
+            .Select(assignment => ((int)assignment.VariableId, assignment.Value)));
+        Assert.Equal([(0, 1)], third.LocalNumberIncrements
+            .Select(increment => ((int)increment.VariableId, increment.Amount)));
+        Assert.Equal((3, 1183, 38), (fourth.SourceChoiceIndex,
+            fourth.EntryOffset, fourth.Output.Single().Text!.Text.Length));
+        Assert.Equal([(3, false)], fourth.LocalFlagAssignments
+            .Select(assignment => ((int)assignment.VariableId, assignment.Value)));
+        Assert.Equal([(0, 1)], fourth.LocalNumberIncrements
+            .Select(increment => ((int)increment.VariableId, increment.Amount)));
+        Assert.True(third.ReturnsToOpeningMenu);
+        Assert.True(fourth.ReturnsToOpeningMenu);
+    }
+
+    [Fact]
+    public void RejectsThirdAndFourthResponseIncrementAndReturnDrift()
+    {
+        var driftedIncrement = ScriptWithReturningResponses();
+        driftedIncrement.Bytecode[1180] = 0x83;
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadThird(driftedIncrement));
+        var driftedReturn = ScriptWithReturningResponses();
+        driftedReturn.Bytecode[1231] = 0;
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadFourth(driftedReturn));
+        var truncated = ScriptWithReturningResponses();
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadFourth(truncated with
+            {
+                Bytecode = truncated.Bytecode[..1231]
+            }));
+    }
+
     private static PackedGplScript Script()
     {
         var bytes = new byte[500];
@@ -189,6 +232,18 @@ public sealed class FirstTyrDialogueProjectionTests
         WritePrint(bytes, 1116, new string('C', 23));
         Write(bytes, 1142, [0x16, 0x8f, 0x00, 0x8e, 0x00, 0x15]);
         return script with { Bytecode = bytes };
+    }
+
+    private static PackedGplScript ScriptWithReturningResponses()
+    {
+        var first = ScriptWithFirstResponse();
+        var bytes = new byte[1232];
+        first.Bytecode.CopyTo(bytes, 0);
+        WritePrint(bytes, 1148, new string('D', 23));
+        Write(bytes, 1174, [0x16, 0x8f, 0x00, 0x8e, 0x02, 0x06, 0x82, 0x00, 0x15]);
+        WritePrint(bytes, 1183, new string('E', 38));
+        Write(bytes, 1223, [0x16, 0x8f, 0x00, 0x8e, 0x03, 0x06, 0x82, 0x00, 0x15]);
+        return first with { Bytecode = bytes };
     }
 
     private static void WritePrint(byte[] bytes, int offset, string text)
