@@ -385,13 +385,17 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                                 DialogueCommand.Select(response.Index));
                             var branch = presentation.Branch.ForSourceIndex(
                                 selection.After.SelectedSourceIndex!.Value);
+                            var output = presentation.Projection is null
+                                ? presentation.Output
+                                : DialogueSessionAdapter.ResolveOutput(
+                                    presentation.Projection, selection.Before.Variables);
                             var applied = _dialogueSession.Execute(
                                 DialogueCommand.Apply(branch));
                             if (applied.After.Phase == DialoguePhase.Completed)
                                 _dialoguePreviewVisible = false;
                             else
                             {
-                                _dialogueSpeechOutput = presentation.Output;
+                                _dialogueSpeechOutput = output;
                                 RebuildDialogueText();
                             }
                         }
@@ -844,14 +848,16 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     }
 
     private void AddDialogueBranch(FirstTyrDialogueResponseProjection projection) =>
-        AddDialogueBranch(DialogueSessionAdapter.ToCore(projection), projection.Output);
+        AddDialogueBranch(DialogueSessionAdapter.ToCore(projection), projection.Output,
+            projection);
 
     private void AddDialogueBranch(
         DialogueBranchResult branch,
-        IReadOnlyList<GplDialogueOutput> output)
+        IReadOnlyList<GplDialogueOutput> output,
+        FirstTyrDialogueResponseProjection? projection = null)
     {
         if (!_dialogueBranchesByTarget.TryAdd(branch.BranchTargetOffset,
-                new(branch, output)))
+                new(branch, output, projection)))
             throw new InvalidDataException(
                 $"Dialogue branch target {branch.BranchTargetOffset} is duplicated.");
     }
@@ -886,5 +892,6 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
 
     private sealed record DialogueBranchPresentation(
         DialogueBranchResult Branch,
-        IReadOnlyList<GplDialogueOutput> Output);
+        IReadOnlyList<GplDialogueOutput> Output,
+        FirstTyrDialogueResponseProjection? Projection);
 }

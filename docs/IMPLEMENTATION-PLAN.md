@@ -358,7 +358,9 @@ decoder rather than being guessed now.
   equals one because that condition selects the opening-menu subroutine. Target
   1996's matching path is bounded through its two prints, local flag 11 set,
   local flag 7 clear, and return, leaving source choices 4, 5, and 6; the
-  alternate global-number path remains open. Target 2352 then prints its Acar
+  alternate path branches on global-number-84 bit 2, selects one of two lead-ins
+  plus two common prints, applies `GNUM84 |= 1`, and rejoins the shared return.
+  Target 2352 then prints its Acar
   answer, clears local flag 11, and leaves source choices 5 and 6. Target 2415
   then validates three prints, sets local flags 12/13, conditionally sets flag
   10 from flag 16, and advances through the local-flag-8 loop header to the
@@ -372,7 +374,7 @@ decoder rather than being guessed now.
   17, set then clear flag 18, and return. The third-menu completion target 3976
   clears flag 8, derives flag 14 from the exact
   post-assignment six-flag condition, validates both output branches and helper
-  returns, and completes Core. The second-menu alternate branch and generalized GPL
+  returns, and completes Core. Generalized GPL
   execution remain open. The hook renders the
   first literal speech and filtered labels with bounded provisional
   wrapping in the extracted font. Reusable ordered hotkey bindings and Core

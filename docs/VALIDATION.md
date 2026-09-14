@@ -90,9 +90,12 @@ sets and local flag 10 clears, resolves page order 3, 5, 6, and rasterizes its
 three-part transcript. Synthetic tests reject either assignment or return drift.
 The path then selects target 1996 under captured global number 22 equal to one,
 verifies local flag 11 sets and local flag 7 clears, resolves page order 4, 5,
-6, and rasterizes its two-part transcript. Core tests reject missing or different
-global-number prerequisites without mutation; synthetic tests reject condition,
+6, and rasterizes its two-part transcript. Synthetic tests reject condition,
 control-flow, or return drift.
+Separate owned paths set global number 22 away from one and validate both
+global-number-84 bit-2 transcript variants, the shared prints, `GNUM84 |= 1`,
+local-flag-7 clear, deterministic page reselection, and bounded rasterization.
+Core tests prove inactive alternatives do not require unknown target state.
 It next selects target 2352, verifies local flag 11 clears, resolves page order
 5, 6, and rasterizes the single-part transcript; synthetic tests reject its
 assignment or return drift.

@@ -173,4 +173,47 @@ public sealed class DialogueSessionAdapterTests
         Assert.Equal(new DialogueGlobalNumberCondition(22, 1),
             Assert.Single(result.RequiredGlobalNumberConditions));
     }
+
+    [Fact]
+    public void MapsAndResolvesConditionalGlobalNumberPaths()
+    {
+        var opening = new[] { new GplDialogueOutput(GplDialogueOutputKind.NewLine, null) };
+        var bitSet = new[] { new GplDialogueOutput(GplDialogueOutputKind.Text,
+            new(GplDialogueTextSourceKind.Literal, "set", 0, 0)) };
+        var bitClear = new[] { new GplDialogueOutput(GplDialogueOutputKind.Text,
+            new(GplDialogueTextSourceKind.Literal, "clear", 0, 0)) };
+        var notOpening = new GplGlobalNumberCondition(22, 1,
+            GplGlobalNumberComparison.NotEqual);
+        var projection = new FirstTyrDialogueResponseProjection(3, 1996,
+            opening, [new(7, false)], [], true)
+        {
+            ConditionalLocalFlagAssignmentsFromGlobalNumbers =
+                [new(new(22, 1), 11, true)],
+            ConditionalGlobalNumberOrAssignments = [new(notOpening, 84, 1)],
+            OutputPaths =
+            [
+                new([new(22, 1)], opening),
+                new([notOpening, new(84, 2,
+                    GplGlobalNumberComparison.BitwiseAndNonZero)], bitSet),
+                new([notOpening, new(84, 2,
+                    GplGlobalNumberComparison.BitwiseAndZero)], bitClear)
+            ]
+        };
+
+        var result = DialogueSessionAdapter.ToCore(projection);
+
+        Assert.Equal(DialogueGlobalNumberComparison.NotEqual,
+            Assert.Single(result.ConditionalGlobalNumberOrAssignments)
+                .Condition.Comparison);
+        Assert.Same(bitSet, DialogueSessionAdapter.ResolveOutput(projection,
+            DialogueVariableSnapshot.Empty with
+            {
+                GlobalNumbers = new Dictionary<ushort, int> { [22] = 2, [84] = 2 }
+            }));
+        Assert.Same(bitClear, DialogueSessionAdapter.ResolveOutput(projection,
+            DialogueVariableSnapshot.Empty with
+            {
+                GlobalNumbers = new Dictionary<ushort, int> { [22] = 2, [84] = 0 }
+            }));
+    }
 }

@@ -410,11 +410,11 @@ return.
 The newly enabled target 3479 is bounded through its return at 3685: three
 compressed-literal prints, immediate one to local flag 16, immediate zero to
 local flag 10, and a local return.
-Target 1996 has a bounded fresh-opening path guarded by global number 22 equal
-to one. It validates that condition and branch targets, two compressed-literal
-prints, immediate one to local flag 11, the jump over the unselected alternate
-body, immediate zero to local flag 7, and local return at 2351. The alternate
-global-number path remains unimplemented.
+Target 1996 is bounded across both global-number-22 paths. When it equals one,
+two compressed-literal prints precede immediate one to local flag 11. Otherwise
+global number 84 bit 2 selects one of two lead-in prints, two common prints
+follow, and global number 84 is updated with bit 1. Both paths join at immediate
+zero to local flag 7 and local return at 2351.
 Target 2352 is bounded through local return at 2414: one compressed-literal
 print followed by immediate zero to local flag 11.
 Target 2415 is bounded through the third-menu entry at 2616: three
@@ -456,7 +456,7 @@ the exact print destinations, instruction boundaries, flag target/value,
 choice 2/3 counter target, choice 4's flag/number assignments, the exact
 post-menu control flow and second-menu conditions, choice 1's exact extended
 global reference and branch target, target 1825's local condition and assignment,
-target 3479's two flag assignments, target 1996's guarded opening path, target
+target 3479's two flag assignments, target 1996's equality/bitmask paths, target
 2352's flag clear, target 2415's assignments/condition/loop bridge, target
 2921's flag clear, targets 3089/3257 and 3686/3786's flag transitions, and each
 applicable local return. Target 3976 additionally requires its subroutine calls,

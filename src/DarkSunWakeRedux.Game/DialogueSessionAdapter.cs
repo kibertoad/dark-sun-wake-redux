@@ -73,8 +73,23 @@ public static class DialogueSessionAdapter
                     new(assignment.Condition.VariableId, assignment.Condition.Value),
                     assignment.VariableId, assignment.Value)).ToArray(),
             projection.RequiredGlobalNumberConditions.Select(condition =>
-                new DialogueGlobalNumberCondition(condition.VariableId, condition.Value))
-                .ToArray());
+                new DialogueGlobalNumberCondition(condition.VariableId, condition.Value,
+                    ToCore(condition.Comparison))).ToArray(),
+            conditionalLocalFlagAssignmentsFromGlobalNumbers:
+                projection.ConditionalLocalFlagAssignmentsFromGlobalNumbers
+                    .Select(assignment =>
+                        new DialogueConditionalLocalFlagAssignmentFromGlobalNumber(
+                            new(assignment.Condition.VariableId,
+                                assignment.Condition.Value,
+                                ToCore(assignment.Condition.Comparison)),
+                            assignment.VariableId, assignment.Value)).ToArray(),
+            conditionalGlobalNumberOrAssignments:
+                projection.ConditionalGlobalNumberOrAssignments.Select(assignment =>
+                    new DialogueConditionalGlobalNumberOrAssignment(
+                        new(assignment.Condition.VariableId,
+                            assignment.Condition.Value,
+                            ToCore(assignment.Condition.Comparison)),
+                        assignment.VariableId, assignment.Mask)).ToArray());
     }
 
     public static DialogueBranchResult ToCore(
@@ -99,4 +114,52 @@ public static class DialogueSessionAdapter
                             assignment.VariableId, assignment.Value))
                     .ToArray());
     }
+
+    public static IReadOnlyList<GplDialogueOutput> ResolveOutput(
+        FirstTyrDialogueResponseProjection projection,
+        DialogueVariableSnapshot variables)
+    {
+        ArgumentNullException.ThrowIfNull(projection);
+        ArgumentNullException.ThrowIfNull(variables);
+        if (projection.OutputPaths.Count == 0) return projection.Output;
+        foreach (var path in projection.OutputPaths)
+        {
+            var matches = true;
+            foreach (var condition in path.Conditions)
+            {
+                if (!variables.GlobalNumbers.TryGetValue(condition.VariableId,
+                        out var value))
+                    throw new InvalidOperationException(
+                        $"Global dialogue number #{condition.VariableId} is unknown.");
+                matches &= condition.Comparison switch
+                {
+                    GplGlobalNumberComparison.Equal => value == condition.Value,
+                    GplGlobalNumberComparison.NotEqual => value != condition.Value,
+                    GplGlobalNumberComparison.BitwiseAndNonZero =>
+                        (value & condition.Value) != 0,
+                    GplGlobalNumberComparison.BitwiseAndZero =>
+                        (value & condition.Value) == 0,
+                    _ => throw new ArgumentOutOfRangeException(nameof(condition),
+                        condition.Comparison, "Unknown global-number comparison.")
+                };
+                if (!matches) break;
+            }
+            if (matches) return path.Output;
+        }
+        throw new InvalidOperationException(
+            "No dialogue output path matches the known global-number state.");
+    }
+
+    private static DialogueGlobalNumberComparison ToCore(
+        GplGlobalNumberComparison comparison) => comparison switch
+        {
+            GplGlobalNumberComparison.Equal => DialogueGlobalNumberComparison.Equal,
+            GplGlobalNumberComparison.NotEqual => DialogueGlobalNumberComparison.NotEqual,
+            GplGlobalNumberComparison.BitwiseAndNonZero =>
+                DialogueGlobalNumberComparison.BitwiseAndNonZero,
+            GplGlobalNumberComparison.BitwiseAndZero =>
+                DialogueGlobalNumberComparison.BitwiseAndZero,
+            _ => throw new ArgumentOutOfRangeException(nameof(comparison), comparison,
+                "Unknown GPL global-number comparison.")
+        };
 }

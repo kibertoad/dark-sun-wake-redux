@@ -23,7 +23,18 @@ public sealed record DialogueGlobalFlagCondition(ushort VariableId, bool Value);
 
 public sealed record DialogueLocalFlagCondition(ushort VariableId, bool Value);
 
-public sealed record DialogueGlobalNumberCondition(ushort VariableId, int Value);
+public enum DialogueGlobalNumberComparison
+{
+    Equal,
+    NotEqual,
+    BitwiseAndNonZero,
+    BitwiseAndZero
+}
+
+public sealed record DialogueGlobalNumberCondition(
+    ushort VariableId,
+    int Value,
+    DialogueGlobalNumberComparison Comparison = DialogueGlobalNumberComparison.Equal);
 
 public sealed record DialogueConditionalLocalFlagAssignment(
     DialogueGlobalFlagCondition Condition,
@@ -39,6 +50,16 @@ public sealed record DialogueConditionalLocalFlagAssignmentAfterLocalFlags(
     IReadOnlyList<DialogueLocalFlagCondition> Conditions,
     ushort VariableId,
     bool Value);
+
+public sealed record DialogueConditionalLocalFlagAssignmentFromGlobalNumber(
+    DialogueGlobalNumberCondition Condition,
+    ushort VariableId,
+    bool Value);
+
+public sealed record DialogueConditionalGlobalNumberOrAssignment(
+    DialogueGlobalNumberCondition Condition,
+    ushort VariableId,
+    int Mask);
 
 public sealed record DialogueBranchResult
 {
@@ -57,7 +78,11 @@ public sealed record DialogueBranchResult
         IReadOnlyList<DialogueGlobalNumberCondition>?
             requiredGlobalNumberConditions = null,
         IReadOnlyList<DialogueConditionalLocalFlagAssignmentAfterLocalFlags>?
-            conditionalLocalFlagAssignmentsAfterLocalFlags = null)
+            conditionalLocalFlagAssignmentsAfterLocalFlags = null,
+        IReadOnlyList<DialogueConditionalLocalFlagAssignmentFromGlobalNumber>?
+            conditionalLocalFlagAssignmentsFromGlobalNumbers = null,
+        IReadOnlyList<DialogueConditionalGlobalNumberOrAssignment>?
+            conditionalGlobalNumberOrAssignments = null)
     {
         if (sourceIndex < 0) throw new ArgumentOutOfRangeException(nameof(sourceIndex));
         if (branchTargetOffset < 0)
@@ -72,6 +97,8 @@ public sealed record DialogueBranchResult
         conditionalLocalFlagAssignmentsFromLocalFlags ??= [];
         requiredGlobalNumberConditions ??= [];
         conditionalLocalFlagAssignmentsAfterLocalFlags ??= [];
+        conditionalLocalFlagAssignmentsFromGlobalNumbers ??= [];
+        conditionalGlobalNumberOrAssignments ??= [];
         if (localNumberIncrements.Any(pair => pair.Value == 0))
             throw new ArgumentException("Dialogue number increments cannot be zero.",
                 nameof(localNumberIncrements));
@@ -104,6 +131,12 @@ public sealed record DialogueBranchResult
             throw new ArgumentException(
                 "Post-assignment dialogue conditions must be nonempty and unique.",
                 nameof(conditionalLocalFlagAssignmentsAfterLocalFlags));
+        if (conditionalLocalFlagAssignmentsFromGlobalNumbers.Any(assignment =>
+                assignment is null || assignment.Condition is null) ||
+            conditionalGlobalNumberOrAssignments.Any(assignment =>
+                assignment is null || assignment.Condition is null || assignment.Mask == 0))
+            throw new ArgumentException(
+                "Conditional global-number effects require valid conditions and masks.");
         SourceIndex = sourceIndex;
         BranchTargetOffset = branchTargetOffset;
         Disposition = disposition;
@@ -119,6 +152,10 @@ public sealed record DialogueBranchResult
             requiredGlobalNumberConditions.ToArray());
         ConditionalLocalFlagAssignmentsAfterLocalFlags = Array.AsReadOnly(
             conditionalLocalFlagAssignmentsAfterLocalFlags.ToArray());
+        ConditionalLocalFlagAssignmentsFromGlobalNumbers = Array.AsReadOnly(
+            conditionalLocalFlagAssignmentsFromGlobalNumbers.ToArray());
+        ConditionalGlobalNumberOrAssignments = Array.AsReadOnly(
+            conditionalGlobalNumberOrAssignments.ToArray());
     }
 
     public int SourceIndex { get; }
@@ -135,6 +172,10 @@ public sealed record DialogueBranchResult
     public IReadOnlyList<DialogueGlobalNumberCondition> RequiredGlobalNumberConditions { get; }
     public IReadOnlyList<DialogueConditionalLocalFlagAssignmentAfterLocalFlags>
         ConditionalLocalFlagAssignmentsAfterLocalFlags { get; }
+    public IReadOnlyList<DialogueConditionalLocalFlagAssignmentFromGlobalNumber>
+        ConditionalLocalFlagAssignmentsFromGlobalNumbers { get; }
+    public IReadOnlyList<DialogueConditionalGlobalNumberOrAssignment>
+        ConditionalGlobalNumberOrAssignments { get; }
 
     public DialogueBranchResult ForSourceIndex(int sourceIndex) => new(
         sourceIndex,
@@ -147,7 +188,9 @@ public sealed record DialogueBranchResult
         LocalNumberAssignments,
         ConditionalLocalFlagAssignmentsFromLocalFlags,
         RequiredGlobalNumberConditions,
-        ConditionalLocalFlagAssignmentsAfterLocalFlags);
+        ConditionalLocalFlagAssignmentsAfterLocalFlags,
+        ConditionalLocalFlagAssignmentsFromGlobalNumbers,
+        ConditionalGlobalNumberOrAssignments);
 
     private static IReadOnlyDictionary<TKey, TValue> ReadOnlyCopy<TKey, TValue>(
         IReadOnlyDictionary<TKey, TValue> source) where TKey : notnull =>
@@ -261,7 +304,7 @@ public sealed class DialogueSession
                     condition.VariableId, out var value))
                 throw new InvalidOperationException(
                     $"Global dialogue number #{condition.VariableId} is unknown.");
-            if (value != condition.Value)
+            if (!Matches(condition, value))
                 throw new InvalidOperationException(
                     $"Global dialogue number #{condition.VariableId} does not select this branch path.");
         }
@@ -286,12 +329,41 @@ public sealed class DialogueSession
             if (value == assignment.Condition.Value)
                 conditionalLocalAssignments.Add(assignment);
         }
+        var conditionalGlobalNumberLocalAssignments =
+            new List<DialogueConditionalLocalFlagAssignmentFromGlobalNumber>();
+        foreach (var assignment in result.ConditionalLocalFlagAssignmentsFromGlobalNumbers)
+        {
+            if (!_snapshot.Variables.GlobalNumbers.TryGetValue(
+                    assignment.Condition.VariableId, out var value))
+                throw new InvalidOperationException(
+                    $"Global dialogue number #{assignment.Condition.VariableId} is unknown.");
+            if (Matches(assignment.Condition, value))
+                conditionalGlobalNumberLocalAssignments.Add(assignment);
+        }
+        var conditionalGlobalNumberOrAssignments =
+            new List<DialogueConditionalGlobalNumberOrAssignment>();
+        foreach (var assignment in result.ConditionalGlobalNumberOrAssignments)
+        {
+            if (!_snapshot.Variables.GlobalNumbers.TryGetValue(
+                    assignment.Condition.VariableId, out var conditionValue))
+                throw new InvalidOperationException(
+                    $"Global dialogue number #{assignment.Condition.VariableId} is unknown.");
+            if (Matches(assignment.Condition, conditionValue))
+            {
+                if (!_snapshot.Variables.GlobalNumbers.ContainsKey(assignment.VariableId))
+                    throw new InvalidOperationException(
+                        $"Global dialogue number #{assignment.VariableId} is unknown.");
+                conditionalGlobalNumberOrAssignments.Add(assignment);
+            }
+        }
         var flags = new Dictionary<ushort, bool>(_snapshot.Variables.LocalFlags);
         foreach (var assignment in result.LocalFlagAssignments)
             flags[assignment.Key] = assignment.Value;
         foreach (var assignment in conditionalAssignments)
             flags[assignment.VariableId] = assignment.Value;
         foreach (var assignment in conditionalLocalAssignments)
+            flags[assignment.VariableId] = assignment.Value;
+        foreach (var assignment in conditionalGlobalNumberLocalAssignments)
             flags[assignment.VariableId] = assignment.Value;
         foreach (var assignment in result.ConditionalLocalFlagAssignmentsAfterLocalFlags)
         {
@@ -318,10 +390,13 @@ public sealed class DialogueSession
         var globalFlags = new Dictionary<ushort, bool>(_snapshot.Variables.GlobalFlags);
         foreach (var assignment in result.GlobalFlagAssignments)
             globalFlags[assignment.Key] = assignment.Value;
+        var globalNumbers = new Dictionary<ushort, int>(_snapshot.Variables.GlobalNumbers);
+        foreach (var assignment in conditionalGlobalNumberOrAssignments)
+            globalNumbers[assignment.VariableId] |= assignment.Mask;
         var variables = Copy(new(flags, numbers)
         {
             GlobalFlags = globalFlags,
-            GlobalNumbers = _snapshot.Variables.GlobalNumbers
+            GlobalNumbers = globalNumbers
         });
         var nextDefinitions = _definitions;
         var pageIndex = _pageIndex;
@@ -416,6 +491,19 @@ public sealed class DialogueSession
         GlobalNumbers = new ReadOnlyDictionary<ushort, int>(
             new Dictionary<ushort, int>(variables.GlobalNumbers))
     };
+
+    private static bool Matches(DialogueGlobalNumberCondition condition, int value) =>
+        condition.Comparison switch
+        {
+            DialogueGlobalNumberComparison.Equal => value == condition.Value,
+            DialogueGlobalNumberComparison.NotEqual => value != condition.Value,
+            DialogueGlobalNumberComparison.BitwiseAndNonZero =>
+                (value & condition.Value) != 0,
+            DialogueGlobalNumberComparison.BitwiseAndZero =>
+                (value & condition.Value) == 0,
+            _ => throw new ArgumentOutOfRangeException(nameof(condition),
+                condition.Comparison, "Unknown global-number comparison.")
+        };
 
     private static IReadOnlyList<DialogueChoiceDefinition> ValidateDefinitions(
         IReadOnlyList<DialogueChoiceDefinition> definitions,

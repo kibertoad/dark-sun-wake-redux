@@ -63,10 +63,11 @@ source order from 1, 3, 5, 6 to 2, 3, 5, 6 and presents the transcript. The
 newly enabled king-history target 3479 is bounded through three prints, local
 flag 16 set, local flag 10 clear, and return; it presents its transcript and
 leaves second-page source order 3, 5, 6. The
-captured opening selects the `GNUM22 == 1` entry path. Target 1996 preserves that
-as an explicit Core prerequisite, validates two prints, sets local flag 11,
+captured opening selects the `GNUM22 == 1` entry path. Target 1996 validates
+that path's two prints and conditionally sets local flag 11,
 clears local flag 7, presents the transcript, and leaves source order 4, 5, 6.
-Its alternate global-number path remains unimplemented. Target 2352 prints its
+Its alternate path selects a lead-in from global-number-84 bit 2, adds two common
+prints, applies `GNUM84 |= 1`, clears flag 7, and returns. Target 2352 prints its
 Acar response, clears local flag 11, presents the transcript, and leaves source
 order 5, 6. Target 2415 then presents three prints, sets local flags 12/13,
 conditionally sets local flag 10 when flag 16 is false, and advances through
@@ -83,7 +84,7 @@ six-flag completion helper after that mutation, sets flag 14 on the completed
 owned path, validates the selected two-part output, and completes the session. The
 fixed portrait/window/control chrome and
 projected initial literal speech render over the live aspect-expanded map.
-Wrapping, conversation entry, the alternate target-1996 path, and
+Wrapping, conversation entry, generic variable initialization, and
 broader GPL instruction execution remain pending.
 
 ## Previous cohesive batch
@@ -125,8 +126,8 @@ research output remain under ignored `analysis/original/`.
 
 Continue Slice 3 from evidence, preferably in this order:
 
-1. resolve the still-open alternate global-number path under second-menu target
-   1996 before adding
+1. establish the Preferences setting ranges/defaults and About destination,
+   then add
    quest consequences;
 2. establish the Preferences setting ranges/defaults and About destination,
    then implement deterministic setting mutations and frame-state feedback;

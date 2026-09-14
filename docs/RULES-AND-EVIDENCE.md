@@ -711,6 +711,9 @@
   entry, so the captured opening establishes that value for this path. Target
   1996's matching branch prints two literals, sets local flag 11, skips its
   alternate body, clears local flag 7, and returns.
+  When global number 22 differs from one, target 1996 instead tests global
+  number 84 bit 2, selects one of two lead-ins, prints two common parts, applies
+  `GNUM84 |= 1`, clears local flag 7, and returns.
   Target 2352 prints one literal, clears local flag 11, and returns.
   Target 2415 prints three literals, sets local flags 12 and 13, conditionally
   sets local flag 10 when local flag 16 is zero, and flows through a
@@ -732,7 +735,7 @@
   number 22 initial values
   because they
   combine corpus/script structure with a secondary clean-room implementation.
-  The award-producing script path, the remaining third-menu response consequences,
+  The award-producing script path, broader dialogue consequences,
   generic variable initialization, and generic GPL
   execution semantics remain open.
 - **Implementation:** pack format 24 stores the byte-identical GPL #135 and MAS
@@ -793,11 +796,11 @@
   Target 3479 has an exact bounded projection through offset 3685: three literal
   prints, local flag 16 set, local flag 10 clear, and local return. It presents
   the transcript and recomputes page two as source order 3, 5, 6.
-  Target 1996's fresh-opening path is guarded by an immutable global-number-22
-  prerequisite. Its bounded projection validates the selected condition and
-  jumps, two literal prints, local flag 11 set, local flag 7 clear, and return
-  at 2351. Core rejects missing or different prerequisite state before mutation;
-  the owned path presents the transcript and recomputes page two as 4, 5, 6.
+  Target 1996's unified projection validates both global-number-22 paths. Core
+  conditionally sets local flag 11 on the equals-one path; otherwise it selects
+  output by global-number-84 bit 2 and applies `GNUM84 |= 1`. Both paths clear
+  local flag 7 and return at 2351. Unknown active-path inputs reject before
+  mutation, while inactive alternatives require no irrelevant state.
   Target 2352 has an exact bounded print, local-flag-11 clear, and return
   projection through offset 2414; runtime presents it and recomputes page two
   as source order 5, 6.
@@ -839,7 +842,7 @@
   assignment path, opening continuation and second-menu projection, caller-page
   return, target-1825 local-condition/assignment drift, target-3479 flag/return
   drift, target-1996 condition/control-flow/return drift, global-number
-  prerequisite success and atomic rejection, target-2352 assignment/return
+  equality/bitmask path selection and atomic rejection, target-2352 assignment/return
   drift, target-2415 assignment/conditional/loop/menu-transition drift,
   target-2921 print/assignment/return drift,
   target-3089/3257 print/assignment/return drift,

@@ -284,6 +284,58 @@ public sealed class DialogueSessionTests
     }
 
     [Fact]
+    public void AppliesConditionalGlobalNumberEffectsAtomically()
+    {
+        var variables = DialogueVariableSnapshot.Empty with
+        {
+            GlobalNumbers = new Dictionary<ushort, int> { [22] = 2, [84] = 2 }
+        };
+        var session = Session([Definition(3, 1996)], variables);
+        session.Execute(DialogueCommand.Select(0));
+
+        var transition = session.Execute(DialogueCommand.Apply(new(3, 1996,
+            DialogueBranchDisposition.ReturnToChoices,
+            new Dictionary<ushort, bool> { [7] = false },
+            conditionalLocalFlagAssignmentsFromGlobalNumbers:
+            [
+                new(new(22, 1), 11, true)
+            ],
+            conditionalGlobalNumberOrAssignments:
+            [
+                new(new(22, 1, DialogueGlobalNumberComparison.NotEqual), 84, 1)
+            ])));
+
+        Assert.False(transition.After.Variables.LocalFlags.ContainsKey(11));
+        Assert.Equal(3, transition.After.Variables.GlobalNumbers[84]);
+    }
+
+    [Fact]
+    public void DoesNotRequireInactiveConditionalGlobalNumberTarget()
+    {
+        var variables = DialogueVariableSnapshot.Empty with
+        {
+            GlobalNumbers = new Dictionary<ushort, int> { [22] = 1 }
+        };
+        var session = Session([Definition(3, 1996)], variables);
+        session.Execute(DialogueCommand.Select(0));
+
+        var transition = session.Execute(DialogueCommand.Apply(new(3, 1996,
+            DialogueBranchDisposition.ReturnToChoices,
+            new Dictionary<ushort, bool> { [7] = false },
+            conditionalLocalFlagAssignmentsFromGlobalNumbers:
+            [
+                new(new(22, 1), 11, true)
+            ],
+            conditionalGlobalNumberOrAssignments:
+            [
+                new(new(22, 1, DialogueGlobalNumberComparison.NotEqual), 84, 1)
+            ])));
+
+        Assert.True(transition.After.Variables.LocalFlags[11]);
+        Assert.False(transition.After.Variables.GlobalNumbers.ContainsKey(84));
+    }
+
+    [Fact]
     public void RejectsInvalidConstructionSelectionAndMismatchedBranch()
     {
         var variables = DialogueVariableSnapshot.Empty;

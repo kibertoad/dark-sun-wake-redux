@@ -12,7 +12,22 @@ public sealed record GplGlobalFlagCondition(ushort VariableId, bool Value);
 
 public sealed record GplLocalFlagCondition(ushort VariableId, bool Value);
 
-public sealed record GplGlobalNumberCondition(ushort VariableId, int Value);
+public enum GplGlobalNumberComparison
+{
+    Equal,
+    NotEqual,
+    BitwiseAndNonZero,
+    BitwiseAndZero
+}
+
+public sealed record GplGlobalNumberCondition(
+    ushort VariableId,
+    int Value,
+    GplGlobalNumberComparison Comparison = GplGlobalNumberComparison.Equal);
+
+public sealed record GplDialogueOutputPath(
+    IReadOnlyList<GplGlobalNumberCondition> Conditions,
+    IReadOnlyList<GplDialogueOutput> Output);
 
 public sealed record GplConditionalLocalFlagAssignment(
     GplGlobalFlagCondition Condition,
@@ -25,6 +40,16 @@ public sealed record GplConditionalLocalFlagAssignmentFromLocalFlag(
     bool Value);
 
 public sealed record GplGlobalFlagAssignment(ushort VariableId, bool Value);
+
+public sealed record GplConditionalLocalFlagAssignmentFromGlobalNumber(
+    GplGlobalNumberCondition Condition,
+    ushort VariableId,
+    bool Value);
+
+public sealed record GplConditionalGlobalNumberOrAssignment(
+    GplGlobalNumberCondition Condition,
+    ushort VariableId,
+    int Mask);
 
 public sealed record FirstTyrDialogueResponseProjection(
     int SourceChoiceIndex,
@@ -43,6 +68,11 @@ public sealed record FirstTyrDialogueResponseProjection(
     public IReadOnlyList<GplGlobalNumberCondition> RequiredGlobalNumberConditions
         { get; init; } = [];
     public bool AdvancesToThirdMenu { get; init; }
+    public IReadOnlyList<GplDialogueOutputPath> OutputPaths { get; init; } = [];
+    public IReadOnlyList<GplConditionalLocalFlagAssignmentFromGlobalNumber>
+        ConditionalLocalFlagAssignmentsFromGlobalNumbers { get; init; } = [];
+    public IReadOnlyList<GplConditionalGlobalNumberOrAssignment>
+        ConditionalGlobalNumberOrAssignments { get; init; } = [];
 }
 
 public sealed record GplLocalNumberAssignment(ushort VariableId, int Value);
@@ -288,7 +318,7 @@ public static class FirstTyrDialogueResponseProjectionReader
             "global number #22 equals one condition");
         RequireOpcode(bytes, ref position, IfOpcode, "caravan response conditional branch");
         RequireImmediate14(bytes, ref position, 2096, "caravan response else target");
-        var output = new[]
+        var openingOutput = new[]
         {
             ReadLiteralPrint(bytes, ref position, 2069),
             ReadLiteralPrint(bytes, ref position, 2091)
@@ -296,16 +326,58 @@ public static class FirstTyrDialogueResponseProjectionReader
         var firstAssignment = ReadFlagAssignment(bytes, ref position, 11, true);
         RequireOpcode(bytes, ref position, ElseOpcode, "caravan response else");
         RequireImmediate14(bytes, ref position, 2345, "caravan response endif target");
-        position = 2345;
+        RequireOpcode(bytes, ref position, LoadAccumulatorOpcode,
+            "caravan alternate bit condition");
+        RequireSequence(bytes, ref position,
+            [0xe2, 0x87, 0x54, 0xdd, 0x8f, 0x02, 0xe1],
+            "global number #84 bit two condition");
+        RequireOpcode(bytes, ref position, IfOpcode,
+            "caravan alternate output branch");
+        RequireImmediate14(bytes, ref position, 2148,
+            "caravan alternate else target");
+        var bitSetLead = ReadLiteralPrint(bytes, ref position, 2148);
+        RequireOpcode(bytes, ref position, ElseOpcode,
+            "caravan alternate output else");
+        RequireImmediate14(bytes, ref position, 2212,
+            "caravan alternate output endif target");
+        var bitClearLead = ReadLiteralPrint(bytes, ref position, 2212);
+        RequireOpcode(bytes, ref position, EndIfOpcode,
+            "caravan alternate output endif");
+        var commonOutput = new[]
+        {
+            ReadLiteralPrint(bytes, ref position, 2276),
+            ReadLiteralPrint(bytes, ref position, 2337)
+        };
+        RequireOpcode(bytes, ref position, LoadVariableOpcode,
+            "caravan alternate global number assignment");
+        RequireSequence(bytes, ref position,
+            [0x87, 0x54, 0xde, 0x8f, 0x01, 0x87, 0x54],
+            "global number #84 bit-one assignment");
         RequireOpcode(bytes, ref position, EndIfOpcode, "caravan response endif");
         var secondAssignment = ReadFlagAssignment(bytes, ref position, 7, false);
         if (position != CaravanReturnOffset)
             throw Error($"caravan response effects end at {position}, not {CaravanReturnOffset}");
         RequireOpcode(bytes, ref position, LocalReturnOpcode, "caravan response local return");
-        return new(CaravanSourceChoiceIndex, CaravanEntryOffset, output,
-            [firstAssignment, secondAssignment], [], true)
+        var openingCondition = new GplGlobalNumberCondition(22, 1);
+        var alternateCondition = new GplGlobalNumberCondition(22, 1,
+            GplGlobalNumberComparison.NotEqual);
+        return new(CaravanSourceChoiceIndex, CaravanEntryOffset, openingOutput,
+            [secondAssignment], [], true)
         {
-            RequiredGlobalNumberConditions = [new(22, 1)]
+            ConditionalLocalFlagAssignmentsFromGlobalNumbers =
+                [new(openingCondition, firstAssignment.VariableId, firstAssignment.Value)],
+            ConditionalGlobalNumberOrAssignments =
+                [new(alternateCondition, 84, 1)],
+            OutputPaths =
+            [
+                new([openingCondition], openingOutput),
+                new([alternateCondition, new(84, 2,
+                    GplGlobalNumberComparison.BitwiseAndNonZero)],
+                    [bitSetLead, .. commonOutput]),
+                new([alternateCondition, new(84, 2,
+                    GplGlobalNumberComparison.BitwiseAndZero)],
+                    [bitClearLead, .. commonOutput])
+            ]
         };
     }
 

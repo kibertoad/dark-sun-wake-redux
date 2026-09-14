@@ -499,6 +499,39 @@ try
             _ = DialoguePreviewText.Create(font, dialogueProjection,
                 thirdMenuCompleted.After, dialogueVariables,
                 thirdMenuCompletion.CompletedOutput);
+            var alternateVariables = FirstTyrDialogueObservedState.Create() with
+            {
+                GlobalNumbers = new Dictionary<ushort, int> { [22] = 2, [84] = 2 }
+            };
+            var alternateCaravanSession = DialogueSessionAdapter.Create(
+                dialogueProjection, alternateVariables,
+                DialoguePreviewText.MaximumResponses);
+            alternateCaravanSession.Execute(DialogueCommand.Select(1));
+            alternateCaravanSession.Execute(DialogueCommand.Apply(
+                DialogueSessionAdapter.ToCore(secondDialogueResponse)));
+            alternateCaravanSession.Execute(DialogueCommand.Select(1));
+            var alternateOutput = DialogueSessionAdapter.ResolveOutput(
+                caravanDialogueResponse,
+                alternateCaravanSession.Snapshot().Variables);
+            var alternateCaravan = alternateCaravanSession.Execute(DialogueCommand.Apply(
+                DialogueSessionAdapter.ToCore(caravanDialogueResponse)));
+            if (!alternateCaravan.Applied ||
+                alternateCaravan.After.Variables.LocalFlags[7] ||
+                alternateCaravan.After.Variables.LocalFlags.ContainsKey(11) ||
+                alternateCaravan.After.Variables.GlobalNumbers[84] != 3 ||
+                !alternateCaravan.After.Choices.Select(choice => choice.SourceIndex)
+                    .SequenceEqual([1, 5, 6]))
+                throw new InvalidDataException(
+                    "The installed alternate caravan response did not apply its effects.");
+            _ = DialoguePreviewText.Create(font, dialogueProjection,
+                alternateCaravan.After, dialogueVariables, alternateOutput);
+            var bitClearOutput = DialogueSessionAdapter.ResolveOutput(
+                caravanDialogueResponse, alternateVariables with
+                {
+                    GlobalNumbers = new Dictionary<ushort, int> { [22] = 2, [84] = 0 }
+                });
+            _ = DialoguePreviewText.Create(font, dialogueProjection,
+                alternateCaravan.After, dialogueVariables, bitClearOutput);
             var textPath = Path.Combine(assetPack,
                 OriginalContent.TextCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using var textStream = File.OpenRead(textPath);
