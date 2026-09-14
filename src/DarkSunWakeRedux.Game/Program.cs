@@ -155,6 +155,19 @@ try
                     throw new InvalidDataException(
                         "The installed first Tyr dialogue projection has drifted.");
             }
+            GplGlobalStringProjection globalString;
+            using (var globalsStream = File.OpenRead(Path.Combine(assetPack,
+                       OriginalContent.DialogueGlobalStringsScriptAssetPath.Replace(
+                           '/', Path.DirectorySeparatorChar))))
+            {
+                globalString = GplGlobalStringProjectionReader.Read(
+                    PackedGplScript.Read(globalsStream,
+                        OriginalContent.DialogueGlobalStringsScriptAssetPath));
+                if (globalString.Destination != new GplDialogueVariable(6, 5) ||
+                    string.IsNullOrWhiteSpace(globalString.Text))
+                    throw new InvalidDataException(
+                        "The installed dialogue global-string projection has drifted.");
+            }
             var openingLeader = ReadImage(assetPack, OriginalContent.OpeningLeaderImageAssetPath);
             var openingLeaderFrame = openingLeader.Frames[0];
             if (!openingLeader.Frames.Select(frame => (frame.Width, frame.Height))
@@ -182,13 +195,17 @@ try
                 throw new InvalidDataException("The installed interface font has an unexpected glyph count.");
             var visibleDialogueChoices = DialogueConditionAdapter.SelectVisibleChoices(
                 dialogueProjection.InitialChoices,
-                DialogueVariableSnapshot.Empty,
+                FirstTyrDialogueObservedState.Create(),
                 DialoguePreviewText.MaximumResponses);
             var dialogueText = DialoguePreviewText.Create(
-                font, dialogueProjection, DialogueVariableSnapshot.Empty);
+                font, dialogueProjection, FirstTyrDialogueObservedState.Create(),
+                new Dictionary<GplDialogueVariable, string>
+                {
+                    [globalString.Destination] = globalString.Text
+                });
             if (dialogueText.Speech.Width is <= 0 or > DialoguePreviewText.SpeechWidth ||
-                !visibleDialogueChoices.SequenceEqual([7]) ||
-                dialogueText.Responses.Count != 0 ||
+                !visibleDialogueChoices.SequenceEqual([0, 1, 2, 3, 7]) ||
+                dialogueText.Responses.Count != 5 ||
                 dialogueText.Responses.Any(response =>
                     response.Text.Width is <= 0 or > DialoguePreviewText.ResponseWidth))
                 throw new InvalidDataException(

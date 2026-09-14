@@ -57,21 +57,52 @@ internal static class StartupAssetTestArchives
     {
         var portrait = TransparentImage(72, 72);
         byte[] script = [0x19, 0x31];
-        var indexOffset = GffArchive.HeaderSize + portrait.Length + script.Length;
+        byte[] globals = GlobalStringScript();
+        var indexOffset = GffArchive.HeaderSize + portrait.Length + script.Length + globals.Length;
         using var stream = Header(indexOffset);
         using var writer = new BinaryWriter(stream, Encoding.ASCII, leaveOpen: true);
         var portraitOffset = checked((int)stream.Position);
         writer.Write(portrait);
         var scriptOffset = checked((int)stream.Position);
         writer.Write(script);
-        Index(writer, 2);
+        var globalsOffset = checked((int)stream.Position);
+        writer.Write(globals);
+        Index(writer, 3);
         Table(writer, "PORT",
             [(OriginalContent.FirstTyrDialoguePortraitResourceNumber,
                 portraitOffset, portrait.Length)]);
         Table(writer, "GPL ",
             [(OriginalContent.FirstTyrDialogueScriptResourceNumber,
                 scriptOffset, script.Length)]);
+        Table(writer, "MAS ",
+            [(OriginalContent.DialogueGlobalStringsScriptResourceNumber,
+                globalsOffset, globals.Length)]);
         return stream.ToArray();
+    }
+
+    public static byte[] GlobalStringScript()
+    {
+        var bytes = new byte[GplGlobalStringProjectionReader.NextInstructionOffset];
+        byte[] instruction = [0x0a, 0x86, 0x05, 0x92, .. EncodePacked("Depart!!")];
+        instruction.CopyTo(bytes, GplGlobalStringProjectionReader.AssignmentInstructionOffset);
+        return bytes;
+    }
+
+    private static byte[] EncodePacked(string text)
+    {
+        var values = text.Select(character => checked((byte)character))
+            .Append(GplPackedString.Terminator).ToArray();
+        var bits = values.SelectMany(value =>
+            Enumerable.Range(0, 7).Select(bit => (value >> (6 - bit)) & 1)).ToArray();
+        var packed = new List<byte> { GplPackedString.CompressedMarker };
+        for (var offset = 0; offset < bits.Length; offset += 8)
+        {
+            byte value = 0;
+            for (var bit = 0; bit < 8 && offset + bit < bits.Length; bit++)
+                value |= checked((byte)(bits[offset + bit] << (7 - bit)));
+            packed.Add(value);
+        }
+        return packed.ToArray();
     }
 
     private static MemoryStream Header(int indexOffset)

@@ -374,9 +374,11 @@ words or to animation, draw order, anchoring, collision, and interaction.
 
 `GPLDATA.GFF` contains 330 `GPL ` resources and 20 `MAS ` resources. `GPL` #135
 is 4,124 bytes and is independently tied to the first captured Tyr conversation.
-The extractor preserves the complete bytecode as opaque; a runtime reader now
+MAS #99 initializes the global string #5 label used by the final menu choice.
+The extractor preserves both complete bytecode chunks as opaque; runtime readers now
 projects only the evidenced opening structure at offsets 16, 118, 199, and 253:
-portrait selection, two conditional speech sources, and the initial menu.
+portrait selection, two conditional speech sources, and the initial menu, plus
+MAS #99's string-copy assignment at offset 20.
 
 The only decoded primitive is a bounded packed string used for future script
 interpretation. Marker `0x01` represents the active character name, marker
@@ -387,7 +389,8 @@ rejected. The menu projection bounds choices to 24, accepts only the expression
 forms needed by this observed menu, captures labels and branch offsets, and
 projects its three observed condition shapes: constant, local flag, and local
 number equality. It fails closed on any other condition shape, drift, or
-truncation. Decoding these structures does not authorize executing other
+truncation. The MAS projection additionally requires the assignment to end at
+offset 33 and target type-6 string slot 5. Decoding these structures does not authorize executing other
 instructions or assigning condition and state-mutation semantics.
 
 DSGP is an original deterministic envelope that preserves a selected script

@@ -22,11 +22,13 @@ public static class DialoguePreviewText
     public static DialoguePreviewTextContent Create(
         PackedIndexedBitmapFont font,
         FirstTyrDialogueProjection projection,
-        DialogueVariableSnapshot variables)
+        DialogueVariableSnapshot variables,
+        IReadOnlyDictionary<GplDialogueVariable, string>? variableText = null)
     {
         ArgumentNullException.ThrowIfNull(font);
         ArgumentNullException.ThrowIfNull(projection);
         ArgumentNullException.ThrowIfNull(variables);
+        variableText ??= new Dictionary<GplDialogueVariable, string>();
         var speechSource = projection.SpeechVariants.FirstOrDefault(source =>
             source.Kind == GplDialogueTextSourceKind.Literal)
             ?? throw new InvalidDataException(
@@ -39,10 +41,10 @@ public static class DialoguePreviewText
             projection.InitialChoices, variables, MaximumResponses);
         var responses = visibleIndices
             .Select(index => (Index: index, Choice: projection.InitialChoices[index]))
-            .Where(item => item.Choice.Label.Kind == GplDialogueTextSourceKind.Literal)
             .Select(item =>
             {
-                var fitted = Fit(font, item.Choice.Label.Text.Trim(), ResponseWidth);
+                var text = Resolve(item.Choice.Label, variableText);
+                var fitted = Fit(font, text.Trim(), ResponseWidth);
                 if (fitted.IsEmpty)
                     throw new InvalidDataException("A dialogue preview response is empty.");
                 return new DialoguePreviewResponse(
@@ -53,6 +55,20 @@ public static class DialoguePreviewText
             .ToArray();
         return new(speech, responses);
     }
+
+    private static string Resolve(
+        GplDialogueTextSource source,
+        IReadOnlyDictionary<GplDialogueVariable, string> variableText) =>
+        source.Kind switch
+        {
+            GplDialogueTextSourceKind.Literal => source.Text,
+            GplDialogueTextSourceKind.Variable when variableText.TryGetValue(
+                new(source.VariableType, source.VariableId), out var text) => text,
+            GplDialogueTextSourceKind.Variable => throw new InvalidDataException(
+                $"Dialogue text variable type {source.VariableType} #{source.VariableId} is unresolved."),
+            _ => throw new InvalidDataException(
+                $"Dialogue response text source {source.Kind} is unsupported.")
+        };
 
     public static IReadOnlyList<ReadOnlyMemory<byte>> Wrap(
         PackedIndexedBitmapFont font,

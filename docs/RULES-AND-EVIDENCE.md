@@ -648,7 +648,7 @@
 - **Confidence:** verified for the owned panel identity, origin, control graph,
   disabled hostile state, visible name/level, and action semantics; unknown for
   how arbitrary OJFF/GPL records determine hostility and capabilities.
-- **Implementation:** pack format 23 extracts the seven active/disabled/dismiss
+- **Implementation:** pack format 24 extracts the seven active/disabled/dismiss
   interaction images plus `WIND` #3020 as part of a bounded DSUI graph. Core models
   validated creature/object targets, enabled actions, the documented sole-object
   shortcut, inert disabled selections, and deterministic dismissal. Runtime
@@ -675,13 +675,15 @@
   `WIND` #12500 owns the speech edit box and vertical controls; #12501 owns five
   response-row buttons and its own vertical controls. The script's preceding
   `showpic 18` instruction identifies `PORT` #18; all 178 owned PORT chunks
-  decode through the bounded image reader, and #18 is one 72x72 frame.
+  decode through the bounded image reader, and #18 is one 72x72 frame. The five
+  captured response rows correlate to GPL #135 choices 0, 1, 2, 3, and 7. MAS
+  #99 assigns the variable-backed final label to global string slot 5.
 - **Confidence:** verified for the captured layouts, first exchange's GPL chunk,
   and visible response text; high for the static UI graph. The award-producing
   award script path, conditions, response consequences, and
   generic GPL execution semantics remain open.
-- **Implementation:** pack format 23 stores the byte-identical 4,124-byte GPL
-  #135 payload in a bounded versioned DSGP envelope, extracts `PORT` #18 with
+- **Implementation:** pack format 24 stores the byte-identical GPL #135 and MAS
+  #99 payloads in bounded versioned DSGP envelopes, extracts `PORT` #18 with
   the interface palette, and expands the interaction DSUI with #12500/#12501
   plus six dialogue-control images. The response adapter validates the speech
   edit box, exact five row resources, measured origin `(1,142)`, overlapping
@@ -695,11 +697,11 @@
   true/false/unknown evaluator. A bounded selector preserves source order,
   includes only proven-true conditions, and stops after the five physical rows;
   false and unknown conditions are both hidden without conflating their states.
-  The preview passes an explicit empty variable snapshot, retains each selected
-  choice's original index and branch offset, and therefore selects only the
-  unconditional owned-script entry until native initialization is established.
-  Its unresolved global-string label is not rendered or replaced with guessed
-  text.
+  The preview passes the capture-correlated opening state, retains each selected
+  choice's original index and branch offset, and selects indices 0, 1, 2, 3,
+  and 7. A second fail-closed projection validates MAS #99's byte-20 assignment
+  to type-6 global string #5 and supplies that label only from the ignored owned
+  pack. Generic local initialization remains unknown.
   Instruction execution, state mutations, and generalized text routing remain
   next Slice 3 work.
 - **Tests:** DSGP identity/payload round-trip and malformed envelopes; packed
@@ -707,8 +709,9 @@
   window/control/image geometry, response order/hit boundaries, synthetic
   transactional extraction, synthetic projection/drift/malformed cases,
   condition mapping, known/unknown evaluation, ordered/bounded fail-closed
-  selection, retained branch identities, and owned content smoke proving
-  portrait, speech-source, menu, and ordered condition contracts.
+  selection, retained branch identities, bounded MAS assignment/drift cases,
+  variable-label resolution, and owned content smoke proving portrait,
+  speech-source, five-row menu, and ordered condition contracts.
 
 ## Initial rules
 

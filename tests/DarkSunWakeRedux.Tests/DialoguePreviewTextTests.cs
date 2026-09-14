@@ -77,6 +77,30 @@ public sealed class DialoguePreviewTextTests
             content.Responses.Select(response => response.TargetOffset));
     }
 
+    [Fact]
+    public void ResolvesObservedOpeningVariableExitLabel()
+    {
+        var variable = new GplDialogueTextSource(
+            GplDialogueTextSourceKind.Variable, string.Empty, 6, 5);
+        var projection = new FirstTyrDialogueProjection(18, [Literal("speech")],
+        [
+            Choice("first", 10, GplDialogueConditionKind.LocalFlag, 0, 1),
+            Choice("second", 11, GplDialogueConditionKind.LocalFlag, 1, 1),
+            Choice("third", 12, GplDialogueConditionKind.LocalFlag, 2, 1),
+            Choice("fourth", 13, GplDialogueConditionKind.LocalFlag, 3, 1),
+            new(variable, 14, new(GplDialogueConditionKind.Constant, 0, 1))
+        ]);
+
+        var content = DialoguePreviewText.Create(
+            Font(), projection, FirstTyrDialogueObservedState.Create(),
+            new Dictionary<GplDialogueVariable, string> { [new(6, 5)] = "Depart!!" });
+
+        Assert.Equal([0, 1, 2, 3, 4],
+            content.Responses.Select(response => response.ChoiceIndex));
+        Assert.Throws<InvalidDataException>(() => DialoguePreviewText.Create(
+            Font(), projection, FirstTyrDialogueObservedState.Create()));
+    }
+
     private static GplDialogueTextSource Literal(string text) =>
         new(GplDialogueTextSourceKind.Literal, text, 0, 0);
 

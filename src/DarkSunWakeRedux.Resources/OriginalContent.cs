@@ -174,7 +174,7 @@ public sealed record SourceIdentification(
 
 public static class OriginalContent
 {
-    public const int AssetPackFormatVersion = 23;
+    public const int AssetPackFormatVersion = 24;
     public const string GameId = "dark-sun-wake-redux";
     public const string TitleImageAssetPath = "images/title.dsix";
     public const string InterfaceFontAssetPath = "fonts/interface.dsft";
@@ -186,6 +186,7 @@ public static class OriginalContent
         "ui/exploration-destinations.dsui";
     public const string InteractionUiCatalogAssetPath = "ui/interaction.dsui";
     public const string FirstTyrDialogueScriptAssetPath = "dialogue/gpl-135.dsgp";
+    public const string DialogueGlobalStringsScriptAssetPath = "dialogue/mas-99.dsgp";
     public const string FirstTyrDialoguePortraitAssetPath =
         "images/dialogue/portrait-18.dsix";
     public const string CharacterCatalogAssetPath = "characters/catalog.dsch";
@@ -213,6 +214,7 @@ public static class OriginalContent
     public const uint DialogueSpeechWindowResourceNumber = 12500;
     public const uint DialogueResponseWindowResourceNumber = 12501;
     public const uint FirstTyrDialogueScriptResourceNumber = 135;
+    public const uint DialogueGlobalStringsScriptResourceNumber = 99;
     public const uint FirstTyrDialoguePortraitResourceNumber = 18;
 
     public static IReadOnlyList<uint> InteractionWindowResourceNumbers { get; } =

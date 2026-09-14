@@ -264,7 +264,7 @@ decoder rather than being guessed now.
   class/level progression, the active member during DUAL selection or editing,
   and recreation-native stored characters;
   DSUI round-trip, malformed graph, deterministic ordering, mixed-control graph resolution, resource-ID routing,
-  rectangle-edge, synthetic extraction, content-smoke, and owned 98-asset pack verification cover the derived
+  rectangle-edge, synthetic extraction, content-smoke, and owned 99-asset pack verification cover the derived
   start-flow layout contract;
   gameplay-wide replay remains a later-slice requirement.
 - **Observed parity.** Compare boot, start, create/select/cancel, and quit state
@@ -317,12 +317,11 @@ decoder rather than being guessed now.
   deterministic Core true/false/unknown evaluator. The F9 validation hook now
   filters the initial menu in source order, hides false and unknown conditions,
   bounds the result to the five physical rows, and retains each choice's source
-  index and branch target. Because variable initialization remains open, the
-  runtime supplies an explicitly empty snapshot and therefore selects only the
-  unconditional choice; it does not guess initial flag/number values. That
-  choice uses unresolved global string #5, so no response text is rendered yet.
-  Global text resolution and choice execution remain open. The hook renders the
-  first literal speech and any filtered literal labels with bounded provisional
+  index and branch target. The captured five-row state establishes choices 0,
+  1, 2, 3, and 7 for this opening only; generic local initialization remains
+  open. A bounded MAS #99 projection resolves choice 7's global string #5 from
+  the ignored owned pack without committing its text. Choice execution remains
+  open. The hook renders the first literal speech and filtered labels with bounded provisional
   wrapping in the extracted font. Reusable ordered hotkey bindings and Core
   navigation now cover character, inventory, cast/psionic, current-effects,
   overhead-map, and game-menu views plus menu-return/exit semantics. Their

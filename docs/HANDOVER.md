@@ -17,19 +17,19 @@ Owner captures now distinguish hostile Look, a one-way 10,000-experience award,
 and the first full conversation. `DATA-GOG-INTERACTION-001` maps hostile
 `WIND` #3020 and its disabled actions; `OBS-GOG-DIALOGUE-001` maps the upper and
 lower dialogue windows and ties the captured exchange to `GPL` #135 without
-committing original text or screenshots. Pack format 23 contains the bounded
+committing original text or screenshots. Pack format 24 contains the bounded
 three-window interaction/dialogue graph, thirteen control images, `PORT` #18,
-and byte-identical `GPL` #135 in a DSGP envelope. Core contains the deterministic
+and byte-identical `GPL` #135 and `MAS` #99 in DSGP envelopes. Core contains the deterministic
 interaction/sole-action contract; Resources decodes the packed-string primitive
 and projects GPL #135's evidenced opening portrait, two conditional speech
 sources, and eight-entry menu with constant/local-flag/local-number-equality
 conditions. Game maps these to Core's true/false/unknown evaluator. A bounded
 selector now keeps proven-true choices in source order, hides false/unknown
 choices, limits them to five physical rows, and retains original choice indexes
-and branch targets. Variable initialization and global string #5 remain
-unresolved, so Game supplies an explicit empty snapshot and selects only the
-unconditional choice. Its label is global string #5, so the F9 preview renders
-no guessed response text. The fixed portrait/window/control chrome and projected
+and branch targets. The capture-correlated opening state selects choices 0, 1,
+2, 3, and 7, while a bounded MAS #99 projection supplies choice 7's global
+string #5 label from the ignored owned pack. Generic variable initialization
+remains unresolved. The fixed portrait/window/control chrome and projected
 literal speech render over the live aspect-expanded map. Wrapping, conversation
 entry, and GPL instruction execution remain pending.
 
@@ -72,9 +72,8 @@ research output remain under ignored `analysis/original/`.
 
 Continue Slice 3 from evidence, preferably in this order:
 
-1. establish GPL #135's local-variable initialization and global string #5,
-   then feed the evidenced snapshot into the existing fail-closed selector and
-   route retained branch targets through deterministic Core dialogue state
+1. establish generic GPL local-variable initialization, then route the retained
+   opening branch targets through deterministic Core dialogue state
    before adding quest consequences;
 2. establish the Preferences setting ranges/defaults and About destination,
    then implement deterministic setting mutations and frame-state feedback;

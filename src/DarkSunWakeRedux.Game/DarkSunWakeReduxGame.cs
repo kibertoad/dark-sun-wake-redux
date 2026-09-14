@@ -176,14 +176,23 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                    OriginalContent.InterfaceFontAssetPath)))
         using (var scriptStream = File.OpenRead(AssetPath(
                    OriginalContent.FirstTyrDialogueScriptAssetPath)))
+        using (var globalsStream = File.OpenRead(AssetPath(
+                   OriginalContent.DialogueGlobalStringsScriptAssetPath)))
         {
             var font = PackedIndexedBitmapFont.Read(
                 fontStream, OriginalContent.InterfaceFontAssetPath);
             var script = PackedGplScript.Read(
                 scriptStream, OriginalContent.FirstTyrDialogueScriptAssetPath);
+            var globalString = GplGlobalStringProjectionReader.Read(
+                PackedGplScript.Read(globalsStream,
+                    OriginalContent.DialogueGlobalStringsScriptAssetPath));
             var previewText = DialoguePreviewText.Create(
                 font, FirstTyrDialogueProjectionReader.Read(script),
-                DialogueVariableSnapshot.Empty);
+                FirstTyrDialogueObservedState.Create(),
+                new Dictionary<GplDialogueVariable, string>
+                {
+                    [globalString.Destination] = globalString.Text
+                });
             _dialogueSpeechText = CreateTextTexture(
                 dialoguePortraitImage.Palette, previewText.Speech.Pixels,
                 previewText.Speech.Width, previewText.Speech.Height);

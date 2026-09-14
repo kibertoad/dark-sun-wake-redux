@@ -217,7 +217,12 @@ public static class StartupAssetExtractor
             OriginalContent.InteractionUiCatalogAssetPath,
             OriginalContent.InteractionWindowResourceNumbers,
             "interaction", cancellationToken));
-        files.Add(await WriteGplScriptAsync(stagingRoot, gplArchive, cancellationToken));
+        files.Add(await WriteGplScriptAsync(stagingRoot, gplArchive,
+            "GPL ", OriginalContent.FirstTyrDialogueScriptResourceNumber,
+            OriginalContent.FirstTyrDialogueScriptAssetPath, cancellationToken));
+        files.Add(await WriteGplScriptAsync(stagingRoot, gplArchive,
+            "MAS ", OriginalContent.DialogueGlobalStringsScriptResourceNumber,
+            OriginalContent.DialogueGlobalStringsScriptAssetPath, cancellationToken));
         files.Add(await WriteCharacterCatalogAsync(stagingRoot, characters, cancellationToken));
         files.Add(await WriteImageAsync(stagingRoot, OriginalContent.OpeningLeaderImageAssetPath,
             openingLeader.Image, tyrRegion.Palette,
@@ -281,12 +286,13 @@ public static class StartupAssetExtractor
     private static async Task<AssetPackFile> WriteGplScriptAsync(
         string stagingRoot,
         GffArchive archive,
+        string tag,
+        uint number,
+        string relativePath,
         CancellationToken cancellationToken)
     {
-        var number = OriginalContent.FirstTyrDialogueScriptResourceNumber;
         var packed = new PackedGplScript(number,
-            archive.GetResource("GPL ", number).ToArray());
-        var relativePath = OriginalContent.FirstTyrDialogueScriptAssetPath;
+            archive.GetResource(tag, number).ToArray());
         var target = Path.Combine(stagingRoot,
             relativePath.Replace('/', Path.DirectorySeparatorChar));
         Directory.CreateDirectory(Path.GetDirectoryName(target)!);
@@ -295,13 +301,13 @@ public static class StartupAssetExtractor
         var decoded = PackedGplScript.Read(verify, relativePath);
         if (decoded.ResourceNumber != number || !decoded.Bytecode.SequenceEqual(packed.Bytecode))
             throw new InvalidDataException(
-                "The derived first Tyr dialogue script failed verification.");
+                $"The derived {tag.Trim()} #{number} script failed verification.");
         verify.Position = 0;
         var hash = Convert.ToHexStringLower(
             await SHA256.HashDataAsync(verify, cancellationToken));
         return new(relativePath, verify.Length, hash, GplSourcePath,
             "application/vnd.dark-sun-wake-redux.gpl-script",
-            $"GPL #{number} bytecode -> DSGP v{PackedGplScript.FormatVersion}");
+            $"{tag.Trim()} #{number} bytecode -> DSGP v{PackedGplScript.FormatVersion}");
     }
 
     private static async Task<AssetPackFile> WriteRegionAsync(

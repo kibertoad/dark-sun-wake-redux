@@ -166,7 +166,7 @@ public sealed class StartupAssetExtractorTests
             var manifest = await AssetPackInstaller.InstallAsync(output, staging =>
                 StartupAssetExtractor.WritePackAsync(sourceRoot, staging, edition, "test"));
 
-            Assert.Equal(98, manifest.Files.Count);
+            Assert.Equal(99, manifest.Files.Count);
             var asset = Assert.Single(manifest.Files, item => item.Path == OriginalContent.TitleImageAssetPath);
             Assert.Contains("BMP #11011", asset.Conversion, StringComparison.Ordinal);
             Assert.Contains("PAL #11011", asset.Conversion, StringComparison.Ordinal);
@@ -267,6 +267,17 @@ public sealed class StartupAssetExtractorTests
                 Assert.Equal(OriginalContent.FirstTyrDialogueScriptResourceNumber,
                     script.ResourceNumber);
                 Assert.Equal([0x19, 0x31], script.Bytecode);
+            }
+            var globalsAsset = Assert.Single(manifest.Files, item => item.Path == OriginalContent.DialogueGlobalStringsScriptAssetPath);
+            Assert.Equal(StartupAssetExtractor.GplSourcePath, globalsAsset.SourcePath);
+            Assert.Contains("MAS #99", globalsAsset.Conversion, StringComparison.Ordinal);
+            using (var globalsStream = File.OpenRead(Path.Combine(output,
+                       OriginalContent.DialogueGlobalStringsScriptAssetPath.Replace(
+                           '/', Path.DirectorySeparatorChar))))
+            {
+                var globals = PackedGplScript.Read(globalsStream);
+                Assert.Equal(OriginalContent.DialogueGlobalStringsScriptResourceNumber, globals.ResourceNumber);
+                Assert.Equal(StartupAssetTestArchives.GlobalStringScript(), globals.Bytecode);
             }
             var inventoryLayer = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.InventoryLayer.Path);

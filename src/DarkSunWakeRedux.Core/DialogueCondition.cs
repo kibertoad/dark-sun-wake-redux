@@ -28,6 +28,19 @@ public sealed record DialogueVariableSnapshot(
         new Dictionary<ushort, int>());
 }
 
+public static class FirstTyrDialogueObservedState
+{
+    public static DialogueVariableSnapshot Create() => new(
+        new Dictionary<ushort, bool>
+        {
+            [0] = true,
+            [1] = true,
+            [2] = true,
+            [3] = true
+        },
+        new Dictionary<ushort, int>());
+}
+
 public static class DialogueConditionEvaluator
 {
     public static DialogueConditionResult Evaluate(
