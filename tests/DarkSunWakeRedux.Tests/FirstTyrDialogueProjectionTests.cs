@@ -474,6 +474,76 @@ public sealed class FirstTyrDialogueProjectionTests
             }));
     }
 
+    [Fact]
+    public void ProjectsSecondThirdMenuResponseFlagTransition()
+    {
+        var projection = FirstTyrDialogueResponseProjectionReader.ReadThirdMenuSecond(
+            ScriptWithThirdMenuSecondResponse());
+
+        Assert.Equal((1, 3089),
+            (projection.SourceChoiceIndex, projection.EntryOffset));
+        Assert.Equal([61, 61, 35],
+            projection.Output.Select(item => item.Text!.Text.Length));
+        Assert.Equal([(15, true), (13, false)], projection.LocalFlagAssignments
+            .Select(assignment => ((int)assignment.VariableId, assignment.Value)));
+        Assert.True(projection.ReturnsToMenu);
+    }
+
+    [Fact]
+    public void RejectsSecondThirdMenuResponseAssignmentAndReturnDrift()
+    {
+        var driftedAssignment = ScriptWithThirdMenuSecondResponse();
+        driftedAssignment.Bytecode[3255] = 12;
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadThirdMenuSecond(
+                driftedAssignment));
+        var driftedReturn = ScriptWithThirdMenuSecondResponse();
+        driftedReturn.Bytecode[3256] = 0;
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadThirdMenuSecond(driftedReturn));
+        var truncated = ScriptWithThirdMenuSecondResponse();
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadThirdMenuSecond(truncated with
+            {
+                Bytecode = truncated.Bytecode[..3256]
+            }));
+    }
+
+    [Fact]
+    public void ProjectsThirdThirdMenuResponseFlagClear()
+    {
+        var projection = FirstTyrDialogueResponseProjectionReader.ReadThirdMenuThird(
+            ScriptWithThirdMenuThirdResponse());
+
+        Assert.Equal((2, 3257),
+            (projection.SourceChoiceIndex, projection.EntryOffset));
+        Assert.Equal([68, 71, 66, 13],
+            projection.Output.Select(item => item.Text!.Text.Length));
+        Assert.Equal([(15, false)], projection.LocalFlagAssignments
+            .Select(assignment => ((int)assignment.VariableId, assignment.Value)));
+        Assert.True(projection.ReturnsToMenu);
+    }
+
+    [Fact]
+    public void RejectsThirdThirdMenuResponseAssignmentAndReturnDrift()
+    {
+        var driftedAssignment = ScriptWithThirdMenuThirdResponse();
+        driftedAssignment.Bytecode[3477] = 14;
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadThirdMenuThird(
+                driftedAssignment));
+        var driftedReturn = ScriptWithThirdMenuThirdResponse();
+        driftedReturn.Bytecode[3478] = 0;
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadThirdMenuThird(driftedReturn));
+        var truncated = ScriptWithThirdMenuThirdResponse();
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadThirdMenuThird(truncated with
+            {
+                Bytecode = truncated.Bytecode[..3478]
+            }));
+    }
+
     private static PackedGplScript Script()
     {
         var bytes = new byte[2905];
@@ -694,6 +764,35 @@ public sealed class FirstTyrDialogueProjectionTests
         WritePrint(bytes, 3053, new string('Z', 27));
         Write(bytes, 3083,
             [0x16, 0x8f, 0x00, 0x8e, 0x0c, 0x15]);
+        return script with { Bytecode = bytes };
+    }
+
+    private static PackedGplScript ScriptWithThirdMenuSecondResponse()
+    {
+        var script = Script();
+        var bytes = Expand(script, 3257);
+        WritePrint(bytes, 3089, new string('a', 61));
+        WritePrint(bytes, 3149, new string('b', 61));
+        WritePrint(bytes, 3209, new string('c', 35));
+        Write(bytes, 3246,
+        [
+            0x16, 0x8f, 0x01, 0x8e, 0x0f,
+            0x16, 0x8f, 0x00, 0x8e, 0x0d,
+            0x15
+        ]);
+        return script with { Bytecode = bytes };
+    }
+
+    private static PackedGplScript ScriptWithThirdMenuThirdResponse()
+    {
+        var script = Script();
+        var bytes = Expand(script, 3479);
+        WritePrint(bytes, 3257, new string('d', 68));
+        WritePrint(bytes, 3323, new string('e', 71));
+        WritePrint(bytes, 3391, new string('f', 66));
+        WritePrint(bytes, 3455, new string('g', 13));
+        Write(bytes, 3473,
+            [0x16, 0x8f, 0x00, 0x8e, 0x0f, 0x15]);
         return script with { Bytecode = bytes };
     }
 

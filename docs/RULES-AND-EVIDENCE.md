@@ -719,6 +719,8 @@
   whose label is MAS #99 global string #6.
   Its source-choice-0 target at 2921 prints three literals, clears local flag
   12, and returns.
+  Target 3089 prints three literals, sets local flag 15, clears local flag 13,
+  and returns. Target 3257 prints four literals, clears local flag 15, and returns.
 - **Confidence:** verified for the captured layouts, first exchange's GPL chunk,
   and visible response text; high for the static UI graph; medium for the
   opening-only local number 0, local flags 9/16, global flag 357, and global
@@ -803,6 +805,10 @@
   Target 2921 has an exact three-print, local-flag-12-clear, and local-return
   projection through offset 3088. Runtime presents it and recomputes the third
   page as source order 1, 6.
+  Target 3089 has an exact three-print, local-flag-15-set/local-flag-13-clear,
+  and return projection through offset 3256; it exposes source order 2, 6.
+  Target 3257 has an exact four-print, local-flag-15-clear, and return projection
+  through offset 3478; it leaves source choice 6. Runtime presents both outputs.
   Choice 7's target has an exact bounded projection at offsets 2905–2920: print
   GSTRING #5, assign immediate one to local flags 14 and 4, then return locally.
   Core validates the selected identity before applying both flags atomically and
@@ -822,6 +828,7 @@
   prerequisite success and atomic rejection, target-2352 assignment/return
   drift, target-2415 assignment/conditional/loop/menu-transition drift,
   target-2921 print/assignment/return drift,
+  target-3089/3257 print/assignment/return drift,
   explicit-newline transcript rendering and malformed-output rejection,
   atomic flag
   application, conditional global-flag effects, deterministic menu reselection,

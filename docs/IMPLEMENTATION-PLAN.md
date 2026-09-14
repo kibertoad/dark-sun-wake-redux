@@ -365,7 +365,10 @@ decoder rather than being guessed now.
   projected seven-entry third menu at offset 2616. On the path where target
   3479 already set flag 16, its visible source order is 0, 1, and 6. Third-menu
   target 2921 then validates three prints, clears local flag 12, returns, and
-  leaves source choices 1 and 6. Remaining third-menu responses, the
+  leaves source choices 1 and 6. Target 3089 prints three parts, sets local flag
+  15, clears flag 13, and enables source choice 2; target 3257 then prints four
+  parts, clears flag 15, and leaves only source choice 6. Remaining alternate
+  third-menu paths, the
   second-menu alternate branch, and generalized GPL
   execution remain open. The hook renders the
   first literal speech and filtered labels with bounded provisional

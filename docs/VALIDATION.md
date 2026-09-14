@@ -104,6 +104,10 @@ the exact menu identities, transition legality, and control-flow/truncation drif
 The owned path next selects target 2921, verifies local flag 12 clears, resolves
 third-page source order 1, 6, and rasterizes its three-part transcript;
 synthetic tests reject assignment, return, and truncation drift.
+It then selects target 3089, verifies flag 15 sets and flag 13 clears, resolves
+source order 2, 6, and rasterizes three output parts. Target 3257 follows,
+clears flag 15, leaves only source choice 6, and rasterizes four output parts.
+Synthetic tests reject assignment, return, and truncation drift for both.
 The owned smoke also rasterizes all five implemented returned transcripts with
 the extracted font, including choice 0's explicit blank line, within the bounded
 speech area.

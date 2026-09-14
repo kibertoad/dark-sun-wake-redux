@@ -136,6 +136,8 @@ try
             FirstTyrDialogueResponseProjection acarDialogueResponse;
             FirstTyrDialogueResponseProjection cityDialogueResponse;
             FirstTyrDialogueResponseProjection thirdMenuFirstDialogueResponse;
+            FirstTyrDialogueResponseProjection thirdMenuSecondDialogueResponse;
+            FirstTyrDialogueResponseProjection thirdMenuThirdDialogueResponse;
             using (var scriptStream = File.OpenRead(Path.Combine(assetPack,
                        OriginalContent.FirstTyrDialogueScriptAssetPath.Replace(
                            '/', Path.DirectorySeparatorChar))))
@@ -164,6 +166,10 @@ try
                     FirstTyrDialogueResponseProjectionReader.ReadCityIntroduction(script);
                 thirdMenuFirstDialogueResponse =
                     FirstTyrDialogueResponseProjectionReader.ReadThirdMenuFirst(script);
+                thirdMenuSecondDialogueResponse =
+                    FirstTyrDialogueResponseProjectionReader.ReadThirdMenuSecond(script);
+                thirdMenuThirdDialogueResponse =
+                    FirstTyrDialogueResponseProjectionReader.ReadThirdMenuThird(script);
                 if (dialogueProjection.PortraitResourceNumber !=
                         OriginalContent.FirstTyrDialoguePortraitResourceNumber ||
                     dialogueProjection.SpeechVariants.Count != 2 ||
@@ -440,6 +446,32 @@ try
             _ = DialoguePreviewText.Create(font, dialogueProjection,
                 thirdMenuFirstDialogue.After, dialogueVariables,
                 thirdMenuFirstDialogueResponse.Output);
+            identitySession.Execute(DialogueCommand.Select(0));
+            var thirdMenuSecondDialogue = identitySession.Execute(DialogueCommand.Apply(
+                DialogueSessionAdapter.ToCore(thirdMenuSecondDialogueResponse)));
+            if (!thirdMenuSecondDialogue.Applied ||
+                !thirdMenuSecondDialogue.After.Variables.LocalFlags[15] ||
+                thirdMenuSecondDialogue.After.Variables.LocalFlags[13] ||
+                !thirdMenuSecondDialogue.After.Choices.Select(choice => choice.SourceIndex)
+                    .SequenceEqual([2, 6]))
+                throw new InvalidDataException(
+                    "The installed first Tyr third-menu follow-up did not apply its effects.");
+            _ = DialoguePreviewText.Create(font, dialogueProjection,
+                thirdMenuSecondDialogue.After, dialogueVariables,
+                thirdMenuSecondDialogueResponse.Output);
+            identitySession.Execute(DialogueCommand.Select(0));
+            var thirdMenuThirdDialogue = identitySession.Execute(DialogueCommand.Apply(
+                DialogueSessionAdapter.ToCore(thirdMenuThirdDialogueResponse)));
+            if (!thirdMenuThirdDialogue.Applied ||
+                thirdMenuThirdDialogue.After.Variables.LocalFlags[15] ||
+                !thirdMenuThirdDialogue.After.Choices.Select(choice => choice.SourceIndex)
+                    .SequenceEqual([6]))
+                throw new InvalidDataException(
+                    "The installed first Tyr third-menu final history response " +
+                    "did not apply its effects.");
+            _ = DialoguePreviewText.Create(font, dialogueProjection,
+                thirdMenuThirdDialogue.After, dialogueVariables,
+                thirdMenuThirdDialogueResponse.Output);
             var textPath = Path.Combine(assetPack,
                 OriginalContent.TextCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using var textStream = File.OpenRead(textPath);

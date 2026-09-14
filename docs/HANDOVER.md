@@ -73,7 +73,9 @@ conditionally sets local flag 10 when flag 16 is false, and advances through
 the validated loop header to the seven-entry third menu at offset 2616. The
 owned path has flag 16 set and therefore resolves third-page order 0, 1, 6. The
 first third-page target at 2921 prints three literals, clears local flag 12,
-returns with source order 1, 6, and presents its transcript. The
+returns with source order 1, 6, and presents its transcript. Target 3089 then
+sets flag 15, clears flag 13, and exposes source order 2, 6; target 3257 clears
+flag 15 and leaves only source choice 6. Both present their bounded transcripts. The
 fixed portrait/window/control chrome and
 projected initial literal speech render over the live aspect-expanded map.
 Wrapping, conversation entry, remaining third-menu response branches, and
@@ -118,7 +120,8 @@ research output remain under ignored `analysis/original/`.
 
 Continue Slice 3 from evidence, preferably in this order:
 
-1. project the bounded response paths selected by the third menu before adding
+1. project the remaining bounded response paths selected by alternate third-menu
+   states before adding
    quest consequences;
 2. establish the Preferences setting ranges/defaults and About destination,
    then implement deterministic setting mutations and frame-state feedback;

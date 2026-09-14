@@ -82,6 +82,12 @@ public static class FirstTyrDialogueResponseProjectionReader
     public const int ThirdMenuFirstSourceChoiceIndex = 0;
     public const int ThirdMenuFirstEntryOffset = 2921;
     public const int ThirdMenuFirstReturnOffset = 3088;
+    public const int ThirdMenuSecondSourceChoiceIndex = 1;
+    public const int ThirdMenuSecondEntryOffset = 3089;
+    public const int ThirdMenuSecondReturnOffset = 3256;
+    public const int ThirdMenuThirdSourceChoiceIndex = 2;
+    public const int ThirdMenuThirdEntryOffset = 3257;
+    public const int ThirdMenuThirdReturnOffset = 3478;
     public const byte PrintStringOpcode = 0x4f;
     public const byte PrintNewLineOpcode = 0x51;
     public const byte LoadVariableOpcode = 0x16;
@@ -352,6 +358,55 @@ public static class FirstTyrDialogueResponseProjectionReader
         RequireOpcode(bytes, ref position, LocalReturnOpcode,
             "third-menu choice 0 local return");
         return new(ThirdMenuFirstSourceChoiceIndex, ThirdMenuFirstEntryOffset,
+            output, [assignment], [], true);
+    }
+
+    public static FirstTyrDialogueResponseProjection ReadThirdMenuSecond(
+        PackedGplScript script)
+    {
+        ValidateScript(script);
+        var bytes = script.Bytecode.AsSpan();
+        var position = ThirdMenuSecondEntryOffset;
+        var output = new[]
+        {
+            ReadLiteralPrint(bytes, ref position, 3149),
+            ReadLiteralPrint(bytes, ref position, 3209),
+            ReadLiteralPrint(bytes, ref position, 3246)
+        };
+        var assignments = new[]
+        {
+            ReadFlagAssignment(bytes, ref position, 15, true),
+            ReadFlagAssignment(bytes, ref position, 13, false)
+        };
+        if (position != ThirdMenuSecondReturnOffset)
+            throw Error($"third-menu choice 1 effects end at {position}, " +
+                $"not {ThirdMenuSecondReturnOffset}");
+        RequireOpcode(bytes, ref position, LocalReturnOpcode,
+            "third-menu choice 1 local return");
+        return new(ThirdMenuSecondSourceChoiceIndex, ThirdMenuSecondEntryOffset,
+            output, assignments, [], true);
+    }
+
+    public static FirstTyrDialogueResponseProjection ReadThirdMenuThird(
+        PackedGplScript script)
+    {
+        ValidateScript(script);
+        var bytes = script.Bytecode.AsSpan();
+        var position = ThirdMenuThirdEntryOffset;
+        var output = new[]
+        {
+            ReadLiteralPrint(bytes, ref position, 3323),
+            ReadLiteralPrint(bytes, ref position, 3391),
+            ReadLiteralPrint(bytes, ref position, 3455),
+            ReadLiteralPrint(bytes, ref position, 3473)
+        };
+        var assignment = ReadFlagAssignment(bytes, ref position, 15, false);
+        if (position != ThirdMenuThirdReturnOffset)
+            throw Error($"third-menu choice 2 effects end at {position}, " +
+                $"not {ThirdMenuThirdReturnOffset}");
+        RequireOpcode(bytes, ref position, LocalReturnOpcode,
+            "third-menu choice 2 local return");
+        return new(ThirdMenuThirdSourceChoiceIndex, ThirdMenuThirdEntryOffset,
             output, [assignment], [], true);
     }
 
