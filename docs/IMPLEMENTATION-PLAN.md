@@ -314,10 +314,16 @@ decoder rather than being guessed now.
   that live world pending conversation routing and text. A fail-closed GPL #135
   reader projects the evidenced portrait, two conditional speech sources, and
   eight-entry initial menu and maps its three observed condition shapes to a
-  deterministic Core true/false/unknown evaluator. Variable initialization and
-  the global exit-label string remain open, so filtering is not yet wired. The F9
-  validation hook renders its first literal speech and five literal labels with
-  bounded provisional wrapping in the extracted font. Reusable ordered hotkey bindings and Core
+  deterministic Core true/false/unknown evaluator. The F9 validation hook now
+  filters the initial menu in source order, hides false and unknown conditions,
+  bounds the result to the five physical rows, and retains each choice's source
+  index and branch target. Because variable initialization remains open, the
+  runtime supplies an explicitly empty snapshot and therefore selects only the
+  unconditional choice; it does not guess initial flag/number values. That
+  choice uses unresolved global string #5, so no response text is rendered yet.
+  Global text resolution and choice execution remain open. The hook renders the
+  first literal speech and any filtered literal labels with bounded provisional
+  wrapping in the extracted font. Reusable ordered hotkey bindings and Core
   navigation now cover character, inventory, cast/psionic, current-effects,
   overhead-map, and game-menu views plus menu-return/exit semantics. Their
   original Game Menu base and 14 controls now extract and render through a

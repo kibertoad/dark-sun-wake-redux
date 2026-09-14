@@ -28,8 +28,10 @@ redistributed.
 During the active Tyr slice, Alt+Enter toggles native-resolution fullscreen and
 F9 toggles a development preview of the measured dialogue portrait, chrome,
 and resource-derived first speech/response page over the live map. Its greedy
-wrapping and raw first-five literal choice selection are validation aids, not
-yet evidence-backed dialogue condition execution.
+wrapping is a validation aid. Response rows are condition-filtered in source
+order through deterministic Core evaluation; unknown variables fail closed and
+the preview intentionally starts from an empty variable snapshot until native
+initialization is evidenced. Choice execution is not implemented.
 
 Build and test the complete solution with:
 

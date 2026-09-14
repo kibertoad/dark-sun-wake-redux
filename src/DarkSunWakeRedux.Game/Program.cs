@@ -180,11 +180,17 @@ try
             var font = PackedIndexedBitmapFont.Read(fontStream, OriginalContent.InterfaceFontAssetPath);
             if (font.Glyphs.Count != IndexedBitmapFont.CharacterCount)
                 throw new InvalidDataException("The installed interface font has an unexpected glyph count.");
-            var dialogueText = DialoguePreviewText.Create(font, dialogueProjection);
+            var visibleDialogueChoices = DialogueConditionAdapter.SelectVisibleChoices(
+                dialogueProjection.InitialChoices,
+                DialogueVariableSnapshot.Empty,
+                DialoguePreviewText.MaximumResponses);
+            var dialogueText = DialoguePreviewText.Create(
+                font, dialogueProjection, DialogueVariableSnapshot.Empty);
             if (dialogueText.Speech.Width is <= 0 or > DialoguePreviewText.SpeechWidth ||
-                dialogueText.Responses.Count != DialoguePreviewText.MaximumResponses ||
+                !visibleDialogueChoices.SequenceEqual([7]) ||
+                dialogueText.Responses.Count != 0 ||
                 dialogueText.Responses.Any(response =>
-                    response.Width is <= 0 or > DialoguePreviewText.ResponseWidth))
+                    response.Text.Width is <= 0 or > DialoguePreviewText.ResponseWidth))
                 throw new InvalidDataException(
                     "The installed first Tyr dialogue text does not fit its preview layout.");
             var textPath = Path.Combine(assetPack,

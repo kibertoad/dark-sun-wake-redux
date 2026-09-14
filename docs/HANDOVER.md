@@ -2,10 +2,10 @@
 
 ## Current branch and integration state
 
-Development is performed on `codex/full-restoration`. Each cohesive verified
-batch is pushed there and, when requested by the owner, fast-forwarded to
-`main`. Consult `git status`, local/remote refs, and the latest commit rather
-than assuming this document proves push state.
+Development is performed directly on `main`, as requested by the owner. Each
+cohesive verified batch is committed there. Consult `git status`, local/remote
+refs, and the latest commit rather than assuming this document proves push
+state.
 
 The repository is a configured Dark Sun: Wake of the Ravager restoration. The
 approved `docs/IMPLEMENTATION-PLAN.md` remains authoritative. Slice 3 is active
@@ -23,13 +23,15 @@ and byte-identical `GPL` #135 in a DSGP envelope. Core contains the deterministi
 interaction/sole-action contract; Resources decodes the packed-string primitive
 and projects GPL #135's evidenced opening portrait, two conditional speech
 sources, and eight-entry menu with constant/local-flag/local-number-equality
-conditions. Game maps these to Core's true/false/unknown evaluator, but variable
-initialization and global string #5 remain unresolved;
-Game validates the measured five-row response layout and F9 previews the fixed
-portrait/window/control chrome plus the projected first literal speech/response
-page in the extracted font over the live aspect-expanded map. Wrapping and raw
-first-five selection are provisional; condition filtering, conversation entry,
-and GPL instruction execution remain pending.
+conditions. Game maps these to Core's true/false/unknown evaluator. A bounded
+selector now keeps proven-true choices in source order, hides false/unknown
+choices, limits them to five physical rows, and retains original choice indexes
+and branch targets. Variable initialization and global string #5 remain
+unresolved, so Game supplies an explicit empty snapshot and selects only the
+unconditional choice. Its label is global string #5, so the F9 preview renders
+no guessed response text. The fixed portrait/window/control chrome and projected
+literal speech render over the live aspect-expanded map. Wrapping, conversation
+entry, and GPL instruction execution remain pending.
 
 ## Previous cohesive batch
 
@@ -71,8 +73,9 @@ research output remain under ignored `analysis/original/`.
 Continue Slice 3 from evidence, preferably in this order:
 
 1. establish GPL #135's local-variable initialization and global string #5,
-   then use the existing condition evaluator to filter choices and route them
-   through deterministic Core dialogue state before adding quest consequences;
+   then feed the evidenced snapshot into the existing fail-closed selector and
+   route retained branch targets through deterministic Core dialogue state
+   before adding quest consequences;
 2. establish the Preferences setting ranges/defaults and About destination,
    then implement deterministic setting mutations and frame-state feedback;
 3. generalize attack/look target eligibility and select ranged versus melee

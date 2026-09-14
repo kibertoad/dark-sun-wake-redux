@@ -182,7 +182,8 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             var script = PackedGplScript.Read(
                 scriptStream, OriginalContent.FirstTyrDialogueScriptAssetPath);
             var previewText = DialoguePreviewText.Create(
-                font, FirstTyrDialogueProjectionReader.Read(script));
+                font, FirstTyrDialogueProjectionReader.Read(script),
+                DialogueVariableSnapshot.Empty);
             _dialogueSpeechText = CreateTextTexture(
                 dialoguePortraitImage.Palette, previewText.Speech.Pixels,
                 previewText.Speech.Width, previewText.Speech.Height);
@@ -191,7 +192,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                 .OrderBy(image => image.ResourceNumber).ToArray();
             for (var index = 0; index < previewText.Responses.Count; index++)
             {
-                var text = previewText.Responses[index];
+                var text = previewText.Responses[index].Text;
                 _dialogueResponseText.Add((
                     responsePlacements[index].X + 2,
                     responsePlacements[index].Y + Math.Max(0, (10 - text.Height) / 2),

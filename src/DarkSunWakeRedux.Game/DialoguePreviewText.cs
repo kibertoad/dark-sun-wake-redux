@@ -1,10 +1,16 @@
+using DarkSunWakeRedux.Core;
 using DarkSunWakeRedux.Resources;
 
 namespace DarkSunWakeRedux.Game;
 
+public sealed record DialoguePreviewResponse(
+    int ChoiceIndex,
+    int TargetOffset,
+    IndexedGlyphRun Text);
+
 public sealed record DialoguePreviewTextContent(
     IndexedGlyphBlock Speech,
-    IReadOnlyList<IndexedGlyphRun> Responses);
+    IReadOnlyList<DialoguePreviewResponse> Responses);
 
 public static class DialoguePreviewText
 {
@@ -15,10 +21,12 @@ public static class DialoguePreviewText
 
     public static DialoguePreviewTextContent Create(
         PackedIndexedBitmapFont font,
-        FirstTyrDialogueProjection projection)
+        FirstTyrDialogueProjection projection,
+        DialogueVariableSnapshot variables)
     {
         ArgumentNullException.ThrowIfNull(font);
         ArgumentNullException.ThrowIfNull(projection);
+        ArgumentNullException.ThrowIfNull(variables);
         var speechSource = projection.SpeechVariants.FirstOrDefault(source =>
             source.Kind == GplDialogueTextSourceKind.Literal)
             ?? throw new InvalidDataException(
@@ -27,15 +35,20 @@ public static class DialoguePreviewText
         if (speechLines.Count == 0)
             throw new InvalidDataException("The dialogue preview speech is empty.");
         var speech = IndexedGlyphBlockRasterizer.Rasterize(font, speechLines);
-        var responses = projection.InitialChoices
-            .Where(choice => choice.Label.Kind == GplDialogueTextSourceKind.Literal)
-            .Take(MaximumResponses)
-            .Select(choice =>
+        var visibleIndices = DialogueConditionAdapter.SelectVisibleChoices(
+            projection.InitialChoices, variables, MaximumResponses);
+        var responses = visibleIndices
+            .Select(index => (Index: index, Choice: projection.InitialChoices[index]))
+            .Where(item => item.Choice.Label.Kind == GplDialogueTextSourceKind.Literal)
+            .Select(item =>
             {
-                var fitted = Fit(font, choice.Label.Text.Trim(), ResponseWidth);
+                var fitted = Fit(font, item.Choice.Label.Text.Trim(), ResponseWidth);
                 if (fitted.IsEmpty)
                     throw new InvalidDataException("A dialogue preview response is empty.");
-                return IndexedGlyphRunRasterizer.Rasterize(font, fitted.Span);
+                return new DialoguePreviewResponse(
+                    item.Index,
+                    item.Choice.TargetOffset,
+                    IndexedGlyphRunRasterizer.Rasterize(font, fitted.Span));
             })
             .ToArray();
         return new(speech, responses);

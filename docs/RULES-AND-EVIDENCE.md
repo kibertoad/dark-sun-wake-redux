@@ -692,16 +692,23 @@
   eight-entry initial menu at 253. It projects literal/variable labels, branch
   offsets, and the exact constant/local-flag/local-number-equality conditions.
   A Game adapter maps those resource expressions into Core's deterministic
-  true/false/unknown evaluator; unknown variables remain explicit rather than
-  being guessed false.
-  Instruction execution, conditions, state mutations, text routing, and runtime
-  text rendering remain next Slice 3 work.
+  true/false/unknown evaluator. A bounded selector preserves source order,
+  includes only proven-true conditions, and stops after the five physical rows;
+  false and unknown conditions are both hidden without conflating their states.
+  The preview passes an explicit empty variable snapshot, retains each selected
+  choice's original index and branch offset, and therefore selects only the
+  unconditional owned-script entry until native initialization is established.
+  Its unresolved global-string label is not rendered or replaced with guessed
+  text.
+  Instruction execution, state mutations, and generalized text routing remain
+  next Slice 3 work.
 - **Tests:** DSGP identity/payload round-trip and malformed envelopes; packed
   string empty/text/control-byte decoding and malformed inputs; exact dialogue
   window/control/image geometry, response order/hit boundaries, synthetic
   transactional extraction, synthetic projection/drift/malformed cases,
-  condition mapping and known/unknown evaluation, and owned content smoke
-  proving portrait, speech-source, menu, and ordered condition contracts.
+  condition mapping, known/unknown evaluation, ordered/bounded fail-closed
+  selection, retained branch identities, and owned content smoke proving
+  portrait, speech-source, menu, and ordered condition contracts.
 
 ## Initial rules
 
@@ -795,10 +802,12 @@
   clamps at region boundaries, and fills the whole backbuffer. Menus and other
   fixed screens still use the centered 320x200 transform. A temporary F9
   validation hook draws the measured dialogue windows, portrait #18, scrollbar
-  controls, five response strips, and the projected first literal speech/choice
-  page in the extracted bitmap font on that fixed canvas over the expanded Tyr
-  slice. Greedy wrapping and raw first-five literal selection are provisional;
-  the hook does not claim conversation or condition execution.
+  controls, five response strips, and the projected first literal speech plus
+  proven-visible choices in the extracted bitmap font on that fixed canvas over
+  the expanded Tyr slice. Greedy wrapping is provisional. Condition evaluation
+  and row selection are deterministic, but the empty input snapshot is a
+  fail-closed placeholder rather than a claim about native initialization; the
+  hook does not claim conversation execution.
 - **Tests:** wide, tall, edge-clamped, and fixed viewport layout/inverse mapping;
   exact dialogue window, portrait, control-image, and response-row placement;
   bounded wrapping/selection and malformed text; F9 rising-edge behavior;

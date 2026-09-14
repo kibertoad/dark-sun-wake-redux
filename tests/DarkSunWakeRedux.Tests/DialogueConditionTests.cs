@@ -49,4 +49,33 @@ public sealed class DialogueConditionTests
         Assert.Equal(new(DialogueConditionKind.LocalNumberEquals, 4, 12),
             DialogueConditionAdapter.ToCore(parsed));
     }
+
+    [Fact]
+    public void VisibleChoiceSelectionIsOrderedBoundedAndFailClosed()
+    {
+        var conditions = new DialogueCondition[]
+        {
+            new(DialogueConditionKind.LocalFlag, 9, 1),
+            new(DialogueConditionKind.Constant, 0, 1),
+            new(DialogueConditionKind.LocalFlag, 1, 1),
+            new(DialogueConditionKind.LocalNumberEquals, 3, 7),
+            new(DialogueConditionKind.Constant, 0, 1)
+        };
+
+        Assert.Equal([1, 2],
+            DialogueChoiceSelector.SelectVisible(conditions, Variables, 2));
+        Assert.Equal([1, 2, 3, 4],
+            DialogueChoiceSelector.SelectVisible(conditions, Variables, 5));
+        Assert.Equal([1, 4], DialogueChoiceSelector.SelectVisible(
+            conditions, DialogueVariableSnapshot.Empty, 5));
+    }
+
+    [Fact]
+    public void VisibleChoiceSelectionRejectsInvalidInputs()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(() =>
+            DialogueChoiceSelector.SelectVisible([], Variables, 0));
+        Assert.Throws<ArgumentException>(() =>
+            DialogueChoiceSelector.SelectVisible([null!], Variables, 1));
+    }
 }

@@ -21,7 +21,12 @@ public sealed record DialogueCondition(
 
 public sealed record DialogueVariableSnapshot(
     IReadOnlyDictionary<ushort, bool> LocalFlags,
-    IReadOnlyDictionary<ushort, int> LocalNumbers);
+    IReadOnlyDictionary<ushort, int> LocalNumbers)
+{
+    public static DialogueVariableSnapshot Empty { get; } = new(
+        new Dictionary<ushort, bool>(),
+        new Dictionary<ushort, int>());
+}
 
 public static class DialogueConditionEvaluator
 {
@@ -51,5 +56,31 @@ public static class DialogueConditionEvaluator
             _ => throw new ArgumentOutOfRangeException(
                 nameof(condition), condition.Kind, "Unknown dialogue condition kind.")
         };
+    }
+}
+
+public static class DialogueChoiceSelector
+{
+    public static IReadOnlyList<int> SelectVisible(
+        IReadOnlyList<DialogueCondition> conditions,
+        DialogueVariableSnapshot variables,
+        int maximumChoices)
+    {
+        ArgumentNullException.ThrowIfNull(conditions);
+        ArgumentNullException.ThrowIfNull(variables);
+        if (maximumChoices <= 0)
+            throw new ArgumentOutOfRangeException(nameof(maximumChoices));
+
+        var visible = new List<int>(Math.Min(conditions.Count, maximumChoices));
+        for (var index = 0; index < conditions.Count && visible.Count < maximumChoices; index++)
+        {
+            if (conditions[index] is null)
+                throw new ArgumentException("Dialogue conditions cannot contain null entries.",
+                    nameof(conditions));
+            if (DialogueConditionEvaluator.Evaluate(conditions[index], variables) ==
+                DialogueConditionResult.True)
+                visible.Add(index);
+        }
+        return visible;
     }
 }

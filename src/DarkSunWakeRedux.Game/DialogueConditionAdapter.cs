@@ -19,4 +19,16 @@ public static class DialogueConditionAdapter
         };
         return new(kind, condition.VariableId, condition.Value);
     }
+
+    public static IReadOnlyList<int> SelectVisibleChoices(
+        IReadOnlyList<GplDialogueChoice> choices,
+        DialogueVariableSnapshot variables,
+        int maximumChoices)
+    {
+        ArgumentNullException.ThrowIfNull(choices);
+        return DialogueChoiceSelector.SelectVisible(
+            choices.Select(choice => ToCore(choice.Condition)).ToArray(),
+            variables,
+            maximumChoices);
+    }
 }
