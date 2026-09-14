@@ -303,10 +303,7 @@ try
             if (!interactionUi.Windows.Select(window => window.ResourceNumber)
                     .SequenceEqual(OriginalContent.InteractionWindowResourceNumbers) ||
                 InteractionOptionsInput.Resolve(interactionUi).Count != 4 ||
-                UiWindowGraphResolver.Resolve(interactionUi,
-                    OriginalContent.DialogueSpeechWindowResourceNumber).Controls.Count != 4 ||
-                UiWindowGraphResolver.Resolve(interactionUi,
-                    OriginalContent.DialogueResponseWindowResourceNumber).Controls.Count != 7)
+                DialogueInput.ResolveOverlay(interactionUi).Images.Count != 9)
                 throw new InvalidDataException(
                     "The installed interaction UI graph is incomplete.");
             Console.WriteLine($"Verified runtime startup assets at {assetPack}.");

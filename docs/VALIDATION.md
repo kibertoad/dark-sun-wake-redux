@@ -46,6 +46,12 @@ camera-relative sprite from the same anchor. Presentation tests cover exact
 fixed-point forward, reverse, and diagonal interpolation plus malformed progress
 and interval rejection; controller tests prove continuity across a semantic
 step boundary.
+Viewport-layout tests prove that wide and tall displays expose additional
+bounded map area, preserve the base camera center, clamp at world edges, map
+physical input back into the expanded slice, and retain fixed 320x200
+letterboxing when expansion is disabled. Dialogue-layout tests prove the exact
+two window rectangles, portrait anchor, four scrollbar controls, five response
+strip placements, and F9 rising-edge toggle contract.
 Exploration command tests also center on arbitrary world points with both-edge
 clamping, reject partial/out-of-world targets, suspend centering outside world
 and Game Menu views, and restore leader-only display through Collapse Party.
@@ -108,6 +114,15 @@ The no-window smoke also plans and advances one real Tyr step from the evidenced
 opening anchor through the runtime actor controller. Its provisional
 single-cell footprint and 125 ms step are implementation policies, not native
 timing or footprint evidence.
+The owner-requested right-button grab-drag path is covered independently of
+MonoGame: stationary press/release retains mode cycling, held logical motion
+emits incremental inverse camera deltas at the documented 13:10 pan multiplier
+with deterministic fractional carry,
+canvas re-entry cannot jump, and a
+completed drag suppresses cycling. Core separately bounds and clamps pan
+commands. Either Alt key completing an Enter chord toggles once, and a held or
+partial chord does not repeat. These are `COMPAT-INPUT-001`, not
+original-parity claims.
 Exact comparison of the retained ignored native opening frame against the
 compositor at `(1024,1368)` isolates the visible leader to a 367-differing-pixel
 component bounded by logical `(160,91)`-`(176,125)`. Exhaustive same-geometry

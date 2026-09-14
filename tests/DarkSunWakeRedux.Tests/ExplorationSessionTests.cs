@@ -31,6 +31,18 @@ public sealed class ExplorationSessionTests
     }
 
     [Fact]
+    public void PansByBoundedLogicalPointerDeltaAndClampsAtWorldEdges()
+    {
+        var session = Session();
+
+        var panned = session.Execute(ExplorationCommand.Pan(-24, 15));
+
+        Assert.True(panned.Applied);
+        Assert.Equal((1000, 1368), (panned.After.CameraX, panned.After.CameraY));
+        Assert.False(session.Execute(ExplorationCommand.Pan(0, 15)).Applied);
+    }
+
+    [Fact]
     public void CyclesCursorModesInManualOrder()
     {
         var session = Session();
@@ -74,12 +86,27 @@ public sealed class ExplorationSessionTests
     public void DoesNotScrollAwayFromCanvasEdges(int x, int y) =>
         Assert.Null(ExplorationInput.ScrollAtEdge(x, y));
 
+    [Fact]
+    public void MapsExpandedViewportEdgesToTheSameScrollCommands()
+    {
+        Assert.Equal((-1, 0), Deltas(ExplorationInput.ScrollAtEdge(0, 50, 356, 200)!));
+        Assert.Equal((1, 1), Deltas(ExplorationInput.ScrollAtEdge(355, 199, 356, 200)!));
+    }
+
     [Theory]
     [InlineData(2, 0)]
     [InlineData(0, 0)]
     public void RejectsInvalidScrollDeltas(int x, int y) =>
         Assert.ThrowsAny<ArgumentException>(() => Session().Execute(
             ExplorationCommand.Scroll(x, y)));
+
+    [Theory]
+    [InlineData(2049, 0)]
+    [InlineData(0, 1569)]
+    [InlineData(0, 0)]
+    public void RejectsInvalidPanDeltas(int x, int y) =>
+        Assert.ThrowsAny<ArgumentException>(() => Session().Execute(
+            ExplorationCommand.Pan(x, y)));
 
     [Theory]
     [InlineData(ExplorationView.ViewCharacter)]
@@ -172,6 +199,7 @@ public sealed class ExplorationSessionTests
         session.Execute(ExplorationCommand.Open(ExplorationView.ViewInventory));
 
         Assert.False(session.Execute(ExplorationCommand.Scroll(1, 0)).Applied);
+        Assert.False(session.Execute(ExplorationCommand.Pan(10, 10)).Applied);
         Assert.False(session.Execute(new(ExplorationCommandKind.CycleCursorMode)).Applied);
         Assert.False(session.Execute(new(ExplorationCommandKind.ShowExpandedParty)).Applied);
         Assert.False(session.Execute(ExplorationCommand.CenterOn(100, 100)).Applied);
@@ -198,4 +226,7 @@ public sealed class ExplorationSessionTests
 
     private static ExplorationSession Session() =>
         new(2048, 1568, 320, 200, 1024, 1368);
+
+    private static (int X, int Y) Deltas(ExplorationCommand command) =>
+        (command.DeltaX, command.DeltaY);
 }

@@ -28,6 +28,24 @@ public sealed class DialogueInputTests
     }
 
     [Fact]
+    public void ResolvesObservedDialogueChromeOnTheFixedLogicalCanvas()
+    {
+        var overlay = DialogueInput.ResolveOverlay(Catalog());
+
+        Assert.Equal(new(1, 0, 318, 72), overlay.SpeechWindow);
+        Assert.Equal(new(1, 142, 318, 58), overlay.ResponseWindow);
+        Assert.Equal((1, 0), (overlay.PortraitX, overlay.PortraitY));
+        Assert.Equal(9, overlay.Images.Count);
+        Assert.Equal(
+        [
+            (2093u, 306, 4), (2094u, 306, 18),
+            (2095u, 306, 146), (2096u, 306, 160),
+            (2076u, 4, 155), (2077u, 4, 163), (2078u, 4, 171),
+            (2079u, 4, 179), (2080u, 4, 187)
+        ], overlay.Images.Select(image => (image.ResourceNumber, image.X, image.Y)));
+    }
+
+    [Fact]
     public void RejectsDriftedSpeechOrResponseContracts()
     {
         var catalog = Catalog();

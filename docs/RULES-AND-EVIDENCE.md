@@ -748,6 +748,52 @@
   center-on-leader pixel policy remain open; deterministic visual-center
   targeting is the current implementation policy.
 
+### COMPAT-INPUT-001 - Modern mouse and fullscreen controls
+
+- **Decision:** Preserve the original pointer-at-edge camera scrolling and
+  right-click Walk/Attack/Look cycle, while adding right-button grab-drag
+  panning and Alt+Enter fullscreen toggling as documented modern control
+  improvements.
+- **Authority:** Repository owner, 2026-09-14.
+- **Implementation:** a stateful input adapter defers the mode-cycle command
+  until a stationary right-button gesture is released. Logical pointer motion
+  while held emits bounded incremental Core pan commands at thirteen world
+  pixels per ten logical pointer pixels in grab-the-world direction and suppresses the
+  click action. Leaving the letterboxed canvas
+  clears the motion anchor so re-entry cannot jump the camera; leaving the
+  world view cancels the gesture. Edge scrolling remains available whenever a
+  right drag is not active. Either Alt key combined with Enter toggles
+  MonoGame fullscreen once when the chord becomes active, on every screen.
+  Fullscreen adopts the current display mode's dimensions and restores the
+  960x600 windowed backbuffer on exit.
+- **Tests:** stationary click/release, successive drag deltas, click suppression
+  after dragging, canvas exit/re-entry anchoring, inactive-view cancellation,
+  bounded Core pan validation, camera clamping, and suspended world input.
+  Fullscreen tests cover either Alt key, either chord-completion order, held
+  chord suppression, and partial chords.
+- **Parity boundary:** this gesture is intentionally not attributed to the
+  original. Mouse acceleration and operating-system pointer capture are not
+  part of deterministic Core state.
+
+### COMPAT-DISPLAY-001 - Expanded world and fixed interface canvases
+
+- **Decision:** Travel and combat may expose additional map area to fill the
+  physical display. Fixed-layout screens and overlays retain the original
+  320x200 coordinate system and may letterbox.
+- **Authority:** Repository owner, 2026-09-14.
+- **Implementation:** the world viewport derives a bounded logical width and
+  height from the physical aspect ratio, preserves the observed camera center,
+  clamps at region boundaries, and fills the whole backbuffer. Menus and other
+  fixed screens still use the centered 320x200 transform. A temporary F9
+  validation hook draws the measured dialogue windows, portrait #18, scrollbar
+  controls, and five response strips on that fixed canvas over the expanded Tyr
+  slice; it does not claim that conversation execution or text is implemented.
+- **Tests:** wide, tall, edge-clamped, and fixed viewport layout/inverse mapping;
+  exact dialogue window, portrait, control-image, and response-row placement;
+  F9 rising-edge behavior; content-smoke graph validation.
+- **Parity boundary:** the extra visible map and preview key are modern
+  conveniences. Original 320x200 UI geometry remains unchanged.
+
 ### COMPAT-PATH-001 - Modern deterministic pathfinding
 
 - **Decision:** Pathfinding does not need to reproduce the original route

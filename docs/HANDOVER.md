@@ -21,13 +21,24 @@ committing original text or screenshots. Pack format 23 contains the bounded
 three-window interaction/dialogue graph, thirteen control images, `PORT` #18,
 and byte-identical `GPL` #135 in a DSGP envelope. Core contains the deterministic
 interaction/sole-action contract; Resources decodes the packed-string primitive;
-Game validates the measured five-row response layout. Runtime presentation and
-GPL instruction execution remain pending.
+Game validates the measured five-row response layout and F9 previews the fixed
+portrait/window/control chrome over the live aspect-expanded map. Text,
+conversation entry, and GPL instruction execution remain pending.
 
 ## Previous cohesive batch
 
-Controlled owned screenshots and resource correlation establish the complete
-exploration cursor family without generalizing unknown target semantics:
+The owner-approved `COMPAT-INPUT-001` modern control preserves original edge
+scrolling and stationary right-click mode cycling while adding held-right-button
+grab-drag camera panning. The input adapter distinguishes click from drag,
+reanchors safely across the letterboxed canvas, emits bounded logical deltas
+at a 13:10 world-to-pointer multiplier with deterministic fractional carry,
+and cancels gestures outside the world view. Alt+Enter toggles native-resolution
+fullscreen once per chord edge from either Alt key. Travel derives a larger
+bounded logical slice for the physical aspect ratio and fills the backbuffer;
+fixed-layout screens and the dialogue preview retain the centered 320x200 canvas.
+
+The earlier cursor-evidence batch established the complete exploration cursor
+family without generalizing unknown target semantics:
 
 - `DATA-GOG-CURSOR-001` maps `ICON` #19101-#19110 to the Walk, melee,
   ranged, Look, invalid-target, and hourglass roles with exact geometry and the

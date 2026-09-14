@@ -29,6 +29,7 @@ public enum ExplorationView
 public enum ExplorationCommandKind
 {
     ScrollCamera,
+    PanCamera,
     CycleCursorMode,
     ShowLeaderOnly,
     ShowExpandedParty,
@@ -49,6 +50,9 @@ public sealed record ExplorationCommand(
 {
     public static ExplorationCommand Scroll(int deltaX, int deltaY) =>
         new(ExplorationCommandKind.ScrollCamera, deltaX, deltaY);
+
+    public static ExplorationCommand Pan(int deltaX, int deltaY) =>
+        new(ExplorationCommandKind.PanCamera, deltaX, deltaY);
 
     public static ExplorationCommand Open(ExplorationView view) =>
         new(ExplorationCommandKind.OpenView, View: view);
@@ -119,7 +123,9 @@ public sealed class ExplorationSession
         _snapshot = command.Kind switch
         {
             ExplorationCommandKind.ScrollCamera when IsWorldActive =>
-                Scroll(command.DeltaX, command.DeltaY),
+                MoveCamera(command.DeltaX, command.DeltaY),
+            ExplorationCommandKind.PanCamera when IsWorldActive =>
+                MoveCamera(command.DeltaX, command.DeltaY),
             ExplorationCommandKind.CycleCursorMode when IsWorldActive => _snapshot with
             {
                 CursorMode = _snapshot.CursorMode switch
@@ -151,7 +157,8 @@ public sealed class ExplorationSession
             {
                 View = IsWorldActive ? ExplorationView.ExitRequested : ExplorationView.World
             },
-            ExplorationCommandKind.ScrollCamera or ExplorationCommandKind.CycleCursorMode or
+            ExplorationCommandKind.ScrollCamera or ExplorationCommandKind.PanCamera or
+                ExplorationCommandKind.CycleCursorMode or
                 ExplorationCommandKind.ShowLeaderOnly or ExplorationCommandKind.ShowExpandedParty or
                 ExplorationCommandKind.CenterCamera =>
                 _snapshot,
@@ -171,7 +178,11 @@ public sealed class ExplorationSession
             (command.CursorMode is null ? 0 : 1) + (hasTarget ? 1 : 0);
         var valid = command.Kind switch
         {
-            ExplorationCommandKind.ScrollCamera => payloadCount == 1 && hasMovement,
+            ExplorationCommandKind.ScrollCamera => payloadCount == 1 && hasMovement &&
+                command.DeltaX is >= -1 and <= 1 && command.DeltaY is >= -1 and <= 1,
+            ExplorationCommandKind.PanCamera => payloadCount == 1 && hasMovement &&
+                Math.Abs((long)command.DeltaX) <= _worldWidth &&
+                Math.Abs((long)command.DeltaY) <= _worldHeight,
             ExplorationCommandKind.OpenView => payloadCount == 1 &&
                 command.View is >= ExplorationView.ViewCharacter and <= ExplorationView.GameMenu,
             ExplorationCommandKind.SelectCursorMode => payloadCount == 1 &&
@@ -189,17 +200,11 @@ public sealed class ExplorationSession
                 nameof(command));
     }
 
-    private ExplorationSnapshot Scroll(int deltaX, int deltaY)
-    {
-        if (deltaX is < -1 or > 1 || deltaY is < -1 or > 1 || deltaX == 0 && deltaY == 0)
-            throw new ArgumentOutOfRangeException(nameof(deltaX),
-                "A camera scroll command must move one pixel in at least one axis.");
-        return _snapshot with
+    private ExplorationSnapshot MoveCamera(int deltaX, int deltaY) => _snapshot with
         {
             CameraX = Math.Clamp(_snapshot.CameraX + deltaX, 0, _maximumCameraX),
             CameraY = Math.Clamp(_snapshot.CameraY + deltaY, 0, _maximumCameraY)
         };
-    }
 
     private ExplorationSnapshot CenterOn(int worldX, int worldY) => _snapshot with
     {

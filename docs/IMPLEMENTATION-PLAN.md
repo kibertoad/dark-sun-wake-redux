@@ -305,7 +305,13 @@ decoder rather than being guessed now.
   footprint/cadence and the extracted 13-frame image's animation semantics
   remain open.
   Manual-defined edge scrolling now drives a clamped deterministic Core camera
-  and rerasterizes that viewport. Reusable ordered hotkey bindings and Core
+  and rerasterizes that viewport. Per owner-approved `COMPAT-INPUT-001`, a
+  held right-button grab-drag also emits bounded logical-camera pans while a
+  stationary right click retains the original mode cycle; Alt+Enter toggles
+  native-resolution fullscreen on a single chord edge. `COMPAT-DISPLAY-001`
+  expands the bounded world slice to the physical aspect ratio while fixed UI
+  remains on the original canvas; F9 previews the measured dialogue chrome over
+  that live world pending conversation routing and text. Reusable ordered hotkey bindings and Core
   navigation now cover character, inventory, cast/psionic, current-effects,
   overhead-map, and game-menu views plus menu-return/exit semantics. Their
   original Game Menu base and 14 controls now extract and render through a

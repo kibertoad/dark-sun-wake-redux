@@ -11,6 +11,21 @@ public sealed record DialogueResponseControl(
     int Height,
     string AssetPath);
 
+public sealed record DialogueOverlayRectangle(int X, int Y, int Width, int Height);
+
+public sealed record DialogueOverlayImage(
+    uint ResourceNumber,
+    string AssetPath,
+    int X,
+    int Y);
+
+public sealed record DialogueOverlayLayout(
+    DialogueOverlayRectangle SpeechWindow,
+    DialogueOverlayRectangle ResponseWindow,
+    int PortraitX,
+    int PortraitY,
+    IReadOnlyList<DialogueOverlayImage> Images);
+
 public static class DialogueInput
 {
     public const int SpeechOriginX = 1;
@@ -69,6 +84,39 @@ public static class DialogueInput
             logicalX >= control.X && logicalX < control.X + control.Width &&
             logicalY >= control.Y && logicalY < control.Y + control.Height);
 
+    public static DialogueOverlayLayout ResolveOverlay(PackedUiCatalog catalog)
+    {
+        var responses = ResolveResponses(catalog);
+        var speech = UiWindowGraphResolver.Resolve(
+            catalog, OriginalContent.DialogueSpeechWindowResourceNumber);
+        var response = UiWindowGraphResolver.Resolve(
+            catalog, OriginalContent.DialogueResponseWindowResourceNumber);
+        var interactionAssets = OriginalContent.InteractionButtonAssets.ToDictionary(
+            asset => asset.Name, StringComparer.Ordinal);
+        var scrollUp = OriginalContent.AddExistingCharacterAssets.Single(
+            asset => asset.Name == "scroll-up");
+        var more = interactionAssets["dialogue-more"];
+
+        var upperScroll = RequireButton(speech, 2093, scrollUp.ResourceNumber, 305, 4);
+        var upperMore = RequireButton(speech, 2094, more.ImageResourceNumber, 305, 18);
+        var lowerScroll = RequireButton(response, 2095, scrollUp.ResourceNumber, 305, 4);
+        var lowerMore = RequireButton(response, 2096, more.ImageResourceNumber, 305, 18);
+        var images = new List<DialogueOverlayImage>(4 + responses.Count)
+        {
+            Place(upperScroll, scrollUp.Path, SpeechOriginX, SpeechOriginY),
+            Place(upperMore, more.Path, SpeechOriginX, SpeechOriginY),
+            Place(lowerScroll, scrollUp.Path, ResponseOriginX, ResponseOriginY),
+            Place(lowerMore, more.Path, ResponseOriginX, ResponseOriginY)
+        };
+        images.AddRange(responses.Select(row =>
+            new DialogueOverlayImage(row.ResourceNumber, row.AssetPath, row.X, row.Y)));
+        return new(
+            new(SpeechOriginX, SpeechOriginY, speech.Width, speech.Height),
+            new(ResponseOriginX, ResponseOriginY, response.Width, response.Height),
+            SpeechOriginX, SpeechOriginY,
+            images);
+    }
+
     private static void ValidateSpeechWindow(PackedUiCatalog catalog)
     {
         var window = UiWindowGraphResolver.Resolve(
@@ -83,6 +131,30 @@ public static class DialogueInput
             editBox.Height != 46 || editBox.EventMask != 4)
             throw Error("The dialogue speech edit box has drifted");
     }
+
+    private static ResolvedUiControl RequireButton(
+        ResolvedUiWindow window,
+        uint resourceNumber,
+        uint imageResourceNumber,
+        int x,
+        int y)
+    {
+        var button = window.Controls.SingleOrDefault(control =>
+            control.Kind == ResolvedUiControlKind.Button &&
+            control.ResourceNumber == resourceNumber);
+        if (button is null || button.ImageResourceNumber != imageResourceNumber ||
+            button.X != x || button.Y != y)
+            throw Error($"Dialogue BUTN #{resourceNumber} has drifted");
+        return button;
+    }
+
+    private static DialogueOverlayImage Place(
+        ResolvedUiControl control,
+        string assetPath,
+        int originX,
+        int originY) => new(
+            control.ResourceNumber, assetPath,
+            originX + control.X, originY + control.Y);
 
     private static InvalidDataException Error(string message) => new($"{message}.");
 }

@@ -25,6 +25,10 @@ README status table, including the ten exploration cursor images, measured
 dialogue controls, first portrait, and opaque GPL #135 script. Extracted content is ignored by Git and must not be
 redistributed.
 
+During the active Tyr slice, Alt+Enter toggles native-resolution fullscreen and
+F9 toggles a development preview of the measured dialogue portrait and chrome
+over the live map. The preview intentionally contains no dialogue text yet.
+
 Build and test the complete solution with:
 
 ```powershell
