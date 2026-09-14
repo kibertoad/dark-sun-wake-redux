@@ -15,6 +15,18 @@ public static class DialogueSessionAdapter
             projection.InitialChoices, variables, maximumResponses);
         return new(OriginalContent.FirstTyrDialogueScriptResourceNumber,
             visible.Select(index => new DialogueChoiceIdentity(
-                index, projection.InitialChoices[index].TargetOffset)).ToArray());
+                index, projection.InitialChoices[index].TargetOffset)).ToArray(), variables);
+    }
+
+    public static DialogueBranchResult ToCore(
+        FirstTyrDialogueCompletionProjection projection)
+    {
+        ArgumentNullException.ThrowIfNull(projection);
+        if (!projection.ReturnsFromLocalBranch)
+            throw new InvalidDataException("The dialogue completion branch does not return.");
+        return new(projection.SourceChoiceIndex, projection.EntryOffset,
+            projection.LocalFlagAssignments.ToDictionary(
+                assignment => assignment.VariableId,
+                assignment => assignment.Value));
     }
 }

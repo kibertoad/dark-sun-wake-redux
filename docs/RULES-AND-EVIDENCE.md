@@ -704,8 +704,11 @@
   pack. Generic local initialization remains unknown. Core dialogue state stores
   the script identity and stable visible source-index/branch-offset pairs, accepts
   one bounded physical-row selection, and preserves the selected pair atomically.
-  Game response clicks enter that state before world movement input. GPL
-  instruction execution, consequence mutations, and generalized text routing remain
+  Choice 7's target has an exact bounded projection at offsets 2905–2920: print
+  GSTRING #5, assign immediate one to local flags 14 and 4, then return locally.
+  Core validates the selected identity before applying both flags atomically and
+  entering `Completed`; Game closes the preview. Other GPL instruction paths,
+  consequence mutations, and generalized text routing remain
   next Slice 3 work.
 - **Tests:** DSGP identity/payload round-trip and malformed envelopes; packed
   string empty/text/control-byte decoding and malformed inputs; exact dialogue
@@ -713,6 +716,8 @@
   transactional extraction, synthetic projection/drift/malformed cases,
   condition mapping, known/unknown evaluation, ordered/bounded fail-closed
   selection, retained branch identities and invalid selection immutability,
+  completion opcode/operand/offset/truncation drift, atomic flag application,
+  mismatched-branch rejection,
   bounded MAS assignment/drift cases, variable-label resolution, and owned content smoke proving portrait,
   speech-source, five-row menu, and ordered condition contracts.
 
@@ -813,7 +818,8 @@
   the expanded Tyr slice. Greedy wrapping is provisional. The capture-correlated
   opening flags are explicit; all other variables remain unknown and fail closed.
   Clicking a response stores its source index and branch target in Core, but the
-  hook does not claim GPL branch execution or consequences.
+  hook claims only choice 7's bounded completion projection, not generalized
+  GPL branch execution or quest consequences.
 - **Tests:** wide, tall, edge-clamped, and fixed viewport layout/inverse mapping;
   exact dialogue window, portrait, control-image, and response-row placement;
   bounded wrapping/selection and malformed text; F9 rising-edge behavior;

@@ -31,9 +31,12 @@ and branch targets. The capture-correlated opening state selects choices 0, 1,
 string #5 label from the ignored owned pack. Generic variable initialization
 remains unresolved. A deterministic Core dialogue session now owns the five
 visible source-index/branch-target pairs; runtime row clicks select one pair
-atomically and cannot leak through as world movement. The fixed portrait/window/control chrome and projected
+atomically and cannot leak through as world movement. Choice 7 has an additional
+bounded projection validating its print, local-flag 14/4 assignments, and local
+return; Core applies the flags/completion only to the matching selected branch and
+Game closes the preview. The fixed portrait/window/control chrome and projected
 literal speech render over the live aspect-expanded map. Wrapping, conversation
-entry, and GPL instruction execution remain pending.
+entry, transcript presentation, and broader GPL instruction execution remain pending.
 
 ## Previous cohesive batch
 
@@ -74,9 +77,9 @@ research output remain under ignored `analysis/original/`.
 
 Continue Slice 3 from evidence, preferably in this order:
 
-1. establish the bounded GPL operations needed at the selected opening branch,
-   then advance the existing deterministic dialogue state before adding quest
-   consequences;
+1. project choices 0–3's bounded speech/flag/return paths and advance the
+   existing deterministic dialogue state through the next evidenced menu before
+   adding quest consequences;
 2. establish the Preferences setting ranges/defaults and About destination,
    then implement deterministic setting mutations and frame-state feedback;
 3. generalize attack/look target eligibility and select ranged versus melee

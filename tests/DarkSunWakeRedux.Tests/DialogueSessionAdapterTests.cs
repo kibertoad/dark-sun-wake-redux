@@ -28,5 +28,23 @@ public sealed class DialogueSessionAdapterTests
             snapshot.Choices.Select(choice => choice.SourceIndex));
         Assert.Equal([1000, 1001, 1002, 1003, 1007],
             snapshot.Choices.Select(choice => choice.BranchTargetOffset));
+        Assert.Equal([0, 1, 2, 3], snapshot.Variables.LocalFlags
+            .Where(pair => pair.Value).Select(pair => (int)pair.Key).Order());
+    }
+
+    [Fact]
+    public void MapsBoundedCompletionEffectsWithoutResourceDependenciesInCore()
+    {
+        var projection = new FirstTyrDialogueCompletionProjection(7, 2905,
+            new(GplDialogueTextSourceKind.Variable, string.Empty, 6, 5),
+            [new(14, true), new(4, true)], true);
+
+        var result = DialogueSessionAdapter.ToCore(projection);
+
+        Assert.Equal((7, 2905), (result.SourceIndex, result.BranchTargetOffset));
+        Assert.Equal(new Dictionary<ushort, bool> { [14] = true, [4] = true },
+            result.LocalFlagAssignments);
+        Assert.Throws<InvalidDataException>(() =>
+            DialogueSessionAdapter.ToCore(projection with { ReturnsFromLocalBranch = false }));
     }
 }

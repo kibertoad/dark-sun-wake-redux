@@ -378,7 +378,9 @@ MAS #99 initializes the global string #5 label used by the final menu choice.
 The extractor preserves both complete bytecode chunks as opaque; runtime readers now
 projects only the evidenced opening structure at offsets 16, 118, 199, and 253:
 portrait selection, two conditional speech sources, and the initial menu, plus
-MAS #99's string-copy assignment at offset 20.
+MAS #99's string-copy assignment at offset 20. A second GPL #135 projection
+validates opening choice 7's target at 2905: print GSTRING #5, assign immediate
+one to local flags 14 and 4, and return locally at 2920.
 
 The only decoded primitive is a bounded packed string used for future script
 interpretation. Marker `0x01` represents the active character name, marker
@@ -390,7 +392,9 @@ forms needed by this observed menu, captures labels and branch offsets, and
 projects its three observed condition shapes: constant, local flag, and local
 number equality. It fails closed on any other condition shape, drift, or
 truncation. The MAS projection additionally requires the assignment to end at
-offset 33 and target type-6 string slot 5. Decoding these structures does not authorize executing other
+offset 33 and target type-6 string slot 5. The completion projection accepts
+only its exact immediate/short-variable forms and rejects opcode, operand,
+offset, or truncation drift. Decoding these structures does not authorize executing other
 instructions or assigning condition and state-mutation semantics.
 
 DSGP is an original deterministic envelope that preserves a selected script

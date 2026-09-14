@@ -62,6 +62,39 @@ public sealed class FirstTyrDialogueProjectionTests
             FirstTyrDialogueProjectionReader.Read(unsupported));
     }
 
+    [Fact]
+    public void ProjectsTheBoundedOpeningCompletionBranch()
+    {
+        var script = ScriptWithCompletion();
+
+        var projection = FirstTyrDialogueCompletionProjectionReader.Read(script);
+
+        Assert.Equal(7, projection.SourceChoiceIndex);
+        Assert.Equal(2905, projection.EntryOffset);
+        Assert.Equal((GplDialogueTextSourceKind.Variable, (byte)6, (ushort)5),
+            (projection.SpokenResponse.Kind, projection.SpokenResponse.VariableType,
+                projection.SpokenResponse.VariableId));
+        Assert.Equal([(14, true), (4, true)], projection.LocalFlagAssignments
+            .Select(assignment => ((int)assignment.VariableId, assignment.Value)));
+        Assert.True(projection.ReturnsFromLocalBranch);
+    }
+
+    [Fact]
+    public void RejectsCompletionBranchDriftAndTruncation()
+    {
+        var drifted = ScriptWithCompletion();
+        drifted.Bytecode[FirstTyrDialogueCompletionProjectionReader.EntryOffset + 9] = 15;
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueCompletionProjectionReader.Read(drifted));
+        var complete = ScriptWithCompletion();
+        var truncated = complete with
+        {
+            Bytecode = complete.Bytecode[..FirstTyrDialogueCompletionProjectionReader.ReturnOffset]
+        };
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueCompletionProjectionReader.Read(truncated));
+    }
+
     private static PackedGplScript Script()
     {
         var bytes = new byte[500];
@@ -84,6 +117,21 @@ public sealed class FirstTyrDialogueProjectionTests
         menu.Add(FirstTyrDialogueProjectionReader.MenuTerminator);
         Write(bytes, FirstTyrDialogueProjectionReader.InitialMenuInstructionOffset, menu);
         return new(OriginalContent.FirstTyrDialogueScriptResourceNumber, bytes);
+    }
+
+    private static PackedGplScript ScriptWithCompletion()
+    {
+        var script = Script();
+        var bytes = new byte[FirstTyrDialogueCompletionProjectionReader.ReturnOffset + 1];
+        script.Bytecode.CopyTo(bytes, 0);
+        Write(bytes, FirstTyrDialogueCompletionProjectionReader.EntryOffset,
+        [
+            0x4f, 0x00, 0x73, 0x86, 0x05,
+            0x16, 0x8f, 0x01, 0x8e, 0x0e,
+            0x16, 0x8f, 0x01, 0x8e, 0x04,
+            0x15
+        ]);
+        return script with { Bytecode = bytes };
     }
 
     private static void WritePrint(byte[] bytes, int offset, string text)

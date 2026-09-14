@@ -124,6 +124,7 @@ try
                 throw new InvalidDataException(
                     "The installed first Tyr dialogue portrait has unexpected geometry.");
             FirstTyrDialogueProjection dialogueProjection;
+            FirstTyrDialogueCompletionProjection dialogueCompletion;
             using (var scriptStream = File.OpenRead(Path.Combine(assetPack,
                        OriginalContent.FirstTyrDialogueScriptAssetPath.Replace(
                            '/', Path.DirectorySeparatorChar))))
@@ -134,6 +135,7 @@ try
                     throw new InvalidDataException(
                         "The installed first Tyr dialogue script has unexpected identity.");
                 dialogueProjection = FirstTyrDialogueProjectionReader.Read(script);
+                dialogueCompletion = FirstTyrDialogueCompletionProjectionReader.Read(script);
                 if (dialogueProjection.PortraitResourceNumber !=
                         OriginalContent.FirstTyrDialoguePortraitResourceNumber ||
                     dialogueProjection.SpeechVariants.Count != 2 ||
@@ -220,6 +222,16 @@ try
                     dialogueProjection.InitialChoices[7].TargetOffset)
                 throw new InvalidDataException(
                     "The installed first Tyr dialogue branch identity was not retained.");
+            var completedDialogue = dialogueSession.Execute(DialogueCommand.Complete(
+                DialogueSessionAdapter.ToCore(dialogueCompletion)));
+            if (!completedDialogue.Applied ||
+                completedDialogue.After.Phase != DialoguePhase.Completed ||
+                !completedDialogue.After.Variables.LocalFlags.TryGetValue(14, out var flag14) ||
+                !flag14 ||
+                !completedDialogue.After.Variables.LocalFlags.TryGetValue(4, out var flag4) ||
+                !flag4)
+                throw new InvalidDataException(
+                    "The installed first Tyr dialogue completion did not apply its local flags.");
             var textPath = Path.Combine(assetPack,
                 OriginalContent.TextCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using var textStream = File.OpenRead(textPath);

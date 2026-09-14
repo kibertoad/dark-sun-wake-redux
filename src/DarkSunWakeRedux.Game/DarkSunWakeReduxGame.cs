@@ -40,6 +40,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     private readonly List<(int X, int Y, Texture2D Texture)> _dialogueResponseText = [];
     private IReadOnlyList<DialogueResponseControl> _dialogueResponseControls = [];
     private DialogueSession? _dialogueSession;
+    private DialogueBranchResult? _dialogueCompletionBranch;
     private bool _dialoguePreviewVisible;
     private PackedRegion? _tyrRegion;
     private PackedObjectFrameCatalog? _tyrObjects;
@@ -190,6 +191,8 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                 PackedGplScript.Read(globalsStream,
                     OriginalContent.DialogueGlobalStringsScriptAssetPath));
             var projection = FirstTyrDialogueProjectionReader.Read(script);
+            _dialogueCompletionBranch = DialogueSessionAdapter.ToCore(
+                FirstTyrDialogueCompletionProjectionReader.Read(script));
             _dialogueSession = DialogueSessionAdapter.Create(
                 projection, FirstTyrDialogueObservedState.Create(),
                 DialoguePreviewText.MaximumResponses);
@@ -355,7 +358,15 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                         _dialoguePreviewVisible &&
                         DialogueInput.HitTest(_dialogueResponseControls, x, y) is { } response)
                     {
-                        _dialogueSession!.Execute(DialogueCommand.Select(response.Index));
+                        var selection = _dialogueSession!.Execute(
+                            DialogueCommand.Select(response.Index));
+                        if (selection.Applied && selection.After.SelectedSourceIndex ==
+                                _dialogueCompletionBranch!.SourceIndex)
+                        {
+                            _dialogueSession.Execute(
+                                DialogueCommand.Complete(_dialogueCompletionBranch));
+                            _dialoguePreviewVisible = false;
+                        }
                         explorationOverlayConsumedLeftClick = true;
                     }
                     else if (screen == StartFlowScreen.StartWindow &&
@@ -399,7 +410,8 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             if (screen == StartFlowScreen.Gameplay &&
                 _exploration.Snapshot().View == ExplorationView.World &&
                 DialoguePreviewInput.ShouldToggle(keyboard, _previousKeyboard))
-                _dialoguePreviewVisible = !_dialoguePreviewVisible;
+                _dialoguePreviewVisible = _dialogueSession?.Snapshot().Phase !=
+                    DialoguePhase.Completed && !_dialoguePreviewVisible;
             else if (screen != StartFlowScreen.Gameplay ||
                 _exploration.Snapshot().View != ExplorationView.World)
                 _dialoguePreviewVisible = false;

@@ -323,7 +323,11 @@ decoder rather than being guessed now.
   the ignored owned pack without committing its text. A deterministic Core
   dialogue session owns the visible source-index/branch-target identities and
   records one physical-row selection atomically; runtime row clicks are consumed
-  before world movement. GPL branch execution remains open. The hook renders the
+  before world movement. Choice 7's target is now a bounded completion projection:
+  it validates a GSTRING #5 print followed by local flag 14/4 assignments and
+  a return, advances Core with those effects to completed, and closes the
+  preview. Transcript presentation, choices 0–3, and generalized GPL execution
+  remain open. The hook renders the
   first literal speech and filtered labels with bounded provisional
   wrapping in the extracted font. Reusable ordered hotkey bindings and Core
   navigation now cover character, inventory, cast/psionic, current-effects,
