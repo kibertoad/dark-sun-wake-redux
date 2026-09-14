@@ -26,6 +26,10 @@ States are `unknown`, `researched`, `implemented`, `partially validated`,
 | Full audiovisual parity | inventory only | not applicable | not implemented | not implemented | not applicable | planned | not started | unknown |
 | Packaging | configured scripts | not applicable | project identity configured | not applicable | app identity configured | build/smoke planned | not started | researched |
 
+Dialogue status clarification: targets 3686/3786 and their local flag 17/18
+transition are implemented and their owned output is validated. Target 3976 is
+the remaining third-menu completion path.
+
 ## Blockers
 
 - The extracted startup pack and renderer do not yet include party-screen text or interaction.

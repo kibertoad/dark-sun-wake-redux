@@ -138,6 +138,8 @@ try
             FirstTyrDialogueResponseProjection thirdMenuFirstDialogueResponse;
             FirstTyrDialogueResponseProjection thirdMenuSecondDialogueResponse;
             FirstTyrDialogueResponseProjection thirdMenuThirdDialogueResponse;
+            FirstTyrDialogueResponseProjection thirdMenuFifthDialogueResponse;
+            FirstTyrDialogueResponseProjection thirdMenuSixthDialogueResponse;
             using (var scriptStream = File.OpenRead(Path.Combine(assetPack,
                        OriginalContent.FirstTyrDialogueScriptAssetPath.Replace(
                            '/', Path.DirectorySeparatorChar))))
@@ -170,6 +172,10 @@ try
                     FirstTyrDialogueResponseProjectionReader.ReadThirdMenuSecond(script);
                 thirdMenuThirdDialogueResponse =
                     FirstTyrDialogueResponseProjectionReader.ReadThirdMenuThird(script);
+                thirdMenuFifthDialogueResponse =
+                    FirstTyrDialogueResponseProjectionReader.ReadThirdMenuFifth(script);
+                thirdMenuSixthDialogueResponse =
+                    FirstTyrDialogueResponseProjectionReader.ReadThirdMenuSixth(script);
                 if (dialogueProjection.PortraitResourceNumber !=
                         OriginalContent.FirstTyrDialoguePortraitResourceNumber ||
                     dialogueProjection.SpeechVariants.Count != 2 ||
@@ -472,6 +478,12 @@ try
             _ = DialoguePreviewText.Create(font, dialogueProjection,
                 thirdMenuThirdDialogue.After, dialogueVariables,
                 thirdMenuThirdDialogueResponse.Output);
+            _ = DialoguePreviewText.Create(font, dialogueProjection,
+                thirdMenuThirdDialogue.After, dialogueVariables,
+                thirdMenuFifthDialogueResponse.Output);
+            _ = DialoguePreviewText.Create(font, dialogueProjection,
+                thirdMenuThirdDialogue.After, dialogueVariables,
+                thirdMenuSixthDialogueResponse.Output);
             var textPath = Path.Combine(assetPack,
                 OriginalContent.TextCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using var textStream = File.OpenRead(textPath);

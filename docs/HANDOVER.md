@@ -76,6 +76,9 @@ first third-page target at 2921 prints three literals, clears local flag 12,
 returns with source order 1, 6, and presents its transcript. Target 3089 then
 sets flag 15, clears flag 13, and exposes source order 2, 6; target 3257 clears
 flag 15 and leaves only source choice 6. Both present their bounded transcripts. The
+alternate target 3686 clears flag 17 and sets flag 18, then target 3786 clears
+flag 18; both are target-dispatched and their five output parts are validated
+against the owned pack. The
 fixed portrait/window/control chrome and
 projected initial literal speech render over the live aspect-expanded map.
 Wrapping, conversation entry, remaining third-menu response branches, and
@@ -120,8 +123,7 @@ research output remain under ignored `analysis/original/`.
 
 Continue Slice 3 from evidence, preferably in this order:
 
-1. project the remaining bounded response paths selected by alternate third-menu
-   states before adding
+1. project the bounded third-menu target-3976 completion path before adding
    quest consequences;
 2. establish the Preferences setting ranges/defaults and About destination,
    then implement deterministic setting mutations and frame-state feedback;

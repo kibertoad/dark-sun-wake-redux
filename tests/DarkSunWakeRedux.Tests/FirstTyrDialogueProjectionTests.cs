@@ -544,6 +544,64 @@ public sealed class FirstTyrDialogueProjectionTests
             }));
     }
 
+    [Fact]
+    public void ProjectsAlternateThirdMenuResponseFlagTransition()
+    {
+        var projection = FirstTyrDialogueResponseProjectionReader.ReadThirdMenuFifth(
+            ScriptWithThirdMenuFifthResponse());
+
+        Assert.Equal((4, 3686),
+            (projection.SourceChoiceIndex, projection.EntryOffset));
+        Assert.Equal([68, 19],
+            projection.Output.Select(item => item.Text!.Text.Length));
+        Assert.Equal([(17, false), (18, true)], projection.LocalFlagAssignments
+            .Select(assignment => ((int)assignment.VariableId, assignment.Value)));
+    }
+
+    [Fact]
+    public void RejectsAlternateThirdMenuResponseDrift()
+    {
+        var drifted = ScriptWithThirdMenuFifthResponse();
+        drifted.Bytecode[3784] = 17;
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadThirdMenuFifth(drifted));
+        var truncated = ScriptWithThirdMenuFifthResponse();
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadThirdMenuFifth(truncated with
+            {
+                Bytecode = truncated.Bytecode[..3785]
+            }));
+    }
+
+    [Fact]
+    public void ProjectsFinalAlternateThirdMenuResponseFlagClear()
+    {
+        var projection = FirstTyrDialogueResponseProjectionReader.ReadThirdMenuSixth(
+            ScriptWithThirdMenuSixthResponse());
+
+        Assert.Equal((5, 3786),
+            (projection.SourceChoiceIndex, projection.EntryOffset));
+        Assert.Equal([71, 68, 50],
+            projection.Output.Select(item => item.Text!.Text.Length));
+        Assert.Equal([(18, false)], projection.LocalFlagAssignments
+            .Select(assignment => ((int)assignment.VariableId, assignment.Value)));
+    }
+
+    [Fact]
+    public void RejectsFinalAlternateThirdMenuResponseDrift()
+    {
+        var drifted = ScriptWithThirdMenuSixthResponse();
+        drifted.Bytecode[3974] = 17;
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadThirdMenuSixth(drifted));
+        var truncated = ScriptWithThirdMenuSixthResponse();
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadThirdMenuSixth(truncated with
+            {
+                Bytecode = truncated.Bytecode[..3975]
+            }));
+    }
+
     private static PackedGplScript Script()
     {
         var bytes = new byte[2905];
@@ -793,6 +851,33 @@ public sealed class FirstTyrDialogueProjectionTests
         WritePrint(bytes, 3455, new string('g', 13));
         Write(bytes, 3473,
             [0x16, 0x8f, 0x00, 0x8e, 0x0f, 0x15]);
+        return script with { Bytecode = bytes };
+    }
+
+    private static PackedGplScript ScriptWithThirdMenuFifthResponse()
+    {
+        var script = Script();
+        var bytes = Expand(script, 3786);
+        WritePrint(bytes, 3686, new string('h', 68));
+        WritePrint(bytes, 3752, new string('i', 19));
+        Write(bytes, 3775,
+        [
+            0x16, 0x8f, 0x00, 0x8e, 0x11,
+            0x16, 0x8f, 0x01, 0x8e, 0x12,
+            0x15
+        ]);
+        return script with { Bytecode = bytes };
+    }
+
+    private static PackedGplScript ScriptWithThirdMenuSixthResponse()
+    {
+        var script = Script();
+        var bytes = Expand(script, 3976);
+        WritePrint(bytes, 3786, new string('j', 71));
+        WritePrint(bytes, 3854, new string('k', 68));
+        WritePrint(bytes, 3920, new string('l', 50));
+        Write(bytes, 3970,
+            [0x16, 0x8f, 0x00, 0x8e, 0x12, 0x15]);
         return script with { Bytecode = bytes };
     }
 

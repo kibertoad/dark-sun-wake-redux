@@ -108,6 +108,9 @@ It then selects target 3089, verifies flag 15 sets and flag 13 clears, resolves
 source order 2, 6, and rasterizes three output parts. Target 3257 follows,
 clears flag 15, leaves only source choice 6, and rasterizes four output parts.
 Synthetic tests reject assignment, return, and truncation drift for both.
+The owned script also validates alternate targets 3686/3786 and rasterizes
+their two- and three-part outputs. Synthetic tests prove the local-flag-17/18
+transition shapes and reject assignment, return, and truncation drift.
 The owned smoke also rasterizes all five implemented returned transcripts with
 the extracted font, including choice 0's explicit blank line, within the bounded
 speech area.

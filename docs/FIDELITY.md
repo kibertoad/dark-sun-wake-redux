@@ -28,3 +28,8 @@ Status values: `unknown`, `documented`, `observed`, `implemented`, and
 | Video | unknown | file inventory only | Four FLI files observed; format variant and playback unverified |
 | Error behavior | implemented | synthetic tests and smoke path | Missing/invalid pack and source mismatches return actionable diagnostics |
 | Packaging | documented | configured scripts | Identity is specialized; packages are not release-ready while decoders are absent |
+
+Dialogue status clarification: third-menu targets 3686 and 3786 are also
+implemented as bounded returned responses, including their local flag 17/18
+transition and projected output. Target 3976 remains the open third-menu
+completion path.

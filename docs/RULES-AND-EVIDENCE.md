@@ -721,6 +721,8 @@
   12, and returns.
   Target 3089 prints three literals, sets local flag 15, clears local flag 13,
   and returns. Target 3257 prints four literals, clears local flag 15, and returns.
+  Target 3686 prints two literals, clears local flag 17, sets local flag 18, and
+  returns. Target 3786 prints three literals, clears local flag 18, and returns.
 - **Confidence:** verified for the captured layouts, first exchange's GPL chunk,
   and visible response text; high for the static UI graph; medium for the
   opening-only local number 0, local flags 9/16, global flag 357, and global
@@ -809,6 +811,10 @@
   and return projection through offset 3256; it exposes source order 2, 6.
   Target 3257 has an exact four-print, local-flag-15-clear, and return projection
   through offset 3478; it leaves source choice 6. Runtime presents both outputs.
+  Target 3686 has an exact two-print, flag-17-clear/flag-18-set, and return
+  projection through offset 3785. Target 3786 has an exact three-print,
+  flag-18-clear, and return projection through offset 3975. Both are registered
+  for target-based runtime dispatch and their output fits the owned font area.
   Choice 7's target has an exact bounded projection at offsets 2905–2920: print
   GSTRING #5, assign immediate one to local flags 14 and 4, then return locally.
   Core validates the selected identity before applying both flags atomically and
@@ -829,6 +835,7 @@
   drift, target-2415 assignment/conditional/loop/menu-transition drift,
   target-2921 print/assignment/return drift,
   target-3089/3257 print/assignment/return drift,
+  target-3686/3786 print/assignment/return drift,
   explicit-newline transcript rendering and malformed-output rejection,
   atomic flag
   application, conditional global-flag effects, deterministic menu reselection,

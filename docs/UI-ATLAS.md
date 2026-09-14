@@ -19,6 +19,10 @@ independently written measurements and diagrams.
 | Game menu, Preferences, and overhead map | Tab opens Game Menu; O opens map; Escape closes an active menu and requests exit from play | `WIND` #10500 and `BMP ` #10000 are 210x116; 14 controls form exact 4/5/5 rows. Preferences `WIND` #16500 reuses the same 210x116 base and contains two APFM plus 13 exact controls corroborated by manual page 15; both graphs omit a canvas origin, so centered (55,42) placement is provisional; setting ranges, frame states, description text, map drawing, exact center policy, and confirmation flow remain unknown | both authentic panels and first-frame icons render over Tyr; reusable DSUI page objects supply absolute hit rectangles. Game Menu routes character/inventory/cast/effects/Preferences/map, Walk/Look/Attack, Return, Center on Leader, and Collapse Party; Preferences routes Game Menu and Return while unevidenced setting mutations remain inert; Exit and Load/Save remain pending |
 | Combat | Expanded party and combat-specific commands | unknown | not implemented |
 
+Third-menu status clarification: target 3686 clears local flag 17 and sets flag
+18; target 3786 then clears flag 18. Both return, are dispatched by target, and
+present bounded projected output. Target 3976 remains unimplemented.
+
 ## Documented semantic actions
 
 The manual records keyboard actions including character, inventory, map,
