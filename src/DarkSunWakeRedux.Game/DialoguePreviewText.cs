@@ -25,10 +25,25 @@ public static class DialoguePreviewText
         DialogueVariableSnapshot variables,
         IReadOnlyDictionary<GplDialogueVariable, string>? variableText = null)
     {
+        var session = DialogueSessionAdapter.Create(
+            projection, variables, MaximumResponses);
+        return Create(font, projection, session.Snapshot(), variableText);
+    }
+
+    public static DialoguePreviewTextContent Create(
+        PackedIndexedBitmapFont font,
+        FirstTyrDialogueProjection projection,
+        DialogueSnapshot dialogue,
+        IReadOnlyDictionary<GplDialogueVariable, string>? variableText = null)
+    {
         ArgumentNullException.ThrowIfNull(font);
         ArgumentNullException.ThrowIfNull(projection);
-        ArgumentNullException.ThrowIfNull(variables);
+        ArgumentNullException.ThrowIfNull(dialogue);
         variableText ??= new Dictionary<GplDialogueVariable, string>();
+        if (dialogue.ScriptResourceNumber !=
+                OriginalContent.FirstTyrDialogueScriptResourceNumber)
+            throw new InvalidDataException(
+                "The dialogue preview state has an unexpected script identity.");
         var speechSource = projection.SpeechVariants.FirstOrDefault(source =>
             source.Kind == GplDialogueTextSourceKind.Literal)
             ?? throw new InvalidDataException(
@@ -37,10 +52,18 @@ public static class DialoguePreviewText
         if (speechLines.Count == 0)
             throw new InvalidDataException("The dialogue preview speech is empty.");
         var speech = IndexedGlyphBlockRasterizer.Rasterize(font, speechLines);
-        var visibleIndices = DialogueConditionAdapter.SelectVisibleChoices(
-            projection.InitialChoices, variables, MaximumResponses);
-        var responses = visibleIndices
-            .Select(index => (Index: index, Choice: projection.InitialChoices[index]))
+        var responses = dialogue.Choices
+            .Select(identity =>
+            {
+                if (identity.SourceIndex >= projection.InitialChoices.Count)
+                    throw new InvalidDataException(
+                        "The dialogue preview choice index is outside the projection.");
+                var choice = projection.InitialChoices[identity.SourceIndex];
+                if (choice.TargetOffset != identity.BranchTargetOffset)
+                    throw new InvalidDataException(
+                        "The dialogue preview branch identity has drifted.");
+                return (Index: identity.SourceIndex, Choice: choice);
+            })
             .Select(item =>
             {
                 var text = Resolve(item.Choice.Label, variableText);

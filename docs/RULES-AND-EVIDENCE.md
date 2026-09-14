@@ -701,16 +701,19 @@
   choice's original index and branch offset, and selects indices 0, 1, 2, 3,
   and 7. A second fail-closed projection validates MAS #99's byte-20 assignment
   to type-6 global string #5 and supplies that label only from the ignored owned
-  pack. Generic local initialization remains unknown.
-  Instruction execution, state mutations, and generalized text routing remain
+  pack. Generic local initialization remains unknown. Core dialogue state stores
+  the script identity and stable visible source-index/branch-offset pairs, accepts
+  one bounded physical-row selection, and preserves the selected pair atomically.
+  Game response clicks enter that state before world movement input. GPL
+  instruction execution, consequence mutations, and generalized text routing remain
   next Slice 3 work.
 - **Tests:** DSGP identity/payload round-trip and malformed envelopes; packed
   string empty/text/control-byte decoding and malformed inputs; exact dialogue
   window/control/image geometry, response order/hit boundaries, synthetic
   transactional extraction, synthetic projection/drift/malformed cases,
   condition mapping, known/unknown evaluation, ordered/bounded fail-closed
-  selection, retained branch identities, bounded MAS assignment/drift cases,
-  variable-label resolution, and owned content smoke proving portrait,
+  selection, retained branch identities and invalid selection immutability,
+  bounded MAS assignment/drift cases, variable-label resolution, and owned content smoke proving portrait,
   speech-source, five-row menu, and ordered condition contracts.
 
 ## Initial rules
@@ -807,10 +810,10 @@
   validation hook draws the measured dialogue windows, portrait #18, scrollbar
   controls, five response strips, and the projected first literal speech plus
   proven-visible choices in the extracted bitmap font on that fixed canvas over
-  the expanded Tyr slice. Greedy wrapping is provisional. Condition evaluation
-  and row selection are deterministic, but the empty input snapshot is a
-  fail-closed placeholder rather than a claim about native initialization; the
-  hook does not claim conversation execution.
+  the expanded Tyr slice. Greedy wrapping is provisional. The capture-correlated
+  opening flags are explicit; all other variables remain unknown and fail closed.
+  Clicking a response stores its source index and branch target in Core, but the
+  hook does not claim GPL branch execution or consequences.
 - **Tests:** wide, tall, edge-clamped, and fixed viewport layout/inverse mapping;
   exact dialogue window, portrait, control-image, and response-row placement;
   bounded wrapping/selection and malformed text; F9 rising-edge behavior;

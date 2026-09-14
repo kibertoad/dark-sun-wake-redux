@@ -36,10 +36,12 @@ public sealed class DialoguePreviewTextTests
     {
         var variable = new GplDialogueTextSource(
             GplDialogueTextSourceKind.Variable, string.Empty, 6, 2);
+        GplDialogueChoice response = new(Literal("choice"), 1,
+            new(GplDialogueConditionKind.Constant, 0, 1));
         Assert.Throws<InvalidDataException>(() => DialoguePreviewText.Create(
-            Font(), new(18, [variable], []), DialogueVariableSnapshot.Empty));
+            Font(), new(18, [variable], [response]), DialogueVariableSnapshot.Empty));
         Assert.Throws<InvalidDataException>(() => DialoguePreviewText.Create(
-            Font(), new(18, [Literal(string.Empty)], []), DialogueVariableSnapshot.Empty));
+            Font(), new(18, [Literal(string.Empty)], [response]), DialogueVariableSnapshot.Empty));
         Assert.Throws<InvalidDataException>(() => DialoguePreviewText.Create(
             Font(), new(18, [Literal("speech")],
                 [new(Literal(string.Empty), 1,

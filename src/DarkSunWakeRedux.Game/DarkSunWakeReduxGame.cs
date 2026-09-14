@@ -38,6 +38,8 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     private readonly List<(DialogueOverlayImage Placement, Texture2D Texture)>
         _dialogueOverlayImages = [];
     private readonly List<(int X, int Y, Texture2D Texture)> _dialogueResponseText = [];
+    private IReadOnlyList<DialogueResponseControl> _dialogueResponseControls = [];
+    private DialogueSession? _dialogueSession;
     private bool _dialoguePreviewVisible;
     private PackedRegion? _tyrRegion;
     private PackedObjectFrameCatalog? _tyrObjects;
@@ -150,6 +152,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             var interactionUi = PackedUiCatalog.Read(
                 interactionUiStream, OriginalContent.InteractionUiCatalogAssetPath);
             _dialogueOverlay = DialogueInput.ResolveOverlay(interactionUi);
+            _dialogueResponseControls = DialogueInput.ResolveResponses(interactionUi);
         }
         PackedIndexedImage dialoguePortraitImage;
         using (var portraitStream = File.OpenRead(AssetPath(
@@ -186,9 +189,12 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             var globalString = GplGlobalStringProjectionReader.Read(
                 PackedGplScript.Read(globalsStream,
                     OriginalContent.DialogueGlobalStringsScriptAssetPath));
+            var projection = FirstTyrDialogueProjectionReader.Read(script);
+            _dialogueSession = DialogueSessionAdapter.Create(
+                projection, FirstTyrDialogueObservedState.Create(),
+                DialoguePreviewText.MaximumResponses);
             var previewText = DialoguePreviewText.Create(
-                font, FirstTyrDialogueProjectionReader.Read(script),
-                FirstTyrDialogueObservedState.Create(),
+                font, projection, _dialogueSession.Snapshot(),
                 new Dictionary<GplDialogueVariable, string>
                 {
                     [globalString.Destination] = globalString.Text
@@ -344,7 +350,15 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                     GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
                 if (transform.TryToLogical(mouse.X, mouse.Y, out var x, out var y))
                 {
-                    if (screen == StartFlowScreen.StartWindow &&
+                    if (screen == StartFlowScreen.Gameplay &&
+                        _exploration.Snapshot().View == ExplorationView.World &&
+                        _dialoguePreviewVisible &&
+                        DialogueInput.HitTest(_dialogueResponseControls, x, y) is { } response)
+                    {
+                        _dialogueSession!.Execute(DialogueCommand.Select(response.Index));
+                        explorationOverlayConsumedLeftClick = true;
+                    }
+                    else if (screen == StartFlowScreen.StartWindow &&
                         StartMenuInput.HitTest(
                             _startMenuControls.Select(item => item.Control).ToArray(), x, y) is { } choice)
                         _startFlow.Execute(StartFlowCommand.Choose(choice));

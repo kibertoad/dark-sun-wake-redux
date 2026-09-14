@@ -320,8 +320,11 @@ decoder rather than being guessed now.
   index and branch target. The captured five-row state establishes choices 0,
   1, 2, 3, and 7 for this opening only; generic local initialization remains
   open. A bounded MAS #99 projection resolves choice 7's global string #5 from
-  the ignored owned pack without committing its text. Choice execution remains
-  open. The hook renders the first literal speech and filtered labels with bounded provisional
+  the ignored owned pack without committing its text. A deterministic Core
+  dialogue session owns the visible source-index/branch-target identities and
+  records one physical-row selection atomically; runtime row clicks are consumed
+  before world movement. GPL branch execution remains open. The hook renders the
+  first literal speech and filtered labels with bounded provisional
   wrapping in the extracted font. Reusable ordered hotkey bindings and Core
   navigation now cover character, inventory, cast/psionic, current-effects,
   overhead-map, and game-menu views plus menu-return/exit semantics. Their

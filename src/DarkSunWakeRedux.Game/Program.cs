@@ -197,8 +197,11 @@ try
                 dialogueProjection.InitialChoices,
                 FirstTyrDialogueObservedState.Create(),
                 DialoguePreviewText.MaximumResponses);
+            var dialogueSession = DialogueSessionAdapter.Create(
+                dialogueProjection, FirstTyrDialogueObservedState.Create(),
+                DialoguePreviewText.MaximumResponses);
             var dialogueText = DialoguePreviewText.Create(
-                font, dialogueProjection, FirstTyrDialogueObservedState.Create(),
+                font, dialogueProjection, dialogueSession.Snapshot(),
                 new Dictionary<GplDialogueVariable, string>
                 {
                     [globalString.Destination] = globalString.Text
@@ -210,6 +213,13 @@ try
                     response.Text.Width is <= 0 or > DialoguePreviewText.ResponseWidth))
                 throw new InvalidDataException(
                     "The installed first Tyr dialogue text does not fit its preview layout.");
+            var selectedDialogue = dialogueSession.Execute(DialogueCommand.Select(4));
+            if (!selectedDialogue.Applied ||
+                selectedDialogue.After.SelectedSourceIndex != 7 ||
+                selectedDialogue.After.BranchTargetOffset !=
+                    dialogueProjection.InitialChoices[7].TargetOffset)
+                throw new InvalidDataException(
+                    "The installed first Tyr dialogue branch identity was not retained.");
             var textPath = Path.Combine(assetPack,
                 OriginalContent.TextCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using var textStream = File.OpenRead(textPath);

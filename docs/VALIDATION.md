@@ -53,8 +53,11 @@ letterboxing when expansion is disabled. Dialogue-layout tests prove the exact
 two window rectangles, portrait anchor, four scrollbar controls, five response
 strip placements, F9 rising-edge toggle contract, bounded greedy wrapping,
 five-label preview selection, overflow rejection, and unsupported-character
-handling. Owned content smoke additionally proves the actual projected first
-page fits the measured text widths with the extracted font.
+handling. Dialogue-session tests prove stable page identities, atomic one-shot
+row selection, rejection without mutation, and original branch retention.
+Owned content smoke additionally proves the actual projected first page fits
+the measured text widths with the extracted font and selects its fifth row as
+original choice 7 with the projected branch target intact.
 Exploration command tests also center on arbitrary world points with both-edge
 clamping, reject partial/out-of-world targets, suspend centering outside world
 and Game Menu views, and restore leader-only display through Collapse Party.
