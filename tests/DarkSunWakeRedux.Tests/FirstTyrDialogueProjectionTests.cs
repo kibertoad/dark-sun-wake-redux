@@ -325,6 +325,42 @@ public sealed class FirstTyrDialogueProjectionTests
             }));
     }
 
+    [Fact]
+    public void ProjectsOpeningCaravanPathWithRequiredGlobalNumber()
+    {
+        var projection = FirstTyrDialogueResponseProjectionReader.ReadOpeningCaravan(
+            ScriptWithOpeningCaravanResponse());
+
+        Assert.Equal((3, 1996),
+            (projection.SourceChoiceIndex, projection.EntryOffset));
+        Assert.Equal([66, 18], projection.Output
+            .Select(output => output.Text!.Text.Length));
+        Assert.Equal([(11, true), (7, false)], projection.LocalFlagAssignments
+            .Select(assignment => ((int)assignment.VariableId, assignment.Value)));
+        Assert.Equal((22, 1), projection.RequiredGlobalNumberConditions
+            .Select(condition => ((int)condition.VariableId, condition.Value)).Single());
+        Assert.True(projection.ReturnsToMenu);
+    }
+
+    [Fact]
+    public void RejectsOpeningCaravanConditionControlFlowAndReturnDrift()
+    {
+        var driftedCondition = ScriptWithOpeningCaravanResponse();
+        driftedCondition.Bytecode[1998] = 0x17;
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadOpeningCaravan(driftedCondition));
+        var driftedElse = ScriptWithOpeningCaravanResponse();
+        driftedElse.Bytecode[2098] = 0x2a;
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadOpeningCaravan(driftedElse));
+        var truncated = ScriptWithOpeningCaravanResponse();
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadOpeningCaravan(truncated with
+            {
+                Bytecode = truncated.Bytecode[..2351]
+            }));
+    }
+
     private static PackedGplScript Script()
     {
         var bytes = new byte[1000];
@@ -468,6 +504,32 @@ public sealed class FirstTyrDialogueProjectionTests
         [
             0x16, 0x8f, 0x01, 0x8e, 0x10,
             0x16, 0x8f, 0x00, 0x8e, 0x0a,
+            0x15
+        ]);
+        return script with { Bytecode = bytes };
+    }
+
+    private static PackedGplScript ScriptWithOpeningCaravanResponse()
+    {
+        var script = Script();
+        var bytes = new byte[2352];
+        script.Bytecode.CopyTo(bytes, 0);
+        Write(bytes, 1996,
+        [
+            0x18, 0x87, 0x16, 0xd7, 0x8f, 0x01,
+            0x3e, 0x08, 0x30
+        ]);
+        WritePrint(bytes, 2005, new string('R', 66));
+        WritePrint(bytes, 2069, new string('S', 18));
+        Write(bytes, 2091,
+        [
+            0x16, 0x8f, 0x01, 0x8e, 0x0b,
+            0x3f, 0x09, 0x29
+        ]);
+        Write(bytes, 2345,
+        [
+            0x67,
+            0x16, 0x8f, 0x00, 0x8e, 0x07,
             0x15
         ]);
         return script with { Bytecode = bytes };

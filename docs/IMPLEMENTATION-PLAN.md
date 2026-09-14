@@ -353,8 +353,12 @@ decoder rather than being guessed now.
   10; Core evaluates that condition before mutation and runtime returns to the
   second page with the newly enabled choice. Target 3479 is bounded through
   three prints, local flag 16 set, local flag 10 clear, and return, leaving
-  source choices 3, 5, and 6. The remaining second-menu branches and generalized
-  GPL execution remain open. The hook renders the
+  source choices 3, 5, and 6. The captured opening also proves global number 22
+  equals one because that condition selects the opening-menu subroutine. Target
+  1996's matching path is bounded through its two prints, local flag 11 set,
+  local flag 7 clear, and return, leaving source choices 4, 5, and 6; the
+  alternate global-number path remains open. The remaining second-menu branches
+  and generalized GPL execution remain open. The hook renders the
   first literal speech and filtered labels with bounded provisional
   wrapping in the extracted font. Reusable ordered hotkey bindings and Core
   navigation now cover character, inventory, cast/psionic, current-effects,

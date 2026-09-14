@@ -132,6 +132,7 @@ try
             FirstTyrDialogueResponseProjection fifthDialogueResponse;
             FirstTyrDialogueResponseProjection troubleDialogueResponse;
             FirstTyrDialogueResponseProjection kingDialogueResponse;
+            FirstTyrDialogueResponseProjection caravanDialogueResponse;
             using (var scriptStream = File.OpenRead(Path.Combine(assetPack,
                        OriginalContent.FirstTyrDialogueScriptAssetPath.Replace(
                            '/', Path.DirectorySeparatorChar))))
@@ -152,6 +153,8 @@ try
                     FirstTyrDialogueResponseProjectionReader.ReadTrouble(script);
                 kingDialogueResponse =
                     FirstTyrDialogueResponseProjectionReader.ReadKing(script);
+                caravanDialogueResponse =
+                    FirstTyrDialogueResponseProjectionReader.ReadOpeningCaravan(script);
                 if (dialogueProjection.PortraitResourceNumber !=
                         OriginalContent.FirstTyrDialoguePortraitResourceNumber ||
                     dialogueProjection.SpeechVariants.Count != 2 ||
@@ -361,6 +364,18 @@ try
                     "The installed first Tyr king response did not apply its effects.");
             _ = DialoguePreviewText.Create(font, dialogueProjection,
                 kingDialogue.After, dialogueVariables, kingDialogueResponse.Output);
+            identitySession.Execute(DialogueCommand.Select(0));
+            var caravanDialogue = identitySession.Execute(DialogueCommand.Apply(
+                DialogueSessionAdapter.ToCore(caravanDialogueResponse)));
+            if (!caravanDialogue.Applied ||
+                !caravanDialogue.After.Variables.LocalFlags[11] ||
+                caravanDialogue.After.Variables.LocalFlags[7] ||
+                !caravanDialogue.After.Choices.Select(choice => choice.SourceIndex)
+                    .SequenceEqual([4, 5, 6]))
+                throw new InvalidDataException(
+                    "The installed first Tyr caravan response did not apply its effects.");
+            _ = DialoguePreviewText.Create(font, dialogueProjection,
+                caravanDialogue.After, dialogueVariables, caravanDialogueResponse.Output);
             var textPath = Path.Combine(assetPack,
                 OriginalContent.TextCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using var textStream = File.OpenRead(textPath);

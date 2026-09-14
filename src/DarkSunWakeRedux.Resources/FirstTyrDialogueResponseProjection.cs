@@ -12,6 +12,8 @@ public sealed record GplGlobalFlagCondition(ushort VariableId, bool Value);
 
 public sealed record GplLocalFlagCondition(ushort VariableId, bool Value);
 
+public sealed record GplGlobalNumberCondition(ushort VariableId, int Value);
+
 public sealed record GplConditionalLocalFlagAssignment(
     GplGlobalFlagCondition Condition,
     ushort VariableId,
@@ -38,6 +40,8 @@ public sealed record FirstTyrDialogueResponseProjection(
     public IReadOnlyList<GplLocalNumberAssignment> LocalNumberAssignments { get; init; } = [];
     public IReadOnlyList<GplConditionalLocalFlagAssignmentFromLocalFlag>
         ConditionalLocalFlagAssignmentsFromLocalFlags { get; init; } = [];
+    public IReadOnlyList<GplGlobalNumberCondition> RequiredGlobalNumberConditions
+        { get; init; } = [];
 }
 
 public sealed record GplLocalNumberAssignment(ushort VariableId, int Value);
@@ -65,12 +69,16 @@ public static class FirstTyrDialogueResponseProjectionReader
     public const int KingSourceChoiceIndex = 2;
     public const int KingEntryOffset = 3479;
     public const int KingReturnOffset = 3685;
+    public const int CaravanSourceChoiceIndex = 3;
+    public const int CaravanEntryOffset = 1996;
+    public const int CaravanReturnOffset = 2351;
     public const byte PrintStringOpcode = 0x4f;
     public const byte PrintNewLineOpcode = 0x51;
     public const byte LoadVariableOpcode = 0x16;
     public const byte WordIncrementOpcode = 0x06;
     public const byte LoadAccumulatorOpcode = 0x18;
     public const byte IfOpcode = 0x3e;
+    public const byte ElseOpcode = 0x3f;
     public const byte EndIfOpcode = 0x67;
     public const byte LocalReturnOpcode = 0x15;
 
@@ -221,6 +229,39 @@ public static class FirstTyrDialogueResponseProjectionReader
         RequireOpcode(bytes, ref position, LocalReturnOpcode, "king response local return");
         return new(KingSourceChoiceIndex, KingEntryOffset, output,
             assignments, [], true);
+    }
+
+    public static FirstTyrDialogueResponseProjection ReadOpeningCaravan(
+        PackedGplScript script)
+    {
+        ValidateScript(script);
+        var bytes = script.Bytecode.AsSpan();
+        var position = CaravanEntryOffset;
+        RequireOpcode(bytes, ref position, LoadAccumulatorOpcode,
+            "caravan response opening-state condition");
+        RequireSequence(bytes, ref position, [0x87, 0x16, 0xd7, 0x8f, 0x01],
+            "global number #22 equals one condition");
+        RequireOpcode(bytes, ref position, IfOpcode, "caravan response conditional branch");
+        RequireImmediate14(bytes, ref position, 2096, "caravan response else target");
+        var output = new[]
+        {
+            ReadLiteralPrint(bytes, ref position, 2069),
+            ReadLiteralPrint(bytes, ref position, 2091)
+        };
+        var firstAssignment = ReadFlagAssignment(bytes, ref position, 11, true);
+        RequireOpcode(bytes, ref position, ElseOpcode, "caravan response else");
+        RequireImmediate14(bytes, ref position, 2345, "caravan response endif target");
+        position = 2345;
+        RequireOpcode(bytes, ref position, EndIfOpcode, "caravan response endif");
+        var secondAssignment = ReadFlagAssignment(bytes, ref position, 7, false);
+        if (position != CaravanReturnOffset)
+            throw Error($"caravan response effects end at {position}, not {CaravanReturnOffset}");
+        RequireOpcode(bytes, ref position, LocalReturnOpcode, "caravan response local return");
+        return new(CaravanSourceChoiceIndex, CaravanEntryOffset, output,
+            [firstAssignment, secondAssignment], [], true)
+        {
+            RequiredGlobalNumberConditions = [new(22, 1)]
+        };
     }
 
     private static FirstTyrDialogueResponseProjection ReadIncrementing(

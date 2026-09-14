@@ -707,9 +707,14 @@
   local flag 10 when local flag 16 is zero, and returns.
   Target 3479 then prints three literals, sets local flag 16, clears local flag
   10, and returns.
+  Global number 22 equal to one selects the opening-menu subroutine at script
+  entry, so the captured opening establishes that value for this path. Target
+  1996's matching branch prints two literals, sets local flag 11, skips its
+  alternate body, clears local flag 7, and returns.
 - **Confidence:** verified for the captured layouts, first exchange's GPL chunk,
   and visible response text; high for the static UI graph; medium for the
-  opening-only local number 0, local flags 9/16, and global flag 357 initial values
+  opening-only local number 0, local flags 9/16, global flag 357, and global
+  number 22 initial values
   because they
   combine corpus/script structure with a secondary clean-room implementation.
   The award-producing script path, the remaining second-menu response consequences,
@@ -735,7 +740,8 @@
   and 7. A second fail-closed projection validates MAS #99's byte-20 assignment
   to type-6 global string #5 and supplies that label only from the ignored owned
   pack. The capture-correlated opening state now includes local number 0 as zero,
-  local flags 9/16 as false, and global flag 357 as false; generic initialization
+  local flags 9/16 as false, global flag 357 as false, and global number 22 as
+  one; generic initialization
   remains unknown. Core dialogue state stores
   all choice definitions and the script identity, derives stable visible
   source-index/branch-offset pairs, accepts one bounded physical-row selection,
@@ -772,6 +778,11 @@
   Target 3479 has an exact bounded projection through offset 3685: three literal
   prints, local flag 16 set, local flag 10 clear, and local return. It presents
   the transcript and recomputes page two as source order 3, 5, 6.
+  Target 1996's fresh-opening path is guarded by an immutable global-number-22
+  prerequisite. Its bounded projection validates the selected condition and
+  jumps, two literal prints, local flag 11 set, local flag 7 clear, and return
+  at 2351. Core rejects missing or different prerequisite state before mutation;
+  the owned path presents the transcript and recomputes page two as 4, 5, 6.
   Choice 7's target has an exact bounded projection at offsets 2905–2920: print
   GSTRING #5, assign immediate one to local flags 14 and 4, then return locally.
   Core validates the selected identity before applying both flags atomically and
@@ -787,7 +798,8 @@
   response/completion opcode/operand/offset/truncation drift, choice 4's
   assignment path, opening continuation and second-menu projection, caller-page
   return, target-1825 local-condition/assignment drift, target-3479 flag/return
-  drift, explicit-newline transcript rendering and malformed-output rejection,
+  drift, target-1996 condition/control-flow/return drift, global-number
+  prerequisite success and atomic rejection, explicit-newline transcript rendering and malformed-output rejection,
   atomic flag
   application, conditional global-flag effects, deterministic menu reselection,
   unknown local-number/global-condition rejection, mismatched-branch rejection,

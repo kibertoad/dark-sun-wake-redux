@@ -15,6 +15,7 @@ public static class FirstTyrDialogueFlow
         var flags = new Dictionary<ushort, bool>(variables.LocalFlags);
         var numbers = new Dictionary<ushort, int>(variables.LocalNumbers);
         var globalFlags = new Dictionary<ushort, bool>(variables.GlobalFlags);
+        var globalNumbers = new Dictionary<ushort, int>(variables.GlobalNumbers);
         var firstQuestionRemains = RequiredFlag(flags, 1);
         var secondQuestionRemains = RequiredFlag(flags, 2);
         var thirdQuestionRemains = RequiredFlag(flags, 3);
@@ -45,7 +46,8 @@ public static class FirstTyrDialogueFlow
             new ReadOnlyDictionary<ushort, bool>(flags),
             new ReadOnlyDictionary<ushort, int>(numbers))
         {
-            GlobalFlags = new ReadOnlyDictionary<ushort, bool>(globalFlags)
+            GlobalFlags = new ReadOnlyDictionary<ushort, bool>(globalFlags),
+            GlobalNumbers = new ReadOnlyDictionary<ushort, int>(globalNumbers)
         }, advances);
     }
 

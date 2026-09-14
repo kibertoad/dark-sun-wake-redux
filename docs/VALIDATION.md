@@ -88,6 +88,11 @@ the extracted transcript fits the speech area.
 The same owned path selects newly enabled target 3479, verifies local flag 16
 sets and local flag 10 clears, resolves page order 3, 5, 6, and rasterizes its
 three-part transcript. Synthetic tests reject either assignment or return drift.
+The path then selects target 1996 under captured global number 22 equal to one,
+verifies local flag 11 sets and local flag 7 clears, resolves page order 4, 5,
+6, and rasterizes its two-part transcript. Core tests reject missing or different
+global-number prerequisites without mutation; synthetic tests reject condition,
+control-flow, or return drift.
 The owned smoke also rasterizes all five implemented returned transcripts with
 the extracted font, including choice 0's explicit blank line, within the bounded
 speech area.

@@ -199,6 +199,52 @@ public sealed class DialogueSessionTests
     }
 
     [Fact]
+    public void AppliesBranchOnlyWhenRequiredGlobalNumberMatches()
+    {
+        var variables = DialogueVariableSnapshot.Empty with
+        {
+            GlobalNumbers = new Dictionary<ushort, int> { [22] = 1 }
+        };
+        var session = Session([Definition(3, 1996)], variables);
+        session.Execute(DialogueCommand.Select(0));
+        var result = new DialogueBranchResult(3, 1996,
+            DialogueBranchDisposition.ReturnToChoices,
+            new Dictionary<ushort, bool> { [11] = true, [7] = false },
+            requiredGlobalNumberConditions: [new(22, 1)]);
+
+        var transition = session.Execute(DialogueCommand.Apply(result));
+
+        Assert.True(transition.After.Variables.LocalFlags[11]);
+        Assert.False(transition.After.Variables.LocalFlags[7]);
+        Assert.Equal(1, transition.After.Variables.GlobalNumbers[22]);
+    }
+
+    [Theory]
+    [InlineData(null)]
+    [InlineData(2)]
+    public void RejectsUnknownOrDifferentRequiredGlobalNumberWithoutMutation(
+        int? value)
+    {
+        var variables = DialogueVariableSnapshot.Empty with
+        {
+            GlobalNumbers = value.HasValue
+                ? new Dictionary<ushort, int> { [22] = value.Value }
+                : new Dictionary<ushort, int>()
+        };
+        var session = Session([Definition(3, 1996)], variables);
+        session.Execute(DialogueCommand.Select(0));
+        var before = session.Snapshot();
+        var result = new DialogueBranchResult(3, 1996,
+            DialogueBranchDisposition.ReturnToChoices,
+            new Dictionary<ushort, bool> { [11] = true },
+            requiredGlobalNumberConditions: [new(22, 1)]);
+
+        Assert.Throws<InvalidOperationException>(() =>
+            session.Execute(DialogueCommand.Apply(result)));
+        Assert.Same(before, session.Snapshot());
+    }
+
+    [Fact]
     public void RejectsInvalidConstructionSelectionAndMismatchedBranch()
     {
         var variables = DialogueVariableSnapshot.Empty;
@@ -209,6 +255,10 @@ public sealed class DialogueSessionTests
             [Definition(0, 1), Definition(0, 2)], variables, 5));
         Assert.Throws<ArgumentException>(() => new DialogueSession(1,
             [Definition(-1, 1)], variables, 5));
+        Assert.Throws<ArgumentException>(() => new DialogueBranchResult(0, 1,
+            DialogueBranchDisposition.ReturnToChoices,
+            new Dictionary<ushort, bool>(),
+            requiredGlobalNumberConditions: [new(22, 1), new(22, 2)]));
         var session = Session([Definition(7, 2905)]);
         Assert.Throws<ArgumentOutOfRangeException>(() =>
             session.Execute(DialogueCommand.Select(1)));
@@ -227,13 +277,19 @@ public sealed class DialogueSessionTests
         var definitions = new[] { Definition(7, 2905) };
         var flags = new Dictionary<ushort, bool> { [0] = true };
         var globalFlags = new Dictionary<ushort, bool> { [357] = false };
+        var globalNumbers = new Dictionary<ushort, int> { [22] = 1 };
         var assignments = new Dictionary<ushort, bool> { [4] = true };
         var session = Session(definitions,
-            new(flags, new Dictionary<ushort, int>()) { GlobalFlags = globalFlags });
+            new(flags, new Dictionary<ushort, int>())
+            {
+                GlobalFlags = globalFlags,
+                GlobalNumbers = globalNumbers
+            });
         var result = Result(7, 2905, DialogueBranchDisposition.Completed, assignments);
         definitions[0] = Definition(1, 2);
         flags[0] = false;
         globalFlags[357] = true;
+        globalNumbers[22] = 2;
         assignments[4] = false;
 
         session.Execute(DialogueCommand.Select(0));
@@ -243,6 +299,7 @@ public sealed class DialogueSessionTests
         Assert.True(session.Snapshot().Variables.LocalFlags[0]);
         Assert.True(session.Snapshot().Variables.LocalFlags[4]);
         Assert.False(session.Snapshot().Variables.GlobalFlags[357]);
+        Assert.Equal(1, session.Snapshot().Variables.GlobalNumbers[22]);
     }
 
     private static DialogueSession Session(
@@ -273,7 +330,8 @@ public sealed class DialogueSessionTests
             conditionalLocalFlagAssignmentsFromLocalFlags:
             [
                 new(new(16, false), 10, true)
-            ]);
+            ],
+            requiredGlobalNumberConditions: [new(22, 1)]);
 
         var reidentified = result.ForSourceIndex(6);
 
@@ -282,6 +340,8 @@ public sealed class DialogueSessionTests
         Assert.Equal(DialogueBranchDisposition.Completed, reidentified.Disposition);
         Assert.True(reidentified.LocalFlagAssignments[14]);
         Assert.Single(reidentified.ConditionalLocalFlagAssignmentsFromLocalFlags);
+        Assert.Equal(new DialogueGlobalNumberCondition(22, 1),
+            Assert.Single(reidentified.RequiredGlobalNumberConditions));
     }
 
     private static DialogueTransition ApplyCounterResponse(

@@ -63,6 +63,9 @@ public static class DialogueSessionAdapter
             projection.ConditionalLocalFlagAssignmentsFromLocalFlags.Select(assignment =>
                 new DialogueConditionalLocalFlagAssignmentFromLocalFlag(
                     new(assignment.Condition.VariableId, assignment.Condition.Value),
-                    assignment.VariableId, assignment.Value)).ToArray());
+                    assignment.VariableId, assignment.Value)).ToArray(),
+            projection.RequiredGlobalNumberConditions.Select(condition =>
+                new DialogueGlobalNumberCondition(condition.VariableId, condition.Value))
+                .ToArray());
     }
 }

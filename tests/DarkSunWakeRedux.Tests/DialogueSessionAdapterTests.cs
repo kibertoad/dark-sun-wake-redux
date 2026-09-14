@@ -123,4 +123,19 @@ public sealed class DialogueSessionAdapterTests
             (int)assignment.Condition.VariableId, assignment.Condition.Value,
             (int)assignment.VariableId, assignment.Value));
     }
+
+    [Fact]
+    public void MapsRequiredGlobalNumberConditions()
+    {
+        var projection = new FirstTyrDialogueResponseProjection(3, 1996, [],
+            [new(11, true), new(7, false)], [], true)
+        {
+            RequiredGlobalNumberConditions = [new(22, 1)]
+        };
+
+        var result = DialogueSessionAdapter.ToCore(projection);
+
+        Assert.Equal(new DialogueGlobalNumberCondition(22, 1),
+            Assert.Single(result.RequiredGlobalNumberConditions));
+    }
 }

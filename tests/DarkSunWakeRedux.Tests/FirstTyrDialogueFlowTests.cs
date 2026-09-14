@@ -15,6 +15,7 @@ public sealed class FirstTyrDialogueFlowTests
         Assert.True(continuation.Variables.LocalFlags[4]);
         Assert.True(continuation.Variables.LocalFlags[1]);
         Assert.True(continuation.Variables.LocalFlags[8]);
+        Assert.Equal(1, continuation.Variables.GlobalNumbers[22]);
         Assert.False(continuation.Variables.LocalFlags.ContainsKey(6));
         Assert.False(continuation.Variables.LocalFlags.ContainsKey(7));
     }

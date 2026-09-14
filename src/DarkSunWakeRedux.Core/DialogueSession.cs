@@ -22,6 +22,8 @@ public sealed record DialogueGlobalFlagCondition(ushort VariableId, bool Value);
 
 public sealed record DialogueLocalFlagCondition(ushort VariableId, bool Value);
 
+public sealed record DialogueGlobalNumberCondition(ushort VariableId, int Value);
+
 public sealed record DialogueConditionalLocalFlagAssignment(
     DialogueGlobalFlagCondition Condition,
     ushort VariableId,
@@ -45,7 +47,9 @@ public sealed record DialogueBranchResult
             conditionalLocalFlagAssignments = null,
         IReadOnlyDictionary<ushort, int>? localNumberAssignments = null,
         IReadOnlyList<DialogueConditionalLocalFlagAssignmentFromLocalFlag>?
-            conditionalLocalFlagAssignmentsFromLocalFlags = null)
+            conditionalLocalFlagAssignmentsFromLocalFlags = null,
+        IReadOnlyList<DialogueGlobalNumberCondition>?
+            requiredGlobalNumberConditions = null)
     {
         if (sourceIndex < 0) throw new ArgumentOutOfRangeException(nameof(sourceIndex));
         if (branchTargetOffset < 0)
@@ -58,6 +62,7 @@ public sealed record DialogueBranchResult
         conditionalLocalFlagAssignments ??= [];
         localNumberAssignments ??= new Dictionary<ushort, int>();
         conditionalLocalFlagAssignmentsFromLocalFlags ??= [];
+        requiredGlobalNumberConditions ??= [];
         if (localNumberIncrements.Any(pair => pair.Value == 0))
             throw new ArgumentException("Dialogue number increments cannot be zero.",
                 nameof(localNumberIncrements));
@@ -75,6 +80,12 @@ public sealed record DialogueBranchResult
             throw new ArgumentException(
                 "Conditional dialogue assignments require local-flag conditions.",
                 nameof(conditionalLocalFlagAssignmentsFromLocalFlags));
+        if (requiredGlobalNumberConditions.Any(condition => condition is null) ||
+            requiredGlobalNumberConditions.Select(condition => condition.VariableId)
+                .Distinct().Count() != requiredGlobalNumberConditions.Count)
+            throw new ArgumentException(
+                "Required dialogue global-number conditions must be non-null and unique.",
+                nameof(requiredGlobalNumberConditions));
         SourceIndex = sourceIndex;
         BranchTargetOffset = branchTargetOffset;
         Disposition = disposition;
@@ -86,6 +97,8 @@ public sealed record DialogueBranchResult
         LocalNumberAssignments = ReadOnlyCopy(localNumberAssignments);
         ConditionalLocalFlagAssignmentsFromLocalFlags = Array.AsReadOnly(
             conditionalLocalFlagAssignmentsFromLocalFlags.ToArray());
+        RequiredGlobalNumberConditions = Array.AsReadOnly(
+            requiredGlobalNumberConditions.ToArray());
     }
 
     public int SourceIndex { get; }
@@ -99,6 +112,7 @@ public sealed record DialogueBranchResult
     public IReadOnlyDictionary<ushort, int> LocalNumberAssignments { get; }
     public IReadOnlyList<DialogueConditionalLocalFlagAssignmentFromLocalFlag>
         ConditionalLocalFlagAssignmentsFromLocalFlags { get; }
+    public IReadOnlyList<DialogueGlobalNumberCondition> RequiredGlobalNumberConditions { get; }
 
     public DialogueBranchResult ForSourceIndex(int sourceIndex) => new(
         sourceIndex,
@@ -109,7 +123,8 @@ public sealed record DialogueBranchResult
         GlobalFlagAssignments,
         ConditionalLocalFlagAssignments,
         LocalNumberAssignments,
-        ConditionalLocalFlagAssignmentsFromLocalFlags);
+        ConditionalLocalFlagAssignmentsFromLocalFlags,
+        RequiredGlobalNumberConditions);
 
     private static IReadOnlyDictionary<TKey, TValue> ReadOnlyCopy<TKey, TValue>(
         IReadOnlyDictionary<TKey, TValue> source) where TKey : notnull =>
@@ -167,6 +182,7 @@ public sealed class DialogueSession
         ArgumentNullException.ThrowIfNull(variables.LocalFlags);
         ArgumentNullException.ThrowIfNull(variables.LocalNumbers);
         ArgumentNullException.ThrowIfNull(variables.GlobalFlags);
+        ArgumentNullException.ThrowIfNull(variables.GlobalNumbers);
         if (maximumChoices <= 0) throw new ArgumentOutOfRangeException(nameof(maximumChoices));
         _definitions = ValidateDefinitions(definitions, nameof(definitions));
         _secondPageDefinitions = secondPageDefinitions is null
@@ -211,6 +227,16 @@ public sealed class DialogueSession
             result.BranchTargetOffset != _snapshot.BranchTargetOffset)
             throw new InvalidOperationException(
                 "The applied dialogue branch does not match the selected choice.");
+        foreach (var condition in result.RequiredGlobalNumberConditions)
+        {
+            if (!_snapshot.Variables.GlobalNumbers.TryGetValue(
+                    condition.VariableId, out var value))
+                throw new InvalidOperationException(
+                    $"Global dialogue number #{condition.VariableId} is unknown.");
+            if (value != condition.Value)
+                throw new InvalidOperationException(
+                    $"Global dialogue number #{condition.VariableId} does not select this branch path.");
+        }
         var conditionalAssignments = new List<DialogueConditionalLocalFlagAssignment>();
         foreach (var assignment in result.ConditionalLocalFlagAssignments)
         {
@@ -252,7 +278,11 @@ public sealed class DialogueSession
         var globalFlags = new Dictionary<ushort, bool>(_snapshot.Variables.GlobalFlags);
         foreach (var assignment in result.GlobalFlagAssignments)
             globalFlags[assignment.Key] = assignment.Value;
-        var variables = Copy(new(flags, numbers) { GlobalFlags = globalFlags });
+        var variables = Copy(new(flags, numbers)
+        {
+            GlobalFlags = globalFlags,
+            GlobalNumbers = _snapshot.Variables.GlobalNumbers
+        });
         var nextDefinitions = _definitions;
         var onSecondPage = _onSecondPage;
         if (result.Disposition == DialogueBranchDisposition.ReturnThroughFirstTyrMenu &&
@@ -332,7 +362,9 @@ public sealed class DialogueSession
             new Dictionary<ushort, int>(variables.LocalNumbers)))
     {
         GlobalFlags = new ReadOnlyDictionary<ushort, bool>(
-            new Dictionary<ushort, bool>(variables.GlobalFlags))
+            new Dictionary<ushort, bool>(variables.GlobalFlags)),
+        GlobalNumbers = new ReadOnlyDictionary<ushort, int>(
+            new Dictionary<ushort, int>(variables.GlobalNumbers))
     };
 
     private static IReadOnlyList<DialogueChoiceDefinition> ValidateDefinitions(
