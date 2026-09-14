@@ -15,7 +15,20 @@ public sealed record GplDialogueTextSource(
 
 public sealed record GplDialogueChoice(
     GplDialogueTextSource Label,
-    int TargetOffset);
+    int TargetOffset,
+    GplDialogueCondition Condition);
+
+public enum GplDialogueConditionKind
+{
+    Constant,
+    LocalFlag,
+    LocalNumberEquals
+}
+
+public sealed record GplDialogueCondition(
+    GplDialogueConditionKind Kind,
+    ushort VariableId,
+    int Value);
 
 public sealed record FirstTyrDialogueProjection(
     uint PortraitResourceNumber,
@@ -84,14 +97,30 @@ public static class FirstTyrDialogueProjectionReader
             var target = ReadExpression(bytes, ref position, "menu target");
             if (target.Kind != ExpressionKind.Immediate || target.Number < 0)
                 throw Error("an opening-menu target is not a non-negative immediate offset");
+            var conditionStart = position;
             _ = ReadExpression(bytes, ref position, "menu condition");
-            choices.Add(new(label, target.Number));
+            var condition = ReadCondition(bytes[conditionStart..position]);
+            choices.Add(new(label, target.Number, condition));
         }
         if (position >= bytes.Length || bytes[position] != MenuTerminator)
             throw Error("the opening menu has no terminator");
         if (choices.Count == 0)
             throw Error("the opening menu has no choices");
         return choices;
+    }
+
+    private static GplDialogueCondition ReadCondition(ReadOnlySpan<byte> bytes)
+    {
+        if (bytes.Length == 2 && bytes[0] < 0x80)
+            return new(GplDialogueConditionKind.Constant, 0,
+                (bytes[0] << 8) | bytes[1]);
+        if (bytes.Length == 2 && bytes[0] == 0x8e)
+            return new(GplDialogueConditionKind.LocalFlag, bytes[1], 1);
+        if (bytes.Length == 7 && bytes[0] == 0xe2 && bytes[1] == 0x82 &&
+            bytes[3] == 0xd7 && bytes[4] == 0x8f && bytes[6] == 0xe1)
+            return new(GplDialogueConditionKind.LocalNumberEquals,
+                bytes[2], unchecked((sbyte)bytes[5]));
+        throw Error("an opening-menu condition has an unsupported shape");
     }
 
     private static int RequireOpcode(ReadOnlySpan<byte> bytes, int offset, byte opcode)

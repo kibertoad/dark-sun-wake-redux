@@ -140,9 +140,11 @@ captures establish hostile Look, award-notification, and two-window dialogue
 layouts; GPL disassembly independently anchors the captured exchange in chunk
 #135. Synthetic tests exercise the bounded first-conversation projection,
 including exact observed offsets, literal and variable text sources, compound
-condition skipping, menu bounds, and fail-closed identity/opcode/truncation
-handling; owned content smoke confirms two speech variants and eight initial
-menu entries without checking proprietary text into Git. Local-only decoded previews established the title
+condition parsing, menu bounds, and fail-closed identity/opcode/truncation
+handling. Core tests distinguish true, false, and unknown constant/local flag/
+local-number conditions; adapter tests preserve their parsed identity. Owned
+content smoke confirms two speech variants, eight initial menu entries, and the
+ordered condition shapes without checking proprietary text into Git. Local-only decoded previews established the title
 and start-window mappings recorded as `DATA-GOG-TITLE-001`,
 `DATA-GOG-UI-001`, `DATA-GOG-UI-006`, `DATA-GOG-UI-007`,
 `DATA-GOG-UI-008` through `DATA-GOG-UI-010`; screenshots and decoded outputs stay

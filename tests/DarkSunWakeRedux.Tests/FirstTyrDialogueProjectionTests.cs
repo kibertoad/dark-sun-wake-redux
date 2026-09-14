@@ -18,12 +18,16 @@ public sealed class FirstTyrDialogueProjectionTests
             projection.InitialChoices[0].Label.Kind);
         Assert.Equal("Literal choice", projection.InitialChoices[0].Label.Text);
         Assert.Equal(1017, projection.InitialChoices[0].TargetOffset);
+        Assert.Equal(new(GplDialogueConditionKind.LocalFlag, 0, 1),
+            projection.InitialChoices[0].Condition);
         Assert.Equal(GplDialogueTextSourceKind.Variable,
             projection.InitialChoices[1].Label.Kind);
         Assert.Equal((6, 5),
             (projection.InitialChoices[1].Label.VariableType,
                 projection.InitialChoices[1].Label.VariableId));
         Assert.Equal(2905, projection.InitialChoices[1].TargetOffset);
+        Assert.Equal(new(GplDialogueConditionKind.LocalNumberEquals, 0, 2),
+            projection.InitialChoices[1].Condition);
     }
 
     [Fact]

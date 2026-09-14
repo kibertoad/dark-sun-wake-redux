@@ -12,7 +12,8 @@ public sealed class DialoguePreviewTextTests
         var projection = new FirstTyrDialogueProjection(18,
             [Literal("one two three")],
             Enumerable.Range(0, 6).Select(index =>
-                new GplDialogueChoice(Literal($"choice {index}"), 100 + index)).ToArray());
+                new GplDialogueChoice(Literal($"choice {index}"), 100 + index,
+                    new(GplDialogueConditionKind.Constant, 0, 1))).ToArray());
 
         var content = DialoguePreviewText.Create(Font(), projection);
 
@@ -34,7 +35,8 @@ public sealed class DialoguePreviewTextTests
             Font(), new(18, [Literal(string.Empty)], [])));
         Assert.Throws<InvalidDataException>(() => DialoguePreviewText.Create(
             Font(), new(18, [Literal("speech")],
-                [new(Literal(string.Empty), 1)])));
+                [new(Literal(string.Empty), 1,
+                    new(GplDialogueConditionKind.Constant, 0, 1))])));
         Assert.Throws<InvalidDataException>(() =>
             DialoguePreviewText.Wrap(Font(), "a b c", 1, 2));
         Assert.Throws<InvalidDataException>(() =>

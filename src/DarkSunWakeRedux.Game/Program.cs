@@ -137,7 +137,21 @@ try
                 if (dialogueProjection.PortraitResourceNumber !=
                         OriginalContent.FirstTyrDialoguePortraitResourceNumber ||
                     dialogueProjection.SpeechVariants.Count != 2 ||
-                    dialogueProjection.InitialChoices.Count != 8)
+                    dialogueProjection.InitialChoices.Count != 8 ||
+                    !dialogueProjection.InitialChoices.Select(choice =>
+                            (choice.Condition.Kind, choice.Condition.VariableId,
+                                choice.Condition.Value))
+                        .SequenceEqual(new (GplDialogueConditionKind, ushort, int)[]
+                        {
+                            (GplDialogueConditionKind.LocalFlag, 0, 1),
+                            (GplDialogueConditionKind.LocalFlag, 1, 1),
+                            (GplDialogueConditionKind.LocalFlag, 2, 1),
+                            (GplDialogueConditionKind.LocalFlag, 3, 1),
+                            (GplDialogueConditionKind.LocalNumberEquals, 0, 2),
+                            (GplDialogueConditionKind.LocalFlag, 9, 1),
+                            (GplDialogueConditionKind.LocalFlag, 5, 1),
+                            (GplDialogueConditionKind.Constant, 0, 1)
+                        }))
                     throw new InvalidDataException(
                         "The installed first Tyr dialogue projection has drifted.");
             }

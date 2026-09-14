@@ -384,8 +384,9 @@ interpretation. Marker `0x01` represents the active character name, marker
 sliding dictionary/back-reference form is bounded to 1,024 decoded bytes.
 Marker `0x02`, malformed references, truncation, and missing terminators are
 rejected. The menu projection bounds choices to 24, accepts only the expression
-forms needed by this observed menu, captures labels and branch offsets, skips
-but does not interpret its condition expressions, and fails closed on drift or
+forms needed by this observed menu, captures labels and branch offsets, and
+projects its three observed condition shapes: constant, local flag, and local
+number equality. It fails closed on any other condition shape, drift, or
 truncation. Decoding these structures does not authorize executing other
 instructions or assigning condition and state-mutation semantics.
 

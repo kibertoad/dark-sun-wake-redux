@@ -313,7 +313,9 @@ decoder rather than being guessed now.
   remains on the original canvas; F9 previews the measured dialogue chrome over
   that live world pending conversation routing and text. A fail-closed GPL #135
   reader projects the evidenced portrait, two conditional speech sources, and
-  eight-entry initial menu without yet assigning condition semantics. The F9
+  eight-entry initial menu and maps its three observed condition shapes to a
+  deterministic Core true/false/unknown evaluator. Variable initialization and
+  the global exit-label string remain open, so filtering is not yet wired. The F9
   validation hook renders its first literal speech and five literal labels with
   bounded provisional wrapping in the extracted font. Reusable ordered hotkey bindings and Core
   navigation now cover character, inventory, cast/psionic, current-effects,
