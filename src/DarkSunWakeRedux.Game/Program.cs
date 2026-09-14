@@ -270,6 +270,17 @@ try
                     ExplorationView.CurrentSpellEffects).Count != 5)
                 throw new InvalidDataException(
                     "The installed exploration-destination UI graphs are incomplete.");
+            var interactionUiPath = Path.Combine(assetPack,
+                OriginalContent.InteractionUiCatalogAssetPath.Replace(
+                    '/', Path.DirectorySeparatorChar));
+            using var interactionUiStream = File.OpenRead(interactionUiPath);
+            var interactionUi = PackedUiCatalog.Read(interactionUiStream,
+                OriginalContent.InteractionUiCatalogAssetPath);
+            if (!interactionUi.Windows.Select(window => window.ResourceNumber)
+                    .SequenceEqual(OriginalContent.InteractionWindowResourceNumbers) ||
+                InteractionOptionsInput.Resolve(interactionUi).Count != 4)
+                throw new InvalidDataException(
+                    "The installed interaction UI graph is incomplete.");
             Console.WriteLine($"Verified runtime startup assets at {assetPack}.");
             return 0;
         }

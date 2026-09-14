@@ -152,6 +152,19 @@ public sealed record GameMenuButtonAsset(
             frame.Width == FrameWidth && frame.Height == FrameHeight);
 }
 
+public sealed record InteractionButtonAsset(
+    string Name,
+    string Path,
+    uint ImageResourceNumber,
+    int FrameWidth,
+    int FrameHeight,
+    int FrameCount)
+{
+    public bool HasExpectedFrames(IReadOnlyList<IndexedImageFrame> frames) =>
+        frames.Count == FrameCount && frames.All(frame =>
+            frame.Width == FrameWidth && frame.Height == FrameHeight);
+}
+
 public sealed record SourceIdentification(
     SourceManifest? Edition,
     IReadOnlyList<ContentDiagnostic> Diagnostics)
@@ -161,7 +174,7 @@ public sealed record SourceIdentification(
 
 public static class OriginalContent
 {
-    public const int AssetPackFormatVersion = 21;
+    public const int AssetPackFormatVersion = 22;
     public const string GameId = "dark-sun-wake-redux";
     public const string TitleImageAssetPath = "images/title.dsix";
     public const string InterfaceFontAssetPath = "fonts/interface.dsft";
@@ -171,6 +184,7 @@ public static class OriginalContent
     public const string GameMenuUiCatalogAssetPath = "ui/game-menu.dsui";
     public const string ExplorationDestinationUiCatalogAssetPath =
         "ui/exploration-destinations.dsui";
+    public const string InteractionUiCatalogAssetPath = "ui/interaction.dsui";
     public const string CharacterCatalogAssetPath = "characters/catalog.dsch";
     public const string TyrRegionAssetPath = "regions/tyr.dsrg";
     public const string TyrObjectCatalogAssetPath = "regions/tyr-objects.dsob";
@@ -191,6 +205,22 @@ public static class OriginalContent
 
     public static IReadOnlyList<uint> ExplorationDestinationWindowResourceNumbers { get; } =
         [11500, 13500];
+
+    public const uint HostileInteractionWindowResourceNumber = 3020;
+
+    public static IReadOnlyList<uint> InteractionWindowResourceNumbers { get; } =
+        [HostileInteractionWindowResourceNumber];
+
+    public static IReadOnlyList<InteractionButtonAsset> InteractionButtonAssets { get; } =
+    [
+        new("talk", "images/interaction/talk.dsix", 15101, 16, 15, 4),
+        new("use", "images/interaction/use.dsix", 15102, 16, 15, 4),
+        new("pick-up", "images/interaction/pick-up.dsix", 15103, 16, 15, 4),
+        new("talk-disabled", "images/interaction/talk-disabled.dsix", 15105, 16, 15, 4),
+        new("use-disabled", "images/interaction/use-disabled.dsix", 15106, 16, 15, 4),
+        new("pick-up-disabled", "images/interaction/pick-up-disabled.dsix", 15107, 16, 15, 4),
+        new("dismiss", "images/interaction/dismiss.dsix", 15109, 28, 11, 1)
+    ];
 
     public static IReadOnlyList<UiImageAsset> ExplorationCursorAssets { get; } =
     [

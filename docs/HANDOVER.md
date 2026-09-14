@@ -11,7 +11,18 @@ The repository is a configured Dark Sun: Wake of the Ravager restoration. The
 approved `docs/IMPLEMENTATION-PLAN.md` remains authoritative. Slice 3 is active
 and incomplete; later slices are not complete.
 
-## Latest cohesive batch
+## Current interaction/dialogue evidence
+
+Owner captures now distinguish hostile Look, a one-way 10,000-experience award,
+and the first full conversation. `DATA-GOG-INTERACTION-001` maps hostile
+`WIND` #3020 and its disabled actions; `OBS-GOG-DIALOGUE-001` maps the upper and
+lower dialogue windows and ties the captured exchange to `GPL` #135 without
+committing original text or screenshots. Pack format 22 contains the bounded
+interaction graph and seven action images, and Core contains the deterministic
+interaction/sole-action contract. Runtime presentation and dialogue execution
+remain pending.
+
+## Previous cohesive batch
 
 Controlled owned screenshots and resource correlation establish the complete
 exploration cursor family without generalizing unknown target semantics:

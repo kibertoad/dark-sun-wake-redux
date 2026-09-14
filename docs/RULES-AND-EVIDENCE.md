@@ -631,6 +631,58 @@
   ranged-mode selection from readied weapons, spell targeting, processing-state
   timing, clipping at canvas edges, and native cursor update cadence.
 
+### DATA-GOG-INTERACTION-001 - First hostile Look panel
+
+- **Method:** Capture the result of a valid Look action over the first hostile
+  Tyr character, measure its 320x200 logical-canvas bounds, then correlate the
+  panel against `RESOURCE.GFF` `WIND`/`BUTN`/`APFM` records and decoded `ICON`
+  frames under `PAL ` #1000. Cross-check action semantics and the documented
+  one-action shortcut against MANUAL-1994 pages 5-6.
+- **Finding:** `WIND` #3020 is a 92x77 interaction panel observed at `(68,45)`.
+  It contains disabled Talk `BUTN` #15306 / `ICON` #15105 at `(3,59)`, disabled
+  Pick Up #15308 / #15107 at `(23,59)`, disabled Use #15307 / #15106 at
+  `(43,59)`, dismiss #15309 / #15109 at `(61,60)`, and clipped application
+  frame #15200 at `(0,0)`. The observed hostile Draxan panel labels level 10 and
+  leaves Talk disabled. The manual says Look exposes Talk, Pick Up, and Use and
+  performs an available sole action directly instead of showing the choice box.
+- **Confidence:** verified for the owned panel identity, origin, control graph,
+  disabled hostile state, visible name/level, and action semantics; unknown for
+  how arbitrary OJFF/GPL records determine hostility and capabilities.
+- **Implementation:** pack format 22 extracts the seven active/disabled/dismiss
+  interaction images plus `WIND` #3020 as a bounded DSUI graph. Core models
+  validated creature/object targets, enabled actions, the documented sole-object
+  shortcut, inert disabled selections, and deterministic dismissal. Runtime
+  presentation and target-to-capability derivation remain pending.
+- **Tests:** target validation, hostile disabled Talk, all three sole-action
+  shortcuts, multi-action selection, dismissal, exact graph/resource/image
+  mapping, stored order, measured coordinates, exclusive hit edges, malformed
+  graph rejection, transactional extraction, and content smoke.
+
+### OBS-GOG-DIALOGUE-001 - Award notice and first measured conversation
+
+- **Method:** Retain owner-supplied native captures immediately before a
+  conversation and while its first choices are visible. Measure the two layouts,
+  correlate them with `WIND` #12500/#12501 and their controls, and disassemble
+  all 350 aligned `GPL`/`MAS` chunks from the fingerprinted `GPLDATA.GFF` using
+  the public MIT-licensed OpenDS GPL disassembler. Search decoded instruction
+  strings for the captured opening sentence and response labels.
+- **Finding:** the 10,000-experience award is a one-way upper notification with
+  an empty portrait well and no lower response window. Conversation uses the
+  upper 318x72 portrait/speech window and a distinct lower 318x58 response
+  window at logical y=142. The captured exchange and its initial response menu
+  occur in `GPL` #135; the script's first response says “sniveling,” confirming
+  the native pixels and correcting the earlier informal transcription.
+  `WIND` #12500 owns the speech edit box and vertical controls; #12501 owns five
+  response-row buttons and its own vertical controls.
+- **Confidence:** verified for the captured layouts, first exchange's GPL chunk,
+  and visible response text; high for the static UI graph. The award-producing
+  script path, portrait resource ID, conditions, response consequences, and
+  generic GPL execution semantics remain open.
+- **Implementation:** evidence only. Original dialogue text remains local to the
+  licensed source and is not embedded in Git. A bounded GPL/string extraction
+  contract, dialogue state machine, portrait extraction, UI assets, and runtime
+  rendering are the next Slice 3 work.
+
 ## Initial rules
 
 ### RULE-INPUT-001 - Mouse-first interaction

@@ -160,6 +160,18 @@ public static class StartupAssetExtractor
                 $"{asset.Tag}#{asset.ResourceNumber} all frames + " +
                 $"{PaletteTag}#{InterfacePaletteNumber}", cancellationToken));
         }
+        foreach (var asset in OriginalContent.InteractionButtonAssets)
+        {
+            var image = IndexedImage.Read(
+                archive.GetResource(ImageTag, asset.ImageResourceNumber),
+                $"{SourcePath}:{ImageTag}#{asset.ImageResourceNumber}");
+            if (!asset.HasExpectedFrames(image.Frames))
+                throw new InvalidDataException(
+                    $"The mapped interaction {asset.Name} image has unexpected frame geometry.");
+            files.Add(await WriteImageAsync(stagingRoot, asset.Path, image, interfacePalette,
+                $"{ImageTag}#{asset.ImageResourceNumber} all frames + " +
+                $"{PaletteTag}#{InterfacePaletteNumber}", cancellationToken));
+        }
 
         var windowImage = IndexedImage.Read(archive.GetResource(TitleImageTag, PartyWindowImageNumber),
             $"{SourcePath}:{TitleImageTag}#{PartyWindowImageNumber}");
@@ -184,6 +196,10 @@ public static class StartupAssetExtractor
             OriginalContent.ExplorationDestinationUiCatalogAssetPath,
             OriginalContent.ExplorationDestinationWindowResourceNumbers,
             "exploration-destination", cancellationToken));
+        files.Add(await WriteUiCatalogAsync(stagingRoot, archive,
+            OriginalContent.InteractionUiCatalogAssetPath,
+            OriginalContent.InteractionWindowResourceNumbers,
+            "interaction", cancellationToken));
         files.Add(await WriteCharacterCatalogAsync(stagingRoot, characters, cancellationToken));
         files.Add(await WriteImageAsync(stagingRoot, OriginalContent.OpeningLeaderImageAssetPath,
             openingLeader.Image, tyrRegion.Palette,

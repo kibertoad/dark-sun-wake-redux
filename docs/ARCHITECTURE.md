@@ -36,7 +36,7 @@ write into a unique sibling staging directory, generate a manifest containing
 format/extractor versions and exact output inventory, re-open and hash every
 output, reject unexpected files, then atomically replace the installed pack.
 If any step fails, staging is removed and the last verified pack is restored.
-Current code exercises this transaction for the exact 82-asset startup, party,
+Current code exercises this transaction for the exact 90-asset startup, party,
 ADD-list, Tyr, Game Menu/Preferences, character, inventory, Cast, and Effects pack: indexed UI images and font, text and
 character catalogs, separate resolved UI graphs, the canonical Tyr region, and
 its object-frame graph, the independently identified opening-leader image, and

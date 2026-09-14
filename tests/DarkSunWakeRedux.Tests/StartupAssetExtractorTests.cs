@@ -160,7 +160,7 @@ public sealed class StartupAssetExtractorTests
             var manifest = await AssetPackInstaller.InstallAsync(output, staging =>
                 StartupAssetExtractor.WritePackAsync(sourceRoot, staging, edition, "test"));
 
-            Assert.Equal(82, manifest.Files.Count);
+            Assert.Equal(90, manifest.Files.Count);
             var asset = Assert.Single(manifest.Files, item => item.Path == OriginalContent.TitleImageAssetPath);
             Assert.Contains("BMP #11011", asset.Conversion, StringComparison.Ordinal);
             Assert.Contains("PAL #11011", asset.Conversion, StringComparison.Ordinal);
@@ -237,6 +237,13 @@ public sealed class StartupAssetExtractorTests
                 var cursorFrame = Assert.Single(PackedIndexedImage.Read(cursorStream).Frames);
                 Assert.Equal((cursor.FrameWidth, cursor.FrameHeight),
                     (cursorFrame.Width, cursorFrame.Height));
+            }
+            foreach (var interaction in OriginalContent.InteractionButtonAssets)
+            {
+                var interactionAsset = Assert.Single(manifest.Files,
+                    item => item.Path == interaction.Path);
+                Assert.Contains($"ICON#{interaction.ImageResourceNumber}",
+                    interactionAsset.Conversion, StringComparison.Ordinal);
             }
             var inventoryLayer = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.InventoryLayer.Path);
@@ -364,6 +371,19 @@ public sealed class StartupAssetExtractorTests
                     view => Assert.Equal(5,
                         ExplorationDestinationInput.Resolve(ui, view).Count));
             }
+            var interactionUiAsset = Assert.Single(manifest.Files,
+                item => item.Path == OriginalContent.InteractionUiCatalogAssetPath);
+            Assert.Contains("WIND#3020", interactionUiAsset.Conversion,
+                StringComparison.Ordinal);
+            using (var uiStream = File.OpenRead(Path.Combine(output,
+                       OriginalContent.InteractionUiCatalogAssetPath.Replace(
+                           '/', Path.DirectorySeparatorChar))))
+            {
+                var ui = PackedUiCatalog.Read(uiStream);
+                Assert.Equal(OriginalContent.InteractionWindowResourceNumbers,
+                    ui.Windows.Select(window => window.ResourceNumber));
+                Assert.Equal(4, InteractionOptionsInput.Resolve(ui).Count);
+            }
             Assert.Empty(await OriginalContent.VerifyInstalledAsync(
                 output, TestContext.Current.CancellationToken));
             using var packedStream = File.OpenRead(Path.Combine(output, "images", "title.dsix"));
@@ -459,6 +479,12 @@ public sealed class StartupAssetExtractorTests
             .Select(asset => (asset.ResourceNumber,
                 Bytes: TransparentImage(asset.FrameWidth, asset.FrameHeight)))
             .ToArray();
+        var interactionIcons = OriginalContent.InteractionButtonAssets
+            .Select(asset => (asset.ImageResourceNumber,
+                Bytes: TransparentImage(Enumerable.Repeat(
+                    (Width: asset.FrameWidth, Height: asset.FrameHeight),
+                    asset.FrameCount).ToArray())))
+            .ToArray();
         var titlePalette = new byte[IndexedPalette.EncodedLength];
         titlePalette[0] = 1;
         var interfacePalette = new byte[IndexedPalette.EncodedLength];
@@ -468,10 +494,13 @@ public sealed class StartupAssetExtractorTests
         var windows = OriginalContent.StartFlowWindowResourceNumbers
             .Concat(OriginalContent.GameMenuWindowResourceNumbers)
             .Concat(OriginalContent.ExplorationDestinationWindowResourceNumbers)
+            .Concat(OriginalContent.InteractionWindowResourceNumbers)
             .Select(number => (Number: number, Bytes: Window(number))).ToArray();
         var windowButtons = AddExistingButtons().Concat(MenuButtons())
+            .Concat(InteractionButtons())
             .Select(button => (Number: button.ResourceNumber, Bytes: Button(button))).ToArray();
         var applicationFrames = GameMenuFrames()
+            .Append(new UiApplicationFrameResource(15200, 145, 87, 486))
             .Select(frame => (Number: frame.ResourceNumber, Bytes: ApplicationFrame(frame))).ToArray();
         var addWindowEditBox = new UiEditBoxResource(18401, 164, 12, 10);
         var addWindowEditBoxes = new[]
@@ -484,6 +513,7 @@ public sealed class StartupAssetExtractorTests
             titlePalette.Length + interfacePalette.Length +
             modalIcons.Sum(item => item.Bytes.Length) + gameMenuIcons.Sum(item => item.Bytes.Length) +
             cursorIcons.Sum(item => item.Bytes.Length) +
+            interactionIcons.Sum(item => item.Bytes.Length) +
             font.Length + text.Length + windows.Sum(item => item.Bytes.Length) +
             windowButtons.Sum(item => item.Bytes.Length) +
             applicationFrames.Sum(item => item.Bytes.Length) +
@@ -548,6 +578,12 @@ public sealed class StartupAssetExtractorTests
             var offset = checked((int)stream.Position);
             writer.Write(icon.Bytes);
             iconEntries.Add((icon.ResourceNumber, offset, icon.Bytes.Length));
+        }
+        foreach (var icon in interactionIcons)
+        {
+            var offset = checked((int)stream.Position);
+            writer.Write(icon.Bytes);
+            iconEntries.Add((icon.ImageResourceNumber, offset, icon.Bytes.Length));
         }
         var titlePaletteOffset = checked((int)stream.Position);
         writer.Write(titlePalette);
@@ -651,6 +687,7 @@ public sealed class StartupAssetExtractorTests
                 [(43, 155), (67, 155), (91, 155), (114, 155), (253, 155)]),
             13500 => DestinationChildren(
                 [(163, 181), (187, 181), (211, 181), (235, 181), (288, 181)]),
+            OriginalContent.HostileInteractionWindowResourceNumber => InteractionChildren(),
             _ => []
         };
         var bytes = new byte[UiWindowResource.FixedSize + children.Length * UiWindowResource.ChildRecordSize];
@@ -661,14 +698,17 @@ public sealed class StartupAssetExtractorTests
             {
                 18501 => 10002U,
                 OriginalContent.GameMenuWindowResourceNumber or
-                    OriginalContent.PreferencesWindowResourceNumber or 11500 or 13500 => 0U,
+                    OriginalContent.PreferencesWindowResourceNumber or 11500 or 13500 or
+                    OriginalContent.HostileInteractionWindowResourceNumber => 0U,
                 _ => StartupAssetExtractor.PartyWindowImageNumber
             })
             .CopyTo(bytes, 58);
         BitConverter.GetBytes(checked((ushort)(number is
             OriginalContent.GameMenuWindowResourceNumber or
             OriginalContent.PreferencesWindowResourceNumber
-            ? OriginalContent.GameMenuLayer.FrameWidth : 320))).CopyTo(bytes, 190);
+            ? OriginalContent.GameMenuLayer.FrameWidth :
+            number == OriginalContent.HostileInteractionWindowResourceNumber ? 92 : 320)))
+            .CopyTo(bytes, 190);
         BitConverter.GetBytes(checked((ushort)(number switch
             {
                 18501 => 181,
@@ -676,6 +716,7 @@ public sealed class StartupAssetExtractorTests
                     OriginalContent.PreferencesWindowResourceNumber =>
                     OriginalContent.GameMenuLayer.FrameHeight,
                 11500 => 189,
+                OriginalContent.HostileInteractionWindowResourceNumber => 77,
                 _ => 200
             }))).CopyTo(bytes, 192);
         for (var index = 0; index < children.Length; index++)
@@ -791,6 +832,23 @@ public sealed class StartupAssetExtractorTests
             new UiChildReference("BUTN", resource,
                 positions[index].X, positions[index].Y)).ToArray();
     }
+
+    private static UiChildReference[] InteractionChildren() =>
+    [
+        new("BUTN", 15308, 23, 59),
+        new("BUTN", 15307, 43, 59),
+        new("BUTN", 15306, 3, 59),
+        new("BUTN", 15309, 61, 60),
+        new("APFM", 15200, 0, 0)
+    ];
+
+    private static UiButtonResource[] InteractionButtons() =>
+    [
+        new(15306, 15, 15, 15105, 0),
+        new(15307, 15, 15, 15106, 0),
+        new(15308, 15, 15, 15107, 0),
+        new(15309, 27, 11, 15109, 84)
+    ];
 
     private static UiButtonResource[] MenuButtons() =>
         OriginalContent.GameMenuButtons.Concat(OriginalContent.PreferencesButtons)

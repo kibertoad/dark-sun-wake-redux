@@ -72,9 +72,9 @@ The smoke modes have distinct purposes:
 - `--smoke-test` exits before content or graphics initialization and is safe on
   a content-free CI worker.
 - `--content-smoke-test --asset-pack <path>` verifies the exact pack inventory,
-  opens all sixty-four DSIX images, the DSFT interface font, the DSTX text
+  opens all seventy-one DSIX images, the DSFT interface font, the DSTX text
   catalog, the resolved start-flow, Game Menu/Preferences, and
-  character/inventory/Cast/Effects DSUI graphs, and DSCH character metadata
+  character/inventory/Cast/Effects and hostile-interaction DSUI graphs, and DSCH character metadata
   catalog, opens the DSRG Tyr region and DSOB object-frame graph, and checks their
   frame, geometry, glyph, reference, and inventory contracts without a window.
 - `--platform-smoke-test` creates the MonoGame platform surface and exits; it is
@@ -89,7 +89,7 @@ Owned-build validation currently targets GOG product `1432903719`, installed
 build `52095422060333615`. Metadata-only FONT inspection verifies that all 256
 character-map entries are identity values and summarizes its pixel-index range
 without emitting glyph pixels. The retained ignored owned-source pack has been
-transactionally refreshed and verifies as the exact 82-asset manifest including start/party/ADD
+transactionally refreshed and verifies as the exact 90-asset manifest including start/party/ADD
 assets, all seven start-flow windows and 56 controls, the 210x116 Game Menu/Preferences base,
 the 14-button/30-control Game Menu and 13-button/15-control Preferences graphs,
 the 320x200 inventory base, the observed USE/EFFECTS title images, the
@@ -97,7 +97,8 @@ the 320x200 inventory base, the observed USE/EFFECTS title images, the
 plus the bounded Tyr region with 94 tiles
 and 867 entity records, its 287 definitions, 246 images, and 477 frames, and
 the exact 13-frame opening-leader image and all ten `ICON` #19101-#19110 cursor
-images with their exact one-frame geometry. The runtime content-smoke path verifies
+images with their exact one-frame geometry, plus the hostile interaction graph
+and seven active/disabled/dismiss control images. The runtime content-smoke path verifies
 all 13 frame dimensions plus frame 0's 367-pixel alpha coverage and rasterizes 320x200 viewports at
 both opposite region corners successfully. It also verifies Tyr's exact four
 `GMAP` values and 8,169 terrain-open cells through the bounded navigation
@@ -112,10 +113,13 @@ component bounded by logical `(160,91)`-`(176,125)`. Exhaustive same-geometry
 resource comparison identifies OJFF #305/BMP #599 frame 0 as an exact match;
 bounded executable analysis ties its world top-left `(1184,1459)` to collision
 anchor cell `(74,91)`. The multi-cell footprint remains unknown.
-Six controlled local captures at the unchanged opening camera establish the
+Six controlled local cursor captures at the unchanged opening camera establish the
 Walk/Can't Walk, melee/invalid melee, and Look/invalid Look pairs and the
 manual-defined upper-left hotspot. The valid melee hotspot resolves through the
-static compositor transform to OJFF #9258 -> BMP #346. Local-only decoded previews established the title
+static compositor transform to OJFF #9258 -> BMP #346. Three additional owned
+captures establish hostile Look, award-notification, and two-window dialogue
+layouts; GPL disassembly independently anchors the captured exchange in chunk
+#135. Local-only decoded previews established the title
 and start-window mappings recorded as `DATA-GOG-TITLE-001`,
 `DATA-GOG-UI-001`, `DATA-GOG-UI-006`, `DATA-GOG-UI-007`,
 `DATA-GOG-UI-008` through `DATA-GOG-UI-010`; screenshots and decoded outputs stay
