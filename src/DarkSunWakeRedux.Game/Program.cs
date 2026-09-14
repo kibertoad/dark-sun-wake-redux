@@ -126,6 +126,7 @@ try
             FirstTyrDialogueProjection dialogueProjection;
             FirstTyrDialogueCompletionProjection dialogueCompletion;
             FirstTyrDialogueResponseProjection firstDialogueResponse;
+            FirstTyrDialogueResponseProjection secondDialogueResponse;
             FirstTyrDialogueResponseProjection thirdDialogueResponse;
             FirstTyrDialogueResponseProjection fourthDialogueResponse;
             using (var scriptStream = File.OpenRead(Path.Combine(assetPack,
@@ -140,6 +141,7 @@ try
                 dialogueProjection = FirstTyrDialogueProjectionReader.Read(script);
                 dialogueCompletion = FirstTyrDialogueCompletionProjectionReader.Read(script);
                 firstDialogueResponse = FirstTyrDialogueResponseProjectionReader.ReadFirst(script);
+                secondDialogueResponse = FirstTyrDialogueResponseProjectionReader.ReadSecond(script);
                 thirdDialogueResponse = FirstTyrDialogueResponseProjectionReader.ReadThird(script);
                 fourthDialogueResponse = FirstTyrDialogueResponseProjectionReader.ReadFourth(script);
                 if (dialogueProjection.PortraitResourceNumber !=
@@ -268,6 +270,21 @@ try
                     .SequenceEqual([0, 1, 4, 7]))
                 throw new InvalidDataException(
                     "The installed first Tyr counter responses did not reveal the next choice.");
+            var identitySession = DialogueSessionAdapter.Create(
+                dialogueProjection, FirstTyrDialogueObservedState.Create(),
+                DialoguePreviewText.MaximumResponses);
+            identitySession.Execute(DialogueCommand.Select(1));
+            var identifiedDialogue = identitySession.Execute(DialogueCommand.Apply(
+                DialogueSessionAdapter.ToCore(secondDialogueResponse)));
+            if (!identifiedDialogue.Applied ||
+                identifiedDialogue.After.Variables.LocalFlags[1] ||
+                !identifiedDialogue.After.Variables.LocalFlags[6] ||
+                !identifiedDialogue.After.Variables.LocalFlags[7] ||
+                !identifiedDialogue.After.Variables.GlobalFlags[357] ||
+                !identifiedDialogue.After.Choices.Select(choice => choice.SourceIndex)
+                    .SequenceEqual([0, 2, 3, 7]))
+                throw new InvalidDataException(
+                    "The installed first Tyr identity response did not apply its effects.");
             var textPath = Path.Combine(assetPack,
                 OriginalContent.TextCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using var textStream = File.OpenRead(textPath);

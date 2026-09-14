@@ -23,6 +23,9 @@ public sealed record DialogueVariableSnapshot(
     IReadOnlyDictionary<ushort, bool> LocalFlags,
     IReadOnlyDictionary<ushort, int> LocalNumbers)
 {
+    public IReadOnlyDictionary<ushort, bool> GlobalFlags { get; init; } =
+        new Dictionary<ushort, bool>();
+
     public static DialogueVariableSnapshot Empty { get; } = new(
         new Dictionary<ushort, bool>(),
         new Dictionary<ushort, int>());
@@ -38,7 +41,10 @@ public static class FirstTyrDialogueObservedState
             [2] = true,
             [3] = true
         },
-        new Dictionary<ushort, int> { [0] = 0 });
+        new Dictionary<ushort, int> { [0] = 0 })
+    {
+        GlobalFlags = new Dictionary<ushort, bool> { [357] = false }
+    };
 }
 
 public static class DialogueConditionEvaluator

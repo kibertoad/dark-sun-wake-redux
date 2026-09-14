@@ -8,19 +8,36 @@ public sealed record GplDialogueOutput(
 
 public sealed record GplLocalNumberIncrement(ushort VariableId, int Amount);
 
+public sealed record GplGlobalFlagCondition(ushort VariableId, bool Value);
+
+public sealed record GplConditionalLocalFlagAssignment(
+    GplGlobalFlagCondition Condition,
+    ushort VariableId,
+    bool Value);
+
+public sealed record GplGlobalFlagAssignment(ushort VariableId, bool Value);
+
 public sealed record FirstTyrDialogueResponseProjection(
     int SourceChoiceIndex,
     int EntryOffset,
     IReadOnlyList<GplDialogueOutput> Output,
     IReadOnlyList<GplLocalFlagAssignment> LocalFlagAssignments,
     IReadOnlyList<GplLocalNumberIncrement> LocalNumberIncrements,
-    bool ReturnsToOpeningMenu);
+    bool ReturnsToOpeningMenu)
+{
+    public IReadOnlyList<GplGlobalFlagAssignment> GlobalFlagAssignments { get; init; } = [];
+    public IReadOnlyList<GplConditionalLocalFlagAssignment>
+        ConditionalLocalFlagAssignments { get; init; } = [];
+}
 
 public static class FirstTyrDialogueResponseProjectionReader
 {
     public const int FirstChoiceIndex = 0;
     public const int FirstEntryOffset = 1017;
     public const int FirstReturnOffset = 1147;
+    public const int SecondChoiceIndex = 1;
+    public const int SecondEntryOffset = 1597;
+    public const int SecondReturnOffset = 1824;
     public const int ThirdChoiceIndex = 2;
     public const int ThirdEntryOffset = 1148;
     public const int ThirdReturnOffset = 1182;
@@ -31,6 +48,9 @@ public static class FirstTyrDialogueResponseProjectionReader
     public const byte PrintNewLineOpcode = 0x51;
     public const byte LoadVariableOpcode = 0x16;
     public const byte WordIncrementOpcode = 0x06;
+    public const byte LoadAccumulatorOpcode = 0x18;
+    public const byte IfOpcode = 0x3e;
+    public const byte EndIfOpcode = 0x67;
     public const byte LocalReturnOpcode = 0x15;
 
     public static FirstTyrDialogueResponseProjection ReadFirst(
@@ -63,6 +83,44 @@ public static class FirstTyrDialogueResponseProjectionReader
     public static FirstTyrDialogueResponseProjection ReadFourth(
         PackedGplScript script) => ReadIncrementing(
         script, FourthChoiceIndex, FourthEntryOffset, 1223, FourthReturnOffset, 3);
+
+    public static FirstTyrDialogueResponseProjection ReadSecond(
+        PackedGplScript script)
+    {
+        ValidateScript(script);
+        var bytes = script.Bytecode.AsSpan();
+        var position = SecondEntryOffset;
+        var output = new[]
+        {
+            ReadLiteralPrint(bytes, ref position, 1662),
+            ReadLiteralPrint(bytes, ref position, 1731),
+            ReadLiteralPrint(bytes, ref position, 1792)
+        };
+        var assignment = ReadFlagAssignment(bytes, ref position, 1, false);
+        RequireOpcode(bytes, ref position, LoadAccumulatorOpcode,
+            "choice 1 global-flag condition");
+        RequireSequence(bytes, ref position, [0xcd, 0x01, 0x65, 0xd7, 0x8f, 0x00],
+            "global flag #357 equals zero condition");
+        RequireOpcode(bytes, ref position, IfOpcode, "choice 1 conditional branch");
+        RequireImmediate14(bytes, ref position, 1817, "choice 1 endif target");
+        var conditional = new[]
+        {
+            new GplConditionalLocalFlagAssignment(new(357, false), 6, true),
+            new GplConditionalLocalFlagAssignment(new(357, false), 7, true)
+        };
+        _ = ReadFlagAssignment(bytes, ref position, 6, true);
+        _ = ReadFlagAssignment(bytes, ref position, 7, true);
+        RequireOpcode(bytes, ref position, EndIfOpcode, "choice 1 endif");
+        var globalAssignment = ReadGlobalFlagAssignment(bytes, ref position, 357, true);
+        if (position != SecondReturnOffset)
+            throw Error($"choice 1 effects end at {position}, not {SecondReturnOffset}");
+        RequireOpcode(bytes, ref position, LocalReturnOpcode, "choice 1 local return");
+        return new(SecondChoiceIndex, SecondEntryOffset, output, [assignment], [], true)
+        {
+            GlobalFlagAssignments = [globalAssignment],
+            ConditionalLocalFlagAssignments = conditional
+        };
+    }
 
     private static FirstTyrDialogueResponseProjection ReadIncrementing(
         PackedGplScript script,
@@ -132,6 +190,34 @@ public static class FirstTyrDialogueResponseProjectionReader
         if (bytes[position++] != 0x82 || bytes[position++] != expectedId)
             throw Error($"word increment does not target local number #{expectedId}");
         return new(expectedId, 1);
+    }
+
+    private static GplGlobalFlagAssignment ReadGlobalFlagAssignment(
+        ReadOnlySpan<byte> bytes,
+        ref int position,
+        ushort expectedId,
+        bool expectedValue)
+    {
+        RequireOpcode(bytes, ref position, LoadVariableOpcode,
+            $"global flag #{expectedId} assignment");
+        var value = expectedValue ? (byte)1 : (byte)0;
+        RequireSequence(bytes, ref position,
+            [0x8f, value, 0xcd, checked((byte)(expectedId >> 8)),
+                checked((byte)(expectedId & 0xff))],
+            $"global flag #{expectedId} assignment");
+        return new(expectedId, expectedValue);
+    }
+
+    private static void RequireSequence(
+        ReadOnlySpan<byte> bytes,
+        ref int position,
+        ReadOnlySpan<byte> expected,
+        string description)
+    {
+        Require(bytes, position, expected.Length, description);
+        if (!bytes.Slice(position, expected.Length).SequenceEqual(expected))
+            throw Error($"{description} has unexpected operands");
+        position += expected.Length;
     }
 
     private static void ValidateScript(PackedGplScript script)

@@ -63,4 +63,27 @@ public sealed class DialogueSessionAdapterTests
         Assert.Throws<InvalidDataException>(() =>
             DialogueSessionAdapter.ToCore(projection with { ReturnsToOpeningMenu = false }));
     }
+
+    [Fact]
+    public void MapsConditionalAndGlobalResponseEffects()
+    {
+        var projection = new FirstTyrDialogueResponseProjection(1, 1597, [],
+            [new(1, false)], [], true)
+        {
+            GlobalFlagAssignments = [new(357, true)],
+            ConditionalLocalFlagAssignments =
+            [
+                new(new(357, false), 6, true),
+                new(new(357, false), 7, true)
+            ]
+        };
+
+        var result = DialogueSessionAdapter.ToCore(projection);
+
+        Assert.True(result.GlobalFlagAssignments[357]);
+        Assert.Equal([(357, false, 6, true), (357, false, 7, true)],
+            result.ConditionalLocalFlagAssignments.Select(assignment => (
+                (int)assignment.Condition.VariableId, assignment.Condition.Value,
+                (int)assignment.VariableId, assignment.Value)));
+    }
 }

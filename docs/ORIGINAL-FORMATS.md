@@ -389,6 +389,10 @@ The same projection reader validates choice 2 at offsets 1148-1182 and choice
 3 at 1183-1231. Each branch contains one compressed-literal print, an immediate
 zero assignment to its matching local flag, a word increment of local number 0,
 and a local return.
+Choice 1 is bounded separately at offsets 1597-1824: three compressed-literal
+prints, immediate zero to local flag 1, an extended global flag 357 equals-zero
+condition guarding immediate-one assignments to local flags 6 and 7, immediate
+one to global flag 357, and a local return.
 
 The only decoded primitive is a bounded packed string used for future script
 interpretation. Marker `0x01` represents the active character name, marker
@@ -404,7 +408,8 @@ offset 33 and target type-6 string slot 5. The completion projection accepts
 only its exact immediate/short-variable forms and rejects opcode, operand,
 offset, or truncation drift. The choice 0 response projection likewise requires
 the exact print destinations, instruction boundaries, flag target/value,
-choice 2/3 counter target, and local return. Decoding these structures does not
+choice 2/3 counter target, choice 1's exact extended global reference and branch
+target, and local return. Decoding these structures does not
 authorize executing other
 instructions or assigning condition and state-mutation semantics.
 

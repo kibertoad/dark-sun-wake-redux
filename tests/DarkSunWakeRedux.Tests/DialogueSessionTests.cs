@@ -103,6 +103,55 @@ public sealed class DialogueSessionTests
         Assert.Equal([4, 7], transition.After.Choices.Select(choice => choice.SourceIndex));
     }
 
+    [Theory]
+    [InlineData(false, true)]
+    [InlineData(true, false)]
+    public void AppliesConditionalLocalEffectsFromAKnownGlobalFlag(
+        bool initialGlobalValue,
+        bool expectsConditionalFlags)
+    {
+        var variables = new DialogueVariableSnapshot(
+            new Dictionary<ushort, bool> { [1] = true },
+            new Dictionary<ushort, int>())
+        {
+            GlobalFlags = new Dictionary<ushort, bool> { [357] = initialGlobalValue }
+        };
+        var session = Session([Definition(1, 1597)], variables);
+        session.Execute(DialogueCommand.Select(0));
+        var result = new DialogueBranchResult(1, 1597,
+            DialogueBranchDisposition.ReturnToChoices,
+            new Dictionary<ushort, bool> { [1] = false }, null,
+            new Dictionary<ushort, bool> { [357] = true },
+            [
+                new(new(357, false), 6, true),
+                new(new(357, false), 7, true)
+            ]);
+
+        var transition = session.Execute(DialogueCommand.Apply(result));
+
+        Assert.True(transition.After.Variables.GlobalFlags[357]);
+        Assert.Equal(expectsConditionalFlags,
+            transition.After.Variables.LocalFlags.ContainsKey(6));
+        Assert.Equal(expectsConditionalFlags,
+            transition.After.Variables.LocalFlags.ContainsKey(7));
+    }
+
+    [Fact]
+    public void RejectsUnknownConditionalGlobalFlagWithoutMutation()
+    {
+        var session = Session([Definition(1, 1597)]);
+        session.Execute(DialogueCommand.Select(0));
+        var before = session.Snapshot();
+        var result = new DialogueBranchResult(1, 1597,
+            DialogueBranchDisposition.ReturnToChoices,
+            new Dictionary<ushort, bool> { [1] = false }, null, null,
+            [new(new(357, false), 6, true)]);
+
+        Assert.Throws<InvalidOperationException>(() =>
+            session.Execute(DialogueCommand.Apply(result)));
+        Assert.Same(before, session.Snapshot());
+    }
+
     [Fact]
     public void RejectsInvalidConstructionSelectionAndMismatchedBranch()
     {
@@ -131,12 +180,14 @@ public sealed class DialogueSessionTests
     {
         var definitions = new[] { Definition(7, 2905) };
         var flags = new Dictionary<ushort, bool> { [0] = true };
+        var globalFlags = new Dictionary<ushort, bool> { [357] = false };
         var assignments = new Dictionary<ushort, bool> { [4] = true };
         var session = Session(definitions,
-            new(flags, new Dictionary<ushort, int>()));
+            new(flags, new Dictionary<ushort, int>()) { GlobalFlags = globalFlags });
         var result = Result(7, 2905, DialogueBranchDisposition.Completed, assignments);
         definitions[0] = Definition(1, 2);
         flags[0] = false;
+        globalFlags[357] = true;
         assignments[4] = false;
 
         session.Execute(DialogueCommand.Select(0));
@@ -145,6 +196,7 @@ public sealed class DialogueSessionTests
         Assert.Equal(7, session.Snapshot().SelectedSourceIndex);
         Assert.True(session.Snapshot().Variables.LocalFlags[0]);
         Assert.True(session.Snapshot().Variables.LocalFlags[4]);
+        Assert.False(session.Snapshot().Variables.GlobalFlags[357]);
     }
 
     private static DialogueSession Session(

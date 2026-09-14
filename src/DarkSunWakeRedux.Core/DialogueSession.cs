@@ -13,6 +13,13 @@ public sealed record DialogueChoiceDefinition(
 
 public enum DialogueBranchDisposition { ReturnToChoices, Completed }
 
+public sealed record DialogueGlobalFlagCondition(ushort VariableId, bool Value);
+
+public sealed record DialogueConditionalLocalFlagAssignment(
+    DialogueGlobalFlagCondition Condition,
+    ushort VariableId,
+    bool Value);
+
 public sealed record DialogueBranchResult
 {
     public DialogueBranchResult(
@@ -20,7 +27,10 @@ public sealed record DialogueBranchResult
         int branchTargetOffset,
         DialogueBranchDisposition disposition,
         IReadOnlyDictionary<ushort, bool> localFlagAssignments,
-        IReadOnlyDictionary<ushort, int>? localNumberIncrements = null)
+        IReadOnlyDictionary<ushort, int>? localNumberIncrements = null,
+        IReadOnlyDictionary<ushort, bool>? globalFlagAssignments = null,
+        IReadOnlyList<DialogueConditionalLocalFlagAssignment>?
+            conditionalLocalFlagAssignments = null)
     {
         if (sourceIndex < 0) throw new ArgumentOutOfRangeException(nameof(sourceIndex));
         if (branchTargetOffset < 0)
@@ -29,14 +39,24 @@ public sealed record DialogueBranchResult
             throw new ArgumentOutOfRangeException(nameof(disposition));
         ArgumentNullException.ThrowIfNull(localFlagAssignments);
         localNumberIncrements ??= new Dictionary<ushort, int>();
+        globalFlagAssignments ??= new Dictionary<ushort, bool>();
+        conditionalLocalFlagAssignments ??= [];
         if (localNumberIncrements.Any(pair => pair.Value == 0))
             throw new ArgumentException("Dialogue number increments cannot be zero.",
                 nameof(localNumberIncrements));
+        if (conditionalLocalFlagAssignments.Any(assignment =>
+                assignment is null || assignment.Condition is null))
+            throw new ArgumentException(
+                "Conditional dialogue assignments require conditions.",
+                nameof(conditionalLocalFlagAssignments));
         SourceIndex = sourceIndex;
         BranchTargetOffset = branchTargetOffset;
         Disposition = disposition;
         LocalFlagAssignments = ReadOnlyCopy(localFlagAssignments);
         LocalNumberIncrements = ReadOnlyCopy(localNumberIncrements);
+        GlobalFlagAssignments = ReadOnlyCopy(globalFlagAssignments);
+        ConditionalLocalFlagAssignments = Array.AsReadOnly(
+            conditionalLocalFlagAssignments.ToArray());
     }
 
     public int SourceIndex { get; }
@@ -44,6 +64,9 @@ public sealed record DialogueBranchResult
     public DialogueBranchDisposition Disposition { get; }
     public IReadOnlyDictionary<ushort, bool> LocalFlagAssignments { get; }
     public IReadOnlyDictionary<ushort, int> LocalNumberIncrements { get; }
+    public IReadOnlyDictionary<ushort, bool> GlobalFlagAssignments { get; }
+    public IReadOnlyList<DialogueConditionalLocalFlagAssignment>
+        ConditionalLocalFlagAssignments { get; }
 
     private static IReadOnlyDictionary<TKey, TValue> ReadOnlyCopy<TKey, TValue>(
         IReadOnlyDictionary<TKey, TValue> source) where TKey : notnull =>
@@ -97,6 +120,7 @@ public sealed class DialogueSession
         ArgumentNullException.ThrowIfNull(variables);
         ArgumentNullException.ThrowIfNull(variables.LocalFlags);
         ArgumentNullException.ThrowIfNull(variables.LocalNumbers);
+        ArgumentNullException.ThrowIfNull(variables.GlobalFlags);
         if (maximumChoices <= 0) throw new ArgumentOutOfRangeException(nameof(maximumChoices));
         if (definitions.Count == 0)
             throw new ArgumentException("A dialogue requires at least one choice definition.",
@@ -148,9 +172,21 @@ public sealed class DialogueSession
             result.BranchTargetOffset != _snapshot.BranchTargetOffset)
             throw new InvalidOperationException(
                 "The applied dialogue branch does not match the selected choice.");
+        var conditionalAssignments = new List<DialogueConditionalLocalFlagAssignment>();
+        foreach (var assignment in result.ConditionalLocalFlagAssignments)
+        {
+            if (!_snapshot.Variables.GlobalFlags.TryGetValue(
+                    assignment.Condition.VariableId, out var value))
+                throw new InvalidOperationException(
+                    $"Global dialogue flag #{assignment.Condition.VariableId} is unknown.");
+            if (value == assignment.Condition.Value)
+                conditionalAssignments.Add(assignment);
+        }
         var flags = new Dictionary<ushort, bool>(_snapshot.Variables.LocalFlags);
         foreach (var assignment in result.LocalFlagAssignments)
             flags[assignment.Key] = assignment.Value;
+        foreach (var assignment in conditionalAssignments)
+            flags[assignment.VariableId] = assignment.Value;
         var numbers = new Dictionary<ushort, int>(_snapshot.Variables.LocalNumbers);
         foreach (var increment in result.LocalNumberIncrements)
         {
@@ -159,7 +195,10 @@ public sealed class DialogueSession
                     $"Local dialogue number #{increment.Key} cannot be incremented while unknown.");
             numbers[increment.Key] = checked(value + increment.Value);
         }
-        var variables = Copy(new(flags, numbers));
+        var globalFlags = new Dictionary<ushort, bool>(_snapshot.Variables.GlobalFlags);
+        foreach (var assignment in result.GlobalFlagAssignments)
+            globalFlags[assignment.Key] = assignment.Value;
+        var variables = Copy(new(flags, numbers) { GlobalFlags = globalFlags });
         _snapshot = result.Disposition switch
         {
             DialogueBranchDisposition.ReturnToChoices => _snapshot with
@@ -218,5 +257,9 @@ public sealed class DialogueSession
         new ReadOnlyDictionary<ushort, bool>(
             new Dictionary<ushort, bool>(variables.LocalFlags)),
         new ReadOnlyDictionary<ushort, int>(
-            new Dictionary<ushort, int>(variables.LocalNumbers)));
+            new Dictionary<ushort, int>(variables.LocalNumbers)))
+    {
+        GlobalFlags = new ReadOnlyDictionary<ushort, bool>(
+            new Dictionary<ushort, bool>(variables.GlobalFlags))
+    };
 }

@@ -320,7 +320,9 @@ decoder rather than being guessed now.
   index and branch target. The captured five-row state establishes choices 0,
   1, 2, 3, and 7 for this opening only. GPL #135's paired counter branches and
   the MIT libgff local-clear implementation support an opening-only local number
-  0 value of zero; generic local initialization remains open. A bounded MAS #99
+  0 value of zero. A corpus-wide reference sweep plus the same implementation's
+  global reset support fresh-opening global flag 357 as false; generic
+  initialization remains open. A bounded MAS #99
   projection resolves choice 7's global string #5 from
   the ignored owned pack without committing its text. A deterministic Core
   dialogue session owns the visible source-index/branch-target identities and
@@ -334,8 +336,10 @@ decoder rather than being guessed now.
   a return, advances Core with those effects to completed, and closes the
   preview. Choices 2 and 3 now validate their literal-print, matching flag-clear,
   local-number-0 increment, and local-return paths; after both execute, Core
-  deterministically reveals source choice 4. Response transcript presentation,
-  choices 1 and 4, and generalized GPL execution
+  deterministically reveals source choice 4. Choice 1 validates three prints,
+  its flag clear, the global-357 conditional local flag 6/7 effects, the global
+  assignment, and return; Core applies these atomically from the known opening
+  global state. Response transcript presentation, choice 4, and generalized GPL execution
   remain open. The hook renders the
   first literal speech and filtered labels with bounded provisional
   wrapping in the extracted font. Reusable ordered hotkey bindings and Core

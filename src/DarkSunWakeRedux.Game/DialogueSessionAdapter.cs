@@ -44,6 +44,13 @@ public static class DialogueSessionAdapter
                 assignment => assignment.Value),
             projection.LocalNumberIncrements.ToDictionary(
                 increment => increment.VariableId,
-                increment => increment.Amount));
+                increment => increment.Amount),
+            projection.GlobalFlagAssignments.ToDictionary(
+                assignment => assignment.VariableId,
+                assignment => assignment.Value),
+            projection.ConditionalLocalFlagAssignments.Select(assignment =>
+                new DialogueConditionalLocalFlagAssignment(
+                    new(assignment.Condition.VariableId, assignment.Condition.Value),
+                    assignment.VariableId, assignment.Value)).ToArray());
     }
 }

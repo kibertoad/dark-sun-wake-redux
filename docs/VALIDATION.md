@@ -61,6 +61,10 @@ rejected before mutation. Synthetic projection tests reject drift in choice
 0's prints, newlines, assignment, offsets, and local return; choices 2/3's
 prints, matching flag clears, local-number-0 increments, offsets, and returns;
 and choice 7's print, assignments, offsets, and local return.
+Choice 1 projection tests cover all three print boundaries, its local flag clear,
+the extended global-357 condition, conditional local flag 6/7 assignments,
+global assignment, and return. Core tests exercise both known condition outcomes
+and reject an unknown global flag before any mutation.
 Owned content smoke additionally proves the actual projected first page fits
 the measured text widths with the extracted font, selects its fifth row as
 original choice 7 with the projected branch target intact, and reaches the
@@ -70,6 +74,9 @@ remaining source order 1, 2, 3, and 7.
 A counter-progression path selects source choices 2 and 3, verifies both flag
 clears and increments, and proves that local number 0 reaches 2 while source
 choice 4 becomes visible in the resulting 0, 1, 4, and 7 order.
+Another owned-pack path selects choice 1 and verifies local flag 1 clears, local
+flags 6/7 become true from the fresh-opening condition, global flag 357 becomes
+true, and the initial page recomputes as 0, 2, 3, and 7.
 Exploration command tests also center on arbitrary world points with both-edge
 clamping, reject partial/out-of-world targets, suspend centering outside world
 and Game Menu views, and restore leader-only display through Collapse Party.
