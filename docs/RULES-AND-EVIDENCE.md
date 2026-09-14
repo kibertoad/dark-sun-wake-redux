@@ -196,7 +196,7 @@
   opening position, and visible pixels in GOG-1432903719; high for the anchor
   relationship from bounded executable paths. Footprint, animation sequence,
   cadence, and later actor state remain unknown.
-- **Implementation:** pack v20 retains
+- **Implementation:** pack v21 retains
   `images/exploration/opening-leader.dsix`, preserving OBJEX and Tyr-palette
   provenance. Gameplay draws frame 0 through reusable world-to-camera actor
   placement, with viewport-edge culling. Runtime Walk clicks now move its
@@ -491,7 +491,7 @@
   semantics from the manual/image correlation. The source graph contains no
   canvas origin. Centering the 210x116 panel on the 320x200 canvas at (55,42) is
   a provisional presentation choice pending controlled native measurement.
-- **Implementation:** asset-pack format 20 includes the base, all 14 button images,
+- **Implementation:** asset-pack format 21 includes the base, all 14 button images,
   and `ui/game-menu.dsui`. `GameMenuInput` resolves the DSUI graph into semantic
   absolute hit rectangles; MonoGame draws first frames over the Tyr viewport.
   Character, inventory, cast/psionic, effects, overhead-map, Walk/Look/Attack,
@@ -529,7 +529,7 @@
   association is high from resource-family structure, artwork, and manual
   function. Interior-control meaning, dynamic draw order, and frame states are
   unknown.
-- **Implementation:** pack format 20 includes the inventory base and a separate
+- **Implementation:** pack format 21 includes the inventory base and a separate
   two-window destination DSUI while reusing the already extracted character
   shell and five icon assets. `ExplorationDestinationInput` is one semantic
   page object for both layouts. MonoGame renders each shell, routes only those
@@ -560,7 +560,7 @@
   placement; high for the shared navigation association corroborated by the
   manual and exact #11500 graph. Dynamic content and state-dependent variation
   remain unknown.
-- **Implementation:** pack format 20 extracts both title images. The runtime
+- **Implementation:** pack format 21 extracts both title images. The runtime
   composes each title over the shared character base and resolves the same five
   #11500 navigation controls for Character, Cast, and Effects destinations.
 - **Tests:** exact title identity/geometry/placement, transactional extraction,
@@ -585,7 +585,7 @@
 - **Confidence:** verified for the owned graph/image contracts; high for the
   labeled roles and navigation from the manual. Numeric setting behavior and
   panel-origin parity remain open.
-- **Implementation:** pack format 20 expands `ui/game-menu.dsui` with #16500,
+- **Implementation:** pack format 21 expands `ui/game-menu.dsui` with #16500,
   extracts eight additional unique images, and renders the authentic base and
   first frames. `PreferencesInput` supplies exclusive absolute hit rectangles;
   Game Menu and Return navigate deterministically while setting mutations stay
@@ -596,6 +596,41 @@
 - **Uncertainty:** numeric ranges, adjustment steps, toggle defaults, About
   destination, selected/disabled frames, description text, and native origin.
 
+### DATA-GOG-CURSOR-001 - Exploration cursor family and hotspot
+
+- **Method:** Render every low-numbered `RESOURCE.GFF` image candidate with
+  `PAL ` #1000, correlate the resulting family against MANUAL-1994 pages 4-6,
+  and compare six controlled owned captures made at the unchanged Tyr opening
+  camera with Walk, melee Attack, and Look over possible and impossible targets.
+  Use the manual's instruction to aim with the upper-left corner as the hotspot
+  contract. At the valid melee hotspot, resolve the topmost opaque Tyr entity
+  through the already verified ETAB/OJFF first-frame transform.
+- **Finding:** `ICON` #19101 through #19110 are ten single-frame cursor images:
+  Walk 10x13, Can't Walk 16x16, melee Attack 16x17, invalid melee Attack 16x17,
+  ranged Attack 14x15, invalid ranged Attack 16x16, Look 14x15, invalid Look
+  16x16, invalid spell target 16x17, and processing hourglass 13x15. The six
+  controlled captures visibly reproduce the first four and the Look pair. The
+  valid melee target resolves to Tyr OJFF #9258 -> BMP #346 at the documented
+  `(0,0)` upper-left hotspot. The manual independently identifies the ranged,
+  invalid-spell, and hourglass roles.
+- **Confidence:** verified for owned resource identity, palette, geometry, the
+  six live Walk/melee/Look states, the upper-left hotspot, and the first melee
+  target; high for the manual-correlated remaining four roles.
+- **Implementation:** pack format 21 extracts all ten images as distinct DSIX
+  assets. MonoGame hides the host pointer and draws the selected original image
+  last through the logical-canvas transform. Walk validity uses a non-mutating
+  deterministic reachability query; a reusable reverse-draw-order alpha hit
+  tester identifies displayed Tyr entities. Look is enabled over such entities
+  and the visible leader, while melee eligibility is intentionally limited to
+  the first observed OJFF #9258 until object behavior data is bounded.
+- **Tests:** exact sequential IDs, names, dimensions, single-frame contracts,
+  extraction provenance and inventory, all six mode/eligibility outcomes,
+  overlay fallback, transparent/mirrored/topmost entity hit-testing, malformed
+  catalog rejection, and owned content smoke.
+- **Uncertainty:** generalized attackable/lookable object classification,
+  ranged-mode selection from readied weapons, spell targeting, processing-state
+  timing, clipping at canvas edges, and native cursor update cadence.
+
 ## Initial rules
 
 ### RULE-INPUT-001 - Mouse-first interaction
@@ -604,19 +639,22 @@
   looking, attacking, and targeted actions. Escape exits the active menu.
 - **Preconditions:** Relevant exploration or menu state is active.
 - **Evidence:** MANUAL-1994, introduction and "How to Play".
-- **Confidence:** high for intended behavior; exact hit regions and shipped edge
-  behavior are unknown.
+- **Confidence:** verified for the owned Walk/melee/Look cursor visuals and
+  hotspot; high for intended behavior. Broader target eligibility remains open.
 - **Implementation:** the runtime resolves WIND #19500 child coordinates and
   BUTN dimensions/image references from DSUI, maps original button resource IDs
   to semantic choices, and routes clicks through a single letterboxed
   logical-canvas transform into Core commands. In exploration, right-click
-  deterministically cycles Walk, Attack, and Look modes. A reusable ordered
-  hotkey table maps V/I/C/U/E/O/Tab and Escape to Core navigation commands.
+  deterministically cycles Walk, Attack, and Look modes. `DATA-GOG-CURSOR-001`
+  maps, extracts, and renders all ten cursor resources at the manual-defined
+  upper-left hotspot, with live valid/invalid feedback for the implemented
+  target subset. A reusable ordered hotkey table maps V/I/C/U/E/O/Tab and Escape
+  to Core navigation commands.
 - **Tests:** graph completeness and unexpected identities, catalog order,
   image-reference matching, rectangle edges, wide/tall letterboxing, inverse
   coordinates, resulting Core routing, and owned-pack content smoke.
-- **Uncertainty:** Cursor art, mode-specific target eligibility, and shipped
-  coordinate boundaries require OBS-GOG evidence.
+- **Uncertainty:** generalized mode-specific target eligibility and shipped
+  coordinate boundaries beyond the upper-left hotspot remain open.
 
 ### RULE-EXPLORATION-001 - Camera and party-display controls
 
@@ -642,7 +680,7 @@
   coordinates, map clamping, mode-cycle order, display idempotence, and invalid
   scroll deltas; every documented view and alias, ordered rising-edge hotkeys,
   menu escape/exit behavior, suspended world input, and explicit mode selection.
-- **Uncertainty:** Scroll timing, cursor imagery, party sprite composition,
+- **Uncertainty:** Scroll timing, generalized cursor eligibility, party sprite composition,
   Game Menu frame states/origin, destination-menu presentation, and exact native
   center-on-leader pixel policy remain open; deterministic visual-center
   targeting is the current implementation policy.

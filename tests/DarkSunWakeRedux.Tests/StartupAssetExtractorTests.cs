@@ -91,6 +91,16 @@ public sealed class StartupAssetExtractorTests
         ], OriginalContent.ExplorationDestinationTitleLayers);
         Assert.Equal([11500U, 13500U],
             OriginalContent.ExplorationDestinationWindowResourceNumbers);
+        Assert.Equal(10, OriginalContent.ExplorationCursorAssets.Count);
+        Assert.Equal(Enumerable.Range(19101, 10).Select(number => (uint)number),
+            OriginalContent.ExplorationCursorAssets.Select(asset => asset.ResourceNumber));
+        Assert.All(OriginalContent.ExplorationCursorAssets, asset =>
+        {
+            Assert.Equal("ICON", asset.Tag);
+            Assert.Equal(1, asset.FrameCount);
+            Assert.InRange(asset.FrameWidth, 10, 16);
+            Assert.InRange(asset.FrameHeight, 13, 17);
+        });
         Assert.Equal(14, OriginalContent.GameMenuButtons.Count);
         Assert.Equal(14, OriginalContent.GameMenuButtons
             .Select(button => button.Path).Distinct().Count());
@@ -150,7 +160,7 @@ public sealed class StartupAssetExtractorTests
             var manifest = await AssetPackInstaller.InstallAsync(output, staging =>
                 StartupAssetExtractor.WritePackAsync(sourceRoot, staging, edition, "test"));
 
-            Assert.Equal(72, manifest.Files.Count);
+            Assert.Equal(82, manifest.Files.Count);
             var asset = Assert.Single(manifest.Files, item => item.Path == OriginalContent.TitleImageAssetPath);
             Assert.Contains("BMP #11011", asset.Conversion, StringComparison.Ordinal);
             Assert.Contains("PAL #11011", asset.Conversion, StringComparison.Ordinal);
@@ -215,6 +225,18 @@ public sealed class StartupAssetExtractorTests
                     button.Path.Replace('/', Path.DirectorySeparatorChar)));
                 Assert.Equal(button.FrameCount,
                     PackedIndexedImage.Read(buttonStream).Frames.Count);
+            }
+            foreach (var cursor in OriginalContent.ExplorationCursorAssets)
+            {
+                var cursorAsset = Assert.Single(manifest.Files,
+                    item => item.Path == cursor.Path);
+                Assert.Contains($"ICON#{cursor.ResourceNumber}",
+                    cursorAsset.Conversion, StringComparison.Ordinal);
+                using var cursorStream = File.OpenRead(Path.Combine(output,
+                    cursor.Path.Replace('/', Path.DirectorySeparatorChar)));
+                var cursorFrame = Assert.Single(PackedIndexedImage.Read(cursorStream).Frames);
+                Assert.Equal((cursor.FrameWidth, cursor.FrameHeight),
+                    (cursorFrame.Width, cursorFrame.Height));
             }
             var inventoryLayer = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.InventoryLayer.Path);
@@ -433,6 +455,10 @@ public sealed class StartupAssetExtractorTests
                     (Width: button.FrameWidth, Height: button.FrameHeight),
                     button.FrameCount).ToArray())))
             .ToArray();
+        var cursorIcons = OriginalContent.ExplorationCursorAssets
+            .Select(asset => (asset.ResourceNumber,
+                Bytes: TransparentImage(asset.FrameWidth, asset.FrameHeight)))
+            .ToArray();
         var titlePalette = new byte[IndexedPalette.EncodedLength];
         titlePalette[0] = 1;
         var interfacePalette = new byte[IndexedPalette.EncodedLength];
@@ -457,6 +483,7 @@ public sealed class StartupAssetExtractorTests
             icons.Sum(item => item.Bytes.Length) + characterIcons.Sum(item => item.Bytes.Length) +
             titlePalette.Length + interfacePalette.Length +
             modalIcons.Sum(item => item.Bytes.Length) + gameMenuIcons.Sum(item => item.Bytes.Length) +
+            cursorIcons.Sum(item => item.Bytes.Length) +
             font.Length + text.Length + windows.Sum(item => item.Bytes.Length) +
             windowButtons.Sum(item => item.Bytes.Length) +
             applicationFrames.Sum(item => item.Bytes.Length) +
@@ -515,6 +542,12 @@ public sealed class StartupAssetExtractorTests
             var offset = checked((int)stream.Position);
             writer.Write(icon.Bytes);
             iconEntries.Add((icon.ImageResourceNumber, offset, icon.Bytes.Length));
+        }
+        foreach (var icon in cursorIcons)
+        {
+            var offset = checked((int)stream.Position);
+            writer.Write(icon.Bytes);
+            iconEntries.Add((icon.ResourceNumber, offset, icon.Bytes.Length));
         }
         var titlePaletteOffset = checked((int)stream.Position);
         writer.Write(titlePalette);

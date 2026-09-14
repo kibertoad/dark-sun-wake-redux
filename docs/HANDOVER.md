@@ -13,20 +13,20 @@ and incomplete; later slices are not complete.
 
 ## Latest cohesive batch
 
-Controlled owned screenshots and the complete Preferences graph extend the
-destination foundation without guessing dynamic behavior:
+Controlled owned screenshots and resource correlation establish the complete
+exploration cursor family without generalizing unknown target semantics:
 
-- `OBS-GOG-UI-001` proves Cast/Use and Current Effects reuse the character
-  shell and `WIND` #11500 navigation, with exact USE #20080 and EFFECTS #20075
-  title placement;
-- pack format 20 extracts both titles, `WIND` #16500, and eight unique
-  Preferences images into the exact 72-asset pack;
-- `ExplorationDestinationInput` now routes the same five controls across
-  character, inventory, Cast, and Effects screens;
-- `PreferencesInput` renders all 13 exact controls and safely routes Game Menu
-  and Return while setting mutations remain inert pending numeric evidence.
+- `DATA-GOG-CURSOR-001` maps `ICON` #19101-#19110 to the Walk, melee,
+  ranged, Look, invalid-target, and hourglass roles with exact geometry and the
+  manual-defined upper-left hotspot;
+- six native captures verify the Walk/melee/Look valid-invalid pairs, and the
+  first valid melee target resolves to Tyr OJFF #9258 -> BMP #346;
+- pack format 21 extracts all ten cursors into the exact 82-asset pack;
+- the runtime draws the original cursor last, uses actual route reachability for
+  Walk, reverse-draw-order entity alpha plus leader alpha for Look, and limits
+  melee validity to the first observed target pending broader behavior data.
 
-`DATA-GOG-UI-011`, `OBS-GOG-UI-001`, `docs/UI-ATLAS.md`, `docs/FIDELITY.md`,
+`DATA-GOG-CURSOR-001`, `docs/UI-ATLAS.md`, `docs/FIDELITY.md`,
 and `docs/PARITY-MATRIX.md` record the evidence boundary and remaining uncertainty.
 
 ## Local-only content
@@ -40,12 +40,12 @@ research output remain under ignored `analysis/original/`.
 
 Continue Slice 3 from evidence, preferably in this order:
 
-1. identify cursor resources/hotspots and implement visible Walk/Look/Attack
-   feedback without assigning unevidenced frame semantics;
-2. bound the first eligible interaction and dialogue resource chain, then model
+1. bound the first eligible interaction and dialogue resource chain, then model
    deterministic Core interaction/dialogue commands and quest flags;
-3. establish the Preferences setting ranges/defaults and About destination,
+2. establish the Preferences setting ranges/defaults and About destination,
    then implement deterministic setting mutations and frame-state feedback;
+3. generalize attack/look target eligibility and select ranged versus melee
+   cursor from evidenced readied-weapon state;
 4. fill character/inventory/Cast/Effects dynamic fields and item-transfer or
    spell behavior only as
    their record meanings become evidenced.

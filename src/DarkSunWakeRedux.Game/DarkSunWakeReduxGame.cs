@@ -28,10 +28,15 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         _explorationDestinationControls = [];
     private Texture2D? _explorationSceneTexture;
     private Texture2D? _openingLeaderTexture;
+    private IndexedImageFrame? _openingLeaderFrame;
+    private readonly Dictionary<ExplorationCursorVisual, Texture2D> _cursorTextures = [];
     private PackedRegion? _tyrRegion;
     private PackedObjectFrameCatalog? _tyrObjects;
+    private ExplorationEntityHitTester? _tyrEntityHitTester;
     private RegionTerrainGrid? _tyrTerrain;
     private ExplorationActorController? _leaderController;
+    private (GridPoint Start, GridPoint Destination)? _walkCursorQuery;
+    private bool _walkCursorReachable;
     private readonly ExplorationSession _exploration = new(
         RegionSceneRasterizer.WorldWidth,
         RegionSceneRasterizer.WorldHeight,
@@ -59,7 +64,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             PreferredBackBufferWidth = 960,
             PreferredBackBufferHeight = 600
         };
-        IsMouseVisible = true;
+        IsMouseVisible = false;
         Window.Title = "Dark Sun: Wake of the Ravager Redux";
     }
 
@@ -122,6 +127,13 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             gameMenuUiStream, OriginalContent.GameMenuUiCatalogAssetPath);
         foreach (var control in GameMenuInput.Resolve(gameMenuUi))
             _gameMenuControls.Add((control, LoadImageTexture(control.AssetPath)));
+        var cursorAssets = OriginalContent.ExplorationCursorAssets.ToDictionary(
+            asset => asset.Name, StringComparer.Ordinal);
+        foreach (var visual in Enum.GetValues<ExplorationCursorVisual>())
+        {
+            var asset = cursorAssets[ExplorationCursorFeedback.AssetName(visual)];
+            _cursorTextures.Add(visual, LoadImageTexture(asset.Path));
+        }
         var preferencesTextures = new Dictionary<string, Texture2D>(StringComparer.Ordinal);
         foreach (var control in PreferencesInput.Resolve(gameMenuUi))
         {
@@ -188,9 +200,17 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         using var objectStream = File.OpenRead(objectPath);
         _tyrObjects = PackedObjectFrameCatalog.Read(
             objectStream, OriginalContent.TyrObjectCatalogAssetPath);
+        _tyrEntityHitTester = new(_tyrRegion, _tyrObjects);
         var explorationViewport = OpeningTyrScene.Rasterize(_tyrRegion, _tyrObjects);
         _explorationSceneTexture = CreateTexture(_tyrRegion.Palette, explorationViewport);
-        _openingLeaderTexture = LoadImageTexture(OriginalContent.OpeningLeaderImageAssetPath);
+        using (var leaderStream = File.OpenRead(AssetPath(
+                   OriginalContent.OpeningLeaderImageAssetPath)))
+        {
+            var leaderImage = PackedIndexedImage.Read(
+                leaderStream, OriginalContent.OpeningLeaderImageAssetPath);
+            _openingLeaderFrame = leaderImage.Frames[0];
+            _openingLeaderTexture = CreateTexture(leaderImage, _openingLeaderFrame);
+        }
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
         string AssetPath(string relativePath) => Path.Combine(_assetPack,
@@ -368,6 +388,54 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         return GameMenuInput.CommandFor(control, center.X, center.Y);
     }
 
+    private ExplorationCursorVisual CursorVisualAt(int logicalX, int logicalY)
+    {
+        var snapshot = _exploration.Snapshot();
+        if (snapshot.View != ExplorationView.World || _tyrTerrain is null ||
+            _leaderController is null || _tyrEntityHitTester is null)
+            return ExplorationCursorVisual.Walk;
+        var worldX = snapshot.CameraX + logicalX;
+        var worldY = snapshot.CameraY + logicalY;
+        if (snapshot.CursorMode == ExplorationCursorMode.Walk)
+        {
+            var start = _leaderController.Snapshot().Position;
+            var cell = _tyrTerrain.CellAtWorldPixel(worldX, worldY);
+            var destination = new GridPoint(cell.X, cell.Y);
+            var query = (start, destination);
+            if (_walkCursorQuery != query)
+            {
+                _walkCursorReachable = ExplorationTerrainRoutePlanner.PlanAt(
+                    _tyrTerrain, snapshot, start, logicalX, logicalY)?.Found == true;
+                _walkCursorQuery = query;
+            }
+            return ExplorationCursorFeedback.Resolve(
+                snapshot, _walkCursorReachable, false, false);
+        }
+        var entityHit = _tyrEntityHitTester.HitTest(worldX, worldY);
+        var leaderHit = IsLeaderPixelAt(snapshot, logicalX, logicalY);
+        var meleeTarget = entityHit?.Entity.ObjectResourceNumber ==
+            OpeningTyrScene.ObservedMeleeTargetObjectResourceNumber;
+        return ExplorationCursorFeedback.Resolve(snapshot, false, meleeTarget,
+            leaderHit || entityHit is not null);
+    }
+
+    private bool IsLeaderPixelAt(
+        ExplorationSnapshot snapshot,
+        int logicalX,
+        int logicalY)
+    {
+        if (_leaderController is null || _openingLeaderFrame is null)
+            return false;
+        var bounds = _leaderPresentation.AtMovement(
+            _leaderController.VisualSnapshot(), snapshot.CameraX, snapshot.CameraY,
+            GffRegion.TilePixelSize);
+        var sourceX = logicalX - bounds.X;
+        var sourceY = logicalY - bounds.Y;
+        return sourceX >= 0 && sourceY >= 0 &&
+            sourceX < _openingLeaderFrame.Width && sourceY < _openingLeaderFrame.Height &&
+            _openingLeaderFrame.Alpha[sourceY * _openingLeaderFrame.Width + sourceX] != 0;
+    }
+
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.Black);
@@ -458,6 +526,16 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                     foreach (var (control, texture) in _startMenuControls)
                         _spriteBatch.Draw(texture, ScaledRectangle(destination, transform,
                             control.X, control.Y, texture.Width, texture.Height), Color.White);
+                var mouse = Mouse.GetState();
+                if (transform.TryToLogical(mouse.X, mouse.Y, out var cursorX, out var cursorY))
+                {
+                    var visual = screen == StartFlowScreen.Gameplay
+                        ? CursorVisualAt(cursorX, cursorY)
+                        : ExplorationCursorVisual.Walk;
+                    var cursor = _cursorTextures[visual];
+                    _spriteBatch.Draw(cursor, ScaledRectangle(destination, transform,
+                        cursorX, cursorY, cursor.Width, cursor.Height), Color.White);
+                }
                 _spriteBatch.End();
             }
         }
@@ -483,6 +561,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             texture.Dispose();
         _explorationSceneTexture?.Dispose();
         _openingLeaderTexture?.Dispose();
+        foreach (var texture in _cursorTextures.Values) texture.Dispose();
         _spriteBatch?.Dispose();
         base.UnloadContent();
     }

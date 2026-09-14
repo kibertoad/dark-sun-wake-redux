@@ -102,6 +102,13 @@ try
                     throw new InvalidDataException(
                         $"The installed {layer.Name} image has unexpected geometry.");
             }
+            foreach (var cursor in OriginalContent.ExplorationCursorAssets)
+            {
+                var image = ReadImage(assetPack, cursor.Path);
+                if (!cursor.HasExpectedFrames(image.Frames))
+                    throw new InvalidDataException(
+                        $"The installed exploration cursor {cursor.Name} has unexpected geometry.");
+            }
             var openingLeader = ReadImage(assetPack, OriginalContent.OpeningLeaderImageAssetPath);
             var openingLeaderFrame = openingLeader.Frames[0];
             if (!openingLeader.Frames.Select(frame => (frame.Width, frame.Height))
@@ -195,6 +202,14 @@ try
             if (objects.Definitions.Count != 287 || objects.Images.Count != 246 ||
                 objects.Images.Sum(image => image.Frames.Count) != 477)
                 throw new InvalidDataException("The installed Tyr object-frame catalog is incomplete.");
+            var observedMeleeTarget = objects.Definitions.SingleOrDefault(definition =>
+                definition.ResourceNumber ==
+                    OpeningTyrScene.ObservedMeleeTargetObjectResourceNumber);
+            if (observedMeleeTarget?.ImageResourceNumber !=
+                OpeningTyrScene.ObservedMeleeTargetImageResourceNumber)
+                throw new InvalidDataException(
+                    "The installed Tyr catalog lacks the observed opening melee target.");
+            _ = new ExplorationEntityHitTester(region, objects);
             var objectNumbers = objects.Definitions.Select(item => item.ResourceNumber).ToHashSet();
             if (region.Entities.Any(entity => !objectNumbers.Contains(entity.ObjectResourceNumber)))
                 throw new InvalidDataException("The Tyr region references a missing object definition.");

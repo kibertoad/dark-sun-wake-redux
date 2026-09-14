@@ -161,7 +161,7 @@ public sealed record SourceIdentification(
 
 public static class OriginalContent
 {
-    public const int AssetPackFormatVersion = 20;
+    public const int AssetPackFormatVersion = 21;
     public const string GameId = "dark-sun-wake-redux";
     public const string TitleImageAssetPath = "images/title.dsix";
     public const string InterfaceFontAssetPath = "fonts/interface.dsft";
@@ -191,6 +191,22 @@ public static class OriginalContent
 
     public static IReadOnlyList<uint> ExplorationDestinationWindowResourceNumbers { get; } =
         [11500, 13500];
+
+    public static IReadOnlyList<UiImageAsset> ExplorationCursorAssets { get; } =
+    [
+        new("walk", "images/cursors/walk.dsix", "ICON", 19101, 10, 13, 1),
+        new("cannot-walk", "images/cursors/cannot-walk.dsix", "ICON", 19102, 16, 16, 1),
+        new("melee-attack", "images/cursors/melee-attack.dsix", "ICON", 19103, 16, 17, 1),
+        new("cannot-melee-attack", "images/cursors/cannot-melee-attack.dsix",
+            "ICON", 19104, 16, 17, 1),
+        new("ranged-attack", "images/cursors/ranged-attack.dsix", "ICON", 19105, 14, 15, 1),
+        new("cannot-ranged-attack", "images/cursors/cannot-ranged-attack.dsix",
+            "ICON", 19106, 16, 16, 1),
+        new("look", "images/cursors/look.dsix", "ICON", 19107, 14, 15, 1),
+        new("cannot-look", "images/cursors/cannot-look.dsix", "ICON", 19108, 16, 16, 1),
+        new("cannot-cast", "images/cursors/cannot-cast.dsix", "ICON", 19109, 16, 17, 1),
+        new("wait", "images/cursors/wait.dsix", "ICON", 19110, 13, 15, 1)
+    ];
 
     public static UiLayerAsset GameMenuLayer { get; } =
         new("game-menu", "images/game-menu/base.dsix", 10000, 55, 42, 210, 116);

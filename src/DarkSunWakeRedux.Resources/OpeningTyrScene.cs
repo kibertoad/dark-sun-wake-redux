@@ -18,6 +18,8 @@ public static class OpeningTyrScene
     public const int LeaderHeight = 35;
     public const int LeaderAnchorCellX = LeaderWorldX / GffRegion.TilePixelSize;
     public const int LeaderAnchorCellY = LeaderWorldY / GffRegion.TilePixelSize;
+    public const uint ObservedMeleeTargetObjectResourceNumber = 9258;
+    public const uint ObservedMeleeTargetImageResourceNumber = 346;
 
     public static IReadOnlyList<(int Width, int Height)> LeaderFrameGeometry { get; } =
         Array.AsReadOnly(LeaderFrames);

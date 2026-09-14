@@ -89,14 +89,15 @@ Owned-build validation currently targets GOG product `1432903719`, installed
 build `52095422060333615`. Metadata-only FONT inspection verifies that all 256
 character-map entries are identity values and summarizes its pixel-index range
 without emitting glyph pixels. The retained ignored owned-source pack has been
-transactionally refreshed and verifies as the exact 72-asset manifest including start/party/ADD
+transactionally refreshed and verifies as the exact 82-asset manifest including start/party/ADD
 assets, all seven start-flow windows and 56 controls, the 210x116 Game Menu/Preferences base,
 the 14-button/30-control Game Menu and 13-button/15-control Preferences graphs,
 the 320x200 inventory base, the observed USE/EFFECTS title images, the
 86-control character/Cast/Effects and 89-control inventory graphs, and 19 bounded character metadata entries,
 plus the bounded Tyr region with 94 tiles
 and 867 entity records, its 287 definitions, 246 images, and 477 frames, and
-the exact 13-frame opening-leader image. The runtime content-smoke path verifies
+the exact 13-frame opening-leader image and all ten `ICON` #19101-#19110 cursor
+images with their exact one-frame geometry. The runtime content-smoke path verifies
 all 13 frame dimensions plus frame 0's 367-pixel alpha coverage and rasterizes 320x200 viewports at
 both opposite region corners successfully. It also verifies Tyr's exact four
 `GMAP` values and 8,169 terrain-open cells through the bounded navigation
@@ -111,7 +112,10 @@ component bounded by logical `(160,91)`-`(176,125)`. Exhaustive same-geometry
 resource comparison identifies OJFF #305/BMP #599 frame 0 as an exact match;
 bounded executable analysis ties its world top-left `(1184,1459)` to collision
 anchor cell `(74,91)`. The multi-cell footprint remains unknown.
-Local-only decoded previews established the title
+Six controlled local captures at the unchanged opening camera establish the
+Walk/Can't Walk, melee/invalid melee, and Look/invalid Look pairs and the
+manual-defined upper-left hotspot. The valid melee hotspot resolves through the
+static compositor transform to OJFF #9258 -> BMP #346. Local-only decoded previews established the title
 and start-window mappings recorded as `DATA-GOG-TITLE-001`,
 `DATA-GOG-UI-001`, `DATA-GOG-UI-006`, `DATA-GOG-UI-007`,
 `DATA-GOG-UI-008` through `DATA-GOG-UI-010`; screenshots and decoded outputs stay

@@ -132,6 +132,16 @@ dotnet build <Project>.slnx        # full solution
 dotnet run --project src/<Project>.Game -- --smoke-test
 ```
 
+## Native runtime visual validation
+
+The Codex computer-control surface currently available for this repository
+exposes browser tabs only; it cannot target native MonoGame or DOSBox windows.
+Check the available surfaces once before attempting native-window automation.
+When native apps are unavailable, do not keep retrying browser-only automation
+or claim that a live visual check ran. Use purpose-built headless/content smoke
+tests and owner-produced screenshots or captures instead, and record any visual
+comparison that still requires manual validation.
+
 ## Post-commit orphan-process audit
 
 After every commit, inspect running processes for orphaned work launched while

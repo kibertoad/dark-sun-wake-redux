@@ -264,7 +264,7 @@ decoder rather than being guessed now.
   class/level progression, the active member during DUAL selection or editing,
   and recreation-native stored characters;
   DSUI round-trip, malformed graph, deterministic ordering, mixed-control graph resolution, resource-ID routing,
-  rectangle-edge, synthetic extraction, content-smoke, and owned 72-asset pack verification cover the derived
+  rectangle-edge, synthetic extraction, content-smoke, and owned 82-asset pack verification cover the derived
   start-flow layout contract;
   gameplay-wide replay remains a later-slice requirement.
 - **Observed parity.** Compare boot, start, create/select/cancel, and quit state
@@ -319,7 +319,12 @@ decoder rather than being guessed now.
   Effects reuse the character shell and #11500 navigation with exact
   #20080/#20075 title placement; both now render. The Preferences #16500 graph
   and artwork now render and its Game Menu/Return actions route deterministically.
-  Dynamic fields/interior actions, Exit, Load/Save, setting mutations,
+  Controlled cursor observations map `ICON` #19101-#19110, verify the
+  manual-defined upper-left hotspot and all six Walk/melee/Look valid/invalid
+  states, and identify OJFF #9258 as the first observed melee target. Pack v21
+  extracts all ten cursor images; the runtime renders reachability-based Walk,
+  topmost-entity/leader Look, and bounded first-target melee feedback.
+  Dynamic fields/interior actions, generalized target eligibility, Exit, Load/Save, setting mutations,
   other destination presentation, native panel/centering validation, animation,
   and party/interface overlays remain pending. `EXE-GOG-REGION-001` now establishes
   `GMAP` bit `0x40` as the terrain/occupancy block. A bounded terrain grid and
@@ -451,8 +456,8 @@ decoder rather than being guessed now.
 | Q1 | Is `DarkSunWakeRedux` / `Dark Sun: Wake of the Ravager Redux` the approved identity? | configuration | repository owner | closed - approved 2026-09-12 |
 | Q2 | Is the installed GOG build the only initial supported edition, with later revisions represented by separate manifests? | slices 1, 7 | repository owner | closed - initial work targets the supplied GOG build; later revisions require separate fingerprints |
 | Q3 | Which underlying DOS/CD-ROM revision is in GOG build `52095422060333615`? | slices 1, 4, 6 | evidence investigation | open |
-| Q4 | Which source files and GFF/resource records are required, and what are their bounded structures? | slices 1-3 | evidence investigation | open - GFF, image/palette, FONT, TEXT, core UI records, the versioned `CHAR` envelope/identity/ability fields, raw `PSIN` companion envelope, region `RNME`/`PAL `/`MAP `/`GMAP`/`TILE`/`ETAB`, and exact `OJFF` object-frame records with image references are bounded; title/start, party overview, ADD-list, interface palette, generation/modal controls, shared window image, start-flow window graphs, APFM event masks, the owned font's identity map, encoding-neutral glyph composition, canonical Tyr DSRG/DSOB extraction, static first-frame scene composition, the opening Tyr camera, and `GMAP` `0x40` terrain blocking are implemented; #19004 still awaits an app-specific consumer; remaining character state, other mask/geometry/entity meanings, authentic text presentation, dynamic party data, later-window semantics, later cameras/animation/gameplay behavior, other region dependencies, and the rest of the minimum packs remain unknown |
-| Q5 | What are the logical resolution, pixel aspect, palettes, cursor geometry, animation cadence, and audio timing? | slices 2-7 | runtime observation | open |
+| Q4 | Which source files and GFF/resource records are required, and what are their bounded structures? | slices 1-3 | evidence investigation | open - GFF, image/palette, FONT, TEXT, core UI records, the versioned `CHAR` envelope/identity/ability fields, raw `PSIN` companion envelope, region `RNME`/`PAL `/`MAP `/`GMAP`/`TILE`/`ETAB`, and exact `OJFF` object-frame records with image references are bounded; title/start, party overview, ADD-list, interface palette, generation/modal controls, shared window image, start-flow window graphs, APFM event masks, the owned font's identity map, encoding-neutral glyph composition, canonical Tyr DSRG/DSOB extraction, static first-frame scene composition, the opening Tyr camera, cursor image family, and `GMAP` `0x40` terrain blocking are implemented; #19004 still awaits an app-specific consumer; remaining character state, other mask/geometry/entity meanings, authentic text presentation, dynamic party data, later-window semantics, later cameras/animation/gameplay behavior, other region dependencies, and the rest of the minimum packs remain unknown |
+| Q5 | What are the logical resolution, pixel aspect, palettes, cursor geometry, animation cadence, and audio timing? | slices 2-7 | runtime observation | open - the logical resolution is 320x200; `PAL ` #1000 supplies the interface/cursor colors; `ICON` #19101-#19110 geometry and the upper-left cursor hotspot are verified; pixel aspect, animation cadence, cursor update cadence, and audio timing remain open |
 | Q6 | For each verified manual/guide/runtime conflict or original defect, should compatibility preserve it, fix it, or expose an option? | slices 4-7 | repository owner after evidence | open |
 | Q7 | Are original save compatibility and Shattered Lands party transfer desired once their formats are evidenced? | slice 7 | repository owner | open |
 | Q8 | Are Windows, Linux, and macOS all first-release targets, or should the initial release target Windows? | slice 7 | repository owner | open |

@@ -149,6 +149,17 @@ public static class StartupAssetExtractor
                 $"{ImageTag}#{mapping.ImageResourceNumber} all frames + " +
                 $"{PaletteTag}#{InterfacePaletteNumber}", cancellationToken));
         }
+        foreach (var asset in OriginalContent.ExplorationCursorAssets)
+        {
+            var image = IndexedImage.Read(archive.GetResource(asset.Tag, asset.ResourceNumber),
+                $"{SourcePath}:{asset.Tag}#{asset.ResourceNumber}");
+            if (!asset.HasExpectedFrames(image.Frames))
+                throw new InvalidDataException(
+                    $"The mapped exploration cursor {asset.Name} has unexpected frame geometry.");
+            files.Add(await WriteImageAsync(stagingRoot, asset.Path, image, interfacePalette,
+                $"{asset.Tag}#{asset.ResourceNumber} all frames + " +
+                $"{PaletteTag}#{InterfacePaletteNumber}", cancellationToken));
+        }
 
         var windowImage = IndexedImage.Read(archive.GetResource(TitleImageTag, PartyWindowImageNumber),
             $"{SourcePath}:{TitleImageTag}#{PartyWindowImageNumber}");

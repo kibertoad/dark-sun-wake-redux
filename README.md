@@ -37,16 +37,17 @@ collision-aware pathfinding, occupancy, and actor movement.
 The runtime enters the observed Tyr viewport, scrolls, changes mouse modes,
 opens the authentic Game Menu, moves the exact opening leader through a modern
 deterministic route, and renders character, inventory, Cast/Use, Current Effects,
-and Preferences shells with shared navigation. Dynamic destination content, cursor art,
-interaction, the opening conversation, and the rest of the campaign remain
+and Preferences shells with shared navigation. The original Walk/Attack/Look
+cursor family now renders with reachable/eligible target feedback. Dynamic destination content,
+the opening interaction and conversation, and the rest of the campaign remain
 unfinished; status claims below and in the parity matrix intentionally keep
 those boundaries explicit.
 
 | Area | Supported now | Current limitations |
 |---|---|---|
 | Legal source | Explicit verification of English GOG product `1432903719`, build `52095422060333615` | Other GOG revisions and storefronts are unsupported until separately fingerprinted |
-| Asset extraction | Separate Extractor with versioned exact inventory, bounded readers, and transactional 72-asset startup/Tyr/menu pack | Title, evidenced start, party-overview, ADD-list, Game Menu, Preferences, character/inventory/Cast/Effects layers and controls, three resolved UI catalogs, font, text, bounded character metadata, Tyr region data/object catalog, and the exact opening-leader sprite are extracted; dynamic destination content, broader actor animation, and later-window shells remain incomplete |
-| Gameplay | Assetless startup smoke test, deterministic party/start flow, the observed Tyr viewport with bounded edge scrolling, mode/display controls, documented hotkeys, an authentic clickable Game Menu including Center on Leader, Collapse Party, and Preferences, shared navigation across character/inventory/Cast/Effects screens, evidenced `GMAP` terrain collision, and runtime click-to-walk using stable A*, atomic occupancy, the evidenced leader anchor, bounded fixed-step advancement, and fixed-point visual interpolation | Exit, Load/Save, Preferences setting changes, remaining destination screens, and destination content/actions remain pending; the opening leader currently uses an explicit provisional single-cell footprint and 125 ms semantic step, while native footprint/cadence, sprite-frame animation semantics, NPCs, remaining party/pointer/interface rendering, interaction, conversation, modifier application/caps, DUAL presentation, disputed origin/class pairs, random generation, and shipped creation defaults remain open |
+| Asset extraction | Separate Extractor with versioned exact inventory, bounded readers, and transactional 82-asset startup/Tyr/menu/cursor pack | Title, evidenced start, party-overview, ADD-list, Game Menu, Preferences, character/inventory/Cast/Effects layers and controls, all ten exploration cursors, three resolved UI catalogs, font, text, bounded character metadata, Tyr region data/object catalog, and the exact opening-leader sprite are extracted; dynamic destination content, broader actor animation, and later-window shells remain incomplete |
+| Gameplay | Assetless startup smoke test, deterministic party/start flow, the observed Tyr viewport with bounded edge scrolling, mode/display controls, documented hotkeys, an authentic clickable Game Menu including Center on Leader, Collapse Party, and Preferences, shared navigation across character/inventory/Cast/Effects screens, original Walk/Attack/Look valid/invalid cursors, evidenced `GMAP` terrain collision, and runtime click-to-walk using stable A*, atomic occupancy, the evidenced leader anchor, bounded fixed-step advancement, and fixed-point visual interpolation | Exit, Load/Save, Preferences setting changes, remaining destination screens, and destination content/actions remain pending; target eligibility is bounded to reachable Walk cells, displayed Look entities/leader pixels, and the first observed melee entity, while broader interaction semantics remain open; the opening leader currently uses an explicit provisional single-cell footprint and 125 ms semantic step, while native footprint/cadence, sprite-frame animation semantics, NPCs, remaining party/interface rendering, conversation, modifier application/caps, DUAL presentation, disputed origin/class pairs, random generation, and shipped creation defaults remain open |
 | Saves and compatibility | Start-flow snapshot schema 4 with class progression, dropped-character storage, and hash-verified deterministic replay | Native save-file I/O, whole-game replays, original saves, and Shattered Lands party transfer are not implemented |
 | Presentation | Verified-pack start, party-overview, ADD-list, 210x116 Game Menu/Preferences, character, inventory, Cast/Use, and Current Effects shells compose original indexed assets through typed DSUI controls; reusable semantic page objects route menus and shared destination navigation | The centered menu origin is provisional; dynamic destination fields and most controls, party portraits, ADD content/actions, remaining destinations, title sequencing, frame states, pixel aspect, animation, audio, and video await observation |
 | Text resources | Bounded FONT decoding/DSFT extraction, verified owned-font identity map, deterministic indexed run/block rasterization, and all 62 printable-ASCII `TEXT` records decoded into DSTX | Generalized map semantics, authentic glyph/line spacing, palette, text-ID routing, alignment, and runtime rendering remain open |
@@ -94,9 +95,9 @@ continuation notes are in [docs/HANDOVER.md](docs/HANDOVER.md).
 Start, Game Menu, Preferences navigation, and shared character/inventory/Cast/Effects controls accept
 mouse clicks through the 320x200 logical canvas and semantic Core commands.
 Exploration supports documented view hotkeys, Walk/Attack/Look cycling,
-edge-scroll input, party display selection, and click-to-walk. Cursor artwork,
-target eligibility, frame states, and many later actions still require
-controlled validation.
+edge-scroll input, party display selection, click-to-walk, and resource-exact
+valid/invalid cursor feedback at the documented upper-left hotspot. Broader target
+eligibility, frame states, and many later actions still require controlled validation.
 
 ## Acknowledgements
 
