@@ -245,6 +245,45 @@ public sealed class DialogueSessionTests
     }
 
     [Fact]
+    public void EvaluatesCompositeLocalConditionAfterDirectAssignments()
+    {
+        var variables = new DialogueVariableSnapshot(
+            new Dictionary<ushort, bool> { [1] = false, [8] = true },
+            new Dictionary<ushort, int>());
+        var session = Session([Definition(6, 3976)], variables);
+        session.Execute(DialogueCommand.Select(0));
+
+        var transition = session.Execute(DialogueCommand.Apply(new(6, 3976,
+            DialogueBranchDisposition.Completed,
+            new Dictionary<ushort, bool> { [8] = false },
+            conditionalLocalFlagAssignmentsAfterLocalFlags:
+            [
+                new([new(1, false), new(8, false)], 14, true)
+            ])));
+
+        Assert.False(transition.After.Variables.LocalFlags[8]);
+        Assert.True(transition.After.Variables.LocalFlags[14]);
+    }
+
+    [Fact]
+    public void RejectsUnknownCompositeLocalConditionWithoutMutation()
+    {
+        var session = Session([Definition(6, 3976)]);
+        session.Execute(DialogueCommand.Select(0));
+        var before = session.Snapshot();
+
+        Assert.Throws<InvalidOperationException>(() => session.Execute(
+            DialogueCommand.Apply(new(6, 3976,
+                DialogueBranchDisposition.Completed,
+                new Dictionary<ushort, bool> { [8] = false },
+                conditionalLocalFlagAssignmentsAfterLocalFlags:
+                [
+                    new([new(1, false), new(8, false)], 14, true)
+                ]))));
+        Assert.Same(before, session.Snapshot());
+    }
+
+    [Fact]
     public void RejectsInvalidConstructionSelectionAndMismatchedBranch()
     {
         var variables = DialogueVariableSnapshot.Empty;

@@ -140,6 +140,7 @@ try
             FirstTyrDialogueResponseProjection thirdMenuThirdDialogueResponse;
             FirstTyrDialogueResponseProjection thirdMenuFifthDialogueResponse;
             FirstTyrDialogueResponseProjection thirdMenuSixthDialogueResponse;
+            FirstTyrDialogueThirdCompletionProjection thirdMenuCompletion;
             using (var scriptStream = File.OpenRead(Path.Combine(assetPack,
                        OriginalContent.FirstTyrDialogueScriptAssetPath.Replace(
                            '/', Path.DirectorySeparatorChar))))
@@ -176,6 +177,8 @@ try
                     FirstTyrDialogueResponseProjectionReader.ReadThirdMenuFifth(script);
                 thirdMenuSixthDialogueResponse =
                     FirstTyrDialogueResponseProjectionReader.ReadThirdMenuSixth(script);
+                thirdMenuCompletion =
+                    FirstTyrDialogueResponseProjectionReader.ReadThirdMenuExit(script);
                 if (dialogueProjection.PortraitResourceNumber !=
                         OriginalContent.FirstTyrDialoguePortraitResourceNumber ||
                     dialogueProjection.SpeechVariants.Count != 2 ||
@@ -484,6 +487,18 @@ try
             _ = DialoguePreviewText.Create(font, dialogueProjection,
                 thirdMenuThirdDialogue.After, dialogueVariables,
                 thirdMenuSixthDialogueResponse.Output);
+            identitySession.Execute(DialogueCommand.Select(0));
+            var thirdMenuCompleted = identitySession.Execute(DialogueCommand.Apply(
+                DialogueSessionAdapter.ToCore(thirdMenuCompletion)));
+            if (!thirdMenuCompleted.Applied ||
+                thirdMenuCompleted.After.Phase != DialoguePhase.Completed ||
+                thirdMenuCompleted.After.Variables.LocalFlags[8] ||
+                !thirdMenuCompleted.After.Variables.LocalFlags[14])
+                throw new InvalidDataException(
+                    "The installed first Tyr third-menu exit did not complete.");
+            _ = DialoguePreviewText.Create(font, dialogueProjection,
+                thirdMenuCompleted.After, dialogueVariables,
+                thirdMenuCompletion.CompletedOutput);
             var textPath = Path.Combine(assetPack,
                 OriginalContent.TextCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using var textStream = File.OpenRead(textPath);

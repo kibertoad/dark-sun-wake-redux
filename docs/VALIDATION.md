@@ -111,6 +111,11 @@ Synthetic tests reject assignment, return, and truncation drift for both.
 The owned script also validates alternate targets 3686/3786 and rasterizes
 their two- and three-part outputs. Synthetic tests prove the local-flag-17/18
 transition shapes and reject assignment, return, and truncation drift.
+The primary owned path finally selects target 3976, verifies flag 8 clears
+before the six-flag helper derives flag 14, enters `Completed`, and rasterizes
+the two-part completion output. Synthetic tests validate both output branches,
+subroutine targets, post-assignment ordering, unknown-input atomic rejection,
+and helper/control-flow/truncation drift.
 The owned smoke also rasterizes all five implemented returned transcripts with
 the extracted font, including choice 0's explicit blank line, within the bounded
 speech area.

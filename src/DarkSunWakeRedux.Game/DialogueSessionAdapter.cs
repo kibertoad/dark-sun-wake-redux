@@ -76,4 +76,27 @@ public static class DialogueSessionAdapter
                 new DialogueGlobalNumberCondition(condition.VariableId, condition.Value))
                 .ToArray());
     }
+
+    public static DialogueBranchResult ToCore(
+        FirstTyrDialogueThirdCompletionProjection projection)
+    {
+        ArgumentNullException.ThrowIfNull(projection);
+        if (!projection.ReturnsFromLocalBranch)
+            throw new InvalidDataException(
+                "The third-menu completion branch does not return.");
+        return new(projection.SourceChoiceIndex, projection.EntryOffset,
+            DialogueBranchDisposition.Completed,
+            projection.LocalFlagAssignments.ToDictionary(
+                assignment => assignment.VariableId,
+                assignment => assignment.Value),
+            conditionalLocalFlagAssignmentsAfterLocalFlags:
+                projection.ConditionalLocalFlagAssignmentsAfterLocalFlags
+                    .Select(assignment =>
+                        new DialogueConditionalLocalFlagAssignmentAfterLocalFlags(
+                            assignment.Conditions.Select(condition =>
+                                new DialogueLocalFlagCondition(
+                                    condition.VariableId, condition.Value)).ToArray(),
+                            assignment.VariableId, assignment.Value))
+                    .ToArray());
+    }
 }

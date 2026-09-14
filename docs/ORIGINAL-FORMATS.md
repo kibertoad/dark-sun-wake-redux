@@ -432,6 +432,12 @@ Third-menu target 3686 is bounded through local return at 3785: two
 compressed-literal prints, immediate zero to local flag 17, and immediate one
 to local flag 18. Its newly enabled target 3786 is bounded through local return
 at 3975: three compressed-literal prints and immediate zero to local flag 18.
+The constant third-menu target 3976 is bounded through local return at 4048.
+It clears local flag 8, calls a helper at 4049 that sets local flag 14 only when
+local flags 1/6/7/11/10/8 are all zero after that clear, and selects either a
+two-part completion output (including helper 4082) or a one-part early output.
+Both helpers, both branch targets, and their local returns through offset 4123
+are structurally validated.
 
 The only decoded primitive is a bounded packed string used for future script
 interpretation. Marker `0x01` represents the active character name, marker
@@ -453,7 +459,9 @@ global reference and branch target, target 1825's local condition and assignment
 target 3479's two flag assignments, target 1996's guarded opening path, target
 2352's flag clear, target 2415's assignments/condition/loop bridge, target
 2921's flag clear, targets 3089/3257 and 3686/3786's flag transitions, and each
-applicable local return. Decoding these structures does not
+applicable local return. Target 3976 additionally requires its subroutine calls,
+post-assignment six-flag condition, conditional output branches, and completion
+return boundaries. Decoding these structures does not
 authorize executing other
 instructions or assigning condition and state-mutation semantics.
 

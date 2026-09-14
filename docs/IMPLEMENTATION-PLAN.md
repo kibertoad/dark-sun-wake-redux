@@ -369,8 +369,10 @@ decoder rather than being guessed now.
   15, clears flag 13, and enables source choice 2; target 3257 then prints four
   parts, clears flag 15, and leaves only source choice 6. Remaining alternate
   third-menu targets 3686/3786 are also bounded: their five prints clear flag
-  17, set then clear flag 18, and return. The third-menu completion path, the
-  second-menu alternate branch, and generalized GPL
+  17, set then clear flag 18, and return. The third-menu completion target 3976
+  clears flag 8, derives flag 14 from the exact
+  post-assignment six-flag condition, validates both output branches and helper
+  returns, and completes Core. The second-menu alternate branch and generalized GPL
   execution remain open. The hook renders the
   first literal speech and filtered labels with bounded provisional
   wrapping in the extracted font. Reusable ordered hotkey bindings and Core

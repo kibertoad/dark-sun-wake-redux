@@ -47,6 +47,21 @@ public sealed record FirstTyrDialogueResponseProjection(
 
 public sealed record GplLocalNumberAssignment(ushort VariableId, int Value);
 
+public sealed record GplConditionalLocalFlagAssignmentAfterLocalFlags(
+    IReadOnlyList<GplLocalFlagCondition> Conditions,
+    ushort VariableId,
+    bool Value);
+
+public sealed record FirstTyrDialogueThirdCompletionProjection(
+    int SourceChoiceIndex,
+    int EntryOffset,
+    IReadOnlyList<GplDialogueOutput> CompletedOutput,
+    IReadOnlyList<GplDialogueOutput> EarlyOutput,
+    IReadOnlyList<GplLocalFlagAssignment> LocalFlagAssignments,
+    IReadOnlyList<GplConditionalLocalFlagAssignmentAfterLocalFlags>
+        ConditionalLocalFlagAssignmentsAfterLocalFlags,
+    bool ReturnsFromLocalBranch);
+
 public static class FirstTyrDialogueResponseProjectionReader
 {
     public const int FirstChoiceIndex = 0;
@@ -94,6 +109,12 @@ public static class FirstTyrDialogueResponseProjectionReader
     public const int ThirdMenuSixthSourceChoiceIndex = 5;
     public const int ThirdMenuSixthEntryOffset = 3786;
     public const int ThirdMenuSixthReturnOffset = 3975;
+    public const int ThirdMenuExitSourceChoiceIndex = 6;
+    public const int ThirdMenuExitEntryOffset = 3976;
+    public const int ThirdMenuExitReturnOffset = 4048;
+    public const int ThirdMenuExitConditionSubroutineOffset = 4049;
+    public const int ThirdMenuExitOutputSubroutineOffset = 4082;
+    public const int ScriptExitOffset = 4123;
     public const byte PrintStringOpcode = 0x4f;
     public const byte PrintNewLineOpcode = 0x51;
     public const byte LoadVariableOpcode = 0x16;
@@ -104,6 +125,7 @@ public static class FirstTyrDialogueResponseProjectionReader
     public const byte EndIfOpcode = 0x67;
     public const byte WhileOpcode = 0x63;
     public const byte LocalReturnOpcode = 0x15;
+    public const byte LocalSubroutineOpcode = 0x13;
 
     public static FirstTyrDialogueResponseProjection ReadFirst(
         PackedGplScript script)
@@ -461,6 +483,87 @@ public static class FirstTyrDialogueResponseProjectionReader
             "third-menu choice 5 local return");
         return new(ThirdMenuSixthSourceChoiceIndex, ThirdMenuSixthEntryOffset,
             output, [assignment], [], true);
+    }
+
+    public static FirstTyrDialogueThirdCompletionProjection ReadThirdMenuExit(
+        PackedGplScript script)
+    {
+        ValidateScript(script);
+        var bytes = script.Bytecode.AsSpan();
+        var position = ThirdMenuExitEntryOffset;
+        var assignment = ReadFlagAssignment(bytes, ref position, 8, false);
+        RequireOpcode(bytes, ref position, LocalSubroutineOpcode,
+            "third-menu exit condition subroutine");
+        RequireImmediate14(bytes, ref position, ThirdMenuExitConditionSubroutineOffset,
+            "third-menu exit condition subroutine target");
+        RequireOpcode(bytes, ref position, LoadAccumulatorOpcode,
+            "third-menu exit result condition");
+        RequireSequence(bytes, ref position, [0x8e, 0x0e],
+            "third-menu exit local flag #14 condition");
+        RequireOpcode(bytes, ref position, IfOpcode, "third-menu exit output branch");
+        RequireImmediate14(bytes, ref position, 4007, "third-menu exit else target");
+        var completedOutput = new List<GplDialogueOutput>
+        {
+            ReadLiteralPrint(bytes, ref position, 4004)
+        };
+        RequireOpcode(bytes, ref position, LocalSubroutineOpcode,
+            "third-menu exit final output subroutine");
+        RequireImmediate14(bytes, ref position, ThirdMenuExitOutputSubroutineOffset,
+            "third-menu exit final output subroutine target");
+        RequireOpcode(bytes, ref position, ElseOpcode, "third-menu exit else");
+        RequireImmediate14(bytes, ref position, 4047, "third-menu exit endif target");
+        var earlyOutput = new[] { ReadLiteralPrint(bytes, ref position, 4047) };
+        RequireOpcode(bytes, ref position, EndIfOpcode, "third-menu exit endif");
+        if (position != ThirdMenuExitReturnOffset)
+            throw Error($"third-menu exit body ends at {position}, " +
+                $"not {ThirdMenuExitReturnOffset}");
+        RequireOpcode(bytes, ref position, LocalReturnOpcode,
+            "third-menu exit local return");
+        ReadThirdMenuExitConditionSubroutine(bytes);
+        completedOutput.Add(ReadThirdMenuExitOutputSubroutine(bytes));
+        var conditional = new GplConditionalLocalFlagAssignmentAfterLocalFlags(
+            [new(1, false), new(6, false), new(7, false), new(11, false),
+                new(10, false), new(8, false)], 14, true);
+        return new(ThirdMenuExitSourceChoiceIndex, ThirdMenuExitEntryOffset,
+            completedOutput, earlyOutput, [assignment], [conditional], true);
+    }
+
+    private static void ReadThirdMenuExitConditionSubroutine(ReadOnlySpan<byte> bytes)
+    {
+        var position = ThirdMenuExitConditionSubroutineOffset;
+        RequireOpcode(bytes, ref position, LoadAccumulatorOpcode,
+            "third-menu exit completion condition");
+        RequireSequence(bytes, ref position,
+        [
+            0xe2, 0x8e, 0x01, 0xd6, 0x8e, 0x06, 0xd6, 0x8e, 0x07,
+            0xd6, 0x8e, 0x0b, 0xd6, 0x8e, 0x0a, 0xd6, 0x8e, 0x08,
+            0xe1, 0xd7, 0x8f, 0x00
+        ], "third-menu exit all-responses-complete condition");
+        RequireOpcode(bytes, ref position, IfOpcode,
+            "third-menu exit completion assignment branch");
+        RequireImmediate14(bytes, ref position, 4080,
+            "third-menu exit completion endif target");
+        _ = ReadFlagAssignment(bytes, ref position, 14, true);
+        RequireOpcode(bytes, ref position, EndIfOpcode,
+            "third-menu exit completion endif");
+        RequireOpcode(bytes, ref position, LocalReturnOpcode,
+            "third-menu exit condition local return");
+        if (position != ThirdMenuExitOutputSubroutineOffset)
+            throw Error($"third-menu exit condition helper ends at {position}, " +
+                $"not {ThirdMenuExitOutputSubroutineOffset}");
+    }
+
+    private static GplDialogueOutput ReadThirdMenuExitOutputSubroutine(
+        ReadOnlySpan<byte> bytes)
+    {
+        var position = ThirdMenuExitOutputSubroutineOffset;
+        var output = ReadLiteralPrint(bytes, ref position, 4122);
+        RequireOpcode(bytes, ref position, LocalReturnOpcode,
+            "third-menu exit output local return");
+        if (position != ScriptExitOffset)
+            throw Error($"third-menu exit output helper ends at {position}, " +
+                $"not {ScriptExitOffset}");
+        return output;
     }
 
     private static FirstTyrDialogueResponseProjection ReadIncrementing(

@@ -602,6 +602,46 @@ public sealed class FirstTyrDialogueProjectionTests
             }));
     }
 
+    [Fact]
+    public void ProjectsThirdMenuExitWithPostAssignmentCompletionCondition()
+    {
+        var projection = FirstTyrDialogueResponseProjectionReader.ReadThirdMenuExit(
+            ScriptWithThirdMenuExit());
+
+        Assert.Equal((6, 3976, true), (projection.SourceChoiceIndex,
+            projection.EntryOffset, projection.ReturnsFromLocalBranch));
+        Assert.Equal([9, 39], projection.CompletedOutput
+            .Select(item => item.Text!.Text.Length));
+        Assert.Equal([35], projection.EarlyOutput
+            .Select(item => item.Text!.Text.Length));
+        Assert.Equal([(8, false)], projection.LocalFlagAssignments
+            .Select(assignment => ((int)assignment.VariableId, assignment.Value)));
+        var conditional = Assert.Single(
+            projection.ConditionalLocalFlagAssignmentsAfterLocalFlags);
+        Assert.Equal([1, 6, 7, 11, 10, 8], conditional.Conditions
+            .Select(condition => (int)condition.VariableId));
+        Assert.Equal((14, true), ((int)conditional.VariableId, conditional.Value));
+    }
+
+    [Fact]
+    public void RejectsThirdMenuExitControlFlowAndHelperDrift()
+    {
+        var driftedBranch = ScriptWithThirdMenuExit();
+        driftedBranch.Bytecode[3989] = 0;
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadThirdMenuExit(driftedBranch));
+        var driftedHelper = ScriptWithThirdMenuExit();
+        driftedHelper.Bytecode[4069] = 9;
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadThirdMenuExit(driftedHelper));
+        var truncated = ScriptWithThirdMenuExit();
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueResponseProjectionReader.ReadThirdMenuExit(truncated with
+            {
+                Bytecode = truncated.Bytecode[..4122]
+            }));
+    }
+
     private static PackedGplScript Script()
     {
         var bytes = new byte[2905];
@@ -878,6 +918,37 @@ public sealed class FirstTyrDialogueProjectionTests
         WritePrint(bytes, 3920, new string('l', 50));
         Write(bytes, 3970,
             [0x16, 0x8f, 0x00, 0x8e, 0x12, 0x15]);
+        return script with { Bytecode = bytes };
+    }
+
+    private static PackedGplScript ScriptWithThirdMenuExit()
+    {
+        var script = Script();
+        var bytes = Expand(script, 4123);
+        Write(bytes, 3976,
+        [
+            0x16, 0x8f, 0x00, 0x8e, 0x08,
+            0x13, 0x0f, 0xd1,
+            0x18, 0x8e, 0x0e,
+            0x3e, 0x0f, 0xa7
+        ]);
+        WritePrint(bytes, 3990, new string('m', 9));
+        Write(bytes, 4004,
+            [0x13, 0x0f, 0xf2, 0x3f, 0x0f, 0xcf]);
+        WritePrint(bytes, 4010, new string('n', 35));
+        Write(bytes, 4047, [0x67, 0x15]);
+        Write(bytes, 4049,
+        [
+            0x18,
+            0xe2, 0x8e, 0x01, 0xd6, 0x8e, 0x06, 0xd6, 0x8e, 0x07,
+            0xd6, 0x8e, 0x0b, 0xd6, 0x8e, 0x0a, 0xd6, 0x8e, 0x08,
+            0xe1, 0xd7, 0x8f, 0x00,
+            0x3e, 0x0f, 0xf0,
+            0x16, 0x8f, 0x01, 0x8e, 0x0e,
+            0x67, 0x15
+        ]);
+        WritePrint(bytes, 4082, new string('o', 39));
+        bytes[4122] = 0x15;
         return script with { Bytecode = bytes };
     }
 

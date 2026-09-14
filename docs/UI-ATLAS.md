@@ -21,7 +21,8 @@ independently written measurements and diagrams.
 
 Third-menu status clarification: target 3686 clears local flag 17 and sets flag
 18; target 3786 then clears flag 18. Both return, are dispatched by target, and
-present bounded projected output. Target 3976 remains unimplemented.
+present bounded projected output. Target 3976 clears flag 8, conditionally sets
+flag 14 from post-assignment state, and completes the dialogue.
 
 ## Documented semantic actions
 

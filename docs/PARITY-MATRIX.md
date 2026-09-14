@@ -27,8 +27,8 @@ States are `unknown`, `researched`, `implemented`, `partially validated`,
 | Packaging | configured scripts | not applicable | project identity configured | not applicable | app identity configured | build/smoke planned | not started | researched |
 
 Dialogue status clarification: targets 3686/3786 and their local flag 17/18
-transition are implemented and their owned output is validated. Target 3976 is
-the remaining third-menu completion path.
+transition are implemented and their owned output is validated. Target 3976
+also completes the third menu with ordered post-assignment condition handling.
 
 ## Blockers
 

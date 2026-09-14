@@ -83,6 +83,24 @@ public sealed class DialogueSessionAdapterTests
     }
 
     [Fact]
+    public void MapsThirdMenuCompletionPostAssignmentCondition()
+    {
+        var projection = new FirstTyrDialogueThirdCompletionProjection(6, 3976,
+            [], [], [new(8, false)],
+            [new([new(1, false), new(8, false)], 14, true)], true);
+
+        var result = DialogueSessionAdapter.ToCore(projection);
+
+        Assert.Equal(DialogueBranchDisposition.Completed, result.Disposition);
+        var assignment = Assert.Single(
+            result.ConditionalLocalFlagAssignmentsAfterLocalFlags);
+        Assert.Equal([1, 8], assignment.Conditions.Select(condition =>
+            (int)condition.VariableId));
+        Assert.Throws<InvalidDataException>(() => DialogueSessionAdapter.ToCore(
+            projection with { ReturnsFromLocalBranch = false }));
+    }
+
+    [Fact]
     public void MapsConditionalAndGlobalResponseEffects()
     {
         var projection = new FirstTyrDialogueResponseProjection(1, 1597, [],

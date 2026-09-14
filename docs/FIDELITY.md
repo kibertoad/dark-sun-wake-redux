@@ -31,5 +31,5 @@ Status values: `unknown`, `documented`, `observed`, `implemented`, and
 
 Dialogue status clarification: third-menu targets 3686 and 3786 are also
 implemented as bounded returned responses, including their local flag 17/18
-transition and projected output. Target 3976 remains the open third-menu
-completion path.
+transition and projected output. Target 3976 now completes the third menu after
+its ordered flag-8 clear and six-flag condition.

@@ -723,6 +723,9 @@
   and returns. Target 3257 prints four literals, clears local flag 15, and returns.
   Target 3686 prints two literals, clears local flag 17, sets local flag 18, and
   returns. Target 3786 prints three literals, clears local flag 18, and returns.
+  Constant target 3976 clears local flag 8, calls a helper that sets local flag
+  14 when local flags 1/6/7/11/10/8 are all zero after that clear, selects a
+  two-part completed or one-part early output, and returns.
 - **Confidence:** verified for the captured layouts, first exchange's GPL chunk,
   and visible response text; high for the static UI graph; medium for the
   opening-only local number 0, local flags 9/16, global flag 357, and global
@@ -815,6 +818,11 @@
   projection through offset 3785. Target 3786 has an exact three-print,
   flag-18-clear, and return projection through offset 3975. Both are registered
   for target-based runtime dispatch and their output fits the owned font area.
+  Target 3976 validates its flag-8 clear, condition/output helper calls, exact
+  six-flag expression, flag-14 conditional assignment, both output paths, and
+  all return boundaries through offset 4123. Core evaluates the composite
+  condition after direct assignments, rejects unknown inputs without mutation,
+  and completes the dialogue; owned smoke proves the completed two-part path.
   Choice 7's target has an exact bounded projection at offsets 2905–2920: print
   GSTRING #5, assign immediate one to local flags 14 and 4, then return locally.
   Core validates the selected identity before applying both flags atomically and
@@ -836,6 +844,7 @@
   target-2921 print/assignment/return drift,
   target-3089/3257 print/assignment/return drift,
   target-3686/3786 print/assignment/return drift,
+  target-3976 branch/helper/output drift and post-assignment atomicity,
   explicit-newline transcript rendering and malformed-output rejection,
   atomic flag
   application, conditional global-flag effects, deterministic menu reselection,
