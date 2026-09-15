@@ -579,22 +579,29 @@
   centered origin as Game Menu. The graph identifies music, sound-effects,
   animations, voice-effects, About, paired music/sound/difficulty controls,
   Game Menu, and Return. All identities, positions, dimensions, images, and
-  frame counts are bounded. The manual establishes the toggle and slider roles
-  but not their numeric ranges, increments, defaults beyond Average difficulty,
-  or exact frame-state policy.
+  frame counts are bounded. `EXE-GOG-UI-004` establishes a four-entry
+  Easy/Balanced/Hard/Hideous difficulty label table and a nine-line centered
+  About payload. The manual establishes the toggle and slider roles but not
+  their numeric ranges, increments, toggle defaults, or exact frame-state policy;
+  its “Average” default wording conflicts with the executable's Balanced label.
 - **Confidence:** verified for the owned graph/image contracts; high for the
-  labeled roles and navigation from the manual. Numeric setting behavior and
-  panel-origin parity remain open.
-- **Implementation:** pack format 21 expands `ui/game-menu.dsui` with #16500,
+  labeled roles and navigation from the manual, and high for the executable
+  text-table shape. Numeric setting behavior, the selected difficulty default,
+  and panel-origin parity remain open.
+- **Implementation:** pack format 25 expands `ui/game-menu.dsui` with #16500,
   extracts eight additional unique images, and renders the authentic base and
   first frames. `PreferencesInput` supplies exclusive absolute hit rectangles;
   Game Menu and Return navigate deterministically while setting mutations stay
-  inert until their boundaries are evidenced.
+  inert until their boundaries are evidenced. A bounded fixed-edition reader
+  extracts the four difficulty labels and nine About lines into
+  `text/preferences.dstx` without committing their payload.
 - **Tests:** exact graph/button/image geometry, duplicate/drift rejection,
   exclusive hit edges, navigation and inert-action routing, transactional
-  extraction, content smoke, and exact owned-pack verification.
-- **Uncertainty:** numeric ranges, adjustment steps, toggle defaults, About
-  destination, selected/disabled frames, description text, and native origin.
+  extraction, executable string truncation/prefix/length checks, content smoke,
+  and exact owned-pack verification.
+- **Uncertainty:** numeric ranges, adjustment steps, toggle defaults, selected
+  difficulty default, About presentation/dismissal, selected/disabled frames,
+  description text, and native origin.
 
 ### DATA-GOG-CURSOR-001 - Exploration cursor family and hotspot
 
@@ -648,7 +655,7 @@
 - **Confidence:** verified for the owned panel identity, origin, control graph,
   disabled hostile state, visible name/level, and action semantics; unknown for
   how arbitrary OJFF/GPL records determine hostility and capabilities.
-- **Implementation:** pack format 24 extracts the seven active/disabled/dismiss
+- **Implementation:** pack format 25 extracts the seven active/disabled/dismiss
   interaction images plus `WIND` #3020 as part of a bounded DSUI graph. Core models
   validated creature/object targets, enabled actions, the documented sole-object
   shortcut, inert disabled selections, and deterministic dismissal. Runtime
@@ -738,7 +745,7 @@
   The award-producing script path, broader dialogue consequences,
   generic variable initialization, and generic GPL
   execution semantics remain open.
-- **Implementation:** pack format 24 stores the byte-identical GPL #135 and MAS
+- **Implementation:** pack format 25 stores the byte-identical GPL #135 and MAS
   #99 payloads in bounded versioned DSGP envelopes, extracts `PORT` #18 with
   the interface palette, and expands the interaction DSUI with #12500/#12501
   plus six dialogue-control images. The response adapter validates the speech

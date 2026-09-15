@@ -6,6 +6,7 @@ namespace DarkSunWakeRedux.Extractor;
 public static class StartupAssetExtractor
 {
     public const string SourcePath = "RESOURCE.GFF";
+    public const string ExecutableSourcePath = "DSUN.EXE";
     public const string CharacterSourcePath = "CHARSAVE.GFF";
     public const string GplSourcePath = "GPLDATA.GFF";
     public const string ObjectSourcePath = "OBJEX.GFF";
@@ -30,6 +31,14 @@ public static class StartupAssetExtractor
         var sourcePath = Path.Combine(sourceRoot, SourcePath);
         await using var source = File.OpenRead(sourcePath);
         var archive = GffArchive.Read(source, sourcePath);
+        var executablePath = Path.Combine(sourceRoot, ExecutableSourcePath);
+        if (!File.Exists(executablePath))
+            throw new FileNotFoundException(
+                $"Required game executable is missing: {ExecutableSourcePath}.",
+                executablePath);
+        await using var executable = File.OpenRead(executablePath);
+        var preferencesText = ExecutablePreferencesTextReader.Read(
+            executable, ExecutableSourcePath);
         var characterSourcePath = Path.Combine(sourceRoot, CharacterSourcePath);
         if (!File.Exists(characterSourcePath))
             throw new FileNotFoundException(
@@ -203,6 +212,8 @@ public static class StartupAssetExtractor
             $"{SourcePath}:{FontTag}#{FontNumber}");
         files.Add(await WriteFontAsync(stagingRoot, font, cancellationToken));
         files.Add(await WriteTextCatalogAsync(stagingRoot, archive, cancellationToken));
+        files.Add(await WritePreferencesTextCatalogAsync(
+            stagingRoot, preferencesText, cancellationToken));
         files.Add(await WriteUiCatalogAsync(stagingRoot, archive,
             OriginalContent.StartFlowUiCatalogAssetPath,
             OriginalContent.StartFlowWindowResourceNumbers, "start-flow", cancellationToken));
@@ -281,6 +292,32 @@ public static class StartupAssetExtractor
         return new(relativePath, verify.Length, hash, CharacterSourcePath,
             "application/vnd.dark-sun-wake-redux.character-catalog",
             $"CHAR identity/abilities/envelope + PSIN mask -> DSCH v{PackedCharacterCatalog.FormatVersion}");
+    }
+
+    private static async Task<AssetPackFile> WritePreferencesTextCatalogAsync(
+        string stagingRoot,
+        ExecutablePreferencesText text,
+        CancellationToken cancellationToken)
+    {
+        var catalog = new PackedTextCatalog(new Dictionary<uint, IReadOnlyList<string>>
+        {
+            [OriginalContent.PreferencesDifficultyTextResourceNumber] =
+                text.DifficultyLabels,
+            [OriginalContent.PreferencesAboutTextResourceNumber] = text.AboutLines
+        });
+        var relativePath = OriginalContent.PreferencesTextCatalogAssetPath;
+        var target = Path.Combine(stagingRoot,
+            relativePath.Replace('/', Path.DirectorySeparatorChar));
+        Directory.CreateDirectory(Path.GetDirectoryName(target)!);
+        await using (var output = File.Create(target)) catalog.Write(output);
+        await using var verify = File.OpenRead(target);
+        PackedTextCatalog.Read(verify, relativePath);
+        verify.Position = 0;
+        var hash = Convert.ToHexStringLower(
+            await SHA256.HashDataAsync(verify, cancellationToken));
+        return new(relativePath, verify.Length, hash, ExecutableSourcePath,
+            "application/vnd.dark-sun-wake-redux.text-catalog",
+            $"bounded Preferences difficulty/About strings -> DSTX v{PackedTextCatalog.FormatVersion}");
     }
 
     private static async Task<AssetPackFile> WriteGplScriptAsync(

@@ -264,7 +264,7 @@ decoder rather than being guessed now.
   class/level progression, the active member during DUAL selection or editing,
   and recreation-native stored characters;
   DSUI round-trip, malformed graph, deterministic ordering, mixed-control graph resolution, resource-ID routing,
-  rectangle-edge, synthetic extraction, content-smoke, and owned 99-asset pack verification cover the derived
+  rectangle-edge, synthetic extraction, content-smoke, and owned 100-asset pack verification cover the derived
   start-flow layout contract;
   gameplay-wide replay remains a later-slice requirement.
 - **Observed parity.** Compare boot, start, create/select/cancel, and quit state
@@ -391,6 +391,12 @@ decoder rather than being guessed now.
   Effects reuse the character shell and #11500 navigation with exact
   #20080/#20075 title placement; both now render. The Preferences #16500 graph
   and artwork now render and its Game Menu/Return actions route deterministically.
+  `EXE-GOG-UI-004` now bounds the executable's ordered four-label difficulty
+  table and nine centered About strings. Pack v25 extracts both through the
+  existing DSTX format without committing original text. The manual's Average
+  default wording conflicts with the executable's Balanced label, so the
+  selected default and all numeric setting boundaries remain open rather than
+  becoming guessed state.
   Controlled cursor observations map `ICON` #19101-#19110, verify the
   manual-defined upper-left hotspot and all six Walk/melee/Look valid/invalid
   states, and identify OJFF #9258 as the first observed melee target. Pack v21

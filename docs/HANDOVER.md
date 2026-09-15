@@ -17,7 +17,7 @@ Owner captures now distinguish hostile Look, a one-way 10,000-experience award,
 and the first full conversation. `DATA-GOG-INTERACTION-001` maps hostile
 `WIND` #3020 and its disabled actions; `OBS-GOG-DIALOGUE-001` maps the upper and
 lower dialogue windows and ties the captured exchange to `GPL` #135 without
-committing original text or screenshots. Pack format 24 contains the bounded
+committing original text or screenshots. Pack format 25 contains the bounded
 three-window interaction/dialogue graph, thirteen control images, `PORT` #18,
 and byte-identical `GPL` #135 and `MAS` #99 in DSGP envelopes. Core contains the deterministic
 interaction/sole-action contract; Resources decodes the packed-string primitive
@@ -35,6 +35,10 @@ initialization remains unresolved. A
 deterministic Core dialogue session now owns all choice definitions and derives
 the visible source-index/branch-target pairs; runtime
 row clicks select one pair atomically and cannot leak through as world movement.
+`EXE-GOG-UI-004` additionally bounds and extracts the four difficulty labels and
+nine centered About lines from the fingerprinted executable into a separate
+DSTX catalog. The manual's Average/Balance terminology conflict, numeric setting
+ranges, selected defaults, and About presentation remain open.
 Choice 0 has a bounded projection validating its three literal prints, two
 newlines, local-flag 0 clear, and local return; the bounded post-menu continuation
 sets local flag 4 and advances to the second menu, while Game rebuilds its
@@ -126,11 +130,9 @@ research output remain under ignored `analysis/original/`.
 
 Continue Slice 3 from evidence, preferably in this order:
 
-1. establish the Preferences setting ranges/defaults and About destination,
-   then add
-   quest consequences;
-2. establish the Preferences setting ranges/defaults and About destination,
+1. establish the remaining Preferences ranges/defaults and About presentation,
    then implement deterministic setting mutations and frame-state feedback;
+2. add the next evidenced quest consequences;
 3. generalize attack/look target eligibility and select ranged versus melee
    cursor from evidenced readied-weapon state;
 4. fill character/inventory/Cast/Effects dynamic fields and item-transfer or

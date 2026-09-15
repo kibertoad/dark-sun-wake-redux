@@ -537,6 +537,20 @@ try
             using var textStream = File.OpenRead(textPath);
             if (PackedTextCatalog.Read(textStream, OriginalContent.TextCatalogAssetPath).Resources.Count == 0)
                 throw new InvalidDataException("The installed text catalog is empty.");
+            var preferencesTextPath = Path.Combine(assetPack,
+                OriginalContent.PreferencesTextCatalogAssetPath.Replace(
+                    '/', Path.DirectorySeparatorChar));
+            using var preferencesTextStream = File.OpenRead(preferencesTextPath);
+            var preferencesText = PackedTextCatalog.Read(
+                preferencesTextStream, OriginalContent.PreferencesTextCatalogAssetPath);
+            if (preferencesText.Resources[
+                    OriginalContent.PreferencesDifficultyTextResourceNumber].Count !=
+                    ExecutablePreferencesTextReader.DifficultyLabelCount ||
+                preferencesText.Resources[
+                    OriginalContent.PreferencesAboutTextResourceNumber].Count !=
+                    ExecutablePreferencesTextReader.AboutLineCount)
+                throw new InvalidDataException(
+                    "The installed Preferences text catalog is incomplete.");
             var characterPath = Path.Combine(assetPack,
                 OriginalContent.CharacterCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar));
             using var characterStream = File.OpenRead(characterPath);

@@ -202,6 +202,33 @@ proof by itself. Never redirect broad output into the repository.
   from DSUI and keep it semantically inert until controlled observation or a
   bounded indirect-call finding establishes the slot partition and actions.
 
+### EXE-GOG-UI-004 - Preferences difficulty and About text tables
+
+- **Question:** Which finite difficulty labels and About payload belong to the
+  supported Preferences screen?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Bounded finding:** the data block at `5000:a4ba` contains four adjacent far
+  pointers to the null-terminated difficulty strings at `5000:a4f5` through
+  `5000:a508`. The values are Easy, Balanced, Hard, and Hideous in that order.
+  The same block contains nine adjacent far pointers to centered About format
+  strings at `5000:a5cc` through `5000:a6c9`; each begins with three `%C`
+  controls. The payload covers the title/copyright, publisher/address, support,
+  and hint-line categories described by MANUAL-1994 page 15.
+- **Conflict:** the manual calls the four choices Easy, Balanced, Hard, and
+  Hideous, then calls the default “Average.” No Average label exists in the
+  executable table. Treat Average as unresolved terminology, not a fifth
+  setting or proof of the default index.
+- **Confidence:** high for table shape, order, text boundaries, and format
+  controls; unknown for the selected default, mutation handler, and exact About
+  presentation geometry.
+- **Implementation consequence:** a fixed-edition bounded reader validates the
+  executable offsets, printable bytes, terminators, counts, and About control
+  prefixes. The Extractor strips only the three centering controls and writes
+  the four labels and nine lines to a local DSTX catalog. Original text is not
+  committed and the Game never reads the executable.
+
 ### EXE-GOG-CHAR-001 - No adjacent default-party identity table established
 
 - **Question:** Does the supported executable contain either disc character
