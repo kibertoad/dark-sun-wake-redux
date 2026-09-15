@@ -392,11 +392,12 @@ decoder rather than being guessed now.
   #20080/#20075 title placement; both now render. The Preferences #16500 graph
   and artwork now render and its Game Menu/Return actions route deterministically.
   `EXE-GOG-UI-004` now bounds the executable's ordered four-label difficulty
-  table and nine centered About strings. Pack v25 extracts both through the
-  existing DSTX format without committing original text. The manual's Average
-  default wording conflicts with the executable's Balanced label, so the
-  selected default and all numeric setting boundaries remain open rather than
-  becoming guessed state.
+  table, exact ten-string Preferences description span, and nine centered About
+  strings. Pack v26 extracts all three through the existing DSTX format without
+  committing original text. The manual's Average default wording conflicts with
+  the executable's Balanced label, so description-role ordering, the selected
+  default, and all numeric setting boundaries remain open rather than becoming
+  guessed state.
   Controlled cursor observations map `ICON` #19101-#19110, verify the
   manual-defined upper-left hotspot and all six Walk/melee/Look valid/invalid
   states, and identify OJFF #9258 as the first observed melee target. Pack v21

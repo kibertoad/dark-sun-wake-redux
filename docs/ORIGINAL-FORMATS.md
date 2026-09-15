@@ -30,7 +30,7 @@ semantics.
 | `MUSIC/*.ogg` | 39 GOG-supplied music files | Ogg container presence is observed; mapping, loop points, provenance, and relationship to original media are unknown | low | Validate stream metadata and decode limits; unknown track mapping remains data, not a guessed rule |
 | `ITEMS.BIN` | Small game data file | Size is 936 bytes in the supported build; record layout and meaning are unknown | unknown | Require exact supported source fingerprint before any reader; bound all table dimensions |
 | `game.gog` / `game.ins` | GOG disc-image payload and descriptor | Bounded Mode 2/2352 ISO 9660 inspection located the disc character archive for `DATA-GOG-CHAR-006`; broader extractor relevance is unknown | medium for that bounded observation | Never mount/execute automatically; parse only when a documented evidence question requires it, bound sectors/directories/extents, and keep temporary original bytes outside Git |
-| `DSUN.EXE` | Original DOS executable | Fingerprinted research oracle and bounded source for the Preferences difficulty/About string tables; never an extraction output or runtime dependency | implemented for the two fixed-edition tables only | Bound file size, fixed offsets, counts, terminators, printable bytes, and About control prefixes; never copy the executable into the pack or Git |
+| `DSUN.EXE` | Original DOS executable | Fingerprinted research oracle and bounded source for the Preferences difficulty/description/About string tables; never an extraction output or runtime dependency | implemented for the three fixed-edition tables only | Bound file size, fixed offsets, counts, terminators, printable bytes, exact description span, and About control prefixes; never copy the executable into the pack or Git |
 
 The GFF directory is the first implemented format layer. Which payload tags and
 source files form the minimum complete Slice 2 pack remains open under `Q4` in
@@ -502,8 +502,11 @@ CRLF delimiters are removed because line boundaries are explicit. The reader
 caps files at 8 MiB, resource/line counts at 65,536, and lines at 4,096 bytes,
 and rejects duplicate IDs, unsupported bytes, truncation, and trailing data.
 
-Pack format 25 also uses DSTX for `text/preferences.dstx`. Resource 0 contains
+Pack format 26 also uses DSTX for `text/preferences.dstx`. Resource 0 contains
 the four executable-backed difficulty labels in table order; resource 1 contains
 the nine About lines after the reader validates and removes each leading
-three-control centering prefix. The source offsets are edition-specific and are
-accepted only after the executable fingerprint matches the supported manifest.
+three-control centering prefix; resource 2 contains the ten contiguous
+Preferences descriptions. The source offsets are edition-specific and are
+accepted only after the executable fingerprint matches the supported manifest;
+the reader also requires the description table to end exactly at the About
+table boundary.

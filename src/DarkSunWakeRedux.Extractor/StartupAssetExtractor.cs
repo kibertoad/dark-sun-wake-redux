@@ -303,7 +303,9 @@ public static class StartupAssetExtractor
         {
             [OriginalContent.PreferencesDifficultyTextResourceNumber] =
                 text.DifficultyLabels,
-            [OriginalContent.PreferencesAboutTextResourceNumber] = text.AboutLines
+            [OriginalContent.PreferencesAboutTextResourceNumber] = text.AboutLines,
+            [OriginalContent.PreferencesDescriptionTextResourceNumber] =
+                text.Descriptions
         });
         var relativePath = OriginalContent.PreferencesTextCatalogAssetPath;
         var target = Path.Combine(stagingRoot,
@@ -317,7 +319,7 @@ public static class StartupAssetExtractor
             await SHA256.HashDataAsync(verify, cancellationToken));
         return new(relativePath, verify.Length, hash, ExecutableSourcePath,
             "application/vnd.dark-sun-wake-redux.text-catalog",
-            $"bounded Preferences difficulty/About strings -> DSTX v{PackedTextCatalog.FormatVersion}");
+            $"bounded Preferences difficulty/description/About strings -> DSTX v{PackedTextCatalog.FormatVersion}");
     }
 
     private static async Task<AssetPackFile> WriteGplScriptAsync(

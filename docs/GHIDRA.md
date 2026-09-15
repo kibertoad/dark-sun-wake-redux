@@ -209,10 +209,13 @@ proof by itself. Never redirect broad output into the repository.
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
   SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
-- **Bounded finding:** the data block at `5000:a4ba` contains four adjacent far
+- **Bounded finding:** the data block at `5000:a4b9` contains four adjacent far
   pointers to the null-terminated difficulty strings at `5000:a4f5` through
   `5000:a508`. The values are Easy, Balanced, Hard, and Hideous in that order.
-  The same block contains nine adjacent far pointers to centered About format
+  A `%C%C%C%s` formatter at `5000:a523` is followed at `5000:a52b` by exactly
+  ten contiguous null-terminated help strings spanning the Preferences roles;
+  the tenth terminator ends exactly where the About table begins. The same
+  block contains nine adjacent far pointers to centered About format
   strings at `5000:a5cc` through `5000:a6c9`; each begins with three `%C`
   controls. The payload covers the title/copyright, publisher/address, support,
   and hint-line categories described by MANUAL-1994 page 15.
@@ -221,13 +224,15 @@ proof by itself. Never redirect broad output into the repository.
   executable table. Treat Average as unresolved terminology, not a fifth
   setting or proof of the default index.
 - **Confidence:** high for table shape, order, text boundaries, and format
-  controls; unknown for the selected default, mutation handler, and exact About
-  presentation geometry.
+  controls; high for the ten-description table boundary but only medium for its
+  role ordering until runtime hover behavior is observed; unknown for the
+  selected default, mutation handler, and exact About presentation geometry.
 - **Implementation consequence:** a fixed-edition bounded reader validates the
-  executable offsets, printable bytes, terminators, counts, and About control
-  prefixes. The Extractor strips only the three centering controls and writes
-  the four labels and nine lines to a local DSTX catalog. Original text is not
-  committed and the Game never reads the executable.
+  executable offsets, printable bytes, terminators, exact description span,
+  counts, and About control prefixes. The Extractor strips only the three
+  centering controls and writes the four labels, ten descriptions, and nine
+  About lines to a local DSTX catalog. Original text is not committed and the
+  Game never reads the executable.
 
 ### EXE-GOG-CHAR-001 - No adjacent default-party identity table established
 

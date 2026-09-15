@@ -4,13 +4,16 @@ namespace DarkSunWakeRedux.Resources;
 
 public sealed record ExecutablePreferencesText(
     IReadOnlyList<string> DifficultyLabels,
+    IReadOnlyList<string> Descriptions,
     IReadOnlyList<string> AboutLines);
 
 public static class ExecutablePreferencesTextReader
 {
     public const int DifficultyTableOffset = 0x4f6f5;
+    public const int DescriptionTableOffset = 0x4f72b;
     public const int AboutTableOffset = 0x4f7cc;
     public const int DifficultyLabelCount = 4;
+    public const int DescriptionCount = 10;
     public const int AboutLineCount = 9;
     public const int MaximumStringBytes = 64;
     public const long MaximumExecutableBytes = 16L * 1024 * 1024;
@@ -33,6 +36,14 @@ public static class ExecutablePreferencesTextReader
         if (difficulty.Any(label => string.IsNullOrWhiteSpace(label)))
             throw Error(sourceName, "contains an empty difficulty label");
 
+        stream.Position = DescriptionTableOffset;
+        var descriptions = Enumerable.Range(0, DescriptionCount)
+            .Select(index => ReadString(stream, sourceName, $"description {index}"))
+            .ToArray();
+        if (descriptions.Any(description => string.IsNullOrWhiteSpace(description)) ||
+            stream.Position != AboutTableOffset)
+            throw Error(sourceName, "has an invalid Preferences description table");
+
         stream.Position = AboutTableOffset;
         var about = new string[AboutLineCount];
         for (var index = 0; index < about.Length; index++)
@@ -44,7 +55,7 @@ public static class ExecutablePreferencesTextReader
                     $"About line {index} lacks its centered-text control prefix");
             about[index] = encoded[CenterPrefix.Length..];
         }
-        return new(difficulty, about);
+        return new(difficulty, descriptions, about);
     }
 
     private static string ReadString(Stream stream, string sourceName, string field)

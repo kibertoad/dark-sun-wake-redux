@@ -175,7 +175,8 @@ and 867 entity records, its 287 definitions, 246 images, and 477 frames, and
 the exact 13-frame opening-leader image and all ten `ICON` #19101-#19110 cursor
 images with their exact one-frame geometry, plus the three-window interaction/dialogue graph,
 thirteen action/dialogue control images, `PORT` #18 portrait, GPL #135/MAS #99
-DSGP scripts, and the four-label/nine-line Preferences DSTX catalog.
+DSGP scripts, and the four-label/ten-description/nine-line Preferences DSTX
+catalog.
 The runtime content-smoke path verifies
 all 13 frame dimensions plus frame 0's 367-pixel alpha coverage and rasterizes 320x200 viewports at
 both opposite region corners successfully. It also verifies Tyr's exact four

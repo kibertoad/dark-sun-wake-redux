@@ -64,6 +64,8 @@ public sealed partial class StartupAssetExtractorTests
                     OriginalContent.PreferencesDifficultyTextResourceNumber].Count);
                 Assert.Equal(9, preferencesText.Resources[
                     OriginalContent.PreferencesAboutTextResourceNumber].Count);
+                Assert.Equal(10, preferencesText.Resources[
+                    OriginalContent.PreferencesDescriptionTextResourceNumber].Count);
             }
             var asset = Assert.Single(manifest.Files, item => item.Path == OriginalContent.TitleImageAssetPath);
             Assert.Contains("BMP #11011", asset.Conversion, StringComparison.Ordinal);

@@ -548,7 +548,10 @@ try
                     ExecutablePreferencesTextReader.DifficultyLabelCount ||
                 preferencesText.Resources[
                     OriginalContent.PreferencesAboutTextResourceNumber].Count !=
-                    ExecutablePreferencesTextReader.AboutLineCount)
+                    ExecutablePreferencesTextReader.AboutLineCount ||
+                preferencesText.Resources[
+                    OriginalContent.PreferencesDescriptionTextResourceNumber].Count !=
+                    ExecutablePreferencesTextReader.DescriptionCount)
                 throw new InvalidDataException(
                     "The installed Preferences text catalog is incomplete.");
             var characterPath = Path.Combine(assetPack,
