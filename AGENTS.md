@@ -145,10 +145,14 @@ comparison that still requires manual validation.
 Coding agents must never launch, control, capture, or stop DOSBox on their own.
 When an evidence question requires an original-game observation, give the
 repository owner an exact, bounded screenshot or capture checklist and wait for
-the owner to confirm that the requested material has been produced. Only then
-may the agent inspect those owner-produced captures. Do not treat an unconfirmed
-request, an old capture, or the presence of a DOSBox process as evidence that
-the requested observation was performed.
+the owner to confirm that the requested material has been produced with
+DOSBox's built-in Ctrl+F5 screenshot command. After that confirmation, parse
+the configured DOSBox screenshots folder and inspect only images whose file
+timestamps fall within the owner-confirmed capture window. Do not operate the
+DOSBox window, invoke Ctrl+F5, use another screen-capture mechanism, or infer
+that an unconfirmed request, an old capture, or the presence of a DOSBox process
+means the requested observation was performed. If the timestamp window is
+missing or ambiguous, ask the owner before inspecting any candidate image.
 
 ## Post-commit orphan-process audit
 
