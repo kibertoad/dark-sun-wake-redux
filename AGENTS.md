@@ -142,6 +142,14 @@ or claim that a live visual check ran. Use purpose-built headless/content smoke
 tests and owner-produced screenshots or captures instead, and record any visual
 comparison that still requires manual validation.
 
+Coding agents must never launch, control, capture, or stop DOSBox on their own.
+When an evidence question requires an original-game observation, give the
+repository owner an exact, bounded screenshot or capture checklist and wait for
+the owner to confirm that the requested material has been produced. Only then
+may the agent inspect those owner-produced captures. Do not treat an unconfirmed
+request, an old capture, or the presence of a DOSBox process as evidence that
+the requested observation was performed.
+
 ## Post-commit orphan-process audit
 
 After every commit, inspect running processes for orphaned work launched while
