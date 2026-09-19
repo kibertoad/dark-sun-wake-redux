@@ -727,14 +727,21 @@ proof by itself. Never redirect broad output into the repository.
   4 to `4c0d:0009`; the fourth accepts either order of resident words
   `4c0d:0009` and `4c0d:0007` against record words 4/6. No conclusion about
   the meanings of the resident values or fields follows from their arithmetic.
+  Two additional readers prove that offset 11 is a mutable list link rather
+  than only a traversal field: `1695:010f` recursively scans a supplied chain,
+  branches when the low byte at offset 6 is zero, and delegates to
+  `1695:07dd`; that helper replaces the caller's index with the old offset-11
+  link, overwrites that link with the resident head at `4c13:032d`, and makes
+  the removed index the new head. This establishes node removal and relinking
+  to a second resident chain, but not the chains' gameplay roles.
 - **Interpretation:** this is a verified linked runtime-selector shape feeding
   the shared processing path, not evidence that it is a map trigger, dialogue
   option, combat event, or an on-disc file format. The apparent 13-byte stride
   is proven for these callers only; table allocation/population, index-source
   validity, execution outcome, and relation to GPL/MAS remain unknown.
-- **Confidence:** high for the four routine-local record accesses, chain shape,
-  and call relationship; unknown for table ownership, field semantics, and
-  player-visible behavior.
+- **Confidence:** high for the four routine-local record accesses, mutable
+  chain shape, and call relationship; unknown for table ownership, field
+  semantics, and player-visible behavior.
 - **Implementation consequence:** do not add a resource parser, persist this
   data, or infer interaction triggers. Preserve the evidence as `Q18` until a
   source container, a static materialization path, or a controlled observation
