@@ -11,13 +11,6 @@ public sealed record DialogueResponseControl(
     int Height,
     string AssetPath);
 
-public sealed record DialogueOverlayRectangle(
-    int X,
-    int Y,
-    int Width,
-    int Height,
-    Rgb24 FillColor);
-
 public sealed record DialogueOverlayImage(
     uint ResourceNumber,
     string AssetPath,
@@ -25,8 +18,6 @@ public sealed record DialogueOverlayImage(
     int Y);
 
 public sealed record DialogueOverlayLayout(
-    DialogueOverlayRectangle SpeechWindow,
-    DialogueOverlayRectangle ResponseWindow,
     int PortraitX,
     int PortraitY,
     IReadOnlyList<DialogueOverlayImage> Images);
@@ -35,10 +26,8 @@ public static class DialogueInput
 {
     public const int SpeechOriginX = 1;
     public const int SpeechOriginY = 0;
-    public const int ResponseOriginX = 1;
-    public const int ResponseOriginY = 142;
-    public static readonly Rgb24 SpeechFillColor = new(0, 0, 0);
-    public static readonly Rgb24 ResponseFillColor = new(125, 125, 125);
+    public const int ResponseOriginX = 0;
+    public const int ResponseOriginY = 140;
 
     private static readonly IReadOnlyDictionary<uint, (int Index, string AssetName)> Rows =
         new Dictionary<uint, (int, string)>
@@ -108,19 +97,19 @@ public static class DialogueInput
         var upperMore = RequireButton(speech, 2094, more.ImageResourceNumber, 305, 18);
         var lowerScroll = RequireButton(response, 2095, scrollUp.ResourceNumber, 305, 4);
         var lowerMore = RequireButton(response, 2096, more.ImageResourceNumber, 305, 18);
-        var images = new List<DialogueOverlayImage>(4 + responses.Count)
-        {
+        var images = new List<DialogueOverlayImage>(2 + 4 + responses.Count);
+        foreach (var layer in OriginalContent.DialogueLayers)
+            images.Add(new(layer.ImageResourceNumber, layer.Path, layer.X, layer.Y));
+        images.AddRange(
+        [
             Place(upperScroll, scrollUp.Path, SpeechOriginX, SpeechOriginY),
             Place(upperMore, more.Path, SpeechOriginX, SpeechOriginY),
             Place(lowerScroll, scrollUp.Path, ResponseOriginX, ResponseOriginY),
             Place(lowerMore, more.Path, ResponseOriginX, ResponseOriginY)
-        };
+        ]);
         images.AddRange(responses.Select(row =>
             new DialogueOverlayImage(row.ResourceNumber, row.AssetPath, row.X, row.Y)));
         return new(
-            new(SpeechOriginX, SpeechOriginY, speech.Width, speech.Height, SpeechFillColor),
-            new(ResponseOriginX, ResponseOriginY, response.Width, response.Height,
-                ResponseFillColor),
             SpeechOriginX, SpeechOriginY,
             images);
     }

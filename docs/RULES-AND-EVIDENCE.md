@@ -745,10 +745,15 @@
   for reads and writes of global flag 357.
 - **Finding:** the 10,000-experience award is a one-way upper notification with
   an empty portrait well and no lower response window. Conversation uses the
-  upper 318x72 portrait/speech window and a distinct lower 318x58 response
-  window at logical y=142. The retained capture establishes opaque black for
-  the upper well and opaque neutral gray (`#7d7d7d`) for the lower panel, even
-  though both `WIND` records omit an image resource. The captured exchange and
+  upper 318x72 portrait/speech window and a distinct lower response window.
+  Owner-confirmed capture `capture/dsun_008.png` corrects the earlier
+  reimplementation-only fill observation: neither panel is flat. `BMP ` #12003
+  is a transparent 320x200 canvas whose visible textured, dark-outlined panel
+  is drawn at `(0,0)` for speech and `(0,140)` for responses. `BMP ` #12002 is
+  the 243x47 opaque speech texture at the `EBOX` #12400 coordinate `(75,6)`.
+  Direct palette-pixel comparison confirms both placements apart from text and
+  control overdraw. Response buttons begin at `(3,153)`, not the previously
+  inferred `(4,155)`. The captured exchange and
   its initial response menu
   occur in `GPL` #135; the script's first response says “sniveling,” confirming
   the native pixels and correcting the earlier informal transcription.

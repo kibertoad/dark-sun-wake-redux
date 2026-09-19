@@ -34,7 +34,6 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     private DialogueOverlayLayout? _dialogueOverlay;
     private Texture2D? _dialoguePortrait;
     private Texture2D? _dialogueSpeechText;
-    private Texture2D? _solidPixel;
     private readonly List<(DialogueOverlayImage Placement, Texture2D Texture)>
         _dialogueOverlayImages = [];
     private readonly List<(int X, int Y, Texture2D Texture)> _dialogueResponseText = [];
@@ -181,8 +180,6 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             }
             _dialogueOverlayImages.Add((placement, texture));
         }
-        _solidPixel = new Texture2D(GraphicsDevice, 1, 1);
-        _solidPixel.SetData([Color.White]);
         using (var fontStream = File.OpenRead(AssetPath(
                    OriginalContent.InterfaceFontAssetPath)))
         using (var scriptStream = File.OpenRead(AssetPath(
@@ -741,21 +738,19 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                             control.X, control.Y, texture.Width, texture.Height), Color.White);
                 if (dialoguePreviewActive &&
                     _dialogueOverlay is { } dialogue &&
-                    _dialoguePortrait is not null && _solidPixel is not null)
+                    _dialoguePortrait is not null)
                 {
                     var fixedCanvas = new Rectangle(
                         transform.X, transform.Y, transform.Width, transform.Height);
-                    DrawDialogueWindow(dialogue.SpeechWindow);
-                    DrawDialogueWindow(dialogue.ResponseWindow);
-                    _spriteBatch.Draw(_dialoguePortrait,
-                        ScaledRectangle(fixedCanvas, transform,
-                            dialogue.PortraitX, dialogue.PortraitY,
-                            _dialoguePortrait.Width, _dialoguePortrait.Height), Color.White);
                     foreach (var (placement, texture) in _dialogueOverlayImages)
                         _spriteBatch.Draw(texture,
                             ScaledRectangle(fixedCanvas, transform,
                                 placement.X, placement.Y, texture.Width, texture.Height),
                             Color.White);
+                    _spriteBatch.Draw(_dialoguePortrait,
+                        ScaledRectangle(fixedCanvas, transform,
+                            dialogue.PortraitX, dialogue.PortraitY,
+                            _dialoguePortrait.Width, _dialoguePortrait.Height), Color.White);
                     if (_dialogueSpeechText is not null)
                         _spriteBatch.Draw(_dialogueSpeechText,
                             ScaledRectangle(fixedCanvas, transform,
@@ -766,12 +761,6 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                             ScaledRectangle(fixedCanvas, transform,
                                 x, y, texture.Width, texture.Height), Color.White);
 
-                    void DrawDialogueWindow(DialogueOverlayRectangle window) =>
-                        _spriteBatch.Draw(_solidPixel,
-                            ScaledRectangle(fixedCanvas, transform,
-                                window.X, window.Y, window.Width, window.Height),
-                            new Color(window.FillColor.Red, window.FillColor.Green,
-                                window.FillColor.Blue));
                 }
                 var mouse = Mouse.GetState();
                 var hasCursor = worldLayout is { } cursorLayout
@@ -818,7 +807,6 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         foreach (var texture in _cursorTextures.Values) texture.Dispose();
         _dialoguePortrait?.Dispose();
         _dialogueSpeechText?.Dispose();
-        _solidPixel?.Dispose();
         foreach (var texture in _dialogueOverlayImages.Select(item => item.Texture).Distinct())
             texture.Dispose();
         foreach (var (_, _, texture) in _dialogueResponseText) texture.Dispose();

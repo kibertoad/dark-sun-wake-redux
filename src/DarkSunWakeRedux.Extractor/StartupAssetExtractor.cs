@@ -185,6 +185,9 @@ public static class StartupAssetExtractor
                 $"{ImageTag}#{asset.ImageResourceNumber} all frames + " +
                 $"{PaletteTag}#{InterfacePaletteNumber}", cancellationToken));
         }
+        foreach (var layer in OriginalContent.DialogueLayers.DistinctBy(layer => layer.Path))
+            files.Add(await ExtractLayerAsync(archive, interfacePalette, stagingRoot,
+                layer, "dialogue", cancellationToken));
         var dialoguePortrait = IndexedImage.Read(gplArchive.GetResource(
                 "PORT", OriginalContent.FirstTyrDialoguePortraitResourceNumber),
             $"{GplSourcePath}:PORT#{OriginalContent.FirstTyrDialoguePortraitResourceNumber}");

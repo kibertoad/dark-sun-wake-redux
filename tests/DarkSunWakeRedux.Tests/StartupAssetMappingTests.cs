@@ -84,6 +84,15 @@ public sealed partial class StartupAssetExtractorTests
             new UiLayerAsset("use-title", "images/exploration/use-title.dsix",
                 20080, 108, 0, 104, 23)
         ], OriginalContent.ExplorationDestinationTitleLayers);
+        Assert.Equal(
+        [
+            new UiLayerAsset("speech-panel", "images/dialogue/panel.dsix",
+                12003, 0, 0, 320, 200),
+            new UiLayerAsset("speech-texture", "images/dialogue/speech-texture.dsix",
+                12002, 75, 6, 243, 47),
+            new UiLayerAsset("response-panel", "images/dialogue/panel.dsix",
+                12003, 0, 140, 320, 200)
+        ], OriginalContent.DialogueLayers);
         Assert.Equal([11500U, 13500U],
             OriginalContent.ExplorationDestinationWindowResourceNumbers);
         Assert.Equal(10, OriginalContent.ExplorationCursorAssets.Count);

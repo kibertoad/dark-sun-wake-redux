@@ -12,7 +12,7 @@ public sealed class DialogueInputTests
         var rows = DialogueInput.ResolveResponses(Catalog());
 
         Assert.Equal([0, 1, 2, 3, 4], rows.Select(row => row.Index));
-        Assert.Equal([(4, 155), (4, 163), (4, 171), (4, 179), (4, 187)],
+        Assert.Equal([(3, 153), (3, 161), (3, 169), (3, 177), (3, 185)],
             rows.Select(row => (row.X, row.Y)));
         Assert.All(rows, row => Assert.Equal((300, 10), (row.Width, row.Height)));
     }
@@ -22,9 +22,9 @@ public sealed class DialogueInputTests
     {
         var rows = DialogueInput.ResolveResponses(Catalog());
 
-        Assert.Equal(0, DialogueInput.HitTest(rows, 4, 155)?.Index);
-        Assert.Equal(1, DialogueInput.HitTest(rows, 303, 164)?.Index);
-        Assert.Null(DialogueInput.HitTest(rows, 304, 165));
+        Assert.Equal(0, DialogueInput.HitTest(rows, 3, 153)?.Index);
+        Assert.Equal(1, DialogueInput.HitTest(rows, 302, 162)?.Index);
+        Assert.Null(DialogueInput.HitTest(rows, 303, 163));
     }
 
     [Fact]
@@ -32,17 +32,15 @@ public sealed class DialogueInputTests
     {
         var overlay = DialogueInput.ResolveOverlay(Catalog());
 
-        Assert.Equal(new(1, 0, 318, 72, new Rgb24(0, 0, 0)), overlay.SpeechWindow);
-        Assert.Equal(new(1, 142, 318, 58, new Rgb24(125, 125, 125)),
-            overlay.ResponseWindow);
         Assert.Equal((1, 0), (overlay.PortraitX, overlay.PortraitY));
-        Assert.Equal(9, overlay.Images.Count);
+        Assert.Equal(12, overlay.Images.Count);
         Assert.Equal(
         [
+            (12003u, 0, 0), (12002u, 75, 6), (12003u, 0, 140),
             (2093u, 306, 4), (2094u, 306, 18),
-            (2095u, 306, 146), (2096u, 306, 160),
-            (2076u, 4, 155), (2077u, 4, 163), (2078u, 4, 171),
-            (2079u, 4, 179), (2080u, 4, 187)
+            (2095u, 305, 144), (2096u, 305, 158),
+            (2076u, 3, 153), (2077u, 3, 161), (2078u, 3, 169),
+            (2079u, 3, 177), (2080u, 3, 185)
         ], overlay.Images.Select(image => (image.ResourceNumber, image.X, image.Y)));
     }
 

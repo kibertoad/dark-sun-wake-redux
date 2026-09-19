@@ -174,7 +174,7 @@ public sealed record SourceIdentification(
 
 public static class OriginalContent
 {
-    public const int AssetPackFormatVersion = 26;
+    public const int AssetPackFormatVersion = 27;
     public const string GameId = "dark-sun-wake-redux";
     public const string TitleImageAssetPath = "images/title.dsix";
     public const string InterfaceFontAssetPath = "fonts/interface.dsft";
@@ -243,6 +243,16 @@ public static class OriginalContent
         new("dialogue-response-3", "images/dialogue/response-3.dsix", 12106, 302, 10, 1),
         new("dialogue-response-4", "images/dialogue/response-4.dsix", 12107, 302, 10, 1),
         new("dialogue-response-5", "images/dialogue/response-5.dsix", 12108, 302, 10, 1)
+    ];
+
+    public static IReadOnlyList<UiLayerAsset> DialogueLayers { get; } =
+    [
+        new("speech-panel", "images/dialogue/panel.dsix",
+            12003, 0, 0, 320, 200),
+        new("speech-texture", "images/dialogue/speech-texture.dsix",
+            12002, 75, 6, 243, 47),
+        new("response-panel", "images/dialogue/panel.dsix",
+            12003, 0, 140, 320, 200)
     ];
 
     public static IReadOnlyList<UiImageAsset> ExplorationCursorAssets { get; } =

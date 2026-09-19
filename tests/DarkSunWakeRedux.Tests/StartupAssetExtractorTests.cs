@@ -50,7 +50,7 @@ public sealed partial class StartupAssetExtractorTests
             var manifest = await AssetPackInstaller.InstallAsync(output, staging =>
                 StartupAssetExtractor.WritePackAsync(sourceRoot, staging, edition, "test"));
 
-            Assert.Equal(100, manifest.Files.Count);
+            Assert.Equal(102, manifest.Files.Count);
             var preferencesTextAsset = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.PreferencesTextCatalogAssetPath);
             Assert.Equal(StartupAssetExtractor.ExecutableSourcePath,
@@ -390,6 +390,8 @@ public sealed partial class StartupAssetExtractorTests
             .Append(OriginalContent.GameMenuLayer)
             .Append(OriginalContent.InventoryLayer)
             .Concat(OriginalContent.ExplorationDestinationTitleLayers)
+            .Concat(OriginalContent.DialogueLayers)
+            .DistinctBy(layer => layer.ImageResourceNumber)
             .Select(layer => (layer.ImageResourceNumber,
                 Bytes: TransparentImage(layer.FrameWidth, layer.FrameHeight))).ToArray();
         var icons = OriginalContent.StartMenuButtons

@@ -2,6 +2,49 @@ using System.Security.Cryptography;
 using System.Text.Json;
 using DarkSunWakeRedux.Resources;
 
+if (args.Length == 6 && args[0].Equals("image-preview", StringComparison.OrdinalIgnoreCase))
+{
+    try
+    {
+        var archivePath = Path.GetFullPath(args[1]);
+        var tag = args[2];
+        if (tag.Length != 4)
+            throw new ArgumentException("Image tag must be exactly four ASCII characters.", nameof(args));
+        if (!uint.TryParse(args[3], out var imageNumber) ||
+            !uint.TryParse(args[4], out var paletteNumber))
+            throw new ArgumentException("Image and palette resource numbers must be unsigned integers.", nameof(args));
+        var outputPath = Path.GetFullPath(args[5]);
+        var workingDirectory = Path.GetFullPath(Environment.CurrentDirectory) + Path.DirectorySeparatorChar;
+        if (outputPath.StartsWith(workingDirectory, StringComparison.OrdinalIgnoreCase))
+            throw new ArgumentException("Preview output must be outside the repository working directory.", nameof(args));
+        await using var stream = File.OpenRead(archivePath);
+        var archive = GffArchive.Read(stream, archivePath);
+        var image = IndexedImage.Read(archive.GetResource(tag, imageNumber),
+            $"{archivePath}:{tag}#{imageNumber}");
+        if (image.Frames.Count != 1)
+            throw new InvalidDataException($"{tag}#{imageNumber} must have exactly one frame for preview.");
+        var palette = IndexedPalette.Read(archive.GetResource("PAL ", paletteNumber).Span,
+            $"{archivePath}:PAL #{paletteNumber}");
+        WritePreviewBmp(outputPath, image.Frames[0], palette);
+        Console.WriteLine(JsonSerializer.Serialize(new
+        {
+            path = outputPath,
+            tag,
+            imageNumber,
+            paletteNumber,
+            image.Frames[0].Width,
+            image.Frames[0].Height
+        }));
+        return 0;
+    }
+    catch (Exception exception) when (exception is InvalidDataException or IOException or
+                                      UnauthorizedAccessException or ArgumentException)
+    {
+        Console.Error.WriteLine($"[image_preview_unavailable] {exception.Message}");
+        return 2;
+    }
+}
+
 if (args.Length is 2 or 3 && args[0].Equals("object-catalog", StringComparison.OrdinalIgnoreCase))
 {
     try
@@ -311,6 +354,7 @@ if (args.Length != 1 || !Directory.Exists(args[0]))
 {
     Console.Error.WriteLine("Usage:");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect <owned-original-directory>");
+    Console.Error.WriteLine("  DarkSunWakeRedux.Inspect image-preview <owned-original.gff> <tag> <image-number> <palette-number> <outside-repository.bmp>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect gff <owned-original.gff>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect image-catalog <owned-original.gff>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect character-catalog <owned-original.gff>");
@@ -336,3 +380,47 @@ foreach (var path in Directory.EnumerateFiles(root, "*", SearchOption.AllDirecto
 }
 Console.WriteLine(JsonSerializer.Serialize(new { root, files }, new JsonSerializerOptions { WriteIndented = true }));
 return 0;
+
+static void WritePreviewBmp(string outputPath, IndexedImageFrame frame, IndexedPalette palette)
+{
+    ArgumentNullException.ThrowIfNull(frame);
+    ArgumentNullException.ThrowIfNull(palette);
+    var rowBytes = checked(frame.Width * 3);
+    var paddedRowBytes = checked((rowBytes + 3) & ~3);
+    var pixelBytes = checked(paddedRowBytes * frame.Height);
+    var parent = Path.GetDirectoryName(outputPath);
+    if (string.IsNullOrWhiteSpace(parent) || !Directory.Exists(parent))
+        throw new DirectoryNotFoundException("Preview output directory does not exist.");
+    using var stream = new FileStream(outputPath, FileMode.CreateNew, FileAccess.Write,
+        FileShare.None);
+    using var writer = new BinaryWriter(stream);
+    writer.Write("BM"u8);
+    writer.Write(checked(54 + pixelBytes));
+    writer.Write(0);
+    writer.Write(54);
+    writer.Write(40);
+    writer.Write(frame.Width);
+    writer.Write(frame.Height);
+    writer.Write((ushort)1);
+    writer.Write((ushort)24);
+    writer.Write(0);
+    writer.Write(pixelBytes);
+    writer.Write(0);
+    writer.Write(0);
+    writer.Write(0);
+    writer.Write(0);
+    var padding = new byte[paddedRowBytes - rowBytes];
+    for (var y = frame.Height - 1; y >= 0; y--)
+    {
+        for (var x = 0; x < frame.Width; x++)
+        {
+            var index = y * frame.Width + x;
+            var color = frame.Alpha[index] == 0 ? new Rgb24(255, 0, 255) :
+                palette.Colors[frame.Pixels[index]];
+            writer.Write(color.Blue);
+            writer.Write(color.Green);
+            writer.Write(color.Red);
+        }
+        writer.Write(padding);
+    }
+}
