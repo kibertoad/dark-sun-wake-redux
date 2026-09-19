@@ -745,16 +745,19 @@
 ### DATA-GOG-SOUND-002 - No literal configuration pathname in the sound helper
 
 - **Question:** Does the separately shipped sound helper directly identify
-  `SOUND.CFG` as the configuration source for either setup or in-game
-  Preferences behavior?
+  either installed configuration filename (`SOUND.CFG` or `SOUND.INI`) as the
+  source for setup or in-game Preferences behavior?
 - **Method:** Fingerprint `SOUND_DS.EXE` from the supported installation, then
   scan every physical byte (including its MZ-file overlay) for the nine-byte
-  ASCII sequence `SOUND.CFG`. No bytes or decompiler output are retained.
+  ASCII sequence `SOUND.CFG` and the nine-byte ASCII sequence `SOUND.INI`. No
+  bytes or decompiler output are retained.
 - **Finding:** `SOUND_DS.EXE` is 204,593 bytes with SHA-256
   `50e10670f18e26f0e22e94a73d7469ed7d39afb2b2c2bf8139dbb3cb927110c6`.
-  Its complete physical file contains no literal `SOUND.CFG` sequence. Together
-  with `EXE-GOG-SOUND-001`, neither of the two examined shipped executables
-  provides a direct static pathname link to that 59-byte configuration file.
+  Its complete physical file contains neither literal `SOUND.CFG` nor literal
+  `SOUND.INI`. Together with `EXE-GOG-SOUND-001`, neither of the two examined
+  shipped executables provides a direct static pathname link to the 59-byte
+  configuration file, and the helper supplies no direct static link to either
+  installed configuration filename.
 - **Confidence:** high for this exact-file literal-name absence; unknown for
   configuration ownership, dynamic path construction, and all settings.
 - **Implementation consequence:** do not infer that the helper owns, reads, or
