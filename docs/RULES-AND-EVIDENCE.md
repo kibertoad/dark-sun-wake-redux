@@ -1255,6 +1255,31 @@
   planner, or route session. Fixed-point positional interpolation is an
   explicit presentation policy.
 
+### RULE-RNG-001 - Source-evidenced deterministic random stream
+
+- **Behavior:** The observed native setter initializes a 32-bit stream from a
+  16-bit seed with a zero upper word. The stream advances by multiplying by
+  `0x015a4e35` and adding one modulo 2^32. A draw exposes bits 16 through 30
+  of the new state. The native bounded wrapper returns zero and leaves state
+  unchanged for divisor zero; otherwise it consumes one draw and returns its
+  remainder by the divisor. The inclusive-range helper returns the lower bound
+  without consuming when lower is greater than or equal to upper; otherwise it
+  consumes one draw and scales it over the inclusive interval. The repeated
+  scaled-roll helper returns zero for a non-positive count; otherwise it
+  consumes one draw per iteration and sums its one-based scaled results.
+- **Evidence:** `EXE-GOG-RNG-001` establishes the state transition, output
+  mask, and zero-divisor branch in the fingerprinted executable.
+- **Confidence:** high for the primitive and the 16-bit setter; unknown for
+  seed source, caller ownership, stream partitioning, and all rule-specific
+  draw counts.
+- **Implementation:** `NativeRandom` is an isolated Core primitive. It never
+  reads time, ambient randomness, or presentation state. No existing gameplay
+  session consumes it yet, so this does not claim native seeding or parity for
+  party generation, dialogue, exploration, or combat.
+- **Tests:** golden state/result vectors from seeds zero and one, modulo,
+  inclusive-range, and repeated-roll vectors, and zero/equal/reversed/
+  non-positive no-consumption boundaries.
+
 ### RULE-EXPLORATION-002 - Atomic dynamic occupancy
 
 - **Behavior:** Dynamic actors occupy one or more region cells. Placement and

@@ -613,6 +613,7 @@ content smoke both pass.
 | Q13 | Must pathfinding reproduce the original route planner verbatim? | slice 3 | repository owner | closed - no; owner approved a modern fit-for-purpose implementation on 2026-09-13 |
 | Q14 | What do the two fields in the bounded 234-pair `ITEMS.BIN` table mean, and which exact reader/extraction use belongs in the equipment slice? | slice 5 | DATA/EXE/OBS evidence investigation | open - `DATA-GOG-ITEMS-001` proves the fixed-width envelope, records non-identifying overlap with several `OBJEX.GFF` resource-ID sets, and does not support a uniform direct mapping from either pair column to the four raw `OJFF` word positions; no item, equipment, or combat semantics are assigned |
 | Q15 | Should work stop after complete source-corpus extraction until each rule is evidenced? | all further logic slices | repository owner | closed - yes, owner-directed 2026-09-19; Slice 2A is the mandatory gate |
+| Q16 | Which flows seed the native random stream, and which gameplay rules consume its modulo, inclusive-range, or repeated-roll helpers? | slices 2-7 | EXE/OBS evidence investigation | open - `EXE-GOG-RNG-001` establishes the 16-bit-seeded LCG and three generic result transforms, but no seed source, stream partition, call order, or rule-level consumer is established |
 
 ## Risks
 

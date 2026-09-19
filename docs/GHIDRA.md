@@ -459,6 +459,57 @@ proof by itself. Never redirect broad output into the repository.
   and presentation interpolation remain explicit CPU-speed-independent policy
   until a movement call path and controlled cadence observation are available.
 
+### EXE-GOG-RNG-001 - Native 32-bit linear-congruential random primitive
+
+- **Question:** Does the supported executable contain a bounded random-number
+  primitive whose state transition and output range can be reproduced without
+  assigning it to an unevidenced gameplay rule?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** `ReportFunctionScalarIntersection` searched for the two 16-bit
+  halves (`0x015a`, `0x4e35`) of a common 32-bit LCG multiplier and returned
+  one candidate. `ReportDecompileWindow` and `ReportInstructionContext`
+  bounded its multiply, carry, state-write, mask, and return instructions.
+  `ReportReferences` then enumerated direct callers of the generator and its
+  modulo wrapper.
+- **Bounded finding:** far helper `1000:0822` reads a 32-bit state, multiplies
+  it by `0x015a4e35`, adds one with carry, and writes the low 32 bits back. It
+  returns the new state's upper word masked to 15 bits, yielding `0..32767`.
+  Its adjacent seed setter `1000:0811` clears the upper state word and stores
+  its one 16-bit argument as the lower word; Ghidra finds no direct reference
+  to that setter. The separate far wrapper `2834:061c` returns zero without
+  calling the generator when its divisor is zero; otherwise it consumes one
+  generator result and applies remainder reduction by the supplied divisor.
+  Ghidra finds three direct calls to the generator and multiple direct calls to
+  the wrapper, but those callers do not establish seed ownership, stream
+  partitioning, consumption order, or any particular game mechanic.
+- **Inclusive-range refinement:** direct caller `2d40:3a03` returns its first
+  signed argument unchanged without a generator call when it is greater than
+  or equal to its second. When lower is less than upper, it consumes one
+  15-bit result and returns `lower + result * (upper - lower + 1) / 32768`.
+  Its direct-reference query is empty, so this proves a generic range-helper
+  contract but not a particular call-site meaning or input domain.
+- **Repeated-roll refinement:** direct caller `28c9:391d` returns zero without
+  a generator call for a non-positive first signed argument. Otherwise it
+  iterates exactly that many times, consuming one result per iteration and
+  summing `result * secondArgument / 32768 + 1`. The argument roles and every
+  semantic use remain unknown; this is recorded as a scaled repeated-roll
+  helper rather than assigned to combat or character generation.
+- **Interpretation:** this is a native shared pseudo-random stream primitive,
+  not evidence that every random-looking game outcome uses it. The modulo
+  wrapper has ordinary modulo bias, which is a native implementation detail;
+  it must not be silently replaced with rejection sampling where source parity
+  matters.
+- **Confidence:** high for recurrence, 15-bit result range, zero-divisor
+  non-consumption, the inclusive-range and repeated-roll branch/formulae, and
+  the 16-bit seed-setter boundary; unknown for seed source, callers' semantic
+  purposes, consumption order, and the full set of indirect callers.
+- **Implementation consequence:** `NativeRandom` preserves the bounded state
+  transition, modulo, inclusive-range, and repeated-roll behavior with golden
+  vectors. It is not wired to start flow, dialogue, combat, or other mechanics
+  until each caller's seed and consumption contract is independently evidenced.
+
 ### EXE-GOG-COMBAT-001 - Combat hotkey dispatch is not a direct shared literal table
 
 - **Question:** Does the supported executable contain an obvious single function
