@@ -49,12 +49,30 @@ If a required control is unavailable, disabled, or the screen differs before P0,
 stop the sequence, capture that frame, and report the exact point reached. That
 is evidence; do not substitute an inferred sequence.
 
+## Shipped-party gate
+
+Purpose: identify the four resources selected by **START GAME**, and capture
+the native party-overview composition without substituting a created party.
+
+Start a fresh normal launch. Do not choose CREATE CHARACTERS, load a save, or
+enter the character-transfer utility for this sequence.
+
+| ID | Native action | Required capture/record |
+|---|---|---|
+| S0 | At the initial start screen, choose START GAME once. | Capture the first fully populated party-overview screen after the transition finishes. |
+| S1 | If the overview exposes a native member-select or View Character action, open the first visible member and then return. | Capture the member screen and the returned overview. Record the exact input used to open and return. |
+| S2 | Repeat S1 for each other distinct visible member, in on-screen order. | Capture each member screen and returned overview. Do not click an unknown blank/application area. |
+
+If START GAME reaches an unexpected screen, or if a member action is not
+available, capture the reached state once, stop, and report the exact point.
+That outcome is preferable to inferring a slot partition.
+
 ## What to reply with
 
 Reply with one line containing:
 
 ```text
-Preferences captures P0-P9: YYYY-MM-DD HH:MM ±HH:MM to YYYY-MM-DD HH:MM ±HH:MM; exceptions: <none or IDs/reason>.
+Preferences captures P0-P9 and/or shipped-party captures S0-S2: YYYY-MM-DD HH:MM ±HH:MM to YYYY-MM-DD HH:MM ±HH:MM; exceptions: <none or IDs/reason>.
 ```
 
 After that confirmation, the repository workflow permits bounded inspection of

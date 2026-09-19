@@ -133,10 +133,12 @@ Continue Slice 3 from evidence, preferably in this order:
 
 1. establish the remaining Preferences ranges/defaults and About presentation,
    then implement deterministic setting mutations and frame-state feedback;
-2. add the next evidenced quest consequences;
-3. generalize attack/look target eligibility and select ranged versus melee
+2. identify the shipped START GAME party and party-overview/member interaction
+   boundary through the bounded native capture gate;
+3. add the next evidenced quest consequences;
+4. generalize attack/look target eligibility and select ranged versus melee
    cursor from evidenced readied-weapon state;
-4. fill character/inventory/Cast/Effects dynamic fields and item-transfer or
+5. fill character/inventory/Cast/Effects dynamic fields and item-transfer or
    spell behavior only as
    their record meanings become evidenced.
 
