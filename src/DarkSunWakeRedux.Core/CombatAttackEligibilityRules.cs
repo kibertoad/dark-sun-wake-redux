@@ -13,4 +13,13 @@ public static class CombatAttackEligibilityRules
         bool targetIsInRange,
         bool hasReadiedMissileWeaponOrAmmunition) =>
         targetIsInRange && hasReadiedMissileWeaponOrAmmunition;
+
+    /// <summary>
+    /// A two-weapon melee configuration needs one one-handed weapon in each hand.
+    /// Any attack penalty or exception is resolved separately from this shape check.
+    /// </summary>
+    public static bool CanReadyTwoMeleeWeapons(
+        bool primaryWeaponIsOneHanded,
+        bool offHandWeaponIsOneHanded) =>
+        primaryWeaponIsOneHanded && offHandWeaponIsOneHanded;
 }

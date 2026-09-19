@@ -28,4 +28,16 @@ public sealed class CombatAttackEligibilityRulesTests
         bool expected) =>
         Assert.Equal(expected, CombatAttackEligibilityRules.CanMakeRangedAttack(
             targetIsInRange, hasReadiedMissileWeaponOrAmmunition));
+
+    [Theory]
+    [InlineData(true, true, true)]
+    [InlineData(false, true, false)]
+    [InlineData(true, false, false)]
+    [InlineData(false, false, false)]
+    public void TwoWeaponReadinessRequiresOneHandedWeaponsInBothHands(
+        bool primaryWeaponIsOneHanded,
+        bool offHandWeaponIsOneHanded,
+        bool expected) =>
+        Assert.Equal(expected, CombatAttackEligibilityRules.CanReadyTwoMeleeWeapons(
+            primaryWeaponIsOneHanded, offHandWeaponIsOneHanded));
 }

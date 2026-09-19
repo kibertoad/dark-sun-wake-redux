@@ -1412,7 +1412,8 @@
   computer control. During combat, a Walk click makes the character approach
   and automatically attack the selected opponent. Melee requires adjacency and
   a readied weapon; ranged requires an in-range opponent plus a readied missile
-  weapon or ammunition. The documented invalid cursor means the attempted
+  weapon or ammunition. A two-weapon melee configuration requires one-handed
+  weapons in both hands. The documented invalid cursor means the attempted
   target is not eligible for that attack.
 - **Evidence:** MANUAL-1994, "How to Play" pages 4-6 and the visually reviewed
   hotkey table on manual page 77. `EXE-GOG-COMBAT-001` excludes only two
@@ -1424,19 +1425,20 @@
 - **Implementation:** `CombatCommand` owns the six semantic requests without
   depending on MonoGame, while `CombatHotkeys` maps only their documented keys
   on a rising edge. `CombatAttackEligibilityRules` evaluates only the supplied
-  manual preconditions for melee and ranged attacks; it does not define range,
-  adjacency, equipment readiness, pathing, target selection, damage, or attack
-  resolution. The mapper is intentionally not connected to exploration: no
-  combat state exists yet to resolve these requests into target selection, turn
-  advancement, guard/wait effects, or automation changes.
+  manual preconditions for melee, ranged, and two-one-handed-weapon readiness;
+  it does not define range, adjacency, equipment readiness, pathing, target
+  selection, damage, or attack resolution. The mapper is intentionally not
+  connected to exploration: no combat state exists yet to resolve these
+  requests into target selection, turn advancement, guard/wait effects, or
+  automation changes.
 - **Tests:** each documented key, rising-edge suppression, stable simultaneous
-  ordering, invalid command rejection, and the full true/false matrix for both
-  attack-eligibility predicates are covered. Deterministic combat command
-  traces remain planned.
+  ordering, invalid command rejection, and the full true/false matrix for
+  melee, ranged, and two-weapon-readiness predicates are covered.
+  Deterministic combat command traces remain planned.
 - **Uncertainty:** Activation order, RNG, THAC0/AC details, timing, and difficulty
   effects, the computer-control default and re-enable behavior, turn effects of
-  Guard/Wait, and exact target/range calculations require OBS-GOG and targeted
-  Ghidra evidence.
+  Guard/Wait, the Dexterity threshold and non-ranger two-weapon penalty, and
+  exact target/range calculations require OBS-GOG and targeted Ghidra evidence.
 
 ### RULE-COMBAT-002 - THAC0 hit threshold
 
