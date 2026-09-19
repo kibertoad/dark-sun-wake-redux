@@ -402,20 +402,24 @@ proof by itself. Never redirect broad output into the repository.
   `ReportInstructionContext` bounded each request, and `ReportReferences`
   enumerated direct callers of the containing TILE helper.
 - **Bounded finding:** `362c:01fa`, the same bounded function that requests
-  `GMAP`, requests `MAP ` through the same far resource helper with supplied
-  region identity `SI` and resident destination `29ef`. Under its local guards
-  it separately requests `GMAP` with the same supplied identity. The distinct
-  helper `362c:00ca` requests `TILE` with its supplied 16-bit identity and
-  resident destination `29f3`. It has exactly two direct callers
+  `GMAP`, requests `PAL ` and `MAP ` through the same far resource helper with
+  supplied region identity `SI`. The PAL request supplies a local result
+  pointer to a subsequent helper; that helper's palette semantics are not
+  established. The MAP request supplies resident destination `29ef`. Under its
+  local guards the function separately requests `GMAP` with the same supplied
+  identity. The distinct helper `362c:00ca` requests `TILE` with its supplied
+  16-bit identity and resident destination `29f3`. It has exactly two direct callers
   (`362c:035c` and `362c:04bf`); each reads one byte through the resident
   `29ef` map-plane pointer at a coordinate-derived offset, zero-extends that
   byte, and supplies it to the TILE helper. Both callers reject the helper's
   `0xffff` failure result before proceeding.
 - **Interpretation:** this corroborates the structural region contract: a
-  same-number `MAP ` plane is loaded by region identity and its byte values are
-  used as local TILE identities. It does not identify the preceding resource
-  request in the loader, map-coordinate semantics, map rendering order,
-  geometry meanings, TILE cache lifetime, or any movement/actor behavior.
+  same-number `PAL ` and `MAP ` planes are loaded by region identity and MAP
+  byte values are used as local TILE identities. A separate full-memory tag
+  scan finds no direct `RNME` literal, just as `EXE-GOG-REGION-002` finds none
+  for `ETAB`. It does not identify palette conversion, map-coordinate
+  semantics, map rendering order, geometry meanings, TILE cache lifetime, or
+  any movement/actor behavior.
 - **Confidence:** high for the bounded tag requests, two direct callers, and
   byte-to-TILE request relationship; unknown for every semantic role beyond
   that structural routing.
