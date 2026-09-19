@@ -75,6 +75,9 @@ are:
 - FLI, VOC, OGG, configuration, and item-table files are fully inventoried and
   preserved. Their unresolved decoder, routing, and rule semantics remain
   opaque.
+- `SOUND.CFG` has a bounded 59-byte envelope, but neither the main executable
+  nor the separately shipped sound helper contains its literal pathname. This
+  is not evidence of configuration ownership or Preferences behavior.
 
 ## Current runtime boundary
 
@@ -105,7 +108,9 @@ the start flow and current exploration state reproducible.
   header-validation lead in `DSUN.EXE`; raw cinematic speed fields are data,
   not assumed milliseconds.
 - `EXE-GOG-RNG-001` establishes a 16-bit-seeded native LCG and bounded result
-  transforms. Native seed ownership and call ordering are still open, so new
+  transforms. Its direct static callers are only the generic modulo,
+  inclusive-range, and repeated-roll helpers; the latter has no direct caller.
+  Native seed ownership and rule-level call ordering are still open, so new
   rules do not silently consume that stream.
 
 ## Static-analysis boundaries worth preserving
