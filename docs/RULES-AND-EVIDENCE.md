@@ -742,6 +742,26 @@
   every scalar-field role, interaction with `SOUND.INI`/`SOUND_DS.EXE`, device
   detection, mixer defaults, voice/music routing, codecs, and playback timing.
 
+### DATA-GOG-SOUND-002 - No literal configuration pathname in the sound helper
+
+- **Question:** Does the separately shipped sound helper directly identify
+  `SOUND.CFG` as the configuration source for either setup or in-game
+  Preferences behavior?
+- **Method:** Fingerprint `SOUND_DS.EXE` from the supported installation, then
+  scan every physical byte (including its MZ-file overlay) for the nine-byte
+  ASCII sequence `SOUND.CFG`. No bytes or decompiler output are retained.
+- **Finding:** `SOUND_DS.EXE` is 204,593 bytes with SHA-256
+  `50e10670f18e26f0e22e94a73d7469ed7d39afb2b2c2bf8139dbb3cb927110c6`.
+  Its complete physical file contains no literal `SOUND.CFG` sequence. Together
+  with `EXE-GOG-SOUND-001`, neither of the two examined shipped executables
+  provides a direct static pathname link to that 59-byte configuration file.
+- **Confidence:** high for this exact-file literal-name absence; unknown for
+  configuration ownership, dynamic path construction, and all settings.
+- **Implementation consequence:** do not infer that the helper owns, reads, or
+  writes the configuration file, and do not copy setup semantics into the
+  in-game Preferences screen. A reader or mutation requires an independent
+  field-to-observable-behavior connection.
+
 ### DATA-GOG-MEDIA-001 - Cinematic and voice-file header inventory
 
 - **Question:** What fixed media-file envelopes can be established for the
