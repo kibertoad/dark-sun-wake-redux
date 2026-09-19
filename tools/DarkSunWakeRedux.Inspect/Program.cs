@@ -2,18 +2,25 @@ using System.Security.Cryptography;
 using System.Text.Json;
 using DarkSunWakeRedux.Resources;
 
-if (args.Length == 6 && args[0].Equals("image-preview", StringComparison.OrdinalIgnoreCase))
+if (args.Length is 6 or 7 && args[0].Equals("image-preview", StringComparison.OrdinalIgnoreCase))
 {
     try
     {
         var archivePath = Path.GetFullPath(args[1]);
-        var tag = args[2];
-        if (tag.Length != 4)
-            throw new ArgumentException("Image tag must be exactly four ASCII characters.", nameof(args));
+        var tag = args[2].Replace('_', ' ');
+        if (tag.Length != 4 || !tag.All(character => character is >= ' ' and <= '~'))
+            throw new ArgumentException("Image tag must be exactly four printable ASCII characters; use '_' for a padded space.", nameof(args));
         if (!uint.TryParse(args[3], out var imageNumber) ||
             !uint.TryParse(args[4], out var paletteNumber))
             throw new ArgumentException("Image and palette resource numbers must be unsigned integers.", nameof(args));
-        var outputPath = Path.GetFullPath(args[5]);
+        int? requestedFrame = null;
+        if (args.Length == 7)
+        {
+            if (!int.TryParse(args[5], out var frameIndex) || frameIndex < 0)
+                throw new ArgumentException("Frame index must be a nonnegative integer.", nameof(args));
+            requestedFrame = frameIndex;
+        }
+        var outputPath = Path.GetFullPath(args[^1]);
         var workingDirectory = Path.GetFullPath(Environment.CurrentDirectory) + Path.DirectorySeparatorChar;
         if (outputPath.StartsWith(workingDirectory, StringComparison.OrdinalIgnoreCase))
             throw new ArgumentException("Preview output must be outside the repository working directory.", nameof(args));
@@ -21,24 +28,27 @@ if (args.Length == 6 && args[0].Equals("image-preview", StringComparison.Ordinal
         var archive = GffArchive.Read(stream, archivePath);
         var image = IndexedImage.Read(archive.GetResource(tag, imageNumber),
             $"{archivePath}:{tag}#{imageNumber}");
-        if (image.Frames.Count != 1)
-            throw new InvalidDataException($"{tag}#{imageNumber} must have exactly one frame for preview.");
+        if (requestedFrame is null && image.Frames.Count != 1)
+            throw new InvalidDataException($"{tag}#{imageNumber} contains {image.Frames.Count} frames; specify a frame index.");
+        var selectedFrameIndex = requestedFrame ?? 0;
+        var frame = IndexedImageFrameSelection.Select(image, selectedFrameIndex);
         var palette = IndexedPalette.Read(archive.GetResource("PAL ", paletteNumber).Span,
             $"{archivePath}:PAL #{paletteNumber}");
-        WritePreviewBmp(outputPath, image.Frames[0], palette);
+        WritePreviewBmp(outputPath, frame, palette);
         Console.WriteLine(JsonSerializer.Serialize(new
         {
             path = outputPath,
             tag,
             imageNumber,
             paletteNumber,
-            image.Frames[0].Width,
-            image.Frames[0].Height
+            frameIndex = selectedFrameIndex,
+            frame.Width,
+            frame.Height
         }));
         return 0;
     }
     catch (Exception exception) when (exception is InvalidDataException or IOException or
-                                      UnauthorizedAccessException or ArgumentException)
+                                      UnauthorizedAccessException or ArgumentException or KeyNotFoundException)
     {
         Console.Error.WriteLine($"[image_preview_unavailable] {exception.Message}");
         return 2;
@@ -545,7 +555,7 @@ if (args.Length != 1 || !Directory.Exists(args[0]))
 {
     Console.Error.WriteLine("Usage:");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect <owned-original-directory>");
-    Console.Error.WriteLine("  DarkSunWakeRedux.Inspect image-preview <owned-original.gff> <tag> <image-number> <palette-number> <outside-repository.bmp>");
+    Console.Error.WriteLine("  DarkSunWakeRedux.Inspect image-preview <owned-original.gff> <tag; use _ for padded space> <image-number> <palette-number> [frame-index] <outside-repository.bmp>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect gff <owned-original.gff>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect resource-inventory <owned-original.gff>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect pair-resource-overlap <owned-pair-table> <owned-original.gff> <tag; use _ for padded space>");

@@ -58,6 +58,7 @@ Read source metadata without extracting proprietary payloads using Inspect:
 ```powershell
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- "C:\path\to\gog-installation"
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- gff "C:\path\to\RESOURCE.GFF"
+dotnet run --project tools/DarkSunWakeRedux.Inspect -- image-preview "C:\path\to\RESOURCE.GFF" ICON 17102 1000 0 "C:\outside-repository\preview.bmp"
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- resource-inventory "C:\path\to\RESOURCE.GFF"
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- pair-resource-overlap "C:\path\to\ITEMS.BIN" "C:\path\to\OBJEX.GFF" OJFF
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- object-word-overlap "C:\path\to\OBJEX.GFF" OJFF "C:\path\to\ITEMS.BIN"
