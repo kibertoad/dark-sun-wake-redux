@@ -613,6 +613,32 @@
   difficulty default, About presentation/dismissal, selected/disabled frames,
   description-role ordering/presentation, and native origin.
 
+### DATA-GOG-SOUND-001 - SOUND.CFG structural envelope
+
+- **Question:** What safe structural facts can be established about the owned
+  sound configuration before assigning it to Preferences behavior or writing a
+  reader?
+- **Method:** Inspect the fingerprinted 59-byte `SOUND.CFG` from
+  GOG-1432903719 as a bounded byte sequence. Record only repeated-field,
+  ASCII-envelope, padding, and length facts; do not execute or copy its
+  payload into the repository.
+- **Finding:** bytes `0x00..0x09` and `0x0a..0x13` are identical ten-byte
+  blocks. Two fixed ten-character ASCII identifiers ending in `.adv` begin at
+  `0x16` and `0x24`, each followed by zero padding. The remaining bytes begin
+  at `0x32` and form a 13-byte scalar area. The two identifiers and remaining
+  scalar values have no assigned semantics.
+- **Confidence:** high for the observed file length, repeated prefixes,
+  identifier envelopes, padding, and trailing boundary in the supported build;
+  unknown for all field meanings and cross-file relationships.
+- **Implementation consequence:** no production reader or setting mutation is
+  introduced. A future reader must first extend the source manifest contract,
+  bound each fixed region, reject unsupported length/terminator/padding forms,
+  and acquire independent evidence before mapping a field to UI, volume,
+  driver selection, playback, or timing.
+- **Uncertainty:** source versus runtime ownership, module-selection semantics,
+  every scalar-field role, interaction with `SOUND.INI`/`SOUND_DS.EXE`, device
+  detection, mixer defaults, voice/music routing, codecs, and playback timing.
+
 ### DATA-GOG-CURSOR-001 - Exploration cursor family and hotspot
 
 - **Method:** Render every low-numbered `RESOURCE.GFF` image candidate with
