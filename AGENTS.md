@@ -132,6 +132,26 @@ dotnet build <Project>.slnx        # full solution
 dotnet run --project src/<Project>.Game -- --smoke-test
 ```
 
+## Static executable analysis
+
+Treat static analysis as evidence, not a search-engine oracle. Reverify the
+approved executable's exact size and SHA-256 before interpreting a new address
+or reference. Ask one narrow player-visible question at a time and record the
+edition, tool versions, query, result, competing interpretations, and confidence
+in `docs/GHIDRA.md`.
+
+For a known filename, label, or other ASCII text, do **not** conclude it is
+absent merely because Ghidra does not expose it through `getDefinedData()` or
+its ASCII-string analyzer. First search the raw loaded bytes for the explicit
+null-terminated ASCII pattern with `tools/ghidra/ReportBytePattern.java`. For
+each bounded match, inspect its references with `ReportReferences.java` and its
+instruction context before considering a bounded decompilation window. A raw
+string hit with no recognized direct reference may still be reached indirectly
+or copied at runtime; it is not behavior evidence. Conversely, an analyzer
+classification miss is not a negative finding and must not be documented as
+one. Keep the query artifacts under ignored analysis locations and describe
+findings in repository-authored words rather than copying decompiler output.
+
 ## Native runtime visual validation
 
 The Codex computer-control surface currently available for this repository
