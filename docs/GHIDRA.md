@@ -797,9 +797,11 @@ proof by itself. Never redirect broad output into the repository.
 - **Method:** `ReportReferences` enumerated the entry's eight direct far
   callers, then enumerated all direct references to the resident table pointer
   at `5b7c:0700`. Bounded instruction contexts classified immediate argument
-  setup and the one direct caller of the observed initializer. Four bounded
-  decompilations of the `1695` callers compared every dereferenced offset and
-  all chain termination and match predicates. A later
+  setup and the one direct caller of the observed initializer. A bounded
+  decompilation of its shared callee identified the byte-fill helper used
+  immediately before the link loop. Four bounded decompilations of the `1695`
+  callers compared every dereferenced offset and all chain termination and
+  match predicates. A later
   `ReportFunctionScalarIntersection` probe for the table's segment `0x5b7c`
   and offset `0x0700` found no function containing both scalar operands.
 - **Bounded finding:** four callers traverse a resident table pointer at
@@ -831,12 +833,15 @@ proof by itself. Never redirect broad output into the repository.
   `5b7c:0700`, all reads, across nine functions; it found no direct pointer
   write. One of those functions, `277b:0024`, has exactly one direct caller:
   the executable entry at `1000:0158`, after that entry pushes three resident
-  words. After an opaque far transfer, `277b:0024` writes the offset-11 link
-  for source indices 0 through 199 to each next numeric index, so the final
-  written value is 200. It then clears the secondary-chain head at
-  `4c13:032d` and resets five adjacent resident 16-bit fields to `-1`.
-  This establishes deterministic native link setup on an entry flow, not the
-  number of valid records: the observed loop writes no terminal link for index
+  words. Immediately before the link loop, it calls a verified generic
+  byte-fill helper at that same table pointer with an observed length of
+  `0x0a28` and fill byte `0xff`; `0x0a28` equals 200 13-byte strides. It then
+  writes the offset-11 link for source indices 0 through 199 to each next
+  numeric index, so the final written value is 200. It clears the
+  secondary-chain head at `4c13:032d` and resets five adjacent resident
+  16-bit fields to `-1`. This establishes deterministic native link setup on
+  an entry flow, including a 2,600-byte cleared span, but not a heap allocation
+  or valid-record bound: the observed loop writes no terminal link for index
   200. The scalar-intersection absence closes only the narrow hypothesis of
   one function materializing this pointer through both literal operands; it
   does not rule out split, computed, indirect, or dynamically supplied table
@@ -848,9 +853,9 @@ proof by itself. Never redirect broad output into the repository.
   and population, index-source validity (including index 200), execution
   outcome, and relation to GPL/MAS remain unknown.
 - **Confidence:** high for the four routine-local record accesses, mutable
-  chain shape, deterministic entry-flow link writes, and direct-call
-  relationship; unknown for table ownership, field semantics, valid record
-  bounds, and player-visible behavior.
+  chain shape, deterministic entry-flow clear/link writes, and direct-call
+  relationship; unknown for table ownership, allocation/valid record bounds,
+  field semantics, and player-visible behavior.
 - **Implementation consequence:** do not add a resource parser, persist this
   data, or infer interaction triggers. Preserve the evidence as `Q18` until a
   source container, record population path, or controlled observation

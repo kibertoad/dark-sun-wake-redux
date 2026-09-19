@@ -145,10 +145,10 @@ rejecting unsupported semantics:
   shared processing path. Static evidence does not license general GPL opcode
   execution.
 - `EXE-GOG-EVENT-001` establishes a mutable, linked runtime 13-byte selector
-  record with deterministic entry-flow link setup, multiple predicate
-  traversals, and a secondary relinked chain. It does not identify the table's
-  source/population path or connect it to dialogue, quests, combat, or map
-  triggers.
+  record with a 2,600-byte entry-flow clear and deterministic link setup,
+  multiple predicate traversals, and a secondary relinked chain. It does not
+  identify the table's source/population path or connect it to dialogue,
+  quests, combat, or map triggers.
 - `GPLI` #1 is an exact 329-by-24-byte opaque data envelope. No literal GPLI
   tag exists in the analyzed executable, so no lookup role is assumed.
 - `ITEMS.BIN` is a verified 234-pair envelope. `DSUN.EXE` contains no literal
