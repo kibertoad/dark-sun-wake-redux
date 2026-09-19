@@ -172,8 +172,8 @@ original game.
 |---|---|---|---|---|
 | 1 | Identity, source recognition, and diagnostic boot | The named runtime starts, finds a verified pack or explains how to create one, and quits cleanly; the separate Extractor recognizes the supported GOG copy | approval | complete |
 | 2 | Extraction and title-to-party flow | The Extractor creates a verified local pack; the runtime reaches the start flow and creates/selects a four-character party | 1 | in progress - title extraction, evidenced start/party-overview composition, UI resource mapping, party invariants, and semantic start routing implemented |
-| 3 | First Tyr exploration and conversation | The party enters Tyr, moves, interacts, completes the opening conversation, and uses character/inventory/game menus | 2 | planned |
-| 4 | First deterministic combat | The opening encounter is playable through victory or defeat | 3 | planned |
+| 3 | First Tyr exploration and conversation | The party enters Tyr, moves, interacts, completes the opening conversation, and uses character/inventory/game menus | 2 | in progress - deterministic Tyr movement/interaction and the bounded opening conversation are implemented; additional party, dialogue, and destination behavior remains open |
+| 4 | First deterministic combat | The opening encounter is playable through victory or defeat | 3 | in progress - manual-backed command, attack-eligibility, THAC0, and incapacity foundations are implemented; encounter state, resolution, presentation, and parity evidence remain open |
 | 5 | Full character systems | Equipment, advancement, magic, psionics, camping, and training work from evidenced rules | 4 | planned |
 | 6 | Quest graph and campaign traversal | The critical route and evidenced branches can be played through the finale | 5 | planned |
 | 7 | Persistence, presentation, parity, and packaging | Native saves/replays, full audiovisual presentation, validated campaign coverage, and clean packages complete the restoration | 6 | planned |
