@@ -174,9 +174,9 @@ original game.
 | # | Slice | Player-visible outcome | Depends on | Status |
 |---|---|---|---|---|
 | 1 | Identity, source recognition, and diagnostic boot | The named runtime starts, finds a verified pack or explains how to create one, and quits cleanly; the separate Extractor recognizes the supported GOG copy | approval | complete |
-| 2A | Complete source-corpus inventory and extraction | Every supported source payload is represented in a verified, source-mapped local pack without inferred behavior | 1 | in progress - owner-directed gate as of 2026-09-19; no further gameplay or UI-semantic work until complete |
-| 2 | Extraction and title-to-party flow | The runtime reaches the start flow and creates/selects a four-character party from the complete verified pack | 2A | paused after already-evidenced work; no further logic work until 2A passes |
-| 3 | First Tyr exploration and conversation | The party enters Tyr, moves, interacts, completes the opening conversation, and uses character/inventory/game menus | 2 | paused after already-evidenced work; no further logic work until 2A passes |
+| 2A | Complete source-corpus inventory and extraction | Every supported source payload is represented in a verified, source-mapped local pack without inferred behavior | 1 | complete - 2026-09-19: 279 installation files classified, 233 immutable inputs and all 16,168 GFF descriptors extracted |
+| 2 | Extraction and title-to-party flow | The runtime reaches the start flow and creates/selects a four-character party from the complete verified pack | 2A | in progress - existing work may resume only where new behavior is separately evidenced |
+| 3 | First Tyr exploration and conversation | The party enters Tyr, moves, interacts, completes the opening conversation, and uses character/inventory/game menus | 2 | in progress - existing work may resume only where new behavior is separately evidenced |
 | 4 | First deterministic combat | The opening encounter is playable through victory or defeat | 3 | evidence acquisition only - no combat behavior is implemented; controlled native captures and traceable data/executable findings must precede any playable slice |
 | 5 | Full character systems | Equipment, advancement, magic, psionics, camping, and training work from evidenced rules | 4 | planned |
 | 6 | Quest graph and campaign traversal | The critical route and evidenced branches can be played through the finale | 5 | planned |
@@ -214,9 +214,9 @@ decoder rather than being guessed now.
 
 ### Slice 2A - Complete source-corpus inventory and extraction
 
-**Status:** in progress. This is an owner-directed gate as of 2026-09-19. It
-precedes all additional gameplay and UI-semantic work; existing behavior remains
-limited to the evidence already recorded.
+**Status:** complete on 2026-09-19. The owner-directed gate preceded additional
+gameplay and UI-semantic work; existing behavior remained limited to recorded
+evidence throughout.
 
 - **Outcome.** The Extractor traverses the complete fingerprinted source tree
   deterministically and creates one complete, verified local pack. The pack
@@ -257,11 +257,19 @@ limited to the evidence already recorded.
   must state the coverage count, exclusions, and opaque contract types. Only
   then may new logic or UI semantics resume.
 
+**Completion evidence.** `inventory-source` classified all 279 files in the
+owned installation with zero unrepresented: 233 immutable game-data inputs, 10
+mutable capture/save files, 18 DOSBox wrapper/configuration files, 13 storefront
+wrappers, and five documents. The transactionally installed v30 pack contains
+233 byte-for-byte source-file DSOP assets, 16,168 per-resource DSOP assets, and
+102 specialized derivatives (16,503 total); full pack read-back and runtime
+content smoke both pass.
+
 ### Slice 2 - Extraction and title-to-party flow
 
-- **Status.** Paused by the owner-directed full-corpus extraction gate. Existing
-  code remains bounded to recorded evidence; no further party or UI behavior is
-  authorized until Slice 2A completes.
+- **Status.** Slice 2A is complete. Existing code remains bounded to recorded
+  evidence; every subsequent party or UI behavior still requires its own
+  evidence before implementation.
 - **Outcome.** The runtime opens the complete verified pack, reaches the
   original-style start flow, and creates or selects a legal four-character party.
 - **Evidence.** MANUAL-1994 sections on quick start, party creation, character
@@ -314,7 +322,7 @@ limited to the evidence already recorded.
   class/level progression, the active member during DUAL selection or editing,
   and recreation-native stored characters;
   DSUI round-trip, malformed graph, deterministic ordering, mixed-control graph resolution, resource-ID routing,
-  rectangle-edge, synthetic extraction, content-smoke, and owned 102-asset pack verification cover the derived
+  rectangle-edge, synthetic extraction, content-smoke, and owned 16,503-asset pack verification cover the derived
   start-flow layout contract;
   gameplay-wide replay remains a later-slice requirement.
 - **Observed parity.** Compare boot, start, create/select/cancel, and quit state
@@ -593,7 +601,7 @@ limited to the evidence already recorded.
 | Q1 | Is `DarkSunWakeRedux` / `Dark Sun: Wake of the Ravager Redux` the approved identity? | configuration | repository owner | closed - approved 2026-09-12 |
 | Q2 | Is the installed GOG build the only initial supported edition, with later revisions represented by separate manifests? | slices 1, 7 | repository owner | closed - initial work targets the supplied GOG build; later revisions require separate fingerprints |
 | Q3 | Which underlying DOS/CD-ROM revision is in GOG build `52095422060333615`? | slices 1, 4, 6 | evidence investigation | open |
-| Q4 | Which source files and GFF/resource records are present, and what are their bounded structures? | Slice 2A and later logic | evidence investigation | open - GFF, image/palette, FONT, TEXT, core UI records, the versioned `CHAR` envelope/identity/ability fields, raw `PSIN` companion envelope, region `RNME`/`PAL `/`MAP `/`GMAP`/`TILE`/`ETAB`, and exact `OJFF` object-frame records with image references are bounded; title/start, party overview, ADD-list, interface palette, generation/modal controls, shared window image, start-flow window graphs, APFM event masks, the owned font's identity map, encoding-neutral glyph composition, canonical Tyr DSRG/DSOB extraction, static first-frame scene composition, the opening Tyr camera, cursor image family, and `GMAP` `0x40` terrain blocking are implemented; #19004 still awaits an app-specific consumer; remaining character state, other mask/geometry/entity meanings, authentic text presentation, dynamic party data, later-window semantics, later cameras/animation/gameplay behavior, other region dependencies, and the corpus-wide inventory remain unknown |
+| Q4 | Which GFF/resource records have bounded structures and established semantics? | later logic | evidence investigation | open - corpus coverage is complete (233 immutable files, 16,168 GFF descriptors), while only some structures are bounded: GFF, image/palette, FONT, TEXT, core UI records, the versioned `CHAR` envelope/identity/ability fields, raw `PSIN` companion envelope, region `RNME`/`PAL `/`MAP `/`GMAP`/`TILE`/`ETAB`, and exact `OJFF` object-frame records with image references. Title/start, party overview, ADD-list, interface palette, generation/modal controls, shared window image, start-flow window graphs, APFM event masks, the owned font's identity map, encoding-neutral glyph composition, canonical Tyr DSRG/DSOB extraction, static first-frame scene composition, the opening Tyr camera, cursor image family, and `GMAP` `0x40` terrain blocking are implemented; #19004 still awaits an app-specific consumer. Remaining character state, other mask/geometry/entity meanings, authentic text presentation, dynamic party data, later-window semantics, later cameras/animation/gameplay behavior, and other region dependencies remain unknown |
 | Q5 | What are the logical resolution, pixel aspect, palettes, cursor geometry, animation cadence, and audio timing? | slices 2-7 | runtime observation | open - the logical resolution is 320x200; `PAL ` #1000 supplies the interface/cursor colors; `ICON` #19101-#19110 geometry and the upper-left cursor hotspot are verified; all five FLI headers are 320x200 8-bit `0xAF11` streams with raw speed fields, and all 147 VOC headers share one envelope, but pixel aspect, raw-speed units, animation cadence, cursor update cadence, audio codecs/sample rates, and playback timing remain open |
 | Q6 | For each verified manual/guide/runtime conflict or original defect, should compatibility preserve it, fix it, or expose an option? | slices 4-7 | repository owner after evidence | open |
 | Q7 | Are original save compatibility and Shattered Lands party transfer desired once their formats are evidenced? | slice 7 | repository owner | open |

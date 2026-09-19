@@ -50,6 +50,10 @@
   the remaining static configuration/data files. The 26 GFF files expose
   16,168 descriptors under `DATA-GOG-GFF-001`. These counts establish coverage,
   not gameplay, UI, audio, or executable semantics.
+- **Inventory disposition:** `inventory-source` classified all 279 files in the
+  owned installation: 233 immutable game-data inputs, 10 mutable capture/save
+  files, 18 DOSBox wrapper/configuration files, 13 storefront wrappers, and five
+  documents. No file is unrepresented.
 - **Confidence:** verified for this fingerprinted installation inventory and
   GFF descriptor count; semantics remain unknown unless separately recorded.
 - **Implementation:** `PackedOpaquePayload` (DSOP v1) and the Extractor's

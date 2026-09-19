@@ -37,6 +37,18 @@ static async Task<int> RunAsync(string[] args)
             Console.WriteLine($"Source fingerprint: {identification.Edition.Fingerprint()}");
             return 0;
         }
+        if (command == "inventory-source")
+        {
+            var inventory = SourceCorpusInventory.Read(source, identification.Edition!);
+            foreach (var group in inventory.Records.GroupBy(record => record.Disposition)
+                         .OrderBy(group => group.Key))
+                Console.WriteLine($"{group.Key}: {group.Count()} file(s)");
+            var unrepresented = inventory.Records.Where(record =>
+                record.Disposition == SourceCorpusDisposition.Unrepresented).ToArray();
+            foreach (var record in unrepresented)
+                Console.Error.WriteLine($"[source_unrepresented] {record.Path}");
+            return unrepresented.Length == 0 ? 0 : 3;
+        }
         if (command != "extract") return Usage();
 
         var version = Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "unknown";
@@ -100,6 +112,7 @@ static int Usage()
     Console.WriteLine("A legally owned supported GOG copy is required. The original installation is read-only.");
     Console.WriteLine("  list-editions");
     Console.WriteLine("  verify-source --source <gog-installation>");
+    Console.WriteLine("  inventory-source --source <gog-installation>");
     Console.WriteLine("  extract --source <gog-installation> [--output <asset-pack>]");
     Console.WriteLine("  verify-pack [--output <asset-pack>]");
     return 64;
