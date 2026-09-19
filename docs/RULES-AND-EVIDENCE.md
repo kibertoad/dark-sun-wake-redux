@@ -685,7 +685,11 @@
   and has a little-endian file-size field equal to its physical length, magic
   `0xAF11`, 320x200 dimensions, 8-bit depth, and flags `0x0003`. In numeric
   filename order, their frame-count/raw-speed pairs are 1175/7, 373/7, 575/7,
-  284/7, and 1398/5. All 147 VOC files are at least 26 bytes, begin with the
+  284/7, and 1398/5. Starting at byte 128, a bounded six-byte
+  declared-size/type scan completely covers every physical FLI file using only
+  `0xF1FA` records. Their physical-record counts are 1176, 374, 576, 285, and
+  1399 respectively: exactly one more than their corresponding header counts.
+  All 147 VOC files are at least 26 bytes, begin with the
   standard `Creative Voice File` signature, declare data offset 26, version
   `0x010a`, checksum `0x1129`, and contain first block type 1 at that offset.
   Each declared first-block length fits within its physical file; the raw
@@ -694,14 +698,16 @@
   bytes.
 - **Confidence:** high for these bounded inventory/header facts in
   GOG-1432903719; unknown for FLI chunk types, palette behavior, raw-speed
-  units, effective playback cadence, later VOC block layout, codec-byte/sample
-  rate semantics,
+  units, effective playback cadence, whether the one extra FLI record is a
+  loop/sentinel/displayed frame, FLI chunk layout, later VOC block layout,
+  codec-byte/sample rate semantics,
   audio routing, Ogg track mapping, loops, and all audiovisual sequencing.
 - **Implementation consequence:** no decoder, extractor entry, media mapping,
   or time-based runtime behavior is introduced yet. A future media reader must
-  validate these fixed envelopes first, bound every subsequent chunk/block and
-  decoded output, use an explicit monotonic playback clock, and treat the raw
-  FLI speed field as data until its unit is independently established.
+  validate these fixed envelopes first, bound every subsequent record/chunk or
+  block and decoded output, preserve the header-versus-physical-record count
+  distinction, use an explicit monotonic playback clock, and treat the raw FLI
+  speed field as data until its unit is independently established.
 
 ### DATA-GOG-ITEMS-001 - ITEMS.BIN fixed-width pair envelope
 
