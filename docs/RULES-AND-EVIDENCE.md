@@ -669,6 +669,35 @@
   every scalar-field role, interaction with `SOUND.INI`/`SOUND_DS.EXE`, device
   detection, mixer defaults, voice/music routing, codecs, and playback timing.
 
+### DATA-GOG-MEDIA-001 - Cinematic and voice-file header inventory
+
+- **Question:** What fixed media-file envelopes can be established for the
+  supported installation before selecting a cinematic or audio decoder?
+- **Method:** Enumerate only paths, extensions, and sizes beneath the owned
+  installation. For each numbered FLI file, read exactly the first 128 bytes
+  and summarize little-endian header fields without decoding chunks or frames.
+  For every VOC file, read exactly its fixed 26-byte header and the single byte
+  at its declared data offset; aggregate the results without retaining names,
+  frames, samples, or block payloads.
+- **Finding:** the installation contains five root-level FLI files totalling
+  19,498,251 bytes, 147 VOC files totalling 33,989,656 bytes, and 40 Ogg files
+  under `MUSIC` totalling 99,131,938 bytes. Every FLI file is at least 128 bytes
+  and has a little-endian file-size field equal to its physical length, magic
+  `0xAF11`, 320x200 dimensions, 8-bit depth, and flags `0x0003`. In numeric
+  filename order, their frame-count/raw-speed pairs are 1175/7, 373/7, 575/7,
+  284/7, and 1398/5. All 147 VOC files are at least 26 bytes, begin with the
+  standard `Creative Voice File` signature, declare data offset 26, version
+  `0x010a`, checksum `0x1129`, and contain first block type 1 at that offset.
+- **Confidence:** high for these bounded inventory/header facts in
+  GOG-1432903719; unknown for FLI chunk types, palette behavior, raw-speed
+  units, effective playback cadence, VOC block layout/codec/sample rate,
+  audio routing, Ogg track mapping, loops, and all audiovisual sequencing.
+- **Implementation consequence:** no decoder, extractor entry, media mapping,
+  or time-based runtime behavior is introduced yet. A future media reader must
+  validate these fixed envelopes first, bound every subsequent chunk/block and
+  decoded output, use an explicit monotonic playback clock, and treat the raw
+  FLI speed field as data until its unit is independently established.
+
 ### DATA-GOG-ITEMS-001 - ITEMS.BIN fixed-width pair envelope
 
 - **Question:** Does the owned `ITEMS.BIN` have a bounded record envelope that
