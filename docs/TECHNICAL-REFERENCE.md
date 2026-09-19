@@ -108,9 +108,10 @@ the documented control role from the state that has not yet been measured.
 | About | The manual specifies version, copyright, support, hint-line, and address information; the executable supplies nine centered lines | Modal geometry, backdrop, input dismissal, and native transition |
 
 Direct-reference and scalar probes find no literal binding from the executable
-text table or two tested control pairs to a handler. This does not prove that
-the controls are inactive: their dispatch may be resource-driven or calculated.
-It does prevent treating those literal values as evidence for an implementation.
+text table, including all nine centered About strings, or two tested control
+pairs to a handler. This does not prove that the controls are inactive: their
+dispatch may be resource-driven or calculated. It does prevent treating those
+literal values as evidence for an implementation or an About modal route.
 `PREF` #100 is a single nine-byte envelope in `CHARSAVE.GFF`; it provides no
 field layout or connection to the in-game screen. The sole raw `PREF` tag also
 has no direct executable reference, so neither source establishes settings

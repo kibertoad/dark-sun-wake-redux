@@ -233,12 +233,16 @@ proof by itself. Never redirect broad output into the repository.
   the two extracted difficulty-button identities (16308 and 16309) likewise
   produced no matches. Function-level scalar-intersection probes likewise found
   no function containing both the music/sound on-off IDs (16300 and 16301) or
-  both music-volume IDs (16304 and 16305). These bounded results do not prove
-  that the tables or controls are unused: segmented pointers and
-  resource-derived values can be calculated at runtime. They do rule out
+  both music-volume IDs (16304 and 16305). A later direct-reference report for
+  the first centered About line (`5000:a5cc`) also produced no references, and
+  a bounded whole-image search for the common `%C%C%C` prefix found 30 strings
+  with no reported direct reference, including all nine consecutive About
+  strings at `5000:a5cc` through `5000:a6c9`. These bounded results do not
+  prove that the tables, strings, or controls are unused: segmented pointers
+  and resource-derived values can be calculated at runtime. They do rule out
   treating a direct literal reference or either tested literal control pair as
-  evidence for a particular button handler, selected default, or settings
-  storage location.
+  evidence for a particular button handler, selected default, settings storage
+  location, or About modal presentation route.
 - **Implementation consequence:** a fixed-edition bounded reader validates the
   executable offsets, printable bytes, terminators, exact description span,
   counts, and About control prefixes. The Extractor strips only the three
