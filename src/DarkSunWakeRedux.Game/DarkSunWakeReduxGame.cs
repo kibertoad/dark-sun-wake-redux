@@ -18,6 +18,8 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     private readonly List<(UiImagePlacement Placement, Texture2D Texture)> _addExistingImages = [];
     private readonly List<(StartMenuControl Control, Texture2D Texture)> _startMenuControls = [];
     private IReadOnlyList<AddExistingControl> _addExistingControls = [];
+    private readonly List<(CharacterGenerationControl Control, Texture2D Texture)>
+        _characterGenerationControls = [];
     private Texture2D? _gameMenuBase;
     private readonly List<(GameMenuControl Control, Texture2D Texture)> _gameMenuControls = [];
     private readonly List<(PreferencesControl Control, Texture2D Texture)> _preferencesControls = [];
@@ -139,6 +141,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         var uiCatalog = PackedUiCatalog.Read(uiStream, OriginalContent.StartFlowUiCatalogAssetPath);
         var controls = StartMenuInput.Resolve(uiCatalog);
         _addExistingControls = AddExistingCharacterInput.Resolve(uiCatalog);
+        var characterGenerationControls = CharacterGenerationInput.Resolve(uiCatalog);
         foreach (var control in controls)
         {
             var buttonPath = Path.Combine(_assetPack,
@@ -146,6 +149,11 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             using var buttonStream = File.OpenRead(buttonPath);
             var image = PackedIndexedImage.Read(buttonStream, control.AssetPath);
             _startMenuControls.Add((control, CreateTexture(image, image.Frames[0])));
+        }
+        foreach (var control in characterGenerationControls)
+        {
+            if (control.DisplayAssetPath is { } assetPath)
+                _characterGenerationControls.Add((control, LoadImageTexture(assetPath)));
         }
         _gameMenuBase = LoadImageTexture(OriginalContent.GameMenuLayer.Path);
         var gameMenuUiPath = AssetPath(OriginalContent.GameMenuUiCatalogAssetPath);
@@ -415,6 +423,12 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                         AddExistingCharacterInput.HitTest(_addExistingControls, x, y) is { } control &&
                         AddExistingCharacterInput.CommandFor(control) is { } command)
                         _startFlow.Execute(command);
+                    else if (screen == StartFlowScreen.CharacterGeneration &&
+                        CharacterGenerationInput.HitTest(
+                            _characterGenerationControls.Select(item => item.Control).ToArray(), x, y)
+                        is { } characterGenerationControl &&
+                        CharacterGenerationInput.CommandFor(characterGenerationControl) is { } characterCommand)
+                        _startFlow.Execute(characterCommand);
                     else if (screen == StartFlowScreen.Gameplay &&
                         _exploration.Snapshot().View == ExplorationView.GameMenu &&
                         GameMenuInput.HitTest(
@@ -658,6 +672,8 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                     (item.Layer.X, item.Layer.Y, item.Texture)),
                 StartFlowScreen.AddExistingCharacter => _addExistingImages.Select(item =>
                     (item.Placement.X, item.Placement.Y, item.Texture)),
+                StartFlowScreen.CharacterGeneration => _partyOverviewLayers.Take(1).Select(item =>
+                    (item.Layer.X, item.Layer.Y, item.Texture)),
                 StartFlowScreen.Gameplay when
                     explorationView == ExplorationView.ViewCharacter =>
                     _partyOverviewLayers.Select(item =>
@@ -747,6 +763,10 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                     foreach (var (control, texture) in _startMenuControls)
                         _spriteBatch.Draw(texture, ScaledRectangle(destination, transform,
                             control.X, control.Y, texture.Width, texture.Height), Color.White);
+                if (screen == StartFlowScreen.CharacterGeneration)
+                    foreach (var (control, texture) in _characterGenerationControls)
+                        _spriteBatch.Draw(texture, ScaledRectangle(destination, transform,
+                            control.X, control.Y, texture.Width, texture.Height), Color.White);
                 if (dialoguePreviewActive &&
                     _dialogueOverlay is { } dialogue &&
                     _dialoguePortrait is not null)
@@ -822,6 +842,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         foreach (var texture in _addExistingImages.Select(item => item.Texture).Distinct())
             texture.Dispose();
         foreach (var (_, texture) in _startMenuControls) texture.Dispose();
+        foreach (var (_, texture) in _characterGenerationControls) texture.Dispose();
         _gameMenuBase?.Dispose();
         foreach (var (_, texture) in _gameMenuControls) texture.Dispose();
         foreach (var texture in _preferencesControls.Select(item => item.Texture).Distinct())

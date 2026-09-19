@@ -352,9 +352,17 @@
   frame counts; medium for palette #1000; unknown for frame-state semantics,
   hit boundaries, focus, and dynamic fields.
 - **Implementation:** all ten image sets are transactionally converted to DSIX
-  in the verified pack; runtime composition remains pending the rest of the shell.
-- **Tests:** exact unique mappings, canvas bounds, frame contracts, synthetic
-  extraction, manifest provenance, real-pack verification, and content smoke.
+  in the verified pack. The runtime validates the complete ordered 22-child
+  graph, retains the shared character-sheet base while Core is in
+  `CharacterGeneration`, and layers the ten first-frame image controls at their
+  recorded coordinates. EXIT is the sole mapped action and returns to the party
+  overview. This background retention is a provisional implementation choice,
+  not a claim that the original's dynamic fields or title composition match;
+  class selection, DONE, focus, and all non-image controls remain inert.
+- **Tests:** exact unique mappings, canvas bounds, frame contracts, complete
+  ordered graph validation, exclusive image hit rectangles, EXIT routing,
+  synthetic extraction, manifest provenance, real-pack verification, and
+  content smoke.
 
 ### DATA-GOG-UI-003 - Shared party-window image reference
 
