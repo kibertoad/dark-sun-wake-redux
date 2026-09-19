@@ -757,7 +757,12 @@ proof by itself. Never redirect broad output into the repository.
   `1695:07dd`; that helper replaces the caller's index with the old offset-11
   link, overwrites that link with the resident head at `4c13:032d`, and makes
   the removed index the new head. This establishes node removal and relinking
-  to a second resident chain, but not the chains' gameplay roles.
+  to a second resident chain, but not the chains' gameplay roles. A further
+  reader, `1695:08db`, traverses the same offset-11 links and reports a
+  low-byte success when resident word `4c0d:0009` equals record word 4. For the
+  one currently designated resident index at `4c10:0017`, it also accepts a
+  match against record word 6. The special index's identity and both fields'
+  behavior remain unknown.
 - **Interpretation:** this is a verified linked runtime-selector shape feeding
   the shared processing path, not evidence that it is a map trigger, dialogue
   option, combat event, or an on-disc file format. The apparent 13-byte stride
