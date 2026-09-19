@@ -909,7 +909,10 @@ proof by itself. Never redirect broad output into the repository.
   the executable entry at `1000:0158`, after that entry pushes three resident
   words. Immediately before the link loop, it calls a verified generic
   byte-fill helper at that same table pointer with an observed length of
-  `0x0a28` and fill byte `0xff`; `0x0a28` equals 200 13-byte strides. It then
+  `0x0a28` and fill byte `0xff`; `0x0a28` equals 200 13-byte strides. A
+  direct-reference query of the secondary-chain head at `4c13:032d` found
+  exactly three direct uses: the initializer's zero write, plus one read and
+  one write in the proven node-removal helper `1695:07dd`. It then
   writes the offset-11 link for source indices 0 through 199 to each next
   numeric index, so the final written value is 200. It clears the
   secondary-chain head at `4c13:032d` and resets five adjacent resident
