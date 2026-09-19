@@ -1367,12 +1367,16 @@
   are unknown.
 - **Implementation:** `CombatCommand` owns the six semantic requests without
   depending on MonoGame, while `CombatHotkeys` maps only their documented keys
-  on a rising edge. The mapper is intentionally not connected to exploration:
-  no combat state exists yet to resolve these requests into target selection,
-  turn advancement, guard/wait effects, or automation changes.
+  on a rising edge. `CombatAttackEligibilityRules` evaluates only the supplied
+  manual preconditions for melee and ranged attacks; it does not define range,
+  adjacency, equipment readiness, pathing, target selection, damage, or attack
+  resolution. The mapper is intentionally not connected to exploration: no
+  combat state exists yet to resolve these requests into target selection, turn
+  advancement, guard/wait effects, or automation changes.
 - **Tests:** each documented key, rising-edge suppression, stable simultaneous
-  ordering, and invalid command rejection are covered. Deterministic combat
-  command traces remain planned.
+  ordering, invalid command rejection, and the full true/false matrix for both
+  attack-eligibility predicates are covered. Deterministic combat command
+  traces remain planned.
 - **Uncertainty:** Activation order, RNG, THAC0/AC details, timing, and difficulty
   effects, the computer-control default and re-enable behavior, turn effects of
   Guard/Wait, and exact target/range calculations require OBS-GOG and targeted
