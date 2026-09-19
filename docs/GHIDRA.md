@@ -443,6 +443,28 @@ proof by itself. Never redirect broad output into the repository.
   routine from these text literals; seek a multi-signal data/call-path lead or
   controlled observation first.
 
+### EXE-GOG-MONR-001 - MONR has no raw executable tag literal
+
+- **Question:** Does the sole `MONR` resource in `RESOURCE.GFF` identify an
+  executable tag consumer that could constrain its role in monster, encounter,
+  or combat processing?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** `ReportBytePattern` searched every loaded memory block for the
+  explicit ASCII encoding `4d 4f 4e 52`, capped by the reusable script's
+  100-match limit.
+- **Bounded finding:** no raw byte-pattern match exists in the loaded program.
+- **Interpretation:** this rules out only an embedded literal-tag representation.
+  It does not establish that the resource is unused, nor does it identify a
+  loader, field layout, record boundary, monster mapping, encounter, or combat
+  behavior. `DATA-GOG-MONR-001` independently rejects its arithmetic 81-byte
+  candidate stride as a format claim.
+- **Confidence:** high for the absent raw-literal query; unknown for the
+  resource's loading and semantics.
+- **Implementation consequence:** no `MONR` parser, extractor contract, or
+  combat behavior is introduced from this query.
+
 ### EXE-GOG-ITEMS-001 - The executable does not embed the owned ITEMS.BIN filename
 
 - **Question:** Does the supported executable embed the exact null-terminated

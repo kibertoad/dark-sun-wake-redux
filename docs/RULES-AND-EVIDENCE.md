@@ -235,6 +235,33 @@
   target property, or encounter behavior is introduced from this query; a
   transition still requires an independent call-path or controlled observation.
 
+### DATA-GOG-MONR-001 - MONR is not yet a monster or combat record format
+
+- **Question:** Does the sole `MONR` resource in the owned `RESOURCE.GFF`
+  establish a fixed-width monster or encounter record layout that can safely
+  supply combat state?
+- **Method:** Inventory the bounded GFF directory, then run the read-only
+  `record-profile` inspector with its exact-divisor candidate width of 81 bytes.
+  The inspector reports aggregate column statistics only; it retains no source
+  bytes and does not infer field types or names.
+- **Finding:** `MONR` has exactly one resource (#1), 1,134 bytes long. The
+  81-byte candidate divides exactly into 14 chunks, but all 81 candidate
+  columns vary: each contains five through nine distinct byte values and six
+  through ten zeros. The profile therefore establishes neither a header nor a
+  repeated-record boundary. `EXE-GOG-MONR-001` separately finds no raw ASCII
+  `MONR` tag in the fingerprinted executable.
+- **Confidence:** high for the GFF identity, byte length, candidate arithmetic,
+  aggregate profile, and bounded absent-literal query; unknown for every byte,
+  record boundary, name, loader, and relation to monsters, encounters, or
+  combat.
+- **Implementation consequence:** do not add a `MONR` reader, extraction
+  contract, monster catalog, or combat rule. Revisit only with a constrained
+  call-path lead, cross-file structural corroboration, or controlled runtime
+  observation.
+- **Tests/tooling:** `OpaqueRecordProfile` has synthetic statistic and invalid
+  width/length coverage; `record-profile` validates the GFF/tag/resource input
+  and exposes aggregate JSON for local-only analysis.
+
 ### DATA-GOG-TITLE-001 - Title image resource mapping
 
 - **Question:** Which resource and palette form the static game-title image?
