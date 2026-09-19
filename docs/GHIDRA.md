@@ -246,6 +246,38 @@ proof by itself. Never redirect broad output into the repository.
   About lines to a local DSTX catalog. Original text is not committed and the
   Game never reads the executable.
 
+### EXE-GOG-UI-007 - EBOX tag paths do not establish native chrome rendering
+
+- **Question:** Do the dialogue's image-less edit-box controls yield a bounded
+  native rendering path that establishes missing corner or bevel treatment?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** `ReportBytePattern` located `EBOX`, `WIND`, `BUTN`, and `APFM`
+  tag uses. Bounded contexts classified the three direct EBOX tag-request
+  wrappers and the generic child dispatcher; `ReportReferences` enumerated
+  their direct callers.
+- **Bounded finding:** wrappers `409b:189c`, `4228:002b`, and `4228:00a9`
+  each pass a caller-supplied identity and `EBOX` tag to the same tag-aware
+  resolver used by the known WIND path, then test its returned pointer/result.
+  Ghidra finds no direct callers of any of those wrappers. The generic child
+  dispatcher `3d72:0eb8` distinguishes `APFM`, `BUTN`, and `EBOX` records and
+  has only two direct callers, both inside `3d72:0009`. Its bounded context
+  reads resident fields and event bits; it identifies no image draw, fill,
+  bevel, corner, clipping, or palette operation.
+- **Interpretation:** the observed EBOX controls participate in a native
+  tag-aware resource and child-dispatch framework, but this query does not
+  establish an EBOX visual primitive or connect any wrapper to dialogue
+  rendering. It therefore cannot justify synthesizing missing dialogue chrome
+  from image-less control geometry.
+- **Confidence:** high for the explicit tag requests, all-read direct-caller
+  results, and bounded dispatcher discrimination; unknown for indirect callers,
+  callback registration, and native visual treatment.
+- **Implementation consequence:** keep the captured panel artwork as the only
+  dialogue chrome layer and retain image-less controls as geometry/event
+  contracts. A renderer change requires a measured capture or a separately
+  traceable drawing path.
+
 ### EXE-GOG-PREF-001 - No direct literal `PREF` resource route
 
 - **Question:** Does the sole `PREF` resource-family tag yield a direct
