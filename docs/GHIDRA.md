@@ -633,15 +633,24 @@ proof by itself. Never redirect broad output into the repository.
   path, the first helper supplies the allocation extent, the code allocates one
   additional byte, the second helper fills the allocation, and the code writes
   byte `0x31` immediately after the copied range. Its only direct static caller
-  is `172c:0388`; no opcode dispatch, script meaning, cache eviction policy, or
-  caller-level feature meaning is established.
+  is `172c:0388`. That wrapper avoids repeating an already-current
+  identity/selector pair, tries a separate source before this cache, and records
+  a successful pair. Its coherent caller `172c:0299` stores the requested
+  identity and selector, then invokes `172c:01c1` after a successful request.
+  The latter is not an opcode dispatcher: it increments and wraps a bounded
+  counter at 50, then records two state bytes and the caller's parameter. The
+  other apparent wrapper call lies in non-coherent decoded instructions and is
+  not accepted as evidence. No GPL/MAS opcode dispatch, script meaning, cache
+  eviction policy, queue ordering, or caller-level feature meaning is
+  established.
 - **Interpretation:** `GPL ` and `MAS ` are distinct native input families,
   not interchangeable labels for the same extracted payload. The helpers and
   cache establish a native loading boundary, but do not license execution of
   source bytes or a general interpreter.
 - **Confidence:** high for selector validation, tag choice, fixed cache bound,
-  and bounded allocation/copy sequence; unknown for opcode semantics, script
-  side effects, cache replacement, and higher-level caller intent.
+  bounded allocation/copy sequence, and the 50-entry recorder boundary; unknown
+  for opcode semantics, script side effects, cache replacement/ordering, and
+  higher-level caller intent.
 - **Implementation consequence:** DSGP v2 records the exact source tag with
   resource identity and bytes. The first-Tyr dialogue projections require
   `GPL ` and the global-string projections require `MAS `; both remain
