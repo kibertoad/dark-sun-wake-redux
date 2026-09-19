@@ -639,6 +639,32 @@
   every scalar-field role, interaction with `SOUND.INI`/`SOUND_DS.EXE`, device
   detection, mixer defaults, voice/music routing, codecs, and playback timing.
 
+### DATA-GOG-ITEMS-001 - ITEMS.BIN fixed-width pair envelope
+
+- **Question:** Does the owned `ITEMS.BIN` have a bounded record envelope that
+  can be described without assigning item, equipment, or combat semantics?
+- **Method:** Inspect its fingerprinted 936 bytes as little-endian 16-bit
+  values and calculate only count, uniqueness, ordering, and range properties.
+  No source bytes are retained in the repository.
+- **Finding:** the entire file divides exactly into 234 four-byte pairs. Every
+  first value is unique; pair indices 0 through 232 increase strictly by their
+  first value, while pair 233 is a unique final out-of-order entry. The second
+  values contain 159 distinct values across the 234 pairs. Both fields are
+  unsigned 16-bit envelopes only; no field names or roles are assigned.
+- **Confidence:** high for length, pair width/count, endianness, uniqueness,
+  ordering boundary, and second-value duplication in GOG-1432903719; unknown
+  for pair meanings, lookup direction, the last entry's role, and all item or
+  gameplay semantics.
+- **Implementation consequence:** no reader is introduced yet. A future
+  approved reader must require the exact supported source fingerprint, parse
+  all 234 pairs transactionally, reject any incompatible envelope, and retain
+  neutral pair names until independent executable or runtime evidence assigns
+  semantics.
+- **Uncertainty:** whether either value is an item ID, image/object reference,
+  resource alias, equipment property, lookup key, or compatibility remap;
+  whether the final pair is a sentinel, exceptional alias, or normal record;
+  and all inventory/combat effects.
+
 ### DATA-GOG-CURSOR-001 - Exploration cursor family and hotspot
 
 - **Method:** Render every low-numbered `RESOURCE.GFF` image candidate with

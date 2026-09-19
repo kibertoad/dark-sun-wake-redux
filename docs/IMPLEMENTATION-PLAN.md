@@ -545,6 +545,7 @@ decoder rather than being guessed now.
 | Q11 | Which origin/class eligibility list does the shipped creation screen enforce where the original manual's race descriptions on pages 17-18 conflict with its class descriptions on pages 19-22 (half-giant ranger/thief, mul druid, thri-kreen druid/thief)? | slice 2 | OBS-GOG evidence investigation | open - Core preserves these as `EvidenceConflict` |
 | Q12 | Which four disc `CHAR` resources does START GAME select as the supplied pregenerated party? | slice 2 | OBS-GOG/DATA-GOG evidence investigation | open - disc blocks #40-#43 and #50-#53 are bounded; one independently reported default member maps to #43, but the other three selections are not established |
 | Q13 | Must pathfinding reproduce the original route planner verbatim? | slice 3 | repository owner | closed - no; owner approved a modern fit-for-purpose implementation on 2026-09-13 |
+| Q14 | What do the two fields in the bounded 234-pair `ITEMS.BIN` table mean, and which exact reader/extraction use belongs in the equipment slice? | slice 5 | DATA/EXE/OBS evidence investigation | open - `DATA-GOG-ITEMS-001` proves the fixed-width envelope only; no item, equipment, or combat semantics are assigned |
 
 ## Risks
 
