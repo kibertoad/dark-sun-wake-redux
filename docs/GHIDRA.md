@@ -527,9 +527,11 @@ proof by itself. Never redirect broad output into the repository.
   to that setter. The separate far wrapper `2834:061c` returns zero without
   calling the generator when its divisor is zero; otherwise it consumes one
   generator result and applies remainder reduction by the supplied divisor.
-  Ghidra finds three direct calls to the generator and multiple direct calls to
-  the wrapper, but those callers do not establish seed ownership, stream
-  partitioning, consumption order, or any particular game mechanic.
+  The generator's only three direct static callers are the modulo wrapper,
+  repeated-roll helper `28c9:391d`, and inclusive-range helper `2d40:3a03`.
+  The repeated-roll helper itself has no direct static references. These
+  boundaries do not establish seed ownership, stream partitioning, consumption
+  order, or any particular game mechanic.
 - **Inclusive-range refinement:** direct caller `2d40:3a03` returns its first
   signed argument unchanged without a generator call when it is greater than
   or equal to its second. When lower is less than upper, it consumes one
