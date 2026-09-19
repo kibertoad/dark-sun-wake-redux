@@ -145,6 +145,10 @@ frame 0 is exact; the remaining frame meanings are still unknown. The current
 single-cell footprint and 125 ms movement step are isolated modern policies,
 not native-parity claims.
 
+`docs/OWNER-CAPTURE-CHECKLIST.md` contains the bounded Ctrl+F5 checklist for
+the first priority. Do not inspect candidate DOSBox screenshots until the owner
+confirms its timestamp window and completed checklist identifiers.
+
 ## Wrap-up gates
 
 Before handing over any future batch, run `tools/Test.ps1`, build the solution,
