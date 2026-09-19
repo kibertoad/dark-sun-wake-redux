@@ -615,6 +615,7 @@ content smoke both pass.
 | Q15 | Should work stop after complete source-corpus extraction until each rule is evidenced? | all further logic slices | repository owner | closed - yes, owner-directed 2026-09-19; Slice 2A is the mandatory gate |
 | Q16 | Which flows seed the native random stream, and which gameplay rules consume its modulo, inclusive-range, or repeated-roll helpers? | slices 2-7 | EXE/OBS evidence investigation | open - `EXE-GOG-RNG-001` establishes the 16-bit-seeded LCG and three generic result transforms, but no seed source, stream partition, call order, or rule-level consumer is established |
 | Q17 | What, if anything, consumes the 329 fixed-width records in `GPLDATA.GFF` `GPLI` #1? | slices 2-4 | EXE/OBS evidence investigation | open - `DATA-GOG-GPLI-001` establishes only a 7,896-byte, 329-by-24-byte envelope with four repeated six-byte lanes. `EXE-GOG-GPLI-001` found no literal tag in the supplied executable, so no record-to-script mapping, lookup, or field meaning is assumed |
+| Q18 | Which original source materializes the linked 13-byte runtime selector records, and which game features own their four static predicate shapes? | slices 3-6 | EXE/OBS evidence investigation | open - `EXE-GOG-EVENT-001` proves one runtime table and four linked-selector traversals feeding a shared processing entry, but does not identify a source container, field names, caller ownership, or player-visible effects |
 
 ## Risks
 

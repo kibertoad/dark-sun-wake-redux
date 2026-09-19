@@ -702,6 +702,44 @@ proof by itself. Never redirect broad output into the repository.
   not add a GPLI reader or connect it to dialogue until a constrained call path
   or controlled observation independently corroborates an interpretation.
 
+### EXE-GOG-EVENT-001 - shared processing entry consumes linked runtime selectors
+
+- **Question:** Do the coherent callers of the shared `172c:000c` processing
+  entry establish a bounded record envelope or a feature-specific rule?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. The full analyzer
+  pass completed before these focused queries.
+- **Method:** `ReportReferences` enumerated the entry's eight direct far
+  callers. Bounded instruction contexts classified their immediate argument
+  setup. Four bounded decompilations of the `1695` callers compared every
+  dereferenced offset and all chain termination and match predicates.
+- **Bounded finding:** four callers traverse a resident table pointer at
+  `5b7c:0700` from a supplied 16-bit index. Index `-1` terminates an
+  unsuccessful traversal. Each record is addressed as `index * 13`; all four
+  read words at offsets 0, 2, 4, and 6, bytes at 8, 9, and 10 where applicable,
+  and the next index at offset 11. On a match, each supplies the two leading
+  words to `172c:000c` with a literal third call argument of one. One selector
+  compares the two words at 4/6 exactly to resident words `4c0d:0005` and
+  `4c0d:0003` and applies byte 8 as a lower-threshold check against
+  `4c0d:0001`; another treats bytes 8 and 9 as inclusive extents from words
+  4 and 6 and applies byte 10 as that threshold; a third exactly compares word
+  4 to `4c0d:0009`; the fourth accepts either order of resident words
+  `4c0d:0009` and `4c0d:0007` against record words 4/6. No conclusion about
+  the meanings of the resident values or fields follows from their arithmetic.
+- **Interpretation:** this is a verified linked runtime-selector shape feeding
+  the shared processing path, not evidence that it is a map trigger, dialogue
+  option, combat event, or an on-disc file format. The apparent 13-byte stride
+  is proven for these callers only; table allocation/population, index-source
+  validity, execution outcome, and relation to GPL/MAS remain unknown.
+- **Confidence:** high for the four routine-local record accesses, chain shape,
+  and call relationship; unknown for table ownership, field semantics, and
+  player-visible behavior.
+- **Implementation consequence:** do not add a resource parser, persist this
+  data, or infer interaction triggers. Preserve the evidence as `Q18` until a
+  source container, a static materialization path, or a controlled observation
+  independently connects this runtime table to game content.
+
 ### EXE-GOG-GPL-001 - GPL and MAS are selected script-resource families
 
 - **Question:** Does the original executable distinguish `GPL ` from `MAS `
