@@ -594,18 +594,30 @@ proof by itself. Never redirect broad output into the repository.
   block for the explicit ASCII bytes for `CHARSAVE.GFF`, capped at 100 matches;
   `ReportDataBytes` classified the shared 48-byte neighborhood; and
   `ReportReferences` queried each reported virtual address, capped at 200
-  inbound references.
+  inbound references. A later `ReportFunctionScalarIntersection` query for the
+  contiguous installed-only candidate IDs #29, #30, #31, and #32 found no
+  function containing all four; the individual-ID query produced numerous
+  unrelated scalar uses and was not treated as a resource-request trace. A
+  separate raw byte-pattern search of fingerprinted `CHARTRAN.EXE` (24,761
+  bytes, SHA-256
+  `e99572016901c67135b9d1b14b6db3936078749779b89e5c62f7044fe722cf1d`) found
+  no `CHARSAVE.GFF` token.
 - **Bounded finding:** the raw filename bytes occur twice in `CODE_208`, at
   `5000:9188` and `5000:9197`. The first is a null-terminated filename; the
   second is that filename within a separate missing-file diagnostic, not a
   second filename entry. Even after the full analyzer pass, Ghidra reports no
   inbound reference to either byte address. No loader, archive open,
   character-record selection, or START GAME transition is identified by this
-  query.
+  query. The #29-#32 grouping is therefore not corroborated by a shared
+  executable function, and the transfer utility's raw strings do not identify
+  a second filename-based lead.
 - **Interpretation:** the strings may be used through an indirect pointer,
   constructed/relocated data, another executable, or an unrecognized code path.
   The result rules out only treating either raw byte address as a direct static
-  loader lead; it does not prove the archive unused.
+  loader lead; it does not prove the archive unused. Likewise, a contiguous
+  installed resource-ID run is not evidence that those records form the
+  supplied party, and the negative string query does not prove `CHARTRAN.EXE`
+  cannot access the archive indirectly.
 - **Confidence:** high for the two raw matches and absent direct references;
   unknown for loader ownership and party-selection behavior.
 - **Implementation consequence:** retain `ShippedPartyUnresolved` and do not
