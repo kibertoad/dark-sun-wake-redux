@@ -733,7 +733,11 @@
   introduced. A future reader must first extend the source manifest contract,
   bound each fixed region, reject unsupported length/terminator/padding forms,
   and acquire independent evidence before mapping a field to UI, volume,
-  driver selection, playback, or timing.
+  driver selection, playback, or timing. `EXE-GOG-SOUND-001` further confirms
+  that `DSUN.EXE` has no literal `SOUND.CFG` pathname, so this file cannot be
+  bound to the Preferences controls from a direct static-name match. That
+  negative result does not exclude a dynamically assembled path, another
+  configuration-owning module, or runtime state propagation.
 - **Uncertainty:** source versus runtime ownership, module-selection semantics,
   every scalar-field role, interaction with `SOUND.INI`/`SOUND_DS.EXE`, device
   detection, mixer defaults, voice/music routing, codecs, and playback timing.

@@ -880,6 +880,32 @@ proof by itself. Never redirect broad output into the repository.
   `GPL ` and the global-string projections require `MAS `; both remain
   fail-closed, bounded projections rather than a GPL interpreter.
 
+### EXE-GOG-SOUND-001 - No literal SOUND.CFG loader path
+
+- **Question:** Does the supported executable contain a direct textual link
+  from `SOUND.CFG` to a Preferences setting or configuration-loading path?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** after the normal analyzer pass, `ReportBytePattern` searched all
+  loaded blocks for the nine-byte ASCII sequence `SOUND.CFG` and would have
+  reported each matching address and its direct references. The query produced
+  no matches.
+- **Bounded finding:** no literal `SOUND.CFG` pathname is present in this
+  executable image. Therefore this query supplies no direct executable call,
+  path reference, or control binding that can connect the 59-byte file to the
+  Preferences controls.
+- **Interpretation:** this rules out only a static literal-name lead in this
+  binary. It does not rule out a dynamically assembled path, a configuration
+  reader in another executable/module, a differently named source, or runtime
+  propagation through resident state.
+- **Confidence:** high for the bounded literal-name absence; unknown for every
+  configuration field and setting behavior.
+- **Implementation consequence:** retain inert Preferences mutations. Do not
+  map `SOUND.CFG` fields, setting ranges, defaults, or audio timing from this
+  absence; seek a corroborating controlled observation or a bounded finding in
+  the actual configuration-owning path.
+
 For each useful finding, add a concise entry here or in the relevant
 `docs/RULES-AND-EVIDENCE.md` / `docs/ORIGINAL-FORMATS.md` section with:
 
