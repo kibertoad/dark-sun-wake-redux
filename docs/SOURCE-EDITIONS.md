@@ -34,9 +34,10 @@ than treating a changed archive as the same edition.
 Bounded inspection of the fingerprinted `game.gog` image found a 3,864-byte
 disc `CHARSAVE.GFF` containing eight paired character resources (#40-#43 and
 #50-#53). The installed 11,735-byte character storage contains 19 pairs
-(#29-#43 and #50-#53). This difference is further evidence that the installed
-file must remain supplemental mutable input rather than an eighth exact anchor.
-See `DATA-GOG-CHAR-006`; neither block is yet designated as the complete
+(#29-#43 and #50-#53). The difference is an evidence boundary about character
+provenance, not an extraction exception: both the disc image and the installed
+archive are preserved as fingerprinted baseline inputs. See
+`DATA-GOG-CHAR-006`; neither block is yet designated as the complete
 pregenerated party.
 
 The GOG installation also contains DOSBox integration, manuals, a clue book,

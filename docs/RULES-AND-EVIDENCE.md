@@ -1415,8 +1415,10 @@
   supported GOG build; runtime selection and remaining field semantics are
   unknown.
 - **Implementation:** `PackedCharacterCatalog` plus transactional extraction to
-  `characters/catalog.dsch`; the asset-pack manifest is version 17 and records
-  `CHARSAVE.GFF` provenance.
+  `characters/catalog.dsch`; the v30 asset-pack manifest records
+  `CHARSAVE.GFF` provenance. The full corpus pass also preserves the original
+  archive as an opaque source-mapped payload; neither output assigns a party
+  role to any record.
 - **Tests:** synthetic round-trip and deterministic ordering; duplicate,
   malformed-field, noncanonical-order, truncation, and trailing-data rejection;
   synthetic extraction and content-smoke validation without original content.
@@ -1437,8 +1439,10 @@
   #29-#43 and #50-#53. The externally identified default member matches disc
   resource #43 and an installed duplicate at #33; the report also identifies
   that character as a half-giant gladiator. This establishes one default member
-  and shows that installed character storage is not an immutable edition
-  fingerprint, but it does not prove which other three records START GAME uses.
+  and shows that the installed archive is not interchangeable with the disc
+  archive for party-provenance purposes, but it does not prove which other three
+  records START GAME uses. Both files nevertheless remain exact inputs in the
+  supported baseline corpus.
 - **Static cross-check:** In the fingerprinted executable, neither candidate
   block appears as four adjacent 16-bit little-endian values. The byte sequence
   for #40-#43 is absent. Two byte-sequence matches for #50-#53 at `5000:a368`
@@ -1450,9 +1454,10 @@
 - **Confidence:** verified for both resource inventories; medium for #43 as one
   default member because independent gameplay reporting and the disc identity
   agree; unknown for the complete four-member selection.
-- **Implementation consequence:** keep `CHARSAVE.GFF` structural and mutable,
-  preserve numeric identities in DSCH, and do not encode a default-party table
-  until runtime or another independent source establishes all four members.
+- **Implementation consequence:** preserve numeric identities in DSCH and the
+  source archive in DSOP, but do not encode a default-party table until runtime
+  or another independent source establishes all four members. A changed source
+  archive is a recognition mismatch, not an implicit alternative party.
 
 ### RULE-START-FLOW-001 - Start and party-creation routing
 

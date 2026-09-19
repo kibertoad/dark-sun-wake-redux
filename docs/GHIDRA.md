@@ -580,6 +580,32 @@ proof by itself. Never redirect broad output into the repository.
   defined-data/string classification as an absence claim; raw-byte search is
   the prerequisite negative check for this kind of question.
 
+### EXE-GOG-CHAR-002 - CHARSAVE filename strings do not identify a party loader
+
+- **Question:** Does an embedded `CHARSAVE.GFF` filename identify an executable
+  code reference that can constrain the archive loader or START GAME's supplied
+  party selection?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** `ReportBytePattern` searched every loaded block for the explicit
+  ASCII bytes for `CHARSAVE.GFF`, capped at 100 matches. `ReportReferences`
+  then queried each reported virtual address, capped at 200 inbound references.
+- **Bounded finding:** the raw filename bytes occur twice in `CODE_208`, at
+  `5000:9188` and `5000:9197`. Ghidra reports no inbound reference to either
+  byte address. No loader, archive open, character-record selection, or START
+  GAME transition is identified by this query.
+- **Interpretation:** the strings may be used through an indirect pointer,
+  constructed/relocated data, another executable, or an unrecognized code path.
+  The result rules out only treating either raw byte address as a direct static
+  loader lead; it does not prove the archive unused.
+- **Confidence:** high for the two raw matches and absent direct references;
+  unknown for loader ownership and party-selection behavior.
+- **Implementation consequence:** retain `ShippedPartyUnresolved` and do not
+  assign the catalog's records to START GAME. A controlled startup observation
+  or an independently corroborated loader/state trace is required before party
+  logic is introduced.
+
 For each useful finding, add a concise entry here or in the relevant
 `docs/RULES-AND-EVIDENCE.md` / `docs/ORIGINAL-FORMATS.md` section with:
 
