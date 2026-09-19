@@ -743,7 +743,10 @@ proof by itself. Never redirect broad output into the repository.
 - **Bounded finding:** the query found no matching byte sequence. Independently,
   `DATA-GOG-GPLI-001` establishes that `GPLDATA.GFF` `GPLI` #1 is 7,896 bytes,
   exactly 329 records of 24 bytes, each containing four consecutive six-byte
-  lanes. The archive fact does not compensate for the absent executable lead.
+  lanes. Its only two aligned-lane occurrences of the known GPL numeric ID
+  135 are in distinct records and lane positions, so even that candidate does
+  not supply a unique fixed-lane mapping. The archive facts do not compensate
+  for the absent executable lead.
 - **Interpretation:** this rejects only a direct, literal-tag loader or lookup
   lead in this executable. The index may still be accessed through relocated
   data, a constructed tag, another binary, or an unrecognized code path. It

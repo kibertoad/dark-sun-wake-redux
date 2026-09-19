@@ -34,6 +34,29 @@
 - **Tests:** synthetic primary, primary-only, segmented-secondary, truncation,
   out-of-range, and partial-overlap cases.
 
+### DATA-GOG-GPLI-001 - GPLI fixed-lane envelope and non-unique GPL-ID candidate
+
+- **Question:** Does the owned `GPLDATA.GFF` `GPLI` #1 payload itself establish
+  a unique, fixed-lane association with the known first-Tyr `GPL` resource
+  #135?
+- **Method:** Resolve `GPLI` #1 through the verified secondary GFFI descriptor
+  table, require its known 7,896-byte envelope, and partition it into 329
+  records of four six-byte lanes. Examine only the 3,948 aligned
+  little-endian 16-bit lane words for the numeric value 135; retain neither
+  raw bytes nor text.
+- **Finding:** the payload exactly fits the four-lane shape. Value 135 occurs
+  twice: in zero-based record 63, lane 1, word 2 and in zero-based record 133,
+  lane 3, word 0. It therefore has no unique occurrence and no consistent lane
+  position under this deliberately narrow candidate interpretation.
+- **Confidence:** high for the verified secondary-table resolution, fixed
+  envelope, lane arithmetic, and two numeric occurrences; unknown for every
+  lane's field role, byte order beyond this checked word interpretation,
+  runtime lookup, and relationship to GPL/MAS, dialogue, encounters, or quests.
+- **Implementation consequence:** retain `GPLI` #1 as lossless DSOP. Do not
+  assign a GPL-resource field, add a GPLI reader, or connect it to dialogue
+  from this non-unique numeric coincidence. A constrained native call path or
+  controlled observation remains required.
+
 ### DATA-GOG-CORPUS-001 - Immutable source-corpus inventory
 
 - **Question:** What must the extractor preserve before further game behavior is
