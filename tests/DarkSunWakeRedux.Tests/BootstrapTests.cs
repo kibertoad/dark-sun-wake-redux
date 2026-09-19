@@ -107,6 +107,25 @@ public sealed class BootstrapTests
     }
 
     [Fact]
+    public async Task CorpusScaleManifestLimitRejectsOnlyOversizedInput()
+    {
+        var root = TestRoot();
+        Directory.CreateDirectory(root);
+        try
+        {
+            await using (var stream = File.Create(Path.Combine(root, "manifest.json")))
+                stream.SetLength(OriginalContent.MaximumManifestBytes + 1);
+
+            var diagnostic = Assert.Single(await OriginalContent.VerifyInstalledAsync(
+                root, TestContext.Current.CancellationToken));
+
+            Assert.Equal("pack_manifest_too_large", diagnostic.Code);
+            Assert.Equal(OriginalContent.MaximumManifestBytes.ToString(), diagnostic.Expected);
+        }
+        finally { Directory.Delete(root, true); }
+    }
+
+    [Fact]
     public async Task EarlierSelfConsistentAssetPackVersionRequiresRefresh()
     {
         var root = TestRoot();

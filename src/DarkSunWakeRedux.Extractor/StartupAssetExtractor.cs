@@ -246,6 +246,8 @@ public static class StartupAssetExtractor
             ObjectSourcePath));
         files.Add(await WriteRegionAsync(stagingRoot, tyrRegion, cancellationToken));
         files.Add(await WriteObjectCatalogAsync(stagingRoot, tyrObjects, cancellationToken));
+        files.AddRange(await WriteOpaqueCorpusAsync(sourceRoot, edition.Files, stagingRoot,
+            cancellationToken));
 
         return new AssetPackManifest(
             OriginalContent.AssetPackFormatVersion,
@@ -254,6 +256,71 @@ public static class StartupAssetExtractor
             edition.Fingerprint(),
             extractorVersion,
             files);
+    }
+
+    private static async Task<IReadOnlyList<AssetPackFile>> WriteOpaqueCorpusAsync(
+        string sourceRoot,
+        IReadOnlyList<SourceFile> sourceFiles,
+        string stagingRoot,
+        CancellationToken cancellationToken)
+    {
+        var files = new List<AssetPackFile>();
+        foreach (var sourceFile in sourceFiles.OrderBy(file => file.Path,
+                     StringComparer.OrdinalIgnoreCase))
+        {
+            var sourcePath = SourceManifest.Normalize(sourceFile.Path);
+            var inputPath = Path.Combine(sourceRoot,
+                sourcePath.Replace('/', Path.DirectorySeparatorChar));
+            var sourcePayload = await File.ReadAllBytesAsync(inputPath, cancellationToken);
+            files.Add(await WriteOpaquePayloadAsync(stagingRoot,
+                OpaqueFilePath(sourcePath), sourcePayload, sourcePath,
+                "byte-identical source file", cancellationToken));
+            if (Path.GetExtension(sourcePath).Equals(".GFF", StringComparison.OrdinalIgnoreCase))
+            {
+                await using var input = new MemoryStream(sourcePayload, writable: false);
+                var archive = GffArchive.Read(input, sourcePath);
+                foreach (var resource in archive.Resources)
+                {
+                    var payload = archive.GetResource(resource.Tag, resource.Number).ToArray();
+                    files.Add(await WriteOpaquePayloadAsync(stagingRoot,
+                        OpaqueResourcePath(sourcePath, resource), payload,
+                        sourcePath, $"{resource.Tag.Trim()} #{resource.Number} byte-identical GFF resource",
+                        cancellationToken));
+                }
+            }
+        }
+        return files;
+    }
+
+    private static string OpaqueFilePath(string sourcePath) =>
+        $"corpus/files/{sourcePath.ToLowerInvariant()}.dsop";
+
+    private static string OpaqueResourcePath(string sourcePath, GffResource resource) =>
+        $"corpus/gff/{sourcePath.ToLowerInvariant()}/" +
+        $"{Convert.ToHexString(System.Text.Encoding.ASCII.GetBytes(resource.Tag)).ToLowerInvariant()}-" +
+        $"{resource.Number}.dsop";
+
+    private static async Task<AssetPackFile> WriteOpaquePayloadAsync(
+        string stagingRoot,
+        string relativePath,
+        byte[] payload,
+        string sourcePath,
+        string sourceDescription,
+        CancellationToken cancellationToken)
+    {
+        var packed = PackedOpaquePayload.FromOwned(payload);
+        var target = Path.Combine(stagingRoot, relativePath.Replace('/', Path.DirectorySeparatorChar));
+        Directory.CreateDirectory(Path.GetDirectoryName(target)!);
+        await using (var output = File.Create(target)) packed.Write(output);
+        await using var verify = File.OpenRead(target);
+        var decoded = PackedOpaquePayload.Read(verify, relativePath);
+        if (!decoded.Bytes.AsSpan().SequenceEqual(packed.Bytes))
+            throw new InvalidDataException($"The opaque payload for {sourcePath} failed verification.");
+        verify.Position = 0;
+        var hash = Convert.ToHexStringLower(await SHA256.HashDataAsync(verify, cancellationToken));
+        return new(relativePath, verify.Length, hash, sourcePath,
+            "application/vnd.dark-sun-wake-redux.opaque-payload",
+            $"{sourceDescription} -> DSOP v{PackedOpaquePayload.FormatVersion}");
     }
 
     private static async Task<AssetPackFile> ExtractLayerAsync(

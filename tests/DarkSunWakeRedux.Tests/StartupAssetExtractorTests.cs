@@ -50,7 +50,30 @@ public sealed partial class StartupAssetExtractorTests
             var manifest = await AssetPackInstaller.InstallAsync(output, staging =>
                 StartupAssetExtractor.WritePackAsync(sourceRoot, staging, edition, "test"));
 
-            Assert.Equal(102, manifest.Files.Count);
+            var opaqueOutputCount = edition.Files.Sum(file =>
+            {
+                var input = Path.Combine(sourceRoot,
+                    file.Path.Replace('/', Path.DirectorySeparatorChar));
+                if (!Path.GetExtension(file.Path).Equals(".GFF", StringComparison.OrdinalIgnoreCase)) return 1;
+                using var stream = File.OpenRead(input);
+                return 1 + GffArchive.Read(stream, file.Path).Resources.Count;
+            });
+            Assert.Equal(102 + opaqueOutputCount, manifest.Files.Count);
+            var titleOpaque = Assert.Single(manifest.Files,
+                item => item.Path == "corpus/gff/resource.gff/424d5020-11011.dsop");
+            Assert.Equal(StartupAssetExtractor.SourcePath, titleOpaque.SourcePath);
+            Assert.Contains("byte-identical GFF resource", titleOpaque.Conversion,
+                StringComparison.Ordinal);
+            using (var opaqueStream = File.OpenRead(Path.Combine(output,
+                       titleOpaque.Path.Replace('/', Path.DirectorySeparatorChar))))
+            {
+                var opaque = PackedOpaquePayload.Read(opaqueStream, titleOpaque.Path);
+                using var sourceStream = File.OpenRead(Path.Combine(sourceRoot,
+                    StartupAssetExtractor.SourcePath));
+                var sourceArchive = GffArchive.Read(sourceStream,
+                    StartupAssetExtractor.SourcePath);
+                Assert.Equal(sourceArchive.GetResource("BMP ", 11011).ToArray(), opaque.Bytes);
+            }
             var preferencesTextAsset = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.PreferencesTextCatalogAssetPath);
             Assert.Equal(StartupAssetExtractor.ExecutableSourcePath,

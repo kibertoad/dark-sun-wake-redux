@@ -34,6 +34,34 @@
 - **Tests:** synthetic primary, primary-only, segmented-secondary, truncation,
   out-of-range, and partial-overlap cases.
 
+### DATA-GOG-CORPUS-001 - Immutable source-corpus inventory
+
+- **Question:** What must the extractor preserve before further game behavior is
+  implemented?
+- **Method:** Recursively inventory the supported owned installation, exclude
+  mutable captures/saves and GOG/DOSBox/documentation wrappers by explicit
+  disposition, and fingerprint every immutable game-data input. Parse each GFF
+  directory with the bounded reader; preserve every individual descriptor and
+  every non-GFF payload in a verified opaque local-pack envelope unless a
+  separately evidenced normalized contract already applies.
+- **Finding:** The GOG-1432903719 immutable corpus contains 233 files: 26 GFF
+  containers, 147 VOC files, five FLI files, 40 OGG tracks, the `game.gog`
+  disc image and `game.ins` descriptor, five original helper executables, and
+  the remaining static configuration/data files. The 26 GFF files expose
+  16,168 descriptors under `DATA-GOG-GFF-001`. These counts establish coverage,
+  not gameplay, UI, audio, or executable semantics.
+- **Confidence:** verified for this fingerprinted installation inventory and
+  GFF descriptor count; semantics remain unknown unless separately recorded.
+- **Implementation:** `PackedOpaquePayload` (DSOP v1) and the Extractor's
+  corpus pass emit one source-mapped, hash-verified local asset for every raw
+  file and every GFF resource. The owned v30 extraction contains 16,401 DSOP
+  assets (233 source files plus 16,168 descriptors) and 102 existing specialized
+  derivatives, for 16,503 verified pack assets. The Game does not load opaque
+  payloads.
+- **Tests:** DSOP round-trip and invalid-envelope tests; synthetic extractor
+  coverage confirms raw files and GFF records are retained alongside existing
+  specialized derivatives.
+
 ### DATA-GOG-IMAGE-001 - Indexed images and palettes
 
 - **Question:** Which bounded image and palette payload structures occur in the

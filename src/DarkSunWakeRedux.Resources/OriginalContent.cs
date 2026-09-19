@@ -40,7 +40,7 @@ public sealed record SourceManifest(string GameId, string SourceEdition, IReadOn
         return Convert.ToHexStringLower(SHA256.HashData(Encoding.UTF8.GetBytes(canonical)));
     }
 
-    internal static string Normalize(string path)
+    public static string Normalize(string path)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(path);
         var normalized = path.Replace('\\', '/');
@@ -176,7 +176,7 @@ public static class OriginalContent
 {
     // Bump whenever the required derived-asset inventory or semantic contract changes.
     // `play.bat` then refreshes older otherwise self-consistent local packs.
-    public const int AssetPackFormatVersion = 28;
+    public const int AssetPackFormatVersion = 30;
     public const string GameId = "dark-sun-wake-redux";
     public const string TitleImageAssetPath = "images/title.dsix";
     public const string InterfaceFontAssetPath = "fonts/interface.dsft";
@@ -201,7 +201,9 @@ public static class OriginalContent
     public const string OpeningLeaderImageAssetPath = "images/exploration/opening-leader.dsix";
     public const uint OpeningLeaderObjectResourceNumber = 305;
     public const uint OpeningLeaderImageResourceNumber = 599;
-    public const long MaximumManifestBytes = 4 * 1024 * 1024;
+    // The full owned corpus currently emits 16,168 GFF-resource entries plus
+    // 233 raw source-file entries; retain a bounded but corpus-scale manifest.
+    public const long MaximumManifestBytes = 16 * 1024 * 1024;
 
     public static IReadOnlyList<uint> StartFlowWindowResourceNumbers { get; } =
         [18501, 19500, 19501, 19502, 19503, 19504, 19505];
