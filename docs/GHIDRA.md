@@ -636,13 +636,15 @@ proof by itself. Never redirect broad output into the repository.
   is `172c:0388`. That wrapper avoids repeating an already-current
   identity/selector pair, tries a separate source before this cache, and records
   a successful pair. Its coherent caller `172c:0299` stores the requested
-  identity and selector, then invokes `172c:01c1` after a successful request.
-  The latter is not an opcode dispatcher: it increments and wraps a bounded
-  counter at 50, then records two state bytes and the caller's parameter. The
-  other apparent wrapper call lies in non-coherent decoded instructions and is
-  not accepted as evidence. No GPL/MAS opcode dispatch, script meaning, cache
-  eviction policy, queue ordering, or caller-level feature meaning is
-  established.
+  identity and selector, invokes the wrapper, and reports a failed wrapper
+  result through a low-disk-space diagnostic. Separately, when a distinct state
+  byte is zero, it invokes `172c:01c1` with its second argument; this call is
+  not statically conditional on the wrapper result. The latter is not an opcode
+  dispatcher: it increments and wraps a bounded counter at 50, then records two
+  state bytes and the caller's parameter. The other apparent wrapper call lies
+  in non-coherent decoded instructions and is not accepted as evidence. No
+  GPL/MAS opcode dispatch, script meaning, cache eviction policy, queue
+  ordering, or caller-level feature meaning is established.
 - **Interpretation:** `GPL ` and `MAS ` are distinct native input families,
   not interchangeable labels for the same extracted payload. The helpers and
   cache establish a native loading boundary, but do not license execution of
