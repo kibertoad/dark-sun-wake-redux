@@ -25,7 +25,7 @@ public enum StartWindowChoice
 public enum EmptySlotChoice { New, Add, Cancel }
 public enum OccupiedSlotChoice { Edit, Drop, Dual }
 
-public enum PartyOrigin { None, Pregenerated, Created }
+public enum PartyOrigin { None, ShippedPartyUnresolved, Created }
 
 public sealed class StartFlow
 {
@@ -53,7 +53,7 @@ public sealed class StartFlow
         switch (choice)
         {
             case StartWindowChoice.StartGame:
-                PartyOrigin = PartyOrigin.Pregenerated;
+                PartyOrigin = PartyOrigin.ShippedPartyUnresolved;
                 Screen = StartFlowScreen.Gameplay;
                 break;
             case StartWindowChoice.CreateCharacters:

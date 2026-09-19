@@ -1457,12 +1457,14 @@
 ### RULE-START-FLOW-001 - Start and party-creation routing
 
 - **Behavior:** The Start Window offers START GAME, CREATE CHARACTERS, LOAD
-  SAVED GAME, and EXIT TO DOS. START GAME immediately enters play with the
-  supplied pregenerated party. CREATE CHARACTERS opens View Character with four
-  empty slots. Activating an empty slot offers NEW, ADD, and CANCEL; NEW opens
-  character generation, ADD selects a previously created character, and CANCEL
-  closes the menu. DONE accepts a valid new character. A created party may begin
-  with one through four members.
+  SAVED GAME, and EXIT TO DOS. The original START GAME route immediately enters
+  play with a supplied party, but the complete four-member identity is not yet
+  established. The reimplementation therefore reaches its current gameplay
+  slice with `ShippedPartyUnresolved`, never a fabricated party. CREATE
+  CHARACTERS opens View Character with four empty slots. Activating an empty
+  slot offers NEW, ADD, and CANCEL; NEW opens character generation, ADD selects
+  a previously created character, and CANCEL closes the menu. DONE accepts a
+  valid new character. A created party may begin with one through four members.
 - **Evidence:** MANUAL-1994, quick-start and "Creating Your Party," pages 2 and
   7-10; `DATA-GOG-UI-001` corroborates the four start controls and the bounded
   start/party/character-generation window families.
@@ -1474,7 +1476,9 @@
   the member to bounded recreation-native character storage and ADD can restore
   it. When a party member carries eligible class progression, DUAL enters a
   dedicated selection state and atomically applies an accepted next class; the
-  separate evidenced progression rule is implemented by `RULE-PARTY-004`.
+  separate evidenced progression rule is implemented by `RULE-PARTY-004`. The
+  unresolved shipped-party origin is explicit in schema 5 snapshots and replay
+  format 2, so no earlier state can be mistaken for a modeled original party.
 - **Tests:** every start choice, NEW/ADD/CANCEL routing, valid and invalid
   completion, occupied-slot edit/drop/add/DUAL, atomic replacement, persisted
   edit and DUAL targets, empty/nonempty party start, cancellation, and
@@ -1531,7 +1535,7 @@
   initial selections and selection transitions have not yet been observed.
 - **Implementation:** `CharacterDraft` records both choices and
   `PartyCreationRules` validates their class-dependent cardinality. Both fields
-  participate in the canonical start-flow state hash and snapshot schema 4.
+  participate in the canonical start-flow state hash and snapshot schema 5.
 - **Tests:** all-three Psionicist requirement, exactly-one non-Psionicist
   requirement, Cleric-only elemental sphere, and sphere-sensitive state hashes.
 - **Uncertainty:** Shipped defaults, control-state frames, click transitions,
@@ -1555,7 +1559,7 @@
   the current career, reports stable rejection diagnostics, and evaluates the
   documented strict level-exceeds boundary for former benefits. `CharacterDraft`
   carries that progression, validates it against the ordered class list, and
-  `StartFlow` exposes a deterministic DUAL selection command. Snapshot schema 4
+  `StartFlow` exposes a deterministic DUAL selection command. Snapshot schema 5
   and the canonical state hash include every career and level.
 - **Tests:** human-only and level-three gates, duplicate-class and three-career
   limits, transition immutability, monotonic current-level advancement, and

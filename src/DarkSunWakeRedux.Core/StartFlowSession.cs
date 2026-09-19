@@ -54,7 +54,7 @@ public sealed record StartFlowSnapshot(
     int? ActiveMemberIndex,
     IReadOnlyList<CharacterDraft> StoredCharacters)
 {
-    public const int CurrentSchemaVersion = 4;
+    public const int CurrentSchemaVersion = 5;
 }
 
 public sealed record StartFlowEvent(
@@ -70,7 +70,7 @@ public sealed record StartFlowEvent(
 public sealed record StartFlowReplayEntry(StartFlowCommand Command, string ExpectedStateSha256);
 public sealed record StartFlowReplay(int FormatVersion, int Seed, IReadOnlyList<StartFlowReplayEntry> Entries)
 {
-    public const int CurrentFormatVersion = 1;
+    public const int CurrentFormatVersion = 2;
 }
 
 public sealed class StartFlowSession

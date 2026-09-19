@@ -318,7 +318,7 @@ content smoke both pass.
   invariants, exact origin-modifier table, and menu-transition tests.
   Implemented start-flow commands produce
   sequenced events, versioned snapshots, stable hashes, and verified replays.
-  Snapshot schema 4 includes psionic disciplines, clerical sphere, ordered
+  Snapshot schema 5 includes psionic disciplines, clerical sphere, ordered
   class/level progression, the active member during DUAL selection or editing,
   and recreation-native stored characters;
   DSUI round-trip, malformed graph, deterministic ordering, mixed-control graph resolution, resource-ID routing,

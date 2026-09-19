@@ -6,7 +6,7 @@ namespace DarkSunWakeRedux.Tests;
 public sealed class StartFlowTests
 {
     [Theory]
-    [InlineData(StartWindowChoice.StartGame, StartFlowScreen.Gameplay, PartyOrigin.Pregenerated)]
+    [InlineData(StartWindowChoice.StartGame, StartFlowScreen.Gameplay, PartyOrigin.ShippedPartyUnresolved)]
     [InlineData(StartWindowChoice.CreateCharacters, StartFlowScreen.PartyOverview, PartyOrigin.Created)]
     [InlineData(StartWindowChoice.LoadSavedGame, StartFlowScreen.LoadSavedGame, PartyOrigin.None)]
     [InlineData(StartWindowChoice.ExitToDos, StartFlowScreen.ExitRequested, PartyOrigin.None)]
@@ -19,6 +19,17 @@ public sealed class StartFlowTests
 
         Assert.Equal(expectedScreen, flow.Screen);
         Assert.Equal(expectedOrigin, flow.PartyOrigin);
+    }
+
+    [Fact]
+    public void StartGameDoesNotClaimUnprovenShippedPartyMembership()
+    {
+        var flow = new StartFlow();
+
+        flow.Choose(StartWindowChoice.StartGame);
+
+        Assert.Equal(PartyOrigin.ShippedPartyUnresolved, flow.PartyOrigin);
+        Assert.Empty(flow.Party.Members);
     }
 
     [Theory]
