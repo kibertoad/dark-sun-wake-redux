@@ -924,16 +924,19 @@ proof by itself. Never redirect broad output into the repository.
   signed predecessor/successor bytes at offsets 17/18: one prepends an
   unlinked record to the head, and the other reconnects neighbors, updates the
   head when necessary, clears the 19-byte record, and restores both link bytes
-  to `-1`.
+  to `-1`. A separate direct updater scans exactly indices 0 through 47,
+  subject to local guards replaces a word at offset 0, and has two direct
+  callers in `28c9`; those callers supply resident words but do not identify
+  the record family or any player-visible action.
 - **Interpretation:** the `2d40` callers establish a second mutable linked
   resident table which can request `GPL ` resources through the same common
   entry. It is structurally distinct from the 13-byte selector table; shared
   processing does not make either table the other's source or establish a
   dialogue, quest, map, object, combat, or script-execution role.
 - **Confidence:** high for the three call sites, 19-byte stride, pair offsets,
-  selector literal, head/list-link mechanics, and bounded clear; unknown for
-  allocation, valid index range, table population, record-field meanings,
-  resource mapping, caller ownership, and player-visible behavior.
+  selector literal, head/list-link mechanics, bounded clear, and the updater's
+  48-entry scan; unknown for allocation, table population, record-field
+  meanings, resource mapping, caller ownership, and player-visible behavior.
 - **Implementation consequence:** retain the records and any associated source
   payloads as opaque. Do not merge this family with the 13-byte selectors or
   create a GPL interpreter, interaction trigger, or gameplay system from the
