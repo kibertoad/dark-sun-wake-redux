@@ -10,6 +10,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
 {
     private readonly string? _assetPack;
     private readonly bool _platformSmoke;
+    private readonly string _screenshotFolder;
     private readonly GraphicsDeviceManager _graphics;
     private SpriteBatch? _spriteBatch;
     private readonly List<(UiLayerAsset Layer, Texture2D Texture)> _startMenuLayers = [];
@@ -72,11 +73,19 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     private readonly ExplorationRightMouseInput _rightMouseInput = new();
     private MouseState _previousMouse;
     private KeyboardState _previousKeyboard;
+    private bool _screenshotRequested;
 
-    public DarkSunWakeReduxGame(string? assetPack = null, bool platformSmoke = false)
+    public DarkSunWakeReduxGame(
+        string? assetPack = null,
+        bool platformSmoke = false,
+        string? screenshotFolder = null)
     {
         _assetPack = assetPack;
         _platformSmoke = platformSmoke;
+        _screenshotFolder = screenshotFolder is null
+            ? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                "DarkSunWakeRedux", "Screenshots")
+            : Path.GetFullPath(screenshotFolder);
         _graphics = new GraphicsDeviceManager(this)
         {
             PreferredBackBufferWidth = 960,
@@ -436,6 +445,8 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             var keyboard = Keyboard.GetState();
             if (FullscreenInput.ShouldToggle(keyboard, _previousKeyboard))
                 ToggleFullscreen();
+            if (ScreenshotInput.ShouldCapture(keyboard, _previousKeyboard))
+                _screenshotRequested = true;
             if (screen == StartFlowScreen.Gameplay &&
                 _exploration.Snapshot().View == ExplorationView.World &&
                 DialoguePreviewInput.ShouldToggle(keyboard, _previousKeyboard))
@@ -783,6 +794,25 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             }
         }
         base.Draw(gameTime);
+        CaptureRequestedScreenshot();
+    }
+
+    private void CaptureRequestedScreenshot()
+    {
+        if (!_screenshotRequested) return;
+        _screenshotRequested = false;
+        Directory.CreateDirectory(_screenshotFolder);
+        var path = Path.Combine(_screenshotFolder,
+            $"dark-sun-wake-redux-{DateTimeOffset.Now:yyyyMMdd-HHmmss-fff}.png");
+        var width = GraphicsDevice.PresentationParameters.BackBufferWidth;
+        var height = GraphicsDevice.PresentationParameters.BackBufferHeight;
+        var pixels = new Color[checked(width * height)];
+        GraphicsDevice.GetBackBufferData(pixels);
+        using var texture = new Texture2D(GraphicsDevice, width, height, false, SurfaceFormat.Color);
+        texture.SetData(pixels);
+        using var stream = new FileStream(path, FileMode.CreateNew, FileAccess.Write, FileShare.None);
+        texture.SaveAsPng(stream, width, height);
+        Window.Title = $"Dark Sun: Wake of the Ravager Redux - screenshot saved: {Path.GetFileName(path)}";
     }
 
     protected override void UnloadContent()

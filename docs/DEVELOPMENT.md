@@ -35,6 +35,12 @@ the preview uses the bounded observed opening-state snapshot. Implemented
 choices and response targets execute atomically; visible targets whose effects
 remain unprojected are inert.
 
+F12 captures the final physical backbuffer once on its rising edge. Screenshots
+default to `%LOCALAPPDATA%\DarkSunWakeRedux\Screenshots`; pass
+`--screenshot-folder <path>` to the Game executable to direct them elsewhere.
+Each filename includes a millisecond local timestamp, is created without
+overwriting an existing file, and is reported in the window title.
+
 Build and test the complete solution with:
 
 ```powershell

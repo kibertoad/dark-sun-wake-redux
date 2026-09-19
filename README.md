@@ -35,7 +35,8 @@ human dual-class progression, snapshots/replay, exploration view state,
 collision-aware pathfinding, occupancy, and actor movement.
 
 The runtime enters the observed Tyr viewport, edge-scrolls or grab-drags the camera,
-changes mouse modes, toggles native-resolution fullscreen with Alt+Enter, expands
+changes mouse modes, toggles native-resolution fullscreen with Alt+Enter, captures
+the physical backbuffer with F12, expands
 the world slice to fill that display, and previews the measured dialogue chrome
 plus script-derived opening text over the expanded map with F9,
 opens the authentic Game Menu, moves the exact opening leader through a modern

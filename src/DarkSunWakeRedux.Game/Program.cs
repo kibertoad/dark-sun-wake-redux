@@ -7,6 +7,7 @@ try
     if (args.Contains("--smoke-test", StringComparer.OrdinalIgnoreCase)) return 0;
     var platformSmoke = args.Contains("--platform-smoke-test", StringComparer.OrdinalIgnoreCase);
     var contentSmoke = args.Contains("--content-smoke-test", StringComparer.OrdinalIgnoreCase);
+    var screenshotFolder = Option(args, "--screenshot-folder");
     string? assetPack = null;
     if (!platformSmoke)
     {
@@ -703,7 +704,7 @@ try
             return 0;
         }
     }
-    using var game = new DarkSunWakeReduxGame(assetPack, platformSmoke);
+    using var game = new DarkSunWakeReduxGame(assetPack, platformSmoke, screenshotFolder);
     game.Run();
     return 0;
 }

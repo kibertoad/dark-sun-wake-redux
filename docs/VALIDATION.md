@@ -51,7 +51,7 @@ bounded map area, preserve the base camera center, clamp at world edges, map
 physical input back into the expanded slice, and retain fixed 320x200
 letterboxing when expansion is disabled. Dialogue-layout tests prove the exact
 two window rectangles, portrait anchor, four scrollbar controls, five response
-strip placements, F9 rising-edge toggle contract, bounded greedy wrapping,
+strip placements, F9 and F12 rising-edge input contracts, bounded greedy wrapping,
 five-label preview selection, projected response output with retained blank
 lines, malformed/empty-output rejection, overflow rejection, and unsupported-character
 handling. Dialogue-session tests prove stable page identities, atomic one-shot
