@@ -47,7 +47,7 @@ exact remote and branch after the checks in `AGENTS.md` have been completed.
 The approval record below is intentionally separate from GitHub release access:
 release or administrative permission alone does not authorize an automated push.
 
-### Current owner verification — approval pending
+### Current owner verification
 
 On 2026-09-20, read-only checks established the following non-secret facts:
 
@@ -60,9 +60,11 @@ On 2026-09-20, read-only checks established the following non-secret facts:
 | Effective repository permission | `ADMIN` |
 | Branch proposed for publication | `main` |
 
-This verifies endpoint ownership and account authority, but it is **not** a
-publication approval. Do not push until the repository owner explicitly
-confirms the exact URL and `main` branch after reviewing this table.
+The repository owner explicitly approved ordinary fast-forward pushes of
+`main` to this exact URL on 2026-09-20 after reviewing the table. The approval
+is limited to the verified repository, authenticated account, and branch above;
+any changed remote, push URL, account, or non-fast-forward operation requires a
+fresh verification and approval.
 
 ### Approved destinations
 
@@ -73,7 +75,7 @@ record tokens, credentials, cookies, or private-key material.
 
 | Canonical URL | Repository | Branch | Verified | Approving owner | Account / permission | Scope |
 |---|---|---|---|---|---|---|
-| _No approved destination yet._ | | | | | | |
+| `https://github.com/kibertoad/dark-sun-wake-redux.git` | `kibertoad/dark-sun-wake-redux` | `main` | 2026-09-20 | repository owner | `kibertoad` / `ADMIN` | ordinary fast-forward pushes from local `main` |
 
 ## Continuous integration
 
