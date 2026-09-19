@@ -93,6 +93,29 @@ The precise screen layers, logical geometry, image mapping, and observation
 confidence are maintained in [UI-ATLAS.md](UI-ATLAS.md). The plan and current
 slice acceptance criteria are in [IMPLEMENTATION-PLAN.md](IMPLEMENTATION-PLAN.md).
 
+## Preferences evidence boundary
+
+`WIND` #16500 is a 210x116 resource graph with thirteen buttons and two
+application frames. Its authentic base and first-frame controls render, and the
+Game Menu and Return actions are implemented. The following table separates
+the documented control role from the state that has not yet been measured.
+
+| Control family | Established contract | Deliberately not implemented as native behavior |
+|---|---|---|
+| Music, sound effects, animations, voice effects | The manual defines each as an on/off toggle; voice applies to CD-capable installs | Initial on/off state, state storage, visual frame mapping, and audio routing |
+| Music and sound-effects volume | Each is a slider adjusted through buttons at its two ends | Numerical range, increment, initial value, displayed fill, and mixer mapping |
+| Difficulty | The executable table orders the four labels Easy, Balanced, Hard, Hideous; the manual assigns it to combat difficulty | Selected default, its relationship to the manual's conflicting “Average” wording, mutations, and rule consumers |
+| About | The manual specifies version, copyright, support, hint-line, and address information; the executable supplies nine centered lines | Modal geometry, backdrop, input dismissal, and native transition |
+
+Direct-reference and scalar probes find no literal binding from the executable
+text table or two tested control pairs to a handler. This does not prove that
+the controls are inactive: their dispatch may be resource-driven or calculated.
+It does prevent treating those literal values as evidence for an implementation.
+`SOUND.CFG` and `SOUND.INI` are also absent as literal names in the separately
+shipped sound helper, so neither is mapped to Preferences. See
+`DATA-GOG-UI-011`, `EXE-GOG-UI-004`, and `DATA-GOG-SOUND-002` in the detailed
+evidence records before changing this boundary.
+
 ## Determinism and time
 
 Core transitions happen only from explicit commands. Rendering interpolates
