@@ -676,6 +676,32 @@ proof by itself. Never redirect broad output into the repository.
   or an independently corroborated loader/state trace is required before party
   logic is introduced.
 
+### EXE-GOG-GPLI-001 - no native literal tag establishes GPLI ownership
+
+- **Question:** Does the supplied executable identify `GPLI` as a resource tag,
+  so that the 329 fixed-width records in `GPLDATA.GFF` can safely be assigned a
+  native lookup or script role?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. The full analyzer
+  pass completed before this focused query.
+- **Method:** `ReportBytePattern` searched all mapped blocks for bytes
+  `47 50 4c 49`, the exact ASCII spelling of `GPLI`.
+- **Bounded finding:** the query found no matching byte sequence. Independently,
+  `DATA-GOG-GPLI-001` establishes that `GPLDATA.GFF` `GPLI` #1 is 7,896 bytes,
+  exactly 329 records of 24 bytes, each containing four consecutive six-byte
+  lanes. The archive fact does not compensate for the absent executable lead.
+- **Interpretation:** this rejects only a direct, literal-tag loader or lookup
+  lead in this executable. The index may still be accessed through relocated
+  data, a constructed tag, another binary, or an unrecognized code path. It
+  does not establish that any lane identifies a GPL resource, a condition, an
+  encounter, or a dialogue entry.
+- **Confidence:** high for the absent literal and exact data envelope; unknown
+  for runtime ownership and every field meaning.
+- **Implementation consequence:** retain the resource losslessly as DSOP. Do
+  not add a GPLI reader or connect it to dialogue until a constrained call path
+  or controlled observation independently corroborates an interpretation.
+
 ### EXE-GOG-GPL-001 - GPL and MAS are selected script-resource families
 
 - **Question:** Does the original executable distinguish `GPL ` from `MAS `
