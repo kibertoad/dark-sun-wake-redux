@@ -701,7 +701,6 @@
   only 5,749,959 bytes physically remaining. The mismatch is therefore not
   accepted as a simple physical-padding variation. All 147 VOC files are at
   least 26 bytes, begin with the
-  All 147 VOC files are at least 26 bytes, begin with the
   standard `Creative Voice File` signature, declare data offset 26, version
   `0x010a`, checksum `0x1129`, and contain first block type 1 at that offset.
   Each declared first-block length fits within its physical file; the raw
@@ -712,8 +711,7 @@
   GOG-1432903719; unknown for FLI chunk types, palette behavior, raw-speed
   units, effective playback cadence, whether the one extra FLI record is a
   loop/sentinel/displayed frame, raw chunk-type meanings, FLI 5's nested
-  variant, later VOC block layout,
-  codec-byte/sample rate semantics,
+  variant, later VOC block layout, codec-byte/sample-rate semantics,
   audio routing, Ogg track mapping, loops, and all audiovisual sequencing.
 - **Implementation consequence:** no decoder, extractor entry, media mapping,
   or time-based runtime behavior is introduced yet. A future media reader must
