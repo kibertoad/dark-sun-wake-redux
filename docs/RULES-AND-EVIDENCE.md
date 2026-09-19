@@ -1452,8 +1452,9 @@
   target is not eligible for that attack.
 - **Evidence:** MANUAL-1994, "How to Play" pages 4-6 and the visually reviewed
   hotkey table on manual page 77. `EXE-GOG-COMBAT-001` excludes only two
-  direct-literal dispatcher forms; it does not establish the shipped command
-  implementation.
+  direct-literal dispatcher forms, while `EXE-GOG-COMBAT-003` excludes the
+  queried `COMBAT`/`GUARD` label occurrences as a direct command-path lead;
+  neither establishes the shipped command implementation.
 - **Confidence:** high for documented command bindings and intended attack
   eligibility; resolution order, exact computer-control semantics, and formulas
   are unknown.

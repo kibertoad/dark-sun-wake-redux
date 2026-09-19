@@ -406,6 +406,40 @@ proof by itself. Never redirect broad output into the repository.
   manual threshold. Any original combat-state behavior requires a narrower
   multi-signal static-analysis question or a controlled runtime observation.
 
+### EXE-GOG-COMBAT-003 - Combat action labels do not identify command handling
+
+- **Question:** Do the executable's literal `COMBAT` or `GUARD` text occurrences
+  identify a code reference that can be used as a focused lead for combat input
+  or action resolution?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** `ReportBytePattern` searched all loaded blocks for the explicit
+  ASCII byte encodings of `COMBAT` and `GUARD`, reporting no more than 100
+  matches and 20 inbound references per match. The single inbound `GUARD`
+  reference was then bounded with `ReportInstructionContext` to eight
+  instructions on each side.
+- **Bounded finding:** `COMBAT` has four raw matches in `CODE_208` at
+  `5000:9b4f`, `5000:9bb3`, `5000:9cd1`, and `5000:a6ec`; none has an inbound
+  Ghidra reference. `GUARD` has two raw matches in the same block at
+  `5000:8e52` and `5000:9cae`; only the first has one inbound READ reference,
+  from `1bf3:66eb` in `28c9:19a1 FUN_28c9_19a1`. Its sixteen-instruction
+  context compares `AL` with `0x20`, loads an indirect far pointer, adjusts a
+  word through that pointer, and loops; it contains no documented combat
+  scancode, direct combat-state reference, or action-resolution call.
+- **Interpretation:** the queried literal labels are not a reliable combat
+  command path. The sole direct reference is compatible with generic
+  label/data processing, but the bounded context cannot establish its owner.
+  This result does not show that the labels are unused and does not establish
+  any input, target, turn, Guard, or rendering behavior.
+- **Confidence:** high for the capped raw-match/reference results and the
+  documented instruction context; unknown for label ownership and all combat
+  semantics.
+- **Implementation consequence:** retain the manual-evidenced `CombatHotkeys`
+  adapter only. Do not connect its commands, infer a UI graph, or name a combat
+  routine from these text literals; seek a multi-signal data/call-path lead or
+  controlled observation first.
+
 ### EXE-GOG-ITEMS-001 - The executable does not embed the owned ITEMS.BIN filename
 
 - **Question:** Does the supported executable embed the exact null-terminated
