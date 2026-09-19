@@ -149,6 +149,10 @@ rejecting unsupported semantics:
   multiple predicate traversals, a guarded `GPL ` resource-request path, and a
   secondary relinked chain. It does not identify the table's source/population
   path or connect a record to dialogue, quests, combat, or map triggers.
+- `EXE-GOG-RECORD19-001` separates a second linked 19-byte resident family
+  that uses the same request entry. Shared processing does not establish a
+  common source, a record meaning, or a player-visible feature for either
+  table.
 - `EXE-GOG-SCMD-001` establishes a separate 64-slot `SCMD` loader/cache. Its
   direct callers do not overlap the selector path, so `SCMD` remains opaque
   rather than a substitute event or combat implementation.

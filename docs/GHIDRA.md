@@ -903,6 +903,42 @@ proof by itself. Never redirect broad output into the repository.
   source container, record population path, or controlled observation
   independently connects this runtime table to game content.
 
+### EXE-GOG-RECORD19-001 - A separate linked 19-byte resident record family
+
+- **Question:** Do the other direct callers of the shared GPL request entry
+  identify the source or ownership of the linked 13-byte selector records?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** `ReportReferences` enumerated the eight direct calls to
+  `172c:000c`; three occur in the `2d40` module. `ReportInstructionContext`
+  inspected those calls, `ReportDecompileWindow` bounded the traversal and
+  its two list-maintenance helpers, and a direct-reference query of the
+  traversal head located its reads and writes.
+- **Bounded finding:** all three `2d40` calls index a distinct resident record
+  family with `index * 19`. Two calls supply the words at offsets 8 and 12 to
+  `172c:000c` with literal selector 1; the third supplies offsets 10 and 14.
+  The bounded traversal at `2d40:0ef1` starts at resident head
+  `5b7c:2135`, follows the signed byte at offset 18, and invokes the same
+  common entry only when its local guards permit it. The maintenance pair uses
+  signed predecessor/successor bytes at offsets 17/18: one prepends an
+  unlinked record to the head, and the other reconnects neighbors, updates the
+  head when necessary, clears the 19-byte record, and restores both link bytes
+  to `-1`.
+- **Interpretation:** the `2d40` callers establish a second mutable linked
+  resident table which can request `GPL ` resources through the same common
+  entry. It is structurally distinct from the 13-byte selector table; shared
+  processing does not make either table the other's source or establish a
+  dialogue, quest, map, object, combat, or script-execution role.
+- **Confidence:** high for the three call sites, 19-byte stride, pair offsets,
+  selector literal, head/list-link mechanics, and bounded clear; unknown for
+  allocation, valid index range, table population, record-field meanings,
+  resource mapping, caller ownership, and player-visible behavior.
+- **Implementation consequence:** retain the records and any associated source
+  payloads as opaque. Do not merge this family with the 13-byte selectors or
+  create a GPL interpreter, interaction trigger, or gameplay system from the
+  common entry.
+
 ### EXE-GOG-GPL-001 - GPL and MAS are selected script-resource families
 
 - **Question:** Does the original executable distinguish `GPL ` from `MAS `
