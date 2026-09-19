@@ -652,8 +652,12 @@
   values and calculate only count, uniqueness, ordering, and range properties.
   The metadata-only `pair-resource-overlap` inspect command then compares each
   column with an explicitly named GFF tag's resource-number set; it emits only
-  counts, never table values or GFF records. No source bytes are retained in the
-  repository.
+  counts, never table values or GFF records. The metadata-only
+  `object-word-overlap` query also tests the two pair columns against each of
+  the four raw 16-bit fields already reported for every `OJFF` object-frame
+  record, again emitting only aggregate counts. Both queries reject a table
+  whose on-disk length is zero, exceeds 1 MiB, or is not divisible by four
+  before reading it. No source bytes are retained in the repository.
 - **Finding:** the entire file divides exactly into 234 four-byte pairs. Every
   first value is unique; pair indices 0 through 232 increase strictly by their
   first value, while pair 233 is a unique final out-of-order entry. The second
@@ -664,17 +668,24 @@
   `OJFF`, 50/216/223/43 for `RDFF`, 22/20/41/1 for `SCMD`, and 157/165/198/124
   for `BMP `. Those figures show that several resource-number namespaces
   overlap materially; they do not identify a pair field as an object, draw,
-  script, or image reference.
+  script, or image reference. The independent object-frame probe finds that no
+  `ITEMS.BIN` right-column value occurs in any of the four raw `OJFF` word
+  positions. Only five left-column values occur among raw word offset 6 and
+  four among offset 8; offsets 0 and 10 contain none. The two nonzero fields
+  have 1,788 and 1,361 distinct values respectively, so these sparse numeric
+  coincidences do not support a uniform direct pair-column-to-object-frame-field
+  mapping across `OBJEX.GFF`.
 - **Confidence:** high for length, pair width/count, endianness, uniqueness,
   ordering boundary, and second-value duplication in GOG-1432903719; unknown
   for pair meanings, lookup direction, the last entry's role, and all item or
   gameplay semantics.
 - **Implementation consequence:** no game asset reader is introduced yet. The
-  read-only inspection query is evidence tooling, not a resource contract. A
+  read-only inspection queries are evidence tooling, not a resource contract. A
   future approved reader must require the exact supported source fingerprint,
   parse all 234 pairs transactionally, reject any incompatible envelope, and
   retain neutral pair names until independent executable or runtime evidence
-  assigns semantics.
+  assigns semantics; it must not model either pair column as a uniform direct
+  `OJFF` raw-word reference on this evidence.
 - **Uncertainty:** whether either value is an item ID, image/object reference,
   resource alias, equipment property, lookup key, or compatibility remap;
   whether the final pair is a sentinel, exceptional alias, or normal record;
