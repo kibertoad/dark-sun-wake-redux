@@ -753,7 +753,12 @@ proof by itself. Never redirect broad output into the repository.
   make an indexed indirect call through the word table at offset `0x030a`;
   larger values take a separate `172c:20a2` path. This is a dispatch boundary,
   not proof that values are GPL opcodes or that any handler executes GPL/MAS
-  bytes. The other apparent wrapper call lies in non-coherent decoded
+  bytes. The initial executable image contains zero bytes throughout
+  `4c13:030a..0409`, covering the first 128 word slots, and the table base has
+  no direct static reference beyond this indexed use. Static analysis therefore
+  cannot enumerate registrations or assert a handler for any value; at least
+  the examined slots require later runtime initialization before a meaningful
+  indirect call. The other apparent wrapper call lies in non-coherent decoded
   instructions and is not accepted as evidence. No GPL/MAS opcode dispatch,
   script meaning, cache eviction policy, or caller-level feature meaning is
   established.
