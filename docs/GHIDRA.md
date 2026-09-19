@@ -864,6 +864,9 @@ proof by itself. Never redirect broad output into the repository.
   match predicates. Bounded decompilations of `172c:000c`, its `00a1` helper,
   and the already documented `0299` GPL/MAS request entry followed the three
   supplied arguments without assigning a record field name. A later
+  160-line decompilation attempt for initializer `277b:0024` was excluded: its
+  far-control-flow recovery reports unresolved destinations outside loaded
+  memory, so it supplies no reliable allocation or population inference. A
   `ReportFunctionScalarIntersection` probe for the table's segment `0x5b7c`
   and offset `0x0700` found no function containing both scalar operands.
 - **Bounded finding:** four callers traverse a resident table pointer at
