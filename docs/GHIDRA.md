@@ -729,6 +729,32 @@ proof by itself. Never redirect broad output into the repository.
   or an independently corroborated loader/state trace is required before party
   logic is introduced.
 
+### EXE-GOG-GPLDATA-001 - literal GPL archive name has no direct reference
+
+- **Question:** Does the supported executable expose a direct static loader
+  path for `GPLDATA.GFF` that can constrain GPLI or dialogue ownership?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. The full analyzer
+  pass completed before these focused queries.
+- **Method:** `ReportBytePattern` searched all mapped blocks for the eleven
+  ASCII bytes spelling `GPLDATA.GFF`, then `ReportReferences` queried every
+  direct inbound reference to the sole matched virtual address.
+- **Bounded finding:** the pathname occurs once at `5000:88f1` in `CODE_208`.
+  Ghidra reports no inbound direct reference to that address after the full
+  analyzer pass. This establishes a single literal archive-name occurrence,
+  not a file open, a resource lookup, a GPLI consumer, or a dialogue trigger.
+- **Interpretation:** the string may be used through an indirect pointer,
+  relocated/constructed data, another executable, or an unrecognized code
+  path. The absence of an inbound reference rejects only this byte address as
+  a direct loader lead; it does not show that the archive is unused.
+- **Confidence:** high for the exact occurrence and lack of direct references;
+  unknown for archive ownership, load timing, resource-tag selection, and all
+  player-visible behavior.
+- **Implementation consequence:** do not add a GPLI reader or connect an
+  archive literal to dialogue. Continue to require a constrained call path or
+  controlled observation.
+
 ### EXE-GOG-GPLI-001 - no native literal tag establishes GPLI ownership
 
 - **Question:** Does the supplied executable identify `GPLI` as a resource tag,
