@@ -695,9 +695,12 @@
   raw chunk-type/count inventories are `0x000B`/`0x000C`/`0x000F`/`0x0010` =
   17/578/1/1, 3/266/1/1, 4/429/1/0, and 1/270/1/0. FLI 5 rejects that nested
   model at its first record: after one of its two declared chunks, the next
-  stated chunk length is 4,486 bytes with only 4,485 bytes remaining. It is
-  therefore not accepted as a small padding variation. All 147 VOC files are
-  at least 26 bytes, begin with the
+  stated chunk length is 4,486 bytes with only 4,485 bytes remaining. Extending
+  that record by one byte makes its first two chunks fit, but then the next
+  alleged record header has type `0x01f1` and declares 4,194,304,014 bytes with
+  only 5,749,959 bytes physically remaining. The mismatch is therefore not
+  accepted as a simple physical-padding variation. All 147 VOC files are at
+  least 26 bytes, begin with the
   All 147 VOC files are at least 26 bytes, begin with the
   standard `Creative Voice File` signature, declare data offset 26, version
   `0x010a`, checksum `0x1129`, and contain first block type 1 at that offset.
