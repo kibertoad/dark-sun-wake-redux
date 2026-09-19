@@ -884,7 +884,11 @@ proof by itself. Never redirect broad output into the repository.
   200. The scalar-intersection absence closes only the narrow hypothesis of
   one function materializing this pointer through both literal operands; it
   does not rule out split, computed, indirect, or dynamically supplied table
-  ownership.
+  ownership. `ReportDataBytes` also found sixteen zero bytes at `5b7c:0700`
+  in the executable's initialized image. Alongside the all-read
+  direct-reference result, this excludes treating the pointer as a statically
+  initialized source mapping but does not identify its runtime write or
+  population path.
 - **Interpretation:** this is a verified linked runtime-selector shape that can
   request the `GPL ` source family through the shared processing path. It is
   not evidence that a particular record is a map trigger, dialogue option,
