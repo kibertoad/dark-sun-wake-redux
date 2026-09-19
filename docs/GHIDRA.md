@@ -397,6 +397,34 @@ proof by itself. Never redirect broad output into the repository.
   target-capability mapping. A future runtime slice needs a controlled
   activation trace plus an independent data or executable call-path finding.
 
+### EXE-GOG-UI-006 - Character-generation IDs do not identify control behavior
+
+- **Question:** Do the character-generation window, class-label, EXIT, or DONE
+  resource identities occur as immediate executable operands that identify their
+  application-specific handlers?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** `ReportScalarConstants` scanned every decoded instruction operand
+  for the exact decimal identities `19503` (`WIND`), `18302` (EXIT), `19304`
+  (DONE), and `2002` through `2009` (the eight class-label `BUTN` records). The
+  query is capped at 256 matches and produced none.
+- **Bounded finding:** none of the twelve requested values occurs as a decoded
+  instruction scalar. The generic resource/control dispatch paths documented by
+  `EXE-GOG-UI-001` and `EXE-GOG-UI-002` remain compatible with indirect or
+  table-driven registration, but this query identifies no create-screen
+  activation, class selection, validation, focus, DONE, or modal call path.
+- **Interpretation:** the #19503 graph proves control identity and layout, not
+  player-visible semantics. Absence of immediate literals does not prove a
+  control unused, but rules out treating its resource number as a direct handler
+  lead.
+- **Confidence:** high for the absence of the exact immediate scalar operands;
+  unknown for all application-specific character-generation transitions.
+- **Implementation consequence:** preserve and render the measured graph, keep
+  EXIT as the separately evidenced cancellation route, and leave class/DONE
+  interactions inert. A future implementation needs a controlled screen trace
+  plus an independent static/data call-path or state-transition finding.
+
 ### EXE-GOG-TIMING-001 - BIOS clock reads do not establish actor cadence
 
 - **Question:** Does the supported executable contain a BIOS-tick timing path
