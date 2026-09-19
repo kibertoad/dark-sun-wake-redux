@@ -773,13 +773,14 @@ proof by itself. Never redirect broad output into the repository.
   4 to `4c0d:0009`; the fourth accepts either order of resident words
   `4c0d:0009` and `4c0d:0007` against record words 4/6. No conclusion about
   the meanings of the resident values or fields follows from their arithmetic.
-  Two additional readers prove that offset 11 is a mutable list link rather
-  than only a traversal field: `1695:010f` recursively scans a supplied chain,
-  branches when the low byte at offset 6 is zero, and delegates to
-  `1695:07dd`; that helper replaces the caller's index with the old offset-11
-  link, overwrites that link with the resident head at `4c13:032d`, and makes
-  the removed index the new head. This establishes node removal and relinking
-  to a second resident chain, but not the chains' gameplay roles. A further
+  Two recursive readers prove that offset 11 is a mutable list link rather
+  than only a traversal field: `1695:010f` scans a supplied chain and delegates
+  to `1695:07dd` when the low byte at offset 6 is zero, while `1695:0170` does
+  the same when byte 8 is zero. That helper replaces the caller's index with
+  the old offset-11 link, overwrites that link with the resident head at
+  `4c13:032d`, and makes the removed index the new head. This establishes two
+  data-driven node removals and relinking to a second resident chain, but not
+  the chains' gameplay roles. A further
   reader, `1695:08db`, traverses the same offset-11 links and reports a
   low-byte success when resident word `4c0d:0009` equals record word 4. For the
   one currently designated resident index at `4c10:0017`, it also accepts a
