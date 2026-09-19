@@ -351,6 +351,25 @@ proof by itself. Never redirect broad output into the repository.
   input adapter only. Its binding order and rising-edge policy are independent
   design choices, not an original-dispatch parity claim.
 
+### EXE-GOG-COMBAT-002 - The manual's -10 threshold is not a unique executable lead
+
+- **Question:** Does the manual's -10 death threshold identify a focused
+  executable routine suitable for resolving original incapacity semantics?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Bounded finding:** `ReportScalarConstants` queried the unsigned 16-bit
+  representation of -10 (`0xfff6`) in instruction operands. It reached its
+  256-result cap across many functions before exhausting the program.
+- **Interpretation:** the literal by itself is non-discriminating. This query
+  neither identifies a hit-point field nor establishes signed comparison
+  direction, status effects, target removal, or a combat call path.
+- **Confidence:** high that this single-scalar query cannot isolate the
+  documented threshold; unknown for the original incapacity implementation.
+- **Implementation consequence:** `CombatHitPointRules` remains bounded by the
+  manual threshold. Any original combat-state behavior requires a narrower
+  multi-signal static-analysis question or a controlled runtime observation.
+
 For each useful finding, add a concise entry here or in the relevant
 `docs/RULES-AND-EVIDENCE.md` / `docs/ORIGINAL-FORMATS.md` section with:
 

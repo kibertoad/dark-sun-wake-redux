@@ -1409,7 +1409,9 @@
 
 - **Behavior:** Damage subtracts from the target's hit points. Positive hit
   points are conscious; zero through -9 are unconscious; -10 or less is dead.
-- **Evidence:** MANUAL-1994 page 25, "Hit Points".
+- **Evidence:** MANUAL-1994 page 25, "Hit Points". `EXE-GOG-COMBAT-002`
+  records that the threshold literal is not a unique static-analysis lead and
+  therefore contributes no original-state semantics.
 - **Confidence:** high for the stated thresholds and subtractive damage model.
   The manual section does not establish stabilization, recovery, healing,
   death saves, event ordering, or mechanical effects of either status.
