@@ -114,6 +114,12 @@ table and `docs/PARITY-MATRIX.md` to match what is actually true, and tick off
 - **Parse defensively.** Original files are untrusted input: bound every length,
   reject path traversal, and fail with a diagnosable error instead of throwing
   from deep inside a reader.
+- **Version derived-content contracts.** Whenever a required extracted asset,
+  UI/resource graph, or semantic pack contract changes, increment
+  `OriginalContent.AssetPackFormatVersion` and add a test proving that the
+  previous otherwise hash-valid version is rejected. The launcher must then
+  refresh the pack transactionally from the licensed source. Never assume a
+  self-consistent manifest proves compatibility with newer runtime expectations.
 
 ## Architecture boundaries
 
