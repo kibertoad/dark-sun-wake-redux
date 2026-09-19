@@ -801,7 +801,9 @@ proof by itself. Never redirect broad output into the repository.
   decompilation of its shared callee identified the byte-fill helper used
   immediately before the link loop. Four bounded decompilations of the `1695`
   callers compared every dereferenced offset and all chain termination and
-  match predicates. A later
+  match predicates. Bounded decompilations of `172c:000c`, its `00a1` helper,
+  and the already documented `0299` GPL/MAS request entry followed the three
+  supplied arguments without assigning a record field name. A later
   `ReportFunctionScalarIntersection` probe for the table's segment `0x5b7c`
   and offset `0x0700` found no function containing both scalar operands.
 - **Bounded finding:** four callers traverse a resident table pointer at
@@ -817,6 +819,18 @@ proof by itself. Never redirect broad output into the repository.
   4 to `4c0d:0009`; the fourth accepts either order of resident words
   `4c0d:0009` and `4c0d:0007` against record words 4/6. No conclusion about
   the meanings of the resident values or fields follows from their arithmetic.
+  The common `172c:000c` entry acts only when resident byte `4c0e:000b` is 2.
+  It resets several resident values and forwards its three supplied words to
+  `172c:00a1`. Subject to a nonzero first word and another resident guard,
+  that helper forwards the first word and the literal third word to
+  `172c:0299`; the latter records them as a requested identity/selector pair
+  and invokes the bounded loader path. The selectors established in
+  `EXE-GOG-GPL-001` map literal selector 1 to the `GPL ` source family.
+  Therefore these traversals can request a `GPL ` resource identified by their
+  leading record word under the observed guards. The second supplied record
+  word also reaches `172c:01c1` only under a separate resident-state condition;
+  its known bounded bookkeeping behavior does not establish a record-field or
+  feature meaning.
   Two recursive readers prove that offset 11 is a mutable list link rather
   than only a traversal field: `1695:010f` scans a supplied chain and delegates
   to `1695:07dd` when the low byte at offset 6 is zero, while `1695:0170` does
@@ -846,16 +860,19 @@ proof by itself. Never redirect broad output into the repository.
   one function materializing this pointer through both literal operands; it
   does not rule out split, computed, indirect, or dynamically supplied table
   ownership.
-- **Interpretation:** this is a verified linked runtime-selector shape feeding
-  the shared processing path, not evidence that it is a map trigger, dialogue
-  option, combat event, or an on-disc file format. The apparent 13-byte stride
-  is proven for these callers and entry-flow link setup only; table allocation
-  and population, index-source validity (including index 200), execution
-  outcome, and relation to GPL/MAS remain unknown.
+- **Interpretation:** this is a verified linked runtime-selector shape that can
+  request the `GPL ` source family through the shared processing path. It is
+  not evidence that a particular record is a map trigger, dialogue option,
+  combat event, or an on-disc file format, nor that a requested GPL resource
+  executes or has any particular outcome. The apparent 13-byte stride is
+  proven for these callers and entry-flow link setup only; table allocation and
+  population, index-source validity (including index 200), record-to-resource
+  mapping, execution outcome, and relation to MAS remain unknown.
 - **Confidence:** high for the four routine-local record accesses, mutable
-  chain shape, deterministic entry-flow clear/link writes, and direct-call
-  relationship; unknown for table ownership, allocation/valid record bounds,
-  field semantics, and player-visible behavior.
+  chain shape, deterministic entry-flow clear/link writes, and guarded GPL
+  request relationship; unknown for table ownership, allocation/valid record
+  bounds, field semantics, record-to-resource mapping, and player-visible
+  behavior.
 - **Implementation consequence:** do not add a resource parser, persist this
   data, or infer interaction triggers. Preserve the evidence as `Q18` until a
   source container, record population path, or controlled observation
