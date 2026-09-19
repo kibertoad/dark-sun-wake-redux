@@ -328,6 +328,33 @@ proof by itself. Never redirect broad output into the repository.
   resource-exact opening actor uses the evidenced anchor `(74,91)` independently
   of those still-open behaviors.
 
+### EXE-GOG-ACTOR-002 - The observed hostile object ID is not a direct combat entry point
+
+- **Question:** Does the first observed hostile Tyr object, OJFF #9258, occur
+  in the supported executable as a direct reference that can identify its
+  encounter or combat handler?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** `ReportBytePattern` searched all loaded blocks for OJFF #9258's
+  explicit 16-bit little-endian encoding (`2a 24`). `ReportReferences` then
+  queried the single hit, and `ReportDataBytes` classified a bounded 96-byte
+  neighborhood.
+- **Bounded finding:** exactly one raw match occurs at `1000:9754`. Ghidra
+  has no reference to that address, and the surrounding bytes are an
+  unreferenced data run rather than a decoded instruction or a resource-loading
+  operand. The match therefore does not identify a code consumer.
+- **Interpretation:** a 16-bit resource number is too short to be a reliable
+  executable lead by itself. This result does not establish that #9258 is
+  unused, nor does it identify its interaction, hostility, encounter,
+  placement, combat state, or handler. It rules out treating this lone raw
+  occurrence as a direct combat entry point.
+- **Confidence:** high for the one raw occurrence and the absence of a direct
+  reference in this analysis; unknown for all object and combat semantics.
+- **Implementation consequence:** the runtime continues to use #9258 only for
+  the separately observed cursor-eligibility boundary. A combat transition
+  requires an independent state or call-path lead, or a controlled observation.
+
 ### EXE-GOG-COMBAT-001 - Combat hotkey dispatch is not a direct shared literal table
 
 - **Question:** Does the supported executable contain an obvious single function
