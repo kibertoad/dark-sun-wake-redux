@@ -93,6 +93,7 @@ public sealed class ExplorationActorControllerTests
 
     [Theory]
     [InlineData(ExplorationCursorMode.Look, ExplorationView.World)]
+    [InlineData(ExplorationCursorMode.Attack, ExplorationView.World)]
     [InlineData(ExplorationCursorMode.Walk, ExplorationView.GameMenu)]
     public void IgnoresClicksOutsideActiveWalkWorld(
         ExplorationCursorMode mode,

@@ -492,16 +492,18 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                 rightPressed,
                 hasLogicalPointer ? new GridPoint(pointerX, pointerY) : null) is { } rightCommand)
             ExecuteExplorationCommand(rightCommand);
-        if (_exploration.Snapshot().View == ExplorationView.World &&
+        explorationSnapshot = _exploration.Snapshot();
+        explorationLayout = ResolveExplorationLayout(explorationSnapshot);
+        if (explorationSnapshot.View == ExplorationView.World &&
             !suppressWalkClick &&
             mouse.LeftButton == ButtonState.Pressed &&
             _previousMouse.LeftButton == ButtonState.Released &&
             explorationLayout.TryToLogical(mouse.X, mouse.Y, out var walkX, out var walkY))
             _leaderController.PlanAt(explorationSnapshot with
-                {
-                    CameraX = explorationLayout.CameraX,
-                    CameraY = explorationLayout.CameraY
-                }, walkX, walkY);
+            {
+                CameraX = explorationLayout.CameraX,
+                CameraY = explorationLayout.CameraY
+            }, walkX, walkY);
         if (_exploration.Snapshot().View == ExplorationView.World && !rightPressed &&
             explorationLayout.TryToLogical(mouse.X, mouse.Y, out var x, out var y) &&
             ExplorationInput.ScrollAtEdge(
