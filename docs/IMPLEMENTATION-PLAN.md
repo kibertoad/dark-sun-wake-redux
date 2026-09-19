@@ -260,7 +260,7 @@ evidence throughout.
 **Completion evidence.** `inventory-source` classified all 279 files in the
 owned installation with zero unrepresented: 233 immutable game-data inputs, 10
 mutable capture/save files, 18 DOSBox wrapper/configuration files, 13 storefront
-wrappers, and five documents. The transactionally installed v31 pack contains
+wrappers, and five documents. The transactionally installed required revision 32 pack contains
 233 byte-for-byte source-file DSOP assets, 16,168 per-resource DSOP assets, and
 102 specialized derivatives (16,503 total); full pack read-back and runtime
 content smoke both pass.

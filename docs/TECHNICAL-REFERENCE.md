@@ -32,7 +32,7 @@ licensed GOG installation
 ```
 
 The Extractor verifies all 233 immutable baseline files and all 16,168 GFF
-descriptors. The current v31 pack contains 16,401 lossless DSOP corpus assets
+descriptors. The current required revision 32 pack contains 16,401 lossless DSOP corpus assets
 plus 102 specialized DSIX, DSGP, DSTX, DSUI, DSCH, DSRG, and DSOB derivatives:
 16,503 assets in total. Opaque preservation means the resource is retained and
 hash-verified; it does not mean the runtime understands or executes it.
