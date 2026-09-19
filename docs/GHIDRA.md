@@ -459,6 +459,28 @@ proof by itself. Never redirect broad output into the repository.
   and presentation interpolation remain explicit CPU-speed-independent policy
   until a movement call path and controlled cadence observation are available.
 
+### EXE-GOG-ITEMS-001 - no literal ITEMS.BIN loader lead in DSUN.EXE
+
+- **Question:** Does the supported main executable identify `ITEMS.BIN` by its
+  literal filename, providing a direct static loader path for the known
+  fixed-width pair table?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** `ReportBytePattern` searched every mapped block for exact ASCII
+  bytes `49 54 45 4d 53 2e 42 49 4e` (`ITEMS.BIN`).
+- **Bounded finding:** no match was found.
+- **Interpretation:** this rejects only a direct literal filename lead in
+  `DSUN.EXE`. The file may be opened through a constructed or relocated name,
+  another supplied executable, an external loader, or no runtime path at all.
+  It does not identify either pair column, object-frame relation, equipment,
+  combat, or inventory behavior.
+- **Confidence:** high for the absent literal in this executable; unknown for
+  file ownership and every table-field role.
+- **Implementation consequence:** preserve `DATA-GOG-ITEMS-001` as a bounded
+  opaque source fact. Do not add an equipment reader or item mapping until an
+  independent materialization/consumer path or controlled observation exists.
+
 ### EXE-GOG-MEDIA-001 - no literal FLI header validation lead in DSUN.EXE
 
 - **Question:** Does the supported executable contain the literal FLI header
