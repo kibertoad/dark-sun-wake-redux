@@ -403,7 +403,7 @@ decoder rather than being guessed now.
   states, and identify OJFF #9258 as the first observed melee target. Pack v21
   extracts all ten cursor images; the runtime renders reachability-based Walk,
   topmost-entity/leader Look, and bounded first-target melee feedback.
-  Dynamic fields/interior actions, generalized target eligibility, Exit, Load/Save, setting mutations,
+  Dynamic fields/interior actions, generalized target eligibility, Load/Save, setting mutations,
   other destination presentation, native panel/centering validation, animation,
   and party/interface overlays remain pending. `EXE-GOG-REGION-001` now establishes
   `GMAP` bit `0x40` as the terrain/occupancy block. A bounded terrain grid and

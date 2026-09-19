@@ -70,15 +70,20 @@ public sealed class GameMenuInputTests
     }
 
     [Fact]
-    public void RoutesReturnAndLeavesUnevidencedDestinationsInert()
+    public void RoutesExitAndReturnWhileLeavingLoadSaveInert()
     {
         var controls = GameMenuInput.Resolve(Catalog());
+        var exitControl = Assert.Single(controls,
+            item => item.Action == GameMenuAction.ExitToDos);
         var returnControl = Assert.Single(controls,
             item => item.Action == GameMenuAction.ReturnToGame);
+
+        Assert.Equal(ExplorationCommandKind.RequestExit,
+            GameMenuInput.CommandFor(exitControl)!.Kind);
         Assert.Equal(ExplorationCommandKind.Escape,
             GameMenuInput.CommandFor(returnControl)!.Kind);
 
-        var pending = new[] { GameMenuAction.ExitToDos, GameMenuAction.LoadSave };
+        var pending = new[] { GameMenuAction.LoadSave };
         Assert.All(controls.Where(item => pending.Contains(item.Action)),
             item => Assert.Null(GameMenuInput.CommandFor(item)));
     }

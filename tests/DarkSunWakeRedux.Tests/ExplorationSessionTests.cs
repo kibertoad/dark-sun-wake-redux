@@ -137,6 +137,18 @@ public sealed class ExplorationSessionTests
     }
 
     [Fact]
+    public void ExplicitExitRequestLeavesTheActiveMenuForExit()
+    {
+        var session = Session();
+        session.Execute(ExplorationCommand.Open(ExplorationView.GameMenu));
+
+        var transition = session.Execute(ExplorationCommand.RequestExit());
+
+        Assert.True(transition.Applied);
+        Assert.Equal(ExplorationView.ExitRequested, transition.After.View);
+    }
+
+    [Fact]
     public void GameMenuModeSelectionReturnsToWorld()
     {
         var session = Session();

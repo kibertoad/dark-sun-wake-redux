@@ -497,15 +497,18 @@
   Character, inventory, cast/psionic, effects, overhead-map, Walk/Look/Attack,
   Preferences, and Return route to existing deterministic Core commands. Center on Leader
   supplies the moving sprite's world center to a bounded Core camera command;
-  Collapse Party restores leader-only display and both return to play. Exit and
-  Load/Save remain visibly inert until their destination behavior is implemented.
+  Collapse Party restores leader-only display and both return to play. Exit to
+  DOS issues a distinct deterministic exit request, so it does not accidentally
+  share Escape's menu-dismissal behavior; the runtime then exits cleanly.
+  Load/Save remains visibly inert until its destination behavior is implemented.
 - **Tests:** exact unique mapping, synthetic transactional extraction and
   provenance, complete graph resolution, image/frame contracts, absolute and
-  exclusive hit rectangles, semantic routing, explicitly inert actions,
+  exclusive hit rectangles, semantic routing, explicit exit handling, the
+  remaining inert action,
   actor-relative center routing, camera clamping/menu return, collapse state,
   malformed image references, pack verification, and no-window content smoke.
 - **Uncertainty:** Native panel origin, frame-state selection, hover/press timing,
-  description-bar text, two pending actions, exact native centering policy,
+  description-bar text, Load/Save behavior, exact native centering policy,
   and destination-screen presentation.
 
 ### DATA-GOG-UI-010 - Character and inventory destination graphs

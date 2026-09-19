@@ -36,6 +36,7 @@ public enum ExplorationCommandKind
     OpenView,
     SelectCursorMode,
     CenterCamera,
+    RequestExit,
     Escape
 }
 
@@ -63,6 +64,9 @@ public sealed record ExplorationCommand(
     public static ExplorationCommand CenterOn(int worldX, int worldY) =>
         new(ExplorationCommandKind.CenterCamera,
             TargetWorldX: worldX, TargetWorldY: worldY);
+
+    public static ExplorationCommand RequestExit() =>
+        new(ExplorationCommandKind.RequestExit);
 }
 
 public sealed record ExplorationSnapshot(
@@ -153,6 +157,10 @@ public sealed class ExplorationSession
             ExplorationCommandKind.CenterCamera when
                 _snapshot.View is ExplorationView.World or ExplorationView.GameMenu =>
                 CenterOn(command.TargetWorldX!.Value, command.TargetWorldY!.Value),
+            ExplorationCommandKind.RequestExit => _snapshot with
+            {
+                View = ExplorationView.ExitRequested
+            },
             ExplorationCommandKind.Escape => _snapshot with
             {
                 View = IsWorldActive ? ExplorationView.ExitRequested : ExplorationView.World
@@ -191,7 +199,8 @@ public sealed class ExplorationSession
                 command.TargetWorldX is >= 0 && command.TargetWorldX < _worldWidth &&
                 command.TargetWorldY is >= 0 && command.TargetWorldY < _worldHeight,
             ExplorationCommandKind.CycleCursorMode or ExplorationCommandKind.ShowLeaderOnly or
-                ExplorationCommandKind.ShowExpandedParty or ExplorationCommandKind.Escape =>
+                ExplorationCommandKind.ShowExpandedParty or ExplorationCommandKind.RequestExit or
+                ExplorationCommandKind.Escape =>
                 payloadCount == 0,
             _ => false
         };
