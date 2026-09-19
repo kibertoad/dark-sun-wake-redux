@@ -1363,8 +1363,14 @@
 - **Confidence:** high for documented command bindings and intended attack
   eligibility; resolution order, exact computer-control semantics, and formulas
   are unknown.
-- **Implementation:** not implemented.
-- **Tests:** planned deterministic combat command traces.
+- **Implementation:** `CombatCommand` owns the six semantic requests without
+  depending on MonoGame, while `CombatHotkeys` maps only their documented keys
+  on a rising edge. The mapper is intentionally not connected to exploration:
+  no combat state exists yet to resolve these requests into target selection,
+  turn advancement, guard/wait effects, or automation changes.
+- **Tests:** each documented key, rising-edge suppression, stable simultaneous
+  ordering, and invalid command rejection are covered. Deterministic combat
+  command traces remain planned.
 - **Uncertainty:** Activation order, RNG, THAC0/AC details, timing, and difficulty
   effects, the computer-control default and re-enable behavior, turn effects of
   Guard/Wait, and exact target/range calculations require OBS-GOG and targeted

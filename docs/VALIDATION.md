@@ -128,6 +128,9 @@ and Game Menu views, and restore leader-only display through Collapse Party.
 Game Menu routing tests supply the moving actor's visual center only to the
 context-dependent Center action, route Exit through a distinct request, and
 keep the remaining Load/Save action inert.
+Combat-input tests map each documented Guard, Wait, target-cycle, end-turn, and
+disable-control hotkey to a validated Core command on its rising edge, without
+assigning the unresolved combat-resolution behavior.
 Destination-page tests resolve both the character and inventory WIND graphs
 through one semantic page object, prove exact shared-button placement and image
 identity, exclusive hit rectangles, cross-page navigation/return commands, and
