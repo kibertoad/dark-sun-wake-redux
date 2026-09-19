@@ -130,8 +130,9 @@
   signed vertical-offset byte, a flags byte, and a signed 16-bit object number;
   the absolute object number resolves to `OJFF` in `OBJEX.GFF`. The geometry
   bytes and entity flags are retained without assigning gameplay meaning at
-  this structural layer. `EXE-GOG-REGION-001` separately establishes geometry
-  bit `0x40` as the movement-blocking bit.
+  this structural layer. `EXE-GOG-REGION-003` independently corroborates that
+  native MAP bytes are supplied as TILE identities. `EXE-GOG-REGION-001`
+  separately establishes geometry bit `0x40` as the movement-blocking bit.
   Across the owned set, 3,043 tiles decode and 13,559 entity references resolve.
   `RGN032.GFF` (64,641 bytes, SHA-256
   `6224aefe947062141f2102bfa1098d9e7fa0e1f6eab8d385eaf2a7d2a434d04e`)

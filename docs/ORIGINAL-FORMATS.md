@@ -86,7 +86,8 @@ require separate evidence entries and tests.
 
 ## Region maps
 
-**Evidence:** `DATA-GOG-REGION-001`, corroborated by `DSUN-MUSIC`.
+**Evidence:** `DATA-GOG-REGION-001`, `EXE-GOG-REGION-003`, corroborated by
+`DSUN-MUSIC`.
 
 Each of the 20 owned `RGN*.GFF` containers has a single region number shared by
 `RNME`, `PAL `, `MAP `, `GMAP`, and `ETAB`. `RNME` is a printable ASCII name

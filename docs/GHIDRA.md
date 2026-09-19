@@ -390,6 +390,39 @@ proof by itself. Never redirect broad output into the repository.
   and static compositor only. Do not connect ETAB entries to native actor or
   event behavior without a constrained call path or controlled observation.
 
+### EXE-GOG-REGION-003 - MAP and TILE requests corroborate region composition
+
+- **Question:** Do native direct tag literals establish a bounded relationship
+  between a region identity, its `MAP `/`GMAP` planes, and the local `TILE`
+  resources used by the static compositor?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** `ReportBytePattern` located the `MAP ` and `TILE` tag literals.
+  `ReportInstructionContext` bounded each request, and `ReportReferences`
+  enumerated direct callers of the containing TILE helper.
+- **Bounded finding:** `362c:01fa`, the same bounded function that requests
+  `GMAP`, requests `MAP ` through the same far resource helper with supplied
+  region identity `SI` and resident destination `29ef`. Under its local guards
+  it separately requests `GMAP` with the same supplied identity. The distinct
+  helper `362c:00ca` requests `TILE` with its supplied 16-bit identity and
+  resident destination `29f3`. It has exactly two direct callers
+  (`362c:035c` and `362c:04bf`); each reads one byte through the resident
+  `29ef` map-plane pointer at a coordinate-derived offset, zero-extends that
+  byte, and supplies it to the TILE helper. Both callers reject the helper's
+  `0xffff` failure result before proceeding.
+- **Interpretation:** this corroborates the structural region contract: a
+  same-number `MAP ` plane is loaded by region identity and its byte values are
+  used as local TILE identities. It does not identify the preceding resource
+  request in the loader, map-coordinate semantics, map rendering order,
+  geometry meanings, TILE cache lifetime, or any movement/actor behavior.
+- **Confidence:** high for the bounded tag requests, two direct callers, and
+  byte-to-TILE request relationship; unknown for every semantic role beyond
+  that structural routing.
+- **Implementation consequence:** retain the existing bounded same-number
+  region reader and map-byte-to-TILE validation. Do not infer additional
+  geometry, animation, actor, or interaction rules from this request path.
+
 ### EXE-GOG-ACTOR-002 - The observed hostile object ID is not a direct combat entry point
 
 - **Question:** Does the first observed hostile Tyr object, OJFF #9258, occur
