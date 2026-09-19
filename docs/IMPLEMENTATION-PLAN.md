@@ -394,7 +394,7 @@ decoder rather than being guessed now.
   and artwork now render and its Game Menu/Return actions route deterministically.
   `EXE-GOG-UI-004` now bounds the executable's ordered four-label difficulty
   table, exact ten-string Preferences description span, and nine centered About
-  strings. Pack v26 extracts all three through the existing DSTX format without
+  strings. Pack v27 extracts all three through the existing DSTX format without
   committing original text. The manual's Average default wording conflicts with
   the executable's Balanced label, so description-role ordering, the selected
   default, and all numeric setting boundaries remain open rather than becoming
