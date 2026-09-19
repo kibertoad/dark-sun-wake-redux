@@ -1501,6 +1501,26 @@
   malformed-field, noncanonical-order, truncation, and trailing-data rejection;
   synthetic extraction and content-smoke validation without original content.
 
+### DATA-GOG-PREF-001 - A bounded but opaque `PREF` envelope
+
+- **Question:** Does the `PREF` resource in the owned character archive support
+  an extracted Preferences schema or default-setting behavior?
+- **Method:** Enumerate the fingerprinted `CHARSAVE.GFF` resource directory and
+  apply the bounded opaque-record profiler using its complete nine-byte length.
+  No source bytes were retained.
+- **Finding:** the archive contains exactly one `PREF` resource, #100, with an
+  exact nine-byte payload. A single nine-byte record establishes only that
+  envelope length; it supplies no repeated stride, field boundary, or semantic
+  role. `EXE-GOG-PREF-001` independently finds no direct literal executable
+  reference to the tag.
+- **Confidence:** high for archive identity, resource number, count, and
+  payload length; unknown for field meanings, defaults, persistence ownership,
+  and any relationship to the in-game Preferences screen.
+- **Implementation:** retain the payload byte-for-byte as DSOP in the verified
+  pack. Do not add a `PREF` reader, settings schema, mutation, or UI binding.
+- **Tests:** exact owned-pack inventory/hash verification and generic DSOP
+  envelope bounds/read-back; no semantic fixture is introduced.
+
 ### DATA-GOG-CHAR-006 - Disc and installed character sets
 
 - **Question:** Which character resources are immutable disc data, which were

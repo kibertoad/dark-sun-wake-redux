@@ -111,10 +111,15 @@ Direct-reference and scalar probes find no literal binding from the executable
 text table or two tested control pairs to a handler. This does not prove that
 the controls are inactive: their dispatch may be resource-driven or calculated.
 It does prevent treating those literal values as evidence for an implementation.
+`PREF` #100 is a single nine-byte envelope in `CHARSAVE.GFF`; it provides no
+field layout or connection to the in-game screen. The sole raw `PREF` tag also
+has no direct executable reference, so neither source establishes settings
+behavior.
 `SOUND.CFG` and `SOUND.INI` are also absent as literal names in the separately
 shipped sound helper, so neither is mapped to Preferences. See
-`DATA-GOG-UI-011`, `EXE-GOG-UI-004`, and `DATA-GOG-SOUND-002` in the detailed
-evidence records before changing this boundary.
+`DATA-GOG-UI-011`, `DATA-GOG-PREF-001`, `EXE-GOG-UI-004`,
+`EXE-GOG-PREF-001`, and `DATA-GOG-SOUND-002` in the detailed evidence records
+before changing this boundary.
 
 ## Determinism and time
 
