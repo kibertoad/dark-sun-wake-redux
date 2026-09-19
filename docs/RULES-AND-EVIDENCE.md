@@ -1081,13 +1081,16 @@
 - **Evidence:** `EXE-GOG-REGION-001` establishes the `0x40`/`0x20` dynamic pair
   and a coordinator called once per iterated footprint cell. The same bounded
   analysis establishes the opening anchor relationship and a separate sentinel
-  path for actor records whose leading signed value has magnitude 430. That
-  sentinel bypasses ordinary coordinate enumeration, so the normal loop cannot
-  prove a universal footprint shape. Neither path's concrete actor category,
-  footprint, or mutation cadence is established.
-- **Confidence:** high for per-cell occupied/open exclusion in the supported
-  executable; implementation-policy for atomic rejection and stable ordering;
-  unknown for concrete actor shapes beyond the evidenced opening anchor.
+  path for actor records whose leading signed value has magnitude 430. Its
+  guarded dynamic placement path occupies a 5x5 cell area without its four
+  corners (21 cells), while its paired path clears that same area. The sentinel
+  bypasses ordinary coordinate enumeration, so the normal loop cannot prove a
+  universal footprint shape. Its concrete actor category, source-data mapping,
+  and mutation cadence are not established.
+- **Confidence:** high for per-cell occupied/open exclusion and the guarded
+  sentinel pattern in the supported executable; implementation-policy for
+  atomic rejection and stable ordering; unknown for the opening actor and other
+  concrete actor shapes.
 - **Implementation:** `GridFootprint` is immutable, duplicate-free, and
   canonically ordered. `ExplorationOccupancySession` applies place/move/remove
   commands atomically over bounded terrain, emits deterministic events and
@@ -1102,10 +1105,10 @@
   missing-occupant handling, snapshot isolation/order, invalid payloads, live
   blocker updates, route planning through the composed predicate, synchronized
   actor advancement, commit rejection, interruption, and drift detection.
-- **Uncertainty:** Native occupant IDs, the meaning of the magnitude-430
-  sentinel, party formation, actor-specific footprints, NPC placement, and
-  movement timing remain open. The opening anchor convention itself is now
-  evidenced by `DATA-GOG-ACTOR-001` and `EXE-GOG-REGION-001`.
+- **Uncertainty:** Native occupant IDs, the meaning and source-data mapping of
+  the magnitude-430 sentinel, party formation, actor-specific footprints, NPC
+  placement, and movement timing remain open. The opening anchor convention
+  itself is now evidenced by `DATA-GOG-ACTOR-001` and `EXE-GOG-REGION-001`.
 
 ### RULE-PARTY-001 - Four-character party
 
