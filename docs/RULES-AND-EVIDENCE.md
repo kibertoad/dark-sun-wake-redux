@@ -1378,6 +1378,29 @@
   Guard/Wait, and exact target/range calculations require OBS-GOG and targeted
   Ghidra evidence.
 
+### RULE-COMBAT-002 - THAC0 hit threshold
+
+- **Behavior:** Resolve an attempted attack from a supplied integer roll in the
+  inclusive range 1 through 20. It hits exactly when the roll is greater than
+  or equal to the attacker's THAC0 minus the target's Armor Class. Lower Armor
+  Class is harder to hit. The manual examples establish 5 THAC0 versus 3 AC
+  requires 2 or higher, and 5 THAC0 versus -2 AC requires 7 or higher.
+- **Evidence:** MANUAL-1994 page 25, "Armor Class" and "THAC0". It explicitly
+  defines the random roll range and inclusive threshold.
+- **Confidence:** high for the base threshold and bounds. The manual names
+  range, rear attacks, magic weapons, and magic spells as THAC0 modifiers but
+  does not establish their numerical values or application order here.
+- **Implementation:** `CombatAttackRules.Resolve` takes a caller-supplied roll
+  and unmodified/effectively precomputed THAC0. It uses wide arithmetic before
+  reporting the threshold, so malformed or future extreme values cannot wrap.
+  It does not create randomness, apply modifiers, assign damage, add automatic
+  1/20 outcomes, mutate a combatant, or advance a turn.
+- **Tests:** both manual examples, equality/below-threshold boundaries,
+  documented roll bounds, and overflow-safe extreme statistics.
+- **Uncertainty:** RNG algorithm and consumption, modifier values/order, natural
+  1/20 behavior, weapons, damage, resistance, incapacitation, and all combat
+  state transitions remain open.
+
 ## Conflict handling
 
 FAQ-81038 reports discrepancies between documentation and shipped behavior.
