@@ -40,6 +40,41 @@ as `0.1.0`, and select `windows` or `all`. The default builds Windows x64 only.
 tag and GitHub Release are created only after tests and every selected build
 succeed.
 
+## Git publication authorization
+
+Local commits are not published until the repository owner has approved an
+exact remote and branch after the checks in `AGENTS.md` have been completed.
+The approval record below is intentionally separate from GitHub release access:
+release or administrative permission alone does not authorize an automated push.
+
+### Current owner verification — approval pending
+
+On 2026-09-20, read-only checks established the following non-secret facts:
+
+| Fact | Verified value |
+|---|---|
+| Canonical fetch/push URL | `https://github.com/kibertoad/dark-sun-wake-redux.git` |
+| GitHub repository identity | `kibertoad/dark-sun-wake-redux` (private) |
+| GitHub-reported repository owner | `kibertoad` |
+| Authenticated GitHub account | `kibertoad` |
+| Effective repository permission | `ADMIN` |
+| Branch proposed for publication | `main` |
+
+This verifies endpoint ownership and account authority, but it is **not** a
+publication approval. Do not push until the repository owner explicitly
+confirms the exact URL and `main` branch after reviewing this table.
+
+### Approved destinations
+
+Add a row only after that explicit owner confirmation. Each row must include
+the canonical URL, `OWNER/REPOSITORY`, branch, verification date, approving
+owner, publishing account, effective permission, and permitted scope. Do not
+record tokens, credentials, cookies, or private-key material.
+
+| Canonical URL | Repository | Branch | Verified | Approving owner | Account / permission | Scope |
+|---|---|---|---|---|---|---|
+| _No approved destination yet._ | | | | | | |
+
 ## Continuous integration
 
 Pull requests and manual runs build, test, and smoke-test the assetless project
