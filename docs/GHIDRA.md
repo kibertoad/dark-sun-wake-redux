@@ -588,13 +588,20 @@ proof by itself. Never redirect broad output into the repository.
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
   SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
-- **Method:** `ReportBytePattern` searched every loaded block for the explicit
-  ASCII bytes for `CHARSAVE.GFF`, capped at 100 matches. `ReportReferences`
-  then queried each reported virtual address, capped at 200 inbound references.
+- **Method:** a full Ghidra auto-analysis pass completed first (including ASCII
+  strings, data/reference analysis, disassembly, function discovery, and x86
+  constant/reference analyzers). `ReportBytePattern` then searched every loaded
+  block for the explicit ASCII bytes for `CHARSAVE.GFF`, capped at 100 matches;
+  `ReportDataBytes` classified the shared 48-byte neighborhood; and
+  `ReportReferences` queried each reported virtual address, capped at 200
+  inbound references.
 - **Bounded finding:** the raw filename bytes occur twice in `CODE_208`, at
-  `5000:9188` and `5000:9197`. Ghidra reports no inbound reference to either
-  byte address. No loader, archive open, character-record selection, or START
-  GAME transition is identified by this query.
+  `5000:9188` and `5000:9197`. The first is a null-terminated filename; the
+  second is that filename within a separate missing-file diagnostic, not a
+  second filename entry. Even after the full analyzer pass, Ghidra reports no
+  inbound reference to either byte address. No loader, archive open,
+  character-record selection, or START GAME transition is identified by this
+  query.
 - **Interpretation:** the strings may be used through an indirect pointer,
   constructed/relocated data, another executable, or an unrecognized code path.
   The result rules out only treating either raw byte address as a direct static
