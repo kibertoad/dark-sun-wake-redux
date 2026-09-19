@@ -85,9 +85,11 @@
   assets (233 source files plus 16,168 descriptors) and 102 existing specialized
   derivatives, for 16,503 verified pack assets. The Game does not load opaque
   payloads.
-- **Tests:** DSOP round-trip and invalid-envelope tests; synthetic extractor
-  coverage confirms raw files and GFF records are retained alongside existing
-  specialized derivatives.
+- **Tests:** the embedded production manifest asserts the 233-file corpus and
+  documented GFF/VOC/FLI/OGG family counts without proprietary input; DSOP
+  round-trip and invalid-envelope tests plus synthetic extractor coverage
+  confirm raw files and GFF records are retained alongside existing specialized
+  derivatives.
 
 ### DATA-GOG-IMAGE-001 - Indexed images and palettes
 

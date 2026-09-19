@@ -7,6 +7,32 @@ namespace DarkSunWakeRedux.Tests;
 public sealed class SourceCorpusInventoryTests
 {
     [Fact]
+    public void EmbeddedGogManifestProtectsTheCompleteImmutableCorpusContract()
+    {
+        var assembly = typeof(AssetPackInstaller).Assembly;
+        var resourceName = Assert.Single(assembly.GetManifestResourceNames(),
+            name => name.EndsWith(".json", StringComparison.Ordinal));
+        using var stream = assembly.GetManifestResourceStream(resourceName);
+        Assert.NotNull(stream);
+        var manifest = SourceManifest.Load(stream);
+
+        Assert.Equal(OriginalContent.GameId, manifest.GameId);
+        Assert.Equal(233, manifest.Files.Count);
+        Assert.Equal(26, manifest.Files.Count(file =>
+            file.Path.EndsWith(".GFF", StringComparison.OrdinalIgnoreCase)));
+        Assert.Equal(147, manifest.Files.Count(file =>
+            file.Path.EndsWith(".VOC", StringComparison.OrdinalIgnoreCase)));
+        Assert.Equal(5, manifest.Files.Count(file =>
+            file.Path.EndsWith(".FLI", StringComparison.OrdinalIgnoreCase)));
+        Assert.Equal(40, manifest.Files.Count(file =>
+            file.Path.EndsWith(".ogg", StringComparison.OrdinalIgnoreCase)));
+        Assert.Equal(manifest.Files.Count, manifest.Files
+            .Select(file => SourceManifest.Normalize(file.Path))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .Count());
+    }
+
+    [Fact]
     public async Task AssignsEveryKnownSourceFileAnExplicitDisposition()
     {
         var root = Path.Combine(Path.GetTempPath(), "dark-sun-wake-redux-tests", Guid.NewGuid().ToString("N"));
