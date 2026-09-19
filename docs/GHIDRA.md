@@ -697,6 +697,8 @@ proof by itself. Never redirect broad output into the repository.
   contiguous installed-only candidate IDs #29, #30, #31, and #32 found no
   function containing all four; the individual-ID query produced numerous
   unrelated scalar uses and was not treated as a resource-request trace. A
+  matching intersection query for the disc candidate IDs #40, #41, #42, and
+  #43 likewise found no function containing all four. A
   separate raw byte-pattern search of fingerprinted `CHARTRAN.EXE` (24,761
   bytes, SHA-256
   `e99572016901c67135b9d1b14b6db3936078749779b89e5c62f7044fe722cf1d`) found
@@ -714,8 +716,8 @@ proof by itself. Never redirect broad output into the repository.
   constructed/relocated data, another executable, or an unrecognized code path.
   The result rules out only treating either raw byte address as a direct static
   loader lead; it does not prove the archive unused. Likewise, a contiguous
-  installed resource-ID run is not evidence that those records form the
-  supplied party, and the negative string query does not prove `CHARTRAN.EXE`
+  installed or disc resource-ID run is not evidence that those records form
+  the supplied party, and the negative string query does not prove `CHARTRAN.EXE`
   cannot access the archive indirectly.
 - **Confidence:** high for the two raw matches and absent direct references;
   unknown for loader ownership and party-selection behavior.
