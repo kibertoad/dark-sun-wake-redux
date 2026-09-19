@@ -174,7 +174,9 @@ public sealed record SourceIdentification(
 
 public static class OriginalContent
 {
-    public const int AssetPackFormatVersion = 27;
+    // Bump whenever the required derived-asset inventory or semantic contract changes.
+    // `play.bat` then refreshes older otherwise self-consistent local packs.
+    public const int AssetPackFormatVersion = 28;
     public const string GameId = "dark-sun-wake-redux";
     public const string TitleImageAssetPath = "images/title.dsix";
     public const string InterfaceFontAssetPath = "fonts/interface.dsft";

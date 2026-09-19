@@ -3,6 +3,11 @@
 States are `unknown`, `researched`, `implemented`, `partially validated`,
 `validated`, `intentional deviation`, and `not applicable`.
 
+The current asset-pack compatibility version is **v28**. A version bump means
+the required derived-asset inventory or contract changed; `play.bat` refreshes
+an older pack transactionally from the owner's licensed installation rather
+than attempting to run it.
+
 | Feature | Evidence | Core/rules | Presentation/input | Audio/video | Persistence | Automated validation | Manual validation | Status |
 |---|---|---|---|---|---|---|---|---|
 | GOG source recognition | exact local hashes | not applicable | Extractor diagnostics | not applicable | source manifest | synthetic mismatch tests | owned build verifies | partially validated |

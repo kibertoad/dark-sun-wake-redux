@@ -107,6 +107,37 @@ public sealed class BootstrapTests
     }
 
     [Fact]
+    public async Task EarlierSelfConsistentAssetPackVersionRequiresRefresh()
+    {
+        var root = TestRoot();
+        Directory.CreateDirectory(root);
+        try
+        {
+            var assetPath = Path.Combine(root, "images", "synthetic.bin");
+            Directory.CreateDirectory(Path.GetDirectoryName(assetPath)!);
+            await File.WriteAllBytesAsync(assetPath, [1], TestContext.Current.CancellationToken);
+            var manifest = new AssetPackManifest(
+                OriginalContent.AssetPackFormatVersion - 1,
+                OriginalContent.GameId,
+                "synthetic-edition",
+                new string('c', 64),
+                "test",
+                [new("images/synthetic.bin", 1, await HashAsync(assetPath), "SOURCE.GFF",
+                    "application/octet-stream", "synthetic-test")]);
+            await File.WriteAllTextAsync(Path.Combine(root, "manifest.json"),
+                JsonSerializer.Serialize(manifest), TestContext.Current.CancellationToken);
+
+            var diagnostic = Assert.Single(await OriginalContent.VerifyInstalledAsync(
+                root, TestContext.Current.CancellationToken));
+
+            Assert.Equal("pack_version_mismatch", diagnostic.Code);
+            Assert.Equal(OriginalContent.AssetPackFormatVersion.ToString(), diagnostic.Expected);
+            Assert.Equal((OriginalContent.AssetPackFormatVersion - 1).ToString(), diagnostic.Actual);
+        }
+        finally { Directory.Delete(root, true); }
+    }
+
+    [Fact]
     public async Task AssetPackInstallIsVerifiedAndReplacesStaleOutput()
     {
         var root = TestRoot();
