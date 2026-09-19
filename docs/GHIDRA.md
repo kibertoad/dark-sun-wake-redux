@@ -459,6 +459,30 @@ proof by itself. Never redirect broad output into the repository.
   and presentation interpolation remain explicit CPU-speed-independent policy
   until a movement call path and controlled cadence observation are available.
 
+### EXE-GOG-MEDIA-001 - no literal FLI header validation lead in DSUN.EXE
+
+- **Question:** Does the supported executable contain the literal FLI header
+  magic needed to identify an in-process cinematic decoder or its timing path?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** `ReportScalarConstants` searched decoded instructions for the
+  unsigned scalar `0xAF11`; `ReportBytePattern` separately searched every
+  mapped block for its little-endian on-disk representation `11 af`.
+- **Bounded finding:** neither query produced a match.
+- **Interpretation:** this rejects only a literal FLI-header comparison or
+  embedded header value in this executable. It does not establish that the
+  cinematics are unused or unsupported: validation may be bytewise or
+  constructed, live in another supplied helper executable, or be omitted while
+  a stream is passed to another component. No decoder, raw-speed unit, frame
+  cadence, or audiovisual sequencing follows from this negative result.
+- **Confidence:** high for the absent scalar and raw two-byte pattern in the
+  analyzed executable; unknown for every media implementation and timing role.
+- **Implementation consequence:** retain `DATA-GOG-MEDIA-001`'s raw FLI speed
+  values as data. Do not select a playback clock or attach a decoder based on
+  the generic header alone; a future reader needs an independently corroborated
+  source/implementation path and a monotonic, CPU-independent timing policy.
+
 ### EXE-GOG-RNG-001 - Native 32-bit linear-congruential random primitive
 
 - **Question:** Does the supported executable contain a bounded random-number
