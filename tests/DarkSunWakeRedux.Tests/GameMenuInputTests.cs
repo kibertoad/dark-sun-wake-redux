@@ -89,7 +89,7 @@ public sealed class GameMenuInputTests
     }
 
     [Fact]
-    public void RoutesCollapsePartyToLeaderOnlyDisplay()
+    public void RoutesCollapsePartyToExpandedDisplay()
     {
         var control = Assert.Single(GameMenuInput.Resolve(Catalog()),
             item => item.Action == GameMenuAction.CollapseParty);
@@ -97,7 +97,7 @@ public sealed class GameMenuInputTests
         var command = Assert.IsType<ExplorationCommand>(
             GameMenuInput.CommandFor(control));
 
-        Assert.Equal(ExplorationCommandKind.ShowLeaderOnly, command.Kind);
+        Assert.Equal(ExplorationCommandKind.ShowExpandedParty, command.Kind);
     }
 
     [Fact]

@@ -497,7 +497,9 @@
   Character, inventory, cast/psionic, effects, overhead-map, Walk/Look/Attack,
   Preferences, and Return route to existing deterministic Core commands. Center on Leader
   supplies the moving sprite's world center to a bounded Core camera command;
-  Collapse Party restores leader-only display and both return to play. Exit to
+  despite its counterintuitive label, the manual says Collapse Party selects
+  expanded all-party display outside combat, so it routes to that distinct Core
+  command. Exit to
   DOS issues a distinct deterministic exit request, so it does not accidentally
   share Escape's menu-dismissal behavior; the runtime then exits cleanly.
   Load/Save remains visibly inert until its destination behavior is implemented.

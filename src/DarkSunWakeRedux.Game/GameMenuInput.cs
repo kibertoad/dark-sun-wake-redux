@@ -84,7 +84,7 @@ public static class GameMenuInput
         GameMenuAction.Preferences => ExplorationCommand.Open(ExplorationView.Preferences),
         GameMenuAction.OverheadMap => ExplorationCommand.Open(ExplorationView.OverheadMap),
         GameMenuAction.CollapseParty =>
-            new(ExplorationCommandKind.ShowLeaderOnly),
+            new(ExplorationCommandKind.ShowExpandedParty),
         GameMenuAction.Walk => ExplorationCommand.SelectMode(ExplorationCursorMode.Walk),
         GameMenuAction.Look => ExplorationCommand.SelectMode(ExplorationCursorMode.Look),
         GameMenuAction.Attack => ExplorationCommand.SelectMode(ExplorationCursorMode.Attack),

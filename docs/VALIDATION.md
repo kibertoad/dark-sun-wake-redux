@@ -124,7 +124,7 @@ the extracted font, including choice 0's explicit blank line, within the bounded
 speech area.
 Exploration command tests also center on arbitrary world points with both-edge
 clamping, reject partial/out-of-world targets, suspend centering outside world
-and Game Menu views, and restore leader-only display through Collapse Party.
+and Game Menu views, and select expanded display through Collapse Party.
 Game Menu routing tests supply the moving actor's visual center only to the
 context-dependent Center action, route Exit through a distinct request, and
 keep the remaining Load/Save action inert.

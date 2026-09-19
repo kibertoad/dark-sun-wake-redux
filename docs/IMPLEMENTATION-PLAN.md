@@ -383,8 +383,9 @@ decoder rather than being guessed now.
   original Game Menu base and 14 controls now extract and render through a
   DSUI-resolved semantic page object; evidenced destinations and mode/return
   actions are clickable. Center on Leader now targets the authoritative moving
-  sprite center through a deterministic clamped Core camera command, and
-  Collapse Party returns to leader-only play. Character and inventory now render
+  sprite center through a deterministic clamped Core camera command, and the
+  manual's counterintuitively named Collapse Party control selects expanded
+  all-party display. Character and inventory now render
   their resource-backed shells and route the
   five shared bottom-navigation controls through one reusable destination page
   object. Controlled owned observation establishes that Cast/Use and Current
