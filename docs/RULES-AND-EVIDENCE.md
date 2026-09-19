@@ -1401,6 +1401,24 @@
   1/20 behavior, weapons, damage, resistance, incapacitation, and all combat
   state transitions remain open.
 
+### RULE-COMBAT-003 - Hit-point incapacity thresholds
+
+- **Behavior:** Damage subtracts from the target's hit points. Positive hit
+  points are conscious; zero through -9 are unconscious; -10 or less is dead.
+- **Evidence:** MANUAL-1994 page 25, "Hit Points".
+- **Confidence:** high for the stated thresholds and subtractive damage model.
+  The manual section does not establish stabilization, recovery, healing,
+  death saves, event ordering, or mechanical effects of either status.
+- **Implementation:** `CombatHitPointRules` classifies a supplied hit-point
+  total and subtracts nonnegative supplied damage using wide arithmetic with a
+  lower saturation boundary. It does not calculate damage, revive a combatant,
+  alter turn order, or apply status effects.
+- **Tests:** conscious, zero, -9, -10, lower-bound, subtraction, saturation,
+  and negative-damage rejection boundaries.
+- **Uncertainty:** weapon and spell damage, healing/revival, incapacitation and
+  death consequences, target removal, experience, and combat-state transitions
+  remain open.
+
 ## Conflict handling
 
 FAQ-81038 reports discrepancies between documentation and shipped behavior.
