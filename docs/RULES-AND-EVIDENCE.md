@@ -688,9 +688,14 @@
   284/7, and 1398/5. All 147 VOC files are at least 26 bytes, begin with the
   standard `Creative Voice File` signature, declare data offset 26, version
   `0x010a`, checksum `0x1129`, and contain first block type 1 at that offset.
+  Each declared first-block length fits within its physical file; the raw
+  time-constant/codec-byte groups are 165/0 for 30 files, 210/0 for 115, and
+  131/0 for two, with declared block lengths ranging from 365 through 3,160,452
+  bytes.
 - **Confidence:** high for these bounded inventory/header facts in
   GOG-1432903719; unknown for FLI chunk types, palette behavior, raw-speed
-  units, effective playback cadence, VOC block layout/codec/sample rate,
+  units, effective playback cadence, later VOC block layout, codec-byte/sample
+  rate semantics,
   audio routing, Ogg track mapping, loops, and all audiovisual sequencing.
 - **Implementation consequence:** no decoder, extractor entry, media mapping,
   or time-based runtime behavior is introduced yet. A future media reader must
