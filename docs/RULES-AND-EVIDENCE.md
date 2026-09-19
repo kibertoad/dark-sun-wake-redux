@@ -1016,8 +1016,11 @@
   another actor cannot overlap those cells or blocked terrain.
 - **Evidence:** `EXE-GOG-REGION-001` establishes the `0x40`/`0x20` dynamic pair
   and a coordinator called once per iterated footprint cell. The same bounded
-  analysis establishes the opening anchor relationship, but not actor-specific
-  footprints or mutation cadence.
+  analysis establishes the opening anchor relationship and a separate sentinel
+  path for actor records whose leading signed value has magnitude 430. That
+  sentinel bypasses ordinary coordinate enumeration, so the normal loop cannot
+  prove a universal footprint shape. Neither path's concrete actor category,
+  footprint, or mutation cadence is established.
 - **Confidence:** high for per-cell occupied/open exclusion in the supported
   executable; implementation-policy for atomic rejection and stable ordering;
   unknown for concrete actor shapes beyond the evidenced opening anchor.
@@ -1035,10 +1038,10 @@
   missing-occupant handling, snapshot isolation/order, invalid payloads, live
   blocker updates, route planning through the composed predicate, synchronized
   actor advancement, commit rejection, interruption, and drift detection.
-- **Uncertainty:** Native occupant IDs, party formation, actor-specific
-  footprints, NPC placement, and movement timing remain open. The opening
-  anchor convention itself is now evidenced by `DATA-GOG-ACTOR-001` and
-  `EXE-GOG-REGION-001`.
+- **Uncertainty:** Native occupant IDs, the meaning of the magnitude-430
+  sentinel, party formation, actor-specific footprints, NPC placement, and
+  movement timing remain open. The opening anchor convention itself is now
+  evidenced by `DATA-GOG-ACTOR-001` and `EXE-GOG-REGION-001`.
 
 ### RULE-PARTY-001 - Four-character party
 

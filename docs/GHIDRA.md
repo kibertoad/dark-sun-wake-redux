@@ -284,14 +284,28 @@ proof by itself. Never redirect broad output into the repository.
   anchor cell `(74,91)`. This corroborates per-cell footprint mutation without
   establishing the footprint shape, actor category, or update timing. A separate
   `0x80` test at `2778:0006` does not participate in this movement predicate.
+- **Footprint-enumerator boundary:** a focused reinspection of `2d40:0f89`
+  establishes that it reads the first signed word of the indexed 0x25-byte
+  actor record and takes a separate branch when its absolute value is `430`.
+  That branch calls `25af:0adf` with the requested cell coordinates and returns
+  without the normal coordinate-enumeration loop or the `25af:0969`
+  coordinator. The ordinary branch obtains candidate cells from its helper,
+  filters them through `25af:00e1`, invokes the coordinator once for every
+  accepted candidate, and records those accepted coordinates for its caller.
+  Direct callers at `2d40:1143` and `2d40:118e` both use this routine. This
+  confirms a sentinel actor category with a different occupancy path, but does
+  not establish what `430` denotes, whether `25af:0adf` occupies a cell, or the
+  concrete footprint of the opening actor. In particular, it rules out treating
+  the ordinary enumerator as proof that every actor has the same shape.
 - **Corroboration:** fingerprinted Tyr `GMAP` contains only `00`, `40`, `80`,
   and `c0`, with respective counts 8,131, 2,044, 38, and 2,331. Its low five
   bits are therefore always zero; 8,169 cells are terrain-open when only the
   evidenced `0x40` block is applied.
 - **Confidence:** high for bounds, `0x40` terrain/occupancy blocking, the
-  `0x20` dynamic pairing, and the opening anchor relationship in this
-  executable; unknown for `0x80`, actor-specific low-bit policy in other
-  regions, moving blockers, and actor footprint.
+  `0x20` dynamic pairing, the sentinel/ordinary occupancy-path split, and the
+  opening anchor relationship in this executable; unknown for the sentinel's
+  meaning, `0x80`, actor-specific low-bit policy in other regions, moving
+  blockers, and actor footprint.
 - **Implementation consequence:** `RegionTerrainGrid` interprets only `0x40`,
   preserves and exposes every raw flag, treats out-of-bounds as closed, and is
   combined with the independent deterministic pathfinder by
