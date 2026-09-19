@@ -137,9 +137,10 @@ the start flow and current exploration state reproducible.
   not assumed milliseconds.
 - `EXE-GOG-RNG-001` establishes a 16-bit-seeded native LCG and bounded result
   transforms. Its direct static callers are only the generic modulo,
-  inclusive-range, and repeated-roll helpers; the latter has no direct caller.
-  Native seed ownership and rule-level call ordering are still open, so new
-  rules do not silently consume that stream.
+  inclusive-range, and repeated-roll helpers. The modulo wrapper also reaches
+  a generic threshold selector over opaque six-byte entries, but its table and
+  feature ownership are unknown. Native seed ownership and rule-level call
+  ordering are still open, so new rules do not silently consume that stream.
 
 ## Static-analysis boundaries worth preserving
 

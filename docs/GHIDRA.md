@@ -572,15 +572,27 @@ proof by itself. Never redirect broad output into the repository.
   summing `result * secondArgument / 32768 + 1`. The argument roles and every
   semantic use remain unknown; this is recorded as a scaled repeated-roll
   helper rather than assigned to combat or character generation.
+- **Modulo-consumer refinement:** `2834:061c` has eleven direct calls, all in
+  two routines. One helper returns false for inputs outside 1 through 10,
+  returns true for 10 without consuming the stream, and for 1 through 9
+  consumes one modulo-10 result and returns true exactly when that result is
+  less than or equal to its input. The other routine scans an opaque resident
+  six-byte-entry table, partitions candidate indexes through local guards,
+  uses the modulo wrapper to select one, applies that helper to byte 1, and
+  passes byte 5 to another routine on success. It has exactly one direct caller
+  in `28c9`, whose bounded context supplies two guarded resident values. None
+  of these structural facts identifies the table, fields, selection domain,
+  feature owner, or player-visible outcome.
 - **Interpretation:** this is a native shared pseudo-random stream primitive,
   not evidence that every random-looking game outcome uses it. The modulo
   wrapper has ordinary modulo bias, which is a native implementation detail;
   it must not be silently replaced with rejection sampling where source parity
   matters.
 - **Confidence:** high for recurrence, 15-bit result range, zero-divisor
-  non-consumption, the inclusive-range and repeated-roll branch/formulae, and
-  the 16-bit seed-setter boundary; unknown for seed source, callers' semantic
-  purposes, consumption order, and the full set of indirect callers.
+  non-consumption, the inclusive-range and repeated-roll branch/formulae, the
+  bounded modulo consumer shape, and the 16-bit seed-setter boundary; unknown
+  for seed source, callers' semantic purposes, consumption order, table
+  ownership, and the full set of indirect callers.
 - **Implementation consequence:** `NativeRandom` preserves the bounded state
   transition, modulo, inclusive-range, and repeated-roll behavior with golden
   vectors. It is not wired to start flow, dialogue, combat, or other mechanics
