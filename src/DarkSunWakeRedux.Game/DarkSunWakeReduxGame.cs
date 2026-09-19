@@ -551,7 +551,8 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             RegionSceneRasterizer.WorldHeight,
             snapshot.CameraX,
             snapshot.CameraY,
-            snapshot.View == ExplorationView.World);
+            ExplorationWorldPresentation.UsesExpandedWorld(
+                snapshot.View, _dialoguePreviewVisible));
 
     private (int X, int Y) LeaderWorldCenter()
     {
@@ -714,8 +715,11 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             {
                 var transform = new LogicalCanvasTransform(
                     GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+                var dialoguePreviewActive = screen == StartFlowScreen.Gameplay &&
+                    explorationView == ExplorationView.World && _dialoguePreviewVisible;
                 var worldExpanded = screen == StartFlowScreen.Gameplay &&
-                    explorationView == ExplorationView.World;
+                    ExplorationWorldPresentation.UsesExpandedWorld(
+                        explorationView, dialoguePreviewActive);
                 var worldLayout = worldExpanded
                     ? ResolveExplorationLayout(_exploration.Snapshot())
                     : (ExplorationViewportLayout?)null;
@@ -733,7 +737,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                     foreach (var (control, texture) in _startMenuControls)
                         _spriteBatch.Draw(texture, ScaledRectangle(destination, transform,
                             control.X, control.Y, texture.Width, texture.Height), Color.White);
-                if (worldExpanded && _dialoguePreviewVisible &&
+                if (dialoguePreviewActive &&
                     _dialogueOverlay is { } dialogue &&
                     _dialoguePortrait is not null && _solidPixel is not null)
                 {

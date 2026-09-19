@@ -964,10 +964,12 @@
   height from the physical aspect ratio, preserves the observed camera center,
   clamps at region boundaries, and fills the whole backbuffer. Menus and other
   fixed screens still use the centered 320x200 transform. A temporary F9
-  validation hook draws the measured dialogue windows, portrait #18, scrollbar
-  controls, five response strips, and the projected first literal speech plus
-  proven-visible choices in the extracted bitmap font on that fixed canvas over
-  the expanded Tyr slice. Greedy wrapping is provisional. The capture-correlated
+  validation hook switches its world backdrop to that centered fixed canvas, so
+  the map, dialogue chrome, cursor, and response hit areas share one scale;
+  closing the preview restores the expanded Tyr slice. The hook draws the
+  measured dialogue windows, portrait #18, scrollbar controls, five response
+  strips, and the projected first literal speech plus proven-visible choices in
+  the extracted bitmap font. Greedy wrapping is provisional. The capture-correlated
   opening flags are explicit; all other variables remain unknown and fail closed.
   Clicking a response stores its source index and branch target in Core. The
   hook claims only choice 0's bounded flag-clear/menu-return projection and
