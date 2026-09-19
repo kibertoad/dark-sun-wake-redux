@@ -400,7 +400,7 @@ public static class StartupAssetExtractor
         string relativePath,
         CancellationToken cancellationToken)
     {
-        var packed = new PackedGplScript(number,
+        var packed = PackedGplScript.FromOwned(tag, number,
             archive.GetResource(tag, number).ToArray());
         var target = Path.Combine(stagingRoot,
             relativePath.Replace('/', Path.DirectorySeparatorChar));
@@ -408,15 +408,16 @@ public static class StartupAssetExtractor
         await using (var output = File.Create(target)) packed.Write(output);
         await using var verify = File.OpenRead(target);
         var decoded = PackedGplScript.Read(verify, relativePath);
-        if (decoded.ResourceNumber != number || !decoded.Bytecode.SequenceEqual(packed.Bytecode))
+        if (decoded.SourceTag != tag || decoded.ResourceNumber != number ||
+            !decoded.Bytecode.SequenceEqual(packed.Bytecode))
             throw new InvalidDataException(
                 $"The derived {tag.Trim()} #{number} script failed verification.");
         verify.Position = 0;
         var hash = Convert.ToHexStringLower(
             await SHA256.HashDataAsync(verify, cancellationToken));
         return new(relativePath, verify.Length, hash, GplSourcePath,
-            "application/vnd.dark-sun-wake-redux.gpl-script",
-            $"{tag.Trim()} #{number} bytecode -> DSGP v{PackedGplScript.FormatVersion}");
+            "application/vnd.dark-sun-wake-redux.script-resource",
+            $"{tag.Trim()} #{number} bytecode with source tag -> DSGP v{PackedGplScript.FormatVersion}");
     }
 
     private static async Task<AssetPackFile> WriteRegionAsync(

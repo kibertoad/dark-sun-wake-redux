@@ -187,6 +187,7 @@ public sealed partial class StartupAssetExtractorTests
                            '/', Path.DirectorySeparatorChar))))
             {
                 var script = PackedGplScript.Read(scriptStream);
+                Assert.Equal(PackedGplScript.GplTag, script.SourceTag);
                 Assert.Equal(OriginalContent.FirstTyrDialogueScriptResourceNumber,
                     script.ResourceNumber);
                 Assert.Equal([0x19, 0x31], script.Bytecode);
@@ -199,6 +200,7 @@ public sealed partial class StartupAssetExtractorTests
                            '/', Path.DirectorySeparatorChar))))
             {
                 var globals = PackedGplScript.Read(globalsStream);
+                Assert.Equal(PackedGplScript.MasTag, globals.SourceTag);
                 Assert.Equal(OriginalContent.DialogueGlobalStringsScriptResourceNumber, globals.ResourceNumber);
                 Assert.Equal(StartupAssetTestArchives.GlobalStringScript(), globals.Bytecode);
             }

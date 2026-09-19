@@ -36,6 +36,8 @@ public static class GplGlobalStringProjectionReader
     private static void ValidateScript(PackedGplScript script)
     {
         ArgumentNullException.ThrowIfNull(script);
+        if (script.SourceTag != PackedGplScript.MasTag)
+            throw Error($"expected source tag {PackedGplScript.MasTag.Trim()}, not {script.SourceTag.Trim()}");
         if (script.ResourceNumber != OriginalContent.DialogueGlobalStringsScriptResourceNumber)
             throw Error($"expected MAS #{OriginalContent.DialogueGlobalStringsScriptResourceNumber}, " +
                 $"not #{script.ResourceNumber}");

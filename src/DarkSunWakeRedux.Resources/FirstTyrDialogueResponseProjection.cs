@@ -753,6 +753,8 @@ public static class FirstTyrDialogueResponseProjectionReader
     private static void ValidateScript(PackedGplScript script)
     {
         ArgumentNullException.ThrowIfNull(script);
+        if (script.SourceTag != PackedGplScript.GplTag)
+            throw Error($"expected source tag {PackedGplScript.GplTag.Trim()}, not {script.SourceTag.Trim()}");
         if (script.ResourceNumber != OriginalContent.FirstTyrDialogueScriptResourceNumber)
             throw Error($"expected GPL #{OriginalContent.FirstTyrDialogueScriptResourceNumber}, " +
                 $"not #{script.ResourceNumber}");

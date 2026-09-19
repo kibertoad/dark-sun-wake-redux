@@ -38,7 +38,7 @@ output, reject unexpected files, then atomically replace the installed pack.
 If any step fails, staging is removed and the last verified pack is restored.
 Current code exercises this transaction for every byte of the 233-file source
 baseline and every one of its 16,168 GFF records, retained as source-mapped DSOP
-assets where no semantic contract is established. The same v30 pack also carries
+assets where no semantic contract is established. The same v31 pack also carries
 the 102 evidenced specialized derivatives for startup, party, ADD-list, Tyr,
 Game Menu/Preferences, character, inventory, Cast, Effects, and first dialogue.
 Later work adds semantic readers and behavior only after their mappings are

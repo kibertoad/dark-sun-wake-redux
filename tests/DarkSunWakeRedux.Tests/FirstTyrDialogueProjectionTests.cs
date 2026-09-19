@@ -37,6 +37,11 @@ public sealed partial class FirstTyrDialogueProjectionTests
     {
         Assert.Throws<InvalidDataException>(() =>
             FirstTyrDialogueProjectionReader.Read(Script() with { ResourceNumber = 134 }));
+        Assert.Throws<InvalidDataException>(() =>
+            FirstTyrDialogueProjectionReader.Read(Script() with
+            {
+                SourceTag = PackedGplScript.MasTag
+            }));
 
         var drifted = Script();
         drifted.Bytecode[FirstTyrDialogueProjectionReader.PortraitInstructionOffset] = 0;

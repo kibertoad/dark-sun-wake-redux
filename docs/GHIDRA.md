@@ -613,6 +613,40 @@ proof by itself. Never redirect broad output into the repository.
   or an independently corroborated loader/state trace is required before party
   logic is introduced.
 
+### EXE-GOG-GPL-001 - GPL and MAS are selected script-resource families
+
+- **Question:** Does the original executable distinguish `GPL ` from `MAS `
+  when loading script resources, and what bounded ownership/caching behavior
+  can be established without assigning instruction semantics?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. The full analyzer
+  pass completed before this focused query.
+- **Method:** `ReportBytePattern` found the explicit four-byte `GPL ` and
+  `MAS ` tags. `ReportInstructionContext` inspected their two assignments in
+  one function. A single 78-line `ReportDecompileWindow` and its bounded caller
+  list then established the surrounding control/data flow.
+- **Bounded finding:** function `172c:04cf` rejects a sentinel first argument
+  and every selector other than 1 or 2. It assigns `GPL ` for selector 1 and
+  `MAS ` for selector 2, searches a fixed 16-entry cache, and either reuses a
+  matching entry or invokes two common tag-plus-resource helpers. In the miss
+  path, the first helper supplies the allocation extent, the code allocates one
+  additional byte, the second helper fills the allocation, and the code writes
+  byte `0x31` immediately after the copied range. Its only direct static caller
+  is `172c:0388`; no opcode dispatch, script meaning, cache eviction policy, or
+  caller-level feature meaning is established.
+- **Interpretation:** `GPL ` and `MAS ` are distinct native input families,
+  not interchangeable labels for the same extracted payload. The helpers and
+  cache establish a native loading boundary, but do not license execution of
+  source bytes or a general interpreter.
+- **Confidence:** high for selector validation, tag choice, fixed cache bound,
+  and bounded allocation/copy sequence; unknown for opcode semantics, script
+  side effects, cache replacement, and higher-level caller intent.
+- **Implementation consequence:** DSGP v2 records the exact source tag with
+  resource identity and bytes. The first-Tyr dialogue projections require
+  `GPL ` and the global-string projections require `MAS `; both remain
+  fail-closed, bounded projections rather than a GPL interpreter.
+
 For each useful finding, add a concise entry here or in the relevant
 `docs/RULES-AND-EVIDENCE.md` / `docs/ORIGINAL-FORMATS.md` section with:
 

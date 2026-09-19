@@ -58,7 +58,7 @@
   GFF descriptor count; semantics remain unknown unless separately recorded.
 - **Implementation:** `PackedOpaquePayload` (DSOP v1) and the Extractor's
   corpus pass emit one source-mapped, hash-verified local asset for every raw
-  file and every GFF resource. The owned v30 extraction contains 16,401 DSOP
+  file and every GFF resource. The owned v31 extraction contains 16,401 DSOP
   assets (233 source files plus 16,168 descriptors) and 102 existing specialized
   derivatives, for 16,503 verified pack assets. The Game does not load opaque
   payloads.
@@ -988,8 +988,9 @@
   The award-producing script path, broader dialogue consequences,
   generic variable initialization, and generic GPL
   execution semantics remain open.
-- **Implementation:** pack format 26 stores the byte-identical GPL #135 and MAS
-  #99 payloads in bounded versioned DSGP envelopes, extracts `PORT` #18 with
+- **Implementation:** the current v31 pack stores the byte-identical GPL #135
+  and MAS #99 payloads in bounded DSGP v2 envelopes that retain the exact
+  source tag as well as identity, extracts `PORT` #18 with
   the interface palette, and expands the interaction DSUI with #12500/#12501
   plus six dialogue-control images. The response adapter validates the speech
   edit box, exact five row resources, observed opaque panel fills, measured
@@ -1415,7 +1416,7 @@
   supported GOG build; runtime selection and remaining field semantics are
   unknown.
 - **Implementation:** `PackedCharacterCatalog` plus transactional extraction to
-  `characters/catalog.dsch`; the v30 asset-pack manifest records
+  `characters/catalog.dsch`; the v31 asset-pack manifest records
   `CHARSAVE.GFF` provenance. The full corpus pass also preserves the original
   archive as an opaque source-mapped payload; neither output assigns a party
   role to any record.
