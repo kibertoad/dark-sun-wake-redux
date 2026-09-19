@@ -98,6 +98,17 @@ table and `docs/PARITY-MATRIX.md` to match what is actually true, and tick off
 - **Evidence before claims.** A rule, format field, or parity claim needs a
   reproducible test or a recorded observation. Conflicting sources are preserved
   as a conflict, not silently resolved.
+- **Measured reproduction, never speculative gameplay.** Do not turn a manual,
+  a walkthrough, a generic genre convention, an opaque resource, or an
+  unconfirmed static-analysis lead into executable game behavior. This is
+  especially strict for combat: no encounter, turn loop, AI, target selection,
+  damage/effect pipeline, timing, UI transition, or resource schema may be
+  implemented until controlled native observations and a traceable data or
+  executable finding establish the relevant behavior. Isolated manual-derived
+  helpers may remain research artifacts only when their scope is explicitly
+  documented; they must not be presented as a playable combat foundation.
+  Prefer closing a measured UI/layout gap or recording a bounded negative
+  finding over adding a plausible system.
 - **CI never needs proprietary content.** Every test and packaging check must
   pass on a machine that has no copy of the original game.
 - **Parse defensively.** Original files are untrusted input: bound every length,
