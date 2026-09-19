@@ -172,6 +172,9 @@ rejecting unsupported semantics:
 - `EXE-GOG-PREF-001` finds one raw `PREF` tag literal but no direct reference;
   it supplies no Preferences loader, settings schema, default, or control
   behavior.
+- `EXE-GOG-CHAR-003` finds no direct literal-tag lead for the character
+  archive: raw `CHAR` bytes have no direct references and `PSIN` is absent.
+  This cannot select a shipped party.
 - `GPLI` #1 is an exact 329-by-24-byte opaque data envelope. No literal GPLI
   tag exists in the analyzed executable, so no lookup role is assumed.
 - `ITEMS.BIN` is a verified 234-pair envelope. `DSUN.EXE` contains no literal

@@ -754,6 +754,29 @@ proof by itself. Never redirect broad output into the repository.
   or an independently corroborated loader/state trace is required before party
   logic is introduced.
 
+### EXE-GOG-CHAR-003 - Character resource tags do not supply a direct loader
+
+- **Question:** Do raw `CHAR` or `PSIN` resource-tag literals expose a direct
+  executable path for the character archive or supplied-party selection?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** `ReportBytePattern` searched every loaded block for the exact
+  four-byte ASCII encodings `CHAR` and `PSIN`. The reusable report also emits
+  up to twenty direct references for every raw match.
+- **Bounded finding:** `CHAR` has fourteen raw matches, all in `CODE_208`, and
+  none has a direct Ghidra reference. `PSIN` has no raw byte-pattern match.
+  The `CHAR` bytes include data/text occurrences and do not by themselves
+  classify any match as a resource-tag use, loader, archive open, record lookup,
+  or START GAME selection.
+- **Interpretation:** the query rejects only a direct literal-tag path in this
+  executable. It does not rule out a constructed tag, indirect resource
+  manager call, another module, or runtime-propagated resource identity.
+- **Confidence:** high for the capped raw-match and direct-reference results;
+  unknown for archive ownership, character loading, and party selection.
+- **Implementation consequence:** preserve `ShippedPartyUnresolved`. Do not
+  bind `CHAR`/`PSIN` catalog records to START GAME from these tag queries.
+
 ### EXE-GOG-GPLDATA-001 - literal GPL archive name has no direct reference
 
 - **Question:** Does the supported executable expose a direct static loader
