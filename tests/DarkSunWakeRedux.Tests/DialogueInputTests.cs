@@ -32,8 +32,9 @@ public sealed class DialogueInputTests
     {
         var overlay = DialogueInput.ResolveOverlay(Catalog());
 
-        Assert.Equal(new(1, 0, 318, 72), overlay.SpeechWindow);
-        Assert.Equal(new(1, 142, 318, 58), overlay.ResponseWindow);
+        Assert.Equal(new(1, 0, 318, 72, new Rgb24(0, 0, 0)), overlay.SpeechWindow);
+        Assert.Equal(new(1, 142, 318, 58, new Rgb24(125, 125, 125)),
+            overlay.ResponseWindow);
         Assert.Equal((1, 0), (overlay.PortraitX, overlay.PortraitY));
         Assert.Equal(9, overlay.Images.Count);
         Assert.Equal(

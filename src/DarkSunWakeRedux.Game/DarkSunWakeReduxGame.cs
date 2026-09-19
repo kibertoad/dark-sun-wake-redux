@@ -769,7 +769,9 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                     void DrawDialogueWindow(DialogueOverlayRectangle window) =>
                         _spriteBatch.Draw(_solidPixel,
                             ScaledRectangle(fixedCanvas, transform,
-                                window.X, window.Y, window.Width, window.Height), Color.Black);
+                                window.X, window.Y, window.Width, window.Height),
+                            new Color(window.FillColor.Red, window.FillColor.Green,
+                                window.FillColor.Blue));
                 }
                 var mouse = Mouse.GetState();
                 var hasCursor = worldLayout is { } cursorLayout

@@ -746,7 +746,10 @@
 - **Finding:** the 10,000-experience award is a one-way upper notification with
   an empty portrait well and no lower response window. Conversation uses the
   upper 318x72 portrait/speech window and a distinct lower 318x58 response
-  window at logical y=142. The captured exchange and its initial response menu
+  window at logical y=142. The retained capture establishes opaque black for
+  the upper well and opaque neutral gray (`#7d7d7d`) for the lower panel, even
+  though both `WIND` records omit an image resource. The captured exchange and
+  its initial response menu
   occur in `GPL` #135; the script's first response says “sniveling,” confirming
   the native pixels and correcting the earlier informal transcription.
   `WIND` #12500 owns the speech edit box and vertical controls; #12501 owns five
@@ -813,8 +816,8 @@
   #99 payloads in bounded versioned DSGP envelopes, extracts `PORT` #18 with
   the interface palette, and expands the interaction DSUI with #12500/#12501
   plus six dialogue-control images. The response adapter validates the speech
-  edit box, exact five row resources, measured origin `(1,142)`, overlapping
-  hit priority, and exclusive edges. A bounded decoder covers GPL's 7-bit
+  edit box, exact five row resources, observed opaque panel fills, measured
+  origin `(1,142)`, overlapping hit priority, and exclusive edges. A bounded decoder covers GPL's 7-bit
   compressed string primitive without embedding original dialogue text in Git.
   A fail-closed first-conversation reader validates the independently observed
   `showpic` at offset 16, two conditional print sources at 118/199, and the

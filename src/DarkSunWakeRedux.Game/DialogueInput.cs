@@ -11,7 +11,12 @@ public sealed record DialogueResponseControl(
     int Height,
     string AssetPath);
 
-public sealed record DialogueOverlayRectangle(int X, int Y, int Width, int Height);
+public sealed record DialogueOverlayRectangle(
+    int X,
+    int Y,
+    int Width,
+    int Height,
+    Rgb24 FillColor);
 
 public sealed record DialogueOverlayImage(
     uint ResourceNumber,
@@ -32,6 +37,8 @@ public static class DialogueInput
     public const int SpeechOriginY = 0;
     public const int ResponseOriginX = 1;
     public const int ResponseOriginY = 142;
+    public static readonly Rgb24 SpeechFillColor = new(0, 0, 0);
+    public static readonly Rgb24 ResponseFillColor = new(125, 125, 125);
 
     private static readonly IReadOnlyDictionary<uint, (int Index, string AssetName)> Rows =
         new Dictionary<uint, (int, string)>
@@ -111,8 +118,9 @@ public static class DialogueInput
         images.AddRange(responses.Select(row =>
             new DialogueOverlayImage(row.ResourceNumber, row.AssetPath, row.X, row.Y)));
         return new(
-            new(SpeechOriginX, SpeechOriginY, speech.Width, speech.Height),
-            new(ResponseOriginX, ResponseOriginY, response.Width, response.Height),
+            new(SpeechOriginX, SpeechOriginY, speech.Width, speech.Height, SpeechFillColor),
+            new(ResponseOriginX, ResponseOriginY, response.Width, response.Height,
+                ResponseFillColor),
             SpeechOriginX, SpeechOriginY,
             images);
     }
