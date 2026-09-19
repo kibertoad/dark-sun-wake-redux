@@ -1299,8 +1299,9 @@
   zero-length route, diagonal corner, endpoint bounds, maximum-grid limits,
   exact flag/bounds/pixel-cell semantics, stable camera-to-destination routing,
   inactive-mode rejection, deterministic command/event order, atomic rejected
-  replanning, per-step blocker revalidation, cancellation, and snapshot
-  isolation.
+  replanning, per-step blocker revalidation, cancellation, snapshot isolation,
+  and convergence of capped long-frame catch-up to the same semantic state as
+  partitioned elapsed-time updates.
 - **Uncertainty:** Actor-specific low-bit policy outside Tyr, moving blockers,
   native actor footprint, movement cadence, destination tolerance, and
   sprite-frame animation remain open; none are inferred by the terrain grid,

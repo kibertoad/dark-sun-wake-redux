@@ -78,6 +78,30 @@ public sealed class ExplorationActorControllerTests
     }
 
     [Fact]
+    public void LongElapsedTimeConvergesToTheSameSemanticStateAsPartitionedUpdates()
+    {
+        var delayed = Controller();
+        var partitioned = Controller();
+        delayed.PlanAt(Snapshot(), 312, 24);
+        partitioned.PlanAt(Snapshot(), 312, 24);
+
+        delayed.Advance(TimeSpan.FromSeconds(2));
+        while (delayed.Advance(TimeSpan.Zero).Count != 0)
+        {
+        }
+        for (var step = 0; step < 16; step++)
+            partitioned.Advance(ExplorationActorController.DefaultStepInterval);
+
+        var expected = partitioned.Snapshot();
+        var actual = delayed.Snapshot();
+        Assert.Equal(expected.OccupantId, actual.OccupantId);
+        Assert.Equal(expected.Position, actual.Position);
+        Assert.Equal(expected.Destination, actual.Destination);
+        Assert.Equal(expected.RemainingSteps, actual.RemainingSteps);
+        Assert.Equal(partitioned.VisualSnapshot(), delayed.VisualSnapshot());
+    }
+
+    [Fact]
     public void ReplanningResetsPartialCadenceAndUsesLiveActorPosition()
     {
         var controller = Controller();
