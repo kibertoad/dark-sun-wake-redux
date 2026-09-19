@@ -130,7 +130,7 @@ boundary.
 1. **`DarkSunWakeRedux.Extractor`** is a separate asset extractor. It accepts a
    user-selected GOG installation, verifies an exact supported fingerprint,
    inventories every source file and resource, and transforms every immutable
-   game-data payload into a versioned local asset pack. Known formats use
+   game-data payload into a revisioned local asset pack. Known formats use
    bounded normalized contracts; unknown payloads use a bounded lossless opaque
    contract without assigned semantics. It generates a provenance manifest,
    verifies the complete staged output, and installs it transactionally. It

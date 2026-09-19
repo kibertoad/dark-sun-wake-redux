@@ -174,8 +174,9 @@ public sealed record SourceIdentification(
 
 public static class OriginalContent
 {
-    // Bump whenever the required derived-asset inventory or semantic contract changes.
-    // `play.bat` then refreshes older otherwise self-consistent local packs.
+    // Required extraction revision. Bump only when the derived-asset inventory
+    // or semantic contract changes; `play.bat` then refreshes stale local packs.
+    // It is not a save, edition, or gameplay compatibility promise.
     public const int AssetPackFormatVersion = 31;
     public const string GameId = "dark-sun-wake-redux";
     public const string TitleImageAssetPath = "images/title.dsix";
@@ -580,7 +581,7 @@ public static class OriginalContent
     {
         var diagnostics = new List<ContentDiagnostic>();
         if (manifest.FormatVersion != AssetPackFormatVersion)
-            diagnostics.Add(new("pack_version_mismatch", "Asset-pack format version is incompatible.",
+            diagnostics.Add(new("pack_version_mismatch", "Asset pack was extracted for a different required output revision.",
                 "manifest.json", AssetPackFormatVersion.ToString(), manifest.FormatVersion.ToString()));
         if (!string.Equals(manifest.GameId, GameId, StringComparison.Ordinal))
             diagnostics.Add(new("pack_game_mismatch", "Asset pack belongs to a different game.", "manifest.json",

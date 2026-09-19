@@ -114,15 +114,15 @@ table and `docs/PARITY-MATRIX.md` to match what is actually true, and tick off
 - **Parse defensively.** Original files are untrusted input: bound every length,
   reject path traversal, and fail with a diagnosable error instead of throwing
   from deep inside a reader.
-- **Version derived-content contracts.** Whenever a required extracted asset,
+- **Revision derived-content contracts.** Whenever a required extracted asset,
   UI/resource graph, or semantic pack contract changes, increment
   `OriginalContent.AssetPackFormatVersion` and add a test proving that the
-  previous otherwise hash-valid version is rejected. The launcher must then
+  previous otherwise hash-valid revision is rejected. The launcher must then
   refresh the pack transactionally from the licensed source. Never assume a
   self-consistent manifest proves it satisfies newer runtime expectations. This
-  number is a required-pack revision, not save, edition, or gameplay backwards
-  compatibility: old local packs are intentionally invalidated when their
-  required output contract changes.
+  is a required extraction revision, not a compatibility version: it makes no
+  promise about saves, editions, or gameplay, and deliberately invalidates old
+  local packs when their required output contract changes.
 - **Extract before extending behavior.** Once the plan's full-corpus extraction
   gate is active, do not add gameplay rules, UI semantics, or new screen flows.
   First inventory every supported source file and resource, extract each into a
