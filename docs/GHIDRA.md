@@ -397,6 +397,40 @@ proof by itself. Never redirect broad output into the repository.
   target-capability mapping. A future runtime slice needs a controlled
   activation trace plus an independent data or executable call-path finding.
 
+### EXE-GOG-TIMING-001 - BIOS clock reads do not establish actor cadence
+
+- **Question:** Does the supported executable contain a BIOS-tick timing path
+  that can establish the native cadence for exploration movement or animation?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** `ReportBytePattern` completed a whole-loaded-block search for
+  the two-byte `INT 1Ah` encoding (`cd 1a`), yielding three matches without
+  reaching its 100-match cap. `ReportInstructionContext` inspected all three;
+  `ReportReferences` then followed the one decoded helper entry's direct
+  caller.
+- **Bounded finding:** at startup, `1000:0120` sets `AH` to zero, calls
+  `INT 1Ah` at `1000:0122`, and stores returned `DX`/`CX` words. The sole
+  decoded helper, `15f3:010c`, sets `AH` to zero at `15f3:011f`, calls the
+  same interrupt at `15f3:0121`, rotates a caller-supplied word three times,
+  and XORs it with returned `DX` before storing it back. Its one direct call
+  is from `1425:111f`, which passes a word pointer and then stores the result
+  in a 14-byte indexed record. The final byte-pattern match, `5000:6764`, is
+  inside a non-coherent stream of invalid-looking decoded instructions and
+  does not supply a trustworthy code path.
+- **Interpretation:** the two coherent reads establish BIOS tick-of-day use at
+  startup and for a caller-supplied word mixer. They do not establish an actor
+  update interval, a frame scheduler, a delay loop, or a link to Tyr movement.
+  Other timing mechanisms remain possible, so this is a boundary rather than
+  evidence that native behavior is clock-free.
+- **Confidence:** high for the three raw opcode matches and the two bounded
+  coherent instruction paths; high that neither inspected path is an actor
+  cadence; unknown for all native movement/animation timing.
+- **Implementation consequence:** do not translate the BIOS tick frequency
+  into a movement step. The runtime's fixed-step accumulator, bounded catch-up,
+  and presentation interpolation remain explicit CPU-speed-independent policy
+  until a movement call path and controlled cadence observation are available.
+
 ### EXE-GOG-COMBAT-001 - Combat hotkey dispatch is not a direct shared literal table
 
 - **Question:** Does the supported executable contain an obvious single function

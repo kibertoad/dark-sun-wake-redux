@@ -1205,7 +1205,9 @@
   click routing, shared live occupancy, and bounded fixed-step advancement; the
   runtime placement currently supplies a provisional single-cell footprint.
   Its 125 ms semantic step and four-step catch-up cap are explicit modern
-  runtime policies, not original-parity claims.
+  runtime policies, not original-parity claims. `EXE-GOG-TIMING-001` rules out
+  deriving a cadence from the bounded BIOS-tick paths, which are not an actor
+  scheduler.
 - **Tests:** optimal open-grid route, stable obstacle detour, blocked endpoint,
   zero-length route, diagonal corner, endpoint bounds, maximum-grid limits,
   exact flag/bounds/pixel-cell semantics, stable camera-to-destination routing,
