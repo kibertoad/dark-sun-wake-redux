@@ -703,25 +703,29 @@ proof by itself. Never redirect broad output into the repository.
   result through a low-disk-space diagnostic. Separately, when a distinct state
   byte is zero, it invokes `172c:01c1` with its second argument; this call is
   not statically conditional on the wrapper result. The latter is not an opcode
-  dispatcher: it increments a byte counter, resets it to zero at 50, invokes
-  an otherwise-unidentified far callback on that rollover, then copies the two
-  resident bytes at `4c0e:0003` and `4c0e:0004` into parallel arrays at
-  `4c13:013f + index` and `4c13:010d + index`. Static references to both array
-  bases find only these writes. This establishes 50-slot recorder storage and
-  rollover behavior, but not that it is a FIFO, its consumer, or any script
-  execution semantics; in particular, it does not establish that the call's
-  second argument is recorded. The other apparent wrapper call lies in
-  non-coherent decoded instructions and is not accepted as evidence. No GPL/MAS
-  opcode dispatch, script meaning, cache eviction policy, queue ordering, or
-  caller-level feature meaning is established.
+  dispatcher: it increments a byte counter, resets it to zero at 50, makes an
+  opaque far transfer on that rollover, then copies the two resident bytes at
+  `4c0e:0003` and `4c0e:0004` into parallel arrays at `4c13:013f + index` and
+  `4c13:010d + index`. A nearby pop routine, `172c:0241`, reads the entries at
+  the current index back into those two resident bytes and then decrements the
+  counter, structurally providing a last-in-first-out operation. Its sole
+  direct caller lies in non-coherent decoded instructions, however, so the pop
+  cannot establish a live scheduler, script execution, or call order. This
+  establishes 50-slot storage, rollover, and a LIFO pop shape, but not a live
+  consumer; in particular, it does not establish that the call's second
+  argument is recorded. The other apparent wrapper call lies in non-coherent
+  decoded instructions and is not accepted as evidence. No GPL/MAS opcode
+  dispatch, script meaning, cache eviction policy, or caller-level feature
+  meaning is established.
 - **Interpretation:** `GPL ` and `MAS ` are distinct native input families,
   not interchangeable labels for the same extracted payload. The helpers and
   cache establish a native loading boundary, but do not license execution of
   source bytes or a general interpreter.
 - **Confidence:** high for selector validation, tag choice, fixed cache bound,
-  bounded allocation/copy sequence, and the 50-slot recorder/rollover boundary;
-  unknown for opcode semantics, script side effects, cache replacement/ordering,
-  recorder consumption, and higher-level caller intent.
+  bounded allocation/copy sequence, and the 50-slot storage/rollover/LIFO-pop
+  boundary; unknown for opcode semantics, script side effects, cache
+  replacement/ordering, live recorder consumption, and higher-level caller
+  intent.
 - **Implementation consequence:** DSGP v2 records the exact source tag with
   resource identity and bytes. The first-Tyr dialogue projections require
   `GPL ` and the global-string projections require `MAS `; both remain
