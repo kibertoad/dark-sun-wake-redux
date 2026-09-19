@@ -3,7 +3,7 @@
 States are `unknown`, `researched`, `implemented`, `partially validated`,
 `validated`, `intentional deviation`, and `not applicable`.
 
-The current asset-pack compatibility version is **v28**. A version bump means
+The current required asset-pack revision is **v28**. A version bump means
 the required derived-asset inventory or contract changed; `play.bat` refreshes
 an older pack transactionally from the owner's licensed installation rather
 than attempting to run it.

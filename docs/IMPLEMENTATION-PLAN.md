@@ -129,9 +129,12 @@ boundary.
 
 1. **`DarkSunWakeRedux.Extractor`** is a separate asset extractor. It accepts a
    user-selected GOG installation, verifies an exact supported fingerprint,
-   decodes/transforms every required proprietary resource into a versioned local
-   asset pack, generates a provenance manifest, verifies the complete staged
-   output, and installs it transactionally. It never modifies the GOG copy.
+   inventories every source file and resource, and transforms every immutable
+   game-data payload into a versioned local asset pack. Known formats use
+   bounded normalized contracts; unknown payloads use a bounded lossless opaque
+   contract without assigned semantics. It generates a provenance manifest,
+   verifies the complete staged output, and installs it transactionally. It
+   never modifies the GOG copy.
 2. **`DarkSunWakeRedux.Game`** is the reimplemented MonoGame runtime. It runs
    only against the extractor's verified asset pack and never loads, executes,
    or depends on the original executable or DOSBox. Missing/incompatible packs
@@ -171,8 +174,9 @@ original game.
 | # | Slice | Player-visible outcome | Depends on | Status |
 |---|---|---|---|---|
 | 1 | Identity, source recognition, and diagnostic boot | The named runtime starts, finds a verified pack or explains how to create one, and quits cleanly; the separate Extractor recognizes the supported GOG copy | approval | complete |
-| 2 | Extraction and title-to-party flow | The Extractor creates a verified local pack; the runtime reaches the start flow and creates/selects a four-character party | 1 | in progress - title extraction, evidenced start/party-overview composition, UI resource mapping, party invariants, and semantic start routing implemented |
-| 3 | First Tyr exploration and conversation | The party enters Tyr, moves, interacts, completes the opening conversation, and uses character/inventory/game menus | 2 | in progress - deterministic Tyr movement/interaction and the bounded opening conversation are implemented; additional party, dialogue, and destination behavior remains open |
+| 2A | Complete source-corpus inventory and extraction | Every supported source payload is represented in a verified, source-mapped local pack without inferred behavior | 1 | in progress - owner-directed gate as of 2026-09-19; no further gameplay or UI-semantic work until complete |
+| 2 | Extraction and title-to-party flow | The runtime reaches the start flow and creates/selects a four-character party from the complete verified pack | 2A | paused after already-evidenced work; no further logic work until 2A passes |
+| 3 | First Tyr exploration and conversation | The party enters Tyr, moves, interacts, completes the opening conversation, and uses character/inventory/game menus | 2 | paused after already-evidenced work; no further logic work until 2A passes |
 | 4 | First deterministic combat | The opening encounter is playable through victory or defeat | 3 | evidence acquisition only - no combat behavior is implemented; controlled native captures and traceable data/executable findings must precede any playable slice |
 | 5 | Full character systems | Equipment, advancement, magic, psionics, camping, and training work from evidenced rules | 4 | planned |
 | 6 | Quest graph and campaign traversal | The critical route and evidenced branches can be played through the finale | 5 | planned |
@@ -208,12 +212,58 @@ decoder rather than being guessed now.
 - **Observed parity.** Verify titles and credits against the manual and source
   recognition against the owned install. Record fingerprints only.
 
+### Slice 2A - Complete source-corpus inventory and extraction
+
+**Status:** in progress. This is an owner-directed gate as of 2026-09-19. It
+precedes all additional gameplay and UI-semantic work; existing behavior remains
+limited to the evidence already recorded.
+
+- **Outcome.** The Extractor traverses the complete fingerprinted source tree
+  deterministically and creates one complete, verified local pack. The pack
+  represents every source file and, for resource containers, every individual
+  resource record with stable source identity, source-file hash, payload hash,
+  length, media/contract type, and conversion method. It does not assign rule or
+  presentation semantics merely because a payload is now available.
+- **Evidence.** GOG-1432903719 plus the exact source manifest; DATA-GOG-GFF-001
+  and each subsequently recorded bounded container finding. The corpus inventory
+  itself is evidence and must distinguish observed structure from opaque bytes.
+- **Acceptance - rules.** No new gameplay rule, screen transition, UI command,
+  or inferred resource meaning is introduced by this slice. Known decoders must
+  fail closed on malformed input. Unknown formats and unknown resource records
+  must be preserved as bounded opaque envelopes, never discarded or interpreted
+  by plausible convention.
+- **Acceptance - presentation.** This slice adds no player-facing layout or
+  interaction behavior. Extractor diagnostics identify an unavailable, changed,
+  unsupported, malformed, or unrepresented source path/resource precisely.
+- **Acceptance - original content.** Exact recursive inventory covers every file
+  in the supported installation. The inventory assigns each item one explicit
+  disposition: immutable game-data payload to extract, executable/data evidence
+  payload to preserve locally as opaque and never load or execute, or excluded
+  GOG/DOSBox wrapper, documentation, uninstaller, mutable capture/save/cache,
+  or user-generated file. Every immutable game-data payload includes every
+  record in each recognized GFF container and every raw payload outside
+  containers. Each represented item has deterministic local-pack path/identity,
+  provenance, length, and SHA-256; the staged pack is read back and verified
+  before atomic promotion. Original bytes remain local to the verified pack and
+  never enter Git, CI, packages, logs, or synthetic fixtures.
+- **Automated tests.** Synthetic recursive inventories; duplicate/path-traversal
+  rejection; known-format round trips and malformed bounds; opaque-envelope
+  length/hash/trailing-data rejection; deterministic complete-manifest ordering;
+  source-to-pack coverage with synthetic multi-container trees; staged-pack
+  verification, stale-file replacement, rollback, and reproducibility.
+- **Completion gate.** An owned-install inventory report must show an explicit
+  disposition for every file, zero unrepresented immutable game-data payloads,
+  and zero unrepresented container records. The parity matrix and formats ledger
+  must state the coverage count, exclusions, and opaque contract types. Only
+  then may new logic or UI semantics resume.
+
 ### Slice 2 - Extraction and title-to-party flow
 
-- **Outcome.** The Extractor decodes the minimum complete resource set into a
-  versioned local pack, verifies it, and promotes it transactionally. The runtime
-  opens that pack, reaches the original-style start flow, and creates or selects
-  a legal four-character party.
+- **Status.** Paused by the owner-directed full-corpus extraction gate. Existing
+  code remains bounded to recorded evidence; no further party or UI behavior is
+  authorized until Slice 2A completes.
+- **Outcome.** The runtime opens the complete verified pack, reaches the
+  original-style start flow, and creates or selects a legal four-character party.
 - **Evidence.** MANUAL-1994 sections on quick start, party creation, character
   options, and menus; `DATA-GOG-GFF-001` and `DATA-GOG-IMAGE-001`, corroborated
   by DSUN-MUSIC, for bounded container, indexed-image, and palette structures;
@@ -543,7 +593,7 @@ decoder rather than being guessed now.
 | Q1 | Is `DarkSunWakeRedux` / `Dark Sun: Wake of the Ravager Redux` the approved identity? | configuration | repository owner | closed - approved 2026-09-12 |
 | Q2 | Is the installed GOG build the only initial supported edition, with later revisions represented by separate manifests? | slices 1, 7 | repository owner | closed - initial work targets the supplied GOG build; later revisions require separate fingerprints |
 | Q3 | Which underlying DOS/CD-ROM revision is in GOG build `52095422060333615`? | slices 1, 4, 6 | evidence investigation | open |
-| Q4 | Which source files and GFF/resource records are required, and what are their bounded structures? | slices 1-3 | evidence investigation | open - GFF, image/palette, FONT, TEXT, core UI records, the versioned `CHAR` envelope/identity/ability fields, raw `PSIN` companion envelope, region `RNME`/`PAL `/`MAP `/`GMAP`/`TILE`/`ETAB`, and exact `OJFF` object-frame records with image references are bounded; title/start, party overview, ADD-list, interface palette, generation/modal controls, shared window image, start-flow window graphs, APFM event masks, the owned font's identity map, encoding-neutral glyph composition, canonical Tyr DSRG/DSOB extraction, static first-frame scene composition, the opening Tyr camera, cursor image family, and `GMAP` `0x40` terrain blocking are implemented; #19004 still awaits an app-specific consumer; remaining character state, other mask/geometry/entity meanings, authentic text presentation, dynamic party data, later-window semantics, later cameras/animation/gameplay behavior, other region dependencies, and the rest of the minimum packs remain unknown |
+| Q4 | Which source files and GFF/resource records are present, and what are their bounded structures? | Slice 2A and later logic | evidence investigation | open - GFF, image/palette, FONT, TEXT, core UI records, the versioned `CHAR` envelope/identity/ability fields, raw `PSIN` companion envelope, region `RNME`/`PAL `/`MAP `/`GMAP`/`TILE`/`ETAB`, and exact `OJFF` object-frame records with image references are bounded; title/start, party overview, ADD-list, interface palette, generation/modal controls, shared window image, start-flow window graphs, APFM event masks, the owned font's identity map, encoding-neutral glyph composition, canonical Tyr DSRG/DSOB extraction, static first-frame scene composition, the opening Tyr camera, cursor image family, and `GMAP` `0x40` terrain blocking are implemented; #19004 still awaits an app-specific consumer; remaining character state, other mask/geometry/entity meanings, authentic text presentation, dynamic party data, later-window semantics, later cameras/animation/gameplay behavior, other region dependencies, and the corpus-wide inventory remain unknown |
 | Q5 | What are the logical resolution, pixel aspect, palettes, cursor geometry, animation cadence, and audio timing? | slices 2-7 | runtime observation | open - the logical resolution is 320x200; `PAL ` #1000 supplies the interface/cursor colors; `ICON` #19101-#19110 geometry and the upper-left cursor hotspot are verified; all five FLI headers are 320x200 8-bit `0xAF11` streams with raw speed fields, and all 147 VOC headers share one envelope, but pixel aspect, raw-speed units, animation cadence, cursor update cadence, audio codecs/sample rates, and playback timing remain open |
 | Q6 | For each verified manual/guide/runtime conflict or original defect, should compatibility preserve it, fix it, or expose an option? | slices 4-7 | repository owner after evidence | open |
 | Q7 | Are original save compatibility and Shattered Lands party transfer desired once their formats are evidenced? | slice 7 | repository owner | open |
@@ -554,6 +604,7 @@ decoder rather than being guessed now.
 | Q12 | Which four disc `CHAR` resources does START GAME select as the supplied pregenerated party? | slice 2 | OBS-GOG/DATA-GOG evidence investigation | open - disc blocks #40-#43 and #50-#53 are bounded; one independently reported default member maps to #43, but the other three selections are not established |
 | Q13 | Must pathfinding reproduce the original route planner verbatim? | slice 3 | repository owner | closed - no; owner approved a modern fit-for-purpose implementation on 2026-09-13 |
 | Q14 | What do the two fields in the bounded 234-pair `ITEMS.BIN` table mean, and which exact reader/extraction use belongs in the equipment slice? | slice 5 | DATA/EXE/OBS evidence investigation | open - `DATA-GOG-ITEMS-001` proves the fixed-width envelope, records non-identifying overlap with several `OBJEX.GFF` resource-ID sets, and does not support a uniform direct mapping from either pair column to the four raw `OJFF` word positions; no item, equipment, or combat semantics are assigned |
+| Q15 | Should work stop after complete source-corpus extraction until each rule is evidenced? | all further logic slices | repository owner | closed - yes, owner-directed 2026-09-19; Slice 2A is the mandatory gate |
 
 ## Risks
 
@@ -561,9 +612,9 @@ decoder rather than being guessed now.
   `.VOC`, `.BIN`, and disc-image resources whose exact roles/layouts are not yet
   fully established. Use DSUN-MUSIC as a starting point where it covers the
   format, validate those results against this exact build, then preserve the
-  evidence in our own format notes. Start with read-only inventory, bound every
-  field, use synthetic fixtures, and extract the smallest complete vertical
-  slice before breadth.
+  evidence in our own format notes. Begin with complete read-only inventory,
+  bound every field, use synthetic fixtures, and represent unknown data in a
+  lossless opaque contract before assigning any behavior.
 - **Storefront drift.** GOG may change files without changing the product name.
   Match exact manifests; retain product/build metadata only as provenance.
 - **Defects and conflicts.** FAQ-81038 reports manual discrepancies, performance
