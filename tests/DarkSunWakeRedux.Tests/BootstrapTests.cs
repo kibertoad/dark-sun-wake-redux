@@ -73,7 +73,7 @@ public sealed class BootstrapTests
             Directory.CreateDirectory(Path.GetDirectoryName(assetPath)!);
             await File.WriteAllBytesAsync(assetPath, [4, 5, 6], TestContext.Current.CancellationToken);
             var manifest = new AssetPackManifest(
-                OriginalContent.AssetPackFormatVersion,
+                OriginalContent.RequiredAssetPackRevision,
                 OriginalContent.GameId,
                 "synthetic-edition",
                 new string('a', 64),
@@ -126,7 +126,7 @@ public sealed class BootstrapTests
     }
 
     [Fact]
-    public async Task EarlierSelfConsistentAssetPackVersionRequiresRefresh()
+    public async Task EarlierSelfConsistentAssetPackRevisionRequiresReplacement()
     {
         var root = TestRoot();
         Directory.CreateDirectory(root);
@@ -136,7 +136,7 @@ public sealed class BootstrapTests
             Directory.CreateDirectory(Path.GetDirectoryName(assetPath)!);
             await File.WriteAllBytesAsync(assetPath, [1], TestContext.Current.CancellationToken);
             var manifest = new AssetPackManifest(
-                OriginalContent.AssetPackFormatVersion - 1,
+                OriginalContent.RequiredAssetPackRevision - 1,
                 OriginalContent.GameId,
                 "synthetic-edition",
                 new string('c', 64),
@@ -149,9 +149,9 @@ public sealed class BootstrapTests
             var diagnostic = Assert.Single(await OriginalContent.VerifyInstalledAsync(
                 root, TestContext.Current.CancellationToken));
 
-            Assert.Equal("pack_version_mismatch", diagnostic.Code);
-            Assert.Equal(OriginalContent.AssetPackFormatVersion.ToString(), diagnostic.Expected);
-            Assert.Equal((OriginalContent.AssetPackFormatVersion - 1).ToString(), diagnostic.Actual);
+            Assert.Equal("pack_revision_mismatch", diagnostic.Code);
+            Assert.Equal(OriginalContent.RequiredAssetPackRevision.ToString(), diagnostic.Expected);
+            Assert.Equal((OriginalContent.RequiredAssetPackRevision - 1).ToString(), diagnostic.Actual);
         }
         finally { Directory.Delete(root, true); }
     }
@@ -172,7 +172,7 @@ public sealed class BootstrapTests
                 Directory.CreateDirectory(Path.GetDirectoryName(asset)!);
                 await File.WriteAllBytesAsync(asset, [8, 9], TestContext.Current.CancellationToken);
                 return new AssetPackManifest(
-                    OriginalContent.AssetPackFormatVersion,
+                    OriginalContent.RequiredAssetPackRevision,
                     OriginalContent.GameId,
                     "synthetic-edition",
                     new string('b', 64),

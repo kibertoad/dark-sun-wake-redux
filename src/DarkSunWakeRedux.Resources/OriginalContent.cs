@@ -61,7 +61,7 @@ public sealed record AssetPackFile(
     string Conversion);
 
 public sealed record AssetPackManifest(
-    int FormatVersion,
+    int RequiredRevision,
     string GameId,
     string SourceEdition,
     string SourceFingerprintSha256,
@@ -175,9 +175,9 @@ public sealed record SourceIdentification(
 public static class OriginalContent
 {
     // Required extraction revision. Bump only when the derived-asset inventory
-    // or semantic contract changes; `play.bat` then refreshes stale local packs.
-    // It is not a save, edition, or gameplay compatibility promise.
-    public const int AssetPackFormatVersion = 31;
+    // or semantic contract changes; `play.bat` then replaces stale local packs.
+    // Older packs are deliberately rejected; this is not a compatibility promise.
+    public const int RequiredAssetPackRevision = 32;
     public const string GameId = "dark-sun-wake-redux";
     public const string TitleImageAssetPath = "images/title.dsix";
     public const string InterfaceFontAssetPath = "fonts/interface.dsft";
@@ -580,9 +580,9 @@ public static class OriginalContent
     private static List<ContentDiagnostic> ValidatePackManifest(AssetPackManifest manifest)
     {
         var diagnostics = new List<ContentDiagnostic>();
-        if (manifest.FormatVersion != AssetPackFormatVersion)
-            diagnostics.Add(new("pack_version_mismatch", "Asset pack was extracted for a different required output revision.",
-                "manifest.json", AssetPackFormatVersion.ToString(), manifest.FormatVersion.ToString()));
+        if (manifest.RequiredRevision != RequiredAssetPackRevision)
+            diagnostics.Add(new("pack_revision_mismatch", "Asset pack is not the currently required extraction output.",
+                "manifest.json", RequiredAssetPackRevision.ToString(), manifest.RequiredRevision.ToString()));
         if (!string.Equals(manifest.GameId, GameId, StringComparison.Ordinal))
             diagnostics.Add(new("pack_game_mismatch", "Asset pack belongs to a different game.", "manifest.json",
                 GameId, manifest.GameId));

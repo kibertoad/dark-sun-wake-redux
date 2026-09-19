@@ -250,7 +250,7 @@ public static class StartupAssetExtractor
             cancellationToken));
 
         return new AssetPackManifest(
-            OriginalContent.AssetPackFormatVersion,
+            OriginalContent.RequiredAssetPackRevision,
             OriginalContent.GameId,
             edition.SourceEdition,
             edition.Fingerprint(),
