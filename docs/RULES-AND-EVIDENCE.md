@@ -689,6 +689,15 @@
   declared-size/type scan completely covers every physical FLI file using only
   `0xF1FA` records. Their physical-record counts are 1176, 374, 576, 285, and
   1399 respectively: exactly one more than their corresponding header counts.
+  For FLI 1 through 4, treating each record as a 16-byte fixed header followed
+  by its declared number of six-byte size/type chunks fully covers all records,
+  allowing two total unclassified trailing bytes in each of FLI 1 and 2. Their
+  raw chunk-type/count inventories are `0x000B`/`0x000C`/`0x000F`/`0x0010` =
+  17/578/1/1, 3/266/1/1, 4/429/1/0, and 1/270/1/0. FLI 5 rejects that nested
+  model at its first record: after one of its two declared chunks, the next
+  stated chunk length is 4,486 bytes with only 4,485 bytes remaining. It is
+  therefore not accepted as a small padding variation. All 147 VOC files are
+  at least 26 bytes, begin with the
   All 147 VOC files are at least 26 bytes, begin with the
   standard `Creative Voice File` signature, declare data offset 26, version
   `0x010a`, checksum `0x1129`, and contain first block type 1 at that offset.
@@ -699,14 +708,16 @@
 - **Confidence:** high for these bounded inventory/header facts in
   GOG-1432903719; unknown for FLI chunk types, palette behavior, raw-speed
   units, effective playback cadence, whether the one extra FLI record is a
-  loop/sentinel/displayed frame, FLI chunk layout, later VOC block layout,
+  loop/sentinel/displayed frame, raw chunk-type meanings, FLI 5's nested
+  variant, later VOC block layout,
   codec-byte/sample rate semantics,
   audio routing, Ogg track mapping, loops, and all audiovisual sequencing.
 - **Implementation consequence:** no decoder, extractor entry, media mapping,
   or time-based runtime behavior is introduced yet. A future media reader must
   validate these fixed envelopes first, bound every subsequent record/chunk or
   block and decoded output, preserve the header-versus-physical-record count
-  distinction, use an explicit monotonic playback clock, and treat the raw FLI
+  distinction, support each nested FLI variant only after independent
+  validation, use an explicit monotonic playback clock, and treat the raw FLI
   speed field as data until its unit is independently established.
 
 ### DATA-GOG-ITEMS-001 - ITEMS.BIN fixed-width pair envelope
