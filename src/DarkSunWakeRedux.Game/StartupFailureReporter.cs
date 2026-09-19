@@ -16,11 +16,24 @@ internal static class StartupFailureReporter
             File.WriteAllText(log, $"{DateTimeOffset.UtcNow:O}{Environment.NewLine}{exception}");
         }
         catch { }
-        var message = $"Dark Sun: Wake of the Ravager Redux could not start.{Environment.NewLine}{Environment.NewLine}" +
-            exception.Message + (log is null ? "" : $"{Environment.NewLine}{Environment.NewLine}Technical details: {log}");
+        var message = BuildMessage(exception, log);
         Console.Error.WriteLine(message);
         Console.Error.WriteLine(exception);
         if (OperatingSystem.IsWindows()) _ = MessageBoxW(IntPtr.Zero, message, "Dark Sun: Wake of the Ravager Redux", 0x10);
+    }
+
+    internal static string BuildMessage(Exception exception, string? log)
+    {
+        ArgumentNullException.ThrowIfNull(exception);
+        var refreshHint = exception is InvalidDataException &&
+            exception.Message.StartsWith("The installed ", StringComparison.Ordinal)
+            ? $"{Environment.NewLine}{Environment.NewLine}The local asset pack is stale or incomplete. " +
+              "Refresh it with the current Asset Extractor against your legally owned original " +
+              "installation, then start the game again."
+            : string.Empty;
+        return $"Dark Sun: Wake of the Ravager Redux could not start." +
+            $"{Environment.NewLine}{Environment.NewLine}{exception.Message}{refreshHint}" +
+            (log is null ? "" : $"{Environment.NewLine}{Environment.NewLine}Technical details: {log}");
     }
 
     [DllImport("user32.dll", CharSet = CharSet.Unicode)]
