@@ -154,6 +154,9 @@ rejecting unsupported semantics:
   rather than a substitute event or combat implementation.
 - `EXE-GOG-RDFF-001` places `RDFF` beside that same separate 37-byte record
   path. It likewise has no direct selector connection and remains opaque.
+- `EXE-GOG-SMALLTAG-001` finds no literal executable loader lead for `GREQ`,
+  `CACT`, `PLYL`, or `CSEQ`; absence does not assign those opaque families a
+  runtime role.
 - `GPLI` #1 is an exact 329-by-24-byte opaque data envelope. No literal GPLI
   tag exists in the analyzed executable, so no lookup role is assumed.
 - `ITEMS.BIN` is a verified 234-pair envelope. `DSUN.EXE` contains no literal

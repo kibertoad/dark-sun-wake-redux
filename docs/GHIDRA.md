@@ -1023,6 +1023,30 @@ proof by itself. Never redirect broad output into the repository.
 - **Implementation consequence:** retain `RDFF` as DSOP. Do not infer object,
   target, interaction, quest, or combat behavior from the shared indexed path.
 
+### EXE-GOG-SMALLTAG-001 - No direct literal loaders for four small families
+
+- **Question:** Do the small opaque `GREQ`, `CACT`, `PLYL`, or `CSEQ` GFF
+  families supply a direct static source lead for selectors or gameplay rules?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** `ReportBytePattern` searched all loaded executable blocks for
+  the exact four-byte ASCII encodings of `GREQ`, `CACT`, `PLYL`, and `CSEQ`.
+  The bounded resource inventory identifies ten, eleven, six, and one owned
+  records respectively; no payload bytes were retained.
+- **Bounded finding:** none of the four patterns occurs in the executable
+  image. This query therefore yields no direct tag assignment, resource lookup,
+  cache, caller, or selector-table connection for any of these families.
+- **Interpretation:** the result excludes only a literal-tag source path in
+  this executable. It does not rule out constructed tags, indirect/resource
+  manager lookups, another module, or runtime-propagated data, and it assigns
+  no meaning to any payload.
+- **Confidence:** high for the exact four literal absences; unknown for every
+  family’s loader, format, ownership, and player-visible behavior.
+- **Implementation consequence:** retain all four families as DSOP. Do not add
+  readers or infer quest, interaction, character, or combat behavior from this
+  negative result.
+
 ### EXE-GOG-SOUND-001 - No literal SOUND.CFG loader path
 
 - **Question:** Does the supported executable contain a direct textual link
