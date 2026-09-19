@@ -328,6 +328,29 @@ proof by itself. Never redirect broad output into the repository.
   resource-exact opening actor uses the evidenced anchor `(74,91)` independently
   of those still-open behaviors.
 
+### EXE-GOG-COMBAT-001 - Combat hotkey dispatch is not a direct shared literal table
+
+- **Question:** Does the supported executable contain an obvious single function
+  or compact literal table that directly dispatches all six manual combat keys?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Bounded finding:** the ordered six-byte PC-scancode pattern for Guard,
+  next/previous target, end turn, Wait, and Space has no match. The reusable
+  `ReportFunctionScalarIntersection` query also found no function containing
+  all six expected scancodes (`0x22`, `0x31`, `0x19`, `0x10`, `0x11`, `0x39`) or
+  all six uppercase-ASCII values (`G`, `N`, `P`, `Q`, `W`, Space).
+- **Interpretation:** this rules out the specific direct-literal forms queried,
+  not a shared dispatch mechanism. Input may be translated before dispatch,
+  stored in a data table, or handled by multiple functions. The result does not
+  identify a command handler, key state, target transition, or turn effect.
+- **Confidence:** high for the absence of these two direct representations in
+  the analyzed function and memory scans; unknown for the original dispatch
+  architecture and every command's runtime semantics.
+- **Implementation consequence:** `CombatHotkeys` remains a manual-evidenced
+  input adapter only. Its binding order and rising-edge policy are independent
+  design choices, not an original-dispatch parity claim.
+
 For each useful finding, add a concise entry here or in the relevant
 `docs/RULES-AND-EVIDENCE.md` / `docs/ORIGINAL-FORMATS.md` section with:
 
