@@ -600,6 +600,11 @@
   inert until their boundaries are evidenced. A bounded fixed-edition reader
   extracts the four difficulty labels, ten descriptions, and nine About lines
   into `text/preferences.dstx` without committing their payload.
+- **Static-analysis boundary:** the bounded direct-reference and scalar probes
+  recorded in `EXE-GOG-UI-004` found no literal executable binding between the
+  difficulty table, its labels, or the two difficulty-button IDs. This is not
+  evidence that the settings path is absent; it is evidence that a direct
+  literal mapping cannot safely supply its behavior.
 - **Tests:** exact graph/button/image geometry, duplicate/drift rejection,
   exclusive hit edges, navigation and inert-action routing, transactional
   extraction, executable string truncation/prefix/length checks, content smoke,
@@ -1346,15 +1351,24 @@
 ### RULE-COMBAT-001 - Party expansion on combat entry
 
 - **Behavior:** Exploration may show only the leader; combat makes all four party
-  members visible. The manual also documents wait, guard, target cycling, and
-  end-turn commands.
-- **Evidence:** MANUAL-1994, "How to Play" and hotkeys.
-- **Confidence:** high for intended commands; resolution order and formulas are
-  unknown.
+  members visible. The manual documents Guard (`G`), target-next (`N`),
+  target-previous (`P`), end-turn (`Q`), Wait (`W`), and Space to disable
+  computer control. During combat, a Walk click makes the character approach
+  and automatically attack the selected opponent. Melee requires adjacency and
+  a readied weapon; ranged requires an in-range opponent plus a readied missile
+  weapon or ammunition. The documented invalid cursor means the attempted
+  target is not eligible for that attack.
+- **Evidence:** MANUAL-1994, "How to Play" pages 4-6 and the visually reviewed
+  hotkey table on manual page 77.
+- **Confidence:** high for documented command bindings and intended attack
+  eligibility; resolution order, exact computer-control semantics, and formulas
+  are unknown.
 - **Implementation:** not implemented.
 - **Tests:** planned deterministic combat command traces.
 - **Uncertainty:** Activation order, RNG, THAC0/AC details, timing, and difficulty
-  effects require OBS-GOG and possibly targeted Ghidra evidence.
+  effects, the computer-control default and re-enable behavior, turn effects of
+  Guard/Wait, and exact target/range calculations require OBS-GOG and targeted
+  Ghidra evidence.
 
 ## Conflict handling
 

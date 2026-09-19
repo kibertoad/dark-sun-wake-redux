@@ -227,6 +227,15 @@ proof by itself. Never redirect broad output into the repository.
   controls; high for the ten-description table boundary but only medium for its
   role ordering until runtime hover behavior is observed; unknown for the
   selected default, mutation handler, and exact About presentation geometry.
+- **Bounded negative probes:** direct-reference reports for the table address
+  `5000:a4b9` and its first label at `5000:a4f5` produced no references. Scalar
+  reports for their 16-bit offsets (`0xa4b9`, `0xa4f5`, and `0xa523`) and for
+  the two extracted difficulty-button identities (16308 and 16309) likewise
+  produced no matches. These bounded results do not prove that the tables or
+  controls are unused: segmented pointers and resource-derived values can be
+  calculated at runtime. They do rule out treating a direct literal reference
+  as evidence for a particular button handler, selected default, or settings
+  storage location.
 - **Implementation consequence:** a fixed-edition bounded reader validates the
   executable offsets, printable bytes, terminators, exact description span,
   counts, and About control prefixes. The Extractor strips only the three
