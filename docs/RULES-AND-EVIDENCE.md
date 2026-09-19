@@ -1521,6 +1521,28 @@
 - **Tests:** exact owned-pack inventory/hash verification and generic DSOP
   envelope bounds/read-back; no semantic fixture is introduced.
 
+### DATA-GOG-SMALLTAG-001 - Opaque small-resource envelope inventory
+
+- **Question:** Do the short `GREQ`, `CACT`, `PLYL`, or `CSEQ` resources yield
+  a structural format or feature assignment that can support game behavior?
+- **Method:** Read the verified local-pack manifest's source mapping and DSOP
+  lengths. Each DSOP has the fixed ten-byte envelope header; subtracting that
+  header reports the original payload lengths without retaining source bytes.
+- **Finding:** `CHARSAVE.GFF` contributes ten `GREQ` resources (#1-#10), each
+  nine bytes, and eleven `CACT` resources (#29-#39), each two bytes.
+  `RESOURCE.GFF` contributes six `PLYL` resources (#0, #10, #50-#53) whose
+  payload lengths are 3, 5, or 7 bytes, and one 78-byte `CSEQ` #1000. These
+  inventory facts establish no shared record layout, field boundary, consumer,
+  or feature meaning. `EXE-GOG-SMALLTAG-001` independently finds no literal
+  executable tag path for any of the four families.
+- **Confidence:** high for supported-edition identities, counts, sources, and
+  payload lengths; unknown for every field, loader, ownership, and
+  player-visible behavior.
+- **Implementation:** retain all records as DSOP and do not add format readers
+  or assign quest, action, party-list, sequence, interaction, or combat roles.
+- **Tests:** exact owned-pack inventory/hash verification and generic DSOP
+  envelope bounds/read-back; no semantic fixture is introduced.
+
 ### DATA-GOG-CHAR-006 - Disc and installed character sets
 
 - **Question:** Which character resources are immutable disc data, which were

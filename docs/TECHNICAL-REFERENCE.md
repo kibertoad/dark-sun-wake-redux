@@ -166,8 +166,9 @@ rejecting unsupported semantics:
 - `EXE-GOG-RDFF-001` places `RDFF` beside that same separate 37-byte record
   path. It likewise has no direct selector connection and remains opaque.
 - `EXE-GOG-SMALLTAG-001` finds no literal executable loader lead for `GREQ`,
-  `CACT`, `PLYL`, or `CSEQ`; absence does not assign those opaque families a
-  runtime role.
+  `CACT`, `PLYL`, or `CSEQ`. `DATA-GOG-SMALLTAG-001` bounds their owned
+  inventories and short envelopes, but neither result assigns those opaque
+  families a runtime role.
 - `EXE-GOG-PREF-001` finds one raw `PREF` tag literal but no direct reference;
   it supplies no Preferences loader, settings schema, default, or control
   behavior.
