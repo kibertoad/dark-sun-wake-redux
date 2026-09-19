@@ -184,9 +184,9 @@ original game.
 
 ### Slice 1 - Identity, source recognition, and diagnostic boot
 
-**Status:** complete on 2026-09-12. The source manifest uses seven exact immutable
-fingerprint anchors; full extraction-input coverage expands with each bounded
-decoder rather than being guessed now.
+**Status:** complete on 2026-09-12, expanded on 2026-09-19. The source manifest
+now records the complete 233-file immutable baseline corpus; unknown payloads
+are preserved as opaque data rather than guessed or omitted.
 
 - **Outcome.** Configure the approved identity. The separate Extractor accepts
   an explicit GOG path and reports supported, missing, changed, or unsupported

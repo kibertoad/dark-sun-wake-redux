@@ -8,7 +8,7 @@ runtime defaults or committed content.
 
 | Field | Value |
 |---|---|
-| Status | Source recognition and bounded 102-asset startup/Tyr/menu/dialogue/Preferences-text extraction implemented |
+| Status | Exact 233-file baseline recognition and complete 16,503-asset local-corpus extraction implemented |
 | Acquisition | Legally owned GOG release, *Dungeons & Dragons: Dark Sun Series* |
 | Local validation path | `C:\GOG Games\Dark Sun 2` |
 | GOG product ID | `1432903719` |
@@ -17,19 +17,19 @@ runtime defaults or committed content.
 | Underlying DOS revision | Unknown; investigation required |
 | Manifest | `src/DarkSunWakeRedux.Extractor/source-manifests/gog-en-52095422060333615.json` |
 
-The recognition manifest currently uses seven independent immutable anchors:
-`DSUN.EXE`, `game.ins`, `GPLDATA.GFF`, `ITEMS.BIN`, `OBJEX.GFF`, and
-`RESOURCE.GFF`, plus the first required region `RGN032.GFF`. It records exact
-sizes and SHA-256 values. These anchors identify
-the owned build but are not a claim that they are the complete extraction input
-set. Each decoder slice must add every source file it consumes to the supported
-edition contract before extraction can succeed.
+The recognition manifest records exact paths, sizes, and SHA-256 values for all
+233 immutable baseline inputs: 26 GFF containers, 147 VOC files, five FLI
+files, 40 music tracks, the disc image/descriptor, original helper executables,
+and static configuration/data files. `inventory-source` additionally assigns
+each of the 279 currently installed files an explicit disposition: game data,
+mutable capture/save, DOSBox wrapper/configuration, storefront wrapper, or
+documentation. No input is silently ignored.
 
-`CHARSAVE.GFF` is required supplemental extraction input, but it is character
-storage and therefore is not an immutable edition fingerprint. The Extractor
-requires the file, validates its complete bounded GFF/`CHAR`/`PSIN` structure,
-and records it as DSCH provenance only after the seven immutable anchors identify
-the supported installation.
+`CHARSAVE.GFF` is included as the fingerprinted baseline character archive so
+the complete owned source corpus can be reproduced. It may be user-modifiable
+under the original game, so a changed original installation is intentionally
+reported as a source mismatch; extract from a pristine supported copy rather
+than treating a changed archive as the same edition.
 
 Bounded inspection of the fingerprinted `game.gog` image found a 3,864-byte
 disc `CHARSAVE.GFF` containing eight paired character resources (#40-#43 and

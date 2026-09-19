@@ -36,15 +36,13 @@ write into a unique sibling staging directory, generate a manifest containing
 format/extractor versions and exact output inventory, re-open and hash every
 output, reject unexpected files, then atomically replace the installed pack.
 If any step fails, staging is removed and the last verified pack is restored.
-Current code exercises this transaction for the exact 102-asset startup, party,
-ADD-list, Tyr, Game Menu/Preferences, character, inventory, Cast, Effects, and
-first-dialogue pack: indexed UI images and font, text and character catalogs,
-separate resolved UI graphs, the canonical Tyr region and its object-frame
-graph, the independently identified opening-leader image, the complete
-ten-image exploration cursor family, the first portrait, and its GPL
-script envelope.
-Later resources extend this inventory only after their
-mappings are recorded.
+Current code exercises this transaction for every byte of the 233-file source
+baseline and every one of its 16,168 GFF records, retained as source-mapped DSOP
+assets where no semantic contract is established. The same v30 pack also carries
+the 102 evidenced specialized derivatives for startup, party, ADD-list, Tyr,
+Game Menu/Preferences, character, inventory, Cast, Effects, and first dialogue.
+Later work adds semantic readers and behavior only after their mappings are
+recorded; it does not extend corpus coverage by silently omitting unknown data.
 
 ## Runtime startup
 

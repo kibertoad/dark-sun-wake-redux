@@ -169,8 +169,9 @@ Owned-build validation currently targets GOG product `1432903719`, installed
 build `52095422060333615`. Metadata-only FONT inspection verifies that all 256
 character-map entries are identity values and summarizes its pixel-index range
 without emitting glyph pixels. The retained ignored owned-source pack has been
-transactionally refreshed and verifies as the exact 102-asset manifest including start/party/ADD
-assets, all seven start-flow windows and 56 controls, the 210x116 Game Menu/Preferences base,
+transactionally refreshed and verifies as the exact v30 16,503-asset manifest: 16,401 source-mapped DSOP
+assets preserving every 233-file source input and all 16,168 GFF descriptors, plus 102 specialized
+derivatives including start/party/ADD assets, all seven start-flow windows and 56 controls, the 210x116 Game Menu/Preferences base,
 the 14-button/30-control Game Menu and 13-button/15-control Preferences graphs,
 the 320x200 inventory base, the observed USE/EFFECTS title images, the
 86-control character/Cast/Effects and 89-control inventory graphs, and 19 bounded character metadata entries,
