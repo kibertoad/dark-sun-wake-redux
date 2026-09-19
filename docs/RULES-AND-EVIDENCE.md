@@ -1047,8 +1047,10 @@
   source tag as well as identity, extracts `PORT` #18 with
   the interface palette, and expands the interaction DSUI with #12500/#12501
   plus six dialogue-control images. The response adapter validates the speech
-  edit box, exact five row resources, observed opaque panel fills, measured
-  origin `(1,142)`, overlapping hit priority, and exclusive edges. A bounded decoder covers GPL's 7-bit
+  edit box, exact five row resources, the transparent panel canvas with its
+  visible 320x58 textured chrome strip at each measured placement, measured
+  origin `(1,142)`, overlapping hit priority, and exclusive edges. A bounded
+  decoder covers GPL's 7-bit
   compressed string primitive without embedding original dialogue text in Git.
   A fail-closed first-conversation reader validates the independently observed
   `showpic` at offset 16, two conditional print sources at 118/199, and the
