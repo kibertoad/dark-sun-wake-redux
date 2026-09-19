@@ -52,6 +52,7 @@ Read source metadata without extracting proprietary payloads using Inspect:
 ```powershell
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- "C:\path\to\gog-installation"
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- gff "C:\path\to\RESOURCE.GFF"
+dotnet run --project tools/DarkSunWakeRedux.Inspect -- resource-inventory "C:\path\to\RESOURCE.GFF"
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- image-catalog "C:\path\to\RESOURCE.GFF"
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- ui-catalog "C:\path\to\RESOURCE.GFF"
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- font-catalog "C:\path\to\RESOURCE.GFF"

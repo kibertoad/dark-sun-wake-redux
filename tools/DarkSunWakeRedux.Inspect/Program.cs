@@ -350,12 +350,45 @@ if (args.Length == 2 && args[0].Equals("gff", StringComparison.OrdinalIgnoreCase
     }
 }
 
+if (args.Length == 2 && args[0].Equals("resource-inventory", StringComparison.OrdinalIgnoreCase))
+{
+    try
+    {
+        await using var stream = File.OpenRead(args[1]);
+        var archive = GffArchive.Read(stream, args[1]);
+        var tags = archive.Resources.GroupBy(resource => resource.Tag)
+            .OrderBy(group => group.Key, StringComparer.Ordinal)
+            .Select(group => new
+            {
+                tag = group.Key,
+                resourceCount = group.Count(),
+                totalBytes = group.Sum(resource => (long)resource.Size),
+                minimumResourceNumber = group.Min(resource => resource.Number),
+                maximumResourceNumber = group.Max(resource => resource.Number),
+                distinctResourceNumbers = group.Select(resource => resource.Number).Distinct().Count()
+            });
+        Console.WriteLine(JsonSerializer.Serialize(new
+        {
+            path = Path.GetFullPath(args[1]),
+            resourceCount = archive.Resources.Count,
+            tags
+        }, new JsonSerializerOptions { WriteIndented = true }));
+        return 0;
+    }
+    catch (Exception exception) when (exception is InvalidDataException or IOException or UnauthorizedAccessException)
+    {
+        Console.Error.WriteLine($"[resource_inventory_unreadable] {exception.Message}");
+        return 2;
+    }
+}
+
 if (args.Length != 1 || !Directory.Exists(args[0]))
 {
     Console.Error.WriteLine("Usage:");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect <owned-original-directory>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect image-preview <owned-original.gff> <tag> <image-number> <palette-number> <outside-repository.bmp>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect gff <owned-original.gff>");
+    Console.Error.WriteLine("  DarkSunWakeRedux.Inspect resource-inventory <owned-original.gff>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect image-catalog <owned-original.gff>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect character-catalog <owned-original.gff>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect text-catalog <owned-original.gff>");

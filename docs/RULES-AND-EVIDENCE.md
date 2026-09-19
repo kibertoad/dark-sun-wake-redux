@@ -27,7 +27,10 @@
   GOG-1432903719; tag payload semantics remain unknown unless separately
   recorded.
 - **Implementation:** `DarkSunWakeRedux.Resources.GffArchive` and the read-only
-  `DarkSunWakeRedux.Inspect gff` command.
+  `DarkSunWakeRedux.Inspect gff` and `resource-inventory` commands. The latter
+  emits only per-tag counts, byte totals, and numeric bounds, so namespace
+  questions can be narrowed without exporting resource metadata one record at a
+  time.
 - **Tests:** synthetic primary, primary-only, segmented-secondary, truncation,
   out-of-range, and partial-overlap cases.
 
