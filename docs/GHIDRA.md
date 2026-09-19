@@ -742,12 +742,14 @@ proof by itself. Never redirect broad output into the repository.
   direct inbound reference to the sole matched virtual address.
 - **Bounded finding:** the pathname occurs once at `5000:88f1` in `CODE_208`.
   Ghidra reports no inbound direct reference to that address after the full
-  analyzer pass. This establishes a single literal archive-name occurrence,
-  not a file open, a resource lookup, a GPLI consumer, or a dialogue trigger.
+  analyzer pass. A raw search also finds no exact in-image little-endian far
+  pointer encoding (`f1 88 00 50`) for that virtual address. This establishes a
+  single literal archive-name occurrence, not a file open, a resource lookup,
+  a GPLI consumer, or a dialogue trigger.
 - **Interpretation:** the string may be used through an indirect pointer,
   relocated/constructed data, another executable, or an unrecognized code
-  path. The absence of an inbound reference rejects only this byte address as
-  a direct loader lead; it does not show that the archive is unused.
+  path. The absent reference and exact far-pointer encoding reject only those
+  direct loader leads; they do not show that the archive is unused.
 - **Confidence:** high for the exact occurrence and lack of direct references;
   unknown for archive ownership, load timing, resource-tag selection, and all
   player-visible behavior.
