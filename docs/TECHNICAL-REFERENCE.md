@@ -149,6 +149,9 @@ rejecting unsupported semantics:
   multiple predicate traversals, a guarded `GPL ` resource-request path, and a
   secondary relinked chain. It does not identify the table's source/population
   path or connect a record to dialogue, quests, combat, or map triggers.
+- `EXE-GOG-SCMD-001` establishes a separate 64-slot `SCMD` loader/cache. Its
+  direct callers do not overlap the selector path, so `SCMD` remains opaque
+  rather than a substitute event or combat implementation.
 - `GPLI` #1 is an exact 329-by-24-byte opaque data envelope. No literal GPLI
   tag exists in the analyzed executable, so no lookup role is assumed.
 - `ITEMS.BIN` is a verified 234-pair envelope. `DSUN.EXE` contains no literal

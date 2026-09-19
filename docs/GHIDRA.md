@@ -959,6 +959,39 @@ proof by itself. Never redirect broad output into the repository.
   `GPL ` and the global-string projections require `MAS `; both remain
   fail-closed, bounded projections rather than a GPL interpreter.
 
+### EXE-GOG-SCMD-001 - SCMD uses a separate bounded cache
+
+- **Question:** Does the opaque `SCMD` family provide the source table or a
+  direct execution path for the linked 13-byte selectors?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** `ReportBytePattern` located both in-image `SCMD` tag
+  assignments. A bounded decompilation of their shared function
+  `31e0:1893` classified its resource lookup and cache shape;
+  `ReportReferences` enumerated its direct callers, and one caller was bounded
+  to classify its immediate request/result flow.
+- **Bounded finding:** `31e0:1893` queries the `SCMD` tag by a caller-supplied
+  identity and maintains 64 resident cache slots. It reuses a matching entry
+  when available; otherwise it obtains the source extent, allocates/copies the
+  payload through shared helpers, and records the new entry. The direct caller
+  list contains only `31e0:1808` and `31e0:2670`. The bounded first caller
+  sources a signed identity from a 37-byte indexed resident record, requests
+  its negated non-sentinel value, and stores the loader result back into that
+  record. Neither direct caller is one of the `1695` selector traversals nor
+  the `172c` GPL request path documented in `EXE-GOG-EVENT-001`.
+- **Interpretation:** `SCMD` is a separately selected native resource family
+  with a bounded cache. This excludes only the narrow direct-call hypothesis
+  that its known loader itself materializes or receives the 13-byte selector
+  records. It does not identify SCMD record semantics, cache lifetime, indirect
+  callers, object behavior, combat behavior, or any player-visible effect.
+- **Confidence:** high for the literal tag, 64-slot cache bound, and two direct
+  callers; unknown for resource payload semantics, higher-level ownership, and
+  every relationship not represented by a direct call.
+- **Implementation consequence:** retain `SCMD` as DSOP. Do not add an SCMD
+  reader, connect it to selectors, or infer object/combat behavior without a
+  constrained call path or controlled observation.
+
 ### EXE-GOG-SOUND-001 - No literal SOUND.CFG loader path
 
 - **Question:** Does the supported executable contain a direct textual link
