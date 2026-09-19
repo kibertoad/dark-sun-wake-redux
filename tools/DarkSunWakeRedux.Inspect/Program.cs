@@ -382,6 +382,55 @@ if (args.Length == 2 && args[0].Equals("resource-inventory", StringComparison.Or
     }
 }
 
+if (args.Length == 4 && args[0].Equals("pair-resource-overlap", StringComparison.OrdinalIgnoreCase))
+{
+    try
+    {
+        var tablePath = Path.GetFullPath(args[1]);
+        var tag = args[3].Replace('_', ' ');
+        if (tag.Length != 4 || !tag.All(character => character is >= ' ' and <= '~'))
+            throw new ArgumentException("Resource tag must be exactly four printable ASCII characters; use '_' for a padded space.", nameof(args));
+        var bytes = await File.ReadAllBytesAsync(tablePath);
+        if (bytes.Length is 0 or > 1_048_576 || bytes.Length % 4 != 0)
+            throw new InvalidDataException(
+                $"{tablePath}: pair table must be nonempty, at most 1 MiB, and a multiple of four bytes.");
+        var left = new uint[bytes.Length / 4];
+        var right = new uint[left.Length];
+        for (var index = 0; index < left.Length; index++)
+        {
+            left[index] = BitConverter.ToUInt16(bytes, index * 4);
+            right[index] = BitConverter.ToUInt16(bytes, index * 4 + 2);
+        }
+        await using var stream = File.OpenRead(args[2]);
+        var archive = GffArchive.Read(stream, args[2]);
+        var resourceNumbers = archive.Resources.Where(resource => resource.Tag == tag)
+            .Select(resource => resource.Number).ToHashSet();
+        if (resourceNumbers.Count == 0)
+            throw new InvalidDataException($"{args[2]} has no {tag} resources.");
+        Console.WriteLine(JsonSerializer.Serialize(new
+        {
+            pairTablePath = tablePath,
+            archivePath = Path.GetFullPath(args[2]),
+            tag,
+            pairCount = left.Length,
+            tagResourceCount = resourceNumbers.Count,
+            leftMatches = left.Count(resourceNumbers.Contains),
+            rightMatches = right.Count(resourceNumbers.Contains),
+            eitherMatches = left.Zip(right).Count(pair =>
+                resourceNumbers.Contains(pair.First) || resourceNumbers.Contains(pair.Second)),
+            bothMatches = left.Zip(right).Count(pair =>
+                resourceNumbers.Contains(pair.First) && resourceNumbers.Contains(pair.Second))
+        }, new JsonSerializerOptions { WriteIndented = true }));
+        return 0;
+    }
+    catch (Exception exception) when (exception is InvalidDataException or IOException or
+                                      UnauthorizedAccessException or ArgumentException)
+    {
+        Console.Error.WriteLine($"[pair_resource_overlap_unavailable] {exception.Message}");
+        return 2;
+    }
+}
+
 if (args.Length != 1 || !Directory.Exists(args[0]))
 {
     Console.Error.WriteLine("Usage:");
@@ -389,6 +438,7 @@ if (args.Length != 1 || !Directory.Exists(args[0]))
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect image-preview <owned-original.gff> <tag> <image-number> <palette-number> <outside-repository.bmp>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect gff <owned-original.gff>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect resource-inventory <owned-original.gff>");
+    Console.Error.WriteLine("  DarkSunWakeRedux.Inspect pair-resource-overlap <owned-pair-table> <owned-original.gff> <tag; use _ for padded space>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect image-catalog <owned-original.gff>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect character-catalog <owned-original.gff>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect text-catalog <owned-original.gff>");

@@ -650,21 +650,31 @@
   can be described without assigning item, equipment, or combat semantics?
 - **Method:** Inspect its fingerprinted 936 bytes as little-endian 16-bit
   values and calculate only count, uniqueness, ordering, and range properties.
-  No source bytes are retained in the repository.
+  The metadata-only `pair-resource-overlap` inspect command then compares each
+  column with an explicitly named GFF tag's resource-number set; it emits only
+  counts, never table values or GFF records. No source bytes are retained in the
+  repository.
 - **Finding:** the entire file divides exactly into 234 four-byte pairs. Every
   first value is unique; pair indices 0 through 232 increase strictly by their
   first value, while pair 233 is a unique final out-of-order entry. The second
-  values contain 159 distinct values across the 234 pairs. Both fields are
-  unsigned 16-bit envelopes only; no field names or roles are assigned.
+  values contain 159 distinct values across the 234 pairs. Left values span
+  775 through 31,030 and right values span 603 through 31,990. Both fields are
+  unsigned 16-bit envelopes only; no field names or roles are assigned. Against
+  `OBJEX.GFF`, left/right/either/both membership counts are 49/212/219/42 for
+  `OJFF`, 50/216/223/43 for `RDFF`, 22/20/41/1 for `SCMD`, and 157/165/198/124
+  for `BMP `. Those figures show that several resource-number namespaces
+  overlap materially; they do not identify a pair field as an object, draw,
+  script, or image reference.
 - **Confidence:** high for length, pair width/count, endianness, uniqueness,
   ordering boundary, and second-value duplication in GOG-1432903719; unknown
   for pair meanings, lookup direction, the last entry's role, and all item or
   gameplay semantics.
-- **Implementation consequence:** no reader is introduced yet. A future
-  approved reader must require the exact supported source fingerprint, parse
-  all 234 pairs transactionally, reject any incompatible envelope, and retain
-  neutral pair names until independent executable or runtime evidence assigns
-  semantics.
+- **Implementation consequence:** no game asset reader is introduced yet. The
+  read-only inspection query is evidence tooling, not a resource contract. A
+  future approved reader must require the exact supported source fingerprint,
+  parse all 234 pairs transactionally, reject any incompatible envelope, and
+  retain neutral pair names until independent executable or runtime evidence
+  assigns semantics.
 - **Uncertainty:** whether either value is an item ID, image/object reference,
   resource alias, equipment property, lookup key, or compatibility remap;
   whether the final pair is a sentinel, exceptional alias, or normal record;
