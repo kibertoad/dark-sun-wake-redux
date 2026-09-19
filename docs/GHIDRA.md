@@ -365,6 +365,31 @@ proof by itself. Never redirect broad output into the repository.
   resource-exact opening actor uses the evidenced anchor `(74,91)` independently
   of those still-open behaviors.
 
+### EXE-GOG-REGION-002 - ETAB has no direct tag-literal loader lead
+
+- **Question:** Does the supported executable contain an explicit `ETAB` tag
+  literal that identifies a direct native loader or consumer for the extracted
+  region entity records?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** `ReportBytePattern` searched every loaded program-memory block
+  for the ASCII bytes `45 54 41 42` (`ETAB`), with its normal cap of 100
+  matches and 20 inbound references per match.
+- **Bounded finding:** no byte-pattern match exists in the analyzed loaded
+  memory.
+- **Interpretation:** this excludes only a direct in-image `ETAB` tag-literal
+  path. The region loader may construct the tag, receive it indirectly, use a
+  different representation, or consume entity data through another route.
+  This result neither proves the records unused nor identifies entity flags,
+  movement, interaction, encounter, combat, or rendering behavior.
+- **Confidence:** high for the absent byte pattern in this analyzed executable;
+  unknown for every loader, field, and gameplay role not represented by that
+  literal.
+- **Implementation consequence:** retain the bounded structural ETAB reader
+  and static compositor only. Do not connect ETAB entries to native actor or
+  event behavior without a constrained call path or controlled observation.
+
 ### EXE-GOG-ACTOR-002 - The observed hostile object ID is not a direct combat entry point
 
 - **Question:** Does the first observed hostile Tyr object, OJFF #9258, occur
