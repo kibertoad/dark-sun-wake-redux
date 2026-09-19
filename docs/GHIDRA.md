@@ -992,6 +992,37 @@ proof by itself. Never redirect broad output into the repository.
   reader, connect it to selectors, or infer object/combat behavior without a
   constrained call path or controlled observation.
 
+### EXE-GOG-RDFF-001 - RDFF participates in a distinct indexed-record path
+
+- **Question:** Does `RDFF` materialize the linked 13-byte selector records or
+  establish their gameplay owner?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** `ReportBytePattern` found two coherent `RDFF` tag assignments
+  and one occurrence in a non-coherent decoded stream. Bounded decompilations
+  of the two coherent functions inspected their immediate tag-aware request
+  paths; the existing `SCMD` caller analysis supplied the shared record-stride
+  comparison.
+- **Bounded finding:** `28c9:2839` conditionally supplies an identity from a
+  resident record with 37-byte stride to a shared tag-aware helper using
+  `RDFF`. `31e0:0eff` first queries `OJFF`, then conditionally routes an RDFF
+  request through the same helper while updating the same 37-byte indexed
+  record family. That function later invokes `31e0:2670`, one of the two direct
+  SCMD-loader callers. The coherent RDFF paths therefore share a resident
+  record family with SCMD, not the 13-byte `1695` selector traversal. No
+  record field, RDFF payload layout, or higher-level feature follows from these
+  accesses.
+- **Interpretation:** RDFF is a distinct native resource path adjacent to the
+  SCMD-indexed records. This rules out only the narrow direct hypothesis that
+  the observed RDFF paths initialize or directly consume the selector table;
+  it does not rule out an indirect relationship elsewhere in the executable.
+- **Confidence:** high for the two coherent tag uses and their 37-byte record
+  stride; unknown for RDFF semantics, resource lifetime, record ownership, and
+  all player-visible behavior.
+- **Implementation consequence:** retain `RDFF` as DSOP. Do not infer object,
+  target, interaction, quest, or combat behavior from the shared indexed path.
+
 ### EXE-GOG-SOUND-001 - No literal SOUND.CFG loader path
 
 - **Question:** Does the supported executable contain a direct textual link

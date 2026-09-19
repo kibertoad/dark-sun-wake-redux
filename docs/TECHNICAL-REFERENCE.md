@@ -152,6 +152,8 @@ rejecting unsupported semantics:
 - `EXE-GOG-SCMD-001` establishes a separate 64-slot `SCMD` loader/cache. Its
   direct callers do not overlap the selector path, so `SCMD` remains opaque
   rather than a substitute event or combat implementation.
+- `EXE-GOG-RDFF-001` places `RDFF` beside that same separate 37-byte record
+  path. It likewise has no direct selector connection and remains opaque.
 - `GPLI` #1 is an exact 329-by-24-byte opaque data envelope. No literal GPLI
   tag exists in the analyzed executable, so no lookup role is assumed.
 - `ITEMS.BIN` is a verified 234-pair envelope. `DSUN.EXE` contains no literal
