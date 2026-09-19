@@ -95,6 +95,9 @@ or raw GFF payloads.
 The approved roadmap and evidence gates are in
 [docs/IMPLEMENTATION-PLAN.md](docs/IMPLEMENTATION-PLAN.md). The current
 continuation notes are in [docs/HANDOVER.md](docs/HANDOVER.md).
+For a concise map of the verified architecture, source contracts, static
+analysis boundaries, timing policy, and evidence gates, see
+[docs/TECHNICAL-REFERENCE.md](docs/TECHNICAL-REFERENCE.md).
 
 ## Controls
 
