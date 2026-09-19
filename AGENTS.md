@@ -162,6 +162,26 @@ or claim that a live visual check ran. Use purpose-built headless/content smoke
 tests and owner-produced screenshots or captures instead, and record any visual
 comparison that still requires manual validation.
 
+### Image-less UI controls and dialogue chrome
+
+An image-less `WIND`, `BUTN`, `EBOX`, or `APFM` record is not evidence that the
+original rendered an unstyled rectangle. It can delegate its fill, bevel,
+corners, clipping, or focus treatment to native widget code. Preserve the
+record's identity, bounds, child order, and event fields; do not replace an
+unknown native widget with invented pixels or assume a neighbouring bitmap is
+its background.
+
+For a presentation mismatch, first compare the complete ordered control graph
+and the extracted image dimensions/alpha bounds against an owner-confirmed
+native capture at the same logical resolution. If the graph has no image that
+accounts for the missing chrome, treat the generic widget path as an open
+evidence question: make a narrow static-analysis query only after verifying the
+approved executable fingerprint, and obtain a bounded capture that shows each
+corner/state required. Record measured geometry, colours, and confidence in the
+UI evidence documents, add synthetic tests for those measurements, and keep
+the capture itself outside Git. Do not claim pixel parity until the native
+widget treatment is observed.
+
 Coding agents must never launch, control, capture, or stop DOSBox on their own.
 When an evidence question requires an original-game observation, give the
 repository owner an exact, bounded screenshot or capture checklist and wait for
