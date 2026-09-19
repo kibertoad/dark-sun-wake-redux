@@ -856,14 +856,15 @@
   disabled hostile state, visible name/level, and action semantics; unknown for
   how arbitrary OJFF/GPL records determine hostility and capabilities.
 - **Implementation:** pack format 26 extracts the seven active/disabled/dismiss
-  interaction images plus `WIND` #3020 as part of a bounded DSUI graph. Core models
-  validated creature/object targets, enabled actions, the documented sole-object
-  shortcut, inert disabled selections, and deterministic dismissal. Runtime
-  presentation and target-to-capability derivation remain pending.
-- **Tests:** target validation, hostile disabled Talk, all three sole-action
-  shortcuts, multi-action selection, dismissal, exact graph/resource/image
-  mapping, stored order, measured coordinates, exclusive hit edges, malformed
-  graph rejection, transactional extraction, and content smoke.
+  interaction images plus `WIND` #3020 as a bounded DSUI graph. The isolated
+  Core interaction model exercises manual-described selection boundaries, but
+  it is deliberately not connected to exploration. `EXE-GOG-UI-005` confirms
+  that these IDs do not provide an activation path. Runtime presentation and
+  target-to-capability derivation remain pending.
+- **Tests:** isolated-model target validation, hostile disabled Talk, all three
+  sole-action branches, multi-action selection, dismissal, exact graph/resource/
+  image mapping, stored order, measured coordinates, exclusive hit edges,
+  malformed graph rejection, transactional extraction, and content smoke.
 
 ### OBS-GOG-DIALOGUE-001 - Award notice and first measured conversation
 

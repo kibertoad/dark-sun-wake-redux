@@ -367,6 +367,36 @@ proof by itself. Never redirect broad output into the repository.
   direct `SCMD` identifiers and records why matching `RDFF`/`OJFF`/`BMP `
   numbers cannot be treated as a semantic substitute.
 
+### EXE-GOG-UI-005 - Hostile Look panel IDs do not identify an activation path
+
+- **Question:** Do the observed hostile Look window, application frame, or
+  button IDs occur as executable scalar constants that identify the code which
+  opens or renders the panel?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** After the panel had been independently measured in
+  `DATA-GOG-INTERACTION-001`, `ReportScalarConstants` scanned every decoded
+  instruction operand for the five exact decimal resource identities: `3020`
+  (`WIND`), `15200` (`APFM`), and `15306`/`15307`/`15308`/`15309` (`BUTN`).
+  The script has a 256-match output cap; this query produced no candidates.
+- **Bounded finding:** none of the five requested scalar values occurs in a
+  decoded instruction operand. The generic window dispatcher documented by
+  `EXE-GOG-UI-001` and `EXE-GOG-UI-002` can process registered controls, but
+  this query supplies no application-specific registration, activation, draw,
+  target-name, level, hostility, or dismissal call path for this panel.
+- **Interpretation:** the owned window graph and capture prove the panel's
+  appearance for that one observed case, not how play reaches it. The absence
+  of immediate literals does not prove the panel unused: IDs can be loaded or
+  passed indirectly. It does rule out treating the resource numbers themselves
+  as a direct executable activation lead.
+- **Confidence:** high for the absence of these exact immediate scalar uses;
+  unknown for all application-specific panel activation and rendering behavior.
+- **Implementation consequence:** retain the measured DSUI graph and decoded
+  assets, but do not wire an interaction panel into exploration or synthesize a
+  target-capability mapping. A future runtime slice needs a controlled
+  activation trace plus an independent data or executable call-path finding.
+
 ### EXE-GOG-COMBAT-001 - Combat hotkey dispatch is not a direct shared literal table
 
 - **Question:** Does the supported executable contain an obvious single function
