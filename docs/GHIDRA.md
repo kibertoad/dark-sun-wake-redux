@@ -758,10 +758,17 @@ proof by itself. Never redirect broad output into the repository.
   no direct static reference beyond this indexed use. Static analysis therefore
   cannot enumerate registrations or assert a handler for any value; at least
   the examined slots require later runtime initialization before a meaningful
-  indirect call. The other apparent wrapper call lies in non-coherent decoded
-  instructions and is not accepted as evidence. No GPL/MAS opcode dispatch,
-  script meaning, cache eviction policy, or caller-level feature meaning is
-  established.
+  indirect call. The guarded far entry itself has eight direct calls from three
+  modules: `277b` has one call whose immediately preceding setup pushes two
+  literal words, `1695` has four calls that source a pair of words from
+  external records indexed with a 13-byte stride, and `2d40` has three calls
+  that source pairs from records indexed with a 19-byte stride. The caller
+  contexts establish shared use across those record families only. They do not
+  identify either record layout, the words' roles, or a dialogue, combat, map,
+  or other feature ownership. The other apparent wrapper call lies in
+  non-coherent decoded instructions and is not accepted as evidence. No
+  GPL/MAS opcode dispatch, script meaning, cache eviction policy, or
+  caller-level feature meaning is established.
 - **Interpretation:** `GPL ` and `MAS ` are distinct native input families,
   not interchangeable labels for the same extracted payload. The helpers and
   cache establish a native loading boundary, but do not license execution of
