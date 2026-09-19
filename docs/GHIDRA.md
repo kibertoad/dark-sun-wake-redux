@@ -761,7 +761,9 @@ proof by itself. Never redirect broad output into the repository.
 - **Method:** `ReportReferences` enumerated the entry's eight direct far
   callers. Bounded instruction contexts classified their immediate argument
   setup. Four bounded decompilations of the `1695` callers compared every
-  dereferenced offset and all chain termination and match predicates.
+  dereferenced offset and all chain termination and match predicates. A later
+  `ReportFunctionScalarIntersection` probe for the table's segment `0x5b7c`
+  and offset `0x0700` found no function containing both scalar operands.
 - **Bounded finding:** four callers traverse a resident table pointer at
   `5b7c:0700` from a supplied 16-bit index. Index `-1` terminates an
   unsuccessful traversal. Each record is addressed as `index * 13`; all four
@@ -787,7 +789,10 @@ proof by itself. Never redirect broad output into the repository.
   low-byte success when resident word `4c0d:0009` equals record word 4. For the
   one currently designated resident index at `4c10:0017`, it also accepts a
   match against record word 6. The special index's identity and both fields'
-  behavior remain unknown.
+  behavior remain unknown. The scalar-intersection absence closes only the
+  narrow hypothesis of one function materializing this pointer through both
+  literal operands; it does not rule out split, computed, indirect, or
+  dynamically supplied table ownership.
 - **Interpretation:** this is a verified linked runtime-selector shape feeding
   the shared processing path, not evidence that it is a map trigger, dialogue
   option, combat event, or an on-disc file format. The apparent 13-byte stride
