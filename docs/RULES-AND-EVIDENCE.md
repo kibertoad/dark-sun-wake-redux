@@ -726,7 +726,9 @@
   recorded in `EXE-GOG-UI-004` found no literal executable binding between the
   difficulty table, its labels, or the two difficulty-button IDs. This is not
   evidence that the settings path is absent; it is evidence that a direct
-  literal mapping cannot safely supply its behavior.
+  literal mapping cannot safely supply its behavior. `EXE-GOG-PREF-001` finds
+  that the sole raw `PREF` tag also has no direct executable reference; it
+  establishes neither a resource route nor a settings schema.
 - **Tests:** exact graph/button/image geometry, duplicate/drift rejection,
   exclusive hit edges, navigation and inert-action routing, transactional
   extraction, executable string truncation/prefix/length checks, content smoke,

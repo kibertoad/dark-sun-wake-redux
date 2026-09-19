@@ -246,6 +246,31 @@ proof by itself. Never redirect broad output into the repository.
   About lines to a local DSTX catalog. Original text is not committed and the
   Game never reads the executable.
 
+### EXE-GOG-PREF-001 - No direct literal `PREF` resource route
+
+- **Question:** Does the sole `PREF` resource-family tag yield a direct
+  executable path that can define Preferences settings behavior?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** `ReportBytePattern` searched all loaded executable blocks for the
+  exact four-byte ASCII encoding `PREF`. Its single result at `5000:8c85` in
+  `CODE_208` was then passed to `ReportReferences`.
+- **Bounded finding:** the raw literal occurs once and has no direct Ghidra
+  reference. The query supplies no tag lookup, resource manager caller,
+  control binding, stored field, default, range, increment, or audio/rules
+  consumer.
+- **Interpretation:** this excludes only a direct reference to that literal in
+  this executable. It does not show that the resource is unused, nor rule out
+  a constructed tag, indirect lookup, a different module, or runtime-propagated
+  state.
+- **Confidence:** high for the one raw occurrence and absent direct-reference
+  result; unknown for loader ownership, resource layout, and every
+  player-visible Preferences behavior.
+- **Implementation consequence:** retain the `PREF` payload as DSOP and keep
+  Preferences mutations inert. Do not infer a settings schema or a behavior
+  from this negative lead.
+
 ### EXE-GOG-CHAR-001 - No adjacent default-party identity table established
 
 - **Question:** Does the supported executable contain either disc character

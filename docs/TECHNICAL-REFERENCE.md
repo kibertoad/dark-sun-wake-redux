@@ -157,6 +157,9 @@ rejecting unsupported semantics:
 - `EXE-GOG-SMALLTAG-001` finds no literal executable loader lead for `GREQ`,
   `CACT`, `PLYL`, or `CSEQ`; absence does not assign those opaque families a
   runtime role.
+- `EXE-GOG-PREF-001` finds one raw `PREF` tag literal but no direct reference;
+  it supplies no Preferences loader, settings schema, default, or control
+  behavior.
 - `GPLI` #1 is an exact 329-by-24-byte opaque data envelope. No literal GPLI
   tag exists in the analyzed executable, so no lookup role is assumed.
 - `ITEMS.BIN` is a verified 234-pair envelope. `DSUN.EXE` contains no literal
