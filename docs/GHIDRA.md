@@ -363,6 +363,9 @@ proof by itself. Never redirect broad output into the repository.
 - **Implementation consequence:** the runtime continues to use #9258 only for
   the separately observed cursor-eligibility boundary. A combat transition
   requires an independent state or call-path lead, or a controlled observation.
+  `DATA-GOG-ACTOR-002` independently rejects its four neutral OJFF words as
+  direct `SCMD` identifiers and records why matching `RDFF`/`OJFF`/`BMP `
+  numbers cannot be treated as a semantic substitute.
 
 ### EXE-GOG-COMBAT-001 - Combat hotkey dispatch is not a direct shared literal table
 

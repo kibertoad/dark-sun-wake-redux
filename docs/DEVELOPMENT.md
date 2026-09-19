@@ -61,6 +61,7 @@ dotnet run --project tools/DarkSunWakeRedux.Inspect -- gff "C:\path\to\RESOURCE.
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- resource-inventory "C:\path\to\RESOURCE.GFF"
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- pair-resource-overlap "C:\path\to\ITEMS.BIN" "C:\path\to\OBJEX.GFF" OJFF
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- object-word-overlap "C:\path\to\OBJEX.GFF" OJFF "C:\path\to\ITEMS.BIN"
+dotnet run --project tools/DarkSunWakeRedux.Inspect -- object-record-overlap "C:\path\to\OBJEX.GFF" 9258 SCMD
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- image-catalog "C:\path\to\RESOURCE.GFF"
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- ui-catalog "C:\path\to\RESOURCE.GFF"
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- font-catalog "C:\path\to\RESOURCE.GFF"

@@ -210,6 +210,31 @@
   camera translation, rectangle-edge visibility, anchor constants, pack
   inventory verification, and owned no-window content smoke.
 
+### DATA-GOG-ACTOR-002 - First hostile raw words do not identify a script
+
+- **Question:** Do the four neutral 16-bit words in the first observed hostile
+  Tyr frame, OJFF #9258, directly name a same-archive scripted-command resource
+  that could identify a combat transition?
+- **Method:** The metadata-only `object-record-overlap` inspector validates the
+  one requested OJFF record and its image reference through the existing bounded
+  reader, then tests each raw-word position only for membership in an explicit
+  `OBJEX.GFF` tag namespace. It emits the object number, namespace count, and
+  four offset/match booleans, never source words, images, or records. Inspect
+  #9258 against `SCMD`, with `RDFF`, `OJFF`, and `BMP ` as same-archive numeric
+  namespace controls.
+- **Finding:** none of the four raw-word positions matches any of the 538
+  `SCMD` resource numbers. Offsets 0 and 10 match each of the `RDFF`, `OJFF`,
+  and `BMP ` number sets, while offsets 6 and 8 match none of those sets. The
+  repeated control matches demonstrate overlapping numeric namespaces rather
+  than a tag-specific relationship.
+- **Confidence:** high for the requested-record envelope, tag counts, and
+  four boolean results in GOG-1432903719; unknown for every raw-word meaning
+  and whether any separate resource or runtime data drives the hostile.
+- **Implementation consequence:** OJFF #9258 remains only the separately
+  observed cursor-eligibility target. No `SCMD` relationship, combat state,
+  target property, or encounter behavior is introduced from this query; a
+  transition still requires an independent call-path or controlled observation.
+
 ### DATA-GOG-TITLE-001 - Title image resource mapping
 
 - **Question:** Which resource and palette form the static game-title image?
