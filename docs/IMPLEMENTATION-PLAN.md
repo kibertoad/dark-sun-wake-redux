@@ -687,6 +687,11 @@ corroboration, not proof.
 `OBS-GOG-PARTY-001` records the bounded result and leaves
 `ShippedPartyUnresolved` in place.
 
+The follow-up `EXE-GOG-CHAR-006` query found none of the four exact
+NUL-terminated observed names in the fingerprinted executable. This rules out
+only a simple hardcoded-name selector; it does not identify a loader or change
+the unresolved boundary.
+
 ## Risks
 
 - **Unknown containers.** The observed installation contains `.GFF`, `.FLI`,

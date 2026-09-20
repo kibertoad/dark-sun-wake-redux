@@ -1338,6 +1338,33 @@ proof by itself. Never redirect broad output into the repository.
   S0-S2 startup observation or an independently corroborated main-executable
   state trace remains required.
 
+### EXE-GOG-CHAR-006 - Observed party names are not hardcoded native selector strings
+
+- **Question:** Does the supported executable embed one of the exact
+  NUL-terminated names visible in the owner-confirmed supplied-party captures,
+  providing a direct static selector lead?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. A fresh disposable
+  project completed Ghidra's default auto-analysis before the focused queries.
+- **Method:** `ReportBytePattern` searched every loaded memory block,
+  individually and with its 100-match cap, for the exact ASCII-plus-NUL
+  encodings of `Ar'Anda`, `Terrannus`, `Thy'rokh`, and `Gerakis`.
+  The query would enumerate direct references for each raw match.
+- **Bounded finding:** none of the four patterns occurs in the loaded program
+  image. Consequently this query yields no raw string address, direct
+  reference, loader, resource lookup, or START GAME selection path.
+- **Interpretation:** this excludes only an exact NUL-terminated hardcoded-name
+  representation in this executable. It does not exclude name data in
+  `CHARSAVE.GFF`, a differently encoded or non-NUL representation, constructed
+  text, indirect/resource-derived selection, another executable, or a runtime
+  table. It does not identify a default-party member record.
+- **Confidence:** high for the four absent raw patterns in this fingerprinted
+  loaded image; unknown for archive loading and supplied-party selection.
+- **Implementation consequence:** retain `ShippedPartyUnresolved`; do not use
+  the observed names, their displayed order, or this negative query to create a
+  four-member default table.
+
 ### EXE-GOG-GPLDATA-001 - literal GPL archive name has no direct reference
 
 - **Question:** Does the supported executable expose a direct static loader
