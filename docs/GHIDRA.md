@@ -1858,6 +1858,32 @@ proof by itself. Never redirect broad output into the repository.
   the files as opaque local assets until a bounded consumer path and controlled
   observation establish the supported subset and its CPU-independent schedule.
 
+### EXE-GOG-SOUND-003 - Sound helper has no loaded BIOS-wait instruction
+
+- **Question:** Does the separately shipped sound helper contain a literal
+  `INT 15h` instruction that could select the BIOS wait service and provide a
+  direct audio-delay or playback-clock lead?
+- **Target:** GOG-1432903719 `SOUND_DS.EXE`, reverified at 204,593 bytes with
+  SHA-256 `50e10670f18e26f0e22e94a73d7469ed7d39afb2b2c2bf8139dbb3cb927110c6`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** `ReportBytePattern` searched every loaded program-memory block
+  for the exact two-byte `INT 15h` encoding `cd 15`. The query intentionally
+  used a no-analysis import because raw loaded-memory presence is sufficient
+  for this bounded opcode question.
+- **Bounded finding:** no loaded-memory occurrence exists.
+- **Interpretation:** this excludes a literal BIOS-interrupt-15 path in the
+  helper's loaded image, including a directly encoded `AH=86h` BIOS wait call.
+  It does not exclude other interrupts, port I/O, busy loops, a driver, a
+  constructed/runtime-generated path, or code held only in the physical-file
+  overlay; it establishes no decoder, device, duration, sample-rate, or
+  player-visible audio timing behavior.
+- **Confidence:** high for the loaded-image opcode absence; unknown for all
+  helper timing and playback semantics.
+- **Implementation consequence:** do not reproduce a DOS wait loop or derive
+  audio timing from this absence. Retain an explicit CPU-independent monotonic
+  schedule until a bounded consumer path and controlled playback observation
+  establish one.
+
 ### EXE-GOG-TITLE-002 - No co-located direct title-image loader literal
 
 - **Question:** Does the supported executable contain one recovered function
