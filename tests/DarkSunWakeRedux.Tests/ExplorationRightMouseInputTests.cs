@@ -46,6 +46,20 @@ public sealed class ExplorationRightMouseInputTests
     }
 
     [Fact]
+    public void ReversedSubpixelDragDoesNotEmitAnInvalidZeroPan()
+    {
+        var input = new ExplorationRightMouseInput();
+        input.Update(true, true, new(100, 80));
+
+        Assert.Equal(1, input.Update(true, true, new(99, 80))!.DeltaX);
+        Assert.Equal(1, input.Update(true, true, new(98, 80))!.DeltaX);
+        Assert.Equal(1, input.Update(true, true, new(97, 80))!.DeltaX);
+
+        Assert.Null(input.Update(true, true, new(98, 80)));
+        Assert.Null(input.Update(true, false, new(98, 80)));
+    }
+
+    [Fact]
     public void ExtremePointerCoordinatesSaturateInsteadOfWrappingPanDeltas()
     {
         var input = new ExplorationRightMouseInput();

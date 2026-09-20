@@ -57,9 +57,11 @@ public sealed class ExplorationRightMouseInput
         _previousPointer = logicalPointer;
         if (deltaX == 0 && deltaY == 0) return null;
         _dragged = true;
-        return ExplorationCommand.Pan(
-            Scale(-deltaX, ref _remainderX),
-            Scale(-deltaY, ref _remainderY));
+        var panX = Scale(-deltaX, ref _remainderX);
+        var panY = Scale(-deltaY, ref _remainderY);
+        return panX == 0 && panY == 0
+            ? null
+            : ExplorationCommand.Pan(panX, panY);
     }
 
     private static int Scale(long delta, ref int remainder)
