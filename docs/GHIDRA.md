@@ -1492,6 +1492,9 @@ proof by itself. Never redirect broad output into the repository.
   `ReportFunctionScalarIntersection` queried GPL #135 together with the two
   little-endian 16-bit halves of the literal GPL tag (`0x4c50`, `0x2047`) to
   test the narrow direct-loader hypothesis for the measured first dialogue.
+  A final `ReportReferences`/`ReportInstructionContext` pair enumerated the
+  decoded direct callers of the guarded processing helper at `172c:00a1` and
+  classified its one recovered call-site argument setup.
 - **Bounded finding:** function `172c:04cf` rejects a sentinel first argument
   and every selector other than 1 or 2. It assigns `GPL ` for selector 1 and
   `MAS ` for selector 2, searches a fixed 16-entry cache, and either reuses a
@@ -1516,8 +1519,11 @@ proof by itself. Never redirect broad output into the repository.
   cannot establish a live scheduler, script execution, or call order. This
   establishes 50-slot storage, rollover, and a LIFO pop shape, but not a live
   consumer; in particular, it does not establish that the call's second
-  argument is recorded. A separate coherent chain begins at `172c:00a1`: after
-  its nonzero first argument and resident-state guards, it calls `172c:0299`,
+  argument is recorded. A separate coherent chain begins at `172c:00a1`: its
+  sole decoded direct caller is `172c:000c`, which forwards three caller
+  parameters and a resident byte into the helper rather than a literal resource
+  identity. After its nonzero first-argument and resident-state guards, it
+  calls `172c:0299`,
   then repeatedly processes work while its fourth argument is no greater than
   the counter and the same state byte remains zero. Each iteration calls
   `172c:20f5`, which obtains a counter-derived byte through `172c:2805` and

@@ -213,8 +213,9 @@ rejecting unsupported semantics:
 - GPL/MAS use distinct selected source families, a bounded native cache, and a
   shared processing path. No function co-locates the known first-dialogue GPL
   #135 identity with the literal GPL tag construction, so that script has no
-  direct static loader lead. Static evidence does not license general GPL opcode
-  execution.
+  direct static loader lead. The guarded processing helper's sole decoded
+  direct caller forwards parameters and resident state, not a literal resource
+  identity. Static evidence does not license general GPL opcode execution.
 - `EXE-GOG-EVENT-001` establishes a mutable, linked runtime 13-byte selector
   record with a 2,600-byte entry-flow clear and deterministic link setup,
   multiple predicate traversals, a guarded `GPL ` resource-request path, and a
