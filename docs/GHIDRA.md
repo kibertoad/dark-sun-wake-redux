@@ -190,13 +190,17 @@ proof by itself. Never redirect broad output into the repository.
   then tests/calls `0xf9` at `08aa`/`08b7`. A whole-program structure-offset
   query found only those reads, the registry clears, and generic setters at
   `3a8e:0d0c`/`0d3c`; the sole direct activation caller is the registered-window
-  scan at `3a8e:1048` (`107a`).
+  scan at `3a8e:1048` (`107a`). Follow-up direct-reference queries find no
+  recovered caller of the generic registration entry `3a8e:02b3` or either
+  generic callback setter. Those routines therefore cannot supply a bounded
+  application registration path for this surface or for Preferences controls.
 - **Interpretation:** the serialized graph establishes one application surface,
   not the internal party-slot rectangles or their actions. Those semantics are
   installed or dispatched indirectly at runtime and remain unknown; panel art
   alone is insufficient evidence for hit boundaries.
 - **Confidence:** high for the serialized surface, generic callback lifecycle,
-  and absence of the two direct scalar constants; unknown for the application
+  absent direct callers of the three registration/setter entry points, and
+  absence of the two direct scalar constants; unknown for the application
   callback and slot partition.
 - **Implementation consequence:** validate the exact 319x199 exclusive surface
   from DSUI and keep it semantically inert until controlled observation or a

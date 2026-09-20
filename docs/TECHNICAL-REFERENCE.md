@@ -152,6 +152,10 @@ text table, including all nine centered About strings, or two tested control
 pairs to a handler. This does not prove that the controls are inactive: their
 dispatch may be resource-driven or calculated. It does prevent treating those
 literal values as evidence for an implementation or an About modal route.
+Follow-up reference queries also find no recovered direct caller of the generic
+window-registration entry or its two generic callback setters. That prevents
+using the generic UI framework as an identified Preferences registration path;
+it does not prove that native callbacks or settings behavior are absent.
 `PREF` #100 is a single nine-byte envelope in `CHARSAVE.GFF`; it provides no
 field layout or connection to the in-game screen. The sole raw `PREF` tag also
 has no direct executable reference, so neither source establishes settings
