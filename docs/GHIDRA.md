@@ -1561,6 +1561,48 @@ proof by itself. Never redirect broad output into the repository.
   layout to native presentation parity without an independent consumer path and
   controlled observation.
 
+### EXE-GOG-IMAGE-002 - Bounded native BMP/CBMP cache and window-image paths
+
+- **Question:** What direct native resource boundaries use the source `BMP `
+  tag, and do they connect the verified static-title image to a title sequence?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** `ReportBytePattern` searched every loaded block for the exact
+  four-byte ASCII `BMP ` encoding. `ReportInstructionContext` bounded the
+  three decoded tag assignments, and `ReportReferences` enumerated direct
+  callers of their containing functions. One 100-line window per function
+  classified only its immediate tag-aware request/cache shape. The two raw data
+  occurrences were not treated as code. `EXE-GOG-TITLE-002` independently
+  supplies the #11011 scalar and co-location negative checks.
+- **Bounded finding:** six raw matches exist. Three are decoded assignments:
+  `2c5f:03f1` has one direct caller (`2c5f:06cb`) and reaches a tag-aware
+  request path; `31e0:3568`, with one direct caller (`31e0:3388`), selects
+  `BMP ` or `CBMP` from a caller flag and maintains an observed cache capped at
+  300 entries of 16 bytes before requesting the selected tag; and `3cfa:0006`
+  requests `BMP ` for one of two nonzero resident source values before a
+  follow-on validation path. The latter has three direct callers, including
+  the previously bounded generic window-registration function `3a8e:02b3`.
+  The remaining two matches, `5000:b116` and `5000:b11d`, are data and have no
+  Ghidra-recorded direct references.
+- **Interpretation:** the executable has distinct bounded native image-family
+  selection/cache and generic window-image request boundaries. It corroborates
+  the existing defensive support for both `BMP ` and `CBMP` payloads, but does
+  not identify cache ownership, the meanings of resident fields, any resource
+  selected by an application screen, image draw order, composition, palette,
+  title ownership, transition, or clock. In particular, #11011 is not a
+  decoded instruction scalar and no observed caller links this cache to the
+  title asset.
+- **Confidence:** high for the six raw matches, three decoded assignments,
+  direct-caller counts, 300-entry/16-byte cache shape, tag selection, and the
+  generic window-registration adjacency; unknown for all image semantics and
+  player-visible presentation.
+- **Implementation consequence:** retain the generic bounded `BMP `/`CBMP`
+  decoder and lossless source mapping. Do not add a native cache simulation,
+  title sequence, image scheduler, or window composition rule from this
+  boundary; each needs a screen-specific consumer path and controlled
+  observation.
+
 For each useful finding, add a concise entry here or in the relevant
 `docs/RULES-AND-EVIDENCE.md` / `docs/ORIGINAL-FORMATS.md` section with:
 
