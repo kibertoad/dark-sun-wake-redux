@@ -1538,17 +1538,24 @@ proof by itself. Never redirect broad output into the repository.
   `ReportFunctionScalarIntersection` script scanned every recovered function's
   scalar operands for decimal `100` (the bounded owned interface font),
   `0x4f46` (`FO`), and `0x544e` (`NT`). It reports only a function containing
-  every requested scalar.
+  every requested scalar. `ReportBytePattern` then searched all loaded blocks
+  for the explicit four-byte `FONT` spelling; `ReportReferences` checked each
+  bounded raw match, and `ReportInstructionContext` confirmed neither match is
+  contained in a decoded instruction.
 - **Bounded finding:** no recovered function contains all three requested
-  scalars. The query supplies no direct interface-font request, font loader,
-  glyph loop, text placement, palette selection, or screen-rendering boundary.
+  scalars. The raw byte search finds exactly two data occurrences,
+  `3000:9e09` and `5000:b0b4`; neither has a Ghidra-recorded direct reference
+  or a containing instruction. Together, these queries supply no direct
+  interface-font request, font loader, glyph loop, text placement, palette
+  selection, or screen-rendering boundary.
 - **Interpretation:** this rules out only that co-located literal
   representation in the analyzed executable. A font can still be selected
   indirectly, constructed, transferred through resident state, or handled by
   another module. The result neither proves the font is unused nor assigns its
   line spacing, alignment, clipping, or any text resource to a screen.
-- **Confidence:** high for the exact bounded no-co-location result; unknown
-  for font selection, glyph rendering, spacing, palette, and layout behavior.
+- **Confidence:** high for the exact bounded no-co-location and raw-match/
+  no-direct-reference results; unknown for font selection, glyph rendering,
+  spacing, palette, and layout behavior.
 - **Implementation consequence:** retain the bounded DSFT extraction and
   encoding-neutral composition helpers, but do not promote their spacing or
   layout to native presentation parity without an independent consumer path and

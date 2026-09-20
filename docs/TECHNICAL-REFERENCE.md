@@ -242,7 +242,8 @@ rejecting unsupported semantics:
   both correctly ordered tag words. These bounded negative results supply no
   title loader or sequencing rule.
 - `EXE-GOG-FONT-002` finds no recovered function combining interface `FONT`
-  #100 with both literal tag words. It supplies no font-selection, glyph,
+  #100 with both literal tag words. Its two raw `FONT` data occurrences have
+  no recorded direct references. These facts supply no font-selection, glyph,
   spacing, palette, or screen-layout rule.
 - `EXE-GOG-CHAR-003` finds no direct literal-tag lead for the character
   archive: raw `CHAR` bytes have no direct references and `PSIN` is absent.
