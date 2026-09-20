@@ -211,9 +211,12 @@ public sealed class ExplorationSession
 
     private ExplorationSnapshot MoveCamera(int deltaX, int deltaY) => _snapshot with
         {
-            CameraX = Math.Clamp(_snapshot.CameraX + deltaX, 0, _maximumCameraX),
-            CameraY = Math.Clamp(_snapshot.CameraY + deltaY, 0, _maximumCameraY)
+            CameraX = ClampCameraCoordinate(_snapshot.CameraX, deltaX, _maximumCameraX),
+            CameraY = ClampCameraCoordinate(_snapshot.CameraY, deltaY, _maximumCameraY)
         };
+
+    private static int ClampCameraCoordinate(int coordinate, int delta, int maximum) =>
+        checked((int)Math.Clamp((long)coordinate + delta, 0, maximum));
 
     private ExplorationSnapshot CenterOn(int worldX, int worldY) => _snapshot with
     {

@@ -43,6 +43,21 @@ public sealed class ExplorationSessionTests
     }
 
     [Fact]
+    public void PanClampsExtremeDeltasWithoutWrappingOnLargeWorlds()
+    {
+        var maximum = int.MaxValue - 1;
+        var session = new ExplorationSession(int.MaxValue, int.MaxValue, 1, 1,
+            maximum, maximum);
+
+        var transition = session.Execute(ExplorationCommand.Pan(
+            int.MaxValue, int.MaxValue));
+
+        Assert.False(transition.Applied);
+        Assert.Equal((maximum, maximum),
+            (transition.After.CameraX, transition.After.CameraY));
+    }
+
+    [Fact]
     public void CyclesCursorModesInManualOrder()
     {
         var session = Session();
