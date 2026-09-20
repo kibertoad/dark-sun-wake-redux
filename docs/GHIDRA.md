@@ -1189,6 +1189,30 @@ proof by itself. Never redirect broad output into the repository.
   The raw-byte result is a bounded negative lead, not a generic string-analysis
   absence claim and not permission to infer item behavior.
 
+### EXE-GOG-ITEMS-003 - SVIEW has no direct item-table filename lead
+
+- **Question:** Does the separately shipped viewer utility embed either the
+  exact `ITEMS.BIN` filename or a null-terminated `ITEMS` stem that could
+  identify an item-data loader?
+- **Target:** GOG-1432903719 `SVIEW.EXE`, reverified at 89,061 bytes with
+  SHA-256 `19ee90abdb4bdbd618bd47f8bf1f988d86e16ee3fbed81bf56a6a7993968dcef`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. A full analyzer
+  pass completed before the focused queries.
+- **Method:** `ReportBytePattern` searched every loaded memory block first for
+  exact ASCII bytes `49 54 45 4d 53 2e 42 49 4e` and then for the explicit
+  null-terminated stem `49 54 45 4d 53 00`.
+- **Bounded finding:** neither pattern exists in loaded memory.
+- **Interpretation:** this rules out only the two queried literal forms in the
+  viewer utility. It does not establish whether another executable, a
+  constructed/indirect name, or a data-layer path reads the table, and does not
+  assign a pair-field role or item, equipment, inventory, or combat behavior.
+- **Confidence:** high for the two absent raw-byte representations; unknown
+  for item-data loading, utility ownership, table-field roles, and all item
+  semantics.
+- **Implementation consequence:** retain `ITEMS.BIN` as an unparsed source.
+  This is a bounded negative lead, not a statement that the utility or game
+  cannot access item data indirectly.
+
 ### EXE-GOG-CHAR-002 - CHARSAVE filename strings do not identify a party loader
 
 - **Question:** Does an embedded `CHARSAVE.GFF` filename identify an executable
