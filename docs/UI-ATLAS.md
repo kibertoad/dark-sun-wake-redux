@@ -20,6 +20,15 @@ independently written measurements and diagrams.
 | Game menu, Preferences, and overhead map | Tab opens Game Menu; O opens map; Escape closes an active menu and requests exit from play | `WIND` #10500 and `BMP ` #10000 are 210x116; 14 controls form exact 4/5/5 rows. Preferences `WIND` #16500 reuses the same 210x116 base and contains two APFM plus 13 exact controls corroborated by manual page 15; both graphs omit a canvas origin, so centered (55,42) placement is provisional; setting ranges, frame states, description text, map drawing, exact center policy, and confirmation flow remain unknown | both authentic panels and first-frame icons render over Tyr; reusable DSUI page objects supply absolute hit rectangles. Game Menu routes character/inventory/cast/effects/Preferences/map, Walk/Look/Attack, Return, Center on Leader, Collapse Party, and clean Exit; Preferences routes Game Menu and Return while unevidenced setting mutations remain inert; Load/Save remains pending |
 | Combat | Combat expands the party. The manual assigns Guard `G`, next target `N`, previous target `P`, end turn `Q`, Wait `W`, and Space to disable computer control; Walk attacks after approaching a selected opponent | owner-confirmed `dsun_010` depicts an enemy actor moving while the UI remains largely stable and its right-side statistics panel changes as movement points are spent; `dsun_011` visibly displays a red `11` damage-feedback glyph over the combat actor cluster. Movement-point scale/cost, distance/path/speed/collision, attacker, target, action, turn, range, hit resolution, timing, command layout, and exit remain unknown | deterministic Core command vocabulary and rising-edge hotkey mapping are implemented but deliberately unconnected until a combat state can resolve them from further evidence |
 
+Character-view graph detail: the 86-child WIND #11500 graph consists of 64
+APFM, one EBOX, and 21 BUTN records. Its root image-less frame is 320x189 at
+(0,0); the only EBOX is 95x8 at (153,28); the 136x108 image-less frame starts
+at (147,41); four image-less 34x34 frames occupy (53,30), (104,30), (53,90),
+and (104,90). Two groups of image-less 18x18 frames form 7-by-3 and 7-by-2
+grids spanning x=148..280. The 320x200 captures establish the visible
+character-view composition, but no static record attaches a field, item,
+portrait, interaction, or generic widget treatment to any of these controls.
+
 Third-menu status clarification: target 3686 clears local flag 17 and sets flag
 18; target 3786 then clears flag 18. Both return, are dispatched by target, and
 present bounded projected output. Target 3976 clears flag 8, conditionally sets

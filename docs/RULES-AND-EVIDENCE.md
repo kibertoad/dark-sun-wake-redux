@@ -716,6 +716,17 @@
   `(163,181)`, `(187,181)`, `(211,181)`, `(235,181)`, and `(288,181)` over the
   320x200 `BMP ` #13001 inventory shell. The shared identities preserve View
   Character, View Inventory, Cast/Use Psionics, Current Effects, and Return.
+  A follow-up compact catalog inspection resolves its full structural
+  composition: 64 APFM, one EBOX, and 21 BUTN records. Image-less APFM #11200
+  covers the complete 320x189 logical area at (0,0) with event mask 70. The
+  only EBOX, #4003, is 95x8 at (153,28) with event mask 10; APFM #11269 is
+  136x108 at (147,41). Four image-less 34x34 APFMs occur at (53,30),
+  (104,30), (53,90), and (104,90). The graph also contains 7-by-3 and
+  7-by-2 groups of 18x18 image-less APFMs spanning x=148..280 at y=42..82
+  and y=109..129, plus six 98x5 frames at x=43. Those measurements establish
+  geometry only; their field, slot, focus, or chrome meanings remain unknown.
+  Adjacent 28x16 BUTN #11308 at (223,155) is structurally present but has no
+  established action.
 - **Confidence:** verified for resource identity, geometry, image decoding,
   graph membership, and shared navigation semantics; character/inventory
   association is high from resource-family structure, artwork, and manual
@@ -731,7 +742,8 @@
   synthetic transactional extraction, complete owned graph counts, pack
   verification, and no-window content smoke.
 - **Uncertainty:** Character fields, inventory objects and transfers, party
-  selection, interior actions, and native focus/hover/press frames remain open.
+  selection, the 81 uninterpreted #11500 controls, interior actions, and native
+  focus/hover/press frames remain open.
 
 ### OBS-GOG-UI-001 - Cast and Current Effects stable screens
 
