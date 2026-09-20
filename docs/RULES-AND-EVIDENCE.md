@@ -832,9 +832,10 @@
   assembled path, another configuration-owning module, or runtime state
   propagation.
   `EXE-GOG-SOUND-005` separately finds neither lowercase nor uppercase `.adv`
-  suffix bytes in the loaded sound-helper image. This excludes only those
-  literal loaded-memory encodings; it does not connect the two configuration
-  identifiers to the helper or give them a driver-selection role.
+  suffix bytes anywhere in the complete physical sound-helper file, including
+  its MZ overlay. This excludes only those exact literal encodings; it does not
+  connect the two configuration identifiers to the helper or give them a
+  driver-selection role.
 - **Uncertainty:** source versus runtime ownership, module-selection semantics,
   every scalar-field role, interaction with `SOUND.INI`/`SOUND_DS.EXE`, device
   detection, mixer defaults, voice/music routing, codecs, and playback timing.

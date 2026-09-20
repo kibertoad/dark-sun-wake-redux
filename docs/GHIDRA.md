@@ -1923,17 +1923,21 @@ proof by itself. Never redirect broad output into the repository.
 - **Method:** `ReportBytePattern` searched every loaded program-memory block
   for both four-byte ASCII case variants `2e 61 64 76` (`.adv`) and
   `2e 41 44 56` (`.ADV`). Either query would report raw hits and direct
-  references.
-- **Bounded finding:** neither case-variant occurs in the loaded helper image.
-  The queries therefore yield no literal suffix, direct reference, driver
-  filename construction, configuration read, module load, or Preferences path.
+  references. Because the MZ loader reports a 0x13951-byte physical overlay,
+  a separate PowerShell 5.1.26100.9444 bounded scan reverified the exact file
+  fingerprint, read the complete 204,593-byte physical file, and reported only
+  count and offset for those same two patterns; no source bytes were retained.
+- **Bounded finding:** neither case-variant occurs in either the loaded helper
+  image or the complete physical file, including its overlay. The queries
+  therefore yield no literal suffix, direct reference, driver filename
+  construction, configuration read, module load, or Preferences path.
 - **Interpretation:** this excludes only the two exact raw suffix encodings in
-  the helper's loaded memory. A complete module name or suffix can be supplied
-  by a caller, copied from an overlay or data file, constructed dynamically,
-  delegated to a driver, or unused. The result neither assigns the two
-  `SOUND.CFG` identifiers a role nor establishes helper ownership.
-- **Confidence:** high for both exact loaded-image literal absences; unknown
-  for configuration ownership, driver selection, device setup, and all audio
+  the helper's complete physical file. A complete module name or suffix can be
+  supplied by a caller, constructed dynamically, delegated to a driver, or
+  unused. The result neither assigns the two `SOUND.CFG` identifiers a role nor
+  establishes helper ownership.
+- **Confidence:** high for both exact full-file literal absences; unknown for
+  configuration ownership, driver selection, device setup, and all audio
   behavior.
 - **Implementation consequence:** retain `SOUND.CFG` as opaque DSOP and keep
   Preferences mutations inert. Do not add a driver-selection reader or map

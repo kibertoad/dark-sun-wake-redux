@@ -87,9 +87,9 @@ are:
   nor the separately shipped sound helper contains its literal pathname; the
   main executable also has no literal `SOUND.INI` pathname. This is not
   evidence of configuration ownership or Preferences behavior. Neither
-  case-variant of the configuration file's `.adv` module suffix occurs in the
-  helper's loaded image, which likewise does not establish module ownership or
-  driver-selection behavior.
+  case-variant of the configuration file's `.adv` module suffix occurs anywhere
+  in the helper's complete physical file, including its overlay, which likewise
+  does not establish module ownership or driver-selection behavior.
 
 ## Current runtime boundary
 
