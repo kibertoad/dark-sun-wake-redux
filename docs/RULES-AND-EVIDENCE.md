@@ -740,6 +740,11 @@
   click route. Direct native scalar probes for #11308, the separately
   established Return #10308, and the three nonzero-event buttons
   #11318/#11319/#11320 identify no handler literal.
+  `EXE-GOG-UI-010` independently bounds an eight-entry executable label table
+  whose vocabulary starts with View Character, View Inventory, Cast Spells/Use
+  Psionic, and Current Spell Effects, but has no direct reference to this
+  window or to the first label. It corroborates the finite UI vocabulary and
+  ordering only, not a field projection, title renderer, or activation route.
 - **Confidence:** verified for resource identity, geometry, image decoding,
   graph membership, and shared navigation semantics; character/inventory
   association is high from resource-family structure, artwork, and manual

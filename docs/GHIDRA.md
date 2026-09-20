@@ -1475,6 +1475,41 @@ proof by itself. Never redirect broad output into the repository.
   character-view Game Menu route without a controlled native trace or an
   independent bounded activation path.
 
+### EXE-GOG-UI-010 - Character/destination label table is bounded but unlinked
+
+- **Question:** Does the exact native `VIEW CHARACTER` title text identify a
+  direct screen-construction or field-rendering path?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, JDK 21.0.12.1, and the previously completed default
+  auto-analysis.
+- **Method:** `ReportBytePattern` searched all loaded memory for the exact
+  NUL-terminated ASCII pattern for `VIEW CHARACTER`, finding one raw match.
+  `ReportDataBytes` then inspected the bounded 256-byte neighborhood at
+  `5000:ab20`; `ReportReferences` queried both that apparent table base and
+  the found text address.
+- **Bounded finding:** `VIEW CHARACTER` occurs once at `5000:ab59`. Eight
+  adjacent far pointers at `5000:ab20` target, in order, `VIEW CHARACTER`,
+  `VIEW INVENTORY`, `CAST SPELL/USE PSIONIC`, `CURRENT SPELL EFFECTS`,
+  `MEMORIZE SPELLS`, `HIT POINTS: CURRENT/MAX`, `PSIONIC POINTS:
+  CURRENT/MAX`, and `CURRENT STATUS`. The two preceding standalone strings
+  are `GAME MENU` and `RETURN TO GAME`. Ghidra reports no inbound direct
+  reference to either `5000:ab20` or `5000:ab59`.
+- **Interpretation:** the bounded data establishes a finite native UI
+  vocabulary and local pointer order. It does not show which window consumes
+  it, whether these labels ever render as text rather than resource artwork,
+  a field layout, a value source, a button route, or an activation path.
+  Indirect tables, relocated pointers, another module, and runtime state
+  remain possible.
+- **Confidence:** high for the one raw match, the eight pointers and their
+  printable targets, the adjacent standalone labels, and the two absent
+  direct-reference results; unknown for all screen ownership and behavior.
+- **Implementation consequence:** retain the independently measured source
+  windows, icon mappings, and title artwork. Do not turn this vocabulary into
+  destination-field rendering, a text asset contract, or control semantics
+  until an independent data/native path or controlled observation establishes
+  the consuming screen.
+
 ### EXE-GOG-GPLDATA-001 - literal GPL archive name has no direct reference
 
 - **Question:** Does the supported executable expose a direct static loader
