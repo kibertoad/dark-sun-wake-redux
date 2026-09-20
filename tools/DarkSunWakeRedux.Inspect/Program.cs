@@ -2,6 +2,36 @@ using System.Security.Cryptography;
 using System.Text.Json;
 using DarkSunWakeRedux.Resources;
 
+if (args.Length == 3 && args[0].Equals("resource-pattern", StringComparison.OrdinalIgnoreCase))
+{
+    try
+    {
+        var archivePath = Path.GetFullPath(args[1]);
+        await using var stream = File.OpenRead(archivePath);
+        var archive = GffArchive.Read(stream, archivePath);
+        var matches = GffResourcePatternLocator.FindAscii(archive, args[2]);
+        Console.WriteLine(JsonSerializer.Serialize(new
+        {
+            archivePath,
+            matchCount = matches.Count,
+            matches = matches.Select(match => new
+            {
+                match.Tag,
+                resourceNumber = match.ResourceNumber,
+                resourceSize = match.ResourceSize,
+                patternOffset = match.PatternOffset
+            })
+        }, new JsonSerializerOptions { WriteIndented = true }));
+        return 0;
+    }
+    catch (Exception exception) when (exception is InvalidDataException or IOException or
+                                      UnauthorizedAccessException or ArgumentException)
+    {
+        Console.Error.WriteLine($"[resource_pattern_unavailable] {exception.Message}");
+        return 2;
+    }
+}
+
 if (args.Length is 6 or 7 && args[0].Equals("image-preview", StringComparison.OrdinalIgnoreCase))
 {
     try
@@ -590,6 +620,7 @@ if (args.Length != 1 || !Directory.Exists(args[0]))
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect image-preview <owned-original.gff> <tag; use _ for padded space> <image-number> <palette-number> [frame-index] <outside-repository.bmp>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect gff <owned-original.gff>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect resource-inventory <owned-original.gff>");
+    Console.Error.WriteLine("  DarkSunWakeRedux.Inspect resource-pattern <owned-original.gff> <printable-ascii-pattern>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect record-profile <owned-original.gff> <tag; use _ for padded space> <resource-number> <candidate-record-width>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect pair-resource-overlap <owned-pair-table> <owned-original.gff> <tag; use _ for padded space>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect object-word-overlap <owned-object.gff> <tag; use _ for padded space> [owned-pair-table]");

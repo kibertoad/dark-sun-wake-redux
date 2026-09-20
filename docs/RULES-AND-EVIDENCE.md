@@ -322,6 +322,32 @@
   target property, or encounter behavior is introduced from this query; a
   transition still requires an independent call-path or controlled observation.
 
+### DATA-GOG-RDFF-001 - Observed hostile label occurs in multiple opaque RDFF resources
+
+- **Question:** Does the exact hostile Look-panel label measured in
+  `DATA-GOG-INTERACTION-001` identify one source resource that can safely
+  project the observed target's dynamic name, level, or capabilities?
+- **Method:** `GffResourcePatternLocator` uses the existing bounded
+  `GffArchive` reader to search a caller-supplied printable ASCII pattern and
+  return only tag, resource number, resource size, and first relative offset.
+  It caps patterns at 128 characters and results at 1,024 resources. Run it on
+  the fingerprinted `OBJEX.GFF` for the measured label, then compare the
+  observed OJFF #9258 only through the existing metadata-only namespace probe.
+- **Finding:** the pattern occurs in aggregate `ALL ` #2 (18,522 bytes, offset
+  3,611) and in 23 distinct `RDFF` resources. Every `RDFF` match begins at
+  relative offset 43; their record sizes are 277, 310, or 343 bytes. OJFF
+  #9258's neutral words still match only the broad `RDFF` namespace at offsets
+  0 and 10, exactly as they also match `OJFF` and `BMP ` namespaces. The data
+  does not select any one of the 23 matching records, establish a record
+  layout, or associate the observed OJFF with a label-bearing RDFF resource.
+- **Confidence:** high for the bounded occurrence count, tags, offsets, and
+  size set in GOG-1432903719; unknown for every RDFF field, aggregation role,
+  target association, and general interaction presentation.
+- **Implementation consequence:** retain `RDFF` as lossless DSOP. Do not add a
+  reader, derive a hostile name/level/capability, or hard-code captured text.
+  A target-specific data relationship or a bounded native call path is required
+  before rendering the dynamic interaction fields.
+
 ### DATA-GOG-MONR-001 - MONR is not yet a monster or combat record format
 
 - **Question:** Does the sole `MONR` resource in the owned `RESOURCE.GFF`
