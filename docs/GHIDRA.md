@@ -1406,6 +1406,35 @@ proof by itself. Never redirect broad output into the repository.
   absence; seek a corroborating controlled observation or a bounded finding in
   the actual configuration-owning path.
 
+### EXE-GOG-SOUND-002 - Sound helper has no loaded VOC header signature
+
+- **Question:** Does the separately shipped sound helper expose a direct native
+  VOC decoder boundary by embedding the fixed `Creative Voice File` header
+  signature present in every owned voice/sound-effect file?
+- **Target:** GOG-1432903719 `SOUND_DS.EXE`, reverified at 204,593 bytes with
+  SHA-256 `50e10670f18e26f0e22e94a73d7469ed7d39afb2b2c2bf8139dbb3cb927110c6`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. A full analyzer
+  pass completed before this focused query.
+- **Method:** `ReportBytePattern` searched every loaded program-memory block
+  for the explicit 19-byte ASCII `Creative Voice File` signature. The search
+  did not reach its 100-match cap.
+- **Bounded finding:** the helper's loaded executable image has no occurrence
+  of the complete VOC signature. This query consequently found no direct
+  header comparison, decoder routine, codec selection, sample-rate transform,
+  timing conversion, or file-to-playback call path.
+- **Interpretation:** this excludes only a literal complete-header validation
+  lead in the loaded helper image. It does not prove that the helper cannot
+  play VOC data: validation may be partial, bytewise, constructed, delegated,
+  present only in its physical overlay, or absent. It assigns no meaning to a
+  VOC time constant or codec byte.
+- **Confidence:** high for the exact loaded-image signature absence; unknown
+  for every decoder, mixer, device, codec, sample-rate, routing, and timing
+  behavior.
+- **Implementation consequence:** do not adopt a standard VOC decoder or
+  derive sample rates/playback timing from the header envelope alone. Preserve
+  the files as opaque local assets until a bounded consumer path and controlled
+  observation establish the supported subset and its CPU-independent schedule.
+
 For each useful finding, add a concise entry here or in the relevant
 `docs/RULES-AND-EVIDENCE.md` / `docs/ORIGINAL-FORMATS.md` section with:
 

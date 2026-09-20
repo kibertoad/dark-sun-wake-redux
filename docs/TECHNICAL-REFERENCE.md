@@ -78,7 +78,9 @@ are:
   preserved. The executable contains raw numbered FLI names and CINE-directory
   path templates, but their inspected locations have no direct references, so
   names do not establish a loader, fallback, sequence, or timing policy. Those
-  media semantics remain opaque.
+  media semantics remain opaque. The loaded sound-helper image likewise has no
+  complete VOC header signature, so it establishes no decoder, codec, or timing
+  contract.
 - `SOUND.CFG` has a bounded 59-byte envelope, but neither the main executable
   nor the separately shipped sound helper contains its literal pathname. This
   is not evidence of configuration ownership or Preferences behavior.

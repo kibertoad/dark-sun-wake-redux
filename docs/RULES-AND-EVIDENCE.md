@@ -845,6 +845,9 @@
   `EXE-GOG-MEDIA-002` finds raw executable occurrences of every numbered FLI
   name and four CINE-directory templates, but no direct Ghidra reference to
   any inspected entry; it does not establish a loader, fallback, or sequence.
+  `EXE-GOG-SOUND-002` separately finds no complete VOC header signature in the
+  loaded sound-helper image, so it establishes no decoder, codec, or timing
+  contract.
 - **Implementation consequence:** no decoder, extractor entry, media mapping,
   or time-based runtime behavior is introduced yet. A future media reader must
   validate these fixed envelopes first, bound every subsequent record/chunk or
