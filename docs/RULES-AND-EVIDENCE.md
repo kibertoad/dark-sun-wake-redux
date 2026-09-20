@@ -172,8 +172,11 @@
   images and 477 frames, also no larger than 64x64.
 - **Confidence:** verified for record size, zero final word, reference integrity,
   image decoding, counts, and dimensions in GOG-1432903719; medium for the X/Y
-  offset names from corroborating research; unknown for the raw words, frame
-  animation, draw order, anchoring, collision, and interaction semantics.
+  offset names from corroborating research. `EXE-GOG-OJFF-001` independently
+  establishes two native tag-aware lookup paths, one adjacent to a 37-byte
+  indexed resident path, but does not read an OJFF field or establish any
+  object behavior. The raw words, frame animation, draw order, anchoring,
+  collision, and interaction semantics remain unknown.
 - **Implementation:** `DarkSunWakeRedux.Resources.GffObjectFrameCatalog`, the
   read-only `object-catalog` inspection command, and canonical transactional
   extraction of Tyr's bounded graph to `regions/tyr-objects.dsob`. DSOB retains

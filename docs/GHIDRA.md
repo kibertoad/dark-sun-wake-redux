@@ -1230,6 +1230,48 @@ proof by itself. Never redirect broad output into the repository.
 - **Implementation consequence:** retain `RDFF` as DSOP. Do not infer object,
   target, interaction, quest, or combat behavior from the shared indexed path.
 
+### EXE-GOG-OJFF-001 - OJFF has two bounded native lookup paths
+
+- **Question:** Does an explicit native `OJFF` tag path connect the bounded
+  object-frame records to a runtime actor, animation, collision, or interaction
+  role?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. A full analyzer
+  pass completed before this focused query.
+- **Method:** `ReportBytePattern` searched every loaded block for the explicit
+  four-byte ASCII encoding `OJFF`. `ReportInstructionContext` inspected both
+  assignments. `ReportReferences` enumerated direct callers of their containing
+  functions, and one bounded decompilation window per function classified only
+  the immediate tag-aware request/result path.
+- **Bounded finding:** exactly two coherent instructions select `OJFF`, both in
+  module `31e0`. The first is in `31e0:0eff`, which has three direct callers
+  (`31ba:000e`, `2d40:0589`, and `31e0:0121`). It supplies its caller-provided
+  signed 16-bit identity and the `OJFF` tag to the shared tag-aware lookup,
+  checks that lookup's result, and then continues through the already-recorded
+  `RDFF` conditional path while updating an indexed resident family at a
+  37-byte stride. The second, `31e0:426e`, supplies a caller-provided unsigned
+  16-bit identity and `OJFF` to the same lookup and reduces its result to a
+  success/failure return; it has no direct Ghidra caller. Neither bounded window
+  reads an OJFF field, chooses a bitmap frame, enumerates an animation, or
+  invokes a collision, interaction, dialogue, combat, or rendering handler.
+- **Interpretation:** the supported executable has a real native lookup
+  boundary for the `OJFF` resource family, adjacent to the previously observed
+  37-byte indexed-record path. It does not establish what any OJFF word means,
+  which resource identities belong to the opening actor, the owner of the
+  resident records, or any player-visible object behavior. The second function's
+  lack of a recovered direct caller is not evidence that it is unused.
+- **Confidence:** high for the two literal tag assignments, direct-call count,
+  supplied identity widths, immediate lookup-result handling, and the shared
+  37-byte-path adjacency; unknown for loader lifetime, cache ownership, record
+  semantics, frame selection, animation, placement, collision, interaction,
+  and all higher-level feature ownership.
+- **Implementation consequence:** retain `OJFF` as the bounded DSOB structural
+  catalog only. Do not add a generic native-object runtime, OJFF field names,
+  animation policy, collision rule, or interaction behavior from this loader
+  boundary. `DATA-GOG-ACTOR-001` remains the separate evidence for the one
+  opening leader image and anchor.
+
 ### EXE-GOG-SMALLTAG-001 - No direct literal loaders for four small families
 
 - **Question:** Do the small opaque `GREQ`, `CACT`, `PLYL`, or `CSEQ` GFF
