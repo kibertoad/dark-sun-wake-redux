@@ -1365,6 +1365,39 @@ proof by itself. Never redirect broad output into the repository.
   the observed names, their displayed order, or this negative query to create a
   four-member default table.
 
+### EXE-GOG-CHAR-007 - Contiguous class-label table has no direct role-selector lead
+
+- **Question:** Do the class labels visible in the confirmed character views
+  identify a direct native table or code reference that can map a `CHAR`
+  record's unknown fields to an on-screen role?
+- **Target:** GOG-1432903719 `DSUN.EXE`, 634,416 bytes, SHA-256
+  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3 with the previously completed default auto-analysis.
+- **Method:** `ReportBytePattern` located the exact NUL-terminated
+  PRESERVER, CLERIC, FIGHTER, and GLADIATOR label encodings from the four
+  owner-confirmed character views. `ReportDataBytes` inspected the bounded
+  96-byte span beginning at the first located label, and
+  `ReportReferences` inspected each of the four raw-label addresses.
+- **Bounded finding:** the 64-byte span at `5000:908c` through
+  `5000:90cb` holds exactly eight adjacent NUL-terminated labels in this
+  order: Cleric, Druid, Fighter, Gladiator, Preserver, Psionicist, Ranger, and
+  Thief. The following bytes begin a separate adjacent stat-label family
+  (STR, DEX, CON, INT, WIS, CHR). Ghidra reports no inbound direct reference
+  to the four queried labels at `5000:908c`, `5000:9099`, `5000:90a1`,
+  and `5000:90ab`.
+- **Interpretation:** the span establishes the executable's finite class-label
+  vocabulary and its local serialized order. It does not establish that these
+  ordinal positions are `CHAR` field values, that the text is rendered on
+  the observed screen, or which code displays, chooses, or mutates a class.
+  An indirect pointer, constructed address, another executable, resource
+  data, or runtime state remains possible.
+- **Confidence:** high for the bounded labels, their order, the next-table
+  boundary, and the four absent direct-reference results; unknown for record
+  layout, UI ownership, and all class behavior.
+- **Implementation consequence:** retain the existing independently designed
+  class enum and evidence conflicts, but do not add a `CHAR` class-field
+  reader, default-party selector, or screen-data binding from this table.
+
 ### EXE-GOG-GPLDATA-001 - literal GPL archive name has no direct reference
 
 - **Question:** Does the supported executable expose a direct static loader
