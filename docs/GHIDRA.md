@@ -168,14 +168,19 @@ proof by itself. Never redirect broad output into the repository.
   offset `0x3a`. Registration resolves each child by its tag and identity;
   redraw restores/clips registered rectangles; activation invokes an optional
   callback and then dispatches the resolved children.
+- **Follow-up query:** ReportScalarConstants scanned every decoded instruction
+  operand for unsigned scalar 19004 and found no match. This excludes only a
+  directly encoded immediate resource-ID request; it does not exclude an
+  argument, resident value, indirect table, constructed identifier, or
+  app-specific path.
 - **Interpretation:** the generic WIND path does not establish `BMP` #19004 as
   an automatic tiled, stretched, or full-window background. The field may be
   consumed by screen-specific code or may serve another role. Both remain open.
 - **Corroboration:** all six start-flow WIND records carry #19004 although the
   observed start window instead composes `BMP` #20029, #20028, and four controls
   over black; #19004 itself is only 96x9.
-- **Confidence:** high for absence from the inspected generic path; unknown for
-  the field's actual presentation role.
+- **Confidence:** high for absence from the inspected generic path and the
+  bounded immediate-ID query; unknown for the field's actual presentation role.
 - **Implementation consequence:** preserve the resource identity in DSUI and
   the extracted DSIX asset, but do not tile, stretch, or draw it until an
   app-specific consumer or controlled observation establishes the operation.
