@@ -77,6 +77,14 @@ public sealed partial class StartupAssetExtractorTests
             10000, 55, 42, 210, 116), OriginalContent.GameMenuLayer);
         Assert.Equal(new UiLayerAsset("inventory", "images/exploration/inventory-base.dsix",
             13001, 0, 0, 320, 200), OriginalContent.InventoryLayer);
+        Assert.Equal(new UiLayerAsset("combat-status-panel", "images/combat/status-panel.dsix",
+            19003, 215, 4, 98, 32), OriginalContent.CombatStatusPanelLayer);
+        Assert.InRange(OriginalContent.CombatStatusPanelLayer.X, 0, 319);
+        Assert.InRange(OriginalContent.CombatStatusPanelLayer.Y, 0, 199);
+        Assert.InRange(OriginalContent.CombatStatusPanelLayer.X +
+            OriginalContent.CombatStatusPanelLayer.FrameWidth, 1, 320);
+        Assert.InRange(OriginalContent.CombatStatusPanelLayer.Y +
+            OriginalContent.CombatStatusPanelLayer.FrameHeight, 1, 200);
         Assert.Equal(
         [
             new UiLayerAsset("effects-title", "images/exploration/effects-title.dsix",

@@ -32,9 +32,10 @@ licensed GOG installation
 ```
 
 The Extractor verifies all 233 immutable baseline files and all 16,168 GFF
-descriptors. The current required revision 33 pack contains 16,401 lossless DSOP corpus assets
-plus 122 specialized DSIX, DSGP, DSTX, DSUI, DSCH, DSRG, and DSOB derivatives:
-16,523 assets in total. Twenty source-derived DSRG files independently retain
+descriptors. The current required revision 34 pack contains 16,401 lossless DSOP corpus assets
+plus 123 specialized DSIX, DSGP, DSTX, DSUI, DSCH, DSRG, and DSOB derivatives:
+16,524 assets in total. The added combat-status-panel DSIX is a bounded source-backed
+image at its observed geometry; it assigns no combat semantics. Twenty source-derived DSRG files independently retain
 the verified structural envelope of every owned region without assigning any
 travel or presentation behavior. Opaque preservation means the resource is retained and
 hash-verified; it does not mean the runtime understands or executes it.
@@ -133,7 +134,9 @@ enemy move with a changing right-side movement display. Its static panel is
 the 98x32 BMP #19003 at (215,4), with a dynamically overlaid region bounded
 to (243,8) through (284,31). dsun_011 shows a red 11 feedback glyph whose
 visible glyph-area pure-red components occupy (151,95) through (178,113) on
-the 320x200 canvas. These facts establish
+the 320x200 canvas. The required-revision-34 pack preserves the static artwork as
+`images/combat/status-panel.dsix` with source provenance and the interface palette,
+but no Game code consumes it. These facts establish
 neither movement cost, action ordering, attacker/target identity, damage
 resolution, turn progression, timing, nor exit. No combat session, encounter,
 or rules pipeline is implemented until the controlled C0-C6 observation gate

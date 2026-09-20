@@ -170,8 +170,8 @@ Owned-build validation currently targets GOG product `1432903719`, installed
 build `52095422060333615`. Metadata-only FONT inspection verifies that all 256
 character-map entries are identity values and summarizes its pixel-index range
 without emitting glyph pixels. The retained ignored owned-source pack has been
-transactionally refreshed and verifies as the exact required-revision-33 16,523-asset manifest: 16,401 source-mapped DSOP
-assets preserving every 233-file source input and all 16,168 GFF descriptors, plus 122 specialized
+transactionally refreshed and verifies as the exact required-revision-34 16,524-asset manifest: 16,401 source-mapped DSOP
+assets preserving every 233-file source input and all 16,168 GFF descriptors, plus 123 specialized
 derivatives including start/party/ADD assets, all seven start-flow windows and 56 controls, the 210x116 Game Menu/Preferences base,
 the 14-button/30-control Game Menu and 13-button/15-control Preferences graphs,
 the 320x200 inventory base, the observed USE/EFFECTS title images, the
@@ -182,7 +182,9 @@ the exact 13-frame opening-leader image and all ten `ICON` #19101-#19110 cursor
 images with their exact one-frame geometry, plus the three-window interaction/dialogue graph,
 thirteen action/dialogue control images, `PORT` #18 portrait, GPL #135/MAS #99
 provenance-checked DSGP v2 scripts, and the four-label/ten-description/nine-line Preferences DSTX
-catalog.
+catalog. The additional evidence-only derivative is the 98x32 combat status-panel
+DSIX from RESOURCE.GFF BMP #19003 with PAL #1000 at its observed (215,4)
+placement; it is validated as an extracted asset and is not rendered.
 The runtime content-smoke path verifies
 all 13 frame dimensions plus frame 0's 367-pixel alpha coverage and rasterizes 320x200 viewports at
 both opposite region corners successfully. It also verifies Tyr's exact four

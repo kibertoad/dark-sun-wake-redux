@@ -120,7 +120,7 @@ opening role is established, so later-frame semantics remain unknown.
 The reader caps the region name at 64 bytes and the entity table at 16,384
 records, requires the exact map dimensions and 16x16 tile frames, and rejects
 missing local tiles or external objects with region/resource context. Required
-pack revision 33 serializes each manifest-selected region independently as a
+pack revision 34 serializes each manifest-selected region independently as a
 source-derived `regions/structural/rgnxxx.dsrg` DSRG v1 catalog, reads it back
 before promotion, and assigns no selection, travel, camera, entity, or gameplay
 meaning to that catalog.

@@ -58,7 +58,7 @@ public sealed partial class StartupAssetExtractorTests
                 using var stream = File.OpenRead(input);
                 return 1 + GffArchive.Read(stream, file.Path).Resources.Count;
             });
-            Assert.Equal(103 + opaqueOutputCount, manifest.Files.Count);
+            Assert.Equal(104 + opaqueOutputCount, manifest.Files.Count);
             var titleOpaque = Assert.Single(manifest.Files,
                 item => item.Path == "corpus/gff/resource.gff/424d5020-11011.dsop");
             Assert.Equal(StartupAssetExtractor.SourcePath, titleOpaque.SourcePath);
@@ -208,6 +208,17 @@ public sealed partial class StartupAssetExtractorTests
                 item => item.Path == OriginalContent.InventoryLayer.Path);
             Assert.Contains("BMP #13001", inventoryLayer.Conversion, StringComparison.Ordinal);
             Assert.Contains("PAL #1000", inventoryLayer.Conversion, StringComparison.Ordinal);
+            var combatPanelLayer = Assert.Single(manifest.Files,
+                item => item.Path == OriginalContent.CombatStatusPanelLayer.Path);
+            Assert.Contains("BMP #19003", combatPanelLayer.Conversion, StringComparison.Ordinal);
+            Assert.Contains("PAL #1000", combatPanelLayer.Conversion, StringComparison.Ordinal);
+            using (var combatPanelStream = File.OpenRead(Path.Combine(output,
+                       OriginalContent.CombatStatusPanelLayer.Path.Replace(
+                           '/', Path.DirectorySeparatorChar))))
+            {
+                var combatPanel = Assert.Single(PackedIndexedImage.Read(combatPanelStream).Frames);
+                Assert.Equal((98, 32), (combatPanel.Width, combatPanel.Height));
+            }
             foreach (var layer in OriginalContent.ExplorationDestinationTitleLayers)
             {
                 var titleLayer = Assert.Single(manifest.Files,
@@ -420,6 +431,7 @@ public sealed partial class StartupAssetExtractorTests
         var menuLayers = OriginalContent.StartMenuLayers.Concat(OriginalContent.PartyOverviewLayers)
             .Append(OriginalContent.GameMenuLayer)
             .Append(OriginalContent.InventoryLayer)
+            .Append(OriginalContent.CombatStatusPanelLayer)
             .Concat(OriginalContent.ExplorationDestinationTitleLayers)
             .Concat(OriginalContent.DialogueLayers)
             .DistinctBy(layer => layer.ImageResourceNumber)

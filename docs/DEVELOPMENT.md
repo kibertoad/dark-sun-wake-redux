@@ -19,8 +19,8 @@ documented source default with `DARK_SUN_WAKE_PATH` when necessary.
 Extraction is transactional: a new content pack is staged and fully verified
 before it replaces the previous verified pack. The ignored default
 `UserContent` pack is persistent; keep and reuse it unless extractor or pack
-contract changes require replacement. The current required revision 33 pack contains 16,401
-lossless DSOP corpus assets (233 source files and 16,168 GFF records) plus 122
+contract changes require replacement. The current required revision 34 pack contains 16,401
+lossless DSOP corpus assets (233 source files and 16,168 GFF records) plus 123
 specialized derivatives for the evidenced startup, party, ADD-list, Tyr, all-region structural catalogs, menus,
 dialogue, and character metadata. The runtime never loads opaque payloads.
 Extracted content is ignored by Git and must not be redistributed.

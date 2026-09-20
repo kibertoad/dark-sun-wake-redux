@@ -177,7 +177,7 @@ public static class OriginalContent
     // Required extraction revision. Bump only when the derived-asset inventory
     // or semantic contract changes; `play.bat` then replaces stale local packs.
     // Older packs are deliberately rejected; this is not a compatibility promise.
-    public const int RequiredAssetPackRevision = 33;
+    public const int RequiredAssetPackRevision = 34;
     public const string GameId = "dark-sun-wake-redux";
     public const string TitleImageAssetPath = "images/title.dsix";
     public const string InterfaceFontAssetPath = "fonts/interface.dsft";
@@ -297,6 +297,9 @@ public static class OriginalContent
 
     public static UiLayerAsset InventoryLayer { get; } =
         new("inventory", "images/exploration/inventory-base.dsix", 13001, 0, 0, 320, 200);
+
+    public static UiLayerAsset CombatStatusPanelLayer { get; } =
+        new("combat-status-panel", "images/combat/status-panel.dsix", 19003, 215, 4, 98, 32);
 
     public static IReadOnlyList<UiLayerAsset> ExplorationDestinationTitleLayers { get; } =
     [

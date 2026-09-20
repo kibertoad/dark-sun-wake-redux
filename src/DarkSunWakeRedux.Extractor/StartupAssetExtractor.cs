@@ -146,6 +146,8 @@ public static class StartupAssetExtractor
             OriginalContent.GameMenuLayer, "game-menu", cancellationToken));
         files.Add(await ExtractLayerAsync(archive, interfacePalette, stagingRoot,
             OriginalContent.InventoryLayer, "inventory", cancellationToken));
+        files.Add(await ExtractLayerAsync(archive, interfacePalette, stagingRoot,
+            OriginalContent.CombatStatusPanelLayer, "combat-evidence", cancellationToken));
         foreach (var layer in OriginalContent.ExplorationDestinationTitleLayers)
             files.Add(await ExtractLayerAsync(archive, interfacePalette, stagingRoot,
                 layer, "exploration-destination", cancellationToken));

@@ -103,9 +103,9 @@
   GFF descriptor count; semantics remain unknown unless separately recorded.
 - **Implementation:** `PackedOpaquePayload` (DSOP v1) and the Extractor's
   corpus pass emit one source-mapped, hash-verified local asset for every raw
-  file and every GFF resource. The owned required-revision-33 extraction contains 16,401 DSOP
-  assets (233 source files plus 16,168 descriptors) and 122 specialized
-  derivatives, for 16,523 verified pack assets. The Game does not load opaque
+  file and every GFF resource. The required-revision-34 extraction contains 16,401 DSOP
+  assets (233 source files plus 16,168 descriptors) and 123 specialized
+  derivatives, for 16,524 verified pack assets. The Game does not load opaque
   payloads.
 - **Tests:** the embedded production manifest asserts the 233-file corpus and
   documented GFF/VOC/FLI/OGG family counts without proprietary input; DSOP
@@ -171,7 +171,7 @@
   `PackedRegion` DSRG v1, the read-only `region-catalog` inspection command, and
   transactional extraction of region #50 to `regions/tyr.dsrg` plus every
   manifest-selected `RGNxxx.GFF` to a canonical source-derived
-  `regions/structural/rgnxxx.dsrg` path. Revision 33's owned pack contains all
+  `regions/structural/rgnxxx.dsrg` path. Revision 34's required output contains all
   20 such structural catalogs. The runtime does not select or render them; the
   pack keeps decoded data only and records each source path plus `OBJEX.GFF`
   reference-validation provenance; it does not copy GFF payloads.
@@ -1151,7 +1151,7 @@
   The award-producing script path, broader dialogue consequences,
   generic variable initialization, and generic GPL
   execution semantics remain open.
-- **Implementation:** the current required-revision-33 pack stores the byte-identical GPL #135
+- **Implementation:** the current required-revision-34 pack stores the byte-identical GPL #135
   and MAS #99 payloads in bounded DSGP v2 envelopes that retain the exact
   source tag as well as identity, extracts `PORT` #18 with
   the interface palette, and expands the interaction DSUI with #12500/#12501
@@ -1607,7 +1607,7 @@
   supported GOG build; runtime selection and remaining field semantics are
   unknown.
 - **Implementation:** `PackedCharacterCatalog` plus transactional extraction to
-  `characters/catalog.dsch`; the required-revision-33 asset-pack manifest records
+  `characters/catalog.dsch`; the required-revision-34 asset-pack manifest records
   `CHARSAVE.GFF` provenance. The full corpus pass also preserves the original
   archive as an opaque source-mapped payload; neither output assigns a party
   role to any record.
@@ -1833,6 +1833,11 @@
   turn, timing, hit resolution, or exit behavior.
   EXE-GOG-COMBAT-004 separately establishes the panel's native BMP
   request/cache path but identifies no combat owner or overlay semantics.
+- **Implementation:** required-revision-34 extraction emits the bounded one-frame
+  `images/combat/status-panel.dsix` derivative from `RESOURCE.GFF:BMP #19003`
+  with the interface palette and the observed 98x32 frame. The manifest conversion
+  retains source provenance; no Game renderer, value model, record reader, or
+  combat update loop consumes this evidence-only asset.
 - **Confidence:** high for the owner-confirmed screenshot labels, member order,
   shell reuse, the four visible USE captions, AR'ANDA #40/THY'ROKH #42
   discrimination, candidate envelope/mask distinctions, visible enemy motion,

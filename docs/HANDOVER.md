@@ -17,7 +17,7 @@ Owner captures now distinguish hostile Look, a one-way 10,000-experience award,
 and the first full conversation. `DATA-GOG-INTERACTION-001` maps hostile
 `WIND` #3020 and its disabled actions; `OBS-GOG-DIALOGUE-001` maps the upper and
 lower dialogue windows and ties the captured exchange to `GPL` #135 without
-committing original text or screenshots. The current required revision 33 pack contains the bounded
+committing original text or screenshots. The current required revision 34 pack contains the bounded
 three-window interaction/dialogue graph, thirteen control images, `PORT` #18,
 and byte-identical `GPL` #135 and `MAS` #99 in source-tagged DSGP v2 envelopes. Core contains the deterministic
 interaction/sole-action contract; Resources decodes the packed-string primitive

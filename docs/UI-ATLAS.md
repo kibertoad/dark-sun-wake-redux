@@ -23,7 +23,8 @@ independently written measurements and diagrams.
 Combat panel detail: the static 98x32 BMP #19003 matches at (215,4) in both
 confirmed frames. Only a bounded (243,8) through (284,31) region differs from
 the static art; it is an unknown dynamic overlay, not a movement, text, timing,
-or action contract.
+or action contract. Required-revision-34 extraction preserves the static panel
+as an evidence-only DSIX asset at that placement; the Game does not render it.
 
 Character-view graph detail: the 86-child WIND #11500 graph consists of 64
 APFM, one EBOX, and 21 BUTN records. Its root image-less frame is 320x189 at
