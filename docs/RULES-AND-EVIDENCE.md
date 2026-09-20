@@ -65,10 +65,10 @@
   table, require its known 7,896-byte envelope, and partition it into 329
   records of four six-byte lanes. First examine only the 3,948 aligned
   little-endian 16-bit lane words for the numeric value 135. A follow-up
-  read-only aggregate check compares each of the twelve aligned word positions
-  to the archive's 330 `GPL ` resource numbers and reports only counts,
-  distinct counts, set membership, and duplication statistics; it retains no
-  raw bytes or text.
+  read-only `lane-word-namespace-profile` Inspect command compares each of the
+  twelve aligned word positions to the archive's 330 `GPL ` resource numbers
+  and reports only counts, distinct counts, set membership, and duplication
+  statistics; it retains no raw bytes or text.
 - **Finding:** the payload exactly fits the four-lane shape. Value 135 occurs
   twice: in zero-based record 63, lane 1, word 2 and in zero-based record 133,
   lane 3, word 0. It therefore has no unique occurrence and no consistent lane

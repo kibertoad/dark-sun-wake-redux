@@ -544,6 +544,57 @@ if (args.Length == 6 && args[0].Equals("resource-word-overlap", StringComparison
     }
 }
 
+if (args.Length == 9 && args[0].Equals("lane-word-namespace-profile", StringComparison.OrdinalIgnoreCase))
+{
+    try
+    {
+        var sourceTag = args[2].Replace('_', ' ');
+        var targetTag = args[8].Replace('_', ' ');
+        if (sourceTag.Length != 4 || !sourceTag.All(character => character is >= ' ' and <= '~'))
+            throw new ArgumentException("Source resource tag must be exactly four printable ASCII characters; use '_' for a padded space.", nameof(args));
+        if (targetTag.Length != 4 || !targetTag.All(character => character is >= ' ' and <= '~'))
+            throw new ArgumentException("Target resource tag must be exactly four printable ASCII characters; use '_' for a padded space.", nameof(args));
+        if (!uint.TryParse(args[3], out var sourceResourceNumber))
+            throw new ArgumentException("Source resource number must be an unsigned integer.", nameof(args));
+        if (!int.TryParse(args[4], out var recordWidth) ||
+            !int.TryParse(args[5], out var laneWidth) ||
+            !int.TryParse(args[6], out var wordOffset))
+            throw new ArgumentException("Record width, lane width, and word offset must be integers.", nameof(args));
+
+        var sourceArchivePath = Path.GetFullPath(args[1]);
+        var targetArchivePath = Path.GetFullPath(args[7]);
+        await using var sourceStream = File.OpenRead(sourceArchivePath);
+        await using var targetStream = File.OpenRead(targetArchivePath);
+        var sourceArchive = GffArchive.Read(sourceStream, sourceArchivePath);
+        var targetArchive = GffArchive.Read(targetStream, targetArchivePath);
+        var targetResourceNumbers = targetArchive.Resources
+            .Where(resource => resource.Tag == targetTag)
+            .Select(resource => resource.Number)
+            .ToHashSet();
+        var profile = OpaqueLaneWordNamespaceProfiler.Create(
+            sourceArchive.GetResource(sourceTag, sourceResourceNumber), recordWidth,
+            laneWidth, wordOffset, targetResourceNumbers,
+            $"{sourceArchivePath}:{sourceTag}#{sourceResourceNumber}");
+        Console.WriteLine(JsonSerializer.Serialize(new
+        {
+            sourceArchivePath,
+            sourceTag,
+            sourceResourceNumber,
+            targetArchivePath,
+            targetTag,
+            targetResourceCount = targetResourceNumbers.Count,
+            profile
+        }, new JsonSerializerOptions { WriteIndented = true }));
+        return 0;
+    }
+    catch (Exception exception) when (exception is InvalidDataException or IOException or
+                                      UnauthorizedAccessException or ArgumentException or KeyNotFoundException)
+    {
+        Console.Error.WriteLine($"[lane_word_namespace_profile_unavailable] {exception.Message}");
+        return 2;
+    }
+}
+
 if (args.Length == 4 && args[0].Equals("pair-resource-overlap", StringComparison.OrdinalIgnoreCase))
 {
     try
@@ -714,6 +765,7 @@ if (args.Length != 1 || !Directory.Exists(args[0]))
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect object-pattern-overlap <owned-object.gff> <object-number> <tag; use _ for padded space> <printable-ascii-pattern>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect record-profile <owned-original.gff> <tag; use _ for padded space> <resource-number> <candidate-record-width>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect resource-word-overlap <source.gff> <source-tag; use _ for padded space> <source-number> <target.gff> <target-tag; use _ for padded space>");
+    Console.Error.WriteLine("  DarkSunWakeRedux.Inspect lane-word-namespace-profile <source.gff> <source-tag; use _ for padded space> <source-number> <record-width> <lane-width> <word-offset> <target.gff> <target-tag; use _ for padded space>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect pair-resource-overlap <owned-pair-table> <owned-original.gff> <tag; use _ for padded space>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect object-word-overlap <owned-object.gff> <tag; use _ for padded space> [owned-pair-table]");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect object-record-overlap <owned-object.gff> <object-number> <tag; use _ for padded space>");
