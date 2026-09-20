@@ -1884,6 +1884,33 @@ proof by itself. Never redirect broad output into the repository.
   schedule until a bounded consumer path and controlled playback observation
   establish one.
 
+### EXE-GOG-SOUND-004 - Sound helper has no loaded `.VOC` filename extension
+
+- **Question:** Does the separately shipped sound helper contain a literal
+  `.VOC` extension that could expose a bounded filename-based voice or
+  sound-effect loader path?
+- **Target:** GOG-1432903719 `SOUND_DS.EXE`, reverified at 204,593 bytes with
+  SHA-256 `50e10670f18e26f0e22e94a73d7469ed7d39afb2b2c2bf8139dbb3cb927110c6`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. A full analyzer
+  pass completed before this focused query.
+- **Method:** `ReportBytePattern` searched every loaded program-memory block
+  for the four-byte ASCII sequence `2e 56 4f 43` (`.VOC`). The bounded query
+  would report every raw hit and any direct reference to it.
+- **Bounded finding:** the loaded helper image has no `.VOC` byte-pattern
+  occurrence. Therefore this query yields no filename-extension literal,
+  direct reference, file-open path, decoder entry, or playback caller.
+- **Interpretation:** this excludes only a raw `.VOC` literal in the loaded
+  image. A filename or extension may be constructed, supplied by a caller,
+  handled by a driver or overlay, or omitted by a format-agnostic path. The
+  absence does not prove the helper cannot consume VOC data and assigns no
+  decoder, codec, routing, sample-rate, or timing semantics.
+- **Confidence:** high for the exact loaded-image literal absence; unknown for
+  every sound-file consumer and playback behavior.
+- **Implementation consequence:** retain VOC files as opaque local assets and
+  preserve the CPU-independent scheduling requirement. Do not add a decoder,
+  filename mapping, or playback behavior without a bounded consumer path and
+  controlled observation.
+
 ### EXE-GOG-TITLE-002 - No co-located direct title-image loader literal
 
 - **Question:** Does the supported executable contain one recovered function
