@@ -306,8 +306,9 @@ rejecting unsupported semantics:
   party.
 - `GPLI` #1 is an exact 329-by-24-byte opaque data envelope. No literal GPLI
   tag exists in the analyzed executable, so no lookup role is assumed.
-- `ITEMS.BIN` is a verified 234-pair envelope. `DSUN.EXE` contains no literal
-  filename lead, so no item/equipment mapping is inferred.
+- `ITEMS.BIN` is a verified 234-pair envelope. Neither `DSUN.EXE` nor
+  `CHARTRAN.EXE` contains the queried literal filename/stem forms, so no
+  item/equipment mapping or loader is inferred.
 
 Addresses, methods, competing interpretations, and confidence are retained in
 [GHIDRA.md](GHIDRA.md); open questions are kept in the plan rather than encoded

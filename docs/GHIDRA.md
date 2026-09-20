@@ -1165,6 +1165,30 @@ proof by itself. Never redirect broad output into the repository.
   defined-data/string classification as an absence claim; raw-byte search is
   the prerequisite negative check for this kind of question.
 
+### EXE-GOG-ITEMS-002 - CHARTRAN has no direct item-table filename lead
+
+- **Question:** Does the supported character-creation executable embed either
+  the exact `ITEMS.BIN` filename or a null-terminated `ITEMS` stem that could
+  constrain a character-creation item-data loader?
+- **Target:** GOG-1432903719 `CHARTRAN.EXE`, reverified at 24,761 bytes with
+  SHA-256 `e99572016901c67135b9d1b14b6db3936078749779b89e5c62f7044fe722cf1d`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** `ReportBytePattern` searched every loaded memory block first for
+  exact ASCII bytes `49 54 45 4d 53 2e 42 49 4e` and then for the explicit
+  null-terminated stem `49 54 45 4d 53 00`.
+- **Bounded finding:** neither pattern exists in loaded memory.
+- **Interpretation:** this rules out only the two queried literal forms in
+  this executable. A loader may construct or receive a name at runtime, live
+  in another executable or data layer, or not participate in character
+  creation. The result establishes neither a file reader nor any pair-field
+  role, equipment path, inventory behavior, or combat behavior.
+- **Confidence:** high for the two absent raw-byte representations; unknown
+  for item-data loading, file ownership, table-field roles, and all item
+  semantics.
+- **Implementation consequence:** retain `ITEMS.BIN` as an unparsed source.
+  The raw-byte result is a bounded negative lead, not a generic string-analysis
+  absence claim and not permission to infer item behavior.
+
 ### EXE-GOG-CHAR-002 - CHARSAVE filename strings do not identify a party loader
 
 - **Question:** Does an embedded `CHARSAVE.GFF` filename identify an executable
