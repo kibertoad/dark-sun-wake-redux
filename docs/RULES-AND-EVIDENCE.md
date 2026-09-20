@@ -737,8 +737,9 @@
   Adjacent 28x16 BUTN #11308 at (223,155) reuses ICON #11101, the visual
   resource already bounded as the Preferences Game Menu control, but its own
   event mask is zero. That visual reuse does not establish a character-view
-  click route; direct native scalar probes for #11308 and the separately
-  established Return #10308 identify no handler literal.
+  click route. Direct native scalar probes for #11308, the separately
+  established Return #10308, and the three nonzero-event buttons
+  #11318/#11319/#11320 identify no handler literal.
 - **Confidence:** verified for resource identity, geometry, image decoding,
   graph membership, and shared navigation semantics; character/inventory
   association is high from resource-family structure, artwork, and manual
