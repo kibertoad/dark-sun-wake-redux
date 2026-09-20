@@ -67,6 +67,33 @@ If START GAME reaches an unexpected screen, or if a member action is not
 available, capture the reached state once, stop, and report the exact point.
 That outcome is preferable to inferring a slot partition.
 
+## Opening-combat gate
+
+Purpose: establish the first native combat state's entry, available controls,
+one accepted action, turn progression, and exit before a playable combat system
+is designed. It does **not** ask for repeated outcomes, save-file inspection,
+speed measurements, or a general campaign playthrough.
+
+Start a fresh normal launch with default Preferences. Reach one ordinary combat
+through the game's normal input only; do not load a save, alter difficulty,
+use a debug facility, or deliberately repeat the encounter to seek a different
+result. Keep the default window size for every capture.
+
+| ID | Native action | Required capture/record |
+|---|---|---|
+| C0 | Immediately before the normal action that begins combat. | Capture the stable pre-entry frame. Record the input used to begin the transition and the active cursor/mode if visible. |
+| C1 | Wait for the first stable combat frame. | Capture it. Record every visibly available command/control, the selected party member or active indicator if any, target feedback if any, and whether all party members are displayed. |
+| C2 | Use target-next (`N`) once, then target-previous (`P`) once only if the first change is visible and combat remains active. | Capture every changed state; if a command produces no visible change, capture that state once and record it. Do not continue cycling. |
+| C3 | Perform one native target or movement/attack action that the active combat UI visibly permits. | Capture the state immediately before the input and the first stable state after it resolves. Record the exact input sequence, visible cursor/target feedback, and every changed display or message. If no action is visibly permitted, capture that state and stop this sequence. |
+| C4 | From the next available native turn, use exactly one visibly available turn command: Guard (`G`), Wait (`W`), or end turn (`Q`). | Capture immediately before and after it resolves. Record the key used, whether control/selection advanced, and every changed command or target state. Do not try the other two commands in the same encounter. |
+| C5 | Allow the next native turn transition to settle without additional input. | Capture the resulting stable state. Record whether the same party member, a different party member, or a non-party actor appears active; report only what is visibly indicated. |
+| C6 | Continue only through the ordinary remaining encounter until its first native exit, if it occurs without a long or ambiguous sequence. | Capture the exit frame and the first stable following frame. Record the visible outcome and transition destination. If the encounter cannot be safely concluded from the observed state, stop after C5 and report that fact rather than manufacturing an outcome. |
+
+If combat starts in an unexpected state, a listed action is unavailable, or a
+capture differs before C0, capture the reached state once, stop that sequence,
+and report the exact point. That is evidence; do not infer a turn model from
+the manual or retry until it appears to work.
+
 ## What to reply with
 
 Reply with one line containing:
@@ -75,6 +102,10 @@ Reply with one line containing:
 Preferences captures P0-P9 and/or shipped-party captures S0-S2: YYYY-MM-DD HH:MM ±HH:MM to YYYY-MM-DD HH:MM ±HH:MM; exceptions: <none or IDs/reason>.
 ```
 
+For the combat gate, include `combat captures C0-C6` in that line before the
+timestamp window.
+
 After that confirmation, the repository workflow permits bounded inspection of
 only the matching new DOSBox screenshots. Until then, Preferences defaults,
-range/step behavior, frame-state mapping, and About geometry remain unknown.
+range/step behavior, frame-state mapping, About geometry, and combat behavior
+remain unknown.

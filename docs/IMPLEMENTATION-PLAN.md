@@ -498,7 +498,9 @@ content smoke both pass.
   resolution, turn progression, and exit; correlate each implemented behavior
   to those observations and a traceable data or executable finding. Opaque
   combat-adjacent resources and generic AD&D expectations do not satisfy this
-  gate.
+  gate. `docs/OWNER-CAPTURE-CHECKLIST.md` C0-C6 is the bounded collection
+  sequence; inspect only owner-confirmed screenshots in its reported timestamp
+  window.
 - **Acceptance - rules.** Activation order, movement, range, target legality,
   hit/damage resolution, armor class, THAC0, incapacitation, experience,
   difficulty, guard/wait, victory, and defeat are deterministic from state,
