@@ -12,6 +12,28 @@
 | `OBS-GOG-*` | Future controlled runs | runtime observation | Player-visible state transitions, coordinates, timing, outcomes | unknown until recorded per finding |
 | `DATA-GOG-*` | Bounded inspection of the owned build | data fact | Format fields and resource relationships | recorded per finding |
 
+### DATA-GOG-README-001 - Supported package documents game-data Version 1.1
+
+- **Question:** Can the installed English GOG package identify the underlying
+  DOS game-data revision without inferring it from storefront branding?
+- **Method:** Read the structured `goggame-1432903719.info` record to confirm
+  the owned product, build, and language. Inspect only the Version 1.1 heading,
+  date, compatibility notice, and later fixes-section heading in the package's
+  local `README.TXT`; retain neither README content nor any game asset.
+- **Finding:** the metadata identifies English GOG product `1432903719`, build
+  `52095422060333615`. Its bundled README identifies the game-data release as
+  Version 1.1, dated 1994-12-14, and distinguishes saves from versions 1.0 and
+  1.01. A later Version 1.02 heading introduces a historical fixes list; it
+  does not supersede the package heading. The supported baseline is therefore
+  documented as Version 1.1.
+- **Confidence:** high for the exact owned-package metadata and documentation
+  facts; unknown for retail-CD provenance, distribution history, and the
+  equivalence of other sources bearing a Version 1.1 label.
+- **Implementation consequence:** record Version 1.1 as the supported
+  game-data revision alongside the exact manifest. Continue to recognize the
+  edition by complete fingerprints, not by a version label alone; a different
+  source still requires its own manifest and equivalence evidence.
+
 ### DATA-GOG-GFF-001 - GFF container directory
 
 - **Question:** How are resource identities, offsets, and lengths represented in

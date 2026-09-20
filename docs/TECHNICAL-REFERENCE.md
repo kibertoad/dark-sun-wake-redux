@@ -8,8 +8,8 @@ behavior, its detailed record must be consulted first.
 ## Evidence and clean-room status
 
 - Supported source: English GOG product `1432903719`, build
-  `52095422060333615`. The exact fingerprint and edition facts are in
-  [SOURCE-EDITIONS.md](SOURCE-EDITIONS.md).
+  `52095422060333615`, documenting game-data Version 1.1. The exact fingerprint
+  and edition facts are in [SOURCE-EDITIONS.md](SOURCE-EDITIONS.md).
 - No original executable, data, save, screenshot, or decompiler output belongs
   in this repository. The game consumes a local verified pack; it never starts
   the original executable or DOSBox.
