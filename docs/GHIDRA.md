@@ -264,23 +264,31 @@ proof by itself. Never redirect broad output into the repository.
 - **Method:** `ReportBytePattern` located `EBOX`, `WIND`, `BUTN`, and `APFM`
   tag uses. Bounded contexts classified the three direct EBOX tag-request
   wrappers and the generic child dispatcher; `ReportReferences` enumerated
-  their direct callers.
+  their direct callers. A follow-up direct-reference query and bounded
+  decompilations of `3d72:0009` and its sole recovered caller classified the
+  immediate generic input path.
 - **Bounded finding:** wrappers `409b:189c`, `4228:002b`, and `4228:00a9`
   each pass a caller-supplied identity and `EBOX` tag to the same tag-aware
   resolver used by the known WIND path, then test its returned pointer/result.
   Ghidra finds no direct callers of any of those wrappers. The generic child
   dispatcher `3d72:0eb8` distinguishes `APFM`, `BUTN`, and `EBOX` records and
   has only two direct callers, both inside `3d72:0009`. Its bounded context
-  reads resident fields and event bits; it identifies no image draw, fill,
-  bevel, corner, clipping, or palette operation.
+  reads resident fields and event bits. `3d72:0009` has one recovered direct
+  caller, `39d1:097d`, which reaches it for one decoded input-event class.
+  The container supplies current pointer state to the child dispatcher twice,
+  retains the resolved child/event result, and conditionally enters indirect
+  handler tables under event-bit guards. This establishes resource-derived
+  child hit/activation processing. Neither bounded routine directly identifies
+  an image draw, fill, bevel, corner, clipping, or palette operation.
 - **Interpretation:** the observed EBOX controls participate in a native
   tag-aware resource and child-dispatch framework, but this query does not
   establish an EBOX visual primitive or connect any wrapper to dialogue
   rendering. It therefore cannot justify synthesizing missing dialogue chrome
   from image-less control geometry.
 - **Confidence:** high for the explicit tag requests, all-read direct-caller
-  results, and bounded dispatcher discrimination; unknown for indirect callers,
-  callback registration, and native visual treatment.
+  results, sole recovered generic caller, repeated child resolution, and
+  event-bit-guarded indirect dispatch; unknown for specific handler targets,
+  callback registration, control ownership, and native visual treatment.
 - **Implementation consequence:** keep the captured panel artwork as the only
   dialogue chrome layer and retain image-less controls as geometry/event
   contracts. A renderer change requires a measured capture or a separately

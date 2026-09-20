@@ -220,6 +220,12 @@ rejecting unsupported semantics:
   scan has no recovered direct caller, so it does not identify a target action.
   Neither finding identifies a runtime actor, animation, collision, target, or
   interaction behavior.
+- `EXE-GOG-UI-007` establishes a generic resource-derived UI input boundary:
+  current pointer state is resolved against `APFM`, `BUTN`, or `EBOX` children,
+  then event-bit guards select indirect handlers. It identifies neither a
+  specific control handler nor any widget drawing/chrome path, so serialized
+  image-less controls remain geometry/event contracts rather than invented
+  pixels.
 - `EXE-GOG-SMALLTAG-001` finds no literal executable loader lead for `GREQ`,
   `CACT`, `PLYL`, or `CSEQ`. `DATA-GOG-SMALLTAG-001` bounds their owned
   inventories and short envelopes, but neither result assigns those opaque
