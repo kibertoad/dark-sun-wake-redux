@@ -155,8 +155,9 @@ The smoke modes have distinct purposes:
   opens all seventy-eight DSIX images, the DSFT interface font, the DSTX text
   catalog, the resolved start-flow, Game Menu/Preferences, and
   character/inventory/Cast/Effects and hostile-interaction DSUI graphs, and DSCH character metadata
-  catalog, opens the DSRG Tyr region and DSOB object-frame graph, and checks their
-  frame, geometry, glyph, reference, and inventory contracts without a window.
+  catalog, opens the DSRG Tyr region, every source-derived structural-region DSRG
+  catalog, and DSOB object-frame graph, and checks their frame, geometry, glyph,
+  reference, and inventory contracts without a window.
 - `--platform-smoke-test` creates the MonoGame platform surface and exits; it is
   reserved for installed-package environments with a display server.
 - Normal startup verifies the pack before opening a window and renders the

@@ -48,7 +48,7 @@ recorded; it does not extend corpus coverage by silently omitting unknown data.
 ## Runtime startup
 
 `--smoke-test` is assetless for CI. `--content-smoke-test` verifies and opens the
-118 derived startup/Tyr/menu/cursor/dialogue/structural-region assets without creating a window. Normal startup verifies
+122 derived startup/Tyr/menu/cursor/dialogue/structural-region assets without creating a window. Normal startup verifies
 the default or explicit `--asset-pack` directory before creating the game window
 and displays the measured start shell plus controls, the party-overview shell,
 and the ADD-list shell reached through their Core states. Title sequencing and
