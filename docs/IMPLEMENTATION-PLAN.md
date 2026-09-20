@@ -265,6 +265,51 @@ wrappers, and five documents. The transactionally installed required revision 32
 102 specialized derivatives (16,503 total); full pack read-back and runtime
 content smoke both pass.
 
+### Proposed Slice 2B - All-region structural catalogs
+
+**Status:** proposed 2026-09-20; requires repository-owner approval before
+implementation. This proposal changes the required derived-pack contract and
+therefore must increment its revision if approved.
+
+- **Outcome.** The verified pack contains a bounded canonical `DSRG` structural
+  catalog for every supported region archive whose shared
+  `RNME`/`PAL `/`MAP `/`GMAP`/`TILE`/`ETAB` envelope validates. The Extractor
+  reports the exact source path and failed sub-contract if any required region
+  cannot be represented. This slice adds no travel, screen transition, region
+  selection, entity behavior, combat, quest, camera, or player-facing map
+  presentation beyond the existing Tyr behavior.
+- **Evidence.** `DATA-GOG-REGION-001` and `ORIGINAL-FORMATS.md` establish the
+  bounded shared region envelope across all 20 owned region files. The completed
+  Slice 2A manifest/DSOP contract preserves each original source path and
+  resource payload, while `PackedRegion` and the Tyr `DSRG` round trip
+  establish the existing neutral derived representation. None establishes a
+  region's gameplay role or a travel edge.
+- **Acceptance - rules.** No new Core rule, party placement, collision policy,
+  interaction eligibility, destination, travel edge, quest flag, or timing
+  behavior is introduced. Region identities and all decoded structural fields
+  remain source-derived data, not behavior.
+- **Acceptance - presentation.** The current Tyr-only exploration renderer and
+  fixed screens are unchanged. The new catalogs are not selectable from the
+  runtime and do not imply a map, minimap, loading screen, or camera contract.
+- **Acceptance - original content.** The Extractor discovers the supported
+  region source set deterministically from the exact source manifest, requires
+  one valid shared region envelope per selected archive, writes each catalog
+  under a stable source-derived path, reads it back, verifies source mapping and
+  hash inventory, and promotes the complete pack transactionally. The contract
+  change increments `OriginalContent.RequiredAssetPackRevision`; a test proves
+  that an otherwise hash-valid earlier revision is rejected. Original bytes
+  remain in local DSOP assets only and never enter Git or CI.
+- **Automated tests.** Synthetic multi-region extraction covers canonical path
+  ordering, duplicate identity/path rejection, a malformed non-Tyr region with
+  source-context diagnostics, complete staged read-back, rollback, and earlier
+  revision rejection. Owned content smoke verifies the expected 20 derived
+  region catalogs only after the owner-approved contract is implemented.
+- **Open questions.** Which regions are reachable; region-to-region travel,
+  entry anchors, cameras, actor footprints, entity flags, interactions,
+  encounters, music, scripts, quest ownership, draw order, animation, and all
+  presentation/timing behavior. These catalogs do not answer any of those
+  questions.
+
 ### Slice 2 - Extraction and title-to-party flow
 
 - **Status.** Slice 2A is complete. Existing code remains bounded to recorded
