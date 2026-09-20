@@ -12,12 +12,18 @@ committed or sent through Git.
    input tool.
 2. Before the first capture, note the local start time including UTC offset.
    After the last capture, note the matching end time. Reply with both times
-   and the checklist identifiers that were completed.
+   and the checklist identifiers that were completed. Alternatively, authorize
+   inspection of a specific local date-and-hour slot including UTC offset; that
+   means the interval from `HH:00` through, but not including, the next hour.
 3. Capture every listed frame with DOSBox's built-in **Ctrl+F5** command. Do
    not use an operating-system screen capture or crop the result.
 4. Do not rename, edit, or move the generated files before confirmation. The
    agent will inspect only screenshots in the configured DOSBox capture folder
-   whose timestamps fall within the owner-confirmed time window.
+   whose timestamps fall within the owner-confirmed time window or
+   owner-authorized date-and-hour slot. It may report provisional geometric or
+   pixel observations, but will ask the owner to confirm a proposed semantic
+   label—such as a named screen, actor, turn, action, or transition—before
+   recording or using that label as evidence.
 5. Where a step says “restore,” return the control to the observed initial
    state before continuing. If a control does not visibly change, capture that
    state once and record it as “no visible change”; do not keep clicking.
@@ -102,10 +108,15 @@ Reply with one line containing:
 Preferences captures P0-P9 and/or shipped-party captures S0-S2: YYYY-MM-DD HH:MM ±HH:MM to YYYY-MM-DD HH:MM ±HH:MM; exceptions: <none or IDs/reason>.
 ```
 
+For a less formal review, the owner may instead authorize one local hour, for
+example `review 2026-09-20 21:00 +03:00`. The agent then inspects only files
+timestamped from 21:00:00 through 21:59:59 in that local offset, and asks the
+owner to confirm any proposed semantic screenshot label before relying on it.
+
 For the combat gate, include `combat captures C0-C6` in that line before the
 timestamp window.
 
 After that confirmation, the repository workflow permits bounded inspection of
-only the matching new DOSBox screenshots. Until then, Preferences defaults,
+only the matching DOSBox screenshots. Until then, Preferences defaults,
 range/step behavior, frame-state mapping, About geometry, and combat behavior
 remain unknown.

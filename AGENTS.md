@@ -214,11 +214,18 @@ repository owner an exact, bounded screenshot or capture checklist and wait for
 the owner to confirm that the requested material has been produced with
 DOSBox's built-in Ctrl+F5 screenshot command. After that confirmation, parse
 the configured DOSBox screenshots folder and inspect only images whose file
-timestamps fall within the owner-confirmed capture window. Do not operate the
-DOSBox window, invoke Ctrl+F5, use another screen-capture mechanism, or infer
-that an unconfirmed request, an old capture, or the presence of a DOSBox process
-means the requested observation was performed. If the timestamp window is
-missing or ambiguous, ask the owner before inspecting any candidate image.
+timestamps fall within either an owner-confirmed capture window or an
+owner-authorized local date-and-hour slot (including UTC offset). An authorized
+hour means the half-open local interval from that hour through the next hour.
+Do not operate the DOSBox window, invoke Ctrl+F5, use another screen-capture
+mechanism, or infer that an unconfirmed request, an old capture, or the
+presence of a DOSBox process means the requested observation was performed.
+Before recording or relying on a screenshot's semantic identity—such as a
+named screen, actor, turn, action, or transition—ask the owner to confirm that
+proposed label. Geometry/pixel measurements may be recorded as provisional
+observations without assigning that identity. If neither a timestamp window nor
+a date-and-hour slot is authorized, ask the owner before inspecting any
+candidate image.
 
 ## Post-commit orphan-process audit
 
