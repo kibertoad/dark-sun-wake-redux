@@ -37,10 +37,21 @@ also completes the third menu with ordered post-assignment condition handling.
 
 ## Blockers
 
-- The extracted startup pack and renderer do not yet include party-screen text or interaction.
-- The exact underlying DOS revision in the GOG build is unknown.
-- Native resolution, palettes, timing, audio mapping, and screen geometry are
-  unobserved.
-- No gameplay rule has yet passed original-reference validation.
+- START GAME's four shipped-party resources, party-screen text/slot actions,
+  and the hostile Look panel's dynamic fields and interior actions remain
+  unobserved. The bounded S0-S2 owner capture gate remains required before
+  either party membership or panel behavior is inferred.
+- The owned GOG package documents Version 1.1 game data; only physical
+  retail-media provenance remains unknown.
+- The logical 320x200 canvas, interface/cursor palette, opening Tyr viewport,
+  and several fixed UI layouts are evidenced. Native screen-specific mode
+  policy, pixel aspect, control-frame states, animation cadence, and audio
+  mapping/timing remain unobserved.
+- Bounded exploration, cursor, interaction-shell, and opening-dialogue rules
+  have evidence-backed implementations. Playable combat remains blocked on the
+  C0-C6 owner capture gate plus traceable data or executable findings; it has
+  no combat session or outcome behavior.
+- Preferences defaults/ranges/frame states and About behavior remain blocked on
+  the P0-P9 owner capture gate.
 
 No broad parity claim is permitted while these rows remain unvalidated.
