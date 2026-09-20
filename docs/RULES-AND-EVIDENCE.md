@@ -1788,7 +1788,7 @@
 - **Method:** The owner confirmed the semantic labels for local-only DOSBox
   Ctrl+F5 captures `dsun_010.png`, `dsun_011.png`, and `dsun_013.png` through
   `dsun_024.png`.
-  Their local file timestamps run from 2026-09-20 22:01:20 through 22:04:53.
+  Their local file timestamps run from 2026-09-20 22:01:16 through 22:04:53.
   Inspect the 320x200 captures in place; do not copy, rename, or commit them.
   Correlate only the owner-confirmed member names and visibly labelled ability
   values with the bounded installed `CHAR` catalog.
@@ -1819,8 +1819,10 @@
   moving frame: the opposing actor moves while the combat UI remains largely
   stable, and the right-side statistics panel changes as that actor spends
   movement points. `dsun_011` is confirmed as combat damage being inflicted
-  and visibly shows a red `11` feedback glyph over the actor cluster. These
-  captures do not establish movement-point scale, initial amount, cost,
+  and visibly shows a red `11` feedback glyph over the actor cluster. The
+  pure-red components in that visible glyph area have a union bound of `(151,95)` through `(178,113)` in
+  the 320x200 frame; that is feedback geometry, not a damage-value or timing
+  contract. These captures do not establish movement-point scale, initial amount, cost,
   distance, path, collision, speed, attacker, target, damage rule, action,
   turn, timing, hit resolution, or exit behavior.
 - **Confidence:** high for the owner-confirmed screenshot labels, member order,
