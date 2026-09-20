@@ -1911,6 +1911,35 @@ proof by itself. Never redirect broad output into the repository.
   filename mapping, or playback behavior without a bounded consumer path and
   controlled observation.
 
+### EXE-GOG-SOUND-005 - Sound helper has no loaded `.adv` module suffix
+
+- **Question:** Do the two padded `.adv` module-identifier envelopes in the
+  bounded `SOUND.CFG` file have a direct loaded-image suffix route in the
+  separately shipped sound helper that could constrain driver selection?
+- **Target:** GOG-1432903719 `SOUND_DS.EXE`, reverified at 204,593 bytes with
+  SHA-256 `50e10670f18e26f0e22e94a73d7469ed7d39afb2b2c2bf8139dbb3cb927110c6`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. The full analyzer
+  pass completed before both focused queries.
+- **Method:** `ReportBytePattern` searched every loaded program-memory block
+  for both four-byte ASCII case variants `2e 61 64 76` (`.adv`) and
+  `2e 41 44 56` (`.ADV`). Either query would report raw hits and direct
+  references.
+- **Bounded finding:** neither case-variant occurs in the loaded helper image.
+  The queries therefore yield no literal suffix, direct reference, driver
+  filename construction, configuration read, module load, or Preferences path.
+- **Interpretation:** this excludes only the two exact raw suffix encodings in
+  the helper's loaded memory. A complete module name or suffix can be supplied
+  by a caller, copied from an overlay or data file, constructed dynamically,
+  delegated to a driver, or unused. The result neither assigns the two
+  `SOUND.CFG` identifiers a role nor establishes helper ownership.
+- **Confidence:** high for both exact loaded-image literal absences; unknown
+  for configuration ownership, driver selection, device setup, and all audio
+  behavior.
+- **Implementation consequence:** retain `SOUND.CFG` as opaque DSOP and keep
+  Preferences mutations inert. Do not add a driver-selection reader or map
+  settings to audio behavior until an independent bounded consumer path and
+  controlled observation establish their relationship.
+
 ### EXE-GOG-TITLE-002 - No co-located direct title-image loader literal
 
 - **Question:** Does the supported executable contain one recovered function
