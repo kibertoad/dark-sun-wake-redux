@@ -1220,7 +1220,10 @@ proof by itself. Never redirect broad output into the repository.
 - **Method:** `ReportBytePattern` found the explicit four-byte `GPL ` and
   `MAS ` tags. `ReportInstructionContext` inspected their two assignments in
   one function. A single 78-line `ReportDecompileWindow` and its bounded caller
-  list then established the surrounding control/data flow.
+  list then established the surrounding control/data flow. A follow-up
+  `ReportFunctionScalarIntersection` queried GPL #135 together with the two
+  little-endian 16-bit halves of the literal GPL tag (`0x4c50`, `0x2047`) to
+  test the narrow direct-loader hypothesis for the measured first dialogue.
 - **Bounded finding:** function `172c:04cf` rejects a sentinel first argument
   and every selector other than 1 or 2. It assigns `GPL ` for selector 1 and
   `MAS ` for selector 2, searches a fixed 16-entry cache, and either reuses a
@@ -1274,16 +1277,20 @@ proof by itself. Never redirect broad output into the repository.
   or other feature ownership. The other apparent wrapper call lies in
   non-coherent decoded instructions and is not accepted as evidence. No
   GPL/MAS opcode dispatch, script meaning, cache eviction policy, or
-  caller-level feature meaning is established.
+  caller-level feature meaning is established. No function contains all three
+  scalar values GPL #135, `0x4c50`, and `0x2047`; this excludes a direct
+  co-located literal-tag request for that known script, not an indirect or
+  runtime-propagated request.
 - **Interpretation:** `GPL ` and `MAS ` are distinct native input families,
   not interchangeable labels for the same extracted payload. The helpers and
   cache establish a native loading boundary, but do not license execution of
   source bytes or a general interpreter.
 - **Confidence:** high for selector validation, tag choice, fixed cache bound,
   bounded allocation/copy sequence, 50-slot storage/rollover/LIFO-pop shape,
-  and the separately verified range-gated indirect dispatcher; unknown for
-  opcode semantics, script side effects, cache replacement/ordering, live
-  recorder consumption, handler meanings, and higher-level caller intent.
+  separately verified range-gated indirect dispatcher, and the bounded
+  no-co-location result for GPL #135; unknown for opcode semantics, script side
+  effects, cache replacement/ordering, live recorder consumption, handler
+  meanings, and higher-level caller intent.
 - **Implementation consequence:** DSGP v2 records the exact source tag with
   resource identity and bytes. The first-Tyr dialogue projections require
   `GPL ` and the global-string projections require `MAS `; both remain
