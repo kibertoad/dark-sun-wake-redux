@@ -1115,6 +1115,41 @@ proof by itself. Never redirect broad output into the repository.
   routine from these text literals; seek a multi-signal data/call-path lead or
   controlled observation first.
 
+### EXE-GOG-COMBAT-004 - Observed status panel has a bounded native cache path
+
+- **Question:** Does the static panel matched to the owner-confirmed combat
+  captures have a direct executable resource request, and does that request
+  identify combat behavior?
+- **Target:** GOG-1432903719 DSUN.EXE, reverified at 634,416 bytes with
+  SHA-256 ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c;
+  Ghidra 12.1.3, JDK 21.0.12.1, and the previously completed default
+  auto-analysis.
+- **Method:** After the source-panel template match identified BMP #19003,
+  ReportScalarConstants scanned all decoded instruction operands for decimal
+  19003. ReportInstructionContext and a bounded 55-line containing-function
+  decompilation classified the sole result. ReportReferences then followed the
+  function and its one direct caller by address only.
+- **Bounded finding:** one decoded instruction at 2c5f:041e supplies #19003
+  together with the BMP tag to the common native image request entry, guarded
+  by resident state and a zero/nonzero image-cache field. One success path
+  reads an opaque indexed resident family with a 49-byte stride before issuing
+  further generic calls. That loader function has one direct caller at
+  2c5f:0705; its immediate caller has eight direct recovered callers across
+  four code segments. No caller supplies a recovered encounter, actor,
+  command, damage, turn, or timing identity.
+- **Interpretation:** this establishes a real native request/cache path for
+  the panel asset, corroborating its visual match. The source does not attach
+  the panel to one combat screen, assign the overlay, name the 49-byte record
+  fields, or identify an update rule. The generic fan-in remains compatible
+  with indirect or shared UI use.
+- **Confidence:** high for the one scalar operand, its direct BMP request,
+  resident cache guard, bounded stride observation, and recovered caller
+  counts; unknown for feature ownership, text/value rendering, and every
+  combat rule.
+- **Implementation consequence:** preserve BMP #19003 as an observed
+  source-backed panel candidate, but do not create a combat renderer, panel
+  value model, record reader, or update loop from this shared native path.
+
 ### EXE-GOG-MONR-001 - MONR has no raw executable tag literal
 
 - **Question:** Does the sole `MONR` resource in `RESOURCE.GFF` identify an

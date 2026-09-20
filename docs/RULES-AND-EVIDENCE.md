@@ -1831,6 +1831,8 @@
   not establish movement-point scale, initial amount, cost,
   distance, path, collision, speed, attacker, target, damage rule, action,
   turn, timing, hit resolution, or exit behavior.
+  EXE-GOG-COMBAT-004 separately establishes the panel's native BMP
+  request/cache path but identifies no combat owner or overlay semantics.
 - **Confidence:** high for the owner-confirmed screenshot labels, member order,
   shell reuse, the four visible USE captions, AR'ANDA #40/THY'ROKH #42
   discrimination, candidate envelope/mask distinctions, visible enemy motion,
