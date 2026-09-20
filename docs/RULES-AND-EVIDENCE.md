@@ -725,8 +725,11 @@
   7-by-2 groups of 18x18 image-less APFMs spanning x=148..280 at y=42..82
   and y=109..129, plus six 98x5 frames at x=43. Those measurements establish
   geometry only; their field, slot, focus, or chrome meanings remain unknown.
-  Adjacent 28x16 BUTN #11308 at (223,155) is structurally present but has no
-  established action.
+  Adjacent 28x16 BUTN #11308 at (223,155) reuses ICON #11101, the visual
+  resource already bounded as the Preferences Game Menu control, but its own
+  event mask is zero. That visual reuse does not establish a character-view
+  click route; direct native scalar probes for #11308 and the separately
+  established Return #10308 identify no handler literal.
 - **Confidence:** verified for resource identity, geometry, image decoding,
   graph membership, and shared navigation semantics; character/inventory
   association is high from resource-family structure, artwork, and manual
@@ -742,8 +745,8 @@
   synthetic transactional extraction, complete owned graph counts, pack
   verification, and no-window content smoke.
 - **Uncertainty:** Character fields, inventory objects and transfers, party
-  selection, the 81 uninterpreted #11500 controls, interior actions, and native
-  focus/hover/press frames remain open.
+  selection, the 81 uninterpreted #11500 controls (including #11308's route),
+  interior actions, and native focus/hover/press frames remain open.
 
 ### OBS-GOG-UI-001 - Cast and Current Effects stable screens
 

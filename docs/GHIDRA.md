@@ -1443,6 +1443,36 @@ proof by itself. Never redirect broad output into the repository.
   or bind it to the observed party until an independent data or native path
   establishes that connection.
 
+### EXE-GOG-UI-009 - Character-view navigation IDs are not direct handler operands
+
+- **Question:** Does the character-view's visually shared Game Menu control
+  #11308, or its separately established Return control #10308, occur as a
+  direct native control-handler operand?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, JDK 21.0.12.1, and the previously completed default
+  auto-analysis.
+- **Method:** `ReportScalarConstants` scanned every decoded instruction
+  operand for both exact unsigned decimal values, 11308 and 10308. The former
+  is the 28x16 character-view `BUTN` that reuses the Preferences Game Menu
+  icon; the latter is the independently evidenced Return control. The query
+  reports at most 256 matches and produced none.
+- **Bounded finding:** neither requested control identity occurs as a decoded
+  instruction scalar.
+- **Interpretation:** this excludes only direct immediate-ID dispatch in the
+  analyzed executable. It does not negate #10308's independently established
+  Return behavior, nor does it prove that #11308 opens Game Menu on the
+  character view. Resource-derived registration, callbacks, indirect lookup,
+  another module, and runtime state remain possible.
+- **Confidence:** high for both absent immediate scalar operands; unknown for
+  #11308's character-view activation route and all other application-specific
+  control behavior.
+- **Implementation consequence:** keep the five independently evidenced
+  character/inventory navigation controls routable, retain #11308 visually and
+  structurally only where its source asset is required, and do not add a
+  character-view Game Menu route without a controlled native trace or an
+  independent bounded activation path.
+
 ### EXE-GOG-GPLDATA-001 - literal GPL archive name has no direct reference
 
 - **Question:** Does the supported executable expose a direct static loader
