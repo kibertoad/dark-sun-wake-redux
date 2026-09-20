@@ -65,7 +65,9 @@ are:
 - GFF directory parsing for all owned containers; unclassified payloads are
   preserved as DSOP.
 - Indexed bitmaps, palettes, FONT, TEXT, UI `WIND`/`BUTN`/`APFM`/`EBOX`, and
-  selected character envelopes have bounded readers.
+  selected character envelopes have bounded readers. Native code distinguishes
+  `PLAN` and `PLNR` on bounded tile/object image paths; this corroborates the
+  reader's supported image-family boundary, not a frame or actor behavior.
 - Twenty regions expose bounded identity, palette, terrain, geometry, tile,
   and placed-object records. Tyr has an extracted DSRG/DSOB graph used for the
   opening scene.
@@ -73,8 +75,10 @@ are:
   fail-closed projections are interpreted; there is no generic bytecode
   interpreter.
 - FLI, VOC, OGG, configuration, and item-table files are fully inventoried and
-  preserved. Their unresolved decoder, routing, and rule semantics remain
-  opaque.
+  preserved. The executable contains raw numbered FLI names and CINE-directory
+  path templates, but their inspected locations have no direct references, so
+  names do not establish a loader, fallback, sequence, or timing policy. Those
+  media semantics remain opaque.
 - `SOUND.CFG` has a bounded 59-byte envelope, but neither the main executable
   nor the separately shipped sound helper contains its literal pathname. This
   is not evidence of configuration ownership or Preferences behavior.
@@ -92,6 +96,38 @@ unknown visible targets stay inert.
 The precise screen layers, logical geometry, image mapping, and observation
 confidence are maintained in [UI-ATLAS.md](UI-ATLAS.md). The plan and current
 slice acceptance criteria are in [IMPLEMENTATION-PLAN.md](IMPLEMENTATION-PLAN.md).
+
+## Object and static-scene route
+
+The following is the current bounded path from original static region data to
+the rendered opening scene. It documents data and presentation connections; it
+is deliberately not an actor-behavior model.
+
+```text
+RGN#50: RNME / PAL / MAP / GMAP / TILE / ETAB
+  -> DSRG region contract + DSOB referenced object-frame catalog
+  -> clipped static terrain and first-frame object compositor
+  -> verified opening viewport and independent leader overlay
+```
+
+- Every `ETAB` record supplies bounded position, vertical-offset, flags, and
+  an absolute `OJFF` reference. The record's flags and all non-evidenced
+  geometry meanings remain raw data.
+- An `OJFF` has bounded X/Y offsets and a bitmap reference. Two native OJFF
+  tag-selection paths exist; one is adjacent to a 37-byte resident record
+  family. This proves a lookup boundary only, not OJFF field names, actor
+  ownership, collision, interaction, or animation.
+- A bounded native caller chain reaches distinct `PLAN` and `PLNR` image
+  dispatch after tile/object image resolution. It confirms the static image
+  route but does not establish how a frame is selected or scheduled.
+- The one observed opening leader remains separately evidenced: OJFF #305,
+  bitmap #599 frame 0, world top-left `(1184,1459)`, and collision anchor
+  `(74,91)`. Its footprint, all later frames, cadence, party formation, and
+  other actor behavior are unknown.
+
+See `DATA-GOG-REGION-001`, `DATA-GOG-OBJECT-001`, `DATA-GOG-SCENE-001`,
+`DATA-GOG-ACTOR-001`, `EXE-GOG-OJFF-001`, and `EXE-GOG-IMAGE-001` before
+expanding this route.
 
 ## Preferences evidence boundary
 
@@ -134,8 +170,9 @@ the start flow and current exploration state reproducible.
   are explicit modern policies, not claims about the native implementation.
 - `EXE-GOG-TIMING-001` establishes BIOS tick use only for startup/mixing paths,
   not actor or animation cadence. `EXE-GOG-MEDIA-001` finds no literal FLI
-  header-validation lead in `DSUN.EXE`; raw cinematic speed fields are data,
-  not assumed milliseconds.
+  header-validation lead, and `EXE-GOG-MEDIA-002` finds no direct reference to
+  the embedded filename/path entries. Raw cinematic speed fields and filename
+  order are data, not assumed milliseconds or a schedule.
 - `EXE-GOG-RNG-001` establishes a 16-bit-seeded native LCG and bounded result
   transforms. Its direct static callers are only the generic modulo,
   inclusive-range, and repeated-roll helpers. The modulo wrapper also reaches
@@ -167,6 +204,11 @@ rejecting unsupported semantics:
   rather than a substitute event or combat implementation.
 - `EXE-GOG-RDFF-001` places `RDFF` beside that same separate 37-byte record
   path. It likewise has no direct selector connection and remains opaque.
+- `EXE-GOG-OJFF-001` establishes two native OJFF resource lookup paths, one
+  beside the 37-byte resident path. `EXE-GOG-IMAGE-001` continues that bounded
+  route into distinct PLAN/PLNR image dispatch. Neither finding identifies a
+  runtime actor, object field semantics, animation, collision, target, or
+  interaction behavior.
 - `EXE-GOG-SMALLTAG-001` finds no literal executable loader lead for `GREQ`,
   `CACT`, `PLYL`, or `CSEQ`. `DATA-GOG-SMALLTAG-001` bounds their owned
   inventories and short envelopes, but neither result assigns those opaque
