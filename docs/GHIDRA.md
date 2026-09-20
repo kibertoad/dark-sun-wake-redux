@@ -710,6 +710,49 @@ proof by itself. Never redirect broad output into the repository.
   CPU-speed-independent until a measured native behavior establishes a
   semantic cadence.
 
+### EXE-GOG-TIMING-004 - Direct PIT access has no recovered feature owner
+
+- **Question:** Do direct immediate accesses to the standard PIT control/data
+  ports establish a movement, animation, or media cadence that the restoration
+  must reproduce?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. The full analyzer
+  pass completed before these focused queries.
+- **Method:** `ReportBytePattern` searched every loaded block for the four
+  immediate-port encodings `e4 40`, `e6 40`, `e4 43`, and `e6 43`.
+  `ReportInstructionContext` classified each coherent instruction sequence,
+  while `ReportReferences` enumerated direct callers of both containing
+  functions and of the local read-loop wrapper.
+- **Bounded finding:** the four raw searches find two coherent `IN 40h`, two
+  coherent `OUT 40h`, no `IN 43h`, and two coherent `OUT 43h` instructions;
+  three other short byte matches are inside unrelated decoded instructions.
+  Function `1000:12bf` saves flags, disables interrupts, writes zero to port
+  `43h`, performs two local calls separated by reads from `40h`, inverts the
+  combined two bytes, restores flags, and returns. It has exactly two direct
+  callers, both inside `1000:12fa`; that wrapper has no Ghidra-recorded direct
+  caller. Separately, `4842:059c` saves flags, disables interrupts, writes
+  literal `0x36` to `43h`, obtains a caller-supplied word, and emits its two
+  bytes to `40h`. It has exactly three direct callers, all within module
+  `4842`; one scales its input by observed literals `0x2710` and `0x20bc`, one
+  supplies zero after a local decrement, and one forwards a result from an
+  opaque local helper. No recovered caller supplies a Tyr coordinate, actor,
+  image, FLI/VOC resource, UI control, or dialogue identity.
+- **Interpretation:** the executable contains two real direct PIT-access
+  boundaries, including one latch/read sequence and one caller-word programming
+  sequence. Their direct caller shapes do not establish a feature owner,
+  duration unit, delay contract, playback clock, frame cadence, or Core update
+  schedule. A no-reference result for the local wrapper excludes only a direct
+  Ghidra caller, not indirect, loaded, or runtime-generated use.
+- **Confidence:** high for the raw-match counts, decoded port accesses, local
+  operation order, and direct-reference counts; unknown for hardware purpose,
+  caller ownership, duration units, and every player-visible timing behavior.
+- **Implementation consequence:** do not program or poll PIT hardware, infer a
+  duration from the observed literals, or couple rules to a DOS-era timer
+  routine. Retain the explicit monotonic, CPU-independent runtime clock until a
+  resource/feature-specific path and controlled cadence observation establish a
+  player-visible contract.
+
 ### EXE-GOG-VIDEO-001 - Shared BIOS-video wrapper is not a screen contract
 
 - **Question:** Do literal BIOS video calls establish a screen-specific native

@@ -189,8 +189,10 @@ the start flow and current exploration state reproducible.
   literal `INT 15h` sites select extended-memory services (`AH=87h`/`88h`),
   rather than the BIOS wait service (`AH=86h`). `EXE-GOG-TIMING-003` adds a
   CPU-busy VGA-status transition poll around a generic word-copy path, not a
-  semantic clock. It must not be recreated as an interrupt-disabled render
-  loop or actor scheduler. `EXE-GOG-MEDIA-001` finds no literal FLI
+  semantic clock. `EXE-GOG-TIMING-004` additionally bounds direct PIT latch/
+  read and programming routines, but finds no recovered feature owner or
+  duration contract. None must be recreated as an interrupt-disabled render
+  loop, hardware timer, or actor scheduler. `EXE-GOG-MEDIA-001` finds no literal FLI
   header-validation lead, and `EXE-GOG-MEDIA-002` finds no direct reference to
   the embedded filename/path entries. `EXE-GOG-TITLE-002` likewise finds no
   recovered function that co-locates static-title `BMP ` #11011 with its tag
