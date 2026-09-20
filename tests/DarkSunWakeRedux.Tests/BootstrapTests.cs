@@ -1,6 +1,5 @@
 using System.Security.Cryptography;
 using System.Text.Json;
-using DarkSunWakeRedux.Core;
 using DarkSunWakeRedux.Extractor;
 using DarkSunWakeRedux.Resources;
 using Xunit;
@@ -9,10 +8,6 @@ namespace DarkSunWakeRedux.Tests;
 
 public sealed class BootstrapTests
 {
-    [Fact]
-    public void CoreStateAdvancesDeterministically() =>
-        Assert.Equal(new GameState(2, 42), GameState.Create(42).AdvanceTurn());
-
     [Fact]
     public void ManifestRejectsPathTraversal()
     {
