@@ -584,6 +584,33 @@ proof by itself. Never redirect broad output into the repository.
   target-capability mapping. A future runtime slice needs a controlled
   activation trace plus an independent data or executable call-path finding.
 
+### EXE-GOG-UI-008 - Observed hostile label has no exact executable literal
+
+- **Question:** Does the supported executable contain the exact observed
+  hostile Look-panel label `Draxan`, either as a null-terminated or an
+  unterminated ASCII byte sequence, giving the dynamic text field an
+  executable-side source lead?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** after the label was independently measured in
+  `DATA-GOG-INTERACTION-001`, `ReportBytePattern` searched every loaded memory
+  block first for `44 72 61 78 61 6e 00` and then for its exact six-byte prefix
+  `44 72 61 78 61 6e`. Each query has bounded occurrence and reference output.
+- **Bounded finding:** neither exact byte pattern occurs in loaded executable
+  memory. The result identifies no literal text, source-data mapping, target
+  name, level, hostility, panel activation, or rendering path.
+- **Interpretation:** this excludes only the observed-case ASCII spelling in
+  this executable. It may be encoded with another case or character set, held
+  in a GFF/resource or a separate module, assembled at runtime, or supplied by
+  an unobserved data path. It does not turn the captured name into a safe
+  production literal.
+- **Confidence:** high for the two exact absent loaded-memory representations;
+  unknown for the dynamic text source and all general target presentation.
+- **Implementation consequence:** keep the hostile panel's dynamic name and
+  level unrendered rather than hard-coding captured original text. A source
+  projection needs a bounded data-format or native call-path finding.
+
 ### EXE-GOG-UI-006 - Character-generation IDs do not identify control behavior
 
 - **Question:** Do the character-generation window, class-label, EXIT, or DONE
