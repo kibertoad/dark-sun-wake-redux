@@ -1719,6 +1719,45 @@
   or another independent source establishes all four members. A changed source
   archive is a recognition mismatch, not an implicit alternative party.
 
+### OBS-GOG-PARTY-001 - Owner-confirmed party and destination-screen captures
+
+- **Question:** What player-visible party membership, destination-shell, and
+  combat-feedback facts can be observed without assigning unknown character
+  tail fields, item rules, spell rules, combat turns, or resource selection?
+- **Method:** The owner confirmed the semantic labels for local-only DOSBox
+  Ctrl+F5 captures `dsun_011.png` and `dsun_013.png` through `dsun_024.png`.
+  Their local file timestamps run from 2026-09-20 22:01:20 through 22:04:53.
+  Inspect the 320x200 captures in place; do not copy, rename, or commit them.
+  Correlate only the owner-confirmed member names and visibly labelled ability
+  values with the bounded installed `CHAR` catalog.
+- **Finding:** The party strip visibly contains four members in this order:
+  AR'ANDA, TERRANNUS, THY ROKH, and GERAKIS. The owner identifies
+  `dsun_013`-`016` as their respective spell/use screens, `dsun_017`-`020` as
+  their respective inventory screens, and `dsun_021`-`024` as their respective
+  character views. Those captures confirm the four-character strip, selection
+  feedback, and reuse of the observed destination shells, but not interior
+  control behavior or field semantics. AR'ANDA's character view visibly shows
+  Strength 18; among the two bounded AR'ANDA records, that matches #40 and not
+  #50, whose separately parsed score is 19. THY ROKH's confirmed letter order
+  also matches #42 (`Thy'rokh`) and not #51 (`Thy-rohk`). TERRANNUS (#41/#53)
+  and GERAKIS (#33/#43) retain same-name candidates with the same currently
+  visible six-score tuple, so the captures do not select one exact resource for
+  each of those names. The confirmed order coincides with the consecutive
+  #40-#43 source block, but coincidence and names alone do not prove that
+  complete resource selection. The owner identifies `dsun_011` as
+  combat damage being inflicted; it visibly shows a red `11` feedback glyph
+  over the actor cluster. It does not establish attacker, target, damage rule,
+  action, turn, timing, hit resolution, or exit behavior.
+- **Confidence:** high for the owner-confirmed screenshot labels, member order,
+  shell reuse, AR'ANDA #40/THY'ROKH #42 discrimination, and visible damage
+  glyph; unknown for the two duplicate-name resource selections, party source/origin,
+  dynamic field meanings, spell selection, inventory semantics, and all combat
+  rules.
+- **Implementation consequence:** retain `ShippedPartyUnresolved` and inert
+  destination interiors. Do not create a four-resource default-party table,
+  item model, spell model, damage pipeline, combat state machine, or timing
+  policy from these still-bounded visual facts.
+
 ### RULE-START-FLOW-001 - Start and party-creation routing
 
 - **Behavior:** The Start Window offers START GAME, CREATE CHARACTERS, LOAD

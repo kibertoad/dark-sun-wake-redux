@@ -674,6 +674,16 @@ catalogs.
 | Q19 | What are the native Preferences defaults, selected/unselected frames, slider endpoints/steps, description placement, and About page geometry/dismissal? | slice 3 | owner-controlled observation | open - static tables and opaque `PREF` evidence do not establish this behavior. `docs/OWNER-CAPTURE-CHECKLIST.md` defines the bounded Ctrl+F5 sequence; inspect only screenshots whose timestamp window the owner confirms after completing it |
 | Q20 | Which, if any, `RDFF` source record supplies the first hostile Look panel's dynamic name, level, and available actions? | slice 3 | DATA/EXE/OBS evidence investigation | open - `DATA-GOG-RDFF-001` finds the captured label in 23 same-offset `RDFF` records plus an aggregate record. OJFF #9258 has broad overlapping numeric-namespace matches, but none of its four neutral words matches the label-bearing RDFF subset. `EXE-GOG-RDFF-001` identifies a separate indexed native record path but no payload field. Its direct OJFF callers and the next six recovered upstream contexts source values from locals, arguments, registers, or resident memory rather than a provable fixed resource identity. Neither result identifies a target record or dynamic interaction property. |
 
+**Q12 evidence update (2026-09-20).** Owner-confirmed local captures establish
+the visible party-strip order AR'ANDA, TERRANNUS, THY ROKH, GERAKIS and map
+AR'ANDA to installed `CHAR` #40 through her visible Strength 18 and THY ROKH
+to #42 through the unique visible letter order. TERRANNUS and GERAKIS retain
+same-name catalog candidates with identical currently visible ability tuples,
+so the full resource selection remains open; the observed order's agreement
+with #40-#43 is corroboration, not proof.
+`OBS-GOG-PARTY-001` records the bounded result and leaves
+`ShippedPartyUnresolved` in place.
+
 ## Risks
 
 - **Unknown containers.** The observed installation contains `.GFF`, `.FLI`,
