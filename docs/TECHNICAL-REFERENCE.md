@@ -132,15 +132,17 @@ OBS-GOG-PARTY-001, EXE-GOG-UI-009, and EXE-GOG-UI-010 before extending these
 screens.
 
 Combat remains evidence acquisition only. Owner-confirmed dsun_010 shows an
-enemy move with a changing right-side movement display. Its static panel is
-the 98x32 BMP #19003 at (215,4), with a dynamically overlaid region bounded
-to (243,8) through (284,31). dsun_011 shows a red 11 feedback glyph whose
-visible glyph-area pure-red components occupy (151,95) through (178,113) on
-the 320x200 canvas. The required-revision-34 pack preserves the static artwork as
+enemy move with a changing right-side movement display. Owner-confirmed
+dsun_012 shows a combat turn labelled Thy'rokh, with visible panel strings
+`90/85` and `Moves 15`; that identifies neither their value semantics nor a
+turn transition. Its static panel is the 98x32 BMP #19003 at (215,4), with a
+dynamically overlaid region bounded to (243,8) through (284,31). dsun_011
+shows a red 11 feedback glyph whose visible glyph-area pure-red components
+occupy (151,95) through (178,113) on the 320x200 canvas. The required-revision-34 pack preserves the static artwork as
 `images/combat/status-panel.dsix` with source provenance and the interface palette,
 but no Game code consumes it. These facts establish
-neither movement cost, action ordering, attacker/target identity, damage
-resolution, turn progression, timing, nor exit. No combat session, encounter,
+neither movement cost, action ordering, attacker/target identity, panel-value
+meaning, damage resolution, turn progression, timing, nor exit. No combat session, encounter,
 or rules pipeline is implemented until the controlled C0-C6 observation gate
 and a traceable data or executable path establish them.
 

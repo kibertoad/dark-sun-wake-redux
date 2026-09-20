@@ -1837,11 +1837,12 @@
 ### OBS-GOG-PARTY-001 - Owner-confirmed party and destination-screen captures
 
 - **Question:** What player-visible party membership, destination-shell, and
-  combat-feedback facts can be observed without assigning unknown character
-  tail fields, item rules, spell rules, combat turns, or resource selection?
+  combat-feedback/turn-state facts can be observed without assigning unknown
+  character tail fields, item rules, spell rules, combat mechanics, or
+  resource selection?
 - **Method:** The owner confirmed the semantic labels for local-only DOSBox
-  Ctrl+F5 captures `dsun_010.png`, `dsun_011.png`, and `dsun_013.png` through
-  `dsun_024.png`.
+  Ctrl+F5 captures `dsun_010.png` through `dsun_024.png` except for the
+  unrelated, as-yet-unlabelled `dsun_009.png`.
   Their local file timestamps run from 2026-09-20 22:01:16 through 22:04:53.
   Inspect the 320x200 captures in place; do not copy, rename, or commit them.
   Correlate only the owner-confirmed member names and visibly labelled ability
@@ -1872,8 +1873,12 @@
   complete resource selection. The owner identifies `dsun_010` as an enemy
   moving frame: the opposing actor moves while the combat UI remains largely
   stable, and the right-side statistics panel changes as that actor spends
-  movement points. `dsun_011` is confirmed as combat damage being inflicted
-  and visibly shows a red `11` feedback glyph over the actor cluster. The
+  movement points. The owner identifies `dsun_012` as combat during
+  Thy'rokh's turn. It visibly shows the party cluster and a compact right-side
+  panel with `Thy'rokh`, `90/85`, and `Moves 15`; these are displayed strings,
+  not assigned status/value semantics. `dsun_011` is confirmed as combat
+  damage being inflicted and visibly shows a red `11` feedback glyph over the
+  actor cluster. The
   pure-red components in that visible glyph area have a union bound of `(151,95)` through `(178,113)` in
   the 320x200 frame; that is feedback geometry, not a damage-value or timing
   contract. The static top-right panel in both captures template-matches
@@ -1881,10 +1886,12 @@
   pixels match (83.73%), while the same remaining pixels are bounded to
   (243,8) through (284,31) in each capture. This establishes the static panel
   artwork, placement, and a dynamic overlay region only; it identifies no
-  panel text, value source, movement rule, or update timing. These captures do
-  not establish movement-point scale, initial amount, cost,
+  panel text source, value meaning, movement rule, or update timing. The
+  observed Thy'rokh frame establishes only that this labelled combat turn
+  state is visible; it does not establish how turns start, advance, or cycle.
+  These captures do not establish movement-point scale, initial amount, cost,
   distance, path, collision, speed, attacker, target, damage rule, action,
-  turn, timing, hit resolution, or exit behavior.
+  command input, turn progression, timing, hit resolution, or exit behavior.
   EXE-GOG-COMBAT-004 separately establishes the panel's native BMP
   request/cache path but identifies no combat owner or overlay semantics.
 - **Implementation:** required-revision-34 extraction emits the bounded one-frame
@@ -1895,9 +1902,10 @@
 - **Confidence:** high for the owner-confirmed screenshot labels, member order,
   shell reuse, the four visible USE captions, AR'ANDA #40/THY'ROKH #42
   discrimination, candidate envelope/mask distinctions, visible enemy motion,
-  movement-point-display change, and visible damage glyph; unknown for the two
-  duplicate-name resource selections, party source/origin, dynamic field
-  meanings, spell selection, inventory semantics, and all combat rules.
+  movement-point-display change, Thy'rokh's visible combat turn panel, and
+  visible damage glyph; unknown for the two duplicate-name resource selections,
+  party source/origin, dynamic field meanings, spell selection, inventory
+  semantics, and all combat mechanics.
 - **Implementation consequence:** retain `ShippedPartyUnresolved` and inert
   destination interiors. Do not create a four-resource default-party table,
   item model, spell model, movement-point cost model, damage pipeline, combat
