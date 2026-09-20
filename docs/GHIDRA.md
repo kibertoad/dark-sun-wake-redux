@@ -1258,7 +1258,8 @@ proof by itself. Never redirect broad output into the repository.
   at `5b7c:0700`. Bounded instruction contexts classified immediate argument
   setup and the one direct caller of the observed initializer, including the
   entry-flow's three resident-word pushes and the initializer's first-argument
-  guard. A bounded
+  guard. A second pair of bounded instruction contexts classified the
+  initializer's only two direct selector-pointer accesses. A bounded
   decompilation of its shared callee identified the byte-fill helper used
   immediately before the link loop. Four bounded decompilations of the `1695`
   callers compared every dereferenced offset and all chain termination and
@@ -1318,6 +1319,15 @@ proof by itself. Never redirect broad output into the repository.
   owner. Immediately before the link loop, it calls a verified generic
   byte-fill helper at that same table pointer with an observed length of
   `0x0a28` and fill byte `0xff`; `0x0a28` equals 200 13-byte strides. A
+  direct instruction context independently corroborates this sequence without
+  relying on the initializer's unreliable decompilation: it observes the far
+  table pointer pushed with the composite immediate `0x0a28ffff` before the
+  shared call and an eight-byte stack cleanup after it. The sole later pointer
+  load follows an explicit multiply by 13, writes the successor at offset 11,
+  compares the source index to `0xc8`, and then clears the secondary-chain
+  head. These observations corroborate the clear/link setup mechanics only;
+  they do not identify the pointer's allocation, its source data, or any
+  record field meaning. A
   direct-reference query of the secondary-chain head at `4c13:032d` found
   exactly three direct uses: the initializer's zero write, plus one read and
   one write in the proven node-removal helper `1695:07dd`. It then

@@ -218,11 +218,12 @@ rejecting unsupported semantics:
   multiple predicate traversals, a guarded `GPL ` resource-request path, and a
   secondary relinked chain. Its sole recovered initializer caller is the
   executable entry, which passes three resident words and meets an immediate
-  lower-bound guard; that identifies neither their meaning nor table
-  ownership. It does not identify the table's source/population path or
-  connect a record to dialogue, quests, combat, or map triggers. Its pointer's
-  initialized image is zero, so the later runtime population path is still
-  required evidence.
+  lower-bound guard. Instruction context also confirms the shared clear call,
+  13-byte successor-link loop, and secondary-head clear. These facts identify
+  neither values' meanings nor table ownership. It does not identify the
+  table's source/population path or connect a record to dialogue, quests,
+  combat, or map triggers. Its pointer's initialized image is zero, so the
+  later runtime population path is still required evidence.
 - `EXE-GOG-RECORD19-001` separates a second linked 19-byte resident family
   that uses the same request entry. Shared processing does not establish a
   common source, a record meaning, or a player-visible feature for either
