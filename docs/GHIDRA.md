@@ -1377,20 +1377,24 @@ proof by itself. Never redirect broad output into the repository.
   PRESERVER, CLERIC, FIGHTER, and GLADIATOR label encodings from the four
   owner-confirmed character views. `ReportDataBytes` inspected the bounded
   96-byte span beginning at the first located label, and
-  `ReportReferences` inspected each of the four raw-label addresses.
+  `ReportReferences` inspected each of the four raw-label addresses. After
+  the absent direct references, a second raw-byte query searched every loaded
+  block for the exact little-endian segmented far-pointer encoding
+  `8c 90 00 50` of the table base `5000:908c`.
 - **Bounded finding:** the 64-byte span at `5000:908c` through
   `5000:90cb` holds exactly eight adjacent NUL-terminated labels in this
   order: Cleric, Druid, Fighter, Gladiator, Preserver, Psionicist, Ranger, and
   Thief. The following bytes begin a separate adjacent stat-label family
   (STR, DEX, CON, INT, WIS, CHR). Ghidra reports no inbound direct reference
   to the four queried labels at `5000:908c`, `5000:9099`, `5000:90a1`,
-  and `5000:90ab`.
+  and `5000:90ab`; the exact four-byte far-pointer encoding is also absent.
 - **Interpretation:** the span establishes the executable's finite class-label
   vocabulary and its local serialized order. It does not establish that these
   ordinal positions are `CHAR` field values, that the text is rendered on
   the observed screen, or which code displays, chooses, or mutates a class.
-  An indirect pointer, constructed address, another executable, resource
-  data, or runtime state remains possible.
+  The absent direct reference and one exact stored-pointer form still leave a
+  constructed/relocated pointer, another executable, resource data, or runtime
+  state possible.
 - **Confidence:** high for the bounded labels, their order, the next-table
   boundary, and the four absent direct-reference results; unknown for record
   layout, UI ownership, and all class behavior.
