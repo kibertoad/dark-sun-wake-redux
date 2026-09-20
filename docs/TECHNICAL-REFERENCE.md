@@ -257,6 +257,12 @@ rejecting unsupported semantics:
   functions (including the OJFF route), and a separate generic window-image
   request path. The title resource #11011 has no observed connection to either,
   so neither title sequencing nor image composition is inferred.
+- `EXE-GOG-VIDEO-001` identifies nine coherent BIOS-video calls in one shared
+  wrapper with fourteen direct callers, plus two raw matches outside decoded
+  instruction boundaries. The
+  wrapper accepts generic service/register values and does not connect any
+  call to a resource, screen, palette, resolution, or layout. It is not a
+  native rendering contract.
 - `EXE-GOG-PORT-001` finds no literal `PORT` tag in the executable. It does
   not contradict the observed first-Tyr portrait, but supplies no general
   portrait loader, palette, drawing, dialogue, or timing rule.

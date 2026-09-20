@@ -675,6 +675,44 @@ proof by itself. Never redirect broad output into the repository.
   CPU-speed-independent runtime clock until a movement/media consumer path and
   controlled cadence observation establish a native contract.
 
+### EXE-GOG-VIDEO-001 - Shared BIOS-video wrapper is not a screen contract
+
+- **Question:** Do literal BIOS video calls establish a screen-specific native
+  display mode, palette, renderer, or layout boundary for the restoration?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** `ReportBytePattern` searched all loaded blocks for the exact
+  `INT 10h` encoding (`cd 10`) and found eleven matches. Bounded instruction
+  contexts inspected the nine decoded sites in their shared recovered function;
+  `ReportReferences` enumerated its direct callers, and three representative
+  caller contexts established that the helper receives both fixed and
+  caller-supplied service/register values.
+- **Bounded finding:** nine matches at `1000:1149` through `1000:11a2` are in
+  `1000:1136`. Its entry dispatches on the caller's `AH` value and issues
+  `INT 10h`; nearby branches make additional service calls only for selected
+  return values. `ReportReferences` finds fourteen direct calls from seven
+  recovered functions. Representative call contexts pass service values `02h`
+  and `09h`, an all-caller-supplied register set, and `0fh`/`00h` in one
+  mode-query/set sequence. The remaining raw matches at `1000:e907` and
+  `1000:e989` lie outside a containing decoded instruction or function in this
+  analysis.
+- **Interpretation:** the bounded evidence establishes a shared BIOS-video
+  handoff with generic adapter/mode handling. It does not associate a call with
+  a title, dialogue, Preferences, region, resource, palette, framebuffer
+  layout, logical resolution, or screen transition. In particular, a service
+  value passed through the wrapper is not evidence of a specific player-visible
+  screen mode.
+- **Confidence:** high for the eleven raw matches, the nine-site shared helper,
+  its fourteen direct-call references, and the three bounded caller shapes;
+  unknown for all native screen ownership, display-mode policy, palette use,
+  and rendering behavior.
+- **Implementation consequence:** retain the independently measured 320x200
+  logical canvas and resource-backed palette contracts. Do not emulate BIOS
+  adapter probing, infer a screen mode, or add a rendering/timing policy from
+  this generic wrapper; a screen-specific consumer path plus controlled visual
+  observation is required.
+
 ### EXE-GOG-ITEMS-001 - no literal ITEMS.BIN loader lead in DSUN.EXE
 
 - **Question:** Does the supported main executable identify `ITEMS.BIN` by its
