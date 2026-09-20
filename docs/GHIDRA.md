@@ -7,7 +7,8 @@ Ghidra projects, binaries, byte dumps, screenshots, and full disassembly or
 decompiler output must never be added to Git.
 
 This workflow follows the established practice in
-`C:\sources\rechaos-overlords`: fingerprint the executable first, keep a
+`C:\sources\rechaos-overlords`: establish and document the executable
+fingerprint once for its stable approved path, keep a
 disposable local analysis project, answer narrow questions with bounded scripts,
 record address-level factual findings and confidence, then implement the behavior
 independently with synthetic tests.
@@ -38,8 +39,12 @@ C:\GOG Games\Dark Sun 2\DSUN.EXE
 - SHA-256: `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`.
 - Evidence ID: `GOG-1432903719`.
 
-Always verify length and SHA-256 before interpreting an address. Findings from a
-different executable belong to a separate edition record and address map.
+The documented path/fingerprint pair is the baseline for all focused queries in
+this research environment; do not rehash it before every query. Revalidate the
+size and SHA-256 only if the path, file metadata, source package, or documented
+edition changes, a fresh environment lacks the baseline, or there is a concrete
+replacement concern. Findings from a different executable belong to a separate
+edition record and address map.
 
 ## When to use Ghidra
 

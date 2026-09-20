@@ -160,9 +160,13 @@ dotnet run --project src/<Project>.Game -- --smoke-test
 
 ## Static executable analysis
 
-Treat static analysis as evidence, not a search-engine oracle. Reverify the
-approved executable's exact size and SHA-256 before interpreting a new address
-or reference. Ask one narrow player-visible question at a time and record the
+Treat static analysis as evidence, not a search-engine oracle. Establish and
+document the approved executable's exact path, size, and SHA-256 once, then
+reuse that stable named target for focused queries without rehashing it each
+time. Revalidate only when the path, size, last-write metadata, source package,
+or documented edition changes, when a fresh analysis environment lacks the
+recorded baseline, or when there is a concrete reason to suspect replacement.
+Ask one narrow player-visible question at a time and record the
 edition, tool versions, query, result, competing interpretations, and confidence
 in `docs/GHIDRA.md`.
 
@@ -201,8 +205,9 @@ For a presentation mismatch, first compare the complete ordered control graph
 and the extracted image dimensions/alpha bounds against an owner-confirmed
 native capture at the same logical resolution. If the graph has no image that
 accounts for the missing chrome, treat the generic widget path as an open
-evidence question: make a narrow static-analysis query only after verifying the
-approved executable fingerprint, and obtain a bounded capture that shows each
+evidence question: make a narrow static-analysis query against the documented
+approved executable target, revalidating its identity only under the static
+analysis conditions above, and obtain a bounded capture that shows each
 corner/state required. Record measured geometry, colours, and confidence in the
 UI evidence documents, add synthetic tests for those measurements, and keep
 the capture itself outside Git. Do not claim pixel parity until the native

@@ -25,10 +25,13 @@ The repository owner confirms that agents may always rely on the legally owned
 installation at `C:\GOG Games\Dark Sun 2` being available for read-only analysis
 throughout this migration, including focused analysis of
 `C:\GOG Games\Dark Sun 2\DSUN.EXE`. Agents do not need to ask again before using
-that installation for in-scope evidence work. Before interpreting executable
-addresses or data offsets, verify the file against the supported-edition
-manifest. The current `DSUN.EXE` is 634,416 bytes with SHA-256
-`ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`.
+that installation for in-scope evidence work. Its documented stable executable
+identity is the baseline for in-scope address and data-offset work; do not
+rehash it before every focused query. The current `DSUN.EXE` is 634,416 bytes
+with SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`.
+Revalidate only if the path, file metadata, source package, or documented
+edition changes, a fresh environment lacks this baseline, or replacement is
+otherwise suspected.
 If the path is unavailable or the fingerprint changes, record the mismatch and
 stop drawing edition-specific conclusions until the source-edition record is
 updated; never silently substitute another copy.
