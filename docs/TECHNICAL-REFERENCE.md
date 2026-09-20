@@ -359,10 +359,12 @@ rejecting unsupported semantics:
   `CHARTRAN.EXE` has one unreferenced raw `CHAR` occurrence and no `PSIN`
   pattern (`EXE-GOG-CHAR-005`). Neither utility result can select a shipped
   party.
-- `GPLI` #1 is an exact 329-by-24-byte opaque data envelope. No literal GPLI
-  tag exists in the analyzed executable, and no decoded function directly
-  combines the known GPL resource-135 ID with the literal GPL tag; no lookup
-  role is assumed.
+- `GPLI` #1 is an exact 329-by-24-byte opaque data envelope. Its four aligned
+  third lane words are a strong GPL-number-set correlation (1,315 of 1,316
+  occurrences are members, collectively covering every GPL ID), but repeats
+  and one non-member reject a one-to-one map. No literal GPLI tag exists in the
+  analyzed executable, and no decoded function directly combines the known GPL
+  resource-135 ID with the literal GPL tag; no lookup role is assumed.
 - `ITEMS.BIN` is a verified 234-pair envelope. `DSUN.EXE`, `CHARTRAN.EXE`, and
   `SVIEW.EXE` each lack the queried literal filename/stem forms, so no
   item/equipment mapping or loader is inferred.

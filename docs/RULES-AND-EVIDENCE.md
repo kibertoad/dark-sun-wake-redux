@@ -63,21 +63,35 @@
   #135?
 - **Method:** Resolve `GPLI` #1 through the verified secondary GFFI descriptor
   table, require its known 7,896-byte envelope, and partition it into 329
-  records of four six-byte lanes. Examine only the 3,948 aligned
-  little-endian 16-bit lane words for the numeric value 135; retain neither
-  raw bytes nor text.
+  records of four six-byte lanes. First examine only the 3,948 aligned
+  little-endian 16-bit lane words for the numeric value 135. A follow-up
+  read-only aggregate check compares each of the twelve aligned word positions
+  to the archive's 330 `GPL ` resource numbers and reports only counts,
+  distinct counts, set membership, and duplication statistics; it retains no
+  raw bytes or text.
 - **Finding:** the payload exactly fits the four-lane shape. Value 135 occurs
   twice: in zero-based record 63, lane 1, word 2 and in zero-based record 133,
   lane 3, word 0. It therefore has no unique occurrence and no consistent lane
-  position under this deliberately narrow candidate interpretation.
+  position under that narrow candidate interpretation. The aggregate check
+  finds a stronger but still non-semantic structure: lane word 2 (the third
+  16-bit word) has 1,315 GPL-number-set members across its 1,316 occurrences.
+  The one non-member is in the first lane position; the other three third-word
+  positions each have complete 329-of-329 GPL-set membership. Together the
+  third-word positions cover all 330 GPL resource numbers, but only 331
+  distinct values across 1,316 occurrences, with individual values occurring
+  from once through 27 times and 162 records repeating a value across lanes.
+  The eight non-third positions also have 846 GPL-set hits across 2,632 words,
+  so namespace membership alone does not assign their roles.
 - **Confidence:** high for the verified secondary-table resolution, fixed
-  envelope, lane arithmetic, and two numeric occurrences; unknown for every
-  lane's field role, byte order beyond this checked word interpretation,
-  runtime lookup, and relationship to GPL/MAS, dialogue, encounters, or quests.
-- **Implementation consequence:** retain `GPLI` #1 as lossless DSOP. Do not
-  assign a GPL-resource field, add a GPLI reader, or connect it to dialogue
-  from this non-unique numeric coincidence. A constrained native call path or
-  controlled observation remains required.
+  envelope, lane arithmetic, two numeric occurrences, and aggregate
+  GPL-number-set membership counts; unknown for every lane's field role,
+  byte order beyond this checked word interpretation, runtime lookup, and
+  relationship to GPL/MAS, dialogue, encounters, or quests.
+- **Implementation consequence:** retain `GPLI` #1 as lossless DSOP. The
+  repeated third-word correlation is a candidate GPL-reference column, not a
+  field contract: do not add a GPLI reader, record-to-script map, or dialogue
+  behavior from it. A constrained native call path or controlled observation
+  remains required.
 
 ### DATA-GOG-CORPUS-001 - Immutable source-corpus inventory
 
