@@ -1822,7 +1822,13 @@
   and visibly shows a red `11` feedback glyph over the actor cluster. The
   pure-red components in that visible glyph area have a union bound of `(151,95)` through `(178,113)` in
   the 320x200 frame; that is feedback geometry, not a damage-value or timing
-  contract. These captures do not establish movement-point scale, initial amount, cost,
+  contract. The static top-right panel in both captures template-matches
+  RESOURCE.GFF BMP #19003 (98x32) at (215,4): 2,594 of its 3,098 opaque
+  pixels match (83.73%), while the same remaining pixels are bounded to
+  (243,8) through (284,31) in each capture. This establishes the static panel
+  artwork, placement, and a dynamic overlay region only; it identifies no
+  panel text, value source, movement rule, or update timing. These captures do
+  not establish movement-point scale, initial amount, cost,
   distance, path, collision, speed, attacker, target, damage rule, action,
   turn, timing, hit resolution, or exit behavior.
 - **Confidence:** high for the owner-confirmed screenshot labels, member order,
