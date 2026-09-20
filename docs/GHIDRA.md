@@ -1646,6 +1646,8 @@ proof by itself. Never redirect broad output into the repository.
   classified the successful `31e0:0eff` lookup result's sole direct consumer.
   A final instruction-context query inspected all three direct call sites to
   distinguish static identities from immediate caller values.
+  `ReportReferences` then followed `31ba:000e` one direct layer outward and
+  `ReportInstructionContext` inspected all six recovered call sites.
 - **Bounded finding:** exactly two coherent instructions select `OJFF`, both in
   module `31e0`. The first is in `31e0:0eff`, which has three direct callers
   (`31ba:000e`, `2d40:0589`, and `31e0:0121`). It supplies its caller-provided
@@ -1662,7 +1664,11 @@ proof by itself. Never redirect broad output into the repository.
   at offsets `0x00`, `0x02`, `0x04`, `0x0a`, `0x0b`, and `0x0c`, combines them
   with a separate eight-byte indexed entry, and initializes/rearranges fields
   in the resident destination. This is an observed transfer boundary, not a
-  field-name assignment. The second, `31e0:426e`, supplies a caller-provided
+  field-name assignment. One layer outward, `31ba:000e` has six direct callers:
+  their immediate call contexts pass resident-memory words, locals, parameters,
+  or registers. One site also supplies small literals one and three, but the
+  argument roles are not established and no call provides a provable static
+  OJFF or RDFF identity. The second, `31e0:426e`, supplies a caller-provided
   unsigned 16-bit identity and `OJFF` to the same lookup and reduces its result
   to a success/failure return; it has no direct Ghidra caller. Neither bounded
   path chooses a bitmap frame, enumerates an animation, or invokes a collision,
@@ -1674,8 +1680,10 @@ proof by itself. Never redirect broad output into the repository.
   native code, but does not establish what any OJFF word means, which resource
   identities belong to the opening actor, the owner of the resident records, or
   any player-visible object behavior. The immediate caller contexts rule out
-  only a fixed identity at those three call sites; the second function's lack of
-  a recovered direct caller is not evidence that it is unused.
+  only a fixed identity at those three call sites. The six one-layer callers
+  continue the dynamic-state path but do not establish a field role; the second
+  function's lack of a recovered direct caller is not evidence that it is
+  unused.
 - **Confidence:** high for the two literal tag assignments, direct-call count,
   supplied identity widths, immediate lookup-result handling, sole post-lookup
   consumer, observed source-offset accesses, and the shared 37-byte-path
