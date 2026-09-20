@@ -25,9 +25,12 @@ APFM, one EBOX, and 21 BUTN records. Its root image-less frame is 320x189 at
 (0,0); the only EBOX is 95x8 at (153,28); the 136x108 image-less frame starts
 at (147,41); four image-less 34x34 frames occupy (53,30), (104,30), (53,90),
 and (104,90). Two groups of image-less 18x18 frames form 7-by-3 and 7-by-2
-grids spanning x=148..280. The 320x200 captures establish the visible
-character-view composition, but no static record attaches a field, item,
-portrait, interaction, or generic widget treatment to any of these controls.
+grids spanning x=148..280. The grid preserves three distinct event-mask
+classes (six cells 486, 29 cells 230, and all other non-root frames zero);
+three BUTN records also have nonzero masks (84 for #11318 and 160 for
+#11319/#11320). The 320x200 captures establish the visible character-view
+composition, but no static record attaches a field, item, portrait,
+interaction, or generic widget treatment to any of these controls.
 
 Third-menu status clarification: target 3686 clears local flag 17 and sets flag
 18; target 3786 then clears flag 18. Both return, are dispatched by target, and

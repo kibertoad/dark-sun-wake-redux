@@ -725,6 +725,15 @@
   7-by-2 groups of 18x18 image-less APFMs spanning x=148..280 at y=42..82
   and y=109..129, plus six 98x5 frames at x=43. Those measurements establish
   geometry only; their field, slot, focus, or chrome meanings remain unknown.
+  The 21 BUTN records divide into a 123x11 record #11318 at (151,26), event
+  mask 84; four 34x34 records at (53,30), (104,30), (53,90), and (104,90);
+  eight adjacent 10x9 records; four known 16x16 navigation records; two
+  28x16 navigation-area records; and 42x12/#11319 plus 48x12/#11320 at
+  (132,157)/(173,157), each with event mask 160. All other BUTN event masks
+  are zero. Of the 64 APFMs, the root has mask 70, six first-grid cells have
+  mask 486, 29 grid cells have mask 230, and the remaining 28 have mask zero.
+  Those event-mask classes do not name an action, field, focus state, or
+  widget appearance.
   Adjacent 28x16 BUTN #11308 at (223,155) reuses ICON #11101, the visual
   resource already bounded as the Preferences Game Menu control, but its own
   event mask is zero. That visual reuse does not establish a character-view
