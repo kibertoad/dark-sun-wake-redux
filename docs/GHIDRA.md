@@ -1023,16 +1023,21 @@ proof by itself. Never redirect broad output into the repository.
   semantic use remain unknown; this is recorded as a scaled repeated-roll
   helper rather than assigned to combat or character generation.
 - **Modulo-consumer refinement:** `2834:061c` has eleven direct calls, all in
-  two routines. One helper returns false for inputs outside 1 through 10,
-  returns true for 10 without consuming the stream, and for 1 through 9
-  consumes one modulo-10 result and returns true exactly when that result is
-  less than or equal to its input. The other routine scans an opaque resident
-  six-byte-entry table, partitions candidate indexes through local guards,
-  uses the modulo wrapper to select one, applies that helper to byte 1, and
-  passes byte 5 to another routine on success. It has exactly one direct caller
-  in `28c9`, whose bounded context supplies two guarded resident values. None
-  of these structural facts identifies the table, fields, selection domain,
-  feature owner, or player-visible outcome.
+  two routines. `ReportReferences` and bounded instruction context locate two
+  calls in `2834:000c`; each receives a guarded local count, and the returned
+  index selects a byte from the routine's local candidate storage. The first
+  selection is then scaled by six before indexing a resident table at `424e`;
+  the resulting entry's byte 5 is passed onward. The remaining nine calls are
+  all in `2834:0519`, each with literal divisor 10. That helper returns false
+  for inputs outside 1 through 10, returns true for 10 without consuming the
+  stream, and for 1 through 9 consumes one modulo-10 result and returns true
+  exactly when that result is less than or equal to its input. The other
+  routine scans an opaque resident six-byte-entry table, partitions candidate
+  indexes through local guards, applies that helper to byte 1, and passes byte
+  5 to another routine on success. It has exactly one direct caller in `28c9`,
+  whose bounded context supplies two guarded resident values. None of these
+  structural facts identifies the table, fields, selection domain, feature
+  owner, or player-visible outcome.
 - **Interpretation:** this is a native shared pseudo-random stream primitive,
   not evidence that every random-looking game outcome uses it. The modulo
   wrapper has ordinary modulo bias, which is a native implementation detail;
