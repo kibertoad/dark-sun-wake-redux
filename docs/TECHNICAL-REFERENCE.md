@@ -173,7 +173,9 @@ presentation but cannot advance game rules. Snapshots and replay hashes make
 the start flow and current exploration state reproducible.
 
 - Route advancement is semantic and clock-free in Core. The runtime uses a
-  bounded fixed-step accumulator and fixed-point visual interpolation.
+  bounded fixed-step accumulator and fixed-point visual interpolation. Positive
+  host elapsed time accumulates saturating ticks, so a clock discontinuity
+  cannot overflow the backlog or turn host performance into a gameplay crash.
 - The opening actor's current single-cell footprint and 125 ms semantic step
   are explicit modern policies, not claims about the native implementation.
 - `EXE-GOG-TIMING-001` establishes BIOS tick use only for startup/mixing paths,

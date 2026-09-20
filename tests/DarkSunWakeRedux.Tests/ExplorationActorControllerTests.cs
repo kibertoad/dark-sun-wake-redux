@@ -102,6 +102,22 @@ public sealed class ExplorationActorControllerTests
     }
 
     [Fact]
+    public void ExtremePositiveElapsedTimeSaturatesWithoutOverflowingTheBacklog()
+    {
+        var controller = Controller();
+        controller.PlanAt(Snapshot(), 312, 24);
+
+        var first = controller.Advance(TimeSpan.MaxValue);
+        var second = controller.Advance(TimeSpan.MaxValue);
+        var drained = controller.Advance(TimeSpan.Zero);
+
+        Assert.Equal(ExplorationActorController.MaximumStepsPerUpdate, first.Count);
+        Assert.Equal(ExplorationActorController.MaximumStepsPerUpdate, second.Count);
+        Assert.Equal(ExplorationActorController.MaximumStepsPerUpdate, drained.Count);
+        Assert.Equal(new GridPoint(13, 1), controller.Snapshot().Position);
+    }
+
+    [Fact]
     public void ReplanningResetsPartialCadenceAndUsesLiveActorPosition()
     {
         var controller = Controller();

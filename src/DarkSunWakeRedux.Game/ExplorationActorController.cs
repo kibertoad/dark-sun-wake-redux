@@ -80,7 +80,7 @@ public sealed class ExplorationActorController
             return [];
         }
 
-        _accumulatedTicks = checked(_accumulatedTicks + elapsed.Ticks);
+        _accumulatedTicks = SaturatingAdd(_accumulatedTicks, elapsed.Ticks);
         var due = Math.Min(_accumulatedTicks / _stepTicks, MaximumStepsPerUpdate);
         var transitions = new List<ExplorationActorMovementTransition>(checked((int)due));
         for (var index = 0; index < due; index++)
@@ -96,4 +96,9 @@ public sealed class ExplorationActorController
         }
         return transitions.AsReadOnly();
     }
+
+    private static long SaturatingAdd(long accumulatedTicks, long elapsedTicks) =>
+        elapsedTicks > long.MaxValue - accumulatedTicks
+            ? long.MaxValue
+            : accumulatedTicks + elapsedTicks;
 }
