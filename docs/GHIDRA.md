@@ -1584,7 +1584,11 @@ proof by itself. Never redirect broad output into the repository.
   follow-on validation path. The latter has three direct callers, including
   the previously bounded generic window-registration function `3a8e:02b3`.
   The remaining two matches, `5000:b116` and `5000:b11d`, are data and have no
-  Ghidra-recorded direct references.
+  Ghidra-recorded direct references. A bounded decompilation of `31e0:3388`
+  shows a caller index limited to `0..320`, associated resident-table accesses,
+  and its call to the cache selector. `ReportReferences` finds ten direct call
+  sites in eight functions for that wrapper, including the existing OJFF-route
+  function `31ba:000e` and the wrapper's guarded self-call.
 - **Interpretation:** the executable has distinct bounded native image-family
   selection/cache and generic window-image request boundaries. It corroborates
   the existing defensive support for both `BMP ` and `CBMP` payloads, but does
@@ -1594,9 +1598,9 @@ proof by itself. Never redirect broad output into the repository.
   decoded instruction scalar and no observed caller links this cache to the
   title asset.
 - **Confidence:** high for the six raw matches, three decoded assignments,
-  direct-caller counts, 300-entry/16-byte cache shape, tag selection, and the
-  generic window-registration adjacency; unknown for all image semantics and
-  player-visible presentation.
+  direct-caller counts, 300-entry/16-byte cache shape, shared 321-index wrapper
+  boundary, tag selection, and generic window-registration adjacency; unknown
+  for all image semantics and player-visible presentation.
 - **Implementation consequence:** retain the generic bounded `BMP `/`CBMP`
   decoder and lossless source mapping. Do not add a native cache simulation,
   title sequence, image scheduler, or window composition rule from this

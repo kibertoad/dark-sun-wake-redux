@@ -246,9 +246,10 @@ rejecting unsupported semantics:
   no recorded direct references. These facts supply no font-selection, glyph,
   spacing, palette, or screen-layout rule.
 - `EXE-GOG-IMAGE-002` establishes a bounded 300-entry native `BMP `/`CBMP`
-  selector/cache and a separate generic window-image request path. The title
-  resource #11011 has no observed connection to either, so neither title
-  sequencing nor image composition is inferred.
+  selector/cache, a shared 321-index wrapper used from eight recovered
+  functions (including the OJFF route), and a separate generic window-image
+  request path. The title resource #11011 has no observed connection to either,
+  so neither title sequencing nor image composition is inferred.
 - `EXE-GOG-CHAR-003` finds no direct literal-tag lead for the character
   archive: raw `CHAR` bytes have no direct references and `PSIN` is absent.
   The separately fingerprinted `SVIEW.EXE` has neither a literal
