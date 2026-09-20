@@ -645,6 +645,36 @@ proof by itself. Never redirect broad output into the repository.
   and presentation interpolation remain explicit CPU-speed-independent policy
   until a movement call path and controlled cadence observation are available.
 
+### EXE-GOG-TIMING-002 - BIOS extended-memory services are not wait loops
+
+- **Question:** Do any literal `INT 15h` instructions in the supported
+  executable select the BIOS wait service that could provide a native delay
+  boundary for movement, animation, or media playback?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** `ReportBytePattern` searched all loaded blocks for the exact
+  two-byte `INT 15h` encoding (`cd 15`) and found four matches. Bounded
+  `ReportInstructionContext` windows inspected each match's service selector;
+  no decompilation or runtime execution was used.
+- **Bounded finding:** the four raw matches occur at loaded addresses
+  `1000:5fa3`, `1000:62db`, `4000:be0e`, and `4000:c098`. Their bounded
+  instruction contexts resolve to `15f3:0073`, `15f3:03ab`, `4ae5:0fbe`, and
+  `4ae5:1248`, respectively. The first and last select `AH=87h`; the second
+  and third select `AH=88h`. None selects `AH=86h`, the BIOS wait service.
+- **Interpretation:** this establishes only that every literal `INT 15h`
+  site in the analyzed loaded image is an extended-memory service boundary,
+  not a BIOS wait call. It does not exclude a timing mechanism using another
+  interrupt, port, busy loop, driver, overlay, or runtime-generated code, and
+  it assigns no movement, animation, or media cadence.
+- **Confidence:** high for the complete four-match raw opcode result and the
+  four immediately preceding service selectors; unknown for all native timing
+  policies outside those bounded paths.
+- **Implementation consequence:** do not recreate a DOS BIOS wait loop or
+  derive a delay from these sites. Retain the explicit monotonic,
+  CPU-speed-independent runtime clock until a movement/media consumer path and
+  controlled cadence observation establish a native contract.
+
 ### EXE-GOG-ITEMS-001 - no literal ITEMS.BIN loader lead in DSUN.EXE
 
 - **Question:** Does the supported main executable identify `ITEMS.BIN` by its

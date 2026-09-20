@@ -182,12 +182,14 @@ the start flow and current exploration state reproducible.
 - The opening actor's current single-cell footprint and 125 ms semantic step
   are explicit modern policies, not claims about the native implementation.
 - `EXE-GOG-TIMING-001` establishes BIOS tick use only for startup/mixing paths,
-  not actor or animation cadence. `EXE-GOG-MEDIA-001` finds no literal FLI
-  header-validation lead, and `EXE-GOG-MEDIA-002` finds no direct reference to
-  the embedded filename/path entries. `EXE-GOG-TITLE-002` likewise finds no
-  recovered function that co-locates static-title `BMP ` #11011 with its tag
-  words. Raw cinematic speed fields, filename order, and the title asset are
-  data, not assumed milliseconds or a schedule.
+  not actor or animation cadence. `EXE-GOG-TIMING-002` finds that all four
+  literal `INT 15h` sites select extended-memory services (`AH=87h`/`88h`),
+  rather than the BIOS wait service (`AH=86h`). `EXE-GOG-MEDIA-001` finds no
+  literal FLI header-validation lead, and `EXE-GOG-MEDIA-002` finds no direct
+  reference to the embedded filename/path entries. `EXE-GOG-TITLE-002` likewise
+  finds no recovered function that co-locates static-title `BMP ` #11011 with
+  its tag words. Raw cinematic speed fields, filename order, and the title
+  asset are data, not assumed milliseconds or a schedule.
 - `EXE-GOG-RNG-001` establishes a 16-bit-seeded native LCG and bounded result
   transforms. Its direct static callers are only the generic modulo,
   inclusive-range, and repeated-roll helpers. The modulo wrapper also reaches
