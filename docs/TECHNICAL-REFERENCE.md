@@ -237,9 +237,10 @@ rejecting unsupported semantics:
 - `EXE-GOG-PREF-001` finds one raw `PREF` tag literal but no direct reference;
   it supplies no Preferences loader, settings schema, default, or control
   behavior.
-- `EXE-GOG-TITLE-002` finds no recovered function that combines the verified
-  static-title `BMP ` #11011 identity with both correctly ordered tag words.
-  That bounded negative result supplies no title loader or sequencing rule.
+- `EXE-GOG-TITLE-002` finds no decoded instruction operand for static-title
+  `BMP ` #11011 and no recovered function that combines that identity with
+  both correctly ordered tag words. These bounded negative results supply no
+  title loader or sequencing rule.
 - `EXE-GOG-CHAR-003` finds no direct literal-tag lead for the character
   archive: raw `CHAR` bytes have no direct references and `PSIN` is absent.
   The separately fingerprinted `SVIEW.EXE` has neither a literal

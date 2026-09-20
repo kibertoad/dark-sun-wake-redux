@@ -1507,16 +1507,20 @@ proof by itself. Never redirect broad output into the repository.
   decoded static-title `BMP ` resource), `0x4d42` (`BM`), and `0x2050`
   (`P `). The script reports only a function containing every requested scalar;
   it does not treat a raw byte occurrence or an individual scalar as a loader.
+  A follow-up `ReportScalarConstants` scan searched every decoded instruction
+  operand for `11011` alone.
 - **Bounded finding:** no recovered function contains all three requested
-  scalars. This query supplies no direct title-image resource request, loader
-  call, title transition, or clock boundary.
+  scalars, and no decoded instruction operand equals `11011`. These queries
+  supply no direct title-image resource request, loader call, title transition,
+  or clock boundary.
 - **Interpretation:** this rules out only that co-located literal
   representation in the analyzed executable. The identity or tag can still be
   constructed, copied through resident state, supplied indirectly, or handled
   by another module. It does not prove that title display is absent and assigns
   no title duration, input dismissal policy, following screen, or sequence.
-- **Confidence:** high for the exact bounded no-co-location result; unknown
-  for every title loader, display path, timing, transition, and sequence rule.
+- **Confidence:** high for the exact bounded no-co-location and no-direct-
+  scalar results; unknown for every title loader, display path, timing,
+  transition, and sequence rule.
 - **Implementation consequence:** retain the verified title asset in the
   local pack but keep title presentation sequencing unimplemented. A runtime
   route requires a bounded consumer path plus a controlled native observation.
