@@ -840,6 +840,9 @@
   loop/sentinel/displayed frame, raw chunk-type meanings, FLI 5's nested
   variant, later VOC block layout, codec-byte/sample-rate semantics,
   audio routing, Ogg track mapping, loops, and all audiovisual sequencing.
+  `EXE-GOG-MEDIA-002` finds raw executable occurrences of every numbered FLI
+  name and four CINE-directory templates, but no direct Ghidra reference to
+  any inspected entry; it does not establish a loader, fallback, or sequence.
 - **Implementation consequence:** no decoder, extractor entry, media mapping,
   or time-based runtime behavior is introduced yet. A future media reader must
   validate these fixed envelopes first, bound every subsequent record/chunk or

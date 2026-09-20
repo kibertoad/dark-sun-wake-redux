@@ -631,6 +631,42 @@ proof by itself. Never redirect broad output into the repository.
   the generic header alone; a future reader needs an independently corroborated
   source/implementation path and a monotonic, CPU-independent timing policy.
 
+### EXE-GOG-MEDIA-002 - Embedded FLI names do not establish cinematic order
+
+- **Question:** Do the five fingerprinted numbered FLI files have a direct
+  executable filename table that establishes their playback order or a native
+  cinematic-loading call path?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. A full analyzer
+  pass completed before this focused query.
+- **Method:** `ReportBytePattern` searched all loaded blocks for the exact
+  NUL-terminated ASCII names of the five source-manifest FLI files. The two
+  resulting bounded data neighborhoods were inspected with `ReportDataBytes`,
+  and `ReportReferences` checked each block and every individual name entry.
+- **Bounded finding:** the executable contains two raw `1.FLI` occurrences and
+  one raw root-level occurrence each of `2.FLI` through `5.FLI`. One block also
+  contains four drive-prefixed `CINE`-directory path templates for numbered
+  files 2 through 5, while the other contains a standalone `1.FLI` name and
+  otherwise zero-filled bytes within the inspected range. Ghidra reports no
+  direct reference to either data block or to any of the seven individual
+  filename/path entries. The query did not find a decoded call, comparison,
+  filename construction, file-open operation, sequence table, or timing value.
+- **Interpretation:** the filenames are present in the fingerprinted executable,
+  but this bounded static result cannot identify which names are live, whether
+  the CINE templates are fallback paths, how paths are constructed, the order
+  of playback, a decoder, input-skipping behavior, or a transition to any game
+  screen. Missing direct references do not prove the strings are unused; they
+  may be accessed indirectly, copied, or reached through another module.
+- **Confidence:** high for the enumerated raw filename/path occurrences and
+  absence of direct Ghidra references at the inspected addresses; unknown for
+  every loader, sequence, timing, presentation, and gameplay relationship.
+- **Implementation consequence:** retain every FLI as a complete opaque source
+  asset and keep all cinematic sequencing and clock behavior unimplemented.
+  A decoder or playback implementation requires a bounded consumer path and a
+  controlled native observation; raw header speed and filename order remain
+  data, not a scheduling contract.
+
 ### EXE-GOG-RNG-001 - Native 32-bit linear-congruential random primitive
 
 - **Question:** Does the supported executable contain a bounded random-number
