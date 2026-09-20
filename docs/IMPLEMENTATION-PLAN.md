@@ -679,8 +679,11 @@ the visible party-strip order AR'ANDA, TERRANNUS, THY ROKH, GERAKIS and map
 AR'ANDA to installed `CHAR` #40 through her visible Strength 18 and THY ROKH
 to #42 through the unique visible letter order. TERRANNUS and GERAKIS retain
 same-name catalog candidates with identical currently visible ability tuples,
-so the full resource selection remains open; the observed order's agreement
-with #40-#43 is corroboration, not proof.
+so the full resource selection remains open. Their remaining candidate
+envelopes and raw PSIN masks differ, and the matching visible USE captions are
+recorded in `OBS-GOG-PARTY-001`, but neither fact maps a caption to a source
+field or selects a record. The observed order's agreement with #40-#43 is
+corroboration, not proof.
 `OBS-GOG-PARTY-001` records the bounded result and leaves
 `ShippedPartyUnresolved` in place.
 

@@ -1735,15 +1735,24 @@
   AR'ANDA, TERRANNUS, THY ROKH, and GERAKIS. The owner identifies
   `dsun_013`-`016` as their respective spell/use screens, `dsun_017`-`020` as
   their respective inventory screens, and `dsun_021`-`024` as their respective
-  character views. Those captures confirm the four-character strip, selection
-  feedback, and reuse of the observed destination shells, but not interior
-  control behavior or field semantics. AR'ANDA's character view visibly shows
+  character views. The four USE captures visibly pair AR'ANDA with a `MAGE
+  LEVEL 1` caption, TERRANNUS with `CLERIC LEVEL 1`, THY ROKH with `MAGE
+  LEVEL 1`, and GERAKIS with `PSIONIC Metabolic`. Those are visible UI
+  captions, not a character-record field map, spell/power inventory, or
+  class/discipline rule. The captures confirm the four-character strip,
+  selection feedback, and reuse of the observed destination shells, but not
+  interior control behavior or field semantics. AR'ANDA's character view visibly shows
   Strength 18; among the two bounded AR'ANDA records, that matches #40 and not
   #50, whose separately parsed score is 19. THY ROKH's confirmed letter order
   also matches #42 (`Thy'rokh`) and not #51 (`Thy-rohk`). TERRANNUS (#41/#53)
   and GERAKIS (#33/#43) retain same-name candidates with the same currently
   visible six-score tuple, so the captures do not select one exact resource for
-  each of those names. The confirmed order coincides with the consecutive
+  each of those names. A read-only catalog cross-check bounds the remaining
+  candidate distinctions without interpreting them: TERRANNUS #41/#53 are
+  respectively 310/475 bytes with 7/12 tail records and raw PSIN masks 4/1;
+  GERAKIS #33/#43 are respectively 937/277 bytes with 26/6 tail records and
+  raw PSIN masks 5/2. Neither the captions nor those structural differences
+  identify a source record. The confirmed order coincides with the consecutive
   #40-#43 source block, but coincidence and names alone do not prove that
   complete resource selection. The owner identifies `dsun_010` as an enemy
   moving frame: the opposing actor moves while the combat UI remains largely
@@ -1754,7 +1763,8 @@
   distance, path, collision, speed, attacker, target, damage rule, action,
   turn, timing, hit resolution, or exit behavior.
 - **Confidence:** high for the owner-confirmed screenshot labels, member order,
-  shell reuse, AR'ANDA #40/THY'ROKH #42 discrimination, visible enemy motion,
+  shell reuse, the four visible USE captions, AR'ANDA #40/THY'ROKH #42
+  discrimination, candidate envelope/mask distinctions, visible enemy motion,
   movement-point-display change, and visible damage glyph; unknown for the two
   duplicate-name resource selections, party source/origin, dynamic field
   meanings, spell selection, inventory semantics, and all combat rules.
