@@ -32,6 +32,48 @@ if (args.Length == 3 && args[0].Equals("resource-pattern", StringComparison.Ordi
     }
 }
 
+if (args.Length == 5 && args[0].Equals("object-pattern-overlap", StringComparison.OrdinalIgnoreCase))
+{
+    try
+    {
+        if (!uint.TryParse(args[2], out var objectNumber))
+            throw new ArgumentException("Object resource number must be an unsigned integer.", nameof(args));
+        var tag = args[3].Replace('_', ' ');
+        if (tag.Length != 4 || !tag.All(character => character is >= ' ' and <= '~'))
+            throw new ArgumentException("Resource tag must be exactly four printable ASCII characters; use '_' for a padded space.", nameof(args));
+        await using var stream = File.OpenRead(args[1]);
+        var archive = GffArchive.Read(stream, args[1]);
+        var patternResources = GffResourcePatternLocator.FindAscii(archive, args[4])
+            .Where(match => match.Tag == tag).Select(match => match.ResourceNumber)
+            .ToHashSet();
+        if (patternResources.Count == 0)
+            throw new InvalidDataException($"{args[1]} has no {tag} resource containing the requested pattern.");
+        var entry = GffObjectFrameCatalog.Read(archive, [objectNumber], args[1]).Entries.Single();
+        var words = ObjectResourcePatternOverlap.Match(entry.RawWord0,
+            entry.RawWord6, entry.RawWord8, entry.RawWord10, patternResources)
+            .Select(match => new
+        {
+            offset = match.Offset,
+            matchesPatternResource = match.MatchesPatternResource
+        });
+        Console.WriteLine(JsonSerializer.Serialize(new
+        {
+            archivePath = Path.GetFullPath(args[1]),
+            objectNumber,
+            tag,
+            patternMatchingResourceCount = patternResources.Count,
+            words
+        }, new JsonSerializerOptions { WriteIndented = true }));
+        return 0;
+    }
+    catch (Exception exception) when (exception is InvalidDataException or IOException or
+                                      UnauthorizedAccessException or ArgumentException)
+    {
+        Console.Error.WriteLine($"[object_pattern_overlap_unavailable] {exception.Message}");
+        return 2;
+    }
+}
+
 if (args.Length is 6 or 7 && args[0].Equals("image-preview", StringComparison.OrdinalIgnoreCase))
 {
     try
@@ -621,6 +663,7 @@ if (args.Length != 1 || !Directory.Exists(args[0]))
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect gff <owned-original.gff>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect resource-inventory <owned-original.gff>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect resource-pattern <owned-original.gff> <printable-ascii-pattern>");
+    Console.Error.WriteLine("  DarkSunWakeRedux.Inspect object-pattern-overlap <owned-object.gff> <object-number> <tag; use _ for padded space> <printable-ascii-pattern>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect record-profile <owned-original.gff> <tag; use _ for padded space> <resource-number> <candidate-record-width>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect pair-resource-overlap <owned-pair-table> <owned-original.gff> <tag; use _ for padded space>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect object-word-overlap <owned-object.gff> <tag; use _ for padded space> [owned-pair-table]");

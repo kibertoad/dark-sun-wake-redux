@@ -338,15 +338,18 @@
   relative offset 43; their record sizes are 277, 310, or 343 bytes. OJFF
   #9258's neutral words still match only the broad `RDFF` namespace at offsets
   0 and 10, exactly as they also match `OJFF` and `BMP ` namespaces. The data
-  does not select any one of the 23 matching records, establish a record
-  layout, or associate the observed OJFF with a label-bearing RDFF resource.
+  does not select any one of the 23 matching records. The metadata-only
+  `object-pattern-overlap` query then compares all four OJFF words with just
+  that label-bearing subset; all four fail. This rejects a direct neutral-word
+  reference to those RDFF records, but does not establish a record layout or
+  another target-to-label association.
 - **Confidence:** high for the bounded occurrence count, tags, offsets, and
   size set in GOG-1432903719; unknown for every RDFF field, aggregation role,
   target association, and general interaction presentation.
 - **Implementation consequence:** retain `RDFF` as lossless DSOP. Do not add a
   reader, derive a hostile name/level/capability, or hard-code captured text.
-  A target-specific data relationship or a bounded native call path is required
-  before rendering the dynamic interaction fields.
+  A non-neutral target-specific data relationship or a bounded native call path
+  is required before rendering the dynamic interaction fields.
 
 ### DATA-GOG-MONR-001 - MONR is not yet a monster or combat record format
 

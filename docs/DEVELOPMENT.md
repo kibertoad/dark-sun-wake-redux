@@ -60,6 +60,7 @@ dotnet run --project tools/DarkSunWakeRedux.Inspect -- gff "C:\path\to\RESOURCE.
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- image-preview "C:\path\to\RESOURCE.GFF" ICON 17102 1000 0 "C:\outside-repository\preview.bmp"
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- resource-inventory "C:\path\to\RESOURCE.GFF"
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- resource-pattern "C:\path\to\RESOURCE.GFF" "printable ASCII"
+dotnet run --project tools/DarkSunWakeRedux.Inspect -- object-pattern-overlap "C:\path\to\OBJEX.GFF" 9258 RDFF "printable ASCII"
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- record-profile "C:\path\to\RESOURCE.GFF" MONR 1 81
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- pair-resource-overlap "C:\path\to\ITEMS.BIN" "C:\path\to\OBJEX.GFF" OJFF
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- object-word-overlap "C:\path\to\OBJEX.GFF" OJFF "C:\path\to\ITEMS.BIN"
