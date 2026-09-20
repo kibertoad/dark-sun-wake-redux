@@ -1402,6 +1402,47 @@ proof by itself. Never redirect broad output into the repository.
   class enum and evidence conflicts, but do not add a `CHAR` class-field
   reader, default-party selector, or screen-data binding from this table.
 
+### EXE-GOG-CHAR-008 - Character-view vocabulary families are bounded but unlinked
+
+- **Question:** Do the long origin and alignment labels visible in the
+  owner-confirmed character views bound the native character-view vocabulary,
+  and do they directly identify a record-field or rendering path?
+- **Target:** GOG-1432903719 `DSUN.EXE`, 634,416 bytes, SHA-256
+  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3 with the previously completed default auto-analysis.
+- **Method:** `ReportBytePattern` located exact NUL-terminated THRI-KREEN,
+  HALF-GIANT, CHAOTIC NEUTRAL, and LAWFUL GOOD encodings. Bounded data windows
+  of 80 bytes at `5000:9040` and 128 bytes at `5000:90e0` established the
+  adjacent printable-table boundaries. `ReportReferences` queried the two
+  long-origin and two alignment addresses.
+- **Bounded finding:** a local text family holds:
+
+  - gender labels Male and Female;
+  - eight origins in order: Human, Dwarf, Elf, Half-Elf, Half-Giant, Halfling,
+    Mul, Thri-Kreen;
+  - the eight class labels documented by `EXE-GOG-CHAR-007`;
+  - the six stat labels STR, DEX, CON, INT, WIS, and CHR;
+  - nine alignments in order: Lawful Good, Lawful Neutral, Lawful Evil, Neutral
+    Good, True Neutral, Neutral Evil, Chaotic Good, Chaotic Neutral, and
+    Chaotic Evil.
+
+  The bounded origin and alignment spans meet the adjacent class/stat spans;
+  their queried raw addresses are `5000:9069`, `5000:9081`, `5000:90eb`,
+  and `5000:9146`. Ghidra reports no inbound direct reference to any of
+  those four addresses.
+- **Interpretation:** this is a finite native vocabulary and local table
+  ordering, not a serialized `CHAR` schema. It does not establish gender,
+  origin, alignment, or class ordinal field offsets; which screen consumes
+  these labels; or any creation, eligibility, combat, or spell behavior.
+  Resource-derived and indirect paths remain possible.
+- **Confidence:** high for the exact bounded label families, ordering, and
+  four absent direct-reference results; unknown for every field and runtime
+  consumer.
+- **Implementation consequence:** use the documented modern `origin`
+  terminology in new code. Do not extract this text as a character-field map
+  or bind it to the observed party until an independent data or native path
+  establishes that connection.
+
 ### EXE-GOG-GPLDATA-001 - literal GPL archive name has no direct reference
 
 - **Question:** Does the supported executable expose a direct static loader
