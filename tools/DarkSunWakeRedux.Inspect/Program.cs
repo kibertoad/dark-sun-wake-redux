@@ -496,6 +496,54 @@ if (args.Length == 5 && args[0].Equals("record-profile", StringComparison.Ordina
     }
 }
 
+if (args.Length == 6 && args[0].Equals("resource-word-overlap", StringComparison.OrdinalIgnoreCase))
+{
+    try
+    {
+        var sourceTag = args[2].Replace('_', ' ');
+        var targetTag = args[5].Replace('_', ' ');
+        if (sourceTag.Length != 4 || !sourceTag.All(character => character is >= ' ' and <= '~'))
+            throw new ArgumentException("Source resource tag must be exactly four printable ASCII characters; use '_' for a padded space.", nameof(args));
+        if (targetTag.Length != 4 || !targetTag.All(character => character is >= ' ' and <= '~'))
+            throw new ArgumentException("Target resource tag must be exactly four printable ASCII characters; use '_' for a padded space.", nameof(args));
+        if (!uint.TryParse(args[3], out var sourceResourceNumber))
+            throw new ArgumentException("Source resource number must be an unsigned integer.", nameof(args));
+
+        var sourceArchivePath = Path.GetFullPath(args[1]);
+        var targetArchivePath = Path.GetFullPath(args[4]);
+        await using var sourceStream = File.OpenRead(sourceArchivePath);
+        await using var targetStream = File.OpenRead(targetArchivePath);
+        var sourceArchive = GffArchive.Read(sourceStream, sourceArchivePath);
+        var targetArchive = GffArchive.Read(targetStream, targetArchivePath);
+        var targetResourceNumbers = targetArchive.Resources
+            .Where(resource => resource.Tag == targetTag)
+            .Select(resource => resource.Number)
+            .ToHashSet();
+        var overlap = OpaqueResourceWordOverlap.FindLittleEndianMatches(
+            sourceArchive.GetResource(sourceTag, sourceResourceNumber), targetResourceNumbers,
+            $"{sourceArchivePath}:{sourceTag}#{sourceResourceNumber}");
+        Console.WriteLine(JsonSerializer.Serialize(new
+        {
+            sourceArchivePath,
+            sourceTag,
+            sourceResourceNumber,
+            targetArchivePath,
+            targetTag,
+            targetResourceCount = targetResourceNumbers.Count,
+            overlap.SourceByteLength,
+            overlap.CandidateWordCount,
+            overlap.MatchingOffsets
+        }, new JsonSerializerOptions { WriteIndented = true }));
+        return 0;
+    }
+    catch (Exception exception) when (exception is InvalidDataException or IOException or
+                                      UnauthorizedAccessException or ArgumentException or KeyNotFoundException)
+    {
+        Console.Error.WriteLine($"[resource_word_overlap_unavailable] {exception.Message}");
+        return 2;
+    }
+}
+
 if (args.Length == 4 && args[0].Equals("pair-resource-overlap", StringComparison.OrdinalIgnoreCase))
 {
     try
@@ -665,6 +713,7 @@ if (args.Length != 1 || !Directory.Exists(args[0]))
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect resource-pattern <owned-original.gff> <printable-ascii-pattern>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect object-pattern-overlap <owned-object.gff> <object-number> <tag; use _ for padded space> <printable-ascii-pattern>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect record-profile <owned-original.gff> <tag; use _ for padded space> <resource-number> <candidate-record-width>");
+    Console.Error.WriteLine("  DarkSunWakeRedux.Inspect resource-word-overlap <source.gff> <source-tag; use _ for padded space> <source-number> <target.gff> <target-tag; use _ for padded space>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect pair-resource-overlap <owned-pair-table> <owned-original.gff> <tag; use _ for padded space>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect object-word-overlap <owned-object.gff> <tag; use _ for padded space> [owned-pair-table]");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect object-record-overlap <owned-object.gff> <object-number> <tag; use _ for padded space>");

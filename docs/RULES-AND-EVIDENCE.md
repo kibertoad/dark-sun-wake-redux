@@ -1614,6 +1614,35 @@
 - **Tests:** exact owned-pack inventory/hash verification and generic DSOP
   envelope bounds/read-back; no semantic fixture is introduced.
 
+### DATA-GOG-PLYL-002 - PLYL has no direct installed-character-number windows
+
+- **Question:** Do any of the six bounded `PLYL` payloads directly encode an
+  installed `CHAR` resource number as an unaligned little-endian 16-bit window,
+  providing a constrained numeric lead for START GAME's supplied party?
+- **Method:** The metadata-only `resource-word-overlap` inspector reads the
+  bounded source and target GFF archives, obtains the 19 installed `CHAR`
+  resource numbers, and compares each two-byte little-endian window in one
+  named `PLYL` payload against that set. It returns only source length,
+  candidate-window count, target-set count, and matching offsets; it retains no
+  source bytes or decoded values. Run it for `PLYL` #0, #10, and #50-#53 in
+  fingerprinted `RESOURCE.GFF` against `CHAR` in fingerprinted
+  `CHARSAVE.GFF`.
+- **Finding:** the three-byte #0, #10, and #50 payloads respectively expose two
+  candidate windows; the seven-byte #51 and #52 payloads each expose six; and
+  the five-byte #53 payload exposes four. None of the 22 candidate windows
+  matches any installed `CHAR` resource number.
+- **Interpretation:** this rejects only a direct unaligned little-endian
+  16-bit installed-character identity in these six payloads. It does not
+  establish a `PLYL` field layout or role, and it does not rule out another
+  archive, byte order, width, indirection, transformation, selection path, or
+  a party list with non-character identifiers.
+- **Confidence:** high for the bounded 22-window/19-target negative result in
+  GOG-1432903719; unknown for every `PLYL` field, consumer, and START GAME
+  membership.
+- **Implementation consequence:** retain `PLYL` as DSOP and
+  `ShippedPartyUnresolved`. Do not bind a party member, add a `PLYL` reader, or
+  label it a party list from this negative probe.
+
 ### DATA-GOG-CHAR-006 - Disc and installed character sets
 
 - **Question:** Which character resources are immutable disc data, which were

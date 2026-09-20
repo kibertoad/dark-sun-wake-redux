@@ -260,8 +260,10 @@ rejecting unsupported semantics:
   pixels.
 - `EXE-GOG-SMALLTAG-001` finds no literal executable loader lead for `GREQ`,
   `CACT`, `PLYL`, or `CSEQ`. `DATA-GOG-SMALLTAG-001` bounds their owned
-  inventories and short envelopes, but neither result assigns those opaque
-  families a runtime role.
+  inventories and short envelopes; `DATA-GOG-PLYL-002` additionally rejects a
+  direct installed-`CHAR` resource number in every unaligned 16-bit `PLYL`
+  window. None of these results assigns the opaque families a runtime role or
+  identifies the supplied party.
 - `EXE-GOG-PREF-001` finds one raw `PREF` tag literal but no direct reference;
   it supplies no Preferences loader, settings schema, default, or control
   behavior.

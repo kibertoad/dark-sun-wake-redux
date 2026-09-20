@@ -64,6 +64,7 @@ dotnet run --project tools/DarkSunWakeRedux.Inspect -- object-pattern-overlap "C
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- record-profile "C:\path\to\RESOURCE.GFF" MONR 1 81
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- pair-resource-overlap "C:\path\to\ITEMS.BIN" "C:\path\to\OBJEX.GFF" OJFF
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- object-word-overlap "C:\path\to\OBJEX.GFF" OJFF "C:\path\to\ITEMS.BIN"
+dotnet run --project tools/DarkSunWakeRedux.Inspect -- resource-word-overlap "C:\path\to\RESOURCE.GFF" PLYL 50 "C:\path\to\CHARSAVE.GFF" CHAR
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- object-record-overlap "C:\path\to\OBJEX.GFF" 9258 SCMD
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- image-catalog "C:\path\to\RESOURCE.GFF"
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- ui-catalog "C:\path\to\RESOURCE.GFF"
