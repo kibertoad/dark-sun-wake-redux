@@ -179,8 +179,10 @@ the start flow and current exploration state reproducible.
 - `EXE-GOG-TIMING-001` establishes BIOS tick use only for startup/mixing paths,
   not actor or animation cadence. `EXE-GOG-MEDIA-001` finds no literal FLI
   header-validation lead, and `EXE-GOG-MEDIA-002` finds no direct reference to
-  the embedded filename/path entries. Raw cinematic speed fields and filename
-  order are data, not assumed milliseconds or a schedule.
+  the embedded filename/path entries. `EXE-GOG-TITLE-002` likewise finds no
+  recovered function that co-locates static-title `BMP ` #11011 with its tag
+  words. Raw cinematic speed fields, filename order, and the title asset are
+  data, not assumed milliseconds or a schedule.
 - `EXE-GOG-RNG-001` establishes a 16-bit-seeded native LCG and bounded result
   transforms. Its direct static callers are only the generic modulo,
   inclusive-range, and repeated-roll helpers. The modulo wrapper also reaches
@@ -235,6 +237,9 @@ rejecting unsupported semantics:
 - `EXE-GOG-PREF-001` finds one raw `PREF` tag literal but no direct reference;
   it supplies no Preferences loader, settings schema, default, or control
   behavior.
+- `EXE-GOG-TITLE-002` finds no recovered function that combines the verified
+  static-title `BMP ` #11011 identity with both correctly ordered tag words.
+  That bounded negative result supplies no title loader or sequencing rule.
 - `EXE-GOG-CHAR-003` finds no direct literal-tag lead for the character
   archive: raw `CHAR` bytes have no direct references and `PSIN` is absent.
   The separately fingerprinted `SVIEW.EXE` has neither a literal

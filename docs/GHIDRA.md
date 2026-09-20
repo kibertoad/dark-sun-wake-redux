@@ -1493,6 +1493,34 @@ proof by itself. Never redirect broad output into the repository.
   the files as opaque local assets until a bounded consumer path and controlled
   observation establish the supported subset and its CPU-independent schedule.
 
+### EXE-GOG-TITLE-002 - No co-located direct title-image loader literal
+
+- **Question:** Does the supported executable contain one recovered function
+  that directly co-locates the extracted static-title resource identity with
+  the two correctly ordered little-endian words of its `BMP ` source tag?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** after the normal analyzer pass, the repository-owned
+  `ReportFunctionScalarIntersection` script scanned every recovered function's
+  scalar operands for all three values: decimal `11011` (the independently
+  decoded static-title `BMP ` resource), `0x4d42` (`BM`), and `0x2050`
+  (`P `). The script reports only a function containing every requested scalar;
+  it does not treat a raw byte occurrence or an individual scalar as a loader.
+- **Bounded finding:** no recovered function contains all three requested
+  scalars. This query supplies no direct title-image resource request, loader
+  call, title transition, or clock boundary.
+- **Interpretation:** this rules out only that co-located literal
+  representation in the analyzed executable. The identity or tag can still be
+  constructed, copied through resident state, supplied indirectly, or handled
+  by another module. It does not prove that title display is absent and assigns
+  no title duration, input dismissal policy, following screen, or sequence.
+- **Confidence:** high for the exact bounded no-co-location result; unknown
+  for every title loader, display path, timing, transition, and sequence rule.
+- **Implementation consequence:** retain the verified title asset in the
+  local pack but keep title presentation sequencing unimplemented. A runtime
+  route requires a bounded consumer path plus a controlled native observation.
+
 For each useful finding, add a concise entry here or in the relevant
 `docs/RULES-AND-EVIDENCE.md` / `docs/ORIGINAL-FORMATS.md` section with:
 
