@@ -30,6 +30,14 @@ public sealed class ExplorationActorPresentationTests
     }
 
     [Fact]
+    public void UsesWidenedRectangleEdgesForExtremeViewportCoordinates()
+    {
+        var bounds = new LogicalSpriteBounds(int.MaxValue - 1, int.MaxValue - 1, 2, 2);
+
+        Assert.True(bounds.Intersects(int.MaxValue, int.MaxValue));
+    }
+
+    [Fact]
     public void OpeningAnchorUsesTheObservedActorCoordinateFields()
     {
         Assert.Equal((74, 91),

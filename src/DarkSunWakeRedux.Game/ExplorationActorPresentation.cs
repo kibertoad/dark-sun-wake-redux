@@ -6,7 +6,7 @@ public readonly record struct LogicalSpriteBounds(int X, int Y, int Width, int H
 {
     public bool Intersects(int viewportWidth, int viewportHeight) =>
         Width > 0 && Height > 0 && X < viewportWidth && Y < viewportHeight &&
-        X + Width > 0 && Y + Height > 0;
+        (long)X + Width > 0 && (long)Y + Height > 0;
 }
 
 public sealed record ExplorationActorPresentation(
