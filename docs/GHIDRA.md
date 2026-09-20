@@ -1644,14 +1644,19 @@ proof by itself. Never redirect broad output into the repository.
   the immediate tag-aware request/result path. A follow-up reference query,
   call-site instruction context, and bounded decompilation of `31e0:0e1b`
   classified the successful `31e0:0eff` lookup result's sole direct consumer.
+  A final instruction-context query inspected all three direct call sites to
+  distinguish static identities from immediate caller values.
 - **Bounded finding:** exactly two coherent instructions select `OJFF`, both in
   module `31e0`. The first is in `31e0:0eff`, which has three direct callers
   (`31ba:000e`, `2d40:0589`, and `31e0:0121`). It supplies its caller-provided
   signed 16-bit identity and the `OJFF` tag to the shared tag-aware lookup,
   checks that lookup's result, and then continues through the already-recorded
   `RDFF` conditional path while updating an indexed resident family at a
-  37-byte stride. On successful lookup, it passes the lookup result, the
-  selected 37-byte resident destination, and that resident index to
+  37-byte stride. Its three direct callers contain no fixed resource identity:
+  `31ba:0137` pushes local words, `2d40:069a` pushes the negation of a caller
+  argument, and `31e0:0170` pushes `DI`. On successful lookup, it passes the
+  lookup result, the selected 37-byte resident destination, and that resident
+  index to
   `31e0:0e1b`, whose sole recovered direct caller is `31e0:0eff`. Subject to
   its local initialization guard, that helper reads source portions beginning
   at offsets `0x00`, `0x02`, `0x04`, `0x0a`, `0x0b`, and `0x0c`, combines them
@@ -1668,8 +1673,9 @@ proof by itself. Never redirect broad output into the repository.
   that selected bytes/words of the 16-byte structural record are consumed by
   native code, but does not establish what any OJFF word means, which resource
   identities belong to the opening actor, the owner of the resident records, or
-  any player-visible object behavior. The second function's lack of a recovered
-  direct caller is not evidence that it is unused.
+  any player-visible object behavior. The immediate caller contexts rule out
+  only a fixed identity at those three call sites; the second function's lack of
+  a recovered direct caller is not evidence that it is unused.
 - **Confidence:** high for the two literal tag assignments, direct-call count,
   supplied identity widths, immediate lookup-result handling, sole post-lookup
   consumer, observed source-offset accesses, and the shared 37-byte-path
