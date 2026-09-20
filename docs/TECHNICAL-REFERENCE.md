@@ -229,7 +229,9 @@ rejecting unsupported semantics:
   behavior.
 - `EXE-GOG-CHAR-003` finds no direct literal-tag lead for the character
   archive: raw `CHAR` bytes have no direct references and `PSIN` is absent.
-  This cannot select a shipped party.
+  The separately fingerprinted `SVIEW.EXE` has neither a literal
+  `CHARSAVE.GFF` pathname nor a `CHAR` tag (`EXE-GOG-CHAR-004`). Neither
+  executable result can select a shipped party.
 - `GPLI` #1 is an exact 329-by-24-byte opaque data envelope. No literal GPLI
   tag exists in the analyzed executable, so no lookup role is assumed.
 - `ITEMS.BIN` is a verified 234-pair envelope. `DSUN.EXE` contains no literal

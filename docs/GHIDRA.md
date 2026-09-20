@@ -975,6 +975,33 @@ proof by itself. Never redirect broad output into the repository.
 - **Implementation consequence:** preserve `ShippedPartyUnresolved`. Do not
   bind `CHAR`/`PSIN` catalog records to START GAME from these tag queries.
 
+### EXE-GOG-CHAR-004 - SVIEW has no literal character-archive lead
+
+- **Question:** Does the separately shipped `SVIEW.EXE` utility provide a
+  direct static character-archive or `CHAR` tag path that could constrain the
+  supplied START GAME party?
+- **Target:** GOG-1432903719 `SVIEW.EXE`, reverified at 89,061 bytes with
+  SHA-256 `19ee90abdb4bdbd618bd47f8bf1f988d86e16ee3fbed81bf56a6a7993968dcef`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. A full analyzer
+  pass completed before the focused queries.
+- **Method:** `ReportBytePattern` searched every loaded block for the exact
+  null-terminated ASCII encoding of `CHARSAVE.GFF` and, separately, the exact
+  four-byte ASCII encoding `CHAR`.
+- **Bounded finding:** neither byte pattern occurs in the loaded `SVIEW.EXE`
+  image. This produces no archive pathname, direct tag request, record lookup,
+  or supplied-party-selection lead in the utility.
+- **Interpretation:** this excludes only these literal representations in this
+  executable. It does not show that `SVIEW.EXE` cannot consume character data
+  through a constructed/indirect route, and it says nothing about `DSUN.EXE`'s
+  runtime party selection.
+- **Confidence:** high for the two absent raw-pattern results in the
+  fingerprinted utility; unknown for utility ownership and all character or
+  START GAME behavior.
+- **Implementation consequence:** retain `ShippedPartyUnresolved`. Do not use
+  `SVIEW.EXE` as evidence to bind any `CHAR` catalog record to START GAME; the
+  controlled S0-S2 startup observation or an independently corroborated main
+  executable state trace remains required.
+
 ### EXE-GOG-GPLDATA-001 - literal GPL archive name has no direct reference
 
 - **Question:** Does the supported executable expose a direct static loader
