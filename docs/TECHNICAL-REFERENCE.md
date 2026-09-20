@@ -356,7 +356,9 @@ rejecting unsupported semantics:
   pattern (`EXE-GOG-CHAR-005`). Neither utility result can select a shipped
   party.
 - `GPLI` #1 is an exact 329-by-24-byte opaque data envelope. No literal GPLI
-  tag exists in the analyzed executable, so no lookup role is assumed.
+  tag exists in the analyzed executable, and no decoded function directly
+  combines the known GPL resource-135 ID with the literal GPL tag; no lookup
+  role is assumed.
 - `ITEMS.BIN` is a verified 234-pair envelope. `DSUN.EXE`, `CHARTRAN.EXE`, and
   `SVIEW.EXE` each lack the queried literal filename/stem forms, so no
   item/equipment mapping or loader is inferred.

@@ -1607,6 +1607,34 @@ proof by itself. Never redirect broad output into the repository.
   not add a GPLI reader or connect it to dialogue until a constrained call path
   or controlled observation independently corroborates an interpretation.
 
+### EXE-GOG-GPLI-002 - GPL resource 135 has no direct hardcoded request lead
+
+- **Question:** Does the known first-Tyr dialogue resource ID 135 co-occur with
+  the decoded little-endian GPL tag scalar in a single native function,
+  identifying a direct hardcoded request path that could corroborate a GPLI
+  lane?
+- **Target:** GOG-1432903719 DSUN.EXE at the documented stable approved path,
+  634,416 bytes and SHA-256 ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1, and the existing
+  completed default analysis.
+- **Method:** ReportFunctionScalarIntersection scanned decoded instruction
+  operands in every discovered function for both unsigned scalar 135 and
+  scalar 0x204c5047, the little-endian machine-value representation of the
+  four bytes GPL followed by a space.
+- **Bounded finding:** no discovered function contains both requested scalar
+  operands. The query therefore finds no direct hardcoded GPL resource-135
+  request site from which to derive a GPLI field interpretation.
+- **Interpretation:** this excludes only a function whose decoded operands
+  directly contain both the known ID and tag. The resource can still be reached
+  through arguments, resident memory, a constructed tag, a relocated pointer,
+  another executable, or an unrecognized path. It neither proves that GPLI is
+  unused nor links any GPLI lane to a GPL resource, dialogue, condition,
+  encounter, or quest.
+- **Confidence:** high for the bounded decoded-operand intersection; unknown
+  for runtime selection and every GPLI field role.
+- **Implementation consequence:** retain GPLI as DSOP and keep the bounded
+  dialogue projection tied only to independently captured GPL resource-135 evidence.
+
 ### EXE-GOG-EVENT-001 - shared processing entry consumes linked runtime selectors
 
 - **Question:** Do the coherent callers of the shared `172c:000c` processing
