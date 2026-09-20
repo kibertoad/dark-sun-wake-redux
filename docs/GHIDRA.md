@@ -107,6 +107,7 @@ do not copy game-specific findings. Preferred scripts are deliberately bounded:
   into a retained function;
 - short instruction context that cannot cross the containing function;
 - call-site filtering using an exact callee and known scalar arguments.
+- immediate-port setup followed by bounded same-function `DX` I/O.
 
 Script output is temporary navigation evidence, not production input and not
 proof by itself. Never redirect broad output into the repository.
@@ -712,9 +713,9 @@ proof by itself. Never redirect broad output into the repository.
 
 ### EXE-GOG-TIMING-004 - Direct PIT access has no recovered feature owner
 
-- **Question:** Do direct immediate accesses to the standard PIT control/data
-  ports establish a movement, animation, or media cadence that the restoration
-  must reproduce?
+- **Question:** Do direct immediate or immediate-`DX` accesses to the standard
+  PIT control/data ports establish a movement, animation, or media cadence that
+  the restoration must reproduce?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
   SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. The full analyzer
@@ -723,11 +724,14 @@ proof by itself. Never redirect broad output into the repository.
   immediate-port encodings `e4 40`, `e6 40`, `e4 43`, and `e6 43`.
   `ReportInstructionContext` classified each coherent instruction sequence,
   while `ReportReferences` enumerated direct callers of both containing
-  functions and of the local read-loop wrapper.
+  functions and of the local read-loop wrapper. `ReportImmediatePortIo` then
+  searched every recovered function for `MOV DX,40h` or `MOV DX,43h` followed
+  within sixteen instructions by `IN` or `OUT` through `DX`.
 - **Bounded finding:** the four raw searches find two coherent `IN 40h`, two
   coherent `OUT 40h`, no `IN 43h`, and two coherent `OUT 43h` instructions;
   three other short byte matches are inside unrelated decoded instructions.
-  Function `1000:12bf` saves flags, disables interrupts, writes zero to port
+  The bounded immediate-`DX` query finds no matching sequence. Function
+  `1000:12bf` saves flags, disables interrupts, writes zero to port
   `43h`, performs two local calls separated by reads from `40h`, inverts the
   combined two bytes, restores flags, and returns. It has exactly two direct
   callers, both inside `1000:12fa`; that wrapper has no Ghidra-recorded direct
@@ -742,8 +746,10 @@ proof by itself. Never redirect broad output into the repository.
   boundaries, including one latch/read sequence and one caller-word programming
   sequence. Their direct caller shapes do not establish a feature owner,
   duration unit, delay contract, playback clock, frame cadence, or Core update
-  schedule. A no-reference result for the local wrapper excludes only a direct
-  Ghidra caller, not indirect, loaded, or runtime-generated use.
+  schedule. The negative `DX` result excludes only immediate setup followed by
+  nearby same-function I/O; computed, indirect, loaded, or runtime-generated
+  port access remains possible. A no-reference result for the local wrapper
+  likewise excludes only a direct Ghidra caller.
 - **Confidence:** high for the raw-match counts, decoded port accesses, local
   operation order, and direct-reference counts; unknown for hardware purpose,
   caller ownership, duration units, and every player-visible timing behavior.
