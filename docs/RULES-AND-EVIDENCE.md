@@ -106,8 +106,10 @@
   rather than leaving full intensity at 252. The readers decode 4,510 images
   containing 9,279 frames and all 40 palettes in the installed build.
 - **Confidence:** verified for these payload structures and counts in
-  GOG-1432903719; resource meaning, palette pairing, placement, and timing are
-  still unknown.
+  GOG-1432903719. `EXE-GOG-IMAGE-001` independently establishes direct native
+  dispatch between `PLAN` and `PLNR` on bounded tile/object image paths.
+  Resource meaning, palette pairing, placement, frame selection, and timing
+  are still unknown.
 - **Implementation:** `DarkSunWakeRedux.Resources.IndexedImage`,
   `IndexedPalette`, and the read-only `image-catalog` inspection command.
 - **Tests:** synthetic row/planar decoding, transparency, palette conversion,
