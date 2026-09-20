@@ -177,7 +177,7 @@ public static class OriginalContent
     // Required extraction revision. Bump only when the derived-asset inventory
     // or semantic contract changes; `play.bat` then replaces stale local packs.
     // Older packs are deliberately rejected; this is not a compatibility promise.
-    public const int RequiredAssetPackRevision = 32;
+    public const int RequiredAssetPackRevision = 33;
     public const string GameId = "dark-sun-wake-redux";
     public const string TitleImageAssetPath = "images/title.dsix";
     public const string InterfaceFontAssetPath = "fonts/interface.dsft";
@@ -198,6 +198,8 @@ public static class OriginalContent
         "images/dialogue/portrait-18.dsix";
     public const string CharacterCatalogAssetPath = "characters/catalog.dsch";
     public const string TyrRegionAssetPath = "regions/tyr.dsrg";
+    public const string RegionCatalogAssetDirectory = "regions/structural";
+    public const int RequiredStructuralRegionCatalogCount = 20;
     public const string TyrObjectCatalogAssetPath = "regions/tyr-objects.dsob";
     public const string OpeningLeaderImageAssetPath = "images/exploration/opening-leader.dsix";
     public const uint OpeningLeaderObjectResourceNumber = 305;
@@ -205,6 +207,20 @@ public static class OriginalContent
     // The full owned corpus currently emits 16,168 GFF-resource entries plus
     // 233 raw source-file entries; retain a bounded but corpus-scale manifest.
     public const long MaximumManifestBytes = 16 * 1024 * 1024;
+
+    public static string RegionCatalogAssetPathFor(string sourcePath)
+    {
+        var normalized = SourceManifest.Normalize(sourcePath);
+        if (normalized.Contains('/'))
+            throw new InvalidDataException(
+                $"Region catalog source path must name a root archive: '{sourcePath}'.");
+        var extension = Path.GetExtension(normalized);
+        if (!extension.Equals(".GFF", StringComparison.OrdinalIgnoreCase))
+            throw new InvalidDataException(
+                $"Region catalog source path must name a GFF archive: '{sourcePath}'.");
+        var stem = normalized[..^extension.Length].ToLowerInvariant();
+        return $"{RegionCatalogAssetDirectory}/{stem}.dsrg";
+    }
 
     public static IReadOnlyList<uint> StartFlowWindowResourceNumbers { get; } =
         [18501, 19500, 19501, 19502, 19503, 19504, 19505];

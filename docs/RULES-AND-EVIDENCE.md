@@ -103,9 +103,9 @@
   GFF descriptor count; semantics remain unknown unless separately recorded.
 - **Implementation:** `PackedOpaquePayload` (DSOP v1) and the Extractor's
   corpus pass emit one source-mapped, hash-verified local asset for every raw
-  file and every GFF resource. The owned required-revision-32 extraction contains 16,401 DSOP
-  assets (233 source files plus 16,168 descriptors) and 102 existing specialized
-  derivatives, for 16,503 verified pack assets. The Game does not load opaque
+  file and every GFF resource. The owned required-revision-33 extraction contains 16,401 DSOP
+  assets (233 source files plus 16,168 descriptors) and 122 specialized
+  derivatives, for 16,523 verified pack assets. The Game does not load opaque
   payloads.
 - **Tests:** the embedded production manifest asserts the 233-file corpus and
   documented GFF/VOC/FLI/OGG family counts without proprietary input; DSOP
@@ -169,9 +169,12 @@
   the opening actor anchor is established separately by `DATA-GOG-ACTOR-001`.
 - **Implementation:** `DarkSunWakeRedux.Resources.GffRegion`, canonical bounded
   `PackedRegion` DSRG v1, the read-only `region-catalog` inspection command, and
-  transactional extraction of region #50 to `regions/tyr.dsrg`. The pack keeps
-  decoded data only and records `RGN032.GFF` plus `OBJEX.GFF` reference-validation
-  provenance; it does not copy GFF payloads.
+  transactional extraction of region #50 to `regions/tyr.dsrg` plus every
+  manifest-selected `RGNxxx.GFF` to a canonical source-derived
+  `regions/structural/rgnxxx.dsrg` path. Revision 33's owned pack contains all
+  20 such structural catalogs. The runtime does not select or render them; the
+  pack keeps decoded data only and records each source path plus `OBJEX.GFF`
+  reference-validation provenance; it does not copy GFF payloads.
 - **Tests:** synthetic successful decoding plus malformed name, plane length,
   tile frame, partial entity record, missing tile, and missing object cases;
   DSRG round-trip, deterministic tile order, exact length/header/dimensions,
@@ -1108,7 +1111,7 @@
   The award-producing script path, broader dialogue consequences,
   generic variable initialization, and generic GPL
   execution semantics remain open.
-- **Implementation:** the current required-revision-32 pack stores the byte-identical GPL #135
+- **Implementation:** the current required-revision-33 pack stores the byte-identical GPL #135
   and MAS #99 payloads in bounded DSGP v2 envelopes that retain the exact
   source tag as well as identity, extracts `PORT` #18 with
   the interface palette, and expands the interaction DSUI with #12500/#12501
@@ -1564,7 +1567,7 @@
   supported GOG build; runtime selection and remaining field semantics are
   unknown.
 - **Implementation:** `PackedCharacterCatalog` plus transactional extraction to
-  `characters/catalog.dsch`; the required-revision-32 asset-pack manifest records
+  `characters/catalog.dsch`; the required-revision-33 asset-pack manifest records
   `CHARSAVE.GFF` provenance. The full corpus pass also preserves the original
   archive as an opaque source-mapped payload; neither output assigns a party
   role to any record.

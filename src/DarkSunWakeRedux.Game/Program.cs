@@ -568,6 +568,25 @@ try
             if (region.ResourceNumber != 50 || region.Name != "Tyr" ||
                 region.Tiles.Count != 94 || region.Entities.Count != 867)
                 throw new InvalidDataException("The installed Tyr region catalog is incomplete.");
+            var structuralRegionDirectory = Path.Combine(assetPack,
+                OriginalContent.RegionCatalogAssetDirectory.Replace('/',
+                    Path.DirectorySeparatorChar));
+            var structuralRegionPaths = Directory.Exists(structuralRegionDirectory)
+                ? Directory.EnumerateFiles(structuralRegionDirectory, "*.dsrg",
+                        SearchOption.TopDirectoryOnly)
+                    .OrderBy(path => path, StringComparer.OrdinalIgnoreCase)
+                    .ToArray()
+                : [];
+            if (structuralRegionPaths.Length != OriginalContent.RequiredStructuralRegionCatalogCount)
+                throw new InvalidDataException(
+                    "The installed structural region catalog count is incomplete.");
+            foreach (var structuralRegionPath in structuralRegionPaths)
+            {
+                var relativePath = Path.GetRelativePath(assetPack, structuralRegionPath)
+                    .Replace('\\', '/');
+                using var structuralRegionStream = File.OpenRead(structuralRegionPath);
+                _ = PackedRegion.Read(structuralRegionStream, relativePath);
+            }
             var geometryCounts = region.GeometryMap.GroupBy(value => value)
                 .ToDictionary(group => group.Key, group => group.Count());
             var terrain = new RegionTerrainGrid(region);

@@ -8,7 +8,7 @@ runtime defaults or committed content.
 
 | Field | Value |
 |---|---|
-| Status | Exact 233-file baseline recognition and complete 16,503-asset local-corpus extraction implemented |
+| Status | Exact 233-file baseline recognition and complete 16,523-asset local-corpus extraction implemented, including 20 source-derived structural region catalogs |
 | Acquisition | Legally owned GOG release, *Dungeons & Dragons: Dark Sun Series* |
 | Local validation path | `C:\GOG Games\Dark Sun 2` |
 | GOG product ID | `1432903719` |

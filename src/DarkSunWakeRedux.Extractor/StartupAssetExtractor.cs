@@ -245,6 +245,8 @@ public static class StartupAssetExtractor
             $"{TyrRegionSourcePath}:PAL #{tyrRegion.ResourceNumber}", cancellationToken,
             ObjectSourcePath));
         files.Add(await WriteRegionAsync(stagingRoot, tyrRegion, cancellationToken));
+        files.AddRange(await RegionCatalogExtractor.WriteAsync(sourceRoot, stagingRoot,
+            edition, objectArchive, cancellationToken));
         files.Add(await WriteObjectCatalogAsync(stagingRoot, tyrObjects, cancellationToken));
         files.AddRange(await WriteOpaqueCorpusAsync(sourceRoot, edition.Files, stagingRoot,
             cancellationToken));

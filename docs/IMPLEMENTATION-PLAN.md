@@ -260,16 +260,15 @@ evidence throughout.
 **Completion evidence.** `inventory-source` classified all 279 files in the
 owned installation with zero unrepresented: 233 immutable game-data inputs, 10
 mutable capture/save files, 18 DOSBox wrapper/configuration files, 13 storefront
-wrappers, and five documents. The transactionally installed required revision 32 pack contains
+wrappers, and five documents. The transactionally installed required revision 33 pack contains
 233 byte-for-byte source-file DSOP assets, 16,168 per-resource DSOP assets, and
-102 specialized derivatives (16,503 total); full pack read-back and runtime
+122 specialized derivatives (16,523 total); full pack read-back and runtime
 content smoke both pass.
 
 ### Proposed Slice 2B - All-region structural catalogs
 
-**Status:** proposed 2026-09-20; requires repository-owner approval before
-implementation. This proposal changes the required derived-pack contract and
-therefore must increment its revision if approved.
+**Status:** complete 2026-09-20. Approved by the repository owner on 2026-09-20;
+the contract change increments the required derived-pack revision to 33.
 
 - **Outcome.** The verified pack contains a bounded canonical `DSRG` structural
   catalog for every supported region archive whose shared
@@ -309,6 +308,15 @@ therefore must increment its revision if approved.
   encounters, music, scripts, quest ownership, draw order, animation, and all
   presentation/timing behavior. These catalogs do not answer any of those
   questions.
+
+**Completion evidence.** A transactionally extracted owned-install pack at
+revision 33 read back successfully with 16,523 assets: the unchanged 16,401
+DSOP corpus assets, 102 pre-existing specialized derivatives, and 20 new
+source-derived `regions/structural/rgn*.dsrg` catalogs. Synthetic tests prove
+canonical source-path ordering, duplicate source-identity rejection,
+source-context diagnostics for a malformed non-Tyr archive, complete read-back,
+and earlier revision rejection. The runtime does not select or render the new
+catalogs.
 
 ### Slice 2 - Extraction and title-to-party flow
 
@@ -367,7 +375,7 @@ therefore must increment its revision if approved.
   class/level progression, the active member during DUAL selection or editing,
   and recreation-native stored characters;
   DSUI round-trip, malformed graph, deterministic ordering, mixed-control graph resolution, resource-ID routing,
-  rectangle-edge, synthetic extraction, content-smoke, and owned 16,503-asset pack verification cover the derived
+  rectangle-edge, synthetic extraction, content-smoke, and owned 16,523-asset pack verification cover the derived
   start-flow layout contract;
   gameplay-wide replay remains a later-slice requirement.
 - **Observed parity.** Compare boot, start, create/select/cancel, and quit state

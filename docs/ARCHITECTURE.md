@@ -38,8 +38,9 @@ output, reject unexpected files, then atomically replace the installed pack.
 If any step fails, staging is removed and the last verified pack is restored.
 Current code exercises this transaction for every byte of the 233-file source
 baseline and every one of its 16,168 GFF records, retained as source-mapped DSOP
-assets where no semantic contract is established. The same required revision 32 pack also carries
-the 102 evidenced specialized derivatives for startup, party, ADD-list, Tyr,
+assets where no semantic contract is established. The same required revision 33 pack also carries
+the 122 evidenced specialized derivatives for startup, party, ADD-list, Tyr,
+the source-derived structural catalogs for every owned region,
 Game Menu/Preferences, character, inventory, Cast, Effects, and first dialogue.
 Later work adds semantic readers and behavior only after their mappings are
 recorded; it does not extend corpus coverage by silently omitting unknown data.
@@ -47,7 +48,7 @@ recorded; it does not extend corpus coverage by silently omitting unknown data.
 ## Runtime startup
 
 `--smoke-test` is assetless for CI. `--content-smoke-test` verifies and opens the
-98 derived startup/Tyr/menu/cursor/dialogue assets without creating a window. Normal startup verifies
+118 derived startup/Tyr/menu/cursor/dialogue/structural-region assets without creating a window. Normal startup verifies
 the default or explicit `--asset-pack` directory before creating the game window
 and displays the measured start shell plus controls, the party-overview shell,
 and the ADD-list shell reached through their Core states. Title sequencing and

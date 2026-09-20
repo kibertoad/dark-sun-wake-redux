@@ -58,7 +58,7 @@ public sealed partial class StartupAssetExtractorTests
                 using var stream = File.OpenRead(input);
                 return 1 + GffArchive.Read(stream, file.Path).Resources.Count;
             });
-            Assert.Equal(102 + opaqueOutputCount, manifest.Files.Count);
+            Assert.Equal(103 + opaqueOutputCount, manifest.Files.Count);
             var titleOpaque = Assert.Single(manifest.Files,
                 item => item.Path == "corpus/gff/resource.gff/424d5020-11011.dsop");
             Assert.Equal(StartupAssetExtractor.SourcePath, titleOpaque.SourcePath);
@@ -257,6 +257,12 @@ public sealed partial class StartupAssetExtractorTests
                 Assert.Equal((50U, "Tyr", 2, 2),
                     (region.ResourceNumber, region.Name, region.Tiles.Count, region.Entities.Count));
             }
+            var structuralRegion = Assert.Single(manifest.Files,
+                item => item.Path == OriginalContent.RegionCatalogAssetPathFor(
+                    StartupAssetExtractor.TyrRegionSourcePath));
+            Assert.Equal(StartupAssetExtractor.TyrRegionSourcePath, structuralRegion.SourcePath);
+            Assert.Contains("source-derived structural DSRG v1", structuralRegion.Conversion,
+                StringComparison.Ordinal);
             var objectAsset = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.TyrObjectCatalogAssetPath);
             Assert.Equal(StartupAssetExtractor.ObjectSourcePath, objectAsset.SourcePath);
