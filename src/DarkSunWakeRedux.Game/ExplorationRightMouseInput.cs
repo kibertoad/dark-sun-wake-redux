@@ -52,8 +52,8 @@ public sealed class ExplorationRightMouseInput
             return null;
         }
 
-        var deltaX = logicalPointer.Value.X - previous.X;
-        var deltaY = logicalPointer.Value.Y - previous.Y;
+        var deltaX = (long)logicalPointer.Value.X - previous.X;
+        var deltaY = (long)logicalPointer.Value.Y - previous.Y;
         _previousPointer = logicalPointer;
         if (deltaX == 0 && deltaY == 0) return null;
         _dragged = true;
@@ -62,12 +62,12 @@ public sealed class ExplorationRightMouseInput
             Scale(-deltaY, ref _remainderY));
     }
 
-    private static int Scale(int delta, ref int remainder)
+    private static int Scale(long delta, ref int remainder)
     {
         var numerator = delta * PanNumerator + remainder;
         var result = numerator / PanDenominator;
-        remainder = numerator % PanDenominator;
-        return result;
+        remainder = checked((int)(numerator % PanDenominator));
+        return checked((int)Math.Clamp(result, int.MinValue, int.MaxValue));
     }
 
     private void Reset()

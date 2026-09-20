@@ -46,6 +46,17 @@ public sealed class ExplorationRightMouseInputTests
     }
 
     [Fact]
+    public void ExtremePointerCoordinatesSaturateInsteadOfWrappingPanDeltas()
+    {
+        var input = new ExplorationRightMouseInput();
+        input.Update(true, true, new(int.MinValue, int.MinValue));
+
+        var pan = input.Update(true, true, new(int.MaxValue, int.MaxValue));
+
+        Assert.Equal((int.MinValue, int.MinValue), (pan!.DeltaX, pan.DeltaY));
+    }
+
+    [Fact]
     public void LeavingTheCanvasReanchorsWithoutCameraJump()
     {
         var input = new ExplorationRightMouseInput();

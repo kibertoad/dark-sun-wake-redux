@@ -177,8 +177,9 @@ the start flow and current exploration state reproducible.
 - Route advancement is semantic and clock-free in Core. The runtime uses a
   bounded fixed-step accumulator and fixed-point visual interpolation. Positive
   host elapsed time accumulates saturating ticks, while camera clamping widens
-  delta arithmetic, so clock discontinuities or extreme valid input cannot
-  overflow into gameplay state.
+  delta arithmetic and the modern drag adapter widens then saturates pointer
+  deltas, so clock discontinuities or extreme input cannot overflow into
+  gameplay state.
 - The opening actor's current single-cell footprint and 125 ms semantic step
   are explicit modern policies, not claims about the native implementation.
 - `EXE-GOG-TIMING-001` establishes BIOS tick use only for startup/mixing paths,
