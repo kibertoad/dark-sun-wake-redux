@@ -1104,27 +1104,29 @@ proof by itself. Never redirect broad output into the repository.
 - **Implementation consequence:** no `MONR` parser, extractor contract, or
   combat behavior is introduced from this query.
 
-### EXE-GOG-ITEMS-001 - No raw ITEMS.BIN filename representation in DSUN.EXE
+### EXE-GOG-ITEMS-001 - No raw ITEMS.BIN filename or stem representation in DSUN.EXE
 
 - **Question:** Does the supported executable embed either raw representation
-  of `ITEMS.BIN`, providing a direct starting point for item-data loading or
-  layout analysis?
+  of `ITEMS.BIN`, or a null-terminated `ITEMS` stem that could provide a
+  direct starting point for a constructed item-data filename or layout analysis?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
   SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportBytePattern` searched every loaded memory block for both
-  exact ASCII bytes `49 54 45 4d 53 2e 42 49 4e` and the same explicit
-  null-terminated representation ending in `00`.
-- **Bounded finding:** neither loaded-memory byte pattern exists.
+  exact ASCII bytes `49 54 45 4d 53 2e 42 49 4e`, the same explicit
+  null-terminated representation ending in `00`, and the null-terminated
+  stem `49 54 45 4d 53 00`.
+- **Bounded finding:** none of the three loaded-memory byte patterns exists.
 - **Interpretation:** this rules out only the two queried literal
-  representations in this executable. The filename may be absent from the
-  code path, constructed or relocated at runtime, owned by another executable
-  or data layer, supplied by a launcher, or absent from a runtime path. The
-  result establishes neither an item-file reader nor any record structure,
-  pair-column role, object-frame relation, equipment, inventory, or combat
-  behavior.
-- **Confidence:** high for the two absent raw-byte representations; unknown for
-  item-data loading, file ownership, table-field roles, and all item semantics.
+  representations in this executable. The filename or stem may be absent from
+  the code path, constructed or relocated at runtime, owned by another
+  executable or data layer, supplied by a launcher, or absent from a runtime
+  path. The result establishes neither an item-file reader nor any record
+  structure, pair-column role, object-frame relation, equipment, inventory, or
+  combat behavior.
+- **Confidence:** high for the three absent raw-byte representations; unknown
+  for item-data loading, file ownership, table-field roles, and all item
+  semantics.
 - **Implementation consequence:** `ITEMS.BIN` remains an unparsed source whose
   layout needs an independent bounded lead. Do not use a failed Ghidra
   defined-data/string classification as an absence claim; raw-byte search is
