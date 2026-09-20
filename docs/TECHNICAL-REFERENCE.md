@@ -216,10 +216,13 @@ rejecting unsupported semantics:
 - `EXE-GOG-EVENT-001` establishes a mutable, linked runtime 13-byte selector
   record with a 2,600-byte entry-flow clear and deterministic link setup,
   multiple predicate traversals, a guarded `GPL ` resource-request path, and a
-  secondary relinked chain. It does not identify the table's source/population
-  path or connect a record to dialogue, quests, combat, or map triggers. Its
-  pointer's initialized image is zero, so the later runtime population path is
-  still required evidence.
+  secondary relinked chain. Its sole recovered initializer caller is the
+  executable entry, which passes three resident words and meets an immediate
+  lower-bound guard; that identifies neither their meaning nor table
+  ownership. It does not identify the table's source/population path or
+  connect a record to dialogue, quests, combat, or map triggers. Its pointer's
+  initialized image is zero, so the later runtime population path is still
+  required evidence.
 - `EXE-GOG-RECORD19-001` separates a second linked 19-byte resident family
   that uses the same request entry. Shared processing does not establish a
   common source, a record meaning, or a player-visible feature for either

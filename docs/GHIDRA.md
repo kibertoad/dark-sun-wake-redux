@@ -1256,7 +1256,9 @@ proof by itself. Never redirect broad output into the repository.
 - **Method:** `ReportReferences` enumerated the entry's eight direct far
   callers, then enumerated all direct references to the resident table pointer
   at `5b7c:0700`. Bounded instruction contexts classified immediate argument
-  setup and the one direct caller of the observed initializer. A bounded
+  setup and the one direct caller of the observed initializer, including the
+  entry-flow's three resident-word pushes and the initializer's first-argument
+  guard. A bounded
   decompilation of its shared callee identified the byte-fill helper used
   immediately before the link loop. Four bounded decompilations of the `1695`
   callers compared every dereferenced offset and all chain termination and
@@ -1308,8 +1310,12 @@ proof by itself. Never redirect broad output into the repository.
   behavior remain unknown. `ReportReferences` found 34 direct references to
   `5b7c:0700`, all reads, across nine functions; it found no direct pointer
   write. One of those functions, `277b:0024`, has exactly one direct caller:
-  the executable entry at `1000:0158`, after that entry pushes three resident
-  words. Immediately before the link loop, it calls a verified generic
+  the executable entry at `1000:0158`, which pushes resident words at offsets
+  `0x88`, `0x86`, and `0x84` before the far call. The initializer reads the
+  most recently pushed value through its first stack argument and immediately
+  rejects values below one. These instructions establish only entry-flow
+  argument provenance and a lower-bound guard, not a field meaning or table
+  owner. Immediately before the link loop, it calls a verified generic
   byte-fill helper at that same table pointer with an observed length of
   `0x0a28` and fill byte `0xff`; `0x0a28` equals 200 13-byte strides. A
   direct-reference query of the secondary-chain head at `4c13:032d` found
