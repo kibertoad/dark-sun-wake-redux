@@ -1607,6 +1607,31 @@ proof by itself. Never redirect broad output into the repository.
   boundary; each needs a screen-specific consumer path and controlled
   observation.
 
+### EXE-GOG-PORT-001 - No literal portrait-image tag in the main executable
+
+- **Question:** Does the supported executable expose a direct literal resource
+  tag path for the separately decoded `PORT` image family, including the
+  observed first-Tyr dialogue portrait?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** after fingerprint verification, `ReportBytePattern` searched all
+  loaded program-memory blocks for the exact four-byte ASCII encoding `PORT`
+  (`50 4f 52 54`), with its normal bounded match/reference reporting.
+- **Bounded finding:** no raw `PORT` byte pattern occurs in the analyzed
+  executable image. The query supplies no direct tag assignment, portrait
+  request, loader, cache, draw call, dialogue entry, or timing boundary.
+- **Interpretation:** this excludes only a literal-tag representation in this
+  executable. A portrait can still be selected through an indirect tag,
+  resident state, a common image path, a constructed value, or another module.
+  It neither contradicts the independently observed `GPL` #135 `PORT` #18
+  composition nor identifies a general portrait policy.
+- **Confidence:** high for the exact loaded-image literal absence; unknown for
+  portrait loading, palette choice, drawing, dialogue ownership, and timing.
+- **Implementation consequence:** retain the bounded `PORT` image decoder and
+  the capture-correlated first-Tyr portrait mapping, but do not generalize a
+  native portrait loader or dialogue behavior from this negative result.
+
 For each useful finding, add a concise entry here or in the relevant
 `docs/RULES-AND-EVIDENCE.md` / `docs/ORIGINAL-FORMATS.md` section with:
 
