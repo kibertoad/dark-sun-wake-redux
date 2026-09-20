@@ -349,7 +349,9 @@ proof by itself. Never redirect broad output into the repository.
   coordinates, and invokes the existing occupancy path only under a local
   guard. The `2d40:0589` caller scans exactly 320 candidate entries and uses
   their coordinate words shifted right by four before invoking the same OJFF
-  lookup for a guarded negative identity. The `31ba:000e` caller lazily
+  lookup for a guarded negative identity. A direct-reference query of
+  `2d40:0589` finds no recovered caller, so its candidate-selection result has
+  no bounded action owner. The `31ba:000e` caller lazily
   resolves a negative identity from a separate 8-byte indexed record and feeds
   the resolved result to the sole-caller 16-byte-slot helper. That helper calls
   `2d40:3bec`; this routine has eight direct callers, including the actor path
@@ -365,7 +367,8 @@ proof by itself. Never redirect broad output into the repository.
   to ETAB entries, actor identity/category, nearest-candidate purpose, frame
   selection, animation, collision, targeting, or interaction behavior.
 - **Confidence:** high for the direct caller counts, 37-byte/16-byte/8-byte
-  resident stride observations, 320-entry scan, coordinate shift, and
+  resident stride observations, 320-entry scan, coordinate shift, absent
+  recovered direct caller of that scan, and
   `PLAN`/`PLNR` branch distinction; unknown for every semantic role beyond the
   bounded loader/decoder boundary.
 - **Implementation consequence:** retain `IndexedImage` support for its

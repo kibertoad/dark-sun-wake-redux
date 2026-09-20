@@ -206,9 +206,10 @@ rejecting unsupported semantics:
   path. It likewise has no direct selector connection and remains opaque.
 - `EXE-GOG-OJFF-001` establishes two native OJFF resource lookup paths, one
   beside the 37-byte resident path. `EXE-GOG-IMAGE-001` continues that bounded
-  route into distinct PLAN/PLNR image dispatch. Neither finding identifies a
-  runtime actor, object field semantics, animation, collision, target, or
-  interaction behavior.
+  route into distinct PLAN/PLNR image dispatch. Its 320-entry coordinate-based
+  candidate scan has no recovered direct caller, so it does not identify a
+  target action. Neither finding identifies a runtime actor, object field
+  semantics, animation, collision, target, or interaction behavior.
 - `EXE-GOG-SMALLTAG-001` finds no literal executable loader lead for `GREQ`,
   `CACT`, `PLYL`, or `CSEQ`. `DATA-GOG-SMALLTAG-001` bounds their owned
   inventories and short envelopes, but neither result assigns those opaque
