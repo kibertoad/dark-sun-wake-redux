@@ -328,6 +328,11 @@ uninterpreted controls. The Game Menu catalog retains all 30 ordered referenced
 Unknown source fields, button tails, palette assumptions, and unmeasured shell
 placement semantics are not carried.
 
+DATA-GOG-CHAR-007 rejects the narrow direct byte and aligned little-endian word
+ordinal mapping from the EXE-GOG-CHAR-007/008 label-table order across the two
+capture-confirmed records #40 and #42. It does not locate a field; all
+uninterpreted fixed-header and tail bytes therefore remain outside DSCH.
+
 ## Derived DSCH character-metadata catalog
 
 DSCH is an original deterministic pack format that carries only fields with a

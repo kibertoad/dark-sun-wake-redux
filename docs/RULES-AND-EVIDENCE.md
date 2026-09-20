@@ -1719,6 +1719,37 @@
   or another independent source establishes all four members. A changed source
   archive is a recognition mismatch, not an implicit alternative party.
 
+### DATA-GOG-CHAR-007 - Confirmed display ordinals are not direct unknown-header values
+
+- **Question:** Do the two character records independently narrowed by
+  owner-confirmed captures (#40 AR'ANDA and #42 THY ROKH) store their visible
+  gender, origin, alignment, or role as a direct native vocabulary ordinal in
+  one common unknown fixed-header field?
+- **Method:** Read the bounded primary CHAR directory in the fingerprinted
+  installed CHARSAVE.GFF, then compare only the 79-byte fixed headers of #40
+  and #42. Exclude the established version/tail-count bytes (0-1), six ability
+  bytes (35-40), and name slot (43-58). For every remaining byte offset and
+  every remaining aligned two-byte little-endian offset, test the exact
+  table-ordinal pairs implied by the observed screens and EXE-GOG-CHAR-007/008:
+  female/female (1/1), elf/thri-kreen (2/7),
+  chaotic-neutral/true-neutral (7/4), and preserver/fighter (4/2). Output
+  only candidate offsets, never header bytes.
+- **Finding:** no remaining one-byte or aligned two-byte header offset matches
+  any of the four tested ordinal pairs. Thus neither of the two direct
+  ordinal-width hypotheses supplies a candidate field.
+- **Interpretation:** this rejects only one narrow representation: a common
+  unknown fixed-header byte or little-endian word equal to the native table
+  ordinal for both confirmed records. It does not rule out a tail record,
+  bitfield, transformed value, one-based or unrelated enumeration, pointer,
+  lookup table, runtime state, or an incorrect assumption that the static
+  vocabulary order is the serialized field order.
+- **Confidence:** high for the bounded #40/#42 header scan and negative
+  candidate result; unknown for all gender, origin, alignment, and role field
+  locations and meanings.
+- **Implementation consequence:** keep those CHAR fields uninterpreted. Do
+  not assign the captured labels to a record byte, enrich DSCH, or drive
+  character/inventory/Use presentation from this rejected direct mapping.
+
 ### OBS-GOG-PARTY-001 - Owner-confirmed party and destination-screen captures
 
 - **Question:** What player-visible party membership, destination-shell, and
