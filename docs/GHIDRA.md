@@ -754,6 +754,40 @@ proof by itself. Never redirect broad output into the repository.
   or change click/drag behavior from this generic boundary; controlled input
   traces and a screen-specific consumer path are required.
 
+### EXE-GOG-KEYBOARD-001 - BIOS modifier query does not map player keys
+
+- **Question:** Does the supported executable's literal BIOS keyboard path
+  establish a player key, modifier, repeat, or control-routing contract?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** `ReportBytePattern` searched all loaded blocks for the exact
+  `INT 16h` encoding (`cd 16`), then `ReportInstructionContext` inspected the
+  one decoded site. `ReportReferences` enumerated the direct callers of its
+  wrapper and bounded contexts inspected both callers. Other raw byte matches
+  were not treated as code without a containing decoded instruction.
+- **Bounded finding:** four raw matches exist, but only `4000:4b73` is decoded
+  as an instruction, resolving to `44b6:0013`. Its wrapper sets `AH=02h`,
+  executes `INT 16h`, clears `AH`, and returns. It has two direct callers: an
+  internal helper at `44b6:0063`, which stores the returned low byte in a
+  resident byte, and `31e0:2e3b`. The latter reaches the call after locating a
+  37-byte-stride resident record and checking its leading-byte bit `0x10`; it
+  then masks the returned value with `0x03` before a guard. No decoded site
+  reads a key code or directly dispatches a player action.
+- **Interpretation:** this proves one native modifier-status boundary and a
+  guarded two-bit use in an opaque record path. It does not establish the
+  record's ownership, the meanings of either bit, any specific modifier,
+  keystroke, hotkey, key-repeat rule, focus rule, or screen transition. The
+  manual and controlled input observations remain separate evidence sources.
+- **Confidence:** high for the four raw matches, the one decoded wrapper, two
+  direct callers, and its bounded masks/record stride; unknown for all
+  player-visible keyboard behavior.
+- **Implementation consequence:** retain semantic, edge-triggered modern
+  keyboard input behind the documented manual/observation contracts. Do not
+  derive a native modifier map, repeat policy, or control action from this
+  opaque two-bit guard; a screen-specific consumer path and controlled trace
+  are required.
+
 ### EXE-GOG-ITEMS-001 - no literal ITEMS.BIN loader lead in DSUN.EXE
 
 - **Question:** Does the supported main executable identify `ITEMS.BIN` by its

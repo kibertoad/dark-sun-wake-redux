@@ -268,6 +268,11 @@ rejecting unsupported semantics:
   only a `1..317`/`1..198` returned pair. It does not identify axes, a global
   transform, control hit testing, gestures, or pointer behavior, so the
   measured canvas and DSUI contracts remain authoritative.
+- `EXE-GOG-KEYBOARD-001` finds one decoded BIOS modifier-status wrapper. Its
+  external caller masks two returned bits while processing an opaque 37-byte
+  resident record; no recovered keyboard site reads a key code or maps a
+  player action. Manual and observed keyboard routes therefore remain separate
+  evidence, not a consequence of this generic path.
 - `EXE-GOG-PORT-001` finds no literal `PORT` tag in the executable. It does
   not contradict the observed first-Tyr portrait, but supplies no general
   portrait loader, palette, drawing, dialogue, or timing rule.
