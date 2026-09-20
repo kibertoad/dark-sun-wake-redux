@@ -1165,6 +1165,37 @@ proof by itself. Never redirect broad output into the repository.
   source-backed panel candidate, but do not create a combat renderer, panel
   value model, record reader, or update loop from this shared native path.
 
+### EXE-GOG-COMBAT-005 - Panel caption has no direct executable literal path
+
+- **Question:** Does the visible `Moves` caption in the owner-confirmed
+  Thy'rokh combat panel occur as a null-terminated ASCII literal in the
+  approved executable, with a direct reference that can identify its renderer
+  or update path?
+- **Target:** the already documented stable GOG-1432903719 `DSUN.EXE` target,
+  634,416 bytes, SHA-256
+  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. Its path, package,
+  size, and baseline metadata remain unchanged, so this focused query reuses
+  the approved target without rehashing.
+- **Method:** `ReportBytePattern` searched every loaded memory block for the
+  explicit null-terminated ASCII sequence `4d 6f 76 65 73 00`. Its normal
+  bounded output includes references to each raw match; only matched addresses
+  would proceed to reference and instruction-context inspection.
+- **Bounded finding:** no raw byte-pattern match exists, so there is no matched
+  executable address or direct reference to inspect.
+- **Interpretation:** this excludes only the exact null-terminated ASCII
+  literal in this executable. It does not show that the observed caption is
+  absent at runtime or identify it as a field: it may use another encoding,
+  split or constructed characters, relocated data, a resource, or a different
+  executable/runtime path. `DATA-GOG-COMBAT-001` separately excludes only an
+  exact printable-ASCII GFF source match and the known static panel bitmap.
+- **Confidence:** high for the exact raw-byte negative query; unknown for text
+  construction, drawing, update ownership, panel values, turns, and combat
+  behavior.
+- **Implementation consequence:** do not use the caption as a combat-renderer
+  or game-rule lead. Keep the observed panel's dynamic region and text/value
+  source opaque pending an independent native path or controlled observation.
+
 ### EXE-GOG-MONR-001 - MONR has no raw executable tag literal
 
 - **Question:** Does the sole `MONR` resource in `RESOURCE.GFF` identify an

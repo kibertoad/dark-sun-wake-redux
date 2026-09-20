@@ -144,7 +144,12 @@ but no Game code consumes it. These facts establish
 neither movement cost, action ordering, attacker/target identity, panel-value
 meaning, damage resolution, turn progression, timing, nor exit. No combat session, encounter,
 or rules pipeline is implemented until the controlled C0-C6 observation gate
-and a traceable data or executable path establish them.
+and a traceable data or executable path establish them. `DATA-GOG-COMBAT-001`
+finds no baked `Moves` caption in the static panel and no exact printable ASCII
+source match in the 26 owned GFF archives; `EXE-GOG-COMBAT-005` likewise finds
+no null-terminated executable literal. Those bounded negative results leave
+the visible caption dynamically sourced but otherwise opaque; they do not
+identify a renderer, value field, turn transition, or combat rule.
 
 ## Object and static-scene route
 

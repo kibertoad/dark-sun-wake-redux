@@ -1937,6 +1937,30 @@
   item model, spell model, movement-point cost model, damage pipeline, combat
   state machine, or timing policy from these still-bounded visual facts.
 
+### DATA-GOG-COMBAT-001 - Panel caption has no direct ASCII source lead
+
+- **Question:** Can the visible `Moves` caption in the owner-confirmed
+  Thy'rokh combat panel be assigned to a static asset or an exact printable
+  ASCII string in the owned source corpus?
+- **Method:** Decode the already identified `RESOURCE.GFF:BMP #19003` with
+  `PAL #1000` to a temporary local preview outside the repository and inspect
+  its 98x32 static artwork. Then run the compiled, bounded
+  `resource-pattern` inspector for the exact printable ASCII pattern `Moves`
+  over each of the 26 owned top-level GFF archives. The inspector returns only
+  archive/tag/descriptor metadata on a match; no payload is retained.
+- **Finding:** BMP #19003 contains the panel chrome but no baked `Moves`
+  caption. No GFF resource has the exact printable ASCII pattern `Moves`.
+  The observed caption therefore has no direct static bitmap or exact-ASCII
+  source lead from these queries.
+- **Confidence:** high for the inspected static panel and the exact,
+  case-sensitive printable-ASCII corpus query; unknown for different text
+  encodings, split/constructed strings, runtime formatting, font drawing,
+  source ownership, and every value or turn semantic.
+- **Implementation consequence:** preserve the existing evidence-only panel
+  asset and keep its dynamic area opaque. Do not hard-code the caption, assign
+  its values, or add combat presentation/logic from a failed direct source
+  search.
+
 ### RULE-START-FLOW-001 - Start and party-creation routing
 
 - **Behavior:** The Start Window offers START GAME, CREATE CHARACTERS, LOAD
