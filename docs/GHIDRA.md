@@ -1327,34 +1327,46 @@ proof by itself. Never redirect broad output into the repository.
   four-byte ASCII encoding `OJFF`. `ReportInstructionContext` inspected both
   assignments. `ReportReferences` enumerated direct callers of their containing
   functions, and one bounded decompilation window per function classified only
-  the immediate tag-aware request/result path.
+  the immediate tag-aware request/result path. A follow-up reference query,
+  call-site instruction context, and bounded decompilation of `31e0:0e1b`
+  classified the successful `31e0:0eff` lookup result's sole direct consumer.
 - **Bounded finding:** exactly two coherent instructions select `OJFF`, both in
   module `31e0`. The first is in `31e0:0eff`, which has three direct callers
   (`31ba:000e`, `2d40:0589`, and `31e0:0121`). It supplies its caller-provided
   signed 16-bit identity and the `OJFF` tag to the shared tag-aware lookup,
   checks that lookup's result, and then continues through the already-recorded
   `RDFF` conditional path while updating an indexed resident family at a
-  37-byte stride. The second, `31e0:426e`, supplies a caller-provided unsigned
-  16-bit identity and `OJFF` to the same lookup and reduces its result to a
-  success/failure return; it has no direct Ghidra caller. Neither bounded window
-  reads an OJFF field, chooses a bitmap frame, enumerates an animation, or
-  invokes a collision, interaction, dialogue, combat, or rendering handler.
+  37-byte stride. On successful lookup, it passes the lookup result, the
+  selected 37-byte resident destination, and that resident index to
+  `31e0:0e1b`, whose sole recovered direct caller is `31e0:0eff`. Subject to
+  its local initialization guard, that helper reads source portions beginning
+  at offsets `0x00`, `0x02`, `0x04`, `0x0a`, `0x0b`, and `0x0c`, combines them
+  with a separate eight-byte indexed entry, and initializes/rearranges fields
+  in the resident destination. This is an observed transfer boundary, not a
+  field-name assignment. The second, `31e0:426e`, supplies a caller-provided
+  unsigned 16-bit identity and `OJFF` to the same lookup and reduces its result
+  to a success/failure return; it has no direct Ghidra caller. Neither bounded
+  path chooses a bitmap frame, enumerates an animation, or invokes a collision,
+  interaction, dialogue, combat, or rendering handler.
 - **Interpretation:** the supported executable has a real native lookup
-  boundary for the `OJFF` resource family, adjacent to the previously observed
-  37-byte indexed-record path. It does not establish what any OJFF word means,
-  which resource identities belong to the opening actor, the owner of the
-  resident records, or any player-visible object behavior. The second function's
-  lack of a recovered direct caller is not evidence that it is unused.
+  boundary for the `OJFF` resource family, with a bounded post-lookup transfer
+  into the previously observed 37-byte indexed-record path. It corroborates
+  that selected bytes/words of the 16-byte structural record are consumed by
+  native code, but does not establish what any OJFF word means, which resource
+  identities belong to the opening actor, the owner of the resident records, or
+  any player-visible object behavior. The second function's lack of a recovered
+  direct caller is not evidence that it is unused.
 - **Confidence:** high for the two literal tag assignments, direct-call count,
-  supplied identity widths, immediate lookup-result handling, and the shared
-  37-byte-path adjacency; unknown for loader lifetime, cache ownership, record
-  semantics, frame selection, animation, placement, collision, interaction,
-  and all higher-level feature ownership.
+  supplied identity widths, immediate lookup-result handling, sole post-lookup
+  consumer, observed source-offset accesses, and the shared 37-byte-path
+  adjacency; unknown for loader lifetime, cache ownership, record semantics,
+  frame selection, animation, placement, collision, interaction, and all
+  higher-level feature ownership.
 - **Implementation consequence:** retain `OJFF` as the bounded DSOB structural
-  catalog only. Do not add a generic native-object runtime, OJFF field names,
-  animation policy, collision rule, or interaction behavior from this loader
-  boundary. `DATA-GOG-ACTOR-001` remains the separate evidence for the one
-  opening leader image and anchor.
+  catalog only. This result corroborates preservation of the observed layout,
+  but does not license new OJFF field names, a generic native-object runtime,
+  animation policy, collision rule, or interaction behavior. `DATA-GOG-ACTOR-001`
+  remains the separate evidence for the one opening leader image and anchor.
 
 ### EXE-GOG-SMALLTAG-001 - No direct literal loaders for four small families
 

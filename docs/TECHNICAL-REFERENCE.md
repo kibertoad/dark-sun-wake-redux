@@ -116,9 +116,11 @@ RGN#50: RNME / PAL / MAP / GMAP / TILE / ETAB
   an absolute `OJFF` reference. The record's flags and all non-evidenced
   geometry meanings remain raw data.
 - An `OJFF` has bounded X/Y offsets and a bitmap reference. Two native OJFF
-  tag-selection paths exist; one is adjacent to a 37-byte resident record
-  family. This proves a lookup boundary only, not OJFF field names, actor
-  ownership, collision, interaction, or animation.
+  tag-selection paths exist. The sole observed successful-result consumer
+  transfers portions beginning at offsets `0x00`, `0x02`, `0x04`, `0x0a`,
+  `0x0b`, and `0x0c` into a 37-byte resident record family. This corroborates
+  structural consumption only, not OJFF field names, actor ownership,
+  collision, interaction, or animation.
 - A bounded native caller chain reaches distinct `PLAN` and `PLNR` image
   dispatch after tile/object image resolution. It confirms the static image
   route but does not establish how a frame is selected or scheduled.
@@ -206,12 +208,14 @@ rejecting unsupported semantics:
   rather than a substitute event or combat implementation.
 - `EXE-GOG-RDFF-001` places `RDFF` beside that same separate 37-byte record
   path. It likewise has no direct selector connection and remains opaque.
-- `EXE-GOG-OJFF-001` establishes two native OJFF resource lookup paths, one
-  beside the 37-byte resident path. `EXE-GOG-IMAGE-001` continues that bounded
-  route into distinct PLAN/PLNR image dispatch. Its 320-entry coordinate-based
-  candidate scan has no recovered direct caller, so it does not identify a
-  target action. Neither finding identifies a runtime actor, object field
-  semantics, animation, collision, target, or interaction behavior.
+- `EXE-GOG-OJFF-001` establishes two native OJFF resource lookup paths and
+  a sole observed post-lookup transfer into the 37-byte resident path. The
+  selected source offsets are structural data accesses, not assigned object
+  field meanings. `EXE-GOG-IMAGE-001` continues that bounded route into
+  distinct PLAN/PLNR image dispatch. Its 320-entry coordinate-based candidate
+  scan has no recovered direct caller, so it does not identify a target action.
+  Neither finding identifies a runtime actor, animation, collision, target, or
+  interaction behavior.
 - `EXE-GOG-SMALLTAG-001` finds no literal executable loader lead for `GREQ`,
   `CACT`, `PLYL`, or `CSEQ`. `DATA-GOG-SMALLTAG-001` bounds their owned
   inventories and short envelopes, but neither result assigns those opaque

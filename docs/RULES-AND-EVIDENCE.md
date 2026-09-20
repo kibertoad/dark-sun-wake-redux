@@ -175,10 +175,12 @@
 - **Confidence:** verified for record size, zero final word, reference integrity,
   image decoding, counts, and dimensions in GOG-1432903719; medium for the X/Y
   offset names from corroborating research. `EXE-GOG-OJFF-001` independently
-  establishes two native tag-aware lookup paths, one adjacent to a 37-byte
-  indexed resident path, but does not read an OJFF field or establish any
-  object behavior. The raw words, frame animation, draw order, anchoring,
-  collision, and interaction semantics remain unknown.
+  establishes two native tag-aware lookup paths and a sole successful-result
+  consumer that reads portions beginning at offsets `0x00`, `0x02`, `0x04`,
+  `0x0a`, `0x0b`, and `0x0c` before updating a 37-byte resident record. That
+  transfer corroborates layout consumption, not any field name or object
+  behavior. The raw words, frame animation, draw order, anchoring, collision,
+  and interaction semantics remain unknown.
 - **Implementation:** `DarkSunWakeRedux.Resources.GffObjectFrameCatalog`, the
   read-only `object-catalog` inspection command, and canonical transactional
   extraction of Tyr's bounded graph to `regions/tyr-objects.dsob`. DSOB retains
