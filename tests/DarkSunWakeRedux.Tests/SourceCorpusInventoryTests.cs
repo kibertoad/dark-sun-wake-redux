@@ -26,6 +26,19 @@ public sealed class SourceCorpusInventoryTests
             file.Path.EndsWith(".FLI", StringComparison.OrdinalIgnoreCase)));
         Assert.Equal(40, manifest.Files.Count(file =>
             file.Path.EndsWith(".ogg", StringComparison.OrdinalIgnoreCase)));
+        var regionSources = RegionCatalogExtractor.SourcePaths(manifest);
+        Assert.Equal(OriginalContent.RequiredStructuralRegionCatalogCount, regionSources.Count);
+        Assert.Equal(
+        [
+            "RGN001.GFF", "RGN032.GFF", "RGN033.GFF", "RGN034.GFF", "RGN036.GFF",
+            "RGN037.GFF", "RGN038.GFF", "RGN039.GFF", "RGN03A.GFF", "RGN03B.GFF",
+            "RGN03C.GFF", "RGN03D.GFF", "RGN03E.GFF", "RGN03F.GFF", "RGN041.GFF",
+            "RGN042.GFF", "RGN043.GFF", "RGN044.GFF", "RGN045.GFF", "RGN0FF.GFF"
+        ], regionSources);
+        Assert.Equal(regionSources.Count, regionSources
+            .Select(OriginalContent.RegionCatalogAssetPathFor)
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .Count());
         Assert.Equal(manifest.Files.Count, manifest.Files
             .Select(file => SourceManifest.Normalize(file.Path))
             .Distinct(StringComparer.OrdinalIgnoreCase)
