@@ -58,6 +58,20 @@ public sealed class ExplorationSessionTests
     }
 
     [Fact]
+    public void PanAcceptsSaturatedPointerDeltasAndClampsThemAtBothWorldEdges()
+    {
+        var session = Session();
+
+        var topLeft = session.Execute(ExplorationCommand.Pan(int.MinValue, int.MinValue));
+        var bottomRight = session.Execute(ExplorationCommand.Pan(int.MaxValue, int.MaxValue));
+
+        Assert.True(topLeft.Applied);
+        Assert.Equal((0, 0), (topLeft.After.CameraX, topLeft.After.CameraY));
+        Assert.True(bottomRight.Applied);
+        Assert.Equal((1_728, 1_368), (bottomRight.After.CameraX, bottomRight.After.CameraY));
+    }
+
+    [Fact]
     public void CyclesCursorModesInManualOrder()
     {
         var session = Session();
@@ -115,13 +129,10 @@ public sealed class ExplorationSessionTests
         Assert.ThrowsAny<ArgumentException>(() => Session().Execute(
             ExplorationCommand.Scroll(x, y)));
 
-    [Theory]
-    [InlineData(2049, 0)]
-    [InlineData(0, 1569)]
-    [InlineData(0, 0)]
-    public void RejectsInvalidPanDeltas(int x, int y) =>
+    [Fact]
+    public void RejectsOnlyZeroPanDelta() =>
         Assert.ThrowsAny<ArgumentException>(() => Session().Execute(
-            ExplorationCommand.Pan(x, y)));
+            ExplorationCommand.Pan(0, 0)));
 
     [Theory]
     [InlineData(ExplorationView.ViewCharacter)]

@@ -188,9 +188,10 @@ public sealed class ExplorationSession
         {
             ExplorationCommandKind.ScrollCamera => payloadCount == 1 && hasMovement &&
                 command.DeltaX is >= -1 and <= 1 && command.DeltaY is >= -1 and <= 1,
-            ExplorationCommandKind.PanCamera => payloadCount == 1 && hasMovement &&
-                Math.Abs((long)command.DeltaX) <= _worldWidth &&
-                Math.Abs((long)command.DeltaY) <= _worldHeight,
+            // Pan input is a signed pointer delta. It may saturate at either
+            // Int32 endpoint when a window changes underneath a held gesture;
+            // MoveCamera performs the overflow-safe world-bound clamp.
+            ExplorationCommandKind.PanCamera => payloadCount == 1 && hasMovement,
             ExplorationCommandKind.OpenView => payloadCount == 1 &&
                 command.View is >= ExplorationView.ViewCharacter and <= ExplorationView.GameMenu,
             ExplorationCommandKind.SelectCursorMode => payloadCount == 1 &&
