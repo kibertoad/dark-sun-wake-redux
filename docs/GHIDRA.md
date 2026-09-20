@@ -1972,6 +1972,39 @@ proof by itself. Never redirect broad output into the repository.
 - **Implementation consequence:** retain `RDFF` as DSOP. Do not infer object,
   target, interaction, quest, or combat behavior from the shared indexed path.
 
+### EXE-GOG-RDFF-002 - No direct access to the observed RDFF label offset
+
+- **Question:** Do either bounded native `RDFF` paths directly read the
+  observed label position at offset 43 or the next 33-byte continuation at
+  offset 76, thereby establishing an `RDFF` payload field or record stride?
+- **Target:** the already documented stable GOG-1432903719 `DSUN.EXE` target,
+  634,416 bytes, SHA-256
+  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. Its documented
+  path, size, package, and baseline metadata remain unchanged, so this focused
+  query reuses that target without a redundant rehash.
+- **Method:** `ReportStructureOffsets` searched all decoded instructions for
+  direct positive structure displacements 43, 76, 109, and 142. The latter
+  two are the next two 33-byte continuations and distinguish a complete
+  negative result from an incomplete query. Compare every bounded result to
+  the two previously established `RDFF` tag-aware functions at `28c9:2839`
+  and `31e0:0eff`.
+- **Bounded finding:** no decoded instruction uses direct displacement 43 or
+  76. The only 109/142 results occur in other `3ebe`, `409b`, and `4842`
+  functions; neither established RDFF-tag function contains any of the four
+  requested direct displacements. This supplies no direct native access to the
+  measured label location or a 33-byte RDFF payload stride.
+- **Interpretation:** this excludes only a direct decoded `[register +
+  constant]` form at those four offsets in the known RDFF functions. It cannot
+  exclude calculated, indirect, relocated, or otherwise unrecognized payload
+  access, and it does not establish an RDFF field or format from its absence.
+- **Confidence:** high for the capped decoded-instruction query and the two
+  named RDFF paths; unknown for every RDFF payload field, record boundary,
+  resource association, and player-visible behavior.
+- **Implementation consequence:** retain `RDFF` as DSOP. Do not add a parser
+  or use offset 43/33-byte arithmetic for hostile name, level, action,
+  interaction, or combat behavior.
+
 ### EXE-GOG-OJFF-001 - OJFF has two bounded native lookup paths
 
 - **Question:** Does an explicit native `OJFF` tag path connect the bounded

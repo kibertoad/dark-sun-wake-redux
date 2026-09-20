@@ -297,11 +297,16 @@ rejecting unsupported semantics:
 - `DATA-GOG-RDFF-001` finds the `Draxan` pattern in 23 distinct `RDFF`
   resources (and an aggregate resource), all at relative offset 43. The
   bounded `OJFF` #9258 overlap check finds none of its four observed raw
-  words in that label-bearing subset. Together with the direct lookup callers,
-  which pass local, argument, register, or resident-state values rather than a
-  recovered fixed resource number, this rejects a direct field-to-label mapping
-  for the first hostile Look panel. It does not identify an alternative source
-  or permit dynamic interaction text to be rendered.
+  words in that label-bearing subset. `DATA-GOG-RDFF-002` further shows that
+  1,216 `RDFF` resources are 68 bytes while the remaining 427 share a
+  `43 + 33*n` size residue; the 23 label-bearing resources are only a
+  high-length subset of that residue. `EXE-GOG-RDFF-002` finds no direct
+  displacement 43 or 76 in either known RDFF-tag path. Together with the
+  direct lookup callers, which pass local, argument, register, or
+  resident-state values rather than a recovered fixed resource number, this
+  rejects a direct field-to-label mapping for the first hostile Look panel. It
+  does not identify an alternative source or permit dynamic interaction text
+  to be rendered.
 - `EXE-GOG-UI-007` establishes a generic resource-derived UI input boundary:
   current pointer state is resolved against `APFM`, `BUTN`, or `EBOX` children,
   then event-bit guards select indirect handlers. It identifies neither a

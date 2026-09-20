@@ -368,6 +368,32 @@
   A non-neutral target-specific data relationship or a bounded native call path
   is required before rendering the dynamic interaction fields.
 
+### DATA-GOG-RDFF-002 - RDFF lengths do not establish a common record layout
+
+- **Question:** Do the matching label offset and the observed `RDFF` resource
+  lengths establish a bounded payload header or repeated-record format that can
+  project hostile interaction properties?
+- **Method:** Run the compiled read-only `gff` inspector over the fingerprinted
+  `OBJEX.GFF` and aggregate only `RDFF` directory sizes. Re-run the bounded
+  `resource-pattern` query for the already observed `Draxan` label and report
+  only the matching resource-count/size groups. Neither command retains or
+  reports payload bytes, fields, or resource identities.
+- **Finding:** all 1,643 `RDFF` resources divide into 1,216 resources of
+  exactly 68 bytes and 427 resources whose size is `43 + 33*n`. Within the
+  latter group, 74 sizes range from 43 through 274 and 353 are at least 145
+  bytes (therefore also `145 + 33*n`); the latter is a high-length subset of
+  the same 33-byte residue, not an independent record family. The 23
+  label-bearing records are all in that high-length subset: six are 277 bytes,
+  six are 310 bytes, and eleven are 343 bytes. Every one still begins the
+  matching label at relative offset 43. The arithmetic establishes neither a
+  header length, a 33-byte record boundary, a label field, nor a target mapping.
+- **Confidence:** high for the complete directory count and reported size
+  groups in GOG-1432903719; unknown for all payload structure, aggregation,
+  field, and gameplay meanings.
+- **Implementation consequence:** keep `RDFF` as lossless DSOP. Do not turn a
+  common size residue, the high-length subset, or the repeated label offset
+  into a parser, a hostile-data schema, or a combat/interaction rule.
+
 ### DATA-GOG-MONR-001 - MONR is not yet a monster or combat record format
 
 - **Question:** Does the sole `MONR` resource in the owned `RESOURCE.GFF`
