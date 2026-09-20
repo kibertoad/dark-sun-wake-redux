@@ -1725,7 +1725,8 @@
   combat-feedback facts can be observed without assigning unknown character
   tail fields, item rules, spell rules, combat turns, or resource selection?
 - **Method:** The owner confirmed the semantic labels for local-only DOSBox
-  Ctrl+F5 captures `dsun_011.png` and `dsun_013.png` through `dsun_024.png`.
+  Ctrl+F5 captures `dsun_010.png`, `dsun_011.png`, and `dsun_013.png` through
+  `dsun_024.png`.
   Their local file timestamps run from 2026-09-20 22:01:20 through 22:04:53.
   Inspect the 320x200 captures in place; do not copy, rename, or commit them.
   Correlate only the owner-confirmed member names and visibly labelled ability
@@ -1744,19 +1745,23 @@
   visible six-score tuple, so the captures do not select one exact resource for
   each of those names. The confirmed order coincides with the consecutive
   #40-#43 source block, but coincidence and names alone do not prove that
-  complete resource selection. The owner identifies `dsun_011` as
-  combat damage being inflicted; it visibly shows a red `11` feedback glyph
-  over the actor cluster. It does not establish attacker, target, damage rule,
-  action, turn, timing, hit resolution, or exit behavior.
+  complete resource selection. The owner identifies `dsun_010` as an enemy
+  moving frame: the opposing actor moves while the combat UI remains largely
+  stable, and the right-side statistics panel changes as that actor spends
+  movement points. `dsun_011` is confirmed as combat damage being inflicted
+  and visibly shows a red `11` feedback glyph over the actor cluster. These
+  captures do not establish movement-point scale, initial amount, cost,
+  distance, path, collision, speed, attacker, target, damage rule, action,
+  turn, timing, hit resolution, or exit behavior.
 - **Confidence:** high for the owner-confirmed screenshot labels, member order,
-  shell reuse, AR'ANDA #40/THY'ROKH #42 discrimination, and visible damage
-  glyph; unknown for the two duplicate-name resource selections, party source/origin,
-  dynamic field meanings, spell selection, inventory semantics, and all combat
-  rules.
+  shell reuse, AR'ANDA #40/THY'ROKH #42 discrimination, visible enemy motion,
+  movement-point-display change, and visible damage glyph; unknown for the two
+  duplicate-name resource selections, party source/origin, dynamic field
+  meanings, spell selection, inventory semantics, and all combat rules.
 - **Implementation consequence:** retain `ShippedPartyUnresolved` and inert
   destination interiors. Do not create a four-resource default-party table,
-  item model, spell model, damage pipeline, combat state machine, or timing
-  policy from these still-bounded visual facts.
+  item model, spell model, movement-point cost model, damage pipeline, combat
+  state machine, or timing policy from these still-bounded visual facts.
 
 ### RULE-START-FLOW-001 - Start and party-creation routing
 
