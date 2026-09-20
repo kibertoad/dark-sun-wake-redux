@@ -675,6 +675,41 @@ proof by itself. Never redirect broad output into the repository.
   CPU-speed-independent runtime clock until a movement/media consumer path and
   controlled cadence observation establish a native contract.
 
+### EXE-GOG-TIMING-003 - VGA-status busy wait gates a generic copy path
+
+- **Question:** Does direct polling of the VGA input-status port establish a
+  native presentation-synchronization or gameplay-timing rule?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** `ReportScalarConstants` searched decoded instruction operands
+  for `0x3da`, then `ReportInstructionContext` inspected both candidates.
+  `ReportReferences` and short caller contexts bounded the direct callers of
+  the one port-I/O helper. No runtime observation or decompilation was used.
+- **Bounded finding:** one scalar occurrence at `1000:0f01` loads `DX=03dah`.
+  When two segment values differ, `1000:0ecc` disables interrupts, repeatedly
+  reads `IN AL,DX`, rotates the low status bit into carry, waits for one carry
+  state and then its opposite, moves one word, reenables interrupts, and loops.
+  The other scalar occurrence, `2707:03d5`, is an indexed far-jump-table
+  displacement rather than a port load. The busy-loop helper has exactly two
+  direct callers: `1000:0fb5`, after a separate local preparation and before
+  calls to the shared BIOS-video wrapper, and `1000:265c`, which chooses it or
+  a separate copy helper according to a resident word.
+- **Interpretation:** the supported binary contains a CPU-busy display-status
+  transition poll surrounding a generic word-copy path. It is evidence of a
+  presentation synchronization technique, not of a duration, frame rate,
+  animation cadence, actor update, input cadence, or resource-specific draw
+  order. The service path cannot identify which player-visible screen, if any,
+  reaches either caller.
+- **Confidence:** high for the two scalar contexts, the port-I/O loop, and its
+  two direct callers; unknown for status-bit meaning, display ownership, call
+  frequency, visual effect, and every gameplay timing policy.
+- **Implementation consequence:** do not reproduce the interrupt-disabled
+  busy wait or couple Core advancement to display status. Presentation may use
+  a modern non-blocking renderer; Core remains monotonic and
+  CPU-speed-independent until a measured native behavior establishes a
+  semantic cadence.
+
 ### EXE-GOG-VIDEO-001 - Shared BIOS-video wrapper is not a screen contract
 
 - **Question:** Do literal BIOS video calls establish a screen-specific native
