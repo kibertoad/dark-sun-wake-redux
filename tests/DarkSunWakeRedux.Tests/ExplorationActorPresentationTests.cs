@@ -100,4 +100,14 @@ public sealed class ExplorationActorPresentationTests
         Assert.Throws<ArgumentOutOfRangeException>(() =>
             actor.AtMovement(movement, 0, 0, 16));
     }
+
+    [Fact]
+    public void RejectsInterpolationArithmeticThatCannotFitThePresentationBounds()
+    {
+        var actor = new ExplorationActorPresentation(17, 35, 0, 0);
+        var movement = new ExplorationActorVisualSnapshot(
+            new(0, 0), new(int.MaxValue, 0), 1, 1);
+
+        Assert.Throws<OverflowException>(() => actor.AtMovement(movement, 0, 0, int.MaxValue));
+    }
 }

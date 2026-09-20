@@ -178,7 +178,8 @@ the start flow and current exploration state reproducible.
   bounded fixed-step accumulator and fixed-point visual interpolation. Positive
   host elapsed time accumulates saturating ticks, while camera clamping widens
   delta arithmetic and the modern drag adapter widens then saturates pointer
-  deltas. Sprite-visibility rectangle edges also widen before clipping, so
+  deltas. Actor interpolation uses checked widened arithmetic, and
+  sprite-visibility rectangle edges also widen before clipping, so
   clock discontinuities or extreme input/coordinates cannot overflow into
   gameplay or presentation state.
 - The opening actor's current single-cell footprint and 125 ms semantic step

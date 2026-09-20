@@ -47,8 +47,8 @@ public sealed record ExplorationActorPresentation(
             cellPixelSize * movement.ProgressTicks / movement.StepTicks);
         return anchorBounds with
         {
-            X = checked(anchorBounds.X + (int)deltaX),
-            Y = checked(anchorBounds.Y + (int)deltaY)
+            X = checked(anchorBounds.X + checked((int)deltaX)),
+            Y = checked(anchorBounds.Y + checked((int)deltaY))
         };
     }
 
