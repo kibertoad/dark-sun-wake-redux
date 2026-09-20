@@ -82,8 +82,9 @@ are:
   complete VOC header signature, so it establishes no decoder, codec, or timing
   contract.
 - `SOUND.CFG` has a bounded 59-byte envelope, but neither the main executable
-  nor the separately shipped sound helper contains its literal pathname. This
-  is not evidence of configuration ownership or Preferences behavior.
+  nor the separately shipped sound helper contains its literal pathname; the
+  main executable also has no literal `SOUND.INI` pathname. This is not
+  evidence of configuration ownership or Preferences behavior.
 
 ## Current runtime boundary
 
@@ -160,8 +161,9 @@ it does not prove that native callbacks or settings behavior are absent.
 field layout or connection to the in-game screen. The sole raw `PREF` tag also
 has no direct executable reference, so neither source establishes settings
 behavior.
-`SOUND.CFG` and `SOUND.INI` are also absent as literal names in the separately
-shipped sound helper, so neither is mapped to Preferences. See
+`SOUND.CFG` and `SOUND.INI` are absent as literal names in the separately
+shipped sound helper, and `SOUND.INI` is also absent from the main executable,
+so neither is mapped to Preferences. See
 `DATA-GOG-UI-011`, `DATA-GOG-PREF-001`, `EXE-GOG-UI-004`,
 `EXE-GOG-PREF-001`, and `DATA-GOG-SOUND-002` in the detailed evidence records
 before changing this boundary.
