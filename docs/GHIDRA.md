@@ -1464,7 +1464,12 @@ proof by itself. Never redirect broad output into the repository.
   HALF-GIANT, CHAOTIC NEUTRAL, and LAWFUL GOOD encodings. Bounded data windows
   of 80 bytes at `5000:9040` and 128 bytes at `5000:90e0` established the
   adjacent printable-table boundaries. `ReportReferences` queried the two
-  long-origin and two alignment addresses.
+  long-origin and two alignment addresses. A follow-up
+  `ReportInstructionText` scan searched every decoded instruction rendering
+  for the four explicit table-base operands `0x9040`, `0x908c`, `0x90e0`, and
+  `0xab20`; the first three are the bounded gender/origin/class/stat/alignment
+  vocabulary area, and the last is the separately bounded destination-label
+  pointer table.
 - **Bounded finding:** a local text family holds:
 
   - gender labels Male and Female;
@@ -1479,12 +1484,15 @@ proof by itself. Never redirect broad output into the repository.
   The bounded origin and alignment spans meet the adjacent class/stat spans;
   their queried raw addresses are `5000:9069`, `5000:9081`, `5000:90eb`,
   and `5000:9146`. Ghidra reports no inbound direct reference to any of
-  those four addresses.
+  those four addresses. The complete decoded-instruction scan also has no
+  rendered operand naming any of the four supplied table bases.
 - **Interpretation:** this is a finite native vocabulary and local table
   ordering, not a serialized `CHAR` schema. It does not establish gender,
   origin, alignment, or class ordinal field offsets; which screen consumes
-  these labels; or any creation, eligibility, combat, or spell behavior.
-  Resource-derived and indirect paths remain possible.
+  these labels; or any creation, eligibility, combat, or spell behavior. The
+  base-operand absence excludes only simple decoded absolute addressing;
+  relocated, register-constructed, resource-derived, and indirect paths
+  remain possible.
 - **Confidence:** high for the exact bounded label families, ordering, and
   four absent direct-reference results; unknown for every field and runtime
   consumer.
@@ -1537,19 +1545,23 @@ proof by itself. Never redirect broad output into the repository.
   NUL-terminated ASCII pattern for `VIEW CHARACTER`, finding one raw match.
   `ReportDataBytes` then inspected the bounded 256-byte neighborhood at
   `5000:ab20`; `ReportReferences` queried both that apparent table base and
-  the found text address.
+  the found text address. `ReportInstructionText` later included `0xab20` in
+  its complete decoded-instruction operand scan alongside the adjacent
+  character-vocabulary table bases.
 - **Bounded finding:** `VIEW CHARACTER` occurs once at `5000:ab59`. Eight
   adjacent far pointers at `5000:ab20` target, in order, `VIEW CHARACTER`,
   `VIEW INVENTORY`, `CAST SPELL/USE PSIONIC`, `CURRENT SPELL EFFECTS`,
   `MEMORIZE SPELLS`, `HIT POINTS: CURRENT/MAX`, `PSIONIC POINTS:
   CURRENT/MAX`, and `CURRENT STATUS`. The two preceding standalone strings
   are `GAME MENU` and `RETURN TO GAME`. Ghidra reports no inbound direct
-  reference to either `5000:ab20` or `5000:ab59`.
+  reference to either `5000:ab20` or `5000:ab59`, and no decoded instruction
+  rendering contains the explicit `0xab20` operand.
 - **Interpretation:** the bounded data establishes a finite native UI
   vocabulary and local pointer order. It does not show which window consumes
   it, whether these labels ever render as text rather than resource artwork,
   a field layout, a value source, a button route, or an activation path.
-  Indirect tables, relocated pointers, another module, and runtime state
+  The operand absence excludes only a simple decoded absolute base reference;
+  indirect tables, relocated pointers, another module, and runtime state
   remain possible.
 - **Confidence:** high for the one raw match, the eight pointers and their
   printable targets, the adjacent standalone labels, and the two absent

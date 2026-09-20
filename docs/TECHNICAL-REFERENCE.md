@@ -121,9 +121,11 @@ buttons with nonzero masks.
 
 The executable has an adjacent eight-entry UI text vocabulary beginning with
 View Character, View Inventory, Cast Spells/Use Psionic, and Current Spell
-Effects. The table base and first text entry have no direct references, so
-the vocabulary and ordering do not establish a screen, field projection, text
-renderer, or activation path. Owner-confirmed captures establish visible
+Effects. The table base and first text entry have no direct references, and no
+decoded instruction directly names the table's `0xab20` base or the adjoining
+character-vocabulary table bases. That excludes only simple absolute access;
+the vocabulary and ordering still do not establish a screen, field projection,
+text renderer, or activation path. Owner-confirmed captures establish visible
 party/destination-shell composition and captions, not character-record field
 semantics or item/spell behavior. See DATA-GOG-UI-010,
 OBS-GOG-PARTY-001, EXE-GOG-UI-009, and EXE-GOG-UI-010 before extending these
