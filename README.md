@@ -43,8 +43,9 @@ opens the authentic Game Menu, moves the exact opening leader through a modern
 deterministic route, and renders character, inventory, Cast/Use, Current Effects,
 and Preferences shells with shared navigation. The original Walk/Attack/Look
 cursor family now renders with reachable/eligible target feedback. Dynamic destination content,
-the opening interaction and conversation, and the rest of the campaign remain
-unfinished. The first hostile Look panel and first conversation layouts are now
+native in-world integration of the bounded opening-conversation preview, and
+the rest of the campaign remain unfinished. The first hostile Look panel and
+first conversation layouts are now
 resource-mapped, and Core models their interaction action boundary, but they are
 not rendered yet; status claims below and in the parity matrix intentionally keep
 those boundaries explicit.
