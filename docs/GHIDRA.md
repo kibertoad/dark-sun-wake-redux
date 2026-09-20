@@ -1525,6 +1525,35 @@ proof by itself. Never redirect broad output into the repository.
   local pack but keep title presentation sequencing unimplemented. A runtime
   route requires a bounded consumer path plus a controlled native observation.
 
+### EXE-GOG-FONT-002 - No co-located direct interface-font loader literal
+
+- **Question:** Does the supported executable contain a recovered function
+  that directly co-locates the independently bounded interface `FONT` #100
+  resource identity with the two correctly ordered little-endian words of its
+  `FONT` source tag?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** after the normal analyzer pass, the repository-owned
+  `ReportFunctionScalarIntersection` script scanned every recovered function's
+  scalar operands for decimal `100` (the bounded owned interface font),
+  `0x4f46` (`FO`), and `0x544e` (`NT`). It reports only a function containing
+  every requested scalar.
+- **Bounded finding:** no recovered function contains all three requested
+  scalars. The query supplies no direct interface-font request, font loader,
+  glyph loop, text placement, palette selection, or screen-rendering boundary.
+- **Interpretation:** this rules out only that co-located literal
+  representation in the analyzed executable. A font can still be selected
+  indirectly, constructed, transferred through resident state, or handled by
+  another module. The result neither proves the font is unused nor assigns its
+  line spacing, alignment, clipping, or any text resource to a screen.
+- **Confidence:** high for the exact bounded no-co-location result; unknown
+  for font selection, glyph rendering, spacing, palette, and layout behavior.
+- **Implementation consequence:** retain the bounded DSFT extraction and
+  encoding-neutral composition helpers, but do not promote their spacing or
+  layout to native presentation parity without an independent consumer path and
+  controlled observation.
+
 For each useful finding, add a concise entry here or in the relevant
 `docs/RULES-AND-EVIDENCE.md` / `docs/ORIGINAL-FORMATS.md` section with:
 
