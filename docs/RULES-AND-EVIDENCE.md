@@ -1643,6 +1643,33 @@
   `ShippedPartyUnresolved`. Do not bind a party member, add a `PLYL` reader, or
   label it a party list from this negative probe.
 
+### DATA-GOG-SMALLTAG-002 - GREQ and CACT have no direct installed-character-number windows
+
+- **Question:** Do the other short character-archive families directly encode
+  an installed `CHAR` resource number as an unaligned little-endian 16-bit
+  window, yielding a bounded lead for character ownership or supplied-party
+  selection?
+- **Method:** The metadata-only `resource-word-overlap` inspector obtains the
+  19 `CHAR` resource numbers in fingerprinted `CHARSAVE.GFF`, then tests every
+  two-byte little-endian window of each `GREQ` #1-#10 and `CACT` #29-#39
+  payload in that same archive. It returns only source length, candidate-window
+  count, target-set count, and matching offsets; it retains no source bytes or
+  decoded values.
+- **Finding:** Each of the ten nine-byte `GREQ` resources has eight candidate
+  windows, for 80 total; each of the eleven two-byte `CACT` resources has one,
+  for 11 total. None of the 91 windows matches an installed `CHAR` resource
+  number.
+- **Interpretation:** this rejects only direct unaligned little-endian 16-bit
+  installed-character identities in those two bounded families. It does not
+  establish a field layout, consumer, owner, party role, or any alternate
+  encoding, byte order, indirection, transformation, or selection path.
+- **Confidence:** high for the bounded 91-window/19-target negative result in
+  GOG-1432903719; unknown for every `GREQ`/`CACT` field and all character or
+  START GAME behavior.
+- **Implementation consequence:** retain both families as DSOP. Do not add a
+  reader, associate them with a character, or use them to select a party member
+  from this negative probe.
+
 ### DATA-GOG-CHAR-006 - Disc and installed character sets
 
 - **Question:** Which character resources are immutable disc data, which were

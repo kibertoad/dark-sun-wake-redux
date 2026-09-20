@@ -264,6 +264,7 @@ rejecting unsupported semantics:
   `CACT`, `PLYL`, or `CSEQ`. `DATA-GOG-SMALLTAG-001` bounds their owned
   inventories and short envelopes; `DATA-GOG-PLYL-002` additionally rejects a
   direct installed-`CHAR` resource number in every unaligned 16-bit `PLYL`
+  window, while `DATA-GOG-SMALLTAG-002` rejects it in every `GREQ` and `CACT`
   window. None of these results assigns the opaque families a runtime role or
   identifies the supplied party.
 - `EXE-GOG-PREF-001` finds one raw `PREF` tag literal but no direct reference;
