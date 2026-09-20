@@ -105,6 +105,38 @@ The precise screen layers, logical geometry, image mapping, and observation
 confidence are maintained in [UI-ATLAS.md](UI-ATLAS.md). The plan and current
 slice acceptance criteria are in [IMPLEMENTATION-PLAN.md](IMPLEMENTATION-PLAN.md).
 
+## Destination-screen and combat evidence boundary
+
+The Character, Inventory, Cast/Use, and Effects destinations share the
+resource-backed character-screen family. WIND #11500 has 86 ordered children:
+64 APFM, one EBOX, and 21 BUTN records. Five independently evidenced
+navigation controls route today; all interior controls stay inert. The graph
+preserves distinct event-mask classes and exact geometry, but those values do
+not name a field, widget appearance, focus state, or action. In particular,
+the character-view #11308 button reuses the Preferences Game Menu icon but has
+no established route. No immediate native handler operand was found for that
+button, Return #10308, or #11318/#11319/#11320, the only character-view
+buttons with nonzero masks.
+
+The executable has an adjacent eight-entry UI text vocabulary beginning with
+View Character, View Inventory, Cast Spells/Use Psionic, and Current Spell
+Effects. The table base and first text entry have no direct references, so
+the vocabulary and ordering do not establish a screen, field projection, text
+renderer, or activation path. Owner-confirmed captures establish visible
+party/destination-shell composition and captions, not character-record field
+semantics or item/spell behavior. See DATA-GOG-UI-010,
+OBS-GOG-PARTY-001, EXE-GOG-UI-009, and EXE-GOG-UI-010 before extending these
+screens.
+
+Combat remains evidence acquisition only. Owner-confirmed dsun_010 shows an
+enemy move with a changing right-side movement display; dsun_011 shows a red
+11 feedback glyph whose visible glyph-area pure-red components occupy
+(151,95) through (178,113) on the 320x200 canvas. These facts establish
+neither movement cost, action ordering, attacker/target identity, damage
+resolution, turn progression, timing, nor exit. No combat session, encounter,
+or rules pipeline is implemented until the controlled C0-C6 observation gate
+and a traceable data or executable path establish them.
+
 ## Object and static-scene route
 
 The following is the current bounded path from original static region data to
