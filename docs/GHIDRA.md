@@ -713,6 +713,47 @@ proof by itself. Never redirect broad output into the repository.
   this generic wrapper; a screen-specific consumer path plus controlled visual
   observation is required.
 
+### EXE-GOG-MOUSE-001 - Native mouse wrappers do not establish UI semantics
+
+- **Question:** Do literal mouse-service calls establish a native coordinate
+  transform, hit-testing policy, or screen-specific control contract?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** `ReportBytePattern` searched all loaded blocks for the exact
+  `INT 33h` encoding (`cd 33`). Bounded instruction contexts inspected the
+  nine decoded sites in the recovered mouse-wrapper area at `45b9`; two raw
+  references to its returned-coordinate wrapper were followed with
+  `ReportReferences` and their short caller contexts were inspected. Direct
+  references to the two range-setting wrappers were also queried.
+- **Bounded finding:** the decoded wrappers select service values `00h`,
+  `03h`, `05h`, `06h`, `07h`, `08h`, `04h`, `09h`, and `0ch`; their arguments
+  and returned registers are passed through caller-owned storage. The
+  returned-coordinate wrapper at `45b9:0034` has exactly two direct callers:
+  `28c9:23a0` and `39d1:068d`. The first rejects a returned coordinate pair
+  when either value is zero, when the first is at least 318, or when the second
+  is at least 199, accepting only the interior pair ranges `1..317` and
+  `1..198`. The second computes two caller-local values, invokes the separate
+  position-setting wrapper, queries the coordinates, and copies them into
+  resident words. The `45b9:00bb` and `45b9:00d3` range-setting wrappers have
+  no Ghidra-recorded direct references. Other raw `cd 33` matches were not
+  treated as code without a containing decoded instruction.
+- **Interpretation:** the executable has a generic mouse-service boundary and
+  one bounded caller-specific interior guard. It does not establish which
+  coordinate represents an application X/Y axis, a global cursor range, a
+  resource-derived control rectangle, a click/drag gesture, button semantics,
+  pointer hotspot, or the owner of either caller. In particular, the guard is
+  not sufficient to replace the measured 320x200 layout or the existing
+  resource-derived hit contracts.
+- **Confidence:** high for the decoded service values, wrapper/caller counts,
+  and the two numerical guard bounds; unknown for mouse scaling, coordinate
+  ownership, screen routing, gesture semantics, and all general UI behavior.
+- **Implementation consequence:** retain logical-to-physical coordinate
+  transforms and semantic DSUI hit testing as explicit, independently tested
+  contracts. Do not emulate INT 33h calls, adopt an unproven interior margin,
+  or change click/drag behavior from this generic boundary; controlled input
+  traces and a screen-specific consumer path are required.
+
 ### EXE-GOG-ITEMS-001 - no literal ITEMS.BIN loader lead in DSUN.EXE
 
 - **Question:** Does the supported main executable identify `ITEMS.BIN` by its

@@ -263,6 +263,11 @@ rejecting unsupported semantics:
   wrapper accepts generic service/register values and does not connect any
   call to a resource, screen, palette, resolution, or layout. It is not a
   native rendering contract.
+- `EXE-GOG-MOUSE-001` finds generic mouse-service wrappers, two direct
+  coordinate-query callers, and one caller-specific interior guard accepting
+  only a `1..317`/`1..198` returned pair. It does not identify axes, a global
+  transform, control hit testing, gestures, or pointer behavior, so the
+  measured canvas and DSUI contracts remain authoritative.
 - `EXE-GOG-PORT-001` finds no literal `PORT` tag in the executable. It does
   not contradict the observed first-Tyr portrait, but supplies no general
   portrait loader, palette, drawing, dialogue, or timing rule.
