@@ -280,6 +280,10 @@ rejecting unsupported semantics:
   #100 with both literal tag words. Its two raw `FONT` data occurrences have
   no recorded direct references. These facts supply no font-selection, glyph,
   spacing, palette, or screen-layout rule.
+- `EXE-GOG-TEXT-001` finds two raw `TEXT` data occurrences, neither with a
+  recorded direct reference or containing instruction. This excludes only a
+  direct literal-tag loader lead; it neither assigns one of the 62 bounded text
+  resources to a screen nor establishes native typography or timing.
 - `EXE-GOG-IMAGE-002` establishes a bounded 300-entry native `BMP `/`CBMP`
   selector/cache, a shared 321-index wrapper used from eight recovered
   functions (including the OJFF route), and a separate generic window-image

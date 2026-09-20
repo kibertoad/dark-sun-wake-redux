@@ -1998,6 +1998,36 @@ proof by itself. Never redirect broad output into the repository.
   boundary; each needs a screen-specific consumer path and controlled
   observation.
 
+### EXE-GOG-TEXT-001 - No direct literal text-resource tag lead
+
+- **Question:** Does the supported executable expose a direct literal `TEXT`
+  resource-tag assignment or reference that can identify a native text loader,
+  font choice, or screen presentation path?
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
+  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
+- **Method:** `ReportBytePattern` searched every loaded program-memory block
+  for the explicit four-byte ASCII encoding `TEXT` (`54 45 58 54`). It found
+  two bounded matches, at `2000:7db5` and `2000:7e14`. `ReportReferences`
+  then queried each address independently, and `ReportInstructionContext`
+  checked whether either lies inside a decoded instruction.
+- **Bounded finding:** both matches are non-instruction data, and neither has a
+  Ghidra-recorded direct reference. No direct literal `TEXT` tag assignment,
+  resource request, loader, glyph loop, screen route, palette selection, or
+  timing boundary follows from these locations.
+- **Interpretation:** this excludes only the direct static literal-tag route in
+  the analyzed loaded image. The native program can still construct a tag,
+  reach a common resource path indirectly, pass an identity through resident
+  state, or use another module. It does not make the bounded 62-resource text
+  catalog unused and does not identify text layout or behavior.
+- **Confidence:** high for the exact two raw data matches and their no-reference/
+  non-instruction status; unknown for text loading, resource ownership, font,
+  screen routing, placement, palette, interpolation, and timing.
+- **Implementation consequence:** retain the bounded `TEXT` reader and
+  ID-preserving DSTX catalog. Do not map a text resource to a screen or claim
+  native typography/presentation without a separate consumer path and
+  controlled observation.
+
 ### EXE-GOG-PORT-001 - No literal portrait-image tag in the main executable
 
 - **Question:** Does the supported executable expose a direct literal resource

@@ -236,13 +236,16 @@ open.
 
 ## TEXT resources
 
-**Evidence:** `DATA-GOG-TEXT-001`.
+**Evidence:** `DATA-GOG-TEXT-001`, `EXE-GOG-TEXT-001`.
 
 All 62 `TEXT` records in `RESOURCE.GFF` satisfy a narrow printable-ASCII and
 CRLF line contract. They total 2,994 bytes and 316 lines; the maximum observed
 line is 18 bytes. The reader caps payloads at 1 MiB, lines at 65,536, and each
 line at 4,096 bytes. Empty lines are preserved. Resource-number semantics and
 relationships to UI controls remain unassigned until separately evidenced.
+`EXE-GOG-TEXT-001` finds only two unreferenced raw `TEXT` data matches in the
+main executable, not a native text loader, text layout, or screen-route
+contract.
 
 ## UI windows and buttons
 

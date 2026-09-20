@@ -435,8 +435,11 @@
 - **Finding:** All 62 resources (2,994 bytes total) are printable 7-bit ASCII,
   use CRLF-delimited lines, have a final CRLF, contain 316 lines, and have a
   maximum observed line length of 18 bytes. No NUL or extended bytes occur.
-- **Confidence:** verified for `TEXT` resources in GOG-1432903719; resource-ID
-  meanings, string interpolation, and screen routing remain open.
+- **Confidence:** verified for `TEXT` resources in GOG-1432903719.
+  `EXE-GOG-TEXT-001` identifies only two raw, unreferenced, non-instruction
+  `TEXT` byte matches in the main executable; it establishes no loader. Resource-ID
+  meanings, string interpolation, font choice, presentation, and screen routing
+  remain open.
 - **Implementation:** `DarkSunWakeRedux.Resources.GffTextResource`, deterministic
   ID-preserving DSTX v1 extraction, and the metadata-only `text-catalog` command.
 - **Tests:** synthetic multiline/empty-line parsing and invalid terminator,
