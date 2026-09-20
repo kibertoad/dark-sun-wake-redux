@@ -945,13 +945,22 @@ proof by itself. Never redirect broad output into the repository.
   one candidate. `ReportDecompileWindow` and `ReportInstructionContext`
   bounded its multiply, carry, state-write, mask, and return instructions.
   `ReportReferences` then enumerated direct callers of the generator and its
-  modulo wrapper.
+  modulo wrapper. `ReportInstructionText` separately scanned the complete
+  analyzed instruction listing for the two explicit state displacements
+  (`384a` and `384c`), retaining only data accesses rather than a matching
+  code-jump target.
 - **Bounded finding:** far helper `1000:0822` reads a 32-bit state, multiplies
   it by `0x015a4e35`, adds one with carry, and writes the low 32 bits back. It
   returns the new state's upper word masked to 15 bits, yielding `0..32767`.
   Its adjacent seed setter `1000:0811` clears the upper state word and stores
   its one 16-bit argument as the lower word; Ghidra finds no direct reference
-  to that setter. The separate far wrapper `2834:061c` returns zero without
+  to that setter. The complete instruction scan finds no other explicit data
+  access to either state displacement: the setter contains the low-word write
+  and high-word clear, and the generator contains both reads and both writes.
+  The only other `384a` text match is a `JMP` destination, not a state access.
+  This narrows direct static writers, but does not rule out indirect, computed,
+  or dynamically reached state access. The separate far wrapper `2834:061c`
+  returns zero without
   calling the generator when its divisor is zero; otherwise it consumes one
   generator result and applies remainder reduction by the supplied divisor.
   The generator's only three direct static callers are the modulo wrapper,
@@ -991,7 +1000,7 @@ proof by itself. Never redirect broad output into the repository.
   non-consumption, the inclusive-range and repeated-roll branch/formulae, the
   bounded modulo consumer shape, and the 16-bit seed-setter boundary; unknown
   for seed source, callers' semantic purposes, consumption order, table
-  ownership, and the full set of indirect callers.
+  ownership, indirect state access, and the full set of indirect callers.
 - **Implementation consequence:** `NativeRandom` preserves the bounded state
   transition, modulo, inclusive-range, and repeated-roll behavior with golden
   vectors. It is not wired to start flow, dialogue, combat, or other mechanics
