@@ -1262,6 +1262,34 @@ proof by itself. Never redirect broad output into the repository.
   controlled S0-S2 startup observation or an independently corroborated main
   executable state trace remains required.
 
+### EXE-GOG-CHAR-005 - CHARTRAN has no direct character resource-tag path
+
+- **Question:** Does the separately shipped character-transfer utility expose
+  a direct `CHAR` or `PSIN` resource-tag path that could constrain character
+  archive loading or the supplied START GAME party?
+- **Target:** GOG-1432903719 `CHARTRAN.EXE`, reverified at 24,761 bytes with
+  SHA-256 `e99572016901c67135b9d1b14b6db3936078749779b89e5c62f7044fe722cf1d`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. A full analyzer
+  pass completed before the focused queries.
+- **Method:** `ReportBytePattern` searched every loaded program-memory block
+  for the exact four-byte ASCII encodings `CHAR` and `PSIN`. For each raw match,
+  the bounded report enumerates direct inbound references.
+- **Bounded finding:** `CHAR` occurs once at `1000:58ad`, but Ghidra reports no
+  direct reference to that address. `PSIN` has no raw byte-pattern match in the
+  loaded utility image. The queries identify no tag assignment, resource
+  request, archive open, character-record lookup, or party-selection route.
+- **Interpretation:** this excludes only direct literal-tag representations in
+  this transfer utility. It does not prove that `CHARTRAN.EXE` cannot access
+  character data through constructed tags or indirect state, and it does not
+  establish any `DSUN.EXE` START GAME behavior.
+- **Confidence:** high for the one raw `CHAR` occurrence, its absent direct
+  reference, and the absent `PSIN` pattern; unknown for character-transfer
+  behavior, archive ownership, and supplied-party selection.
+- **Implementation consequence:** retain `ShippedPartyUnresolved`. Do not bind
+  any `CHAR` catalog record to START GAME from this utility; the controlled
+  S0-S2 startup observation or an independently corroborated main-executable
+  state trace remains required.
+
 ### EXE-GOG-GPLDATA-001 - literal GPL archive name has no direct reference
 
 - **Question:** Does the supported executable expose a direct static loader
