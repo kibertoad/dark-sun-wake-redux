@@ -1958,8 +1958,15 @@
   (243,8) through (284,31) in each capture. This establishes the static panel
   artwork, placement, and a dynamic overlay region only; it identifies no
   panel text source, value meaning, movement rule, or update timing. The
-  observed Thy'rokh frame establishes only that this labelled combat turn
-  state is visible; the owner reports no visible turn-transition treatment.
+  dynamic panel text differs between the owner-confirmed enemy-striking and
+  player-turn frames: `dsun_011` visibly draws `Draxan` and `Moves 20`, while
+  `dsun_012` draws `Thy'rokh`, `90/85`, and `Moves 15`. Together with the
+  owner's statement that the stable panel represents the currently active
+  character, this establishes active-combatant-dependent presentation only;
+  none of the strings is assigned a field, actor-record, movement, health, or
+  turn-order meaning. The observed Thy'rokh frame establishes only that this
+  labelled combat turn state is visible; the owner reports no visible
+  turn-transition treatment.
   This does not establish how turns start, advance, or cycle.
   These captures do not establish movement-point scale, initial amount, cost,
   distance, path, collision, speed, attacker, target, damage rule, action,

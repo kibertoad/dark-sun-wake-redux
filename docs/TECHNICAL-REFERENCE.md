@@ -142,9 +142,12 @@ turn transition. The owner reports no visible turn-transition treatment and
 that a direct enemy click causes the active character to approach and strike,
 without a separate target-switching or confirmation presentation. The static
 panel is the 98x32 BMP #19003 at (215,4), with a
-dynamically overlaid region bounded to (243,8) through (284,31). dsun_011
-shows a red 11 feedback glyph whose visible glyph-area pure-red components
-occupy (151,95) through (178,113) on the 320x200 canvas. The required-revision-34 pack preserves the static artwork as
+dynamically overlaid region bounded to (243,8) through (284,31). Its visible
+dynamic text changes from `Draxan`/`Moves 20` in the enemy-striking frame to
+`Thy'rokh`/`90/85`/`Moves 15` in the player-turn frame, supporting only the
+owner-confirmed active-combatant presentation. dsun_011 shows a red 11
+feedback glyph whose visible glyph-area pure-red components occupy (151,95)
+through (178,113) on the 320x200 canvas. The required-revision-34 pack preserves the static artwork as
 `images/combat/status-panel.dsix` with source provenance and the interface palette,
 but no Game code consumes it. These facts establish
 neither movement cost, action ordering, attacker/target identity, panel-value
