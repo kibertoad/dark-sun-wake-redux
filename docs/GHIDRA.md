@@ -661,7 +661,12 @@ proof by itself. Never redirect broad output into the repository.
   that many bytes, and reads the remainder into the allocation. Its observed
   seek calls use zero or resident offsets; no call supplies DSUN's MZ end
   (357,744), FBOV marker, declared payload size, segment-table offset, or a
-  recovered descriptor value.
+  recovered descriptor value. The reader has one direct caller, which forwards
+  two caller-supplied words with a resident file handle. That wrapper has one
+  internal caller and one external caller; the latter derives each forwarded
+  word from a byte in a loaded structure rather than supplying an executable
+  literal. No layer in this recovered direct chain binds the reader to a GFF
+  signature, FBOV, MONR, another resource tag, or combat identity.
 - **Interpretation:** this is a real generic signature/length file-reader
   path, but it does not identify an FBOV loader or map any overlay bytes to a
   runtime address. The file handle, two header values, derived offsets, and
