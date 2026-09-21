@@ -1594,19 +1594,23 @@ proof by itself. Never redirect broad output into the repository.
   `EXE-GOG-OVERLAY-004`. `ReportReferences` queried the entry point
   `76da:007d`; `ReportDecompileWindow` then examined its complete 135-line
   recovered function, bounded to the six-value selector range established by
-  `EXE-GOG-COMBAT-008`.
+  `EXE-GOG-COMBAT-008`. `ReportFunctionScalarIntersection` also searched all
+  decoded functions for the dispatcher segment `0x76da` and offset `0x7d`.
 - **Bounded finding:** no recovered direct reference targets `76da:007d`. Its
   decoded `param_1 == 2` branch accepts selector values `0x7fa` through
   `0x7ff`; selector `0x7fc` performs the panel-adjacent calls and then invokes
   `74bb:0498`. The remaining selector cases contain distinct calls or opaque
   instructions, but no static caller supplies a selector value or a screen,
-  actor, encounter, command, or action identity.
+  actor, encounter, command, or action identity. No decoded function contains
+  both segment and offset as immediate operands, excluding the simplest
+  statically constructed far-pointer registration form.
 - **Interpretation:** the function is an indirect dispatch boundary. Adjacent
   selector cases are not established combat commands, transitions, or rules,
   and the panel case has no recovered application owner.
 - **Confidence:** high for the direct-reference result, bounded selector range,
-  and panel-case call sequence; unknown for the indirect caller, selector
-  meanings, screen ownership, and all combat behavior.
+  panel-case call sequence, and absent immediate far-pointer pair; unknown for
+  the indirect caller, selector meanings, screen ownership, and all combat
+  behavior.
 - **Implementation consequence:** do not model the selector range as combat
   state or command IDs. Continue to require an independently traceable indirect
   caller or controlled observation before deriving any combat behavior.
