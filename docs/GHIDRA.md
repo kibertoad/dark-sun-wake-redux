@@ -1679,6 +1679,37 @@ proof by itself. Never redirect broad output into the repository.
   modes, turn states, panel phases, or transitions. Keep both panel routes and
   all state semantics evidence-only pending an owner or rule-level path.
 
+### EXE-GOG-COMBAT-013 - Coordinate consumer reaches an unmapped far thunk
+
+- **Question:** Does the opaque helper that receives the bounded mouse
+  coordinate pair in the recovered input loop identify the owner-confirmed
+  enemy-click action or any combat rule consumer?
+- **Target/method:** Reuse the local-only mapped image from
+  `EXE-GOG-OVERLAY-004`. A bounded decompilation of the function containing
+  the coordinate guard established that one opaque resident-value branch
+  forwards the two local coordinate words and literal `1` through
+  `thunk_FUN_8d83_0053`. `ReportReferences` then enumerated references to the
+  thunk entry, and a bounded decompilation inspected its only non-thunk
+  recovered relation.
+- **Bounded finding:** Ghidra records two unconditional jumps to the thunk
+  entry: the expected jump at `57a6:0070`, and one at `8d83:004f` inside
+  recovered function `8539:0017`. The thunk transfers to `8000:d883`, outside
+  the mapped executable image. Decompiling `8539:0017` reports overlapping
+  instructions, bad control-flow data, unresolved constructors, and accesses
+  to uninitialized memory; its 5,646-line output is not coherent enough to
+  support behavior inference.
+- **Interpretation:** this establishes only that the bounded coordinate branch
+  enters a far-thunk boundary. It does not identify the destination, assign
+  meaning to the resident value or literal argument, or connect the branch to
+  target selection, approach movement, striking, damage, turns, or combat.
+- **Confidence:** high for the two recorded jump references, transfer target,
+  and decompiler diagnostics; unknown for all destination and gameplay
+  semantics.
+- **Implementation consequence:** do not model the helper as an attack,
+  movement, or confirmation handler. A mapped implementation body or an
+  independent measured action trace is still required before deriving a combat
+  action path.
+
 ### EXE-GOG-MONR-001 - MONR has no raw executable tag literal
 
 - **Question:** Does the sole `MONR` resource in `RESOURCE.GFF` identify an
