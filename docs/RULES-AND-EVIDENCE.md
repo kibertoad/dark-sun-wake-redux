@@ -408,7 +408,8 @@
   columns vary: each contains five through nine distinct byte values and six
   through ten zeros. The profile therefore establishes neither a header nor a
   repeated-record boundary. `EXE-GOG-MONR-001` separately finds no raw ASCII
-  `MONR` tag in the fingerprinted executable.
+  `MONR` tag in the fingerprinted loaded executable; its mapped overlay view's
+  two raw matches are unreferenced non-instruction bytes and add no loader lead.
 - **Confidence:** high for the GFF identity, byte length, candidate arithmetic,
   aggregate profile, and bounded absent-literal query; unknown for every byte,
   record boundary, name, loader, and relation to monsters, encounters, or

@@ -1520,15 +1520,20 @@ proof by itself. Never redirect broad output into the repository.
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportBytePattern` searched every loaded memory block for the
   explicit ASCII encoding `4d 4f 4e 52`, capped by the reusable script's
-  100-match limit.
-- **Bounded finding:** no raw byte-pattern match exists in the loaded program.
+  100-match limit. The local-only mapped image from `EXE-GOG-OVERLAY-004`
+  received the same byte-pattern query; `ReportReferences` and bounded
+  instruction-context queries then classified every mapped match.
+- **Bounded finding:** no raw byte-pattern match exists in the original loaded
+  program. The mapped image has two raw matches at `9000:8130` and `9000:8159`,
+  both with no reference and no containing decoded instruction.
 - **Interpretation:** this rules out only an embedded literal-tag representation.
   It does not establish that the resource is unused, nor does it identify a
   loader, field layout, record boundary, monster mapping, encounter, or combat
   behavior. `DATA-GOG-MONR-001` independently rejects its arithmetic 81-byte
-  candidate stride as a format claim.
-- **Confidence:** high for the absent raw-literal query; unknown for the
-  resource's loading and semantics.
+  candidate stride as a format claim. The two mapped raw bytes add no loader
+  or code-consumer lead.
+- **Confidence:** high for the original absence and mapped raw-match/reference/
+  instruction classifications; unknown for the resource's loading and semantics.
 - **Implementation consequence:** no `MONR` parser, extractor contract, or
   combat behavior is introduced from this query.
 
