@@ -1396,9 +1396,9 @@ proof by itself. Never redirect broad output into the repository.
 
 ### EXE-GOG-COMBAT-003 - Combat action labels do not identify command handling
 
-- **Question:** Do the executable's literal `COMBAT` or `GUARD` text occurrences
-  identify a code reference that can be used as a focused lead for combat input
-  or action resolution?
+- **Question:** Do the executable's literal `COMBAT`, `GUARD`, or `ATTACK`
+  text occurrences identify a code reference that can be used as a focused
+  lead for combat input or action resolution?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
   SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
@@ -1406,7 +1406,9 @@ proof by itself. Never redirect broad output into the repository.
   ASCII byte encodings of `COMBAT` and `GUARD`, reporting no more than 100
   matches and 20 inbound references per match. The single inbound `GUARD`
   reference was then bounded with `ReportInstructionContext` to eight
-  instructions on each side.
+  instructions on each side. A follow-up raw-byte query searched every loaded
+  block for the exact null-terminated `ATTACK` encoding (`41 54 54 41 43 4b
+  00`).
 - **Bounded finding:** `COMBAT` has four raw matches in `CODE_208` at
   `5000:9b4f`, `5000:9bb3`, `5000:9cd1`, and `5000:a6ec`; none has an inbound
   Ghidra reference. `GUARD` has two raw matches in the same block at
@@ -1414,15 +1416,19 @@ proof by itself. Never redirect broad output into the repository.
   from `1bf3:66eb` in `28c9:19a1 FUN_28c9_19a1`. Its sixteen-instruction
   context compares `AL` with `0x20`, loads an indirect far pointer, adjusts a
   word through that pointer, and loops; it contains no documented combat
-  scancode, direct combat-state reference, or action-resolution call.
+  scancode, direct combat-state reference, or action-resolution call. The
+  exact null-terminated `ATTACK` query has no raw matches, and therefore no
+  executable address or reference to inspect.
 - **Interpretation:** the queried literal labels are not a reliable combat
   command path. The sole direct reference is compatible with generic
   label/data processing, but the bounded context cannot establish its owner.
-  This result does not show that the labels are unused and does not establish
-  any input, target, turn, Guard, or rendering behavior.
-- **Confidence:** high for the capped raw-match/reference results and the
-  documented instruction context; unknown for label ownership and all combat
-  semantics.
+  The absent `ATTACK` encoding excludes only this exact null-terminated
+  executable literal; it does not exclude resource-driven, constructed,
+  relocated, or runtime text. Neither result establishes any input, target,
+  turn, Guard, attack, or rendering behavior.
+- **Confidence:** high for the capped raw-match/reference results, exact
+  `ATTACK` no-match result, and documented instruction context; unknown for
+  label ownership and all combat semantics.
 - **Implementation consequence:** retain the manual-evidenced `CombatHotkeys`
   adapter only. Do not connect its commands, infer a UI graph, or name a combat
   routine from these text literals; seek a multi-signal data/call-path lead or
