@@ -224,6 +224,11 @@ owner-authorized local date-and-hour slot (including UTC offset), or an
 owner-confirmed explicit filename list. An authorized hour means the half-open
 local interval from that hour through the next hour. An explicit filename list
 authorizes only those exact filenames, not similarly named files.
+The repository owner may instead grant durable umbrella authorization for every
+file in the configured DOSBox screenshots folder; when recorded below or in
+the capture checklist, that authorization supersedes timestamp and filename
+selection only. Captures remain local-only original content, and semantic
+labels still require owner confirmation before they are recorded as evidence.
 Do not operate the DOSBox window, invoke Ctrl+F5, use another screen-capture
 mechanism, or infer that an unconfirmed request, an old capture, or the
 presence of a DOSBox process means the requested observation was performed.

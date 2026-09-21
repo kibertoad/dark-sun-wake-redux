@@ -117,6 +117,13 @@ The owner may instead authorize explicit screenshot filenames, for example
 `review files dsun_009.png, dsun_011.png, dsun_012.png`. This authorizes only
 those exact files; semantic labels still require owner confirmation.
 
+**Durable owner authorization (2026-09-21):** the repository owner authorizes
+inspection of every screenshot in the configured DOSBox `capture` folder. This
+does not authorize copying, committing, distributing, renaming, or modifying
+captures. It also does not assign a semantic identity to any image: the owner
+must still confirm a proposed screen, actor, action, turn, or transition label
+before it is recorded or used as behavior evidence.
+
 For the combat gate, include `combat captures C0-C6` in that line before the
 timestamp window.
 
