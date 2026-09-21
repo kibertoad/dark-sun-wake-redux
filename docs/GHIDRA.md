@@ -1747,6 +1747,32 @@ proof by itself. Never redirect broad output into the repository.
   click behavior separately while a mapped action body or controlled trace is
   obtained.
 
+### EXE-GOG-COMBAT-015 - Direct mode-setter caller supplies value two, not five
+
+- **Question:** Does a direct caller of the resident-mode setter provide the
+  value-five coordinate-branch input and thereby identify a combat action?
+- **Target/method:** Reuse the local-only mapped image from
+  `EXE-GOG-OVERLAY-004`. `ReportReferences` queried the small setter at
+  `2b10:007a`, which writes the word examined in `EXE-GOG-COMBAT-014`.
+  A complete bounded decompilation of its one recovered caller and a
+  16-instruction context at the call site classified the visible argument form.
+- **Bounded finding:** the setter has exactly one recovered direct caller, at
+  `297f:0023` in `2974:0035`. The immediate instruction context pushes literal
+  two directly before the call; it does not supply literal five. The containing
+  routine has opaque status and BIOS-keyboard guards, routes either through the
+  setter or other helpers, and contains no recovered encounter, actor, target,
+  attack, damage, turn, or action-result identity.
+- **Interpretation:** the simplest recovered setter call supports a value-two
+  transfer only. It does not establish what value two means, exclude indirect or
+  register-mediated writes of five, or identify the value-five coordinate branch
+  as an attack, target selection, movement, or confirmation operation.
+- **Confidence:** high for the one direct caller, literal-two instruction
+  context, and bounded caller shape; unknown for calling convention details,
+  indirect writers/callers, all value meanings, and gameplay semantics.
+- **Implementation consequence:** do not infer a combat command or action from
+  the resident-mode setter. Keep value five and its coordinate consumer
+  evidence-only pending a traceable producer and mapped action body.
+
 ### EXE-GOG-MONR-001 - MONR has no raw executable tag literal
 
 - **Question:** Does the sole `MONR` resource in `RESOURCE.GFF` identify an

@@ -2198,6 +2198,8 @@
   `EXE-GOG-COMBAT-014` places that branch's resident value in a broader
   combat-adjacent mode switch without assigning value five an attack or target
   meaning.
+  `EXE-GOG-COMBAT-015` finds that the mode setter's only recovered direct call
+  supplies value two, not the coordinate branch's value five.
   `EXE-GOG-KEYBOARD-002` excludes only two direct keyboard-controller I/O
   forms, and `EXE-GOG-KEYBOARD-003` finds no decoded function containing all
   six documented combat key values; none establishes the shipped command
