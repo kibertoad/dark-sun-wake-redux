@@ -421,6 +421,9 @@ rejecting unsupported semantics:
   key-acquisition or combat-command route. `EXE-GOG-KEYBOARD-003` further
   finds no decoded function that co-locates all six documented combat-key
   scalars, excluding only a simple unified direct switch.
+  `EXE-GOG-KEYBOARD-004` adds a mapped generic BIOS keyboard wrapper, but no
+  bounded caller supplies an explicit service value or command identity; its
+  one dispatch-shaped upstream route is GPLI selector handling, not combat.
 - `EXE-GOG-PORT-001` finds no literal `PORT` tag in the executable. It does
   not contradict the observed first-Tyr portrait, but supplies no general
   portrait loader, palette, drawing, dialogue, or timing rule.

@@ -1140,6 +1140,31 @@ proof by itself. Never redirect broad output into the repository.
   semantic requests. Do not create a command dispatcher or repeat policy from
   this negative co-location result.
 
+### EXE-GOG-KEYBOARD-004 - Mapped BIOS keyboard wrapper remains feature-neutral
+
+- **Question:** Does the mapped FBOV image expose an overlay-side BIOS keyboard
+  reader with a traceable combat-command consumer?
+- **Target/method:** `ReportBytePattern` searched the local-only mapped image
+  for `INT 16h` (`cd 16`). `ReportReferences`, bounded decompilations, and
+  16-instruction caller contexts inspected its sole decoded wrapper and three
+  direct callers, then one dispatch-shaped caller layer above.
+- **Bounded finding:** five raw patterns occur; only `44b6:0011` is a decoded
+  `INT 16h` wrapper. It has three direct callers. None supplies an explicit
+  `AH` service value in the 16-instruction context before the call; the two
+  recoverable callers test opaque return bits or cache one returned byte. The
+  only dispatch-shaped upstream route is `7c0e:0379` case four, which requests
+  `GPLI` #1 and updates selector tables; it establishes no keyboard command.
+- **Interpretation:** the mapped image adds a generic BIOS-input boundary, not
+  a combat key-acquisition or command route. The raw matches and unreliable
+  caller decompilations do not establish which BIOS service runs, keyboard
+  repeat behavior, key values, command mapping, or any player-visible effect.
+- **Confidence:** high for the raw/decoded count, direct-call count, absent
+  immediate `AH` setup in the bounded contexts, and the GPLI branch facts;
+  unknown for every keyboard and combat behavior.
+- **Implementation consequence:** retain manual commands as unconnected input
+  requests. Do not treat this wrapper, its callers, or the GPLI branch as a
+  combat dispatcher.
+
 ### EXE-GOG-MEDIA-001 - no literal FLI header validation lead in DSUN.EXE
 
 - **Question:** Does the supported executable contain the literal FLI header
