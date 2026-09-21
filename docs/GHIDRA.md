@@ -1615,6 +1615,11 @@ proof by itself. Never redirect broad output into the repository.
   its packet pointer through an opaque far helper, reads the packet's second
   word as a byte count, and copies that many bytes to guarded resident storage
   while updating separate offset/capacity words and failure indicators.
+  Its initializer has one recovered direct caller at `39d1:0173`, which passes
+  an opaque non-null far-storage pointer and literal capacity `0x410` (1040).
+  The initializer stores those values into its resident fields and sets the
+  guard; its one further recovered caller provides no feature identity in the
+  bounded instruction context.
 - **Interpretation:** this establishes a concrete native callback-to-generic
   packet-buffer boundary, rather than a combat callback. The packet field
   meanings, resident guard, buffer consumer behavior, callback event semantics,
@@ -1622,8 +1627,8 @@ proof by itself. Never redirect broad output into the repository.
   nor identifies target selection, approach, striking, or any action rule.
 - **Confidence:** high for the single registration caller, service/mask,
   raw callback pointer, guard, packet extent, dispatch call, and separately
-  recovered packet caller/buffer copy; unknown for packet field semantics,
-  dispatch owner, event routing, and all combat behavior.
+  recovered packet caller/buffer copy/initializer capacity; unknown for packet
+  field semantics, dispatch owner, event routing, and all combat behavior.
 - **Implementation consequence:** do not derive a combat event loop, click
   handler, target model, approach rule, or automatic-attack rule from this
   global registration path. A combat-specific path still needs independent
