@@ -184,6 +184,9 @@ literal-five producer; indirect or computed writers remain open.
 melee/ranged Attack, and Look cursor IDs, including their invalid variants, but
 its only recovered caller remains opaque. This is a presentation-resource
 boundary, not a native action, target, movement, or strike path.
+`EXE-GOG-CURSOR-002` further bounds that selector to the nonzero branch of a
+shared handler's opaque input flag; the alternate branch is broadly shared.
+Neither branch identifies an interaction owner or a combat-click path.
 `EXE-GOG-COMBAT-009` additionally finds no direct caller of the decoded native
 mouse button-press wrapper, so it cannot supply the missing click path.
 `EXE-GOG-COMBAT-010` bounds native mouse callback registration to a shared

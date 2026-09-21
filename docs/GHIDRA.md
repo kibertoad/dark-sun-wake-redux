@@ -1870,6 +1870,37 @@ proof by itself. Never redirect broad output into the repository.
   presentation provenance only. No combat eligibility, movement, target, or
   damage rule follows from this selector.
 
+### EXE-GOG-CURSOR-002 - Cursor selection is an optional shared-handler branch
+
+- **Question:** Is the recovered cursor selector the universal native handling
+  route for an interaction input, or a bounded optional branch whose caller
+  shape excludes a direct combat interpretation?
+- **Target/method:** Reuse the local mapped GOG executable and the selector
+  caller `7316:0618` from `EXE-GOG-CURSOR-001`. Inspect its 96-byte raw window
+  and entry context. Query the alternate far-call target's references with
+  `ReportReferences`; a scalar-intersection query and an exact encoded
+  far-pointer byte-pattern query searched for a recoverable caller owner.
+- **Bounded finding:** after rejecting a zero four-byte input, `7316:0618`
+  checks the following byte. A nonzero value invokes the cursor selector;
+  zero invokes a separate shared helper instead. The selector has this one
+  recovered direct caller. The alternate helper has nine recovered direct
+  callers across six recovered functions. Neither a function containing both
+  source segment/offset scalars nor an exact four-byte encoded far-pointer
+  pattern was found, so this bounded query does not recover the outer indirect
+  owner.
+- **Interpretation:** the cursor-resource selector is a conditional service
+  inside a wider handler, rather than evidence for a universal click action.
+  The opaque input, flag meaning, alternate helper, indirect owner, and all
+  mouse/combat semantics remain unknown. This excludes neither an indirect
+  combat route nor another native cursor owner.
+- **Confidence:** high for the raw null/byte guard, the two direct call sites,
+  selector/alternate direct-reference counts, and both bounded no-match
+  results; unknown for input layout semantics, feature ownership, and action
+  behavior.
+- **Implementation consequence:** retain the cursor selector solely as
+  presentation provenance. Do not derive a combat input dispatcher or
+  eligibility state from its conditional call.
+
 ### EXE-GOG-MONR-001 - MONR has no raw executable tag literal
 
 - **Question:** Does the sole `MONR` resource in `RESOURCE.GFF` identify an
