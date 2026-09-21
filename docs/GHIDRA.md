@@ -1585,6 +1585,32 @@ proof by itself. Never redirect broad output into the repository.
   global registration path. A combat-specific path still needs independent
   executable or controlled-observation evidence.
 
+### EXE-GOG-COMBAT-011 - Status-panel dispatcher is reached indirectly
+
+- **Question:** Can the mapped dispatcher branch that invokes the observed
+  status-panel initializer identify a direct application caller or combat-owned
+  selector semantics?
+- **Target/method:** Use the local-only mapped image from
+  `EXE-GOG-OVERLAY-004`. `ReportReferences` queried the entry point
+  `76da:007d`; `ReportDecompileWindow` then examined its complete 135-line
+  recovered function, bounded to the six-value selector range established by
+  `EXE-GOG-COMBAT-008`.
+- **Bounded finding:** no recovered direct reference targets `76da:007d`. Its
+  decoded `param_1 == 2` branch accepts selector values `0x7fa` through
+  `0x7ff`; selector `0x7fc` performs the panel-adjacent calls and then invokes
+  `74bb:0498`. The remaining selector cases contain distinct calls or opaque
+  instructions, but no static caller supplies a selector value or a screen,
+  actor, encounter, command, or action identity.
+- **Interpretation:** the function is an indirect dispatch boundary. Adjacent
+  selector cases are not established combat commands, transitions, or rules,
+  and the panel case has no recovered application owner.
+- **Confidence:** high for the direct-reference result, bounded selector range,
+  and panel-case call sequence; unknown for the indirect caller, selector
+  meanings, screen ownership, and all combat behavior.
+- **Implementation consequence:** do not model the selector range as combat
+  state or command IDs. Continue to require an independently traceable indirect
+  caller or controlled observation before deriving any combat behavior.
+
 ### EXE-GOG-MONR-001 - MONR has no raw executable tag literal
 
 - **Question:** Does the sole `MONR` resource in `RESOURCE.GFF` identify an

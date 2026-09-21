@@ -172,6 +172,9 @@ mouse button-press wrapper, so it cannot supply the missing click path.
 availability probe and full-mask setup. Its one direct caller does not recover
 a reliable callback target or screen owner, so it is not evidence for combat
 click dispatch or action rules.
+`EXE-GOG-COMBAT-011` shows that the mapped six-selector dispatcher containing
+the panel case has no recovered direct caller. Its neighboring selectors are
+therefore not identified as combat commands, transitions, or rule paths.
 `DATA-GOG-MONR-002` corrects the opaque `MONR` structural lead from a rejected
 14-by-81 arithmetic split to a stronger 27-by-42 aligned-word envelope with a
 constant tail. No executable loader or combat meaning is established.
