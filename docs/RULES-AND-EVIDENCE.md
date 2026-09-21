@@ -2209,6 +2209,9 @@
   same word, so the local one-through-five branch is not a finite mode model.
   `EXE-GOG-COMBAT-017` exhausts recovered direct writers without finding a
   literal-five producer; indirect and computed writes remain open.
+  `EXE-GOG-COMBAT-018` finds no decoded function carrying both the static
+  panel and interface-font request identities, which excludes only that direct
+  renderer hypothesis.
   `EXE-GOG-KEYBOARD-002` excludes only two direct keyboard-controller I/O
   forms, and `EXE-GOG-KEYBOARD-003` finds no decoded function containing all
   six documented combat key values; none establishes the shipped command

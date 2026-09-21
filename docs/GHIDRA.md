@@ -1866,6 +1866,30 @@ proof by itself. Never redirect broad output into the repository.
   command or target state. Continue to require a mapped action body or a
   controlled action trace before deriving combat behavior.
 
+### EXE-GOG-COMBAT-018 - Panel and font requests have no shared decoded owner
+
+- **Question:** Does one decoded function directly co-locate the observed
+  combat status-panel request, `BMP ` #19003, with the bounded interface-font
+  request, `FONT` #100, providing a native dynamic-panel rendering lead?
+- **Target/method:** Reuse the local-only mapped image from
+  `EXE-GOG-OVERLAY-004`. `ReportFunctionScalarIntersection` scanned every
+  decoded function for all six unsigned instruction scalars: #19003, the two
+  `BMP ` tag halves (`0x4d42`, `0x2050`), #100, and the two `FONT` tag halves
+  (`0x4f46`, `0x544e`). The query reports only functions containing every
+  scalar as decoded instruction operands.
+- **Bounded finding:** no decoded function contains all six requested scalar
+  operands.
+- **Interpretation:** this excludes only a direct literal co-location of the
+  two resource requests in one decoded function. It does not exclude separate
+  request and renderer functions, arguments, resident handles, pointer tables,
+  relocated/overlay code, or runtime-built resource IDs. It identifies no
+  text renderer, panel field, active combatant, update cadence, or combat rule.
+- **Confidence:** high for the complete decoded-function scalar-intersection
+  no-match; unknown for every indirect, relocated, or runtime rendering path.
+- **Implementation consequence:** retain the panel's dynamic area as opaque;
+  do not derive a text renderer, resource routing model, or combat presenter
+  from the static panel and font resources alone.
+
 ### EXE-GOG-CURSOR-001 - Shared cursor selector includes observed interaction resources
 
 - **Question:** Do the observed Walk, Attack, and Look cursor resources have a

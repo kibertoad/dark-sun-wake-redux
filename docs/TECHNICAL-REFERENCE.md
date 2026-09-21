@@ -201,7 +201,9 @@ therefore not identified as combat commands, transitions, or rule paths.
 `EXE-GOG-COMBAT-012` finds that the shared state word used by the two panel
 routes has multiple direct comparison values and only one direct write, which
 sets a value used by just one route. No value is thereby identified as combat
-or a turn phase.
+or a turn phase. `EXE-GOG-COMBAT-018` finds no decoded function that directly
+co-locates `BMP ` #19003 with `FONT` #100; this leaves the panel's dynamic
+renderer and fields opaque rather than proving either resource unused.
 `DATA-GOG-MONR-002` corrects the opaque `MONR` structural lead from a rejected
 14-by-81 arithmetic split to a stronger 27-by-42 aligned-word envelope with a
 constant tail. No executable loader or combat meaning is established.
