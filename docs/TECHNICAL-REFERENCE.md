@@ -337,6 +337,12 @@ rejecting unsupported semantics:
   specific control handler nor any widget drawing/chrome path, so serialized
   image-less controls remain geometry/event contracts rather than invented
   pixels.
+- `EXE-GOG-OVERLAY-001` now has a reproducible `fbov-profile` envelope check:
+  DSUN's physical overlay is `FBOV`, declares 276,656 payload bytes, and its
+  229 opaque descriptors occupy MZ-file offsets `[307328,309160)`. Their raw
+  endpoint totals cannot directly describe that payload, so this validates a
+  container boundary only—not an overlay address map, loader call, resource
+  reader, combat rule, or executable behavior.
 - `EXE-GOG-SMALLTAG-001` finds no literal executable loader lead for `GREQ`,
   `CACT`, `PLYL`, or `CSEQ`. `DATA-GOG-SMALLTAG-001` bounds their owned
   inventories and short envelopes; `DATA-GOG-PLYL-002` additionally rejects a

@@ -528,6 +528,25 @@ if (args.Length == 5 && args[0].Equals("raster-profile", StringComparison.Ordina
     }
 }
 
+if (args.Length == 2 && args[0].Equals("fbov-profile", StringComparison.OrdinalIgnoreCase))
+{
+    try
+    {
+        var executablePath = Path.GetFullPath(args[1]);
+        await using var stream = File.OpenRead(executablePath);
+        var profile = FbovOverlayProfileReader.Read(stream, executablePath);
+        Console.WriteLine(JsonSerializer.Serialize(new { executablePath, profile },
+            new JsonSerializerOptions { WriteIndented = true }));
+        return 0;
+    }
+    catch (Exception exception) when (exception is InvalidDataException or IOException or
+                                      UnauthorizedAccessException or ArgumentException)
+    {
+        Console.Error.WriteLine($"[fbov_profile_unavailable] {exception.Message}");
+        return 2;
+    }
+}
+
 if (args.Length == 6 && args[0].Equals("resource-word-overlap", StringComparison.OrdinalIgnoreCase))
 {
     try
@@ -797,6 +816,7 @@ if (args.Length != 1 || !Directory.Exists(args[0]))
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect object-pattern-overlap <owned-object.gff> <object-number> <tag; use _ for padded space> <printable-ascii-pattern>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect record-profile <owned-original.gff> <tag; use _ for padded space> <resource-number> <candidate-record-width>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect raster-profile <owned-original.gff> <tag; use _ for padded space> <resource-number> <candidate-width>");
+    Console.Error.WriteLine("  DarkSunWakeRedux.Inspect fbov-profile <owned-original.exe>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect resource-word-overlap <source.gff> <source-tag; use _ for padded space> <source-number> <target.gff> <target-tag; use _ for padded space>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect lane-word-namespace-profile <source.gff> <source-tag; use _ for padded space> <source-number> <record-width> <lane-width> <word-offset> <target.gff> <target-tag; use _ for padded space>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect pair-resource-overlap <owned-pair-table> <owned-original.gff> <tag; use _ for padded space>");
