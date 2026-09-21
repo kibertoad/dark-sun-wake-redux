@@ -1973,6 +1973,10 @@
   command input, turn progression, timing, hit resolution, or exit behavior.
   EXE-GOG-COMBAT-004 separately establishes the panel's native BMP
   request/cache path but identifies no combat owner or overlay semantics.
+  `EXE-GOG-COMBAT-008` reaches that static panel from a four-record operation,
+  but its immediate continuation is a shared `stdpatch`-related initialization
+  route and a nearby `0x92e0` operand has no matching `RESOURCE.GFF` resource;
+  it supplies no independent combat attribution.
   EXE-GOG-COMBAT-006 classifies its direct eight-call fan-in as shared and
   feature-neutral: the visible boundary has only `0`/`1` arguments and no
   recovered combat identity.

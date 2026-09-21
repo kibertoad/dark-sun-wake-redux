@@ -772,20 +772,28 @@ proof by itself. Never redirect broad output into the repository.
   parameter-one-equals-two branch when its second parameter is `0x7fc`, after
   two preparatory calls and one helper whose result is compared with one, two,
   and three. The second panel caller has no recovered direct caller. All stated
-  field offsets and values are data-access facts only.
-- **Interpretation:** this is a concrete native route from a dispatch branch to
-  the static artwork observed only in combat captures, and it independently
-  corroborates a four-record panel-adjacent operation. It does not assign the
-  shared state values to combat, establish that the four records are party
-  members or active combatants, identify their fields, decode the event IDs,
-  establish panel text/value meanings, or identify entry, turn, targeting,
-  movement, attack, damage, outcome, or timing behavior.
+  field offsets and values are data-access facts only. A follow-up 47-line
+  decompilation shows that this routine calls `4758:01d5` immediately after
+  the panel request with an unresolved `0x92e0` operand beside a recovered
+  `RESOURCE.GFF` literal. Aggregate inventory confirms no `RESOURCE.GFF`
+  resource number 37600 exists. `4758:01d5` has exactly two direct callers
+  (this routine and the other panel caller) and contains a `stdpatch` literal
+  plus generic initialization/state handling, not a decoded resource lookup.
+  Thus neither the operand nor the literal identifies a resource request.
+- **Interpretation:** this is a concrete native code connection from a
+  dispatcher branch to static artwork observed only in combat captures. The
+  follow-up makes the four-record operation less, not more, attributable to
+  combat: it may be a shared setup or patch-related operation. It does not
+  assign the shared state values to combat, establish that the four records are
+  party members or active combatants, identify their fields, decode the event
+  IDs, establish panel text/value meanings, or identify entry, turn,
+  targeting, movement, attack, damage, outcome, or timing behavior.
 - **Confidence:** high for the mapped scalar, direct-call counts, exact state
   comparisons, four-iteration/49-byte-stride operation, and immediate call
   order; unknown for every semantic interpretation.
 - **Implementation consequence:** retain the status bitmap as evidence-only.
-  This permits a targeted next query on the four 49-byte records or dispatch
-  inputs, but does not license a status model or playable combat route.
+  Do not use the four-record operation, `RESOURCE.GFF` literal, or unresolved
+  operand as a status model, resource contract, or playable combat lead.
 
 ### EXE-GOG-UI-006 - Character-generation IDs do not identify control behavior
 
