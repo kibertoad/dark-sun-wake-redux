@@ -178,6 +178,8 @@ native producer.
 `EXE-GOG-COMBAT-016` then proves a separate direct writer can assign decimal 19
 to the same word, so its local one-through-five switch is not a finite combat
 mode model.
+`EXE-GOG-COMBAT-017` exhausts the recovered direct-write graph without a
+literal-five producer; indirect or computed writers remain open.
 `EXE-GOG-COMBAT-009` additionally finds no direct caller of the decoded native
 mouse button-press wrapper, so it cannot supply the missing click path.
 `EXE-GOG-COMBAT-010` bounds native mouse callback registration to a shared

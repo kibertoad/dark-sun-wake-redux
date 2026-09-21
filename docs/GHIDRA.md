@@ -1806,6 +1806,37 @@ proof by itself. Never redirect broad output into the repository.
   combat-mode enum. No combat input, action, target, movement, strike, damage,
   turn, or outcome rule is introduced from this route.
 
+### EXE-GOG-COMBAT-017 - Recovered direct writes do not produce coordinate value five
+
+- **Question:** Does the complete recovered direct-write graph for the resident
+  word identify a literal-five producer that can serve as a native combat input
+  lead?
+- **Target/method:** Reuse the direct-reference inventory for
+  `ram:00059240` from `EXE-GOG-COMBAT-014`. Follow the remaining three
+  register-mediated writer entries with `ReportReferences`; inspect the one
+  helper that has recovered callers using a bounded 16-instruction call context.
+- **Bounded finding:** the nine direct writes consist of immediate zero/one
+  stores and register-mediated writes. `EXE-GOG-COMBAT-015` and
+  `EXE-GOG-COMBAT-016` independently establish direct values two and 19 for
+  two writer routes. The writer entries at `2b10:009a`, `74bb:065a`, and the
+  switch routine `74bb:0223` have no recovered direct reference. The remaining
+  multi-write helper, `2bd8:00e2`, has exactly three direct calls, all from the
+  shared input loop `2ae8:0132`; a bounded call context carries opaque literal
+  `0x270f`, not five, with no encounter, actor, target, attack, damage, turn,
+  or result identity. No recovered direct write supplies literal five.
+- **Interpretation:** this exhausts only the Ghidra-recorded direct-write forms
+  for this address. It does not exclude indirect, computed, overlay-runtime, or
+  external writes, nor establish the meaning of any observed value. In
+  particular, it does not make the coordinate value five an attack mode or
+  disprove another native action route.
+- **Confidence:** high for the direct-write inventory, two/19 direct-value
+  results, no-reference results, three-call shared-loop fan-in, and bounded
+  opaque-token context; unknown for every indirect/computed writer and all
+  gameplay semantics.
+- **Implementation consequence:** no resident-word value is exposed as a combat
+  command or target state. Continue to require a mapped action body or a
+  controlled action trace before deriving combat behavior.
+
 ### EXE-GOG-MONR-001 - MONR has no raw executable tag literal
 
 - **Question:** Does the sole `MONR` resource in `RESOURCE.GFF` identify an
