@@ -2207,6 +2207,33 @@
   death consequences, target removal, experience, and combat-state transitions
   remain open.
 
+### FAQ-81038-COMBAT-001 - Difficulty is a hostile-hit-point hypothesis
+
+- **Question:** Does the shipped difficulty setting alter combat state, and if
+  so, which state and at what lifecycle point?
+- **Secondary report:** FAQ-81038 section 2.8 reports that a new game begins on
+  Balanced, that Easy appears to use roughly half the Balanced hostile hit
+  points while Hideous appears to use roughly twice them, and that the effect
+  is applied when a creature is spawned rather than retroactively. The report
+  does not establish Hard's multiplier, a rounding rule, whether player state
+  is affected, an encounter identity, or the native implementation path.
+- **Evidence status:** community research only. The manual assigns difficulty to
+  combat but gives no numerical contract; the executable exposes the four
+  labels but no direct label-to-setting or setting-to-rule binding
+  (`EXE-GOG-UI-004`, `EXE-GOG-PREF-001`).
+- **Reproduction target:** from equivalent clean saves, set each difficulty
+  before entering a fresh controlled encounter; capture the same identified
+  hostile's inspectable hit-point state before any action, then repeat after
+  changing difficulty only after that hostile has appeared. Confirm the
+  proposed encounter, difficulty, and state labels with the owner before using
+  captures semantically.
+- **Confidence:** medium that the guide reports its own observation; unknown
+  for every claimed native multiplier, timing boundary, state field, and scope.
+- **Implementation consequence:** keep Preferences difficulty mutations inert
+  and do not add combat HP scaling, spawn behavior, rounding, or compatibility
+  handling until the reproduction target and a traceable data/executable path
+  corroborate the contract.
+
 ## Conflict handling
 
 FAQ-81038 reports discrepancies between documentation and shipped behavior.
