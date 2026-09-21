@@ -716,6 +716,39 @@ proof by itself. Never redirect broad output into the repository.
   further focused static question; no overlay bytes, relocated image, or
   disassembly may be committed or consumed by the game.
 
+### EXE-GOG-OVERLAY-004 - Local-only FBOV mapped image enables bounded overlay queries
+
+- **Question:** Can the validated FBOV header metadata produce a local-only MZ
+  analysis image with overlay trampoline and ordinary segment-fixup references
+  recovered, without turning it into a runtime or game-content artifact?
+- **Target/method:** `New-FbovMappedImage.ps1` reads the fingerprinted DSUN
+  executable and refuses an output path in the repository or an existing output
+  file. It reconstructs a temporary MZ relocation table from the original
+  table, the 49 validated overlay headers, their 854 five-byte trampolines, and
+  their even-sized fixup lists. The temporary output is imported into a distinct
+  ignored Ghidra project. The writer reports special function-reference fixups
+  separately rather than claiming to transform them.
+- **Bounded finding:** the DSUN transform reported 49 overlay headers, 854
+  trampoline targets, and zero special function-reference fixups. Ghidra 12.1.3
+  loaded the resulting 668,768-byte temporary MZ image. Repeating exact
+  NUL-terminated searches found neither the observed panel `Moves` caption nor
+  the `Draxan` label. Four exact `COMBAT` strings become visible in an overlay
+  data area, but `ReportReferences` finds no direct reference to any of them.
+  Those strings therefore do not identify a combat dispatcher.
+- **Interpretation:** the mapped view is a credible additional static-analysis
+  surface for focused questions, particularly where an overlay call crosses a
+  recovered trampoline. Its successful import does not validate decompiler
+  output wholesale: generic MZ-analysis warnings and indirect calls remain.
+  The literal-query results neither rule out resource-supplied/constructed text
+  nor identify a combat state, command, movement, attack, turn, damage, or
+  outcome routine.
+- **Confidence:** high for the transform's reported counts, zero special-fixup
+  count, successful MZ import, and the exact literal/reference queries; unknown
+  for all code semantics and paths reached indirectly.
+- **Implementation consequence:** use the mapped image only as a local,
+  reproducible analysis input. Continue to record independent, bounded findings
+  before deriving rules; do not store it, load it, or execute it in the project.
+
 ### EXE-GOG-UI-006 - Character-generation IDs do not identify control behavior
 
 - **Question:** Do the character-generation window, class-label, EXIT, or DONE

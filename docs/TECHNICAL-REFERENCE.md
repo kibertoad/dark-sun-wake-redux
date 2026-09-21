@@ -347,7 +347,11 @@ rejecting unsupported semantics:
   their bounded payload spans total 258,376 code bytes plus 16,524 fixup
   bytes. This is a header-to-payload metadata map, not a loaded-address map,
   loader call, resource reader, combat rule, or executable behavior. The raw
-  endpoint totals remain unsuitable as a payload map.
+  endpoint totals remain unsuitable as a payload map. `EXE-GOG-OVERLAY-004`
+  additionally produces a local-only mapped MZ view (49 headers, 854
+  trampolines, zero special function-reference fixups) for bounded Ghidra
+  queries. Its exact `Moves`/`Draxan` searches remain empty, and four
+  unreferenced `COMBAT` literals identify no dispatcher or combat behavior.
 - `EXE-GOG-OVERLAY-002` rules out the first concrete file-I/O candidate: the
   only loaded-image routine that directly uses both the bounded DOS seek and
   read wrappers scans caller-supplied six-byte signatures and lengths. It has
