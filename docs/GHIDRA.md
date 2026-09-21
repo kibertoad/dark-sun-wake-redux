@@ -2322,6 +2322,41 @@ proof by itself. Never redirect broad output into the repository.
   or use offset 43/33-byte arithmetic for hostile name, level, action,
   interaction, or combat behavior.
 
+### EXE-GOG-RDFF-003 - Mapped OJFF/RDFF bridge excludes observed object #9258
+
+- **Question:** Does the mapped FBOV view expose a direct `OJFF`-to-`RDFF`
+  route that can identify the observed OJFF #9258 hostile's label-bearing
+  `RDFF` record?
+- **Target/method:** In the local-only mapped image from
+  `EXE-GOG-OVERLAY-004`, `ReportBytePattern` found eleven decoded `RDFF` tag
+  operands. `ReportFunctionScalarIntersection` searched those functions for
+  the `OJFF` tag and found exactly one: `32a3:02cf`. `ReportReferences`, a
+  bounded decompilation, and 24-instruction contexts around both tag operands
+  then inspected only this routine. Mapped addresses are transform addresses,
+  not claimed original load addresses.
+- **Bounded finding:** `32a3:02cf` has three direct callers. Its first
+  tag-aware call pushes `OJFF` after passing its word parameter at `[BP+6]`.
+  A later, guarded call pushes `RDFF` and passes that same parameter. The
+  decoded guard compares the parameter with `0x2328` (9000) and `0x36ae`
+  (13998); the bounded decompiler reconstructs the RDFF branch as the
+  outside-range path. Observed OJFF #9258 is within that inclusive range, so
+  it does not take this routine's recovered RDFF branch. The routine has
+  overlapping-instruction warnings elsewhere, so the result is limited to the
+  decoded operand order and guard, not a full object schema.
+- **Interpretation:** this is a real shared OJFF/RDFF bridge, but it excludes
+  the tempting direct use of that bridge to resolve #9258's `Draxan` label.
+  It neither identifies a different #9258 path nor proves that #9258 has no
+  RDFF relationship through another routine, indirection, or runtime-built
+  value.
+- **Confidence:** high for the exact tag operands, three direct callers,
+  parameter reuse, compared bounds, and #9258 range membership; medium for
+  the reconstructed branch polarity because the mapped function contains
+  unrelated overlapping-instruction warnings; unknown for all record and
+  gameplay semantics.
+- **Implementation consequence:** do not use this shared tag bridge to bind
+  OJFF #9258 to an RDFF record, hostile label, target, or combatant. Continue
+  to treat the observed label and OJFF identity as independently bounded.
+
 ### EXE-GOG-OJFF-001 - OJFF has two bounded native lookup paths
 
 - **Question:** Does an explicit native `OJFF` tag path connect the bounded

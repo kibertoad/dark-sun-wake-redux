@@ -329,8 +329,11 @@ rejecting unsupported semantics:
   direct lookup callers, which pass local, argument, register, or
   resident-state values rather than a recovered fixed resource number, this
   rejects a direct field-to-label mapping for the first hostile Look panel. It
-  does not identify an alternative source or permit dynamic interaction text
-  to be rendered. The main executable's 276,672-byte physical MZ overlay also
+  also rules out the mapped shared OJFF/RDFF bridge for observed OJFF #9258:
+  #9258 lies within its recovered 9000 through 13998 guard and does not take
+  that route's RDFF branch. This excludes one bridge only, not other indirection
+  or runtime paths. It does not identify an alternative source or permit
+  dynamic interaction text to be rendered. The main executable's 276,672-byte physical MZ overlay also
   contains neither the exact six-byte label nor its NUL-terminated form, so
   that exact spelling has no loaded-image or overlay literal path; other
   encodings and runtime/resource paths remain open.
