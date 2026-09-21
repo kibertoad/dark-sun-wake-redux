@@ -26,6 +26,10 @@ the static art; it is an unknown dynamic overlay, not a movement, text, timing,
 or action contract. Required-revision-34 extraction preserves the static panel
 as an evidence-only DSIX asset at that placement; the Game does not render it.
 
+The owner-labelled enemy-motion frame `dsun_009` visibly retains dialogue
+chrome and lacks this compact panel. It is therefore not a source for the
+stable combat-panel layout, despite providing bounded motion evidence.
+
 Character-view graph detail: the 86-child WIND #11500 graph consists of 64
 APFM, one EBOX, and 21 BUTN records. Its root image-less frame is 320x189 at
 (0,0); the only EBOX is 95x8 at (153,28); the 136x108 image-less frame starts
