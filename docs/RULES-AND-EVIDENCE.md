@@ -1867,8 +1867,9 @@
   character tail fields, item rules, spell rules, combat mechanics, or
   resource selection?
 - **Method:** The owner confirmed the semantic labels for local-only DOSBox
-  Ctrl+F5 captures `dsun_010.png` through `dsun_024.png` except for the
-  unrelated, as-yet-unlabelled `dsun_009.png`.
+  Ctrl+F5 captures `dsun_010.png` through `dsun_024.png`; on 2026-09-21 the
+  owner additionally labels `dsun_009.png` as an enemy-moving frame,
+  `dsun_011.png` as enemy striking, and `dsun_012.png` as player turn.
   Their local file timestamps run from 2026-09-20 22:01:16 through 22:04:53.
   Inspect the 320x200 captures in place; do not copy, rename, or commit them.
   Correlate only the owner-confirmed member names and visibly labelled ability
@@ -1896,10 +1897,8 @@
   raw PSIN masks 5/2. Neither the captions nor those structural differences
   identify a source record. The confirmed order coincides with the consecutive
   #40-#43 source block, but coincidence and names alone do not prove that
-  complete resource selection. The owner identifies `dsun_010` as an enemy
-  moving frame: the opposing actor moves while the combat UI remains largely
-  stable, and the right-side statistics panel changes as that actor spends
-  movement points. The owner identifies `dsun_012` as combat during
+  complete resource selection. The owner identifies `dsun_009` as an enemy
+  moving frame, `dsun_011` as enemy striking, and `dsun_012` as combat during
   Thy'rokh's turn. It visibly shows the party cluster and a compact right-side
   panel with `Thy'rokh`, `90/85`, and `Moves 15`; these are displayed strings,
   not assigned status/value semantics. `dsun_011` is confirmed as combat
