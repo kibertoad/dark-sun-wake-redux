@@ -2222,7 +2222,7 @@
   or equal to the attacker's THAC0 minus the target's Armor Class. Lower Armor
   Class is harder to hit. The manual examples establish 5 THAC0 versus 3 AC
   requires 2 or higher, and 5 THAC0 versus -2 AC requires 7 or higher.
-- **Evidence:** MANUAL-1994 page 25, "Armor Class" and "THAC0". It explicitly
+- **Evidence:** MANUAL-1994 printed page 24, "Armor Class" and "THAC0". It explicitly
   defines the random roll range and inclusive threshold. FAQ-81038 section
   2.1 independently restates the subtraction model but describes a strict
   greater-than comparison and explicitly leaves automatic 1/20 behavior
@@ -2247,7 +2247,7 @@
 
 - **Behavior:** Damage subtracts from the target's hit points. Positive hit
   points are conscious; zero through -9 are unconscious; -10 or less is dead.
-- **Evidence:** MANUAL-1994 page 25, "Hit Points". `EXE-GOG-COMBAT-002`
+- **Evidence:** MANUAL-1994 printed page 24, "Hit Points". `EXE-GOG-COMBAT-002`
   records that the threshold literal is not a unique static-analysis lead and
   therefore contributes no original-state semantics.
 - **Confidence:** high for the stated thresholds and subtractive damage model.
