@@ -135,8 +135,9 @@ Combat remains evidence acquisition only. The owner reports that entry leaves
 the map and character presentation substantially unchanged except for the
 absence of the compact status panel; the first stable combat state shows the
 currently active character's panel. The owner identifies dsun_009 as an enemy
-movement frame, dsun_011 as enemy striking, and dsun_012 as a player turn
-labelled Thy'rokh, with visible panel strings
+movement frame; it visibly retains dialogue chrome and has no compact panel,
+so it is not evidence for the stable combat layout. dsun_011 is enemy striking,
+and dsun_012 is a player turn labelled Thy'rokh, with visible panel strings
 `90/85` and `Moves 15`; that identifies neither their value semantics nor a
 turn transition. The owner reports no visible turn-transition treatment and
 that a direct enemy click causes the active character to approach and strike,
@@ -211,7 +212,7 @@ constant tail. No executable loader or combat meaning is established.
 |---|---|---|---|
 | Entry and exit presentation | Owner reports exploration stays visually continuous at entry apart from the compact panel; combat exit immediately resumes single-leader exploration. | Encounter trigger, state transition, victory/defeat conditions, or any invisible setup/teardown. | C0, C1, and C6 controlled captures plus a traceable owner path. |
 | Active-combatant display | Owner-confirmed dsun_011/dsun_012 frames show the static #19003 panel at (215,4) with different dynamic strings; dsun_012 is Thy'rokh's labelled turn. | The panel values' field ownership, meaning, update cadence, or turn algorithm. | A native text/value producer or a controlled frame sequence correlated to source data. |
-| Hostile motion and strike feedback | Owner confirms dsun_009 as enemy movement and dsun_011 as enemy striking; the latter visibly includes the red `11` glyph. | Pathfinding, movement cost, actor/target identity, hit, damage, or timing rules. | C3/C5 captures and a bounded native/data route for the action result. |
+| Hostile motion and strike feedback | Owner confirms dsun_009 as enemy movement, while that frame visibly retains dialogue chrome and lacks the compact panel; dsun_011 is enemy striking and visibly includes the red `11` glyph. | Pathfinding, movement cost, actor/target identity, hit, damage, or timing rules, or a stable-combat layout inferred from dsun_009. | C3/C5 captures and a bounded native/data route for the action result. |
 | Direct enemy click | Owner reports that clicking an enemy makes the active character approach and strike, with no separate visible target switch or confirmation. | Click hit testing, target legality, approach path, range, attack resolution, or an implicit selection state. | A recovered consumer beyond the coordinate/callback boundaries and C3 capture notes. |
 | Cursor presentation | `ICON` #19101–#19108 are selected by one native routine; #19103/#19104 appear at distinct branches. `EXE-GOG-CURSOR-002` confines it to a conditional shared-handler branch. | That #19103 executes an attack, that #19104 states why an attack fails, or any combat-specific owner. | Recoverable indirect owner plus branch-input meaning. |
 | Native input boundaries | Mouse-coordinate and button probes establish generic wrappers; the recovered callback conditionally emits a 14-byte packet through guarded resident buffering. BIOS-keyboard probes remain generic. | A combat input loop, packet fields/consumer, the manual-key dispatch, repeat policy, or a command-to-action mapping. | Screen-specific consumer path and controlled command traces C2/C4. |
