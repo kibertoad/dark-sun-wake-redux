@@ -629,6 +629,15 @@ proof by itself. Never redirect broad output into the repository.
   level unrendered rather than hard-coding captured original text. A source
   projection needs a bounded data-format or native call-path finding.
 
+### EXE-GOG-OVERLAY-001 - Loaded-image absences are not physical-file absences
+
+- **Question:** Do core resource tags absent from the loaded image occur in the physical MZ overlay?
+- **Target/method:** The stable 634,416-byte GOG `DSUN.EXE` was scanned by a bounded PowerShell reader that retained only MZ sizes, pattern counts, and offsets. Its 357,744-byte load image leaves a 276,672-byte overlay.
+- **Finding:** `MONR` occurs twice, `ETAB` three times, `GPLI` four times, `PORT` once, `PSIN` three times, and three additional `TEXT` occurrences only in that overlay. `CHAR` has four overlay occurrences in addition to fourteen loaded-image ones. `ITEMS.BIN` occurs nowhere in the complete physical file.
+- **Interpretation:** loaded-image negative results for these tags cannot be generalized to the full executable. The overlay literals have no established runtime mapping, loader, schema, or behavior meaning. The exact `ITEMS.BIN` filename absence covers the complete main executable only.
+- **Confidence:** high for exact physical-file counts and MZ boundary; unknown for overlay loading, address mapping, ownership, and behavior.
+- **Implementation consequence:** retain affected resources as opaque or already evidenced contracts; do not infer readers or gameplay from overlay literals.
+
 ### EXE-GOG-UI-006 - Character-generation IDs do not identify control behavior
 
 - **Question:** Do the character-generation window, class-label, EXIT, or DONE
