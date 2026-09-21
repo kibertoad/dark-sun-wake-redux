@@ -175,6 +175,10 @@ click dispatch or action rules.
 `EXE-GOG-COMBAT-011` shows that the mapped six-selector dispatcher containing
 the panel case has no recovered direct caller. Its neighboring selectors are
 therefore not identified as combat commands, transitions, or rule paths.
+`EXE-GOG-COMBAT-012` finds that the shared state word used by the two panel
+routes has multiple direct comparison values and only one direct write, which
+sets a value used by just one route. No value is thereby identified as combat
+or a turn phase.
 `DATA-GOG-MONR-002` corrects the opaque `MONR` structural lead from a rejected
 14-by-81 arithmetic split to a stronger 27-by-42 aligned-word envelope with a
 constant tail. No executable loader or combat meaning is established.

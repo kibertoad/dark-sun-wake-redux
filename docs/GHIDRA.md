@@ -1649,6 +1649,36 @@ proof by itself. Never redirect broad output into the repository.
   state or command IDs. Continue to require an independently traceable indirect
   caller or controlled observation before deriving any combat behavior.
 
+### EXE-GOG-COMBAT-012 - Shared panel state word remains feature-neutral
+
+- **Question:** Do direct accesses to the mapped state word that guards the
+  two panel-initializer routes identify combat state or a combat transition?
+- **Target/method:** The decompiler-generated label in the panel paths encodes
+  flat mapped address `ram:00058bab`. `ReportReferences` enumerated every
+  direct reference to that address. The existing complete bounded
+  decompilation of `74bb:0077` classified its sole direct write, while
+  `EXE-GOG-COMBAT-008` supplies the other panel path's value-two/value-three
+  guard.
+- **Bounded finding:** Ghidra records 22 direct references from 14 recovered
+  functions: 21 reads comparing or loading values zero, one, two, three, four,
+  five, or seventeen, and one write. The sole direct write is
+  `74bb:00ac`, which assigns four inside `74bb:0077`'s already-indirect route.
+  That route calls the panel initializer only under a value-four guard; the
+  distinct `74bb:0498` route reaches the same initializer under its recorded
+  value-two/value-three condition. No direct reference identifies a screen,
+  actor, encounter, command, attack, result, or transition.
+- **Interpretation:** the word is a shared mutable state boundary with multiple
+  observed numeric values. The two panel paths do not establish one state value
+  as combat or a turn phase, and the single direct write does not exclude
+  indirect or computed writes.
+- **Confidence:** high for the address, direct-reference count, read/write
+  classification, visible compared values, and the two different panel-route
+  guards; unknown for state ownership, state meanings, initialization, indirect
+  writes, and all combat behavior.
+- **Implementation consequence:** do not encode these native values as combat
+  modes, turn states, panel phases, or transitions. Keep both panel routes and
+  all state semantics evidence-only pending an owner or rule-level path.
+
 ### EXE-GOG-MONR-001 - MONR has no raw executable tag literal
 
 - **Question:** Does the sole `MONR` resource in `RESOURCE.GFF` identify an
