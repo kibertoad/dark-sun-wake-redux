@@ -1898,7 +1898,8 @@
   identify a source record. The confirmed order coincides with the consecutive
   #40-#43 source block, but coincidence and names alone do not prove that
   complete resource selection. The owner identifies `dsun_009` as an enemy
-  moving frame, `dsun_011` as enemy striking, and `dsun_012` as combat during
+  moving frame. It visibly retains the dialogue chrome and lacks the compact
+  right-side status panel. `dsun_011` is enemy striking, and `dsun_012` is combat during
   Thy'rokh's turn. It visibly shows the party cluster and a compact right-side
   panel with `Thy'rokh`, `90/85`, and `Moves 15`; these are displayed strings,
   not assigned status/value semantics. `dsun_011` is confirmed as combat
