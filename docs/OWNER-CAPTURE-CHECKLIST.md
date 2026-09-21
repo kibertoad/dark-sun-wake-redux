@@ -113,6 +113,10 @@ example `review 2026-09-20 21:00 +03:00`. The agent then inspects only files
 timestamped from 21:00:00 through 21:59:59 in that local offset, and asks the
 owner to confirm any proposed semantic screenshot label before relying on it.
 
+The owner may instead authorize explicit screenshot filenames, for example
+`review files dsun_009.png, dsun_011.png, dsun_012.png`. This authorizes only
+those exact files; semantic labels still require owner confirmation.
+
 For the combat gate, include `combat captures C0-C6` in that line before the
 timestamp window.
 
