@@ -1535,6 +1535,27 @@ proof by itself. Never redirect broad output into the repository.
   as an owner-observed interaction contract, pending an independently
   traceable action path and rule-resolution evidence.
 
+### EXE-GOG-COMBAT-009 - Native mouse button-press wrapper has no direct caller
+
+- **Question:** Does the decoded native mouse button-press service provide a
+  direct caller that can identify the owner-confirmed enemy-click combat path?
+- **Target/method:** Use the local-only mapped image from
+  `EXE-GOG-OVERLAY-004`. `ReportInstructionContext` confirmed `MOV AX,5` in
+  `45b9:0059` immediately before its `INT 33h`; `ReportReferences` enumerated
+  the wrapper's direct callers, and a bounded decompilation classified only its
+  register-to-output forwarding.
+- **Bounded finding:** `45b9:0059` invokes `INT 33h` with service five and
+  copies the returned button/count and coordinate registers to caller-supplied
+  output words. It has no recovered direct reference in the mapped image.
+- **Interpretation:** this excludes only the simplest static form in which a
+  direct caller of the native button-press wrapper owns the combat click. It
+  does not identify a different mouse service, indirect call, callback, event
+  queue, driver path, or any click/target/attack behavior.
+- **Confidence:** high for the decoded service value, forwarding shape, and
+  zero recovered direct references; unknown for all mouse and combat semantics.
+- **Implementation consequence:** do not treat service five as evidence for a
+  combat click dispatcher, target model, approach, or automatic attack rule.
+
 ### EXE-GOG-MONR-001 - MONR has no raw executable tag literal
 
 - **Question:** Does the sole `MONR` resource in `RESOURCE.GFF` identify an
