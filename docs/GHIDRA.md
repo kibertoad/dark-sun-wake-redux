@@ -779,9 +779,12 @@ proof by itself. Never redirect broad output into the repository.
   the panel request with an unresolved `0x92e0` operand beside a recovered
   `RESOURCE.GFF` literal. Aggregate inventory confirms no `RESOURCE.GFF`
   resource number 37600 exists. `4758:01d5` has exactly two direct callers
-  (this routine and the other panel caller) and contains a `stdpatch` literal
-  plus generic initialization/state handling, not a decoded resource lookup.
-  Thus neither the operand nor the literal identifies a resource request.
+  (this routine and `74bb:0077`). The latter is the separate shared
+  RNG/redraw route recorded by `EXE-GOG-RNG-002`; it directly calls
+  `7393:0560` but has no recovered direct caller. `4758:01d5` contains a
+  `stdpatch` literal plus generic initialization/state handling, not a decoded
+  resource lookup. Thus neither the operand nor the literal identifies a
+  resource request.
 - **Interpretation:** this is a concrete native code connection from a
   dispatcher branch to static artwork observed only in combat captures. The
   follow-up makes the four-record operation less, not more, attributable to
