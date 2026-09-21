@@ -169,6 +169,9 @@ action, target, approach, attack, or confirmation handler.
 `EXE-GOG-COMBAT-013` follows its only coordinate-consuming far-thunk boundary,
 but the destination is outside the mapped image and its sole other recovered
 relation is non-coherent decompiler output; it supplies no combat semantics.
+`EXE-GOG-COMBAT-014` binds the coordinate branch's resident word to a broader
+combat-adjacent switch through its leader-change diagnostic, but no mapped
+caller or action meaning is recovered for value five or any other value.
 `EXE-GOG-COMBAT-009` additionally finds no direct caller of the decoded native
 mouse button-press wrapper, so it cannot supply the missing click path.
 `EXE-GOG-COMBAT-010` bounds native mouse callback registration to a shared

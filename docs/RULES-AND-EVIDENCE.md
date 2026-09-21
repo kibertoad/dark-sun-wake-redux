@@ -2195,6 +2195,9 @@
   mouse setup without a recovered handler or screen owner.
   `EXE-GOG-COMBAT-013` further reaches only an unmapped far-thunk boundary from
   the coordinate-consuming branch, with no coherent mapped destination.
+  `EXE-GOG-COMBAT-014` places that branch's resident value in a broader
+  combat-adjacent mode switch without assigning value five an attack or target
+  meaning.
   `EXE-GOG-KEYBOARD-002` excludes only two direct keyboard-controller I/O
   forms, and `EXE-GOG-KEYBOARD-003` finds no decoded function containing all
   six documented combat key values; none establishes the shipped command

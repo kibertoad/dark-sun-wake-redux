@@ -1710,6 +1710,43 @@ proof by itself. Never redirect broad output into the repository.
   independent measured action trace is still required before deriving a combat
   action path.
 
+### EXE-GOG-COMBAT-014 - Combat-adjacent mode switch does not name the coordinate action
+
+- **Question:** Does the resident word whose value five reaches the native
+  coordinate-consuming branch identify a combat attack mode, target action, or
+  confirmation route?
+- **Target/method:** Reuse the local-only mapped image from
+  `EXE-GOG-OVERLAY-004`. `ReportReferences` queried the flat mapped address
+  `ram:00059240`, which corresponds to the word read as value five by the
+  coordinate branch. A complete bounded decompilation of `74bb:0223` inspected
+  its direct reads and writes of that word, its one-through-five switch, and
+  the adjacent native diagnostic literal. `ReportReferences` then queried the
+  function entry.
+- **Bounded finding:** Ghidra records 27 direct references across 13 recovered
+  functions, including nine direct writes. The visible read comparisons use
+  zero, one, four, and five; direct immediate writes establish zero and one,
+  while the remaining writes copy register values. In `74bb:0223`, one guarded
+  path accepts word values one through five. Its case two enters a sequence
+  that passes the native `CAN'T CHANGE LEADER IN COMBAT` diagnostic, establishing
+  a combat-conditioned leader-change boundary for that case only. Cases one
+  through four have distinct operations; value five falls through to opaque
+  shared processing. The coordinate loop separately tests this same word for
+  five before forwarding local coordinates through the unmapped thunk from
+  `EXE-GOG-COMBAT-013`. No recovered direct reference targets `74bb:0223`.
+- **Interpretation:** the word participates in a native multi-mode control
+  boundary that is combat-adjacent, but this does not equate any numerical value
+  with combat globally. In particular, neither the leader-change diagnostic nor
+  the value-five coordinate branch establishes attack mode, enemy targeting,
+  approach, striking, confirmation, damage, turn order, or an action outcome.
+- **Confidence:** high for the reference count, visible read/write forms,
+  one-through-five branch shape, case-two diagnostic path, value-five coordinate
+  test, and lack of recovered direct callers; unknown for state ownership,
+  indirect callers, all value meanings, and gameplay semantics.
+- **Implementation consequence:** do not expose or persist these values as
+  combat modes, target states, or commands. Preserve the owner-observed direct
+  click behavior separately while a mapped action body or controlled trace is
+  obtained.
+
 ### EXE-GOG-MONR-001 - MONR has no raw executable tag literal
 
 - **Question:** Does the sole `MONR` resource in `RESOURCE.GFF` identify an
