@@ -17,11 +17,12 @@ committed or sent through Git.
    means the interval from `HH:00` through, but not including, the next hour.
 3. Capture every listed frame with DOSBox's built-in **Ctrl+F5** command. Do
    not use an operating-system screen capture or crop the result.
-4. Do not rename, edit, or move the generated files before confirmation. The
-   agent will inspect only screenshots in the configured DOSBox capture folder
-   whose timestamps fall within the owner-confirmed time window or
-   owner-authorized date-and-hour slot. It may report provisional geometric or
-   pixel observations, but will ask the owner to confirm a proposed semantic
+4. Do not rename, edit, or move the generated files before confirmation. Unless
+   a durable folder-wide authorization is recorded below, the agent inspects
+   only screenshots in the configured DOSBox capture folder whose timestamps
+   fall within the owner-confirmed time window or owner-authorized date-and-hour
+   slot. It may report provisional geometric or pixel observations, but will
+   ask the owner to confirm a proposed semantic
    label—such as a named screen, actor, turn, action, or transition—before
    recording or using that label as evidence.
 5. Where a step says “restore,” return the control to the observed initial
@@ -124,10 +125,10 @@ captures. It also does not assign a semantic identity to any image: the owner
 must still confirm a proposed screen, actor, action, turn, or transition label
 before it is recorded or used as behavior evidence.
 
-For the combat gate, include `combat captures C0-C6` in that line before the
-timestamp window.
+For a new bounded combat request, include `combat captures C0-C6` in that line.
+The durable folder-wide authorization above permits inspection of screenshots
+whose filenames lack timestamps; it does not assign their semantic labels.
 
-After that confirmation, the repository workflow permits bounded inspection of
-only the matching DOSBox screenshots. Until then, Preferences defaults,
-range/step behavior, frame-state mapping, About geometry, and combat behavior
-remain unknown.
+After semantic confirmation, the repository workflow may rely on the matching
+DOSBox screenshots. Until then, Preferences defaults, range/step behavior,
+frame-state mapping, About geometry, and combat behavior remain unknown.
