@@ -547,7 +547,10 @@ catalogs.
   party defeat using movement, targeting, attacks, wait, guard, previous/next
   target, and end-turn actions.
 - **Evidence.** MANUAL-1994 combat mouse modes and hotkeys; FAQ-81038 sections
-  2.1, 2.4, 2.8, and 3.1; OBS-GOG controlled combat traces. Manual and FAQ
+  2.1, 2.4, 2.8, and 3.1; OBS-GOG controlled combat traces. The owner reports
+  direct enemy click-to-approach-and-strike without a separate target-switching
+  or confirmation presentation, no visible turn-transition treatment, and an
+  immediate return to single-leader exploration on combat exit. Manual and FAQ
   material establishes investigation questions, not executable behavior.
 - **Entry gate.** Before code for this slice, record owner-confirmed controlled
   native captures covering entry, command availability, targeting, an attack

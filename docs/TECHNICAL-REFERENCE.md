@@ -131,11 +131,17 @@ semantics or item/spell behavior. See DATA-GOG-UI-010,
 OBS-GOG-PARTY-001, EXE-GOG-UI-009, and EXE-GOG-UI-010 before extending these
 screens.
 
-Combat remains evidence acquisition only. Owner-confirmed dsun_010 shows an
-enemy move with a changing right-side movement display. Owner-confirmed
-dsun_012 shows a combat turn labelled Thy'rokh, with visible panel strings
+Combat remains evidence acquisition only. The owner reports that entry leaves
+the map and character presentation substantially unchanged except for the
+absence of the compact status panel; the first stable combat state shows the
+currently active character's panel. The owner identifies dsun_009 as an enemy
+movement frame, dsun_011 as enemy striking, and dsun_012 as a player turn
+labelled Thy'rokh, with visible panel strings
 `90/85` and `Moves 15`; that identifies neither their value semantics nor a
-turn transition. Its static panel is the 98x32 BMP #19003 at (215,4), with a
+turn transition. The owner reports no visible turn-transition treatment and
+that a direct enemy click causes the active character to approach and strike,
+without a separate target-switching or confirmation presentation. The static
+panel is the 98x32 BMP #19003 at (215,4), with a
 dynamically overlaid region bounded to (243,8) through (284,31). dsun_011
 shows a red 11 feedback glyph whose visible glyph-area pure-red components
 occupy (151,95) through (178,113) on the 320x200 canvas. The required-revision-34 pack preserves the static artwork as
@@ -154,6 +160,9 @@ identify a renderer, value field, turn transition, or combat rule.
 eight-call native fan-in as a shared, feature-neutral boundary: only small
 `0`/`1` argument pairs are visible, with no recovered encounter, actor,
 command, damage, turn, or timing identity. It is not a combat-only route.
+`EXE-GOG-COMBAT-007` likewise follows the bounded native mouse-coordinate
+guard one direct caller layer without identifying a combat screen, click
+action, target, approach, attack, or confirmation handler.
 
 ## Object and static-scene route
 

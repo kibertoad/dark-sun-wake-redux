@@ -1254,6 +1254,43 @@ proof by itself. Never redirect broad output into the repository.
   gameplay rule from this shared helper boundary; the controlled C0-C6 capture
   gate and an independently traceable behavior path remain required.
 
+### EXE-GOG-COMBAT-007 - Mouse-coordinate dispatch remains screen-neutral
+
+- **Question:** Does the native coordinate-query caller with the established
+  320x200 interior guard lead directly to a combat-specific click, target, or
+  attack handler?
+- **Target:** the documented stable GOG-1432903719 `DSUN.EXE` target,
+  634,416 bytes, SHA-256
+  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, JDK 21.0.12.1. The documented path, package, size, and
+  baseline metadata remain unchanged, so this focused query reuses the
+  approved target without rehashing.
+- **Method:** `ReportInstructionContext` inspected the existing coordinate
+  call at `28c9:23a0`. `ReportReferences` then queried the containing function
+  `28c9:2322`, and one complete 91-line `ReportDecompileWindow` classified
+  only that immediate function. No indirect handler target, data structure, or
+  caller of the recovered process-entry function was decompiled.
+- **Bounded finding:** the coordinate call belongs to `28c9:2322`, which has
+  one recovered direct caller at `277b:056f`. The function obtains two local
+  coordinate words, rejects zero and values outside its previously recorded
+  `1..317`/`1..198` interior ranges, and branches through several resident
+  state guards. Its remaining branches call opaque helpers, including a
+  three-argument helper reached only under one state value, and retain no
+  recovered encounter, actor, target, action, damage, turn, clock, or combat
+  resource identity. The source-level function/call relation is real; all
+  helper roles remain unrecovered.
+- **Interpretation:** this extends the generic input boundary by one direct
+  caller layer, but does not connect a canvas click to combat. In particular,
+  it cannot distinguish direct enemy selection, target cycling, approach
+  movement, attack resolution, or a confirmation step from other input paths.
+- **Confidence:** high for the one direct recovered caller, local coordinate
+  guard, and bounded branch/call observations; unknown for every state value,
+  helper role, screen owner, click action, and combat behavior.
+- **Implementation consequence:** do not create a native-style combat click
+  dispatcher from this route. Preserve direct click-to-approach-and-strike only
+  as an owner-observed interaction contract, pending an independently
+  traceable action path and rule-resolution evidence.
+
 ### EXE-GOG-MONR-001 - MONR has no raw executable tag literal
 
 - **Question:** Does the sole `MONR` resource in `RESOURCE.GFF` identify an

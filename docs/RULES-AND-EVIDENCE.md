@@ -1897,10 +1897,16 @@
   raw PSIN masks 5/2. Neither the captions nor those structural differences
   identify a source record. The confirmed order coincides with the consecutive
   #40-#43 source block, but coincidence and names alone do not prove that
-  complete resource selection. The owner identifies `dsun_009` as an enemy
-  moving frame. It visibly retains the dialogue chrome and lacks the compact
-  right-side status panel. `dsun_011` is enemy striking, and `dsun_012` is combat during
-  Thy'rokh's turn. It visibly shows the party cluster and a compact right-side
+  complete resource selection. The owner reports that before combat the map
+  and character presentation remain substantially unchanged except that the
+  compact right-side status panel is absent; the first stable combat view shows
+  the currently active character's panel. There is no separate visible
+  target-switching or confirmation step: clicking an enemy makes the active
+  character approach and strike it. The owner identifies `dsun_009` as an
+  enemy-moving frame. It visibly retains the dialogue chrome and lacks the
+  compact right-side status panel. `dsun_011` is enemy striking, and
+  `dsun_012` is combat during Thy'rokh's turn. It visibly shows the party
+  cluster and a compact right-side
   panel with `Thy'rokh`, `90/85`, and `Moves 15`; these are displayed strings,
   not assigned status/value semantics. `dsun_011` is confirmed as combat
   damage being inflicted and visibly shows a red `11` feedback glyph over the
@@ -1914,7 +1920,8 @@
   artwork, placement, and a dynamic overlay region only; it identifies no
   panel text source, value meaning, movement rule, or update timing. The
   observed Thy'rokh frame establishes only that this labelled combat turn
-  state is visible; it does not establish how turns start, advance, or cycle.
+  state is visible; the owner reports no visible turn-transition treatment.
+  This does not establish how turns start, advance, or cycle.
   These captures do not establish movement-point scale, initial amount, cost,
   distance, path, collision, speed, attacker, target, damage rule, action,
   command input, turn progression, timing, hit resolution, or exit behavior.
@@ -1933,7 +1940,9 @@
   with the interface palette and the observed 98x32 frame. The manifest conversion
   retains source provenance; no Game renderer, value model, record reader, or
   combat update loop consumes this evidence-only asset.
-- **Confidence:** high for the owner-confirmed screenshot labels, member order,
+- **Confidence:** high for the owner-confirmed screenshot labels, reported
+  direct click interaction and absent visible target/turn-transition treatment,
+  member order,
   shell reuse, the four visible USE captions, AR'ANDA #40/THY'ROKH #42
   discrimination, candidate envelope/mask distinctions, visible enemy motion,
   movement-point-display change, Thy'rokh's visible combat turn panel, and
@@ -2113,16 +2122,21 @@
   members visible. The manual documents Guard (`G`), target-next (`N`),
   target-previous (`P`), end-turn (`Q`), Wait (`W`), and Space to disable
   computer control. During combat, a Walk click makes the character approach
-  and automatically attack the selected opponent. Melee requires adjacency and
-  a readied weapon; ranged requires an in-range opponent plus a readied missile
+  and automatically attack the selected opponent. The owner reports that this
+  is a direct enemy click, with no separately visible target-switching or
+  confirmation presentation; the manual's word “selected” therefore does not
+  establish a distinct visible selection state. Melee requires adjacency and a
+  readied weapon; ranged requires an in-range opponent plus a readied missile
   weapon or ammunition. A two-weapon melee configuration requires one-handed
   weapons in both hands. The documented invalid cursor means the attempted
   target is not eligible for that attack.
 - **Evidence:** MANUAL-1994, "How to Play" pages 4-6 and the visually reviewed
-  hotkey table on manual page 77. `EXE-GOG-COMBAT-001` excludes only two
-  direct-literal dispatcher forms, while `EXE-GOG-COMBAT-003` excludes the
-  queried `COMBAT`/`GUARD` label occurrences as a direct command-path lead;
-  neither establishes the shipped command implementation.
+  hotkey table on manual page 77. `OBS-GOG-PARTY-001` records the owner's
+  direct-click observation. `EXE-GOG-COMBAT-001` excludes only two
+  direct-literal dispatcher forms, `EXE-GOG-COMBAT-003` excludes the queried
+  `COMBAT`/`GUARD` label occurrences as a direct command-path lead, and
+  `EXE-GOG-COMBAT-007` leaves the bounded native mouse route screen-neutral;
+  none establishes the shipped command implementation.
 - **Confidence:** high for documented command bindings and intended attack
   eligibility; resolution order, exact computer-control semantics, and formulas
   are unknown.
@@ -2152,7 +2166,11 @@
   Class is harder to hit. The manual examples establish 5 THAC0 versus 3 AC
   requires 2 or higher, and 5 THAC0 versus -2 AC requires 7 or higher.
 - **Evidence:** MANUAL-1994 page 25, "Armor Class" and "THAC0". It explicitly
-  defines the random roll range and inclusive threshold.
+  defines the random roll range and inclusive threshold. FAQ-81038 section
+  2.1 independently restates the subtraction model but describes a strict
+  greater-than comparison and explicitly leaves automatic 1/20 behavior
+  uncertain. That secondary-report discrepancy is retained as an open native
+  behavior question rather than changing the manual-bounded helper.
 - **Confidence:** high for the base threshold and bounds. The manual names
   range, rear attacks, magic weapons, and magic spells as THAC0 modifiers but
   does not establish their numerical values or application order here.
@@ -2163,9 +2181,10 @@
   1/20 outcomes, mutate a combatant, or advance a turn.
 - **Tests:** both manual examples, equality/below-threshold boundaries,
   documented roll bounds, and overflow-safe extreme statistics.
-- **Uncertainty:** RNG algorithm and consumption, modifier values/order, natural
-  1/20 behavior, weapons, damage, resistance, incapacitation, and all combat
-  state transitions remain open.
+- **Uncertainty:** Whether the shipped comparison is inclusive at equality
+  (the manual and FAQ wording differ), RNG algorithm and consumption, modifier
+  values/order, natural 1/20 behavior, weapons, damage, resistance,
+  incapacitation, and all combat state transitions remain open.
 
 ### RULE-COMBAT-003 - Hit-point incapacity thresholds
 
