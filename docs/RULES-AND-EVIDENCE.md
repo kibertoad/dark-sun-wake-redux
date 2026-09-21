@@ -1923,6 +1923,11 @@
   EXE-GOG-COMBAT-006 classifies its direct eight-call fan-in as shared and
   feature-neutral: the visible boundary has only `0`/`1` arguments and no
   recovered combat identity.
+  The owner additionally confirms that combat has no dedicated post-combat
+  return frame: on exit, presentation immediately resumes ordinary exploration
+  and the visible party collapses to the single leader. This establishes only
+  the resulting presentation mode, not an exit condition, outcome, timing, or
+  state-transition rule.
 - **Implementation:** required-revision-34 extraction emits the bounded one-frame
   `images/combat/status-panel.dsix` derivative from `RESOURCE.GFF:BMP #19003`
   with the interface palette and the observed 98x32 frame. The manifest conversion
