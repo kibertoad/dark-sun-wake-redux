@@ -1297,8 +1297,11 @@ proof by itself. Never redirect broad output into the repository.
 - **Method:** `ReportInstructionContext` inspected the existing coordinate
   call at `28c9:23a0`. `ReportReferences` then queried the containing function
   `28c9:2322`, and one complete 91-line `ReportDecompileWindow` classified
-  only that immediate function. No indirect handler target, data structure, or
-  caller of the recovered process-entry function was decompiled.
+  only that immediate function. A fresh, local-only Ghidra 12.1.3 import then
+  revalidated the direct call at `277b:056f` in `277b:0024`, inspected its
+  sixteen-instruction context, and followed only the direct reference to that
+  containing routine. No indirect handler target or data structure was
+  decompiled.
 - **Bounded finding:** the coordinate call belongs to `28c9:2322`, which has
   one recovered direct caller at `277b:056f`. The function obtains two local
   coordinate words, rejects zero and values outside its previously recorded
@@ -1306,12 +1309,15 @@ proof by itself. Never redirect broad output into the repository.
   state guards. Its remaining branches call opaque helpers, including a
   three-argument helper reached only under one state value, and retain no
   recovered encounter, actor, target, action, damage, turn, clock, or combat
-  resource identity. The source-level function/call relation is real; all
-  helper roles remain unrecovered.
-- **Interpretation:** this extends the generic input boundary by one direct
-  caller layer, but does not connect a canvas click to combat. In particular,
-  it cannot distinguish direct enemy selection, target cycling, approach
-  movement, attack resolution, or a confirmation step from other input paths.
+  resource identity. The revalidated call occurs among generic calls and byte
+  state guards in `277b:0024`; its sole direct reference is the program entry
+  at `1000:0158`. The source-level entry-to-caller-to-coordinate-function
+  relation is real, but all intermediate helper roles remain unrecovered.
+- **Interpretation:** this extends the generic input boundary to an
+  entry-rooted caller chain, but does not connect a canvas click to combat. In
+  particular, it cannot distinguish direct enemy selection, target cycling,
+  approach movement, attack resolution, or a confirmation step from other
+  input paths.
 - **Confidence:** high for the one direct recovered caller, local coordinate
   guard, and bounded branch/call observations; unknown for every state value,
   helper role, screen owner, click action, and combat behavior.
