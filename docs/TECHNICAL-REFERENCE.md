@@ -168,6 +168,10 @@ guard one direct caller layer without identifying a combat screen, click
 action, target, approach, attack, or confirmation handler.
 `EXE-GOG-COMBAT-009` additionally finds no direct caller of the decoded native
 mouse button-press wrapper, so it cannot supply the missing click path.
+`EXE-GOG-COMBAT-010` bounds native mouse callback registration to a shared
+availability probe and full-mask setup. Its one direct caller does not recover
+a reliable callback target or screen owner, so it is not evidence for combat
+click dispatch or action rules.
 `DATA-GOG-MONR-002` corrects the opaque `MONR` structural lead from a rejected
 14-by-81 arithmetic split to a stronger 27-by-42 aligned-word envelope with a
 constant tail. No executable loader or combat meaning is established.

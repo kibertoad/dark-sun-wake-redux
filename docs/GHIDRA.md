@@ -1556,6 +1556,35 @@ proof by itself. Never redirect broad output into the repository.
 - **Implementation consequence:** do not treat service five as evidence for a
   combat click dispatcher, target model, approach, or automatic attack rule.
 
+### EXE-GOG-COMBAT-010 - Mouse callback registration is global setup, not a combat route
+
+- **Question:** Does registration of the native mouse callback reveal the
+  owner-confirmed enemy-click combat path or its action handler?
+- **Target/method:** Use the local-only mapped image from
+  `EXE-GOG-OVERLAY-004`. `ReportInstructionContext` confirmed the existing
+  native callback-registration wrapper at `45b9:0122`; `ReportReferences`
+  enumerated its direct callers. Bounded decompilation and instruction context
+  then classified that caller and checked the decompiler-reconstructed callback
+  address.
+- **Bounded finding:** the wrapper has one recovered direct caller,
+  `44d0:002f`, reached from `44d0:0006`. That routine first probes native mouse
+  availability, then registers a full event mask and marks mouse support as
+  available. Ghidra reconstructs its callback pointer as `45b9:0053`, but that
+  address is inside the epilogue of the already-decoded coordinate-query wrapper
+  beginning at `45b9:0034`, rather than a callable function entry. The mapping
+  therefore does not yield a reliable callback target or a screen owner.
+- **Interpretation:** this is bounded evidence of shared mouse initialization
+  only. It neither identifies a callback handler nor connects registration to
+  combat, target selection, approach, striking, or any other action semantics.
+- **Confidence:** high for the single direct registration caller, its local
+  probe/register/marker shape, and the non-entry status of the reconstructed
+  pointer; unknown for the actual callback target, any indirect dispatch, and
+  all combat behavior.
+- **Implementation consequence:** do not derive a combat event loop, click
+  handler, target model, approach rule, or automatic-attack rule from this
+  global registration path. A combat-specific path still needs independent
+  executable or controlled-observation evidence.
+
 ### EXE-GOG-MONR-001 - MONR has no raw executable tag literal
 
 - **Question:** Does the sole `MONR` resource in `RESOURCE.GFF` identify an
