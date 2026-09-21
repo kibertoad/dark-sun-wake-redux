@@ -113,6 +113,8 @@ do not copy game-specific findings. Preferred scripts are deliberately bounded:
 - short instruction context that cannot cross the containing function;
 - call-site filtering using an exact callee and known scalar arguments.
 - immediate-port setup followed by bounded same-function `DX` I/O.
+- explicit DOS `INT 21h` instructions with a literal `AH` setup found no more
+  than twelve preceding instructions earlier in the same function.
 
 Script output is temporary navigation evidence, not production input and not
 proof by itself. Never redirect broad output into the repository.
