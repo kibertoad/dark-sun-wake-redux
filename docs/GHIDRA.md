@@ -1761,14 +1761,19 @@ proof by itself. Never redirect broad output into the repository.
   two directly before the call; it does not supply literal five. The containing
   routine has opaque status and BIOS-keyboard guards, routes either through the
   setter or other helpers, and contains no recovered encounter, actor, target,
-  attack, damage, turn, or action-result identity.
+  attack, damage, turn, or action-result identity. Its sole recovered entry
+  transfer is an unconditional jump at `2834:00a4` from the already-bounded
+  opaque selection routine. The 16-instruction context there contains resident
+  word initialization/comparisons and a generic far helper, but no combat
+  action identity, literal-five assignment, or target/result data.
 - **Interpretation:** the simplest recovered setter call supports a value-two
   transfer only. It does not establish what value two means, exclude indirect or
   register-mediated writes of five, or identify the value-five coordinate branch
   as an attack, target selection, movement, or confirmation operation.
 - **Confidence:** high for the one direct caller, literal-two instruction
-  context, and bounded caller shape; unknown for calling convention details,
-  indirect writers/callers, all value meanings, and gameplay semantics.
+  context, one upstream transfer, and bounded caller shapes; unknown for
+  calling convention details, indirect writers/callers, all value meanings,
+  and gameplay semantics.
 - **Implementation consequence:** do not infer a combat command or action from
   the resident-mode setter. Keep value five and its coordinate consumer
   evidence-only pending a traceable producer and mapped action body.
