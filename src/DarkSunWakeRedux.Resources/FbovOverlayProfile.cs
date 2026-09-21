@@ -20,15 +20,21 @@ public sealed record FbovOverlayProfile(
     int DescendingDescriptorRangeCount,
     ushort MinimumSegment,
     ushort MaximumSegment,
+    int OverlayHeaderDescriptorCount,
+    int OverlayHeaderTrapStubCount,
+    int OverlayHeaderPayloadRangeCount,
+    long TotalOverlayCodeByteLength,
+    long TotalOverlayFixupByteLength,
     IReadOnlyList<FbovOverlayFlagProfile> Flags);
 
 public static class FbovOverlayProfileReader
 {
     public const long MaximumExecutableBytes = 16L * 1024 * 1024;
     public const int MaximumSegmentDescriptorCount = 65_536;
-    private const int MzHeaderMinimumLength = 6;
+    private const int MzHeaderMinimumLength = 10;
     private const int FbovEnvelopeLength = 16;
     private const int SegmentDescriptorLength = 8;
+    private const int OverlayHeaderStaticLength = 16;
 
     public static FbovOverlayProfile Read(Stream stream, string sourceName = "executable")
     {
@@ -44,6 +50,8 @@ public static class FbovOverlayProfileReader
             throw Error(sourceName, "does not begin with an MZ header");
         var finalPageBytes = BinaryPrimitives.ReadUInt16LittleEndian(mzHeader[2..]);
         var pageCount = BinaryPrimitives.ReadUInt16LittleEndian(mzHeader[4..]);
+        var mzHeaderByteLength = checked((long)BinaryPrimitives.ReadUInt16LittleEndian(
+            mzHeader[8..]) * 16);
         if (pageCount == 0 || finalPageBytes > 512)
             throw Error(sourceName, "has invalid MZ page counts");
         var mzFileByteLength = finalPageBytes == 0
@@ -52,6 +60,8 @@ public static class FbovOverlayProfileReader
         if (mzFileByteLength < MzHeaderMinimumLength ||
             mzFileByteLength > stream.Length - FbovEnvelopeLength)
             throw Error(sourceName, "does not leave a complete FBOV envelope after the MZ file");
+        if (mzHeaderByteLength < MzHeaderMinimumLength || mzHeaderByteLength > mzFileByteLength)
+            throw Error(sourceName, "has an invalid MZ header length");
 
         stream.Position = mzFileByteLength;
         Span<byte> envelope = stackalloc byte[FbovEnvelopeLength];
@@ -78,9 +88,16 @@ public static class FbovOverlayProfileReader
         var descendingRanges = 0;
         ushort minimumSegment = ushort.MaxValue;
         ushort maximumSegment = ushort.MinValue;
+        var overlayHeaderDescriptorCount = 0;
+        var overlayHeaderTrapStubCount = 0;
+        var overlayHeaderPayloadRangeCount = 0;
+        long totalOverlayCodeBytes = 0;
+        long totalOverlayFixupBytes = 0;
         Span<byte> descriptor = stackalloc byte[SegmentDescriptorLength];
+        Span<byte> overlayHeader = stackalloc byte[OverlayHeaderStaticLength];
         for (var index = 0; index < descriptorCount; index++)
         {
+            stream.Position = segmentTableFileOffset + (long)index * SegmentDescriptorLength;
             ReadExactly(stream, descriptor, sourceName, $"FBOV descriptor {index}");
             var segment = BinaryPrimitives.ReadUInt16LittleEndian(descriptor);
             var maximumOffset = BinaryPrimitives.ReadUInt16LittleEndian(descriptor[2..]);
@@ -91,11 +108,34 @@ public static class FbovOverlayProfileReader
             if (maximumOffset >= minimumOffset) ascendingRanges++;
             else descendingRanges++;
             flags[flag] = flags.GetValueOrDefault(flag) + 1;
+
+            if ((flag & 2) == 0) continue;
+
+            overlayHeaderDescriptorCount++;
+            var headerOffset = checked(mzHeaderByteLength + (long)segment * 16);
+            if (headerOffset > mzFileByteLength - OverlayHeaderStaticLength)
+                throw Error(sourceName, $"places FBOV overlay header {index} outside the MZ file");
+            stream.Position = headerOffset;
+            ReadExactly(stream, overlayHeader, sourceName, $"FBOV overlay header {index}");
+            if (overlayHeader[0] == 0xcd && overlayHeader[1] == 0x3f)
+                overlayHeaderTrapStubCount++;
+
+            var payloadOffset = BinaryPrimitives.ReadUInt32LittleEndian(overlayHeader[4..]);
+            var codeBytes = BinaryPrimitives.ReadUInt16LittleEndian(overlayHeader[8..]);
+            var fixupBytes = BinaryPrimitives.ReadUInt16LittleEndian(overlayHeader[10..]);
+            var payloadEnd = checked((long)payloadOffset + codeBytes + fixupBytes);
+            if (payloadEnd > declaredPayloadLength)
+                throw Error(sourceName, $"places FBOV overlay payload {index} outside the physical overlay");
+            overlayHeaderPayloadRangeCount++;
+            totalOverlayCodeBytes += codeBytes;
+            totalOverlayFixupBytes += fixupBytes;
         }
 
         return new(stream.Length, mzFileByteLength, mzFileByteLength, declaredPayloadLength,
             segmentTableFileOffset, descriptorCount, segmentTableEnd, ascendingRanges,
             descendingRanges, minimumSegment, maximumSegment,
+            overlayHeaderDescriptorCount, overlayHeaderTrapStubCount,
+            overlayHeaderPayloadRangeCount, totalOverlayCodeBytes, totalOverlayFixupBytes,
             flags.OrderBy(pair => pair.Key).Select(pair => new FbovOverlayFlagProfile(pair.Key,
                 pair.Value)).ToArray());
     }

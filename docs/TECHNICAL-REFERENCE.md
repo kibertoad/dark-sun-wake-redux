@@ -340,12 +340,14 @@ rejecting unsupported semantics:
   specific control handler nor any widget drawing/chrome path, so serialized
   image-less controls remain geometry/event contracts rather than invented
   pixels.
-- `EXE-GOG-OVERLAY-001` now has a reproducible `fbov-profile` envelope check:
+- `EXE-GOG-OVERLAY-001` / `003` now have reproducible `fbov-profile` checks:
   DSUN's physical overlay is `FBOV`, declares 276,656 payload bytes, and its
-  229 opaque descriptors occupy MZ-file offsets `[307328,309160)`. Their raw
-  endpoint totals cannot directly describe that payload, so this validates a
-  container boundary only—not an overlay address map, loader call, resource
-  reader, combat rule, or executable behavior.
+  229 descriptors occupy MZ-file offsets `[307328,309160)`. The 49 descriptors
+  whose raw flag includes `0x0002` resolve to in-MZ `CD 3F` header prefixes;
+  their bounded payload spans total 258,376 code bytes plus 16,524 fixup
+  bytes. This is a header-to-payload metadata map, not a loaded-address map,
+  loader call, resource reader, combat rule, or executable behavior. The raw
+  endpoint totals remain unsuitable as a payload map.
 - `EXE-GOG-OVERLAY-002` rules out the first concrete file-I/O candidate: the
   only loaded-image routine that directly uses both the bounded DOS seek and
   read wrappers scans caller-supplied six-byte signatures and lengths. It has

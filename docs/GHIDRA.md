@@ -679,6 +679,43 @@ proof by itself. Never redirect broad output into the repository.
   payloads, or attach physical overlay literals to combat/resource behavior
   from this generic file-reader path.
 
+### EXE-GOG-OVERLAY-003 - FBOV flags identify bounded overlay-header metadata
+
+- **Question:** Can DSUN's physical FBOV descriptor table be checked as a
+  structural map to overlay-header metadata without assigning a gameplay
+  meaning or importing any tail bytes into the repository?
+- **Target/method:** The documented stable GOG-1432903719 `DSUN.EXE` target
+  (634,416 bytes, SHA-256
+  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`) was
+  profiled by the repository-owned, read-only `fbov-profile` Inspector query.
+  The query reads the MZ header length, the existing 229 eight-byte FBOV
+  descriptors, and only the fixed 16-byte prefix at an MZ-relative segment
+  address for descriptors whose flag has bit `0x0002`. This interpretation of
+  the flag layout is a secondary format lead from the public CC0
+  [VROOMM reference](https://github.com/NancySadkov/devroomm); every reported
+  DSUN count and bound is independently validated from the fingerprinted file.
+  Synthetic inputs cover a valid stub, a mismatched envelope, and an
+  out-of-range table.
+- **Bounded finding:** 49 descriptors have bit `0x0002` set (all are raw flag
+  value `3`). Each resolves to an in-MZ 16-byte header prefix beginning
+  `CD 3F`; each supplies an in-range FBOV-relative code/fixup span. The 49
+  reported code spans total 258,376 bytes and their fixup spans total 16,524
+  bytes. The remaining 1,756 bytes of the 276,656-byte physical payload are
+  not thereby classified. This replaces the earlier rejected endpoint-sum
+  hypothesis with a bounded header-to-payload relation.
+- **Interpretation:** DSUN uses a standard-shaped FBOV overlay-header scheme.
+  The result identifies local metadata and payload bounds, not an overlay load
+  address, relocation result, function entry point, module name, call graph,
+  resource role, combat routine, or any gameplay rule. It is compatible with
+  combat code residing in an overlay but does not establish that proposition.
+- **Confidence:** high for the 49 descriptor/header/payload range checks and
+  aggregate byte totals; unknown for every overlay's behavior and for the
+  unclassified payload remainder.
+- **Implementation consequence:** retain `fbov-profile` as a metadata-only
+  inspector. A local-only mapped analysis image may be prepared only for a
+  further focused static question; no overlay bytes, relocated image, or
+  disassembly may be committed or consumed by the game.
+
 ### EXE-GOG-UI-006 - Character-generation IDs do not identify control behavior
 
 - **Question:** Do the character-generation window, class-label, EXIT, or DONE
