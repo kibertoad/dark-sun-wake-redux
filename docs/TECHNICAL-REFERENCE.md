@@ -150,6 +150,10 @@ source match in the 26 owned GFF archives; `EXE-GOG-COMBAT-005` likewise finds
 no null-terminated executable literal. Those bounded negative results leave
 the visible caption dynamically sourced but otherwise opaque; they do not
 identify a renderer, value field, turn transition, or combat rule.
+`EXE-GOG-COMBAT-006` additionally classifies the static panel request's direct
+eight-call native fan-in as a shared, feature-neutral boundary: only small
+`0`/`1` argument pairs are visible, with no recovered encounter, actor,
+command, damage, turn, or timing identity. It is not a combat-only route.
 
 ## Object and static-scene route
 

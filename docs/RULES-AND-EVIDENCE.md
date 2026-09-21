@@ -1920,6 +1920,9 @@
   command input, turn progression, timing, hit resolution, or exit behavior.
   EXE-GOG-COMBAT-004 separately establishes the panel's native BMP
   request/cache path but identifies no combat owner or overlay semantics.
+  EXE-GOG-COMBAT-006 classifies its direct eight-call fan-in as shared and
+  feature-neutral: the visible boundary has only `0`/`1` arguments and no
+  recovered combat identity.
 - **Implementation:** required-revision-34 extraction emits the bounded one-frame
   `images/combat/status-panel.dsix` derivative from `RESOURCE.GFF:BMP #19003`
   with the interface palette and the observed 98x32 frame. The manifest conversion

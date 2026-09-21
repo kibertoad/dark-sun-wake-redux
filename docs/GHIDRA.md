@@ -1196,6 +1196,46 @@ proof by itself. Never redirect broad output into the repository.
   or game-rule lead. Keep the observed panel's dynamic region and text/value
   source opaque pending an independent native path or controlled observation.
 
+### EXE-GOG-COMBAT-006 - Panel loader's immediate fan-in remains feature-neutral
+
+- **Question:** Do the direct recovered callers of the native boundary that
+  immediately contains the BMP #19003 panel request identify a combat-specific
+  owner or pass a recoverable encounter, actor, command, damage, turn, or
+  timing identity?
+- **Target:** the documented stable GOG-1432903719 `DSUN.EXE` target,
+  634,416 bytes, SHA-256
+  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. The approved path,
+  package, size, and baseline metadata remain unchanged, so this focused query
+  reuses the target without rehashing.
+- **Method:** `ReportInstructionContext` first classified the immediate panel
+  caller's call at `2c5f:0705` as lying in recovered function `2c5f:06cb`.
+  `ReportReferences` then enumerated its eight direct recovered calls:
+  `28c9:33ce`, `28c9:342e`, `28c9:348d`, `2c5f:0175`, `2c5f:031e`,
+  `31e0:13e2`, `31e0:1759`, and `362c:0c08`. One bounded eight-instruction
+  context was inspected at each call site; no decompilation window or broader
+  call-graph traversal was retained.
+- **Bounded finding:** the three `28c9` calls occur in one recovered function;
+  the remaining five calls occur in five other recovered functions across
+  three code segments. Each prepares only `0` or `1` immediate arguments at
+  the visible call boundary: six sites use `(1,1)`, while `2c5f:0175` and
+  `362c:0c08` use `(1,0)`. The contexts contain no recovered panel resource
+  identity, encounter, actor, command, damage amount, turn identifier, clock,
+  or other combat-specific scalar. This is the eight-call fan-in previously
+  bounded by EXE-GOG-COMBAT-004, now classified at the direct-call boundary.
+- **Interpretation:** the two small arguments may be generic mode or success
+  flags, but their role is not established. The shared fan-in remains
+  compatible with indirect feature ownership and does not make BMP #19003 a
+  combat-only UI route. It also does not exclude a combat caller that reaches
+  this helper indirectly.
+- **Confidence:** high for the recovered function/call-site list, code-segment
+  distribution, and visible `0`/`1` argument pairs; unknown for argument
+  meaning, feature ownership, text/value rendering, and all combat behavior.
+- **Implementation consequence:** preserve the panel only as source-backed
+  artwork. Do not add a combat presenter, panel model, loader simulation, or
+  gameplay rule from this shared helper boundary; the controlled C0-C6 capture
+  gate and an independently traceable behavior path remain required.
+
 ### EXE-GOG-MONR-001 - MONR has no raw executable tag literal
 
 - **Question:** Does the sole `MONR` resource in `RESOURCE.GFF` identify an
