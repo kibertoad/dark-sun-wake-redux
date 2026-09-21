@@ -2332,8 +2332,10 @@ proof by itself. Never redirect broad output into the repository.
   operands. `ReportFunctionScalarIntersection` searched those functions for
   the `OJFF` tag and found exactly one: `32a3:02cf`. `ReportReferences`, a
   bounded decompilation, and 24-instruction contexts around both tag operands
-  then inspected only this routine. Mapped addresses are transform addresses,
-  not claimed original load addresses.
+  then inspected only this routine. A second full function-scalar intersection
+  for `RDFF` and panel ID 19003 found no decoded function containing both.
+  Mapped addresses are transform addresses, not claimed original load
+  addresses.
 - **Bounded finding:** `32a3:02cf` has three direct callers. Its first
   tag-aware call pushes `OJFF` after passing its word parameter at `[BP+6]`.
   A later, guarded call pushes `RDFF` and passes that same parameter. The
@@ -2343,6 +2345,10 @@ proof by itself. Never redirect broad output into the repository.
   it does not take this routine's recovered RDFF branch. The routine has
   overlapping-instruction warnings elsewhere, so the result is limited to the
   decoded operand order and guard, not a full object schema.
+- **Separate bounded absence:** no decoded mapped function co-locates the
+  `RDFF` tag with static panel ID 19003. This rules out only direct same-
+  function label-data/panel-bitmap composition, not calls, tables, indirection,
+  dynamic formatting, or another panel route.
 - **Interpretation:** this is a real shared OJFF/RDFF bridge, but it excludes
   the tempting direct use of that bridge to resolve #9258's `Draxan` label.
   It neither identifies a different #9258 path nor proves that #9258 has no
