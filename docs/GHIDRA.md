@@ -641,6 +641,39 @@ proof by itself. Never redirect broad output into the repository.
 - **Confidence:** high for exact physical-file counts and MZ boundary; unknown for overlay loading, address mapping, ownership, and behavior.
 - **Implementation consequence:** retain affected resources as opaque or already evidenced contracts; do not infer readers or gameplay from overlay literals.
 
+### EXE-GOG-OVERLAY-002 - Bounded DOS seek/read path does not identify the FBOV loader
+
+- **Question:** Do the loaded-image routines that explicitly seek and read DOS
+  files establish a native path from DSUN's MZ/FBOV metadata to overlay bytes?
+- **Target/method:** The documented stable GOG-1432903719 `DSUN.EXE` target
+  was queried in a fresh local-only Ghidra 12.1.3 project. The bounded
+  `ReportDosInt21Services` script found literal `AH=42h` seek and `AH=3Fh`
+  read setups no more than twelve instructions before explicit `INT 21h` calls.
+  `ReportReferences`, short instruction contexts, and one complete 50-line
+  decompile window then classified only the one routine that directly calls
+  both wrappers.
+- **Bounded finding:** the seek wrapper receives caller-supplied handle,
+  origin, and 32-bit offset. The read wrapper transfers caller-supplied memory
+  in bounded chunks. Their only common direct caller is `47b9:008b`: it seeks
+  to file offset zero, repeatedly reads a six-byte header into resident scratch
+  storage until two caller-supplied 16-bit values match, seeks to a
+  header-derived 32-bit offset, reads a caller-visible 16-bit length, allocates
+  that many bytes, and reads the remainder into the allocation. Its observed
+  seek calls use zero or resident offsets; no call supplies DSUN's MZ end
+  (357,744), FBOV marker, declared payload size, segment-table offset, or a
+  recovered descriptor value.
+- **Interpretation:** this is a real generic signature/length file-reader
+  path, but it does not identify an FBOV loader or map any overlay bytes to a
+  runtime address. The file handle, two header values, derived offsets, and
+  higher-level feature ownership remain unresolved.
+- **Confidence:** high for the explicit DOS service setups, direct-call
+  intersection, bounded wrapper behavior, and absent observed FBOV inputs;
+  unknown for every indirect caller, dynamically supplied offset, and overlay
+  loading mechanism.
+- **Implementation consequence:** do not model FBOV loading, expose overlay
+  payloads, or attach physical overlay literals to combat/resource behavior
+  from this generic file-reader path.
+
 ### EXE-GOG-UI-006 - Character-generation IDs do not identify control behavior
 
 - **Question:** Do the character-generation window, class-label, EXIT, or DONE

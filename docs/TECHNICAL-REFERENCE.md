@@ -346,6 +346,11 @@ rejecting unsupported semantics:
   endpoint totals cannot directly describe that payload, so this validates a
   container boundary only—not an overlay address map, loader call, resource
   reader, combat rule, or executable behavior.
+- `EXE-GOG-OVERLAY-002` rules out the first concrete file-I/O candidate: the
+  only loaded-image routine that directly uses both the bounded DOS seek and
+  read wrappers scans caller-supplied six-byte signatures and lengths. It has
+  no recovered MZ-end, `FBOV`, or descriptor-table input, so it does not map
+  the physical overlay or establish a combat/resource code path.
 - `EXE-GOG-SMALLTAG-001` finds no literal executable loader lead for `GREQ`,
   `CACT`, `PLYL`, or `CSEQ`. `DATA-GOG-SMALLTAG-001` bounds their owned
   inventories and short envelopes; `DATA-GOG-PLYL-002` additionally rejects a
