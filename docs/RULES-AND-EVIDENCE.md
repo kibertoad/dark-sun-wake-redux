@@ -421,6 +421,45 @@
   width/length coverage; `record-profile` validates the GFF/tag/resource input
   and exposes aggregate JSON for local-only analysis.
 
+### DATA-GOG-MONR-002 - MONR has a 27-by-42 aligned-word envelope
+
+- **Question:** Does a different exact divisor of the owned `MONR` payload
+  yield a structurally stronger opaque envelope than the rejected 14-by-81
+  candidate?
+- **Method:** The metadata-only `record-profile` inspector compared each exact
+  divisor as a candidate width. The new `raster-profile` inspector measured
+  aggregate adjacent-byte continuity for the same candidates without retaining
+  payload bytes. It reports only dimensions, byte counts, distinct/zero counts,
+  and equal-neighbor counts. Follow-up per-column aggregate statistics examined
+  the 42-byte candidate; no value, field name, resource association, or record
+  role was assigned.
+- **Finding:** 1,134 divides exactly into 27 42-byte chunks. At that width,
+  every odd byte at offsets 1, 5, 9, 13, 17, 21, 25, 27, 29, 31, 33, 35, and
+  37 is zero in all 27 chunks; the high bytes at 3, 7, 11, 15, 19, and 23 vary
+  only between zero and one. All four bytes at offsets 38 through 41 are zero
+  in every chunk. The first aligned word has 27 distinct nonzero values, while
+  the remaining aligned positions have smaller repeated value sets. The 42-wide
+  arrangement has 893 equal vertical neighbors among 1,092 candidate pairs,
+  substantially exceeding every other practical factor width except the
+  related 126-byte grouping; the latter merely combines three 42-byte units.
+  This is a stronger repeated aligned-word envelope than the earlier 81-byte
+  arithmetic split.
+- **Interpretation:** the owned payload supports exactly 27 repeated 42-byte
+  units containing aligned little-endian-looking word positions and a constant
+  four-byte tail. That establishes an opaque structural candidate only. It does
+  not identify a header, an index, a monster, a hostile, a hit-point field, a
+  combatant, a resource reference, a loader, or an encounter relationship.
+- **Confidence:** high for the owned length/divisibility, aggregate offset
+  statistics, zero-tail observation, and relative candidate-continuity result;
+  unknown for every semantic interpretation and runtime relationship.
+- **Implementation consequence:** preserve `MONR` as DSOP. Do not add a
+  semantic `MONR` reader, catalog, record field, or combat rule. The 42-byte
+  envelope is a bounded future correlation target for a constrained executable
+  path or controlled observation.
+- **Tests/tooling:** `OpaqueRasterProfile` has synthetic aggregate and invalid
+  input coverage. The `raster-profile` Inspect command is local-only and emits
+  no source bytes.
+
 ### DATA-GOG-TITLE-001 - Title image resource mapping
 
 - **Question:** Which resource and palette form the static game-title image?

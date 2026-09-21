@@ -163,6 +163,9 @@ command, damage, turn, or timing identity. It is not a combat-only route.
 `EXE-GOG-COMBAT-007` likewise follows the bounded native mouse-coordinate
 guard one direct caller layer without identifying a combat screen, click
 action, target, approach, attack, or confirmation handler.
+`DATA-GOG-MONR-002` corrects the opaque `MONR` structural lead from a rejected
+14-by-81 arithmetic split to a stronger 27-by-42 aligned-word envelope with a
+constant tail. No executable loader or combat meaning is established.
 
 ## Object and static-scene route
 
