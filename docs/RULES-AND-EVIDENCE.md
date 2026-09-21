@@ -2187,6 +2187,9 @@
   direct-literal dispatcher forms, `EXE-GOG-COMBAT-003` excludes the queried
   `COMBAT`/`GUARD` label occurrences as a direct command-path lead,
   `EXE-GOG-COMBAT-007` leaves the bounded native mouse route screen-neutral,
+  `EXE-GOG-COMBAT-009` finds no direct caller of the native button-press
+  wrapper, and `EXE-GOG-COMBAT-010` bounds callback registration to global
+  mouse setup without a recovered handler or screen owner.
   `EXE-GOG-KEYBOARD-002` excludes only two direct keyboard-controller I/O
   forms, and `EXE-GOG-KEYBOARD-003` finds no decoded function containing all
   six documented combat key values; none establishes the shipped command
