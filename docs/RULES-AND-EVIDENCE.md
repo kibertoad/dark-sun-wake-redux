@@ -2134,9 +2134,10 @@
   hotkey table on manual page 77. `OBS-GOG-PARTY-001` records the owner's
   direct-click observation. `EXE-GOG-COMBAT-001` excludes only two
   direct-literal dispatcher forms, `EXE-GOG-COMBAT-003` excludes the queried
-  `COMBAT`/`GUARD` label occurrences as a direct command-path lead, and
-  `EXE-GOG-COMBAT-007` leaves the bounded native mouse route screen-neutral;
-  none establishes the shipped command implementation.
+  `COMBAT`/`GUARD` label occurrences as a direct command-path lead,
+  `EXE-GOG-COMBAT-007` leaves the bounded native mouse route screen-neutral,
+  and `EXE-GOG-KEYBOARD-002` excludes only two direct keyboard-controller I/O
+  forms; none establishes the shipped command implementation.
 - **Confidence:** high for documented command bindings and intended attack
   eligibility; resolution order, exact computer-control semantics, and formulas
   are unknown.

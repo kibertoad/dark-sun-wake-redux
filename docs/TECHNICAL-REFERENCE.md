@@ -376,7 +376,10 @@ rejecting unsupported semantics:
   external caller masks two returned bits while processing an opaque 37-byte
   resident record; no recovered keyboard site reads a key code or maps a
   player action. Manual and observed keyboard routes therefore remain separate
-  evidence, not a consequence of this generic path.
+  evidence, not a consequence of this generic path. `EXE-GOG-KEYBOARD-002`
+  additionally excludes only direct `IN AL,60h` and bounded immediate-DX
+  keyboard-controller port forms; it does not identify a replacement
+  key-acquisition or combat-command route.
 - `EXE-GOG-PORT-001` finds no literal `PORT` tag in the executable. It does
   not contradict the observed first-Tyr portrait, but supplies no general
   portrait loader, palette, drawing, dialogue, or timing rule.

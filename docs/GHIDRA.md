@@ -927,6 +927,35 @@ proof by itself. Never redirect broad output into the repository.
   opaque two-bit guard; a screen-specific consumer path and controlled trace
   are required.
 
+### EXE-GOG-KEYBOARD-002 - No direct keyboard-controller port lead
+
+- **Question:** Does the supported executable directly read the conventional
+  keyboard-controller data port, or set `DX` to conventional keyboard-controller
+  ports before `IN`/`OUT`, providing a focused combat-hotkey dispatch lead?
+- **Target:** the documented stable GOG-1432903719 `DSUN.EXE` target,
+  634,416 bytes, SHA-256
+  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3 and JDK 21.0.12.1. The documented path, package, size, and
+  baseline metadata remain unchanged, so this focused query reuses the
+  approved target without rehashing.
+- **Method:** `ReportBytePattern` searched all loaded program blocks for the
+  exact immediate-port input encoding `e4 60` (`IN AL,60h`).
+  `ReportImmediatePortIo` separately scanned recovered functions for
+  `MOV DX,60h` or `MOV DX,64h` followed within 16 instructions by a DX-addressed
+  `IN` or `OUT` operation.
+- **Bounded finding:** neither query produced a match.
+- **Interpretation:** this excludes only the exact immediate byte-read and the
+  bounded immediate-DX controller-port forms. Keyboard input may arrive through
+  BIOS/DOS services, an installed driver, a dynamically supplied port, another
+  executable, or an indirect/native handler. It does not identify or exclude
+  any player key, hotkey dispatch, repeat policy, combat command, or turn
+  behavior.
+- **Confidence:** high for the two queried raw/recovered instruction forms;
+  unknown for every other keyboard acquisition and dispatch path.
+- **Implementation consequence:** retain the manual-evidenced combat bindings
+  as unconnected semantic input requests. Do not emulate controller I/O or
+  infer combat hotkey behavior from this negative probe.
+
 ### EXE-GOG-MEDIA-001 - no literal FLI header validation lead in DSUN.EXE
 
 - **Question:** Does the supported executable contain the literal FLI header
