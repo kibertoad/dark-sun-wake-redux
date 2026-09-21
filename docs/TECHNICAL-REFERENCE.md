@@ -204,6 +204,19 @@ or a turn phase.
 14-by-81 arithmetic split to a stronger 27-by-42 aligned-word envelope with a
 constant tail. No executable loader or combat meaning is established.
 
+### Combat evidence ledger
+
+| Surface | Established evidence | What is deliberately not inferred | Next evidence needed |
+|---|---|---|---|
+| Entry and exit presentation | Owner reports exploration stays visually continuous at entry apart from the compact panel; combat exit immediately resumes single-leader exploration. | Encounter trigger, state transition, victory/defeat conditions, or any invisible setup/teardown. | C0, C1, and C6 controlled captures plus a traceable owner path. |
+| Active-combatant display | Owner-confirmed dsun_011/dsun_012 frames show the static #19003 panel at (215,4) with different dynamic strings; dsun_012 is Thy'rokh's labelled turn. | The panel values' field ownership, meaning, update cadence, or turn algorithm. | A native text/value producer or a controlled frame sequence correlated to source data. |
+| Hostile motion and strike feedback | Owner confirms dsun_009 as enemy movement and dsun_011 as enemy striking; the latter visibly includes the red `11` glyph. | Pathfinding, movement cost, actor/target identity, hit, damage, or timing rules. | C3/C5 captures and a bounded native/data route for the action result. |
+| Direct enemy click | Owner reports that clicking an enemy makes the active character approach and strike, with no separate visible target switch or confirmation. | Click hit testing, target legality, approach path, range, attack resolution, or an implicit selection state. | A recovered consumer beyond the coordinate/callback boundaries and C3 capture notes. |
+| Cursor presentation | `ICON` #19101–#19108 are selected by one native routine; #19103/#19104 appear at distinct branches. `EXE-GOG-CURSOR-002` confines it to a conditional shared-handler branch. | That #19103 executes an attack, that #19104 states why an attack fails, or any combat-specific owner. | Recoverable indirect owner plus branch-input meaning. |
+| Native input boundaries | Mouse-coordinate, button, callback, and BIOS-keyboard probes establish only shared wrappers or opaque outer boundaries. | A combat input loop, the manual-key dispatch, repeat policy, or a command-to-action mapping. | Screen-specific consumer path and controlled command traces C2/C4. |
+| Resident state candidates | One coordinate branch reads value five; a broader combat-adjacent switch and direct writes of two and 19 are recovered. | A finite mode enum, combat phase, target state, or attack mode. | A mapped producer and action body, including indirect/computed writes. |
+| Rule data | Manual arithmetic and hotkeys remain isolated research helpers; `MONR` is only an opaque 27-by-42 envelope. | Attack, movement, damage, turn, encounter, difficulty, AI, or outcome implementation. | Controlled C0–C6 observations paired with a traceable executable or data finding for each rule. |
+
 ## Object and static-scene route
 
 The following is the current bounded path from original static region data to
