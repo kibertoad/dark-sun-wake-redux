@@ -190,9 +190,9 @@ Neither branch identifies an interaction owner or a combat-click path.
 `EXE-GOG-COMBAT-009` additionally finds no direct caller of the decoded native
 mouse button-press wrapper, so it cannot supply the missing click path.
 `EXE-GOG-COMBAT-010` resolves the native mouse callback's raw entry and shows
-that it conditionally forwards a 14-byte packet to a shared dispatcher. The
-packet fields and consumer remain unknown, so this is still not evidence for a
-combat click dispatcher or action rule.
+that it conditionally forwards a 14-byte packet through a guarded resident
+buffer pathway. The packet fields and consumer remain unknown, so this is still
+not evidence for a combat click dispatcher or action rule.
 `EXE-GOG-COMBAT-011` shows that the mapped six-selector dispatcher containing
 the panel case has no recovered direct caller. Its neighboring selectors are
 therefore not identified as combat commands, transitions, or rule paths.
@@ -213,7 +213,7 @@ constant tail. No executable loader or combat meaning is established.
 | Hostile motion and strike feedback | Owner confirms dsun_009 as enemy movement and dsun_011 as enemy striking; the latter visibly includes the red `11` glyph. | Pathfinding, movement cost, actor/target identity, hit, damage, or timing rules. | C3/C5 captures and a bounded native/data route for the action result. |
 | Direct enemy click | Owner reports that clicking an enemy makes the active character approach and strike, with no separate visible target switch or confirmation. | Click hit testing, target legality, approach path, range, attack resolution, or an implicit selection state. | A recovered consumer beyond the coordinate/callback boundaries and C3 capture notes. |
 | Cursor presentation | `ICON` #19101–#19108 are selected by one native routine; #19103/#19104 appear at distinct branches. `EXE-GOG-CURSOR-002` confines it to a conditional shared-handler branch. | That #19103 executes an attack, that #19104 states why an attack fails, or any combat-specific owner. | Recoverable indirect owner plus branch-input meaning. |
-| Native input boundaries | Mouse-coordinate and button probes establish generic wrappers; the recovered callback conditionally emits a 14-byte packet to a shared dispatcher. BIOS-keyboard probes remain generic. | A combat input loop, packet fields/consumer, the manual-key dispatch, repeat policy, or a command-to-action mapping. | Screen-specific consumer path and controlled command traces C2/C4. |
+| Native input boundaries | Mouse-coordinate and button probes establish generic wrappers; the recovered callback conditionally emits a 14-byte packet through guarded resident buffering. BIOS-keyboard probes remain generic. | A combat input loop, packet fields/consumer, the manual-key dispatch, repeat policy, or a command-to-action mapping. | Screen-specific consumer path and controlled command traces C2/C4. |
 | Resident state candidates | One coordinate branch reads value five; a broader combat-adjacent switch and direct writes of two and 19 are recovered. | A finite mode enum, combat phase, target state, or attack mode. | A mapped producer and action body, including indirect/computed writes. |
 | Rule data | Manual arithmetic and hotkeys remain isolated research helpers; `MONR` is only an opaque 27-by-42 envelope. | Attack, movement, damage, turn, encounter, difficulty, AI, or outcome implementation. | Controlled C0–C6 observations paired with a traceable executable or data finding for each rule. |
 

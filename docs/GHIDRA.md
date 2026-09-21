@@ -1611,16 +1611,19 @@ proof by itself. Never redirect broad output into the repository.
   sends a far pointer to shared target `4464:0230`. The mapped reference view
   has one separately recovered caller of that target, `4201:012c`, which also
   dispatches a 14-byte packet with different fixed header words. Mapping does
-  not recognize the raw callback call as a reference.
+  not recognize the raw callback call as a reference. The raw target forwards
+  its packet pointer through an opaque far helper, reads the packet's second
+  word as a byte count, and copies that many bytes to guarded resident storage
+  while updating separate offset/capacity words and failure indicators.
 - **Interpretation:** this establishes a concrete native callback-to-generic
-  packet-dispatch boundary, rather than a combat callback. The packet field
-  meanings, resident guard, queue/consumer behavior, callback event semantics,
+  packet-buffer boundary, rather than a combat callback. The packet field
+  meanings, resident guard, buffer consumer behavior, callback event semantics,
   and feature owner remain unknown. It neither connects registration to combat
   nor identifies target selection, approach, striking, or any action rule.
 - **Confidence:** high for the single registration caller, service/mask,
   raw callback pointer, guard, packet extent, dispatch call, and separately
-  recovered packet caller; unknown for packet field semantics, dispatch owner,
-  event routing, and all combat behavior.
+  recovered packet caller/buffer copy; unknown for packet field semantics,
+  dispatch owner, event routing, and all combat behavior.
 - **Implementation consequence:** do not derive a combat event loop, click
   handler, target model, approach rule, or automatic-attack rule from this
   global registration path. A combat-specific path still needs independent
