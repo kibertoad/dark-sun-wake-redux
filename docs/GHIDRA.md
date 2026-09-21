@@ -547,16 +547,18 @@ proof by itself. Never redirect broad output into the repository.
 - **Method:** `ReportBytePattern` searched all loaded blocks for OJFF #9258's
   explicit 16-bit little-endian encoding (`2a 24`). `ReportReferences` then
   queried the single hit, and `ReportDataBytes` classified a bounded 96-byte
-  neighborhood.
+  neighborhood. The mapped image from `EXE-GOG-OVERLAY-004` then used
+  `ReportScalarConstants` to search every decoded operand for decimal 9258.
 - **Bounded finding:** exactly one raw match occurs at `1000:9754`. Ghidra
   has no reference to that address, and the surrounding bytes are an
   unreferenced data run rather than a decoded instruction or a resource-loading
-  operand. The match therefore does not identify a code consumer.
+  operand. The mapped-image scalar search also has no match. Neither result
+  identifies a code consumer.
 - **Interpretation:** a 16-bit resource number is too short to be a reliable
   executable lead by itself. This result does not establish that #9258 is
   unused, nor does it identify its interaction, hostility, encounter,
   placement, combat state, or handler. It rules out treating this lone raw
-  occurrence as a direct combat entry point.
+  occurrence or a direct mapped-overlay operand as a combat entry point.
 - **Confidence:** high for the one raw occurrence and the absence of a direct
   reference in this analysis; unknown for all object and combat semantics.
 - **Implementation consequence:** the runtime continues to use #9258 only for

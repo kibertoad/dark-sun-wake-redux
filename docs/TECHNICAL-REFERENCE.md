@@ -318,6 +318,9 @@ rejecting unsupported semantics:
   scan has no recovered direct caller, so it does not identify a target action.
   Neither finding identifies a runtime actor, animation, collision, target, or
   interaction behavior.
+  `EXE-GOG-ACTOR-002` also finds no decoded #9258 operand in the mapped overlay,
+  so neither the original loaded image nor its mapped overlay provides a direct
+  immediate-object combat lead.
 - `DATA-GOG-RDFF-001` finds the `Draxan` pattern in 23 distinct `RDFF`
   resources (and an aggregate resource), all at relative offset 43. The
   bounded `OJFF` #9258 overlap check finds none of its four observed raw
