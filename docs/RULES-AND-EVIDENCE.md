@@ -1909,9 +1909,11 @@
 - **Method:** The owner confirmed the semantic labels for local-only DOSBox
   Ctrl+F5 captures `dsun_010.png` through `dsun_024.png`; on 2026-09-21 the
   owner additionally labels `dsun_009.png` as an enemy-moving frame,
-  `dsun_011.png` as enemy striking, and `dsun_012.png` as player turn.
-  Their local file timestamps run from 2026-09-20 22:01:16 through 22:04:53.
-  Inspect the 320x200 captures in place; do not copy, rename, or commit them.
+  `dsun_011.png` as enemy striking, and `dsun_012.png` as player turn. The
+  durable owner authorization for the configured DOSBox capture folder permits
+  inspection regardless of filename timestamp; semantic identity remains only
+  as owner-confirmed. Inspect the 320x200 captures in place; do not copy,
+  rename, or commit them.
   Correlate only the owner-confirmed member names and visibly labelled ability
   values with the bounded installed `CHAR` catalog.
 - **Finding:** The party strip visibly contains four members in this order:
@@ -1971,7 +1973,8 @@
   This does not establish how turns start, advance, or cycle.
   These captures do not establish movement-point scale, initial amount, cost,
   distance, path, collision, speed, attacker, target, damage rule, action,
-  command input, turn progression, timing, hit resolution, or exit behavior.
+  command input, turn progression, timing, hit resolution, or the condition
+  that ends combat.
   EXE-GOG-COMBAT-004 separately establishes the panel's native BMP
   request/cache path but identifies no combat owner or overlay semantics.
   `EXE-GOG-COMBAT-008` reaches that static panel from a four-record operation,
@@ -2190,6 +2193,8 @@
   `EXE-GOG-COMBAT-009` finds no direct caller of the native button-press
   wrapper, and `EXE-GOG-COMBAT-010` bounds callback registration to global
   mouse setup without a recovered handler or screen owner.
+  `EXE-GOG-COMBAT-013` further reaches only an unmapped far-thunk boundary from
+  the coordinate-consuming branch, with no coherent mapped destination.
   `EXE-GOG-KEYBOARD-002` excludes only two direct keyboard-controller I/O
   forms, and `EXE-GOG-KEYBOARD-003` finds no decoded function containing all
   six documented combat key values; none establishes the shipped command
