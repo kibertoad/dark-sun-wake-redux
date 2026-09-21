@@ -1627,8 +1627,12 @@ proof by itself. Never redirect broad output into the repository.
   `57e0`, and entry `AX` preserved through `DI`; `BX`, `SI`, and entry `DI`
   are not copied into this packet. The mapped reference view
   has one separately recovered caller of that target, `4201:012c`, which also
-  dispatches a 14-byte packet with different fixed header words. Mapping does
-  not recognize the raw callback call as a reference. The raw target forwards
+  dispatches a 14-byte packet. Its complete bounded function explicitly writes
+  packet words `4`, `14`, and `0x00cc`, followed by a guarded `0` or `1`; it
+  makes no local write to the remaining three packet words before dispatch.
+  This demonstrates differently initialized producer inputs, not a field or
+  event-class meaning. Mapping does not recognize the raw callback call as a
+  reference. The raw target forwards
   its packet pointer through an opaque far helper, reads the packet's second
   word as a byte count, and copies that many bytes to guarded resident storage
   while updating separate offset/capacity words and failure indicators.

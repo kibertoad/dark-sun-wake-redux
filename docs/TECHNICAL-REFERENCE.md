@@ -196,6 +196,9 @@ buffer pathway initialized with an opaque storage pointer and capacity 1040.
 The packet's raw words preserve literals `2`/`14`/`0`, entry `CX`/`DX`, resident
 segment `57e0`, and entry `AX`; their meanings and consumer remain unknown, so
 this is still not evidence for a combat click dispatcher or action rule.
+The only other recovered producer uses a different partially initialized
+14-byte layout, further establishing shared transport rather than a
+combat-specific input path.
 `EXE-GOG-COMBAT-011` shows that the mapped six-selector dispatcher containing
 the panel case has no recovered direct caller. Its neighboring selectors are
 therefore not identified as combat commands, transitions, or rule paths.
