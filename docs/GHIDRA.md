@@ -1112,6 +1112,29 @@ proof by itself. Never redirect broad output into the repository.
   as unconnected semantic input requests. Do not emulate controller I/O or
   infer combat hotkey behavior from this negative probe.
 
+### EXE-GOG-KEYBOARD-003 - Manual combat keys do not co-locate in one decoded function
+
+- **Question:** Does the mapped FBOV view contain one decoded keyboard command
+  function with every manual combat key—Space and upper-case `G`, `N`, `P`,
+  `Q`, and `W`—as immediate operands?
+- **Target/method:** Use the local-only mapped image from
+  `EXE-GOG-OVERLAY-004`. `ReportFunctionScalarIntersection` scanned every
+  decoded function for the six unsigned values 32, 71, 78, 80, 81, and 87.
+  The query is a co-location probe only; it does not search strings, key maps,
+  tables, lower-case or scan-code representations, or indirect values.
+- **Bounded finding:** no decoded function contains all six requested scalar
+  values.
+- **Interpretation:** this excludes only a simple direct implementation that
+  compares all documented combat bindings in one decoded function. It does not
+  identify a key-acquisition path, show that any command is absent, or exclude
+  dispatch spread across helpers, tables, scans, lower-case translation,
+  indirect values, or another executable.
+- **Confidence:** high for the six-value decoded scalar-intersection result;
+  unknown for every native keyboard and combat-command behavior.
+- **Implementation consequence:** retain manual bindings as unconnected
+  semantic requests. Do not create a command dispatcher or repeat policy from
+  this negative co-location result.
+
 ### EXE-GOG-MEDIA-001 - no literal FLI header validation lead in DSUN.EXE
 
 - **Question:** Does the supported executable contain the literal FLI header

@@ -415,7 +415,9 @@ rejecting unsupported semantics:
   evidence, not a consequence of this generic path. `EXE-GOG-KEYBOARD-002`
   additionally excludes only direct `IN AL,60h` and bounded immediate-DX
   keyboard-controller port forms; it does not identify a replacement
-  key-acquisition or combat-command route.
+  key-acquisition or combat-command route. `EXE-GOG-KEYBOARD-003` further
+  finds no decoded function that co-locates all six documented combat-key
+  scalars, excluding only a simple unified direct switch.
 - `EXE-GOG-PORT-001` finds no literal `PORT` tag in the executable. It does
   not contradict the observed first-Tyr portrait, but supplies no general
   portrait loader, palette, drawing, dialogue, or timing rule.
