@@ -287,6 +287,10 @@ the start flow and current exploration state reproducible.
   selection draws use guarded local counts. The table and feature ownership
   are unknown. Native seed ownership and rule-level call ordering are still
   open, so new rules do not silently consume that stream.
+  `EXE-GOG-RNG-002` shows that the opaque random-selection chain and the
+  observed status-panel initializer meet in one indirect shared routine with
+  guarded four-record processing. Its caller and table/record roles remain
+  unknown, so this does not connect RNG consumption or panel updates to combat.
 
 ## Static-analysis boundaries worth preserving
 

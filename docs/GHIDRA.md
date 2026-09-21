@@ -1310,6 +1310,37 @@ proof by itself. Never redirect broad output into the repository.
   vectors. It is not wired to start flow, dialogue, combat, or other mechanics
   until each caller's seed and consumption contract is independently evidenced.
 
+### EXE-GOG-RNG-002 - RNG selection and panel initialization share an indirect routine
+
+- **Question:** Does the native random table-selection chain acquire a combat
+  owner by reaching the observed status-panel initializer?
+- **Target/method:** Use the local-only mapped image from
+  `EXE-GOG-OVERLAY-004`. `ReportReferences` followed the direct chain from
+  selection helper `2834:0519` through `2834:000c`, `2ae8:0132`,
+  `27c0:011f`, and `7393:0085` to `74bb:0077`. A complete 60-line bounded
+  decompilation classified `74bb:0077`, and its direct-reference query checked
+  for a recoverable feature owner.
+- **Bounded finding:** `74bb:0077` directly calls `7393:0085`, which reaches
+  the random selection chain, and later directly calls the observed panel
+  initializer `7393:0560`. In its guarded state-four branch, the routine also
+  performs a seven-entry indirect dispatch and conditionally iterates four
+  resident records using the already-observed 49-byte and 37-byte strides.
+  It has no recovered direct reference. Its nearby `VIEW INVENTORY` literal
+  is an opaque helper argument, not a recovered screen identity or owner.
+- **Interpretation:** the random-selection and panel paths meet in shared
+  native code, but neither the selector/table fields nor the caller's feature
+  ownership is recovered. This does not establish that random selection is a
+  combat roll, that the four records are combatants, or that the panel is
+  updated by a combat turn.
+- **Confidence:** high for the direct-call chain, panel-initializer call,
+  guarded four-record structure, and absent direct reference to `74bb:0077`;
+  unknown for all feature ownership, table/record semantics, random-result use,
+  and combat behavior.
+- **Implementation consequence:** preserve `NativeRandom` as an unconsumed
+  primitive and keep the panel as evidence-only artwork. Do not connect either
+  to combat until an indirect caller, data contract, or controlled observation
+  identifies its rule-level role.
+
 ### EXE-GOG-COMBAT-001 - Combat hotkey dispatch is not a direct shared literal table
 
 - **Question:** Does the supported executable contain an obvious single function
