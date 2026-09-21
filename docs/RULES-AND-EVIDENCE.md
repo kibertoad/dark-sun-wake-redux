@@ -1107,6 +1107,9 @@
 - **Confidence:** verified for owned resource identity, palette, geometry, the
   six live Walk/melee/Look states, the upper-left hotspot, and the first melee
   target; high for the manual-correlated remaining four roles.
+  `EXE-GOG-CURSOR-001` independently verifies a shared native selector for
+  IDs #19101 through #19108, but does not establish its branch predicates or
+  any interaction rule.
 - **Implementation:** pack format 21 extracts all ten images as distinct DSIX
   assets. MonoGame hides the host pointer and draws the selected original image
   last through the logical-canvas transform. Walk validity uses a non-mutating

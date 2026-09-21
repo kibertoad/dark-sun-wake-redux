@@ -180,6 +180,10 @@ to the same word, so its local one-through-five switch is not a finite combat
 mode model.
 `EXE-GOG-COMBAT-017` exhausts the recovered direct-write graph without a
 literal-five producer; indirect or computed writers remain open.
+`EXE-GOG-CURSOR-001` finds a shared routine that selects the observed Walk,
+melee/ranged Attack, and Look cursor IDs, including their invalid variants, but
+its only recovered caller remains opaque. This is a presentation-resource
+boundary, not a native action, target, movement, or strike path.
 `EXE-GOG-COMBAT-009` additionally finds no direct caller of the decoded native
 mouse button-press wrapper, so it cannot supply the missing click path.
 `EXE-GOG-COMBAT-010` bounds native mouse callback registration to a shared

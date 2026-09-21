@@ -1837,6 +1837,39 @@ proof by itself. Never redirect broad output into the repository.
   command or target state. Continue to require a mapped action body or a
   controlled action trace before deriving combat behavior.
 
+### EXE-GOG-CURSOR-001 - Shared cursor selector includes observed interaction resources
+
+- **Question:** Do the observed Walk, Attack, and Look cursor resources have a
+  bounded executable selection path that can distinguish presentation evidence
+  from an inferred combat command?
+- **Target/method:** Reuse the approved GOG-1432903719 `DSUN.EXE` target and
+  local mapped image from `EXE-GOG-OVERLAY-004` (Ghidra 12.1.3, JDK
+  21.0.12.1). `ReportScalarConstants` searched the eight resource IDs 19101
+  through 19108. `ReportInstructionContext` inspected each observed melee
+  branch and the routine return; `ReportReferences` then bounded direct callers
+  of the recovered routine and its only caller.
+- **Bounded finding:** resource IDs 19101 through 19108 all occur in the one
+  recovered routine at `2b10:00db`. Its distinct branches load observed melee
+  Attack #19103 and invalid melee Attack #19104, as well as the Walk, ranged
+  Attack, and Look pairs. One inspected terminal sequence moves its selected
+  ID to the return register. The routine has one recovered direct caller,
+  `7316:0618`; that caller supplies an opaque four-byte input and has no
+  recovered direct caller itself. The two remaining cursor IDs
+  (invalid spell target #19109 and processing #19110) have no literal in this
+  bounded routine query.
+- **Interpretation:** the executable has a shared cursor-resource selection
+  boundary consistent with the observed presentation family. The branch inputs
+  and the opaque caller are not a recovered actor, map object, action,
+  reachability, target, click, or strike path. In particular, selecting #19103
+  does not establish an attack command, and selecting #19104 does not identify
+  the native reason an attack is disallowed.
+- **Confidence:** high for the literal locations, inspected return sequence,
+  and direct-reference counts; unknown for caller ownership, branch predicates,
+  #19109/#19110 handling, and every gameplay meaning.
+- **Implementation consequence:** cursor assets may retain their existing
+  presentation provenance only. No combat eligibility, movement, target, or
+  damage rule follows from this selector.
+
 ### EXE-GOG-MONR-001 - MONR has no raw executable tag literal
 
 - **Question:** Does the sole `MONR` resource in `RESOURCE.GFF` identify an
