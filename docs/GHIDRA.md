@@ -1778,6 +1778,34 @@ proof by itself. Never redirect broad output into the repository.
   the resident-mode setter. Keep value five and its coordinate consumer
   evidence-only pending a traceable producer and mapped action body.
 
+### EXE-GOG-COMBAT-016 - Other direct writer proves the resident word is not bounded to five values
+
+- **Question:** Does the other direct writer of the coordinate-branch resident
+  word receive value five from a traceable native action source?
+- **Target/method:** Reuse the local-only mapped image from
+  `EXE-GOG-OVERLAY-004`. `ReportReferences` queried direct writer
+  `2b10:00c5`, while instruction contexts inspected its sole recovered call site
+  at `297f:000b` and its entry sequence.
+- **Bounded finding:** the writer has one recovered direct call site. That
+  site's far-call shim pushes `0x13` immediately before control transfer. At
+  the writer entry, native instructions load the word at `[BP+6]` and copy it
+  into both resident words, including the coordinate-branch word at
+  `ram:00059240`. Thus the only recovered direct call writes decimal 19, not
+  five. The remainder of the 129-line recovered routine uses opaque tables and
+  helpers with no recovered encounter, actor, target, attack, damage, turn, or
+  action-result identity.
+- **Interpretation:** the resident word demonstrably takes a value outside the
+  one-through-five switch bounded by `EXE-GOG-COMBAT-014`; that switch is not a
+  complete enumeration of its values. This rules out only the direct-writer
+  hypothesis for producing value five and does not establish what 19, five, or
+  any other value means.
+- **Confidence:** high for the one recovered call site, its stack literal,
+  parameter load, and two native stores; unknown for indirect callers/writers,
+  all state meanings, and gameplay semantics.
+- **Implementation consequence:** do not model the resident word as a finite
+  combat-mode enum. No combat input, action, target, movement, strike, damage,
+  turn, or outcome rule is introduced from this route.
+
 ### EXE-GOG-MONR-001 - MONR has no raw executable tag literal
 
 - **Question:** Does the sole `MONR` resource in `RESOURCE.GFF` identify an

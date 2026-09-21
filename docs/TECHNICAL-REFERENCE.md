@@ -175,6 +175,9 @@ caller or action meaning is recovered for value five or any other value.
 `EXE-GOG-COMBAT-015` finds the mode setter's only recovered direct call supplies
 literal two rather than five, leaving the coordinate branch without a traceable
 native producer.
+`EXE-GOG-COMBAT-016` then proves a separate direct writer can assign decimal 19
+to the same word, so its local one-through-five switch is not a finite combat
+mode model.
 `EXE-GOG-COMBAT-009` additionally finds no direct caller of the decoded native
 mouse button-press wrapper, so it cannot supply the missing click path.
 `EXE-GOG-COMBAT-010` bounds native mouse callback registration to a shared

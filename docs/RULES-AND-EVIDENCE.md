@@ -2200,6 +2200,8 @@
   meaning.
   `EXE-GOG-COMBAT-015` finds that the mode setter's only recovered direct call
   supplies value two, not the coordinate branch's value five.
+  `EXE-GOG-COMBAT-016` proves a separate direct writer assigns value 19 to the
+  same word, so the local one-through-five branch is not a finite mode model.
   `EXE-GOG-KEYBOARD-002` excludes only two direct keyboard-controller I/O
   forms, and `EXE-GOG-KEYBOARD-003` finds no decoded function containing all
   six documented combat key values; none establishes the shipped command
