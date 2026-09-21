@@ -951,13 +951,20 @@ proof by itself. Never redirect broad output into the repository.
   `43h`, performs two local calls separated by reads from `40h`, inverts the
   combined two bytes, restores flags, and returns. It has exactly two direct
   callers, both inside `1000:12fa`; that wrapper has no Ghidra-recorded direct
-  caller. Separately, `4842:059c` saves flags, disables interrupts, writes
-  literal `0x36` to `43h`, obtains a caller-supplied word, and emits its two
-  bytes to `40h`. It has exactly three direct callers, all within module
-  `4842`; one scales its input by observed literals `0x2710` and `0x20bc`, one
-  supplies zero after a local decrement, and one forwards a result from an
-  opaque local helper. No recovered caller supplies a Tyr coordinate, actor,
-  image, FLI/VOC resource, UI control, or dialogue identity.
+  caller. Separately, the previously recorded source-mapping label
+  `4842:059c` saves flags, disables interrupts, writes literal `0x36` to
+  `43h`, obtains a caller-supplied word, and emits its two bytes to `40h`.
+  A follow-up `ReportReferences` query resolves its mapped call target as
+  `4000:89bc`, with exactly three direct callers at `4868:061d`, `4868:0384`,
+  and `4926:0095`. Their bounded contexts respectively pass zero after a
+  local decrement, scale a stack word by observed literals `0x2710` and
+  `0x20bc`, and pass the result of an opaque local helper before another
+  opaque call. The enclosing first caller has four direct Ghidra callers, the
+  scaling caller has one, and the third caller has one; none supplies a Tyr
+  coordinate, actor, image, FLI/VOC resource, UI control, or dialogue
+  identity. The differing segment labels are an overlay-address presentation
+  issue, not evidence that any of the routines belongs to the named segment
+  or a gameplay subsystem.
 - **Interpretation:** the executable contains two real direct PIT-access
   boundaries, including one latch/read sequence and one caller-word programming
   sequence. Their direct caller shapes do not establish a feature owner,
@@ -967,8 +974,9 @@ proof by itself. Never redirect broad output into the repository.
   port access remains possible. A no-reference result for the local wrapper
   likewise excludes only a direct Ghidra caller.
 - **Confidence:** high for the raw-match counts, decoded port accesses, local
-  operation order, and direct-reference counts; unknown for hardware purpose,
-  caller ownership, duration units, and every player-visible timing behavior.
+  operation order, direct-reference counts, and bounded call contexts;
+  unknown for hardware purpose, caller ownership, duration units, and every
+  player-visible timing behavior.
 - **Implementation consequence:** do not program or poll PIT hardware, infer a
   duration from the observed literals, or couple rules to a DOS-era timer
   routine. Retain the explicit monotonic, CPU-independent runtime clock until a
