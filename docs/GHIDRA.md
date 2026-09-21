@@ -1621,8 +1621,11 @@ proof by itself. Never redirect broad output into the repository.
   code segment with offset `0x0053`, recovering the native callback entry as
   `44d0:0053`; the mapped decompiler's `45b9:0053` target was an aliasing
   artifact. The callback suppresses forwarding under one resident byte guard.
-  Otherwise it constructs a 14-byte stack packet from callback registers and
-  sends a far pointer to shared target `4464:0230`. The mapped reference view
+  Otherwise it constructs a 14-byte stack packet and sends a far pointer to
+  shared target `4464:0230`. Its raw local writes are, in word order, literal
+  `2`, literal `14`, literal `0`, entry `CX`, entry `DX`, resident segment
+  `57e0`, and entry `AX` preserved through `DI`; `BX`, `SI`, and entry `DI`
+  are not copied into this packet. The mapped reference view
   has one separately recovered caller of that target, `4201:012c`, which also
   dispatches a 14-byte packet with different fixed header words. Mapping does
   not recognize the raw callback call as a reference. The raw target forwards
@@ -1640,9 +1643,10 @@ proof by itself. Never redirect broad output into the repository.
   and feature owner remain unknown. It neither connects registration to combat
   nor identifies target selection, approach, striking, or any action rule.
 - **Confidence:** high for the single registration caller, service/mask,
-  raw callback pointer, guard, packet extent, dispatch call, and separately
-  recovered packet caller/buffer copy/initializer capacity; unknown for packet
-  field semantics, dispatch owner, event routing, and all combat behavior.
+  raw callback pointer, guard, literal/register packet layout, dispatch call,
+  and separately recovered packet caller/buffer copy/initializer capacity;
+  unknown for packet field semantics, dispatch owner, event routing, and all
+  combat behavior.
 - **Implementation consequence:** do not derive a combat event loop, click
   handler, target model, approach rule, or automatic-attack rule from this
   global registration path. A combat-specific path still needs independent

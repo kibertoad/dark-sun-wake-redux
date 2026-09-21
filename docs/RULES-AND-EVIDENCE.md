@@ -2197,7 +2197,8 @@
   `EXE-GOG-COMBAT-007` leaves the bounded native mouse route screen-neutral,
   `EXE-GOG-COMBAT-009` finds no direct caller of the native button-press
   wrapper, and `EXE-GOG-COMBAT-010` recovers the global callback's
-  packet-dispatch boundary, but no packet consumer or screen owner.
+  packet-dispatch boundary and its literal/register packet layout, but no
+  packet consumer or screen owner.
   `EXE-GOG-COMBAT-013` further reaches only an unmapped far-thunk boundary from
   the coordinate-consuming branch, with no coherent mapped destination.
   `EXE-GOG-COMBAT-014` places that branch's resident value in a broader
