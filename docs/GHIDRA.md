@@ -1119,16 +1119,19 @@ proof by itself. Never redirect broad output into the repository.
   `Q`, and `W`—as immediate operands?
 - **Target/method:** Use the local-only mapped image from
   `EXE-GOG-OVERLAY-004`. `ReportFunctionScalarIntersection` scanned every
-  decoded function for the six unsigned values 32, 71, 78, 80, 81, and 87.
-  The query is a co-location probe only; it does not search strings, key maps,
-  tables, lower-case or scan-code representations, or indirect values.
+  decoded function for the six unsigned values 32, 71, 78, 80, 81, and 87,
+  then separately for the five upper-case letter values 71, 78, 80, 81, and
+  87 and their lower-case forms 103, 110, 112, 113, and 119. The queries are
+  co-location probes only; they do not search strings, key maps, tables,
+  scan-code representations, or indirect values.
 - **Bounded finding:** no decoded function contains all six requested scalar
+  values, the five upper-case letter values, or the five lower-case letter
   values.
 - **Interpretation:** this excludes only a simple direct implementation that
   compares all documented combat bindings in one decoded function. It does not
   identify a key-acquisition path, show that any command is absent, or exclude
-  dispatch spread across helpers, tables, scans, lower-case translation,
-  indirect values, or another executable.
+  dispatch spread across helpers, tables, scans, indirect values, or another
+  executable.
 - **Confidence:** high for the six-value decoded scalar-intersection result;
   unknown for every native keyboard and combat-command behavior.
 - **Implementation consequence:** retain manual bindings as unconnected
