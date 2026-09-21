@@ -749,6 +749,44 @@ proof by itself. Never redirect broad output into the repository.
   reproducible analysis input. Continue to record independent, bounded findings
   before deriving rules; do not store it, load it, or execute it in the project.
 
+### EXE-GOG-COMBAT-008 - Mapped overlay reaches the observed status-panel initializer
+
+- **Question:** Does the recovered FBOV view expose an executable path from a
+  bounded dispatcher to the source-backed combat status-panel bitmap, and does
+  that path establish any panel or combat rules?
+- **Target/method:** Use the local-only mapped image from `EXE-GOG-OVERLAY-004`.
+  `ReportScalarConstants` searched every decoded operand for panel ID 19003;
+  `ReportInstructionContext`, `ReportReferences`, and 160-line bounded
+  decompilations then followed its containing function, its two direct callers,
+  and one direct caller layer above the only reachable caller. Mapped-image
+  addresses below are reproducible transform addresses, not claimed original
+  load addresses.
+- **Bounded finding:** the sole decoded 19003 operand is in mapped function
+  `7393:0560`; its guarded image request has the `BMP ` tag and shares an
+  adjacent request for #19000. It has exactly two direct callers. One,
+  `74bb:0498`, first checks one shared state word for value two, iterates
+  exactly four records at a 49-byte stride, conditionally changes one byte at
+  offset `0x14` in each qualifying record, and invokes `7393:0560`. It then
+  continues only while the same state word is two or three. `74bb:0498` has
+  one direct caller: mapped dispatcher `76da:007d` reaches it from its
+  parameter-one-equals-two branch when its second parameter is `0x7fc`, after
+  two preparatory calls and one helper whose result is compared with one, two,
+  and three. The second panel caller has no recovered direct caller. All stated
+  field offsets and values are data-access facts only.
+- **Interpretation:** this is a concrete native route from a dispatch branch to
+  the static artwork observed only in combat captures, and it independently
+  corroborates a four-record panel-adjacent operation. It does not assign the
+  shared state values to combat, establish that the four records are party
+  members or active combatants, identify their fields, decode the event IDs,
+  establish panel text/value meanings, or identify entry, turn, targeting,
+  movement, attack, damage, outcome, or timing behavior.
+- **Confidence:** high for the mapped scalar, direct-call counts, exact state
+  comparisons, four-iteration/49-byte-stride operation, and immediate call
+  order; unknown for every semantic interpretation.
+- **Implementation consequence:** retain the status bitmap as evidence-only.
+  This permits a targeted next query on the four 49-byte records or dispatch
+  inputs, but does not license a status model or playable combat route.
+
 ### EXE-GOG-UI-006 - Character-generation IDs do not identify control behavior
 
 - **Question:** Do the character-generation window, class-label, EXIT, or DONE

@@ -352,6 +352,11 @@ rejecting unsupported semantics:
   trampolines, zero special function-reference fixups) for bounded Ghidra
   queries. Its exact `Moves`/`Draxan` searches remain empty, and four
   unreferenced `COMBAT` literals identify no dispatcher or combat behavior.
+  `EXE-GOG-COMBAT-008` nonetheless recovers a distinct panel route: a
+  dispatcher branch reaches the #19003 cache initializer through a guarded
+  four-record, 49-byte-stride operation. That route is structural only; its
+  state codes, record ownership/fields, event input, and every combat rule
+  remain unknown.
 - `EXE-GOG-OVERLAY-002` rules out the first concrete file-I/O candidate: the
   only loaded-image routine that directly uses both the bounded DOS seek and
   read wrappers scans caller-supplied six-byte signatures and lengths. It has
