@@ -610,13 +610,21 @@ proof by itself. Never redirect broad output into the repository.
 - **Bounded finding:** neither exact byte pattern occurs in loaded executable
   memory. The result identifies no literal text, source-data mapping, target
   name, level, hostility, panel activation, or rendering path.
+- **Physical-file follow-up:** the MZ header reports a 20,992-byte header and
+  357,744-byte load image in the 634,416-byte approved file, leaving a
+  276,672-byte physical overlay outside Ghidra's loaded program-memory image.
+  A bounded PowerShell 5.1.26100.9444 scan of the complete physical file found
+  zero occurrences of both the six-byte `Draxan` prefix and its seven-byte
+  NUL-terminated form. It retained only the computed MZ sizes and match counts,
+  not source bytes. This closes the exact-ASCII overlay variant of this query.
 - **Interpretation:** this excludes only the observed-case ASCII spelling in
-  this executable. It may be encoded with another case or character set, held
-  in a GFF/resource or a separate module, assembled at runtime, or supplied by
-  an unobserved data path. It does not turn the captured name into a safe
-  production literal.
-- **Confidence:** high for the two exact absent loaded-memory representations;
-  unknown for the dynamic text source and all general target presentation.
+  this complete physical executable. It may be encoded with another case or
+  character set, held in a GFF/resource or a separate module, assembled at
+  runtime, or supplied by an unobserved data path. It does not turn the
+  captured name into a safe production literal.
+- **Confidence:** high for the two exact absent loaded-memory and complete-file
+  representations; unknown for the dynamic text source and all general target
+  presentation.
 - **Implementation consequence:** keep the hostile panel's dynamic name and
   level unrendered rather than hard-coding captured original text. A source
   projection needs a bounded data-format or native call-path finding.

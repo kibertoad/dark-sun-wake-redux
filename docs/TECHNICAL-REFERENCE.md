@@ -315,7 +315,10 @@ rejecting unsupported semantics:
   resident-state values rather than a recovered fixed resource number, this
   rejects a direct field-to-label mapping for the first hostile Look panel. It
   does not identify an alternative source or permit dynamic interaction text
-  to be rendered.
+  to be rendered. The main executable's 276,672-byte physical MZ overlay also
+  contains neither the exact six-byte label nor its NUL-terminated form, so
+  that exact spelling has no loaded-image or overlay literal path; other
+  encodings and runtime/resource paths remain open.
 - `EXE-GOG-UI-007` establishes a generic resource-derived UI input boundary:
   current pointer state is resolved against `APFM`, `BUTN`, or `EBOX` children,
   then event-bit guards select indirect handlers. It identifies neither a
