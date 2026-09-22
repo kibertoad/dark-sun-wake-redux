@@ -64,6 +64,7 @@ dotnet run --project tools/DarkSunWakeRedux.Inspect -- object-pattern-overlap "C
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- record-profile "C:\path\to\RESOURCE.GFF" MONR 1 81
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- raster-profile "C:\path\to\RESOURCE.GFF" MONR 1 81
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- fbov-profile "C:\path\to\DSUN.EXE"
+./tools/ghidra/ReportPhysicalBytePattern.ps1 -SourcePath "C:\path\to\DSUN.EXE" -Pattern "43 4f 4d 50 55 54 45 52"
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- pair-resource-overlap "C:\path\to\ITEMS.BIN" "C:\path\to\OBJEX.GFF" OJFF
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- object-word-overlap "C:\path\to\OBJEX.GFF" OJFF "C:\path\to\ITEMS.BIN"
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- resource-word-overlap "C:\path\to\RESOURCE.GFF" PLYL 50 "C:\path\to\CHARSAVE.GFF" CHAR

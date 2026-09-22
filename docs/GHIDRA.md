@@ -62,6 +62,14 @@ the original source tree. Prefer runtime observation for presentation and data
 inspection for self-describing resources. Static evidence is strongest when a
 focused finding and a controlled observation agree.
 
+For exact byte patterns that may be in the physical file tail rather than the
+loaded MZ image, use `tools/ghidra/ReportPhysicalBytePattern.ps1` first. It
+accepts a source path and one 1-to-64-byte hexadecimal pattern, bounds source
+input to 128 MiB, and emits only the canonical path, file/pattern lengths,
+match count, and file offsets. It does not print, retain, or create a copy of
+source bytes. Follow a physical hit with `ReportBytePattern` in the applicable
+loaded or mapped Ghidra view before assigning it a code owner.
+
 ## Headless workflow
 
 Create a uniquely named disposable project below `%TEMP%` and import the
@@ -1910,7 +1918,8 @@ proof by itself. Never redirect broad output into the repository.
 
 - **Question:** Does the manual's `COMPUTER CONTROL` term identify a native
   handler, default, toggle, or automation path for Space during combat?
-- **Target/method:** A bounded complete-physical-file scan of the documented
+- **Target/method:** `ReportPhysicalBytePattern.ps1` ran a bounded
+  complete-physical-file scan of the documented
   634,416-byte GOG-1432903719 `DSUN.EXE` searched the exact uppercase ASCII
   term and reported only counts/file offsets. The local-only FBOV mapped image
   from `EXE-GOG-OVERLAY-004` then ran `ReportBytePattern` for the same 16-byte
