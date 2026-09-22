@@ -74,6 +74,31 @@ If START GAME reaches an unexpected screen, or if a member action is not
 available, capture the reached state once, stop, and report the exact point.
 That outcome is preferable to inferring a slot partition.
 
+## Audio-presence gate
+
+Purpose: establish only whether the supported game audibly changes under two
+documented Preferences controls at stable screens. It does **not** identify a
+file, codec, device, helper process, volume scale, sample rate, loop point, or
+timing unit, and it does not ask for an audio recording.
+
+Use a normal fresh GOG launch with known-working local speakers/headphones and
+default Preferences. Keep the default window size. Record each audible result
+as exactly `yes`, `no`, or `uncertain`; `uncertain` is preferred whenever host
+mixer, external noise, or the game's initial state prevents a confident
+observation. Screenshots remain required even though they cannot contain audio.
+
+| ID | Native action | Required capture/record |
+|---|---|---|
+| A0 | Reach the first settled start screen without clicking any control. | Capture it. Record whether any continuous game audio is audible after the screen settles, and separately whether a one-shot effect has been heard. Do not infer a track or source file. |
+| A1 | Choose START GAME once and wait only until the first settled party-overview or in-world screen. | Capture it. Record the same two `yes`/`no`/`uncertain` observations and any audible difference from A0. Do not use a save, alter a setting, or wait for a guessed loop boundary. |
+| A2 | From the existing Preferences P0 state, perform P1's first Music click once, then perform its restoring second click once. | Capture after each click. Record whether continuous game audio changes after each click. Do not derive a delay, volume value, file mapping, or default from the result. |
+| A3 | From the restored P0 state, perform P2's first Sound Effects click once, then perform its restoring second click once. | Capture after each click. Record whether either click itself produces an audible one-shot effect and whether any continuous audio changes. Do not trigger an unrelated gameplay event to seek a sound. |
+
+If any screen differs before a listed action, the host audio state becomes
+uncertain, or a control is unavailable, capture the reached screen once, report
+the exact point, and stop. An unchanged or silent result is evidence of that
+bounded observation only; do not retry until sound appears.
+
 ## Inventory-selection gate
 
 Purpose: establish the native inventory screen's visible item-label geometry

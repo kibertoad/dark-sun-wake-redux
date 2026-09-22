@@ -699,6 +699,14 @@ NUL-terminated observed names in the fingerprinted executable. This rules out
 only a simple hardcoded-name selector; it does not identify a loader or change
 the unresolved boundary.
 
+**Q5 audio evidence update (2026-09-22).** `EXE-GOG-SOUND-008` through
+`EXE-GOG-SOUND-011` exclude the queried complete VOC-header, direct extension,
+literal helper-name, and nearby-literal DOS-EXEC leads without establishing an
+audio consumer or playback schedule. `docs/OWNER-CAPTURE-CHECKLIST.md` A0-A3
+is the next bounded native gate: it records only audible presence and the first
+Music/Sound Effects toggle response at stable screens. It deliberately does
+not infer a codec, source asset, timing, default, or mixer value.
+
 ## Risks
 
 - **Unknown containers.** The observed installation contains `.GFF`, `.FLI`,
