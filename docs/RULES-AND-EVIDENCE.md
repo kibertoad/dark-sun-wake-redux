@@ -1035,7 +1035,10 @@
   the 204,593-byte file. `EXE-GOG-SOUND-007` does find bounded direct port
   output, including a caller-word-derived fixed-port sequence and a separate
   runtime-base-plus-offset sequence, but neither has a recovered VOC, device,
-  settings, or timing owner.
+  settings, or timing owner. `EXE-GOG-SOUND-008` independently scans the
+  complete physical main `DSUN.EXE` and finds the same whole-header signature
+  absent there as well; this is not evidence that any executable cannot read
+  VOC data through a partial, indirect, or delegated path.
   None of those bounded absences establishes a decoder, codec, filename mapping, or timing
   contract.
 - **Implementation consequence:** no decoder, extractor entry, media mapping,

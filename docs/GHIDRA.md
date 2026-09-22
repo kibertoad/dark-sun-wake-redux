@@ -3149,6 +3149,34 @@ proof by itself. Never redirect broad output into the repository.
   setting until a consumer path and controlled playback observation establish
   those semantics.
 
+### EXE-GOG-SOUND-008 - Main executable has no complete VOC header signature
+
+- **Question:** Does the main game executable, rather than the separately
+  shipped sound helper, embed the complete standard `Creative Voice File`
+  header signature that could identify a whole-header VOC decoder or validator?
+- **Target:** the documented stable GOG-1432903719 `DSUN.EXE` target,
+  634,416 bytes, SHA-256
+  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`.
+- **Method:** a bounded read-only PowerShell scan read the exact physical file,
+  including any bytes outside Ghidra's loaded image, and compared every valid
+  start offset with the explicit 19-byte ASCII pattern `Creative Voice File`.
+  It reported only physical length, pattern length, match count, and offsets;
+  it retained or printed no executable bytes.
+- **Bounded finding:** the 634,416-byte physical file has zero matches for the
+  19-byte signature.
+- **Interpretation:** together with `EXE-GOG-SOUND-002` and
+  `EXE-GOG-SOUND-006`, neither the main executable nor the sound helper
+  contains the complete standard VOC header signature. This excludes only a
+  consumer that embeds that exact whole-header literal. It does not exclude a
+  partial, bytewise, constructed, delegated, or file-name-independent reader,
+  and establishes no codec, sample rate, playback route, or duration unit.
+- **Confidence:** high for the exact complete-file absence; unknown for all
+  VOC consumption, device ownership, audio mapping, and timing behavior.
+- **Implementation consequence:** do not add a standard VOC decoder, derive a
+  playback schedule from header data, or emulate original device behavior.
+  Keep audio opaque and any future runtime clock monotonic and CPU-independent
+  until a bounded consumer path and controlled observation corroborate it.
+
 ### EXE-GOG-TITLE-002 - No co-located direct title-image loader literal
 
 - **Question:** Does the supported executable contain one recovered function
