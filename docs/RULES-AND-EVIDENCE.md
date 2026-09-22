@@ -2244,8 +2244,9 @@
   wrapper, and `EXE-GOG-COMBAT-010` recovers the global callback's
   packet-dispatch boundary and its literal/register packet layout, but no
   packet consumer or screen owner.
-  `EXE-GOG-COMBAT-013` further reaches only an unmapped far-thunk boundary from
-  the coordinate-consuming branch, with no coherent mapped destination.
+  `EXE-GOG-COMBAT-013` now maps that coordinate branch through a bounded
+  five-guard validation sequence, but identifies neither its flags/constants
+  nor an enemy, target, action, or decision owner.
   `EXE-GOG-COMBAT-014` places that branch's resident value in a broader
   combat-adjacent mode switch without assigning value five an attack or target
   meaning.

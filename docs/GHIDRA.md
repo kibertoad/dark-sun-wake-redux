@@ -1716,32 +1716,40 @@ proof by itself. Never redirect broad output into the repository.
   modes, turn states, panel phases, or transitions. Keep both panel routes and
   all state semantics evidence-only pending an owner or rule-level path.
 
-### EXE-GOG-COMBAT-013 - Coordinate consumer reaches an unmapped far thunk
+### EXE-GOG-COMBAT-013 - Coordinate consumer reaches a bounded gate, not an AI route
 
 - **Question:** Does the opaque helper that receives the bounded mouse
   coordinate pair in the recovered input loop identify the owner-confirmed
   enemy-click action or any combat rule consumer?
 - **Target/method:** Reuse the local-only mapped image from
-  `EXE-GOG-OVERLAY-004`. A bounded decompilation of the function containing
-  the coordinate guard established that one opaque resident-value branch
-  forwards the two local coordinate words and literal `1` through
-  `thunk_FUN_8d83_0053`. `ReportReferences` then enumerated references to the
-  thunk entry, and a bounded decompilation inspected its only non-thunk
-  recovered relation.
-- **Bounded finding:** Ghidra records two unconditional jumps to the thunk
-  entry: the expected jump at `57a6:0070`, and one at `8d83:004f` inside
-  recovered function `8539:0017`. The thunk transfers to `8000:d883`, outside
-  the mapped executable image. Decompiling `8539:0017` reports overlapping
-  instructions, bad control-flow data, unresolved constructors, and accesses
-  to uninitialized memory; its 5,646-line output is not coherent enough to
-  support behavior inference.
-- **Interpretation:** this establishes only that the bounded coordinate branch
-  enters a far-thunk boundary. It does not identify the destination, assign
-  meaning to the resident value or literal argument, or connect the branch to
-  target selection, approach movement, striking, damage, turns, or combat.
-- **Confidence:** high for the two recorded jump references, transfer target,
-  and decompiler diagnostics; unknown for all destination and gameplay
-  semantics.
+  `EXE-GOG-OVERLAY-004`, rebuilt from the documented 49 overlay headers and
+  854 trampoline targets in a disposable Ghidra 12.1.3 project. The prior
+  bounded decompilation found that one opaque resident-value branch forwards
+  two local coordinate words and literal `1` through `thunk_FUN_8d83_0053`.
+  `ReportReferences`, `ReportDataBytes` (96 bytes), and
+  `ReportInstructionContext` then queried its `8000:d883` transfer target.
+- **Bounded finding:** the earlier entry query still has two unconditional
+  jumps: the expected `57a6:0070` jump to the thunk entry and `8d83:004f` in
+  recovered function `8539:0017`. In the rebuilt mapped image,
+  `ReportReferences` finds the latter as the only direct reference to
+  `8000:d883`. The 96 target bytes begin four repeated guards: each tests one
+  bit in a stack-local byte and, when that bit is present, compares one
+  stack-supplied word against a distinct immediate (`0x14`, `0x66`, `0x07`, or
+  `0x15`), accumulating a nonzero result on mismatch. The preceding entry
+  path has the same form for bit `0x08` and immediate `0x23`. Ghidra aliases
+  the target's instruction context into `8539:0017`, a 5,612-line recovered
+  function with overlapping instructions and unresolved cross-segment
+  constructors; that decompilation remains incoherent outside these directly
+  inspected instruction facts.
+- **Interpretation:** mapping the destination corrects the earlier
+  out-of-image boundary, but only exposes an opaque validation gate. The
+  compared values, stack flags, caller contract, and result owner are not
+  identified. This does not connect the coordinate branch to enemy targeting,
+  path selection, approach movement, striking, damage, turn order, or any AI
+  decision.
+- **Confidence:** high for the rebuilt-map coverage, direct-reference count,
+  raw bytes, and five bounded bit/compare forms; unknown for their semantics,
+  the wider malformed function, and all gameplay behavior.
 - **Implementation consequence:** do not model the helper as an attack,
   movement, or confirmation handler. A mapped implementation body or an
   independent measured action trace is still required before deriving a combat
