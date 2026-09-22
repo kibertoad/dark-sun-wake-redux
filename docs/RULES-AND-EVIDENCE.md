@@ -1093,6 +1093,32 @@
   whether the final pair is a sentinel, exceptional alias, or normal record;
   and all inventory/combat effects.
 
+### DATA-GOG-ITEMS-002 - Observed inventory labels have bounded TEXT locations
+
+- **Question:** Do exact item labels visible in the owner-confirmed AR'ANDA
+  inventory capture have a unique printable source location in the owned
+  resource corpus?
+- **Method:** `resource-pattern` searched the fingerprinted `RESOURCE.GFF` for
+  the exact case-sensitive printable ASCII patterns `Longsword` and `Dagger`.
+  A bounded secondary-table walk then resolved only each matching pattern's
+  zero-based CRLF line and column within its already decoded `TEXT` resource;
+  it printed no source lines or payload bytes.
+- **Finding:** each pattern occurs once, in `TEXT` #1000 (2,403 bytes):
+  `Longsword` starts at byte 232, line 25, column 0; `Dagger` starts at byte
+  258, line 28, column 0. The owner-confirmed `dsun_017` inventory screen
+  visibly includes both labels.
+- **Interpretation:** this establishes two exact vocabulary locations and their
+  source ordering within one bounded text resource. It does not identify the
+  runtime text renderer, an item record, inventory slot, quantity, ownership,
+  item ID, usable action, equipment stat, or combat effect. The labels may be
+  selected indirectly or shared by unrelated screens.
+- **Confidence:** high for the two unique corpus matches, text coordinates, and
+  owner-confirmed visible labels; unknown for every item and inventory semantic.
+- **Implementation consequence:** retain `TEXT` #1000 through the existing
+  bounded DSTX catalog, but do not add an item schema or render a fabricated
+  inventory list until a source-to-runtime selection path and additional
+  observed state establish the required mapping.
+
 ### DATA-GOG-CURSOR-001 - Exploration cursor family and hotspot
 
 - **Method:** Render every low-numbered `RESOURCE.GFF` image candidate with

@@ -149,6 +149,14 @@ semantics or item/spell behavior. See DATA-GOG-UI-010,
 OBS-GOG-PARTY-001, EXE-GOG-UI-009, and EXE-GOG-UI-010 before extending these
 screens.
 
+The two item labels visible in the owner-confirmed AR'ANDA inventory capture
+have unique bounded source locations: `Longsword` and `Dagger` are in the
+`TEXT` #1000 record at zero-based CRLF lines 25 and 28, respectively
+(`DATA-GOG-ITEMS-002`). This is a text-corpus fact, not an inventory schema:
+there is no evidence that these lines identify an item record, slot, quantity,
+owner, statistics, renderer, selection path, or use/equip behavior. The
+runtime therefore continues to keep inventory interiors inert.
+
 Combat remains evidence acquisition only. The owner reports that entry leaves
 the map and character presentation substantially unchanged except for the
 absence of the compact status panel; the first stable combat state shows the

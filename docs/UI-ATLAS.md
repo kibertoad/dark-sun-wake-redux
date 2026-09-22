@@ -47,6 +47,13 @@ three BUTN records also have nonzero masks (84 for #11318 and 160 for
 composition, but no static record attaches a field, item, portrait,
 interaction, or generic widget treatment to any of these controls.
 
+Inventory vocabulary boundary: the owner-confirmed AR'ANDA inventory capture
+visibly includes `Longsword` and `Dagger`. Each exact label occurs once in the
+owned text corpus, in `TEXT` #1000 at zero-based CRLF line 25 and 28
+respectively (`DATA-GOG-ITEMS-002`). This establishes source vocabulary and
+that local order only. It does not bind either string to an item record, slot,
+quantity, owner, statistics, selection treatment, or any inventory action.
+
 Third-menu status clarification: target 3686 clears local flag 17 and sets flag
 18; target 3786 then clears flag 18. Both return, are dispatched by target, and
 present bounded projected output. Target 3976 clears flag 8, conditionally sets
