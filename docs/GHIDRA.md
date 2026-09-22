@@ -1906,6 +1906,43 @@ proof by itself. Never redirect broad output into the repository.
   do not derive a text renderer, resource routing model, or combat presenter
   from the static panel and font resources alone.
 
+### EXE-GOG-AI-001 - Current static paths do not identify an enemy-decision owner
+
+- **Question:** Do the currently evidenced executable and data entry points
+  connect the observed hostile to a native routine that selects an enemy target,
+  movement, action, or turn outcome?
+- **Target/method:** Review the fingerprinted GOG-1432903719 `DSUN.EXE`
+  baseline and the local-only FBOV mapped view under Ghidra 12.1.3/JDK
+  21.0.12.1. The focused audit joins the independent actor-object probe
+  (`EXE-GOG-ACTOR-002`), `MONR` tag query (`EXE-GOG-MONR-001`), region entity
+  tag query (`EXE-GOG-REGION-002`), hostile-display path
+  (`EXE-GOG-RDFF-001` through `003`), coordinate/input chain
+  (`EXE-GOG-COMBAT-007`, `009`, `010`, and `013` through `017`), and native
+  RNG selector chain (`EXE-GOG-RNG-001` and `002`). The final two focused
+  queries rechecked the mapped coordinate destination and the RNG/panel
+  routine `74bb:0077`: the former exposes only the bounded opaque validation
+  gate in `EXE-GOG-COMBAT-013`, while the latter still has no recovered direct
+  reference.
+- **Bounded finding:** none of the reviewed paths supplies both an
+  actor/hostile identity or record and a recovered decision/action consumer.
+  The observed OJFF #9258 has no direct executable consumer; mapped `MONR`
+  bytes are unreferenced non-instruction data; and `ETAB` has no loaded tag
+  literal. The RDFF route is an indexed-record path with no payload-field
+  role. The coordinate path reaches an opaque validation gate, not an actor
+  operation. The RNG chain reaches a shared indirect routine and panel
+  initialization, but has no recovered caller or rule-level owner.
+- **Interpretation:** this is a coverage statement about the enumerated,
+  reproducible paths, not proof that the original has no enemy logic. Indirect
+  overlay dispatch, runtime-populated state, constructed tags, and unobserved
+  code remain possible. It establishes no target preference, route planner,
+  range test, action weighting, turn order, randomness use, or outcome rule.
+- **Confidence:** high for the cited narrow findings and their stated limits;
+  unknown for all native enemy-AI semantics.
+- **Implementation consequence:** no AI model or automated enemy turn may be
+  introduced. Resume static work only from a new actor/action anchor supplied
+  by a controlled C0-C6 observation, a constrained data relationship, or a
+  traceable executable consumer.
+
 ### EXE-GOG-CURSOR-001 - Shared cursor selector includes observed interaction resources
 
 - **Question:** Do the observed Walk, Attack, and Look cursor resources have a
