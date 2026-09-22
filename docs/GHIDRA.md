@@ -1906,6 +1906,34 @@ proof by itself. Never redirect broad output into the repository.
   do not derive a text renderer, resource routing model, or combat presenter
   from the static panel and font resources alone.
 
+### EXE-GOG-COMBAT-019 - Computer-control labels are unlinked overlay data
+
+- **Question:** Does the manual's `COMPUTER CONTROL` term identify a native
+  handler, default, toggle, or automation path for Space during combat?
+- **Target/method:** A bounded complete-physical-file scan of the documented
+  634,416-byte GOG-1432903719 `DSUN.EXE` searched the exact uppercase ASCII
+  term and reported only counts/file offsets. The local-only FBOV mapped image
+  from `EXE-GOG-OVERLAY-004` then ran `ReportBytePattern` for the same 16-byte
+  sequence under Ghidra 12.1.3/JDK 21.0.12.1, which reports every match, direct
+  inbound reference, and decoded-instruction containment.
+- **Bounded finding:** the physical file contains four exact occurrences, at
+  file offsets 322839, 322902, 322929, and 322953, all in the physical overlay.
+  The mapped image contains the same four raw occurrences at `5000:9b17`,
+  `5000:9b56`, `5000:9b71`, and `5000:9b89`. Every occurrence is data in a
+  mapped block; none has a Ghidra-recorded direct inbound reference or belongs
+  to a decoded instruction.
+- **Interpretation:** the exact label is not a direct static handler or
+  automation lead. It may be reached indirectly, copied at runtime, or be one
+  of several diagnostics, but it establishes neither whether computer control
+  starts enabled, what Space changes, how it is restored, nor any enemy or
+  party decision behavior.
+- **Confidence:** high for the exact physical/mapped counts, locations,
+  no-reference result, and non-instruction classification; unknown for all
+  label ownership and automation semantics.
+- **Implementation consequence:** keep the manual's Space binding as an
+  unconnected evidence lead. Do not model a computer-control toggle or infer
+  AI behavior from the label.
+
 ### EXE-GOG-AI-001 - Current static paths do not identify an enemy-decision owner
 
 - **Question:** Do the currently evidenced executable and data entry points
@@ -1917,7 +1945,7 @@ proof by itself. Never redirect broad output into the repository.
   (`EXE-GOG-ACTOR-002`), `MONR` tag query (`EXE-GOG-MONR-001`), region entity
   tag query (`EXE-GOG-REGION-002`), hostile-display path
   (`EXE-GOG-RDFF-001` through `003`), coordinate/input chain
-  (`EXE-GOG-COMBAT-007`, `009`, `010`, and `013` through `017`), and native
+  (`EXE-GOG-COMBAT-007`, `009`, `010`, and `013` through `019`), and native
   RNG selector chain (`EXE-GOG-RNG-001` and `002`). The final two focused
   queries rechecked the mapped coordinate destination and the RNG/panel
   routine `74bb:0077`: the former exposes only the bounded opaque validation
@@ -1929,7 +1957,8 @@ proof by itself. Never redirect broad output into the repository.
   bytes are unreferenced non-instruction data; and `ETAB` has no loaded tag
   literal. The RDFF route is an indexed-record path with no payload-field
   role. The coordinate path reaches an opaque validation gate, not an actor
-  operation. The RNG chain reaches a shared indirect routine and panel
+  operation; the four literal computer-control labels are likewise unlinked
+  data. The RNG chain reaches a shared indirect routine and panel
   initialization, but has no recovered caller or rule-level owner.
 - **Interpretation:** this is a coverage statement about the enumerated,
   reproducible paths, not proof that the original has no enemy logic. Indirect

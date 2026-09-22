@@ -2247,6 +2247,9 @@
   `EXE-GOG-COMBAT-013` now maps that coordinate branch through a bounded
   five-guard validation sequence, but identifies neither its flags/constants
   nor an enemy, target, action, or decision owner.
+  `EXE-GOG-COMBAT-019` finds four literal computer-control labels only as
+  unreferenced overlay data, so it establishes no default, toggle, or
+  automation behavior.
   `EXE-GOG-COMBAT-014` places that branch's resident value in a broader
   combat-adjacent mode switch without assigning value five an attack or target
   meaning.
