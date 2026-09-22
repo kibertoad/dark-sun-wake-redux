@@ -3209,6 +3209,31 @@ proof by itself. Never redirect broad output into the repository.
   monotonic and CPU-independent until an independent consumer path and
   controlled observation agree.
 
+### EXE-GOG-SOUND-010 - Main executable has no literal sound-helper filename
+
+- **Question:** Does the complete main executable directly name the shipped
+  `SOUND_DS.EXE` helper, providing a bounded launcher or audio-ownership lead?
+- **Target:** the documented stable GOG-1432903719 `DSUN.EXE` target,
+  634,416 bytes, SHA-256
+  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`.
+- **Method:** a bounded read-only PowerShell scan compared every valid offset
+  in the complete physical file, including any bytes outside the loaded MZ
+  image, with the exact twelve-byte ASCII `SOUND_DS.EXE` pattern. It reported
+  only file length, pattern length, match count, and offsets; no executable
+  bytes were printed or retained.
+- **Bounded finding:** the 634,416-byte file has zero exact matches.
+- **Interpretation:** this excludes only a literal complete helper filename in
+  the main executable. The helper might still be launched through a constructed
+  name, a shorter identifier, a batch/launcher layer, indirect state, or no
+  direct launch path at all. It establishes no audio ownership, configuration,
+  device, decoding, or timing contract.
+- **Confidence:** high for the exact whole-file literal absence; unknown for
+  helper invocation and all audio behavior.
+- **Implementation consequence:** do not model `SOUND_DS.EXE` as a main-game
+  child process or map it to Preferences/audio events. Preserve opaque assets
+  and a CPU-independent runtime policy pending a traceable consumer path and
+  controlled observation.
+
 ### EXE-GOG-TITLE-002 - No co-located direct title-image loader literal
 
 - **Question:** Does the supported executable contain one recovered function

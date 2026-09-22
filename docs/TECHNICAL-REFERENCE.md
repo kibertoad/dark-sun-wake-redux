@@ -92,7 +92,9 @@ are:
   evidence of configuration ownership or Preferences behavior. Neither
   case-variant of the configuration file's `.adv` module suffix occurs anywhere
   in the helper's complete physical file, including its overlay, which likewise
-  does not establish module ownership or driver-selection behavior.
+  does not establish module ownership or driver-selection behavior. The
+  complete main executable also lacks the literal `SOUND_DS.EXE` helper
+  filename (`EXE-GOG-SOUND-010`), so no main-to-helper launch path is claimed.
 - The sound helper's complete physical file, including that overlay, also has
   no whole `Creative Voice File` signature. This strengthens the loaded-image
   absence but still does not identify or exclude partial validation, a decoder,
