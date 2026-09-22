@@ -244,6 +244,19 @@ renderer and fields opaque rather than proving either resource unused.
 14-by-81 arithmetic split to a stronger 27-by-42 aligned-word envelope with a
 constant tail. No executable loader or combat meaning is established.
 
+`EXE-GOG-AI-001` is the current aggregate enemy-decision audit, not a claim
+that the native executable lacks AI. It covers every current static candidate:
+the observed hostile OJFF #9258, raw `MONR` and `ETAB` leads, bounded `RDFF`
+paths, coordinate/input branches, the four `COMPUTER CONTROL` label matches,
+and the RNG/panel route. None connects an actor or hostile record to a native
+target-selection, movement, action, or outcome consumer. The mapped coordinate
+destination is only a five-guard validation sequence; the computer-control
+labels are unreferenced data; and the RNG/panel routine has no recovered caller.
+Indirect or runtime-built paths remain possible. Consequently, no enemy-AI
+model is present in Core or Game. C0-C6 must first establish combat entry,
+active-state changes, targeting, an enemy action, and turn progression before a
+new focused static query can assign behavior.
+
 ### Combat evidence ledger
 
 | Surface | Established evidence | What is deliberately not inferred | Next evidence needed |
@@ -255,6 +268,7 @@ constant tail. No executable loader or combat meaning is established.
 | Cursor presentation | `ICON` #19101–#19108 are selected by one native routine; #19103/#19104 appear at distinct branches. `EXE-GOG-CURSOR-002` confines it to a conditional shared-handler branch. | That #19103 executes an attack, that #19104 states why an attack fails, or any combat-specific owner. | Recoverable indirect owner plus branch-input meaning. |
 | Native input boundaries | Mouse-coordinate and button probes establish generic wrappers; the recovered callback conditionally emits a 14-byte packet through guarded resident buffering. BIOS-keyboard probes remain generic. | A combat input loop, packet fields/consumer, the manual-key dispatch, repeat policy, or a command-to-action mapping. | Screen-specific consumer path and controlled command traces C2/C4. |
 | Resident state candidates | One coordinate branch reads value five; a broader combat-adjacent switch and direct writes of two and 19 are recovered. | A finite mode enum, combat phase, target state, or attack mode. | A mapped producer and action body, including indirect/computed writes. |
+| Enemy decision route | `EXE-GOG-AI-001` audits OJFF #9258, `MONR`, `ETAB`, `RDFF`, coordinate/input, computer-control labels, and RNG/panel leads. None reaches an attributable decision/action consumer. | AI absence, target choice, movement, action selection, turn ownership, damage/outcome rules, or automation behavior. | C0-C6 state/action captures followed by a focused static query anchored to that observed path. |
 | Rule data | Manual arithmetic and hotkeys remain isolated research helpers; `MONR` is only an opaque 27-by-42 envelope. | Attack, movement, damage, turn, encounter, difficulty, AI, or outcome implementation. | Controlled C0–C6 observations paired with a traceable executable or data finding for each rule. |
 
 ## Object and static-scene route
