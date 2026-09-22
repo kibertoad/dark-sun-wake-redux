@@ -3251,6 +3251,38 @@ proof by itself. Never redirect broad output into the repository.
   the capture-correlated first-Tyr portrait mapping, but do not generalize a
   native portrait loader or dialogue behavior from this negative result.
 
+### EXE-GOG-UI-011 - Start-window button IDs have no direct handler operands
+
+- **Question:** Do the four serialized start-window controls identify a direct
+  executable dispatch path that can establish their native activation or
+  transition behavior?
+- **Target:** the documented stable GOG-1432903719 `DSUN.EXE` target,
+  634,416 bytes, SHA-256
+  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, JDK 21.0.12.1, 16-bit real-mode MZ loader. A disposable
+  project completed Ghidra's default analysis before the focused scan.
+- **Method:** `ReportScalarConstants` scanned every decoded instruction operand
+  for the four unsigned decimal `BUTN` identities from `WIND` #19500: 19300
+  (START GAME), 19301 (CREATE CHARACTERS), 19302 (LOAD SAVED GAME), and 19303
+  (EXIT TO DOS). The reusable report caps results at 256.
+- **Bounded finding:** no requested scalar occurs as a decoded instruction
+  operand. The scan therefore identifies no direct immediate-ID comparison,
+  registration, callback, dispatch, or screen-transition path for any of the
+  four controls.
+- **Interpretation:** this rejects only a simple direct-operand handler model.
+  It does not make the controls inactive and does not contradict their bounded
+  icon labels or the manual-described start flow. Resource-derived controls,
+  runtime callbacks, resident state, computed identifiers, indirect dispatch,
+  and another module remain possible.
+- **Confidence:** high for the four bounded absent operand results; unknown for
+  native event delivery, focus, activation edge, transition order, timing, and
+  the supplied-party loader.
+- **Implementation consequence:** retain the independently evidenced semantic
+  start choices and deterministic routing, but do not use a direct native
+  handler claim to infer focus, frame-state, callback, or transition behavior.
+  `ShippedPartyUnresolved` remains required until the four source records are
+  independently identified.
+
 For each useful finding, add a concise entry here or in the relevant
 `docs/RULES-AND-EVIDENCE.md` / `docs/ORIGINAL-FORMATS.md` section with:
 

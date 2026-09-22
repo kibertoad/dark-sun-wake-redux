@@ -106,6 +106,15 @@ The precise screen layers, logical geometry, image mapping, and observation
 confidence are maintained in [UI-ATLAS.md](UI-ATLAS.md). The plan and current
 slice acceptance criteria are in [IMPLEMENTATION-PLAN.md](IMPLEMENTATION-PLAN.md).
 
+The four known start-window controls have semantic identities from their
+resource-backed icon labels and the documented start flow. A complete
+instruction-operand scan found none of their button IDs as a direct native
+handler operand (`EXE-GOG-UI-011`). This excludes only a simple immediate-ID
+dispatcher: it neither makes a control inactive nor establishes focus,
+callbacks, frame states, transition order, or the supplied-party loader.
+Accordingly, deterministic routing remains an independently designed boundary,
+and START GAME continues with an explicit unresolved shipped-party origin.
+
 ## Destination-screen and combat evidence boundary
 
 The Character, Inventory, Cast/Use, and Effects destinations share the

@@ -2049,7 +2049,10 @@
   valid new character. A created party may begin with one through four members.
 - **Evidence:** MANUAL-1994, quick-start and "Creating Your Party," pages 2 and
   7-10; `DATA-GOG-UI-001` corroborates the four start controls and the bounded
-  start/party/character-generation window families.
+  start/party/character-generation window families. `EXE-GOG-UI-011` finds no
+  direct immediate native operand for any of the four button identities; it
+  narrows only a simple handler model and does not establish a callback or
+  transition path.
 - **Confidence:** high for documented semantic destinations; exact input event,
   focus, animation, and transition timing require OBS-GOG evidence.
 - **Implementation:** deterministic `StartFlow` screen transitions with stable
@@ -2066,9 +2069,9 @@
   edit and DUAL targets, empty/nonempty party start, cancellation, and
   wrong-screen rejection.
 - **Uncertainty:** Pregenerated member records, saved/created-character formats,
-  DUAL presentation/class-choice filtering, the exact early-start control, and
-  shipped cancellation edge cases remain unimplemented until their data and
-  runtime behavior are observed.
+  DUAL presentation/class-choice filtering, the exact early-start control,
+  native focus/frame-state/callback behavior, and shipped cancellation edge
+  cases remain unimplemented until their data and runtime behavior are observed.
 
 ### RULE-PARTY-002 - Character creation invariants
 
