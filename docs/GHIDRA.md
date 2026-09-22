@@ -3234,6 +3234,33 @@ proof by itself. Never redirect broad output into the repository.
   and a CPU-independent runtime policy pending a traceable consumer path and
   controlled observation.
 
+### EXE-GOG-SOUND-011 - No explicit literal DOS EXEC service lead
+
+- **Question:** Does the main executable contain an explicit DOS `INT 21h`
+  call with a nearby literal `AH=4Bh` setup for the EXEC service, which could
+  provide a direct helper-launch path even without a literal helper filename?
+- **Target:** the documented stable GOG-1432903719 `DSUN.EXE` target,
+  634,416 bytes, SHA-256
+  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, JDK 21.0.12.1, 16-bit real-mode MZ loader, after its default
+  analyzer pass.
+- **Method:** `ReportDosInt21Services` scanned every decoded `INT 21h`
+  instruction for a literal `MOV AH, 0x4b` within the preceding twelve
+  instructions in the same containing function. The bounded script reports
+  matching interrupt and setup addresses only.
+- **Bounded finding:** no explicit `INT 21h` instruction matched the requested
+  nearby literal setup.
+- **Interpretation:** this rejects only the specific decoded EXEC pattern. It
+  does not exclude an EXEC call whose service value is loaded indirectly, set
+  farther away, supplied through a wrapper, reached through another executable,
+  or unavailable in the analyzed path. It establishes no helper invocation or
+  audio ownership.
+- **Confidence:** high for the bounded decoded-pattern absence; unknown for
+  every broader process-launch and audio behavior question.
+- **Implementation consequence:** do not implement or emulate a child-process
+  audio model. Continue to require a traceable consumer path and controlled
+  observation before mapping audio behavior or timing.
+
 ### EXE-GOG-TITLE-002 - No co-located direct title-image loader literal
 
 - **Question:** Does the supported executable contain one recovered function

@@ -94,7 +94,9 @@ are:
   in the helper's complete physical file, including its overlay, which likewise
   does not establish module ownership or driver-selection behavior. The
   complete main executable also lacks the literal `SOUND_DS.EXE` helper
-  filename (`EXE-GOG-SOUND-010`), so no main-to-helper launch path is claimed.
+  filename (`EXE-GOG-SOUND-010`), and its decoded `INT 21h` instructions have
+  no nearby literal DOS EXEC setup (`EXE-GOG-SOUND-011`), so no main-to-helper
+  launch path is claimed.
 - The sound helper's complete physical file, including that overlay, also has
   no whole `Creative Voice File` signature. This strengthens the loaded-image
   absence but still does not identify or exclude partial validation, a decoder,

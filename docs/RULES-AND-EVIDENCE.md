@@ -1043,7 +1043,9 @@
   `EXE-GOG-SOUND-009` finds all five unreferenced and non-instruction data;
   they identify no filename loader or playback path. `EXE-GOG-SOUND-010` also
   finds no complete literal `SOUND_DS.EXE` helper filename in the physical main
-  executable, which does not exclude an indirect or constructed helper path.
+  executable, while `EXE-GOG-SOUND-011` finds no decoded `INT 21h` with a
+  nearby literal DOS EXEC setup. Neither result excludes an indirect,
+  constructed, or wrapped helper path.
   None of those bounded absences establishes a decoder, codec, filename mapping, or timing
   contract.
 - **Implementation consequence:** no decoder, extractor entry, media mapping,
