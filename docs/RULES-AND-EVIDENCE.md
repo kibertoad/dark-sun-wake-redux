@@ -1030,6 +1030,9 @@
   `EXE-GOG-SOUND-002` separately finds no complete VOC header signature,
   `EXE-GOG-SOUND-003` finds no `INT 15h` opcode, and `EXE-GOG-SOUND-004` finds
   no `.VOC` filename-extension literal in the loaded sound-helper image.
+  `EXE-GOG-SOUND-006` extends the first result through the helper's complete
+  physical MZ overlay: the same 19-byte VOC signature is absent everywhere in
+  the 204,593-byte file.
   None of those bounded absences establishes a decoder, codec, filename mapping, or timing
   contract.
 - **Implementation consequence:** no decoder, extractor entry, media mapping,

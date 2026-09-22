@@ -3082,6 +3082,34 @@ proof by itself. Never redirect broad output into the repository.
   settings to audio behavior until an independent bounded consumer path and
   controlled observation establish their relationship.
 
+### EXE-GOG-SOUND-006 - Physical sound-helper overlay has no complete VOC header
+
+- **Question:** Does the physical `SOUND_DS.EXE` file, including the MZ overlay
+  omitted from Ghidra's loaded image, contain the complete `Creative Voice File`
+  signature that could identify a whole-header VOC validation path?
+- **Target:** GOG-1432903719 `SOUND_DS.EXE`, 204,593 bytes, SHA-256
+  `50e10670f18e26f0e22e94a73d7469ed7d39afb2b2c2bf8139dbb3cb927110c6`.
+  The documented MZ overlay is included in this physical-file query.
+- **Method:** a bounded PowerShell 5.1.26100.9444 scan read the exact
+  204,593-byte physical file and compared every possible start offset with the
+  explicit 19-byte ASCII `Creative Voice File` pattern. It reported only the
+  file length, pattern length, match count, and offsets; no source bytes were
+  retained.
+- **Bounded finding:** the complete physical file has zero matches. Together
+  with `EXE-GOG-SOUND-002`, neither the loaded image nor the physical overlay
+  contains the whole VOC signature.
+- **Interpretation:** this excludes a decoder/validator that embeds that exact
+  complete header anywhere in this executable. It does not exclude partial or
+  bytewise validation, a constructed signature, caller-supplied data, a driver,
+  another module, or a nonvalidating playback path. It establishes no codec,
+  sample-rate, device, routing, or timing behavior.
+- **Confidence:** high for the exact complete-file pattern absence; unknown for
+  all VOC consumption and audio semantics.
+- **Implementation consequence:** do not promote the standard VOC header
+  envelope into a runtime decoder or playback clock. Keep voice assets opaque
+  and CPU-independent scheduling explicit until a bounded consumer path and a
+  controlled playback observation corroborate a supported subset.
+
 ### EXE-GOG-TITLE-002 - No co-located direct title-image loader literal
 
 - **Question:** Does the supported executable contain one recovered function

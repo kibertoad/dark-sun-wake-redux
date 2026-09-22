@@ -91,6 +91,10 @@ are:
   case-variant of the configuration file's `.adv` module suffix occurs anywhere
   in the helper's complete physical file, including its overlay, which likewise
   does not establish module ownership or driver-selection behavior.
+- The sound helper's complete physical file, including that overlay, also has
+  no whole `Creative Voice File` signature. This strengthens the loaded-image
+  absence but still does not identify or exclude partial validation, a decoder,
+  device routing, or CPU-independent playback timing.
 
 ## Current runtime boundary
 
