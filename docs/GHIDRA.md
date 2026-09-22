@@ -3177,6 +3177,38 @@ proof by itself. Never redirect broad output into the repository.
   Keep audio opaque and any future runtime clock monotonic and CPU-independent
   until a bounded consumer path and controlled observation corroborate it.
 
+### EXE-GOG-SOUND-009 - Main executable VOC-extension data is unlinked
+
+- **Question:** Do the `.VOC` filename-extension markers in the main executable
+  have a direct reference or instruction context that identifies a native
+  voice/sound-effect filename loader?
+- **Target:** the documented stable GOG-1432903719 `DSUN.EXE` target,
+  634,416 bytes, SHA-256
+  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  Ghidra 12.1.3, JDK 21.0.12.1, 16-bit real-mode MZ loader, after its default
+  analyzer pass.
+- **Method:** a complete physical-file scan first found five exact four-byte
+  ASCII `.VOC` occurrences. `ReportBytePattern` then searched loaded memory
+  for `2e 56 4f 43`, reporting each match and direct inbound reference.
+  `ReportInstructionContext` separately classified every resulting virtual
+  address without reading adjacent payload bytes.
+- **Bounded finding:** the five loaded matches are at `5000:8d7e`,
+  `5000:8d92`, `5000:8d9f`, `5000:8db5`, and `5000:96aa`, all in `CODE_208`.
+  Ghidra reports no direct inbound reference for any address, and none is
+  contained by a decoded instruction.
+- **Interpretation:** the program carries five raw extension fragments, but
+  the focused analysis supplies no direct filename construction, file open,
+  resource lookup, decoder, playback caller, or duration conversion. The
+  strings may be reached indirectly, copied at runtime, or be unrelated data;
+  they do not establish an audio path.
+- **Confidence:** high for the five raw matches and the no-reference/
+  non-instruction classifications; unknown for filename ownership, audio
+  routing, decoding, device behavior, and timing.
+- **Implementation consequence:** do not map numbered VOC files to events or
+  add a filename-derived decoder/scheduler. Keep any future playback clock
+  monotonic and CPU-independent until an independent consumer path and
+  controlled observation agree.
+
 ### EXE-GOG-TITLE-002 - No co-located direct title-image loader literal
 
 - **Question:** Does the supported executable contain one recovered function

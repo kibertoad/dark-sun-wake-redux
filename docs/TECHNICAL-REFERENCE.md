@@ -81,9 +81,11 @@ are:
   preserved. The executable contains raw numbered FLI names and CINE-directory
   path templates, but their inspected locations have no direct references, so
   names do not establish a loader, fallback, sequence, or timing policy. Those
-  media semantics remain opaque. The loaded sound-helper image likewise has no
-  complete VOC header signature or `.VOC` filename-extension literal, so it
-  establishes no decoder, codec, filename mapping, or timing contract.
+  media semantics remain opaque. The loaded sound-helper image has no complete
+  VOC header signature or `.VOC` filename-extension literal. The main
+  executable carries five `.VOC` fragments, but every one is unreferenced data
+  rather than an instruction (`EXE-GOG-SOUND-009`). These facts establish no
+  decoder, codec, filename mapping, or timing contract.
 - `SOUND.CFG` has a bounded 59-byte envelope, but neither the main executable
   nor the separately shipped sound helper contains its literal pathname; the
   main executable also has no literal `SOUND.INI` pathname. This is not

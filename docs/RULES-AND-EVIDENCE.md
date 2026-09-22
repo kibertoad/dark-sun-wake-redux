@@ -1038,7 +1038,10 @@
   settings, or timing owner. `EXE-GOG-SOUND-008` independently scans the
   complete physical main `DSUN.EXE` and finds the same whole-header signature
   absent there as well; this is not evidence that any executable cannot read
-  VOC data through a partial, indirect, or delegated path.
+  VOC data through a partial, indirect, or delegated path. The same main
+  executable has five raw `.VOC` extension fragments, but
+  `EXE-GOG-SOUND-009` finds all five unreferenced and non-instruction data;
+  they identify no filename loader or playback path.
   None of those bounded absences establishes a decoder, codec, filename mapping, or timing
   contract.
 - **Implementation consequence:** no decoder, extractor entry, media mapping,
