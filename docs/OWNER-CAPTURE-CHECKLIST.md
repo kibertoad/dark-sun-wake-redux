@@ -74,6 +74,29 @@ If START GAME reaches an unexpected screen, or if a member action is not
 available, capture the reached state once, stop, and report the exact point.
 That outcome is preferable to inferring a slot partition.
 
+## Inventory-selection gate
+
+Purpose: establish the native inventory screen's visible item-label geometry
+and the first result of selecting one observed label. It does **not** ask for
+equipping, using, transferring, dropping, rearranging, saving, or inspecting
+an unknown control.
+
+Start a fresh normal launch and use the shipped party. Keep the default window
+size for the complete sequence. The known `Longsword` and `Dagger` labels are
+source-vocabulary leads only; their record identity, slot, quantity, owner,
+and behavior remain unestablished.
+
+| ID | Native action | Required capture/record |
+|---|---|---|
+| I0 | From a stable exploration or party screen, press the documented inventory key (`I`) once. | Capture the first settled inventory page. Record the exact input, the owner-confirmed active member/screen label, and the logical coordinates or bounding rectangles of every clearly visible item label. Do not infer a slot or item ID from placement. |
+| I1 | If `Longsword` is visibly labelled, click once at the center of its rendered label. | Capture the first settled result. Record the pointer coordinate, every visible change, and whether a new panel/control appears. Do not click a newly revealed or unknown control; if a modal/panel opens, stop this sequence after its capture. |
+| I2 | Only if I1 leaves the same inventory page stable and no new panel/control appears, restore the I0 state with the native Back/Return action that was visibly available, then click once at the center of the visible `Dagger` label. | Capture the first settled result and record the pointer coordinate and every visible change. Do not use, equip, transfer, drop, or rearrange either item. |
+
+If the inventory key reaches an unexpected page, an observed label is absent,
+or a selection causes an unexpected state, capture the reached state once,
+stop, and report the exact point. An unchanged result is valid evidence; do
+not repeat the click until it appears to work.
+
 ## Opening-combat gate
 
 Purpose: establish the first native combat state's entry, available controls,
