@@ -1032,7 +1032,10 @@
   no `.VOC` filename-extension literal in the loaded sound-helper image.
   `EXE-GOG-SOUND-006` extends the first result through the helper's complete
   physical MZ overlay: the same 19-byte VOC signature is absent everywhere in
-  the 204,593-byte file.
+  the 204,593-byte file. `EXE-GOG-SOUND-007` does find bounded direct port
+  output, including a caller-word-derived fixed-port sequence and a separate
+  runtime-base-plus-offset sequence, but neither has a recovered VOC, device,
+  settings, or timing owner.
   None of those bounded absences establishes a decoder, codec, filename mapping, or timing
   contract.
 - **Implementation consequence:** no decoder, extractor entry, media mapping,

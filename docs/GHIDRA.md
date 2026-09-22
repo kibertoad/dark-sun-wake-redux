@@ -3110,6 +3110,45 @@ proof by itself. Never redirect broad output into the repository.
   and CPU-independent scheduling explicit until a bounded consumer path and a
   controlled playback observation corroborate a supported subset.
 
+### EXE-GOG-SOUND-007 - Sound helper port I/O has no recovered playback owner
+
+- **Question:** Does the loaded sound helper expose direct port-I/O sequences
+  that identify a decoder, device setup, or playback clock for the owned VOC
+  files?
+- **Target:** GOG-1432903719 `SOUND_DS.EXE`, 204,593 bytes, SHA-256
+  `50e10670f18e26f0e22e94a73d7469ed7d39afb2b2c2bf8139dbb3cb927110c6`;
+  Ghidra 12.1.3, JDK 21.0.12.1, 16-bit real-mode MZ loader, after the default
+  analyzer pass.
+- **Method:** `ReportImmediatePortIo` tested five explicit 16-bit interface
+  values (513, 544, 556, 816, and 904) for `MOV DX, immediate` followed within
+  sixteen instructions by `IN`/`OUT DX`. A capped `ReportInstructionText out`
+  scan then enumerated every decoded output instruction, and bounded contexts
+  and direct-reference reports inspected each resulting helper.
+- **Bounded finding:** none of the five requested values participates in the
+  tested immediate-DX sequence. The output scan has six sites: one writes zero
+  to fixed port `0x43`, then reads fixed port `0x40` twice and complements the
+  resulting word; a second helper writes `0x36` to `0x43`, sends the low then
+  high byte of a caller-supplied word to `0x40`, and has three direct callers;
+  a third helper derives two output ports by adding four and five to a runtime
+  word, then writes `0x83` and `0x0b`, with one direct caller. The recovered
+  callers and argument sources do not name a VOC file, decoder, device,
+  configuration field, gameplay event, or time unit.
+- **Interpretation:** the helper contains direct port traffic, but the bounded
+  code does not establish why it occurs or connect it to voice playback.
+  Immediate-port forms and dynamic-base forms are distinct; the five tested
+  values cover neither arbitrary runtime bases nor all possible port patterns.
+  The fixed-port writes do not establish a sample clock, duration, rate, or
+  a CPU-speed-independent schedule.
+- **Confidence:** high for the six decoded output sites, their local operation
+  order, the selected immediate-DX absence, and the four direct-caller counts;
+  unknown for device ownership, decoder, buffering, playback mapping, timing,
+  and every user-visible audio behavior.
+- **Implementation consequence:** retain opaque VOC assets and a monotonic
+  runtime scheduling policy. Do not emulate port writes, infer a hardware
+  backend, use the caller word as a duration/rate, or bind a Preferences
+  setting until a consumer path and controlled playback observation establish
+  those semantics.
+
 ### EXE-GOG-TITLE-002 - No co-located direct title-image loader literal
 
 - **Question:** Does the supported executable contain one recovered function

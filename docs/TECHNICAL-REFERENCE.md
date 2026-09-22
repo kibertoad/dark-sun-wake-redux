@@ -95,6 +95,11 @@ are:
   no whole `Creative Voice File` signature. This strengthens the loaded-image
   absence but still does not identify or exclude partial validation, a decoder,
   device routing, or CPU-independent playback timing.
+- Its loaded code does contain fixed-port and runtime-base-plus-offset output
+  sequences, but their direct callers do not identify a VOC consumer, device,
+  Preferences control, rate, duration, or playback clock. Those low-level
+  operations are evidence against assuming a simple standard decoder, not a
+  contract to emulate in the modern runtime.
 
 ## Current runtime boundary
 
