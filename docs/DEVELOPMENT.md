@@ -79,6 +79,11 @@ dotnet run --project tools/DarkSunWakeRedux.Inspect -- region-catalog "C:\path\t
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- object-catalog "C:\path\to\OBJEX.GFF" "C:\path\to\RGN032.GFF"
 ```
 
+The physical-byte reporter accepts at most 16,384 matches by default (or a
+lower explicitly supplied `-MaximumMatches` limit). It fails with a diagnostic
+if a pattern is too broad, rather than emitting an unbounded offset list; use a
+more specific pattern for a focused evidence query.
+
 The first command emits path, size, and SHA-256 inventory. The second emits only
 bounded GFF resource descriptors (tag, number, offset, and size). The third
 validates all indexed images and palettes in one GFF and emits dimensions and

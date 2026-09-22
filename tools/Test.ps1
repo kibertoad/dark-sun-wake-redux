@@ -19,6 +19,16 @@ try {
         $physicalPatternReport.Offsets[0] -ne 1 -or $physicalPatternReport.Offsets[1] -ne 3) {
         throw 'Physical byte-pattern reporter synthetic contract failed.'
     }
+
+    try {
+        & (Join-Path $PSScriptRoot 'ghidra/ReportPhysicalBytePattern.ps1') -SourcePath $physicalPatternFixture -Pattern 'aa' -MaximumMatches 1 | Out-Null
+        throw 'Physical byte-pattern reporter accepted more matches than its configured limit.'
+    }
+    catch {
+        if ($_.Exception.Message -notmatch 'matches exceed the 1-result analysis limit') {
+            throw
+        }
+    }
 }
 finally {
     if ([IO.File]::Exists($physicalPatternFixture)) { [IO.File]::Delete($physicalPatternFixture) }

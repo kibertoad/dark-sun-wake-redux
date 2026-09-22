@@ -6,7 +6,10 @@ param(
 
     [Parameter(Mandatory = $true)]
     [ValidateNotNullOrEmpty()]
-    [string]$Pattern
+    [string]$Pattern,
+
+    [ValidateRange(1, 65536)]
+    [int]$MaximumMatches = 16384
 )
 
 $ErrorActionPreference = 'Stop'
@@ -35,6 +38,7 @@ if ($sourceInfo.Length -gt $maximumSourceBytes) {
 }
 [byte[]]$haystack = [IO.File]::ReadAllBytes($sourceFullPath)
 $offsets = [Collections.Generic.List[int]]::new()
+$matchCount = 0
 for ($offset = 0; $offset -le $haystack.Length - $needle.Length; $offset++) {
     $matches = $true
     for ($needleOffset = 0; $needleOffset -lt $needle.Length; $needleOffset++) {
@@ -43,13 +47,20 @@ for ($offset = 0; $offset -le $haystack.Length - $needle.Length; $offset++) {
             break
         }
     }
-    if ($matches) { $offsets.Add($offset) }
+    if ($matches) {
+        $matchCount++
+        if ($matchCount -gt $MaximumMatches) {
+            throw "Pattern matches exceed the $MaximumMatches-result analysis limit."
+        }
+
+        $offsets.Add($offset)
+    }
 }
 
 [pscustomobject]@{
     SourcePath = $sourceFullPath
     SourceByteLength = $haystack.Length
     PatternByteLength = $needle.Length
-    MatchCount = $offsets.Count
+    MatchCount = $matchCount
     Offsets = $offsets
 } | ConvertTo-Json -Compress
