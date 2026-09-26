@@ -1,18 +1,27 @@
 # CONFIG
 
-Next ID: Q-CONFIG-005
+Next ID: Q-CONFIG-007
 
 ## Static
 
-- Q-CONFIG-002. FMT-CONFIG-001, FMT-CONFIG-002, FMT-CONFIG-003, RULE-CONFIG-001, RULE-CONFIG-002,
-  RULE-CONFIG-003: Which setting does each byte of `PREF/100` hold, where do the game's volume,
-  on-off and difficulty settings live, what does the sound library read from each field of
-  `SOUND.CFG`, and how does the setup program parse `SOUND.INI`? Settles it: the routines the load
-  routine of overlay 192 calls with the settings (FND-SAVE-005), the sound library's reader at
-  `47B9:0236` (FND-CONFIG-005), the code that handles the Preferences buttons, and the parser at
-  `SOUND_DS.EXE` `1AF6:0BF9` (FND-CONFIG-004). Tried: the values of the shipped `SOUND.CFG` against
-  the `SOUND.INI` records, which name most fields but not the tail (FND-CONFIG-003). Blocks:
-  slice 3.
+- Q-CONFIG-002. FMT-CONFIG-003, RULE-CONFIG-001, RULE-CONFIG-002, RULE-CONFIG-003: Which
+  Preferences setting does each remaining field of `PREF/100` hold, and how do the button
+  handlers change the saved volumes, on-off settings and difficulty? Settles it: the routines
+  called after the overlay 192 load (FND-SAVE-005), the Preferences button handlers and the
+  callers that initialize the settings. Tried: the load routine (FND-SAVE-005) and the renderer's
+  references to `DS:143A`, which identify offset `0x00` as the saved difficulty-label index but
+  do not establish the button transitions or new-game default (FND-CONFIG-009). Blocks: slice 3.
+
+- Q-CONFIG-005. FMT-CONFIG-001: What does the game's sound library read from each field of
+  `SOUND.CFG`, including its unexplained tail? Settles it: a bounded reading of the sound
+  library's reader at `47B9:0236` (FND-CONFIG-005) and the consumers of its output. Tried:
+  comparison of the shipped file with `SOUND.INI` records, which names most fields but not the
+  tail (FND-CONFIG-003).
+
+- Q-CONFIG-006. FMT-CONFIG-002: How does the setup program parse `SOUND.INI`, including unknown
+  or malformed keys, and what do `CardGroup` and the chunk numbers mean? Settles it: the parser
+  at `SOUND_DS.EXE` `1AF6:0BF9` (FND-CONFIG-004) and its consumers. The file layout alone does
+  not determine parser behavior (FND-CONFIG-007).
 
 - Q-CONFIG-004. FMT-CONFIG-005: What is the structure and role of `PATCH.RTP`? Settles it: a
   bounded inspection of the file and references from the installed setup programs. Blocks:

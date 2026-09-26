@@ -98,4 +98,4 @@ Every line of the installed file and of the disc's copy [FND-CONFIG-007].
 ## Open questions
 
 - How the setup program parses the file and what it does with keys it does not expect, and what
-  `CardGroup` and the chunk numbers mean (FND-CONFIG-004, FND-CONFIG-007, Q-CONFIG-002).
+  `CardGroup` and the chunk numbers mean (FND-CONFIG-004, FND-CONFIG-007, Q-CONFIG-006).

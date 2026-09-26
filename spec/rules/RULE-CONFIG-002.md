@@ -64,6 +64,7 @@ None known.
 
 ## Open questions
 
-- Where the game keeps `difficulty`, whether it is saved with a game, and whether the buttons stop
-  or wrap (Q-CONFIG-001, Q-CONFIG-002).
+- The game saves its difficulty-label index at `PREF/100` offset `0x00`
+  (FMT-CONFIG-003, FND-CONFIG-009). Whether the buttons stop or wrap, and what
+  value a new game starts with, remain open (Q-CONFIG-001, Q-CONFIG-002).
 - What the difficulty changes in combat (RULE-COMBAT-007, Q-COMBAT-007).

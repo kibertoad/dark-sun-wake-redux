@@ -59,4 +59,4 @@ The one installed file [FND-CONFIG-003].
 ## Open questions
 
 - Which block is for music and which for digital sound, what the two unexplained tail words hold,
-  and what the game does with each field (FND-CONFIG-003, FND-CONFIG-005, Q-CONFIG-002).
+  and what the game does with each field (FND-CONFIG-003, FND-CONFIG-005, Q-CONFIG-005).

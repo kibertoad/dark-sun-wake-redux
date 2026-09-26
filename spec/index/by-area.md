@@ -478,6 +478,7 @@ Entries by area.
 | [FND-CONFIG-006](../findings/FND-CONFIG-006.md) | SOUND_DS.EXE does not hold .adv in either case | recorded |
 | [FND-CONFIG-007](../findings/FND-CONFIG-007.md) | SOUND.INI is a list of sound cards written as bracketed tags with values | recorded |
 | [FND-CONFIG-008](../findings/FND-CONFIG-008.md) | The installed cue sheet has one data track and forty file-backed audio tracks | recorded |
+| [FND-CONFIG-009](../findings/FND-CONFIG-009.md) | The Preferences renderer indexes its four difficulty labels with the first PREF word | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | sourced |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | sourced |

@@ -173,7 +173,7 @@ Entries by kind.
 
 ## findings
 
-228 entries.
+229 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -230,6 +230,7 @@ Entries by kind.
 | [FND-CONFIG-006](../findings/FND-CONFIG-006.md) | SOUND_DS.EXE does not hold .adv in either case | recorded |
 | [FND-CONFIG-007](../findings/FND-CONFIG-007.md) | SOUND.INI is a list of sound cards written as bracketed tags with values | recorded |
 | [FND-CONFIG-008](../findings/FND-CONFIG-008.md) | The installed cue sheet has one data track and forty file-backed audio tracks | recorded |
+| [FND-CONFIG-009](../findings/FND-CONFIG-009.md) | The Preferences renderer indexes its four difficulty labels with the first PREF word | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |
