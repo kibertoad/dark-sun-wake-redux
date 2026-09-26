@@ -201,7 +201,7 @@ with deterministic fractional carry,
 canvas re-entry cannot jump, and a
 completed drag suppresses cycling. Core separately bounds and clamps pan
 commands. Either Alt key completing an Enter chord toggles once, and a held or
-partial chord does not repeat. These are `COMPAT-INPUT-001`, not
+partial chord does not repeat. These are `DEV-INPUT-001`, not
 original-parity claims.
 Exact comparison of the retained ignored native opening frame against the
 compositor at `(1024,1368)` isolates the visible leader to a 367-differing-pixel

@@ -360,7 +360,7 @@ catalogs.
 - **Acceptance - rules.** Click-to-walk, collision, leader selection, party
   placement, interaction eligibility, dialogue choices, item transfer, and
   initial quest flags are deterministic Core commands/events. Per
-  `COMPAT-PATH-001`, routes may use modern deterministic pathfinding rather than
+  `DEV-EXPLORE-002`, routes may use modern deterministic pathfinding rather than
   reproduce the original planner's deficiencies.
 - **Acceptance - presentation.** Viewport and scrolling, cursor modes and target
   hotspot, dialogue/menu layering, portraits, and control states match measured
@@ -384,10 +384,10 @@ catalogs.
   footprint/cadence and the extracted 13-frame image's animation semantics
   remain open.
   Manual-defined edge scrolling now drives a clamped deterministic Core camera
-  and rerasterizes that viewport. Per owner-approved `COMPAT-INPUT-001`, a
+  and rerasterizes that viewport. Per owner-approved `DEV-INPUT-001`, a
   held right-button grab-drag also emits bounded logical-camera pans while a
   stationary right click retains the original mode cycle; Alt+Enter toggles
-  native-resolution fullscreen on a single chord edge. `COMPAT-DISPLAY-001`
+  native-resolution fullscreen on a single chord edge. `DEV-EXPLORE-001`
   expands the bounded world slice to the physical aspect ratio while fixed UI
   remains on the original canvas; F9 previews the measured dialogue chrome over
   that live world pending conversation routing and text. A fail-closed GPL #135

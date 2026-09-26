@@ -204,6 +204,7 @@ Entries by area.
 | [RULE-EXPLORE-002](../rules/RULE-EXPLORE-002.md) | Key 5 shows the whole party on the map and key 6, outside combat, shows only the leader | supported |
 | [RULE-EXPLORE-003](../rules/RULE-EXPLORE-003.md) | Objects occupy the map cells of their footprint by setting the cells' blocked and occupied bits, which a cell test for movement reads | supported |
 | [RULE-EXPLORE-004](../rules/RULE-EXPLORE-004.md) | The keypad direction keys step the chosen character one cell, or in combat attack the object whose area holds the blocked cell | supported |
+| [RULE-EXPLORE-005](../rules/RULE-EXPLORE-005.md) | How a character walks to the cell a left click with the Walk pointer chose | unknown |
 
 ## SCRIPT
 

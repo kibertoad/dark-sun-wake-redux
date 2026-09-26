@@ -95,7 +95,7 @@ broader GPL instruction execution remain pending.
 
 ## Previous cohesive batch
 
-The owner-approved `COMPAT-INPUT-001` modern control preserves original edge
+The owner-approved `DEV-INPUT-001` modern control preserves original edge
 scrolling and stationary right-click mode cycling while adding held-right-button
 grab-drag camera panning. The input adapter distinguishes click from drag,
 reanchors safely across the letterboxed canvas, emits bounded logical deltas

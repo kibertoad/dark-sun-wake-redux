@@ -1,6 +1,6 @@
 # EXPLORE
 
-Next ID: Q-EXPLORE-006
+Next ID: Q-EXPLORE-007
 
 ## Static
 
@@ -34,6 +34,12 @@ Next ID: Q-EXPLORE-006
   the position routine the party loader of FND-PARTY-013 calls, and `31E0:435D`. Tried: the
   movement, move and draw routines (FND-EXPLORE-003), which relate the cell to the position but
   do not show how the party loader sets it. Blocks: slice 3.
+- Q-EXPLORE-006. RULE-EXPLORE-005: Which routine plans the walk to a cell clicked with the Walk
+  pointer, how does it choose the cells, what happens when no route exists or a cell on the route
+  becomes blocked, how long does one step take, and how close to the clicked cell does the walk
+  end? Settles it: the code that handles a left click on the map in Walk mode, which is not found
+  yet, and the route search at the start of `2D40:10AE`, which Q-EXPLORE-003 also reads. Tried:
+  nothing yet. Blocks: slice 3.
 
 ## Emulated call
 

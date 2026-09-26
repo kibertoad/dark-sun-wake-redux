@@ -6,7 +6,7 @@ Entries by status.
 
 ## unknown
 
-5 entries.
+6 entries.
 
 | ID | Title |
 |---|---|
@@ -14,6 +14,7 @@ Entries by status.
 | [FMT-ACTOR-003](../formats/FMT-ACTOR-003.md) | MONR resource |
 | [RULE-AI-002](../rules/RULE-AI-002.md) | What a computer-controlled combatant does in its turn |
 | [RULE-COMBAT-007](../rules/RULE-COMBAT-007.md) | What the difficulty setting changes in combat |
+| [RULE-EXPLORE-005](../rules/RULE-EXPLORE-005.md) | How a character walks to the cell a left click with the Walk pointer chose |
 | [RULE-QUEST-001](../rules/RULE-QUEST-001.md) | How the game's scripts advance the story from one quest step to the next |
 
 ## sourced
@@ -498,6 +499,7 @@ Entries whose Open questions section says more than None known.
 | [RULE-EXPLORE-002](../rules/RULE-EXPLORE-002.md) | Key 5 shows the whole party on the map and key 6, outside combat, shows only the leader | supported |
 | [RULE-EXPLORE-003](../rules/RULE-EXPLORE-003.md) | Objects occupy the map cells of their footprint by setting the cells' blocked and occupied bits, which a cell test for movement reads | supported |
 | [RULE-EXPLORE-004](../rules/RULE-EXPLORE-004.md) | The keypad direction keys step the chosen character one cell, or in combat attack the object whose area holds the blocked cell | supported |
+| [RULE-EXPLORE-005](../rules/RULE-EXPLORE-005.md) | How a character walks to the cell a left click with the Walk pointer chose | unknown |
 | [RULE-IMAGE-001](../rules/RULE-IMAGE-001.md) | Decoding an image frame, and the row encoding | supported |
 | [RULE-IMAGE-002](../rules/RULE-IMAGE-002.md) | Decoding a planar image frame | supported |
 | [RULE-INPUT-001](../rules/RULE-INPUT-001.md) | The right mouse button steps the pointer through the Walk, Attack and Look modes | sourced |
