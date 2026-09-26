@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using System.Text.Json;
 using DarkSunWakeRedux.Extractor;
 using DarkSunWakeRedux.Resources;
@@ -11,7 +10,7 @@ public sealed class BootstrapTests
     [Fact]
     public void ManifestRejectsPathTraversal()
     {
-        var manifest = new SourceManifest("game", "edition", [new("../outside", 0, new string('0', 64))]);
+        var manifest = new SourceManifest("game", "edition", [new("../outside", 0, new string('0', 32))]);
         Assert.Throws<InvalidDataException>(manifest.Validate);
     }
 
@@ -46,7 +45,7 @@ public sealed class BootstrapTests
             var sourceFile = Path.Combine(root, "GAME.DAT");
             await File.WriteAllBytesAsync(sourceFile, [1, 2, 3], TestContext.Current.CancellationToken);
             var edition = new SourceManifest("game", "synthetic-edition",
-                [new("GAME.DAT", 4, new string('0', 64))]);
+                [new("GAME.DAT", 4, new string('0', 32))]);
 
             var identification = await OriginalContent.IdentifyAsync(
                 root, [edition], TestContext.Current.CancellationToken);
@@ -71,7 +70,7 @@ public sealed class BootstrapTests
                 OriginalContent.RequiredAssetPackRevision,
                 OriginalContent.GameId,
                 "synthetic-edition",
-                new string('a', 64),
+                new string('a', 32),
                 "test",
                 [new("images/synthetic.bin", 3, await HashAsync(assetPath), "SOURCE.GFF",
                     "application/octet-stream", "synthetic-test")]);
@@ -134,7 +133,7 @@ public sealed class BootstrapTests
                 OriginalContent.RequiredAssetPackRevision - 1,
                 OriginalContent.GameId,
                 "synthetic-edition",
-                new string('c', 64),
+                new string('c', 32),
                 "test",
                 [new("images/synthetic.bin", 1, await HashAsync(assetPath), "SOURCE.GFF",
                     "application/octet-stream", "synthetic-test")]);
@@ -170,7 +169,7 @@ public sealed class BootstrapTests
                     OriginalContent.RequiredAssetPackRevision,
                     OriginalContent.GameId,
                     "synthetic-edition",
-                    new string('b', 64),
+                    new string('b', 32),
                     "test",
                     [new("images/synthetic.bin", 2, await HashAsync(asset), "SOURCE.GFF",
                         "application/octet-stream", "synthetic-test")]);
@@ -189,7 +188,6 @@ public sealed class BootstrapTests
     private static async Task<string> HashAsync(string path)
     {
         await using var stream = File.OpenRead(path);
-        return Convert.ToHexStringLower(await SHA256.HashDataAsync(
-            stream, TestContext.Current.CancellationToken));
+        return await ContentHash.Xxh3Async(stream, TestContext.Current.CancellationToken);
     }
 }

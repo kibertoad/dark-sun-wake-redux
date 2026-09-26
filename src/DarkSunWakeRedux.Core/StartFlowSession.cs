@@ -1,4 +1,4 @@
-using System.Security.Cryptography;
+using System.IO.Hashing;
 using System.Text;
 
 namespace DarkSunWakeRedux.Core;
@@ -67,10 +67,10 @@ public sealed record StartFlowEvent(
     public bool Accepted => Diagnostics.Count == 0;
 }
 
-public sealed record StartFlowReplayEntry(StartFlowCommand Command, string ExpectedStateSha256);
+public sealed record StartFlowReplayEntry(StartFlowCommand Command, string ExpectedStateXxh3);
 public sealed record StartFlowReplay(int FormatVersion, int Seed, IReadOnlyList<StartFlowReplayEntry> Entries)
 {
-    public const int CurrentFormatVersion = 2;
+    public const int CurrentFormatVersion = 3;
 }
 
 public sealed class StartFlowSession
@@ -148,7 +148,7 @@ public sealed class StartFlowSession
         _flow.ActiveMemberIndex,
         _flow.StoredCharacters.Select(Copy).ToArray());
 
-    public string StateSha256() => Convert.ToHexStringLower(SHA256.HashData(Encode(Snapshot())));
+    public string StateXxh3() => Convert.ToHexStringLower(XxHash128.Hash(Encode(Snapshot())));
 
     public static StartFlowSession Restore(StartFlowSnapshot snapshot) => new(snapshot);
 
@@ -161,8 +161,8 @@ public sealed class StartFlowSession
         foreach (var (entry, index) in replay.Entries.Select((entry, index) => (entry, index)))
         {
             session.Execute(entry.Command);
-            var actual = session.StateSha256();
-            if (!actual.Equals(entry.ExpectedStateSha256, StringComparison.OrdinalIgnoreCase))
+            var actual = session.StateXxh3();
+            if (!actual.Equals(entry.ExpectedStateXxh3, StringComparison.OrdinalIgnoreCase))
                 throw new InvalidDataException($"Start-flow replay diverged after command {index + 1}.");
         }
         return session;

@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using DarkSunWakeRedux.Extractor;
 using DarkSunWakeRedux.Resources;
 using Xunit;
@@ -87,8 +86,8 @@ public sealed class RegionCatalogExtractorTests
     {
         var edition = new SourceManifest("game", "synthetic",
         [
-            new("RGN001.GFF", 0, new string('0', 64)),
-            new("rgn001.gff", 0, new string('1', 64))
+            new("RGN001.GFF", 0, new string('0', 32)),
+            new("rgn001.gff", 0, new string('1', 32))
         ]);
 
         var exception = Assert.Throws<InvalidDataException>(() =>
@@ -101,8 +100,7 @@ public sealed class RegionCatalogExtractorTests
     {
         var inputPath = Path.Combine(sourceRoot, path);
         await using var input = File.OpenRead(inputPath);
-        return new(path, input.Length, Convert.ToHexStringLower(
-            await SHA256.HashDataAsync(input, TestContext.Current.CancellationToken)));
+        return new(path, input.Length, await ContentHash.Xxh3Async(input, TestContext.Current.CancellationToken));
     }
 
     private static string TestRoot() => Path.Combine(Path.GetTempPath(),

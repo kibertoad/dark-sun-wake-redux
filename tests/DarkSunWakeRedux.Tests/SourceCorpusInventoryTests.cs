@@ -64,7 +64,7 @@ public sealed class SourceCorpusInventoryTests
             await File.WriteAllTextAsync(Path.Combine(root, "unins000.exe"), "uninstaller",
                 TestContext.Current.CancellationToken);
             var manifest = new SourceManifest("game", "edition",
-                [new("DATA.GFF", 1, new string('0', 64))]);
+                [new("DATA.GFF", 1, new string('0', 32))]);
 
             var inventory = SourceCorpusInventory.Read(root, manifest);
 
@@ -93,7 +93,7 @@ public sealed class SourceCorpusInventoryTests
             await File.WriteAllBytesAsync(Path.Combine(root, "UNKNOWN.BIN"), [1],
                 TestContext.Current.CancellationToken);
             var manifest = new SourceManifest("game", "edition",
-                [new("DATA.GFF", 1, new string('0', 64))]);
+                [new("DATA.GFF", 1, new string('0', 32))]);
 
             var inventory = SourceCorpusInventory.Read(root, manifest);
 

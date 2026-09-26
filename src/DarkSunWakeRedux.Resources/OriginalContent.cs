@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 
@@ -28,7 +27,7 @@ public sealed record SourceManifest(string GameId, string SourceEdition, IReadOn
             if (file is null) throw new InvalidDataException("Source manifest contains a null file record.");
             var path = Normalize(file.Path);
             if (!seen.Add(path)) throw new InvalidDataException($"Duplicate source path '{path}'.");
-            if (file.Size < 0 || !OriginalContent.IsSha256(file.Sha256))
+            if (file.Size < 0 || !OriginalContent.IsXxh3(file.Xxh3))
                 throw new InvalidDataException($"Invalid fingerprint for '{path}'.");
         }
     }
@@ -36,8 +35,8 @@ public sealed record SourceManifest(string GameId, string SourceEdition, IReadOn
     public string Fingerprint()
     {
         var canonical = string.Join('\n', Files.OrderBy(file => file.Path, StringComparer.OrdinalIgnoreCase)
-            .Select(file => $"{Normalize(file.Path)}\0{file.Size}\0{file.Sha256.ToLowerInvariant()}"));
-        return Convert.ToHexStringLower(SHA256.HashData(Encoding.UTF8.GetBytes(canonical)));
+            .Select(file => $"{Normalize(file.Path)}\0{file.Size}\0{file.Xxh3.ToLowerInvariant()}"));
+        return ContentHash.Xxh3(Encoding.UTF8.GetBytes(canonical));
     }
 
     public static string Normalize(string path)
@@ -50,12 +49,12 @@ public sealed record SourceManifest(string GameId, string SourceEdition, IReadOn
     }
 }
 
-public sealed record SourceFile(string Path, long Size, string Sha256);
+public sealed record SourceFile(string Path, long Size, string Xxh3);
 
 public sealed record AssetPackFile(
     string Path,
     long Size,
-    string Sha256,
+    string Xxh3,
     string SourcePath,
     string MediaType,
     string Conversion);
@@ -64,7 +63,7 @@ public sealed record AssetPackManifest(
     int RequiredRevision,
     string GameId,
     string SourceEdition,
-    string SourceFingerprintSha256,
+    string SourceFingerprintXxh3,
     string ExtractorVersion,
     IReadOnlyList<AssetPackFile> Files);
 
@@ -177,7 +176,7 @@ public static class OriginalContent
     // Required extraction revision. Bump only when the derived-asset inventory
     // or semantic contract changes; `play.bat` then replaces stale local packs.
     // Older packs are deliberately rejected; this is not a compatibility promise.
-    public const int RequiredAssetPackRevision = 34;
+    public const int RequiredAssetPackRevision = 35;
     public const string GameId = "dark-sun-wake-redux";
     public const string TitleImageAssetPath = "images/title.dsix";
     public const string InterfaceFontAssetPath = "fonts/interface.dsft";
@@ -505,10 +504,10 @@ public static class OriginalContent
             }
 
             await using var stream = File.OpenRead(path);
-            var hash = Convert.ToHexStringLower(await SHA256.HashDataAsync(stream, cancellationToken));
-            if (!hash.Equals(expected.Sha256, StringComparison.OrdinalIgnoreCase))
-                diagnostics.Add(new("source_hash_mismatch", $"Source file has the wrong SHA-256: {relative}",
-                    relative, expected.Sha256.ToLowerInvariant(), hash));
+            var hash = await ContentHash.Xxh3Async(stream, cancellationToken);
+            if (!hash.Equals(expected.Xxh3, StringComparison.OrdinalIgnoreCase))
+                diagnostics.Add(new("source_hash_mismatch", $"Source file has the wrong XXH3-128: {relative}",
+                    relative, expected.Xxh3.ToLowerInvariant(), hash));
         }
         return diagnostics;
     }
@@ -568,10 +567,10 @@ public static class OriginalContent
                 continue;
             }
             await using var stream = File.OpenRead(path);
-            var hash = Convert.ToHexStringLower(await SHA256.HashDataAsync(stream, cancellationToken));
-            if (!hash.Equals(asset.Sha256, StringComparison.OrdinalIgnoreCase))
-                diagnostics.Add(new("pack_asset_hash_mismatch", $"Asset has the wrong SHA-256: {asset.Path}",
-                    asset.Path, asset.Sha256.ToLowerInvariant(), hash));
+            var hash = await ContentHash.Xxh3Async(stream, cancellationToken);
+            if (!hash.Equals(asset.Xxh3, StringComparison.OrdinalIgnoreCase))
+                diagnostics.Add(new("pack_asset_hash_mismatch", $"Asset has the wrong XXH3-128: {asset.Path}",
+                    asset.Path, asset.Xxh3.ToLowerInvariant(), hash));
         }
 
         try
@@ -593,8 +592,8 @@ public static class OriginalContent
         return diagnostics;
     }
 
-    internal static bool IsSha256(string? value) =>
-        value is { Length: 64 } && value.All(Uri.IsHexDigit);
+    internal static bool IsXxh3(string? value) =>
+        ContentHash.IsValid(value);
 
     private static List<ContentDiagnostic> ValidatePackManifest(AssetPackManifest manifest)
     {
@@ -607,7 +606,7 @@ public static class OriginalContent
                 GameId, manifest.GameId));
         if (string.IsNullOrWhiteSpace(manifest.SourceEdition))
             diagnostics.Add(new("pack_source_missing", "Asset-pack source edition is missing.", "manifest.json"));
-        if (!IsSha256(manifest.SourceFingerprintSha256))
+        if (!IsXxh3(manifest.SourceFingerprintXxh3))
             diagnostics.Add(new("pack_source_hash_invalid", "Asset-pack source fingerprint is invalid.", "manifest.json"));
         if (string.IsNullOrWhiteSpace(manifest.ExtractorVersion))
             diagnostics.Add(new("pack_extractor_version_missing", "Extractor version is missing.", "manifest.json"));
@@ -634,7 +633,7 @@ public static class OriginalContent
             }
             if (!paths.Add(normalized))
                 diagnostics.Add(new("pack_path_duplicate", $"Asset path is duplicated: {normalized}", normalized));
-            if (asset.Size < 0 || !IsSha256(asset.Sha256))
+            if (asset.Size < 0 || !IsXxh3(asset.Xxh3))
                 diagnostics.Add(new("pack_fingerprint_invalid", $"Asset fingerprint is invalid: {normalized}", normalized));
             if (string.IsNullOrWhiteSpace(asset.SourcePath))
                 diagnostics.Add(new("pack_provenance_missing", $"Asset source path is missing: {normalized}", normalized));

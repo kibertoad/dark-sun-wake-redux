@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using System.Text;
 using DarkSunWakeRedux.Core;
 using DarkSunWakeRedux.Extractor;
@@ -406,8 +405,7 @@ public sealed partial class StartupAssetExtractorTests
                 TestContext.Current.CancellationToken);
             string hash;
             await using (var sourceStream = File.OpenRead(sourcePath))
-                hash = Convert.ToHexStringLower(await SHA256.HashDataAsync(
-                    sourceStream, TestContext.Current.CancellationToken));
+                hash = await ContentHash.Xxh3Async(sourceStream, TestContext.Current.CancellationToken);
             var edition = new SourceManifest(OriginalContent.GameId, "synthetic-title-edition",
                 [new SourceFile(StartupAssetExtractor.SourcePath, new FileInfo(sourcePath).Length, hash)]);
 
@@ -637,8 +635,7 @@ public sealed partial class StartupAssetExtractorTests
     {
         var path = Path.Combine(root, relativePath);
         await using var stream = File.OpenRead(path);
-        var hash = Convert.ToHexStringLower(await SHA256.HashDataAsync(
-            stream, TestContext.Current.CancellationToken));
+        var hash = await ContentHash.Xxh3Async(stream, TestContext.Current.CancellationToken);
         return new(relativePath, stream.Length, hash);
     }
 

@@ -5,1167 +5,1167 @@
     {
       "path": "1.FLI",
       "size": 5710926,
-      "sha256": "c461f9e8c0871361ddea8b870241bc68c94d52857465f3343ad65ff075228b26"
+      "xxh3": "b36ebf5e1952bb1f26abff538c411202"
     },
     {
       "path": "2.FLI",
       "size": 1293526,
-      "sha256": "f6a2160c6c91f1ed56ca9dd870a49f704b78f41c215fd34f28337eba61dabedc"
+      "xxh3": "9d751dc035b4e2757f379d6b05acffbb"
     },
     {
       "path": "3.FLI",
       "size": 6414620,
-      "sha256": "b70c91d487adc4c690a4a4138ea572b727a3a8c5f6266871250ced0f7355143a"
+      "xxh3": "72e1a83d2740b64c75174843e60516fc"
     },
     {
       "path": "4.FLI",
       "size": 323812,
-      "sha256": "0507224de846d74efe226b58b3338661f57f5338a25c3209312925659f16daef"
+      "xxh3": "f2299f50f23473487a3b9120074fd59c"
     },
     {
       "path": "5.FLI",
       "size": 5755367,
-      "sha256": "ba7c811448e82b38836f83a3d079dd2f813c044dc0fcdb92ee9415e4fc48f950"
+      "xxh3": "6c78c171dcd6bbdde6d35601cd19afe7"
     },
     {
       "path": "CHARSAVE.GFF",
       "size": 11735,
-      "sha256": "d3ee033269b29f9ddb9458e1b7985300e350414a939c3963d965df27a3a524c2"
+      "xxh3": "ff66cc83e6c938ca9d32ee883db0f573"
     },
     {
       "path": "CHARTRAN.EXE",
       "size": 24761,
-      "sha256": "e99572016901c67135b9d1b14b6db3936078749779b89e5c62f7044fe722cf1d"
+      "xxh3": "f7466f2ac604dc7c353358bc80bd0131"
     },
     {
       "path": "DARKRUN.GFF",
       "size": 991,
-      "sha256": "b0f2d474a62a541c5adb05e272d25dba7a539cd86f4507b67879cd00faa6c195"
+      "xxh3": "33f7aba0d5509aaa1767266088c536eb"
     },
     {
       "path": "DARKSAVE.GFF",
       "size": 991,
-      "sha256": "b0f2d474a62a541c5adb05e272d25dba7a539cd86f4507b67879cd00faa6c195"
+      "xxh3": "33f7aba0d5509aaa1767266088c536eb"
     },
     {
       "path": "DJ.DAT",
       "size": 231,
-      "sha256": "b378b9fe8f1aa6a764786ede701546e5d60e7d2c965984bb51322ba42049a1d3"
+      "xxh3": "78012eb5cebe8d445b19b365cbfc8362"
     },
     {
       "path": "DSUN.EXE",
       "size": 634416,
-      "sha256": "ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c"
+      "xxh3": "e296af55ba2ecde7e77f555c90f33d0b"
     },
     {
       "path": "game.gog",
       "size": 109132800,
-      "sha256": "855332c33db90aa2b524ccd00d630180c95cdf455abb3b00038e830fe9e72866"
+      "xxh3": "ece85c3c6ef6be3b304027d31b7fb489"
     },
     {
       "path": "game.ins",
       "size": 2988,
-      "sha256": "ebc4cf386c3cfedb11c3c368d4a06d2c83b90535443425f7635b62063464b26e"
+      "xxh3": "7500822e820bbe5aaefb73a849a90d42"
     },
     {
       "path": "GPLDATA.GFF",
       "size": 2191945,
-      "sha256": "be5efb2b76a5f77b9858b9583bd34c452ea86869f0c866436cf8e298ad96fbb8"
+      "xxh3": "2bd1d2b989eef2dcb0545feb95975fca"
     },
     {
       "path": "ITEMS.BIN",
       "size": 936,
-      "sha256": "d0560dd273bd95590e993a1969f6a6c2b8b5c82d73858e4f3204f9e8730f55c3"
+      "xxh3": "3e19d1fe0b0ea8b67389bafdb61897e3"
     },
     {
       "path": "MUSIC/Track02.ogg",
       "size": 3630610,
-      "sha256": "262f788de651f7960f0c0b1312b26b144fefa01f7a62f82aaea01e5298b8cec1"
+      "xxh3": "7d463e6b89ddf08c4981aafdc722b210"
     },
     {
       "path": "MUSIC/Track03.ogg",
       "size": 3743360,
-      "sha256": "fdd979d158a04b074ae10b5484ddc2d0b241c40df5bcdec7b6fdf378c0ef73b9"
+      "xxh3": "08a8a8a972336883d30c2eca59c956e8"
     },
     {
       "path": "MUSIC/Track04.ogg",
       "size": 3103130,
-      "sha256": "0e01e6274ded4a4a5840635149403e5d28f7f075606a4f3e4e7636548577a62d"
+      "xxh3": "11f9412a89cde8a69b62b1b7d351869d"
     },
     {
       "path": "MUSIC/Track05.ogg",
       "size": 4983608,
-      "sha256": "4f6e3d6d5c2ee9a712726ccaa63dabce84054913abba3d84aa68dade7a056152"
+      "xxh3": "fbff56a37cbe1c9f0c31a98d85d34c5b"
     },
     {
       "path": "MUSIC/Track06.ogg",
       "size": 5129389,
-      "sha256": "9c8d6b787da4419d5efb549e08a634af73baf47eef0659995234cf839b735bc7"
+      "xxh3": "aa39727998959086fcbaf749b55ce7af"
     },
     {
       "path": "MUSIC/Track07.ogg",
       "size": 4753705,
-      "sha256": "c3040b6c948143046c8b0ea3e9e37fbc2f204a3289efcb3b54880459b2d6a91e"
+      "xxh3": "8684cc3b9fd92a2527545be5bf543b4c"
     },
     {
       "path": "MUSIC/Track08.ogg",
       "size": 3411141,
-      "sha256": "f5cb1e862355decdde5410531ad64fd74659a22e830a2e36e7bc7b76312f2361"
+      "xxh3": "661e9dc26f7bcbf4377476a74b25752f"
     },
     {
       "path": "MUSIC/Track09.ogg",
       "size": 3611370,
-      "sha256": "b6b98ff8207becbf6ffa082f2e237532d38e10769d3647150718354cf70be546"
+      "xxh3": "cdbd232a3d45122144bd82319847c1f0"
     },
     {
       "path": "MUSIC/Track10.ogg",
       "size": 3677311,
-      "sha256": "75ef7df290822aea25d9c0765d480e032ee13173ebccde99014a9bea8d8fd490"
+      "xxh3": "43a0b5449e80c9b868fb4b794b1e2209"
     },
     {
       "path": "MUSIC/Track11.ogg",
       "size": 3172235,
-      "sha256": "8b8fcdd45ca529fda963766ca5a19628cd880980450d4fa5bb829036156f0490"
+      "xxh3": "44f3203aff7f3e2552d3f3bdc8daa721"
     },
     {
       "path": "MUSIC/Track12.ogg",
       "size": 2642881,
-      "sha256": "c0ebaa8f9851990d0e0e1ecf54e7ad7b1fe440477de58e4eba646b34d252298a"
+      "xxh3": "77f7ea69b68ec5efb27465a208988b58"
     },
     {
       "path": "MUSIC/Track13.ogg",
       "size": 2555679,
-      "sha256": "5dc3ec2e002edc2456fe9cc90200c3a3b841c6f17747591869d826a5c7306bc3"
+      "xxh3": "61d59104e72d1b263d73fe93bdef13a9"
     },
     {
       "path": "MUSIC/Track14.ogg",
       "size": 2735215,
-      "sha256": "f6e89b5f5508fbdda051039fecb6220cf8eb8a2682547107ebf2131d5e5e64c5"
+      "xxh3": "97a190abbcd0b5244e91eb879bd31588"
     },
     {
       "path": "MUSIC/Track15.ogg",
       "size": 2437292,
-      "sha256": "618bf220157f5cd7041e117857ae9966c45eac4224e806d3c5acb2dc04dc2d65"
+      "xxh3": "94fd7cdb091431a65483b5eddc148dd6"
     },
     {
       "path": "MUSIC/Track16.ogg",
       "size": 2579102,
-      "sha256": "1ad981f43d0a5d04a1b5de8c5e9aa08a870fab7b9af6bd584b94103c6a04be69"
+      "xxh3": "0754f463bd63d3a47c567b445d8b3d6f"
     },
     {
       "path": "MUSIC/Track17.ogg",
       "size": 2871594,
-      "sha256": "3475314ee3b949129c7025085c127365060261d75ba9f2e90adfd41ba5fe9863"
+      "xxh3": "fc172dc6cf20003d04e2bf046a0474e8"
     },
     {
       "path": "MUSIC/Track18.ogg",
       "size": 2179761,
-      "sha256": "89ae70ac6c346e582e741f94ffd0bfb19e55fedbb6717e212c55d51575aa99b8"
+      "xxh3": "7be4f5baa7b1b4afa30db94883f55125"
     },
     {
       "path": "MUSIC/Track19.ogg",
       "size": 2989121,
-      "sha256": "53d2d1ef24d034b8da883a83eaf720b1cf3cf7db37bda026d235047b90634f8f"
+      "xxh3": "cc2aa248a1c0facd44931d448fc3284d"
     },
     {
       "path": "MUSIC/Track20.ogg",
       "size": 3216857,
-      "sha256": "705b0fe1f7bb23c63f4a9703168417599370fe785225949328218f012c1e3dd3"
+      "xxh3": "a9c41c696f3f80008bfcbe79b910ac4e"
     },
     {
       "path": "MUSIC/Track21.ogg",
       "size": 3061207,
-      "sha256": "c4c9cba7352f14ea340dd9c133e22d73e50a21c8e414396bd90e6231f6e8ff52"
+      "xxh3": "9df46ad1cabf307d9723470a2661ebec"
     },
     {
       "path": "MUSIC/Track22.ogg",
       "size": 1300298,
-      "sha256": "5624b073b39dab874427b77d3fc8d170d98ed2d3f685878ebe4d2ff878e941dd"
+      "xxh3": "4fb4fab7d3c5c76d0c2b872b24524895"
     },
     {
       "path": "MUSIC/Track23.ogg",
       "size": 1328709,
-      "sha256": "2c5dfe7680cabf5fae50b5308bd2e79dbd7a32823fb41ad4db2747244030a465"
+      "xxh3": "3b6daf9acd5ffa5ab6688697193221aa"
     },
     {
       "path": "MUSIC/Track24.ogg",
       "size": 1469829,
-      "sha256": "5cb926638cba7a58fa56612862be6947c7ce28848010a452ee7f2ab5b06f86fb"
+      "xxh3": "23ecd99f4cc7c96a06223efdc67c1ef6"
     },
     {
       "path": "MUSIC/Track25.ogg",
       "size": 1461609,
-      "sha256": "51bfafff4c337379e1694c37c68c00441eb9aea097adf248a579c8ce6a424186"
+      "xxh3": "5338b66b772b02b5d84ee0659d923d8e"
     },
     {
       "path": "MUSIC/Track26.ogg",
       "size": 1429936,
-      "sha256": "aa337ea465376345c7d8919c39696b293779313c4f80613a6ee2ab129c8aec9d"
+      "xxh3": "05a0f0ad1e4810adf2f15401300d9408"
     },
     {
       "path": "MUSIC/Track27.ogg",
       "size": 1425063,
-      "sha256": "77aea62497776b5f65712943cd0a382757ab2c57e84912f109d12bcddc9e5730"
+      "xxh3": "9276d60eb37d69881c3ab7a298949810"
     },
     {
       "path": "MUSIC/Track28.ogg",
       "size": 1443661,
-      "sha256": "5a1b608b8e14bf8395c7ff5857e536f89da212a05886921b3f792b74585cbd06"
+      "xxh3": "65bd25c3ac5ed6f60a430c7416767386"
     },
     {
       "path": "MUSIC/Track29.ogg",
       "size": 1394200,
-      "sha256": "105de0e5ced9783b01bb5dd6999ea8e018955710e61a5383123b93fd4f8bc349"
+      "xxh3": "fb8fecbafd19160523c28f73294d62f9"
     },
     {
       "path": "MUSIC/Track30.ogg",
       "size": 1394573,
-      "sha256": "0fbf2a3b7cb3441a5cd4f0f2f441a46924a9985ce93b95da65b4f3a21170bbd9"
+      "xxh3": "742103036e4cd4e3f2a04d2793df1ced"
     },
     {
       "path": "MUSIC/Track31.ogg",
       "size": 1544052,
-      "sha256": "d875e8707cae0ae11d409589547aa024861eb0959f6073e6041ff0606f920707"
+      "xxh3": "85a4cef1f3cd376749a2617f57553284"
     },
     {
       "path": "MUSIC/Track32.ogg",
       "size": 1506031,
-      "sha256": "a0506424933910902a4920fe0b30a599d2054bc6b717d6ce3718f9401e2b283c"
+      "xxh3": "a8215f64503788548c8832d048bbb88a"
     },
     {
       "path": "MUSIC/Track33.ogg",
       "size": 1186115,
-      "sha256": "7c262942a0d1a469ff4dc9c36dc060908ab8dc1ec1772df03bc6037f9c14ac48"
+      "xxh3": "ec6c688a17bdaa4e8a5fc723e3c7ee77"
     },
     {
       "path": "MUSIC/Track34.ogg",
       "size": 1372125,
-      "sha256": "b727be329d6d110b40d038a2ef07e8d23ada7bb45f8de134b95645f2dacac10f"
+      "xxh3": "a82093c1df2a9a1e600d58837c24828d"
     },
     {
       "path": "MUSIC/Track35.ogg",
       "size": 1590320,
-      "sha256": "166d93c39fb8c803ae303e1b3003a2fbf8ceadcb7cf1c717f050eecc88e725db"
+      "xxh3": "5ed68378c6204717fca5705f2898b98e"
     },
     {
       "path": "MUSIC/Track36.ogg",
       "size": 1701902,
-      "sha256": "4f2b19beeb4d41b8ca8c0d73116aa56d8aa187efac42dea85de28403219cf4bc"
+      "xxh3": "e1b39132df8dfe222055bd18b0a79da0"
     },
     {
       "path": "MUSIC/Track37.ogg",
       "size": 3691851,
-      "sha256": "041e646dfef5a13389e645a43d6b40108dc6e64516771d6256530d27c4c83376"
+      "xxh3": "9fcd6a2ca9033f27c3c92b464f501607"
     },
     {
       "path": "MUSIC/Track38.ogg",
       "size": 897306,
-      "sha256": "8929b74db8c359a6077f809f3700bf76028594cb52391259158499fcbcb2cfcb"
+      "xxh3": "46dc2be36357d966c74531c92bb61241"
     },
     {
       "path": "MUSIC/Track39.ogg",
       "size": 1668895,
-      "sha256": "1c5102d02971fbf4c7876620d36a14bf0e93a890f5b517e51990882471028f72"
+      "xxh3": "b400f08859cf9a1e490412a67d73477e"
     },
     {
       "path": "MUSIC/Track40.ogg",
       "size": 885536,
-      "sha256": "8b90f0b2e62b480ab9643b9cce2e04714ab5f1aea30c4b47c78b1e91fd1b4087"
+      "xxh3": "1d227cf94e8cb264d47c92e5a7ce0fe1"
     },
     {
       "path": "MUSIC/Track41.ogg",
       "size": 3955359,
-      "sha256": "406ae55a38b23cc8534228123d4fca8b9534afc0fd21895f6958b3a4389f17c3"
+      "xxh3": "4160495f7730981aae4ab881621d066b"
     },
     {
       "path": "OBJEX.GFF",
       "size": 6816516,
-      "sha256": "8e1e2db24df80dd605bb1d55df709cc550cc8b379dc4d2c2c23becaa5975b9a6"
+      "xxh3": "e08d3cac153c547f6804ca27b155915d"
     },
     {
       "path": "PATCH.EXE",
       "size": 45450,
-      "sha256": "8528ce58bb1190f86e38ad79de7a2c4dcacaf1d7d85a486fe1563bb869d6ff18"
+      "xxh3": "16f9279ce9fe0ee1e3e5f7cc8b012d48"
     },
     {
       "path": "PATCH.RTP",
       "size": 112568,
-      "sha256": "23a69f960102fabc3fccac55679ead0e164a4fe3fcac405963e8a8059580ddd1"
+      "xxh3": "50bb466a0b03d74f97810d6f591daf46"
     },
     {
       "path": "RAVAGER.BAT",
       "size": 20,
-      "sha256": "deb8ee15d8c53cb30fe9803e74f2b6d27171db68880366d9fdb5b73d26fdf1f0"
+      "xxh3": "f300902d1d5cd90db675a2454a10f9b3"
     },
     {
       "path": "RESOURCE.GFF",
       "size": 5724669,
-      "sha256": "828455c0627998ef1101c6ee4ee66f270a1a8de6d862bba78c7b0e723352730d"
+      "xxh3": "92fe031616f36062f99484b0f728210e"
     },
     {
       "path": "RGN001.GFF",
       "size": 104769,
-      "sha256": "b896c984651867d9bc91f955f67d545b3907a0bf77ead8ffef751ddda83bab69"
+      "xxh3": "063a33c7cfa3fb234f519af2d1182290"
     },
     {
       "path": "RGN032.GFF",
       "size": 64641,
-      "sha256": "6224aefe947062141f2102bfa1098d9e7fa0e1f6eab8d385eaf2a7d2a434d04e"
+      "xxh3": "a4b22f8b69bd2a541d67ac4100fea872"
     },
     {
       "path": "RGN033.GFF",
       "size": 89017,
-      "sha256": "5c2a445c7dd803e93f87aaf4e14d29c6a7ac014bcee74a4a7a4bc54d8d3244b4"
+      "xxh3": "28fff3bd673d1f5400d68d50d03d9df5"
     },
     {
       "path": "RGN034.GFF",
       "size": 71115,
-      "sha256": "8871af3fefe566d67d5f6f39235d7ff60be563d7e916cfe2119a648644a6f29c"
+      "xxh3": "8060ac1f5b6f1a00c1efc453912e25b9"
     },
     {
       "path": "RGN036.GFF",
       "size": 44403,
-      "sha256": "14845d4e83c344caf7e36f5761f536d08efe7e04364cbb467173aaed7d29147d"
+      "xxh3": "942dc16432071eab84de11ac50b51484"
     },
     {
       "path": "RGN037.GFF",
       "size": 91272,
-      "sha256": "968ea7be2b811ad89aa71fac61866f37013fca2142d40461a60dab153a37c771"
+      "xxh3": "44f715c71cc7bb80ca1b2c211dcf474f"
     },
     {
       "path": "RGN038.GFF",
       "size": 46473,
-      "sha256": "ef6d236803cd243c4d8ee4496a9f546e87b9a6ce873a6a4682f86c140f66049b"
+      "xxh3": "c4fdc36a1dad9d9acad0a5896ece2ad5"
     },
     {
       "path": "RGN039.GFF",
       "size": 52701,
-      "sha256": "63f6a53cb3cb923ed737a0efed3216f5bb19c6c0c00c6da1c8ae44bc4a8589bb"
+      "xxh3": "803400abd76c6edcb560ff6338efdfd7"
     },
     {
       "path": "RGN03A.GFF",
       "size": 96954,
-      "sha256": "bf41063607acaa6a21f16dc9c119e3db6964a32fd71b99f64a6a08614a49a793"
+      "xxh3": "078b72cc5903ed0aa77f1c5f60926b47"
     },
     {
       "path": "RGN03B.GFF",
       "size": 86323,
-      "sha256": "a32c3b852efeb0c6acbfc38bde66d75f2c9f3a661e08234e05541a5706823ecd"
+      "xxh3": "a556dddd0bc8cd3a15bc6bc6020f432a"
     },
     {
       "path": "RGN03C.GFF",
       "size": 73480,
-      "sha256": "4af1465389b26638d52204e1aea490a9f87e6e13eb5903af72b67eb7b67bf798"
+      "xxh3": "f64f8071c2e2eb952b4b99105aa868c9"
     },
     {
       "path": "RGN03D.GFF",
       "size": 96122,
-      "sha256": "a611b5863404b573e947a5ed26df71c70f88e5ea9f2b2dfeb27f1225e78c6970"
+      "xxh3": "5f540022e92d9ed06875555739e7171d"
     },
     {
       "path": "RGN03E.GFF",
       "size": 84164,
-      "sha256": "aa50256ff6d15995f9b6ac6d90fb1e6b248116a7f62c72760b9cc3cc467c82e4"
+      "xxh3": "829b586f5e998ac1f4de5255356269fa"
     },
     {
       "path": "RGN03F.GFF",
       "size": 101028,
-      "sha256": "8bd5375f548b10a8ca77178f62cdee527359af6f1e7b1089deddd592e01f6724"
+      "xxh3": "437b8fde166ba95e59922a472ea810da"
     },
     {
       "path": "RGN041.GFF",
       "size": 119451,
-      "sha256": "b8d4452208523aed4cf4c223b73fbfddf2d98c7694656c1cb4880f8af91c2b72"
+      "xxh3": "25da5688688113bb644f21aea5662b31"
     },
     {
       "path": "RGN042.GFF",
       "size": 98884,
-      "sha256": "fbfa20ce7505e02d8eca8fa6b4c2ef2ee9ca3c317bbd75079c655d27c41d5a8d"
+      "xxh3": "2ea3bf5c83de67f76771071c1a49f374"
     },
     {
       "path": "RGN043.GFF",
       "size": 73198,
-      "sha256": "c89dba79341d2d08fa0658810d98e9787fabbbe509fa980bbb0678be5e12b72a"
+      "xxh3": "1192feab37bb4db7d3a89210b1689950"
     },
     {
       "path": "RGN044.GFF",
       "size": 103129,
-      "sha256": "9a9391886f14af851ae3dcf19f42a0a3cecd9ff373865f42171574dfd244a771"
+      "xxh3": "28f2d0294873522027f04e5ae09e7883"
     },
     {
       "path": "RGN045.GFF",
       "size": 94243,
-      "sha256": "034a8bc7f32fa2e260deb0c8e7e8890650df02df41cc894dcb379e3187799438"
+      "xxh3": "07be9352e835c7ec14926a808d58e6bb"
     },
     {
       "path": "RGN0FF.GFF",
       "size": 33987,
-      "sha256": "8edba2c66f023a2a0bd911a7c27e15d053cb775813f368a8d571b1a861d81ef3"
+      "xxh3": "ce488ce6806ad6a214569a318f408c91"
     },
     {
       "path": "SOUND.BAT",
       "size": 114,
-      "sha256": "5a5dd5259760c9d4afb674c63f0728f8b4f72b90cfb6a03dc1dd2596a7a9c480"
+      "xxh3": "7f4161a0e9226e5fb6228ee55b0b0c0f"
     },
     {
       "path": "SOUND.CFG",
       "size": 59,
-      "sha256": "13c71e611db16510083bafe473641d2a4e5c3db34d7344a3278978c88523db5c"
+      "xxh3": "64d376205212cb8a6b8a782b88576327"
     },
     {
       "path": "SOUND.INI",
       "size": 54669,
-      "sha256": "e12aab61a2b215adfa9a1e1316326d13e8126b5fa0363301f1b53578efa17063"
+      "xxh3": "aecc7469098e0c188e0e3d056c5fd530"
     },
     {
       "path": "SOUND_DS.EXE",
       "size": 204593,
-      "sha256": "50e10670f18e26f0e22e94a73d7469ed7d39afb2b2c2bf8139dbb3cb927110c6"
+      "xxh3": "236c2dc23c071eca421eb5b427caee57"
     },
     {
       "path": "SOUND001.VOC",
       "size": 110241,
-      "sha256": "2d5da31546c3d4ec4806c29cfeda4f364dc0aac3900d32c1a9766435195a111c"
+      "xxh3": "0c33da72c447ab9facaeee104abe1e80"
     },
     {
       "path": "SOUND002.VOC",
       "size": 385921,
-      "sha256": "30948bd2cd16795565a5a703ddf0e95657b566e03a3457e6e25b17b17d6d3886"
+      "xxh3": "c2d697d6be87cc91dc884b859b2b6527"
     },
     {
       "path": "SOUND003.VOC",
       "size": 330721,
-      "sha256": "e6cfc86d4e2249c0bf46d4c12f6a590f0e51748847fa2b139bd14f5d2aa91375"
+      "xxh3": "5d772fd49741d4988561f98e4948b6fd"
     },
     {
       "path": "SOUND012.VOC",
       "size": 137633,
-      "sha256": "224f8a6b66d81579f95eed49474654b0e91dc3fea6e345e7ee49b0cbf6748484"
+      "xxh3": "7923128802968722e030d99ab0cc1f83"
     },
     {
       "path": "SOUND021.VOC",
       "size": 40009,
-      "sha256": "aaab32e1ff47a3e63be8c4deba31056368ee29aa070b6bd9cf77d347fc6105d2"
+      "xxh3": "312a9ec745707d181d4945797df64629"
     },
     {
       "path": "SOUND025.VOC",
       "size": 57153,
-      "sha256": "266a731c53a38b5857416f7808e96d1579329143a9d37ea6d6c9d357fac3c559"
+      "xxh3": "9be272291a2aa226fedc8fdf31a044f8"
     },
     {
       "path": "SOUND044.VOC",
       "size": 385921,
-      "sha256": "a5e510785c2f98fb05b5fdb86c0d06ccb0f8266889f1746dc4d3c3f403735549"
+      "xxh3": "9df0aa0cb56c6b807d973338968559d0"
     },
     {
       "path": "SOUND045.VOC",
       "size": 127681,
-      "sha256": "21cd45729daf21ccf8e85e7e6b2fc49424393eb9a0309184de56acf578271d0b"
+      "xxh3": "99391c0c35a5f8277c15a36860cd1079"
     },
     {
       "path": "SOUND046.VOC",
       "size": 652609,
-      "sha256": "f9953d48d47d576c3cefd147dcf10ae9db3c3ef6a8f9743c43a3df9336181e74"
+      "xxh3": "9a2ca8392f366200743eef7ed23ca2d2"
     },
     {
       "path": "SOUND072.VOC",
       "size": 67233,
-      "sha256": "5b9034665a28dfcdaa12c162e6f71f5efeea2a711e4e8f46f3a2b519d77d9e94"
+      "xxh3": "4b5498c82e04573e994b77bcf92bd0e4"
     },
     {
       "path": "SOUND132.VOC",
       "size": 25313,
-      "sha256": "38d7cfb6c9ca6599f618a98839f3ce54859538415aee0579d65b045c331f25d4"
+      "xxh3": "a56c8706106705fa3cd5f764f9c3d74b"
     },
     {
       "path": "SOUND138.VOC",
       "size": 26785,
-      "sha256": "dcb7798ff5e29ac90ca80e3981f6927d46a7299c61487daa9ddca1c205d34750"
+      "xxh3": "db7b9ef6fdfba2afa5a2a9497891835d"
     },
     {
       "path": "SOUND147.VOC",
       "size": 25377,
-      "sha256": "a60706085b303354412ef0048dbc80993834d1a737d5b2885e5b7b32cbfcd954"
+      "xxh3": "cb6a05ce968004bbd8d1152a50141944"
     },
     {
       "path": "SOUND162.VOC",
       "size": 164801,
-      "sha256": "0e86c0b99fa425df0b1e9a25ed010c62beaa0de138729585cafbc19dd02f81b1"
+      "xxh3": "f56d7f19cff62f89ece6c2be371457d2"
     },
     {
       "path": "SOUND163.VOC",
       "size": 137633,
-      "sha256": "1aba29f09fa1cc12890c6b04da0d68974f6937b6252f690328a0f0bfb0945875"
+      "xxh3": "6d82c0d3c71f704a969824b6419c1f05"
     },
     {
       "path": "SOUND164.VOC",
       "size": 76489,
-      "sha256": "8e94d0a739b6cd792ba97197b8c19dd038133958d007d99ecade7bdff8e78d06"
+      "xxh3": "f7ffa4166f018b2e4307ffcdab139be0"
     },
     {
       "path": "SOUND165.VOC",
       "size": 76682,
-      "sha256": "d7c82bf17f96854d7330b72a0ca98197bb52c66020f7870ffbb708cdcde67d0f"
+      "xxh3": "dc462c57736ea614baebdde827f43bd3"
     },
     {
       "path": "SOUND167.VOC",
       "size": 87009,
-      "sha256": "788f38e1d55ca21572bcc9c48efdc2f3ddf6a72ac623bdad80b0dadf69534e5e"
+      "xxh3": "c9e306162f508fb461cefd735a9f6bb6"
     },
     {
       "path": "SOUND168.VOC",
       "size": 78369,
-      "sha256": "ac35bcf9b464840d7c67b498ca4c2227a40f6083af6b93c3dc53f62edd87fe45"
+      "xxh3": "908c297e359ab2daca86dd0ad3dce79c"
     },
     {
       "path": "SOUND169.VOC",
       "size": 81921,
-      "sha256": "408b21de3c0a65fd1955e3e2f98b517ffa1962cdbe063510eccd4d54b6d120ca"
+      "xxh3": "ed899cede6deec31a38f8c86bd85bffa"
     },
     {
       "path": "SOUND170.VOC",
       "size": 81921,
-      "sha256": "8b8fa3f1462adac7dfa5a717ad491f212b41bce90744399c16ad33dd878fb10e"
+      "xxh3": "33fa91da5bfb572726d0a5b70d147b03"
     },
     {
       "path": "SOUND171.VOC",
       "size": 607609,
-      "sha256": "fdd7e99807a05ac2a94a0c79aac29221d596111d247cb58dabce3f1022e94d79"
+      "xxh3": "57b9674cadae2a0ef9d14c405ee63f52"
     },
     {
       "path": "SOUND175.VOC",
       "size": 593721,
-      "sha256": "53ab9a4233c026af05d554d386f80f2163a9cd897c9e32edbb613e022e15b9c3"
+      "xxh3": "5af50e39476b53eac0c8c13321be3f9d"
     },
     {
       "path": "SOUND181.VOC",
       "size": 31169,
-      "sha256": "fee5c26c846f2677047009a39912ae14e92b30807182b4bf8664654fa3ccabc8"
+      "xxh3": "9e06ac6722015c9189d0398f62518c7f"
     },
     {
       "path": "SOUND197.VOC",
       "size": 73633,
-      "sha256": "e9c6630bfb27a83a91fabacc7f4bcb7ee692818f3dcd539bb1f797256b887617"
+      "xxh3": "36a37958d4f193dc23b494993754347f"
     },
     {
       "path": "SOUND207.VOC",
       "size": 27553,
-      "sha256": "7324ef9c895b30f57e000115dcd577bd91d3ec7a75eb726902b412d10059abdb"
+      "xxh3": "ec786773a5b2e312a018b42e488e2b4d"
     },
     {
       "path": "SOUND212.VOC",
       "size": 74977,
-      "sha256": "fbee15ce61d8e2abe825fb95c8298b55242ead37feffb41a71c9626f1f7e0d73"
+      "xxh3": "43ad4ebd0397631368e71774db6ad9fc"
     },
     {
       "path": "SOUND213.VOC",
       "size": 68033,
-      "sha256": "f6d182bcf29e18c821c4bb8f03fa1c30161f75a024dd001522f90f1692bc1f0e"
+      "xxh3": "9754d73011e1a321f8781870e345ba49"
     },
     {
       "path": "SOUND214.VOC",
       "size": 68033,
-      "sha256": "1ff84f23a9a79eef8480fef47ad9da90c316e5965bde03261352d381936f13a9"
+      "xxh3": "d219dc4fe570cbaf8d4e994ab292545f"
     },
     {
       "path": "SOUND230.VOC",
       "size": 90857,
-      "sha256": "4b60393b42d722f30454918ea3b0cf9cfb44a329fd66b2fcf2aa80b308533289"
+      "xxh3": "7f072f6765a2c8314495b693901f1f05"
     },
     {
       "path": "SPCH100.VOC",
       "size": 149282,
-      "sha256": "85b154ffa2222000aa93f298f83d3521b1daea2d2c1ee38d22d1d70eccbe94b2"
+      "xxh3": "a035ac3c24a255f26e85b933a1a565c9"
     },
     {
       "path": "SPCH101.VOC",
       "size": 94114,
-      "sha256": "6cfc167e36bf51b08eec2e1bece9f623fbbe9cc17bc1a78949e199b0c7870387"
+      "xxh3": "b44e87a0b13ad026cfe8caced93d0610"
     },
     {
       "path": "SPCH102.VOC",
       "size": 61986,
-      "sha256": "f66eabb62921f17f9a80abc9d94ee1e6fb3ed126636d8393dbadba1094828348"
+      "xxh3": "bd89da23125904b4f2647c4d2e38f2ed"
     },
     {
       "path": "SPCH103.VOC",
       "size": 229875,
-      "sha256": "5c42b2fb23f83d29ab3834bbe10b0b606c348e1f06a8edf4e6a7cfa0d8dfc788"
+      "xxh3": "cf7e62ab81c57e3a142bd01f59f4cf9f"
     },
     {
       "path": "SPCH104.VOC",
       "size": 186658,
-      "sha256": "2803b0e060b26e4c3aaecea2459461b4faa89c14e6906485d9cf58e2b3f74506"
+      "xxh3": "a55a14904a22285705320f55f0adb0d3"
     },
     {
       "path": "SPCH105.VOC",
       "size": 119714,
-      "sha256": "2e0f15439dc0bbfc83dcd74fcc60d5c68200101de8f4a1ef8da484cb80d04e01"
+      "xxh3": "6c6579030d7faeef2581dece7c560816"
     },
     {
       "path": "SPCH106.VOC",
       "size": 253474,
-      "sha256": "b47db836fd2f8a8238d1662fb9644a1f68b3fd27170446747aa9f41ebece254a"
+      "xxh3": "d99e8be53b251a4dc961bcbbb107a5f4"
     },
     {
       "path": "SPCH107.VOC",
       "size": 232482,
-      "sha256": "f2b3c68b937a85b1af66655e333772b35d699d1ea80e32d9d0b507724b383683"
+      "xxh3": "21ad7c1d54ad44bbe1e3fc3318ea7c6a"
     },
     {
       "path": "SPCH108.VOC",
       "size": 258210,
-      "sha256": "aa5f2b89b6dc22285c7ec5c6c31a7c15b84d7adb4f09e1c5b61054a7f66fcf8c"
+      "xxh3": "6270a6ee29d46736a40651331283cf1c"
     },
     {
       "path": "SPCH109.VOC",
       "size": 367266,
-      "sha256": "3e774ce2e97abaef4bdd8a74c1c306e386e84378bca92c505fe639aab6908456"
+      "xxh3": "5425f2da806db40f9a2dba20e706a5bb"
     },
     {
       "path": "SPCH110.VOC",
       "size": 396,
-      "sha256": "e281beda3efa2d06ebbf8f8c716e792d89039183f0980a085788a83291c62b6e"
+      "xxh3": "ebb88bc9cdf46ff57c09359ae6358e19"
     },
     {
       "path": "SPCH111.VOC",
       "size": 217506,
-      "sha256": "a92dcf6911d4d94baa268e81bc27a9ffd6f1d4bf761cc8d1f179e3a45ebe3b38"
+      "xxh3": "69d7ae08bc9d2eb9a91b6b24dedd5991"
     },
     {
       "path": "SPCH112.VOC",
       "size": 95906,
-      "sha256": "be850b6270f5ac8fcceebd0083251ef90c7b121066c63c68c3ee678030bd2977"
+      "xxh3": "d582ae7311ee4878a5e6df5fa937a945"
     },
     {
       "path": "SPCH113.VOC",
       "size": 459938,
-      "sha256": "6cb853345026761ffc7cafcbd209a35a82c79c2e38c238f9b0e860b39d4e4cf3"
+      "xxh3": "80b6e084d043f51e7b94ef254cdcd0fe"
     },
     {
       "path": "SPCH115.VOC",
       "size": 271394,
-      "sha256": "457f1c53944ca00fb02dbc3a2a32302c3fd1e6c1e9dec7141d39ae15049baf20"
+      "xxh3": "276f1208647c80c1a10754e5376301b1"
     },
     {
       "path": "SPCH116.VOC",
       "size": 311330,
-      "sha256": "1462ae7aafd2dc16eaa6d04f031d63e2d8be094693c22fbf6a44ce75518eb974"
+      "xxh3": "b7ce9aa16da66a5516027483d3fa2821"
     },
     {
       "path": "SPCH117.VOC",
       "size": 129442,
-      "sha256": "d23814499b46917251e974ae28b9971d3ea1078dce48a1f2338776ebd81dc2d9"
+      "xxh3": "834675ac265a9e7e85145f4a094b1cf9"
     },
     {
       "path": "SPCH118.VOC",
       "size": 118306,
-      "sha256": "63bbd404245bb40d84e230d0bdde9b6f9620fa2af6df40df72cc684f628aae08"
+      "xxh3": "6f271112fbd4c7e2fa2a9f1c4bf2bdd3"
     },
     {
       "path": "SPCH119.VOC",
       "size": 80418,
-      "sha256": "bde9c5f3497e95585d731fec86343e4859d33e07e91031df18f3cf7f86565cf0"
+      "xxh3": "c1f8c1889f173013113db532f64e828f"
     },
     {
       "path": "SPCH120.VOC",
       "size": 173858,
-      "sha256": "9ab0a10c7ca8d1e5348be86f36548084a41698126388f8b5db8862c6add184f6"
+      "xxh3": "1defe0e6be61f834ee5b7a591fad099d"
     },
     {
       "path": "SPCH121.VOC",
       "size": 123938,
-      "sha256": "779e3fc7b85e27a1941cdf413f6dae588b1b0b325a76191c85c01e2eabaf1750"
+      "xxh3": "cac89518597482f396443fd2876277fc"
     },
     {
       "path": "SPCH122.VOC",
       "size": 174754,
-      "sha256": "42975c790e1390fbfa609c6bea6e816960b973159cbc1bc6970f0b5ee7da0b26"
+      "xxh3": "9ae9c3bf89ecac2a4d18acd641d2c13a"
     },
     {
       "path": "SPCH123.VOC",
       "size": 156962,
-      "sha256": "e2f60a602aec4c6972db79d434cd7a7c3aa3ab8bfea2b35f3a8705ff56a71722"
+      "xxh3": "aa1fbc2d8de51544879864e98f2d8462"
     },
     {
       "path": "SPCH124.VOC",
       "size": 121378,
-      "sha256": "cdd896654b3459cfa4691b21d2a2212b551a6eb6a1fbba17e5a662a0cc563c9b"
+      "xxh3": "0ee6180546fadddd79ad673ba96c03eb"
     },
     {
       "path": "SPCH125.VOC",
       "size": 125858,
-      "sha256": "ab8e7cbb4e63f58e84cef754bcae0c64622be81c2908a193ed2558f388d4ed11"
+      "xxh3": "b81c81efa5f6bb7297a811533ceee1c5"
     },
     {
       "path": "SPCH126.VOC",
       "size": 117282,
-      "sha256": "ff773861843b3c5d05072044a8fc646ebe889d8d1b19e7ff0cd5549a63dbf9ee"
+      "xxh3": "c19619ffa41c8f6f62e15962e716cf0a"
     },
     {
       "path": "SPCH127.VOC",
       "size": 93858,
-      "sha256": "d7001799f880b615ffe5fdfe740deabf9bf772abe97b19725c4f8eac6381bbd5"
+      "xxh3": "d024361b5d768409e5270c69494abc3e"
     },
     {
       "path": "SPCH128.VOC",
       "size": 236962,
-      "sha256": "bc04a8e040ac92ad3f894e7c89eab2a6a8b05d17ca3aa541ba5b8f02bbe08629"
+      "xxh3": "1c61e7e27dd8eec13fe27379d6cf97d9"
     },
     {
       "path": "SPCH129.VOC",
       "size": 279458,
-      "sha256": "627a65ad1c13948237f784e951672ab8c64bb7fcf3c57a3c9084581893b29b39"
+      "xxh3": "35bcec1d3c8716b4c6ca1ebf10a41180"
     },
     {
       "path": "SPCH130.VOC",
       "size": 264866,
-      "sha256": "e8da66b101ca325349eaa87e0051427e3b29a2bafa3decca290fc0f85364bbe1"
+      "xxh3": "cc39b5d41759e313f2b629e42dcd11b2"
     },
     {
       "path": "SPCH131.VOC",
       "size": 349474,
-      "sha256": "3d3105b208159386df7960313ac7998d4936e9338a70045944c6f19ba16d3539"
+      "xxh3": "c437ec8b001fb16074b47f4ac076dcb0"
     },
     {
       "path": "SPCH132.VOC",
       "size": 402338,
-      "sha256": "5cdd3e73474dea51838100df461d27573cbfc24eab6a1843ddd863261e4786ac"
+      "xxh3": "ff3acbbcaabd9d4f36b0a8615dbfc2f7"
     },
     {
       "path": "SPCH133.VOC",
       "size": 348322,
-      "sha256": "63587e11e7b03b79f89669643a2e50b8d205d8ce903403dd06450d4706890f2c"
+      "xxh3": "053f7c8e5af56f8d00b8c1fdc2392d1e"
     },
     {
       "path": "SPCH134.VOC",
       "size": 207394,
-      "sha256": "b5cd2b4bb2021a23d1ea3ca8f184489d5d1a4eb76ed83a9f3421f96e0e808b27"
+      "xxh3": "a2cda31809ce57ae3af4da85ce252810"
     },
     {
       "path": "SPCH135.VOC",
       "size": 204322,
-      "sha256": "166452005a14af3c9a7c034129909832ffc74f65315ca95da0f7196dd7c5f31f"
+      "xxh3": "db6cc4557aff5476015af36e40f008b6"
     },
     {
       "path": "SPCH136.VOC",
       "size": 114595,
-      "sha256": "5bb7c871aaa7605a72cf897296a0666eb7cba260e55b8aaf9a99ec0261e30a88"
+      "xxh3": "a2c29b3577953cad48ddd2e6f446d4d4"
     },
     {
       "path": "SPCH137.VOC",
       "size": 97826,
-      "sha256": "6a4c6bb95247452885a9885f45b388433d1987250f17556e7d47076af1d4817a"
+      "xxh3": "9aff8ecdaf69f450ada9c1f76aed4f92"
     },
     {
       "path": "SPCH138.VOC",
       "size": 48034,
-      "sha256": "d0b48da419c14d7b78bbe3d40d8a954659adafe78d0e4ccff119bf60dfe65b85"
+      "xxh3": "077a43f9d42a855bdd1494546feeeb2e"
     },
     {
       "path": "SPCH139.VOC",
       "size": 25761,
-      "sha256": "f4d4a71d313bf038a76c1c5f96ef1d97b4c6575bed9ade7af891f94bf32a715e"
+      "xxh3": "6285bf89e5bb9b2498ed6fc170a34df8"
     },
     {
       "path": "SPCH140.VOC",
       "size": 39329,
-      "sha256": "1ffef92a8db1a0e9554acf2db2aa430697376163c6c8fa04c583f015d0f825d4"
+      "xxh3": "be546d07d89faa2c1ead8bd5f8b0069f"
     },
     {
       "path": "SPCH141.VOC",
       "size": 37025,
-      "sha256": "d1fc0ef9ed4846e7430546e0394f1ec944cac8016b80cd4349e8e6302dfa6f96"
+      "xxh3": "bc5e029bb5f9d1a51569900298bfa0e6"
     },
     {
       "path": "SPCH142.VOC",
       "size": 41249,
-      "sha256": "542dbc38ca84ec01366298638e8dabce5902a2f924fc50f4f949153081f53b6d"
+      "xxh3": "a059684c9ace1ad138c261baedad005d"
     },
     {
       "path": "SPCH143.VOC",
       "size": 48673,
-      "sha256": "b9c5011bbd3c02f5097dd2f7e58af182ad17c78a8fed7c2315737fc06645a610"
+      "xxh3": "62211b64d4e41dbc7c78dfa708263b45"
     },
     {
       "path": "SPCH144.VOC",
       "size": 33697,
-      "sha256": "89668442e18f5f9803d9ccf7104cadb7d749471eb78db952e871e2d86ce9ddd7"
+      "xxh3": "5bcff4de33ff613e7636e4fb3619a9c5"
     },
     {
       "path": "SPCH145.VOC",
       "size": 41762,
-      "sha256": "cf6db2aa95b6594cccb0ffbb0bfdea04b936b788b32559b56ba3445ae4c275fb"
+      "xxh3": "c08d48eba41980ec2a7eb204a5d14f74"
     },
     {
       "path": "SPCH146.VOC",
       "size": 149666,
-      "sha256": "9cd91b3714c8e65ea562450ba0eb42b5874cc6ddd7798925d737dba655d8ef13"
+      "xxh3": "e62d59d3fee440c4bf6a5d9ed4dcfbfc"
     },
     {
       "path": "SPCH147.VOC",
       "size": 66338,
-      "sha256": "d96fb744d8e475ecb441ca549050c8438565ab372a1d188c3abcd3de42cbecc1"
+      "xxh3": "a6dc93bc3ee5470f522b974eb38bf18a"
     },
     {
       "path": "SPCH148.VOC",
       "size": 192674,
-      "sha256": "7d88434b963a1dc217101caf642c24fa3972635a7222efc74617522f20494c4c"
+      "xxh3": "43a4450e4300250b54e4ccdc5e027eb8"
     },
     {
       "path": "SPCH149.VOC",
       "size": 101154,
-      "sha256": "464733c08305fe3c8c9b42eae4501ba651897af455a87156b613625b953d33aa"
+      "xxh3": "4984175a9d8d79ae7d7eeacce7f8e9a1"
     },
     {
       "path": "SPCH150.VOC",
       "size": 69282,
-      "sha256": "aa5370a3e7717fe7bcff35b14aa603693b26af4fd42bb02c8a49a01d0cda9070"
+      "xxh3": "4e046dcad24bd8d4d08cddcb99d0beec"
     },
     {
       "path": "SPCH151.VOC",
       "size": 120866,
-      "sha256": "d6f575448d9a581d955e81ad0aac9a6e923e1db9f65651567028262fde9877d2"
+      "xxh3": "302d12165f50e6b7e7ba9d619dc63180"
     },
     {
       "path": "SPCH152.VOC",
       "size": 56482,
-      "sha256": "10f9ad630ecf5bfec36479ba94fea186b5da7edc5d8dae681fc5f19f63ffa8f8"
+      "xxh3": "04819f0968f86181c7110695816f05ed"
     },
     {
       "path": "SPCH153.VOC",
       "size": 93602,
-      "sha256": "246d237501c732df134d6a962d9e0aa3bf2beb8094cba8d062ed58b4de60725c"
+      "xxh3": "a97fe0a0716a4eb6353418918e40159d"
     },
     {
       "path": "SPCH154.VOC",
       "size": 79778,
-      "sha256": "b3904eb24fe682c461cf3c1846af54817c563082b55e9fe60f383f4f5fab1f61"
+      "xxh3": "f5c595e46055d8dc103e8fe61ec4e816"
     },
     {
       "path": "SPCH155.VOC",
       "size": 25121,
-      "sha256": "b2dc28f2a8efff50bfc052a62b64c1ea321ed4924b0ae245bb5d4e4078d1016f"
+      "xxh3": "1ddb24eaaa8513f63e48ccafd8c1c538"
     },
     {
       "path": "SPCH156.VOC",
       "size": 68770,
-      "sha256": "0e67d82a5af7b9b5022ab6eb5d672b04959ddc25f6e148e5860cb9f4fa4e3bed"
+      "xxh3": "f278106960029c106c383ea07a3a23d9"
     },
     {
       "path": "SPCH157.VOC",
       "size": 64778,
-      "sha256": "2e50fc0a8006e33f916deb26cbc1a69c52c4d023dc528fe3863f8cef6b0f7b71"
+      "xxh3": "45a17f59a31413b1cb5e6608a6600633"
     },
     {
       "path": "SPCH158.VOC",
       "size": 38945,
-      "sha256": "01c44286478975a41e09565f7baf750f3a4b10bdc356df45938470ef80ebdd7f"
+      "xxh3": "60e1e3e0523283d1caab8b35a0f7de18"
     },
     {
       "path": "SPCH159.VOC",
       "size": 29985,
-      "sha256": "a91dd22630d6ae92c9efbee1d65386e85b5afef8a4f491fe700e3f68bf6bcc5d"
+      "xxh3": "0bcbc9a905d4a7cd5e646220e87be677"
     },
     {
       "path": "SPCH160.VOC",
       "size": 78498,
-      "sha256": "ffa913f86affae0d22244fe1aff950dce17482808b4a0c5784bce3e00ac72d95"
+      "xxh3": "50ddbc095191dc0239919230fea39a21"
     },
     {
       "path": "SPCH161.VOC",
       "size": 80034,
-      "sha256": "899d36c4d98c6befa6092b3ea06399e61f0f4d40cd6091e31fa354b3d1fc5c14"
+      "xxh3": "86cb1a356f40d7be06d5742e46f83a9d"
     },
     {
       "path": "SPCH162.VOC",
       "size": 33570,
-      "sha256": "32522d1baf3870b8c48cf273be3366791983d1e4792500db57489cf0272e91ac"
+      "xxh3": "3f3620696ffc2881b3f720af06bf5f3b"
     },
     {
       "path": "SPCH163.VOC",
       "size": 126882,
-      "sha256": "ffc58341f4005d7e6944ac0dd62da50ab3d55c8c9954c541d695c711169d21b2"
+      "xxh3": "4f8236833db5a7ec2c1363b08905021e"
     },
     {
       "path": "SPCH164.VOC",
       "size": 59425,
-      "sha256": "1802d9e6c3a714be80bc3e7de5a62e43435f78ce08c951d5343465b7cd2bcd38"
+      "xxh3": "be1164a6faccbefeaf1200f2c25e13ca"
     },
     {
       "path": "SPCH200.VOC",
       "size": 692130,
-      "sha256": "9046a3a7519f96c479e88563cf289e655e3e3dd5fd0eaf33c2fb823b42692cd1"
+      "xxh3": "1402fae058f3762ef1c7b4817f85af7e"
     },
     {
       "path": "SPCH201.VOC",
       "size": 636834,
-      "sha256": "0665535092a5a852f0fd7bebc0473af09f45f23a5467bd32d06162cb97292405"
+      "xxh3": "8cc8fe6be72c5b489c02bb469ded2669"
     },
     {
       "path": "SPCH202.VOC",
       "size": 143650,
-      "sha256": "6124e81cfca1ddc61c81c16e668d2fbe74d913068749bcd376607634ca16d07b"
+      "xxh3": "73c68fc8fc93d1294c32c4179d81cc5f"
     },
     {
       "path": "SPCH203.VOC",
       "size": 142754,
-      "sha256": "27e61dcb818bfbf9fd18877212a5c2a946b3c11f4a5993053e24ca7caf64ae32"
+      "xxh3": "980e6c7591cc06c7c36ed8b97c3a9c46"
     },
     {
       "path": "SPCH204.VOC",
       "size": 78242,
-      "sha256": "e0d599aa7011b15ed31df04c00684e41000751161df75b4b3806d5a10623eb96"
+      "xxh3": "a7bf547373c6309e46906fff95749797"
     },
     {
       "path": "SPCH205.VOC",
       "size": 42273,
-      "sha256": "78627f2a2c6e5f5f4eb1e7867df24f4b9744f5c8d0d4e881c36d7d55c56e8761"
+      "xxh3": "d85cc61cfb8bd565b2b5d833b66de120"
     },
     {
       "path": "SPCH206.VOC",
       "size": 74658,
-      "sha256": "3ba30dc1d023dfa919adee359717a4dda6551bd1838ee3bfd5c2e2341445b2b7"
+      "xxh3": "80dbba0aa91c17f1f6771fe664913a70"
     },
     {
       "path": "SPCH207.VOC",
       "size": 75810,
-      "sha256": "b443956bbbf3399cda01253a5fe56b16b607226c648010c749561cb353a3408d"
+      "xxh3": "29b223ee9422da21389cd169b9bd0d06"
     },
     {
       "path": "SPCH208.VOC",
       "size": 89378,
-      "sha256": "8831c1bccebee06880ba1e2855aae33010fce4014b9f6c3e00a741c720151faf"
+      "xxh3": "f52599371047c0523841c494c5ef057a"
     },
     {
       "path": "SPCH209.VOC",
       "size": 93986,
-      "sha256": "464b3d62ad0b82cc98d35169c81220b72d53359a4f66b2cc0b2660f11f62391d"
+      "xxh3": "5f3d0538fbffe11cac465b2358f1ebf5"
     },
     {
       "path": "SPCH210.VOC",
       "size": 492450,
-      "sha256": "bd23df6832c9f5553b2306f3fcffd83e9b69b1d16bef044cb70a6938aed31d9c"
+      "xxh3": "771b82db93ce773792b6c5d3a7ee1181"
     },
     {
       "path": "SPCH211.VOC",
       "size": 135330,
-      "sha256": "36a7a96b94c5b09b9fde6d52e1241e683168dc0e688476e597a1f98118b1228d"
+      "xxh3": "f659ef028d584c24a0d5975e1a3fc88a"
     },
     {
       "path": "SPCH212.VOC",
       "size": 186658,
-      "sha256": "832314c35124cb2e2f4cbec7cd1af2c4d174f5f625669cde96707eed7c396c24"
+      "xxh3": "870e991e3e795ef52f080e5bc7da9777"
     },
     {
       "path": "SPCH213.VOC",
       "size": 158242,
-      "sha256": "85c4a960f9109338ca53cd7444f5006aff7df9d503ff76d554529f6c4e0441b9"
+      "xxh3": "c559051d0756453d4781072e9ef4da79"
     },
     {
       "path": "SPCH300.VOC",
       "size": 596642,
-      "sha256": "6684b4eae5736e357e6d4dc5d8ccff9477c41feaddda7c8b3667b59a471201e6"
+      "xxh3": "339dbc6bce709d8971cffc2709d982a5"
     },
     {
       "path": "SPCH50.VOC",
       "size": 1067682,
-      "sha256": "55ab65952d974f427acab41dfd67758b4d235f5d216026c4bd311e749c7de599"
+      "xxh3": "dfb8f2dcbb46545ebe668479b91b5793"
     },
     {
       "path": "SPCH52.VOC",
       "size": 572962,
-      "sha256": "d43ea529d6d22f93e20331c9d27ba089bbf7fb3a64c5e43db9111c423a8a4a91"
+      "xxh3": "2ef7726bfdf321bb7ce1912579f97be7"
     },
     {
       "path": "SPCH53.VOC",
       "size": 336931,
-      "sha256": "9ef5c920f231a6452cef4c5975782ebcaeb924a8f0576bb2dda526bac5233312"
+      "xxh3": "0db6b5c7fd0c6fc0e1047857facc74cf"
     },
     {
       "path": "SPCH54.VOC",
       "size": 657954,
-      "sha256": "839be322b01f5ada34010fa5668cc99d1c2e60245ef8cf6844fc3cd1bf2eb0ea"
+      "xxh3": "ab853ff4540d5052435b5658d6fbd3e5"
     },
     {
       "path": "SPCH55.VOC",
       "size": 164003,
-      "sha256": "caf3c677b0c57505d0002816d4c2d616d3618af39528f0672043fcbac7e701fb"
+      "xxh3": "1e5b0c253a6d9f474fe4df94d4074fa0"
     },
     {
       "path": "SPCH56.VOC",
       "size": 3160483,
-      "sha256": "79270ddf5b7db9ebfed55721d1c023424e0aeaad009ea13758e95e591087e5fb"
+      "xxh3": "ee51bb170ad3661c09efa9f988e51fc9"
     },
     {
       "path": "SPCH57.VOC",
       "size": 2818210,
-      "sha256": "f5ffe4149a50879b0a696fb6a6bcc097703b39121e17ae5d3e93cfc392de0c52"
+      "xxh3": "74fa2d6450c1f66b69d64c0f4167cf83"
     },
     {
       "path": "SPCH58.VOC",
       "size": 200354,
-      "sha256": "0442464214528f381d5c0813d0325185ec4c13786ac3680b1f17f1ca33d31038"
+      "xxh3": "686bebe2362bfb337d6a97e6dae762a8"
     },
     {
       "path": "SPCH59.VOC",
       "size": 80802,
-      "sha256": "ac58358abadeeda77afb4b2106092495dd8e3083a348cc3a1262c06f8d7b9906"
+      "xxh3": "868ceccd4d56d3b62099b59d2e036a81"
     },
     {
       "path": "SPCH60.VOC",
       "size": 572322,
-      "sha256": "fbf9faf3212a583ed781b4bb4233cfa92628faba89a04ba345986bf44c9531f7"
+      "xxh3": "92e7cb2ba9e6316f2e64af6fb673fdd8"
     },
     {
       "path": "SPCH61.VOC",
       "size": 180514,
-      "sha256": "99ab9368bf355c8907a71b73f35a0441ce7edc21fdc291878e6c6d8a2254ccde"
+      "xxh3": "b4987ceae7a5d1a306b570c3f17eb8f7"
     },
     {
       "path": "SPCH62.VOC",
       "size": 43041,
-      "sha256": "678550b3547bfd94247646f23e3eb6aba2b87ff85294bfab7a3c82614762f913"
+      "xxh3": "8f1ccf6021fa53be1f05e9112ebe1c2e"
     },
     {
       "path": "SPCH63.VOC",
       "size": 176162,
-      "sha256": "4c69bf0009336c702140d1b2f2b5ba013f54a07468c6b8413f453e27e78bf48c"
+      "xxh3": "d3ca73020ab3beabbe9bf8e3e0ef17a7"
     },
     {
       "path": "SPCH64.VOC",
       "size": 207778,
-      "sha256": "3a7af285543ef335661371bb810da08067f56c8f70fff3d6ac626939fe6de387"
+      "xxh3": "c2d946306f855b939215477b9702618e"
     },
     {
       "path": "SPCH65.VOC",
       "size": 212770,
-      "sha256": "01ceb33bde938388545e05cc59725fd83f013b270aee233edc9d0339bef346f3"
+      "xxh3": "3f5f6dec027c3a32c128dbfebf6cab84"
     },
     {
       "path": "SPCH71.VOC",
       "size": 277410,
-      "sha256": "86de183b8b5903b7917e2b27899cfc3201a004fb00ed2fe6416196ac9ff92867"
+      "xxh3": "68f8f5cad7e4af457fe0c0043f5d46c4"
     },
     {
       "path": "SPCH72.VOC",
       "size": 170274,
-      "sha256": "2074feab587a10942cfe5d1bb045a4f5e9bc1470b7ffa442a7fab270db69d7f8"
+      "xxh3": "889381e2a5f868011204a94d5f0a1730"
     },
     {
       "path": "SPCH73.VOC",
       "size": 133666,
-      "sha256": "d6d965587332b55194b3040057c72863ad7b9b1fe5f41fad569e73d82f26318a"
+      "xxh3": "c741a41b0883f087cb7ca06dbde802bf"
     },
     {
       "path": "SPCH74.VOC",
       "size": 323362,
-      "sha256": "2d062bf79bb986b61c2b14ec20415f754e416ecd7534bd5689cca05b04a589c6"
+      "xxh3": "4090a4abdeaef96def91788fb1060425"
     },
     {
       "path": "SPCH75.VOC",
       "size": 493858,
-      "sha256": "7c0d5169247367c25802fd407586874c77568cea6de91b8f8e0df9e595cb75bb"
+      "xxh3": "aac0240ee2044f18eb294ef36c34bdaf"
     },
     {
       "path": "SPCH77.VOC",
       "size": 285346,
-      "sha256": "664c2d212024907098be6b05879f5adb9b1fbf58c1088f7b4658485f9e3b440e"
+      "xxh3": "c711ee68b43b647b962249177c9650e6"
     },
     {
       "path": "SPCH78.VOC",
       "size": 221885,
-      "sha256": "5ae78c7aee63a12ec7103dda5ffed04aadb221a5ebaf241cfa83c38878929cb3"
+      "xxh3": "292c81c13aa012336c8479945900aaca"
     },
     {
       "path": "SPCH79.VOC",
       "size": 440354,
-      "sha256": "5a69abc03fb05d9b2558c6a3a226f75684b5dff8435677e4e4de5d3eb1cab3ea"
+      "xxh3": "9febbd7212ed444d7537f96cb90e1d8f"
     },
     {
       "path": "SPCH80.VOC",
       "size": 112003,
-      "sha256": "654905fc1c03df59c9fbb621eca6dee604bbd7a901e9a7e28b615b843a263b32"
+      "xxh3": "d4fa7d60aded56d8987c0c76b9ca8c3b"
     },
     {
       "path": "SPCH81.VOC",
       "size": 434580,
-      "sha256": "8644309da2c008e155b84d3a34d504dfbc5d57e0aa2bbbd54ae9df4eb7d1d134"
+      "xxh3": "b177eb9c48a34a0479cd74abdcd4a301"
     },
     {
       "path": "SPCH82.VOC",
       "size": 462351,
-      "sha256": "94643aa3396012b50d2d0e254a31dc3c46eb4417c9b663eae98a6d4564d56cd7"
+      "xxh3": "4a7e3d592d4d525248676e375cd550bd"
     },
     {
       "path": "SPCH83.VOC",
       "size": 271522,
-      "sha256": "7f44329bc8f09ae1caf6246a8eb454a2e2c71feb526a4d08e73a4e43601d4298"
+      "xxh3": "dbdc781fb1f64a3424d4afed85b7a47a"
     },
     {
       "path": "SPCH84.VOC",
       "size": 170786,
-      "sha256": "5b36b65af663250219fa0e1aae0c3fd21b3de4b109e7f3f472170730b769e890"
+      "xxh3": "139d08ac92725d48c4c89f784c64cb53"
     },
     {
       "path": "SPCH85.VOC",
       "size": 212002,
-      "sha256": "d35ca1d2e62c44ca3c88560998cbf79c06cef82682f07be3a67b16912f78295e"
+      "xxh3": "5f2674d2f14a4c75df750007b51ed131"
     },
     {
       "path": "SPCH86.VOC",
       "size": 246562,
-      "sha256": "fc7b30316fba469ccaa820c12d84e0499493236d2b0aed2019dc1e437a22cc7e"
+      "xxh3": "7fa447e29fc9adb4290644b6597ff670"
     },
     {
       "path": "SPCH87.VOC",
       "size": 396,
-      "sha256": "e281beda3efa2d06ebbf8f8c716e792d89039183f0980a085788a83291c62b6e"
+      "xxh3": "ebb88bc9cdf46ff57c09359ae6358e19"
     },
     {
       "path": "SPCH88.VOC",
       "size": 198562,
-      "sha256": "89796f97ecafd6b94dbbbf2119caaf8abd9687fdfb72a9015023d8aa71f68513"
+      "xxh3": "8eb0a4e6a8a9badc3d43fc922031d0bd"
     },
     {
       "path": "SPCH89.VOC",
       "size": 33313,
-      "sha256": "923854729bd81832093c77d16a5f7aca99a3ec6180d73a246d50dcda03f7df30"
+      "xxh3": "da139fa6a5de4c755a39a598468e65b6"
     },
     {
       "path": "SPCH90.VOC",
       "size": 286498,
-      "sha256": "c3e40d8a57d272b8d07d02bac7092f37d3b81342dceb929930b6ea94e7a71314"
+      "xxh3": "bd25a56ca6a89ba4486507ba031699a5"
     },
     {
       "path": "SPCH91.VOC",
       "size": 181282,
-      "sha256": "ba75689eb548e66a18166cd6078813fdefc41a4a4310d17ea9c2b70a50fb7db6"
+      "xxh3": "90290b455be422b9391c5c6fefcf13cb"
     },
     {
       "path": "SPCH92.VOC",
       "size": 152354,
-      "sha256": "042c9f7d886fb5038fcd3aa22b27d62edd4bd52e9a560cbb07a4e3665ae57ce0"
+      "xxh3": "ab01fd22d3eb66a2697d32b9af428f39"
     },
     {
       "path": "SPCH93.VOC",
       "size": 318498,
-      "sha256": "5cbdc09f81b3a90dc4513ebc34a4b92d6683d35c329eb5a700ebb7c7abb76dde"
+      "xxh3": "23d60ca77cbc1ecb476f08e28423c93c"
     },
     {
       "path": "SPCH94.VOC",
       "size": 596258,
-      "sha256": "f0a12633e7dd0d20e8d0a8f850fea316432630cdbf1fcb9f4acc733f22d2c7f3"
+      "xxh3": "244e906b6c7ea11d10ded107f04bc529"
     },
     {
       "path": "STDPATCH.AD",
       "size": 4662,
-      "sha256": "79ee9f4ad3134be906ce493072ce0c3b7169c9013d3c25947ac385aaf3f9633b"
+      "xxh3": "a4eee44f21e428b578c263e321d5e0f5"
     },
     {
       "path": "SVIEW.EXE",
       "size": 89061,
-      "sha256": "19ee90abdb4bdbd618bd47f8bf1f988d86e16ee3fbed81bf56a6a7993968dcef"
+      "xxh3": "2b5581f61c843f6e8f27c8487dd852a9"
     }
   ]
 }

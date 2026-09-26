@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using DarkSunWakeRedux.Resources;
 
 namespace DarkSunWakeRedux.Extractor;
@@ -80,8 +79,7 @@ public static class RegionCatalogExtractor
             throw new InvalidDataException(
                 $"{sourcePath}: the derived structural region catalog failed verification.");
         verify.Position = 0;
-        var hash = Convert.ToHexStringLower(
-            await SHA256.HashDataAsync(verify, cancellationToken));
+        var hash = await ContentHash.Xxh3Async(verify, cancellationToken);
         return new(relativePath, verify.Length, hash, sourcePath,
             "application/vnd.dark-sun-wake-redux.region",
             "RNME/PAL/MAP/GMAP/TILE/ETAB + OBJEX.GFF:OJFF references -> " +

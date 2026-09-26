@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using System.Text.Json;
 using DarkSunWakeRedux.Resources;
 
@@ -273,8 +272,7 @@ if (args.Length == 2 && args[0].Equals("font-catalog", StringComparison.OrdinalI
                     .Select((glyph, character) => glyph == character)
                     .Count(matches => matches),
                 distinctMappedGlyphs = font.CharacterMap.Distinct().Count(),
-                characterMapSha256 = Convert.ToHexString(
-                    SHA256.HashData(font.CharacterMap.ToArray())).ToLowerInvariant(),
+                characterMapXxh3 = ContentHash.Xxh3(font.CharacterMap.ToArray()),
                 distinctPixelIndices = font.Glyphs.SelectMany(glyph => glyph.Pixels)
                     .Distinct().Count(),
                 minimumPixelIndex = font.Glyphs.SelectMany(glyph => glyph.Pixels)
@@ -841,7 +839,7 @@ foreach (var path in Directory.EnumerateFiles(root, "*", SearchOption.AllDirecto
     {
         path = Path.GetRelativePath(root, path).Replace('\\', '/'),
         size = stream.Length,
-        sha256 = Convert.ToHexString(await SHA256.HashDataAsync(stream)).ToLowerInvariant()
+        xxh3 = await ContentHash.Xxh3Async(stream)
     });
 }
 Console.WriteLine(JsonSerializer.Serialize(new { root, files }, new JsonSerializerOptions { WriteIndented = true }));

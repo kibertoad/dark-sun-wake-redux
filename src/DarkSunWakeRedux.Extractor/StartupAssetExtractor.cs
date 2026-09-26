@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using DarkSunWakeRedux.Resources;
 
 namespace DarkSunWakeRedux.Extractor;
@@ -321,7 +320,7 @@ public static class StartupAssetExtractor
         if (!decoded.Bytes.AsSpan().SequenceEqual(packed.Bytes))
             throw new InvalidDataException($"The opaque payload for {sourcePath} failed verification.");
         verify.Position = 0;
-        var hash = Convert.ToHexStringLower(await SHA256.HashDataAsync(verify, cancellationToken));
+        var hash = await ContentHash.Xxh3Async(verify, cancellationToken);
         return new(relativePath, verify.Length, hash, sourcePath,
             "application/vnd.dark-sun-wake-redux.opaque-payload",
             $"{sourceDescription} -> DSOP v{PackedOpaquePayload.FormatVersion}");
@@ -361,8 +360,7 @@ public static class StartupAssetExtractor
         await using var verify = File.OpenRead(target);
         PackedCharacterCatalog.Read(verify, relativePath);
         verify.Position = 0;
-        var hash = Convert.ToHexStringLower(
-            await SHA256.HashDataAsync(verify, cancellationToken));
+        var hash = await ContentHash.Xxh3Async(verify, cancellationToken);
         return new(relativePath, verify.Length, hash, CharacterSourcePath,
             "application/vnd.dark-sun-wake-redux.character-catalog",
             $"CHAR identity/abilities/envelope + PSIN mask -> DSCH v{PackedCharacterCatalog.FormatVersion}");
@@ -389,8 +387,7 @@ public static class StartupAssetExtractor
         await using var verify = File.OpenRead(target);
         PackedTextCatalog.Read(verify, relativePath);
         verify.Position = 0;
-        var hash = Convert.ToHexStringLower(
-            await SHA256.HashDataAsync(verify, cancellationToken));
+        var hash = await ContentHash.Xxh3Async(verify, cancellationToken);
         return new(relativePath, verify.Length, hash, ExecutableSourcePath,
             "application/vnd.dark-sun-wake-redux.text-catalog",
             $"bounded Preferences difficulty/description/About strings -> DSTX v{PackedTextCatalog.FormatVersion}");
@@ -417,8 +414,7 @@ public static class StartupAssetExtractor
             throw new InvalidDataException(
                 $"The derived {tag.Trim()} #{number} script failed verification.");
         verify.Position = 0;
-        var hash = Convert.ToHexStringLower(
-            await SHA256.HashDataAsync(verify, cancellationToken));
+        var hash = await ContentHash.Xxh3Async(verify, cancellationToken);
         return new(relativePath, verify.Length, hash, GplSourcePath,
             "application/vnd.dark-sun-wake-redux.script-resource",
             $"{tag.Trim()} #{number} bytecode with source tag -> DSGP v{PackedGplScript.FormatVersion}");
@@ -440,8 +436,7 @@ public static class StartupAssetExtractor
         if (decoded.ResourceNumber != 50 || decoded.Name != "Tyr")
             throw new InvalidDataException("The derived Tyr region failed identity verification.");
         verify.Position = 0;
-        var hash = Convert.ToHexStringLower(
-            await SHA256.HashDataAsync(verify, cancellationToken));
+        var hash = await ContentHash.Xxh3Async(verify, cancellationToken);
         return new(relativePath, verify.Length, hash, TyrRegionSourcePath,
             "application/vnd.dark-sun-wake-redux.region",
             $"RNME/PAL/MAP/GMAP/TILE/ETAB + {ObjectSourcePath}:OJFF references -> " +
@@ -464,8 +459,7 @@ public static class StartupAssetExtractor
         if (decoded.Definitions.Count != objects.Entries.Count)
             throw new InvalidDataException("The derived Tyr object catalog failed count verification.");
         verify.Position = 0;
-        var hash = Convert.ToHexStringLower(
-            await SHA256.HashDataAsync(verify, cancellationToken));
+        var hash = await ContentHash.Xxh3Async(verify, cancellationToken);
         return new(relativePath, verify.Length, hash, ObjectSourcePath,
             "application/vnd.dark-sun-wake-redux.object-frame-catalog",
             $"{TyrRegionSourcePath}:ETAB referenced {ObjectSourcePath}:OJFF/BMP -> " +
@@ -522,7 +516,7 @@ public static class StartupAssetExtractor
         await using var verify = File.OpenRead(target);
         PackedUiCatalog.Read(verify, relativePath);
         verify.Position = 0;
-        var hash = Convert.ToHexStringLower(await SHA256.HashDataAsync(verify, cancellationToken));
+        var hash = await ContentHash.Xxh3Async(verify, cancellationToken);
         return new(relativePath, verify.Length, hash, SourcePath,
             "application/vnd.dark-sun-wake-redux.ui-catalog",
             $"WIND#{string.Join(',', windowResourceNumbers)} " +
@@ -547,7 +541,7 @@ public static class StartupAssetExtractor
         await using var verify = File.OpenRead(target);
         PackedTextCatalog.Read(verify, OriginalContent.TextCatalogAssetPath);
         verify.Position = 0;
-        var hash = Convert.ToHexStringLower(await SHA256.HashDataAsync(verify, cancellationToken));
+        var hash = await ContentHash.Xxh3Async(verify, cancellationToken);
         return new(OriginalContent.TextCatalogAssetPath, verify.Length, hash, SourcePath,
             "application/vnd.dark-sun-wake-redux.text-catalog", "all TEXT resources -> DSTX v1");
     }
@@ -565,7 +559,7 @@ public static class StartupAssetExtractor
         await using var verify = File.OpenRead(target);
         PackedIndexedBitmapFont.Read(verify, relativePath);
         verify.Position = 0;
-        var hash = Convert.ToHexStringLower(await SHA256.HashDataAsync(verify, cancellationToken));
+        var hash = await ContentHash.Xxh3Async(verify, cancellationToken);
         return new(relativePath, verify.Length, hash, SourcePath,
             "application/vnd.dark-sun-wake-redux.indexed-font",
             $"{FontTag}#{FontNumber} -> DSFT v{PackedIndexedBitmapFont.FormatVersion}");
@@ -587,7 +581,7 @@ public static class StartupAssetExtractor
         await using var verify = File.OpenRead(target);
         PackedIndexedImage.Read(verify, relativePath);
         verify.Position = 0;
-        var hash = Convert.ToHexStringLower(await SHA256.HashDataAsync(verify, cancellationToken));
+        var hash = await ContentHash.Xxh3Async(verify, cancellationToken);
         return new(relativePath, verify.Length, hash, sourcePath,
             "application/vnd.dark-sun-wake-redux.indexed-image",
             $"{sourceMapping} -> DSIX v{PackedIndexedImage.FormatVersion}");
