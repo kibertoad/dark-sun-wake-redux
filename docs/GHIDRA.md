@@ -1448,29 +1448,30 @@ proof by itself. Never redirect broad output into the repository.
   reader, connect it to selectors, or infer object/combat behavior without a
   constrained call path or controlled observation.
 
-### EXE-GOG-SMALLTAG-001 - No direct literal loaders for four small families
+### EXE-GOG-SMALLTAG-001 - No direct literal loaders for PLYL and CSEQ
 
-- **Question:** Do the small opaque `GREQ`, `CACT`, `PLYL`, or `CSEQ` GFF
-  families supply a direct static source lead for selectors or gameplay rules?
+- **Question:** Do the small opaque `PLYL` or `CSEQ` GFF families supply a
+  direct static source lead for selectors or gameplay rules?
 - **Target:** BLD-GOG-EN-1.1 `DSUN.EXE`, reverified at 634,416 bytes with
   XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportBytePattern` searched all loaded executable blocks for
-  the exact four-byte ASCII encodings of `GREQ`, `CACT`, `PLYL`, and `CSEQ`.
-  The bounded resource inventory identifies ten, eleven, six, and one owned
-  records respectively; no payload bytes were retained.
-- **Bounded finding:** none of the four patterns occurs in the executable
-  image. This query therefore yields no direct tag assignment, resource lookup,
-  cache, caller, or selector-table connection for any of these families.
+  the exact four-byte ASCII encodings of `PLYL` and `CSEQ`. The bounded
+  resource inventory identifies six and one owned records respectively; no
+  payload bytes were retained.
+- **Bounded finding:** neither pattern occurs in the loaded image. The search
+  did not cover the `FBOV` overlay pack after the load image (FMT-EXE-001),
+  where the `GREQ` and `CACT` tags that the same search missed do occur
+  (FND-SAVE-003).
 - **Interpretation:** the result excludes only a literal-tag source path in
-  this executable. It does not rule out constructed tags, indirect/resource
-  manager lookups, another module, or runtime-propagated data, and it assigns
-  no meaning to any payload.
-- **Confidence:** high for the exact four literal absences; unknown for every
-  family’s loader, format, ownership, and player-visible behavior.
-- **Implementation consequence:** retain all four families as DSOP. Do not add
-  readers or infer quest, interaction, character, or combat behavior from this
-  negative result.
+  the resident image. It does not rule out overlay code, constructed tags,
+  indirect/resource manager lookups, another module, or runtime-propagated
+  data, and it assigns no meaning to any payload.
+- **Confidence:** high for the two literal absences in the loaded image;
+  unknown for every family's loader, format, ownership, and player-visible
+  behavior.
+- **Implementation consequence:** retain both families as DSOP. Do not add
+  readers or infer interaction or combat behavior from this negative result.
 
 ### EXE-GOG-SOUND-001 - No literal sound-configuration loader path
 

@@ -396,14 +396,14 @@ rejecting unsupported semantics:
   `0x92e0` operand has no matching `RESOURCE.GFF` resource number. This route
   is therefore structural only; its state codes, record ownership/fields,
   event input, and every combat rule remain unknown.
-- `EXE-GOG-SMALLTAG-001` finds no literal executable loader lead for `GREQ`,
-  `CACT`, `PLYL`, or `CSEQ`. `DATA-GOG-SMALLTAG-001` bounds their owned
-  inventories and short envelopes; `FND-PARTY-019` additionally rejects a
-  direct installed-`CHAR` resource number in every `PLYL` byte and unaligned
-  16-bit window, while `DATA-GOG-SMALLTAG-002` rejects it in every `GREQ` and
-  `CACT` window. The `CACT` resources hold the identifiers of stored
-  characters (`FND-PARTY-011`, `FND-PARTY-012`); the other families have no
-  known runtime role.
+- `EXE-GOG-SMALLTAG-001` finds no literal loader lead for `PLYL` or `CSEQ` in
+  the resident image. `DATA-GOG-SMALLTAG-001` bounds their owned inventories
+  and short envelopes, and `FND-PARTY-019` rejects a direct installed-`CHAR`
+  resource number in every `PLYL` byte and unaligned 16-bit window; neither
+  family has a known runtime role. The `GREQ` and `CACT` resources are
+  `FMT-SAVE-002` and `FMT-SAVE-001`: overlay 192 writes and reads `GREQ` when
+  it saves and loads a game (`FND-SAVE-004`, `FND-SAVE-005`), and `CACT` holds
+  the identifiers of stored characters (`FND-PARTY-011`, `FND-PARTY-012`).
 - `EXE-GOG-PREF-001` finds one raw `PREF` tag literal but no direct reference;
   it supplies no Preferences loader, settings schema, default, or control
   behavior.

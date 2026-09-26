@@ -20,3 +20,5 @@
 | `SCR-UI-010` | Current Spell Effects | supported | partial | None | None | supported | As SCR-UI-009, with the title as `effects-title` at (84, 0); the layers carry `PLACEHOLDER: SCR-UI-010`. The effect rows are missing. |
 | `SCR-UI-011` | Look panel | supported | partial | None | None | supported | `InteractionOptionsInput` places `WIND/3020` at (68, 45), a pixel off the spec, and carries `PLACEHOLDER: SCR-UI-011`. It maps the three actions and the close button. |
 | `SCR-UI-012` | Conversation | supported | partial | None | None | supported | `DialogueInput` and `DialogueLayers` draw the panels, the speech box and the five rows and hit-test the rows. The speech window sits at (1, 0) and its scroll buttons are drawn, which carries `PLACEHOLDER: SCR-UI-012`. |
+| `SCR-UI-013` | Load Game | sourced | missing | None | None | sourced | The Game Menu's load or save button does nothing, and the rebuild has no Load Game screen. |
+| `SCR-UI-014` | Save Game | sourced | missing | None | None | sourced | The rebuild has no Save Game screen. |

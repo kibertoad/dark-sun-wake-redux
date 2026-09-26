@@ -565,25 +565,24 @@ the owned build.
 - **Tests:** exact owned-pack inventory/hash verification and generic DSOP
   envelope bounds/read-back; no semantic fixture is introduced.
 
-### DATA-GOG-SMALLTAG-001 - Opaque small-resource envelope inventory
+### DATA-GOG-SMALLTAG-001 - Opaque PLYL and CSEQ envelope inventory
 
-- **Question:** Do the short `GREQ`, `CACT`, `PLYL`, or `CSEQ` resources yield
-  a structural format or feature assignment that can support game behavior?
+- **Question:** Do the short `PLYL` or `CSEQ` resources yield a structural
+  format or feature assignment that can support game behavior?
 - **Method:** Read the verified local-pack manifest's source mapping and DSOP
   lengths. Each DSOP has the fixed ten-byte envelope header; subtracting that
   header reports the original payload lengths without retaining source bytes.
-- **Finding:** `CHARSAVE.GFF` contributes ten `GREQ` resources (#1-#10), each
-  nine bytes, and eleven `CACT` resources (#29-#39), each two bytes.
-  `RESOURCE.GFF` contributes six `PLYL` resources (#0, #10, #50-#53) whose
-  payload lengths are 3, 5, or 7 bytes, and one 78-byte `CSEQ` #1000. These
-  inventory facts establish no shared record layout, field boundary, consumer,
-  or feature meaning. `EXE-GOG-SMALLTAG-001` independently finds no literal
-  executable tag path for any of the four families.
+- **Finding:** `RESOURCE.GFF` contributes six `PLYL` resources (#0, #10,
+  #50-#53) whose payload lengths are 3, 5, or 7 bytes, and one 78-byte `CSEQ`
+  #1000. These inventory facts establish no shared record layout, field
+  boundary, consumer, or feature meaning. `EXE-GOG-SMALLTAG-001` finds no
+  literal executable tag path for either family. The `GREQ` and `CACT`
+  resources of `CHARSAVE.GFF` are `FMT-SAVE-002` and `FMT-SAVE-001`.
 - **Confidence:** high for supported-edition identities, counts, sources, and
   payload lengths; unknown for every field, loader, ownership, and
   player-visible behavior.
-- **Implementation:** retain all records as DSOP and do not add format readers
-  or assign quest, action, party-list, sequence, interaction, or combat roles.
+- **Implementation:** retain both families as DSOP and do not add format
+  readers or assign sequence, interaction, or combat roles.
 - **Tests:** exact owned-pack inventory/hash verification and generic DSOP
   envelope bounds/read-back; no semantic fixture is introduced.
 
@@ -619,33 +618,6 @@ the owned build.
   reader, connect it to the 13-byte selector table, or use it to select a GPL
   resource without a constrained native population path or controlled runtime
   observation.
-
-### DATA-GOG-SMALLTAG-002 - GREQ and CACT have no direct installed-character-number windows
-
-- **Question:** Do the other short character-archive families directly encode
-  an installed `CHAR` resource number as an unaligned little-endian 16-bit
-  window, yielding a bounded lead for character ownership or supplied-party
-  selection?
-- **Method:** The metadata-only `resource-word-overlap` inspector obtains the
-  19 `CHAR` resource numbers in fingerprinted `CHARSAVE.GFF`, then tests every
-  two-byte little-endian window of each `GREQ` #1-#10 and `CACT` #29-#39
-  payload in that same archive. It returns only source length, candidate-window
-  count, target-set count, and matching offsets; it retains no source bytes or
-  decoded values.
-- **Finding:** Each of the ten nine-byte `GREQ` resources has eight candidate
-  windows, for 80 total; each of the eleven two-byte `CACT` resources has one,
-  for 11 total. None of the 91 windows matches an installed `CHAR` resource
-  number.
-- **Interpretation:** this rejects only direct unaligned little-endian 16-bit
-  installed-character identities in those two bounded families. It does not
-  establish a field layout, consumer, owner, party role, or any alternate
-  encoding, byte order, indirection, transformation, or selection path.
-- **Confidence:** high for the bounded 91-window/19-target negative result in
-  BLD-GOG-EN-1.1; unknown for every `GREQ`/`CACT` field and all character or
-  START GAME behavior.
-- **Implementation consequence:** retain both families as DSOP. Do not add a
-  reader, associate them with a character, or use them to select a party member
-  from this negative probe.
 
 ### OBS-GOG-PARTY-001 - Owner-confirmed combat captures
 

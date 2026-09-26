@@ -128,6 +128,8 @@ Entries by area.
 | [SCR-UI-010](../screens/SCR-UI-010.md) | Current Spell Effects | supported |
 | [SCR-UI-011](../screens/SCR-UI-011.md) | Look panel | supported |
 | [SCR-UI-012](../screens/SCR-UI-012.md) | Conversation | supported |
+| [SCR-UI-013](../screens/SCR-UI-013.md) | Load Game | sourced |
+| [SCR-UI-014](../screens/SCR-UI-014.md) | Save Game | sourced |
 
 ## INPUT
 
@@ -309,7 +311,18 @@ None.
 
 ## SAVE
 
-None.
+| ID | Title | Status |
+|---|---|---|
+| [FMT-SAVE-001](../formats/FMT-SAVE-001.md) | Stored character identifier in a CACT resource | supported |
+| [FMT-SAVE-002](../formats/FMT-SAVE-002.md) | Saved game state in a GREQ resource | supported |
+| [FND-SAVE-001](../findings/FND-SAVE-001.md) | The installed CHARSAVE.GFF holds ten 9-byte GREQ and eleven 2-byte CACT resources | recorded |
+| [FND-SAVE-002](../findings/FND-SAVE-002.md) | No 16-bit window of a GREQ or CACT resource holds the number of an installed character | recorded |
+| [FND-SAVE-003](../findings/FND-SAVE-003.md) | The GREQ tag bytes occur only in overlay 192 of DSUN.EXE, and the CACT bytes only in overlays 171, 184 and 186 | recorded |
+| [FND-SAVE-004](../findings/FND-SAVE-004.md) | Overlay 192 saves a game as SAVEnn.SAV and writes PREF 100 and GREQ nn with nine bytes each | recorded |
+| [FND-SAVE-005](../findings/FND-SAVE-005.md) | Overlay 192 loads a game by reading PREF 100 and GREQ nn back into the same globals | recorded |
+| [FND-SAVE-006](../findings/FND-SAVE-006.md) | DSUN.EXE copies DARKSAVE.GFF to DARKRUN.GFF and counts SAVE01.SAV to SAVE10.SAV against the free disk space | recorded |
+| [RULE-SAVE-001](../rules/RULE-SAVE-001.md) | The keys that save, load and quit | sourced |
+| [RULE-SAVE-002](../rules/RULE-SAVE-002.md) | The number and file name of a saved game | supported |
 
 ## QUEST
 

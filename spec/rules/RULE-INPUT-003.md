@@ -54,11 +54,11 @@ The screen the key opens, if any.
 
 A key not in the procedure opens no screen. The manual lists these further keys: `A`, `F4`, `F5`
 and `F6` turn animations, music and sound effects on or off; `F1`, `F2` and `F3` save, load and
-quit; `H` centres the view on the leader; `O` shows the overhead map; `1` to `4` make that
-character the leader; `5` shows all characters while moving and `6` the leader alone; `Y` and `N`
-answer yes and no questions; `Alt+X` quits; `Esc` leaves every menu, or the game when no menu is
-shown; in a conversation `1` to `5` choose a response (SCR-UI-012); and `G`, `N`, `P`, `Q`, `W`
-and `Space` give combat commands (SRC-MANUAL-1994, page 77).
+quit (RULE-SAVE-001); `H` centres the view on the leader; `O` shows the overhead map; `1` to `4`
+make that character the leader; `5` shows all characters while moving and `6` the leader alone;
+`Y` and `N` answer yes and no questions; `Alt+X` quits; `Esc` leaves every menu, or the game when
+no menu is shown; in a conversation `1` to `5` choose a response (SCR-UI-012); and `G`, `N`, `P`,
+`Q`, `W` and `Space` give combat commands (SRC-MANUAL-1994, page 77).
 
 ## What the sources say
 

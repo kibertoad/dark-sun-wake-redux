@@ -15,7 +15,7 @@ Entries by status.
 
 ## sourced
 
-18 entries.
+21 entries.
 
 | ID | Title |
 |---|---|
@@ -37,10 +37,13 @@ Entries by status.
 | [RULE-PARTY-005](../rules/RULE-PARTY-005.md) | Origin ability modifiers |
 | [RULE-PARTY-007](../rules/RULE-PARTY-007.md) | Which classes each origin may take, and to which level |
 | [RULE-PARTY-008](../rules/RULE-PARTY-008.md) | The keys 1 to 4 choose the party leader |
+| [RULE-SAVE-001](../rules/RULE-SAVE-001.md) | The keys that save, load and quit |
+| [SCR-UI-013](../screens/SCR-UI-013.md) | Load Game |
+| [SCR-UI-014](../screens/SCR-UI-014.md) | Save Game |
 
 ## supported
 
-59 entries.
+62 entries.
 
 | ID | Title |
 |---|---|
@@ -73,6 +76,8 @@ Entries by status.
 | [FMT-REGION-004](../formats/FMT-REGION-004.md) | Region cell flags |
 | [FMT-REGION-005](../formats/FMT-REGION-005.md) | Region entity table |
 | [FMT-REGION-006](../formats/FMT-REGION-006.md) | Region entity record |
+| [FMT-SAVE-001](../formats/FMT-SAVE-001.md) | Stored character identifier in a CACT resource |
+| [FMT-SAVE-002](../formats/FMT-SAVE-002.md) | Saved game state in a GREQ resource |
 | [FMT-TEXT-001](../formats/FMT-TEXT-001.md) | Bitmap font resource |
 | [FMT-TEXT-002](../formats/FMT-TEXT-002.md) | Bitmap font glyph |
 | [FMT-TEXT-003](../formats/FMT-TEXT-003.md) | Text resource of CR LF lines |
@@ -90,6 +95,7 @@ Entries by status.
 | [RULE-PARTY-006](../rules/RULE-PARTY-006.md) | START GAME supplies characters 40 to 43 as the party |
 | [RULE-REGION-001](../rules/RULE-REGION-001.md) | Drawing a region's terrain tiles |
 | [RULE-RNG-001](../rules/RULE-RNG-001.md) | The game's random number generator and its reductions |
+| [RULE-SAVE-002](../rules/RULE-SAVE-002.md) | The number and file name of a saved game |
 | [RULE-UI-001](../rules/RULE-UI-001.md) | Which controls the window code offers an event or the pointer to, by their event masks |
 | [SCR-UI-001](../screens/SCR-UI-001.md) | Start window |
 | [SCR-UI-002](../screens/SCR-UI-002.md) | View Character |
@@ -118,7 +124,7 @@ Entries by status.
 
 ## recorded
 
-128 entries.
+134 entries.
 
 | ID | Title |
 |---|---|
@@ -212,6 +218,12 @@ Entries by status.
 | [FND-RNG-006](../findings/FND-RNG-006.md) | The helper at 2834:0519 succeeds when a draw modulo 10 is at most its argument |
 | [FND-RNG-007](../findings/FND-RNG-007.md) | The routine at 2834:000C picks entries of a six-byte table at random |
 | [FND-RNG-008](../findings/FND-RNG-008.md) | The random table selection and a panel initializer meet in one overlay routine |
+| [FND-SAVE-001](../findings/FND-SAVE-001.md) | The installed CHARSAVE.GFF holds ten 9-byte GREQ and eleven 2-byte CACT resources |
+| [FND-SAVE-002](../findings/FND-SAVE-002.md) | No 16-bit window of a GREQ or CACT resource holds the number of an installed character |
+| [FND-SAVE-003](../findings/FND-SAVE-003.md) | The GREQ tag bytes occur only in overlay 192 of DSUN.EXE, and the CACT bytes only in overlays 171, 184 and 186 |
+| [FND-SAVE-004](../findings/FND-SAVE-004.md) | Overlay 192 saves a game as SAVEnn.SAV and writes PREF 100 and GREQ nn with nine bytes each |
+| [FND-SAVE-005](../findings/FND-SAVE-005.md) | Overlay 192 loads a game by reading PREF 100 and GREQ nn back into the same globals |
+| [FND-SAVE-006](../findings/FND-SAVE-006.md) | DSUN.EXE copies DARKSAVE.GFF to DARKRUN.GFF and counts SAVE01.SAV to SAVE10.SAV against the free disk space |
 | [FND-TEXT-001](../findings/FND-TEXT-001.md) | The one FONT resource holds 256 glyphs of height 9 behind a map and an offset table |
 | [FND-TEXT-002](../findings/FND-TEXT-002.md) | The FONT tag occurs twice in DSUN.EXE as data with no recorded reference |
 | [FND-TEXT-003](../findings/FND-TEXT-003.md) | Every TEXT resource is printable ASCII in lines that each end with CR LF |
@@ -294,6 +306,8 @@ Entries whose Open questions section says more than None known.
 | [FMT-REGION-004](../formats/FMT-REGION-004.md) | Region cell flags | supported |
 | [FMT-REGION-005](../formats/FMT-REGION-005.md) | Region entity table | supported |
 | [FMT-REGION-006](../formats/FMT-REGION-006.md) | Region entity record | supported |
+| [FMT-SAVE-001](../formats/FMT-SAVE-001.md) | Stored character identifier in a CACT resource | supported |
+| [FMT-SAVE-002](../formats/FMT-SAVE-002.md) | Saved game state in a GREQ resource | supported |
 | [FMT-TEXT-001](../formats/FMT-TEXT-001.md) | Bitmap font resource | supported |
 | [FMT-TEXT-002](../formats/FMT-TEXT-002.md) | Bitmap font glyph | supported |
 | [FMT-TEXT-003](../formats/FMT-TEXT-003.md) | Text resource of CR LF lines | supported |
@@ -329,6 +343,8 @@ Entries whose Open questions section says more than None known.
 | [RULE-PARTY-008](../rules/RULE-PARTY-008.md) | The keys 1 to 4 choose the party leader | sourced |
 | [RULE-REGION-001](../rules/RULE-REGION-001.md) | Drawing a region's terrain tiles | supported |
 | [RULE-RNG-001](../rules/RULE-RNG-001.md) | The game's random number generator and its reductions | supported |
+| [RULE-SAVE-001](../rules/RULE-SAVE-001.md) | The keys that save, load and quit | sourced |
+| [RULE-SAVE-002](../rules/RULE-SAVE-002.md) | The number and file name of a saved game | supported |
 | [RULE-UI-001](../rules/RULE-UI-001.md) | Which controls the window code offers an event or the pointer to, by their event masks | supported |
 | [SCR-UI-001](../screens/SCR-UI-001.md) | Start window | supported |
 | [SCR-UI-002](../screens/SCR-UI-002.md) | View Character | supported |
@@ -342,3 +358,5 @@ Entries whose Open questions section says more than None known.
 | [SCR-UI-010](../screens/SCR-UI-010.md) | Current Spell Effects | supported |
 | [SCR-UI-011](../screens/SCR-UI-011.md) | Look panel | supported |
 | [SCR-UI-012](../screens/SCR-UI-012.md) | Conversation | supported |
+| [SCR-UI-013](../screens/SCR-UI-013.md) | Load Game | sourced |
+| [SCR-UI-014](../screens/SCR-UI-014.md) | Save Game | sourced |

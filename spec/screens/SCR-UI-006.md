@@ -8,7 +8,7 @@ resolution: 320x200
 evidence: [FND-UI-028, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
-related: [RULE-UI-001, SCR-UI-002, SCR-UI-007, SCR-UI-008, SCR-UI-009, SCR-UI-010]
+related: [RULE-UI-001, SCR-UI-002, SCR-UI-007, SCR-UI-008, SCR-UI-009, SCR-UI-010, SCR-UI-013, SCR-UI-014]
 ---
 
 ## Drawn elements
@@ -32,7 +32,7 @@ Rectangles are from the window's corner.
 | Cast spells or use psionics | (113, 24, 16, 16) | Not known | Opens SCR-UI-009. | FND-UI-028, SRC-MANUAL-1994 |
 | Current spell effects | (145, 24, 16, 16) | Not known | Opens SCR-UI-010. | FND-UI-028, SRC-MANUAL-1994 |
 | Exit to DOS | (49, 51, 16, 16) | Not known | Offers a choice to save, to quit without saving, or to cancel. | FND-UI-028, SRC-MANUAL-1994 |
-| Load or save | (73, 51, 16, 16) | Not known | Offers a choice to load a saved game or to save the current one. | FND-UI-028, SRC-MANUAL-1994 |
+| Load or save | (73, 51, 16, 16) | Not known | Offers a choice to load a saved game (SCR-UI-013) or to save the current one (SCR-UI-014). | FND-UI-028, SRC-MANUAL-1994 |
 | Preferences | (97, 51, 16, 16) | Not known | Opens SCR-UI-007. | FND-UI-028, SRC-MANUAL-1994 |
 | Overhead map | (121, 51, 16, 16) | Not known | Shows the overhead map. | FND-UI-028, SRC-MANUAL-1994 |
 | Center on leader | (145, 51, 16, 16) | Not known | Centres the view on the party leader. | FND-UI-028, SRC-MANUAL-1994 |
