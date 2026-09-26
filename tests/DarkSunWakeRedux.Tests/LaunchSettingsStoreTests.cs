@@ -147,6 +147,18 @@ public sealed class LaunchSettingsStoreTests : IDisposable
     }
 
     [Fact]
+    public void UnknownVersionFileIsDroppedWithoutABackup()
+    {
+        File.WriteAllText(BackupPath, "{\"version\":1,\"wideMapView\":false}");
+        File.WriteAllText(SettingsPath, "{\"version\":2,\"wideMapView\":false}");
+
+        LaunchSettingsStore.WriteAtomic(SettingsPath, new(true));
+
+        Assert.Equal("{\"version\":1,\"wideMapView\":false}", File.ReadAllText(BackupPath));
+        Assert.True(LaunchSettingsStore.ReadOrDefault(SettingsPath).Settings.WideMapView);
+    }
+
+    [Fact]
     public void OlderFileWithoutAFieldGetsThatFieldsDefault()
     {
         File.WriteAllText(SettingsPath, "{\"version\":1}");

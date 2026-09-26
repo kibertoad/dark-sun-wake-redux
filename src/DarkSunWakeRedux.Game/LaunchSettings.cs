@@ -89,7 +89,8 @@ public static class LaunchSettingsStore
         {
             WriteDurably(temporary, bytes);
             // Only a copy that reads back becomes the backup, so a damaged file never replaces a
-            // good backup. The primary stays in place until the final rename replaces it.
+            // good backup. A file with a version this build does not know is dropped with no copy
+            // kept. The primary stays in place until the final rename replaces it.
             using (var current = TryParse(target))
             {
                 if (current is not null)

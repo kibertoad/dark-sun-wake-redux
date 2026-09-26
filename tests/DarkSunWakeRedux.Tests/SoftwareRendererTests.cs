@@ -5,7 +5,7 @@ namespace DarkSunWakeRedux.Tests;
 
 /// <summary>
 /// Software rendering must stay unreachable for anyone playing the game: it is a CI diagnostic, and
-/// a player who landed on it would see the game as broken rather than slow. These pin every way in.
+/// a player who landed on it would take the game for broken. These pin every way in.
 /// </summary>
 public sealed class SoftwareRendererTests
 {

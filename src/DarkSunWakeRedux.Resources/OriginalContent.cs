@@ -27,7 +27,7 @@ public sealed record SourceManifest(string GameId, string SourceEdition, IReadOn
             if (file is null) throw new InvalidDataException("Source manifest contains a null file record.");
             var path = Normalize(file.Path);
             if (!seen.Add(path)) throw new InvalidDataException($"Duplicate source path '{path}'.");
-            if (file.Size < 0 || !OriginalContent.IsXxh3(file.Xxh3))
+            if (file.Size < 0 || !ContentHash.IsValid(file.Xxh3))
                 throw new InvalidDataException($"Invalid fingerprint for '{path}'.");
         }
     }
@@ -596,9 +596,6 @@ public static class OriginalContent
         return diagnostics;
     }
 
-    internal static bool IsXxh3(string? value) =>
-        ContentHash.IsValid(value);
-
     private static List<ContentDiagnostic> ValidatePackManifest(AssetPackManifest manifest)
     {
         var diagnostics = new List<ContentDiagnostic>();
@@ -610,7 +607,7 @@ public static class OriginalContent
                 GameId, manifest.GameId));
         if (string.IsNullOrWhiteSpace(manifest.SourceEdition))
             diagnostics.Add(new("pack_source_missing", "Asset-pack source edition is missing.", "manifest.json"));
-        if (!IsXxh3(manifest.SourceFingerprintXxh3))
+        if (!ContentHash.IsValid(manifest.SourceFingerprintXxh3))
             diagnostics.Add(new("pack_source_hash_invalid", "Asset-pack source fingerprint is invalid.", "manifest.json"));
         if (string.IsNullOrWhiteSpace(manifest.ExtractorVersion))
             diagnostics.Add(new("pack_extractor_version_missing", "Extractor version is missing.", "manifest.json"));
@@ -637,7 +634,7 @@ public static class OriginalContent
             }
             if (!paths.Add(normalized))
                 diagnostics.Add(new("pack_path_duplicate", $"Asset path is duplicated: {normalized}", normalized));
-            if (asset.Size < 0 || !IsXxh3(asset.Xxh3))
+            if (asset.Size < 0 || !ContentHash.IsValid(asset.Xxh3))
                 diagnostics.Add(new("pack_fingerprint_invalid", $"Asset fingerprint is invalid: {normalized}", normalized));
             if (string.IsNullOrWhiteSpace(asset.SourcePath))
                 diagnostics.Add(new("pack_provenance_missing", $"Asset source path is missing: {normalized}", normalized));

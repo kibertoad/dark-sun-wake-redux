@@ -22,4 +22,5 @@ The values are kept in `settings.json` in the per-user data folder that also hol
 bytes, is written through a temporary file that replaces it in one rename, and the last copy that
 read back is kept as `settings.json.bak`. Each value is read from the file, then from the backup,
 then from its default, so a missing, damaged, oversized or unknown-version file never stops the
-game from starting. The only option today is Wide map view (DEV-EXPLORE-001).
+game from starting. Confirm overwrites a file with a version this build does not know, such as
+one a later build wrote, and keeps no copy of it. The only option today is Wide map view (DEV-EXPLORE-001).

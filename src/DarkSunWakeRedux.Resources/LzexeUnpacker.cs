@@ -122,6 +122,8 @@ public static class LzexeUnpacker
         {
             if (ReadBit() == 1)
             {
+                if (output.Count >= MaximumLoadModuleBytes)
+                    throw Error(sourceName, $"unpacks beyond the {MaximumLoadModuleBytes}-byte limit");
                 output.Add(ReadByte());
                 continue;
             }

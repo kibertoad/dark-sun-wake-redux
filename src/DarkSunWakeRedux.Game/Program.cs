@@ -4,10 +4,11 @@ using DarkSunWakeRedux.Resources;
 
 // Read before the try so the failure path knows whether this launch is a person or a smoke test.
 var platformSmoke = args.Contains("--platform-smoke-test", StringComparer.OrdinalIgnoreCase);
+var contentSmoke = args.Contains("--content-smoke-test", StringComparer.OrdinalIgnoreCase);
 try
 {
     // Decided before the --smoke-test shortcut so that asking for software rendering in a mode
-    // that never draws anything is refused rather than silently ignored.
+    // that never draws anything stops the run with an error.
     var softwareRendering = SoftwareRenderer.Evaluate(
         args.Contains(SoftwareRenderer.Flag, StringComparer.OrdinalIgnoreCase),
         platformSmoke,
@@ -20,7 +21,6 @@ try
 
     if (args.Contains("--smoke-test", StringComparer.OrdinalIgnoreCase)) return 0;
     if (softwareRendering.Enabled) SoftwareRenderer.Apply(softwareRendering.DriverPath!);
-    var contentSmoke = args.Contains("--content-smoke-test", StringComparer.OrdinalIgnoreCase);
     var screenshotFolder = Option(args, "--screenshot-folder");
     string? assetPack = null;
     if (!platformSmoke)
@@ -755,7 +755,7 @@ try
 }
 catch (Exception exception)
 {
-    StartupFailureReporter.Report(exception, allowDialog: !platformSmoke);
+    StartupFailureReporter.Report(exception, allowDialog: !platformSmoke && !contentSmoke);
     return 1;
 }
 

@@ -13,6 +13,7 @@ public sealed partial class DarkSunWakeReduxGame
     private LaunchOptionsSession? _launchOptions;
     private Texture2D? _launchOptionsTexture;
     private (LaunchSettings Settings, int Selected)? _renderedLaunchOptions;
+    private byte[]? _launchOptionsAlpha;
 
     /// <summary>The Wide map view setting of DEV-EXPLORE-001, fixed once the player confirms.</summary>
     private bool _wideMapView = LaunchSettings.Default.WideMapView;
@@ -82,8 +83,13 @@ public sealed partial class DarkSunWakeReduxGame
         if (_launchOptionsTexture is null || _renderedLaunchOptions != state)
         {
             var canvas = LaunchOptionsRasterizer.Rasterize(_dialogueFont, _launchOptions);
+            if (_launchOptionsAlpha?.Length != canvas.Pixels.Length)
+            {
+                _launchOptionsAlpha = new byte[canvas.Pixels.Length];
+                Array.Fill(_launchOptionsAlpha, (byte)255);
+            }
             var colors = CreateColors(LaunchOptionsRasterizer.Palette, canvas.Pixels,
-                Enumerable.Repeat((byte)255, canvas.Pixels.Length).ToArray());
+                _launchOptionsAlpha);
             _launchOptionsTexture ??= new Texture2D(GraphicsDevice, canvas.Width, canvas.Height);
             _launchOptionsTexture.SetData(colors);
             _renderedLaunchOptions = state;

@@ -319,6 +319,8 @@ public sealed partial class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         _tyrObjects = PackedObjectFrameCatalog.Read(
             objectStream, OriginalContent.TyrObjectCatalogAssetPath);
         _tyrEntityHitTester = new(_tyrRegion, _tyrObjects);
+        // Reads the stored Wide map view setting, so the first scene is drawn in its layout.
+        OpenLaunchOptions();
         RefreshExplorationScene(_exploration.Snapshot());
         using (var leaderStream = File.OpenRead(AssetPath(
                    OriginalContent.OpeningLeaderImageAssetPath)))
@@ -329,7 +331,6 @@ public sealed partial class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             _openingLeaderTexture = CreateTexture(leaderImage, _openingLeaderFrame);
         }
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        OpenLaunchOptions();
 
         string AssetPath(string relativePath) => Path.Combine(_assetPack,
             relativePath.Replace('/', Path.DirectorySeparatorChar));

@@ -11,16 +11,16 @@ internal sealed record SoftwareRendererRequest(bool Enabled, string? DriverPath,
 /// <summary>Opt-in software OpenGL, for the platform smoke test and nothing else.</summary>
 /// <remarks>
 /// A software rasterizer renders at a small fraction of the speed of a real driver, so a player who
-/// ended up on one would experience the game as broken rather than as slow. It is therefore reached
-/// only by three independent conditions holding at once: the flag is passed explicitly, it is
-/// passed together with --platform-smoke-test, and an external driver is named by
-/// <see cref="DriverVariable"/> and exists on disk. Any one of them missing refuses the run rather
-/// than falling back.
+/// ended up on one would take the game for broken. It is therefore reached only by three
+/// independent conditions holding at once: the flag is passed explicitly, it is passed together
+/// with --platform-smoke-test, and an external driver is named by <see cref="DriverVariable"/>
+/// and exists on disk. Any one of them missing stops the run with an error, and no other renderer
+/// is tried.
 ///
-/// The third condition is the one that makes leaking into a shipped build impossible rather than
-/// merely unlikely: a release package contains no OpenGL driver of its own, and
-/// tools/Publish-Windows.ps1 fails the package if one ever appears in it. There is nothing for the
-/// flag to load outside CI, where the driver is provisioned into the runner's temp directory.
+/// The third condition keeps the mode out of a shipped build: a release package contains no
+/// OpenGL driver of its own, and tools/Publish-Windows.ps1 fails the package if one ever appears
+/// in it. There is nothing for the flag to load outside CI, where the driver is provisioned into
+/// the runner's temp directory.
 /// </remarks>
 internal static class SoftwareRenderer
 {

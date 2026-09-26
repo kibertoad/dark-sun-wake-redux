@@ -39,15 +39,21 @@ if ($sourceInfo.Length -gt $maximumSourceBytes) {
 [byte[]]$haystack = [IO.File]::ReadAllBytes($sourceFullPath)
 $offsets = [Collections.Generic.List[int]]::new()
 $matchCount = 0
-for ($offset = 0; $offset -le $haystack.Length - $needle.Length; $offset++) {
-    $matches = $true
-    for ($needleOffset = 0; $needleOffset -lt $needle.Length; $needleOffset++) {
+$lastOffset = $haystack.Length - $needle.Length
+$offset = 0
+while ($offset -le $lastOffset) {
+    # Array.IndexOf skips to the next candidate first byte in compiled code; a script loop over
+    # every byte of a 128 MB file would take minutes.
+    $offset = [Array]::IndexOf($haystack, $needle[0], $offset, $lastOffset - $offset + 1)
+    if ($offset -lt 0) { break }
+    $isMatch = $true
+    for ($needleOffset = 1; $needleOffset -lt $needle.Length; $needleOffset++) {
         if ($haystack[$offset + $needleOffset] -ne $needle[$needleOffset]) {
-            $matches = $false
+            $isMatch = $false
             break
         }
     }
-    if ($matches) {
+    if ($isMatch) {
         $matchCount++
         if ($matchCount -gt $MaximumMatches) {
             throw "Pattern matches exceed the $MaximumMatches-result analysis limit."
@@ -55,6 +61,7 @@ for ($offset = 0; $offset -le $haystack.Length - $needle.Length; $offset++) {
 
         $offsets.Add($offset)
     }
+    $offset++
 }
 
 [pscustomobject]@{

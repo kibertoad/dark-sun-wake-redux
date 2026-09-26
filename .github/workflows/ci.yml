@@ -143,7 +143,7 @@ jobs:
             throw 'Installed platform smoke test did not exit within 120 seconds.'
           }
           # Empty on an ordinary run, and the software-renderer banner otherwise: a passing run
-          # should say which renderer it exercised rather than leave it to be inferred.
+          # prints which renderer it exercised.
           if ((Test-Path -LiteralPath $smokeErr) -and (Get-Item -LiteralPath $smokeErr).Length -gt 0) {
             Get-Content -LiteralPath $smokeErr | Write-Host
           }

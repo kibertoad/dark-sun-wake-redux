@@ -59,8 +59,8 @@ if (Test-Path -LiteralPath (Join-Path $packageRoot 'UserContent')) {
     throw 'The portable package contains imported original content.'
 }
 # A software rasterizer belongs to CI and nowhere else. If one ever reached a package, every player
-# who installed it would be rendering through the CPU and would read the game as broken, so the
-# package is checked for one rather than trusted not to have picked one up.
+# who installed it would be rendering through the CPU and would read the game as broken, so
+# the script searches the package for these files and fails if it finds one.
 $softwareDrivers = @('opengl32.dll', 'libgallium_wgl.dll', 'libglapi.dll', 'osmesa.dll')
 $leaked = @(Get-ChildItem -LiteralPath $packageRoot -Recurse -File |
     Where-Object { $softwareDrivers -contains $_.Name })
@@ -80,7 +80,8 @@ function Invoke-PackagedGame([string] $executable, [string[]] $gameArguments, [s
             -WindowStyle Hidden -RedirectStandardOutput $stdout -RedirectStandardError $stderr
         $exited = $process.WaitForExit(120000)
         if (-not $exited) {
-            $process.Kill($true)
+            # Kill() without the process-tree argument, which Windows PowerShell 5.1 lacks.
+            $process.Kill()
             throw "$failure The packaged game did not exit within 120 seconds."
         }
         # Always surface stderr: it is empty on an ordinary run and carries the software-renderer
