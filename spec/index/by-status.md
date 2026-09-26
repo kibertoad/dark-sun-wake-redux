@@ -70,7 +70,7 @@ Entries by status.
 
 ## recorded
 
-52 entries.
+57 entries.
 
 | ID | Title |
 |---|---|
@@ -83,6 +83,10 @@ Entries by status.
 | [FND-ACTOR-007](../findings/FND-ACTOR-007.md) | RDFF resources share numbers with OJFF resources outside 9,000 to 13,998 and fall into three size families |
 | [FND-ACTOR-008](../findings/FND-ACTOR-008.md) | The one MONR resource divides into 27 units of 42 bytes with fixed zero bytes |
 | [FND-ACTOR-009](../findings/FND-ACTOR-009.md) | Object 9,258 is not named by a constant in the resident image or by its own OJFF words |
+| [FND-ACTOR-010](../findings/FND-ACTOR-010.md) | No decoded instruction of DSUN.EXE uses the displacements 43 or 76 |
+| [FND-ACTOR-011](../findings/FND-ACTOR-011.md) | The RDFF request routines use the 37-byte slot records and not the 13-byte records of segment 1695 |
+| [FND-ACTOR-012](../findings/FND-ACTOR-012.md) | The opening region names 287 objects whose images hold 477 frames |
+| [FND-ACTOR-013](../findings/FND-ACTOR-013.md) | Split at 81 bytes, no column of the MONR resource is constant |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |
@@ -112,6 +116,7 @@ Entries by status.
 | [FND-REGION-005](../findings/FND-REGION-005.md) | The region loader at 362C:01FA requests PAL, then RMAP or MAP, then GMAP by the region number |
 | [FND-REGION-006](../findings/FND-REGION-006.md) | The terrain routines read the map as 98 rows of 128 bytes and draw the named TILE at 16-pixel steps |
 | [FND-REGION-007](../findings/FND-REGION-007.md) | The ETAB tag occurs only in overlay code and the RNME tag nowhere in DSUN.EXE |
+| [FND-REGION-008](../findings/FND-REGION-008.md) | The first gameplay frame shows the opening region from world position (1024,1368) |
 | [FND-RNG-001](../findings/FND-RNG-001.md) | The random number generator is a 32-bit linear congruential generator at 1000:0822 |
 | [FND-RNG-002](../findings/FND-RNG-002.md) | The seed setter at 1000:0811 stores a 16-bit seed and clears the high word |
 | [FND-RNG-003](../findings/FND-RNG-003.md) | The modulo reducer at 2834:061C draws once, and not at all for a divisor of 0 |

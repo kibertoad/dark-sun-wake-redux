@@ -77,3 +77,5 @@ None known.
 - Whether the pixels a tile leaves undrawn keep what was there before. 8 tiles that the shipped
   maps name leave 1 or 4 of their pixels undrawn (FND-REGION-002), and the copy routine at
   `2707:001A` has not been read (FND-REGION-006, Q-REGION-004).
+- What sets the view origin. The first gameplay frame of the opening region shows the view from
+  `(1024,1368)` (FND-REGION-008), and the code that chooses it has not been found (Q-REGION-005).

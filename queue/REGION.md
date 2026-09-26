@@ -1,6 +1,6 @@
 # REGION
 
-Next ID: Q-REGION-005
+Next ID: Q-REGION-006
 
 ## Static
 
@@ -17,6 +17,9 @@ Next ID: Q-REGION-005
   with what second argument, where would an `RMAP` resource come from, and does the tile copy at
   `2707:001A` leave undrawn tile pixels as they were? Settles it: a reading of the loader's
   callers, which are not resident far calls, and of `2707:001A`. Blocks: nothing yet.
+- Q-REGION-005. RULE-REGION-001: What sets the view origin when a region is entered? The first
+  gameplay frame of the opening region shows `(1024,1368)` (FND-REGION-008). Settles it: a reading
+  of the code that writes the view origin before the first terrain draw. Blocks: nothing yet.
 
 ## Emulated call
 

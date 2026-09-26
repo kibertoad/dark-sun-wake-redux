@@ -9,7 +9,7 @@ byte_order: little
 size: 16
 text: false
 definition: fmt_actor_001.ksy
-evidence: [FND-ACTOR-001, FND-ACTOR-002, FND-ACTOR-003, FND-ACTOR-004, FND-IMAGE-010, SRC-DSUN-MUSIC-79B6927]
+evidence: [FND-ACTOR-001, FND-ACTOR-002, FND-ACTOR-012, FND-ACTOR-003, FND-ACTOR-004, FND-IMAGE-010, SRC-DSUN-MUSIC-79B6927]
 conflicting: []
 split_with: []
 related: [RULE-ACTOR-001]
@@ -47,7 +47,8 @@ None known.
 ## Coverage
 
 All 4,479 `OJFF` resources of `OBJEX.GFF` in BLD-GOG-EN-1.1: each is 16 bytes, and each `image`
-names a `BMP ` resource that decodes [FND-ACTOR-001]. The placement of 22 objects in the first
+names a `BMP ` resource that decodes [FND-ACTOR-001]. The 287 definitions the opening region
+names use 246 images with 477 frames [FND-ACTOR-012]. The placement of 22 objects in the first
 gameplay frame of the opening region matches `x_offset`, `y_offset` and `vertical_offset`
 [FND-IMAGE-010], and the opening party leader is drawn with the image of
 `OBJEX.GFF#OJFF/305` [FND-ACTOR-002].

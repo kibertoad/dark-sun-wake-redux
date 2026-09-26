@@ -15,9 +15,11 @@ Next ID: Q-ACTOR-006
   the overlay code of overlays 190, 197 and 213 around the `OJFF` tag bytes. Blocks: nothing yet.
 - Q-ACTOR-003. FMT-ACTOR-002: What is the layout of an `RDFF` resource? Settles it: a reading of
   `2D40:000A`, which receives the request, and of the overlay code of overlays 178, 188, 191 and
-  201 around the `RDFF` tag bytes. Blocks: nothing yet.
+  201 around the `RDFF` tag bytes. Tried: a search for resident instructions with the
+  displacement 43 or 76 (FND-ACTOR-010). Blocks: nothing yet.
 - Q-ACTOR-004. FMT-ACTOR-003: Which code reads `MONR`, and what is its layout? Settles it: a
-  reading of the code of overlay 204 around the `MONR` tag bytes. Blocks: nothing yet.
+  reading of the code of overlay 204 around the `MONR` tag bytes. Tried: splits at 42 and 81
+  bytes (FND-ACTOR-008, FND-ACTOR-013). Blocks: nothing yet.
 
 ## Emulated call
 

@@ -47,4 +47,8 @@ None.
   `145 + 33 * n` bytes, and the label at `OBJEX.GFF#ALL/2` offset 3,611 sits at offset 43 of 23
   resources of the second family (FND-ACTOR-007). These are patterns in the data; the routine
   `2D40:000A` that receives the request has not been read, and overlay code in overlays 178, 188,
-  191 and 201 names the tag (FND-ACTOR-006).
+  191 and 201 names the tag (FND-ACTOR-006). No decoded resident instruction uses the
+  displacement 43 or 76 (FND-ACTOR-010), which weighs against, without ruling out, a resident
+  field read at the label's offset.
+- Whether `RDFF` data feeds the 13-byte records that the routines of segment `1695` walk. The
+  routines that request it use only the 37-byte slot records (FND-ACTOR-011).
