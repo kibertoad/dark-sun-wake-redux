@@ -4,7 +4,7 @@ title: The script instructions that print text and numbers, show a portrait and 
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-005, FND-SCRIPT-010, FND-SCRIPT-012]
+evidence: [FND-SCRIPT-005, FND-SCRIPT-010, FND-SCRIPT-012, FND-SOUND-009]
 conflicting: []
 split_with: []
 related: [RULE-SCRIPT-002, RULE-SCRIPT-004]

@@ -99,7 +99,7 @@ None known.
   (FND-RNG-002, Q-RNG-001).
 - Which game rules call the reducers. `random_between` and `roll_sum` have no recovered callers,
   and `random_mod` is called only from `chance_in_ten` and the table selection in FND-RNG-007,
-  whose mechanic is not known (Q-RNG-001).
+  which is the music selector of RULE-SOUND-003 (FND-SOUND-012, Q-RNG-001).
 - The widths the original computes in: whether the products in `random_between` and `roll_sum`
   are 32-bit as written, whether `roll_sum` keeps its total in 16 bits, whether the divisions are
   signed, and whether `random_mod` divides signed, which matters only for a divisor above 32767

@@ -9,19 +9,18 @@ release. Records below that have not moved into the spec yet keep their legacy
 IDs: `OBS-GOG-*` for controlled runs and `DATA-GOG-*` for bounded inspection of
 the owned build.
 
-### DATA-GOG-MEDIA-001 - Cinematic and voice-file header inventory
+### DATA-GOG-MEDIA-001 - Cinematic header inventory
+
+The voice-file and music parts of this record moved to FND-SOUND-001 and
+FND-SOUND-002.
 
 - **Question:** What fixed media-file envelopes can be established for the
-  supported installation before selecting a cinematic or audio decoder?
+  supported installation before selecting a cinematic decoder?
 - **Method:** Enumerate only paths, extensions, and sizes beneath the owned
   installation. For each numbered FLI file, read exactly the first 128 bytes
   and summarize little-endian header fields without decoding chunks or frames.
-  For every VOC file, read exactly its fixed 26-byte header and the single byte
-  at its declared data offset; aggregate the results without retaining names,
-  frames, samples, or block payloads.
 - **Finding:** the installation contains five root-level FLI files totalling
-  19,498,251 bytes, 147 VOC files totalling 33,989,656 bytes, and 40 Ogg files
-  under `MUSIC` totalling 99,131,938 bytes. Every FLI file is at least 128 bytes
+  19,498,251 bytes. Every FLI file is at least 128 bytes
   and has a little-endian file-size field equal to its physical length, magic
   `0xAF11`, 320x200 dimensions, 8-bit depth, and flags `0x0003`. In numeric
   filename order, their frame-count/raw-speed pairs are 1175/7, 373/7, 575/7,
@@ -39,48 +38,19 @@ the owned build.
   that record by one byte makes its first two chunks fit, but then the next
   alleged record header has type `0x01f1` and declares 4,194,304,014 bytes with
   only 5,749,959 bytes physically remaining. The mismatch is therefore not
-  accepted as a simple physical-padding variation. All 147 VOC files are at
-  least 26 bytes, begin with the
-  standard `Creative Voice File` signature, declare data offset 26, version
-  `0x010a`, checksum `0x1129`, and contain first block type 1 at that offset.
-  Each declared first-block length fits within its physical file; the raw
-  time-constant/codec-byte groups are 165/0 for 30 files, 210/0 for 115, and
-  131/0 for two, with declared block lengths ranging from 365 through 3,160,452
-  bytes.
+  accepted as a simple physical-padding variation.
 - **Confidence:** high for these bounded inventory/header facts in
   BLD-GOG-EN-1.1; unknown for FLI chunk types, palette behavior, raw-speed
   units, effective playback cadence, whether the one extra FLI record is a
   loop/sentinel/displayed frame, raw chunk-type meanings, FLI 5's nested
-  variant, later VOC block layout, codec-byte/sample-rate semantics,
-  audio routing, Ogg track mapping, loops, and all audiovisual sequencing.
+  variant, and all audiovisual sequencing.
   `EXE-GOG-MEDIA-002` finds raw executable occurrences of every numbered FLI
   name and four CINE-directory templates, but no direct Ghidra reference to
   any inspected entry; it does not establish a loader, fallback, or sequence.
-  `EXE-GOG-SOUND-002` separately finds no complete VOC header signature,
-  `EXE-GOG-SOUND-003` finds no `INT 15h` opcode, and `EXE-GOG-SOUND-004` finds
-  no `.VOC` filename-extension literal in the loaded sound-helper image.
-  `EXE-GOG-SOUND-006` extends the first result through the helper's complete
-  physical MZ overlay: the same 19-byte VOC signature is absent everywhere in
-  the 204,593-byte file. `EXE-GOG-SOUND-007` does find bounded direct port
-  output, including a caller-word-derived fixed-port sequence and a separate
-  runtime-base-plus-offset sequence, but neither has a recovered VOC, device,
-  settings, or timing owner. `EXE-GOG-SOUND-008` independently scans the
-  complete physical main `DSUN.EXE` and finds the same whole-header signature
-  absent there as well; this is not evidence that any executable cannot read
-  VOC data through a partial, indirect, or delegated path. The same main
-  executable has five raw `.VOC` extension fragments, but
-  `EXE-GOG-SOUND-009` finds all five unreferenced and non-instruction data;
-  they identify no filename loader or playback path. `EXE-GOG-SOUND-010` also
-  finds no complete literal `SOUND_DS.EXE` helper filename in the physical main
-  executable, while `EXE-GOG-SOUND-011` finds no decoded `INT 21h` with a
-  nearby literal DOS EXEC setup. Neither result excludes an indirect,
-  constructed, or wrapped helper path.
-  None of those bounded absences establishes a decoder, codec, filename mapping, or timing
-  contract.
 - **Implementation consequence:** no decoder, extractor entry, media mapping,
   or time-based runtime behavior is introduced yet. A future media reader must
-  validate these fixed envelopes first, bound every subsequent record/chunk or
-  block and decoded output, preserve the header-versus-physical-record count
+  validate these fixed envelopes first, bound every subsequent record/chunk
+  and decoded output, preserve the header-versus-physical-record count
   distinction, support each nested FLI variant only after independent
   validation, use an explicit monotonic playback clock, and treat the raw FLI
   speed field as data until its unit is independently established.

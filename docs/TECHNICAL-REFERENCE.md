@@ -80,163 +80,24 @@ are:
 - FLI, VOC, OGG, configuration, and item-table files are fully inventoried and
   preserved. The executable contains raw numbered FLI names and CINE-directory
   path templates, but their inspected locations have no direct references, so
-  names do not establish a loader, fallback, sequence, or timing policy. Those
-  media semantics remain opaque. The loaded sound-helper image has no complete
-  VOC header signature or `.VOC` filename-extension literal. The main
-  executable carries five `.VOC` fragments, but every one is unreferenced data
-  rather than an instruction (`EXE-GOG-SOUND-009`). These facts establish no
-  decoder, codec, filename mapping, or timing contract.
+  names do not establish a loader, fallback, sequence, or timing policy. The
+  cinematic semantics remain opaque.
+- Sound is the SOUND area of the spec. Voice files and `BVOC` resources are
+  `FMT-SOUND-001`; the effect and speech players are `RULE-SOUND-001` and
+  `RULE-SOUND-002`, which build their file names from the `.VOC` patterns in
+  the executable (`FND-SOUND-006`). Music is chosen from `DJ.DAT`
+  (`FMT-SOUND-002`) by `RULE-SOUND-003` and plays as a disc audio track, which
+  GOG supplies as `MUSIC/TrackNN.ogg`. How the sound library plays a sample or
+  a track is not read (`Q-SOUND-002`, `Q-SOUND-004`), so the rebuild plays no
+  sound yet.
 - `SOUND.CFG` is `FMT-CONFIG-001`: the sound helper `SOUND_DS.EXE` reads
   `SOUND.INI` (`FMT-CONFIG-002`) and writes it (`FND-CONFIG-004`), and the main
-  executable reads it through its sound library (`FND-CONFIG-005`). The
-  complete main executable also lacks the literal `SOUND_DS.EXE` helper
-  filename (`EXE-GOG-SOUND-010`), and its decoded `INT 21h` instructions have
-  no nearby literal DOS EXEC setup (`EXE-GOG-SOUND-011`), so no main-to-helper
-  launch path is claimed.
-- The sound helper's complete physical file, including that overlay, also has
-  no whole `Creative Voice File` signature. This strengthens the loaded-image
-  absence but still does not identify or exclude partial validation, a decoder,
-  device routing, or CPU-independent playback timing.
-- Its loaded code does contain fixed-port and runtime-base-plus-offset output
-  sequences, but their direct callers do not identify a VOC consumer, device,
-  Preferences control, rate, duration, or playback clock. Those low-level
-  operations are evidence against assuming a simple standard decoder, not a
-  contract to emulate in the modern runtime.
+  executable reads it through its sound library (`FND-CONFIG-005`). The main
+  executable never names or starts the helper (`FND-SOUND-005`), and the
+  helper holds no VOC header, `.VOC` name or BIOS wait (`FND-SOUND-003`); its
+  port output sets the timer chip and a card with a variable base
+  (`FND-SOUND-004`), which the modern runtime does not emulate.
 
-## Current runtime boundary
-
-The current Slice 3 build can verify and open the local pack, render bounded
-startup and interface shells, show the observed Tyr opening viewport, route
-movement through deterministic A*, and render the known cursor family.
-Dialogue preview uses the original fixed 320x200 canvas and measured dialogue
-chrome while the exploration view may expand to the physical display aspect.
-The bounded first dialogue projection owns only the validated opening paths;
-unknown visible targets stay inert.
-
-The screens' layers, geometry and image mapping are the `SCR-UI` entries in
-[spec/screens](../spec/screens/). The plan and current
-slice acceptance criteria are in [IMPLEMENTATION-PLAN.md](IMPLEMENTATION-PLAN.md).
-
-The start window is `SCR-UI-001`. No code that handles its buttons is known
-(`FND-UI-012`), so deterministic routing is an independently designed boundary,
-and START GAME continues with an explicit unresolved shipped-party origin.
-
-## Destination-screen and combat evidence boundary
-
-The View Character, Inventory, Cast and Effects screens are `SCR-UI-002` and
-`SCR-UI-008` to `SCR-UI-010`. Five navigation controls route today; all interior
-controls stay inert. The label table of those screens (`FND-UI-023`) has no
-known reader. Read those entries, FND-PARTY-020 and FND-MAGIC-001 before
-extending these screens.
-
-Two item names visible in the owner-confirmed inventory capture are lines of
-`RESOURCE.GFF#TEXT/1000` (`FND-ITEM-008`). No evidence ties a line to an item
-record, slot or selection path, so the runtime keeps inventory interiors inert.
-The manual's inventory, store and item-spell behaviour is `RULE-ITEM-001` to
-`RULE-ITEM-005`.
-
-Combat is specified in the COMBAT area of the spec. The status panel is
-`SCR-COMBAT-001`, the combat keys and the end-of-move menu are `RULE-COMBAT-004`
-and `RULE-COMBAT-005`, the actions refused during combat are `RULE-COMBAT-008`,
-and the manual's rules are `RULE-COMBAT-001` to `RULE-COMBAT-003`,
-`RULE-COMBAT-006` and `RULE-COMBAT-007`. The owner's captures and reports are
-`FND-COMBAT-018` to `FND-COMBAT-021`. No combat session, encounter or rules
-pipeline is implemented; the pack keeps `BMP/19003` as
-`images/combat/status-panel.dsix`, which no Game code draws. The open questions
-are in `queue/COMBAT.md`, and the opening-combat live session (`Q-COMBAT-001`)
-comes before any combat behaviour.
-
-`FND-ACTOR-008` finds that the one `MONR` payload repeats as 27 units of 42
-bytes with a constant zero tail; `FMT-ACTOR-003` stays unknown, and the tag
-occurs only in overlay 204 (`FND-ACTOR-006`).
-
-The routine that decides what a computer-controlled combatant does is not
-known (`RULE-AI-002`). The static paths from the first hostile, `MONR`, `ETAB`,
-`RDFF`, coordinate input and the random number generator do not reach one
-(`FND-AI-001`). The `COMPUTER CONTROL` strings belong to the computer-control
-buttons beside the character boxes, which toggle a bit of the party member's
-combatant record unless another bit locks it, and Space clears the bit for
-every unlocked member (`RULE-AI-001`, `FND-AI-002` to `FND-AI-004`). The readers
-of that bit are the next leads (`Q-AI-001`). Core and Game have no enemy
-decisions.
-
-## Object and static-scene route
-
-The following is the current bounded path from original static region data to
-the rendered opening scene. It documents data and presentation connections; it
-is deliberately not an actor-behavior model.
-
-```text
-RGN#50: RNME / PAL / MAP / GMAP / TILE / ETAB
-  -> DSRG region contract + DSOB referenced object-frame catalog
-  -> clipped static terrain and first-frame object compositor
-  -> verified opening viewport and independent leader overlay
-```
-
-- Every `ETAB` record supplies bounded position, vertical-offset, flags, and
-  an absolute `OJFF` reference. The record's flags and all non-evidenced
-  geometry meanings remain raw data.
-- An `OJFF` is `FMT-ACTOR-001`. `31E0:0EFF` requests it into a 37-byte slot
-  record and `31E0:0E1B` computes the image position from it (`FND-ACTOR-003`);
-  `RULE-ACTOR-001` draws the placed objects. Actor ownership, collision,
-  interaction, and animation are not established.
-- A bounded native caller chain reaches distinct `PLAN` and `PLNR` image
-  dispatch after tile/object image resolution. It confirms the static image
-  route but does not establish how a frame is selected or scheduled.
-- The one observed opening leader remains separately evidenced: OJFF #305,
-  bitmap #599 frame 0, world top-left `(1184,1459)`, and collision anchor
-  `(74,91)`. Its footprint, all later frames, cadence, party formation, and
-  other actor behavior are unknown.
-
-See `FMT-REGION-001` to `FMT-REGION-006`, `RULE-REGION-001`, `FND-IMAGE-010`, `FMT-ACTOR-001`,
-`RULE-ACTOR-001`, `FND-ACTOR-002`, `FND-ACTOR-003`, and `FND-IMAGE-005` before
-expanding this route.
-
-## Preferences evidence boundary
-
-`WIND` #16500 is a 210x116 resource graph with thirteen buttons and two
-application frames. Its authentic base and first-frame controls render, and the
-Game Menu and Return actions are implemented. The following table separates
-the documented control role from the state that has not yet been measured.
-
-| Control family | Established contract | Deliberately not implemented as native behavior |
-|---|---|---|
-| Music, sound effects, animations, voice effects | The manual defines each as an on/off toggle; voice applies to CD-capable installs | Initial on/off state, state storage, visual frame mapping, and audio routing |
-| Music and sound-effects volume | Each is a slider adjusted through buttons at its two ends | Numerical range, increment, initial value, displayed fill, and mixer mapping |
-| Difficulty | The executable table orders the four labels Easy, Balanced, Hard, Hideous; the manual assigns it to combat difficulty. SRC-GAMEFAQS-81038 reports a hostile-HP-at-spawn hypothesis (`RULE-COMBAT-007`) | Selected default, its relationship to the manual's conflicting "Average" wording, mutations, hostile-HP multipliers/rounding/timing, and rule consumers |
-| About | The manual specifies version, copyright, support, hint-line, and address information; the executable supplies nine centered lines | Modal geometry, backdrop, input dismissal, and native transition |
-
-Direct-reference and scalar probes find no literal binding from the executable
-text table, including all nine centered About strings, or two tested control
-pairs to a handler. This does not prove that the controls are inactive: their
-dispatch may be resource-driven or calculated. It does prevent treating those
-literal values as evidence for an implementation or an About modal route.
-Follow-up reference queries also find no recovered direct caller of the generic
-window-registration entry or its two generic callback setters. That prevents
-using the generic UI framework as an identified Preferences registration path;
-it does not prove that native callbacks or settings behavior are absent.
-`PREF` #100 in `CHARSAVE.GFF` is `FMT-CONFIG-003`: nine bytes the game writes
-with every saved game and reads back on loading, whose fields are copied to and
-from globals no finding yet ties to a named setting. The on-off, difficulty and
-volume behaviour the manual gives is `RULE-CONFIG-001` to `RULE-CONFIG-003`.
-The game reads `SOUND.CFG` (`FMT-CONFIG-001`) through its sound library, and
-only the setup program reads `SOUND.INI` (`FMT-CONFIG-002`). See `SCR-UI-007`,
-`FMT-TEXT-004` and `FND-TEXT-006` before changing this boundary.
-
-## Determinism and time
-
-Core transitions happen only from explicit commands. Rendering interpolates
-presentation but cannot advance game rules. Snapshots and replay hashes make
-the start flow and current exploration state reproducible.
-
-- Route advancement is semantic and clock-free in Core. The runtime uses a
-  bounded fixed-step accumulator and fixed-point visual interpolation. Positive
-  host elapsed time accumulates saturating ticks, while camera clamping widens
-  delta arithmetic and the modern drag adapter widens then saturates pointer
-  deltas. Actor interpolation uses checked widened arithmetic, and
-  sprite-visibility rectangle edges also widen before clipping, so
-  clock discontinuities or extreme input/coordinates cannot overflow into
-  gameplay or presentation state.
 - The opening actor's current single-cell footprint and 125 ms semantic step
   are explicit modern policies, not claims about the native implementation.
 - The original's clocks known so far are `RULE-TIME-001` (a millisecond
@@ -245,8 +106,8 @@ the start flow and current exploration state reproducible.
   asks for). Neither is tied to actor movement or animation yet
   (`Q-TIME-001`), and the BIOS time-of-day reads, `INT 15h` sites and
   display-status copy are not clocks (`FND-TIME-001` to `FND-TIME-003`).
-  `EXE-GOG-SOUND-003` separately finds no `INT 15h` opcode in the loaded
-  sound-helper image. None must be recreated as an interrupt-disabled render
+  `FND-SOUND-003` separately finds no `INT 15h` opcode in the sound helper.
+  None must be recreated as an interrupt-disabled render
   loop, hardware timer, or actor scheduler.
   `EXE-GOG-MEDIA-001` finds no literal FLI
   header-validation lead, and `EXE-GOG-MEDIA-002` finds no direct reference to

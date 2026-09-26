@@ -53,7 +53,7 @@ others are in the routine at `4868:033C`:
 A search of the load image for a far call to `4868:0365` or `4868:033C` finds none.
 
 The same bytes as `4868:033C`, from the write of `0x36` to the second write to port `0x40`, are
-in `SOUND_DS.EXE` at `1000:C61E`.
+in `SOUND_DS.EXE` at `1000:C61E` (FND-SOUND-004).
 
 ## Interpretation
 

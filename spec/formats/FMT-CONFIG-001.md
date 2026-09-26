@@ -9,7 +9,7 @@ byte_order: little
 size: 59
 text: false
 definition: fmt_config_001.ksy
-evidence: [FND-CONFIG-003, FND-CONFIG-004, FND-CONFIG-005]
+evidence: [FND-CONFIG-003, FND-CONFIG-004, FND-CONFIG-005, FND-SOUND-007, FND-SOUND-008, FND-SOUND-013]
 conflicting: []
 split_with: []
 related: []
@@ -27,13 +27,13 @@ come from the values of the shipped file and the `SOUND.INI` record they match [
 | `0x02` | 2 | `UINT16LE` | `unk_02` | Purpose unknown. 5, the record's first IRQ. | supported | FND-CONFIG-003 |
 | `0x04` | 2 | `UINT16LE` | `unk_04` | Purpose unknown. 1, the record's first DMA channel. | supported | FND-CONFIG-003 |
 | `0x06` | 2 | `UINT16LE` | `unk_06` | Purpose unknown. 1, the record's flag count. | supported | FND-CONFIG-003 |
-| `0x08` | 2 | `UINT16LE` | `unk_08` | Purpose unknown. 122, the record's card ID. | supported | FND-CONFIG-003 |
+| `0x08` | 2 | `UINT16LE` | `unk_08` | Purpose unknown. 122, the record's card ID. The game plays no sound effect, speech or song while it is 113, the card ID of "No Sound", unless `unk_14` asks for disc music. | supported | FND-CONFIG-003, FND-SOUND-007, FND-SOUND-008, FND-SOUND-013 |
 | `0x0A` | 2 | `UINT16LE` | `unk_0a` | Purpose unknown. Equal to `unk_00` in the shipped file. | supported | FND-CONFIG-003 |
 | `0x0C` | 2 | `UINT16LE` | `unk_0c` | Purpose unknown. Equal to `unk_02`. | supported | FND-CONFIG-003 |
 | `0x0E` | 2 | `UINT16LE` | `unk_0e` | Purpose unknown. Equal to `unk_04`. | supported | FND-CONFIG-003 |
 | `0x10` | 2 | `UINT16LE` | `unk_10` | Purpose unknown. Equal to `unk_06`. | supported | FND-CONFIG-003 |
 | `0x12` | 2 | `UINT16LE` | `unk_12` | Purpose unknown. Equal to `unk_08`. | supported | FND-CONFIG-003 |
-| `0x14` | 2 | `UINT16LE` | `unk_14` | Purpose unknown. 11, the record's music driver chunk number. | supported | FND-CONFIG-003 |
+| `0x14` | 2 | `UINT16LE` | `unk_14` | Purpose unknown. 11, the record's music driver chunk number. With bit 1 set the game plays its music as disc audio tracks. | supported | FND-CONFIG-003, FND-SOUND-013 |
 | `0x16` | 14 | `char[14]` | `music_driver` | The file name of the real-mode music driver, with its extension, padded with NULs. | supported | FND-CONFIG-003 |
 | `0x24` | 14 | `char[14]` | `digital_driver` | The file name of the real-mode digital sound driver, with its extension, padded with NULs. | supported | FND-CONFIG-003 |
 | `0x32` | 2 | `UINT16LE` | `unk_32` | Purpose unknown. 1 in the shipped file. | supported | FND-CONFIG-003 |

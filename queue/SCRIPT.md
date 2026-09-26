@@ -42,10 +42,10 @@ Next ID: Q-SCRIPT-007
   clears what they point at. Blocks: slices 3-6.
 - Q-SCRIPT-006. RULE-SCRIPT-007: What do the far routines behind the output
   instructions do: where printed text goes and what its byte parameter
-  selects, how a portrait number becomes a `PORT` resource, and what the sound
-  and music routines play? Settles it: `5702:004D`, `5702:0052`, `5702:0057`
-  and `5702:009D` in overlay 188, and `2D40:0B00` and `2D40:0B0F`. Blocks:
-  slice 3.
+  selects, and how a portrait number becomes a `PORT` resource? Settles it:
+  `5702:004D`, `5702:0052`, `5702:0057` and `5702:009D` in overlay 188.
+  Tried: the sound and music routines `2D40:0B00` and `2D40:0B0F`, which play
+  the effect and do nothing (FND-SOUND-009). Blocks: slice 3.
 
 ## Emulated call
 

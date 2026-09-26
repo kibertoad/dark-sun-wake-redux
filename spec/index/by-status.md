@@ -53,7 +53,7 @@ Entries by status.
 
 ## supported
 
-91 entries.
+96 entries.
 
 | ID | Title |
 |---|---|
@@ -100,6 +100,8 @@ Entries by status.
 | [FMT-SCRIPT-003](../formats/FMT-SCRIPT-003.md) | Script entry point index (GPLI) |
 | [FMT-SCRIPT-004](../formats/FMT-SCRIPT-004.md) | Script trigger record |
 | [FMT-SCRIPT-005](../formats/FMT-SCRIPT-005.md) | Record with two script entry points in the 19-byte list |
+| [FMT-SOUND-001](../formats/FMT-SOUND-001.md) | Voice file with one block of 8-bit samples |
+| [FMT-SOUND-002](../formats/FMT-SOUND-002.md) | Music table DJ.DAT |
 | [FMT-TEXT-001](../formats/FMT-TEXT-001.md) | Bitmap font resource |
 | [FMT-TEXT-002](../formats/FMT-TEXT-002.md) | Bitmap font glyph |
 | [FMT-TEXT-003](../formats/FMT-TEXT-003.md) | Text resource of CR LF lines |
@@ -131,6 +133,9 @@ Entries by status.
 | [RULE-SCRIPT-007](../rules/RULE-SCRIPT-007.md) | The script instructions that print text and numbers, show a portrait and play sound and music |
 | [RULE-SCRIPT-008](../rules/RULE-SCRIPT-008.md) | The script instructions that register attack and move-tile triggers |
 | [RULE-SCRIPT-009](../rules/RULE-SCRIPT-009.md) | The script trace instructions |
+| [RULE-SOUND-001](../rules/RULE-SOUND-001.md) | A sound effect plays the BVOC resource of its number, or the installed SOUND file when there is no such resource |
+| [RULE-SOUND-002](../rules/RULE-SOUND-002.md) | A spoken line plays INTR files from the disc below 50 and SPCH files from the installation or the disc from 50 up |
+| [RULE-SOUND-003](../rules/RULE-SOUND-003.md) | Music is chosen from DJ.DAT by region at startup and by party health in combat, and plays as a disc audio track |
 | [RULE-TALK-001](../rules/RULE-TALK-001.md) | The script instruction that offers a menu of responses and runs the chosen one |
 | [RULE-TIME-001](../rules/RULE-TIME-001.md) | The game waits a number of milliseconds by reading the timer chip until enough counts have passed |
 | [RULE-TIME-002](../rules/RULE-TIME-002.md) | The timer interrupt runs at the shortest period any of 17 timer slots asks for, given in microseconds |
@@ -163,7 +168,7 @@ Entries by status.
 
 ## recorded
 
-200 entries.
+213 entries.
 
 | ID | Title |
 |---|---|
@@ -320,6 +325,19 @@ Entries by status.
 | [FND-SCRIPT-016](../findings/FND-SCRIPT-016.md) | Segment 2D40 runs GPL scripts from word pairs of linked 19-byte records whose list head is 57E0:5AF5 |
 | [FND-SCRIPT-017](../findings/FND-SCRIPT-017.md) | Overlay 187 converts script entry points in the trigger records to GPLI entry numbers and back |
 | [FND-SCRIPT-018](../findings/FND-SCRIPT-018.md) | SCMD resources are loaded through a separate 64-slot cache at 31E0:1893 with two callers |
+| [FND-SOUND-001](../findings/FND-SOUND-001.md) | Every VOC file and BVOC resource is one Creative Voice File header, one sound block and a terminator |
+| [FND-SOUND-002](../findings/FND-SOUND-002.md) | The installation's music is 40 Ogg Vorbis files that game.ins mounts as audio tracks 2 to 41 |
+| [FND-SOUND-003](../findings/FND-SOUND-003.md) | SOUND_DS.EXE holds no VOC signature, no VOC file extension and no BIOS wait call |
+| [FND-SOUND-004](../findings/FND-SOUND-004.md) | SOUND_DS.EXE writes to ports at six sites, three of them timer-chip code the game shares |
+| [FND-SOUND-005](../findings/FND-SOUND-005.md) | DSUN.EXE holds no VOC signature, does not name SOUND_DS.EXE and has no DOS EXEC setup |
+| [FND-SOUND-006](../findings/FND-SOUND-006.md) | The five .VOC texts in DSUN.EXE are file-name patterns the game formats to play or delete voice files |
+| [FND-SOUND-007](../findings/FND-SOUND-007.md) | The sound-effect routine plays a BVOC resource when one exists and otherwise the installed SOUND file of that number |
+| [FND-SOUND-008](../findings/FND-SOUND-008.md) | The speech routine plays INTR files from the disc below 50 and SPCH files from the installation or the disc from 50 up |
+| [FND-SOUND-009](../findings/FND-SOUND-009.md) | The script's sound opcode calls the sound-effect routine and its music opcode calls a routine that does nothing |
+| [FND-SOUND-010](../findings/FND-SOUND-010.md) | Command-line switches turn sound, digital sound and speech on or off and set the install type |
+| [FND-SOUND-011](../findings/FND-SOUND-011.md) | At startup the game reads SOUND.CFG and DJ.DAT, a table of 38 six-byte music records |
+| [FND-SOUND-012](../findings/FND-SOUND-012.md) | Once per pass of the main loop the game picks a music track from DJ.DAT by region, music mode and party health |
+| [FND-SOUND-013](../findings/FND-SOUND-013.md) | The music routine plays song n as audio track n + 1 of the disc when SOUND.CFG asks for disc music |
 | [FND-TALK-001](../findings/FND-TALK-001.md) | Script instruction 0x48 lists up to 25 menu entries whose condition is 1 and pushes a frame at the chosen entry's target |
 | [FND-TALK-002](../findings/FND-TALK-002.md) | GPL 135 opens with portrait 18 and a menu of eight entries titled by global string 4, which MAS 99 assigns with strings 5 and 6 |
 | [FND-TALK-003](../findings/FND-TALK-003.md) | About 709 menus in 219 scripts have up to 24 entries and almost all are titled by global string 4; global flag 357 appears only in GPL 135 |
@@ -425,6 +443,8 @@ Entries whose Open questions section says more than None known.
 | [FMT-SCRIPT-003](../formats/FMT-SCRIPT-003.md) | Script entry point index (GPLI) | supported |
 | [FMT-SCRIPT-004](../formats/FMT-SCRIPT-004.md) | Script trigger record | supported |
 | [FMT-SCRIPT-005](../formats/FMT-SCRIPT-005.md) | Record with two script entry points in the 19-byte list | supported |
+| [FMT-SOUND-001](../formats/FMT-SOUND-001.md) | Voice file with one block of 8-bit samples | supported |
+| [FMT-SOUND-002](../formats/FMT-SOUND-002.md) | Music table DJ.DAT | supported |
 | [FMT-TEXT-001](../formats/FMT-TEXT-001.md) | Bitmap font resource | supported |
 | [FMT-TEXT-002](../formats/FMT-TEXT-002.md) | Bitmap font glyph | supported |
 | [FMT-TEXT-003](../formats/FMT-TEXT-003.md) | Text resource of CR LF lines | supported |
@@ -484,6 +504,9 @@ Entries whose Open questions section says more than None known.
 | [RULE-SCRIPT-007](../rules/RULE-SCRIPT-007.md) | The script instructions that print text and numbers, show a portrait and play sound and music | supported |
 | [RULE-SCRIPT-008](../rules/RULE-SCRIPT-008.md) | The script instructions that register attack and move-tile triggers | supported |
 | [RULE-SCRIPT-009](../rules/RULE-SCRIPT-009.md) | The script trace instructions | supported |
+| [RULE-SOUND-001](../rules/RULE-SOUND-001.md) | A sound effect plays the BVOC resource of its number, or the installed SOUND file when there is no such resource | supported |
+| [RULE-SOUND-002](../rules/RULE-SOUND-002.md) | A spoken line plays INTR files from the disc below 50 and SPCH files from the installation or the disc from 50 up | supported |
+| [RULE-SOUND-003](../rules/RULE-SOUND-003.md) | Music is chosen from DJ.DAT by region at startup and by party health in combat, and plays as a disc audio track | supported |
 | [RULE-TALK-001](../rules/RULE-TALK-001.md) | The script instruction that offers a menu of responses and runs the chosen one | supported |
 | [RULE-TIME-001](../rules/RULE-TIME-001.md) | The game waits a number of milliseconds by reading the timer chip until enough counts have passed | supported |
 | [RULE-TIME-002](../rules/RULE-TIME-002.md) | The timer interrupt runs at the shortest period any of 17 timer slots asks for, given in microseconds | supported |

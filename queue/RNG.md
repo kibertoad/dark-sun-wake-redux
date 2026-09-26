@@ -11,7 +11,8 @@ Next ID: Q-RNG-003
   instruction-text scan for the two state displacements and direct far calls
   to the setter (FND-RNG-001, FND-RNG-002), and the one direct consumer chain
   of the modulo helper (FND-RNG-007, FND-RNG-008), which identify no seed
-  source or rule-level consumer; a far-call search found a fourth direct
+  source, and whose consumer is the music selector of RULE-SOUND-003
+  (FND-SOUND-012); a far-call search found a fourth direct
   caller of the generator, the script instruction `0x52` (FND-SCRIPT-011),
   which draws without a helper. Blocks: slices 2-7.
 - Q-RNG-002. RULE-RNG-001: In what widths and signedness do the reducers
