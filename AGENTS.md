@@ -27,23 +27,27 @@ to **origin** and **origin-based** in implementation.
 ## Plan before you build
 
 **Do not write implementation code before `docs/IMPLEMENTATION-PLAN.md`
-describes the work and the repository owner has approved it.** This applies to
-specializing the template for a game, to a new vertical slice, and to any change
+describes the work.** This applies to a new vertical slice and to any change
 that introduces a format reader, a rule, or a persisted file layout.
 
-A plan is ready for review when it states, for each slice: the player-visible
-outcome, the evidence it relies on, the acceptance criteria for rules,
-presentation, and original-content behavior, the automated tests that prove it,
-and the questions still open. Guesses belong in the open-questions register, not
-in an API.
+A slice is described when the plan states its player-visible outcome, the
+evidence it relies on, the acceptance criteria for rules, presentation, and
+original-content behavior, the automated tests that prove it, and an Exit a
+script or reviewer can check. Guesses belong in `queue/` or an entry's Open
+questions, not in an API.
 
-Small, self-contained changes (fixing a bug, tightening a test, editing prose,
-finishing a slice the plan already covers) do not need a new plan. When in
-doubt, propose the plan; it is cheaper than the wrong abstraction.
+The owner decides only what the work protocol's
+[What needs the owner](https://dinorefurb.com/work-protocol/#what-needs-the-owner)
+lists: eligibility and supported editions, scope and non-goals, any deviation
+whose Default is `on` or `mandatory`, features outside the parity matrix,
+releases, and live sessions. Those decisions go in `docs/DECISIONS.md`, and a
+question only the owner can answer goes in the plan's owner questions while
+the work that depends on it waits under `Blocked` in the queue. Everything else
+goes ahead without approval, and the owner reviews the result.
 
 ## Specializing this template for a game
 
-Work in this order. Steps 2 onward start only after the plan is approved.
+Work in this order.
 
 **0. Establish the facts.** Identify the original game, its developer, release
 year, genre, and the editions the owner legally has. Record which storefronts or
@@ -52,9 +56,11 @@ documentation, prior reverse-engineering). Ask the owner for anything you cannot
 determine; never invent an edition, a fingerprint, or a file format.
 
 **1. Write the implementation plan.** Fill in `docs/IMPLEMENTATION-PLAN.md`: the
-game profile, the scope and non-goals, the ordered vertical slices with
-acceptance criteria, the risks, and the open questions. Then stop and ask for
-approval. This is the gate.
+game profile with its eligibility and stage, the scope and non-goals, the
+ordered vertical slices with acceptance criteria and exits, the risks, and the
+questions only the owner can answer. Eligibility (released in 2004 or earlier,
+no official remake or remaster on sale) is checked once and recorded there,
+and not re-checked unless the owner asks.
 
 **2. Configure the project identity.** Fill in `tools/project-config.json` and
 run `./tools/Configure-Project.ps1`, then `./tools/Verify-Configuration.ps1`.
@@ -75,7 +81,7 @@ actionable error rather than a crash. The separately runnable Extractor verifies
 a licensed source and transactionally creates a complete local asset pack; the
 Game consumes only that verified pack.
 
-**5. Build the first vertical slice.** Follow the approved plan. Prefer a thin
+**5. Build the first vertical slice.** Follow the plan. Prefer a thin
 end-to-end slice (identify, import, start, show something real, quit cleanly)
 over broad but unplayable systems.
 
@@ -91,16 +97,40 @@ Work is planned, tracked and handed on under the
 the published page differ, the page wins, apart from the owner-only DOSBox
 rules under "Native runtime visual validation", which this repository keeps.
 
+- The project moves through the stages Intake, Runtime access, Survey, Slices
+  and Audit, and `docs/IMPLEMENTATION-PLAN.md` records which one it is in.
+  `docs/RUNTIME.md` records what can be done with the original running and
+  who can do it, and the plan's slice targets stay within what it allows.
 - Static analysis comes first, and runs of the original are the last resort
   for each question: a `Live session` item is taken up only after its own
   static attempt is under `Tried:`, or when it asks for the run that confirms
   a static reading. A run that blocks the current slice comes before static
-  work that does not.
-- Coding agents never run the original here. Every run is a live session the
+  work that does not, and within each step of the order of work `Static`
+  items come first, then `Emulated call` items, then runs.
+- Coding agents never run the game here. Every run is a live session the
   repository owner performs from a request in `docs/live-sessions/`, following
   the capture protocol in its README, and the owner answers there. Never wait
-  idle for one. The `Emulated call` and `Agent run` sections of the queue stay
-  empty.
+  idle for one. The `Agent run` section of the queue stays empty, and the
+  machine's run lock is never taken from this repository.
+- An emulated call runs one function of `DSUN.EXE` in the Unicorn harness in
+  `tools/emu/`, with no window, timer or input. It starts no process of the
+  game and no DOSBox, and needs no run lock. The protocol's
+  [Emulated calls](https://dinorefurb.com/work-protocol/#emulated-calls)
+  section allows it in every repository: the rule above covers runs of the
+  game only, and emulated calls need no decision from the owner. It is an experiment with `starting_state: emulated-call`, names
+  arguments and memory by parameter, field path or glossary name, and
+  establishes an entry only when its cases reach every branch the entry
+  describes and the reading of the function's callers and inputs is complete.
+  It never confirms what depends on interrupts (`# may run:`), timing or the
+  operating system, and it cannot reach code in the `FBOV` overlay pack. The
+  harness does not exist yet (`docs/RUNTIME.md`), and `Emulated call` items
+  wait until a tooling batch builds it.
+- People test the rebuild when they happen to and report in words and
+  screenshots. Never wait for a report or plan around one. Record one at once
+  in `docs/reports/` with the `triage-report` skill; a research session
+  triages it into a `Defect (R-...)` parity note, a queue item or a finding.
+  Screenshots are never committed: the rebuild's go in `GAME_DIR/reports/`,
+  the original's in `GAME_DIR/captures/`.
 - Competing readings of an open question are written in the entry's Open
   questions section with the evidence for and against each, never kept only
   in a session, and never implemented until an entry says them.
@@ -114,31 +144,55 @@ rules under "Native runtime visual validation", which this repository keeps.
   that evidence is out of reach.
 - A batch is one commit, and is research, implementation or tooling, never
   more than one. A session keeps to one side of the clean room. An
-  implementation batch works from the spec alone, never opens analysis output
-  or `queue/`, and under `spec/` only adds open questions and `unknown`
-  entries; a gap becomes a `Spec gap:` note on the parity row, which the next
-  research session turns into a queue item and removes once it is answered. A
-  research batch makes the parity and citation changes the documentation check
-  requires of what it did to the spec, and changes no other code apart from
-  `tools/`. A tooling batch (extractor, Ghidra scripts, inspection tools) needs
-  no decision. Every batch runs `./tools/Test.ps1` before it is committed.
+  implementation batch works from the spec alone, never opens analysis output,
+  `queue/` or `docs/reports/`, and under `spec/` only adds open questions and
+  `unknown` entries; a gap becomes a `Spec gap:` note on the parity row, which
+  the next research session turns into a queue item and removes once it is
+  answered. A research batch makes the parity and citation changes the
+  documentation check requires of what it did to the spec, and changes no
+  other code apart from `tools/`. A tooling batch (extractor, Ghidra scripts,
+  inspection tools, the inventory export, the emulator harness, headless
+  runner, fixture harness) needs no decision. Every batch runs
+  `./tools/Test.ps1` before it is committed, and ends by printing the status
+  block the skills give.
 - Commit messages end with a `Spec:` trailer naming the entries created or
-  changed, any commit that changes a row's status adds `Parity:`, and any
-  that closes queue items adds `Queue:` with their IDs.
+  changed, any commit that changes a row's status adds `Parity:`, any that
+  closes queue items adds `Queue:` with their IDs, and any that settles a
+  report adds `Report:`.
 - A claim moves from an `unknown` listing (or `sourced` from a document),
   through competing readings kept in its entry's Open questions, each with a
   queue item, to a description at `supported` once direct evidence (the code
   that produces the behaviour) settles it, then `established` by a complete
-  reading of the code, or, only where it depends on something the code does
-  not decide, when an owner capture of the original agrees. Circumstantial
-  evidence never raises a status. Contradicting evidence makes it `disputed`,
-  and a wrong claim is superseded, never deleted.
-- `docs/HANDOVER.md` is the current state of work, at most 200 lines,
-  rewritten at the end of every session, and names items and entries by ID
-  without saying what research found. A session ends by committing its
-  handover on its own; half-done work never goes into a batch commit.
-- Progress is what scripts compute: parity totals, entries by status, queue
-  sizes. Never a hand-written percentage.
+  reading of the code, by an emulated call that agrees on every branch once
+  the reading of its callers and inputs is complete, or, only where it
+  depends on something the code does not decide, when an owner capture of the
+  original agrees. Circumstantial evidence never raises a status.
+  Contradicting evidence makes it `disputed`, and a wrong claim is superseded,
+  never deleted. The protocol's "The life of a claim" section has the details.
+- `docs/HANDOVER.md` is the current state of work outside any goal, at most
+  200 lines, rewritten at the end of every session that works under no goal,
+  and names items and entries by ID without saying what research found.
+  `docs/goals/` holds one file per running goal, which claims its areas and
+  has a handover of its own for sessions under it. `docs/DECISIONS.md`
+  records the owner's decisions and moves its oldest entries to
+  `docs/decisions/` before it passes 1,000 lines. A session ends by
+  committing its handover on its own; half-done work never goes into a batch
+  commit.
+- Progress is what scripts compute: parity totals, entries by status,
+  executable and file coverage, queue sizes, open reports. Never a
+  hand-written percentage. Executable coverage is measured against the
+  function inventories, `coverage/<build ID>/<manifest path>.tsv`, one for
+  each file the analysis reads. An inventory holds only each function's start
+  address, its size, and optionally a name the researcher gave it and why it
+  is out of scope, never code, bytes, strings, constants or names that came
+  from the original, so it is committed.
+
+The procedures are skills in `.claude/skills/`: `runtime-access`,
+`plan-work`, `start-session`, `research-item`, `implement-rows`,
+`triage-report`, `live-session` and `end-session`. They hold the steps, adapted
+to the owner-only DOSBox rules here, and link to the published pages for the
+rules. For a `/goal`, write the goal file with `plan-work`, keep to its scope,
+and end every batch with the status block.
 
 ## Rules that never bend
 
@@ -241,7 +295,9 @@ a value file. It never keeps a substantial copy of the game's writing (dialogue,
 descriptions, messages, the manual's prose; quote a short passage at most and
 refer to the rest by resource), its art (images, sounds, music, video, maps), or
 a meaningful slice of its code or scripts. Tool procedure stays in `docs/GHIDRA.md`. Never commit broad
-decompiler, instruction, or Version Tracking exports.
+decompiler, instruction, or Version Tracking exports. The function inventories
+in `coverage/` are the one export that is committed, and only with the columns
+the planning section above allows.
 
 ## Fidelity
 
@@ -422,7 +478,7 @@ finds nothing to stop, do not create a log entry.
 A change is finished when the solution builds, `./tools/Test.ps1` passes, new
 behavior has tests, the spec entries it relies on exist with the status their
 evidence supports, the documents that assert status (`README.md`, `PARITY.md`,
-`parity/`, `deviations/`) match reality, and `queue/` and the plan's open
+`parity/`, `deviations/`) match reality, and `queue/` and the plan's owner
 questions have been updated with whatever the work settled or newly raised.
 
 Commits describe the change and its evidence, not the tooling that produced it.

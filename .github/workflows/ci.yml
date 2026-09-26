@@ -54,6 +54,9 @@ jobs:
         with:
           # The narrative docs cite spec IDs, so they must resolve too.
           references: docs
+      - name: Check the size limits of the work protocol files
+        shell: pwsh
+        run: ./tools/Verify-WorkingFiles.ps1
   installer:
     needs: verify
     runs-on: windows-latest

@@ -52,9 +52,15 @@ not rendered yet.
 [`PARITY.md`](PARITY.md) gives the rebuild's status against every rule, format
 and screen in the [spec](spec/README.md), with one file per area in `parity/`.
 [`deviations/`](deviations/) records where the rebuild departs from the original
-on purpose. The parts of the rebuild that have no spec entry, such as source
-recognition, the asset pack and saves, are in the
-[implementation plan](docs/IMPLEMENTATION-PLAN.md#rebuild-status-outside-the-spec).
+on purpose. The parts of the rebuild that have no spec entry stand as follows:
+
+| Part | Status |
+|---|---|
+| Source recognition | Implemented. One English GOG build has an exact 233-file immutable inventory, and all 279 installed files have a game-data, mutable, wrapper or documentation disposition. Synthetic mismatch tests pass and the owned build verifies. |
+| Asset pack | Implemented. Required revision 35 keeps all 233 source files and every one of the 16,168 GFF descriptors as 16,401 DSOP assets, plus 123 specialized derivatives (16,524 assets). The pack contract checks version, game and source identity, inventory, hashes, provenance, media type, conversion and unexpected files. |
+| Error behavior | Implemented. A missing or invalid pack and a source mismatch return a diagnostic that says what to do. |
+| Saves and replays | Partial. Start-flow snapshot schema 5 and replay format 3 with hash-verified replay are implemented in memory. Native save files, migration and whole-game coverage are not started. |
+| Packaging | Identity configured. Packages are not release-ready while decoders are missing. |
 
 Every launch opens on the rebuild's own options screen, before anything of the original's. It sets
 the options that the deviations offer, today only Wide map view, and keeps them in `settings.json`
@@ -93,7 +99,7 @@ or raw GFF payloads.
   verified extracted pack.
 - `DarkSunWakeRedux.Inspect` is read-only research tooling.
 
-The approved roadmap and evidence gates are in
+The roadmap and evidence gates are in
 [docs/IMPLEMENTATION-PLAN.md](docs/IMPLEMENTATION-PLAN.md). The current
 continuation notes are in [docs/HANDOVER.md](docs/HANDOVER.md).
 For a concise map of the verified architecture, source contracts, static

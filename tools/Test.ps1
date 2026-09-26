@@ -64,6 +64,7 @@ try {
 finally {
     if ([IO.File]::Exists($overlayMapFixture)) { [IO.File]::Delete($overlayMapFixture) }
 }
+& (Join-Path $PSScriptRoot 'Verify-WorkingFiles.ps1') -RepositoryRoot $root
 # The documentation standard check, from the toolkit commit the CI workflow pins.
 $documentationToolkitCommit = '6e3cad31b6d61280a4649a873cf890377b402a75'
 $documentationCheck = Join-Path $root "artifacts/check-documentation-$documentationToolkitCommit.mjs"

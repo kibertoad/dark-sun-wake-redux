@@ -119,8 +119,8 @@ New repositories start with `tools/project-config.json` and
 `./tools/Configure-Project.ps1`; `docs/CUSTOMIZATION.md` documents every field,
 and `./tools/Verify-Configuration.ps1` reports whatever is still left over from
 the template. `AGENTS.md` is the working agreement for the repository, including
-the rule that `docs/IMPLEMENTATION-PLAN.md` is written and approved before
-implementation starts.
+the rule that `docs/IMPLEMENTATION-PLAN.md` describes the work before
+implementation starts, and the list of what only the owner decides.
 
 Detailed architecture, validation, reverse-engineering, format, and parity notes
 live in the other files in this directory. Shared guidance and libraries live in
