@@ -28,7 +28,7 @@ Entries by kind.
 
 ## formats
 
-56 entries.
+57 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -88,10 +88,11 @@ Entries by kind.
 | [FMT-UI-003](../formats/FMT-UI-003.md) | Button resource (BUTN) | supported |
 | [FMT-UI-004](../formats/FMT-UI-004.md) | Application frame resource (APFM) | supported |
 | [FMT-UI-005](../formats/FMT-UI-005.md) | Edit box resource (EBOX) | supported |
+| [FMT-VIDEO-001](../formats/FMT-VIDEO-001.md) | FLI animation | supported |
 
 ## rules
 
-58 entries.
+62 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -153,10 +154,14 @@ Entries by kind.
 | [RULE-TIME-001](../rules/RULE-TIME-001.md) | The game waits a number of milliseconds by reading the timer chip until enough counts have passed | supported |
 | [RULE-TIME-002](../rules/RULE-TIME-002.md) | The timer interrupt runs at the shortest period any of 17 timer slots asks for, given in microseconds | supported |
 | [RULE-UI-001](../rules/RULE-UI-001.md) | Which controls the window code offers an event or the pointer to, by their event masks | supported |
+| [RULE-VIDEO-001](../rules/RULE-VIDEO-001.md) | A cinematic plays its FLI from the installation, copying it from the disc first when it can, and falls back to still pictures | supported |
+| [RULE-VIDEO-002](../rules/RULE-VIDEO-002.md) | The FLI player shows the first record after a wait and then one record every given number of milliseconds, until the header's frame count or a key | supported |
+| [RULE-VIDEO-003](../rules/RULE-VIDEO-003.md) | When an FLI cannot play, the cinematic's still pictures are shown for up to 8 seconds each | supported |
+| [RULE-VIDEO-004](../rules/RULE-VIDEO-004.md) | While an FLI plays, a timer slot with a period of 1,000 microseconds counts milliseconds | supported |
 
 ## findings
 
-215 entries.
+222 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -375,6 +380,13 @@ Entries by kind.
 | [FND-UI-030](../findings/FND-UI-030.md) | WIND 11500 and WIND 13500 share the portrait and navigation buttons of the character and inventory screens | recorded |
 | [FND-UI-031](../findings/FND-UI-031.md) | WIND 3020 places three 15 x 15 action buttons, a close button and a 145 x 87 frame | recorded |
 | [FND-UI-032](../findings/FND-UI-032.md) | WIND 12500 to 12503 are the conversation windows, with a text box, five response rows and scroll buttons | recorded |
+| [FND-VIDEO-001](../findings/FND-VIDEO-001.md) | The five numbered FLI files are 320x200 8-bit animations whose frame records cover each file and number one more than the header's frame count | recorded |
+| [FND-VIDEO-002](../findings/FND-VIDEO-002.md) | Overlay 196 plays an FLI file to the screen, one frame record every given number of 1 ms ticks, and stops after the header's frame count | recorded |
+| [FND-VIDEO-003](../findings/FND-VIDEO-003.md) | The game sets BIOS mode 0x13 and unchains it for play, uses plain mode 0x13 for cinematics and mode 3 on exit, while the INT 10h wrapper at 1000:1136 serves text services | recorded |
+| [FND-VIDEO-004](../findings/FND-VIDEO-004.md) | The cinematic routine of overlay 187 copies n.FLI from the disc's CINE directory when it is not installed and plays it with song n + 35 | recorded |
+| [FND-VIDEO-005](../findings/FND-VIDEO-005.md) | The cinematic routine runs at startup with cinematic 1 unless a test switch picks another, and from script opcode 0x22 with request 6 | recorded |
+| [FND-VIDEO-006](../findings/FND-VIDEO-006.md) | The cinematic fallback shows two or three BMP resources per cinematic for up to 8 seconds each, and more for cinematic 5 | recorded |
+| [FND-VIDEO-007](../findings/FND-VIDEO-007.md) | Entering regions 0x3E, 0x42, 0x43 and 0x44 copies cinematics 2, 4, 5 and 3 from the disc to the installation ahead of their use | recorded |
 
 ## experiments
 

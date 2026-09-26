@@ -78,10 +78,11 @@ are:
   fail-closed projections are interpreted; there is no generic bytecode
   interpreter.
 - FLI, VOC, OGG, configuration, and item-table files are fully inventoried and
-  preserved. The executable contains raw numbered FLI names and CINE-directory
-  path templates, but their inspected locations have no direct references, so
-  names do not establish a loader, fallback, sequence, or timing policy. The
-  cinematic semantics remain opaque.
+  preserved. Cinematics are the VIDEO area of the spec: the FLI layout is
+  `FMT-VIDEO-001`, and `RULE-VIDEO-001` to `RULE-VIDEO-004` give how a
+  cinematic is copied from the disc, played frame by frame, and replaced by
+  still pictures when it cannot play. Chunk decoding and when cinematics 2 to 5
+  play are open (`Q-VIDEO-001`, `Q-VIDEO-002`).
 - Sound is the SOUND area of the spec. Voice files and `BVOC` resources are
   `FMT-SOUND-001`; the effect and speech players are `RULE-SOUND-001` and
   `RULE-SOUND-002`, which build their file names from the `.VOC` patterns in
@@ -109,11 +110,11 @@ are:
   `FND-SOUND-003` separately finds no `INT 15h` opcode in the sound helper.
   None must be recreated as an interrupt-disabled render
   loop, hardware timer, or actor scheduler.
-  `EXE-GOG-MEDIA-001` finds no literal FLI
-  header-validation lead, and `EXE-GOG-MEDIA-002` finds no direct reference to
-  the embedded filename/path entries. `FND-IMAGE-008` likewise finds no
-  operand for the static-title `BMP ` #11011. Raw cinematic speed fields, filename order, and the title asset are
-  data, not assumed milliseconds or a schedule.
+  The FLI player times frames with a 1 ms timer slot of that library
+  (`RULE-VIDEO-004`) and ignores the header's speed field (`RULE-VIDEO-002`).
+  The title picture `BMP ` #11011 is the last still picture the opening's
+  fallback shows (`FND-VIDEO-006`), which is why no instruction holds its
+  number (`FND-IMAGE-008`).
 - The random number generator and its reductions are `RULE-RNG-001`. Its seed
   and the rules that draw from it are not known, so new rules do not consume
   it yet.
@@ -174,12 +175,10 @@ rejecting unsupported semantics:
   indices 0 to 320 that eight functions call, and a separate window-image
   request path. The title resource #11011 has no observed connection to either,
   so neither title sequencing nor image composition is inferred.
-- `EXE-GOG-VIDEO-001` identifies nine coherent BIOS-video calls in one shared
-  wrapper with fourteen direct callers, plus two raw matches outside decoded
-  instruction boundaries. The
-  wrapper accepts generic service/register values and does not connect any
-  call to a resource, screen, palette, resolution, or layout. It is not a
-  native rendering contract.
+- `FND-VIDEO-003` finds that the game sets BIOS mode `0x13` unchained into
+  four planes at startup, plain mode `0x13` for cinematics and text mode 3 on
+  exit, and that the `INT 10h` wrapper at `1000:1136` serves the C runtime's
+  text output. The routines that draw into the planes were not read.
 - The mouse and keyboard reach the game through the wrappers and hooks of
   `FND-INPUT-004` to `FND-INPUT-006`, which queue key words and mouse events as
   packets. They do not identify axes, a global transform, control hit testing,

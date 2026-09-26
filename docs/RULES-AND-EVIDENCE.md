@@ -6,54 +6,7 @@ The spec's source entries in [`spec/sources/`](../spec/sources/) describe each
 outside source, what it is used for and its known errors, and the build entry
 [`BLD-GOG-EN-1.1`](../spec/builds/BLD-GOG-EN-1.1.md) describes the owned
 release. Records below that have not moved into the spec yet keep their legacy
-IDs: `OBS-GOG-*` for controlled runs and `DATA-GOG-*` for bounded inspection of
-the owned build.
-
-### DATA-GOG-MEDIA-001 - Cinematic header inventory
-
-The voice-file and music parts of this record moved to FND-SOUND-001 and
-FND-SOUND-002.
-
-- **Question:** What fixed media-file envelopes can be established for the
-  supported installation before selecting a cinematic decoder?
-- **Method:** Enumerate only paths, extensions, and sizes beneath the owned
-  installation. For each numbered FLI file, read exactly the first 128 bytes
-  and summarize little-endian header fields without decoding chunks or frames.
-- **Finding:** the installation contains five root-level FLI files totalling
-  19,498,251 bytes. Every FLI file is at least 128 bytes
-  and has a little-endian file-size field equal to its physical length, magic
-  `0xAF11`, 320x200 dimensions, 8-bit depth, and flags `0x0003`. In numeric
-  filename order, their frame-count/raw-speed pairs are 1175/7, 373/7, 575/7,
-  284/7, and 1398/5. Starting at byte 128, a bounded six-byte
-  declared-size/type scan completely covers every physical FLI file using only
-  `0xF1FA` records. Their physical-record counts are 1176, 374, 576, 285, and
-  1399 respectively: exactly one more than their corresponding header counts.
-  For FLI 1 through 4, treating each record as a 16-byte fixed header followed
-  by its declared number of six-byte size/type chunks fully covers all records,
-  allowing two total unclassified trailing bytes in each of FLI 1 and 2. Their
-  raw chunk-type/count inventories are `0x000B`/`0x000C`/`0x000F`/`0x0010` =
-  17/578/1/1, 3/266/1/1, 4/429/1/0, and 1/270/1/0. FLI 5 rejects that nested
-  model at its first record: after one of its two declared chunks, the next
-  stated chunk length is 4,486 bytes with only 4,485 bytes remaining. Extending
-  that record by one byte makes its first two chunks fit, but then the next
-  alleged record header has type `0x01f1` and declares 4,194,304,014 bytes with
-  only 5,749,959 bytes physically remaining. The mismatch is therefore not
-  accepted as a simple physical-padding variation.
-- **Confidence:** high for these bounded inventory/header facts in
-  BLD-GOG-EN-1.1; unknown for FLI chunk types, palette behavior, raw-speed
-  units, effective playback cadence, whether the one extra FLI record is a
-  loop/sentinel/displayed frame, raw chunk-type meanings, FLI 5's nested
-  variant, and all audiovisual sequencing.
-  `EXE-GOG-MEDIA-002` finds raw executable occurrences of every numbered FLI
-  name and four CINE-directory templates, but no direct Ghidra reference to
-  any inspected entry; it does not establish a loader, fallback, or sequence.
-- **Implementation consequence:** no decoder, extractor entry, media mapping,
-  or time-based runtime behavior is introduced yet. A future media reader must
-  validate these fixed envelopes first, bound every subsequent record/chunk
-  and decoded output, preserve the header-versus-physical-record count
-  distinction, support each nested FLI variant only after independent
-  validation, use an explicit monotonic playback clock, and treat the raw FLI
-  speed field as data until its unit is independently established.
+IDs.
 
 ## Initial rules
 
