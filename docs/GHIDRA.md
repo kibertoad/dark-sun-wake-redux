@@ -159,6 +159,16 @@ committed file are offsets in the shipped `DSUN.EXE`, written as
 discovery does not prove that every original function was found. The inventory
 contains no code, bytes, strings or auto-generated names.
 
+The `SOUND_DS.EXE.tsv`, `SVIEW.EXE.tsv` and `PATCH.EXE.tsv` files under
+`coverage/BLD-GOG-EN-1.1/` come from direct MZ imports of the installed
+helpers. `CHARTRAN.EXE.tsv` comes from an import of the local-only unpacked
+helper whose XXH3-128 is
+`a2804715759141397dca547934213843` (FND-PARTY-010). These use Ghidra's
+`segment:offset` function starts with the load image at segment `0x1000`.
+`CHARTRAN.EXE` addresses refer to the unpacked image, not offsets in the
+shipped compressed file. Each inventory keeps only starts inside its MZ load
+image and the function-body byte counts Ghidra reported.
+
 ## Bounded script pattern
 
 Adapt the reusable headless scripts and methodology from
