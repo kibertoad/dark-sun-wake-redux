@@ -14,7 +14,7 @@ Entries by kind.
 
 ## sources
 
-6 entries.
+7 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -22,12 +22,13 @@ Entries by kind.
 | [SRC-GAMEFAQS-81038](../sources/SRC-GAMEFAQS-81038.md) | Dark Sun: Wake of the Ravager, Guide and Walkthrough, version 1.13 | None |
 | [SRC-LIBGFF-839B11D](../sources/SRC-LIBGFF-839B11D.md) | libgff, a reimplementation library for the Dark Sun games, commit 839b11d | None |
 | [SRC-MANUAL-1994](../sources/SRC-MANUAL-1994.md) | Dark Sun: Wake of the Ravager rule book, PDF shipped with the GOG release | None |
+| [SRC-OPENDS-5C6CBD7](../sources/SRC-OPENDS-5C6CBD7.md) | OpenDS, a Dark Sun reverse-engineering project with a GPL disassembler, commit 5c6cbd7 | None |
 | [SRC-README-1.1](../sources/SRC-README-1.1.md) | README.TXT for version 1.1, shipped with the GOG release | None |
 | [SRC-YOUTUBE-FLOMVOSHEOM](../sources/SRC-YOUTUBE-FLOMVOSHEOM.md) | Dark Sun: Wake of the Ravager playthrough, YouTube video FLoMVOSHeOM | None |
 
 ## formats
 
-45 entries.
+50 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -67,6 +68,11 @@ Entries by kind.
 | [FMT-REGION-006](../formats/FMT-REGION-006.md) | Region entity record | supported |
 | [FMT-SAVE-001](../formats/FMT-SAVE-001.md) | Stored character identifier in a CACT resource | supported |
 | [FMT-SAVE-002](../formats/FMT-SAVE-002.md) | Saved game state in a GREQ resource | supported |
+| [FMT-SCRIPT-001](../formats/FMT-SCRIPT-001.md) | Script resource (GPL and MAS) | supported |
+| [FMT-SCRIPT-002](../formats/FMT-SCRIPT-002.md) | String in script code | supported |
+| [FMT-SCRIPT-003](../formats/FMT-SCRIPT-003.md) | Script entry point index (GPLI) | supported |
+| [FMT-SCRIPT-004](../formats/FMT-SCRIPT-004.md) | Script trigger record | supported |
+| [FMT-SCRIPT-005](../formats/FMT-SCRIPT-005.md) | Record with two script entry points in the 19-byte list | supported |
 | [FMT-TEXT-001](../formats/FMT-TEXT-001.md) | Bitmap font resource | supported |
 | [FMT-TEXT-002](../formats/FMT-TEXT-002.md) | Bitmap font glyph | supported |
 | [FMT-TEXT-003](../formats/FMT-TEXT-003.md) | Text resource of CR LF lines | supported |
@@ -79,7 +85,7 @@ Entries by kind.
 
 ## rules
 
-32 entries.
+40 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -114,11 +120,19 @@ Entries by kind.
 | [RULE-RNG-001](../rules/RULE-RNG-001.md) | The game's random number generator and its reductions | supported |
 | [RULE-SAVE-001](../rules/RULE-SAVE-001.md) | The keys that save, load and quit | sourced |
 | [RULE-SAVE-002](../rules/RULE-SAVE-002.md) | The number and file name of a saved game | supported |
+| [RULE-SCRIPT-001](../rules/RULE-SCRIPT-001.md) | Loading a GPL or MAS script into the script cache | supported |
+| [RULE-SCRIPT-002](../rules/RULE-SCRIPT-002.md) | Running a script, reading its code and calling other scripts | supported |
+| [RULE-SCRIPT-003](../rules/RULE-SCRIPT-003.md) | The script instructions for jumps, calls, returns, if, while, compare, the accumulator and assignment | supported |
+| [RULE-SCRIPT-004](../rules/RULE-SCRIPT-004.md) | Reading instruction parameters, expressions, variables and strings | supported |
+| [RULE-SCRIPT-005](../rules/RULE-SCRIPT-005.md) | Script variables start at 0 | sourced |
+| [RULE-SCRIPT-006](../rules/RULE-SCRIPT-006.md) | The script instruction that draws a random number | supported |
+| [RULE-SCRIPT-007](../rules/RULE-SCRIPT-007.md) | The script instructions that print text and numbers, show a portrait and play sound and music | supported |
+| [RULE-SCRIPT-008](../rules/RULE-SCRIPT-008.md) | The script instructions that register attack and move-tile triggers | supported |
 | [RULE-UI-001](../rules/RULE-UI-001.md) | Which controls the window code offers an event or the pointer to, by their event masks | supported |
 
 ## findings
 
-141 entries.
+159 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -225,6 +239,24 @@ Entries by kind.
 | [FND-SAVE-004](../findings/FND-SAVE-004.md) | Overlay 192 saves a game as SAVEnn.SAV and writes PREF 100 and GREQ nn with nine bytes each | recorded |
 | [FND-SAVE-005](../findings/FND-SAVE-005.md) | Overlay 192 loads a game by reading PREF 100 and GREQ nn back into the same globals | recorded |
 | [FND-SAVE-006](../findings/FND-SAVE-006.md) | DSUN.EXE copies DARKSAVE.GFF to DARKRUN.GFF and counts SAVE01.SAV to SAVE10.SAV against the free disk space | recorded |
+| [FND-SCRIPT-001](../findings/FND-SCRIPT-001.md) | GPLDATA.GFF holds 330 GPL and 20 MAS resources; every GPL one starts with 0x19 and every one of both ends with 0x31 | recorded |
+| [FND-SCRIPT-002](../findings/FND-SCRIPT-002.md) | GPLDATA.GFF#GPLI/1 is 1,316 records of three words that pair entry numbers with script offsets | recorded |
+| [FND-SCRIPT-003](../findings/FND-SCRIPT-003.md) | Overlay 180 opens GPLDATA.GFF through the name at 57E0:0AF1 and reports it missing through the pattern after it | recorded |
+| [FND-SCRIPT-004](../findings/FND-SCRIPT-004.md) | The resident image of DSUN.EXE holds no GPLI tag, and no function there holds the number 135 with the GPL tag | recorded |
+| [FND-SCRIPT-005](../findings/FND-SCRIPT-005.md) | The script interpreter dispatches bytes 0x00 to 0x80 through a 129-entry table at 57E0:030A, and 15 of its entries and every byte above 0x80 stop the script | recorded |
+| [FND-SCRIPT-006](../findings/FND-SCRIPT-006.md) | The interpreter reads code at a per-frame offset into the loaded script and keeps up to 50 frames | recorded |
+| [FND-SCRIPT-007](../findings/FND-SCRIPT-007.md) | 172C:000C runs a script from a start offset until its frames unwind or it stops, and 172C:0299 and 172C:031F enter and leave nested scripts | recorded |
+| [FND-SCRIPT-008](../findings/FND-SCRIPT-008.md) | 172C:0388 loads a GPL or MAS resource into a 16-slot script cache and appends a 0x31 byte | recorded |
+| [FND-SCRIPT-009](../findings/FND-SCRIPT-009.md) | The handlers of the control-flow, accumulator and assignment instructions | recorded |
+| [FND-SCRIPT-010](../findings/FND-SCRIPT-010.md) | 172C:3278 reads an expression of literals, variables and operators left to right with 8 levels of parentheses | recorded |
+| [FND-SCRIPT-011](../findings/FND-SCRIPT-011.md) | Script instruction 0x52 draws from the game's generator and scales the draw to 0 to n | recorded |
+| [FND-SCRIPT-012](../findings/FND-SCRIPT-012.md) | The script instructions that print, show a portrait and play sound pass their parameters to far routines | recorded |
+| [FND-SCRIPT-013](../findings/FND-SCRIPT-013.md) | Nine far calls run scripts through 172C:000C, and two of them run MAS resources from offset 0 | recorded |
+| [FND-SCRIPT-014](../findings/FND-SCRIPT-014.md) | A table of 200 linked 13-byte records at the far pointer 57E0:40C0 is set up at start and walked to run GPL scripts | recorded |
+| [FND-SCRIPT-015](../findings/FND-SCRIPT-015.md) | Script instructions 0x65 and 0x68 add trigger records from the free list to sorted lists | recorded |
+| [FND-SCRIPT-016](../findings/FND-SCRIPT-016.md) | Segment 2D40 runs GPL scripts from word pairs of linked 19-byte records whose list head is 57E0:5AF5 | recorded |
+| [FND-SCRIPT-017](../findings/FND-SCRIPT-017.md) | Overlay 187 converts script entry points in the trigger records to GPLI entry numbers and back | recorded |
+| [FND-SCRIPT-018](../findings/FND-SCRIPT-018.md) | SCMD resources are loaded through a separate 64-slot cache at 31E0:1893 with two callers | recorded |
 | [FND-TEXT-001](../findings/FND-TEXT-001.md) | The one FONT resource holds 256 glyphs of height 9 behind a map and an offset table | recorded |
 | [FND-TEXT-002](../findings/FND-TEXT-002.md) | The FONT tag occurs twice in DSUN.EXE as data with no recorded reference | recorded |
 | [FND-TEXT-003](../findings/FND-TEXT-003.md) | Every TEXT resource is printable ASCII in lines that each end with CR LF | recorded |

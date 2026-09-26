@@ -37,7 +37,10 @@ that the static references reach goes through one of three reducers.
 ## Alternatives
 
 Code that reaches the state through a computed address, a far pointer or an indirect call would not
-show in the scan or in the reference query, so other readers and writers are not ruled out. Whether
+show in the scan or in the reference query, so other readers and writers are not ruled out. The
+count of three callers comes from Ghidra's reference query; a search of the file for far calls to
+the generator also finds the handler of script instruction `0x52` at `172C:170B`
+(FND-SCRIPT-011). Whether
 some random outcomes use another generator, such as one in a library routine, has not been
 checked.
 

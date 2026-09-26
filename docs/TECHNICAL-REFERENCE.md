@@ -336,30 +336,13 @@ the start flow and current exploration state reproducible.
 Static analysis has produced reusable structural facts while deliberately
 rejecting unsupported semantics:
 
-- GPL/MAS use distinct selected source families, a bounded native cache, and a
-  shared processing path. No function co-locates the known first-dialogue GPL
-  #135 identity with the literal GPL tag construction, so that script has no
-  direct static loader lead. The guarded processing helper's sole decoded
-  direct caller forwards parameters and resident state, not a literal resource
-  identity. Static evidence does not license general GPL opcode execution.
-- `EXE-GOG-EVENT-001` establishes a mutable, linked runtime 13-byte selector
-  record with a 2,600-byte entry-flow clear and deterministic link setup,
-  multiple predicate traversals, a guarded `GPL ` resource-request path, and a
-  secondary relinked chain. Its sole recovered initializer caller is the
-  executable entry, which passes three resident words and meets an immediate
-  lower-bound guard. Instruction context also confirms the shared clear call,
-  13-byte successor-link loop, and secondary-head clear. These facts identify
-  neither values' meanings nor table ownership. It does not identify the
-  table's source/population path or connect a record to dialogue, quests,
-  combat, or map triggers. Its pointer's initialized image is zero, so the
-  later runtime population path is still required evidence.
-- `EXE-GOG-RECORD19-001` separates a second linked 19-byte resident family
-  that uses the same request entry. Shared processing does not establish a
-  common source, a record meaning, or a player-visible feature for either
-  table.
-- `EXE-GOG-SCMD-001` establishes a separate 64-slot `SCMD` loader/cache. Its
-  direct callers do not overlap the selector path, so `SCMD` remains opaque
-  rather than a substitute event or combat implementation.
+- The script interpreter is `RULE-SCRIPT-001` to `RULE-SCRIPT-008`: it loads
+  `GPL` and `MAS` scripts into a cache, runs their instructions through a
+  129-entry dispatch table, and registers attack and move-tile triggers in a
+  pool of 13-byte records (`FMT-SCRIPT-004`). A separate list of 19-byte
+  records (`FMT-SCRIPT-005`) and a 64-slot `SCMD` cache (`FND-SCRIPT-018`)
+  also exist; what fills the trigger lists and when the game tests them is
+  `Q-SCRIPT-002`.
 - `31E0:0EFF` requests an object's `OJFF` and then, for an object numbered
   outside 9,000 to 13,998, its `RDFF` of the same number, into the same 37-byte
   slot records (`FND-ACTOR-003`, `FND-ACTOR-005`). Its three resident callers
@@ -390,7 +373,7 @@ rejecting unsupported semantics:
   is therefore structural only; its state codes, record ownership/fields,
   event input, and every combat rule remain unknown.
 - `EXE-GOG-SMALLTAG-001` finds no literal loader lead for `PLYL` or `CSEQ` in
-  the resident image. `DATA-GOG-SMALLTAG-001` bounds their owned inventories
+  `DSUN.EXE`. `DATA-GOG-SMALLTAG-001` bounds their owned inventories
   and short envelopes, and `FND-PARTY-019` rejects a direct installed-`CHAR`
   resource number in every `PLYL` byte and unaligned 16-bit window; neither
   family has a known runtime role. The `GREQ` and `CACT` resources are
@@ -435,12 +418,9 @@ rejecting unsupported semantics:
   (`FND-PARTY-013`, `RULE-PARTY-006`). `SVIEW.EXE` is a text viewer
   (`FND-PARTY-014`). `CHARTRAN.EXE`, once unpacked, transfers Dark Sun 1
   characters into the archive (`FND-PARTY-010`, `FND-PARTY-011`).
-- `GPLI` #1 is an exact 329-by-24-byte opaque data envelope. Its four aligned
-  third lane words are a strong GPL-number-set correlation (1,315 of 1,316
-  occurrences are members, collectively covering every GPL ID), but repeats
-  and one non-member reject a one-to-one map. No literal GPLI tag exists in the
-  analyzed executable, and no decoded function directly combines the known GPL
-  resource-135 ID with the literal GPL tag; no lookup role is assumed.
+- `GPLI` #1 lists script entry points (`FMT-SCRIPT-003`); overlay 187
+  converts the entry points of trigger records to and from its entries
+  (`FND-SCRIPT-017`).
 - `ITEMS.BIN` is `FMT-ITEM-001`, read only by the character transfer utility
   (`FND-ITEM-006`, `RULE-ITEM-006`); `DSUN.EXE` holds no name for it
   (`FND-ITEM-004`).
@@ -453,7 +433,7 @@ as APIs.
 
 The active gates are intentionally concrete:
 
-1. Establish source ownership and game roles for the runtime selector records.
+1. Find what fills the script trigger lists and when the game tests them (`Q-SCRIPT-002`).
 2. Obtain controlled observations for shipped-party membership, remaining UI
    transitions, native cadence, and visibly dynamic fields.
 3. Trace or observe item, equipment, combat, quest, and persistence semantics

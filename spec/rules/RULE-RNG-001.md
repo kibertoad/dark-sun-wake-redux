@@ -4,7 +4,7 @@ title: The game's random number generator and its reductions
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-003, FND-RNG-004, FND-RNG-005, FND-RNG-006]
+evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-003, FND-RNG-004, FND-RNG-005, FND-RNG-006, FND-SCRIPT-011]
 conflicting: []
 split_with: []
 related: []
@@ -20,8 +20,9 @@ sides)` adds `count` rolls of 1 to `sides`, and `chance_in_ten(n)` succeeds with
 
 ## When it runs
 
-Wherever a rule draws. The generator's only direct static callers are `random_mod`,
-`random_between` and `roll_sum`, and `chance_in_ten` draws through `random_mod`. When
+Wherever a rule draws. The generator's direct static callers are `random_mod`,
+`random_between`, `roll_sum` and the script instruction of RULE-SCRIPT-006 (FND-SCRIPT-011), and
+`chance_in_ten` draws through `random_mod`. When
 `seed_random` runs, and with what value, is not known.
 
 ## Parameters

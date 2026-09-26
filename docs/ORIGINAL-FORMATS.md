@@ -16,8 +16,8 @@ semantics.
 | GFF `GREQ`, `CACT` | Saved game state and stored character identifiers | Described by `FMT-SAVE-002` and `FMT-SAVE-001` | see the spec entries | Preserve byte-for-byte as DSOP until a reader is specified |
 | GFF `PLYL`, `CSEQ` | Opaque small-resource families | `RESOURCE.GFF` has six `PLYL` resources (#0, #10, #50-#53) with lengths from 3, 5, and 7 bytes, plus one 78-byte `CSEQ` #1000. `CSEQ` divides into six 13-byte units, but its leading words have only one GPL-number-set member and do not establish the separate runtime 13-byte selector source. No unaligned little-endian 16-bit window in the six `PLYL` payloads matches an installed `CHAR` resource number (FND-PARTY-019). These facts identify no field layout, feature, or relationship to another family | high for owned inventory/lengths and bounded word-reference results; unknown for every semantic role | Preserve byte-for-byte as DSOP; do not add readers or infer sequence or combat behavior without an independent source path or controlled observation |
 | GFF `WIND`, `BUTN`, `APFM`, `EBOX` | UI layout and controls | Described by `FMT-UI-001` to `FMT-UI-005`; the mask tests are `RULE-UI-001` | see the spec entries | Require signatures and exact declared sizes; bound fixed records, complete child records, dimensions, tags, repeated identities, and references |
-| GFF `GPL ` / `MAS ` | Script resources | `GPLDATA.GFF` contains 330 `GPL ` and 20 `MAS ` resources. `EXE-GOG-GPL-001` proves the native loader selects between these families before resolving and caching a requested script. GPL #135 is tied to the first captured Tyr conversation; MAS #99 supplies two bounded global-string projections. Instruction execution remains unknown | verified for family identity, native selection, resource identity/size, and packed-string decoding; instruction semantics remain unknown | Preserve the four-byte source tag with resource identity and bytes; bound script/string lengths, reject unsupported tags/markers, truncation, invalid back-references, and unterminated strings; never execute source bytes during extraction |
-| GFF `GPLI` #1 | Opaque script-adjacent index candidate | One 7,896-byte resource is exactly 329 24-byte records, each comprising four consecutive six-byte lanes. In aggregate, 1,315 of 1,316 aligned third lane words are members of the 330-ID `GPL ` resource-number set, collectively covering that set; repeats and one non-member reject a one-to-one record or field map. The executable has no literal `GPLI` tag, so no native loader, lookup, or field role is established | high for the exact envelope and aggregate membership counts; unknown for lane semantics, runtime ownership, and record-to-script mapping | Preserve losslessly as DSOP; do not add a reader, link records to GPL resources, or infer field names until a constrained native reference or controlled observation corroborates it |
+| GFF `GPL ` / `MAS ` | Script resources | Described by `FMT-SCRIPT-001` and, for strings in script code, `FMT-SCRIPT-002`; the interpreter that loads and runs them is `RULE-SCRIPT-001` to `RULE-SCRIPT-008` | see the spec entries | Preserve the four-byte source tag with resource identity and bytes; bound script/string lengths, reject unsupported tags/markers, truncation, and unterminated strings; never execute source bytes during extraction |
+| GFF `GPLI` #1 | Script entry point index | Described by `FMT-SCRIPT-003`; overlay 187 converts entry points to and from its entries (`FND-SCRIPT-017`) | see the spec entry | Preserve losslessly as DSOP until a reader is specified |
 | GFF `MONR` #1 | Unclassified payload | `FMT-ACTOR-003`, status unknown; `FND-ACTOR-008` profiles its 27 repeating 42-byte units | see the spec entry | Preserve losslessly as DSOP; do not parse or assign monster, encounter or combat fields until the spec entry has a layout |
 | GFF `RNME`, `PAL `, `MAP `, `GMAP`, `TILE`, `ETAB` | Region identity, palette, terrain grid, cell flags, tile images, and placed-object references | Described by `FMT-REGION-001` to `FMT-REGION-006`, `FMT-IMAGE-003` and `FMT-IMAGE-001`; terrain drawing is `RULE-REGION-001` | see the spec entries | Require exactly one matching region record per tag; bound names, planes, tile images, entity counts, and every local `TILE`/external `OJFF` reference |
 | GFF `OJFF` | Object definitions | Described by `FMT-ACTOR-001`; placement is `RULE-ACTOR-001` | see the spec entries | Require exact record size, a zero final word, a present nonempty referenced image, bounded requested IDs, and contextual errors |
@@ -203,7 +203,7 @@ words or to animation, draw order, anchoring, collision, and interaction.
 
 **Evidence:** `OBS-GOG-DIALOGUE-001`.
 
-`GPLDATA.GFF` contains 330 `GPL ` resources and 20 `MAS ` resources. `GPL` #135
+`GPLDATA.GFF` holds the `GPL ` and `MAS ` scripts (`FMT-SCRIPT-001`). `GPL` #135
 is 4,124 bytes and is independently tied to the first captured Tyr conversation.
 MAS #99 initializes global string #5 for the first two menus' exit label and
 global string #6 for the third menu's exit label.
@@ -270,12 +270,10 @@ two-part completion output (including helper 4082) or a one-part early output.
 Both helpers, both branch targets, and their local returns through offset 4123
 are structurally validated.
 
-The only decoded primitive is a bounded packed string used for future script
-interpretation. Marker `0x01` represents the active character name, marker
-`0x05` begins a seven-bit compressed string, and `0x03` terminates it. The
-sliding dictionary/back-reference form is bounded to 1,024 decoded bytes.
-Marker `0x02`, malformed references, truncation, and missing terminators are
-rejected. The menu projection bounds choices to 24, accepts only the expression
+`GplPackedString` reads the strings of `FMT-SCRIPT-002`: marker `0x01`
+stands for the active character's name, and marker `0x05` begins a string of
+7-bit characters that `0x03` ends. It stops at 1,024 characters and rejects
+marker `0x02`, other markers, truncation and a missing terminator. The menu projection bounds choices to 24, accepts only the expression
 forms needed by this observed menu, captures labels and branch offsets, and
 projects its three observed condition shapes: constant, local flag, and local
 number equality. It fails closed on any other condition shape, drift, or
