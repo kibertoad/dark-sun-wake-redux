@@ -378,7 +378,7 @@ proof by itself. Never redirect broad output into the repository.
   the resulting cell coordinates to that enumerator. The rendering path
   `31e0:2bb9` -> `31e0:2837` reads the same actor X/Y fields as the sprite
   rectangle's world top-left and uses the stored width/height. Combined with
-  `DATA-GOG-ACTOR-001`'s exact `(1184,1459)` top-left, this establishes opening
+  `FND-ACTOR-002`'s exact `(1184,1459)` top-left, this establishes opening
   anchor cell `(74,91)`. This corroborates per-cell footprint mutation without
   establishing the footprint shape, actor category, or update timing. A separate
   `0x80` test at `2778:0006` does not participate in this movement predicate.
@@ -425,38 +425,6 @@ proof by itself. Never redirect broad output into the repository.
   infer a concrete actor footprint, movement cadence, or animation. The
   resource-exact opening actor uses the evidenced anchor `(74,91)` independently
   of those still-open behaviors.
-
-### EXE-GOG-ACTOR-002 - The observed hostile object ID is not a direct combat entry point
-
-- **Question:** Does the first observed hostile Tyr object, OJFF #9258, occur
-  in the supported executable as a direct reference that can identify its
-  encounter or combat handler?
-- **Target:** BLD-GOG-EN-1.1 `DSUN.EXE`, reverified at 634,416 bytes with
-  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
-  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
-- **Method:** `ReportBytePattern` searched all loaded blocks for OJFF #9258's
-  explicit 16-bit little-endian encoding (`2a 24`). `ReportReferences` then
-  queried the single hit, and `ReportDataBytes` classified a bounded 96-byte
-  neighborhood. The [FBOV mapped image](#fbov-mapped-image) then used
-  `ReportScalarConstants` to search every decoded operand for decimal 9258.
-- **Bounded finding:** exactly one raw match occurs at `1000:9754`. Ghidra
-  has no reference to that address, and the surrounding bytes are an
-  unreferenced data run rather than a decoded instruction or a resource-loading
-  operand. The mapped-image scalar search also has no match. Neither result
-  identifies a code consumer.
-- **Interpretation:** a 16-bit resource number is too short to be a reliable
-  executable lead by itself. This result does not establish that #9258 is
-  unused, nor does it identify its interaction, hostility, encounter,
-  placement, combat state, or handler. It rules out treating this lone raw
-  occurrence or a direct mapped-overlay operand as a combat entry point.
-- **Confidence:** high for the one raw occurrence and the absence of a direct
-  reference in this analysis; unknown for all object and combat semantics.
-- **Implementation consequence:** the runtime continues to use #9258 only for
-  the separately observed cursor-eligibility boundary. A combat transition
-  requires an independent state or call-path lead, or a controlled observation.
-  `DATA-GOG-ACTOR-002` independently rejects its four neutral OJFF words as
-  direct `SCMD` identifiers and records why matching `RDFF`/`OJFF`/`BMP `
-  numbers cannot be treated as a semantic substitute.
 
 ### EXE-GOG-UI-005 - Hostile Look panel IDs do not identify an activation path
 
@@ -1607,9 +1575,9 @@ proof by itself. Never redirect broad output into the repository.
 - **Target/method:** Review the fingerprinted BLD-GOG-EN-1.1 `DSUN.EXE`
   baseline and the local-only FBOV mapped view under Ghidra 12.1.3/JDK
   21.0.12.1. The focused audit joins the independent actor-object probe
-  (`EXE-GOG-ACTOR-002`), `MONR` tag query (`EXE-GOG-MONR-001`), region entity
+  (`FND-ACTOR-009`), `MONR` tag query (`FND-ACTOR-006`), region entity
   tag query (`FND-REGION-007`), hostile-display path
-  (`EXE-GOG-RDFF-001` through `003`), coordinate/input chain
+  (`FND-ACTOR-003`, `FND-ACTOR-005` and `FND-ACTOR-009`), coordinate/input chain
   (`EXE-GOG-COMBAT-007`, `009`, `010`, and `013` through `019`), and native
   RNG selector chain (`FND-RNG-001` to `FND-RNG-008`). The final two focused
   queries rechecked the mapped coordinate destination and the RNG/panel
@@ -1700,33 +1668,6 @@ proof by itself. Never redirect broad output into the repository.
 - **Implementation consequence:** retain the cursor selector solely as
   presentation provenance. Do not derive a combat input dispatcher or
   eligibility state from its conditional call.
-
-### EXE-GOG-MONR-001 - MONR has no raw executable tag literal
-
-- **Question:** Does the sole `MONR` resource in `RESOURCE.GFF` identify an
-  executable tag consumer that could constrain its role in monster, encounter,
-  or combat processing?
-- **Target:** BLD-GOG-EN-1.1 `DSUN.EXE`, reverified at 634,416 bytes with
-  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
-  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
-- **Method:** `ReportBytePattern` searched every loaded memory block for the
-  explicit ASCII encoding `4d 4f 4e 52`, capped by the reusable script's
-  100-match limit. The [FBOV mapped image](#fbov-mapped-image)
-  received the same byte-pattern query; `ReportReferences` and bounded
-  instruction-context queries then classified every mapped match.
-- **Bounded finding:** no raw byte-pattern match exists in the original loaded
-  program. The mapped image has two raw matches at `9000:8130` and `9000:8159`,
-  both with no reference and no containing decoded instruction.
-- **Interpretation:** this rules out only an embedded literal-tag representation.
-  It does not establish that the resource is unused, nor does it identify a
-  loader, field layout, record boundary, monster mapping, encounter, or combat
-  behavior. `DATA-GOG-MONR-001` independently rejects its arithmetic 81-byte
-  candidate stride as a format claim. The two mapped raw bytes add no loader
-  or code-consumer lead.
-- **Confidence:** high for the original absence and mapped raw-match/reference/
-  instruction classifications; unknown for the resource's loading and semantics.
-- **Implementation consequence:** no `MONR` parser, extractor contract, or
-  combat behavior is introduced from this query.
 
 ### EXE-GOG-ITEMS-001 - No raw ITEMS.BIN filename or stem representation in DSUN.EXE
 
@@ -2484,179 +2425,6 @@ proof by itself. Never redirect broad output into the repository.
 - **Implementation consequence:** retain `SCMD` as DSOP. Do not add an SCMD
   reader, connect it to selectors, or infer object/combat behavior without a
   constrained call path or controlled observation.
-
-### EXE-GOG-RDFF-001 - RDFF participates in a distinct indexed-record path
-
-- **Question:** Does `RDFF` materialize the linked 13-byte selector records or
-  establish their gameplay owner?
-- **Target:** BLD-GOG-EN-1.1 `DSUN.EXE`, reverified at 634,416 bytes with
-  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
-  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
-- **Method:** `ReportBytePattern` found two coherent `RDFF` tag assignments
-  and one occurrence in a non-coherent decoded stream. Bounded decompilations
-  of the two coherent functions inspected their immediate tag-aware request
-  paths; the existing `SCMD` caller analysis supplied the shared record-stride
-  comparison.
-- **Bounded finding:** `28c9:2839` conditionally supplies an identity from a
-  resident record with 37-byte stride to a shared tag-aware helper using
-  `RDFF`. `31e0:0eff` first queries `OJFF`, then conditionally routes an RDFF
-  request through the same helper while updating the same 37-byte indexed
-  record family. That function later invokes `31e0:2670`, one of the two direct
-  SCMD-loader callers. The coherent RDFF paths therefore share a resident
-  record family with SCMD, not the 13-byte `1695` selector traversal. No
-  record field, RDFF payload layout, or higher-level feature follows from these
-  accesses.
-- **Interpretation:** RDFF is a distinct native resource path adjacent to the
-  SCMD-indexed records. This rules out only the narrow direct hypothesis that
-  the observed RDFF paths initialize or directly consume the selector table;
-  it does not rule out an indirect relationship elsewhere in the executable.
-- **Confidence:** high for the two coherent tag uses and their 37-byte record
-  stride; unknown for RDFF semantics, resource lifetime, record ownership, and
-  all player-visible behavior.
-- **Implementation consequence:** retain `RDFF` as DSOP. Do not infer object,
-  target, interaction, quest, or combat behavior from the shared indexed path.
-
-### EXE-GOG-RDFF-002 - No direct access to the observed RDFF label offset
-
-- **Question:** Do either bounded native `RDFF` paths directly read the
-  observed label position at offset 43 or the next 33-byte continuation at
-  offset 76, thereby establishing an `RDFF` payload field or record stride?
-- **Target:** the already documented stable BLD-GOG-EN-1.1 `DSUN.EXE` target,
-  634,416 bytes, XXH3-128
-  `e296af55ba2ecde7e77f555c90f33d0b`;
-  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. Its documented
-  path, size, package, and baseline metadata remain unchanged, so this focused
-  query reuses that target without a redundant rehash.
-- **Method:** `ReportStructureOffsets` searched all decoded instructions for
-  direct positive structure displacements 43, 76, 109, and 142. The latter
-  two are the next two 33-byte continuations and distinguish a complete
-  negative result from an incomplete query. Compare every bounded result to
-  the two previously established `RDFF` tag-aware functions at `28c9:2839`
-  and `31e0:0eff`.
-- **Bounded finding:** no decoded instruction uses direct displacement 43 or
-  76. The only 109/142 results occur in other `3ebe`, `409b`, and `4842`
-  functions; neither established RDFF-tag function contains any of the four
-  requested direct displacements. This supplies no direct native access to the
-  measured label location or a 33-byte RDFF payload stride.
-- **Interpretation:** this excludes only a direct decoded `[register +
-  constant]` form at those four offsets in the known RDFF functions. It cannot
-  exclude calculated, indirect, relocated, or otherwise unrecognized payload
-  access, and it does not establish an RDFF field or format from its absence.
-- **Confidence:** high for the capped decoded-instruction query and the two
-  named RDFF paths; unknown for every RDFF payload field, record boundary,
-  resource association, and player-visible behavior.
-- **Implementation consequence:** retain `RDFF` as DSOP. Do not add a parser
-  or use offset 43/33-byte arithmetic for hostile name, level, action,
-  interaction, or combat behavior.
-
-### EXE-GOG-RDFF-003 - Mapped OJFF/RDFF bridge excludes observed object #9258
-
-- **Question:** Does the mapped FBOV view expose a direct `OJFF`-to-`RDFF`
-  route that can identify the observed OJFF #9258 hostile's label-bearing
-  `RDFF` record?
-- **Target/method:** In
-  the [FBOV mapped image](#fbov-mapped-image), `ReportBytePattern` found eleven decoded `RDFF` tag
-  operands. `ReportFunctionScalarIntersection` searched those functions for
-  the `OJFF` tag and found exactly one: `32a3:02cf`. `ReportReferences`, a
-  bounded decompilation, and 24-instruction contexts around both tag operands
-  then inspected only this routine. A second full function-scalar intersection
-  for `RDFF` and panel ID 19003 found no decoded function containing both.
-  Mapped addresses are transform addresses, not claimed original load
-  addresses.
-- **Bounded finding:** `32a3:02cf` has three direct callers. Its first
-  tag-aware call pushes `OJFF` after passing its word parameter at `[BP+6]`.
-  A later, guarded call pushes `RDFF` and passes that same parameter. The
-  decoded guard compares the parameter with `0x2328` (9000) and `0x36ae`
-  (13998); the bounded decompiler reconstructs the RDFF branch as the
-  outside-range path. Observed OJFF #9258 is within that inclusive range, so
-  it does not take this routine's recovered RDFF branch. The routine has
-  overlapping-instruction warnings elsewhere, so the result is limited to the
-  decoded operand order and guard, not a full object schema.
-- **Separate bounded absence:** no decoded mapped function co-locates the
-  `RDFF` tag with static panel ID 19003. This rules out only direct same-
-  function label-data/panel-bitmap composition, not calls, tables, indirection,
-  dynamic formatting, or another panel route.
-- **Interpretation:** this is a real shared OJFF/RDFF bridge, but it excludes
-  the tempting direct use of that bridge to resolve #9258's `Draxan` label.
-  It neither identifies a different #9258 path nor proves that #9258 has no
-  RDFF relationship through another routine, indirection, or runtime-built
-  value.
-- **Confidence:** high for the exact tag operands, three direct callers,
-  parameter reuse, compared bounds, and #9258 range membership; medium for
-  the reconstructed branch polarity because the mapped function contains
-  unrelated overlapping-instruction warnings; unknown for all record and
-  gameplay semantics.
-- **Implementation consequence:** do not use this shared tag bridge to bind
-  OJFF #9258 to an RDFF record, hostile label, target, or combatant. Continue
-  to treat the observed label and OJFF identity as independently bounded.
-
-### EXE-GOG-OJFF-001 - OJFF has two bounded native lookup paths
-
-- **Question:** Does an explicit native `OJFF` tag path connect the bounded
-  object-frame records to a runtime actor, animation, collision, or interaction
-  role?
-- **Target:** BLD-GOG-EN-1.1 `DSUN.EXE`, reverified at 634,416 bytes with
-  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
-  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. A full analyzer
-  pass completed before this focused query.
-- **Method:** `ReportBytePattern` searched every loaded block for the explicit
-  four-byte ASCII encoding `OJFF`. `ReportInstructionContext` inspected both
-  assignments. `ReportReferences` enumerated direct callers of their containing
-  functions, and one bounded decompilation window per function classified only
-  the immediate tag-aware request/result path. A follow-up reference query,
-  call-site instruction context, and bounded decompilation of `31e0:0e1b`
-  classified the successful `31e0:0eff` lookup result's sole direct consumer.
-  A final instruction-context query inspected all three direct call sites to
-  distinguish static identities from immediate caller values.
-  `ReportReferences` then followed `31ba:000e` one direct layer outward and
-  `ReportInstructionContext` inspected all six recovered call sites.
-- **Bounded finding:** exactly two coherent instructions select `OJFF`, both in
-  module `31e0`. The first is in `31e0:0eff`, which has three direct callers
-  (`31ba:000e`, `2d40:0589`, and `31e0:0121`). It supplies its caller-provided
-  signed 16-bit identity and the `OJFF` tag to the shared tag-aware lookup,
-  checks that lookup's result, and then continues through the already-recorded
-  `RDFF` conditional path while updating an indexed resident family at a
-  37-byte stride. Its three direct callers contain no fixed resource identity:
-  `31ba:0137` pushes local words, `2d40:069a` pushes the negation of a caller
-  argument, and `31e0:0170` pushes `DI`. On successful lookup, it passes the
-  lookup result, the selected 37-byte resident destination, and that resident
-  index to
-  `31e0:0e1b`, whose sole recovered direct caller is `31e0:0eff`. Subject to
-  its local initialization guard, that helper reads source portions beginning
-  at offsets `0x00`, `0x02`, `0x04`, `0x0a`, `0x0b`, and `0x0c`, combines them
-  with a separate eight-byte indexed entry, and initializes/rearranges fields
-  in the resident destination. This is an observed transfer boundary, not a
-  field-name assignment. One layer outward, `31ba:000e` has six direct callers:
-  their immediate call contexts pass resident-memory words, locals, parameters,
-  or registers. One site also supplies small literals one and three, but the
-  argument roles are not established and no call provides a provable static
-  OJFF or RDFF identity. The second, `31e0:426e`, supplies a caller-provided
-  unsigned 16-bit identity and `OJFF` to the same lookup and reduces its result
-  to a success/failure return; it has no direct Ghidra caller. Neither bounded
-  path chooses a bitmap frame, enumerates an animation, or invokes a collision,
-  interaction, dialogue, combat, or rendering handler.
-- **Interpretation:** the supported executable has a real native lookup
-  boundary for the `OJFF` resource family, with a bounded post-lookup transfer
-  into the previously observed 37-byte indexed-record path. It corroborates
-  that selected bytes/words of the 16-byte structural record are consumed by
-  native code, but does not establish what any OJFF word means, which resource
-  identities belong to the opening actor, the owner of the resident records, or
-  any player-visible object behavior. The immediate caller contexts rule out
-  only a fixed identity at those three call sites. The six one-layer callers
-  continue the dynamic-state path but do not establish a field role; the second
-  function's lack of a recovered direct caller is not evidence that it is
-  unused.
-- **Confidence:** high for the two literal tag assignments, direct-call count,
-  supplied identity widths, immediate lookup-result handling, sole post-lookup
-  consumer, observed source-offset accesses, and the shared 37-byte-path
-  adjacency; unknown for loader lifetime, cache ownership, record semantics,
-  frame selection, animation, placement, collision, interaction, and all
-  higher-level feature ownership.
-- **Implementation consequence:** retain `OJFF` as the bounded DSOB structural
-  catalog only. This result corroborates preservation of the observed layout,
-  but does not license new OJFF field names, a generic native-object runtime,
-  animation policy, collision rule, or interaction behavior. `DATA-GOG-ACTOR-001`
-  remains the separate evidence for the one opening leader image and anchor.
 
 ### EXE-GOG-SMALLTAG-001 - No direct literal loaders for four small families
 

@@ -370,12 +370,12 @@ catalogs.
   unknown; dangling references and corrupt bounds produce contextual errors.
   `FMT-REGION-001` to `FMT-REGION-006` now bound the shared region identity, 128x98 map and
   geometry planes, 16x16 local tiles, and eight-byte external-object references;
-  `DATA-GOG-OBJECT-001` bounds exact 16-byte object-frame definitions, their
+  `FMT-ACTOR-001` bounds exact 16-byte object-frame definitions, their
   signed offsets, and image references. Canonical DSRG and DSOB extraction is
   implemented for Tyr. `RULE-REGION-001` and `FND-IMAGE-010` now back a clipped static
   tile/first-object-frame compositor; controlled observation fixes the opening
   camera at `(1024,1368)` and the static viewport is visibly integrated.
-  `DATA-GOG-ACTOR-001` identifies, extracts, and displays the exact opening
+  `FND-ACTOR-002` identifies, and the rebuild extracts and displays, the exact opening
   leader at its observed world position through reusable camera-relative actor
   placement; its collision anchor cell is evidenced. Active Walk clicks now
   plan and execute from that anchor through a reusable controller, with a

@@ -18,9 +18,9 @@ semantics.
 | GFF `WIND`, `BUTN`, `APFM`, `EBOX` | UI layout and controls | Bounded common fields and references are decoded; unknown fixed fields and variable button tails remain uninterpreted | verified for all matching resources in `RESOURCE.GFF` | Require signatures and exact declared sizes; bound fixed records, complete child records, dimensions, tags, repeated identities, and references |
 | GFF `GPL ` / `MAS ` | Script resources | `GPLDATA.GFF` contains 330 `GPL ` and 20 `MAS ` resources. `EXE-GOG-GPL-001` proves the native loader selects between these families before resolving and caching a requested script. GPL #135 is tied to the first captured Tyr conversation; MAS #99 supplies two bounded global-string projections. Instruction execution remains unknown | verified for family identity, native selection, resource identity/size, and packed-string decoding; instruction semantics remain unknown | Preserve the four-byte source tag with resource identity and bytes; bound script/string lengths, reject unsupported tags/markers, truncation, invalid back-references, and unterminated strings; never execute source bytes during extraction |
 | GFF `GPLI` #1 | Opaque script-adjacent index candidate | One 7,896-byte resource is exactly 329 24-byte records, each comprising four consecutive six-byte lanes. In aggregate, 1,315 of 1,316 aligned third lane words are members of the 330-ID `GPL ` resource-number set, collectively covering that set; repeats and one non-member reject a one-to-one record or field map. The executable has no literal `GPLI` tag, so no native loader, lookup, or field role is established | high for the exact envelope and aggregate membership counts; unknown for lane semantics, runtime ownership, and record-to-script mapping | Preserve losslessly as DSOP; do not add a reader, link records to GPL resources, or infer field names until a constrained native reference or controlled observation corroborates it |
-| GFF `MONR` #1 | Unclassified opaque payload | One 1,134-byte payload has a stronger 27-by-42 repeated aligned-word envelope with an all-zero four-byte tail than the rejected 14-by-81 candidate. Neither envelope establishes a field or role | verified for GFF identity, length, and aggregate profiling only; loader and semantics unknown | Preserve losslessly as DSOP; do not parse or assign monster/encounter/combat fields without a separate constrained call-path, cross-file format, or runtime observation |
+| GFF `MONR` #1 | Unclassified payload | `FMT-ACTOR-003`, status unknown; `FND-ACTOR-008` profiles its 27 repeating 42-byte units | see the spec entry | Preserve losslessly as DSOP; do not parse or assign monster, encounter or combat fields until the spec entry has a layout |
 | GFF `RNME`, `PAL `, `MAP `, `GMAP`, `TILE`, `ETAB` | Region identity, palette, terrain grid, cell flags, tile images, and placed-object references | Described by `FMT-REGION-001` to `FMT-REGION-006`, `FMT-IMAGE-003` and `FMT-IMAGE-001`; terrain drawing is `RULE-REGION-001` | see the spec entries | Require exactly one matching region record per tag; bound names, planes, tile images, entity counts, and every local `TILE`/external `OJFF` reference |
-| GFF `OJFF` | Object-frame definitions | Exact 16-byte records expose signed X/Y offsets and a `BMP ` resource reference; four other words remain raw and uninterpreted. `EXE-GOG-OJFF-001` independently establishes two tag-aware native lookup boundaries and observes its sole successful-result consumer reading portions beginning at `0x00`, `0x02`, `0x04`, `0x0a`, `0x0b`, and `0x0c` while updating a 37-byte resident record. That corroborates structural consumption, not a field meaning or object behavior | verified structurally across all 4,479 owned definitions; offset/reference roles corroborated by `SRC-DSUN-MUSIC-79B6927`; high for the separate native tag and transfer boundary | Require exact record size, a zero final word, a present nonempty referenced image, bounded requested IDs, and contextual errors; do not infer animation, collision, interaction, or runtime-record semantics from the observed transfer |
+| GFF `OJFF` | Object definitions | Described by `FMT-ACTOR-001`; placement is `RULE-ACTOR-001` | see the spec entries | Require exact record size, a zero final word, a present nonempty referenced image, bounded requested IDs, and contextual errors |
 | Pack `*.dsix` | Derived indexed-image asset | `DSIX` v1 stores one decoded 256-color palette plus bounded indexed frames and binary alpha | implemented; title asset round-trip and extraction validated | Bound file size, version, frame count, dimensions, pixels, alpha, and trailing data; reject non-binary alpha |
 | Pack `*.dsft` | Derived indexed-font asset | `DSFT` v1 stores a character map, shared height, widths, and bounded indexed glyph pixels | implemented; interface-font round-trip and extraction validated | Bound file size, version, glyph count, height, widths, pixel counts, and trailing data |
 | Pack `*.dstx` | Derived text catalog | `DSTX` v1 deterministically stores original resource IDs and printable ASCII lines | implemented; full TEXT catalog round-trip and extraction validated | Bound file size, version, resource/line counts and lengths; reject duplicates, unsupported bytes, and trailing data |
@@ -58,37 +58,19 @@ to that catalog.
 
 ## Object-frame definitions
 
-**Evidence:** `DATA-GOG-OBJECT-001`, corroborated by `SRC-DSUN-MUSIC-79B6927`.
-
-`OBJEX.GFF` contains 4,479 exact 16-byte `OJFF` records. Each record has this
-little-endian layout:
-
-| Offset | Size | Meaning | Confidence |
-|---:|---:|---|---|
-| `0x00` | 2 | uninterpreted word | unknown |
-| `0x02` | 2 | signed X offset | medium |
-| `0x04` | 2 | signed Y offset | medium |
-| `0x06` | 2 | uninterpreted word | unknown |
-| `0x08` | 2 | uninterpreted word | unknown |
-| `0x0a` | 2 | uninterpreted word | unknown |
-| `0x0c` | 2 | unsigned `BMP ` resource number | verified |
-| `0x0e` | 2 | zero reserved word | verified |
-
-Every referenced `BMP ` decodes to at least one indexed-image frame. Across the
-owned archive, the definitions resolve to 3,002 distinct images and 5,600
-frames, no larger than 64x64. The 287 definitions referenced by Tyr resolve to
-246 images and 477 frames. The reader can validate the complete catalog or a
-bounded requested subset, caches shared images, preserves the four unknown
-words raw, and assigns no animation, draw-order, anchor, collision, or
-interaction meaning.
+The `OJFF` record is `FMT-ACTOR-001`, and `RDFF` is `FMT-ACTOR-002`, whose
+layout is unknown. `GffObjectFrameCatalog` validates the complete catalog or a
+bounded requested subset, caches shared images, keeps the words the spec leaves
+unnamed as raw 16-bit values, and assigns no animation, draw-order, anchor,
+collision, or interaction meaning.
 
 ## Static region composition
 
-`RULE-REGION-001` draws the terrain. `RegionSceneRasterizer` then overlays ETAB
-objects in stored order, each with the first frame of its DSOB image at
-`entityX - objectXOffset` and `entityY - objectYOffset - entityVerticalOffset`,
-mirrored when entity flag bit `0x80` is set; the capture of `FND-IMAGE-010`
-matches this for the opening view, and the mirror reading is an open question of
+`RULE-REGION-001` draws the terrain and `RULE-ACTOR-001` the placed objects.
+`RegionSceneRasterizer` overlays ETAB objects in stored order, each with the
+first frame of its DSOB image at `entityX - objectXOffset` and
+`entityY - objectYOffset - entityVerticalOffset`, mirrored when entity flag bit
+`0x80` is set; the mirror reading is an open question of `RULE-ACTOR-001` and
 `FMT-REGION-006`. It requires an explicit viewport origin within the 2048x1568
 region and caps output at 4096 pixels per dimension and 16,777,216 pixels. It
 does not select the opening camera, advance multi-frame images, interpret other

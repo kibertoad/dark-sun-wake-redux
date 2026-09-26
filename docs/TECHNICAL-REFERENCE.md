@@ -240,9 +240,9 @@ sets a value used by just one route. No value is thereby identified as combat
 or a turn phase. `EXE-GOG-COMBAT-018` finds no decoded function that directly
 co-locates `BMP ` #19003 with `FONT` #100; this leaves the panel's dynamic
 renderer and fields opaque rather than proving either resource unused.
-`DATA-GOG-MONR-002` corrects the opaque `MONR` structural lead from a rejected
-14-by-81 arithmetic split to a stronger 27-by-42 aligned-word envelope with a
-constant tail. No executable loader or combat meaning is established.
+`FND-ACTOR-008` finds that the one `MONR` payload repeats as 27 units of 42
+bytes with a constant zero tail; `FMT-ACTOR-003` stays unknown, and the tag
+occurs only in overlay 204 (`FND-ACTOR-006`).
 
 `EXE-GOG-AI-001` is the current aggregate enemy-decision audit, not a claim
 that the native executable lacks AI. It covers every current static candidate:
@@ -287,12 +287,10 @@ RGN#50: RNME / PAL / MAP / GMAP / TILE / ETAB
 - Every `ETAB` record supplies bounded position, vertical-offset, flags, and
   an absolute `OJFF` reference. The record's flags and all non-evidenced
   geometry meanings remain raw data.
-- An `OJFF` has bounded X/Y offsets and a bitmap reference. Two native OJFF
-  tag-selection paths exist. The sole observed successful-result consumer
-  transfers portions beginning at offsets `0x00`, `0x02`, `0x04`, `0x0a`,
-  `0x0b`, and `0x0c` into a 37-byte resident record family. This corroborates
-  structural consumption only, not OJFF field names, actor ownership,
-  collision, interaction, or animation.
+- An `OJFF` is `FMT-ACTOR-001`. `31E0:0EFF` requests it into a 37-byte slot
+  record and `31E0:0E1B` computes the image position from it (`FND-ACTOR-003`);
+  `RULE-ACTOR-001` draws the placed objects. Actor ownership, collision,
+  interaction, and animation are not established.
 - A bounded native caller chain reaches distinct `PLAN` and `PLNR` image
   dispatch after tile/object image resolution. It confirms the static image
   route but does not establish how a frame is selected or scheduled.
@@ -301,8 +299,8 @@ RGN#50: RNME / PAL / MAP / GMAP / TILE / ETAB
   `(74,91)`. Its footprint, all later frames, cadence, party formation, and
   other actor behavior are unknown.
 
-See `FMT-REGION-001` to `FMT-REGION-006`, `RULE-REGION-001`, `FND-IMAGE-010`, `DATA-GOG-OBJECT-001`,
-`DATA-GOG-ACTOR-001`, `EXE-GOG-OJFF-001`, and `FND-IMAGE-005` before
+See `FMT-REGION-001` to `FMT-REGION-006`, `RULE-REGION-001`, `FND-IMAGE-010`, `FMT-ACTOR-001`,
+`RULE-ACTOR-001`, `FND-ACTOR-002`, `FND-ACTOR-003`, and `FND-IMAGE-005` before
 expanding this route.
 
 ## Preferences evidence boundary
@@ -403,41 +401,19 @@ rejecting unsupported semantics:
 - `EXE-GOG-SCMD-001` establishes a separate 64-slot `SCMD` loader/cache. Its
   direct callers do not overlap the selector path, so `SCMD` remains opaque
   rather than a substitute event or combat implementation.
-- `EXE-GOG-RDFF-001` places `RDFF` beside that same separate 37-byte record
-  path. It likewise has no direct selector connection and remains opaque.
-- `EXE-GOG-OJFF-001` establishes two native OJFF resource lookup paths and
-  a sole observed post-lookup transfer into the 37-byte resident path. The
-  selected source offsets are structural data accesses, not assigned object
-  field meanings. `FND-IMAGE-005` continues that bounded route into
-  distinct PLAN/PLNR image dispatch. Its 320-entry coordinate-based candidate
-  scan has no recovered direct caller, so it does not identify a target action.
-  Neither finding identifies a runtime actor, animation, collision, target, or
-  interaction behavior.
-  `EXE-GOG-ACTOR-002` also finds no decoded #9258 operand in the mapped overlay,
-  so neither the original loaded image nor its mapped overlay provides a direct
-  immediate-object combat lead.
-- `DATA-GOG-RDFF-001` finds the `Draxan` pattern in 23 distinct `RDFF`
-  resources (and an aggregate resource), all at relative offset 43. The
-  bounded `OJFF` #9258 overlap check finds none of its four observed raw
-  words in that label-bearing subset. `DATA-GOG-RDFF-002` further shows that
-  1,216 `RDFF` resources are 68 bytes while the remaining 427 share a
-  `43 + 33*n` size residue; the 23 label-bearing resources are only a
-  high-length subset of that residue. `EXE-GOG-RDFF-002` finds no direct
-  displacement 43 or 76 in either known RDFF-tag path. Together with the
-  direct lookup callers, which pass local, argument, register, or
-  resident-state values rather than a recovered fixed resource number, this
-  rejects a direct field-to-label mapping for the first hostile Look panel. It
-  also rules out the mapped shared OJFF/RDFF bridge for observed OJFF #9258:
-  #9258 lies within its recovered 9000 through 13998 guard and does not take
-  that route's RDFF branch. This excludes one bridge only, not other indirection
-  or runtime paths. No decoded mapped function co-locates the RDFF tag with
-  panel ID #19003, which likewise excludes only direct same-function
-  composition. It does not identify an alternative source or permit dynamic
-  interaction text to be rendered. The main executable's 276,672-byte physical
-  MZ overlay also
-  contains neither the exact six-byte label nor its NUL-terminated form, so
-  that exact spelling has no loaded-image or overlay literal path; other
-  encodings and runtime/resource paths remain open.
+- `31E0:0EFF` requests an object's `OJFF` and then, for an object numbered
+  outside 9,000 to 13,998, its `RDFF` of the same number, into the same 37-byte
+  slot records (`FND-ACTOR-003`, `FND-ACTOR-005`). Its three resident callers
+  pass values from resident state, arguments or registers (`FND-ACTOR-004`).
+  `FND-IMAGE-005` continues that route
+  into the PLAN/PLNR image dispatch. None of this identifies a runtime actor,
+  animation, collision, target, or interaction behavior.
+- The first hostile's object, 9,258, lies inside the range that takes no `RDFF`
+  request and has no `RDFF` resource; no resident constant names it, and none
+  of its `OJFF` words names a script or one of the 23 `RDFF` resources that hold
+  its Look-panel label at offset 43 (`FND-ACTOR-007`, `FND-ACTOR-009`). The
+  `RDFF` layout is unknown (`FMT-ACTOR-002`), and the label's bytes do not occur
+  in `DSUN.EXE`. No source for the dynamic interaction text is identified.
 - `EXE-GOG-UI-007` establishes a generic resource-derived UI input boundary:
   current pointer state is resolved against `APFM`, `BUTN`, or `EBOX` children,
   then event-bit guards select indirect handlers. It identifies neither a

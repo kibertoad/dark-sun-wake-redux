@@ -6,7 +6,12 @@ Entries by status.
 
 ## unknown
 
-0 entries.
+2 entries.
+
+| ID | Title |
+|---|---|
+| [FMT-ACTOR-002](../formats/FMT-ACTOR-002.md) | Object data resource |
+| [FMT-ACTOR-003](../formats/FMT-ACTOR-003.md) | MONR resource |
 
 ## sourced
 
@@ -14,10 +19,11 @@ Entries by status.
 
 ## supported
 
-30 entries.
+32 entries.
 
 | ID | Title |
 |---|---|
+| [FMT-ACTOR-001](../formats/FMT-ACTOR-001.md) | Object definition |
 | [FMT-EXE-001](../formats/FMT-EXE-001.md) | FBOV overlay pack at the end of DSUN.EXE |
 | [FMT-EXE-002](../formats/FMT-EXE-002.md) | FBOV segment-table descriptor |
 | [FMT-EXE-003](../formats/FMT-EXE-003.md) | FBOV overlay header in the resident image |
@@ -44,6 +50,7 @@ Entries by status.
 | [FMT-TEXT-002](../formats/FMT-TEXT-002.md) | Bitmap font glyph |
 | [FMT-TEXT-003](../formats/FMT-TEXT-003.md) | Text resource of CR LF lines |
 | [FMT-TEXT-004](../formats/FMT-TEXT-004.md) | Preferences text block in DSUN.EXE |
+| [RULE-ACTOR-001](../rules/RULE-ACTOR-001.md) | Drawing a region's placed objects |
 | [RULE-IMAGE-001](../rules/RULE-IMAGE-001.md) | Decoding an image frame, and the row encoding |
 | [RULE-IMAGE-002](../rules/RULE-IMAGE-002.md) | Decoding a planar image frame |
 | [RULE-REGION-001](../rules/RULE-REGION-001.md) | Drawing a region's terrain tiles |
@@ -63,10 +70,19 @@ Entries by status.
 
 ## recorded
 
-43 entries.
+52 entries.
 
 | ID | Title |
 |---|---|
+| [FND-ACTOR-001](../findings/FND-ACTOR-001.md) | Every OJFF resource of OBJEX.GFF is 16 bytes and names a BMP of the same file |
+| [FND-ACTOR-002](../findings/FND-ACTOR-002.md) | Of the 17x35 object frames, only the first frame of BMP 599 unmirrored matches the opening leader |
+| [FND-ACTOR-003](../findings/FND-ACTOR-003.md) | The routine at 31E0:0EFF requests an OJFF and 31E0:0E1B places it from an 8-byte entry |
+| [FND-ACTOR-004](../findings/FND-ACTOR-004.md) | Three resident call sites pass object numbers to 31E0:0EFF, and 31E0:426E returns an OJFF's image number |
+| [FND-ACTOR-005](../findings/FND-ACTOR-005.md) | Two routines of segment 28C9 request RDFF by the object number of a slot's record |
+| [FND-ACTOR-006](../findings/FND-ACTOR-006.md) | Where the OJFF, RDFF and MONR tag bytes occur in DSUN.EXE |
+| [FND-ACTOR-007](../findings/FND-ACTOR-007.md) | RDFF resources share numbers with OJFF resources outside 9,000 to 13,998 and fall into three size families |
+| [FND-ACTOR-008](../findings/FND-ACTOR-008.md) | The one MONR resource divides into 27 units of 42 bytes with fixed zero bytes |
+| [FND-ACTOR-009](../findings/FND-ACTOR-009.md) | Object 9,258 is not named by a constant in the resident image or by its own OJFF words |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |
@@ -127,6 +143,9 @@ Entries whose Open questions section says more than None known.
 
 | ID | Title | Status |
 |---|---|---|
+| [FMT-ACTOR-001](../formats/FMT-ACTOR-001.md) | Object definition | supported |
+| [FMT-ACTOR-002](../formats/FMT-ACTOR-002.md) | Object data resource | unknown |
+| [FMT-ACTOR-003](../formats/FMT-ACTOR-003.md) | MONR resource | unknown |
 | [FMT-EXE-001](../formats/FMT-EXE-001.md) | FBOV overlay pack at the end of DSUN.EXE | supported |
 | [FMT-EXE-002](../formats/FMT-EXE-002.md) | FBOV segment-table descriptor | supported |
 | [FMT-EXE-003](../formats/FMT-EXE-003.md) | FBOV overlay header in the resident image | supported |
@@ -149,6 +168,7 @@ Entries whose Open questions section says more than None known.
 | [FMT-TEXT-002](../formats/FMT-TEXT-002.md) | Bitmap font glyph | supported |
 | [FMT-TEXT-003](../formats/FMT-TEXT-003.md) | Text resource of CR LF lines | supported |
 | [FMT-TEXT-004](../formats/FMT-TEXT-004.md) | Preferences text block in DSUN.EXE | supported |
+| [RULE-ACTOR-001](../rules/RULE-ACTOR-001.md) | Drawing a region's placed objects | supported |
 | [RULE-IMAGE-001](../rules/RULE-IMAGE-001.md) | Decoding an image frame, and the row encoding | supported |
 | [RULE-IMAGE-002](../rules/RULE-IMAGE-002.md) | Decoding a planar image frame | supported |
 | [RULE-REGION-001](../rules/RULE-REGION-001.md) | Drawing a region's terrain tiles | supported |
