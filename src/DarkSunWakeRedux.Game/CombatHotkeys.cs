@@ -11,6 +11,8 @@ public sealed record CombatHotkeyBinding(Keys Key, CombatCommand Command);
 /// </summary>
 public static class CombatHotkeys
 {
+    // PLACEHOLDER: RULE-COMBAT-004 - the original's key routine handles G, W and Q, where Q opens
+    // the end-of-move menu, and has no case for N, P or Space as the manual gives them.
     public static IReadOnlyList<CombatHotkeyBinding> Bindings { get; } =
     [
         new(Keys.G, new(CombatCommandKind.Guard)),

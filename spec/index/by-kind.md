@@ -28,13 +28,17 @@ Entries by kind.
 
 ## formats
 
-50 entries.
+54 entries.
 
 | ID | Title | Status |
 |---|---|---|
 | [FMT-ACTOR-001](../formats/FMT-ACTOR-001.md) | Object definition | supported |
 | [FMT-ACTOR-002](../formats/FMT-ACTOR-002.md) | Object data resource | unknown |
 | [FMT-ACTOR-003](../formats/FMT-ACTOR-003.md) | MONR resource | unknown |
+| [FMT-ACTOR-004](../formats/FMT-ACTOR-004.md) | Object slot record | supported |
+| [FMT-COMBAT-001](../formats/FMT-COMBAT-001.md) | Combatant record | supported |
+| [FMT-COMBAT-002](../formats/FMT-COMBAT-002.md) | Combatant details record | supported |
+| [FMT-COMBAT-003](../formats/FMT-COMBAT-003.md) | Effect name record in DSUN.EXE | supported |
 | [FMT-CONFIG-001](../formats/FMT-CONFIG-001.md) | Sound configuration SOUND.CFG | supported |
 | [FMT-CONFIG-002](../formats/FMT-CONFIG-002.md) | Sound card list SOUND.INI | supported |
 | [FMT-CONFIG-003](../formats/FMT-CONFIG-003.md) | Saved settings in the PREF resource | supported |
@@ -85,11 +89,20 @@ Entries by kind.
 
 ## rules
 
-42 entries.
+51 entries.
 
 | ID | Title | Status |
 |---|---|---|
 | [RULE-ACTOR-001](../rules/RULE-ACTOR-001.md) | Drawing a region's placed objects | supported |
+| [RULE-COMBAT-001](../rules/RULE-COMBAT-001.md) | All four party members are drawn during combat, and only the leader again after it when the party is collapsed | sourced |
+| [RULE-COMBAT-002](../rules/RULE-COMBAT-002.md) | An attack hits when a roll of 1 to 20 is at least the attacker's THAC0 less the target's Armor Class | sourced |
+| [RULE-COMBAT-003](../rules/RULE-COMBAT-003.md) | Damage lowers hit points; at 0 a character is unconscious and at -10 dead | sourced |
+| [RULE-COMBAT-004](../rules/RULE-COMBAT-004.md) | G and W make the party member whose turn it is guard or wait, and Q opens the end-of-move menu | supported |
+| [RULE-COMBAT-005](../rules/RULE-COMBAT-005.md) | The end-of-move menu offers GUARD, WAIT and END TURN beside the character whose turn it is | supported |
+| [RULE-COMBAT-006](../rules/RULE-COMBAT-006.md) | A click on an enemy attacks it, in melee when adjacent with a readied weapon or at range with a missile weapon or ammunition | sourced |
+| [RULE-COMBAT-007](../rules/RULE-COMBAT-007.md) | What the difficulty setting changes in combat | unknown |
+| [RULE-COMBAT-008](../rules/RULE-COMBAT-008.md) | Saving, resting, adding a character and changing the leader are refused during combat | supported |
+| [RULE-COMBAT-009](../rules/RULE-COMBAT-009.md) | The status panel names the character's first effect, putting the named effects before the others | supported |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | sourced |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | sourced |
@@ -134,7 +147,7 @@ Entries by kind.
 
 ## findings
 
-163 entries.
+191 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -151,6 +164,34 @@ Entries by kind.
 | [FND-ACTOR-011](../findings/FND-ACTOR-011.md) | The RDFF request routines use the 37-byte slot records and not the 13-byte records of segment 1695 | recorded |
 | [FND-ACTOR-012](../findings/FND-ACTOR-012.md) | The opening region names 287 objects whose images hold 477 frames | recorded |
 | [FND-ACTOR-013](../findings/FND-ACTOR-013.md) | Split at 81 bytes, no column of the MONR resource is constant | recorded |
+| [FND-COMBAT-001](../findings/FND-COMBAT-001.md) | No function of the load image holds all six scan codes of the manual's combat keys, and the six do not occur as one byte run | recorded |
+| [FND-COMBAT-002](../findings/FND-COMBAT-002.md) | The operand value -10 occurs in too many functions to point at a hit point test | recorded |
+| [FND-COMBAT-003](../findings/FND-COMBAT-003.md) | The strings COMBAT and GUARD occur only inside messages and labels of the data segment, and ATTACK does not occur as a string | recorded |
+| [FND-COMBAT-004](../findings/FND-COMBAT-004.md) | The resident routine at 2C5F:03F1 requests BMP 19003 into a cached pointer and has one caller | recorded |
+| [FND-COMBAT-005](../findings/FND-COMBAT-005.md) | DSUN.EXE holds no string Moves; the status panel's caption is the format Move : %d | recorded |
+| [FND-COMBAT-006](../findings/FND-COMBAT-006.md) | The status panel image holds no text, and no GFF file holds the panel's words | recorded |
+| [FND-COMBAT-007](../findings/FND-COMBAT-007.md) | The routine that calls the status panel routine has eight callers in five segments | recorded |
+| [FND-COMBAT-008](../findings/FND-COMBAT-008.md) | An overlay 182 routine marks the four party records and preloads the status panel images while the word at 57E0:0DAB is 2 | recorded |
+| [FND-COMBAT-009](../findings/FND-COMBAT-009.md) | The call after the panel preload passes 0x92E0, which is no resource number, and its callee is a shared patch routine | recorded |
+| [FND-COMBAT-010](../findings/FND-COMBAT-010.md) | The overlay 183 dispatcher that reaches the combat-start routine has no direct caller | recorded |
+| [FND-COMBAT-011](../findings/FND-COMBAT-011.md) | The word at 57E0:0DAB is compared with seven values and written directly only with 4 | recorded |
+| [FND-COMBAT-012](../findings/FND-COMBAT-012.md) | The routine that receives the pointer coordinates from the input loop starts with five flag-guarded comparisons in overlay 195 | recorded |
+| [FND-COMBAT-013](../findings/FND-COMBAT-013.md) | The word at 57E0:1440 selects the coordinate branch at 5 and a leader-change refusal path at 2 | recorded |
+| [FND-COMBAT-014](../findings/FND-COMBAT-014.md) | The one direct caller of the setter at 2B10:007A passes 2 | recorded |
+| [FND-COMBAT-015](../findings/FND-COMBAT-015.md) | The writer at 2B10:00C5 stores its argument in two words, and its one direct caller passes 19 | recorded |
+| [FND-COMBAT-016](../findings/FND-COMBAT-016.md) | No recovered direct write stores 5 in the word at 57E0:1440 | recorded |
+| [FND-COMBAT-017](../findings/FND-COMBAT-017.md) | No decoded function names both the status panel image and the interface font | recorded |
+| [FND-COMBAT-018](../findings/FND-COMBAT-018.md) | In the capture of a party member's combat turn, the panel at (215, 4) shows her name, 50/72, Okay and Move : 15 | recorded |
+| [FND-COMBAT-019](../findings/FND-COMBAT-019.md) | In the capture of an enemy striking, the panel shows the enemy's name with ???/??? and a number 11 is drawn over the struck figure | recorded |
+| [FND-COMBAT-020](../findings/FND-COMBAT-020.md) | The capture labelled as an enemy moving shows the conversation windows and no panel; the next capture shows the panel with an hourglass pointer | recorded |
+| [FND-COMBAT-021](../findings/FND-COMBAT-021.md) | The owner saw combat start and end with no transition screen, and a click on an enemy made the active character walk up and strike | recorded |
+| [FND-COMBAT-022](../findings/FND-COMBAT-022.md) | The routine at 2C5F:03F1 draws BMP 19003 at (215, 4) and four centred lines, name, hit points, first effect and movement, for the character in 57E0:426D | recorded |
+| [FND-COMBAT-023](../findings/FND-COMBAT-023.md) | The word at 4C10:0019 gates the status panel, saving, resting, adding characters, changing the leader and the G, W and Q keys | recorded |
+| [FND-COMBAT-024](../findings/FND-COMBAT-024.md) | The combat messages and labels are strings of the data segment, each pushed at one to four places in the panel routine and overlays 182, 190 and 204 | recorded |
+| [FND-COMBAT-025](../findings/FND-COMBAT-025.md) | A key dispatcher in overlay 190 handles G, W and Q for the character in 57E0:426D during combat, and has no case for N or the manual's P | recorded |
+| [FND-COMBAT-026](../findings/FND-COMBAT-026.md) | The overlay 182 routine behind 56BD:00CA offers GUARD, WAIT and END TURN under the title END name's MOVE, beside the character | recorded |
+| [FND-COMBAT-027](../findings/FND-COMBAT-027.md) | The executable holds 113 records of 31 bytes at 4C87:0000, an effect name and a word each, which the status panel's third line indexes | recorded |
+| [FND-COMBAT-028](../findings/FND-COMBAT-028.md) | The data segment holds nine far pointers at 57E0:0663 to the names New, Okay, Stunned, Out Cold, Dying, Animated, Petrified, Dead and Gone | recorded |
 | [FND-CONFIG-001](../findings/FND-CONFIG-001.md) | The installed CHARSAVE.GFF holds one 9-byte PREF resource, number 100 | recorded |
 | [FND-CONFIG-002](../findings/FND-CONFIG-002.md) | The PREF tag bytes occur once in the resident image of DSUN.EXE, inside a label, and three times in overlay 192 | recorded |
 | [FND-CONFIG-003](../findings/FND-CONFIG-003.md) | SOUND.CFG is 59 bytes: two equal 10-byte blocks, a word, two 14-byte driver names and nine more bytes | recorded |
@@ -312,10 +353,11 @@ Entries by kind.
 
 ## screens
 
-14 entries.
+15 entries.
 
 | ID | Title | Status |
 |---|---|---|
+| [SCR-COMBAT-001](../screens/SCR-COMBAT-001.md) | Combat status panel | supported |
 | [SCR-UI-001](../screens/SCR-UI-001.md) | Start window | supported |
 | [SCR-UI-002](../screens/SCR-UI-002.md) | View Character | supported |
 | [SCR-UI-003](../screens/SCR-UI-003.md) | Stored-character list | supported |

@@ -511,12 +511,11 @@ catalogs.
 - **Outcome.** The opening Tyr encounter can be completed through victory or
   party defeat using movement, targeting, attacks, wait, guard, previous/next
   target, and end-turn actions.
-- **Evidence.** SRC-MANUAL-1994 combat mouse modes and hotkeys; SRC-GAMEFAQS-81038 sections
-  2.1, 2.4, 2.8, and 3.1; OBS-GOG controlled combat traces. The owner reports
-  direct enemy click-to-approach-and-strike without a separate target-switching
-  or confirmation presentation, no visible turn-transition treatment, and an
-  immediate return to single-leader exploration on combat exit. Manual and FAQ
-  material establishes investigation questions, not executable behavior.
+- **Evidence.** The COMBAT area of the spec (`RULE-COMBAT-001` to
+  `RULE-COMBAT-009`, `SCR-COMBAT-001`, `FND-COMBAT-018` to `FND-COMBAT-021` for
+  the owner's captures and reports) and their open questions in
+  `queue/COMBAT.md`. SRC-GAMEFAQS-81038 sections 2.4 and 3.1 are not yet in the
+  spec.
 - **Entry gate.** Before code for this slice, record owner-confirmed controlled
   native captures covering entry, command availability, targeting, an attack
   resolution, turn progression, and exit; correlate each implemented behavior

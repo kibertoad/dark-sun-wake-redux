@@ -45,7 +45,7 @@ The new pointer mode. The pointer then shows the image RULE-INPUT-002 picks for 
 ## Edge cases
 
 In combat, a left click with the Walk pointer on an enemy makes the active character walk to it
-and attack it. A left click with Look on something that offers one action takes that action
+and attack it (RULE-COMBAT-006). A left click with Look on something that offers one action takes that action
 without showing the Look panel [SRC-MANUAL-1994]. What each click does belongs to the rules of
 walking, combat and the Look panel.
 

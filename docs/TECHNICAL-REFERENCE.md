@@ -135,73 +135,17 @@ record, slot or selection path, so the runtime keeps inventory interiors inert.
 The manual's inventory, store and item-spell behaviour is `RULE-ITEM-001` to
 `RULE-ITEM-005`.
 
-Combat remains evidence acquisition only. The owner reports that entry leaves
-the map and character presentation substantially unchanged except for the
-absence of the compact status panel; the first stable combat state shows the
-currently active character's panel. The owner identifies dsun_009 as an enemy
-movement frame; it visibly retains dialogue chrome and has no compact panel,
-so it is not evidence for the stable combat layout. dsun_011 is enemy striking,
-and dsun_012 is a player turn labelled Thy'rokh, with visible panel strings
-`90/85` and `Moves 15`; that identifies neither their value semantics nor a
-turn transition. The owner reports no visible turn-transition treatment and
-that a direct enemy click causes the active character to approach and strike,
-without a separate target-switching or confirmation presentation. The static
-panel is the 98x32 BMP #19003 at (215,4), with a
-dynamically overlaid region bounded to (243,8) through (284,31). Its visible
-dynamic text changes from `Draxan`/`Moves 20` in the enemy-striking frame to
-`Thy'rokh`/`90/85`/`Moves 15` in the player-turn frame, supporting only the
-owner-confirmed active-combatant presentation. dsun_011 shows a red 11
-feedback glyph whose visible glyph-area pure-red components occupy (151,95)
-through (178,113) on the 320x200 canvas. The required-revision-34 pack preserves the static artwork as
-`images/combat/status-panel.dsix` with source provenance and the interface palette,
-but no Game code consumes it. These facts establish
-neither movement cost, action ordering, attacker/target identity, panel-value
-meaning, damage resolution, turn progression, timing, nor exit. No combat session, encounter,
-or rules pipeline is implemented until the controlled C0-C6 observation gate
-and a traceable data or executable path establish them. `DATA-GOG-COMBAT-001`
-finds no baked `Moves` caption in the static panel and no exact printable ASCII
-source match in the 26 owned GFF archives; `EXE-GOG-COMBAT-005` likewise finds
-no null-terminated executable literal. Those bounded negative results leave
-the visible caption dynamically sourced but otherwise opaque; they do not
-identify a renderer, value field, turn transition, or combat rule.
-`EXE-GOG-COMBAT-006` additionally classifies the static panel request's direct
-eight-call native fan-in as a shared, feature-neutral boundary: only small
-`0`/`1` argument pairs are visible, with no recovered encounter, actor,
-command, damage, turn, or timing identity. It is not a combat-only route.
-`FND-INPUT-004` follows the native mouse-coordinate guard to the entry code
-without identifying a combat screen, click action, target, approach, attack,
-or confirmation handler.
-`EXE-GOG-COMBAT-013` follows its only coordinate-consuming far-thunk boundary,
-but the destination is outside the mapped image and its sole other recovered
-relation is non-coherent decompiler output; it supplies no combat semantics.
-`EXE-GOG-COMBAT-014` binds the coordinate branch's resident word to a broader
-combat-adjacent switch through its leader-change diagnostic, but no mapped
-caller or action meaning is recovered for value five or any other value.
-`EXE-GOG-COMBAT-015` finds the mode setter's only recovered direct call supplies
-literal two rather than five, leaving the coordinate branch without a traceable
-native producer.
-`EXE-GOG-COMBAT-016` then proves a separate direct writer can assign decimal 19
-to the same word, so its local one-through-five switch is not a finite combat
-mode model.
-`EXE-GOG-COMBAT-017` exhausts the recovered direct-write graph without a
-literal-five producer; indirect or computed writers remain open.
-`FND-INPUT-003` finds the routine that picks the pointer image (`RULE-INPUT-002`);
-its overlay caller is opaque, so it is a presentation boundary, not an action,
-target, movement, or strike path. `FND-INPUT-004` finds no direct caller of the
-native button-press wrapper, and `FND-INPUT-005` shows the mouse handler and the
-keyboard hook queueing packets through one buffer; the packets' consumer is
-unknown, so this is not evidence for a combat click dispatcher or action rule.
-A third producer sends packets of another kind, which supports shared
-transport rather than a combat-specific input path.
-`EXE-GOG-COMBAT-011` shows that the mapped six-selector dispatcher containing
-the panel case has no recovered direct caller. Its neighboring selectors are
-therefore not identified as combat commands, transitions, or rule paths.
-`EXE-GOG-COMBAT-012` finds that the shared state word used by the two panel
-routes has multiple direct comparison values and only one direct write, which
-sets a value used by just one route. No value is thereby identified as combat
-or a turn phase. `EXE-GOG-COMBAT-018` finds no decoded function that directly
-co-locates `BMP ` #19003 with `FONT` #100; this leaves the panel's dynamic
-renderer and fields opaque rather than proving either resource unused.
+Combat is specified in the COMBAT area of the spec. The status panel is
+`SCR-COMBAT-001`, the combat keys and the end-of-move menu are `RULE-COMBAT-004`
+and `RULE-COMBAT-005`, the actions refused during combat are `RULE-COMBAT-008`,
+and the manual's rules are `RULE-COMBAT-001` to `RULE-COMBAT-003`,
+`RULE-COMBAT-006` and `RULE-COMBAT-007`. The owner's captures and reports are
+`FND-COMBAT-018` to `FND-COMBAT-021`. No combat session, encounter or rules
+pipeline is implemented; the pack keeps `BMP/19003` as
+`images/combat/status-panel.dsix`, which no Game code draws. The open questions
+are in `queue/COMBAT.md`, and the opening-combat live session (`Q-COMBAT-001`)
+comes before any combat behaviour.
+
 `FND-ACTOR-008` finds that the one `MONR` payload repeats as 27 units of 42
 bytes with a constant zero tail; `FMT-ACTOR-003` stays unknown, and the tag
 occurs only in overlay 204 (`FND-ACTOR-006`).
@@ -218,20 +162,6 @@ Indirect or runtime-built paths remain possible. Consequently, no enemy-AI
 model is present in Core or Game. C0-C6 must first establish combat entry,
 active-state changes, targeting, an enemy action, and turn progression before a
 new focused static query can assign behavior.
-
-### Combat evidence ledger
-
-| Surface | Established evidence | What is deliberately not inferred | Next evidence needed |
-|---|---|---|---|
-| Entry and exit presentation | Owner reports exploration stays visually continuous at entry apart from the compact panel; combat exit immediately resumes single-leader exploration. | Encounter trigger, state transition, victory/defeat conditions, or any invisible setup/teardown. | C0, C1, and C6 controlled captures plus a traceable owner path. |
-| Active-combatant display | Owner-confirmed dsun_011/dsun_012 frames show the static #19003 panel at (215,4) with different dynamic strings; dsun_012 is Thy'rokh's labelled turn. | The panel values' field ownership, meaning, update cadence, or turn algorithm. | A native text/value producer or a controlled frame sequence correlated to source data. |
-| Hostile motion and strike feedback | Owner confirms dsun_009 as enemy movement, while that frame visibly retains dialogue chrome and lacks the compact panel; dsun_011 is enemy striking and visibly includes the red `11` glyph. | Pathfinding, movement cost, actor/target identity, hit, damage, or timing rules, or a stable-combat layout inferred from dsun_009. | C3/C5 captures and a bounded native/data route for the action result. |
-| Direct enemy click | Owner reports that clicking an enemy makes the active character approach and strike, with no separate visible target switch or confirmation. | Click hit testing, target legality, approach path, range, attack resolution, or an implicit selection state. | A recovered consumer beyond the coordinate/callback boundaries and C3 capture notes. |
-| Cursor presentation | `ICON` #19101–#19108 are selected by one native routine behind a flag test in its overlay caller (`FND-INPUT-003`). | That #19103 executes an attack, that #19104 states why an attack fails, or any combat-specific owner. | Recoverable indirect owner plus branch-input meaning. |
-| Native input boundaries | Mouse-coordinate and button probes establish generic wrappers; the recovered callback conditionally emits a 14-byte packet through guarded resident buffering. BIOS-keyboard probes remain generic. | A combat input loop, packet fields/consumer, the manual-key dispatch, repeat policy, or a command-to-action mapping. | Screen-specific consumer path and controlled command traces C2/C4. |
-| Resident state candidates | One coordinate branch reads value five; a broader combat-adjacent switch and direct writes of two and 19 are recovered. | A finite mode enum, combat phase, target state, or attack mode. | A mapped producer and action body, including indirect/computed writes. |
-| Enemy decision route | `EXE-GOG-AI-001` audits OJFF #9258, `MONR`, `ETAB`, `RDFF`, coordinate/input, computer-control labels, and RNG/panel leads. None reaches an attributable decision/action consumer. | AI absence, target choice, movement, action selection, turn ownership, damage/outcome rules, or automation behavior. | C0-C6 state/action captures followed by a focused static query anchored to that observed path. |
-| Rule data | Manual arithmetic and hotkeys remain isolated research helpers; `MONR` is only an opaque 27-by-42 envelope. | Attack, movement, damage, turn, encounter, difficulty, AI, or outcome implementation. | Controlled C0–C6 observations paired with a traceable executable or data finding for each rule. |
 
 ## Object and static-scene route
 
@@ -276,7 +206,7 @@ the documented control role from the state that has not yet been measured.
 |---|---|---|
 | Music, sound effects, animations, voice effects | The manual defines each as an on/off toggle; voice applies to CD-capable installs | Initial on/off state, state storage, visual frame mapping, and audio routing |
 | Music and sound-effects volume | Each is a slider adjusted through buttons at its two ends | Numerical range, increment, initial value, displayed fill, and mixer mapping |
-| Difficulty | The executable table orders the four labels Easy, Balanced, Hard, Hideous; the manual assigns it to combat difficulty. SRC-GAMEFAQS-81038 reports a hostile-HP-at-spawn hypothesis (`FAQ-81038-COMBAT-001`) | Selected default, its relationship to the manual's conflicting “Average” wording, mutations, hostile-HP multipliers/rounding/timing, and rule consumers |
+| Difficulty | The executable table orders the four labels Easy, Balanced, Hard, Hideous; the manual assigns it to combat difficulty. SRC-GAMEFAQS-81038 reports a hostile-HP-at-spawn hypothesis (`RULE-COMBAT-007`) | Selected default, its relationship to the manual's conflicting “Average” wording, mutations, hostile-HP multipliers/rounding/timing, and rule consumers |
 | About | The manual specifies version, copyright, support, hint-line, and address information; the executable supplies nine centered lines | Modal geometry, backdrop, input dismissal, and native transition |
 
 Direct-reference and scalar probes find no literal binding from the executable
@@ -365,13 +295,6 @@ rejecting unsupported semantics:
   describes where overlay code sits, not how or when it runs. Static queries
   into overlay code use the local-only mapped image described in
   `docs/GHIDRA.md`.
-- `EXE-GOG-COMBAT-008` recovers a distinct panel route in that mapped image: a
-  dispatcher branch reaches the #19003 cache initializer through a guarded
-  four-record, 49-byte-stride operation. Its immediate post-panel callee is a
-  two-caller `stdpatch`-related initialization path, and its unresolved
-  `0x92e0` operand has no matching `RESOURCE.GFF` resource number. This route
-  is therefore structural only; its state codes, record ownership/fields,
-  event input, and every combat rule remain unknown.
 - `EXE-GOG-SMALLTAG-001` finds no literal loader lead for `PLYL` or `CSEQ` in
   `DSUN.EXE`. `DATA-GOG-SMALLTAG-001` bounds their owned inventories
   and short envelopes, and `FND-PARTY-019` rejects a direct installed-`CHAR`
@@ -408,7 +331,9 @@ rejecting unsupported semantics:
   and `RULE-INPUT-001` to `RULE-INPUT-003` remain authoritative.
   `FND-INPUT-007` to `FND-INPUT-009` exclude direct keyboard-port reads, a
   unified combat-key switch, and the one overlay route above the keyboard
-  routine as a key dispatcher.
+  routine as a key dispatcher. A key routine in overlay 190 compares BIOS key
+  words with a table of 33 and handles the combat keys `G`, `W` and `Q`
+  (`FND-COMBAT-025`); its other keys are not read.
 - `FND-IMAGE-009` finds no `PORT` tag in the resident image; its one
   occurrence is in overlay 199. It supplies no portrait loader, palette,
   drawing, dialogue, or timing rule.

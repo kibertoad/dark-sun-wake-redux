@@ -4,7 +4,7 @@ title: The keys 1 to 4 choose the party leader
 status: sourced
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [SRC-MANUAL-1994]
+evidence: [SRC-MANUAL-1994, FND-COMBAT-023]
 conflicting: []
 split_with: []
 related: [SCR-UI-002]
@@ -60,6 +60,8 @@ None known.
 
 ## Open questions
 
-- Where the game keeps `leader`, and what a key for an empty slot does. The loading routine of
-  FND-PARTY-013 flags every party slot but the one equal to a word it compares with, which may be
-  the leader's slot (Q-PARTY-009).
+- What a key does, in particular for an empty slot. The leader buttons store `leader` and refuse
+  an empty slot (FND-COMBAT-023), but the keys 1 to 4 post an event for the character boxes, which
+  may select the character rather than make it the leader (FND-COMBAT-025). The loading routine
+  of FND-PARTY-013 flags every party slot but the one equal to a word it compares with, which may
+  be `leader` (Q-PARTY-009).

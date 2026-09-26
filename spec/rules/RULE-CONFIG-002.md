@@ -55,8 +55,8 @@ SRC-MANUAL-1994, page 15: difficulty controls the level of difficulty in combat;
 Easy, Balanced, Hard and Hideous; the default is Average. No setting of that name exists, and the
 executable's list holds only the four (FMT-TEXT-004). SRC-GAMEFAQS-81038, section 2.8, says a new
 game begins on Balanced, and reports that Easy gives hostile creatures about half the hit points
-of Balanced and Hideous about twice, applied when a creature appears; that report belongs to the
-combat rules.
+of Balanced and Hideous about twice, applied when a creature appears; that report is kept in
+RULE-COMBAT-007.
 
 ## Differences between builds
 
@@ -66,4 +66,4 @@ None known.
 
 - Where the game keeps `difficulty`, whether it is saved with a game, and whether the buttons stop
   or wrap (Q-CONFIG-001, Q-CONFIG-002).
-- What the difficulty changes in combat (Q-CONFIG-001).
+- What the difficulty changes in combat (RULE-COMBAT-007, Q-COMBAT-007).

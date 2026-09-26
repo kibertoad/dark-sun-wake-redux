@@ -9,10 +9,12 @@ Next ID: Q-ACTOR-006
   an actor record. Tried: the `RDFF` records that hold the captured label, the hostile `OJFF`
   record's words, and the known `RDFF` and `OJFF` lookup paths; object 9,258 takes no `RDFF`
   request and has no `RDFF` resource (FND-ACTOR-009). Blocks: slice 3.
-- Q-ACTOR-002. FMT-ACTOR-001: What do `unk_00`, `unk_06`, `unk_08` and `unk_0B` do, and what do
-  the image numbers `31E0:0EFF` puts in place of `image` show? Settles it: a reading of the code
-  that uses the 37-byte slot records at `DS:67BB`, fields `0x0`, `0x7`, `0xF` and `0x19`, and of
-  the overlay code of overlays 190, 197 and 213 around the `OJFF` tag bytes. Blocks: nothing yet.
+- Q-ACTOR-002. FMT-ACTOR-001, FMT-ACTOR-004: What do `unk_00`, `unk_06`, `unk_08` and `unk_0B`
+  do, what do the image numbers `31E0:0EFF` puts in place of `image` show, what do the unknown
+  fields and the bits of `unk_00` of the object slot records hold, and how many slots are there?
+  Settles it: a reading of the code that uses the 37-byte slot records at `DS:67BB`, fields
+  `0x0`, `0x7`, `0xF` and `0x19`, and of the overlay code of overlays 190, 197 and 213 around the
+  `OJFF` tag bytes. Blocks: nothing yet.
 - Q-ACTOR-003. FMT-ACTOR-002: What is the layout of an `RDFF` resource? Settles it: a reading of
   `2D40:000A`, which receives the request, and of the overlay code of overlays 178, 188, 191 and
   201 around the `RDFF` tag bytes. Tried: a search for resident instructions with the

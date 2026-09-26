@@ -6,19 +6,19 @@ How much of the spec in `spec/` the rebuild does. The rows are in `parity/`, one
 
 | Status | Rows |
 |---|---|
-| unknown | 2 |
-| sourced | 21 |
-| supported | 59 |
+| unknown | 3 |
+| sourced | 24 |
+| supported | 68 |
 | established | 0 |
 | disputed | 0 |
-| implemented | 24 |
+| implemented | 25 |
 | validated | 0 |
 
 | Code | Rows |
 |---|---|
-| missing | 42 |
-| partial | 40 |
-| complete | 24 |
+| missing | 51 |
+| partial | 44 |
+| complete | 25 |
 
 ## Areas
 
@@ -31,12 +31,13 @@ How much of the spec in `spec/` the rebuild does. The rows are in `parity/`, one
 | [UI](parity/UI.md) | 20 |
 | [INPUT](parity/INPUT.md) | 3 |
 | [REGION](parity/REGION.md) | 7 |
-| [ACTOR](parity/ACTOR.md) | 4 |
+| [ACTOR](parity/ACTOR.md) | 5 |
 | [SCRIPT](parity/SCRIPT.md) | 14 |
 | [TALK](parity/TALK.md) | 1 |
 | [PARTY](parity/PARTY.md) | 13 |
 | [MAGIC](parity/MAGIC.md) | 4 |
 | [ITEM](parity/ITEM.md) | 7 |
+| [COMBAT](parity/COMBAT.md) | 13 |
 | [RNG](parity/RNG.md) | 1 |
 | [CONFIG](parity/CONFIG.md) | 6 |
 | [SAVE](parity/SAVE.md) | 4 |

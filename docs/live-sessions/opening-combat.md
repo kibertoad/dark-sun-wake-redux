@@ -4,7 +4,8 @@ Status: requested
 <!-- or: accepted, YYYY-MM-DD / declined: the owner's reason / held, YYYY-MM-DD -->
 
 - Build: BLD-GOG-EN-1.1, the owner's GOG installation under its own DOSBox launcher.
-- Settles: Q-COMBAT-001 (queue/COMBAT.md, Live session).
+- Settles: Q-COMBAT-001 (RULE-COMBAT-001, RULE-COMBAT-006, SCR-COMBAT-001), and adds to
+  Q-COMBAT-004 and Q-COMBAT-006 (RULE-COMBAT-004, RULE-COMBAT-005), all in queue/COMBAT.md.
 - Blocks: slice 4.
 - Length: about 20 minutes.
 
@@ -25,7 +26,7 @@ the default window size for every capture.
    frame. Record every visibly available command or control, the selected
    party member or active indicator if any, target feedback if any, and
    whether all party members are displayed.
-3. C2, Q-COMBAT-001. If combat remains stable, press target-next (`N`) once,
+3. C2, Q-COMBAT-004. If combat remains stable, press target-next (`N`) once,
    then target-previous (`P`) once only if the first key leaves combat active.
    Do not assume either produces a target-selection state. Captures: each
    resulting stable state, including an unchanged one. Record the exact keys
@@ -38,8 +39,9 @@ the default window size for every capture.
    sequence, cursor feedback, approach and strike presentation, and every
    changed display or message. If the click produces no visible action,
    capture that state and stop.
-5. C4, Q-COMBAT-001. On the next available turn, use exactly one visibly
-   available turn command: Guard (`G`), Wait (`W`), or end turn (`Q`).
+5. C4, Q-COMBAT-006. On the next available turn, use exactly one visibly
+   available turn command: Guard (`G`), Wait (`W`), or end turn (`Q`, which
+   opens a menu of GUARD, WAIT and END TURN; choose END TURN).
    Captures: immediately before and after it resolves. Record the key used,
    whether control or selection advanced, and every changed command or target
    state. Do not try the other two commands in the same encounter.

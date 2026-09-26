@@ -34,9 +34,11 @@ Next ID: Q-PARTY-011
 - Q-PARTY-008. RULE-PARTY-007: Does the game apply the level limits of README table 3 and its
   prime requisite bonus, and how does it count the prime requisite of a class with more than
   one? Settles it: the code that raises a character's level. Blocks: slice 5.
-- Q-PARTY-009. RULE-PARTY-008: Where does the game keep the leader's slot, and what does a key
-  from 1 to 4 do when its slot is empty? Settles it: the word the party loader compares each
-  slot with (FND-PARTY-013), followed to its writers. Blocks: slice 3.
+- Q-PARTY-009. RULE-PARTY-008: What does a key from 1 to 4 do, in particular when its slot is
+  empty, and is the word the party loader compares each slot with (FND-PARTY-013) the leader's
+  slot? Settles it: the handler the keys 1 to 4 reach in overlay 190, which posts an event for
+  the character boxes `0x2C24` to `0x2C27` (FND-COMBAT-025), and the writers of `leader`. Tried:
+  the leader buttons, which store the slot at `4C13:0369` (FND-COMBAT-023). Blocks: slice 3.
 - Q-PARTY-010. RULE-PARTY-006: Which code calls the party loader at `DSUN.EXE+0x00068E8D` in
   overlay 182, does START GAME reach it, and what happens when `CHARSAVE.GFF` or one of its four
   records is missing? Settles it: the far callers of the routine through overlay 182's

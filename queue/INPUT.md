@@ -8,7 +8,9 @@ Next ID: Q-INPUT-003
   that the keyboard hook and the mouse handler fill at `4464:0230`, and how does it turn a key
   word or a mouse event into a mode change, a click or a screen? Which code shows `ICON/19109` and
   `ICON/19110`? Settles it: a reading of the routines that read the buffer set up at `39D1:0173`,
-  and of the overlay caller of the pointer-image routine. Blocks: nothing yet.
+  and of the overlay caller of the pointer-image routine, starting from the key routine at
+  overlay 190 offset `0x139B`, whose key word argument comes from its caller (FND-COMBAT-025).
+  Blocks: nothing yet.
 
 ## Emulated call
 

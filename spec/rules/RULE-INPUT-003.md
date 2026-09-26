@@ -58,7 +58,8 @@ load and quit (RULE-SAVE-001); `H` centres the view on the leader; `O` shows the
 to `4` make that character the leader; `5` shows all characters while moving and `6` the leader
 alone; `Y` and `N` answer yes and no questions; `Alt+X` quits; `Esc` leaves every menu, or the game
 when no menu is shown; in a conversation `1` to `5` choose a response (SCR-UI-012, RULE-TALK-001); and `G`, `N`,
-`P`, `Q`, `W` and `Space` give combat commands (SRC-MANUAL-1994, page 77).
+`P`, `Q`, `W` and `Space` give combat commands (SRC-MANUAL-1994, page 77), of which `G`, `W` and
+`Q` are handled as RULE-COMBAT-004 describes.
 
 ## What the sources say
 
@@ -77,5 +78,10 @@ None known.
   does not read the keyboard port directly (FND-INPUT-007), the combat keys are not compared
   together in one function (FND-INPUT-008), and the overlay route above the keyboard routine is
   not a key dispatcher (FND-INPUT-009, Q-INPUT-002).
+- A key routine in overlay 190 compares BIOS key words with a table that holds `1` to `4`, `Tab`,
+  `Esc`, `=`, `?`, `A`, `G`, `H`, `M`, `Q`, `S`, `T`, `W`, Space, `Alt+X` and `F1` to `F6`, and
+  sends other letters, among them `C`, `E`, `I`, `O`, `P`, `U` and `V`, to a second table
+  (FND-COMBAT-025). Only its combat keys have been read; what it does with the others, and
+  whether it is the routine this rule describes, is open (Q-INPUT-002).
 - Whether the keys work on the character option screens themselves, and whether case or shift
   matters (Q-INPUT-001).
