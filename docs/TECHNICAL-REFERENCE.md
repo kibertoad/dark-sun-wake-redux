@@ -133,13 +133,11 @@ controls stay inert. The label table of those screens (`FND-UI-023`) has no
 known reader. Read those entries, FND-PARTY-020 and FND-MAGIC-001 before
 extending these screens.
 
-The two item labels visible in the owner-confirmed AR'ANDA inventory capture
-have unique bounded source locations: `Longsword` and `Dagger` are in the
-`TEXT` #1000 record at zero-based CRLF lines 25 and 28, respectively
-(`DATA-GOG-ITEMS-002`). This is a text-corpus fact, not an inventory schema:
-there is no evidence that these lines identify an item record, slot, quantity,
-owner, statistics, renderer, selection path, or use/equip behavior. The
-runtime therefore continues to keep inventory interiors inert.
+Two item names visible in the owner-confirmed inventory capture are lines of
+`RESOURCE.GFF#TEXT/1000` (`FND-ITEM-008`). No evidence ties a line to an item
+record, slot or selection path, so the runtime keeps inventory interiors inert.
+The manual's inventory, store and item-spell behaviour is `RULE-ITEM-001` to
+`RULE-ITEM-005`.
 
 Combat remains evidence acquisition only. The owner reports that entry leaves
 the map and character presentation substantially unchanged except for the
@@ -450,9 +448,9 @@ rejecting unsupported semantics:
   and one non-member reject a one-to-one map. No literal GPLI tag exists in the
   analyzed executable, and no decoded function directly combines the known GPL
   resource-135 ID with the literal GPL tag; no lookup role is assumed.
-- `ITEMS.BIN` is a verified 234-pair envelope. `DSUN.EXE`, `CHARTRAN.EXE`, and
-  `SVIEW.EXE` each lack the queried literal filename/stem forms, so no
-  item/equipment mapping or loader is inferred.
+- `ITEMS.BIN` is `FMT-ITEM-001`, read only by the character transfer utility
+  (`FND-ITEM-006`, `RULE-ITEM-006`); `DSUN.EXE` holds no name for it
+  (`FND-ITEM-004`).
 
 Addresses, methods, competing interpretations, and confidence are retained in
 [GHIDRA.md](GHIDRA.md); open questions are kept in the plan rather than encoded

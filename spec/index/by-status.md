@@ -15,12 +15,17 @@ Entries by status.
 
 ## sourced
 
-13 entries.
+18 entries.
 
 | ID | Title |
 |---|---|
 | [RULE-INPUT-001](../rules/RULE-INPUT-001.md) | The right mouse button steps the pointer through the Walk, Attack and Look modes |
 | [RULE-INPUT-003](../rules/RULE-INPUT-003.md) | The keys that open the character option screens and the Game Menu |
+| [RULE-ITEM-001](../rules/RULE-ITEM-001.md) | What a character's backpack and a pouch or chest can hold |
+| [RULE-ITEM-002](../rules/RULE-ITEM-002.md) | Splitting a bundle of grouped items |
+| [RULE-ITEM-003](../rules/RULE-ITEM-003.md) | Casting a spell from an item |
+| [RULE-ITEM-004](../rules/RULE-ITEM-004.md) | Buying from and selling to a store |
+| [RULE-ITEM-005](../rules/RULE-ITEM-005.md) | The armour and shields each class may use |
 | [RULE-MAGIC-001](../rules/RULE-MAGIC-001.md) | How many spells of each level a caster can cast before resting |
 | [RULE-MAGIC-002](../rules/RULE-MAGIC-002.md) | Which spheres of cleric spells a priest may cast |
 | [RULE-MAGIC-003](../rules/RULE-MAGIC-003.md) | Activating and maintaining a psionic power |
@@ -35,7 +40,7 @@ Entries by status.
 
 ## supported
 
-57 entries.
+59 entries.
 
 | ID | Title |
 |---|---|
@@ -56,6 +61,7 @@ Entries by status.
 | [FMT-IMAGE-002](../formats/FMT-IMAGE-002.md) | Image frame |
 | [FMT-IMAGE-003](../formats/FMT-IMAGE-003.md) | Palette resource |
 | [FMT-IMAGE-004](../formats/FMT-IMAGE-004.md) | Palette colour |
+| [FMT-ITEM-001](../formats/FMT-ITEM-001.md) | Item translation pair in ITEMS.BIN |
 | [FMT-PARTY-001](../formats/FMT-PARTY-001.md) | Character record |
 | [FMT-PARTY-002](../formats/FMT-PARTY-002.md) | Character record tail entry |
 | [FMT-PARTY-003](../formats/FMT-PARTY-003.md) | Character psionic byte |
@@ -80,6 +86,7 @@ Entries by status.
 | [RULE-IMAGE-001](../rules/RULE-IMAGE-001.md) | Decoding an image frame, and the row encoding |
 | [RULE-IMAGE-002](../rules/RULE-IMAGE-002.md) | Decoding a planar image frame |
 | [RULE-INPUT-002](../rules/RULE-INPUT-002.md) | Which image the pointer shows for each mode, and its hotspot |
+| [RULE-ITEM-006](../rules/RULE-ITEM-006.md) | The transfer utility's translation of a Dark Sun 1 item |
 | [RULE-PARTY-006](../rules/RULE-PARTY-006.md) | START GAME supplies characters 40 to 43 as the party |
 | [RULE-REGION-001](../rules/RULE-REGION-001.md) | Drawing a region's terrain tiles |
 | [RULE-RNG-001](../rules/RULE-RNG-001.md) | The game's random number generator and its reductions |
@@ -111,7 +118,7 @@ Entries by status.
 
 ## recorded
 
-119 entries.
+128 entries.
 
 | ID | Title |
 |---|---|
@@ -159,6 +166,15 @@ Entries by status.
 | [FND-INPUT-007](../findings/FND-INPUT-007.md) | No resident instruction reads port 60h or sets DX to 60h or 64h before port I/O |
 | [FND-INPUT-008](../findings/FND-INPUT-008.md) | No decoded function of the overlay-mapped image compares all the manual combat keys |
 | [FND-INPUT-009](../findings/FND-INPUT-009.md) | The one dispatch-shaped caller above the mapped keyboard routine requests GPLI 1 |
+| [FND-ITEM-001](../findings/FND-ITEM-001.md) | ITEMS.BIN is 234 pairs of 16-bit words, sorted by the first word except the last pair |
+| [FND-ITEM-002](../findings/FND-ITEM-002.md) | Both columns of ITEMS.BIN overlap the resource numbers of several OBJEX.GFF tags |
+| [FND-ITEM-003](../findings/FND-ITEM-003.md) | No second word of ITEMS.BIN occurs in the OJFF records, and few first words do |
+| [FND-ITEM-004](../findings/FND-ITEM-004.md) | DSUN.EXE does not hold the name ITEMS.BIN in any case |
+| [FND-ITEM-005](../findings/FND-ITEM-005.md) | Unpacked, CHARTRAN.EXE names items.bin and reports item translation |
+| [FND-ITEM-006](../findings/FND-ITEM-006.md) | CHARTRAN.EXE loads ITEMS.BIN whole and looks up each Dark Sun 1 item's number in its first column |
+| [FND-ITEM-007](../findings/FND-ITEM-007.md) | SVIEW.EXE does not hold the name ITEMS.BIN in any case |
+| [FND-ITEM-008](../findings/FND-ITEM-008.md) | Two item names seen on the inventory screen occur once each, in TEXT 1000 of RESOURCE.GFF |
+| [FND-ITEM-009](../findings/FND-ITEM-009.md) | DSUN.EXE holds the item placement and pick-up messages, pushed by overlays 179, 189 and 191 |
 | [FND-MAGIC-001](../findings/FND-MAGIC-001.md) | The Use screen names the spell class and level or the psionic discipline its icons belong to |
 | [FND-PARTY-001](../findings/FND-PARTY-001.md) | Every CHAR record holds a printable NUL-terminated name in a 16-byte slot at 0x2B |
 | [FND-PARTY-002](../findings/FND-PARTY-002.md) | Each CHAR record has a one-byte PSIN resource of the same number, holding 1, 2, 4, 5, 6 or 7 |
@@ -266,6 +282,7 @@ Entries whose Open questions section says more than None known.
 | [FMT-IMAGE-002](../formats/FMT-IMAGE-002.md) | Image frame | supported |
 | [FMT-IMAGE-003](../formats/FMT-IMAGE-003.md) | Palette resource | supported |
 | [FMT-IMAGE-004](../formats/FMT-IMAGE-004.md) | Palette colour | supported |
+| [FMT-ITEM-001](../formats/FMT-ITEM-001.md) | Item translation pair in ITEMS.BIN | supported |
 | [FMT-PARTY-001](../formats/FMT-PARTY-001.md) | Character record | supported |
 | [FMT-PARTY-002](../formats/FMT-PARTY-002.md) | Character record tail entry | supported |
 | [FMT-PARTY-003](../formats/FMT-PARTY-003.md) | Character psionic byte | supported |
@@ -292,6 +309,12 @@ Entries whose Open questions section says more than None known.
 | [RULE-INPUT-001](../rules/RULE-INPUT-001.md) | The right mouse button steps the pointer through the Walk, Attack and Look modes | sourced |
 | [RULE-INPUT-002](../rules/RULE-INPUT-002.md) | Which image the pointer shows for each mode, and its hotspot | supported |
 | [RULE-INPUT-003](../rules/RULE-INPUT-003.md) | The keys that open the character option screens and the Game Menu | sourced |
+| [RULE-ITEM-001](../rules/RULE-ITEM-001.md) | What a character's backpack and a pouch or chest can hold | sourced |
+| [RULE-ITEM-002](../rules/RULE-ITEM-002.md) | Splitting a bundle of grouped items | sourced |
+| [RULE-ITEM-003](../rules/RULE-ITEM-003.md) | Casting a spell from an item | sourced |
+| [RULE-ITEM-004](../rules/RULE-ITEM-004.md) | Buying from and selling to a store | sourced |
+| [RULE-ITEM-005](../rules/RULE-ITEM-005.md) | The armour and shields each class may use | sourced |
+| [RULE-ITEM-006](../rules/RULE-ITEM-006.md) | The transfer utility's translation of a Dark Sun 1 item | supported |
 | [RULE-MAGIC-001](../rules/RULE-MAGIC-001.md) | How many spells of each level a caster can cast before resting | sourced |
 | [RULE-MAGIC-002](../rules/RULE-MAGIC-002.md) | Which spheres of cleric spells a priest may cast | sourced |
 | [RULE-MAGIC-003](../rules/RULE-MAGIC-003.md) | Activating and maintaining a psionic power | sourced |

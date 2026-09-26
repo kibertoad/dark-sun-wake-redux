@@ -250,7 +250,24 @@ None.
 
 ## ITEM
 
-None.
+| ID | Title | Status |
+|---|---|---|
+| [FMT-ITEM-001](../formats/FMT-ITEM-001.md) | Item translation pair in ITEMS.BIN | supported |
+| [FND-ITEM-001](../findings/FND-ITEM-001.md) | ITEMS.BIN is 234 pairs of 16-bit words, sorted by the first word except the last pair | recorded |
+| [FND-ITEM-002](../findings/FND-ITEM-002.md) | Both columns of ITEMS.BIN overlap the resource numbers of several OBJEX.GFF tags | recorded |
+| [FND-ITEM-003](../findings/FND-ITEM-003.md) | No second word of ITEMS.BIN occurs in the OJFF records, and few first words do | recorded |
+| [FND-ITEM-004](../findings/FND-ITEM-004.md) | DSUN.EXE does not hold the name ITEMS.BIN in any case | recorded |
+| [FND-ITEM-005](../findings/FND-ITEM-005.md) | Unpacked, CHARTRAN.EXE names items.bin and reports item translation | recorded |
+| [FND-ITEM-006](../findings/FND-ITEM-006.md) | CHARTRAN.EXE loads ITEMS.BIN whole and looks up each Dark Sun 1 item's number in its first column | recorded |
+| [FND-ITEM-007](../findings/FND-ITEM-007.md) | SVIEW.EXE does not hold the name ITEMS.BIN in any case | recorded |
+| [FND-ITEM-008](../findings/FND-ITEM-008.md) | Two item names seen on the inventory screen occur once each, in TEXT 1000 of RESOURCE.GFF | recorded |
+| [FND-ITEM-009](../findings/FND-ITEM-009.md) | DSUN.EXE holds the item placement and pick-up messages, pushed by overlays 179, 189 and 191 | recorded |
+| [RULE-ITEM-001](../rules/RULE-ITEM-001.md) | What a character's backpack and a pouch or chest can hold | sourced |
+| [RULE-ITEM-002](../rules/RULE-ITEM-002.md) | Splitting a bundle of grouped items | sourced |
+| [RULE-ITEM-003](../rules/RULE-ITEM-003.md) | Casting a spell from an item | sourced |
+| [RULE-ITEM-004](../rules/RULE-ITEM-004.md) | Buying from and selling to a store | sourced |
+| [RULE-ITEM-005](../rules/RULE-ITEM-005.md) | The armour and shields each class may use | sourced |
+| [RULE-ITEM-006](../rules/RULE-ITEM-006.md) | The transfer utility's translation of a Dark Sun 1 item | supported |
 
 ## COMBAT
 

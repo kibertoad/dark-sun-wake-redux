@@ -7,8 +7,8 @@ How much of the spec in `spec/` the rebuild does. The rows are in `parity/`, one
 | Status | Rows |
 |---|---|
 | unknown | 2 |
-| sourced | 9 |
-| supported | 37 |
+| sourced | 14 |
+| supported | 39 |
 | established | 0 |
 | disputed | 0 |
 | implemented | 24 |
@@ -16,7 +16,7 @@ How much of the spec in `spec/` the rebuild does. The rows are in `parity/`, one
 
 | Code | Rows |
 |---|---|
-| missing | 14 |
+| missing | 21 |
 | partial | 34 |
 | complete | 24 |
 
@@ -34,4 +34,5 @@ How much of the spec in `spec/` the rebuild does. The rows are in `parity/`, one
 | [ACTOR](parity/ACTOR.md) | 4 |
 | [PARTY](parity/PARTY.md) | 13 |
 | [MAGIC](parity/MAGIC.md) | 4 |
+| [ITEM](parity/ITEM.md) | 7 |
 | [RNG](parity/RNG.md) | 1 |

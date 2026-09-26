@@ -4,7 +4,8 @@ Status: requested
 <!-- or: accepted, YYYY-MM-DD / declined: the owner's reason / held, YYYY-MM-DD -->
 
 - Build: BLD-GOG-EN-1.1, the owner's GOG installation under its own DOSBox launcher.
-- Settles: Q-ITEM-002 (queue/ITEM.md, Live session).
+- Settles: Q-ITEM-002 (queue/ITEM.md, Live session), for SCR-UI-008, RULE-ITEM-001,
+  RULE-ITEM-002 and RULE-ITEM-004.
 - Blocks: slice 5.
 - Length: about 10 minutes.
 
