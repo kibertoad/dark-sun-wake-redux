@@ -3,10 +3,14 @@ param(
     [Parameter(Mandatory = $true)][string]$SourcePath,
     [Parameter(Mandatory = $true)][string]$ResidentInventoryPath,
     [Parameter(Mandatory = $true)][string]$MappedInventoryPath,
-    [Parameter(Mandatory = $true)][string]$OutputPath
+    [Parameter(Mandatory = $true)][string]$OutputPath,
+    [Parameter(Mandatory = $false)][string]$ManifestPath = 'DSUN.EXE'
 )
 
 $ErrorActionPreference = 'Stop'
+if ($ManifestPath -notmatch '^[A-Za-z0-9_./:-]+$') {
+    throw "Invalid manifest path for inventory address: $ManifestPath"
+}
 $map = & (Join-Path $PSScriptRoot 'ReportFbovOverlayMap.ps1') -SourcePath $SourcePath |
     ConvertFrom-Json
 $headerBytes = [long]$map.HeaderBytes
@@ -67,7 +71,7 @@ if ([IO.File]::Exists($outputFullPath)) { throw "Output already exists: $outputF
 $lines = [System.Collections.Generic.List[string]]::new()
 $lines.Add("start`tsize")
 foreach ($offset in ($functions.Keys | Sort-Object)) {
-    $lines.Add(('DSUN.EXE+0x{0:X8}' -f [long]$offset) + "`t" + $functions[$offset])
+    $lines.Add(($ManifestPath + ('+0x{0:X8}' -f [long]$offset)) + "`t" + $functions[$offset])
 }
 [IO.File]::WriteAllLines($outputFullPath, $lines, [Text.UTF8Encoding]::new($false))
 Write-Output "Resident functions: $residentCount; overlay functions: $overlayCount; total: $($functions.Count)"

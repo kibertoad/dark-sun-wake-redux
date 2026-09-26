@@ -53,3 +53,13 @@ script passed all 700 tests when network access was available.
 **Request:** consider an explicit offline rerun option that uses an already
 restored lock/assets state. Keep the normal CI path restoring packages from
 NuGet.
+
+## 5. Define a portable inventory path for disc manifest entries
+
+The Survey rule asks for `coverage/<build ID>/<manifest path>.tsv`. The manifest
+path `CD:DSUN.EXE` cannot be used verbatim as a Windows filename. This checkout
+uses `coverage/BLD-GOG-EN-1.1/CD/DSUN.EXE.tsv` and retains `CD:DSUN.EXE` in each
+start address. The join tool now accepts the manifest path explicitly.
+
+**Request:** define a portable encoding of manifest paths for coverage files and
+check that the path and each address prefix resolve to the same manifest entry.

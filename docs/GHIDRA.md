@@ -159,6 +159,16 @@ committed file are offsets in the shipped `DSUN.EXE`, written as
 discovery does not prove that every original function was found. The inventory
 contains no code, bytes, strings or auto-generated names.
 
+The disc's distinct `CD:DSUN.EXE` also has an inventory, at
+`coverage/BLD-GOG-EN-1.1/CD/DSUN.EXE.tsv`. The `CD:` manifest prefix becomes
+the `CD/` directory because Windows cannot use a colon in a filename. Extract
+the file from track 1 of `game.gog` into a local-only path, verify its 634,704
+bytes and XXH3-128 `318cd5ec0559901add3780097162a919`, then run the same
+original and mapped imports. Pass `-ManifestPath 'CD:DSUN.EXE'` to
+`Join-FunctionInventory.ps1` so the start addresses retain the manifest path.
+Ghidra 12.1.3 found 1,283 resident starts in the original import and 858
+overlay-code starts in the mapped import, for 2,141 rows.
+
 The `SOUND_DS.EXE.tsv`, `SVIEW.EXE.tsv` and `PATCH.EXE.tsv` files under
 `coverage/BLD-GOG-EN-1.1/` come from direct MZ imports of the installed
 helpers. `CHARTRAN.EXE.tsv` comes from an import of the local-only unpacked
