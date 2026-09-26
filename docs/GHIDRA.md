@@ -809,7 +809,7 @@ proof by itself. Never redirect broad output into the repository.
   `RESOURCE.GFF` literal. Aggregate inventory confirms no `RESOURCE.GFF`
   resource number 37600 exists. `4758:01d5` has exactly two direct callers
   (this routine and `74bb:0077`). The latter is the separate shared
-  RNG/redraw route recorded by `EXE-GOG-RNG-002`; it directly calls
+  RNG/redraw route recorded by `FND-RNG-008`; it directly calls
   `7393:0560` but has no recovered direct caller. `4758:01d5` contains a
   `stdpatch` literal plus generic initialization/state handling, not a decoded
   resource lookup. Thus neither the operand nor the literal identifies a
@@ -1264,122 +1264,6 @@ proof by itself. Never redirect broad output into the repository.
   A decoder or playback implementation requires a bounded consumer path and a
   controlled native observation; raw header speed and filename order remain
   data, not a scheduling contract.
-
-### EXE-GOG-RNG-001 - Native 32-bit linear-congruential random primitive
-
-- **Question:** Does the supported executable contain a bounded random-number
-  primitive whose state transition and output range can be reproduced without
-  assigning it to an unevidenced gameplay rule?
-- **Target:** BLD-GOG-EN-1.1 `DSUN.EXE`, reverified at 634,416 bytes with
-  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
-  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
-- **Method:** `ReportFunctionScalarIntersection` searched for the two 16-bit
-  halves (`0x015a`, `0x4e35`) of a common 32-bit LCG multiplier and returned
-  one candidate. `ReportDecompileWindow` and `ReportInstructionContext`
-  bounded its multiply, carry, state-write, mask, and return instructions.
-  `ReportReferences` then enumerated direct callers of the generator and its
-  modulo wrapper. `ReportInstructionText` separately scanned the complete
-  analyzed instruction listing for the two explicit state displacements
-  (`384a` and `384c`), retaining only data accesses rather than a matching
-  code-jump target. `ReportBytePattern` then searched loaded memory for the
-  setter's direct far-call encoding (`9a 11 08 00 10`) and its unprefixed
-  little-endian far-pointer encoding (`11 08 00 10`).
-- **Bounded finding:** far helper `1000:0822` reads a 32-bit state, multiplies
-  it by `0x015a4e35`, adds one with carry, and writes the low 32 bits back. It
-  returns the new state's upper word masked to 15 bits, yielding `0..32767`.
-  Its adjacent seed setter `1000:0811` clears the upper state word and stores
-  its one 16-bit argument as the lower word; Ghidra finds no direct reference
-  to that setter. The complete instruction scan finds no other explicit data
-  access to either state displacement: the setter contains the low-word write
-  and high-word clear, and the generator contains both reads and both writes.
-  The only other `384a` text match is a `JMP` destination, not a state access.
-  This narrows direct static writers, but does not rule out indirect, computed,
-  or dynamically reached state access. Neither exact far-call nor static
-  far-pointer encoding for the setter occurs in loaded memory. This rules out
-  those two direct dispatch representations only; relocation, register-built,
-  and other indirect dispatch remain possible. The separate far wrapper
-  `2834:061c` returns zero without
-  calling the generator when its divisor is zero; otherwise it consumes one
-  generator result and applies remainder reduction by the supplied divisor.
-  The generator's only three direct static callers are the modulo wrapper,
-  repeated-roll helper `28c9:391d`, and inclusive-range helper `2d40:3a03`.
-  The repeated-roll helper itself has no direct static references. These
-  boundaries do not establish seed ownership, stream partitioning, consumption
-  order, or any particular game mechanic.
-- **Inclusive-range refinement:** direct caller `2d40:3a03` returns its first
-  signed argument unchanged without a generator call when it is greater than
-  or equal to its second. When lower is less than upper, it consumes one
-  15-bit result and returns `lower + result * (upper - lower + 1) / 32768`.
-  Its direct-reference query is empty, so this proves a generic range-helper
-  contract but not a particular call-site meaning or input domain.
-- **Repeated-roll refinement:** direct caller `28c9:391d` returns zero without
-  a generator call for a non-positive first signed argument. Otherwise it
-  iterates exactly that many times, consuming one result per iteration and
-  summing `result * secondArgument / 32768 + 1`. The argument roles and every
-  semantic use remain unknown; this is recorded as a scaled repeated-roll
-  helper rather than assigned to combat or character generation.
-- **Modulo-consumer refinement:** `2834:061c` has eleven direct calls, all in
-  two routines. `ReportReferences` and bounded instruction context locate two
-  calls in `2834:000c`; each receives a guarded local count, and the returned
-  index selects a byte from the routine's local candidate storage. The first
-  selection is then scaled by six before indexing a resident table at `424e`;
-  the resulting entry's byte 5 is passed onward. The remaining nine calls are
-  all in `2834:0519`, each with literal divisor 10. That helper returns false
-  for inputs outside 1 through 10, returns true for 10 without consuming the
-  stream, and for 1 through 9 consumes one modulo-10 result and returns true
-  exactly when that result is less than or equal to its input. The other
-  routine scans an opaque resident six-byte-entry table, partitions candidate
-  indexes through local guards, applies that helper to byte 1, and passes byte
-  5 to another routine on success. It has exactly one direct caller in `28c9`,
-  whose bounded context supplies two guarded resident values. None of these
-  structural facts identifies the table, fields, selection domain, feature
-  owner, or player-visible outcome.
-- **Interpretation:** this is a native shared pseudo-random stream primitive,
-  not evidence that every random-looking game outcome uses it. The modulo
-  wrapper has ordinary modulo bias, which is a native implementation detail;
-  it must not be silently replaced with rejection sampling where source parity
-  matters.
-- **Confidence:** high for recurrence, 15-bit result range, zero-divisor
-  non-consumption, the inclusive-range and repeated-roll branch/formulae, the
-  bounded modulo consumer shape, and the 16-bit seed-setter boundary; unknown
-  for seed source, callers' semantic purposes, consumption order, table
-  ownership, relocation or indirect state access, and the full set of indirect
-  callers.
-- **Implementation consequence:** `NativeRandom` preserves the bounded state
-  transition, modulo, inclusive-range, and repeated-roll behavior with golden
-  vectors. It is not wired to start flow, dialogue, combat, or other mechanics
-  until each caller's seed and consumption contract is independently evidenced.
-
-### EXE-GOG-RNG-002 - RNG selection and panel initialization share an indirect routine
-
-- **Question:** Does the native random table-selection chain acquire a combat
-  owner by reaching the observed status-panel initializer?
-- **Target/method:** Use the local-only mapped image from
-  `EXE-GOG-OVERLAY-004`. `ReportReferences` followed the direct chain from
-  selection helper `2834:0519` through `2834:000c`, `2ae8:0132`,
-  `27c0:011f`, and `7393:0085` to `74bb:0077`. A complete 60-line bounded
-  decompilation classified `74bb:0077`, and its direct-reference query checked
-  for a recoverable feature owner.
-- **Bounded finding:** `74bb:0077` directly calls `7393:0085`, which reaches
-  the random selection chain, and later directly calls the observed panel
-  initializer `7393:0560`. In its guarded state-four branch, the routine also
-  performs a seven-entry indirect dispatch and conditionally iterates four
-  resident records using the already-observed 49-byte and 37-byte strides.
-  It has no recovered direct reference. Its nearby `VIEW INVENTORY` literal
-  is an opaque helper argument, not a recovered screen identity or owner.
-- **Interpretation:** the random-selection and panel paths meet in shared
-  native code, but neither the selector/table fields nor the caller's feature
-  ownership is recovered. This does not establish that random selection is a
-  combat roll, that the four records are combatants, or that the panel is
-  updated by a combat turn.
-- **Confidence:** high for the direct-call chain, panel-initializer call,
-  guarded four-record structure, and absent direct reference to `74bb:0077`;
-  unknown for all feature ownership, table/record semantics, random-result use,
-  and combat behavior.
-- **Implementation consequence:** preserve `NativeRandom` as an unconsumed
-  primitive and keep the panel as evidence-only artwork. Do not connect either
-  to combat until an indirect caller, data contract, or controlled observation
-  identifies its rule-level role.
 
 ### EXE-GOG-COMBAT-001 - Combat hotkey dispatch is not a direct shared literal table
 
@@ -1976,7 +1860,7 @@ proof by itself. Never redirect broad output into the repository.
   tag query (`EXE-GOG-REGION-002`), hostile-display path
   (`EXE-GOG-RDFF-001` through `003`), coordinate/input chain
   (`EXE-GOG-COMBAT-007`, `009`, `010`, and `013` through `019`), and native
-  RNG selector chain (`EXE-GOG-RNG-001` and `002`). The final two focused
+  RNG selector chain (`FND-RNG-001` to `FND-RNG-008`). The final two focused
   queries rechecked the mapped coordinate destination and the RNG/panel
   routine `74bb:0077`: the former exposes only the bounded opaque validation
   gate in `EXE-GOG-COMBAT-013`, while the latter still has no recovered direct

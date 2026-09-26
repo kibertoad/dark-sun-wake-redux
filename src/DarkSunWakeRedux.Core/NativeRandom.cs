@@ -2,7 +2,7 @@ namespace DarkSunWakeRedux.Core;
 
 /// <summary>
 /// Deterministic pseudo-random stream matching the bounded native primitive
-/// documented by EXE-GOG-RNG-001. Consumers own their seed and call order.
+/// specified by RULE-RNG-001. Consumers own their seed and call order.
 /// </summary>
 public sealed class NativeRandom
 {

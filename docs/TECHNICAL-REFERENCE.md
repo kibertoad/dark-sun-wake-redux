@@ -371,18 +371,9 @@ the start flow and current exploration state reproducible.
   recovered function that co-locates static-title `BMP ` #11011 with its tag
   words. Raw cinematic speed fields, filename order, and the title asset are
   data, not assumed milliseconds or a schedule.
-- `EXE-GOG-RNG-001` establishes a 16-bit-seeded native LCG and bounded result
-  transforms. Its direct static callers are only the generic modulo,
-  inclusive-range, and repeated-roll helpers. The modulo wrapper also reaches
-  two bounded selection sites and a generic threshold selector over opaque
-  six-byte entries. Nine threshold draws use the fixed divisor 10; the two
-  selection draws use guarded local counts. The table and feature ownership
-  are unknown. Native seed ownership and rule-level call ordering are still
-  open, so new rules do not silently consume that stream.
-  `EXE-GOG-RNG-002` shows that the opaque random-selection chain and the
-  observed status-panel initializer meet in one indirect shared routine with
-  guarded four-record processing. Its caller and table/record roles remain
-  unknown, so this does not connect RNG consumption or panel updates to combat.
+- The random number generator and its reductions are `RULE-RNG-001`. Its seed
+  and the rules that draw from it are not known, so new rules do not consume
+  it yet.
 
 ## Static-analysis boundaries worth preserving
 

@@ -6,7 +6,16 @@ For each entry, the entries and glossary terms that cite or relate to it, and th
 
 | ID | Cited by |
 |---|---|
-| [BLD-GOG-EN-1.1](../builds/BLD-GOG-EN-1.1.md) | [SRC-DSUN-MUSIC-79B6927](../sources/SRC-DSUN-MUSIC-79B6927.md) (body), [SRC-GAMEFAQS-81038](../sources/SRC-GAMEFAQS-81038.md) (body) |
+| [BLD-GOG-EN-1.1](../builds/BLD-GOG-EN-1.1.md) | [FND-RNG-001](../findings/FND-RNG-001.md) (builds, locations), [FND-RNG-002](../findings/FND-RNG-002.md) (builds, locations), [FND-RNG-003](../findings/FND-RNG-003.md) (builds, locations), [FND-RNG-004](../findings/FND-RNG-004.md) (builds, locations), [FND-RNG-005](../findings/FND-RNG-005.md) (builds, locations), [FND-RNG-006](../findings/FND-RNG-006.md) (builds, locations), [FND-RNG-007](../findings/FND-RNG-007.md) (builds, locations), [FND-RNG-008](../findings/FND-RNG-008.md) (builds, locations), [RULE-RNG-001](../rules/RULE-RNG-001.md) (builds), [SRC-DSUN-MUSIC-79B6927](../sources/SRC-DSUN-MUSIC-79B6927.md) (body), [SRC-GAMEFAQS-81038](../sources/SRC-GAMEFAQS-81038.md) (body), [rng_state](../glossary/rng_state.md) (glossary) |
+| [FND-RNG-001](../findings/FND-RNG-001.md) | [FND-RNG-002](../findings/FND-RNG-002.md) (body), [FND-RNG-003](../findings/FND-RNG-003.md) (body), [FND-RNG-004](../findings/FND-RNG-004.md) (body), [FND-RNG-005](../findings/FND-RNG-005.md) (body), [FND-RNG-006](../findings/FND-RNG-006.md) (body), [FND-RNG-007](../findings/FND-RNG-007.md) (body), [RULE-RNG-001](../rules/RULE-RNG-001.md) (body, evidence), [rng_state](../glossary/rng_state.md) (glossary) |
+| [FND-RNG-002](../findings/FND-RNG-002.md) | [FND-RNG-001](../findings/FND-RNG-001.md) (body), [RULE-RNG-001](../rules/RULE-RNG-001.md) (body, evidence) |
+| [FND-RNG-003](../findings/FND-RNG-003.md) | [FND-RNG-001](../findings/FND-RNG-001.md) (body), [RULE-RNG-001](../rules/RULE-RNG-001.md) (evidence) |
+| [FND-RNG-004](../findings/FND-RNG-004.md) | [FND-RNG-001](../findings/FND-RNG-001.md) (body), [RULE-RNG-001](../rules/RULE-RNG-001.md) (evidence) |
+| [FND-RNG-005](../findings/FND-RNG-005.md) | [FND-RNG-001](../findings/FND-RNG-001.md) (body), [RULE-RNG-001](../rules/RULE-RNG-001.md) (evidence) |
+| [FND-RNG-006](../findings/FND-RNG-006.md) | [FND-RNG-003](../findings/FND-RNG-003.md) (body), [FND-RNG-007](../findings/FND-RNG-007.md) (body), [RULE-RNG-001](../rules/RULE-RNG-001.md) (evidence) |
+| [FND-RNG-007](../findings/FND-RNG-007.md) | [FND-RNG-003](../findings/FND-RNG-003.md) (body), [FND-RNG-008](../findings/FND-RNG-008.md) (body), [RULE-RNG-001](../rules/RULE-RNG-001.md) (body) |
+| [FND-RNG-008](../findings/FND-RNG-008.md) | None |
+| [RULE-RNG-001](../rules/RULE-RNG-001.md) | [chance_in_ten](../glossary/chance_in_ten.md) (glossary), [random_between](../glossary/random_between.md) (glossary), [random_mod](../glossary/random_mod.md) (glossary), [rng](../glossary/rng.md) (glossary), [roll_sum](../glossary/roll_sum.md) (glossary), [seed_random](../glossary/seed_random.md) (glossary) |
 | [SRC-DSUN-MUSIC-79B6927](../sources/SRC-DSUN-MUSIC-79B6927.md) | None |
 | [SRC-GAMEFAQS-81038](../sources/SRC-GAMEFAQS-81038.md) | None |
 | [SRC-LIBGFF-839B11D](../sources/SRC-LIBGFF-839B11D.md) | None |

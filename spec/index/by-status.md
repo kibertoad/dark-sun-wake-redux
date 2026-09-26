@@ -14,7 +14,11 @@ Entries by status.
 
 ## supported
 
-0 entries.
+1 entries.
+
+| ID | Title |
+|---|---|
+| [RULE-RNG-001](../rules/RULE-RNG-001.md) | The game's random number generator and its reductions |
 
 ## established
 
@@ -30,7 +34,18 @@ Entries by status.
 
 ## recorded
 
-0 entries.
+8 entries.
+
+| ID | Title |
+|---|---|
+| [FND-RNG-001](../findings/FND-RNG-001.md) | The random number generator is a 32-bit linear congruential generator at 1000:0822 |
+| [FND-RNG-002](../findings/FND-RNG-002.md) | The seed setter at 1000:0811 stores a 16-bit seed and clears the high word |
+| [FND-RNG-003](../findings/FND-RNG-003.md) | The modulo reducer at 2834:061C draws once, and not at all for a divisor of 0 |
+| [FND-RNG-004](../findings/FND-RNG-004.md) | The range helper at 2D40:3A03 scales one draw over an inclusive range |
+| [FND-RNG-005](../findings/FND-RNG-005.md) | The repeated-roll helper at 28C9:391D sums one scaled draw per roll |
+| [FND-RNG-006](../findings/FND-RNG-006.md) | The helper at 2834:0519 succeeds when a draw modulo 10 is at most its argument |
+| [FND-RNG-007](../findings/FND-RNG-007.md) | The routine at 2834:000C picks entries of a six-byte table at random |
+| [FND-RNG-008](../findings/FND-RNG-008.md) | The random table selection and a panel initializer meet in one overlay routine |
 
 ## reproduced
 
@@ -46,4 +61,6 @@ None.
 
 Entries whose Open questions section says more than None known.
 
-None.
+| ID | Title | Status |
+|---|---|---|
+| [RULE-RNG-001](../rules/RULE-RNG-001.md) | The game's random number generator and its reductions | supported |
