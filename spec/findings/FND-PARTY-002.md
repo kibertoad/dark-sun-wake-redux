@@ -50,7 +50,7 @@ manual's description, so the bits may mean something else, or these records were
 creation screen. Which bit stands for which discipline, if any, is not shown. Record 40, whose
 value is 7, matches the party member the captures show with the psionicist class, which fits
 all three bits for a psionicist (FND-PARTY-020). The fourth member's Use screen shows the
-caption Metabolic under PSIONIC, and record 43, which the party loader puts in
+caption Metabolic under PSIONIC (FND-MAGIC-001), and record 43, which the party loader puts in
 the fourth slot (FND-PARTY-013), holds 2, so bit 1 may be psychometabolism. The game's overlay
 186 reads and writes one `PSIN` byte per character (FND-PARTY-012), but what it does with the
 value has not been read.

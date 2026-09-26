@@ -44,4 +44,4 @@ is one byte [FND-PARTY-002].
 
 - Whether each of bits 0 to 2 stands for one of the three psionic disciplines, and which. The
   psionicist of the supplied party has 7, and the gladiator, whose Use screen names
-  psychometabolism, has 2 (FND-PARTY-002, FND-PARTY-013, Q-PARTY-004).
+  psychometabolism, has 2 (FND-PARTY-002, FND-PARTY-013, FND-MAGIC-001, Q-PARTY-004).

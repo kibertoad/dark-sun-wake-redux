@@ -15,12 +15,16 @@ Entries by status.
 
 ## sourced
 
-9 entries.
+13 entries.
 
 | ID | Title |
 |---|---|
 | [RULE-INPUT-001](../rules/RULE-INPUT-001.md) | The right mouse button steps the pointer through the Walk, Attack and Look modes |
 | [RULE-INPUT-003](../rules/RULE-INPUT-003.md) | The keys that open the character option screens and the Game Menu |
+| [RULE-MAGIC-001](../rules/RULE-MAGIC-001.md) | How many spells of each level a caster can cast before resting |
+| [RULE-MAGIC-002](../rules/RULE-MAGIC-002.md) | Which spheres of cleric spells a priest may cast |
+| [RULE-MAGIC-003](../rules/RULE-MAGIC-003.md) | Activating and maintaining a psionic power |
+| [RULE-MAGIC-004](../rules/RULE-MAGIC-004.md) | Camping restores spells and psionic strength points |
 | [RULE-PARTY-001](../rules/RULE-PARTY-001.md) | A party has one to four characters |
 | [RULE-PARTY-002](../rules/RULE-PARTY-002.md) | What a new character may be |
 | [RULE-PARTY-003](../rules/RULE-PARTY-003.md) | Which psionic disciplines and elemental sphere a new character chooses |
@@ -107,7 +111,7 @@ Entries by status.
 
 ## recorded
 
-118 entries.
+119 entries.
 
 | ID | Title |
 |---|---|
@@ -155,6 +159,7 @@ Entries by status.
 | [FND-INPUT-007](../findings/FND-INPUT-007.md) | No resident instruction reads port 60h or sets DX to 60h or 64h before port I/O |
 | [FND-INPUT-008](../findings/FND-INPUT-008.md) | No decoded function of the overlay-mapped image compares all the manual combat keys |
 | [FND-INPUT-009](../findings/FND-INPUT-009.md) | The one dispatch-shaped caller above the mapped keyboard routine requests GPLI 1 |
+| [FND-MAGIC-001](../findings/FND-MAGIC-001.md) | The Use screen names the spell class and level or the psionic discipline its icons belong to |
 | [FND-PARTY-001](../findings/FND-PARTY-001.md) | Every CHAR record holds a printable NUL-terminated name in a 16-byte slot at 0x2B |
 | [FND-PARTY-002](../findings/FND-PARTY-002.md) | Each CHAR record has a one-byte PSIN resource of the same number, holding 1, 2, 4, 5, 6 or 7 |
 | [FND-PARTY-003](../findings/FND-PARTY-003.md) | Bytes 0x23 to 0x28 of every CHAR record hold six values from 12 to 24 |
@@ -287,6 +292,10 @@ Entries whose Open questions section says more than None known.
 | [RULE-INPUT-001](../rules/RULE-INPUT-001.md) | The right mouse button steps the pointer through the Walk, Attack and Look modes | sourced |
 | [RULE-INPUT-002](../rules/RULE-INPUT-002.md) | Which image the pointer shows for each mode, and its hotspot | supported |
 | [RULE-INPUT-003](../rules/RULE-INPUT-003.md) | The keys that open the character option screens and the Game Menu | sourced |
+| [RULE-MAGIC-001](../rules/RULE-MAGIC-001.md) | How many spells of each level a caster can cast before resting | sourced |
+| [RULE-MAGIC-002](../rules/RULE-MAGIC-002.md) | Which spheres of cleric spells a priest may cast | sourced |
+| [RULE-MAGIC-003](../rules/RULE-MAGIC-003.md) | Activating and maintaining a psionic power | sourced |
+| [RULE-MAGIC-004](../rules/RULE-MAGIC-004.md) | Camping restores spells and psionic strength points | sourced |
 | [RULE-PARTY-001](../rules/RULE-PARTY-001.md) | A party has one to four characters | sourced |
 | [RULE-PARTY-002](../rules/RULE-PARTY-002.md) | What a new character may be | sourced |
 | [RULE-PARTY-003](../rules/RULE-PARTY-003.md) | Which psionic disciplines and elemental sphere a new character chooses | sourced |

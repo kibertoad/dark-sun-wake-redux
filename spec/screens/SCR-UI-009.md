@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-UI-019, SRC-MANUAL-1994]
+evidence: [FND-UI-019, FND-MAGIC-001, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [SCR-UI-002, SCR-UI-006, SCR-UI-008, SCR-UI-010]
@@ -18,6 +18,7 @@ related: [SCR-UI-002, SCR-UI-006, SCR-UI-008, SCR-UI-010]
 | Screen picture | `RESOURCE.GFF#BMP/11000` | None | (0, 9, 320, 200) | While the screen is shown | FND-UI-019 |
 | Title | `RESOURCE.GFF#BMP/20080` | None | (109, 11, 104, 23) | While the screen is shown | FND-UI-019 |
 | Name of the pointed-at spell or psionic power | Not known | The name | At the bottom of the window | While the pointer is on a spell or power | SRC-MANUAL-1994 |
+| Group captions | Not known | The spell class and spell level of the icons shown, such as MAGE and LEVEL 1, or PSIONIC and the discipline, such as Metabolic | Two boxes in the bottom bar | While the screen is shown | FND-MAGIC-001 |
 
 ## Mouse input
 
