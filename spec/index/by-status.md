@@ -6,7 +6,7 @@ Entries by status.
 
 ## unknown
 
-4 entries.
+5 entries.
 
 | ID | Title |
 |---|---|
@@ -14,6 +14,7 @@ Entries by status.
 | [FMT-ACTOR-003](../formats/FMT-ACTOR-003.md) | MONR resource |
 | [RULE-AI-002](../rules/RULE-AI-002.md) | What a computer-controlled combatant does in its turn |
 | [RULE-COMBAT-007](../rules/RULE-COMBAT-007.md) | What the difficulty setting changes in combat |
+| [RULE-QUEST-001](../rules/RULE-QUEST-001.md) | How the game's scripts advance the story from one quest step to the next |
 
 ## sourced
 
@@ -520,6 +521,7 @@ Entries whose Open questions section says more than None known.
 | [RULE-PARTY-006](../rules/RULE-PARTY-006.md) | START GAME supplies characters 40 to 43 as the party | supported |
 | [RULE-PARTY-007](../rules/RULE-PARTY-007.md) | Which classes each origin may take, and to which level | sourced |
 | [RULE-PARTY-008](../rules/RULE-PARTY-008.md) | The keys 1 to 4 choose the party leader | sourced |
+| [RULE-QUEST-001](../rules/RULE-QUEST-001.md) | How the game's scripts advance the story from one quest step to the next | unknown |
 | [RULE-REGION-001](../rules/RULE-REGION-001.md) | Drawing a region's terrain tiles | supported |
 | [RULE-RNG-001](../rules/RULE-RNG-001.md) | The game's random number generator and its reductions | supported |
 | [RULE-SAVE-001](../rules/RULE-SAVE-001.md) | The keys that save, load and quit | sourced |

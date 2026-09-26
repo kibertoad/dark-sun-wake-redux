@@ -481,4 +481,6 @@ Entries by area.
 
 ## QUEST
 
-None.
+| ID | Title | Status |
+|---|---|---|
+| [RULE-QUEST-001](../rules/RULE-QUEST-001.md) | How the game's scripts advance the story from one quest step to the next | unknown |
