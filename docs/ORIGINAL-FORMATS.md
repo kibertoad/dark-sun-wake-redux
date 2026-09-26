@@ -155,7 +155,7 @@ opening role is established, so later-frame semantics remain unknown.
 The reader caps the region name at 64 bytes and the entity table at 16,384
 records, requires the exact map dimensions and 16x16 tile frames, and rejects
 missing local tiles or external objects with region/resource context. Required
-pack revision 34 serializes each manifest-selected region independently as a
+pack revision 35 serializes each manifest-selected region independently as a
 source-derived `regions/structural/rgnxxx.dsrg` DSRG v1 catalog, reads it back
 before promotion, and assigns no selection, travel, camera, entity, or gameplay
 meaning to that catalog.
@@ -257,8 +257,8 @@ record begins at offset 776. Each strictly increasing record contains a 16-bit
 width and exactly `width * height` palette-index bytes. Zero-width glyphs are
 valid and contain no pixels. The final record must end exactly at payload end.
 In the supported owned build, all 256 character-map entries are identity values
-(`00` through `FF`) with SHA-256
-`40aff2e9d2d8922e47afd4648e6967497158785fbd1da870e7110266bf944880`.
+(`00` through `FF`) with XXH3-128
+`f1f8a93f50849ac39408a4433b952d71`.
 Consequently, direct byte indexing and lookup through this particular map select
 the same glyph. The glyph pixels use three distinct palette indices with a
 range of 0 through 254; their exact values and visual roles are not inferred by
@@ -532,7 +532,7 @@ data. No original dialogue text or executable interpretation is added to Git.
 DSOP is an original deterministic local-pack envelope used by the full-corpus
 extraction gate. Version 1 consists of ASCII `DSOP`, a 16-bit version, a 32-bit
 payload length, and byte-identical source bytes. Resource identity, source file,
-SHA-256, size, and conversion description belong to the pack manifest, so DSOP
+XXH3-128, size, and conversion description belong to the pack manifest, so DSOP
 does not infer a tag, format, or runtime role. The reader accepts at most 128
 MiB and rejects invalid magic/version, oversized declarations, truncation, and
 trailing data. It preserves content for a licensed local pack only; it does not

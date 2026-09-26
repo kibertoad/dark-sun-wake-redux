@@ -36,12 +36,12 @@ C:\GOG Games\Dark Sun 2\DSUN.EXE
 - Edition evidence: GOG product `1432903719`, installed build
   `52095422060333615`, English.
 - Length: 634,416 bytes.
-- SHA-256: `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`.
+- XXH3-128: `e296af55ba2ecde7e77f555c90f33d0b`.
 - Evidence ID: `GOG-1432903719`.
 
 The documented path/fingerprint pair is the baseline for all focused queries in
 this research environment; do not rehash it before every query. Revalidate the
-size and SHA-256 only if the path, file metadata, source package, or documented
+size and XXH3-128 only if the path, file metadata, source package, or documented
 edition changes, a fresh environment lacks the baseline, or there is a concrete
 replacement concern. Findings from a different executable belong to a separate
 edition record and address map.
@@ -146,8 +146,8 @@ proof by itself. Never redirect broad output into the repository.
 
 - **Question:** Does the varying 16-bit `APFM` field at payload offset 88
   describe appearance, a resource, or dispatch behavior?
-- **Target:** GOG-1432903719 `DSUN.EXE`, 634,416 bytes, SHA-256
-  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+- **Target:** GOG-1432903719 `DSUN.EXE`, 634,416 bytes, XXH3-128
+  `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Bounded finding:** Function `3d72:0515` compares the input tag with the
   little-endian `APFM` scalar at `3d72:0529`. At `3d72:054d` it bit-tests the
@@ -181,8 +181,8 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Does the nonzero resource number at WIND payload offset 58
   (`0x3a`) tell the generic window engine to tile or stretch that image as the
   window background?
-- **Target:** GOG-1432903719 `DSUN.EXE`, 634,416 bytes, SHA-256
-  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+- **Target:** GOG-1432903719 `DSUN.EXE`, 634,416 bytes, XXH3-128
+  `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Bounded finding:** the resource resolver's exact `WIND` branch at
   `39d1:04bc` searches a dedicated linked registry by identity at structure
@@ -212,8 +212,8 @@ proof by itself. Never redirect broad output into the repository.
 
 - **Question:** Does the single full-canvas control under `WIND` #19502 expose
   the character-slot hit regions or semantic actions used by the party screen?
-- **Target:** GOG-1432903719 `DSUN.EXE`, 634,416 bytes, SHA-256
-  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+- **Target:** GOG-1432903719 `DSUN.EXE`, 634,416 bytes, XXH3-128
+  `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Bounded finding:** owned data inspection establishes that `WIND` #19502
   contains only image-less, event-mask-zero `BUTN` #2099 at (0,0), sized
@@ -245,7 +245,7 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Which finite difficulty labels and About payload belong to the
   supported Preferences screen?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Bounded finding:** the data block at `5000:a4b9` contains four adjacent far
   pointers to the null-terminated difficulty strings at `5000:a4f5` through
@@ -293,7 +293,7 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Do the dialogue's image-less edit-box controls yield a bounded
   native rendering path that establishes missing corner or bevel treatment?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportBytePattern` located `EBOX`, `WIND`, `BUTN`, and `APFM`
   tag uses. Bounded contexts classified the three direct EBOX tag-request
@@ -333,7 +333,7 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Does the sole `PREF` resource-family tag yield a direct
   executable path that can define Preferences settings behavior?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportBytePattern` searched all loaded executable blocks for the
   exact four-byte ASCII encoding `PREF`. Its single result at `5000:8c85` in
@@ -357,8 +357,8 @@ proof by itself. Never redirect broad output into the repository.
 
 - **Question:** Does the supported executable contain either disc character
   block #40-#43 or #50-#53 as an adjacent default-party lookup table?
-- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with SHA-256
-  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with XXH3-128
+  `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.
 - **Bounded finding:** exact four-byte and eight-byte little-endian searches
   found no #40-#43 sequence and no 16-bit representation of either block. Two
@@ -381,7 +381,7 @@ proof by itself. Never redirect broad output into the repository.
   and `PLNR` indexed-image encodings, and can it connect object-frame lookup to
   static presentation without assigning actor behavior?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. A full analyzer
   pass completed before this focused query.
 - **Method:** Starting at the three direct callers established by
@@ -427,8 +427,8 @@ proof by itself. Never redirect broad output into the repository.
 
 - **Question:** Which `GMAP` bit is consulted when the supported executable
   decides whether an in-bounds map cell blocks movement?
-- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with SHA-256
-  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+- **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with XXH3-128
+  `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Bounded finding:** region loader `362c:01fa` requests tag scalar
   `0x50414d47` (`GMAP`) at `362c:0322`. The dedicated predicate at
@@ -501,7 +501,7 @@ proof by itself. Never redirect broad output into the repository.
   literal that identifies a direct native loader or consumer for the extracted
   region entity records?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportBytePattern` searched every loaded program-memory block
   for the ASCII bytes `45 54 41 42` (`ETAB`), with its normal cap of 100
@@ -526,7 +526,7 @@ proof by itself. Never redirect broad output into the repository.
   between a region identity, its `MAP `/`GMAP` planes, and the local `TILE`
   resources used by the static compositor?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportBytePattern` located the `MAP ` and `TILE` tag literals.
   `ReportInstructionContext` bounded each request, and `ReportReferences`
@@ -563,7 +563,7 @@ proof by itself. Never redirect broad output into the repository.
   in the supported executable as a direct reference that can identify its
   encounter or combat handler?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportBytePattern` searched all loaded blocks for OJFF #9258's
   explicit 16-bit little-endian encoding (`2a 24`). `ReportReferences` then
@@ -595,7 +595,7 @@ proof by itself. Never redirect broad output into the repository.
   button IDs occur as executable scalar constants that identify the code which
   opens or renders the panel?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** After the panel had been independently measured in
   `DATA-GOG-INTERACTION-001`, `ReportScalarConstants` scanned every decoded
@@ -626,7 +626,7 @@ proof by itself. Never redirect broad output into the repository.
   unterminated ASCII byte sequence, giving the dynamic text field an
   executable-side source lead?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** after the label was independently measured in
   `DATA-GOG-INTERACTION-001`, `ReportBytePattern` searched every loaded memory
@@ -708,8 +708,8 @@ proof by itself. Never redirect broad output into the repository.
   structural map to overlay-header metadata without assigning a gameplay
   meaning or importing any tail bytes into the repository?
 - **Target/method:** The documented stable GOG-1432903719 `DSUN.EXE` target
-  (634,416 bytes, SHA-256
-  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`) was
+  (634,416 bytes, XXH3-128
+  `e296af55ba2ecde7e77f555c90f33d0b`) was
   profiled by the repository-owned, read-only `fbov-profile` Inspector query.
   The query reads the MZ header length, the existing 229 eight-byte FBOV
   descriptors, and only the fixed 16-byte prefix at an MZ-relative segment
@@ -827,7 +827,7 @@ proof by itself. Never redirect broad output into the repository.
   resource identities occur as immediate executable operands that identify their
   application-specific handlers?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportScalarConstants` scanned every decoded instruction operand
   for the exact decimal identities `19503` (`WIND`), `18302` (EXIT), `19304`
@@ -854,7 +854,7 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Does the supported executable contain a BIOS-tick timing path
   that can establish the native cadence for exploration movement or animation?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportBytePattern` completed a whole-loaded-block search for
   the two-byte `INT 1Ah` encoding (`cd 1a`), yielding three matches without
@@ -889,7 +889,7 @@ proof by itself. Never redirect broad output into the repository.
   executable select the BIOS wait service that could provide a native delay
   boundary for movement, animation, or media playback?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportBytePattern` searched all loaded blocks for the exact
   two-byte `INT 15h` encoding (`cd 15`) and found four matches. Bounded
@@ -918,7 +918,7 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Does direct polling of the VGA input-status port establish a
   native presentation-synchronization or gameplay-timing rule?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportScalarConstants` searched decoded instruction operands
   for `0x3da`, then `ReportInstructionContext` inspected both candidates.
@@ -954,7 +954,7 @@ proof by itself. Never redirect broad output into the repository.
   PIT control/data ports establish a movement, animation, or media cadence that
   the restoration must reproduce?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. The full analyzer
   pass completed before these focused queries.
 - **Method:** `ReportBytePattern` searched every loaded block for the four
@@ -1009,7 +1009,7 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Do literal BIOS video calls establish a screen-specific native
   display mode, palette, renderer, or layout boundary for the restoration?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportBytePattern` searched all loaded blocks for the exact
   `INT 10h` encoding (`cd 10`) and found eleven matches. Bounded instruction
@@ -1047,7 +1047,7 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Do literal mouse-service calls establish a native coordinate
   transform, hit-testing policy, or screen-specific control contract?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportBytePattern` searched all loaded blocks for the exact
   `INT 33h` encoding (`cd 33`). Bounded instruction contexts inspected the
@@ -1088,7 +1088,7 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Does the supported executable's literal BIOS keyboard path
   establish a player key, modifier, repeat, or control-routing contract?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportBytePattern` searched all loaded blocks for the exact
   `INT 16h` encoding (`cd 16`), then `ReportInstructionContext` inspected the
@@ -1123,8 +1123,8 @@ proof by itself. Never redirect broad output into the repository.
   keyboard-controller data port, or set `DX` to conventional keyboard-controller
   ports before `IN`/`OUT`, providing a focused combat-hotkey dispatch lead?
 - **Target:** the documented stable GOG-1432903719 `DSUN.EXE` target,
-  634,416 bytes, SHA-256
-  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  634,416 bytes, XXH3-128
+  `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3 and JDK 21.0.12.1. The documented path, package, size, and
   baseline metadata remain unchanged, so this focused query reuses the
   approved target without rehashing.
@@ -1202,7 +1202,7 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Does the supported executable contain the literal FLI header
   magic needed to identify an in-process cinematic decoder or its timing path?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportScalarConstants` searched decoded instructions for the
   unsigned scalar `0xAF11`; `ReportBytePattern` separately searched every
@@ -1227,7 +1227,7 @@ proof by itself. Never redirect broad output into the repository.
   executable filename table that establishes their playback order or a native
   cinematic-loading call path?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. A full analyzer
   pass completed before this focused query.
 - **Method:** `ReportBytePattern` searched all loaded blocks for the exact
@@ -1263,7 +1263,7 @@ proof by itself. Never redirect broad output into the repository.
   primitive whose state transition and output range can be reproduced without
   assigning it to an unevidenced gameplay rule?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportFunctionScalarIntersection` searched for the two 16-bit
   halves (`0x015a`, `0x4e35`) of a common 32-bit LCG multiplier and returned
@@ -1378,7 +1378,7 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Does the supported executable contain an obvious single function
   or compact literal table that directly dispatches all six manual combat keys?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Bounded finding:** the ordered six-byte PC-scancode pattern for Guard,
   next/previous target, end turn, Wait, and Space has no match. The reusable
@@ -1401,7 +1401,7 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Does the manual's -10 death threshold identify a focused
   executable routine suitable for resolving original incapacity semantics?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Bounded finding:** `ReportScalarConstants` queried the unsigned 16-bit
   representation of -10 (`0xfff6`) in instruction operands. It reached its
@@ -1421,7 +1421,7 @@ proof by itself. Never redirect broad output into the repository.
   text occurrences identify a code reference that can be used as a focused
   lead for combat input or action resolution?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportBytePattern` searched all loaded blocks for the explicit
   ASCII byte encodings of `COMBAT` and `GUARD`, reporting no more than 100
@@ -1461,7 +1461,7 @@ proof by itself. Never redirect broad output into the repository.
   captures have a direct executable resource request, and does that request
   identify combat behavior?
 - **Target:** GOG-1432903719 DSUN.EXE, reverified at 634,416 bytes with
-  SHA-256 ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c;
+  XXH3-128 e296af55ba2ecde7e77f555c90f33d0b;
   Ghidra 12.1.3, JDK 21.0.12.1, and the previously completed default
   auto-analysis.
 - **Method:** After the source-panel template match identified BMP #19003,
@@ -1497,8 +1497,8 @@ proof by itself. Never redirect broad output into the repository.
   approved executable, with a direct reference that can identify its renderer
   or update path?
 - **Target:** the already documented stable GOG-1432903719 `DSUN.EXE` target,
-  634,416 bytes, SHA-256
-  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  634,416 bytes, XXH3-128
+  `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. Its path, package,
   size, and baseline metadata remain unchanged, so this focused query reuses
   the approved target without rehashing.
@@ -1528,8 +1528,8 @@ proof by itself. Never redirect broad output into the repository.
   owner or pass a recoverable encounter, actor, command, damage, turn, or
   timing identity?
 - **Target:** the documented stable GOG-1432903719 `DSUN.EXE` target,
-  634,416 bytes, SHA-256
-  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  634,416 bytes, XXH3-128
+  `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. The approved path,
   package, size, and baseline metadata remain unchanged, so this focused query
   reuses the target without rehashing.
@@ -1567,8 +1567,8 @@ proof by itself. Never redirect broad output into the repository.
   320x200 interior guard lead directly to a combat-specific click, target, or
   attack handler?
 - **Target:** the documented stable GOG-1432903719 `DSUN.EXE` target,
-  634,416 bytes, SHA-256
-  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  634,416 bytes, XXH3-128
+  `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, JDK 21.0.12.1. The documented path, package, size, and
   baseline metadata remain unchanged, so this focused query reuses the
   approved target without rehashing.
@@ -2064,7 +2064,7 @@ proof by itself. Never redirect broad output into the repository.
   executable tag consumer that could constrain its role in monster, encounter,
   or combat processing?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportBytePattern` searched every loaded memory block for the
   explicit ASCII encoding `4d 4f 4e 52`, capped by the reusable script's
@@ -2091,7 +2091,7 @@ proof by itself. Never redirect broad output into the repository.
   of `ITEMS.BIN`, or a null-terminated `ITEMS` stem that could provide a
   direct starting point for a constructed item-data filename or layout analysis?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportBytePattern` searched every loaded memory block for both
   exact ASCII bytes `49 54 45 4d 53 2e 42 49 4e`, the same explicit
@@ -2119,7 +2119,7 @@ proof by itself. Never redirect broad output into the repository.
   the exact `ITEMS.BIN` filename or a null-terminated `ITEMS` stem that could
   constrain a character-creation item-data loader?
 - **Target:** GOG-1432903719 `CHARTRAN.EXE`, reverified at 24,761 bytes with
-  SHA-256 `e99572016901c67135b9d1b14b6db3936078749779b89e5c62f7044fe722cf1d`;
+  XXH3-128 `f7466f2ac604dc7c353358bc80bd0131`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportBytePattern` searched every loaded memory block first for
   exact ASCII bytes `49 54 45 4d 53 2e 42 49 4e` and then for the explicit
@@ -2143,7 +2143,7 @@ proof by itself. Never redirect broad output into the repository.
   exact `ITEMS.BIN` filename or a null-terminated `ITEMS` stem that could
   identify an item-data loader?
 - **Target:** GOG-1432903719 `SVIEW.EXE`, reverified at 89,061 bytes with
-  SHA-256 `19ee90abdb4bdbd618bd47f8bf1f988d86e16ee3fbed81bf56a6a7993968dcef`;
+  XXH3-128 `2b5581f61c843f6e8f27c8487dd852a9`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. A full analyzer
   pass completed before the focused queries.
 - **Method:** `ReportBytePattern` searched every loaded memory block first for
@@ -2167,7 +2167,7 @@ proof by itself. Never redirect broad output into the repository.
   code reference that can constrain the archive loader or START GAME's supplied
   party selection?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** a full Ghidra auto-analysis pass completed first (including ASCII
   strings, data/reference analysis, disassembly, function discovery, and x86
@@ -2182,8 +2182,8 @@ proof by itself. Never redirect broad output into the repository.
   matching intersection query for the disc candidate IDs #40, #41, #42, and
   #43 likewise found no function containing all four. A
   separate raw byte-pattern search of fingerprinted `CHARTRAN.EXE` (24,761
-  bytes, SHA-256
-  `e99572016901c67135b9d1b14b6db3936078749779b89e5c62f7044fe722cf1d`) found
+  bytes, XXH3-128
+  `f7466f2ac604dc7c353358bc80bd0131`) found
   no `CHARSAVE.GFF` token.
 - **Bounded finding:** the raw filename bytes occur twice in `CODE_208`, at
   `5000:9188` and `5000:9197`. The first is a null-terminated filename; the
@@ -2213,7 +2213,7 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Do raw `CHAR` or `PSIN` resource-tag literals expose a direct
   executable path for the character archive or supplied-party selection?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportBytePattern` searched every loaded block for the exact
   four-byte ASCII encodings `CHAR` and `PSIN`. The reusable report also emits
@@ -2237,7 +2237,7 @@ proof by itself. Never redirect broad output into the repository.
   direct static character-archive or `CHAR` tag path that could constrain the
   supplied START GAME party?
 - **Target:** GOG-1432903719 `SVIEW.EXE`, reverified at 89,061 bytes with
-  SHA-256 `19ee90abdb4bdbd618bd47f8bf1f988d86e16ee3fbed81bf56a6a7993968dcef`;
+  XXH3-128 `2b5581f61c843f6e8f27c8487dd852a9`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. A full analyzer
   pass completed before the focused queries.
 - **Method:** `ReportBytePattern` searched every loaded block for the exact
@@ -2264,7 +2264,7 @@ proof by itself. Never redirect broad output into the repository.
   a direct `CHAR` or `PSIN` resource-tag path that could constrain character
   archive loading or the supplied START GAME party?
 - **Target:** GOG-1432903719 `CHARTRAN.EXE`, reverified at 24,761 bytes with
-  SHA-256 `e99572016901c67135b9d1b14b6db3936078749779b89e5c62f7044fe722cf1d`;
+  XXH3-128 `f7466f2ac604dc7c353358bc80bd0131`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. A full analyzer
   pass completed before the focused queries.
 - **Method:** `ReportBytePattern` searched every loaded program-memory block
@@ -2292,7 +2292,7 @@ proof by itself. Never redirect broad output into the repository.
   NUL-terminated names visible in the owner-confirmed supplied-party captures,
   providing a direct static selector lead?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. A fresh disposable
   project completed Ghidra's default auto-analysis before the focused queries.
 - **Method:** `ReportBytePattern` searched every loaded memory block,
@@ -2318,8 +2318,8 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Do the class labels visible in the confirmed character views
   identify a direct native table or code reference that can map a `CHAR`
   record's unknown fields to an on-screen role?
-- **Target:** GOG-1432903719 `DSUN.EXE`, 634,416 bytes, SHA-256
-  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+- **Target:** GOG-1432903719 `DSUN.EXE`, 634,416 bytes, XXH3-128
+  `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3 with the previously completed default auto-analysis.
 - **Method:** `ReportBytePattern` located the exact NUL-terminated
   PRESERVER, CLERIC, FIGHTER, and GLADIATOR label encodings from the four
@@ -2355,8 +2355,8 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Do the long origin and alignment labels visible in the
   owner-confirmed character views bound the native character-view vocabulary,
   and do they directly identify a record-field or rendering path?
-- **Target:** GOG-1432903719 `DSUN.EXE`, 634,416 bytes, SHA-256
-  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+- **Target:** GOG-1432903719 `DSUN.EXE`, 634,416 bytes, XXH3-128
+  `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3 with the previously completed default auto-analysis.
 - **Method:** `ReportBytePattern` located exact NUL-terminated THRI-KREEN,
   HALF-GIANT, CHAOTIC NEUTRAL, and LAWFUL GOOD encodings. Bounded data windows
@@ -2405,7 +2405,7 @@ proof by itself. Never redirect broad output into the repository.
   identity or nonzero event mask occur as direct native control-handler
   operands?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, JDK 21.0.12.1, and the previously completed default
   auto-analysis.
 - **Method:** `ReportScalarConstants` scanned every decoded instruction
@@ -2436,7 +2436,7 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Does the exact native `VIEW CHARACTER` title text identify a
   direct screen-construction or field-rendering path?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, JDK 21.0.12.1, and the previously completed default
   auto-analysis.
 - **Method:** `ReportBytePattern` searched all loaded memory for the exact
@@ -2475,7 +2475,7 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Does the supported executable expose a direct static loader
   path for `GPLDATA.GFF` that can constrain GPLI or dialogue ownership?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. The full analyzer
   pass completed before these focused queries.
 - **Method:** `ReportBytePattern` searched all mapped blocks for the eleven
@@ -2504,7 +2504,7 @@ proof by itself. Never redirect broad output into the repository.
   so that the 329 fixed-width records in `GPLDATA.GFF` can safely be assigned a
   native lookup or script role?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. The full analyzer
   pass completed before this focused query.
 - **Method:** `ReportBytePattern` searched all mapped blocks for bytes
@@ -2534,7 +2534,7 @@ proof by itself. Never redirect broad output into the repository.
   identifying a direct hardcoded request path that could corroborate a GPLI
   lane?
 - **Target:** GOG-1432903719 DSUN.EXE at the documented stable approved path,
-  634,416 bytes and SHA-256 ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c;
+  634,416 bytes and XXH3-128 e296af55ba2ecde7e77f555c90f33d0b;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1, and the existing
   completed default analysis.
 - **Method:** ReportFunctionScalarIntersection scanned decoded instruction
@@ -2560,7 +2560,7 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Do the coherent callers of the shared `172c:000c` processing
   entry establish a bounded record envelope or a feature-specific rule?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. The full analyzer
   pass completed before these focused queries.
 - **Method:** `ReportReferences` enumerated the entry's eight direct far
@@ -2678,7 +2678,7 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Do the other direct callers of the shared GPL request entry
   identify the source or ownership of the linked 13-byte selector records?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportReferences` enumerated the eight direct calls to
   `172c:000c`; three occur in the `2d40` module. `ReportInstructionContext`
@@ -2718,7 +2718,7 @@ proof by itself. Never redirect broad output into the repository.
   when loading script resources, and what bounded ownership/caching behavior
   can be established without assigning instruction semantics?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. The full analyzer
   pass completed before this focused query.
 - **Method:** `ReportBytePattern` found the explicit four-byte `GPL ` and
@@ -2811,7 +2811,7 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Does the opaque `SCMD` family provide the source table or a
   direct execution path for the linked 13-byte selectors?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportBytePattern` located both in-image `SCMD` tag
   assignments. A bounded decompilation of their shared function
@@ -2844,7 +2844,7 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Does `RDFF` materialize the linked 13-byte selector records or
   establish their gameplay owner?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportBytePattern` found two coherent `RDFF` tag assignments
   and one occurrence in a non-coherent decoded stream. Bounded decompilations
@@ -2876,8 +2876,8 @@ proof by itself. Never redirect broad output into the repository.
   observed label position at offset 43 or the next 33-byte continuation at
   offset 76, thereby establishing an `RDFF` payload field or record stride?
 - **Target:** the already documented stable GOG-1432903719 `DSUN.EXE` target,
-  634,416 bytes, SHA-256
-  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  634,416 bytes, XXH3-128
+  `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. Its documented
   path, size, package, and baseline metadata remain unchanged, so this focused
   query reuses that target without a redundant rehash.
@@ -2950,7 +2950,7 @@ proof by itself. Never redirect broad output into the repository.
   object-frame records to a runtime actor, animation, collision, or interaction
   role?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. A full analyzer
   pass completed before this focused query.
 - **Method:** `ReportBytePattern` searched every loaded block for the explicit
@@ -3017,7 +3017,7 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Do the small opaque `GREQ`, `CACT`, `PLYL`, or `CSEQ` GFF
   families supply a direct static source lead for selectors or gameplay rules?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportBytePattern` searched all loaded executable blocks for
   the exact four-byte ASCII encodings of `GREQ`, `CACT`, `PLYL`, and `CSEQ`.
@@ -3042,7 +3042,7 @@ proof by itself. Never redirect broad output into the repository.
   from either examined sound-configuration pathname (`SOUND.CFG` or
   `SOUND.INI`) to a Preferences setting or configuration-loading path?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** after the normal analyzer pass, `ReportBytePattern` searched all
   loaded blocks for each nine-byte ASCII sequence `SOUND.CFG` and `SOUND.INI`
@@ -3069,7 +3069,7 @@ proof by itself. Never redirect broad output into the repository.
   VOC decoder boundary by embedding the fixed `Creative Voice File` header
   signature present in every owned voice/sound-effect file?
 - **Target:** GOG-1432903719 `SOUND_DS.EXE`, reverified at 204,593 bytes with
-  SHA-256 `50e10670f18e26f0e22e94a73d7469ed7d39afb2b2c2bf8139dbb3cb927110c6`;
+  XXH3-128 `236c2dc23c071eca421eb5b427caee57`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. A full analyzer
   pass completed before this focused query.
 - **Method:** `ReportBytePattern` searched every loaded program-memory block
@@ -3098,7 +3098,7 @@ proof by itself. Never redirect broad output into the repository.
   `INT 15h` instruction that could select the BIOS wait service and provide a
   direct audio-delay or playback-clock lead?
 - **Target:** GOG-1432903719 `SOUND_DS.EXE`, reverified at 204,593 bytes with
-  SHA-256 `50e10670f18e26f0e22e94a73d7469ed7d39afb2b2c2bf8139dbb3cb927110c6`;
+  XXH3-128 `236c2dc23c071eca421eb5b427caee57`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportBytePattern` searched every loaded program-memory block
   for the exact two-byte `INT 15h` encoding `cd 15`. The query intentionally
@@ -3124,7 +3124,7 @@ proof by itself. Never redirect broad output into the repository.
   `.VOC` extension that could expose a bounded filename-based voice or
   sound-effect loader path?
 - **Target:** GOG-1432903719 `SOUND_DS.EXE`, reverified at 204,593 bytes with
-  SHA-256 `50e10670f18e26f0e22e94a73d7469ed7d39afb2b2c2bf8139dbb3cb927110c6`;
+  XXH3-128 `236c2dc23c071eca421eb5b427caee57`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. A full analyzer
   pass completed before this focused query.
 - **Method:** `ReportBytePattern` searched every loaded program-memory block
@@ -3151,7 +3151,7 @@ proof by itself. Never redirect broad output into the repository.
   bounded `SOUND.CFG` file have a direct loaded-image suffix route in the
   separately shipped sound helper that could constrain driver selection?
 - **Target:** GOG-1432903719 `SOUND_DS.EXE`, reverified at 204,593 bytes with
-  SHA-256 `50e10670f18e26f0e22e94a73d7469ed7d39afb2b2c2bf8139dbb3cb927110c6`;
+  XXH3-128 `236c2dc23c071eca421eb5b427caee57`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. The full analyzer
   pass completed before both focused queries.
 - **Method:** `ReportBytePattern` searched every loaded program-memory block
@@ -3183,8 +3183,8 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Does the physical `SOUND_DS.EXE` file, including the MZ overlay
   omitted from Ghidra's loaded image, contain the complete `Creative Voice File`
   signature that could identify a whole-header VOC validation path?
-- **Target:** GOG-1432903719 `SOUND_DS.EXE`, 204,593 bytes, SHA-256
-  `50e10670f18e26f0e22e94a73d7469ed7d39afb2b2c2bf8139dbb3cb927110c6`.
+- **Target:** GOG-1432903719 `SOUND_DS.EXE`, 204,593 bytes, XXH3-128
+  `236c2dc23c071eca421eb5b427caee57`.
   The documented MZ overlay is included in this physical-file query.
 - **Method:** a bounded PowerShell 5.1.26100.9444 scan read the exact
   204,593-byte physical file and compared every possible start offset with the
@@ -3211,8 +3211,8 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Does the loaded sound helper expose direct port-I/O sequences
   that identify a decoder, device setup, or playback clock for the owned VOC
   files?
-- **Target:** GOG-1432903719 `SOUND_DS.EXE`, 204,593 bytes, SHA-256
-  `50e10670f18e26f0e22e94a73d7469ed7d39afb2b2c2bf8139dbb3cb927110c6`;
+- **Target:** GOG-1432903719 `SOUND_DS.EXE`, 204,593 bytes, XXH3-128
+  `236c2dc23c071eca421eb5b427caee57`;
   Ghidra 12.1.3, JDK 21.0.12.1, 16-bit real-mode MZ loader, after the default
   analyzer pass.
 - **Method:** `ReportImmediatePortIo` tested five explicit 16-bit interface
@@ -3251,8 +3251,8 @@ proof by itself. Never redirect broad output into the repository.
   shipped sound helper, embed the complete standard `Creative Voice File`
   header signature that could identify a whole-header VOC decoder or validator?
 - **Target:** the documented stable GOG-1432903719 `DSUN.EXE` target,
-  634,416 bytes, SHA-256
-  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`.
+  634,416 bytes, XXH3-128
+  `e296af55ba2ecde7e77f555c90f33d0b`.
 - **Method:** a bounded read-only PowerShell scan read the exact physical file,
   including any bytes outside Ghidra's loaded image, and compared every valid
   start offset with the explicit 19-byte ASCII pattern `Creative Voice File`.
@@ -3279,8 +3279,8 @@ proof by itself. Never redirect broad output into the repository.
   have a direct reference or instruction context that identifies a native
   voice/sound-effect filename loader?
 - **Target:** the documented stable GOG-1432903719 `DSUN.EXE` target,
-  634,416 bytes, SHA-256
-  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  634,416 bytes, XXH3-128
+  `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, JDK 21.0.12.1, 16-bit real-mode MZ loader, after its default
   analyzer pass.
 - **Method:** a complete physical-file scan first found five exact four-byte
@@ -3310,8 +3310,8 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Does the complete main executable directly name the shipped
   `SOUND_DS.EXE` helper, providing a bounded launcher or audio-ownership lead?
 - **Target:** the documented stable GOG-1432903719 `DSUN.EXE` target,
-  634,416 bytes, SHA-256
-  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`.
+  634,416 bytes, XXH3-128
+  `e296af55ba2ecde7e77f555c90f33d0b`.
 - **Method:** a bounded read-only PowerShell scan compared every valid offset
   in the complete physical file, including any bytes outside the loaded MZ
   image, with the exact twelve-byte ASCII `SOUND_DS.EXE` pattern. It reported
@@ -3336,8 +3336,8 @@ proof by itself. Never redirect broad output into the repository.
   call with a nearby literal `AH=4Bh` setup for the EXEC service, which could
   provide a direct helper-launch path even without a literal helper filename?
 - **Target:** the documented stable GOG-1432903719 `DSUN.EXE` target,
-  634,416 bytes, SHA-256
-  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  634,416 bytes, XXH3-128
+  `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, JDK 21.0.12.1, 16-bit real-mode MZ loader, after its default
   analyzer pass.
 - **Method:** `ReportDosInt21Services` scanned every decoded `INT 21h`
@@ -3363,7 +3363,7 @@ proof by itself. Never redirect broad output into the repository.
   that directly co-locates the extracted static-title resource identity with
   the two correctly ordered little-endian words of its `BMP ` source tag?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** after the normal analyzer pass, the repository-owned
   `ReportFunctionScalarIntersection` script scanned every recovered function's
@@ -3396,7 +3396,7 @@ proof by itself. Never redirect broad output into the repository.
   resource identity with the two correctly ordered little-endian words of its
   `FONT` source tag?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** after the normal analyzer pass, the repository-owned
   `ReportFunctionScalarIntersection` script scanned every recovered function's
@@ -3430,7 +3430,7 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** What direct native resource boundaries use the source `BMP `
   tag, and do they connect the verified static-title image to a title sequence?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportBytePattern` searched every loaded block for the exact
   four-byte ASCII `BMP ` encoding. `ReportInstructionContext` bounded the
@@ -3477,7 +3477,7 @@ proof by itself. Never redirect broad output into the repository.
   resource-tag assignment or reference that can identify a native text loader,
   font choice, or screen presentation path?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportBytePattern` searched every loaded program-memory block
   for the explicit four-byte ASCII encoding `TEXT` (`54 45 58 54`). It found
@@ -3507,7 +3507,7 @@ proof by itself. Never redirect broad output into the repository.
   tag path for the separately decoded `PORT` image family, including the
   observed first-Tyr dialogue portrait?
 - **Target:** GOG-1432903719 `DSUN.EXE`, reverified at 634,416 bytes with
-  SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** after fingerprint verification, `ReportBytePattern` searched all
   loaded program-memory blocks for the exact four-byte ASCII encoding `PORT`
@@ -3532,8 +3532,8 @@ proof by itself. Never redirect broad output into the repository.
   executable dispatch path that can establish their native activation or
   transition behavior?
 - **Target:** the documented stable GOG-1432903719 `DSUN.EXE` target,
-  634,416 bytes, SHA-256
-  `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`;
+  634,416 bytes, XXH3-128
+  `e296af55ba2ecde7e77f555c90f33d0b`;
   Ghidra 12.1.3, JDK 21.0.12.1, 16-bit real-mode MZ loader. A disposable
   project completed Ghidra's default analysis before the focused scan.
 - **Method:** `ReportScalarConstants` scanned every decoded instruction operand
@@ -3562,7 +3562,7 @@ For each useful finding, add a concise entry here or in the relevant
 `docs/RULES-AND-EVIDENCE.md` / `docs/ORIGINAL-FORMATS.md` section with:
 
 - finding ID and the exact question asked;
-- executable edition, length, and SHA-256;
+- executable edition, length, and XXH3-128;
 - Ghidra and JDK versions plus load settings;
 - virtual/file address or bounded address range and call relationship;
 - observed constants, comparisons, reads/writes, and operation order described

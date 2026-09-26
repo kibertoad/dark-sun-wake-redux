@@ -217,7 +217,7 @@ dotnet run --project src/<Project>.Game -- --smoke-test
 ## Static executable analysis
 
 Treat static analysis as evidence, not a search-engine oracle. Establish and
-document the approved executable's exact path, size, and SHA-256 once, then
+document the approved executable's exact path, size, and XXH3-128 once, then
 reuse that stable named target for focused queries without rehashing it each
 time. Revalidate only when the path, size, last-write metadata, source package,
 or documented edition changes, when a fresh analysis environment lacks the

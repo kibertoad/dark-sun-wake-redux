@@ -172,8 +172,8 @@
   native MAP bytes are supplied as TILE identities. `EXE-GOG-REGION-001`
   separately establishes geometry bit `0x40` as the movement-blocking bit.
   Across the owned set, 3,043 tiles decode and 13,559 entity references resolve.
-  `RGN032.GFF` (64,641 bytes, SHA-256
-  `6224aefe947062141f2102bfa1098d9e7fa0e1f6eab8d385eaf2a7d2a434d04e`)
+  `RGN032.GFF` (64,641 bytes, XXH3-128
+  `a4b22f8b69bd2a541d67ac4100fea872`)
   identifies resource #50 as `Tyr`.
 - **Confidence:** verified for sizes, identities, decoding, and reference
   integrity in GOG-1432903719; medium for coordinate/vertical-field names from
@@ -185,7 +185,7 @@
   `PackedRegion` DSRG v1, the read-only `region-catalog` inspection command, and
   transactional extraction of region #50 to `regions/tyr.dsrg` plus every
   manifest-selected `RGNxxx.GFF` to a canonical source-derived
-  `regions/structural/rgnxxx.dsrg` path. Revision 34's required output contains all
+  `regions/structural/rgnxxx.dsrg` path. Revision 35's required output contains all
   20 such structural catalogs. The runtime does not select or render them; the
   pack keeps decoded data only and records each source path plus `OBJEX.GFF`
   reference-validation provenance; it does not copy GFF payloads.
@@ -251,10 +251,10 @@
   `(entityX-objectXOffset, entityY-objectYOffset-verticalOffset)`, and ETAB flag
   bit `0x80` mirrors it horizontally. Tyr's GMAP low five bits are zero, so the
   corroborating renderer's wall-resource branch does not add wall images there.
-  Controlled observation `OBS-GOG-SCENE-001` used `DSUN.EXE` SHA-256
-  `CE02EE1F31C2339FC3E16926E370639AF782A5ECD6C8A6081140FA23445FC92C`;
-  its ignored native frame SHA-256 is
-  `C4C75F4CDCAA19EBD825EE560887E0667984E5A3878D695703587863F535CED9`.
+  Controlled observation `OBS-GOG-SCENE-001` used `DSUN.EXE` XXH3-128
+  `e296af55ba2ecde7e77f555c90f33d0b`;
+  its ignored native frame XXH3-128 is
+  `e8c0086991af1417b8e8a13120d33e82`.
   The first stable gameplay background matches Tyr origin `(1024,1368)` on
   807 of 808 sampled pixels; the sole difference is a dynamic overlay sample.
   An exact full-frame comparison at that origin identifies 1,028 pixels that
@@ -493,7 +493,7 @@
   height palette-index bytes; zero-width control glyphs are valid. `FONT` #100
   is 8,299 bytes, has height 9, and balances exactly through its final record.
   Its 256 character-map entries are the identity sequence `00` through `FF`
-  (SHA-256 `40aff2e9d2d8922e47afd4648e6967497158785fbd1da870e7110266bf944880`),
+  (XXH3-128 `f1f8a93f50849ac39408a4433b952d71`),
   so direct and map-mediated byte indexing are equivalent for this edition.
   Glyph pixels use three distinct palette indices spanning 0 through 254.
 - **Confidence:** verified for `FONT` #100 in GOG-1432903719; the map field's
@@ -966,8 +966,8 @@
   scan every physical byte (including its MZ-file overlay) for the nine-byte
   ASCII sequence `SOUND.CFG` and the nine-byte ASCII sequence `SOUND.INI`. No
   bytes or decompiler output are retained.
-- **Finding:** `SOUND_DS.EXE` is 204,593 bytes with SHA-256
-  `50e10670f18e26f0e22e94a73d7469ed7d39afb2b2c2bf8139dbb3cb927110c6`.
+- **Finding:** `SOUND_DS.EXE` is 204,593 bytes with XXH3-128
+  `236c2dc23c071eca421eb5b427caee57`.
   Its complete physical file contains neither literal `SOUND.CFG` nor literal
   `SOUND.INI`. Together with `EXE-GOG-SOUND-001`, neither of the two examined
   shipped executables provides a direct static pathname link to the 59-byte
@@ -2105,7 +2105,7 @@
   dedicated selection state and atomically applies an accepted next class; the
   separate evidenced progression rule is implemented by `RULE-PARTY-004`. The
   unresolved shipped-party origin is explicit in schema 5 snapshots and replay
-  format 2, so no earlier state can be mistaken for a modeled original party.
+  format 3, so no earlier state can be mistaken for a modeled original party.
 - **Tests:** every start choice, NEW/ADD/CANCEL routing, valid and invalid
   completion, occupied-slot edit/drop/add/DUAL, atomic replacement, persisted
   edit and DUAL targets, empty/nonempty party start, cancellation, and

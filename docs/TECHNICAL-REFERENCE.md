@@ -32,7 +32,7 @@ licensed GOG installation
 ```
 
 The Extractor verifies all 233 immutable baseline files and all 16,168 GFF
-descriptors. The current required revision 34 pack contains 16,401 lossless DSOP corpus assets
+descriptors. The current required revision 35 pack contains 16,401 lossless DSOP corpus assets
 plus 123 specialized DSIX, DSGP, DSTX, DSUI, DSCH, DSRG, and DSOB derivatives:
 16,524 assets in total. The added combat-status-panel DSIX is a bounded source-backed
 image at its observed geometry; it assigns no combat semantics. Twenty source-derived DSRG files independently retain

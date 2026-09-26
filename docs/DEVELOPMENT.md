@@ -19,7 +19,7 @@ documented source default with `DARK_SUN_WAKE_PATH` when necessary.
 Extraction is transactional: a new content pack is staged and fully verified
 before it replaces the previous verified pack. The ignored default
 `UserContent` pack is persistent; keep and reuse it unless extractor or pack
-contract changes require replacement. The current required revision 34 pack contains 16,401
+contract changes require replacement. The current required revision 35 pack contains 16,401
 lossless DSOP corpus assets (233 source files and 16,168 GFF records) plus 123
 specialized derivatives for the evidenced startup, party, ADD-list, Tyr, all-region structural catalogs, menus,
 dialogue, and character metadata. The runtime never loads opaque payloads.
@@ -84,7 +84,7 @@ lower explicitly supplied `-MaximumMatches` limit). It fails with a diagnostic
 if a pattern is too broad, rather than emitting an unbounded offset list; use a
 more specific pattern for a focused evidence query.
 
-The first command emits path, size, and SHA-256 inventory. The second emits only
+The first command emits path, size, and XXH3-128 inventory. The second emits only
 bounded GFF resource descriptors (tag, number, offset, and size). The third
 validates all indexed images and palettes in one GFF and emits dimensions and
 counts, but no proprietary pixel or palette content. The fourth validates

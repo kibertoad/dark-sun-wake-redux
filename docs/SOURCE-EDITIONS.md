@@ -17,7 +17,7 @@ runtime defaults or committed content.
 | Underlying DOS revision | Version 1.1, documented by the owned package README and dated 1994-12-14; physical retail-media provenance remains unknown |
 | Manifest | `src/DarkSunWakeRedux.Extractor/source-manifests/gog-en-52095422060333615.json` |
 
-The recognition manifest records exact paths, sizes, and SHA-256 values for all
+The recognition manifest records exact paths, sizes, and XXH3-128 values for all
 233 immutable baseline inputs: 26 GFF containers, 147 VOC files, five FLI
 files, 40 music tracks, the disc image/descriptor, original helper executables,
 and static configuration/data files. `inventory-source` additionally assigns

@@ -28,7 +28,7 @@ throughout this migration, including focused analysis of
 that installation for in-scope evidence work. Its documented stable executable
 identity is the baseline for in-scope address and data-offset work; do not
 rehash it before every focused query. The current `DSUN.EXE` is 634,416 bytes
-with SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`.
+with XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`.
 Revalidate only if the path, file metadata, source package, or documented
 edition changes, a fresh environment lacks this baseline, or replacement is
 otherwise suspected.
@@ -58,7 +58,7 @@ Ghidra is recommended as a targeted evidence tool when the manual, walkthrough,
 runtime observation, and bounded data inspection do not establish an exact rule,
 file field, state transition, or RNG/timing behavior. Analysis should begin with
 the exact fingerprinted `DSUN.EXE` from GOG-1432903719, with the Ghidra version,
-executable SHA-256, load settings, address or symbol, method, interpretation,
+executable XXH3-128, load settings, address or symbol, method, interpretation,
 confidence, and reproducible follow-up recorded in `docs/GHIDRA.md`.
 
 The Ghidra project, executable, memory dumps, screenshots, raw disassembly, and
@@ -115,7 +115,7 @@ boundary.
 
 The generic template `Import` shell will be replaced by the player-facing
 Extractor, while Inspect remains a separate read-only research tool. Extractor
-logic and tests will reuse the Rechaos principles of exact inventory and SHA-256
+logic and tests will reuse the Rechaos principles of exact inventory and XXH3-128
 validation, versioned manifests, full staged-pack verification, stale-output
 replacement, rollback on failure, and machine-readable diagnostics; no code is
 to be copied blindly between games.
@@ -165,7 +165,7 @@ are preserved as opaque data rather than guessed or omitted.
   distribution metadata; FAQ-81038 for guide attribution.
 - **Acceptance - rules.** Recognition is deterministic and exact. Relative paths
   are normalized; duplicate files and path escapes are rejected; every required
-  file has an expected length and SHA-256; failure uses stable diagnostic codes.
+  file has an expected length and XXH3-128; failure uses stable diagnostic codes.
 - **Acceptance - presentation.** Both tools have readable success/error output,
   keyboard/mouse dismissal where graphical, and no unhandled failure. Native UI
   parity is not yet claimed.
@@ -211,7 +211,7 @@ evidence throughout.
   or user-generated file. Every immutable game-data payload includes every
   record in each recognized GFF container and every raw payload outside
   containers. Each represented item has deterministic local-pack path/identity,
-  provenance, length, and SHA-256; the staged pack is read back and verified
+  provenance, length, and XXH3-128; the staged pack is read back and verified
   before atomic promotion. Original bytes remain local to the verified pack and
   never enter Git, CI, packages, logs, or synthetic fixtures.
 - **Automated tests.** Synthetic recursive inventories; duplicate/path-traversal
