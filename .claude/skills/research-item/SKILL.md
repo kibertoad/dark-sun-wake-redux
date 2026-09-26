@@ -51,8 +51,9 @@ the [work protocol](https://dinorefurb.com/work-protocol/#research-batches).
    owner.
    For an item under `Emulated call`, follow the protocol's
    [Emulated calls](https://dinorefurb.com/work-protocol/#emulated-calls).
-   It needs no run lock and starts no DOSBox, but it waits until a tooling
-   batch has built the harness `docs/RUNTIME.md` describes. Write each reading under test as a procedure in
+   It is always allowed: the owner's DOSBox rules cover runs of the game
+   only. It needs no run lock and starts no DOSBox, but it waits until a
+   tooling batch has built the harness `docs/RUNTIME.md` describes. Write each reading under test as a procedure in
    `tools/emu/`, set up only the state the function reads (through layout
    fields that are `supported` or `established`), choose the special values,
    the type edges, cases for every branch and seeded random cases, run them

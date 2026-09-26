@@ -114,8 +114,10 @@ rules under "Native runtime visual validation", which this repository keeps.
   machine's run lock is never taken from this repository.
 - An emulated call runs one function of `DSUN.EXE` in the Unicorn harness in
   `tools/emu/`, with no window, timer or input. It starts no process of the
-  game and no DOSBox, so the rule above does not bar it, and it needs no run
-  lock. It is an experiment with `starting_state: emulated-call`, names
+  game and no DOSBox, and needs no run lock. The protocol's
+  [Emulated calls](https://dinorefurb.com/work-protocol/#emulated-calls)
+  section allows it in every repository: the rule above covers runs of the
+  game only, and emulated calls need no decision from the owner. It is an experiment with `starting_state: emulated-call`, names
   arguments and memory by parameter, field path or glossary name, and
   establishes an entry only when its cases reach every branch the entry
   describes and the reading of the function's callers and inputs is complete.

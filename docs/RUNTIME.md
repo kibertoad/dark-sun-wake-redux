@@ -24,7 +24,9 @@ and `dosbox_darksun2_single.conf` (`machine=svga_s3`, `memsize 16`,
 `cycles fixed 15000`, `sbtype sb16`), started through `RAVAGER.BAT`, as the
 build entry and the environment of the owner's captures record.
 
-Emulator harness: none. `tools/emu/` does not exist yet.
+Emulator harness: none. `tools/emu/` does not exist yet. Emulated calls are
+always allowed, whatever the rules on running the game, so the last row
+becomes `agent` once a tooling batch builds a harness that loads this build.
 
 | Capability | Who | Tried | What would change it |
 |---|---|---|---|
