@@ -32,6 +32,8 @@ public static class ExplorationCursorFeedback
             ExplorationCursorMode.Walk => walkReachable
                 ? ExplorationCursorVisual.Walk
                 : ExplorationCursorVisual.CannotWalk,
+            // PLACEHOLDER: RULE-INPUT-002 - the original also shows a ranged-attack pair, which its
+            // captures show over the first hostile character.
             ExplorationCursorMode.Attack => meleeTarget
                 ? ExplorationCursorVisual.MeleeAttack
                 : ExplorationCursorVisual.CannotMeleeAttack,

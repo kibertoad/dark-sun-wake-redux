@@ -254,45 +254,6 @@ the owned build.
   inventory list until a source-to-runtime selection path and additional
   observed state establish the required mapping.
 
-### DATA-GOG-CURSOR-001 - Exploration cursor family and hotspot
-
-- **Method:** Render every low-numbered `RESOURCE.GFF` image candidate with
-  `PAL ` #1000, correlate the resulting family against SRC-MANUAL-1994 pages 4-6,
-  and compare six controlled owned captures made at the unchanged Tyr opening
-  camera with Walk, melee Attack, and Look over possible and impossible targets.
-  Use the manual's instruction to aim with the upper-left corner as the hotspot
-  contract. At the valid melee hotspot, resolve the topmost opaque Tyr entity
-  through the already verified ETAB/OJFF first-frame transform.
-- **Finding:** `ICON` #19101 through #19110 are ten single-frame cursor images:
-  Walk 10x13, Can't Walk 16x16, melee Attack 16x17, invalid melee Attack 16x17,
-  ranged Attack 14x15, invalid ranged Attack 16x16, Look 14x15, invalid Look
-  16x16, invalid spell target 16x17, and processing hourglass 13x15. The six
-  controlled captures visibly reproduce the first four and the Look pair. The
-  valid melee target resolves to Tyr OJFF #9258 -> BMP #346 at the documented
-  `(0,0)` upper-left hotspot. The manual independently identifies the ranged,
-  invalid-spell, and hourglass roles.
-- **Confidence:** verified for owned resource identity, palette, geometry, the
-  six live Walk/melee/Look states, the upper-left hotspot, and the first melee
-  target; high for the manual-correlated remaining four roles.
-  `EXE-GOG-CURSOR-001` independently verifies a shared native selector for
-  IDs #19101 through #19108, but does not establish its branch predicates or
-  any interaction rule. `EXE-GOG-CURSOR-002` bounds that selector to one
-  conditional shared-handler branch and finds no recoverable interaction owner.
-- **Implementation:** pack format 21 extracts all ten images as distinct DSIX
-  assets. MonoGame hides the host pointer and draws the selected original image
-  last through the logical-canvas transform. Walk validity uses a non-mutating
-  deterministic reachability query; a reusable reverse-draw-order alpha hit
-  tester identifies displayed Tyr entities. Look is enabled over such entities
-  and the visible leader, while melee eligibility is intentionally limited to
-  the first observed OJFF #9258 until object behavior data is bounded.
-- **Tests:** exact sequential IDs, names, dimensions, single-frame contracts,
-  extraction provenance and inventory, all six mode/eligibility outcomes,
-  overlay fallback, transparent/mirrored/topmost entity hit-testing, malformed
-  catalog rejection, and owned content smoke.
-- **Uncertainty:** generalized attackable/lookable object classification,
-  ranged-mode selection from readied weapons, spell targeting, processing-state
-  timing, clipping at canvas edges, and native cursor update cadence.
-
 ### OBS-GOG-DIALOGUE-001 - Award notice and first measured conversation
 
 - **Method:** Retain owner-supplied native captures immediately before a
@@ -495,29 +456,6 @@ the owned build.
   five-row bounds, and ordered condition contracts.
 
 ## Initial rules
-
-### RULE-INPUT-001 - Mouse-first interaction
-
-- **Behavior:** The original requires a mouse and uses cursor modes for walking,
-  looking, attacking, and targeted actions. Escape exits the active menu.
-- **Preconditions:** Relevant exploration or menu state is active.
-- **Evidence:** SRC-MANUAL-1994, introduction and "How to Play".
-- **Confidence:** verified for the owned Walk/melee/Look cursor visuals and
-  hotspot; high for intended behavior. Broader target eligibility remains open.
-- **Implementation:** the runtime resolves WIND #19500 child coordinates and
-  BUTN dimensions/image references from DSUI, maps original button resource IDs
-  to semantic choices, and routes clicks through a single letterboxed
-  logical-canvas transform into Core commands. In exploration, right-click
-  deterministically cycles Walk, Attack, and Look modes. `DATA-GOG-CURSOR-001`
-  maps, extracts, and renders all ten cursor resources at the manual-defined
-  upper-left hotspot, with live valid/invalid feedback for the implemented
-  target subset. A reusable ordered hotkey table maps V/I/C/U/E/O/Tab and Escape
-  to Core navigation commands.
-- **Tests:** graph completeness and unexpected identities, catalog order,
-  image-reference matching, rectangle edges, wide/tall letterboxing, inverse
-  coordinates, resulting Core routing, and owned-pack content smoke.
-- **Uncertainty:** generalized mode-specific target eligibility and shipped
-  coordinate boundaries beyond the upper-left hotspot remain open.
 
 ### RULE-EXPLORATION-001 - Camera and party-display controls
 
@@ -1302,11 +1240,9 @@ the owned build.
   direct-literal dispatcher forms, `EXE-GOG-COMBAT-003` excludes the queried
   `COMBAT`/`GUARD` label occurrences and the exact null-terminated `ATTACK`
   literal as direct command-path leads,
-  `EXE-GOG-COMBAT-007` leaves the bounded native mouse route screen-neutral,
-  `EXE-GOG-COMBAT-009` finds no direct caller of the native button-press
-  wrapper, and `EXE-GOG-COMBAT-010` recovers the global callback's
-  packet-dispatch boundary and its literal/register packet layout, but no
-  packet consumer or screen owner.
+  `FND-INPUT-004` leaves the native mouse route screen-neutral and finds no
+  caller of the button-press wrapper, and `FND-INPUT-005` shows the mouse and
+  keyboard events queued as packets, but no packet consumer or screen owner.
   `EXE-GOG-COMBAT-013` now maps that coordinate branch through a bounded
   five-guard validation sequence, but identifies neither its flags/constants
   nor an enemy, target, action, or decision owner.
@@ -1325,8 +1261,8 @@ the owned build.
   `EXE-GOG-COMBAT-018` finds no decoded function carrying both the static
   panel and interface-font request identities, which excludes only that direct
   renderer hypothesis.
-  `EXE-GOG-KEYBOARD-002` excludes only two direct keyboard-controller I/O
-  forms, and `EXE-GOG-KEYBOARD-003` finds no decoded function containing all
+  `FND-INPUT-007` excludes only two direct keyboard-controller I/O
+  forms, and `FND-INPUT-008` finds no decoded function containing all
   six documented combat key values; none establishes the shipped command
   implementation.
 - **Confidence:** high for documented command bindings and intended attack

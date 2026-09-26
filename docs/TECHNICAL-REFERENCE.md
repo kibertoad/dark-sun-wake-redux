@@ -174,9 +174,9 @@ identify a renderer, value field, turn transition, or combat rule.
 eight-call native fan-in as a shared, feature-neutral boundary: only small
 `0`/`1` argument pairs are visible, with no recovered encounter, actor,
 command, damage, turn, or timing identity. It is not a combat-only route.
-`EXE-GOG-COMBAT-007` likewise follows the bounded native mouse-coordinate
-guard one direct caller layer without identifying a combat screen, click
-action, target, approach, attack, or confirmation handler.
+`FND-INPUT-004` follows the native mouse-coordinate guard to the entry code
+without identifying a combat screen, click action, target, approach, attack,
+or confirmation handler.
 `EXE-GOG-COMBAT-013` follows its only coordinate-consuming far-thunk boundary,
 but the destination is outside the mapped image and its sole other recovered
 relation is non-coherent decompiler output; it supplies no combat semantics.
@@ -191,24 +191,14 @@ to the same word, so its local one-through-five switch is not a finite combat
 mode model.
 `EXE-GOG-COMBAT-017` exhausts the recovered direct-write graph without a
 literal-five producer; indirect or computed writers remain open.
-`EXE-GOG-CURSOR-001` finds a shared routine that selects the observed Walk,
-melee/ranged Attack, and Look cursor IDs, including their invalid variants, but
-its only recovered caller remains opaque. This is a presentation-resource
-boundary, not a native action, target, movement, or strike path.
-`EXE-GOG-CURSOR-002` further bounds that selector to the nonzero branch of a
-shared handler's opaque input flag; the alternate branch is broadly shared.
-Neither branch identifies an interaction owner or a combat-click path.
-`EXE-GOG-COMBAT-009` additionally finds no direct caller of the decoded native
-mouse button-press wrapper, so it cannot supply the missing click path.
-`EXE-GOG-COMBAT-010` resolves the native mouse callback's raw entry and shows
-that it conditionally forwards a 14-byte packet through a guarded resident
-buffer pathway initialized with an opaque storage pointer and capacity 1040.
-The packet's raw words preserve literals `2`/`14`/`0`, entry `CX`/`DX`, resident
-segment `57e0`, and entry `AX`; their meanings and consumer remain unknown, so
-this is still not evidence for a combat click dispatcher or action rule.
-The only other recovered producer uses a different partially initialized
-14-byte layout, further establishing shared transport rather than a
-combat-specific input path.
+`FND-INPUT-003` finds the routine that picks the pointer image (`RULE-INPUT-002`);
+its overlay caller is opaque, so it is a presentation boundary, not an action,
+target, movement, or strike path. `FND-INPUT-004` finds no direct caller of the
+native button-press wrapper, and `FND-INPUT-005` shows the mouse handler and the
+keyboard hook queueing packets through one buffer; the packets' consumer is
+unknown, so this is not evidence for a combat click dispatcher or action rule.
+A third producer sends packets of another kind, which supports shared
+transport rather than a combat-specific input path.
 `EXE-GOG-COMBAT-011` shows that the mapped six-selector dispatcher containing
 the panel case has no recovered direct caller. Its neighboring selectors are
 therefore not identified as combat commands, transitions, or rule paths.
@@ -243,7 +233,7 @@ new focused static query can assign behavior.
 | Active-combatant display | Owner-confirmed dsun_011/dsun_012 frames show the static #19003 panel at (215,4) with different dynamic strings; dsun_012 is Thy'rokh's labelled turn. | The panel values' field ownership, meaning, update cadence, or turn algorithm. | A native text/value producer or a controlled frame sequence correlated to source data. |
 | Hostile motion and strike feedback | Owner confirms dsun_009 as enemy movement, while that frame visibly retains dialogue chrome and lacks the compact panel; dsun_011 is enemy striking and visibly includes the red `11` glyph. | Pathfinding, movement cost, actor/target identity, hit, damage, or timing rules, or a stable-combat layout inferred from dsun_009. | C3/C5 captures and a bounded native/data route for the action result. |
 | Direct enemy click | Owner reports that clicking an enemy makes the active character approach and strike, with no separate visible target switch or confirmation. | Click hit testing, target legality, approach path, range, attack resolution, or an implicit selection state. | A recovered consumer beyond the coordinate/callback boundaries and C3 capture notes. |
-| Cursor presentation | `ICON` #19101–#19108 are selected by one native routine; #19103/#19104 appear at distinct branches. `EXE-GOG-CURSOR-002` confines it to a conditional shared-handler branch. | That #19103 executes an attack, that #19104 states why an attack fails, or any combat-specific owner. | Recoverable indirect owner plus branch-input meaning. |
+| Cursor presentation | `ICON` #19101–#19108 are selected by one native routine behind a flag test in its overlay caller (`FND-INPUT-003`). | That #19103 executes an attack, that #19104 states why an attack fails, or any combat-specific owner. | Recoverable indirect owner plus branch-input meaning. |
 | Native input boundaries | Mouse-coordinate and button probes establish generic wrappers; the recovered callback conditionally emits a 14-byte packet through guarded resident buffering. BIOS-keyboard probes remain generic. | A combat input loop, packet fields/consumer, the manual-key dispatch, repeat policy, or a command-to-action mapping. | Screen-specific consumer path and controlled command traces C2/C4. |
 | Resident state candidates | One coordinate branch reads value five; a broader combat-adjacent switch and direct writes of two and 19 are recovered. | A finite mode enum, combat phase, target state, or attack mode. | A mapped producer and action body, including indirect/computed writes. |
 | Enemy decision route | `EXE-GOG-AI-001` audits OJFF #9258, `MONR`, `ETAB`, `RDFF`, coordinate/input, computer-control labels, and RNG/panel leads. None reaches an attributable decision/action consumer. | AI absence, target choice, movement, action selection, turn ownership, damage/outcome rules, or automation behavior. | C0-C6 state/action captures followed by a focused static query anchored to that observed path. |
@@ -436,24 +426,14 @@ rejecting unsupported semantics:
   wrapper accepts generic service/register values and does not connect any
   call to a resource, screen, palette, resolution, or layout. It is not a
   native rendering contract.
-- `EXE-GOG-MOUSE-001` finds generic mouse-service wrappers, two direct
-  coordinate-query callers, and one caller-specific interior guard accepting
-  only a `1..317`/`1..198` returned pair. It does not identify axes, a global
-  transform, control hit testing, gestures, or pointer behavior, so the
-  measured canvas and DSUI contracts remain authoritative.
-- `EXE-GOG-KEYBOARD-001` finds one decoded BIOS modifier-status wrapper. Its
-  external caller masks two returned bits while processing an opaque 37-byte
-  resident record; no recovered keyboard site reads a key code or maps a
-  player action. Manual and observed keyboard routes therefore remain separate
-  evidence, not a consequence of this generic path. `EXE-GOG-KEYBOARD-002`
-  additionally excludes only direct `IN AL,60h` and bounded immediate-DX
-  keyboard-controller port forms; it does not identify a replacement
-  key-acquisition or combat-command route. `EXE-GOG-KEYBOARD-003` further
-  finds no decoded function that co-locates all six documented combat-key
-  scalars, excluding only a simple unified direct switch.
-  `EXE-GOG-KEYBOARD-004` adds a mapped generic BIOS keyboard wrapper, but no
-  bounded caller supplies an explicit service value or command identity; its
-  one dispatch-shaped upstream route is GPLI selector handling, not combat.
+- The mouse and keyboard reach the game through the wrappers and hooks of
+  `FND-INPUT-004` to `FND-INPUT-006`, which queue key words and mouse events as
+  packets. They do not identify axes, a global transform, control hit testing,
+  gestures, or a key-to-action map, so the measured canvas, the DSUI contracts
+  and `RULE-INPUT-001` to `RULE-INPUT-003` remain authoritative.
+  `FND-INPUT-007` to `FND-INPUT-009` exclude direct keyboard-port reads, a
+  unified combat-key switch, and the one overlay route above the keyboard
+  routine as a key dispatcher.
 - `FND-IMAGE-009` finds no `PORT` tag in the resident image; its one
   occurrence is in overlay 199. It supplies no portrait loader, palette,
   drawing, dialogue, or timing rule.

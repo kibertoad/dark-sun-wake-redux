@@ -107,17 +107,16 @@ fixed-layout screens and the dialogue preview retain the centered 320x200 canvas
 The earlier cursor-evidence batch established the complete exploration cursor
 family without generalizing unknown target semantics:
 
-- `DATA-GOG-CURSOR-001` maps `ICON` #19101-#19110 to the Walk, melee,
-  ranged, Look, invalid-target, and hourglass roles with exact geometry and the
-  manual-defined upper-left hotspot;
-- six native captures verify the Walk/melee/Look valid-invalid pairs, and the
-  first valid melee target resolves to Tyr OJFF #9258 -> BMP #346;
+- `RULE-INPUT-002` gives the pointer images `ICON` #19101-#19110 and the
+  upper-left hotspot (`FND-INPUT-001`);
+- six native captures show the Walk, ranged-attack and Look pairs
+  (`FND-INPUT-002`);
 - pack format 21 extracts all ten cursors into the exact 82-asset pack;
 - the runtime draws the original cursor last, uses actual route reachability for
   Walk, reverse-draw-order entity alpha plus leader alpha for Look, and limits
   melee validity to the first observed target pending broader behavior data.
 
-`DATA-GOG-CURSOR-001`, `spec/screens/`, `docs/FIDELITY.md`,
+`RULE-INPUT-002`, `spec/screens/`, `docs/FIDELITY.md`,
 and `docs/PARITY-MATRIX.md` record the evidence boundary and remaining uncertainty.
 
 ## Local-only content

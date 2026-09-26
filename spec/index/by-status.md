@@ -15,11 +15,16 @@ Entries by status.
 
 ## sourced
 
-0 entries.
+2 entries.
+
+| ID | Title |
+|---|---|
+| [RULE-INPUT-001](../rules/RULE-INPUT-001.md) | The right mouse button steps the pointer through the Walk, Attack and Look modes |
+| [RULE-INPUT-003](../rules/RULE-INPUT-003.md) | The keys that open the character option screens and the Game Menu |
 
 ## supported
 
-50 entries.
+51 entries.
 
 | ID | Title |
 |---|---|
@@ -58,6 +63,7 @@ Entries by status.
 | [RULE-ACTOR-001](../rules/RULE-ACTOR-001.md) | Drawing a region's placed objects |
 | [RULE-IMAGE-001](../rules/RULE-IMAGE-001.md) | Decoding an image frame, and the row encoding |
 | [RULE-IMAGE-002](../rules/RULE-IMAGE-002.md) | Decoding a planar image frame |
+| [RULE-INPUT-002](../rules/RULE-INPUT-002.md) | Which image the pointer shows for each mode, and its hotspot |
 | [RULE-REGION-001](../rules/RULE-REGION-001.md) | Drawing a region's terrain tiles |
 | [RULE-RNG-001](../rules/RULE-RNG-001.md) | The game's random number generator and its reductions |
 | [RULE-UI-001](../rules/RULE-UI-001.md) | Which controls the window code offers an event or the pointer to, by their event masks |
@@ -88,7 +94,7 @@ Entries by status.
 
 ## recorded
 
-89 entries.
+98 entries.
 
 | ID | Title |
 |---|---|
@@ -127,6 +133,15 @@ Entries by status.
 | [FND-IMAGE-008](../findings/FND-IMAGE-008.md) | No resident function uses the number 11011 as an operand, with or without the BMP tag words |
 | [FND-IMAGE-009](../findings/FND-IMAGE-009.md) | The PORT tag does not occur in the resident load image of DSUN.EXE |
 | [FND-IMAGE-010](../findings/FND-IMAGE-010.md) | The first gameplay frame of the opening region matches frames decoded from all three encodings |
+| [FND-INPUT-001](../findings/FND-INPUT-001.md) | ICON 19101 to 19110 are ten one-frame pointer images |
+| [FND-INPUT-002](../findings/FND-INPUT-002.md) | Six captures show the Walk, ranged-attack and Look pointers and their invalid versions |
+| [FND-INPUT-003](../findings/FND-INPUT-003.md) | One routine holds the numbers of ICON 19101 to 19108, and an overlay routine calls it under a byte guard |
+| [FND-INPUT-004](../findings/FND-INPUT-004.md) | Eleven INT 33h wrappers in segment 45B9 pass mouse services through to their callers |
+| [FND-INPUT-005](../findings/FND-INPUT-005.md) | The keyboard interrupt hook and the mouse event handler both send packets to 4464:0230 |
+| [FND-INPUT-006](../findings/FND-INPUT-006.md) | The BIOS shift-flag routine 44B6:0011 has eleven far callers |
+| [FND-INPUT-007](../findings/FND-INPUT-007.md) | No resident instruction reads port 60h or sets DX to 60h or 64h before port I/O |
+| [FND-INPUT-008](../findings/FND-INPUT-008.md) | No decoded function of the overlay-mapped image compares all the manual combat keys |
+| [FND-INPUT-009](../findings/FND-INPUT-009.md) | The one dispatch-shaped caller above the mapped keyboard routine requests GPLI 1 |
 | [FND-REGION-001](../findings/FND-REGION-001.md) | Each of the 20 region files holds one region's name, palette, two maps, entity table and tiles |
 | [FND-REGION-002](../findings/FND-REGION-002.md) | Every MAP is 12,544 bytes, each naming a TILE of its own file that is one 16x16 frame |
 | [FND-REGION-003](../findings/FND-REGION-003.md) | Every GMAP is 12,544 bytes whose values are only 0x00, 0x40, 0x80 and 0xC0 |
@@ -231,6 +246,9 @@ Entries whose Open questions section says more than None known.
 | [RULE-ACTOR-001](../rules/RULE-ACTOR-001.md) | Drawing a region's placed objects | supported |
 | [RULE-IMAGE-001](../rules/RULE-IMAGE-001.md) | Decoding an image frame, and the row encoding | supported |
 | [RULE-IMAGE-002](../rules/RULE-IMAGE-002.md) | Decoding a planar image frame | supported |
+| [RULE-INPUT-001](../rules/RULE-INPUT-001.md) | The right mouse button steps the pointer through the Walk, Attack and Look modes | sourced |
+| [RULE-INPUT-002](../rules/RULE-INPUT-002.md) | Which image the pointer shows for each mode, and its hotspot | supported |
+| [RULE-INPUT-003](../rules/RULE-INPUT-003.md) | The keys that open the character option screens and the Game Menu | sourced |
 | [RULE-REGION-001](../rules/RULE-REGION-001.md) | Drawing a region's terrain tiles | supported |
 | [RULE-RNG-001](../rules/RULE-RNG-001.md) | The game's random number generator and its reductions | supported |
 | [RULE-UI-001](../rules/RULE-UI-001.md) | Which controls the window code offers an event or the pointer to, by their event masks | supported |
