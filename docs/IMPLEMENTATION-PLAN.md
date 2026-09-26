@@ -298,8 +298,8 @@ catalogs.
   `RULE-IMAGE-002` for bounded container, indexed-image, and palette structures;
   `FMT-TEXT-001` and `FMT-TEXT-002` for bounded indexed glyphs; `FMT-UI-001` to
   `FMT-UI-005` and `SCR-UI-001` to `SCR-UI-004` for the start window, the View Character
-  screen, the ADD list and character generation; further DATA-GOG
-  for party-screen resource mapping; OBS-GOG for screen states,
+  screen, the ADD list and character generation; further data findings
+  for party-screen resource mapping; dynamic findings for screen states,
   coordinates, and navigation.
 - **Acceptance - rules.** Party size, available origins/classes, ability/alignment
   constraints, psionic-discipline and clerical-sphere choices, cancellation,
@@ -355,8 +355,8 @@ catalogs.
   leader/formation display, uses look/interaction, completes the first dialogue,
   and opens character, inventory, effects, map, and game menus.
 - **Evidence.** SRC-MANUAL-1994 "How to Play", mouse modes, character interaction,
-  character options, and game menu; SRC-GAMEFAQS-81038 section 3.1; DATA-GOG region facts;
-  OBS-GOG opening traces.
+  character options, and game menu; SRC-GAMEFAQS-81038 section 3.1; the REGION and EXPLORE
+  entries; dynamic findings from the opening.
 - **Acceptance - rules.** Click-to-walk, collision, leader selection, party
   placement, interaction eligibility, dialogue choices, item transfer, and
   initial quest flags are deterministic Core commands/events. Per
@@ -550,7 +550,7 @@ catalogs.
   evidenced spell and psionic set, camp, recover, earn experience, and train.
 - **Evidence.** SRC-MANUAL-1994 character, ability, class, equipment, spell,
   psionic, camping, training, and advancement sections; SRC-GAMEFAQS-81038 sections
-  2.1-2.9 and recorded discrepancies; OBS-GOG rule probes.
+  2.1-2.9 and recorded discrepancies; experiments for each rule.
 - **Acceptance - rules.** Every implemented modifier, restriction, resource
   cost, target, duration, effect, recovery rule, multiclass behavior, experience
   threshold, and level gain has an evidence ID and deterministic test. A verified
@@ -573,8 +573,8 @@ catalogs.
   to the finale is finishable; optional content and alternate outcomes are added
   as separately validated increments.
 - **Evidence.** SRC-MANUAL-1994 for intended player systems; SRC-GAMEFAQS-81038 sections
-  3.1-3.25 as a route, branch, and defect index; DATA-GOG facts; OBS-GOG
-  checkpointed playthroughs. The guide is not an executable specification.
+  3.1-3.25 as a route, branch, and defect index; data findings; experiments
+  from checkpointed playthroughs. The guide is not an executable specification.
 - **Acceptance - rules.** Quest flags, dialogue prerequisites, travel edges,
   item gates, timers, triggers, alternative outcomes, NPC survival, rewards, and
   ending prerequisites are explicit deterministic state machines. Known soft
@@ -598,8 +598,8 @@ catalogs.
   declared platform. Original save and Shattered Lands party import ship only if
   their formats become fully evidenced and bounded.
 - **Evidence.** All prior evidence; SRC-MANUAL-1994 save/load, hotkeys, and party
-  transfer; SRC-GAMEFAQS-81038 section 2.10 and complete route; comprehensive OBS-GOG and
-  DATA-GOG inventories.
+  transfer; SRC-GAMEFAQS-81038 section 2.10 and complete route; the spec's findings and
+  experiments.
 - **Acceptance - rules.** Save schemas and migrations are explicit; writes are
   atomic with last-valid recovery; corrupt data is bounded/rejected; identical
   initial state, seed, and commands produce identical hashes. Presentation clocks
