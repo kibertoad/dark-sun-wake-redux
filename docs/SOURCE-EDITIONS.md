@@ -44,8 +44,8 @@ disc `CHARSAVE.GFF` containing eight paired character resources (#40-#43 and
 (#29-#43 and #50-#53). The difference is an evidence boundary about character
 provenance, not an extraction exception: both the disc image and the installed
 archive are preserved as fingerprinted baseline inputs. See
-`DATA-GOG-CHAR-006`; neither block is yet designated as the complete
-pregenerated party.
+`FND-PARTY-005`; `RULE-PARTY-006` gives the first disc block, #40-#43, as the
+party START GAME supplies.
 
 The GOG installation also contains DOSBox integration, manuals, a clue book,
 the remaining region GFF files, FLI cinematics, VOC speech/effects, and Ogg

@@ -16,6 +16,7 @@ public sealed record GffCharacterRecordEnvelope(byte TailRecordCount)
             throw new InvalidDataException(
                 $"{sourceName}: CHAR resource exceeds the {MaximumResourceSize}-byte structural maximum.");
         var version = data.Span[0];
+        // PLACEHOLDER: FMT-PARTY-001 - whether the game accepts a version other than 1 is unknown.
         if (version != SupportedVersion)
             throw new InvalidDataException(
                 $"{sourceName}: CHAR resource uses unsupported version {version}.");

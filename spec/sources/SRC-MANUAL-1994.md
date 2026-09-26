@@ -23,8 +23,14 @@ a byte-identical copy named `ds_wakerave_manual_pdf.pdf`.
 
 - The origin descriptions on pages 17 and 18 and the class descriptions on
   pages 19 to 22 give different class lists for some origins: they disagree on
-  half-giant ranger and thief, mul druid, and thri-kreen druid and thief. The
-  executable's list has not been read.
+  half-giant ranger and thief, mul druid, and thri-kreen druid and thief.
+  SRC-README-1.1's table 3 sides with the origin descriptions on the
+  half-giant pairs and the thri-kreen thief, and with the class descriptions
+  on the mul and thri-kreen druid. The executable's list has not been read
+  (RULE-PARTY-007).
+- Pages 8 and 9 name only clerics as choosing an elemental sphere, while the
+  class descriptions on pages 20 and 21 give rangers and druids one as well
+  (RULE-PARTY-003).
 - It calls the four difficulty choices Easy, Balanced, Hard and Hideous, and
   then calls the default Average. The executable's table has no Average label.
 - Other disagreements with the executable are recorded in the What the sources

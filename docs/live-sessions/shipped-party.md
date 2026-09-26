@@ -8,10 +8,13 @@ Status: requested
 - Blocks: slice 2.
 - Length: about 10 minutes.
 
-Identifies the four characters START GAME supplies and captures the native
-party-overview composition without substituting a created party. Start a
-fresh normal launch. Do not choose CREATE CHARACTERS, load a save, or enter the
-character-transfer utility.
+Confirms which four characters START GAME supplies. A routine of the game
+loads characters 40 to 43 into the four party slots (FND-PARTY-013), and
+earlier captures taken after some play match 40, 41 or 53, 42, and 33 or 43
+(FND-PARTY-020); captures taken before any play tell 41 from 53 and 43 from 33.
+Start a fresh normal launch. Do not choose CREATE CHARACTERS, load a save, or
+enter the character-transfer utility, and do not move, fight or rest before
+the captures.
 
 ## Script
 
@@ -26,6 +29,7 @@ character-transfer utility.
    on-screen order. Captures: each member screen and returned overview. Do not
    click an unknown blank or application area.
 
-Agent, after confirmation: compare each member screen's visible values with
-the installed and disc `CHAR` candidates and record which candidate each
-matches, or that none does, as dynamic findings with each capture's `xxh3`.
+Agent, after confirmation: compare each member screen's visible values
+(RULE-PARTY-006) with `CHAR` records 40 to 43 and with 53 and 33, and record
+which record each matches, or that none does, as dynamic findings with each
+capture's `xxh3`.

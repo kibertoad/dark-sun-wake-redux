@@ -8,7 +8,7 @@ resolution: 320x200
 evidence: [FND-UI-024, SRC-YOUTUBE-FLOMVOSHEOM, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
-related: [SCR-UI-002]
+related: [RULE-PARTY-006, SCR-UI-002]
 ---
 
 ## Drawn elements
@@ -30,7 +30,7 @@ child positions; their first frames are listed here.
 
 | Region | Rectangle | Enabled when | Effect | Evidence |
 |---|---|---|---|---|
-| Start game | (94, 70, 127, 12) | Always | Starts a game with the party the game offers. | FND-UI-024, SRC-MANUAL-1994 |
+| Start game | (94, 70, 127, 12) | Always | Starts a game with the party the game supplies (RULE-PARTY-006). | FND-UI-024, SRC-MANUAL-1994 |
 | Create characters | (50, 87, 220, 12) | Always | Opens SCR-UI-002. | FND-UI-024, SRC-MANUAL-1994, SRC-YOUTUBE-FLOMVOSHEOM |
 | Load saved game | (64, 104, 192, 12) | Always | Loads a saved game. | FND-UI-024 |
 | Exit to DOS | (92, 120, 127, 12) | Always | Leaves the game. | FND-UI-024 |

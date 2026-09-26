@@ -618,138 +618,6 @@ the owned build.
   placement, and movement timing remain open. The opening anchor convention
   itself is now evidenced by `FND-ACTOR-002` and `EXE-GOG-REGION-001`.
 
-### RULE-PARTY-001 - Four-character party
-
-- **Behavior:** The creation flow accepts one to four characters and recommends
-  four. An empty party cannot start and a fifth character cannot be added.
-- **Evidence:** SRC-MANUAL-1994, quick-start and party-creation sections, pages 2 and
-  7-9.
-- **Confidence:** high for intended party bounds and flow.
-- **Implementation:** deterministic Core party aggregate and validation result;
-  start/menu presentation is not implemented.
-- **Tests:** empty/one/four/fifth-member boundaries and invalid-character
-  rejection.
-- **Uncertainty:** Exact pregenerated party data, on-disk created-character
-  format, cancellation state, and shipped edge behavior require observation.
-
-### DATA-GOG-CHAR-001 - Character identity slot
-
-- **Question:** Can original character records be identified without assigning
-  meanings to unknown character-state fields?
-- **Method:** Enumerate every `CHAR` resource in the fingerprinted owned
-  `CHARSAVE.GFF`, compare the repeated header region, and validate the candidate
-  name slot independently for bounds, termination, and printable bytes.
-- **Finding:** All 19 records contain a non-empty printable ASCII name beginning
-  at offset 43 and terminated within a 16-byte slot. Several records retain
-  unrelated nonzero bytes after the first terminator, so those bytes are not
-  part of the name and must be ignored. Record sizes vary from 145 to 1,036
-  bytes; no other field is assigned semantics by this finding. Later findings
-  separately cover the record envelope and ability-score fields.
-- **Confidence:** high for the owned GOG build's name slot; unknown for other
-  editions. Other `CHAR` fields are tracked by their own evidence entries.
-- **Implementation:** bounded `GffCharacterIdentity` parsing and a metadata-only
-  `character-catalog` Inspect command. No original record bytes enter the
-  derived asset pack or Git.
-- **Tests:** exact versioned-envelope validation, first-NUL behavior, maximum
-  name length, empty name, missing terminator, and non-printable byte rejection.
-
-### DATA-GOG-CHAR-002 - Raw PSIN companion mask
-
-- **Question:** Does each original character record have a bounded same-number
-  `PSIN` companion independently of the variable `CHAR` body?
-- **Method:** Enumerate `PSIN` and `CHAR` resources in the fingerprinted owned
-  `CHARSAVE.GFF`, compare identities and lengths, and inspect the complete
-  one-byte value domain without assigning names to bits.
-- **Finding:** Every one of the 19 `CHAR` identities has exactly one same-number
-  `PSIN` companion and there are no unmatched companions. Every `PSIN` payload
-  is exactly one byte; the owned values are 1, 2, 4, 5, 6, and 7, all nonzero
-  subsets of the low three bits. Value 3 is the only in-envelope combination
-  not present in this archive.
-- **Corroboration:** SRC-MANUAL-1994 documents three psionic disciplines, exactly
-  one selection for created non-psionicists, and all three for created
-  psionicists. That supports investigating a three-bit relationship, but owned
-  values 5 and 6 show that the complete archive cannot be interpreted as only
-  those creation-screen cardinalities; NPC data or different semantics remain
-  possible.
-- **Confidence:** high for one-to-one resource correlation, one-byte size, and
-  the nonzero three-bit structural envelope; unknown for individual or combined
-  bit meanings and whether other supported editions use the same representation.
-- **Implementation:** bounded `GffPsionicMask` raw-mask parsing and a
-  shared `GffCharacterCatalog` that requires exact `CHAR`/`PSIN` correlation;
-  the metadata-only Inspect command reports the catalog's raw mask. Core
-  discipline names are deliberately not inferred.
-- **Tests:** all observed values, the unobserved in-envelope combination, zero,
-  unknown bits, wrong lengths, deterministic identity ordering, and missing or
-  orphan companion rejection in synthetic GFF archives.
-
-### DATA-GOG-CHAR-003 - Ordered ability scores
-
-- **Question:** Does the fixed `CHAR` header store the six player ability scores,
-  and in which order?
-- **Method:** Compare bytes 35 through 40 across all 19 owned `CHAR` records,
-  check every value against the manual's documented 9..24 score range, compare
-  tuples for repeated character identities, and retain the manual's presentation
-  order rather than assigning fields from value plausibility alone.
-- **Finding:** Every record has six values within 9..24 at offsets 35..40. The
-  manual introduces its six ability descriptions in Strength, Dexterity,
-  Constitution, Intelligence, Wisdom, and Charisma order. Repeated identities
-  preserve the same tuple in three groups; another variant changes only one score.
-- **Evidence:** SRC-MANUAL-1994, "Ability Scores," page 16; fingerprinted owned
-  `CHARSAVE.GFF` metadata inspection.
-- **Confidence:** high for the six fields, their order, and the supported GOG
-  build; runtime presentation and generation behavior remain unobserved.
-- **Implementation:** bounded `GffCharacterAbilityScores` parsing with named
-  ordered fields; `GffCharacterCatalog` exposes the value without translating
-  it into Core character state or applying origin modifiers.
-- **Tests:** exact order, inclusive manual bounds, lower/upper rejection,
-  resource-size limits, and synthetic catalog integration.
-- **Uncertainty:** Ability generation distribution, origin-modifier application
-  order and caps, edit behavior, and the supplied-party record selection remain
-  open.
-
-### DATA-GOG-CHAR-004 - Versioned record envelope
-
-- **Question:** What structural boundary contains the fixed `CHAR` header and
-  its still-uninterpreted variable tail?
-- **Method:** Compare the first two bytes and total resource size across all 19
-  owned records, testing a single fixed-header-plus-repeated-record equation.
-- **Finding:** Byte 0 is version 1 in every record. Byte 1 ranges from 2 through
-  29, and every resource size exactly equals `79 + byte1 * 33`; there are no
-  residual bytes or exceptions. The repeated tail record's meaning is unknown.
-- **Confidence:** verified for the supported GOG archive's structural envelope;
-  unknown for other versions and tail semantics.
-- **Implementation:** `GffCharacterRecordEnvelope` requires version 1, a
-  complete 79-byte header, the exact byte-counted tail size, and no trailing
-  data. Identity and ability readers validate this envelope before interpreting
-  their fields; the catalog exposes the neutral `TailRecordCount`.
-- **Tests:** zero, ordinary, and maximum byte counts; unsupported version;
-  truncated header; truncated tail; trailing byte; and integration through the
-  identity, ability, and catalog readers.
-
-### DATA-GOG-CHAR-005 - Bounded derived character catalog
-
-- **Question:** Can the verified character subset be extracted for later start
-  flow work without preserving unknown original state or guessing which records
-  form the supplied party?
-- **Method:** Correlate same-number `CHAR` and `PSIN` records, retain only the
-  separately evidenced identity, ordered abilities, neutral tail count, and raw
-  mask, then round-trip that subset through a canonical derived format. Validate
-  the complete result during a temporary owned-source extraction.
-- **Finding:** All 19 correlated records convert to deterministic `DSCH` v1 in
-  numeric resource order. The derived catalog contains no uninterpreted source
-  bytes and makes no claim about party membership or PSIN bit meanings.
-- **Confidence:** verified for extraction of the bounded subset from the
-  supported GOG build; runtime selection and remaining field semantics are
-  unknown.
-- **Implementation:** `PackedCharacterCatalog` plus transactional extraction to
-  `characters/catalog.dsch`; the required-revision-34 asset-pack manifest records
-  `CHARSAVE.GFF` provenance. The full corpus pass also preserves the original
-  archive as an opaque source-mapped payload; neither output assigns a party
-  role to any record.
-- **Tests:** synthetic round-trip and deterministic ordering; duplicate,
-  malformed-field, noncanonical-order, truncation, and trailing-data rejection;
-  synthetic extraction and content-smoke validation without original content.
-
 ### DATA-GOG-PREF-001 - A bounded but opaque `PREF` envelope
 
 - **Question:** Does the `PREF` resource in the owned character archive support
@@ -825,35 +693,6 @@ the owned build.
   resource without a constrained native population path or controlled runtime
   observation.
 
-### DATA-GOG-PLYL-002 - PLYL has no direct installed-character-number windows
-
-- **Question:** Do any of the six bounded `PLYL` payloads directly encode an
-  installed `CHAR` resource number as an unaligned little-endian 16-bit window,
-  providing a constrained numeric lead for START GAME's supplied party?
-- **Method:** The metadata-only `resource-word-overlap` inspector reads the
-  bounded source and target GFF archives, obtains the 19 installed `CHAR`
-  resource numbers, and compares each two-byte little-endian window in one
-  named `PLYL` payload against that set. It returns only source length,
-  candidate-window count, target-set count, and matching offsets; it retains no
-  source bytes or decoded values. Run it for `PLYL` #0, #10, and #50-#53 in
-  fingerprinted `RESOURCE.GFF` against `CHAR` in fingerprinted
-  `CHARSAVE.GFF`.
-- **Finding:** the three-byte #0, #10, and #50 payloads respectively expose two
-  candidate windows; the seven-byte #51 and #52 payloads each expose six; and
-  the five-byte #53 payload exposes four. None of the 22 candidate windows
-  matches any installed `CHAR` resource number.
-- **Interpretation:** this rejects only a direct unaligned little-endian
-  16-bit installed-character identity in these six payloads. It does not
-  establish a `PLYL` field layout or role, and it does not rule out another
-  archive, byte order, width, indirection, transformation, selection path, or
-  a party list with non-character identifiers.
-- **Confidence:** high for the bounded 22-window/19-target negative result in
-  BLD-GOG-EN-1.1; unknown for every `PLYL` field, consumer, and START GAME
-  membership.
-- **Implementation consequence:** retain `PLYL` as DSOP and
-  `ShippedPartyUnresolved`. Do not bind a party member, add a `PLYL` reader, or
-  label it a party list from this negative probe.
-
 ### DATA-GOG-SMALLTAG-002 - GREQ and CACT have no direct installed-character-number windows
 
 - **Question:** Do the other short character-archive families directly encode
@@ -881,79 +720,10 @@ the owned build.
   reader, associate them with a character, or use them to select a party member
   from this negative probe.
 
-### DATA-GOG-CHAR-006 - Disc and installed character sets
+### OBS-GOG-PARTY-001 - Owner-confirmed combat captures
 
-- **Question:** Which character resources are immutable disc data, which were
-  added by the installed 1.1-era files, and does either set identify the four
-  members selected by START GAME?
-- **Method:** Parse `game.gog` as a bounded Mode 2/2352 ISO 9660 image, inspect
-  only its 3,864-byte `CHARSAVE.GFF`, compare the resulting resource identities
-  with the installed 11,735-byte archive, and remove the temporary extraction.
-  The original files and character names were not retained. A public gameplay
-  report that identifies one named default member was correlated locally by
-  identity, but only numeric resource facts are recorded here.
-- **Finding:** The disc archive contains exactly eight correlated `CHAR`/`PSIN`
-  pairs: #40-#43 and #50-#53. The installed archive contains 19 pairs:
-  #29-#43 and #50-#53. The externally identified default member matches disc
-  resource #43 and an installed duplicate at #33; the report also identifies
-  that character as a half-giant gladiator. This establishes one default member
-  and shows that the installed archive is not interchangeable with the disc
-  archive for party-provenance purposes, but it does not prove which other three
-  records START GAME uses. Both files nevertheless remain exact inputs in the
-  supported baseline corpus.
-- **Static cross-check:** In the fingerprinted executable, neither candidate
-  block appears as four adjacent 16-bit little-endian values. The byte sequence
-  for #40-#43 is absent. Two byte-sequence matches for #50-#53 at `5000:a368`
-  and `5000:a379` are the upper- and lower-case ASCII hexadecimal digit tables,
-  so they were rejected as false positives.
-- **Evidence:** fingerprinted GOG `game.gog` and installed `CHARSAVE.GFF`;
-  `EXE-GOG-CHAR-001`; secondary corroboration from the Steam community review
-  at <https://steamcommunity.com/profiles/76561198045525236/recommended/1904580>.
-- **Confidence:** verified for both resource inventories; medium for #43 as one
-  default member because independent gameplay reporting and the disc identity
-  agree; unknown for the complete four-member selection.
-- **Implementation consequence:** preserve numeric identities in DSCH and the
-  source archive in DSOP, but do not encode a default-party table until runtime
-  or another independent source establishes all four members. A changed source
-  archive is a recognition mismatch, not an implicit alternative party.
-
-### DATA-GOG-CHAR-007 - Confirmed display ordinals are not direct unknown-header values
-
-- **Question:** Do the two character records independently narrowed by
-  owner-confirmed captures (#40 AR'ANDA and #42 THY ROKH) store their visible
-  gender, origin, alignment, or role as a direct native vocabulary ordinal in
-  one common unknown fixed-header field?
-- **Method:** Read the bounded primary CHAR directory in the fingerprinted
-  installed CHARSAVE.GFF, then compare only the 79-byte fixed headers of #40
-  and #42. Exclude the established version/tail-count bytes (0-1), six ability
-  bytes (35-40), and name slot (43-58). For every remaining byte offset and
-  every remaining aligned two-byte little-endian offset, test the exact
-  table-ordinal pairs implied by the observed screens and EXE-GOG-CHAR-007/008:
-  female/female (1/1), elf/thri-kreen (2/7),
-  chaotic-neutral/true-neutral (7/4), and preserver/fighter (4/2). Output
-  only candidate offsets, never header bytes.
-- **Finding:** no remaining one-byte or aligned two-byte header offset matches
-  any of the four tested ordinal pairs. Thus neither of the two direct
-  ordinal-width hypotheses supplies a candidate field.
-- **Interpretation:** this rejects only one narrow representation: a common
-  unknown fixed-header byte or little-endian word equal to the native table
-  ordinal for both confirmed records. It does not rule out a tail record,
-  bitfield, transformed value, one-based or unrelated enumeration, pointer,
-  lookup table, runtime state, or an incorrect assumption that the static
-  vocabulary order is the serialized field order.
-- **Confidence:** high for the bounded #40/#42 header scan and negative
-  candidate result; unknown for all gender, origin, alignment, and role field
-  locations and meanings.
-- **Implementation consequence:** keep those CHAR fields uninterpreted. Do
-  not assign the captured labels to a record byte, enrich DSCH, or drive
-  character/inventory/Use presentation from this rejected direct mapping.
-
-### OBS-GOG-PARTY-001 - Owner-confirmed party and destination-screen captures
-
-- **Question:** What player-visible party membership, destination-shell, and
-  combat-feedback/turn-state facts can be observed without assigning unknown
-  character tail fields, item rules, spell rules, combat mechanics, or
-  resource selection?
+- **Question:** What player-visible combat-feedback and turn-state facts can be
+  observed without assigning combat mechanics?
 - **Method:** The owner confirmed the semantic labels for local-only DOSBox
   Ctrl+F5 captures `dsun_010.png` through `dsun_024.png`; on 2026-09-21 the
   owner additionally labels `dsun_009.png` as an enemy-moving frame,
@@ -961,33 +731,10 @@ the owned build.
   durable owner authorization for the configured DOSBox capture folder permits
   inspection regardless of filename timestamp; semantic identity remains only
   as owner-confirmed. Inspect the 320x200 captures in place; do not copy,
-  rename, or commit them.
-  Correlate only the owner-confirmed member names and visibly labelled ability
-  values with the bounded installed `CHAR` catalog.
-- **Finding:** The party strip visibly contains four members in this order:
-  AR'ANDA, TERRANNUS, THY ROKH, and GERAKIS. The owner identifies
-  `dsun_013`-`016` as their respective spell/use screens, `dsun_017`-`020` as
-  their respective inventory screens, and `dsun_021`-`024` as their respective
-  character views. The layouts of those screens are in FND-UI-019 to FND-UI-021. The four USE captures visibly pair AR'ANDA with a `MAGE
-  LEVEL 1` caption, TERRANNUS with `CLERIC LEVEL 1`, THY ROKH with `MAGE
-  LEVEL 1`, and GERAKIS with `PSIONIC Metabolic`. Those are visible UI
-  captions, not a character-record field map, spell/power inventory, or
-  class/discipline rule. The captures confirm the four-character strip,
-  selection feedback, and reuse of the observed destination shells, but not
-  interior control behavior or field semantics. AR'ANDA's character view visibly shows
-  Strength 18; among the two bounded AR'ANDA records, that matches #40 and not
-  #50, whose separately parsed score is 19. THY ROKH's confirmed letter order
-  also matches #42 (`Thy'rokh`) and not #51 (`Thy-rohk`). TERRANNUS (#41/#53)
-  and GERAKIS (#33/#43) retain same-name candidates with the same currently
-  visible six-score tuple, so the captures do not select one exact resource for
-  each of those names. A read-only catalog cross-check bounds the remaining
-  candidate distinctions without interpreting them: TERRANNUS #41/#53 are
-  respectively 310/475 bytes with 7/12 tail records and raw PSIN masks 4/1;
-  GERAKIS #33/#43 are respectively 937/277 bytes with 26/6 tail records and
-  raw PSIN masks 5/2. Neither the captions nor those structural differences
-  identify a source record. The confirmed order coincides with the consecutive
-  #40-#43 source block, but coincidence and names alone do not prove that
-  complete resource selection. The owner reports that before combat the map
+  rename, or commit them. The party members these captures show, and their
+  Use, inventory and View Character screens, are in FND-PARTY-020,
+  FND-MAGIC-001 and FND-UI-019 to FND-UI-021.
+- **Finding:** The owner reports that before combat the map
   and character presentation remain substantially unchanged except that the
   compact right-side status panel is absent; the first stable combat view shows
   the currently active character's panel. There is no separate visible
@@ -995,10 +742,10 @@ the owned build.
   character approach and strike it. The owner identifies `dsun_009` as an
   enemy-moving frame. It visibly retains the dialogue chrome and lacks the
   compact right-side status panel. `dsun_011` is enemy striking, and
-  `dsun_012` is combat during Thy'rokh's turn. It visibly shows the party
-  cluster and a compact right-side
-  panel with `Thy'rokh`, `90/85`, and `Moves 15`; these are displayed strings,
-  not assigned status/value semantics. `dsun_011` is confirmed as combat
+  `dsun_012` is combat during the third party member's turn. It visibly shows
+  the party cluster and a compact right-side panel with that member's name,
+  `90/85`, and `Moves 15`; these are displayed strings, not assigned
+  status/value semantics. `dsun_011` is confirmed as combat
   damage being inflicted and visibly shows a red `11` feedback glyph over the
   actor cluster. The
   pure-red components in that visible glyph area have a union bound of `(151,95)` through `(178,113)` in
@@ -1010,14 +757,14 @@ the owned build.
   artwork, placement, and a dynamic overlay region only; it identifies no
   panel text source, value meaning, movement rule, or update timing. The
   dynamic panel text differs between the owner-confirmed enemy-striking and
-  player-turn frames: `dsun_011` visibly draws `Draxan` and `Moves 20`, while
-  `dsun_012` draws `Thy'rokh`, `90/85`, and `Moves 15`. Together with the
-  owner's statement that the stable panel represents the currently active
-  character, this establishes active-combatant-dependent presentation only;
-  none of the strings is assigned a field, actor-record, movement, health, or
-  turn-order meaning. The observed Thy'rokh frame establishes only that this
-  labelled combat turn state is visible; the owner reports no visible
-  turn-transition treatment.
+  player-turn frames: `dsun_011` visibly draws an enemy's name and `Moves 20`,
+  while `dsun_012` draws the party member's name, `90/85`, and `Moves 15`.
+  Together with the owner's statement that the stable panel represents the
+  currently active character, this establishes active-combatant-dependent
+  presentation only; none of the strings is assigned a field, actor-record,
+  movement, health, or turn-order meaning. The observed player-turn frame
+  establishes only that this labelled combat turn state is visible; the owner
+  reports no visible turn-transition treatment.
   This does not establish how turns start, advance, or cycle.
   These captures do not establish movement-point scale, initial amount, cost,
   distance, path, collision, speed, attacker, target, damage rule, action,
@@ -1044,17 +791,12 @@ the owned build.
   combat update loop consumes this evidence-only asset.
 - **Confidence:** high for the owner-confirmed screenshot labels, reported
   direct click interaction and absent visible target/turn-transition treatment,
-  member order,
-  shell reuse, the four visible USE captions, AR'ANDA #40/THY'ROKH #42
-  discrimination, candidate envelope/mask distinctions, visible enemy motion,
-  movement-point-display change, Thy'rokh's visible combat turn panel, and
-  visible damage glyph; unknown for the two duplicate-name resource selections,
-  party source/origin, dynamic field meanings, spell selection, inventory
-  semantics, and all combat mechanics.
-- **Implementation consequence:** retain `ShippedPartyUnresolved` and inert
-  destination interiors. Do not create a four-resource default-party table,
-  item model, spell model, movement-point cost model, damage pipeline, combat
-  state machine, or timing policy from these still-bounded visual facts.
+  visible enemy motion, movement-point-display change, the visible combat turn
+  panel, and visible damage glyph; unknown for dynamic field meanings and all
+  combat mechanics.
+- **Implementation consequence:** do not create a movement-point cost model,
+  damage pipeline, combat state machine, or timing policy from these
+  still-bounded visual facts.
 
 ### DATA-GOG-COMBAT-001 - Panel caption has no direct ASCII source lead
 
@@ -1079,146 +821,6 @@ the owned build.
   asset and keep its dynamic area opaque. Do not hard-code the caption, assign
   its values, or add combat presentation/logic from a failed direct source
   search.
-
-### RULE-START-FLOW-001 - Start and party-creation routing
-
-- **Behavior:** The Start Window offers START GAME, CREATE CHARACTERS, LOAD
-  SAVED GAME, and EXIT TO DOS. The original START GAME route immediately enters
-  play with a supplied party, but the complete four-member identity is not yet
-  established. The reimplementation therefore reaches its current gameplay
-  slice with `ShippedPartyUnresolved`, never a fabricated party. CREATE
-  CHARACTERS opens View Character with four empty slots. Activating an empty
-  slot offers NEW, ADD, and CANCEL; NEW opens character generation, ADD selects
-  a previously created character, and CANCEL closes the menu. DONE accepts a
-  valid new character. A created party may begin with one through four members.
-- **Evidence:** SRC-MANUAL-1994, quick-start and "Creating Your Party," pages 2 and
-  7-10; SCR-UI-001, SCR-UI-002 and SCR-UI-004 give the start window, the View
-  Character screen and character generation. FND-UI-012 finds no direct
-  immediate operand for any of the four start buttons, so no callback or
-  transition path is known.
-- **Confidence:** high for documented semantic destinations; exact input event,
-  focus, animation, and transition timing require OBS-GOG evidence.
-- **Implementation:** deterministic `StartFlow` screen transitions with stable
-  rejection diagnostics and integration with the existing `Party` validation.
-  Occupied-slot EDIT replaces the selected member atomically; DROP transfers
-  the member to bounded recreation-native character storage and ADD can restore
-  it. When a party member carries eligible class progression, DUAL enters a
-  dedicated selection state and atomically applies an accepted next class; the
-  separate evidenced progression rule is implemented by `RULE-PARTY-004`. The
-  unresolved shipped-party origin is explicit in schema 5 snapshots and replay
-  format 3, so no earlier state can be mistaken for a modeled original party.
-- **Tests:** every start choice, NEW/ADD/CANCEL routing, valid and invalid
-  completion, occupied-slot edit/drop/add/DUAL, atomic replacement, persisted
-  edit and DUAL targets, empty/nonempty party start, cancellation, and
-  wrong-screen rejection.
-- **Uncertainty:** Pregenerated member records, saved/created-character formats,
-  DUAL presentation/class-choice filtering, the exact early-start control,
-  native focus/frame-state/callback behavior, and shipped cancellation edge
-  cases remain unimplemented until their data and runtime behavior are observed.
-
-### RULE-PARTY-002 - Character creation invariants
-
-- **Behavior:** Creation offers human, dwarf, elf, half-elf, half-giant,
-  halfling, mul, and thri-kreen. Muls are male and thri-kreen female in the
-  creation flow. Characters use one of six good/neutral alignments, ability
-  scores fall from 9 through 24, and each class has the documented ability
-  minima. Humans begin single-classed; non-humans may select as many as three
-  classes; cleric and druid cannot be combined.
-- **Evidence:** SRC-MANUAL-1994, pages 7-9 and 16-23.
-- **Confidence:** high for documented intent; not yet observed in the shipped
-  build.
-- **Implementation:** `PartyCreationRules` exposes stable diagnostics and
-  rejects unsupported drafts without I/O or presentation dependencies.
-- **Tests:** sex, alignment/enum, ability range and class minima, human
-  multiclass, class count/duplicates, cleric+druid, and agreed eligibility
-  constraints.
-- **Uncertainty:** Initial HP adjustment, ability-generation distribution,
-  origin-modifier application timing/caps during generation and editing, valid
-  multiclass combinations, and exact screen defaults need DATA-GOG/OBS-GOG
-  evidence. The modifier values themselves are recorded by `RULE-PARTY-005`.
-
-### CONFLICT-PARTY-001 - Manual origin/class eligibility lists
-
-- **Claim A:** The race descriptions list the classes allowed for each race.
-- **Claim B:** The class descriptions independently list allowed races.
-- **Conflict:** The lists disagree for half-giant ranger and thief, mul druid,
-  and thri-kreen druid and thief. They may contain additional combination rules
-  that prose alone does not expose.
-- **Evidence:** SRC-MANUAL-1994, race descriptions on pages 17-18 and class
-  descriptions on pages 19-22.
-- **Implementation:** these pairs return `EvidenceConflict` and validation emits
-  `class_origin_unresolved`; no eligibility is guessed.
-- **Resolution needed:** record the selectable class list for every origin in the
-  fingerprinted GOG build, then update the matrix and tests.
-
-### RULE-PARTY-003 - Psionic disciplines and clerical spheres
-
-- **Behavior:** A psionicist specializes in Psychokinesis, Psychometabolism,
-  and Telepathy. Every other character selects exactly one of those disciplines,
-  with Psychokinesis documented as the initial selection. A cleric selects one
-  elemental sphere from Air, Earth, Fire, and Water, with Air documented as the
-  initial selection; non-clerics do not select a clerical sphere.
-- **Evidence:** SRC-MANUAL-1994, character-generation instructions on pages 7-9.
-- **Confidence:** high for documented intent; the supported executable's
-  initial selections and selection transitions have not yet been observed.
-- **Implementation:** `CharacterDraft` records both choices and
-  `PartyCreationRules` validates their class-dependent cardinality. Both fields
-  participate in the canonical start-flow state hash and snapshot schema 5.
-- **Tests:** all-three Psionicist requirement, exactly-one non-Psionicist
-  requirement, Cleric-only elemental sphere, and sphere-sensitive state hashes.
-- **Uncertainty:** Shipped defaults, control-state frames, click transitions,
-  and whether any exceptional class combination changes these rules need
-  OBS-GOG evidence.
-
-### RULE-PARTY-004 - Human dual-class progression
-
-- **Behavior:** Only humans may become dual-classed. The current class must be
-  at least level three before changing; the new class begins at level one and
-  the old class never advances again. Former-class abilities remain unavailable
-  until the new class level exceeds the former level. A human may repeat the
-  process once, for at most three sequential careers.
-- **Evidence:** SRC-MANUAL-1994, party-modification instructions on pages 9-10 and
-  "Character Classes" on page 19.
-- **Confidence:** high for documented intent; XP thresholds, shipped DUAL
-  availability, class-choice filtering, and multi-career edge behavior remain
-  unobserved.
-- **Implementation:** immutable `DualClassProgression` records ordered
-  class/level careers, starts accepted new careers at level one, advances only
-  the current career, reports stable rejection diagnostics, and evaluates the
-  documented strict level-exceeds boundary for former benefits. `CharacterDraft`
-  carries that progression, validates it against the ordered class list, and
-  `StartFlow` exposes a deterministic DUAL selection command. Snapshot schema 5
-  and the canonical state hash include every career and level.
-- **Tests:** human-only and level-three gates, duplicate-class and three-career
-  limits, transition immutability, monotonic current-level advancement, and
-  equal/exceeded former-level boundaries, class/progression consistency,
-  atomic DUAL selection, cancellation, command payload validation, snapshot
-  restore, and progression-sensitive state hashes.
-- **Uncertainty:** Player-visible selection, native-save integration, initial
-  shipped class levels/experience, XP thresholds, and exact DUAL UI choices
-  require later Slice 2/5 data and observations.
-
-### RULE-PARTY-005 - Origin ability modifiers
-
-- **Behavior:** Human ability scores are unmodified. Dwarves receive Strength
-  +1, Dexterity -1, Constitution +2, and Charisma -2; elves receive Dexterity
-  +2, Constitution -2, Intelligence +1, and Wisdom -1; half-elves receive
-  Dexterity +1 and Constitution -1; half-giants receive Strength +4,
-  Constitution +2, Intelligence -2, Wisdom -2, and Charisma -2; halflings
-  receive Strength -2, Dexterity +2, Constitution -1, Wisdom +2, and Charisma
-  -1; muls receive Strength +2, Constitution +1, Intelligence -1, and Charisma
-  -2; thri-kreen receive Dexterity +2, Intelligence -1, Wisdom +1, and Charisma
-  -2. Unlisted abilities receive zero.
-- **Evidence:** SRC-MANUAL-1994, "Racial Ability Adjustments Table," page 77.
-- **Confidence:** high for the published modifiers; application order, edit
-  behavior, and whether final scores are capped remain unobserved.
-- **Implementation:** `PartyCreationRules.AbilityModifiers` returns an immutable
-  six-field modifier value for every defined origin and rejects undefined enum
-  values. It does not mutate `CharacterDraft` or invent generation behavior.
-- **Tests:** exact six-ability values for all eight origins, complete enum
-  coverage, and undefined-origin rejection.
-- **Uncertainty:** Observe generation and editing at origin-specific and global score
-  boundaries before applying the table to final character state.
 
 ### RULE-COMBAT-001 - Party expansion on combat entry
 

@@ -36,6 +36,7 @@ public sealed record DualClassProgression
         var diagnostics = ValidateCanStartNext(origin).ToList();
         if (!Enum.IsDefined(nextClass))
             diagnostics.Add(new("dual_class_invalid", "The selected new class is invalid."));
+        // PLACEHOLDER: RULE-PARTY-004 - whether a former class may be taken again is unknown.
         else if (_careers.Any(item => item.CharacterClass == nextClass))
             diagnostics.Add(new("dual_class_duplicate", "A character cannot return to a previous class."));
 

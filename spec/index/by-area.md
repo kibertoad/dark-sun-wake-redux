@@ -202,7 +202,41 @@ None.
 
 ## PARTY
 
-None.
+| ID | Title | Status |
+|---|---|---|
+| [FMT-PARTY-001](../formats/FMT-PARTY-001.md) | Character record | supported |
+| [FMT-PARTY-002](../formats/FMT-PARTY-002.md) | Character record tail entry | supported |
+| [FMT-PARTY-003](../formats/FMT-PARTY-003.md) | Character psionic byte | supported |
+| [FMT-PARTY-004](../formats/FMT-PARTY-004.md) | Character PSST record | supported |
+| [FMT-PARTY-005](../formats/FMT-PARTY-005.md) | Character SPST record | supported |
+| [FND-PARTY-001](../findings/FND-PARTY-001.md) | Every CHAR record holds a printable NUL-terminated name in a 16-byte slot at 0x2B | recorded |
+| [FND-PARTY-002](../findings/FND-PARTY-002.md) | Each CHAR record has a one-byte PSIN resource of the same number, holding 1, 2, 4, 5, 6 or 7 | recorded |
+| [FND-PARTY-003](../findings/FND-PARTY-003.md) | Bytes 0x23 to 0x28 of every CHAR record hold six values from 12 to 24 | recorded |
+| [FND-PARTY-004](../findings/FND-PARTY-004.md) | A CHAR record is a 79-byte header whose byte 1 counts the 33-byte records after it | recorded |
+| [FND-PARTY-005](../findings/FND-PARTY-005.md) | The disc's CHARSAVE.GFF holds characters 40 to 43 and 50 to 53; the installed copy adds 29 to 39 | recorded |
+| [FND-PARTY-006](../findings/FND-PARTY-006.md) | Each CHAR record has a 34-byte PSST and a 9- or 15-byte SPST resource of the same number | recorded |
+| [FND-PARTY-007](../findings/FND-PARTY-007.md) | DSUN.EXE holds no run of four consecutive character numbers other than inside its hex-digit strings | recorded |
+| [FND-PARTY-008](../findings/FND-PARTY-008.md) | DSUN.EXE names CHARSAVE.GFF twice, at 5000:9188 and in a message at 5000:9197, with no direct reference | recorded |
+| [FND-PARTY-009](../findings/FND-PARTY-009.md) | The resident image of DSUN.EXE holds CHAR only inside text and has no PSIN, PSST, SPST or CACT bytes | recorded |
+| [FND-PARTY-010](../findings/FND-PARTY-010.md) | Unpacked, CHARTRAN.EXE names charsave.gff and OBJEX.GFF and moves Dark Sun 1 characters into the party list | recorded |
+| [FND-PARTY-011](../findings/FND-PARTY-011.md) | CHARTRAN.EXE stores each transferred character as CACT, CHAR, SPST, PSST and PSIN resources under one number from 0 to 39 | recorded |
+| [FND-PARTY-012](../findings/FND-PARTY-012.md) | Overlays 171, 184 and 186 keep stored characters under CACT numbers 1 to 39 with their CHAR, SPST, PSST and PSIN | recorded |
+| [FND-PARTY-013](../findings/FND-PARTY-013.md) | A routine in overlay 182 loads CHAR 40 to 43 into party slots 0 to 3 | recorded |
+| [FND-PARTY-014](../findings/FND-PARTY-014.md) | SVIEW.EXE is a text viewer and names no GFF file or character tag | recorded |
+| [FND-PARTY-015](../findings/FND-PARTY-015.md) | DSUN.EXE does not hold the names of the shipped characters | recorded |
+| [FND-PARTY-016](../findings/FND-PARTY-016.md) | DSUN.EXE holds the eight class labels in one run at 5000:908C, with no direct reference | recorded |
+| [FND-PARTY-017](../findings/FND-PARTY-017.md) | DSUN.EXE holds the gender, origin, ability and alignment labels in runs around the class labels | recorded |
+| [FND-PARTY-018](../findings/FND-PARTY-018.md) | No CHAR header byte or word of records 40 and 42 holds the label positions of their gender, origin, alignment or class | recorded |
+| [FND-PARTY-019](../findings/FND-PARTY-019.md) | No PLYL resource in RESOURCE.GFF holds a character number as a byte or 16-bit word | recorded |
+| [FND-PARTY-020](../findings/FND-PARTY-020.md) | The four View Character captures show a party whose names and scores match CHAR records 40, 41 or 53, 42, and 33 or 43 | recorded |
+| [RULE-PARTY-001](../rules/RULE-PARTY-001.md) | A party has one to four characters | sourced |
+| [RULE-PARTY-002](../rules/RULE-PARTY-002.md) | What a new character may be | sourced |
+| [RULE-PARTY-003](../rules/RULE-PARTY-003.md) | Which psionic disciplines and elemental sphere a new character chooses | sourced |
+| [RULE-PARTY-004](../rules/RULE-PARTY-004.md) | A human can change class twice, from third level | sourced |
+| [RULE-PARTY-005](../rules/RULE-PARTY-005.md) | Origin ability modifiers | sourced |
+| [RULE-PARTY-006](../rules/RULE-PARTY-006.md) | START GAME supplies characters 40 to 43 as the party | supported |
+| [RULE-PARTY-007](../rules/RULE-PARTY-007.md) | Which classes each origin may take, and to which level | sourced |
+| [RULE-PARTY-008](../rules/RULE-PARTY-008.md) | The keys 1 to 4 choose the party leader | sourced |
 
 ## MAGIC
 

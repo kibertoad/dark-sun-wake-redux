@@ -19,5 +19,8 @@ behaviour of earlier versions and so are leads for the bug entries.
 
 ## Known errors
 
-None known. How its level limits compare with the executable's has not been
-checked.
+- Its section on exceeding level limits breaks off in mid-sentence on
+  characters with more than one prime requisite, and refers to its bonus
+  table as both TABLE * and TABLE 8.
+- How its level limits compare with the executable's has not been checked
+  (RULE-PARTY-007).

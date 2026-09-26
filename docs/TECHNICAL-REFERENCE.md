@@ -130,8 +130,8 @@ and START GAME continues with an explicit unresolved shipped-party origin.
 The View Character, Inventory, Cast and Effects screens are `SCR-UI-002` and
 `SCR-UI-008` to `SCR-UI-010`. Five navigation controls route today; all interior
 controls stay inert. The label table of those screens (`FND-UI-023`) has no
-known reader. Read those entries and OBS-GOG-PARTY-001 before extending these
-screens.
+known reader. Read those entries, FND-PARTY-020 and FND-MAGIC-001 before
+extending these screens.
 
 The two item labels visible in the owner-confirmed AR'ANDA inventory capture
 have unique bounded source locations: `Longsword` and `Dagger` are in the
@@ -400,11 +400,12 @@ rejecting unsupported semantics:
   event input, and every combat rule remain unknown.
 - `EXE-GOG-SMALLTAG-001` finds no literal executable loader lead for `GREQ`,
   `CACT`, `PLYL`, or `CSEQ`. `DATA-GOG-SMALLTAG-001` bounds their owned
-  inventories and short envelopes; `DATA-GOG-PLYL-002` additionally rejects a
-  direct installed-`CHAR` resource number in every unaligned 16-bit `PLYL`
-  window, while `DATA-GOG-SMALLTAG-002` rejects it in every `GREQ` and `CACT`
-  window. None of these results assigns the opaque families a runtime role or
-  identifies the supplied party.
+  inventories and short envelopes; `FND-PARTY-019` additionally rejects a
+  direct installed-`CHAR` resource number in every `PLYL` byte and unaligned
+  16-bit window, while `DATA-GOG-SMALLTAG-002` rejects it in every `GREQ` and
+  `CACT` window. The `CACT` resources hold the identifiers of stored
+  characters (`FND-PARTY-011`, `FND-PARTY-012`); the other families have no
+  known runtime role.
 - `EXE-GOG-PREF-001` finds one raw `PREF` tag literal but no direct reference;
   it supplies no Preferences loader, settings schema, default, or control
   behavior.
@@ -437,13 +438,12 @@ rejecting unsupported semantics:
 - `FND-IMAGE-009` finds no `PORT` tag in the resident image; its one
   occurrence is in overlay 199. It supplies no portrait loader, palette,
   drawing, dialogue, or timing rule.
-- `EXE-GOG-CHAR-003` finds no direct literal-tag lead for the character
-  archive: raw `CHAR` bytes have no direct references and `PSIN` is absent.
-  The separately fingerprinted `SVIEW.EXE` has neither a literal
-  `CHARSAVE.GFF` pathname nor a `CHAR` tag (`EXE-GOG-CHAR-004`), while
-  `CHARTRAN.EXE` has one unreferenced raw `CHAR` occurrence and no `PSIN`
-  pattern (`EXE-GOG-CHAR-005`). Neither utility result can select a shipped
-  party.
+- The character archive's tags occur only in overlay code (`FND-PARTY-009`):
+  overlays 171, 184 and 186 keep the stored characters and their records
+  (`FND-PARTY-012`), and overlay 182 loads characters 40 to 43 into the party
+  (`FND-PARTY-013`, `RULE-PARTY-006`). `SVIEW.EXE` is a text viewer
+  (`FND-PARTY-014`). `CHARTRAN.EXE`, once unpacked, transfers Dark Sun 1
+  characters into the archive (`FND-PARTY-010`, `FND-PARTY-011`).
 - `GPLI` #1 is an exact 329-by-24-byte opaque data envelope. Its four aligned
   third lane words are a strong GPL-number-set correlation (1,315 of 1,316
   occurrences are members, collectively covering every GPL ID), but repeats

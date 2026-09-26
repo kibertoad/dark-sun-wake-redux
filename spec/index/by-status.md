@@ -15,16 +15,23 @@ Entries by status.
 
 ## sourced
 
-2 entries.
+9 entries.
 
 | ID | Title |
 |---|---|
 | [RULE-INPUT-001](../rules/RULE-INPUT-001.md) | The right mouse button steps the pointer through the Walk, Attack and Look modes |
 | [RULE-INPUT-003](../rules/RULE-INPUT-003.md) | The keys that open the character option screens and the Game Menu |
+| [RULE-PARTY-001](../rules/RULE-PARTY-001.md) | A party has one to four characters |
+| [RULE-PARTY-002](../rules/RULE-PARTY-002.md) | What a new character may be |
+| [RULE-PARTY-003](../rules/RULE-PARTY-003.md) | Which psionic disciplines and elemental sphere a new character chooses |
+| [RULE-PARTY-004](../rules/RULE-PARTY-004.md) | A human can change class twice, from third level |
+| [RULE-PARTY-005](../rules/RULE-PARTY-005.md) | Origin ability modifiers |
+| [RULE-PARTY-007](../rules/RULE-PARTY-007.md) | Which classes each origin may take, and to which level |
+| [RULE-PARTY-008](../rules/RULE-PARTY-008.md) | The keys 1 to 4 choose the party leader |
 
 ## supported
 
-51 entries.
+57 entries.
 
 | ID | Title |
 |---|---|
@@ -45,6 +52,11 @@ Entries by status.
 | [FMT-IMAGE-002](../formats/FMT-IMAGE-002.md) | Image frame |
 | [FMT-IMAGE-003](../formats/FMT-IMAGE-003.md) | Palette resource |
 | [FMT-IMAGE-004](../formats/FMT-IMAGE-004.md) | Palette colour |
+| [FMT-PARTY-001](../formats/FMT-PARTY-001.md) | Character record |
+| [FMT-PARTY-002](../formats/FMT-PARTY-002.md) | Character record tail entry |
+| [FMT-PARTY-003](../formats/FMT-PARTY-003.md) | Character psionic byte |
+| [FMT-PARTY-004](../formats/FMT-PARTY-004.md) | Character PSST record |
+| [FMT-PARTY-005](../formats/FMT-PARTY-005.md) | Character SPST record |
 | [FMT-REGION-001](../formats/FMT-REGION-001.md) | Region name resource |
 | [FMT-REGION-002](../formats/FMT-REGION-002.md) | Region terrain map |
 | [FMT-REGION-003](../formats/FMT-REGION-003.md) | Region cell flag map |
@@ -64,6 +76,7 @@ Entries by status.
 | [RULE-IMAGE-001](../rules/RULE-IMAGE-001.md) | Decoding an image frame, and the row encoding |
 | [RULE-IMAGE-002](../rules/RULE-IMAGE-002.md) | Decoding a planar image frame |
 | [RULE-INPUT-002](../rules/RULE-INPUT-002.md) | Which image the pointer shows for each mode, and its hotspot |
+| [RULE-PARTY-006](../rules/RULE-PARTY-006.md) | START GAME supplies characters 40 to 43 as the party |
 | [RULE-REGION-001](../rules/RULE-REGION-001.md) | Drawing a region's terrain tiles |
 | [RULE-RNG-001](../rules/RULE-RNG-001.md) | The game's random number generator and its reductions |
 | [RULE-UI-001](../rules/RULE-UI-001.md) | Which controls the window code offers an event or the pointer to, by their event masks |
@@ -94,7 +107,7 @@ Entries by status.
 
 ## recorded
 
-98 entries.
+118 entries.
 
 | ID | Title |
 |---|---|
@@ -142,6 +155,26 @@ Entries by status.
 | [FND-INPUT-007](../findings/FND-INPUT-007.md) | No resident instruction reads port 60h or sets DX to 60h or 64h before port I/O |
 | [FND-INPUT-008](../findings/FND-INPUT-008.md) | No decoded function of the overlay-mapped image compares all the manual combat keys |
 | [FND-INPUT-009](../findings/FND-INPUT-009.md) | The one dispatch-shaped caller above the mapped keyboard routine requests GPLI 1 |
+| [FND-PARTY-001](../findings/FND-PARTY-001.md) | Every CHAR record holds a printable NUL-terminated name in a 16-byte slot at 0x2B |
+| [FND-PARTY-002](../findings/FND-PARTY-002.md) | Each CHAR record has a one-byte PSIN resource of the same number, holding 1, 2, 4, 5, 6 or 7 |
+| [FND-PARTY-003](../findings/FND-PARTY-003.md) | Bytes 0x23 to 0x28 of every CHAR record hold six values from 12 to 24 |
+| [FND-PARTY-004](../findings/FND-PARTY-004.md) | A CHAR record is a 79-byte header whose byte 1 counts the 33-byte records after it |
+| [FND-PARTY-005](../findings/FND-PARTY-005.md) | The disc's CHARSAVE.GFF holds characters 40 to 43 and 50 to 53; the installed copy adds 29 to 39 |
+| [FND-PARTY-006](../findings/FND-PARTY-006.md) | Each CHAR record has a 34-byte PSST and a 9- or 15-byte SPST resource of the same number |
+| [FND-PARTY-007](../findings/FND-PARTY-007.md) | DSUN.EXE holds no run of four consecutive character numbers other than inside its hex-digit strings |
+| [FND-PARTY-008](../findings/FND-PARTY-008.md) | DSUN.EXE names CHARSAVE.GFF twice, at 5000:9188 and in a message at 5000:9197, with no direct reference |
+| [FND-PARTY-009](../findings/FND-PARTY-009.md) | The resident image of DSUN.EXE holds CHAR only inside text and has no PSIN, PSST, SPST or CACT bytes |
+| [FND-PARTY-010](../findings/FND-PARTY-010.md) | Unpacked, CHARTRAN.EXE names charsave.gff and OBJEX.GFF and moves Dark Sun 1 characters into the party list |
+| [FND-PARTY-011](../findings/FND-PARTY-011.md) | CHARTRAN.EXE stores each transferred character as CACT, CHAR, SPST, PSST and PSIN resources under one number from 0 to 39 |
+| [FND-PARTY-012](../findings/FND-PARTY-012.md) | Overlays 171, 184 and 186 keep stored characters under CACT numbers 1 to 39 with their CHAR, SPST, PSST and PSIN |
+| [FND-PARTY-013](../findings/FND-PARTY-013.md) | A routine in overlay 182 loads CHAR 40 to 43 into party slots 0 to 3 |
+| [FND-PARTY-014](../findings/FND-PARTY-014.md) | SVIEW.EXE is a text viewer and names no GFF file or character tag |
+| [FND-PARTY-015](../findings/FND-PARTY-015.md) | DSUN.EXE does not hold the names of the shipped characters |
+| [FND-PARTY-016](../findings/FND-PARTY-016.md) | DSUN.EXE holds the eight class labels in one run at 5000:908C, with no direct reference |
+| [FND-PARTY-017](../findings/FND-PARTY-017.md) | DSUN.EXE holds the gender, origin, ability and alignment labels in runs around the class labels |
+| [FND-PARTY-018](../findings/FND-PARTY-018.md) | No CHAR header byte or word of records 40 and 42 holds the label positions of their gender, origin, alignment or class |
+| [FND-PARTY-019](../findings/FND-PARTY-019.md) | No PLYL resource in RESOURCE.GFF holds a character number as a byte or 16-bit word |
+| [FND-PARTY-020](../findings/FND-PARTY-020.md) | The four View Character captures show a party whose names and scores match CHAR records 40, 41 or 53, 42, and 33 or 43 |
 | [FND-REGION-001](../findings/FND-REGION-001.md) | Each of the 20 region files holds one region's name, palette, two maps, entity table and tiles |
 | [FND-REGION-002](../findings/FND-REGION-002.md) | Every MAP is 12,544 bytes, each naming a TILE of its own file that is one 16x16 frame |
 | [FND-REGION-003](../findings/FND-REGION-003.md) | Every GMAP is 12,544 bytes whose values are only 0x00, 0x40, 0x80 and 0xC0 |
@@ -228,6 +261,11 @@ Entries whose Open questions section says more than None known.
 | [FMT-IMAGE-002](../formats/FMT-IMAGE-002.md) | Image frame | supported |
 | [FMT-IMAGE-003](../formats/FMT-IMAGE-003.md) | Palette resource | supported |
 | [FMT-IMAGE-004](../formats/FMT-IMAGE-004.md) | Palette colour | supported |
+| [FMT-PARTY-001](../formats/FMT-PARTY-001.md) | Character record | supported |
+| [FMT-PARTY-002](../formats/FMT-PARTY-002.md) | Character record tail entry | supported |
+| [FMT-PARTY-003](../formats/FMT-PARTY-003.md) | Character psionic byte | supported |
+| [FMT-PARTY-004](../formats/FMT-PARTY-004.md) | Character PSST record | supported |
+| [FMT-PARTY-005](../formats/FMT-PARTY-005.md) | Character SPST record | supported |
 | [FMT-REGION-001](../formats/FMT-REGION-001.md) | Region name resource | supported |
 | [FMT-REGION-002](../formats/FMT-REGION-002.md) | Region terrain map | supported |
 | [FMT-REGION-003](../formats/FMT-REGION-003.md) | Region cell flag map | supported |
@@ -249,6 +287,14 @@ Entries whose Open questions section says more than None known.
 | [RULE-INPUT-001](../rules/RULE-INPUT-001.md) | The right mouse button steps the pointer through the Walk, Attack and Look modes | sourced |
 | [RULE-INPUT-002](../rules/RULE-INPUT-002.md) | Which image the pointer shows for each mode, and its hotspot | supported |
 | [RULE-INPUT-003](../rules/RULE-INPUT-003.md) | The keys that open the character option screens and the Game Menu | sourced |
+| [RULE-PARTY-001](../rules/RULE-PARTY-001.md) | A party has one to four characters | sourced |
+| [RULE-PARTY-002](../rules/RULE-PARTY-002.md) | What a new character may be | sourced |
+| [RULE-PARTY-003](../rules/RULE-PARTY-003.md) | Which psionic disciplines and elemental sphere a new character chooses | sourced |
+| [RULE-PARTY-004](../rules/RULE-PARTY-004.md) | A human can change class twice, from third level | sourced |
+| [RULE-PARTY-005](../rules/RULE-PARTY-005.md) | Origin ability modifiers | sourced |
+| [RULE-PARTY-006](../rules/RULE-PARTY-006.md) | START GAME supplies characters 40 to 43 as the party | supported |
+| [RULE-PARTY-007](../rules/RULE-PARTY-007.md) | Which classes each origin may take, and to which level | sourced |
+| [RULE-PARTY-008](../rules/RULE-PARTY-008.md) | The keys 1 to 4 choose the party leader | sourced |
 | [RULE-REGION-001](../rules/RULE-REGION-001.md) | Drawing a region's terrain tiles | supported |
 | [RULE-RNG-001](../rules/RULE-RNG-001.md) | The game's random number generator and its reductions | supported |
 | [RULE-UI-001](../rules/RULE-UI-001.md) | Which controls the window code offers an event or the pointer to, by their event masks | supported |

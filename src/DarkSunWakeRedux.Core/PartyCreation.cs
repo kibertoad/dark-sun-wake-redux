@@ -203,6 +203,8 @@ public static class PartyCreationRules
             [CharacterClass.Psionicist] = Set(Enum.GetValues<CharacterOrigin>())
         };
 
+    // PLACEHOLDER: RULE-PARTY-007 - which classes the game offers each origin is unknown; the
+    // manual's two lists disagree, and README table 3 is a source the executable has not confirmed.
     public static ClassEligibility Eligibility(CharacterOrigin origin, CharacterClass characterClass)
     {
         var originAllows = OriginSectionClaims[origin].Contains(characterClass);
@@ -306,6 +308,8 @@ public static class PartyCreationRules
             diagnostics.Add(new("clerical_sphere_missing", "A cleric must select an elemental sphere."));
         else if (character.ClericalSphere is { } sphere && !Enum.IsDefined(sphere))
             diagnostics.Add(new("clerical_sphere_invalid", "The selected clerical sphere is invalid."));
+        // PLACEHOLDER: RULE-PARTY-003 - the manual also gives druids and rangers a sphere; which
+        // classes the game lets choose one is unknown.
         else if (!isCleric && character.ClericalSphere is not null)
             diagnostics.Add(new("clerical_sphere_unavailable", "Only clerics select a clerical sphere."));
     }
