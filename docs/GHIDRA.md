@@ -70,9 +70,26 @@ match count, and file offsets. It does not print, retain, or create a copy of
 source bytes. Follow a physical hit with `ReportBytePattern` in the applicable
 loaded or mapped Ghidra view before assigning it a code owner.
 
+## FBOV mapped image
+
+Ghidra's MZ loader shows only the resident load image of `DSUN.EXE`; the code
+of its 49 overlays sits in the `FBOV` pack after the image (FMT-EXE-001), and
+resident code reaches it only through trampolines (FMT-EXE-004).
 `tools/ghidra/New-FbovMappedImage.ps1` writes a local-only copy of `DSUN.EXE`
 whose header loads the `FBOV` overlay code as ordinary segments, so Ghidra can
-follow calls into it. That copy is not a shipped file, and the spec never cites
+follow calls into it. It refuses an output path inside the repository or one
+that already exists. It builds a new MZ relocation table from the original one,
+rewrites each of the 854 trampolines as a far jump into its overlay's code with
+a relocation for the jump's segment, replaces each overlay fixup word with the
+segment its descriptor names and adds a relocation for it, and reports how many
+fixup words had bit 0 set (0 for the GOG `DSUN.EXE`), since it does not
+transform those. For the GOG `DSUN.EXE` the output is 668,768 bytes, and Ghidra
+12.1.3 imports it with the MZ loader. Import it into its own disposable
+project. A successful import does not validate decompiler output: indirect
+calls and generic MZ-analysis warnings remain, so each query still records a
+bounded result.
+
+That copy is not a shipped file, and the spec never cites
 its addresses. `tools/ghidra/ReportFbovOverlayMap.ps1` prints, for each overlay,
 the segment of its resident header, the file offset and length of its code, and
 the segment its code has in the mapped image. Given `-MappedAddress` values, it
@@ -82,6 +99,8 @@ pack. The mapped copy keeps every byte after the MZ header in place, so a
 resident address such as `5000:A4B9` is the same in both images and is cited as
 it is, while overlay code is cited as `DSUN.EXE+0x...` from the reporter's
 `FileOffset`.
+
+## Packed helper executables
 
 `CHARTRAN.EXE` is compressed by LZEXE 0.91 (`LZ91` at offset `0x1C`), so its
 strings and code are not visible in the shipped file. Unpack it first with
@@ -576,7 +595,7 @@ proof by itself. Never redirect broad output into the repository.
 - **Method:** `ReportBytePattern` searched all loaded blocks for OJFF #9258's
   explicit 16-bit little-endian encoding (`2a 24`). `ReportReferences` then
   queried the single hit, and `ReportDataBytes` classified a bounded 96-byte
-  neighborhood. The mapped image from `EXE-GOG-OVERLAY-004` then used
+  neighborhood. The [FBOV mapped image](#fbov-mapped-image) then used
   `ReportScalarConstants` to search every decoded operand for decimal 9258.
 - **Bounded finding:** exactly one raw match occurs at `1000:9754`. Ghidra
   has no reference to that address, and the surrounding bytes are an
@@ -650,6 +669,8 @@ proof by itself. Never redirect broad output into the repository.
   zero occurrences of both the six-byte `Draxan` prefix and its seven-byte
   NUL-terminated form. It retained only the computed MZ sizes and match counts,
   not source bytes. This closes the exact-ASCII overlay variant of this query.
+  A NUL-terminated search in the [FBOV mapped image](#fbov-mapped-image)
+  agrees: no match.
 - **Interpretation:** this excludes only the observed-case ASCII spelling in
   this complete physical executable. It may be encoded with another case or
   character set, held in a GFF/resource or a separate module, assembled at
@@ -662,130 +683,12 @@ proof by itself. Never redirect broad output into the repository.
   level unrendered rather than hard-coding captured original text. A source
   projection needs a bounded data-format or native call-path finding.
 
-### EXE-GOG-OVERLAY-001 - Loaded-image absences are not physical-file absences
-
-- **Question:** Do core resource tags absent from the loaded image occur in the physical MZ overlay?
-- **Target/method:** The stable 634,416-byte GOG `DSUN.EXE` was scanned by a bounded PowerShell reader that retained only MZ sizes, pattern counts, and offsets. Its 357,744-byte load image leaves a 276,672-byte overlay.
-- **Finding:** `MONR` occurs twice, `ETAB` three times, `GPLI` four times, `PORT` once, `PSIN` three times, and three additional `TEXT` occurrences only in that overlay. `CHAR` has four overlay occurrences in addition to fourteen loaded-image ones. `ITEMS.BIN` occurs nowhere in the complete physical file.
-- **Overlay envelope follow-up:** the overlay starts at file offset 357,744 with the printable four-byte marker `FBOV`. Its first following 32-bit value is 276,656, exactly the physical overlay length minus the 16-byte envelope; the other two values are 307,328 and 229. The reproducible metadata-only `fbov-profile` Inspector query validates that the third value begins 229 eight-byte descriptors wholly within the MZ file (ending at offset 309,160). Of those descriptors, 220 have a non-descending pair of opaque 16-bit endpoint values and nine have a descending pair; their segment values span 0 through 21,039 and their opaque flag values occur as `0:79`, `1:87`, `3:49`, and `4:14`. The descriptor endpoints' naive inclusive byte sum is 663,607, which exceeds the declared 276,656-byte payload and therefore does not establish a payload layout. The next observed bytes have a 16-bit instruction-shaped prefix, but no load address, relocation rule, entry point, or callable range is established. This is an envelope observation, not decompilation or evidence that any overlay literal is reached.
-- **Interpretation:** loaded-image negative results for these tags cannot be generalized to the full executable. The overlay literals have no established runtime mapping, loader, schema, or behavior meaning. The exact `ITEMS.BIN` filename absence covers the complete main executable only.
-- **Confidence:** high for exact physical-file counts and MZ boundary; unknown for overlay loading, address mapping, ownership, and behavior.
-- **Implementation consequence:** retain affected resources as opaque or already evidenced contracts; do not infer readers or gameplay from overlay literals.
-
-### EXE-GOG-OVERLAY-002 - Bounded DOS seek/read path does not identify the FBOV loader
-
-- **Question:** Do the loaded-image routines that explicitly seek and read DOS
-  files establish a native path from DSUN's MZ/FBOV metadata to overlay bytes?
-- **Target/method:** The documented stable BLD-GOG-EN-1.1 `DSUN.EXE` target
-  was queried in a fresh local-only Ghidra 12.1.3 project. The bounded
-  `ReportDosInt21Services` script found literal `AH=42h` seek and `AH=3Fh`
-  read setups no more than twelve instructions before explicit `INT 21h` calls.
-  `ReportReferences`, short instruction contexts, and one complete 50-line
-  decompile window then classified only the one routine that directly calls
-  both wrappers.
-- **Bounded finding:** the seek wrapper receives caller-supplied handle,
-  origin, and 32-bit offset. The read wrapper transfers caller-supplied memory
-  in bounded chunks. Their only common direct caller is `47b9:008b`: it seeks
-  to file offset zero, repeatedly reads a six-byte header into resident scratch
-  storage until two caller-supplied 16-bit values match, seeks to a
-  header-derived 32-bit offset, reads a caller-visible 16-bit length, allocates
-  that many bytes, and reads the remainder into the allocation. Its observed
-  seek calls use zero or resident offsets; no call supplies DSUN's MZ end
-  (357,744), FBOV marker, declared payload size, segment-table offset, or a
-  recovered descriptor value. The reader has one direct caller, which forwards
-  two caller-supplied words with a resident file handle. That wrapper has one
-  internal caller and one external caller; the latter derives each forwarded
-  word from a byte in a loaded structure rather than supplying an executable
-  literal. No layer in this recovered direct chain binds the reader to a GFF
-  signature, FBOV, MONR, another resource tag, or combat identity.
-- **Interpretation:** this is a real generic signature/length file-reader
-  path, but it does not identify an FBOV loader or map any overlay bytes to a
-  runtime address. The file handle, two header values, derived offsets, and
-  higher-level feature ownership remain unresolved.
-- **Confidence:** high for the explicit DOS service setups, direct-call
-  intersection, bounded wrapper behavior, and absent observed FBOV inputs;
-  unknown for every indirect caller, dynamically supplied offset, and overlay
-  loading mechanism.
-- **Implementation consequence:** do not model FBOV loading, expose overlay
-  payloads, or attach physical overlay literals to combat/resource behavior
-  from this generic file-reader path.
-
-### EXE-GOG-OVERLAY-003 - FBOV flags identify bounded overlay-header metadata
-
-- **Question:** Can DSUN's physical FBOV descriptor table be checked as a
-  structural map to overlay-header metadata without assigning a gameplay
-  meaning or importing any tail bytes into the repository?
-- **Target/method:** The documented stable BLD-GOG-EN-1.1 `DSUN.EXE` target
-  (634,416 bytes, XXH3-128
-  `e296af55ba2ecde7e77f555c90f33d0b`) was
-  profiled by the repository-owned, read-only `fbov-profile` Inspector query.
-  The query reads the MZ header length, the existing 229 eight-byte FBOV
-  descriptors, and only the fixed 16-byte prefix at an MZ-relative segment
-  address for descriptors whose flag has bit `0x0002`. This interpretation of
-  the flag layout is a secondary format lead from the public CC0
-  [VROOMM reference](https://github.com/NancySadkov/devroomm); every reported
-  DSUN count and bound is independently validated from the fingerprinted file.
-  Synthetic inputs cover a valid stub, a mismatched envelope, and an
-  out-of-range table.
-- **Bounded finding:** 49 descriptors have bit `0x0002` set (all are raw flag
-  value `3`). Each resolves to an in-MZ 16-byte header prefix beginning
-  `CD 3F`; each supplies an in-range FBOV-relative code/fixup span. The 49
-  reported code spans total 258,376 bytes and their fixup spans total 16,524
-  bytes. The remaining 1,756 bytes of the 276,656-byte physical payload are
-  not thereby classified. This replaces the earlier rejected endpoint-sum
-  hypothesis with a bounded header-to-payload relation.
-- **Interpretation:** DSUN uses a standard-shaped FBOV overlay-header scheme.
-  The result identifies local metadata and payload bounds, not an overlay load
-  address, relocation result, function entry point, module name, call graph,
-  resource role, combat routine, or any gameplay rule. It is compatible with
-  combat code residing in an overlay but does not establish that proposition.
-- **Confidence:** high for the 49 descriptor/header/payload range checks and
-  aggregate byte totals; unknown for every overlay's behavior and for the
-  unclassified payload remainder.
-- **Implementation consequence:** retain `fbov-profile` as a metadata-only
-  inspector. A local-only mapped analysis image may be prepared only for a
-  further focused static question; no overlay bytes, relocated image, or
-  disassembly may be committed or consumed by the game.
-
-### EXE-GOG-OVERLAY-004 - Local-only FBOV mapped image enables bounded overlay queries
-
-- **Question:** Can the validated FBOV header metadata produce a local-only MZ
-  analysis image with overlay trampoline and ordinary segment-fixup references
-  recovered, without turning it into a runtime or game-content artifact?
-- **Target/method:** `New-FbovMappedImage.ps1` reads the fingerprinted DSUN
-  executable and refuses an output path in the repository or an existing output
-  file. It reconstructs a temporary MZ relocation table from the original
-  table, the 49 validated overlay headers, their 854 five-byte trampolines, and
-  their even-sized fixup lists. The temporary output is imported into a distinct
-  ignored Ghidra project. The writer reports special function-reference fixups
-  separately rather than claiming to transform them.
-- **Bounded finding:** the DSUN transform reported 49 overlay headers, 854
-  trampoline targets, and zero special function-reference fixups. Ghidra 12.1.3
-  loaded the resulting 668,768-byte temporary MZ image. Repeating exact
-  NUL-terminated searches found neither the observed panel `Moves` caption nor
-  the `Draxan` label. Four exact `COMBAT` strings become visible in an overlay
-  data area, but `ReportReferences` finds no direct reference to any of them.
-  Those strings therefore do not identify a combat dispatcher.
-- **Interpretation:** the mapped view is a credible additional static-analysis
-  surface for focused questions, particularly where an overlay call crosses a
-  recovered trampoline. Its successful import does not validate decompiler
-  output wholesale: generic MZ-analysis warnings and indirect calls remain.
-  The literal-query results neither rule out resource-supplied/constructed text
-  nor identify a combat state, command, movement, attack, turn, damage, or
-  outcome routine.
-- **Confidence:** high for the transform's reported counts, zero special-fixup
-  count, successful MZ import, and the exact literal/reference queries; unknown
-  for all code semantics and paths reached indirectly.
-- **Implementation consequence:** use the mapped image only as a local,
-  reproducible analysis input. Continue to record independent, bounded findings
-  before deriving rules; do not store it, load it, or execute it in the project.
-
 ### EXE-GOG-COMBAT-008 - Mapped overlay reaches the observed status-panel initializer
 
 - **Question:** Does the recovered FBOV view expose an executable path from a
   bounded dispatcher to the source-backed combat status-panel bitmap, and does
   that path establish any panel or combat rules?
-- **Target/method:** Use the local-only mapped image from `EXE-GOG-OVERLAY-004`.
+- **Target/method:** Use the [FBOV mapped image](#fbov-mapped-image).
   `ReportScalarConstants` searched every decoded operand for panel ID 19003;
   `ReportInstructionContext`, `ReportReferences`, and 160-line bounded
   decompilations then followed its containing function, its two direct callers,
@@ -1159,8 +1062,8 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Does the mapped FBOV view contain one decoded keyboard command
   function with every manual combat key—Space and upper-case `G`, `N`, `P`,
   `Q`, and `W`—as immediate operands?
-- **Target/method:** Use the local-only mapped image from
-  `EXE-GOG-OVERLAY-004`. `ReportFunctionScalarIntersection` scanned every
+- **Target/method:** Use
+  the [FBOV mapped image](#fbov-mapped-image). `ReportFunctionScalarIntersection` scanned every
   decoded function for the six unsigned values 32, 71, 78, 80, 81, and 87,
   then separately for the five upper-case letter values 71, 78, 80, 81, and
   87 and their lower-case forms 103, 110, 112, 113, and 119. The queries are
@@ -1400,6 +1303,12 @@ proof by itself. Never redirect broad output into the repository.
   would proceed to reference and instruction-context inspection.
 - **Bounded finding:** no raw byte-pattern match exists, so there is no matched
   executable address or direct reference to inspect.
+- **Mapped-image follow-up:** the same NUL-terminated search in the
+  [FBOV mapped image](#fbov-mapped-image) also finds no match, so the literal
+  is absent from the overlay code as well. Four NUL-terminated strings ending
+  in `COMBAT` sit in the resident image at file offsets `0x4ED4F`, `0x4EDB3`,
+  `0x4EED1` and `0x4F8EC`; `ReportReferences` in the mapped image finds no
+  direct reference to any of them, so they identify no combat dispatcher.
 - **Interpretation:** this excludes only the exact null-terminated ASCII
   literal in this executable. It does not show that the observed caption is
   absent at runtime or identify it as a field: it may use another encoding,
@@ -1500,8 +1409,8 @@ proof by itself. Never redirect broad output into the repository.
 
 - **Question:** Does the decoded native mouse button-press service provide a
   direct caller that can identify the owner-confirmed enemy-click combat path?
-- **Target/method:** Use the local-only mapped image from
-  `EXE-GOG-OVERLAY-004`. `ReportInstructionContext` confirmed `MOV AX,5` in
+- **Target/method:** Use
+  the [FBOV mapped image](#fbov-mapped-image). `ReportInstructionContext` confirmed `MOV AX,5` in
   `45b9:0059` immediately before its `INT 33h`; `ReportReferences` enumerated
   the wrapper's direct callers, and a bounded decompilation classified only its
   register-to-output forwarding.
@@ -1521,8 +1430,8 @@ proof by itself. Never redirect broad output into the repository.
 
 - **Question:** Does registration of the native mouse callback reveal the
   owner-confirmed enemy-click combat path or its action handler?
-- **Target/method:** Use the local-only mapped image from
-  `EXE-GOG-OVERLAY-004`. `ReportInstructionContext` confirmed the existing
+- **Target/method:** Use
+  the [FBOV mapped image](#fbov-mapped-image). `ReportInstructionContext` confirmed the existing
   native callback-registration wrapper at `45b9:0122`; `ReportReferences`
   enumerated its direct caller. Bounded raw-byte windows then decoded the
   caller's stack construction and the recovered callback entry. A reference
@@ -1574,8 +1483,8 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Can the mapped dispatcher branch that invokes the observed
   status-panel initializer identify a direct application caller or combat-owned
   selector semantics?
-- **Target/method:** Use the local-only mapped image from
-  `EXE-GOG-OVERLAY-004`. `ReportReferences` queried the entry point
+- **Target/method:** Use
+  the [FBOV mapped image](#fbov-mapped-image). `ReportReferences` queried the entry point
   `76da:007d`; `ReportDecompileWindow` then examined its complete 135-line
   recovered function, bounded to the six-value selector range established by
   `EXE-GOG-COMBAT-008`. `ReportFunctionScalarIntersection` also searched all
@@ -1634,8 +1543,8 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Does the opaque helper that receives the bounded mouse
   coordinate pair in the recovered input loop identify the owner-confirmed
   enemy-click action or any combat rule consumer?
-- **Target/method:** Reuse the local-only mapped image from
-  `EXE-GOG-OVERLAY-004`, rebuilt from the documented 49 overlay headers and
+- **Target/method:** Reuse
+  the [FBOV mapped image](#fbov-mapped-image), rebuilt from the documented 49 overlay headers and
   854 trampoline targets in a disposable Ghidra 12.1.3 project. The prior
   bounded decompilation found that one opaque resident-value branch forwards
   two local coordinate words and literal `1` through `thunk_FUN_8d83_0053`.
@@ -1673,8 +1582,8 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Does the resident word whose value five reaches the native
   coordinate-consuming branch identify a combat attack mode, target action, or
   confirmation route?
-- **Target/method:** Reuse the local-only mapped image from
-  `EXE-GOG-OVERLAY-004`. `ReportReferences` queried the flat mapped address
+- **Target/method:** Reuse
+  the [FBOV mapped image](#fbov-mapped-image). `ReportReferences` queried the flat mapped address
   `ram:00059240`, which corresponds to the word read as value five by the
   coordinate branch. A complete bounded decompilation of `74bb:0223` inspected
   its direct reads and writes of that word, its one-through-five switch, and
@@ -1709,8 +1618,8 @@ proof by itself. Never redirect broad output into the repository.
 
 - **Question:** Does a direct caller of the resident-mode setter provide the
   value-five coordinate-branch input and thereby identify a combat action?
-- **Target/method:** Reuse the local-only mapped image from
-  `EXE-GOG-OVERLAY-004`. `ReportReferences` queried the small setter at
+- **Target/method:** Reuse
+  the [FBOV mapped image](#fbov-mapped-image). `ReportReferences` queried the small setter at
   `2b10:007a`, which writes the word examined in `EXE-GOG-COMBAT-014`.
   A complete bounded decompilation of its one recovered caller and a
   16-instruction context at the call site classified the visible argument form.
@@ -1740,8 +1649,8 @@ proof by itself. Never redirect broad output into the repository.
 
 - **Question:** Does the other direct writer of the coordinate-branch resident
   word receive value five from a traceable native action source?
-- **Target/method:** Reuse the local-only mapped image from
-  `EXE-GOG-OVERLAY-004`. `ReportReferences` queried direct writer
+- **Target/method:** Reuse
+  the [FBOV mapped image](#fbov-mapped-image). `ReportReferences` queried direct writer
   `2b10:00c5`, while instruction contexts inspected its sole recovered call site
   at `297f:000b` and its entry sequence.
 - **Bounded finding:** the writer has one recovered direct call site. That
@@ -1800,8 +1709,8 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Does one decoded function directly co-locate the observed
   combat status-panel request, `BMP ` #19003, with the bounded interface-font
   request, `FONT` #100, providing a native dynamic-panel rendering lead?
-- **Target/method:** Reuse the local-only mapped image from
-  `EXE-GOG-OVERLAY-004`. `ReportFunctionScalarIntersection` scanned every
+- **Target/method:** Reuse
+  the [FBOV mapped image](#fbov-mapped-image). `ReportFunctionScalarIntersection` scanned every
   decoded function for all six unsigned instruction scalars: #19003, the two
   `BMP ` tag halves (`0x4d42`, `0x2050`), #100, and the two `FONT` tag halves
   (`0x4f46`, `0x544e`). The query reports only functions containing every
@@ -1826,8 +1735,8 @@ proof by itself. Never redirect broad output into the repository.
 - **Target/method:** `ReportPhysicalBytePattern.ps1` ran a bounded
   complete-physical-file scan of the documented
   634,416-byte BLD-GOG-EN-1.1 `DSUN.EXE` searched the exact uppercase ASCII
-  term and reported only counts/file offsets. The local-only FBOV mapped image
-  from `EXE-GOG-OVERLAY-004` then ran `ReportBytePattern` for the same 16-byte
+  term and reported only counts/file offsets. The [FBOV mapped image](#fbov-mapped-image)
+  then ran `ReportBytePattern` for the same 16-byte
   sequence under Ghidra 12.1.3/JDK 21.0.12.1, which reports every match, direct
   inbound reference, and decoded-instruction containment.
 - **Bounded finding:** the physical file contains four exact occurrences, at
@@ -1892,7 +1801,7 @@ proof by itself. Never redirect broad output into the repository.
   bounded executable selection path that can distinguish presentation evidence
   from an inferred combat command?
 - **Target/method:** Reuse the approved BLD-GOG-EN-1.1 `DSUN.EXE` target and
-  local mapped image from `EXE-GOG-OVERLAY-004` (Ghidra 12.1.3, JDK
+  [FBOV mapped image](#fbov-mapped-image) (Ghidra 12.1.3, JDK
   21.0.12.1). `ReportScalarConstants` searched the eight resource IDs 19101
   through 19108. `ReportInstructionContext` inspected each observed melee
   branch and the routine return; `ReportReferences` then bounded direct callers
@@ -1960,7 +1869,7 @@ proof by itself. Never redirect broad output into the repository.
   Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
 - **Method:** `ReportBytePattern` searched every loaded memory block for the
   explicit ASCII encoding `4d 4f 4e 52`, capped by the reusable script's
-  100-match limit. The local-only mapped image from `EXE-GOG-OVERLAY-004`
+  100-match limit. The [FBOV mapped image](#fbov-mapped-image)
   received the same byte-pattern query; `ReportReferences` and bounded
   instruction-context queries then classified every mapped match.
 - **Bounded finding:** no raw byte-pattern match exists in the original loaded
@@ -1990,6 +1899,9 @@ proof by itself. Never redirect broad output into the repository.
   null-terminated representation ending in `00`, and the null-terminated
   stem `49 54 45 4d 53 00`.
 - **Bounded finding:** none of the three loaded-memory byte patterns exists.
+- **Physical-file follow-up:** a byte search of the whole 634,416-byte file,
+  including the `FBOV` pack after the load image (FMT-EXE-001), finds no
+  `ITEMS.BIN` either.
 - **Interpretation:** this rules out only the two queried literal
   representations in this executable. The filename or stem may be absent from
   the code path, constructed or relocated at runtime, owned by another
@@ -2800,8 +2712,8 @@ proof by itself. Never redirect broad output into the repository.
 - **Question:** Does the mapped FBOV view expose a direct `OJFF`-to-`RDFF`
   route that can identify the observed OJFF #9258 hostile's label-bearing
   `RDFF` record?
-- **Target/method:** In the local-only mapped image from
-  `EXE-GOG-OVERLAY-004`, `ReportBytePattern` found eleven decoded `RDFF` tag
+- **Target/method:** In
+  the [FBOV mapped image](#fbov-mapped-image), `ReportBytePattern` found eleven decoded `RDFF` tag
   operands. `ReportFunctionScalarIntersection` searched those functions for
   the `OJFF` tag and found exactly one: `32a3:02cf`. `ReportReferences`, a
   bounded decompilation, and 24-instruction contexts around both tag operands

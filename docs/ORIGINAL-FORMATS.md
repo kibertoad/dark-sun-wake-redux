@@ -36,48 +36,13 @@ semantics.
 | `SOUND.CFG` | Legacy sound-driver configuration | Exactly 59 bytes: two identical 10-byte prefix blocks, two padded 10-character `.adv` module identifiers, and a 13-byte trailing scalar area. The supported `DSUN.EXE` and 204,593-byte `SOUND_DS.EXE` contain no literal `SOUND.CFG` pathname | high for this supported file's shape and the two exact-file literal-name absences; field and ownership semantics unknown | Require exact supported source fingerprint before a reader; bound every fixed field, identifier terminator/padding, and trailing size; do not infer Preferences mappings, helper ownership, or audio behavior |
 | `ITEMS.BIN` | Fixed-width mapping table | Exactly 936 bytes: 234 little-endian 16-bit pairs; all left values are unique, entries 0-232 increase strictly, and entry 233 breaks that order; right values repeat. Both columns overlap several `OBJEX.GFF` resource-ID sets, but no column/tag relationship is established. `DSUN.EXE`, `CHARTRAN.EXE`, and `SVIEW.EXE` each lack the queried raw filename/stem literal forms, which identifies no loader | high for the pair envelope, ordering facts, and bounded literal absences; pair roles/semantics and loading path unknown | Require exact supported source fingerprint before any reader; require exact length, parse only complete pairs, validate the documented unique-left/order envelope, and reject unsupported count/order forms without assigning item behavior |
 | `game.gog` / `game.ins` | GOG disc-image payload and descriptor | Bounded Mode 2/2352 ISO 9660 inspection located the disc character archive for `DATA-GOG-CHAR-006`; broader extractor relevance is unknown | medium for that bounded observation | Preserve as opaque DSOP; never mount or execute automatically. Parse only when a documented evidence question requires it, bound sectors/directories/extents, and keep original bytes outside Git |
-| `DSUN.EXE` | Original DOS executable | Fingerprinted research oracle and bounded source for the Preferences difficulty/description/About string tables. Its physical tail has a profiled `FBOV` overlay envelope and descriptor/header metadata only; it remains local opaque evidence | implemented for the three fixed-edition tables; high for the documented `FBOV` envelope, unknown for executable semantics | Bound file size, MZ and `FBOV` envelope/table/payload ranges, fixed string-table offsets/counts/terminators/printable bytes, exact description span, and About control prefixes; never load or execute the opaque pack copy, or put it in Git |
+| `DSUN.EXE` | Original DOS executable | Fingerprinted research oracle and bounded source for the Preferences difficulty/description/About string tables. Its `FBOV` overlay pack is described by `FMT-EXE-001` to `FMT-EXE-005`; the rebuild only checks its envelope and otherwise keeps the file as local opaque evidence | implemented for the three fixed-edition tables; unknown for executable semantics | Bound file size, MZ and `FBOV` envelope/table/payload ranges, fixed string-table offsets/counts/terminators/printable bytes, exact description span, and About control prefixes; never load or execute the opaque pack copy, or put it in Git |
 
 The GFF directory is the first implemented format layer. Slice 2A now preserves
 every fingerprinted source payload whether or not it has a dedicated reader;
 unknown meaning is represented by DSOP rather than omitted. Every semantic
 payload reader still requires synthetic fixtures and its own evidence before
 production behavior uses it.
-
-## DSUN executable FBOV envelope
-
-**Evidence:** `EXE-GOG-OVERLAY-001`, `EXE-GOG-OVERLAY-003`, and
-`EXE-GOG-OVERLAY-004`.
-
-The supported 634,416-byte `DSUN.EXE` has a 357,744-byte MZ image followed by
-a 276,672-byte physical tail. The tail begins with a 16-byte little-endian
-`FBOV` envelope. It is an analysis-only structural contract: the Game never
-loads this executable, and the Extractor preserves it only as an opaque local
-pack payload.
-
-| Relative offset | Width | Bounded structural observation |
-|---|---:|---|
-| `0x00` | 4 | ASCII `FBOV` marker |
-| `0x04` | 4 | unsigned little-endian payload length; supported file reports 276,656, exactly the physical tail less this envelope |
-| `0x08` | 4 | unsigned little-endian MZ-file offset of the descriptor table; supported file reports 307,328 |
-| `0x0c` | 4 | signed little-endian descriptor count; supported file reports 229 |
-
-The table spans `[307328, 309160)` in the MZ portion of the supported file and
-contains 229 eight-byte descriptors. A descriptor's four little-endian words
-are preserved only as structural values: a segment-like word, two opaque
-endpoint-like words, and an opaque flag word. The documented profile observes
-raw flag values `0`, `1`, `3`, and `4`; only the 49 descriptors whose flag has
-bit `0x0002` are independently correlated with a 16-byte in-MZ header prefix
-beginning `CD 3F`. For that subset, only the header's bounded payload offset,
-code-byte count, fixup-byte count, and trampoline-count envelope are checked.
-Their total declared code and fixup lengths are 258,376 and 16,524 bytes;
-1,756 payload bytes remain unclassified.
-
-This does not establish an overlay load address, relocation result, entry
-point, call graph, module/resource owner, or behavior. The local
-`fbov-profile` inspector and `New-FbovMappedImage.ps1` use these bounds solely
-to produce reproducible, disposable static-analysis inputs; neither output may
-be committed, extracted as a runtime contract, or used as a gameplay rule.
 
 ## GFF container directory
 

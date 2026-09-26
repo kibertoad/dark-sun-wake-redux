@@ -445,30 +445,18 @@ rejecting unsupported semantics:
   specific control handler nor any widget drawing/chrome path, so serialized
   image-less controls remain geometry/event contracts rather than invented
   pixels.
-- `EXE-GOG-OVERLAY-001` / `003` now have reproducible `fbov-profile` checks:
-  DSUN's physical overlay is `FBOV`, declares 276,656 payload bytes, and its
-  229 descriptors occupy MZ-file offsets `[307328,309160)`. The 49 descriptors
-  whose raw flag includes `0x0002` resolve to in-MZ `CD 3F` header prefixes;
-  their bounded payload spans total 258,376 code bytes plus 16,524 fixup
-  bytes. This is a header-to-payload metadata map, not a loaded-address map,
-  loader call, resource reader, combat rule, or executable behavior. The raw
-  endpoint totals remain unsuitable as a payload map. `EXE-GOG-OVERLAY-004`
-  additionally produces a local-only mapped MZ view (49 headers, 854
-  trampolines, zero special function-reference fixups) for bounded Ghidra
-  queries. Its exact `Moves`/`Draxan` searches remain empty, and four
-  unreferenced `COMBAT` literals identify no dispatcher or combat behavior.
-  `EXE-GOG-COMBAT-008` nonetheless recovers a distinct panel route: a
+- The `FBOV` overlay pack of `DSUN.EXE` is `FMT-EXE-001` to `FMT-EXE-005`.
+  The code that loads overlays is not located (`FND-EXE-007`), so the pack
+  describes where overlay code sits, not how or when it runs. Static queries
+  into overlay code use the local-only mapped image described in
+  `docs/GHIDRA.md`.
+- `EXE-GOG-COMBAT-008` recovers a distinct panel route in that mapped image: a
   dispatcher branch reaches the #19003 cache initializer through a guarded
   four-record, 49-byte-stride operation. Its immediate post-panel callee is a
   two-caller `stdpatch`-related initialization path, and its unresolved
   `0x92e0` operand has no matching `RESOURCE.GFF` resource number. This route
   is therefore structural only; its state codes, record ownership/fields,
   event input, and every combat rule remain unknown.
-- `EXE-GOG-OVERLAY-002` rules out the first concrete file-I/O candidate: the
-  only loaded-image routine that directly uses both the bounded DOS seek and
-  read wrappers scans caller-supplied six-byte signatures and lengths. It has
-  no recovered MZ-end, `FBOV`, or descriptor-table input, so it does not map
-  the physical overlay or establish a combat/resource code path.
 - `EXE-GOG-SMALLTAG-001` finds no literal executable loader lead for `GREQ`,
   `CACT`, `PLYL`, or `CSEQ`. `DATA-GOG-SMALLTAG-001` bounds their owned
   inventories and short envelopes; `DATA-GOG-PLYL-002` additionally rejects a

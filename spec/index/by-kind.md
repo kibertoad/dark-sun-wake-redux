@@ -27,7 +27,15 @@ Entries by kind.
 
 ## formats
 
-0 entries.
+5 entries.
+
+| ID | Title | Status |
+|---|---|---|
+| [FMT-EXE-001](../formats/FMT-EXE-001.md) | FBOV overlay pack at the end of DSUN.EXE | supported |
+| [FMT-EXE-002](../formats/FMT-EXE-002.md) | FBOV segment-table descriptor | supported |
+| [FMT-EXE-003](../formats/FMT-EXE-003.md) | FBOV overlay header in the resident image | supported |
+| [FMT-EXE-004](../formats/FMT-EXE-004.md) | FBOV overlay trampoline | supported |
+| [FMT-EXE-005](../formats/FMT-EXE-005.md) | FBOV overlay code block with its fixup list | supported |
 
 ## rules
 
@@ -39,10 +47,17 @@ Entries by kind.
 
 ## findings
 
-8 entries.
+15 entries.
 
 | ID | Title | Status |
 |---|---|---|
+| [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
+| [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
+| [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |
+| [FND-EXE-004](../findings/FND-EXE-004.md) | The overlay headers carry 854 five-byte trampolines that name offsets in their overlay's code | recorded |
+| [FND-EXE-005](../findings/FND-EXE-005.md) | Each overlay's fixup list names words in its code that hold a segment-table index times eight | recorded |
+| [FND-EXE-006](../findings/FND-EXE-006.md) | Several four-letter GFF tags occur in DSUN.EXE only inside overlay code | recorded |
+| [FND-EXE-007](../findings/FND-EXE-007.md) | The only resident routine that calls both the DOS seek and read wrappers is a signature-and-length record reader | recorded |
 | [FND-RNG-001](../findings/FND-RNG-001.md) | The random number generator is a 32-bit linear congruential generator at 1000:0822 | recorded |
 | [FND-RNG-002](../findings/FND-RNG-002.md) | The seed setter at 1000:0811 stores a 16-bit seed and clears the high word | recorded |
 | [FND-RNG-003](../findings/FND-RNG-003.md) | The modulo reducer at 2834:061C draws once, and not at all for a divisor of 0 | recorded |

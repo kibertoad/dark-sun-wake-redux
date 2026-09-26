@@ -8,20 +8,21 @@ How much of the spec in `spec/` the rebuild does. The rows are in `parity/`, one
 |---|---|
 | unknown | 0 |
 | sourced | 0 |
-| supported | 1 |
+| supported | 4 |
 | established | 0 |
 | disputed | 0 |
-| implemented | 0 |
+| implemented | 2 |
 | validated | 0 |
 
 | Code | Rows |
 |---|---|
-| missing | 0 |
-| partial | 1 |
-| complete | 0 |
+| missing | 2 |
+| partial | 2 |
+| complete | 2 |
 
 ## Areas
 
 | Area | Rows |
 |---|---|
+| [EXE](parity/EXE.md) | 5 |
 | [RNG](parity/RNG.md) | 1 |

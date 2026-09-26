@@ -52,16 +52,18 @@ and a rule about music cites the Ogg file for the track it plays.
 
 `DSUN.EXE` is a 16-bit real-mode MZ executable, 634,416 bytes long. It carries no packer
 signature. Its header is 20,992 bytes (`0x5200`), and its MZ image ends at file offset
-`0x57570`, so the resident load image is the file range `0x5200..0x57570`. An address in the
-resident image is written `segment:offset` with the load image at segment `0x1000`, and sits at
-file offset `0x5200 + (segment - 0x1000) * 16 + offset`.
+`0x57570`, so the resident load image is the file range `0x5200..0x57570` (FND-EXE-001). An
+address in the resident image is written `segment:offset` with the load image at segment
+`0x1000`, and sits at file offset `0x5200 + (segment - 0x1000) * 16 + offset`.
 
-The rest of the file, `0x57570..0x9AE30`, is an `FBOV` overlay pack whose segment table lies in
-the resident image. It holds the code of 49 overlays, each loaded on demand behind a resident
-header of trampolines. Overlay code has no fixed load address, so the spec locates it by its file
-offset, padded to eight digits: `DSUN.EXE+0x0006C01D`. `tools/ghidra/ReportFbovOverlayMap.ps1` in
-the rebuild's repository prints each overlay's resident header segment and the file range of its
-code, which is enough to check any overlay location.
+The rest of the file, `0x57570..0x9AE30`, is an `FBOV` overlay pack (FND-EXE-001, FMT-EXE-001)
+whose segment table lies in the resident image. It holds the code of 49 overlays, each with a
+resident header of trampolines, 854 trampolines in all (FND-EXE-003, FND-EXE-004, FMT-EXE-003).
+The spec numbers an overlay by the index of its segment-table descriptor, 169 to 217. Overlay
+code has no fixed load address, so the spec locates it by its file offset, padded to eight digits:
+`DSUN.EXE+0x0006C01D`. `tools/ghidra/ReportFbovOverlayMap.ps1` in the rebuild's repository prints
+each overlay's resident header segment and the file range of its code, which is enough to check
+any overlay location.
 
 ### Other executables
 

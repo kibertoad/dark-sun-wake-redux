@@ -14,10 +14,15 @@ Entries by status.
 
 ## supported
 
-1 entries.
+6 entries.
 
 | ID | Title |
 |---|---|
+| [FMT-EXE-001](../formats/FMT-EXE-001.md) | FBOV overlay pack at the end of DSUN.EXE |
+| [FMT-EXE-002](../formats/FMT-EXE-002.md) | FBOV segment-table descriptor |
+| [FMT-EXE-003](../formats/FMT-EXE-003.md) | FBOV overlay header in the resident image |
+| [FMT-EXE-004](../formats/FMT-EXE-004.md) | FBOV overlay trampoline |
+| [FMT-EXE-005](../formats/FMT-EXE-005.md) | FBOV overlay code block with its fixup list |
 | [RULE-RNG-001](../rules/RULE-RNG-001.md) | The game's random number generator and its reductions |
 
 ## established
@@ -34,10 +39,17 @@ Entries by status.
 
 ## recorded
 
-8 entries.
+15 entries.
 
 | ID | Title |
 |---|---|
+| [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
+| [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
+| [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |
+| [FND-EXE-004](../findings/FND-EXE-004.md) | The overlay headers carry 854 five-byte trampolines that name offsets in their overlay's code |
+| [FND-EXE-005](../findings/FND-EXE-005.md) | Each overlay's fixup list names words in its code that hold a segment-table index times eight |
+| [FND-EXE-006](../findings/FND-EXE-006.md) | Several four-letter GFF tags occur in DSUN.EXE only inside overlay code |
+| [FND-EXE-007](../findings/FND-EXE-007.md) | The only resident routine that calls both the DOS seek and read wrappers is a signature-and-length record reader |
 | [FND-RNG-001](../findings/FND-RNG-001.md) | The random number generator is a 32-bit linear congruential generator at 1000:0822 |
 | [FND-RNG-002](../findings/FND-RNG-002.md) | The seed setter at 1000:0811 stores a 16-bit seed and clears the high word |
 | [FND-RNG-003](../findings/FND-RNG-003.md) | The modulo reducer at 2834:061C draws once, and not at all for a divisor of 0 |
@@ -63,4 +75,9 @@ Entries whose Open questions section says more than None known.
 
 | ID | Title | Status |
 |---|---|---|
+| [FMT-EXE-001](../formats/FMT-EXE-001.md) | FBOV overlay pack at the end of DSUN.EXE | supported |
+| [FMT-EXE-002](../formats/FMT-EXE-002.md) | FBOV segment-table descriptor | supported |
+| [FMT-EXE-003](../formats/FMT-EXE-003.md) | FBOV overlay header in the resident image | supported |
+| [FMT-EXE-004](../formats/FMT-EXE-004.md) | FBOV overlay trampoline | supported |
+| [FMT-EXE-005](../formats/FMT-EXE-005.md) | FBOV overlay code block with its fixup list | supported |
 | [RULE-RNG-001](../rules/RULE-RNG-001.md) | The game's random number generator and its reductions | supported |
