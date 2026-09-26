@@ -356,51 +356,6 @@ the owned build.
   input coverage. The `raster-profile` Inspect command is local-only and emits
   no source bytes.
 
-### DATA-GOG-FONT-001 - Indexed bitmap font structure
-
-- **Question:** How is the indexed glyph data in the owned build's `FONT`
-  resource represented?
-- **Method:** Inspect `FONT` #100 from the fingerprinted `RESOURCE.GFF`, account
-  for every byte using a bounded independent reader, and validate the structure
-  without retaining or committing the payload.
-- **Finding:** The payload declares 256 glyphs of a shared height, followed by
-  an eight-byte prefix, a 256-byte character map, and 256 absolute 16-bit glyph
-  offsets. Each glyph record is a 16-bit width followed by exactly width times
-  height palette-index bytes; zero-width control glyphs are valid. `FONT` #100
-  is 8,299 bytes, has height 9, and balances exactly through its final record.
-  Its 256 character-map entries are the identity sequence `00` through `FF`
-  (XXH3-128 `f1f8a93f50849ac39408a4433b952d71`),
-  so direct and map-mediated byte indexing are equivalent for this edition.
-  Glyph pixels use three distinct palette indices spanning 0 through 254.
-- **Confidence:** verified for `FONT` #100 in BLD-GOG-EN-1.1; the map field's
-  generalized semantics, palette selection, spacing, and layout remain open.
-- **Implementation:** `DarkSunWakeRedux.Resources.IndexedBitmapFont`, derived
-  DSFT v1 extraction, encoding-neutral bounded glyph-run and multiline-block
-  rasterization with caller-selected spacing, and the
-  metadata-only `font-catalog` inspection command, including map identity/hash
-  and pixel-index range summaries.
-- **Tests:** synthetic valid, zero-width, invalid-header, offset, dimension,
-  record-length, run/block composition, blank-line, explicit-spacing, and
-  raster-output-bound cases.
-
-### DATA-GOG-TEXT-001 - TEXT resource envelope
-
-- **Question:** What bounded text encoding occurs in `RESOURCE.GFF`?
-- **Method:** Validate every `TEXT` payload from the fingerprinted archive with
-  an independent reader while emitting only resource and line metadata.
-- **Finding:** All 62 resources (2,994 bytes total) are printable 7-bit ASCII,
-  use CRLF-delimited lines, have a final CRLF, contain 316 lines, and have a
-  maximum observed line length of 18 bytes. No NUL or extended bytes occur.
-- **Confidence:** verified for `TEXT` resources in BLD-GOG-EN-1.1.
-  `EXE-GOG-TEXT-001` identifies only two raw, unreferenced, non-instruction
-  `TEXT` byte matches in the main executable; it establishes no loader. Resource-ID
-  meanings, string interpolation, font choice, presentation, and screen routing
-  remain open.
-- **Implementation:** `DarkSunWakeRedux.Resources.GffTextResource`, deterministic
-  ID-preserving DSTX v1 extraction, and the metadata-only `text-catalog` command.
-- **Tests:** synthetic multiline/empty-line parsing and invalid terminator,
-  control-byte, non-ASCII, and size-limit cases.
-
 ### DATA-GOG-UI-001 - Start-window and button resource mapping
 
 - **Question:** How does the owned build identify and place the first start-menu
@@ -764,10 +719,9 @@ the owned build.
   centered origin as Game Menu. The graph identifies music, sound-effects,
   animations, voice-effects, About, paired music/sound/difficulty controls,
   Game Menu, and Return. All identities, positions, dimensions, images, and
-  frame counts are bounded. `EXE-GOG-UI-004` establishes a four-entry
-  Easy/Balanced/Hard/Hideous difficulty label table, an exact ten-string
-  Preferences description span, and a nine-line centered About payload. The
-  manual establishes the toggle and slider roles but not
+  frame counts are bounded. `FMT-TEXT-004` describes the executable's block
+  of four difficulty labels, ten Preferences descriptions and nine About
+  lines. The manual establishes the toggle and slider roles but not
   their numeric ranges, increments, toggle defaults, or exact frame-state policy;
   its “Average” default wording conflicts with the executable's Balanced label.
 - **Confidence:** verified for the owned graph/image contracts; high for the
@@ -782,9 +736,13 @@ the owned build.
   inert until their boundaries are evidenced. A bounded fixed-edition reader
   extracts the four difficulty labels, ten descriptions, and nine About lines
   into `text/preferences.dstx` without committing their payload.
-- **Static-analysis boundary:** the bounded direct-reference and scalar probes
-  recorded in `EXE-GOG-UI-004` found no literal executable binding between the
-  difficulty table, its labels, or the two difficulty-button IDs. This is not
+- **Static-analysis boundary:** `FND-TEXT-006` finds no direct reference to
+  the difficulty table, its labels or the About lines. Scalar reports for the
+  two extracted difficulty-button identities (16308 and 16309) produced no
+  matches, and function-level scalar-intersection probes found no function
+  containing both the music/sound on-off IDs (16300 and 16301) or both
+  music-volume IDs (16304 and 16305). None of this binds a label or control to
+  a handler. This is not
   evidence that the settings path is absent; it is evidence that a direct
   literal mapping cannot safely supply its behavior. `EXE-GOG-PREF-001` finds
   that the sole raw `PREF` tag also has no direct executable reference; it
@@ -2199,7 +2157,7 @@ the owned build.
 - **Evidence status:** community research only. The manual assigns difficulty to
   combat but gives no numerical contract; the executable exposes the four
   labels but no direct label-to-setting or setting-to-rule binding
-  (`EXE-GOG-UI-004`, `EXE-GOG-PREF-001`).
+  (`FMT-TEXT-004`, `EXE-GOG-PREF-001`).
 - **Reproduction target:** from equivalent clean saves, set each difficulty
   before entering a fresh controlled encounter; capture the same identified
   hostile's inspectable hit-point state before any action, then repeat after

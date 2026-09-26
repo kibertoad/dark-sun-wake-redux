@@ -27,7 +27,7 @@ Entries by kind.
 
 ## formats
 
-16 entries.
+20 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -47,6 +47,10 @@ Entries by kind.
 | [FMT-IMAGE-002](../formats/FMT-IMAGE-002.md) | Image frame | supported |
 | [FMT-IMAGE-003](../formats/FMT-IMAGE-003.md) | Palette resource | supported |
 | [FMT-IMAGE-004](../formats/FMT-IMAGE-004.md) | Palette colour | supported |
+| [FMT-TEXT-001](../formats/FMT-TEXT-001.md) | Bitmap font resource | supported |
+| [FMT-TEXT-002](../formats/FMT-TEXT-002.md) | Bitmap font glyph | supported |
+| [FMT-TEXT-003](../formats/FMT-TEXT-003.md) | Text resource of CR LF lines | supported |
+| [FMT-TEXT-004](../formats/FMT-TEXT-004.md) | Preferences text block in DSUN.EXE | supported |
 
 ## rules
 
@@ -60,7 +64,7 @@ Entries by kind.
 
 ## findings
 
-30 entries.
+36 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -94,6 +98,12 @@ Entries by kind.
 | [FND-RNG-006](../findings/FND-RNG-006.md) | The helper at 2834:0519 succeeds when a draw modulo 10 is at most its argument | recorded |
 | [FND-RNG-007](../findings/FND-RNG-007.md) | The routine at 2834:000C picks entries of a six-byte table at random | recorded |
 | [FND-RNG-008](../findings/FND-RNG-008.md) | The random table selection and a panel initializer meet in one overlay routine | recorded |
+| [FND-TEXT-001](../findings/FND-TEXT-001.md) | The one FONT resource holds 256 glyphs of height 9 behind a map and an offset table | recorded |
+| [FND-TEXT-002](../findings/FND-TEXT-002.md) | The FONT tag occurs twice in DSUN.EXE as data with no recorded reference | recorded |
+| [FND-TEXT-003](../findings/FND-TEXT-003.md) | Every TEXT resource is printable ASCII in lines that each end with CR LF | recorded |
+| [FND-TEXT-004](../findings/FND-TEXT-004.md) | The TEXT tag occurs twice in the resident image as unreferenced data and three times in the pack | recorded |
+| [FND-TEXT-005](../findings/FND-TEXT-005.md) | DSUN.EXE holds the Preferences difficulty labels, descriptions and About lines as one data block | recorded |
+| [FND-TEXT-006](../findings/FND-TEXT-006.md) | Ghidra finds no direct reference to the Preferences tables or their strings | recorded |
 
 ## experiments
 

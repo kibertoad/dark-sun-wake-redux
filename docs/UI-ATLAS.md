@@ -77,7 +77,7 @@ be reproduced remain open. Static region tile/object composition is bounded by
 `DATA-GOG-SCENE-001`; the opening camera and full-canvas viewport are observed,
 while dynamic layer/draw order, frame counts, animation cadence, dialogue hit
 rectangles, text palette/spacing/layout, and scaling tolerances are all
-`unknown`. `DATA-GOG-FONT-001` maps one glyph bitmap structure and verifies that
+`unknown`. `FMT-TEXT-001` maps one glyph bitmap structure and verifies that
 the supported font's character map is identity; the derived rasterizers can
 compose explicit glyph-index runs and multiline blocks without altering them,
 using spacing supplied by the caller. These facts still do not settle

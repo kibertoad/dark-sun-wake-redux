@@ -335,7 +335,7 @@ behavior.
 `SOUND.CFG` and `SOUND.INI` are absent as literal names in the separately
 shipped sound helper, and `SOUND.INI` is also absent from the main executable,
 so neither is mapped to Preferences. See
-`DATA-GOG-UI-011`, `DATA-GOG-PREF-001`, `EXE-GOG-UI-004`,
+`DATA-GOG-UI-011`, `DATA-GOG-PREF-001`, `FMT-TEXT-004`, `FND-TEXT-006`,
 `EXE-GOG-PREF-001`, and `DATA-GOG-SOUND-002` in the detailed evidence records
 before changing this boundary.
 
@@ -468,14 +468,12 @@ rejecting unsupported semantics:
   behavior.
 - `FND-IMAGE-008` finds no operand for the static-title `BMP ` #11011, so it
   supplies no title loader or sequencing rule.
-- `EXE-GOG-FONT-002` finds no recovered function combining interface `FONT`
-  #100 with both literal tag words. Its two raw `FONT` data occurrences have
-  no recorded direct references. These facts supply no font-selection, glyph,
-  spacing, palette, or screen-layout rule.
-- `EXE-GOG-TEXT-001` finds two raw `TEXT` data occurrences, neither with a
-  recorded direct reference or containing instruction. This excludes only a
-  direct literal-tag loader lead; it neither assigns one of the 62 bounded text
-  resources to a screen nor establishes native typography or timing.
+- `FND-TEXT-002` finds no recovered function combining `FONT` #100 with the
+  tag words, and no recorded reference to the two `FONT` data occurrences. It
+  supplies no font-selection, spacing, palette, or screen-layout rule.
+- `FND-TEXT-004` finds two resident `TEXT` data occurrences with no recorded
+  reference, and three more in the code of overlays 186 and 188. It assigns no
+  text resource to a screen.
 - `FND-IMAGE-006` records a 300-entry `BMP `/`CBMP` cache, a wrapper taking
   indices 0 to 320 that eight functions call, and a separate window-image
   request path. The title resource #11011 has no observed connection to either,

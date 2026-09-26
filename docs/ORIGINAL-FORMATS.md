@@ -9,8 +9,8 @@ semantics.
 | `*.GFF` | Shared resources, numbered regions, and legacy saves | The container, its directory, tag tables and `GFFI` index are described by `FMT-GFF-001` to `FMT-GFF-007`, which also define the `FILE.GFF#TAG/number` resource reference; tag payloads are described below where known | see the format entries for the container; per-tag confidence below | Bound file size (512 MiB), tag tables (4,096) and resources (1,000,000), and every count/offset/length; reject overflow, truncation, invalid secondary references, duplicate tags or numbers, and partial overlaps with source context |
 | GFF `BMP `, `CBMP`, `ICON`, `PORT`, `TILE` | Indexed image frames | Described by `FMT-IMAGE-001` and `FMT-IMAGE-002`, decoded by `RULE-IMAGE-001` and `RULE-IMAGE-002` | see the spec entries | Bound payload, frame count, offsets, dimensions, total pixels, compressed runs, dictionaries, and bitstreams; reject malformed input with resource identity; do not infer frame scheduling, cache policy, composition, or actor semantics from decoder dispatch |
 | GFF `PAL ` | 256-color palettes | Described by `FMT-IMAGE-003` and `FMT-IMAGE-004` | see the spec entries | Require exactly 768 bytes and reject components outside `0..63` |
-| GFF `FONT` | Indexed bitmap glyphs | A shared-height 256-glyph table with character map, absolute offsets, widths, and palette-index pixels is decoded | verified for `FONT` #100 in `RESOURCE.GFF` | Bound payload, count, height, offsets, widths, total pixels, and exact record ends |
-| GFF `TEXT` | Short text tables | Printable 7-bit ASCII lines with mandatory CRLF delimiters and final terminator | verified for all 62 records in `RESOURCE.GFF` | Bound payload, line count, and line length; reject unsupported bytes and bare/missing terminators |
+| GFF `FONT` | Indexed bitmap glyphs | Described by `FMT-TEXT-001` and `FMT-TEXT-002` | see the spec entries | Bound payload, count, height, offsets, widths, total pixels, and exact record ends |
+| GFF `TEXT` | Short text tables | Described by `FMT-TEXT-003` | see the spec entry | Bound payload, line count, and line length; reject unsupported bytes and bare/missing terminators |
 | GFF `CHAR` envelope, identity, and abilities | Original character records | Version 1 has a 79-byte fixed header followed by a byte-counted sequence of 33-byte uninterpreted tail records; six one-byte ability scores at offsets 35..40 follow manual Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma order; the name is printable ASCII, NUL-terminated within a 16-byte slot at offset 43; remaining fields are uninterpreted | high across all 19 records in the owned `CHARSAVE.GFF`; not runtime-validated | Require version 1 and exact `79 + count * 33` size; bound score range and name slot; stop at the first NUL because later slot bytes may be stale; reject trailing data, out-of-range scores, and empty, unterminated, or non-printable names |
 | GFF `PSIN` | Character companion mask | Same-number companion for every owned `CHAR`; exactly one byte using a nonzero subset of the low three bits | high for record correlation and structural mask envelope; individual and combined bit meanings remain unknown | Require exactly one byte, reject zero and bits outside `0..2`, and require one-to-one correlation in catalog inspection |
 | GFF `PREF` | Opaque `PREF` envelope | One `PREF` #100 resource in `CHARSAVE.GFF`, exactly nine bytes. The one-record shape establishes no field boundary, value meaning, default, or link to the in-game Preferences screen | high for resource identity/count/length; unknown for every semantic role | Preserve byte-for-byte as DSOP; do not add a reader, schema, settings mutation, or UI binding without an independent source path or controlled observation |
@@ -36,7 +36,7 @@ semantics.
 | `SOUND.CFG` | Legacy sound-driver configuration | Exactly 59 bytes: two identical 10-byte prefix blocks, two padded 10-character `.adv` module identifiers, and a 13-byte trailing scalar area. The supported `DSUN.EXE` and 204,593-byte `SOUND_DS.EXE` contain no literal `SOUND.CFG` pathname | high for this supported file's shape and the two exact-file literal-name absences; field and ownership semantics unknown | Require exact supported source fingerprint before a reader; bound every fixed field, identifier terminator/padding, and trailing size; do not infer Preferences mappings, helper ownership, or audio behavior |
 | `ITEMS.BIN` | Fixed-width mapping table | Exactly 936 bytes: 234 little-endian 16-bit pairs; all left values are unique, entries 0-232 increase strictly, and entry 233 breaks that order; right values repeat. Both columns overlap several `OBJEX.GFF` resource-ID sets, but no column/tag relationship is established. `DSUN.EXE`, `CHARTRAN.EXE`, and `SVIEW.EXE` each lack the queried raw filename/stem literal forms, which identifies no loader | high for the pair envelope, ordering facts, and bounded literal absences; pair roles/semantics and loading path unknown | Require exact supported source fingerprint before any reader; require exact length, parse only complete pairs, validate the documented unique-left/order envelope, and reject unsupported count/order forms without assigning item behavior |
 | `game.gog` / `game.ins` | GOG disc-image payload and descriptor | Bounded Mode 2/2352 ISO 9660 inspection located the disc character archive for `DATA-GOG-CHAR-006`; broader extractor relevance is unknown | medium for that bounded observation | Preserve as opaque DSOP; never mount or execute automatically. Parse only when a documented evidence question requires it, bound sectors/directories/extents, and keep original bytes outside Git |
-| `DSUN.EXE` | Original DOS executable | Fingerprinted research oracle and bounded source for the Preferences difficulty/description/About string tables. Its `FBOV` overlay pack is described by `FMT-EXE-001` to `FMT-EXE-005`; the rebuild only checks its envelope and otherwise keeps the file as local opaque evidence | implemented for the three fixed-edition tables; unknown for executable semantics | Bound file size, MZ and `FBOV` envelope/table/payload ranges, fixed string-table offsets/counts/terminators/printable bytes, exact description span, and About control prefixes; never load or execute the opaque pack copy, or put it in Git |
+| `DSUN.EXE` | Original DOS executable | Fingerprinted research oracle and bounded source for the Preferences text block, `FMT-TEXT-004`. Its `FBOV` overlay pack is described by `FMT-EXE-001` to `FMT-EXE-005`; the rebuild only checks its envelope and otherwise keeps the file as local opaque evidence | implemented for the three fixed-edition tables; unknown for executable semantics | Bound file size, MZ and `FBOV` envelope/table/payload ranges, fixed string-table offsets/counts/terminators/printable bytes, exact description span, and About control prefixes; never load or execute the opaque pack copy, or put it in Git |
 
 The GFF container (`FMT-GFF-001`) is the first implemented format layer. Slice 2A now preserves
 every fingerprinted source payload whether or not it has a dedicated reader;
@@ -142,42 +142,13 @@ palette component as `FMT-IMAGE-004` describes.
 interface palette `PAL ` #1000. Which palette the original pairs with each image
 is an open question of `FMT-IMAGE-001`.
 
-## Indexed bitmap fonts
+## Indexed bitmap fonts and TEXT resources
 
-**Evidence:** `DATA-GOG-FONT-001`.
-
-`FONT` #100 in the fingerprinted `RESOURCE.GFF` is 8,299 bytes. Its little-endian
-header starts with a 16-bit glyph count of 256 and a shared 16-bit height of 9;
-four bytes remain uninterpreted. A 256-byte character map begins at offset 8,
-followed at offset 264 by 256 absolute 16-bit glyph offsets. The first glyph
-record begins at offset 776. Each strictly increasing record contains a 16-bit
-width and exactly `width * height` palette-index bytes. Zero-width glyphs are
-valid and contain no pixels. The final record must end exactly at payload end.
-In the supported owned build, all 256 character-map entries are identity values
-(`00` through `FF`) with XXH3-128
-`f1f8a93f50849ac39408a4433b952d71`.
-Consequently, direct byte indexing and lookup through this particular map select
-the same glyph. The glyph pixels use three distinct palette indices with a
-range of 0 through 254; their exact values and visual roles are not inferred by
-the metadata-only catalog.
-
-The reader caps payloads at 1 MiB, height at 64, width at 256, and total decoded
-pixels at 4 MiB. The map field's generalized semantics, the four unknown header
-bytes, palette pairing, advance/spacing rules, strings, and presentation remain
-open.
-
-## TEXT resources
-
-**Evidence:** `DATA-GOG-TEXT-001`, `EXE-GOG-TEXT-001`.
-
-All 62 `TEXT` records in `RESOURCE.GFF` satisfy a narrow printable-ASCII and
-CRLF line contract. They total 2,994 bytes and 316 lines; the maximum observed
-line is 18 bytes. The reader caps payloads at 1 MiB, lines at 65,536, and each
-line at 4,096 bytes. Empty lines are preserved. Resource-number semantics and
-relationships to UI controls remain unassigned until separately evidenced.
-`EXE-GOG-TEXT-001` finds only two unreferenced raw `TEXT` data matches in the
-main executable, not a native text loader, text layout, or screen-route
-contract.
+The font layout is `FMT-TEXT-001` and `FMT-TEXT-002`, and the `TEXT` layout is
+`FMT-TEXT-003`. The rebuild's font reader caps payloads at 1 MiB, height at 64,
+width at 256, and total decoded pixels at 4 MiB. Its `TEXT` reader caps payloads
+at 1 MiB, lines at 65,536, and each line at 4,096 bytes, and preserves empty
+lines.
 
 ## UI windows and buttons
 
@@ -465,7 +436,8 @@ CRLF delimiters are removed because line boundaries are explicit. The reader
 caps files at 8 MiB, resource/line counts at 65,536, and lines at 4,096 bytes,
 and rejects duplicate IDs, unsupported bytes, truncation, and trailing data.
 
-Pack format 26 also uses DSTX for `text/preferences.dstx`. Resource 0 contains
+Pack format 26 also uses DSTX for `text/preferences.dstx`, taken from the
+executable block `FMT-TEXT-004`. Resource 0 contains
 the four executable-backed difficulty labels in table order; resource 1 contains
 the nine About lines after the reader validates and removes each leading
 three-control centering prefix; resource 2 contains the ten contiguous

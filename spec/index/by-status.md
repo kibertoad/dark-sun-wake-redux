@@ -14,7 +14,7 @@ Entries by status.
 
 ## supported
 
-19 entries.
+23 entries.
 
 | ID | Title |
 |---|---|
@@ -34,6 +34,10 @@ Entries by status.
 | [FMT-IMAGE-002](../formats/FMT-IMAGE-002.md) | Image frame |
 | [FMT-IMAGE-003](../formats/FMT-IMAGE-003.md) | Palette resource |
 | [FMT-IMAGE-004](../formats/FMT-IMAGE-004.md) | Palette colour |
+| [FMT-TEXT-001](../formats/FMT-TEXT-001.md) | Bitmap font resource |
+| [FMT-TEXT-002](../formats/FMT-TEXT-002.md) | Bitmap font glyph |
+| [FMT-TEXT-003](../formats/FMT-TEXT-003.md) | Text resource of CR LF lines |
+| [FMT-TEXT-004](../formats/FMT-TEXT-004.md) | Preferences text block in DSUN.EXE |
 | [RULE-IMAGE-001](../rules/RULE-IMAGE-001.md) | Decoding an image frame, and the row encoding |
 | [RULE-IMAGE-002](../rules/RULE-IMAGE-002.md) | Decoding a planar image frame |
 | [RULE-RNG-001](../rules/RULE-RNG-001.md) | The game's random number generator and its reductions |
@@ -52,7 +56,7 @@ Entries by status.
 
 ## recorded
 
-30 entries.
+36 entries.
 
 | ID | Title |
 |---|---|
@@ -86,6 +90,12 @@ Entries by status.
 | [FND-RNG-006](../findings/FND-RNG-006.md) | The helper at 2834:0519 succeeds when a draw modulo 10 is at most its argument |
 | [FND-RNG-007](../findings/FND-RNG-007.md) | The routine at 2834:000C picks entries of a six-byte table at random |
 | [FND-RNG-008](../findings/FND-RNG-008.md) | The random table selection and a panel initializer meet in one overlay routine |
+| [FND-TEXT-001](../findings/FND-TEXT-001.md) | The one FONT resource holds 256 glyphs of height 9 behind a map and an offset table |
+| [FND-TEXT-002](../findings/FND-TEXT-002.md) | The FONT tag occurs twice in DSUN.EXE as data with no recorded reference |
+| [FND-TEXT-003](../findings/FND-TEXT-003.md) | Every TEXT resource is printable ASCII in lines that each end with CR LF |
+| [FND-TEXT-004](../findings/FND-TEXT-004.md) | The TEXT tag occurs twice in the resident image as unreferenced data and three times in the pack |
+| [FND-TEXT-005](../findings/FND-TEXT-005.md) | DSUN.EXE holds the Preferences difficulty labels, descriptions and About lines as one data block |
+| [FND-TEXT-006](../findings/FND-TEXT-006.md) | Ghidra finds no direct reference to the Preferences tables or their strings |
 
 ## reproduced
 
@@ -115,6 +125,10 @@ Entries whose Open questions section says more than None known.
 | [FMT-IMAGE-002](../formats/FMT-IMAGE-002.md) | Image frame | supported |
 | [FMT-IMAGE-003](../formats/FMT-IMAGE-003.md) | Palette resource | supported |
 | [FMT-IMAGE-004](../formats/FMT-IMAGE-004.md) | Palette colour | supported |
+| [FMT-TEXT-001](../formats/FMT-TEXT-001.md) | Bitmap font resource | supported |
+| [FMT-TEXT-002](../formats/FMT-TEXT-002.md) | Bitmap font glyph | supported |
+| [FMT-TEXT-003](../formats/FMT-TEXT-003.md) | Text resource of CR LF lines | supported |
+| [FMT-TEXT-004](../formats/FMT-TEXT-004.md) | Preferences text block in DSUN.EXE | supported |
 | [RULE-IMAGE-001](../rules/RULE-IMAGE-001.md) | Decoding an image frame, and the row encoding | supported |
 | [RULE-IMAGE-002](../rules/RULE-IMAGE-002.md) | Decoding a planar image frame | supported |
 | [RULE-RNG-001](../rules/RULE-RNG-001.md) | The game's random number generator and its reductions | supported |

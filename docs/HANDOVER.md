@@ -35,7 +35,7 @@ initialization remains unresolved. A
 deterministic Core dialogue session now owns all choice definitions and derives
 the visible source-index/branch-target pairs; runtime
 row clicks select one pair atomically and cannot leak through as world movement.
-`EXE-GOG-UI-004` additionally bounds and extracts the four difficulty labels,
+`FMT-TEXT-004` additionally bounds the four difficulty labels,
 ten contiguous Preferences descriptions, and nine centered About lines from the
 fingerprinted executable into a separate DSTX catalog. The manual's
 Average/Balanced terminology conflict, numeric setting ranges, selected

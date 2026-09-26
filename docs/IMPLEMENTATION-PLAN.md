@@ -296,7 +296,7 @@ catalogs.
 - **Evidence.** SRC-MANUAL-1994 sections on quick start, party creation, character
   options, and menus; `FMT-GFF-001`, `FMT-IMAGE-001` to `FMT-IMAGE-004`, `RULE-IMAGE-001` and
   `RULE-IMAGE-002` for bounded container, indexed-image, and palette structures;
-  `DATA-GOG-FONT-001` for bounded indexed glyphs; `DATA-GOG-UI-001` and
+  `FMT-TEXT-001` and `FMT-TEXT-002` for bounded indexed glyphs; `DATA-GOG-UI-001` and
   `DATA-GOG-UI-006`-`008` for bounded start-window/button mappings, composition,
   party-overview and ADD-list shells, and interface palette; further DATA-GOG
   for party-screen resource mapping; OBS-GOG for screen states,
@@ -471,7 +471,7 @@ catalogs.
   Effects reuse the character shell and #11500 navigation with exact
   #20080/#20075 title placement; both now render. The Preferences #16500 graph
   and artwork now render and its Game Menu/Return actions route deterministically.
-  `EXE-GOG-UI-004` now bounds the executable's ordered four-label difficulty
+  `FMT-TEXT-004` now bounds the executable's ordered four-label difficulty
   table, exact ten-string Preferences description span, and nine centered About
   strings. Pack v28 extracts all three through the existing DSTX format without
   committing original text. The manual's Average default wording conflicts with
