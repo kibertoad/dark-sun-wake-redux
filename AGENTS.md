@@ -84,6 +84,62 @@ over broad but unplayable systems.
 table and `docs/PARITY-MATRIX.md` to match what is actually true, and tick off
 `docs/BOOTSTRAP-CHECKLIST.md` as decisions are captured elsewhere.
 
+## Planning and tracking work
+
+Work is planned, tracked and handed on under the
+[work protocol](https://dinorefurb.com/work-protocol/); where this section and
+the published page differ, the page wins, apart from the owner-only DOSBox
+rules under "Native runtime visual validation", which this repository keeps.
+
+- Static analysis comes first, and runs of the original are the last resort
+  for each question: a `Live session` item is taken up only after its own
+  static attempt is under `Tried:`, or when it asks for the run that confirms
+  a static reading. A run that blocks the current slice comes before static
+  work that does not.
+- Coding agents never run the original here. Every run is a live session the
+  repository owner performs from a request in `docs/live-sessions/`, following
+  the capture protocol in its README, and the owner answers there. Never wait
+  idle for one. The `Emulated call` and `Agent run` sections of the queue stay
+  empty.
+- Competing readings of an open question are written in the entry's Open
+  questions section with the evidence for and against each, never kept only
+  in a session, and never implemented until an entry says them.
+- Open research questions live in `queue/<AREA>.md`, grouped by the evidence
+  they need, in the area of the first entry they name, each with an ID
+  (`Q-COMBAT-012`) that everything outside the queue refers to it by. An item
+  is closed by recording its answer in `spec/` and deleting it in the same
+  commit. An item is taken up again only with new evidence, a new tool or a
+  new reading, and when that second attempt ends in the same place it moves
+  to the section of the evidence that would settle it, or to `Blocked` when
+  that evidence is out of reach.
+- A batch is one commit, and is research, implementation or tooling, never
+  more than one. A session keeps to one side of the clean room. An
+  implementation batch works from the spec alone, never opens analysis output
+  or `queue/`, and under `spec/` only adds open questions and `unknown`
+  entries; a gap becomes a `Spec gap:` note on the parity row, which the next
+  research session turns into a queue item and removes once it is answered. A
+  research batch makes the parity and citation changes the documentation check
+  requires of what it did to the spec, and changes no other code apart from
+  `tools/`. A tooling batch (extractor, Ghidra scripts, inspection tools) needs
+  no decision. Every batch runs `./tools/Test.ps1` before it is committed.
+- Commit messages end with a `Spec:` trailer naming the entries created or
+  changed, any commit that changes a row's status adds `Parity:`, and any
+  that closes queue items adds `Queue:` with their IDs.
+- A claim moves from an `unknown` listing (or `sourced` from a document),
+  through competing readings kept in its entry's Open questions, each with a
+  queue item, to a description at `supported` once direct evidence (the code
+  that produces the behaviour) settles it, then `established` by a complete
+  reading of the code, or, only where it depends on something the code does
+  not decide, when an owner capture of the original agrees. Circumstantial
+  evidence never raises a status. Contradicting evidence makes it `disputed`,
+  and a wrong claim is superseded, never deleted.
+- `docs/HANDOVER.md` is the current state of work, at most 200 lines,
+  rewritten at the end of every session, and names items and entries by ID
+  without saying what research found. A session ends by committing its
+  handover on its own; half-done work never goes into a batch commit.
+- Progress is what scripts compute: parity totals, entries by status, queue
+  sizes. Never a hand-written percentage.
+
 ## Rules that never bend
 
 - **No original content in Git, ever.** No assets, executables, archives, save
@@ -215,7 +271,8 @@ widget treatment is observed.
 
 Coding agents must never launch, control, capture, or stop DOSBox on their own.
 When an evidence question requires an original-game observation, give the
-repository owner an exact, bounded screenshot or capture checklist and wait for
+repository owner an exact, bounded live session request in
+`docs/live-sessions/` and wait for
 the owner to confirm that the requested material has been produced with
 DOSBox's built-in Ctrl+F5 screenshot command. After that confirmation, parse
 the configured DOSBox screenshots folder and inspect only images whose file
@@ -226,7 +283,7 @@ local interval from that hour through the next hour. An explicit filename list
 authorizes only those exact filenames, not similarly named files.
 The repository owner may instead grant durable umbrella authorization for every
 file in the configured DOSBox screenshots folder; when recorded below or in
-the capture checklist, that authorization supersedes timestamp and filename
+`docs/live-sessions/README.md`, that authorization supersedes timestamp and filename
 selection only. Captures remain local-only original content, and semantic
 labels still require owner confirmation before they are recorded as evidence.
 Do not operate the DOSBox window, invoke Ctrl+F5, use another screen-capture

@@ -52,41 +52,6 @@ language. Evidence records may retain **race** or **racial** only when quoting
 or naming an original heading, table, field, or claim; those source terms map
 to **origin** and **origin-based** in implementation.
 
-### Initial evidence register
-
-- **MANUAL-1994.** The locally installed 41-page landscape PDF rule book (77
-  numbered manual pages plus credits and legal material). It is primary evidence
-  for intended controls, menus, party creation, exploration, combat commands,
-  character rules, magic, psionics, advancement, and original credits. The path
-  is a local reference only; the PDF must never enter Git.
-- **GOG-1432903719.** Installed English GOG metadata plus a future exact
-  fingerprint inventory. Storefront branding is provenance, not a fingerprint.
-- **FAQ-81038.** kibbitz's walkthrough, v1.13, used as secondary evidence for
-  mechanics, route conditions, bugs, soft locks, and conflicts with the manual.
-  Runtime confirmation is required where feasible. The guide credits
-  contributors Seraphiel, @revcrussell, UndeadHalfOrc, classiccola, GHostLPs,
-  and rattus 128.
-- **DSUN-MUSIC.** John Glassmyer's MIT-licensed `dsun_music` project, whose
-  `gff-tool`, `image-tool`, `region-tool`, and `xmi-tool` describe and extract
-  resources used by *Shattered Lands*, *Wake of the Ravager*, and *Crimson
-  Sands*. The repository owner explicitly authorizes reuse of useful results
-  from this project. Treat its format descriptions, resource tags, mappings,
-  and tool behavior as secondary technical evidence: credit the project, note
-  any directly reused code under its license, and confirm applicable facts
-  against the fingerprinted GOG-1432903719 files before making a verified
-  format or parity claim. Production readers must still satisfy this plan's
-  bounds, diagnostics, synthetic-test, and clean-room requirements.
-- **OBS-GOG-*.** Reproducible observations recorded from controlled runs of the
-  supported copy. Original screenshots, recordings, and saves stay outside Git;
-  measurements and clean-room diagrams may be committed.
-- **DATA-GOG-*.** Facts established by bounded, read-only inspection of owned
-  files. No original bytes, source, decompiler output, or disassembly enter the
-  repository.
-
-MANUAL-1994 describes intended behavior; FAQ-81038 documents cases where the
-shipped game differs. Conflicts will be preserved explicitly, never silently
-resolved.
-
 ### Recommended Ghidra usage
 
 Ghidra is recommended as a targeted evidence tool when the manual, walkthrough,
@@ -557,8 +522,8 @@ catalogs.
   resolution, turn progression, and exit; correlate each implemented behavior
   to those observations and a traceable data or executable finding. Opaque
   combat-adjacent resources and generic AD&D expectations do not satisfy this
-  gate. `docs/OWNER-CAPTURE-CHECKLIST.md` C0-C6 is the bounded collection
-  sequence. The owner has authorized inspection of every configured DOSBox
+  gate. The live session request `docs/live-sessions/opening-combat.md`
+  (C0-C6) is the bounded collection sequence. The owner has authorized inspection of every configured DOSBox
   capture-folder screenshot, including filenames without timestamps; semantic
   labels still require owner confirmation before a frame is relied on.
 - **Acceptance - rules.** Activation order, movement, range, target legality,
@@ -658,55 +623,22 @@ catalogs.
 
 ## Open questions
 
+Open research questions about the original are items in `queue/<AREA>.md`,
+and runs the owner is asked to perform are requests in `docs/live-sessions/`.
+This table keeps the decisions that belong to the repository owner.
+
 | ID | Question | Blocks | Owner | Status |
 |---|---|---|---|---|
 | Q1 | Is `DarkSunWakeRedux` / `Dark Sun: Wake of the Ravager Redux` the approved identity? | configuration | repository owner | closed - approved 2026-09-12 |
 | Q2 | Is the installed GOG build the only initial supported edition, with later revisions represented by separate manifests? | slices 1, 7 | repository owner | closed - initial work targets the supplied GOG build; later revisions require separate fingerprints |
 | Q3 | Which underlying DOS/CD-ROM revision is in GOG build `52095422060333615`? | slices 1, 4, 6 | evidence investigation | closed - `DATA-GOG-README-001` establishes that the owned package documents Version 1.1 game data, dated 1994-12-14, and distinguishes 1.0/1.01 saves. This identifies the supported game-data revision but not physical retail-media provenance. |
-| Q4 | Which GFF/resource records have bounded structures and established semantics? | later logic | evidence investigation | open - corpus coverage is complete (233 immutable files, 16,168 GFF descriptors), while only some structures are bounded: GFF, image/palette, FONT, TEXT, core UI records, the versioned `CHAR` envelope/identity/ability fields, raw `PSIN` companion envelope, `GPL `/`MAS ` source-family identity and loader selection, region `RNME`/`PAL `/`MAP `/`GMAP`/`TILE`/`ETAB`, and exact `OJFF` object-frame records with image references. `EXE-GOG-OJFF-001` adds two tag-aware native OJFF lookup boundaries and observes a sole successful-result transfer of selected structural offsets into a 37-byte resident path, but assigns no OJFF field or object-behavior meaning. Title/start, party overview, ADD-list, interface palette, generation/modal controls, shared window image, start-flow window graphs, APFM event masks, the owned font's identity map, encoding-neutral glyph composition, canonical Tyr DSRG/DSOB extraction, static first-frame scene composition, the opening Tyr camera, cursor image family, and `GMAP` `0x40` terrain blocking are implemented; #19004 still awaits an app-specific consumer. Remaining character state, other mask/geometry/entity meanings, authentic text presentation, dynamic party data, later-window semantics, later cameras/animation/gameplay behavior, and other region dependencies remain unknown |
-| Q5 | What are the logical resolution, pixel aspect, palettes, cursor geometry, animation cadence, and audio timing? | slices 2-7 | runtime observation | open - the logical resolution is 320x200; `PAL ` #1000 supplies the interface/cursor colors; `ICON` #19101-#19110 geometry and the upper-left cursor hotspot are verified; all five FLI headers are 320x200 8-bit `0xAF11` streams with raw speed fields, and all 147 VOC headers share one envelope. `EXE-GOG-MEDIA-001` finds no literal FLI header validation value, `EXE-GOG-MEDIA-002` finds raw numbered names/CINE templates but no direct references, and `EXE-GOG-TITLE-002` finds neither a decoded instruction operand for static-title `BMP ` #11011 nor a recovered function co-locating it with both literal tag words. `EXE-GOG-TIMING-002` finds that all four literal `INT 15h` sites select extended-memory services, not the BIOS wait service, while `EXE-GOG-TIMING-003` bounds a CPU-busy VGA-status poll around a generic copy path rather than a semantic clock. `EXE-GOG-TIMING-004` identifies immediate PIT latch/read and programming boundaries but no recovered feature owner or duration contract. `EXE-GOG-VIDEO-001` finds a shared BIOS-video wrapper, not a screen-specific mode or palette path. `EXE-GOG-MOUSE-001` adds only generic mouse wrappers and a caller-specific interior guard, not a global coordinate transform. None establishes a decoder, clock, title transition, or filename-derived sequence. Pixel aspect, raw-speed units, animation cadence, cursor update cadence, title behavior, audio codecs/sample rates, playback timing, and cinematic sequence remain open |
 | Q6 | For each verified manual/guide/runtime conflict or original defect, should compatibility preserve it, fix it, or expose an option? | slices 4-7 | repository owner after evidence | open |
 | Q7 | Are original save compatibility and Shattered Lands party transfer desired once their formats are evidenced? | slice 7 | repository owner | open |
 | Q8 | Are Windows, Linux, and macOS all first-release targets, or should the initial release target Windows? | slice 7 | repository owner | open |
 | Q9 | May the installed clue book be consulted as an additional local secondary source? | slices 4-7 | repository owner | open |
 | Q10 | What measured tolerances define acceptable visual, input, animation, and audio parity? | slices 2-7 | repository owner/evidence investigation | open |
-| Q11 | Which origin/class eligibility list does the shipped creation screen enforce where the original manual's race descriptions on pages 17-18 conflict with its class descriptions on pages 19-22 (half-giant ranger/thief, mul druid, thri-kreen druid/thief)? | slice 2 | OBS-GOG evidence investigation | open - Core preserves these as `EvidenceConflict` |
-| Q12 | Which four `CHAR` resources does START GAME select as the supplied pregenerated party? | slice 2 | OBS-GOG/DATA-GOG evidence investigation | open - disc blocks #40-#43 and #50-#53 are bounded; one independently reported default member maps to #43, but the other three selections are not established. `DATA-GOG-PLYL-002` rejects a direct unaligned little-endian installed-`CHAR` identity in every two-byte window of the six short `PLYL` payloads; it does not assign their role or identify a party. After a full Ghidra analysis pass, `EXE-GOG-CHAR-002` classified one filename and one missing-file diagnostic occurrence of `CHARSAVE.GFF`, with no direct code references; neither the installed #29-#32 nor disc #40-#43 candidates occur together as scalar operands in one function. `EXE-GOG-CHAR-003` adds no direct resource-tag route: fourteen raw `CHAR` matches have no direct references and `PSIN` is absent. Separately fingerprinted `SVIEW.EXE` has neither a literal `CHARSAVE.GFF` pathname nor `CHAR` tag (`EXE-GOG-CHAR-004`); `CHARTRAN.EXE` has one unreferenced raw `CHAR` occurrence and no `PSIN` pattern (`EXE-GOG-CHAR-005`). These results do not identify a loader or selection path. `docs/OWNER-CAPTURE-CHECKLIST.md` defines the bounded S0-S2 Ctrl+F5 observation gate; the owner has authorized capture-folder inspection without timestamp-bearing filenames, while semantic labels still require confirmation. |
 | Q13 | Must pathfinding reproduce the original route planner verbatim? | slice 3 | repository owner | closed - no; owner approved a modern fit-for-purpose implementation on 2026-09-13 |
-| Q14 | What do the two fields in the bounded 234-pair `ITEMS.BIN` table mean, and which exact reader/extraction use belongs in the equipment slice? | slice 5 | DATA/EXE/OBS evidence investigation | open - `DATA-GOG-ITEMS-001` proves the fixed-width envelope, records non-identifying overlap with several `OBJEX.GFF` resource-ID sets, and does not support a uniform direct mapping from either pair column to the four raw `OJFF` word positions. `DATA-GOG-ITEMS-002` adds unique TEXT #1000 source locations for the two labels visibly present in the owner-confirmed AR'ANDA inventory capture, but no text-to-item or text-to-slot binding. `EXE-GOG-ITEMS-001` finds neither literal filename form nor a null-terminated `ITEMS` stem in `DSUN.EXE`; `EXE-GOG-ITEMS-002` does the same in `CHARTRAN.EXE`; and `EXE-GOG-ITEMS-003` does the same in `SVIEW.EXE`. Those bounded absences identify no reader, pair role, item, equipment, or combat semantics. `docs/OWNER-CAPTURE-CHECKLIST.md` I0-I2 defines the next bounded native selection-observation gate. |
 | Q15 | Should work stop after complete source-corpus extraction until each rule is evidenced? | all further logic slices | repository owner | closed - yes, owner-directed 2026-09-19; Slice 2A is the mandatory gate |
-| Q16 | Which flows seed the native random stream, and which gameplay rules consume its modulo, inclusive-range, or repeated-roll helpers? | slices 2-7 | EXE/OBS evidence investigation | open - `EXE-GOG-RNG-001` establishes the 16-bit-seeded LCG and three generic result transforms. A complete instruction-text scan finds no explicit access to either state displacement outside its setter and generator (aside from an unrelated code-jump target), and neither direct far-call nor static far-pointer encoding for the setter occurs in loaded memory. These results do not exclude relocation, register-built, indirect, or dynamically reached access. Its modulo wrapper has one bounded direct-consumer chain through a threshold helper and an opaque six-byte-entry selector, whose sole direct caller supplies guarded resident values. This does not identify a seed source, stream partition, call order, table ownership, or rule-level consumer |
-| Q17 | What, if anything, consumes the 329 fixed-width records in `GPLDATA.GFF` `GPLI` #1? | slices 2-4 | EXE/OBS evidence investigation | open - `DATA-GOG-GPLI-001` establishes a 7,896-byte, 329-by-24-byte envelope with four repeated six-byte lanes. Its 1,316 aligned third lane words contain 1,315 members of the GPL resource-number set, collectively covering all 330 GPL IDs; repetitions and one non-member reject a one-to-one record or field map. GPL numeric ID 135 occurs twice in different lane-word positions, also rejecting a unique fixed-lane mapping. `EXE-GOG-GPLI-001` found no literal tag, and `EXE-GOG-GPLI-002` found no decoded function containing both literal GPL resource-135 and GPL-tag operands. Neither result establishes a record-to-script mapping, lookup, or field meaning |
-| Q18 | Which original source populates the mutable linked 13-byte runtime selector records, and which game features own their static predicate shapes? | slices 3-6 | EXE/OBS evidence investigation | open - `EXE-GOG-EVENT-001` proves one runtime table, an entry-flow clear of 2,600 bytes (exactly 200 13-byte strides), 200 consecutive offset-11 link writes, two data-driven relink triggers into a secondary chain, four linked-selector traversals, and a guarded path that requests the `GPL ` source family from a record's leading word. Its pointer has sixteen initialized zero bytes and no direct static write, so it is not a static source mapping; its runtime assignment/population remains unknown. `DATA-GOG-CSEQ-001` rejects a tempting direct source: CSEQ #1000 divides into six 13-byte units, but only one leading word is in the GPL resource-number set and its aggregate columns do not establish the runtime link contract. `EXE-GOG-RECORD19-001` independently proves that three other callers use a separate linked 19-byte resident table and different word pairs; its bounded updater scans 48 entries but has only two generic resident-word callers. Sharing the common request entry does not identify a common source or game role. `EXE-GOG-SCMD-001` and `EXE-GOG-RDFF-001` separately establish a shared 37-byte SCMD/RDFF record path with no direct selector caller, eliminating those narrow source hypotheses only. The final observed 13-byte link is index 200, whose validity is not established; the clear span does not establish allocation or valid-record bounds. The evidence does not identify a source container, record-population path, field names, record-to-resource mapping, caller ownership, GPL execution, or player-visible effects |
-| Q19 | What are the native Preferences defaults, selected/unselected frames, slider endpoints/steps, description placement, and About page geometry/dismissal? | slice 3 | owner-controlled observation | open - static tables and opaque `PREF` evidence do not establish this behavior. `docs/OWNER-CAPTURE-CHECKLIST.md` defines the bounded Ctrl+F5 sequence; the owner has authorized capture-folder inspection without timestamp-bearing filenames, while semantic labels still require confirmation |
-| Q20 | Which, if any, `RDFF` source record supplies the first hostile Look panel's dynamic name, level, and available actions? | slice 3 | DATA/EXE/OBS evidence investigation | open - `DATA-GOG-RDFF-001` finds the captured label in 23 same-offset `RDFF` records plus an aggregate record. `DATA-GOG-RDFF-002` shows those records form only a high-length subset of a broader 33-byte-residue size group, which establishes no header or repeated-record format. OJFF #9258 has broad overlapping numeric-namespace matches, but none of its four neutral words matches the label-bearing RDFF subset. `EXE-GOG-RDFF-001` identifies a separate indexed native record path but no payload field; `EXE-GOG-RDFF-002` finds no direct displacement 43 or 76 in either known RDFF-tag path. Their direct OJFF callers and the next six recovered upstream contexts source values from locals, arguments, registers, or resident memory rather than a provable fixed resource identity. Neither result identifies a target record or dynamic interaction property. |
-| Q21 | Which native rules select enemy targets, movement, actions, and turn outcomes? | slice 4 | EXE/OBS evidence investigation | open - `EXE-GOG-AI-001` audits every currently evidenced static candidate: hostile OJFF #9258, `MONR`, `ETAB`, RDFF, coordinate/input, literal computer-control labels, and RNG/panel routes. None ties an actor or hostile record to a decision/action consumer. The mapped coordinate destination is only an opaque five-guard validation sequence, the four computer-control labels are unlinked data, and the RNG/panel routine has no recovered caller. This does not prove enemy logic absent; it leaves indirect/runtime paths open. Controlled C0-C6 capture evidence must establish entry, active-state changes, targeting, an enemy action, and turn progression before a fresh focused static query can safely assign any AI behavior. |
-
-**Q12 evidence update (2026-09-20).** Owner-confirmed local captures establish
-the visible party-strip order AR'ANDA, TERRANNUS, THY ROKH, GERAKIS and map
-AR'ANDA to installed `CHAR` #40 through her visible Strength 18 and THY ROKH
-to #42 through the unique visible letter order. TERRANNUS and GERAKIS retain
-same-name catalog candidates with identical currently visible ability tuples,
-so the full resource selection remains open. Their remaining candidate
-envelopes and raw PSIN masks differ, and the matching visible USE captions are
-recorded in `OBS-GOG-PARTY-001`, but neither fact maps a caption to a source
-field or selects a record. The observed order's agreement with #40-#43 is
-corroboration, not proof.
-`OBS-GOG-PARTY-001` records the bounded result and leaves
-`ShippedPartyUnresolved` in place.
-
-The follow-up `EXE-GOG-CHAR-006` query found none of the four exact
-NUL-terminated observed names in the fingerprinted executable. This rules out
-only a simple hardcoded-name selector; it does not identify a loader or change
-the unresolved boundary.
-
-**Q5 audio evidence update (2026-09-22).** `EXE-GOG-SOUND-008` through
-`EXE-GOG-SOUND-011` exclude the queried complete VOC-header, direct extension,
-literal helper-name, and nearby-literal DOS-EXEC leads without establishing an
-audio consumer or playback schedule. `docs/OWNER-CAPTURE-CHECKLIST.md` A0-A3
-is the next bounded native gate: it records only audible presence and the first
-Music/Sound Effects toggle response at stable screens. It deliberately does
-not infer a codec, source asset, timing, default, or mixer value.
 
 ## Risks
 

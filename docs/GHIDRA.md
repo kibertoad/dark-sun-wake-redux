@@ -2669,7 +2669,7 @@ proof by itself. Never redirect broad output into the repository.
   bounds, field semantics, record-to-resource mapping, and player-visible
   behavior.
 - **Implementation consequence:** do not add a resource parser, persist this
-  data, or infer interaction triggers. Preserve the evidence as `Q18` until a
+  data, or infer interaction triggers. Preserve the evidence as `Q-SCRIPT-002` until a
   source container, record population path, or controlled observation
   independently connects this runtime table to game content.
 

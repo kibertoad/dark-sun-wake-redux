@@ -147,9 +147,9 @@ frame 0 is exact; the remaining frame meanings are still unknown. The current
 single-cell footprint and 125 ms movement step are isolated modern policies,
 not native-parity claims.
 
-`docs/OWNER-CAPTURE-CHECKLIST.md` contains the bounded Ctrl+F5 checklist for
-the first priority. Do not inspect candidate DOSBox screenshots until the owner
-confirms its timestamp window and completed checklist identifiers.
+`docs/live-sessions/preferences.md` is the bounded Ctrl+F5 request for the
+first priority, and `docs/live-sessions/README.md` gives the capture protocol
+and the owner's standing authorization to inspect the capture folder.
 
 ## Wrap-up gates
 
