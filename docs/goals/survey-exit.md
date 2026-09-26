@@ -2,17 +2,17 @@
 
 ## Condition
 
-The Survey exit in `docs/IMPLEMENTATION-PLAN.md` holds: the approved
-`DSUN.EXE` has a compliant function inventory under `coverage/`, every screen
-mentioned by `SRC-MANUAL-1994` has a screen entry, the documentation check
-passes on the last commit, and each batch ended with a status block; or stop
-after 40 turns.
+The Survey exit in `docs/BOOTSTRAP-CHECKLIST.md` holds: every manifest `data`
+file except CD audio tracks has a format entry, each analyzed executable has
+a compliant function inventory under `coverage/`, every screen mentioned by
+`SRC-MANUAL-1994` has a screen entry, and each spec area has a queue file. The
+documentation check passes on the last commit and each batch ended with a
+status block; or stop after 40 turns.
 
 ## Scope
 
-Areas: UI and any other area that needs a screen entry from
-`SRC-MANUAL-1994`. Batches: research and tooling only. The inventory covers
-`BLD-GOG-EN-1.1`.
+Areas: UI, EXPLORE, CONFIG, EXE and SOUND. Batches: planning, research and
+tooling only. The inventory covers `BLD-GOG-EN-1.1`.
 
 ## Must not touch
 

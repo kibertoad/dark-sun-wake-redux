@@ -19,7 +19,7 @@ owner's decisions, and `docs/HANDOVER.md` says where the last session stopped.
 | Latest version | 1.1, the version `SRC-README-1.1` gives the installed game data. No later official patch is recorded. |
 | Editions available for validation | `BLD-GOG-EN-1.1`; `docs/SOURCE-EDITIONS.md` holds the detail. |
 | Existing research relied on | `SRC-MANUAL-1994`, `SRC-GAMEFAQS-81038`, `SRC-DSUN-MUSIC-79B6927`, `SRC-LIBGFF-839B11D`, `SRC-OPENDS-5C6CBD7`, `SRC-README-1.1`, `SRC-YOUTUBE-FLOMVOSHEOM` |
-| Stage | Survey. Intake and Runtime access have ended. The Survey's exit does not hold yet: `coverage/` has no function inventory of `DSUN.EXE`, and the check that every screen the manual mentions has a screen entry has not been made. Slice work goes on meanwhile and counts towards a slice's exit once the Survey has ended. |
+| Stage | Survey. Intake and Runtime access have ended. The Survey exit is the four-part check in `docs/BOOTSTRAP-CHECKLIST.md`; slice work can continue meanwhile. |
 
 ## Scope
 
