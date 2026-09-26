@@ -14,10 +14,10 @@ runtime defaults or committed content.
 | GOG product ID | `1432903719` |
 | Installed build ID | `52095422060333615` |
 | Language | English (`en-US`) |
-| Underlying DOS revision | Version 1.1, documented by the owned package README and dated 1994-12-14; physical retail-media provenance remains unknown |
+| Underlying DOS revision | Version 1.1, dated 1994-12-14 (`BLD-GOG-EN-1.1`); physical retail-media provenance remains unknown |
 | Manifest | `src/DarkSunWakeRedux.Extractor/source-manifests/gog-en-52095422060333615.json` |
 
-The recognition manifest records exact paths, sizes, and SHA-256 values for all
+The recognition manifest records exact paths, sizes, and XXH3-128 values for all
 233 immutable baseline inputs: 26 GFF containers, 147 VOC files, five FLI
 files, 40 music tracks, the disc image/descriptor, original helper executables,
 and static configuration/data files. `inventory-source` additionally assigns
@@ -31,12 +31,12 @@ under the original game, so a changed original installation is intentionally
 reported as a source mismatch; extract from a pristine supported copy rather
 than treating a changed archive as the same edition.
 
-`DATA-GOG-README-001` records the source-revision evidence without retaining
-the README: its package heading identifies Version 1.1 and distinguishes the
-earlier 1.0 and 1.01 save formats. A later historical fixes section is labelled
-1.02, but does not replace the package's Version 1.1 heading. This identifies
-the supported game-data revision, not the provenance of any original physical
-CD or retail release.
+The build itself, its files and their hashes, the disc image, the files that
+differ between the disc and the installation, and how `DSUN.EXE` is laid out
+are described by the spec's build entry,
+[`BLD-GOG-EN-1.1`](../spec/builds/BLD-GOG-EN-1.1.md), and its manifest. The
+package's `README.TXT` (`SRC-README-1.1`) heads the game data as Version 1.1;
+that identifies the game-data revision, not the provenance of any retail CD.
 
 Bounded inspection of the fingerprinted `game.gog` image found a 3,864-byte
 disc `CHARSAVE.GFF` containing eight paired character resources (#40-#43 and
@@ -44,8 +44,8 @@ disc `CHARSAVE.GFF` containing eight paired character resources (#40-#43 and
 (#29-#43 and #50-#53). The difference is an evidence boundary about character
 provenance, not an extraction exception: both the disc image and the installed
 archive are preserved as fingerprinted baseline inputs. See
-`DATA-GOG-CHAR-006`; neither block is yet designated as the complete
-pregenerated party.
+`FND-PARTY-005`; `RULE-PARTY-006` gives the first disc block, #40-#43, as the
+party START GAME supplies.
 
 The GOG installation also contains DOSBox integration, manuals, a clue book,
 the remaining region GFF files, FLI cinematics, VOC speech/effects, and Ogg

@@ -11,6 +11,8 @@ public readonly record struct ExplorationActorVisualSnapshot(
 
 public sealed class ExplorationActorController
 {
+    // PLACEHOLDER: RULE-EXPLORE-005 - how long the original takes for one step of a walk is unknown;
+    // DEV-EXPLORE-002 records these values as the rebuild's own.
     public static readonly TimeSpan DefaultStepInterval = TimeSpan.FromMilliseconds(125);
     public const int MaximumStepsPerUpdate = 4;
 

@@ -3,6 +3,7 @@ using Xunit;
 
 namespace DarkSunWakeRedux.Tests;
 
+// Golden vectors for RULE-RNG-001, worked out from the spec rather than recorded from the original.
 public sealed class NativeRandomTests
 {
     [Fact]

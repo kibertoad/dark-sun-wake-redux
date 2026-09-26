@@ -80,6 +80,7 @@ public static class GameMenuInput
             ExplorationCommand.Open(ExplorationView.CastSpellsOrUsePsionics),
         GameMenuAction.CurrentSpellEffects =>
             ExplorationCommand.Open(ExplorationView.CurrentSpellEffects),
+        // PLACEHOLDER: SCR-UI-006 - the original offers a choice to save, quit or cancel first.
         GameMenuAction.ExitToDos => ExplorationCommand.RequestExit(),
         GameMenuAction.Preferences => ExplorationCommand.Open(ExplorationView.Preferences),
         GameMenuAction.OverheadMap => ExplorationCommand.Open(ExplorationView.OverheadMap),

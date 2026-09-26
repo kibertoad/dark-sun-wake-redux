@@ -38,12 +38,16 @@ output, reject unexpected files, then atomically replace the installed pack.
 If any step fails, staging is removed and the last verified pack is restored.
 Current code exercises this transaction for every byte of the 233-file source
 baseline and every one of its 16,168 GFF records, retained as source-mapped DSOP
-assets where no semantic contract is established. The same required revision 34 pack also carries
+assets where no semantic contract is established. The same required revision 35 pack also carries
 the 123 evidenced specialized derivatives for startup, party, ADD-list, Tyr,
 the source-derived structural catalogs for every owned region,
 Game Menu/Preferences, character, inventory, Cast, Effects, and first dialogue.
 Later work adds semantic readers and behavior only after their mappings are
 recorded; it does not extend corpus coverage by silently omitting unknown data.
+
+A revision bump means the required derived-asset inventory or contract changed.
+`play.bat` then refreshes an older pack transactionally from the owner's licensed
+installation instead of running it.
 
 ## Runtime startup
 

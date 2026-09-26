@@ -33,6 +33,7 @@ public static class ExplorationDestinationInput
                     [11306] = (235, 181),
                     [10308] = (288, 181)
                 }),
+            // PLACEHOLDER: SCR-UI-009 - which window the original's Cast and Effects screens use is unknown.
             [ExplorationView.CastSpellsOrUsePsionics] = CharacterPage(),
             [ExplorationView.CurrentSpellEffects] = CharacterPage()
         };

@@ -10,6 +10,7 @@ public sealed record RegionEntityReference(
     byte Flags,
     short SignedObjectResourceNumber)
 {
+    // PLACEHOLDER: FMT-REGION-006 - whether the original treats the object number as signed is unknown.
     public uint ObjectResourceNumber => checked((uint)Math.Abs((int)SignedObjectResourceNumber));
 }
 

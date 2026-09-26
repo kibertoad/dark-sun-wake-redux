@@ -19,7 +19,7 @@ documented source default with `DARK_SUN_WAKE_PATH` when necessary.
 Extraction is transactional: a new content pack is staged and fully verified
 before it replaces the previous verified pack. The ignored default
 `UserContent` pack is persistent; keep and reuse it unless extractor or pack
-contract changes require replacement. The current required revision 34 pack contains 16,401
+contract changes require replacement. The current required revision 35 pack contains 16,401
 lossless DSOP corpus assets (233 source files and 16,168 GFF records) plus 123
 specialized derivatives for the evidenced startup, party, ADD-list, Tyr, all-region structural catalogs, menus,
 dialogue, and character metadata. The runtime never loads opaque payloads.
@@ -64,6 +64,7 @@ dotnet run --project tools/DarkSunWakeRedux.Inspect -- object-pattern-overlap "C
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- record-profile "C:\path\to\RESOURCE.GFF" MONR 1 81
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- raster-profile "C:\path\to\RESOURCE.GFF" MONR 1 81
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- fbov-profile "C:\path\to\DSUN.EXE"
+./tools/ghidra/ReportPhysicalBytePattern.ps1 -SourcePath "C:\path\to\DSUN.EXE" -Pattern "43 4f 4d 50 55 54 45 52"
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- pair-resource-overlap "C:\path\to\ITEMS.BIN" "C:\path\to\OBJEX.GFF" OJFF
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- object-word-overlap "C:\path\to\OBJEX.GFF" OJFF "C:\path\to\ITEMS.BIN"
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- resource-word-overlap "C:\path\to\RESOURCE.GFF" PLYL 50 "C:\path\to\CHARSAVE.GFF" CHAR
@@ -78,7 +79,12 @@ dotnet run --project tools/DarkSunWakeRedux.Inspect -- region-catalog "C:\path\t
 dotnet run --project tools/DarkSunWakeRedux.Inspect -- object-catalog "C:\path\to\OBJEX.GFF" "C:\path\to\RGN032.GFF"
 ```
 
-The first command emits path, size, and SHA-256 inventory. The second emits only
+The physical-byte reporter accepts at most 16,384 matches by default (or a
+lower explicitly supplied `-MaximumMatches` limit). It fails with a diagnostic
+if a pattern is too broad, rather than emitting an unbounded offset list; use a
+more specific pattern for a focused evidence query.
+
+The first command emits path, size, and XXH3-128 inventory. The second emits only
 bounded GFF resource descriptors (tag, number, offset, and size). The third
 validates all indexed images and palettes in one GFF and emits dimensions and
 counts, but no proprietary pixel or palette content. The fourth validates

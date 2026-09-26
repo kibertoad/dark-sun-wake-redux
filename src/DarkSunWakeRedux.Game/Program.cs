@@ -2,11 +2,25 @@ using DarkSunWakeRedux.Core;
 using DarkSunWakeRedux.Game;
 using DarkSunWakeRedux.Resources;
 
+// Read before the try so the failure path knows whether this launch is a person or a smoke test.
+var platformSmoke = args.Contains("--platform-smoke-test", StringComparer.OrdinalIgnoreCase);
+var contentSmoke = args.Contains("--content-smoke-test", StringComparer.OrdinalIgnoreCase);
 try
 {
+    // Decided before the --smoke-test shortcut so that asking for software rendering in a mode
+    // that never draws anything stops the run with an error.
+    var softwareRendering = SoftwareRenderer.Evaluate(
+        args.Contains(SoftwareRenderer.Flag, StringComparer.OrdinalIgnoreCase),
+        platformSmoke,
+        Environment.GetEnvironmentVariable(SoftwareRenderer.DriverVariable));
+    if (softwareRendering.Rejection is not null)
+    {
+        Console.Error.WriteLine(softwareRendering.Rejection);
+        return 64;
+    }
+
     if (args.Contains("--smoke-test", StringComparer.OrdinalIgnoreCase)) return 0;
-    var platformSmoke = args.Contains("--platform-smoke-test", StringComparer.OrdinalIgnoreCase);
-    var contentSmoke = args.Contains("--content-smoke-test", StringComparer.OrdinalIgnoreCase);
+    if (softwareRendering.Enabled) SoftwareRenderer.Apply(softwareRendering.DriverPath!);
     var screenshotFolder = Option(args, "--screenshot-folder");
     string? assetPack = null;
     if (!platformSmoke)
@@ -258,6 +272,18 @@ try
             var font = PackedIndexedBitmapFont.Read(fontStream, OriginalContent.InterfaceFontAssetPath);
             if (font.Glyphs.Count != IndexedBitmapFont.CharacterCount)
                 throw new InvalidDataException("The installed interface font has an unexpected glyph count.");
+            // Draws every state of the launch options screen (DEV-UI-001) with the installed font;
+            // the rasterizer throws when a line of its text does not fit.
+            foreach (var wideMapView in new[] { true, false })
+                for (var item = 0; item < LaunchOptionsSession.ItemCount; item++)
+                {
+                    var launchOptions = new LaunchOptionsSession(new LaunchSettings(wideMapView));
+                    launchOptions.Execute(LaunchOptionsCommand.Hover(item));
+                    var launchCanvas = LaunchOptionsRasterizer.Rasterize(font, launchOptions);
+                    if (!launchCanvas.Pixels.Contains(LaunchOptionsRasterizer.HighlightText))
+                        throw new InvalidDataException(
+                            "The launch options screen drew no highlighted text.");
+                }
             var visibleDialogueChoices = DialogueConditionAdapter.SelectVisibleChoices(
                 dialogueProjection.InitialChoices,
                 FirstTyrDialogueObservedState.Create(),
@@ -729,7 +755,7 @@ try
 }
 catch (Exception exception)
 {
-    StartupFailureReporter.Report(exception);
+    StartupFailureReporter.Report(exception, allowDialog: !platformSmoke && !contentSmoke);
     return 1;
 }
 

@@ -28,7 +28,7 @@ throughout this migration, including focused analysis of
 that installation for in-scope evidence work. Its documented stable executable
 identity is the baseline for in-scope address and data-offset work; do not
 rehash it before every focused query. The current `DSUN.EXE` is 634,416 bytes
-with SHA-256 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`.
+with XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`.
 Revalidate only if the path, file metadata, source package, or documented
 edition changes, a fresh environment lacks this baseline, or replacement is
 otherwise suspected.
@@ -52,49 +52,14 @@ language. Evidence records may retain **race** or **racial** only when quoting
 or naming an original heading, table, field, or claim; those source terms map
 to **origin** and **origin-based** in implementation.
 
-### Initial evidence register
-
-- **MANUAL-1994.** The locally installed 41-page landscape PDF rule book (77
-  numbered manual pages plus credits and legal material). It is primary evidence
-  for intended controls, menus, party creation, exploration, combat commands,
-  character rules, magic, psionics, advancement, and original credits. The path
-  is a local reference only; the PDF must never enter Git.
-- **GOG-1432903719.** Installed English GOG metadata plus a future exact
-  fingerprint inventory. Storefront branding is provenance, not a fingerprint.
-- **FAQ-81038.** kibbitz's walkthrough, v1.13, used as secondary evidence for
-  mechanics, route conditions, bugs, soft locks, and conflicts with the manual.
-  Runtime confirmation is required where feasible. The guide credits
-  contributors Seraphiel, @revcrussell, UndeadHalfOrc, classiccola, GHostLPs,
-  and rattus 128.
-- **DSUN-MUSIC.** John Glassmyer's MIT-licensed `dsun_music` project, whose
-  `gff-tool`, `image-tool`, `region-tool`, and `xmi-tool` describe and extract
-  resources used by *Shattered Lands*, *Wake of the Ravager*, and *Crimson
-  Sands*. The repository owner explicitly authorizes reuse of useful results
-  from this project. Treat its format descriptions, resource tags, mappings,
-  and tool behavior as secondary technical evidence: credit the project, note
-  any directly reused code under its license, and confirm applicable facts
-  against the fingerprinted GOG-1432903719 files before making a verified
-  format or parity claim. Production readers must still satisfy this plan's
-  bounds, diagnostics, synthetic-test, and clean-room requirements.
-- **OBS-GOG-*.** Reproducible observations recorded from controlled runs of the
-  supported copy. Original screenshots, recordings, and saves stay outside Git;
-  measurements and clean-room diagrams may be committed.
-- **DATA-GOG-*.** Facts established by bounded, read-only inspection of owned
-  files. No original bytes, source, decompiler output, or disassembly enter the
-  repository.
-
-MANUAL-1994 describes intended behavior; FAQ-81038 documents cases where the
-shipped game differs. Conflicts will be preserved explicitly, never silently
-resolved.
-
 ### Recommended Ghidra usage
 
 Ghidra is recommended as a targeted evidence tool when the manual, walkthrough,
 runtime observation, and bounded data inspection do not establish an exact rule,
 file field, state transition, or RNG/timing behavior. Analysis should begin with
-the exact fingerprinted `DSUN.EXE` from GOG-1432903719, with the Ghidra version,
-executable SHA-256, load settings, address or symbol, method, interpretation,
-confidence, and reproducible follow-up recorded in `docs/GHIDRA.md`.
+the exact fingerprinted `DSUN.EXE` from BLD-GOG-EN-1.1, with the Ghidra version,
+executable XXH3-128, load settings, address or symbol, method, interpretation,
+alternatives, and reproducible follow-up recorded as a finding in `spec/findings/`.
 
 The Ghidra project, executable, memory dumps, screenshots, raw disassembly, and
 decompiler output remain under ignored `analysis/original/` or another local-only
@@ -117,10 +82,10 @@ the question.
 | Summary | Clean-room MonoGame restoration of SSI's 1994 computer role-playing game *Dark Sun: Wake of the Ravager* |
 
 The configurator will generate the application ID, which then remains stable.
-The root README will credit the original team from MANUAL-1994, led by the SSI
+The root README will credit the original team from SRC-MANUAL-1994, led by the SSI
 Special Projects Team, producers Dan Cermak and Nick Beliaeff, associate
 producer Rick White, lead programmer Robert Calfee, programmer Mike Coustier,
-and lead artist Maurie Manning. It will link and credit FAQ-81038 to kibbitz and
+and lead artist Maurie Manning. It will link and credit SRC-GAMEFAQS-81038 to kibbitz and
 name the guide contributors above. The acknowledgement will not imply
 endorsement or transfer of rights.
 
@@ -150,7 +115,7 @@ boundary.
 
 The generic template `Import` shell will be replaced by the player-facing
 Extractor, while Inspect remains a separate read-only research tool. Extractor
-logic and tests will reuse the Rechaos principles of exact inventory and SHA-256
+logic and tests will reuse the Rechaos principles of exact inventory and XXH3-128
 validation, versioned manifests, full staged-pack verification, stale-output
 replacement, rollback on failure, and machine-readable diagnostics; no code is
 to be copied blindly between games.
@@ -196,11 +161,11 @@ are preserved as opaque data rather than guessed or omitted.
   sources. The assetless runtime names the required pack, points to the
   Extractor, writes a local diagnostic log, and quits cleanly. README status and
   acknowledgements are accurate.
-- **Evidence.** MANUAL-1994 for identity and creators; GOG-1432903719 for owned
-  distribution metadata; FAQ-81038 for guide attribution.
+- **Evidence.** SRC-MANUAL-1994 for identity and creators; BLD-GOG-EN-1.1 for owned
+  distribution metadata; SRC-GAMEFAQS-81038 for guide attribution.
 - **Acceptance - rules.** Recognition is deterministic and exact. Relative paths
   are normalized; duplicate files and path escapes are rejected; every required
-  file has an expected length and SHA-256; failure uses stable diagnostic codes.
+  file has an expected length and XXH3-128; failure uses stable diagnostic codes.
 - **Acceptance - presentation.** Both tools have readable success/error output,
   keyboard/mouse dismissal where graphical, and no unhandled failure. Native UI
   parity is not yet claimed.
@@ -227,8 +192,8 @@ evidence throughout.
   resource record with stable source identity, source-file hash, payload hash,
   length, media/contract type, and conversion method. It does not assign rule or
   presentation semantics merely because a payload is now available.
-- **Evidence.** GOG-1432903719 plus the exact source manifest; DATA-GOG-GFF-001
-  and each subsequently recorded bounded container finding. The corpus inventory
+- **Evidence.** BLD-GOG-EN-1.1 plus the exact source manifest; FMT-GFF-001 to
+  FMT-GFF-007 and each subsequently recorded bounded container finding. The corpus inventory
   itself is evidence and must distinguish observed structure from opaque bytes.
 - **Acceptance - rules.** No new gameplay rule, screen transition, UI command,
   or inferred resource meaning is introduced by this slice. Known decoders must
@@ -246,7 +211,7 @@ evidence throughout.
   or user-generated file. Every immutable game-data payload includes every
   record in each recognized GFF container and every raw payload outside
   containers. Each represented item has deterministic local-pack path/identity,
-  provenance, length, and SHA-256; the staged pack is read back and verified
+  provenance, length, and XXH3-128; the staged pack is read back and verified
   before atomic promotion. Original bytes remain local to the verified pack and
   never enter Git, CI, packages, logs, or synthetic fixtures.
 - **Automated tests.** Synthetic recursive inventories; duplicate/path-traversal
@@ -280,7 +245,7 @@ the contract change increments the required derived-pack revision to 33.
   cannot be represented. This slice adds no travel, screen transition, region
   selection, entity behavior, combat, quest, camera, or player-facing map
   presentation beyond the existing Tyr behavior.
-- **Evidence.** `DATA-GOG-REGION-001` and `ORIGINAL-FORMATS.md` establish the
+- **Evidence.** `FMT-REGION-001` to `FMT-REGION-006` establish the
   bounded shared region envelope across all 20 owned region files. The completed
   Slice 2A manifest/DSOP contract preserves each original source path and
   resource payload, while `PackedRegion` and the Tyr `DSRG` round trip
@@ -328,13 +293,13 @@ catalogs.
   evidence before implementation.
 - **Outcome.** The runtime opens the complete verified pack, reaches the
   original-style start flow, and creates or selects a legal four-character party.
-- **Evidence.** MANUAL-1994 sections on quick start, party creation, character
-  options, and menus; `DATA-GOG-GFF-001` and `DATA-GOG-IMAGE-001`, corroborated
-  by DSUN-MUSIC, for bounded container, indexed-image, and palette structures;
-  `DATA-GOG-FONT-001` for bounded indexed glyphs; `DATA-GOG-UI-001` and
-  `DATA-GOG-UI-006`-`008` for bounded start-window/button mappings, composition,
-  party-overview and ADD-list shells, and interface palette; further DATA-GOG
-  for party-screen resource mapping; OBS-GOG for screen states,
+- **Evidence.** SRC-MANUAL-1994 sections on quick start, party creation, character
+  options, and menus; `FMT-GFF-001`, `FMT-IMAGE-001` to `FMT-IMAGE-004`, `RULE-IMAGE-001` and
+  `RULE-IMAGE-002` for bounded container, indexed-image, and palette structures;
+  `FMT-TEXT-001` and `FMT-TEXT-002` for bounded indexed glyphs; `FMT-UI-001` to
+  `FMT-UI-005` and `SCR-UI-001` to `SCR-UI-004` for the start window, the View Character
+  screen, the ADD list and character generation; further data findings
+  for party-screen resource mapping; dynamic findings for screen states,
   coordinates, and navigation.
 - **Acceptance - rules.** Party size, available origins/classes, ability/alignment
   constraints, psionic-discipline and clerical-sphere choices, cancellation,
@@ -389,13 +354,13 @@ catalogs.
 - **Outcome.** A party enters the first Tyr area, moves and scrolls, changes
   leader/formation display, uses look/interaction, completes the first dialogue,
   and opens character, inventory, effects, map, and game menus.
-- **Evidence.** MANUAL-1994 "How to Play", mouse modes, character interaction,
-  character options, and game menu; FAQ-81038 section 3.1; DATA-GOG region facts;
-  OBS-GOG opening traces.
+- **Evidence.** SRC-MANUAL-1994 "How to Play", mouse modes, character interaction,
+  character options, and game menu; SRC-GAMEFAQS-81038 section 3.1; the REGION and EXPLORE
+  entries; dynamic findings from the opening.
 - **Acceptance - rules.** Click-to-walk, collision, leader selection, party
   placement, interaction eligibility, dialogue choices, item transfer, and
   initial quest flags are deterministic Core commands/events. Per
-  `COMPAT-PATH-001`, routes may use modern deterministic pathfinding rather than
+  `DEV-EXPLORE-002`, routes may use modern deterministic pathfinding rather than
   reproduce the original planner's deficiencies.
 - **Acceptance - presentation.** Viewport and scrolling, cursor modes and target
   hotspot, dialogue/menu layering, portraits, and control states match measured
@@ -403,14 +368,14 @@ catalogs.
 - **Acceptance - original content.** Required map, region, sprite, palette, text,
   portrait, and item resources are extracted. Unknown records remain explicitly
   unknown; dangling references and corrupt bounds produce contextual errors.
-  `DATA-GOG-REGION-001` now bounds the shared region identity, 128x98 map and
+  `FMT-REGION-001` to `FMT-REGION-006` now bound the shared region identity, 128x98 map and
   geometry planes, 16x16 local tiles, and eight-byte external-object references;
-  `DATA-GOG-OBJECT-001` bounds exact 16-byte object-frame definitions, their
+  `FMT-ACTOR-001` bounds exact 16-byte object-frame definitions, their
   signed offsets, and image references. Canonical DSRG and DSOB extraction is
-  implemented for Tyr. `DATA-GOG-SCENE-001` now supplies a clipped static
+  implemented for Tyr. `RULE-REGION-001` and `FND-IMAGE-010` now back a clipped static
   tile/first-object-frame compositor; controlled observation fixes the opening
   camera at `(1024,1368)` and the static viewport is visibly integrated.
-  `DATA-GOG-ACTOR-001` identifies, extracts, and displays the exact opening
+  `FND-ACTOR-002` identifies, and the rebuild extracts and displays, the exact opening
   leader at its observed world position through reusable camera-relative actor
   placement; its collision anchor cell is evidenced. Active Walk clicks now
   plan and execute from that anchor through a reusable controller, with a
@@ -419,10 +384,10 @@ catalogs.
   footprint/cadence and the extracted 13-frame image's animation semantics
   remain open.
   Manual-defined edge scrolling now drives a clamped deterministic Core camera
-  and rerasterizes that viewport. Per owner-approved `COMPAT-INPUT-001`, a
+  and rerasterizes that viewport. Per owner-approved `DEV-INPUT-001`, a
   held right-button grab-drag also emits bounded logical-camera pans while a
   stationary right click retains the original mode cycle; Alt+Enter toggles
-  native-resolution fullscreen on a single chord edge. `COMPAT-DISPLAY-001`
+  native-resolution fullscreen on a single chord edge. `DEV-EXPLORE-001`
   expands the bounded world slice to the physical aspect ratio while fixed UI
   remains on the original canvas; F9 previews the measured dialogue chrome over
   that live world pending conversation routing and text. A fail-closed GPL #135
@@ -506,7 +471,7 @@ catalogs.
   Effects reuse the character shell and #11500 navigation with exact
   #20080/#20075 title placement; both now render. The Preferences #16500 graph
   and artwork now render and its Game Menu/Return actions route deterministically.
-  `EXE-GOG-UI-004` now bounds the executable's ordered four-label difficulty
+  `FMT-TEXT-004` now bounds the executable's ordered four-label difficulty
   table, exact ten-string Preferences description span, and nine centered About
   strings. Pack v28 extracts all three through the existing DSTX format without
   committing original text. The manual's Average default wording conflicts with
@@ -520,7 +485,7 @@ catalogs.
   topmost-entity/leader Look, and bounded first-target melee feedback.
   Dynamic fields/interior actions, generalized target eligibility, Load/Save, setting mutations,
   other destination presentation, native panel/centering validation, animation,
-  and party/interface overlays remain pending. `EXE-GOG-REGION-001` now establishes
+  and party/interface overlays remain pending. `RULE-EXPLORE-003` now establishes
   `GMAP` bit `0x40` as the terrain/occupancy block. A bounded terrain grid and
   reusable camera-to-grid Walk-click planner connect Tyr to deterministic A*.
   A clock-free Core movement session now covers atomic plan/replan, one-cell
@@ -546,19 +511,18 @@ catalogs.
 - **Outcome.** The opening Tyr encounter can be completed through victory or
   party defeat using movement, targeting, attacks, wait, guard, previous/next
   target, and end-turn actions.
-- **Evidence.** MANUAL-1994 combat mouse modes and hotkeys; FAQ-81038 sections
-  2.1, 2.4, 2.8, and 3.1; OBS-GOG controlled combat traces. The owner reports
-  direct enemy click-to-approach-and-strike without a separate target-switching
-  or confirmation presentation, no visible turn-transition treatment, and an
-  immediate return to single-leader exploration on combat exit. Manual and FAQ
-  material establishes investigation questions, not executable behavior.
+- **Evidence.** The COMBAT area of the spec (`RULE-COMBAT-001` to
+  `RULE-COMBAT-009`, `SCR-COMBAT-001`, `FND-COMBAT-018` to `FND-COMBAT-021` for
+  the owner's captures and reports) and their open questions in
+  `queue/COMBAT.md`. SRC-GAMEFAQS-81038 sections 2.4 and 3.1 are not yet in the
+  spec.
 - **Entry gate.** Before code for this slice, record owner-confirmed controlled
   native captures covering entry, command availability, targeting, an attack
   resolution, turn progression, and exit; correlate each implemented behavior
   to those observations and a traceable data or executable finding. Opaque
   combat-adjacent resources and generic AD&D expectations do not satisfy this
-  gate. `docs/OWNER-CAPTURE-CHECKLIST.md` C0-C6 is the bounded collection
-  sequence. The owner has authorized inspection of every configured DOSBox
+  gate. The live session request `docs/live-sessions/opening-combat.md`
+  (C0-C6) is the bounded collection sequence. The owner has authorized inspection of every configured DOSBox
   capture-folder screenshot, including filenames without timestamps; semantic
   labels still require owner confirmation before a frame is relied on.
 - **Acceptance - rules.** Activation order, movement, range, target legality,
@@ -584,9 +548,9 @@ catalogs.
 
 - **Outcome.** Players equip legal items, inspect statistics/effects, use the
   evidenced spell and psionic set, camp, recover, earn experience, and train.
-- **Evidence.** MANUAL-1994 character, ability, class, equipment, spell,
-  psionic, camping, training, and advancement sections; FAQ-81038 sections
-  2.1-2.9 and recorded discrepancies; OBS-GOG rule probes.
+- **Evidence.** SRC-MANUAL-1994 character, ability, class, equipment, spell,
+  psionic, camping, training, and advancement sections; SRC-GAMEFAQS-81038 sections
+  2.1-2.9 and recorded discrepancies; experiments for each rule.
 - **Acceptance - rules.** Every implemented modifier, restriction, resource
   cost, target, duration, effect, recovery rule, multiclass behavior, experience
   threshold, and level gain has an evidence ID and deterministic test. A verified
@@ -608,9 +572,9 @@ catalogs.
 - **Outcome.** The critical campaign route from Tyr through the artifact regions
   to the finale is finishable; optional content and alternate outcomes are added
   as separately validated increments.
-- **Evidence.** MANUAL-1994 for intended player systems; FAQ-81038 sections
-  3.1-3.25 as a route, branch, and defect index; DATA-GOG facts; OBS-GOG
-  checkpointed playthroughs. The guide is not an executable specification.
+- **Evidence.** SRC-MANUAL-1994 for intended player systems; SRC-GAMEFAQS-81038 sections
+  3.1-3.25 as a route, branch, and defect index; data findings; experiments
+  from checkpointed playthroughs. The guide is not an executable specification.
 - **Acceptance - rules.** Quest flags, dialogue prerequisites, travel edges,
   item gates, timers, triggers, alternative outcomes, NPC survival, rewards, and
   ending prerequisites are explicit deterministic state machines. Known soft
@@ -633,9 +597,9 @@ catalogs.
   and music; clean packages install the runtime and separate Extractor on each
   declared platform. Original save and Shattered Lands party import ship only if
   their formats become fully evidenced and bounded.
-- **Evidence.** All prior evidence; MANUAL-1994 save/load, hotkeys, and party
-  transfer; FAQ-81038 section 2.10 and complete route; comprehensive OBS-GOG and
-  DATA-GOG inventories.
+- **Evidence.** All prior evidence; SRC-MANUAL-1994 save/load, hotkeys, and party
+  transfer; SRC-GAMEFAQS-81038 section 2.10 and complete route; the spec's findings and
+  experiments.
 - **Acceptance - rules.** Save schemas and migrations are explicit; writes are
   atomic with last-valid recovery; corrupt data is bounded/rejected; identical
   initial state, seed, and commands produce identical hashes. Presentation clocks
@@ -656,61 +620,82 @@ catalogs.
   optional routes by parity-matrix row. No broad parity claim is allowed while a
   required row is unknown or merely implemented.
 
+## Launch options
+
+The rebuild's own options, the deviations in `deviations/` that have a setting,
+are set on a screen of the rebuild's own that opens at every launch before
+anything of the original's is shown: before the cinematics once they play, and
+before the start window today. The owner approved this on 2026-09-26.
+
+- **Outcome.** The screen lists each option with its current value. The player
+  changes values with the mouse or the keyboard and confirms, and the original's
+  flow then starts with those values. Exit quits without starting it.
+- **First option.** "Wide map view" (DEV-EXPLORE-001), on by default. Off gives
+  the original's 320x200 framing of the map, centred and letterboxed.
+- **Storage.** The values persist in `settings.json` in the per-user data folder
+  beside `UserContent` (`%LOCALAPPDATA%\DarkSunWakeRedux` on Windows). The file
+  is versioned, bounded in size, written atomically with a backup of the last
+  good copy, and read field by field: a missing, unreadable or out-of-range file
+  or value falls back to the backup and then to the defaults, and never stops
+  the game from starting. Options added later get their own fields with their
+  own defaults, so an older file still loads.
+- **Presentation.** The screen is drawn by the rebuild with the extracted font
+  on the fixed 320x200 canvas, and uses no original screen's layout. It is a
+  deviation from the start sequence (DEV-UI-001) that adds to the interface.
+- **Automated tests.** Settings round trip, defaults, backup recovery, corrupt,
+  oversized and unknown-version files, and a missing field in an older file;
+  option navigation and confirm and exit routing; the wide map view off and on
+  in the viewport layout; the content smoke test draws the screen.
+
+## Rebuild status outside the spec
+
+[`PARITY.md`](../PARITY.md) and `parity/` give the rebuild's status against every rule, format
+and screen in the spec. This table covers the parts of the rebuild that have no spec entry.
+
+| Part | Status |
+|---|---|
+| Source recognition | Implemented. One English GOG build has an exact 233-file immutable inventory, and all 279 installed files have a game-data, mutable, wrapper or documentation disposition. Synthetic mismatch tests pass and the owned build verifies. |
+| Asset pack | Implemented. Required revision 35 keeps all 233 source files and every one of the 16,168 GFF descriptors as 16,401 DSOP assets, plus 123 specialized derivatives (16,524 assets). The pack contract checks version, game and source identity, inventory, hashes, provenance, media type, conversion and unexpected files. |
+| Error behavior | Implemented. A missing or invalid pack and a source mismatch return a diagnostic that says what to do. |
+| Saves and replays | Partial. Start-flow snapshot schema 5 and replay format 3 with hash-verified replay are implemented in memory. Native save files, migration and whole-game coverage are not started. |
+| Packaging | Identity configured. Packages are not release-ready while decoders are missing. |
+
+Owner runs that block further work are requested in `docs/live-sessions/`: the shipped party and
+Look panel (`shipped-party.md`), opening combat (`opening-combat.md`), Preferences
+(`preferences.md`), inventory selection (`inventory-selection.md`) and sound (`audio-presence.md`).
+No broad parity claim is made while any row in `PARITY.md` is short of `validated`.
+
 ## Open questions
+
+Open research questions about the original are items in `queue/<AREA>.md`,
+and runs the owner is asked to perform are requests in `docs/live-sessions/`.
+This table keeps the decisions that belong to the repository owner.
 
 | ID | Question | Blocks | Owner | Status |
 |---|---|---|---|---|
 | Q1 | Is `DarkSunWakeRedux` / `Dark Sun: Wake of the Ravager Redux` the approved identity? | configuration | repository owner | closed - approved 2026-09-12 |
 | Q2 | Is the installed GOG build the only initial supported edition, with later revisions represented by separate manifests? | slices 1, 7 | repository owner | closed - initial work targets the supplied GOG build; later revisions require separate fingerprints |
-| Q3 | Which underlying DOS/CD-ROM revision is in GOG build `52095422060333615`? | slices 1, 4, 6 | evidence investigation | closed - `DATA-GOG-README-001` establishes that the owned package documents Version 1.1 game data, dated 1994-12-14, and distinguishes 1.0/1.01 saves. This identifies the supported game-data revision but not physical retail-media provenance. |
-| Q4 | Which GFF/resource records have bounded structures and established semantics? | later logic | evidence investigation | open - corpus coverage is complete (233 immutable files, 16,168 GFF descriptors), while only some structures are bounded: GFF, image/palette, FONT, TEXT, core UI records, the versioned `CHAR` envelope/identity/ability fields, raw `PSIN` companion envelope, `GPL `/`MAS ` source-family identity and loader selection, region `RNME`/`PAL `/`MAP `/`GMAP`/`TILE`/`ETAB`, and exact `OJFF` object-frame records with image references. `EXE-GOG-OJFF-001` adds two tag-aware native OJFF lookup boundaries and observes a sole successful-result transfer of selected structural offsets into a 37-byte resident path, but assigns no OJFF field or object-behavior meaning. Title/start, party overview, ADD-list, interface palette, generation/modal controls, shared window image, start-flow window graphs, APFM event masks, the owned font's identity map, encoding-neutral glyph composition, canonical Tyr DSRG/DSOB extraction, static first-frame scene composition, the opening Tyr camera, cursor image family, and `GMAP` `0x40` terrain blocking are implemented; #19004 still awaits an app-specific consumer. Remaining character state, other mask/geometry/entity meanings, authentic text presentation, dynamic party data, later-window semantics, later cameras/animation/gameplay behavior, and other region dependencies remain unknown |
-| Q5 | What are the logical resolution, pixel aspect, palettes, cursor geometry, animation cadence, and audio timing? | slices 2-7 | runtime observation | open - the logical resolution is 320x200; `PAL ` #1000 supplies the interface/cursor colors; `ICON` #19101-#19110 geometry and the upper-left cursor hotspot are verified; all five FLI headers are 320x200 8-bit `0xAF11` streams with raw speed fields, and all 147 VOC headers share one envelope. `EXE-GOG-MEDIA-001` finds no literal FLI header validation value, `EXE-GOG-MEDIA-002` finds raw numbered names/CINE templates but no direct references, and `EXE-GOG-TITLE-002` finds neither a decoded instruction operand for static-title `BMP ` #11011 nor a recovered function co-locating it with both literal tag words. `EXE-GOG-TIMING-002` finds that all four literal `INT 15h` sites select extended-memory services, not the BIOS wait service, while `EXE-GOG-TIMING-003` bounds a CPU-busy VGA-status poll around a generic copy path rather than a semantic clock. `EXE-GOG-TIMING-004` identifies immediate PIT latch/read and programming boundaries but no recovered feature owner or duration contract. `EXE-GOG-VIDEO-001` finds a shared BIOS-video wrapper, not a screen-specific mode or palette path. `EXE-GOG-MOUSE-001` adds only generic mouse wrappers and a caller-specific interior guard, not a global coordinate transform. None establishes a decoder, clock, title transition, or filename-derived sequence. Pixel aspect, raw-speed units, animation cadence, cursor update cadence, title behavior, audio codecs/sample rates, playback timing, and cinematic sequence remain open |
+| Q3 | Which underlying DOS/CD-ROM revision is in GOG build `52095422060333615`? | slices 1, 4, 6 | evidence investigation | closed - `BLD-GOG-EN-1.1` establishes that the owned package documents Version 1.1 game data, dated 1994-12-14, and distinguishes 1.0/1.01 saves. This identifies the supported game-data revision but not physical retail-media provenance. |
 | Q6 | For each verified manual/guide/runtime conflict or original defect, should compatibility preserve it, fix it, or expose an option? | slices 4-7 | repository owner after evidence | open |
 | Q7 | Are original save compatibility and Shattered Lands party transfer desired once their formats are evidenced? | slice 7 | repository owner | open |
 | Q8 | Are Windows, Linux, and macOS all first-release targets, or should the initial release target Windows? | slice 7 | repository owner | open |
 | Q9 | May the installed clue book be consulted as an additional local secondary source? | slices 4-7 | repository owner | open |
 | Q10 | What measured tolerances define acceptable visual, input, animation, and audio parity? | slices 2-7 | repository owner/evidence investigation | open |
-| Q11 | Which origin/class eligibility list does the shipped creation screen enforce where the original manual's race descriptions on pages 17-18 conflict with its class descriptions on pages 19-22 (half-giant ranger/thief, mul druid, thri-kreen druid/thief)? | slice 2 | OBS-GOG evidence investigation | open - Core preserves these as `EvidenceConflict` |
-| Q12 | Which four `CHAR` resources does START GAME select as the supplied pregenerated party? | slice 2 | OBS-GOG/DATA-GOG evidence investigation | open - disc blocks #40-#43 and #50-#53 are bounded; one independently reported default member maps to #43, but the other three selections are not established. `DATA-GOG-PLYL-002` rejects a direct unaligned little-endian installed-`CHAR` identity in every two-byte window of the six short `PLYL` payloads; it does not assign their role or identify a party. After a full Ghidra analysis pass, `EXE-GOG-CHAR-002` classified one filename and one missing-file diagnostic occurrence of `CHARSAVE.GFF`, with no direct code references; neither the installed #29-#32 nor disc #40-#43 candidates occur together as scalar operands in one function. `EXE-GOG-CHAR-003` adds no direct resource-tag route: fourteen raw `CHAR` matches have no direct references and `PSIN` is absent. Separately fingerprinted `SVIEW.EXE` has neither a literal `CHARSAVE.GFF` pathname nor `CHAR` tag (`EXE-GOG-CHAR-004`); `CHARTRAN.EXE` has one unreferenced raw `CHAR` occurrence and no `PSIN` pattern (`EXE-GOG-CHAR-005`). These results do not identify a loader or selection path. `docs/OWNER-CAPTURE-CHECKLIST.md` defines the bounded S0-S2 Ctrl+F5 observation gate; the owner has authorized capture-folder inspection without timestamp-bearing filenames, while semantic labels still require confirmation. |
 | Q13 | Must pathfinding reproduce the original route planner verbatim? | slice 3 | repository owner | closed - no; owner approved a modern fit-for-purpose implementation on 2026-09-13 |
-| Q14 | What do the two fields in the bounded 234-pair `ITEMS.BIN` table mean, and which exact reader/extraction use belongs in the equipment slice? | slice 5 | DATA/EXE/OBS evidence investigation | open - `DATA-GOG-ITEMS-001` proves the fixed-width envelope, records non-identifying overlap with several `OBJEX.GFF` resource-ID sets, and does not support a uniform direct mapping from either pair column to the four raw `OJFF` word positions. `EXE-GOG-ITEMS-001` finds neither literal filename form nor a null-terminated `ITEMS` stem in `DSUN.EXE`; `EXE-GOG-ITEMS-002` does the same in `CHARTRAN.EXE`; and `EXE-GOG-ITEMS-003` does the same in `SVIEW.EXE`. Those bounded absences identify no reader, pair role, item, equipment, or combat semantics. |
 | Q15 | Should work stop after complete source-corpus extraction until each rule is evidenced? | all further logic slices | repository owner | closed - yes, owner-directed 2026-09-19; Slice 2A is the mandatory gate |
-| Q16 | Which flows seed the native random stream, and which gameplay rules consume its modulo, inclusive-range, or repeated-roll helpers? | slices 2-7 | EXE/OBS evidence investigation | open - `EXE-GOG-RNG-001` establishes the 16-bit-seeded LCG and three generic result transforms. A complete instruction-text scan finds no explicit access to either state displacement outside its setter and generator (aside from an unrelated code-jump target), and neither direct far-call nor static far-pointer encoding for the setter occurs in loaded memory. These results do not exclude relocation, register-built, indirect, or dynamically reached access. Its modulo wrapper has one bounded direct-consumer chain through a threshold helper and an opaque six-byte-entry selector, whose sole direct caller supplies guarded resident values. This does not identify a seed source, stream partition, call order, table ownership, or rule-level consumer |
-| Q17 | What, if anything, consumes the 329 fixed-width records in `GPLDATA.GFF` `GPLI` #1? | slices 2-4 | EXE/OBS evidence investigation | open - `DATA-GOG-GPLI-001` establishes a 7,896-byte, 329-by-24-byte envelope with four repeated six-byte lanes. Its 1,316 aligned third lane words contain 1,315 members of the GPL resource-number set, collectively covering all 330 GPL IDs; repetitions and one non-member reject a one-to-one record or field map. GPL numeric ID 135 occurs twice in different lane-word positions, also rejecting a unique fixed-lane mapping. `EXE-GOG-GPLI-001` found no literal tag, and `EXE-GOG-GPLI-002` found no decoded function containing both literal GPL resource-135 and GPL-tag operands. Neither result establishes a record-to-script mapping, lookup, or field meaning |
-| Q18 | Which original source populates the mutable linked 13-byte runtime selector records, and which game features own their static predicate shapes? | slices 3-6 | EXE/OBS evidence investigation | open - `EXE-GOG-EVENT-001` proves one runtime table, an entry-flow clear of 2,600 bytes (exactly 200 13-byte strides), 200 consecutive offset-11 link writes, two data-driven relink triggers into a secondary chain, four linked-selector traversals, and a guarded path that requests the `GPL ` source family from a record's leading word. Its pointer has sixteen initialized zero bytes and no direct static write, so it is not a static source mapping; its runtime assignment/population remains unknown. `DATA-GOG-CSEQ-001` rejects a tempting direct source: CSEQ #1000 divides into six 13-byte units, but only one leading word is in the GPL resource-number set and its aggregate columns do not establish the runtime link contract. `EXE-GOG-RECORD19-001` independently proves that three other callers use a separate linked 19-byte resident table and different word pairs; its bounded updater scans 48 entries but has only two generic resident-word callers. Sharing the common request entry does not identify a common source or game role. `EXE-GOG-SCMD-001` and `EXE-GOG-RDFF-001` separately establish a shared 37-byte SCMD/RDFF record path with no direct selector caller, eliminating those narrow source hypotheses only. The final observed 13-byte link is index 200, whose validity is not established; the clear span does not establish allocation or valid-record bounds. The evidence does not identify a source container, record-population path, field names, record-to-resource mapping, caller ownership, GPL execution, or player-visible effects |
-| Q19 | What are the native Preferences defaults, selected/unselected frames, slider endpoints/steps, description placement, and About page geometry/dismissal? | slice 3 | owner-controlled observation | open - static tables and opaque `PREF` evidence do not establish this behavior. `docs/OWNER-CAPTURE-CHECKLIST.md` defines the bounded Ctrl+F5 sequence; the owner has authorized capture-folder inspection without timestamp-bearing filenames, while semantic labels still require confirmation |
-| Q20 | Which, if any, `RDFF` source record supplies the first hostile Look panel's dynamic name, level, and available actions? | slice 3 | DATA/EXE/OBS evidence investigation | open - `DATA-GOG-RDFF-001` finds the captured label in 23 same-offset `RDFF` records plus an aggregate record. `DATA-GOG-RDFF-002` shows those records form only a high-length subset of a broader 33-byte-residue size group, which establishes no header or repeated-record format. OJFF #9258 has broad overlapping numeric-namespace matches, but none of its four neutral words matches the label-bearing RDFF subset. `EXE-GOG-RDFF-001` identifies a separate indexed native record path but no payload field; `EXE-GOG-RDFF-002` finds no direct displacement 43 or 76 in either known RDFF-tag path. Their direct OJFF callers and the next six recovered upstream contexts source values from locals, arguments, registers, or resident memory rather than a provable fixed resource identity. Neither result identifies a target record or dynamic interaction property. |
-
-**Q12 evidence update (2026-09-20).** Owner-confirmed local captures establish
-the visible party-strip order AR'ANDA, TERRANNUS, THY ROKH, GERAKIS and map
-AR'ANDA to installed `CHAR` #40 through her visible Strength 18 and THY ROKH
-to #42 through the unique visible letter order. TERRANNUS and GERAKIS retain
-same-name catalog candidates with identical currently visible ability tuples,
-so the full resource selection remains open. Their remaining candidate
-envelopes and raw PSIN masks differ, and the matching visible USE captions are
-recorded in `OBS-GOG-PARTY-001`, but neither fact maps a caption to a source
-field or selects a record. The observed order's agreement with #40-#43 is
-corroboration, not proof.
-`OBS-GOG-PARTY-001` records the bounded result and leaves
-`ShippedPartyUnresolved` in place.
-
-The follow-up `EXE-GOG-CHAR-006` query found none of the four exact
-NUL-terminated observed names in the fingerprinted executable. This rules out
-only a simple hardcoded-name selector; it does not identify a loader or change
-the unresolved boundary.
 
 ## Risks
 
 - **Unknown containers.** The observed installation contains `.GFF`, `.FLI`,
   `.VOC`, `.BIN`, and disc-image resources whose exact roles/layouts are not yet
-  fully established. Use DSUN-MUSIC as a starting point where it covers the
+  fully established. Use SRC-DSUN-MUSIC-79B6927 as a starting point where it covers the
   format, validate those results against this exact build, then preserve the
   evidence in our own format notes. Begin with complete read-only inventory,
   bound every field, use synthetic fixtures, and represent unknown data in a
   lossless opaque contract before assigning any behavior.
 - **Storefront drift.** GOG may change files without changing the product name.
   Match exact manifests; retain product/build metadata only as provenance.
-- **Defects and conflicts.** FAQ-81038 reports manual discrepancies, performance
+- **Defects and conflicts.** SRC-GAMEFAQS-81038 reports manual discrepancies, performance
   sensitivity, and soft locks. Preserve conflicts and require explicit fidelity
   decisions after controlled reproduction.
 - **Extractor correctness.** Partial or stale packs could mix revisions. Use a
@@ -735,8 +720,8 @@ All seven slices are complete; the separate Extractor recognizes a licensed,
 fingerprinted GOG copy and transactionally produces a complete verified local
 asset pack; the reimplemented runtime alone runs that pack through a finishable
 campaign with deterministic saves/replays; the README, source-edition record,
-formats, rules/evidence ledger, UI atlas, fidelity ledger, bootstrap checklist,
-and parity matrix match demonstrated reality; all questions are closed or
+spec, deviation log, bootstrap checklist and `PARITY.md` match demonstrated
+reality; all questions are closed or
 explicitly deferred as non-goals; the solution and smoke test build; all
 repository/configuration/test scripts pass without proprietary content; and
 each declared package passes clean-machine install, extract, launch, save,

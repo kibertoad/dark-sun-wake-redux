@@ -27,6 +27,8 @@ public static class CombatAttackRules
                 "An attack roll must be from 1 through 20.");
 
         var requiredRoll = (long)attackerThac0 - targetArmorClass;
+        // PLACEHOLDER: RULE-COMBAT-002 - whether a roll equal to the threshold hits is unknown; the
+        // manual says it does and the FAQ says it does not.
         var hits = roll >= requiredRoll;
         return new(roll, attackerThac0, targetArmorClass,
             ClampToInt(requiredRoll), hits);

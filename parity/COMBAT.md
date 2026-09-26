@@ -1,0 +1,17 @@
+# COMBAT
+
+| Spec ID | Title | Spec status | Code | Tests | Deviations | Status | Notes |
+|---|---|---|---|---|---|---|---|
+| `FMT-COMBAT-001` | Combatant record | supported | missing | None | None | supported | The rebuild has no combat state and no combatant records. |
+| `FMT-COMBAT-002` | Combatant details record | supported | missing | None | None | supported | The rebuild has no combat state and no combatant records. |
+| `FMT-COMBAT-003` | Effect name record in DSUN.EXE | supported | missing | None | None | supported | Nothing reads the effect names from `DSUN.EXE`. |
+| `RULE-COMBAT-001` | All four party members are drawn during combat, and only the leader again after it when the party is collapsed | sourced | missing | None | None | sourced | `ExplorationSession` switches between the leader alone and the whole party, but there is no combat to draw all four in. |
+| `RULE-COMBAT-002` | An attack hits when a roll of 1 to 20 is at least the attacker's THAC0 less the target's Armor Class | sourced | partial | None | None | sourced | `CombatAttackRules.Resolve` implements `attack_hits` for a roll it is given and rejects rolls outside 1 to 20. The comparison carries `PLACEHOLDER: RULE-COMBAT-002`. Nothing draws a roll or applies modifiers. Its tests are synthetic. |
+| `RULE-COMBAT-003` | Damage lowers hit points; at 0 a character is unconscious and at -10 dead | sourced | complete | None | None | implemented | `CombatHitPointRules.ApplyDamage` subtracts the damage and `StatusAt` gives the three outcomes. It rejects negative damage and saturates at the lowest `int`. No combat uses it. Its tests are synthetic. |
+| `RULE-COMBAT-004` | G and W make the party member whose turn it is guard or wait, and Q opens the end-of-move menu | supported | partial | None | None | supported | `CombatHotkeys` maps `G`, `N`, `P`, `Q`, `W` and Space to `CombatCommand` requests on a key's press, which carries `PLACEHOLDER: RULE-COMBAT-004`. Nothing resolves the requests, shows the messages or opens the menu. Its tests are synthetic. |
+| `RULE-COMBAT-005` | The end-of-move menu offers GUARD, WAIT and END TURN beside the character whose turn it is | supported | missing | None | None | supported | The rebuild has no end-of-move menu. |
+| `RULE-COMBAT-006` | A click on an enemy attacks it, in melee when adjacent with a readied weapon or at range with a missile weapon or ammunition | sourced | partial | None | None | sourced | `CombatAttackEligibilityRules` implements `melee_allowed` and `two_weapons_allowed`. Its ranged test does not require that the target is not adjacent. No click starts an attack. Its tests are synthetic. |
+| `RULE-COMBAT-007` | What the difficulty setting changes in combat | unknown | missing | None | None | unknown | The Preferences screen changes the difficulty, and nothing reads it. |
+| `RULE-COMBAT-008` | Saving, resting, adding a character and changing the leader are refused during combat | supported | missing | None | None | supported | The rebuild has no combat state, so nothing is refused. |
+| `RULE-COMBAT-009` | The status panel names the character's first effect, putting the named effects before the others | supported | missing | None | None | supported | The rebuild has no effects and no status panel text. |
+| `SCR-COMBAT-001` | Combat status panel | supported | partial | None | None | supported | The extractor writes `BMP/19003` as `images/combat/status-panel.dsix`, and `OriginalContent.CombatStatusPanelLayer` places it at (215, 4). Nothing draws it or its four lines. |

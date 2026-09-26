@@ -24,6 +24,8 @@ public sealed record DialogueOverlayLayout(
 
 public static class DialogueInput
 {
+    // PLACEHOLDER: SCR-UI-012 - the original draws the speech window at (0, 0), and its
+    // conversation capture shows neither window's scroll buttons.
     public const int SpeechOriginX = 1;
     public const int SpeechOriginY = 0;
     public const int ResponseOriginX = 0;

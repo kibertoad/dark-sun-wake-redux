@@ -11,6 +11,8 @@ public sealed record CombatHotkeyBinding(Keys Key, CombatCommand Command);
 /// </summary>
 public static class CombatHotkeys
 {
+    // PLACEHOLDER: RULE-COMBAT-004 - the original's key routine handles G, W and Q, where Q opens
+    // the end-of-move menu; a resident routine takes N, P and Space before it.
     public static IReadOnlyList<CombatHotkeyBinding> Bindings { get; } =
     [
         new(Keys.G, new(CombatCommandKind.Guard)),
@@ -18,6 +20,8 @@ public static class CombatHotkeys
         new(Keys.P, new(CombatCommandKind.TargetPrevious)),
         new(Keys.Q, new(CombatCommandKind.EndTurn)),
         new(Keys.W, new(CombatCommandKind.Wait)),
+        // PLACEHOLDER: RULE-AI-001 - Space clears computer control for every party member whose
+        // setting is not locked, and nothing here resolves the request.
         new(Keys.Space, new(CombatCommandKind.DisableComputerControl))
     ];
 

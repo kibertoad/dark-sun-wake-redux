@@ -17,6 +17,7 @@ public static class ExecutablePreferencesTextReader
     public const int AboutLineCount = 9;
     public const int MaximumStringBytes = 64;
     public const long MaximumExecutableBytes = 16L * 1024 * 1024;
+    // PLACEHOLDER: FMT-TEXT-004 - what the three %C controls do is unknown; they are stripped as centering.
     private const string CenterPrefix = "%C%C%C";
 
     public static ExecutablePreferencesText Read(

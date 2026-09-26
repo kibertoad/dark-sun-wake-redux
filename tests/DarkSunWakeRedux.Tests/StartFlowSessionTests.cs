@@ -12,7 +12,7 @@ public sealed class StartFlowSessionTests
         var second = Run(42);
 
         Assert.Equal(first.Events, second.Events);
-        Assert.Equal(first.Session.StateSha256(), second.Session.StateSha256());
+        Assert.Equal(first.Session.StateXxh3(), second.Session.StateXxh3());
     }
 
     [Fact]
@@ -29,7 +29,7 @@ public sealed class StartFlowSessionTests
         Assert.Equal(original.Snapshot().PartyOrigin, restored.Snapshot().PartyOrigin);
         Assert.Equal(original.Snapshot().PartyMembers.Select(member => member.Name),
             restored.Snapshot().PartyMembers.Select(member => member.Name));
-        Assert.Equal(original.StateSha256(), restored.StateSha256());
+        Assert.Equal(original.StateXxh3(), restored.StateXxh3());
     }
 
     [Fact]
@@ -40,19 +40,19 @@ public sealed class StartFlowSessionTests
         var entries = commands.Select(command =>
         {
             recording.Execute(command);
-            return new StartFlowReplayEntry(command, recording.StateSha256());
+            return new StartFlowReplayEntry(command, recording.StateXxh3());
         }).ToArray();
 
         var replayed = StartFlowSession.Replay(new(StartFlowReplay.CurrentFormatVersion, 7, entries));
 
-        Assert.Equal(recording.StateSha256(), replayed.StateSha256());
+        Assert.Equal(recording.StateXxh3(), replayed.StateXxh3());
     }
 
     [Fact]
     public void ReplayRejectsDivergence()
     {
         var replay = new StartFlowReplay(StartFlowReplay.CurrentFormatVersion, 1,
-            [new(StartFlowCommand.Choose(StartWindowChoice.CreateCharacters), new string('0', 64))]);
+            [new(StartFlowCommand.Choose(StartWindowChoice.CreateCharacters), new string('0', 32))]);
 
         Assert.Throws<InvalidDataException>(() => StartFlowSession.Replay(replay));
     }
@@ -92,7 +92,7 @@ public sealed class StartFlowSessionTests
         var air = SessionWith(cleric with { ClericalSphere = ClericalSphere.Air });
         var fire = SessionWith(cleric with { ClericalSphere = ClericalSphere.Fire });
 
-        Assert.NotEqual(air.StateSha256(), fire.StateSha256());
+        Assert.NotEqual(air.StateXxh3(), fire.StateXxh3());
     }
 
     [Fact]
@@ -120,7 +120,7 @@ public sealed class StartFlowSessionTests
             restored.Snapshot().PartyMembers[0].Classes);
         Assert.Equal([3, 1], restored.Snapshot().PartyMembers[0].ClassProgression!.Careers
             .Select(item => item.Level));
-        Assert.Equal(session.StateSha256(), restored.StateSha256());
+        Assert.Equal(session.StateXxh3(), restored.StateXxh3());
     }
 
     [Fact]
@@ -171,7 +171,7 @@ public sealed class StartFlowSessionTests
             ClassProgression = DualClassProgression.Begin(CharacterClass.Fighter, 4)
         });
 
-        Assert.NotEqual(levelThree.StateSha256(), levelFour.StateSha256());
+        Assert.NotEqual(levelThree.StateXxh3(), levelFour.StateXxh3());
     }
 
     [Fact]

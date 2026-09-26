@@ -6,11 +6,12 @@ using DarkSunWakeRedux.Resources;
 
 namespace DarkSunWakeRedux.Game;
 
-public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
+public sealed partial class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
 {
     private readonly string? _assetPack;
     private readonly bool _platformSmoke;
     private readonly string _screenshotFolder;
+    private readonly string _settingsPath;
     private readonly GraphicsDeviceManager _graphics;
     private SpriteBatch? _spriteBatch;
     private readonly List<(UiLayerAsset Layer, Texture2D Texture)> _startMenuLayers = [];
@@ -80,7 +81,8 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     public DarkSunWakeReduxGame(
         string? assetPack = null,
         bool platformSmoke = false,
-        string? screenshotFolder = null)
+        string? screenshotFolder = null,
+        string? settingsPath = null)
     {
         _assetPack = assetPack;
         _platformSmoke = platformSmoke;
@@ -88,6 +90,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             ? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                 "DarkSunWakeRedux", "Screenshots")
             : Path.GetFullPath(screenshotFolder);
+        _settingsPath = Path.GetFullPath(settingsPath ?? LaunchSettingsStore.DefaultPath());
         _graphics = new GraphicsDeviceManager(this)
         {
             PreferredBackBufferWidth = 960,
@@ -316,6 +319,8 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         _tyrObjects = PackedObjectFrameCatalog.Read(
             objectStream, OriginalContent.TyrObjectCatalogAssetPath);
         _tyrEntityHitTester = new(_tyrRegion, _tyrObjects);
+        // Reads the stored Wide map view setting, so the first scene is drawn in its layout.
+        OpenLaunchOptions();
         RefreshExplorationScene(_exploration.Snapshot());
         using (var leaderStream = File.OpenRead(AssetPath(
                    OriginalContent.OpeningLeaderImageAssetPath)))
@@ -376,6 +381,12 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
         if (!_platformSmoke)
         {
             var mouse = Mouse.GetState();
+            if (LaunchOptionsOpen)
+            {
+                UpdateLaunchOptions(mouse);
+                base.Update(gameTime);
+                return;
+            }
             var screen = _startFlow.Snapshot().Screen;
             var explorationOverlayConsumedLeftClick = false;
             if (mouse.LeftButton == ButtonState.Pressed && _previousMouse.LeftButton == ButtonState.Released)
@@ -576,7 +587,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
             snapshot.CameraX,
             snapshot.CameraY,
             ExplorationWorldPresentation.UsesExpandedWorld(
-                snapshot.View, _dialoguePreviewVisible));
+                snapshot.View, _dialoguePreviewVisible, _wideMapView));
 
     private (int X, int Y) LeaderWorldCenter()
     {
@@ -652,7 +663,9 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.Black);
-        if (_spriteBatch is not null)
+        if (LaunchOptionsOpen)
+            DrawLaunchOptions();
+        else if (_spriteBatch is not null)
         {
             var screen = _startFlow.Snapshot().Screen;
             var explorationView = _exploration.Snapshot().View;
@@ -745,7 +758,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                     explorationView == ExplorationView.World && _dialoguePreviewVisible;
                 var worldExpanded = screen == StartFlowScreen.Gameplay &&
                     ExplorationWorldPresentation.UsesExpandedWorld(
-                        explorationView, dialoguePreviewActive);
+                        explorationView, dialoguePreviewActive, _wideMapView);
                 var worldLayout = worldExpanded
                     ? ResolveExplorationLayout(_exploration.Snapshot())
                     : (ExplorationViewportLayout?)null;
@@ -854,6 +867,7 @@ public sealed class DarkSunWakeReduxGame : Microsoft.Xna.Framework.Game
                      .SelectMany(controls => controls.Select(item => item.Texture)).Distinct())
             texture.Dispose();
         _explorationSceneTexture?.Dispose();
+        _launchOptionsTexture?.Dispose();
         _openingLeaderTexture?.Dispose();
         foreach (var texture in _cursorTextures.Values) texture.Dispose();
         _dialoguePortrait?.Dispose();

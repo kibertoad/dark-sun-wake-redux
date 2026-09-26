@@ -13,10 +13,9 @@ behavior, its detailed record must be consulted first.
 - No original executable, data, save, screenshot, or decompiler output belongs
   in this repository. The game consumes a local verified pack; it never starts
   the original executable or DOSBox.
-- [RULES-AND-EVIDENCE.md](RULES-AND-EVIDENCE.md) is authoritative for data,
-  manual, and observation facts. [GHIDRA.md](GHIDRA.md) is authoritative for
-  bounded static-analysis findings. [FIDELITY.md](FIDELITY.md) and
-  [PARITY-MATRIX.md](PARITY-MATRIX.md) state what is actually implemented.
+- The [spec](../spec/README.md) holds every fact about the original, with its
+  evidence. [`PARITY.md`](../PARITY.md) states what the rebuild implements of it,
+  and [`deviations/`](../deviations/) where it departs on purpose.
 - An unobserved or untraced behavior remains unknown. It is not approximated as
   a native-parity rule merely because an implementation would be convenient.
 
@@ -32,7 +31,7 @@ licensed GOG installation
 ```
 
 The Extractor verifies all 233 immutable baseline files and all 16,168 GFF
-descriptors. The current required revision 34 pack contains 16,401 lossless DSOP corpus assets
+descriptors. The current required revision 35 pack contains 16,401 lossless DSOP corpus assets
 plus 123 specialized DSIX, DSGP, DSTX, DSUI, DSCH, DSRG, and DSOB derivatives:
 16,524 assets in total. The added combat-status-panel DSIX is a bounded source-backed
 image at its observed geometry; it assigns no combat semantics. Twenty source-derived DSRG files independently retain
@@ -78,440 +77,142 @@ are:
   fail-closed projections are interpreted; there is no generic bytecode
   interpreter.
 - FLI, VOC, OGG, configuration, and item-table files are fully inventoried and
-  preserved. The executable contains raw numbered FLI names and CINE-directory
-  path templates, but their inspected locations have no direct references, so
-  names do not establish a loader, fallback, sequence, or timing policy. Those
-  media semantics remain opaque. The loaded sound-helper image likewise has no
-  complete VOC header signature or `.VOC` filename-extension literal, so it
-  establishes no decoder, codec, filename mapping, or timing contract.
-- `SOUND.CFG` has a bounded 59-byte envelope, but neither the main executable
-  nor the separately shipped sound helper contains its literal pathname; the
-  main executable also has no literal `SOUND.INI` pathname. This is not
-  evidence of configuration ownership or Preferences behavior. Neither
-  case-variant of the configuration file's `.adv` module suffix occurs anywhere
-  in the helper's complete physical file, including its overlay, which likewise
-  does not establish module ownership or driver-selection behavior.
+  preserved. Cinematics are the VIDEO area of the spec: the FLI layout is
+  `FMT-VIDEO-001`, and `RULE-VIDEO-001` to `RULE-VIDEO-004` give how a
+  cinematic is copied from the disc, played frame by frame, and replaced by
+  still pictures when it cannot play. Chunk decoding and when cinematics 2 to 5
+  play are open (`Q-VIDEO-001`, `Q-VIDEO-002`).
+- Sound is the SOUND area of the spec. Voice files and `BVOC` resources are
+  `FMT-SOUND-001`; the effect and speech players are `RULE-SOUND-001` and
+  `RULE-SOUND-002`, which build their file names from the `.VOC` patterns in
+  the executable (`FND-SOUND-006`). Music is chosen from `DJ.DAT`
+  (`FMT-SOUND-002`) by `RULE-SOUND-003` and plays as a disc audio track, which
+  GOG supplies as `MUSIC/TrackNN.ogg`. How the sound library plays a sample or
+  a track is not read (`Q-SOUND-002`, `Q-SOUND-004`), so the rebuild plays no
+  sound yet.
+- `SOUND.CFG` is `FMT-CONFIG-001`: the sound helper `SOUND_DS.EXE` reads
+  `SOUND.INI` (`FMT-CONFIG-002`) and writes it (`FND-CONFIG-004`), and the main
+  executable reads it through its sound library (`FND-CONFIG-005`). The main
+  executable never names or starts the helper (`FND-SOUND-005`), and the
+  helper holds no VOC header, `.VOC` name or BIOS wait (`FND-SOUND-003`); its
+  port output sets the timer chip and a card with a variable base
+  (`FND-SOUND-004`), which the modern runtime does not emulate.
 
-## Current runtime boundary
-
-The current Slice 3 build can verify and open the local pack, render bounded
-startup and interface shells, show the observed Tyr opening viewport, route
-movement through deterministic A*, and render the known cursor family.
-Dialogue preview uses the original fixed 320x200 canvas and measured dialogue
-chrome while the exploration view may expand to the physical display aspect.
-The bounded first dialogue projection owns only the validated opening paths;
-unknown visible targets stay inert.
-
-The precise screen layers, logical geometry, image mapping, and observation
-confidence are maintained in [UI-ATLAS.md](UI-ATLAS.md). The plan and current
-slice acceptance criteria are in [IMPLEMENTATION-PLAN.md](IMPLEMENTATION-PLAN.md).
-
-## Destination-screen and combat evidence boundary
-
-The Character, Inventory, Cast/Use, and Effects destinations share the
-resource-backed character-screen family. WIND #11500 has 86 ordered children:
-64 APFM, one EBOX, and 21 BUTN records. Five independently evidenced
-navigation controls route today; all interior controls stay inert. The graph
-preserves distinct event-mask classes and exact geometry, but those values do
-not name a field, widget appearance, focus state, or action. In particular,
-the character-view #11308 button reuses the Preferences Game Menu icon but has
-no established route. No immediate native handler operand was found for that
-button, Return #10308, or #11318/#11319/#11320, the only character-view
-buttons with nonzero masks.
-
-The executable has an adjacent eight-entry UI text vocabulary beginning with
-View Character, View Inventory, Cast Spells/Use Psionic, and Current Spell
-Effects. The table base and first text entry have no direct references, and no
-decoded instruction directly names the table's `0xab20` base or the adjoining
-character-vocabulary table bases. That excludes only simple absolute access;
-the vocabulary and ordering still do not establish a screen, field projection,
-text renderer, or activation path. Owner-confirmed captures establish visible
-party/destination-shell composition and captions, not character-record field
-semantics or item/spell behavior. See DATA-GOG-UI-010,
-OBS-GOG-PARTY-001, EXE-GOG-UI-009, and EXE-GOG-UI-010 before extending these
-screens.
-
-Combat remains evidence acquisition only. The owner reports that entry leaves
-the map and character presentation substantially unchanged except for the
-absence of the compact status panel; the first stable combat state shows the
-currently active character's panel. The owner identifies dsun_009 as an enemy
-movement frame; it visibly retains dialogue chrome and has no compact panel,
-so it is not evidence for the stable combat layout. dsun_011 is enemy striking,
-and dsun_012 is a player turn labelled Thy'rokh, with visible panel strings
-`90/85` and `Moves 15`; that identifies neither their value semantics nor a
-turn transition. The owner reports no visible turn-transition treatment and
-that a direct enemy click causes the active character to approach and strike,
-without a separate target-switching or confirmation presentation. The static
-panel is the 98x32 BMP #19003 at (215,4), with a
-dynamically overlaid region bounded to (243,8) through (284,31). Its visible
-dynamic text changes from `Draxan`/`Moves 20` in the enemy-striking frame to
-`Thy'rokh`/`90/85`/`Moves 15` in the player-turn frame, supporting only the
-owner-confirmed active-combatant presentation. dsun_011 shows a red 11
-feedback glyph whose visible glyph-area pure-red components occupy (151,95)
-through (178,113) on the 320x200 canvas. The required-revision-34 pack preserves the static artwork as
-`images/combat/status-panel.dsix` with source provenance and the interface palette,
-but no Game code consumes it. These facts establish
-neither movement cost, action ordering, attacker/target identity, panel-value
-meaning, damage resolution, turn progression, timing, nor exit. No combat session, encounter,
-or rules pipeline is implemented until the controlled C0-C6 observation gate
-and a traceable data or executable path establish them. `DATA-GOG-COMBAT-001`
-finds no baked `Moves` caption in the static panel and no exact printable ASCII
-source match in the 26 owned GFF archives; `EXE-GOG-COMBAT-005` likewise finds
-no null-terminated executable literal. Those bounded negative results leave
-the visible caption dynamically sourced but otherwise opaque; they do not
-identify a renderer, value field, turn transition, or combat rule.
-`EXE-GOG-COMBAT-006` additionally classifies the static panel request's direct
-eight-call native fan-in as a shared, feature-neutral boundary: only small
-`0`/`1` argument pairs are visible, with no recovered encounter, actor,
-command, damage, turn, or timing identity. It is not a combat-only route.
-`EXE-GOG-COMBAT-007` likewise follows the bounded native mouse-coordinate
-guard one direct caller layer without identifying a combat screen, click
-action, target, approach, attack, or confirmation handler.
-`EXE-GOG-COMBAT-013` follows its only coordinate-consuming far-thunk boundary,
-but the destination is outside the mapped image and its sole other recovered
-relation is non-coherent decompiler output; it supplies no combat semantics.
-`EXE-GOG-COMBAT-014` binds the coordinate branch's resident word to a broader
-combat-adjacent switch through its leader-change diagnostic, but no mapped
-caller or action meaning is recovered for value five or any other value.
-`EXE-GOG-COMBAT-015` finds the mode setter's only recovered direct call supplies
-literal two rather than five, leaving the coordinate branch without a traceable
-native producer.
-`EXE-GOG-COMBAT-016` then proves a separate direct writer can assign decimal 19
-to the same word, so its local one-through-five switch is not a finite combat
-mode model.
-`EXE-GOG-COMBAT-017` exhausts the recovered direct-write graph without a
-literal-five producer; indirect or computed writers remain open.
-`EXE-GOG-CURSOR-001` finds a shared routine that selects the observed Walk,
-melee/ranged Attack, and Look cursor IDs, including their invalid variants, but
-its only recovered caller remains opaque. This is a presentation-resource
-boundary, not a native action, target, movement, or strike path.
-`EXE-GOG-CURSOR-002` further bounds that selector to the nonzero branch of a
-shared handler's opaque input flag; the alternate branch is broadly shared.
-Neither branch identifies an interaction owner or a combat-click path.
-`EXE-GOG-COMBAT-009` additionally finds no direct caller of the decoded native
-mouse button-press wrapper, so it cannot supply the missing click path.
-`EXE-GOG-COMBAT-010` resolves the native mouse callback's raw entry and shows
-that it conditionally forwards a 14-byte packet through a guarded resident
-buffer pathway initialized with an opaque storage pointer and capacity 1040.
-The packet's raw words preserve literals `2`/`14`/`0`, entry `CX`/`DX`, resident
-segment `57e0`, and entry `AX`; their meanings and consumer remain unknown, so
-this is still not evidence for a combat click dispatcher or action rule.
-The only other recovered producer uses a different partially initialized
-14-byte layout, further establishing shared transport rather than a
-combat-specific input path.
-`EXE-GOG-COMBAT-011` shows that the mapped six-selector dispatcher containing
-the panel case has no recovered direct caller. Its neighboring selectors are
-therefore not identified as combat commands, transitions, or rule paths.
-`EXE-GOG-COMBAT-012` finds that the shared state word used by the two panel
-routes has multiple direct comparison values and only one direct write, which
-sets a value used by just one route. No value is thereby identified as combat
-or a turn phase. `EXE-GOG-COMBAT-018` finds no decoded function that directly
-co-locates `BMP ` #19003 with `FONT` #100; this leaves the panel's dynamic
-renderer and fields opaque rather than proving either resource unused.
-`DATA-GOG-MONR-002` corrects the opaque `MONR` structural lead from a rejected
-14-by-81 arithmetic split to a stronger 27-by-42 aligned-word envelope with a
-constant tail. No executable loader or combat meaning is established.
-
-### Combat evidence ledger
-
-| Surface | Established evidence | What is deliberately not inferred | Next evidence needed |
-|---|---|---|---|
-| Entry and exit presentation | Owner reports exploration stays visually continuous at entry apart from the compact panel; combat exit immediately resumes single-leader exploration. | Encounter trigger, state transition, victory/defeat conditions, or any invisible setup/teardown. | C0, C1, and C6 controlled captures plus a traceable owner path. |
-| Active-combatant display | Owner-confirmed dsun_011/dsun_012 frames show the static #19003 panel at (215,4) with different dynamic strings; dsun_012 is Thy'rokh's labelled turn. | The panel values' field ownership, meaning, update cadence, or turn algorithm. | A native text/value producer or a controlled frame sequence correlated to source data. |
-| Hostile motion and strike feedback | Owner confirms dsun_009 as enemy movement, while that frame visibly retains dialogue chrome and lacks the compact panel; dsun_011 is enemy striking and visibly includes the red `11` glyph. | Pathfinding, movement cost, actor/target identity, hit, damage, or timing rules, or a stable-combat layout inferred from dsun_009. | C3/C5 captures and a bounded native/data route for the action result. |
-| Direct enemy click | Owner reports that clicking an enemy makes the active character approach and strike, with no separate visible target switch or confirmation. | Click hit testing, target legality, approach path, range, attack resolution, or an implicit selection state. | A recovered consumer beyond the coordinate/callback boundaries and C3 capture notes. |
-| Cursor presentation | `ICON` #19101–#19108 are selected by one native routine; #19103/#19104 appear at distinct branches. `EXE-GOG-CURSOR-002` confines it to a conditional shared-handler branch. | That #19103 executes an attack, that #19104 states why an attack fails, or any combat-specific owner. | Recoverable indirect owner plus branch-input meaning. |
-| Native input boundaries | Mouse-coordinate and button probes establish generic wrappers; the recovered callback conditionally emits a 14-byte packet through guarded resident buffering. BIOS-keyboard probes remain generic. | A combat input loop, packet fields/consumer, the manual-key dispatch, repeat policy, or a command-to-action mapping. | Screen-specific consumer path and controlled command traces C2/C4. |
-| Resident state candidates | One coordinate branch reads value five; a broader combat-adjacent switch and direct writes of two and 19 are recovered. | A finite mode enum, combat phase, target state, or attack mode. | A mapped producer and action body, including indirect/computed writes. |
-| Rule data | Manual arithmetic and hotkeys remain isolated research helpers; `MONR` is only an opaque 27-by-42 envelope. | Attack, movement, damage, turn, encounter, difficulty, AI, or outcome implementation. | Controlled C0–C6 observations paired with a traceable executable or data finding for each rule. |
-
-## Object and static-scene route
-
-The following is the current bounded path from original static region data to
-the rendered opening scene. It documents data and presentation connections; it
-is deliberately not an actor-behavior model.
-
-```text
-RGN#50: RNME / PAL / MAP / GMAP / TILE / ETAB
-  -> DSRG region contract + DSOB referenced object-frame catalog
-  -> clipped static terrain and first-frame object compositor
-  -> verified opening viewport and independent leader overlay
-```
-
-- Every `ETAB` record supplies bounded position, vertical-offset, flags, and
-  an absolute `OJFF` reference. The record's flags and all non-evidenced
-  geometry meanings remain raw data.
-- An `OJFF` has bounded X/Y offsets and a bitmap reference. Two native OJFF
-  tag-selection paths exist. The sole observed successful-result consumer
-  transfers portions beginning at offsets `0x00`, `0x02`, `0x04`, `0x0a`,
-  `0x0b`, and `0x0c` into a 37-byte resident record family. This corroborates
-  structural consumption only, not OJFF field names, actor ownership,
-  collision, interaction, or animation.
-- A bounded native caller chain reaches distinct `PLAN` and `PLNR` image
-  dispatch after tile/object image resolution. It confirms the static image
-  route but does not establish how a frame is selected or scheduled.
-- The one observed opening leader remains separately evidenced: OJFF #305,
-  bitmap #599 frame 0, world top-left `(1184,1459)`, and collision anchor
-  `(74,91)`. Its footprint, all later frames, cadence, party formation, and
-  other actor behavior are unknown.
-
-See `DATA-GOG-REGION-001`, `DATA-GOG-OBJECT-001`, `DATA-GOG-SCENE-001`,
-`DATA-GOG-ACTOR-001`, `EXE-GOG-OJFF-001`, and `EXE-GOG-IMAGE-001` before
-expanding this route.
-
-## Preferences evidence boundary
-
-`WIND` #16500 is a 210x116 resource graph with thirteen buttons and two
-application frames. Its authentic base and first-frame controls render, and the
-Game Menu and Return actions are implemented. The following table separates
-the documented control role from the state that has not yet been measured.
-
-| Control family | Established contract | Deliberately not implemented as native behavior |
-|---|---|---|
-| Music, sound effects, animations, voice effects | The manual defines each as an on/off toggle; voice applies to CD-capable installs | Initial on/off state, state storage, visual frame mapping, and audio routing |
-| Music and sound-effects volume | Each is a slider adjusted through buttons at its two ends | Numerical range, increment, initial value, displayed fill, and mixer mapping |
-| Difficulty | The executable table orders the four labels Easy, Balanced, Hard, Hideous; the manual assigns it to combat difficulty. FAQ-81038 reports a hostile-HP-at-spawn hypothesis (`FAQ-81038-COMBAT-001`) | Selected default, its relationship to the manual's conflicting “Average” wording, mutations, hostile-HP multipliers/rounding/timing, and rule consumers |
-| About | The manual specifies version, copyright, support, hint-line, and address information; the executable supplies nine centered lines | Modal geometry, backdrop, input dismissal, and native transition |
-
-Direct-reference and scalar probes find no literal binding from the executable
-text table, including all nine centered About strings, or two tested control
-pairs to a handler. This does not prove that the controls are inactive: their
-dispatch may be resource-driven or calculated. It does prevent treating those
-literal values as evidence for an implementation or an About modal route.
-Follow-up reference queries also find no recovered direct caller of the generic
-window-registration entry or its two generic callback setters. That prevents
-using the generic UI framework as an identified Preferences registration path;
-it does not prove that native callbacks or settings behavior are absent.
-`PREF` #100 is a single nine-byte envelope in `CHARSAVE.GFF`; it provides no
-field layout or connection to the in-game screen. The sole raw `PREF` tag also
-has no direct executable reference, so neither source establishes settings
-behavior.
-`SOUND.CFG` and `SOUND.INI` are absent as literal names in the separately
-shipped sound helper, and `SOUND.INI` is also absent from the main executable,
-so neither is mapped to Preferences. See
-`DATA-GOG-UI-011`, `DATA-GOG-PREF-001`, `EXE-GOG-UI-004`,
-`EXE-GOG-PREF-001`, and `DATA-GOG-SOUND-002` in the detailed evidence records
-before changing this boundary.
-
-## Determinism and time
-
-Core transitions happen only from explicit commands. Rendering interpolates
-presentation but cannot advance game rules. Snapshots and replay hashes make
-the start flow and current exploration state reproducible.
-
-- Route advancement is semantic and clock-free in Core. The runtime uses a
-  bounded fixed-step accumulator and fixed-point visual interpolation. Positive
-  host elapsed time accumulates saturating ticks, while camera clamping widens
-  delta arithmetic and the modern drag adapter widens then saturates pointer
-  deltas. Actor interpolation uses checked widened arithmetic, and
-  sprite-visibility rectangle edges also widen before clipping, so
-  clock discontinuities or extreme input/coordinates cannot overflow into
-  gameplay or presentation state.
 - The opening actor's current single-cell footprint and 125 ms semantic step
   are explicit modern policies, not claims about the native implementation.
-- `EXE-GOG-TIMING-001` establishes BIOS tick use only for startup/mixing paths,
-  not actor or animation cadence. `EXE-GOG-TIMING-002` finds that all four
-  literal `INT 15h` sites select extended-memory services (`AH=87h`/`88h`),
-  rather than the BIOS wait service (`AH=86h`). `EXE-GOG-TIMING-003` adds a
-  CPU-busy VGA-status transition poll around a generic word-copy path, not a
-  semantic clock. `EXE-GOG-TIMING-004` additionally bounds direct PIT latch/
-  read and programming routines, but finds no recovered feature owner or
-  duration contract. `EXE-GOG-SOUND-003` separately finds no `INT 15h` opcode
-  in the loaded sound-helper image. None must be recreated as an
-  interrupt-disabled render loop, hardware timer, or actor scheduler.
-  `EXE-GOG-MEDIA-001` finds no literal FLI
-  header-validation lead, and `EXE-GOG-MEDIA-002` finds no direct reference to
-  the embedded filename/path entries. `EXE-GOG-TITLE-002` likewise finds no
-  recovered function that co-locates static-title `BMP ` #11011 with its tag
-  words. Raw cinematic speed fields, filename order, and the title asset are
-  data, not assumed milliseconds or a schedule.
-- `EXE-GOG-RNG-001` establishes a 16-bit-seeded native LCG and bounded result
-  transforms. Its direct static callers are only the generic modulo,
-  inclusive-range, and repeated-roll helpers. The modulo wrapper also reaches
-  two bounded selection sites and a generic threshold selector over opaque
-  six-byte entries. Nine threshold draws use the fixed divisor 10; the two
-  selection draws use guarded local counts. The table and feature ownership
-  are unknown. Native seed ownership and rule-level call ordering are still
-  open, so new rules do not silently consume that stream.
-  `EXE-GOG-RNG-002` shows that the opaque random-selection chain and the
-  observed status-panel initializer meet in one indirect shared routine with
-  guarded four-record processing. Its caller and table/record roles remain
-  unknown, so this does not connect RNG consumption or panel updates to combat.
+- The original's clocks known so far are `RULE-TIME-001` (a millisecond
+  wait that watches the timer chip, used for fixed pauses) and
+  `RULE-TIME-002` (a timer interrupt at the shortest period any timer slot
+  asks for). Neither is tied to actor movement or animation yet
+  (`Q-TIME-001`), and the BIOS time-of-day reads, `INT 15h` sites and
+  display-status copy are not clocks (`FND-TIME-001` to `FND-TIME-003`).
+  `FND-SOUND-003` separately finds no `INT 15h` opcode in the sound helper.
+  None must be recreated as an interrupt-disabled render
+  loop, hardware timer, or actor scheduler.
+  The FLI player times frames with a 1 ms timer slot of that library
+  (`RULE-VIDEO-004`) and ignores the header's speed field (`RULE-VIDEO-002`).
+  The title picture `BMP ` #11011 is the last still picture the opening's
+  fallback shows (`FND-VIDEO-006`), which is why no instruction holds its
+  number (`FND-IMAGE-008`).
+- The random number generator and its reductions are `RULE-RNG-001`. Its seed
+  and the rules that draw from it are not known, so new rules do not consume
+  it yet.
 
 ## Static-analysis boundaries worth preserving
 
 Static analysis has produced reusable structural facts while deliberately
 rejecting unsupported semantics:
 
-- GPL/MAS use distinct selected source families, a bounded native cache, and a
-  shared processing path. No function co-locates the known first-dialogue GPL
-  #135 identity with the literal GPL tag construction, so that script has no
-  direct static loader lead. The guarded processing helper's sole decoded
-  direct caller forwards parameters and resident state, not a literal resource
-  identity. Static evidence does not license general GPL opcode execution.
-- `EXE-GOG-EVENT-001` establishes a mutable, linked runtime 13-byte selector
-  record with a 2,600-byte entry-flow clear and deterministic link setup,
-  multiple predicate traversals, a guarded `GPL ` resource-request path, and a
-  secondary relinked chain. Its sole recovered initializer caller is the
-  executable entry, which passes three resident words and meets an immediate
-  lower-bound guard. Instruction context also confirms the shared clear call,
-  13-byte successor-link loop, and secondary-head clear. These facts identify
-  neither values' meanings nor table ownership. It does not identify the
-  table's source/population path or connect a record to dialogue, quests,
-  combat, or map triggers. Its pointer's initialized image is zero, so the
-  later runtime population path is still required evidence.
-- `EXE-GOG-RECORD19-001` separates a second linked 19-byte resident family
-  that uses the same request entry. Shared processing does not establish a
-  common source, a record meaning, or a player-visible feature for either
-  table.
-- `EXE-GOG-SCMD-001` establishes a separate 64-slot `SCMD` loader/cache. Its
-  direct callers do not overlap the selector path, so `SCMD` remains opaque
-  rather than a substitute event or combat implementation.
-- `EXE-GOG-RDFF-001` places `RDFF` beside that same separate 37-byte record
-  path. It likewise has no direct selector connection and remains opaque.
-- `EXE-GOG-OJFF-001` establishes two native OJFF resource lookup paths and
-  a sole observed post-lookup transfer into the 37-byte resident path. The
-  selected source offsets are structural data accesses, not assigned object
-  field meanings. `EXE-GOG-IMAGE-001` continues that bounded route into
-  distinct PLAN/PLNR image dispatch. Its 320-entry coordinate-based candidate
-  scan has no recovered direct caller, so it does not identify a target action.
-  Neither finding identifies a runtime actor, animation, collision, target, or
-  interaction behavior.
-  `EXE-GOG-ACTOR-002` also finds no decoded #9258 operand in the mapped overlay,
-  so neither the original loaded image nor its mapped overlay provides a direct
-  immediate-object combat lead.
-- `DATA-GOG-RDFF-001` finds the `Draxan` pattern in 23 distinct `RDFF`
-  resources (and an aggregate resource), all at relative offset 43. The
-  bounded `OJFF` #9258 overlap check finds none of its four observed raw
-  words in that label-bearing subset. `DATA-GOG-RDFF-002` further shows that
-  1,216 `RDFF` resources are 68 bytes while the remaining 427 share a
-  `43 + 33*n` size residue; the 23 label-bearing resources are only a
-  high-length subset of that residue. `EXE-GOG-RDFF-002` finds no direct
-  displacement 43 or 76 in either known RDFF-tag path. Together with the
-  direct lookup callers, which pass local, argument, register, or
-  resident-state values rather than a recovered fixed resource number, this
-  rejects a direct field-to-label mapping for the first hostile Look panel. It
-  also rules out the mapped shared OJFF/RDFF bridge for observed OJFF #9258:
-  #9258 lies within its recovered 9000 through 13998 guard and does not take
-  that route's RDFF branch. This excludes one bridge only, not other indirection
-  or runtime paths. No decoded mapped function co-locates the RDFF tag with
-  panel ID #19003, which likewise excludes only direct same-function
-  composition. It does not identify an alternative source or permit dynamic
-  interaction text to be rendered. The main executable's 276,672-byte physical
-  MZ overlay also
-  contains neither the exact six-byte label nor its NUL-terminated form, so
-  that exact spelling has no loaded-image or overlay literal path; other
-  encodings and runtime/resource paths remain open.
-- `EXE-GOG-UI-007` establishes a generic resource-derived UI input boundary:
-  current pointer state is resolved against `APFM`, `BUTN`, or `EBOX` children,
-  then event-bit guards select indirect handlers. It identifies neither a
-  specific control handler nor any widget drawing/chrome path, so serialized
-  image-less controls remain geometry/event contracts rather than invented
-  pixels.
-- `EXE-GOG-OVERLAY-001` / `003` now have reproducible `fbov-profile` checks:
-  DSUN's physical overlay is `FBOV`, declares 276,656 payload bytes, and its
-  229 descriptors occupy MZ-file offsets `[307328,309160)`. The 49 descriptors
-  whose raw flag includes `0x0002` resolve to in-MZ `CD 3F` header prefixes;
-  their bounded payload spans total 258,376 code bytes plus 16,524 fixup
-  bytes. This is a header-to-payload metadata map, not a loaded-address map,
-  loader call, resource reader, combat rule, or executable behavior. The raw
-  endpoint totals remain unsuitable as a payload map. `EXE-GOG-OVERLAY-004`
-  additionally produces a local-only mapped MZ view (49 headers, 854
-  trampolines, zero special function-reference fixups) for bounded Ghidra
-  queries. Its exact `Moves`/`Draxan` searches remain empty, and four
-  unreferenced `COMBAT` literals identify no dispatcher or combat behavior.
-  `EXE-GOG-COMBAT-008` nonetheless recovers a distinct panel route: a
-  dispatcher branch reaches the #19003 cache initializer through a guarded
-  four-record, 49-byte-stride operation. Its immediate post-panel callee is a
-  two-caller `stdpatch`-related initialization path, and its unresolved
-  `0x92e0` operand has no matching `RESOURCE.GFF` resource number. This route
-  is therefore structural only; its state codes, record ownership/fields,
-  event input, and every combat rule remain unknown.
-- `EXE-GOG-OVERLAY-002` rules out the first concrete file-I/O candidate: the
-  only loaded-image routine that directly uses both the bounded DOS seek and
-  read wrappers scans caller-supplied six-byte signatures and lengths. It has
-  no recovered MZ-end, `FBOV`, or descriptor-table input, so it does not map
-  the physical overlay or establish a combat/resource code path.
-- `EXE-GOG-SMALLTAG-001` finds no literal executable loader lead for `GREQ`,
-  `CACT`, `PLYL`, or `CSEQ`. `DATA-GOG-SMALLTAG-001` bounds their owned
-  inventories and short envelopes; `DATA-GOG-PLYL-002` additionally rejects a
-  direct installed-`CHAR` resource number in every unaligned 16-bit `PLYL`
-  window, while `DATA-GOG-SMALLTAG-002` rejects it in every `GREQ` and `CACT`
-  window. None of these results assigns the opaque families a runtime role or
-  identifies the supplied party.
-- `EXE-GOG-PREF-001` finds one raw `PREF` tag literal but no direct reference;
-  it supplies no Preferences loader, settings schema, default, or control
+- The script interpreter is `RULE-SCRIPT-001` to `RULE-SCRIPT-008`: it loads
+  `GPL` and `MAS` scripts into a cache, runs their instructions through a
+  129-entry dispatch table, and registers attack and move-tile triggers in a
+  pool of 13-byte records (`FMT-SCRIPT-004`). A separate list of 19-byte
+  records (`FMT-SCRIPT-005`) and a 64-slot `SCMD` cache (`FND-SCRIPT-018`)
+  also exist; what fills the trigger lists and when the game tests them is
+  `Q-SCRIPT-002`.
+- `31E0:0EFF` requests an object's `OJFF` and then, for an object numbered
+  outside 9,000 to 13,998, its `RDFF` of the same number, into the same 37-byte
+  slot records (`FND-ACTOR-003`, `FND-ACTOR-005`). Its three resident callers
+  pass values from resident state, arguments or registers (`FND-ACTOR-004`).
+  `FND-IMAGE-005` continues that route
+  into the PLAN/PLNR image dispatch. None of this identifies a runtime actor,
+  animation, collision, target, or interaction behavior.
+- The first hostile's object, 9,258, lies inside the range that takes no `RDFF`
+  request and has no `RDFF` resource; no resident constant names it, and none
+  of its `OJFF` words names a script or one of the 23 `RDFF` resources that hold
+  its Look-panel label at offset 43 (`FND-ACTOR-007`, `FND-ACTOR-009`). The
+  `RDFF` layout is unknown (`FMT-ACTOR-002`), and the label's bytes do not occur
+  in `DSUN.EXE`. No source for the dynamic interaction text is identified.
+- `RULE-UI-001` and `FND-UI-011` give how the window code picks the control
+  under the pointer. No specific control handler or widget drawing path is known,
+  so image-less controls remain geometry and event contracts rather than
+  invented pixels.
+- The `FBOV` overlay pack of `DSUN.EXE` is `FMT-EXE-001` to `FMT-EXE-005`.
+  The code that loads overlays is not located (`FND-EXE-007`), so the pack
+  describes where overlay code sits, not how or when it runs. Static queries
+  into overlay code use the local-only mapped image described in
+  `docs/GHIDRA.md`.
+- The six `PLYL` resources are playlists of song and sound-effect pairs that
+  match an uncalled playlist routine (`FND-SOUND-014`), and `CSEQ` #1000 is an
+  XMIDI sequence that plays no note (`FND-SOUND-015`). `DSUN.EXE` names
+  neither tag, and no code that reads either family is located. The `GREQ` and `CACT` resources are
+  `FMT-SAVE-002` and `FMT-SAVE-001`: overlay 192 writes and reads `GREQ` when
+  it saves and loads a game (`FND-SAVE-004`, `FND-SAVE-005`), and `CACT` holds
+  the identifiers of stored characters (`FND-PARTY-011`, `FND-PARTY-012`).
+- The `PREF` tag is pushed only by the save and load routines of overlay 192
+  (`FND-CONFIG-002`); it supplies no settings names, defaults, or control
   behavior.
-- `EXE-GOG-TITLE-002` finds no decoded instruction operand for static-title
-  `BMP ` #11011 and no recovered function that combines that identity with
-  both correctly ordered tag words. These bounded negative results supply no
-  title loader or sequencing rule.
-- `EXE-GOG-FONT-002` finds no recovered function combining interface `FONT`
-  #100 with both literal tag words. Its two raw `FONT` data occurrences have
-  no recorded direct references. These facts supply no font-selection, glyph,
-  spacing, palette, or screen-layout rule.
-- `EXE-GOG-TEXT-001` finds two raw `TEXT` data occurrences, neither with a
-  recorded direct reference or containing instruction. This excludes only a
-  direct literal-tag loader lead; it neither assigns one of the 62 bounded text
-  resources to a screen nor establishes native typography or timing.
-- `EXE-GOG-IMAGE-002` establishes a bounded 300-entry native `BMP `/`CBMP`
-  selector/cache, a shared 321-index wrapper used from eight recovered
-  functions (including the OJFF route), and a separate generic window-image
+- `FND-IMAGE-008` finds no operand for the static-title `BMP ` #11011, so it
+  supplies no title loader or sequencing rule.
+- `FND-TEXT-002` finds no recovered function combining `FONT` #100 with the
+  tag words, and no recorded reference to the two `FONT` data occurrences. It
+  supplies no font-selection, spacing, palette, or screen-layout rule.
+- `FND-TEXT-004` finds two resident `TEXT` data occurrences with no recorded
+  reference, and three more in the code of overlays 186 and 188. It assigns no
+  text resource to a screen.
+- `FND-IMAGE-006` records a 300-entry `BMP `/`CBMP` cache, a wrapper taking
+  indices 0 to 320 that eight functions call, and a separate window-image
   request path. The title resource #11011 has no observed connection to either,
   so neither title sequencing nor image composition is inferred.
-- `EXE-GOG-VIDEO-001` identifies nine coherent BIOS-video calls in one shared
-  wrapper with fourteen direct callers, plus two raw matches outside decoded
-  instruction boundaries. The
-  wrapper accepts generic service/register values and does not connect any
-  call to a resource, screen, palette, resolution, or layout. It is not a
-  native rendering contract.
-- `EXE-GOG-MOUSE-001` finds generic mouse-service wrappers, two direct
-  coordinate-query callers, and one caller-specific interior guard accepting
-  only a `1..317`/`1..198` returned pair. It does not identify axes, a global
-  transform, control hit testing, gestures, or pointer behavior, so the
-  measured canvas and DSUI contracts remain authoritative.
-- `EXE-GOG-KEYBOARD-001` finds one decoded BIOS modifier-status wrapper. Its
-  external caller masks two returned bits while processing an opaque 37-byte
-  resident record; no recovered keyboard site reads a key code or maps a
-  player action. Manual and observed keyboard routes therefore remain separate
-  evidence, not a consequence of this generic path. `EXE-GOG-KEYBOARD-002`
-  additionally excludes only direct `IN AL,60h` and bounded immediate-DX
-  keyboard-controller port forms; it does not identify a replacement
-  key-acquisition or combat-command route. `EXE-GOG-KEYBOARD-003` further
-  finds no decoded function that co-locates all six documented combat-key
-  scalars, excluding only a simple unified direct switch.
-  `EXE-GOG-KEYBOARD-004` adds a mapped generic BIOS keyboard wrapper, but no
-  bounded caller supplies an explicit service value or command identity; its
-  one dispatch-shaped upstream route is GPLI selector handling, not combat.
-- `EXE-GOG-PORT-001` finds no literal `PORT` tag in the executable. It does
-  not contradict the observed first-Tyr portrait, but supplies no general
-  portrait loader, palette, drawing, dialogue, or timing rule.
-- `EXE-GOG-CHAR-003` finds no direct literal-tag lead for the character
-  archive: raw `CHAR` bytes have no direct references and `PSIN` is absent.
-  The separately fingerprinted `SVIEW.EXE` has neither a literal
-  `CHARSAVE.GFF` pathname nor a `CHAR` tag (`EXE-GOG-CHAR-004`), while
-  `CHARTRAN.EXE` has one unreferenced raw `CHAR` occurrence and no `PSIN`
-  pattern (`EXE-GOG-CHAR-005`). Neither utility result can select a shipped
-  party.
-- `GPLI` #1 is an exact 329-by-24-byte opaque data envelope. Its four aligned
-  third lane words are a strong GPL-number-set correlation (1,315 of 1,316
-  occurrences are members, collectively covering every GPL ID), but repeats
-  and one non-member reject a one-to-one map. No literal GPLI tag exists in the
-  analyzed executable, and no decoded function directly combines the known GPL
-  resource-135 ID with the literal GPL tag; no lookup role is assumed.
-- `ITEMS.BIN` is a verified 234-pair envelope. `DSUN.EXE`, `CHARTRAN.EXE`, and
-  `SVIEW.EXE` each lack the queried literal filename/stem forms, so no
-  item/equipment mapping or loader is inferred.
+- `FND-VIDEO-003` finds that the game sets BIOS mode `0x13` unchained into
+  four planes at startup, plain mode `0x13` for cinematics and text mode 3 on
+  exit, and that the `INT 10h` wrapper at `1000:1136` serves the C runtime's
+  text output. The routines that draw into the planes were not read.
+- The mouse and keyboard reach the game through the wrappers and hooks of
+  `FND-INPUT-004` to `FND-INPUT-006`, which queue key words and mouse events as
+  packets. They do not identify axes, a global transform, control hit testing,
+  gestures, or a key-to-action map, so the measured canvas, the DSUI contracts
+  and `RULE-INPUT-001` to `RULE-INPUT-003` remain authoritative.
+  `FND-INPUT-007` to `FND-INPUT-009` exclude direct keyboard-port reads, a
+  unified combat-key switch, and the one overlay route above the keyboard
+  routine as a key dispatcher. A key routine in overlay 190 compares BIOS key
+  words with a table of 33 and handles the combat keys `G`, `W` and `Q`
+  (`FND-COMBAT-025`); its other keys are not read.
+- `FND-IMAGE-009` finds no `PORT` tag in the resident image; its one
+  occurrence is in overlay 199. It supplies no portrait loader, palette,
+  drawing, dialogue, or timing rule.
+- The character archive's tags occur only in overlay code (`FND-PARTY-009`):
+  overlays 171, 184 and 186 keep the stored characters and their records
+  (`FND-PARTY-012`), and overlay 182 loads characters 40 to 43 into the party
+  (`FND-PARTY-013`, `RULE-PARTY-006`). `SVIEW.EXE` is a text viewer
+  (`FND-PARTY-014`). `CHARTRAN.EXE`, once unpacked, transfers Dark Sun 1
+  characters into the archive (`FND-PARTY-010`, `FND-PARTY-011`).
+- `GPLI` #1 lists script entry points (`FMT-SCRIPT-003`); overlay 187
+  converts the entry points of trigger records to and from its entries
+  (`FND-SCRIPT-017`).
+- `ITEMS.BIN` is `FMT-ITEM-001`, read only by the character transfer utility
+  (`FND-ITEM-006`, `RULE-ITEM-006`); `DSUN.EXE` holds no name for it
+  (`FND-ITEM-004`).
 
-Addresses, methods, competing interpretations, and confidence are retained in
-[GHIDRA.md](GHIDRA.md); open questions are kept in the plan rather than encoded
-as APIs.
+Addresses, methods and competing interpretations are kept in the spec's
+findings, and [GHIDRA.md](GHIDRA.md) describes the tools. Open questions are
+items in `queue/` rather than encoded as APIs.
 
 ## Next evidence gates
 
 The active gates are intentionally concrete:
 
-1. Establish source ownership and game roles for the runtime selector records.
+1. Find what fills the script trigger lists and when the game tests them (`Q-SCRIPT-002`).
 2. Obtain controlled observations for shipped-party membership, remaining UI
    transitions, native cadence, and visibly dynamic fields.
 3. Trace or observe item, equipment, combat, quest, and persistence semantics

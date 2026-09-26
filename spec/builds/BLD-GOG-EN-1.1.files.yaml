@@ -1,0 +1,1945 @@
+files:
+  - path: 1.FLI
+    format: data
+    size: 5710926
+    xxh3: b36ebf5e1952bb1f26abff538c411202
+  - path: 2.FLI
+    format: data
+    size: 1293526
+    xxh3: 9d751dc035b4e2757f379d6b05acffbb
+  - path: 3.FLI
+    format: data
+    size: 6414620
+    xxh3: 72e1a83d2740b64c75174843e60516fc
+  - path: 4.FLI
+    format: data
+    size: 323812
+    xxh3: f2299f50f23473487a3b9120074fd59c
+  - path: 5.FLI
+    format: data
+    size: 5755367
+    xxh3: 6c78c171dcd6bbdde6d35601cd19afe7
+  - path: CHARSAVE.GFF
+    format: data
+    size: 11735
+    xxh3: ff66cc83e6c938ca9d32ee883db0f573
+  - path: CHARTRAN.EXE
+    format: MZ
+    size: 24761
+    xxh3: f7466f2ac604dc7c353358bc80bd0131
+    packer: LZEXE 0.91
+    unpacked:
+      size: 70288
+      xxh3: a2804715759141397dca547934213843
+      format: MZ
+      tool: DarkSunWakeRedux.Inspect unlzexe, commit e455d51
+  - path: DARKRUN.GFF
+    format: data
+    size: 991
+    xxh3: 33f7aba0d5509aaa1767266088c536eb
+  - path: DARKSAVE.GFF
+    format: data
+    size: 991
+    xxh3: 33f7aba0d5509aaa1767266088c536eb
+  - path: DJ.DAT
+    format: data
+    size: 231
+    xxh3: 78012eb5cebe8d445b19b365cbfc8362
+  - path: DSUN.EXE
+    format: MZ
+    size: 634416
+    xxh3: e296af55ba2ecde7e77f555c90f33d0b
+  - path: game.ins
+    format: data
+    size: 2988
+    xxh3: 7500822e820bbe5aaefb73a849a90d42
+  - path: GPLDATA.GFF
+    format: data
+    size: 2191945
+    xxh3: 2bd1d2b989eef2dcb0545feb95975fca
+  - path: ITEMS.BIN
+    format: data
+    size: 936
+    xxh3: 3e19d1fe0b0ea8b67389bafdb61897e3
+  - path: MUSIC/Track02.ogg
+    format: data
+    size: 3630610
+    xxh3: 7d463e6b89ddf08c4981aafdc722b210
+  - path: MUSIC/Track03.ogg
+    format: data
+    size: 3743360
+    xxh3: 08a8a8a972336883d30c2eca59c956e8
+  - path: MUSIC/Track04.ogg
+    format: data
+    size: 3103130
+    xxh3: 11f9412a89cde8a69b62b1b7d351869d
+  - path: MUSIC/Track05.ogg
+    format: data
+    size: 4983608
+    xxh3: fbff56a37cbe1c9f0c31a98d85d34c5b
+  - path: MUSIC/Track06.ogg
+    format: data
+    size: 5129389
+    xxh3: aa39727998959086fcbaf749b55ce7af
+  - path: MUSIC/Track07.ogg
+    format: data
+    size: 4753705
+    xxh3: 8684cc3b9fd92a2527545be5bf543b4c
+  - path: MUSIC/Track08.ogg
+    format: data
+    size: 3411141
+    xxh3: 661e9dc26f7bcbf4377476a74b25752f
+  - path: MUSIC/Track09.ogg
+    format: data
+    size: 3611370
+    xxh3: cdbd232a3d45122144bd82319847c1f0
+  - path: MUSIC/Track10.ogg
+    format: data
+    size: 3677311
+    xxh3: 43a0b5449e80c9b868fb4b794b1e2209
+  - path: MUSIC/Track11.ogg
+    format: data
+    size: 3172235
+    xxh3: 44f3203aff7f3e2552d3f3bdc8daa721
+  - path: MUSIC/Track12.ogg
+    format: data
+    size: 2642881
+    xxh3: 77f7ea69b68ec5efb27465a208988b58
+  - path: MUSIC/Track13.ogg
+    format: data
+    size: 2555679
+    xxh3: 61d59104e72d1b263d73fe93bdef13a9
+  - path: MUSIC/Track14.ogg
+    format: data
+    size: 2735215
+    xxh3: 97a190abbcd0b5244e91eb879bd31588
+  - path: MUSIC/Track15.ogg
+    format: data
+    size: 2437292
+    xxh3: 94fd7cdb091431a65483b5eddc148dd6
+  - path: MUSIC/Track16.ogg
+    format: data
+    size: 2579102
+    xxh3: 0754f463bd63d3a47c567b445d8b3d6f
+  - path: MUSIC/Track17.ogg
+    format: data
+    size: 2871594
+    xxh3: fc172dc6cf20003d04e2bf046a0474e8
+  - path: MUSIC/Track18.ogg
+    format: data
+    size: 2179761
+    xxh3: 7be4f5baa7b1b4afa30db94883f55125
+  - path: MUSIC/Track19.ogg
+    format: data
+    size: 2989121
+    xxh3: cc2aa248a1c0facd44931d448fc3284d
+  - path: MUSIC/Track20.ogg
+    format: data
+    size: 3216857
+    xxh3: a9c41c696f3f80008bfcbe79b910ac4e
+  - path: MUSIC/Track21.ogg
+    format: data
+    size: 3061207
+    xxh3: 9df46ad1cabf307d9723470a2661ebec
+  - path: MUSIC/Track22.ogg
+    format: data
+    size: 1300298
+    xxh3: 4fb4fab7d3c5c76d0c2b872b24524895
+  - path: MUSIC/Track23.ogg
+    format: data
+    size: 1328709
+    xxh3: 3b6daf9acd5ffa5ab6688697193221aa
+  - path: MUSIC/Track24.ogg
+    format: data
+    size: 1469829
+    xxh3: 23ecd99f4cc7c96a06223efdc67c1ef6
+  - path: MUSIC/Track25.ogg
+    format: data
+    size: 1461609
+    xxh3: 5338b66b772b02b5d84ee0659d923d8e
+  - path: MUSIC/Track26.ogg
+    format: data
+    size: 1429936
+    xxh3: 05a0f0ad1e4810adf2f15401300d9408
+  - path: MUSIC/Track27.ogg
+    format: data
+    size: 1425063
+    xxh3: 9276d60eb37d69881c3ab7a298949810
+  - path: MUSIC/Track28.ogg
+    format: data
+    size: 1443661
+    xxh3: 65bd25c3ac5ed6f60a430c7416767386
+  - path: MUSIC/Track29.ogg
+    format: data
+    size: 1394200
+    xxh3: fb8fecbafd19160523c28f73294d62f9
+  - path: MUSIC/Track30.ogg
+    format: data
+    size: 1394573
+    xxh3: 742103036e4cd4e3f2a04d2793df1ced
+  - path: MUSIC/Track31.ogg
+    format: data
+    size: 1544052
+    xxh3: 85a4cef1f3cd376749a2617f57553284
+  - path: MUSIC/Track32.ogg
+    format: data
+    size: 1506031
+    xxh3: a8215f64503788548c8832d048bbb88a
+  - path: MUSIC/Track33.ogg
+    format: data
+    size: 1186115
+    xxh3: ec6c688a17bdaa4e8a5fc723e3c7ee77
+  - path: MUSIC/Track34.ogg
+    format: data
+    size: 1372125
+    xxh3: a82093c1df2a9a1e600d58837c24828d
+  - path: MUSIC/Track35.ogg
+    format: data
+    size: 1590320
+    xxh3: 5ed68378c6204717fca5705f2898b98e
+  - path: MUSIC/Track36.ogg
+    format: data
+    size: 1701902
+    xxh3: e1b39132df8dfe222055bd18b0a79da0
+  - path: MUSIC/Track37.ogg
+    format: data
+    size: 3691851
+    xxh3: 9fcd6a2ca9033f27c3c92b464f501607
+  - path: MUSIC/Track38.ogg
+    format: data
+    size: 897306
+    xxh3: 46dc2be36357d966c74531c92bb61241
+  - path: MUSIC/Track39.ogg
+    format: data
+    size: 1668895
+    xxh3: b400f08859cf9a1e490412a67d73477e
+  - path: MUSIC/Track40.ogg
+    format: data
+    size: 885536
+    xxh3: 1d227cf94e8cb264d47c92e5a7ce0fe1
+  - path: MUSIC/Track41.ogg
+    format: data
+    size: 3955359
+    xxh3: 4160495f7730981aae4ab881621d066b
+  - path: OBJEX.GFF
+    format: data
+    size: 6816516
+    xxh3: e08d3cac153c547f6804ca27b155915d
+  - path: PATCH.EXE
+    format: MZ
+    size: 45450
+    xxh3: 16f9279ce9fe0ee1e3e5f7cc8b012d48
+  - path: PATCH.RTP
+    format: data
+    size: 112568
+    xxh3: 50bb466a0b03d74f97810d6f591daf46
+  - path: RAVAGER.BAT
+    format: data
+    size: 20
+    xxh3: f300902d1d5cd90db675a2454a10f9b3
+  - path: RESOURCE.GFF
+    format: data
+    size: 5724669
+    xxh3: 92fe031616f36062f99484b0f728210e
+  - path: RGN001.GFF
+    format: data
+    size: 104769
+    xxh3: 063a33c7cfa3fb234f519af2d1182290
+  - path: RGN032.GFF
+    format: data
+    size: 64641
+    xxh3: a4b22f8b69bd2a541d67ac4100fea872
+  - path: RGN033.GFF
+    format: data
+    size: 89017
+    xxh3: 28fff3bd673d1f5400d68d50d03d9df5
+  - path: RGN034.GFF
+    format: data
+    size: 71115
+    xxh3: 8060ac1f5b6f1a00c1efc453912e25b9
+  - path: RGN036.GFF
+    format: data
+    size: 44403
+    xxh3: 942dc16432071eab84de11ac50b51484
+  - path: RGN037.GFF
+    format: data
+    size: 91272
+    xxh3: 44f715c71cc7bb80ca1b2c211dcf474f
+  - path: RGN038.GFF
+    format: data
+    size: 46473
+    xxh3: c4fdc36a1dad9d9acad0a5896ece2ad5
+  - path: RGN039.GFF
+    format: data
+    size: 52701
+    xxh3: 803400abd76c6edcb560ff6338efdfd7
+  - path: RGN03A.GFF
+    format: data
+    size: 96954
+    xxh3: 078b72cc5903ed0aa77f1c5f60926b47
+  - path: RGN03B.GFF
+    format: data
+    size: 86323
+    xxh3: a556dddd0bc8cd3a15bc6bc6020f432a
+  - path: RGN03C.GFF
+    format: data
+    size: 73480
+    xxh3: f64f8071c2e2eb952b4b99105aa868c9
+  - path: RGN03D.GFF
+    format: data
+    size: 96122
+    xxh3: 5f540022e92d9ed06875555739e7171d
+  - path: RGN03E.GFF
+    format: data
+    size: 84164
+    xxh3: 829b586f5e998ac1f4de5255356269fa
+  - path: RGN03F.GFF
+    format: data
+    size: 101028
+    xxh3: 437b8fde166ba95e59922a472ea810da
+  - path: RGN041.GFF
+    format: data
+    size: 119451
+    xxh3: 25da5688688113bb644f21aea5662b31
+  - path: RGN042.GFF
+    format: data
+    size: 98884
+    xxh3: 2ea3bf5c83de67f76771071c1a49f374
+  - path: RGN043.GFF
+    format: data
+    size: 73198
+    xxh3: 1192feab37bb4db7d3a89210b1689950
+  - path: RGN044.GFF
+    format: data
+    size: 103129
+    xxh3: 28f2d0294873522027f04e5ae09e7883
+  - path: RGN045.GFF
+    format: data
+    size: 94243
+    xxh3: 07be9352e835c7ec14926a808d58e6bb
+  - path: RGN0FF.GFF
+    format: data
+    size: 33987
+    xxh3: ce488ce6806ad6a214569a318f408c91
+  - path: SOUND.BAT
+    format: data
+    size: 114
+    xxh3: 7f4161a0e9226e5fb6228ee55b0b0c0f
+  - path: SOUND.CFG
+    format: data
+    size: 59
+    xxh3: 64d376205212cb8a6b8a782b88576327
+  - path: SOUND.INI
+    format: data
+    size: 54669
+    xxh3: aecc7469098e0c188e0e3d056c5fd530
+  - path: SOUND_DS.EXE
+    format: MZ
+    size: 204593
+    xxh3: 236c2dc23c071eca421eb5b427caee57
+  - path: SOUND001.VOC
+    format: data
+    size: 110241
+    xxh3: 0c33da72c447ab9facaeee104abe1e80
+  - path: SOUND002.VOC
+    format: data
+    size: 385921
+    xxh3: c2d697d6be87cc91dc884b859b2b6527
+  - path: SOUND003.VOC
+    format: data
+    size: 330721
+    xxh3: 5d772fd49741d4988561f98e4948b6fd
+  - path: SOUND012.VOC
+    format: data
+    size: 137633
+    xxh3: 7923128802968722e030d99ab0cc1f83
+  - path: SOUND021.VOC
+    format: data
+    size: 40009
+    xxh3: 312a9ec745707d181d4945797df64629
+  - path: SOUND025.VOC
+    format: data
+    size: 57153
+    xxh3: 9be272291a2aa226fedc8fdf31a044f8
+  - path: SOUND044.VOC
+    format: data
+    size: 385921
+    xxh3: 9df0aa0cb56c6b807d973338968559d0
+  - path: SOUND045.VOC
+    format: data
+    size: 127681
+    xxh3: 99391c0c35a5f8277c15a36860cd1079
+  - path: SOUND046.VOC
+    format: data
+    size: 652609
+    xxh3: 9a2ca8392f366200743eef7ed23ca2d2
+  - path: SOUND072.VOC
+    format: data
+    size: 67233
+    xxh3: 4b5498c82e04573e994b77bcf92bd0e4
+  - path: SOUND132.VOC
+    format: data
+    size: 25313
+    xxh3: a56c8706106705fa3cd5f764f9c3d74b
+  - path: SOUND138.VOC
+    format: data
+    size: 26785
+    xxh3: db7b9ef6fdfba2afa5a2a9497891835d
+  - path: SOUND147.VOC
+    format: data
+    size: 25377
+    xxh3: cb6a05ce968004bbd8d1152a50141944
+  - path: SOUND162.VOC
+    format: data
+    size: 164801
+    xxh3: f56d7f19cff62f89ece6c2be371457d2
+  - path: SOUND163.VOC
+    format: data
+    size: 137633
+    xxh3: 6d82c0d3c71f704a969824b6419c1f05
+  - path: SOUND164.VOC
+    format: data
+    size: 76489
+    xxh3: f7ffa4166f018b2e4307ffcdab139be0
+  - path: SOUND165.VOC
+    format: data
+    size: 76682
+    xxh3: dc462c57736ea614baebdde827f43bd3
+  - path: SOUND167.VOC
+    format: data
+    size: 87009
+    xxh3: c9e306162f508fb461cefd735a9f6bb6
+  - path: SOUND168.VOC
+    format: data
+    size: 78369
+    xxh3: 908c297e359ab2daca86dd0ad3dce79c
+  - path: SOUND169.VOC
+    format: data
+    size: 81921
+    xxh3: ed899cede6deec31a38f8c86bd85bffa
+  - path: SOUND170.VOC
+    format: data
+    size: 81921
+    xxh3: 33fa91da5bfb572726d0a5b70d147b03
+  - path: SOUND171.VOC
+    format: data
+    size: 607609
+    xxh3: 57b9674cadae2a0ef9d14c405ee63f52
+  - path: SOUND175.VOC
+    format: data
+    size: 593721
+    xxh3: 5af50e39476b53eac0c8c13321be3f9d
+  - path: SOUND181.VOC
+    format: data
+    size: 31169
+    xxh3: 9e06ac6722015c9189d0398f62518c7f
+  - path: SOUND197.VOC
+    format: data
+    size: 73633
+    xxh3: 36a37958d4f193dc23b494993754347f
+  - path: SOUND207.VOC
+    format: data
+    size: 27553
+    xxh3: ec786773a5b2e312a018b42e488e2b4d
+  - path: SOUND212.VOC
+    format: data
+    size: 74977
+    xxh3: 43ad4ebd0397631368e71774db6ad9fc
+  - path: SOUND213.VOC
+    format: data
+    size: 68033
+    xxh3: 9754d73011e1a321f8781870e345ba49
+  - path: SOUND214.VOC
+    format: data
+    size: 68033
+    xxh3: d219dc4fe570cbaf8d4e994ab292545f
+  - path: SOUND230.VOC
+    format: data
+    size: 90857
+    xxh3: 7f072f6765a2c8314495b693901f1f05
+  - path: SPCH100.VOC
+    format: data
+    size: 149282
+    xxh3: a035ac3c24a255f26e85b933a1a565c9
+  - path: SPCH101.VOC
+    format: data
+    size: 94114
+    xxh3: b44e87a0b13ad026cfe8caced93d0610
+  - path: SPCH102.VOC
+    format: data
+    size: 61986
+    xxh3: bd89da23125904b4f2647c4d2e38f2ed
+  - path: SPCH103.VOC
+    format: data
+    size: 229875
+    xxh3: cf7e62ab81c57e3a142bd01f59f4cf9f
+  - path: SPCH104.VOC
+    format: data
+    size: 186658
+    xxh3: a55a14904a22285705320f55f0adb0d3
+  - path: SPCH105.VOC
+    format: data
+    size: 119714
+    xxh3: 6c6579030d7faeef2581dece7c560816
+  - path: SPCH106.VOC
+    format: data
+    size: 253474
+    xxh3: d99e8be53b251a4dc961bcbbb107a5f4
+  - path: SPCH107.VOC
+    format: data
+    size: 232482
+    xxh3: 21ad7c1d54ad44bbe1e3fc3318ea7c6a
+  - path: SPCH108.VOC
+    format: data
+    size: 258210
+    xxh3: 6270a6ee29d46736a40651331283cf1c
+  - path: SPCH109.VOC
+    format: data
+    size: 367266
+    xxh3: 5425f2da806db40f9a2dba20e706a5bb
+  - path: SPCH110.VOC
+    format: data
+    size: 396
+    xxh3: ebb88bc9cdf46ff57c09359ae6358e19
+  - path: SPCH111.VOC
+    format: data
+    size: 217506
+    xxh3: 69d7ae08bc9d2eb9a91b6b24dedd5991
+  - path: SPCH112.VOC
+    format: data
+    size: 95906
+    xxh3: d582ae7311ee4878a5e6df5fa937a945
+  - path: SPCH113.VOC
+    format: data
+    size: 459938
+    xxh3: 80b6e084d043f51e7b94ef254cdcd0fe
+  - path: SPCH115.VOC
+    format: data
+    size: 271394
+    xxh3: 276f1208647c80c1a10754e5376301b1
+  - path: SPCH116.VOC
+    format: data
+    size: 311330
+    xxh3: b7ce9aa16da66a5516027483d3fa2821
+  - path: SPCH117.VOC
+    format: data
+    size: 129442
+    xxh3: 834675ac265a9e7e85145f4a094b1cf9
+  - path: SPCH118.VOC
+    format: data
+    size: 118306
+    xxh3: 6f271112fbd4c7e2fa2a9f1c4bf2bdd3
+  - path: SPCH119.VOC
+    format: data
+    size: 80418
+    xxh3: c1f8c1889f173013113db532f64e828f
+  - path: SPCH120.VOC
+    format: data
+    size: 173858
+    xxh3: 1defe0e6be61f834ee5b7a591fad099d
+  - path: SPCH121.VOC
+    format: data
+    size: 123938
+    xxh3: cac89518597482f396443fd2876277fc
+  - path: SPCH122.VOC
+    format: data
+    size: 174754
+    xxh3: 9ae9c3bf89ecac2a4d18acd641d2c13a
+  - path: SPCH123.VOC
+    format: data
+    size: 156962
+    xxh3: aa1fbc2d8de51544879864e98f2d8462
+  - path: SPCH124.VOC
+    format: data
+    size: 121378
+    xxh3: 0ee6180546fadddd79ad673ba96c03eb
+  - path: SPCH125.VOC
+    format: data
+    size: 125858
+    xxh3: b81c81efa5f6bb7297a811533ceee1c5
+  - path: SPCH126.VOC
+    format: data
+    size: 117282
+    xxh3: c19619ffa41c8f6f62e15962e716cf0a
+  - path: SPCH127.VOC
+    format: data
+    size: 93858
+    xxh3: d024361b5d768409e5270c69494abc3e
+  - path: SPCH128.VOC
+    format: data
+    size: 236962
+    xxh3: 1c61e7e27dd8eec13fe27379d6cf97d9
+  - path: SPCH129.VOC
+    format: data
+    size: 279458
+    xxh3: 35bcec1d3c8716b4c6ca1ebf10a41180
+  - path: SPCH130.VOC
+    format: data
+    size: 264866
+    xxh3: cc39b5d41759e313f2b629e42dcd11b2
+  - path: SPCH131.VOC
+    format: data
+    size: 349474
+    xxh3: c437ec8b001fb16074b47f4ac076dcb0
+  - path: SPCH132.VOC
+    format: data
+    size: 402338
+    xxh3: ff3acbbcaabd9d4f36b0a8615dbfc2f7
+  - path: SPCH133.VOC
+    format: data
+    size: 348322
+    xxh3: 053f7c8e5af56f8d00b8c1fdc2392d1e
+  - path: SPCH134.VOC
+    format: data
+    size: 207394
+    xxh3: a2cda31809ce57ae3af4da85ce252810
+  - path: SPCH135.VOC
+    format: data
+    size: 204322
+    xxh3: db6cc4557aff5476015af36e40f008b6
+  - path: SPCH136.VOC
+    format: data
+    size: 114595
+    xxh3: a2c29b3577953cad48ddd2e6f446d4d4
+  - path: SPCH137.VOC
+    format: data
+    size: 97826
+    xxh3: 9aff8ecdaf69f450ada9c1f76aed4f92
+  - path: SPCH138.VOC
+    format: data
+    size: 48034
+    xxh3: 077a43f9d42a855bdd1494546feeeb2e
+  - path: SPCH139.VOC
+    format: data
+    size: 25761
+    xxh3: 6285bf89e5bb9b2498ed6fc170a34df8
+  - path: SPCH140.VOC
+    format: data
+    size: 39329
+    xxh3: be546d07d89faa2c1ead8bd5f8b0069f
+  - path: SPCH141.VOC
+    format: data
+    size: 37025
+    xxh3: bc5e029bb5f9d1a51569900298bfa0e6
+  - path: SPCH142.VOC
+    format: data
+    size: 41249
+    xxh3: a059684c9ace1ad138c261baedad005d
+  - path: SPCH143.VOC
+    format: data
+    size: 48673
+    xxh3: 62211b64d4e41dbc7c78dfa708263b45
+  - path: SPCH144.VOC
+    format: data
+    size: 33697
+    xxh3: 5bcff4de33ff613e7636e4fb3619a9c5
+  - path: SPCH145.VOC
+    format: data
+    size: 41762
+    xxh3: c08d48eba41980ec2a7eb204a5d14f74
+  - path: SPCH146.VOC
+    format: data
+    size: 149666
+    xxh3: e62d59d3fee440c4bf6a5d9ed4dcfbfc
+  - path: SPCH147.VOC
+    format: data
+    size: 66338
+    xxh3: a6dc93bc3ee5470f522b974eb38bf18a
+  - path: SPCH148.VOC
+    format: data
+    size: 192674
+    xxh3: 43a4450e4300250b54e4ccdc5e027eb8
+  - path: SPCH149.VOC
+    format: data
+    size: 101154
+    xxh3: 4984175a9d8d79ae7d7eeacce7f8e9a1
+  - path: SPCH150.VOC
+    format: data
+    size: 69282
+    xxh3: 4e046dcad24bd8d4d08cddcb99d0beec
+  - path: SPCH151.VOC
+    format: data
+    size: 120866
+    xxh3: 302d12165f50e6b7e7ba9d619dc63180
+  - path: SPCH152.VOC
+    format: data
+    size: 56482
+    xxh3: 04819f0968f86181c7110695816f05ed
+  - path: SPCH153.VOC
+    format: data
+    size: 93602
+    xxh3: a97fe0a0716a4eb6353418918e40159d
+  - path: SPCH154.VOC
+    format: data
+    size: 79778
+    xxh3: f5c595e46055d8dc103e8fe61ec4e816
+  - path: SPCH155.VOC
+    format: data
+    size: 25121
+    xxh3: 1ddb24eaaa8513f63e48ccafd8c1c538
+  - path: SPCH156.VOC
+    format: data
+    size: 68770
+    xxh3: f278106960029c106c383ea07a3a23d9
+  - path: SPCH157.VOC
+    format: data
+    size: 64778
+    xxh3: 45a17f59a31413b1cb5e6608a6600633
+  - path: SPCH158.VOC
+    format: data
+    size: 38945
+    xxh3: 60e1e3e0523283d1caab8b35a0f7de18
+  - path: SPCH159.VOC
+    format: data
+    size: 29985
+    xxh3: 0bcbc9a905d4a7cd5e646220e87be677
+  - path: SPCH160.VOC
+    format: data
+    size: 78498
+    xxh3: 50ddbc095191dc0239919230fea39a21
+  - path: SPCH161.VOC
+    format: data
+    size: 80034
+    xxh3: 86cb1a356f40d7be06d5742e46f83a9d
+  - path: SPCH162.VOC
+    format: data
+    size: 33570
+    xxh3: 3f3620696ffc2881b3f720af06bf5f3b
+  - path: SPCH163.VOC
+    format: data
+    size: 126882
+    xxh3: 4f8236833db5a7ec2c1363b08905021e
+  - path: SPCH164.VOC
+    format: data
+    size: 59425
+    xxh3: be1164a6faccbefeaf1200f2c25e13ca
+  - path: SPCH200.VOC
+    format: data
+    size: 692130
+    xxh3: 1402fae058f3762ef1c7b4817f85af7e
+  - path: SPCH201.VOC
+    format: data
+    size: 636834
+    xxh3: 8cc8fe6be72c5b489c02bb469ded2669
+  - path: SPCH202.VOC
+    format: data
+    size: 143650
+    xxh3: 73c68fc8fc93d1294c32c4179d81cc5f
+  - path: SPCH203.VOC
+    format: data
+    size: 142754
+    xxh3: 980e6c7591cc06c7c36ed8b97c3a9c46
+  - path: SPCH204.VOC
+    format: data
+    size: 78242
+    xxh3: a7bf547373c6309e46906fff95749797
+  - path: SPCH205.VOC
+    format: data
+    size: 42273
+    xxh3: d85cc61cfb8bd565b2b5d833b66de120
+  - path: SPCH206.VOC
+    format: data
+    size: 74658
+    xxh3: 80dbba0aa91c17f1f6771fe664913a70
+  - path: SPCH207.VOC
+    format: data
+    size: 75810
+    xxh3: 29b223ee9422da21389cd169b9bd0d06
+  - path: SPCH208.VOC
+    format: data
+    size: 89378
+    xxh3: f52599371047c0523841c494c5ef057a
+  - path: SPCH209.VOC
+    format: data
+    size: 93986
+    xxh3: 5f3d0538fbffe11cac465b2358f1ebf5
+  - path: SPCH210.VOC
+    format: data
+    size: 492450
+    xxh3: 771b82db93ce773792b6c5d3a7ee1181
+  - path: SPCH211.VOC
+    format: data
+    size: 135330
+    xxh3: f659ef028d584c24a0d5975e1a3fc88a
+  - path: SPCH212.VOC
+    format: data
+    size: 186658
+    xxh3: 870e991e3e795ef52f080e5bc7da9777
+  - path: SPCH213.VOC
+    format: data
+    size: 158242
+    xxh3: c559051d0756453d4781072e9ef4da79
+  - path: SPCH300.VOC
+    format: data
+    size: 596642
+    xxh3: 339dbc6bce709d8971cffc2709d982a5
+  - path: SPCH50.VOC
+    format: data
+    size: 1067682
+    xxh3: dfb8f2dcbb46545ebe668479b91b5793
+  - path: SPCH52.VOC
+    format: data
+    size: 572962
+    xxh3: 2ef7726bfdf321bb7ce1912579f97be7
+  - path: SPCH53.VOC
+    format: data
+    size: 336931
+    xxh3: 0db6b5c7fd0c6fc0e1047857facc74cf
+  - path: SPCH54.VOC
+    format: data
+    size: 657954
+    xxh3: ab853ff4540d5052435b5658d6fbd3e5
+  - path: SPCH55.VOC
+    format: data
+    size: 164003
+    xxh3: 1e5b0c253a6d9f474fe4df94d4074fa0
+  - path: SPCH56.VOC
+    format: data
+    size: 3160483
+    xxh3: ee51bb170ad3661c09efa9f988e51fc9
+  - path: SPCH57.VOC
+    format: data
+    size: 2818210
+    xxh3: 74fa2d6450c1f66b69d64c0f4167cf83
+  - path: SPCH58.VOC
+    format: data
+    size: 200354
+    xxh3: 686bebe2362bfb337d6a97e6dae762a8
+  - path: SPCH59.VOC
+    format: data
+    size: 80802
+    xxh3: 868ceccd4d56d3b62099b59d2e036a81
+  - path: SPCH60.VOC
+    format: data
+    size: 572322
+    xxh3: 92e7cb2ba9e6316f2e64af6fb673fdd8
+  - path: SPCH61.VOC
+    format: data
+    size: 180514
+    xxh3: b4987ceae7a5d1a306b570c3f17eb8f7
+  - path: SPCH62.VOC
+    format: data
+    size: 43041
+    xxh3: 8f1ccf6021fa53be1f05e9112ebe1c2e
+  - path: SPCH63.VOC
+    format: data
+    size: 176162
+    xxh3: d3ca73020ab3beabbe9bf8e3e0ef17a7
+  - path: SPCH64.VOC
+    format: data
+    size: 207778
+    xxh3: c2d946306f855b939215477b9702618e
+  - path: SPCH65.VOC
+    format: data
+    size: 212770
+    xxh3: 3f5f6dec027c3a32c128dbfebf6cab84
+  - path: SPCH71.VOC
+    format: data
+    size: 277410
+    xxh3: 68f8f5cad7e4af457fe0c0043f5d46c4
+  - path: SPCH72.VOC
+    format: data
+    size: 170274
+    xxh3: 889381e2a5f868011204a94d5f0a1730
+  - path: SPCH73.VOC
+    format: data
+    size: 133666
+    xxh3: c741a41b0883f087cb7ca06dbde802bf
+  - path: SPCH74.VOC
+    format: data
+    size: 323362
+    xxh3: 4090a4abdeaef96def91788fb1060425
+  - path: SPCH75.VOC
+    format: data
+    size: 493858
+    xxh3: aac0240ee2044f18eb294ef36c34bdaf
+  - path: SPCH77.VOC
+    format: data
+    size: 285346
+    xxh3: c711ee68b43b647b962249177c9650e6
+  - path: SPCH78.VOC
+    format: data
+    size: 221885
+    xxh3: 292c81c13aa012336c8479945900aaca
+  - path: SPCH79.VOC
+    format: data
+    size: 440354
+    xxh3: 9febbd7212ed444d7537f96cb90e1d8f
+  - path: SPCH80.VOC
+    format: data
+    size: 112003
+    xxh3: d4fa7d60aded56d8987c0c76b9ca8c3b
+  - path: SPCH81.VOC
+    format: data
+    size: 434580
+    xxh3: b177eb9c48a34a0479cd74abdcd4a301
+  - path: SPCH82.VOC
+    format: data
+    size: 462351
+    xxh3: 4a7e3d592d4d525248676e375cd550bd
+  - path: SPCH83.VOC
+    format: data
+    size: 271522
+    xxh3: dbdc781fb1f64a3424d4afed85b7a47a
+  - path: SPCH84.VOC
+    format: data
+    size: 170786
+    xxh3: 139d08ac92725d48c4c89f784c64cb53
+  - path: SPCH85.VOC
+    format: data
+    size: 212002
+    xxh3: 5f2674d2f14a4c75df750007b51ed131
+  - path: SPCH86.VOC
+    format: data
+    size: 246562
+    xxh3: 7fa447e29fc9adb4290644b6597ff670
+  - path: SPCH87.VOC
+    format: data
+    size: 396
+    xxh3: ebb88bc9cdf46ff57c09359ae6358e19
+  - path: SPCH88.VOC
+    format: data
+    size: 198562
+    xxh3: 8eb0a4e6a8a9badc3d43fc922031d0bd
+  - path: SPCH89.VOC
+    format: data
+    size: 33313
+    xxh3: da139fa6a5de4c755a39a598468e65b6
+  - path: SPCH90.VOC
+    format: data
+    size: 286498
+    xxh3: bd25a56ca6a89ba4486507ba031699a5
+  - path: SPCH91.VOC
+    format: data
+    size: 181282
+    xxh3: 90290b455be422b9391c5c6fefcf13cb
+  - path: SPCH92.VOC
+    format: data
+    size: 152354
+    xxh3: ab01fd22d3eb66a2697d32b9af428f39
+  - path: SPCH93.VOC
+    format: data
+    size: 318498
+    xxh3: 23d60ca77cbc1ecb476f08e28423c93c
+  - path: SPCH94.VOC
+    format: data
+    size: 596258
+    xxh3: 244e906b6c7ea11d10ded107f04bc529
+  - path: STDPATCH.AD
+    format: data
+    size: 4662
+    xxh3: a4eee44f21e428b578c263e321d5e0f5
+  - path: SVIEW.EXE
+    format: MZ
+    size: 89061
+    xxh3: 2b5581f61c843f6e8f27c8487dd852a9
+  - path: CD:AA.BAT
+    format: data
+    size: 133
+    xxh3: f003d753c0f44212b2eb19d3f65fd540
+  - path: CD:AC.BAT
+    format: data
+    size: 129
+    xxh3: e4b6afcb8ad4c872353c92fd13902103
+  - path: CD:ADLIB.ADV
+    format: data
+    size: 14775
+    xxh3: ce169eff097ffa4669276317b7acdd59
+  - path: CD:ADLIBG.ADV
+    format: data
+    size: 16257
+    xxh3: 72cbffbf5341b69f1ffaecfa529fbffe
+  - path: CD:ALGDIG.ADV
+    format: data
+    size: 5770
+    xxh3: 01a040598f30f94bf52c12c9bea72d97
+  - path: CD:ARIADIG.ADV
+    format: data
+    size: 5839
+    xxh3: 045a0d5f55517070efac1c0486116b8d
+  - path: CD:ARIATSR.ADV
+    format: data
+    size: 8792
+    xxh3: d2df892bd541761538e55dfb582ff8e5
+  - path: CD:CA.BAT
+    format: data
+    size: 133
+    xxh3: 8a303e6ebdbd0f6e4d60b58760fa8a27
+  - path: CD:CC.BAT
+    format: data
+    size: 129
+    xxh3: 14cdd8129c02424fca100f5ffcc2840e
+  - path: CD:CHARSAVE.GFF
+    format: data
+    size: 3864
+    xxh3: 9060735df0d4ab81c844888196e75446
+  - path: CD:CHARTRAN.EXE
+    format: MZ
+    size: 24761
+    xxh3: f7466f2ac604dc7c353358bc80bd0131
+    packer: LZEXE 0.91
+    unpacked:
+      size: 70288
+      xxh3: a2804715759141397dca547934213843
+      format: MZ
+      tool: DarkSunWakeRedux.Inspect unlzexe, commit e455d51
+  - path: CD:CINE/1.FLI
+    format: data
+    size: 5710926
+    xxh3: b36ebf5e1952bb1f26abff538c411202
+  - path: CD:CINE/2.FLI
+    format: data
+    size: 1293526
+    xxh3: 9d751dc035b4e2757f379d6b05acffbb
+  - path: CD:CINE/3.FLI
+    format: data
+    size: 6414620
+    xxh3: 72e1a83d2740b64c75174843e60516fc
+  - path: CD:CINE/4.FLI
+    format: data
+    size: 323812
+    xxh3: f2299f50f23473487a3b9120074fd59c
+  - path: CD:CINE/5.FLI
+    format: data
+    size: 5755367
+    xxh3: 6c78c171dcd6bbdde6d35601cd19afe7
+  - path: CD:DARKSAVE.GFF
+    format: data
+    size: 991
+    xxh3: 33f7aba0d5509aaa1767266088c536eb
+  - path: CD:DJ.DAT
+    format: data
+    size: 231
+    xxh3: 78012eb5cebe8d445b19b365cbfc8362
+  - path: CD:DSUN.EXE
+    format: MZ
+    size: 634704
+    xxh3: 318cd5ec0559901add3780097162a919
+  - path: CD:GF1DIGI.ADV
+    format: data
+    size: 5248
+    xxh3: bb26081418db180a88a3350e6b802168
+  - path: CD:GF1MIDI.ADV
+    format: data
+    size: 10816
+    xxh3: 2531b0cbe5b130af692927ddc561f893
+  - path: CD:GPLDATA.GFF
+    format: data
+    size: 2191945
+    xxh3: 08cd134f0b680916438385220baa35cf
+  - path: CD:INTR/INTR1.VOC
+    format: data
+    size: 325410
+    xxh3: 48326f29983b5547ca8ceebe51a0ff15
+  - path: CD:INTR/INTR10.VOC
+    format: data
+    size: 356898
+    xxh3: b44a83df21d1e88fb7e04526e15aad77
+  - path: CD:INTR/INTR11.VOC
+    format: data
+    size: 212898
+    xxh3: 7f22f7f34677cf7a3244c4bd9f749dac
+  - path: CD:INTR/INTR12.VOC
+    format: data
+    size: 188834
+    xxh3: 174a32b924c7d189c4ed98d046623122
+  - path: CD:INTR/INTR13.VOC
+    format: data
+    size: 247842
+    xxh3: d8ce606dfa7c38d0af6d8d854808a142
+  - path: CD:INTR/INTR14.VOC
+    format: data
+    size: 395042
+    xxh3: f5a8bc276e6bfd1f3302e5bbb7e680c8
+  - path: CD:INTR/INTR15.VOC
+    format: data
+    size: 364962
+    xxh3: 35eb721cfcb8f13875d57b9ca398ffc9
+  - path: CD:INTR/INTR16.VOC
+    format: data
+    size: 249890
+    xxh3: a14729fe2db24cf8015bc1987135e112
+  - path: CD:INTR/INTR17.VOC
+    format: data
+    size: 267170
+    xxh3: 2df8da12220ab7dc455b72e1b916b4cc
+  - path: CD:INTR/INTR18.VOC
+    format: data
+    size: 270242
+    xxh3: 612691434e3f37c7caca27a21f3200af
+  - path: CD:INTR/INTR19.VOC
+    format: data
+    size: 246178
+    xxh3: 8fb8e640eaca0bfd2cdf56ba05f5cf85
+  - path: CD:INTR/INTR2.VOC
+    format: data
+    size: 273075
+    xxh3: c6a723d7ec1f7edfff11bf10d04864fb
+  - path: CD:INTR/INTR20.VOC
+    format: data
+    size: 247330
+    xxh3: b45d70cb34a8dfebbed8843f1c97a74f
+  - path: CD:INTR/INTR21.VOC
+    format: data
+    size: 300066
+    xxh3: 14243bf1cbf0f279d4d5c10eb86fc972
+  - path: CD:INTR/INTR22.VOC
+    format: data
+    size: 386577
+    xxh3: 4be0ad0d0e802eabdb47aca1f9eebfed
+  - path: CD:INTR/INTR23.VOC
+    format: data
+    size: 230034
+    xxh3: 8063442b5af4914affcb053a207fab3d
+  - path: CD:INTR/INTR24.VOC
+    format: data
+    size: 155682
+    xxh3: 04ae5dd8091e2de86899ad9152cc9452
+  - path: CD:INTR/INTR25.VOC
+    format: data
+    size: 407842
+    xxh3: 74f2b8c7dffd496372bbf6a9d1072344
+  - path: CD:INTR/INTR26.VOC
+    format: data
+    size: 339618
+    xxh3: 01a31c00cab87198788d4027facffe2b
+  - path: CD:INTR/INTR27.VOC
+    format: data
+    size: 400802
+    xxh3: 2b542919b06b4549726863e83b2b2555
+  - path: CD:INTR/INTR28.VOC
+    format: data
+    size: 318498
+    xxh3: 7f6b87bbc33a9dd58eea790a1bb5e110
+  - path: CD:INTR/INTR29.VOC
+    format: data
+    size: 281762
+    xxh3: e0c30ed16811b0433211fbaa9e8e2c36
+  - path: CD:INTR/INTR3.VOC
+    format: data
+    size: 441378
+    xxh3: 452c7335097f44e18b0282ae8d937e0e
+  - path: CD:INTR/INTR30.VOC
+    format: data
+    size: 364834
+    xxh3: ceb8dafa006dc4fa3189475cad4f79ec
+  - path: CD:INTR/INTR31.VOC
+    format: data
+    size: 305698
+    xxh3: bf968b16aa6a8b731a324329d2fd9c80
+  - path: CD:INTR/INTR32.VOC
+    format: data
+    size: 351138
+    xxh3: 50cd0dd4a330fa6905585a4403240c8e
+  - path: CD:INTR/INTR33.VOC
+    format: data
+    size: 434722
+    xxh3: 55150a19f6e68514fc4c782cf5715d5f
+  - path: CD:INTR/INTR34.VOC
+    format: data
+    size: 556561
+    xxh3: 7a2702ec4c4f989a6ae5e8379a410916
+  - path: CD:INTR/INTR35.VOC
+    format: data
+    size: 379426
+    xxh3: 7d063eafb044f3345bb8c1952577d989
+  - path: CD:INTR/INTR36.VOC
+    format: data
+    size: 348066
+    xxh3: 57b8be8acc9a69a1b1af542476a47ca6
+  - path: CD:INTR/INTR37.VOC
+    format: data
+    size: 401442
+    xxh3: 764671859bc9520d2ac0f7c8b76ac6dd
+  - path: CD:INTR/INTR38.VOC
+    format: data
+    size: 310946
+    xxh3: 64fea930b1df6bc227f175cb2378618b
+  - path: CD:INTR/INTR39.VOC
+    format: data
+    size: 42145
+    xxh3: 5248803c7294098fe7227f12603ea7de
+  - path: CD:INTR/INTR4.VOC
+    format: data
+    size: 173218
+    xxh3: 3ffbf0d3993b217e415a32d2dc836741
+  - path: CD:INTR/INTR40.VOC
+    format: data
+    size: 36897
+    xxh3: 4d8e4982d06c1915c505a9e617779e8e
+  - path: CD:INTR/INTR41.VOC
+    format: data
+    size: 24994
+    xxh3: 3c7631253c56efaf5d3fedc6ffb51780
+  - path: CD:INTR/INTR42.VOC
+    format: data
+    size: 40097
+    xxh3: 4fcfdf334ed5f5826f8b49edd3a87fef
+  - path: CD:INTR/INTR49.VOC
+    format: data
+    size: 1040306
+    xxh3: 16efcd812c3fe9870070ed8bfc5633d0
+  - path: CD:INTR/INTR5.VOC
+    format: data
+    size: 396
+    xxh3: ebb88bc9cdf46ff57c09359ae6358e19
+  - path: CD:INTR/INTR6.VOC
+    format: data
+    size: 274082
+    xxh3: 7026cff1bab7858e4a071c600d5a6fa8
+  - path: CD:INTR/INTR7.VOC
+    format: data
+    size: 228258
+    xxh3: 48e18fd8dca8ef09dfd7700b36e050a7
+  - path: CD:INTR/INTR8.VOC
+    format: data
+    size: 313890
+    xxh3: 868371b8ecba1915e709247a5c6b1850
+  - path: CD:INTR/INTR9.VOC
+    format: data
+    size: 411938
+    xxh3: 207e4b77423b05ec28514b42195daefc
+  - path: CD:ITEMS.BIN
+    format: data
+    size: 936
+    xxh3: 3e19d1fe0b0ea8b67389bafdb61897e3
+  - path: CD:MT32MPU.ADV
+    format: data
+    size: 10707
+    xxh3: 63c875ada2e19bfcfcd0ba0f2fec4256
+  - path: CD:OBJEX.GFF
+    format: data
+    size: 6816516
+    xxh3: 0d302e467705fd95619f3199d6527f87
+  - path: CD:PASDIG.ADV
+    format: data
+    size: 4361
+    xxh3: a839d94cdebc4c7ee066381a7c258c57
+  - path: CD:PASFM.ADV
+    format: data
+    size: 15242
+    xxh3: 4614d577e4527564f2138eb637f5f52a
+  - path: CD:PASOPL.ADV
+    format: data
+    size: 16333
+    xxh3: 8995bebc9d610509edd355badefa2e2d
+  - path: CD:PCSPKR.ADV
+    format: data
+    size: 8434
+    xxh3: 11e0ec5c83cb5b5d178f97a17d55b1b2
+  - path: CD:RESOURCE.GFF
+    format: data
+    size: 5782746
+    xxh3: b98e6a1d2f2e233cc767717e7b170f4b
+  - path: CD:RGN001.GFF
+    format: data
+    size: 104769
+    xxh3: 063a33c7cfa3fb234f519af2d1182290
+  - path: CD:RGN032.GFF
+    format: data
+    size: 64641
+    xxh3: a4b22f8b69bd2a541d67ac4100fea872
+  - path: CD:RGN033.GFF
+    format: data
+    size: 89017
+    xxh3: 28fff3bd673d1f5400d68d50d03d9df5
+  - path: CD:RGN034.GFF
+    format: data
+    size: 71115
+    xxh3: 8060ac1f5b6f1a00c1efc453912e25b9
+  - path: CD:RGN036.GFF
+    format: data
+    size: 44403
+    xxh3: 942dc16432071eab84de11ac50b51484
+  - path: CD:RGN037.GFF
+    format: data
+    size: 91272
+    xxh3: 44f715c71cc7bb80ca1b2c211dcf474f
+  - path: CD:RGN038.GFF
+    format: data
+    size: 46473
+    xxh3: c4fdc36a1dad9d9acad0a5896ece2ad5
+  - path: CD:RGN039.GFF
+    format: data
+    size: 52701
+    xxh3: 803400abd76c6edcb560ff6338efdfd7
+  - path: CD:RGN03A.GFF
+    format: data
+    size: 96954
+    xxh3: 078b72cc5903ed0aa77f1c5f60926b47
+  - path: CD:RGN03B.GFF
+    format: data
+    size: 86323
+    xxh3: a556dddd0bc8cd3a15bc6bc6020f432a
+  - path: CD:RGN03C.GFF
+    format: data
+    size: 73480
+    xxh3: f64f8071c2e2eb952b4b99105aa868c9
+  - path: CD:RGN03D.GFF
+    format: data
+    size: 96122
+    xxh3: 5f540022e92d9ed06875555739e7171d
+  - path: CD:RGN03E.GFF
+    format: data
+    size: 84164
+    xxh3: 829b586f5e998ac1f4de5255356269fa
+  - path: CD:RGN03F.GFF
+    format: data
+    size: 101028
+    xxh3: 437b8fde166ba95e59922a472ea810da
+  - path: CD:RGN041.GFF
+    format: data
+    size: 119451
+    xxh3: 25da5688688113bb644f21aea5662b31
+  - path: CD:RGN042.GFF
+    format: data
+    size: 98884
+    xxh3: 2ea3bf5c83de67f76771071c1a49f374
+  - path: CD:RGN043.GFF
+    format: data
+    size: 73198
+    xxh3: 1192feab37bb4db7d3a89210b1689950
+  - path: CD:RGN044.GFF
+    format: data
+    size: 103129
+    xxh3: 28f2d0294873522027f04e5ae09e7883
+  - path: CD:RGN045.GFF
+    format: data
+    size: 94243
+    xxh3: 07be9352e835c7ec14926a808d58e6bb
+  - path: CD:RGN0FF.GFF
+    format: data
+    size: 33987
+    xxh3: ce488ce6806ad6a214569a318f408c91
+  - path: CD:SBAWE32.ADV
+    format: data
+    size: 39859
+    xxh3: 27e0e9f44933f9f6944e7aaaafe45737
+  - path: CD:SBDIG.ADV
+    format: data
+    size: 4667
+    xxh3: d73a7a80fe44edde8d5c5969c095fc05
+  - path: CD:SBFM.ADV
+    format: data
+    size: 14825
+    xxh3: 76c64270e4e5d7fe89768783e7b274ea
+  - path: CD:SBP1FM.ADV
+    format: data
+    size: 15235
+    xxh3: 3719782ecfc793536f8f6c8edf74c1ae
+  - path: CD:SBP2FM.ADV
+    format: data
+    size: 16357
+    xxh3: 0faa31676d7d993a393da11bde9e7885
+  - path: CD:SBPDIG.ADV
+    format: data
+    size: 4946
+    xxh3: 63f27d3c9e2c56fbf009093d00bfa79a
+  - path: CD:SOUND/SOUND001.VOC
+    format: data
+    size: 110241
+    xxh3: 0c33da72c447ab9facaeee104abe1e80
+  - path: CD:SOUND/SOUND002.VOC
+    format: data
+    size: 385921
+    xxh3: c2d697d6be87cc91dc884b859b2b6527
+  - path: CD:SOUND/SOUND003.VOC
+    format: data
+    size: 330721
+    xxh3: 5d772fd49741d4988561f98e4948b6fd
+  - path: CD:SOUND/SOUND012.VOC
+    format: data
+    size: 137633
+    xxh3: 7923128802968722e030d99ab0cc1f83
+  - path: CD:SOUND/SOUND021.VOC
+    format: data
+    size: 40009
+    xxh3: 312a9ec745707d181d4945797df64629
+  - path: CD:SOUND/SOUND025.VOC
+    format: data
+    size: 57153
+    xxh3: 9be272291a2aa226fedc8fdf31a044f8
+  - path: CD:SOUND/SOUND044.VOC
+    format: data
+    size: 385921
+    xxh3: 9df0aa0cb56c6b807d973338968559d0
+  - path: CD:SOUND/SOUND045.VOC
+    format: data
+    size: 127681
+    xxh3: 99391c0c35a5f8277c15a36860cd1079
+  - path: CD:SOUND/SOUND046.VOC
+    format: data
+    size: 652609
+    xxh3: 9a2ca8392f366200743eef7ed23ca2d2
+  - path: CD:SOUND/SOUND072.VOC
+    format: data
+    size: 67233
+    xxh3: 4b5498c82e04573e994b77bcf92bd0e4
+  - path: CD:SOUND/SOUND132.VOC
+    format: data
+    size: 25313
+    xxh3: a56c8706106705fa3cd5f764f9c3d74b
+  - path: CD:SOUND/SOUND138.VOC
+    format: data
+    size: 26785
+    xxh3: db7b9ef6fdfba2afa5a2a9497891835d
+  - path: CD:SOUND/SOUND147.VOC
+    format: data
+    size: 25377
+    xxh3: cb6a05ce968004bbd8d1152a50141944
+  - path: CD:SOUND/SOUND162.VOC
+    format: data
+    size: 164801
+    xxh3: f56d7f19cff62f89ece6c2be371457d2
+  - path: CD:SOUND/SOUND163.VOC
+    format: data
+    size: 137633
+    xxh3: 6d82c0d3c71f704a969824b6419c1f05
+  - path: CD:SOUND/SOUND164.VOC
+    format: data
+    size: 76489
+    xxh3: f7ffa4166f018b2e4307ffcdab139be0
+  - path: CD:SOUND/SOUND165.VOC
+    format: data
+    size: 76682
+    xxh3: dc462c57736ea614baebdde827f43bd3
+  - path: CD:SOUND/SOUND167.VOC
+    format: data
+    size: 87009
+    xxh3: c9e306162f508fb461cefd735a9f6bb6
+  - path: CD:SOUND/SOUND168.VOC
+    format: data
+    size: 78369
+    xxh3: 908c297e359ab2daca86dd0ad3dce79c
+  - path: CD:SOUND/SOUND169.VOC
+    format: data
+    size: 81921
+    xxh3: ed899cede6deec31a38f8c86bd85bffa
+  - path: CD:SOUND/SOUND170.VOC
+    format: data
+    size: 81921
+    xxh3: 33fa91da5bfb572726d0a5b70d147b03
+  - path: CD:SOUND/SOUND171.VOC
+    format: data
+    size: 607609
+    xxh3: 57b9674cadae2a0ef9d14c405ee63f52
+  - path: CD:SOUND/SOUND175.VOC
+    format: data
+    size: 593721
+    xxh3: 5af50e39476b53eac0c8c13321be3f9d
+  - path: CD:SOUND/SOUND181.VOC
+    format: data
+    size: 31169
+    xxh3: 9e06ac6722015c9189d0398f62518c7f
+  - path: CD:SOUND/SOUND197.VOC
+    format: data
+    size: 73633
+    xxh3: 36a37958d4f193dc23b494993754347f
+  - path: CD:SOUND/SOUND207.VOC
+    format: data
+    size: 27553
+    xxh3: ec786773a5b2e312a018b42e488e2b4d
+  - path: CD:SOUND/SOUND212.VOC
+    format: data
+    size: 74977
+    xxh3: 43ad4ebd0397631368e71774db6ad9fc
+  - path: CD:SOUND/SOUND213.VOC
+    format: data
+    size: 68033
+    xxh3: 9754d73011e1a321f8781870e345ba49
+  - path: CD:SOUND/SOUND214.VOC
+    format: data
+    size: 68033
+    xxh3: d219dc4fe570cbaf8d4e994ab292545f
+  - path: CD:SOUND/SOUND230.VOC
+    format: data
+    size: 90857
+    xxh3: 7f072f6765a2c8314495b693901f1f05
+  - path: CD:SOUND.BAT
+    format: data
+    size: 4873
+    xxh3: a64bd34b4c6a91bffa358b473f53d9ab
+  - path: CD:SOUND.INI
+    format: data
+    size: 34542
+    xxh3: 8dcbd9c58a54517946ca5cbc1203bbd3
+  - path: CD:SOUND_DS.EXE
+    format: MZ
+    size: 204593
+    xxh3: 236c2dc23c071eca421eb5b427caee57
+  - path: CD:SPEECH/SPCH100.VOC
+    format: data
+    size: 149282
+    xxh3: a035ac3c24a255f26e85b933a1a565c9
+  - path: CD:SPEECH/SPCH101.VOC
+    format: data
+    size: 94114
+    xxh3: b44e87a0b13ad026cfe8caced93d0610
+  - path: CD:SPEECH/SPCH102.VOC
+    format: data
+    size: 61986
+    xxh3: bd89da23125904b4f2647c4d2e38f2ed
+  - path: CD:SPEECH/SPCH103.VOC
+    format: data
+    size: 229875
+    xxh3: cf7e62ab81c57e3a142bd01f59f4cf9f
+  - path: CD:SPEECH/SPCH104.VOC
+    format: data
+    size: 186658
+    xxh3: a55a14904a22285705320f55f0adb0d3
+  - path: CD:SPEECH/SPCH105.VOC
+    format: data
+    size: 119714
+    xxh3: 6c6579030d7faeef2581dece7c560816
+  - path: CD:SPEECH/SPCH106.VOC
+    format: data
+    size: 253474
+    xxh3: d99e8be53b251a4dc961bcbbb107a5f4
+  - path: CD:SPEECH/SPCH107.VOC
+    format: data
+    size: 232482
+    xxh3: 21ad7c1d54ad44bbe1e3fc3318ea7c6a
+  - path: CD:SPEECH/SPCH108.VOC
+    format: data
+    size: 258210
+    xxh3: 6270a6ee29d46736a40651331283cf1c
+  - path: CD:SPEECH/SPCH109.VOC
+    format: data
+    size: 367266
+    xxh3: 5425f2da806db40f9a2dba20e706a5bb
+  - path: CD:SPEECH/SPCH110.VOC
+    format: data
+    size: 396
+    xxh3: ebb88bc9cdf46ff57c09359ae6358e19
+  - path: CD:SPEECH/SPCH111.VOC
+    format: data
+    size: 217506
+    xxh3: 69d7ae08bc9d2eb9a91b6b24dedd5991
+  - path: CD:SPEECH/SPCH112.VOC
+    format: data
+    size: 95906
+    xxh3: d582ae7311ee4878a5e6df5fa937a945
+  - path: CD:SPEECH/SPCH113.VOC
+    format: data
+    size: 459938
+    xxh3: 80b6e084d043f51e7b94ef254cdcd0fe
+  - path: CD:SPEECH/SPCH115.VOC
+    format: data
+    size: 271394
+    xxh3: 276f1208647c80c1a10754e5376301b1
+  - path: CD:SPEECH/SPCH116.VOC
+    format: data
+    size: 311330
+    xxh3: b7ce9aa16da66a5516027483d3fa2821
+  - path: CD:SPEECH/SPCH117.VOC
+    format: data
+    size: 129442
+    xxh3: 834675ac265a9e7e85145f4a094b1cf9
+  - path: CD:SPEECH/SPCH118.VOC
+    format: data
+    size: 118306
+    xxh3: 6f271112fbd4c7e2fa2a9f1c4bf2bdd3
+  - path: CD:SPEECH/SPCH119.VOC
+    format: data
+    size: 80418
+    xxh3: c1f8c1889f173013113db532f64e828f
+  - path: CD:SPEECH/SPCH120.VOC
+    format: data
+    size: 173858
+    xxh3: 1defe0e6be61f834ee5b7a591fad099d
+  - path: CD:SPEECH/SPCH121.VOC
+    format: data
+    size: 123938
+    xxh3: cac89518597482f396443fd2876277fc
+  - path: CD:SPEECH/SPCH122.VOC
+    format: data
+    size: 174754
+    xxh3: 9ae9c3bf89ecac2a4d18acd641d2c13a
+  - path: CD:SPEECH/SPCH123.VOC
+    format: data
+    size: 156962
+    xxh3: aa1fbc2d8de51544879864e98f2d8462
+  - path: CD:SPEECH/SPCH124.VOC
+    format: data
+    size: 121378
+    xxh3: 0ee6180546fadddd79ad673ba96c03eb
+  - path: CD:SPEECH/SPCH125.VOC
+    format: data
+    size: 125858
+    xxh3: b81c81efa5f6bb7297a811533ceee1c5
+  - path: CD:SPEECH/SPCH126.VOC
+    format: data
+    size: 117282
+    xxh3: c19619ffa41c8f6f62e15962e716cf0a
+  - path: CD:SPEECH/SPCH127.VOC
+    format: data
+    size: 93858
+    xxh3: d024361b5d768409e5270c69494abc3e
+  - path: CD:SPEECH/SPCH128.VOC
+    format: data
+    size: 236962
+    xxh3: 1c61e7e27dd8eec13fe27379d6cf97d9
+  - path: CD:SPEECH/SPCH129.VOC
+    format: data
+    size: 279458
+    xxh3: 35bcec1d3c8716b4c6ca1ebf10a41180
+  - path: CD:SPEECH/SPCH130.VOC
+    format: data
+    size: 264866
+    xxh3: cc39b5d41759e313f2b629e42dcd11b2
+  - path: CD:SPEECH/SPCH131.VOC
+    format: data
+    size: 349474
+    xxh3: c437ec8b001fb16074b47f4ac076dcb0
+  - path: CD:SPEECH/SPCH132.VOC
+    format: data
+    size: 402338
+    xxh3: ff3acbbcaabd9d4f36b0a8615dbfc2f7
+  - path: CD:SPEECH/SPCH133.VOC
+    format: data
+    size: 348322
+    xxh3: 053f7c8e5af56f8d00b8c1fdc2392d1e
+  - path: CD:SPEECH/SPCH134.VOC
+    format: data
+    size: 207394
+    xxh3: a2cda31809ce57ae3af4da85ce252810
+  - path: CD:SPEECH/SPCH135.VOC
+    format: data
+    size: 204322
+    xxh3: db6cc4557aff5476015af36e40f008b6
+  - path: CD:SPEECH/SPCH136.VOC
+    format: data
+    size: 114595
+    xxh3: a2c29b3577953cad48ddd2e6f446d4d4
+  - path: CD:SPEECH/SPCH137.VOC
+    format: data
+    size: 97826
+    xxh3: 9aff8ecdaf69f450ada9c1f76aed4f92
+  - path: CD:SPEECH/SPCH138.VOC
+    format: data
+    size: 48034
+    xxh3: 077a43f9d42a855bdd1494546feeeb2e
+  - path: CD:SPEECH/SPCH139.VOC
+    format: data
+    size: 25761
+    xxh3: 6285bf89e5bb9b2498ed6fc170a34df8
+  - path: CD:SPEECH/SPCH140.VOC
+    format: data
+    size: 39329
+    xxh3: be546d07d89faa2c1ead8bd5f8b0069f
+  - path: CD:SPEECH/SPCH141.VOC
+    format: data
+    size: 37025
+    xxh3: bc5e029bb5f9d1a51569900298bfa0e6
+  - path: CD:SPEECH/SPCH142.VOC
+    format: data
+    size: 41249
+    xxh3: a059684c9ace1ad138c261baedad005d
+  - path: CD:SPEECH/SPCH143.VOC
+    format: data
+    size: 48673
+    xxh3: 62211b64d4e41dbc7c78dfa708263b45
+  - path: CD:SPEECH/SPCH144.VOC
+    format: data
+    size: 33697
+    xxh3: 5bcff4de33ff613e7636e4fb3619a9c5
+  - path: CD:SPEECH/SPCH145.VOC
+    format: data
+    size: 41762
+    xxh3: c08d48eba41980ec2a7eb204a5d14f74
+  - path: CD:SPEECH/SPCH146.VOC
+    format: data
+    size: 149666
+    xxh3: e62d59d3fee440c4bf6a5d9ed4dcfbfc
+  - path: CD:SPEECH/SPCH147.VOC
+    format: data
+    size: 66338
+    xxh3: a6dc93bc3ee5470f522b974eb38bf18a
+  - path: CD:SPEECH/SPCH148.VOC
+    format: data
+    size: 192674
+    xxh3: 43a4450e4300250b54e4ccdc5e027eb8
+  - path: CD:SPEECH/SPCH149.VOC
+    format: data
+    size: 101154
+    xxh3: 4984175a9d8d79ae7d7eeacce7f8e9a1
+  - path: CD:SPEECH/SPCH150.VOC
+    format: data
+    size: 69282
+    xxh3: 4e046dcad24bd8d4d08cddcb99d0beec
+  - path: CD:SPEECH/SPCH151.VOC
+    format: data
+    size: 120866
+    xxh3: 302d12165f50e6b7e7ba9d619dc63180
+  - path: CD:SPEECH/SPCH152.VOC
+    format: data
+    size: 56482
+    xxh3: 04819f0968f86181c7110695816f05ed
+  - path: CD:SPEECH/SPCH153.VOC
+    format: data
+    size: 93602
+    xxh3: a97fe0a0716a4eb6353418918e40159d
+  - path: CD:SPEECH/SPCH154.VOC
+    format: data
+    size: 79778
+    xxh3: f5c595e46055d8dc103e8fe61ec4e816
+  - path: CD:SPEECH/SPCH155.VOC
+    format: data
+    size: 25121
+    xxh3: 1ddb24eaaa8513f63e48ccafd8c1c538
+  - path: CD:SPEECH/SPCH156.VOC
+    format: data
+    size: 68770
+    xxh3: f278106960029c106c383ea07a3a23d9
+  - path: CD:SPEECH/SPCH157.VOC
+    format: data
+    size: 64778
+    xxh3: 45a17f59a31413b1cb5e6608a6600633
+  - path: CD:SPEECH/SPCH158.VOC
+    format: data
+    size: 38945
+    xxh3: 60e1e3e0523283d1caab8b35a0f7de18
+  - path: CD:SPEECH/SPCH159.VOC
+    format: data
+    size: 29985
+    xxh3: 0bcbc9a905d4a7cd5e646220e87be677
+  - path: CD:SPEECH/SPCH160.VOC
+    format: data
+    size: 78498
+    xxh3: 50ddbc095191dc0239919230fea39a21
+  - path: CD:SPEECH/SPCH161.VOC
+    format: data
+    size: 80034
+    xxh3: 86cb1a356f40d7be06d5742e46f83a9d
+  - path: CD:SPEECH/SPCH162.VOC
+    format: data
+    size: 33570
+    xxh3: 3f3620696ffc2881b3f720af06bf5f3b
+  - path: CD:SPEECH/SPCH163.VOC
+    format: data
+    size: 126882
+    xxh3: 4f8236833db5a7ec2c1363b08905021e
+  - path: CD:SPEECH/SPCH164.VOC
+    format: data
+    size: 59425
+    xxh3: be1164a6faccbefeaf1200f2c25e13ca
+  - path: CD:SPEECH/SPCH200.VOC
+    format: data
+    size: 692130
+    xxh3: 1402fae058f3762ef1c7b4817f85af7e
+  - path: CD:SPEECH/SPCH201.VOC
+    format: data
+    size: 636834
+    xxh3: 8cc8fe6be72c5b489c02bb469ded2669
+  - path: CD:SPEECH/SPCH202.VOC
+    format: data
+    size: 143650
+    xxh3: 73c68fc8fc93d1294c32c4179d81cc5f
+  - path: CD:SPEECH/SPCH203.VOC
+    format: data
+    size: 142754
+    xxh3: 980e6c7591cc06c7c36ed8b97c3a9c46
+  - path: CD:SPEECH/SPCH204.VOC
+    format: data
+    size: 78242
+    xxh3: a7bf547373c6309e46906fff95749797
+  - path: CD:SPEECH/SPCH205.VOC
+    format: data
+    size: 42273
+    xxh3: d85cc61cfb8bd565b2b5d833b66de120
+  - path: CD:SPEECH/SPCH206.VOC
+    format: data
+    size: 74658
+    xxh3: 80dbba0aa91c17f1f6771fe664913a70
+  - path: CD:SPEECH/SPCH207.VOC
+    format: data
+    size: 75810
+    xxh3: 29b223ee9422da21389cd169b9bd0d06
+  - path: CD:SPEECH/SPCH208.VOC
+    format: data
+    size: 89378
+    xxh3: f52599371047c0523841c494c5ef057a
+  - path: CD:SPEECH/SPCH209.VOC
+    format: data
+    size: 93986
+    xxh3: 5f3d0538fbffe11cac465b2358f1ebf5
+  - path: CD:SPEECH/SPCH210.VOC
+    format: data
+    size: 492450
+    xxh3: 771b82db93ce773792b6c5d3a7ee1181
+  - path: CD:SPEECH/SPCH211.VOC
+    format: data
+    size: 135330
+    xxh3: f659ef028d584c24a0d5975e1a3fc88a
+  - path: CD:SPEECH/SPCH212.VOC
+    format: data
+    size: 186658
+    xxh3: 870e991e3e795ef52f080e5bc7da9777
+  - path: CD:SPEECH/SPCH213.VOC
+    format: data
+    size: 158242
+    xxh3: c559051d0756453d4781072e9ef4da79
+  - path: CD:SPEECH/SPCH300.VOC
+    format: data
+    size: 596642
+    xxh3: 339dbc6bce709d8971cffc2709d982a5
+  - path: CD:SPEECH/SPCH50.VOC
+    format: data
+    size: 1067682
+    xxh3: dfb8f2dcbb46545ebe668479b91b5793
+  - path: CD:SPEECH/SPCH52.VOC
+    format: data
+    size: 572962
+    xxh3: 2ef7726bfdf321bb7ce1912579f97be7
+  - path: CD:SPEECH/SPCH53.VOC
+    format: data
+    size: 336931
+    xxh3: 0db6b5c7fd0c6fc0e1047857facc74cf
+  - path: CD:SPEECH/SPCH54.VOC
+    format: data
+    size: 657954
+    xxh3: ab853ff4540d5052435b5658d6fbd3e5
+  - path: CD:SPEECH/SPCH55.VOC
+    format: data
+    size: 164003
+    xxh3: 1e5b0c253a6d9f474fe4df94d4074fa0
+  - path: CD:SPEECH/SPCH56.VOC
+    format: data
+    size: 3160483
+    xxh3: ee51bb170ad3661c09efa9f988e51fc9
+  - path: CD:SPEECH/SPCH57.VOC
+    format: data
+    size: 2818210
+    xxh3: 74fa2d6450c1f66b69d64c0f4167cf83
+  - path: CD:SPEECH/SPCH58.VOC
+    format: data
+    size: 200354
+    xxh3: 686bebe2362bfb337d6a97e6dae762a8
+  - path: CD:SPEECH/SPCH59.VOC
+    format: data
+    size: 80802
+    xxh3: 868ceccd4d56d3b62099b59d2e036a81
+  - path: CD:SPEECH/SPCH60.VOC
+    format: data
+    size: 572322
+    xxh3: 92e7cb2ba9e6316f2e64af6fb673fdd8
+  - path: CD:SPEECH/SPCH61.VOC
+    format: data
+    size: 180514
+    xxh3: b4987ceae7a5d1a306b570c3f17eb8f7
+  - path: CD:SPEECH/SPCH62.VOC
+    format: data
+    size: 43041
+    xxh3: 8f1ccf6021fa53be1f05e9112ebe1c2e
+  - path: CD:SPEECH/SPCH63.VOC
+    format: data
+    size: 176162
+    xxh3: d3ca73020ab3beabbe9bf8e3e0ef17a7
+  - path: CD:SPEECH/SPCH64.VOC
+    format: data
+    size: 207778
+    xxh3: c2d946306f855b939215477b9702618e
+  - path: CD:SPEECH/SPCH65.VOC
+    format: data
+    size: 212770
+    xxh3: 3f5f6dec027c3a32c128dbfebf6cab84
+  - path: CD:SPEECH/SPCH71.VOC
+    format: data
+    size: 277410
+    xxh3: 68f8f5cad7e4af457fe0c0043f5d46c4
+  - path: CD:SPEECH/SPCH72.VOC
+    format: data
+    size: 170274
+    xxh3: 889381e2a5f868011204a94d5f0a1730
+  - path: CD:SPEECH/SPCH73.VOC
+    format: data
+    size: 133666
+    xxh3: c741a41b0883f087cb7ca06dbde802bf
+  - path: CD:SPEECH/SPCH74.VOC
+    format: data
+    size: 323362
+    xxh3: 4090a4abdeaef96def91788fb1060425
+  - path: CD:SPEECH/SPCH75.VOC
+    format: data
+    size: 493858
+    xxh3: aac0240ee2044f18eb294ef36c34bdaf
+  - path: CD:SPEECH/SPCH77.VOC
+    format: data
+    size: 285346
+    xxh3: c711ee68b43b647b962249177c9650e6
+  - path: CD:SPEECH/SPCH78.VOC
+    format: data
+    size: 221885
+    xxh3: 292c81c13aa012336c8479945900aaca
+  - path: CD:SPEECH/SPCH79.VOC
+    format: data
+    size: 440354
+    xxh3: 9febbd7212ed444d7537f96cb90e1d8f
+  - path: CD:SPEECH/SPCH80.VOC
+    format: data
+    size: 112003
+    xxh3: d4fa7d60aded56d8987c0c76b9ca8c3b
+  - path: CD:SPEECH/SPCH81.VOC
+    format: data
+    size: 434580
+    xxh3: b177eb9c48a34a0479cd74abdcd4a301
+  - path: CD:SPEECH/SPCH82.VOC
+    format: data
+    size: 462351
+    xxh3: 4a7e3d592d4d525248676e375cd550bd
+  - path: CD:SPEECH/SPCH83.VOC
+    format: data
+    size: 271522
+    xxh3: dbdc781fb1f64a3424d4afed85b7a47a
+  - path: CD:SPEECH/SPCH84.VOC
+    format: data
+    size: 170786
+    xxh3: 139d08ac92725d48c4c89f784c64cb53
+  - path: CD:SPEECH/SPCH85.VOC
+    format: data
+    size: 212002
+    xxh3: 5f2674d2f14a4c75df750007b51ed131
+  - path: CD:SPEECH/SPCH86.VOC
+    format: data
+    size: 246562
+    xxh3: 7fa447e29fc9adb4290644b6597ff670
+  - path: CD:SPEECH/SPCH87.VOC
+    format: data
+    size: 396
+    xxh3: ebb88bc9cdf46ff57c09359ae6358e19
+  - path: CD:SPEECH/SPCH88.VOC
+    format: data
+    size: 198562
+    xxh3: 8eb0a4e6a8a9badc3d43fc922031d0bd
+  - path: CD:SPEECH/SPCH89.VOC
+    format: data
+    size: 33313
+    xxh3: da139fa6a5de4c755a39a598468e65b6
+  - path: CD:SPEECH/SPCH90.VOC
+    format: data
+    size: 286498
+    xxh3: bd25a56ca6a89ba4486507ba031699a5
+  - path: CD:SPEECH/SPCH91.VOC
+    format: data
+    size: 181282
+    xxh3: 90290b455be422b9391c5c6fefcf13cb
+  - path: CD:SPEECH/SPCH92.VOC
+    format: data
+    size: 152354
+    xxh3: ab01fd22d3eb66a2697d32b9af428f39
+  - path: CD:SPEECH/SPCH93.VOC
+    format: data
+    size: 318498
+    xxh3: 23d60ca77cbc1ecb476f08e28423c93c
+  - path: CD:SPEECH/SPCH94.VOC
+    format: data
+    size: 596258
+    xxh3: 244e906b6c7ea11d10ded107f04bc529
+  - path: CD:STDPATCH.AD
+    format: data
+    size: 5162
+    xxh3: 4ffe0341e6a416d907ce7193e1181d4b
+  - path: CD:TANDY.ADV
+    format: data
+    size: 8746
+    xxh3: 3f8fbe288d20883ac43f2de9684a5700
