@@ -424,6 +424,7 @@ Entries by area.
 | [FMT-SOUND-002](../formats/FMT-SOUND-002.md) | Music table DJ.DAT | supported |
 | [FMT-SOUND-003](../formats/FMT-SOUND-003.md) | STDPATCH.AD files | unknown |
 | [FMT-SOUND-004](../formats/FMT-SOUND-004.md) | ADV files on the disc | unknown |
+| [FMT-SOUND-005](../formats/FMT-SOUND-005.md) | GOG disc-audio Ogg tracks | unknown |
 | [FND-SOUND-001](../findings/FND-SOUND-001.md) | Every VOC file and BVOC resource is one Creative Voice File header, one sound block and a terminator | recorded |
 | [FND-SOUND-002](../findings/FND-SOUND-002.md) | The installation's music is 40 Ogg Vorbis files that game.ins mounts as audio tracks 2 to 41 | recorded |
 | [FND-SOUND-003](../findings/FND-SOUND-003.md) | SOUND_DS.EXE holds no VOC signature, no VOC file extension and no BIOS wait call | recorded |

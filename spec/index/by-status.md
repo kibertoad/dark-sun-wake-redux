@@ -6,7 +6,7 @@ Entries by status.
 
 ## unknown
 
-11 entries.
+12 entries.
 
 | ID | Title |
 |---|---|
@@ -17,6 +17,7 @@ Entries by status.
 | [FMT-EXE-006](../formats/FMT-EXE-006.md) | BAT launch files |
 | [FMT-SOUND-003](../formats/FMT-SOUND-003.md) | STDPATCH.AD files |
 | [FMT-SOUND-004](../formats/FMT-SOUND-004.md) | ADV files on the disc |
+| [FMT-SOUND-005](../formats/FMT-SOUND-005.md) | GOG disc-audio Ogg tracks |
 | [RULE-AI-002](../rules/RULE-AI-002.md) | What a computer-controlled combatant does in its turn |
 | [RULE-COMBAT-007](../rules/RULE-COMBAT-007.md) | What the difficulty setting changes in combat |
 | [RULE-EXPLORE-005](../rules/RULE-EXPLORE-005.md) | How a character walks to the cell a left click with the Walk pointer chose |
@@ -490,6 +491,7 @@ Entries whose Open questions section says more than None known.
 | [FMT-SOUND-002](../formats/FMT-SOUND-002.md) | Music table DJ.DAT | supported |
 | [FMT-SOUND-003](../formats/FMT-SOUND-003.md) | STDPATCH.AD files | unknown |
 | [FMT-SOUND-004](../formats/FMT-SOUND-004.md) | ADV files on the disc | unknown |
+| [FMT-SOUND-005](../formats/FMT-SOUND-005.md) | GOG disc-audio Ogg tracks | unknown |
 | [FMT-TEXT-001](../formats/FMT-TEXT-001.md) | Bitmap font resource | supported |
 | [FMT-TEXT-002](../formats/FMT-TEXT-002.md) | Bitmap font glyph | supported |
 | [FMT-TEXT-003](../formats/FMT-TEXT-003.md) | Text resource of CR LF lines | supported |

@@ -1,6 +1,6 @@
 # SOUND
 
-Next ID: Q-SOUND-008
+Next ID: Q-SOUND-009
 
 ## Static
 
@@ -37,6 +37,10 @@ Next ID: Q-SOUND-008
 - Q-SOUND-007. FMT-SOUND-004: What structure do the disc's nineteen `.ADV` files share, and which
   ones do the setup program or game load? Settles it: bounded file inspection and loader
   references. Blocks: Survey format coverage.
+- Q-SOUND-008. FMT-SOUND-005: What is the validated container of the forty `MUSIC/Track*.ogg`
+  files, how do their numbers map to disc tracks, and which part of the GOG runtime reads them?
+  Settles it: bounded file inspection, the `game.ins` mapping and the DOSBox configuration or
+  loader. Blocks: slice 7 audio work.
 
 ## Emulated call
 

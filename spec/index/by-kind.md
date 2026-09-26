@@ -28,7 +28,7 @@ Entries by kind.
 
 ## formats
 
-62 entries.
+63 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -84,6 +84,7 @@ Entries by kind.
 | [FMT-SOUND-002](../formats/FMT-SOUND-002.md) | Music table DJ.DAT | supported |
 | [FMT-SOUND-003](../formats/FMT-SOUND-003.md) | STDPATCH.AD files | unknown |
 | [FMT-SOUND-004](../formats/FMT-SOUND-004.md) | ADV files on the disc | unknown |
+| [FMT-SOUND-005](../formats/FMT-SOUND-005.md) | GOG disc-audio Ogg tracks | unknown |
 | [FMT-TEXT-001](../formats/FMT-TEXT-001.md) | Bitmap font resource | supported |
 | [FMT-TEXT-002](../formats/FMT-TEXT-002.md) | Bitmap font glyph | supported |
 | [FMT-TEXT-003](../formats/FMT-TEXT-003.md) | Text resource of CR LF lines | supported |
