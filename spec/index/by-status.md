@@ -6,13 +6,12 @@ Entries by status.
 
 ## unknown
 
-12 entries.
+11 entries.
 
 | ID | Title |
 |---|---|
 | [FMT-ACTOR-002](../formats/FMT-ACTOR-002.md) | Object data resource |
 | [FMT-ACTOR-003](../formats/FMT-ACTOR-003.md) | MONR resource |
-| [FMT-CONFIG-004](../formats/FMT-CONFIG-004.md) | game.ins disc-track mapping file |
 | [FMT-CONFIG-005](../formats/FMT-CONFIG-005.md) | PATCH.RTP file |
 | [FMT-EXE-006](../formats/FMT-EXE-006.md) | BAT launch files |
 | [FMT-SOUND-003](../formats/FMT-SOUND-003.md) | STDPATCH.AD files |
@@ -72,7 +71,7 @@ Entries by status.
 
 ## supported
 
-104 entries.
+105 entries.
 
 | ID | Title |
 |---|---|
@@ -84,6 +83,7 @@ Entries by status.
 | [FMT-CONFIG-001](../formats/FMT-CONFIG-001.md) | Sound configuration SOUND.CFG |
 | [FMT-CONFIG-002](../formats/FMT-CONFIG-002.md) | Sound card list SOUND.INI |
 | [FMT-CONFIG-003](../formats/FMT-CONFIG-003.md) | Saved settings in the PREF resource |
+| [FMT-CONFIG-004](../formats/FMT-CONFIG-004.md) | game.ins disc-track mapping file |
 | [FMT-EXE-001](../formats/FMT-EXE-001.md) | FBOV overlay pack at the end of DSUN.EXE |
 | [FMT-EXE-002](../formats/FMT-EXE-002.md) | FBOV segment-table descriptor |
 | [FMT-EXE-003](../formats/FMT-EXE-003.md) | FBOV overlay header in the resident image |
@@ -195,7 +195,7 @@ Entries by status.
 
 ## recorded
 
-227 entries.
+228 entries.
 
 | ID | Title |
 |---|---|
@@ -251,6 +251,7 @@ Entries by status.
 | [FND-CONFIG-005](../findings/FND-CONFIG-005.md) | DSUN.EXE reads sound.cfg through its sound library and warns when it cannot |
 | [FND-CONFIG-006](../findings/FND-CONFIG-006.md) | SOUND_DS.EXE does not hold .adv in either case |
 | [FND-CONFIG-007](../findings/FND-CONFIG-007.md) | SOUND.INI is a list of sound cards written as bracketed tags with values |
+| [FND-CONFIG-008](../findings/FND-CONFIG-008.md) | The installed cue sheet has one data track and forty file-backed audio tracks |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |
@@ -453,7 +454,6 @@ Entries whose Open questions section says more than None known.
 | [FMT-CONFIG-001](../formats/FMT-CONFIG-001.md) | Sound configuration SOUND.CFG | supported |
 | [FMT-CONFIG-002](../formats/FMT-CONFIG-002.md) | Sound card list SOUND.INI | supported |
 | [FMT-CONFIG-003](../formats/FMT-CONFIG-003.md) | Saved settings in the PREF resource | supported |
-| [FMT-CONFIG-004](../formats/FMT-CONFIG-004.md) | game.ins disc-track mapping file | unknown |
 | [FMT-CONFIG-005](../formats/FMT-CONFIG-005.md) | PATCH.RTP file | unknown |
 | [FMT-EXE-001](../formats/FMT-EXE-001.md) | FBOV overlay pack at the end of DSUN.EXE | supported |
 | [FMT-EXE-002](../formats/FMT-EXE-002.md) | FBOV segment-table descriptor | supported |

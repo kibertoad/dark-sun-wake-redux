@@ -42,7 +42,7 @@ Entries by kind.
 | [FMT-CONFIG-001](../formats/FMT-CONFIG-001.md) | Sound configuration SOUND.CFG | supported |
 | [FMT-CONFIG-002](../formats/FMT-CONFIG-002.md) | Sound card list SOUND.INI | supported |
 | [FMT-CONFIG-003](../formats/FMT-CONFIG-003.md) | Saved settings in the PREF resource | supported |
-| [FMT-CONFIG-004](../formats/FMT-CONFIG-004.md) | game.ins disc-track mapping file | unknown |
+| [FMT-CONFIG-004](../formats/FMT-CONFIG-004.md) | game.ins disc-track mapping file | supported |
 | [FMT-CONFIG-005](../formats/FMT-CONFIG-005.md) | PATCH.RTP file | unknown |
 | [FMT-EXE-001](../formats/FMT-EXE-001.md) | FBOV overlay pack at the end of DSUN.EXE | supported |
 | [FMT-EXE-002](../formats/FMT-EXE-002.md) | FBOV segment-table descriptor | supported |
@@ -173,7 +173,7 @@ Entries by kind.
 
 ## findings
 
-227 entries.
+228 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -229,6 +229,7 @@ Entries by kind.
 | [FND-CONFIG-005](../findings/FND-CONFIG-005.md) | DSUN.EXE reads sound.cfg through its sound library and warns when it cannot | recorded |
 | [FND-CONFIG-006](../findings/FND-CONFIG-006.md) | SOUND_DS.EXE does not hold .adv in either case | recorded |
 | [FND-CONFIG-007](../findings/FND-CONFIG-007.md) | SOUND.INI is a list of sound cards written as bracketed tags with values | recorded |
+| [FND-CONFIG-008](../findings/FND-CONFIG-008.md) | The installed cue sheet has one data track and forty file-backed audio tracks | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |

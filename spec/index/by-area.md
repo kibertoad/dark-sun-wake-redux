@@ -468,7 +468,7 @@ Entries by area.
 | [FMT-CONFIG-001](../formats/FMT-CONFIG-001.md) | Sound configuration SOUND.CFG | supported |
 | [FMT-CONFIG-002](../formats/FMT-CONFIG-002.md) | Sound card list SOUND.INI | supported |
 | [FMT-CONFIG-003](../formats/FMT-CONFIG-003.md) | Saved settings in the PREF resource | supported |
-| [FMT-CONFIG-004](../formats/FMT-CONFIG-004.md) | game.ins disc-track mapping file | unknown |
+| [FMT-CONFIG-004](../formats/FMT-CONFIG-004.md) | game.ins disc-track mapping file | supported |
 | [FMT-CONFIG-005](../formats/FMT-CONFIG-005.md) | PATCH.RTP file | unknown |
 | [FND-CONFIG-001](../findings/FND-CONFIG-001.md) | The installed CHARSAVE.GFF holds one 9-byte PREF resource, number 100 | recorded |
 | [FND-CONFIG-002](../findings/FND-CONFIG-002.md) | The PREF tag bytes occur once in the resident image of DSUN.EXE, inside a label, and three times in overlay 192 | recorded |
@@ -477,6 +477,7 @@ Entries by area.
 | [FND-CONFIG-005](../findings/FND-CONFIG-005.md) | DSUN.EXE reads sound.cfg through its sound library and warns when it cannot | recorded |
 | [FND-CONFIG-006](../findings/FND-CONFIG-006.md) | SOUND_DS.EXE does not hold .adv in either case | recorded |
 | [FND-CONFIG-007](../findings/FND-CONFIG-007.md) | SOUND.INI is a list of sound cards written as bracketed tags with values | recorded |
+| [FND-CONFIG-008](../findings/FND-CONFIG-008.md) | The installed cue sheet has one data track and forty file-backed audio tracks | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | sourced |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | sourced |
