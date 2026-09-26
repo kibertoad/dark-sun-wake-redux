@@ -4,7 +4,7 @@ meta:
   license: MIT
   endian: le
 doc: One 37-byte object slot record of the table the game keeps in memory.
-doc-ref: FMT-ACTOR-004, FND-ACTOR-003, FND-ACTOR-005, FND-COMBAT-026
+doc-ref: FMT-ACTOR-004, FND-ACTOR-003, FND-ACTOR-005, FND-COMBAT-026, FND-EXPLORE-003
 seq:
   - id: unk_00
     type: u1
@@ -21,10 +21,12 @@ seq:
     type: u1
   - id: unk_08
     type: u2
-  - id: unk_0a
+  - id: position_x
     type: u2
-  - id: unk_0c
+    doc: The object's position; shifted right by 4, the column of its cell.
+  - id: position_y
     type: u2
+    doc: The object's position; shifted right by 4, the row of its cell.
   - id: unk_0e
     type: u1
   - id: unk_0f

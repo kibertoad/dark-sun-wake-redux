@@ -11,7 +11,10 @@ seq:
     type: s2
     doc: Current hit points.
   - id: unk_02
-    size: 4
+    size: 2
+  - id: details_index
+    type: u2
+    doc: Index of the combatant's details record.
   - id: character_id
     type: u2
     doc: Identifier of the character in the character archive, 0 for an empty slot.

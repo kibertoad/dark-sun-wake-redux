@@ -485,7 +485,7 @@ catalogs.
   topmost-entity/leader Look, and bounded first-target melee feedback.
   Dynamic fields/interior actions, generalized target eligibility, Load/Save, setting mutations,
   other destination presentation, native panel/centering validation, animation,
-  and party/interface overlays remain pending. `EXE-GOG-REGION-001` now establishes
+  and party/interface overlays remain pending. `RULE-EXPLORE-003` now establishes
   `GMAP` bit `0x40` as the terrain/occupancy block. A bounded terrain grid and
   reusable camera-to-grid Walk-click planner connect Tyr to deterministic A*.
   A clock-free Core movement session now covers atomic plan/replan, one-cell

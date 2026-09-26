@@ -10,35 +10,6 @@ IDs.
 
 ## Initial rules
 
-### RULE-EXPLORATION-001 - Camera and party-display controls
-
-- **Behavior:** Moving the pointer to a screen edge scrolls continuously in that
-  direction until the pointer leaves the edge or the map boundary is reached.
-  The default exploration display shows only the leader; hotkeys 5 and 6 select
-  the expanded-party and leader-only displays respectively.
-- **Preconditions:** Exploration is active on a bounded region map.
-- **Evidence:** SRC-MANUAL-1994, "How to Play" pages 4-5 and the hotkey table.
-- **Confidence:** high for intended direction, stopping conditions, default,
-  and hotkey meanings; exact scroll rate and shipped edge thickness are unknown.
-- **Implementation:** `ExplorationSession` owns deterministic camera, cursor,
-  party-display, and active-view state. One-pixel scroll commands clamp to the
-  region bounds; the MonoGame input adapter emits them from the outermost
-  logical-canvas row or column and rerasterizes the Tyr viewport. Keys 5 and 6
-  update the Core display mode. Documented hotkeys open character, inventory,
-  cast/psionic, current-effects, overhead-map, and game-menu views. Escape
-  returns from any such view and requests exit only from the world; world input
-  is suspended while a view is open. The original Game Menu shell and controls
-  now render and route evidenced actions; expanded-party sprites and destination
-  shells remain pending.
-- **Tests:** initial state, all four edges and diagonal corners, interior/outside
-  coordinates, map clamping, mode-cycle order, display idempotence, and invalid
-  scroll deltas; every documented view and alias, ordered rising-edge hotkeys,
-  menu escape/exit behavior, suspended world input, and explicit mode selection.
-- **Uncertainty:** Scroll timing, generalized cursor eligibility, party sprite composition,
-  Game Menu frame states/origin, destination-menu presentation, and exact native
-  center-on-leader pixel policy remain open; deterministic visual-center
-  targeting is the current implementation policy.
-
 ### COMPAT-INPUT-001 - Modern mouse and fullscreen controls
 
 - **Decision:** Preserve the original pointer-at-edge camera scrolling and
@@ -104,7 +75,7 @@ IDs.
 - **Implementation:** `GridPathfinder` provides bounded deterministic
   eight-direction A* with octile costs, stable tie-breaking, explicit
   unreachable results, and diagonal corner-cut prevention. It accepts a
-  caller-supplied passability predicate. `EXE-GOG-REGION-001` establishes
+  caller-supplied passability predicate. `RULE-EXPLORE-003` establishes
   `GMAP` bit `0x40` as terrain/occupancy blocking, so `RegionTerrainGrid`
   supplies the bounded static terrain predicate and
   `ExplorationTerrainRoutePlanner` maps active Walk-mode canvas clicks through
@@ -133,43 +104,6 @@ IDs.
   sprite-frame animation remain open; none are inferred by the terrain grid,
   planner, or route session. Fixed-point positional interpolation is an
   explicit presentation policy.
-
-### RULE-EXPLORATION-002 - Atomic dynamic occupancy
-
-- **Behavior:** Dynamic actors occupy one or more region cells. Placement and
-  removal mutate each cell in an actor's footprint as one logical operation;
-  another actor cannot overlap those cells or blocked terrain.
-- **Evidence:** `EXE-GOG-REGION-001` establishes the `0x40`/`0x20` dynamic pair
-  and a coordinator called once per iterated footprint cell. The same bounded
-  analysis establishes the opening anchor relationship and a separate sentinel
-  path for actor records whose leading signed value has magnitude 430. Its
-  guarded dynamic placement path occupies a 5x5 cell area without its four
-  corners (21 cells), while its paired path clears that same area. The sentinel
-  bypasses ordinary coordinate enumeration, so the normal loop cannot prove a
-  universal footprint shape. Its concrete actor category, source-data mapping,
-  and mutation cadence are not established.
-- **Confidence:** high for per-cell occupied/open exclusion and the guarded
-  sentinel pattern in the supported executable; implementation-policy for
-  atomic rejection and stable ordering; unknown for the opening actor and other
-  concrete actor shapes.
-- **Implementation:** `GridFootprint` is immutable, duplicate-free, and
-  canonically ordered. `ExplorationOccupancySession` applies place/move/remove
-  commands atomically over bounded terrain, emits deterministic events and
-  explicit rejection reasons, snapshots placements in occupant-ID order, and
-  exposes a live whole-footprint anchor predicate to pathfinding.
-  `ExplorationActorMovementSession` composes that predicate and the route
-  session, commits each accepted route step to occupancy, and detects external
-  anchor drift. Runtime assigns the opening leader a documented provisional
-  single-cell footprint; no evidence-backed party or NPC shape is claimed.
-- **Tests:** multi-cell placement, own-cell overlap during movement, terrain,
-  bounds and other-occupant rejection without partial mutation, cell release,
-  missing-occupant handling, snapshot isolation/order, invalid payloads, live
-  blocker updates, route planning through the composed predicate, synchronized
-  actor advancement, commit rejection, interruption, and drift detection.
-- **Uncertainty:** Native occupant IDs, the meaning and source-data mapping of
-  the magnitude-430 sentinel, party formation, actor-specific footprints, NPC
-  placement, and movement timing remain open. The opening anchor convention
-  itself is now evidenced by `FND-ACTOR-002` and `EXE-GOG-REGION-001`.
 
 ## Conflict handling
 

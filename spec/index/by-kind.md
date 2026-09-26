@@ -92,7 +92,7 @@ Entries by kind.
 
 ## rules
 
-62 entries.
+66 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -111,6 +111,10 @@ Entries by kind.
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | sourced |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | sourced |
+| [RULE-EXPLORE-001](../rules/RULE-EXPLORE-001.md) | Holding the pointer at an edge of the map view scrolls the view toward that edge until the pointer leaves it or the map ends | sourced |
+| [RULE-EXPLORE-002](../rules/RULE-EXPLORE-002.md) | Key 5 shows the whole party on the map and key 6, outside combat, shows only the leader | supported |
+| [RULE-EXPLORE-003](../rules/RULE-EXPLORE-003.md) | Objects occupy the map cells of their footprint by setting the cells' blocked and occupied bits, which a cell test for movement reads | supported |
+| [RULE-EXPLORE-004](../rules/RULE-EXPLORE-004.md) | The keypad direction keys step the chosen character one cell, or in combat attack the object whose area holds the blocked cell | supported |
 | [RULE-IMAGE-001](../rules/RULE-IMAGE-001.md) | Decoding an image frame, and the row encoding | supported |
 | [RULE-IMAGE-002](../rules/RULE-IMAGE-002.md) | Decoding a planar image frame | supported |
 | [RULE-INPUT-001](../rules/RULE-INPUT-001.md) | The right mouse button steps the pointer through the Walk, Attack and Look modes | sourced |
@@ -161,7 +165,7 @@ Entries by kind.
 
 ## findings
 
-222 entries.
+227 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -224,6 +228,11 @@ Entries by kind.
 | [FND-EXE-005](../findings/FND-EXE-005.md) | Each overlay's fixup list names words in its code that hold a segment-table index times eight | recorded |
 | [FND-EXE-006](../findings/FND-EXE-006.md) | Several four-letter GFF tags occur in DSUN.EXE only inside overlay code | recorded |
 | [FND-EXE-007](../findings/FND-EXE-007.md) | The only resident routine that calls both the DOS seek and read wrappers is a signature-and-length record reader | recorded |
+| [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant | recorded |
+| [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead | recorded |
+| [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) | recorded |
+| [FND-EXPLORE-004](../findings/FND-EXPLORE-004.md) | The keypad direction keys step the chosen character one cell in eight directions, or in combat act on the object whose area holds a blocked cell | recorded |
+| [FND-EXPLORE-005](../findings/FND-EXPLORE-005.md) | Key 5 sets the byte at 57E0:13FA and brings back the party members key 6 hid, and key 6, outside combat, hides every member but the leader and clears it | recorded |
 | [FND-GFF-001](../findings/FND-GFF-001.md) | Every GFF file opens with a 28-byte header that gives the directory's offset and size | recorded |
 | [FND-GFF-002](../findings/FND-GFF-002.md) | A GFF directory lists one table per tag, and a plain table gives each resource's number, offset and size | recorded |
 | [FND-GFF-003](../findings/FND-GFF-003.md) | Indexed GFF tag tables give numbers as ranges and keep offsets and sizes in a GFFI resource | recorded |

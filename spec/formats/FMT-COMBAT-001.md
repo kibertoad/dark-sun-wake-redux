@@ -9,7 +9,7 @@ byte_order: little
 size: 49
 text: false
 definition: fmt_combat_001.ksy
-evidence: [FND-AI-003, FND-AI-004, FND-COMBAT-008, FND-COMBAT-018, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-024, FND-PARTY-012, FND-PARTY-013]
+evidence: [FND-AI-003, FND-AI-004, FND-COMBAT-008, FND-COMBAT-018, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-024, FND-PARTY-012, FND-PARTY-013, FND-EXPLORE-002]
 conflicting: []
 split_with: []
 related: [RULE-AI-001, RULE-COMBAT-004, RULE-COMBAT-005]
@@ -25,7 +25,8 @@ table holds the other combatants too [FND-COMBAT-022].
 | Offset | Size | Type | Name | Meaning | Status | Evidence |
 |---|---|---|---|---|---|---|
 | `0x00` | 2 | `INT16LE` | `hit_points` | The character's current hit points, the first number of the panel's second line. | supported | FND-COMBAT-018, FND-COMBAT-022 |
-| `0x02` | 4 | `BYTE[4]` | `unk_02` | Purpose unknown. | supported | FND-COMBAT-022 |
+| `0x02` | 2 | `BYTE[2]` | `unk_02` | Purpose unknown. | supported | FND-COMBAT-022 |
+| `0x04` | 2 | `UINT16LE` | `details_index` | Index of the combatant's FMT-COMBAT-002 record; `2D40:3E64` gives it as its second index when it is below 17. | supported | FND-COMBAT-022, FND-EXPLORE-002 |
 | `0x06` | 2 | `UINT16LE` | `character_id` | The identifier of the character in the character archive; 0 in a slot that holds no character. | supported | FND-COMBAT-008, FND-PARTY-012 |
 | `0x08` | 12 | `BYTE[12]` | `unk_08` | Purpose unknown. The party loader computes a value from offset `0x10`. | supported | FND-PARTY-013 |
 | `0x14` | 1 | `UINT8` | `combat_mark` | Set to 1 in every party slot with a character when combat starts. The panel names an effect only when it is 1, and the leader can be changed to a slot only when it is 0 or 1. | supported | FND-COMBAT-008, FND-COMBAT-022, FND-COMBAT-023, FND-PARTY-013 |

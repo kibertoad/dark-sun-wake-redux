@@ -16,4 +16,9 @@ seq:
   - id: unk_0e
     type: u2
   - id: unk_10
-    size: 50
+    size: 39
+  - id: footprint
+    type: u1
+    doc: Size of the occupied square in the low four bits, corner trim in the high four.
+  - id: unk_38
+    size: 10

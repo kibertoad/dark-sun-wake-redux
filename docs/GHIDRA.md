@@ -169,77 +169,8 @@ proof by itself. Never redirect broad output into the repository.
 
 ## Evidence record
 
-### EXE-GOG-REGION-001 - GMAP bit 0x40 blocks traversable cells
-
-- **Question:** Which `GMAP` bit is consulted when the supported executable
-  decides whether an in-bounds map cell blocks movement?
-- **Target:** BLD-GOG-EN-1.1 `DSUN.EXE`, reverified at 634,416 bytes with XXH3-128
-  `e296af55ba2ecde7e77f555c90f33d0b`;
-  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
-- **Bounded finding:** region loader `362c:01fa` requests tag scalar
-  `0x50414d47` (`GMAP`) at `362c:0322`. The dedicated predicate at
-  `25af:00e1` treats X outside 0..127 or Y outside 0..97 as blocked. After an
-  optional actor-specific test of the low three bits, its in-bounds result is
-  the cell byte masked with `0x40`. Seven bounded call sites use the predicate.
-  The placement helper at `25af:05aa` refuses an already-`0x40` cell and sets
-  `0x60`; removal helper `25af:05fb` requires `0x20` and clears `0x60`. This
-  independently identifies `0x40` as the shared blocked/occupied bit and
-  `0x20` as paired dynamic occupancy metadata. Coordinator `25af:0969`
-  selects those removal/placement helpers, and callers `2d40:0f89`,
-  `2d40:1045`, `2d40:32c5`, and `2d40:3388` iterate coordinate cells while
-  invoking it. The footprint enumerator at `2d40:0f89` uses a 0x25-byte actor
-  record and is called at `2d40:1143` and `2d40:118e`. Their enclosing path at
-  `2d40:10ae` reads the actor X/Y fields, shifts each right by four, and passes
-  the resulting cell coordinates to that enumerator. The rendering path
-  `31e0:2bb9` -> `31e0:2837` reads the same actor X/Y fields as the sprite
-  rectangle's world top-left and uses the stored width/height. Combined with
-  `FND-ACTOR-002`'s exact `(1184,1459)` top-left, this establishes opening
-  anchor cell `(74,91)`. This corroborates per-cell footprint mutation without
-  establishing the footprint shape, actor category, or update timing. A separate
-  `0x80` test at `2778:0006` does not participate in this movement predicate.
-- **Footprint-enumerator boundary:** a focused reinspection of `2d40:0f89`
-  establishes that it reads the first signed word of the indexed 0x25-byte
-  actor record and takes a separate branch when its absolute value is `430`.
-  That branch calls `25af:0adf` with the requested cell coordinates and returns
-  without the normal coordinate-enumeration loop or the `25af:0969`
-  coordinator. The ordinary branch obtains candidate cells from its helper,
-  filters them through `25af:00e1`, invokes the coordinator once for every
-  accepted candidate, and records those accepted coordinates for its caller.
-  Direct callers at `2d40:1143` and `2d40:118e` both use this routine.
-- **Sentinel-footprint refinement:** `25af:0adf` invokes `25af:09cb` in its
-  clear mode. That callee clears a centered 5x5 cell area through the existing
-  removal helper and stores an out-of-map marker. Its paired placement mode,
-  reached from the magnitude-430 branches in `2d40:32c5`, clears the previous
-  area and then places every cell in the same 5x5 area except its four corners:
-  21 cells. `2d40:3388` selects the paired clear mode. These are guarded
-  dynamic paths, not a mapping from an OJFF or ETAB entry to that actor record.
-  The initial enumerator's sentinel branch clears rather than enumerates cells.
-  This establishes the bounded dynamic 21-cell pattern but does not establish
-  what `430` denotes, its actor-data mapping, update timing, or the concrete
-  footprint of the opening actor. In particular, it rules out treating the
-  ordinary enumerator as proof that every actor has the same shape.
-- **Corroboration:** fingerprinted Tyr `GMAP` contains only `00`, `40`, `80`,
-  and `c0`, with respective counts 8,131, 2,044, 38, and 2,331. Its low five
-  bits are therefore always zero; 8,169 cells are terrain-open when only the
-  evidenced `0x40` block is applied.
-- **Confidence:** high for bounds, `0x40` terrain/occupancy blocking, the
-  `0x20` dynamic pairing, the guarded 21-cell sentinel pattern, the
-  sentinel/ordinary occupancy-path split, and the opening anchor relationship
-  in this executable; unknown for the sentinel's meaning, actor-data mapping,
-  `0x80`, actor-specific low-bit policy in other regions, moving blockers, and
-  the opening actor footprint.
-- **Implementation consequence:** `RegionTerrainGrid` interprets only `0x40`,
-  preserves and exposes every raw flag, treats out-of-bounds as closed, and is
-  combined with the independent deterministic pathfinder by
-  `ExplorationTerrainRoutePlanner`. The Core route session rechecks its supplied
-  passability predicate immediately before each semantic step, including both
-  diagonal side cells. `ExplorationOccupancySession` supplies bounded atomic
-  per-cell placement for caller-provided immutable footprints and a live
-  whole-footprint path predicate. `ExplorationActorMovementSession` commits that
-  occupancy atomically with each accepted semantic route step, but does not
-  infer a concrete actor footprint, movement cadence, or animation. The
-  resource-exact opening actor uses the evidenced anchor `(74,91)` independently
-  of those still-open behaviors.
+Static findings made with Ghidra go into `spec/findings/` as `method: static` findings,
+with the Ghidra version in their `tool` field.
 
 ## Clean-room boundary
 
