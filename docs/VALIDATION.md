@@ -239,7 +239,9 @@ and `deviations/` against the standard's list of
 [checks](https://dinorefurb.com/documentation-standard/#checks), compiles each
 `.ksy` file with the Kaitai Struct compiler, checks that every spec and
 deviation ID cited in `src/`, `tests/` and `tools/` exists and is not
-superseded, and fails when `spec/index/` or `PARITY.md` is stale. It fetches
+superseded, fails when `spec/index/` or `PARITY.md` is stale, and fails a `validated`
+row whose marked tests are not in `VALIDATION.md` as they are now (see
+[Tests against the original](#tests-against-the-original)). It fetches
 the full history so it can fail a pull request that deletes a spec ID, area or
 deviation that exists on `main`. The toolkit's
 [setup guide](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/blob/main/docs/documentation-standard-check.md)
@@ -264,3 +266,35 @@ The script does not check some items on the standard's list, such as the
 fixture schema and the hashes of saves and recordings; its guide lists them,
 and reviewers check those by hand. A save-patch write is given as a byte offset
 and value in the experiment's Setup section.
+
+## Tests against the original
+
+A parity row's Tests column lists only tests that compare the rebuild with
+evidence from the original. Those that need the original's files find them
+under the directory named by the `GAME_DIR` environment variable, which holds
+one directory per build, named by its build ID, with the files laid out as the
+build manifest's paths give them (`GAME_DIR/BLD-GOG-EN-1.1/DSUN.EXE`, and
+`GAME_DIR/BLD-GOG-EN-1.1/CD/...` for a file read from the disc).
+`GAME_DIR/captures/` holds the captures and saves that cannot be committed, each
+named by its XXH3-128 hash. A test checks each file's hash against the build
+manifest before it reads it, and skips when the file is absent.
+
+A test file that reads the original through `GAME_DIR` carries the comment
+`// needs: GAME_DIR`, and only such a file does; the documentation check fails a
+listed test file that mentions `GAME_DIR` without it. No test does so yet.
+
+CI never has a copy of the original, so the marked tests skip there. They run on
+the maintainer's machine with `GAME_DIR` set to the owned copy. After a run of
+`./tools/Test.ps1` in which every test in every marked test file of a
+`validated` row passed and none was skipped, record the run and commit the
+`VALIDATION.md` it writes at the repository root:
+
+```sh
+node artifacts/check-documentation-<sha>.mjs --record-validation BLD-GOG-EN-1.1
+git add VALIDATION.md
+```
+
+`VALIDATION.md` holds the commit, the date, the builds, and the hash of each
+marked test file of a `validated` row. The check fails a `validated` row whose
+marked test file is missing from it or has changed since it was recorded, so a
+change to such a test needs a new local run before it merges.

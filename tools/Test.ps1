@@ -65,7 +65,7 @@ finally {
     if ([IO.File]::Exists($overlayMapFixture)) { [IO.File]::Delete($overlayMapFixture) }
 }
 # The documentation standard check, from the toolkit commit the CI workflow pins.
-$documentationToolkitCommit = '6fe1e4133585d82458a83c5dac519720ae33adb5'
+$documentationToolkitCommit = '6e3cad31b6d61280a4649a873cf890377b402a75'
 $documentationCheck = Join-Path $root "artifacts/check-documentation-$documentationToolkitCommit.mjs"
 if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
     throw 'Node.js 20 or newer is required to run the documentation standard check.'
