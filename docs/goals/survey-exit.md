@@ -25,8 +25,8 @@ None known.
 ## Handover
 
 - Stage: Survey, with slices 2 and 3 in progress.
-- Branch: `main`, clean at `00ec491` before this goal file.
-- Last gate: 2026-09-26, documentation check passed (375 entries, 140 parity rows, 5 deviations); `./tools/Test.ps1` last passed per `docs/HANDOVER.md` (700 tests).
-- Unfinished: Survey exit: function inventory and manual screen coverage.
+- Branch: `main`, three commits ahead of `origin/main`; push awaits owner approval.
+- Last gate: 2026-09-27, `./tools/Test.ps1` passed (700 tests; documentation check passed).
+- Unfinished: Survey screen coverage for `SRC-MANUAL-1994`. The `BLD-GOG-EN-1.1/DSUN.EXE` function inventory is in `coverage/`.
 - Blockers: none known.
-- Next: export `DSUN.EXE` function inventory; check `SRC-MANUAL-1994` screen coverage.
+- Next: add the missing screen entries cited by `SRC-MANUAL-1994`, their parity rows and queue items; then check the Survey exit.
