@@ -27,13 +27,16 @@ Entries by kind.
 
 ## formats
 
-42 entries.
+45 entries.
 
 | ID | Title | Status |
 |---|---|---|
 | [FMT-ACTOR-001](../formats/FMT-ACTOR-001.md) | Object definition | supported |
 | [FMT-ACTOR-002](../formats/FMT-ACTOR-002.md) | Object data resource | unknown |
 | [FMT-ACTOR-003](../formats/FMT-ACTOR-003.md) | MONR resource | unknown |
+| [FMT-CONFIG-001](../formats/FMT-CONFIG-001.md) | Sound configuration SOUND.CFG | supported |
+| [FMT-CONFIG-002](../formats/FMT-CONFIG-002.md) | Sound card list SOUND.INI | supported |
+| [FMT-CONFIG-003](../formats/FMT-CONFIG-003.md) | Saved settings in the PREF resource | supported |
 | [FMT-EXE-001](../formats/FMT-EXE-001.md) | FBOV overlay pack at the end of DSUN.EXE | supported |
 | [FMT-EXE-002](../formats/FMT-EXE-002.md) | FBOV segment-table descriptor | supported |
 | [FMT-EXE-003](../formats/FMT-EXE-003.md) | FBOV overlay header in the resident image | supported |
@@ -76,11 +79,14 @@ Entries by kind.
 
 ## rules
 
-29 entries.
+32 entries.
 
 | ID | Title | Status |
 |---|---|---|
 | [RULE-ACTOR-001](../rules/RULE-ACTOR-001.md) | Drawing a region's placed objects | supported |
+| [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
+| [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | sourced |
+| [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | sourced |
 | [RULE-IMAGE-001](../rules/RULE-IMAGE-001.md) | Decoding an image frame, and the row encoding | supported |
 | [RULE-IMAGE-002](../rules/RULE-IMAGE-002.md) | Decoding a planar image frame | supported |
 | [RULE-INPUT-001](../rules/RULE-INPUT-001.md) | The right mouse button steps the pointer through the Walk, Attack and Look modes | sourced |
@@ -112,7 +118,7 @@ Entries by kind.
 
 ## findings
 
-134 entries.
+141 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -129,6 +135,13 @@ Entries by kind.
 | [FND-ACTOR-011](../findings/FND-ACTOR-011.md) | The RDFF request routines use the 37-byte slot records and not the 13-byte records of segment 1695 | recorded |
 | [FND-ACTOR-012](../findings/FND-ACTOR-012.md) | The opening region names 287 objects whose images hold 477 frames | recorded |
 | [FND-ACTOR-013](../findings/FND-ACTOR-013.md) | Split at 81 bytes, no column of the MONR resource is constant | recorded |
+| [FND-CONFIG-001](../findings/FND-CONFIG-001.md) | The installed CHARSAVE.GFF holds one 9-byte PREF resource, number 100 | recorded |
+| [FND-CONFIG-002](../findings/FND-CONFIG-002.md) | The PREF tag bytes occur once in the resident image of DSUN.EXE, inside a label, and three times in overlay 192 | recorded |
+| [FND-CONFIG-003](../findings/FND-CONFIG-003.md) | SOUND.CFG is 59 bytes: two equal 10-byte blocks, a word, two 14-byte driver names and nine more bytes | recorded |
+| [FND-CONFIG-004](../findings/FND-CONFIG-004.md) | SOUND_DS.EXE reads sound.ini and writes the 59 bytes of sound.cfg, run by SOUND.BAT | recorded |
+| [FND-CONFIG-005](../findings/FND-CONFIG-005.md) | DSUN.EXE reads sound.cfg through its sound library and warns when it cannot | recorded |
+| [FND-CONFIG-006](../findings/FND-CONFIG-006.md) | SOUND_DS.EXE does not hold .adv in either case | recorded |
+| [FND-CONFIG-007](../findings/FND-CONFIG-007.md) | SOUND.INI is a list of sound cards written as bracketed tags with values | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |

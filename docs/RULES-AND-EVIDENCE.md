@@ -46,65 +46,6 @@ the owned build.
   behavior from it. A constrained native call path or controlled observation
   remains required.
 
-### DATA-GOG-SOUND-001 - SOUND.CFG structural envelope
-
-- **Question:** What safe structural facts can be established about the owned
-  sound configuration before assigning it to Preferences behavior or writing a
-  reader?
-- **Method:** Inspect the fingerprinted 59-byte `SOUND.CFG` from
-  BLD-GOG-EN-1.1 as a bounded byte sequence. Record only repeated-field,
-  ASCII-envelope, padding, and length facts; do not execute or copy its
-  payload into the repository.
-- **Finding:** bytes `0x00..0x09` and `0x0a..0x13` are identical ten-byte
-  blocks. Two fixed ten-character ASCII identifiers ending in `.adv` begin at
-  `0x16` and `0x24`, each followed by zero padding. The remaining bytes begin
-  at `0x32` and form a 13-byte scalar area. The two identifiers and remaining
-  scalar values have no assigned semantics.
-- **Confidence:** high for the observed file length, repeated prefixes,
-  identifier envelopes, padding, and trailing boundary in the supported build;
-  unknown for all field meanings and cross-file relationships.
-- **Implementation consequence:** no production reader or setting mutation is
-  introduced. A future reader must first extend the source manifest contract,
-  bound each fixed region, reject unsupported length/terminator/padding forms,
-  and acquire independent evidence before mapping a field to UI, volume,
-  driver selection, playback, or timing. `EXE-GOG-SOUND-001` further confirms
-  that `DSUN.EXE` has neither literal `SOUND.CFG` nor literal `SOUND.INI`, so
-  this file cannot be bound to the Preferences controls from either direct
-  static-name match. Those negative results do not exclude a dynamically
-  assembled path, another configuration-owning module, or runtime state
-  propagation.
-  `EXE-GOG-SOUND-005` separately finds neither lowercase nor uppercase `.adv`
-  suffix bytes anywhere in the complete physical sound-helper file, including
-  its MZ overlay. This excludes only those exact literal encodings; it does not
-  connect the two configuration identifiers to the helper or give them a
-  driver-selection role.
-- **Uncertainty:** source versus runtime ownership, module-selection semantics,
-  every scalar-field role, interaction with `SOUND.INI`/`SOUND_DS.EXE`, device
-  detection, mixer defaults, voice/music routing, codecs, and playback timing.
-
-### DATA-GOG-SOUND-002 - No literal configuration pathname in the sound helper
-
-- **Question:** Does the separately shipped sound helper directly identify
-  either installed configuration filename (`SOUND.CFG` or `SOUND.INI`) as the
-  source for setup or in-game Preferences behavior?
-- **Method:** Fingerprint `SOUND_DS.EXE` from the supported installation, then
-  scan every physical byte (including its MZ-file overlay) for the nine-byte
-  ASCII sequence `SOUND.CFG` and the nine-byte ASCII sequence `SOUND.INI`. No
-  bytes or decompiler output are retained.
-- **Finding:** `SOUND_DS.EXE` is 204,593 bytes with XXH3-128
-  `236c2dc23c071eca421eb5b427caee57`.
-  Its complete physical file contains neither literal `SOUND.CFG` nor literal
-  `SOUND.INI`. Together with `EXE-GOG-SOUND-001`, neither of the two examined
-  shipped executables provides a direct static pathname link to the 59-byte
-  configuration file, and the helper supplies no direct static link to either
-  installed configuration filename.
-- **Confidence:** high for this exact-file literal-name absence; unknown for
-  configuration ownership, dynamic path construction, and all settings.
-- **Implementation consequence:** do not infer that the helper owns, reads, or
-  writes the configuration file, and do not copy setup semantics into the
-  in-game Preferences screen. A reader or mutation requires an independent
-  field-to-observable-behavior connection.
-
 ### DATA-GOG-MEDIA-001 - Cinematic and voice-file header inventory
 
 - **Question:** What fixed media-file envelopes can be established for the
@@ -545,26 +486,6 @@ the owned build.
   placement, and movement timing remain open. The opening anchor convention
   itself is now evidenced by `FND-ACTOR-002` and `EXE-GOG-REGION-001`.
 
-### DATA-GOG-PREF-001 - A bounded but opaque `PREF` envelope
-
-- **Question:** Does the `PREF` resource in the owned character archive support
-  an extracted Preferences schema or default-setting behavior?
-- **Method:** Enumerate the fingerprinted `CHARSAVE.GFF` resource directory and
-  apply the bounded opaque-record profiler using its complete nine-byte length.
-  No source bytes were retained.
-- **Finding:** the archive contains exactly one `PREF` resource, #100, with an
-  exact nine-byte payload. A single nine-byte record establishes only that
-  envelope length; it supplies no repeated stride, field boundary, or semantic
-  role. `EXE-GOG-PREF-001` independently finds no direct literal executable
-  reference to the tag.
-- **Confidence:** high for archive identity, resource number, count, and
-  payload length; unknown for field meanings, defaults, persistence ownership,
-  and any relationship to the in-game Preferences screen.
-- **Implementation:** retain the payload byte-for-byte as DSOP in the verified
-  pack. Do not add a `PREF` reader, settings schema, mutation, or UI binding.
-- **Tests:** exact owned-pack inventory/hash verification and generic DSOP
-  envelope bounds/read-back; no semantic fixture is introduced.
-
 ### DATA-GOG-SMALLTAG-001 - Opaque PLYL and CSEQ envelope inventory
 
 - **Question:** Do the short `PLYL` or `CSEQ` resources yield a structural
@@ -848,7 +769,7 @@ the owned build.
 - **Evidence status:** community research only. The manual assigns difficulty to
   combat but gives no numerical contract; the executable exposes the four
   labels but no direct label-to-setting or setting-to-rule binding
-  (`FMT-TEXT-004`, `EXE-GOG-PREF-001`).
+  (`FMT-TEXT-004`, `FND-CONFIG-002`).
 - **Reproduction target:** from equivalent clean saves, set each difficulty
   before entering a fresh controlled encounter; capture the same identified
   hostile's inspectable hit-point state before any action, then repeat after

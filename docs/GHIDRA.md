@@ -169,31 +169,6 @@ proof by itself. Never redirect broad output into the repository.
 
 ## Evidence record
 
-### EXE-GOG-PREF-001 - No direct literal `PREF` resource route
-
-- **Question:** Does the sole `PREF` resource-family tag yield a direct
-  executable path that can define Preferences settings behavior?
-- **Target:** BLD-GOG-EN-1.1 `DSUN.EXE`, reverified at 634,416 bytes with
-  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
-  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
-- **Method:** `ReportBytePattern` searched all loaded executable blocks for the
-  exact four-byte ASCII encoding `PREF`. Its single result at `5000:8c85` in
-  `CODE_208` was then passed to `ReportReferences`.
-- **Bounded finding:** the raw literal occurs once and has no direct Ghidra
-  reference. The query supplies no tag lookup, resource manager caller,
-  control binding, stored field, default, range, increment, or audio/rules
-  consumer.
-- **Interpretation:** this excludes only a direct reference to that literal in
-  this executable. It does not show that the resource is unused, nor rule out
-  a constructed tag, indirect lookup, a different module, or runtime-propagated
-  state.
-- **Confidence:** high for the one raw occurrence and absent direct-reference
-  result; unknown for loader ownership, resource layout, and every
-  player-visible Preferences behavior.
-- **Implementation consequence:** retain the `PREF` payload as DSOP and keep
-  Preferences mutations inert. Do not infer a settings schema or a behavior
-  from this negative lead.
-
 ### EXE-GOG-REGION-001 - GMAP bit 0x40 blocks traversable cells
 
 - **Question:** Which `GMAP` bit is consulted when the supported executable
@@ -1473,33 +1448,6 @@ proof by itself. Never redirect broad output into the repository.
 - **Implementation consequence:** retain both families as DSOP. Do not add
   readers or infer interaction or combat behavior from this negative result.
 
-### EXE-GOG-SOUND-001 - No literal sound-configuration loader path
-
-- **Question:** Does the supported executable contain a direct textual link
-  from either examined sound-configuration pathname (`SOUND.CFG` or
-  `SOUND.INI`) to a Preferences setting or configuration-loading path?
-- **Target:** BLD-GOG-EN-1.1 `DSUN.EXE`, reverified at 634,416 bytes with
-  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
-  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
-- **Method:** after the normal analyzer pass, `ReportBytePattern` searched all
-  loaded blocks for each nine-byte ASCII sequence `SOUND.CFG` and `SOUND.INI`
-  and would have reported every matching address and direct reference. Neither
-  query produced a match.
-- **Bounded finding:** neither literal pathname is present in this executable
-  image. Therefore these queries supply no direct executable call, path
-  reference, or control binding that can connect either candidate configuration
-  source to the Preferences controls.
-- **Interpretation:** this rules out only a static literal-name lead in this
-  binary. It does not rule out a dynamically assembled path, a configuration
-  reader in another executable/module, a differently named source, or runtime
-  propagation through resident state.
-- **Confidence:** high for the two bounded literal-name absences; unknown for
-  every configuration field and setting behavior.
-- **Implementation consequence:** retain inert Preferences mutations. Do not
-  map `SOUND.CFG`/`SOUND.INI` fields, setting ranges, defaults, or audio timing
-  from these absences; seek a corroborating controlled observation or a bounded
-  finding in the actual configuration-owning path.
-
 ### EXE-GOG-SOUND-002 - Sound helper has no loaded VOC header signature
 
 - **Question:** Does the separately shipped sound helper expose a direct native
@@ -1581,39 +1529,6 @@ proof by itself. Never redirect broad output into the repository.
   preserve the CPU-independent scheduling requirement. Do not add a decoder,
   filename mapping, or playback behavior without a bounded consumer path and
   controlled observation.
-
-### EXE-GOG-SOUND-005 - Sound helper has no loaded `.adv` module suffix
-
-- **Question:** Do the two padded `.adv` module-identifier envelopes in the
-  bounded `SOUND.CFG` file have a direct loaded-image suffix route in the
-  separately shipped sound helper that could constrain driver selection?
-- **Target:** BLD-GOG-EN-1.1 `SOUND_DS.EXE`, reverified at 204,593 bytes with
-  XXH3-128 `236c2dc23c071eca421eb5b427caee57`;
-  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. The full analyzer
-  pass completed before both focused queries.
-- **Method:** `ReportBytePattern` searched every loaded program-memory block
-  for both four-byte ASCII case variants `2e 61 64 76` (`.adv`) and
-  `2e 41 44 56` (`.ADV`). Either query would report raw hits and direct
-  references. Because the MZ loader reports a 0x13951-byte physical overlay,
-  a separate PowerShell 5.1.26100.9444 bounded scan reverified the exact file
-  fingerprint, read the complete 204,593-byte physical file, and reported only
-  count and offset for those same two patterns; no source bytes were retained.
-- **Bounded finding:** neither case-variant occurs in either the loaded helper
-  image or the complete physical file, including its overlay. The queries
-  therefore yield no literal suffix, direct reference, driver filename
-  construction, configuration read, module load, or Preferences path.
-- **Interpretation:** this excludes only the two exact raw suffix encodings in
-  the helper's complete physical file. A complete module name or suffix can be
-  supplied by a caller, constructed dynamically, delegated to a driver, or
-  unused. The result neither assigns the two `SOUND.CFG` identifiers a role nor
-  establishes helper ownership.
-- **Confidence:** high for both exact full-file literal absences; unknown for
-  configuration ownership, driver selection, device setup, and all audio
-  behavior.
-- **Implementation consequence:** retain `SOUND.CFG` as opaque DSOP and keep
-  Preferences mutations inert. Do not add a driver-selection reader or map
-  settings to audio behavior until an independent bounded consumer path and
-  controlled observation establish their relationship.
 
 ### EXE-GOG-SOUND-006 - Physical sound-helper overlay has no complete VOC header
 

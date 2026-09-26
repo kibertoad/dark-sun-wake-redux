@@ -4,7 +4,8 @@ Status: requested
 <!-- or: accepted, YYYY-MM-DD / declined: the owner's reason / held, YYYY-MM-DD -->
 
 - Build: BLD-GOG-EN-1.1, the owner's GOG installation under its own DOSBox launcher.
-- Settles: Q-CONFIG-001 (queue/CONFIG.md, Live session).
+- Settles: Q-CONFIG-001 (queue/CONFIG.md, Live session), for SCR-UI-007, RULE-CONFIG-001 to
+  RULE-CONFIG-003 and FMT-CONFIG-003.
 - Blocks: slice 3.
 - Length: about 20 minutes.
 

@@ -86,13 +86,9 @@ are:
   executable carries five `.VOC` fragments, but every one is unreferenced data
   rather than an instruction (`EXE-GOG-SOUND-009`). These facts establish no
   decoder, codec, filename mapping, or timing contract.
-- `SOUND.CFG` has a bounded 59-byte envelope, but neither the main executable
-  nor the separately shipped sound helper contains its literal pathname; the
-  main executable also has no literal `SOUND.INI` pathname. This is not
-  evidence of configuration ownership or Preferences behavior. Neither
-  case-variant of the configuration file's `.adv` module suffix occurs anywhere
-  in the helper's complete physical file, including its overlay, which likewise
-  does not establish module ownership or driver-selection behavior. The
+- `SOUND.CFG` is `FMT-CONFIG-001`: the sound helper `SOUND_DS.EXE` reads
+  `SOUND.INI` (`FMT-CONFIG-002`) and writes it (`FND-CONFIG-004`), and the main
+  executable reads it through its sound library (`FND-CONFIG-005`). The
   complete main executable also lacks the literal `SOUND_DS.EXE` helper
   filename (`EXE-GOG-SOUND-010`), and its decoded `INT 21h` instructions have
   no nearby literal DOS EXEC setup (`EXE-GOG-SOUND-011`), so no main-to-helper
@@ -292,16 +288,13 @@ Follow-up reference queries also find no recovered direct caller of the generic
 window-registration entry or its two generic callback setters. That prevents
 using the generic UI framework as an identified Preferences registration path;
 it does not prove that native callbacks or settings behavior are absent.
-`PREF` #100 is a single nine-byte envelope in `CHARSAVE.GFF`; it provides no
-field layout or connection to the in-game screen. The sole raw `PREF` tag also
-has no direct executable reference, so neither source establishes settings
-behavior.
-`SOUND.CFG` and `SOUND.INI` are absent as literal names in the separately
-shipped sound helper, and `SOUND.INI` is also absent from the main executable,
-so neither is mapped to Preferences. See
-`SCR-UI-007`, `DATA-GOG-PREF-001`, `FMT-TEXT-004`, `FND-TEXT-006`,
-`EXE-GOG-PREF-001`, and `DATA-GOG-SOUND-002` in the detailed evidence records
-before changing this boundary.
+`PREF` #100 in `CHARSAVE.GFF` is `FMT-CONFIG-003`: nine bytes the game writes
+with every saved game and reads back on loading, whose fields are copied to and
+from globals no finding yet ties to a named setting. The on-off, difficulty and
+volume behaviour the manual gives is `RULE-CONFIG-001` to `RULE-CONFIG-003`.
+The game reads `SOUND.CFG` (`FMT-CONFIG-001`) through its sound library, and
+only the setup program reads `SOUND.INI` (`FMT-CONFIG-002`). See `SCR-UI-007`,
+`FMT-TEXT-004` and `FND-TEXT-006` before changing this boundary.
 
 ## Determinism and time
 
@@ -404,8 +397,8 @@ rejecting unsupported semantics:
   `FMT-SAVE-002` and `FMT-SAVE-001`: overlay 192 writes and reads `GREQ` when
   it saves and loads a game (`FND-SAVE-004`, `FND-SAVE-005`), and `CACT` holds
   the identifiers of stored characters (`FND-PARTY-011`, `FND-PARTY-012`).
-- `EXE-GOG-PREF-001` finds one raw `PREF` tag literal but no direct reference;
-  it supplies no Preferences loader, settings schema, default, or control
+- The `PREF` tag is pushed only by the save and load routines of overlay 192
+  (`FND-CONFIG-002`); it supplies no settings names, defaults, or control
   behavior.
 - `FND-IMAGE-008` finds no operand for the static-title `BMP ` #11011, so it
   supplies no title loader or sequencing rule.
