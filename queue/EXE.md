@@ -1,6 +1,6 @@
 # EXE
 
-Next ID: Q-EXE-002
+Next ID: Q-EXE-003
 
 ## Static
 
@@ -15,6 +15,10 @@ Next ID: Q-EXE-002
   resident routine that calls both literal DOS seek and read wrappers
   (FND-EXE-007), which reads signature-and-length records and takes no pack
   input. Blocks: none.
+
+- Q-EXE-002. FMT-EXE-006: What commands and encoding do the installed and disc `.BAT` files
+  contain, and which ones does the game or setup invoke? Settles it: bounded readings of the seven
+  files and of references that launch them. Blocks: Survey format coverage.
 
 ## Emulated call
 

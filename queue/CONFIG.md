@@ -1,6 +1,6 @@
 # CONFIG
 
-Next ID: Q-CONFIG-003
+Next ID: Q-CONFIG-005
 
 ## Static
 
@@ -13,6 +13,13 @@ Next ID: Q-CONFIG-003
   `SOUND_DS.EXE` `1AF6:0BF9` (FND-CONFIG-004). Tried: the values of the shipped `SOUND.CFG` against
   the `SOUND.INI` records, which name most fields but not the tail (FND-CONFIG-003). Blocks:
   slice 3.
+
+- Q-CONFIG-003. FMT-CONFIG-004: What structure does `game.ins` use to map installed Ogg files to
+  disc tracks, and which part of the installed DOSBox setup reads it? Settles it: a bounded reading
+  of the file and its installed consumer. Blocks: Survey format coverage.
+- Q-CONFIG-004. FMT-CONFIG-005: What is the structure and role of `PATCH.RTP`? Settles it: a
+  bounded inspection of the file and references from the installed setup programs. Blocks:
+  Survey format coverage.
 
 ## Emulated call
 

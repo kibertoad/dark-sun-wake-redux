@@ -6,7 +6,7 @@ How much of the spec in `spec/` the rebuild does. The rows are in `parity/`, one
 
 | Status | Rows |
 |---|---|
-| unknown | 6 |
+| unknown | 11 |
 | sourced | 35 |
 | supported | 84 |
 | established | 0 |
@@ -16,7 +16,7 @@ How much of the spec in `spec/` the rebuild does. The rows are in `parity/`, one
 
 | Code | Rows |
 |---|---|
-| missing | 75 |
+| missing | 80 |
 | partial | 50 |
 | complete | 25 |
 
@@ -24,7 +24,7 @@ How much of the spec in `spec/` the rebuild does. The rows are in `parity/`, one
 
 | Area | Rows |
 |---|---|
-| [EXE](parity/EXE.md) | 5 |
+| [EXE](parity/EXE.md) | 6 |
 | [GFF](parity/GFF.md) | 7 |
 | [IMAGE](parity/IMAGE.md) | 6 |
 | [TEXT](parity/TEXT.md) | 4 |
@@ -42,8 +42,8 @@ How much of the spec in `spec/` the rebuild does. The rows are in `parity/`, one
 | [AI](parity/AI.md) | 2 |
 | [RNG](parity/RNG.md) | 1 |
 | [TIME](parity/TIME.md) | 2 |
-| [SOUND](parity/SOUND.md) | 5 |
+| [SOUND](parity/SOUND.md) | 7 |
 | [VIDEO](parity/VIDEO.md) | 5 |
-| [CONFIG](parity/CONFIG.md) | 6 |
+| [CONFIG](parity/CONFIG.md) | 8 |
 | [SAVE](parity/SAVE.md) | 4 |
 | [QUEST](parity/QUEST.md) | 1 |

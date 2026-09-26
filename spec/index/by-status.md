@@ -6,12 +6,17 @@ Entries by status.
 
 ## unknown
 
-6 entries.
+11 entries.
 
 | ID | Title |
 |---|---|
 | [FMT-ACTOR-002](../formats/FMT-ACTOR-002.md) | Object data resource |
 | [FMT-ACTOR-003](../formats/FMT-ACTOR-003.md) | MONR resource |
+| [FMT-CONFIG-004](../formats/FMT-CONFIG-004.md) | game.ins disc-track mapping file |
+| [FMT-CONFIG-005](../formats/FMT-CONFIG-005.md) | PATCH.RTP file |
+| [FMT-EXE-006](../formats/FMT-EXE-006.md) | BAT launch files |
+| [FMT-SOUND-003](../formats/FMT-SOUND-003.md) | STDPATCH.AD files |
+| [FMT-SOUND-004](../formats/FMT-SOUND-004.md) | ADV files on the disc |
 | [RULE-AI-002](../rules/RULE-AI-002.md) | What a computer-controlled combatant does in its turn |
 | [RULE-COMBAT-007](../rules/RULE-COMBAT-007.md) | What the difficulty setting changes in combat |
 | [RULE-EXPLORE-005](../rules/RULE-EXPLORE-005.md) | How a character walks to the cell a left click with the Walk pointer chose |
@@ -447,11 +452,14 @@ Entries whose Open questions section says more than None known.
 | [FMT-CONFIG-001](../formats/FMT-CONFIG-001.md) | Sound configuration SOUND.CFG | supported |
 | [FMT-CONFIG-002](../formats/FMT-CONFIG-002.md) | Sound card list SOUND.INI | supported |
 | [FMT-CONFIG-003](../formats/FMT-CONFIG-003.md) | Saved settings in the PREF resource | supported |
+| [FMT-CONFIG-004](../formats/FMT-CONFIG-004.md) | game.ins disc-track mapping file | unknown |
+| [FMT-CONFIG-005](../formats/FMT-CONFIG-005.md) | PATCH.RTP file | unknown |
 | [FMT-EXE-001](../formats/FMT-EXE-001.md) | FBOV overlay pack at the end of DSUN.EXE | supported |
 | [FMT-EXE-002](../formats/FMT-EXE-002.md) | FBOV segment-table descriptor | supported |
 | [FMT-EXE-003](../formats/FMT-EXE-003.md) | FBOV overlay header in the resident image | supported |
 | [FMT-EXE-004](../formats/FMT-EXE-004.md) | FBOV overlay trampoline | supported |
 | [FMT-EXE-005](../formats/FMT-EXE-005.md) | FBOV overlay code block with its fixup list | supported |
+| [FMT-EXE-006](../formats/FMT-EXE-006.md) | BAT launch files | unknown |
 | [FMT-GFF-001](../formats/FMT-GFF-001.md) | GFF resource container | supported |
 | [FMT-GFF-002](../formats/FMT-GFF-002.md) | GFF directory | supported |
 | [FMT-GFF-003](../formats/FMT-GFF-003.md) | GFF tag table | supported |
@@ -480,6 +488,8 @@ Entries whose Open questions section says more than None known.
 | [FMT-SCRIPT-005](../formats/FMT-SCRIPT-005.md) | Record with two script entry points in the 19-byte list | supported |
 | [FMT-SOUND-001](../formats/FMT-SOUND-001.md) | Voice file with one block of 8-bit samples | supported |
 | [FMT-SOUND-002](../formats/FMT-SOUND-002.md) | Music table DJ.DAT | supported |
+| [FMT-SOUND-003](../formats/FMT-SOUND-003.md) | STDPATCH.AD files | unknown |
+| [FMT-SOUND-004](../formats/FMT-SOUND-004.md) | ADV files on the disc | unknown |
 | [FMT-TEXT-001](../formats/FMT-TEXT-001.md) | Bitmap font resource | supported |
 | [FMT-TEXT-002](../formats/FMT-TEXT-002.md) | Bitmap font glyph | supported |
 | [FMT-TEXT-003](../formats/FMT-TEXT-003.md) | Text resource of CR LF lines | supported |

@@ -13,6 +13,7 @@ Entries by area.
 | [FMT-EXE-003](../formats/FMT-EXE-003.md) | FBOV overlay header in the resident image | supported |
 | [FMT-EXE-004](../formats/FMT-EXE-004.md) | FBOV overlay trampoline | supported |
 | [FMT-EXE-005](../formats/FMT-EXE-005.md) | FBOV overlay code block with its fixup list | supported |
+| [FMT-EXE-006](../formats/FMT-EXE-006.md) | BAT launch files | unknown |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |
@@ -421,6 +422,8 @@ Entries by area.
 |---|---|---|
 | [FMT-SOUND-001](../formats/FMT-SOUND-001.md) | Voice file with one block of 8-bit samples | supported |
 | [FMT-SOUND-002](../formats/FMT-SOUND-002.md) | Music table DJ.DAT | supported |
+| [FMT-SOUND-003](../formats/FMT-SOUND-003.md) | STDPATCH.AD files | unknown |
+| [FMT-SOUND-004](../formats/FMT-SOUND-004.md) | ADV files on the disc | unknown |
 | [FND-SOUND-001](../findings/FND-SOUND-001.md) | Every VOC file and BVOC resource is one Creative Voice File header, one sound block and a terminator | recorded |
 | [FND-SOUND-002](../findings/FND-SOUND-002.md) | The installation's music is 40 Ogg Vorbis files that game.ins mounts as audio tracks 2 to 41 | recorded |
 | [FND-SOUND-003](../findings/FND-SOUND-003.md) | SOUND_DS.EXE holds no VOC signature, no VOC file extension and no BIOS wait call | recorded |
@@ -464,6 +467,8 @@ Entries by area.
 | [FMT-CONFIG-001](../formats/FMT-CONFIG-001.md) | Sound configuration SOUND.CFG | supported |
 | [FMT-CONFIG-002](../formats/FMT-CONFIG-002.md) | Sound card list SOUND.INI | supported |
 | [FMT-CONFIG-003](../formats/FMT-CONFIG-003.md) | Saved settings in the PREF resource | supported |
+| [FMT-CONFIG-004](../formats/FMT-CONFIG-004.md) | game.ins disc-track mapping file | unknown |
+| [FMT-CONFIG-005](../formats/FMT-CONFIG-005.md) | PATCH.RTP file | unknown |
 | [FND-CONFIG-001](../findings/FND-CONFIG-001.md) | The installed CHARSAVE.GFF holds one 9-byte PREF resource, number 100 | recorded |
 | [FND-CONFIG-002](../findings/FND-CONFIG-002.md) | The PREF tag bytes occur once in the resident image of DSUN.EXE, inside a label, and three times in overlay 192 | recorded |
 | [FND-CONFIG-003](../findings/FND-CONFIG-003.md) | SOUND.CFG is 59 bytes: two equal 10-byte blocks, a word, two 14-byte driver names and nine more bytes | recorded |
