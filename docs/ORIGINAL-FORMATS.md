@@ -19,7 +19,7 @@ semantics.
 | GFF `GPL ` / `MAS ` | Script resources | `GPLDATA.GFF` contains 330 `GPL ` and 20 `MAS ` resources. `EXE-GOG-GPL-001` proves the native loader selects between these families before resolving and caching a requested script. GPL #135 is tied to the first captured Tyr conversation; MAS #99 supplies two bounded global-string projections. Instruction execution remains unknown | verified for family identity, native selection, resource identity/size, and packed-string decoding; instruction semantics remain unknown | Preserve the four-byte source tag with resource identity and bytes; bound script/string lengths, reject unsupported tags/markers, truncation, invalid back-references, and unterminated strings; never execute source bytes during extraction |
 | GFF `GPLI` #1 | Opaque script-adjacent index candidate | One 7,896-byte resource is exactly 329 24-byte records, each comprising four consecutive six-byte lanes. In aggregate, 1,315 of 1,316 aligned third lane words are members of the 330-ID `GPL ` resource-number set, collectively covering that set; repeats and one non-member reject a one-to-one record or field map. The executable has no literal `GPLI` tag, so no native loader, lookup, or field role is established | high for the exact envelope and aggregate membership counts; unknown for lane semantics, runtime ownership, and record-to-script mapping | Preserve losslessly as DSOP; do not add a reader, link records to GPL resources, or infer field names until a constrained native reference or controlled observation corroborates it |
 | GFF `MONR` #1 | Unclassified opaque payload | One 1,134-byte payload has a stronger 27-by-42 repeated aligned-word envelope with an all-zero four-byte tail than the rejected 14-by-81 candidate. Neither envelope establishes a field or role | verified for GFF identity, length, and aggregate profiling only; loader and semantics unknown | Preserve losslessly as DSOP; do not parse or assign monster/encounter/combat fields without a separate constrained call-path, cross-file format, or runtime observation |
-| GFF `RNME`, `PAL `, `MAP `, `GMAP`, `TILE`, `ETAB` | Region identity, palette, terrain grid, geometry plane, tile images, and placed-object references | Same-number region records, exact 128x98 byte planes, single-frame 16x16 tiles, and eight-byte entity records are decoded; geometry and entity-flag meanings remain unknown | verified structurally across all 20 owned region files; field roles corroborated by `SRC-DSUN-MUSIC-79B6927` | Require exactly one matching region record per tag; bound names, planes, tile images, entity counts, and every local `TILE`/external `OJFF` reference |
+| GFF `RNME`, `PAL `, `MAP `, `GMAP`, `TILE`, `ETAB` | Region identity, palette, terrain grid, cell flags, tile images, and placed-object references | Described by `FMT-REGION-001` to `FMT-REGION-006`, `FMT-IMAGE-003` and `FMT-IMAGE-001`; terrain drawing is `RULE-REGION-001` | see the spec entries | Require exactly one matching region record per tag; bound names, planes, tile images, entity counts, and every local `TILE`/external `OJFF` reference |
 | GFF `OJFF` | Object-frame definitions | Exact 16-byte records expose signed X/Y offsets and a `BMP ` resource reference; four other words remain raw and uninterpreted. `EXE-GOG-OJFF-001` independently establishes two tag-aware native lookup boundaries and observes its sole successful-result consumer reading portions beginning at `0x00`, `0x02`, `0x04`, `0x0a`, `0x0b`, and `0x0c` while updating a 37-byte resident record. That corroborates structural consumption, not a field meaning or object behavior | verified structurally across all 4,479 owned definitions; offset/reference roles corroborated by `SRC-DSUN-MUSIC-79B6927`; high for the separate native tag and transfer boundary | Require exact record size, a zero final word, a present nonempty referenced image, bounded requested IDs, and contextual errors; do not infer animation, collision, interaction, or runtime-record semantics from the observed transfer |
 | Pack `*.dsix` | Derived indexed-image asset | `DSIX` v1 stores one decoded 256-color palette plus bounded indexed frames and binary alpha | implemented; title asset round-trip and extraction validated | Bound file size, version, frame count, dimensions, pixels, alpha, and trailing data; reject non-binary alpha |
 | Pack `*.dsft` | Derived indexed-font asset | `DSFT` v1 stores a character map, shared height, widths, and bounded indexed glyph pixels | implemented; interface-font round-trip and extraction validated | Bound file size, version, glyph count, height, widths, pixel counts, and trailing data |
@@ -46,44 +46,15 @@ production behavior uses it.
 
 ## Region maps
 
-**Evidence:** `DATA-GOG-REGION-001`, `EXE-GOG-REGION-003`, corroborated by
-`SRC-DSUN-MUSIC-79B6927`.
-
-Each of the 20 owned `RGN*.GFF` containers has a single region number shared by
-`RNME`, `PAL `, `MAP `, `GMAP`, and `ETAB`. `RNME` is a printable ASCII name
-terminated by NUL. `MAP ` and `GMAP` are each exactly 12,544 bytes, indexed in
-row-major order over 128 columns and 98 rows. Every `MAP ` value is a byte-sized
-resource number naming a local `TILE`; all 3,043 owned tiles decode as one 16x16
-indexed-image frame. `GMAP` values remain preserved verbatim.
-`EXE-GOG-REGION-001` establishes that the supported executable treats
-out-of-bounds cells and in-bounds bit `0x40` as movement-blocking. The same bit
-is temporarily paired with dynamic `0x20` for occupied cells. Tyr contains only
-`00`, `40`, `80`, and `c0` (8,131/2,044/38/2,331 cells), so its static terrain
-grid has 8,169 open cells. Bit `0x80` and actor-specific low-bit policy in other
-regions remain uninterpreted.
-
-`ETAB` contains consecutive eight-byte records. The independently decoded
-structural fields are signed 16-bit X and Y, a signed vertical-offset byte, an
-uninterpreted flags byte, and a signed 16-bit object number. The absolute object
-number of all 13,559 owned records resolves to an `OJFF` resource in the
-fingerprinted `OBJEX.GFF`. The sign and flags are retained. `DATA-GOG-SCENE-001`
-corroborates flag bit `0x80` as horizontal mirroring; the object-number sign and
-all interaction and collision behavior remain uninterpreted.
-
-The opening leader is independently identified as OJFF #305 referencing BMP
-#599. Its unmirrored first 17x35 frame, colored with Tyr's PAL #50, exactly
-matches the 367 opaque actor pixels in `OBS-GOG-SCENE-001`; this image is packed
-separately because it is not referenced by Tyr's static ETAB object graph. The
-BMP has 13 variable-size frames (17x35 through a maximum 28x38); only frame 0's
-opening role is established, so later-frame semantics remain unknown.
-
-The reader caps the region name at 64 bytes and the entity table at 16,384
-records, requires the exact map dimensions and 16x16 tile frames, and rejects
-missing local tiles or external objects with region/resource context. Required
-pack revision 35 serializes each manifest-selected region independently as a
-source-derived `regions/structural/rgnxxx.dsrg` DSRG v1 catalog, reads it back
-before promotion, and assigns no selection, travel, camera, entity, or gameplay
-meaning to that catalog.
+The region resources are `FMT-REGION-001` to `FMT-REGION-006`, and the terrain
+drawing is `RULE-REGION-001`. The rebuild's reader caps the region name at 64
+bytes and the entity table at 16,384 records, requires the exact map dimensions
+and 16x16 tile frames, and rejects missing local tiles or external objects with
+region/resource context. Required pack revision 35 serializes each
+manifest-selected region independently as a source-derived
+`regions/structural/rgnxxx.dsrg` DSRG v1 catalog, reads it back before
+promotion, and assigns no selection, travel, camera, entity, or gameplay meaning
+to that catalog.
 
 ## Object-frame definitions
 
@@ -113,22 +84,15 @@ interaction meaning.
 
 ## Static region composition
 
-**Evidence:** `DATA-GOG-SCENE-001`, corroborated by `SRC-DSUN-MUSIC-79B6927`.
-
-The static indexed scene places each terrain tile at its row-major MAP coordinate
-times 16, then overlays ETAB objects in stored order. Each object uses the first
-frame of its DSOB image at `entityX - objectXOffset` and
-`entityY - objectYOffset - entityVerticalOffset`; entity flag bit `0x80` mirrors
-the frame horizontally. Transparent source pixels leave the prior terrain or
-object pixel unchanged, and drawing clips to the requested viewport.
-
-`RegionSceneRasterizer` requires an explicit viewport origin within the
-2048x1568 region and caps output at 4096 pixels per dimension and 16,777,216
-pixels. This is a static structural composition only. It does not select
-the opening camera, advance multi-frame images, interpret other entity flags,
-or assign collision, depth, or interaction semantics. Tyr's observed GMAP has
-zero in its low five bits for every cell, so no wall resource participates in
-this region under the corroborating wall-number rule.
+`RULE-REGION-001` draws the terrain. `RegionSceneRasterizer` then overlays ETAB
+objects in stored order, each with the first frame of its DSOB image at
+`entityX - objectXOffset` and `entityY - objectYOffset - entityVerticalOffset`,
+mirrored when entity flag bit `0x80` is set; the capture of `FND-IMAGE-010`
+matches this for the opening view, and the mirror reading is an open question of
+`FMT-REGION-006`. It requires an explicit viewport origin within the 2048x1568
+region and caps output at 4096 pixels per dimension and 16,777,216 pixels. It
+does not select the opening camera, advance multi-frame images, interpret other
+entity flags, or assign collision, depth, or interaction semantics.
 
 ## Indexed images and palettes
 

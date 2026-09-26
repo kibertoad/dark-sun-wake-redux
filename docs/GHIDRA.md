@@ -426,68 +426,6 @@ proof by itself. Never redirect broad output into the repository.
   resource-exact opening actor uses the evidenced anchor `(74,91)` independently
   of those still-open behaviors.
 
-### EXE-GOG-REGION-002 - ETAB has no direct tag-literal loader lead
-
-- **Question:** Does the supported executable contain an explicit `ETAB` tag
-  literal that identifies a direct native loader or consumer for the extracted
-  region entity records?
-- **Target:** BLD-GOG-EN-1.1 `DSUN.EXE`, reverified at 634,416 bytes with
-  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
-  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
-- **Method:** `ReportBytePattern` searched every loaded program-memory block
-  for the ASCII bytes `45 54 41 42` (`ETAB`), with its normal cap of 100
-  matches and 20 inbound references per match.
-- **Bounded finding:** no byte-pattern match exists in the analyzed loaded
-  memory.
-- **Interpretation:** this excludes only a direct in-image `ETAB` tag-literal
-  path. The region loader may construct the tag, receive it indirectly, use a
-  different representation, or consume entity data through another route.
-  This result neither proves the records unused nor identifies entity flags,
-  movement, interaction, encounter, combat, or rendering behavior.
-- **Confidence:** high for the absent byte pattern in this analyzed executable;
-  unknown for every loader, field, and gameplay role not represented by that
-  literal.
-- **Implementation consequence:** retain the bounded structural ETAB reader
-  and static compositor only. Do not connect ETAB entries to native actor or
-  event behavior without a constrained call path or controlled observation.
-
-### EXE-GOG-REGION-003 - MAP and TILE requests corroborate region composition
-
-- **Question:** Do native direct tag literals establish a bounded relationship
-  between a region identity, its `MAP `/`GMAP` planes, and the local `TILE`
-  resources used by the static compositor?
-- **Target:** BLD-GOG-EN-1.1 `DSUN.EXE`, reverified at 634,416 bytes with
-  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
-  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
-- **Method:** `ReportBytePattern` located the `MAP ` and `TILE` tag literals.
-  `ReportInstructionContext` bounded each request, and `ReportReferences`
-  enumerated direct callers of the containing TILE helper.
-- **Bounded finding:** `362c:01fa`, the same bounded function that requests
-  `GMAP`, requests `PAL ` and `MAP ` through the same far resource helper with
-  supplied region identity `SI`. The PAL request supplies a local result
-  pointer to a subsequent helper; that helper's palette semantics are not
-  established. The MAP request supplies resident destination `29ef`. Under its
-  local guards the function separately requests `GMAP` with the same supplied
-  identity. The distinct helper `362c:00ca` requests `TILE` with its supplied
-  16-bit identity and resident destination `29f3`. It has exactly two direct callers
-  (`362c:035c` and `362c:04bf`); each reads one byte through the resident
-  `29ef` map-plane pointer at a coordinate-derived offset, zero-extends that
-  byte, and supplies it to the TILE helper. Both callers reject the helper's
-  `0xffff` failure result before proceeding.
-- **Interpretation:** this corroborates the structural region contract: a
-  same-number `PAL ` and `MAP ` planes are loaded by region identity and MAP
-  byte values are used as local TILE identities. A separate full-memory tag
-  scan finds no direct `RNME` literal, just as `EXE-GOG-REGION-002` finds none
-  for `ETAB`. It does not identify palette conversion, map-coordinate
-  semantics, map rendering order, geometry meanings, TILE cache lifetime, or
-  any movement/actor behavior.
-- **Confidence:** high for the bounded tag requests, two direct callers, and
-  byte-to-TILE request relationship; unknown for every semantic role beyond
-  that structural routing.
-- **Implementation consequence:** retain the existing bounded same-number
-  region reader and map-byte-to-TILE validation. Do not infer additional
-  geometry, animation, actor, or interaction rules from this request path.
-
 ### EXE-GOG-ACTOR-002 - The observed hostile object ID is not a direct combat entry point
 
 - **Question:** Does the first observed hostile Tyr object, OJFF #9258, occur
@@ -1670,7 +1608,7 @@ proof by itself. Never redirect broad output into the repository.
   baseline and the local-only FBOV mapped view under Ghidra 12.1.3/JDK
   21.0.12.1. The focused audit joins the independent actor-object probe
   (`EXE-GOG-ACTOR-002`), `MONR` tag query (`EXE-GOG-MONR-001`), region entity
-  tag query (`EXE-GOG-REGION-002`), hostile-display path
+  tag query (`FND-REGION-007`), hostile-display path
   (`EXE-GOG-RDFF-001` through `003`), coordinate/input chain
   (`EXE-GOG-COMBAT-007`, `009`, `010`, and `013` through `019`), and native
   RNG selector chain (`FND-RNG-001` to `FND-RNG-008`). The final two focused

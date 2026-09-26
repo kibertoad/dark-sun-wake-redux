@@ -14,6 +14,7 @@ public static class RegionSceneRasterizer
     public const int WorldHeight = GffRegion.TileRows * GffRegion.TilePixelSize;
     public const int MaximumViewportDimension = 4_096;
     public const int MaximumViewportPixels = 16 * 1024 * 1024;
+    // PLACEHOLDER: FMT-REGION-006 - mirroring on entity flag bit 7 is only sourced.
     public const byte MirroredEntityFlag = 0x80;
 
     public static IndexedRegionViewport Rasterize(

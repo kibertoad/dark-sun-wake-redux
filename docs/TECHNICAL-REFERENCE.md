@@ -301,7 +301,7 @@ RGN#50: RNME / PAL / MAP / GMAP / TILE / ETAB
   `(74,91)`. Its footprint, all later frames, cadence, party formation, and
   other actor behavior are unknown.
 
-See `DATA-GOG-REGION-001`, `DATA-GOG-OBJECT-001`, `DATA-GOG-SCENE-001`,
+See `FMT-REGION-001` to `FMT-REGION-006`, `RULE-REGION-001`, `FND-IMAGE-010`, `DATA-GOG-OBJECT-001`,
 `DATA-GOG-ACTOR-001`, `EXE-GOG-OJFF-001`, and `FND-IMAGE-005` before
 expanding this route.
 

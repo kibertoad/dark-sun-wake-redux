@@ -46,50 +46,6 @@ the owned build.
   behavior from it. A constrained native call path or controlled observation
   remains required.
 
-### DATA-GOG-REGION-001 - Region map structural catalog
-
-- **Question:** Which bounded region structures identify Tyr and supply its
-  terrain grid, geometry bytes, tile images, and placed-object references?
-- **Method:** Compare SRC-DSUN-MUSIC-79B6927 commit
-  `79b692770caebda3de685feaf42906aae31572d1` with an independent bounded
-  reader, then inspect all 20 owned `RGN*.GFF` files against the fingerprinted
-  `OBJEX.GFF`. Record only structural summaries; do not retain decoded maps or
-  images in Git.
-- **Finding:** Every region contains one same-number `RNME`, `PAL `, `MAP `,
-  `GMAP`, and `ETAB`. `RNME` is printable ASCII terminated by NUL. Both map
-  planes contain exactly 12,544 bytes arranged as 128 columns by 98 rows.
-  Every `MAP ` byte resolves to a local, single-frame 16x16 `TILE`. `ETAB` is a
-  sequence of eight-byte records containing two signed 16-bit coordinates, a
-  signed vertical-offset byte, a flags byte, and a signed 16-bit object number;
-  the absolute object number resolves to `OJFF` in `OBJEX.GFF`. The geometry
-  bytes and entity flags are retained without assigning gameplay meaning at
-  this structural layer. `EXE-GOG-REGION-003` independently corroborates that
-  native MAP bytes are supplied as TILE identities. `EXE-GOG-REGION-001`
-  separately establishes geometry bit `0x40` as the movement-blocking bit.
-  Across the owned set, 3,043 tiles decode and 13,559 entity references resolve.
-  `RGN032.GFF` (64,641 bytes, XXH3-128
-  `a4b22f8b69bd2a541d67ac4100fea872`)
-  identifies resource #50 as `Tyr`.
-- **Confidence:** verified for sizes, identities, decoding, and reference
-  integrity in BLD-GOG-EN-1.1; medium for coordinate/vertical-field names from
-  the corroborating research; high for the separately recorded `0x40`
-  terrain-blocking meaning; unknown for other geometry bits, entity flags other
-  than the separately corroborated mirror bit and actor-specific collision;
-  the opening actor anchor is established separately by `DATA-GOG-ACTOR-001`.
-- **Implementation:** `DarkSunWakeRedux.Resources.GffRegion`, canonical bounded
-  `PackedRegion` DSRG v1, the read-only `region-catalog` inspection command, and
-  transactional extraction of region #50 to `regions/tyr.dsrg` plus every
-  manifest-selected `RGNxxx.GFF` to a canonical source-derived
-  `regions/structural/rgnxxx.dsrg` path. Revision 35's required output contains all
-  20 such structural catalogs. The runtime does not select or render them; the
-  pack keeps decoded data only and records each source path plus `OBJEX.GFF`
-  reference-validation provenance; it does not copy GFF payloads.
-- **Tests:** synthetic successful decoding plus malformed name, plane length,
-  tile frame, partial entity record, missing tile, and missing object cases;
-  DSRG round-trip, deterministic tile order, exact length/header/dimensions,
-  map reference, and binary-alpha rejection; synthetic transactional extraction
-  and owned pack/content-smoke validation.
-
 ### DATA-GOG-OBJECT-001 - Object-frame structural catalog
 
 - **Question:** Which bounded object definitions and indexed images are
@@ -125,64 +81,13 @@ the owned build.
   disconnected reference, frame, alpha, missing definition/reference, empty
   image, and trailing-data rejection; owned pack/content-smoke validation.
 
-### DATA-GOG-SCENE-001 - Static region composition
-
-- **Question:** How do the bounded terrain tiles and first object frames compose
-  into region pixel coordinates without inferring gameplay behavior?
-- **Method:** Compare the region renderer at SRC-DSUN-MUSIC-79B6927 commit
-  `79b692770caebda3de685feaf42906aae31572d1`, including its note that the
-  object procedure was informed by the original Shattered Lands executable,
-  against the independently decoded DSRG/DSOB structures. Implement the same
-  transform with strict clipping and synthetic pixel-level tests. Then start
-  the fingerprinted owned build in the GOG overlay, select the shipped party,
-  skip the opening cinematics, capture the first stable 320x200 gameplay frame,
-  and compare 808 background samples against every valid Tyr viewport while
-  excluding the party, pointer, and interface button. At the winning origin,
-  compare all 64,000 RGB pixels with the compositor and enumerate the
-  eight-connected components of differing pixels.
-- **Finding:** Terrain `MAP ` entry `(x,y)` places its 16x16 tile at
-  `(x*16,y*16)`. After terrain, ETAB entries compose in stored order using the
-  first referenced BMP frame. The frame's top-left is
-  `(entityX-objectXOffset, entityY-objectYOffset-verticalOffset)`, and ETAB flag
-  bit `0x80` mirrors it horizontally. Tyr's GMAP low five bits are zero, so the
-  corroborating renderer's wall-resource branch does not add wall images there.
-  Controlled observation `OBS-GOG-SCENE-001` used `DSUN.EXE` XXH3-128
-  `e296af55ba2ecde7e77f555c90f33d0b`;
-  its ignored native frame XXH3-128 is
-  `e8c0086991af1417b8e8a13120d33e82`.
-  The first stable gameplay background matches Tyr origin `(1024,1368)` on
-  807 of 808 sampled pixels; the sole difference is a dynamic overlay sample.
-  An exact full-frame comparison at that origin identifies 1,028 pixels that
-  differ from the static compositor. The visually identified party-leader
-  component contains 367 differing pixels in logical bounds
-  `(160,91)`-`(176,125)`, corresponding to world bounds
-  `(1184,1459)`-`(1200,1493)`. `DATA-GOG-ACTOR-001` identifies its exact
-  source image and `EXE-GOG-REGION-001` ties the stored top-left to collision
-  anchor cell `(74,91)`; the occupied-cell footprint remains unknown.
-- **Confidence:** high for tile placement from the format and all owned map
-  dimensions; medium for object placement, first-frame choice, ETAB order, and
-  mirror bit from community executable-informed research; verified for the
-  opening static background in the supported owned build. Animation, party
-  footprint, pointer, and interface overlays remain unvalidated.
-- **Implementation:** `RegionSceneRasterizer` produces a bounded indexed/alpha
-  viewport at an explicit caller-supplied world origin. `OpeningTyrScene`
-  records the observed `(1024,1368)` 320x200 viewport, and Gameplay displays
-  that static background. The exact leader is a separate actor overlay; the
-  compositor does not mutate state, interpret collision, draw the interface,
-  or advance animation.
-- **Tests:** synthetic cross-tile cropping, offsets, vertical adjustment,
-  horizontal mirroring, transparent pixels, ETAB overdraw order, edge clipping,
-  viewport bounds, malformed region data, and disconnected object references;
-  owned no-window content smoke rasterizes both opposite map corners and the
-  evidenced opening viewport.
-
 ### DATA-GOG-ACTOR-001 - Opening leader resource and placement
 
 - **Question:** Which owned sprite produces the isolated opening leader, and
   how do its visible and collision coordinates relate?
 - **Method:** Compare every decoded `OBJEX.GFF` OJFF/BMP frame having the
   measured 17x35 geometry, in both orientations, over the exact Tyr compositor
-  background against the ignored native observation `OBS-GOG-SCENE-001`.
+  background against the capture of `FND-IMAGE-010`.
   Independently trace the supported executable's actor coordinate fields into
   its render and collision call paths.
 - **Finding:** Of 12 same-geometry orientation candidates, unmirrored OJFF #305

@@ -74,7 +74,7 @@ transitions will be transcribed and verified as their screens enter a slice.
 The title and mapped start/party windows establish a recurring 320x200
 logical canvas, but whether all screens share it and how DOS pixel aspect should
 be reproduced remain open. Static region tile/object composition is bounded by
-`DATA-GOG-SCENE-001`; the opening camera and full-canvas viewport are observed,
+`RULE-REGION-001` and `FND-IMAGE-010`; the opening camera and full-canvas viewport are observed,
 while dynamic layer/draw order, frame counts, animation cadence, dialogue hit
 rectangles, text palette/spacing/layout, and scaling tolerances are all
 `unknown`. `FMT-TEXT-001` maps one glyph bitmap structure and verifies that

@@ -27,7 +27,7 @@ Entries by kind.
 
 ## formats
 
-20 entries.
+26 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -47,6 +47,12 @@ Entries by kind.
 | [FMT-IMAGE-002](../formats/FMT-IMAGE-002.md) | Image frame | supported |
 | [FMT-IMAGE-003](../formats/FMT-IMAGE-003.md) | Palette resource | supported |
 | [FMT-IMAGE-004](../formats/FMT-IMAGE-004.md) | Palette colour | supported |
+| [FMT-REGION-001](../formats/FMT-REGION-001.md) | Region name resource | supported |
+| [FMT-REGION-002](../formats/FMT-REGION-002.md) | Region terrain map | supported |
+| [FMT-REGION-003](../formats/FMT-REGION-003.md) | Region cell flag map | supported |
+| [FMT-REGION-004](../formats/FMT-REGION-004.md) | Region cell flags | supported |
+| [FMT-REGION-005](../formats/FMT-REGION-005.md) | Region entity table | supported |
+| [FMT-REGION-006](../formats/FMT-REGION-006.md) | Region entity record | supported |
 | [FMT-TEXT-001](../formats/FMT-TEXT-001.md) | Bitmap font resource | supported |
 | [FMT-TEXT-002](../formats/FMT-TEXT-002.md) | Bitmap font glyph | supported |
 | [FMT-TEXT-003](../formats/FMT-TEXT-003.md) | Text resource of CR LF lines | supported |
@@ -54,17 +60,18 @@ Entries by kind.
 
 ## rules
 
-3 entries.
+4 entries.
 
 | ID | Title | Status |
 |---|---|---|
 | [RULE-IMAGE-001](../rules/RULE-IMAGE-001.md) | Decoding an image frame, and the row encoding | supported |
 | [RULE-IMAGE-002](../rules/RULE-IMAGE-002.md) | Decoding a planar image frame | supported |
+| [RULE-REGION-001](../rules/RULE-REGION-001.md) | Drawing a region's terrain tiles | supported |
 | [RULE-RNG-001](../rules/RULE-RNG-001.md) | The game's random number generator and its reductions | supported |
 
 ## findings
 
-36 entries.
+43 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -90,6 +97,13 @@ Entries by kind.
 | [FND-IMAGE-008](../findings/FND-IMAGE-008.md) | No resident function uses the number 11011 as an operand, with or without the BMP tag words | recorded |
 | [FND-IMAGE-009](../findings/FND-IMAGE-009.md) | The PORT tag does not occur in the resident load image of DSUN.EXE | recorded |
 | [FND-IMAGE-010](../findings/FND-IMAGE-010.md) | The first gameplay frame of the opening region matches frames decoded from all three encodings | recorded |
+| [FND-REGION-001](../findings/FND-REGION-001.md) | Each of the 20 region files holds one region's name, palette, two maps, entity table and tiles | recorded |
+| [FND-REGION-002](../findings/FND-REGION-002.md) | Every MAP is 12,544 bytes, each naming a TILE of its own file that is one 16x16 frame | recorded |
+| [FND-REGION-003](../findings/FND-REGION-003.md) | Every GMAP is 12,544 bytes whose values are only 0x00, 0x40, 0x80 and 0xC0 | recorded |
+| [FND-REGION-004](../findings/FND-REGION-004.md) | Every ETAB is a list of 8-byte records that name OJFF objects in OBJEX.GFF | recorded |
+| [FND-REGION-005](../findings/FND-REGION-005.md) | The region loader at 362C:01FA requests PAL, then RMAP or MAP, then GMAP by the region number | recorded |
+| [FND-REGION-006](../findings/FND-REGION-006.md) | The terrain routines read the map as 98 rows of 128 bytes and draw the named TILE at 16-pixel steps | recorded |
+| [FND-REGION-007](../findings/FND-REGION-007.md) | The ETAB tag occurs only in overlay code and the RNME tag nowhere in DSUN.EXE | recorded |
 | [FND-RNG-001](../findings/FND-RNG-001.md) | The random number generator is a 32-bit linear congruential generator at 1000:0822 | recorded |
 | [FND-RNG-002](../findings/FND-RNG-002.md) | The seed setter at 1000:0811 stores a 16-bit seed and clears the high word | recorded |
 | [FND-RNG-003](../findings/FND-RNG-003.md) | The modulo reducer at 2834:061C draws once, and not at all for a divisor of 0 | recorded |

@@ -245,7 +245,7 @@ the contract change increments the required derived-pack revision to 33.
   cannot be represented. This slice adds no travel, screen transition, region
   selection, entity behavior, combat, quest, camera, or player-facing map
   presentation beyond the existing Tyr behavior.
-- **Evidence.** `DATA-GOG-REGION-001` and `ORIGINAL-FORMATS.md` establish the
+- **Evidence.** `FMT-REGION-001` to `FMT-REGION-006` establish the
   bounded shared region envelope across all 20 owned region files. The completed
   Slice 2A manifest/DSOP contract preserves each original source path and
   resource payload, while `PackedRegion` and the Tyr `DSRG` round trip
@@ -368,11 +368,11 @@ catalogs.
 - **Acceptance - original content.** Required map, region, sprite, palette, text,
   portrait, and item resources are extracted. Unknown records remain explicitly
   unknown; dangling references and corrupt bounds produce contextual errors.
-  `DATA-GOG-REGION-001` now bounds the shared region identity, 128x98 map and
+  `FMT-REGION-001` to `FMT-REGION-006` now bound the shared region identity, 128x98 map and
   geometry planes, 16x16 local tiles, and eight-byte external-object references;
   `DATA-GOG-OBJECT-001` bounds exact 16-byte object-frame definitions, their
   signed offsets, and image references. Canonical DSRG and DSOB extraction is
-  implemented for Tyr. `DATA-GOG-SCENE-001` now supplies a clipped static
+  implemented for Tyr. `RULE-REGION-001` and `FND-IMAGE-010` now back a clipped static
   tile/first-object-frame compositor; controlled observation fixes the opening
   camera at `(1024,1368)` and the static viewport is visibly integrated.
   `DATA-GOG-ACTOR-001` identifies, extracts, and displays the exact opening
