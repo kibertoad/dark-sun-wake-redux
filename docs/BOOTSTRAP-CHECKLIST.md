@@ -7,8 +7,17 @@ and `docs/CUSTOMIZATION.md` documents every configuration knob.
 
 - [x] Record the original title, developer, release year, genre, and the
       editions available for validation.
-- [x] Fill in `docs/IMPLEMENTATION-PLAN.md` and have it approved before writing
-      implementation code.
+- [x] Record eligibility (released in 2004 or earlier, no official remake or
+      remaster on sale) and the latest version in the plan's game profile.
+- [x] Write the analysis copy's build entry and manifest in `spec/builds/`, and
+      a source entry for each manual, FAQ, or earlier tool the work relies on.
+- [x] Fill in `docs/IMPLEMENTATION-PLAN.md`.
+- [x] Runtime access: fill in `docs/RUNTIME.md` with the `runtime-access`
+      skill, answering every capability for the analysis build.
+- [ ] Survey: give every file the manifest lists as `data` a format entry,
+      export a function inventory of each file the analysis reads to
+      `coverage/<build ID>/<manifest path>.tsv`, add a screen entry for every
+      screen the manual mentions, and keep a `queue/<AREA>.md` for every area.
 
 ## Configure
 

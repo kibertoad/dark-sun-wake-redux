@@ -18,6 +18,8 @@ reference/original/
 .env
 CodeCoverage/
 coverage/
+# The function inventories the work protocol commits: addresses and sizes only.
+!/coverage/
 orphanCleanupLog.md
 ~$*
 *~
