@@ -99,7 +99,7 @@ or raw GFF payloads.
   verified extracted pack.
 - `DarkSunWakeRedux.Inspect` is read-only research tooling.
 
-The approved roadmap and evidence gates are in
+The roadmap and evidence gates are in
 [docs/IMPLEMENTATION-PLAN.md](docs/IMPLEMENTATION-PLAN.md). The current
 continuation notes are in [docs/HANDOVER.md](docs/HANDOVER.md).
 For a concise map of the verified architecture, source contracts, static

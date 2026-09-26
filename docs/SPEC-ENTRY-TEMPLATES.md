@@ -22,8 +22,7 @@ runs on every pull request and reports what an entry is missing, as
 Every Markdown file the standard defines, entries included, is at most 1,000
 lines. An entry that would pass the limit is split by what it describes, as
 the standard's [File size](https://dinorefurb.com/documentation-standard/#file-size)
-section says. The documentation standard check and
-`tools/Test-TemplateInfrastructure.ps1` both check the limit. Build manifests,
+section says. The documentation standard check checks the limit. Build manifests,
 value files, Kaitai definitions, fixtures and save patches are not counted.
 
 ## Build

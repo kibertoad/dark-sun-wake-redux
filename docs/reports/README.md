@@ -15,7 +15,8 @@ git keeps it, and the commits that settle it carry a `Report:` trailer.
 
 Screenshots are never committed. Screenshots of the rebuild go in
 `GAME_DIR/reports/` and screenshots of the original in `GAME_DIR/captures/`,
-each named by its xxh3 hash, and the report cites them by hash.
+each named by its XXH3-128 hash (32 hex digits), and the report cites them by
+hash.
 
 A report:
 
@@ -24,7 +25,7 @@ A report:
 
 - From: the tester's name or handle, 2026-09-25.
 - Played: commit 3f2a9c1 (or release 0.3.0).
-- Screenshots: rebuild 9f1c2a7e4b3d5a61; original none.
+- Screenshots: rebuild 9f1c2a7e4b3d5a61c08e7f2d94b6a3e1; original none.
 
 ## Report
 

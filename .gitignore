@@ -20,6 +20,9 @@ CodeCoverage/
 coverage/
 # The function inventories the work protocol commits: addresses and sizes only.
 !/coverage/
+/coverage/**
+!/coverage/**/
+!/coverage/**/*.tsv
 orphanCleanupLog.md
 ~$*
 *~

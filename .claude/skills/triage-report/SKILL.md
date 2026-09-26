@@ -32,7 +32,8 @@ under no goal. One research batch per report:
 1. Find the entries and parity rows it concerns. Compare a rebuild screenshot
    with the capture of the same screen in `GAME_DIR/captures/` (find it
    through `index.tsv`). A tester's screenshot is rarely at canvas size with
-   scaling off, so compare what is shown, not pixels.
+   scaling off, so compare the elements, text and states each one shows
+   and leave the pixel values aside.
 2. Decide which case it is and act:
    - **The rebuild departs from the spec**: set the row's Code from
      `complete` to `partial` and start its Notes with `Defect (R-NNN):` and

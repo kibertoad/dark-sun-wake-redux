@@ -32,7 +32,7 @@ None known.
 ## Handover
 
 - Branch: claude/combat-static, at 3f2a9c1, pushed.
-- Last gate: 2026-09-25, documentation check passed, fast gate passed.
+- Last gate: 2026-09-25, `./tools/Test.ps1` passed.
 - Unfinished: none.
 - Blockers: none known.
 - Next: Q-COMBAT-015, Q-COMBAT-017.

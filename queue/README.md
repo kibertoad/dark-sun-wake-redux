@@ -12,8 +12,8 @@ in this order, each holding list items or `None.`:
 
 1. `Static`: a reading of the executable or data files settles it.
 2. `Emulated call`: calling one function of the original in an emulator
-   harness settles it. This repository has no harness yet, so the section
-   stays `None.` until one exists.
+   harness settles it. The harness in `tools/emu/` does not exist yet
+   (`docs/RUNTIME.md`), so items here wait until a tooling batch builds it.
 3. `Agent run`: a run of the original an agent makes alone. Coding agents never
    launch or control DOSBox here (`AGENTS.md`), so this section stays `None.`
 4. `Live session`: a run the repository owner performs, requested in
@@ -53,15 +53,17 @@ found. An open reading of an entry, in its Open questions section, always has
 an item, and is cited by the item's ID. A complete static reading makes its
 entries `established` with no run. A reading that is not complete yet leaves
 them `supported`, and the same commit adds a `Static` item for what it still
-has to cover. Only an entry that depends on something the code does not decide
-(interrupts, uninitialised memory, timing, the operating system) gets a
-`Live session` item for the owner capture that would confirm it. An item with a
-`Tried:` note is taken up again only with something the first attempt did not
-have: new evidence, a new tool, or a reading nobody has tried. If that second
-attempt ends in the same place, move the item, with what was tried, to the
-section of the evidence that would change the outcome (`Live session` for a
-run, `Source` for a document), and to `Blocked` only when that evidence is out
-of reach for now.
+has to cover, and an `Emulated call` item where the harness can reach the
+functions the reading covers. Every rule the code decides gets an `Emulated
+call` item, since its fixture is what the row's tests replay. Only an entry
+that depends on something the code does not decide (interrupts, uninitialised
+memory, timing, the operating system) gets a `Live session` item for the owner
+capture that would confirm it. An item with a `Tried:` note is taken up again
+only with something the first attempt did not have: new evidence, a new tool,
+or a reading nobody has tried. If that second attempt ends in the same place,
+move the item, with what was tried, to the section of the evidence that would
+change the outcome (`Emulated call` or `Live session` for a run, `Source` for
+a document), and to `Blocked` only when that evidence is out of reach for now.
 
 A file that would pass 1,000 lines becomes a directory of the same name, with
 a `README.md` holding the heading and the `Next ID:` line, and one file per

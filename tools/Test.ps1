@@ -64,24 +64,7 @@ try {
 finally {
     if ([IO.File]::Exists($overlayMapFixture)) { [IO.File]::Delete($overlayMapFixture) }
 }
-# The work protocol's size limits on its working files: 1,000 lines each, and 200 for the handover.
-$workingFiles = @(
-    Get-ChildItem -Path (Join-Path $root 'queue'), (Join-Path $root 'docs/goals'),
-        (Join-Path $root 'docs/live-sessions'), (Join-Path $root 'docs/reports'),
-        (Join-Path $root 'docs/decisions') -Filter '*.md' -Recurse -File -ErrorAction SilentlyContinue
-    Get-Item -Path (Join-Path $root 'docs/IMPLEMENTATION-PLAN.md'), (Join-Path $root 'docs/DECISIONS.md'),
-        (Join-Path $root 'docs/RUNTIME.md')
-)
-foreach ($workingFile in $workingFiles) {
-    $lineCount = @(Get-Content -LiteralPath $workingFile.FullName).Count
-    if ($lineCount -gt 1000) {
-        throw "$($workingFile.FullName) has $lineCount lines; the work protocol allows 1,000."
-    }
-}
-$handoverLines = @(Get-Content -LiteralPath (Join-Path $root 'docs/HANDOVER.md')).Count
-if ($handoverLines -gt 200) {
-    throw "docs/HANDOVER.md has $handoverLines lines; the work protocol allows 200."
-}
+& (Join-Path $PSScriptRoot 'Verify-WorkingFiles.ps1') -RepositoryRoot $root
 # The documentation standard check, from the toolkit commit the CI workflow pins.
 $documentationToolkitCommit = '6e3cad31b6d61280a4649a873cf890377b402a75'
 $documentationCheck = Join-Path $root "artifacts/check-documentation-$documentationToolkitCommit.mjs"
