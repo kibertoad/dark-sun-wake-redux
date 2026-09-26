@@ -1,6 +1,6 @@
 # UI
 
-Next ID: Q-UI-005
+Next ID: Q-UI-006
 
 ## Static
 
@@ -19,6 +19,11 @@ Next ID: Q-UI-005
   place each window, given that the resources hold no screen position? Settles it: a reading of
   the code that writes a window's runtime `unk_96` and `unk_98`, or captures of each screen.
   Blocks: nothing yet.
+- Q-UI-005. SCR-UI-013 to SCR-UI-023: Which resources, native widgets and handlers produce the
+  manual's load, save, context, training, quick-cast, item, store, exit, map and About views? Settles
+  it: focused readings of the resource graph and the code that opens, draws and handles each view,
+  checked against owner captures for presentation the code cannot decide. Blocks: Survey screen
+  coverage is recorded, but slices 2, 3 and 5 need these details.
 
 ## Emulated call
 
@@ -31,8 +36,8 @@ None.
 ## Live session
 
 - Q-UI-004. SCR-UI-001, SCR-UI-002, SCR-UI-004, SCR-UI-005, SCR-UI-008 to SCR-UI-012: Captures
-  of the screens no capture shows yet (party creation, character generation with both lists, the
-  save and quit choice, a Look panel for a friendly target, a notice being dismissed), of each
+  of the screens no capture shows yet (party creation, character generation with both lists, a
+  Look panel for a friendly target, a notice being dismissed), of each
   button pointed at and pressed, and of the inventory screen's colours. Settles it: a live session
   with DOSBox screenshots at each step. Blocks: nothing yet.
 

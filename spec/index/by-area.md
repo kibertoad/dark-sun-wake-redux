@@ -130,6 +130,15 @@ Entries by area.
 | [SCR-UI-012](../screens/SCR-UI-012.md) | Conversation | supported |
 | [SCR-UI-013](../screens/SCR-UI-013.md) | Load Game | sourced |
 | [SCR-UI-014](../screens/SCR-UI-014.md) | Save Game | sourced |
+| [SCR-UI-015](../screens/SCR-UI-015.md) | Character-box menu | sourced |
+| [SCR-UI-016](../screens/SCR-UI-016.md) | Training selection | sourced |
+| [SCR-UI-017](../screens/SCR-UI-017.md) | Quick Cast panel | sourced |
+| [SCR-UI-018](../screens/SCR-UI-018.md) | Item summary | sourced |
+| [SCR-UI-019](../screens/SCR-UI-019.md) | Store panel | sourced |
+| [SCR-UI-020](../screens/SCR-UI-020.md) | Exit to DOS choice | sourced |
+| [SCR-UI-021](../screens/SCR-UI-021.md) | Load or Save choice | sourced |
+| [SCR-UI-022](../screens/SCR-UI-022.md) | Overhead map | sourced |
+| [SCR-UI-023](../screens/SCR-UI-023.md) | About information | sourced |
 
 ## INPUT
 
@@ -205,6 +214,7 @@ Entries by area.
 | [RULE-EXPLORE-003](../rules/RULE-EXPLORE-003.md) | Objects occupy the map cells of their footprint by setting the cells' blocked and occupied bits, which a cell test for movement reads | supported |
 | [RULE-EXPLORE-004](../rules/RULE-EXPLORE-004.md) | The keypad direction keys step the chosen character one cell, or in combat attack the object whose area holds the blocked cell | supported |
 | [RULE-EXPLORE-005](../rules/RULE-EXPLORE-005.md) | How a character walks to the cell a left click with the Walk pointer chose | unknown |
+| [SCR-EXPLORE-001](../screens/SCR-EXPLORE-001.md) | Exploration view | sourced |
 
 ## SCRIPT
 

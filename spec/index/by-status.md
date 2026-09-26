@@ -19,7 +19,7 @@ Entries by status.
 
 ## sourced
 
-30 entries.
+40 entries.
 
 | ID | Title |
 |---|---|
@@ -51,8 +51,18 @@ Entries by status.
 | [RULE-PARTY-008](../rules/RULE-PARTY-008.md) | The keys 1 to 4 choose the party leader |
 | [RULE-SAVE-001](../rules/RULE-SAVE-001.md) | The keys that save, load and quit |
 | [RULE-SCRIPT-005](../rules/RULE-SCRIPT-005.md) | Script variables start at 0 |
+| [SCR-EXPLORE-001](../screens/SCR-EXPLORE-001.md) | Exploration view |
 | [SCR-UI-013](../screens/SCR-UI-013.md) | Load Game |
 | [SCR-UI-014](../screens/SCR-UI-014.md) | Save Game |
+| [SCR-UI-015](../screens/SCR-UI-015.md) | Character-box menu |
+| [SCR-UI-016](../screens/SCR-UI-016.md) | Training selection |
+| [SCR-UI-017](../screens/SCR-UI-017.md) | Quick Cast panel |
+| [SCR-UI-018](../screens/SCR-UI-018.md) | Item summary |
+| [SCR-UI-019](../screens/SCR-UI-019.md) | Store panel |
+| [SCR-UI-020](../screens/SCR-UI-020.md) | Exit to DOS choice |
+| [SCR-UI-021](../screens/SCR-UI-021.md) | Load or Save choice |
+| [SCR-UI-022](../screens/SCR-UI-022.md) | Overhead map |
+| [SCR-UI-023](../screens/SCR-UI-023.md) | About information |
 
 ## supported
 
@@ -548,6 +558,7 @@ Entries whose Open questions section says more than None known.
 | [RULE-VIDEO-003](../rules/RULE-VIDEO-003.md) | When an FLI cannot play, the cinematic's still pictures are shown for up to 8 seconds each | supported |
 | [RULE-VIDEO-004](../rules/RULE-VIDEO-004.md) | While an FLI plays, a timer slot with a period of 1,000 microseconds counts milliseconds | supported |
 | [SCR-COMBAT-001](../screens/SCR-COMBAT-001.md) | Combat status panel | supported |
+| [SCR-EXPLORE-001](../screens/SCR-EXPLORE-001.md) | Exploration view | sourced |
 | [SCR-UI-001](../screens/SCR-UI-001.md) | Start window | supported |
 | [SCR-UI-002](../screens/SCR-UI-002.md) | View Character | supported |
 | [SCR-UI-003](../screens/SCR-UI-003.md) | Stored-character list | supported |
@@ -562,3 +573,12 @@ Entries whose Open questions section says more than None known.
 | [SCR-UI-012](../screens/SCR-UI-012.md) | Conversation | supported |
 | [SCR-UI-013](../screens/SCR-UI-013.md) | Load Game | sourced |
 | [SCR-UI-014](../screens/SCR-UI-014.md) | Save Game | sourced |
+| [SCR-UI-015](../screens/SCR-UI-015.md) | Character-box menu | sourced |
+| [SCR-UI-016](../screens/SCR-UI-016.md) | Training selection | sourced |
+| [SCR-UI-017](../screens/SCR-UI-017.md) | Quick Cast panel | sourced |
+| [SCR-UI-018](../screens/SCR-UI-018.md) | Item summary | sourced |
+| [SCR-UI-019](../screens/SCR-UI-019.md) | Store panel | sourced |
+| [SCR-UI-020](../screens/SCR-UI-020.md) | Exit to DOS choice | sourced |
+| [SCR-UI-021](../screens/SCR-UI-021.md) | Load or Save choice | sourced |
+| [SCR-UI-022](../screens/SCR-UI-022.md) | Overhead map | sourced |
+| [SCR-UI-023](../screens/SCR-UI-023.md) | About information | sourced |

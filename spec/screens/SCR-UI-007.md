@@ -8,7 +8,7 @@ resolution: 320x200
 evidence: [FND-UI-029, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
-related: [RULE-CONFIG-001, RULE-CONFIG-002, RULE-CONFIG-003, SCR-UI-006]
+related: [RULE-CONFIG-001, RULE-CONFIG-002, RULE-CONFIG-003, SCR-UI-006, SCR-UI-023]
 ---
 
 ## Drawn elements
@@ -33,7 +33,7 @@ Rectangles are from the window's corner.
 | Sound volume up | (159, 48, 9, 8) | Not known | Raises the sound effects volume (RULE-CONFIG-003). | FND-UI-029, SRC-MANUAL-1994 |
 | Difficulty down | (56, 67, 9, 8) | Not known | Selects the next easier difficulty (RULE-CONFIG-002). | FND-UI-029, SRC-MANUAL-1994 |
 | Difficulty up | (149, 67, 9, 8) | Not known | Selects the next harder difficulty (RULE-CONFIG-002). | FND-UI-029, SRC-MANUAL-1994 |
-| About | (49, 78, 16, 16) | Not known | Shows the game's version and copyright information. | FND-UI-029, SRC-MANUAL-1994 |
+| About | (49, 78, 16, 16) | Not known | Shows SCR-UI-023 with version and copyright information. | FND-UI-029, SRC-MANUAL-1994 |
 | Animations on or off | (67, 78, 16, 16) | Not known | Turns animations on or off (RULE-CONFIG-001). | FND-UI-029, SRC-MANUAL-1994 |
 | Voice on or off | (85, 78, 16, 16) | Not known | Turns voice effects on or off (RULE-CONFIG-001). | FND-UI-029, SRC-MANUAL-1994 |
 | Game Menu | (109, 78, 28, 16) | Not known | Returns to SCR-UI-006. | FND-UI-029, SRC-MANUAL-1994 |

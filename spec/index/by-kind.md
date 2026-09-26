@@ -409,11 +409,12 @@ Entries by kind.
 
 ## screens
 
-15 entries.
+25 entries.
 
 | ID | Title | Status |
 |---|---|---|
 | [SCR-COMBAT-001](../screens/SCR-COMBAT-001.md) | Combat status panel | supported |
+| [SCR-EXPLORE-001](../screens/SCR-EXPLORE-001.md) | Exploration view | sourced |
 | [SCR-UI-001](../screens/SCR-UI-001.md) | Start window | supported |
 | [SCR-UI-002](../screens/SCR-UI-002.md) | View Character | supported |
 | [SCR-UI-003](../screens/SCR-UI-003.md) | Stored-character list | supported |
@@ -428,3 +429,12 @@ Entries by kind.
 | [SCR-UI-012](../screens/SCR-UI-012.md) | Conversation | supported |
 | [SCR-UI-013](../screens/SCR-UI-013.md) | Load Game | sourced |
 | [SCR-UI-014](../screens/SCR-UI-014.md) | Save Game | sourced |
+| [SCR-UI-015](../screens/SCR-UI-015.md) | Character-box menu | sourced |
+| [SCR-UI-016](../screens/SCR-UI-016.md) | Training selection | sourced |
+| [SCR-UI-017](../screens/SCR-UI-017.md) | Quick Cast panel | sourced |
+| [SCR-UI-018](../screens/SCR-UI-018.md) | Item summary | sourced |
+| [SCR-UI-019](../screens/SCR-UI-019.md) | Store panel | sourced |
+| [SCR-UI-020](../screens/SCR-UI-020.md) | Exit to DOS choice | sourced |
+| [SCR-UI-021](../screens/SCR-UI-021.md) | Load or Save choice | sourced |
+| [SCR-UI-022](../screens/SCR-UI-022.md) | Overhead map | sourced |
+| [SCR-UI-023](../screens/SCR-UI-023.md) | About information | sourced |

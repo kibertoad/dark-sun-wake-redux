@@ -22,3 +22,12 @@
 | `SCR-UI-012` | Conversation | supported | partial | None | `DEV-TALK-001` | supported | `DialogueInput` and `DialogueLayers` draw the panels, the speech box and the five rows and hit-test the rows. The speech window sits at (1, 0) and its scroll buttons are drawn, which carries `PLACEHOLDER: SCR-UI-012`. |
 | `SCR-UI-013` | Load Game | sourced | missing | None | None | sourced | The Game Menu's load or save button does nothing, and the rebuild has no Load Game screen. |
 | `SCR-UI-014` | Save Game | sourced | missing | None | None | sourced | The rebuild has no Save Game screen. |
+| `SCR-UI-015` | Character-box menu | sourced | missing | None | None | sourced | The right-click choices of a character box are not drawn or handled. |
+| `SCR-UI-016` | Training selection | sourced | missing | None | None | sourced | The rebuild has no training selection box. |
+| `SCR-UI-017` | Quick Cast panel | sourced | missing | None | None | sourced | The rebuild has no recent-spell panel. |
+| `SCR-UI-018` | Item summary | sourced | missing | None | None | sourced | The rebuild has no item or spell summary box. |
+| `SCR-UI-019` | Store panel | sourced | missing | None | None | sourced | The rebuild has no store panel. |
+| `SCR-UI-020` | Exit to DOS choice | sourced | missing | None | None | sourced | The Game Menu currently exits directly without the manual's save, quit and cancel choice. |
+| `SCR-UI-021` | Load or Save choice | sourced | missing | None | None | sourced | The Game Menu's load or save control currently does nothing. |
+| `SCR-UI-022` | Overhead map | sourced | missing | None | None | sourced | The Game Menu's overhead-map control currently does nothing. |
+| `SCR-UI-023` | About information | sourced | missing | None | None | sourced | The Preferences screen does not show About information. |

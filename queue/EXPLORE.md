@@ -1,6 +1,6 @@
 # EXPLORE
 
-Next ID: Q-EXPLORE-007
+Next ID: Q-EXPLORE-008
 
 ## Static
 
@@ -40,6 +40,10 @@ Next ID: Q-EXPLORE-007
   end? Settles it: the code that handles a left click on the map in Walk mode, which is not found
   yet, and the route search at the start of `2D40:10AE`, which Q-EXPLORE-003 also reads. Tried:
   nothing yet. Blocks: slice 3.
+- Q-EXPLORE-007. SCR-EXPLORE-001: Which resources and routines compose the exploration view, place
+  its region and actors, draw the pointer modes and switch the party display? Settles it: the
+  bounded resource graph and drawing/input paths for the view, followed by owner captures where
+  native presentation depends on the runtime. Blocks: Survey screen coverage and slice 3.
 
 ## Emulated call
 

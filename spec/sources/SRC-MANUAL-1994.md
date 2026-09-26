@@ -19,6 +19,23 @@ mechanic is meant to do, and it says nothing about edge cases. The file is
 manual pages; citations give the numbered manual page. The installation ships
 a byte-identical copy named `ds_wakerave_manual_pdf.pdf`.
 
+### Screen coverage
+
+The manual's named views, panels and choice boxes map to these screen entries.
+The page numbers are the manual's printed numbers. A description from the
+manual alone leaves an entry `sourced`; it does not establish shipped pixels
+or handlers.
+
+| Manual page | View, panel or choice | Screen entry |
+|---|---|---|
+| 2 | Start window | SCR-UI-001 |
+| 4-6 | Exploration view, Look options and conversation | SCR-EXPLORE-001, SCR-UI-011, SCR-UI-012 |
+| 6 | Training selection and recent spell choice | SCR-UI-016, SCR-UI-017 |
+| 7-10 | Character overview, generation, stored-character list, discipline and sphere lists, character-box choices | SCR-UI-002, SCR-UI-003, SCR-UI-004, SCR-UI-005, SCR-UI-015 |
+| 11-13 | Inventory, item summary, store, spell selection and active effects | SCR-UI-008, SCR-UI-018, SCR-UI-019, SCR-UI-009, SCR-UI-010 |
+| 14 | Game Menu, exit choice, load or save choice, Load Game and Save Game | SCR-UI-006, SCR-UI-020, SCR-UI-021, SCR-UI-013, SCR-UI-014 |
+| 15 | Preferences, overhead map and About information | SCR-UI-007, SCR-UI-022, SCR-UI-023 |
+
 ## Known errors
 
 - The origin descriptions on pages 17 and 18 and the class descriptions on
