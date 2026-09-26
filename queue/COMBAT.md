@@ -15,11 +15,12 @@ Next ID: Q-COMBAT-009
   FND-COMBAT-023, read in their routines, and the writers of `57E0:0DAB`. Tried: an immediate
   store search (FND-COMBAT-023) and Ghidra's references to `57E0:0DAB` (FND-COMBAT-011). Blocks:
   slice 4.
-- Q-COMBAT-004. RULE-COMBAT-004: Where does the game handle `N`, `P` and Space during combat, if
-  anywhere? What callback does the key routine pass to `Q`, and what is `g_57E0_143C`? Settles
-  it: the callers of the key routine at overlay 190 offset `0x139B`, and any other routine that
-  compares BIOS key words during combat. Tried: a search for the six scancodes together
-  (FND-COMBAT-001, FND-INPUT-008) and the key routine itself (FND-COMBAT-025). Blocks: slice 4.
+- Q-COMBAT-004. RULE-COMBAT-004: What does the routine behind the stub `5682:004D` of overlay
+  174 do with the `N` and `P` keys? What callback does the key routine pass to `Q`, and what is
+  `g_57E0_143C`? Settles it: a reading of overlay 174 from its code offset `0x0924`, and the
+  callers of the key routines at overlay 190 offset `0x139B` and `28C9:0CFF`. Tried: a search for
+  the six scancodes together (FND-COMBAT-001, FND-INPUT-008), the overlay 190 key routine
+  (FND-COMBAT-025) and the resident key routine (FND-AI-004). Blocks: slice 4.
 - Q-COMBAT-005. RULE-COMBAT-002, RULE-COMBAT-003, RULE-COMBAT-006: Where does the game decide an
   attack: its kind, its roll against THAC0 and Armor Class, whether equality, 1 and 20 are
   special, the modifiers, the damage, and what a combatant's hit points do at 0 and -10? Settles

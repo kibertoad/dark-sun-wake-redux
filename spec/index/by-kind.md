@@ -89,11 +89,13 @@ Entries by kind.
 
 ## rules
 
-51 entries.
+53 entries.
 
 | ID | Title | Status |
 |---|---|---|
 | [RULE-ACTOR-001](../rules/RULE-ACTOR-001.md) | Drawing a region's placed objects | supported |
+| [RULE-AI-001](../rules/RULE-AI-001.md) | The computer-control button toggles computer control of a party member unless it is locked, and Space turns it off for every unlocked member | supported |
+| [RULE-AI-002](../rules/RULE-AI-002.md) | What a computer-controlled combatant does in its turn | unknown |
 | [RULE-COMBAT-001](../rules/RULE-COMBAT-001.md) | All four party members are drawn during combat, and only the leader again after it when the party is collapsed | sourced |
 | [RULE-COMBAT-002](../rules/RULE-COMBAT-002.md) | An attack hits when a roll of 1 to 20 is at least the attacker's THAC0 less the target's Armor Class | sourced |
 | [RULE-COMBAT-003](../rules/RULE-COMBAT-003.md) | Damage lowers hit points; at 0 a character is unconscious and at -10 dead | sourced |
@@ -147,7 +149,7 @@ Entries by kind.
 
 ## findings
 
-191 entries.
+195 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -164,6 +166,10 @@ Entries by kind.
 | [FND-ACTOR-011](../findings/FND-ACTOR-011.md) | The RDFF request routines use the 37-byte slot records and not the 13-byte records of segment 1695 | recorded |
 | [FND-ACTOR-012](../findings/FND-ACTOR-012.md) | The opening region names 287 objects whose images hold 477 frames | recorded |
 | [FND-ACTOR-013](../findings/FND-ACTOR-013.md) | Split at 81 bytes, no column of the MONR resource is constant | recorded |
+| [FND-AI-001](../findings/FND-AI-001.md) | None of the static paths followed from the first hostile, its data or the input code reaches a routine that picks an enemy's target, move or action | recorded |
+| [FND-AI-002](../findings/FND-AI-002.md) | The four COMPUTER CONTROL strings are resident data at 57E0:1D17 to 57E0:1D89, pushed only by overlay 190 | recorded |
+| [FND-AI-003](../findings/FND-AI-003.md) | The computer-control buttons toggle bit 5 of byte 0x18 of the party member's combatant record unless bit 6 is set, and several screens read bit 5 | recorded |
+| [FND-AI-004](../findings/FND-AI-004.md) | A resident key routine at 28C9:0CFF handles 1 to 6, N, P, Space and the arrow keys, and Space turns computer control off for every unlocked party member | recorded |
 | [FND-COMBAT-001](../findings/FND-COMBAT-001.md) | No function of the load image holds all six scan codes of the manual's combat keys, and the six do not occur as one byte run | recorded |
 | [FND-COMBAT-002](../findings/FND-COMBAT-002.md) | The operand value -10 occurs in too many functions to point at a hit point test | recorded |
 | [FND-COMBAT-003](../findings/FND-COMBAT-003.md) | The strings COMBAT and GUARD occur only inside messages and labels of the data segment, and ATTACK does not occur as a string | recorded |

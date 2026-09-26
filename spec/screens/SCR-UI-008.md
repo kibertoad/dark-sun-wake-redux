@@ -5,10 +5,10 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-UI-021, FND-UI-030, SRC-MANUAL-1994]
+evidence: [FND-AI-003, FND-COMBAT-023, FND-UI-021, FND-UI-030, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
-related: [RULE-ITEM-001, RULE-ITEM-002, RULE-ITEM-003, RULE-ITEM-004, RULE-UI-001, SCR-UI-002, SCR-UI-006, SCR-UI-009, SCR-UI-010]
+related: [RULE-AI-001, RULE-COMBAT-008, RULE-PARTY-008, RULE-ITEM-001, RULE-ITEM-002, RULE-ITEM-003, RULE-ITEM-004, RULE-UI-001, SCR-UI-002, SCR-UI-006, SCR-UI-009, SCR-UI-010]
 ---
 
 ## Drawn elements
@@ -31,7 +31,8 @@ Rectangles assume the window at (0, 0), where the outlines of FND-UI-021 put the
 |---|---|---|---|---|
 | Character box `n`, left button | (12, 5 + 48 * n, 34, 34), `BUTN/11300 + n`, `n` from 0 to 3 | Not known | Shows that character's inventory; with an item picked up, the manual says the same. | FND-UI-030, SRC-MANUAL-1994 |
 | Character box `n`, right button, item picked up | as above | Not known | Gives the item to that character without leaving the current inventory. | FND-UI-030, SRC-MANUAL-1994 |
-| Small buttons beside each box | `BUTN/11309` to `/11316`, 10 x 9 | Not known | One turns computer control of the character in combat on or off, the other makes the character the leader. | FND-UI-030, SRC-MANUAL-1994 |
+| Leader button beside box `n` | `BUTN/11309 + n`, 10 x 9 | Not known | Makes the character the leader for walking and talking, and during combat only the character whose turn it is (RULE-PARTY-008, RULE-COMBAT-008). | FND-COMBAT-023, FND-UI-030, SRC-MANUAL-1994 |
+| Computer-control button beside box `n` | `BUTN/11313 + n`, 10 x 9 | Not known | Turns computer control of the character on or off unless it is locked (RULE-AI-001). | FND-AI-003, FND-UI-030, SRC-MANUAL-1994 |
 | Drop | (186, 130, 42, 12) | An item is picked up | Drops the item to the ground. | FND-UI-030, SRC-MANUAL-1994 |
 | Split | (186, 142, 42, 12) | A grouped item is picked up and the backpack has an empty slot | Splits the group in half (RULE-ITEM-002). | FND-UI-030, SRC-MANUAL-1994 |
 | Two further buttons with mask 160 | (235, 159, 42, 12) and (277, 159, 42, 12) | Not known | Not known. | FND-UI-030 |
@@ -84,5 +85,6 @@ None known.
   (FND-UI-030, Q-UI-002).
 - Where the slots, the data panel, the description box and the money bar are drawn, and what
   the 90 x 125 frame `APFM/13200` at (75, 36) is (FND-UI-030, Q-UI-001, Q-ITEM-002).
-- The effects come from the manual only; no code that names these buttons is known (FND-UI-012,
-  Q-UI-002).
+- The effects of the other buttons come from the manual only; code is known only for the leader
+  and computer-control buttons (FND-COMBAT-023, FND-AI-003), and which overlay serves which
+  screen is not known (FND-UI-012, Q-UI-002).

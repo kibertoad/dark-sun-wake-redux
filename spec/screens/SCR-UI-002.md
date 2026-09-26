@@ -5,10 +5,10 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-UI-020, FND-UI-025, FND-UI-030, SRC-MANUAL-1994]
+evidence: [FND-AI-003, FND-COMBAT-023, FND-UI-020, FND-UI-025, FND-UI-030, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
-related: [RULE-PARTY-001, RULE-PARTY-004, RULE-PARTY-008, RULE-UI-001, SCR-UI-001, SCR-UI-003, SCR-UI-004, SCR-UI-006, SCR-UI-008, SCR-UI-009, SCR-UI-010]
+related: [RULE-AI-001, RULE-COMBAT-008, RULE-PARTY-001, RULE-PARTY-004, RULE-PARTY-008, RULE-UI-001, SCR-UI-001, SCR-UI-003, SCR-UI-004, SCR-UI-006, SCR-UI-008, SCR-UI-009, SCR-UI-010]
 ---
 
 ## Drawn elements
@@ -29,7 +29,8 @@ below are from the window's corner.
 | Character box `n`, left button | (53, 30, 34, 34), (104, 30, 34, 34), (53, 90, 34, 34) and (104, 90, 34, 34) for `BUTN/11300` to `/11303` | Not known | Highlights the character in the box and shows the character's statistics on the right side of the screen. | FND-UI-030, SRC-MANUAL-1994 |
 | Character box, right button, box holds a character | as above | Not known | Offers a choice to edit the character, which opens SCR-UI-004, to drop the character to disk, or to choose a second class for a human (RULE-PARTY-004). Once the adventure has begun, the edit choice changes only the name, in the name box. | FND-UI-030, SRC-MANUAL-1994 |
 | Character box, right button, box empty | as above | Not known | Offers a choice to make a new character, which opens SCR-UI-004, to add a stored one, which opens SCR-UI-003, or to cancel. A party holds at most four characters (RULE-PARTY-001). | FND-UI-030, SRC-MANUAL-1994 |
-| Small buttons beside each box | `BUTN/11309` to `/11316`, 10 x 9 | Not known | One turns computer control of the character in combat on or off, the other makes the character the leader for walking and talking (RULE-PARTY-008). | FND-UI-030, SRC-MANUAL-1994 |
+| Leader button beside box `n` | `BUTN/11309 + n`, 10 x 9 | Not known | Makes the character the leader for walking and talking, and during combat only the character whose turn it is (RULE-PARTY-008, RULE-COMBAT-008). | FND-COMBAT-023, FND-UI-030, SRC-MANUAL-1994 |
+| Computer-control button beside box `n` | `BUTN/11313 + n`, 10 x 9 | Not known | Turns computer control of the character on or off unless it is locked (RULE-AI-001). | FND-AI-003, FND-UI-030, SRC-MANUAL-1994 |
 | View character | (43, 155, 16, 16), `BUTN/10300` | Not known | Not known; this screen is already shown. | FND-UI-030, SRC-MANUAL-1994 |
 | View inventory | (67, 155, 16, 16), `BUTN/11304` | Not known | Opens SCR-UI-008. | FND-UI-030, SRC-MANUAL-1994 |
 | Cast spells or use psionics | (91, 155, 16, 16), `BUTN/11305` | Not known | Opens SCR-UI-009. | FND-UI-030, SRC-MANUAL-1994 |
@@ -73,9 +74,9 @@ None known.
 
 - Where the game places `WIND/11500`, and whether the picture at (0, 9) is drawn the same way in
   party creation. The captures of FND-UI-020 were taken during the adventure (Q-UI-003, Q-UI-004).
-- What each box, its status areas and the frames of `WIND/11500` show, which of the two small
-  buttons is which, and what the name box and the buttons with mask 160 do (FND-UI-030,
-  Q-UI-002).
-- The effects come from the manual only; no code that names these buttons is known (FND-UI-012,
-  Q-UI-002).
+- What each box, its status areas and the frames of `WIND/11500` show, and what the name box and
+  the buttons with mask 160 do (FND-UI-030, Q-UI-002).
+- The effects of the other buttons come from the manual only; code is known only for the leader
+  and computer-control buttons (FND-COMBAT-023, FND-AI-003), and which overlay serves which
+  screen is not known (FND-UI-012, Q-UI-002).
 - What `WIND/19501` and `WIND/19502` are for (FND-UI-025, Q-UI-001).

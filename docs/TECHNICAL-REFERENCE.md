@@ -150,18 +150,15 @@ comes before any combat behaviour.
 bytes with a constant zero tail; `FMT-ACTOR-003` stays unknown, and the tag
 occurs only in overlay 204 (`FND-ACTOR-006`).
 
-`EXE-GOG-AI-001` is the current aggregate enemy-decision audit, not a claim
-that the native executable lacks AI. It covers every current static candidate:
-the observed hostile OJFF #9258, raw `MONR` and `ETAB` leads, bounded `RDFF`
-paths, coordinate/input branches, the four `COMPUTER CONTROL` label matches,
-and the RNG/panel route. None connects an actor or hostile record to a native
-target-selection, movement, action, or outcome consumer. The mapped coordinate
-destination is only a five-guard validation sequence; the computer-control
-labels are unreferenced data; and the RNG/panel routine has no recovered caller.
-Indirect or runtime-built paths remain possible. Consequently, no enemy-AI
-model is present in Core or Game. C0-C6 must first establish combat entry,
-active-state changes, targeting, an enemy action, and turn progression before a
-new focused static query can assign behavior.
+The routine that decides what a computer-controlled combatant does is not
+known (`RULE-AI-002`). The static paths from the first hostile, `MONR`, `ETAB`,
+`RDFF`, coordinate input and the random number generator do not reach one
+(`FND-AI-001`). The `COMPUTER CONTROL` strings belong to the computer-control
+buttons beside the character boxes, which toggle a bit of the party member's
+combatant record unless another bit locks it, and Space clears the bit for
+every unlocked member (`RULE-AI-001`, `FND-AI-002` to `FND-AI-004`). The readers
+of that bit are the next leads (`Q-AI-001`). Core and Game have no enemy
+decisions.
 
 ## Object and static-scene route
 

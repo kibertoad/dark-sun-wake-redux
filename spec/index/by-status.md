@@ -6,12 +6,13 @@ Entries by status.
 
 ## unknown
 
-3 entries.
+4 entries.
 
 | ID | Title |
 |---|---|
 | [FMT-ACTOR-002](../formats/FMT-ACTOR-002.md) | Object data resource |
 | [FMT-ACTOR-003](../formats/FMT-ACTOR-003.md) | MONR resource |
+| [RULE-AI-002](../rules/RULE-AI-002.md) | What a computer-controlled combatant does in its turn |
 | [RULE-COMBAT-007](../rules/RULE-COMBAT-007.md) | What the difficulty setting changes in combat |
 
 ## sourced
@@ -52,7 +53,7 @@ Entries by status.
 
 ## supported
 
-88 entries.
+89 entries.
 
 | ID | Title |
 |---|---|
@@ -109,6 +110,7 @@ Entries by status.
 | [FMT-UI-004](../formats/FMT-UI-004.md) | Application frame resource (APFM) |
 | [FMT-UI-005](../formats/FMT-UI-005.md) | Edit box resource (EBOX) |
 | [RULE-ACTOR-001](../rules/RULE-ACTOR-001.md) | Drawing a region's placed objects |
+| [RULE-AI-001](../rules/RULE-AI-001.md) | The computer-control button toggles computer control of a party member unless it is locked, and Space turns it off for every unlocked member |
 | [RULE-COMBAT-004](../rules/RULE-COMBAT-004.md) | G and W make the party member whose turn it is guard or wait, and Q opens the end-of-move menu |
 | [RULE-COMBAT-005](../rules/RULE-COMBAT-005.md) | The end-of-move menu offers GUARD, WAIT and END TURN beside the character whose turn it is |
 | [RULE-COMBAT-008](../rules/RULE-COMBAT-008.md) | Saving, resting, adding a character and changing the leader are refused during combat |
@@ -159,7 +161,7 @@ Entries by status.
 
 ## recorded
 
-191 entries.
+195 entries.
 
 | ID | Title |
 |---|---|
@@ -176,6 +178,10 @@ Entries by status.
 | [FND-ACTOR-011](../findings/FND-ACTOR-011.md) | The RDFF request routines use the 37-byte slot records and not the 13-byte records of segment 1695 |
 | [FND-ACTOR-012](../findings/FND-ACTOR-012.md) | The opening region names 287 objects whose images hold 477 frames |
 | [FND-ACTOR-013](../findings/FND-ACTOR-013.md) | Split at 81 bytes, no column of the MONR resource is constant |
+| [FND-AI-001](../findings/FND-AI-001.md) | None of the static paths followed from the first hostile, its data or the input code reaches a routine that picks an enemy's target, move or action |
+| [FND-AI-002](../findings/FND-AI-002.md) | The four COMPUTER CONTROL strings are resident data at 57E0:1D17 to 57E0:1D89, pushed only by overlay 190 |
+| [FND-AI-003](../findings/FND-AI-003.md) | The computer-control buttons toggle bit 5 of byte 0x18 of the party member's combatant record unless bit 6 is set, and several screens read bit 5 |
+| [FND-AI-004](../findings/FND-AI-004.md) | A resident key routine at 28C9:0CFF handles 1 to 6, N, P, Space and the arrow keys, and Space turns computer control off for every unlocked party member |
 | [FND-COMBAT-001](../findings/FND-COMBAT-001.md) | No function of the load image holds all six scan codes of the manual's combat keys, and the six do not occur as one byte run |
 | [FND-COMBAT-002](../findings/FND-COMBAT-002.md) | The operand value -10 occurs in too many functions to point at a hit point test |
 | [FND-COMBAT-003](../findings/FND-COMBAT-003.md) | The strings COMBAT and GUARD occur only inside messages and labels of the data segment, and ATTACK does not occur as a string |
@@ -422,6 +428,8 @@ Entries whose Open questions section says more than None known.
 | [FMT-UI-004](../formats/FMT-UI-004.md) | Application frame resource (APFM) | supported |
 | [FMT-UI-005](../formats/FMT-UI-005.md) | Edit box resource (EBOX) | supported |
 | [RULE-ACTOR-001](../rules/RULE-ACTOR-001.md) | Drawing a region's placed objects | supported |
+| [RULE-AI-001](../rules/RULE-AI-001.md) | The computer-control button toggles computer control of a party member unless it is locked, and Space turns it off for every unlocked member | supported |
+| [RULE-AI-002](../rules/RULE-AI-002.md) | What a computer-controlled combatant does in its turn | unknown |
 | [RULE-COMBAT-001](../rules/RULE-COMBAT-001.md) | All four party members are drawn during combat, and only the leader again after it when the party is collapsed | sourced |
 | [RULE-COMBAT-002](../rules/RULE-COMBAT-002.md) | An attack hits when a roll of 1 to 20 is at least the attacker's THAC0 less the target's Armor Class | sourced |
 | [RULE-COMBAT-003](../rules/RULE-COMBAT-003.md) | Damage lowers hit points; at 0 a character is unconscious and at -10 dead | sourced |
