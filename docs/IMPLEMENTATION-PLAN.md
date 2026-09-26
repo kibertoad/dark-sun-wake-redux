@@ -620,6 +620,33 @@ catalogs.
   optional routes by parity-matrix row. No broad parity claim is allowed while a
   required row is unknown or merely implemented.
 
+## Launch options
+
+The rebuild's own options, the deviations in `deviations/` that have a setting,
+are set on a screen of the rebuild's own that opens at every launch before
+anything of the original's is shown: before the cinematics once they play, and
+before the start window today. The owner approved this on 2026-09-26.
+
+- **Outcome.** The screen lists each option with its current value. The player
+  changes values with the mouse or the keyboard and confirms, and the original's
+  flow then starts with those values. Exit quits without starting it.
+- **First option.** "Wide map view" (DEV-EXPLORE-001), on by default. Off gives
+  the original's 320x200 framing of the map, centred and letterboxed.
+- **Storage.** The values persist in `settings.json` in the per-user data folder
+  beside `UserContent` (`%LOCALAPPDATA%\DarkSunWakeRedux` on Windows). The file
+  is versioned, bounded in size, written atomically with a backup of the last
+  good copy, and read field by field: a missing, unreadable or out-of-range file
+  or value falls back to the backup and then to the defaults, and never stops
+  the game from starting. Options added later get their own fields with their
+  own defaults, so an older file still loads.
+- **Presentation.** The screen is drawn by the rebuild with the extracted font
+  on the fixed 320x200 canvas, and uses no original screen's layout. It is a
+  deviation from the start sequence (DEV-UI-001) that adds to the interface.
+- **Automated tests.** Settings round trip, defaults, backup recovery, corrupt,
+  oversized and unknown-version files, and a missing field in an older file;
+  option navigation and confirm and exit routing; the wide map view off and on
+  in the viewport layout; the content smoke test draws the screen.
+
 ## Rebuild status outside the spec
 
 [`PARITY.md`](../PARITY.md) and `parity/` give the rebuild's status against every rule, format

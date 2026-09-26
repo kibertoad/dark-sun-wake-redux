@@ -272,6 +272,18 @@ try
             var font = PackedIndexedBitmapFont.Read(fontStream, OriginalContent.InterfaceFontAssetPath);
             if (font.Glyphs.Count != IndexedBitmapFont.CharacterCount)
                 throw new InvalidDataException("The installed interface font has an unexpected glyph count.");
+            // Draws every state of the launch options screen (DEV-UI-001) with the installed font;
+            // the rasterizer throws when a line of its text does not fit.
+            foreach (var wideMapView in new[] { true, false })
+                for (var item = 0; item < LaunchOptionsSession.ItemCount; item++)
+                {
+                    var launchOptions = new LaunchOptionsSession(new LaunchSettings(wideMapView));
+                    launchOptions.Execute(LaunchOptionsCommand.Hover(item));
+                    var launchCanvas = LaunchOptionsRasterizer.Rasterize(font, launchOptions);
+                    if (!launchCanvas.Pixels.Contains(LaunchOptionsRasterizer.HighlightText))
+                        throw new InvalidDataException(
+                            "The launch options screen drew no highlighted text.");
+                }
             var visibleDialogueChoices = DialogueConditionAdapter.SelectVisibleChoices(
                 dialogueProjection.InitialChoices,
                 FirstTyrDialogueObservedState.Create(),

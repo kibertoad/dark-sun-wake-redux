@@ -56,6 +56,10 @@ on purpose. The parts of the rebuild that have no spec entry, such as source
 recognition, the asset pack and saves, are in the
 [implementation plan](docs/IMPLEMENTATION-PLAN.md#rebuild-status-outside-the-spec).
 
+Every launch opens on the rebuild's own options screen, before anything of the original's. It sets
+the options that the deviations offer, today only Wide map view, and keeps them in `settings.json`
+in the per-user data folder beside `UserContent` (`%LOCALAPPDATA%\DarkSunWakeRedux` on Windows).
+
 ## Developer quick start
 
 Install the .NET SDK pinned by `global.json`. To verify the supported owned copy:
