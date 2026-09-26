@@ -75,6 +75,13 @@ if (-not [IO.File]::Exists($documentationCheck)) {
     Invoke-WebRequest -UseBasicParsing -OutFile $documentationCheck `
         -Uri "https://raw.githubusercontent.com/kibertoad/refurbished-dinosaurs-toolkit/$documentationToolkitCommit/tools/check-documentation.mjs"
 }
+# Node does not resolve a .bat or .cmd wrapper on PATH, so hand the check the Kaitai compiler's
+# full path when KSC is unset and a Windows wrapper is installed.
+if (-not $env:KSC) {
+    $kaitaiCompiler = Get-Command kaitai-struct-compiler.bat, kaitai-struct-compiler.cmd `
+        -ErrorAction SilentlyContinue | Select-Object -First 1
+    if ($kaitaiCompiler) { $env:KSC = $kaitaiCompiler.Source }
+}
 & node $documentationCheck --root $root --check
 if ($LASTEXITCODE -ne 0) { throw 'Documentation standard check failed.' }
 $artifacts = Join-Path $root 'artifacts/test'
