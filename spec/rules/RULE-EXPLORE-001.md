@@ -63,7 +63,8 @@ the pointer at that edge moves nothing on that axis.
 SRC-MANUAL-1994, page 4: to scroll the screen, move the mouse cursor in the direction the screen
 should move; the screen scrolls in that direction until the cursor moves away from the screen's
 edge or the edge of the map is reached. Page 14 describes the Game Menu's Center on Leader, which
-centres the screen on the party's leader.
+centres the screen on the party's leader,
+and page 77 gives the key `H` for the same.
 
 ## Differences between builds
 
@@ -73,4 +74,4 @@ None known.
 
 - How wide the scrolling band is, how far each step moves the view and how often a step is taken,
   and whether the band is the edge of the view or of the whole screen (Q-EXPLORE-001).
-- Where Center on Leader puts the leader in the view (Q-EXPLORE-001).
+- Where Center on Leader and the key `H` put the leader in the view (Q-EXPLORE-001).
