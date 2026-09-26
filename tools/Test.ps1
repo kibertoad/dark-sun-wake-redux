@@ -33,6 +33,37 @@ try {
 finally {
     if ([IO.File]::Exists($physicalPatternFixture)) { [IO.File]::Delete($physicalPatternFixture) }
 }
+$overlayMapFixture = Join-Path ([IO.Path]::GetTempPath()) (
+    "dark-sun-wake-overlay-map-{0}.bin" -f [Guid]::NewGuid().ToString('N'))
+try {
+    # A 144-byte MZ file: a 32-byte header, one overlay stub at segment 1, a one-entry FBOV segment
+    # table at 0x60, and an FBOV pack at 0x70 whose 16 bytes of overlay code start at 0x80.
+    $overlayMapBytes = New-Object byte[] 144
+    $overlayMapBytes[0] = 0x4d; $overlayMapBytes[1] = 0x5a
+    $overlayMapBytes[2] = 112; $overlayMapBytes[4] = 1; $overlayMapBytes[8] = 2; $overlayMapBytes[24] = 0x1c
+    $overlayMapBytes[48] = 0xcd; $overlayMapBytes[49] = 0x3f; $overlayMapBytes[56] = 16
+    $overlayMapBytes[96] = 1; $overlayMapBytes[100] = 2
+    [Text.Encoding]::ASCII.GetBytes('FBOV').CopyTo($overlayMapBytes, 112)
+    $overlayMapBytes[116] = 16; $overlayMapBytes[120] = 96; $overlayMapBytes[124] = 1
+    [IO.File]::WriteAllBytes($overlayMapFixture, $overlayMapBytes)
+    $overlayMap = & (Join-Path $PSScriptRoot 'ghidra/ReportFbovOverlayMap.ps1') `
+        -SourcePath $overlayMapFixture -MappedAddress '1006:0004', '1001:0000' | ConvertFrom-Json
+    if ($overlayMap.OverlayCount -ne 1 -or
+        $overlayMap.FbovFileOffset -ne '0x00000070' -or
+        $overlayMap.Overlays[0].HeaderSegment -ne '1001' -or
+        $overlayMap.Overlays[0].CodeFileOffset -ne '0x00000080' -or
+        $overlayMap.Overlays[0].MappedCodeStart -ne '1006:0000' -or
+        $overlayMap.Conversions[0].FileOffset -ne '0x00000084' -or
+        $overlayMap.Conversions[0].Region -ne 'overlay' -or
+        $overlayMap.Conversions[0].OffsetInOverlayCode -ne '0x0004' -or
+        $overlayMap.Conversions[1].FileOffset -ne '0x00000030' -or
+        $overlayMap.Conversions[1].Region -ne 'resident') {
+        throw 'FBOV overlay map reporter synthetic contract failed.'
+    }
+}
+finally {
+    if ([IO.File]::Exists($overlayMapFixture)) { [IO.File]::Delete($overlayMapFixture) }
+}
 # The documentation standard check, from the toolkit commit the CI workflow pins.
 $documentationToolkitCommit = '6fe1e4133585d82458a83c5dac519720ae33adb5'
 $documentationCheck = Join-Path $root "artifacts/check-documentation-$documentationToolkitCommit.mjs"

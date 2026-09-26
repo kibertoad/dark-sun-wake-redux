@@ -70,6 +70,19 @@ match count, and file offsets. It does not print, retain, or create a copy of
 source bytes. Follow a physical hit with `ReportBytePattern` in the applicable
 loaded or mapped Ghidra view before assigning it a code owner.
 
+`tools/ghidra/New-FbovMappedImage.ps1` writes a local-only copy of `DSUN.EXE`
+whose header loads the `FBOV` overlay code as ordinary segments, so Ghidra can
+follow calls into it. That copy is not a shipped file, and the spec never cites
+its addresses. `tools/ghidra/ReportFbovOverlayMap.ps1` prints, for each overlay,
+the segment of its resident header, the file offset and length of its code, and
+the segment its code has in the mapped image. Given `-MappedAddress` values, it
+converts each to the file offset of the same byte in `DSUN.EXE` and says whether
+it lies in overlay code, in the resident load image, or elsewhere in the `FBOV`
+pack. The mapped copy keeps every byte after the MZ header in place, so a
+resident address such as `5000:A4B9` is the same in both images and is cited as
+it is, while overlay code is cited as `DSUN.EXE+0x...` from the reporter's
+`FileOffset`.
+
 ## Headless workflow
 
 Create a uniquely named disposable project below `%TEMP%` and import the
