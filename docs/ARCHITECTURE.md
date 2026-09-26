@@ -45,6 +45,10 @@ Game Menu/Preferences, character, inventory, Cast, Effects, and first dialogue.
 Later work adds semantic readers and behavior only after their mappings are
 recorded; it does not extend corpus coverage by silently omitting unknown data.
 
+A revision bump means the required derived-asset inventory or contract changed.
+`play.bat` then refreshes an older pack transactionally from the owner's licensed
+installation instead of running it.
+
 ## Runtime startup
 
 `--smoke-test` is assetless for CI. `--content-smoke-test` verifies and opens the

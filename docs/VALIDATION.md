@@ -238,8 +238,8 @@ pinned to a full commit SHA, on every pull request. It checks `spec/`, `parity/`
 and `deviations/` against the standard's list of
 [checks](https://dinorefurb.com/documentation-standard/#checks), compiles each
 `.ksy` file with the Kaitai Struct compiler, checks that every spec and
-deviation ID cited in `src/`, `tests/` and `tools/` exists and is not
-superseded, fails when `spec/index/` or `PARITY.md` is stale, and fails a `validated`
+deviation ID cited in `src/`, `tests/`, `tools/` and `docs/` exists and is
+not superseded, fails when `spec/index/` or `PARITY.md` is stale, and fails a `validated`
 row whose marked tests are not in `VALIDATION.md` as they are now (see
 [Tests against the original](#tests-against-the-original)). It fetches
 the full history so it can fail a pull request that deletes a spec ID, area or
@@ -247,7 +247,7 @@ deviation that exists on `main`. The toolkit's
 [setup guide](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/blob/main/docs/documentation-standard-check.md)
 lists its inputs.
 
-`./tools/Test.ps1` runs the same check with `--check`, from the toolkit commit
+`./tools/Test.ps1` runs the same check with `--check --references docs`, from the toolkit commit
 the workflow pins. It downloads the script once into
 `artifacts/check-documentation-<sha>.mjs` and needs Node.js 20 or newer. With
 `kaitai-struct-compiler` on `PATH` it also compiles the `.ksy` files; without

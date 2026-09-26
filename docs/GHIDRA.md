@@ -10,8 +10,8 @@ This workflow follows the established practice in
 `C:\sources\rechaos-overlords`: establish and document the executable
 fingerprint once for its stable approved path, keep a
 disposable local analysis project, answer narrow questions with bounded scripts,
-record address-level factual findings and confidence, then implement the behavior
-independently with synthetic tests.
+record address-level factual findings in `spec/findings/`, then implement the
+behavior independently with synthetic tests.
 
 ## Installed toolchain
 

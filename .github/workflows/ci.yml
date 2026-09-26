@@ -51,6 +51,9 @@ jobs:
           fetch-depth: 0
       # The toolkit publishes no tags, and its setup guide pins a commit on its main branch.
       - uses: kibertoad/refurbished-dinosaurs-toolkit/actions/check-documentation@6e3cad31b6d61280a4649a873cf890377b402a75 # zizmor: ignore[stale-action-refs]
+        with:
+          # The narrative docs cite spec IDs, so they must resolve too.
+          references: docs
   installer:
     needs: verify
     runs-on: windows-latest

@@ -82,7 +82,7 @@ if (-not $env:KSC) {
         -ErrorAction SilentlyContinue | Select-Object -First 1
     if ($kaitaiCompiler) { $env:KSC = $kaitaiCompiler.Source }
 }
-& node $documentationCheck --root $root --check
+& node $documentationCheck --root $root --check --references docs
 if ($LASTEXITCODE -ne 0) { throw 'Documentation standard check failed.' }
 $artifacts = Join-Path $root 'artifacts/test'
 dotnet test --project (Join-Path $root 'tests/DarkSunWakeRedux.Tests/DarkSunWakeRedux.Tests.csproj') `

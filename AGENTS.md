@@ -37,8 +37,8 @@ presentation, and original-content behavior, the automated tests that prove it,
 and the questions still open. Guesses belong in the open-questions register, not
 in an API.
 
-Small, self-contained changes — fixing a bug, tightening a test, editing prose,
-finishing a slice the plan already covers — do not need a new plan. When in
+Small, self-contained changes (fixing a bug, tightening a test, editing prose,
+finishing a slice the plan already covers) do not need a new plan. When in
 doubt, propose the plan; it is cheaper than the wrong abstraction.
 
 ## Specializing this template for a game
@@ -61,12 +61,11 @@ run `./tools/Configure-Project.ps1`, then `./tools/Verify-Configuration.ps1`.
 `docs/CUSTOMIZATION.md` documents every field and every derived default. Do not
 hand-edit placeholders the script can substitute.
 
-**3. Record what is known about the original.** Replace the instructional text in
-`docs/SOURCE-EDITIONS.md`, `docs/ORIGINAL-FORMATS.md`,
-`docs/RULES-AND-EVIDENCE.md`, and `docs/FIDELITY.md` with
-game-specific content, keeping each document's structure and confidence
-vocabulary. State confidence honestly; `unknown` is a valid answer and a
-plausible-sounding guess is not.
+**3. Record what is known about the original.** Write it in `spec/` under the
+documentation standard: a build entry for each edition, a source entry for each
+manual, guide or outside tool, and findings, formats, rules and screens for what
+they show. Give every entry the status its evidence supports; `unknown` is a
+valid status and a plausible-sounding guess is not.
 
 **4. Make extraction real.** Replace the sample manifest under
 `src/<Project>.Extractor/source-manifests/` with one fingerprint manifest per
@@ -77,12 +76,13 @@ a licensed source and transactionally creates a complete local asset pack; the
 Game consumes only that verified pack.
 
 **5. Build the first vertical slice.** Follow the approved plan. Prefer a thin
-end-to-end slice — identify, import, start, show something real, quit cleanly —
+end-to-end slice (identify, import, start, show something real, quit cleanly)
 over broad but unplayable systems.
 
-**6. Verify and hand over.** Run the commands below, update the README status
-table and `docs/PARITY-MATRIX.md` to match what is actually true, and tick off
-`docs/BOOTSTRAP-CHECKLIST.md` as decisions are captured elsewhere.
+**6. Verify and hand over.** Run the commands below, bring the rows in `parity/`
+and the files in `deviations/` in line with what is actually true (the check
+regenerates `PARITY.md` from them), and tick off `docs/BOOTSTRAP-CHECKLIST.md` as
+decisions are captured elsewhere.
 
 ## Planning and tracking work
 
@@ -147,13 +147,16 @@ rules under "Native runtime visual validation", which this repository keeps.
   `analysis/original/`, and `reference/original/` are local-only, and
   `tools/Verify-Repository.ps1` enforces this. Synthetic fixtures go under
   `tests/fixtures/synthetic/`.
-- **Clean room.** Do not copy original source, decompiler output, or
-  disassembly into this repository. Describe behavior and data formats in your
-  own words, with the evidence recorded in `docs/RULES-AND-EVIDENCE.md` and
-  `docs/GHIDRA.md`.
-- **Evidence before claims.** A rule, format field, or parity claim needs a
-  reproducible test or a recorded observation. Conflicting sources are preserved
-  as a conflict, not silently resolved.
+- **Clean room.** Do not copy original source, decompiler output, disassembly,
+  byte dumps, or analysis databases into this repository. Describe behavior and
+  data formats in your own words in `spec/`, and write the implementation from
+  that description. Do not translate the original machine code into matching
+  source, and do not patch the original executable one function at a time.
+- **Evidence before claims.** Every spec entry cites the findings, experiments,
+  and sources its status requires. Evidence from the original that contradicts
+  an entry makes it `disputed`, with both sides cited, until new evidence
+  settles it. A conflict between the manual, a guide and the shipped game is
+  kept in the entry, and what the rebuild does about it is a deviation.
 - **Measured reproduction, never speculative gameplay.** Do not turn a manual,
   a walkthrough, a generic genre convention, an opaque resource, or an
   unconfirmed static-analysis lead into executable game behavior. This is
@@ -165,8 +168,12 @@ rules under "Native runtime visual validation", which this repository keeps.
   documented; they must not be presented as a playable combat foundation.
   Prefer closing a measured UI/layout gap or recording a bounded negative
   finding over adding a plausible system.
-- **CI never needs proprietary content.** Every test and packaging check must
-  pass on a machine that has no copy of the original game.
+- **CI never needs proprietary content.** Every packaging check, and every test
+  that does not compare against the original, passes on a machine with no copy
+  of the game. Tests that read the original find it through `GAME_DIR`,
+  report themselves skipped when it is absent, and carry the comment
+  `// needs: GAME_DIR`. They run on a maintainer's machine, and the run is
+  recorded in `VALIDATION.md` (`docs/VALIDATION.md`).
 - **Parse defensively.** Original files are untrusted input: bound every length,
   reject path traversal, and fail with a diagnosable error instead of throwing
   from deep inside a reader.
@@ -185,6 +192,93 @@ rules under "Native runtime visual validation", which this repository keeps.
   source-mapped, bounded, hash-verified local-pack representation, and record
   unknown structures as opaque rather than guessing their meaning. Resume
   behavior work only after the owner-approved gate acceptance criteria pass.
+
+## Reverse-engineering discipline
+
+The project follows the [methodology](https://dinorefurb.com/methodology/) and
+the [documentation standard](https://dinorefurb.com/documentation-standard/)
+published at dinorefurb.com. This section and the next two summarize them;
+where they differ, the published pages win.
+
+Start with one narrow player-visible question. The executable has the final word
+on what the shipped game does. The manual says what the designers intended and
+is often wrong about what shipped, and FAQs, wikis, and other fans' tools are
+leads to credit and re-check. For a non-trivial rule: state the question, locate
+evidence, form competing hypotheses, seek falsifying evidence, corroborate
+against the original running, then implement it with a deterministic test.
+
+An experiment starts from a saved state, usually a save patch, changes one
+input, and records what follows. It is repeated from the same state with the
+random number generator's state varied between runs. Anything random gets
+enough repetitions for a recorded distribution, because a formula inferred from
+one roll is a guess.
+
+Use the standard's statuses and no other scale. Rules, formats, screens, and
+bugs are `unknown`, `sourced` (outside sources only), `supported` (one kind of
+direct evidence from the original), `established` (a complete reading of the
+code, or a reading and a run of the original that agree where the code does
+not decide the outcome), `disputed`, or `superseded`. Findings and experiments are
+`recorded`, `reproduced`, or `superseded`. A part of an entry that is less
+certain than the rest goes in its own entry or in its Open questions section.
+Never silently promote a plausible interpretation.
+
+Unidentified functions, globals, fields, and scripts keep neutral names
+(`fn_00478CD0`, `g_004C1F20`, `unk_2A`) until a finding or experiment shows what
+they do, because a wrong name given early steers every later reading. Decompiler
+output is not source: inferred names, types, signedness, casts, and control flow
+can be wrong, so inspect bounded instruction context when the distinction
+matters.
+
+Durable findings go in `spec/`, one entry per file named after its ID, and not
+in conversation history or large retained dumps. IDs are never reused or
+renumbered, and an entry that turns out wrong becomes `superseded`. The spec
+describes the original only and never names a class, file, or setting from this
+repository. It holds names, numbers, formulas, and tables in full, as a strategy
+guide would: the names of concepts and of the things a designer made (an
+enumeration value may be named `UNIT_ARCHER`), constants, and the per-unit or
+per-item statistics a designer filled in, with a table of more than 64 values in
+a value file. It never keeps a substantial copy of the game's writing (dialogue,
+descriptions, messages, the manual's prose; quote a short passage at most and
+refer to the rest by resource), its art (images, sounds, music, video, maps), or
+a meaningful slice of its code or scripts. Tool procedure stays in `docs/GHIDRA.md`. Never commit broad
+decompiler, instruction, or Version Tracking exports.
+
+## Fidelity
+
+The spec records the original exactly, bugs included. The rebuild keeps the
+rules, balance, content, AI, and pacing, including asymmetries, rounding,
+ordering, timing, overflow behavior, and quirks players built strategies
+around. Crashes, corrupted saves, game speed tied to the CPU clock, and logic
+that plainly does not do what it was written to do may be fixed. An interface
+change may add information or remove friction, and may not change what the
+player can do or what the rules produce. Screens match the original pixel for
+pixel except where a documented interface change draws something new. When a
+bug cannot be told from a design decision, the original behavior stays and any
+fix becomes a setting.
+
+Every departure from the spec is a `DEV-AREA-NNN` file in `deviations/`,
+with a Default of `off`, `on` or `mandatory`. A setting starts `off`, with the
+original's behavior, unless the entry's Justification argues that the rebuild's
+behavior is strictly better: then it starts `on`, and a player who wants the
+original switches it off. A deviation with no setting is `mandatory`, and its
+Justification also says why the original's behavior is not worth a setting. The
+fix of an unintended bug that players do not rely on is `on` without one. A
+quirk that may be deliberate or that players rely on is never strictly better,
+so its deviation starts `off`. The validation suite runs with every setting
+switched off, and a test that reaches a mandatory deviation cites its ID and
+allows for it. Rebalancing and new features belong in a separate mode or
+project.
+
+## Citing the spec
+
+Code comments and tests cite the spec IDs they implement or check, so a search
+for an ID finds everything that depends on it. A placeholder in the code, such
+as a guessed formula, carries a `PLACEHOLDER: <spec ID>` comment, and the
+parity row for that ID cannot be `complete` while it does. The parity matrix
+(`PARITY.md` for the totals, `parity/` for the rows) has one row per rule,
+format, and screen entry that is not superseded, so behavior
+without a spec entry gets an `unknown` entry before any code. Manual play never
+counts as a test.
 
 ## Architecture boundaries
 
@@ -222,9 +316,10 @@ reuse that stable named target for focused queries without rehashing it each
 time. Revalidate only when the path, size, last-write metadata, source package,
 or documented edition changes, when a fresh analysis environment lacks the
 recorded baseline, or when there is a concrete reason to suspect replacement.
-Ask one narrow player-visible question at a time and record the
-edition, tool versions, query, result, competing interpretations, and confidence
-in `docs/GHIDRA.md`.
+Ask one narrow player-visible question at a time and record the answer as a
+finding in `spec/findings/`, with the build, the tool and its version, the
+locations, how to reproduce it, and the competing interpretations under
+Alternatives.
 
 For a known filename, label, or other ASCII text, do **not** conclude it is
 absent merely because Ghidra does not expose it through `getDefinedData()` or
@@ -264,9 +359,10 @@ accounts for the missing chrome, treat the generic widget path as an open
 evidence question: make a narrow static-analysis query against the documented
 approved executable target, revalidating its identity only under the static
 analysis conditions above, and obtain a bounded capture that shows each
-corner/state required. Record measured geometry, colours, and confidence in the
-UI evidence documents, add synthetic tests for those measurements, and keep
-the capture itself outside Git. Do not claim pixel parity until the native
+corner/state required. Record measured geometry and colours in findings and in
+the screen's entry in `spec/screens/`, at the status the evidence supports, add
+synthetic tests for those measurements, and keep the capture itself outside
+Git. Do not claim pixel parity until the native
 widget treatment is observed.
 
 Coding agents must never launch, control, capture, or stop DOSBox on their own.
@@ -289,8 +385,8 @@ labels still require owner confirmation before they are recorded as evidence.
 Do not operate the DOSBox window, invoke Ctrl+F5, use another screen-capture
 mechanism, or infer that an unconfirmed request, an old capture, or the
 presence of a DOSBox process means the requested observation was performed.
-Before recording or relying on a screenshot's semantic identity—such as a
-named screen, actor, turn, action, or transition—ask the owner to confirm that
+Before recording or relying on a screenshot's semantic identity, such as a
+named screen, actor, turn, action, or transition, ask the owner to confirm that
 proposed label. Geometry/pixel measurements may be recorded as provisional
 observations without assigning that identity. If neither a timestamp window,
 date-and-hour slot, nor explicit filename list is authorized, ask the owner
@@ -324,9 +420,9 @@ finds nothing to stop, do not create a log entry.
 ## Definition of done
 
 A change is finished when the solution builds, `./tools/Test.ps1` passes, new
-behavior has tests that do not need original content, the documents that assert
-status (`README.md`, `docs/PARITY-MATRIX.md`, `docs/FIDELITY.md`) match reality,
-and the plan's open questions have been updated with whatever the work settled
-or newly raised.
+behavior has tests, the spec entries it relies on exist with the status their
+evidence supports, the documents that assert status (`README.md`, `PARITY.md`,
+`parity/`, `deviations/`) match reality, and `queue/` and the plan's open
+questions have been updated with whatever the work settled or newly raised.
 
 Commits describe the change and its evidence, not the tooling that produced it.

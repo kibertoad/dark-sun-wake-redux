@@ -117,8 +117,8 @@ family without generalizing unknown target semantics:
   Walk, reverse-draw-order entity alpha plus leader alpha for Look, and limits
   melee validity to the first observed target pending broader behavior data.
 
-`RULE-INPUT-002`, `spec/screens/`, `docs/FIDELITY.md`,
-and `docs/PARITY-MATRIX.md` record the evidence boundary and remaining uncertainty.
+`RULE-INPUT-002`, `spec/screens/` and `PARITY.md` record the evidence boundary and remaining
+uncertainty.
 
 ## Local-only content
 

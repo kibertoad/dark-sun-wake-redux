@@ -59,7 +59,7 @@ runtime observation, and bounded data inspection do not establish an exact rule,
 file field, state transition, or RNG/timing behavior. Analysis should begin with
 the exact fingerprinted `DSUN.EXE` from BLD-GOG-EN-1.1, with the Ghidra version,
 executable XXH3-128, load settings, address or symbol, method, interpretation,
-confidence, and reproducible follow-up recorded in `docs/GHIDRA.md`.
+alternatives, and reproducible follow-up recorded as a finding in `spec/findings/`.
 
 The Ghidra project, executable, memory dumps, screenshots, raw disassembly, and
 decompiler output remain under ignored `analysis/original/` or another local-only
@@ -620,6 +620,24 @@ catalogs.
   optional routes by parity-matrix row. No broad parity claim is allowed while a
   required row is unknown or merely implemented.
 
+## Rebuild status outside the spec
+
+[`PARITY.md`](../PARITY.md) and `parity/` give the rebuild's status against every rule, format
+and screen in the spec. This table covers the parts of the rebuild that have no spec entry.
+
+| Part | Status |
+|---|---|
+| Source recognition | Implemented. One English GOG build has an exact 233-file immutable inventory, and all 279 installed files have a game-data, mutable, wrapper or documentation disposition. Synthetic mismatch tests pass and the owned build verifies. |
+| Asset pack | Implemented. Required revision 35 keeps all 233 source files and every one of the 16,168 GFF descriptors as 16,401 DSOP assets, plus 123 specialized derivatives (16,524 assets). The pack contract checks version, game and source identity, inventory, hashes, provenance, media type, conversion and unexpected files. |
+| Error behavior | Implemented. A missing or invalid pack and a source mismatch return a diagnostic that says what to do. |
+| Saves and replays | Partial. Start-flow snapshot schema 5 and replay format 3 with hash-verified replay are implemented in memory. Native save files, migration and whole-game coverage are not started. |
+| Packaging | Identity configured. Packages are not release-ready while decoders are missing. |
+
+Owner runs that block further work are requested in `docs/live-sessions/`: the shipped party and
+Look panel (`shipped-party.md`), opening combat (`opening-combat.md`), Preferences
+(`preferences.md`), inventory selection (`inventory-selection.md`) and sound (`audio-presence.md`).
+No broad parity claim is made while any row in `PARITY.md` is short of `validated`.
+
 ## Open questions
 
 Open research questions about the original are items in `queue/<AREA>.md`,
@@ -675,8 +693,8 @@ All seven slices are complete; the separate Extractor recognizes a licensed,
 fingerprinted GOG copy and transactionally produces a complete verified local
 asset pack; the reimplemented runtime alone runs that pack through a finishable
 campaign with deterministic saves/replays; the README, source-edition record,
-formats, rules/evidence ledger, UI atlas, fidelity ledger, bootstrap checklist,
-and parity matrix match demonstrated reality; all questions are closed or
+spec, deviation log, bootstrap checklist and `PARITY.md` match demonstrated
+reality; all questions are closed or
 explicitly deferred as non-goals; the solution and smoke test build; all
 repository/configuration/test scripts pass without proprietary content; and
 each declared package passes clean-machine install, extract, launch, save,

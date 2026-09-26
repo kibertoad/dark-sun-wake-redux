@@ -13,10 +13,9 @@ behavior, its detailed record must be consulted first.
 - No original executable, data, save, screenshot, or decompiler output belongs
   in this repository. The game consumes a local verified pack; it never starts
   the original executable or DOSBox.
-- [RULES-AND-EVIDENCE.md](RULES-AND-EVIDENCE.md) is authoritative for data,
-  manual, and observation facts. [GHIDRA.md](GHIDRA.md) is authoritative for
-  bounded static-analysis findings. [FIDELITY.md](FIDELITY.md) and
-  [PARITY-MATRIX.md](PARITY-MATRIX.md) state what is actually implemented.
+- The [spec](../spec/README.md) holds every fact about the original, with its
+  evidence. [`PARITY.md`](../PARITY.md) states what the rebuild implements of it,
+  and [`deviations/`](../deviations/) where it departs on purpose.
 - An unobserved or untraced behavior remains unknown. It is not approximated as
   a native-parity rule merely because an implementation would be convenient.
 
@@ -205,9 +204,9 @@ rejecting unsupported semantics:
   (`FND-ITEM-006`, `RULE-ITEM-006`); `DSUN.EXE` holds no name for it
   (`FND-ITEM-004`).
 
-Addresses, methods, competing interpretations, and confidence are retained in
-[GHIDRA.md](GHIDRA.md); open questions are kept in the plan rather than encoded
-as APIs.
+Addresses, methods and competing interpretations are kept in the spec's
+findings, and [GHIDRA.md](GHIDRA.md) describes the tools. Open questions are
+items in `queue/` rather than encoded as APIs.
 
 ## Next evidence gates
 
