@@ -6,7 +6,7 @@ semantics.
 
 | Format/family | Observed role | Current knowledge | Confidence | Required failure behavior |
 |---|---|---|---|---|
-| `*.GFF` | Shared resources, numbered regions, and legacy saves | Little-endian version `0x00030000` container directory is decoded; indexed-image and palette payloads are decoded, while other tag semantics remain mostly unknown | verified for the directory layout and recorded image/palette families in the owned build | Bound file size and every count/offset/length; reject overflow, truncation, invalid secondary references, duplicate keys, and partial overlaps with source context |
+| `*.GFF` | Shared resources, numbered regions, and legacy saves | The container, its directory, tag tables and `GFFI` index are described by `FMT-GFF-001` to `FMT-GFF-007`, which also define the `FILE.GFF#TAG/number` resource reference; tag payloads are described below where known | see the format entries for the container; per-tag confidence below | Bound file size (512 MiB), tag tables (4,096) and resources (1,000,000), and every count/offset/length; reject overflow, truncation, invalid secondary references, duplicate tags or numbers, and partial overlaps with source context |
 | GFF `BMP `, `CBMP`, `ICON`, `PORT` | Indexed image frames | Shared size/frame envelope plus sparse row, `PLAN`, and `PLNR` encodings are decoded to palette indices and alpha. `EXE-GOG-IMAGE-001` independently establishes native distinct dispatch for `PLAN` and `PLNR` on bounded tile/object image paths. `EXE-GOG-IMAGE-002` additionally establishes a generic native selector/cache for `BMP `/`CBMP` and a separate generic window-image request path. `EXE-GOG-PORT-001` finds no literal `PORT` tag in the main executable, not a screen-specific behavior or timing contract | verified for all matching resources in the owned build, including all 178 `PORT` records; high for the native tag distinction, generic cache/request boundary, and bounded literal-tag absence | Bound payload, frame count, offsets, dimensions, total pixels, compressed runs, dictionaries, and bitstreams; reject malformed input with resource identity; do not infer frame scheduling, cache policy, composition, or actor semantics from decoder dispatch |
 | GFF `PAL ` | 256-color palettes | Exactly 256 RGB triples with 6-bit VGA components, scaled by four to 8-bit channels | verified for all matching resources in the owned build | Require exactly 768 bytes and reject components outside `0..63` |
 | GFF `FONT` | Indexed bitmap glyphs | A shared-height 256-glyph table with character map, absolute offsets, widths, and palette-index pixels is decoded | verified for `FONT` #100 in `RESOURCE.GFF` | Bound payload, count, height, offsets, widths, total pixels, and exact record ends |
@@ -38,51 +38,11 @@ semantics.
 | `game.gog` / `game.ins` | GOG disc-image payload and descriptor | Bounded Mode 2/2352 ISO 9660 inspection located the disc character archive for `DATA-GOG-CHAR-006`; broader extractor relevance is unknown | medium for that bounded observation | Preserve as opaque DSOP; never mount or execute automatically. Parse only when a documented evidence question requires it, bound sectors/directories/extents, and keep original bytes outside Git |
 | `DSUN.EXE` | Original DOS executable | Fingerprinted research oracle and bounded source for the Preferences difficulty/description/About string tables. Its `FBOV` overlay pack is described by `FMT-EXE-001` to `FMT-EXE-005`; the rebuild only checks its envelope and otherwise keeps the file as local opaque evidence | implemented for the three fixed-edition tables; unknown for executable semantics | Bound file size, MZ and `FBOV` envelope/table/payload ranges, fixed string-table offsets/counts/terminators/printable bytes, exact description span, and About control prefixes; never load or execute the opaque pack copy, or put it in Git |
 
-The GFF directory is the first implemented format layer. Slice 2A now preserves
+The GFF container (`FMT-GFF-001`) is the first implemented format layer. Slice 2A now preserves
 every fingerprinted source payload whether or not it has a dedicated reader;
 unknown meaning is represented by DSOP rather than omitted. Every semantic
 payload reader still requires synthetic fixtures and its own evidence before
 production behavior uses it.
-
-## GFF container directory
-
-**Evidence:** `DATA-GOG-GFF-001`, corroborated by `SRC-DSUN-MUSIC-79B6927`.
-
-All 26 `.GFF` files in BLD-GOG-EN-1.1 parse with the bounded reader. Together
-they expose 16,168 resource descriptors. The three fingerprint anchors contain
-1,858 descriptors in `RESOURCE.GFF`, 535 in `GPLDATA.GFF`, and 10,532 in
-`OBJEX.GFF`. These counts describe directory entries only; they do not prove a
-payload tag's meaning.
-
-Observed multibyte integers are little-endian. The 28-byte header contains:
-
-| Offset | Size | Meaning | Confidence |
-|---:|---:|---|---|
-| `0x00` | 4 | ASCII `GFFI` signature | verified |
-| `0x04` | 4 | version `0x00030000` | verified for supported files |
-| `0x08` | 4 | header size, `28` | verified |
-| `0x0c` | 4 | absolute directory offset | verified |
-| `0x10` | 12 | header fields not yet interpreted | unknown |
-
-At the directory offset, two currently uninterpreted 32-bit values precede a
-16-bit tag-table count. Each table begins with a four-byte printable ASCII tag
-and a 32-bit count marker:
-
-- A positive signed marker is an inline primary table. It is followed by that
-  many 12-byte entries: resource number, absolute offset, and byte length.
-- A marker with its high bit set identifies a secondary table. Its low 31 bits
-  match a repeated resource count, followed by a zero-based entry in the
-  primary `GFFI` table and a segmented numbering map. Each numbering segment is
-  a first resource number and consecutive count. The referenced `GFFI` payload
-  starts with the entry count and then eight-byte absolute-offset/length pairs.
-- Primary-only region and save containers legitimately omit a `GFFI` table.
-
-The reader caps files at 512 MiB, tag tables at 4,096, and total resources at
-1,000,000. It validates all arithmetic and referenced table bounds before
-exposing payload bytes. Exact aliases are accepted because the owned files may
-address one byte range more than once; non-identical overlapping ranges are
-rejected. Other payload structures and cross-tag relationships remain open and
-require separate evidence entries and tests.
 
 ## Region maps
 

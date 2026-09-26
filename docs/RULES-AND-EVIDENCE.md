@@ -9,28 +9,6 @@ release. Records below that have not moved into the spec yet keep their legacy
 IDs: `OBS-GOG-*` for controlled runs and `DATA-GOG-*` for bounded inspection of
 the owned build.
 
-### DATA-GOG-GFF-001 - GFF container directory
-
-- **Question:** How are resource identities, offsets, and lengths represented in
-  the owned build's `.GFF` containers?
-- **Method:** Fingerprint the supported edition, inspect bounded header/index
-  windows, compare the SRC-DSUN-MUSIC-79B6927 GFF results, implement an independently
-  bounded reader, and enumerate metadata from every installed `.GFF` without
-  retaining payload bytes.
-- **Finding:** Version `0x00030000` uses a 28-byte header and little-endian
-  primary/secondary tag tables as specified in `docs/ORIGINAL-FORMATS.md`.
-  All 26 installed GFF files parse, producing 16,168 bounded descriptors.
-- **Confidence:** verified for directory structure and counts in
-  BLD-GOG-EN-1.1; tag payload semantics remain unknown unless separately
-  recorded.
-- **Implementation:** `DarkSunWakeRedux.Resources.GffArchive` and the read-only
-  `DarkSunWakeRedux.Inspect gff` and `resource-inventory` commands. The latter
-  emits only per-tag counts, byte totals, and numeric bounds, so namespace
-  questions can be narrowed without exporting resource metadata one record at a
-  time.
-- **Tests:** synthetic primary, primary-only, segmented-secondary, truncation,
-  out-of-range, and partial-overlap cases.
-
 ### DATA-GOG-GPLI-001 - GPLI fixed-lane envelope and non-unique GPL-ID candidate
 
 - **Question:** Does the owned `GPLDATA.GFF` `GPLI` #1 payload itself establish
@@ -67,40 +45,6 @@ the owned build.
   field contract: do not add a GPLI reader, record-to-script map, or dialogue
   behavior from it. A constrained native call path or controlled observation
   remains required.
-
-### DATA-GOG-CORPUS-001 - Immutable source-corpus inventory
-
-- **Question:** What must the extractor preserve before further game behavior is
-  implemented?
-- **Method:** Recursively inventory the supported owned installation, exclude
-  mutable captures/saves and GOG/DOSBox/documentation wrappers by explicit
-  disposition, and fingerprint every immutable game-data input. Parse each GFF
-  directory with the bounded reader; preserve every individual descriptor and
-  every non-GFF payload in a verified opaque local-pack envelope unless a
-  separately evidenced normalized contract already applies.
-- **Finding:** The BLD-GOG-EN-1.1 immutable corpus contains 233 files: 26 GFF
-  containers, 147 VOC files, five FLI files, 40 OGG tracks, the `game.gog`
-  disc image and `game.ins` descriptor, five original helper executables, and
-  the remaining static configuration/data files. The 26 GFF files expose
-  16,168 descriptors under `DATA-GOG-GFF-001`. These counts establish coverage,
-  not gameplay, UI, audio, or executable semantics.
-- **Inventory disposition:** `inventory-source` classified all 279 files in the
-  owned installation: 233 immutable game-data inputs, 10 mutable capture/save
-  files, 18 DOSBox wrapper/configuration files, 13 storefront wrappers, and five
-  documents. No file is unrepresented.
-- **Confidence:** verified for this fingerprinted installation inventory and
-  GFF descriptor count; semantics remain unknown unless separately recorded.
-- **Implementation:** `PackedOpaquePayload` (DSOP v1) and the Extractor's
-  corpus pass emit one source-mapped, hash-verified local asset for every raw
-  file and every GFF resource. The required-revision-34 extraction contains 16,401 DSOP
-  assets (233 source files plus 16,168 descriptors) and 123 specialized
-  derivatives, for 16,524 verified pack assets. The Game does not load opaque
-  payloads.
-- **Tests:** the embedded production manifest asserts the 233-file corpus and
-  documented GFF/VOC/FLI/OGG family counts without proprietary input; DSOP
-  round-trip and invalid-envelope tests plus synthetic extractor coverage
-  confirm raw files and GFF records are retained alongside existing specialized
-  derivatives.
 
 ### DATA-GOG-IMAGE-001 - Indexed images and palettes
 

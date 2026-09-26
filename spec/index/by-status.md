@@ -14,7 +14,7 @@ Entries by status.
 
 ## supported
 
-6 entries.
+13 entries.
 
 | ID | Title |
 |---|---|
@@ -23,6 +23,13 @@ Entries by status.
 | [FMT-EXE-003](../formats/FMT-EXE-003.md) | FBOV overlay header in the resident image |
 | [FMT-EXE-004](../formats/FMT-EXE-004.md) | FBOV overlay trampoline |
 | [FMT-EXE-005](../formats/FMT-EXE-005.md) | FBOV overlay code block with its fixup list |
+| [FMT-GFF-001](../formats/FMT-GFF-001.md) | GFF resource container |
+| [FMT-GFF-002](../formats/FMT-GFF-002.md) | GFF directory |
+| [FMT-GFF-003](../formats/FMT-GFF-003.md) | GFF tag table |
+| [FMT-GFF-004](../formats/FMT-GFF-004.md) | GFF resource entry in a plain tag table |
+| [FMT-GFF-005](../formats/FMT-GFF-005.md) | GFF byte range |
+| [FMT-GFF-006](../formats/FMT-GFF-006.md) | GFF numbering range in an indexed tag table |
+| [FMT-GFF-007](../formats/FMT-GFF-007.md) | GFFI index resource |
 | [RULE-RNG-001](../rules/RULE-RNG-001.md) | The game's random number generator and its reductions |
 
 ## established
@@ -39,7 +46,7 @@ Entries by status.
 
 ## recorded
 
-15 entries.
+20 entries.
 
 | ID | Title |
 |---|---|
@@ -50,6 +57,11 @@ Entries by status.
 | [FND-EXE-005](../findings/FND-EXE-005.md) | Each overlay's fixup list names words in its code that hold a segment-table index times eight |
 | [FND-EXE-006](../findings/FND-EXE-006.md) | Several four-letter GFF tags occur in DSUN.EXE only inside overlay code |
 | [FND-EXE-007](../findings/FND-EXE-007.md) | The only resident routine that calls both the DOS seek and read wrappers is a signature-and-length record reader |
+| [FND-GFF-001](../findings/FND-GFF-001.md) | Every GFF file opens with a 28-byte header that gives the directory's offset and size |
+| [FND-GFF-002](../findings/FND-GFF-002.md) | A GFF directory lists one table per tag, and a plain table gives each resource's number, offset and size |
+| [FND-GFF-003](../findings/FND-GFF-003.md) | Indexed GFF tag tables give numbers as ranges and keep offsets and sizes in a GFFI resource |
+| [FND-GFF-004](../findings/FND-GFF-004.md) | A GFF directory ends with a list of the unused byte ranges between the header and the directory |
+| [FND-GFF-005](../findings/FND-GFF-005.md) | The 26 installed GFF files hold 16,168 resources under 42 tags, with no shared bytes |
 | [FND-RNG-001](../findings/FND-RNG-001.md) | The random number generator is a 32-bit linear congruential generator at 1000:0822 |
 | [FND-RNG-002](../findings/FND-RNG-002.md) | The seed setter at 1000:0811 stores a 16-bit seed and clears the high word |
 | [FND-RNG-003](../findings/FND-RNG-003.md) | The modulo reducer at 2834:061C draws once, and not at all for a divisor of 0 |
@@ -80,4 +92,7 @@ Entries whose Open questions section says more than None known.
 | [FMT-EXE-003](../formats/FMT-EXE-003.md) | FBOV overlay header in the resident image | supported |
 | [FMT-EXE-004](../formats/FMT-EXE-004.md) | FBOV overlay trampoline | supported |
 | [FMT-EXE-005](../formats/FMT-EXE-005.md) | FBOV overlay code block with its fixup list | supported |
+| [FMT-GFF-001](../formats/FMT-GFF-001.md) | GFF resource container | supported |
+| [FMT-GFF-002](../formats/FMT-GFF-002.md) | GFF directory | supported |
+| [FMT-GFF-003](../formats/FMT-GFF-003.md) | GFF tag table | supported |
 | [RULE-RNG-001](../rules/RULE-RNG-001.md) | The game's random number generator and its reductions | supported |

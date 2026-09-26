@@ -192,8 +192,8 @@ evidence throughout.
   resource record with stable source identity, source-file hash, payload hash,
   length, media/contract type, and conversion method. It does not assign rule or
   presentation semantics merely because a payload is now available.
-- **Evidence.** BLD-GOG-EN-1.1 plus the exact source manifest; DATA-GOG-GFF-001
-  and each subsequently recorded bounded container finding. The corpus inventory
+- **Evidence.** BLD-GOG-EN-1.1 plus the exact source manifest; FMT-GFF-001 to
+  FMT-GFF-007 and each subsequently recorded bounded container finding. The corpus inventory
   itself is evidence and must distinguish observed structure from opaque bytes.
 - **Acceptance - rules.** No new gameplay rule, screen transition, UI command,
   or inferred resource meaning is introduced by this slice. Known decoders must
@@ -294,7 +294,7 @@ catalogs.
 - **Outcome.** The runtime opens the complete verified pack, reaches the
   original-style start flow, and creates or selects a legal four-character party.
 - **Evidence.** SRC-MANUAL-1994 sections on quick start, party creation, character
-  options, and menus; `DATA-GOG-GFF-001` and `DATA-GOG-IMAGE-001`, corroborated
+  options, and menus; `FMT-GFF-001` and `DATA-GOG-IMAGE-001`, corroborated
   by SRC-DSUN-MUSIC-79B6927, for bounded container, indexed-image, and palette structures;
   `DATA-GOG-FONT-001` for bounded indexed glyphs; `DATA-GOG-UI-001` and
   `DATA-GOG-UI-006`-`008` for bounded start-window/button mappings, composition,
