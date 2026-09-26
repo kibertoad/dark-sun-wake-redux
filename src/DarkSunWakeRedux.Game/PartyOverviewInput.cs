@@ -12,6 +12,8 @@ public sealed record PartyOverviewInteractionSurface(
 
 public static class PartyOverviewInput
 {
+    // PLACEHOLDER: SCR-UI-002 - the original's View Character screen uses WIND 11500's boxes and
+    // buttons; what WIND 19502's full-screen button does is unknown.
     public const uint WindowResourceNumber = 19502;
     public const uint ButtonResourceNumber = 2099;
 

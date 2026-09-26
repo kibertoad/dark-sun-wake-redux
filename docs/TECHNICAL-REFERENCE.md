@@ -117,42 +117,20 @@ chrome while the exploration view may expand to the physical display aspect.
 The bounded first dialogue projection owns only the validated opening paths;
 unknown visible targets stay inert.
 
-The precise screen layers, logical geometry, image mapping, and observation
-confidence are maintained in [UI-ATLAS.md](UI-ATLAS.md). The plan and current
+The screens' layers, geometry and image mapping are the `SCR-UI` entries in
+[spec/screens](../spec/screens/). The plan and current
 slice acceptance criteria are in [IMPLEMENTATION-PLAN.md](IMPLEMENTATION-PLAN.md).
 
-The four known start-window controls have semantic identities from their
-resource-backed icon labels and the documented start flow. A complete
-instruction-operand scan found none of their button IDs as a direct native
-handler operand (`EXE-GOG-UI-011`). This excludes only a simple immediate-ID
-dispatcher: it neither makes a control inactive nor establishes focus,
-callbacks, frame states, transition order, or the supplied-party loader.
-Accordingly, deterministic routing remains an independently designed boundary,
+The start window is `SCR-UI-001`. No code that handles its buttons is known
+(`FND-UI-012`), so deterministic routing is an independently designed boundary,
 and START GAME continues with an explicit unresolved shipped-party origin.
 
 ## Destination-screen and combat evidence boundary
 
-The Character, Inventory, Cast/Use, and Effects destinations share the
-resource-backed character-screen family. WIND #11500 has 86 ordered children:
-64 APFM, one EBOX, and 21 BUTN records. Five independently evidenced
-navigation controls route today; all interior controls stay inert. The graph
-preserves distinct event-mask classes and exact geometry, but those values do
-not name a field, widget appearance, focus state, or action. In particular,
-the character-view #11308 button reuses the Preferences Game Menu icon but has
-no established route. No immediate native handler operand was found for that
-button, Return #10308, or #11318/#11319/#11320, the only character-view
-buttons with nonzero masks.
-
-The executable has an adjacent eight-entry UI text vocabulary beginning with
-View Character, View Inventory, Cast Spells/Use Psionic, and Current Spell
-Effects. The table base and first text entry have no direct references, and no
-decoded instruction directly names the table's `0xab20` base or the adjoining
-character-vocabulary table bases. That excludes only simple absolute access;
-the vocabulary and ordering still do not establish a screen, field projection,
-text renderer, or activation path. Owner-confirmed captures establish visible
-party/destination-shell composition and captions, not character-record field
-semantics or item/spell behavior. See DATA-GOG-UI-010,
-OBS-GOG-PARTY-001, EXE-GOG-UI-009, and EXE-GOG-UI-010 before extending these
+The View Character, Inventory, Cast and Effects screens are `SCR-UI-002` and
+`SCR-UI-008` to `SCR-UI-010`. Five navigation controls route today; all interior
+controls stay inert. The label table of those screens (`FND-UI-023`) has no
+known reader. Read those entries and OBS-GOG-PARTY-001 before extending these
 screens.
 
 The two item labels visible in the owner-confirmed AR'ANDA inventory capture
@@ -333,7 +311,7 @@ behavior.
 `SOUND.CFG` and `SOUND.INI` are absent as literal names in the separately
 shipped sound helper, and `SOUND.INI` is also absent from the main executable,
 so neither is mapped to Preferences. See
-`DATA-GOG-UI-011`, `DATA-GOG-PREF-001`, `FMT-TEXT-004`, `FND-TEXT-006`,
+`SCR-UI-007`, `DATA-GOG-PREF-001`, `FMT-TEXT-004`, `FND-TEXT-006`,
 `EXE-GOG-PREF-001`, and `DATA-GOG-SOUND-002` in the detailed evidence records
 before changing this boundary.
 
@@ -414,12 +392,10 @@ rejecting unsupported semantics:
   its Look-panel label at offset 43 (`FND-ACTOR-007`, `FND-ACTOR-009`). The
   `RDFF` layout is unknown (`FMT-ACTOR-002`), and the label's bytes do not occur
   in `DSUN.EXE`. No source for the dynamic interaction text is identified.
-- `EXE-GOG-UI-007` establishes a generic resource-derived UI input boundary:
-  current pointer state is resolved against `APFM`, `BUTN`, or `EBOX` children,
-  then event-bit guards select indirect handlers. It identifies neither a
-  specific control handler nor any widget drawing/chrome path, so serialized
-  image-less controls remain geometry/event contracts rather than invented
-  pixels.
+- `RULE-UI-001` and `FND-UI-011` give how the window code picks the control
+  under the pointer. No specific control handler or widget drawing path is known,
+  so image-less controls remain geometry and event contracts rather than
+  invented pixels.
 - The `FBOV` overlay pack of `DSUN.EXE` is `FMT-EXE-001` to `FMT-EXE-005`.
   The code that loads overlays is not located (`FND-EXE-007`), so the pack
   describes where overlay code sits, not how or when it runs. Static queries

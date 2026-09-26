@@ -63,7 +63,7 @@ hand-edit placeholders the script can substitute.
 
 **3. Record what is known about the original.** Replace the instructional text in
 `docs/SOURCE-EDITIONS.md`, `docs/ORIGINAL-FORMATS.md`,
-`docs/RULES-AND-EVIDENCE.md`, `docs/UI-ATLAS.md`, and `docs/FIDELITY.md` with
+`docs/RULES-AND-EVIDENCE.md`, and `docs/FIDELITY.md` with
 game-specific content, keeping each document's structure and confidence
 vocabulary. State confidence honestly; `unknown` is a valid answer and a
 plausible-sounding guess is not.

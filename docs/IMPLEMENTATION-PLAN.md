@@ -296,9 +296,9 @@ catalogs.
 - **Evidence.** SRC-MANUAL-1994 sections on quick start, party creation, character
   options, and menus; `FMT-GFF-001`, `FMT-IMAGE-001` to `FMT-IMAGE-004`, `RULE-IMAGE-001` and
   `RULE-IMAGE-002` for bounded container, indexed-image, and palette structures;
-  `FMT-TEXT-001` and `FMT-TEXT-002` for bounded indexed glyphs; `DATA-GOG-UI-001` and
-  `DATA-GOG-UI-006`-`008` for bounded start-window/button mappings, composition,
-  party-overview and ADD-list shells, and interface palette; further DATA-GOG
+  `FMT-TEXT-001` and `FMT-TEXT-002` for bounded indexed glyphs; `FMT-UI-001` to
+  `FMT-UI-005` and `SCR-UI-001` to `SCR-UI-004` for the start window, the View Character
+  screen, the ADD list and character generation; further DATA-GOG
   for party-screen resource mapping; OBS-GOG for screen states,
   coordinates, and navigation.
 - **Acceptance - rules.** Party size, available origins/classes, ability/alignment

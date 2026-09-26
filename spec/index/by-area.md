@@ -76,7 +76,58 @@ Entries by area.
 
 ## UI
 
-None.
+| ID | Title | Status |
+|---|---|---|
+| [FMT-UI-001](../formats/FMT-UI-001.md) | Window resource (WIND) | supported |
+| [FMT-UI-002](../formats/FMT-UI-002.md) | Child record of a window | supported |
+| [FMT-UI-003](../formats/FMT-UI-003.md) | Button resource (BUTN) | supported |
+| [FMT-UI-004](../formats/FMT-UI-004.md) | Application frame resource (APFM) | supported |
+| [FMT-UI-005](../formats/FMT-UI-005.md) | Edit box resource (EBOX) | supported |
+| [FND-UI-001](../findings/FND-UI-001.md) | RESOURCE.GFF holds 28 WIND, 139 BUTN, 97 APFM and 7 EBOX resources, each opening with its tag, size and number | recorded |
+| [FND-UI-002](../findings/FND-UI-002.md) | A WIND resource is a 261-byte fixed part and a counted list of 30-byte child records | recorded |
+| [FND-UI-003](../findings/FND-UI-003.md) | Bytes 0xC to 0xA7 of a WIND resource copy an EBOX or a BUTN record | recorded |
+| [FND-UI-004](../findings/FND-UI-004.md) | A BUTN resource is a 110-byte fixed part with size, event mask, repeated number, icon and a counted tail | recorded |
+| [FND-UI-005](../findings/FND-UI-005.md) | APFM resources vary only in size and event mask, and EBOX resources name a BMP at 0x3A | recorded |
+| [FND-UI-006](../findings/FND-UI-006.md) | The frame and child dispatchers test the word at 0x58 of APFM and BUTN records and at 0x96 of EBOX records | recorded |
+| [FND-UI-007](../findings/FND-UI-007.md) | The routine at 3F96:02F8 sets, clears or zeroes the event mask of an APFM record | recorded |
+| [FND-UI-008](../findings/FND-UI-008.md) | The generic window lookup, registration, redraw and activation code does not read 0x3A of a WIND record | recorded |
+| [FND-UI-009](../findings/FND-UI-009.md) | A window's two handler pointers at 0xF9 and 0xFD are read only by the activation routine | recorded |
+| [FND-UI-010](../findings/FND-UI-010.md) | Three EBOX lookup wrappers have no direct callers, and the child dispatcher is reached from one input path | recorded |
+| [FND-UI-011](../findings/FND-UI-011.md) | The child dispatcher at 3D72:0EB8 reads a window's count at 0xF3, flags at 0x9E and offset at 0x96 | recorded |
+| [FND-UI-012](../findings/FND-UI-012.md) | No decoded instruction of the resident image has the number of a start-flow, Look-panel or character-view control as an operand | recorded |
+| [FND-UI-013](../findings/FND-UI-013.md) | No resident function has both numbers of either pair of Preferences buttons 16300 and 16301 or 16304 and 16305 | recorded |
+| [FND-UI-014](../findings/FND-UI-014.md) | No function of the overlay-mapped image has both the RDFF tag and the number 19003 | recorded |
+| [FND-UI-015](../findings/FND-UI-015.md) | DSUN.EXE does not contain the name shown in the first hostile Look panel as ASCII bytes | recorded |
+| [FND-UI-016](../findings/FND-UI-016.md) | A conversation capture shows the speech window at (0,0) and the response window at (0,140) | recorded |
+| [FND-UI-017](../findings/FND-UI-017.md) | The notice shown before the first conversation uses the speech window alone, with an empty portrait | recorded |
+| [FND-UI-018](../findings/FND-UI-018.md) | The first hostile Look panel is WIND 3020 drawn at (67,44) with its three action buttons disabled | recorded |
+| [FND-UI-019](../findings/FND-UI-019.md) | The Cast and Effects screens draw BMP 11000 at (0,9) and their titles at y 11 | recorded |
+| [FND-UI-020](../findings/FND-UI-020.md) | The View Character screen draws BMP 11000 at (0,9) and its title BMP 20079 at (56,11) | recorded |
+| [FND-UI-021](../findings/FND-UI-021.md) | The inventory screen matches BMP 13001 only in its outlines | recorded |
+| [FND-UI-022](../findings/FND-UI-022.md) | BMP 19004 fits hundreds of places in the spell, inventory and character captures | recorded |
+| [FND-UI-023](../findings/FND-UI-023.md) | Eight far pointers at 5000:AB20 list the character-screen labels, with no direct reference | recorded |
+| [FND-UI-024](../findings/FND-UI-024.md) | WIND 19500 places four start buttons, and BMP 20029 and 20028 are the start window's frame and crest | recorded |
+| [FND-UI-025](../findings/FND-UI-025.md) | WIND 19501 holds two frames and WIND 19502 one 319 x 199 button, and BMP 11000 and 20079 are the View Character picture and title | recorded |
+| [FND-UI-026](../findings/FND-UI-026.md) | WIND 19503 places the character generation controls, and WIND 19504 and 19505 the discipline and sphere lists | recorded |
+| [FND-UI-027](../findings/FND-UI-027.md) | WIND 18501 places ten list rows, four buttons, two scroll buttons and a name box | recorded |
+| [FND-UI-028](../findings/FND-UI-028.md) | WIND 10500 places the fourteen Game Menu buttons in rows of four, five and five | recorded |
+| [FND-UI-029](../findings/FND-UI-029.md) | WIND 16500 places the thirteen Preferences buttons | recorded |
+| [FND-UI-030](../findings/FND-UI-030.md) | WIND 11500 and WIND 13500 share the portrait and navigation buttons of the character and inventory screens | recorded |
+| [FND-UI-031](../findings/FND-UI-031.md) | WIND 3020 places three 15 x 15 action buttons, a close button and a 145 x 87 frame | recorded |
+| [FND-UI-032](../findings/FND-UI-032.md) | WIND 12500 to 12503 are the conversation windows, with a text box, five response rows and scroll buttons | recorded |
+| [RULE-UI-001](../rules/RULE-UI-001.md) | Which controls the window code offers an event or the pointer to, by their event masks | supported |
+| [SCR-UI-001](../screens/SCR-UI-001.md) | Start window | supported |
+| [SCR-UI-002](../screens/SCR-UI-002.md) | View Character | supported |
+| [SCR-UI-003](../screens/SCR-UI-003.md) | Stored-character list | supported |
+| [SCR-UI-004](../screens/SCR-UI-004.md) | Character generation | supported |
+| [SCR-UI-005](../screens/SCR-UI-005.md) | Discipline and sphere lists | supported |
+| [SCR-UI-006](../screens/SCR-UI-006.md) | Game Menu | supported |
+| [SCR-UI-007](../screens/SCR-UI-007.md) | Preferences | supported |
+| [SCR-UI-008](../screens/SCR-UI-008.md) | Inventory | supported |
+| [SCR-UI-009](../screens/SCR-UI-009.md) | Cast Spells and Use Psionics | supported |
+| [SCR-UI-010](../screens/SCR-UI-010.md) | Current Spell Effects | supported |
+| [SCR-UI-011](../screens/SCR-UI-011.md) | Look panel | supported |
+| [SCR-UI-012](../screens/SCR-UI-012.md) | Conversation | supported |
 
 ## INPUT
 

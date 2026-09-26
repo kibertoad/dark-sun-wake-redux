@@ -19,7 +19,7 @@ Entries by status.
 
 ## supported
 
-32 entries.
+50 entries.
 
 | ID | Title |
 |---|---|
@@ -50,11 +50,29 @@ Entries by status.
 | [FMT-TEXT-002](../formats/FMT-TEXT-002.md) | Bitmap font glyph |
 | [FMT-TEXT-003](../formats/FMT-TEXT-003.md) | Text resource of CR LF lines |
 | [FMT-TEXT-004](../formats/FMT-TEXT-004.md) | Preferences text block in DSUN.EXE |
+| [FMT-UI-001](../formats/FMT-UI-001.md) | Window resource (WIND) |
+| [FMT-UI-002](../formats/FMT-UI-002.md) | Child record of a window |
+| [FMT-UI-003](../formats/FMT-UI-003.md) | Button resource (BUTN) |
+| [FMT-UI-004](../formats/FMT-UI-004.md) | Application frame resource (APFM) |
+| [FMT-UI-005](../formats/FMT-UI-005.md) | Edit box resource (EBOX) |
 | [RULE-ACTOR-001](../rules/RULE-ACTOR-001.md) | Drawing a region's placed objects |
 | [RULE-IMAGE-001](../rules/RULE-IMAGE-001.md) | Decoding an image frame, and the row encoding |
 | [RULE-IMAGE-002](../rules/RULE-IMAGE-002.md) | Decoding a planar image frame |
 | [RULE-REGION-001](../rules/RULE-REGION-001.md) | Drawing a region's terrain tiles |
 | [RULE-RNG-001](../rules/RULE-RNG-001.md) | The game's random number generator and its reductions |
+| [RULE-UI-001](../rules/RULE-UI-001.md) | Which controls the window code offers an event or the pointer to, by their event masks |
+| [SCR-UI-001](../screens/SCR-UI-001.md) | Start window |
+| [SCR-UI-002](../screens/SCR-UI-002.md) | View Character |
+| [SCR-UI-003](../screens/SCR-UI-003.md) | Stored-character list |
+| [SCR-UI-004](../screens/SCR-UI-004.md) | Character generation |
+| [SCR-UI-005](../screens/SCR-UI-005.md) | Discipline and sphere lists |
+| [SCR-UI-006](../screens/SCR-UI-006.md) | Game Menu |
+| [SCR-UI-007](../screens/SCR-UI-007.md) | Preferences |
+| [SCR-UI-008](../screens/SCR-UI-008.md) | Inventory |
+| [SCR-UI-009](../screens/SCR-UI-009.md) | Cast Spells and Use Psionics |
+| [SCR-UI-010](../screens/SCR-UI-010.md) | Current Spell Effects |
+| [SCR-UI-011](../screens/SCR-UI-011.md) | Look panel |
+| [SCR-UI-012](../screens/SCR-UI-012.md) | Conversation |
 
 ## established
 
@@ -70,7 +88,7 @@ Entries by status.
 
 ## recorded
 
-57 entries.
+89 entries.
 
 | ID | Title |
 |---|---|
@@ -131,6 +149,38 @@ Entries by status.
 | [FND-TEXT-004](../findings/FND-TEXT-004.md) | The TEXT tag occurs twice in the resident image as unreferenced data and three times in the pack |
 | [FND-TEXT-005](../findings/FND-TEXT-005.md) | DSUN.EXE holds the Preferences difficulty labels, descriptions and About lines as one data block |
 | [FND-TEXT-006](../findings/FND-TEXT-006.md) | Ghidra finds no direct reference to the Preferences tables or their strings |
+| [FND-UI-001](../findings/FND-UI-001.md) | RESOURCE.GFF holds 28 WIND, 139 BUTN, 97 APFM and 7 EBOX resources, each opening with its tag, size and number |
+| [FND-UI-002](../findings/FND-UI-002.md) | A WIND resource is a 261-byte fixed part and a counted list of 30-byte child records |
+| [FND-UI-003](../findings/FND-UI-003.md) | Bytes 0xC to 0xA7 of a WIND resource copy an EBOX or a BUTN record |
+| [FND-UI-004](../findings/FND-UI-004.md) | A BUTN resource is a 110-byte fixed part with size, event mask, repeated number, icon and a counted tail |
+| [FND-UI-005](../findings/FND-UI-005.md) | APFM resources vary only in size and event mask, and EBOX resources name a BMP at 0x3A |
+| [FND-UI-006](../findings/FND-UI-006.md) | The frame and child dispatchers test the word at 0x58 of APFM and BUTN records and at 0x96 of EBOX records |
+| [FND-UI-007](../findings/FND-UI-007.md) | The routine at 3F96:02F8 sets, clears or zeroes the event mask of an APFM record |
+| [FND-UI-008](../findings/FND-UI-008.md) | The generic window lookup, registration, redraw and activation code does not read 0x3A of a WIND record |
+| [FND-UI-009](../findings/FND-UI-009.md) | A window's two handler pointers at 0xF9 and 0xFD are read only by the activation routine |
+| [FND-UI-010](../findings/FND-UI-010.md) | Three EBOX lookup wrappers have no direct callers, and the child dispatcher is reached from one input path |
+| [FND-UI-011](../findings/FND-UI-011.md) | The child dispatcher at 3D72:0EB8 reads a window's count at 0xF3, flags at 0x9E and offset at 0x96 |
+| [FND-UI-012](../findings/FND-UI-012.md) | No decoded instruction of the resident image has the number of a start-flow, Look-panel or character-view control as an operand |
+| [FND-UI-013](../findings/FND-UI-013.md) | No resident function has both numbers of either pair of Preferences buttons 16300 and 16301 or 16304 and 16305 |
+| [FND-UI-014](../findings/FND-UI-014.md) | No function of the overlay-mapped image has both the RDFF tag and the number 19003 |
+| [FND-UI-015](../findings/FND-UI-015.md) | DSUN.EXE does not contain the name shown in the first hostile Look panel as ASCII bytes |
+| [FND-UI-016](../findings/FND-UI-016.md) | A conversation capture shows the speech window at (0,0) and the response window at (0,140) |
+| [FND-UI-017](../findings/FND-UI-017.md) | The notice shown before the first conversation uses the speech window alone, with an empty portrait |
+| [FND-UI-018](../findings/FND-UI-018.md) | The first hostile Look panel is WIND 3020 drawn at (67,44) with its three action buttons disabled |
+| [FND-UI-019](../findings/FND-UI-019.md) | The Cast and Effects screens draw BMP 11000 at (0,9) and their titles at y 11 |
+| [FND-UI-020](../findings/FND-UI-020.md) | The View Character screen draws BMP 11000 at (0,9) and its title BMP 20079 at (56,11) |
+| [FND-UI-021](../findings/FND-UI-021.md) | The inventory screen matches BMP 13001 only in its outlines |
+| [FND-UI-022](../findings/FND-UI-022.md) | BMP 19004 fits hundreds of places in the spell, inventory and character captures |
+| [FND-UI-023](../findings/FND-UI-023.md) | Eight far pointers at 5000:AB20 list the character-screen labels, with no direct reference |
+| [FND-UI-024](../findings/FND-UI-024.md) | WIND 19500 places four start buttons, and BMP 20029 and 20028 are the start window's frame and crest |
+| [FND-UI-025](../findings/FND-UI-025.md) | WIND 19501 holds two frames and WIND 19502 one 319 x 199 button, and BMP 11000 and 20079 are the View Character picture and title |
+| [FND-UI-026](../findings/FND-UI-026.md) | WIND 19503 places the character generation controls, and WIND 19504 and 19505 the discipline and sphere lists |
+| [FND-UI-027](../findings/FND-UI-027.md) | WIND 18501 places ten list rows, four buttons, two scroll buttons and a name box |
+| [FND-UI-028](../findings/FND-UI-028.md) | WIND 10500 places the fourteen Game Menu buttons in rows of four, five and five |
+| [FND-UI-029](../findings/FND-UI-029.md) | WIND 16500 places the thirteen Preferences buttons |
+| [FND-UI-030](../findings/FND-UI-030.md) | WIND 11500 and WIND 13500 share the portrait and navigation buttons of the character and inventory screens |
+| [FND-UI-031](../findings/FND-UI-031.md) | WIND 3020 places three 15 x 15 action buttons, a close button and a 145 x 87 frame |
+| [FND-UI-032](../findings/FND-UI-032.md) | WIND 12500 to 12503 are the conversation windows, with a text box, five response rows and scroll buttons |
 
 ## reproduced
 
@@ -173,8 +223,26 @@ Entries whose Open questions section says more than None known.
 | [FMT-TEXT-002](../formats/FMT-TEXT-002.md) | Bitmap font glyph | supported |
 | [FMT-TEXT-003](../formats/FMT-TEXT-003.md) | Text resource of CR LF lines | supported |
 | [FMT-TEXT-004](../formats/FMT-TEXT-004.md) | Preferences text block in DSUN.EXE | supported |
+| [FMT-UI-001](../formats/FMT-UI-001.md) | Window resource (WIND) | supported |
+| [FMT-UI-002](../formats/FMT-UI-002.md) | Child record of a window | supported |
+| [FMT-UI-003](../formats/FMT-UI-003.md) | Button resource (BUTN) | supported |
+| [FMT-UI-004](../formats/FMT-UI-004.md) | Application frame resource (APFM) | supported |
+| [FMT-UI-005](../formats/FMT-UI-005.md) | Edit box resource (EBOX) | supported |
 | [RULE-ACTOR-001](../rules/RULE-ACTOR-001.md) | Drawing a region's placed objects | supported |
 | [RULE-IMAGE-001](../rules/RULE-IMAGE-001.md) | Decoding an image frame, and the row encoding | supported |
 | [RULE-IMAGE-002](../rules/RULE-IMAGE-002.md) | Decoding a planar image frame | supported |
 | [RULE-REGION-001](../rules/RULE-REGION-001.md) | Drawing a region's terrain tiles | supported |
 | [RULE-RNG-001](../rules/RULE-RNG-001.md) | The game's random number generator and its reductions | supported |
+| [RULE-UI-001](../rules/RULE-UI-001.md) | Which controls the window code offers an event or the pointer to, by their event masks | supported |
+| [SCR-UI-001](../screens/SCR-UI-001.md) | Start window | supported |
+| [SCR-UI-002](../screens/SCR-UI-002.md) | View Character | supported |
+| [SCR-UI-003](../screens/SCR-UI-003.md) | Stored-character list | supported |
+| [SCR-UI-004](../screens/SCR-UI-004.md) | Character generation | supported |
+| [SCR-UI-005](../screens/SCR-UI-005.md) | Discipline and sphere lists | supported |
+| [SCR-UI-006](../screens/SCR-UI-006.md) | Game Menu | supported |
+| [SCR-UI-007](../screens/SCR-UI-007.md) | Preferences | supported |
+| [SCR-UI-008](../screens/SCR-UI-008.md) | Inventory | supported |
+| [SCR-UI-009](../screens/SCR-UI-009.md) | Cast Spells and Use Psionics | supported |
+| [SCR-UI-010](../screens/SCR-UI-010.md) | Current Spell Effects | supported |
+| [SCR-UI-011](../screens/SCR-UI-011.md) | Look panel | supported |
+| [SCR-UI-012](../screens/SCR-UI-012.md) | Conversation | supported |

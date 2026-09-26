@@ -223,8 +223,7 @@ local-number conditions; adapter tests preserve their parsed identity. Owned
 content smoke confirms two speech variants, eight initial menu entries, and the
 ordered condition shapes without checking proprietary text into Git. Local-only decoded previews established the title
 and start-window mappings recorded as `FND-IMAGE-007`,
-`DATA-GOG-UI-001`, `DATA-GOG-UI-006`, `DATA-GOG-UI-007`,
-`DATA-GOG-UI-008` through `DATA-GOG-UI-010`; screenshots and decoded outputs stay
+`SCR-UI-001` to `SCR-UI-003` and `SCR-UI-008`; screenshots and decoded outputs stay
 under ignored `analysis/original/` and never become golden files. Presentation
 goldens in Git must use synthetic stand-ins. Visual comparison, input traces,
 animation timing, and audiovisual synchronization remain open and will be

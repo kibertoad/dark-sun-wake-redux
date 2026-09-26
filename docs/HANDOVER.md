@@ -14,9 +14,9 @@ and incomplete; later slices are not complete.
 ## Current interaction/dialogue evidence
 
 Owner captures now distinguish hostile Look, a one-way 10,000-experience award,
-and the first full conversation. `DATA-GOG-INTERACTION-001` maps hostile
-`WIND` #3020 and its disabled actions; `OBS-GOG-DIALOGUE-001` maps the upper and
-lower dialogue windows and ties the captured exchange to `GPL` #135 without
+and the first full conversation. `SCR-UI-011` gives hostile
+`WIND` #3020 and its disabled actions, `SCR-UI-012` the upper and lower dialogue
+windows, and `OBS-GOG-DIALOGUE-001` ties the captured exchange to `GPL` #135 without
 committing original text or screenshots. The current required revision 35 pack contains the bounded
 three-window interaction/dialogue graph, thirteen control images, `PORT` #18,
 and byte-identical `GPL` #135 and `MAS` #99 in source-tagged DSGP v2 envelopes. Core contains the deterministic
@@ -117,7 +117,7 @@ family without generalizing unknown target semantics:
   Walk, reverse-draw-order entity alpha plus leader alpha for Look, and limits
   melee validity to the first observed target pending broader behavior data.
 
-`DATA-GOG-CURSOR-001`, `docs/UI-ATLAS.md`, `docs/FIDELITY.md`,
+`DATA-GOG-CURSOR-001`, `spec/screens/`, `docs/FIDELITY.md`,
 and `docs/PARITY-MATRIX.md` record the evidence boundary and remaining uncertainty.
 
 ## Local-only content

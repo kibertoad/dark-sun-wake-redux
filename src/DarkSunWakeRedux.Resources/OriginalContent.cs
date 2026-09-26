@@ -291,6 +291,7 @@ public static class OriginalContent
         new("wait", "images/cursors/wait.dsix", "ICON", 19110, 13, 15, 1)
     ];
 
+    // PLACEHOLDER: SCR-UI-006 - where the original places the Game Menu window is unknown.
     public static UiLayerAsset GameMenuLayer { get; } =
         new("game-menu", "images/game-menu/base.dsix", 10000, 55, 42, 210, 116);
 
@@ -300,6 +301,7 @@ public static class OriginalContent
     public static UiLayerAsset CombatStatusPanelLayer { get; } =
         new("combat-status-panel", "images/combat/status-panel.dsix", 19003, 215, 4, 98, 32);
 
+    // PLACEHOLDER: SCR-UI-010 - the original draws these titles at y 11 over BMP 11000 at (0, 9).
     public static IReadOnlyList<UiLayerAsset> ExplorationDestinationTitleLayers { get; } =
     [
         new("effects-title", "images/exploration/effects-title.dsix",
@@ -376,6 +378,8 @@ public static class OriginalContent
         new("flame-ornament", "images/start-menu/flame-ornament.dsix", 20028, 47, 24, 222, 33)
     ];
 
+    // PLACEHOLDER: SCR-UI-002 - the original's View Character screen draws BMP 11000 at (0, 9)
+    // and its title at (56, 11).
     public static IReadOnlyList<UiLayerAsset> PartyOverviewLayers { get; } =
     [
         new("party-overview-base", "images/party-overview/base.dsix", 11000, 0, 0, 320, 200),

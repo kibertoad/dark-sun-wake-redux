@@ -15,7 +15,7 @@ semantics.
 | GFF `PSIN` | Character companion mask | Same-number companion for every owned `CHAR`; exactly one byte using a nonzero subset of the low three bits | high for record correlation and structural mask envelope; individual and combined bit meanings remain unknown | Require exactly one byte, reject zero and bits outside `0..2`, and require one-to-one correlation in catalog inspection |
 | GFF `PREF` | Opaque `PREF` envelope | One `PREF` #100 resource in `CHARSAVE.GFF`, exactly nine bytes. The one-record shape establishes no field boundary, value meaning, default, or link to the in-game Preferences screen | high for resource identity/count/length; unknown for every semantic role | Preserve byte-for-byte as DSOP; do not add a reader, schema, settings mutation, or UI binding without an independent source path or controlled observation |
 | GFF `GREQ`, `CACT`, `PLYL`, `CSEQ` | Opaque small-resource families | `CHARSAVE.GFF` has ten 9-byte `GREQ` resources (#1-#10) and eleven 2-byte `CACT` resources (#29-#39). `RESOURCE.GFF` has six `PLYL` resources (#0, #10, #50-#53) with lengths from 3, 5, and 7 bytes, plus one 78-byte `CSEQ` #1000. `CSEQ` divides into six 13-byte units, but its leading words have only one GPL-number-set member and do not establish the separate runtime 13-byte selector source. No unaligned little-endian 16-bit window in the six `PLYL`, ten `GREQ`, or eleven `CACT` payloads matches an installed `CHAR` resource number. These facts identify no field layout, feature, or relationship to another family | high for owned inventory/lengths and bounded word-reference results; unknown for every semantic role | Preserve byte-for-byte as DSOP; do not add readers or infer quest, action, party-list, sequence, or combat behavior without an independent source path or controlled observation |
-| GFF `WIND`, `BUTN`, `APFM`, `EBOX` | UI layout and controls | Bounded common fields and references are decoded; unknown fixed fields and variable button tails remain uninterpreted | verified for all matching resources in `RESOURCE.GFF` | Require signatures and exact declared sizes; bound fixed records, complete child records, dimensions, tags, repeated identities, and references |
+| GFF `WIND`, `BUTN`, `APFM`, `EBOX` | UI layout and controls | Described by `FMT-UI-001` to `FMT-UI-005`; the mask tests are `RULE-UI-001` | see the spec entries | Require signatures and exact declared sizes; bound fixed records, complete child records, dimensions, tags, repeated identities, and references |
 | GFF `GPL ` / `MAS ` | Script resources | `GPLDATA.GFF` contains 330 `GPL ` and 20 `MAS ` resources. `EXE-GOG-GPL-001` proves the native loader selects between these families before resolving and caching a requested script. GPL #135 is tied to the first captured Tyr conversation; MAS #99 supplies two bounded global-string projections. Instruction execution remains unknown | verified for family identity, native selection, resource identity/size, and packed-string decoding; instruction semantics remain unknown | Preserve the four-byte source tag with resource identity and bytes; bound script/string lengths, reject unsupported tags/markers, truncation, invalid back-references, and unterminated strings; never execute source bytes during extraction |
 | GFF `GPLI` #1 | Opaque script-adjacent index candidate | One 7,896-byte resource is exactly 329 24-byte records, each comprising four consecutive six-byte lanes. In aggregate, 1,315 of 1,316 aligned third lane words are members of the 330-ID `GPL ` resource-number set, collectively covering that set; repeats and one non-member reject a one-to-one record or field map. The executable has no literal `GPLI` tag, so no native loader, lookup, or field role is established | high for the exact envelope and aggregate membership counts; unknown for lane semantics, runtime ownership, and record-to-script mapping | Preserve losslessly as DSOP; do not add a reader, link records to GPL resources, or infer field names until a constrained native reference or controlled observation corroborates it |
 | GFF `MONR` #1 | Unclassified payload | `FMT-ACTOR-003`, status unknown; `FND-ACTOR-008` profiles its 27 repeating 42-byte units | see the spec entry | Preserve losslessly as DSOP; do not parse or assign monster, encounter or combat fields until the spec entry has a layout |
@@ -95,44 +95,6 @@ The font layout is `FMT-TEXT-001` and `FMT-TEXT-002`, and the `TEXT` layout is
 width at 256, and total decoded pixels at 4 MiB. Its `TEXT` reader caps payloads
 at 1 MiB, lines at 65,536, and each line at 4,096 bytes, and preserves empty
 lines.
-
-## UI windows and buttons
-
-**Evidence:** `DATA-GOG-UI-001`.
-
-A `WIND` payload begins with its ASCII tag, exact 32-bit byte size, and embedded
-32-bit resource number. The fixed record occupies 261 bytes; the remainder is a
-sequence of complete 30-byte child references. Each interpreted child record
-contains a printable four-byte tag at relative offset 4, its resource number at
-8, and signed 16-bit logical x/y coordinates at 12/14. Window width and height
-occur at fixed offsets 190/192. Offset 58 is a possibly-zero `BMP` resource
-reference; every nonzero value in the owned archive resolves. Targeted
-executable analysis (`EXE-GOG-UI-002`) found no read of this field in the
-complete generic WIND lookup, registration, redraw, or activation paths, so it
-must not be interpreted as an automatic background draw command. Other fixed
-fields and any app-specific consumer remain unknown.
-
-A `BUTN` payload has the same tag/size/resource prefix and a fixed 110-byte
-known portion. Width and height occur at offsets 40/42, the resource number is
-followed by the shared 16-bit event mask at 88, the resource number is repeated
-at 90, and a possibly-zero `ICON` resource reference occurs at 100.
-Observed payloads range from 110 to 163 bytes; bytes after the fixed portion are
-preserved as uninterpreted rather than assigned guessed semantics. The reader
-caps a standalone payload at 1 MiB and validates nonzero dimensions. The
-inspection command additionally verifies embedded/directory identities and all
-nonzero child and image references.
-
-An `APFM` application-frame payload is exactly 116 bytes and stores its embedded
-resource number at offset 8, dimensions at 40/42, and a 16-bit event mask at
-offset 88. The executable tests this word against a caller-supplied mask before
-building a dispatch record; individual bit meanings remain unknown. An `EBOX`
-edit-box payload is exactly 168 bytes, repeats its offset-8 resource number at
-offset 24, and stores dimensions at 34/36 plus its event mask at 150. All other
-fields remain deliberately uninterpreted.
-Every one of the 97 `APFM` and 7 `EBOX` resources in the owned `RESOURCE.GFF`
-matches these bounded contracts. All four start-window `BUTN` records store a
-zero event mask, so bit semantics or runtime initialization cannot be inferred
-from their serialized values alone.
 
 ## Derived DSIX indexed-image asset
 

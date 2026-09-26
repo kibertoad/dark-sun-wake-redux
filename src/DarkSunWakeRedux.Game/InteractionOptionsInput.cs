@@ -15,6 +15,7 @@ public sealed record InteractionOptionControl(
 
 public static class InteractionOptionsInput
 {
+    // PLACEHOLDER: SCR-UI-011 - the original's Look panel icons match only with the origin at (67, 44).
     public const int ObservedOriginX = 68;
     public const int ObservedOriginY = 45;
     public const int WindowWidth = 92;

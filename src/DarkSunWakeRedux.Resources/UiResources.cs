@@ -3,6 +3,8 @@ using System.Text;
 
 namespace DarkSunWakeRedux.Resources;
 
+// PLACEHOLDER: RULE-UI-001 - the original applies this shared-bit match to APFM frames only; it
+// passes over a button whose mask has 4 or 2 set and needs 2 set in an edit box's mask.
 public static class UiEventMasks
 {
     public static bool Matches(ushort configuredMask, ushort requestedMask) =>
@@ -30,6 +32,7 @@ public sealed record UiWindowResource(
         if (payload.Length < FixedSize)
             throw reader.Error($"is shorter than the {FixedSize}-byte fixed WIND record");
 
+        // PLACEHOLDER: FMT-UI-001 - the original reads the child count from the word at 0xF3.
         var childBytes = payload.Length - FixedSize;
         if (childBytes % ChildRecordSize != 0)
             throw reader.Error($"has {childBytes} trailing bytes, which is not a whole {ChildRecordSize}-byte child record");
@@ -52,6 +55,8 @@ public sealed record UiWindowResource(
         var height = reader.UInt16(192, "height");
         reader.RequireDimensions(width, height);
 
+        // PLACEHOLDER: FMT-UI-001 - offset 58 lies in bytes copied from an EBOX or BUTN; the
+        // window's own image number is the word at 0xC2.
         return new(reader.UInt32(8, "resource number"), reader.UInt32(58, "image resource number"),
             width, height, children);
     }
