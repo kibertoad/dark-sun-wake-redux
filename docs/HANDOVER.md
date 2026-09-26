@@ -13,11 +13,10 @@ See the [work protocol](https://dinorefurb.com/work-protocol/#working-files).
 
 ## State
 
-- Stage: Survey, with slices 2 and 3 in progress.
-- Branch: `adopt-work-protocol`, from `main` at `ecbc05d`, pushed and open as a
-  pull request.
-- Last gate: 2026-09-26, `./tools/Test.ps1` passed (700 tests, documentation
-  check passed).
+- Stage: Slices, with slices 2 and 3 in progress. The Survey exit is checked.
+- Branch: `main`, pushed to `origin/main` at the end of this session.
+- Last gate: 2026-09-27, `./tools/Test.ps1` passed (700 tests; documentation
+  check passed), and the full solution build passed.
 
 ## Unfinished
 
@@ -29,11 +28,8 @@ None known.
 
 ## Next
 
-1. Survey exit: a tooling batch that exports the function inventory of
-   `DSUN.EXE` to `coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv`, and a check that
-   every screen `SRC-MANUAL-1994` mentions has a screen entry.
-2. `Q-CONFIG-001` and `Q-CONFIG-002`, for `SCR-UI-007`.
-3. `Q-PARTY-001`, `Q-PARTY-005` and `Q-PARTY-009`.
-4. `Q-EXPLORE-001` to `Q-EXPLORE-006` and `Q-ACTOR-001`.
-5. Rows with evidence already in the spec: `RULE-EXPLORE-002`,
+1. `Q-CONFIG-001` and `Q-CONFIG-002`, for `SCR-UI-007`.
+2. `Q-PARTY-001`, `Q-PARTY-005` and `Q-PARTY-009`.
+3. `Q-EXPLORE-001` to `Q-EXPLORE-006` and `Q-ACTOR-001`.
+4. Rows with evidence already in the spec: `RULE-EXPLORE-002`,
    `RULE-EXPLORE-003`, `RULE-EXPLORE-004` and `RULE-INPUT-002`.
