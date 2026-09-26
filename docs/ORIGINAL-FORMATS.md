@@ -201,98 +201,21 @@ words or to animation, draw order, anchoring, collision, and interaction.
 
 ## GPL scripts and derived DSGP assets
 
-**Evidence:** `OBS-GOG-DIALOGUE-001`.
-
-`GPLDATA.GFF` holds the `GPL ` and `MAS ` scripts (`FMT-SCRIPT-001`). `GPL` #135
-is 4,124 bytes and is independently tied to the first captured Tyr conversation.
-MAS #99 initializes global string #5 for the first two menus' exit label and
-global string #6 for the third menu's exit label.
-The extractor preserves both complete bytecode chunks as opaque; runtime readers now
-project only the bounded dialogue structures described below, beginning with
-the evidenced opening at offsets 16, 118, 199, and 253:
-portrait selection, two conditional speech sources, and the initial menu, plus
-MAS #99's string-copy assignments at offsets 20 and 66. A second GPL #135 projection
-validates opening choice 7's target at 2905: print GSTRING #5, assign immediate
-one to local flags 14 and 4, and return locally at 2920.
-Another bounded projection validates choice 0 at offsets 1017-1147: three
-compressed-literal prints with two intervening newline opcodes, immediate zero
-to local flag 0, and a local return. This establishes the response output and
-menu-return effects without embedding its text in Git.
-The same projection reader validates choice 2 at offsets 1148-1182 and choice
-3 at 1183-1231. Each branch contains one compressed-literal print, an immediate
-zero assignment to its matching local flag, a word increment of local number 0,
-and a local return.
-Choice 4 is bounded at offsets 1232-1394: three compressed-literal prints,
-immediate one to local flag 9, immediate zero to local number 0, and a local
-return. The post-menu block at offsets 547-740 reads local flags 1, 2, 3, and 9,
-derives local flags 4 and 5, decides whether to repeat the opening menu, and,
-when advancing, derives local
-flags 1, 6, 7, and 8 from global flag 357. The following seven-entry menu starts
-at offset 750 and uses local flags 1, 6, 10, 7, 11, and 8 plus constant exit
-choice 6 targeting the same completion branch at 2905.
-Choice 1 is bounded separately at offsets 1597-1824: three compressed-literal
-prints, immediate zero to local flag 1, an extended global flag 357 equals-zero
-condition guarding immediate-one assignments to local flags 6 and 7, immediate
-one to global flag 357, and a local return.
-Second-menu target 1825 is bounded through its return at 1995: three
-compressed-literal prints, immediate zero to local flag 6, a local flag 16
-equals-zero condition guarding immediate one to local flag 10, and a local
-return.
-The newly enabled target 3479 is bounded through its return at 3685: three
-compressed-literal prints, immediate one to local flag 16, immediate zero to
-local flag 10, and a local return.
-Target 1996 is bounded across both global-number-22 paths. When it equals one,
-two compressed-literal prints precede immediate one to local flag 11. Otherwise
-global number 84 bit 2 selects one of two lead-in prints, two common prints
-follow, and global number 84 is updated with bit 1. Both paths join at immediate
-zero to local flag 7 and local return at 2351.
-Target 2352 is bounded through local return at 2414: one compressed-literal
-print followed by immediate zero to local flag 11.
-Target 2415 is bounded through the third-menu entry at 2616: three
-compressed-literal prints, immediate one to local flags 12 and 13, a local flag
-16 equals-zero condition guarding immediate one to local flag 10, and the
-local-flag-8 loop header. The following seven-entry menu uses local flags 12,
-13, 15, 10, 17, and 18 plus a constant source choice 6 targeting offset 3976.
-Its source-choice-0 target at 2921 is bounded through local return at 3088:
-three compressed-literal prints followed by immediate zero to local flag 12.
-Target 3089 is bounded through local return at 3256: three compressed-literal
-prints, immediate one to local flag 15, and immediate zero to local flag 13.
-The newly enabled target 3257 is bounded through local return at 3478: four
-compressed-literal prints followed by immediate zero to local flag 15.
-Third-menu target 3686 is bounded through local return at 3785: two
-compressed-literal prints, immediate zero to local flag 17, and immediate one
-to local flag 18. Its newly enabled target 3786 is bounded through local return
-at 3975: three compressed-literal prints and immediate zero to local flag 18.
-The constant third-menu target 3976 is bounded through local return at 4048.
-It clears local flag 8, calls a helper at 4049 that sets local flag 14 only when
-local flags 1/6/7/11/10/8 are all zero after that clear, and selects either a
-two-part completion output (including helper 4082) or a one-part early output.
-Both helpers, both branch targets, and their local returns through offset 4123
-are structurally validated.
+`GPLDATA.GFF` holds the `GPL ` and `MAS ` scripts (`FMT-SCRIPT-001`); the
+first conversation in Tyr is `GPL` #135, and `MAS` #99 sets the menu title and
+exit labels it uses (`FND-TALK-002`, `FND-TALK-004`). The extractor preserves
+both as opaque bytecode. Runtime readers project only fixed parts of them: the
+opening portrait, the two speech sources and the three menus of `GPL` #135, the
+response and completion targets the preview supports, and the assignments of
+global strings #5 and #6 at offsets 20 and 66 of `MAS` #99. Each projection
+checks the exact opcodes, operands and offsets it expects and fails closed on
+any other shape. `parity/TALK.md` and `parity/SCRIPT.md` list what they cover
+and where they depart from the original.
 
 `GplPackedString` reads the strings of `FMT-SCRIPT-002`: marker `0x01`
 stands for the active character's name, and marker `0x05` begins a string of
 7-bit characters that `0x03` ends. It stops at 1,024 characters and rejects
-marker `0x02`, other markers, truncation and a missing terminator. The menu projection bounds choices to 24, accepts only the expression
-forms needed by this observed menu, captures labels and branch offsets, and
-projects its three observed condition shapes: constant, local flag, and local
-number equality. It fails closed on any other condition shape, drift, or
-truncation. The MAS projections additionally require the assignments to end at
-offsets 33 and 94 and target type-6 string slots 5 and 6. The completion projection accepts
-only its exact immediate/short-variable forms and rejects opcode, operand,
-offset, or truncation drift. The choice 0 response projection likewise requires
-the exact print destinations, instruction boundaries, flag target/value,
-choice 2/3 counter target, choice 4's flag/number assignments, the exact
-post-menu control flow and second-menu conditions, choice 1's exact extended
-global reference and branch target, target 1825's local condition and assignment,
-target 3479's two flag assignments, target 1996's equality/bitmask paths, target
-2352's flag clear, target 2415's assignments/condition/loop bridge, target
-2921's flag clear, targets 3089/3257 and 3686/3786's flag transitions, and each
-applicable local return. Target 3976 additionally requires its subroutine calls,
-post-assignment six-flag condition, conditional output branches, and completion
-return boundaries. Decoding these structures does not
-authorize executing other
-instructions or assigning condition and state-mutation semantics.
+marker `0x02`, other markers, truncation and a missing terminator.
 
 DSGP is an original deterministic envelope that preserves a selected script
 without teaching the runtime to parse GFF. Version 1 consists of ASCII `DSGP`,

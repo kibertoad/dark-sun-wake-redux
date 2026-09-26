@@ -7,7 +7,7 @@ superseded_by: []
 evidence: [FND-SCRIPT-001, FND-SCRIPT-005, FND-SCRIPT-006, FND-SCRIPT-007, FND-SCRIPT-008, FND-SCRIPT-009, FND-SCRIPT-013]
 conflicting: []
 split_with: []
-related: [RULE-SCRIPT-001, RULE-SCRIPT-003, RULE-SCRIPT-006, RULE-SCRIPT-007, RULE-SCRIPT-008, FMT-SCRIPT-001]
+related: [RULE-SCRIPT-001, RULE-SCRIPT-003, RULE-SCRIPT-006, RULE-SCRIPT-007, RULE-SCRIPT-008, RULE-SCRIPT-009, RULE-TALK-001, FMT-SCRIPT-001]
 ---
 
 ## Summary
@@ -144,6 +144,10 @@ define execute_instruction(op: UINT8):
         call RULE-SCRIPT-006()
     else if op == 0x65 or op == 0x68:
         call RULE-SCRIPT-008(op)
+    else if op == 0x23 or op == 0x28 or op == 0x2E or op == 0x4B:
+        call RULE-SCRIPT-009(op)
+    else if op == 0x48:
+        call RULE-TALK-001()
     # every other opcode from 0x00 to 0x80 runs the handler FND-SCRIPT-005 lists for it,
     # which this spec does not describe yet
 ```

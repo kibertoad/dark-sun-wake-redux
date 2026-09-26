@@ -8,7 +8,7 @@ How much of the spec in `spec/` the rebuild does. The rows are in `parity/`, one
 |---|---|
 | unknown | 2 |
 | sourced | 21 |
-| supported | 57 |
+| supported | 59 |
 | established | 0 |
 | disputed | 0 |
 | implemented | 24 |
@@ -16,8 +16,8 @@ How much of the spec in `spec/` the rebuild does. The rows are in `parity/`, one
 
 | Code | Rows |
 |---|---|
-| missing | 41 |
-| partial | 39 |
+| missing | 42 |
+| partial | 40 |
 | complete | 24 |
 
 ## Areas
@@ -32,7 +32,8 @@ How much of the spec in `spec/` the rebuild does. The rows are in `parity/`, one
 | [INPUT](parity/INPUT.md) | 3 |
 | [REGION](parity/REGION.md) | 7 |
 | [ACTOR](parity/ACTOR.md) | 4 |
-| [SCRIPT](parity/SCRIPT.md) | 13 |
+| [SCRIPT](parity/SCRIPT.md) | 14 |
+| [TALK](parity/TALK.md) | 1 |
 | [PARTY](parity/PARTY.md) | 13 |
 | [MAGIC](parity/MAGIC.md) | 4 |
 | [ITEM](parity/ITEM.md) | 7 |

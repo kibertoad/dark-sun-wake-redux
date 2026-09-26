@@ -8,7 +8,7 @@ resolution: 320x200
 evidence: [FND-UI-016, FND-UI-017, FND-UI-032, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
-related: []
+related: [RULE-TALK-001, RULE-SCRIPT-007]
 ---
 
 ## Drawn elements
@@ -69,5 +69,6 @@ None known.
 - Which frame shows a pointed-at or chosen row, and how a notice is dismissed (FND-UI-032,
   Q-UI-002, Q-UI-004).
 - When `WIND/12502` and `WIND/12503` are used (FND-UI-032, Q-UI-002).
-- Which script chooses the text, the portrait and the responses belongs to the conversation
-  rules of the TALK area.
+- The scripts print the speech (RULE-SCRIPT-007) and offer the responses through the menu
+  instruction (RULE-TALK-001), which shows its title as a row above the responses; where the
+  title row is drawn and how rows past the fifth are reached are not measured (Q-TALK-001).

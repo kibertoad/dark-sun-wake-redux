@@ -85,7 +85,7 @@ Entries by kind.
 
 ## rules
 
-40 entries.
+42 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -128,11 +128,13 @@ Entries by kind.
 | [RULE-SCRIPT-006](../rules/RULE-SCRIPT-006.md) | The script instruction that draws a random number | supported |
 | [RULE-SCRIPT-007](../rules/RULE-SCRIPT-007.md) | The script instructions that print text and numbers, show a portrait and play sound and music | supported |
 | [RULE-SCRIPT-008](../rules/RULE-SCRIPT-008.md) | The script instructions that register attack and move-tile triggers | supported |
+| [RULE-SCRIPT-009](../rules/RULE-SCRIPT-009.md) | The script trace instructions | supported |
+| [RULE-TALK-001](../rules/RULE-TALK-001.md) | The script instruction that offers a menu of responses and runs the chosen one | supported |
 | [RULE-UI-001](../rules/RULE-UI-001.md) | Which controls the window code offers an event or the pointer to, by their event masks | supported |
 
 ## findings
 
-159 entries.
+163 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -257,6 +259,10 @@ Entries by kind.
 | [FND-SCRIPT-016](../findings/FND-SCRIPT-016.md) | Segment 2D40 runs GPL scripts from word pairs of linked 19-byte records whose list head is 57E0:5AF5 | recorded |
 | [FND-SCRIPT-017](../findings/FND-SCRIPT-017.md) | Overlay 187 converts script entry points in the trigger records to GPLI entry numbers and back | recorded |
 | [FND-SCRIPT-018](../findings/FND-SCRIPT-018.md) | SCMD resources are loaded through a separate 64-slot cache at 31E0:1893 with two callers | recorded |
+| [FND-TALK-001](../findings/FND-TALK-001.md) | Script instruction 0x48 lists up to 25 menu entries whose condition is 1 and pushes a frame at the chosen entry's target | recorded |
+| [FND-TALK-002](../findings/FND-TALK-002.md) | GPL 135 opens with portrait 18 and a menu of eight entries titled by global string 4, which MAS 99 assigns with strings 5 and 6 | recorded |
+| [FND-TALK-003](../findings/FND-TALK-003.md) | About 709 menus in 219 scripts have up to 24 entries and almost all are titled by global string 4; global flag 357 appears only in GPL 135 | recorded |
+| [FND-TALK-004](../findings/FND-TALK-004.md) | The first conversation's capture shows the menu title and the labels of entries 0, 1, 2, 3 and 7 of GPL 135's first menu, in that order | recorded |
 | [FND-TEXT-001](../findings/FND-TEXT-001.md) | The one FONT resource holds 256 glyphs of height 9 behind a map and an offset table | recorded |
 | [FND-TEXT-002](../findings/FND-TEXT-002.md) | The FONT tag occurs twice in DSUN.EXE as data with no recorded reference | recorded |
 | [FND-TEXT-003](../findings/FND-TEXT-003.md) | Every TEXT resource is printable ASCII in lines that each end with CR LF | recorded |
