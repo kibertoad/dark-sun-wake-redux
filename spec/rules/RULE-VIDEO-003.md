@@ -4,7 +4,7 @@ title: When an FLI cannot play, the cinematic's still pictures are shown for up 
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-VIDEO-002, FND-VIDEO-004, FND-VIDEO-005, FND-VIDEO-006, FND-TIME-004]
+evidence: [FND-INPUT-005, FND-VIDEO-002, FND-VIDEO-004, FND-VIDEO-005, FND-VIDEO-006, FND-TIME-004]
 conflicting: []
 split_with: []
 related: [RULE-TIME-001]
@@ -13,8 +13,8 @@ related: [RULE-TIME-001]
 ## Summary
 
 Each cinematic has two or three still pictures among the `BMP ` resources. When its FLI cannot
-play, the game shows those instead, each for up to 8 seconds, and a key moves on to the next. The
-opening first shows three more pictures, and a key during those skips the opening. The last
+play, the game shows those instead, each for up to 8 seconds, and holding Shift moves on to the next.
+The opening first shows three more pictures, and Shift during those skips the opening. The last
 cinematic goes on to further pictures.
 
 ## When it runs
@@ -84,8 +84,8 @@ and leaves `g_57E0_14E5` as it found it.
 
 A picture stays 800 times 10 ms, 8 seconds, after it is drawn. A number with no resource is
 skipped without a wait; every number in the table is a resource of the installed `RESOURCE.GFF`
-(FND-VIDEO-006). For the opening, when `fn_44B6_0011` reports a key or button
-right after the pictures of 0, the pictures of 1 are skipped. Only `n` from 0 to 5 is in the
+(FND-VIDEO-006). For the opening, when a Shift key is held right after the
+pictures of 0, the pictures of 1 are skipped. Only `n` from 0 to 5 is in the
 table.
 
 ## What the sources say
@@ -99,10 +99,10 @@ None known.
 ## Open questions
 
 - What `fn_5787_005C`, `fn_56BD_0057`, `fn_1BF3_4723`, `fn_1BF3_4C09`, `fn_1BF3_4FEB` and
-  `fn_187_2A21` do: the drawing, a fade that a key skips, and the further pictures of cinematic 5
+  `fn_187_2A21` do: the drawing, a fade that Shift skips, and the further pictures of cinematic 5
   are inferred (FND-VIDEO-006, Q-VIDEO-002).
 - Which archive `fn_38FF_04AB` reads the pictures from; the numbers are found in `RESOURCE.GFF`
   (FND-VIDEO-006, Q-SCRIPT-003).
 - What `g_57E0_14E5` is for (FND-VIDEO-006, Q-VIDEO-002).
-- What `fn_44B6_0011` reads; bits 0 and 1 are taken as a key or button (FND-VIDEO-006,
-  Q-VIDEO-001).
+- What the BIOS reports in `fn_44B6_0011`, the shift-key flags, under an emulator or a modern
+  keyboard layer (FND-INPUT-005, Q-VIDEO-001).

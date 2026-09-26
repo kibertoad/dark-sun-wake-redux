@@ -7,8 +7,8 @@ Next ID: Q-VIDEO-003
 - Q-VIDEO-001. FMT-VIDEO-001, RULE-VIDEO-002: How does the player draw a record: what do the
   data of the `0x0B`, `0x0C` and `0x0F` chunks hold, how does the palette change, and what does
   the run-length routine read at the overlong last chunk of `5.FLI`'s first record? Settles it:
-  the routines at `57D4:0020`, `57D7:0020`, `57DA:0020` and `57DD:0020`, and `44B6:0011`,
-  `2660:04F3` and `1000:1C32`. Tried: searches for the FLI header magic, the numbered cinematic
+  the routines at `57D4:0020`, `57D7:0020`, `57DA:0020` and `57DD:0020`, and `2660:04F3` and
+  `1000:1C32`. Tried: searches for the FLI header magic, the numbered cinematic
   names and their templates, and the static title image's resource number; the magic led to the
   player of overlay 196 (FND-VIDEO-002), which shows how records are read and paced but not how
   chunks are decoded. Blocks: slice 7.

@@ -63,7 +63,8 @@ entry runs them:
   3. It adds 1 to the count and returns 4 when the count has reached the word at `DS:629F`,
      offset 6 of the header buffer. It adds the word at `DS:21E0`, the ticks the read took, to the
      carry.
-  4. It calls `44B6:0011`; when the result has bit 0 or bit 1 set, and the word at `DS:631B` is
+  4. It calls `44B6:0011`, which returns the BIOS shift-key flags (FND-INPUT-005); when the
+     result has bit 0 or bit 1 set, and the word at `DS:631B` is
      not 0 or the count is above 240, it returns 1.
 - Offset `0x24F`, `DSUN.EXE+0x000831BF`, calls offset `0x17B` with its handle, the far address
   `DS:24E4` and 1. Offset `0x17B` reads 16 bytes; when fewer arrive it returns -8, and when the
@@ -104,18 +105,19 @@ slot of the library RULE-TIME-002 describes with a period of 1,000 microseconds,
 starts song `song`, and when `DS:1436` is set waits for the music to start. It waits `delay`
 milliseconds, shows the first frame record, then one record every `ticks` milliseconds, counting
 the time spent reading a record against the next wait. It shows as many records as the header's
-frame count, so the record past the count (FND-VIDEO-001) is never read. A key or button ends it
-early when `DS:631B` is set or after 240 records. The header's speed field is not read: `ticks`
+frame count, so the record past the count (FND-VIDEO-001) is never read. Holding either Shift key
+(bit 0 is the right one, bit 1 the left) ends it early when `DS:631B` is set or after 240 records;
+no other key is read. The header's speed field is not read: `ticks`
 comes from the caller. The chunk types match the published FLI types: `0x0B` sets the palette,
 `0x0C` and `0x0F` decode deltas and runs onto the screen, `0x0D` clears it and `0x10` copies a
-whole frame. The results are 1 for a key, 2 when the file cannot be opened, 3 on a read error and
+whole frame. The results are 1 for Shift, 2 when the file cannot be opened, 3 on a read error and
 4 at the end.
 
 ## Alternatives
 
-The routines at `57D4`, `57D7`, `57DA` and `57DD`, `44B6:0011`, `4842:08B1`, `2660:04F3`,
-`1000:1C32` and offset `0x443` were not read, so that they set the palette, decode, read the
-keyboard and mouse, start and remove the timer slot, and wait for the disc audio is inferred from
+The routines at `57D4`, `57D7`, `57DA` and `57DD`, `4842:08B1`, `2660:04F3`,
+`1000:1C32` and offset `0x443` were not read, so that they set the palette, decode, start and
+remove the timer slot, and wait for the disc audio is inferred from
 how they are called. That the library calls the far routine once per period of its slot is read
 from FND-TIME-005's account of the slots, not from the interrupt handler. What `DS:1436` and the
 far pointer at `DS:24F2` hold was not read.

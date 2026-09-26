@@ -155,7 +155,7 @@ Entries by kind.
 | [RULE-TIME-002](../rules/RULE-TIME-002.md) | The timer interrupt runs at the shortest period any of 17 timer slots asks for, given in microseconds | supported |
 | [RULE-UI-001](../rules/RULE-UI-001.md) | Which controls the window code offers an event or the pointer to, by their event masks | supported |
 | [RULE-VIDEO-001](../rules/RULE-VIDEO-001.md) | A cinematic plays its FLI from the installation, copying it from the disc first when it can, and falls back to still pictures | supported |
-| [RULE-VIDEO-002](../rules/RULE-VIDEO-002.md) | The FLI player shows the first record after a wait and then one record every given number of milliseconds, until the header's frame count or a key | supported |
+| [RULE-VIDEO-002](../rules/RULE-VIDEO-002.md) | The FLI player shows the first record after a wait and then one record every given number of milliseconds, until the header's frame count or a Shift key | supported |
 | [RULE-VIDEO-003](../rules/RULE-VIDEO-003.md) | When an FLI cannot play, the cinematic's still pictures are shown for up to 8 seconds each | supported |
 | [RULE-VIDEO-004](../rules/RULE-VIDEO-004.md) | While an FLI plays, a timer slot with a period of 1,000 microseconds counts milliseconds | supported |
 

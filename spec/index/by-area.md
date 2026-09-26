@@ -432,7 +432,7 @@ None.
 | [FND-VIDEO-006](../findings/FND-VIDEO-006.md) | The cinematic fallback shows two or three BMP resources per cinematic for up to 8 seconds each, and more for cinematic 5 | recorded |
 | [FND-VIDEO-007](../findings/FND-VIDEO-007.md) | Entering regions 0x3E, 0x42, 0x43 and 0x44 copies cinematics 2, 4, 5 and 3 from the disc to the installation ahead of their use | recorded |
 | [RULE-VIDEO-001](../rules/RULE-VIDEO-001.md) | A cinematic plays its FLI from the installation, copying it from the disc first when it can, and falls back to still pictures | supported |
-| [RULE-VIDEO-002](../rules/RULE-VIDEO-002.md) | The FLI player shows the first record after a wait and then one record every given number of milliseconds, until the header's frame count or a key | supported |
+| [RULE-VIDEO-002](../rules/RULE-VIDEO-002.md) | The FLI player shows the first record after a wait and then one record every given number of milliseconds, until the header's frame count or a Shift key | supported |
 | [RULE-VIDEO-003](../rules/RULE-VIDEO-003.md) | When an FLI cannot play, the cinematic's still pictures are shown for up to 8 seconds each | supported |
 | [RULE-VIDEO-004](../rules/RULE-VIDEO-004.md) | While an FLI plays, a timer slot with a period of 1,000 microseconds counts milliseconds | supported |
 

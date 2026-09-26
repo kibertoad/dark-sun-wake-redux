@@ -23,7 +23,7 @@ environment: null
 `DS` is the data segment `57E0`. The entry at `56EF:011A` leads to offset `0x28B3` of overlay 187,
 `DSUN.EXE+0x000726E3`, a routine that takes a byte `n`. It keeps the byte at `DS:14E5`, calls
 `5787:005C`, and sets `DS:14E5` to 0. When `n` is 1 it first runs itself with 0, and when
-`44B6:0011` then returns a value with bit 0 or 1 set it goes to the end. It calls `1BF3:4723`
+`44B6:0011`, the BIOS shift-key flags (FND-INPUT-005), then has bit 0 or 1 set it goes to the end. It calls `1BF3:4723`
 with 1 and with 0 and sets the word at `DS:631B` to 1.
 
 The words at `DS:167B` and `DS:1687`, indexed by `n`, give a count and a first number:
@@ -55,9 +55,9 @@ All the numbers in the table, 11164 and 11166 to 11174 are `BMP ` resources of `
 
 When an FLI cannot play, the game shows a short slideshow for the cinematic instead: the
 cinematic's two or three still pictures, each for up to 8 seconds (800 waits of 10 ms,
-FND-TIME-004), with a key moving on to the next. For the opening, cinematic 1, it first shows the
-pictures of 0, and a key during those skips the whole opening. Cinematic 5 goes on to more
-pictures, which read as the closing credits. `1BF3:4FEB` is probably a fade that a key skips. The
+FND-TIME-004), with a held Shift key moving on to the next. For the opening, cinematic 1, it first
+shows the pictures of 0, and Shift during those skips the whole opening. Cinematic 5 goes on to more
+pictures, which read as the closing credits. `1BF3:4FEB` is probably a fade that Shift skips. The
 last picture of 0, `BMP` 11011, is the title picture of FND-IMAGE-007: the routine reaches its
 number as 11009 plus 2, so no instruction holds 11011 (FND-IMAGE-008).
 

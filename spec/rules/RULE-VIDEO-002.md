@@ -1,10 +1,10 @@
 ---
 id: RULE-VIDEO-002
-title: The FLI player shows the first record after a wait and then one record every given number of milliseconds, until the header's frame count or a key
+title: The FLI player shows the first record after a wait and then one record every given number of milliseconds, until the header's frame count or a Shift key
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-VIDEO-001, FND-VIDEO-002, FND-VIDEO-003, FND-VIDEO-006, FND-SOUND-008, FND-SOUND-010, FND-SOUND-013]
+evidence: [FND-INPUT-005, FND-VIDEO-001, FND-VIDEO-002, FND-VIDEO-003, FND-VIDEO-006, FND-SOUND-008, FND-SOUND-010, FND-SOUND-013]
 conflicting: []
 split_with: []
 related: [RULE-VIDEO-004, RULE-SOUND-002, RULE-SOUND-003, FMT-VIDEO-001]
@@ -15,7 +15,7 @@ related: [RULE-VIDEO-004, RULE-SOUND-002, RULE-SOUND-003, FMT-VIDEO-001]
 The player switches the screen to 320x200 with 256 colours, starts the cinematic's song, and
 waits a set time before the first frame. It then shows a frame every `ticks` milliseconds,
 counting the time spent reading a frame against the next wait, and stops after as many frames as
-the file's header gives, or at a key when skipping is allowed.
+the file's header gives, or while a Shift key is held when skipping is allowed.
 
 ## When it runs
 
@@ -96,7 +96,7 @@ define play_fli(path, song: UINT8, ticks: INT8, delay: UINT32) -> UINT16:
 
 ## Outputs
 
-Returns 1 when a key or button ended the cinematic, 3 when a record could not be read and 4 after
+Returns 1 when a Shift key ended the cinematic, 3 when a record could not be read and 4 after
 the last frame. It emits `FliRecordShown` for each record it draws, in file order, and changes
 `fli_ticks`. It leaves the screen in BIOS mode `0x13` and the music stopped (`music_mode` 0).
 
@@ -113,7 +113,8 @@ The player reads records only while the count is below `frame_count`, so of the
 `frame_count + 1` records of each installed file the last is never shown. A `frame_count` of 0
 or 1 still shows two records. After the last frame there is no wait. The wait before the first
 frame gives up after 50,000 passes when `fli_ticks` has not moved, as when the timer is not
-running. A key is only looked at after a frame; with `fli_skip_allowed` at 0 a key ends playback
+running. Shift is only looked at after a frame, and no other key is read; with `fli_skip_allowed`
+at 0 Shift ends playback
 only after frame 240. `ticks` is a signed byte: a value from 128 up gives a wait near 65,535 ms.
 
 The player does not read the header's `speed`; the frame time comes from the caller
@@ -132,8 +133,8 @@ None known.
 - How the chunks of a record are drawn and how the palette changes: the routines behind
   `FliRecordShown` were not read (FND-VIDEO-002, Q-VIDEO-001).
 - What `fn_1BF3_2973` does beyond setting the mode (FND-VIDEO-003), and what `fn_2660_04F3`,
-  `fn_1000_1C32` and `fn_44B6_0011` do; that the last reads the keyboard and mouse is inferred
-  (FND-VIDEO-002, Q-VIDEO-001).
+  `fn_1000_1C32` do, and what the BIOS reports in `fn_44B6_0011` under an emulator or a modern
+  keyboard layer (FND-VIDEO-002, FND-INPUT-005, Q-VIDEO-001).
 - What `g_57E0_1436` and `g_4E71_0C4A` hold, read here as whether to wait for the disc track and
   the track playing (FND-VIDEO-002, Q-SOUND-004).
 - How the original removes the timer slot at the end, which was not read (FND-VIDEO-002).

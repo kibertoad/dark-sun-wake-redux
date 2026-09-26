@@ -82,7 +82,7 @@ music song `n + 35`, disc track `n + 36` (FND-SOUND-013), one frame every 107 ms
 2.8 s, 1 s for `3.FLI` and 4 s for `5.FLI`. Without digital sound, with all sound off, with
 cinematics off (`DS:13F6`, which `-I` clears, FND-SOUND-010) or when no file can be had, the
 fallback slideshow plays instead. After the FLI the screen goes back to the game's mode and the
-music mode is restored as after a spoken line. `DS:631B` set to 1 lets a key end the FLI at once.
+music mode is restored as after a spoken line. `DS:631B` set to 1 lets a held Shift key end the FLI after any frame.
 
 ## Alternatives
 
