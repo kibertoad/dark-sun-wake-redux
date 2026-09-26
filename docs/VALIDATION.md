@@ -229,3 +229,39 @@ under ignored `analysis/original/` and never become golden files. Presentation
 goldens in Git must use synthetic stand-ins. Visual comparison, input traces,
 animation timing, and audiovisual synchronization remain open and will be
 recorded per parity row rather than inferred from passing parsers.
+
+## Spec checks
+
+The `Documentation standard` job in `.github/workflows/ci.yml` runs the
+`check-documentation` action from
+[refurbished-dinosaurs-toolkit](https://github.com/kibertoad/refurbished-dinosaurs-toolkit),
+pinned to a full commit SHA, on every pull request. It checks `spec/`, `parity/`
+and `deviations/` against the standard's list of
+[checks](https://dinorefurb.com/documentation-standard/#checks), compiles each
+`.ksy` file with the Kaitai Struct compiler, checks that every spec and
+deviation ID cited in `src/`, `tests/` and `tools/` exists and is not
+superseded, and fails when `spec/index/` or `PARITY.md` is stale. It fetches
+the full history so it can fail a pull request that deletes a spec ID, area or
+deviation that exists on `main`. The toolkit's
+[setup guide](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/blob/main/docs/documentation-standard-check.md)
+lists its inputs.
+
+`./tools/Test.ps1` runs the same check with `--check`, from the toolkit commit
+the workflow pins. It downloads the script once into
+`artifacts/check-documentation-<sha>.mjs` and needs Node.js 20 or newer. With
+`kaitai-struct-compiler` on `PATH` it also compiles the `.ksy` files; without
+it the check warns and skips them.
+
+The check writes `spec/index/` and `PARITY.md`; nobody edits them by hand. After
+changing the spec, `parity/` or `deviations/`, run the script without `--check`
+and commit what it writes:
+
+```sh
+node artifacts/check-documentation-<sha>.mjs
+git add spec/index PARITY.md
+```
+
+The script does not check some items on the standard's list, such as the
+fixture schema and the hashes of saves and recordings; its guide lists them,
+and reviewers check those by hand. A save-patch write is given as a byte offset
+and value in the experiment's Setup section.

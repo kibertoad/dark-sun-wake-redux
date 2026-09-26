@@ -33,6 +33,19 @@ try {
 finally {
     if ([IO.File]::Exists($physicalPatternFixture)) { [IO.File]::Delete($physicalPatternFixture) }
 }
+# The documentation standard check, from the toolkit commit the CI workflow pins.
+$documentationToolkitCommit = '6fe1e4133585d82458a83c5dac519720ae33adb5'
+$documentationCheck = Join-Path $root "artifacts/check-documentation-$documentationToolkitCommit.mjs"
+if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
+    throw 'Node.js 20 or newer is required to run the documentation standard check.'
+}
+if (-not [IO.File]::Exists($documentationCheck)) {
+    New-Item -ItemType Directory -Force -Path (Split-Path -Parent $documentationCheck) | Out-Null
+    Invoke-WebRequest -UseBasicParsing -OutFile $documentationCheck `
+        -Uri "https://raw.githubusercontent.com/kibertoad/refurbished-dinosaurs-toolkit/$documentationToolkitCommit/tools/check-documentation.mjs"
+}
+& node $documentationCheck --root $root --check
+if ($LASTEXITCODE -ne 0) { throw 'Documentation standard check failed.' }
 $artifacts = Join-Path $root 'artifacts/test'
 dotnet test --project (Join-Path $root 'tests/DarkSunWakeRedux.Tests/DarkSunWakeRedux.Tests.csproj') `
   -p:UseSharedCompilation=false --artifacts-path $artifacts --no-progress -v minimal
