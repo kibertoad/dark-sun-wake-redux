@@ -1,0 +1,55 @@
+# Upstream gaps observed during Survey
+
+These are requests for the restoration template and shared analysis tooling.
+They describe tooling behavior, not claims about the original game's rules.
+
+## 1. Provide a standard function-inventory export path
+
+The work protocol requires `coverage/<build ID>/<manifest path>.tsv`, but this
+checkout had no coverage exporter or documented address convention. For
+`BLD-GOG-EN-1.1/DSUN.EXE`, I added `ExportFunctionInventory.java` and
+`Join-FunctionInventory.ps1`. The latter keeps only function starts within the
+shipped file's resident image or overlay-code ranges and writes canonical file
+offsets, because the overlays have no fixed runtime address.
+
+**Request:** add a shared exporter and schema check for the allowed columns
+(start address, size, optional researcher-given name and out-of-scope reason).
+Document how to represent segmented and overlay addresses without retaining
+code, bytes, strings or analyzer-generated names. The check should catch
+duplicate starts, invalid sizes, and starts outside the mapped source ranges.
+
+## 2. Make memory-block reports usable for mapped overlays
+
+The local-only `FBOV` mapped image produced 3,546 Ghidra memory blocks.
+`ReportMemoryBlocks.java` stopped at its 512-block limit without a report.
+The limit is useful for bounded output, but it prevents inspecting this image's
+block layout when diagnosing analyzer-discovered functions.
+
+**Request:** let the shared reporter select a named block, address range, or
+bounded page of blocks, while retaining an explicit output limit. This would
+allow focused inspection without a broad memory-map export.
+
+## 3. Account for analysis-view differences in coverage guidance
+
+Ghidra 12.1.3 found 1,284 resident function starts in the original MZ import.
+In the mapped-overlay import, 1,021 of those starts were absent, while the
+mapped view also found 869 starts inside overlay-code ranges. The joined TSV
+therefore uses the original import for resident code and the mapped import for
+overlay code. The 2,153 rows are analyzer-discovered starts, not proof that
+all original functions were found.
+
+**Request:** describe coverage inventories as view-specific analyzer results,
+and provide a repeatable way to combine views of a packed, overlaid or banked
+executable. A single mapped import should not silently replace the native
+import's function inventory.
+
+## 4. Offer an offline rerun for the local test gate
+
+`./tools/Test.ps1` invokes `dotnet test` with restore on every run. In this
+restricted workspace, restore failed on NuGet's service or signature endpoint
+even after a successful authorized restore had cached the packages. The same
+script passed all 700 tests when network access was available.
+
+**Request:** consider an explicit offline rerun option that uses an already
+restored lock/assets state. Keep the normal CI path restoring packages from
+NuGet.

@@ -143,6 +143,22 @@ Retain that project only locally and reuse it for focused scripts:
 The address above is intentionally a placeholder example, not a finding. Replace
 it only with an address selected through an evidence-led query.
 
+## Function inventory
+
+For the Survey inventory of `BLD-GOG-EN-1.1`, run
+`ExportFunctionInventory.java` once on the original `DSUN.EXE` import and once
+on a separate import of the local-only image made by
+`New-FbovMappedImage.ps1`. Give each run a distinct temporary TSV path. Then
+run `Join-FunctionInventory.ps1` with those paths, the original executable as
+`-SourcePath`, and `coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv` as `-OutputPath`.
+The join takes resident functions from the original import and overlay-code
+functions from the mapped import. Their auto-analysis results differ, so the
+mapped import does not replace the original resident inventory. Starts in the
+committed file are offsets in the shipped `DSUN.EXE`, written as
+`DSUN.EXE+0x...`; sizes are Ghidra function-body byte counts. Ghidra's
+discovery does not prove that every original function was found. The inventory
+contains no code, bytes, strings or auto-generated names.
+
 ## Bounded script pattern
 
 Adapt the reusable headless scripts and methodology from
