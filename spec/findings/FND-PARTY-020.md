@@ -31,18 +31,18 @@ draws a name, six values labelled STR, DEX, CON, INT, WIS and CHR, a line with t
 origin, a line with the alignment, and a line with one to three classes separated by slashes
 above a line with a level for each:
 
-| Member | Six values | Gender, origin | Alignment | Classes | Matching records |
-|---|---|---|---|---|---|
-| first | 18 21 17 18 18 18 | female elf | chaotic neutral | Preserver, Psionic, Thief | 40 |
-| second | 19 17 18 12 19 18 | male human | lawful good | Cleric | 41, 53 |
-| third | 19 21 19 16 19 15 | female thri-kreen | true neutral | Fighter, Druid | 42 |
-| fourth | 24 15 22 13 15 14 | male half-giant | chaotic good | Gladiator | 33, 43 |
+| Member | Name | Six values | Gender, origin | Alignment | Classes | Matching records |
+|---|---|---|---|---|---|---|
+| first | Ar'Anda | 18 21 17 18 18 18 | female elf | chaotic neutral | Preserver, Psionic, Thief | 40 |
+| second | Terrannus | 19 17 18 12 19 18 | male human | lawful good | Cleric | 41, 53 |
+| third | Thy'rokh | 19 21 19 16 19 15 | female thri-kreen | true neutral | Fighter, Druid | 42 |
+| fourth | Gerakis | 24 15 22 13 15 14 | male half-giant | chaotic good | Gladiator | 33, 43 |
 
 The matching records are the `CHAR` records of the installed `CHARSAVE.GFF` whose name
 (FND-PARTY-001) is the name drawn, ignoring case, and whose bytes `0x23..0x29` (FND-PARTY-003)
 are the six values. Record 50 has the first member's name and a first score of 19, and record
-51 holds the third member's scores under a name spelled differently from the one drawn, so
-neither matches. Records 41 and 53 have the same name and scores, and so do 33 and 43.
+51 holds the third member's scores under the name `Thy-rohk`, so neither matches. Records 41
+and 53 have the same name and scores, and so do 33 and 43.
 
 On the third member's screen, Druid and the level under it are drawn in red, while Fighter and
 its level are drawn in the colour of the other members' class lines. The second member's Cleric

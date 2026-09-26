@@ -7,5 +7,5 @@
 | `RULE-ITEM-002` | Splitting a bundle of grouped items | sourced | missing | None | None | sourced | No code splits items. |
 | `RULE-ITEM-003` | Casting a spell from an item | sourced | missing | None | None | sourced | No code holds item spells. |
 | `RULE-ITEM-004` | Buying from and selling to a store | sourced | missing | None | None | sourced | No code holds stores or the party's money. |
-| `RULE-ITEM-005` | The armour and shields each class may use | sourced | missing | None | None | sourced | No code holds armour or shields. |
+| `RULE-ITEM-005` | The armour, shields and weapons each class may use | sourced | missing | None | None | sourced | No code holds armour, shields or weapon limits. |
 | `RULE-ITEM-006` | The transfer utility's translation of a Dark Sun 1 item | supported | missing | None | None | supported | The rebuild has no character transfer utility. |

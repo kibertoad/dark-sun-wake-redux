@@ -40,7 +40,7 @@ window [FND-UI-016, FND-UI-018].
 | `0x64` | 4 | `UINT32LE` | `icon` | Number of the `ICON` resource of the same file drawn for the button, or 0 for none. | supported | FND-UI-004, FND-UI-016, FND-UI-018 |
 | `0x68` | 5 | `BYTE[5]` | `unk_68` | Purpose unknown. 0 in every record. | supported | FND-UI-004 |
 | `0x6D` | 1 | `UINT8` | `tail_length` | Number of bytes after the fixed part. | supported | FND-UI-004 |
-| `0x6E` | `tail_length` | `BYTE[tail_length]` | `tail` | Purpose unknown. Printable bytes followed by zeros. | supported | FND-UI-004 |
+| `0x6E` | `tail_length` | `BYTE[tail_length]` | `tail` | Purpose unknown. Printable ASCII followed by zeros, or zeros only, in the shipped records. | supported | FND-UI-004 |
 | | | | | Total size `110 + tail_length` | | |
 
 ## Enumerations and flags
@@ -63,7 +63,8 @@ captures [FND-UI-016, FND-UI-018].
 - What each bit of `event_mask` means beyond the values 4 and 2, which keep the pointer search
   from choosing the button. The shipped values are 2, 4, 80, 84, 144, 160 and 208 (FND-UI-004,
   FND-UI-006, Q-UI-001).
-- What `unk_0D`, `unk_0E` and `tail` do. The tail's text is not copied here (FND-UI-004,
-  Q-UI-001).
+- What `unk_0D`, `unk_0E` and `tail` do. Eleven tails hold a short upper-case word such as
+  `DROP`, `SPLIT` or `EXIT`, or a run of `X`, which may be a caption or a placeholder for one
+  (FND-UI-004, Q-UI-001).
 - Why the art of some buttons is a pixel or more larger or smaller than `width` and `height`,
   and which frame of a many-frame `icon` the game draws in which state (FND-UI-004, Q-UI-002).

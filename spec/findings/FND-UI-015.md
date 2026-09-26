@@ -1,6 +1,6 @@
 ---
 id: FND-UI-015
-title: DSUN.EXE does not contain the name shown in the first hostile Look panel as ASCII bytes
+title: DSUN.EXE does not contain the name Draxan, shown in the first hostile Look panel, as ASCII bytes
 status: recorded
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
@@ -17,12 +17,13 @@ environment: null
 
 ## Observation
 
-The Look panel captured in FND-UI-018 shows a six-letter name for its target. A byte search of
-all memory Ghidra loads from `DSUN.EXE` found neither the name's six ASCII bytes nor the same
-bytes followed by a NUL. A byte scan of the whole 634,416-byte file, which covers the 276,672
+The Look panel captured in FND-UI-018 shows the name `Draxan` for its target. A byte search of
+all memory Ghidra loads from `DSUN.EXE` found neither these six ASCII bytes nor the same bytes
+followed by a NUL. A byte scan of the whole 634,416-byte file, which covers the 276,672
 bytes after the 357,744-byte load image that Ghidra does not load, found neither pattern. A
 search for the NUL-terminated form in the copy of `DSUN.EXE` that loads the overlay code
-(FMT-EXE-001) found none either. The name itself is not copied here.
+(FMT-EXE-001) found none either. A case-insensitive search of the file, repeated with Python,
+finds no match.
 
 ## Interpretation
 
@@ -35,5 +36,5 @@ in another case or encoding.
 
 ## How to reproduce
 
-Search the loaded memory and the whole file of `DSUN.EXE` for the name as captured, with and
-without a trailing NUL.
+Search the loaded memory and the whole file of `DSUN.EXE` for `Draxan`, with and without a
+trailing NUL, and for the name in any case.

@@ -11,10 +11,12 @@ release plays in place of the disc's audio.
 In scope are the file formats the game reads and writes, the rules it applies (movement, the
 random number generator, character creation and progression, magic, items, combat, dialogue and
 its script interpreter, time and sound), and the screens, panels and dialogs the player sees. The
-game's content is out of scope: names, texts, images, sounds, maps, scripts and the per-item or
-per-creature statistics the designers filled in stay in the player's copy of the game, and the
-spec refers to them by resource. The setup and helper programs that ship with the game are in
-scope only where the game's own behaviour depends on them.
+spec uses the names the game gives its concepts and the things its designers made, and gives
+numbers, formulas and tables in full, including the per-item and per-character values the
+designers filled in. It holds no substantial copy of the game's writing (short quotations at
+most, the rest referred to by resource), none of its images, sounds, music or maps, and no
+meaningful slice of its code or scripts. The setup and helper programs that ship with the game
+are in scope only where the game's own behaviour depends on them.
 
 The original and its manual use "race" for the peoples a character can belong to. The spec uses
 the term `origin` for that concept, and its glossary entry gives "race" as the name the game shows

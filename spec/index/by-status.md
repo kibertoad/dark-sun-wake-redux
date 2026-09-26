@@ -28,7 +28,7 @@ Entries by status.
 | [RULE-ITEM-002](../rules/RULE-ITEM-002.md) | Splitting a bundle of grouped items |
 | [RULE-ITEM-003](../rules/RULE-ITEM-003.md) | Casting a spell from an item |
 | [RULE-ITEM-004](../rules/RULE-ITEM-004.md) | Buying from and selling to a store |
-| [RULE-ITEM-005](../rules/RULE-ITEM-005.md) | The armour and shields each class may use |
+| [RULE-ITEM-005](../rules/RULE-ITEM-005.md) | The armour, shields and weapons each class may use |
 | [RULE-MAGIC-001](../rules/RULE-MAGIC-001.md) | How many spells of each level a caster can cast before resting |
 | [RULE-MAGIC-002](../rules/RULE-MAGIC-002.md) | Which spheres of cleric spells a priest may cast |
 | [RULE-MAGIC-003](../rules/RULE-MAGIC-003.md) | Activating and maintaining a psionic power |
@@ -207,7 +207,7 @@ Entries by status.
 | [FND-ITEM-005](../findings/FND-ITEM-005.md) | Unpacked, CHARTRAN.EXE names items.bin and reports item translation |
 | [FND-ITEM-006](../findings/FND-ITEM-006.md) | CHARTRAN.EXE loads ITEMS.BIN whole and looks up each Dark Sun 1 item's number in its first column |
 | [FND-ITEM-007](../findings/FND-ITEM-007.md) | SVIEW.EXE does not hold the name ITEMS.BIN in any case |
-| [FND-ITEM-008](../findings/FND-ITEM-008.md) | Two item names seen on the inventory screen occur once each, in TEXT 1000 of RESOURCE.GFF |
+| [FND-ITEM-008](../findings/FND-ITEM-008.md) | The item names Longsword and Dagger seen on the inventory screen occur once each, in TEXT 1000 of RESOURCE.GFF |
 | [FND-ITEM-009](../findings/FND-ITEM-009.md) | DSUN.EXE holds the item placement and pick-up messages, pushed by overlays 179, 189 and 191 |
 | [FND-MAGIC-001](../findings/FND-MAGIC-001.md) | The Use screen names the spell class and level or the psionic discipline its icons belong to |
 | [FND-PARTY-001](../findings/FND-PARTY-001.md) | Every CHAR record holds a printable NUL-terminated name in a 16-byte slot at 0x2B |
@@ -294,7 +294,7 @@ Entries by status.
 | [FND-UI-012](../findings/FND-UI-012.md) | No decoded instruction of the resident image has the number of a start-flow, Look-panel or character-view control as an operand |
 | [FND-UI-013](../findings/FND-UI-013.md) | No resident function has both numbers of either pair of Preferences buttons 16300 and 16301 or 16304 and 16305 |
 | [FND-UI-014](../findings/FND-UI-014.md) | No function of the overlay-mapped image has both the RDFF tag and the number 19003 |
-| [FND-UI-015](../findings/FND-UI-015.md) | DSUN.EXE does not contain the name shown in the first hostile Look panel as ASCII bytes |
+| [FND-UI-015](../findings/FND-UI-015.md) | DSUN.EXE does not contain the name Draxan, shown in the first hostile Look panel, as ASCII bytes |
 | [FND-UI-016](../findings/FND-UI-016.md) | A conversation capture shows the speech window at (0,0) and the response window at (0,140) |
 | [FND-UI-017](../findings/FND-UI-017.md) | The notice shown before the first conversation uses the speech window alone, with an empty portrait |
 | [FND-UI-018](../findings/FND-UI-018.md) | The first hostile Look panel is WIND 3020 drawn at (67,44) with its three action buttons disabled |
@@ -388,7 +388,7 @@ Entries whose Open questions section says more than None known.
 | [RULE-ITEM-002](../rules/RULE-ITEM-002.md) | Splitting a bundle of grouped items | sourced |
 | [RULE-ITEM-003](../rules/RULE-ITEM-003.md) | Casting a spell from an item | sourced |
 | [RULE-ITEM-004](../rules/RULE-ITEM-004.md) | Buying from and selling to a store | sourced |
-| [RULE-ITEM-005](../rules/RULE-ITEM-005.md) | The armour and shields each class may use | sourced |
+| [RULE-ITEM-005](../rules/RULE-ITEM-005.md) | The armour, shields and weapons each class may use | sourced |
 | [RULE-ITEM-006](../rules/RULE-ITEM-006.md) | The transfer utility's translation of a Dark Sun 1 item | supported |
 | [RULE-MAGIC-001](../rules/RULE-MAGIC-001.md) | How many spells of each level a caster can cast before resting | sourced |
 | [RULE-MAGIC-002](../rules/RULE-MAGIC-002.md) | Which spheres of cleric spells a priest may cast | sourced |

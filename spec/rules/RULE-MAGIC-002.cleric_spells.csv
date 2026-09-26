@@ -1,0 +1,108 @@
+spell,level,spheres,combat_only
+Bless,1,cosmos,0
+Cause Fear,1,cosmos,0
+Cause Light Wounds,1,cosmos,0
+Cure Light Wounds,1,cosmos,0
+Curse,1,cosmos,0
+Entangle,1,cosmos,0
+Invisibility to Undead,1,cosmos,1
+Magical Stone,1,earth,0
+Protection from Evil,1,cosmos,0
+Remove Fear,1,cosmos,0
+Sanctuary,1,cosmos,0
+Shillelagh,1,cosmos,0
+Aid,2,cosmos,0
+Altruism,2,cosmos,0
+Barkskin,2,cosmos,0
+Channel Stench,2,air,0
+Charm Person or Mammal,2,air,1
+Find Traps,2,cosmos,0
+Flame Blade,2,fire,0
+Hesitation,2,cosmos,0
+Hold Person,2,cosmos,1
+Music of the Spheres,2,cosmos,0
+Resist Cold,2,fire,0
+Resist Fire,2,fire,0
+"Silence, 15' Radius",2,cosmos,1
+Spiritual Hammer,2,cosmos,0
+Steal Breath,2,air,0
+Air Lens,3,air,0
+Bramblestaff,3,earth water,0
+Bestow Curse,3,cosmos,0
+Cause Blindness or Deafness,3,cosmos,0
+Cause Disease,3,cosmos,0
+Create Smoke,3,air fire,0
+Cure Blindness or Deafness,3,cosmos,0
+Cure Disease,3,cosmos,0
+Dispel Magic,3,cosmos,0
+Heat Exhaustion,3,fire,0
+Magical Vestment,3,cosmos,0
+Negative Plane Protection,3,cosmos,0
+Plant Growth,3,cosmos,0
+Prayer,3,cosmos,0
+Protection from Fire,3,fire,0
+Remove Curse,3,cosmos,0
+Remove Paralysis,3,cosmos,0
+Sand Spray,3,earth,0
+Spike Growth,3,cosmos,0
+Stone Shape,3,earth,0
+Strength of One,3,cosmos,0
+Summon Insects,3,cosmos,0
+Adjure,4,cosmos,0
+Blood Flow,4,water,0
+Cause Serious Wounds,4,cosmos,0
+Cloak of Bravery,4,cosmos,0
+Cloak of Fear,4,cosmos,0
+Condense,4,earth,0
+Cure Serious Wounds,4,cosmos,0
+Dehydrate,4,water,0
+Dust Cloud,4,air earth,0
+Focus Heat,4,fire,0
+Free Action,4,cosmos,0
+Intensification of Weather,4,air water,0
+Lungs of Water,4,water,0
+Magma Blade,4,fire,0
+Neutralize Poison,4,cosmos,0
+Poison,4,cosmos,0
+Produce Fire,4,fire,0
+"Protect. from Evil, 10' Radius",4,cosmos,0
+Protection from Lightning,4,air,0
+Protection from Weather,4,air water,0
+Quench Fire,4,fire,0
+Return to Earth,4,earth,0
+Soothe,4,water,0
+Thorns of Binding,4,earth water,0
+Cause Critical Wounds,5,cosmos,0
+Conjure Elemental,5,air earth fire water,1
+Crumble,5,earth water,0
+Cure Critical Wounds,5,cosmos,0
+Deflection,5,air,0
+Dispel Evil,5,cosmos,0
+Flame Strike,5,fire,0
+Insect Plague,5,air,0
+Ironskin,5,earth,0
+Quicksand,5,earth water,0
+Rainbow,5,cosmos,0
+Raise Dead,5,cosmos,0
+Sandstorm,5,air,0
+Spiked Stones,5,earth,0
+Slay Living,5,cosmos,0
+Wall of Fire,5,fire,0
+Blade Barrier,6,cosmos,0
+Fire Seeds,6,fire,0
+Harm,6,cosmos,0
+Heal,6,cosmos,0
+Heartseeker,6,earth water,0
+Sunstroke,6,cosmos,0
+Wall of Thorns,6,cosmos,0
+Water of Life,6,water,0
+Confusion,7,cosmos,0
+Conjure Greater Elemental,7,air earth fire water,1
+Creeping Doom,7,cosmos,0
+Energy Drain,7,cosmos,0
+Fire Storm,7,fire,0
+Glass Storm,7,earth,0
+Restoration,7,cosmos,0
+Scirocco,7,air,0
+Sunray,7,cosmos,0
+Symbol,7,cosmos,0

@@ -41,8 +41,8 @@ title and a name box: the list of stored characters the party screen offers.
 
 A recorded playthrough (SRC-YOUTUBE-FLOMVOSHEOM, near 2:30 to 2:40) shows this list after the
 add choice of an empty party slot over `BMP/10005`, with a title from `ICON/18103` and a button
-from `ICON/18104` where the records name `ICON/18107` and `ICON/18108`; the records' icons show the
-words of the save screen, so the game may swap them at run time. That is recorded from the video
+from `ICON/18104`, both reading `ADD`, where the records name `ICON/18107` and `ICON/18108`; the
+records' icons read `SAVE`, so the game may swap them at run time. That is recorded from the video
 only. What the rows show and what the buttons do are not known.
 
 ## How to reproduce

@@ -33,17 +33,19 @@ children:
 | 20 | `BUTN/2018` | (79, 174) | 58 x 5 | 0 | None |
 | 21 | `EBOX/4003` | (40, 125) | 95 x 8 | 10 | `BMP/19004`, 96 x 9 |
 
-The icons of `BUTN/2002` to `/2009`, decoded with `PAL/1000`, show the eight class names; those of
-`BUTN/18302` and `BUTN/19304` show the words for leaving and for finishing.
+The icons of `BUTN/2002` to `/2009`, decoded with `PAL/1000`, show the eight class names
+`CLERIC`, `DRUID`, `FIGHTER`, `GLADIATOR`, `PRESERVER`, `PSIONICIST`, `RANGER` and `THIEF`, in
+that order; those of `BUTN/18302` and `BUTN/19304` show `EXIT` and `DONE`.
 
 `RESOURCE.GFF#WIND/19504` and `WIND/19505` are 110 x 64 and name `BMP/20087` (111 x 64) at
 `0xC2`. Each places five buttons at (7, 15) to (7, 47), 8 apart, 7 pixels high, each with a
 three-frame `ICON` of the same number: `BUTN/2038` to `/2041` and `/2046` in `WIND/19504`, and
 `BUTN/2042` to `/2045` and `/2047` in `WIND/19505`. `BUTN/2046` has mask 2 and the others 0. The
-icons of `WIND/19504` show the three psionic disciplines, a fourth label whose first and third
-frames are empty and whose second frame names a fourth discipline, and a label for viewing the
-clerical spheres. Those of `WIND/19505` show the four elemental spheres and a label for viewing
-the psionic disciplines. Frame 0 of each label is dark brown, frame 1 bright and frame 2 grey.
+icons of `WIND/19504` show the three psionic disciplines, `P-KINESIS`, `P-METAB` and
+`TELEPATHY`, then a fourth label whose first and third frames are empty and whose second frame
+reads `P-PORTATION`, and `VIEW SPHERES`. Those of `WIND/19505` show the four elemental spheres,
+`AIR`, `EARTH`, `FIRE` and `WATER`, and `VIEW PSIONICS`. Frame 0 of each label is dark brown,
+frame 1 bright and frame 2 grey.
 
 ## Interpretation
 

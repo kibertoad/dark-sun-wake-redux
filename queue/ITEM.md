@@ -12,9 +12,10 @@ Next ID: Q-ITEM-004
   DSUN.EXE and SVIEW.EXE, which find none (FND-ITEM-004, FND-ITEM-007). Blocks: slice 5.
 - Q-ITEM-003. RULE-ITEM-001, RULE-ITEM-003, RULE-ITEM-004, RULE-ITEM-005: Which slots each kind of
   item may go in, how weight and item count limit what a character carries, when an item's spell
-  can be cast, what a store pays, and which class limits apply to a character with several
-  classes? Settles it: the code of overlay 189 around the placement messages and of overlay 191
-  around the pick-up messages (FND-ITEM-009), read with the item records it indexes. Blocks: slice 5.
+  can be cast, what a store pays, which class limits apply to a character with several classes,
+  and whether the game enforces the class weapon lists and by which item field? Settles it: the
+  code of overlay 189 around the placement messages and of overlay 191 around the pick-up messages
+  (FND-ITEM-009), read with the item records it indexes. Blocks: slice 5.
 
 ## Emulated call
 

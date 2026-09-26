@@ -16,10 +16,10 @@ related: [RULE-UI-001, SCR-UI-002]
 | Element | Resource | Shows | Position | Shown when | Evidence |
 |---|---|---|---|---|---|
 | Background | `RESOURCE.GFF#BMP/10005` | None | (0, 0, 320, 200) | While the screen is shown | FND-UI-027, SRC-YOUTUBE-FLOMVOSHEOM |
-| Title | `RESOURCE.GFF#ICON/18103` | None | (110, 0, 67, 23) | While the screen is shown | SRC-YOUTUBE-FLOMVOSHEOM |
-| Add button | `RESOURCE.GFF#ICON/18104` | None | (231, 30, 44, 15) | While the screen is shown | SRC-YOUTUBE-FLOMVOSHEOM |
-| Exit button | `RESOURCE.GFF#ICON/18109` of `BUTN/18302` | None | (231, 50, 44, 15) | While the screen is shown | FND-UI-027, SRC-YOUTUBE-FLOMVOSHEOM |
-| Delete button | `RESOURCE.GFF#ICON/18110` of `BUTN/18303` | None | (215, 148, 62, 15) | While the screen is shown | FND-UI-027, SRC-YOUTUBE-FLOMVOSHEOM |
+| Title | `RESOURCE.GFF#ICON/18103`, `ADD` | None | (110, 0, 67, 23) | While the screen is shown | SRC-YOUTUBE-FLOMVOSHEOM |
+| Add button | `RESOURCE.GFF#ICON/18104`, `ADD` | None | (231, 30, 44, 15) | While the screen is shown | SRC-YOUTUBE-FLOMVOSHEOM |
+| Exit button | `RESOURCE.GFF#ICON/18109` of `BUTN/18302`, `EXIT` | None | (231, 50, 44, 15) | While the screen is shown | FND-UI-027, SRC-YOUTUBE-FLOMVOSHEOM |
+| Delete button | `RESOURCE.GFF#ICON/18110` of `BUTN/18303`, `DELETE` | None | (215, 148, 62, 15) | While the screen is shown | FND-UI-027, SRC-YOUTUBE-FLOMVOSHEOM |
 | Ten list rows | `RESOURCE.GFF#ICON/18100` of `BUTN/18304` to `/18313` | None | (46, 31, 165, 11) to (46, 130, 165, 11), 11 apart | While the screen is shown | FND-UI-027 |
 | Scroll up | `RESOURCE.GFF#ICON/12102` of `BUTN/10314` | None | (215, 30, 14, 10) | While the screen is shown | FND-UI-027, SRC-YOUTUBE-FLOMVOSHEOM |
 | Scroll down | `RESOURCE.GFF#ICON/12101` of `BUTN/10315` | None | (215, 130, 14, 14) | While the screen is shown | FND-UI-027, SRC-YOUTUBE-FLOMVOSHEOM |

@@ -47,7 +47,7 @@ file; a routine of the game loads characters 40 to 43 into the four party slots
 (FND-PARTY-013), and the four characters the owner's captures show match records 40, 41 or 53,
 42, and 33 or 43 (FND-PARTY-020). A public player review
 (<https://steamcommunity.com/profiles/76561198045525236/recommended/1904580>) names a member of
-the party START GAME supplies; the name matches records 43 and 33, and the review gives that
+the party START GAME supplies, Gerakis, the name of records 43 and 33, and the review gives that
 character the origin and class the fourth capture shows. Neither file holds a list of party
 members (FND-PARTY-007, FND-PARTY-019).
 

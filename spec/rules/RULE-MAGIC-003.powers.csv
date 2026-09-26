@@ -1,0 +1,35 @@
+power,discipline,kind,ability,modifier,initial_cost,maintenance_cost
+Detonate,psychokinesis,science,constitution,-3,18,NA
+Disintegrate,psychokinesis,science,wisdom,-4,40,NA
+Project Force,psychokinesis,science,constitution,-2,10,NA
+Ballistic Attack,psychokinesis,devotion,constitution,-2,5,NA
+Control Body,psychokinesis,devotion,constitution,-2,8,8
+Inertial Barrier,psychokinesis,devotion,constitution,-3,7,5
+Animal Affinity,psychometabolism,science,constitution,-4,15,4
+Energy Containment,psychometabolism,science,constitution,-2,10,NA
+Life Draining,psychometabolism,science,constitution,-3,11,5
+Absorb Disease,psychometabolism,devotion,constitution,-3,12,NA
+Adrenalin Control,psychometabolism,devotion,constitution,-3,8,4
+Biofeedback,psychometabolism,devotion,constitution,-2,6,3
+Body Weaponry,psychometabolism,devotion,constitution,-3,9,4
+Cell Adjustment,psychometabolism,devotion,constitution,-3,5,0
+Displacement,psychometabolism,devotion,constitution,-3,6,3
+Enhanced Strength,psychometabolism,devotion,wisdom,-3,varies,varies
+Flesh Armor,psychometabolism,devotion,constitution,-3,8,4
+Graft Weapon,psychometabolism,devotion,constitution,-5,10,1
+Lend Health,psychometabolism,devotion,constitution,-1,4,NA
+Share Strength,psychometabolism,devotion,constitution,-4,6,2
+Domination,telepathy,science,wisdom,-4,varies,varies
+Mass Domination,telepathy,science,wisdom,-6,varies,varies
+Psychic Crush,telepathy,science,wisdom,-4,7,NA
+Superior Invisibility,telepathy,science,intelligence,-5,varies,5
+Tower of Iron Will,telepathy,science,wisdom,-2,6,NA
+Ego Whip,telepathy,devotion,wisdom,-3,4,NA
+Id Insinuation,telepathy,devotion,wisdom,-4,5,NA
+Intellect Fortress,telepathy,devotion,wisdom,-3,4,NA
+Mental Barrier,telepathy,devotion,wisdom,-2,3,NA
+Mind Bar,telepathy,devotion,intelligence,-2,6,4
+Mind Blank,telepathy,devotion,wisdom,-7,0,0
+Psionic Blast,telepathy,devotion,wisdom,-5,10,NA
+Synaptic Static,telepathy,devotion,intelligence,-4,15,10
+Thought Shield,telepathy,devotion,wisdom,-3,1,NA

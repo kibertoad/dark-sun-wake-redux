@@ -19,7 +19,8 @@ environment: null
 
 A search of the whole of `DSUN.EXE`, the load image and the overlay pack, for the names held by
 `CHAR` records 33, 40 to 43 and 50 to 53 of the installed `CHARSAVE.GFF` (FND-PARTY-001),
-ignoring case and with or without a following NUL, finds none of them.
+`Gerakis`, `Ar'Anda`, `Terrannus`, `Thy'rokh`, `Thy-rohk` and `Hamonde`, ignoring case and with
+or without a following NUL, finds none of them.
 
 An earlier search in Ghidra of the load image, for the four names the party strip shows in the
 owner's captures (FND-PARTY-020), each in the case the captures show and followed by a NUL,

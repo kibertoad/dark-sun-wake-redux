@@ -36,6 +36,11 @@ region entity or a placed-object entry carries, and `31E0:0E1B` reads the fields
 | `0xE` | 2 | `UINT16LE` | `unk_0E` | Purpose unknown. 0 in every shipped record. `31E0:0EFF` overwrites it with `image` in its copy of the record in most cases. | supported | FND-ACTOR-001, FND-ACTOR-003 |
 | `0x10` | | | | Total size 16 bytes | | |
 
+The value file `FMT-ACTOR-001.objects.csv` gives every field of all 4,479 `OJFF` resources of
+`OBJEX.GFF`, one row per resource in order of its number, with the columns `object` (the
+resource number, 1 to 32,003) and the field names of the layout, each field read with its type
+[FND-ACTOR-001].
+
 ## Enumerations and flags
 
 None.

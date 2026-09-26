@@ -1,6 +1,6 @@
 ---
 id: FND-ITEM-008
-title: Two item names seen on the inventory screen occur once each, in TEXT 1000 of RESOURCE.GFF
+title: The item names Longsword and Dagger seen on the inventory screen occur once each, in TEXT 1000 of RESOURCE.GFF
 status: recorded
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
@@ -20,11 +20,11 @@ environment: null
 
 ## Observation
 
-The inventory capture `dsun_017.png` (FND-UI-021) shows, among others, two item names: one of 9
-letters and one of 6. A case-sensitive search of `RESOURCE.GFF` finds each name once, both inside
+The inventory capture `dsun_017.png` (FND-UI-021) shows, among others, the item names
+`Longsword` and `Dagger`. A case-sensitive search of `RESOURCE.GFF` finds each name once, both inside
 `RESOURCE.GFF#TEXT/1000`, which is 2,403 bytes and starts at file offset `0x17C28`. Counting lines
-from 0 and splitting at CR LF (FMT-TEXT-003), the 9-letter name is the whole of line 25, starting
-at byte 232 of the resource, and the 6-letter name is the whole of line 28, starting at byte 258.
+from 0 and splitting at CR LF (FMT-TEXT-003), `Longsword` is the whole of line 25, starting at
+byte 232 of the resource, and `Dagger` is the whole of line 28, starting at byte 258.
 
 ## Interpretation
 

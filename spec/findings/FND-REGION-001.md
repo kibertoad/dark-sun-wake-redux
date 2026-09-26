@@ -27,6 +27,31 @@ gap, from 3 (in `RGN0FF.GFF`) to 247 (in `RGN041.GFF`), 3,043 in all.
 In every file the `RNME` resource is the first resource, at offset `0x1C`, and is 4 to 16 bytes
 of printable ASCII ending with a single NUL. The `PAL ` resource is 768 bytes (FND-IMAGE-004).
 
+The names the `RNME` resources hold, without the NUL:
+
+| File | Region | Name |
+|---|---|---|
+| `RGN001.GFF` | 1 | `forest` |
+| `RGN032.GFF` | 50 | `Tyr` |
+| `RGN033.GFF` | 51 | `VA Headquarters` |
+| `RGN034.GFF` | 52 | `Pyramid` |
+| `RGN036.GFF` | 54 | `Yuan-ti Tunnels` |
+| `RGN037.GFF` | 55 | `El's Temple` |
+| `RGN038.GFF` | 56 | `Mines1` |
+| `RGN039.GFF` | 57 | `Mines2` |
+| `RGN03A.GFF` | 58 | `Mines3` |
+| `RGN03B.GFF` | 59 | `Jann` |
+| `RGN03C.GFF` | 60 | `Mosaic` |
+| `RGN03D.GFF` | 61 | `Volcano Level 2` |
+| `RGN03E.GFF` | 62 | `Volcano Level 1` |
+| `RGN03F.GFF` | 63 | `Volcano Level 3` |
+| `RGN041.GFF` | 65 | `Silt Giants` |
+| `RGN042.GFF` | 66 | `Cloud` |
+| `RGN043.GFF` | 67 | `Crypt` |
+| `RGN044.GFF` | 68 | `Cosmos` |
+| `RGN045.GFF` | 69 | `UnderTyr` |
+| `RGN0FF.GFF` | 255 | `Limbo` |
+
 `RGN032.GFF`, 64,641 bytes with XXH3-128 `a4b22f8b69bd2a541d67ac4100fea872`, holds region 50, the
 opening region, with 94 tiles; its `RNME` is 4 bytes, at `0x1C..0x20`.
 

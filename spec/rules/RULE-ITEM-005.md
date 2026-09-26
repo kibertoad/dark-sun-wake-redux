@@ -1,6 +1,6 @@
 ---
 id: RULE-ITEM-005
-title: The armour and shields each class may use
+title: The armour, shields and weapons each class may use
 status: sourced
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
@@ -14,11 +14,13 @@ related: []
 
 Druids and preservers may wear no armour and carry no shield. Psionicists and thieves may wear
 leather armour and carry a small shield. Clerics, fighters, gladiators and rangers may use any
-armour and any shield. Each class may also use only some weapons, which the manual lists.
+armour and any shield. Fighters, gladiators, rangers, druids and thieves may use any weapon.
+Preservers, psionicists and clerics may use only the weapons the manual's table lists for them,
+a cleric's by element (What the sources say).
 
 ## When it runs
 
-When a character readies armour or a shield (SRC-MANUAL-1994, page 77).
+When a character readies armour, a shield or a weapon (SRC-MANUAL-1994, page 77).
 
 ## Parameters
 
@@ -55,7 +57,24 @@ A character with more than one class: the manual does not say which class's limi
 SRC-MANUAL-1994, page 77, table "Armor and Weapons Permitted": clerics of each of the four
 elements, any armour and any shield; druids, none and none; fighters, gladiators and rangers, any
 and any; preservers, none and none; psionicists, leather and small; thieves, leather and small.
-The same table gives the weapons each class and each cleric's element allows.
+Its Weapon column gives, by class:
+
+| Class | Weapons |
+|---|---|
+| Cleric of Air | bow, blowgun, sling, spear and throwing spear |
+| Cleric of Earth | any weapon made of stone, metal or wood |
+| Cleric of Fire | magically fired, obsidian or fire-heated weapons |
+| Cleric of Water | bone or wood bows, club, maces, javelins, quarterstaff, spears and warhammers, which must be organic |
+| Druid | any |
+| Fighter | any |
+| Gladiator | any |
+| Ranger | any |
+| Preserver | dagger, staff, darts, knife and sling |
+| Psionicist | short bow, hand and light crossbow, dagger, dirk, knife, club, hand axe, throwing axe, horseman mace and pick, scimitar, spear, short sword and warhammer |
+| Thief | any |
+
+The procedure gives only the armour and shield limits, since the weapon lists name item kinds that
+no identified item field records.
 
 ## Differences between builds
 
@@ -64,4 +83,5 @@ None known.
 ## Open questions
 
 - Which limit applies to a character with several classes, what "leather" and "small" cover among
-  the game's items, and whether the game enforces the weapon lists (Q-ITEM-003).
+  the game's items, and whether the game enforces the weapon lists, and through which item field
+  it tells a weapon's kind or material (Q-ITEM-003).

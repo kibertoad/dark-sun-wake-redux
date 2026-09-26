@@ -14,13 +14,16 @@ Next ID: Q-MAGIC-006
   changes? Settles it: the code that decides whether a caster has a spell of a level left, read
   with the tables it indexes. Blocks: slice 5.
 - Q-MAGIC-003. RULE-MAGIC-002: Which cleric spells does the game offer a cleric, a druid and a
-  ranger, and where does it keep a spell's sphere and level and a character's sphere? Settles it:
+  ranger, where does it keep a spell's sphere and level and a character's sphere, and how does it
+  treat a spell of several spheres? Settles it:
   the spell definitions the game loads and the code that builds a caster's spell list for the Use
   screen. Blocks: slice 5.
 - Q-MAGIC-004. RULE-MAGIC-003: How does the game make a psionic power check, how does it round
   half an odd initial cost, what does it do when a character has too few PSPs, how many PSPs does
-  a character have at each level, and which powers can a character who is not a psionicist use?
-  Settles it: the code that activates a psionic power and the code that sets a character's PSPs.
+  a character have at each level, which powers can a character who is not a psionicist use, does
+  the game keep the manual's costs, how does it price the powers the manual gives as Varies, and
+  can a power with a zero maintenance cost be maintained? Settles it: the code that activates a
+  psionic power and the code that sets a character's PSPs.
   Blocks: slice 5.
 - Q-MAGIC-005. RULE-MAGIC-004: What does camping do besides restoring PSPs and spells: does it
   take game time, restore hit points, stop for enemies, and in which order does it cast cure

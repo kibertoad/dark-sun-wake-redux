@@ -18,10 +18,10 @@ related: [RULE-PARTY-006, SCR-UI-002]
 | Background | None, black | None | (0, 0, 320, 200) | While the screen is shown | SRC-YOUTUBE-FLOMVOSHEOM |
 | Stone frame | `RESOURCE.GFF#BMP/20029` | None | (3, 44, 314, 112) | While the screen is shown | FND-UI-024, SRC-YOUTUBE-FLOMVOSHEOM |
 | Crest | `RESOURCE.GFF#BMP/20028` | None | (47, 24, 222, 33) | While the screen is shown, over the frame | FND-UI-024, SRC-YOUTUBE-FLOMVOSHEOM |
-| Start game | `RESOURCE.GFF#ICON/19111` of `BUTN/19300` | None | (94, 70, 127, 12) | While the screen is shown | FND-UI-024 |
-| Create characters | `RESOURCE.GFF#ICON/19112` of `BUTN/19301` | None | (50, 87, 220, 12) | While the screen is shown | FND-UI-024 |
-| Load saved game | `RESOURCE.GFF#ICON/19113` of `BUTN/19302` | None | (64, 104, 191, 13) | While the screen is shown | FND-UI-024 |
-| Exit to DOS | `RESOURCE.GFF#ICON/19114` of `BUTN/19303` | None | (92, 120, 127, 12) | While the screen is shown | FND-UI-024 |
+| Start game | `RESOURCE.GFF#ICON/19111` of `BUTN/19300`, `START GAME` | None | (94, 70, 127, 12) | While the screen is shown | FND-UI-024 |
+| Create characters | `RESOURCE.GFF#ICON/19112` of `BUTN/19301`, `CREATE CHARACTERS` | None | (50, 87, 220, 12) | While the screen is shown | FND-UI-024 |
+| Load saved game | `RESOURCE.GFF#ICON/19113` of `BUTN/19302`, `LOAD SAVED GAME` | None | (64, 104, 191, 13) | While the screen is shown | FND-UI-024 |
+| Exit to DOS | `RESOURCE.GFF#ICON/19114` of `BUTN/19303`, `EXIT TO DOS` | None | (92, 120, 127, 12) | While the screen is shown | FND-UI-024 |
 
 The four buttons are the children of `RESOURCE.GFF#WIND/19500`, a 320 x 200 window, at their
 child positions; their first frames are listed here.

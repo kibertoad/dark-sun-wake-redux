@@ -19,10 +19,11 @@ environment: null
 
 In each of the 19 `CHAR` resources of the installed `CHARSAVE.GFF`, the six bytes at offsets
 `0x23..0x29` of the resource hold values from 12 to 24, the lowest being 12 and the highest 24.
-Records 33 and 43, and 41 and 53, carry the same name (FND-PARTY-001) and the same six values.
-Records 40 and 50 share a name and differ only in the first of the six (18 and 19). Records 34 and
-35, and 42 and 51, hold the same six values under names that differ. For `CHAR/40`, which starts
-at file offset `0x1C`, the six bytes are at `0x3F..0x45`.
+Records 33 and 43 (`Gerakis`), and 41 and 53 (`Terrannus`), carry the same name (FND-PARTY-001)
+and the same six values. Records 40 and 50 are both named `Ar'Anda` and differ only in the first
+of the six (18 and 19). Records 34 and 35 (`Frin'kal'kan` and `Bzz'klkd'ng`), and 42 and 51
+(`Thy'rokh` and `Thy-rohk`), hold the same six values under names that differ. For `CHAR/40`,
+which starts at file offset `0x1C`, the six bytes are at `0x3F..0x45`.
 
 The four View Character captures show, next to the labels STR, DEX, CON, INT, WIS and CHR in that
 order, the same six values as records 40, 41, 42 and 33 hold at `0x23..0x29`, in the same order

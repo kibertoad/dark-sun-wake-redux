@@ -28,6 +28,10 @@ up by `old_item` [FND-ITEM-006].
 | `0x02` | 2 | `UINT16LE` | `new_item` | The number of the `RDFF` resource of `OBJEX.GFF` that stands for the same item in Dark Sun 2. From 603 to 31,990, 159 different values; 18 records hold a number that no `RDFF` resource of the shipped `OBJEX.GFF` has. | supported | FND-ITEM-001, FND-ITEM-002, FND-ITEM-006 |
 | `0x04` | | | | Total size 4 | | |
 
+The value file `FMT-ITEM-001.records.csv` gives all 234 records of the installed file in file
+order, one row each, with the columns `record` (the record's index, from 0), `old_item` and
+`new_item` [FND-ITEM-001].
+
 ## Enumerations and flags
 
 None.

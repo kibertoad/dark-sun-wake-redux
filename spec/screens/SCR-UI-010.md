@@ -16,7 +16,7 @@ related: [SCR-UI-002, SCR-UI-006, SCR-UI-008, SCR-UI-009]
 | Element | Resource | Shows | Position | Shown when | Evidence |
 |---|---|---|---|---|---|
 | Screen picture | `RESOURCE.GFF#BMP/11000` | None | (0, 9, 320, 200) | While the screen is shown | FND-UI-019 |
-| Title | `RESOURCE.GFF#BMP/20075` | None | (85, 11, 152, 23) | While the screen is shown | FND-UI-019 |
+| Title | `RESOURCE.GFF#BMP/20075`, `EFFECTS` | None | (85, 11, 152, 23) | While the screen is shown | FND-UI-019 |
 | Effects on each character | Not known | One icon per effect | In a row next to the character's icon | While the screen is shown | SRC-MANUAL-1994 |
 | Counter spells and powers | Not known | One icon per spell or power that can end an evil effect | In a row at the bottom of the window | When a party member has one | SRC-MANUAL-1994 |
 

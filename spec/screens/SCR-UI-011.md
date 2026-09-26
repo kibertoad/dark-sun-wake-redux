@@ -16,7 +16,7 @@ related: [RULE-UI-001, SCR-UI-002, SCR-UI-008, SCR-UI-009, SCR-UI-010]
 | Element | Resource | Shows | Position | Shown when | Evidence |
 |---|---|---|---|---|---|
 | Panel outline | Not known | None | left column at x 67 | While the panel is shown | FND-UI-018 |
-| Target's name and level | Not known | The looked-at character's name and level | inside the panel | While the panel is shown | FND-UI-018, FND-UI-015 |
+| Target's name and level | Not known | The looked-at character's name and level, `Draxan` and `LEVEL: 10` in FND-UI-018's capture | inside the panel | While the panel is shown | FND-UI-018, FND-UI-015 |
 | Talk button | frame 2 of `RESOURCE.GFF#ICON/15105` of `BUTN/15306` | None | (70, 103, 16, 15) | The action is not available | FND-UI-018, FND-UI-031 |
 | Pick up button | frame 2 of `RESOURCE.GFF#ICON/15107` of `BUTN/15308` | None | (90, 103, 16, 15) | The action is not available | FND-UI-018, FND-UI-031 |
 | Use button | frame 2 of `RESOURCE.GFF#ICON/15106` of `BUTN/15307` | None | (110, 103, 16, 15) | The action is not available | FND-UI-018, FND-UI-031 |

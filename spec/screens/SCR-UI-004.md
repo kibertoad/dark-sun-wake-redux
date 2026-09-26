@@ -15,9 +15,9 @@ related: [RULE-UI-001, SCR-UI-002, SCR-UI-005]
 
 | Element | Resource | Shows | Position | Shown when | Evidence |
 |---|---|---|---|---|---|
-| Class names | `RESOURCE.GFF#ICON/2002` to `/2009` of `BUTN/2002` to `/2009` | None | (217, 10) to (217, 66), 8 apart, each 7 high | While the screen is shown | FND-UI-026 |
-| Exit button | `RESOURCE.GFF#ICON/18109` of `BUTN/18302` | None | (258, 154, 44, 15) | While the screen is shown | FND-UI-026 |
-| Done button | `RESOURCE.GFF#ICON/19100` of `BUTN/19304` | None | (243, 174, 59, 18) | While the screen is shown | FND-UI-026 |
+| Class names | `RESOURCE.GFF#ICON/2002` to `/2009` of `BUTN/2002` to `/2009`: `CLERIC`, `DRUID`, `FIGHTER`, `GLADIATOR`, `PRESERVER`, `PSIONICIST`, `RANGER`, `THIEF` | None | (217, 10) to (217, 66), 8 apart, each 7 high | While the screen is shown | FND-UI-026 |
+| Exit button | `RESOURCE.GFF#ICON/18109` of `BUTN/18302`, `EXIT` | None | (258, 154, 44, 15) | While the screen is shown | FND-UI-026 |
+| Done button | `RESOURCE.GFF#ICON/19100` of `BUTN/19304`, `DONE` | None | (243, 174, 59, 18) | While the screen is shown | FND-UI-026 |
 
 The controls are the children of `RESOURCE.GFF#WIND/19503`, a 320 x 200 window, at their child
 positions.

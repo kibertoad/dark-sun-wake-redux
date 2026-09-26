@@ -24,6 +24,9 @@ The layout of the `RNME` resource of a region file, whose number is the region's
 | `0x00` | | `char[]` | `name` | The region's name, printable ASCII, 3 to 15 characters and a NUL in the shipped files. The resource ends with the NUL. | supported | FND-REGION-001 |
 | | | | | Total size variable | | |
 
+FND-REGION-001 lists the name each of the 20 installed region files holds, from `Tyr` for the
+opening region 50 to `Limbo` for region 255.
+
 ## Enumerations and flags
 
 None.

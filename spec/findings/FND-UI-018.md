@@ -16,7 +16,7 @@ environment: GOG DOSBox 0.74-2 with dosbox_darksun2.conf and dosbox_darksun2_sin
 
 The owner used Look on the first hostile character in Tyr and captured the result as
 `dsun_006.png`, XXH3-128 `826bb65fd1d70f62d41a005db4b719e6`, kept outside the repository. A
-panel shows the target's name and a level of 10.
+panel shows the target's name, `Draxan`, and `LEVEL: 10`.
 
 With the images coloured as in FND-UI-016, frame 2 of each of `RESOURCE.GFF#ICON/15105`,
 `ICON/15107` and `ICON/15106` (16 x 15, 135 drawn pixels) matches all 135 pixels at (70, 103),

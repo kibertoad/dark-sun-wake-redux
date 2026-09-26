@@ -35,9 +35,12 @@ of `DSUN.EXE` read as follows:
   and from `5000:A5CC` the nine strings the second pointers name, of 29, 26, 26, 33, 28, 29, 24,
   23 and 27 characters, each starting with `%C%C%C`. The ninth ends at `5000:A6CA`.
 
-Read as text, the first four strings are the four difficulty choices that SRC-MANUAL-1994 (page
-15) gives for the Preferences screen, in the manual's order. The ten strings from `5000:A52A`
-describe the settings of that screen one by one, and the nine from `5000:A5CC` hold the title,
+Read as text, the first four strings are `EASY`, `BALANCED`, `HARD` and `HIDEOUS`, the four
+difficulty choices that SRC-MANUAL-1994 (page 15) gives for the Preferences screen, in the
+manual's order. The ten strings from `5000:A52A` are `MUSIC TOGGLE ON/OFF`, `MESSAGE DELAY`,
+`SOUND EFFECTS ON/OFF`, `SOUND EFFECT VOLUME`, `GAME DIFFICULTY`, `ANIMATIONS ON/OFF`, `ABOUT`,
+`SPEECH EFFECTS ON/OFF`, `GAME MENU` and `RETURN TO GAME`, which name the settings and controls
+of that screen one by one. The nine from `5000:A5CC` hold the title,
 copyright, publisher, support and hint-line information that the manual says the About button
 shows.
 

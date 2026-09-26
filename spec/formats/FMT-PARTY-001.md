@@ -39,6 +39,12 @@ FMT-PARTY-003, FMT-PARTY-004 and FMT-PARTY-005 resources, and, for a character i
 | `0x4F` | `tail_count * 33` | `FMT-PARTY-002[tail_count]` | `tail` | Records of unknown purpose. | supported | FND-PARTY-004 |
 | | | | | Total size `79 + tail_count * 33` | | |
 
+The value file `FMT-PARTY-001.characters.csv` gives, for each of the 19 `CHAR` resources of the
+installed `CHARSAVE.GFF`, the columns `character` (the resource number), `version`,
+`tail_count`, the six ability scores and `name` (the text before the NUL) [FND-PARTY-001,
+FND-PARTY-003, FND-PARTY-004]. The eight records of the disc's copy are the rows 40 to 43 and 50
+to 53. The opaque blocks `unk_02`, `unk_29`, `unk_3B` and the tail are left out.
+
 ## Enumerations and flags
 
 None.

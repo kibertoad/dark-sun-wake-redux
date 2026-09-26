@@ -40,7 +40,12 @@ Read byte by byte across all 139 `BUTN` resources of `RESOURCE.GFF` (FND-UI-001)
 | `0x6D` | equal to the record's size less 110 in every record |
 
 The bytes from `0x6E` to the end, present in 36 records, are printable ASCII followed by zeros, or
-zeros only. Their text is not copied here.
+zeros only, with one exception. The texts are `DROP` in `BUTN/13300`, `SPLIT` in `/13302`, `MORE`
+in `/13303`, `SELL` in `/13304`, `INFO` in `/15304`, `EXIT` in `/17301` and `/17302`, `XXXXX` in
+`/11319`, and `XXXXXX` in `/11320` and `/17300`. `BUTN/15309` holds a zero byte followed by `NFO`.
+The other 25 tails are zeros only: 53 bytes in `BUTN/2076` to `/2080`, 25 in `/10307`, 30 in
+`/11317`, 20 in `/11318`, 15 in `/14001` to `/14003` and `/14005` to `/14007`, 40 in `/14004`, and
+33 in `/18304` to `/18313`.
 
 Examples: `BUTN/19300` at `0x1E7C4` is 110 bytes, 127 x 12, `0x58` 0, `ICON` 19111, which has four
 127 x 12 frames. `BUTN/18304` at `0x69AA5` is 143 bytes, 163 x 11, `0x58` 208, `ICON` 18100 with

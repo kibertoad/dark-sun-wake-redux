@@ -16,7 +16,7 @@ related: [RULE-PARTY-001, RULE-PARTY-004, RULE-PARTY-008, RULE-UI-001, SCR-UI-00
 | Element | Resource | Shows | Position | Shown when | Evidence |
 |---|---|---|---|---|---|
 | Screen picture | `RESOURCE.GFF#BMP/11000` | None | (0, 9, 320, 200) | While the screen is shown | FND-UI-020 |
-| Title | `RESOURCE.GFF#BMP/20079` | None | (56, 11, 210, 23) | While the screen is shown | FND-UI-020 |
+| Title | `RESOURCE.GFF#BMP/20079`, `VIEW CHARACTER` | None | (56, 11, 210, 23) | While the screen is shown | FND-UI-020 |
 | Controls | the `ICON` of each `BUTN` child of `RESOURCE.GFF#WIND/11500` | None | each child's position from the window's corner, as FND-UI-030 lists | While the screen is shown | FND-UI-030 |
 
 The window is `WIND/11500`, 320 x 189. Where the game places it is not known, so the rectangles

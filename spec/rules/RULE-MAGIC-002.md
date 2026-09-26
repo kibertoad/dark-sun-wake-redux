@@ -12,7 +12,8 @@ related: [RULE-PARTY-003]
 
 ## Summary
 
-Every cleric spell belongs to one of the four elemental spheres or to the Sphere of the Cosmos.
+Every cleric spell belongs to the Sphere of the Cosmos or to one or more of the four elemental
+spheres.
 A cleric may cast every spell of the sphere of his or her element, and Cosmos spells of level 3
 or lower. A druid may cast every spell of the Cosmos and of his or her element. A ranger of
 eighth level or higher may cast the spells of his or her element, up to level 3.
@@ -60,6 +61,11 @@ A cleric may cast no Cosmos spell above level 3, so a cleric's spells of levels 
 the cleric's own element. The ranger's limit of level 3 follows from the ranger progression
 table, which has no column above spell level 3 (RULE-MAGIC-001).
 
+Eleven spells of the manual's summary belong to two or more elemental spheres, such as
+Bramblestaff (earth and water) and Conjure Elemental (all four). The procedure takes one
+`spell_sphere`; such a spell is open to a character when the procedure allows it for any of its
+spheres.
+
 ## What the sources say
 
 SRC-MANUAL-1994, page 20, says clerics have major access to the sphere of their element and minor
@@ -68,7 +74,13 @@ third level or less, and cannot cast spells from other spheres. Page 21 gives dr
 access to the Sphere of the Cosmos and to the sphere of their chosen element. Page 20 says a ranger
 chooses an elemental sphere at creation and gains the ability to cast cleric spells from it at
 eighth level. The cleric spell descriptions (pages 53 to 68) give each spell's sphere as Cosmos or
-as Elemental with the element named.
+as Elemental with the element named. The Cleric Spell Summary on page 52 lists the 107 cleric
+spells by level, each marked with its spheres and with whether it can be cast only in combat. The
+value file `RULE-MAGIC-002.cleric_spells.csv` gives that table, one row per spell in the printed
+order, with the columns `spell` (the name as printed), `level`, `spheres` (`air`, `earth`,
+`fire`, `water` or `cosmos`, several separated by spaces) and `combat_only` (1 for a spell the
+summary marks as combat-only, 0 otherwise). 61 spells are of the Cosmos, 35 of one element and 11
+of two or more.
 
 ## Differences between builds
 
@@ -76,7 +88,8 @@ None known.
 
 ## Open questions
 
-- Whether the game treats the druid as the manual does, and whether a ranger's spells come from
-  the cleric spell list of the ranger's sphere or from a list of its own (Q-MAGIC-003).
+- Whether the game treats the druid as the manual does, whether a ranger's spells come from the
+  cleric spell list of the ranger's sphere or from a list of its own, and whether a spell of
+  several spheres is open to a caster of any of them (Q-MAGIC-003).
 - Where the game keeps a spell's sphere and level, and a character's `sphere` (Q-MAGIC-003,
   Q-PARTY-003).
