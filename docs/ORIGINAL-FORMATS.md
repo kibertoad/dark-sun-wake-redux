@@ -19,8 +19,8 @@ semantics.
 | GFF `GPL ` / `MAS ` | Script resources | `GPLDATA.GFF` contains 330 `GPL ` and 20 `MAS ` resources. `EXE-GOG-GPL-001` proves the native loader selects between these families before resolving and caching a requested script. GPL #135 is tied to the first captured Tyr conversation; MAS #99 supplies two bounded global-string projections. Instruction execution remains unknown | verified for family identity, native selection, resource identity/size, and packed-string decoding; instruction semantics remain unknown | Preserve the four-byte source tag with resource identity and bytes; bound script/string lengths, reject unsupported tags/markers, truncation, invalid back-references, and unterminated strings; never execute source bytes during extraction |
 | GFF `GPLI` #1 | Opaque script-adjacent index candidate | One 7,896-byte resource is exactly 329 24-byte records, each comprising four consecutive six-byte lanes. In aggregate, 1,315 of 1,316 aligned third lane words are members of the 330-ID `GPL ` resource-number set, collectively covering that set; repeats and one non-member reject a one-to-one record or field map. The executable has no literal `GPLI` tag, so no native loader, lookup, or field role is established | high for the exact envelope and aggregate membership counts; unknown for lane semantics, runtime ownership, and record-to-script mapping | Preserve losslessly as DSOP; do not add a reader, link records to GPL resources, or infer field names until a constrained native reference or controlled observation corroborates it |
 | GFF `MONR` #1 | Unclassified opaque payload | One 1,134-byte payload has a stronger 27-by-42 repeated aligned-word envelope with an all-zero four-byte tail than the rejected 14-by-81 candidate. Neither envelope establishes a field or role | verified for GFF identity, length, and aggregate profiling only; loader and semantics unknown | Preserve losslessly as DSOP; do not parse or assign monster/encounter/combat fields without a separate constrained call-path, cross-file format, or runtime observation |
-| GFF `RNME`, `PAL `, `MAP `, `GMAP`, `TILE`, `ETAB` | Region identity, palette, terrain grid, geometry plane, tile images, and placed-object references | Same-number region records, exact 128x98 byte planes, single-frame 16x16 tiles, and eight-byte entity records are decoded; geometry and entity-flag meanings remain unknown | verified structurally across all 20 owned region files; field roles corroborated by `DSUN-MUSIC` | Require exactly one matching region record per tag; bound names, planes, tile images, entity counts, and every local `TILE`/external `OJFF` reference |
-| GFF `OJFF` | Object-frame definitions | Exact 16-byte records expose signed X/Y offsets and a `BMP ` resource reference; four other words remain raw and uninterpreted. `EXE-GOG-OJFF-001` independently establishes two tag-aware native lookup boundaries and observes its sole successful-result consumer reading portions beginning at `0x00`, `0x02`, `0x04`, `0x0a`, `0x0b`, and `0x0c` while updating a 37-byte resident record. That corroborates structural consumption, not a field meaning or object behavior | verified structurally across all 4,479 owned definitions; offset/reference roles corroborated by `DSUN-MUSIC`; high for the separate native tag and transfer boundary | Require exact record size, a zero final word, a present nonempty referenced image, bounded requested IDs, and contextual errors; do not infer animation, collision, interaction, or runtime-record semantics from the observed transfer |
+| GFF `RNME`, `PAL `, `MAP `, `GMAP`, `TILE`, `ETAB` | Region identity, palette, terrain grid, geometry plane, tile images, and placed-object references | Same-number region records, exact 128x98 byte planes, single-frame 16x16 tiles, and eight-byte entity records are decoded; geometry and entity-flag meanings remain unknown | verified structurally across all 20 owned region files; field roles corroborated by `SRC-DSUN-MUSIC-79B6927` | Require exactly one matching region record per tag; bound names, planes, tile images, entity counts, and every local `TILE`/external `OJFF` reference |
+| GFF `OJFF` | Object-frame definitions | Exact 16-byte records expose signed X/Y offsets and a `BMP ` resource reference; four other words remain raw and uninterpreted. `EXE-GOG-OJFF-001` independently establishes two tag-aware native lookup boundaries and observes its sole successful-result consumer reading portions beginning at `0x00`, `0x02`, `0x04`, `0x0a`, `0x0b`, and `0x0c` while updating a 37-byte resident record. That corroborates structural consumption, not a field meaning or object behavior | verified structurally across all 4,479 owned definitions; offset/reference roles corroborated by `SRC-DSUN-MUSIC-79B6927`; high for the separate native tag and transfer boundary | Require exact record size, a zero final word, a present nonempty referenced image, bounded requested IDs, and contextual errors; do not infer animation, collision, interaction, or runtime-record semantics from the observed transfer |
 | Pack `*.dsix` | Derived indexed-image asset | `DSIX` v1 stores one decoded 256-color palette plus bounded indexed frames and binary alpha | implemented; title asset round-trip and extraction validated | Bound file size, version, frame count, dimensions, pixels, alpha, and trailing data; reject non-binary alpha |
 | Pack `*.dsft` | Derived indexed-font asset | `DSFT` v1 stores a character map, shared height, widths, and bounded indexed glyph pixels | implemented; interface-font round-trip and extraction validated | Bound file size, version, glyph count, height, widths, pixel counts, and trailing data |
 | Pack `*.dstx` | Derived text catalog | `DSTX` v1 deterministically stores original resource IDs and printable ASCII lines | implemented; full TEXT catalog round-trip and extraction validated | Bound file size, version, resource/line counts and lengths; reject duplicates, unsupported bytes, and trailing data |
@@ -81,9 +81,9 @@ be committed, extracted as a runtime contract, or used as a gameplay rule.
 
 ## GFF container directory
 
-**Evidence:** `DATA-GOG-GFF-001`, corroborated by `DSUN-MUSIC`.
+**Evidence:** `DATA-GOG-GFF-001`, corroborated by `SRC-DSUN-MUSIC-79B6927`.
 
-All 26 `.GFF` files in GOG-1432903719 parse with the bounded reader. Together
+All 26 `.GFF` files in BLD-GOG-EN-1.1 parse with the bounded reader. Together
 they expose 16,168 resource descriptors. The three fingerprint anchors contain
 1,858 descriptors in `RESOURCE.GFF`, 535 in `GPLDATA.GFF`, and 10,532 in
 `OBJEX.GFF`. These counts describe directory entries only; they do not prove a
@@ -122,7 +122,7 @@ require separate evidence entries and tests.
 ## Region maps
 
 **Evidence:** `DATA-GOG-REGION-001`, `EXE-GOG-REGION-003`, corroborated by
-`DSUN-MUSIC`.
+`SRC-DSUN-MUSIC-79B6927`.
 
 Each of the 20 owned `RGN*.GFF` containers has a single region number shared by
 `RNME`, `PAL `, `MAP `, `GMAP`, and `ETAB`. `RNME` is a printable ASCII name
@@ -162,7 +162,7 @@ meaning to that catalog.
 
 ## Object-frame definitions
 
-**Evidence:** `DATA-GOG-OBJECT-001`, corroborated by `DSUN-MUSIC`.
+**Evidence:** `DATA-GOG-OBJECT-001`, corroborated by `SRC-DSUN-MUSIC-79B6927`.
 
 `OBJEX.GFF` contains 4,479 exact 16-byte `OJFF` records. Each record has this
 little-endian layout:
@@ -188,7 +188,7 @@ interaction meaning.
 
 ## Static region composition
 
-**Evidence:** `DATA-GOG-SCENE-001`, corroborated by `DSUN-MUSIC`.
+**Evidence:** `DATA-GOG-SCENE-001`, corroborated by `SRC-DSUN-MUSIC-79B6927`.
 
 The static indexed scene places each terrain tile at its row-major MAP coordinate
 times 16, then overlays ETAB objects in stored order. Each object uses the first
@@ -207,7 +207,7 @@ this region under the corroborating wall-number rule.
 
 ## Indexed images and palettes
 
-**Evidence:** `DATA-GOG-IMAGE-001`, corroborated by `DSUN-MUSIC`.
+**Evidence:** `DATA-GOG-IMAGE-001`, corroborated by `SRC-DSUN-MUSIC-79B6927`.
 
 Bounded inspection decoded every `BMP `, `CBMP`, `ICON`, and `PAL ` resource in
 all 26 installed GFF files. `RESOURCE.GFF` contains 653 image resources with

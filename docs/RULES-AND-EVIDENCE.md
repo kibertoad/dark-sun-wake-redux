@@ -2,51 +2,26 @@
 
 ## Sources
 
-| ID | Source | Type | Use | Confidence |
-|---|---|---|---|---|
-| `MANUAL-1994` | `C:\GOG Games\Dark Sun 2\ds_wakerave_manual_pdf.pdf` (local only) | original rule book | Intended controls, menus, party and character rules, combat commands, magic, psionics, advancement, credits | high for documented intent; not proof of shipped edge cases |
-| `GOG-1432903719` | English GOG build `52095422060333615` | owned release | Exact source fingerprints and future runtime/data observations | verified for recorded hashes and metadata |
-| `FAQ-81038` | kibbitz, GameFAQs guide v1.13 | community research | Mechanics, route/branch index, reported bugs and manual conflicts | medium; confirm with controlled observations |
-| `DSUN-MUSIC` | John Glassmyer, [`dsun_music`](https://github.com/JohnGlassmyer/dsun_music), MIT licensed | community technical research | GFF, image, region, and XMI structure and resource identification | medium; confirm each applicable result against the fingerprinted owned build |
-| `PLAYTHROUGH-VIDEO-001` | [Public YouTube playthrough](https://www.youtube.com/watch?v=FLoMVOSHeOM) | community runtime capture | Corroborating start-window composition and sequence | medium for visible composition; precise source edition and capture conditions unknown |
-| `OBS-GOG-*` | Future controlled runs | runtime observation | Player-visible state transitions, coordinates, timing, outcomes | unknown until recorded per finding |
-| `DATA-GOG-*` | Bounded inspection of the owned build | data fact | Format fields and resource relationships | recorded per finding |
-
-### DATA-GOG-README-001 - Supported package documents game-data Version 1.1
-
-- **Question:** Can the installed English GOG package identify the underlying
-  DOS game-data revision without inferring it from storefront branding?
-- **Method:** Read the structured `goggame-1432903719.info` record to confirm
-  the owned product, build, and language. Inspect only the Version 1.1 heading,
-  date, compatibility notice, and later fixes-section heading in the package's
-  local `README.TXT`; retain neither README content nor any game asset.
-- **Finding:** the metadata identifies English GOG product `1432903719`, build
-  `52095422060333615`. Its bundled README identifies the game-data release as
-  Version 1.1, dated 1994-12-14, and distinguishes saves from versions 1.0 and
-  1.01. A later Version 1.02 heading introduces a historical fixes list; it
-  does not supersede the package heading. The supported baseline is therefore
-  documented as Version 1.1.
-- **Confidence:** high for the exact owned-package metadata and documentation
-  facts; unknown for retail-CD provenance, distribution history, and the
-  equivalence of other sources bearing a Version 1.1 label.
-- **Implementation consequence:** record Version 1.1 as the supported
-  game-data revision alongside the exact manifest. Continue to recognize the
-  edition by complete fingerprints, not by a version label alone; a different
-  source still requires its own manifest and equivalence evidence.
+The spec's source entries in [`spec/sources/`](../spec/sources/) describe each
+outside source, what it is used for and its known errors, and the build entry
+[`BLD-GOG-EN-1.1`](../spec/builds/BLD-GOG-EN-1.1.md) describes the owned
+release. Records below that have not moved into the spec yet keep their legacy
+IDs: `OBS-GOG-*` for controlled runs and `DATA-GOG-*` for bounded inspection of
+the owned build.
 
 ### DATA-GOG-GFF-001 - GFF container directory
 
 - **Question:** How are resource identities, offsets, and lengths represented in
   the owned build's `.GFF` containers?
 - **Method:** Fingerprint the supported edition, inspect bounded header/index
-  windows, compare the DSUN-MUSIC GFF results, implement an independently
+  windows, compare the SRC-DSUN-MUSIC-79B6927 GFF results, implement an independently
   bounded reader, and enumerate metadata from every installed `.GFF` without
   retaining payload bytes.
 - **Finding:** Version `0x00030000` uses a 28-byte header and little-endian
   primary/secondary tag tables as specified in `docs/ORIGINAL-FORMATS.md`.
   All 26 installed GFF files parse, producing 16,168 bounded descriptors.
 - **Confidence:** verified for directory structure and counts in
-  GOG-1432903719; tag payload semantics remain unknown unless separately
+  BLD-GOG-EN-1.1; tag payload semantics remain unknown unless separately
   recorded.
 - **Implementation:** `DarkSunWakeRedux.Resources.GffArchive` and the read-only
   `DarkSunWakeRedux.Inspect gff` and `resource-inventory` commands. The latter
@@ -103,7 +78,7 @@
   directory with the bounded reader; preserve every individual descriptor and
   every non-GFF payload in a verified opaque local-pack envelope unless a
   separately evidenced normalized contract already applies.
-- **Finding:** The GOG-1432903719 immutable corpus contains 233 files: 26 GFF
+- **Finding:** The BLD-GOG-EN-1.1 immutable corpus contains 233 files: 26 GFF
   containers, 147 VOC files, five FLI files, 40 OGG tracks, the `game.gog`
   disc image and `game.ins` descriptor, five original helper executables, and
   the remaining static configuration/data files. The 26 GFF files expose
@@ -131,7 +106,7 @@
 
 - **Question:** Which bounded image and palette payload structures occur in the
   owned build's GFF resources?
-- **Method:** Compare the DSUN-MUSIC image/palette research with bounded samples
+- **Method:** Compare the SRC-DSUN-MUSIC-79B6927 image/palette research with bounded samples
   from the fingerprinted installation, independently implement defensive
   readers, and decode every matching resource in all 26 installed GFF files
   without retaining or committing decoded content.
@@ -142,7 +117,7 @@
   rather than leaving full intensity at 252. The readers decode 4,510 images
   containing 9,279 frames and all 40 palettes in the installed build.
 - **Confidence:** verified for these payload structures and counts in
-  GOG-1432903719. `EXE-GOG-IMAGE-001` independently establishes direct native
+  BLD-GOG-EN-1.1. `EXE-GOG-IMAGE-001` independently establishes direct native
   dispatch between `PLAN` and `PLNR` on bounded tile/object image paths.
   Resource meaning, palette pairing, placement, frame selection, and timing
   are still unknown.
@@ -155,7 +130,7 @@
 
 - **Question:** Which bounded region structures identify Tyr and supply its
   terrain grid, geometry bytes, tile images, and placed-object references?
-- **Method:** Compare DSUN-MUSIC commit
+- **Method:** Compare SRC-DSUN-MUSIC-79B6927 commit
   `79b692770caebda3de685feaf42906aae31572d1` with an independent bounded
   reader, then inspect all 20 owned `RGN*.GFF` files against the fingerprinted
   `OBJEX.GFF`. Record only structural summaries; do not retain decoded maps or
@@ -176,7 +151,7 @@
   `a4b22f8b69bd2a541d67ac4100fea872`)
   identifies resource #50 as `Tyr`.
 - **Confidence:** verified for sizes, identities, decoding, and reference
-  integrity in GOG-1432903719; medium for coordinate/vertical-field names from
+  integrity in BLD-GOG-EN-1.1; medium for coordinate/vertical-field names from
   the corroborating research; high for the separately recorded `0x40`
   terrain-blocking meaning; unknown for other geometry bits, entity flags other
   than the separately corroborated mirror bit and actor-specific collision;
@@ -199,7 +174,7 @@
 
 - **Question:** Which bounded object definitions and indexed images are
   referenced by Tyr's placed-object table?
-- **Method:** Compare DSUN-MUSIC commit
+- **Method:** Compare SRC-DSUN-MUSIC-79B6927 commit
   `79b692770caebda3de685feaf42906aae31572d1` with an independent bounded
   reader, validate every `OJFF` in the fingerprinted `OBJEX.GFF`, and then
   restrict the same validation to the absolute object numbers referenced by
@@ -212,7 +187,7 @@
   dimensions 64x64. Tyr references 287 definitions, resolving to 246 distinct
   images and 477 frames, also no larger than 64x64.
 - **Confidence:** verified for record size, zero final word, reference integrity,
-  image decoding, counts, and dimensions in GOG-1432903719; medium for the X/Y
+  image decoding, counts, and dimensions in BLD-GOG-EN-1.1; medium for the X/Y
   offset names from corroborating research. `EXE-GOG-OJFF-001` independently
   establishes two native tag-aware lookup paths and a sole successful-result
   consumer that reads portions beginning at offsets `0x00`, `0x02`, `0x04`,
@@ -234,7 +209,7 @@
 
 - **Question:** How do the bounded terrain tiles and first object frames compose
   into region pixel coordinates without inferring gameplay behavior?
-- **Method:** Compare the region renderer at DSUN-MUSIC commit
+- **Method:** Compare the region renderer at SRC-DSUN-MUSIC-79B6927 commit
   `79b692770caebda3de685feaf42906aae31572d1`, including its note that the
   object procedure was informed by the original Shattered Lands executable,
   against the independently decoded DSRG/DSOB structures. Implement the same
@@ -300,7 +275,7 @@
   for rendering and shifts them right by four before footprint enumeration, so
   the evidenced collision anchor is cell `(74,91)`.
 - **Confidence:** verified for the resource, first-frame orientation, palette,
-  opening position, and visible pixels in GOG-1432903719; high for the anchor
+  opening position, and visible pixels in BLD-GOG-EN-1.1; high for the anchor
   relationship from bounded executable paths. Footprint, animation sequence,
   cadence, and later actor state remain unknown.
 - **Implementation:** pack v21 retains
@@ -332,7 +307,7 @@
   repeated control matches demonstrate overlapping numeric namespaces rather
   than a tag-specific relationship.
 - **Confidence:** high for the requested-record envelope, tag counts, and
-  four boolean results in GOG-1432903719; unknown for every raw-word meaning
+  four boolean results in BLD-GOG-EN-1.1; unknown for every raw-word meaning
   and whether any separate resource or runtime data drives the hostile.
 - **Implementation consequence:** OJFF #9258 remains only the separately
   observed cursor-eligibility target. No `SCMD` relationship, combat state,
@@ -361,7 +336,7 @@
   reference to those RDFF records, but does not establish a record layout or
   another target-to-label association.
 - **Confidence:** high for the bounded occurrence count, tags, offsets, and
-  size set in GOG-1432903719; unknown for every RDFF field, aggregation role,
+  size set in BLD-GOG-EN-1.1; unknown for every RDFF field, aggregation role,
   target association, and general interaction presentation.
 - **Implementation consequence:** retain `RDFF` as lossless DSOP. Do not add a
   reader, derive a hostile name/level/capability, or hard-code captured text.
@@ -388,7 +363,7 @@
   matching label at relative offset 43. The arithmetic establishes neither a
   header length, a 33-byte record boundary, a label field, nor a target mapping.
 - **Confidence:** high for the complete directory count and reported size
-  groups in GOG-1432903719; unknown for all payload structure, aggregation,
+  groups in BLD-GOG-EN-1.1; unknown for all payload structure, aggregation,
   field, and gameplay meanings.
 - **Implementation consequence:** keep `RDFF` as lossless DSOP. Do not turn a
   common size residue, the high-length subset, or the repeated label offset
@@ -467,11 +442,11 @@
 - **Method:** Decode the full-screen `BMP ` candidates and all plausible palette
   pairings from the fingerprinted `RESOURCE.GFF`, render previews under ignored
   `analysis/original/`, and inspect them without retaining original content in
-  Git. DSUN-MUSIC corroborates the image and palette decoding method, while the
+  Git. SRC-DSUN-MUSIC-79B6927 corroborates the image and palette decoding method, while the
   mapping is established from the owned build.
 - **Finding:** `BMP ` #11011 is one 320x200 frame containing the *Dark Sun: Wake
   of the Ravager* title artwork, and `PAL ` #11011 supplies its correct colors.
-- **Confidence:** verified for GOG-1432903719 by exact resource identity and
+- **Confidence:** verified for BLD-GOG-EN-1.1 by exact resource identity and
   locally rendered content; sequence timing and menu overlay behavior remain
   unknown.
 - **Implementation:** transactional conversion to `images/title.dsix`. Runtime
@@ -496,7 +471,7 @@
   (XXH3-128 `f1f8a93f50849ac39408a4433b952d71`),
   so direct and map-mediated byte indexing are equivalent for this edition.
   Glyph pixels use three distinct palette indices spanning 0 through 254.
-- **Confidence:** verified for `FONT` #100 in GOG-1432903719; the map field's
+- **Confidence:** verified for `FONT` #100 in BLD-GOG-EN-1.1; the map field's
   generalized semantics, palette selection, spacing, and layout remain open.
 - **Implementation:** `DarkSunWakeRedux.Resources.IndexedBitmapFont`, derived
   DSFT v1 extraction, encoding-neutral bounded glyph-run and multiline-block
@@ -515,7 +490,7 @@
 - **Finding:** All 62 resources (2,994 bytes total) are printable 7-bit ASCII,
   use CRLF-delimited lines, have a final CRLF, contain 316 lines, and have a
   maximum observed line length of 18 bytes. No NUL or extended bytes occur.
-- **Confidence:** verified for `TEXT` resources in GOG-1432903719.
+- **Confidence:** verified for `TEXT` resources in BLD-GOG-EN-1.1.
   `EXE-GOG-TEXT-001` identifies only two raw, unreferenced, non-instruction
   `TEXT` byte matches in the main executable; it establishes no loader. Resource-ID
   meanings, string interpolation, font choice, presentation, and screen routing
@@ -551,7 +526,7 @@
   establishing it as the character-generation window without assigning meaning
   to its still-uninterpreted control fields.
 - **Confidence:** verified for resource identities, dimensions, references, and
-  logical coordinates in GOG-1432903719; medium for the active palette; unknown
+  logical coordinates in BLD-GOG-EN-1.1; medium for the active palette; unknown
   for frame-state meanings, focus, hit boundaries, and transitions.
 - **Implementation:** bounded window, button, application-frame, and edit-box
   readers plus the read-only `ui-catalog` inspection command. DSUI v1
@@ -650,7 +625,7 @@
   0, 4, or 10, including mask 10 on generation-name `EBOX` #4003.
 - **Executable evidence:** `EXE-GOG-UI-001` verifies the field is a mask used
   during APFM dispatch, not an appearance parameter.
-- **Confidence:** verified for GOG-1432903719 as stored data and high for the
+- **Confidence:** verified for BLD-GOG-EN-1.1 as stored data and high for the
   mask role and nonzero-intersection matching; individual bit meanings remain
   unknown.
 - **Implementation:** `UiApplicationFrameResource.EventMask` and
@@ -669,7 +644,7 @@
   that composed window?
 - **Method:** Decode bounded single-frame `BMP ` resources from the fingerprinted
   owned `RESOURCE.GFF`, compare palette candidates locally, and correlate exact
-  resource geometry against `PLAYTHROUGH-VIDEO-001` near 2:10.
+  resource geometry against `SRC-YOUTUBE-FLOMVOSHEOM` near 2:10.
 - **Finding:** `BMP ` #20029 is a 314x112 stone shell placed at (3,44), and
   `BMP ` #20028 is a 222x33 flame-and-medallion overlay placed at (47,24), on a
   black 320x200 canvas. Both layers and the four start controls use `PAL ` #1000.
@@ -693,7 +668,7 @@
   CHARACTERS before individual character generation begins?
 - **Method:** Decode geometry-matched `BMP ` resources from the fingerprinted
   owned archive with interface palette #1000, layer transparent candidates, and
-  correlate their structural edges against `PLAYTHROUGH-VIDEO-001` around
+  correlate their structural edges against `SRC-YOUTUBE-FLOMVOSHEOM` around
   2:40-2:50.
 - **Finding:** `BMP ` #11000 is the complete 320x200 party-overview base,
   including the outer shell, four character-slot panels, status regions, and
@@ -719,7 +694,7 @@
 - **Method:** Decode `WIND` #18501 and its referenced controls from the
   fingerprinted owned archive, inspect geometry-matched `BMP ` and `ICON`
   resources with `PAL ` #1000, and correlate the result against
-  `PLAYTHROUGH-VIDEO-001` near 2:30-2:40.
+  `SRC-YOUTUBE-FLOMVOSHEOM` near 2:30-2:40.
 - **Finding:** `BMP ` #10005 is the complete 320x200 runtime base even though
   the static WIND image field names #10002. Ten 163x11 controls,
   backed by four-frame `ICON` #18100 (165x11), occupy x=46 and y=31 through 130
@@ -753,7 +728,7 @@
 - **Method:** Decode `WIND` #10500 and its complete child graph from the
   fingerprinted `RESOURCE.GFF`; correlate its geometry with `BMP ` #10000,
   decode every referenced `ICON` with `PAL ` #1000, and compare their visible
-  symbols and relative positions with MANUAL-1994 pages 14-16.
+  symbols and relative positions with SRC-MANUAL-1994 pages 14-16.
 - **Finding:** `WIND` #10500 and `BMP ` #10000 are both 210x116. The window has
   30 ordered children: 14 `BUTN` controls and 16 `APFM` records. The controls
   form exact 4/5/5 rows and their decoded symbols identify View Character,
@@ -794,7 +769,7 @@
 - **Method:** Decode every `WIND`, `BUTN`, `APFM`, and `EBOX` record in the
   fingerprinted `RESOURCE.GFF`; compare the 11xxx and 13xxx resource families,
   their 320-wide geometry, decoded `BMP ` artwork under `PAL ` #1000, and the
-  shared button identities already correlated with MANUAL-1994.
+  shared button identities already correlated with SRC-MANUAL-1994.
 - **Finding:** `WIND` #11500 is 320x189 with 86 ordered controls and shares
   BUTN #10300/#11304/#11305/#11306/#10308 at `(43,155)`, `(67,155)`,
   `(91,155)`, `(114,155)`, and `(253,155)`. Its character shell is the already
@@ -882,7 +857,7 @@
   which interactions are safe to expose before setting ranges are measured?
 - **Method:** Decode `WIND` #16500 and every referenced `BUTN`, `APFM`, and
   `ICON` from the fingerprinted `RESOURCE.GFF`; render with `PAL ` #1000 and
-  correlate the graph with MANUAL-1994 page 15.
+  correlate the graph with SRC-MANUAL-1994 page 15.
 - **Finding:** #16500 is 210x116 with 15 ordered children: two application
   frames and 13 buttons. It reuses `BMP ` #10000 at the same provisional
   centered origin as Game Menu. The graph identifies music, sound-effects,
@@ -927,7 +902,7 @@
   sound configuration before assigning it to Preferences behavior or writing a
   reader?
 - **Method:** Inspect the fingerprinted 59-byte `SOUND.CFG` from
-  GOG-1432903719 as a bounded byte sequence. Record only repeated-field,
+  BLD-GOG-EN-1.1 as a bounded byte sequence. Record only repeated-field,
   ASCII-envelope, padding, and length facts; do not execute or copy its
   payload into the repository.
 - **Finding:** bytes `0x00..0x09` and `0x0a..0x13` are identical ten-byte
@@ -1019,7 +994,7 @@
   131/0 for two, with declared block lengths ranging from 365 through 3,160,452
   bytes.
 - **Confidence:** high for these bounded inventory/header facts in
-  GOG-1432903719; unknown for FLI chunk types, palette behavior, raw-speed
+  BLD-GOG-EN-1.1; unknown for FLI chunk types, palette behavior, raw-speed
   units, effective playback cadence, whether the one extra FLI record is a
   loop/sentinel/displayed frame, raw chunk-type meanings, FLI 5's nested
   variant, later VOC block layout, codec-byte/sample-rate semantics,
@@ -1088,7 +1063,7 @@
   coincidences do not support a uniform direct pair-column-to-object-frame-field
   mapping across `OBJEX.GFF`.
 - **Confidence:** high for length, pair width/count, endianness, uniqueness,
-  ordering boundary, and second-value duplication in GOG-1432903719; unknown
+  ordering boundary, and second-value duplication in BLD-GOG-EN-1.1; unknown
   for pair meanings, lookup direction, the last entry's role, and all item or
   gameplay semantics.
 - **Implementation consequence:** no game asset reader is introduced yet. The
@@ -1132,7 +1107,7 @@
 ### DATA-GOG-CURSOR-001 - Exploration cursor family and hotspot
 
 - **Method:** Render every low-numbered `RESOURCE.GFF` image candidate with
-  `PAL ` #1000, correlate the resulting family against MANUAL-1994 pages 4-6,
+  `PAL ` #1000, correlate the resulting family against SRC-MANUAL-1994 pages 4-6,
   and compare six controlled owned captures made at the unchanged Tyr opening
   camera with Walk, melee Attack, and Look over possible and impossible targets.
   Use the manual's instruction to aim with the upper-left corner as the hotspot
@@ -1174,7 +1149,7 @@
   Tyr character, measure its 320x200 logical-canvas bounds, then correlate the
   panel against `RESOURCE.GFF` `WIND`/`BUTN`/`APFM` records and decoded `ICON`
   frames under `PAL ` #1000. Cross-check action semantics and the documented
-  one-action shortcut against MANUAL-1994 pages 5-6.
+  one-action shortcut against SRC-MANUAL-1994 pages 5-6.
 - **Finding:** `WIND` #3020 is a 92x77 interaction panel observed at `(68,45)`.
   It contains disabled Talk `BUTN` #15306 / `ICON` #15105 at `(3,59)`, disabled
   Pick Up #15308 / #15107 at `(23,59)`, disabled Use #15307 / #15106 at
@@ -1412,7 +1387,7 @@
 - **Behavior:** The original requires a mouse and uses cursor modes for walking,
   looking, attacking, and targeted actions. Escape exits the active menu.
 - **Preconditions:** Relevant exploration or menu state is active.
-- **Evidence:** MANUAL-1994, introduction and "How to Play".
+- **Evidence:** SRC-MANUAL-1994, introduction and "How to Play".
 - **Confidence:** verified for the owned Walk/melee/Look cursor visuals and
   hotspot; high for intended behavior. Broader target eligibility remains open.
 - **Implementation:** the runtime resolves WIND #19500 child coordinates and
@@ -1437,7 +1412,7 @@
   The default exploration display shows only the leader; hotkeys 5 and 6 select
   the expanded-party and leader-only displays respectively.
 - **Preconditions:** Exploration is active on a bounded region map.
-- **Evidence:** MANUAL-1994, "How to Play" pages 4-5 and the hotkey table.
+- **Evidence:** SRC-MANUAL-1994, "How to Play" pages 4-5 and the hotkey table.
 - **Confidence:** high for intended direction, stopping conditions, default,
   and hotkey meanings; exact scroll rate and shipped edge thickness are unknown.
 - **Implementation:** `ExplorationSession` owns deterministic camera, cursor,
@@ -1620,7 +1595,7 @@
 
 - **Behavior:** The creation flow accepts one to four characters and recommends
   four. An empty party cannot start and a fifth character cannot be added.
-- **Evidence:** MANUAL-1994, quick-start and party-creation sections, pages 2 and
+- **Evidence:** SRC-MANUAL-1994, quick-start and party-creation sections, pages 2 and
   7-9.
 - **Confidence:** high for intended party bounds and flow.
 - **Implementation:** deterministic Core party aggregate and validation result;
@@ -1663,7 +1638,7 @@
   is exactly one byte; the owned values are 1, 2, 4, 5, 6, and 7, all nonzero
   subsets of the low three bits. Value 3 is the only in-envelope combination
   not present in this archive.
-- **Corroboration:** MANUAL-1994 documents three psionic disciplines, exactly
+- **Corroboration:** SRC-MANUAL-1994 documents three psionic disciplines, exactly
   one selection for created non-psionicists, and all three for created
   psionicists. That supports investigating a three-bit relationship, but owned
   values 5 and 6 show that the complete archive cannot be interpreted as only
@@ -1692,7 +1667,7 @@
   manual introduces its six ability descriptions in Strength, Dexterity,
   Constitution, Intelligence, Wisdom, and Charisma order. Repeated identities
   preserve the same tuple in three groups; another variant changes only one score.
-- **Evidence:** MANUAL-1994, "Ability Scores," page 16; fingerprinted owned
+- **Evidence:** SRC-MANUAL-1994, "Ability Scores," page 16; fingerprinted owned
   `CHARSAVE.GFF` metadata inspection.
 - **Confidence:** high for the six fields, their order, and the supported GOG
   build; runtime presentation and generation behavior remain unobserved.
@@ -1846,7 +1821,7 @@
   archive, byte order, width, indirection, transformation, selection path, or
   a party list with non-character identifiers.
 - **Confidence:** high for the bounded 22-window/19-target negative result in
-  GOG-1432903719; unknown for every `PLYL` field, consumer, and START GAME
+  BLD-GOG-EN-1.1; unknown for every `PLYL` field, consumer, and START GAME
   membership.
 - **Implementation consequence:** retain `PLYL` as DSOP and
   `ShippedPartyUnresolved`. Do not bind a party member, add a `PLYL` reader, or
@@ -1873,7 +1848,7 @@
   establish a field layout, consumer, owner, party role, or any alternate
   encoding, byte order, indirection, transformation, or selection path.
 - **Confidence:** high for the bounded 91-window/19-target negative result in
-  GOG-1432903719; unknown for every `GREQ`/`CACT` field and all character or
+  BLD-GOG-EN-1.1; unknown for every `GREQ`/`CACT` field and all character or
   START GAME behavior.
 - **Implementation consequence:** retain both families as DSOP. Do not add a
   reader, associate them with a character, or use them to select a party member
@@ -2089,7 +2064,7 @@
   slot offers NEW, ADD, and CANCEL; NEW opens character generation, ADD selects
   a previously created character, and CANCEL closes the menu. DONE accepts a
   valid new character. A created party may begin with one through four members.
-- **Evidence:** MANUAL-1994, quick-start and "Creating Your Party," pages 2 and
+- **Evidence:** SRC-MANUAL-1994, quick-start and "Creating Your Party," pages 2 and
   7-10; `DATA-GOG-UI-001` corroborates the four start controls and the bounded
   start/party/character-generation window families. `EXE-GOG-UI-011` finds no
   direct immediate native operand for any of the four button identities; it
@@ -2123,7 +2098,7 @@
   scores fall from 9 through 24, and each class has the documented ability
   minima. Humans begin single-classed; non-humans may select as many as three
   classes; cleric and druid cannot be combined.
-- **Evidence:** MANUAL-1994, pages 7-9 and 16-23.
+- **Evidence:** SRC-MANUAL-1994, pages 7-9 and 16-23.
 - **Confidence:** high for documented intent; not yet observed in the shipped
   build.
 - **Implementation:** `PartyCreationRules` exposes stable diagnostics and
@@ -2143,7 +2118,7 @@
 - **Conflict:** The lists disagree for half-giant ranger and thief, mul druid,
   and thri-kreen druid and thief. They may contain additional combination rules
   that prose alone does not expose.
-- **Evidence:** MANUAL-1994, race descriptions on pages 17-18 and class
+- **Evidence:** SRC-MANUAL-1994, race descriptions on pages 17-18 and class
   descriptions on pages 19-22.
 - **Implementation:** these pairs return `EvidenceConflict` and validation emits
   `class_origin_unresolved`; no eligibility is guessed.
@@ -2157,7 +2132,7 @@
   with Psychokinesis documented as the initial selection. A cleric selects one
   elemental sphere from Air, Earth, Fire, and Water, with Air documented as the
   initial selection; non-clerics do not select a clerical sphere.
-- **Evidence:** MANUAL-1994, character-generation instructions on pages 7-9.
+- **Evidence:** SRC-MANUAL-1994, character-generation instructions on pages 7-9.
 - **Confidence:** high for documented intent; the supported executable's
   initial selections and selection transitions have not yet been observed.
 - **Implementation:** `CharacterDraft` records both choices and
@@ -2176,7 +2151,7 @@
   the old class never advances again. Former-class abilities remain unavailable
   until the new class level exceeds the former level. A human may repeat the
   process once, for at most three sequential careers.
-- **Evidence:** MANUAL-1994, party-modification instructions on pages 9-10 and
+- **Evidence:** SRC-MANUAL-1994, party-modification instructions on pages 9-10 and
   "Character Classes" on page 19.
 - **Confidence:** high for documented intent; XP thresholds, shipped DUAL
   availability, class-choice filtering, and multi-career edge behavior remain
@@ -2208,7 +2183,7 @@
   -1; muls receive Strength +2, Constitution +1, Intelligence -1, and Charisma
   -2; thri-kreen receive Dexterity +2, Intelligence -1, Wisdom +1, and Charisma
   -2. Unlisted abilities receive zero.
-- **Evidence:** MANUAL-1994, "Racial Ability Adjustments Table," page 77.
+- **Evidence:** SRC-MANUAL-1994, "Racial Ability Adjustments Table," page 77.
 - **Confidence:** high for the published modifiers; application order, edit
   behavior, and whether final scores are capped remain unobserved.
 - **Implementation:** `PartyCreationRules.AbilityModifiers` returns an immutable
@@ -2233,7 +2208,7 @@
   weapon or ammunition. A two-weapon melee configuration requires one-handed
   weapons in both hands. The documented invalid cursor means the attempted
   target is not eligible for that attack.
-- **Evidence:** MANUAL-1994, "How to Play" pages 4-6 and the visually reviewed
+- **Evidence:** SRC-MANUAL-1994, "How to Play" pages 4-6 and the visually reviewed
   hotkey table on manual page 77. `OBS-GOG-PARTY-001` records the owner's
   direct-click observation. `EXE-GOG-COMBAT-001` excludes only two
   direct-literal dispatcher forms, `EXE-GOG-COMBAT-003` excludes the queried
@@ -2294,8 +2269,8 @@
   or equal to the attacker's THAC0 minus the target's Armor Class. Lower Armor
   Class is harder to hit. The manual examples establish 5 THAC0 versus 3 AC
   requires 2 or higher, and 5 THAC0 versus -2 AC requires 7 or higher.
-- **Evidence:** MANUAL-1994 printed page 24, "Armor Class" and "THAC0". It explicitly
-  defines the random roll range and inclusive threshold. FAQ-81038 section
+- **Evidence:** SRC-MANUAL-1994 printed page 24, "Armor Class" and "THAC0". It explicitly
+  defines the random roll range and inclusive threshold. SRC-GAMEFAQS-81038 section
   2.1 independently restates the subtraction model but describes a strict
   greater-than comparison and explicitly leaves automatic 1/20 behavior
   uncertain. That secondary-report discrepancy is retained as an open native
@@ -2319,7 +2294,7 @@
 
 - **Behavior:** Damage subtracts from the target's hit points. Positive hit
   points are conscious; zero through -9 are unconscious; -10 or less is dead.
-- **Evidence:** MANUAL-1994 printed page 24, "Hit Points". `EXE-GOG-COMBAT-002`
+- **Evidence:** SRC-MANUAL-1994 printed page 24, "Hit Points". `EXE-GOG-COMBAT-002`
   records that the threshold literal is not a unique static-analysis lead and
   therefore contributes no original-state semantics.
 - **Confidence:** high for the stated thresholds and subtractive damage model.
@@ -2339,7 +2314,7 @@
 
 - **Question:** Does the shipped difficulty setting alter combat state, and if
   so, which state and at what lifecycle point?
-- **Secondary report:** FAQ-81038 section 2.8 reports that a new game begins on
+- **Secondary report:** SRC-GAMEFAQS-81038 section 2.8 reports that a new game begins on
   Balanced, that Easy appears to use roughly half the Balanced hostile hit
   points while Hideous appears to use roughly twice them, and that the effect
   is applied when a creature is spawned rather than retroactively. The report
@@ -2364,6 +2339,6 @@
 
 ## Conflict handling
 
-FAQ-81038 reports discrepancies between documentation and shipped behavior.
+SRC-GAMEFAQS-81038 reports discrepancies between documentation and shipped behavior.
 Each conflict receives its own rule ID, both claims, reproduction procedure, and
 owner decision. No compatibility behavior is selected from plausibility alone.

@@ -6,3 +6,10 @@ For each entry, the entries and glossary terms that cite or relate to it, and th
 
 | ID | Cited by |
 |---|---|
+| [BLD-GOG-EN-1.1](../builds/BLD-GOG-EN-1.1.md) | [SRC-DSUN-MUSIC-79B6927](../sources/SRC-DSUN-MUSIC-79B6927.md) (body), [SRC-GAMEFAQS-81038](../sources/SRC-GAMEFAQS-81038.md) (body) |
+| [SRC-DSUN-MUSIC-79B6927](../sources/SRC-DSUN-MUSIC-79B6927.md) | None |
+| [SRC-GAMEFAQS-81038](../sources/SRC-GAMEFAQS-81038.md) | None |
+| [SRC-LIBGFF-839B11D](../sources/SRC-LIBGFF-839B11D.md) | None |
+| [SRC-MANUAL-1994](../sources/SRC-MANUAL-1994.md) | [BLD-GOG-EN-1.1](../builds/BLD-GOG-EN-1.1.md) (body) |
+| [SRC-README-1.1](../sources/SRC-README-1.1.md) | [BLD-GOG-EN-1.1](../builds/BLD-GOG-EN-1.1.md) (body) |
+| [SRC-YOUTUBE-FLOMVOSHEOM](../sources/SRC-YOUTUBE-FLOMVOSHEOM.md) | None |

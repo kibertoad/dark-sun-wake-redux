@@ -57,7 +57,7 @@ to **origin** and **origin-based** in implementation.
 Ghidra is recommended as a targeted evidence tool when the manual, walkthrough,
 runtime observation, and bounded data inspection do not establish an exact rule,
 file field, state transition, or RNG/timing behavior. Analysis should begin with
-the exact fingerprinted `DSUN.EXE` from GOG-1432903719, with the Ghidra version,
+the exact fingerprinted `DSUN.EXE` from BLD-GOG-EN-1.1, with the Ghidra version,
 executable XXH3-128, load settings, address or symbol, method, interpretation,
 confidence, and reproducible follow-up recorded in `docs/GHIDRA.md`.
 
@@ -82,10 +82,10 @@ the question.
 | Summary | Clean-room MonoGame restoration of SSI's 1994 computer role-playing game *Dark Sun: Wake of the Ravager* |
 
 The configurator will generate the application ID, which then remains stable.
-The root README will credit the original team from MANUAL-1994, led by the SSI
+The root README will credit the original team from SRC-MANUAL-1994, led by the SSI
 Special Projects Team, producers Dan Cermak and Nick Beliaeff, associate
 producer Rick White, lead programmer Robert Calfee, programmer Mike Coustier,
-and lead artist Maurie Manning. It will link and credit FAQ-81038 to kibbitz and
+and lead artist Maurie Manning. It will link and credit SRC-GAMEFAQS-81038 to kibbitz and
 name the guide contributors above. The acknowledgement will not imply
 endorsement or transfer of rights.
 
@@ -161,8 +161,8 @@ are preserved as opaque data rather than guessed or omitted.
   sources. The assetless runtime names the required pack, points to the
   Extractor, writes a local diagnostic log, and quits cleanly. README status and
   acknowledgements are accurate.
-- **Evidence.** MANUAL-1994 for identity and creators; GOG-1432903719 for owned
-  distribution metadata; FAQ-81038 for guide attribution.
+- **Evidence.** SRC-MANUAL-1994 for identity and creators; BLD-GOG-EN-1.1 for owned
+  distribution metadata; SRC-GAMEFAQS-81038 for guide attribution.
 - **Acceptance - rules.** Recognition is deterministic and exact. Relative paths
   are normalized; duplicate files and path escapes are rejected; every required
   file has an expected length and XXH3-128; failure uses stable diagnostic codes.
@@ -192,7 +192,7 @@ evidence throughout.
   resource record with stable source identity, source-file hash, payload hash,
   length, media/contract type, and conversion method. It does not assign rule or
   presentation semantics merely because a payload is now available.
-- **Evidence.** GOG-1432903719 plus the exact source manifest; DATA-GOG-GFF-001
+- **Evidence.** BLD-GOG-EN-1.1 plus the exact source manifest; DATA-GOG-GFF-001
   and each subsequently recorded bounded container finding. The corpus inventory
   itself is evidence and must distinguish observed structure from opaque bytes.
 - **Acceptance - rules.** No new gameplay rule, screen transition, UI command,
@@ -293,9 +293,9 @@ catalogs.
   evidence before implementation.
 - **Outcome.** The runtime opens the complete verified pack, reaches the
   original-style start flow, and creates or selects a legal four-character party.
-- **Evidence.** MANUAL-1994 sections on quick start, party creation, character
+- **Evidence.** SRC-MANUAL-1994 sections on quick start, party creation, character
   options, and menus; `DATA-GOG-GFF-001` and `DATA-GOG-IMAGE-001`, corroborated
-  by DSUN-MUSIC, for bounded container, indexed-image, and palette structures;
+  by SRC-DSUN-MUSIC-79B6927, for bounded container, indexed-image, and palette structures;
   `DATA-GOG-FONT-001` for bounded indexed glyphs; `DATA-GOG-UI-001` and
   `DATA-GOG-UI-006`-`008` for bounded start-window/button mappings, composition,
   party-overview and ADD-list shells, and interface palette; further DATA-GOG
@@ -354,8 +354,8 @@ catalogs.
 - **Outcome.** A party enters the first Tyr area, moves and scrolls, changes
   leader/formation display, uses look/interaction, completes the first dialogue,
   and opens character, inventory, effects, map, and game menus.
-- **Evidence.** MANUAL-1994 "How to Play", mouse modes, character interaction,
-  character options, and game menu; FAQ-81038 section 3.1; DATA-GOG region facts;
+- **Evidence.** SRC-MANUAL-1994 "How to Play", mouse modes, character interaction,
+  character options, and game menu; SRC-GAMEFAQS-81038 section 3.1; DATA-GOG region facts;
   OBS-GOG opening traces.
 - **Acceptance - rules.** Click-to-walk, collision, leader selection, party
   placement, interaction eligibility, dialogue choices, item transfer, and
@@ -511,7 +511,7 @@ catalogs.
 - **Outcome.** The opening Tyr encounter can be completed through victory or
   party defeat using movement, targeting, attacks, wait, guard, previous/next
   target, and end-turn actions.
-- **Evidence.** MANUAL-1994 combat mouse modes and hotkeys; FAQ-81038 sections
+- **Evidence.** SRC-MANUAL-1994 combat mouse modes and hotkeys; SRC-GAMEFAQS-81038 sections
   2.1, 2.4, 2.8, and 3.1; OBS-GOG controlled combat traces. The owner reports
   direct enemy click-to-approach-and-strike without a separate target-switching
   or confirmation presentation, no visible turn-transition treatment, and an
@@ -549,8 +549,8 @@ catalogs.
 
 - **Outcome.** Players equip legal items, inspect statistics/effects, use the
   evidenced spell and psionic set, camp, recover, earn experience, and train.
-- **Evidence.** MANUAL-1994 character, ability, class, equipment, spell,
-  psionic, camping, training, and advancement sections; FAQ-81038 sections
+- **Evidence.** SRC-MANUAL-1994 character, ability, class, equipment, spell,
+  psionic, camping, training, and advancement sections; SRC-GAMEFAQS-81038 sections
   2.1-2.9 and recorded discrepancies; OBS-GOG rule probes.
 - **Acceptance - rules.** Every implemented modifier, restriction, resource
   cost, target, duration, effect, recovery rule, multiclass behavior, experience
@@ -573,7 +573,7 @@ catalogs.
 - **Outcome.** The critical campaign route from Tyr through the artifact regions
   to the finale is finishable; optional content and alternate outcomes are added
   as separately validated increments.
-- **Evidence.** MANUAL-1994 for intended player systems; FAQ-81038 sections
+- **Evidence.** SRC-MANUAL-1994 for intended player systems; SRC-GAMEFAQS-81038 sections
   3.1-3.25 as a route, branch, and defect index; DATA-GOG facts; OBS-GOG
   checkpointed playthroughs. The guide is not an executable specification.
 - **Acceptance - rules.** Quest flags, dialogue prerequisites, travel edges,
@@ -598,8 +598,8 @@ catalogs.
   and music; clean packages install the runtime and separate Extractor on each
   declared platform. Original save and Shattered Lands party import ship only if
   their formats become fully evidenced and bounded.
-- **Evidence.** All prior evidence; MANUAL-1994 save/load, hotkeys, and party
-  transfer; FAQ-81038 section 2.10 and complete route; comprehensive OBS-GOG and
+- **Evidence.** All prior evidence; SRC-MANUAL-1994 save/load, hotkeys, and party
+  transfer; SRC-GAMEFAQS-81038 section 2.10 and complete route; comprehensive OBS-GOG and
   DATA-GOG inventories.
 - **Acceptance - rules.** Save schemas and migrations are explicit; writes are
   atomic with last-valid recovery; corrupt data is bounded/rejected; identical
@@ -631,7 +631,7 @@ This table keeps the decisions that belong to the repository owner.
 |---|---|---|---|---|
 | Q1 | Is `DarkSunWakeRedux` / `Dark Sun: Wake of the Ravager Redux` the approved identity? | configuration | repository owner | closed - approved 2026-09-12 |
 | Q2 | Is the installed GOG build the only initial supported edition, with later revisions represented by separate manifests? | slices 1, 7 | repository owner | closed - initial work targets the supplied GOG build; later revisions require separate fingerprints |
-| Q3 | Which underlying DOS/CD-ROM revision is in GOG build `52095422060333615`? | slices 1, 4, 6 | evidence investigation | closed - `DATA-GOG-README-001` establishes that the owned package documents Version 1.1 game data, dated 1994-12-14, and distinguishes 1.0/1.01 saves. This identifies the supported game-data revision but not physical retail-media provenance. |
+| Q3 | Which underlying DOS/CD-ROM revision is in GOG build `52095422060333615`? | slices 1, 4, 6 | evidence investigation | closed - `BLD-GOG-EN-1.1` establishes that the owned package documents Version 1.1 game data, dated 1994-12-14, and distinguishes 1.0/1.01 saves. This identifies the supported game-data revision but not physical retail-media provenance. |
 | Q6 | For each verified manual/guide/runtime conflict or original defect, should compatibility preserve it, fix it, or expose an option? | slices 4-7 | repository owner after evidence | open |
 | Q7 | Are original save compatibility and Shattered Lands party transfer desired once their formats are evidenced? | slice 7 | repository owner | open |
 | Q8 | Are Windows, Linux, and macOS all first-release targets, or should the initial release target Windows? | slice 7 | repository owner | open |
@@ -644,14 +644,14 @@ This table keeps the decisions that belong to the repository owner.
 
 - **Unknown containers.** The observed installation contains `.GFF`, `.FLI`,
   `.VOC`, `.BIN`, and disc-image resources whose exact roles/layouts are not yet
-  fully established. Use DSUN-MUSIC as a starting point where it covers the
+  fully established. Use SRC-DSUN-MUSIC-79B6927 as a starting point where it covers the
   format, validate those results against this exact build, then preserve the
   evidence in our own format notes. Begin with complete read-only inventory,
   bound every field, use synthetic fixtures, and represent unknown data in a
   lossless opaque contract before assigning any behavior.
 - **Storefront drift.** GOG may change files without changing the product name.
   Match exact manifests; retain product/build metadata only as provenance.
-- **Defects and conflicts.** FAQ-81038 reports manual discrepancies, performance
+- **Defects and conflicts.** SRC-GAMEFAQS-81038 reports manual discrepancies, performance
   sensitivity, and soft locks. Preserve conflicts and require explicit fidelity
   decisions after controlled reproduction.
 - **Extractor correctness.** Partial or stale packs could mix revisions. Use a

@@ -6,11 +6,24 @@ Entries by kind.
 
 ## builds
 
-0 entries.
+1 entries.
+
+| ID | Title | Status |
+|---|---|---|
+| [BLD-GOG-EN-1.1](../builds/BLD-GOG-EN-1.1.md) | Dark Sun: Wake of the Ravager 1.1, English, GOG release | None |
 
 ## sources
 
-0 entries.
+6 entries.
+
+| ID | Title | Status |
+|---|---|---|
+| [SRC-DSUN-MUSIC-79B6927](../sources/SRC-DSUN-MUSIC-79B6927.md) | dsun_music, resource tools for the Dark Sun games by John Glassmyer, commit 79b6927 | None |
+| [SRC-GAMEFAQS-81038](../sources/SRC-GAMEFAQS-81038.md) | Dark Sun: Wake of the Ravager, Guide and Walkthrough, version 1.13 | None |
+| [SRC-LIBGFF-839B11D](../sources/SRC-LIBGFF-839B11D.md) | libgff, a reimplementation library for the Dark Sun games, commit 839b11d | None |
+| [SRC-MANUAL-1994](../sources/SRC-MANUAL-1994.md) | Dark Sun: Wake of the Ravager rule book, PDF shipped with the GOG release | None |
+| [SRC-README-1.1](../sources/SRC-README-1.1.md) | README.TXT for version 1.1, shipped with the GOG release | None |
+| [SRC-YOUTUBE-FLOMVOSHEOM](../sources/SRC-YOUTUBE-FLOMVOSHEOM.md) | Dark Sun: Wake of the Ravager playthrough, YouTube video FLoMVOSHeOM | None |
 
 ## formats
 

@@ -316,7 +316,7 @@ the documented control role from the state that has not yet been measured.
 |---|---|---|
 | Music, sound effects, animations, voice effects | The manual defines each as an on/off toggle; voice applies to CD-capable installs | Initial on/off state, state storage, visual frame mapping, and audio routing |
 | Music and sound-effects volume | Each is a slider adjusted through buttons at its two ends | Numerical range, increment, initial value, displayed fill, and mixer mapping |
-| Difficulty | The executable table orders the four labels Easy, Balanced, Hard, Hideous; the manual assigns it to combat difficulty. FAQ-81038 reports a hostile-HP-at-spawn hypothesis (`FAQ-81038-COMBAT-001`) | Selected default, its relationship to the manual's conflicting “Average” wording, mutations, hostile-HP multipliers/rounding/timing, and rule consumers |
+| Difficulty | The executable table orders the four labels Easy, Balanced, Hard, Hideous; the manual assigns it to combat difficulty. SRC-GAMEFAQS-81038 reports a hostile-HP-at-spawn hypothesis (`FAQ-81038-COMBAT-001`) | Selected default, its relationship to the manual's conflicting “Average” wording, mutations, hostile-HP multipliers/rounding/timing, and rule consumers |
 | About | The manual specifies version, copyright, support, hint-line, and address information; the executable supplies nine centered lines | Modal geometry, backdrop, input dismissal, and native transition |
 
 Direct-reference and scalar probes find no literal binding from the executable
