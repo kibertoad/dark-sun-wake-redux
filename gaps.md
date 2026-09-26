@@ -63,3 +63,17 @@ start address. The join tool now accepts the manifest path explicitly.
 
 **Request:** define a portable encoding of manifest paths for coverage files and
 check that the path and each address prefix resolve to the same manifest entry.
+
+## 6. Keep the authoritative research-batch rules available offline
+
+The repository's `AGENTS.md` and `.claude/skills/research-item/SKILL.md` explain
+the research procedure well enough to carry out a batch, but both say the
+published Protocol wins if they differ. During the `FMT-CONFIG-004` batch, the
+Protocol's research-batches page was unavailable through the available browser
+tool, so a possible disagreement could not be checked against the authoritative
+text.
+
+**Request:** ship a versioned, locally readable copy or snapshot of the
+authoritative research-batch rules with the template, and identify the upstream
+revision it represents. Keep the remote page as the source of updates, with an
+explicit way to detect when the local snapshot needs refreshing.
