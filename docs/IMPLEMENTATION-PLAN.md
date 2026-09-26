@@ -294,8 +294,8 @@ catalogs.
 - **Outcome.** The runtime opens the complete verified pack, reaches the
   original-style start flow, and creates or selects a legal four-character party.
 - **Evidence.** SRC-MANUAL-1994 sections on quick start, party creation, character
-  options, and menus; `FMT-GFF-001` and `DATA-GOG-IMAGE-001`, corroborated
-  by SRC-DSUN-MUSIC-79B6927, for bounded container, indexed-image, and palette structures;
+  options, and menus; `FMT-GFF-001`, `FMT-IMAGE-001` to `FMT-IMAGE-004`, `RULE-IMAGE-001` and
+  `RULE-IMAGE-002` for bounded container, indexed-image, and palette structures;
   `DATA-GOG-FONT-001` for bounded indexed glyphs; `DATA-GOG-UI-001` and
   `DATA-GOG-UI-006`-`008` for bounded start-window/button mappings, composition,
   party-overview and ADD-list shells, and interface palette; further DATA-GOG

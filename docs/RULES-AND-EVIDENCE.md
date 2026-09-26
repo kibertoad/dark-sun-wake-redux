@@ -46,30 +46,6 @@ the owned build.
   behavior from it. A constrained native call path or controlled observation
   remains required.
 
-### DATA-GOG-IMAGE-001 - Indexed images and palettes
-
-- **Question:** Which bounded image and palette payload structures occur in the
-  owned build's GFF resources?
-- **Method:** Compare the SRC-DSUN-MUSIC-79B6927 image/palette research with bounded samples
-  from the fingerprinted installation, independently implement defensive
-  readers, and decode every matching resource in all 26 installed GFF files
-  without retaining or committing decoded content.
-- **Finding:** `BMP `, `CBMP`, and `ICON` share a framed indexed-image envelope
-  with sparse-row, `PLAN`, and `PLNR` encodings. `PAL ` contains 256 three-byte
-  VGA colors. Each six-bit channel expands to eight bits by repeating its high
-  two bits into the low two positions; this matches the native DOSBox palette
-  rather than leaving full intensity at 252. The readers decode 4,510 images
-  containing 9,279 frames and all 40 palettes in the installed build.
-- **Confidence:** verified for these payload structures and counts in
-  BLD-GOG-EN-1.1. `EXE-GOG-IMAGE-001` independently establishes direct native
-  dispatch between `PLAN` and `PLNR` on bounded tile/object image paths.
-  Resource meaning, palette pairing, placement, frame selection, and timing
-  are still unknown.
-- **Implementation:** `DarkSunWakeRedux.Resources.IndexedImage`,
-  `IndexedPalette`, and the read-only `image-catalog` inspection command.
-- **Tests:** synthetic row/planar decoding, transparency, palette conversion,
-  and malformed size, bounds, component, and bitstream cases.
-
 ### DATA-GOG-REGION-001 - Region map structural catalog
 
 - **Question:** Which bounded region structures identify Tyr and supply its
@@ -379,25 +355,6 @@ the owned build.
 - **Tests/tooling:** `OpaqueRasterProfile` has synthetic aggregate and invalid
   input coverage. The `raster-profile` Inspect command is local-only and emits
   no source bytes.
-
-### DATA-GOG-TITLE-001 - Title image resource mapping
-
-- **Question:** Which resource and palette form the static game-title image?
-- **Method:** Decode the full-screen `BMP ` candidates and all plausible palette
-  pairings from the fingerprinted `RESOURCE.GFF`, render previews under ignored
-  `analysis/original/`, and inspect them without retaining original content in
-  Git. SRC-DSUN-MUSIC-79B6927 corroborates the image and palette decoding method, while the
-  mapping is established from the owned build.
-- **Finding:** `BMP ` #11011 is one 320x200 frame containing the *Dark Sun: Wake
-  of the Ravager* title artwork, and `PAL ` #11011 supplies its correct colors.
-- **Confidence:** verified for BLD-GOG-EN-1.1 by exact resource identity and
-  locally rendered content; sequence timing and menu overlay behavior remain
-  unknown.
-- **Implementation:** transactional conversion to `images/title.dsix`. Runtime
-  sequencing and display are pending evidence that distinguishes the title
-  interval from the later start window.
-- **Tests:** original-free DSIX round trips and rejection cases, plus synthetic
-  GFF-to-verified-pack extraction using the recorded resource identities.
 
 ### DATA-GOG-FONT-001 - Indexed bitmap font structure
 

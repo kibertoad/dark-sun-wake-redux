@@ -14,6 +14,7 @@ public static class StartupAssetExtractor
     public const uint TitleImageNumber = 11011;
     public const string ImageTag = "ICON";
     public const string PaletteTag = "PAL ";
+    // PLACEHOLDER: FMT-IMAGE-001 - which palette the original draws each image with is unknown.
     public const uint TitlePaletteNumber = 11011;
     public const uint InterfacePaletteNumber = 1000;
     public const string FontTag = "FONT";

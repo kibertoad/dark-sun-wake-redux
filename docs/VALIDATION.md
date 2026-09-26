@@ -222,7 +222,7 @@ handling. Core tests distinguish true, false, and unknown constant/local flag/
 local-number conditions; adapter tests preserve their parsed identity. Owned
 content smoke confirms two speech variants, eight initial menu entries, and the
 ordered condition shapes without checking proprietary text into Git. Local-only decoded previews established the title
-and start-window mappings recorded as `DATA-GOG-TITLE-001`,
+and start-window mappings recorded as `FND-IMAGE-007`,
 `DATA-GOG-UI-001`, `DATA-GOG-UI-006`, `DATA-GOG-UI-007`,
 `DATA-GOG-UI-008` through `DATA-GOG-UI-010`; screenshots and decoded outputs stay
 under ignored `analysis/original/` and never become golden files. Presentation

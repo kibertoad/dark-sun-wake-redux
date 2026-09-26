@@ -402,54 +402,6 @@ proof by itself. Never redirect broad output into the repository.
   `ReportScalarConstants` retain bounded, reusable navigation methods for later
   evidence questions.
 
-### EXE-GOG-IMAGE-001 - Native PLAN and PLNR dispatch in the actor image path
-
-- **Question:** Does a constrained native path corroborate the bounded `PLAN`
-  and `PLNR` indexed-image encodings, and can it connect object-frame lookup to
-  static presentation without assigning actor behavior?
-- **Target:** BLD-GOG-EN-1.1 `DSUN.EXE`, reverified at 634,416 bytes with
-  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
-  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1. A full analyzer
-  pass completed before this focused query.
-- **Method:** Starting at the three direct callers established by
-  `EXE-GOG-OJFF-001`, `ReportInstructionContext` and one bounded
-  `ReportDecompileWindow` per caller classified their immediate results.
-  `ReportReferences` then located the sole direct caller of their common
-  16-byte-slot helper, and a final bounded window classified its downstream
-  image dispatcher and direct callers.
-- **Bounded finding:** the `31e0:0121` caller creates a result in the resident
-  37-byte family after successful OJFF lookup, stores caller-provided
-  coordinates, and invokes the existing occupancy path only under a local
-  guard. The `2d40:0589` caller scans exactly 320 candidate entries and uses
-  their coordinate words shifted right by four before invoking the same OJFF
-  lookup for a guarded negative identity. A direct-reference query of
-  `2d40:0589` finds no recovered caller, so its candidate-selection result has
-  no bounded action owner. The `31ba:000e` caller lazily
-  resolves a negative identity from a separate 8-byte indexed record and feeds
-  the resolved result to the sole-caller 16-byte-slot helper. That helper calls
-  `2d40:3bec`; this routine has eight direct callers, including the actor path
-  and the existing local `TILE` request helper. It selects distinct lower
-  routines when the supplied payload descriptor tag is `PLAN` or `PLNR`, and
-  otherwise takes a third path. It does not derive timing or change an actor's
-  world coordinates.
-- **Interpretation:** `PLAN` and `PLNR` are native-distinguished image payload
-  families on a direct path reachable from both region-tile and bounded object
-  resolution. This corroborates the defensive reader's supported tag boundary
-  and the static compositor's use of decoded images. It does not prove the
-  codec operations themselves, an OJFF field meaning, which 8-byte records map
-  to ETAB entries, actor identity/category, nearest-candidate purpose, frame
-  selection, animation, collision, targeting, or interaction behavior.
-- **Confidence:** high for the direct caller counts, 37-byte/16-byte/8-byte
-  resident stride observations, 320-entry scan, coordinate shift, absent
-  recovered direct caller of that scan, and
-  `PLAN`/`PLNR` branch distinction; unknown for every semantic role beyond the
-  bounded loader/decoder boundary.
-- **Implementation consequence:** retain `IndexedImage` support for its
-  already-bounded row, `PLAN`, and `PLNR` forms and use it only through the
-  evidenced static image/region contracts. Do not create an actor lifecycle,
-  target-selection system, animation policy, or native cadence from these
-  routines.
-
 ### EXE-GOG-REGION-001 - GMAP bit 0x40 blocks traversable cells
 
 - **Question:** Which `GMAP` bit is consulted when the supported executable
@@ -3161,38 +3113,6 @@ proof by itself. Never redirect broad output into the repository.
   audio model. Continue to require a traceable consumer path and controlled
   observation before mapping audio behavior or timing.
 
-### EXE-GOG-TITLE-002 - No co-located direct title-image loader literal
-
-- **Question:** Does the supported executable contain one recovered function
-  that directly co-locates the extracted static-title resource identity with
-  the two correctly ordered little-endian words of its `BMP ` source tag?
-- **Target:** BLD-GOG-EN-1.1 `DSUN.EXE`, reverified at 634,416 bytes with
-  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
-  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
-- **Method:** after the normal analyzer pass, the repository-owned
-  `ReportFunctionScalarIntersection` script scanned every recovered function's
-  scalar operands for all three values: decimal `11011` (the independently
-  decoded static-title `BMP ` resource), `0x4d42` (`BM`), and `0x2050`
-  (`P `). The script reports only a function containing every requested scalar;
-  it does not treat a raw byte occurrence or an individual scalar as a loader.
-  A follow-up `ReportScalarConstants` scan searched every decoded instruction
-  operand for `11011` alone.
-- **Bounded finding:** no recovered function contains all three requested
-  scalars, and no decoded instruction operand equals `11011`. These queries
-  supply no direct title-image resource request, loader call, title transition,
-  or clock boundary.
-- **Interpretation:** this rules out only that co-located literal
-  representation in the analyzed executable. The identity or tag can still be
-  constructed, copied through resident state, supplied indirectly, or handled
-  by another module. It does not prove that title display is absent and assigns
-  no title duration, input dismissal policy, following screen, or sequence.
-- **Confidence:** high for the exact bounded no-co-location and no-direct-
-  scalar results; unknown for every title loader, display path, timing,
-  transition, and sequence rule.
-- **Implementation consequence:** retain the verified title asset in the
-  local pack but keep title presentation sequencing unimplemented. A runtime
-  route requires a bounded consumer path plus a controlled native observation.
-
 ### EXE-GOG-FONT-002 - No co-located direct interface-font loader literal
 
 - **Question:** Does the supported executable contain a recovered function
@@ -3229,52 +3149,6 @@ proof by itself. Never redirect broad output into the repository.
   layout to native presentation parity without an independent consumer path and
   controlled observation.
 
-### EXE-GOG-IMAGE-002 - Bounded native BMP/CBMP cache and window-image paths
-
-- **Question:** What direct native resource boundaries use the source `BMP `
-  tag, and do they connect the verified static-title image to a title sequence?
-- **Target:** BLD-GOG-EN-1.1 `DSUN.EXE`, reverified at 634,416 bytes with
-  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
-  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
-- **Method:** `ReportBytePattern` searched every loaded block for the exact
-  four-byte ASCII `BMP ` encoding. `ReportInstructionContext` bounded the
-  three decoded tag assignments, and `ReportReferences` enumerated direct
-  callers of their containing functions. One 100-line window per function
-  classified only its immediate tag-aware request/cache shape. The two raw data
-  occurrences were not treated as code. `EXE-GOG-TITLE-002` independently
-  supplies the #11011 scalar and co-location negative checks.
-- **Bounded finding:** six raw matches exist. Three are decoded assignments:
-  `2c5f:03f1` has one direct caller (`2c5f:06cb`) and reaches a tag-aware
-  request path; `31e0:3568`, with one direct caller (`31e0:3388`), selects
-  `BMP ` or `CBMP` from a caller flag and maintains an observed cache capped at
-  300 entries of 16 bytes before requesting the selected tag; and `3cfa:0006`
-  requests `BMP ` for one of two nonzero resident source values before a
-  follow-on validation path. The latter has three direct callers, including
-  the previously bounded generic window-registration function `3a8e:02b3`.
-  The remaining two matches, `5000:b116` and `5000:b11d`, are data and have no
-  Ghidra-recorded direct references. A bounded decompilation of `31e0:3388`
-  shows a caller index limited to `0..320`, associated resident-table accesses,
-  and its call to the cache selector. `ReportReferences` finds ten direct call
-  sites in eight functions for that wrapper, including the existing OJFF-route
-  function `31ba:000e` and the wrapper's guarded self-call.
-- **Interpretation:** the executable has distinct bounded native image-family
-  selection/cache and generic window-image request boundaries. It corroborates
-  the existing defensive support for both `BMP ` and `CBMP` payloads, but does
-  not identify cache ownership, the meanings of resident fields, any resource
-  selected by an application screen, image draw order, composition, palette,
-  title ownership, transition, or clock. In particular, #11011 is not a
-  decoded instruction scalar and no observed caller links this cache to the
-  title asset.
-- **Confidence:** high for the six raw matches, three decoded assignments,
-  direct-caller counts, 300-entry/16-byte cache shape, shared 321-index wrapper
-  boundary, tag selection, and generic window-registration adjacency; unknown
-  for all image semantics and player-visible presentation.
-- **Implementation consequence:** retain the generic bounded `BMP `/`CBMP`
-  decoder and lossless source mapping. Do not add a native cache simulation,
-  title sequence, image scheduler, or window composition rule from this
-  boundary; each needs a screen-specific consumer path and controlled
-  observation.
-
 ### EXE-GOG-TEXT-001 - No direct literal text-resource tag lead
 
 - **Question:** Does the supported executable expose a direct literal `TEXT`
@@ -3304,31 +3178,6 @@ proof by itself. Never redirect broad output into the repository.
   ID-preserving DSTX catalog. Do not map a text resource to a screen or claim
   native typography/presentation without a separate consumer path and
   controlled observation.
-
-### EXE-GOG-PORT-001 - No literal portrait-image tag in the main executable
-
-- **Question:** Does the supported executable expose a direct literal resource
-  tag path for the separately decoded `PORT` image family, including the
-  observed first-Tyr dialogue portrait?
-- **Target:** BLD-GOG-EN-1.1 `DSUN.EXE`, reverified at 634,416 bytes with
-  XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`;
-  Ghidra 12.1.3, 16-bit real-mode MZ loader, JDK 21.0.12.1.
-- **Method:** after fingerprint verification, `ReportBytePattern` searched all
-  loaded program-memory blocks for the exact four-byte ASCII encoding `PORT`
-  (`50 4f 52 54`), with its normal bounded match/reference reporting.
-- **Bounded finding:** no raw `PORT` byte pattern occurs in the analyzed
-  executable image. The query supplies no direct tag assignment, portrait
-  request, loader, cache, draw call, dialogue entry, or timing boundary.
-- **Interpretation:** this excludes only a literal-tag representation in this
-  executable. A portrait can still be selected through an indirect tag,
-  resident state, a common image path, a constructed value, or another module.
-  It neither contradicts the independently observed `GPL` #135 `PORT` #18
-  composition nor identifies a general portrait policy.
-- **Confidence:** high for the exact loaded-image literal absence; unknown for
-  portrait loading, palette choice, drawing, dialogue ownership, and timing.
-- **Implementation consequence:** retain the bounded `PORT` image decoder and
-  the capture-correlated first-Tyr portrait mapping, but do not generalize a
-  native portrait loader or dialogue behavior from this negative result.
 
 ### EXE-GOG-UI-011 - Start-window button IDs have no direct handler operands
 

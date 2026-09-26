@@ -147,6 +147,7 @@ public sealed record IndexedImage(IReadOnlyList<IndexedImageFrame> Frames)
         var bitsPerSymbol = reader.Byte(start + 9, "bits per symbol");
         var pixels = new byte[checked(width * height)];
         var alpha = new byte[pixels.Length];
+        // PLACEHOLDER: RULE-IMAGE-002 - what the original draws for a 0-bit frame is unknown.
         if (bitsPerSymbol == 0) return new(width, height, pixels, alpha);
         if (bitsPerSymbol > 8)
             throw Error(reader.SourceName, $"frame {frameIndex} uses invalid {bitsPerSymbol}-bit symbols");

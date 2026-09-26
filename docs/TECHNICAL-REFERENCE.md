@@ -302,7 +302,7 @@ RGN#50: RNME / PAL / MAP / GMAP / TILE / ETAB
   other actor behavior are unknown.
 
 See `DATA-GOG-REGION-001`, `DATA-GOG-OBJECT-001`, `DATA-GOG-SCENE-001`,
-`DATA-GOG-ACTOR-001`, `EXE-GOG-OJFF-001`, and `EXE-GOG-IMAGE-001` before
+`DATA-GOG-ACTOR-001`, `EXE-GOG-OJFF-001`, and `FND-IMAGE-005` before
 expanding this route.
 
 ## Preferences evidence boundary
@@ -367,9 +367,8 @@ the start flow and current exploration state reproducible.
   interrupt-disabled render loop, hardware timer, or actor scheduler.
   `EXE-GOG-MEDIA-001` finds no literal FLI
   header-validation lead, and `EXE-GOG-MEDIA-002` finds no direct reference to
-  the embedded filename/path entries. `EXE-GOG-TITLE-002` likewise finds no
-  recovered function that co-locates static-title `BMP ` #11011 with its tag
-  words. Raw cinematic speed fields, filename order, and the title asset are
+  the embedded filename/path entries. `FND-IMAGE-008` likewise finds no
+  operand for the static-title `BMP ` #11011. Raw cinematic speed fields, filename order, and the title asset are
   data, not assumed milliseconds or a schedule.
 - The random number generator and its reductions are `RULE-RNG-001`. Its seed
   and the rules that draw from it are not known, so new rules do not consume
@@ -409,7 +408,7 @@ rejecting unsupported semantics:
 - `EXE-GOG-OJFF-001` establishes two native OJFF resource lookup paths and
   a sole observed post-lookup transfer into the 37-byte resident path. The
   selected source offsets are structural data accesses, not assigned object
-  field meanings. `EXE-GOG-IMAGE-001` continues that bounded route into
+  field meanings. `FND-IMAGE-005` continues that bounded route into
   distinct PLAN/PLNR image dispatch. Its 320-entry coordinate-based candidate
   scan has no recovered direct caller, so it does not identify a target action.
   Neither finding identifies a runtime actor, animation, collision, target, or
@@ -467,10 +466,8 @@ rejecting unsupported semantics:
 - `EXE-GOG-PREF-001` finds one raw `PREF` tag literal but no direct reference;
   it supplies no Preferences loader, settings schema, default, or control
   behavior.
-- `EXE-GOG-TITLE-002` finds no decoded instruction operand for static-title
-  `BMP ` #11011 and no recovered function that combines that identity with
-  both correctly ordered tag words. These bounded negative results supply no
-  title loader or sequencing rule.
+- `FND-IMAGE-008` finds no operand for the static-title `BMP ` #11011, so it
+  supplies no title loader or sequencing rule.
 - `EXE-GOG-FONT-002` finds no recovered function combining interface `FONT`
   #100 with both literal tag words. Its two raw `FONT` data occurrences have
   no recorded direct references. These facts supply no font-selection, glyph,
@@ -479,9 +476,8 @@ rejecting unsupported semantics:
   recorded direct reference or containing instruction. This excludes only a
   direct literal-tag loader lead; it neither assigns one of the 62 bounded text
   resources to a screen nor establishes native typography or timing.
-- `EXE-GOG-IMAGE-002` establishes a bounded 300-entry native `BMP `/`CBMP`
-  selector/cache, a shared 321-index wrapper used from eight recovered
-  functions (including the OJFF route), and a separate generic window-image
+- `FND-IMAGE-006` records a 300-entry `BMP `/`CBMP` cache, a wrapper taking
+  indices 0 to 320 that eight functions call, and a separate window-image
   request path. The title resource #11011 has no observed connection to either,
   so neither title sequencing nor image composition is inferred.
 - `EXE-GOG-VIDEO-001` identifies nine coherent BIOS-video calls in one shared
@@ -508,9 +504,9 @@ rejecting unsupported semantics:
   `EXE-GOG-KEYBOARD-004` adds a mapped generic BIOS keyboard wrapper, but no
   bounded caller supplies an explicit service value or command identity; its
   one dispatch-shaped upstream route is GPLI selector handling, not combat.
-- `EXE-GOG-PORT-001` finds no literal `PORT` tag in the executable. It does
-  not contradict the observed first-Tyr portrait, but supplies no general
-  portrait loader, palette, drawing, dialogue, or timing rule.
+- `FND-IMAGE-009` finds no `PORT` tag in the resident image; its one
+  occurrence is in overlay 199. It supplies no portrait loader, palette,
+  drawing, dialogue, or timing rule.
 - `EXE-GOG-CHAR-003` finds no direct literal-tag lead for the character
   archive: raw `CHAR` bytes have no direct references and `PSIN` is absent.
   The separately fingerprinted `SVIEW.EXE` has neither a literal

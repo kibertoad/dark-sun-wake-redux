@@ -14,7 +14,7 @@ Entries by status.
 
 ## supported
 
-13 entries.
+19 entries.
 
 | ID | Title |
 |---|---|
@@ -30,6 +30,12 @@ Entries by status.
 | [FMT-GFF-005](../formats/FMT-GFF-005.md) | GFF byte range |
 | [FMT-GFF-006](../formats/FMT-GFF-006.md) | GFF numbering range in an indexed tag table |
 | [FMT-GFF-007](../formats/FMT-GFF-007.md) | GFFI index resource |
+| [FMT-IMAGE-001](../formats/FMT-IMAGE-001.md) | Image resource with a list of frames |
+| [FMT-IMAGE-002](../formats/FMT-IMAGE-002.md) | Image frame |
+| [FMT-IMAGE-003](../formats/FMT-IMAGE-003.md) | Palette resource |
+| [FMT-IMAGE-004](../formats/FMT-IMAGE-004.md) | Palette colour |
+| [RULE-IMAGE-001](../rules/RULE-IMAGE-001.md) | Decoding an image frame, and the row encoding |
+| [RULE-IMAGE-002](../rules/RULE-IMAGE-002.md) | Decoding a planar image frame |
 | [RULE-RNG-001](../rules/RULE-RNG-001.md) | The game's random number generator and its reductions |
 
 ## established
@@ -46,7 +52,7 @@ Entries by status.
 
 ## recorded
 
-20 entries.
+30 entries.
 
 | ID | Title |
 |---|---|
@@ -62,6 +68,16 @@ Entries by status.
 | [FND-GFF-003](../findings/FND-GFF-003.md) | Indexed GFF tag tables give numbers as ranges and keep offsets and sizes in a GFFI resource |
 | [FND-GFF-004](../findings/FND-GFF-004.md) | A GFF directory ends with a list of the unused byte ranges between the header and the directory |
 | [FND-GFF-005](../findings/FND-GFF-005.md) | The 26 installed GFF files hold 16,168 resources under 42 tags, with no shared bytes |
+| [FND-IMAGE-001](../findings/FND-IMAGE-001.md) | Image resources open with their own size, a frame count and a table of frame offsets |
+| [FND-IMAGE-002](../findings/FND-IMAGE-002.md) | Row-encoded image frames are lists of rows of run-length-coded runs ended by 0xFF |
+| [FND-IMAGE-003](../findings/FND-IMAGE-003.md) | PLAN and PLNR image frames pack dictionary indices into a bit stream |
+| [FND-IMAGE-004](../findings/FND-IMAGE-004.md) | Every PAL resource is 256 colours of three bytes from 0 to 63 |
+| [FND-IMAGE-005](../findings/FND-IMAGE-005.md) | A resident image routine at 2D40:3BEC takes separate paths for PLAN, PLNR and other frames |
+| [FND-IMAGE-006](../findings/FND-IMAGE-006.md) | The BMP tag is used by a 300-entry BMP or CBMP cache and by a window image request |
+| [FND-IMAGE-007](../findings/FND-IMAGE-007.md) | BMP 11011 in RESOURCE.GFF is a full-screen title picture drawn in PAL 11011's colours |
+| [FND-IMAGE-008](../findings/FND-IMAGE-008.md) | No resident function uses the number 11011 as an operand, with or without the BMP tag words |
+| [FND-IMAGE-009](../findings/FND-IMAGE-009.md) | The PORT tag does not occur in the resident load image of DSUN.EXE |
+| [FND-IMAGE-010](../findings/FND-IMAGE-010.md) | The first gameplay frame of the opening region matches frames decoded from all three encodings |
 | [FND-RNG-001](../findings/FND-RNG-001.md) | The random number generator is a 32-bit linear congruential generator at 1000:0822 |
 | [FND-RNG-002](../findings/FND-RNG-002.md) | The seed setter at 1000:0811 stores a 16-bit seed and clears the high word |
 | [FND-RNG-003](../findings/FND-RNG-003.md) | The modulo reducer at 2834:061C draws once, and not at all for a divisor of 0 |
@@ -95,4 +111,10 @@ Entries whose Open questions section says more than None known.
 | [FMT-GFF-001](../formats/FMT-GFF-001.md) | GFF resource container | supported |
 | [FMT-GFF-002](../formats/FMT-GFF-002.md) | GFF directory | supported |
 | [FMT-GFF-003](../formats/FMT-GFF-003.md) | GFF tag table | supported |
+| [FMT-IMAGE-001](../formats/FMT-IMAGE-001.md) | Image resource with a list of frames | supported |
+| [FMT-IMAGE-002](../formats/FMT-IMAGE-002.md) | Image frame | supported |
+| [FMT-IMAGE-003](../formats/FMT-IMAGE-003.md) | Palette resource | supported |
+| [FMT-IMAGE-004](../formats/FMT-IMAGE-004.md) | Palette colour | supported |
+| [RULE-IMAGE-001](../rules/RULE-IMAGE-001.md) | Decoding an image frame, and the row encoding | supported |
+| [RULE-IMAGE-002](../rules/RULE-IMAGE-002.md) | Decoding a planar image frame | supported |
 | [RULE-RNG-001](../rules/RULE-RNG-001.md) | The game's random number generator and its reductions | supported |

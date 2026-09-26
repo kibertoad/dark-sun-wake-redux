@@ -7,8 +7,8 @@ semantics.
 | Format/family | Observed role | Current knowledge | Confidence | Required failure behavior |
 |---|---|---|---|---|
 | `*.GFF` | Shared resources, numbered regions, and legacy saves | The container, its directory, tag tables and `GFFI` index are described by `FMT-GFF-001` to `FMT-GFF-007`, which also define the `FILE.GFF#TAG/number` resource reference; tag payloads are described below where known | see the format entries for the container; per-tag confidence below | Bound file size (512 MiB), tag tables (4,096) and resources (1,000,000), and every count/offset/length; reject overflow, truncation, invalid secondary references, duplicate tags or numbers, and partial overlaps with source context |
-| GFF `BMP `, `CBMP`, `ICON`, `PORT` | Indexed image frames | Shared size/frame envelope plus sparse row, `PLAN`, and `PLNR` encodings are decoded to palette indices and alpha. `EXE-GOG-IMAGE-001` independently establishes native distinct dispatch for `PLAN` and `PLNR` on bounded tile/object image paths. `EXE-GOG-IMAGE-002` additionally establishes a generic native selector/cache for `BMP `/`CBMP` and a separate generic window-image request path. `EXE-GOG-PORT-001` finds no literal `PORT` tag in the main executable, not a screen-specific behavior or timing contract | verified for all matching resources in the owned build, including all 178 `PORT` records; high for the native tag distinction, generic cache/request boundary, and bounded literal-tag absence | Bound payload, frame count, offsets, dimensions, total pixels, compressed runs, dictionaries, and bitstreams; reject malformed input with resource identity; do not infer frame scheduling, cache policy, composition, or actor semantics from decoder dispatch |
-| GFF `PAL ` | 256-color palettes | Exactly 256 RGB triples with 6-bit VGA components, scaled by four to 8-bit channels | verified for all matching resources in the owned build | Require exactly 768 bytes and reject components outside `0..63` |
+| GFF `BMP `, `CBMP`, `ICON`, `PORT`, `TILE` | Indexed image frames | Described by `FMT-IMAGE-001` and `FMT-IMAGE-002`, decoded by `RULE-IMAGE-001` and `RULE-IMAGE-002` | see the spec entries | Bound payload, frame count, offsets, dimensions, total pixels, compressed runs, dictionaries, and bitstreams; reject malformed input with resource identity; do not infer frame scheduling, cache policy, composition, or actor semantics from decoder dispatch |
+| GFF `PAL ` | 256-color palettes | Described by `FMT-IMAGE-003` and `FMT-IMAGE-004` | see the spec entries | Require exactly 768 bytes and reject components outside `0..63` |
 | GFF `FONT` | Indexed bitmap glyphs | A shared-height 256-glyph table with character map, absolute offsets, widths, and palette-index pixels is decoded | verified for `FONT` #100 in `RESOURCE.GFF` | Bound payload, count, height, offsets, widths, total pixels, and exact record ends |
 | GFF `TEXT` | Short text tables | Printable 7-bit ASCII lines with mandatory CRLF delimiters and final terminator | verified for all 62 records in `RESOURCE.GFF` | Bound payload, line count, and line length; reject unsupported bytes and bare/missing terminators |
 | GFF `CHAR` envelope, identity, and abilities | Original character records | Version 1 has a 79-byte fixed header followed by a byte-counted sequence of 33-byte uninterpreted tail records; six one-byte ability scores at offsets 35..40 follow manual Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma order; the name is printable ASCII, NUL-terminated within a 16-byte slot at offset 43; remaining fields are uninterpreted | high across all 19 records in the owned `CHARSAVE.GFF`; not runtime-validated | Require version 1 and exact `79 + count * 33` size; bound score range and name slot; stop at the first NUL because later slot bytes may be stale; reject trailing data, out-of-range scores, and empty, unterminated, or non-printable names |
@@ -132,43 +132,15 @@ this region under the corroborating wall-number rule.
 
 ## Indexed images and palettes
 
-**Evidence:** `DATA-GOG-IMAGE-001`, corroborated by `SRC-DSUN-MUSIC-79B6927`.
+The image and palette layouts are `FMT-IMAGE-001` to `FMT-IMAGE-004`, and the
+frame encodings `RULE-IMAGE-001` and `RULE-IMAGE-002`. The rebuild's reader caps
+a payload at 64 MiB, a frame count and either dimension at 4,096, one frame at
+16 Mi pixels, and all frames in an image at 64 Mi pixels. It widens each 6-bit
+palette component as `FMT-IMAGE-004` describes.
 
-Bounded inspection decoded every `BMP `, `CBMP`, `ICON`, and `PAL ` resource in
-all 26 installed GFF files. `RESOURCE.GFF` contains 653 image resources with
-1,109 frames and 20 palettes; `OBJEX.GFF` contains 3,857 image resources with
-8,170 frames; 20 region GFFs each contain one palette. The observed total is
-4,510 images, 9,279 frames, and 40 palettes. These counts validate the payload
-readers, not the semantic purpose or correct palette pairing of each resource.
-
-An image payload begins with its exact 32-bit byte size, a 16-bit frame count,
-and one strictly increasing 32-bit frame offset per frame. Each frame begins
-with a 16-bit width and height. Frames then use one of these observed forms:
-
-- Sparse rows name a row, then one or more bounded runs. Each run records its
-  horizontal start, final-run/high-X flags, decoded length, encoded length, and
-  PackBits-like literal or repeated palette-index data. Pixels not covered by a
-  run remain transparent.
-- `0xff` plus `PLAN` selects an MSB-first packed-symbol stream over a local
-  palette-index dictionary.
-- `0xff` plus `PLNR` uses the same dictionary and bit order with repeated-symbol
-  commands. A decoded dictionary value of zero is transparent in both planar
-  variants.
-
-The reader caps a payload at 64 MiB, a frame count and either dimension at
-4,096, one frame at 16 Mi pixels, and all frames in an image at 64 Mi pixels.
-Palette payloads contain exactly 256 RGB triples. Each stored component is in
-the VGA range `0..63`; multiplying by four produces the decoded channel range
-`0..252`. Resource-to-palette mapping, display composition, frame origins, and
-animation timing remain open.
-
-The same indexed-image envelope also decodes all 178 `PORT` records in
-`GPLDATA.GFF`. `PORT` #18 is one 72x72 frame and is independently associated
-with the first captured Tyr conversation by `GPL` #135's preceding portrait
-selection instruction. `GPLDATA.GFF` contains no palette record, so the derived
-dialogue portrait currently uses the separately evidenced interface palette
-`PAL ` #1000. This correlation establishes the captured composition only; it
-does not establish a universal palette rule for every portrait.
+`GPLDATA.GFF` contains no palette, so the derived dialogue portrait uses the
+interface palette `PAL ` #1000. Which palette the original pairs with each image
+is an open question of `FMT-IMAGE-001`.
 
 ## Indexed bitmap fonts
 
