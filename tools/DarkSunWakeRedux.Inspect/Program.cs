@@ -545,6 +545,36 @@ if (args.Length == 2 && args[0].Equals("fbov-profile", StringComparison.OrdinalI
     }
 }
 
+if (args.Length == 3 && args[0].Equals("unlzexe", StringComparison.OrdinalIgnoreCase))
+{
+    try
+    {
+        var packedPath = Path.GetFullPath(args[1]);
+        var outputPath = Path.GetFullPath(args[2]);
+        if (File.Exists(outputPath))
+            throw new ArgumentException($"The output file already exists: {outputPath}");
+        var packed = await File.ReadAllBytesAsync(packedPath);
+        var unpacked = LzexeUnpacker.Unpack(packed, packedPath);
+        await File.WriteAllBytesAsync(outputPath, unpacked);
+        Console.WriteLine(JsonSerializer.Serialize(new
+        {
+            packedPath,
+            packedSize = packed.Length,
+            packedXxh3 = ContentHash.Xxh3(packed),
+            outputPath,
+            unpackedSize = unpacked.Length,
+            unpackedXxh3 = ContentHash.Xxh3(unpacked)
+        }, new JsonSerializerOptions { WriteIndented = true }));
+        return 0;
+    }
+    catch (Exception exception) when (exception is InvalidDataException or IOException or
+                                      UnauthorizedAccessException or ArgumentException)
+    {
+        Console.Error.WriteLine($"[unlzexe_unavailable] {exception.Message}");
+        return 2;
+    }
+}
+
 if (args.Length == 6 && args[0].Equals("resource-word-overlap", StringComparison.OrdinalIgnoreCase))
 {
     try
@@ -815,6 +845,7 @@ if (args.Length != 1 || !Directory.Exists(args[0]))
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect record-profile <owned-original.gff> <tag; use _ for padded space> <resource-number> <candidate-record-width>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect raster-profile <owned-original.gff> <tag; use _ for padded space> <resource-number> <candidate-width>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect fbov-profile <owned-original.exe>");
+    Console.Error.WriteLine("  DarkSunWakeRedux.Inspect unlzexe <owned-lzexe-packed.exe> <output-outside-repository.exe>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect resource-word-overlap <source.gff> <source-tag; use _ for padded space> <source-number> <target.gff> <target-tag; use _ for padded space>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect lane-word-namespace-profile <source.gff> <source-tag; use _ for padded space> <source-number> <record-width> <lane-width> <word-offset> <target.gff> <target-tag; use _ for padded space>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect pair-resource-overlap <owned-pair-table> <owned-original.gff> <tag; use _ for padded space>");

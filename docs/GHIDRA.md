@@ -83,6 +83,14 @@ resident address such as `5000:A4B9` is the same in both images and is cited as
 it is, while overlay code is cited as `DSUN.EXE+0x...` from the reporter's
 `FileOffset`.
 
+`CHARTRAN.EXE` is compressed by LZEXE 0.91 (`LZ91` at offset `0x1C`), so its
+strings and code are not visible in the shipped file. Unpack it first with
+`dotnet run --project tools/DarkSunWakeRedux.Inspect -- unlzexe <packed.exe>
+<output.exe>`, writing the output outside the repository, and import the
+unpacked file into Ghidra. The command prints the size and XXH3-128 of both
+files. A search of the packed file is not evidence of absence. `DSUN.EXE`,
+`SOUND_DS.EXE`, `SVIEW.EXE` and `PATCH.EXE` carry no packer signature.
+
 ## Headless workflow
 
 Create a uniquely named disposable project below `%TEMP%` and import the
