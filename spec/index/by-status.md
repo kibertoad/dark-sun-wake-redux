@@ -53,7 +53,7 @@ Entries by status.
 
 ## supported
 
-89 entries.
+91 entries.
 
 | ID | Title |
 |---|---|
@@ -132,6 +132,8 @@ Entries by status.
 | [RULE-SCRIPT-008](../rules/RULE-SCRIPT-008.md) | The script instructions that register attack and move-tile triggers |
 | [RULE-SCRIPT-009](../rules/RULE-SCRIPT-009.md) | The script trace instructions |
 | [RULE-TALK-001](../rules/RULE-TALK-001.md) | The script instruction that offers a menu of responses and runs the chosen one |
+| [RULE-TIME-001](../rules/RULE-TIME-001.md) | The game waits a number of milliseconds by reading the timer chip until enough counts have passed |
+| [RULE-TIME-002](../rules/RULE-TIME-002.md) | The timer interrupt runs at the shortest period any of 17 timer slots asks for, given in microseconds |
 | [RULE-UI-001](../rules/RULE-UI-001.md) | Which controls the window code offers an event or the pointer to, by their event masks |
 | [SCR-COMBAT-001](../screens/SCR-COMBAT-001.md) | Combat status panel |
 | [SCR-UI-001](../screens/SCR-UI-001.md) | Start window |
@@ -161,7 +163,7 @@ Entries by status.
 
 ## recorded
 
-195 entries.
+200 entries.
 
 | ID | Title |
 |---|---|
@@ -328,6 +330,11 @@ Entries by status.
 | [FND-TEXT-004](../findings/FND-TEXT-004.md) | The TEXT tag occurs twice in the resident image as unreferenced data and three times in the pack |
 | [FND-TEXT-005](../findings/FND-TEXT-005.md) | DSUN.EXE holds the Preferences difficulty labels, descriptions and About lines as one data block |
 | [FND-TEXT-006](../findings/FND-TEXT-006.md) | Ghidra finds no direct reference to the Preferences tables or their strings |
+| [FND-TIME-001](../findings/FND-TIME-001.md) | DSUN.EXE reads the BIOS time of day at startup and in one word mixer, and nowhere else |
+| [FND-TIME-002](../findings/FND-TIME-002.md) | The four INT 15h calls in DSUN.EXE ask for extended-memory services, not the BIOS wait |
+| [FND-TIME-003](../findings/FND-TIME-003.md) | The only read of the VGA status port is a word copy that waits for a blank before each word |
+| [FND-TIME-004](../findings/FND-TIME-004.md) | A calibrated millisecond wait reads the timer chip, and five overlays call it with fixed and computed durations |
+| [FND-TIME-005](../findings/FND-TIME-005.md) | A resident routine reprograms timer channel 0 to the shortest of up to 17 periods given in microseconds |
 | [FND-UI-001](../findings/FND-UI-001.md) | RESOURCE.GFF holds 28 WIND, 139 BUTN, 97 APFM and 7 EBOX resources, each opening with its tag, size and number |
 | [FND-UI-002](../findings/FND-UI-002.md) | A WIND resource is a 261-byte fixed part and a counted list of 30-byte child records |
 | [FND-UI-003](../findings/FND-UI-003.md) | Bytes 0xC to 0xA7 of a WIND resource copy an EBOX or a BUTN record |
@@ -478,6 +485,8 @@ Entries whose Open questions section says more than None known.
 | [RULE-SCRIPT-008](../rules/RULE-SCRIPT-008.md) | The script instructions that register attack and move-tile triggers | supported |
 | [RULE-SCRIPT-009](../rules/RULE-SCRIPT-009.md) | The script trace instructions | supported |
 | [RULE-TALK-001](../rules/RULE-TALK-001.md) | The script instruction that offers a menu of responses and runs the chosen one | supported |
+| [RULE-TIME-001](../rules/RULE-TIME-001.md) | The game waits a number of milliseconds by reading the timer chip until enough counts have passed | supported |
+| [RULE-TIME-002](../rules/RULE-TIME-002.md) | The timer interrupt runs at the shortest period any of 17 timer slots asks for, given in microseconds | supported |
 | [RULE-UI-001](../rules/RULE-UI-001.md) | Which controls the window code offers an event or the pointer to, by their event masks | supported |
 | [SCR-COMBAT-001](../screens/SCR-COMBAT-001.md) | Combat status panel | supported |
 | [SCR-UI-001](../screens/SCR-UI-001.md) | Start window | supported |

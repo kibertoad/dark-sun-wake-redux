@@ -203,7 +203,7 @@ the documented control role from the state that has not yet been measured.
 |---|---|---|
 | Music, sound effects, animations, voice effects | The manual defines each as an on/off toggle; voice applies to CD-capable installs | Initial on/off state, state storage, visual frame mapping, and audio routing |
 | Music and sound-effects volume | Each is a slider adjusted through buttons at its two ends | Numerical range, increment, initial value, displayed fill, and mixer mapping |
-| Difficulty | The executable table orders the four labels Easy, Balanced, Hard, Hideous; the manual assigns it to combat difficulty. SRC-GAMEFAQS-81038 reports a hostile-HP-at-spawn hypothesis (`RULE-COMBAT-007`) | Selected default, its relationship to the manual's conflicting “Average” wording, mutations, hostile-HP multipliers/rounding/timing, and rule consumers |
+| Difficulty | The executable table orders the four labels Easy, Balanced, Hard, Hideous; the manual assigns it to combat difficulty. SRC-GAMEFAQS-81038 reports a hostile-HP-at-spawn hypothesis (`RULE-COMBAT-007`) | Selected default, its relationship to the manual's conflicting "Average" wording, mutations, hostile-HP multipliers/rounding/timing, and rule consumers |
 | About | The manual specifies version, copyright, support, hint-line, and address information; the executable supplies nine centered lines | Modal geometry, backdrop, input dismissal, and native transition |
 
 Direct-reference and scalar probes find no literal binding from the executable
@@ -239,16 +239,15 @@ the start flow and current exploration state reproducible.
   gameplay or presentation state.
 - The opening actor's current single-cell footprint and 125 ms semantic step
   are explicit modern policies, not claims about the native implementation.
-- `EXE-GOG-TIMING-001` establishes BIOS tick use only for startup/mixing paths,
-  not actor or animation cadence. `EXE-GOG-TIMING-002` finds that all four
-  literal `INT 15h` sites select extended-memory services (`AH=87h`/`88h`),
-  rather than the BIOS wait service (`AH=86h`). `EXE-GOG-TIMING-003` adds a
-  CPU-busy VGA-status transition poll around a generic word-copy path, not a
-  semantic clock. `EXE-GOG-TIMING-004` additionally bounds direct PIT latch/
-  read and programming routines, but finds no recovered feature owner or
-  duration contract. `EXE-GOG-SOUND-003` separately finds no `INT 15h` opcode
-  in the loaded sound-helper image. None must be recreated as an
-  interrupt-disabled render loop, hardware timer, or actor scheduler.
+- The original's clocks known so far are `RULE-TIME-001` (a millisecond
+  wait that watches the timer chip, used for fixed pauses) and
+  `RULE-TIME-002` (a timer interrupt at the shortest period any timer slot
+  asks for). Neither is tied to actor movement or animation yet
+  (`Q-TIME-001`), and the BIOS time-of-day reads, `INT 15h` sites and
+  display-status copy are not clocks (`FND-TIME-001` to `FND-TIME-003`).
+  `EXE-GOG-SOUND-003` separately finds no `INT 15h` opcode in the loaded
+  sound-helper image. None must be recreated as an interrupt-disabled render
+  loop, hardware timer, or actor scheduler.
   `EXE-GOG-MEDIA-001` finds no literal FLI
   header-validation lead, and `EXE-GOG-MEDIA-002` finds no direct reference to
   the embedded filename/path entries. `FND-IMAGE-008` likewise finds no

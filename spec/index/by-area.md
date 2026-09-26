@@ -384,7 +384,15 @@ None.
 
 ## TIME
 
-None.
+| ID | Title | Status |
+|---|---|---|
+| [FND-TIME-001](../findings/FND-TIME-001.md) | DSUN.EXE reads the BIOS time of day at startup and in one word mixer, and nowhere else | recorded |
+| [FND-TIME-002](../findings/FND-TIME-002.md) | The four INT 15h calls in DSUN.EXE ask for extended-memory services, not the BIOS wait | recorded |
+| [FND-TIME-003](../findings/FND-TIME-003.md) | The only read of the VGA status port is a word copy that waits for a blank before each word | recorded |
+| [FND-TIME-004](../findings/FND-TIME-004.md) | A calibrated millisecond wait reads the timer chip, and five overlays call it with fixed and computed durations | recorded |
+| [FND-TIME-005](../findings/FND-TIME-005.md) | A resident routine reprograms timer channel 0 to the shortest of up to 17 periods given in microseconds | recorded |
+| [RULE-TIME-001](../rules/RULE-TIME-001.md) | The game waits a number of milliseconds by reading the timer chip until enough counts have passed | supported |
+| [RULE-TIME-002](../rules/RULE-TIME-002.md) | The timer interrupt runs at the shortest period any of 17 timer slots asks for, given in microseconds | supported |
 
 ## SOUND
 

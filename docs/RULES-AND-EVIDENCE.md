@@ -195,7 +195,7 @@ the owned build.
   click routing, shared live occupancy, and bounded fixed-step advancement; the
   runtime placement currently supplies a provisional single-cell footprint.
   Its 125 ms semantic step and four-step catch-up cap are explicit modern
-  runtime policies, not original-parity claims. `EXE-GOG-TIMING-001` rules out
+  runtime policies, not original-parity claims. `FND-TIME-001` rules out
   deriving a cadence from the bounded BIOS-tick paths, which are not an actor
   scheduler.
 - **Tests:** optimal open-grid route, stable obstacle detour, blocked endpoint,
