@@ -1,6 +1,6 @@
 # SOUND
 
-Next ID: Q-SOUND-005
+Next ID: Q-SOUND-006
 
 ## Static
 
@@ -25,6 +25,11 @@ Next ID: Q-SOUND-005
   `4A32:0011`, `4ABF:01E5`, `4A32:0185`, and the stores to `current_region` at `277B:03C1` and in
   overlay 187. Tried: a search for stores to `music_mode`, which finds only `2834:000C` and the two
   speech calls of `2834:0001` (FND-SOUND-012). Blocks: slice 7.
+- Q-SOUND-005. RULE-SOUND-003: Does the game ever play a `PLYL` playlist or the `CSEQ` sequence,
+  and through which code? Settles it: a caller of `2660:0004`, a writer of the far pointers at
+  `DS:3496` and `DS:349A` that `2660:01AF` sets, and the resource lookups of the FM or MIDI branch
+  of `4A32:0011`. Tried: searches of `DSUN.EXE` for the tags and for far calls to the playlist
+  routines, which find none (FND-SOUND-014, FND-SOUND-015). Blocks: none.
 
 ## Emulated call
 

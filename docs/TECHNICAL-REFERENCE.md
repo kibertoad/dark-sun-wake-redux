@@ -152,11 +152,10 @@ rejecting unsupported semantics:
   describes where overlay code sits, not how or when it runs. Static queries
   into overlay code use the local-only mapped image described in
   `docs/GHIDRA.md`.
-- `EXE-GOG-SMALLTAG-001` finds no literal loader lead for `PLYL` or `CSEQ` in
-  `DSUN.EXE`. `DATA-GOG-SMALLTAG-001` bounds their owned inventories
-  and short envelopes, and `FND-PARTY-019` rejects a direct installed-`CHAR`
-  resource number in every `PLYL` byte and unaligned 16-bit window; neither
-  family has a known runtime role. The `GREQ` and `CACT` resources are
+- The six `PLYL` resources are playlists of song and sound-effect pairs that
+  match an uncalled playlist routine (`FND-SOUND-014`), and `CSEQ` #1000 is an
+  XMIDI sequence that plays no note (`FND-SOUND-015`). `DSUN.EXE` names
+  neither tag, and no code that reads either family is located. The `GREQ` and `CACT` resources are
   `FMT-SAVE-002` and `FMT-SAVE-001`: overlay 192 writes and reads `GREQ` when
   it saves and loads a game (`FND-SAVE-004`, `FND-SAVE-005`), and `CACT` holds
   the identifiers of stored characters (`FND-PARTY-011`, `FND-PARTY-012`).

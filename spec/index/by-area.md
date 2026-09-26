@@ -413,6 +413,8 @@ None.
 | [FND-SOUND-011](../findings/FND-SOUND-011.md) | At startup the game reads SOUND.CFG and DJ.DAT, a table of 38 six-byte music records | recorded |
 | [FND-SOUND-012](../findings/FND-SOUND-012.md) | Once per pass of the main loop the game picks a music track from DJ.DAT by region, music mode and party health | recorded |
 | [FND-SOUND-013](../findings/FND-SOUND-013.md) | The music routine plays song n as audio track n + 1 of the disc when SOUND.CFG asks for disc music | recorded |
+| [FND-SOUND-014](../findings/FND-SOUND-014.md) | The six PLYL resources are lists of byte pairs ending in 0 or 100, the shape an uncalled playlist routine reads | recorded |
+| [FND-SOUND-015](../findings/FND-SOUND-015.md) | CSEQ resource 1000 is an Extended MIDI file with one sequence that sets a tempo, loops and plays no note | recorded |
 | [RULE-SOUND-001](../rules/RULE-SOUND-001.md) | A sound effect plays the BVOC resource of its number, or the installed SOUND file when there is no such resource | supported |
 | [RULE-SOUND-002](../rules/RULE-SOUND-002.md) | A spoken line plays INTR files from the disc below 50 and SPCH files from the installation or the disc from 50 up | supported |
 | [RULE-SOUND-003](../rules/RULE-SOUND-003.md) | Music is chosen from DJ.DAT by region at startup and by party health in combat, and plays as a disc audio track | supported |

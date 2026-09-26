@@ -16,9 +16,9 @@ Next ID: Q-SCRIPT-007
   when does the game test each list and run its scripts? Settles it: the code
   that writes the words at `4C0D:0001` to `4C0D:0009`, the callers of the four
   walkers in segment `1695` and of `2D40:0EF1`, and the handlers of the other
-  trigger instructions. Tried: `CSEQ` resource 1000, the separate 19-byte list
-  and the `SCMD` loader (FND-SCRIPT-016, FND-SCRIPT-018), none of which fills
-  the 13-byte records; the trigger instructions fill them (FND-SCRIPT-015).
+  trigger instructions. Tried: `CSEQ` resource 1000, an XMIDI file
+  (FND-SOUND-015), the separate 19-byte list and the `SCMD` loader
+  (FND-SCRIPT-016, FND-SCRIPT-018), none of which fills the 13-byte records; the trigger instructions fill them (FND-SCRIPT-015).
   Blocks: slices 3-6.
 - Q-SCRIPT-003. RULE-SCRIPT-001, RULE-SCRIPT-002, RULE-SCRIPT-003,
   RULE-SCRIPT-004: What do the helpers of the interpreter do: `fn_172C_31ED`,

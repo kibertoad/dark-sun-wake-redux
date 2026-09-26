@@ -218,60 +218,6 @@ FND-SOUND-002.
   placement, and movement timing remain open. The opening anchor convention
   itself is now evidenced by `FND-ACTOR-002` and `EXE-GOG-REGION-001`.
 
-### DATA-GOG-SMALLTAG-001 - Opaque PLYL and CSEQ envelope inventory
-
-- **Question:** Do the short `PLYL` or `CSEQ` resources yield a structural
-  format or feature assignment that can support game behavior?
-- **Method:** Read the verified local-pack manifest's source mapping and DSOP
-  lengths. Each DSOP has the fixed ten-byte envelope header; subtracting that
-  header reports the original payload lengths without retaining source bytes.
-- **Finding:** `RESOURCE.GFF` contributes six `PLYL` resources (#0, #10,
-  #50-#53) whose payload lengths are 3, 5, or 7 bytes, and one 78-byte `CSEQ`
-  #1000. These inventory facts establish no shared record layout, field
-  boundary, consumer, or feature meaning. `EXE-GOG-SMALLTAG-001` finds no
-  literal executable tag path for either family. The `GREQ` and `CACT`
-  resources of `CHARSAVE.GFF` are `FMT-SAVE-002` and `FMT-SAVE-001`.
-- **Confidence:** high for supported-edition identities, counts, sources, and
-  payload lengths; unknown for every field, loader, ownership, and
-  player-visible behavior.
-- **Implementation:** retain both families as DSOP and do not add format
-  readers or assign sequence, interaction, or combat roles.
-- **Tests:** exact owned-pack inventory/hash verification and generic DSOP
-  envelope bounds/read-back; no semantic fixture is introduced.
-
-### DATA-GOG-CSEQ-001 - CSEQ stride does not establish the runtime selector source
-
-- **Question:** Does `RESOURCE.GFF` `CSEQ` #1000's exact 78-byte envelope
-  establish the source or record layout of the independently observed 13-byte
-  runtime selector table?
-- **Method:** The metadata-only `record-profile` inspector verifies that 78
-  divides into six candidate 13-byte records and reports aggregate byte-column
-  statistics only. The `lane-word-namespace-profile` inspector then compares
-  each complete aligned little-endian word at offsets 0, 2, 4, 6, 8, and 10 in
-  those candidate records with all 330 `GPL ` resource numbers in the owned
-  `GPLDATA.GFF`, reporting counts only.
-- **Finding:** `CSEQ` #1000 is exactly six 13-byte units. At the runtime
-  selector's leading-word position, only one of six aligned values belongs to
-  the GPL resource-number set; the other tested word positions have 1, 1, 0,
-  1, 0, and 2 GPL-set members respectively. The aggregate byte profile also
-  finds five distinct values at offset 11 (including two zeroes) and four at
-  offset 12 (including three zeroes). These facts do not reproduce a uniform
-  leading GPL identity, a 200-record source set, or a proven offset-11 link
-  contract.
-- **Interpretation:** matching the 13-byte arithmetic stride is a structural
-  coincidence or, at most, a candidate transformation lead. It does not show
-  that `CSEQ` populates the runtime table, that its six units are selector
-  records, or that either data family has a dialogue, quest, map, combat, or
-  script-execution role. Indirection, expansion, transformation, and another
-  source remain possible.
-- **Confidence:** high for the owned resource identity/length, six-unit
-  arithmetic, aggregate word-membership counts, and aggregate offset-11/12
-  column counts; unknown for every field and runtime relationship.
-- **Implementation consequence:** retain `CSEQ` as DSOP. Do not add a CSEQ
-  reader, connect it to the 13-byte selector table, or use it to select a GPL
-  resource without a constrained native population path or controlled runtime
-  observation.
-
 ## Conflict handling
 
 SRC-GAMEFAQS-81038 reports discrepancies between documentation and shipped behavior.

@@ -168,7 +168,7 @@ Entries by status.
 
 ## recorded
 
-213 entries.
+215 entries.
 
 | ID | Title |
 |---|---|
@@ -338,6 +338,8 @@ Entries by status.
 | [FND-SOUND-011](../findings/FND-SOUND-011.md) | At startup the game reads SOUND.CFG and DJ.DAT, a table of 38 six-byte music records |
 | [FND-SOUND-012](../findings/FND-SOUND-012.md) | Once per pass of the main loop the game picks a music track from DJ.DAT by region, music mode and party health |
 | [FND-SOUND-013](../findings/FND-SOUND-013.md) | The music routine plays song n as audio track n + 1 of the disc when SOUND.CFG asks for disc music |
+| [FND-SOUND-014](../findings/FND-SOUND-014.md) | The six PLYL resources are lists of byte pairs ending in 0 or 100, the shape an uncalled playlist routine reads |
+| [FND-SOUND-015](../findings/FND-SOUND-015.md) | CSEQ resource 1000 is an Extended MIDI file with one sequence that sets a tempo, loops and plays no note |
 | [FND-TALK-001](../findings/FND-TALK-001.md) | Script instruction 0x48 lists up to 25 menu entries whose condition is 1 and pushes a frame at the chosen entry's target |
 | [FND-TALK-002](../findings/FND-TALK-002.md) | GPL 135 opens with portrait 18 and a menu of eight entries titled by global string 4, which MAS 99 assigns with strings 5 and 6 |
 | [FND-TALK-003](../findings/FND-TALK-003.md) | About 709 menus in 219 scripts have up to 24 entries and almost all are titled by global string 4; global flag 357 appears only in GPL 135 |
