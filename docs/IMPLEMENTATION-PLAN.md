@@ -166,12 +166,23 @@ extending behavior" and "Measured reproduction, never speculative gameplay").
   testing.
 - **Acceptance: original content.** Readers bound offsets, counts, sizes,
   decompression, names and output paths.
+- **Headless runner.** The protocol puts the runner in the first slice, and
+  this plan adopted the protocol after Slice 2B, so it is built here. The
+  runner opens a session from a fixture (pack, seed, starting state and
+  commands), applies the commands without a window, and returns the events,
+  the state hash and the 320x200 logical frame. Every later test that
+  compares the rebuild with an owner capture or an emulated-call fixture
+  drives the rebuild through it.
 - **Automated tests.** Parser boundary and malformed-input tests; party
   invariants; the origin modifier table; start-flow commands, events,
-  snapshots, hashes and replays; UI graph resolution and hit testing.
+  snapshots, hashes and replays; UI graph resolution and hit testing; a test
+  that drives the runner from a synthetic fixture in CI, and a
+  `// needs: GAME_DIR` test that drives it from a fixture naming a capture
+  under `GAME_DIR/captures/` and skips when the capture is absent.
 - **Exit.** Every row of `parity/PARTY.md` and the rows of `SCR-UI-001` to
   `SCR-UI-004` reach Code `complete` with Status `implemented`, or `partial`
-  with a `Spec gap:` note; `Q-PARTY-001` is closed or accepted in Risks.
+  with a `Spec gap:` note; `Q-PARTY-001` is closed or accepted in Risks; both
+  runner tests exist, and the synthetic one passes in CI.
 
 ### Slice 3: First Tyr exploration and conversation
 
