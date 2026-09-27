@@ -77,3 +77,17 @@ text.
 authoritative research-batch rules with the template, and identify the upstream
 revision it represents. Keep the remote page as the source of updates, with an
 explicit way to detect when the local snapshot needs refreshing.
+
+## 7. Accept canonical overlay offsets as executable finding locations
+
+The build and Ghidra guide identify `DSUN.EXE` overlay code by shipped-file
+offset because it has no fixed runtime address. The documentation checker
+rejects `offset: 0x...` for an MZ executable and also rejects an `address:`
+value written as `DSUN.EXE+0x...`. For FND-CONFIG-009 and FND-UI-033, the
+location metadata therefore names only an overlay's resident header; the
+precise code offset has to be written in the finding body.
+
+**Request:** let an executable finding location use a build-defined canonical
+file-offset notation for overlay, banked or packed code, and validate that the
+offset falls within the build's documented mapped range. This would make the
+machine-checked location as precise as the finding itself.
