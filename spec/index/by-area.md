@@ -490,6 +490,8 @@ Entries by area.
 | [FND-CONFIG-016](../findings/FND-CONFIG-016.md) | Literal PREF tags occur in save-load code and one resident data site | recorded |
 | [FND-CONFIG-017](../findings/FND-CONFIG-017.md) | The message-delay routine has resident text-message callers | recorded |
 | [FND-CONFIG-018](../findings/FND-CONFIG-018.md) | A WIND resource return value gates the message-delay wait | recorded |
+| [FND-CONFIG-019](../findings/FND-CONFIG-019.md) | The sound-library file entry loads SOUND.CFG whole without field parsing | recorded |
+| [FND-CONFIG-020](../findings/FND-CONFIG-020.md) | Sound initialization reads four SOUND.CFG fields and rewrites one conditionally | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

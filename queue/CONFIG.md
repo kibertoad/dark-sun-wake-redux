@@ -43,10 +43,13 @@ Next ID: Q-CONFIG-008
   acquisition and setup path, but does not establish its live outcomes.
 
 - Q-CONFIG-005. FMT-CONFIG-001: What does the game's sound library read from each field of
-  `SOUND.CFG`, including its unexplained tail? Settles it: a bounded reading of the sound
-  library's reader at `47B9:0236` (FND-CONFIG-005) and the consumers of its output. Tried:
-  comparison of the shipped file with `SOUND.INI` records, which names most fields but not the
-  tail (FND-CONFIG-003).
+  `SOUND.CFG`, including its unexplained tail? Settles it: bounded readings
+  of the remaining consumers of the whole-file buffer and the setup writer.
+  Tried: comparison of the shipped file with `SOUND.INI` records names most
+  fields but not the tail (FND-CONFIG-003). FND-CONFIG-019 shows the file
+  entry loads bytes whole, without parsing fields; FND-CONFIG-020 identifies
+  direct uses of `0x08`, `0x0A`, `0x14` and `0x32` in initialization. The
+  remaining fields and later initialization paths remain unread.
 
 - Q-CONFIG-006. FMT-CONFIG-002: How does the setup program parse `SOUND.INI`, including unknown
   or malformed keys, and what do `CardGroup` and the chunk numbers mean? Settles it: the parser

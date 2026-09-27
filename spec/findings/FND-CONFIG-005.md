@@ -47,15 +47,20 @@ message at `DS:09E7`, and no `sound.ini`. An earlier search in Ghidra for the up
 
 ## Interpretation
 
-The game reads `SOUND.CFG` through its sound library, which returns a far pointer, 0 when the file
-cannot be read, and the game then tells the player to run the setup. `.ad` is likely the start of
+The game reads `SOUND.CFG` through its sound library, which returns a far
+pointer. The game's zero-pointer branch tells the player to run setup; the
+loader's error branch after a buffer was allocated returns an untraced
+release routine's result (FND-CONFIG-019). `.ad` is likely the start of
 the driver names' extension. The byte at `DS:13F7` turns sound on or off; the load routine tests it
 too (FND-SAVE-005). The game does not read `SOUND.INI`. The earlier search missed the name because
 it is in lower case.
 
 ## Alternatives
 
-`47B9:0236` was not read, so what it returns and whether it reads the file whole are not shown.
+FND-CONFIG-019 reads `47B9:0236`: it returns a whole-file buffer on the
+visible success path, without parsing or validating the 59-byte layout there.
+FND-CONFIG-020 begins the field-consumer reading. The rest of sound-library
+initialization and other consumers remain open.
 That the loader puts the descriptor's segment in place of a fixup word is an assumption
 (FMT-EXE-005); here it gives a call that fits the message after it. What sets `DS:13F7` is not
 known; the command-line switches of `RAVAGER.BAT` may.
