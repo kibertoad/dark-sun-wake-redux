@@ -9,7 +9,7 @@ byte_order: little
 size: 9
 text: false
 definition: fmt_config_003.ksy
-evidence: [FND-CONFIG-001, FND-CONFIG-002, FND-CONFIG-009, FND-CONFIG-010, FND-CONFIG-012, FND-UI-033, FND-SAVE-004, FND-SAVE-005, FND-SOUND-007, FND-SOUND-008, FND-SOUND-011]
+evidence: [FND-CONFIG-001, FND-CONFIG-002, FND-CONFIG-009, FND-CONFIG-010, FND-CONFIG-012, FND-CONFIG-013, FND-UI-033, FND-SAVE-004, FND-SAVE-005, FND-SOUND-007, FND-SOUND-008, FND-SOUND-011]
 conflicting: []
 split_with: []
 related: []
@@ -27,7 +27,7 @@ address in BLD-GOG-EN-1.1.
 | `0x00` | 2 | `UINT16LE` | `difficulty_index` | The word at `DS:143A` indexes the four difficulty labels in order, 0 to 3. The shipped resource holds 0. | supported | FND-CONFIG-001, FND-CONFIG-009, FND-SAVE-004, FND-SAVE-005 |
 | `0x02` | 1 | `UINT8` | `music_level_request` | The byte at `DS:26B4` is passed to the sound library's music-level setter after loading and when music is enabled. The setter caps it at 100, or 90 for one driver type. The shipped resource holds 255. | supported | FND-CONFIG-001, FND-SAVE-004, FND-SAVE-005, FND-CONFIG-012 |
 | `0x03` | 1 | `UINT8` | `sound_effects_volume` | The byte at `DS:26B5` is changed by the sound-effect volume arrows in steps of seven, normally within 0 to 127. The shipped resource holds 63. | supported | FND-CONFIG-001, FND-CONFIG-010, FND-SAVE-004, FND-SAVE-005, FND-SOUND-011 |
-| `0x04` | 1 | `UINT8` | `unk_04` | Purpose unknown. The byte at `DS:26B6` is passed with the music-level request to a drawing path and receives the request when the sound library returns a smaller value. The shipped resource holds 255. | supported | FND-CONFIG-001, FND-SAVE-004, FND-SAVE-005, FND-CONFIG-012 |
+| `0x04` | 1 | `UINT8` | `music_bar_denominator` | The byte at `DS:26B6` scales the filled span of the Preferences music-level bar. It receives the unmodified request when the sound library returns a smaller level. The shipped resource holds 255. | supported | FND-CONFIG-001, FND-SAVE-004, FND-SAVE-005, FND-CONFIG-012, FND-CONFIG-013 |
 | `0x05` | 1 | `UINT8` | `sound_effects_enabled` | The byte at `DS:1435` changes through the sound-effects button and stops effect playback at zero. The shipped resource holds 1. | supported | FND-CONFIG-001, FND-CONFIG-010, FND-SAVE-004, FND-SAVE-005, FND-SOUND-007 |
 | `0x06` | 1 | `UINT8` | `music_enabled` | The byte at `DS:1436` changes through the music button. The shipped resource holds 1. | supported | FND-CONFIG-001, FND-CONFIG-010, FND-SAVE-004, FND-SAVE-005 |
 | `0x07` | 1 | `UINT8` | `animation_control_state` | The byte at `DS:1437` is passed as the drawn state of filmstrip button `BUTN/16303`. After loading, the game passes 4, 4, 16, 16 to a routine when it is not 0 and 16, 16, 16, 16 when it is. 0 in the shipped resource; its on/off polarity is not established. | supported | FND-CONFIG-001, FND-UI-033, FND-SAVE-004, FND-SAVE-005 |
@@ -48,10 +48,10 @@ The one `PREF` resource of the installed `CHARSAVE.GFF` [FND-CONFIG-001].
 
 ## Open questions
 
-- What `unk_04` contributes to the music-level drawing path, whether the
-  requested level is adjustable outside the ordinary Preferences arrows, and
-  how the driver translates a level into audible volume remain open
-  (FND-CONFIG-010, FND-CONFIG-012, Q-CONFIG-002).
+- Whether the requested music level is adjustable outside the ordinary
+  Preferences arrows, and how the driver translates a level into audible
+  volume remain open (FND-CONFIG-010, FND-CONFIG-012,
+  FND-CONFIG-013, Q-CONFIG-002).
 - Which polarity of `animation_control_state` means animations on, and what initializes it for a
   new game (FND-CONFIG-010, Q-CONFIG-002, Q-CONFIG-001).
 - Why the saved `speech_gate` and the unsaved on-screen voice byte `DS:14E4` both gate speech,

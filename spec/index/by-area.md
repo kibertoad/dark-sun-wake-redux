@@ -484,6 +484,7 @@ Entries by area.
 | [FND-CONFIG-010](../findings/FND-CONFIG-010.md) | Preferences button dispatch changes sound, animation, difficulty and message-delay state | recorded |
 | [FND-CONFIG-011](../findings/FND-CONFIG-011.md) | Overlay 172 gates the message-delay wait on a nonzero far pointer | recorded |
 | [FND-CONFIG-012](../findings/FND-CONFIG-012.md) | The saved PREF byte at offset 2 feeds the sound library's music-level setting | recorded |
+| [FND-CONFIG-013](../findings/FND-CONFIG-013.md) | The second saved music byte is the Preferences bar's scaling denominator | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

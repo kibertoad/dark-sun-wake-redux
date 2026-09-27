@@ -5,8 +5,7 @@ Next ID: Q-CONFIG-008
 ## Static
 
 - Q-CONFIG-002. FMT-CONFIG-003, RULE-CONFIG-001, RULE-CONFIG-002, RULE-CONFIG-003,
-  RULE-CONFIG-004: What is the full role of `PREF/100` byte `0x04`,
-  what initializes the settings for a new game, how do the saved speech gate and runtime
+  RULE-CONFIG-004: What initializes the settings for a new game, how do the saved speech gate and runtime
   voice button state relate, and can music volume be adjusted elsewhere? Settles it:
   bounded readings of the sound-library consumers, new-game initialization and voice
   synchronization paths. Tried: the save/load copies (FND-SAVE-004, FND-SAVE-005),
@@ -14,9 +13,9 @@ Next ID: Q-CONFIG-008
   and button dispatcher (FND-CONFIG-010) identify the difficulty, effect-volume,
   music/effects enable and animation-state fields and the ordinary button steps.
   FND-CONFIG-012 identifies byte `0x02` as the sound library's music-level
-  request and bounds byte `0x04` to its display and cap path. These readings do
-  not identify new-game values, animation polarity, the full role of byte
-  `0x04`, speech-gate synchronization or another music-level control. Blocks:
+  request; FND-CONFIG-013 identifies byte `0x04` as the music bar's denominator.
+  These readings do not identify new-game values, animation polarity,
+  speech-gate synchronization or another music-level control. Blocks:
   slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005: Does another path impose an upper limit on
