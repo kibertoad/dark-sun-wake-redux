@@ -4,7 +4,7 @@ title: The Preferences message-delay adjustment
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-CONFIG-010, FND-UI-034, FND-TIME-004, FND-CONFIG-017, FND-CONFIG-018, FND-CONFIG-030, FND-CONFIG-031, FND-CONFIG-032]
+evidence: [FND-CONFIG-010, FND-UI-034, FND-TIME-004, FND-CONFIG-017, FND-CONFIG-018, FND-CONFIG-030, FND-CONFIG-031, FND-CONFIG-032, FND-CONFIG-033]
 conflicting: []
 split_with: []
 related: [SCR-UI-007]
@@ -77,12 +77,14 @@ None known.
 - Which text-message calls pass the overlay 172 wait gate (Q-CONFIG-008).
   The wait requires a nonzero far pointer at `0300:0007`, set by the
   `WIND/10501` acquisition and setup call. The shipped image fields bypass
-  image registration failures, while resource acquisition and runtime bounds
+  image registration failures, and all graphics initializer bounds admit the
+  window; resource acquisition and possible later bounds writes
   remain open (FND-CONFIG-011, FND-CONFIG-017, FND-CONFIG-018,
-  FND-CONFIG-030, FND-CONFIG-031, FND-CONFIG-032, Q-TIME-003).
+  FND-CONFIG-030, FND-CONFIG-031, FND-CONFIG-032, FND-CONFIG-033,
+  Q-TIME-003).
   One reading is that the present resource makes every message call pass the
   gate (FND-UI-001); another is that resource acquisition, bounds or child
   registration fails depending on state (FND-CONFIG-018, FND-CONFIG-030,
-  FND-CONFIG-031, FND-CONFIG-032). Reading the resource acquisition and
-  bounds inputs and relevant callers, then checking original states if code
-  alone does not decide, would separate them.
+  FND-CONFIG-031, FND-CONFIG-032, FND-CONFIG-033). Reading resource
+  acquisition, later bounds writes and relevant callers, then checking
+  original states if code alone does not decide, would separate them.

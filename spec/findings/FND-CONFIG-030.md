@@ -56,7 +56,8 @@ calls. Resource acquisition, position registration and activation can
 still fail. The shipped dimensions and supplied position rule out a
 simple off-screen placement in a 320 by 200 state, but the runtime
 bounds globals and activation state have not been established for every
-message call.
+message call. FND-CONFIG-033 identifies the graphics initializer's three
+bounds pairs, all of which admit this window.
 
 ## Alternatives
 

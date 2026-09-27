@@ -508,6 +508,7 @@ Entries by area.
 | [FND-CONFIG-030](../findings/FND-CONFIG-030.md) | Message window setup has two remaining failure gates | recorded |
 | [FND-CONFIG-031](../findings/FND-CONFIG-031.md) | Message window child registration remains the setup failure path | recorded |
 | [FND-CONFIG-032](../findings/FND-CONFIG-032.md) | Shipped message controls bypass image registration failures | recorded |
+| [FND-CONFIG-033](../findings/FND-CONFIG-033.md) | Initialized display bounds admit the message window | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |
