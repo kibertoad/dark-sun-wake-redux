@@ -46,6 +46,15 @@ argument-0 path. Neither the Start Game branch nor this helper directly
 addresses the saved settings globals named in FMT-CONFIG-003, the runtime
 voice gate `DS:14E4`, or the message-delay word `DS:26B7`.
 
+After the helper returns, the Start Game branch passes `DS:140C` to overlay
+187's entry at `DSUN.EXE+0x00072254` and passes its double-word return to
+the entry at `DSUN.EXE+0x00071E9E`. It later calls overlay 182's entry at
+`DSUN.EXE+0x000699B7` once with zero and the entry at
+`DSUN.EXE+0x000693A2` with successive arguments 0 through 3. These are the
+resolved targets of raw far-call operands `05D8:00DE`, `05D8:00E3`,
+`05B0:00AC` and `05B0:0098`. FND-VIDEO-007 independently observes the two
+overlay 187 entries in a region path, without establishing their effects.
+
 ## Interpretation
 
 The button callback does not itself establish new-game settings values. Its
@@ -54,8 +63,8 @@ initialization points for Q-CONFIG-002 and Q-CONFIG-007.
 
 ## Alternatives
 
-The callback's event parameter and the setup helper's other callees' full
-effects were not established here. The button ID identifies a branch, but this reading alone
+The callback's event parameter and the named callees' full effects were not
+established here. The button ID identifies a branch, but this reading alone
 does not show that an ordinary click always reaches it. An unexamined callee
 may initialize settings or copy a larger block of state.
 
@@ -69,4 +78,6 @@ and the first jump-table target. Resolve the helper's far-call segment words
 as FBOV descriptor indexes shifted left by three, then read each descriptor's
 resident segment or overlay header. Inspect the bounded entry contexts at
 `2796:0514` and overlay 182's trampoline `46BD:0043`. Compare the button ID
-with FND-UI-024.
+with FND-UI-024. Continue the first button branch through
+`0x000812CF..0x00081322`, resolving four further FBOV far-call fixups to
+overlays 187 and 182.
