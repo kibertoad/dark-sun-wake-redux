@@ -119,3 +119,18 @@ the whole window, even though it belongs to the copied edit-box record.
 separately from copied control data, and label the latter as uncertain until
 its runtime use is established. A synthetic fixture with different values at
 `0x3A` and `0xC2` would guard against this false screen-background claim.
+
+## 10. Normalize resident MZ far-call targets before citing them
+
+While tracing the message window's child registration, the raw far-call
+segment operands `2EBE` and `2F96` initially looked like resident addresses.
+In this Ghidra import the load image begins at segment `1000`, so the mapped
+targets are `3EBE:0008` and `3F96:000B`. Reading the raw operands as mapped
+addresses led to unrelated bytes; FND-CONFIG-031 was corrected in the next
+research batch. This is separate from the FBOV fixup problem in item 8.
+
+**Request:** give the shared executable-analysis tooling a bounded far-call
+target reporter for ordinary MZ relocations. For one call site, show the raw
+operand, whether its segment word is relocated, the import's load segment,
+the mapped segment:offset and the shipped-file offset. Make the distinction
+between a raw operand and a citable mapped address explicit.
