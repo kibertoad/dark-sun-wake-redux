@@ -48,8 +48,10 @@ Next ID: Q-CONFIG-008
   Tried: comparison of the shipped file with `SOUND.INI` records names most
   fields but not the tail (FND-CONFIG-003). FND-CONFIG-019 shows the file
   entry loads bytes whole, without parsing fields; FND-CONFIG-020 identifies
-  direct uses of `0x08`, `0x0A`, `0x14` and `0x32` in initialization. The
-  remaining fields and later initialization paths remain unread.
+  direct uses of `0x08`, `0x0A`, `0x14` and `0x32` in initialization.
+  FND-CONFIG-021 adds the first four words as a group, another `0x08`
+  comparison, and further `0x14` and `0x32` branches. The tail and the
+  receiving routines' effects remain unread.
 
 - Q-CONFIG-006. FMT-CONFIG-002: How does the setup program parse `SOUND.INI`, including unknown
   or malformed keys, and what do `CardGroup` and the chunk numbers mean? Settles it: the parser

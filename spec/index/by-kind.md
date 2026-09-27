@@ -175,7 +175,7 @@ Entries by kind.
 
 ## findings
 
-242 entries.
+243 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -244,6 +244,7 @@ Entries by kind.
 | [FND-CONFIG-018](../findings/FND-CONFIG-018.md) | A WIND resource return value gates the message-delay wait | recorded |
 | [FND-CONFIG-019](../findings/FND-CONFIG-019.md) | The sound-library file entry loads SOUND.CFG whole without field parsing | recorded |
 | [FND-CONFIG-020](../findings/FND-CONFIG-020.md) | Sound initialization reads four SOUND.CFG fields and rewrites one conditionally | recorded |
+| [FND-CONFIG-021](../findings/FND-CONFIG-021.md) | Sound initialization passes the first configuration block and tests more flags | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |
