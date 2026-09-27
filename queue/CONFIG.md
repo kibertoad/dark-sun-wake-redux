@@ -24,7 +24,10 @@ Next ID: Q-CONFIG-008
   FND-CONFIG-025 corrects the resident `PREF` hit to a Preferences label;
   the direct tag uses found so far are in save/load. FND-CONFIG-026 bounds
   the literal difficulty-word writers to load, Preferences and the guarded
-  overlay branch, without excluding an indirect or block write. These readings
+  overlay branch, without excluding an indirect or block write. FND-CONFIG-027
+  bounds literal speech-gate writes to load, launcher and Preferences paths;
+  three table-like raw hits are overlay fixup payloads, and indirect or block
+  writes remain possible. These readings
   do not identify new-game values, animation
   polarity, any synchronization beyond those paths or another music-level control. Blocks:
   slice 3.
