@@ -23,16 +23,18 @@ Other areas' entries, queue files and parity rows. `src/` and `tests/`.
   dispatch or callback data for Q-CONFIG-002.
 - Q-CONFIG-007's window setup calls enter resident heap routines; inspect
   their result contract before inferring live message-delay outcomes.
+- Q-CONFIG-002's resident `PREF` byte match is a menu-label substring
+  (FND-CONFIG-025); follow indirect resource dispatch or settings writers.
 
 ## Handover
 
 - Stage: Slices, with slices 2 and 3 in progress.
-- Branch: `main`, twenty-seven commits ahead of `origin/main` including this
+- Branch: `main`, twenty-nine commits ahead of `origin/main` including this
   handover; not pushed.
 - Last gate: 2026-09-27, `./tools/Test.ps1` passed (700 tests);
-  documentation check passed (412 entries, 158 parity rows).
+  documentation check passed (413 entries, 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
-- Next: Q-CONFIG-002 through PREF data-site users or indirect dispatch;
+- Next: Q-CONFIG-002 through new-game settings writers or indirect dispatch;
   then Q-CONFIG-007 through new-game initialization; then Q-CONFIG-005
   through the setup input record and remaining sound-library branches.
