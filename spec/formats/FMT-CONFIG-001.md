@@ -9,7 +9,7 @@ byte_order: little
 size: 59
 text: false
 definition: fmt_config_001.ksy
-evidence: [FND-CONFIG-003, FND-CONFIG-004, FND-CONFIG-005, FND-CONFIG-012, FND-CONFIG-019, FND-CONFIG-020, FND-CONFIG-021, FND-SOUND-007, FND-SOUND-008, FND-SOUND-013]
+evidence: [FND-CONFIG-003, FND-CONFIG-004, FND-CONFIG-005, FND-CONFIG-012, FND-CONFIG-019, FND-CONFIG-020, FND-CONFIG-021, FND-CONFIG-022, FND-SOUND-007, FND-SOUND-008, FND-SOUND-013]
 conflicting: []
 split_with: []
 related: []
@@ -37,11 +37,11 @@ come from the values of the shipped file and the `SOUND.INI` record they match [
 | `0x14` | 2 | `UINT16LE` | `unk_14` | 11, the record's music driver chunk number. Bit `0x08` clears a library word during initialization; bit `0x02` gates a callback error path and disc audio track playback; bit `0x01` gates another callback error path. Other uses unknown. | supported | FND-CONFIG-003, FND-CONFIG-020, FND-CONFIG-021, FND-SOUND-013 |
 | `0x16` | 14 | `char[14]` | `music_driver` | The file name of the real-mode music driver, with its extension, padded with NULs. | supported | FND-CONFIG-003 |
 | `0x24` | 14 | `char[14]` | `digital_driver` | The file name of the real-mode digital sound driver, with its extension, padded with NULs. | supported | FND-CONFIG-003 |
-| `0x32` | 2 | `UINT16LE` | `unk_32` | 1 in the shipped file. Initialization replaces 1 or 2 with 4 in the loaded buffer when `DS:3417` equals 1, and those values also gate later string and file calls. A value of 3 makes the sound library cap a music-level request at 90 instead of 100. Other uses unknown. | supported | FND-CONFIG-003, FND-CONFIG-012, FND-CONFIG-020, FND-CONFIG-021 |
-| `0x34` | 2 | `UINT16LE` | `unk_34` | Purpose unknown. 4. | supported | FND-CONFIG-003 |
-| `0x36` | 2 | `UINT16LE` | `unk_36` | Purpose unknown. 8, the record's digital driver chunk number. | supported | FND-CONFIG-003 |
-| `0x38` | 2 | `UINT16LE` | `unk_38` | Purpose unknown. 11, the music driver chunk number again. | supported | FND-CONFIG-003 |
-| `0x3A` | 1 | `UINT8` | `unk_3a` | Purpose unknown. 0. | supported | FND-CONFIG-003 |
+| `0x32` | 2 | `UINT16LE` | `unk_32` | 1 in the shipped file, copied by setup from an input record at `+0x2A`. Initialization replaces 1 or 2 with 4 in the loaded buffer when `DS:3417` equals 1, and those values also gate later string and file calls. A value of 3 makes the sound library cap a music-level request at 90 instead of 100. Other uses unknown. | supported | FND-CONFIG-003, FND-CONFIG-012, FND-CONFIG-020, FND-CONFIG-021, FND-CONFIG-022 |
+| `0x34` | 2 | `UINT16LE` | `unk_34` | 4 in the shipped file; setup writes the literal 4. Runtime purpose unknown. | supported | FND-CONFIG-003, FND-CONFIG-022 |
+| `0x36` | 2 | `UINT16LE` | `unk_36` | 8 in the shipped file, matching the record's digital driver chunk number. Setup copies it from an input record at `+0xD6`; runtime purpose unknown. | supported | FND-CONFIG-003, FND-CONFIG-022 |
+| `0x38` | 2 | `UINT16LE` | `unk_38` | 11 in the shipped file, matching the music driver chunk number. Setup copies it from an input record at `+0xD8`; runtime purpose unknown. | supported | FND-CONFIG-003, FND-CONFIG-022 |
+| `0x3A` | 1 | `UINT8` | `unk_3a` | 0 in the shipped file. Setup copies it from an input record at `+0xDA`; runtime purpose unknown. | supported | FND-CONFIG-003, FND-CONFIG-022 |
 | `0x3B` | | | | Total size 59 | | |
 
 ## Enumerations and flags
@@ -61,7 +61,8 @@ The one installed file [FND-CONFIG-003].
 
 - Which block is for music and which for digital sound, what the two unexplained tail words hold,
   and what the game does with each field (FND-CONFIG-003, FND-CONFIG-005,
-  FND-CONFIG-019, FND-CONFIG-020, FND-CONFIG-021, Q-CONFIG-005). One reading is that the
+  FND-CONFIG-019, FND-CONFIG-020, FND-CONFIG-021, FND-CONFIG-022,
+  Q-CONFIG-005). One reading is that the
   second block is the digital device because its first word supplies the
   observed hardware I/O base; the competing reading is that it is another
   music-device configuration, since the shipped blocks are equal. Reading

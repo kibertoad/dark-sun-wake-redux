@@ -493,6 +493,7 @@ Entries by area.
 | [FND-CONFIG-019](../findings/FND-CONFIG-019.md) | The sound-library file entry loads SOUND.CFG whole without field parsing | recorded |
 | [FND-CONFIG-020](../findings/FND-CONFIG-020.md) | Sound initialization reads four SOUND.CFG fields and rewrites one conditionally | recorded |
 | [FND-CONFIG-021](../findings/FND-CONFIG-021.md) | Sound initialization passes the first configuration block and tests more flags | recorded |
+| [FND-CONFIG-022](../findings/FND-CONFIG-022.md) | Sound setup populates the nine-byte SOUND.CFG tail from a record and a constant | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

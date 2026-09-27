@@ -51,7 +51,9 @@ Next ID: Q-CONFIG-008
   direct uses of `0x08`, `0x0A`, `0x14` and `0x32` in initialization.
   FND-CONFIG-021 adds the first four words as a group, another `0x08`
   comparison, and further `0x14` and `0x32` branches. The tail and the
-  receiving routines' effects remain unread.
+  receiving routines' effects remain unread. FND-CONFIG-022 maps each tail
+  output to an input-record offset or a literal 4, but the source fields'
+  meanings and the game's tail consumers remain open.
 
 - Q-CONFIG-006. FMT-CONFIG-002: How does the setup program parse `SOUND.INI`, including unknown
   or malformed keys, and what do `CardGroup` and the chunk numbers mean? Settles it: the parser

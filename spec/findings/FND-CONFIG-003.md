@@ -44,11 +44,12 @@ digital driver's chunk number among other values. The installed file was made fo
 
 ## Alternatives
 
-The field boundaries and meanings are read from the values alone and their match with one
-`SOUND.INI` record; the code that writes the file (FND-CONFIG-004) fills it from memory and was not
-traced field by field. Which block is music and which is digital cannot be told from equal
-blocks. The first two words of the tail are not explained. An earlier reading gave the tail as 13
-bytes; it is 9.
+The field boundaries and meanings were first read from the values and their
+match with one `SOUND.INI` record. FND-CONFIG-022 now identifies direct
+writers for the nine-byte tail but does not establish what the input-record
+fields mean; the two ten-byte blocks have not been traced field by field.
+Which block is music and which is digital cannot be told from equal installed
+blocks. An earlier reading gave the tail as 13 bytes; it is 9.
 
 ## How to reproduce
 
