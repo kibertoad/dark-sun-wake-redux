@@ -50,7 +50,7 @@ frames, the full-size one has mask 70, six have mask 486, 29 have mask 230 and 2
 describes both (SRC-MANUAL-1994, pages 7, 10 and 11): four character boxes with two small buttons
 beside each, for computer control and for the leader, and a row of six icons along the bottom.
 The row is the Game Menu's first four buttons, `BUTN/11308` for the Game Menu, whose icon is the
-one the Preferences screen's Game Menu button shows (FND-UI-029), and `BUTN/10308` for returning
+one the Preferences screen's Game Menu button shows (FND-UI-033), and `BUTN/10308` for returning
 to the game. `EBOX/4003` is the name box.
 
 ## Alternatives

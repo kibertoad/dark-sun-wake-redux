@@ -9,8 +9,10 @@ Next ID: Q-CONFIG-007
   handlers change the saved volumes, on-off settings and difficulty? Settles it: the routines
   called after the overlay 192 load (FND-SAVE-005), the Preferences button handlers and the
   callers that initialize the settings. Tried: the load routine (FND-SAVE-005) and the renderer's
-  references to `DS:143A`, which identify offset `0x00` as the saved difficulty-label index but
-  do not establish the button transitions or new-game default (FND-CONFIG-009). Blocks: slice 3.
+  references to `DS:143A`, which identify offset `0x00` as the saved difficulty-label index
+  (FND-CONFIG-009); and the renderer's use of `DS:1437` for filmstrip button `16303`, which
+  identifies offset `0x07` as animation control state without its polarity (FND-UI-033). Neither
+  establishes button transitions or new-game defaults. Blocks: slice 3.
 
 - Q-CONFIG-005. FMT-CONFIG-001: What does the game's sound library read from each field of
   `SOUND.CFG`, including its unexplained tail? Settles it: a bounded reading of the sound

@@ -18,7 +18,7 @@ seq:
     type: u1
   - id: unk_06
     type: u1
-  - id: unk_07
+  - id: animation_control_state
     type: u1
   - id: unk_08
     type: u1

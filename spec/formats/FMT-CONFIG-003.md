@@ -9,7 +9,7 @@ byte_order: little
 size: 9
 text: false
 definition: fmt_config_003.ksy
-evidence: [FND-CONFIG-001, FND-CONFIG-002, FND-CONFIG-009, FND-SAVE-004, FND-SAVE-005, FND-SOUND-007, FND-SOUND-008, FND-SOUND-011]
+evidence: [FND-CONFIG-001, FND-CONFIG-002, FND-CONFIG-009, FND-UI-033, FND-SAVE-004, FND-SAVE-005, FND-SOUND-007, FND-SOUND-008, FND-SOUND-011]
 conflicting: []
 split_with: []
 related: []
@@ -30,7 +30,7 @@ address in BLD-GOG-EN-1.1.
 | `0x04` | 1 | `UINT8` | `unk_04` | Purpose unknown. The byte at `DS:26B6`. 255 in the shipped resource. | supported | FND-CONFIG-001, FND-SAVE-004, FND-SAVE-005 |
 | `0x05` | 1 | `UINT8` | `unk_05` | Purpose unknown. The byte at `DS:1435`, passed after loading to a routine with `unk_06`. The sound-effect routine plays nothing while it is 0. 1 in the shipped resource. | supported | FND-CONFIG-001, FND-SAVE-004, FND-SAVE-005, FND-SOUND-007 |
 | `0x06` | 1 | `UINT8` | `unk_06` | Purpose unknown. The byte at `DS:1436`. 1 in the shipped resource. | supported | FND-CONFIG-001, FND-SAVE-004, FND-SAVE-005 |
-| `0x07` | 1 | `UINT8` | `unk_07` | Purpose unknown. The byte at `DS:1437`. After loading, the game passes 4, 4, 16, 16 to a routine when it is not 0 and 16, 16, 16, 16 when it is. 0 in the shipped resource. | supported | FND-CONFIG-001, FND-SAVE-004, FND-SAVE-005 |
+| `0x07` | 1 | `UINT8` | `animation_control_state` | The byte at `DS:1437` is passed as the drawn state of filmstrip button `BUTN/16303`. After loading, the game passes 4, 4, 16, 16 to a routine when it is not 0 and 16, 16, 16, 16 when it is. 0 in the shipped resource; its on/off polarity is not established. | supported | FND-CONFIG-001, FND-UI-033, FND-SAVE-004, FND-SAVE-005 |
 | `0x08` | 1 | `UINT8` | `unk_08` | Purpose unknown. The byte at `DS:1439`. The speech routine speaks nothing while it is 0. 1 in the shipped resource. | supported | FND-CONFIG-001, FND-SAVE-004, FND-SAVE-005, FND-SOUND-008 |
 | `0x09` | | | | Total size 9 | | |
 
@@ -54,6 +54,7 @@ The one `PREF` resource of the installed `CHARSAVE.GFF` [FND-CONFIG-001].
 - Whether `unk_02` and `unk_03` are music and sound-effects volumes: the startup passes `unk_03`
   to the sound library after testing `unk_05`, but the controls and the library routine remain
   unread (FND-SAVE-005, FND-SOUND-011, Q-CONFIG-002).
-- Whether `unk_07` controls animations and `unk_08` controls voice effects: the load routine's
-  four-word call changes with `unk_07`, and the speech routine stops when `unk_08` is zero, but
-  the button handlers are not located (FND-SAVE-005, FND-SOUND-008, Q-CONFIG-002, Q-CONFIG-001).
+- Which polarity of `animation_control_state` means animations on, and whether `unk_08` is the
+  voice-effect button state: the load routine's four-word call changes with the animation byte,
+  and the speech routine stops when `unk_08` is zero, but the button handlers are not located
+  (FND-UI-033, FND-SAVE-005, FND-SOUND-008, Q-CONFIG-002, Q-CONFIG-001).

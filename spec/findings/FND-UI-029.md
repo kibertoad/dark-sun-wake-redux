@@ -1,9 +1,9 @@
 ---
 id: FND-UI-029
 title: WIND 16500 places the thirteen Preferences buttons
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-UI-033]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

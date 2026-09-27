@@ -112,10 +112,11 @@ Entries by area.
 | [FND-UI-026](../findings/FND-UI-026.md) | WIND 19503 places the character generation controls, and WIND 19504 and 19505 the discipline and sphere lists | recorded |
 | [FND-UI-027](../findings/FND-UI-027.md) | WIND 18501 places ten list rows, four buttons, two scroll buttons and a name box | recorded |
 | [FND-UI-028](../findings/FND-UI-028.md) | WIND 10500 places the fourteen Game Menu buttons in rows of four, five and five | recorded |
-| [FND-UI-029](../findings/FND-UI-029.md) | WIND 16500 places the thirteen Preferences buttons | recorded |
+| [FND-UI-029](../findings/FND-UI-029.md) | WIND 16500 places the thirteen Preferences buttons | superseded |
 | [FND-UI-030](../findings/FND-UI-030.md) | WIND 11500 and WIND 13500 share the portrait and navigation buttons of the character and inventory screens | recorded |
 | [FND-UI-031](../findings/FND-UI-031.md) | WIND 3020 places three 15 x 15 action buttons, a close button and a 145 x 87 frame | recorded |
 | [FND-UI-032](../findings/FND-UI-032.md) | WIND 12500 to 12503 are the conversation windows, with a text box, five response rows and scroll buttons | recorded |
+| [FND-UI-033](../findings/FND-UI-033.md) | WIND 16500 places thirteen Preferences buttons and its filmstrip control is 16303 | recorded |
 | [RULE-UI-001](../rules/RULE-UI-001.md) | Which controls the window code offers an event or the pointer to, by their event masks | supported |
 | [SCR-UI-001](../screens/SCR-UI-001.md) | Start window | supported |
 | [SCR-UI-002](../screens/SCR-UI-002.md) | View Character | supported |
