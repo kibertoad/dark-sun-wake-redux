@@ -14,9 +14,9 @@ See the [work protocol](https://dinorefurb.com/work-protocol/#working-files).
 ## State
 
 - Stage: Slices, with slices 2 and 3 in progress. The Survey exit is checked.
-- Branch: `main`; two local commits ahead of `origin/main` after this handover.
+- Branch: `main`; five local commits ahead of `origin/main` after this handover.
 - Last gate: 2026-09-28, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 428 entries and 158 parity rows).
+  documentation check passed with 429 entries and 158 parity rows).
 
 ## Unfinished
 
