@@ -30,7 +30,9 @@ Next ID: Q-CONFIG-008
   writes remain possible. FND-CONFIG-028 follows the Start Game button branch
   into a shared setup helper without finding a direct settings write there;
   its FBOV fixups resolve to resident and overlay targets, but most callee
-  effects and later start paths remain unread. These readings
+  effects and later start paths remain unread. FND-CONFIG-029 bounds literal
+  music-level request writes to Load Game and the Preferences-entry getter,
+  without excluding indirect control. These readings
   do not identify new-game values, animation
   polarity, any synchronization beyond those paths or another music-level control. Blocks:
   slice 3.

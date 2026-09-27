@@ -175,7 +175,7 @@ Entries by kind.
 
 ## findings
 
-250 entries.
+251 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -252,6 +252,7 @@ Entries by kind.
 | [FND-CONFIG-026](../findings/FND-CONFIG-026.md) | Literal difficulty-word writers are in load, Preferences and a guarded overlay branch | recorded |
 | [FND-CONFIG-027](../findings/FND-CONFIG-027.md) | Literal speech-gate writes occur in launcher, load and Preferences paths | recorded |
 | [FND-CONFIG-028](../findings/FND-CONFIG-028.md) | Start Game button branch delegates setup without direct settings writes | recorded |
+| [FND-CONFIG-029](../findings/FND-CONFIG-029.md) | Literal music-level request writes occur in Load Game and Preferences entry | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |
