@@ -27,16 +27,18 @@ Other areas' entries, queue files and parity rows. `src/` and `tests/`.
   (FND-CONFIG-025); follow indirect resource dispatch or settings writers.
 - Three apparent speech-gate offset tables lie in FBOV fixup payloads
   (FND-CONFIG-027); follow indirect initialization or a block copy.
+- The Start Game button branch and local setup helper have no direct
+  settings writes (FND-CONFIG-028); follow the helper's callees.
 
 ## Handover
 
 - Stage: Slices, with slices 2 and 3 in progress.
-- Branch: `main`, thirty-three commits ahead of `origin/main` including this
+- Branch: `main`, thirty-five commits ahead of `origin/main` including this
   handover; not pushed.
 - Last gate: 2026-09-27, `./tools/Test.ps1` passed (700 tests);
-  documentation check passed (415 entries, 158 parity rows).
+  documentation check passed (416 entries, 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
-- Next: Q-CONFIG-002 through block-copy initialization or indirect dispatch;
-  then Q-CONFIG-007 through new-game initialization; then Q-CONFIG-005
+- Next: Q-CONFIG-002 through Start Game setup callees and indirect writes;
+  then Q-CONFIG-007 through the same initialization path; then Q-CONFIG-005
   through the setup input record and remaining sound-library branches.
