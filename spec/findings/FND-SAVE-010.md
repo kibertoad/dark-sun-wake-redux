@@ -56,8 +56,8 @@ not immediately write a numbered saved-game file for `F1` or `F3`.
 
 This is one keyboard consumer; it does not establish identical behavior
 in every game state. The indirect callback, choice routine's complete
-return convention, and lifecycle after `DS:1462` is cleared were not
-fully read. The Save choice's behavior if somehow returned while combat
+return convention, and indirect cleanup before the DOS interrupt
+(FND-SAVE-011) were not fully read. The Save choice's behavior if somehow returned while combat
 is active is not established by the omitted label alone.
 
 ## How to reproduce

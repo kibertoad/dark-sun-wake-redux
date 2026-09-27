@@ -175,7 +175,7 @@ Entries by kind.
 
 ## findings
 
-259 entries.
+260 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -345,6 +345,7 @@ Entries by kind.
 | [FND-SAVE-008](../findings/FND-SAVE-008.md) | Saving updates DARKRUN.GFF resources before copying it to a numbered save file | recorded |
 | [FND-SAVE-009](../findings/FND-SAVE-009.md) | The later PREF and GREQ save writes select the CHARSAVE.GFF archive | recorded |
 | [FND-SAVE-010](../findings/FND-SAVE-010.md) | Overlay 190 sends F1 and F2 to Save and Load and F3 to an exit choice | recorded |
+| [FND-SAVE-011](../findings/FND-SAVE-011.md) | Clearing DS 1462 makes the resident main loop return | recorded |
 | [FND-SCRIPT-001](../findings/FND-SCRIPT-001.md) | GPLDATA.GFF holds 330 GPL and 20 MAS resources; every GPL one starts with 0x19 and every one of both ends with 0x31 | recorded |
 | [FND-SCRIPT-002](../findings/FND-SCRIPT-002.md) | GPLDATA.GFF#GPLI/1 is 1,316 records of three words that pair entry numbers with script offsets | recorded |
 | [FND-SCRIPT-003](../findings/FND-SCRIPT-003.md) | Overlay 180 opens GPLDATA.GFF through the name at 57E0:0AF1 and reports it missing through the pattern after it | recorded |

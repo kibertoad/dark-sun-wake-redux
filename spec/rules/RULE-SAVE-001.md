@@ -4,7 +4,7 @@ title: The F1 and F2 screens and F3 exit choice
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SAVE-010, FND-UI-035, SRC-MANUAL-1994]
+evidence: [FND-SAVE-010, FND-SAVE-011, FND-UI-035, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [SCR-UI-013, SCR-UI-014]
@@ -53,7 +53,9 @@ define save_load_key(key_word):
 ## Outputs
 
 The Save Game or Load Game screen, a combat refusal message, or an exit
-choice whose Quit branch clears `DS:1462`.
+choice whose Quit branch clears `DS:1462`. That zero value makes the
+resident main loop return at its next continuation check; the startup
+path then submits a DOS terminate request (FND-SAVE-011).
 
 ## Edge cases
 
@@ -75,5 +77,5 @@ None known.
 ## Open questions
 
 - Whether other key consumers act differently, the full effects of the
-  indirect callback and the lifecycle after `DS:1462` is cleared
-  (FND-SAVE-010, Q-SAVE-001).
+  indirect callback and cleanup effects before the DOS interrupt
+  (FND-SAVE-010, FND-SAVE-011, Q-SAVE-001).
