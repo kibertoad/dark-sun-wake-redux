@@ -175,7 +175,7 @@ Entries by kind.
 
 ## findings
 
-249 entries.
+250 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -251,6 +251,7 @@ Entries by kind.
 | [FND-CONFIG-025](../findings/FND-CONFIG-025.md) | The resident PREF bytes are part of a Preferences label | recorded |
 | [FND-CONFIG-026](../findings/FND-CONFIG-026.md) | Literal difficulty-word writers are in load, Preferences and a guarded overlay branch | recorded |
 | [FND-CONFIG-027](../findings/FND-CONFIG-027.md) | Literal speech-gate writes occur in launcher, load and Preferences paths | recorded |
+| [FND-CONFIG-028](../findings/FND-CONFIG-028.md) | Start Game button branch delegates setup without direct settings writes | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |

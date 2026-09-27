@@ -27,7 +27,9 @@ Next ID: Q-CONFIG-008
   overlay branch, without excluding an indirect or block write. FND-CONFIG-027
   bounds literal speech-gate writes to load, launcher and Preferences paths;
   three table-like raw hits are overlay fixup payloads, and indirect or block
-  writes remain possible. These readings
+  writes remain possible. FND-CONFIG-028 follows the Start Game button branch
+  into a shared setup helper without finding a direct settings write there;
+  its callees and later start paths remain unread. These readings
   do not identify new-game values, animation
   polarity, any synchronization beyond those paths or another music-level control. Blocks:
   slice 3.
@@ -44,7 +46,8 @@ Next ID: Q-CONFIG-008
   the nonzero pointer condition. FND-CONFIG-017 identifies several resident
   text-message callers, with prior overlay findings showing more, but does
   not establish initialization, all indirect writers or which calls reach the
-  wait. FND-CONFIG-018 identifies the gate as the return of the `WIND/10501`
+  wait. FND-CONFIG-028 finds no direct message-delay write in the Start Game
+  button branch or its shared setup helper. FND-CONFIG-018 identifies the gate as the return of the `WIND/10501`
   acquisition and setup path, but does not establish its live outcomes.
 
 - Q-CONFIG-005. FMT-CONFIG-001: What does the game's sound library read from each field of
