@@ -9,7 +9,7 @@ byte_order: little
 size: 9
 text: false
 definition: fmt_config_003.ksy
-evidence: [FND-CONFIG-001, FND-CONFIG-002, FND-CONFIG-009, FND-UI-033, FND-SAVE-004, FND-SAVE-005, FND-SOUND-007, FND-SOUND-008, FND-SOUND-011]
+evidence: [FND-CONFIG-001, FND-CONFIG-002, FND-CONFIG-009, FND-CONFIG-010, FND-UI-033, FND-SAVE-004, FND-SAVE-005, FND-SOUND-007, FND-SOUND-008, FND-SOUND-011]
 conflicting: []
 split_with: []
 related: []
@@ -26,12 +26,12 @@ address in BLD-GOG-EN-1.1.
 |---|---|---|---|---|---|---|
 | `0x00` | 2 | `UINT16LE` | `difficulty_index` | The word at `DS:143A` indexes the four difficulty labels in order, 0 to 3. The shipped resource holds 0. | supported | FND-CONFIG-001, FND-CONFIG-009, FND-SAVE-004, FND-SAVE-005 |
 | `0x02` | 1 | `UINT8` | `unk_02` | Purpose unknown. The byte at `DS:26B4`. After loading, when sound is on and `unk_06` is not 0, the game compares it with a value a routine returns for it, and copies it to `unk_04` when that value is smaller. 255 in the shipped resource. | supported | FND-CONFIG-001, FND-SAVE-004, FND-SAVE-005 |
-| `0x03` | 1 | `UINT8` | `unk_03` | Purpose unknown. The byte at `DS:26B5`. After loading, when sound is on and `unk_05` is not 0, the game passes it to a routine with 0. 63 in the shipped resource. | supported | FND-CONFIG-001, FND-SAVE-004, FND-SAVE-005 |
+| `0x03` | 1 | `UINT8` | `sound_effects_volume` | The byte at `DS:26B5` is changed by the sound-effect volume arrows in steps of seven, normally within 0 to 127. The shipped resource holds 63. | supported | FND-CONFIG-001, FND-CONFIG-010, FND-SAVE-004, FND-SAVE-005, FND-SOUND-011 |
 | `0x04` | 1 | `UINT8` | `unk_04` | Purpose unknown. The byte at `DS:26B6`. 255 in the shipped resource. | supported | FND-CONFIG-001, FND-SAVE-004, FND-SAVE-005 |
-| `0x05` | 1 | `UINT8` | `unk_05` | Purpose unknown. The byte at `DS:1435`, passed after loading to a routine with `unk_06`. The sound-effect routine plays nothing while it is 0. 1 in the shipped resource. | supported | FND-CONFIG-001, FND-SAVE-004, FND-SAVE-005, FND-SOUND-007 |
-| `0x06` | 1 | `UINT8` | `unk_06` | Purpose unknown. The byte at `DS:1436`. 1 in the shipped resource. | supported | FND-CONFIG-001, FND-SAVE-004, FND-SAVE-005 |
+| `0x05` | 1 | `UINT8` | `sound_effects_enabled` | The byte at `DS:1435` changes through the sound-effects button and stops effect playback at zero. The shipped resource holds 1. | supported | FND-CONFIG-001, FND-CONFIG-010, FND-SAVE-004, FND-SAVE-005, FND-SOUND-007 |
+| `0x06` | 1 | `UINT8` | `music_enabled` | The byte at `DS:1436` changes through the music button. The shipped resource holds 1. | supported | FND-CONFIG-001, FND-CONFIG-010, FND-SAVE-004, FND-SAVE-005 |
 | `0x07` | 1 | `UINT8` | `animation_control_state` | The byte at `DS:1437` is passed as the drawn state of filmstrip button `BUTN/16303`. After loading, the game passes 4, 4, 16, 16 to a routine when it is not 0 and 16, 16, 16, 16 when it is. 0 in the shipped resource; its on/off polarity is not established. | supported | FND-CONFIG-001, FND-UI-033, FND-SAVE-004, FND-SAVE-005 |
-| `0x08` | 1 | `UINT8` | `unk_08` | Purpose unknown. The byte at `DS:1439`. The speech routine speaks nothing while it is 0. 1 in the shipped resource. | supported | FND-CONFIG-001, FND-SAVE-004, FND-SAVE-005, FND-SOUND-008 |
+| `0x08` | 1 | `UINT8` | `speech_gate` | The byte at `DS:1439` stops speech playback at zero. The on-screen voice button instead changes `DS:14E4`; how the two relate is unknown. The shipped resource holds 1. | supported | FND-CONFIG-001, FND-CONFIG-010, FND-SAVE-004, FND-SAVE-005, FND-SOUND-008 |
 | `0x09` | | | | Total size 9 | | |
 
 ## Enumerations and flags
@@ -48,13 +48,10 @@ The one `PREF` resource of the installed `CHARSAVE.GFF` [FND-CONFIG-001].
 
 ## Open questions
 
-- Whether `unk_05` and `unk_06` are the sound-effects and music toggles: the sound-effects player
-  tests `unk_05`, while the load routine passes both bytes together, but the button handlers have
-  not been read (FND-SAVE-005, FND-SOUND-007, Q-CONFIG-002, Q-CONFIG-001).
-- Whether `unk_02` and `unk_03` are music and sound-effects volumes: the startup passes `unk_03`
-  to the sound library after testing `unk_05`, but the controls and the library routine remain
-  unread (FND-SAVE-005, FND-SOUND-011, Q-CONFIG-002).
-- Which polarity of `animation_control_state` means animations on, and whether `unk_08` is the
-  voice-effect button state: the load routine's four-word call changes with the animation byte,
-  and the speech routine stops when `unk_08` is zero, but the button handlers are not located
-  (FND-UI-033, FND-SAVE-005, FND-SOUND-008, Q-CONFIG-002, Q-CONFIG-001).
+- What `unk_02` and `unk_04` control: the load routine passes `unk_02` to the sound library and
+  conditionally copies it to `unk_04`, but no Preferences arrow changes either; music-volume
+  behavior remains unsettled (FND-CONFIG-010, FND-SAVE-005, Q-CONFIG-002).
+- Which polarity of `animation_control_state` means animations on, and what initializes it for a
+  new game (FND-CONFIG-010, Q-CONFIG-002, Q-CONFIG-001).
+- Why the saved `speech_gate` and the unsaved on-screen voice byte `DS:14E4` both gate speech,
+  and whether any path synchronizes them (FND-CONFIG-010, FND-SOUND-008, Q-CONFIG-002).

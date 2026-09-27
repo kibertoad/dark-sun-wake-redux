@@ -9,7 +9,7 @@ byte_order: little
 size: 529
 text: false
 definition: fmt_text_004.ksy
-evidence: [FND-TEXT-005]
+evidence: [FND-TEXT-005, FND-CONFIG-009, FND-UI-034]
 conflicting: []
 split_with: []
 related: []
@@ -70,9 +70,9 @@ The block in the installed `DSUN.EXE` of BLD-GOG-EN-1.1 [FND-TEXT-005].
 
 ## Open questions
 
-- What reads the block. Ghidra finds no direct reference to the tables or strings
-  (FND-TEXT-006), so which code draws the Preferences screen, which description belongs to which
-  control, and what `unk_010` holds are not known (Q-TEXT-003).
+- The Preferences renderer indexes the difficulty labels with the saved difficulty word, and
+  its hover routine selects the descriptions by pointer position (FND-CONFIG-009, FND-UI-034).
+  What `unk_010` holds and the complete text-drawing path remain unknown (Q-TEXT-003).
 - What `%C` does in `about_pattern` and the About lines (Q-TEXT-003).
 - Which difficulty the game starts with. SRC-MANUAL-1994 (page 15) lists the settings as Easy,
   Balanced, Hard and Hideous and names the default as Average, which is none of the four labels

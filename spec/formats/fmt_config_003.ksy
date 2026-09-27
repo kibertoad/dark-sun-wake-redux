@@ -4,21 +4,21 @@ meta:
   license: MIT
   endian: le
 doc: The 9-byte PREF resource 100 written with every saved game.
-doc-ref: FMT-CONFIG-003, FND-CONFIG-001, FND-CONFIG-009, FND-SAVE-004, FND-SAVE-005
+doc-ref: FMT-CONFIG-003, FND-CONFIG-001, FND-CONFIG-009, FND-CONFIG-010, FND-SAVE-004, FND-SAVE-005
 seq:
   - id: difficulty_index
     type: u2
   - id: unk_02
     type: u1
-  - id: unk_03
+  - id: sound_effects_volume
     type: u1
   - id: unk_04
     type: u1
-  - id: unk_05
+  - id: sound_effects_enabled
     type: u1
-  - id: unk_06
+  - id: music_enabled
     type: u1
   - id: animation_control_state
     type: u1
-  - id: unk_08
+  - id: speech_gate
     type: u1

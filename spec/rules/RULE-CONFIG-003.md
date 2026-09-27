@@ -1,48 +1,49 @@
 ---
 id: RULE-CONFIG-003
 title: Setting the music and sound effects volumes
-status: sourced
+status: disputed
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 evidence: [SRC-MANUAL-1994]
-conflicting: []
+conflicting: [FND-UI-034, FND-CONFIG-010]
 split_with: []
 related: []
 ---
 
 ## Summary
 
-The music and sound effects volumes are each a slide bar on the Preferences screen, with a button
-at each end that lowers or raises the volume.
+The manual describes music and sound-effects volume bars, each with two arrow buttons. The
+shipped screen's top arrows instead have the hover label `MESSAGE DELAY` and change `DS:26B7`,
+while the second pair changes the sound-effects volume byte (FND-UI-034, FND-CONFIG-010).
 
 ## When it runs
 
-When the player clicks a button at either end of a volume bar on the Preferences screen
-(SCR-UI-007, SRC-MANUAL-1994, page 15).
+The manual's proposed volume adjustment would run when an arrow beside either of its named
+bars is clicked (SRC-MANUAL-1994, page 15).
 
 ## Parameters
 
-`volume`, the current volume of the bar. `step`, the amount one click changes it by, negative
-for the lower button. `highest`, the largest volume the bar allows.
+The manual does not give a step or upper bound.
 
 ## Inputs
 
-None beyond the parameters.
+None established for a music-volume arrow on this screen.
 
 ## Procedure
 
 ```text
-define change_volume(volume, step, highest):
-    return min(max(volume + step, 0), highest)
+# The manual's music-volume arrow has no established executable procedure.
+# See RULE-CONFIG-005 and RULE-CONFIG-004 for the shipped arrow paths.
 ```
 
 ## Outputs
 
-The new volume.
+Not established for music volume on this screen.
 
 ## Edge cases
 
-None known.
+The apparent music-volume arrows are dispatched as message-delay controls in
+this build (FND-UI-034, FND-CONFIG-010).
 
 ## What the sources say
 
@@ -56,6 +57,7 @@ None known.
 
 ## Open questions
 
-- The step, the highest volume, the starting volumes, and where the game keeps them. The saved
-  settings hold two bytes, 255 and 63 in the shipped resource, that the load routine treats in the
-  way volumes would be (FMT-CONFIG-003, Q-CONFIG-001, Q-CONFIG-002).
+- Whether music volume can be adjusted through another control or key remains open. The
+  executable's first arrow pair changes message delay, and the second changes sound-effects
+  volume; the manual says the first is music volume (FND-UI-034, FND-CONFIG-010,
+  SRC-MANUAL-1994, Q-CONFIG-002).

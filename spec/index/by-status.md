@@ -24,7 +24,7 @@ Entries by status.
 
 ## sourced
 
-40 entries.
+38 entries.
 
 | ID | Title |
 |---|---|
@@ -33,8 +33,6 @@ Entries by status.
 | [RULE-COMBAT-003](../rules/RULE-COMBAT-003.md) | Damage lowers hit points; at 0 a character is unconscious and at -10 dead |
 | [RULE-COMBAT-006](../rules/RULE-COMBAT-006.md) | A click on an enemy attacks it, in melee when adjacent with a readied weapon or at range with a missile weapon or ammunition |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys |
-| [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting |
-| [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes |
 | [RULE-EXPLORE-001](../rules/RULE-EXPLORE-001.md) | Holding the pointer at an edge of the map view scrolls the view toward that edge until the pointer leaves it or the map ends |
 | [RULE-INPUT-001](../rules/RULE-INPUT-001.md) | The right mouse button steps the pointer through the Walk, Attack and Look modes |
 | [RULE-INPUT-003](../rules/RULE-INPUT-003.md) | The keys that open the character option screens and the Game Menu |
@@ -71,7 +69,7 @@ Entries by status.
 
 ## supported
 
-105 entries.
+108 entries.
 
 | ID | Title |
 |---|---|
@@ -137,6 +135,9 @@ Entries by status.
 | [RULE-COMBAT-005](../rules/RULE-COMBAT-005.md) | The end-of-move menu offers GUARD, WAIT and END TURN beside the character whose turn it is |
 | [RULE-COMBAT-008](../rules/RULE-COMBAT-008.md) | Saving, resting, adding a character and changing the leader are refused during combat |
 | [RULE-COMBAT-009](../rules/RULE-COMBAT-009.md) | The status panel names the character's first effect, putting the named effects before the others |
+| [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting |
+| [RULE-CONFIG-004](../rules/RULE-CONFIG-004.md) | The Preferences sound-effects volume adjustment |
+| [RULE-CONFIG-005](../rules/RULE-CONFIG-005.md) | The Preferences message-delay adjustment |
 | [RULE-EXPLORE-002](../rules/RULE-EXPLORE-002.md) | Key 5 shows the whole party on the map and key 6, outside combat, shows only the leader |
 | [RULE-EXPLORE-003](../rules/RULE-EXPLORE-003.md) | Objects occupy the map cells of their footprint by setting the cells' blocked and occupied bits, which a cell test for movement reads |
 | [RULE-EXPLORE-004](../rules/RULE-EXPLORE-004.md) | The keypad direction keys step the chosen character one cell, or in combat attack the object whose area holds the blocked cell |
@@ -187,7 +188,11 @@ Entries by status.
 
 ## disputed
 
-0 entries.
+1 entries.
+
+| ID | Title |
+|---|---|
+| [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes |
 
 ## superseded
 
@@ -199,7 +204,7 @@ Entries by status.
 
 ## recorded
 
-229 entries.
+231 entries.
 
 | ID | Title |
 |---|---|
@@ -257,6 +262,7 @@ Entries by status.
 | [FND-CONFIG-007](../findings/FND-CONFIG-007.md) | SOUND.INI is a list of sound cards written as bracketed tags with values |
 | [FND-CONFIG-008](../findings/FND-CONFIG-008.md) | The installed cue sheet has one data track and forty file-backed audio tracks |
 | [FND-CONFIG-009](../findings/FND-CONFIG-009.md) | The Preferences renderer indexes its four difficulty labels with the first PREF word |
+| [FND-CONFIG-010](../findings/FND-CONFIG-010.md) | Preferences button dispatch changes sound, animation, difficulty and message-delay state |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |
@@ -425,6 +431,7 @@ Entries by status.
 | [FND-UI-031](../findings/FND-UI-031.md) | WIND 3020 places three 15 x 15 action buttons, a close button and a 145 x 87 frame |
 | [FND-UI-032](../findings/FND-UI-032.md) | WIND 12500 to 12503 are the conversation windows, with a text box, five response rows and scroll buttons |
 | [FND-UI-033](../findings/FND-UI-033.md) | WIND 16500 places thirteen Preferences buttons and its filmstrip control is 16303 |
+| [FND-UI-034](../findings/FND-UI-034.md) | Preferences hover text names message delay above About, and button 16302 opens About |
 | [FND-VIDEO-001](../findings/FND-VIDEO-001.md) | The five numbered FLI files are 320x200 8-bit animations whose frame records cover each file and number one more than the header's frame count |
 | [FND-VIDEO-002](../findings/FND-VIDEO-002.md) | Overlay 196 plays an FLI file to the screen, one frame record every given number of 1 ms ticks, and stops after the header's frame count |
 | [FND-VIDEO-003](../findings/FND-VIDEO-003.md) | The game sets BIOS mode 0x13 and unchains it for play, uses plain mode 0x13 for cinematics and mode 3 on exit, while the INT 10h wrapper at 1000:1136 serves text services |
@@ -520,8 +527,10 @@ Entries whose Open questions section says more than None known.
 | [RULE-COMBAT-008](../rules/RULE-COMBAT-008.md) | Saving, resting, adding a character and changing the leader are refused during combat | supported |
 | [RULE-COMBAT-009](../rules/RULE-COMBAT-009.md) | The status panel names the character's first effect, putting the named effects before the others | supported |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
-| [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | sourced |
-| [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | sourced |
+| [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
+| [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |
+| [RULE-CONFIG-004](../rules/RULE-CONFIG-004.md) | The Preferences sound-effects volume adjustment | supported |
+| [RULE-CONFIG-005](../rules/RULE-CONFIG-005.md) | The Preferences message-delay adjustment | supported |
 | [RULE-EXPLORE-001](../rules/RULE-EXPLORE-001.md) | Holding the pointer at an edge of the map view scrolls the view toward that edge until the pointer leaves it or the map ends | sourced |
 | [RULE-EXPLORE-002](../rules/RULE-EXPLORE-002.md) | Key 5 shows the whole party on the map and key 6, outside combat, shows only the leader | supported |
 | [RULE-EXPLORE-003](../rules/RULE-EXPLORE-003.md) | Objects occupy the map cells of their footprint by setting the cells' blocked and occupied bits, which a cell test for movement reads | supported |

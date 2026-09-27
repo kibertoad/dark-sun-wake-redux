@@ -14,7 +14,10 @@ Next ID: Q-UI-006
   controls, and which icon frame shows a pointed-at, pressed or unavailable control? No routine
   names the controls' numbers as constants (FND-UI-012). Settles it: a reading of the handlers
   that a window's `after_children` and `before_children` pointers and a frame's handler at
-  `0x62` point to, starting from `3D72:0515` and `3D72:0EB8`, and of overlay code. Blocks: nothing yet.
+  `0x62` point to, starting from `3D72:0515` and `3D72:0EB8`, and of overlay code.
+  Tried: overlay 203's Preferences hover and click routines identify its button
+  actions (FND-UI-034, FND-CONFIG-010), but do not establish native frame
+  selection or the remaining screens. Blocks: nothing yet.
 - Q-UI-003. SCR-UI-002, SCR-UI-005, SCR-UI-006, SCR-UI-007, SCR-UI-011: Where does the game
   place each window, given that the resources hold no screen position? Settles it: a reading of
   the code that writes a window's runtime `unk_96` and `unk_98`, or captures of each screen.

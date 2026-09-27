@@ -1,10 +1,10 @@
 ---
 id: RULE-CONFIG-002
 title: The difficulty setting
-status: sourced
+status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [SRC-GAMEFAQS-81038, SRC-MANUAL-1994]
+evidence: [FND-CONFIG-009, FND-CONFIG-010, FND-TEXT-005, SRC-GAMEFAQS-81038, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: []
@@ -12,14 +12,13 @@ related: []
 
 ## Summary
 
-The difficulty sets how hard combat is. It has four settings, in order Easy, Balanced, Hard and
-Hideous, which the Preferences screen steps through with a button at each end. A new game begins
-on Balanced.
+The Preferences screen holds a difficulty index from 0 to 3, labelled Easy, Balanced, Hard and
+Hideous in that order. Its two arrow buttons move the index one step and stop at the ends.
 
 ## When it runs
 
-`easier_difficulty` and `harder_difficulty` run when the player clicks the difficulty buttons of
-the Preferences screen (SCR-UI-007, SRC-MANUAL-1994, page 15).
+`easier_difficulty` and `harder_difficulty` run when the player clicks buttons `16309` and
+`16308`, respectively, on the Preferences screen (SCR-UI-007, FND-CONFIG-010).
 
 ## Parameters
 
@@ -27,27 +26,32 @@ None.
 
 ## Inputs
 
-`difficulty`.
+`difficulty_index`, a signed 16-bit word saved at `PREF/100` offset `0x00`
+(FMT-CONFIG-003).
 
 ## Procedure
 
 ```text
 define easier_difficulty():
-    difficulty = max(difficulty - 1, 0)
+    difficulty_index = (difficulty_index - 1) modulo 65536
+    if difficulty_index interpreted as signed is above 3: difficulty_index = 3
+    if difficulty_index interpreted as signed is below 0: difficulty_index = 0
 
 define harder_difficulty():
-    difficulty = min(difficulty + 1, 3)
+    difficulty_index = (difficulty_index + 1) modulo 65536
+    if difficulty_index interpreted as signed is above 3: difficulty_index = 3
+    if difficulty_index interpreted as signed is below 0: difficulty_index = 0
 ```
 
 ## Outputs
 
-The new `difficulty`, which the screen shows by the label of that index in the executable's list
-(FMT-TEXT-004).
+The new `difficulty_index`, which the screen uses to choose one of the four labels
+(FMT-TEXT-004, FND-CONFIG-009).
 
 ## Edge cases
 
-Whether the setting stops at Easy and Hideous, as the procedure has it, or wraps round, is not
-known.
+For ordinary values 0 through 3, the arrows stop at Easy and Hideous. The signed comparisons
+also clamp out-of-range loaded words after each click (FND-CONFIG-010).
 
 ## What the sources say
 
@@ -64,7 +68,6 @@ None known.
 
 ## Open questions
 
-- The game saves its difficulty-label index at `PREF/100` offset `0x00`
-  (FMT-CONFIG-003, FND-CONFIG-009). Whether the buttons stop or wrap, and what
-  value a new game starts with, remain open (Q-CONFIG-001, Q-CONFIG-002).
+- What value a new game starts with: the manual calls it Average while the FAQ says Balanced;
+  neither establishes the executable's initialization (Q-CONFIG-001, Q-CONFIG-002).
 - What the difficulty changes in combat (RULE-COMBAT-007, Q-COMBAT-007).

@@ -1,18 +1,28 @@
 # CONFIG
 
-Next ID: Q-CONFIG-007
+Next ID: Q-CONFIG-008
 
 ## Static
 
-- Q-CONFIG-002. FMT-CONFIG-003, RULE-CONFIG-001, RULE-CONFIG-002, RULE-CONFIG-003: Which
-  Preferences setting does each remaining field of `PREF/100` hold, and how do the button
-  handlers change the saved volumes, on-off settings and difficulty? Settles it: the routines
-  called after the overlay 192 load (FND-SAVE-005), the Preferences button handlers and the
-  callers that initialize the settings. Tried: the load routine (FND-SAVE-005) and the renderer's
-  references to `DS:143A`, which identify offset `0x00` as the saved difficulty-label index
-  (FND-CONFIG-009); and the renderer's use of `DS:1437` for filmstrip button `16303`, which
-  identifies offset `0x07` as animation control state without its polarity (FND-UI-033). Neither
-  establishes button transitions or new-game defaults. Blocks: slice 3.
+- Q-CONFIG-002. FMT-CONFIG-003, RULE-CONFIG-001, RULE-CONFIG-002, RULE-CONFIG-003,
+  RULE-CONFIG-004: What do the remaining `PREF/100` bytes at `0x02` and `0x04` control,
+  what initializes the settings for a new game, how do the saved speech gate and runtime
+  voice button state relate, and can music volume be adjusted elsewhere? Settles it:
+  bounded readings of the sound-library consumers, new-game initialization and voice
+  synchronization paths. Tried: the save/load copies (FND-SAVE-004, FND-SAVE-005),
+  renderer (FND-CONFIG-009, FND-UI-033), Preferences hover routine (FND-UI-034)
+  and button dispatcher (FND-CONFIG-010) identify the difficulty, effect-volume,
+  music/effects enable and animation-state fields and the ordinary button steps.
+  They do not identify the remaining bytes, new-game values, animation polarity
+  or a music-volume control. Blocks: slice 3.
+
+- Q-CONFIG-007. RULE-CONFIG-005: What timing unit does the message-delay word
+  represent, does another caller impose an upper limit, and does a new game
+  replace the loaded-image value 50? Settles it: a bounded reading of the
+  `DS:26B7` consumers and new-game initialization callers. Tried: the
+  Preferences hover and click branches and the first consumer
+  (FND-UI-034, FND-CONFIG-010) establish the arrow step and lower bound, but
+  the consumer's far routine and other writers have not been read.
 
 - Q-CONFIG-005. FMT-CONFIG-001: What does the game's sound library read from each field of
   `SOUND.CFG`, including its unexplained tail? Settles it: a bounded reading of the sound
@@ -39,13 +49,15 @@ None.
 
 ## Live session
 
-- Q-CONFIG-001. SCR-UI-007, RULE-CONFIG-001, RULE-CONFIG-002, RULE-CONFIG-003, FMT-CONFIG-003:
-  What are the native Preferences defaults, the selected and unselected frames of each control,
-  the volume endpoints and step counts, whether the difficulty stops at its ends, what `F6` toggles,
-  the difficulty and description placement, and the About page's layout and dismissal? Settles it:
-  the preferences live session. Tried: the executable's Preferences strings (FMT-TEXT-004) and the
-  saved `PREF` resource (FND-CONFIG-001), which give labels and one set of saved values but no
-  defaults, ranges or frame states. Blocks: slice 3.
+- Q-CONFIG-001. SCR-UI-007, RULE-CONFIG-001, RULE-CONFIG-002, RULE-CONFIG-003,
+  RULE-CONFIG-004, RULE-CONFIG-005, FMT-CONFIG-003: What are the native
+  Preferences defaults and control frames, the visible message-delay and effect-volume
+  endpoints, what `F6` toggles, the difficulty and description placement, and the
+  About page's layout and dismissal? Settles it: the preferences live session.
+  Tried: the strings and saved resource (FMT-TEXT-004, FND-CONFIG-001),
+  renderer (FND-CONFIG-009, FND-UI-033), hover routine (FND-UI-034) and click
+  dispatcher (FND-CONFIG-010) establish labels and button transitions, but
+  cannot establish new-game defaults or native drawn states. Blocks: slice 3.
 
 ## Source
 

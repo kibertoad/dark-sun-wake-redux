@@ -12,10 +12,11 @@ Next ID: Q-TEXT-004
 - Q-TEXT-002. FMT-TEXT-003: How does the game load a `TEXT` resource and split its lines, and
   which screen shows which resource? Settles it: a reading of the overlay code of overlays 186 and
   188 around the `TEXT` tag bytes. Blocks: nothing yet.
-- Q-TEXT-003. FMT-TEXT-004: Which code reads the Preferences text block, which description
-  belongs to which control, what `unk_010` holds, what `%C` does, and which difficulty the game
-  starts with? Settles it: a reading of the code that builds the Preferences window, found
-  through the relocated far pointers or the window's resources. Blocks: nothing yet.
+- Q-TEXT-003. FMT-TEXT-004: What does `unk_010` hold, what does `%C` do in the About lines,
+  and which difficulty does a new game start with? Settles it: a bounded reading of the
+  remaining text-drawing path and the new-game initialization callers. Tried: the renderer's
+  difficulty-label lookup (FND-CONFIG-009) and hover-description branches (FND-UI-034), which
+  identify the readers and label choices but not these remaining behaviors. Blocks: nothing yet.
 
 ## Emulated call
 
