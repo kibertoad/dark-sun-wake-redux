@@ -52,7 +52,8 @@ This reading does not establish what the input fields at `+0x2A`, `+0xD6`,
 `+0xD8` and `+0xDA` mean or which setup selection reaches each writer.
 The raw displacement search bounds literal references to these output
 addresses; computed writes or whole-buffer copies remain possible. The
-game's consumers of tail offsets `0x34..0x3A` also remain unread.
+FND-CONFIG-023 identifies bounded game-side uses of tail offsets
+`0x34..0x3A`, but their full effects and other consumers remain unread.
 
 ## How to reproduce
 

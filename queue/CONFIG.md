@@ -53,7 +53,9 @@ Next ID: Q-CONFIG-008
   comparison, and further `0x14` and `0x32` branches. The tail and the
   receiving routines' effects remain unread. FND-CONFIG-022 maps each tail
   output to an input-record offset or a literal 4, but the source fields'
-  meanings and the game's tail consumers remain open.
+  meanings remain open. FND-CONFIG-023 identifies bounded game-side reads
+  of `0x34..0x3A`, including alternative `ADV ` resource numbers, but the
+  selector and remaining branch effects are still unresolved.
 
 - Q-CONFIG-006. FMT-CONFIG-002: How does the setup program parse `SOUND.INI`, including unknown
   or malformed keys, and what do `CardGroup` and the chunk numbers mean? Settles it: the parser

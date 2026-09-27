@@ -204,7 +204,7 @@ Entries by status.
 
 ## recorded
 
-243 entries.
+244 entries.
 
 | ID | Title |
 |---|---|
@@ -275,6 +275,7 @@ Entries by status.
 | [FND-CONFIG-020](../findings/FND-CONFIG-020.md) | Sound initialization reads four SOUND.CFG fields and rewrites one conditionally |
 | [FND-CONFIG-021](../findings/FND-CONFIG-021.md) | Sound initialization passes the first configuration block and tests more flags |
 | [FND-CONFIG-022](../findings/FND-CONFIG-022.md) | Sound setup populates the nine-byte SOUND.CFG tail from a record and a constant |
+| [FND-CONFIG-023](../findings/FND-CONFIG-023.md) | SOUND.CFG tail words select ADV resource requests and conditional paths |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |
