@@ -51,16 +51,17 @@ Next ID: Q-CONFIG-009
 
 - Q-CONFIG-008. RULE-CONFIG-005: Which text-message calls reach the overlay
   172 wait gate after acquiring `WIND/10501`? Settles it: bounded readings
-  of the two child registration helpers, the window's runtime bounds and
-  relevant message callers; an original observation only for any outcome
-  the code does not decide. Tried: FND-CONFIG-011 identifies the nonzero
+  of resource acquisition, the window's runtime bounds and relevant message
+  callers; an original observation only for any outcome the code does not
+  decide. Tried: FND-CONFIG-011 identifies the nonzero
   pointer condition. FND-CONFIG-017 identifies several resident callers,
   with prior overlay findings showing more. FND-CONFIG-018 identifies the
   pointer as the return of the `WIND/10501` acquisition and setup path.
   FND-CONFIG-030 shows callback storage cannot fail. FND-CONFIG-031 shows
-  successful registration clears the activation failure callbacks, while
-  `BUTN/10309` and `APFM/11270` registration helpers can still fail.
-  Their conditions and the relevant live states remain unread.
+  successful registration clears the activation failure callbacks.
+  FND-CONFIG-032 follows both child registration helpers and shows the
+  shipped image fields bypass their image failure branches. Resource
+  acquisition, runtime bounds and the relevant caller states remain unread.
 
 - Q-CONFIG-005. FMT-CONFIG-001: What does the game's sound library read from each field of
   `SOUND.CFG`, including its unexplained tail? Settles it: bounded readings

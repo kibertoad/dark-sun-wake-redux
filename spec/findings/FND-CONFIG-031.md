@@ -25,8 +25,8 @@ environment: null
 
 The resident registration routine at `3A8E:02B3` iterates a window's
 children by their four-byte tags. Its dispatch table includes `BUTN` and
-`APFM`. The `BUTN` branch calls resident `2EBE:0008`, and the `APFM`
-branch calls resident `2F96:000B`; either branch returns failure from
+`APFM`. The `BUTN` branch calls resident `3EBE:0008`, and the `APFM`
+branch calls resident `3F96:000B`; either branch returns failure from
 registration when its helper returns `0xFFFF`. After the child loop succeeds,
 registration clears the window's callback pointers at offsets `0xF9` and
 `0xFD`, then returns zero. The installed `WIND/10501` has two children in
@@ -49,9 +49,8 @@ window's zero-pointer and position/bounds gates precede them
 
 ## Alternatives
 
-The `BUTN` and `APFM` helpers' failure conditions and the state in which
-this message window is registered have not been read completely. This
-finding does not prove that either helper succeeds, or that the message
+The `BUTN` and `APFM` helpers' image-dependent failure conditions are
+followed in FND-CONFIG-032. This finding does not prove that the message
 wait runs in every live state. Other calls within activation have effects
 that this reading has not established, although their return values do not
 feed its own failure return.
