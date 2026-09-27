@@ -524,6 +524,7 @@ Entries by area.
 | [FND-SAVE-006](../findings/FND-SAVE-006.md) | DSUN.EXE copies DARKSAVE.GFF to DARKRUN.GFF and counts SAVE01.SAV to SAVE10.SAV against the free disk space | recorded |
 | [FND-SAVE-007](../findings/FND-SAVE-007.md) | Save-list rows read STXT 1 from each available save file | recorded |
 | [FND-SAVE-008](../findings/FND-SAVE-008.md) | Saving updates DARKRUN.GFF resources before copying it to a numbered save file | recorded |
+| [FND-SAVE-009](../findings/FND-SAVE-009.md) | The later PREF and GREQ save writes select the CHARSAVE.GFF archive | recorded |
 | [RULE-SAVE-001](../rules/RULE-SAVE-001.md) | The keys that save, load and quit | sourced |
 | [RULE-SAVE-002](../rules/RULE-SAVE-002.md) | The number and file name of a saved game | supported |
 

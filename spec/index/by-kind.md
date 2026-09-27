@@ -175,7 +175,7 @@ Entries by kind.
 
 ## findings
 
-256 entries.
+257 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -343,6 +343,7 @@ Entries by kind.
 | [FND-SAVE-006](../findings/FND-SAVE-006.md) | DSUN.EXE copies DARKSAVE.GFF to DARKRUN.GFF and counts SAVE01.SAV to SAVE10.SAV against the free disk space | recorded |
 | [FND-SAVE-007](../findings/FND-SAVE-007.md) | Save-list rows read STXT 1 from each available save file | recorded |
 | [FND-SAVE-008](../findings/FND-SAVE-008.md) | Saving updates DARKRUN.GFF resources before copying it to a numbered save file | recorded |
+| [FND-SAVE-009](../findings/FND-SAVE-009.md) | The later PREF and GREQ save writes select the CHARSAVE.GFF archive | recorded |
 | [FND-SCRIPT-001](../findings/FND-SCRIPT-001.md) | GPLDATA.GFF holds 330 GPL and 20 MAS resources; every GPL one starts with 0x19 and every one of both ends with 0x31 | recorded |
 | [FND-SCRIPT-002](../findings/FND-SCRIPT-002.md) | GPLDATA.GFF#GPLI/1 is 1,316 records of three words that pair entry numbers with script offsets | recorded |
 | [FND-SCRIPT-003](../findings/FND-SCRIPT-003.md) | Overlay 180 opens GPLDATA.GFF through the name at 57E0:0AF1 and reports it missing through the pattern after it | recorded |

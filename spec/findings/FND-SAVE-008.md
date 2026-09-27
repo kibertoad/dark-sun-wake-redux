@@ -63,8 +63,8 @@ The source table for the numbered `SAVE` resources has not been fully read,
 so this finding does not assert that all 61 are present or give their
 layouts. The remove and write results are not all checked by the caller;
 the exact contents of a failed or interrupted save are not established.
-The archive targeted by the later `PREF` and `GREQ` calls requires its own
-handle trace. Other resources already in `DARKRUN.GFF` remain unidentified.
+FND-SAVE-009 traces the archive pointer selected for the later `PREF` and
+`GREQ` calls. Other resources already in `DARKRUN.GFF` remain unidentified.
 
 ## How to reproduce
 

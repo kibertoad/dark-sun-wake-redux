@@ -65,10 +65,11 @@ written.
 
 ## Alternatives
 
-Which archive the later `PREF` and `GREQ` entries write to is not shown here; the shipped
-`CHARSAVE.GFF` holds `PREF/100` and `GREQ/1` to `/10` (FND-SAVE-001). FND-SAVE-008 reads the
-step 7 far routine: it updates `DARKRUN.GFF` and copies it to the selected numbered file. The
-step 8 far routine still needs a handle trace. That the loader puts the descriptor's segment in place of a fixup word is an assumption
+The later `PREF` and `GREQ` entries select the `CHARSAVE.GFF` pointer
+(FND-SAVE-009). FND-SAVE-008 reads the step 7 far routine: it updates
+`DARKRUN.GFF` and copies it to the selected numbered file. The step 8
+resource-handle selection result still needs a complete return-value trace.
+That the loader puts the descriptor's segment in place of a fixup word is an assumption
 (FMT-EXE-005); a far call of overlay 180 resolved the same way lands on the routine that loads
 the sound configuration, which fits it.
 

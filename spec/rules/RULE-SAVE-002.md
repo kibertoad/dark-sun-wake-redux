@@ -4,7 +4,7 @@ title: The number and file name of a saved game
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SAVE-004, FND-SAVE-005, FND-SAVE-006, FND-SAVE-007, FND-SAVE-008]
+evidence: [FND-SAVE-004, FND-SAVE-005, FND-SAVE-006, FND-SAVE-007, FND-SAVE-008, FND-SAVE-009]
 conflicting: []
 split_with: []
 related: []
@@ -19,6 +19,8 @@ and a slot on the screen gives the number by adding its position to that first o
 reader requests `STXT/1` from an available `SAVEnn.SAV` archive for its description
 (FND-SAVE-007). Saving updates the working `DARKRUN.GFF` archive's `SAVE` resource group and
 `STXT/1` description, then copies it to the numbered file (FND-SAVE-008).
+It then selects `CHARSAVE.GFF` for the `PREF/100` and `GREQ/n` writes
+(FND-SAVE-009).
 
 ## When it runs
 
@@ -66,6 +68,5 @@ None known.
 
 ## Open questions
 
-- Which other resources a `SAVEnn.SAV` file holds, and which archive receives the later
-  `PREF/100` and `GREQ/n` writes (FND-SAVE-004, FND-SAVE-008, Q-SAVE-001).
+- Which other resources a `SAVEnn.SAV` file holds (FND-SAVE-008, Q-SAVE-001).
 - How many slots the screens show and how `save_list_top` changes (Q-SAVE-001).
