@@ -204,7 +204,7 @@ Entries by status.
 
 ## recorded
 
-234 entries.
+235 entries.
 
 | ID | Title |
 |---|---|
@@ -266,6 +266,7 @@ Entries by status.
 | [FND-CONFIG-011](../findings/FND-CONFIG-011.md) | Overlay 172 gates the message-delay wait on a nonzero far pointer |
 | [FND-CONFIG-012](../findings/FND-CONFIG-012.md) | The saved PREF byte at offset 2 feeds the sound library's music-level setting |
 | [FND-CONFIG-013](../findings/FND-CONFIG-013.md) | The second saved music byte is the Preferences bar's scaling denominator |
+| [FND-CONFIG-014](../findings/FND-CONFIG-014.md) | The launcher, Preferences button and save path use two separate speech gates |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |

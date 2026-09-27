@@ -75,8 +75,10 @@ The difficulty arrows stop at 0 and 3 instead of wrapping for ordinary values.
 ## Alternatives
 
 The event reaching the wait and its effect on text pacing remain open. The
-code that initializes
-`DS:14E4` and `DS:1439`, and any path that synchronizes them, was not read.
+new-game initialization of `DS:14E4` and `DS:1439`, and any path that
+synchronizes them, was not read. FND-SOUND-010 records their loaded-image
+values and the command-line setting of `DS:14E4`; FND-CONFIG-014 connects
+that startup path with the Preferences, save/load and playback paths.
 The sound-library calls and the click event's precise native input timing also
 remain open. The volume addition occurs in an eight-bit byte before its upper
 cap, so a malformed saved value above 248 can wrap below the cap; ordinary

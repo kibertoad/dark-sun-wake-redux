@@ -82,8 +82,9 @@ None known.
 - The Preferences click paths use saved bytes at `PREF/100` offsets `0x06` for music,
   `0x05` for sound effects and `0x07` for animation control, while the voice button
   changes an additional runtime byte. Their new-game starting values, the animation
-  byte's on/off polarity and the relation between the voice byte and saved speech gate
-  remain open (FND-CONFIG-010, FMT-CONFIG-003, Q-CONFIG-001, Q-CONFIG-002).
+  byte's on/off polarity and any synchronization outside the bounded
+  launcher, Preferences and save/load paths remain open (FND-CONFIG-010,
+  FND-CONFIG-014, FMT-CONFIG-003, Q-CONFIG-001, Q-CONFIG-002).
 - The glossary claims `music_on`, `sound_effects_on`, `voice_on` and
   `animations_on` still need complete enable-state and hotkey readings before
   their true/false descriptions can be treated as established (Q-CONFIG-002).
