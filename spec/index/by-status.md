@@ -24,7 +24,7 @@ Entries by status.
 
 ## sourced
 
-36 entries.
+35 entries.
 
 | ID | Title |
 |---|---|
@@ -52,7 +52,6 @@ Entries by status.
 | [RULE-PARTY-005](../rules/RULE-PARTY-005.md) | Origin ability modifiers |
 | [RULE-PARTY-007](../rules/RULE-PARTY-007.md) | Which classes each origin may take, and to which level |
 | [RULE-PARTY-008](../rules/RULE-PARTY-008.md) | The keys 1 to 4 choose the party leader |
-| [RULE-SAVE-001](../rules/RULE-SAVE-001.md) | The keys that save, load and quit |
 | [RULE-SCRIPT-005](../rules/RULE-SCRIPT-005.md) | Script variables start at 0 |
 | [SCR-EXPLORE-001](../screens/SCR-EXPLORE-001.md) | Exploration view |
 | [SCR-UI-015](../screens/SCR-UI-015.md) | Character-box menu |
@@ -67,7 +66,7 @@ Entries by status.
 
 ## supported
 
-110 entries.
+111 entries.
 
 | ID | Title |
 |---|---|
@@ -146,6 +145,7 @@ Entries by status.
 | [RULE-PARTY-006](../rules/RULE-PARTY-006.md) | START GAME supplies characters 40 to 43 as the party |
 | [RULE-REGION-001](../rules/RULE-REGION-001.md) | Drawing a region's terrain tiles |
 | [RULE-RNG-001](../rules/RULE-RNG-001.md) | The game's random number generator and its reductions |
+| [RULE-SAVE-001](../rules/RULE-SAVE-001.md) | The F1 and F2 screens and F3 exit choice |
 | [RULE-SAVE-002](../rules/RULE-SAVE-002.md) | The number and file name of a saved game |
 | [RULE-SCRIPT-001](../rules/RULE-SCRIPT-001.md) | Loading a GPL or MAS script into the script cache |
 | [RULE-SCRIPT-002](../rules/RULE-SCRIPT-002.md) | Running a script, reading its code and calling other scripts |
@@ -205,7 +205,7 @@ Entries by status.
 
 ## recorded
 
-256 entries.
+257 entries.
 
 | ID | Title |
 |---|---|
@@ -373,6 +373,7 @@ Entries by status.
 | [FND-SAVE-007](../findings/FND-SAVE-007.md) | Save-list rows read STXT 1 from each available save file |
 | [FND-SAVE-008](../findings/FND-SAVE-008.md) | Saving updates DARKRUN.GFF resources before copying it to a numbered save file |
 | [FND-SAVE-009](../findings/FND-SAVE-009.md) | The later PREF and GREQ save writes select the CHARSAVE.GFF archive |
+| [FND-SAVE-010](../findings/FND-SAVE-010.md) | Overlay 190 sends F1 and F2 to Save and Load and F3 to an exit choice |
 | [FND-SCRIPT-001](../findings/FND-SCRIPT-001.md) | GPLDATA.GFF holds 330 GPL and 20 MAS resources; every GPL one starts with 0x19 and every one of both ends with 0x31 |
 | [FND-SCRIPT-002](../findings/FND-SCRIPT-002.md) | GPLDATA.GFF#GPLI/1 is 1,316 records of three words that pair entry numbers with script offsets |
 | [FND-SCRIPT-003](../findings/FND-SCRIPT-003.md) | Overlay 180 opens GPLDATA.GFF through the name at 57E0:0AF1 and reports it missing through the pattern after it |
@@ -588,7 +589,7 @@ Entries whose Open questions section says more than None known.
 | [RULE-QUEST-001](../rules/RULE-QUEST-001.md) | How the game's scripts advance the story from one quest step to the next | unknown |
 | [RULE-REGION-001](../rules/RULE-REGION-001.md) | Drawing a region's terrain tiles | supported |
 | [RULE-RNG-001](../rules/RULE-RNG-001.md) | The game's random number generator and its reductions | supported |
-| [RULE-SAVE-001](../rules/RULE-SAVE-001.md) | The keys that save, load and quit | sourced |
+| [RULE-SAVE-001](../rules/RULE-SAVE-001.md) | The F1 and F2 screens and F3 exit choice | supported |
 | [RULE-SAVE-002](../rules/RULE-SAVE-002.md) | The number and file name of a saved game | supported |
 | [RULE-SCRIPT-001](../rules/RULE-SCRIPT-001.md) | Loading a GPL or MAS script into the script cache | supported |
 | [RULE-SCRIPT-002](../rules/RULE-SCRIPT-002.md) | Running a script, reading its code and calling other scripts | supported |

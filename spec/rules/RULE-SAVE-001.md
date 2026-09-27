@@ -1,10 +1,10 @@
 ---
 id: RULE-SAVE-001
-title: The keys that save, load and quit
-status: sourced
+title: The F1 and F2 screens and F3 exit choice
+status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [SRC-MANUAL-1994]
+evidence: [FND-SAVE-010, FND-UI-035, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [SCR-UI-013, SCR-UI-014]
@@ -12,42 +12,55 @@ related: [SCR-UI-013, SCR-UI-014]
 
 ## Summary
 
-`F1` saves the game, `F2` loads a saved game and `F3` quits the game.
+In overlay 190's key dispatcher, `F1` opens Save Game when combat is
+inactive and reports that saving is refused during combat. `F2` opens
+Load Game. `F3` opens an exit choice; when combat is inactive, that
+choice offers Save, Quit and Cancel (FND-SAVE-010).
 
 ## When it runs
 
-When the player presses a key while the map is shown (SRC-MANUAL-1994, page 77).
+When overlay 190 handles a key word (FND-COMBAT-025).
 
 ## Parameters
 
-`scan_code`, the scan code of the key the player pressed, as the PC keyboard reports it: `0x3B`
-for `F1`, `0x3C` for `F2` and `0x3D` for `F3`.
+`key_word`, the BIOS keyboard word: `0x3B00` for `F1`, `0x3C00` for
+`F2` and `0x3D00` for `F3` (FND-COMBAT-025).
 
 ## Inputs
 
-None beyond the parameters.
+The combat-state word at `4C10:0019` and the exit-control byte at
+`DS:1462`.
 
 ## Procedure
 
 ```text
-define save_load_key(scan_code):
-    if scan_code == 0x3B:
-        show SCR-UI-014
-    else if scan_code == 0x3C:
+define save_load_key(key_word):
+    if key_word == 0x3B00:
+        if combat_state != 0:
+            show "CAN'T SAVE DURING COMBAT"
+        else:
+            show SCR-UI-014
+    else if key_word == 0x3C00:
         show SCR-UI-013
-    else if scan_code == 0x3D:
-        quit_requested = true
+    else if key_word == 0x3D00:
+        show exit choice, with "SAVE" offered when combat_state == 0
+        if choice == 1:
+            show SCR-UI-014
+        else if choice == 2:
+            exit_control_byte = 0
 ```
 
 ## Outputs
 
-The Save Game or Load Game screen, or a request to leave the game.
+The Save Game or Load Game screen, a combat refusal message, or an exit
+choice whose Quit branch clears `DS:1462`.
 
 ## Edge cases
 
-The manual says only that `F1` saves the game and `F2` loads one; the procedure opens the screens
-the Game Menu's LOAD and SAVE choices open, which is a guess. Whether `F3` offers to save first, as
-Exit to DOS on the Game Menu does (SCR-UI-006), is not known.
+The key consumer can invoke an indirect callback before opening a
+Save/Load screen; its additional effects are not fully read. The exit
+choice omits its `SAVE` label when the combat-state word is nonzero
+(FND-SAVE-010).
 
 ## What the sources say
 
@@ -61,5 +74,6 @@ None known.
 
 ## Open questions
 
-- Whether `F1` and `F2` open the screens or save and load at once, whether `F3` asks first, and
-  where the game keeps `quit_requested` (Q-SAVE-001).
+- Whether other key consumers act differently, the full effects of the
+  indirect callback and the lifecycle after `DS:1462` is cleared
+  (FND-SAVE-010, Q-SAVE-001).

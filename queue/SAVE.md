@@ -5,10 +5,11 @@ Next ID: Q-SAVE-003
 ## Static
 
 - Q-SAVE-001. RULE-SAVE-001, RULE-SAVE-002, SCR-UI-013, SCR-UI-014: What does a `SAVEnn.SAV`
-  file hold beyond the traced resource group, what do `F1`, `F2` and
-  `F3` do, and which windows, lists and controls make up the Load Game and Save Game screens?
+  file hold beyond the traced resource group, what effects do the key
+  dispatcher's indirect callback and exit-byte change have, and which
+  windows, lists and controls make up the Load Game and Save Game screens?
   Settles it: inventory the working archive's other resources and trace the
-  `F1` to `F3` handlers, `SAVE??.SAV` search and `save_list_top` writes
+  indirect callback, exit lifecycle, `SAVE??.SAV` search and list-base writes
   (FND-SAVE-004, FND-SAVE-006). Tried:
   FND-UI-036 identifies the shared `WIND/18500` window, ten list rows and the
   LOAD/SAVE image switch. FND-UI-037 traces row selection and the action
@@ -18,7 +19,9 @@ Next ID: Q-SAVE-003
   file. FND-SAVE-009 traces the later `PREF`/`GREQ` target to
   `CHARSAVE.GFF`. FND-UI-038 traces event-6 row navigation and identifies
   cross-overlay writes to the list-base word; its entry value, physical
-  input mapping, other resources and transitions remain open. Blocks:
+  input mapping, other resources and transitions remain open. FND-SAVE-010
+  traces the `F1` to `F3` branches, leaving the indirect callback and
+  exit lifecycle open. Blocks:
   slice 5.
 - Q-SAVE-002. FMT-SAVE-001, FMT-SAVE-002: What do the four words and the byte of a `GREQ` resource
   hold, what is the tenth byte the routines keep beside them, and where does a character's `CACT`
