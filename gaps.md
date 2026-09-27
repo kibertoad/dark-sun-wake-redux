@@ -91,3 +91,18 @@ precise code offset has to be written in the finding body.
 file-offset notation for overlay, banked or packed code, and validate that the
 offset falls within the build's documented mapped range. This would make the
 machine-checked location as precise as the finding itself.
+
+## 8. Resolve one FBOV far-call fixup target on demand
+
+While tracing the Start Game setup helper, raw overlay instructions appeared
+to call segments such as `0160` and `01D0`. Those words are FBOV descriptor
+encodings; the descriptor table resolves them to different resident segments,
+and one call resolves to an overlay trampoline. Treating the encoded word as a
+resident segment sends a researcher to unrelated bytes. The current overlay
+map reports code ranges, but does not answer this one-call target question.
+
+**Request:** add a bounded lookup to the shared FBOV tooling that accepts one
+shipped-file call-site offset, verifies that the segment operand has a fixup,
+and reports its descriptor index, resolved segment and target address or
+trampoline. Make an absent fixup explicit so the tool does not assign a
+plausible target to an unrelocated word.
