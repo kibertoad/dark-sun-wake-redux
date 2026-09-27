@@ -23,10 +23,10 @@ None known.
 ## Handover
 
 - Stage: Slices, with slices 2 and 3 in progress.
-- Branch: `main`, three commits ahead of `origin/main` including this
+- Branch: `main`, five commits ahead of `origin/main` including this
   handover; not pushed.
 - Last gate: 2026-09-27, `./tools/Test.ps1` passed (700 tests);
-  documentation check passed (399 entries, 158 parity rows).
+  documentation check passed (400 entries, 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
 - Next: Q-CONFIG-002, then Q-CONFIG-007 with a caller or initialization
