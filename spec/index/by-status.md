@@ -205,7 +205,7 @@ Entries by status.
 
 ## recorded
 
-245 entries.
+246 entries.
 
 | ID | Title |
 |---|---|
@@ -278,6 +278,7 @@ Entries by status.
 | [FND-CONFIG-023](../findings/FND-CONFIG-023.md) | SOUND.CFG tail words select ADV resource requests and conditional paths |
 | [FND-CONFIG-024](../findings/FND-CONFIG-024.md) | ADV selector pairs each resource number with one settings block |
 | [FND-CONFIG-025](../findings/FND-CONFIG-025.md) | The resident PREF bytes are part of a Preferences label |
+| [FND-CONFIG-026](../findings/FND-CONFIG-026.md) | Literal difficulty-word writers are in load, Preferences and a guarded overlay branch |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |

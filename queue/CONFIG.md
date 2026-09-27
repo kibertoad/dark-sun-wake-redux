@@ -22,7 +22,9 @@ Next ID: Q-CONFIG-008
   Ghidra queries found no recognized references to either that entry or its
   resident trampoline, which does not exclude indirect dispatch.
   FND-CONFIG-025 corrects the resident `PREF` hit to a Preferences label;
-  the direct tag uses found so far are in save/load. These readings
+  the direct tag uses found so far are in save/load. FND-CONFIG-026 bounds
+  the literal difficulty-word writers to load, Preferences and the guarded
+  overlay branch, without excluding an indirect or block write. These readings
   do not identify new-game values, animation
   polarity, any synchronization beyond those paths or another music-level control. Blocks:
   slice 3.

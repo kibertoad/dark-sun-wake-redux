@@ -497,6 +497,7 @@ Entries by area.
 | [FND-CONFIG-023](../findings/FND-CONFIG-023.md) | SOUND.CFG tail words select ADV resource requests and conditional paths | recorded |
 | [FND-CONFIG-024](../findings/FND-CONFIG-024.md) | ADV selector pairs each resource number with one settings block | recorded |
 | [FND-CONFIG-025](../findings/FND-CONFIG-025.md) | The resident PREF bytes are part of a Preferences label | recorded |
+| [FND-CONFIG-026](../findings/FND-CONFIG-026.md) | Literal difficulty-word writers are in load, Preferences and a guarded overlay branch | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |
