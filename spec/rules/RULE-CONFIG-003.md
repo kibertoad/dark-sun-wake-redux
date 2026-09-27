@@ -57,7 +57,8 @@ None known.
 
 ## Open questions
 
-- Whether music volume can be adjusted through another control or key remains open. The
-  executable's first arrow pair changes message delay, and the second changes sound-effects
-  volume; the manual says the first is music volume (FND-UI-034, FND-CONFIG-010,
-  SRC-MANUAL-1994, Q-CONFIG-002).
+- Whether music level can be adjusted through another control or key remains
+  open. The saved request reaches the sound library, but the executable's first
+  arrow pair changes message delay and the second changes sound-effects
+  volume; the manual says the first is music volume (FND-UI-034,
+  FND-CONFIG-010, FND-CONFIG-012, SRC-MANUAL-1994, Q-CONFIG-002).

@@ -9,7 +9,7 @@ byte_order: little
 size: 59
 text: false
 definition: fmt_config_001.ksy
-evidence: [FND-CONFIG-003, FND-CONFIG-004, FND-CONFIG-005, FND-SOUND-007, FND-SOUND-008, FND-SOUND-013]
+evidence: [FND-CONFIG-003, FND-CONFIG-004, FND-CONFIG-005, FND-CONFIG-012, FND-SOUND-007, FND-SOUND-008, FND-SOUND-013]
 conflicting: []
 split_with: []
 related: []
@@ -36,7 +36,7 @@ come from the values of the shipped file and the `SOUND.INI` record they match [
 | `0x14` | 2 | `UINT16LE` | `unk_14` | Purpose unknown. 11, the record's music driver chunk number. With bit 1 set the game plays its music as disc audio tracks. | supported | FND-CONFIG-003, FND-SOUND-013 |
 | `0x16` | 14 | `char[14]` | `music_driver` | The file name of the real-mode music driver, with its extension, padded with NULs. | supported | FND-CONFIG-003 |
 | `0x24` | 14 | `char[14]` | `digital_driver` | The file name of the real-mode digital sound driver, with its extension, padded with NULs. | supported | FND-CONFIG-003 |
-| `0x32` | 2 | `UINT16LE` | `unk_32` | Purpose unknown. 1 in the shipped file. | supported | FND-CONFIG-003 |
+| `0x32` | 2 | `UINT16LE` | `unk_32` | When it is 3, the sound library caps a music-level request at 90 instead of 100. Other uses unknown. 1 in the shipped file. | supported | FND-CONFIG-003, FND-CONFIG-012 |
 | `0x34` | 2 | `UINT16LE` | `unk_34` | Purpose unknown. 4. | supported | FND-CONFIG-003 |
 | `0x36` | 2 | `UINT16LE` | `unk_36` | Purpose unknown. 8, the record's digital driver chunk number. | supported | FND-CONFIG-003 |
 | `0x38` | 2 | `UINT16LE` | `unk_38` | Purpose unknown. 11, the music driver chunk number again. | supported | FND-CONFIG-003 |
