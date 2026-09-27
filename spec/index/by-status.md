@@ -196,10 +196,11 @@ Entries by status.
 
 ## superseded
 
-1 entries.
+2 entries.
 
 | ID | Title |
 |---|---|
+| [FND-CONFIG-016](../findings/FND-CONFIG-016.md) | Literal PREF tags occur in save-load code and one resident data site |
 | [FND-UI-029](../findings/FND-UI-029.md) | WIND 16500 places the thirteen Preferences buttons |
 
 ## recorded
@@ -268,7 +269,6 @@ Entries by status.
 | [FND-CONFIG-013](../findings/FND-CONFIG-013.md) | The second saved music byte is the Preferences bar's scaling denominator |
 | [FND-CONFIG-014](../findings/FND-CONFIG-014.md) | The launcher, Preferences button and save path use two separate speech gates |
 | [FND-CONFIG-015](../findings/FND-CONFIG-015.md) | Overlay 171 writes difficulty 3 only after a record-field threshold test |
-| [FND-CONFIG-016](../findings/FND-CONFIG-016.md) | Literal PREF tags occur in save-load code and one resident data site |
 | [FND-CONFIG-017](../findings/FND-CONFIG-017.md) | The message-delay routine has resident text-message callers |
 | [FND-CONFIG-018](../findings/FND-CONFIG-018.md) | A WIND resource return value gates the message-delay wait |
 | [FND-CONFIG-019](../findings/FND-CONFIG-019.md) | The sound-library file entry loads SOUND.CFG whole without field parsing |
@@ -277,6 +277,7 @@ Entries by status.
 | [FND-CONFIG-022](../findings/FND-CONFIG-022.md) | Sound setup populates the nine-byte SOUND.CFG tail from a record and a constant |
 | [FND-CONFIG-023](../findings/FND-CONFIG-023.md) | SOUND.CFG tail words select ADV resource requests and conditional paths |
 | [FND-CONFIG-024](../findings/FND-CONFIG-024.md) | ADV selector pairs each resource number with one settings block |
+| [FND-CONFIG-025](../findings/FND-CONFIG-025.md) | The resident PREF bytes are part of a Preferences label |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |

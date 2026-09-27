@@ -71,7 +71,8 @@ None known.
 - What value a new game starts with: the manual calls it Average while the FAQ
   says Balanced. The loaded-image value zero and the guarded overlay 171
   write of 3 do not establish the executable's new-game initialization.
-  FND-CONFIG-016 finds no second instruction-embedded `PREF` tag beyond
-  save/load, but its resident data occurrence and indirect paths are not
-  traced (FND-CONFIG-009, FND-CONFIG-015, Q-CONFIG-001, Q-CONFIG-002).
+  FND-CONFIG-025 places the resident `PREF` byte match inside a menu label;
+  the instruction-embedded tags found so far belong to save/load, while
+  indirect paths remain untraced (FND-CONFIG-009, FND-CONFIG-015,
+  Q-CONFIG-001, Q-CONFIG-002).
 - What the difficulty changes in combat (RULE-COMBAT-007, Q-COMBAT-007).

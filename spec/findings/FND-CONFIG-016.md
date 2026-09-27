@@ -1,9 +1,9 @@
 ---
 id: FND-CONFIG-016
 title: Literal PREF tags occur in save-load code and one resident data site
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-CONFIG-025]
 recorded_by: kibertoad
 reproduced_by: []
 method: static
@@ -19,6 +19,10 @@ environment: null
 ---
 
 ## Observation
+
+Superseded by FND-CONFIG-025: the resident match at `DS:0E85` is inside a
+Preferences label, so the proposed resident-tag lead below is wrong. The
+physical hit list remains as the record of the earlier search.
 
 A physical search of the installed `DSUN.EXE` for the four ASCII bytes
 `PREF` returns four file offsets: `0x0004DE85`, `0x0007D87A`,

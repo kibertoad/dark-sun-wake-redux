@@ -21,8 +21,8 @@ Next ID: Q-CONFIG-008
   record-field branch; its callers and inputs remain unread. Bounded mapped
   Ghidra queries found no recognized references to either that entry or its
   resident trampoline, which does not exclude indirect dispatch.
-  FND-CONFIG-016 places the literal `PREF` tags in save/load and one
-  untraced resident data site. These readings
+  FND-CONFIG-025 corrects the resident `PREF` hit to a Preferences label;
+  the direct tag uses found so far are in save/load. These readings
   do not identify new-game values, animation
   polarity, any synchronization beyond those paths or another music-level control. Blocks:
   slice 3.
