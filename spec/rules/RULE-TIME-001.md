@@ -81,7 +81,8 @@ None known.
 
 ## Open questions
 
-- What each caller waits for, and whether the word at `57E0:26B7`, a hundredth of the pause in
-  overlay 172, is the Preferences message delay (Q-TIME-003).
+- What event each caller waits for, including the overlay 172 pause fed by
+  100 times the Preferences message-delay word (FND-CONFIG-010, FND-UI-034,
+  Q-TIME-003).
 - Whether the game ever reprograms channel 0 to a mode other than 3, which would make
   `calibrate_wait` choose 1,193 (Q-TIME-002).

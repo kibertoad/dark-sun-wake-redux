@@ -75,8 +75,10 @@ overlay 172.
 ## Alternatives
 
 What each calling routine does was not read, so which screen or event each pause belongs to is
-open. The word at `DS:26B7` could be the message delay the Preferences screen sets (its
-description text is in `DSUN.EXE`), but nothing here shows that. That the record at `DS:39A7` is
+open. The later Preferences click reading identifies the word at `DS:26B7` as
+the value changed by the arrows labelled `MESSAGE DELAY` (FND-CONFIG-010,
+FND-UI-034); the event that reaches overlay 172's pause remains open. That
+the record at `DS:39A7` is
 one of the runtime's startup records is read from its form and was not traced to the startup
 code.
 

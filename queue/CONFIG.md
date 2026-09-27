@@ -16,13 +16,14 @@ Next ID: Q-CONFIG-008
   They do not identify the remaining bytes, new-game values, animation polarity
   or a music-volume control. Blocks: slice 3.
 
-- Q-CONFIG-007. RULE-CONFIG-005: What timing unit does the message-delay word
-  represent, does another caller impose an upper limit, and does a new game
-  replace the loaded-image value 50? Settles it: a bounded reading of the
-  `DS:26B7` consumers and new-game initialization callers. Tried: the
-  Preferences hover and click branches and the first consumer
-  (FND-UI-034, FND-CONFIG-010) establish the arrow step and lower bound, but
-  the consumer's far routine and other writers have not been read.
+- Q-CONFIG-007. RULE-CONFIG-005: Does another path impose an upper limit on
+  the message-delay word, does a new game replace the loaded-image value 50,
+  and what event reaches the overlay 172 wait? Settles it: a bounded reading
+  of initialization, other writers and the overlay 172 caller. Tried: the
+  Preferences hover and click branches (FND-UI-034, FND-CONFIG-010), the
+  millisecond wait (FND-TIME-004), and a raw search for direct references to
+  `DS:26B7` identify the word's 100-ms scaling and six literal uses in the
+  executable, but do not establish initialization or all indirect writers.
 
 - Q-CONFIG-005. FMT-CONFIG-001: What does the game's sound library read from each field of
   `SOUND.CFG`, including its unexplained tail? Settles it: a bounded reading of the sound

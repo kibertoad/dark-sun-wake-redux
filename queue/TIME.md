@@ -17,9 +17,12 @@ Next ID: Q-TIME-004
   of the slot routine at `4868:05EA`, and the interrupt handler the library installs. Tried:
   the FLI player, which takes a slot with a period of 1,000 microseconds for as long as a
   cinematic plays (FND-VIDEO-002, RULE-VIDEO-004). Blocks: slice 7.
-- Q-TIME-003. RULE-TIME-001: What does each call of `wait_ms` wait for, and is the word at
-  `57E0:26B7` the Preferences message delay? Settles it: the routines around the 13 calls
-  FND-TIME-004 lists, and the writers of `57E0:26B7`. Blocks: slices 3-7.
+- Q-TIME-003. RULE-TIME-001: What event does each call of `wait_ms` delay?
+  Settles it: bounded readings of the routines around the 13 calls listed in
+  FND-TIME-004. Tried: the Preferences hover and click paths identify the
+  word at `57E0:26B7` as message delay (FND-UI-034, FND-CONFIG-010), and
+  FND-TIME-004 identifies its 100-ms scaling at one call, but the calling
+  event and the other waits remain unclassified. Blocks: slices 3-7.
 
 ## Emulated call
 

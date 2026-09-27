@@ -50,7 +50,13 @@ offset `0x03`, animation state at `0x07`, and difficulty at `0x00`
 In the loaded image `DS:26B7` begins at 50, and it is not among the nine
 bytes copied into `PREF/100`. A separate routine in overlay 172 reads the
 word, multiplies it by 100 using 16-bit arithmetic, and passes the result to
-a far routine (`DSUN.EXE+0x00059B62`). That far routine was not read.
+the millisecond wait at `1000:12FA` (`DSUN.EXE+0x00059B62`, FND-TIME-004).
+
+A physical search for the two-byte little-endian displacement `0x26B7` in
+the shipped executable finds six occurrences: `0x59B63` in the overlay 172
+read, `0x8B3BD`, `0x8B3C8`, `0x8B3D0` and `0x8B3D3` in the Preferences click
+branches, and `0x8B867` in its bar redraw. This bounds literal references;
+it does not rule out indirect writes or initialization through a copied block.
 
 The renderer reads `DS:14E4` when drawing voice button `16310`. The speech
 player also tests `DS:14E4` and separately tests `DS:1439`, the byte saved at
@@ -68,8 +74,8 @@ The difficulty arrows stop at 0 and 3 instead of wrapping for ordinary values.
 
 ## Alternatives
 
-The routine receiving the message-delay word times 100 was not read, so its
-units and its effect on text pacing remain open. The code that initializes
+The event reaching the wait and its effect on text pacing remain open. The
+code that initializes
 `DS:14E4` and `DS:1439`, and any path that synchronizes them, was not read.
 The sound-library calls and the click event's precise native input timing also
 remain open. The volume addition occurs in an eight-bit byte before its upper
@@ -85,4 +91,5 @@ and only the listed branch targets relative to `0x0008B240`. Inspect the
 two-byte state routine at `0x0008B7AC`. In the mapped import, report references
 to `DS:26B7`, `DS:14E4` and `DS:1439`, and inspect bounded instruction context
 at `648A:00C2` for the word-times-100 consumer. Compare the save/load copies
-in FND-SAVE-004 and FND-SAVE-005.
+in FND-SAVE-004 and FND-SAVE-005. Search the shipped file for the bounded
+two-byte pattern `B7 26` and inspect each of its six instruction contexts.
