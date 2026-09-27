@@ -30,14 +30,16 @@ Other areas' entries, queue files and parity rows. `src/` and `tests/`.
 - The Start Game button branch and local setup helper have no direct
   settings writes (FND-CONFIG-028); its raw far-call segments are FBOV
   descriptor encodings, now resolved to resident and overlay targets.
+- Literal music-level request writers are limited to Load Game and the
+  Preferences-entry getter (FND-CONFIG-029); follow indirect writes.
 
 ## Handover
 
 - Stage: Slices, with slices 2 and 3 in progress.
-- Branch: `main`, thirty-seven commits ahead of `origin/main` including this
+- Branch: `main`, thirty-nine commits ahead of `origin/main` including this
   handover; not pushed.
 - Last gate: 2026-09-27, `./tools/Test.ps1` passed (700 tests);
-  documentation check passed (416 entries, 158 parity rows).
+  documentation check passed (417 entries, 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
 - Next: Q-CONFIG-002 through resolved Start Game setup callees and indirect writes;
