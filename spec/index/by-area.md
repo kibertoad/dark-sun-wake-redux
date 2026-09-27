@@ -120,6 +120,7 @@ Entries by area.
 | [FND-UI-034](../findings/FND-UI-034.md) | Preferences hover text names message delay above About, and button 16302 opens About | recorded |
 | [FND-UI-035](../findings/FND-UI-035.md) | Start window opener and callback dispatch its four button IDs | recorded |
 | [FND-UI-036](../findings/FND-UI-036.md) | WIND 18500 serves Save and Load modes with ten list rows | recorded |
+| [FND-UI-037](../findings/FND-UI-037.md) | Save and Load window callback selects rows and branches to the matching file operation | recorded |
 | [RULE-UI-001](../rules/RULE-UI-001.md) | Which controls the window code offers an event or the pointer to, by their event masks | supported |
 | [SCR-UI-001](../screens/SCR-UI-001.md) | Start window | supported |
 | [SCR-UI-002](../screens/SCR-UI-002.md) | View Character | supported |

@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-UI-036, SRC-MANUAL-1994]
+evidence: [FND-UI-036, FND-UI-037, FND-SAVE-005, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-SAVE-001, RULE-SAVE-002, SCR-UI-006]
@@ -29,9 +29,10 @@ and native widget chrome are not established (FND-UI-036).
 
 | Region | Rectangle | Enabled when | Effect | Evidence |
 |---|---|---|---|---|
-| A saved game's row | Window-local (46, 31 + 11 * n, 163, 11), n = 0 to 9 | Not known | Chooses that saved game, per the manual; the row callback remains unread. | FND-UI-036, SRC-MANUAL-1994 |
-| LOAD | Window-local (231, 30, 44, 15) | Not known | Loads the chosen saved game (RULE-SAVE-002), per the manual; the button callback remains unread. | FND-UI-036, SRC-MANUAL-1994 |
-| EXIT | Window-local (231, 50, 44, 15) | Not known | Not established. | FND-UI-036 |
+| A saved game's row | Window-local (46, 31 + 11 * n, 163, 11), n = 0 to 9 | Not known | Stores the selected row index and passes its name to the name box. | FND-UI-036, FND-UI-037 |
+| LOAD | Window-local (231, 30, 44, 15) | Not known | Calls the Load Game routine with the selected row after closing the window (RULE-SAVE-002). | FND-UI-036, FND-UI-037, FND-SAVE-005 |
+| Name box | Window-local (49, 147, 164, 12) | Not known | The callback's event-2 branch takes the same path as LOAD. | FND-UI-036, FND-UI-037 |
+| EXIT | Window-local (231, 50, 44, 15) | Not known | Closes the window without directly calling Load Game; the later transition remains open. | FND-UI-036, FND-UI-037 |
 
 The manual describes a list of saved-game names and an OKAY button
 (SRC-MANUAL-1994, page 14). The shipped button art reads LOAD, rather than
@@ -63,6 +64,7 @@ None known.
 
 ## Open questions
 
-- What the ten rows show, how the window is positioned and painted, how its
-  controls handle input, and how it leaves without loading remain open
-  (FND-UI-036, FND-SAVE-005, FND-SAVE-006, Q-SAVE-001, Q-UI-005).
+- What the ten rows show, which are selectable, how the window is positioned
+  and painted, what physical input maps to callback event 6, and the later
+  transition after EXIT remain open (FND-UI-036, FND-UI-037, FND-SAVE-006,
+  Q-SAVE-001, Q-UI-005).

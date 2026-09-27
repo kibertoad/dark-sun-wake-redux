@@ -10,7 +10,9 @@ Next ID: Q-SAVE-003
   Settles it: the far routine overlay 192 calls with the saved game's record, its search for
   `SAVE??.SAV`, and the code that sets `save_list_top` (FND-SAVE-004, FND-SAVE-006). Tried:
   FND-UI-036 identifies the shared `WIND/18500` window, ten list rows and the
-  LOAD/SAVE image switch, without settling slot contents or input effects. Blocks:
+  LOAD/SAVE image switch. FND-UI-037 traces row selection and the action
+  branches to the save/load routines; slot contents and later transitions
+  remain open. Blocks:
   slice 5.
 - Q-SAVE-002. FMT-SAVE-001, FMT-SAVE-002: What do the four words and the byte of a `GREQ` resource
   hold, what is the tenth byte the routines keep beside them, and where does a character's `CACT`

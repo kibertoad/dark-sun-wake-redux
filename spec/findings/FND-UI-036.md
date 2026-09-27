@@ -62,7 +62,8 @@ manual's generic OKAY wording.
 
 The exact window position, native fill and bevel, icon frame selection,
 text in each row, and the final effect of clicking a row or action button
-were not established by this reading. A row control's dimensions need not
+were not established by this reading; FND-UI-037 follows the callback
+branches. A row control's dimensions need not
 equal every frame's painted bounds. The zero-mode entry's caller was not
 traced here.
 

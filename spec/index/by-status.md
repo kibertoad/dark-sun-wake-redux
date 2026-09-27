@@ -205,7 +205,7 @@ Entries by status.
 
 ## recorded
 
-251 entries.
+252 entries.
 
 | ID | Title |
 |---|---|
@@ -453,6 +453,7 @@ Entries by status.
 | [FND-UI-034](../findings/FND-UI-034.md) | Preferences hover text names message delay above About, and button 16302 opens About |
 | [FND-UI-035](../findings/FND-UI-035.md) | Start window opener and callback dispatch its four button IDs |
 | [FND-UI-036](../findings/FND-UI-036.md) | WIND 18500 serves Save and Load modes with ten list rows |
+| [FND-UI-037](../findings/FND-UI-037.md) | Save and Load window callback selects rows and branches to the matching file operation |
 | [FND-VIDEO-001](../findings/FND-VIDEO-001.md) | The five numbered FLI files are 320x200 8-bit animations whose frame records cover each file and number one more than the header's frame count |
 | [FND-VIDEO-002](../findings/FND-VIDEO-002.md) | Overlay 196 plays an FLI file to the screen, one frame record every given number of 1 ms ticks, and stops after the header's frame count |
 | [FND-VIDEO-003](../findings/FND-VIDEO-003.md) | The game sets BIOS mode 0x13 and unchains it for play, uses plain mode 0x13 for cinematics and mode 3 on exit, while the INT 10h wrapper at 1000:1136 serves text services |
