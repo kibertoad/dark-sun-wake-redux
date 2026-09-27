@@ -175,7 +175,7 @@ Entries by kind.
 
 ## findings
 
-251 entries.
+252 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -423,6 +423,7 @@ Entries by kind.
 | [FND-UI-032](../findings/FND-UI-032.md) | WIND 12500 to 12503 are the conversation windows, with a text box, five response rows and scroll buttons | recorded |
 | [FND-UI-033](../findings/FND-UI-033.md) | WIND 16500 places thirteen Preferences buttons and its filmstrip control is 16303 | recorded |
 | [FND-UI-034](../findings/FND-UI-034.md) | Preferences hover text names message delay above About, and button 16302 opens About | recorded |
+| [FND-UI-035](../findings/FND-UI-035.md) | Start window opener and callback dispatch its four button IDs | recorded |
 | [FND-VIDEO-001](../findings/FND-VIDEO-001.md) | The five numbered FLI files are 320x200 8-bit animations whose frame records cover each file and number one more than the header's frame count | recorded |
 | [FND-VIDEO-002](../findings/FND-VIDEO-002.md) | Overlay 196 plays an FLI file to the screen, one frame record every given number of 1 ms ticks, and stops after the header's frame count | recorded |
 | [FND-VIDEO-003](../findings/FND-VIDEO-003.md) | The game sets BIOS mode 0x13 and unchains it for play, uses plain mode 0x13 for cinematics and mode 3 on exit, while the INT 10h wrapper at 1000:1136 serves text services | recorded |

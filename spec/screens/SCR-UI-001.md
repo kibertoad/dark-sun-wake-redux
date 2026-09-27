@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-UI-024, SRC-YOUTUBE-FLOMVOSHEOM, SRC-MANUAL-1994]
+evidence: [FND-UI-024, FND-UI-035, SRC-YOUTUBE-FLOMVOSHEOM, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-006, SCR-UI-002]
@@ -30,10 +30,10 @@ child positions; their first frames are listed here.
 
 | Region | Rectangle | Enabled when | Effect | Evidence |
 |---|---|---|---|---|
-| Start game | (94, 70, 127, 12) | Always | Starts a game with the party the game supplies (RULE-PARTY-006). | FND-UI-024, SRC-MANUAL-1994 |
-| Create characters | (50, 87, 220, 12) | Always | Opens SCR-UI-002. | FND-UI-024, SRC-MANUAL-1994, SRC-YOUTUBE-FLOMVOSHEOM |
-| Load saved game | (64, 104, 192, 12) | Always | Loads a saved game. | FND-UI-024 |
-| Exit to DOS | (92, 120, 127, 12) | Always | Leaves the game. | FND-UI-024 |
+| Start game | (94, 70, 127, 12) | Always | Starts a game with the party the game supplies (RULE-PARTY-006). | FND-UI-024, FND-UI-035, SRC-MANUAL-1994 |
+| Create characters | (50, 87, 220, 12) | Always | Opens SCR-UI-002. | FND-UI-024, FND-UI-035, SRC-MANUAL-1994, SRC-YOUTUBE-FLOMVOSHEOM |
+| Load saved game | (64, 104, 192, 12) | Always | Enters overlay 192's load flow; successful loading has not been observed here. | FND-UI-024, FND-UI-035 |
+| Exit to DOS | (92, 120, 127, 12) | Always | Enters a shared setup path and clears a state byte; final DOS exit has not been traced. | FND-UI-024, FND-UI-035 |
 
 ## Keyboard input
 
@@ -65,7 +65,9 @@ None known.
   playthrough of an unknown release; no record or code gives it (FND-UI-024, Q-UI-003).
 - Which frame of each icon the game shows when a button is pointed at, pressed or unavailable,
   given that three icons have a 1 x 1 third frame (FND-UI-024, Q-UI-002).
-- What the load and exit buttons do, and whether the first two do what the manual says, is not
-  shown by any code; no routine names the four buttons by their numbers (FND-UI-012, Q-UI-002).
+- The overlay callback dispatches all four button IDs, but the downstream
+  load, create, start and exit effects have not been read to completion
+  (FND-UI-035, Q-UI-002). FND-UI-012's negative search covered the
+  resident image only.
 - Whether the title picture and palette shown before this window change when it opens
   (Q-UI-004).

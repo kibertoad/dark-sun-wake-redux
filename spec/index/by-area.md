@@ -118,6 +118,7 @@ Entries by area.
 | [FND-UI-032](../findings/FND-UI-032.md) | WIND 12500 to 12503 are the conversation windows, with a text box, five response rows and scroll buttons | recorded |
 | [FND-UI-033](../findings/FND-UI-033.md) | WIND 16500 places thirteen Preferences buttons and its filmstrip control is 16303 | recorded |
 | [FND-UI-034](../findings/FND-UI-034.md) | Preferences hover text names message delay above About, and button 16302 opens About | recorded |
+| [FND-UI-035](../findings/FND-UI-035.md) | Start window opener and callback dispatch its four button IDs | recorded |
 | [RULE-UI-001](../rules/RULE-UI-001.md) | Which controls the window code offers an event or the pointer to, by their event masks | supported |
 | [SCR-UI-001](../screens/SCR-UI-001.md) | Start window | supported |
 | [SCR-UI-002](../screens/SCR-UI-002.md) | View Character | supported |
