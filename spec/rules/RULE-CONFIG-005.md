@@ -4,7 +4,7 @@ title: The Preferences message-delay adjustment
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-CONFIG-010, FND-UI-034, FND-TIME-004, FND-CONFIG-017]
+evidence: [FND-CONFIG-010, FND-UI-034, FND-TIME-004, FND-CONFIG-017, FND-CONFIG-018]
 conflicting: []
 split_with: []
 related: [SCR-UI-007]
@@ -48,8 +48,9 @@ The screen redraws the upper bar from `message_delay_value - 20`. An overlay
 172 routine multiplies the word by 100 with 16-bit arithmetic and passes the
 result as milliseconds to the timer-chip wait. At the loaded-image value 50,
 that call requests 5,000 ms. Several text-message paths call that routine;
-which calls pass its later wait gate still needs a complete reading
-(FND-CONFIG-010, FND-TIME-004, FND-CONFIG-017).
+the wait follows successful acquisition and setup of `WIND/10501`. Which
+calls pass that gate in live states still needs a complete reading
+(FND-CONFIG-010, FND-TIME-004, FND-CONFIG-017, FND-CONFIG-018).
 
 ## Edge cases
 
@@ -71,5 +72,10 @@ None known.
 - Whether another path imposes an upper limit on `message_delay_value`, whether
   a new game replaces the loaded-image value 50, and which text-message calls
   pass the overlay 172 wait gate. The wait requires a nonzero far pointer at
-  `0300:0007`, whose role remains unidentified (FND-CONFIG-011,
-  FND-CONFIG-017, Q-CONFIG-007, Q-TIME-003).
+  `0300:0007`, set by the `WIND/10501` acquisition and setup call. The
+  setup outcomes in live states remain unidentified (FND-CONFIG-011,
+  FND-CONFIG-017, FND-CONFIG-018, Q-CONFIG-007, Q-TIME-003).
+  One reading is that the present resource makes every message call pass the
+  gate (FND-UI-001); another is that one of the three setup calls can fail
+  depending on state (FND-CONFIG-018). Reading their inputs and failure
+  branches, then checking the relevant original states, would separate them.

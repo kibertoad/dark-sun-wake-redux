@@ -40,10 +40,11 @@ branches are not the wait itself (FND-CONFIG-010).
 
 ## Alternatives
 
-The pointer's object type, the far calls, and the player-visible event that
-actually reaches the wait have not been identified. FND-CONFIG-017 identifies
-several text-message callers but does not settle the wait gate. The
-earlier pointer test alone does not determine whether the later test succeeds,
+The pointer's exact runtime object type, the far calls' full effects, and
+the player-visible timing have not been identified. FND-CONFIG-017 identifies
+several text-message callers; FND-CONFIG-018 identifies the later test as a
+`WIND/10501` acquisition and setup success gate. The earlier pointer test
+alone does not determine whether the later test succeeds,
 because this routine can replace the pointer between them. This reading also
 does not establish whether another path caps or initializes `DS:26B7`.
 

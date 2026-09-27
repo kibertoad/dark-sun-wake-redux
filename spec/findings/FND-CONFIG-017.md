@@ -52,8 +52,8 @@ display entry, rather than only to the Preferences bar.
 
 ## Alternatives
 
-These call sites do not establish which calls reach the later nonzero
-`0300:0007` test and hence actually wait. The pointer's role and the meaning
+These call sites do not establish which calls pass the later `WIND/10501`
+setup gate and hence actually wait (FND-CONFIG-018). The meaning
 of the five messages converging at `0x0001EB4E` remain unread. Ghidra's four
 recognized resident references are not an exhaustive caller inventory:
 previous overlay readings identify additional calls, and indirect calls may

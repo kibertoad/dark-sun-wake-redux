@@ -30,16 +30,17 @@ Next ID: Q-CONFIG-008
 - Q-CONFIG-007. RULE-CONFIG-005: Does another path impose an upper limit on
   the message-delay word, does a new game replace the loaded-image value 50,
   and which text-message calls pass the overlay 172 wait gate? Settles it: a
-  bounded reading of initialization, other writers and the wait-gate pointer's
-  lifecycle. Tried: the
+  bounded reading of initialization, other writers and the three setup calls
+  that determine the wait gate. Tried: the
   Preferences hover and click branches (FND-UI-034, FND-CONFIG-010), the
   millisecond wait (FND-TIME-004), a raw search for direct references to
   `DS:26B7`, and a bounded reading of the overlay 172 wait gate
   (FND-CONFIG-011) identify the word's 100-ms scaling, six literal uses and
   the nonzero pointer condition. FND-CONFIG-017 identifies several resident
   text-message callers, with prior overlay findings showing more, but does
-  not establish initialization, all indirect writers, the pointer's role or
-  which calls reach the wait.
+  not establish initialization, all indirect writers or which calls reach the
+  wait. FND-CONFIG-018 identifies the gate as the return of the `WIND/10501`
+  acquisition and setup path, but does not establish its live outcomes.
 
 - Q-CONFIG-005. FMT-CONFIG-001: What does the game's sound library read from each field of
   `SOUND.CFG`, including its unexplained tail? Settles it: a bounded reading of the sound
