@@ -50,8 +50,11 @@ Next ID: Q-CONFIG-008
   text-message callers, with prior overlay findings showing more, but does
   not establish initialization, all indirect writers or which calls reach the
   wait. FND-CONFIG-028 finds no direct message-delay write in the Start Game
-  button branch or its shared setup helper. FND-CONFIG-018 identifies the gate as the return of the `WIND/10501`
-  acquisition and setup path, but does not establish its live outcomes.
+  button branch or its shared setup helper. FND-CONFIG-018 identifies the gate
+  as the return of the `WIND/10501` acquisition and setup path.
+  FND-CONFIG-030 shows the callback-storage step cannot fail and bounds the
+  remaining registration and activation failure paths; their live outcomes
+  remain open.
 
 - Q-CONFIG-005. FMT-CONFIG-001: What does the game's sound library read from each field of
   `SOUND.CFG`, including its unexplained tail? Settles it: bounded readings

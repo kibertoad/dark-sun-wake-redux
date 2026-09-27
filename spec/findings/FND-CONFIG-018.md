@@ -36,7 +36,9 @@ call, then returns the output pointer in `DX:AX`. The entry checks that
 pointer for zero. On a nonzero return it calls three further setup routines;
 only if each returns zero does it return the pointer. Its failure path
 returns a zero far pointer. `WIND/10501` is present in the installed
-resource inventory (FND-UI-001).
+resource inventory (FND-UI-001). FND-CONFIG-030 follows the three setup
+calls: callback storage always returns zero, while registration and
+activation retain failure paths.
 
 ## Interpretation
 
@@ -47,7 +49,7 @@ path.
 
 ## Alternatives
 
-This reading does not identify the three setup routines' full effects or
+This reading does not identify registration and activation's full effects or
 prove that they succeed in a particular live state. It does not establish
 whether every text-message caller uses this same resource state, what the
 window looks like on screen, or whether another path changes `DS:26B7`.
