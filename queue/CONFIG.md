@@ -18,7 +18,11 @@ Next ID: Q-CONFIG-008
   FND-CONFIG-014 shows that the launcher and Preferences button change the
   runtime voice gate while save/load carries the other gate, and playback
   checks both. FND-CONFIG-015 bounds the overlay 171 difficulty write to a
-  record-field branch; its callers and inputs remain unread. These readings
+  record-field branch; its callers and inputs remain unread. Bounded mapped
+  Ghidra queries found no recognized references to either that entry or its
+  resident trampoline, which does not exclude indirect dispatch.
+  FND-CONFIG-016 places the literal `PREF` tags in save/load and one
+  untraced resident data site. These readings
   do not identify new-game values, animation
   polarity, any synchronization beyond those paths or another music-level control. Blocks:
   slice 3.
