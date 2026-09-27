@@ -4,7 +4,7 @@ title: The Preferences message-delay adjustment
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-CONFIG-010, FND-UI-034, FND-TIME-004, FND-CONFIG-017, FND-CONFIG-018, FND-CONFIG-030]
+evidence: [FND-CONFIG-010, FND-UI-034, FND-TIME-004, FND-CONFIG-017, FND-CONFIG-018, FND-CONFIG-030, FND-CONFIG-031]
 conflicting: []
 split_with: []
 related: [SCR-UI-007]
@@ -69,14 +69,19 @@ None known.
 
 ## Open questions
 
-- Whether another path imposes an upper limit on `message_delay_value`, whether
-  a new game replaces the loaded-image value 50, and which text-message calls
-  pass the overlay 172 wait gate. The wait requires a nonzero far pointer at
-  `0300:0007`, set by the `WIND/10501` acquisition and setup call. The
-  registration and activation outcomes in live states remain unidentified
-  (FND-CONFIG-011, FND-CONFIG-017, FND-CONFIG-018,
-  FND-CONFIG-030, Q-CONFIG-007, Q-TIME-003).
+- Whether another path imposes an upper limit on `message_delay_value`, and
+  whether a new game replaces the loaded-image value 50 (Q-CONFIG-007).
+  One reading is that 50 remains the starting value; another is that new-game
+  setup writes a different value. A complete reading of initialization and
+  indirect or block writers would distinguish them.
+- Which text-message calls pass the overlay 172 wait gate (Q-CONFIG-008).
+  The wait requires a nonzero far pointer at `0300:0007`, set by the
+  `WIND/10501` acquisition and setup call. The child registration outcomes
+  in live states remain unidentified (FND-CONFIG-011, FND-CONFIG-017,
+  FND-CONFIG-018, FND-CONFIG-030, FND-CONFIG-031, Q-TIME-003).
   One reading is that the present resource makes every message call pass the
-  gate (FND-UI-001); another is that one of the three setup calls can fail
-  depending on state (FND-CONFIG-018, FND-CONFIG-030). Reading their inputs and failure
-  branches, then checking the relevant original states, would separate them.
+  gate (FND-UI-001); another is that resource acquisition, bounds or child
+  registration fails depending on state (FND-CONFIG-018, FND-CONFIG-030,
+  FND-CONFIG-031). Reading the child helpers and relevant callers, then
+  checking the original states if code alone does not decide, would separate
+  them.

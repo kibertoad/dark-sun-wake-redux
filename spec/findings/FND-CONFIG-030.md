@@ -62,10 +62,10 @@ message call.
 
 The first setup routine has additional registration branches beyond the
 initial bounds checks, and the third activation routine has stateful
-effects. This reading does not prove either succeeds in a live state,
-that every message call uses this route, or that the later wait always
-runs. The UI catalog reports the resource's fields; it does not prove
-native paint or control state.
+effects (followed further in FND-CONFIG-031). This reading does not prove
+either succeeds in a live state, that every message call uses this route,
+or that the later wait always runs. The UI catalog reports the resource's
+fields; it does not prove native paint or control state.
 
 ## How to reproduce
 

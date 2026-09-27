@@ -506,6 +506,7 @@ Entries by area.
 | [FND-CONFIG-028](../findings/FND-CONFIG-028.md) | Start Game button branch delegates setup without direct settings writes | recorded |
 | [FND-CONFIG-029](../findings/FND-CONFIG-029.md) | Literal music-level request writes occur in Load Game and Preferences entry | recorded |
 | [FND-CONFIG-030](../findings/FND-CONFIG-030.md) | Message window setup has two remaining failure gates | recorded |
+| [FND-CONFIG-031](../findings/FND-CONFIG-031.md) | Message window child registration remains the setup failure path | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |
