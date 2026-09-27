@@ -50,12 +50,15 @@ Next ID: Q-CONFIG-008
   entry loads bytes whole, without parsing fields; FND-CONFIG-020 identifies
   direct uses of `0x08`, `0x0A`, `0x14` and `0x32` in initialization.
   FND-CONFIG-021 adds the first four words as a group, another `0x08`
-  comparison, and further `0x14` and `0x32` branches. The tail and the
-  receiving routines' effects remain unread. FND-CONFIG-022 maps each tail
+  comparison, and further `0x14` and `0x32` branches. The receiving
+  routines' effects remain unread. FND-CONFIG-022 maps each tail
   output to an input-record offset or a literal 4, but the source fields'
   meanings remain open. FND-CONFIG-023 identifies bounded game-side reads
   of `0x34..0x3A`, including alternative `ADV ` resource numbers, but the
-  selector and remaining branch effects are still unresolved.
+  remaining branch effects are still unresolved. FND-CONFIG-024 pairs each
+  `ADV ` number with a separate ten-byte settings block and shows bit
+  `0x01` of `0x14` gates the second pair; the device roles and input-record
+  field meanings remain open.
 
 - Q-CONFIG-006. FMT-CONFIG-002: How does the setup program parse `SOUND.INI`, including unknown
   or malformed keys, and what do `CardGroup` and the chunk numbers mean? Settles it: the parser

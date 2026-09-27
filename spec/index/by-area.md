@@ -495,6 +495,7 @@ Entries by area.
 | [FND-CONFIG-021](../findings/FND-CONFIG-021.md) | Sound initialization passes the first configuration block and tests more flags | recorded |
 | [FND-CONFIG-022](../findings/FND-CONFIG-022.md) | Sound setup populates the nine-byte SOUND.CFG tail from a record and a constant | recorded |
 | [FND-CONFIG-023](../findings/FND-CONFIG-023.md) | SOUND.CFG tail words select ADV resource requests and conditional paths | recorded |
+| [FND-CONFIG-024](../findings/FND-CONFIG-024.md) | ADV selector pairs each resource number with one settings block | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

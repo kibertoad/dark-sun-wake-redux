@@ -50,8 +50,9 @@ established by these windows.
 
 ## Alternatives
 
-The meaning of the local selector, whether the resource request succeeds,
-and the effects of the branches for `0x34` and `0x3A` remain unread. The
+FND-CONFIG-024 shows that the selector pairs each `ADV ` number with one
+ten-byte settings block. Whether the resource request succeeds and what
+the branches for `0x34` and `0x3A` do remain unread. The
 installed values match music and digital chunk numbers in `SOUND.INI`
 (FND-CONFIG-003), but that match alone does not assign those roles to the
 selector values. Ghidra's recognized references and a raw search for nearby
