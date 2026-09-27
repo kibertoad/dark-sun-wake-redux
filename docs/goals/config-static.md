@@ -27,12 +27,12 @@ Other areas' entries, queue files and parity rows. `src/` and `tests/`.
 ## Handover
 
 - Stage: Slices, with slices 2 and 3 in progress.
-- Branch: `main`, nineteen commits ahead of `origin/main` including this
+- Branch: `main`, twenty-one commits ahead of `origin/main` including this
   handover; not pushed.
 - Last gate: 2026-09-27, `./tools/Test.ps1` passed (700 tests);
-  documentation check passed (408 entries, 158 parity rows).
+  documentation check passed (409 entries, 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
-- Next: Q-CONFIG-005 through the remaining SOUND.CFG consumers and setup
-  writer; then Q-CONFIG-007 through new-game initialization; then
+- Next: Q-CONFIG-005 through the SOUND.CFG tail consumers and setup writer;
+  then Q-CONFIG-007 through new-game initialization; then
   Q-CONFIG-002 through PREF data-site users or indirect dispatch.
