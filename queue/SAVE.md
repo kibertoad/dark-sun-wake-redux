@@ -16,7 +16,9 @@ Next ID: Q-SAVE-003
   the source of an available slot's description. FND-SAVE-008 traces `SAVE`
   resource and `STXT/1` writes to `DARKRUN.GFF`, then its copy to the numbered
   file. FND-SAVE-009 traces the later `PREF`/`GREQ` target to
-  `CHARSAVE.GFF`; other resources and transitions remain open. Blocks:
+  `CHARSAVE.GFF`. FND-UI-038 traces event-6 row navigation and identifies
+  cross-overlay writes to the list-base word; its entry value, physical
+  input mapping, other resources and transitions remain open. Blocks:
   slice 5.
 - Q-SAVE-002. FMT-SAVE-001, FMT-SAVE-002: What do the four words and the byte of a `GREQ` resource
   hold, what is the tenth byte the routines keep beside them, and where does a character's `CACT`

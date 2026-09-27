@@ -121,6 +121,7 @@ Entries by area.
 | [FND-UI-035](../findings/FND-UI-035.md) | Start window opener and callback dispatch its four button IDs | recorded |
 | [FND-UI-036](../findings/FND-UI-036.md) | WIND 18500 serves Save and Load modes with ten list rows | recorded |
 | [FND-UI-037](../findings/FND-UI-037.md) | Save and Load window callback selects rows and branches to the matching file operation | recorded |
+| [FND-UI-038](../findings/FND-UI-038.md) | Save and Load callback navigates ten rows and tests available records in Load mode | recorded |
 | [RULE-UI-001](../rules/RULE-UI-001.md) | Which controls the window code offers an event or the pointer to, by their event masks | supported |
 | [SCR-UI-001](../screens/SCR-UI-001.md) | Start window | supported |
 | [SCR-UI-002](../screens/SCR-UI-002.md) | View Character | supported |

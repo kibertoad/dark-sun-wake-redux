@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-UI-036, FND-UI-037, FND-SAVE-005, FND-SAVE-007, SRC-MANUAL-1994]
+evidence: [FND-UI-036, FND-UI-037, FND-UI-038, FND-SAVE-005, FND-SAVE-007, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-SAVE-001, RULE-SAVE-002, SCR-UI-006]
@@ -44,7 +44,10 @@ None known.
 
 ## Other input
 
-None known.
+| Device | Input | Enabled when | Effect | Evidence |
+|---|---|---|---|---|
+| Unknown | Callback event 6, word `0x4800` | Window shown | Moves toward the preceding row, wrapping among ten rows; Load mode tests the saved-file marker and tries to pass unreadable rows. Physical input mapping is unknown. | FND-UI-038 |
+| Unknown | Callback event 6, word `0x5000` | Window shown | Moves toward the following row, wrapping among ten rows; Load mode tests the saved-file marker and tries to pass unreadable rows. Physical input mapping is unknown. | FND-UI-038 |
 
 ## Sounds
 
@@ -65,6 +68,7 @@ None known.
 ## Open questions
 
 - How the ten rows paint descriptions or unavailable slots, which are selectable, how the window is positioned
-  and painted, what physical input maps to callback event 6, and the later
+  and painted, what physical input maps to callback event 6, the list-base
+  value on entry, and the later
   transition after EXIT remain open (FND-UI-036, FND-UI-037, FND-SAVE-006,
   Q-SAVE-001, Q-UI-005).

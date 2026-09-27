@@ -69,4 +69,8 @@ None known.
 ## Open questions
 
 - Which other resources a `SAVEnn.SAV` file holds (FND-SAVE-008, Q-SAVE-001).
-- How many slots the screens show and how `save_list_top` changes (Q-SAVE-001).
+- Ten row controls are shown (FND-UI-036). The base index at `4C4C:0002`
+  may be reset by an indirect Save/Load entry callee, or may retain a value
+  written by a stored-character list path (FND-UI-038). Trace the entry
+  callers and the word's lifecycle to distinguish these readings
+  (Q-SAVE-001).
