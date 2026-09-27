@@ -14,9 +14,9 @@ See the [work protocol](https://dinorefurb.com/work-protocol/#working-files).
 ## State
 
 - Stage: Slices, with slices 2 and 3 in progress. The Survey exit is checked.
-- Branch: `main`, forty-three commits ahead of `origin/main`; not pushed.
+- Branch: `main`, forty-five commits ahead of `origin/main`; not pushed.
 - Last gate: 2026-09-27, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 418 entries and 158 parity rows).
+  documentation check passed with 419 entries and 158 parity rows).
 
 ## Unfinished
 
@@ -29,7 +29,8 @@ None known.
 ## Next
 
 1. `Q-CONFIG-002` and `Q-CONFIG-007`, for `FMT-CONFIG-003` and `RULE-CONFIG-005`.
-2. `Q-UI-002`, for `SCR-UI-007`.
+2. `Q-UI-005` and `Q-SAVE-001`, for `SCR-UI-013` and `SCR-UI-014`;
+   `Q-UI-002`, for `SCR-UI-007`.
 3. `Q-CONFIG-001`, the requested Preferences live session.
 4. `Q-PARTY-001`, `Q-PARTY-005` and `Q-PARTY-009`.
 5. Rows with evidence already in the spec: `RULE-EXPLORE-002`,
