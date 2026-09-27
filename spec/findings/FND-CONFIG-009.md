@@ -42,8 +42,9 @@ game.
 
 ## Alternatives
 
-The write of 3 in overlay 171 has not been traced through its condition or
-callers, so it does not establish the starting difficulty. The drawing call's
+FND-CONFIG-015 traces the write of 3 in overlay 171 through its immediate
+condition; its callers and input state remain unread, so it does not
+establish the starting difficulty. The drawing call's
 other arguments have not been read, so this finding does not establish the
 label's exact screen position or how button clicks change the index.
 

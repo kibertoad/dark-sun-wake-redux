@@ -486,6 +486,7 @@ Entries by area.
 | [FND-CONFIG-012](../findings/FND-CONFIG-012.md) | The saved PREF byte at offset 2 feeds the sound library's music-level setting | recorded |
 | [FND-CONFIG-013](../findings/FND-CONFIG-013.md) | The second saved music byte is the Preferences bar's scaling denominator | recorded |
 | [FND-CONFIG-014](../findings/FND-CONFIG-014.md) | The launcher, Preferences button and save path use two separate speech gates | recorded |
+| [FND-CONFIG-015](../findings/FND-CONFIG-015.md) | Overlay 171 writes difficulty 3 only after a record-field threshold test | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

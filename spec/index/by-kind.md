@@ -175,7 +175,7 @@ Entries by kind.
 
 ## findings
 
-236 entries.
+237 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -238,6 +238,7 @@ Entries by kind.
 | [FND-CONFIG-012](../findings/FND-CONFIG-012.md) | The saved PREF byte at offset 2 feeds the sound library's music-level setting | recorded |
 | [FND-CONFIG-013](../findings/FND-CONFIG-013.md) | The second saved music byte is the Preferences bar's scaling denominator | recorded |
 | [FND-CONFIG-014](../findings/FND-CONFIG-014.md) | The launcher, Preferences button and save path use two separate speech gates | recorded |
+| [FND-CONFIG-015](../findings/FND-CONFIG-015.md) | Overlay 171 writes difficulty 3 only after a record-field threshold test | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |

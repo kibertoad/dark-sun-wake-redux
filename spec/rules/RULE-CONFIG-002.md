@@ -68,6 +68,8 @@ None known.
 
 ## Open questions
 
-- What value a new game starts with: the manual calls it Average while the FAQ says Balanced;
-  neither establishes the executable's initialization (Q-CONFIG-001, Q-CONFIG-002).
+- What value a new game starts with: the manual calls it Average while the FAQ
+  says Balanced. The loaded-image value zero and the guarded overlay 171
+  write of 3 do not establish the executable's new-game initialization
+  (FND-CONFIG-009, FND-CONFIG-015, Q-CONFIG-001, Q-CONFIG-002).
 - What the difficulty changes in combat (RULE-COMBAT-007, Q-COMBAT-007).
