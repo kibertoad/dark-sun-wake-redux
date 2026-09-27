@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-UI-036, FND-UI-037, FND-SAVE-005, SRC-MANUAL-1994]
+evidence: [FND-UI-036, FND-UI-037, FND-SAVE-005, FND-SAVE-007, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-SAVE-001, RULE-SAVE-002, SCR-UI-006]
@@ -22,7 +22,7 @@ and native widget chrome are not established (FND-UI-036).
 | LOAD title | `BUTN/18300`, changed to `ICON/18101` in Load mode | LOAD | (126, 0, 67, 23) control; image 70 x 23 | Load mode | FND-UI-036 |
 | LOAD action | `BUTN/18301`, changed to `ICON/18102` in Load mode | LOAD | (231, 30, 44, 15) | Load mode | FND-UI-036 |
 | EXIT action | `BUTN/18302`, `ICON/18109` | EXIT | (231, 50, 44, 15) | Window shown | FND-UI-036 |
-| Ten list rows | `BUTN/18304` to `/18313`, `ICON/18100` | Contents not established | (46, 31 + 11 * n, 163, 11), n = 0 to 9 | Window shown | FND-UI-036 |
+| Ten list rows | `BUTN/18304` to `/18313`, `ICON/18100` | Description from `STXT/1` for a readable saved game; exact paint not established | (46, 31 + 11 * n, 163, 11), n = 0 to 9 | Window shown | FND-UI-036, FND-SAVE-007 |
 | Name box | `EBOX/18400`, `BMP/10002` | Contents not established | (49, 147, 164, 12) control; image 161 x 12 | Window shown | FND-UI-036 |
 
 ## Mouse input
@@ -64,7 +64,7 @@ None known.
 
 ## Open questions
 
-- What the ten rows show, which are selectable, how the window is positioned
+- How the ten rows paint descriptions or unavailable slots, which are selectable, how the window is positioned
   and painted, what physical input maps to callback event 6, and the later
   transition after EXIT remain open (FND-UI-036, FND-UI-037, FND-SAVE-006,
   Q-SAVE-001, Q-UI-005).

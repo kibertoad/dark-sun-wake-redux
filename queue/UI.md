@@ -31,7 +31,8 @@ Next ID: Q-UI-006
   coverage is recorded, but slices 2, 3 and 5 need these details. Tried:
   FND-UI-036 identifies the shared ten-row `WIND/18500` graph and the LOAD/SAVE
   mode image changes. FND-UI-037 identifies its event-2 row, action and EXIT
-  branches. Native chrome, placement and further handlers remain open.
+  branches. FND-SAVE-007 identifies the row description source. Native
+  chrome, placement and further handlers remain open.
 
 ## Emulated call
 
