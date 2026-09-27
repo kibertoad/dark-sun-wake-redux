@@ -106,3 +106,16 @@ shipped-file call-site offset, verifies that the segment operand has a fixup,
 and reports its descriptor index, resolved segment and target address or
 trampoline. Make an absent fixup explicit so the tool does not assign a
 plausible target to an unrelocated word.
+
+## 9. Distinguish a window image from copied control data in UI catalogs
+
+`UiWindowResource` currently reports `Window.ImageResourceNumber` from
+offset `0x3A` of a `WIND` record. In `WIND/18500`, that word is 10002 because
+the record copies edit-box data; the window's own image field at `0xC2` is
+zero. The read-only UI catalog therefore appears to assign `BMP/10002` to
+the whole window, even though it belongs to the copied edit-box record.
+
+**Request:** have the shared UI catalog expose the true window image field
+separately from copied control data, and label the latter as uncertain until
+its runtime use is established. A synthetic fixture with different values at
+`0x3A` and `0xC2` would guard against this false screen-background claim.

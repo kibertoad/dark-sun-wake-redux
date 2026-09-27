@@ -24,7 +24,7 @@ Entries by status.
 
 ## sourced
 
-38 entries.
+36 entries.
 
 | ID | Title |
 |---|---|
@@ -55,8 +55,6 @@ Entries by status.
 | [RULE-SAVE-001](../rules/RULE-SAVE-001.md) | The keys that save, load and quit |
 | [RULE-SCRIPT-005](../rules/RULE-SCRIPT-005.md) | Script variables start at 0 |
 | [SCR-EXPLORE-001](../screens/SCR-EXPLORE-001.md) | Exploration view |
-| [SCR-UI-013](../screens/SCR-UI-013.md) | Load Game |
-| [SCR-UI-014](../screens/SCR-UI-014.md) | Save Game |
 | [SCR-UI-015](../screens/SCR-UI-015.md) | Character-box menu |
 | [SCR-UI-016](../screens/SCR-UI-016.md) | Training selection |
 | [SCR-UI-017](../screens/SCR-UI-017.md) | Quick Cast panel |
@@ -69,7 +67,7 @@ Entries by status.
 
 ## supported
 
-108 entries.
+110 entries.
 
 | ID | Title |
 |---|---|
@@ -181,6 +179,8 @@ Entries by status.
 | [SCR-UI-010](../screens/SCR-UI-010.md) | Current Spell Effects |
 | [SCR-UI-011](../screens/SCR-UI-011.md) | Look panel |
 | [SCR-UI-012](../screens/SCR-UI-012.md) | Conversation |
+| [SCR-UI-013](../screens/SCR-UI-013.md) | Load Game |
+| [SCR-UI-014](../screens/SCR-UI-014.md) | Save Game |
 
 ## established
 
@@ -205,7 +205,7 @@ Entries by status.
 
 ## recorded
 
-250 entries.
+251 entries.
 
 | ID | Title |
 |---|---|
@@ -452,6 +452,7 @@ Entries by status.
 | [FND-UI-033](../findings/FND-UI-033.md) | WIND 16500 places thirteen Preferences buttons and its filmstrip control is 16303 |
 | [FND-UI-034](../findings/FND-UI-034.md) | Preferences hover text names message delay above About, and button 16302 opens About |
 | [FND-UI-035](../findings/FND-UI-035.md) | Start window opener and callback dispatch its four button IDs |
+| [FND-UI-036](../findings/FND-UI-036.md) | WIND 18500 serves Save and Load modes with ten list rows |
 | [FND-VIDEO-001](../findings/FND-VIDEO-001.md) | The five numbered FLI files are 320x200 8-bit animations whose frame records cover each file and number one more than the header's frame count |
 | [FND-VIDEO-002](../findings/FND-VIDEO-002.md) | Overlay 196 plays an FLI file to the screen, one frame record every given number of 1 ms ticks, and stops after the header's frame count |
 | [FND-VIDEO-003](../findings/FND-VIDEO-003.md) | The game sets BIOS mode 0x13 and unchains it for play, uses plain mode 0x13 for cinematics and mode 3 on exit, while the INT 10h wrapper at 1000:1136 serves text services |
@@ -617,8 +618,8 @@ Entries whose Open questions section says more than None known.
 | [SCR-UI-010](../screens/SCR-UI-010.md) | Current Spell Effects | supported |
 | [SCR-UI-011](../screens/SCR-UI-011.md) | Look panel | supported |
 | [SCR-UI-012](../screens/SCR-UI-012.md) | Conversation | supported |
-| [SCR-UI-013](../screens/SCR-UI-013.md) | Load Game | sourced |
-| [SCR-UI-014](../screens/SCR-UI-014.md) | Save Game | sourced |
+| [SCR-UI-013](../screens/SCR-UI-013.md) | Load Game | supported |
+| [SCR-UI-014](../screens/SCR-UI-014.md) | Save Game | supported |
 | [SCR-UI-015](../screens/SCR-UI-015.md) | Character-box menu | sourced |
 | [SCR-UI-016](../screens/SCR-UI-016.md) | Training selection | sourced |
 | [SCR-UI-017](../screens/SCR-UI-017.md) | Quick Cast panel | sourced |

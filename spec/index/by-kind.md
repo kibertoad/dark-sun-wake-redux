@@ -175,7 +175,7 @@ Entries by kind.
 
 ## findings
 
-252 entries.
+253 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -424,6 +424,7 @@ Entries by kind.
 | [FND-UI-033](../findings/FND-UI-033.md) | WIND 16500 places thirteen Preferences buttons and its filmstrip control is 16303 | recorded |
 | [FND-UI-034](../findings/FND-UI-034.md) | Preferences hover text names message delay above About, and button 16302 opens About | recorded |
 | [FND-UI-035](../findings/FND-UI-035.md) | Start window opener and callback dispatch its four button IDs | recorded |
+| [FND-UI-036](../findings/FND-UI-036.md) | WIND 18500 serves Save and Load modes with ten list rows | recorded |
 | [FND-VIDEO-001](../findings/FND-VIDEO-001.md) | The five numbered FLI files are 320x200 8-bit animations whose frame records cover each file and number one more than the header's frame count | recorded |
 | [FND-VIDEO-002](../findings/FND-VIDEO-002.md) | Overlay 196 plays an FLI file to the screen, one frame record every given number of 1 ms ticks, and stops after the header's frame count | recorded |
 | [FND-VIDEO-003](../findings/FND-VIDEO-003.md) | The game sets BIOS mode 0x13 and unchains it for play, uses plain mode 0x13 for cinematics and mode 3 on exit, while the INT 10h wrapper at 1000:1136 serves text services | recorded |
@@ -460,8 +461,8 @@ Entries by kind.
 | [SCR-UI-010](../screens/SCR-UI-010.md) | Current Spell Effects | supported |
 | [SCR-UI-011](../screens/SCR-UI-011.md) | Look panel | supported |
 | [SCR-UI-012](../screens/SCR-UI-012.md) | Conversation | supported |
-| [SCR-UI-013](../screens/SCR-UI-013.md) | Load Game | sourced |
-| [SCR-UI-014](../screens/SCR-UI-014.md) | Save Game | sourced |
+| [SCR-UI-013](../screens/SCR-UI-013.md) | Load Game | supported |
+| [SCR-UI-014](../screens/SCR-UI-014.md) | Save Game | supported |
 | [SCR-UI-015](../screens/SCR-UI-015.md) | Character-box menu | sourced |
 | [SCR-UI-016](../screens/SCR-UI-016.md) | Training selection | sourced |
 | [SCR-UI-017](../screens/SCR-UI-017.md) | Quick Cast panel | sourced |

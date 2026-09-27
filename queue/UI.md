@@ -28,7 +28,9 @@ Next ID: Q-UI-006
   manual's load, save, context, training, quick-cast, item, store, exit, map and About views? Settles
   it: focused readings of the resource graph and the code that opens, draws and handles each view,
   checked against owner captures for presentation the code cannot decide. Blocks: Survey screen
-  coverage is recorded, but slices 2, 3 and 5 need these details.
+  coverage is recorded, but slices 2, 3 and 5 need these details. Tried:
+  FND-UI-036 identifies the shared ten-row `WIND/18500` graph and the LOAD/SAVE
+  mode image changes. Native chrome, placement and control handlers remain open.
 
 ## Emulated call
 

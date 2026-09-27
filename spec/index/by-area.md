@@ -119,6 +119,7 @@ Entries by area.
 | [FND-UI-033](../findings/FND-UI-033.md) | WIND 16500 places thirteen Preferences buttons and its filmstrip control is 16303 | recorded |
 | [FND-UI-034](../findings/FND-UI-034.md) | Preferences hover text names message delay above About, and button 16302 opens About | recorded |
 | [FND-UI-035](../findings/FND-UI-035.md) | Start window opener and callback dispatch its four button IDs | recorded |
+| [FND-UI-036](../findings/FND-UI-036.md) | WIND 18500 serves Save and Load modes with ten list rows | recorded |
 | [RULE-UI-001](../rules/RULE-UI-001.md) | Which controls the window code offers an event or the pointer to, by their event masks | supported |
 | [SCR-UI-001](../screens/SCR-UI-001.md) | Start window | supported |
 | [SCR-UI-002](../screens/SCR-UI-002.md) | View Character | supported |
@@ -132,8 +133,8 @@ Entries by area.
 | [SCR-UI-010](../screens/SCR-UI-010.md) | Current Spell Effects | supported |
 | [SCR-UI-011](../screens/SCR-UI-011.md) | Look panel | supported |
 | [SCR-UI-012](../screens/SCR-UI-012.md) | Conversation | supported |
-| [SCR-UI-013](../screens/SCR-UI-013.md) | Load Game | sourced |
-| [SCR-UI-014](../screens/SCR-UI-014.md) | Save Game | sourced |
+| [SCR-UI-013](../screens/SCR-UI-013.md) | Load Game | supported |
+| [SCR-UI-014](../screens/SCR-UI-014.md) | Save Game | supported |
 | [SCR-UI-015](../screens/SCR-UI-015.md) | Character-box menu | sourced |
 | [SCR-UI-016](../screens/SCR-UI-016.md) | Training selection | sourced |
 | [SCR-UI-017](../screens/SCR-UI-017.md) | Quick Cast panel | sourced |
