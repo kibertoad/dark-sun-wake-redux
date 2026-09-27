@@ -40,8 +40,9 @@ branches are not the wait itself (FND-CONFIG-010).
 
 ## Alternatives
 
-The pointer's object type, the far calls, the caller of this routine, and the
-player-visible event that reaches the wait have not been identified. The
+The pointer's object type, the far calls, and the player-visible event that
+actually reaches the wait have not been identified. FND-CONFIG-017 identifies
+several text-message callers but does not settle the wait gate. The
 earlier pointer test alone does not determine whether the later test succeeds,
 because this routine can replace the pointer between them. This reading also
 does not establish whether another path caps or initializes `DS:26B7`.
