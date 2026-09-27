@@ -82,8 +82,9 @@ message names.
 
 ## Alternatives
 
-The far routine at `4544:0000` was not read; that it copies a file is read from the message. When
-each copy runs is not known. The drive information's fields were not identified.
+FND-SAVE-008 reads the resident `4544:0000` open, transfer and close loop, confirming its
+file-copy behavior. When each `DARKSAVE.GFF` to `DARKRUN.GFF` copy runs is not known. The drive
+information's fields were not identified.
 
 ## How to reproduce
 

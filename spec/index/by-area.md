@@ -523,6 +523,7 @@ Entries by area.
 | [FND-SAVE-005](../findings/FND-SAVE-005.md) | Overlay 192 loads a game by reading PREF 100 and GREQ nn back into the same globals | recorded |
 | [FND-SAVE-006](../findings/FND-SAVE-006.md) | DSUN.EXE copies DARKSAVE.GFF to DARKRUN.GFF and counts SAVE01.SAV to SAVE10.SAV against the free disk space | recorded |
 | [FND-SAVE-007](../findings/FND-SAVE-007.md) | Save-list rows read STXT 1 from each available save file | recorded |
+| [FND-SAVE-008](../findings/FND-SAVE-008.md) | Saving updates DARKRUN.GFF resources before copying it to a numbered save file | recorded |
 | [RULE-SAVE-001](../rules/RULE-SAVE-001.md) | The keys that save, load and quit | sourced |
 | [RULE-SAVE-002](../rules/RULE-SAVE-002.md) | The number and file name of a saved game | supported |
 
