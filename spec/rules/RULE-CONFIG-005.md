@@ -69,4 +69,5 @@ None known.
 
 - Whether another path imposes an upper limit on `message_delay_value`, whether
   a new game replaces the loaded-image value 50, and which event reaches the
-  overlay 172 wait (Q-CONFIG-007, Q-TIME-003).
+  overlay 172 wait. The wait requires a nonzero far pointer at `0300:0007`,
+  whose role remains unidentified (FND-CONFIG-011, Q-CONFIG-007, Q-TIME-003).

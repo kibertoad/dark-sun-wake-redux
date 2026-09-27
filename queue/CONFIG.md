@@ -21,9 +21,11 @@ Next ID: Q-CONFIG-008
   and what event reaches the overlay 172 wait? Settles it: a bounded reading
   of initialization, other writers and the overlay 172 caller. Tried: the
   Preferences hover and click branches (FND-UI-034, FND-CONFIG-010), the
-  millisecond wait (FND-TIME-004), and a raw search for direct references to
-  `DS:26B7` identify the word's 100-ms scaling and six literal uses in the
-  executable, but do not establish initialization or all indirect writers.
+  millisecond wait (FND-TIME-004), a raw search for direct references to
+  `DS:26B7`, and a bounded reading of the overlay 172 wait gate
+  (FND-CONFIG-011) identify the word's 100-ms scaling, six literal uses and
+  the nonzero pointer condition, but do not establish initialization, all
+  indirect writers or the pointer's role and caller.
 
 - Q-CONFIG-005. FMT-CONFIG-001: What does the game's sound library read from each field of
   `SOUND.CFG`, including its unexplained tail? Settles it: a bounded reading of the sound

@@ -175,7 +175,7 @@ Entries by kind.
 
 ## findings
 
-232 entries.
+233 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -234,6 +234,7 @@ Entries by kind.
 | [FND-CONFIG-008](../findings/FND-CONFIG-008.md) | The installed cue sheet has one data track and forty file-backed audio tracks | recorded |
 | [FND-CONFIG-009](../findings/FND-CONFIG-009.md) | The Preferences renderer indexes its four difficulty labels with the first PREF word | recorded |
 | [FND-CONFIG-010](../findings/FND-CONFIG-010.md) | Preferences button dispatch changes sound, animation, difficulty and message-delay state | recorded |
+| [FND-CONFIG-011](../findings/FND-CONFIG-011.md) | Overlay 172 gates the message-delay wait on a nonzero far pointer | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |

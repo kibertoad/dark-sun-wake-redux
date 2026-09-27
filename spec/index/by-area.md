@@ -482,6 +482,7 @@ Entries by area.
 | [FND-CONFIG-008](../findings/FND-CONFIG-008.md) | The installed cue sheet has one data track and forty file-backed audio tracks | recorded |
 | [FND-CONFIG-009](../findings/FND-CONFIG-009.md) | The Preferences renderer indexes its four difficulty labels with the first PREF word | recorded |
 | [FND-CONFIG-010](../findings/FND-CONFIG-010.md) | Preferences button dispatch changes sound, animation, difficulty and message-delay state | recorded |
+| [FND-CONFIG-011](../findings/FND-CONFIG-011.md) | Overlay 172 gates the message-delay wait on a nonzero far pointer | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |
