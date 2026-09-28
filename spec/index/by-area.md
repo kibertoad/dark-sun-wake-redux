@@ -521,6 +521,7 @@ Entries by area.
 | [FND-CONFIG-043](../findings/FND-CONFIG-043.md) | Ammo and broken-item branches call the shared message routine | recorded |
 | [FND-CONFIG-044](../findings/FND-CONFIG-044.md) | Overlay 190 routes diagnostic and animation feedback through the shared message entry | recorded |
 | [FND-CONFIG-045](../findings/FND-CONFIG-045.md) | Overlay 191 item feedback calls the shared message entry on bounded branches | recorded |
+| [FND-CONFIG-046](../findings/FND-CONFIG-046.md) | Save Game reuses one message call for copy failure and completion | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |
