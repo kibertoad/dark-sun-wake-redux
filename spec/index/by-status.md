@@ -205,7 +205,7 @@ Entries by status.
 
 ## recorded
 
-273 entries.
+274 entries.
 
 | ID | Title |
 |---|---|
@@ -297,6 +297,7 @@ Entries by status.
 | [FND-CONFIG-042](../findings/FND-CONFIG-042.md) | Save-capacity and Save Game branches call the shared message routine |
 | [FND-CONFIG-043](../findings/FND-CONFIG-043.md) | Ammo and broken-item branches call the shared message routine |
 | [FND-CONFIG-044](../findings/FND-CONFIG-044.md) | Overlay 190 routes diagnostic and animation feedback through the shared message entry |
+| [FND-CONFIG-045](../findings/FND-CONFIG-045.md) | Overlay 191 item feedback calls the shared message entry on bounded branches |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |
