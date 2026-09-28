@@ -103,6 +103,8 @@ None known.
   callback registration; event exits can restore the saved prior pointer.
   FND-CONFIG-088 traces an overlay 213 callback's guarded event-two route
   into another shared message sink, with the event producer still open.
+  FND-CONFIG-089 identifies a conditional button-pointer producer for that
+  event identifier in one of the shipped windows.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local

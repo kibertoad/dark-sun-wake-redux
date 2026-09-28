@@ -67,7 +67,8 @@ gate succeeds.
 
 ## Alternatives
 
-The producers of the callback's event record, the selected index and the
+FND-CONFIG-089 identifies a conditional button-pointer producer for the
+`0x3BC9` event identifier. The physical input mapping, selected index and
 record fields have not been read completely. Other paths into overlay 213
 may call the same local message-selection code indirectly. A direct-call
 inventory does not exclude computed calls to overlay 172's entry.

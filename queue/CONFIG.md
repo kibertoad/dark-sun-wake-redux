@@ -89,7 +89,9 @@ Next ID: Q-CONFIG-011
   registration and bounds event routes that can restore its prior pointer.
   FND-CONFIG-088 traces an overlay 213 window callback's guarded event-two
   route into its shared message sink; its live event and record inputs remain
-  open.
+  open. FND-CONFIG-089 finds a matching shipped button and conditional
+  pointer-hit route in one of its windows, but physical input and live
+  window state remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

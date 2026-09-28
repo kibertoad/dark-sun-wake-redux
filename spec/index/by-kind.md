@@ -175,7 +175,7 @@ Entries by kind.
 
 ## findings
 
-319 entries.
+320 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -312,6 +312,7 @@ Entries by kind.
 | [FND-CONFIG-086](../findings/FND-CONFIG-086.md) | The remaining global-callback setter calls register local handlers or restore a saved pointer | recorded |
 | [FND-CONFIG-087](../findings/FND-CONFIG-087.md) | The class-choice message branch skips callback registration and the registered handler can restore its predecessor | recorded |
 | [FND-CONFIG-088](../findings/FND-CONFIG-088.md) | An overlay 213 window callback reaches the shared message entry through one guarded control event | recorded |
+| [FND-CONFIG-089](../findings/FND-CONFIG-089.md) | A button in one overlay 213 window can supply the guarded message event identifier | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |
