@@ -58,7 +58,8 @@ whether any text is shown or delayed.
 
 ## Alternatives
 
-The physical device action mapped to the resident input bits, the local
+FND-CONFIG-090 traces the copied driver event bits to a later callback
+threshold. The physical device action mapped to those bits, the local
 control check, which window is current in a live state, and the selected
 record fields remain open. Keyboard, synthetic or indirect event producers
 could also supply `0x3BC9`; this finding only establishes the shipped

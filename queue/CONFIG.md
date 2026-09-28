@@ -91,7 +91,9 @@ Next ID: Q-CONFIG-011
   route into its shared message sink; its live event and record inputs remain
   open. FND-CONFIG-089 finds a matching shipped button and conditional
   pointer-hit route in one of its windows, but physical input and live
-  window state remain open.
+  window state remain open. FND-CONFIG-090 traces the callback's unsigned
+  event-bit threshold to the queued mouse packet; the bit meanings and
+  remaining live gates remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

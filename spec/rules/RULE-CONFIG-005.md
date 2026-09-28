@@ -104,7 +104,9 @@ None known.
   FND-CONFIG-088 traces an overlay 213 callback's guarded event-two route
   into another shared message sink, with the event producer still open.
   FND-CONFIG-089 identifies a conditional button-pointer producer for that
-  event identifier in one of the shipped windows.
+  event identifier in one of the shipped windows. FND-CONFIG-090 traces
+  that callback's event-bit threshold to the mouse packet before the shared
+  message branch.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local

@@ -68,8 +68,9 @@ gate succeeds.
 ## Alternatives
 
 FND-CONFIG-089 identifies a conditional button-pointer producer for the
-`0x3BC9` event identifier. The physical input mapping, selected index and
-record fields have not been read completely. Other paths into overlay 213
+`0x3BC9` event identifier. FND-CONFIG-090 traces the `+0x18` word to queued
+mouse event bits on the kind-two path. The physical actions, selected index
+and record fields have not been read completely. Other paths into overlay 213
 may call the same local message-selection code indirectly. A direct-call
 inventory does not exclude computed calls to overlay 172's entry.
 
