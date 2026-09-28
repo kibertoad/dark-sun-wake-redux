@@ -64,8 +64,8 @@ Next ID: Q-CONFIG-009
   open. FND-CONFIG-036 bounds literal window-size writers, leaving
   indirect or block writes and two undecoded raw hits. FND-CONFIG-017
   identifies resident callers; FND-CONFIG-035 inventories 56 direct
-  calls from 21 overlays. FND-CONFIG-042 through FND-CONFIG-054 follow
-  forty-three distinct overlay call sites through their local conditions;
+  calls from 21 overlays. FND-CONFIG-042 through FND-CONFIG-055 follow
+  forty-seven distinct overlay call sites through their local conditions;
   FND-CONFIG-046 deepens the overlay 192 site already in FND-CONFIG-042.
   Remaining callers'
   conditions and live success through acquisition and registration are
