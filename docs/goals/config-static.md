@@ -21,8 +21,8 @@ None known.
 ## Handover
 
 - Stage: Slices.
-- Last gate: 2026-09-28, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 473 entries and 158 parity rows).
+- Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
+  documentation check passed with 474 entries and 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
 - Next: Q-CONFIG-008, complete incoming paths for shared message sinks
@@ -35,7 +35,9 @@ None known.
   `0043` callback's frame registration and dispatch. FND-CONFIG-075
   confirms only six of seven targeted frames exist in `WIND/14002`.
   FND-CONFIG-076 traces overlay 187's four message sites to Save Game,
-  region staging and cinematic playback. Trace the full frame event
-  sequence or another shared sink next.
+  region staging and cinematic playback. FND-CONFIG-077 traces overlay
+  204's rest messages to a handler and script request one; their live
+  inputs remain open. Trace the full frame event sequence or another
+  shared sink next.
   Q-CONFIG-010 tracks indirect
   acquisition-state changes; Q-CONFIG-009 has an owner-run request.
