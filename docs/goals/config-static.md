@@ -22,23 +22,9 @@ None known.
 
 - Stage: Slices.
 - Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 475 entries and 158 parity rows).
+  documentation check passed with 476 entries and 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
-- Next: Q-CONFIG-008, complete incoming paths for shared message sinks
-  and search computed or unrelocated pointer callers. FND-CONFIG-070
-  rules out address-taking overlay fixups; FND-CONFIG-072 rules out
-  address-taking resident relocations. FND-UI-037 and FND-SAVE-010 trace
-  the Save Game route, and FND-CONFIG-071 traces the startup
-  save-capacity call. FND-CONFIG-073 identifies five internal message
-  calls from overlay 172's other routines; FND-CONFIG-074 traces the
-  `0043` callback's frame registration and dispatch. FND-CONFIG-075
-  confirms only six of seven targeted frames exist in `WIND/14002`.
-  FND-CONFIG-076 traces overlay 187's four message sites to Save Game,
-  region staging and cinematic playback. FND-CONFIG-077 traces overlay
-  204's rest messages to a handler and script request one; their live
-  inputs remain open. FND-CONFIG-078 traces overlay 171's list messages
-  to a choice branch and `WIND/18501` callback. Trace the callback's
-  invoking event or another shared sink next.
-  Q-CONFIG-010 tracks indirect
-  acquisition-state changes; Q-CONFIG-009 has an owner-run request.
+- Next: Q-CONFIG-008, trace the event source for FND-CONFIG-079 or another
+  shared message sink. Q-CONFIG-010 tracks acquisition-state changes;
+  Q-CONFIG-009 has an owner-run request.
