@@ -511,7 +511,7 @@ Entries by area.
 | [FND-CONFIG-033](../findings/FND-CONFIG-033.md) | Initialized display bounds admit the message window | recorded |
 | [FND-CONFIG-034](../findings/FND-CONFIG-034.md) | Message window acquisition enters the resident resource reader with failure paths | recorded |
 | [FND-CONFIG-035](../findings/FND-CONFIG-035.md) | Fifty-six overlay call sites target the message-delay routine | recorded |
-| [FND-CONFIG-036](../findings/FND-CONFIG-036.md) | Decoded literal references to the display bounds outside initialization are reads | recorded |
+| [FND-CONFIG-036](../findings/FND-CONFIG-036.md) | Literal references to the display bounds outside initialization are reads | recorded |
 | [FND-CONFIG-037](../findings/FND-CONFIG-037.md) | Opening and closing resource archives changes the pointer tested by message acquisition | recorded |
 | [FND-CONFIG-038](../findings/FND-CONFIG-038.md) | Message resource lookup searches typed entries across archive records | recorded |
 | [FND-CONFIG-039](../findings/FND-CONFIG-039.md) | Startup opens RESOURCE.GFF or RESFLOP.GFF before initializing graphics | recorded |
@@ -538,6 +538,7 @@ Entries by area.
 | [FND-CONFIG-060](../findings/FND-CONFIG-060.md) | No literal far call to overlay 180's close-all routine was found in the shipped executable | recorded |
 | [FND-CONFIG-061](../findings/FND-CONFIG-061.md) | Startup registers overlay 180's archive cleanup as a runtime exit callback | recorded |
 | [FND-CONFIG-062](../findings/FND-CONFIG-062.md) | A failed startup resource-archive open reaches the runtime termination request | recorded |
+| [FND-CONFIG-063](../findings/FND-CONFIG-063.md) | The two previously undecoded display-bound address hits are reads | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

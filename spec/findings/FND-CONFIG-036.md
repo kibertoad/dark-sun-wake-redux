@@ -1,6 +1,6 @@
 ---
 id: FND-CONFIG-036
-title: Decoded literal references to the display bounds outside initialization are reads
+title: Literal references to the display bounds outside initialization are reads
 status: recorded
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
@@ -31,9 +31,12 @@ instructions writes a bound.
 
 One raw occurrence per word, at `DSUN.EXE+0x0002F0F2` and
 `DSUN.EXE+0x0002F102`, has no containing instruction in the existing
-Ghidra analysis. A raw occurrence alone does not identify a reference or
-its effect. Neither address word occurs in the declared code bytes of any
-of the 49 FBOV overlays.
+Ghidra analysis. Bounded disassembly from the preceding branch target
+classifies both as word reads passed by value to helpers (FND-CONFIG-063).
+The resident inventory therefore has three initializer writes and nine
+reads of `DS:A039`, and three initializer writes and eight reads of
+`DS:A03B`. Neither address word occurs in the declared code bytes of
+any of the 49 FBOV overlays.
 
 Ghidra's direct-reference query reports the decoded reads but omits the
 initializer's known writes; bounded physical disassembly at
@@ -42,15 +45,15 @@ alone is therefore insufficient for a negative writer finding.
 
 ## Interpretation
 
-No decoded literal-address write outside the initializer was found in
+No literal-address write outside the initializer was found in
 the surveyed code. With the initialized values, the `WIND/10501` bounds
 test passes (FND-CONFIG-033). This does not establish that the bound words
 retain those values at every message call.
 
 ## Alternatives
 
-An indirect or block write, code at the two undecoded raw occurrences, or
-code loaded outside the surveyed MZ and FBOV ranges could change a bound.
+An indirect or block write, or code loaded outside the surveyed MZ and
+FBOV ranges could change a bound.
 The search does not settle those possibilities or the separate resource
 acquisition gate (FND-CONFIG-034).
 
@@ -61,6 +64,6 @@ named by FMT-EXE-003 for the raw two-byte patterns `39 A0` and `3B A0`.
 Inspect each resident hit as an instruction reference, using Ghidra's
 instruction context where decoded and bounded 16-bit disassembly for the
 initializer's three assignments at `0x0002EF8A`, `0x0002EF98` and
-`0x0002EFA6`. Keep the two undecoded hits separate from decoded reads and
-writes. Query `57E0:A039` and `57E0:A03B` with ReportReferences.java to
-see why recognized references alone are incomplete.
+`0x0002EFA6`. Use FND-CONFIG-063 for the two hits that Ghidra left
+undecoded. Query `57E0:A039` and `57E0:A03B` with ReportReferences.java
+to see why recognized references alone are incomplete.
