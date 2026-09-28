@@ -531,6 +531,8 @@ Entries by area.
 | [FND-CONFIG-053](../findings/FND-CONFIG-053.md) | Overlay 179 sends guarded combat and item feedback through shared message calls | recorded |
 | [FND-CONFIG-054](../findings/FND-CONFIG-054.md) | Overlay 182 sends secret-door and blocked-door messages through one path | recorded |
 | [FND-CONFIG-055](../findings/FND-CONFIG-055.md) | Overlay 187 sends guarded save-space and cinematic-copy messages through the shared entry | recorded |
+| [FND-CONFIG-056](../findings/FND-CONFIG-056.md) | Overlay 188 sends a diagnostic exit message when its debug gate is set | recorded |
+| [FND-CONFIG-057](../findings/FND-CONFIG-057.md) | Overlay 189 sends four guarded inventory and item-interaction messages | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |
