@@ -25,6 +25,6 @@ None known.
   documentation check passed with 465 entries and 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
-- Next: Q-CONFIG-008, trace indirect archive close or option changes and
-  indirect display-bound writes; then separate remaining code-decided
+- Next: Q-CONFIG-008, trace indirect display-bound writes and archive
+  close or option changes; then separate remaining code-decided
   `WIND/10501` acquisition gates from I/O outcomes for RULE-CONFIG-005.
