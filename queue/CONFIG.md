@@ -76,7 +76,10 @@ Next ID: Q-CONFIG-011
   event-dispatch route into that callback. FND-CONFIG-080 identifies two
   event-record discriminators for the callback's message branch.
   FND-CONFIG-081 traces a conditional pointer-hit producer for the first;
-  physical input mapping, the second producer and live state remain open.
+  physical input mapping and live state remain open. FND-CONFIG-082 shows
+  that a keyboard packet can carry the second discriminator but its generic
+  event-six fallback clears the window target; a route into the callback's
+  second branch remains open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?
