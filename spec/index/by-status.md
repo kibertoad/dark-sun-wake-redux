@@ -205,7 +205,7 @@ Entries by status.
 
 ## recorded
 
-292 entries.
+293 entries.
 
 | ID | Title |
 |---|---|
@@ -316,6 +316,7 @@ Entries by status.
 | [FND-CONFIG-061](../findings/FND-CONFIG-061.md) | Startup registers overlay 180's archive cleanup as a runtime exit callback |
 | [FND-CONFIG-062](../findings/FND-CONFIG-062.md) | A failed startup resource-archive open reaches the runtime termination request |
 | [FND-CONFIG-063](../findings/FND-CONFIG-063.md) | The two previously undecoded display-bound address hits are reads |
+| [FND-CONFIG-064](../findings/FND-CONFIG-064.md) | Literal archive traversal-mode references are two writes and two reads |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |

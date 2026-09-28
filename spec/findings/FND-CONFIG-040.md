@@ -62,7 +62,9 @@ entry and the reader's later allocation and I/O branches.
 
 ## Alternatives
 
-A later indirect call or state write could change the traversal mode,
+A literal-address inventory finds only the initializer and setter as
+writers of the traversal mode (FND-CONFIG-064). A later indirect call
+or state write could still change it,
 and a close could remove the resource archive. This finding does not
 prove the mode or archive list contents at every message call, nor
 that the resource request succeeds in a live state.

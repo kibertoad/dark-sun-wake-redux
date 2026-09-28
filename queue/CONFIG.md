@@ -63,7 +63,8 @@ Next ID: Q-CONFIG-009
   direct close sites. FND-CONFIG-059 maps close-all to a separate
   overlay 180 entry. FND-CONFIG-060 finds no literal far call or local
   near call to it; FND-CONFIG-061 identifies its exit-callback
-  registration, while any other indirect callers remain unread. Indirect archive
+  registration, while any other indirect callers remain unread.
+  FND-CONFIG-064 bounds literal traversal-mode writers and readers. Indirect archive
   changes and I/O outcomes remain open. FND-CONFIG-062 traces the
   startup archive-open failure to a termination request.
   FND-CONFIG-036 and FND-CONFIG-063 classify literal window-size
