@@ -80,7 +80,9 @@ Next ID: Q-CONFIG-011
   that a keyboard packet can carry the second discriminator. FND-CONFIG-083
   traces the list callback's global registration and the event-six fallback
   route into it. FND-CONFIG-084 traces one temporary replacement and
-  restoration path; other registration changes and live state remain open.
+  restoration path. FND-CONFIG-085 identifies six overlay 182 setter calls
+  that install a resident key callback or zero; their timing relative to the
+  list remains open. Other registration changes and live state remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

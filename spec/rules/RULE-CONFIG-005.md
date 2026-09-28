@@ -94,7 +94,9 @@ None known.
   branch; FND-CONFIG-081 traces the conditional pointer-hit route to one,
   while FND-CONFIG-082 and FND-CONFIG-083 trace the keyboard packet and
   global fallback path for the other. FND-CONFIG-084 bounds one temporary
-  global-callback replacement and restoration path.
+  global-callback replacement and restoration path. FND-CONFIG-085
+  identifies overlay 182 paths that install a resident key callback or zero,
+  without establishing their timing relative to the list.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local

@@ -560,6 +560,7 @@ Entries by area.
 | [FND-CONFIG-082](../findings/FND-CONFIG-082.md) | The keyboard packet supplies the event-six word to the global fallback | recorded |
 | [FND-CONFIG-083](../findings/FND-CONFIG-083.md) | The stored-character list callback is also installed as the global event fallback | recorded |
 | [FND-CONFIG-084](../findings/FND-CONFIG-084.md) | A shared-message path restores its prior global callback after temporary registration | recorded |
+| [FND-CONFIG-085](../findings/FND-CONFIG-085.md) | Overlay 182 installs the resident key callback and clears it on separate paths | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

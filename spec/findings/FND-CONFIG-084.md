@@ -56,7 +56,9 @@ callers of the setter and indirect cleanup effects remain.
 
 ## Alternatives
 
-Other of the 22 direct setter calls may replace the list callback before
+FND-CONFIG-085 identifies six overlay 182 setter calls that install the
+resident key callback or zero; their order relative to the list remains
+unread. Other direct setter calls may also replace the list callback before
 an event, and the cleanup routine's other callees may change it indirectly.
 This finding does not establish every exit from the shared-message path or
 that its saved pointer is always the list callback.
