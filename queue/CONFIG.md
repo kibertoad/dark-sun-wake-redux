@@ -83,7 +83,9 @@ Next ID: Q-CONFIG-009
   open records. FND-CONFIG-041 inventories direct archive-close sites:
   none passes the startup resource pointer, though close-all and indirect
   or aliased paths remain possible. Archive state at message calls and
-  those callers' conditions remain unread.
+  most callers' conditions remain unread. FND-CONFIG-042 follows the
+  save-capacity warning and both Save Game branches to two direct message
+  calls, without establishing their later window-acquisition results.
 
 - Q-CONFIG-005. FMT-CONFIG-001: What does the game's sound library read from each field of
   `SOUND.CFG`, including its unexplained tail? Settles it: bounded readings
