@@ -35,7 +35,8 @@ directory and calls resident `38FF:0066` (FND-SAVE-009). That resident
 entry registers a successfully opened archive and assigns the active
 archive pointer at `DS:9D9F` (FND-CONFIG-037). The startup caller branches
 on the wrapper's boolean result; on failure it formats a missing-file
-message with the chosen name and the game's directory. The path later
+message with the chosen name and the game's directory and reaches a
+runtime termination request (FND-CONFIG-062). The path later
 passes the pointer at `DS:1442` to a graphics initializer at
 `DSUN.EXE+0x000676D9`.
 
@@ -50,10 +51,10 @@ the archive remains selected at every later message call.
 ## Alternatives
 
 This reading does not establish the flag's value in every launch, the
-resource inventory of `RESFLOP.GFF`, subsequent archive selections or
-closes, or the state at each message call. The failure-message routine's
-effect on startup control flow was not read completely, so the local
-failure branch alone does not establish whether the program continues.
+resource inventory of an edition that supplies `RESFLOP.GFF`, subsequent
+archive selections or closes, or the state at each message call. The
+failure path requests termination (FND-CONFIG-062), but the operating
+system's response was not observed.
 
 ## How to reproduce
 

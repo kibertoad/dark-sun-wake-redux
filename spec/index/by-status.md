@@ -205,7 +205,7 @@ Entries by status.
 
 ## recorded
 
-290 entries.
+291 entries.
 
 | ID | Title |
 |---|---|
@@ -314,6 +314,7 @@ Entries by status.
 | [FND-CONFIG-059](../findings/FND-CONFIG-059.md) | Overlay 180's close-all archive call lies in a separate exported cleanup routine |
 | [FND-CONFIG-060](../findings/FND-CONFIG-060.md) | No literal far call to overlay 180's close-all routine was found in the shipped executable |
 | [FND-CONFIG-061](../findings/FND-CONFIG-061.md) | Startup registers overlay 180's archive cleanup as a runtime exit callback |
+| [FND-CONFIG-062](../findings/FND-CONFIG-062.md) | A failed startup resource-archive open reaches the runtime termination request |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |

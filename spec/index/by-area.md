@@ -537,6 +537,7 @@ Entries by area.
 | [FND-CONFIG-059](../findings/FND-CONFIG-059.md) | Overlay 180's close-all archive call lies in a separate exported cleanup routine | recorded |
 | [FND-CONFIG-060](../findings/FND-CONFIG-060.md) | No literal far call to overlay 180's close-all routine was found in the shipped executable | recorded |
 | [FND-CONFIG-061](../findings/FND-CONFIG-061.md) | Startup registers overlay 180's archive cleanup as a runtime exit callback | recorded |
+| [FND-CONFIG-062](../findings/FND-CONFIG-062.md) | A failed startup resource-archive open reaches the runtime termination request | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

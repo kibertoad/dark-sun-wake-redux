@@ -64,7 +64,9 @@ Next ID: Q-CONFIG-009
   overlay 180 entry. FND-CONFIG-060 finds no literal far call or local
   near call to it; FND-CONFIG-061 identifies its exit-callback
   registration, while any other indirect callers remain unread. Indirect archive
-  changes and I/O outcomes remain open. FND-CONFIG-036 bounds literal window-size writers, leaving
+  changes and I/O outcomes remain open. FND-CONFIG-062 traces the
+  startup archive-open failure to a termination request.
+  FND-CONFIG-036 bounds literal window-size writers, leaving
   indirect or block writes and two undecoded raw hits. FND-CONFIG-017
   identifies resident callers; FND-CONFIG-035 inventories 56 direct
   calls from 21 overlays. FND-CONFIG-042 through FND-CONFIG-058 give
