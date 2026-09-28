@@ -64,12 +64,11 @@ Next ID: Q-CONFIG-009
   open. FND-CONFIG-036 bounds literal window-size writers, leaving
   indirect or block writes and two undecoded raw hits. FND-CONFIG-017
   identifies resident callers; FND-CONFIG-035 inventories 56 direct
-  calls from 21 overlays. FND-CONFIG-042 through FND-CONFIG-057 follow
-  fifty-two distinct overlay call sites through their local conditions;
+  calls from 21 overlays. FND-CONFIG-042 through FND-CONFIG-058 give
+  bounded local readings for all 56 distinct direct overlay call sites;
   FND-CONFIG-046 deepens the overlay 192 site already in FND-CONFIG-042.
-  Remaining callers'
-  conditions and live success through acquisition and registration are
-  not established.
+  Shared sinks' full incoming paths, possible indirect callers, and live
+  success through acquisition and registration are not established.
 
 - Q-CONFIG-005. FMT-CONFIG-001: What does the game's sound library read from each field of
   `SOUND.CFG`, including its unexplained tail? Settles it: bounded readings

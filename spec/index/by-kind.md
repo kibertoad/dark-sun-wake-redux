@@ -175,7 +175,7 @@ Entries by kind.
 
 ## findings
 
-288 entries.
+289 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -281,6 +281,7 @@ Entries by kind.
 | [FND-CONFIG-055](../findings/FND-CONFIG-055.md) | Overlay 187 sends guarded save-space and cinematic-copy messages through the shared entry | recorded |
 | [FND-CONFIG-056](../findings/FND-CONFIG-056.md) | Overlay 188 sends a diagnostic exit message when its debug gate is set | recorded |
 | [FND-CONFIG-057](../findings/FND-CONFIG-057.md) | Overlay 189 sends four guarded inventory and item-interaction messages | recorded |
+| [FND-CONFIG-058](../findings/FND-CONFIG-058.md) | Overlay 190 sends guarded combat-state and party-action messages through the shared entry | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |

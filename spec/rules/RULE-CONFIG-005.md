@@ -87,7 +87,7 @@ None known.
   FND-CONFIG-046, FND-CONFIG-047, FND-CONFIG-048, FND-CONFIG-049,
   FND-CONFIG-050, FND-CONFIG-051, FND-CONFIG-052, FND-CONFIG-053,
   FND-CONFIG-054, FND-CONFIG-055, FND-CONFIG-056,
-  FND-CONFIG-057,
+  FND-CONFIG-057, FND-CONFIG-058,
   Q-TIME-003).
   One reading is that the present resource makes every message call pass the
   gate (FND-UI-001); another is that resource acquisition, bounds or child
@@ -99,7 +99,8 @@ None known.
   FND-CONFIG-046, FND-CONFIG-047, FND-CONFIG-048,
   FND-CONFIG-049, FND-CONFIG-050, FND-CONFIG-051,
   FND-CONFIG-052, FND-CONFIG-053, FND-CONFIG-054,
-  FND-CONFIG-055, FND-CONFIG-056, FND-CONFIG-057).
+  FND-CONFIG-055, FND-CONFIG-056, FND-CONFIG-057,
+  FND-CONFIG-058).
   Reading resource acquisition, possible indirect or block bounds writes,
   and relevant callers, then checking original states if code alone does not
   decide, would separate them.
