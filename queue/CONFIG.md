@@ -75,7 +75,10 @@ Next ID: Q-CONFIG-009
   resource reader's archive pointer is assigned on successful archive open
   and can be replaced or cleared by close/list updates. The startup open
   and list traversal remain unread; seven raw `RESOURCE.GFF` strings have
-  no recognized direct references in the current analysis.
+  no recognized direct references in the current analysis. FND-CONFIG-038
+  follows the reader's type and number lookups, archive traversal and
+  failure branches. Startup archive registration, traversal state in
+  message calls, and callers' conditions remain unread.
 
 - Q-CONFIG-005. FMT-CONFIG-001: What does the game's sound library read from each field of
   `SOUND.CFG`, including its unexplained tail? Settles it: bounded readings

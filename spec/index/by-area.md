@@ -513,6 +513,7 @@ Entries by area.
 | [FND-CONFIG-035](../findings/FND-CONFIG-035.md) | Fifty-six overlay call sites target the message-delay routine | recorded |
 | [FND-CONFIG-036](../findings/FND-CONFIG-036.md) | Decoded literal references to the display bounds outside initialization are reads | recorded |
 | [FND-CONFIG-037](../findings/FND-CONFIG-037.md) | Opening and closing resource archives changes the pointer tested by message acquisition | recorded |
+| [FND-CONFIG-038](../findings/FND-CONFIG-038.md) | Message resource lookup searches typed entries across archive records | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |
