@@ -518,6 +518,7 @@ Entries by area.
 | [FND-CONFIG-040](../findings/FND-CONFIG-040.md) | Startup selects wraparound traversal of the open resource archives | recorded |
 | [FND-CONFIG-041](../findings/FND-CONFIG-041.md) | Direct archive-close calls target region and save handles or close all | recorded |
 | [FND-CONFIG-042](../findings/FND-CONFIG-042.md) | Save-capacity and Save Game branches call the shared message routine | recorded |
+| [FND-CONFIG-043](../findings/FND-CONFIG-043.md) | Ammo and broken-item branches call the shared message routine | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

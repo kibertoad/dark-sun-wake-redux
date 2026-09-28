@@ -205,7 +205,7 @@ Entries by status.
 
 ## recorded
 
-271 entries.
+272 entries.
 
 | ID | Title |
 |---|---|
@@ -295,6 +295,7 @@ Entries by status.
 | [FND-CONFIG-040](../findings/FND-CONFIG-040.md) | Startup selects wraparound traversal of the open resource archives |
 | [FND-CONFIG-041](../findings/FND-CONFIG-041.md) | Direct archive-close calls target region and save handles or close all |
 | [FND-CONFIG-042](../findings/FND-CONFIG-042.md) | Save-capacity and Save Game branches call the shared message routine |
+| [FND-CONFIG-043](../findings/FND-CONFIG-043.md) | Ammo and broken-item branches call the shared message routine |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |

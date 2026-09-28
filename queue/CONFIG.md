@@ -51,41 +51,23 @@ Next ID: Q-CONFIG-009
 
 - Q-CONFIG-008. RULE-CONFIG-005: Which text-message calls reach the overlay
   172 wait gate after acquiring `WIND/10501`? Settles it: bounded readings
-  of resource acquisition, later writes to the window's runtime bounds and relevant message
-  callers; an original observation only for any outcome the code does not
-  decide. Tried: FND-CONFIG-011 identifies the nonzero
-  pointer condition. FND-CONFIG-017 identifies several resident callers,
-  with prior overlay findings showing more. FND-CONFIG-018 identifies the
-  pointer as the return of the `WIND/10501` acquisition and setup path.
-  FND-CONFIG-030 shows callback storage cannot fail. FND-CONFIG-031 shows
-  successful registration clears the activation failure callbacks.
-  FND-CONFIG-032 follows both child registration helpers and shows the
-  shipped image fields bypass their image failure branches. FND-CONFIG-033
-  shows every graphics-initializer bounds pair admits the fixed window.
-  FND-CONFIG-034 follows the acquisition call into a resident reader and
-  identifies archive, record-search, allocation and read-result failure
-  branches, without completing their inputs or outcomes. The remaining
-  reader branches remain unread. FND-CONFIG-035
-  inventories 56 direct calls from 21 overlays, but their control-flow
-  conditions and arguments have not been read as a set. Their live success
-  through resource acquisition and registration remains unknown.
-  FND-CONFIG-036 finds no decoded literal-address bounds writer outside the
-  initializer and no literal bounds address in FBOV code; indirect or block
-  writes and two undecoded raw hits remain open. FND-CONFIG-037 shows the
-  resource reader's archive pointer is assigned on successful archive open
-  and can be replaced or cleared by close/list updates. The startup open
-  and list traversal remain unread; seven raw `RESOURCE.GFF` strings have
-  no recognized direct references in the current analysis. FND-CONFIG-038
-  follows the reader's type and number lookups, archive traversal and
-  failure branches. FND-CONFIG-039 identifies the startup archive open,
-  selecting `RESOURCE.GFF` or `RESFLOP.GFF` by the digital-sound flag.
-  FND-CONFIG-040 shows startup sets archive traversal to wrap through all
-  open records. FND-CONFIG-041 inventories direct archive-close sites:
-  none passes the startup resource pointer, though close-all and indirect
-  or aliased paths remain possible. Archive state at message calls and
-  most callers' conditions remain unread. FND-CONFIG-042 follows the
-  save-capacity warning and both Save Game branches to two direct message
-  calls, without establishing their later window-acquisition results.
+  of resource acquisition, possible indirect or block writes to the
+  window bounds, and relevant caller conditions; an original observation
+  only for an outcome the code does not decide. Tried: FND-CONFIG-011 and
+  FND-CONFIG-018 identify the pointer gate and `WIND/10501` setup;
+  FND-CONFIG-030 through FND-CONFIG-033 bound callback, child and graphics
+  registration. FND-CONFIG-034 and FND-CONFIG-038 trace the resident
+  reader's search and failure branches. FND-CONFIG-039 identifies the
+  startup resource archive; FND-CONFIG-037, FND-CONFIG-040 and
+  FND-CONFIG-041 trace its active pointer, wraparound search mode and
+  direct close sites. Indirect archive changes and I/O outcomes remain
+  open. FND-CONFIG-036 bounds literal window-size writers, leaving
+  indirect or block writes and two undecoded raw hits. FND-CONFIG-017
+  identifies resident callers; FND-CONFIG-035 inventories 56 direct
+  calls from 21 overlays. FND-CONFIG-042 and FND-CONFIG-043 follow five
+  overlay call sites through their local conditions. Remaining callers'
+  conditions and live success through acquisition and registration are
+  not established.
 
 - Q-CONFIG-005. FMT-CONFIG-001: What does the game's sound library read from each field of
   `SOUND.CFG`, including its unexplained tail? Settles it: bounded readings
