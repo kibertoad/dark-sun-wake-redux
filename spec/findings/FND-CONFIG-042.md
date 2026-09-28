@@ -55,8 +55,9 @@ and setup result.
 
 ## Alternatives
 
-The helper's callers and the actual calculated capacity in a particular
-game state were not read here. A message call does not prove a visible
+FND-CONFIG-071 identifies a direct startup caller of the helper, while
+indirect callers and the actual calculated capacity in a particular
+game state remain unread. A message call does not prove a visible
 window or elapsed wait when acquisition, allocation, registration or I/O
 fails. The Save Game success text does not by itself prove that each
 settings resource write succeeded.

@@ -546,6 +546,7 @@ Entries by area.
 | [FND-CONFIG-068](../findings/FND-CONFIG-068.md) | Active archive pointer writers include a guarded record-growth path | recorded |
 | [FND-CONFIG-069](../findings/FND-CONFIG-069.md) | The resident close-all wrapper has no literal direct caller | recorded |
 | [FND-CONFIG-070](../findings/FND-CONFIG-070.md) | Overlay fixups to the message overlay are direct calls, not stored caller pointers | recorded |
+| [FND-CONFIG-071](../findings/FND-CONFIG-071.md) | Startup calls the guarded save-capacity message helper after resource initialization | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

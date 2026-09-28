@@ -205,7 +205,7 @@ Entries by status.
 
 ## recorded
 
-299 entries.
+300 entries.
 
 | ID | Title |
 |---|---|
@@ -323,6 +323,7 @@ Entries by status.
 | [FND-CONFIG-068](../findings/FND-CONFIG-068.md) | Active archive pointer writers include a guarded record-growth path |
 | [FND-CONFIG-069](../findings/FND-CONFIG-069.md) | The resident close-all wrapper has no literal direct caller |
 | [FND-CONFIG-070](../findings/FND-CONFIG-070.md) | Overlay fixups to the message overlay are direct calls, not stored caller pointers |
+| [FND-CONFIG-071](../findings/FND-CONFIG-071.md) | Startup calls the guarded save-capacity message helper after resource initialization |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |
