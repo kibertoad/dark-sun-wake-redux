@@ -40,8 +40,9 @@ and follows a pushed far text pointer:
 The `566A:0034` entry is itself a direct resident call target at
 `0x0001DF65` (FND-CONFIG-072). Within `0034`, the address of entry
 `566A:0043` is pushed at `0x00059D37` and `0x00059D99` as an argument to
-other far calls. The effect of those callees and the later invocation of
-that pointer are not established here. The other resident call target
+other far calls. FND-CONFIG-074 traces the latter call's installation of
+that pointer on seven application frames and the frame dispatch path.
+The other resident call target
 `566A:002F` spans `0x00059B76..0x00059C45` and contains none of these
 five near calls.
 
@@ -56,8 +57,8 @@ acquisition gate (FND-CONFIG-018).
 
 ## Alternatives
 
-The full state and callback path into entry `0043`, and the results of
-the preceding far calls, remain unread. The text-pointer and local-branch
+The complete state and event sequence into entry `0043`, and the results
+of its preceding far calls, remain unread. The text-pointer and local-branch
 reading does not prove that any of these messages appears or waits in a
 particular live state. A computed call elsewhere may add callers.
 

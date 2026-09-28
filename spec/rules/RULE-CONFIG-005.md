@@ -82,8 +82,9 @@ None known.
   overlay. FND-UI-037 and FND-SAVE-010 trace the Save Game path into one
   call; FND-CONFIG-071 traces the save-capacity call from startup, and
   FND-CONFIG-072 exhausts the direct resident relocation sites.
-  FND-CONFIG-073 adds five internal calls from the same overlay. Other
-  shared sinks' incoming paths and computed or unrelocated pointer
+  FND-CONFIG-073 adds five internal calls from the same overlay, and
+  FND-CONFIG-074 traces the callback's frame registration and dispatch.
+  Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local
   guards; another is that some are blocked by earlier caller state.
