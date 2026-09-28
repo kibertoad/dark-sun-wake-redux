@@ -39,6 +39,12 @@ another list-update path at `37FC:077C` can replace it. FND-SAVE-007
 identifies a Save/Load path that uses the same open and close entries for a
 saved-game archive.
 
+FND-CONFIG-068 classifies all literal-address occurrences of `DS:9D9F` in
+the shipped executable. Its one address-taking call lets the guarded
+record-growth helper replace the selected archive's record through that
+address; the startup resource archive's initial option word excludes the
+write path leading to that call.
+
 Ghidra's direct-reference list for `DS:9D9F` finds the close and two other
 writers but misses the archive-open assignment at `DSUN.EXE+0x0002E46F`;
 bounded physical disassembly confirms that assignment. A raw search of the

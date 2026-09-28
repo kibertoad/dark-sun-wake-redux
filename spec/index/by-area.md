@@ -543,6 +543,7 @@ Entries by area.
 | [FND-CONFIG-065](../findings/FND-CONFIG-065.md) | The shipped message window follows the indexed resource lookup path | recorded |
 | [FND-CONFIG-066](../findings/FND-CONFIG-066.md) | Literal uses of the startup resource-archive handle stay in startup | recorded |
 | [FND-CONFIG-067](../findings/FND-CONFIG-067.md) | Archive open returns a numeric handle distinct from its internal record pointer | recorded |
+| [FND-CONFIG-068](../findings/FND-CONFIG-068.md) | Active archive pointer writers include a guarded record-growth path | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |
