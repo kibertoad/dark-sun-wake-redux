@@ -81,11 +81,13 @@ None known.
   window; resource acquisition and possible later bounds writes
   remain open (FND-CONFIG-011, FND-CONFIG-017, FND-CONFIG-018,
   FND-CONFIG-030, FND-CONFIG-031, FND-CONFIG-032, FND-CONFIG-033,
-  FND-CONFIG-034, FND-CONFIG-035, FND-CONFIG-036, Q-TIME-003).
+  FND-CONFIG-034, FND-CONFIG-035, FND-CONFIG-036, FND-CONFIG-037,
+  Q-TIME-003).
   One reading is that the present resource makes every message call pass the
   gate (FND-UI-001); another is that resource acquisition, bounds or child
   registration fails depending on state (FND-CONFIG-018, FND-CONFIG-030,
-  FND-CONFIG-031, FND-CONFIG-032, FND-CONFIG-033, FND-CONFIG-034).
+  FND-CONFIG-031, FND-CONFIG-032, FND-CONFIG-033, FND-CONFIG-034,
+  FND-CONFIG-037).
   Reading resource acquisition, possible indirect or block bounds writes,
   and relevant callers, then checking original states if code alone does not
   decide, would separate them.

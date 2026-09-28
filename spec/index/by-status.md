@@ -205,7 +205,7 @@ Entries by status.
 
 ## recorded
 
-265 entries.
+266 entries.
 
 | ID | Title |
 |---|---|
@@ -289,6 +289,7 @@ Entries by status.
 | [FND-CONFIG-034](../findings/FND-CONFIG-034.md) | Message window acquisition enters the resident resource reader with failure paths |
 | [FND-CONFIG-035](../findings/FND-CONFIG-035.md) | Fifty-six overlay call sites target the message-delay routine |
 | [FND-CONFIG-036](../findings/FND-CONFIG-036.md) | Decoded literal references to the display bounds outside initialization are reads |
+| [FND-CONFIG-037](../findings/FND-CONFIG-037.md) | Opening and closing resource archives changes the pointer tested by message acquisition |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |

@@ -71,7 +71,11 @@ Next ID: Q-CONFIG-009
   through resource acquisition and registration remains unknown.
   FND-CONFIG-036 finds no decoded literal-address bounds writer outside the
   initializer and no literal bounds address in FBOV code; indirect or block
-  writes and two undecoded raw hits remain open.
+  writes and two undecoded raw hits remain open. FND-CONFIG-037 shows the
+  resource reader's archive pointer is assigned on successful archive open
+  and can be replaced or cleared by close/list updates. The startup open
+  and list traversal remain unread; seven raw `RESOURCE.GFF` strings have
+  no recognized direct references in the current analysis.
 
 - Q-CONFIG-005. FMT-CONFIG-001: What does the game's sound library read from each field of
   `SOUND.CFG`, including its unexplained tail? Settles it: bounded readings
