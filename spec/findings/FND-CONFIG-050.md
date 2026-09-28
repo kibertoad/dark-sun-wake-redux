@@ -58,6 +58,8 @@ inventory. Each call can enter overlay 172, but only successful subsequent
 
 The caller inputs, complete class and level rules, and every path into
 overlay 213's shared sink were not established by these bounded readings.
+FND-CONFIG-088 traces one guarded event route into that sink, while the
+event producer and record inputs remain open.
 The text arguments do not prove that any particular result occurs in a live
 state, nor that the window setup succeeds.
 

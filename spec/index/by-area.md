@@ -563,6 +563,7 @@ Entries by area.
 | [FND-CONFIG-085](../findings/FND-CONFIG-085.md) | Overlay 182 installs the resident key callback and clears it on separate paths | recorded |
 | [FND-CONFIG-086](../findings/FND-CONFIG-086.md) | The remaining global-callback setter calls register local handlers or restore a saved pointer | recorded |
 | [FND-CONFIG-087](../findings/FND-CONFIG-087.md) | The class-choice message branch skips callback registration and the registered handler can restore its predecessor | recorded |
+| [FND-CONFIG-088](../findings/FND-CONFIG-088.md) | An overlay 213 window callback reaches the shared message entry through one guarded control event | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

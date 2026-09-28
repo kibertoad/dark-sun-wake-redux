@@ -101,6 +101,8 @@ None known.
   reachability relative to the list remain unread. FND-CONFIG-087 shows
   overlay 209's no-other-classes message precedes and excludes its own
   callback registration; event exits can restore the saved prior pointer.
+  FND-CONFIG-088 traces an overlay 213 callback's guarded event-two route
+  into another shared message sink, with the event producer still open.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local

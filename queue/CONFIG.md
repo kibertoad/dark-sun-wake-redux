@@ -87,6 +87,9 @@ Next ID: Q-CONFIG-011
   calls, registration order and live state remain open. FND-CONFIG-087
   shows overlay 209's no-other-classes message skips its callback
   registration and bounds event routes that can restore its prior pointer.
+  FND-CONFIG-088 traces an overlay 213 window callback's guarded event-two
+  route into its shared message sink; its live event and record inputs remain
+  open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?
