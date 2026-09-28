@@ -74,8 +74,17 @@ None known.
   One reading is that 50 remains the starting value; another is that new-game
   setup writes a different value. A complete reading of initialization and
   indirect or block writers would distinguish them.
-- Which text-message calls pass the overlay 172 wait gate (Q-CONFIG-008).
-  The wait requires a nonzero far pointer at `0300:0007`, set by the
+- Which caller paths enter overlay 172's shared message routine
+  (Q-CONFIG-008). FND-CONFIG-017 identifies resident calls, and
+  FND-CONFIG-035 inventories 56 direct overlay calls. FND-CONFIG-042
+  through FND-CONFIG-058 read each direct site's local condition, but
+  shared sinks' incoming paths and indirect calls remain open. One
+  reading is that all listed sites can be reached under their local
+  guards; another is that some are blocked by earlier caller state.
+  Complete incoming-path and indirect-call readings would separate them.
+- Whether later state can prevent `WIND/10501` acquisition or
+  registration during a message (Q-CONFIG-010). The wait requires a
+  nonzero far pointer at `0300:0007`, set by the
   `WIND/10501` acquisition and setup call. The shipped image fields bypass
   image registration failures, and all graphics initializer bounds admit the
   window; resource acquisition and possible later bounds writes
@@ -93,7 +102,8 @@ None known.
   FND-CONFIG-064, FND-CONFIG-065, FND-CONFIG-066,
   FND-CONFIG-067, FND-CONFIG-068, FND-CONFIG-069,
   Q-TIME-003).
-  One reading is that the present resource makes every message call pass the
+  One reading is that the present resource makes every call entering the
+  routine pass the
   gate (FND-UI-001); another is that resource acquisition, bounds or child
   registration fails depending on state (FND-CONFIG-018, FND-CONFIG-030,
   FND-CONFIG-031, FND-CONFIG-032, FND-CONFIG-033, FND-CONFIG-034,
@@ -108,6 +118,14 @@ None known.
   FND-CONFIG-061, FND-CONFIG-062, FND-CONFIG-064,
   FND-CONFIG-065, FND-CONFIG-066, FND-CONFIG-067,
   FND-CONFIG-068, FND-CONFIG-069).
-  Reading resource acquisition, possible indirect or block bounds writes,
-  and relevant callers, then checking original states if code alone does not
-  decide, would separate them.
+  Reading indirect archive and bounds changes, and the remaining cleanup
+  callers, would separate the code-decided parts.
+- Whether the Save Game completion message passes the window gate and its
+  visible duration changes with Message Delay in the owner's GOG build
+  (Q-CONFIG-009). FND-CONFIG-046 establishes the direct success-branch
+  message call, while FND-CONFIG-018 and FND-CONFIG-030 through
+  FND-CONFIG-034 locate later gates. One reading is that acquisition
+  succeeds and the message waits; another is that a live I/O or setup
+  outcome bypasses the wait. The two-setting owner session in
+  `docs/live-sessions/preferences.md` would distinguish them for this
+  specific path, without settling every message caller.

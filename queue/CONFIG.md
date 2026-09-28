@@ -1,6 +1,6 @@
 # CONFIG
 
-Next ID: Q-CONFIG-009
+Next ID: Q-CONFIG-011
 
 ## Static
 
@@ -49,41 +49,25 @@ Next ID: Q-CONFIG-009
   button branch or its shared setup helper. The new-game starting value and
   indirect or block writers remain unread.
 
-- Q-CONFIG-008. RULE-CONFIG-005: Which text-message calls reach the overlay
-  172 wait gate after acquiring `WIND/10501`? Settles it: bounded readings
-  of resource acquisition, possible indirect or block writes to the
-  window bounds, and relevant caller conditions; an original observation
-  only for an outcome the code does not decide. Tried: FND-CONFIG-011 and
-  FND-CONFIG-018 identify the pointer gate and `WIND/10501` setup;
-  FND-CONFIG-030 through FND-CONFIG-033 bound callback, child and graphics
-  registration. FND-CONFIG-034 and FND-CONFIG-038 trace the resident
-  reader's search and failure branches. FND-CONFIG-039 identifies the
-  startup resource archive; FND-CONFIG-037, FND-CONFIG-040 and
-  FND-CONFIG-041 trace its active pointer, wraparound search mode and
-  direct close sites. FND-CONFIG-059 maps close-all to a separate
-  overlay 180 entry. FND-CONFIG-060 finds no literal far call or local
-  near call to it; FND-CONFIG-069 finds no literal direct caller of the
-  separate resident close-all wrapper. FND-CONFIG-061 identifies its
-  exit-callback
-  registration, while any other indirect callers remain unread.
-  FND-CONFIG-064 bounds literal traversal-mode writers and readers. Indirect archive
-  changes and I/O outcomes remain open. FND-CONFIG-065 shows that the
-  shipped `WIND/10501` record passes the indexed range test and takes the
-  `GFFI` lookup path. FND-CONFIG-066 bounds literal uses of the startup
-  resource-archive handle to startup; FND-CONFIG-067 distinguishes that
-  numeric handle from the internal active record pointer. FND-CONFIG-068
-  bounds direct active-pointer writers and a guarded indirect growth path.
-  FND-CONFIG-062 traces the
-  startup archive-open failure to a termination request.
-  FND-CONFIG-036 and FND-CONFIG-063 classify literal window-size
-  references; the latter follows its two helper calls to mouse range
-  services. Indirect or block writes remain open. FND-CONFIG-017
-  identifies resident callers; FND-CONFIG-035 inventories 56 direct
-  calls from 21 overlays. FND-CONFIG-042 through FND-CONFIG-058 give
-  bounded local readings for all 56 distinct direct overlay call sites;
-  FND-CONFIG-046 deepens the overlay 192 site already in FND-CONFIG-042.
-  Shared sinks' full incoming paths, possible indirect callers, and live
-  success through acquisition and registration are not established.
+- Q-CONFIG-008. RULE-CONFIG-005: Which caller paths enter overlay 172's
+  shared message routine? Settles it: complete incoming-path readings for
+  the shared sinks and possible indirect calls, including the conditions
+  and text pointers that reach the routine. Tried: FND-CONFIG-017 identifies
+  resident calls; FND-CONFIG-035 inventories 56 direct calls from 21
+  overlays. FND-CONFIG-042 through FND-CONFIG-058 give bounded local
+  readings for all 56 sites, with FND-CONFIG-046 deepening the Save Game
+  call. The shared sinks' incoming paths and indirect callers remain open.
+
+- Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
+  `WIND/10501` acquisition or registration during an ordinary message?
+  Settles it: bounded readings of indirect or block writes to display
+  bounds, archive options and traversal mode, plus indirect archive-close
+  and cleanup callers. Tried: FND-CONFIG-018 and FND-CONFIG-030 through
+  FND-CONFIG-034 bound window setup and registration. FND-CONFIG-036
+  through FND-CONFIG-041, FND-CONFIG-059 through FND-CONFIG-069 trace
+  literal bounds and archive references, startup, lookup, direct closes
+  and cleanup registration. No ordinary-state failure is established;
+  indirect changes and callers remain unread.
 
 - Q-CONFIG-005. FMT-CONFIG-001: What does the game's sound library read from each field of
   `SOUND.CFG`, including its unexplained tail? Settles it: bounded readings
@@ -121,6 +105,16 @@ None.
 None.
 
 ## Live session
+
+- Q-CONFIG-009. RULE-CONFIG-005: Does the Save Game completion message pass
+  the `WIND/10501` gate and wait in the owner's installed GOG build, and
+  does changing Message Delay change its visible duration? Settles it:
+  the bounded two-setting Save Game comparison in
+  `docs/live-sessions/preferences.md`. Tried: FND-CONFIG-046 locates the
+  success branch's direct message call; FND-CONFIG-018, FND-CONFIG-030
+  through FND-CONFIG-034 and FND-CONFIG-065 identify the acquisition
+  gates and shipped record. The code does not decide the live I/O outcome
+  or observed duration. Blocks: slice 3 message timing validation.
 
 - Q-CONFIG-001. SCR-UI-007, RULE-CONFIG-001, RULE-CONFIG-002, RULE-CONFIG-003,
   RULE-CONFIG-004, RULE-CONFIG-005, FMT-CONFIG-003: What are the native
