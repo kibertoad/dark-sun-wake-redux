@@ -22,9 +22,9 @@ None known.
 
 - Stage: Slices.
 - Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 476 entries and 158 parity rows).
+  documentation check passed with 477 entries and 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
-- Next: Q-CONFIG-008, trace the event source for FND-CONFIG-079 or another
+- Next: Q-CONFIG-008, trace the event producers for FND-CONFIG-080 or another
   shared message sink. Q-CONFIG-010 tracks acquisition-state changes;
   Q-CONFIG-009 has an owner-run request.
