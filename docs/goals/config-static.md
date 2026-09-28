@@ -21,7 +21,9 @@ None known.
 ## Handover
 
 - Stage: Slices.
-- Last gate: 2026-09-28, previous handover reports `./tools/Test.ps1` passed.
+- Last gate: 2026-09-28, `./tools/Test.ps1` passed (700 tests;
+  documentation check passed with 431 entries and 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
-- Next: Q-CONFIG-008, RULE-CONFIG-005.
+- Next: Q-CONFIG-008, complete the resource reader's remaining branches and
+  message caller states for RULE-CONFIG-005.
