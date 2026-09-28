@@ -541,6 +541,7 @@ Entries by area.
 | [FND-CONFIG-063](../findings/FND-CONFIG-063.md) | The two previously undecoded display-bound address hits are reads | recorded |
 | [FND-CONFIG-064](../findings/FND-CONFIG-064.md) | Literal archive traversal-mode references are two writes and two reads | recorded |
 | [FND-CONFIG-065](../findings/FND-CONFIG-065.md) | The shipped message window follows the indexed resource lookup path | recorded |
+| [FND-CONFIG-066](../findings/FND-CONFIG-066.md) | Literal uses of the startup resource-archive pointer stay in startup | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

@@ -67,7 +67,8 @@ Next ID: Q-CONFIG-009
   FND-CONFIG-064 bounds literal traversal-mode writers and readers. Indirect archive
   changes and I/O outcomes remain open. FND-CONFIG-065 shows that the
   shipped `WIND/10501` record passes the indexed range test and takes the
-  `GFFI` lookup path. FND-CONFIG-062 traces the
+  `GFFI` lookup path. FND-CONFIG-066 bounds literal uses of the startup
+  resource-archive handle to startup. FND-CONFIG-062 traces the
   startup archive-open failure to a termination request.
   FND-CONFIG-036 and FND-CONFIG-063 classify literal window-size
   references, leaving indirect or block writes. FND-CONFIG-017
