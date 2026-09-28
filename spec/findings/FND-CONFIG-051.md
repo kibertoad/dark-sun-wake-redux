@@ -45,8 +45,10 @@ setup succeed, so they do not establish a wait or visible window
 ## Alternatives
 
 The character-list producer, the full meaning of the state word, and all
-effects of the local refresh and resource calls were not read here. The
-same message text can arise from two separate branches, and neither call
+effects of the local refresh and resource calls were not read here.
+FND-CONFIG-080 identifies two event-record discriminators for the callback's
+message site, but does not establish the player action producing either.
+The same message text can arise from two separate branches, and neither call
 site proves how often that state occurs in live use.
 
 ## How to reproduce

@@ -175,7 +175,7 @@ Entries by kind.
 
 ## findings
 
-310 entries.
+311 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -303,6 +303,7 @@ Entries by kind.
 | [FND-CONFIG-077](../findings/FND-CONFIG-077.md) | Overlay 204 rest messages have handler and script-request caller routes | recorded |
 | [FND-CONFIG-078](../findings/FND-CONFIG-078.md) | The stored-character list opens with a message-capable window callback | recorded |
 | [FND-CONFIG-079](../findings/FND-CONFIG-079.md) | The resident event dispatcher calls a loaded window's callback at offset 0xF5 | recorded |
+| [FND-CONFIG-080](../findings/FND-CONFIG-080.md) | Two event-record discriminators reach the stored-character list message branch | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |
