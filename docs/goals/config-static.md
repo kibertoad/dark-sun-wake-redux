@@ -8,13 +8,11 @@ recorded; keep the documentation check and `./tools/Test.ps1` passing.
 
 ## Scope
 
-Areas: CONFIG; SAVE solely to correct FND-SAVE-009's archive-handle type.
-Batches: research only. Queue sections: Static.
+Areas: CONFIG. Batches: research only. Queue sections: Static.
 
 ## Must not touch
 
-Other areas' entries, queue files and parity rows. Other SAVE entries and
-`queue/SAVE.md`. `src/` and `tests/`.
+Other areas' entries, queue files and parity rows. `src/` and `tests/`.
 
 ## Dead ends
 
@@ -27,7 +25,6 @@ None known.
   documentation check passed with 464 entries and 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
-- Next: correct FND-SAVE-009's archive-handle type, then Q-CONFIG-008:
-  trace indirect archive and display-bound changes,
+- Next: Q-CONFIG-008, trace indirect archive and display-bound changes,
   then separate remaining code-decided `WIND/10501` acquisition gates
   from I/O outcomes for RULE-CONFIG-005.
