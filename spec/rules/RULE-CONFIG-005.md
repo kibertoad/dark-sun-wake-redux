@@ -78,7 +78,10 @@ None known.
   (Q-CONFIG-008). FND-CONFIG-017 identifies resident calls, and
   FND-CONFIG-035 inventories 56 direct overlay calls. FND-CONFIG-042
   through FND-CONFIG-058 read each direct site's local condition, but
-  shared sinks' incoming paths and indirect calls remain open. One
+  FND-CONFIG-070 finds no address-taking fixup to this entry from another
+  overlay. FND-UI-037 and FND-SAVE-010 trace the Save Game path into one
+  call. Other shared sinks' incoming paths and resident or computed-pointer
+  calls remain open. One
   reading is that all listed sites can be reached under their local
   guards; another is that some are blocked by earlier caller state.
   Complete incoming-path and indirect-call readings would separate them.

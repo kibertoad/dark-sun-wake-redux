@@ -51,12 +51,15 @@ Next ID: Q-CONFIG-011
 
 - Q-CONFIG-008. RULE-CONFIG-005: Which caller paths enter overlay 172's
   shared message routine? Settles it: complete incoming-path readings for
-  the shared sinks and possible indirect calls, including the conditions
-  and text pointers that reach the routine. Tried: FND-CONFIG-017 identifies
-  resident calls; FND-CONFIG-035 inventories 56 direct calls from 21
-  overlays. FND-CONFIG-042 through FND-CONFIG-058 give bounded local
-  readings for all 56 sites, with FND-CONFIG-046 deepening the Save Game
-  call. The shared sinks' incoming paths and indirect callers remain open.
+  the shared sinks and possible resident or computed-pointer calls,
+  including the conditions and text pointers that reach the routine.
+  Tried: FND-CONFIG-017 identifies resident calls; FND-CONFIG-035 inventories
+  56 direct calls from 21 overlays. FND-CONFIG-042 through FND-CONFIG-058
+  give bounded local readings for all 56 sites, with FND-CONFIG-046
+  deepening the Save Game call. FND-CONFIG-070 rules out an address-taking
+  fixup to this entry from another overlay; FND-UI-037 and FND-SAVE-010
+  trace the Save Game UI and keyboard paths. Other shared sinks' incoming
+  paths and resident or computed-pointer calls remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?
