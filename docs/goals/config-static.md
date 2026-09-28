@@ -22,10 +22,10 @@ None known.
 
 - Stage: Slices.
 - Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 487 entries and 158 parity rows).
+  documentation check passed with 488 entries and 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
 - Next: Q-CONFIG-008, trace computed or indirect routes and another shared
-  message sink after FND-CONFIG-090. Q-CONFIG-010 tracks
+  message sink after FND-CONFIG-091. Q-CONFIG-010 tracks
   acquisition-state changes;
   Q-CONFIG-009 has an owner-run request.
