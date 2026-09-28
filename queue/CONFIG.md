@@ -60,8 +60,9 @@ Next ID: Q-CONFIG-009
   reader's search and failure branches. FND-CONFIG-039 identifies the
   startup resource archive; FND-CONFIG-037, FND-CONFIG-040 and
   FND-CONFIG-041 trace its active pointer, wraparound search mode and
-  direct close sites. Indirect archive changes and I/O outcomes remain
-  open. FND-CONFIG-036 bounds literal window-size writers, leaving
+  direct close sites. FND-CONFIG-059 maps close-all to a separate
+  overlay 180 entry, but its callers remain unread. Indirect archive
+  changes and I/O outcomes remain open. FND-CONFIG-036 bounds literal window-size writers, leaving
   indirect or block writes and two undecoded raw hits. FND-CONFIG-017
   identifies resident callers; FND-CONFIG-035 inventories 56 direct
   calls from 21 overlays. FND-CONFIG-042 through FND-CONFIG-058 give

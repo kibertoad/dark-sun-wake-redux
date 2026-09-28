@@ -534,6 +534,7 @@ Entries by area.
 | [FND-CONFIG-056](../findings/FND-CONFIG-056.md) | Overlay 188 sends a diagnostic exit message when its debug gate is set | recorded |
 | [FND-CONFIG-057](../findings/FND-CONFIG-057.md) | Overlay 189 sends four guarded inventory and item-interaction messages | recorded |
 | [FND-CONFIG-058](../findings/FND-CONFIG-058.md) | Overlay 190 sends guarded combat-state and party-action messages through the shared entry | recorded |
+| [FND-CONFIG-059](../findings/FND-CONFIG-059.md) | Overlay 180's close-all archive call lies in a separate exported cleanup routine | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |
