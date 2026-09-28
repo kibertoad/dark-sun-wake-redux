@@ -69,6 +69,8 @@ Next ID: Q-CONFIG-011
   that callback, other shared sinks' incoming paths, and computed or
   unrelocated pointer calls remain open. FND-CONFIG-076 closes the direct
   incoming routes to overlay 187's four save and cinematic message sites.
+  FND-CONFIG-077 traces overlay 204's two rest message sites to an overlay
+  182 handler and script request one; their upstream live inputs remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

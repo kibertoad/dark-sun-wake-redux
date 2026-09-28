@@ -36,7 +36,8 @@ reading does not establish that path's complete effects or a completed rest.
 ## Interpretation
 
 The combat refusal and the conditional rest announcement are separate
-sources for the shared message routine. Its later `WIND/10501` acquisition
+sources for the shared message routine. FND-CONFIG-077 traces the two
+direct caller routes to this rest entry. Its later `WIND/10501` acquisition
 and setup still determine whether either call enters the message-delay wait
 (FND-CONFIG-018).
 
