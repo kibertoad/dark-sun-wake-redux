@@ -92,8 +92,8 @@ None known.
   FND-CONFIG-079 identifies the resident event-dispatch route into it, and
   FND-CONFIG-080 identifies two event-record discriminators for its message
   branch; FND-CONFIG-081 traces the conditional pointer-hit route to one,
-  while FND-CONFIG-082 bounds the keyboard packet and fallback path for the
-  other.
+  while FND-CONFIG-082 and FND-CONFIG-083 trace the keyboard packet and
+  global fallback path for the other.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local

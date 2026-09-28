@@ -175,7 +175,7 @@ Entries by kind.
 
 ## findings
 
-313 entries.
+314 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -305,7 +305,8 @@ Entries by kind.
 | [FND-CONFIG-079](../findings/FND-CONFIG-079.md) | The resident event dispatcher calls a loaded window's callback at offset 0xF5 | recorded |
 | [FND-CONFIG-080](../findings/FND-CONFIG-080.md) | Two event-record discriminators reach the stored-character list message branch | recorded |
 | [FND-CONFIG-081](../findings/FND-CONFIG-081.md) | The resident pointer path returns a matched button number as an event-two identifier | recorded |
-| [FND-CONFIG-082](../findings/FND-CONFIG-082.md) | The keyboard packet supplies the event-six word but the generic fallback clears the window target | recorded |
+| [FND-CONFIG-082](../findings/FND-CONFIG-082.md) | The keyboard packet supplies the event-six word to the global fallback | recorded |
+| [FND-CONFIG-083](../findings/FND-CONFIG-083.md) | The stored-character list callback is also installed as the global event fallback | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |

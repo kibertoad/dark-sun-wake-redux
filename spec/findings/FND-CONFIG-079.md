@@ -19,14 +19,16 @@ environment: null
 
 The resident routine at `39D1:071F` copies a 24-byte event record and
 passes it to `39D1:0752`. The latter first handles an event whose first
-word is 3 through a separate global callback, and returns `0xFFFF` for
+word is 3 through the global callback pointer, and returns `0xFFFF` for
 one whose first word is 1. For other event words, it tests the registered
 window count at `DS:A103`. When that count is nonzero, it copies the far
 window pointer at `DS:A0FD`, tests that pointer and the far pointer at
 window offset `0xF5`, then calls the latter with a copy of the event record.
 It returns the callback's nonzero result after local cleanup; a zero result
 falls through. With no current window or no `0xF5` callback, it clears
-`DS:A0FD` and may call a separate global callback at `DS:A0F1`.
+`DS:A0FD` and may call the global callback pointer at `DS:A0F1`.
+FND-CONFIG-083 shows that the list-opening routine installs the same
+callback function there as in its window.
 
 The loop beginning at `39D1:0854` obtains an event through resident
 `4464:02FE`, passes it through a local event preparation routine, and
@@ -36,9 +38,10 @@ overlay 171's `5664:002F` as its `0xF5` callback when window setup succeeds.
 
 ## Interpretation
 
-The stored-character list callback has an indirect incoming route through
+The stored-character list callback has indirect incoming routes through
 the resident event dispatcher. It can be invoked for a prepared event with
-a first word other than 1 or 3 while that window is current and registered.
+a first word other than 1 or 3 while the window is current, or through the
+global fallback while that registration remains active (FND-CONFIG-083).
 The callback's message branch still has its own conditions.
 
 ## Alternatives

@@ -45,10 +45,10 @@ FND-CONFIG-081 follows the generic pointer path that can return that number.
 FND-CONFIG-081 establishes a conditional pointer-hit route to the first
 record, but not the physical device mapping or whether the list state ever
 meets the failure guard in ordinary use. FND-CONFIG-082 shows how a keyboard
-packet can carry the second discriminator, but its generic event-six fallback
-clears the window callback target; a live producer for the callback's second
-route remains unread. Neither record alone proves a visible message or
-delay wait.
+packet can carry the second discriminator. FND-CONFIG-083 shows that the
+generic event-six fallback can reach this same callback through global
+registration, subject to that registration and the list state remaining
+active. Neither record alone proves a visible message or delay wait.
 
 ## How to reproduce
 

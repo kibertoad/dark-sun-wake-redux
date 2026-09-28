@@ -44,15 +44,17 @@ The `5664:002F` trampoline targets file offset `0x000585D5` and
 contains the second no-available-characters message at
 `0x000589A1` (FND-CONFIG-051). Declared overlay fixups and resident
 MZ relocations contain no direct far call to `5664:002F`; its address
-is pushed twice in the list-opening routine, including the window
-helper call. An aligned near-call scan of overlay 171 found no near
+is pushed twice in the list-opening routine: once for the window helper
+and once for overlay 190's global callback registration (FND-CONFIG-083).
+An aligned near-call scan of overlay 171 found no near
 call to the `002F` entry.
 
 ## Interpretation
 
 The list-opening entry has a direct route from overlay 190's
 choice branch and has two local message gates. It installs a callback
-that has a third message gate on the stored-character list window.
+with a third message gate on the stored-character list window and in the
+resident global fallback (FND-CONFIG-083).
 Entering any of the messages still depends on the local branches and
 the shared routine's later window-acquisition gate (FND-CONFIG-018).
 

@@ -1,6 +1,6 @@
 ---
 id: FND-CONFIG-082
-title: The keyboard packet supplies the event-six word but the generic fallback clears the window target
+title: The keyboard packet supplies the event-six word to the global fallback
 status: recorded
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
@@ -44,8 +44,9 @@ handle the packet, window flag `0x80` permits an ACCL child search at
 Those handlers can store a window pointer at `DS:A0FD` and a control number
 at output offset 2. The fallback at `39D1:0B09` instead clears `DS:A0FD`
 and changes the output's first word to 6. The subsequent resident
-dispatcher requires a nonzero `DS:A0FD` to call a window's `0xF5` callback
-(FND-CONFIG-079).
+dispatcher can call global `DS:A0F1` when the window pointer is zero
+(FND-CONFIG-079); FND-CONFIG-083 traces the list callback's registration
+there.
 
 The shipped `WIND/18501` graph has no MENU or ACCL child (FND-UI-027),
 and the shipped BUTN records have zero at their mnemonic byte `0x6C`
@@ -55,19 +56,19 @@ claiming a key.
 ## Interpretation
 
 The queued BIOS key word can match the list callback's `0x1C0D` table
-entry, but the generic event-six fallback clears the window target and
-therefore cannot itself invoke that callback. The specialized handlers
-provide no match from the shipped list controls as recorded in the source
-file. This reading does not establish a live keyboard route to the list
-failure message.
+entry. The generic event-six fallback clears the window target but can
+invoke the same callback through its global registration (FND-CONFIG-083).
+The specialized handlers provide no match from the shipped list controls
+as recorded in the source file. The keyboard route remains conditional on
+the global registration and the list state.
 
 ## Alternatives
 
 Runtime changes to window flags, children or button mnemonic fields, and
 other writers of event records, remain unread. The focused-control path
 may consume a key through another route. This finding does not label
-`0x1C0D` as a physical key or prove the callback's event-six branch is
-unreachable in every state.
+`0x1C0D` as a physical key or prove that the failure message appears in
+ordinary play.
 
 ## How to reproduce
 
