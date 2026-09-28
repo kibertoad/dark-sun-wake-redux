@@ -93,7 +93,9 @@ Next ID: Q-CONFIG-011
   pointer-hit route in one of its windows, but physical input and live
   window state remain open. FND-CONFIG-090 traces the callback's unsigned
   event-bit threshold to the queued mouse packet; the bit meanings and
-  remaining live gates remain open.
+  remaining live gates remain open. FND-CONFIG-091 traces two overlay 175
+  message sites through guarded overlay 178 callers and local helpers;
+  their complete state remains open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

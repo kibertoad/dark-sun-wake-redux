@@ -106,7 +106,8 @@ None known.
   FND-CONFIG-089 identifies a conditional button-pointer producer for that
   event identifier in one of the shipped windows. FND-CONFIG-090 traces
   that callback's event-bit threshold to the mouse packet before the shared
-  message branch.
+  message branch. FND-CONFIG-091 traces guarded overlay 178 callers into
+  overlay 175's two message branches.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local

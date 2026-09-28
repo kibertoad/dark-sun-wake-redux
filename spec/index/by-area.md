@@ -566,6 +566,7 @@ Entries by area.
 | [FND-CONFIG-088](../findings/FND-CONFIG-088.md) | An overlay 213 window callback reaches the shared message entry through one guarded control event | recorded |
 | [FND-CONFIG-089](../findings/FND-CONFIG-089.md) | A button in one overlay 213 window can supply the guarded message event identifier | recorded |
 | [FND-CONFIG-090](../findings/FND-CONFIG-090.md) | The item-feedback callback limits mouse event bits before its shared message path | recorded |
+| [FND-CONFIG-091](../findings/FND-CONFIG-091.md) | Two guarded overlay 178 calls feed overlay 175's no-effect and money-message branches | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

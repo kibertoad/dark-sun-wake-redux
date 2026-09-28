@@ -205,7 +205,7 @@ Entries by status.
 
 ## recorded
 
-319 entries.
+320 entries.
 
 | ID | Title |
 |---|---|
@@ -343,6 +343,7 @@ Entries by status.
 | [FND-CONFIG-088](../findings/FND-CONFIG-088.md) | An overlay 213 window callback reaches the shared message entry through one guarded control event |
 | [FND-CONFIG-089](../findings/FND-CONFIG-089.md) | A button in one overlay 213 window can supply the guarded message event identifier |
 | [FND-CONFIG-090](../findings/FND-CONFIG-090.md) | The item-feedback callback limits mouse event bits before its shared message path |
+| [FND-CONFIG-091](../findings/FND-CONFIG-091.md) | Two guarded overlay 178 calls feed overlay 175's no-effect and money-message branches |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |

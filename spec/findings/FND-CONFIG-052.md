@@ -45,7 +45,8 @@ wait runs (FND-CONFIG-018).
 
 ## Alternatives
 
-The complete effects of the item, eligibility and action helpers and the
+FND-CONFIG-091 traces guarded overlay 178 calls into the two overlay 175
+message sites. The complete effects of the item, eligibility and action helpers and the
 callers' runtime inputs remain unread. The observed text paths do not prove
 an action outcome or a successful message-window setup in a live state.
 
