@@ -37,15 +37,16 @@ dispatcher can call this callback for both first-word values (FND-CONFIG-079).
 The list failure message has two bounded event-record routes into its
 callback: `(first word 2, word at offset 2 = 18301)` and `(first word 6,
 word at offset 12 = 0x1C0D)`. Both require the state word to be `0xFFFF`.
-The first discriminator matches a button number in the shipped list window.
+The first discriminator matches a button number in the shipped list window;
+FND-CONFIG-081 follows the generic pointer path that can return that number.
 
 ## Alternatives
 
-The event producer and native control dispatcher were not followed far
-enough to prove that a player click on `BUTN/18301` produces the first
-record, or which keyboard or other input produces the second. The state
-word's producer and the window's current/registered state remain separate
-conditions; neither record alone proves a visible message or delay wait.
+FND-CONFIG-081 establishes a conditional pointer-hit route to the first
+record, but not the physical device mapping or whether the list state ever
+meets the failure guard in ordinary use. Which keyboard or other input
+produces the second record remains unread. Neither record alone proves a
+visible message or delay wait.
 
 ## How to reproduce
 

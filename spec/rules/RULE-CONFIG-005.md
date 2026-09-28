@@ -91,7 +91,7 @@ None known.
   traces overlay 171's list message sites to a choice and window callback;
   FND-CONFIG-079 identifies the resident event-dispatch route into it, and
   FND-CONFIG-080 identifies two event-record discriminators for its message
-  branch.
+  branch; FND-CONFIG-081 traces the conditional pointer-hit route to one.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local

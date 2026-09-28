@@ -556,6 +556,7 @@ Entries by area.
 | [FND-CONFIG-078](../findings/FND-CONFIG-078.md) | The stored-character list opens with a message-capable window callback | recorded |
 | [FND-CONFIG-079](../findings/FND-CONFIG-079.md) | The resident event dispatcher calls a loaded window's callback at offset 0xF5 | recorded |
 | [FND-CONFIG-080](../findings/FND-CONFIG-080.md) | Two event-record discriminators reach the stored-character list message branch | recorded |
+| [FND-CONFIG-081](../findings/FND-CONFIG-081.md) | The resident pointer path returns a matched button number as an event-two identifier | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

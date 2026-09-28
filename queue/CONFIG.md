@@ -74,8 +74,9 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-078 traces overlay 171's list messages to a choice branch and
   the `WIND/18501` callback. FND-CONFIG-079 identifies the guarded resident
   event-dispatch route into that callback. FND-CONFIG-080 identifies two
-  event-record discriminators for the callback's message branch; their
-  player-visible producers remain open.
+  event-record discriminators for the callback's message branch.
+  FND-CONFIG-081 traces a conditional pointer-hit producer for the first;
+  physical input mapping, the second producer and live state remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

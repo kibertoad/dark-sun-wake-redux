@@ -29,7 +29,7 @@ falls through. With no current window or no `0xF5` callback, it clears
 `DS:A0FD` and may call a separate global callback at `DS:A0F1`.
 
 The loop beginning at `39D1:0854` obtains an event through resident
-`3464:02FE`, passes it through a local event preparation routine, and
+`4464:02FE`, passes it through a local event preparation routine, and
 calls `39D1:071F` for events that pass the loop's initial filter.
 FND-CONFIG-078 establishes that the stored-character list window receives
 overlay 171's `5664:002F` as its `0xF5` callback when window setup succeeds.
