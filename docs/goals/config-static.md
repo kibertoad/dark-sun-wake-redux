@@ -22,7 +22,7 @@ None known.
 
 - Stage: Slices.
 - Last gate: 2026-09-28, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 432 entries and 158 parity rows).
+  documentation check passed with 434 entries and 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
 - Next: Q-CONFIG-008, complete the resource reader's remaining branches and
