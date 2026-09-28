@@ -16,16 +16,17 @@ Other areas' entries, queue files and parity rows. `src/` and `tests/`.
 
 ## Dead ends
 
-None known.
+The generic keyboard event-six fallback cannot carry a list-window callback
+target (FND-CONFIG-082); follow a specialized or runtime route instead.
 
 ## Handover
 
 - Stage: Slices.
 - Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 478 entries and 158 parity rows).
+  documentation check passed with 479 entries and 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
-- Next: Q-CONFIG-008, trace the remaining event-six producer for
-  FND-CONFIG-080 or another shared message sink. Q-CONFIG-010 tracks
+- Next: Q-CONFIG-008, trace a specialized or runtime event-six route for
+  FND-CONFIG-080, or another shared message sink. Q-CONFIG-010 tracks
   acquisition-state changes;
   Q-CONFIG-009 has an owner-run request.
