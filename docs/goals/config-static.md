@@ -22,7 +22,7 @@ None known.
 
 - Stage: Slices.
 - Last gate: 2026-09-28, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 470 entries and 158 parity rows).
+  documentation check passed with 471 entries and 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
 - Next: Q-CONFIG-008, complete incoming paths for shared message sinks
@@ -31,6 +31,7 @@ None known.
   address-taking resident relocations. FND-UI-037 and FND-SAVE-010 trace
   the Save Game route, and FND-CONFIG-071 traces the startup
   save-capacity call. FND-CONFIG-073 identifies five internal message
-  calls from overlay 172's other routines; trace the `0043` callback
-  path next. Q-CONFIG-010 tracks remaining indirect
+  calls from overlay 172's other routines; FND-CONFIG-074 traces the
+  `0043` callback's frame registration and dispatch. Trace the full
+  event sequence or another shared sink next. Q-CONFIG-010 tracks indirect
   acquisition-state changes; Q-CONFIG-009 has an owner-run request.
