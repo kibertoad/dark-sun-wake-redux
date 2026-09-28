@@ -1,6 +1,6 @@
 ---
 id: FND-CONFIG-066
-title: Literal uses of the startup resource-archive pointer stay in startup
+title: Literal uses of the startup resource-archive handle stay in startup
 status: recorded
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
@@ -17,17 +17,18 @@ environment: null
 
 ## Observation
 
-The startup resource-archive handle occupies a far pointer at `DS:1442`
-(FND-CONFIG-039). A raw search of the complete shipped `DSUN.EXE` for the
+The startup resource archive's numeric handle occupies a double word at
+`DS:1442` (FND-CONFIG-039, FND-CONFIG-067). A raw search of the complete
+shipped `DSUN.EXE` for the
 little-endian address word `42 14` finds nine occurrences:
 
 | File offset(s) | Classification |
 |---|---|
 | `0x4B4B9`, `0x4B4D1`, `0x4B4E1`, `0x4B4E9`, `0x4B4F1` | Resident data before the `FBOV` envelope, in a repeated eight-byte table; not decoded instructions. |
 | `0x65AEA` | Bytes cross the displacement and immediate fields of a comparison against a different word; not a `DS:1442` reference. |
-| `0x67600` | Overlay 180 startup clears the far pointer at `DS:1442`. |
-| `0x6760B` | Startup passes the pointer's address to the archive-open wrapper as an output location. |
-| `0x676DC` | Startup passes the returned pointer value to the graphics initializer. |
+| `0x67600` | Overlay 180 startup clears the handle at `DS:1442`. |
+| `0x6760B` | Startup passes the handle's address to the archive-open wrapper as an output location. |
+| `0x676DC` | Startup passes the returned handle value to the graphics initializer. |
 
 The three instruction references are in the same startup path. This raw
 inventory finds no later literal-address read or write of `DS:1442` in
@@ -35,11 +36,12 @@ the resident image or declared overlay code.
 
 ## Interpretation
 
-The direct startup handle is initialized and handed to graphics setup, but
+The startup handle is initialized and handed to graphics setup, but
 the surveyed executable has no later literal use of that address to close
 or replace the archive. This narrows the direct-handle path in
 Q-CONFIG-008; it does not prove that the archive stays open or reachable
-through the reader's active-list pointer at `DS:9D9F` (FND-CONFIG-037).
+through the reader's separate active-list pointer at `DS:9D9F`
+(FND-CONFIG-037, FND-CONFIG-067).
 
 ## Alternatives
 

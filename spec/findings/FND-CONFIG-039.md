@@ -24,10 +24,11 @@ environment: null
 ## Observation
 
 In overlay 180's startup routine, after the separate `GPLDATA.GFF` open
-(FND-SCRIPT-003), the path at `DSUN.EXE+0x000675FD` clears the far pointer
-at `DS:1442`. It tests `DS:14E3`, the digital-sound flag (FND-SOUND-010),
+(FND-SCRIPT-003), the path at `DSUN.EXE+0x000675FD` clears the numeric
+archive handle at `DS:1442` (FND-CONFIG-067). It tests `DS:14E3`, the
+digital-sound flag (FND-SOUND-010),
 and passes `DS:0B70` when nonzero or `DS:0B7D` when zero to overlay 182's
-`56BD:002F` wrapper, with `DS:1442` as the output pointer. The installed
+`56BD:002F` wrapper, with `DS:1442` as the output location. The installed
 strings at those offsets are `RESOURCE.GFF` and `RESFLOP.GFF` respectively.
 
 The wrapper at `DSUN.EXE+0x00068850` appends that name to the game's
@@ -37,15 +38,16 @@ archive pointer at `DS:9D9F` (FND-CONFIG-037). The startup caller branches
 on the wrapper's boolean result; on failure it formats a missing-file
 message with the chosen name and the game's directory and reaches a
 runtime termination request (FND-CONFIG-062). The path later
-passes the pointer at `DS:1442` to a graphics initializer at
+passes the handle at `DS:1442` to a graphics initializer at
 `DSUN.EXE+0x000676D9`.
 
 ## Interpretation
 
 Startup has a direct registration path for the resource archive used by
 the message reader. Which of the two filenames it opens depends on the
-digital-sound flag. A successful open supplies an archive record; the
-file's mere presence does not establish that the open succeeds or that
+digital-sound flag. A successful open supplies an internal archive record
+and a separate numeric handle (FND-CONFIG-067); the file's mere presence
+does not establish that the open succeeds or that
 the archive remains selected at every later message call.
 
 ## Alternatives

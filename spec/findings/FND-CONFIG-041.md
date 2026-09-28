@@ -37,16 +37,17 @@ A shipped-byte search for direct far-call instructions to offset
 | Caller overlay | Call file offset(s) | Passed argument |
 |---:|---|---|
 | 180 | `0x00067A09` | `0xFFFFFFFF` |
-| 182 | `0x00068B18`, `0x00069DA9`, `0x00069E8B`, `0x0006A1C9` | Far pointer at `DS:145A` |
-| 186 | `0x0006FCBD` | Far pointer at `DS:144A` |
-| 187 | `0x00071A65` | Far pointer at `DS:144E` |
-| 187 | `0x00071BF0` | Far pointer at `DS:145A` |
-| 192 | `0x0007D394` | Local far pointer at `[BP-4]` |
+| 182 | `0x00068B18`, `0x00069DA9`, `0x00069E8B`, `0x0006A1C9` | Numeric handle at `DS:145A` |
+| 186 | `0x0006FCBD` | Numeric handle at `DS:144A` |
+| 187 | `0x00071A65` | Numeric handle at `DS:144E` |
+| 187 | `0x00071BF0` | Numeric handle at `DS:145A` |
+| 192 | `0x0007D394` | Local numeric handle at `[BP-4]` |
 
 There is also a resident wrapper at `47B9:0310`
 (`DSUN.EXE+0x0003D0A0`) that calls close with `0xFFFFFFFF` and handles
 its error. None of these decoded direct call sites passes the startup
-resource-archive pointer at `DS:1442` (FND-CONFIG-039). The overlay 180
+resource-archive handle at `DS:1442` (FND-CONFIG-039,
+FND-CONFIG-067). The overlay 180
 close-all call follows cleanup calls in a separate routine at
 `DSUN.EXE+0x000679D9..0x00067A27`; this reading does not establish its
 callers or when it runs.
@@ -61,7 +62,7 @@ startup wraparound mode (FND-CONFIG-040).
 ## Alternatives
 
 Indirect close calls, copied aliases of `DS:1442`, or code that changes
-the resource pointer could still remove the archive. The direct-call
+the resource record could still remove the archive. The direct-call
 inventory does not prove its presence at every message call, and the
 close-all routine's placement does not alone prove it runs only on exit.
 
