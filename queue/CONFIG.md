@@ -80,8 +80,10 @@ Next ID: Q-CONFIG-009
   failure branches. FND-CONFIG-039 identifies the startup archive open,
   selecting `RESOURCE.GFF` or `RESFLOP.GFF` by the digital-sound flag.
   FND-CONFIG-040 shows startup sets archive traversal to wrap through all
-  open records. Later archive closure or mode changes in message calls,
-  and callers' conditions, remain unread.
+  open records. FND-CONFIG-041 inventories direct archive-close sites:
+  none passes the startup resource pointer, though close-all and indirect
+  or aliased paths remain possible. Archive state at message calls and
+  those callers' conditions remain unread.
 
 - Q-CONFIG-005. FMT-CONFIG-001: What does the game's sound library read from each field of
   `SOUND.CFG`, including its unexplained tail? Settles it: bounded readings
