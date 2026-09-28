@@ -4,16 +4,18 @@ Status: requested
 <!-- or: accepted, YYYY-MM-DD / declined: the owner's reason / held, YYYY-MM-DD -->
 
 - Build: BLD-GOG-EN-1.1, the owner's GOG installation under its own DOSBox launcher.
-- Settles: Q-CONFIG-001 (queue/CONFIG.md, Live session), for SCR-UI-007,
-  RULE-CONFIG-001 to RULE-CONFIG-005 and FMT-CONFIG-003.
+- Settles: Q-CONFIG-001 and Q-CONFIG-009 (queue/CONFIG.md, Live session),
+  for SCR-UI-007, RULE-CONFIG-001 to RULE-CONFIG-005 and FMT-CONFIG-003.
 - Blocks: slice 3.
-- Length: about 20 minutes.
+- Length: about 30 minutes.
 
 Establishes the native Preferences defaults, selected and unselected frame
 feedback, the visible message-delay lower endpoint and sound-effects volume
 endpoints, description placement, and the About
-page. It does not ask for save-file inspection, audio recording, combat, or
-campaign progress. Enter any stable in-world area, open the Game Menu, then
+page. The final two steps compare the duration of a Save Game completion
+message at two Message Delay settings. They use empty save slots and do
+not ask for save-file inspection, audio recording, combat, or campaign
+progress. Enter any stable in-world area, open the Game Menu, then
 Preferences, and keep the game at its default window size for the whole
 script.
 
@@ -60,7 +62,28 @@ script.
     again and report whether they return. Do not
     interpret which setting changed from the key alone; describe the visible
     states and actions.
+12. P11, Q-CONFIG-009. Leave the upper Message Delay bar at the position
+    reached in P5. Return to the map, open Save Game, select the first empty
+    slot, and enter `DELAY TEST` if the game asks for a description. Do not
+    overwrite a save that existed before this session. On a successful
+    save, start a stopwatch when the completion message appears and stop
+    when it disappears or normal input resumes. Capture the message with
+    Ctrl+F5 while it is visible and the first state after it closes. Record
+    the elapsed seconds, the slot chosen and whether the message closed
+    on its own. If there is no empty slot, no completion message, or the
+    message remains after 15 seconds, capture the reached state once,
+    report it, and stop the timing comparison.
+13. P12, Q-CONFIG-009. Reopen Preferences. Click the upper bar's decrease
+    control until the first click with no further visible change, stopping
+    after 12 clicks. Capture the resulting bar and report the click count.
+    Return to the map and save into a second empty slot with the same
+    description. Time and capture the completion message exactly as in P11.
+    Do not overwrite any pre-existing save. If a second empty slot is
+    unavailable or the flow differs, capture the reached state once and
+    report the point reached.
 
 Agent, after confirmation: measure each control's frame, the slider positions
 and the description placement against P0, and record the dismissal and restore
-behaviour as dynamic findings with each capture's `xxh3`.
+behaviour as dynamic findings with each capture's `xxh3`. For P11 and P12,
+compare the owner's elapsed times and confirmed message frames; determine
+only whether this Save Game path displayed a timed message in those states.
