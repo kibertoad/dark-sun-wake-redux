@@ -4,7 +4,7 @@ title: The Preferences message-delay adjustment
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-CONFIG-010, FND-UI-034, FND-TIME-004, FND-CONFIG-017, FND-CONFIG-018, FND-CONFIG-030, FND-CONFIG-031, FND-CONFIG-032, FND-CONFIG-033]
+evidence: [FND-CONFIG-010, FND-UI-034, FND-TIME-004, FND-CONFIG-017, FND-CONFIG-018, FND-CONFIG-030, FND-CONFIG-031, FND-CONFIG-032, FND-CONFIG-033, FND-CONFIG-035]
 conflicting: []
 split_with: []
 related: [SCR-UI-007]
@@ -81,7 +81,7 @@ None known.
   window; resource acquisition and possible later bounds writes
   remain open (FND-CONFIG-011, FND-CONFIG-017, FND-CONFIG-018,
   FND-CONFIG-030, FND-CONFIG-031, FND-CONFIG-032, FND-CONFIG-033,
-  FND-CONFIG-034, Q-TIME-003).
+  FND-CONFIG-034, FND-CONFIG-035, Q-TIME-003).
   One reading is that the present resource makes every message call pass the
   gate (FND-UI-001); another is that resource acquisition, bounds or child
   registration fails depending on state (FND-CONFIG-018, FND-CONFIG-030,
