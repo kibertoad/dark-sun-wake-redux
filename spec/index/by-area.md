@@ -544,6 +544,7 @@ Entries by area.
 | [FND-CONFIG-066](../findings/FND-CONFIG-066.md) | Literal uses of the startup resource-archive handle stay in startup | recorded |
 | [FND-CONFIG-067](../findings/FND-CONFIG-067.md) | Archive open returns a numeric handle distinct from its internal record pointer | recorded |
 | [FND-CONFIG-068](../findings/FND-CONFIG-068.md) | Active archive pointer writers include a guarded record-growth path | recorded |
+| [FND-CONFIG-069](../findings/FND-CONFIG-069.md) | The resident close-all wrapper has no literal direct caller | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

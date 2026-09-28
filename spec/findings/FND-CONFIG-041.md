@@ -45,7 +45,8 @@ A shipped-byte search for direct far-call instructions to offset
 
 There is also a resident wrapper at `47B9:0310`
 (`DSUN.EXE+0x0003D0A0`) that calls close with `0xFFFFFFFF` and handles
-its error. None of these decoded direct call sites passes the startup
+its error. FND-CONFIG-069 finds no literal direct caller of that wrapper.
+None of these decoded direct close sites passes the startup
 resource-archive handle at `DS:1442` (FND-CONFIG-039,
 FND-CONFIG-067). The overlay 180
 close-all call follows cleanup calls in a separate routine at

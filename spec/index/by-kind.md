@@ -175,7 +175,7 @@ Entries by kind.
 
 ## findings
 
-299 entries.
+300 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -292,6 +292,7 @@ Entries by kind.
 | [FND-CONFIG-066](../findings/FND-CONFIG-066.md) | Literal uses of the startup resource-archive handle stay in startup | recorded |
 | [FND-CONFIG-067](../findings/FND-CONFIG-067.md) | Archive open returns a numeric handle distinct from its internal record pointer | recorded |
 | [FND-CONFIG-068](../findings/FND-CONFIG-068.md) | Active archive pointer writers include a guarded record-growth path | recorded |
+| [FND-CONFIG-069](../findings/FND-CONFIG-069.md) | The resident close-all wrapper has no literal direct caller | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |

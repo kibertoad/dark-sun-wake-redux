@@ -62,7 +62,9 @@ Next ID: Q-CONFIG-009
   FND-CONFIG-041 trace its active pointer, wraparound search mode and
   direct close sites. FND-CONFIG-059 maps close-all to a separate
   overlay 180 entry. FND-CONFIG-060 finds no literal far call or local
-  near call to it; FND-CONFIG-061 identifies its exit-callback
+  near call to it; FND-CONFIG-069 finds no literal direct caller of the
+  separate resident close-all wrapper. FND-CONFIG-061 identifies its
+  exit-callback
   registration, while any other indirect callers remain unread.
   FND-CONFIG-064 bounds literal traversal-mode writers and readers. Indirect archive
   changes and I/O outcomes remain open. FND-CONFIG-065 shows that the
