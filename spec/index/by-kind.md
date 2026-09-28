@@ -175,7 +175,7 @@ Entries by kind.
 
 ## findings
 
-316 entries.
+317 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -309,6 +309,7 @@ Entries by kind.
 | [FND-CONFIG-083](../findings/FND-CONFIG-083.md) | The stored-character list callback is also installed as the global event fallback | recorded |
 | [FND-CONFIG-084](../findings/FND-CONFIG-084.md) | A shared-message path restores its prior global callback after temporary registration | recorded |
 | [FND-CONFIG-085](../findings/FND-CONFIG-085.md) | Overlay 182 installs the resident key callback and clears it on separate paths | recorded |
+| [FND-CONFIG-086](../findings/FND-CONFIG-086.md) | The remaining global-callback setter calls register local handlers or restore a saved pointer | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |

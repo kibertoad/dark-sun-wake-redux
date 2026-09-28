@@ -96,7 +96,9 @@ None known.
   global fallback path for the other. FND-CONFIG-084 bounds one temporary
   global-callback replacement and restoration path. FND-CONFIG-085
   identifies overlay 182 paths that install a resident key callback or zero,
-  without establishing their timing relative to the list.
+  without establishing their timing relative to the list. FND-CONFIG-086
+  classifies the other twelve direct setter sites, but their order and
+  reachability relative to the list remain unread.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local

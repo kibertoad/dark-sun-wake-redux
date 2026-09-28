@@ -82,7 +82,9 @@ Next ID: Q-CONFIG-011
   route into it. FND-CONFIG-084 traces one temporary replacement and
   restoration path. FND-CONFIG-085 identifies six overlay 182 setter calls
   that install a resident key callback or zero; their timing relative to the
-  list remains open. Other registration changes and live state remain open.
+  list remains open. FND-CONFIG-086 classifies the remaining twelve direct
+  setter sites, including one saved-pointer restoration. Computed or indirect
+  calls, registration order and live state remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

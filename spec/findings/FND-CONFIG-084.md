@@ -57,9 +57,10 @@ callers of the setter and indirect cleanup effects remain.
 ## Alternatives
 
 FND-CONFIG-085 identifies six overlay 182 setter calls that install the
-resident key callback or zero; their order relative to the list remains
-unread. Other direct setter calls may also replace the list callback before
-an event, and the cleanup routine's other callees may change it indirectly.
+resident key callback or zero. FND-CONFIG-086 classifies the twelve remaining
+direct sites. Their order and reachability relative to the list remain
+unread, and the cleanup routine's other callees may change the global
+callback indirectly.
 This finding does not establish every exit from the shared-message path or
 that its saved pointer is always the list callback.
 
