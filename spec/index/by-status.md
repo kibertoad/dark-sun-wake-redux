@@ -205,7 +205,7 @@ Entries by status.
 
 ## recorded
 
-268 entries.
+269 entries.
 
 | ID | Title |
 |---|---|
@@ -292,6 +292,7 @@ Entries by status.
 | [FND-CONFIG-037](../findings/FND-CONFIG-037.md) | Opening and closing resource archives changes the pointer tested by message acquisition |
 | [FND-CONFIG-038](../findings/FND-CONFIG-038.md) | Message resource lookup searches typed entries across archive records |
 | [FND-CONFIG-039](../findings/FND-CONFIG-039.md) | Startup opens RESOURCE.GFF or RESFLOP.GFF before initializing graphics |
+| [FND-CONFIG-040](../findings/FND-CONFIG-040.md) | Startup selects wraparound traversal of the open resource archives |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |

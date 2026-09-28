@@ -515,6 +515,7 @@ Entries by area.
 | [FND-CONFIG-037](../findings/FND-CONFIG-037.md) | Opening and closing resource archives changes the pointer tested by message acquisition | recorded |
 | [FND-CONFIG-038](../findings/FND-CONFIG-038.md) | Message resource lookup searches typed entries across archive records | recorded |
 | [FND-CONFIG-039](../findings/FND-CONFIG-039.md) | Startup opens RESOURCE.GFF or RESFLOP.GFF before initializing graphics | recorded |
+| [FND-CONFIG-040](../findings/FND-CONFIG-040.md) | Startup selects wraparound traversal of the open resource archives | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

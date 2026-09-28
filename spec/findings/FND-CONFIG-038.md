@@ -61,11 +61,11 @@ does not establish that the reader reaches it in every message state.
 
 ## Alternatives
 
-The startup path may leave the installed resource archive reachable from
-every message call, or a later archive update may change that reachability.
-This reading does not identify startup archive registration, the values
-of `DS:9D9B` in relevant states, or which message callers reach this
-reader. It does not establish a failed lookup in a live state.
+FND-CONFIG-039 identifies startup archive registration, and
+FND-CONFIG-040 identifies its wraparound traversal setting. A later
+archive close or mode change may change reachability. This reading
+does not identify archive state in every message call or which callers
+reach this reader. It does not establish a failed lookup in a live state.
 
 ## How to reproduce
 
