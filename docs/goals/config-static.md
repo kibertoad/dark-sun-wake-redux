@@ -22,8 +22,8 @@ None known.
 
 - Stage: Slices.
 - Last gate: 2026-09-28, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 438 entries and 158 parity rows).
+  documentation check passed with 439 entries and 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
-- Next: Q-CONFIG-008, trace message caller states and remaining indirect
-  resource-archive closure paths for RULE-CONFIG-005.
+- Next: Q-CONFIG-008, trace remaining message caller states and indirect
+  resource-archive changes for RULE-CONFIG-005.
