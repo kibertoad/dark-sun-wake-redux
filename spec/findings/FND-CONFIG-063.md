@@ -1,6 +1,6 @@
 ---
 id: FND-CONFIG-063
-title: The two previously undecoded display-bound address hits are reads
+title: Display-bound reads feed mouse range services
 status: recorded
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
@@ -29,26 +29,34 @@ offset `0x0002F0E8`, bounded 16-bit disassembly shows:
 
 The preceding path copies the double word at `DS:A145` to `DS:A14D`
 when a local helper returns zero, then reaches these two read
-instructions. The call targets' effects are not established here.
+instructions. The far calls target `45B9:00BB` and `45B9:00D3`, the
+mouse-driver wrappers identified in FND-INPUT-004. The first places 7
+in `AX` and the two by-value arguments in `CX` and `DX` before `INT 33h`;
+the second does the same with service 8. Neither wrapper writes to a
+display-bound word or receives its address.
 
 ## Interpretation
 
 Neither raw hit is a literal-address write to a display bound. Combined
 with FND-CONFIG-036, every raw address-word occurrence in the surveyed
 resident load image and declared overlay code now has a bounded
-classification: the known graphics-initializer writes or reads.
+classification: the known graphics-initializer writes or reads. These two
+reads pass the initialized ranges to the mouse driver; the intervening
+executable code does not change either bound.
 
 ## Alternatives
 
-An indirect or block write, code loaded outside the surveyed ranges,
-or a called helper that changes a bound through another path remains
-possible. These two read instructions do not establish the bounds'
-values at each message call.
+An indirect or block write elsewhere, code loaded outside the surveyed
+ranges, or an effect inside the mouse driver remains possible. The static
+reading of the `INT 33h` wrappers does not establish the bounds' values
+at each message call or the driver's behavior.
 
 ## How to reproduce
 
 Disassemble the approved `DSUN.EXE` from the branch target at
 `0x0002F0E8` through `0x0002F110` in 16-bit mode. Classify the raw
 little-endian address words at `0x0002F0F2` and `0x0002F102` by their
-containing instructions, then compare the full raw-hit inventory in
-FND-CONFIG-036.
+containing instructions. Apply the MZ relocation to the two far calls,
+then disassemble the wrappers at physical file offsets
+`0x0003AE4B..0x0003AE7B`; compare their services with FND-INPUT-004 and
+the full raw-hit inventory in FND-CONFIG-036.

@@ -538,7 +538,7 @@ Entries by area.
 | [FND-CONFIG-060](../findings/FND-CONFIG-060.md) | No literal far call to overlay 180's close-all routine was found in the shipped executable | recorded |
 | [FND-CONFIG-061](../findings/FND-CONFIG-061.md) | Startup registers overlay 180's archive cleanup as a runtime exit callback | recorded |
 | [FND-CONFIG-062](../findings/FND-CONFIG-062.md) | A failed startup resource-archive open reaches the runtime termination request | recorded |
-| [FND-CONFIG-063](../findings/FND-CONFIG-063.md) | The two previously undecoded display-bound address hits are reads | recorded |
+| [FND-CONFIG-063](../findings/FND-CONFIG-063.md) | Display-bound reads feed mouse range services | recorded |
 | [FND-CONFIG-064](../findings/FND-CONFIG-064.md) | Literal archive traversal-mode references are two writes and two reads | recorded |
 | [FND-CONFIG-065](../findings/FND-CONFIG-065.md) | The shipped message window follows the indexed resource lookup path | recorded |
 | [FND-CONFIG-066](../findings/FND-CONFIG-066.md) | Literal uses of the startup resource-archive handle stay in startup | recorded |

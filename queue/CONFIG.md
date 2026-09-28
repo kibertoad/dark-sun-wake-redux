@@ -74,7 +74,8 @@ Next ID: Q-CONFIG-009
   FND-CONFIG-062 traces the
   startup archive-open failure to a termination request.
   FND-CONFIG-036 and FND-CONFIG-063 classify literal window-size
-  references, leaving indirect or block writes. FND-CONFIG-017
+  references; the latter follows its two helper calls to mouse range
+  services. Indirect or block writes remain open. FND-CONFIG-017
   identifies resident callers; FND-CONFIG-035 inventories 56 direct
   calls from 21 overlays. FND-CONFIG-042 through FND-CONFIG-058 give
   bounded local readings for all 56 distinct direct overlay call sites;
