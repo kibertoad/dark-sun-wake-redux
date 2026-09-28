@@ -175,7 +175,7 @@ Entries by kind.
 
 ## findings
 
-278 entries.
+279 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -271,6 +271,7 @@ Entries by kind.
 | [FND-CONFIG-045](../findings/FND-CONFIG-045.md) | Overlay 191 item feedback calls the shared message entry on bounded branches | recorded |
 | [FND-CONFIG-046](../findings/FND-CONFIG-046.md) | Save Game reuses one message call for copy failure and completion | recorded |
 | [FND-CONFIG-047](../findings/FND-CONFIG-047.md) | Overlay 195 routes guarded combat feedback through the shared message entry | recorded |
+| [FND-CONFIG-048](../findings/FND-CONFIG-048.md) | Overlay 197 message calls report a guarded dissipation and two failures | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |

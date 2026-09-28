@@ -523,6 +523,7 @@ Entries by area.
 | [FND-CONFIG-045](../findings/FND-CONFIG-045.md) | Overlay 191 item feedback calls the shared message entry on bounded branches | recorded |
 | [FND-CONFIG-046](../findings/FND-CONFIG-046.md) | Save Game reuses one message call for copy failure and completion | recorded |
 | [FND-CONFIG-047](../findings/FND-CONFIG-047.md) | Overlay 195 routes guarded combat feedback through the shared message entry | recorded |
+| [FND-CONFIG-048](../findings/FND-CONFIG-048.md) | Overlay 197 message calls report a guarded dissipation and two failures | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |
