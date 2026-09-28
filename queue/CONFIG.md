@@ -77,8 +77,10 @@ Next ID: Q-CONFIG-009
   and list traversal remain unread; seven raw `RESOURCE.GFF` strings have
   no recognized direct references in the current analysis. FND-CONFIG-038
   follows the reader's type and number lookups, archive traversal and
-  failure branches. Startup archive registration, traversal state in
-  message calls, and callers' conditions remain unread.
+  failure branches. FND-CONFIG-039 identifies the startup archive open,
+  selecting `RESOURCE.GFF` or `RESFLOP.GFF` by the digital-sound flag.
+  Later archive state in message calls and callers' conditions remain
+  unread.
 
 - Q-CONFIG-005. FMT-CONFIG-001: What does the game's sound library read from each field of
   `SOUND.CFG`, including its unexplained tail? Settles it: bounded readings
