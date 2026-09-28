@@ -59,8 +59,10 @@ Next ID: Q-CONFIG-011
   deepening the Save Game call. FND-CONFIG-070 rules out an address-taking
   fixup to this entry from another overlay; FND-UI-037 and FND-SAVE-010
   trace the Save Game UI and keyboard paths. FND-CONFIG-071 traces the
-  guarded save-capacity call from startup. Other shared sinks' incoming
-  paths and resident or computed-pointer calls remain open.
+  guarded save-capacity call from startup. FND-CONFIG-072 confirms the four
+  direct resident message calls exhaust MZ relocations to that entry.
+  Other shared sinks' incoming paths and computed or unrelocated pointer
+  calls remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

@@ -41,9 +41,10 @@ incoming paths of the other shared sinks.
 
 ## Alternatives
 
-Resident code or a pointer assembled at runtime may still call the message
-entry indirectly. The eight self-fixups may serve other overlay 172 entries;
-their downstream use is not established by this classification.
+FND-CONFIG-072 rules out an address-taking resident MZ relocation to the
+message entry, but an unrelocated pointer or a pointer assembled at runtime
+may still call it indirectly. The eight self-fixups may serve other overlay
+172 entries; their downstream use is not established by this classification.
 
 ## How to reproduce
 

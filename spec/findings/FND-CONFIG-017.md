@@ -54,10 +54,11 @@ display entry, rather than only to the Preferences bar.
 
 These call sites do not establish which calls pass the later `WIND/10501`
 setup gate and hence actually wait (FND-CONFIG-018). The meaning
-of the five messages converging at `0x0001EB4E` remain unread. Ghidra's four
-recognized resident references are not an exhaustive caller inventory:
-previous overlay readings identify additional calls, and indirect calls may
-also exist. No player-visible event timing is established by this finding.
+of the five messages converging at `0x0001EB4E` remain unread.
+FND-CONFIG-072 confirms these are the four direct resident calls to the
+message entry in the MZ relocation table; overlay calls and computed or
+unrelocated pointers may still add routes. No player-visible event timing
+is established by this finding.
 
 ## How to reproduce
 
