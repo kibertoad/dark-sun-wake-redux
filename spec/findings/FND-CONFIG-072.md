@@ -45,9 +45,9 @@ overlay fixups supply direct calls only for the known message entry.
 ## Alternatives
 
 Unrelocated values, a far pointer assembled or copied at runtime, or a
-computed call could still reach the entry. The two calls to other overlay
-172 entries are classified by target offset here; their effects are outside
-this caller inventory.
+computed call could still reach the entry. FND-CONFIG-073 shows that the
+`0034` call target contains an internal call to the message entry; the
+`002F` target does not contain one in its bounded routine.
 
 ## How to reproduce
 

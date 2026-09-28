@@ -205,7 +205,7 @@ Entries by status.
 
 ## recorded
 
-301 entries.
+302 entries.
 
 | ID | Title |
 |---|---|
@@ -325,6 +325,7 @@ Entries by status.
 | [FND-CONFIG-070](../findings/FND-CONFIG-070.md) | Overlay fixups to the message overlay are direct calls, not stored caller pointers |
 | [FND-CONFIG-071](../findings/FND-CONFIG-071.md) | Startup calls the guarded save-capacity message helper after resource initialization |
 | [FND-CONFIG-072](../findings/FND-CONFIG-072.md) | Resident relocations to the message overlay contain four direct message calls |
+| [FND-CONFIG-073](../findings/FND-CONFIG-073.md) | Overlay 172 calls its own shared message entry from two other routines |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |

@@ -29,7 +29,9 @@ to the message entry.
 The remaining eight fixups lie within overlay 172 itself. Each occurs in an
 immediate segment push, not a far call to the message entry. This count is
 limited to declared overlay-code fixups; it does not inventory resident
-relocations, unrelocated values, or computed pointers.
+relocations, unrelocated values, or computed pointers. Two of the eight
+pushes supply the `566A:0043` address to other calls in the overlay
+(FND-CONFIG-073).
 
 ## Interpretation
 
@@ -43,8 +45,8 @@ incoming paths of the other shared sinks.
 
 FND-CONFIG-072 rules out an address-taking resident MZ relocation to the
 message entry, but an unrelocated pointer or a pointer assembled at runtime
-may still call it indirectly. The eight self-fixups may serve other overlay
-172 entries; their downstream use is not established by this classification.
+may still call it indirectly. Other self-fixups may serve overlay 172
+entries whose downstream use is not established by this classification.
 
 ## How to reproduce
 
