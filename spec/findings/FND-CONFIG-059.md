@@ -43,8 +43,9 @@ establish when that routine executes relative to any message call.
 
 ## Alternatives
 
-The routine's callers, the effects of its preceding helpers, and whether
-it runs only during termination remain unread. This finding does not
+FND-CONFIG-061 identifies its registration in the startup exit-callback
+table and the runtime exit route that invokes that table. Other possible
+callers and the effects of preceding helpers remain unread. This finding does not
 establish that `WIND/10501` becomes unavailable during ordinary play or
 that the message-delay wait is skipped in a live state.
 

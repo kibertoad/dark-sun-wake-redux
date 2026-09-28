@@ -43,13 +43,15 @@ code uses in this executable (FND-CONFIG-037).
 ## Interpretation
 
 The surveyed literal far-call encodings and local near calls do not
-explain how the close-all routine is reached. This leaves indirect
-dispatch, a stored callback, or an unexamined encoding as possible
-routes. The search does not establish that the routine is unused.
+explain how the close-all routine is reached. FND-CONFIG-061 identifies
+its exit-callback registration as separate word pushes, which this
+contiguous-pointer search does not detect. Other indirect or
+unexamined routes remain possible; the search does not establish that
+the routine is unused.
 
 ## Alternatives
 
-The call could be formed or reached through data, a register or memory
+Other calls could be formed or reached through data, a register or memory
 operand, or code outside the surveyed overlay 180 range. The negative
 inventory does not establish archive state at any message call or that
 the close-all operation runs only during shutdown.
