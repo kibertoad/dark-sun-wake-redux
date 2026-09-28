@@ -22,7 +22,7 @@ None known.
 
 - Stage: Slices.
 - Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 474 entries and 158 parity rows).
+  documentation check passed with 475 entries and 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
 - Next: Q-CONFIG-008, complete incoming paths for shared message sinks
@@ -37,7 +37,8 @@ None known.
   FND-CONFIG-076 traces overlay 187's four message sites to Save Game,
   region staging and cinematic playback. FND-CONFIG-077 traces overlay
   204's rest messages to a handler and script request one; their live
-  inputs remain open. Trace the full frame event sequence or another
-  shared sink next.
+  inputs remain open. FND-CONFIG-078 traces overlay 171's list messages
+  to a choice branch and `WIND/18501` callback. Trace the callback's
+  invoking event or another shared sink next.
   Q-CONFIG-010 tracks indirect
   acquisition-state changes; Q-CONFIG-009 has an owner-run request.
