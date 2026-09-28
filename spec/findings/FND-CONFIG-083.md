@@ -54,10 +54,11 @@ message-window setup for a delay wait.
 
 ## Alternatives
 
-The effect of subsequent calls on the global callback, the list window's
-live registered state, and the producer of its failure-state word are not
-fully read. The code establishes a conditional route, not that the failure
-message appears during ordinary play. The BIOS key word is not assigned a
+FND-CONFIG-084 shows one temporary replacement and restoration path, but
+other setter calls, the list window's live registered state, and the
+producer of its failure-state word are not fully read. The code establishes
+a conditional route. Whether the failure message appears during ordinary
+play remains open. The BIOS key word is not assigned a
 physical-key label here.
 
 ## How to reproduce

@@ -79,7 +79,8 @@ Next ID: Q-CONFIG-011
   physical input mapping and live state remain open. FND-CONFIG-082 shows
   that a keyboard packet can carry the second discriminator. FND-CONFIG-083
   traces the list callback's global registration and the event-six fallback
-  route into it; later registration changes and live state remain open.
+  route into it. FND-CONFIG-084 traces one temporary replacement and
+  restoration path; other registration changes and live state remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?
