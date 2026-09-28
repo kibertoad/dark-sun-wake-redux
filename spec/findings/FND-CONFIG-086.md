@@ -87,8 +87,9 @@ paths can run while the stored-character list is active.
 An unrelocated, computed or indirect call to the setter is not excluded by
 this direct-fixup inventory. The overlay 209 save and restore sites are in
 separate routines; their complete incoming and exit paths have not been
-read, so a balanced lifetime is not established. The local handlers' event
-behavior and their relation to the shared message routine remain open.
+read, so a balanced lifetime is not established. FND-CONFIG-087 bounds some
+event exits of the overlay 209 handler; its complete event production and
+the other local handlers' behavior remain open.
 
 ## How to reproduce
 

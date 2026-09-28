@@ -98,7 +98,9 @@ None known.
   identifies overlay 182 paths that install a resident key callback or zero,
   without establishing their timing relative to the list. FND-CONFIG-086
   classifies the other twelve direct setter sites, but their order and
-  reachability relative to the list remain unread.
+  reachability relative to the list remain unread. FND-CONFIG-087 shows
+  overlay 209's no-other-classes message precedes and excludes its own
+  callback registration; event exits can restore the saved prior pointer.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local
