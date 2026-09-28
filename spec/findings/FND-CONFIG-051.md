@@ -36,7 +36,9 @@ sites pass a far text pointer and clean up four argument bytes.
 ## Interpretation
 
 These conditional failure paths enter the shared overlay 172 message
-routine. They do not show whether its later `WIND/10501` acquisition and
+routine. FND-CONFIG-078 traces the two containing entries to the
+stored-character list choice and window callback. They do not show
+whether its later `WIND/10501` acquisition and
 setup succeed, so they do not establish a wait or visible window
 (FND-CONFIG-018).
 
