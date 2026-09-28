@@ -529,6 +529,7 @@ Entries by area.
 | [FND-CONFIG-051](../findings/FND-CONFIG-051.md) | Overlay 171 reports allocation and character-list failures through the message entry | recorded |
 | [FND-CONFIG-052](../findings/FND-CONFIG-052.md) | Overlays 175 and 176 send conditional item and psionic feedback | recorded |
 | [FND-CONFIG-053](../findings/FND-CONFIG-053.md) | Overlay 179 sends guarded combat and item feedback through shared message calls | recorded |
+| [FND-CONFIG-054](../findings/FND-CONFIG-054.md) | Overlay 182 sends secret-door and blocked-door messages through one path | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

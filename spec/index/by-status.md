@@ -205,7 +205,7 @@ Entries by status.
 
 ## recorded
 
-282 entries.
+283 entries.
 
 | ID | Title |
 |---|---|
@@ -306,6 +306,7 @@ Entries by status.
 | [FND-CONFIG-051](../findings/FND-CONFIG-051.md) | Overlay 171 reports allocation and character-list failures through the message entry |
 | [FND-CONFIG-052](../findings/FND-CONFIG-052.md) | Overlays 175 and 176 send conditional item and psionic feedback |
 | [FND-CONFIG-053](../findings/FND-CONFIG-053.md) | Overlay 179 sends guarded combat and item feedback through shared message calls |
+| [FND-CONFIG-054](../findings/FND-CONFIG-054.md) | Overlay 182 sends secret-door and blocked-door messages through one path |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |
