@@ -175,7 +175,7 @@ Entries by kind.
 
 ## findings
 
-264 entries.
+265 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -257,6 +257,7 @@ Entries by kind.
 | [FND-CONFIG-031](../findings/FND-CONFIG-031.md) | Message window child registration remains the setup failure path | recorded |
 | [FND-CONFIG-032](../findings/FND-CONFIG-032.md) | Shipped message controls bypass image registration failures | recorded |
 | [FND-CONFIG-033](../findings/FND-CONFIG-033.md) | Initialized display bounds admit the message window | recorded |
+| [FND-CONFIG-034](../findings/FND-CONFIG-034.md) | Message window acquisition enters the resident resource reader with failure paths | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |

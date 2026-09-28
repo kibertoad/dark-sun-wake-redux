@@ -62,8 +62,11 @@ Next ID: Q-CONFIG-009
   FND-CONFIG-032 follows both child registration helpers and shows the
   shipped image fields bypass their image failure branches. FND-CONFIG-033
   shows every graphics-initializer bounds pair admits the fixed window.
-  Resource acquisition, later bounds writes and the relevant caller states
-  remain unread.
+  FND-CONFIG-034 follows the acquisition call into a resident reader and
+  identifies archive, record-search, allocation and read-result failure
+  branches, without completing their inputs or outcomes. The remaining
+  reader branches, later bounds writes and relevant caller states remain
+  unread.
 
 - Q-CONFIG-005. FMT-CONFIG-001: What does the game's sound library read from each field of
   `SOUND.CFG`, including its unexplained tail? Settles it: bounded readings
