@@ -554,6 +554,7 @@ Entries by area.
 | [FND-CONFIG-076](../findings/FND-CONFIG-076.md) | Save and cinematic message helpers in overlay 187 have bounded direct caller routes | recorded |
 | [FND-CONFIG-077](../findings/FND-CONFIG-077.md) | Overlay 204 rest messages have handler and script-request caller routes | recorded |
 | [FND-CONFIG-078](../findings/FND-CONFIG-078.md) | The stored-character list opens with a message-capable window callback | recorded |
+| [FND-CONFIG-079](../findings/FND-CONFIG-079.md) | The resident event dispatcher calls a loaded window's callback at offset 0xF5 | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

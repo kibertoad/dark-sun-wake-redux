@@ -58,7 +58,8 @@ the shared routine's later window-acquisition gate (FND-CONFIG-018).
 
 ## Alternatives
 
-The window event that invokes `5664:002F`, the full origin of the
+FND-CONFIG-079 identifies the resident event dispatcher that can invoke
+`5664:002F`; the event's player-visible source, the full origin of the
 overlay 190 choice, and computed or unrelocated caller pointers remain
 unread. A stored callback pointer is not evidence that a particular
 event occurred or that the message-delay wait ran.

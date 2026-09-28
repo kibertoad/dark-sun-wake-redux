@@ -88,7 +88,8 @@ None known.
   FND-CONFIG-076 traces the direct incoming routes to overlay 187's save
   and cinematic message sites. FND-CONFIG-077 traces the direct handler
   and script routes to overlay 204's rest message sites. FND-CONFIG-078
-  traces overlay 171's list message sites to a choice and window callback.
+  traces overlay 171's list message sites to a choice and window callback;
+  FND-CONFIG-079 identifies the resident event-dispatch route into it.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local
