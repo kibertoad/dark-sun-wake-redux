@@ -527,6 +527,7 @@ Entries by area.
 | [FND-CONFIG-049](../findings/FND-CONFIG-049.md) | Overlay 204's rest entry sends combat refusal or party-rest feedback | recorded |
 | [FND-CONFIG-050](../findings/FND-CONFIG-050.md) | Five late overlays share the message entry for item and character feedback | recorded |
 | [FND-CONFIG-051](../findings/FND-CONFIG-051.md) | Overlay 171 reports allocation and character-list failures through the message entry | recorded |
+| [FND-CONFIG-052](../findings/FND-CONFIG-052.md) | Overlays 175 and 176 send conditional item and psionic feedback | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

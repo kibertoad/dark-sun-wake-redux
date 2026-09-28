@@ -175,7 +175,7 @@ Entries by kind.
 
 ## findings
 
-282 entries.
+283 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -275,6 +275,7 @@ Entries by kind.
 | [FND-CONFIG-049](../findings/FND-CONFIG-049.md) | Overlay 204's rest entry sends combat refusal or party-rest feedback | recorded |
 | [FND-CONFIG-050](../findings/FND-CONFIG-050.md) | Five late overlays share the message entry for item and character feedback | recorded |
 | [FND-CONFIG-051](../findings/FND-CONFIG-051.md) | Overlay 171 reports allocation and character-list failures through the message entry | recorded |
+| [FND-CONFIG-052](../findings/FND-CONFIG-052.md) | Overlays 175 and 176 send conditional item and psionic feedback | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |
