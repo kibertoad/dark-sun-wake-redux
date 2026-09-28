@@ -41,7 +41,9 @@ save wrapper are separate, so the same invocation can reach both calls.
 ## Interpretation
 
 These four sites complete the bounded local conditions for overlay 187's
-direct calls in FND-CONFIG-035. Entry into the later message-delay wait
+direct calls in FND-CONFIG-035. FND-CONFIG-076 traces their direct incoming
+routes through Save Game, region staging and cinematic playback.
+Entry into the later message-delay wait
 still depends on overlay 172's `WIND/10501` acquisition and setup gate
 (FND-CONFIG-018).
 

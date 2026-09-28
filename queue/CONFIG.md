@@ -67,7 +67,8 @@ Next ID: Q-CONFIG-011
   frame identifiers and the frame dispatch path; FND-CONFIG-075 finds
   only six in the shipped window graph. The complete event sequence into
   that callback, other shared sinks' incoming paths, and computed or
-  unrelocated pointer calls remain open.
+  unrelocated pointer calls remain open. FND-CONFIG-076 closes the direct
+  incoming routes to overlay 187's four save and cinematic message sites.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?
