@@ -549,7 +549,8 @@ Entries by area.
 | [FND-CONFIG-071](../findings/FND-CONFIG-071.md) | Startup calls the guarded save-capacity message helper after resource initialization | recorded |
 | [FND-CONFIG-072](../findings/FND-CONFIG-072.md) | Resident relocations to the message overlay contain four direct message calls | recorded |
 | [FND-CONFIG-073](../findings/FND-CONFIG-073.md) | Overlay 172 calls its own shared message entry from two other routines | recorded |
-| [FND-CONFIG-074](../findings/FND-CONFIG-074.md) | The overlay 172 message callback is installed on seven application frames | recorded |
+| [FND-CONFIG-074](../findings/FND-CONFIG-074.md) | Overlay 172 attempts message callback registration on seven frame identifiers | recorded |
+| [FND-CONFIG-075](../findings/FND-CONFIG-075.md) | The shipped 14002 window contains six of the seven frames targeted by its callback loop | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

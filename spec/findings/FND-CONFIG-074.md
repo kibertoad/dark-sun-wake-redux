@@ -1,6 +1,6 @@
 ---
 id: FND-CONFIG-074
-title: The overlay 172 message callback is installed on seven application frames
+title: Overlay 172 attempts message callback registration on seven frame identifiers
 status: recorded
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
@@ -46,21 +46,24 @@ bit, then makes a far call through the pointer (FND-UI-006). Its local
 event record contains value five. Entry `566A:0043` has an event-five
 branch containing four of the internal calls to the shared message
 entry inventoried by FND-CONFIG-073.
+FND-CONFIG-075 shows that the shipped `WIND/14002` graph contains only
+the first six targeted frames, and their masks already include the
+bits the loop ORs in.
 
 ## Interpretation
 
-The seven frame records have a static registration and dispatch route
-to the overlay 172 callback, and that callback has guarded paths to the
-message routine. Window acquisition, frame lookup, enabled event bits,
-and the callback's own branches all constrain whether any particular
-message call occurs.
+The loop attempts seven registrations. The shipped window supplies six
+matching frame children for a static registration and dispatch route
+to the overlay 172 callback, which has guarded paths to the message
+routine. Window acquisition, frame lookup, enabled event bits, and the
+callback's own branches all constrain whether any particular call occurs.
 
 ## Alternatives
 
-The control graph and live event sequence for this window were not
-established by this reading. Registration failure is not handled in
-the bounded loop. Other code may alter the callback field or event
-mask later, and a computed call elsewhere may still add message callers.
+The live event sequence for this window remains unread. Registration
+failure is not handled in the bounded loop. Runtime code might alter
+the control graph, callback field or event mask later, and a computed
+call elsewhere may still add message callers (FND-CONFIG-075).
 
 ## How to reproduce
 

@@ -83,7 +83,8 @@ None known.
   call; FND-CONFIG-071 traces the save-capacity call from startup, and
   FND-CONFIG-072 exhausts the direct resident relocation sites.
   FND-CONFIG-073 adds five internal calls from the same overlay, and
-  FND-CONFIG-074 traces the callback's frame registration and dispatch.
+  FND-CONFIG-074 traces the callback's frame registration and dispatch;
+  FND-CONFIG-075 finds six of its seven targeted frames in the window.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local

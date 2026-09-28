@@ -64,7 +64,8 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-073 adds five internal calls from overlay 172's `0034` and
   `0043` routines, including a direct resident path into `0034`.
   FND-CONFIG-074 traces the `0043` callback through registration on seven
-  frames and the frame dispatch path. The complete event sequence into
+  frame identifiers and the frame dispatch path; FND-CONFIG-075 finds
+  only six in the shipped window graph. The complete event sequence into
   that callback, other shared sinks' incoming paths, and computed or
   unrelocated pointer calls remain open.
 

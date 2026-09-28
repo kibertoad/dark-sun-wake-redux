@@ -40,8 +40,9 @@ and follows a pushed far text pointer:
 The `566A:0034` entry is itself a direct resident call target at
 `0x0001DF65` (FND-CONFIG-072). Within `0034`, the address of entry
 `566A:0043` is pushed at `0x00059D37` and `0x00059D99` as an argument to
-other far calls. FND-CONFIG-074 traces the latter call's installation of
-that pointer on seven application frames and the frame dispatch path.
+other far calls. FND-CONFIG-074 traces the latter call's attempted
+installation on seven frame identifiers and the frame dispatch path;
+FND-CONFIG-075 finds only six in the shipped window graph.
 The other resident call target
 `566A:002F` spans `0x00059B76..0x00059C45` and contains none of these
 five near calls.
