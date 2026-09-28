@@ -65,10 +65,13 @@ Next ID: Q-CONFIG-009
   FND-CONFIG-034 follows the acquisition call into a resident reader and
   identifies archive, record-search, allocation and read-result failure
   branches, without completing their inputs or outcomes. The remaining
-  reader branches and later bounds writes remain unread. FND-CONFIG-035
+  reader branches remain unread. FND-CONFIG-035
   inventories 56 direct calls from 21 overlays, but their control-flow
   conditions and arguments have not been read as a set. Their live success
   through resource acquisition and registration remains unknown.
+  FND-CONFIG-036 finds no decoded literal-address bounds writer outside the
+  initializer and no literal bounds address in FBOV code; indirect or block
+  writes and two undecoded raw hits remain open.
 
 - Q-CONFIG-005. FMT-CONFIG-001: What does the game's sound library read from each field of
   `SOUND.CFG`, including its unexplained tail? Settles it: bounded readings
