@@ -22,10 +22,10 @@ None known.
 
 - Stage: Slices.
 - Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 491 entries and 158 parity rows).
+  documentation check passed with 493 entries and 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
-- Next: Q-CONFIG-008, trace remaining pointer-selection and intervening-call
-  gates after FND-CONFIG-094, then other shared message sinks. Q-CONFIG-010 tracks
+- Next: Q-CONFIG-008, trace nested selection and old-window helper effects
+  after FND-CONFIG-095 and FND-CONFIG-096, then other shared message sinks. Q-CONFIG-010 tracks
   acquisition-state changes;
   Q-CONFIG-009 has an owner-run request.
