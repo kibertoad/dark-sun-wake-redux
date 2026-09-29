@@ -25,13 +25,15 @@ Other areas' entries, queue files and parity rows. `src/` and `tests/`.
 
 - Stage: Slices.
 - Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 541 entries and 158 parity rows).
+  documentation check passed with 542 entries and 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
-- Next: Q-CONFIG-008, read traversal helpers 1AA0:0566 and
-  1AA0:051C from FND-CONFIG-143. Slot/metadata write-form gaps from
+- Next: Q-CONFIG-008, establish the near-state-pointer segment
+  relationship and selector/starting-position producers from FND-CONFIG-145.
+  Slot/metadata write-form gaps from
   FND-CONFIG-142 and remaining inputs stay in Q-CONFIG-008. Pointer replacement,
-  setup entry and later table effects from FND-CONFIG-144 remain open. Transitive helper effects from
+  setup entry and later table effects from FND-CONFIG-144 remain open.
+  Transitive helper effects from
   FND-CONFIG-131 and FND-CONFIG-130, and remaining helper effects from
   FND-CONFIG-109 stay open. Entry 28C9:1261 provenance needs new
   coverage after FND-CONFIG-114; remaining gaps stay in Q-CONFIG-008.
