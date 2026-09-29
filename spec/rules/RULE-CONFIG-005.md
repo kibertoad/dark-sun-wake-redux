@@ -228,6 +228,9 @@ None known.
   FND-CONFIG-193 reads one fixed-root/free-slot initializer and
   an overlay setup call to it; later pool and slot state and
   actual startup reachability remain open.
+  FND-CONFIG-194 reads release flag gates and adjacent-block
+  compaction, retaining accepted slot state, finite chains and
+  native VGA effects.
   FND-CONFIG-170 resolves local retained-result restoration through the
   collector; FND-CONFIG-171 reads the following resident callback gates,
   fresh targets and fixed word writes. FND-CONFIG-172 distinguishes child

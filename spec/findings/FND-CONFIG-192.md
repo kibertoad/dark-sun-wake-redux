@@ -53,6 +53,8 @@ FND-CONFIG-193 reads one initializer that assigns two fixed
 root slots and pool words before later requests; the
 primitive does not check that it ran or that those words
 and slots remain unchanged.
+FND-CONFIG-194 reads one release/compaction path that
+can change slot flags, segments and the pool cursor.
 
 The first side's resulting segment later becomes source DS;
 the second becomes destination ES. The transfer row count

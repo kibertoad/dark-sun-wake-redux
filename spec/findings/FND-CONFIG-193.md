@@ -75,6 +75,9 @@ so this calculation would return 00008130 hexadecimal
 bytes. The arithmetic is still conditional on the
 two words' state when 28A9 is called; its caller and
 any later writers are not settled here.
+FND-CONFIG-194 reads one release path that can subtract
+a selected slot's count from E4E and move following slots;
+accepted callers and later state remain open.
 
 ## Interpretation
 

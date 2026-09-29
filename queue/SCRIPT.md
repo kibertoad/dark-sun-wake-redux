@@ -91,6 +91,8 @@ Next ID: Q-SCRIPT-008
   FND-CONFIG-193 reads one fixed-root/free-slot initializer and
   setup call, leaving later state writers and actual startup/hardware
   outcomes open.
+  FND-CONFIG-194 reads the release gate and compaction chain;
+  accepted slots, finite progress and hardware effects remain open.
   Full external effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.

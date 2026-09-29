@@ -675,6 +675,7 @@ Entries by area.
 | [FND-CONFIG-191](../findings/FND-CONFIG-191.md) | The handle request writes metadata before coordinate rejection and the wrapper gates its graphics primitive | recorded |
 | [FND-CONFIG-192](../findings/FND-CONFIG-192.md) | The admitted handle primitive prepares shared copy state and touches VGA ports on every returning transfer path | recorded |
 | [FND-CONFIG-193](../findings/FND-CONFIG-193.md) | The graphics-pool initializer installs two fixed roots and 254 free handle slots | recorded |
+| [FND-CONFIG-194](../findings/FND-CONFIG-194.md) | Graphics-slot release conditionally lowers the pool cursor and compacts following blocks | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

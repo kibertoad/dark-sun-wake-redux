@@ -97,6 +97,11 @@ before saved registers are restored. It has no general
 input index bound. Even paths whose slot handling skips
 still touch ports; static reading or an interrupt-free
 emulated call cannot establish the hardware outcome.
+FND-CONFIG-194 subsequently details its flag gates,
+cursor subtraction, restarted adjacent-block compaction,
+ES/direction-flag effects and unbounded native-state
+conditions. The cleanup's ignored result still supplies
+no successful-release or rollback guarantee.
 
 Finally, cleanup passes current far DS:6577, fill byte
 zero and count 576 (0240 hexadecimal) to runtime

@@ -301,6 +301,9 @@ Next ID: Q-CONFIG-011
   a declared overlay setup call and the local remaining-space arithmetic.
   Its upstream gates, later slot/pool writers and accepted hardware
   state remain open.
+  FND-CONFIG-194 reads release flag gates, E4E changes and
+  restarted adjacent-block copies. Accepted slot state, alias
+  and native VGA effects remain open.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 
