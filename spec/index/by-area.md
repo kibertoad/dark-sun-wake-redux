@@ -669,6 +669,8 @@ Entries by area.
 | [FND-CONFIG-185](../findings/FND-CONFIG-185.md) | The named mode path sets a word and calls the resident region loader with its optional-byte argument zero | recorded |
 | [FND-CONFIG-186](../findings/FND-CONFIG-186.md) | The temporary caller byte is cleared before a separately gated mode and number update | recorded |
 | [FND-CONFIG-187](../findings/FND-CONFIG-187.md) | The number replacement helper checks size only on query success and updates cache after unchecked transfer | recorded |
+| [FND-CONFIG-188](../findings/FND-CONFIG-188.md) | The pointer replacement service has null and nonnull state paths and returns zero after word-gated services | recorded |
+| [FND-CONFIG-189](../findings/FND-CONFIG-189.md) | The replacement services have distinct callback checks and commit state after some failed handle requests | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

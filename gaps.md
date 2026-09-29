@@ -481,6 +481,13 @@ from unconditional rejection. Keep both cache layers' write ordering and
 post-call register provenance instead of equating a cached number with
 accepted replacement content.
 
+FND-CONFIG-189 adds distinct snapshot exits and a state commit after
+stored FFFF handle requests, while the outer wrapper explicitly returns
+zero (FND-CONFIG-188). Shared summaries should identify every path that
+reaches a saved-state restoration or bypasses it, and separate skipped
+presentation work from later committed state. A common return instruction
+or wrapper normalization must not imply one universal effect contract.
+
 ## 28. Exclude superseded rules from active function ownership
 
 Replacing RULE-SCRIPT-001 with RULE-SCRIPT-010 exposed a documentation
@@ -639,3 +646,18 @@ explicit widening. A relocated segment operand locates a segment; it does
 not by itself determine the surrounding argument boundary. Keep competing
 groupings open until the consuming widths and forwarding settle them, and
 supersede incorrect findings while updating active citations.
+
+## 36. Preserve overlapping memory access widths across call summaries
+
+FND-CONFIG-187's callers write bytes at 332C and 332E, while
+FND-CONFIG-188's services test words at those offsets. A zero low byte
+can therefore coexist with an active nonzero word guard through an
+unwritten neighboring byte. Treating the named byte flag as the entire
+callee predicate would incorrectly claim that active work is admitted.
+
+**Request:** shared effect and provenance reports should retain every
+read/write width and complete addressed byte interval. When an access
+overlaps a wider consumer, keep the other bytes' producers as explicit
+conditions, rather than merging them into the low-byte field's meaning.
+Carry those conditions through normalized wrapper results and synthetic
+fixture definitions. This complements item 26's return-register widths.

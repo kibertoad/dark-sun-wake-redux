@@ -4,7 +4,7 @@ title: Script-cache lookup and resource transfer
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-001, FND-SCRIPT-003, FND-SCRIPT-006, FND-SCRIPT-019, FND-SCRIPT-020, FND-SCRIPT-021, FND-SCRIPT-022, FND-SCRIPT-023, FND-CONFIG-151, FND-CONFIG-161, FND-CONFIG-162, FND-CONFIG-163, FND-CONFIG-164, FND-CONFIG-165, FND-CONFIG-166, FND-CONFIG-167, FND-CONFIG-168, FND-CONFIG-179, FND-CONFIG-170, FND-CONFIG-171, FND-CONFIG-172, FND-CONFIG-173, FND-CONFIG-174, FND-CONFIG-175, FND-CONFIG-176, FND-CONFIG-177, FND-CONFIG-178, FND-CONFIG-180, FND-CONFIG-181, FND-CONFIG-182, FND-CONFIG-183, FND-CONFIG-184, FND-CONFIG-185, FND-CONFIG-186, FND-CONFIG-187]
+evidence: [FND-SCRIPT-001, FND-SCRIPT-003, FND-SCRIPT-006, FND-SCRIPT-019, FND-SCRIPT-020, FND-SCRIPT-021, FND-SCRIPT-022, FND-SCRIPT-023, FND-CONFIG-151, FND-CONFIG-161, FND-CONFIG-162, FND-CONFIG-163, FND-CONFIG-164, FND-CONFIG-165, FND-CONFIG-166, FND-CONFIG-167, FND-CONFIG-168, FND-CONFIG-179, FND-CONFIG-170, FND-CONFIG-171, FND-CONFIG-172, FND-CONFIG-173, FND-CONFIG-174, FND-CONFIG-175, FND-CONFIG-176, FND-CONFIG-177, FND-CONFIG-178, FND-CONFIG-180, FND-CONFIG-181, FND-CONFIG-182, FND-CONFIG-183, FND-CONFIG-184, FND-CONFIG-185, FND-CONFIG-186, FND-CONFIG-187, FND-CONFIG-188, FND-CONFIG-189]
 conflicting: []
 split_with: []
 related: [FMT-SCRIPT-001, RULE-SCRIPT-002]
@@ -175,6 +175,13 @@ helper's signed length limit applies on query success; returning query failure
 still reaches transfer, and transfer success does not gate later cache writes.
 Its byte-bracketing helpers have separate signed/wrapped gates whose service
 and state producers remain open (FND-CONFIG-187).
+The pointer service has null and nonnull state paths and returns zero
+after unchecked local services return. Those services read word guards
+where callers write low bytes; neighboring-byte producers remain relevant
+(FND-CONFIG-188). Their callback checks, saved-word restoration and state
+commit paths differ. Some handle failures skip presentation requests but
+still reach own state assignments; complete callbacks, primitives, runtime
+and accepted state remain open (FND-CONFIG-189).
 The collector restores the retained consumer result on its local normal
 return, with near-buffer and guard dependencies remaining (FND-CONFIG-170).
 Following resident calls test callback fields, reload their targets after

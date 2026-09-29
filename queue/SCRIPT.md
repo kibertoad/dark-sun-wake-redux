@@ -75,6 +75,11 @@ Next ID: Q-SCRIPT-008
   size/result asymmetry, unchecked transfer and later cache/byte writes.
   Complete child/service, register, segment, state and content producers
   remain open; none of these paths proves native message entry or timing.
+  FND-CONFIG-188 reads pointer reset/replacement and word guards over
+  low-byte writes. FND-CONFIG-189 reads active callback, handle and
+  state-commit/restoration routes, including unchecked +5E targets and
+  stored FFFF paths. Neighboring bytes, full producers/targets, primitive,
+  runtime and VGA outcomes still prevent an end-to-end entry claim.
   Full external effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.
@@ -146,6 +151,13 @@ Next ID: Q-SCRIPT-008
   byte-decrement/clamp cases after supported fields and complete service
   boundaries exist. Overlay resource/cache paths need separate coverage;
   register/segment preservation and native outcomes remain independent.
+  FND-CONFIG-188 adds valid null/non-null wrapper cases with both word
+  services bypassed, checking pointer/default/index fields and AX zero.
+  FND-CONFIG-189 adds direct word-guard and FFFF-mode exits plus
+  rectangle-helper call-selection cases once supported fields, layouts
+  and primitive boundaries exist. Indirect callbacks, active service and
+  VGA children require separate complete target/input coverage; a zero
+  wrapper result alone cannot establish them.
   Resource and error branches need separate provenance and cannot
   establish operating-system outcomes by emulation. Tried: FND-SCRIPT-019 reads the local instruction paths;
   the emulator harness does not exist yet.

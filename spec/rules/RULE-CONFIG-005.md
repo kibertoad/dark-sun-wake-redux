@@ -214,6 +214,10 @@ None known.
   mode/number gates; FND-CONFIG-187 bounds the replacement helper's
   asymmetric query-size gate and unchecked-transfer cache writes. Complete
   graph/service effects, register and state producers remain open.
+  FND-CONFIG-188 reads the pointer wrapper and mixed byte/word guards;
+  FND-CONFIG-189 reads active service callback and state-commit routes.
+  Neighboring-byte, mode/handle/coordinate, target and runtime producers
+  remain open alongside actual presentation and VGA outcomes.
   FND-CONFIG-170 resolves local retained-result restoration through the
   collector; FND-CONFIG-171 reads the following resident callback gates,
   fresh targets and fixed word writes. FND-CONFIG-172 distinguishes child

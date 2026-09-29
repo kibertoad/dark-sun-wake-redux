@@ -284,6 +284,11 @@ Next ID: Q-CONFIG-011
   size/result asymmetry, unchecked transfer and later cache/byte writes.
   Complete child/service, register, segment, state and content producers
   remain open; none of these paths proves native message entry or timing.
+  FND-CONFIG-188 reads pointer reset/replacement and word guards over
+  low-byte writes. FND-CONFIG-189 reads active callback, handle and
+  state-commit/restoration routes, including unchecked +5E targets and
+  stored FFFF paths. Neighboring bytes, full producers/targets, primitive,
+  runtime and VGA outcomes still prevent an end-to-end entry claim.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 

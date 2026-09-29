@@ -106,6 +106,9 @@ complete 3D72 service effects, pointer contents, field and
 segment producers, accepted transfer and native outcomes
 remain open. No own 0DAB or 1440 store occurs in these
 three bodies; calls and aliases can still affect later state.
+FND-CONFIG-188 subsequently reads 12ED's null/nonnull paths
+and word guards; FND-CONFIG-189 reads the active service bodies,
+indirect callbacks and conditional state-commit/restoration routes.
 
 ## Interpretation
 

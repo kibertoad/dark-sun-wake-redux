@@ -71,6 +71,11 @@ prove that the caller always supplies a valid nonnull
 object, that runtime requests succeed, or that every
 external dependency returns.
 
+FND-CONFIG-188 and FND-CONFIG-189 subsequently read the
+shared 3D72 service guards and complete local bodies. Their
+indirect targets, primitive/runtime effects and state producers
+remain separate from the returning local gate and assignment paths.
+
 ## Interpretation
 
 Two more encoded failure edges test helpers whose local

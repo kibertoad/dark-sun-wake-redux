@@ -103,6 +103,11 @@ DS-relative fields outside 4464:0083 refer to DS at the
 corresponding instruction; their callees' preservation
 is not assumed.
 
+FND-CONFIG-188 and FND-CONFIG-189 subsequently read the
+shared 3D72 service guards and complete local bodies. Their
+indirect targets, primitive/runtime effects and state producers
+remain separate from the returning local gate and assignment paths.
+
 ## Interpretation
 
 The following calls include two conditional, freshly

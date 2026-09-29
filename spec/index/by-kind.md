@@ -176,7 +176,7 @@ Entries by kind.
 
 ## findings
 
-423 entries.
+425 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -412,6 +412,8 @@ Entries by kind.
 | [FND-CONFIG-185](../findings/FND-CONFIG-185.md) | The named mode path sets a word and calls the resident region loader with its optional-byte argument zero | recorded |
 | [FND-CONFIG-186](../findings/FND-CONFIG-186.md) | The temporary caller byte is cleared before a separately gated mode and number update | recorded |
 | [FND-CONFIG-187](../findings/FND-CONFIG-187.md) | The number replacement helper checks size only on query success and updates cache after unchecked transfer | recorded |
+| [FND-CONFIG-188](../findings/FND-CONFIG-188.md) | The pointer replacement service has null and nonnull state paths and returns zero after word-gated services | recorded |
+| [FND-CONFIG-189](../findings/FND-CONFIG-189.md) | The replacement services have distinct callback checks and commit state after some failed handle requests | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |
