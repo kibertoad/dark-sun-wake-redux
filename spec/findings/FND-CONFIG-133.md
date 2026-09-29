@@ -84,7 +84,7 @@ shipped game reaches a repeated index or hangs.
 
 ## Alternatives
 
-FND-CONFIG-134 reads one stored-index assignment and table clear;
+FND-CONFIG-144 reads one stored-index assignment and table clear;
 FND-CONFIG-135 reads a registered flag producer and another clear.
 Q-CONFIG-008 retains their upstream paths, later or other writes,
 allowed values, the 49-byte record's offset-six word producers,

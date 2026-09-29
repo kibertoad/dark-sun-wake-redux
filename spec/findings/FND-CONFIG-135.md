@@ -38,7 +38,7 @@ call branch. Arguments other than 49 or 51 reach the zero
 assignment without taking that call branch. For input 49 with nonzero DS:143D, the unread callee's effects
 precede the flag assignment.
 
-Overlay 188's setup entry in FND-CONFIG-134 stores a far pointer
+Overlay 188's setup entry in FND-CONFIG-144 stores a far pointer
 to this helper in DS:02F6 and DS:02F8 at
 `0x00073BBA..0x00073BC6`, on the DS:193E zero branch.
 The offset is 37F3; the segment operand at `0x00073BBE`
@@ -86,7 +86,7 @@ of SI; the branch comparison alone does not provide that proof.
 Read the complete bounded resident helper
 `0x00025DF3..0x00025E2F`; verify the two listed MZ operands
 and relocate the earlier call segment to 576C. Read the setup
-pointer stores from FND-CONFIG-134's entry and verify their
+pointer stores from FND-CONFIG-144's entry and verify their
 declared fixup. Resolve overlay 188 trampoline 00B1 to code
 1901 and read `0x000747A1..0x000747CE`, tracking the
 optional message branch, later call and common clear. Verify

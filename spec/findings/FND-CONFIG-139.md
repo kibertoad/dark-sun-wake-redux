@@ -27,7 +27,7 @@ FND-SCRIPT-010 identifies expression byte B1's call to
 172C:284D. Its complete local body occupies
 `0x0000ED0D..0x0000EDD4`. It initializes a double-word
 result to zero and uses the known fill helper 1000:3FA2
-(FND-CONFIG-134) to clear a 64-byte local array. It then
+(FND-CONFIG-144) to clear a 64-byte local array. It then
 passes output addresses for a seed, count and that array to
 local parser 172C:299C. Only return byte one calls lookup
 wrapper 1AA0:028B with the seed, count and array address.
@@ -131,4 +131,4 @@ and the six keyed loads `0x0000EEBD`, `0x0000EEC8`,
 `0x0000EEF4`. Apply load segment 1000 before naming mapped
 addresses. Keep 1AA0:0009 separate from the following local
 routines; the next exported wrapper does not delimit its body.
-Compare FND-CONFIG-134, FND-CONFIG-135 and FND-CONFIG-138.
+Compare FND-CONFIG-144, FND-CONFIG-135 and FND-CONFIG-138.

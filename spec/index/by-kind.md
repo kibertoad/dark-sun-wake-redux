@@ -175,7 +175,7 @@ Entries by kind.
 
 ## findings
 
-373 entries.
+375 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -357,7 +357,7 @@ Entries by kind.
 | [FND-CONFIG-131](../findings/FND-CONFIG-131.md) | Overlay 179 wraps a result-producing helper and pending-record drain with state-dependent return calls | recorded |
 | [FND-CONFIG-132](../findings/FND-CONFIG-132.md) | Overlay 204 computes grouped-call thresholds in a first pass and consumes them in a second pass | recorded |
 | [FND-CONFIG-133](../findings/FND-CONFIG-133.md) | The rest caller iterator selects negative-word records and has a separate stored-index branch | recorded |
-| [FND-CONFIG-134](../findings/FND-CONFIG-134.md) | Overlay 188 setup assigns the iterator stored index and clears its three-byte table | recorded |
+| [FND-CONFIG-134](../findings/FND-CONFIG-134.md) | Overlay 188 setup assigns the iterator stored index and clears its three-byte table | superseded |
 | [FND-CONFIG-135](../findings/FND-CONFIG-135.md) | The iterator flag is written by a registered resident helper and an overlay 188 clear path | recorded |
 | [FND-CONFIG-136](../findings/FND-CONFIG-136.md) | Script opcode dispatch invokes the registered iterator-flag writer before its instruction handler | recorded |
 | [FND-CONFIG-137](../findings/FND-CONFIG-137.md) | Nested parameter instructions restore parameter blocks rather than the iterator flag | recorded |
@@ -366,6 +366,8 @@ Entries by kind.
 | [FND-CONFIG-140](../findings/FND-CONFIG-140.md) | The selector lookup reads typed values and conditionally writes a three-byte table slot | recorded |
 | [FND-CONFIG-141](../findings/FND-CONFIG-141.md) | The expression seed wrapper searches active slots through the same selector lookup | recorded |
 | [FND-CONFIG-142](../findings/FND-CONFIG-142.md) | A bounded literal-writer query finds the setup slot assignment and no verified metadata-table write | recorded |
+| [FND-CONFIG-143](../findings/FND-CONFIG-143.md) | The setup traversal callee writes bounded output records but leaves helper effects and retry termination open | recorded |
+| [FND-CONFIG-144](../findings/FND-CONFIG-144.md) | Overlay 188 setup assigns the iterator stored index and clears its three-byte table | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |

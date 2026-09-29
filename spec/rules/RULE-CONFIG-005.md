@@ -155,11 +155,14 @@ None known.
   producers, transitive effects and handler timing remain open.
   FND-CONFIG-132 reads first-pass threshold/index producers and the
   second-pass grouped-call consumption. FND-CONFIG-133 reads the
-  iterator selection contract; FND-CONFIG-134 and FND-CONFIG-135
+  iterator selection contract; FND-CONFIG-144 and FND-CONFIG-135
   read local index, table and flag producers. FND-CONFIG-136 traces
   the flag writer to pre-handler opcode dispatch. FND-CONFIG-137
   reads nested parameter dispatch and ordinary save/restore spans,
-  without establishing rollback of the flag. Reachable inputs, other
+  without establishing rollback of the flag. FND-CONFIG-143 reads the
+  setup callee's local output and conditional table writes; its traversal
+  helpers, retry termination and actual input ranges remain open.
+  Reachable inputs, other
   writers and intervening helper effects remain open.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One

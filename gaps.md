@@ -240,8 +240,13 @@ relocation applied; overlay segment loads contain shifted descriptor indices
 that need the FBOV table lookup. The instruction's numeric operand alone is
 not the mapped segment, even when its following field offset is correct.
 
+FND-CONFIG-144 also corrects FND-CONFIG-134's numeric argument reading:
+a pushed immediate was a declared overlay segment fixup for a far output
+pointer. Reading the callee's argument loads confirmed the pointer shape.
+
 **Request:** extend the bounded target resolver in item 10 beyond far calls to
-segment-register loads and stored far-pointer segments. Report the instruction
+segment-register loads, stored far-pointer segments and pushed segment
+arguments. Report the instruction
 location, operand representation, declared relocation/fixup membership,
 decoded descriptor where applicable, and canonical mapped segment. Require
 that provenance alongside data-address labels in findings; preserve a raw

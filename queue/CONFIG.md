@@ -150,7 +150,7 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-133 reads the iterator's signed-negative record selection
   and separate stored-index branch. Input producers, allowed ranges and
   intervening changes remain unread; reachable termination is not established.
-  FND-CONFIG-134 reads a local stored-index assignment and table clear.
+  FND-CONFIG-144 reads a local stored-index assignment and table clear.
   FND-CONFIG-135 reads a registered flag writer and another clear path.
   Their upstream dispatch, timing, callee effects and later or other writes
   remain unread; no complete range or termination invariant is established.
@@ -177,6 +177,12 @@ Next ID: Q-CONFIG-011
   assignment, rejects four overlapping writer decodes, and finds no verified
   metadata writer in its qualified literal query. Other write forms and
   timing remain unread; do not repeat that query without new coverage.
+  FND-CONFIG-143 reads setup callee 2D40:2196's local slot checks,
+  output writes and conditional table writes. The zero-slot path returns
+  without traversal calls; actual setup-time slot contents remain unread.
+  Traversal helpers 1AA0:0566 and 1AA0:051C, retry termination and input
+  ranges remain open. FND-CONFIG-144 replaces the setup finding after
+  resolving its pushed output-pointer segment fixup.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

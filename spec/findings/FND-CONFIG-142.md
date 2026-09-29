@@ -32,7 +32,7 @@ It returned five candidate starts, all containing 60EB.
 The verified store is `0x00073CA1`, assigning word 520
 to DS:60EB in overlay 188 entry 5702:00D4. Its containing
 entry, zero-gate condition and later calls are read in
-FND-CONFIG-134. The assignment is skipped by the entry's
+FND-CONFIG-144. The assignment is skipped by the entry's
 nonzero DS:193E branch; it is not an unconditional startup
 invariant. The word at DS:60EB in the shipped resident load
 image is zero at file offset `0x000530EB`.
@@ -91,7 +91,7 @@ with the stated displacement and default/explicit DS for mov,
 inc, dec, add, sub, and, or, xor, xchg or pop. Keep these
 as candidates until the instruction boundary is checked.
 Use the named containing entries for the four rejected starts
-and FND-CONFIG-134's exported entry for the verified store.
+and FND-CONFIG-144's exported entry for the verified store.
 Read only the stated initial slot word using DS segment 57E0
 from FND-SCRIPT-005. Do not turn absent selected candidates
 into an exhaustive negative claim or a runtime invariant.
