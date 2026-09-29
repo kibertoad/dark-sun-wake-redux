@@ -492,3 +492,17 @@ which callback tables and indirect calls a branch reaches or bypasses.
 Keep interrupt requests, successful termination and other cleanup effects
 separate; a wrapper's return instruction does not establish that its
 interrupt or cleanup dependencies return.
+
+## 31. Preserve output aliasing and the register origin of loop predicates
+
+FND-CONFIG-164 reads a poll whose callers pass the same scratch address
+for two outputs. Ordered stores overwrite the first value with the second,
+while the loop predicate instead comes from a returned register copied
+from the interrupt's BX. Treating the scratch word as the return condition,
+or describing the two outputs as independent, would misread this path.
+
+**Request:** shared effect summaries should retain output-argument aliasing,
+ordered writes and the register or field that supplies each branch predicate.
+Distinguish a wrapper's deterministic copies from the interrupt or external
+callee's actual result sequence. This complements item 21's memory provenance
+and item 29's loop-progress requirements.

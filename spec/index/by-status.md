@@ -222,7 +222,7 @@ Entries by status.
 
 ## recorded
 
-381 entries.
+382 entries.
 
 | ID | Title |
 |---|---|
@@ -418,6 +418,7 @@ Entries by status.
 | [FND-CONFIG-161](../findings/FND-CONFIG-161.md) | A shared helper clears three supplied pointer fields and polls before returning |
 | [FND-CONFIG-162](../findings/FND-CONFIG-162.md) | The shared helper's first callee installs a fallback callback and waits through two polls |
 | [FND-CONFIG-163](../findings/FND-CONFIG-163.md) | The callback setter's guard reaches a mode-one runtime path that bypasses the exit-callback loop |
+| [FND-CONFIG-164](../findings/FND-CONFIG-164.md) | Shared-helper polls return the driver's BX and overwrite one aliased scratch word |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |

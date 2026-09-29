@@ -81,6 +81,10 @@ or universal DS-preservation contract is established.
 
 ## Alternatives
 
+FND-CONFIG-164 subsequently reads the common poll's local register
+contract and the two aliased output arguments. Its driver/input outcomes
+and the remaining external dependencies below stay open.
+
 Q-CONFIG-008 and Q-SCRIPT-003 retain 444C:0092,
 45B9:0034, 4611:03A5 and 4611:0051, DS preservation,
 pointer/gate producers and incoming state. One reading

@@ -36,7 +36,8 @@ Next ID: Q-SCRIPT-008
   FND-SCRIPT-023 reads the error entry and stop setter; FND-CONFIG-161
   bounds its first shared helper. FND-CONFIG-162 reads that helper's first
   callee and two polls; FND-CONFIG-163 bounds its setter guard and runtime
-  mode. Full external effects and returns, interrupt outcomes,
+  mode. FND-CONFIG-164 reads the common poll's register/output contract.
+  Full external effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.
   Blocks: slices 3-6.

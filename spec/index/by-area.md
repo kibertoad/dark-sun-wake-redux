@@ -645,6 +645,7 @@ Entries by area.
 | [FND-CONFIG-161](../findings/FND-CONFIG-161.md) | A shared helper clears three supplied pointer fields and polls before returning | recorded |
 | [FND-CONFIG-162](../findings/FND-CONFIG-162.md) | The shared helper's first callee installs a fallback callback and waits through two polls | recorded |
 | [FND-CONFIG-163](../findings/FND-CONFIG-163.md) | The callback setter's guard reaches a mode-one runtime path that bypasses the exit-callback loop | recorded |
+| [FND-CONFIG-164](../findings/FND-CONFIG-164.md) | Shared-helper polls return the driver's BX and overwrite one aliased scratch word | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

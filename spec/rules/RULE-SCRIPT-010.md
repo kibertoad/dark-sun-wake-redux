@@ -4,7 +4,7 @@ title: Script-cache lookup and resource transfer
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-001, FND-SCRIPT-003, FND-SCRIPT-006, FND-SCRIPT-019, FND-SCRIPT-020, FND-SCRIPT-021, FND-SCRIPT-022, FND-SCRIPT-023, FND-CONFIG-151, FND-CONFIG-161, FND-CONFIG-162, FND-CONFIG-163]
+evidence: [FND-SCRIPT-001, FND-SCRIPT-003, FND-SCRIPT-006, FND-SCRIPT-019, FND-SCRIPT-020, FND-SCRIPT-021, FND-SCRIPT-022, FND-SCRIPT-023, FND-CONFIG-151, FND-CONFIG-161, FND-CONFIG-162, FND-CONFIG-163, FND-CONFIG-164]
 conflicting: []
 split_with: []
 related: [FMT-SCRIPT-001, RULE-SCRIPT-002]
@@ -131,7 +131,11 @@ callee installs a fallback callback before two more polls. The resident
 setter has a prior guard route through interrupts and a mode-one runtime
 path, so entering the setter does not prove registration completes
 (FND-CONFIG-162, FND-CONFIG-163). The error entry makes no own cache
-rollback (FND-SCRIPT-023, FND-CONFIG-161).
+rollback (FND-SCRIPT-023, FND-CONFIG-161). The shared-helper loops'
+common poll returns BX from interrupt 33h service three, and they test
+its bit zero. Their two output pointers alias the same scratch word;
+the later DX store overwrites CX and is not their loop predicate.
+Actual driver results remain external (FND-CONFIG-164).
 
 `fn_172C_31ED`'s reset is bounded in FND-SCRIPT-020. Cache-input
 provenance, valid bounds and error-entry effects retain the dependencies

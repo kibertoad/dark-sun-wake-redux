@@ -90,6 +90,10 @@ unconditional consequences of entering the error routine.
 
 ## Alternatives
 
+FND-CONFIG-164 subsequently reads the common poll's local register
+contract and the two aliased output arguments. Its driver/input outcomes
+and the remaining external dependencies below stay open.
+
 FND-CONFIG-162 subsequently reads the first local callee and its two
 polls. FND-CONFIG-163 bounds the callback setter's guard route. The
 remaining external effects, input and return dependencies below still apply.
