@@ -111,7 +111,10 @@ None known.
   two conditional message paths. FND-CONFIG-093 supplies the six matching
   shipped frames and enabled mask. FND-CONFIG-094 traces mouse-packet
   bit 4 through the resident APFM dispatcher to the value-32 handler.
-  Physical input mapping and remaining state gates remain unread.
+  FND-CONFIG-095 traces hit-selection refresh and earlier helper gates;
+  FND-CONFIG-096 shows the intervening window return is ignored and its
+  child branches skip the shipped APFM graph. Physical input mapping
+  and nested helper effects remain unread.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local

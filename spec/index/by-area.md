@@ -570,6 +570,8 @@ Entries by area.
 | [FND-CONFIG-092](../findings/FND-CONFIG-092.md) | Overlay 175 registers a separate frame handler whose value-32 branch enters item feedback | recorded |
 | [FND-CONFIG-093](../findings/FND-CONFIG-093.md) | The shipped 13501 window supplies all six item-feedback frames with value 32 enabled | recorded |
 | [FND-CONFIG-094](../findings/FND-CONFIG-094.md) | The resident pointer APFM branch maps input bit 4 to the item-feedback handler's value 32 | recorded |
+| [FND-CONFIG-095](../findings/FND-CONFIG-095.md) | Item-feedback frame selection is refreshed from the registered-window hit search | recorded |
+| [FND-CONFIG-096](../findings/FND-CONFIG-096.md) | The frame-event caller ignores the pre-dispatch window routine's failure return | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

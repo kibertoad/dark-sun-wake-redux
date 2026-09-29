@@ -148,3 +148,20 @@ bounded ranges and the evidence for ownership. Flag disagreement between
 those views, and require an explicit boundary check before joining a call
 to its supposed caller. Prologues and returns are useful warnings, but
 must not silently stand in for a verified function boundary.
+
+## 12. Require explicit counts when decoding bounded dispatch tables
+
+During the FND-CONFIG-096 reading, a temporary manual table query requested
+three tag entries from a dispatch loop whose instruction count was two.
+The third read reached target-word data and failed while printing the
+resulting non-ASCII text. No claim
+was recorded from that extra read, but an ASCII-looking target could instead
+have produced a false tag or branch.
+
+**Request:** provide a shared bounded table reporter that requires an explicit
+entry count and field widths, reports the source of that count, and separates
+tag/value entries from target entries. Where the count comes from an observed
+loop, report its instruction location alongside the table range. Reject reads
+outside the declared layout rather than attempting text decoding across the
+boundary. This would make a narrow dispatch query easier to reproduce and
+review without retaining the table's original bytes.

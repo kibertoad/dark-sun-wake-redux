@@ -98,8 +98,11 @@ Next ID: Q-CONFIG-011
   helper with two conditional message sites. FND-CONFIG-093 supplies all
   six matching shipped frames and their enabled value-32 mask.
   FND-CONFIG-094 traces mouse-packet bit 4 through the resident APFM
-  dispatcher into that handler. Physical input mapping, intervening
-  calls and later state changes remain open.
+  dispatcher into that handler. FND-CONFIG-095 traces hit-selection
+  refresh and earlier helper gates. FND-CONFIG-096 shows the intervening
+  window return is ignored and its child branches skip the shipped APFM
+  graph. Physical input mapping, nested helper effects and later state
+  changes remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

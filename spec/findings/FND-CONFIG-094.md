@@ -80,8 +80,11 @@ callback gates. This is a conditional route, not an observed message.
 ## Alternatives
 
 The physical action that generates driver bit `0x04` is not established
-here. Window traversal, selected-control state, the intervening call,
-registration and subsequent helper results may still block the route.
+here. FND-CONFIG-095 traces selected-control refresh and earlier local
+helper paths. FND-CONFIG-096 shows the intervening window call's return
+is ignored and its two-tag loop skips the shipped APFM children.
+Window traversal, helper side effects, registration and subsequent
+helper results may still block the route.
 Another producer may call the dispatcher or handler directly. Later
 callback or mask changes remain open (Q-CONFIG-008). The locally
 conditional no-effect and money-message sites still require their own
