@@ -591,6 +591,8 @@ Entries by area.
 | [FND-CONFIG-113](../findings/FND-CONFIG-113.md) | A resident event-five value-64 branch forwards the event record to mode dispatch | recorded |
 | [FND-CONFIG-114](../findings/FND-CONFIG-114.md) | Bounded reference inventories do not identify the resident value-64 handler producer | recorded |
 | [FND-CONFIG-115](../findings/FND-CONFIG-115.md) | Resident value-64 states two and three require a later state change before mode dispatch | recorded |
+| [FND-CONFIG-116](../findings/FND-CONFIG-116.md) | The resident record-taking helper returns an index with a conditional record remapping | recorded |
+| [FND-CONFIG-117](../findings/FND-CONFIG-117.md) | Overlay 204 temporarily sets the resident event state to five and restores its saved word | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

@@ -134,6 +134,12 @@ Next ID: Q-CONFIG-011
   state-two/three paths: early pointer exits bypass mode dispatch, and
   reaching it otherwise requires a later stored state of one. Helper
   state writes, registration and indirect dispatch remain open.
+  FND-CONFIG-116 reads the local record-taking wrapper and its
+  conditional index remapping; transitive callee effects remain unread.
+  FND-CONFIG-117 identifies the state getter/setter and overlay 204's
+  temporary-five assignment with saved-word restoration. Its intervening
+  overlay 179 call, incoming routes, other writers and handler timing
+  remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

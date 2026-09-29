@@ -145,7 +145,10 @@ None known.
   supplies a reachable producer; another is that the entry is unreachable
   in this build. Registration and indirect-dispatch readings would
   distinguish them; the inventories alone do not. Helper state writes
-  also remain open.
+  also remain open. FND-CONFIG-116 reads a record-taking wrapper
+  whose result can be remapped, without settling its callee's effects.
+  FND-CONFIG-117 identifies a separate temporary-five assignment and
+  saved-word restoration; its relation to the event handler remains open.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local

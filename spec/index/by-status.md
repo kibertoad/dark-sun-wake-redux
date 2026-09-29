@@ -206,7 +206,7 @@ Entries by status.
 
 ## recorded
 
-343 entries.
+345 entries.
 
 | ID | Title |
 |---|---|
@@ -368,6 +368,8 @@ Entries by status.
 | [FND-CONFIG-113](../findings/FND-CONFIG-113.md) | A resident event-five value-64 branch forwards the event record to mode dispatch |
 | [FND-CONFIG-114](../findings/FND-CONFIG-114.md) | Bounded reference inventories do not identify the resident value-64 handler producer |
 | [FND-CONFIG-115](../findings/FND-CONFIG-115.md) | Resident value-64 states two and three require a later state change before mode dispatch |
+| [FND-CONFIG-116](../findings/FND-CONFIG-116.md) | The resident record-taking helper returns an index with a conditional record remapping |
+| [FND-CONFIG-117](../findings/FND-CONFIG-117.md) | Overlay 204 temporarily sets the resident event state to five and restores its saved word |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |

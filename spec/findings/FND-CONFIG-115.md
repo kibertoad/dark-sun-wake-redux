@@ -65,7 +65,11 @@ DS:0DAB, these two initial states fail that final equality.
 ## Alternatives
 
 Some helper can change DS:0DAB to one, or all can preserve it.
-Their state-writing and dispatch effects remain unread
+FND-CONFIG-116 reads the record-taking wrapper and its conditional
+index remapping, leaving its transitive callee effects open.
+FND-CONFIG-117 identifies a getter/setter and one temporary-five
+assignment with saved-word restoration elsewhere. The state-two/three
+helpers' state-writing and dispatch effects remain unread
 (Q-CONFIG-008). The conditional paths are not an established player
 action, and the local routine at `0x0001E3F8` is not assigned a
 role from its return values alone. Event provenance remains open in
