@@ -111,6 +111,8 @@ Next ID: Q-SCRIPT-008
   incoming inputs and DS/format provenance remain open.
   FND-CONFIG-202 reads one formatted-frame wrapper caller; format
   capacity, strict gate inputs and counter/timing state remain open.
+  FND-CONFIG-203 reads the formatter's literal path and terminator;
+  actual formats, conversion branches and caller fit remain open.
   Full external effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.

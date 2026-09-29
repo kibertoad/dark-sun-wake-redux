@@ -250,6 +250,8 @@ None known.
   retaining incoming inputs and DS-relative format provenance.
   FND-CONFIG-202 connects a formatted-frame overlay caller, retaining
   output capacity, strict screen gates and counter-dependent progress.
+  FND-CONFIG-203 bounds literal formatter writes and termination,
+  retaining actual format/conversion output and destination fit.
   FND-CONFIG-170 resolves local retained-result restoration through the
   collector; FND-CONFIG-171 reads the following resident callback gates,
   fresh targets and fixed word writes. FND-CONFIG-172 distinguishes child

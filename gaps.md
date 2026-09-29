@@ -746,3 +746,17 @@ request failure. Distinguish sentinel comparison from index validation
 and mark residual frame contents as unknown. Report the encoded read
 and its missing local producer without promoting it to a native defect
 until caller state and failure reachability have been established.
+
+
+## 41. Account for the terminator separately from returned output length
+
+FND-CONFIG-203's literal formatter path returns a character count
+but writes an additional zero byte at that offset. FND-CONFIG-202's
+caller supplies a six-byte frame area; its size alone does not establish
+fit before the format and conversion outputs have been read.
+
+**Request:** shared buffer summaries should report character count,
+terminator writes, actual destination capacity and wrapped offset
+behavior separately. A count equal to capacity is insufficient when
+termination adds another write. Keep hypothetical long-input cases
+separate from admitted native inputs and reproduced defects.

@@ -684,6 +684,7 @@ Entries by area.
 | [FND-CONFIG-200](../findings/FND-CONFIG-200.md) | A text-output caller forwards its accumulated rectangle and ignores the transfer result | recorded |
 | [FND-CONFIG-201](../findings/FND-CONFIG-201.md) | A fixed text wrapper forwards two coordinates and sixteen extra argument bytes | recorded |
 | [FND-CONFIG-202](../findings/FND-CONFIG-202.md) | An overlay text-wrapper caller uses formatted frame storage and strict screen-edge gates | recorded |
+| [FND-CONFIG-203](../findings/FND-CONFIG-203.md) | The formatter literal-output path appends a terminator without a destination-capacity gate | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

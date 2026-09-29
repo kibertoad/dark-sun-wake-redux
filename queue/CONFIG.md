@@ -333,6 +333,9 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-202 connects one of 21 encoded overlay text-wrapper
   calls to formatted SS-frame storage and strict screen-edge gates.
   Format capacity, width/state producers and later counter progress remain open.
+  FND-CONFIG-203 reads literal formatter writes and the extra zero
+  terminator without a capacity gate. Actual format/conversion output,
+  admitted arguments and six-byte caller fit remain open.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 
