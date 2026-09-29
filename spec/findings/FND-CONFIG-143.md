@@ -109,6 +109,10 @@ valid indices, an adequate output buffer or reachable termination.
 
 ## Alternatives
 
+FND-CONFIG-147 subsequently resolves the zero-slot condition for
+FND-CONFIG-144's zero-gate setup call. That selected path does
+not invoke either traversal helper; later and other inputs remain open.
+
 FND-CONFIG-145 subsequently reads the traversal helpers and
 conditional count-consumption argument. Valid shared state,
 non-aliasing and the near-pointer segment relationship remain open.

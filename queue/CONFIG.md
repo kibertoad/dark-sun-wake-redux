@@ -179,15 +179,21 @@ Next ID: Q-CONFIG-011
   timing remain unread; do not repeat that query without new coverage.
   FND-CONFIG-143 reads setup callee 2D40:2196's local slot checks,
   output writes and conditional table writes. The zero-slot path returns
-  without traversal calls; actual setup-time slot contents remain unread.
-  Traversal helpers 1AA0:0566 and 1AA0:051C, retry termination and input
-  ranges remain open. FND-CONFIG-144 replaces the setup finding after
+  without traversal calls; that reading did not resolve setup-time slots,
+  traversal helpers 1AA0:0566 and 1AA0:051C, retry termination or input
+  ranges. FND-CONFIG-144 replaces the setup finding after
   resolving its pushed output-pointer segment fixup.
   FND-CONFIG-145 reads both traversal helpers, their shared getter path,
   save/restore copy and count-consumption branches. Retry termination is
   conditional on valid, non-aliased state. The near-pointer segment
   relationship, buffer validity, selector/starting-position producers and
-  actual setup-time slots remain unread.
+  actual setup-time slots were not resolved by that helper reading.
+  FND-CONFIG-146 adds a qualified selector-base query and rejects three
+  overlapping decodes; no producer was verified. Do not repeat that query
+  without new coverage of other producer forms. FND-CONFIG-147 reads the
+  intervening setup calls for their actual ranges and resolves slot 523's
+  zero state at the local traversal call. Setup invocation, bypass state,
+  later table changes and rest-time iterator inputs remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

@@ -267,6 +267,11 @@ before verified reads. Overlap handling therefore needs to cover preceding
 instruction bytes as well as stripped prefixes. Local decodability alone
 does not establish a write or its operand width.
 
+FND-CONFIG-146 also rejects an apparent address store assembled
+from the middle of an addition and its following jump. A matching
+immediate can be an overlapping instruction candidate rather than
+an address-taking use, even when the entire candidate decodes.
+
 **Request:** have shared operand reporters retain prefixes and candidate
 widths, group overlapping decodes, and classify them against a verified
 entry-based instruction path before counting uses. Report unresolved

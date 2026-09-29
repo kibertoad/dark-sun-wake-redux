@@ -125,6 +125,10 @@ no unconditional flag-preservation or gameplay claim follows.
 
 ## Alternatives
 
+FND-CONFIG-147 subsequently resolves the setup zero-gate call:
+its slot remains zero and that call does not reach these helpers.
+The conditions below still apply to other calls and later states.
+
 Q-CONFIG-008 retains the near-pointer segment relationship,
 non-aliasing and buffer validity, starting-position and selector
 producers, actual setup-time slot contents, metadata and other

@@ -80,6 +80,11 @@ table activity or termination of the rest caller's two passes.
 
 ## Alternatives
 
+FND-CONFIG-147 subsequently reads the intervening helpers for
+this setup's loop ranges and resolves slot 523's zero state at
+the local traversal call. It does not settle later table activity
+or the rest caller's inputs.
+
 Q-CONFIG-008 retains this setup entry's incoming routes and timing,
 intervening helper effects, DS:1A32's indirect or block writers,
 three-byte table producers and the 49-byte record's offset-six

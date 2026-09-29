@@ -621,6 +621,8 @@ Entries by area.
 | [FND-CONFIG-143](../findings/FND-CONFIG-143.md) | The setup traversal callee writes bounded output records but leaves helper effects and retry termination open | recorded |
 | [FND-CONFIG-144](../findings/FND-CONFIG-144.md) | Overlay 188 setup assigns the iterator stored index and clears its three-byte table | recorded |
 | [FND-CONFIG-145](../findings/FND-CONFIG-145.md) | The setup traversal helpers queue indices and restore a saved special slot while consuming a pending count | recorded |
+| [FND-CONFIG-146](../findings/FND-CONFIG-146.md) | A qualified literal query finds selector-table reads but no verified producer | recorded |
+| [FND-CONFIG-147](../findings/FND-CONFIG-147.md) | The zero-gate setup preserves cleared slot 523 through its intervening helpers | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |
