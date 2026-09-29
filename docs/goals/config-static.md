@@ -30,26 +30,33 @@ Entries, queue files and parity rows outside CONFIG and SCRIPT.
 
 - Stage: Slices.
 - Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 585 entries and 158 parity rows).
+  documentation check passed with 590 entries and 158 parity rows).
   Full solution build passed with zero warnings and errors.
-- Unfinished: none.
+- Unfinished: no session work. Untracked `hs_err_pid15480.log` appeared
+  during this session; ownership is uncertain, and it was left unmodified
+  and uncommitted. This session started no Java process.
 - Blockers: none known.
 - Next:
-  - Q-CONFIG-008 and Q-SCRIPT-003, follow FND-CONFIG-179's remaining
-    mode callees and FND-CONFIG-180's callback/window/identifier producers.
-    Complete FND-CONFIG-181 and FND-CONFIG-182's filename, prefix,
-    archive, segment and near-buffer provenance, callers and error effects.
-    Bound resource selection and reachable MAS/99 instructions for
-    FND-CONFIG-160 and RULE-SCRIPT-010.
+  - Q-CONFIG-008 and Q-SCRIPT-003, follow FND-CONFIG-186 and
+    FND-CONFIG-187's child/service and mode/number/cache/byte producers,
+    post-call register/segment state and resource inputs. Retain
+    FND-CONFIG-183 and FND-CONFIG-184's initializer/cleanup callers,
+    pointer/count/slot/capacity inputs and allocation/runtime/VGA effects;
+    follow FND-CONFIG-185's resident service and field producers.
+  - Q-CONFIG-008 and Q-SCRIPT-003, complete FND-CONFIG-179 and
+    FND-CONFIG-180's callback/window/identifier producers, and
+    FND-CONFIG-181 and FND-CONFIG-182's filename/prefix/archive,
+    segment/near-buffer, caller and error dependencies. Bound resource
+    selection, cache/capacity inputs and reachable MAS/99 instructions
+    for FND-CONFIG-160 and RULE-SCRIPT-010.
   - Q-CONFIG-008 and Q-SCRIPT-003, follow FND-CONFIG-178's geometry
     branches/input producers, FND-CONFIG-176 and FND-CONFIG-177's
     count/sentinel/alias conditions, FND-CONFIG-172's graph/count inputs
-    and FND-CONFIG-170's near-buffer inputs. Retain cache/capacity bounds.
-  - Q-CONFIG-008 and Q-SCRIPT-003, follow FND-CONFIG-171's indirect
-    targets, FND-CONFIG-175's shared-CS writers, FND-CONFIG-167's
-    metadata/shared slots and FND-CONFIG-166's active effects. Retain
-    FND-CONFIG-164's driver outcomes, FND-CONFIG-159's pointer/archive
-    dependencies and FND-CONFIG-131, FND-CONFIG-130 and FND-CONFIG-109's
-    transitive effects. 28C9:1261 needs new provenance after FND-CONFIG-114.
+    and FND-CONFIG-170's near state. Retain FND-CONFIG-171's indirect
+    targets, FND-CONFIG-175's shared-CS writers, FND-CONFIG-167 and
+    FND-CONFIG-166's active dependencies, FND-CONFIG-164's driver inputs,
+    FND-CONFIG-159's pointer/archive dependencies, and FND-CONFIG-131,
+    FND-CONFIG-130 and FND-CONFIG-109's transitive effects.
+    28C9:1261 needs new provenance after FND-CONFIG-114.
   - Q-CONFIG-010, read acquisition-state changes.
   - Q-CONFIG-009, retain the existing owner-run request.
