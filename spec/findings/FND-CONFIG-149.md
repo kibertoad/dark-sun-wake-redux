@@ -55,7 +55,8 @@ Entry 5702:00C0 resolves to code target 046C, file offset
 565C:0020 with word 200 and a double word 10000, stores
 returned AL in DS:193D, then returns that byte. A nonzero
 stored byte bypasses the call and returns the stored byte.
-The callee's effects remain unread. DS:193D is not the
+FND-CONFIG-156 reads the callee's local memory initialization
+and return contract; its external effects remain open. DS:193D is not the
 setup gate DS:193E.
 
 A separate selected literal-write query for displacement
@@ -87,13 +88,19 @@ assigned to the caller.
 
 ## Alternatives
 
+FND-CONFIG-157 subsequently locates the earlier OBJEX.GFF
+registration attempt, before both mode branches. FND-CONFIG-156
+shows that a full-word failure can pass the later low-byte zero
+check; the stored byte must not be taken as proof of success.
+
 FND-CONFIG-155 subsequently reads the zero-mode helper's
 local code-segment resets and flag return. It assigns neither
 the setup gate nor an archive registration. The other mode's
 helper and earlier state still remain open.
 
 Q-CONFIG-008 retains earlier incoming paths, the two pre-setup
-helpers, the 00C0 callee, indirect/address-taking setup routes,
+helpers' transitive effects, the 00C0 callee's external effects,
+indirect/address-taking setup routes,
 other DS:193E producer forms, bypass state and later iterator
 inputs. One reading keeps the gate at its initial zero; another
 reaches a nonzero gate through unread state changes. The literal

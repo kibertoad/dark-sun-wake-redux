@@ -73,6 +73,13 @@ for actual population of the buffers.
 
 ## Alternatives
 
+FND-CONFIG-157 subsequently locates an earlier OBJEX.GFF
+registration attempt in the same caller. This supplies a
+concrete possible archive-list producer, without establishing
+the open's outcome or retention through intervening calls.
+FND-CONFIG-156 shows why the following initializer's nonzero
+check cannot substitute for those conditions.
+
 Q-CONFIG-008 retains archive registration and selection at
 these calls, record stability between the size and read requests,
 successful transfer, later writes and reachable selectors. One

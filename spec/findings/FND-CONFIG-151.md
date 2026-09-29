@@ -129,6 +129,13 @@ stack and I/O dependencies remain explicit.
 
 ## Alternatives
 
+FND-CONFIG-157 subsequently reads the earlier OBJEX.GFF
+registration attempt. FND-CONFIG-156 distinguishes the
+preceding initializer's full-word failure from the caller's
+low-byte zero check. Intervening archive effects, selected
+record stability and successful I/O still remain required;
+passing that check is not evidence that they hold.
+
 FND-CONFIG-153 subsequently identifies matching installed
 FNFO lengths, and FND-CONFIG-154 reads bounded metadata
 cases. Those observations do not establish runtime archive

@@ -214,8 +214,15 @@ Next ID: Q-CONFIG-011
   the width-prefix direction flag and later width changes remain open.
   FND-CONFIG-155 reads the zero-mode pre-setup helper's code-segment
   resets and internal flag return; it does not supply an archive registration
-  or gate producer. The post-setup 00C0 callee 565C:0020, nonzero-mode
-  helper, runtime registration, successful loads and later inputs remain open.
+  or gate producer. FND-CONFIG-156 reads post-setup 00C0 callee
+  565C:0020's local memory initialization and return contract: an early
+  FFFF failure becomes a retained FF and passes the caller's zero check.
+  Its external effects, failure-byte producers and buffer validity remain open.
+  FND-CONFIG-157 locates the earlier OBJEX.GFF registration attempt before
+  both mode branches. Its outcome and the intervening callees' archive effects,
+  including 172C:000C with word 99, remain open. The calls at 0006765C,
+  0006766D and 00067679, nonzero-mode helper, gate producers, successful
+  loads and later inputs still need bounded readings.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

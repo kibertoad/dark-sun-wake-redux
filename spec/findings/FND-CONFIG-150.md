@@ -110,6 +110,13 @@ No gameplay role is assigned to the slot bytes or selectors.
 
 ## Alternatives
 
+FND-CONFIG-157 subsequently identifies an OBJEX.GFF open
+attempt before this initializer, and FND-CONFIG-153 identifies
+its installed FNFO records. FND-CONFIG-156 shows that the
+preceding 00C0 check can pass a retained failure byte. Neither
+that check nor the earlier open attempt establishes successful
+resource loading or unchanged archive state.
+
 FND-CONFIG-153 identifies the installed FNFO records at the
 local length limits. FND-CONFIG-154 reads bounded selector
 cases; runtime registration, actual loads and valid records

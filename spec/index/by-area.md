@@ -631,6 +631,8 @@ Entries by area.
 | [FND-CONFIG-153](../findings/FND-CONFIG-153.md) | The supported object archive holds FNFO resources at the initializer's exact length limits | recorded |
 | [FND-CONFIG-154](../findings/FND-CONFIG-154.md) | The installed FNFO bytes give bounded traversal selectors ordinary-word and temporary-slot cases | recorded |
 | [FND-CONFIG-155](../findings/FND-CONFIG-155.md) | The zero-mode pre-setup helper resets code-segment storage and restores flags through an internal return target | recorded |
+| [FND-CONFIG-156](../findings/FND-CONFIG-156.md) | The post-setup initializer's failure word survives its caller's low-byte zero check | recorded |
+| [FND-CONFIG-157](../findings/FND-CONFIG-157.md) | Startup attempts OBJEX.GFF registration before the metadata initializer | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

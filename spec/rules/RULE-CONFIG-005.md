@@ -178,6 +178,11 @@ None known.
   conditional selector cases, retaining the width-prefix direction flag.
   FND-CONFIG-155 reads the zero-mode
   pre-setup helper without finding a direct gate producer or registration.
+  FND-CONFIG-156 reads the following memory initializer's local
+  effects and failure-word truncation; passing the caller's low-byte
+  zero check does not establish successful initialization. FND-CONFIG-157
+  locates an earlier OBJEX.GFF registration attempt before both mode
+  branches, retaining the open outcome and intervening archive effects.
   Runtime registration, loads, valid records, reachable inputs, other writers
   and intervening helper effects remain open.
   Other shared sinks' incoming paths and computed or unrelocated pointer

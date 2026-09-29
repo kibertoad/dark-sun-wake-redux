@@ -401,3 +401,19 @@ flag and local clear, set and restore operations for string instructions.
 Report their write span conditionally when the entry state is unknown,
 and propagate saved-flags restoration across callees. This complements
 item 24's alternate return path and item 21's memory provenance.
+
+## 26. Preserve return widths and failure encodings at each caller
+
+FND-CONFIG-156 reads an initializer whose early allocation-failure
+path returns the word FFFF. Its caller stores only AL and the next
+caller tests only for zero. Treating every nonzero result as success
+would discard a concrete failure path. A different wrapper in
+FND-CONFIG-157 explicitly compares the full return word with FFFF
+before producing a boolean.
+
+**Request:** shared call summaries should retain each callee's return
+width and known result encodings, every caller's truncation or extension,
+the stored width and the actual branch predicate. Do not infer successful
+initialization from a nonzero check when failure encodings also pass it.
+Keep live failure occurrence and player-visible consequences separate
+from the statically demonstrated branch contract.
