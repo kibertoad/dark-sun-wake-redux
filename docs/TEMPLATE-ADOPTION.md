@@ -78,3 +78,27 @@ local link checks and 34 Node tests pass, including missing/stale ranges,
 misplaced paths, absent headings, published-page links and range rewriting.
 The configured project?s `tools/Test.ps1` passes all 700 .NET tests and the
 615-entry documentation check. No rules-page network read is part of the gate.
+
+
+## PR 24: restored rules and refreshed local authority
+
+Adopted `9349a89280de5f5f86a8f1b803d43cb1ad7575d0` from template PR 24.
+Detailed planning, evidence/status, fidelity, citation and entry-template
+instructions are restored. The exact local rules are pinned to
+`595fdbe8410a3f3bf76f6387d9d16c0e6fb3cb8f`; toolkit pin remains unchanged.
+Snapshots retain their upstream bytes and licenses under `vendor/upstream/`,
+and all section ranges are regenerated. Owner-only DOSBox access, the absent
+emulator harness and existing coverage paths remain local adaptations.
+
+Gap 6 is closed: the complete authoritative Protocol and Standard are locally
+readable, their source revision and digests are recorded in the lock, and
+`check-upstream` / explicit revision refresh are documented in
+`docs/UPSTREAM-RULES.md`. Freshness checks remain owner-initiated. PR 24 supplies
+no new reporters: all other requests remain in `gaps.md`, including those for
+automatic effect summaries and mapped-range validation. Restored guidance is
+not treated as implementation of those requests.
+
+Verification: `tools/Test.ps1` passes with the repository-local PowerShell 7
+runtime on PATH: 34 Node tests, 700 .NET tests, repository/configuration checks
+and the 615-entry / 158-row / 5-deviation documentation check. The full solution
+build passes with zero warnings and errors. No original content was read.

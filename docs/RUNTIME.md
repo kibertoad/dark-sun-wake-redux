@@ -14,7 +14,7 @@ afterwards. No agent run takes place, and the machine's run lock
 (`C:\ProgramData\refurbished-dinosaurs\run.lock`, or the path in
 `REFURBISHED_DINOSAURS_RUN_LOCK`) is never taken from this repository. If the
 owner lifts that rule, an agent run takes the lock as the protocol's
-[Running the original](../vendor/upstream/work-protocol.md#running-the-original) (lines 195-215)
+[Running the original](../vendor/upstream/work-protocol.md#running-the-original) (lines 197-217)
 says.
 
 ## BLD-GOG-EN-1.1

@@ -38,7 +38,7 @@ owner's rule, owner live sessions and the emulator harness.
 4. **Move queue items** between `Emulated call` and `Live session` where an
    answer changed, in the same commit. If the owner ever allows agent runs,
    they take the machine's run lock as the protocol's
-   [Running the original](../../../vendor/upstream/work-protocol.md#running-the-original) (lines 195-215)
+   [Running the original](../../../vendor/upstream/work-protocol.md#running-the-original) (lines 197-217)
    says, and items move to `Agent run`.
 5. **Commit**, then print the status block from `research-item` with
    `Batch: runtime access`.

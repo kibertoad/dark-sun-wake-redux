@@ -47,19 +47,55 @@ only the lines the link gives, and never a section already read this session.
    claim-relevant checks and synthetic examples in `docs/EVIDENCE-REVIEW.md`
    before treating a reading as complete; these add no statuses or schema.
 4. **Gather evidence statically**: data files, then a static reading
-   (procedure in `docs/GHIDRA.md`). Keep analysis output in ignored local storage.
+   (procedure in `docs/GHIDRA.md`). Settle statically whatever a static
+   reading can settle, even where a run could too. Keep neutral names
+   (`fn_00478CD0`) until evidence shows what a thing does. Keep decompiler
+   output, listings and dumps in ignored local storage, and read bounded
+   instruction context when signedness or control flow matters.
    Agents never run the game or take its run lock here. Items needing a run go
    under `Live session`; `live-session` requests the owner's observation.
-   Follow [Live sessions](../../../vendor/upstream/work-protocol.md#live-sessions) (lines 205-215)
-   and the local capture rules in `AGENTS.md` and `docs/live-sessions/README.md`.
-   An `Emulated call` follows
-   [Emulated calls](../../../vendor/upstream/work-protocol.md#emulated-calls) (lines 217-249),
-   needs no run lock, and waits for the harness described in `docs/RUNTIME.md`.
-5. **Record it** in `spec/` with the templates in
-   `docs/SPEC-ENTRY-TEMPLATES.md`, and give each entry it concerns the status
-   the evidence supports, as [Status](../../../vendor/upstream/documentation-standard.md#status) (lines 118-167),
-   with its Complete readings, defines it. What the evidence
-   does not reach goes in the entry's Open questions.
+   Follow the local capture rules in `AGENTS.md` and
+   `docs/live-sessions/README.md`.
+   An emulated call is always allowed, including in a repository whose
+   `AGENTS.md` keeps agents from running the original: those limits cover
+   runs of the game only. For an item under `Emulated call`, follow the protocol's
+   [Emulated calls](../../../vendor/upstream/work-protocol.md#emulated-calls) (lines 219-251).
+   It needs no run lock and waits for the harness described in `docs/RUNTIME.md`.
+   Write each reading under test as a procedure in
+   `tools/emu/`, set up only the state the function reads (through layout
+   fields that are `supported` or `established`), choose the special values,
+   the type edges, cases for every branch and seeded random cases, run them
+   all in the harness and in each reading, and compare exactly. The fixture
+   names arguments by the rule's Parameters and memory by field path or
+   glossary name, never by register or address, with
+   `starting_state: emulated-call`. The entry reaches `established` only if
+   the cases reached every branch it describes and the reading of its
+   callers and inputs is complete, and a rule with `# may run:` never does on
+   emulated calls alone. If Ghidra's p-code emulator disagrees on a replay,
+   move the item to `Blocked` with the defect under `Waiting on:` and change
+   nothing in the spec.
+5. **Record it** in `spec/` with the templates in `docs/SPEC-ENTRY-TEMPLATES.md`:
+   one finding per observation, an experiment with a fixture for a controlled
+   run. Then give each entry it concerns the status the evidence supports
+   for everything the entry says, and put what the evidence does not reach in
+   its Open questions. Only direct evidence counts: a finding that locates the
+   code producing the behaviour. Circumstantial evidence (sizes that divide,
+   value patterns, names, the manual, similar games) is recorded as findings
+   and named in Open questions for or against a reading, never listed in
+   `evidence`, and leaves the entry `unknown` or `sourced`.
+   A complete reading makes an entry `established` with no run, and is the
+   usual way there: every branch, every place a format is read or written,
+   every caller and every write to the state it reads, every indirect call
+   resolved, the instructions checked wherever types, signedness or casts
+   decide a result, and nothing left to interrupts or threads (`# may run:`),
+   memory nothing wrote, timing, or the operating system. List its findings in
+   the entry's `complete_reading`. An entry that depends on any of those needs
+   an experiment or dynamic finding beside the static one, covering every
+   branch and, for a random outcome, enough repetitions for its comparison. A
+   rule stays below `established` while a glossary claim it relies on is
+   `(unknown)`. Evidence that contradicts an entry makes it `disputed`. Write
+   names, numbers and tables in full, and never copy more than a short passage
+   of the game's writing, any of its art, or a meaningful slice of its code.
 6. **Update the queue in the same change**: delete the settled item, split an
    item that turned out to be two questions, add every new question as a new
    item in the queue file of the area of the first entry it names, and add

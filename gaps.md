@@ -1,6 +1,6 @@
 # Upstream gaps observed during restoration work
 
-These are the original requests for the restoration template and shared analysis
+These are the remaining requests for the restoration template and shared analysis
 tooling. They describe tooling behavior, not claims about the original game.
 
 The selected top ten were priority groups, not 39 independently completed gap
@@ -92,23 +92,6 @@ start address. The join tool now accepts the manifest path explicitly.
 
 **Request:** define a portable encoding of manifest paths for coverage files and
 check that the path and each address prefix resolve to the same manifest entry.
-
-## 6. Keep the authoritative research-batch rules available offline
-
-The repository's `AGENTS.md` and `.claude/skills/research-item/SKILL.md` explain
-the research procedure well enough to carry out a batch, but both say the
-published Protocol wins if they differ. During the `FMT-CONFIG-004` batch, the
-Protocol's research-batches page was unavailable through the available browser
-tool, so a possible disagreement could not be checked against the authoritative
-text. Direct opens of both the Protocol root and the documentation
-Standard were also unavailable through the browser tool on 2026-09-29.
-The adapted local skills and templates remain usable, but cannot verify
-whether either published page differs from them.
-
-**Request:** ship a versioned, locally readable copy or snapshot of the
-authoritative Protocol and Standard rules with the template, and identify
-the upstream revision it represents. Keep the remote page as the source of updates, with an
-explicit way to detect when the local snapshot needs refreshing.
 
 ## 7. Accept canonical overlay offsets as executable finding locations
 

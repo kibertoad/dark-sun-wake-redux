@@ -422,3 +422,25 @@ Acceptance: snapshot digests, heading/range checks, synthetic link tests and
 ranges and external rule-page links. Shorten canonical summaries by referring
 to the local sections, retaining local runtime exceptions and blank entry forms.
 Exit: commit the tooling adoption, update handover separately and push main.
+
+
+## Tooling maintenance: template PR 24 restored rules
+
+Adopt PR 24 at `9349a89280de5f5f86a8f1b803d43cb1ad7575d0`: restore the
+detailed planning, research, fidelity and entry-template guidance, and pin the
+exact Standard v1 and Protocol snapshots supplied by that commit. This supersedes
+PR 17's instruction to shorten summaries. Keep local snapshots in `vendor/`,
+configured identity, existing coverage paths and owner-only native-run limits.
+
+- Outcome: research instructions remain fully available offline, including
+  complete-reading and emulated-call acceptance criteria. No gameplay changes.
+- Evidence: PR 24's source files, lock digests and retained upstream licenses.
+- Acceptance: snapshot verification, local section links, synthetic Node tests,
+  `tools/Test.ps1` and solution build pass without reading original content.
+  Remove only gaps whose entire request is satisfied; record closure evidence
+  in `docs/TEMPLATE-ADOPTION.md`. Reporter requests remain open when only
+  guidance was restored. No spec or parity status changes.
+- Risks: generic run permissions must not override the local prohibition, and
+  upstream example IDs must stay outside the project documentation scan.
+- Exit: review the adapted diff and passing checks, commit the tooling batch,
+  audit processes and update the handover separately. No owner questions.
