@@ -30,17 +30,18 @@ Entries, queue files and parity rows outside CONFIG and SCRIPT.
 
 - Stage: Slices.
 - Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 578 entries and 158 parity rows).
+  documentation check passed with 581 entries and 158 parity rows).
   Full solution build passed with zero warnings and errors.
 - Unfinished: none.
 - Blockers: none known.
 - Next:
-  - Q-CONFIG-008 and Q-SCRIPT-003, follow FND-CONFIG-173's
-    region callees and result origins and FND-CONFIG-169's local
-    mode callees. Retain FND-CONFIG-172's graph/count producers,
-    FND-CONFIG-175's guard/alias conditions and FND-CONFIG-170's
-    near-buffer inputs. Bound cache/capacity inputs, resource selection
-    and reachable MAS/99 instructions for FND-CONFIG-160 and RULE-SCRIPT-010.
+  - Q-CONFIG-008 and Q-SCRIPT-003, follow FND-CONFIG-169's local
+    mode callees and FND-CONFIG-178's geometry branches and input
+    producers. Retain FND-CONFIG-176 and FND-CONFIG-177's count,
+    sentinel, alias and output conditions, FND-CONFIG-172's graph/count
+    producers and FND-CONFIG-170's near-buffer inputs. Bound cache/
+    capacity inputs, resource selection and reachable MAS/99 instructions
+    for FND-CONFIG-160 and RULE-SCRIPT-010.
   - Q-CONFIG-008 and Q-SCRIPT-003, follow FND-CONFIG-171's
     indirect-target producers, FND-CONFIG-175's shared-CS writers,
     FND-CONFIG-167's runtime metadata/shared-slot producers and
