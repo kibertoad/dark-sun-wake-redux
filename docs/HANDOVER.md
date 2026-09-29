@@ -13,20 +13,19 @@ See the [work protocol](../vendor/upstream/work-protocol.md#working-files) (line
 
 ## State
 
-- Stage: Slices, with slices 2 and 3 in progress. The Survey exit is checked.
-- Last gate: 2026-09-30, `./tools/Test.ps1` passed with PowerShell 7 (34 Node
-  tests and 700 .NET tests; documentation check: 615 entries, 158 parity rows,
-  5 deviations). The full solution builds without warnings.
-- Merged v1 tooling and workflow adoption is complete; see
-  `docs/TEMPLATE-ADOPTION.md`. The overbroad gap cleanup has been corrected:
-  original requests remain in `gaps.md` until individually verified against
-  their full acceptance criteria. Ten priority groups do not mean 39 resolved
-  requests; the adoption record distinguishes delivered tools from guidance.
-- Template PR 17 is adopted: Methodology, Standard v1 and Protocol are local
-  task authority. Section links carry verified line ranges; updates occur only
-  when the owner requests them. `node tools/upstream.mjs links` checks ranges.
-- `node tools/upstream.mjs docs --check --references docs` runs the verified
-  offline checker. Snapshot/configuration tests require PowerShell 7 on PATH.
+- Stage: Slices, with slices 2 and 3 in progress. The refreshed Survey
+  file-denominator exit needs the Q-EXE-003 re-audit.
+- Last gate: 2026-09-30, `./tools/Test.ps1` passed with repository-local
+  PowerShell 7 (35 Node tests, 700 .NET tests; documentation check: 615
+  entries, 158 parity rows, 5 deviations). The full solution builds with no
+  warnings or errors.
+- Latest template main, including PRs 25 and 26, is adopted; the exact pinned
+  snapshots and CI checker agree. See `docs/TEMPLATE-ADOPTION.md` for scope
+  and gap disposition. Gap 7 is closed; unmet reporter requests remain open.
+- Probe is none. Native DOSBox access remains owner-only; no draw probe or
+  RNG hook has been implemented by this update.
+- Offline checker and section-link verification pass. Snapshot/configuration
+  tests require the repository-local PowerShell 7 runtime on PATH.
 
 ## Unfinished
 
@@ -38,7 +37,8 @@ None known.
 
 ## Next
 
-1. `Q-CONFIG-008`, `Q-CONFIG-007` and `Q-CONFIG-002`, for `RULE-CONFIG-005`
+1. `Q-EXE-003`, the revised Survey listing/exclusions exit; then
+   `Q-CONFIG-008`, `Q-CONFIG-007` and `Q-CONFIG-002`, for `RULE-CONFIG-005`
    and `FMT-CONFIG-003`.
 2. `Q-UI-005` and `Q-SAVE-001`, for `SCR-UI-013` and `SCR-UI-014`;
    `Q-UI-002`, for `SCR-UI-007`.
