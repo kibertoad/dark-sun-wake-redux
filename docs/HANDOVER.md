@@ -9,12 +9,12 @@ History is in git, open research questions are in `queue/`, the plan is in
 `docs/goals/`, and the open live session requests are the files in
 `docs/live-sessions/`. Name items and entries by ID; what research found or
 tried belongs in the spec and the queue, never here.
-See the [work protocol](https://dinorefurb.com/work-protocol/#working-files).
+See the [work protocol](../vendor/upstream/work-protocol.md#working-files) (lines 10-30).
 
 ## State
 
 - Stage: Slices, with slices 2 and 3 in progress. The Survey exit is checked.
-- Last gate: 2026-09-30, `./tools/Test.ps1` passed with PowerShell 7 (31 Node
+- Last gate: 2026-09-30, `./tools/Test.ps1` passed with PowerShell 7 (34 Node
   tests and 700 .NET tests; documentation check: 615 entries, 158 parity rows,
   5 deviations). The full solution builds without warnings.
 - Merged v1 tooling and workflow adoption is complete; see
@@ -22,6 +22,9 @@ See the [work protocol](https://dinorefurb.com/work-protocol/#working-files).
   original requests remain in `gaps.md` until individually verified against
   their full acceptance criteria. Ten priority groups do not mean 39 resolved
   requests; the adoption record distinguishes delivered tools from guidance.
+- Template PR 17 is adopted: Methodology, Standard v1 and Protocol are local
+  task authority. Section links carry verified line ranges; updates occur only
+  when the owner requests them. `node tools/upstream.mjs links` checks ranges.
 - `node tools/upstream.mjs docs --check --references docs` runs the verified
   offline checker. Snapshot/configuration tests require PowerShell 7 on PATH.
 
