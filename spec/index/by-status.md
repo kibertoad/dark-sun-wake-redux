@@ -223,7 +223,7 @@ Entries by status.
 
 ## recorded
 
-425 entries.
+426 entries.
 
 | ID | Title |
 |---|---|
@@ -463,6 +463,7 @@ Entries by status.
 | [FND-CONFIG-206](../findings/FND-CONFIG-206.md) | The text-width helper sums unchecked per-character words with sixteen-bit wrapping |
 | [FND-CONFIG-207](../findings/FND-CONFIG-207.md) | A resident path installs a record whose lookup pointer comes from a FONT selector request |
 | [FND-CONFIG-208](../findings/FND-CONFIG-208.md) | The pointer acquisition wrapper gates archive state and distinguishes optional-output clearing paths |
+| [FND-CONFIG-209](../findings/FND-CONFIG-209.md) | The shared reader allocation wrapper requests a wrapped product plus one and marks runtime header extent |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |

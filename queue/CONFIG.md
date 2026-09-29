@@ -351,6 +351,9 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-208 connects the pointer acquisition wrapper to the
   shared archive reader and distinguishes signature/reader output paths.
   Archive producers, reader storage, aliases and FONT lifetime remain open.
+  FND-CONFIG-209 resolves the allocation wrapper's product-plus-one
+  request and header-derived marker, retaining runtime allocation/header
+  contracts, admitted counts, storage aliases and resource lifetime.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 

@@ -123,6 +123,9 @@ Next ID: Q-SCRIPT-008
   request; acquisition, later state and valid storage remain open.
   FND-CONFIG-208 reads acquisition signature and optional-output
   gates; valid archive/resource storage and current lifetime remain open.
+  FND-CONFIG-209 resolves the allocation wrapper's product-plus-one
+  request and header-derived marker, retaining runtime allocation/header
+  contracts, admitted counts, storage aliases and resource lifetime.
   Full external effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.
