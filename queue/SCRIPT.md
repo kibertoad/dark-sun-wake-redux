@@ -93,6 +93,8 @@ Next ID: Q-SCRIPT-008
   Later state writers and actual startup/hardware outcomes remain open.
   FND-CONFIG-194 reads the release gate and compaction chain;
   accepted slots, finite progress and hardware effects remain open.
+  FND-CONFIG-195 connects the pointer consumer to a direct release call
+  outside the signed wrapper; record fields and accepted handles remain open.
   Full external effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.

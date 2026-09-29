@@ -52,8 +52,10 @@ The complete local 3A8E:0A26 body occupies
 through 1000:2E48 before reading its pointer. A null
 pointer returns FFFF. A nonnull pointer with bit 4000
 set in its word at offset 9E first passes its word at
-A0 to 1BF3:28C5. The callee's effects are not assigned
-by this reading.
+A0 to 1BF3:28C5. FND-CONFIG-194 reads that callee's flag gates, pool changes,
+compaction and VGA accesses. FND-CONFIG-195 verifies this direct
+route has no own signed-handle or sentinel check; accepted record
+fields and native hardware outcomes remain open.
 
 The body compares the target with current DS:A105. A
 match replaces DS:A105 with the target's far link at EE.
