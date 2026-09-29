@@ -206,7 +206,7 @@ Entries by status.
 
 ## recorded
 
-339 entries.
+340 entries.
 
 | ID | Title |
 |---|---|
@@ -364,6 +364,7 @@ Entries by status.
 | [FND-CONFIG-109](../findings/FND-CONFIG-109.md) | Overlay 208 setup stores the selector gate and code from its arguments |
 | [FND-CONFIG-110](../findings/FND-CONFIG-110.md) | Overlay 208 selector caller has a guarded entry route and a conditional repeated-call route |
 | [FND-CONFIG-111](../findings/FND-CONFIG-111.md) | Six declared setup calls supply overlay 208 gate and code inputs |
+| [FND-CONFIG-112](../findings/FND-CONFIG-112.md) | Resident mode five dispatch forwards two input words to overlay 208 entry 006B |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |

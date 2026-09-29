@@ -78,9 +78,11 @@ could change the state that controls repetition.
 
 ## Alternatives
 
-The 006B incoming routes, helper results, record-byte producers,
-selector state changes and termination of the repeated-call route
-remain unread (Q-CONFIG-008). Neither a completed visible action
+FND-CONFIG-112 traces 006B's exact relocated resident call to
+a mode-five dispatch forwarding two input words. The resident
+routine's incoming routes and inputs, helper results, record-byte
+producers, selector state changes and termination of the repeated-call
+route remain unread (Q-CONFIG-008). Neither a completed visible action
 nor unbounded recursion is established by this local call cycle.
 Computed, aliased or unrelocated incoming calls remain possible.
 
