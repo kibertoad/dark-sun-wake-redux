@@ -20,22 +20,22 @@ Other areas' entries, queue files and parity rows. `src/` and `tests/`.
   inventories without new reference or registration coverage.
 - Q-CONFIG-008, FND-CONFIG-142: do not repeat the literal slot/metadata
   writer query without new coverage of other write forms.
+- Q-CONFIG-008, FND-CONFIG-146: do not repeat the literal selector-base
+  query without new coverage of other producer forms.
 
 ## Handover
 
 - Stage: Slices.
 - Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 542 entries and 158 parity rows).
+  documentation check passed with 544 entries and 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
-- Next: Q-CONFIG-008, establish the near-state-pointer segment
-  relationship and selector/starting-position producers from FND-CONFIG-145.
-  Slot/metadata write-form gaps from
-  FND-CONFIG-142 and remaining inputs stay in Q-CONFIG-008. Pointer replacement,
-  setup entry and later table effects from FND-CONFIG-144 remain open.
-  Transitive helper effects from
-  FND-CONFIG-131 and FND-CONFIG-130, and remaining helper effects from
-  FND-CONFIG-109 stay open. Entry 28C9:1261 provenance needs new
-  coverage after FND-CONFIG-114; remaining gaps stay in Q-CONFIG-008.
-  Q-CONFIG-010 tracks acquisition-state changes;
-  Q-CONFIG-009 has an owner-run request.
+- Next: Q-CONFIG-008, read setup invocation and bypass-state paths from
+  FND-CONFIG-147, or later slot activation and stored-index producers.
+  The near-state-pointer segment relationship and selector producers in
+  FND-CONFIG-145 remain open for other calls. Slot/metadata write-form
+  gaps from FND-CONFIG-142 and pointer replacement remain in Q-CONFIG-008.
+  Transitive helper effects from FND-CONFIG-131, FND-CONFIG-130 and
+  FND-CONFIG-109 remain open. Entry 28C9:1261 provenance needs new
+  coverage after FND-CONFIG-114. Q-CONFIG-010 tracks acquisition-state
+  changes; Q-CONFIG-009 has an owner-run request.
