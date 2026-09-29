@@ -4,7 +4,7 @@ title: Script-cache lookup and resource transfer
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-001, FND-SCRIPT-003, FND-SCRIPT-006, FND-SCRIPT-019, FND-SCRIPT-020, FND-SCRIPT-021, FND-SCRIPT-022, FND-SCRIPT-023, FND-CONFIG-151, FND-CONFIG-161, FND-CONFIG-162, FND-CONFIG-163, FND-CONFIG-164, FND-CONFIG-165, FND-CONFIG-166, FND-CONFIG-167, FND-CONFIG-168, FND-CONFIG-179, FND-CONFIG-170, FND-CONFIG-171, FND-CONFIG-172, FND-CONFIG-173, FND-CONFIG-174, FND-CONFIG-175, FND-CONFIG-176, FND-CONFIG-177, FND-CONFIG-178, FND-CONFIG-180, FND-CONFIG-181, FND-CONFIG-182]
+evidence: [FND-SCRIPT-001, FND-SCRIPT-003, FND-SCRIPT-006, FND-SCRIPT-019, FND-SCRIPT-020, FND-SCRIPT-021, FND-SCRIPT-022, FND-SCRIPT-023, FND-CONFIG-151, FND-CONFIG-161, FND-CONFIG-162, FND-CONFIG-163, FND-CONFIG-164, FND-CONFIG-165, FND-CONFIG-166, FND-CONFIG-167, FND-CONFIG-168, FND-CONFIG-179, FND-CONFIG-170, FND-CONFIG-171, FND-CONFIG-172, FND-CONFIG-173, FND-CONFIG-174, FND-CONFIG-175, FND-CONFIG-176, FND-CONFIG-177, FND-CONFIG-178, FND-CONFIG-180, FND-CONFIG-181, FND-CONFIG-182, FND-CONFIG-183, FND-CONFIG-184, FND-CONFIG-185]
 conflicting: []
 split_with: []
 related: [FMT-SCRIPT-001, RULE-SCRIPT-002]
@@ -160,6 +160,14 @@ the parent's continuation (FND-CONFIG-181). The external path append
 uses signed word-length gates and a separate prefix-dependent zero store
 in its truncation branch; capacities, aliases and reachable inputs remain
 conditions (FND-CONFIG-182).
+The intervening overlay initializer has byte, allocation and handle-result
+branches. Its failure requests cleanup and then the error helper's process
+termination, while the parent ignores a returning result (FND-CONFIG-183).
+Cleanup mutates records, assigns returned release pointers, marks handles
+and zeros a table without a rollback guarantee; VGA and runtime outcomes
+remain separate (FND-CONFIG-184). The named resident region call supplies
+a zero optional byte, skipping its later GMAP/bit-clear blocks, while its
+earlier PAL and RMAP/MAP gates remain independent (FND-CONFIG-185).
 The collector restores the retained consumer result on its local normal
 return, with near-buffer and guard dependencies remaining (FND-CONFIG-170).
 Following resident calls test callback fields, reload their targets after

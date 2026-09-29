@@ -223,7 +223,7 @@ Entries by status.
 
 ## recorded
 
-399 entries.
+402 entries.
 
 | ID | Title |
 |---|---|
@@ -437,6 +437,9 @@ Entries by status.
 | [FND-CONFIG-180](../findings/FND-CONFIG-180.md) | The bitmap and registration helpers have different result gates and exact callee argument widths |
 | [FND-CONFIG-181](../findings/FND-CONFIG-181.md) | The filename helper clears an archive handle and mixes far SS output with near DS processing |
 | [FND-CONFIG-182](../findings/FND-CONFIG-182.md) | The path append helper uses signed length gates and a prefix-dependent truncation terminator |
+| [FND-CONFIG-183](../findings/FND-CONFIG-183.md) | The intervening overlay initializer gates on a byte and checks allocation and handle results before cleanup |
+| [FND-CONFIG-184](../findings/FND-CONFIG-184.md) | Initializer failure cleanup rewrites record state and clears handles after unchecked release calls |
+| [FND-CONFIG-185](../findings/FND-CONFIG-185.md) | The named mode path sets a word and calls the resident region loader with its optional-byte argument zero |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |

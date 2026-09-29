@@ -64,6 +64,12 @@ Next ID: Q-SCRIPT-008
   FND-CONFIG-182 reads the path append and runtime scan/copy helpers;
   signed lengths, prefix-dependent zero placement, aliases, capacities
   and reachable filename/prefix inputs remain conditional.
+  FND-CONFIG-183 reads the initializer's checked allocation/handle gates
+  and raw descriptor/trampoline target; FND-CONFIG-184 reads failure
+  cleanup's ordered record/pointer/handle writes and VGA dependency.
+  FND-CONFIG-185 reads the named zero-option resident resource call.
+  Full producer, allocation/runtime, service and termination outcomes
+  remain open; a returning result alone does not settle the parent gate.
   Full external effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.
@@ -122,6 +128,13 @@ Next ID: Q-SCRIPT-008
   scan-limit results, odd/even byte copies and explicit zero placement.
   Add them after supported argument/storage layouts exist; overlay
   callers, producer reachability and archive I/O need separate evidence.
+  FND-CONFIG-183 adds resident slot exhaustion, geometry/product and
+  paragraph-capacity cases after supported inputs exist. FND-CONFIG-185
+  adds the resident word-eight setter and fixed table-fill cases; active
+  region calls need complete service/resource input definitions first.
+  FND-CONFIG-184 adds signed at-most-one handle-wrapper bypass cases.
+  Its VGA path, overlay initializer/cleanup and process termination cannot
+  be established by interrupt-free resident calls.
   Resource and error branches need separate provenance and cannot
   establish operating-system outcomes by emulation. Tried: FND-SCRIPT-019 reads the local instruction paths;
   the emulator harness does not exist yet.

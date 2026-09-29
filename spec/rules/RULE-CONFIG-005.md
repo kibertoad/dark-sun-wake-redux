@@ -206,6 +206,10 @@ None known.
   results. FND-CONFIG-180 reads the local bitmap/registration gates;
   FND-CONFIG-181 bounds archive-handle, filename and segment conditions;
   FND-CONFIG-182 reads the append helper's signed gates and zero store.
+  FND-CONFIG-183 reads the intervening initializer's checked failures;
+  FND-CONFIG-184 reads cleanup's record, pointer and handle ordering.
+  FND-CONFIG-185 bounds the named zero-option resident call. Their
+  input/segment, runtime, hardware and termination outcomes remain open.
   FND-CONFIG-170 resolves local retained-result restoration through the
   collector; FND-CONFIG-171 reads the following resident callback gates,
   fresh targets and fixed word writes. FND-CONFIG-172 distinguishes child

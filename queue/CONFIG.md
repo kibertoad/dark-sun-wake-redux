@@ -273,6 +273,12 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-182 reads the path append and runtime scan/copy helpers;
   signed lengths, prefix-dependent zero placement, aliases, capacities
   and reachable filename/prefix inputs remain conditional.
+  FND-CONFIG-183 reads the initializer's checked allocation/handle gates
+  and raw descriptor/trampoline target; FND-CONFIG-184 reads failure
+  cleanup's ordered record/pointer/handle writes and VGA dependency.
+  FND-CONFIG-185 reads the named zero-option resident resource call.
+  Full producer, allocation/runtime, service and termination outcomes
+  remain open; a returning result alone does not settle the parent gate.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 

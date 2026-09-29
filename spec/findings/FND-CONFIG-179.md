@@ -120,6 +120,9 @@ its resident argument widths. The remaining local observations are retained
 with that correction; actual registration, resources and native outcomes
 are still conditional. FND-CONFIG-181 subsequently bounds 0297's archive
 handle, filename and near/far segment conditions.
+FND-CONFIG-183 and FND-CONFIG-184 subsequently bound the
+intervening initializer and failure cleanup; FND-CONFIG-185 reads
+the named resident zero-option call and separate word setter.
 
 Q-CONFIG-008 and Q-SCRIPT-003 retain word/byte and record
 producers, valid pointer fields, selected resources and

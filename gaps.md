@@ -367,6 +367,14 @@ Require the build's known range and fixup counts as positive controls,
 and fail at range construction instead of allowing invalid ranges to
 be silently clipped or used in a negative finding.
 
+FND-CONFIG-183 follows a raw call through its declared descriptor and
+resident trampoline to a complete overlay body, while FND-COMBAT-009
+retains an unreconciled mapped-decompiler target for the same caller.
+Shared reports should retain all three identities: the raw fixup token,
+the descriptor/trampoline destination and the analysis environment's
+mapped address. A decompiler target name must not silently replace that
+chain. Reconcile mapping provenance before merging the two readings.
+
 ## 23. Distinguish function-body byte counts from contiguous bounds
 
 The 07B1 resource reader's inventory size is 546 bytes, while its
@@ -456,6 +464,13 @@ using them; a subsequent field comparison supplies the actual predicate.
 A pointer assigned before I/O can bypass a later request after failure.
 Shared summaries should track the last flag producer for each branch and
 keep output assignment separate from accepted resource content.
+
+FND-CONFIG-183 and FND-CONFIG-184 further separate returning cleanup
+from a later process-termination request. Shared summaries should retain
+whether each continuation assumes the callee returns, preserve field
+writes after unchecked services, and flag port accesses even in a path
+whose later slot handling is skipped. An ignored result is not evidence
+that the process stays alive or the cleanup completed successfully.
 
 ## 28. Exclude superseded rules from active function ownership
 
