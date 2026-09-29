@@ -23,13 +23,13 @@ Other areas' entries, queue files and parity rows. `src/` and `tests/`.
 
 - Stage: Slices.
 - Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 512 entries and 158 parity rows).
+  documentation check passed with 514 entries and 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
-- Next: Q-CONFIG-008, read helper state writes from FND-CONFIG-115
-  and remaining helper effects from FND-CONFIG-109. Entry 28C9:1261
-  provenance needs new coverage after FND-CONFIG-114. Code-source, guard
-  and runtime-state gaps from FND-CONFIG-102 and FND-CONFIG-105 through
-  FND-CONFIG-115 remain in Q-CONFIG-008.
+- Next: Q-CONFIG-008, read overlay 179 entry 0066 effects and
+  overlay 204 entry 0025 incoming routes from FND-CONFIG-117. Transitive
+  callee effects from FND-CONFIG-116 and helper effects from
+  FND-CONFIG-109 remain open. Entry 28C9:1261 provenance needs new
+  coverage after FND-CONFIG-114; remaining gaps stay in Q-CONFIG-008.
   Q-CONFIG-010 tracks acquisition-state changes;
   Q-CONFIG-009 has an owner-run request.
