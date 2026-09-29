@@ -577,6 +577,9 @@ Entries by area.
 | [FND-CONFIG-099](../findings/FND-CONFIG-099.md) | The pre-dispatch position and region helpers write separate fixed data ranges | recorded |
 | [FND-CONFIG-100](../findings/FND-CONFIG-100.md) | Overlay 193 routes codes 235 through 268 to overlay 176's conditional feedback entry | recorded |
 | [FND-CONFIG-101](../findings/FND-CONFIG-101.md) | Eleven declared overlay calls enter the selector upstream of overlay 176 feedback | recorded |
+| [FND-CONFIG-102](../findings/FND-CONFIG-102.md) | Overlay 172 forwards a queued frame code with the selector byte gate zero | recorded |
+| [FND-CONFIG-103](../findings/FND-CONFIG-103.md) | Overlay 173 passes a nonzero byte gate and bypasses overlay 176 feedback at its selector call | recorded |
+| [FND-CONFIG-104](../findings/FND-CONFIG-104.md) | The resident APFM input branch maps queued mouse bit 2 to overlay 172 frame value 64 | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

@@ -53,7 +53,11 @@ and byte gate must be checked at each caller.
 
 ## Alternatives
 
-The caller branches and arguments remain unread (Q-CONFIG-008).
+FND-CONFIG-102 traces overlay 172's zero-gate frame-code route, and
+FND-CONFIG-104 traces its resident frame-event producer.
+FND-CONFIG-103 excludes overlay 173's invocation from the selector's
+direct overlay 176 branch by its literal nonzero byte. The other nine
+caller sites' branches and arguments remain unread (Q-CONFIG-008).
 A site can call this selector with codes outside 235..268 or a nonzero
 byte gate and therefore bypass overlay 176. Computed pointers, far
 jumps, address aliases, unrelocated operands or other relative-call

@@ -107,7 +107,11 @@ Next ID: Q-CONFIG-011
   other prior control types and later state changes remain open.
   FND-CONFIG-100 traces overlay 176's two message sites through overlay
   193's range- and byte-gated selector. FND-CONFIG-101 inventories its
-  eleven declared overlay callers; their selector inputs remain unread.
+  eleven declared overlay callers. FND-CONFIG-102 traces overlay 172's
+  zero-gate frame-code source; FND-CONFIG-104 supplies a resident
+  mouse-bit-two/value-64 producer. FND-CONFIG-103 excludes overlay 173's
+  direct route by its literal nonzero gate. The other nine caller sites
+  and the live code-source state remain unread.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?
