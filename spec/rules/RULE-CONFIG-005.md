@@ -236,6 +236,8 @@ None known.
   signed wrapper, retaining accepted handles and other callers.
   FND-CONFIG-196 reads a display-state producer with conditional old-handle
   releases and common replacement writes; its incoming path stays open.
+  FND-CONFIG-197 reads temporary A033 assignment/restoration around
+  refresh services without establishing their successful effects.
   FND-CONFIG-170 resolves local retained-result restoration through the
   collector; FND-CONFIG-171 reads the following resident callback gates,
   fresh targets and fixed word writes. FND-CONFIG-172 distinguishes child

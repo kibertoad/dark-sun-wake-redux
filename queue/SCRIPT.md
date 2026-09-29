@@ -97,6 +97,8 @@ Next ID: Q-SCRIPT-008
   outside the signed wrapper; record fields and accepted handles remain open.
   FND-CONFIG-196 reads a display-state writer; incoming registration,
   arguments, accepted replacements and later refresh remain open.
+  FND-CONFIG-197 reads the refresh wrappers' temporary A033 producer
+  and local zero return; full input and alias provenance remain open.
   Full external effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.

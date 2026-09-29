@@ -312,6 +312,9 @@ Next ID: Q-CONFIG-011
   old-handle release gates and untested replacement writes. Its bounded
   incoming inventories found no route; new pointer/registration evidence
   is needed before repeating them. Arguments and later refresh remain open.
+  FND-CONFIG-197 reads refresh wrappers that temporarily replace A033,
+  restore one saved word and normalize returning completion to zero.
+  Input/segment/frame provenance and transitive effects remain open.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 
