@@ -45,8 +45,8 @@ DS:9BD3 is zero and DS:9BE2 compares signed in 235..268
 (FND-CONFIG-100). This caller supplies no local comparison that
 proves either condition or the pointed state at DS:9BE6.
 
-Together FND-CONFIG-102, FND-CONFIG-103, FND-CONFIG-105,
-FND-CONFIG-106 and FND-CONFIG-107 account for the other ten sites
+Together FND-CONFIG-102, FND-CONFIG-103, FND-CONFIG-125,
+FND-CONFIG-106 and FND-CONFIG-126 account for the other ten sites
 in FND-CONFIG-101. Across the eleven declared calls, six pass
 literal zero for the gate, four pass literal nonzero, and this one
 reads the stored gate. This completes that inventory's local gate

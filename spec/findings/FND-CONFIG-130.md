@@ -1,9 +1,9 @@
 ---
-id: FND-CONFIG-116
+id: FND-CONFIG-130
 title: The resident record-taking helper returns an index with a conditional record remapping
-status: superseded
+status: recorded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: [FND-CONFIG-130]
+superseded_by: []
 recorded_by: kibertoad
 reproduced_by: []
 method: static
@@ -14,20 +14,24 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 31E0:2DBD
-tool: Python 3.14.7 and Capstone 5.0.7 bounded 16-bit disassembly; FBOV fixup and trampoline mapping
+tool: Python 3.14.7 and Capstone 5.0.7 bounded disassembly; verified MZ relocation and FBOV fixup segment mapping
 environment: null
 ---
 
 ## Observation
 
+This entry corrects the raw segment labels in FND-CONFIG-116.
+MZ relocations at 0x0001E417 and 0x0001E429 map raw segment 3F49 to loaded segment 4F49.
+The bounded control-flow description is retained with mapped addresses.
+
 The local helper called four times by the state-two/three block in
-FND-CONFIG-115 begins at file offset `0x0001E3F8`, resident
+FND-CONFIG-129 begins at file offset `0x0001E3F8`, resident
 28C9:0568, and returns at `0x0001E45E`. It passes DS:1408,
 DS:140A and its input words at BP+12 and BP+14 to resident
 31E0:2DBD at file offset `0x00029DBD`.
 
 It retains the returned word as an index. With three-byte stride,
-it reads a byte and word at `3F49:0C33` and `3F49:0C34`.
+it reads a byte and word at `4F49:0C33` and `4F49:0C34`.
 Unless that byte is one and the word differs from 9999, the original
 index is returned. Otherwise the word selects a 23-byte record
 through DS:19C1. If that record's first word differs from 5879,
@@ -67,4 +71,10 @@ read. Check each bypass to the common return. Resolve the relocated
 callee operand to 31E0:2DBD using the resident load segment, then
 locate its prologue and return without importing its unread callees'
 effects into this wrapper finding. Compare the result tests in
-FND-CONFIG-115 and argument forwarding in FND-CONFIG-113.
+FND-CONFIG-129 and argument forwarding in FND-CONFIG-128.
+
+For the segment-label correction, select each named operand from the
+MZ relocation list or its overlay's declared FBOV fixup list. Apply the
+recorded load segment to MZ operands; decode an overlay operand's shifted
+descriptor index and resolve its segment-table entry before labelling an
+address. Raw segment operands and mapped addresses are different forms.

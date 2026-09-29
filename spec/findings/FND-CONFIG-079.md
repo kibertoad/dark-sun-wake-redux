@@ -33,7 +33,7 @@ callback function there as in its window.
 The loop beginning at `39D1:0854` obtains an event through resident
 `4464:02FE`, passes it through a local event preparation routine, and
 calls `39D1:071F` for events that pass the loop's initial filter.
-FND-CONFIG-078 establishes that the stored-character list window receives
+FND-CONFIG-124 establishes that the stored-character list window receives
 overlay 171's `5664:002F` as its `0xF5` callback when window setup succeeds.
 
 ## Interpretation
@@ -57,4 +57,4 @@ Map resident segment `39D1` to file base `0x0002EF10`. Disassemble
 `0x0002F62F..0x0002F763` and `0x0002F764..0x0002F822`. Follow the
 copy of the 24-byte record, the tests of its first word, `DS:A103`,
 `DS:A0FD` and window offset `0xF5`, and the indirect far call at file
-offset `0x0002F712`. Compare the callback installed in FND-CONFIG-078.
+offset `0x0002F712`. Compare the callback installed in FND-CONFIG-124.

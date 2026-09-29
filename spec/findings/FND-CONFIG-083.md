@@ -31,7 +31,7 @@ list-opening entry passes the same far address to overlay 190's
 `571F:0034` at file offset `0x000583C0`. That trampoline reaches file
 offset `0x000794E1`. Its routine stores the address at `DS:61A2` and
 passes it to resident `39D1:0418`, which copies it to global far pointer
-`DS:A0F1`. This is the second address-taking use noted in FND-CONFIG-078.
+`DS:A0F1`. This is the second address-taking use noted in FND-CONFIG-124.
 
 For an event whose first word is neither 1 nor 3, resident `39D1:0752`
 tests the registered-window count. With a nonzero count, it first tries the

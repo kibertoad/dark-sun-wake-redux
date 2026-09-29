@@ -1,9 +1,9 @@
 ---
-id: FND-CONFIG-113
+id: FND-CONFIG-128
 title: A resident event-five value-64 branch forwards the event record to mode dispatch
-status: superseded
+status: recorded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: [FND-CONFIG-128]
+superseded_by: []
 recorded_by: kibertoad
 reproduced_by: []
 method: static
@@ -17,11 +17,15 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 1000:0699
-tool: Python 3.14.7 and Capstone 5.0.7 bounded 16-bit disassembly; MZ relocation and segment-table mapping
+tool: Python 3.14.7 and Capstone 5.0.7 bounded disassembly; verified MZ relocation and FBOV fixup segment mapping
 environment: null
 ---
 
 ## Observation
+
+This entry corrects the raw segment labels in FND-CONFIG-113.
+MZ relocations at 0x0001F1A2 and 0x0001F31D map raw segments 42A1 and 3C10 to loaded segments 52A1 and 4C10.
+The bounded control-flow description is retained with mapped addresses.
 
 Resident entry 28C9:1261 begins at file offset `0x0001F0F1`
 and returns at `0x0001F3A7`. It requires its first word argument
@@ -30,12 +34,12 @@ its third word argument at BP+0A against 8, 32, 64, 128 and 256.
 The value-64 target is `0x0001F19A`.
 
 The value-64 branch exits when DS:0DA4 is nonzero and the far
-pointer at `42A1:0004` is zero. Otherwise it requires DS:0DAB
+pointer at `52A1:0004` is zero. Otherwise it requires DS:0DAB
 nonzero. Values two and three enter a separate helper-heavy path;
 other nonzero values jump to `0x0001F31C`.
 
 For the bounded DS:0DAB-equals-one path, that block continues only
-when word `3C10:0019` is zero or signed DS:426D is below four.
+when word `4C10:0019` is zero or signed DS:426D is below four.
 It checks DS:0DAB still equal to one, sets byte DS:0DA4 to one,
 and calls resident helper 1000:0699 with source SS:BP+06 and
 count 24. It then calls local 28C9:05CF at
@@ -48,7 +52,7 @@ the supplied source pointer to that stack argument area. It copies
 whole words followed by the remaining byte, then returns with the
 copied area retained. This call therefore forwards the twelve input
 words starting at BP+06 in order, including the words at BP+12
-and BP+14 used by 28C9:05CF (FND-CONFIG-112).
+and BP+14 used by 28C9:05CF (FND-CONFIG-127).
 
 A search of the complete declared resident segment range
 `0x0001DE90..0x000217F0` yields one 16-bit relative near-call
@@ -63,7 +67,7 @@ local near calls use neither relocated far-pointer representation.
 One explicit event-five/value-64 route preserves the incoming record
 through resident mode dispatch. When the later stored mode is five,
 its two words at event-record offsets 12 and 14 reach overlay 208
-entry 006B (FND-CONFIG-112, FND-CONFIG-110). The handler does
+entry 006B (FND-CONFIG-127, FND-CONFIG-110). The handler does
 not construct those input words on this bounded state-one path.
 The early event and state checks remain necessary in addition to
 mode five and the later selector gates.
@@ -71,7 +75,7 @@ mode five and the later selector gates.
 ## Alternatives
 
 FND-CONFIG-114 records bounded incoming-reference inventories
-without identifying registration or a producer. FND-CONFIG-115 reads
+without identifying registration or a producer. FND-CONFIG-129 reads
 the value-64 state-two/three block and its later state-one equality.
 Registration, event producers, meanings of the two forwarded words,
 allowed state values and helper state changes remain unread
@@ -90,7 +94,13 @@ using resident file base `0x0001DE90`; select value 64. Read
 `0x0001F38C..0x0001F391` and return at
 `0x0001F3A4..0x0001F3A8`. Inspect the argument-copy helper
 only through its return, `0x00005899..0x000058BA`.
-Compare the preserved word slots with FND-CONFIG-112. Search
+Compare the preserved word slots with FND-CONFIG-127. Search
 relative-call candidates across the complete segment-table range,
 not merely the target routine's prefix or ending offset. Check
 relocated far-pointer and FBOV descriptor representations separately.
+
+For the segment-label correction, select each named operand from the
+MZ relocation list or its overlay's declared FBOV fixup list. Apply the
+recorded load segment to MZ operands; decode an overlay operand's shifted
+descriptor index and resolve its segment-table entry before labelling an
+address. Raw segment operands and mapped addresses are different forms.

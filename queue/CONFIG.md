@@ -17,7 +17,7 @@ Next ID: Q-CONFIG-011
   request; FND-CONFIG-013 identifies byte `0x04` as the music bar's denominator.
   FND-CONFIG-014 shows that the launcher and Preferences button change the
   runtime voice gate while save/load carries the other gate, and playback
-  checks both. FND-CONFIG-015 bounds the overlay 171 difficulty write to a
+  checks both. FND-CONFIG-120 bounds the overlay 171 difficulty write to a
   record-field branch; its callers and inputs remain unread. Bounded mapped
   Ghidra queries found no recognized references to either that entry or its
   resident trampoline, which does not exclude indirect dispatch.
@@ -58,7 +58,7 @@ Next ID: Q-CONFIG-011
   give bounded local readings for all 56 sites, with FND-CONFIG-046
   deepening the Save Game call. FND-CONFIG-070 rules out an address-taking
   fixup to this entry from another overlay; FND-UI-037 and FND-SAVE-010
-  trace the Save Game UI and keyboard paths. FND-CONFIG-071 traces the
+  trace the Save Game UI and keyboard paths. FND-CONFIG-123 traces the
   guarded save-capacity call from startup. FND-CONFIG-072 confirms the four
   direct resident message calls exhaust MZ relocations to that entry.
   FND-CONFIG-073 adds five internal calls from overlay 172's `0034` and
@@ -71,7 +71,7 @@ Next ID: Q-CONFIG-011
   incoming routes to overlay 187's four save and cinematic message sites.
   FND-CONFIG-077 traces overlay 204's two rest message sites to an overlay
   182 handler and script request one; their upstream live inputs remain open.
-  FND-CONFIG-078 traces overlay 171's list messages to a choice branch and
+  FND-CONFIG-124 traces overlay 171's list messages to a choice branch and
   the `WIND/18501` callback. FND-CONFIG-079 identifies the guarded resident
   event-dispatch route into that callback. FND-CONFIG-080 identifies two
   event-record discriminators for the callback's message branch.
@@ -110,11 +110,11 @@ Next ID: Q-CONFIG-011
   eleven declared overlay callers. FND-CONFIG-102 traces overlay 172's
   zero-gate frame-code source; FND-CONFIG-104 supplies a resident
   mouse-bit-two/value-64 producer. FND-CONFIG-103 excludes overlay 173's
-  direct route by its literal nonzero gate. FND-CONFIG-105 reads overlay
+  direct route by its literal nonzero gate. FND-CONFIG-125 reads overlay
   174's three zero-gate routes: two helper-result codes and one
   sign-extended table byte plus 235. Producing helpers, table contents
   and callers remain open. FND-CONFIG-106 excludes overlay 189 and
-  213's three nonzero-gate invocations; FND-CONFIG-107 reads overlay
+  213's three nonzero-gate invocations; FND-CONFIG-126 reads overlay
   211's two zero-gate code sources. FND-CONFIG-108 reads overlay 208's
   stored gate and code, completing local gate classification of the
   eleven declared sites. Stored-field and table producers, code-producing
@@ -124,26 +124,29 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-110 traces two local selector-caller routes, including
   conditional repetition. The 006B incoming routes, helper effects,
   data producers, later writes and live state remain open.
-  FND-CONFIG-112 traces entry 006B to a resident mode-five dispatch
-  forwarding two input words. FND-CONFIG-113 traces an event-five/
+  FND-CONFIG-127 traces entry 006B to a resident mode-five dispatch
+  forwarding two input words. FND-CONFIG-128 traces an event-five/
   value-64 state-one branch that forwards its input record to the
   dispatcher. Entry 28C9:1261 incoming routes and event producers,
   helper effects and mode changes remain unread. FND-CONFIG-114
   records qualified negative incoming-reference inventories for that
-  entry without finding its producer. FND-CONFIG-115 reads the
+  entry without finding its producer. FND-CONFIG-129 reads the
   state-two/three paths: early pointer exits bypass mode dispatch, and
   reaching it otherwise requires a later stored state of one. Helper
   state writes, registration and indirect dispatch remain open.
-  FND-CONFIG-116 reads the local record-taking wrapper and its
+  FND-CONFIG-130 reads the local record-taking wrapper and its
   conditional index remapping; transitive callee effects remain unread.
   FND-CONFIG-117 identifies the state getter/setter and overlay 204's
   temporary-five assignment with saved-word restoration. Its intervening
   overlay 179 call, incoming routes, other writers and handler timing
-  remain open. FND-CONFIG-118 reads overlay 179's wrapper and
+  remain open. FND-CONFIG-131 reads overlay 179's wrapper and
   pending-record drain, including state-one/five return-region gates.
   FND-CONFIG-119 identifies seven local wrapper calls in overlay 204
   entry 0020, guarded by two local thresholds. Earlier caller inputs,
   local producers, transitive helper effects and state timing remain open.
+  FND-CONFIG-132 traces first-pass thresholds and captured indices,
+  their read-only value helper and second-pass grouped calls. Iterator
+  producers, setup effects and intervening helper effects remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

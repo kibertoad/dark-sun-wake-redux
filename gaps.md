@@ -231,3 +231,19 @@ branch alternatives or still unread. Do not infer preserved state or successful
 return merely from consecutive call locations; retain callee effects as an
 explicit gap unless separately read. This complements the function-ownership
 request in item 11.
+
+## 16. Resolve segment-load operands before citing data addresses
+
+The FND-CONFIG-120 through FND-CONFIG-131 corrections replace raw segment
+labels in earlier CONFIG findings. Resident segment loads need their MZ
+relocation applied; overlay segment loads contain shifted descriptor indices
+that need the FBOV table lookup. The instruction's numeric operand alone is
+not the mapped segment, even when its following field offset is correct.
+
+**Request:** extend the bounded target resolver in item 10 beyond far calls to
+segment-register loads and stored far-pointer segments. Report the instruction
+location, operand representation, declared relocation/fixup membership,
+decoded descriptor where applicable, and canonical mapped segment. Require
+that provenance alongside data-address labels in findings; preserve a raw
+operand explicitly as raw when mapping is unresolved. This prevents the same
+mapping error from recurring in data reads after call targets were corrected.

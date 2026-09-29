@@ -1,9 +1,9 @@
 ---
-id: FND-CONFIG-105
+id: FND-CONFIG-125
 title: Overlay 174 supplies three zero-byte-gate routes to the feedback selector
-status: superseded
+status: recorded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: [FND-CONFIG-125]
+superseded_by: []
 recorded_by: kibertoad
 reproduced_by: []
 method: static
@@ -20,11 +20,15 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 573B:0089
-tool: Python 3.14.7 and Capstone 5.0.7 bounded 16-bit disassembly; FBOV trampoline mapping
+tool: Python 3.14.7 and Capstone 5.0.7 bounded disassembly; verified MZ relocation and FBOV fixup segment mapping
 environment: null
 ---
 
 ## Observation
+
+This entry corrects the raw segment labels in FND-CONFIG-105.
+Overlay 174 fixups at 0x0005F472 and 0x0005F4A7 decode descriptor 130 to mapped segment 5284.
+The bounded control-flow description is retained with mapped addresses.
 
 Three declared calls from overlay 174 enter selector 573B:0089
 (FND-CONFIG-101). Each passes zero for its byte gate at BP+1A and
@@ -59,7 +63,7 @@ The entry at 003E rejects a signed first argument below four. It follows
 that argument's record reference through a 49-byte record, then a
 66-byte record, reading the byte at the latter's offset 64. Only values
 one through eight continue; subtracting one selects a far pointer in
-the table at `0410:0003`, with four-byte stride. The caller counts
+the table at `5284:0003`, with four-byte stride. The caller counts
 bytes to the first `0xFF` terminator. A resident helper result at
 `0x0005F484`, multiplied by the signed word count and divided by
 32768 with signed arithmetic, supplies the offset of the selected byte.
@@ -110,3 +114,9 @@ Track the code-producing call results at `0x0005EE1C` and
 the selector's parameter gate in FND-CONFIG-100. Distinguish immediate
 byte-gate values from computed code values and from the later pointed
 local state.
+
+For the segment-label correction, select each named operand from the
+MZ relocation list or its overlay's declared FBOV fixup list. Apply the
+recorded load segment to MZ operands; decode an overlay operand's shifted
+descriptor index and resolve its segment-table entry before labelling an
+address. Raw segment operands and mapped addresses are different forms.

@@ -18,7 +18,7 @@ environment: null
 ## Observation
 
 Entry 28C9:1261 at file offset `0x0001F0F1` contains the
-state-one event-five/value-64 route in FND-CONFIG-113. Targeted
+state-one event-five/value-64 route in FND-CONFIG-128. Targeted
 reference inventories produce these bounded negative results:
 
 | Representation searched | Boundary | Result |
@@ -35,13 +35,13 @@ The aliased relocation query resolves targets using each stored segment
 and preceding offset; it does not require a direct-call opcode and can
 therefore select other relocated pointer forms. Its zero result still
 says nothing about unrelocated or computed pointers. The known resident
-call to 57A6:006B in FND-CONFIG-112 remains a separate positive
+call to 57A6:006B in FND-CONFIG-127 remains a separate positive
 example of the exact relocated-call representation.
 
 ## Interpretation
 
 The inventories do not supply the handler's registration or incoming
-producer. FND-CONFIG-113's local argument and branch reading remains
+producer. FND-CONFIG-128's local argument and branch reading remains
 valid, but it cannot yet be connected to an original player action by
 these inventories. No absence-of-behavior conclusion follows.
 
@@ -57,7 +57,7 @@ unrelocated aliased pointer lies outside the negative inventory.
 
 ## How to reproduce
 
-Reuse the approved target and mappings in FND-CONFIG-113. Inspect
+Reuse the approved target and mappings in FND-CONFIG-128. Inspect
 all MZ relocation words for the exact pair and separately resolve each
 pair to a file target with the MZ header's image start. Select FBOV
 fixups with decoded descriptor 22 and preceding offset 1261 using

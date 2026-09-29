@@ -42,7 +42,7 @@ game.
 
 ## Alternatives
 
-FND-CONFIG-015 traces the write of 3 in overlay 171 through its immediate
+FND-CONFIG-120 traces the write of 3 in overlay 171 through its immediate
 condition; its callers and input state remain unread, so it does not
 establish the starting difficulty. The drawing call's
 other arguments have not been read, so this finding does not establish the

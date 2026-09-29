@@ -1,9 +1,9 @@
 ---
-id: FND-CONFIG-112
+id: FND-CONFIG-127
 title: Resident mode five dispatch forwards two input words to overlay 208 entry 006B
-status: superseded
+status: recorded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: [FND-CONFIG-127]
+superseded_by: []
 recorded_by: kibertoad
 reproduced_by: []
 method: static
@@ -17,11 +17,15 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 57A6:006B
-tool: Python 3.14.7 and Capstone 5.0.7 bounded 16-bit disassembly; MZ relocation and FBOV fixup mapping
+tool: Python 3.14.7 and Capstone 5.0.7 bounded disassembly; verified MZ relocation and FBOV fixup segment mapping
 environment: null
 ---
 
 ## Observation
+
+This entry corrects the raw segment labels in FND-CONFIG-112.
+MZ relocation at file offset 0x0001E469 maps raw segment 3C10 to loaded segment 4C10.
+The bounded control-flow description is retained with mapped addresses.
 
 The exact MZ relocated direct-call inventory has one resident call
 to overlay 208 entry 57A6:006B, at file offset `0x0001EB15`.
@@ -29,7 +33,7 @@ Its containing resident routine 28C9:05CF starts at
 `0x0001E45F` and returns at `0x0001EB7A`, with no intervening
 return before this call. The segment's file base is `0x0001DE90`.
 
-An early gate continues directly when word `3C10:0019` is zero
+An early gate continues directly when word `4C10:0019` is zero
 or one. Otherwise it exits when signed DS:44E6 is four or greater,
 or when bit `0x20` is set at byte offset 24 of the selected 49-byte
 record reached through DS:19C9. That reading does not establish
@@ -68,7 +72,7 @@ invocation, its early gates or 006B's later helper results.
 
 ## Alternatives
 
-FND-CONFIG-113 traces a resident event-five/value-64 state-one
+FND-CONFIG-128 traces a resident event-five/value-64 state-one
 branch that forwards its input record to this routine. The upstream
 entry's incoming routes and event producers, DS:1440 changes between
 setup and dispatch, record state and later helpers remain unread
@@ -93,3 +97,9 @@ use FMT-EXE-005's decoded descriptor 208 and trampoline 006B,
 checking the FND-CONFIG-101 positive control separately. Search
 local near-call candidates only within
 `0x00091890..0x00093088`.
+
+For the segment-label correction, select each named operand from the
+MZ relocation list or its overlay's declared FBOV fixup list. Apply the
+recorded load segment to MZ operands; decode an overlay operand's shifted
+descriptor index and resolve its segment-table entry before labelling an
+address. Raw segment operands and mapped addresses are different forms.

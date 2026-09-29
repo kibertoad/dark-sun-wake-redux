@@ -75,6 +75,6 @@ None known.
   the instruction-embedded tags found so far belong to save/load, while
   indirect paths remain untraced. FND-CONFIG-026 finds no separate
   new-game write among literal `DS:143A` displacement uses, but cannot
-  exclude a block copy or computed writer (FND-CONFIG-009, FND-CONFIG-015,
+  exclude a block copy or computed writer (FND-CONFIG-009, FND-CONFIG-120,
   Q-CONFIG-001, Q-CONFIG-002).
 - What the difficulty changes in combat (RULE-COMBAT-007, Q-COMBAT-007).

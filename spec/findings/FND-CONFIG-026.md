@@ -29,7 +29,7 @@ identify six direct writes to that difficulty word:
 
 | File offset | Write | Path |
 |---|---|---|
-| `0x00058F18` | literal 3 | Guarded branch in overlay 171 (FND-CONFIG-015). |
+| `0x00058F18` | literal 3 | Guarded branch in overlay 171 (FND-CONFIG-120). |
 | `0x0007D981` | `AX` from a local save-data buffer | Load Game after a successful `PREF/100` read (FND-SAVE-005). |
 | `0x0008B610`, `0x0008B615` | add 2, then subtract 1 | Preferences harder-arrow branch (FND-CONFIG-010). |
 | `0x0008B620`, `0x0008B62D` | literals 3 and 0 | Signed upper and lower clamps in the same Preferences dispatcher (FND-CONFIG-010). |
@@ -63,5 +63,5 @@ of the 19 hits in bounded 16-bit instruction context, distinguishing
 operands that read from those that write to `DS:143A`. Confirm the six
 write instructions at the file offsets above. Compare the load, click
 and guarded branch contexts with FND-SAVE-005, FND-CONFIG-010 and
-FND-CONFIG-015. A mapped-image `ReportReferences.java` query for
+FND-CONFIG-120. A mapped-image `ReportReferences.java` query for
 `5000:923A` is an additional cross-check, not an absence proof.

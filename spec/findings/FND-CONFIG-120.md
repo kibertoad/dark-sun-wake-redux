@@ -1,9 +1,9 @@
 ---
-id: FND-CONFIG-015
+id: FND-CONFIG-120
 title: Overlay 171 writes difficulty 3 only after a record-field threshold test
-status: superseded
+status: recorded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: [FND-CONFIG-120]
+superseded_by: []
 recorded_by: kibertoad
 reproduced_by: []
 method: static
@@ -11,16 +11,20 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 5664:0000
-tool: Capstone 5.0.7 16-bit disassembly with Python 3.14.7 of bounded FBOV ranges; ReportPhysicalBytePattern.ps1 and ReportFbovOverlayMap.ps1
+tool: Python 3.14.7 and Capstone 5.0.7 bounded disassembly; verified MZ relocation and FBOV fixup segment mapping
 environment: null
 ---
 
 ## Observation
 
+This entry corrects the raw segment labels in FND-CONFIG-015.
+Overlay 171 fixups at 0x00058CC1 and 0x00058D2A decode descriptors 95 and 110 to mapped segments 4C4C and 4E71.
+The bounded control-flow description is retained with mapped addresses.
+
 Overlay 171's trampoline at `5664:0048` points to its routine at
 `DSUN.EXE+0x00058CB5`. This routine passes the four-byte `CHAR` tag and an
-index from a structure at `02F8:0000` to another routine. Later it uses a
-word at `0370:0B44` as an index into 49-byte entries at the far pointer
+index from a structure at `4C4C:0000` to another routine. Later it uses a
+word at `4E71:0B44` as an index into 49-byte entries at the far pointer
 `DS:19C9`.
 
 At `DSUN.EXE+0x00058F0A`, it reads the word at offset 6 of that entry,
@@ -58,3 +62,9 @@ trampoline `5664:0048`. Disassemble bounded windows at shipped-file offsets
 `0x00058CB5..0x00058D40` and `0x00058EA0..0x00058F25`, following the branch
 at `0x00058F16`. Search the physical file for `C7 06 3A 14 03 00` and
 check both matches in instruction context.
+
+For the segment-label correction, select each named operand from the
+MZ relocation list or its overlay's declared FBOV fixup list. Apply the
+recorded load segment to MZ operands; decode an overlay operand's shifted
+descriptor index and resolve its segment-table entry before labelling an
+address. Raw segment operands and mapped addresses are different forms.

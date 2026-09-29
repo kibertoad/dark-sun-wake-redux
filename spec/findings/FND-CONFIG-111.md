@@ -53,7 +53,7 @@ from the fifth argument's literal or helper result. The overlay 172
 call retains the selected code in SI used by its separate direct
 selector branch (FND-CONFIG-102), but is a different branch of that
 callback. The two computed-code overlay 211 calls retain the sources
-read in FND-CONFIG-107: DS:43F5 and SI respectively.
+read in FND-CONFIG-126: DS:43F5 and SI respectively.
 
 The overlay 189 setup branch requires the unsigned stored code below
 328. The overlay 211 005C branch also requires it unsigned below

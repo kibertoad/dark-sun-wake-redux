@@ -1,9 +1,9 @@
 ---
-id: FND-CONFIG-107
+id: FND-CONFIG-126
 title: Overlay 211 supplies two zero-gate selector calls with stored and selection-table codes
-status: superseded
+status: recorded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: [FND-CONFIG-126]
+superseded_by: []
 recorded_by: kibertoad
 reproduced_by: []
 method: static
@@ -17,11 +17,15 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 573B:0089
-tool: Python 3.14.7 and Capstone 5.0.7 bounded 16-bit disassembly; FBOV trampoline mapping
+tool: Python 3.14.7 and Capstone 5.0.7 bounded disassembly; verified MZ relocation and FBOV fixup segment mapping
 environment: null
 ---
 
 ## Observation
+
+This entry corrects the raw segment labels in FND-CONFIG-107.
+Overlay 211 fixups at 0x000966EA, 0x00096708, 0x0009745A and 0x0009746E decode descriptor 110 to mapped segment 4E71.
+The bounded control-flow description is retained with mapped addresses.
 
 Overlay 211's declared calls at `0x00096711` and
 `0x0009747E` enter selector 573B:0089 (FND-CONFIG-101).
@@ -30,7 +34,7 @@ The containing exported entries 57C1:005C and 57C1:0061 begin at
 separates either call from its entry. Both pass zero for byte gate
 BP+1A and for the following byte argument.
 
-The 005C call passes the word at `0370:0B44` as its first word,
+The 005C call passes the word at `4E71:0B44` as its first word,
 the caller's second word minus 11300 as its second, and DS:43F5
 as its third word, the selector code. Its local branch requires
 DS:43F7 nonzero and unsigned word BP+18 below eight, then clears
@@ -38,14 +42,14 @@ DS:43F7. It passes a far pointer to local byte BP-5, initialized
 zero at entry. An intervening local helper result supplies the fourth
 word argument; this does not replace the separately pushed code.
 
-The 0061 call passes `0370:0B44` as both first and second words,
+The 0061 call passes `4E71:0B44` as both first and second words,
 and SI as the third word. Its explicit code-producing paths use
 selection index `second_word_argument - 11213`, stored in DI.
 The entry requires signed DS:9D79 positive and DI signed below that
 count; these tests alone do not impose a lower bound on DI.
 
 A signed byte at DS:(43E8 + selected_word), where selected_word is
-the word at `0370:0B44`, selects setup branches. Values one and two reach a table-word read at
+the word at `4E71:0B44`, selects setup branches. Values one and two reach a table-word read at
 `0x0009700B`; value three reaches another at `0x000970DF`.
 Both reads select DS:9C20 plus twice DI. The value-three path adds
 235 to SI with word arithmetic at `0x000971CC`; the first read's
@@ -93,3 +97,9 @@ the second call, including its addition; do not infer the code from
 the nearest table read alone. Inspect the returned-record guard and
 argument block at `0x00097412..0x00097483`, comparing parameter
 slots with FND-CONFIG-100.
+
+For the segment-label correction, select each named operand from the
+MZ relocation list or its overlay's declared FBOV fixup list. Apply the
+recorded load segment to MZ operands; decode an overlay operand's shifted
+descriptor index and resolve its segment-table entry before labelling an
+address. Raw segment operands and mapped addresses are different forms.

@@ -55,7 +55,7 @@ and setup result.
 
 ## Alternatives
 
-FND-CONFIG-071 identifies a direct startup caller of the helper, while
+FND-CONFIG-123 identifies a direct startup caller of the helper, while
 indirect callers and the actual calculated capacity in a particular
 game state remain unread. A message call does not prove a visible
 window or elapsed wait when acquisition, allocation, registration or I/O

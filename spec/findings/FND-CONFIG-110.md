@@ -78,7 +78,7 @@ could change the state that controls repetition.
 
 ## Alternatives
 
-FND-CONFIG-112 traces 006B's exact relocated resident call to
+FND-CONFIG-127 traces 006B's exact relocated resident call to
 a mode-five dispatch forwarding two input words. The resident
 routine's incoming routes and inputs, helper results, record-byte
 producers, selector state changes and termination of the repeated-call

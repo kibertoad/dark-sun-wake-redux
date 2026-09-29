@@ -1,9 +1,9 @@
 ---
-id: FND-CONFIG-071
+id: FND-CONFIG-123
 title: Startup calls the guarded save-capacity message helper after resource initialization
-status: superseded
+status: recorded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: [FND-CONFIG-123]
+superseded_by: []
 recorded_by: kibertoad
 reproduced_by: []
 method: static
@@ -14,11 +14,15 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 277B:0285
-tool: Python 3.14.7 resident byte-pattern search and FBOV trampoline inspection; Capstone 5.0.7 bounded 16-bit disassembly
+tool: Python 3.14.7 and Capstone 5.0.7 bounded disassembly; verified MZ relocation and FBOV fixup segment mapping
 environment: null
 ---
 
 ## Observation
+
+This entry corrects the raw segment labels in FND-CONFIG-071.
+Overlay 180 fixup at 0x00067AE4 decodes descriptor 110 to mapped segment 4E71.
+The bounded control-flow description is retained with mapped addresses.
 
 Overlay 180's `56B2:003E` trampoline targets the routine at file offset
 `0x00067AC5`, which contains the save-capacity message call described by
@@ -29,7 +33,7 @@ search of the resident image for the far-call instruction and its unrelocated
 segment and offset found this one literal call to `56B2:003E`.
 
 At the helper's entry, it reads a drive-related value, then checks byte
-`0370:0003`. If that byte is zero, it jumps to its return at
+`4E71:0003`. If that byte is zero, it jumps to its return at
 `0x00067C9E`. Otherwise it proceeds through its disk-space checks and
 numbered-save-file count. The computed capacity at `0x00067C77` must be
 below ten for the message call at `0x00067C96` to execute (FND-CONFIG-042).
@@ -43,7 +47,7 @@ the message appears or waits in a particular run.
 
 ## Alternatives
 
-The writers and meaning of `0370:0003`, the drive API's live result, and
+The writers and meaning of `4E71:0003`, the drive API's live result, and
 possible indirect callers of this helper remain unread. A raw literal-call
 search does not exclude a constructed or stored far pointer.
 
@@ -57,3 +61,9 @@ the FBOV envelope for the literal far-call bytes targeting unrelocated
 `0x0001CC1F..0x0001CC43`. Disassemble the helper entry
 `0x00067AC5..0x00067AF5` and its message branch
 `0x00067C70..0x00067CA2`.
+
+For the segment-label correction, select each named operand from the
+MZ relocation list or its overlay's declared FBOV fixup list. Apply the
+recorded load segment to MZ operands; decode an overlay operand's shifted
+descriptor index and resolve its segment-table entry before labelling an
+address. Raw segment operands and mapped addresses are different forms.

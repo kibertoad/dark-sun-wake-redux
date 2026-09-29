@@ -196,17 +196,29 @@ Entries by status.
 
 ## superseded
 
-3 entries.
+15 entries.
 
 | ID | Title |
 |---|---|
+| [FND-CONFIG-015](../findings/FND-CONFIG-015.md) | Overlay 171 writes difficulty 3 only after a record-field threshold test |
 | [FND-CONFIG-016](../findings/FND-CONFIG-016.md) | Literal PREF tags occur in save-load code and one resident data site |
+| [FND-CONFIG-047](../findings/FND-CONFIG-047.md) | Overlay 195 routes guarded combat feedback through the shared message entry |
+| [FND-CONFIG-057](../findings/FND-CONFIG-057.md) | Overlay 189 sends four guarded inventory and item-interaction messages |
+| [FND-CONFIG-071](../findings/FND-CONFIG-071.md) | Startup calls the guarded save-capacity message helper after resource initialization |
+| [FND-CONFIG-078](../findings/FND-CONFIG-078.md) | The stored-character list opens with a message-capable window callback |
 | [FND-CONFIG-091](../findings/FND-CONFIG-091.md) | Two guarded overlay 178 calls feed overlay 175's no-effect and money-message branches |
+| [FND-CONFIG-105](../findings/FND-CONFIG-105.md) | Overlay 174 supplies three zero-byte-gate routes to the feedback selector |
+| [FND-CONFIG-107](../findings/FND-CONFIG-107.md) | Overlay 211 supplies two zero-gate selector calls with stored and selection-table codes |
+| [FND-CONFIG-112](../findings/FND-CONFIG-112.md) | Resident mode five dispatch forwards two input words to overlay 208 entry 006B |
+| [FND-CONFIG-113](../findings/FND-CONFIG-113.md) | A resident event-five value-64 branch forwards the event record to mode dispatch |
+| [FND-CONFIG-115](../findings/FND-CONFIG-115.md) | Resident value-64 states two and three require a later state change before mode dispatch |
+| [FND-CONFIG-116](../findings/FND-CONFIG-116.md) | The resident record-taking helper returns an index with a conditional record remapping |
+| [FND-CONFIG-118](../findings/FND-CONFIG-118.md) | Overlay 179 wraps a result-producing helper and pending-record drain with state-dependent return calls |
 | [FND-UI-029](../findings/FND-UI-029.md) | WIND 16500 places the thirteen Preferences buttons |
 
 ## recorded
 
-347 entries.
+348 entries.
 
 | ID | Title |
 |---|---|
@@ -269,7 +281,6 @@ Entries by status.
 | [FND-CONFIG-012](../findings/FND-CONFIG-012.md) | The saved PREF byte at offset 2 feeds the sound library's music-level setting |
 | [FND-CONFIG-013](../findings/FND-CONFIG-013.md) | The second saved music byte is the Preferences bar's scaling denominator |
 | [FND-CONFIG-014](../findings/FND-CONFIG-014.md) | The launcher, Preferences button and save path use two separate speech gates |
-| [FND-CONFIG-015](../findings/FND-CONFIG-015.md) | Overlay 171 writes difficulty 3 only after a record-field threshold test |
 | [FND-CONFIG-017](../findings/FND-CONFIG-017.md) | The message-delay routine has resident text-message callers |
 | [FND-CONFIG-018](../findings/FND-CONFIG-018.md) | A WIND resource return value gates the message-delay wait |
 | [FND-CONFIG-019](../findings/FND-CONFIG-019.md) | The sound-library file entry loads SOUND.CFG whole without field parsing |
@@ -300,7 +311,6 @@ Entries by status.
 | [FND-CONFIG-044](../findings/FND-CONFIG-044.md) | Overlay 190 routes diagnostic and animation feedback through the shared message entry |
 | [FND-CONFIG-045](../findings/FND-CONFIG-045.md) | Overlay 191 item feedback calls the shared message entry on bounded branches |
 | [FND-CONFIG-046](../findings/FND-CONFIG-046.md) | Save Game reuses one message call for copy failure and completion |
-| [FND-CONFIG-047](../findings/FND-CONFIG-047.md) | Overlay 195 routes guarded combat feedback through the shared message entry |
 | [FND-CONFIG-048](../findings/FND-CONFIG-048.md) | Overlay 197 message calls report a guarded dissipation and two failures |
 | [FND-CONFIG-049](../findings/FND-CONFIG-049.md) | Overlay 204's rest entry sends combat refusal or party-rest feedback |
 | [FND-CONFIG-050](../findings/FND-CONFIG-050.md) | Five late overlays share the message entry for item and character feedback |
@@ -310,7 +320,6 @@ Entries by status.
 | [FND-CONFIG-054](../findings/FND-CONFIG-054.md) | Overlay 182 sends secret-door and blocked-door messages through one path |
 | [FND-CONFIG-055](../findings/FND-CONFIG-055.md) | Overlay 187 sends guarded save-space and cinematic-copy messages through the shared entry |
 | [FND-CONFIG-056](../findings/FND-CONFIG-056.md) | Overlay 188 sends a diagnostic exit message when its debug gate is set |
-| [FND-CONFIG-057](../findings/FND-CONFIG-057.md) | Overlay 189 sends four guarded inventory and item-interaction messages |
 | [FND-CONFIG-058](../findings/FND-CONFIG-058.md) | Overlay 190 sends guarded combat-state and party-action messages through the shared entry |
 | [FND-CONFIG-059](../findings/FND-CONFIG-059.md) | Overlay 180's close-all archive call lies in a separate exported cleanup routine |
 | [FND-CONFIG-060](../findings/FND-CONFIG-060.md) | No literal far call to overlay 180's close-all routine was found in the shipped executable |
@@ -324,14 +333,12 @@ Entries by status.
 | [FND-CONFIG-068](../findings/FND-CONFIG-068.md) | Active archive pointer writers include a guarded record-growth path |
 | [FND-CONFIG-069](../findings/FND-CONFIG-069.md) | The resident close-all wrapper has no literal direct caller |
 | [FND-CONFIG-070](../findings/FND-CONFIG-070.md) | Overlay fixups to the message overlay are direct calls, not stored caller pointers |
-| [FND-CONFIG-071](../findings/FND-CONFIG-071.md) | Startup calls the guarded save-capacity message helper after resource initialization |
 | [FND-CONFIG-072](../findings/FND-CONFIG-072.md) | Resident relocations to the message overlay contain four direct message calls |
 | [FND-CONFIG-073](../findings/FND-CONFIG-073.md) | Overlay 172 calls its own shared message entry from two other routines |
 | [FND-CONFIG-074](../findings/FND-CONFIG-074.md) | Overlay 172 attempts message callback registration on seven frame identifiers |
 | [FND-CONFIG-075](../findings/FND-CONFIG-075.md) | The shipped 14002 window contains six of the seven frames targeted by its callback loop |
 | [FND-CONFIG-076](../findings/FND-CONFIG-076.md) | Save and cinematic message helpers in overlay 187 have bounded direct caller routes |
 | [FND-CONFIG-077](../findings/FND-CONFIG-077.md) | Overlay 204 rest messages have handler and script-request caller routes |
-| [FND-CONFIG-078](../findings/FND-CONFIG-078.md) | The stored-character list opens with a message-capable window callback |
 | [FND-CONFIG-079](../findings/FND-CONFIG-079.md) | The resident event dispatcher calls a loaded window's callback at offset 0xF5 |
 | [FND-CONFIG-080](../findings/FND-CONFIG-080.md) | Two event-record discriminators reach the stored-character list message branch |
 | [FND-CONFIG-081](../findings/FND-CONFIG-081.md) | The resident pointer path returns a matched button number as an event-two identifier |
@@ -357,21 +364,27 @@ Entries by status.
 | [FND-CONFIG-102](../findings/FND-CONFIG-102.md) | Overlay 172 forwards a queued frame code with the selector byte gate zero |
 | [FND-CONFIG-103](../findings/FND-CONFIG-103.md) | Overlay 173 passes a nonzero byte gate and bypasses overlay 176 feedback at its selector call |
 | [FND-CONFIG-104](../findings/FND-CONFIG-104.md) | The resident APFM input branch maps queued mouse bit 2 to overlay 172 frame value 64 |
-| [FND-CONFIG-105](../findings/FND-CONFIG-105.md) | Overlay 174 supplies three zero-byte-gate routes to the feedback selector |
 | [FND-CONFIG-106](../findings/FND-CONFIG-106.md) | Overlay 189 and 213 selector calls have literal nonzero feedback gates |
-| [FND-CONFIG-107](../findings/FND-CONFIG-107.md) | Overlay 211 supplies two zero-gate selector calls with stored and selection-table codes |
 | [FND-CONFIG-108](../findings/FND-CONFIG-108.md) | Overlay 208 forwards stored selector gate and code without a local branch |
 | [FND-CONFIG-109](../findings/FND-CONFIG-109.md) | Overlay 208 setup stores the selector gate and code from its arguments |
 | [FND-CONFIG-110](../findings/FND-CONFIG-110.md) | Overlay 208 selector caller has a guarded entry route and a conditional repeated-call route |
 | [FND-CONFIG-111](../findings/FND-CONFIG-111.md) | Six declared setup calls supply overlay 208 gate and code inputs |
-| [FND-CONFIG-112](../findings/FND-CONFIG-112.md) | Resident mode five dispatch forwards two input words to overlay 208 entry 006B |
-| [FND-CONFIG-113](../findings/FND-CONFIG-113.md) | A resident event-five value-64 branch forwards the event record to mode dispatch |
 | [FND-CONFIG-114](../findings/FND-CONFIG-114.md) | Bounded reference inventories do not identify the resident value-64 handler producer |
-| [FND-CONFIG-115](../findings/FND-CONFIG-115.md) | Resident value-64 states two and three require a later state change before mode dispatch |
-| [FND-CONFIG-116](../findings/FND-CONFIG-116.md) | The resident record-taking helper returns an index with a conditional record remapping |
 | [FND-CONFIG-117](../findings/FND-CONFIG-117.md) | Overlay 204 temporarily sets the resident event state to five and restores its saved word |
-| [FND-CONFIG-118](../findings/FND-CONFIG-118.md) | Overlay 179 wraps a result-producing helper and pending-record drain with state-dependent return calls |
 | [FND-CONFIG-119](../findings/FND-CONFIG-119.md) | Overlay 204 has seven local calls to the temporary-state wrapper in two guarded groups |
+| [FND-CONFIG-120](../findings/FND-CONFIG-120.md) | Overlay 171 writes difficulty 3 only after a record-field threshold test |
+| [FND-CONFIG-121](../findings/FND-CONFIG-121.md) | Overlay 195 routes guarded combat feedback through the shared message entry |
+| [FND-CONFIG-122](../findings/FND-CONFIG-122.md) | Overlay 189 sends four guarded inventory and item-interaction messages |
+| [FND-CONFIG-123](../findings/FND-CONFIG-123.md) | Startup calls the guarded save-capacity message helper after resource initialization |
+| [FND-CONFIG-124](../findings/FND-CONFIG-124.md) | The stored-character list opens with a message-capable window callback |
+| [FND-CONFIG-125](../findings/FND-CONFIG-125.md) | Overlay 174 supplies three zero-byte-gate routes to the feedback selector |
+| [FND-CONFIG-126](../findings/FND-CONFIG-126.md) | Overlay 211 supplies two zero-gate selector calls with stored and selection-table codes |
+| [FND-CONFIG-127](../findings/FND-CONFIG-127.md) | Resident mode five dispatch forwards two input words to overlay 208 entry 006B |
+| [FND-CONFIG-128](../findings/FND-CONFIG-128.md) | A resident event-five value-64 branch forwards the event record to mode dispatch |
+| [FND-CONFIG-129](../findings/FND-CONFIG-129.md) | Resident value-64 states two and three require a later state change before mode dispatch |
+| [FND-CONFIG-130](../findings/FND-CONFIG-130.md) | The resident record-taking helper returns an index with a conditional record remapping |
+| [FND-CONFIG-131](../findings/FND-CONFIG-131.md) | Overlay 179 wraps a result-producing helper and pending-record drain with state-dependent return calls |
+| [FND-CONFIG-132](../findings/FND-CONFIG-132.md) | Overlay 204 computes grouped-call thresholds in a first pass and consumes them in a second pass |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |

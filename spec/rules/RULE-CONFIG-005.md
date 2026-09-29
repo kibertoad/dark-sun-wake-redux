@@ -80,14 +80,14 @@ None known.
   through FND-CONFIG-058 read each direct site's local condition, but
   FND-CONFIG-070 finds no address-taking fixup to this entry from another
   overlay. FND-UI-037 and FND-SAVE-010 trace the Save Game path into one
-  call; FND-CONFIG-071 traces the save-capacity call from startup, and
+  call; FND-CONFIG-123 traces the save-capacity call from startup, and
   FND-CONFIG-072 exhausts the direct resident relocation sites.
   FND-CONFIG-073 adds five internal calls from the same overlay, and
   FND-CONFIG-074 traces the callback's frame registration and dispatch;
   FND-CONFIG-075 finds six of its seven targeted frames in the window.
   FND-CONFIG-076 traces the direct incoming routes to overlay 187's save
   and cinematic message sites. FND-CONFIG-077 traces the direct handler
-  and script routes to overlay 204's rest message sites. FND-CONFIG-078
+  and script routes to overlay 204's rest message sites. FND-CONFIG-124
   traces overlay 171's list message sites to a choice and window callback;
   FND-CONFIG-079 identifies the resident event-dispatch route into it, and
   FND-CONFIG-080 identifies two event-record discriminators for its message
@@ -123,10 +123,10 @@ None known.
   declared calls into that selector. FND-CONFIG-102 traces overlay 172's
   zero-gate code source, with a resident value-64 producer in FND-CONFIG-104.
   FND-CONFIG-103 excludes overlay 173's direct selector route by its
-  literal nonzero byte. FND-CONFIG-105 reads overlay 174's three
+  literal nonzero byte. FND-CONFIG-125 reads overlay 174's three
   zero-gate routes and their local code sources; the producing helpers,
   table contents and callers remain open. FND-CONFIG-106 excludes
-  overlay 189 and 213's three literal-nonzero routes. FND-CONFIG-107
+  overlay 189 and 213's three literal-nonzero routes. FND-CONFIG-126
   reads overlay 211's two zero-gate code sources, and FND-CONFIG-108
   reads overlay 208's stored gate and code. All eleven declared calls
   have local gate readings; their producing state, remaining guards and
@@ -134,25 +134,28 @@ None known.
   208's input stores to setup arguments; FND-CONFIG-111 reads six
   declared setup calls. FND-CONFIG-110 traces two local selector-caller
   routes, including conditional repetition. Data producers, later writes,
-  prior guards and helper effects remain open. FND-CONFIG-112 traces
+  prior guards and helper effects remain open. FND-CONFIG-127 traces
   overlay 208 entry 006B to a resident mode-five dispatch that forwards
-  two input words. FND-CONFIG-113 traces a resident event-five/value-64
+  two input words. FND-CONFIG-128 traces a resident event-five/value-64
   state-one branch that forwards the input record to that dispatch; the
   upstream entry's incoming routes and event producer remain open.
   FND-CONFIG-114 records bounded negative reference inventories,
-  while FND-CONFIG-115 reads state-two/three paths that need a later
+  while FND-CONFIG-129 reads state-two/three paths that need a later
   state-one value to dispatch. One reading is that computed registration
   supplies a reachable producer; another is that the entry is unreachable
   in this build. Registration and indirect-dispatch readings would
   distinguish them; the inventories alone do not. Helper state writes
-  also remain open. FND-CONFIG-116 reads a record-taking wrapper
+  also remain open. FND-CONFIG-130 reads a record-taking wrapper
   whose result can be remapped, without settling its callee's effects.
   FND-CONFIG-117 identifies a separate temporary-five assignment and
   saved-word restoration; its relation to the event handler remains open.
-  FND-CONFIG-118 reads the intervening wrapper and pending-record drain
+  FND-CONFIG-131 reads the intervening wrapper and pending-record drain
   with state-one/five return-region gates. FND-CONFIG-119 traces seven
   local wrapper calls in two guarded groups; earlier inputs, local
   producers, transitive effects and handler timing remain open.
+  FND-CONFIG-132 reads first-pass threshold/index producers and the
+  second-pass grouped-call consumption, with iterator and helper effects
+  still open.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local
@@ -170,10 +173,10 @@ None known.
   FND-CONFIG-037,
   FND-CONFIG-038, FND-CONFIG-039, FND-CONFIG-040, FND-CONFIG-041,
   FND-CONFIG-042, FND-CONFIG-043, FND-CONFIG-044, FND-CONFIG-045,
-  FND-CONFIG-046, FND-CONFIG-047, FND-CONFIG-048, FND-CONFIG-049,
+  FND-CONFIG-046, FND-CONFIG-121, FND-CONFIG-048, FND-CONFIG-049,
   FND-CONFIG-050, FND-CONFIG-051, FND-CONFIG-052, FND-CONFIG-053,
   FND-CONFIG-054, FND-CONFIG-055, FND-CONFIG-056,
-  FND-CONFIG-057, FND-CONFIG-058, FND-CONFIG-059,
+  FND-CONFIG-122, FND-CONFIG-058, FND-CONFIG-059,
   FND-CONFIG-060, FND-CONFIG-061, FND-CONFIG-062,
   FND-CONFIG-064, FND-CONFIG-065, FND-CONFIG-066,
   FND-CONFIG-067, FND-CONFIG-068, FND-CONFIG-069,
@@ -186,10 +189,10 @@ None known.
   FND-CONFIG-037, FND-CONFIG-038, FND-CONFIG-039,
   FND-CONFIG-040, FND-CONFIG-041, FND-CONFIG-042,
   FND-CONFIG-043, FND-CONFIG-044, FND-CONFIG-045,
-  FND-CONFIG-046, FND-CONFIG-047, FND-CONFIG-048,
+  FND-CONFIG-046, FND-CONFIG-121, FND-CONFIG-048,
   FND-CONFIG-049, FND-CONFIG-050, FND-CONFIG-051,
   FND-CONFIG-052, FND-CONFIG-053, FND-CONFIG-054,
-  FND-CONFIG-055, FND-CONFIG-056, FND-CONFIG-057,
+  FND-CONFIG-055, FND-CONFIG-056, FND-CONFIG-122,
   FND-CONFIG-058, FND-CONFIG-059, FND-CONFIG-060,
   FND-CONFIG-061, FND-CONFIG-062, FND-CONFIG-064,
   FND-CONFIG-065, FND-CONFIG-066, FND-CONFIG-067,

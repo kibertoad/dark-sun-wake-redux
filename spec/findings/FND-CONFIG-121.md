@@ -1,9 +1,9 @@
 ---
-id: FND-CONFIG-047
+id: FND-CONFIG-121
 title: Overlay 195 routes guarded combat feedback through the shared message entry
-status: superseded
+status: recorded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: [FND-CONFIG-121]
+superseded_by: []
 recorded_by: kibertoad
 reproduced_by: []
 method: static
@@ -14,11 +14,15 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 566A:002A
-tool: Capstone 5.0.7 16-bit disassembly with Python 3.14.7 of bounded FBOV windows; FBOV fixup inspection
+tool: Python 3.14.7 and Capstone 5.0.7 bounded disassembly; verified MZ relocation and FBOV fixup segment mapping
 environment: null
 ---
 
 ## Observation
+
+This entry corrects the raw segment labels in FND-CONFIG-047.
+Overlay 195 fixup at 0x00081A20 decodes descriptor 110 to mapped segment 4E71.
+The bounded control-flow description is retained with mapped addresses.
 
 Four direct calls in overlay 195 target overlay 172's `566A:002A` message
 entry (FND-CONFIG-035):
@@ -26,7 +30,7 @@ entry (FND-CONFIG-035):
 | Call file offset | Local path and passed text |
 |---|---|
 | `0x0008194A` | The branch requires bit `0x40` in `[BP-17]` and `SI < 4`. It formats `DS:2128`, an escape-attempt line, in `DS:43FB`. When the local helper at file offset `0x00082C9F` returns nonzero, it also formats `DS:2143`, an escape-result line, into that buffer. The call occurs only if the final buffer-length call returns at most `0x1D`. |
-| `0x00081AC8` | A later branch requires bit `0x10` in `[BP-0E]`, the decremented selected-record byte at `+0x1B` to equal zero, a selected word at `0370:[index*10+0251]` equal to `0x0122`, and `SI < 4`. It similarly formats escape-attempt and optional escape-result text in `DS:43FB`, and calls the message entry only when the final length is at most `0x1D`. |
+| `0x00081AC8` | A later branch requires bit `0x10` in `[BP-0E]`, the decremented selected-record byte at `+0x1B` to equal zero, a selected word at `4E71:[index*10+0251]` equal to `0x0122`, and `SI < 4`. It similarly formats escape-attempt and optional escape-result text in `DS:43FB`, and calls the message entry only when the final length is at most `0x1D`. |
 | `0x00081C54` | A branch requires the selected record byte at `+0x12` to equal `0x10`, bit `0x01` in `[BP-17]`, and the selected actor byte at `+0x14` to be at least `3`. It passes `DS:2150`, a brain-consumption message, before later local state and helper calls. |
 | `0x00082509` | A dispatch target first tests `SI < 4`, formats `DS:216B`, a charm-state line with the selected actor's name, into a stack buffer, and passes that buffer. The call is skipped when `SI >= 4`, although later helper calls still run. |
 
@@ -56,3 +60,9 @@ Disassemble the approved `DSUN.EXE` at physical offsets
 no larger than 512 bytes. Resolve the four direct calls' `0x0560` FBOV
 fixups to overlay 172's `566A:002A` entry. Read the short data-segment
 strings at `DS:2128`, `DS:213D`, `DS:2143`, `DS:2150` and `DS:216B`.
+
+For the segment-label correction, select each named operand from the
+MZ relocation list or its overlay's declared FBOV fixup list. Apply the
+recorded load segment to MZ operands; decode an overlay operand's shifted
+descriptor index and resolve its segment-table entry before labelling an
+address. Raw segment operands and mapped addresses are different forms.

@@ -62,8 +62,9 @@ locals' values in a live state.
 
 ## Alternatives
 
-The caller's upstream inputs, local value producers, earlier guards,
-SI and DI provenance and effects of intervening calls remain unread
+FND-CONFIG-132 reads the first-pass threshold and index producers
+and the second-pass consumption. Upstream inputs, iterator producers,
+earlier setup effects and effects of intervening calls remain unread
 (Q-CONFIG-008). Other incoming encodings remain possible. Passing a
 local threshold does not establish that the helper terminates,
 changes a particular record or reaches shared feedback.

@@ -50,7 +50,7 @@ exclude indirect calls, aliases or other writes to DS:0DAB.
 
 ## Interpretation
 
-The stored word tested by FND-CONFIG-113 and FND-CONFIG-115
+The stored word tested by FND-CONFIG-128 and FND-CONFIG-129
 has an explicit getter/setter pair and a concrete temporary-five
 assignment route. This wrapper restores its captured word after the
 intervening call, even if that call changed the current state. It
@@ -59,7 +59,7 @@ establish a state-two/three transition in the separate handler path.
 
 ## Alternatives
 
-FND-CONFIG-118 reads overlay 179's wrapper, pending-record drain
+FND-CONFIG-131 reads overlay 179's wrapper, pending-record drain
 and two state-dependent return-region calls, leaving their transitive
 effects open. FND-CONFIG-119 traces seven local incoming wrapper
 calls in two guarded groups. Earlier caller inputs, timing relative
