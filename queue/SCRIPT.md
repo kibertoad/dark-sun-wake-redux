@@ -115,6 +115,8 @@ Next ID: Q-SCRIPT-008
   actual formats, conversion branches and caller fit remain open.
   FND-CONFIG-204 identifies initial formats and selected decimal
   argument acquisition; current formats, DS/SS identity and output remain open.
+  FND-CONFIG-205 bounds selected plain decimal output; current format
+  and admitted DS-based argument/storage provenance remain open.
   Full external effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.

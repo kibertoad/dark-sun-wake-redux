@@ -339,6 +339,9 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-204 identifies two distinct initial formats and the
   decimal formatter's DS-based argument read. Current DS/format state,
   parser flags, decimal output and caller fit remain open.
+  FND-CONFIG-205 bounds plain decimal word output: nonnegative inputs
+  need at most six bytes including termination. Current format, admitted
+  argument identity/preservation and DS/SS aliases remain open.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 
