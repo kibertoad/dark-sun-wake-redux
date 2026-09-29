@@ -134,3 +134,17 @@ target reporter for ordinary MZ relocations. For one call site, show the raw
 operand, whether its segment word is relocated, the import's load segment,
 the mapped segment:offset and the shipped-file offset. Make the distinction
 between a raw operand and a citable mapped address explicit.
+
+## 11. Show function ownership alongside bounded call-chain reports
+
+FND-CONFIG-092 corrected a chain that crossed an overlay setup routine's
+return into the following frame handler. The setup and handler are adjacent
+in the file but have distinct exported trampolines. A bounded instruction
+window can hide that distinction when a call is inspected far from its entry.
+
+**Request:** let the shared call-site reporter include the containing
+analyzer function and any enclosing exported overlay entry, with their
+bounded ranges and the evidence for ownership. Flag disagreement between
+those views, and require an explicit boundary check before joining a call
+to its supposed caller. Prologues and returns are useful warnings, but
+must not silently stand in for a verified function boundary.

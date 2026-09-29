@@ -45,8 +45,9 @@ wait runs (FND-CONFIG-018).
 
 ## Alternatives
 
-FND-CONFIG-091 traces guarded overlay 178 calls into the two overlay 175
-message sites. The complete effects of the item, eligibility and action helpers and the
+FND-CONFIG-092 traces guarded overlay 178 calls to setup, attempted frame
+registration and the separate value-32 handler into the overlay 175 helper.
+The complete effects of the item, eligibility and action helpers and the
 callers' runtime inputs remain unread. The observed text paths do not prove
 an action outcome or a successful message-window setup in a live state.
 

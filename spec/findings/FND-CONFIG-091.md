@@ -1,9 +1,9 @@
 ---
 id: FND-CONFIG-091
 title: Two guarded overlay 178 calls feed overlay 175's no-effect and money-message branches
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-CONFIG-092]
 recorded_by: kibertoad
 reproduced_by: []
 method: static
@@ -28,6 +28,11 @@ environment: null
 ---
 
 ## Observation
+
+This finding's claimed direct setup-to-helper chain is incorrect.
+FND-CONFIG-092 separates the setup entry's return from the following
+frame handler and records the callback registration and value-32 route.
+The original observation remains below as the superseded reading.
 
 Overlay 175's entry `5689:0057` targets code at file offset
 `0x0005FC0C`. Its two declared direct far calls from another overlay are
