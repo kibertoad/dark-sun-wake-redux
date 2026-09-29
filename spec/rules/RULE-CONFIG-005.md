@@ -108,8 +108,10 @@ None known.
   that callback's event-bit threshold to the mouse packet before the shared
   message branch. FND-CONFIG-092 separates overlay 175's setup from its
   registered frame handler: its value-32 branch enters the helper with
-  two conditional message paths. Matching frames and the incoming event
-  route remain unread.
+  two conditional message paths. FND-CONFIG-093 supplies the six matching
+  shipped frames and enabled mask. FND-CONFIG-094 traces mouse-packet
+  bit 4 through the resident APFM dispatcher to the value-32 handler.
+  Physical input mapping and remaining state gates remain unread.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local

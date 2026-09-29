@@ -88,12 +88,13 @@ call chain and is superseded by this finding.
 
 ## Alternatives
 
-The shipped matching frame records, producer and enabled mask of the
-value-32 event, successful acquisition and lookup, and later callback
-changes remain unread (Q-CONFIG-008). A registered path may be
-reachable under live conditions, or earlier state may prevent dispatch.
-The ordered frame graph and its incoming event route would distinguish
-the code-decided parts. Computed calls may provide another route.
+FND-CONFIG-093 supplies all six shipped matching frames and their
+enabled value-32 mask. FND-CONFIG-094 traces the resident pointer
+producer and dispatch. Successful acquisition and lookup, physical
+input mapping and later callback changes remain unread (Q-CONFIG-008).
+A registered path may be reachable under live conditions, or earlier
+state may prevent dispatch. Readings of those remaining inputs and
+state changes would distinguish the code-decided parts. Computed calls may provide another route.
 This reading proves neither a visible message, a completed item action
 nor successful `WIND/10501` setup.
 

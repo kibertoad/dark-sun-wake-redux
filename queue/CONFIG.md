@@ -95,8 +95,11 @@ Next ID: Q-CONFIG-011
   event-bit threshold to the queued mouse packet; the bit meanings and
   remaining live gates remain open. FND-CONFIG-092 separates overlay 175's
   setup from a registered frame handler whose value-32 branch enters the
-  helper with two conditional message sites. Matching shipped frames,
-  the incoming event route and complete state remain open.
+  helper with two conditional message sites. FND-CONFIG-093 supplies all
+  six matching shipped frames and their enabled value-32 mask.
+  FND-CONFIG-094 traces mouse-packet bit 4 through the resident APFM
+  dispatcher into that handler. Physical input mapping, intervening
+  calls and later state changes remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?
