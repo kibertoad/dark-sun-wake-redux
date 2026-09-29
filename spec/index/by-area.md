@@ -677,6 +677,7 @@ Entries by area.
 | [FND-CONFIG-193](../findings/FND-CONFIG-193.md) | The graphics-pool initializer installs two fixed roots and 254 free handle slots | recorded |
 | [FND-CONFIG-194](../findings/FND-CONFIG-194.md) | Graphics-slot release conditionally lowers the pool cursor and compacts following blocks | recorded |
 | [FND-CONFIG-195](../findings/FND-CONFIG-195.md) | Declared resident release calls include a record-gated route outside the signed-handle wrapper | recorded |
+| [FND-CONFIG-196](../findings/FND-CONFIG-196.md) | A display-state writer replaces four words after conditional graphics release calls | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

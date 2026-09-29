@@ -308,6 +308,10 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-195 inventories declared resident release calls and connects
   one record-bit-gated direct route outside the signed wrapper. Record
   producers, other callers and native slot/hardware outcomes remain open.
+  FND-CONFIG-196 reads a four-word display-state writer with signed
+  old-handle release gates and untested replacement writes. Its bounded
+  incoming inventories found no route; new pointer/registration evidence
+  is needed before repeating them. Arguments and later refresh remain open.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 

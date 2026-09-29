@@ -95,6 +95,8 @@ Next ID: Q-SCRIPT-008
   accepted slots, finite progress and hardware effects remain open.
   FND-CONFIG-195 connects the pointer consumer to a direct release call
   outside the signed wrapper; record fields and accepted handles remain open.
+  FND-CONFIG-196 reads a display-state writer; incoming registration,
+  arguments, accepted replacements and later refresh remain open.
   Full external effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.

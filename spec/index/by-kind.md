@@ -176,7 +176,7 @@ Entries by kind.
 
 ## findings
 
-431 entries.
+432 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -420,6 +420,7 @@ Entries by kind.
 | [FND-CONFIG-193](../findings/FND-CONFIG-193.md) | The graphics-pool initializer installs two fixed roots and 254 free handle slots | recorded |
 | [FND-CONFIG-194](../findings/FND-CONFIG-194.md) | Graphics-slot release conditionally lowers the pool cursor and compacts following blocks | recorded |
 | [FND-CONFIG-195](../findings/FND-CONFIG-195.md) | Declared resident release calls include a record-gated route outside the signed-handle wrapper | recorded |
+| [FND-CONFIG-196](../findings/FND-CONFIG-196.md) | A display-state writer replaces four words after conditional graphics release calls | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |
