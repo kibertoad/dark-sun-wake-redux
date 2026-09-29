@@ -609,6 +609,8 @@ Entries by area.
 | [FND-CONFIG-131](../findings/FND-CONFIG-131.md) | Overlay 179 wraps a result-producing helper and pending-record drain with state-dependent return calls | recorded |
 | [FND-CONFIG-132](../findings/FND-CONFIG-132.md) | Overlay 204 computes grouped-call thresholds in a first pass and consumes them in a second pass | recorded |
 | [FND-CONFIG-133](../findings/FND-CONFIG-133.md) | The rest caller iterator selects negative-word records and has a separate stored-index branch | recorded |
+| [FND-CONFIG-134](../findings/FND-CONFIG-134.md) | Overlay 188 setup assigns the iterator stored index and clears its three-byte table | recorded |
+| [FND-CONFIG-135](../findings/FND-CONFIG-135.md) | The iterator flag is written by a registered resident helper and an overlay 188 clear path | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

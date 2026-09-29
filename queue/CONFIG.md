@@ -150,6 +150,10 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-133 reads the iterator's signed-negative record selection
   and separate stored-index branch. Input producers, allowed ranges and
   intervening changes remain unread; reachable termination is not established.
+  FND-CONFIG-134 reads a local stored-index assignment and table clear.
+  FND-CONFIG-135 reads a registered flag writer and another clear path.
+  Their upstream dispatch, timing, callee effects and later or other writes
+  remain unread; no complete range or termination invariant is established.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

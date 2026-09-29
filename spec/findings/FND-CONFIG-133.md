@@ -84,9 +84,11 @@ shipped game reaches a repeated index or hangs.
 
 ## Alternatives
 
-Q-CONFIG-008 retains the producers and allowed values of DS:1A32,
-4F49:000A, the three-byte table and the 49-byte record's offset-six
-word, as well as intervening helper effects and reachable inputs.
+FND-CONFIG-134 reads one stored-index assignment and table clear;
+FND-CONFIG-135 reads a registered flag producer and another clear.
+Q-CONFIG-008 retains their upstream paths, later or other writes,
+allowed values, the 49-byte record's offset-six word producers,
+intervening helper effects and reachable inputs.
 They may rule out the conditional repeated-index case; no range
 invariant has been established here. Assigning these records a
 party, actor or other gameplay identity needs separate evidence.
