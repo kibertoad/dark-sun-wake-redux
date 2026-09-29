@@ -82,8 +82,10 @@ proved to represent a physical key or pointer event.
 
 ## Alternatives
 
+FND-CONFIG-137 reads the nested-instruction branch and ordinary
+parameter save/restore spans, without finding flag rollback there.
 Q-CONFIG-008 retains pointer replacement and indirect or block
-writers, setup invocation and timing, parameter evaluation effects,
+writers, setup invocation and timing, remaining parameter effects,
 other callback callers and the writer's input-49 callee effects.
 A reading that treats 51 on this route as a keyboard code is ruled
 out by the opcode argument producer. A reading that treats the

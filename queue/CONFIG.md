@@ -158,6 +158,10 @@ Next ID: Q-CONFIG-011
   dispatch. Opcode 0x22 clears the flag before parameter reading, whose
   nested dispatch and later effects remain unread; other rest routes, pointer
   replacement and reachable script requests remain open.
+  FND-CONFIG-137 reads normalized nested-instruction dispatch and
+  ordinary parameter save/restore spans, which do not roll back the flag.
+  Reachable nested instructions, byte-reader and other expression effects,
+  nesting-word provenance and intervening state changes remain unread.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

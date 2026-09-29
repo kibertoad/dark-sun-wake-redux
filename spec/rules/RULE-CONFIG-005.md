@@ -154,8 +154,13 @@ None known.
   local wrapper calls in two guarded groups; earlier inputs, local
   producers, transitive effects and handler timing remain open.
   FND-CONFIG-132 reads first-pass threshold/index producers and the
-  second-pass grouped-call consumption, with iterator and helper effects
-  still open.
+  second-pass grouped-call consumption. FND-CONFIG-133 reads the
+  iterator selection contract; FND-CONFIG-134 and FND-CONFIG-135
+  read local index, table and flag producers. FND-CONFIG-136 traces
+  the flag writer to pre-handler opcode dispatch. FND-CONFIG-137
+  reads nested parameter dispatch and ordinary save/restore spans,
+  without establishing rollback of the flag. Reachable inputs, other
+  writers and intervening helper effects remain open.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local

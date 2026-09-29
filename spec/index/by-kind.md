@@ -175,7 +175,7 @@ Entries by kind.
 
 ## findings
 
-367 entries.
+368 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -360,6 +360,7 @@ Entries by kind.
 | [FND-CONFIG-134](../findings/FND-CONFIG-134.md) | Overlay 188 setup assigns the iterator stored index and clears its three-byte table | recorded |
 | [FND-CONFIG-135](../findings/FND-CONFIG-135.md) | The iterator flag is written by a registered resident helper and an overlay 188 clear path | recorded |
 | [FND-CONFIG-136](../findings/FND-CONFIG-136.md) | Script opcode dispatch invokes the registered iterator-flag writer before its instruction handler | recorded |
+| [FND-CONFIG-137](../findings/FND-CONFIG-137.md) | Nested parameter instructions restore parameter blocks rather than the iterator flag | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |

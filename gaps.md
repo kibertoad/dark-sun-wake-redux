@@ -262,3 +262,16 @@ widths, group overlapping decodes, and classify them against a verified
 entry-based instruction path before counting uses. Report unresolved
 boundaries explicitly instead of selecting a width from a locally valid
 decode. This complements item 14's alignment and positive-control checks.
+
+## 18. Trace dispatch-index preprocessing before assigning input cases
+
+FND-CONFIG-137's expression decoder subtracts an extended bit before
+its table lookup. A direct lookup using the unnormalized input byte
+would put two equivalent input forms into different branches. Checking
+the preprocessing confirmed their common target; no contrary claim
+was recorded from the raw table alone.
+
+**Request:** include the verified input-to-index transformation in shared
+bounded dispatch-table reports, alongside the count requested in item 12.
+Separate raw table positions from original input values, and leave the
+input case unresolved until its normalization and range checks are read.
