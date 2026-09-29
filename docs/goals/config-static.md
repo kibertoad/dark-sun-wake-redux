@@ -37,7 +37,7 @@ Entries, queue files and parity rows outside CONFIG and SCRIPT.
 
 - Stage: Slices.
 - Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 614 entries and 158 parity rows).
+  documentation check passed with 615 entries and 158 parity rows).
   Full solution build passed with zero warnings and errors.
 - Unfinished: no session work. Ignored local `hs_err_pid15480.log` remains;
   ownership is uncertain, and it was left unmodified and uncommitted.
@@ -72,8 +72,9 @@ Entries, queue files and parity rows outside CONFIG and SCRIPT.
     contracts, admitted counts, offset-wrap conditions and storage aliases;
     FND-CONFIG-210's lower heap callees, header/state producers,
     direction-flag provenance and returned-capacity conditions;
-    FND-CONFIG-211's heap/link/bound producers, request arithmetic
-    helpers, runtime outcomes and segment-wrap conditions;
+    FND-CONFIG-211's heap/link/bound producers, runtime outcomes
+    and segment-wrap conditions; FND-CONFIG-212's other request callers,
+    increment ranges and current break/bound writers;
     the fixed scratch
     capacity; and
     FND-CONFIG-192's accepted mask inputs, reference chains,
