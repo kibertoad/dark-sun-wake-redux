@@ -81,6 +81,25 @@ AX is 254. This is a composition of local readings, not a native
 observation or an emulated result, and does not establish that this
 routine is called after the initializer under those assumptions.
 
+### Bounded incoming inventories
+
+A query over every declared MZ relocation found no far-call operand
+with relative segment 2D72 and offset 0E3B. A separate query over
+every declared FBOV overlay fixup found no far-call operand with
+offset 0E3B whose segment token resolves to resident descriptor 44,
+relative segment 2D72. Both select the far-call opcode three bytes
+before the segment operand; they do not classify other uses of a
+matching segment token or computed/unrelocated targets.
+
+The FBOV segment table bounds this resident descriptor's interval
+at file 0x00032920..0x00033DDF. Within that interval, a raw E8
+operand query found no signed displacement targeting file
+0x0003375B. That result is a bounded candidate inventory, not a
+complete control-flow or incoming-reference analysis. Calls through
+pointers, segment aliases, different encoded forms or registration
+remain possible. None of these inventories establishes native
+reachability or proves the body is unused.
+
 ## Interpretation
 
 This caller supplies one concrete fixed request form and a signed
@@ -114,3 +133,11 @@ Compare FND-CONFIG-183's scan, FND-CONFIG-191's reference request,
 FND-CONFIG-193's initial roots/free flags and FND-CONFIG-194's
 reference release. Derive the initialized-state case only with its
 segment, storage and unchanged-state assumptions explicitly retained.
+
+For the incoming inventories, enumerate MZ relocation operands and
+FBOV fixup operands, selecting only a far-call opcode three bytes
+before the segment word and offset 0E3B. Resolve each FBOV token
+through its descriptor before comparing resident segment 2D72.
+Use descriptor 44 and the next greater declared segment to bound
+the same-segment E8 candidate query. Keep these negative inventories
+separate from pointer/registration coverage and native reachability.

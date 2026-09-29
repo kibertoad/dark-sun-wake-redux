@@ -101,6 +101,8 @@ Next ID: Q-SCRIPT-008
   and local zero return; full input and alias provenance remain open.
   FND-CONFIG-198 reads a fixed reference-request/release caller;
   initial slots, DS/SS storage and incoming routes remain open.
+  FND-CONFIG-198's bounded incoming inventories found no route;
+  pointer/registration coverage is needed for a new incoming attempt.
   Full external effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.

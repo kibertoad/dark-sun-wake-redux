@@ -318,6 +318,9 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-198 reads a fixed 256-request/release caller, retaining
   DS/SS frame conditions and initial-slot provenance. Its count measures
   qualifying calls, not success; incoming routes and hardware remain open.
+  FND-CONFIG-198's subsequent MZ/FBOV far-call and bounded
+  same-segment near-call inventories found no incoming route. Do not
+  repeat these queries without new pointer/registration coverage.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 
