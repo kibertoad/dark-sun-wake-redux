@@ -8,11 +8,12 @@ recorded; keep the documentation check and `./tools/Test.ps1` passing.
 
 ## Scope
 
-Areas: CONFIG. Batches: research only. Queue sections: Static.
+Areas: CONFIG, SCRIPT. Batches: research only. Queue sections: Static.
 
 ## Must not touch
 
-Other areas' entries, queue files and parity rows. `src/` and `tests/`.
+Entries, queue files and parity rows outside CONFIG and SCRIPT.
+`src/` and `tests/`.
 
 ## Dead ends
 
