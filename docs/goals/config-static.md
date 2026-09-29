@@ -22,10 +22,11 @@ None known.
 
 - Stage: Slices.
 - Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 496 entries and 158 parity rows).
+  documentation check passed with 498 entries and 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
-- Next: Q-CONFIG-008, trace overlay 176's incoming message paths after
-  FND-CONFIG-099. Prior-control and runtime-state gaps remain in Q-CONFIG-008.
+- Next: Q-CONFIG-008, trace the selector inputs inventoried by
+  FND-CONFIG-101, starting with overlays 172 and 173. Other incoming-route
+  and runtime-state gaps remain in Q-CONFIG-008.
   Q-CONFIG-010 tracks acquisition-state changes;
   Q-CONFIG-009 has an owner-run request.
