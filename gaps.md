@@ -183,6 +183,12 @@ say exactly what was searched, so it cannot be mistaken for proof that no
 computed, aliased or differently encoded route exists. This complements the
 single-call fixup resolution request in item 8.
 
+For the FND-CONFIG-111 query, require the report to show both the stored
+shifted index and decoded descriptor, and validate a known incoming-call
+inventory as a positive control before accepting negative sections. Treating
+the stored shifted index as the descriptor itself otherwise silently misses
+calls. The existing eleven-call selector inventory supplied that check here.
+
 ## 14. Check known instruction hits before trusting a variable-use inventory
 
 While preparing FND-CONFIG-108, a temporary variable-use query linearly

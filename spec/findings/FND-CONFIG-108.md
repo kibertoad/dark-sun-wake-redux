@@ -54,9 +54,12 @@ classification, not its upstream reachability or state provenance.
 
 ## Alternatives
 
-Producers of the stored argument fields, the entry's incoming routes
-and its two preceding helpers' effects remain unread
-(Q-CONFIG-008). A later read can observe a helper's state changes;
+FND-CONFIG-109 identifies the setup entry's argument stores, and
+FND-CONFIG-111 inventories six declared setup invocations.
+FND-CONFIG-110 traces two local incoming routes, including a
+conditional repeated-call route. Remaining data producers, prior
+guards, later writes and the two preceding helpers' effects remain
+unread (Q-CONFIG-008). A later read can observe a helper's state changes;
 loaded-image values alone would not prove the invocation's inputs.
 Computed, aliased or unrelocated calls remain outside the declared
 inventory. Passing the selector gates alone does not establish a

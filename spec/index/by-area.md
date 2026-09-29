@@ -584,6 +584,9 @@ Entries by area.
 | [FND-CONFIG-106](../findings/FND-CONFIG-106.md) | Overlay 189 and 213 selector calls have literal nonzero feedback gates | recorded |
 | [FND-CONFIG-107](../findings/FND-CONFIG-107.md) | Overlay 211 supplies two zero-gate selector calls with stored and selection-table codes | recorded |
 | [FND-CONFIG-108](../findings/FND-CONFIG-108.md) | Overlay 208 forwards stored selector gate and code without a local branch | recorded |
+| [FND-CONFIG-109](../findings/FND-CONFIG-109.md) | Overlay 208 setup stores the selector gate and code from its arguments | recorded |
+| [FND-CONFIG-110](../findings/FND-CONFIG-110.md) | Overlay 208 selector caller has a guarded entry route and a conditional repeated-call route | recorded |
+| [FND-CONFIG-111](../findings/FND-CONFIG-111.md) | Six declared setup calls supply overlay 208 gate and code inputs | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

@@ -175,7 +175,7 @@ Entries by kind.
 
 ## findings
 
-339 entries.
+342 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -332,6 +332,9 @@ Entries by kind.
 | [FND-CONFIG-106](../findings/FND-CONFIG-106.md) | Overlay 189 and 213 selector calls have literal nonzero feedback gates | recorded |
 | [FND-CONFIG-107](../findings/FND-CONFIG-107.md) | Overlay 211 supplies two zero-gate selector calls with stored and selection-table codes | recorded |
 | [FND-CONFIG-108](../findings/FND-CONFIG-108.md) | Overlay 208 forwards stored selector gate and code without a local branch | recorded |
+| [FND-CONFIG-109](../findings/FND-CONFIG-109.md) | Overlay 208 setup stores the selector gate and code from its arguments | recorded |
+| [FND-CONFIG-110](../findings/FND-CONFIG-110.md) | Overlay 208 selector caller has a guarded entry route and a conditional repeated-call route | recorded |
+| [FND-CONFIG-111](../findings/FND-CONFIG-111.md) | Six declared setup calls supply overlay 208 gate and code inputs | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |

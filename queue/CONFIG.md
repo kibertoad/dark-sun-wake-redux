@@ -119,7 +119,11 @@ Next ID: Q-CONFIG-011
   stored gate and code, completing local gate classification of the
   eleven declared sites. Stored-field and table producers, code-producing
   helpers, remaining guards, upstream reachability and live state remain
-  unread.
+  unread. FND-CONFIG-109 traces overlay 208's input stores to setup
+  arguments; FND-CONFIG-111 reads its six declared setup calls.
+  FND-CONFIG-110 traces two local selector-caller routes, including
+  conditional repetition. The 006B incoming routes, helper effects,
+  data producers, later writes and live state remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?
