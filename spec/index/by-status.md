@@ -222,7 +222,7 @@ Entries by status.
 
 ## recorded
 
-389 entries.
+391 entries.
 
 | ID | Title |
 |---|---|
@@ -422,10 +422,12 @@ Entries by status.
 | [FND-CONFIG-165](../findings/FND-CONFIG-165.md) | A pointer wrapper reads metadata before its null test and returns zero after the runtime call |
 | [FND-CONFIG-166](../findings/FND-CONFIG-166.md) | A state clear can make the following status poll return zero under stable valid inputs |
 | [FND-CONFIG-167](../findings/FND-CONFIG-167.md) | Runtime pointer dispatch can return a local rejection result that its caller discards |
-| [FND-CONFIG-168](../findings/FND-CONFIG-168.md) | A pointer consumer changes list state before a child failure and its caller ignores the result |
+| [FND-CONFIG-168](../findings/FND-CONFIG-168.md) | A pointer consumer changes list state before a conditional child-result exit and its caller ignores the result |
 | [FND-CONFIG-169](../findings/FND-CONFIG-169.md) | A following mode helper requests resources without branching on their returned results |
 | [FND-CONFIG-170](../findings/FND-CONFIG-170.md) | An error collector copies and clears near state while restoring the retained consumer result |
 | [FND-CONFIG-171](../findings/FND-CONFIG-171.md) | Following resident helpers reload callback targets and perform bounded fixed-segment word writes |
+| [FND-CONFIG-172](../findings/FND-CONFIG-172.md) | Child cleanup distinguishes recursive error propagation from local error origins |
+| [FND-CONFIG-173](../findings/FND-CONFIG-173.md) | The intervening list helper has signed count gates and checked or ignored result paths |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |

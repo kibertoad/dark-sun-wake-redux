@@ -205,7 +205,9 @@ None known.
   separate mode gates, callback and ungated resource results.
   FND-CONFIG-170 resolves local retained-result restoration through the
   collector; FND-CONFIG-171 reads the following resident callback gates,
-  fresh targets and fixed word writes. Actual cached
+  fresh targets and fixed word writes. FND-CONFIG-172 distinguishes child
+  recursive error propagation from an origin; FND-CONFIG-173 bounds the
+  intervening list helper's gates and checked/ignored results. Actual cached
   inputs, resource and opcode effects, I/O and error outcomes remain open.
   Runtime registration, loads, valid records, reachable inputs, other writers
   and intervening helper effects remain open.

@@ -40,13 +40,16 @@ Next ID: Q-SCRIPT-008
   FND-CONFIG-165 bounds the pointer wrapper; FND-CONFIG-166 reads
   state-clear/status gates. FND-CONFIG-167 reads runtime dispatch and a
   local rejection path whose result the wrapper discards. FND-CONFIG-168
-  reads another pointer consumer's ordered list/count changes and child
-  failure; the caller ignores its result. FND-CONFIG-169 reads the
+  reads another pointer consumer's ordered list/count changes and
+  conditional child-result exit; the caller ignores its result. FND-CONFIG-169 reads the
   following helper's mode gates, callback and resource requests without
   success-result branches. FND-CONFIG-170 resolves local
   retained-result restoration through the near-state collector.
   FND-CONFIG-171 reads following resident callback gates, fresh targets,
-  gated helper calls and fixed word writes. Full external
+  gated helper calls and fixed word writes. FND-CONFIG-172
+  bounds child cleanup, recursive error propagation without a leaf origin,
+  and ignored EBOX results. FND-CONFIG-173 reads the intervening list
+  helper's signed gates, pointer walks and checked/ignored results. Full external
   effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.
@@ -86,7 +89,11 @@ Next ID: Q-SCRIPT-008
   interrupt-free normalized-address/rejection cases (FND-CONFIG-167).
   Add near-copy count and alias cases once their layouts are supported
   (FND-CONFIG-170), and valid callback-zero/helper-gate/fixed-word-copy
-  cases (FND-CONFIG-171). Indirect targets and callees need separate coverage.
+  cases (FND-CONFIG-171). Add finite MENU propagation, named record-walk equality/signed-index,
+  zero inner pointer-field and valid EBOX bypass cases (FND-CONFIG-172),
+  plus signed outer-count/first-record/child gates (FND-CONFIG-173)
+  once their layouts are supported. Indirect targets and callees need
+  separate coverage.
   Resource and error branches need separate provenance and cannot
   establish operating-system outcomes by emulation. Tried: FND-SCRIPT-019 reads the local instruction paths;
   the emulator harness does not exist yet.

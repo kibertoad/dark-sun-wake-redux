@@ -90,13 +90,18 @@ unconditional consequences of entering the error routine.
 
 ## Alternatives
 
+FND-CONFIG-172 subsequently bounds child cleanup and MENU's recursive
+error propagation without a leaf origin. FND-CONFIG-173 reads the local
+0003 call after list/count changes; its AX is ignored before child cleanup.
+Graph, region and transitive outcome dependencies remain open.
+
 FND-CONFIG-170 subsequently resolves the pointer error helper's local
 saved-SI restoration and near-copy/clear ordering. FND-CONFIG-171 reads
 the following resident callback, gated helper and fixed-segment word writes.
 Fresh target reads and transitive register/state preservation remain open.
 
 FND-CONFIG-168 subsequently reads the zero-selector consumer and its
-child-failure path after list/count changes. The caller's field clears
+conditional child-result exit after list/count changes. The caller's field clears
 ignore that returned result. FND-CONFIG-169 reads 00BB's separate mode
 gates, callback and resource requests; its resource results do not locally
 gate continuation. Their complete callees, inputs and returns remain open.

@@ -249,13 +249,16 @@ Next ID: Q-CONFIG-011
   writers, DS preservation and actual intervening input remain open.
   FND-CONFIG-167 reads runtime dispatch, a bounded rejection predicate,
   result conversions and shared-slot DS restoration. FND-CONFIG-168
-  reads the zero-selector pointer consumer's child failure after list/count
+  reads the zero-selector pointer consumer's conditional exit after list/count
   changes and the caller's ignored result. FND-CONFIG-169 reads the
   following helper's separate mode gates, callback and resource requests
   without success-result branches. FND-CONFIG-170 resolves local
   retained-result restoration through the near-state collector.
   FND-CONFIG-171 reads following resident callback gates, fresh targets,
-  gated helper calls and fixed word writes. Runtime metadata,
+  gated helper calls and fixed word writes. FND-CONFIG-172
+  bounds child cleanup, recursive error propagation without a leaf origin,
+  and ignored EBOX results. FND-CONFIG-173 reads the intervening list
+  helper's signed gates, pointer walks and checked/ignored results. Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent

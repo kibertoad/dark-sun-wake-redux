@@ -4,7 +4,7 @@ title: Script-cache lookup and resource transfer
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-001, FND-SCRIPT-003, FND-SCRIPT-006, FND-SCRIPT-019, FND-SCRIPT-020, FND-SCRIPT-021, FND-SCRIPT-022, FND-SCRIPT-023, FND-CONFIG-151, FND-CONFIG-161, FND-CONFIG-162, FND-CONFIG-163, FND-CONFIG-164, FND-CONFIG-165, FND-CONFIG-166, FND-CONFIG-167, FND-CONFIG-168, FND-CONFIG-169, FND-CONFIG-170, FND-CONFIG-171]
+evidence: [FND-SCRIPT-001, FND-SCRIPT-003, FND-SCRIPT-006, FND-SCRIPT-019, FND-SCRIPT-020, FND-SCRIPT-021, FND-SCRIPT-022, FND-SCRIPT-023, FND-CONFIG-151, FND-CONFIG-161, FND-CONFIG-162, FND-CONFIG-163, FND-CONFIG-164, FND-CONFIG-165, FND-CONFIG-166, FND-CONFIG-167, FND-CONFIG-168, FND-CONFIG-169, FND-CONFIG-170, FND-CONFIG-171, FND-CONFIG-172, FND-CONFIG-173]
 conflicting: []
 split_with: []
 related: [FMT-SCRIPT-001, RULE-SCRIPT-002]
@@ -145,7 +145,7 @@ state-clear/status pair can make the following poll return zero at its
 entry under valid stable state. Changed state and active service effects
 remain separate dependencies (FND-CONFIG-166). Three other caller fields
 are cleared after a returning zero-selector consumer without testing its
-result. That consumer has a child failure path after list/count changes;
+result. That consumer has a conditional child-result exit after list/count changes;
 its error helper adds another return dependency (FND-CONFIG-168). The
 following mode helper requests callbacks and resources behind separate
 state gates. Its resource results do not locally gate continuation, and
@@ -155,7 +155,12 @@ return, with near-buffer and guard dependencies remaining (FND-CONFIG-170).
 Following resident calls test callback fields, reload their targets after
 intervening calls, and retain further register/state dependencies. Their
 caller ignores the zero/FFFF result before the final fixed-segment word
-writes (FND-CONFIG-171).
+writes (FND-CONFIG-171). MENU cleanup's FFFF branch only propagates
+recursive FFFF; its finite valid leaves return zero, so that branch is
+not itself an originating error. The EBOX result is ignored before the
+caller's common child-pointer operation (FND-CONFIG-172). The intervening
+list helper has signed count gates and several checked FFFF exits;
+its caller ignores that returned result too (FND-CONFIG-173).
 
 `fn_172C_31ED`'s reset is bounded in FND-SCRIPT-020. Cache-input
 provenance, valid bounds and error-entry effects retain the dependencies

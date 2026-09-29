@@ -1,6 +1,6 @@
 ---
 id: FND-CONFIG-168
-title: A pointer consumer changes list state before a child failure and its caller ignores the result
+title: A pointer consumer changes list state before a conditional child-result exit and its caller ignores the result
 status: recorded
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
@@ -113,8 +113,9 @@ complete callees' preservation is not assumed.
 ## Interpretation
 
 The named caller's field clear occurs after a returning
-consumer, without a success test. The consumer can return
-FFFF after prior list/count changes and before its later
+consumer, without a success test. The consumer has an
+encoded nonzero-MENU-result exit returning FFFF after
+prior list/count changes and before its later
 pointer clears. The outer error helper adds another
 return dependency. This bounds the local ordering, not
 successful release, valid graph membership or native
@@ -124,6 +125,13 @@ and the runtime result it discards.
 
 ## Alternatives
 
+FND-CONFIG-172 subsequently reads MENU's recursive FFFF propagation
+without a local leaf origin: a finite valid traversal returns zero. It
+also bounds 0544's pointer requests without own field clears and EBOX's
+result ignored by this caller. FND-CONFIG-173 reads the intervening
+0003 helper's two passes and checked/ignored result ordering. This caller
+ignores its AX as well. Complete graph, region and native inputs stay open.
+
 FND-CONFIG-170 subsequently reads the collector and copy primitive's
 normal saved-SI restoration. A returning consumer FFFF is retained through
 that local error-helper path. Near-buffer bounds, DS, aliases and guard
@@ -131,10 +139,12 @@ outcomes remain open rather than an assumed successful operation.
 
 Q-CONFIG-008 and Q-SCRIPT-003 retain valid graph, links,
 count and object provenance, aliases, child-tag inputs,
-all callers, local 0003, external callees, DS/SI
+all callers, 0003's transitive effects, external callees, DS/SI
 preservation and return outcomes. One reading supplies
 valid members with continuing child results; another
-reaches changed state or a nonzero MENU result. The
+reaches changed or invalid graph state. FND-CONFIG-172
+rules out an originating MENU error in a finite valid
+traversal; its propagation branch alone supplies none. The
 local paths distinguish their ordering but do not prove
 which ordinary input reaches them. The optional 08FB
 consumer also remains unread for other selector values.

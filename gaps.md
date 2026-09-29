@@ -443,7 +443,7 @@ claiming transactionality, and distinguish the external error callee's
 unknown effects from the caller's own writes. This complements item 15's
 call ordering and item 26's return-width contracts.
 
-FND-CONFIG-168 additionally bounds a child failure after linked-list and
+FND-CONFIG-168 additionally bounds a conditional child-result exit after linked-list and
 count changes, with caller pointer clears ignoring the returned result.
 FND-CONFIG-169 supplies resource calls that set AX flags without a branch
 using them; a subsequent field comparison supplies the actual predicate.
@@ -537,3 +537,20 @@ indirect targets: the nonnull test precedes a callee, then the call reloads
 the pointer field. A check protects the actual target only with preserved
 field and segment provenance. Shared summaries should retain intervening
 writers/callees and distinguish a checked snapshot from a later reload.
+
+
+## 33. Distinguish recursive error propagation from an originating error
+
+FND-CONFIG-172 reads a MENU helper whose FFFF return only propagates
+FFFF from its recursive call. Finite valid leaves return zero; an error
+branch in its caller therefore does not establish a local error origin.
+FND-CONFIG-168 retains that caller's conditional ordering without claiming
+an ordinary failing invocation. Cyclic/invalid graph states and actual
+termination remain separate provenance questions.
+
+**Request:** shared call/effect summaries should follow each propagated
+result to its producing leaf or external source. For recursive groups,
+distinguish base-case results from values merely passed around the cycle.
+An encoded error edge alone should not prove reachable failure. Retain
+finite-traversal and valid-state assumptions rather than inferring either
+an actual failure or unconditional successful termination.
