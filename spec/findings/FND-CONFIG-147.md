@@ -137,7 +137,7 @@ possibility that these particular intervening calls activate slot
 Activation by another caller or a later write remains open.
 The finite-chain argument applies to the initialized heads and
 new inputs here; malformed incoming heads elsewhere are not
-validated by this reading. FND-CONFIG-146 leaves selector-table
+validated by this reading. FND-CONFIG-148 leaves selector-table
 producer forms open for paths that actually call the helpers.
 
 ## How to reproduce

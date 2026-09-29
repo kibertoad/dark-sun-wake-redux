@@ -125,6 +125,11 @@ no unconditional flag-preservation or gameplay claim follows.
 
 ## Alternatives
 
+FND-CONFIG-150 subsequently identifies direct selector and starting-
+position assignments in a post-setup initializer, and a metadata-buffer
+argument to a resource call. Its unread callees and later states still
+leave the reachable selector and metadata ranges unresolved.
+
 FND-CONFIG-147 subsequently resolves the setup zero-gate call:
 its slot remains zero and that call does not reach these helpers.
 The conditions below still apply to other calls and later states.

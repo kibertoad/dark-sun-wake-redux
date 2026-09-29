@@ -188,12 +188,19 @@ Next ID: Q-CONFIG-011
   conditional on valid, non-aliased state. The near-pointer segment
   relationship, buffer validity, selector/starting-position producers and
   actual setup-time slots were not resolved by that helper reading.
-  FND-CONFIG-146 adds a qualified selector-base query and rejects three
+  FND-CONFIG-148 adds a qualified selector-base query and rejects three
   overlapping decodes; no producer was verified. Do not repeat that query
   without new coverage of other producer forms. FND-CONFIG-147 reads the
   intervening setup calls for their actual ranges and resolves slot 523's
   zero state at the local traversal call. Setup invocation, bypass state,
   later table changes and rest-time iterator inputs remain open.
+  FND-CONFIG-149 inventories the declared direct setup call and reads
+  its local branch join and following return checks. The initial gate byte
+  and a qualified literal-writer query do not establish the gate at that
+  call. FND-CONFIG-150 reads the following initializer's direct selector
+  and starting-position stores and metadata-buffer argument. Resource
+  callees 38FF:05B5 and 38FF:04AB, earlier gate producers, cleanup,
+  other later changes and reachability remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

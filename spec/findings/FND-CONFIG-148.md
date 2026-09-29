@@ -1,9 +1,9 @@
 ---
-id: FND-CONFIG-146
-title: A qualified literal query finds selector-table reads but no verified producer
-status: superseded
+id: FND-CONFIG-148
+title: A validated overlay-range query finds selector-table reads but no verified literal producer
+status: recorded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: [FND-CONFIG-148]
+superseded_by: []
 recorded_by: kibertoad
 reproduced_by: []
 method: static
@@ -16,6 +16,13 @@ environment: null
 ---
 
 ## Observation
+
+This replaces FND-CONFIG-146's query-method description. Its
+scratch range selector also treated resident descriptors with flag
+bit zero set as overlays. The validated repeat selects overlay
+flag bit one, checks resident headers and payload/fixup bounds,
+and obtains exactly 49 overlays and 8262 fixups. It confirms
+the same two reads and three rejected decodes described below.
 
 FND-CONFIG-145 reads a selector word using DS:5ECB and
 a starting-position word using DS:5EEB. A literal query searched
@@ -55,6 +62,10 @@ no new setup-time range invariant or termination claim.
 
 ## Alternatives
 
+FND-CONFIG-150 subsequently identifies a producer using separate
+per-type addresses, one of the forms this literal query did not cover.
+Its concrete stores replace the unchanged-table reading on that path.
+
 Q-CONFIG-008 retains indirect and block producers, parent-base
 arithmetic, other field-offset encodings and later state timing.
 An unchanged initial table and runtime population by unread
@@ -65,7 +76,11 @@ literal query without new coverage, a new tool or a new reading.
 ## How to reproduce
 
 Bound the resident and overlay ranges with FMT-EXE-001
-through FMT-EXE-005. Search little-endian 5ECB and 5EEB,
+through FMT-EXE-005. Select descriptors whose flags contain
+bit one, verify header trap and trampoline bounds, even fixup
+size, bounded code-and-fixup payload and each fixup operand.
+Require 49 overlay ranges and 8262 fixups for this build.
+Search little-endian 5ECB and 5EEB,
 locally decode starts one through five preceding bytes, and keep
 matching operands as candidates. Confirm the two reads from
 1AA0:0566 and reject overlaps by decoding the named entries

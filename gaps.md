@@ -267,7 +267,7 @@ before verified reads. Overlap handling therefore needs to cover preceding
 instruction bytes as well as stripped prefixes. Local decodability alone
 does not establish a write or its operand width.
 
-FND-CONFIG-146 also rejects an apparent address store assembled
+FND-CONFIG-148 also rejects an apparent address store assembled
 from the middle of an addition and its following jump. A matching
 immediate can be an overlapping instruction candidate rather than
 an address-taking use, even when the entire candidate decodes.
@@ -341,3 +341,19 @@ BP-relative operands and default DS for ordinary indirect accesses.
 Require segment-state provenance before merging them into one state
 buffer, and report aliasing as unresolved when that provenance is absent.
 This complements item 16's relocated far-pointer mapping.
+
+## 22. Validate descriptor selection before range and fixup inventories
+
+The caller query following FND-CONFIG-147 failed while treating a
+resident descriptor as an overlay. The scratch selector tested the
+resident/code flag instead of the overlay flag. The same selector had
+been used for FND-CONFIG-146's literal query. FND-CONFIG-148
+supersedes that method description after a validated repeat confirms
+its positive and rejected candidates.
+
+**Request:** shared bounded-query entry points should validate the
+spec-defined descriptor flag, header trap, resident trampoline bounds,
+payload and fixup bounds, and fixup operand membership before scanning.
+Require the build's known range and fixup counts as positive controls,
+and fail at range construction instead of allowing invalid ranges to
+be silently clipped or used in a negative finding.

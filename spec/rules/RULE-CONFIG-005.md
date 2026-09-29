@@ -163,11 +163,15 @@ None known.
   setup callee's local output and conditional table writes. FND-CONFIG-145
   reads its traversal helpers and conditional count consumption; buffer
   validity, the near-pointer segment relationship, table producers and
-  actual input ranges remain open. FND-CONFIG-146 bounds the literal
+  actual input ranges remain open. FND-CONFIG-148 bounds the literal
   selector-base query without finding a producer. FND-CONFIG-147 resolves
   the zero-gate setup's cleared slot and local traversal return; setup
   invocation, bypass state and later iterator inputs remain open.
-  Reachable inputs, other writers and intervening helper effects remain open.
+  FND-CONFIG-149 reads the declared direct setup caller's local join.
+  FND-CONFIG-150 reads direct post-setup selector assignments and a
+  metadata-buffer argument; resource-call effects, gate producers and
+  later inputs remain open. Reachable inputs, other writers and intervening
+  helper effects remain open.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local
