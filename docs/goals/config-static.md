@@ -29,16 +29,16 @@ Other areas' entries, queue files and parity rows. `src/` and `tests/`.
 
 - Stage: Slices.
 - Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 549 entries and 158 parity rows).
+  documentation check passed with 552 entries and 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
-- Next: Q-CONFIG-008, inspect supported-source FNFO lengths and bounded
-  metadata cases from FND-CONFIG-151 and FND-CONFIG-152, or read archive
-  preparation and positioning dependencies. Operating-system outcomes
-  require owner evidence. Setup gate producers and bypass state from
-  FND-CONFIG-149, later slot activation and stored-index producers, the
-  near-state-pointer segment relationship, and pointer replacement remain
-  open. Transitive effects from FND-CONFIG-131, FND-CONFIG-130 and
-  FND-CONFIG-109 remain open; entry 28C9:1261 provenance needs new
-  coverage after FND-CONFIG-114. Q-CONFIG-010 tracks acquisition-state
-  changes; Q-CONFIG-009 has an owner-run request.
+- Next: Q-CONFIG-008, read post-setup 00C0 callee 565C:0020
+  from FND-CONFIG-149 for OBJEX.GFF registration before the FNFO
+  requests in FND-CONFIG-153. The nonzero-mode helper, earlier gate
+  producers and bypass state remain open. Actual loads, record validity,
+  operating-system outcomes, the width-prefix direction flag, later slot
+  activation and stored-index producers, the near-state-pointer relationship
+  and pointer replacement remain open. Transitive effects from FND-CONFIG-131, FND-CONFIG-130
+  and FND-CONFIG-109 remain open; entry 28C9:1261 provenance needs
+  new coverage after FND-CONFIG-114. Q-CONFIG-010 tracks acquisition-
+  state changes; Q-CONFIG-009 has an owner-run request.
