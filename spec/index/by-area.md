@@ -572,6 +572,9 @@ Entries by area.
 | [FND-CONFIG-094](../findings/FND-CONFIG-094.md) | The resident pointer APFM branch maps input bit 4 to the item-feedback handler's value 32 | recorded |
 | [FND-CONFIG-095](../findings/FND-CONFIG-095.md) | Item-feedback frame selection is refreshed from the registered-window hit search | recorded |
 | [FND-CONFIG-096](../findings/FND-CONFIG-096.md) | The frame-event caller ignores the pre-dispatch window routine's failure return | recorded |
+| [FND-CONFIG-097](../findings/FND-CONFIG-097.md) | The selection-change helper skips APFM records and calls only button or menu paths | recorded |
+| [FND-CONFIG-098](../findings/FND-CONFIG-098.md) | The old-window helper skips the shipped item window APFM children | recorded |
+| [FND-CONFIG-099](../findings/FND-CONFIG-099.md) | The pre-dispatch position and region helpers write separate fixed data ranges | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

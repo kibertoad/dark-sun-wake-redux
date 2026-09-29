@@ -58,8 +58,10 @@ this reading does not make the call harmless in every live state.
 
 ## Alternatives
 
-The old-window helper, coordinate/region callees and runtime graph changes
-may affect shared state. An ignored failure return therefore does not
+FND-CONFIG-098 shows the old-window helper skips an unchanged
+APFM-only prior graph. FND-CONFIG-099 bounds the coordinate and
+region callees' write ranges. Other prior graphs and runtime changes
+may still affect shared state. An ignored failure return therefore does not
 prove that DS:A125, the containing window or frame callback remains
 valid. Reading those effects and their writers would distinguish an
 unchanged-state path from a state-changing one (Q-CONFIG-008).

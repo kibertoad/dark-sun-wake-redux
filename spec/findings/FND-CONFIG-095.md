@@ -58,7 +58,9 @@ is not a complete reachability proof.
 ## Alternatives
 
 The coordinate helpers, state words, live changes to frame fields and
-side effects of the local calls remain unread (Q-CONFIG-008).
+other local calls remain unread (Q-CONFIG-008). FND-CONFIG-097
+shows the selection-change helper skips a valid prior APFM record,
+while its button and menu paths remain separate.
 The APFM-specific helper path may be inactive for the shipped fields,
 or runtime initialization may replace them. A complete reading of those
 writers and helper effects would distinguish the code-decided parts.

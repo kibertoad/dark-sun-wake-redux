@@ -114,7 +114,10 @@ None known.
   FND-CONFIG-095 traces hit-selection refresh and earlier helper gates;
   FND-CONFIG-096 shows the intervening window return is ignored and its
   child branches skip the shipped APFM graph. Physical input mapping
-  and nested helper effects remain unread.
+  remains unread. FND-CONFIG-097 and FND-CONFIG-098 bound the
+  selection and old-window helpers to their handled tags; FND-CONFIG-099
+  bounds the position/region writes away from the selected-pointer fields.
+  Other prior control types and runtime state changes remain open.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local

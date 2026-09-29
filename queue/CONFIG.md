@@ -101,8 +101,10 @@ Next ID: Q-CONFIG-011
   dispatcher into that handler. FND-CONFIG-095 traces hit-selection
   refresh and earlier helper gates. FND-CONFIG-096 shows the intervening
   window return is ignored and its child branches skip the shipped APFM
-  graph. Physical input mapping, nested helper effects and later state
-  changes remain open.
+  graph. FND-CONFIG-097 and FND-CONFIG-098 bound the selection and
+  old-window helpers by their two-tag tables. FND-CONFIG-099 bounds the
+  position/region callees' fixed write targets. Physical input mapping,
+  other prior control types and later state changes remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?
