@@ -213,7 +213,9 @@ None known.
   bypass paths, retaining aliases, shared fields and actual guards.
   FND-CONFIG-176 distinguishes region setup returns from a count-16 append
   rejection; FND-CONFIG-177 bounds staged outputs, sentinel bypasses and
-  pair-expansion capacity cases. Full region and input evidence stays open. Actual cached
+  pair-expansion capacity cases. FND-CONFIG-178 bounds the larger helper's
+  private checked appends and rules out compaction at the named self-copy.
+  Full region geometry and input evidence stays open. Actual cached
   inputs, resource and opcode effects, I/O and error outcomes remain open.
   Runtime registration, loads, valid records, reachable inputs, other writers
   and intervening helper effects remain open.

@@ -121,7 +121,8 @@ or presentation work is not established by that continuation.
 FND-CONFIG-176 subsequently reads initializer and one-record normal-return
 contracts, and append's concrete count-16 FFFF origin. FND-CONFIG-177
 reads wrapper staging, sentinel bypasses and a conditional pair-expansion
-capacity rejection. Complete 0180/0DEC effects and original input provenance
+capacity rejection. FND-CONFIG-178 adds 0180 call/write routes and the 0DEC self-copy.
+Complete geometry effects and original input provenance
 remain open; this list caller's ignored results still do not prove success.
 
 Q-CONFIG-008 and Q-SCRIPT-003 retain count/head/link and

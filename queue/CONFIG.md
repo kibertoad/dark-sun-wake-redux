@@ -263,8 +263,9 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-175 bounds bracketed guard-bypass SI/DS and copy contracts.
   FND-CONFIG-176 reads setup and append result contracts and a count-16
   pre-write rejection. FND-CONFIG-177 reads wrapper staging, sentinel
-  bypasses and conditional pair expansion, retaining 0180/0DEC and native
-  input provenance.
+  bypasses and conditional pair expansion. FND-CONFIG-178 bounds 0180's
+  checked private append and output routes and the 0DEC self-copy, retaining
+  full geometry and native input provenance.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 

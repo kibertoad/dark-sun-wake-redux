@@ -176,7 +176,7 @@ Entries by kind.
 
 ## findings
 
-413 entries.
+414 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -402,6 +402,7 @@ Entries by kind.
 | [FND-CONFIG-175](../findings/FND-CONFIG-175.md) | Callback bracket helpers preserve DS and SI on guard-bypass copy paths | recorded |
 | [FND-CONFIG-176](../findings/FND-CONFIG-176.md) | Region initialization returns zero and append rejects count sixteen before writing | recorded |
 | [FND-CONFIG-177](../findings/FND-CONFIG-177.md) | Region wrappers stage outputs and pair expansion can reach the append capacity error | recorded |
+| [FND-CONFIG-178](../findings/FND-CONFIG-178.md) | The large region helper stages checked appends and its follow-up is a self-copy | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |

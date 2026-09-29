@@ -579,3 +579,11 @@ pairwise expansion, splits and repeated appends to the actual write gate;
 do not use each input's bound as proof that an output fits. Retain producer
 invariants and local staging/alias assumptions separately from failure
 reachability or atomicity claims.
+
+
+FND-CONFIG-178 adds a syntactic upper bound of four append calls per
+input-record iteration, with all candidate writes routed through the
+private capacity gate. A control-path upper bound is not proof of a
+feasible geometry case or an ordinary native input. Shared summaries
+should report those distinctions explicitly and retain alias/guard
+conditions when using a private-write bound to support a safety claim.

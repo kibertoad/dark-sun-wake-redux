@@ -54,8 +54,9 @@ Next ID: Q-SCRIPT-008
   FND-CONFIG-175 bounds bracketed guard-bypass SI/DS and copy contracts.
   FND-CONFIG-176 reads setup and append result contracts and a count-16
   pre-write rejection. FND-CONFIG-177 reads wrapper staging, sentinel
-  bypasses and conditional pair expansion, retaining 0180/0DEC and native
-  input provenance.
+  bypasses and conditional pair expansion. FND-CONFIG-178 bounds 0180's
+  checked private append and output routes and the 0DEC self-copy, retaining
+  full geometry and native input provenance.
   Full external effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.
@@ -106,7 +107,9 @@ Next ID: Q-SCRIPT-008
   Add fill/count-16 append, valid one-record setup, signed extrema,
   sentinel and staged-output/pair-expansion cases (FND-CONFIG-176,
   FND-CONFIG-177) after supported layouts exist. The unfinished region
-  helpers need separate complete branch coverage.
+  helpers need separate complete branch coverage. FND-CONFIG-178 adds
+  equality/sentinel/copy, private capacity-error and same-pointer 0DEC
+  cases; geometry paths need independently supported case definitions.
   Resource and error branches need separate provenance and cannot
   establish operating-system outcomes by emulation. Tried: FND-SCRIPT-019 reads the local instruction paths;
   the emulator harness does not exist yet.

@@ -112,9 +112,9 @@ the final caller-output copy. Finishing the scan calls
 that same region as both arguments, then copies it to
 output with 0076 and returns zero. Those three results
 are ignored. Only 0180's selected entry, bypass and
-append routes were read in this batch; its complete
-branch effects and 0DEC remain dependencies rather than
-an assumed subtraction or compaction contract.
+append routes were read in this batch; FND-CONFIG-178 subsequently bounds its
+call/write/result routes and the 0DEC self-copy; full
+geometry-selection semantics and native inputs remain open.
 
 0E7C tests its second input's four-word sentinel through
 4072:021E. Returned one copies first input directly to
@@ -152,10 +152,15 @@ and semantic region operations still need provenance.
 
 ## Alternatives
 
+FND-CONFIG-178 subsequently bounds 0180's call/write/result routes and
+all 33 checked private append sites, retaining detailed geometry conditions
+and input provenance. It reads 0DEC completely: the named same-pointer
+call is a full-buffer self-copy, not compaction.
+
 Q-CONFIG-008 and Q-SCRIPT-003 retain input counts, record
 bounds and sentinel producers, duplicate/overlap invariants,
 all callers, valid capacities and stack state, aliasing,
-DS/index preservation, complete 0180/0DEC readings and
+DS/index preservation, complete 0180 geometry readings and
 guard or native outcomes. One reading supplies at most
 16 admitted pairs; another supplies more and reaches
 the append rejection. The local cases separate their
@@ -182,6 +187,7 @@ which final copy each exit skips. Read 4400:00BA through
 unsigned counts and the four-zero sentinel. Compare append
 capacity in FND-CONFIG-176 and copy bypass/preservation in
 FND-CONFIG-175. Follow 0180 only as far as this stated
-reading; retain its complete branches and 0DEC for later
+reading; compare FND-CONFIG-178's later call/write and
+self-copy bounds, retaining complete geometry for later
 research. Resolve declared MZ operands and keep conditional
 case derivation separate from native or emulated execution.

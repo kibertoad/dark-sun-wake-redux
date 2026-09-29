@@ -659,6 +659,7 @@ Entries by area.
 | [FND-CONFIG-175](../findings/FND-CONFIG-175.md) | Callback bracket helpers preserve DS and SI on guard-bypass copy paths | recorded |
 | [FND-CONFIG-176](../findings/FND-CONFIG-176.md) | Region initialization returns zero and append rejects count sixteen before writing | recorded |
 | [FND-CONFIG-177](../findings/FND-CONFIG-177.md) | Region wrappers stage outputs and pair expansion can reach the append capacity error | recorded |
+| [FND-CONFIG-178](../findings/FND-CONFIG-178.md) | The large region helper stages checked appends and its follow-up is a self-copy | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |
