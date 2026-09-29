@@ -270,6 +270,9 @@ Next ID: Q-CONFIG-011
   argument widths, superseding FND-CONFIG-169 through FND-CONFIG-179.
   FND-CONFIG-181 reads the filename conversion and archive requests,
   retaining near-DS/far-SS provenance and external path/error effects.
+  FND-CONFIG-182 reads the path append and runtime scan/copy helpers;
+  signed lengths, prefix-dependent zero placement, aliases, capacities
+  and reachable filename/prefix inputs remain conditional.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 

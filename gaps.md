@@ -594,6 +594,13 @@ feasible geometry case or an ordinary native input. Shared summaries
 should report those distinctions explicitly and retain alias/guard
 conditions when using a private-write bound to support a safety claim.
 
+FND-CONFIG-182 further separates a path helper's copy count from its
+explicit zero-byte position. The zero uses the original destination base,
+while the copy advances by the prefix length. Shared summaries should
+track the base of each write and signed or wrapped length gates; a limit
+argument alone does not prove termination at the conventional boundary
+or valid storage on every branch.
+
 ## 35. Reconstruct stack arguments through the callee before grouping pointers
 
 FND-CONFIG-179 supersedes FND-CONFIG-169 after FND-CONFIG-180

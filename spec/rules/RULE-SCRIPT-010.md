@@ -4,7 +4,7 @@ title: Script-cache lookup and resource transfer
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-001, FND-SCRIPT-003, FND-SCRIPT-006, FND-SCRIPT-019, FND-SCRIPT-020, FND-SCRIPT-021, FND-SCRIPT-022, FND-SCRIPT-023, FND-CONFIG-151, FND-CONFIG-161, FND-CONFIG-162, FND-CONFIG-163, FND-CONFIG-164, FND-CONFIG-165, FND-CONFIG-166, FND-CONFIG-167, FND-CONFIG-168, FND-CONFIG-179, FND-CONFIG-170, FND-CONFIG-171, FND-CONFIG-172, FND-CONFIG-173, FND-CONFIG-174, FND-CONFIG-175, FND-CONFIG-176, FND-CONFIG-177, FND-CONFIG-178, FND-CONFIG-180, FND-CONFIG-181]
+evidence: [FND-SCRIPT-001, FND-SCRIPT-003, FND-SCRIPT-006, FND-SCRIPT-019, FND-SCRIPT-020, FND-SCRIPT-021, FND-SCRIPT-022, FND-SCRIPT-023, FND-CONFIG-151, FND-CONFIG-161, FND-CONFIG-162, FND-CONFIG-163, FND-CONFIG-164, FND-CONFIG-165, FND-CONFIG-166, FND-CONFIG-167, FND-CONFIG-168, FND-CONFIG-179, FND-CONFIG-170, FND-CONFIG-171, FND-CONFIG-172, FND-CONFIG-173, FND-CONFIG-174, FND-CONFIG-175, FND-CONFIG-176, FND-CONFIG-177, FND-CONFIG-178, FND-CONFIG-180, FND-CONFIG-181, FND-CONFIG-182]
 conflicting: []
 split_with: []
 related: [FMT-SCRIPT-001, RULE-SCRIPT-002]
@@ -156,7 +156,10 @@ bitmap helper does gate the second resource request on the first result
 (FND-CONFIG-180). Its filename helper clears a stored archive handle
 without a close-result test, then requests another open under near/far
 segment and input conditions. A returned failure does not locally stop
-the parent's continuation (FND-CONFIG-181).
+the parent's continuation (FND-CONFIG-181). The external path append
+uses signed word-length gates and a separate prefix-dependent zero store
+in its truncation branch; capacities, aliases and reachable inputs remain
+conditions (FND-CONFIG-182).
 The collector restores the retained consumer result on its local normal
 return, with near-buffer and guard dependencies remaining (FND-CONFIG-170).
 Following resident calls test callback fields, reload their targets after

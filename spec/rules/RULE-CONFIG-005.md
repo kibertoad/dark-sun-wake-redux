@@ -204,7 +204,8 @@ None known.
   caller's ignored result. FND-CONFIG-179 bounds the following helper's
   separate mode gates, corrected callback/mask layout and ungated resource
   results. FND-CONFIG-180 reads the local bitmap/registration gates;
-  FND-CONFIG-181 bounds archive-handle, filename and segment conditions.
+  FND-CONFIG-181 bounds archive-handle, filename and segment conditions;
+  FND-CONFIG-182 reads the append helper's signed gates and zero store.
   FND-CONFIG-170 resolves local retained-result restoration through the
   collector; FND-CONFIG-171 reads the following resident callback gates,
   fresh targets and fixed word writes. FND-CONFIG-172 distinguishes child

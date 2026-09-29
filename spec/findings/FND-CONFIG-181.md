@@ -109,7 +109,7 @@ output address and words 000A and 04D4. The complete
 0000 span is `0x00068850..0x000688A6`. It copies a
 DS:44F2 prefix into local SS:BP-52 through 406D,
 then passes that far local output, a far filename source
-formed with current DS and word 80 to 2D40:3DC2.
+formed with current DS and word 80 (50 hexadecimal) to 2D40:3DC2.
 It calls 38FF:0066 with the resulting far local path,
 a zero-extended 04D4, word 000A and the handle-output
 address. Full returned AX FFFF becomes AL zero; other
@@ -117,6 +117,8 @@ results become AL one. The prefix is initially empty,
 but its later writers and the external path helper's
 complete effects remain open. No successful open or
 path-content guarantee is assigned by the AL conversion.
+FND-CONFIG-182 subsequently reads the external append helper,
+including its signed length gates and prefix-dependent zero store.
 
 A zero AL returned to 0297 passes its near filename
 offset to 56B2:0034; nonzero skips that call. The parent

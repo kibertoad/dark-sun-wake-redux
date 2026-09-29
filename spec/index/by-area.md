@@ -663,6 +663,7 @@ Entries by area.
 | [FND-CONFIG-179](../findings/FND-CONFIG-179.md) | A mode helper passes callback 28C9:0061 and mask 0166 before ungated resource results | recorded |
 | [FND-CONFIG-180](../findings/FND-CONFIG-180.md) | The bitmap and registration helpers have different result gates and exact callee argument widths | recorded |
 | [FND-CONFIG-181](../findings/FND-CONFIG-181.md) | The filename helper clears an archive handle and mixes far SS output with near DS processing | recorded |
+| [FND-CONFIG-182](../findings/FND-CONFIG-182.md) | The path append helper uses signed length gates and a prefix-dependent truncation terminator | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

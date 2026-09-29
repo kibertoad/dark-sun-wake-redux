@@ -61,6 +61,9 @@ Next ID: Q-SCRIPT-008
   argument widths, superseding FND-CONFIG-169 through FND-CONFIG-179.
   FND-CONFIG-181 reads the filename conversion and archive requests,
   retaining near-DS/far-SS provenance and external path/error effects.
+  FND-CONFIG-182 reads the path append and runtime scan/copy helpers;
+  signed lengths, prefix-dependent zero placement, aliases, capacities
+  and reachable filename/prefix inputs remain conditional.
   Full external effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.
@@ -114,6 +117,11 @@ Next ID: Q-SCRIPT-008
   helpers need separate complete branch coverage. FND-CONFIG-178 adds
   equality/sentinel/copy, private capacity-error and same-pointer 0DEC
   cases; geometry paths need independently supported case definitions.
+  FND-CONFIG-182 adds resident path skip, full append and truncation
+  cases with empty/nonempty prefixes, signed/wrapped lengths, null and
+  scan-limit results, odd/even byte copies and explicit zero placement.
+  Add them after supported argument/storage layouts exist; overlay
+  callers, producer reachability and archive I/O need separate evidence.
   Resource and error branches need separate provenance and cannot
   establish operating-system outcomes by emulation. Tried: FND-SCRIPT-019 reads the local instruction paths;
   the emulator harness does not exist yet.
