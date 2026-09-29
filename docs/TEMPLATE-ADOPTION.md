@@ -22,8 +22,9 @@ read to validate this migration. No evidence status is promoted.
 
 Review guidance requires researchers to record claim-dependent contracts; it does
 not claim to infer every effect, pointer identity or loop proof automatically.
-Gap cleanup follows successful local checks. Memory-block pagination, an offline
-.NET rerun, the UI catalog distinction and upstream JVM diagnostics remain open.
+Individual gap closure requires checking the whole request against delivered
+behavior. A passing tool test or added review guidance does not establish that
+every related request is complete. The original requests remain in `gaps.md`.
 
 ## Verification and gap disposition
 
@@ -34,7 +35,28 @@ against the installed public Ghidra 12.1.3 API; no original executable was opene
 20 EOF range endpoints in 12 findings to the final valid byte from the existing
 manifest; no descriptions, evidence or statuses changed.
 
-Removed 39 resolved gap entries after verification, retaining items 2, 4, 9 and
-38 under their original numbers. Tooling requests for claim-dependent summaries
-are addressed through the shared review procedure; those checks still require
-researcher evidence and do not claim automatic semantic analysis.
+The original cleanup overstated completion: it removed 39 entries by mapping
+them to ten priority groups. That was not an acceptance audit of each request.
+The original requests have been restored. The delivered tools and documentation
+remain useful, but an entry is removed only after its full requested behavior is
+verified. In particular, review guidance does not implement an automated variable
+use, argument, effect, guard, or capacity reporter.
+
+## Selected top ten: delivered scope
+
+| Priority | Delivered | Remaining limit |
+| --- | --- | --- |
+| 1. Canonical locations and relocation provenance | MZ/FBOV operand mapping and the v1 executable location rules | The checker validates file bounds, not every documented mapped-code range; no general banked-format support |
+| 2. Function boundaries and complete readings | Explicit-edge flow review, ownership warnings and overlapping starts | Exported overlay ownership, operand decoding and complete readings still require researcher verification |
+| 3. Memory identity and arguments | Conditional checks and synthetic worked examples | No automatic effective-segment or caller/callee argument reconstruction |
+| 4. Path effects and failures | Review requirements for ordering, guards, cleanup and failure paths | No automatic guarded effect or alias-aware call summaries |
+| 5. Trustworthy negative findings | Controlled relocated far-call search, exclusions and queue decomposition guidance | No entry-based variable-use inventory; near-call search is excluded |
+| 6. Capacities, arithmetic and caller ranges | Bounded numeric table reader and review examples | Input transformations, producer capacities and caller ranges are not inferred by the reporter |
+| 7. Static and emulated limits | Hardware/indirect-flow warnings and progress guidance | No automatic termination proof or recursive error-origin tracing |
+| 8. Portable honest coverage | Transactional exporter, explicit view joins and portable destination generation | Existing inventories are not automatically audited against manifest identity; raw exports allow only start/size |
+| 9. Superseded ownership | Merged checker excludes superseded rules from active procedure ownership | This fixes the ownership bug; it does not close other research-tool requests |
+| 10. Offline authority | Exact licensed snapshots, digests and explicit freshness/refresh commands | Offline integrity does not prove upstream freshness or enable offline .NET restore |
+
+The task addressed these ten priorities at the documented scope. It did not
+fully resolve 39 detailed tool requests. Further reporter work must be scoped
+and planned separately; the restored entries preserve its acceptance criteria.

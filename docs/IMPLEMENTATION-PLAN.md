@@ -401,6 +401,8 @@ licensed-source identity or owner-only runtime policy changes.
 - Acceptance: `tools/Test.ps1`, solution build, synthetic evidence and snapshot
   tests pass without original content; CI runs the same Node suites and checker.
   No claim is promoted. Conditional review guidance is not an automated effect
-  analyzer. Remove resolved requests after verification; retain unmet requests.
+  analyzer. Verify each complete original request before removing it; grouping
+  requests under ten priorities or adding review guidance does not establish
+  individual completion. Retain unmet and partially addressed requests.
 - Exit: commit the adoption and resolved-gap cleanup, audit processes, write the
   handover separately and push. No owner question or live session is needed.
