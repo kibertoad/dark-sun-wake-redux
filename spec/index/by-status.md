@@ -218,7 +218,7 @@ Entries by status.
 
 ## recorded
 
-354 entries.
+355 entries.
 
 | ID | Title |
 |---|---|
@@ -391,6 +391,7 @@ Entries by status.
 | [FND-CONFIG-136](../findings/FND-CONFIG-136.md) | Script opcode dispatch invokes the registered iterator-flag writer before its instruction handler |
 | [FND-CONFIG-137](../findings/FND-CONFIG-137.md) | Nested parameter instructions restore parameter blocks rather than the iterator flag |
 | [FND-CONFIG-138](../findings/FND-CONFIG-138.md) | Parameter byte advancement preserves the iterator flag on its ordinary path and clears it after an end-check failure |
+| [FND-CONFIG-139](../findings/FND-CONFIG-139.md) | The B1 expression path parses selectors and chains lookups before a conditional clear |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |

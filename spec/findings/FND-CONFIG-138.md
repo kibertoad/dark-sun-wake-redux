@@ -87,9 +87,11 @@ local bodies alone.
 
 ## Alternatives
 
+FND-CONFIG-139 reads the B1 expression root, selector parser
+and chained wrapper, retaining its seed and lookup callee effects.
 Q-CONFIG-008 retains the selection-byte and cursor producers,
 far-pointer provenance, reachable expressions and nested handlers,
-other expression helper effects, pointer replacement and later
+remaining expression helper effects, pointer replacement and later
 rest-entry state changes. A reading that every byte read invokes
 an opcode callback is ruled out by the complete helper bodies.
 A reading that ordinary byte advancement itself sets the iterator

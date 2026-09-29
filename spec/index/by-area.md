@@ -614,6 +614,7 @@ Entries by area.
 | [FND-CONFIG-136](../findings/FND-CONFIG-136.md) | Script opcode dispatch invokes the registered iterator-flag writer before its instruction handler | recorded |
 | [FND-CONFIG-137](../findings/FND-CONFIG-137.md) | Nested parameter instructions restore parameter blocks rather than the iterator flag | recorded |
 | [FND-CONFIG-138](../findings/FND-CONFIG-138.md) | Parameter byte advancement preserves the iterator flag on its ordinary path and clears it after an end-check failure | recorded |
+| [FND-CONFIG-139](../findings/FND-CONFIG-139.md) | The B1 expression path parses selectors and chains lookups before a conditional clear | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

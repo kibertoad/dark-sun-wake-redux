@@ -166,6 +166,9 @@ Next ID: Q-CONFIG-011
   cursor updates do not write the flag, and a failed end check calls its
   known clear path. Reader inputs, remaining expression effects, reachable
   nested instructions and later rest-entry changes remain unread.
+  FND-CONFIG-139 reads the B1 expression root, seed/count/selector parser
+  and chained lookup wrapper. Seed and lookup callee effects, stored-field
+  producers and reachable expression inputs remain unread.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?
