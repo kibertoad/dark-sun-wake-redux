@@ -324,6 +324,9 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-199 reads a rectangle transfer caller whose first-request
   failure reaches a cleanup read of an unassigned second frame word.
   Incoming state, frame provenance and native outcomes remain open.
+  FND-CONFIG-200 connects a text-output continuation to the rectangle
+  helper, with untested result and no equal-coordinate branch. Text
+  inputs, formatting effects and cleanup frame provenance remain open.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 
