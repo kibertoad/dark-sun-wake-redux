@@ -84,6 +84,10 @@ paths can run while the stored-character list is active.
 
 ## Alternatives
 
+FND-CONFIG-162 subsequently reads overlay 199's named setter caller,
+and FND-CONFIG-163 bounds the resident setter's guard. Registration
+completion, replacement timing and polling outcomes remain conditional.
+
 An unrelocated, computed or indirect call to the setter is not excluded by
 this direct-fixup inventory. The overlay 209 save and restore sites are in
 separate routines; their complete incoming and exit paths have not been

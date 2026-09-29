@@ -643,6 +643,8 @@ Entries by area.
 | [FND-CONFIG-159](../findings/FND-CONFIG-159.md) | The nonzero-mode pre-setup helper stores a relocated video-reset pointer and retains external dependencies | recorded |
 | [FND-CONFIG-160](../findings/FND-CONFIG-160.md) | The post-setup script call is status-gated and resets working buffers before loading MAS number 99 | recorded |
 | [FND-CONFIG-161](../findings/FND-CONFIG-161.md) | A shared helper clears three supplied pointer fields and polls before returning | recorded |
+| [FND-CONFIG-162](../findings/FND-CONFIG-162.md) | The shared helper's first callee installs a fallback callback and waits through two polls | recorded |
+| [FND-CONFIG-163](../findings/FND-CONFIG-163.md) | The callback setter's guard reaches a mode-one runtime path that bypasses the exit-callback loop | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

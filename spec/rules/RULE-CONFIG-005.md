@@ -193,7 +193,9 @@ None known.
   reads replacement selection and invalidating writes; FND-SCRIPT-022
   bounds allocation search and restart paths. FND-SCRIPT-023 and
   FND-CONFIG-161 read error-entry ordering and its shared helper's local
-  branches and polling gate. Actual cached
+  branches and polling gate. FND-CONFIG-162 reads the first local callee's
+  registration and polls; FND-CONFIG-163 bounds its setter guard and
+  mode-one callback-loop bypass. Actual cached
   inputs, resource and opcode effects, I/O and error outcomes remain open.
   Runtime registration, loads, valid records, reachable inputs, other writers
   and intervening helper effects remain open.

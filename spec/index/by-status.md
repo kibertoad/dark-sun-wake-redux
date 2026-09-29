@@ -222,7 +222,7 @@ Entries by status.
 
 ## recorded
 
-379 entries.
+381 entries.
 
 | ID | Title |
 |---|---|
@@ -416,6 +416,8 @@ Entries by status.
 | [FND-CONFIG-159](../findings/FND-CONFIG-159.md) | The nonzero-mode pre-setup helper stores a relocated video-reset pointer and retains external dependencies |
 | [FND-CONFIG-160](../findings/FND-CONFIG-160.md) | The post-setup script call is status-gated and resets working buffers before loading MAS number 99 |
 | [FND-CONFIG-161](../findings/FND-CONFIG-161.md) | A shared helper clears three supplied pointer fields and polls before returning |
+| [FND-CONFIG-162](../findings/FND-CONFIG-162.md) | The shared helper's first callee installs a fallback callback and waits through two polls |
+| [FND-CONFIG-163](../findings/FND-CONFIG-163.md) | The callback setter's guard reaches a mode-one runtime path that bypasses the exit-callback loop |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |

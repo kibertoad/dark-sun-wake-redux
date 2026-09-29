@@ -90,6 +90,10 @@ unconditional consequences of entering the error routine.
 
 ## Alternatives
 
+FND-CONFIG-162 subsequently reads the first local callee and its two
+polls. FND-CONFIG-163 bounds the callback setter's guard route. The
+remaining external effects, input and return dependencies below still apply.
+
 Q-CONFIG-008 and Q-SCRIPT-003 retain the local 0BC1
 callee, external effects, DS preservation, pointer and
 gate producers, and polling outcomes. One reading uses

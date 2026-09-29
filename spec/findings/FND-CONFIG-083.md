@@ -54,6 +54,10 @@ message-window setup for a delay wait.
 
 ## Alternatives
 
+FND-CONFIG-163 subsequently bounds the resident setter's guard before
+its pointer store. The store and later fallback route remain conditional
+on reaching that continuation; no native guard outcome is observed.
+
 FND-CONFIG-084 shows one temporary replacement and restoration path, but
 other setter calls, the list window's live registered state, and the
 producer of its failure-state word are not fully read. The code establishes

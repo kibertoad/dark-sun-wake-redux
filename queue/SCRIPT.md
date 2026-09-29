@@ -34,7 +34,9 @@ Next ID: Q-SCRIPT-008
   script-99 entry. FND-SCRIPT-021 reads replacement selection and writes.
   FND-SCRIPT-022 reads allocation search, comparisons and restart paths.
   FND-SCRIPT-023 reads the error entry and stop setter; FND-CONFIG-161
-  bounds its first shared helper. Full external effects and returns,
+  bounds its first shared helper. FND-CONFIG-162 reads that helper's first
+  callee and two polls; FND-CONFIG-163 bounds its setter guard and runtime
+  mode. Full external effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.
   Blocks: slices 3-6.

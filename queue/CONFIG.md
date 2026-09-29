@@ -236,7 +236,11 @@ Next ID: Q-CONFIG-011
   restart/comparison paths. FND-SCRIPT-023 reads error-entry ordering,
   and FND-CONFIG-161 bounds its shared helper and final poll. Complete
   external effects, pointer/gate inputs, return outcomes and resource
-  provenance remain open alongside Q-SCRIPT-003.
+  provenance remain open alongside Q-SCRIPT-003. FND-CONFIG-162 reads
+  the first local callee's registration and two polls; FND-CONFIG-163
+  bounds the setter guard and mode-one callback-loop bypass. Interrupt
+  outcomes, cleanup/helper effects, stack/gate producers and actual
+  registration/dispatch timing remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?
