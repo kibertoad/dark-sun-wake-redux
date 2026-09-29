@@ -37,7 +37,7 @@ Entries, queue files and parity rows outside CONFIG and SCRIPT.
 
 - Stage: Slices.
 - Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 603 entries and 158 parity rows).
+  documentation check passed with 604 entries and 158 parity rows).
   Full solution build passed with zero warnings and errors.
 - Unfinished: no session work. Ignored local `hs_err_pid15480.log` remains;
   ownership is uncertain, and it was left unmodified and uncommitted.
@@ -56,7 +56,9 @@ Entries, queue files and parity rows outside CONFIG and SCRIPT.
     pointer/registration coverage, initial slot state and DS/SS storage;
     FND-CONFIG-199's incoming rectangle/slot inputs and second-frame-word
     provenance; FND-CONFIG-200's upstream text inputs, traversal
-    and formatting callees; the fixed scratch capacity; and
+    and formatting callees; FND-CONFIG-201's incoming wrapper
+    arguments and DS-relative format provenance; the fixed scratch
+    capacity; and
     FND-CONFIG-192's accepted mask inputs, reference chains,
     aliases, direct callers and native VGA dependencies.
     Retain FND-CONFIG-188 and FND-CONFIG-189's neighboring-byte,
