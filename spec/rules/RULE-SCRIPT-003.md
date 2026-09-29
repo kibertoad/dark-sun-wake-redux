@@ -4,7 +4,7 @@ title: The script instructions for jumps, calls, returns, if, while, compare, th
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-001, FND-SCRIPT-005, FND-SCRIPT-006, FND-SCRIPT-008, FND-SCRIPT-009, FND-SCRIPT-010]
+evidence: [FND-SCRIPT-001, FND-SCRIPT-005, FND-SCRIPT-006, FND-SCRIPT-019, FND-SCRIPT-009, FND-SCRIPT-010]
 conflicting: []
 split_with: []
 related: [RULE-SCRIPT-002, RULE-SCRIPT-004]

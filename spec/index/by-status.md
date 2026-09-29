@@ -147,7 +147,6 @@ Entries by status.
 | [RULE-RNG-001](../rules/RULE-RNG-001.md) | The game's random number generator and its reductions |
 | [RULE-SAVE-001](../rules/RULE-SAVE-001.md) | The F1 and F2 screens and F3 exit choice |
 | [RULE-SAVE-002](../rules/RULE-SAVE-002.md) | The number and file name of a saved game |
-| [RULE-SCRIPT-001](../rules/RULE-SCRIPT-001.md) | Loading a GPL or MAS script into the script cache |
 | [RULE-SCRIPT-002](../rules/RULE-SCRIPT-002.md) | Running a script, reading its code and calling other scripts |
 | [RULE-SCRIPT-003](../rules/RULE-SCRIPT-003.md) | The script instructions for jumps, calls, returns, if, while, compare, the accumulator and assignment |
 | [RULE-SCRIPT-004](../rules/RULE-SCRIPT-004.md) | Reading instruction parameters, expressions, variables and strings |
@@ -155,6 +154,7 @@ Entries by status.
 | [RULE-SCRIPT-007](../rules/RULE-SCRIPT-007.md) | The script instructions that print text and numbers, show a portrait and play sound and music |
 | [RULE-SCRIPT-008](../rules/RULE-SCRIPT-008.md) | The script instructions that register attack and move-tile triggers |
 | [RULE-SCRIPT-009](../rules/RULE-SCRIPT-009.md) | The script trace instructions |
+| [RULE-SCRIPT-010](../rules/RULE-SCRIPT-010.md) | Script-cache lookup and resource transfer |
 | [RULE-SOUND-001](../rules/RULE-SOUND-001.md) | A sound effect plays the BVOC resource of its number, or the installed SOUND file when there is no such resource |
 | [RULE-SOUND-002](../rules/RULE-SOUND-002.md) | A spoken line plays INTR files from the disc below 50 and SPCH files from the installation or the disc from 50 up |
 | [RULE-SOUND-003](../rules/RULE-SOUND-003.md) | Music is chosen from DJ.DAT by region at startup and by party health in combat, and plays as a disc audio track |
@@ -196,7 +196,7 @@ Entries by status.
 
 ## superseded
 
-17 entries.
+19 entries.
 
 | ID | Title |
 |---|---|
@@ -216,11 +216,13 @@ Entries by status.
 | [FND-CONFIG-118](../findings/FND-CONFIG-118.md) | Overlay 179 wraps a result-producing helper and pending-record drain with state-dependent return calls |
 | [FND-CONFIG-134](../findings/FND-CONFIG-134.md) | Overlay 188 setup assigns the iterator stored index and clears its three-byte table |
 | [FND-CONFIG-146](../findings/FND-CONFIG-146.md) | A qualified literal query finds selector-table reads but no verified producer |
+| [FND-SCRIPT-008](../findings/FND-SCRIPT-008.md) | 172C:0388 loads a GPL or MAS resource into a 16-slot script cache and appends a 0x31 byte |
 | [FND-UI-029](../findings/FND-UI-029.md) | WIND 16500 places the thirteen Preferences buttons |
+| [RULE-SCRIPT-001](../rules/RULE-SCRIPT-001.md) | Loading a GPL or MAS script into the script cache |
 
 ## recorded
 
-373 entries.
+375 entries.
 
 | ID | Title |
 |---|---|
@@ -412,6 +414,7 @@ Entries by status.
 | [FND-CONFIG-157](../findings/FND-CONFIG-157.md) | Startup attempts OBJEX.GFF registration before the metadata initializer |
 | [FND-CONFIG-158](../findings/FND-CONFIG-158.md) | Three pre-setup calls restore DS and have no direct archive-state write |
 | [FND-CONFIG-159](../findings/FND-CONFIG-159.md) | The nonzero-mode pre-setup helper stores a relocated video-reset pointer and retains external dependencies |
+| [FND-CONFIG-160](../findings/FND-CONFIG-160.md) | The post-setup script call is status-gated and resets working buffers before loading MAS number 99 |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |
@@ -512,7 +515,6 @@ Entries by status.
 | [FND-SCRIPT-005](../findings/FND-SCRIPT-005.md) | The script interpreter dispatches bytes 0x00 to 0x80 through a 129-entry table at 57E0:030A, and 15 of its entries and every byte above 0x80 stop the script |
 | [FND-SCRIPT-006](../findings/FND-SCRIPT-006.md) | The interpreter reads code at a per-frame offset into the loaded script and keeps up to 50 frames |
 | [FND-SCRIPT-007](../findings/FND-SCRIPT-007.md) | 172C:000C runs a script from a start offset until its frames unwind or it stops, and 172C:0299 and 172C:031F enter and leave nested scripts |
-| [FND-SCRIPT-008](../findings/FND-SCRIPT-008.md) | 172C:0388 loads a GPL or MAS resource into a 16-slot script cache and appends a 0x31 byte |
 | [FND-SCRIPT-009](../findings/FND-SCRIPT-009.md) | The handlers of the control-flow, accumulator and assignment instructions |
 | [FND-SCRIPT-010](../findings/FND-SCRIPT-010.md) | 172C:3278 reads an expression of literals, variables and operators left to right with 8 levels of parentheses |
 | [FND-SCRIPT-011](../findings/FND-SCRIPT-011.md) | Script instruction 0x52 draws from the game's generator and scales the draw to 0 to n |
@@ -523,6 +525,8 @@ Entries by status.
 | [FND-SCRIPT-016](../findings/FND-SCRIPT-016.md) | Segment 2D40 runs GPL scripts from word pairs of linked 19-byte records whose list head is 57E0:5AF5 |
 | [FND-SCRIPT-017](../findings/FND-SCRIPT-017.md) | Overlay 187 converts script entry points in the trigger records to GPLI entry numbers and back |
 | [FND-SCRIPT-018](../findings/FND-SCRIPT-018.md) | SCMD resources are loaded through a separate 64-slot cache at 31E0:1893 with two callers |
+| [FND-SCRIPT-019](../findings/FND-SCRIPT-019.md) | Script-cache paths have distinct age updates and retain writes before a failed transfer |
+| [FND-SCRIPT-020](../findings/FND-SCRIPT-020.md) | A guarded interpreter helper clears four supplied working buffers |
 | [FND-SOUND-001](../findings/FND-SOUND-001.md) | Every VOC file and BVOC resource is one Creative Voice File header, one sound block and a terminator |
 | [FND-SOUND-002](../findings/FND-SOUND-002.md) | The installation's music is 40 Ogg Vorbis files that game.ins mounts as audio tracks 2 to 41 |
 | [FND-SOUND-003](../findings/FND-SOUND-003.md) | SOUND_DS.EXE holds no VOC signature, no VOC file extension and no BIOS wait call |
@@ -722,7 +726,7 @@ Entries whose Open questions section says more than None known.
 | [RULE-RNG-001](../rules/RULE-RNG-001.md) | The game's random number generator and its reductions | supported |
 | [RULE-SAVE-001](../rules/RULE-SAVE-001.md) | The F1 and F2 screens and F3 exit choice | supported |
 | [RULE-SAVE-002](../rules/RULE-SAVE-002.md) | The number and file name of a saved game | supported |
-| [RULE-SCRIPT-001](../rules/RULE-SCRIPT-001.md) | Loading a GPL or MAS script into the script cache | supported |
+| [RULE-SCRIPT-001](../rules/RULE-SCRIPT-001.md) | Loading a GPL or MAS script into the script cache | superseded |
 | [RULE-SCRIPT-002](../rules/RULE-SCRIPT-002.md) | Running a script, reading its code and calling other scripts | supported |
 | [RULE-SCRIPT-003](../rules/RULE-SCRIPT-003.md) | The script instructions for jumps, calls, returns, if, while, compare, the accumulator and assignment | supported |
 | [RULE-SCRIPT-004](../rules/RULE-SCRIPT-004.md) | Reading instruction parameters, expressions, variables and strings | supported |
@@ -730,6 +734,7 @@ Entries whose Open questions section says more than None known.
 | [RULE-SCRIPT-007](../rules/RULE-SCRIPT-007.md) | The script instructions that print text and numbers, show a portrait and play sound and music | supported |
 | [RULE-SCRIPT-008](../rules/RULE-SCRIPT-008.md) | The script instructions that register attack and move-tile triggers | supported |
 | [RULE-SCRIPT-009](../rules/RULE-SCRIPT-009.md) | The script trace instructions | supported |
+| [RULE-SCRIPT-010](../rules/RULE-SCRIPT-010.md) | Script-cache lookup and resource transfer | supported |
 | [RULE-SOUND-001](../rules/RULE-SOUND-001.md) | A sound effect plays the BVOC resource of its number, or the installed SOUND file when there is no such resource | supported |
 | [RULE-SOUND-002](../rules/RULE-SOUND-002.md) | A spoken line plays INTR files from the disc below 50 and SPCH files from the installation or the disc from 50 up | supported |
 | [RULE-SOUND-003](../rules/RULE-SOUND-003.md) | Music is chosen from DJ.DAT by region at startup and by party health in combat, and plays as a disc audio track | supported |

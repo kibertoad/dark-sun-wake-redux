@@ -1,9 +1,9 @@
 ---
 id: FND-SCRIPT-008
 title: 172C:0388 loads a GPL or MAS resource into a 16-slot script cache and appends a 0x31 byte
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-SCRIPT-019]
 recorded_by: kibertoad
 reproduced_by: []
 method: static
@@ -16,6 +16,8 @@ environment: null
 ---
 
 ## Observation
+
+Superseded by FND-SCRIPT-019. The early wrapper paths bypass aging, and the size-query output is a double word. The original description below is retained as history.
 
 The cache has 16 slots, each described by one element of five arrays in segment `4C13`: the
 script number at `01D9`, the selector at `01B9`, the start offset in the script buffer at `0219`

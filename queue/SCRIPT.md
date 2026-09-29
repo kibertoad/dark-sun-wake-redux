@@ -1,6 +1,6 @@
 # SCRIPT
 
-Next ID: Q-SCRIPT-007
+Next ID: Q-SCRIPT-008
 
 ## Static
 
@@ -20,14 +20,20 @@ Next ID: Q-SCRIPT-007
   (FND-SOUND-015), the separate 19-byte list and the `SCMD` loader
   (FND-SCRIPT-016, FND-SCRIPT-018), none of which fills the 13-byte records; the trigger instructions fill them (FND-SCRIPT-015).
   Blocks: slices 3-6.
-- Q-SCRIPT-003. RULE-SCRIPT-001, RULE-SCRIPT-002, RULE-SCRIPT-003,
+- Q-SCRIPT-003. RULE-SCRIPT-010, RULE-SCRIPT-002, RULE-SCRIPT-003,
   RULE-SCRIPT-004: What do the helpers of the interpreter do: `fn_172C_31ED`,
   the slot choice `fn_172C_07BB`, the buffer allocation `fn_172C_0698`, the
   error routine `fn_5702_00B1`, and the far routine at `g_57E0_02F6`; what do
   `g_4C0E_000B`, `g_4C13_032B`, `g_4C13_0325` and `g_4C0E_0002` mean; and which
   archive the resource routines read scripts from? Settles it: reading those
   routines, the writers of those globals, and the resource routines at
-  `38FF:04AB` and `38FF:05B5`. Blocks: slices 3-6.
+  `38FF:04AB` and `38FF:05B5`. Tried: FND-SCRIPT-019 corrects the
+  cache early returns, branch-specific age updates, double-word size output,
+  low-word allocation arithmetic and pre-transfer state writes. FND-SCRIPT-020
+  reads the guarded four-buffer reset; FND-CONFIG-160 reads the status-gated
+  script-99 entry. Allocation/replacement and error helpers, valid pointers,
+  aliases, complete input provenance and actual archive I/O remain open.
+  Blocks: slices 3-6.
 - Q-SCRIPT-004. RULE-SCRIPT-002, RULE-SCRIPT-004, RULE-SCRIPT-008,
   FMT-SCRIPT-001, FMT-SCRIPT-002: What do the instructions do whose handlers
   the spec does not describe yet, what do `fn_172C_284D`, `fn_172C_2914`,
@@ -49,7 +55,15 @@ Next ID: Q-SCRIPT-007
 
 ## Emulated call
 
-None.
+- Q-SCRIPT-007. RULE-SCRIPT-010: Do resident loader cases agree with the
+  documented early returns, cache scan, validation and age branches?
+  Settles it: after the harness in docs/RUNTIME.md exists, fixtures using
+  the rule's parameters and glossary fields for stop/current-pair paths,
+  matching and duplicate cache slots, selected-number bypass, invalid
+  number/selector and signed age edges. Resource and error branches need
+  separate provenance and cannot establish operating-system outcomes by
+  emulation. Tried: FND-SCRIPT-019 reads the local instruction paths;
+  the emulator harness does not exist yet.
 
 ## Agent run
 

@@ -123,7 +123,7 @@ are:
 Static analysis has produced reusable structural facts while deliberately
 rejecting unsupported semantics:
 
-- The script interpreter is `RULE-SCRIPT-001` to `RULE-SCRIPT-008`: it loads
+- The script interpreter is `RULE-SCRIPT-010` to `RULE-SCRIPT-008`: it loads
   `GPL` and `MAS` scripts into a cache, runs their instructions through a
   129-entry dispatch table, and registers attack and move-tile triggers in a
   pool of 13-byte records (`FMT-SCRIPT-004`). A separate list of 19-byte

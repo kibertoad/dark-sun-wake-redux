@@ -70,7 +70,7 @@ is above the new one when its word 6 is below, so that list is not kept in the o
 
 By the names in SRC-OPENDS-5C6CBD7, `0x65` is an attack trigger and `0x68` a move-tile trigger;
 nothing here shows when the game tests them. The loaded script number and selector at
-`4C0E:0012` and `4C0E:0014` are those of FND-SCRIPT-008.
+`4C0E:0012` and `4C0E:0014` are those of FND-SCRIPT-019.
 
 ## How to reproduce
 

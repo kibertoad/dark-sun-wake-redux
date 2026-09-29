@@ -33,7 +33,8 @@ At entry, a signed-positive word at 4C0E:000B bypasses the
 initialization and is returned in AX. Otherwise the body sets
 words 4C0E:0009 and 000B to minus one and requests a buffer
 whose length is formed by multiplying the first argument
-by 13 in word arithmetic, then zero-extending the product. For the supplied 200, this is 2600 bytes. The
+by 13 in word arithmetic, then zero-extending the product.
+For the supplied 200, this is 2600 bytes. The
 returned far pointer is stored at 57E0:40C0.
 
 The near allocation helper, code target 0552,
@@ -53,8 +54,8 @@ after the first allocation, a zero check result takes
 `0x000575D5`: AX is set to FFFF and the routine returns
 without its later calls. On this nonpositive-status entry
 path, an incoming failure byte of one, or a zero allocation
-result that changes it to one,
-reaches a full-word minus-one return.
+result that changes it to one, reaches a full-word minus-one
+return.
 
 When the first check permits continuation, the local link
 loop writes word i+1 at offset 11 of each 13-byte record,
@@ -116,6 +117,11 @@ it does not establish a live allocation failure or a bug's
 player-visible consequence.
 
 ## Alternatives
+
+FND-CONFIG-160 subsequently reads the script call's status gate
+and local entry/reset order. FND-SCRIPT-020 bounds its reset;
+FND-SCRIPT-019 corrects the cache and transfer contracts. Full
+resource, error and reachable opcode effects remain open.
 
 Q-CONFIG-008 retains the failure-byte producers, buffer
 validity, external callee effects and later changes to

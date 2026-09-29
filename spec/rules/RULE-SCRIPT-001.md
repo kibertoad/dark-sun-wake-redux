@@ -1,9 +1,9 @@
 ---
 id: RULE-SCRIPT-001
 title: Loading a GPL or MAS script into the script cache
-status: supported
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [RULE-SCRIPT-010]
 evidence: [FND-SCRIPT-001, FND-SCRIPT-003, FND-SCRIPT-006, FND-SCRIPT-007, FND-SCRIPT-008]
 conflicting: []
 split_with: []
@@ -11,6 +11,11 @@ related: [FMT-SCRIPT-001]
 ---
 
 ## Summary
+
+Superseded by RULE-SCRIPT-010. The read-failure path writes bounds and
+ages before the transfer and contains no local rollback. The original
+procedure below is retained as history; its `historical-text` block does
+not define active functions.
 
 Scripts are `GPL ` and `MAS ` resources of `GPLDATA.GFF`. Before the interpreter runs one, it
 copies the resource into a shared script buffer, followed by one extra stop instruction, and
@@ -34,7 +39,7 @@ resource and 2 for a `MAS ` resource.
 
 ## Procedure
 
-```text
+```historical-text
 define load_script(number: UINT16, selector: UINT16) -> bool:
     if script_stopped == 1:
         return false

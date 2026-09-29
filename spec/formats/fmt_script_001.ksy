@@ -6,7 +6,7 @@ meta:
 doc: |
   A GPL or MAS resource of GPLDATA.GFF: script byte code with no header. Words
   inside the code are stored high byte first.
-doc-ref: FMT-SCRIPT-001, FND-SCRIPT-001, FND-SCRIPT-005, FND-SCRIPT-008
+doc-ref: FMT-SCRIPT-001, FND-SCRIPT-001, FND-SCRIPT-005, FND-SCRIPT-019
 seq:
   - id: code
     size-eos: true

@@ -4,10 +4,10 @@ title: Running a script, reading its code and calling other scripts
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-001, FND-SCRIPT-005, FND-SCRIPT-006, FND-SCRIPT-007, FND-SCRIPT-008, FND-SCRIPT-009, FND-SCRIPT-013]
+evidence: [FND-SCRIPT-001, FND-SCRIPT-005, FND-SCRIPT-006, FND-SCRIPT-007, FND-SCRIPT-019, FND-SCRIPT-009, FND-SCRIPT-013, FND-SCRIPT-020, FND-CONFIG-160]
 conflicting: []
 split_with: []
-related: [RULE-SCRIPT-001, RULE-SCRIPT-003, RULE-SCRIPT-006, RULE-SCRIPT-007, RULE-SCRIPT-008, RULE-SCRIPT-009, RULE-TALK-001, FMT-SCRIPT-001]
+related: [RULE-SCRIPT-010, RULE-SCRIPT-003, RULE-SCRIPT-006, RULE-SCRIPT-007, RULE-SCRIPT-008, RULE-SCRIPT-009, RULE-TALK-001, FMT-SCRIPT-001]
 ---
 
 ## Summary
@@ -26,7 +26,7 @@ entry points held by the script triggers (FND-SCRIPT-013).
 ## Parameters
 
 `run_script(number, start, selector)`: the resource number, the offset in it to start at, and
-the selector of RULE-SCRIPT-001. `call_script` takes the same. `push_frame(offset)` takes an
+the selector of RULE-SCRIPT-010. `call_script` takes the same. `push_frame(offset)` takes an
 offset in the current script, and `peek_byte(ahead)` a count of bytes past the current one.
 
 ## Inputs

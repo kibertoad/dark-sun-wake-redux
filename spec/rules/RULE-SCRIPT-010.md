@@ -1,0 +1,161 @@
+---
+id: RULE-SCRIPT-010
+title: Script-cache lookup and resource transfer
+status: supported
+builds: [BLD-GOG-EN-1.1]
+superseded_by: []
+evidence: [FND-SCRIPT-001, FND-SCRIPT-003, FND-SCRIPT-006, FND-SCRIPT-019, FND-SCRIPT-020, FND-CONFIG-151]
+conflicting: []
+split_with: []
+related: [FMT-SCRIPT-001, RULE-SCRIPT-002]
+---
+
+## Summary
+
+The loader can retain the current script, select a matching cache slot,
+or request a GPL or MAS resource through the archive reader. These paths
+have different age updates and failure effects. A transfer appends a stop
+byte only after a zero reader result; a failed transfer does not locally
+roll back bounds and ages already written.
+
+## When it runs
+
+The interpreter calls the loader when entering a script or returning to
+a caller script (RULE-SCRIPT-002). The function's own early paths can
+bypass cache scanning and resource I/O.
+
+## Parameters
+
+`load_script(number, selector)`: unsigned 16-bit resource number and
+selector. The fresh-transfer path accepts selector one for `GPL ` and
+two for `MAS `, and rejects number FFFF. The early current-pair and
+matching-slot paths do not apply that validation independently.
+
+## Inputs
+
+`script_stopped`, `loaded_script_number`, `loaded_script_selector`,
+`script_cache_numbers`, `script_cache_selectors`, `script_cache_starts`,
+`script_cache_ends`, `script_cache_ages`, `script_buffer`,
+`script_buffer_size`, and the fields read by `fn_172C_31ED`.
+The archive reader's selected records and I/O results are also inputs;
+the present archive filename alone does not determine them.
+
+## Procedure
+
+The signatures below name the entry points of the numbered procedure.
+The numbered steps specify the loader and fill branches; the age loop is
+shown explicitly because both call sites use the same operation. The
+slot range is half-open: zero through 15.
+
+```text
+define load_script(number: UINT16, selector: UINT16) -> bool:
+    # Steps 1, 2 and 9 specify the early returns, scan, fill and final updates.
+
+define fill_script_slot(number: UINT16, selector: UINT16) -> bool:
+    # Steps 3 through 8 specify selection, I/O, ordered writes and failure exits.
+
+define age_script_slots():
+    for slot in 0..16:
+        if script_cache_ages[slot] >= 0 and script_cache_ages[slot] < 127:
+            script_cache_ages[slot] = script_cache_ages[slot] + 1
+```
+
+The ordered branches and their conditions are specified below.
+
+1. Return false when `script_stopped` equals one. Otherwise, return
+   true when both requested words match the loaded current pair.
+   These two paths do not age slots or call `fn_172C_31ED`.
+2. On other paths call `fn_172C_31ED`, then inspect all 16 slots.
+   Each number-and-selector match assigns the current number, selector
+   and code start and resets that slot's age to zero. The scan does not
+   stop at the first match or validate that the start differs from FFFF.
+   The last matching slot supplies the final code start.
+3. If no slot matched, try to fill a slot. Reject number FFFF or any
+   selector other than one or two. Choose the first FFFF start, or use
+   `fn_172C_07BB` when none exists. If that slot already has the number
+   requested, bypass the resource calls and slot initialization; the
+   slot's selector is not part of this bypass test.
+4. Otherwise query the selected tag and number's length through the
+   archive reader. Its length output is a double word. A nonzero result
+   calls `fn_5702_00B1` and, if it returns, leaves the local fill result
+   false. There is no own slot-bound write before this query succeeds.
+5. Pass the length's low word plus one, in word arithmetic, to
+   `fn_172C_0698`. Return false immediately when `script_stopped` is
+   one afterwards. Otherwise assign the selected start and the end as
+   start plus low length word plus one, also in word arithmetic.
+6. Age all 16 slots whose signed age is zero through 126. Form a
+   destination from `script_buffer` plus the allocated offset and ask
+   the reader for the complete selected resource length. The transfer
+   has no destination-capacity argument. This full recorded length is
+   distinct from the low-word allocation arithmetic.
+7. A nonzero transfer result calls `fn_5702_00B1` and, if it returns,
+   exits the fill path false. No local rollback restores the earlier
+   bounds or ages. A zero result appends byte 31 at the buffer start
+   plus the allocated offset plus low length word, assigns the selected
+   number and selector and resets that slot's age to zero.
+8. The successful fresh fill and selected-number bypass assign the
+   current number, selector and selected slot's start and return true.
+9. After the scan or fill returns, a nonzero result updates the loaded
+   current pair. Then the wrapper ages all signed ages from zero through
+   126 and returns the retained result, including false results that
+   reach this path normally.
+
+`fn_172C_31ED`'s reset is bounded in FND-SCRIPT-020. Allocation,
+replacement-slot and error-entry effects retain the dependencies in
+Q-SCRIPT-003; this procedure does not assign their unknown outcomes.
+
+## Outputs
+
+The function returns a byte describing the local branch result and may
+change the current pair, code start, cache bounds, identities, ages and
+script-buffer bytes. True on a reuse branch does not independently
+validate the cached contents or pointer. False after a read failure is
+not a transactional-state guarantee.
+
+## Edge cases
+
+An unchanged current pair returns before either age loop. A matching
+scan resets all matching ages; the wrapper then increments eligible ages.
+A successful new transfer can run two age loops, with the selected slot
+reset between them. Under valid unchanged state its final age is one.
+A fill rejection or failed size query can still reach the wrapper's age
+loop. Error-entry effects are separate from these local writes.
+
+Low-word length increment and offset arithmetic can wrap. The reader's
+full recorded transfer length need not equal the allocation argument.
+No general capacity invariant or observed oversized-load consequence is
+established here. A matching number in the chosen fill slot bypasses
+loading regardless of its stored selector or free-start marker.
+
+The appended 31 byte is the stop instruction (RULE-SCRIPT-003).
+
+## What the sources say
+
+SRC-OPENDS-5C6CBD7 (`docs/gpl-bytecode.md`, section 1) places GPL and MAS
+scripts in GPLDATA.GFF. The installed corpus is recorded in
+FND-SCRIPT-001. The runtime reader uses registered archive state,
+so this outside description does not replace the selection conditions.
+
+## Differences between builds
+
+None known.
+
+## Open questions
+
+- How `fn_172C_07BB` selects and changes a slot, how `fn_172C_0698`
+  finds room, and what `fn_5702_00B1` does after errors (Q-SCRIPT-003).
+  One reading supplies valid distinct buffers and sufficient space;
+  another reaches changed state, aliasing or failure. Their full
+  callers, pointer producers and error paths distinguish them.
+- Which registered archive and record the resource calls select, whether
+  the record stays stable between size and read requests, and whether
+  I/O succeeds (Q-SCRIPT-003). A source catalog supplies a possible
+  record, not the native outcome of every request.
+- Whether duplicate matching or selected-number slots, including a slot
+  of the other selector, can occur at an ordinary invocation
+  (Q-SCRIPT-003). Cache writers and replacement paths would settle it.
+- The bounds and semantic identities of the working buffers cleared by
+  `fn_172C_31ED`, and their other reset timing (Q-SCRIPT-005).
+- Resident emulated-call cases for the local early, scan and validation
+  branches after the harness exists (Q-SCRIPT-007). They cannot establish
+  operating-system I/O outcomes or replace complete input provenance.

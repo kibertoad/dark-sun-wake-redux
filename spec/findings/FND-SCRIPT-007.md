@@ -38,7 +38,7 @@ dispatcher `172C:018F` (FND-SCRIPT-005).
 `172C:0299(number, start, selector)` does nothing when the stop byte is 1. Otherwise it stores 1
 in `4C0E:0009`, adds 1 to the script depth, stores the number at `4C13:025D + 2 * depth` and the
 selector at `4C13:0199 + 2 * depth`, and calls the loader `172C:0388(number, selector)`
-(FND-SCRIPT-008). When the loader returns 0 it far-calls `5702:00B1`. Then, when the stop byte is
+(FND-SCRIPT-019). When the loader returns 0 it far-calls `5702:00B1`. Then, when the stop byte is
 0, it calls `172C:01C1(start)` to push a frame (FND-SCRIPT-006). Nothing checks the script depth
 against a limit.
 

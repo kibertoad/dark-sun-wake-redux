@@ -37,7 +37,7 @@ the tail beyond the `0x32` word already described:
 The selected `0x38` or `0x36` word is passed as the number with the four-byte
 tag `ADV ` (`0x20564441`) and a local output address to `38FF:05B5` at
 `DSUN.EXE+0x0003D132`. Prior bounded readings identify that entry as a
-resource-size query (FND-SCRIPT-008, FND-SOUND-007). The installed values
+resource-size query (FND-SCRIPT-019, FND-SOUND-007). The installed values
 are 11 and 8 respectively (FND-CONFIG-003), and setup copies them from
 separate input-record fields (FND-CONFIG-022).
 

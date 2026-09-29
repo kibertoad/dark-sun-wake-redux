@@ -425,3 +425,36 @@ the stored width and the actual branch predicate. Do not infer successful
 initialization from a nonzero check when failure encodings also pass it.
 Keep live failure occurrence and player-visible consequences separate
 from the statically demonstrated branch contract.
+
+## 27. Check effect ordering at early exits and before external failure
+
+FND-SCRIPT-019 corrects an old finding that aged slots on every loader
+return and a rule that treated a failed transfer as leaving its slot
+unchanged. Direct branches skip the wrapper's age loop, while the fill
+body writes bounds and ages before requesting the transfer. A nonzero
+result alone proves neither unchanged state nor a successful rollback.
+The old finding and rule remain superseded records with living citations
+moved to their replacements.
+
+**Request:** shared effect reports should show the ordered writes and
+external calls for each return path, including early bypasses and state
+already changed before failure. Require an explicit rollback path before
+claiming transactionality, and distinguish the external error callee's
+unknown effects from the caller's own writes. This complements item 15's
+call ordering and item 26's return-width contracts.
+
+## 28. Exclude superseded rules from active function ownership
+
+Replacing RULE-SCRIPT-001 with RULE-SCRIPT-010 exposed a documentation
+checker conflict: the function-definition collection still reads the
+superseded rule's Procedure block, reports duplicate definitions, and
+assigns living references to the historical rule. The later rule-validation
+loop already skips superseded entries. This was verified in the cached
+shared checker at toolkit revision 6e3cad31b6d61280a4649a873cf890377b402a75.
+The historical Procedure now uses a `historical-text` fence, preserving
+its content while distinguishing it from active function declarations.
+
+**Request:** exclude superseded rules when collecting active function
+ownership, just as they are excluded from active procedure validation.
+Retain their text and supersession links for history, and add a checker
+fixture that replaces a rule while retaining its original declarations.

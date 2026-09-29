@@ -98,7 +98,7 @@ Entries by kind.
 
 ## rules
 
-70 entries.
+71 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -152,7 +152,7 @@ Entries by kind.
 | [RULE-RNG-001](../rules/RULE-RNG-001.md) | The game's random number generator and its reductions | supported |
 | [RULE-SAVE-001](../rules/RULE-SAVE-001.md) | The F1 and F2 screens and F3 exit choice | supported |
 | [RULE-SAVE-002](../rules/RULE-SAVE-002.md) | The number and file name of a saved game | supported |
-| [RULE-SCRIPT-001](../rules/RULE-SCRIPT-001.md) | Loading a GPL or MAS script into the script cache | supported |
+| [RULE-SCRIPT-001](../rules/RULE-SCRIPT-001.md) | Loading a GPL or MAS script into the script cache | superseded |
 | [RULE-SCRIPT-002](../rules/RULE-SCRIPT-002.md) | Running a script, reading its code and calling other scripts | supported |
 | [RULE-SCRIPT-003](../rules/RULE-SCRIPT-003.md) | The script instructions for jumps, calls, returns, if, while, compare, the accumulator and assignment | supported |
 | [RULE-SCRIPT-004](../rules/RULE-SCRIPT-004.md) | Reading instruction parameters, expressions, variables and strings | supported |
@@ -161,6 +161,7 @@ Entries by kind.
 | [RULE-SCRIPT-007](../rules/RULE-SCRIPT-007.md) | The script instructions that print text and numbers, show a portrait and play sound and music | supported |
 | [RULE-SCRIPT-008](../rules/RULE-SCRIPT-008.md) | The script instructions that register attack and move-tile triggers | supported |
 | [RULE-SCRIPT-009](../rules/RULE-SCRIPT-009.md) | The script trace instructions | supported |
+| [RULE-SCRIPT-010](../rules/RULE-SCRIPT-010.md) | Script-cache lookup and resource transfer | supported |
 | [RULE-SOUND-001](../rules/RULE-SOUND-001.md) | A sound effect plays the BVOC resource of its number, or the installed SOUND file when there is no such resource | supported |
 | [RULE-SOUND-002](../rules/RULE-SOUND-002.md) | A spoken line plays INTR files from the disc below 50 and SPCH files from the installation or the disc from 50 up | supported |
 | [RULE-SOUND-003](../rules/RULE-SOUND-003.md) | Music is chosen from DJ.DAT by region at startup and by party health in combat, and plays as a disc audio track | supported |
@@ -175,7 +176,7 @@ Entries by kind.
 
 ## findings
 
-390 entries.
+393 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -383,6 +384,7 @@ Entries by kind.
 | [FND-CONFIG-157](../findings/FND-CONFIG-157.md) | Startup attempts OBJEX.GFF registration before the metadata initializer | recorded |
 | [FND-CONFIG-158](../findings/FND-CONFIG-158.md) | Three pre-setup calls restore DS and have no direct archive-state write | recorded |
 | [FND-CONFIG-159](../findings/FND-CONFIG-159.md) | The nonzero-mode pre-setup helper stores a relocated video-reset pointer and retains external dependencies | recorded |
+| [FND-CONFIG-160](../findings/FND-CONFIG-160.md) | The post-setup script call is status-gated and resets working buffers before loading MAS number 99 | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |
@@ -483,7 +485,7 @@ Entries by kind.
 | [FND-SCRIPT-005](../findings/FND-SCRIPT-005.md) | The script interpreter dispatches bytes 0x00 to 0x80 through a 129-entry table at 57E0:030A, and 15 of its entries and every byte above 0x80 stop the script | recorded |
 | [FND-SCRIPT-006](../findings/FND-SCRIPT-006.md) | The interpreter reads code at a per-frame offset into the loaded script and keeps up to 50 frames | recorded |
 | [FND-SCRIPT-007](../findings/FND-SCRIPT-007.md) | 172C:000C runs a script from a start offset until its frames unwind or it stops, and 172C:0299 and 172C:031F enter and leave nested scripts | recorded |
-| [FND-SCRIPT-008](../findings/FND-SCRIPT-008.md) | 172C:0388 loads a GPL or MAS resource into a 16-slot script cache and appends a 0x31 byte | recorded |
+| [FND-SCRIPT-008](../findings/FND-SCRIPT-008.md) | 172C:0388 loads a GPL or MAS resource into a 16-slot script cache and appends a 0x31 byte | superseded |
 | [FND-SCRIPT-009](../findings/FND-SCRIPT-009.md) | The handlers of the control-flow, accumulator and assignment instructions | recorded |
 | [FND-SCRIPT-010](../findings/FND-SCRIPT-010.md) | 172C:3278 reads an expression of literals, variables and operators left to right with 8 levels of parentheses | recorded |
 | [FND-SCRIPT-011](../findings/FND-SCRIPT-011.md) | Script instruction 0x52 draws from the game's generator and scales the draw to 0 to n | recorded |
@@ -494,6 +496,8 @@ Entries by kind.
 | [FND-SCRIPT-016](../findings/FND-SCRIPT-016.md) | Segment 2D40 runs GPL scripts from word pairs of linked 19-byte records whose list head is 57E0:5AF5 | recorded |
 | [FND-SCRIPT-017](../findings/FND-SCRIPT-017.md) | Overlay 187 converts script entry points in the trigger records to GPLI entry numbers and back | recorded |
 | [FND-SCRIPT-018](../findings/FND-SCRIPT-018.md) | SCMD resources are loaded through a separate 64-slot cache at 31E0:1893 with two callers | recorded |
+| [FND-SCRIPT-019](../findings/FND-SCRIPT-019.md) | Script-cache paths have distinct age updates and retain writes before a failed transfer | recorded |
+| [FND-SCRIPT-020](../findings/FND-SCRIPT-020.md) | A guarded interpreter helper clears four supplied working buffers | recorded |
 | [FND-SOUND-001](../findings/FND-SOUND-001.md) | Every VOC file and BVOC resource is one Creative Voice File header, one sound block and a terminator | recorded |
 | [FND-SOUND-002](../findings/FND-SOUND-002.md) | The installation's music is 40 Ogg Vorbis files that game.ins mounts as audio tracks 2 to 41 | recorded |
 | [FND-SOUND-003](../findings/FND-SOUND-003.md) | SOUND_DS.EXE holds no VOC signature, no VOC file extension and no BIOS wait call | recorded |

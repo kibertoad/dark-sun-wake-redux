@@ -30,7 +30,7 @@ After Ghidra's full analysis of the loaded image of `DSUN.EXE`:
 The resident code does not load `GPLI` resources by a literal tag, and no resident function asks
 for `GPL ` resource 135 with both numbers written into it. The `GPLI` tag occurs only in overlay
 187 (FND-EXE-006), and script numbers reach the loader as arguments (FND-SCRIPT-007,
-FND-SCRIPT-008), so neither result bears on which scripts run.
+FND-SCRIPT-019), so neither result bears on which scripts run.
 
 ## Alternatives
 

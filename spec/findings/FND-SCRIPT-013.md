@@ -65,7 +65,7 @@ found the call in `277B` pushing two literal words.
 
 ## Interpretation
 
-Selector 2 runs a `MAS ` resource and selector 1 a `GPL ` resource (FND-SCRIPT-008). `MAS `
+Selector 2 runs a `MAS ` resource and selector 1 a `GPL ` resource (FND-SCRIPT-019). `MAS `
 resource 99 runs when the game has made its working copy of the save archive, which the
 start-up code in segment `277B` does (FND-SCRIPT-014).
 `1695:000B` changes the current value at `4C10:0021`, empties four lists of script triggers,

@@ -9,10 +9,10 @@ byte_order: big
 size: null
 text: false
 definition: fmt_script_001.ksy
-evidence: [FND-SCRIPT-001, FND-SCRIPT-005, FND-SCRIPT-008, FND-SCRIPT-009]
+evidence: [FND-SCRIPT-001, FND-SCRIPT-005, FND-SCRIPT-019, FND-SCRIPT-009]
 conflicting: []
 split_with: []
-related: [RULE-SCRIPT-001, RULE-SCRIPT-002, RULE-SCRIPT-004]
+related: [RULE-SCRIPT-010, RULE-SCRIPT-002, RULE-SCRIPT-004]
 ---
 
 ## Layout
@@ -23,7 +23,7 @@ caller gives. An instruction is an opcode byte from `0x00` to `0x80` followed by
 each an expression (RULE-SCRIPT-004), and some instructions read further bytes of their own
 [FND-SCRIPT-005, FND-SCRIPT-009]. Words inside the code are stored high byte first, which is why
 `byte_order` is big. The loader copies the resource and puts the stop instruction `0x31` after
-it [FND-SCRIPT-008].
+it [FND-SCRIPT-019].
 
 | Offset | Size | Type | Name | Meaning | Status | Evidence |
 |---|---|---|---|---|---|---|
