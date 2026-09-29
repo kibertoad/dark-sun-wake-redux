@@ -102,3 +102,38 @@ Verification: `tools/Test.ps1` passes with the repository-local PowerShell 7
 runtime on PATH: 34 Node tests, 700 .NET tests, repository/configuration checks
 and the 615-entry / 158-row / 5-deviation documentation check. The full solution
 build passes with zero warnings and errors. No original content was read.
+
+
+## Latest template: PRs 25 and 26
+
+Adopted template main `8ed674008cd9ce2860b19cd6ac6a569d70d2bc03`.
+The exact rules are pinned to `b923e85ae0319bf9e79781c7e09d46544ad9daea`
+(as recorded by the lock), and the checker to
+`c36182046f3eb71e6485163b502bc4950880aa24`, matching CI.
+PR 26's recorded-run and draw-fixture requirements are adopted as procedures;
+Probe remains none under the local DOSBox policy. No RNG hook or native probe
+was implemented or claimed.
+
+Gap 7 is closed for the supported MZ overlay edition: canonical offsets are
+accepted and checked against an evidenced Code ranges row, not merely file
+length. The build now lists all 98 installed/disc overlay ranges from the
+existing FND-EXE-003 header procedure. A synthetic checker regression accepts
+half-open endpoints and rejects holes and ranges crossing overlay boundaries.
+Other executable formats retain their specified address conventions.
+
+The other selected gaps (18, 21, 26, 33, 34, 36, 37, 40 and 42) gained explicit
+review/harness requirements but still request reporter implementation. They
+remain open. Gap 28 is already described as fixed in the earlier adoption
+record, but this update does not supply its requested replacement-rule fixture
+in this repository, so it is retained pending the full acceptance audit.
+
+The refreshed Survey requirement exposes incomplete explicit listing/exclusion
+evidence in the existing build. Q-EXE-003 tracks that re-audit; the checklist
+no longer claims the revised Survey denominator has passed. Corpus extraction
+and existing gameplay statuses are unchanged.
+
+Verification: `tools/Test.ps1` passes with 35 Node tests and 700 .NET tests,
+including configuration, snapshot/CI integrity, local links and the 615-entry /
+158-row / 5-deviation documentation check. The full solution builds with zero
+warnings or errors. Only bounded overlay metadata was reread by the existing
+header procedure; no original process was launched.

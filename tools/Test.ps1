@@ -71,7 +71,7 @@ if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
 }
 & node (Join-Path $root 'tools/upstream.mjs') links
 if ($LASTEXITCODE -ne 0) { throw 'Local upstream section links are invalid.' }
-& node --test (Join-Path $root 'tests/evidence/evidence.test.mjs') (Join-Path $root 'tests/upstream/upstream.test.mjs')
+& node --test (Join-Path $root 'tests/evidence/evidence.test.mjs') (Join-Path $root 'tests/upstream/upstream.test.mjs') (Join-Path $root 'tests/upstream/mapped-locations.test.mjs')
 if ($LASTEXITCODE -ne 0) { throw 'Synthetic evidence or upstream snapshot tests failed.' }
 # Node does not resolve a .bat or .cmd wrapper on PATH, so hand the check the Kaitai compiler's
 # full path when KSC is unset and a Windows wrapper is installed.

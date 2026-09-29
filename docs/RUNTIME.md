@@ -14,7 +14,7 @@ afterwards. No agent run takes place, and the machine's run lock
 (`C:\ProgramData\refurbished-dinosaurs\run.lock`, or the path in
 `REFURBISHED_DINOSAURS_RUN_LOCK`) is never taken from this repository. If the
 owner lifts that rule, an agent run takes the lock as the protocol's
-[Running the original](../vendor/upstream/work-protocol.md#running-the-original) (lines 197-217)
+[Running the original](../vendor/upstream/work-protocol.md#running-the-original) (lines 215-249)
 says.
 
 ## BLD-GOG-EN-1.1
@@ -37,3 +37,10 @@ becomes `agent` once a tooling batch builds a harness that loads this build.
 | Capture frames and sound | person, frames only | Frames: the owner's Ctrl+F5 screenshots, 320x200 in the game's palette, cited by the dynamic findings of the COMBAT, PARTY and UI areas. Sound: not tried; DOSBox 0.74-2 records sound with Ctrl+F6. | A live session that asks for a sound recording. |
 | Play back a recording the original made | none | The game has no recording feature the spec knows of, and DOSBox 0.74-2 does not replay input. | A finding that the game records and replays input. |
 | Call a single function in the emulator harness (no run lock) | none | No harness. | A tooling batch that builds `tools/emu/` with Unicorn in 16-bit real mode, loading the resident MZ image of `DSUN.EXE`, which carries no packer. Code in the `FBOV` overlay pack stays out of reach, as the protocol says of overlay code. |
+
+
+Probe: none. Native process attachment and memory instrumentation are barred
+by the owner-only DOSBox policy. Recorded runs are not available; the protocol's
+[Recorded runs](../vendor/upstream/work-protocol.md#recorded-runs) (lines 225-237) guidance
+does not override those limits. A future harness must document port models,
+video memory substituted with RAM and the limits of each comparison.

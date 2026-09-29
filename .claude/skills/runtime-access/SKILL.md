@@ -34,11 +34,12 @@ owner's rule, owner live sessions and the emulator harness.
    comes from (the rule, the live session or the tool and version tried) and
    each `none` or `person` says what would change it. For the harness, record
    the Unicorn version, the builds it loads and the stubs it has. Replace
-   answers that are no longer true; do not append.
+   answers that are no longer true; do not append. Record Probe as `none`
+   while the owner-only native-access policy bars process instrumentation.
 4. **Move queue items** between `Emulated call` and `Live session` where an
    answer changed, in the same commit. If the owner ever allows agent runs,
    they take the machine's run lock as the protocol's
-   [Running the original](../../../vendor/upstream/work-protocol.md#running-the-original) (lines 197-217)
+   [Running the original](../../../vendor/upstream/work-protocol.md#running-the-original) (lines 215-249)
    says, and items move to `Agent run`.
 5. **Commit**, then print the status block from `research-item` with
    `Batch: runtime access`.

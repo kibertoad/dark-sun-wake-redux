@@ -19,7 +19,7 @@ owner's decisions, and `docs/HANDOVER.md` says where the last session stopped.
 | Latest version | 1.1, the version `SRC-README-1.1` gives the installed game data. No later official patch is recorded. |
 | Editions available for validation | `BLD-GOG-EN-1.1`; `docs/SOURCE-EDITIONS.md` holds the detail. |
 | Existing research relied on | `SRC-MANUAL-1994`, `SRC-GAMEFAQS-81038`, `SRC-DSUN-MUSIC-79B6927`, `SRC-LIBGFF-839B11D`, `SRC-OPENDS-5C6CBD7`, `SRC-README-1.1`, `SRC-YOUTUBE-FLOMVOSHEOM` |
-| Stage | Slices. Intake, Runtime access and Survey have ended. The Survey exit is the four-part check in `docs/BOOTSTRAP-CHECKLIST.md`. |
+| Stage | Slices. Intake and Runtime access have ended. The earlier Survey exit is recorded in `docs/BOOTSTRAP-CHECKLIST.md`; its refreshed complete-file-denominator re-audit remains open as `Q-EXE-003`. |
 
 ## Scope
 
@@ -444,3 +444,25 @@ configured identity, existing coverage paths and owner-only native-run limits.
   upstream example IDs must stay outside the project documentation scan.
 - Exit: review the adapted diff and passing checks, commit the tooling batch,
   audit processes and update the handover separately. No owner questions.
+
+
+## Tooling maintenance: latest template and PR 26
+
+Adopt template main `8ed674008cd9ce2860b19cd6ac6a569d70d2bc03`, including
+PRs 25 and 26: refresh exact local rules and the checker, align CI, and update
+research/implementation procedures for code ranges, hardware boundaries,
+checkpoint contracts and recorded draws. Preserve owner-only DOSBox access:
+Probe remains none, and no recorded native session or RNG hook is claimed.
+
+- Outcome: current offline research rules and precise mapped-range checks.
+- Evidence: pinned template snapshots and existing executable-layout findings.
+- Acceptance: lock verification, section links, synthetic Node tests,
+  `tools/Test.ps1` and solution build pass. Populate required Code ranges
+  from the existing bounded overlay-header procedure, retaining each overlay
+  boundary; do not infer code from a coverage inventory's function sizes.
+  Gap closure audits each full request, retaining unimplemented reporters.
+- Risks: newer Survey requirements may expose unreconciled installation paths;
+  record missing listing evidence rather than claiming an exhaustive inventory.
+  Recorded-run guidance grants no native-process access under the local policy.
+- Exit: tested tooling commit and separate current handover; no gameplay or
+  evidence-status changes.

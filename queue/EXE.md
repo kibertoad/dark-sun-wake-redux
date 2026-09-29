@@ -1,8 +1,16 @@
 # EXE
 
-Next ID: Q-EXE-003
+Next ID: Q-EXE-004
 
 ## Static
+
+- Q-EXE-003. BLD-GOG-EN-1.1: Reconcile a repeatable complete listing of the
+  installed source and its disc with the manifest and Other files. Settles
+  it: every path belongs to the manifest or an exact exclusion with a reason,
+  and the build records the listing procedure and scope. Tried: the existing
+  manifest includes installed game data and disc files, but Other files lists
+  some wrapper/installer paths by patterns rather than a complete listing.
+  Blocks: the refreshed Survey file-denominator exit.
 
 - Q-EXE-001. FMT-EXE-001, FMT-EXE-002, FMT-EXE-003, FMT-EXE-004,
   FMT-EXE-005: How does the overlay manager load an overlay? Which code

@@ -5,7 +5,7 @@ description: Request, prepare and ingest a live session, in which the repository
 
 # Live session
 
-The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#live-sessions) (lines 207-217).
+The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#live-sessions) (lines 239-249).
 Open a linked section only when a step leaves a question it answers, read
 only the lines the link gives, and never a section already read this session.
 The maintainer's time is the scarcest resource the project has: prepare it so
@@ -54,6 +54,11 @@ allows, keep them outside the repository under `GAME_DIR/captures/` named by
 their xxh3, and ask the owner to confirm each semantic label (a named screen,
 actor, turn or action) before relying on it. Geometry and pixel measurements
 may be recorded as provisional before that.
+
+A recorded-run probe is unavailable under the current native-access policy.
+The protocol's draw-recording and memory-copy guidance does not authorize
+attachment here; any future owner-authorized probe must remain read-only in
+a live session and never replace the seed.
 
 ## Ingest
 

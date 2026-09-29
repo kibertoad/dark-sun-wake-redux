@@ -8,6 +8,81 @@ not here.
 
 A project created from this template may delete this file.
 
+## Website rules up to kibertoad/refurbished-dinosaurs@b923e85, 2026-09-30
+
+The local copy in `vendor/upstream/` is refreshed to the core website's
+`b923e85`, which brings in #23. The work protocol gains a Recorded runs
+section, and the standard lets a fixture's run list its draws from the
+generator. The vendored checker stays on toolkit `c361820`, which already
+checks those draws. Where the template now repeats the new rules:
+
+- **Recorded runs.** Where an agent can start the original, read its memory
+  and set breakpoints, a probe records the seed and every draw under the ID
+  of the rule that made it, reaches its state by memory writes to
+  `supported` or `established` fields, and waits on a state it can read.
+  A divergence is explained by a copy of memory at the first differing draw,
+  kept in `GAME_DIR/captures/`. (`AGENTS.md`, `research-item`,
+  `live-session`.)
+- **Runtime record.** Each build's section gives the probe's command line.
+  (`docs/RUNTIME.md`, `runtime-access`.)
+- **Implementation.** The generator takes the rule ID with every draw and has
+  a hook only tests use. A fixture with draws is replayed draw by draw, and
+  the rebuild is never fitted to a recording. (`AGENTS.md`, `implement-rows`.)
+- **Acceptance.** The following commands pass:
+  - `node tools/upstream.mjs verify`
+  - `node tools/upstream.mjs links`
+  - `node tools/upstream.mjs docs --check`
+
+## Website rules up to kibertoad/refurbished-dinosaurs@21f6041, 2026-09-30
+
+The local copy in `vendor/upstream/` is refreshed to the core website's
+`21f6041`. That brings in changes #15 to #25. What they add, and where the
+template now repeats it:
+
+- **Survey.** The installation is listed in full. Every path goes either in
+  the manifest, which holds every file the game uses, or in the build's
+  Other files with a reason. A long list goes in
+  `BLD-<alias>.other-files.yaml`. (`AGENTS.md`, `plan-work`, bootstrap
+  checklist, build template.)
+- **Code ranges.** A build entry has a Code ranges section. An offset into
+  overlay code has to lie wholly inside one of its rows. (Build template,
+  `research-item`, `AGENTS.md`.)
+- **Readings and findings.** New rules cover:
+  - segment identity
+  - stored call targets
+  - overlapping writes
+  - allocations
+  - output counts
+  - "no other caller" searches
+  - dispatch tables
+  - return values
+  - cleanup paths
+  - errors passed back through recursion
+  - procedure steps, rejected calls and `# visible:` points
+
+  (`AGENTS.md`, `research-item`.)
+- **Emulated calls.** Every port access needs an explicit stub. Port models
+  and video memory mapped as RAM are named in the experiment. A copy into
+  video memory shows bytes, never pixels. (`AGENTS.md`, `research-item`,
+  `docs/RUNTIME.md`.)
+- **Implementation.** New test rules cover:
+  - agreement between different algorithms
+  - intermediate states while a rule is wired into `Game`
+  - checkpoint and replay identity and restore contracts
+
+  (`AGENTS.md`, `implement-rows`.)
+
+The vendored checker and the CI action are pinned to the toolkit change
+that enforces the Code ranges section and the other-files list
+(kibertoad/refurbished-dinosaurs-toolkit#12), and to #13 after it, which
+checks that each draw a fixture's run lists is `{ rule, bound, result }`
+naming a rule entry; the `research-item` skill says so.
+
+- **Acceptance.** The following commands pass:
+  - `node tools/upstream.mjs verify`
+  - `node tools/upstream.mjs links`
+  - `node tools/upstream.mjs docs --check`
+
 ## Local copy of the standard, 2026-09-30
 
 Agents had been fetching the published methodology, documentation standard and
@@ -30,7 +105,7 @@ were then brought up to date with it (kibertoad/refurbished-dinosaurs#14), and
 the copy is pinned to that version.
 
 A file-read tool ignores anchors, so every link to a section of the copy now
-gives the section's lines, as in `work-protocol.md#batches (lines 137-183)`,
+gives the section's lines, as in `work-protocol.md#batches`,
 and agents read only those. The skills open with the sections they rely on
 instead of whole pages, and say that their steps are enough: a section is
 opened only for a question a step leaves, and never twice in a session.
@@ -211,7 +286,7 @@ A deviation's Default is now `off`, `on` or `mandatory`. `mandatory` replaces
 `mandatory`, or `on` without being the fix of an unintended bug players do not
 rely on, carries a `Justification` item arguing that the rebuild's behavior is
 strictly better than the original's, as the
-[documentation standard](../vendor/upstream/documentation-standard.md#deviation-log) (lines 786-807)
+[documentation standard](../vendor/upstream/documentation-standard.md#deviation-log) (lines 816-837)
 now sets out. `AGENTS.md`, `DEVIATIONS.md` and `docs/VALIDATION.md` say so, and
 a test that reaches a mandatory deviation cites its ID and allows for it.
 
@@ -481,7 +556,7 @@ under their local-only `analysis/original` trees will be copied.
 ### Maintenance done when
 
 All five slices are implemented after approval; synthetic tests require no
-original content; `./tools/Invoke-Validation.ps1` passes; the configured-sample
+original content; `./tools/Test.ps1` passes; the configured-sample
 CI and installer smoke tests pass; status documents match reality; the skill
 validator and read-only dry run pass; changes are committed on a feature branch,
 pushed, and opened as a pull request with the evidence summarized.
