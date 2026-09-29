@@ -348,6 +348,9 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-207 connects one lookup record to a FONT selector-100
   request and nonzero returned pointer. Acquisition validity, incoming
   state, later record/pointer writers and lookup capacity remain open.
+  FND-CONFIG-208 connects the pointer acquisition wrapper to the
+  shared archive reader and distinguishes signature/reader output paths.
+  Archive producers, reader storage, aliases and FONT lifetime remain open.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 

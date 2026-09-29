@@ -260,6 +260,8 @@ None known.
   lookup, retaining pointer/table and accepted-text provenance.
   FND-CONFIG-207 connects an installed lookup record to a FONT
   request, retaining acquisition validity and current-state provenance.
+  FND-CONFIG-208 connects acquisition to the shared archive reader,
+  retaining current archive state, valid storage and resource lifetime.
   FND-CONFIG-170 resolves local retained-result restoration through the
   collector; FND-CONFIG-171 reads the following resident callback gates,
   fresh targets and fixed word writes. FND-CONFIG-172 distinguishes child
