@@ -293,6 +293,10 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-191 reads partial request metadata and wrapper/coordinate
   gates before the graphics primitive. Complete accepted image/slot
   producers, bounded reference chains and primitive effects remain open.
+  FND-CONFIG-192 reads the complete local graphics primitive's shared
+  preparation, reference walks, direction/overlap gates, port accesses
+  and phased copies. Accepted root/mask/segment inputs, capacities,
+  aliases, full callers and native VGA outcomes remain open.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 

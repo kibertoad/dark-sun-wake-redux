@@ -203,6 +203,11 @@ FND-CONFIG-191 reads the handle request, forwarding wrapper and
 coordinate gates. Wrapper invocation remains separate from an admitted
 primitive call, and accepted source/slot storage remains conditional.
 
+FND-CONFIG-192 subsequently reads the complete local 43AE body,
+including shared scratch, reference walks, direction and overlap gates,
+port accesses and phased copies. Full caller/input, capacity/alias,
+mask-table and hardware/presentation outcomes remain open.
+
 ## Interpretation
 
 The active replacement services do not have a universal

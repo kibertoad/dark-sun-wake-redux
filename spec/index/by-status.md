@@ -223,7 +223,7 @@ Entries by status.
 
 ## recorded
 
-408 entries.
+409 entries.
 
 | ID | Title |
 |---|---|
@@ -446,6 +446,7 @@ Entries by status.
 | [FND-CONFIG-189](../findings/FND-CONFIG-189.md) | The replacement services have distinct callback checks and commit state after some failed handle requests |
 | [FND-CONFIG-190](../findings/FND-CONFIG-190.md) | The frame dimension readers return FFFF for an unsigned index failure and otherwise read unbounded frame words |
 | [FND-CONFIG-191](../findings/FND-CONFIG-191.md) | The handle request writes metadata before coordinate rejection and the wrapper gates its graphics primitive |
+| [FND-CONFIG-192](../findings/FND-CONFIG-192.md) | The admitted handle primitive prepares shared copy state and touches VGA ports on every returning transfer path |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |

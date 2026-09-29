@@ -674,3 +674,20 @@ overlaps a wider consumer, keep the other bytes' producers as explicit
 conditions, rather than merging them into the low-byte field's meaning.
 Carry those conditions through normalized wrapper results and synthetic
 fixture definitions. This complements item 26's return-register widths.
+
+## 37. Separate ordinary memory transfers from hardware presentation evidence
+
+FND-CONFIG-192 reads a graphics primitive whose common transfer path
+programs VGA ports, while an overlap branch also uses a fixed scratch
+segment. The memory counts can be derived for admitted positive inputs,
+but ordinary RAM copying does not reproduce the hardware interpretation
+or prove that the scratch segment is accepted native storage. Restored
+DS/SI/DI also does not imply restored shared scratch or complete VGA state.
+
+**Request:** shared static and emulation reports should classify port I/O
+as a hardware boundary alongside interrupts, retain its placement on
+common and conditional paths, and distinguish RAM effects from rendered
+pixels. A fixture with substituted RAM or mocked port values must identify
+what it actually tests and leave native output unconfirmed. Keep slot,
+segment, count, mask and alias assumptions separate from the transfer
+algorithm's local completion and register restoration.

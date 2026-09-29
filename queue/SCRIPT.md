@@ -84,6 +84,10 @@ Next ID: Q-SCRIPT-008
   FND-CONFIG-191 reads partial request metadata and wrapper/coordinate
   gates before the graphics primitive. Complete accepted image/slot
   producers, bounded reference chains and primitive effects remain open.
+  FND-CONFIG-192 reads the complete local graphics primitive's shared
+  preparation, reference walks, direction/overlap gates, port accesses
+  and phased copies. Accepted root/mask/segment inputs, capacities,
+  aliases, full callers and native VGA outcomes remain open.
   Full external effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.
@@ -169,6 +173,10 @@ Next ID: Q-SCRIPT-008
   gates after supported slot/argument layouts exist. An admitted 43AE
   primitive needs separate complete input/effect coverage; wrapper calls
   alone cannot establish actual graphics or hardware outcomes.
+  FND-CONFIG-192 locates port I/O in every admitted primitive transfer
+  route. Do not treat RAM-only MOVS emulation or mocked ports as evidence
+  of accepted scratch/native pixels; its input/reference/mask and hardware
+  outcomes need separate evidence from pure resident helper fixtures.
   Resource and error branches need separate provenance and cannot
   establish operating-system outcomes by emulation. Tried: FND-SCRIPT-019 reads the local instruction paths;
   the emulator harness does not exist yet.

@@ -222,6 +222,9 @@ None known.
   FND-CONFIG-191 reads partial handle metadata and deeper primitive
   gates. Accepted source/slot capacities, reference chains and full
   graphics/callback producers still remain open.
+  FND-CONFIG-192 reads the admitted primitive's shared-state/reference,
+  direction/overlap and VGA copy routes. Full slot/segment/mask producers,
+  capacities, aliases and hardware/presentation remain open.
   FND-CONFIG-170 resolves local retained-result restoration through the
   collector; FND-CONFIG-171 reads the following resident callback gates,
   fresh targets and fixed word writes. FND-CONFIG-172 distinguishes child

@@ -138,6 +138,11 @@ in these bodies, and only the request's CS-relative slot
 metadata is directly mutated here. Unread primitive effects,
 reference producers, aliases and native graphics remain open.
 
+FND-CONFIG-192 subsequently reads the complete local 43AE body,
+including shared scratch, reference walks, direction and overlap gates,
+port accesses and phased copies. Full caller/input, capacity/alias,
+mask-table and hardware/presentation outcomes remain open.
+
 ## Interpretation
 
 Failure and success contracts differ across the layers.
