@@ -136,7 +136,9 @@ None known.
   routes, including conditional repetition. Data producers, later writes,
   prior guards and helper effects remain open. FND-CONFIG-112 traces
   overlay 208 entry 006B to a resident mode-five dispatch that forwards
-  two input words; its incoming routes and input producers remain open.
+  two input words. FND-CONFIG-113 traces a resident event-five/value-64
+  state-one branch that forwards the input record to that dispatch; the
+  upstream entry's incoming routes and event producer remain open.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local

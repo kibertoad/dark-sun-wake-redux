@@ -68,9 +68,11 @@ invocation, its early gates or 006B's later helper results.
 
 ## Alternatives
 
-The resident routine's incoming calls and input-word producers,
-DS:1440 changes between setup and dispatch, record state and the
-later helpers remain unread (Q-CONFIG-008). No physical input or
+FND-CONFIG-113 traces a resident event-five/value-64 state-one
+branch that forwards its input record to this routine. The upstream
+entry's incoming routes and event producers, DS:1440 changes between
+setup and dispatch, record state and later helpers remain unread
+(Q-CONFIG-008). No physical input or
 visible message is assigned to this route. Computed, aliased,
 unrelocated or differently encoded calls remain outside the incoming
 inventory; its negative sections do not exclude those routes.

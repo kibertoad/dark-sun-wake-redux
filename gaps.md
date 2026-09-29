@@ -189,6 +189,12 @@ inventory as a positive control before accepting negative sections. Treating
 the stored shifted index as the descriptor itself otherwise silently misses
 calls. The existing eleven-call selector inventory supplied that check here.
 
+For the FND-CONFIG-113 reading, also require relative-call reports to derive
+their search range from the complete declared segment or overlay bounds.
+A prefix ending at the target function's return misses callers later in the
+same segment; report such a range as a partial search. Keep candidate discovery
+across that range separate from bounded instruction verification at each hit.
+
 ## 14. Check known instruction hits before trusting a variable-use inventory
 
 While preparing FND-CONFIG-108, a temporary variable-use query linearly

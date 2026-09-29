@@ -125,8 +125,11 @@ Next ID: Q-CONFIG-011
   conditional repetition. The 006B incoming routes, helper effects,
   data producers, later writes and live state remain open.
   FND-CONFIG-112 traces entry 006B to a resident mode-five dispatch
-  forwarding two input words. The resident routine's incoming calls,
-  input producers and mode changes remain unread.
+  forwarding two input words. FND-CONFIG-113 traces an event-five/
+  value-64 state-one branch that forwards its input record to the
+  dispatcher. Entry 28C9:1261 incoming routes and event producers,
+  state-two and state-three paths, helper effects and mode changes
+  remain unread.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

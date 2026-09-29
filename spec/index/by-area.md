@@ -588,6 +588,7 @@ Entries by area.
 | [FND-CONFIG-110](../findings/FND-CONFIG-110.md) | Overlay 208 selector caller has a guarded entry route and a conditional repeated-call route | recorded |
 | [FND-CONFIG-111](../findings/FND-CONFIG-111.md) | Six declared setup calls supply overlay 208 gate and code inputs | recorded |
 | [FND-CONFIG-112](../findings/FND-CONFIG-112.md) | Resident mode five dispatch forwards two input words to overlay 208 entry 006B | recorded |
+| [FND-CONFIG-113](../findings/FND-CONFIG-113.md) | A resident event-five value-64 branch forwards the event record to mode dispatch | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |
