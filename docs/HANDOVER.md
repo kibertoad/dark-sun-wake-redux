@@ -18,7 +18,10 @@ See the [work protocol](https://dinorefurb.com/work-protocol/#working-files).
   tests and 700 .NET tests; documentation check: 615 entries, 158 parity rows,
   5 deviations). The full solution builds without warnings.
 - Merged v1 tooling and workflow adoption is complete; see
-  `docs/TEMPLATE-ADOPTION.md`. `gaps.md` retains items 2, 4, 9 and 38.
+  `docs/TEMPLATE-ADOPTION.md`. The overbroad gap cleanup has been corrected:
+  original requests remain in `gaps.md` until individually verified against
+  their full acceptance criteria. Ten priority groups do not mean 39 resolved
+  requests; the adoption record distinguishes delivered tools from guidance.
 - `node tools/upstream.mjs docs --check --references docs` runs the verified
   offline checker. Snapshot/configuration tests require PowerShell 7 on PATH.
 
