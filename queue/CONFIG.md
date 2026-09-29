@@ -289,6 +289,10 @@ Next ID: Q-CONFIG-011
   state-commit/restoration routes, including unchecked +5E targets and
   stored FFFF paths. Neighboring bytes, full producers/targets, primitive,
   runtime and VGA outcomes still prevent an end-to-end entry claim.
+  FND-CONFIG-190 reads frame count/index and dimension contracts;
+  FND-CONFIG-191 reads partial request metadata and wrapper/coordinate
+  gates before the graphics primitive. Complete accepted image/slot
+  producers, bounded reference chains and primitive effects remain open.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 

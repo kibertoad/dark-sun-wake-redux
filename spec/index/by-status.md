@@ -223,7 +223,7 @@ Entries by status.
 
 ## recorded
 
-406 entries.
+408 entries.
 
 | ID | Title |
 |---|---|
@@ -444,6 +444,8 @@ Entries by status.
 | [FND-CONFIG-187](../findings/FND-CONFIG-187.md) | The number replacement helper checks size only on query success and updates cache after unchecked transfer |
 | [FND-CONFIG-188](../findings/FND-CONFIG-188.md) | The pointer replacement service has null and nonnull state paths and returns zero after word-gated services |
 | [FND-CONFIG-189](../findings/FND-CONFIG-189.md) | The replacement services have distinct callback checks and commit state after some failed handle requests |
+| [FND-CONFIG-190](../findings/FND-CONFIG-190.md) | The frame dimension readers return FFFF for an unsigned index failure and otherwise read unbounded frame words |
+| [FND-CONFIG-191](../findings/FND-CONFIG-191.md) | The handle request writes metadata before coordinate rejection and the wrapper gates its graphics primitive |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |

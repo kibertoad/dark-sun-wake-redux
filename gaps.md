@@ -440,6 +440,12 @@ initialization from a nonzero check when failure encodings also pass it.
 Keep live failure occurrence and player-visible consequences separate
 from the statically demonstrated branch contract.
 
+FND-CONFIG-190 adds unsigned frame-index rejection returning FFFF,
+raw dimension words and a signed consumer gate. Shared return summaries
+must preserve that distinction: the same word can be an explicit index
+failure or a raw field rejected by the consumer. Neither a matching width
+nor a nonnull source establishes accepted resource contents or extent.
+
 ## 27. Check effect ordering at early exits and before external failure
 
 FND-SCRIPT-019 corrects an old finding that aged slots on every loader
@@ -487,6 +493,13 @@ zero (FND-CONFIG-188). Shared summaries should identify every path that
 reaches a saved-state restoration or bypasses it, and separate skipped
 presentation work from later committed state. A common return instruction
 or wrapper normalization must not imply one universal effect contract.
+
+FND-CONFIG-191 additionally distinguishes an unchecked wrapper
+invocation from its deeper primitive gate. A FFFF handle is rejected
+before the graphics primitive, even though the outer caller did not test
+it; a separate request can return FFFF after partial metadata writes.
+Propagate both local and child predicates before describing an actual
+primitive attempt, and track failure writes independently at each layer.
 
 ## 28. Exclude superseded rules from active function ownership
 

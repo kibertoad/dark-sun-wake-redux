@@ -4,7 +4,7 @@ title: Script-cache lookup and resource transfer
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-001, FND-SCRIPT-003, FND-SCRIPT-006, FND-SCRIPT-019, FND-SCRIPT-020, FND-SCRIPT-021, FND-SCRIPT-022, FND-SCRIPT-023, FND-CONFIG-151, FND-CONFIG-161, FND-CONFIG-162, FND-CONFIG-163, FND-CONFIG-164, FND-CONFIG-165, FND-CONFIG-166, FND-CONFIG-167, FND-CONFIG-168, FND-CONFIG-179, FND-CONFIG-170, FND-CONFIG-171, FND-CONFIG-172, FND-CONFIG-173, FND-CONFIG-174, FND-CONFIG-175, FND-CONFIG-176, FND-CONFIG-177, FND-CONFIG-178, FND-CONFIG-180, FND-CONFIG-181, FND-CONFIG-182, FND-CONFIG-183, FND-CONFIG-184, FND-CONFIG-185, FND-CONFIG-186, FND-CONFIG-187, FND-CONFIG-188, FND-CONFIG-189]
+evidence: [FND-SCRIPT-001, FND-SCRIPT-003, FND-SCRIPT-006, FND-SCRIPT-019, FND-SCRIPT-020, FND-SCRIPT-021, FND-SCRIPT-022, FND-SCRIPT-023, FND-CONFIG-151, FND-CONFIG-161, FND-CONFIG-162, FND-CONFIG-163, FND-CONFIG-164, FND-CONFIG-165, FND-CONFIG-166, FND-CONFIG-167, FND-CONFIG-168, FND-CONFIG-179, FND-CONFIG-170, FND-CONFIG-171, FND-CONFIG-172, FND-CONFIG-173, FND-CONFIG-174, FND-CONFIG-175, FND-CONFIG-176, FND-CONFIG-177, FND-CONFIG-178, FND-CONFIG-180, FND-CONFIG-181, FND-CONFIG-182, FND-CONFIG-183, FND-CONFIG-184, FND-CONFIG-185, FND-CONFIG-186, FND-CONFIG-187, FND-CONFIG-188, FND-CONFIG-189, FND-CONFIG-190, FND-CONFIG-191]
 conflicting: []
 split_with: []
 related: [FMT-SCRIPT-001, RULE-SCRIPT-002]
@@ -182,6 +182,13 @@ where callers write low bytes; neighboring-byte producers remain relevant
 commit paths differ. Some handle failures skip presentation requests but
 still reach own state assignments; complete callbacks, primitives, runtime
 and accepted state remain open (FND-CONFIG-189).
+The dimension readers reject unsigned index failures with FFFF but
+otherwise read raw frame words without a resource-size bound; consumers
+apply a separate signed gate (FND-CONFIG-190). A handle request can
+return FFFF after partial metadata writes. An unchecked invocation of
+its forwarding wrapper can still be rejected by deeper signed-handle or
+AL-coordinate gates before the primitive; accepted slots, full graphics
+and later state validity remain separate (FND-CONFIG-191).
 The collector restores the retained consumer result on its local normal
 return, with near-buffer and guard dependencies remaining (FND-CONFIG-170).
 Following resident calls test callback fields, reload their targets after

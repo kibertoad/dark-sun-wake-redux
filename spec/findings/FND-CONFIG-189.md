@@ -198,6 +198,11 @@ relocation check on an indirect operand. No own 0DAB,
 VGA children, callbacks, guard/runtime effects and possible
 aliases remain separate from that direct-write inventory.
 
+FND-CONFIG-190 subsequently reads the frame dimension helpers;
+FND-CONFIG-191 reads the handle request, forwarding wrapper and
+coordinate gates. Wrapper invocation remains separate from an admitted
+primitive call, and accepted source/slot storage remains conditional.
+
 ## Interpretation
 
 The active replacement services do not have a universal

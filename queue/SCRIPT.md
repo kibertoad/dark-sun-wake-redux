@@ -80,6 +80,10 @@ Next ID: Q-SCRIPT-008
   state-commit/restoration routes, including unchecked +5E targets and
   stored FFFF paths. Neighboring bytes, full producers/targets, primitive,
   runtime and VGA outcomes still prevent an end-to-end entry claim.
+  FND-CONFIG-190 reads frame count/index and dimension contracts;
+  FND-CONFIG-191 reads partial request metadata and wrapper/coordinate
+  gates before the graphics primitive. Complete accepted image/slot
+  producers, bounded reference chains and primitive effects remain open.
   Full external effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.
@@ -158,6 +162,13 @@ Next ID: Q-SCRIPT-008
   and primitive boundaries exist. Indirect callbacks, active service and
   VGA children require separate complete target/input coverage; a zero
   wrapper result alone cannot establish them.
+  FND-CONFIG-190 adds valid synthetic image count-zero/index-equality,
+  raw dimension and normalized-offset cases using supported image fields.
+  FND-CONFIG-191 adds slot exhaustion, finite reference chains, successive
+  coordinate-failure metadata, negative handle and AL-coordinate endpoint
+  gates after supported slot/argument layouts exist. An admitted 43AE
+  primitive needs separate complete input/effect coverage; wrapper calls
+  alone cannot establish actual graphics or hardware outcomes.
   Resource and error branches need separate provenance and cannot
   establish operating-system outcomes by emulation. Tried: FND-SCRIPT-019 reads the local instruction paths;
   the emulator harness does not exist yet.
