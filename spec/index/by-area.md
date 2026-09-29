@@ -651,6 +651,8 @@ Entries by area.
 | [FND-CONFIG-167](../findings/FND-CONFIG-167.md) | Runtime pointer dispatch can return a local rejection result that its caller discards | recorded |
 | [FND-CONFIG-168](../findings/FND-CONFIG-168.md) | A pointer consumer changes list state before a child failure and its caller ignores the result | recorded |
 | [FND-CONFIG-169](../findings/FND-CONFIG-169.md) | A following mode helper requests resources without branching on their returned results | recorded |
+| [FND-CONFIG-170](../findings/FND-CONFIG-170.md) | An error collector copies and clears near state while restoring the retained consumer result | recorded |
+| [FND-CONFIG-171](../findings/FND-CONFIG-171.md) | Following resident helpers reload callback targets and perform bounded fixed-segment word writes | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

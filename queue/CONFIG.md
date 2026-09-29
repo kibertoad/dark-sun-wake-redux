@@ -252,7 +252,10 @@ Next ID: Q-CONFIG-011
   reads the zero-selector pointer consumer's child failure after list/count
   changes and the caller's ignored result. FND-CONFIG-169 reads the
   following helper's separate mode gates, callback and resource requests
-  without success-result branches. Runtime metadata,
+  without success-result branches. FND-CONFIG-170 resolves local
+  retained-result restoration through the near-state collector.
+  FND-CONFIG-171 reads following resident callback gates, fresh targets,
+  gated helper calls and fixed word writes. Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent

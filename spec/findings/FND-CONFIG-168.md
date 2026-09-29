@@ -38,12 +38,12 @@ named calls use 0A26, without first using 08FB.
 
 After 0A26, nonzero AX calls the same local error helper;
 zero bypasses it. The consumer result is retained in SI
-before that helper and copied to AX on return. This is
-not a preservation guarantee across the helper's external
-callee. Local 022D occupies `0x00068A7D..0x00068A93`:
+before that helper and copied to AX on return. Local
+022D occupies `0x00068A7D..0x00068A93`:
 it passes words 4542 and 4592 to 39D1:0460, then loads
-AX from current DS:4592. The complete external effects,
-SI preservation and return of 39D1:0460 remain open.
+AX from current DS:4592. FND-CONFIG-170 subsequently reads this
+collector's local effects and SI restoration; its guard
+outcomes, DS and buffer provenance remain open.
 The caller in FND-CONFIG-161 does not branch on returned
 AX: it clears each supplied field when 56BD:0043 returns.
 
@@ -123,6 +123,11 @@ FND-CONFIG-167 separately bound 444C:0092's returned zero
 and the runtime result it discards.
 
 ## Alternatives
+
+FND-CONFIG-170 subsequently reads the collector and copy primitive's
+normal saved-SI restoration. A returning consumer FFFF is retained through
+that local error-helper path. Near-buffer bounds, DS, aliases and guard
+outcomes remain open rather than an assumed successful operation.
 
 Q-CONFIG-008 and Q-SCRIPT-003 retain valid graph, links,
 count and object provenance, aliases, child-tag inputs,

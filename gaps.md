@@ -531,3 +531,9 @@ clearing the caller's field and proving a successful operation.
 precedes and controls each access or call it is said to protect. Preserve
 failure-flag writes and downstream calls on rejected paths. Distinguish a
 returned cleared pointer from a callee's successful resource release.
+
+FND-CONFIG-171 extends item 32's guard requirement to freshly loaded
+indirect targets: the nonnull test precedes a callee, then the call reloads
+the pointer field. A check protects the actual target only with preserved
+field and segment provenance. Shared summaries should retain intervening
+writers/callees and distinguish a checked snapshot from a later reload.

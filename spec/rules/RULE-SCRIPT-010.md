@@ -4,7 +4,7 @@ title: Script-cache lookup and resource transfer
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-001, FND-SCRIPT-003, FND-SCRIPT-006, FND-SCRIPT-019, FND-SCRIPT-020, FND-SCRIPT-021, FND-SCRIPT-022, FND-SCRIPT-023, FND-CONFIG-151, FND-CONFIG-161, FND-CONFIG-162, FND-CONFIG-163, FND-CONFIG-164, FND-CONFIG-165, FND-CONFIG-166, FND-CONFIG-167, FND-CONFIG-168, FND-CONFIG-169]
+evidence: [FND-SCRIPT-001, FND-SCRIPT-003, FND-SCRIPT-006, FND-SCRIPT-019, FND-SCRIPT-020, FND-SCRIPT-021, FND-SCRIPT-022, FND-SCRIPT-023, FND-CONFIG-151, FND-CONFIG-161, FND-CONFIG-162, FND-CONFIG-163, FND-CONFIG-164, FND-CONFIG-165, FND-CONFIG-166, FND-CONFIG-167, FND-CONFIG-168, FND-CONFIG-169, FND-CONFIG-170, FND-CONFIG-171]
 conflicting: []
 split_with: []
 related: [FMT-SCRIPT-001, RULE-SCRIPT-002]
@@ -150,6 +150,12 @@ its error helper adds another return dependency (FND-CONFIG-168). The
 following mode helper requests callbacks and resources behind separate
 state gates. Its resource results do not locally gate continuation, and
 assigned output pointers do not establish valid content (FND-CONFIG-169).
+The collector restores the retained consumer result on its local normal
+return, with near-buffer and guard dependencies remaining (FND-CONFIG-170).
+Following resident calls test callback fields, reload their targets after
+intervening calls, and retain further register/state dependencies. Their
+caller ignores the zero/FFFF result before the final fixed-segment word
+writes (FND-CONFIG-171).
 
 `fn_172C_31ED`'s reset is bounded in FND-SCRIPT-020. Cache-input
 provenance, valid bounds and error-entry effects retain the dependencies

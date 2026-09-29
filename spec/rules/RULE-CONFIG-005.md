@@ -202,7 +202,10 @@ None known.
   returned-result conversions and shared-slot DS restoration.
   FND-CONFIG-168 reads a child failure after list/count changes and the
   caller's ignored result. FND-CONFIG-169 bounds the following helper's
-  separate mode gates, callback and ungated resource results. Actual cached
+  separate mode gates, callback and ungated resource results.
+  FND-CONFIG-170 resolves local retained-result restoration through the
+  collector; FND-CONFIG-171 reads the following resident callback gates,
+  fresh targets and fixed word writes. Actual cached
   inputs, resource and opcode effects, I/O and error outcomes remain open.
   Runtime registration, loads, valid records, reachable inputs, other writers
   and intervening helper effects remain open.

@@ -222,7 +222,7 @@ Entries by status.
 
 ## recorded
 
-387 entries.
+389 entries.
 
 | ID | Title |
 |---|---|
@@ -424,6 +424,8 @@ Entries by status.
 | [FND-CONFIG-167](../findings/FND-CONFIG-167.md) | Runtime pointer dispatch can return a local rejection result that its caller discards |
 | [FND-CONFIG-168](../findings/FND-CONFIG-168.md) | A pointer consumer changes list state before a child failure and its caller ignores the result |
 | [FND-CONFIG-169](../findings/FND-CONFIG-169.md) | A following mode helper requests resources without branching on their returned results |
+| [FND-CONFIG-170](../findings/FND-CONFIG-170.md) | An error collector copies and clears near state while restoring the retained consumer result |
+| [FND-CONFIG-171](../findings/FND-CONFIG-171.md) | Following resident helpers reload callback targets and perform bounded fixed-segment word writes |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |

@@ -43,7 +43,10 @@ Next ID: Q-SCRIPT-008
   reads another pointer consumer's ordered list/count changes and child
   failure; the caller ignores its result. FND-CONFIG-169 reads the
   following helper's mode gates, callback and resource requests without
-  success-result branches. Full external
+  success-result branches. FND-CONFIG-170 resolves local
+  retained-result restoration through the near-state collector.
+  FND-CONFIG-171 reads following resident callback gates, fresh targets,
+  gated helper calls and fixed word writes. Full external
   effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.
@@ -81,6 +84,9 @@ Next ID: Q-SCRIPT-008
   (FND-SCRIPT-022). Once their field layouts are supported, add valid
   early-zero status guards (FND-CONFIG-166), segment-zero dispatch and
   interrupt-free normalized-address/rejection cases (FND-CONFIG-167).
+  Add near-copy count and alias cases once their layouts are supported
+  (FND-CONFIG-170), and valid callback-zero/helper-gate/fixed-word-copy
+  cases (FND-CONFIG-171). Indirect targets and callees need separate coverage.
   Resource and error branches need separate provenance and cannot
   establish operating-system outcomes by emulation. Tried: FND-SCRIPT-019 reads the local instruction paths;
   the emulator harness does not exist yet.

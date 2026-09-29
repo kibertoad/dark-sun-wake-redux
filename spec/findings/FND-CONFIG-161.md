@@ -90,6 +90,11 @@ unconditional consequences of entering the error routine.
 
 ## Alternatives
 
+FND-CONFIG-170 subsequently resolves the pointer error helper's local
+saved-SI restoration and near-copy/clear ordering. FND-CONFIG-171 reads
+the following resident callback, gated helper and fixed-segment word writes.
+Fresh target reads and transitive register/state preservation remain open.
+
 FND-CONFIG-168 subsequently reads the zero-selector consumer and its
 child-failure path after list/count changes. The caller's field clears
 ignore that returned result. FND-CONFIG-169 reads 00BB's separate mode
