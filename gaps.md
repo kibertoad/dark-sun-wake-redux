@@ -3,6 +3,28 @@
 These are requests for the restoration template and shared analysis tooling.
 They describe tooling behavior, not claims about the original game's rules.
 
+## 38. Keep JVM crash diagnostics out of commit candidates
+
+On 2026-09-29, the session handover named an untracked
+`hs_err_pid15480.log` in the repository root. Its header reports a native
+allocation failure during JVM startup; the command line is empty and
+`java_command` is unknown, so it does not establish which analysis task
+failed. A current process inventory contained no Java process. The file
+was left untouched because ownership remains uncertain.
+
+The template ignores Ghidra projects and build logs but did not ignore JVM
+fatal-error or replay logs. Such diagnostics can contain environment paths,
+stack details and memory excerpts; their presence is neither a durable
+finding nor proof of a live task. This checkout now ignores
+`hs_err_pid*.log` and `replay_pid*.log`.
+
+**Request:** include these exclusions in the shared template and consider
+a repository-policy rejection for explicitly staged JVM diagnostic files.
+Document how to redirect analysis crash diagnostics into local-only storage.
+Keep process ownership and terminal-state verification separate from the
+presence of a crash file, and do not attribute an unidentified JVM failure
+to a specific research query.
+
 ## 1. Provide a standard function-inventory export path
 
 The work protocol requires `coverage/<build ID>/<manifest path>.tsv`, but this

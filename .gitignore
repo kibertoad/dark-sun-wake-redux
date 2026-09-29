@@ -13,6 +13,9 @@ reference/original/
 *.user
 *.suo
 *.binlog
+# JVM diagnostics from local analysis are not clean-room evidence.
+hs_err_pid*.log
+replay_pid*.log
 *.nupkg
 *.snupkg
 .env
