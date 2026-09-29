@@ -176,7 +176,7 @@ Entries by kind.
 
 ## findings
 
-446 entries.
+447 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -435,6 +435,7 @@ Entries by kind.
 | [FND-CONFIG-208](../findings/FND-CONFIG-208.md) | The pointer acquisition wrapper gates archive state and distinguishes optional-output clearing paths | recorded |
 | [FND-CONFIG-209](../findings/FND-CONFIG-209.md) | The shared reader allocation wrapper requests a wrapped product plus one and marks runtime header extent | recorded |
 | [FND-CONFIG-210](../findings/FND-CONFIG-210.md) | The runtime allocation wrapper clears a wrapped product in bounded chunks after a nonnull heap return | recorded |
+| [FND-CONFIG-211](../findings/FND-CONFIG-211.md) | Heap acquisition writes paragraph headers through exact removal, tail splitting and memory-request paths | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |

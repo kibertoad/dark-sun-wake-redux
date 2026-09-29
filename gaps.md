@@ -776,3 +776,10 @@ extent units and the range actually written separately. A bounded fill
 chunk is not a total-capacity guarantee. Preserve lower allocator state
 and effects as dependencies until read, and distinguish a local request
 or marker write from a verified allocation contract.
+
+
+FND-CONFIG-211 additionally identifies an accepted growth request followed
+by alignment rejection and a null wrapper return. Allocation summaries
+should retain preceding request effects and the identity of saved versus
+later returned pointers; a failure sentinel does not itself establish
+rollback or unchanged allocator state.

@@ -357,6 +357,9 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-210 resolves runtime product/chunk clearing and the local
   heap-entry admission branches; lower heap effects, header/state producers,
   direction-flag provenance and returned capacity remain open.
+  FND-CONFIG-211 resolves named allocation header writers, tail splitting
+  and prior-pointer request returns; heap/link/bound producers, arithmetic
+  helper inputs, runtime outcomes and segment-wrap conditions remain open.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 
