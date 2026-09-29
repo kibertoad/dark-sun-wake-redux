@@ -38,7 +38,8 @@ Entries, queue files and parity rows outside CONFIG and SCRIPT.
 - Blockers: none known.
 - Next:
   - Q-CONFIG-008 and Q-SCRIPT-003, follow FND-CONFIG-193's
-    setup-call gates and later slot/pool writers; FND-CONFIG-194's
+    preceding external callees, later slot/pool writers and
+    native startup outcome; FND-CONFIG-194's
     release callers, accepted compaction chains, aliases and
     capacity; the fixed scratch capacity; and
     FND-CONFIG-192's accepted mask inputs, reference chains,
