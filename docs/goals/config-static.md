@@ -32,9 +32,9 @@ Entries, queue files and parity rows outside CONFIG and SCRIPT.
 - Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
   documentation check passed with 597 entries and 158 parity rows).
   Full solution build passed with zero warnings and errors.
-- Unfinished: no session work. Untracked `hs_err_pid15480.log` remains;
+- Unfinished: no session work. Ignored local `hs_err_pid15480.log` remains;
   ownership is uncertain, and it was left unmodified and uncommitted.
-  This session started no Java process.
+  This session started no Java process. JVM diagnostic exclusions and the upstream request are committed in gaps.md. The current Test.ps1 gate passed all 700 tests with no skips; its prerequisite documentation check passed. Process inspection found no confirmed orphans; reusable MSBuild workers were preserved.
 - Blockers: none known.
 - Next:
   - Q-CONFIG-008 and Q-SCRIPT-003, follow FND-CONFIG-193's
