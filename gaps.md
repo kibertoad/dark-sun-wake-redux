@@ -730,3 +730,19 @@ from the segment used after it is moved or added to BX. A stack-size
 reservation alone must not establish the capacity or identity of the
 storage actually accessed. Keep DS/SS equality, frame aliases and
 callee preservation explicit in static summaries and emulator fixtures.
+
+
+## 40. Check cleanup-slot assignment on each failure edge
+
+FND-CONFIG-199 identifies cleanup that reads a second frame word after
+first-request failure skipped the second request and its assignment.
+A sentinel test is present, but the local reading does not establish
+that word's value on the bypass path. Successful-path initialization
+cannot be carried backward onto every cleanup predecessor.
+
+**Request:** shared static reports should track assignment separately
+for each incoming cleanup edge, including partial acquisition and early
+request failure. Distinguish sentinel comparison from index validation
+and mark residual frame contents as unknown. Report the encoded read
+and its missing local producer without promoting it to a native defect
+until caller state and failure reachability have been established.

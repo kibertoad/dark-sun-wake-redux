@@ -176,7 +176,7 @@ Entries by kind.
 
 ## findings
 
-434 entries.
+435 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -423,6 +423,7 @@ Entries by kind.
 | [FND-CONFIG-196](../findings/FND-CONFIG-196.md) | A display-state writer replaces four words after conditional graphics release calls | recorded |
 | [FND-CONFIG-197](../findings/FND-CONFIG-197.md) | Refresh wrappers temporarily replace one shared word and normalize returning completion to zero | recorded |
 | [FND-CONFIG-198](../findings/FND-CONFIG-198.md) | A fixed request-and-release loop counts qualifying handles rather than successful releases | recorded |
+| [FND-CONFIG-199](../findings/FND-CONFIG-199.md) | A rectangle transfer caller reads a second cleanup handle on a path that skipped its assignment | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |

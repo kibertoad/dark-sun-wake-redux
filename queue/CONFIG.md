@@ -321,6 +321,9 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-198's subsequent MZ/FBOV far-call and bounded
   same-segment near-call inventories found no incoming route. Do not
   repeat these queries without new pointer/registration coverage.
+  FND-CONFIG-199 reads a rectangle transfer caller whose first-request
+  failure reaches a cleanup read of an unassigned second frame word.
+  Incoming state, frame provenance and native outcomes remain open.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 

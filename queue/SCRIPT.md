@@ -103,6 +103,8 @@ Next ID: Q-SCRIPT-008
   initial slots, DS/SS storage and incoming routes remain open.
   FND-CONFIG-198's bounded incoming inventories found no route;
   pointer/registration coverage is needed for a new incoming attempt.
+  FND-CONFIG-199 reads sentinel-only release cleanup with a conditional
+  frame-assignment gap; native reachability and inputs remain open.
   Full external effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.

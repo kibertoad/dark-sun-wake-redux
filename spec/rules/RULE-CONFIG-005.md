@@ -242,6 +242,8 @@ None known.
   initialized-slot case, retaining segment/alias and reachability inputs.
   Its bounded declared-far-call and same-segment near-call inventories
   do not settle incoming pointer/registration paths (FND-CONFIG-198).
+  FND-CONFIG-199 reads rectangle-request cleanup ordering, retaining
+  first-request failure and second-frame-word provenance.
   FND-CONFIG-170 resolves local retained-result restoration through the
   collector; FND-CONFIG-171 reads the following resident callback gates,
   fresh targets and fixed word writes. FND-CONFIG-172 distinguishes child
