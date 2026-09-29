@@ -248,7 +248,7 @@ that provenance alongside data-address labels in findings; preserve a raw
 operand explicitly as raw when mapping is unresolved. This prevents the same
 mapping error from recurring in data reads after call targets were corrected.
 
-## 17. Resolve prefix-overlapping operand candidates to verified boundaries
+## 17. Resolve overlapping operand candidates to verified boundaries
 
 While preparing FND-CONFIG-136, a raw pointer-operand search produced both
 an actual prefixed double-word comparison and a word-width comparison
@@ -256,6 +256,11 @@ starting one byte into it. Both decode locally, but only the former starts
 at the containing routine's established instruction boundary. Counting both
 would invent a second use and could misstate the pointer's null check.
 The overlapping candidate was rejected before recording the finding.
+
+FND-CONFIG-142 later rejected four apparent writes starting one byte
+before verified reads. Overlap handling therefore needs to cover preceding
+instruction bytes as well as stripped prefixes. Local decodability alone
+does not establish a write or its operand width.
 
 **Request:** have shared operand reporters retain prefixes and candidate
 widths, group overlapping decodes, and classify them against a verified

@@ -97,6 +97,9 @@ all the iterator's inputs.
 
 ## Alternatives
 
+FND-CONFIG-142 records the initial slot word, guarded setup
+assignment and qualified literal-writer inventory. It does not
+establish a complete slot range or immutable metadata.
 Q-CONFIG-008 retains slot-index and metadata producers,
 stride/base/offset tables, selector and record validity, table
 aliasing outside the named ordinary range, reachable expressions,

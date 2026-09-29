@@ -173,6 +173,10 @@ Next ID: Q-CONFIG-011
   outputs and conditional table-slot writer. FND-CONFIG-141 reads the
   seed wrapper and shared-lookup scan. Metadata and slot-index producers,
   input validity and reachable expressions remain unread.
+  FND-CONFIG-142 records the initial slot word and guarded setup
+  assignment, rejects four overlapping writer decodes, and finds no verified
+  metadata writer in its qualified literal query. Other write forms and
+  timing remain unread; do not repeat that query without new coverage.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

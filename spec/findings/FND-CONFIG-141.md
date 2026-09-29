@@ -74,6 +74,9 @@ conditions apply to each lookup.
 
 ## Alternatives
 
+FND-CONFIG-142 records the initial slot word, guarded setup
+assignment and qualified literal-writer inventory. It does not
+establish a complete slot range or immutable metadata.
 Q-CONFIG-008 retains selector-zero metadata writers, active-slot
 producers, lookup input validity, returned-value provenance and
 reachable expression inputs. A reading that this seed helper

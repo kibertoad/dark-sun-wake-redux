@@ -617,6 +617,7 @@ Entries by area.
 | [FND-CONFIG-139](../findings/FND-CONFIG-139.md) | The B1 expression path parses selectors and chains lookups before a conditional clear | recorded |
 | [FND-CONFIG-140](../findings/FND-CONFIG-140.md) | The selector lookup reads typed values and conditionally writes a three-byte table slot | recorded |
 | [FND-CONFIG-141](../findings/FND-CONFIG-141.md) | The expression seed wrapper searches active slots through the same selector lookup | recorded |
+| [FND-CONFIG-142](../findings/FND-CONFIG-142.md) | A bounded literal-writer query finds the setup slot assignment and no verified metadata-table write | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |
