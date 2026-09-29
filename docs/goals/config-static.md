@@ -22,10 +22,10 @@ None known.
 
 - Stage: Slices.
 - Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 493 entries and 158 parity rows).
+  documentation check passed with 496 entries and 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
-- Next: Q-CONFIG-008, trace nested selection and old-window helper effects
-  after FND-CONFIG-095 and FND-CONFIG-096, then other shared message sinks. Q-CONFIG-010 tracks
-  acquisition-state changes;
+- Next: Q-CONFIG-008, trace overlay 176's incoming message paths after
+  FND-CONFIG-099. Prior-control and runtime-state gaps remain in Q-CONFIG-008.
+  Q-CONFIG-010 tracks acquisition-state changes;
   Q-CONFIG-009 has an owner-run request.
