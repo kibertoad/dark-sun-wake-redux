@@ -23,11 +23,11 @@ Other areas' entries, queue files and parity rows. `src/` and `tests/`.
 
 - Stage: Slices.
 - Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 529 entries and 158 parity rows).
+  documentation check passed with 530 entries and 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
-- Next: Q-CONFIG-008, read resident iterator 2D40:0776 contracts
-  and producers from FND-CONFIG-132. Transitive helper effects from
+- Next: Q-CONFIG-008, read the DS:1A32 and 4F49:000A input
+  producers and range constraints named by FND-CONFIG-133. Transitive helper effects from
   FND-CONFIG-131 and FND-CONFIG-130, and remaining helper effects from
   FND-CONFIG-109 stay open. Entry 28C9:1261 provenance needs new
   coverage after FND-CONFIG-114; remaining gaps stay in Q-CONFIG-008.
