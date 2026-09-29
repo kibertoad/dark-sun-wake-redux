@@ -88,6 +88,11 @@ assigned to the caller.
 
 ## Alternatives
 
+FND-CONFIG-158 subsequently bounds the three pre-join graphics
+helpers. FND-CONFIG-159 reads the nonzero-mode helper and its
+stored video-reset pointer. Their own-code paths supply no direct
+archive or setup-gate producer; external effects remain open.
+
 FND-CONFIG-157 subsequently locates the earlier OBJEX.GFF
 registration attempt, before both mode branches. FND-CONFIG-156
 shows that a full-word failure can pass the later low-byte zero
@@ -96,7 +101,7 @@ check; the stored byte must not be taken as proof of success.
 FND-CONFIG-155 subsequently reads the zero-mode helper's
 local code-segment resets and flag return. It assigns neither
 the setup gate nor an archive registration. The other mode's
-helper and earlier state still remain open.
+transitive helper effects and earlier state still remain open.
 
 Q-CONFIG-008 retains earlier incoming paths, the two pre-setup
 helpers' transitive effects, the 00C0 callee's external effects,

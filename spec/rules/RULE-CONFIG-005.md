@@ -183,6 +183,10 @@ None known.
   zero check does not establish successful initialization. FND-CONFIG-157
   locates an earlier OBJEX.GFF registration attempt before both mode
   branches, retaining the open outcome and intervening archive effects.
+  FND-CONFIG-158 bounds the three pre-join graphics helpers' local
+  writes and DS restoration, retaining BIOS and hardware outcomes.
+  FND-CONFIG-159 reads the nonzero-mode helper's local branches,
+  pointer setter and video-reset target; external effects remain open.
   Runtime registration, loads, valid records, reachable inputs, other writers
   and intervening helper effects remain open.
   Other shared sinks' incoming paths and computed or unrelocated pointer

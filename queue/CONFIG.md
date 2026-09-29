@@ -220,9 +220,14 @@ Next ID: Q-CONFIG-011
   Its external effects, failure-byte producers and buffer validity remain open.
   FND-CONFIG-157 locates the earlier OBJEX.GFF registration attempt before
   both mode branches. Its outcome and the intervening callees' archive effects,
-  including 172C:000C with word 99, remain open. The calls at 0006765C,
-  0006766D and 00067679, nonzero-mode helper, gate producers, successful
-  loads and later inputs still need bounded readings.
+  including 172C:000C with word 99, remain open. FND-CONFIG-158 reads
+  the three pre-join graphics calls and their restored DS, retaining BIOS
+  and hardware outcomes. FND-CONFIG-159 reads the nonzero-mode helper,
+  its repeated gates, stored function pointer and local video-reset target.
+  Their own-code paths supply no direct archive or setup-gate producer.
+  External callee effects, pointer consumers and replacements, script 99's
+  entry and resource effects, gate producers, successful loads and later
+  inputs still need bounded readings.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

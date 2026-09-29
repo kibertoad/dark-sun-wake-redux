@@ -633,6 +633,8 @@ Entries by area.
 | [FND-CONFIG-155](../findings/FND-CONFIG-155.md) | The zero-mode pre-setup helper resets code-segment storage and restores flags through an internal return target | recorded |
 | [FND-CONFIG-156](../findings/FND-CONFIG-156.md) | The post-setup initializer's failure word survives its caller's low-byte zero check | recorded |
 | [FND-CONFIG-157](../findings/FND-CONFIG-157.md) | Startup attempts OBJEX.GFF registration before the metadata initializer | recorded |
+| [FND-CONFIG-158](../findings/FND-CONFIG-158.md) | Three pre-setup calls restore DS and have no direct archive-state write | recorded |
+| [FND-CONFIG-159](../findings/FND-CONFIG-159.md) | The nonzero-mode pre-setup helper stores a relocated video-reset pointer and retains external dependencies | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

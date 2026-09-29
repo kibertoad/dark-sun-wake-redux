@@ -71,11 +71,14 @@ the research procedure well enough to carry out a batch, but both say the
 published Protocol wins if they differ. During the `FMT-CONFIG-004` batch, the
 Protocol's research-batches page was unavailable through the available browser
 tool, so a possible disagreement could not be checked against the authoritative
-text.
+text. Direct opens of both the Protocol root and the documentation
+Standard were also unavailable through the browser tool on 2026-09-29.
+The adapted local skills and templates remain usable, but cannot verify
+whether either published page differs from them.
 
 **Request:** ship a versioned, locally readable copy or snapshot of the
-authoritative research-batch rules with the template, and identify the upstream
-revision it represents. Keep the remote page as the source of updates, with an
+authoritative Protocol and Standard rules with the template, and identify
+the upstream revision it represents. Keep the remote page as the source of updates, with an
 explicit way to detect when the local snapshot needs refreshing.
 
 ## 7. Accept canonical overlay offsets as executable finding locations
@@ -372,6 +375,11 @@ verified exits and control flow, report holes or discontiguous bodies,
 and reject a claimed complete reading that lacks its return or tail
 transfer. Keep richer boundary reports local-only so the committed
 inventory retains the Standard's allowed columns.
+
+FND-CONFIG-158 also follows a mode-setter branch beyond its first far
+return to a second return. Finding one return is not a complete bound:
+shared readers should follow every reachable branch target and exit before
+claiming that a function's local effects have been covered.
 
 ## 24. Allow overlapping starts when an explicit control-flow edge proves them
 

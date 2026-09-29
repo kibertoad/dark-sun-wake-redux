@@ -220,7 +220,7 @@ Entries by status.
 
 ## recorded
 
-371 entries.
+373 entries.
 
 | ID | Title |
 |---|---|
@@ -410,6 +410,8 @@ Entries by status.
 | [FND-CONFIG-155](../findings/FND-CONFIG-155.md) | The zero-mode pre-setup helper resets code-segment storage and restores flags through an internal return target |
 | [FND-CONFIG-156](../findings/FND-CONFIG-156.md) | The post-setup initializer's failure word survives its caller's low-byte zero check |
 | [FND-CONFIG-157](../findings/FND-CONFIG-157.md) | Startup attempts OBJEX.GFF registration before the metadata initializer |
+| [FND-CONFIG-158](../findings/FND-CONFIG-158.md) | Three pre-setup calls restore DS and have no direct archive-state write |
+| [FND-CONFIG-159](../findings/FND-CONFIG-159.md) | The nonzero-mode pre-setup helper stores a relocated video-reset pointer and retains external dependencies |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |

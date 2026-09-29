@@ -95,6 +95,12 @@ together they still do not prove a successful native load.
 
 ## Alternatives
 
+FND-CONFIG-158 subsequently reads the three named pre-join
+calls for their local stores and DS restoration, retaining external
+BIOS and hardware outcomes. FND-CONFIG-159 bounds the nonzero
+mode helper and its stored pointer target. Neither reading
+establishes retained archive state through all later callees.
+
 Q-CONFIG-008 retains the archive-open outcome and all
 intervening effects on list membership, active archive,
 traversal mode and selected records. One reading successfully
