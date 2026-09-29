@@ -230,9 +230,10 @@ Next ID: Q-CONFIG-011
   inputs still need bounded readings. FND-CONFIG-160 reads the script-entry
   status gate, reset and loader call order. FND-SCRIPT-019 corrects cache
   age paths and pre-transfer state writes; FND-SCRIPT-020 bounds the guarded
-  buffer reset. Actual cache state, resource loading, error entry and reachable
-  MAS/99 opcodes remain open, alongside Q-SCRIPT-003's allocation and
-  replacement paths.
+  buffer reset. FND-SCRIPT-021 bounds replacement selection and writes.
+  Actual cache state, resource loading, error entry and reachable MAS/99
+  opcodes remain open, alongside Q-SCRIPT-003's allocation and input
+  provenance.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

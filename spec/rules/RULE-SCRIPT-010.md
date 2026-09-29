@@ -4,7 +4,7 @@ title: Script-cache lookup and resource transfer
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-001, FND-SCRIPT-003, FND-SCRIPT-006, FND-SCRIPT-019, FND-SCRIPT-020, FND-CONFIG-151]
+evidence: [FND-SCRIPT-001, FND-SCRIPT-003, FND-SCRIPT-006, FND-SCRIPT-019, FND-SCRIPT-020, FND-SCRIPT-021, FND-CONFIG-151]
 conflicting: []
 split_with: []
 related: [FMT-SCRIPT-001, RULE-SCRIPT-002]
@@ -72,9 +72,14 @@ The ordered branches and their conditions are specified below.
    The last matching slot supplies the final code start.
 3. If no slot matched, try to fill a slot. Reject number FFFF or any
    selector other than one or two. Choose the first FFFF start, or use
-   `fn_172C_07BB` when none exists. If that slot already has the number
-   requested, bypass the resource calls and slot initialization; the
-   slot's selector is not part of this bypass test.
+   `fn_172C_07BB` when none exists. That helper selects the first slot
+   with the largest signed age, writes its start, end and number to
+   FFFF and age to minus one, and leaves its selector unchanged.
+   If the selected slot already has the number requested, bypass the
+   resource calls and slot initialization; the slot's selector is not
+   part of this bypass test. Under unchanged valid state the replacement
+   route cannot take this bypass, since its number is now FFFF and a
+   requested FFFF number was rejected. The first-free route can.
 4. Otherwise query the selected tag and number's length through the
    archive reader. Its length output is a double word. A nonzero result
    calls `fn_5702_00B1` and, if it returns, leaves the local fill result
@@ -101,7 +106,7 @@ The ordered branches and their conditions are specified below.
    reach this path normally.
 
 `fn_172C_31ED`'s reset is bounded in FND-SCRIPT-020. Allocation,
-replacement-slot and error-entry effects retain the dependencies in
+cache-input provenance and error-entry effects retain the dependencies in
 Q-SCRIPT-003; this procedure does not assign their unknown outcomes.
 
 ## Outputs
@@ -142,7 +147,7 @@ None known.
 
 ## Open questions
 
-- How `fn_172C_07BB` selects and changes a slot, how `fn_172C_0698`
+- Which cache state reaches `fn_172C_07BB`'s selection, how `fn_172C_0698`
   finds room, and what `fn_5702_00B1` does after errors (Q-SCRIPT-003).
   One reading supplies valid distinct buffers and sufficient space;
   another reaches changed state, aliasing or failure. Their full

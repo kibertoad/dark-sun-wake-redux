@@ -128,6 +128,10 @@ failed transfers occur in the owner's running build.
 
 ## Alternatives
 
+FND-SCRIPT-021 subsequently reads 07BB's signed-age selection and
+four invalidating writes. The remaining allocation, error and input
+provenance dependencies below still apply.
+
 FND-SCRIPT-008 is superseded because it combines the
 wrapper's early returns with the age-loop path and names
 a word output where the resource wrapper writes a double

@@ -31,7 +31,8 @@ Next ID: Q-SCRIPT-008
   cache early returns, branch-specific age updates, double-word size output,
   low-word allocation arithmetic and pre-transfer state writes. FND-SCRIPT-020
   reads the guarded four-buffer reset; FND-CONFIG-160 reads the status-gated
-  script-99 entry. Allocation/replacement and error helpers, valid pointers,
+  script-99 entry. FND-SCRIPT-021 reads replacement selection and writes.
+  Allocation and error helpers, cache inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.
   Blocks: slices 3-6.
 - Q-SCRIPT-004. RULE-SCRIPT-002, RULE-SCRIPT-004, RULE-SCRIPT-008,
@@ -60,7 +61,9 @@ Next ID: Q-SCRIPT-008
   Settles it: after the harness in docs/RUNTIME.md exists, fixtures using
   the rule's parameters and glossary fields for stop/current-pair paths,
   matching and duplicate cache slots, selected-number bypass, invalid
-  number/selector and signed age edges. Resource and error branches need
+  number/selector and signed age edges, plus replacement maxima, ties,
+  mixed/all-negative ages and fields left unchanged (FND-SCRIPT-021).
+  Resource and error branches need
   separate provenance and cannot establish operating-system outcomes by
   emulation. Tried: FND-SCRIPT-019 reads the local instruction paths;
   the emulator harness does not exist yet.

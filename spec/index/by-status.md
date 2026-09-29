@@ -222,7 +222,7 @@ Entries by status.
 
 ## recorded
 
-375 entries.
+376 entries.
 
 | ID | Title |
 |---|---|
@@ -527,6 +527,7 @@ Entries by status.
 | [FND-SCRIPT-018](../findings/FND-SCRIPT-018.md) | SCMD resources are loaded through a separate 64-slot cache at 31E0:1893 with two callers |
 | [FND-SCRIPT-019](../findings/FND-SCRIPT-019.md) | Script-cache paths have distinct age updates and retain writes before a failed transfer |
 | [FND-SCRIPT-020](../findings/FND-SCRIPT-020.md) | A guarded interpreter helper clears four supplied working buffers |
+| [FND-SCRIPT-021](../findings/FND-SCRIPT-021.md) | Cache replacement selects the first largest signed age and invalidates four fields |
 | [FND-SOUND-001](../findings/FND-SOUND-001.md) | Every VOC file and BVOC resource is one Creative Voice File header, one sound block and a terminator |
 | [FND-SOUND-002](../findings/FND-SOUND-002.md) | The installation's music is 40 Ogg Vorbis files that game.ins mounts as audio tracks 2 to 41 |
 | [FND-SOUND-003](../findings/FND-SOUND-003.md) | SOUND_DS.EXE holds no VOC signature, no VOC file extension and no BIOS wait call |

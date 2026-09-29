@@ -189,7 +189,8 @@ None known.
   pointer setter and video-reset target; external effects remain open.
   FND-CONFIG-160 reads the post-setup script's status gate and local
   entry order. FND-SCRIPT-019 corrects the cache and transfer paths,
-  while FND-SCRIPT-020 bounds the guarded buffer reset. Actual cached
+  while FND-SCRIPT-020 bounds the guarded buffer reset. FND-SCRIPT-021
+  reads replacement selection and invalidating writes. Actual cached
   inputs, resource and opcode effects, I/O and error outcomes remain open.
   Runtime registration, loads, valid records, reachable inputs, other writers
   and intervening helper effects remain open.

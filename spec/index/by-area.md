@@ -252,6 +252,7 @@ Entries by area.
 | [FND-SCRIPT-018](../findings/FND-SCRIPT-018.md) | SCMD resources are loaded through a separate 64-slot cache at 31E0:1893 with two callers | recorded |
 | [FND-SCRIPT-019](../findings/FND-SCRIPT-019.md) | Script-cache paths have distinct age updates and retain writes before a failed transfer | recorded |
 | [FND-SCRIPT-020](../findings/FND-SCRIPT-020.md) | A guarded interpreter helper clears four supplied working buffers | recorded |
+| [FND-SCRIPT-021](../findings/FND-SCRIPT-021.md) | Cache replacement selects the first largest signed age and invalidates four fields | recorded |
 | [RULE-SCRIPT-001](../rules/RULE-SCRIPT-001.md) | Loading a GPL or MAS script into the script cache | superseded |
 | [RULE-SCRIPT-002](../rules/RULE-SCRIPT-002.md) | Running a script, reading its code and calling other scripts | supported |
 | [RULE-SCRIPT-003](../rules/RULE-SCRIPT-003.md) | The script instructions for jumps, calls, returns, if, while, compare, the accumulator and assignment | supported |
