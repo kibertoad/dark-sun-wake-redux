@@ -132,6 +132,9 @@ Next ID: Q-SCRIPT-008
   FND-CONFIG-211 resolves named allocation header writers, tail splitting
   and prior-pointer request returns; heap/link/bound producers, arithmetic
   helper inputs, runtime outcomes and segment-wrap conditions remain open.
+  FND-CONFIG-212 resolves selected request arithmetic and signed versus
+  normalized address gates; other caller ranges, break/bound writers, heap
+  state and runtime outcomes remain open.
   Full external effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.

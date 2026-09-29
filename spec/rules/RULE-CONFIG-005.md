@@ -271,6 +271,9 @@ None known.
   FND-CONFIG-211 resolves named allocation header writers, tail splitting
   and prior-pointer request returns; heap/link/bound producers, arithmetic
   helper inputs, runtime outcomes and segment-wrap conditions remain open.
+  FND-CONFIG-212 resolves selected request arithmetic and signed versus
+  normalized address gates; other caller ranges, break/bound writers, heap
+  state and runtime outcomes remain open.
   FND-CONFIG-170 resolves local retained-result restoration through the
   collector; FND-CONFIG-171 reads the following resident callback gates,
   fresh targets and fixed word writes. FND-CONFIG-172 distinguishes child

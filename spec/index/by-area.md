@@ -693,6 +693,7 @@ Entries by area.
 | [FND-CONFIG-209](../findings/FND-CONFIG-209.md) | The shared reader allocation wrapper requests a wrapped product plus one and marks runtime header extent | recorded |
 | [FND-CONFIG-210](../findings/FND-CONFIG-210.md) | The runtime allocation wrapper clears a wrapped product in bounded chunks after a nonnull heap return | recorded |
 | [FND-CONFIG-211](../findings/FND-CONFIG-211.md) | Heap acquisition writes paragraph headers through exact removal, tail splitting and memory-request paths | recorded |
+| [FND-CONFIG-212](../findings/FND-CONFIG-212.md) | Heap request arithmetic separates a signed high-word gate from wrapped far-address normalization | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

@@ -783,3 +783,18 @@ by alignment rejection and a null wrapper return. Allocation summaries
 should retain preceding request effects and the identity of saved versus
 later returned pointers; a failure sentinel does not itself establish
 rollback or unchanged allocator state.
+
+
+## 43. Preserve caller ranges when judging arithmetic admission
+
+FND-CONFIG-212 identifies a signed high-word admission gate that is
+not a universal unsigned bound, while the named allocation callers
+supply a narrower nonnegative range for which it rejects overflow of
+the intended local address range. A hypothetical large-pattern case
+alone would misrepresent those callers' demonstrated input contract.
+
+**Request:** shared arithmetic reports should show the encoded predicate,
+normalization modulus and established caller input ranges separately.
+Keep static counterexamples labeled as arithmetic examples until their
+native reachability is established. A restricted caller range can support
+a local conclusion without upgrading it to a universal safety claim.
