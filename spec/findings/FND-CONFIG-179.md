@@ -1,9 +1,9 @@
 ---
-id: FND-CONFIG-169
-title: A following mode helper requests resources without branching on their returned results
-status: superseded
+id: FND-CONFIG-179
+title: A mode helper passes callback 28C9:0061 and mask 0166 before ungated resource results
+status: recorded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: [FND-CONFIG-179]
+superseded_by: []
 recorded_by: kibertoad
 reproduced_by: []
 method: static
@@ -16,11 +16,6 @@ environment: null
 ---
 
 ## Observation
-
-Superseded: FND-CONFIG-179 preserves this bounded mode/resource reading
-with a corrected 01EF argument layout. FND-CONFIG-180's callee-width
-reading shows callback 28C9:0061 and mask 0166. The earlier grouping below
-is retained as historical evidence and is not the active contract.
 
 FND-CONFIG-161 calls overlay entry 56BD:00BB after its
 pointer consumers. Descriptor 182 maps this entry to
@@ -44,9 +39,12 @@ its initial value alone does not guarantee the next gate.
 
 A value two or three at that later gate continues;
 other values return without the remaining local work.
-The continuing branch passes pointer 28C9:0166, words
-0061 and 4B01, and the far pointer stored at 4E28:00D7
-to local far 01EF. It then passes double-word zero to
+The continuing branch passes the far pointer stored at 4E28:00D7,
+word identifier 4B01, far callback 28C9:0061 and word mask
+0166 to local far 01EF, in the callee's argument layout.
+FND-CONFIG-180 resolves those widths through both resident
+setters; the earlier grouping of 0166 as a callback offset
+in FND-CONFIG-169 was wrong. It then passes double-word zero to
 39D1:0430, sets byte DS:143F to one, calls 2C5F:0139
 then 28C9:250A, and clears byte 143F. Next it passes
 28C9:152C to 39D1:0448, writes word DS:0D9C to one,
@@ -115,6 +113,13 @@ failure, accepted content, an archive switch or successful
 restoration of any native screen.
 
 ## Alternatives
+
+This entry supersedes FND-CONFIG-169, whose caller-push grouping assigned
+the wrong callback offset. FND-CONFIG-180 resolves the local wrapper and
+its resident argument widths. The remaining local observations are retained
+with that correction; actual registration, resources and native outcomes
+are still conditional. FND-CONFIG-181 subsequently bounds 0297's archive
+handle, filename and near/far segment conditions.
 
 Q-CONFIG-008 and Q-SCRIPT-003 retain word/byte and record
 producers, valid pointer fields, selected resources and

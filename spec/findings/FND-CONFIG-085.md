@@ -52,7 +52,7 @@ stored-character list's lifetime.
 
 ## Alternatives
 
-FND-CONFIG-169 subsequently reads the complete local body containing
+FND-CONFIG-179 subsequently reads the complete local body containing
 site 0x0006A331, reached after a re-read two/three mode gate and intervening
 calls. That bounds one site's local timing, while upstream state,
 transitive effects and order relative to the list remain open.

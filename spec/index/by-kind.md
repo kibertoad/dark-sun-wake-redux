@@ -176,7 +176,7 @@ Entries by kind.
 
 ## findings
 
-414 entries.
+417 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -393,7 +393,7 @@ Entries by kind.
 | [FND-CONFIG-166](../findings/FND-CONFIG-166.md) | A state clear can make the following status poll return zero under stable valid inputs | recorded |
 | [FND-CONFIG-167](../findings/FND-CONFIG-167.md) | Runtime pointer dispatch can return a local rejection result that its caller discards | recorded |
 | [FND-CONFIG-168](../findings/FND-CONFIG-168.md) | A pointer consumer changes list state before a conditional child-result exit and its caller ignores the result | recorded |
-| [FND-CONFIG-169](../findings/FND-CONFIG-169.md) | A following mode helper requests resources without branching on their returned results | recorded |
+| [FND-CONFIG-169](../findings/FND-CONFIG-169.md) | A following mode helper requests resources without branching on their returned results | superseded |
 | [FND-CONFIG-170](../findings/FND-CONFIG-170.md) | An error collector copies and clears near state while restoring the retained consumer result | recorded |
 | [FND-CONFIG-171](../findings/FND-CONFIG-171.md) | Following resident helpers reload callback targets and perform bounded fixed-segment word writes | recorded |
 | [FND-CONFIG-172](../findings/FND-CONFIG-172.md) | Child cleanup distinguishes recursive error propagation from local error origins | recorded |
@@ -403,6 +403,9 @@ Entries by kind.
 | [FND-CONFIG-176](../findings/FND-CONFIG-176.md) | Region initialization returns zero and append rejects count sixteen before writing | recorded |
 | [FND-CONFIG-177](../findings/FND-CONFIG-177.md) | Region wrappers stage outputs and pair expansion can reach the append capacity error | recorded |
 | [FND-CONFIG-178](../findings/FND-CONFIG-178.md) | The large region helper stages checked appends and its follow-up is a self-copy | recorded |
+| [FND-CONFIG-179](../findings/FND-CONFIG-179.md) | A mode helper passes callback 28C9:0061 and mask 0166 before ungated resource results | recorded |
+| [FND-CONFIG-180](../findings/FND-CONFIG-180.md) | The bitmap and registration helpers have different result gates and exact callee argument widths | recorded |
+| [FND-CONFIG-181](../findings/FND-CONFIG-181.md) | The filename helper clears an archive handle and mixes far SS output with near DS processing | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |

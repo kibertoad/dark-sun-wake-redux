@@ -345,6 +345,12 @@ Require segment-state provenance before merging them into one state
 buffer, and report aliasing as unresolved when that provenance is absent.
 This complements item 16's relocated far-pointer mapping.
 
+FND-CONFIG-181 extends this concern to filename construction: a far
+copy writes an explicit SS destination, numeric conversion writes through
+near DS offsets, the caller reads SS bytes, and filename stores use DS.
+Shared summaries must retain each step's segment provenance rather than
+infer one buffer from matching offsets or loaded template lengths.
+
 ## 22. Validate descriptor selection before range and fixup inventories
 
 The caller query following FND-CONFIG-147 failed while treating a
@@ -445,7 +451,7 @@ call ordering and item 26's return-width contracts.
 
 FND-CONFIG-168 additionally bounds a conditional child-result exit after linked-list and
 count changes, with caller pointer clears ignoring the returned result.
-FND-CONFIG-169 supplies resource calls that set AX flags without a branch
+FND-CONFIG-179 supplies resource calls that set AX flags without a branch
 using them; a subsequent field comparison supplies the actual predicate.
 A pointer assigned before I/O can bypass a later request after failure.
 Shared summaries should track the last flag producer for each branch and
@@ -587,3 +593,18 @@ private capacity gate. A control-path upper bound is not proof of a
 feasible geometry case or an ordinary native input. Shared summaries
 should report those distinctions explicitly and retain alias/guard
 conditions when using a private-write bound to support a safety claim.
+
+## 35. Reconstruct stack arguments through the callee before grouping pointers
+
+FND-CONFIG-179 supersedes FND-CONFIG-169 after FND-CONFIG-180
+checks the callee's argument widths. Grouping pushes by an adjacent
+segment fixup had assigned the mask word to the callback offset. The
+callee instead consumes a word mask, a far callback and a word identifier.
+Its forwarding to separate setters confirms those boundaries.
+
+**Request:** shared call reports should map pushed words into the callee's
+BP-relative argument widths, accounting for near/far return frames and
+explicit widening. A relocated segment operand locates a segment; it does
+not by itself determine the surrounding argument boundary. Keep competing
+groupings open until the consuming widths and forwarding settle them, and
+supersede incorrect findings while updating active citations.

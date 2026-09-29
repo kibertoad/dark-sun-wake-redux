@@ -250,7 +250,7 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-167 reads runtime dispatch, a bounded rejection predicate,
   result conversions and shared-slot DS restoration. FND-CONFIG-168
   reads the zero-selector pointer consumer's conditional exit after list/count
-  changes and the caller's ignored result. FND-CONFIG-169 reads the
+  changes and the caller's ignored result. FND-CONFIG-179 reads the
   following helper's separate mode gates, callback and resource requests
   without success-result branches. FND-CONFIG-170 resolves local
   retained-result restoration through the near-state collector.
@@ -266,6 +266,10 @@ Next ID: Q-CONFIG-011
   bypasses and conditional pair expansion. FND-CONFIG-178 bounds 0180's
   checked private append and output routes and the 0DEC self-copy, retaining
   full geometry and native input provenance.
+  FND-CONFIG-180 resolves bitmap result gates and the callback/mask
+  argument widths, superseding FND-CONFIG-169 through FND-CONFIG-179.
+  FND-CONFIG-181 reads the filename conversion and archive requests,
+  retaining near-DS/far-SS provenance and external path/error effects.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 

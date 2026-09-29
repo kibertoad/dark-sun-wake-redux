@@ -35,7 +35,7 @@ Entries, queue files and parity rows outside CONFIG and SCRIPT.
 - Unfinished: none.
 - Blockers: none known.
 - Next:
-  - Q-CONFIG-008 and Q-SCRIPT-003, follow FND-CONFIG-169's local
+  - Q-CONFIG-008 and Q-SCRIPT-003, follow FND-CONFIG-179's local
     mode callees and FND-CONFIG-178's geometry branches and input
     producers. Retain FND-CONFIG-176 and FND-CONFIG-177's count,
     sentinel, alias and output conditions, FND-CONFIG-172's graph/count

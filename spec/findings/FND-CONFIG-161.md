@@ -102,7 +102,7 @@ Fresh target reads and transitive register/state preservation remain open.
 
 FND-CONFIG-168 subsequently reads the zero-selector consumer and its
 conditional child-result exit after list/count changes. The caller's field clears
-ignore that returned result. FND-CONFIG-169 reads 00BB's separate mode
+ignore that returned result. FND-CONFIG-179 reads 00BB's separate mode
 gates, callback and resource requests; its resource results do not locally
 gate continuation. Their complete callees, inputs and returns remain open.
 

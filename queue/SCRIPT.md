@@ -41,7 +41,7 @@ Next ID: Q-SCRIPT-008
   state-clear/status gates. FND-CONFIG-167 reads runtime dispatch and a
   local rejection path whose result the wrapper discards. FND-CONFIG-168
   reads another pointer consumer's ordered list/count changes and
-  conditional child-result exit; the caller ignores its result. FND-CONFIG-169 reads the
+  conditional child-result exit; the caller ignores its result. FND-CONFIG-179 reads the
   following helper's mode gates, callback and resource requests without
   success-result branches. FND-CONFIG-170 resolves local
   retained-result restoration through the near-state collector.
@@ -57,6 +57,10 @@ Next ID: Q-SCRIPT-008
   bypasses and conditional pair expansion. FND-CONFIG-178 bounds 0180's
   checked private append and output routes and the 0DEC self-copy, retaining
   full geometry and native input provenance.
+  FND-CONFIG-180 resolves bitmap result gates and the callback/mask
+  argument widths, superseding FND-CONFIG-169 through FND-CONFIG-179.
+  FND-CONFIG-181 reads the filename conversion and archive requests,
+  retaining near-DS/far-SS provenance and external path/error effects.
   Full external effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.
