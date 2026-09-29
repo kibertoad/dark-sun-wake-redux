@@ -472,6 +472,15 @@ writes after unchecked services, and flag port accesses even in a path
 whose later slot handling is skipped. An ignored result is not evidence
 that the process stays alive or the cleanup completed successfully.
 
+FND-CONFIG-186 and FND-CONFIG-187 add a temporary caller flag cleared
+inside an earlier callee, and a length rejection that applies only when
+the query succeeds. Both branches after a failed query join the same
+transfer continuation. Shared effect summaries should carry callee writes
+through apparent caller brackets and distinguish result-gated validation
+from unconditional rejection. Keep both cache layers' write ordering and
+post-call register provenance instead of equating a cached number with
+accepted replacement content.
+
 ## 28. Exclude superseded rules from active function ownership
 
 Replacing RULE-SCRIPT-001 with RULE-SCRIPT-010 exposed a documentation

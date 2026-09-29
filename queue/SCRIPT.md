@@ -70,6 +70,11 @@ Next ID: Q-SCRIPT-008
   FND-CONFIG-185 reads the named zero-option resident resource call.
   Full producer, allocation/runtime, service and termination outcomes
   remain open; a returning result alone does not settle the parent gate.
+  FND-CONFIG-186 reads the temporary byte's earlier clear, local helper
+  gates and mode/number changes. FND-CONFIG-187 bounds replacement's
+  size/result asymmetry, unchecked transfer and later cache/byte writes.
+  Complete child/service, register, segment, state and content producers
+  remain open; none of these paths proves native message entry or timing.
   Full external effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.
@@ -135,6 +140,12 @@ Next ID: Q-SCRIPT-008
   FND-CONFIG-184 adds signed at-most-one handle-wrapper bypass cases.
   Its VGA path, overlay initializer/cleanup and process termination cannot
   be established by interrupt-free resident calls.
+  FND-CONFIG-186 adds resident mode equality, signed selected-word and
+  cached-number bypass cases plus the mode-five null-pointer byte write.
+  FND-CONFIG-187 adds the resident nonzero bracket bypass and signed
+  byte-decrement/clamp cases after supported fields and complete service
+  boundaries exist. Overlay resource/cache paths need separate coverage;
+  register/segment preservation and native outcomes remain independent.
   Resource and error branches need separate provenance and cannot
   establish operating-system outcomes by emulation. Tried: FND-SCRIPT-019 reads the local instruction paths;
   the emulator harness does not exist yet.

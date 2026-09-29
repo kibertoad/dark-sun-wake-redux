@@ -210,6 +210,10 @@ None known.
   FND-CONFIG-184 reads cleanup's record, pointer and handle ordering.
   FND-CONFIG-185 bounds the named zero-option resident call. Their
   input/segment, runtime, hardware and termination outcomes remain open.
+  FND-CONFIG-186 reads the earlier temporary-byte clear and independent
+  mode/number gates; FND-CONFIG-187 bounds the replacement helper's
+  asymmetric query-size gate and unchecked-transfer cache writes. Complete
+  graph/service effects, register and state producers remain open.
   FND-CONFIG-170 resolves local retained-result restoration through the
   collector; FND-CONFIG-171 reads the following resident callback gates,
   fresh targets and fixed word writes. FND-CONFIG-172 distinguishes child

@@ -223,7 +223,7 @@ Entries by status.
 
 ## recorded
 
-402 entries.
+404 entries.
 
 | ID | Title |
 |---|---|
@@ -440,6 +440,8 @@ Entries by status.
 | [FND-CONFIG-183](../findings/FND-CONFIG-183.md) | The intervening overlay initializer gates on a byte and checks allocation and handle results before cleanup |
 | [FND-CONFIG-184](../findings/FND-CONFIG-184.md) | Initializer failure cleanup rewrites record state and clears handles after unchecked release calls |
 | [FND-CONFIG-185](../findings/FND-CONFIG-185.md) | The named mode path sets a word and calls the resident region loader with its optional-byte argument zero |
+| [FND-CONFIG-186](../findings/FND-CONFIG-186.md) | The temporary caller byte is cleared before a separately gated mode and number update |
+| [FND-CONFIG-187](../findings/FND-CONFIG-187.md) | The number replacement helper checks size only on query success and updates cache after unchecked transfer |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |

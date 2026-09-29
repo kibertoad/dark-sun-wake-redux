@@ -123,6 +123,9 @@ handle, filename and near/far segment conditions.
 FND-CONFIG-183 and FND-CONFIG-184 subsequently bound the
 intervening initializer and failure cleanup; FND-CONFIG-185 reads
 the named resident zero-option call and separate word setter.
+FND-CONFIG-186 subsequently reads the temporary byte's earlier clear
+and conditional mode/number changes; FND-CONFIG-187 bounds the
+replacement helper's cache, query and transfer gates.
 
 Q-CONFIG-008 and Q-SCRIPT-003 retain word/byte and record
 producers, valid pointer fields, selected resources and

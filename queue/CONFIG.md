@@ -279,6 +279,11 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-185 reads the named zero-option resident resource call.
   Full producer, allocation/runtime, service and termination outcomes
   remain open; a returning result alone does not settle the parent gate.
+  FND-CONFIG-186 reads the temporary byte's earlier clear, local helper
+  gates and mode/number changes. FND-CONFIG-187 bounds replacement's
+  size/result asymmetry, unchecked transfer and later cache/byte writes.
+  Complete child/service, register, segment, state and content producers
+  remain open; none of these paths proves native message entry or timing.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 
