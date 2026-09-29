@@ -26,11 +26,14 @@ Entries, queue files and parity rows outside CONFIG and SCRIPT.
 - Q-CONFIG-008, FND-CONFIG-149: do not repeat the literal setup-gate
   writer query without new coverage of other write forms.
 
+- Q-CONFIG-008, FND-CONFIG-196: do not repeat the bounded MZ and
+  same-segment incoming queries without new pointer/registration evidence.
+
 ## Handover
 
 - Stage: Slices.
 - Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 598 entries and 158 parity rows).
+  documentation check passed with 599 entries and 158 parity rows).
   Full solution build passed with zero warnings and errors.
 - Unfinished: no session work. Ignored local `hs_err_pid15480.log` remains;
   ownership is uncertain, and it was left unmodified and uncommitted.
@@ -43,7 +46,9 @@ Entries, queue files and parity rows outside CONFIG and SCRIPT.
     native startup outcome; FND-CONFIG-194's
     release callers, accepted compaction chains, aliases and
     capacity; FND-CONFIG-195's record+9E/+A0 producers and
-    remaining declared release callers; the fixed scratch capacity; and
+    remaining declared release callers; FND-CONFIG-196's incoming
+    registration, arguments and later state/refresh; the fixed scratch
+    capacity; and
     FND-CONFIG-192's accepted mask inputs, reference chains,
     aliases, direct callers and native VGA dependencies.
     Retain FND-CONFIG-188 and FND-CONFIG-189's neighboring-byte,
