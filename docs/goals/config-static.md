@@ -29,18 +29,21 @@ Other areas' entries, queue files and parity rows. `src/` and `tests/`.
 
 - Stage: Slices.
 - Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 554 entries and 158 parity rows).
+  documentation check passed with 556 entries and 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
-- Next: Q-CONFIG-008, read the pre-join calls at 0006765C,
-  0006766D and 00067679 in FND-CONFIG-157 for archive-state effects.
-  The nonzero-mode helper and FND-CONFIG-156's 172C:000C call
-  with word 99 also need transitive effect readings. Open and load outcomes,
-  selected-record stability, failure-byte producers, buffer validity,
-  earlier gate producers and bypass state remain open. The width-prefix
-  direction flag, later width changes, later slot activation, stored-index
-  producers, the near-state-pointer relationship and pointer replacement
-  remain open. Transitive effects from FND-CONFIG-131, FND-CONFIG-130
-  and FND-CONFIG-109 remain open; entry 28C9:1261 provenance needs
-  new coverage after FND-CONFIG-114. Q-CONFIG-010 tracks acquisition-
-  state changes; Q-CONFIG-009 has an owner-run request.
+- Next:
+  - Q-CONFIG-008, read FND-CONFIG-156's 172C:000C call with
+    number 99, start zero and selector two, including its status guard,
+    31ED helper and resource loading, against FND-SCRIPT-007 and
+    FND-SCRIPT-008.
+  - Q-CONFIG-008, follow FND-CONFIG-159's external helper effects,
+    stored-pointer consumers and replacements, earlier gate producers,
+    bypass state, open outcomes and archive retention.
+  - Q-CONFIG-008, bound later slot and index producers, width-state
+    changes, near-state-pointer provenance and rest-time iterator inputs.
+    Transitive effects in FND-CONFIG-131, FND-CONFIG-130 and
+    FND-CONFIG-109 remain open; 28C9:1261 needs new provenance
+    coverage after FND-CONFIG-114.
+  - Q-CONFIG-010, read acquisition-state changes.
+  - Q-CONFIG-009, retain the existing owner-run request.
