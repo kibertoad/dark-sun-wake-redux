@@ -14,8 +14,13 @@ See the [work protocol](https://dinorefurb.com/work-protocol/#working-files).
 ## State
 
 - Stage: Slices, with slices 2 and 3 in progress. The Survey exit is checked.
-- Last gate: 2026-09-28, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 430 entries and 158 parity rows).
+- Last gate: 2026-09-30, `./tools/Test.ps1` passed with PowerShell 7 (31 Node
+  tests and 700 .NET tests; documentation check: 615 entries, 158 parity rows,
+  5 deviations). The full solution builds without warnings.
+- Merged v1 tooling and workflow adoption is complete; see
+  `docs/TEMPLATE-ADOPTION.md`. `gaps.md` retains items 2, 4, 9 and 38.
+- `node tools/upstream.mjs docs --check --references docs` runs the verified
+  offline checker. Snapshot/configuration tests require PowerShell 7 on PATH.
 
 ## Unfinished
 
