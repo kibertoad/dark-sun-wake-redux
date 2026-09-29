@@ -688,6 +688,7 @@ Entries by area.
 | [FND-CONFIG-204](../findings/FND-CONFIG-204.md) | Initial format bytes distinguish a decimal frame caller from the fixed text wrapper | recorded |
 | [FND-CONFIG-205](../findings/FND-CONFIG-205.md) | Plain decimal word conversion needs at most six bytes for admitted nonnegative inputs | recorded |
 | [FND-CONFIG-206](../findings/FND-CONFIG-206.md) | The text-width helper sums unchecked per-character words with sixteen-bit wrapping | recorded |
+| [FND-CONFIG-207](../findings/FND-CONFIG-207.md) | A resident path installs a record whose lookup pointer comes from a FONT selector request | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

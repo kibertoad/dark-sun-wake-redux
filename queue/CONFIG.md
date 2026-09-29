@@ -345,6 +345,9 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-206 reads the modular text-width sum and unchecked
   character-word lookup. Pointer/table producers, admitted text,
   storage aliases and native presentation remain open.
+  FND-CONFIG-207 connects one lookup record to a FONT selector-100
+  request and nonzero returned pointer. Acquisition validity, incoming
+  state, later record/pointer writers and lookup capacity remain open.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 

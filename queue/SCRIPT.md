@@ -119,6 +119,8 @@ Next ID: Q-SCRIPT-008
   and admitted DS-based argument/storage provenance remain open.
   FND-CONFIG-206 reads text-width accumulation and character lookup;
   current pointers/tables, valid text and aliases remain open.
+  FND-CONFIG-207 connects an installed lookup record to a FONT
+  request; acquisition, later state and valid storage remain open.
   Full external effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.
