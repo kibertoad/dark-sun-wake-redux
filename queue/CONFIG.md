@@ -242,7 +242,11 @@ Next ID: Q-CONFIG-011
   outcomes, cleanup/helper effects, stack/gate producers and actual
   registration/dispatch timing remain open. FND-CONFIG-164 traces the
   common poll's returned BX predicate and aliased scratch outputs, while
-  keeping actual interrupt/input sequences open.
+  keeping actual interrupt/input sequences open. FND-CONFIG-165 reads
+  the pointer wrapper's marker/order and returned zero; FND-CONFIG-166
+  bounds state-clear/status gates and the stable-state first-zero case.
+  Runtime 1000:149B, active status and service effects, pointer/state
+  writers, DS preservation and actual intervening input remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

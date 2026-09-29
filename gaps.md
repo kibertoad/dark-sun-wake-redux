@@ -506,3 +506,17 @@ ordered writes and the register or field that supplies each branch predicate.
 Distinguish a wrapper's deterministic copies from the interrupt or external
 callee's actual result sequence. This complements item 21's memory provenance
 and item 29's loop-progress requirements.
+
+## 32. Check whether validation precedes the access it appears to protect
+
+FND-CONFIG-165 reads a pointer wrapper that dereferences metadata before
+its later null test. A marker-failure branch sets a flag, but still reaches
+the same runtime call and normal returned zero. The existence of those
+checks does not establish a protected read, suppressed runtime request or
+successful release. The named callers themselves test nonnull fields;
+invalid native inputs or failures are not inferred from the local ordering.
+
+**Request:** shared safety/effect summaries should check that a guard
+precedes and controls each access or call it is said to protect. Preserve
+failure-flag writes and downstream calls on rejected paths. Distinguish a
+returned cleared pointer from a callee's successful resource release.

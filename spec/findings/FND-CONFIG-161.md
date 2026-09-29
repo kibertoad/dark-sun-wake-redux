@@ -90,6 +90,10 @@ unconditional consequences of entering the error routine.
 
 ## Alternatives
 
+FND-CONFIG-165 subsequently reads 444C:0092's local marker and returned-
+zero contract. FND-CONFIG-166 bounds the state clear and matching status
+entry gates. Their runtime, valid-state and return dependencies stay open.
+
 FND-CONFIG-164 subsequently reads the common poll's local register
 contract and the two aliased output arguments. Its driver/input outcomes
 and the remaining external dependencies below stay open.
