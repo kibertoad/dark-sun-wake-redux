@@ -39,7 +39,11 @@ Next ID: Q-SCRIPT-008
   mode. FND-CONFIG-164 reads the common poll's register/output contract.
   FND-CONFIG-165 bounds the pointer wrapper; FND-CONFIG-166 reads
   state-clear/status gates. FND-CONFIG-167 reads runtime dispatch and a
-  local rejection path whose result the wrapper discards. Full external
+  local rejection path whose result the wrapper discards. FND-CONFIG-168
+  reads another pointer consumer's ordered list/count changes and child
+  failure; the caller ignores its result. FND-CONFIG-169 reads the
+  following helper's mode gates, callback and resource requests without
+  success-result branches. Full external
   effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.

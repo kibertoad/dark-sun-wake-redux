@@ -82,13 +82,19 @@ and field provenance remain separate conditions.
 
 This first helper of the interpreter error path has
 multiple state-changing dependencies before returning.
-Three fields are locally cleared after successful call
+Three fields are locally cleared after call
 returns, a fourth takes a callee's returned pointer, and
 a final poll can repeat. The subsequent diagnostic and
 stop-byte writes in FND-SCRIPT-023 are therefore not
 unconditional consequences of entering the error routine.
 
 ## Alternatives
+
+FND-CONFIG-168 subsequently reads the zero-selector consumer and its
+child-failure path after list/count changes. The caller's field clears
+ignore that returned result. FND-CONFIG-169 reads 00BB's separate mode
+gates, callback and resource requests; its resource results do not locally
+gate continuation. Their complete callees, inputs and returns remain open.
 
 FND-CONFIG-165 subsequently reads 444C:0092's local marker and returned-
 zero contract. FND-CONFIG-166 bounds the state clear and matching status

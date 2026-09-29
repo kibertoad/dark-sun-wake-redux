@@ -443,6 +443,14 @@ claiming transactionality, and distinguish the external error callee's
 unknown effects from the caller's own writes. This complements item 15's
 call ordering and item 26's return-width contracts.
 
+FND-CONFIG-168 additionally bounds a child failure after linked-list and
+count changes, with caller pointer clears ignoring the returned result.
+FND-CONFIG-169 supplies resource calls that set AX flags without a branch
+using them; a subsequent field comparison supplies the actual predicate.
+A pointer assigned before I/O can bypass a later request after failure.
+Shared summaries should track the last flag producer for each branch and
+keep output assignment separate from accepted resource content.
+
 ## 28. Exclude superseded rules from active function ownership
 
 Replacing RULE-SCRIPT-001 with RULE-SCRIPT-010 exposed a documentation

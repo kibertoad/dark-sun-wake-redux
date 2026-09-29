@@ -649,6 +649,8 @@ Entries by area.
 | [FND-CONFIG-165](../findings/FND-CONFIG-165.md) | A pointer wrapper reads metadata before its null test and returns zero after the runtime call | recorded |
 | [FND-CONFIG-166](../findings/FND-CONFIG-166.md) | A state clear can make the following status poll return zero under stable valid inputs | recorded |
 | [FND-CONFIG-167](../findings/FND-CONFIG-167.md) | Runtime pointer dispatch can return a local rejection result that its caller discards | recorded |
+| [FND-CONFIG-168](../findings/FND-CONFIG-168.md) | A pointer consumer changes list state before a child failure and its caller ignores the result | recorded |
+| [FND-CONFIG-169](../findings/FND-CONFIG-169.md) | A following mode helper requests resources without branching on their returned results | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

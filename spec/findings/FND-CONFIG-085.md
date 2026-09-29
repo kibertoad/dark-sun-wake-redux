@@ -52,6 +52,11 @@ stored-character list's lifetime.
 
 ## Alternatives
 
+FND-CONFIG-169 subsequently reads the complete local body containing
+site 0x0006A331, reached after a re-read two/three mode gate and intervening
+calls. That bounds one site's local timing, while upstream state,
+transitive effects and order relative to the list remain open.
+
 These calls may run before the list callback is registered, after it is
 removed, or while it is live. Earlier guards, callers, and indirect cleanup
 effects remain to be read. No site shown here proves that the list's global

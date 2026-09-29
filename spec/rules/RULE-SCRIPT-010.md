@@ -4,7 +4,7 @@ title: Script-cache lookup and resource transfer
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-001, FND-SCRIPT-003, FND-SCRIPT-006, FND-SCRIPT-019, FND-SCRIPT-020, FND-SCRIPT-021, FND-SCRIPT-022, FND-SCRIPT-023, FND-CONFIG-151, FND-CONFIG-161, FND-CONFIG-162, FND-CONFIG-163, FND-CONFIG-164, FND-CONFIG-165, FND-CONFIG-166, FND-CONFIG-167]
+evidence: [FND-SCRIPT-001, FND-SCRIPT-003, FND-SCRIPT-006, FND-SCRIPT-019, FND-SCRIPT-020, FND-SCRIPT-021, FND-SCRIPT-022, FND-SCRIPT-023, FND-CONFIG-151, FND-CONFIG-161, FND-CONFIG-162, FND-CONFIG-163, FND-CONFIG-164, FND-CONFIG-165, FND-CONFIG-166, FND-CONFIG-167, FND-CONFIG-168, FND-CONFIG-169]
 conflicting: []
 split_with: []
 related: [FMT-SCRIPT-001, RULE-SCRIPT-002]
@@ -143,7 +143,13 @@ an interrupt, and that result is discarded by the outer returned zero.
 Its DS restoration depends on a shared slot (FND-CONFIG-167). Another
 state-clear/status pair can make the following poll return zero at its
 entry under valid stable state. Changed state and active service effects
-remain separate dependencies (FND-CONFIG-166).
+remain separate dependencies (FND-CONFIG-166). Three other caller fields
+are cleared after a returning zero-selector consumer without testing its
+result. That consumer has a child failure path after list/count changes;
+its error helper adds another return dependency (FND-CONFIG-168). The
+following mode helper requests callbacks and resources behind separate
+state gates. Its resource results do not locally gate continuation, and
+assigned output pointers do not establish valid content (FND-CONFIG-169).
 
 `fn_172C_31ED`'s reset is bounded in FND-SCRIPT-020. Cache-input
 provenance, valid bounds and error-entry effects retain the dependencies

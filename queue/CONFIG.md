@@ -248,7 +248,11 @@ Next ID: Q-CONFIG-011
   Runtime 1000:149B, active status and service effects, pointer/state
   writers, DS preservation and actual intervening input remain open.
   FND-CONFIG-167 reads runtime dispatch, a bounded rejection predicate,
-  result conversions and shared-slot DS restoration. Runtime metadata,
+  result conversions and shared-slot DS restoration. FND-CONFIG-168
+  reads the zero-selector pointer consumer's child failure after list/count
+  changes and the caller's ignored result. FND-CONFIG-169 reads the
+  following helper's separate mode gates, callback and resource requests
+  without success-result branches. Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
