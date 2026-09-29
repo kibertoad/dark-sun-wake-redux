@@ -22,13 +22,13 @@ None known.
 
 - Stage: Slices.
 - Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 509 entries and 158 parity rows).
+  documentation check passed with 510 entries and 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
-- Next: Q-CONFIG-008, read resident 28C9:05CF incoming routes and
-  input producers after FND-CONFIG-112; remaining helper effects from
-  FND-CONFIG-109 also remain open. Code-source, guard and runtime-state
-  gaps from FND-CONFIG-102 and FND-CONFIG-105 through FND-CONFIG-112
-  remain in Q-CONFIG-008.
+- Next: Q-CONFIG-008, read resident 28C9:1261 incoming routes and
+  event producers after FND-CONFIG-113. State-two and state-three paths
+  in FND-CONFIG-113 and helper effects from FND-CONFIG-109 remain open.
+  Code-source, guard and runtime-state gaps from FND-CONFIG-102 and
+  FND-CONFIG-105 through FND-CONFIG-113 remain in Q-CONFIG-008.
   Q-CONFIG-010 tracks acquisition-state changes;
   Q-CONFIG-009 has an owner-run request.
