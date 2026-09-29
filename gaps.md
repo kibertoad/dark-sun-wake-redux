@@ -1,4 +1,4 @@
-# Upstream gaps observed during Survey
+# Upstream gaps observed during restoration work
 
 These are requests for the restoration template and shared analysis tooling.
 They describe tooling behavior, not claims about the original game's rules.
@@ -372,3 +372,32 @@ verified exits and control flow, report holes or discontiguous bodies,
 and reject a claimed complete reading that lacks its return or tail
 transfer. Keep richer boundary reports local-only so the committed
 inventory retains the Standard's allowed columns.
+
+## 24. Allow overlapping starts when an explicit control-flow edge proves them
+
+FND-CONFIG-155 follows an internal call into a byte that also belongs
+to the preceding linear instruction. The target is a valid alternate
+return path with a matching saved-flags stack frame. Rejecting it solely
+because a linear decoder started another instruction earlier would
+invent an unread callee and miss the flags restoration.
+
+**Request:** shared boundary validation should retain per-path instruction
+starts and explicit incoming edges. Distinguish a locally decodable overlap
+with no verified incoming path from an overlap reached by a confirmed
+branch or call, and check that target's continuation separately. This
+complements item 17's rejection of unverified overlapping candidates;
+it must not impose one global linear boundary set on all control flow.
+
+## 25. Carry the direction flag into string-store effect reports
+
+FND-CONFIG-154's width prefix uses repeated string stores without a
+local direction clear. FND-CONFIG-155's helper clears direction for
+its own writes, then restores the caller's saved flags. Treating that
+helper's clear as a permanent caller state would falsely make the
+following prefix's forward write span unconditional.
+
+**Request:** shared effect summaries should include the incoming direction
+flag and local clear, set and restore operations for string instructions.
+Report their write span conditionally when the entry state is unknown,
+and propagate saved-flags restoration across callees. This complements
+item 24's alternate return path and item 21's memory provenance.

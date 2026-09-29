@@ -110,6 +110,11 @@ No gameplay role is assigned to the slot bytes or selectors.
 
 ## Alternatives
 
+FND-CONFIG-153 identifies the installed FNFO records at the
+local length limits. FND-CONFIG-154 reads bounded selector
+cases; runtime registration, actual loads and valid records
+remain separate conditions.
+
 FND-CONFIG-151 subsequently reads the resource wrappers' length
 and full-transfer paths. FND-CONFIG-152 traces the bounded
 transfer request. Record stability, operating-system results and

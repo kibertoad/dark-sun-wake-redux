@@ -87,6 +87,11 @@ assigned to the caller.
 
 ## Alternatives
 
+FND-CONFIG-155 subsequently reads the zero-mode helper's
+local code-segment resets and flag return. It assigns neither
+the setup gate nor an archive registration. The other mode's
+helper and earlier state still remain open.
+
 Q-CONFIG-008 retains earlier incoming paths, the two pre-setup
 helpers, the 00C0 callee, indirect/address-taking setup routes,
 other DS:193E producer forms, bypass state and later iterator

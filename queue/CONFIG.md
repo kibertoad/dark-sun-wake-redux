@@ -207,6 +207,15 @@ Next ID: Q-CONFIG-011
   block-producer path, not a successful native transfer observation.
   Selected record stability, accepted FNFO bytes, archive preparation,
   positioning, operating-system results, cleanup and later inputs remain open.
+  FND-CONFIG-153 identifies fingerprint-matching OBJEX.GFF FNFO lengths
+  at the initializer's exact limits; the RESOURCE.GFF and GPLDATA.GFF
+  catalogs have no FNFO. FND-CONFIG-154 gives bounded source-backed
+  selector and offset cases without asserting actual loads or valid records;
+  the width-prefix direction flag and later width changes remain open.
+  FND-CONFIG-155 reads the zero-mode pre-setup helper's code-segment
+  resets and internal flag return; it does not supply an archive registration
+  or gate producer. The post-setup 00C0 callee 565C:0020, nonzero-mode
+  helper, runtime registration, successful loads and later inputs remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

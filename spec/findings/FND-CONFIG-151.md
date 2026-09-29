@@ -129,6 +129,11 @@ stack and I/O dependencies remain explicit.
 
 ## Alternatives
 
+FND-CONFIG-153 subsequently identifies matching installed
+FNFO lengths, and FND-CONFIG-154 reads bounded metadata
+cases. Those observations do not establish runtime archive
+selection, stable records or a successful transfer.
+
 Q-CONFIG-008 retains selected-archive and record stability
 between the size and read calls, archive-preparation and
 positioning effects, local 0615's I/O, transfer outcomes,

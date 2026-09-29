@@ -74,6 +74,10 @@ conditions apply to each lookup.
 
 ## Alternatives
 
+FND-CONFIG-154 subsequently records selector zero's metadata
+byte as nine in the installed source, distinct from the executable's
+initial zero. Actual resource loading and later changes remain open.
+
 FND-CONFIG-142 records the initial slot word, guarded setup
 assignment and qualified literal-writer inventory. It does not
 establish a complete slot range or immutable metadata.

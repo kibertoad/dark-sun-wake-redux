@@ -97,6 +97,11 @@ all the iterator's inputs.
 
 ## Alternatives
 
+FND-CONFIG-153 and FND-CONFIG-154 subsequently identify the
+installed metadata source and bounded traversal selector cases.
+They do not establish an actual load, valid paired indices or
+later field values; those conditions still bound this getter reading.
+
 FND-CONFIG-142 records the initial slot word, guarded setup
 assignment and qualified literal-writer inventory. It does not
 establish a complete slot range or immutable metadata.

@@ -173,8 +173,13 @@ None known.
   later inputs remain open. FND-CONFIG-151 reads the metadata length
   and transfer contracts; FND-CONFIG-152 traces the bounded request
   through pointer normalization to an interrupt. Record stability, resource
-  bytes and operating-system outcomes remain open. Reachable inputs,
-  other writers and intervening helper effects remain open.
+  bytes and operating-system outcomes remain open. FND-CONFIG-153
+  identifies the installed FNFO source and lengths; FND-CONFIG-154 gives
+  conditional selector cases, retaining the width-prefix direction flag.
+  FND-CONFIG-155 reads the zero-mode
+  pre-setup helper without finding a direct gate producer or registration.
+  Runtime registration, loads, valid records, reachable inputs, other writers
+  and intervening helper effects remain open.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local
