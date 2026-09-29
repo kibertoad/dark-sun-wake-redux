@@ -30,26 +30,26 @@ Entries, queue files and parity rows outside CONFIG and SCRIPT.
 
 - Stage: Slices.
 - Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 574 entries and 158 parity rows).
+  documentation check passed with 578 entries and 158 parity rows).
   Full solution build passed with zero warnings and errors.
 - Unfinished: none.
 - Blockers: none known.
 - Next:
-  - Q-CONFIG-008 and Q-SCRIPT-003, follow FND-CONFIG-168's
-    3A8E:0003 and child callees, FND-CONFIG-169's local mode
-    callees, and FND-CONFIG-171's indirect target producers and
-    transitive preservation. Retain FND-CONFIG-170's near-buffer
-    inputs, FND-CONFIG-167's runtime metadata/shared-slot producers,
-    FND-CONFIG-166's active effects and FND-CONFIG-164's driver
-    outcomes. Bound cache/capacity inputs, resource selection and
-    reachable MAS/99 instructions for FND-CONFIG-160 and RULE-SCRIPT-010.
-  - Q-CONFIG-008, follow FND-CONFIG-159's external helper effects,
-    stored-pointer consumers and replacements, earlier gate producers,
-    bypass state, open outcomes and archive retention.
-  - Q-CONFIG-008, bound later slot and index producers, width-state
-    changes, near-state-pointer provenance and rest-time iterator inputs.
-    Transitive effects in FND-CONFIG-131, FND-CONFIG-130 and
-    FND-CONFIG-109 remain open; 28C9:1261 needs new provenance
-    coverage after FND-CONFIG-114.
+  - Q-CONFIG-008 and Q-SCRIPT-003, follow FND-CONFIG-173's
+    region callees and result origins and FND-CONFIG-169's local
+    mode callees. Retain FND-CONFIG-172's graph/count producers,
+    FND-CONFIG-175's guard/alias conditions and FND-CONFIG-170's
+    near-buffer inputs. Bound cache/capacity inputs, resource selection
+    and reachable MAS/99 instructions for FND-CONFIG-160 and RULE-SCRIPT-010.
+  - Q-CONFIG-008 and Q-SCRIPT-003, follow FND-CONFIG-171's
+    indirect-target producers, FND-CONFIG-175's shared-CS writers,
+    FND-CONFIG-167's runtime metadata/shared-slot producers and
+    FND-CONFIG-166's active effects. Retain FND-CONFIG-164's driver outcomes.
+  - Q-CONFIG-008, follow FND-CONFIG-159's external effects, pointer
+    consumers/replacements, earlier gates and archive retention. Bound
+    later slot/index producers, width-state changes, near-state provenance
+    and rest-time iterator inputs. Retain FND-CONFIG-131, FND-CONFIG-130
+    and FND-CONFIG-109's transitive effects; 28C9:1261 needs new
+    provenance coverage after FND-CONFIG-114.
   - Q-CONFIG-010, read acquisition-state changes.
   - Q-CONFIG-009, retain the existing owner-run request.
