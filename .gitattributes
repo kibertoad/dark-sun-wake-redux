@@ -4,3 +4,6 @@
 *.iss text eol=crlf
 *.yml text eol=lf
 *.json text eol=lf
+
+# Preserve exact hash-verified upstream bytes across platforms.
+vendor/** -text

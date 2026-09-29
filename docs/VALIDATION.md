@@ -247,18 +247,20 @@ deviation that exists on `main`. The toolkit's
 [setup guide](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/blob/main/docs/documentation-standard-check.md)
 lists its inputs.
 
-`./tools/Test.ps1` runs the same check with `--check --references docs`, from the toolkit commit
-the workflow pins. It downloads the script once into
-`artifacts/check-documentation-<sha>.mjs` and needs Node.js 20 or newer. With
-`kaitai-struct-compiler` on `PATH` it also compiles the `.ksy` files; without
-it the check warns and skips them.
+`./tools/Test.ps1` runs the hash-verified offline checker with
+`--check --references docs`, from the exact toolkit commit the workflow pins.
+It also runs the synthetic evidence and snapshot suites. Node.js 22+ and
+PowerShell 7+ (`pwsh`) are required for these suites. See
+[UPSTREAM-RULES](UPSTREAM-RULES.md) for explicit upstream checks and refreshes.
+With `kaitai-struct-compiler` on `PATH` it also compiles the `.ksy` files;
+without it the documentation checker warns and skips them.
 
 The check writes `spec/index/` and `PARITY.md`; nobody edits them by hand. After
 changing the spec, `parity/` or `deviations/`, run the script without `--check`
 and commit what it writes:
 
 ```sh
-node artifacts/check-documentation-<sha>.mjs
+node tools/upstream.mjs docs --references docs
 git add spec/index PARITY.md
 ```
 
@@ -290,7 +292,7 @@ the maintainer's machine with `GAME_DIR` set to the owned copy. After a run of
 `VALIDATION.md` it writes at the repository root:
 
 ```sh
-node artifacts/check-documentation-<sha>.mjs --record-validation BLD-GOG-EN-1.1
+node tools/upstream.mjs docs --references docs --record-validation BLD-GOG-EN-1.1
 git add VALIDATION.md
 ```
 

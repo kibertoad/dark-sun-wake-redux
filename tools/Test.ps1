@@ -65,17 +65,12 @@ finally {
     if ([IO.File]::Exists($overlayMapFixture)) { [IO.File]::Delete($overlayMapFixture) }
 }
 & (Join-Path $PSScriptRoot 'Verify-WorkingFiles.ps1') -RepositoryRoot $root
-# The documentation standard check, from the toolkit commit the CI workflow pins.
-$documentationToolkitCommit = '6e3cad31b6d61280a4649a873cf890377b402a75'
-$documentationCheck = Join-Path $root "artifacts/check-documentation-$documentationToolkitCommit.mjs"
+# Exact upstream rules and checker are verified offline before execution.
 if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
-    throw 'Node.js 20 or newer is required to run the documentation standard check.'
+    throw 'Node.js 22 or newer is required for the documentation and evidence checks.'
 }
-if (-not [IO.File]::Exists($documentationCheck)) {
-    New-Item -ItemType Directory -Force -Path (Split-Path -Parent $documentationCheck) | Out-Null
-    Invoke-WebRequest -UseBasicParsing -OutFile $documentationCheck `
-        -Uri "https://raw.githubusercontent.com/kibertoad/refurbished-dinosaurs-toolkit/$documentationToolkitCommit/tools/check-documentation.mjs"
-}
+& node --test (Join-Path $root 'tests/evidence/evidence.test.mjs') (Join-Path $root 'tests/upstream/upstream.test.mjs')
+if ($LASTEXITCODE -ne 0) { throw 'Synthetic evidence or upstream snapshot tests failed.' }
 # Node does not resolve a .bat or .cmd wrapper on PATH, so hand the check the Kaitai compiler's
 # full path when KSC is unset and a Windows wrapper is installed.
 if (-not $env:KSC) {
@@ -83,7 +78,7 @@ if (-not $env:KSC) {
         -ErrorAction SilentlyContinue | Select-Object -First 1
     if ($kaitaiCompiler) { $env:KSC = $kaitaiCompiler.Source }
 }
-& node $documentationCheck --root $root --check --references docs
+& node (Join-Path $root 'tools/upstream.mjs') docs --check --references docs
 if ($LASTEXITCODE -ne 0) { throw 'Documentation standard check failed.' }
 $artifacts = Join-Path $root 'artifacts/test'
 dotnet test --project (Join-Path $root 'tests/DarkSunWakeRedux.Tests/DarkSunWakeRedux.Tests.csproj') `

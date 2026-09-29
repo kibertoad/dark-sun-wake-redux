@@ -379,3 +379,28 @@ questions are closed or recorded as non-goals; the solution and smoke test
 build; the repository checks and tests pass without proprietary content; and
 each declared package passes clean-machine install, extract, launch, save,
 reopen and uninstall checks.
+
+
+## Tooling maintenance: merged v1 evidence workflow
+
+Adopt template PRs 19, 21 and 22 from `e698e5b` and the merged toolkit 10/11
+checker while retaining Standard v1. The owner requested adoption, resolved-gap
+cleanup and push. This is a tooling batch; no game behavior, evidence status,
+licensed-source identity or owner-only runtime policy changes.
+
+- Outcome: bounded relocation, flow, table and inventory tools; conditional
+  evidence review; verified offline authority/checker; rules in Core guidance.
+- Evidence: the merged template and toolkit source, their MIT licenses, and the
+  accumulated tooling requests in `gaps.md`. Validation uses synthetic inputs.
+- Preserve the established FBOV mapped-image conversion and existing coverage
+  paths. Its specialized join handles mapped overlay coordinates that the generic
+  join does not accept directly. Adopt the safer transactional exporter.
+- Store immutable rule text under `vendor/upstream/` because project-authored
+  docs are citation-checked. Verify identical upstream digests and matching CI pin;
+  configuration must preserve all vendor bytes. Keep the game-specific test gate.
+- Acceptance: `tools/Test.ps1`, solution build, synthetic evidence and snapshot
+  tests pass without original content; CI runs the same Node suites and checker.
+  No claim is promoted. Conditional review guidance is not an automated effect
+  analyzer. Remove resolved requests after verification; retain unmet requests.
+- Exit: commit the adoption and resolved-gap cleanup, audit processes, write the
+  handover separately and push. No owner question or live session is needed.

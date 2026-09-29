@@ -30,6 +30,8 @@ jobs:
       - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
         with:
           dotnet-version: 10.0.400
+      - name: Check synthetic evidence tools and pinned upstream snapshots
+        run: node --test tests/evidence/evidence.test.mjs tests/upstream/upstream.test.mjs
       - run: dotnet restore DarkSunWakeRedux.slnx
       - run: dotnet build DarkSunWakeRedux.slnx --no-restore -v minimal
       - run: dotnet test --project tests/DarkSunWakeRedux.Tests/DarkSunWakeRedux.Tests.csproj --no-restore --no-progress -v minimal
@@ -50,7 +52,7 @@ jobs:
           # when it deletes a spec ID, area or deviation that exists there.
           fetch-depth: 0
       # The toolkit publishes no tags, and its setup guide pins a commit on its main branch.
-      - uses: kibertoad/refurbished-dinosaurs-toolkit/actions/check-documentation@6e3cad31b6d61280a4649a873cf890377b402a75 # zizmor: ignore[stale-action-refs]
+      - uses: kibertoad/refurbished-dinosaurs-toolkit/actions/check-documentation@1560349d2e7430fd6b1b229b0b52f3782d08d3b0 # zizmor: ignore[stale-action-refs]
         with:
           # The narrative docs cite spec IDs, so they must resolve too.
           references: docs

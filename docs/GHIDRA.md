@@ -221,3 +221,19 @@ with the Ghidra version in their `tool` field.
   synthetic tests.
 - A static finding may guide a parser or rule, but production code must never
   depend on an address or execute/load the original binary.
+
+## Adopted bounded evidence tools
+
+See [EVIDENCE-TOOLS](EVIDENCE-TOOLS.md) for the shared Node operand, incoming-call,
+flow, table and inventory commands, and [EVIDENCE-REVIEW](EVIDENCE-REVIEW.md) for
+claim-dependent checks. `ExportBoundedFlow.java` records local flow metadata;
+`ExportFunctionInventory.java` now publishes its output only after traversal
+completes. Reports remain local; synthetic tests run in `tools/Test.ps1`.
+
+Keep `Join-FunctionInventory.ps1` for the established DSUN mapped-image pipeline:
+it converts that import's overlay coordinates and filters mapped-view starts.
+The shared join instead accepts resident segmented coordinates or already
+canonical file offsets, then enforces explicit view ownership. Existing committed
+inventories keep their documented paths, including `CD/DSUN.EXE.tsv`; new shared
+exports use the collision-resistant `@CD/` encoding. Never replace a historical
+inventory or mapping merely because a new tool is available.

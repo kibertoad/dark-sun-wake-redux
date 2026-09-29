@@ -21,8 +21,11 @@ This skill is the procedure; where they differ, the protocol wins.
    the current branch, and any `wip/` branch the handover names. Anything
    uncommitted that the handover does not mention belongs to someone else or
    to a crashed session: report it and leave it alone.
-4. Run the documentation check in `--check` mode as `docs/VALIDATION.md` ("Spec
-   checks") describes. A failure on a clean tree is the first thing to fix.
+4. Verify the pinned rules with `node tools/upstream.mjs verify`. When the
+   published rules cannot be reached, read `vendor/upstream/` and report its
+   pinned revision without claiming freshness. `docs/UPSTREAM-RULES.md` describes
+   explicit checks and refreshes. Run the documentation check in `--check` mode
+   as `docs/VALIDATION.md` ("Spec checks") describes. A failure on a clean tree is the first thing to fix.
 5. Read the plan's stage and current slice in `docs/IMPLEMENTATION-PLAN.md`,
    and check `docs/live-sessions/` for a request the owner has accepted.
 6. Pick the next work:
@@ -41,7 +44,8 @@ This skill is the procedure; where they differ, the protocol wins.
      an experiment (`FND-`, `EXP-`), with the tests that exercise it: its
      entry was superseded because the mechanic does not exist. Then rows
      whose Notes start with `Defect (R-...)`, adding a test that fails without
-     the fix and removing the note. Then parity rows of the current slice
+     the fix (extracting branch logic in `Game` into `Core` first) and removing
+     the note. Then parity rows of the current slice
      from the goal or the plan, whose spec status is at least `supported`. Do
      not open `queue/` or `docs/reports/`.
 7. Say in two or three lines what you picked and why, then hand over to
