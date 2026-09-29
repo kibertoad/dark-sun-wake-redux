@@ -191,7 +191,9 @@ None known.
   entry order. FND-SCRIPT-019 corrects the cache and transfer paths,
   while FND-SCRIPT-020 bounds the guarded buffer reset. FND-SCRIPT-021
   reads replacement selection and invalidating writes; FND-SCRIPT-022
-  bounds allocation search and restart paths. Actual cached
+  bounds allocation search and restart paths. FND-SCRIPT-023 and
+  FND-CONFIG-161 read error-entry ordering and its shared helper's local
+  branches and polling gate. Actual cached
   inputs, resource and opcode effects, I/O and error outcomes remain open.
   Runtime registration, loads, valid records, reachable inputs, other writers
   and intervening helper effects remain open.

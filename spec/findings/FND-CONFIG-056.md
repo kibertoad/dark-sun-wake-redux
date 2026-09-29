@@ -37,6 +37,10 @@ still depends on overlay 172's `WIND/10501` acquisition and setup
 
 ## Alternatives
 
+FND-SCRIPT-023 subsequently resolves this entry and its stop setter;
+FND-CONFIG-161 bounds the first shared helper. Full callee effects,
+DS preservation and return outcomes remain open in Q-CONFIG-008.
+
 The effects of `0638:0039` and `0030:00EE`, the route into this routine,
 and live success through the message window remain unread. The local
 condition does not establish that a player sees this diagnostic text.

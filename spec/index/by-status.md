@@ -222,7 +222,7 @@ Entries by status.
 
 ## recorded
 
-377 entries.
+379 entries.
 
 | ID | Title |
 |---|---|
@@ -415,6 +415,7 @@ Entries by status.
 | [FND-CONFIG-158](../findings/FND-CONFIG-158.md) | Three pre-setup calls restore DS and have no direct archive-state write |
 | [FND-CONFIG-159](../findings/FND-CONFIG-159.md) | The nonzero-mode pre-setup helper stores a relocated video-reset pointer and retains external dependencies |
 | [FND-CONFIG-160](../findings/FND-CONFIG-160.md) | The post-setup script call is status-gated and resets working buffers before loading MAS number 99 |
+| [FND-CONFIG-161](../findings/FND-CONFIG-161.md) | A shared helper clears three supplied pointer fields and polls before returning |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |
@@ -529,6 +530,7 @@ Entries by status.
 | [FND-SCRIPT-020](../findings/FND-SCRIPT-020.md) | A guarded interpreter helper clears four supplied working buffers |
 | [FND-SCRIPT-021](../findings/FND-SCRIPT-021.md) | Cache replacement selects the first largest signed age and invalidates four fields |
 | [FND-SCRIPT-022](../findings/FND-SCRIPT-022.md) | Script-buffer room search mixes comparison widths and restarts after collisions or eviction |
+| [FND-SCRIPT-023](../findings/FND-SCRIPT-023.md) | The interpreter error entry calls a shared helper before an optional message and stop assignment |
 | [FND-SOUND-001](../findings/FND-SOUND-001.md) | Every VOC file and BVOC resource is one Creative Voice File header, one sound block and a terminator |
 | [FND-SOUND-002](../findings/FND-SOUND-002.md) | The installation's music is 40 Ogg Vorbis files that game.ins mounts as audio tracks 2 to 41 |
 | [FND-SOUND-003](../findings/FND-SOUND-003.md) | SOUND_DS.EXE holds no VOC signature, no VOC file extension and no BIOS wait call |

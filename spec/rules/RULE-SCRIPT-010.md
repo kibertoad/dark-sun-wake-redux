@@ -4,7 +4,7 @@ title: Script-cache lookup and resource transfer
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-001, FND-SCRIPT-003, FND-SCRIPT-006, FND-SCRIPT-019, FND-SCRIPT-020, FND-SCRIPT-021, FND-SCRIPT-022, FND-CONFIG-151]
+evidence: [FND-SCRIPT-001, FND-SCRIPT-003, FND-SCRIPT-006, FND-SCRIPT-019, FND-SCRIPT-020, FND-SCRIPT-021, FND-SCRIPT-022, FND-SCRIPT-023, FND-CONFIG-151, FND-CONFIG-161]
 conflicting: []
 split_with: []
 related: [FMT-SCRIPT-001, RULE-SCRIPT-002]
@@ -121,6 +121,14 @@ unsigned-below capacity; otherwise return the candidate's low word.
 There is no own allocation, compaction or scan-restart bound
 (FND-SCRIPT-022).
 
+`fn_5702_00B1` first calls a shared helper. If that returns, it can
+request the diagnostic message under its DS-relative byte gate. Its
+common continuation then sets `script_stopped` to one, clears the
+iterator flag and returns far. The shared helper has a polling loop
+and multiple external dependencies before this continuation; the error
+entry's final return does not prove those calls return. It makes no own
+cache rollback (FND-SCRIPT-023, FND-CONFIG-161).
+
 `fn_172C_31ED`'s reset is bounded in FND-SCRIPT-020. Cache-input
 provenance, valid bounds and error-entry effects retain the dependencies
 in Q-SCRIPT-003; this procedure does not assign their unknown outcomes.
@@ -172,8 +180,8 @@ None known.
 ## Open questions
 
 - Which cache and capacity state reaches `fn_172C_07BB`'s selection and
-  `fn_172C_0698`'s search, and what `fn_5702_00B1` does after errors
-  (Q-SCRIPT-003).
+  `fn_172C_0698`'s search, and which shared-helper/message effects and
+  returns precede `fn_5702_00B1`'s stop assignment (Q-SCRIPT-003).
   One reading supplies valid distinct buffers and sufficient space;
   another reaches changed state, aliasing or failure. Their full
   callers, pointer producers and error paths distinguish them.

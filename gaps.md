@@ -467,7 +467,9 @@ end increment can restore the same candidate; invalidating an already
 free selected slot can also leave the search state unchanged. Counting
 slots or recording an eviction call does not by itself prove termination.
 The finding keeps these conditional states separate from evidence that
-the ordinary game's producers can reach them.
+the ordinary game's producers can reach them. FND-CONFIG-161 similarly
+places its final far return after a repeated external poll: whether that
+return is reached depends on the callee's result sequence.
 
 **Request:** shared loop-effect summaries should identify restart edges
 and the state that must change for progress. Check wrapped arithmetic

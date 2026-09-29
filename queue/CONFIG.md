@@ -233,8 +233,10 @@ Next ID: Q-CONFIG-011
   buffer reset. FND-SCRIPT-021 bounds replacement selection and writes.
   Actual cache state, resource loading, error entry and reachable MAS/99
   opcodes remain open. FND-SCRIPT-022 bounds allocation search and its
-  restart/comparison paths; Q-SCRIPT-003 retains input provenance and
-  error effects.
+  restart/comparison paths. FND-SCRIPT-023 reads error-entry ordering,
+  and FND-CONFIG-161 bounds its shared helper and final poll. Complete
+  external effects, pointer/gate inputs, return outcomes and resource
+  provenance remain open alongside Q-SCRIPT-003.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

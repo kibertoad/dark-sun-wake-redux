@@ -254,6 +254,7 @@ Entries by area.
 | [FND-SCRIPT-020](../findings/FND-SCRIPT-020.md) | A guarded interpreter helper clears four supplied working buffers | recorded |
 | [FND-SCRIPT-021](../findings/FND-SCRIPT-021.md) | Cache replacement selects the first largest signed age and invalidates four fields | recorded |
 | [FND-SCRIPT-022](../findings/FND-SCRIPT-022.md) | Script-buffer room search mixes comparison widths and restarts after collisions or eviction | recorded |
+| [FND-SCRIPT-023](../findings/FND-SCRIPT-023.md) | The interpreter error entry calls a shared helper before an optional message and stop assignment | recorded |
 | [RULE-SCRIPT-001](../rules/RULE-SCRIPT-001.md) | Loading a GPL or MAS script into the script cache | superseded |
 | [RULE-SCRIPT-002](../rules/RULE-SCRIPT-002.md) | Running a script, reading its code and calling other scripts | supported |
 | [RULE-SCRIPT-003](../rules/RULE-SCRIPT-003.md) | The script instructions for jumps, calls, returns, if, while, compare, the accumulator and assignment | supported |
@@ -641,6 +642,7 @@ Entries by area.
 | [FND-CONFIG-158](../findings/FND-CONFIG-158.md) | Three pre-setup calls restore DS and have no direct archive-state write | recorded |
 | [FND-CONFIG-159](../findings/FND-CONFIG-159.md) | The nonzero-mode pre-setup helper stores a relocated video-reset pointer and retains external dependencies | recorded |
 | [FND-CONFIG-160](../findings/FND-CONFIG-160.md) | The post-setup script call is status-gated and resets working buffers before loading MAS number 99 | recorded |
+| [FND-CONFIG-161](../findings/FND-CONFIG-161.md) | A shared helper clears three supplied pointer fields and polls before returning | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

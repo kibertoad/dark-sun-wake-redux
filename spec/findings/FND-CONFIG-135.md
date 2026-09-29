@@ -72,6 +72,10 @@ relative to rest processing or table updates.
 
 ## Alternatives
 
+FND-SCRIPT-023 subsequently reads the error entry's stop assignment,
+and FND-CONFIG-161 bounds 576C:0039's local body. External effects,
+DS/SI preservation and return outcomes remain open in Q-CONFIG-008.
+
 FND-CONFIG-136 reads a script-opcode dispatch consumer and its
 argument producer. Q-CONFIG-008 retains other callers, pointer
 replacement and invocation timing, the

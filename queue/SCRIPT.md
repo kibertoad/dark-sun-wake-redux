@@ -33,7 +33,9 @@ Next ID: Q-SCRIPT-008
   reads the guarded four-buffer reset; FND-CONFIG-160 reads the status-gated
   script-99 entry. FND-SCRIPT-021 reads replacement selection and writes.
   FND-SCRIPT-022 reads allocation search, comparisons and restart paths.
-  Error helpers, cache/capacity inputs, valid pointers,
+  FND-SCRIPT-023 reads the error entry and stop setter; FND-CONFIG-161
+  bounds its first shared helper. Full external effects and returns,
+  cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.
   Blocks: slices 3-6.
 - Q-SCRIPT-004. RULE-SCRIPT-002, RULE-SCRIPT-004, RULE-SCRIPT-008,
