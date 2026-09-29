@@ -165,3 +165,20 @@ loop, report its instruction location alongside the table range. Reject reads
 outside the declared layout rather than attempting text decoding across the
 boundary. This would make a narrow dispatch query easier to reproduce and
 review without retaining the table's original bytes.
+
+## 13. Provide a target-specific incoming-call inventory for FBOV and MZ
+
+FND-CONFIG-100 and FND-CONFIG-101 needed repeated temporary queries over
+FBOV fixups, MZ relocations and one overlay's relative-call candidates to
+trace a shared selector. The existing overlay map identifies code ranges;
+it does not produce a bounded incoming-call report for one exported entry.
+
+**Request:** add a shared reporter accepting one descriptor and trampoline
+entry, with an explicit result cap. Report declared overlay far calls and
+resident relocated far calls separately, and optionally search one declared
+code range for relative-call candidates. Include canonical source offsets,
+the inspected encoding and coverage boundary, and distinguish confirmed
+instruction sites from byte-pattern candidates. A zero-result section should
+say exactly what was searched, so it cannot be mistaken for proof that no
+computed, aliased or differently encoded route exists. This complements the
+single-call fixup resolution request in item 8.

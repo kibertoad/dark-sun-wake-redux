@@ -118,6 +118,9 @@ None known.
   selection and old-window helpers to their handled tags; FND-CONFIG-099
   bounds the position/region writes away from the selected-pointer fields.
   Other prior control types and runtime state changes remain open.
+  FND-CONFIG-100 traces overlay 176's two message sites to overlay 193's
+  range- and byte-gated selector. FND-CONFIG-101 inventories eleven
+  declared calls into that selector; their input branches remain unread.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local

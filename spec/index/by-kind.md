@@ -175,7 +175,7 @@ Entries by kind.
 
 ## findings
 
-330 entries.
+332 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -323,6 +323,8 @@ Entries by kind.
 | [FND-CONFIG-097](../findings/FND-CONFIG-097.md) | The selection-change helper skips APFM records and calls only button or menu paths | recorded |
 | [FND-CONFIG-098](../findings/FND-CONFIG-098.md) | The old-window helper skips the shipped item window APFM children | recorded |
 | [FND-CONFIG-099](../findings/FND-CONFIG-099.md) | The pre-dispatch position and region helpers write separate fixed data ranges | recorded |
+| [FND-CONFIG-100](../findings/FND-CONFIG-100.md) | Overlay 193 routes codes 235 through 268 to overlay 176's conditional feedback entry | recorded |
+| [FND-CONFIG-101](../findings/FND-CONFIG-101.md) | Eleven declared overlay calls enter the selector upstream of overlay 176 feedback | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |

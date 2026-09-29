@@ -105,6 +105,9 @@ Next ID: Q-CONFIG-011
   old-window helpers by their two-tag tables. FND-CONFIG-099 bounds the
   position/region callees' fixed write targets. Physical input mapping,
   other prior control types and later state changes remain open.
+  FND-CONFIG-100 traces overlay 176's two message sites through overlay
+  193's range- and byte-gated selector. FND-CONFIG-101 inventories its
+  eleven declared overlay callers; their selector inputs remain unread.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

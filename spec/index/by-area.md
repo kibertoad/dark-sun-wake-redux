@@ -575,6 +575,8 @@ Entries by area.
 | [FND-CONFIG-097](../findings/FND-CONFIG-097.md) | The selection-change helper skips APFM records and calls only button or menu paths | recorded |
 | [FND-CONFIG-098](../findings/FND-CONFIG-098.md) | The old-window helper skips the shipped item window APFM children | recorded |
 | [FND-CONFIG-099](../findings/FND-CONFIG-099.md) | The pre-dispatch position and region helpers write separate fixed data ranges | recorded |
+| [FND-CONFIG-100](../findings/FND-CONFIG-100.md) | Overlay 193 routes codes 235 through 268 to overlay 176's conditional feedback entry | recorded |
+| [FND-CONFIG-101](../findings/FND-CONFIG-101.md) | Eleven declared overlay calls enter the selector upstream of overlay 176 feedback | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

@@ -47,8 +47,10 @@ wait runs (FND-CONFIG-018).
 
 FND-CONFIG-092 traces guarded overlay 178 calls to setup, attempted frame
 registration and the separate value-32 handler into the overlay 175 helper.
-The complete effects of the item, eligibility and action helpers and the
-callers' runtime inputs remain unread. The observed text paths do not prove
+FND-CONFIG-100 traces overlay 176's two sites to a range- and byte-gated
+overlay 193 selector; FND-CONFIG-101 inventories its eleven declared
+upstream calls. The complete effects of the item, eligibility and action
+helpers and the callers' runtime inputs remain unread. The observed text paths do not prove
 an action outcome or a successful message-window setup in a live state.
 
 ## How to reproduce
