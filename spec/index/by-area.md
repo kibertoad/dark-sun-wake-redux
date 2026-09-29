@@ -593,6 +593,8 @@ Entries by area.
 | [FND-CONFIG-115](../findings/FND-CONFIG-115.md) | Resident value-64 states two and three require a later state change before mode dispatch | recorded |
 | [FND-CONFIG-116](../findings/FND-CONFIG-116.md) | The resident record-taking helper returns an index with a conditional record remapping | recorded |
 | [FND-CONFIG-117](../findings/FND-CONFIG-117.md) | Overlay 204 temporarily sets the resident event state to five and restores its saved word | recorded |
+| [FND-CONFIG-118](../findings/FND-CONFIG-118.md) | Overlay 179 wraps a result-producing helper and pending-record drain with state-dependent return calls | recorded |
+| [FND-CONFIG-119](../findings/FND-CONFIG-119.md) | Overlay 204 has seven local calls to the temporary-state wrapper in two guarded groups | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

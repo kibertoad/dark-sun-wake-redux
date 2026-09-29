@@ -216,3 +216,18 @@ candidates from verified instructions, report undecoded ranges, and reject
 a negative result when it misses its positive control. A declared overlay
 code range is a containment bound, not proof that all its bytes can be
 linearly disassembled as one instruction stream.
+
+## 15. Preserve ordering and shared guards in incoming-call summaries
+
+FND-CONFIG-119's seven calls to one helper are two guarded three-call
+sequences followed by a conditional seventh call. A flat incoming-call list
+could be mistaken for alternative dispatch branches. The distinction matters
+because each invocation captures and restores state before the next begins.
+
+**Request:** let the shared reporter group calls by verified containing entry
+and show their local order, cleanup continuation and observed shared guard.
+Keep a flat inventory for coverage, but label whether a group is a sequence,
+branch alternatives or still unread. Do not infer preserved state or successful
+return merely from consecutive call locations; retain callee effects as an
+explicit gap unless separately read. This complements the function-ownership
+request in item 11.

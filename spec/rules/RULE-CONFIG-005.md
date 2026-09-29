@@ -149,6 +149,10 @@ None known.
   whose result can be remapped, without settling its callee's effects.
   FND-CONFIG-117 identifies a separate temporary-five assignment and
   saved-word restoration; its relation to the event handler remains open.
+  FND-CONFIG-118 reads the intervening wrapper and pending-record drain
+  with state-one/five return-region gates. FND-CONFIG-119 traces seven
+  local wrapper calls in two guarded groups; earlier inputs, local
+  producers, transitive effects and handler timing remain open.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local

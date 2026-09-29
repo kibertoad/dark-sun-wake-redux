@@ -139,7 +139,11 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-117 identifies the state getter/setter and overlay 204's
   temporary-five assignment with saved-word restoration. Its intervening
   overlay 179 call, incoming routes, other writers and handler timing
-  remain open.
+  remain open. FND-CONFIG-118 reads overlay 179's wrapper and
+  pending-record drain, including state-one/five return-region gates.
+  FND-CONFIG-119 identifies seven local wrapper calls in overlay 204
+  entry 0020, guarded by two local thresholds. Earlier caller inputs,
+  local producers, transitive helper effects and state timing remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

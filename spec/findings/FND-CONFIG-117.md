@@ -59,9 +59,12 @@ establish a state-two/three transition in the separate handler path.
 
 ## Alternatives
 
-Overlay 179's effects, the wrapper's incoming routes and timing
-relative to the event handler, indirect setter calls, other direct
-or block writers, and state initialization remain open
+FND-CONFIG-118 reads overlay 179's wrapper, pending-record drain
+and two state-dependent return-region calls, leaving their transitive
+effects open. FND-CONFIG-119 traces seven local incoming wrapper
+calls in two guarded groups. Earlier caller inputs, timing relative
+to the event handler, indirect setter calls, other direct or block
+writers, and state initialization remain open
 (Q-CONFIG-008). The no-local-branch reading assumes the intervening
 call returns normally; it does not establish its termination or
 registration behavior. No complete state-value enumeration follows
