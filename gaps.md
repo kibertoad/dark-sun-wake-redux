@@ -562,3 +562,20 @@ callee paths and guard assumptions: its fixed copies preserve SI/DS on
 bypass paths while changing ES, and zero can also mean a skipped copy.
 These cases reinforce result-origin analysis without broadening it into
 unconditional success or preservation claims.
+
+
+## 34. Bound transform output counts independently of input counts
+
+FND-CONFIG-177 reads a pairwise region operation whose private output
+rejects a seventeenth append. Two input counts individually at most 16
+can still produce more than 16 admitted pairs. A four-by-five conditional
+case shows the local error origin without establishing that native
+producers permit those duplicate records. The wrappers' later output copy
+also does not turn the preceding work into a general rollback guarantee.
+
+**Request:** shared format and effect summaries should distinguish input
+count bounds, generated cardinality and destination capacity. Follow
+pairwise expansion, splits and repeated appends to the actual write gate;
+do not use each input's bound as proof that an output fits. Retain producer
+invariants and local staging/alias assumptions separately from failure
+reachability or atomicity claims.

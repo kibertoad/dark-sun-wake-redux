@@ -657,6 +657,8 @@ Entries by area.
 | [FND-CONFIG-173](../findings/FND-CONFIG-173.md) | The intervening list helper has signed count gates and checked or ignored result paths | recorded |
 | [FND-CONFIG-174](../findings/FND-CONFIG-174.md) | The guarded EBOX dependency discards call results and locally returns zero | recorded |
 | [FND-CONFIG-175](../findings/FND-CONFIG-175.md) | Callback bracket helpers preserve DS and SI on guard-bypass copy paths | recorded |
+| [FND-CONFIG-176](../findings/FND-CONFIG-176.md) | Region initialization returns zero and append rejects count sixteen before writing | recorded |
+| [FND-CONFIG-177](../findings/FND-CONFIG-177.md) | Region wrappers stage outputs and pair expansion can reach the append capacity error | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

@@ -261,6 +261,10 @@ Next ID: Q-CONFIG-011
   helper's signed gates, pointer walks and checked/ignored results.
   FND-CONFIG-174 reads the guarded EBOX dependency's common zero return;
   FND-CONFIG-175 bounds bracketed guard-bypass SI/DS and copy contracts.
+  FND-CONFIG-176 reads setup and append result contracts and a count-16
+  pre-write rejection. FND-CONFIG-177 reads wrapper staging, sentinel
+  bypasses and conditional pair expansion, retaining 0180/0DEC and native
+  input provenance.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 

@@ -210,7 +210,10 @@ None known.
   intervening list helper's gates and checked/ignored results.
   FND-CONFIG-174 bounds the EBOX dependency's common zero result;
   FND-CONFIG-175 bounds bracketed SI/DS preservation on guarded-helper
-  bypass paths, retaining aliases, shared fields and actual guards. Actual cached
+  bypass paths, retaining aliases, shared fields and actual guards.
+  FND-CONFIG-176 distinguishes region setup returns from a count-16 append
+  rejection; FND-CONFIG-177 bounds staged outputs, sentinel bypasses and
+  pair-expansion capacity cases. Full region and input evidence stays open. Actual cached
   inputs, resource and opcode effects, I/O and error outcomes remain open.
   Runtime registration, loads, valid records, reachable inputs, other writers
   and intervening helper effects remain open.
