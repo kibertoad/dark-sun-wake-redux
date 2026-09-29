@@ -195,7 +195,8 @@ I/O on both scratch and common transfer routes. Restored DS/SI/DI and
 positive-input copy counts do not establish accepted extents or native
 pixels; full slot/mask/alias and hardware evidence remains open
 (FND-CONFIG-192).
-One initializer supplies fixed roots and a free-slot pool, but
+One initializer supplies fixed roots and a free-slot pool,
+with no local pre-call bypass under returning callees;
 later writers and native reachability remain open (FND-CONFIG-193).
 The release path can lower the cursor and move following slots;
 accepted state, finite progress and VGA outcomes remain open

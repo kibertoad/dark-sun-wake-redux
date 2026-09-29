@@ -17,7 +17,7 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 1BF3:28A9
-tool: Python 3.14.7 and Capstone 5.0.7 bounded complete resident 16-bit readings with declared FBOV fixup mapping
+tool: Python 3.14.7 and Capstone 5.0.7 bounded complete resident 16-bit readings, entry-based local control-flow walk and declared FBOV fixup mapping
 environment: null
 ---
 
@@ -54,16 +54,31 @@ bit 0080 of these words, so the low-byte writes make
 these slots eligible under unchanged high bytes.
 
 Descriptor 180 maps overlay 56B2 and its code at
-`0x000671E0`. At local 0499, that code calls 271B
+`0x000671E0`. Its exported 0020 entry maps to code
+0141 (FND-CONFIG-061). A bounded control-flow walk
+of the 325 reachable instructions from 0141 before
+0499 finds no local return, interrupt, indirect jump,
+escaping branch or cycle: every branch joins the
+0499 call site. The resident main routine has a
+relocated direct call to exported 0020 at file offset
+`0x0001CC2F` (FND-CONFIG-061). This establishes
+one concrete entry path, conditional on the intervening
+archive, setup and error helpers returning normally;
+it does not establish their I/O or termination outcomes
+(FND-CONFIG-157).
+
+At local 0499, that code calls 271B
 after two zero pushes and then advances SP by eight.
 This local body does not consume the pushed values;
 the caller's other stack state remains to be read.
 The declared fixup on the call segment
 word resolves token 0058 through descriptor 11 to
-resident 1BF3. Earlier branches and callees in this
-overlay remain separate conditions on whether this
-setup call is reached in a native session. This is a
-call-site reading, not a claim that startup completed.
+resident 1BF3. The next local test of DS:13F7 at
+04A1 selects two paths that rejoin at 5702:00D4
+(FND-CONFIG-149). Thus, under ordinary returns, the
+pool initializer precedes that mode choice and setup,
+irrespective of which local mode path follows. It is
+not a claim that native startup completed.
 
 The complete following resident 1BF3:28A9 body spans
 `0x000139D9..0x000139F4`. It subtracts E4E from E4C
@@ -93,12 +108,13 @@ is silently treated as a complete storage contract.
 ## Alternatives
 
 Q-CONFIG-008 and Q-SCRIPT-003 retain the setup call's
-upstream gates, other direct or indirect initializer
+upstream callee and I/O outcomes, other direct or indirect initializer
 calls, later E4C/E4E and slot writers, accepted allocation
 state, root aliases and native hardware behavior. One
-reading reaches 271B before graphics requests and keeps
-these fields; another reaches a later request under changed
-pool or slot state. Complete callers/writers and owner
+reading reaches 271B through normally returning setup
+callees and keeps these fields; another exits through an
+external failure or reaches a later request under changed
+pool or slot state. Complete callees/writers and owner
 observations where hardware decides the result would
 distinguish those states.
 
@@ -119,5 +135,9 @@ FND-CONFIG-192. Resolve overlay descriptor 180's code
 0499 call and its declared segment fixup through
 descriptor 11. Read resident 28A9 through 28C4 to
 derive its conditional word-subtraction and 32-bit
-shift result. Keep other producers, actual call reachability
+shift result. Walk exported 56B2:0020 code 0141 through
+0499, checking every branch, call and local return/exit;
+compare the earlier resident call, archive attempt and
+following mode branch in FND-CONFIG-061, FND-CONFIG-157
+and FND-CONFIG-149. Keep external callee outcomes
 and native VGA effects outside this local reading.

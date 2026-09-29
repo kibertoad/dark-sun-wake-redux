@@ -299,8 +299,9 @@ Next ID: Q-CONFIG-011
   aliases, full callers and native VGA outcomes remain open.
   FND-CONFIG-193 reads one fixed-root/free-slot pool initializer,
   a declared overlay setup call and the local remaining-space arithmetic.
-  Its upstream gates, later slot/pool writers and accepted hardware
-  state remain open.
+  An entry-based walk shows no local bypass before that call;
+  preceding external-callee outcomes, later slot/pool writers and
+  accepted hardware state remain open.
   FND-CONFIG-194 reads release flag gates, E4E changes and
   restarted adjacent-block copies. Accepted slot state, alias
   and native VGA effects remain open.

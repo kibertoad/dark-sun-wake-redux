@@ -89,8 +89,8 @@ Next ID: Q-SCRIPT-008
   and phased copies. Accepted root/mask/segment inputs, capacities,
   aliases, full callers and native VGA outcomes remain open.
   FND-CONFIG-193 reads one fixed-root/free-slot initializer and
-  setup call, leaving later state writers and actual startup/hardware
-  outcomes open.
+  setup call, with no local pre-call bypass under returning callees.
+  Later state writers and actual startup/hardware outcomes remain open.
   FND-CONFIG-194 reads the release gate and compaction chain;
   accepted slots, finite progress and hardware effects remain open.
   Full external effects and returns, interrupt outcomes,

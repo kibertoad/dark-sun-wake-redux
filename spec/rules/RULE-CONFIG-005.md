@@ -226,7 +226,8 @@ None known.
   direction/overlap and VGA copy routes. Full slot/segment/mask producers,
   capacities, aliases and hardware/presentation remain open.
   FND-CONFIG-193 reads one fixed-root/free-slot initializer and
-  an overlay setup call to it; later pool and slot state and
+  an overlay setup call to it, with no local pre-call bypass.
+  External-callee outcomes, later pool/slot state and
   actual startup reachability remain open.
   FND-CONFIG-194 reads release flag gates and adjacent-block
   compaction, retaining accepted slot state, finite chains and
