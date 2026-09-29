@@ -321,3 +321,18 @@ path in bounded callee summaries. Reserve a cycle label for an edge back
 into the current traversal path, and carry the shared node's known effects
 and unresolved dependencies at each caller. This complements item 11's
 function ownership and item 15's local call ordering.
+
+## 21. Preserve segment provenance for near state pointers
+
+FND-CONFIG-145 follows a BP-derived near pointer into helpers that
+access it through DS. Equating those addresses without checking the
+caller would assume a DS-to-SS relationship that the bounded reading
+has not established. That assumption would turn conditional count
+consumption into an unsupported runtime termination claim.
+
+**Request:** shared argument and effect reports should retain the segment
+used to form and dereference a near pointer, including implicit SS for
+BP-relative operands and default DS for ordinary indirect accesses.
+Require segment-state provenance before merging them into one state
+buffer, and report aliasing as unresolved when that provenance is absent.
+This complements item 16's relocated far-pointer mapping.

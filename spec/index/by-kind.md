@@ -175,7 +175,7 @@ Entries by kind.
 
 ## findings
 
-375 entries.
+376 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -368,6 +368,7 @@ Entries by kind.
 | [FND-CONFIG-142](../findings/FND-CONFIG-142.md) | A bounded literal-writer query finds the setup slot assignment and no verified metadata-table write | recorded |
 | [FND-CONFIG-143](../findings/FND-CONFIG-143.md) | The setup traversal callee writes bounded output records but leaves helper effects and retry termination open | recorded |
 | [FND-CONFIG-144](../findings/FND-CONFIG-144.md) | Overlay 188 setup assigns the iterator stored index and clears its three-byte table | recorded |
+| [FND-CONFIG-145](../findings/FND-CONFIG-145.md) | The setup traversal helpers queue indices and restore a saved special slot while consuming a pending count | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |

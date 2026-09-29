@@ -109,7 +109,10 @@ valid indices, an adequate output buffer or reachable termination.
 
 ## Alternatives
 
-Q-CONFIG-008 retains the two traversal helpers, local-state
+FND-CONFIG-145 subsequently reads the traversal helpers and
+conditional count-consumption argument. Valid shared state,
+non-aliasing and the near-pointer segment relationship remain open.
+Q-CONFIG-008 retains local-state
 producers, metadata and slot ranges, setup-time contents,
 incoming setup paths and later table changes. One possible
 setup state takes the zero-slot path; another reaches traversal
@@ -128,6 +131,6 @@ rejection backedge and terminal writes. Confirm instruction
 boundaries from the entry before interpreting narrower windows.
 Verify the named MZ relocation memberships and apply load
 segment 1000. Compare the declared pushed segment fixup
-and setup call in FND-CONFIG-144. Keep the two helpers as
-unread dependencies; do not execute the original or infer their
-effects from the caller's local buffers.
+and setup call in FND-CONFIG-144. Use FND-CONFIG-145 for
+the subsequent helper reading; do not execute the original or
+infer helper effects from the caller's local buffers.

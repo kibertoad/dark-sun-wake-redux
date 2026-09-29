@@ -183,6 +183,11 @@ Next ID: Q-CONFIG-011
   Traversal helpers 1AA0:0566 and 1AA0:051C, retry termination and input
   ranges remain open. FND-CONFIG-144 replaces the setup finding after
   resolving its pushed output-pointer segment fixup.
+  FND-CONFIG-145 reads both traversal helpers, their shared getter path,
+  save/restore copy and count-consumption branches. Retry termination is
+  conditional on valid, non-aliased state. The near-pointer segment
+  relationship, buffer validity, selector/starting-position producers and
+  actual setup-time slots remain unread.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

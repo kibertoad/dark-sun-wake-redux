@@ -160,10 +160,11 @@ None known.
   the flag writer to pre-handler opcode dispatch. FND-CONFIG-137
   reads nested parameter dispatch and ordinary save/restore spans,
   without establishing rollback of the flag. FND-CONFIG-143 reads the
-  setup callee's local output and conditional table writes; its traversal
-  helpers, retry termination and actual input ranges remain open.
-  Reachable inputs, other
-  writers and intervening helper effects remain open.
+  setup callee's local output and conditional table writes. FND-CONFIG-145
+  reads its traversal helpers and conditional count consumption; buffer
+  validity, the near-pointer segment relationship, table producers and
+  actual input ranges remain open. Reachable inputs, other writers and
+  intervening helper effects remain open.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local
