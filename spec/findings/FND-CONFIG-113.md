@@ -70,9 +70,11 @@ mode five and the later selector gates.
 
 ## Alternatives
 
-The entry's registration or incoming calls, event producer, meanings
-of the two forwarded words, allowed state values, and the value-64
-state-two and state-three helper paths remain unread
+FND-CONFIG-114 records bounded incoming-reference inventories
+without identifying registration or a producer. FND-CONFIG-115 reads
+the value-64 state-two/three block and its later state-one equality.
+Registration, event producers, meanings of the two forwarded words,
+allowed state values and helper state changes remain unread
 (Q-CONFIG-008). A physical action and visible feedback are not
 established. Other pointer forms, call encodings and computed routes
 remain possible despite the qualified inventory negatives.

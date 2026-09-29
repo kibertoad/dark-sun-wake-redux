@@ -128,8 +128,12 @@ Next ID: Q-CONFIG-011
   forwarding two input words. FND-CONFIG-113 traces an event-five/
   value-64 state-one branch that forwards its input record to the
   dispatcher. Entry 28C9:1261 incoming routes and event producers,
-  state-two and state-three paths, helper effects and mode changes
-  remain unread.
+  helper effects and mode changes remain unread. FND-CONFIG-114
+  records qualified negative incoming-reference inventories for that
+  entry without finding its producer. FND-CONFIG-115 reads the
+  state-two/three paths: early pointer exits bypass mode dispatch, and
+  reaching it otherwise requires a later stored state of one. Helper
+  state writes, registration and indirect dispatch remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

@@ -195,6 +195,11 @@ A prefix ending at the target function's return misses callers later in the
 same segment; report such a range as a partial search. Keep candidate discovery
 across that range separate from bounded instruction verification at each hit.
 
+For FND-CONFIG-114, canonicalize relocated pointers by resolved file target
+as well as reporting exact segment:offset matches. Distinct DOS segment aliases
+can name the same location. Report exact-pair and aliased-target results
+separately, and preserve the exclusion of computed or unrelocated pointers.
+
 ## 14. Check known instruction hits before trusting a variable-use inventory
 
 While preparing FND-CONFIG-108, a temporary variable-use query linearly

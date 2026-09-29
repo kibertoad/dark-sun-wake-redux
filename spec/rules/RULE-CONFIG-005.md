@@ -139,6 +139,13 @@ None known.
   two input words. FND-CONFIG-113 traces a resident event-five/value-64
   state-one branch that forwards the input record to that dispatch; the
   upstream entry's incoming routes and event producer remain open.
+  FND-CONFIG-114 records bounded negative reference inventories,
+  while FND-CONFIG-115 reads state-two/three paths that need a later
+  state-one value to dispatch. One reading is that computed registration
+  supplies a reachable producer; another is that the entry is unreachable
+  in this build. Registration and indirect-dispatch readings would
+  distinguish them; the inventories alone do not. Helper state writes
+  also remain open.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local
