@@ -22,12 +22,12 @@ None known.
 
 - Stage: Slices.
 - Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 505 entries and 158 parity rows).
+  documentation check passed with 508 entries and 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
-- Next: Q-CONFIG-008, read overlay 208 selector-input producers and
-  incoming routes after FND-CONFIG-108. Remaining code-source, guard
-  and runtime-state gaps from FND-CONFIG-102 and FND-CONFIG-105 through
-  FND-CONFIG-108 remain in Q-CONFIG-008.
+- Next: Q-CONFIG-008, read overlay 208 entry 006B incoming routes
+  after FND-CONFIG-110, and remaining helper effects from FND-CONFIG-109.
+  Remaining code-source, guard and runtime-state gaps from FND-CONFIG-102
+  and FND-CONFIG-105 through FND-CONFIG-111 remain in Q-CONFIG-008.
   Q-CONFIG-010 tracks acquisition-state changes;
   Q-CONFIG-009 has an owner-run request.
