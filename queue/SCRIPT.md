@@ -107,6 +107,8 @@ Next ID: Q-SCRIPT-008
   frame-assignment gap; native reachability and inputs remain open.
   FND-CONFIG-200 connects text-output completion to the rectangle
   helper; accepted text/record state and external effects remain open.
+  FND-CONFIG-201 reads the fixed text wrapper's argument shape;
+  incoming inputs and DS/format provenance remain open.
   Full external effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.

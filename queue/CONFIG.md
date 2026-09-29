@@ -327,6 +327,9 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-200 connects a text-output continuation to the rectangle
   helper, with untested result and no equal-coordinate branch. Text
   inputs, formatting effects and cleanup frame provenance remain open.
+  FND-CONFIG-201 reads the fixed text wrapper's 28-byte argument
+  map and unchanged return. Incoming callers, DS-relative format
+  provenance and accepted inputs remain open.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 

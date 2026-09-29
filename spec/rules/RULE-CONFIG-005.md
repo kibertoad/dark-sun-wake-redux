@@ -246,6 +246,8 @@ None known.
   first-request failure and second-frame-word provenance.
   FND-CONFIG-200 connects a text-output continuation to that helper,
   retaining traversal, coordinate and native-state conditions.
+  FND-CONFIG-201 reads its fixed text wrapper's stack arguments,
+  retaining incoming inputs and DS-relative format provenance.
   FND-CONFIG-170 resolves local retained-result restoration through the
   collector; FND-CONFIG-171 reads the following resident callback gates,
   fresh targets and fixed word writes. FND-CONFIG-172 distinguishes child
