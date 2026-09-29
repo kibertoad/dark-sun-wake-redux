@@ -175,7 +175,7 @@ Entries by kind.
 
 ## findings
 
-363 entries.
+364 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -356,6 +356,7 @@ Entries by kind.
 | [FND-CONFIG-130](../findings/FND-CONFIG-130.md) | The resident record-taking helper returns an index with a conditional record remapping | recorded |
 | [FND-CONFIG-131](../findings/FND-CONFIG-131.md) | Overlay 179 wraps a result-producing helper and pending-record drain with state-dependent return calls | recorded |
 | [FND-CONFIG-132](../findings/FND-CONFIG-132.md) | Overlay 204 computes grouped-call thresholds in a first pass and consumes them in a second pass | recorded |
+| [FND-CONFIG-133](../findings/FND-CONFIG-133.md) | The rest caller iterator selects negative-word records and has a separate stored-index branch | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |

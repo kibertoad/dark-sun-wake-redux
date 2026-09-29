@@ -147,6 +147,9 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-132 traces first-pass thresholds and captured indices,
   their read-only value helper and second-pass grouped calls. Iterator
   producers, setup effects and intervening helper effects remain open.
+  FND-CONFIG-133 reads the iterator's signed-negative record selection
+  and separate stored-index branch. Input producers, allowed ranges and
+  intervening changes remain unread; reachable termination is not established.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

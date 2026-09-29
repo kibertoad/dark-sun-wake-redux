@@ -85,9 +85,10 @@ record meaning or live feedback outcome.
 
 ## Alternatives
 
-The resident iterator's contract and producers, earlier setup helper
-effects, allowable input records, second-pass helper effects and
-termination remain unread (Q-CONFIG-008). The helper's absence of
+FND-CONFIG-133 reads the resident iterator's local selection contract
+and conditional stored-index branch. Its input producers and allowed
+ranges, earlier setup helper effects, allowable input records, second-pass
+helper effects and reachable termination remain unread (Q-CONFIG-008). The helper's absence of
 writes does not prove concurrent or intervening source state is
 unchanged. Record fields and code bytes keep their neutral meanings;
 this finding does not infer a class, power or gameplay statistic.

@@ -608,6 +608,7 @@ Entries by area.
 | [FND-CONFIG-130](../findings/FND-CONFIG-130.md) | The resident record-taking helper returns an index with a conditional record remapping | recorded |
 | [FND-CONFIG-131](../findings/FND-CONFIG-131.md) | Overlay 179 wraps a result-producing helper and pending-record drain with state-dependent return calls | recorded |
 | [FND-CONFIG-132](../findings/FND-CONFIG-132.md) | Overlay 204 computes grouped-call thresholds in a first pass and consumes them in a second pass | recorded |
+| [FND-CONFIG-133](../findings/FND-CONFIG-133.md) | The rest caller iterator selects negative-word records and has a separate stored-index branch | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |
