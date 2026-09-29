@@ -29,6 +29,10 @@ Entries, queue files and parity rows outside CONFIG and SCRIPT.
 - Q-CONFIG-008, FND-CONFIG-196: do not repeat the bounded MZ and
   same-segment incoming queries without new pointer/registration evidence.
 
+- Q-CONFIG-008, FND-CONFIG-198: do not repeat the declared MZ/FBOV
+  far-call and bounded same-segment near-call incoming queries without
+  new pointer/registration coverage.
+
 ## Handover
 
 - Stage: Slices.
@@ -49,7 +53,8 @@ Entries, queue files and parity rows outside CONFIG and SCRIPT.
     remaining declared release callers; FND-CONFIG-196's incoming
     registration, arguments and later state/refresh; FND-CONFIG-197's
     refresh input producers and segment/frame aliases; FND-CONFIG-198's
-    incoming caller, initial slot state and DS/SS storage; the fixed scratch
+    pointer/registration coverage, initial slot state and DS/SS storage;
+    the fixed scratch
     capacity; and
     FND-CONFIG-192's accepted mask inputs, reference chains,
     aliases, direct callers and native VGA dependencies.
