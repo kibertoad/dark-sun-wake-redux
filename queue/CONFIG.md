@@ -297,6 +297,10 @@ Next ID: Q-CONFIG-011
   preparation, reference walks, direction/overlap gates, port accesses
   and phased copies. Accepted root/mask/segment inputs, capacities,
   aliases, full callers and native VGA outcomes remain open.
+  FND-CONFIG-193 reads one fixed-root/free-slot pool initializer,
+  a declared overlay setup call and the local remaining-space arithmetic.
+  Its upstream gates, later slot/pool writers and accepted hardware
+  state remain open.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 

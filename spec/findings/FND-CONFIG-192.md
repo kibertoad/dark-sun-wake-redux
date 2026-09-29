@@ -49,6 +49,10 @@ no own handle-index, chain-length/cycle, memory extent,
 reference validity or capacity check before these accesses.
 Shared scratch fields are overwritten before transfer begins;
 valid chains, slots and aliases remain input conditions.
+FND-CONFIG-193 reads one initializer that assigns two fixed
+root slots and pool words before later requests; the
+primitive does not check that it ran or that those words
+and slots remain unchanged.
 
 The first side's resulting segment later becomes source DS;
 the second becomes destination ES. The transfer row count

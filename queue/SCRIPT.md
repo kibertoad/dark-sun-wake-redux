@@ -88,6 +88,9 @@ Next ID: Q-SCRIPT-008
   preparation, reference walks, direction/overlap gates, port accesses
   and phased copies. Accepted root/mask/segment inputs, capacities,
   aliases, full callers and native VGA outcomes remain open.
+  FND-CONFIG-193 reads one fixed-root/free-slot initializer and
+  setup call, leaving later state writers and actual startup/hardware
+  outcomes open.
   Full external effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.

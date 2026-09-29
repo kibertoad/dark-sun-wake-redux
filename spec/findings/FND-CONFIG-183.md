@@ -105,6 +105,9 @@ arguments in arrays at slot offset plus 4, 204, 404,
 returns slot offset divided by two. It restores saved
 DS/SI/DI at both local returns. It contains no interrupt,
 port access or further call besides the complete slot scan.
+FND-CONFIG-193 subsequently reads one fixed-root/free-slot
+initializer and its E4C/E4E assignments. That local setup
+does not establish every caller or later mutation of the pool.
 Native free-slot/capacity producers remain incompletely read.
 For the named geometry arguments, the local products are
 5,120, 3,200 and 1,024, requesting 320, 200 and 64
