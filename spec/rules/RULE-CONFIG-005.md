@@ -256,6 +256,8 @@ None known.
   decimal argument path, retaining current state and output fit.
   FND-CONFIG-205 bounds selected nonnegative decimal output including
   termination, retaining current format and argument/storage identity.
+  FND-CONFIG-206 reads modular width accumulation and an unchecked
+  lookup, retaining pointer/table and accepted-text provenance.
   FND-CONFIG-170 resolves local retained-result restoration through the
   collector; FND-CONFIG-171 reads the following resident callback gates,
   fresh targets and fixed word writes. FND-CONFIG-172 distinguishes child

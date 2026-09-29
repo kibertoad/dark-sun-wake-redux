@@ -117,6 +117,8 @@ Next ID: Q-SCRIPT-008
   argument acquisition; current formats, DS/SS identity and output remain open.
   FND-CONFIG-205 bounds selected plain decimal output; current format
   and admitted DS-based argument/storage provenance remain open.
+  FND-CONFIG-206 reads text-width accumulation and character lookup;
+  current pointers/tables, valid text and aliases remain open.
   Full external effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.

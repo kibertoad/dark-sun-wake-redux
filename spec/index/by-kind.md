@@ -176,7 +176,7 @@ Entries by kind.
 
 ## findings
 
-441 entries.
+442 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -430,6 +430,7 @@ Entries by kind.
 | [FND-CONFIG-203](../findings/FND-CONFIG-203.md) | The formatter literal-output path appends a terminator without a destination-capacity gate | recorded |
 | [FND-CONFIG-204](../findings/FND-CONFIG-204.md) | Initial format bytes distinguish a decimal frame caller from the fixed text wrapper | recorded |
 | [FND-CONFIG-205](../findings/FND-CONFIG-205.md) | Plain decimal word conversion needs at most six bytes for admitted nonnegative inputs | recorded |
+| [FND-CONFIG-206](../findings/FND-CONFIG-206.md) | The text-width helper sums unchecked per-character words with sixteen-bit wrapping | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |

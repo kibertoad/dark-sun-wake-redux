@@ -342,6 +342,9 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-205 bounds plain decimal word output: nonnegative inputs
   need at most six bytes including termination. Current format, admitted
   argument identity/preservation and DS/SS aliases remain open.
+  FND-CONFIG-206 reads the modular text-width sum and unchecked
+  character-word lookup. Pointer/table producers, admitted text,
+  storage aliases and native presentation remain open.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 
