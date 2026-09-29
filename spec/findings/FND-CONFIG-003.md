@@ -10,7 +10,7 @@ method: static
 locations:
   - build: BLD-GOG-EN-1.1
     file: SOUND.CFG
-    offset: 0x00..0x3B
+    offset: 0x00..0x3A
 tool: hex inspection with Python 3.14.7
 environment: null
 ---

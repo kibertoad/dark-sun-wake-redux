@@ -10,7 +10,7 @@ method: static
 locations:
   - build: BLD-GOG-EN-1.1
     file: GPLDATA.GFF
-    offset: 0x00..0x217249
+    offset: 0x00..0x217248
 tool: hex inspection with Python 3.14.7, expressions read as RULE-SCRIPT-004 describes
 environment: null
 ---

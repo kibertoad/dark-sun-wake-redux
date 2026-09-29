@@ -16,7 +16,7 @@ locations:
     address: 2834:043B..2834:0508
   - build: BLD-GOG-EN-1.1
     file: DJ.DAT
-    offset: 0x00..0xE7
+    offset: 0x00..0xE6
 tool: Capstone 5.0.7 16-bit disassembly with Python 3.14.7, MZ relocations applied for a load image at segment 0x1000; far calls in overlays resolved through their fixup words and the segment table at file offset 0x4B080; hex inspection of DJ.DAT
 environment: null
 ---

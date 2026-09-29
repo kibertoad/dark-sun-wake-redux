@@ -19,7 +19,7 @@ locations:
     offset: 0x675506..0x67748A
   - build: BLD-GOG-EN-1.1
     file: CHARSAVE.GFF
-    offset: 0x28C3..0x2DD7
+    offset: 0x28C3..0x2DD6
 tool: hex inspection with Python 3.14.7
 environment: null
 ---

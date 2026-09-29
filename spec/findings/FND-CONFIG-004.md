@@ -19,7 +19,7 @@ locations:
     address: 1E36:D630..1E36:D9F8
   - build: BLD-GOG-EN-1.1
     file: SOUND.BAT
-    offset: 0x00..0x72
+    offset: 0x00..0x71
 tool: Capstone 5.0.7 16-bit disassembly with Python 3.14.7, MZ relocations applied for a load image at segment 0x1000
 environment: null
 ---

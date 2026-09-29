@@ -10,10 +10,10 @@ method: static
 locations:
   - build: BLD-GOG-EN-1.1
     file: ITEMS.BIN
-    offset: 0x00..0x3A8
+    offset: 0x00..0x3A7
   - build: BLD-GOG-EN-1.1
     file: OBJEX.GFF
-    offset: 0x00..0x680304
+    offset: 0x00..0x680303
 tool: DarkSunWakeRedux.Inspect pair-resource-overlap, reproduced with Python 3.14.7
 environment: null
 ---

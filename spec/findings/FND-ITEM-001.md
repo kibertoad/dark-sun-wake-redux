@@ -10,10 +10,10 @@ method: static
 locations:
   - build: BLD-GOG-EN-1.1
     file: ITEMS.BIN
-    offset: 0x00..0x3A8
+    offset: 0x00..0x3A7
   - build: BLD-GOG-EN-1.1
     file: CD:ITEMS.BIN
-    offset: 0x00..0x3A8
+    offset: 0x00..0x3A7
 tool: hex inspection with Python 3.14.7
 environment: null
 ---

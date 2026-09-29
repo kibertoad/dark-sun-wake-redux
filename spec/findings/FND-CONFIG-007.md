@@ -10,10 +10,10 @@ method: static
 locations:
   - build: BLD-GOG-EN-1.1
     file: SOUND.INI
-    offset: 0x00..0xD58D
+    offset: 0x00..0xD58C
   - build: BLD-GOG-EN-1.1
     file: CD:SOUND.INI
-    offset: 0x00..0x86EE
+    offset: 0x00..0x86ED
 tool: hex inspection with Python 3.14.7
 environment: null
 ---

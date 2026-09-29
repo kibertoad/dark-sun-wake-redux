@@ -10,10 +10,10 @@ method: static
 locations:
   - build: BLD-GOG-EN-1.1
     file: CD:CHARSAVE.GFF
-    offset: 0x00..0xF18
+    offset: 0x00..0xF17
   - build: BLD-GOG-EN-1.1
     file: CHARSAVE.GFF
-    offset: 0x00..0x2DD7
+    offset: 0x00..0x2DD6
 tool: hex inspection with Python 3.14.7
 environment: null
 ---
