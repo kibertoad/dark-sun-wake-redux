@@ -296,3 +296,18 @@ size and register semantics for implicit-operand conversions, and add
 synthetic prefixed/unprefixed positive controls. Mark a mnemonic/width
 mismatch explicitly; a locally plausible mnemonic must not silently change
 signed-byte fields into signed-word fields in an evidence record.
+
+## 20. Distinguish shared callees from recursive call paths
+
+FND-CONFIG-140 and FND-CONFIG-141 trace two expression branches that
+converge on one lookup routine. An early description called this a cycle;
+reading the complete lookup and its children showed no call back into the
+seed search. The corrected findings record convergence. The shared lookup
+also contains a conditional table write, so revisiting its node must not
+turn it into an assumed read-only leaf.
+
+**Request:** label shared-node reuse separately from a verified recursive
+path in bounded callee summaries. Reserve a cycle label for an edge back
+into the current traversal path, and carry the shared node's known effects
+and unresolved dependencies at each caller. This complements item 11's
+function ownership and item 15's local call ordering.

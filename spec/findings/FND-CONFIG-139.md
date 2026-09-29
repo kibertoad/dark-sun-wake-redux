@@ -103,8 +103,10 @@ proving the flag or index at the later rest iterator.
 
 ## Alternatives
 
-Q-CONFIG-008 retains 2D40:0AB6 and 1AA0:0009 effects,
-DS:40BC/40C4 producers, reachable B1 expressions, seed and
+FND-CONFIG-140 reads the lookup and conditional table writer;
+FND-CONFIG-141 reads the seed wrapper and shared-lookup scan.
+Q-CONFIG-008 retains stored-field and metadata producers,
+reachable B1 expressions, seed and
 count ranges, array validity and other intervening state changes.
 A reading that the local lookup wrapper invokes no callee when
 count is zero is ruled out by its pre-comparison first call.

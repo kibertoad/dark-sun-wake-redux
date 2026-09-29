@@ -175,7 +175,7 @@ Entries by kind.
 
 ## findings
 
-370 entries.
+372 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -363,6 +363,8 @@ Entries by kind.
 | [FND-CONFIG-137](../findings/FND-CONFIG-137.md) | Nested parameter instructions restore parameter blocks rather than the iterator flag | recorded |
 | [FND-CONFIG-138](../findings/FND-CONFIG-138.md) | Parameter byte advancement preserves the iterator flag on its ordinary path and clears it after an end-check failure | recorded |
 | [FND-CONFIG-139](../findings/FND-CONFIG-139.md) | The B1 expression path parses selectors and chains lookups before a conditional clear | recorded |
+| [FND-CONFIG-140](../findings/FND-CONFIG-140.md) | The selector lookup reads typed values and conditionally writes a three-byte table slot | recorded |
+| [FND-CONFIG-141](../findings/FND-CONFIG-141.md) | The expression seed wrapper searches active slots through the same selector lookup | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |

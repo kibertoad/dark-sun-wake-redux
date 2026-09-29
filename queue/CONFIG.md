@@ -169,6 +169,10 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-139 reads the B1 expression root, seed/count/selector parser
   and chained lookup wrapper. Seed and lookup callee effects, stored-field
   producers and reachable expression inputs remain unread.
+  FND-CONFIG-140 reads the lookup's typed reads, stored error/pointer
+  outputs and conditional table-slot writer. FND-CONFIG-141 reads the
+  seed wrapper and shared-lookup scan. Metadata and slot-index producers,
+  input validity and reachable expressions remain unread.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?
