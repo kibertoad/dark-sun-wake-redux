@@ -30,14 +30,15 @@ Entries, queue files and parity rows outside CONFIG and SCRIPT.
 
 - Stage: Slices.
 - Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 556 entries and 158 parity rows).
+  documentation check passed with 561 entries and 158 parity rows).
+  Full solution build passed with zero warnings and errors.
 - Unfinished: none.
 - Blockers: none known.
 - Next:
-  - Q-CONFIG-008, read FND-CONFIG-156's 172C:000C call with
-    number 99, start zero and selector two, including its status guard,
-    31ED helper and resource loading, against FND-SCRIPT-007 and
-    FND-SCRIPT-008.
+  - Q-CONFIG-008 and Q-SCRIPT-003, read `fn_172C_0698`'s full
+    allocation contract and `fn_5702_00B1`'s error effects, then bound
+    actual cache inputs, resource selection and reachable MAS/99
+    instructions for FND-CONFIG-160 and RULE-SCRIPT-010.
   - Q-CONFIG-008, follow FND-CONFIG-159's external helper effects,
     stored-pointer consumers and replacements, earlier gate producers,
     bypass state, open outcomes and archive retention.
