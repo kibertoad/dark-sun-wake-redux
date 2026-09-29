@@ -691,6 +691,7 @@ Entries by area.
 | [FND-CONFIG-207](../findings/FND-CONFIG-207.md) | A resident path installs a record whose lookup pointer comes from a FONT selector request | recorded |
 | [FND-CONFIG-208](../findings/FND-CONFIG-208.md) | The pointer acquisition wrapper gates archive state and distinguishes optional-output clearing paths | recorded |
 | [FND-CONFIG-209](../findings/FND-CONFIG-209.md) | The shared reader allocation wrapper requests a wrapped product plus one and marks runtime header extent | recorded |
+| [FND-CONFIG-210](../findings/FND-CONFIG-210.md) | The runtime allocation wrapper clears a wrapped product in bounded chunks after a nonnull heap return | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

@@ -760,3 +760,19 @@ terminator writes, actual destination capacity and wrapped offset
 behavior separately. A count equal to capacity is insufficient when
 termination adds another write. Keep hypothetical long-input cases
 separate from admitted native inputs and reproduced defects.
+
+
+## 42. Separate requested bytes, allocator extent and clearing capacity
+
+FND-CONFIG-209 and FND-CONFIG-210 distinguish a wrapped request,
+a paragraph-based admission bound, a header-derived marker location
+and chunked clearing through a returned far pointer. Treating any one
+of these as the buffer capacity would hide the remaining allocator
+and header provenance questions.
+
+**Request:** shared allocation summaries should report arithmetic width
+and overflow, admission units, returned pointer normalization, header
+extent units and the range actually written separately. A bounded fill
+chunk is not a total-capacity guarantee. Preserve lower allocator state
+and effects as dependencies until read, and distinguish a local request
+or marker write from a verified allocation contract.
