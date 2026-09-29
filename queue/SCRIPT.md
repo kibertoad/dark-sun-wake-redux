@@ -99,6 +99,8 @@ Next ID: Q-SCRIPT-008
   arguments, accepted replacements and later refresh remain open.
   FND-CONFIG-197 reads the refresh wrappers' temporary A033 producer
   and local zero return; full input and alias provenance remain open.
+  FND-CONFIG-198 reads a fixed reference-request/release caller;
+  initial slots, DS/SS storage and incoming routes remain open.
   Full external effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.

@@ -238,6 +238,8 @@ None known.
   releases and common replacement writes; its incoming path stays open.
   FND-CONFIG-197 reads temporary A033 assignment/restoration around
   refresh services without establishing their successful effects.
+  FND-CONFIG-198 reads a fixed request/release caller and conditional
+  initialized-slot case, retaining segment/alias and reachability inputs.
   FND-CONFIG-170 resolves local retained-result restoration through the
   collector; FND-CONFIG-171 reads the following resident callback gates,
   fresh targets and fixed word writes. FND-CONFIG-172 distinguishes child
