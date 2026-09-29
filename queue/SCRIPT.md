@@ -109,6 +109,8 @@ Next ID: Q-SCRIPT-008
   helper; accepted text/record state and external effects remain open.
   FND-CONFIG-201 reads the fixed text wrapper's argument shape;
   incoming inputs and DS/format provenance remain open.
+  FND-CONFIG-202 reads one formatted-frame wrapper caller; format
+  capacity, strict gate inputs and counter/timing state remain open.
   Full external effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.

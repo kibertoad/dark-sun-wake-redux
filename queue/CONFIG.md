@@ -330,6 +330,9 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-201 reads the fixed text wrapper's 28-byte argument
   map and unchanged return. Incoming callers, DS-relative format
   provenance and accepted inputs remain open.
+  FND-CONFIG-202 connects one of 21 encoded overlay text-wrapper
+  calls to formatted SS-frame storage and strict screen-edge gates.
+  Format capacity, width/state producers and later counter progress remain open.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 
