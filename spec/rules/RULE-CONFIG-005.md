@@ -252,6 +252,8 @@ None known.
   output capacity, strict screen gates and counter-dependent progress.
   FND-CONFIG-203 bounds literal formatter writes and termination,
   retaining actual format/conversion output and destination fit.
+  FND-CONFIG-204 identifies distinct initial formats and a selected
+  decimal argument path, retaining current state and output fit.
   FND-CONFIG-170 resolves local retained-result restoration through the
   collector; FND-CONFIG-171 reads the following resident callback gates,
   fresh targets and fixed word writes. FND-CONFIG-172 distinguishes child

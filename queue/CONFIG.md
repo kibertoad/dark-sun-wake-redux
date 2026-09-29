@@ -336,6 +336,9 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-203 reads literal formatter writes and the extra zero
   terminator without a capacity gate. Actual format/conversion output,
   admitted arguments and six-byte caller fit remain open.
+  FND-CONFIG-204 identifies two distinct initial formats and the
+  decimal formatter's DS-based argument read. Current DS/format state,
+  parser flags, decimal output and caller fit remain open.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 

@@ -113,6 +113,8 @@ Next ID: Q-SCRIPT-008
   capacity, strict gate inputs and counter/timing state remain open.
   FND-CONFIG-203 reads the formatter's literal path and terminator;
   actual formats, conversion branches and caller fit remain open.
+  FND-CONFIG-204 identifies initial formats and selected decimal
+  argument acquisition; current formats, DS/SS identity and output remain open.
   Full external effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.

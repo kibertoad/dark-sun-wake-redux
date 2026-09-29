@@ -223,7 +223,7 @@ Entries by status.
 
 ## recorded
 
-420 entries.
+421 entries.
 
 | ID | Title |
 |---|---|
@@ -458,6 +458,7 @@ Entries by status.
 | [FND-CONFIG-201](../findings/FND-CONFIG-201.md) | A fixed text wrapper forwards two coordinates and sixteen extra argument bytes |
 | [FND-CONFIG-202](../findings/FND-CONFIG-202.md) | An overlay text-wrapper caller uses formatted frame storage and strict screen-edge gates |
 | [FND-CONFIG-203](../findings/FND-CONFIG-203.md) | The formatter literal-output path appends a terminator without a destination-capacity gate |
+| [FND-CONFIG-204](../findings/FND-CONFIG-204.md) | Initial format bytes distinguish a decimal frame caller from the fixed text wrapper |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |
