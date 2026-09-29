@@ -69,6 +69,8 @@ finally {
 if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
     throw 'Node.js 22 or newer is required for the documentation and evidence checks.'
 }
+& node (Join-Path $root 'tools/upstream.mjs') links
+if ($LASTEXITCODE -ne 0) { throw 'Local upstream section links are invalid.' }
 & node --test (Join-Path $root 'tests/evidence/evidence.test.mjs') (Join-Path $root 'tests/upstream/upstream.test.mjs')
 if ($LASTEXITCODE -ne 0) { throw 'Synthetic evidence or upstream snapshot tests failed.' }
 # Node does not resolve a .bat or .cmd wrapper on PATH, so hand the check the Kaitai compiler's

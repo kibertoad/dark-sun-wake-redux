@@ -5,12 +5,13 @@ description: Find out and record in docs/RUNTIME.md what can be done with the or
 
 # Runtime access
 
-The rules are in the [work protocol](https://dinorefurb.com/work-protocol/#runtime-access).
-Static reading is the main source of evidence. In this repository agents never
-launch, control, capture or stop DOSBox (`AGENTS.md`, "Native runtime visual
-validation"), so this check tries nothing against the running game itself: the
-answers come from the owner's rule, the owner's live sessions and the emulator
-harness.
+The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#runtime-access) (lines 42-60).
+Open a linked section only when a step leaves a question it answers, read
+only the lines the link gives, and never a section already read this session.
+Static reading is the main source of evidence. Agents never launch, control,
+capture or stop DOSBox here (`AGENTS.md`, "Native runtime visual validation").
+This check tries nothing against the running game: answers come from the
+owner's rule, owner live sessions and the emulator harness.
 
 1. **Collect what changed**: a change to the owner's DOSBox rule in
    `AGENTS.md`, a live session that showed what the owner can do (load a save,
@@ -37,7 +38,7 @@ harness.
 4. **Move queue items** between `Emulated call` and `Live session` where an
    answer changed, in the same commit. If the owner ever allows agent runs,
    they take the machine's run lock as the protocol's
-   [Running the original](https://dinorefurb.com/work-protocol/#running-the-original)
+   [Running the original](../../../vendor/upstream/work-protocol.md#running-the-original) (lines 195-215)
    says, and items move to `Agent run`.
 5. **Commit**, then print the status block from `research-item` with
    `Batch: runtime access`.

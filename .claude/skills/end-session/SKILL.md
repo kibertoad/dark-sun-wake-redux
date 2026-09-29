@@ -5,7 +5,12 @@ description: Close a work session on this restoration - stop processes the sessi
 
 # End a session
 
-The rules are in the [work protocol](https://dinorefurb.com/work-protocol/#sessions).
+The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#sessions) (lines 185-193).
+Open a linked section only when a step leaves a question it answers, read
+only the lines the link gives, and never a section already read this session.
+
+Follow the local post-commit process audit; reusable MSBuild nodes are not
+orphans and agents never touch DOSBox or take the original-game run lock.
 
 1. **Processes**: stop every process this session started (Ghidra and Java,
    test hosts, servers), and leave anything whose owner is uncertain.

@@ -1,8 +1,8 @@
 # Reviewing evidence under Standard v1
 
-This is a research procedure, not a new standard or confidence scale. Use the
-published Standard and Protocol, or the verified [pinned copies](UPSTREAM-RULES.md)
-when offline. Apply only the checks relevant to the entry's claims. Keep the
+This is a research procedure, not a new standard or confidence scale. Use the verified [local copies](UPSTREAM-RULES.md) of the Standard, Methodology
+and Protocol. Open a linked section only when needed, read its stated lines, and
+reuse sections already in context. Apply only the checks relevant to the entry's claims. Keep the
 reasoning in findings, complete-reading citations and Open questions using the
 existing v1 fields; do not add unsupported schema fields.
 

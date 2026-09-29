@@ -1,7 +1,7 @@
 # Implementation plan
 
 This file says what the project intends and what is true now, following the
-[work protocol](https://dinorefurb.com/work-protocol/). It holds no dated
+[work protocol](../vendor/upstream/work-protocol.md). It holds no dated
 checkpoints, no status narration and no research questions: git keeps the
 history, `queue/` holds the research questions, `docs/DECISIONS.md` the
 owner's decisions, and `docs/HANDOVER.md` says where the last session stopped.
@@ -406,3 +406,19 @@ licensed-source identity or owner-only runtime policy changes.
   individual completion. Retain unmet and partially addressed requests.
 - Exit: commit the adoption and resolved-gap cleanup, audit processes, write the
   handover separately and push. No owner question or live session is needed.
+
+
+## Tooling maintenance: template PR 17 local rules
+
+Adopt merged template PR 17 (`18a67f3`): add the exact methodology snapshot to
+`vendor/upstream/`, make the pinned local pages the task authority, and replace
+published-page links with local section links carrying checked line ranges.
+Refresh/freshness checks run only at the owner's request. Preserve the configured
+project identity, owner-only native runs, the absent/limited emulator harness,
+source identities and the corrected individual gap tracking.
+
+Acceptance: snapshot digests, heading/range checks, synthetic link tests and
+`tools/Test.ps1` pass. The link checker runs in CI and detects missing/stale
+ranges and external rule-page links. Shorten canonical summaries by referring
+to the local sections, retaining local runtime exceptions and blank entry forms.
+Exit: commit the tooling adoption, update handover separately and push main.

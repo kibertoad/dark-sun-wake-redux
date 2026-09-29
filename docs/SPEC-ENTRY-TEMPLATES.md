@@ -1,31 +1,14 @@
 # Spec entry templates
 
-Blank entries for each kind in `spec/`, with the front matter fields and body
-sections the [documentation standard](https://dinorefurb.com/documentation-standard/#entry-types)
-requires, in its order. Copy one into the directory for its kind, name the file
-after the ID (`spec/rules/RULE-COMBAT-007.md`), and replace every `<...>`. The
-standard defines what each field and section holds; this page does not repeat
-it.
-
-Rules, formats, screens and bugs may also have `complete_reading`, a list of
-the static findings that together read all of the entry, which makes it
-`established` without a run (see the standard's
-[Complete readings](https://dinorefurb.com/documentation-standard/#complete-readings)).
-Leave it out until such a reading exists.
-
-A section with nothing to say is kept and says `None known.`, or `None.` where
-it is certain that there is nothing. The documentation standard check from
-[refurbished-dinosaurs-toolkit](https://github.com/kibertoad/refurbished-dinosaurs-toolkit)
-runs on every pull request and reports what an entry is missing, as
-`docs/VALIDATION.md` describes.
-
-Every Markdown file the standard defines, entries included, is at most 1,000
-lines. An entry that would pass the limit is split by what it describes, as
-the standard's [File size](https://dinorefurb.com/documentation-standard/#file-size)
-section says. The documentation standard check checks the limit. Build manifests,
-value files, Kaitai definitions, fixtures and save patches are not counted.
+Blank entries for each kind in `spec/`, in the order the [documentation standard](../vendor/upstream/documentation-standard.md#entry-types) (lines 284-716)
+gives their fields and sections. Copy one into the directory for its kind, name the file after
+the ID (`spec/rules/RULE-COMBAT-007.md`), and replace every `<...>`. What each field and
+section holds, the file size limit and the value files are in the standard section linked under
+each heading; this page does not repeat them.
 
 ## Build
+
+See [Builds](../vendor/upstream/documentation-standard.md#builds) (lines 308-343).
 
 ````markdown
 ---
@@ -48,16 +31,7 @@ manifest: BLD-<ALIAS>.files.yaml
 ## Other files
 ````
 
-A build has one executable that runs the game's rules. An installation that
-ships two, such as a DOS and a Windows version over the same data files, is two
-builds, and both list the shared files.
-
-The build's files go in its manifest, `spec/builds/BLD-<ALIAS>.files.yaml`,
-whose only key is `files`. A path uses forward slashes and is relative to the
-install directory, or starts with `CD:` (`CD1:`, `CD2:` for more than one disc)
-for a file read from the disc and never installed. A packed executable adds
-`packer` and `unpacked`. `DarkSunWakeRedux.Inspect <dir>` prints each
-file's size and `xxh3`.
+The manifest, `spec/builds/BLD-<ALIAS>.files.yaml`. `DarkSunWakeRedux.Inspect --source <dir>` prints each file's size and `xxh3`.
 
 ```yaml
 files:
@@ -68,6 +42,8 @@ files:
 ```
 
 ## Source
+
+See [Sources](../vendor/upstream/documentation-standard.md#sources) (lines 345-367).
 
 ````markdown
 ---
@@ -87,6 +63,8 @@ licence: null
 ````
 
 ## Finding
+
+See [Findings](../vendor/upstream/documentation-standard.md#findings) (lines 369-405).
 
 ````markdown
 ---
@@ -115,10 +93,9 @@ environment: null
 ## How to reproduce
 ````
 
-`environment` stays `null` for a static finding. A dynamic finding gives it in
-the form an experiment uses.
-
 ## Experiment
+
+See [Experiments](../vendor/upstream/documentation-standard.md#experiments) (lines 407-506).
 
 ````markdown
 ---
@@ -150,6 +127,8 @@ fixture: EXP-<AREA>-<NNN>.json
 ````
 
 ## Format
+
+See [Formats](../vendor/upstream/documentation-standard.md#formats) (lines 508-560).
 
 ````markdown
 ---
@@ -187,15 +166,7 @@ None known.
 ## Open questions
 ````
 
-A binary format with a status above `unknown` has a Kaitai definition next to
-it, named after the ID in lower case (`fmt_data_002.ksy`), and `definition`
-names it.
-
-An enumeration table that would take the entry past 1,000 lines goes in a
-value file beside it, named after the ID and the table
-(`spec/formats/FMT-<AREA>-<NNN>.<table>.csv`). Its `###` heading stays in the
-entry, followed by a sentence naming the file. The file is CSV as RFC 4180
-defines it, in UTF-8, with the table's columns as its header row:
+A value file for an enumeration table, `spec/formats/<ID>.<table>.csv`.
 
 ```text
 Value,Name,Meaning,Status,Evidence
@@ -203,6 +174,8 @@ Value,Name,Meaning,Status,Evidence
 ```
 
 ## Rule
+
+See [Rules](../vendor/upstream/documentation-standard.md#rules) (lines 562-651).
 
 ````markdown
 ---
@@ -243,11 +216,7 @@ None known.
 ## Open questions
 ````
 
-A list of more than 64 values in a procedure is a `table` whose values come
-from a value file in `spec/rules/`, named after the ID and the table:
-`table sine: INT16[1024] from "RULE-<AREA>-<NNN>.sine.csv"`. The file has the
-single column `value` and one row per element, in index order, so it has as
-many rows as the type's count:
+A value file for a table in a procedure, `spec/rules/<ID>.<table>.csv`.
 
 ```text
 value
@@ -256,6 +225,8 @@ value
 ```
 
 ## Bug
+
+See [Bugs](../vendor/upstream/documentation-standard.md#bugs) (lines 653-685).
 
 ````markdown
 ---
@@ -293,6 +264,8 @@ None known.
 ````
 
 ## Screen
+
+See [Screens](../vendor/upstream/documentation-standard.md#screens) (lines 687-716).
 
 ````markdown
 ---
@@ -349,17 +322,7 @@ None known.
 
 ## Glossary term
 
-One file per term in `spec/glossary/`, named after the term as the pseudocode
-spells it (`spec/glossary/turn_order.md`), opening with the term as a `#`
-heading. A glossary file is not an entry, so it has no ID and no front matter,
-and it is renamed along with its term. Two terms never differ only in case, and
-no term is a name Windows reserves for a device (`con`, `prn`, `aux`, `nul`,
-`com1` to `com9`, `lpt1` to `lpt9`, in any case).
-The standard's [Where it lives](https://dinorefurb.com/documentation-standard/#where-it-lives)
-section lists what each kind of term also gives. Every claim about the original
-(an address, the order of a list, the order of handlers or of a queue, what an
-outside value is read from) is followed by the IDs of its findings or
-experiments in brackets, or by `(unknown)`.
+See [Where it lives](../vendor/upstream/documentation-standard.md#where-it-lives) (lines 14-92).
 
 ````markdown
 # <term>
@@ -370,15 +333,7 @@ one. Then what the standard asks of this kind of term.>
 
 ## Deviation
 
-One file per deviation in `deviations/` at the repository root, named after its
-ID (`deviations/DEV-<AREA>-<NNN>.md`). Default is `off`, `on` or `mandatory`
-(Setting `None`). Keep the Justification item, which argues that the rebuild's
-behavior is strictly better than the original's, for a `mandatory` deviation
-and for one that is `on` without being the fix of an unintended bug players do
-not rely on, as the
-[deviation log](https://dinorefurb.com/documentation-standard/#deviation-log)
-section sets out. Delete it otherwise. IDs are never reused or renumbered, and a dropped deviation keeps
-its file.
+See [Deviation log](../vendor/upstream/documentation-standard.md#deviation-log) (lines 774-795).
 
 ````markdown
 # DEV-<AREA>-<NNN>
@@ -387,21 +342,13 @@ its file.
 - Reason: <what the original does and why the rebuild differs>
 - Setting: <setting name, or None>
 - Default: <off, on or mandatory>
-- Justification: <why the rebuild's behaviour is strictly better>
+- Justification: <why the rebuild's behaviour is strictly better, or what the judgement call improves and why no player would miss the original's>
 - Dropped: no
 ````
 
-Any explanation follows the list in plain paragraphs.
-
 ## Parity area file
 
-One file per area in `parity/` at the repository root, named after the area
-(`parity/COMBAT.md`), opening with the area as a `#` heading, followed by one
-table of the area's rows sorted by ID. An area whose file would pass 1,000
-lines becomes a directory with one file per kind, and then one file per block
-of 100 numbers (`parity/COMBAT/RULE/000.md`), each opening with its path under
-`parity/` as its heading (`# COMBAT/RULE/000`). The check says which files the
-rows belong in. It also writes the totals and the area links in `PARITY.md`.
+See [Parity matrix](../vendor/upstream/documentation-standard.md#parity-matrix) (lines 797-865).
 
 ````markdown
 # <AREA>
@@ -412,5 +359,6 @@ rows belong in. It also writes the totals and the area links in `PARITY.md`.
 
 ## Reviewing a claim
 
-Use [EVIDENCE-REVIEW](EVIDENCE-REVIEW.md) for claim-relevant checks and synthetic
-examples. Record reasoning in the existing v1 fields and sections.
+Use [EVIDENCE-REVIEW](EVIDENCE-REVIEW.md) for checks relevant to the claim,
+including synthetic worked examples. Record the reasoning in existing v1
+sections and fields; this guidance adds no schema or confidence scale.

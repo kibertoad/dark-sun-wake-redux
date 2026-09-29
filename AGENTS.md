@@ -37,7 +37,7 @@ script or reviewer can check. Guesses belong in `queue/` or an entry's Open
 questions, not in an API.
 
 The owner decides only what the work protocol's
-[What needs the owner](https://dinorefurb.com/work-protocol/#what-needs-the-owner)
+[What needs the owner](vendor/upstream/work-protocol.md#what-needs-the-owner) (lines 286-288)
 lists: eligibility and supported editions, scope and non-goals, any deviation
 whose Default is `on` or `mandatory`, features outside the parity matrix,
 releases, and live sessions. Those decisions go in `docs/DECISIONS.md`, and a
@@ -90,109 +90,92 @@ and the files in `deviations/` in line with what is actually true (the check
 regenerates `PARITY.md` from them), and tick off `docs/BOOTSTRAP-CHECKLIST.md` as
 decisions are captured elsewhere.
 
+## The local copy of the standard
+
+`vendor/upstream/` holds the methodology, the documentation standard and the
+work protocol exactly as published at dinorefurb.com, and
+`tools/upstream-lock.json` names the commit they were copied from. Every
+reference to those pages in this repository points at that copy.
+
+- Read the local copy. Do not fetch dinorefurb.com, or the website's source
+  repository, to read the methodology, the standard or the protocol, and do
+  not go online because the published rules might have changed.
+- Assume the local copy is up to date and rely on it. The template is updated
+  when the website changes; until then the copy is the rules.
+- Links inside the copy are the site's own: `/work-protocol/#emulated-calls`
+  is `vendor/upstream/work-protocol.md#emulated-calls`, and the same for
+  `/methodology/` and `/documentation-standard/`. Only links to other pages of
+  the site lead outside the copy.
+- A link to a section gives its lines, such as
+  `work-protocol.md#batches (lines 137-183)`. Read only those lines (with an
+  offset and a limit), never the whole page for one section, and never a
+  section again once it is in context. The lines include the section's
+  subsections, so a link to a subsection inside one already read adds
+  nothing. The upstream tests keep every range right; after a refresh,
+  `node tools/upstream.mjs links --write` rewrites them.
+- Skills and summaries in this repository are enough to do the work. Open a
+  linked section only when a step leaves a question it answers.
+- Checking whether a newer version has been published, and refreshing the
+  copy, is always started by a person. Do it only when the owner asks for it
+  in the current task, and then follow `docs/UPSTREAM-RULES.md`.
+
 ## Planning and tracking work
 
-Work is planned, tracked and handed on under the
-[work protocol](https://dinorefurb.com/work-protocol/); where this section and
-the published page differ, the page wins, apart from the owner-only DOSBox
-rules under "Native runtime visual validation", which this repository keeps.
+Work is planned, tracked and handed on under the work protocol
+(`vendor/upstream/work-protocol.md`). Read only the section a task needs, by the
+lines its link below gives; this list says where each thing lives in this
+repository.
 
-- The project moves through the stages Intake, Runtime access, Survey, Slices
-  and Audit, and `docs/IMPLEMENTATION-PLAN.md` records which one it is in.
-  `docs/RUNTIME.md` records what can be done with the original running and
-  who can do it, and the plan's slice targets stay within what it allows.
-- Static analysis comes first, and runs of the original are the last resort
-  for each question: a `Live session` item is taken up only after its own
-  static attempt is under `Tried:`, or when it asks for the run that confirms
-  a static reading. A run that blocks the current slice comes before static
-  work that does not, and within each step of the order of work `Static`
-  items come first, then `Emulated call` items, then runs.
-- Coding agents never run the game here. Every run is a live session the
-  repository owner performs from a request in `docs/live-sessions/`, following
-  the capture protocol in its README, and the owner answers there. Never wait
-  idle for one. The `Agent run` section of the queue stays empty, and the
-  machine's run lock is never taken from this repository.
-- An emulated call runs one function of `DSUN.EXE` in the Unicorn harness in
-  `tools/emu/`, with no window, timer or input. It starts no process of the
-  game and no DOSBox, and needs no run lock. The protocol's
-  [Emulated calls](https://dinorefurb.com/work-protocol/#emulated-calls)
-  section allows it in every repository: the rule above covers runs of the
-  game only, and emulated calls need no decision from the owner. It is an experiment with `starting_state: emulated-call`, names
-  arguments and memory by parameter, field path or glossary name, and
-  establishes an entry only when its cases reach every branch the entry
-  describes and the reading of the function's callers and inputs is complete.
-  It never confirms what depends on interrupts (`# may run:`), timing or the
-  operating system, and it cannot reach code in the `FBOV` overlay pack. The
-  harness does not exist yet (`docs/RUNTIME.md`), and `Emulated call` items
-  wait until a tooling batch builds it.
-- People test the rebuild when they happen to and report in words and
-  screenshots. Never wait for a report or plan around one. Record one at once
-  in `docs/reports/` with the `triage-report` skill; a research session
-  triages it into a `Defect (R-...)` parity note, a queue item or a finding.
-  Screenshots are never committed: the rebuild's go in `GAME_DIR/reports/`,
-  the original's in `GAME_DIR/captures/`.
-- Competing readings of an open question are written in the entry's Open
-  questions section with the evidence for and against each, never kept only
-  in a session, and never implemented until an entry says them.
-- Open research questions live in `queue/<AREA>.md`, grouped by the evidence
-  they need, in the area of the first entry they name, each with an ID
-  (`Q-COMBAT-012`) that everything outside the queue refers to it by. An item
-  is closed by recording its answer in `spec/` and deleting it in the same
-  commit. An item is taken up again only with new evidence, a new tool or a
-  new reading, and when that second attempt ends in the same place it moves
-  to the section of the evidence that would settle it, or to `Blocked` when
-  that evidence is out of reach.
-- A batch is one commit, and is research, implementation or tooling, never
-  more than one. A session keeps to one side of the clean room. An
-  implementation batch works from the spec alone, never opens analysis output,
-  `queue/` or `docs/reports/`, and under `spec/` only adds open questions and
-  `unknown` entries; a gap becomes a `Spec gap:` note on the parity row, which
-  the next research session turns into a queue item and removes once it is
-  answered. A research batch makes the parity and citation changes the
-  documentation check requires of what it did to the spec, and changes no
-  other code apart from `tools/`. A tooling batch (extractor, Ghidra scripts,
-  inspection tools, the inventory export, the emulator harness, headless
-  runner, fixture harness) needs no decision. Every batch runs
-  `./tools/Test.ps1` before it is committed, and ends by printing the status
-  block the skills give.
-- Commit messages end with a `Spec:` trailer naming the entries created or
-  changed, any commit that changes a row's status adds `Parity:`, any that
-  closes queue items adds `Queue:` with their IDs, and any that settles a
-  report adds `Report:`.
-- A claim moves from an `unknown` listing (or `sourced` from a document),
-  through competing readings kept in its entry's Open questions, each with a
-  queue item, to a description at `supported` once direct evidence (the code
-  that produces the behaviour) settles it, then `established` by a complete
-  reading of the code, by an emulated call that agrees on every branch once
-  the reading of its callers and inputs is complete, or, only where it
-  depends on something the code does not decide, when an owner capture of the
-  original agrees. Circumstantial evidence never raises a status.
-  Contradicting evidence makes it `disputed`, and a wrong claim is superseded,
-  never deleted. The protocol's "The life of a claim" section has the details.
-- `docs/HANDOVER.md` is the current state of work outside any goal, at most
-  200 lines, rewritten at the end of every session that works under no goal,
-  and names items and entries by ID without saying what research found.
-  `docs/goals/` holds one file per running goal, which claims its areas and
-  has a handover of its own for sessions under it. `docs/DECISIONS.md`
-  records the owner's decisions and moves its oldest entries to
-  `docs/decisions/` before it passes 1,000 lines. A session ends by
-  committing its handover on its own; half-done work never goes into a batch
-  commit.
-- Progress is what scripts compute: parity totals, entries by status,
-  executable and file coverage, queue sizes, open reports. Never a
-  hand-written percentage. Executable coverage is measured against the
-  function inventories, `coverage/<build ID>/<manifest path>.tsv`, one for
-  each file the analysis reads. An inventory holds only each function's start
-  address, its size, and optionally a name the researcher gave it and why it
-  is out of scope, never code, bytes, strings, constants or names that came
-  from the original, so it is committed.
+- Stage: `docs/IMPLEMENTATION-PLAN.md`
+  ([Stages](vendor/upstream/work-protocol.md#stages) (lines 32-78)). What can be done with the
+  original running, and by whom: `docs/RUNTIME.md`
+  ([Runtime access](vendor/upstream/work-protocol.md#runtime-access) (lines 42-60)).
+- Open questions: `queue/<AREA>.md`, with IDs such as `Q-COMBAT-012`
+  ([The queue](vendor/upstream/work-protocol.md#the-queue) (lines 80-119),
+  [Order of work](vendor/upstream/work-protocol.md#order-of-work) (lines 112-119)).
+- Coding agents never run the game here. Every run is an owner live session
+  requested in `docs/live-sessions/`; the queue's `Agent run` section stays
+  empty and agents never take the machine's run lock
+  ([Live sessions](vendor/upstream/work-protocol.md#live-sessions) (lines 205-215)).
+- Emulated calls use the harness in `tools/emu/`; any agent may build it and
+  make them, whatever limits on runs of the game say
+  ([Emulated calls](vendor/upstream/work-protocol.md#emulated-calls) (lines 217-249)).
+- Reports from testers: `docs/reports/`, recorded with the `triage-report`
+  skill. Screenshots of the rebuild go in `GAME_DIR/reports/`, of the original
+  in `GAME_DIR/captures/`, never in Git
+  ([Reports from testing](vendor/upstream/work-protocol.md#reports-from-testing) (lines 251-267)).
+- Batches, commits and their `Spec:`, `Parity:` and `Queue:` trailers:
+  [Batches](vendor/upstream/work-protocol.md#batches) (lines 137-183). Statuses and how a claim
+  moves between them:
+  [The life of a claim](vendor/upstream/work-protocol.md#the-life-of-a-claim) (lines 121-135).
+- Handover: `docs/HANDOVER.md`, running goals in `docs/goals/`, the owner's
+  decisions in `docs/DECISIONS.md`
+  ([Sessions](vendor/upstream/work-protocol.md#sessions) (lines 185-193),
+  [Coding agents and long-running goals](vendor/upstream/work-protocol.md#coding-agents-and-long-running-goals) (lines 290-326)).
+- Progress is what scripts compute, never a hand-written percentage. Function
+  inventories are committed as `coverage/<build ID>/<manifest path>.tsv`
+  ([Measuring progress](vendor/upstream/work-protocol.md#measuring-progress) (lines 269-284)).
 
 The procedures are skills in `.claude/skills/`: `runtime-access`,
 `plan-work`, `start-session`, `research-item`, `implement-rows`,
-`triage-report`, `live-session` and `end-session`. They hold the steps, adapted
-to the owner-only DOSBox rules here, and link to the published pages for the
-rules. For a `/goal`, write the goal file with `plan-work`, keep to its scope,
-and end every batch with the status block.
+`triage-report`, `live-session` and `end-session`. For a `/goal`, write the goal file with
+`plan-work`, keep to its scope, and end every batch with the status block the
+skills print.
+
+### Local research and runtime constraints
+
+Static work precedes emulated calls and owner runs within the protocol's order.
+A live-session item needs its own static attempt or asks to confirm a static
+reading. Never wait idle for an owner run or tester report.
+
+The planned Unicorn harness in `tools/emu/` calls one function of `DSUN.EXE`
+without starting the game or DOSBox. It cannot reach the FBOV overlay pack and
+does not exist yet; those items wait for a tooling batch (`docs/RUNTIME.md`).
+Emulated calls need no owner decision or run lock. The owner-only native capture
+rules under "Native runtime visual validation" remain binding.
+
+Every batch runs `./tools/Test.ps1` before commit, ends with the skills' status
+block, and uses the protocol's Spec, Parity, Queue and Report trailers as needed.
 
 ## Rules that never bend
 
@@ -249,92 +232,47 @@ and end every batch with the status block.
 
 ## Reverse-engineering discipline
 
-The project follows the [methodology](https://dinorefurb.com/methodology/) and
-the [documentation standard](https://dinorefurb.com/documentation-standard/)
-published at dinorefurb.com. This section and the next two summarize them;
-where they differ, the published pages win.
+The methodology (`vendor/upstream/methodology.md`) and the documentation
+standard (`vendor/upstream/documentation-standard.md`) govern the spec. Read
+only the section a task needs, by the lines its link below gives; the points
+below are the ones every session relies on.
 
-Start with one narrow player-visible question. The executable has the final word
-on what the shipped game does. The manual says what the designers intended and
-is often wrong about what shipped, and FAQs, wikis, and other fans' tools are
-leads to credit and re-check. For a non-trivial rule: state the question, locate
-evidence, form competing hypotheses, seek falsifying evidence, corroborate
-against the original running, then implement it with a deterministic test.
-
-An experiment starts from a saved state, usually a save patch, changes one
-input, and records what follows. It is repeated from the same state with the
-random number generator's state varied between runs. Anything random gets
-enough repetitions for a recorded distribution, because a formula inferred from
-one roll is a guess.
-
-Use the standard's statuses and no other scale. Rules, formats, screens, and
-bugs are `unknown`, `sourced` (outside sources only), `supported` (one kind of
-direct evidence from the original), `established` (a complete reading of the
-code, or a reading and a run of the original that agree where the code does
-not decide the outcome), `disputed`, or `superseded`. Findings and experiments are
-`recorded`, `reproduced`, or `superseded`. A part of an entry that is less
-certain than the rest goes in its own entry or in its Open questions section.
-Never silently promote a plausible interpretation.
-
-Unidentified functions, globals, fields, and scripts keep neutral names
-(`fn_00478CD0`, `g_004C1F20`, `unk_2A`) until a finding or experiment shows what
-they do, because a wrong name given early steers every later reading. Decompiler
-output is not source: inferred names, types, signedness, casts, and control flow
-can be wrong, so inspect bounded instruction context when the distinction
-matters.
-
-Durable findings go in `spec/`, one entry per file named after its ID, and not
-in conversation history or large retained dumps. IDs are never reused or
-renumbered, and an entry that turns out wrong becomes `superseded`. The spec
-describes the original only and never names a class, file, or setting from this
-repository. It holds names, numbers, formulas, and tables in full, as a strategy
-guide would: the names of concepts and of the things a designer made (an
-enumeration value may be named `UNIT_ARCHER`), constants, and the per-unit or
-per-item statistics a designer filled in, with a table of more than 64 values in
-a value file. It never keeps a substantial copy of the game's writing (dialogue,
-descriptions, messages, the manual's prose; quote a short passage at most and
-refer to the rest by resource), its art (images, sounds, music, video, maps), or
-a meaningful slice of its code or scripts. Tool procedure stays in `docs/GHIDRA.md`. Never commit broad
-decompiler, instruction, or Version Tracking exports. The function inventories
-in `coverage/` are the one export that is committed, and only with the columns
-the planning section above allows.
+- The executable has the final word on what the shipped game does; the manual
+  and fan sources are leads
+  ([Ground rules](vendor/upstream/methodology.md#ground-rules) (lines 12-22)).
+- Use the standard's statuses and no other scale, and never promote a
+  plausible interpretation
+  ([Status](vendor/upstream/documentation-standard.md#status) (lines 118-167)).
+- Unidentified functions and globals keep neutral names (`fn_00478CD0`,
+  `g_004C1F20`) until evidence shows what they do
+  ([Notation](vendor/upstream/documentation-standard.md#notation) (lines 169-202)).
+- The spec describes the original only, never names a class, file or setting
+  of this repository, and never copies the game's writing, art or code
+  ([Where it lives](vendor/upstream/documentation-standard.md#where-it-lives) (lines 14-92),
+  [Licence](vendor/upstream/documentation-standard.md#licence) (lines 888-898)). Blank entries
+  of each kind are in `docs/SPEC-ENTRY-TEMPLATES.md`; tool procedure is in
+  `docs/GHIDRA.md`.
+- Never commit broad decompiler, instruction or Version Tracking exports. The
+  function inventories in `coverage/` are the one export that is committed.
 
 ## Fidelity
 
-The spec records the original exactly, bugs included. The rebuild keeps the
-rules, balance, content, AI, and pacing, including asymmetries, rounding,
-ordering, timing, overflow behavior, and quirks players built strategies
-around. Crashes, corrupted saves, game speed tied to the CPU clock, and logic
-that plainly does not do what it was written to do may be fixed. An interface
-change may add information or remove friction, and may not change what the
-player can do or what the rules produce. Screens match the original pixel for
-pixel except where a documented interface change draws something new. When a
-bug cannot be told from a design decision, the original behavior stays and any
-fix becomes a setting.
-
-Every departure from the spec is a `DEV-AREA-NNN` file in `deviations/`,
-with a Default of `off`, `on` or `mandatory`. A setting starts `off`, with the
-original's behavior, unless the entry's Justification argues that the rebuild's
-behavior is strictly better: then it starts `on`, and a player who wants the
-original switches it off. A deviation with no setting is `mandatory`, and its
-Justification also says why the original's behavior is not worth a setting. The
-fix of an unintended bug that players do not rely on is `on` without one. A
-quirk that may be deliberate or that players rely on is never strictly better,
-so its deviation starts `off`. The validation suite runs with every setting
-switched off, and a test that reaches a mandatory deviation cites its ID and
-allows for it. Rebalancing and new features belong in a separate mode or
-project.
+What the rebuild keeps and what it may change is set by
+[Where fidelity stops](vendor/upstream/methodology.md#where-fidelity-stops) (lines 52-64).
+Every departure from the spec is a `DEV-AREA-NNN` file in `deviations/`
+([Deviation log](vendor/upstream/documentation-standard.md#deviation-log) (lines 774-795)). The
+validation suite runs with every setting switched off, and a test that reaches
+a mandatory deviation cites its ID. Rebalancing and new features belong in a
+separate mode or project.
 
 ## Citing the spec
 
-Code comments and tests cite the spec IDs they implement or check, so a search
-for an ID finds everything that depends on it. A placeholder in the code, such
-as a guessed formula, carries a `PLACEHOLDER: <spec ID>` comment, and the
-parity row for that ID cannot be `complete` while it does. The parity matrix
-(`PARITY.md` for the totals, `parity/` for the rows) has one row per rule,
-format, and screen entry that is not superseded, so behavior
-without a spec entry gets an `unknown` entry before any code. Manual play never
-counts as a test.
+Code comments and tests cite the spec IDs they implement or check. A guessed
+formula carries a `PLACEHOLDER: <spec ID>` comment, and that parity row cannot
+be `complete` while it does. `PARITY.md` holds the totals and `parity/` the
+rows ([Parity matrix](vendor/upstream/documentation-standard.md#parity-matrix) (lines 797-865));
+behavior without a spec entry gets an `unknown` entry before any code. Manual
+play never counts as a test.
 
 ## Architecture boundaries
 
@@ -349,9 +287,9 @@ counts as a test.
 - `<Project>.Inspect`: read-only tooling over `Resources`.
 - `<Project>.Tests`: architecture, safety, and behavioral tests.
 
-**Rules live in `Core`; screens map them.** Every decision the original makes —
+**Rules live in `Core`; screens map them.** Every decision the original makes â€”
 a flag cascade, a gate, a branch table, an outcome selector, a state
-transition — lives in `Core` as a pure function of the serializable state and
+transition â€” lives in `Core` as a pure function of the serializable state and
 its inputs, even when only `Game` calls it. `Game` translates those decisions
 into screens, art, input, and timing; a rule may not have `Game` as its only
 home, and a rule already written inline in a screen handler is extracted the
@@ -508,6 +446,6 @@ Commits describe the change and its evidence, not the tooling that produced it.
 ## Evidence review and offline rules
 
 Apply the claim-relevant procedure in [EVIDENCE-REVIEW](docs/EVIDENCE-REVIEW.md)
-before asserting a complete reading. Verified offline copies and explicit
-refresh instructions are in [UPSTREAM-RULES](docs/UPSTREAM-RULES.md). These
-procedures retain Standard v1 and the published pages' authority.
+before asserting a complete reading. How the local copy of the standard is
+verified and, when the owner asks, refreshed is in
+[UPSTREAM-RULES](docs/UPSTREAM-RULES.md). These procedures keep Standard v1.

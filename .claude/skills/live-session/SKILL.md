@@ -5,12 +5,14 @@ description: Request, prepare and ingest a live session, in which the repository
 
 # Live session
 
-The rules are in the [work protocol](https://dinorefurb.com/work-protocol/#live-sessions),
-with this repository's owner-only DOSBox rules in `AGENTS.md` ("Native runtime
-visual validation") and the capture protocol in `docs/live-sessions/README.md`.
-Agents never launch, control, capture, attach to or stop DOSBox, so the owner
-plays and captures alone. The maintainer's time is the scarcest resource the project has: prepare it so
+The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#live-sessions) (lines 205-215).
+Open a linked section only when a step leaves a question it answers, read
+only the lines the link gives, and never a section already read this session.
+The maintainer's time is the scarcest resource the project has: prepare it so
 nobody needs to ask a question during the session. Never wait idle for one.
+
+Agents never launch, control, capture, attach to or stop DOSBox. The owner
+plays and captures alone under `AGENTS.md` and `docs/live-sessions/README.md`.
 
 ## Request
 

@@ -60,3 +60,21 @@ use, argument, effect, guard, or capacity reporter.
 The task addressed these ten priorities at the documented scope. It did not
 fully resolve 39 detailed tool requests. Further reporter work must be scoped
 and planned separately; the restored entries preserve its acceptance criteria.
+
+## PR 17: local rules and bounded section reading
+
+Adopted `18a67f38dc48476d0af1e5fedfc6c592cb6fdfef`: the methodology joins the
+exact Standard v1 and Protocol snapshots. Local pages are assumed current for
+tasks; update checks and refreshes happen only at the owner's request. Section
+links state checked line ranges, and the link checker detects external rule-page
+links, misplaced paths, missing headings and missing/stale ranges. Skills open
+only needed sections and reuse context. Canonical summaries now link to the
+local definitions; blank entry forms and local runtime exceptions remain.
+
+This workflow adoption does not close additional gap entries.
+
+Verification: all six immutable snapshot digests match their pinned source;
+local link checks and 34 Node tests pass, including missing/stale ranges,
+misplaced paths, absent headings, published-page links and range rewriting.
+The configured project?s `tools/Test.ps1` passes all 700 .NET tests and the
+615-entry documentation check. No rules-page network read is part of the gate.

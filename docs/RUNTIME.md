@@ -2,7 +2,7 @@
 
 What can be done with the original game running, and who can do it. The
 `runtime-access` skill keeps this file current; see the
-[work protocol](https://dinorefurb.com/work-protocol/#runtime-access). This
+[work protocol](../vendor/upstream/work-protocol.md#runtime-access) (lines 42-60). This
 file says what is true now: replace an answer when a tool, emulator, machine or
 owner rule changes it. Findings from runs go in `spec/`, never here.
 
@@ -14,7 +14,7 @@ afterwards. No agent run takes place, and the machine's run lock
 (`C:\ProgramData\refurbished-dinosaurs\run.lock`, or the path in
 `REFURBISHED_DINOSAURS_RUN_LOCK`) is never taken from this repository. If the
 owner lifts that rule, an agent run takes the lock as the protocol's
-[Running the original](https://dinorefurb.com/work-protocol/#running-the-original)
+[Running the original](../vendor/upstream/work-protocol.md#running-the-original) (lines 195-215)
 says.
 
 ## BLD-GOG-EN-1.1
