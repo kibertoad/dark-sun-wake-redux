@@ -253,6 +253,7 @@ Entries by area.
 | [FND-SCRIPT-019](../findings/FND-SCRIPT-019.md) | Script-cache paths have distinct age updates and retain writes before a failed transfer | recorded |
 | [FND-SCRIPT-020](../findings/FND-SCRIPT-020.md) | A guarded interpreter helper clears four supplied working buffers | recorded |
 | [FND-SCRIPT-021](../findings/FND-SCRIPT-021.md) | Cache replacement selects the first largest signed age and invalidates four fields | recorded |
+| [FND-SCRIPT-022](../findings/FND-SCRIPT-022.md) | Script-buffer room search mixes comparison widths and restarts after collisions or eviction | recorded |
 | [RULE-SCRIPT-001](../rules/RULE-SCRIPT-001.md) | Loading a GPL or MAS script into the script cache | superseded |
 | [RULE-SCRIPT-002](../rules/RULE-SCRIPT-002.md) | Running a script, reading its code and calling other scripts | supported |
 | [RULE-SCRIPT-003](../rules/RULE-SCRIPT-003.md) | The script instructions for jumps, calls, returns, if, while, compare, the accumulator and assignment | supported |

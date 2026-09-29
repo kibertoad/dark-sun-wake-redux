@@ -176,7 +176,7 @@ Entries by kind.
 
 ## findings
 
-394 entries.
+395 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -499,6 +499,7 @@ Entries by kind.
 | [FND-SCRIPT-019](../findings/FND-SCRIPT-019.md) | Script-cache paths have distinct age updates and retain writes before a failed transfer | recorded |
 | [FND-SCRIPT-020](../findings/FND-SCRIPT-020.md) | A guarded interpreter helper clears four supplied working buffers | recorded |
 | [FND-SCRIPT-021](../findings/FND-SCRIPT-021.md) | Cache replacement selects the first largest signed age and invalidates four fields | recorded |
+| [FND-SCRIPT-022](../findings/FND-SCRIPT-022.md) | Script-buffer room search mixes comparison widths and restarts after collisions or eviction | recorded |
 | [FND-SOUND-001](../findings/FND-SOUND-001.md) | Every VOC file and BVOC resource is one Creative Voice File header, one sound block and a terminator | recorded |
 | [FND-SOUND-002](../findings/FND-SOUND-002.md) | The installation's music is 40 Ogg Vorbis files that game.ins mounts as audio tracks 2 to 41 | recorded |
 | [FND-SOUND-003](../findings/FND-SOUND-003.md) | SOUND_DS.EXE holds no VOC signature, no VOC file extension and no BIOS wait call | recorded |

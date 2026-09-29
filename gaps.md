@@ -458,3 +458,19 @@ its content while distinguishing it from active function declarations.
 ownership, just as they are excluded from active procedure validation.
 Retain their text and supersession links for history, and add a checker
 fixture that replaces a rule while retaining its original declarations.
+
+## 29. Check progress across restarted scans and repeated invalidation
+
+FND-SCRIPT-022 reads a nominally 16-slot room search that restarts its
+index after a collision and retries after cache invalidation. A wrapped
+end increment can restore the same candidate; invalidating an already
+free selected slot can also leave the search state unchanged. Counting
+slots or recording an eviction call does not by itself prove termination.
+The finding keeps these conditional states separate from evidence that
+the ordinary game's producers can reach them.
+
+**Request:** shared loop-effect summaries should identify restart edges
+and the state that must change for progress. Check wrapped arithmetic
+and repeated no-op invalidation before claiming a bounded search or
+successful eviction. Keep local repeated-state examples distinct from
+native reachability, and retain comparison signedness at each gate.

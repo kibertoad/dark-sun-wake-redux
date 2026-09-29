@@ -32,7 +32,8 @@ Next ID: Q-SCRIPT-008
   low-word allocation arithmetic and pre-transfer state writes. FND-SCRIPT-020
   reads the guarded four-buffer reset; FND-CONFIG-160 reads the status-gated
   script-99 entry. FND-SCRIPT-021 reads replacement selection and writes.
-  Allocation and error helpers, cache inputs, valid pointers,
+  FND-SCRIPT-022 reads allocation search, comparisons and restart paths.
+  Error helpers, cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.
   Blocks: slices 3-6.
 - Q-SCRIPT-004. RULE-SCRIPT-002, RULE-SCRIPT-004, RULE-SCRIPT-008,
@@ -63,8 +64,9 @@ Next ID: Q-SCRIPT-008
   matching and duplicate cache slots, selected-number bypass, invalid
   number/selector and signed age edges, plus replacement maxima, ties,
   mixed/all-negative ages and fields left unchanged (FND-SCRIPT-021).
-  Resource and error branches need
-  separate provenance and cannot establish operating-system outcomes by
+  Add room-search cases for empty/fragmented bounds, equality, zero and
+  equal-capacity sizes, word-end wrap, signed capacity and restart progress
+  (FND-SCRIPT-022). Resource and error branches need separate provenance and cannot establish operating-system outcomes by
   emulation. Tried: FND-SCRIPT-019 reads the local instruction paths;
   the emulator harness does not exist yet.
 

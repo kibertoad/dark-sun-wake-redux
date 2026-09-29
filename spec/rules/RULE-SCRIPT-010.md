@@ -4,7 +4,7 @@ title: Script-cache lookup and resource transfer
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-001, FND-SCRIPT-003, FND-SCRIPT-006, FND-SCRIPT-019, FND-SCRIPT-020, FND-SCRIPT-021, FND-CONFIG-151]
+evidence: [FND-SCRIPT-001, FND-SCRIPT-003, FND-SCRIPT-006, FND-SCRIPT-019, FND-SCRIPT-020, FND-SCRIPT-021, FND-SCRIPT-022, FND-CONFIG-151]
 conflicting: []
 split_with: []
 related: [FMT-SCRIPT-001, RULE-SCRIPT-002]
@@ -105,9 +105,25 @@ The ordered branches and their conditions are specified below.
    126 and returns the retained result, including false results that
    reach this path normally.
 
-`fn_172C_31ED`'s reset is bounded in FND-SCRIPT-020. Allocation,
-cache-input provenance and error-entry effects retain the dependencies in
-Q-SCRIPT-003; this procedure does not assign their unknown outcomes.
+The room-search helper `fn_172C_0698` starts with candidate zero and a
+clear local found flag. It rejects a zero-extended word size not below
+`script_buffer_size`, unsigned, by calling `fn_5702_00B1` and returning
+zero if it returns. Otherwise it scans the 16 slots when candidate plus
+size is signed-less than capacity and found is clear. It skips free
+starts, unsigned ends below the candidate, and unsigned starts above
+candidate plus size. A remaining slot collides: set candidate to its
+end plus one in wrapped word arithmetic, zero-extend it, and restart
+from slot zero. After reaching slot 16, mark found only when candidate
+plus size is signed-less than capacity. Found returns the candidate's
+low word. When found remains clear and the sum is not signed-less,
+call `fn_172C_07BB` and retry at candidate zero if size is still
+unsigned-below capacity; otherwise return the candidate's low word.
+There is no own allocation, compaction or scan-restart bound
+(FND-SCRIPT-022).
+
+`fn_172C_31ED`'s reset is bounded in FND-SCRIPT-020. Cache-input
+provenance, valid bounds and error-entry effects retain the dependencies
+in Q-SCRIPT-003; this procedure does not assign their unknown outcomes.
 
 ## Outputs
 
@@ -132,6 +148,14 @@ No general capacity invariant or observed oversized-load consequence is
 established here. A matching number in the chosen fill slot bypasses
 loading regardless of its stored selector or free-start marker.
 
+The allocator's end comparisons include equality, and a collision's
+end-plus-one can wrap to zero and restart without progress. A capacity
+with its high bit set also differs between its unsigned size checks and
+signed room checks. FND-SCRIPT-022's conditional repeated-state examples
+do not establish that ordinary game inputs reach them. A returned zero
+is not a separate allocator-failure signal; the fill caller checks the
+stop byte. Cache writers and error handling remain necessary evidence.
+
 The appended 31 byte is the stop instruction (RULE-SCRIPT-003).
 
 ## What the sources say
@@ -147,8 +171,9 @@ None known.
 
 ## Open questions
 
-- Which cache state reaches `fn_172C_07BB`'s selection, how `fn_172C_0698`
-  finds room, and what `fn_5702_00B1` does after errors (Q-SCRIPT-003).
+- Which cache and capacity state reaches `fn_172C_07BB`'s selection and
+  `fn_172C_0698`'s search, and what `fn_5702_00B1` does after errors
+  (Q-SCRIPT-003).
   One reading supplies valid distinct buffers and sufficient space;
   another reaches changed state, aliasing or failure. Their full
   callers, pointer producers and error paths distinguish them.

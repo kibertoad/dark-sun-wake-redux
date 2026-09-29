@@ -232,8 +232,9 @@ Next ID: Q-CONFIG-011
   age paths and pre-transfer state writes; FND-SCRIPT-020 bounds the guarded
   buffer reset. FND-SCRIPT-021 bounds replacement selection and writes.
   Actual cache state, resource loading, error entry and reachable MAS/99
-  opcodes remain open, alongside Q-SCRIPT-003's allocation and input
-  provenance.
+  opcodes remain open. FND-SCRIPT-022 bounds allocation search and its
+  restart/comparison paths; Q-SCRIPT-003 retains input provenance and
+  error effects.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?
