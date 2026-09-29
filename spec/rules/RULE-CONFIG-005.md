@@ -207,7 +207,10 @@ None known.
   collector; FND-CONFIG-171 reads the following resident callback gates,
   fresh targets and fixed word writes. FND-CONFIG-172 distinguishes child
   recursive error propagation from an origin; FND-CONFIG-173 bounds the
-  intervening list helper's gates and checked/ignored results. Actual cached
+  intervening list helper's gates and checked/ignored results.
+  FND-CONFIG-174 bounds the EBOX dependency's common zero result;
+  FND-CONFIG-175 bounds bracketed SI/DS preservation on guarded-helper
+  bypass paths, retaining aliases, shared fields and actual guards. Actual cached
   inputs, resource and opcode effects, I/O and error outcomes remain open.
   Runtime registration, loads, valid records, reachable inputs, other writers
   and intervening helper effects remain open.

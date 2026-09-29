@@ -116,6 +116,11 @@ its return does not establish a visible or timing effect.
 
 ## Alternatives
 
+FND-CONFIG-174 subsequently reads the 1675 call's common zero return
+and gated state effects. FND-CONFIG-175 resolves guard-bypass SI/DS
+preservation in the bracketed buffer/coordinate and shared-CS pointer
+helpers. Guard outcomes, aliases, target producers and timing remain open.
+
 Q-CONFIG-008 and Q-SCRIPT-003 retain DS:A119 producers,
 target identity, registrations, all callers, DS/SI and
 field preservation, complete external callees, aliases,

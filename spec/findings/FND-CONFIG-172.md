@@ -103,8 +103,8 @@ path clears current DS:A17F and A183 if A17F still equals
 the object, then returns zero. FND-CONFIG-168's caller
 does not inspect EBOX's AX; after its return, the common
 continuation still passes the child object to 444C:0092.
-A failed, continuing or changed-state EBOX return is
-therefore not a local guard on that subsequent request.
+A returning EBOX result is therefore not a local guard
+on that subsequent request.
 
 The complete 409B:12A4 span is
 `0x00036E54..0x00036EB0`. It reads object word +96.
@@ -113,8 +113,10 @@ Bit set reads word current DS:A179. Value one calls
 local far 1675 with the object; nonzero AX returns FFFF
 without the following local clears. Other cases clear
 word DS:A179, far fields DS:A17F/A183 and bit 8000
-in object+96, then return zero. Local 1675's complete
-effects and return producers remain open. All external
+in object+96, then return zero. FND-CONFIG-174
+subsequently bounds 1675's local
+effects and common zero return; its complete external
+effects and producer conditions remain open. All external
 segment operands above were verified through declared
 MZ relocations; DS-relative fields mean current DS.
 
@@ -123,7 +125,8 @@ MZ relocations; DS-relative fields mean current DS.
 The cleanup callees have different local contracts.
 MENU propagates an error value without a local leaf
 origin; 0544 requests two pointer operations without
-own field clears; EBOX can exit early, but its caller
+own field clears; EBOX has an early null return and
+encoded result exits, but its caller
 still requests the child pointer operation afterward.
 FND-CONFIG-165 and FND-CONFIG-167 bound that wrapper's
 returned zero and discarded runtime result. None of
@@ -132,9 +135,14 @@ or absence of aliasing, stale fields or prior changes.
 
 ## Alternatives
 
+FND-CONFIG-174 subsequently reads 1675's common zero return, with all
+nested call results discarded. Under valid ordinary returns this supplies
+no local nonzero origin to 12A4 or nonnull 0AFB; the latter's null-input
+FFFF and transitive state/return dependencies remain separate.
+
 Q-CONFIG-008 and Q-SCRIPT-003 retain valid graph/count
 and record-length producers, actual index ranges, aliases,
-all callers, local 1675, runtime guards, DS/index state
+all callers, 1675's transitive effects, runtime guards, DS/index state
 preservation and native outcomes. One reading supplies
 finite valid MENU traversal and zero leaf results;
 another has invalid, changing or cyclic graph state.
@@ -143,8 +151,11 @@ its existence would not by itself supply a FFFF origin.
 The local propagated-error branch cannot distinguish it.
 
 One EBOX reading bypasses 12A4 or returns zero; another
-reaches its unread 1675's nonzero outcome. Complete
-callee and producer evidence would separate them. The
+changes state or fails to return inside a transitive callee.
+FND-CONFIG-174 rules out a locally originating nonzero
+1675 result on ordinary balanced returns. Complete
+callee and producer evidence is still needed for state
+and outcomes. The
 conditional encoded FFFF paths are not observations of
 failed cleanup or visible dismissal. Resident cases
 remain in Q-SCRIPT-007 after supported layouts and the
@@ -162,4 +173,4 @@ advancement. Read 3CFA:0544 through 0585, 409B:0AFB
 through 0C22 and 12A4 through 12FF. Verify declared MZ
 operands and ordered pointer operations/clears. Compare
 which results FND-CONFIG-168 consumes or ignores, retaining
-unread 1675 and actual input/return conditions.
+1675's transitive effects and actual input/return conditions.

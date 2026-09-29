@@ -4,7 +4,7 @@ title: Script-cache lookup and resource transfer
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-001, FND-SCRIPT-003, FND-SCRIPT-006, FND-SCRIPT-019, FND-SCRIPT-020, FND-SCRIPT-021, FND-SCRIPT-022, FND-SCRIPT-023, FND-CONFIG-151, FND-CONFIG-161, FND-CONFIG-162, FND-CONFIG-163, FND-CONFIG-164, FND-CONFIG-165, FND-CONFIG-166, FND-CONFIG-167, FND-CONFIG-168, FND-CONFIG-169, FND-CONFIG-170, FND-CONFIG-171, FND-CONFIG-172, FND-CONFIG-173]
+evidence: [FND-SCRIPT-001, FND-SCRIPT-003, FND-SCRIPT-006, FND-SCRIPT-019, FND-SCRIPT-020, FND-SCRIPT-021, FND-SCRIPT-022, FND-SCRIPT-023, FND-CONFIG-151, FND-CONFIG-161, FND-CONFIG-162, FND-CONFIG-163, FND-CONFIG-164, FND-CONFIG-165, FND-CONFIG-166, FND-CONFIG-167, FND-CONFIG-168, FND-CONFIG-169, FND-CONFIG-170, FND-CONFIG-171, FND-CONFIG-172, FND-CONFIG-173, FND-CONFIG-174, FND-CONFIG-175]
 conflicting: []
 split_with: []
 related: [FMT-SCRIPT-001, RULE-SCRIPT-002]
@@ -160,7 +160,12 @@ recursive FFFF; its finite valid leaves return zero, so that branch is
 not itself an originating error. The EBOX result is ignored before the
 caller's common child-pointer operation (FND-CONFIG-172). The intervening
 list helper has signed count gates and several checked FFFF exits;
-its caller ignores that returned result too (FND-CONFIG-173).
+its caller ignores that returned result too (FND-CONFIG-173). The guarded
+EBOX dependency also locally returns zero while discarding nested results;
+its encoded error edges supply no own origin on valid normal returns
+(FND-CONFIG-174). The callback bracket's copy/coordinate and shared-CS
+pointer helpers preserve retained SI and DS on valid guard-bypass paths;
+actual guards, aliases and target preservation remain open (FND-CONFIG-175).
 
 `fn_172C_31ED`'s reset is bounded in FND-SCRIPT-020. Cache-input
 provenance, valid bounds and error-entry effects retain the dependencies

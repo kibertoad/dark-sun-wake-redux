@@ -554,3 +554,11 @@ distinguish base-case results from values merely passed around the cycle.
 An encoded error edge alone should not prove reachable failure. Retain
 finite-traversal and valid-state assumptions rather than inferring either
 an actual failure or unconditional successful termination.
+
+FND-CONFIG-174 adds encoded caller failure tests around a helper that
+normalizes every local normal return to zero and discards nested results.
+FND-CONFIG-175 shows why a preservation summary should name the complete
+callee paths and guard assumptions: its fixed copies preserve SI/DS on
+bypass paths while changing ES, and zero can also mean a skipped copy.
+These cases reinforce result-origin analysis without broadening it into
+unconditional success or preservation claims.

@@ -258,7 +258,10 @@ Next ID: Q-CONFIG-011
   gated helper calls and fixed word writes. FND-CONFIG-172
   bounds child cleanup, recursive error propagation without a leaf origin,
   and ignored EBOX results. FND-CONFIG-173 reads the intervening list
-  helper's signed gates, pointer walks and checked/ignored results. Runtime metadata,
+  helper's signed gates, pointer walks and checked/ignored results.
+  FND-CONFIG-174 reads the guarded EBOX dependency's common zero return;
+  FND-CONFIG-175 bounds bracketed guard-bypass SI/DS and copy contracts.
+  Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent

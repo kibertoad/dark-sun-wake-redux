@@ -222,7 +222,7 @@ Entries by status.
 
 ## recorded
 
-391 entries.
+393 entries.
 
 | ID | Title |
 |---|---|
@@ -428,6 +428,8 @@ Entries by status.
 | [FND-CONFIG-171](../findings/FND-CONFIG-171.md) | Following resident helpers reload callback targets and perform bounded fixed-segment word writes |
 | [FND-CONFIG-172](../findings/FND-CONFIG-172.md) | Child cleanup distinguishes recursive error propagation from local error origins |
 | [FND-CONFIG-173](../findings/FND-CONFIG-173.md) | The intervening list helper has signed count gates and checked or ignored result paths |
+| [FND-CONFIG-174](../findings/FND-CONFIG-174.md) | The guarded EBOX dependency discards call results and locally returns zero |
+| [FND-CONFIG-175](../findings/FND-CONFIG-175.md) | Callback bracket helpers preserve DS and SI on guard-bypass copy paths |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload |

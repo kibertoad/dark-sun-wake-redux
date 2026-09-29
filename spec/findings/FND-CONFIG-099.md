@@ -62,6 +62,11 @@ old-window and handled-child gates.
 
 ## Alternatives
 
+FND-CONFIG-175 subsequently reads the paired reverse-copy and coordinate
+output helpers used around a callback. It bounds conditional SI/DS
+preservation, the changed ES and zero-result null-copy bypass, retaining
+valid-buffer and guard assumptions.
+
 Source-pointer validity, the region's later consumers and other runtime
 state changes remain unread (Q-CONFIG-008). These fixed writes may
 matter to a later pointer or rendering operation without overlapping
