@@ -113,8 +113,13 @@ Next ID: Q-CONFIG-011
   direct route by its literal nonzero gate. FND-CONFIG-105 reads overlay
   174's three zero-gate routes: two helper-result codes and one
   sign-extended table byte plus 235. Producing helpers, table contents
-  and callers remain open. The other six caller sites and the live
-  code-source state remain unread.
+  and callers remain open. FND-CONFIG-106 excludes overlay 189 and
+  213's three nonzero-gate invocations; FND-CONFIG-107 reads overlay
+  211's two zero-gate code sources. FND-CONFIG-108 reads overlay 208's
+  stored gate and code, completing local gate classification of the
+  eleven declared sites. Stored-field and table producers, code-producing
+  helpers, remaining guards, upstream reachability and live state remain
+  unread.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

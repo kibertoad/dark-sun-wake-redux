@@ -182,3 +182,20 @@ instruction sites from byte-pattern candidates. A zero-result section should
 say exactly what was searched, so it cannot be mistaken for proof that no
 computed, aliased or differently encoded route exists. This complements the
 single-call fixup resolution request in item 8.
+
+## 14. Check known instruction hits before trusting a variable-use inventory
+
+While preparing FND-CONFIG-108, a temporary variable-use query linearly
+disassembled overlay 208 from its code-range beginning and reported no
+exact uses of two fields. A separate entry-based reading had already
+identified both reads. Decoding across the overlay's intervening data or
+instruction-boundary gaps can lose alignment and miss later known code.
+The zero-result query was discarded; no absence claim relies on it.
+
+**Request:** make shared variable-use reporters start from established
+function or exported-entry boundaries and validate at least one known
+positive instruction hit when available. Separate raw operand-pattern
+candidates from verified instructions, report undecoded ranges, and reject
+a negative result when it misses its positive control. A declared overlay
+code range is a containment bound, not proof that all its bytes can be
+linearly disassembled as one instruction stream.

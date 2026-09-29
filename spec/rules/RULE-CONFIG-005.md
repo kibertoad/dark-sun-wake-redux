@@ -125,8 +125,12 @@ None known.
   FND-CONFIG-103 excludes overlay 173's direct selector route by its
   literal nonzero byte. FND-CONFIG-105 reads overlay 174's three
   zero-gate routes and their local code sources; the producing helpers,
-  table contents and callers remain open. The other six caller sites
-  remain unread.
+  table contents and callers remain open. FND-CONFIG-106 excludes
+  overlay 189 and 213's three literal-nonzero routes. FND-CONFIG-107
+  reads overlay 211's two zero-gate code sources, and FND-CONFIG-108
+  reads overlay 208's stored gate and code. All eleven declared calls
+  have local gate readings; their producing state, remaining guards and
+  upstream reachability remain open.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local
