@@ -23,11 +23,11 @@ Other areas' entries, queue files and parity rows. `src/` and `tests/`.
 
 - Stage: Slices.
 - Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 532 entries and 158 parity rows).
+  documentation check passed with 533 entries and 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
-- Next: Q-CONFIG-008, read the DS:02F6/02F8 registered-pointer
-  dispatch consumer and input producers named by FND-CONFIG-135;
+- Next: Q-CONFIG-008, read opcode 0x22 parameter-evaluation
+  effects on the iterator flag from FND-CONFIG-136. Pointer replacement,
   setup entry and later table effects from FND-CONFIG-134 remain open. Transitive helper effects from
   FND-CONFIG-131 and FND-CONFIG-130, and remaining helper effects from
   FND-CONFIG-109 stay open. Entry 28C9:1261 provenance needs new
