@@ -23,12 +23,12 @@ Other areas' entries, queue files and parity rows. `src/` and `tests/`.
 
 - Stage: Slices.
 - Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 535 entries and 158 parity rows).
+  documentation check passed with 536 entries and 158 parity rows).
 - Unfinished: none.
 - Blockers: none known.
-- Next: Q-CONFIG-008, read expression helper 172C:284D
-  effects on the iterator flag; remaining expression and input gaps are
-  named by FND-CONFIG-137 and FND-CONFIG-138. Pointer replacement,
+- Next: Q-CONFIG-008, read 1AA0:0009 and 2D40:0AB6
+  callee effects named by FND-CONFIG-139; remaining expression and
+  input gaps stay in Q-CONFIG-008. Pointer replacement,
   setup entry and later table effects from FND-CONFIG-134 remain open. Transitive helper effects from
   FND-CONFIG-131 and FND-CONFIG-130, and remaining helper effects from
   FND-CONFIG-109 stay open. Entry 28C9:1261 provenance needs new
