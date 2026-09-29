@@ -357,3 +357,18 @@ payload and fixup bounds, and fixup operand membership before scanning.
 Require the build's known range and fixup counts as positive controls,
 and fail at range construction instead of allowing invalid ranges to
 be silently clipped or used in a negative finding.
+
+## 23. Distinguish function-body byte counts from contiguous bounds
+
+The 07B1 resource reader's inventory size is 546 bytes, while its
+contiguous entry-to-return span is 549 bytes. A skipped three-byte
+instruction explains the difference. Adding the inventory's size to its
+start truncated the scratch reading before the return; FND-CONFIG-151
+uses the verified instruction-path return instead.
+
+**Request:** shared bounded readers must treat the inventory size as a
+body-byte count, not an end address. Derive local read bounds from
+verified exits and control flow, report holes or discontiguous bodies,
+and reject a claimed complete reading that lacks its return or tail
+transfer. Keep richer boundary reports local-only so the committed
+inventory retains the Standard's allowed columns.

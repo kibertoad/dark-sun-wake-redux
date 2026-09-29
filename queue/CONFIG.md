@@ -201,6 +201,12 @@ Next ID: Q-CONFIG-011
   and starting-position stores and metadata-buffer argument. Resource
   callees 38FF:05B5 and 38FF:04AB, earlier gate producers, cleanup,
   other later changes and reachability remain open.
+  FND-CONFIG-151 reads the length and full-transfer wrappers, existing-
+  buffer branch and count checks. FND-CONFIG-152 traces a positive
+  metadata count at most 98 to one operating-system request. This is a
+  block-producer path, not a successful native transfer observation.
+  Selected record stability, accepted FNFO bytes, archive preparation,
+  positioning, operating-system results, cleanup and later inputs remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

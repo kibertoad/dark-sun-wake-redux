@@ -170,8 +170,11 @@ None known.
   FND-CONFIG-149 reads the declared direct setup caller's local join.
   FND-CONFIG-150 reads direct post-setup selector assignments and a
   metadata-buffer argument; resource-call effects, gate producers and
-  later inputs remain open. Reachable inputs, other writers and intervening
-  helper effects remain open.
+  later inputs remain open. FND-CONFIG-151 reads the metadata length
+  and transfer contracts; FND-CONFIG-152 traces the bounded request
+  through pointer normalization to an interrupt. Record stability, resource
+  bytes and operating-system outcomes remain open. Reachable inputs,
+  other writers and intervening helper effects remain open.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local

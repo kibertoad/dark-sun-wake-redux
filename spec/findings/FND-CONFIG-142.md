@@ -71,6 +71,12 @@ of arithmetic writes to the slot word.
 
 ## Alternatives
 
+FND-CONFIG-150 and FND-CONFIG-151 subsequently identify an
+offered metadata buffer and a block-transfer path. FND-CONFIG-152
+traces its bounded interrupt request. Those uncovered write forms
+supply new evidence without making this literal query exhaustive
+or proving successful metadata population.
+
 Q-CONFIG-008 retains indirect, block, aliased and explicit-other-
 segment writes, differently encoded uses, setup invocation and
 state timing. Those can change either field even when this

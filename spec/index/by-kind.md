@@ -175,7 +175,7 @@ Entries by kind.
 
 ## findings
 
-381 entries.
+383 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -374,6 +374,8 @@ Entries by kind.
 | [FND-CONFIG-148](../findings/FND-CONFIG-148.md) | A validated overlay-range query finds selector-table reads but no verified literal producer | recorded |
 | [FND-CONFIG-149](../findings/FND-CONFIG-149.md) | A declared direct setup caller joins two preceding paths and checks two following returns | recorded |
 | [FND-CONFIG-150](../findings/FND-CONFIG-150.md) | The post-setup initializer assigns selector entries and starting positions after resource-call checks | recorded |
+| [FND-CONFIG-151](../findings/FND-CONFIG-151.md) | The metadata resource wrappers query length and request a complete transfer into the supplied buffer | recorded |
+| [FND-CONFIG-152](../findings/FND-CONFIG-152.md) | The bounded metadata transfer reaches one operating-system request at the normalized buffer address | recorded |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |

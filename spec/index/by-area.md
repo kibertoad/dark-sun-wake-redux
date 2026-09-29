@@ -626,6 +626,8 @@ Entries by area.
 | [FND-CONFIG-148](../findings/FND-CONFIG-148.md) | A validated overlay-range query finds selector-table reads but no verified literal producer | recorded |
 | [FND-CONFIG-149](../findings/FND-CONFIG-149.md) | A declared direct setup caller joins two preceding paths and checks two following returns | recorded |
 | [FND-CONFIG-150](../findings/FND-CONFIG-150.md) | The post-setup initializer assigns selector entries and starting positions after resource-call checks | recorded |
+| [FND-CONFIG-151](../findings/FND-CONFIG-151.md) | The metadata resource wrappers query length and request a complete transfer into the supplied buffer | recorded |
+| [FND-CONFIG-152](../findings/FND-CONFIG-152.md) | The bounded metadata transfer reaches one operating-system request at the normalized buffer address | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

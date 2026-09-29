@@ -110,6 +110,11 @@ No gameplay role is assigned to the slot bytes or selectors.
 
 ## Alternatives
 
+FND-CONFIG-151 subsequently reads the resource wrappers' length
+and full-transfer paths. FND-CONFIG-152 traces the bounded
+transfer request. Record stability, operating-system results and
+actual metadata bytes remain unresolved.
+
 Q-CONFIG-008 retains the two resource callees, failure cleanup,
 other buffer producers, incoming state, DS:193C transitions,
 selector and metadata validity, later table changes and rest-time
