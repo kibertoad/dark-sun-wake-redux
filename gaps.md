@@ -275,3 +275,24 @@ was recorded from the raw table alone.
 bounded dispatch-table reports, alongside the count requested in item 12.
 Separate raw table positions from original input values, and leave the
 input case unresolved until its normalization and range checks are read.
+
+## 19. Report effective operand size beside conversion mnemonics
+
+While preparing FND-CONFIG-138, Capstone 5.0.7 printed the same
+word-to-double-word conversion mnemonic for synthetic unprefixed and
+operand-size-prefixed sign-extension instructions in 16-bit mode. Their
+actual register widths differ. A synthetic single-instruction Unicorn
+check preserved the upper word and extended the byte for the unprefixed
+case, but extended the word into the full register for the prefixed case.
+No original-game function was executed for that tool check.
+
+The [Intel instruction reference](https://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-vol-2a-manual.pdf)
+defines the conversion by effective operand size. The original's three
+relevant locations were checked for prefixes, and the finding describes
+the register-width operation rather than trusting the printed mnemonic.
+
+**Request:** have shared 16-bit instruction reporters show effective operand
+size and register semantics for implicit-operand conversions, and add
+synthetic prefixed/unprefixed positive controls. Mark a mnemonic/width
+mismatch explicitly; a locally plausible mnemonic must not silently change
+signed-byte fields into signed-word fields in an evidence record.

@@ -99,8 +99,10 @@ intervening helpers can still change state.
 
 ## Alternatives
 
+FND-CONFIG-138 reads byte fetch and advancement, separating
+the ordinary path from its failed-check clear route.
 Q-CONFIG-008 retains reachable shipped nested instructions,
-byte-reader and remaining expression effects, other flag writers,
+reader inputs and remaining expression effects, other flag writers,
 pointer replacement and timing relative to the rest entry.
 A reading that treats ordinary parameter restoration as flag
 rollback is ruled out by its copy bounds and destinations.

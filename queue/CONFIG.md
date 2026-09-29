@@ -162,6 +162,10 @@ Next ID: Q-CONFIG-011
   ordinary parameter save/restore spans, which do not roll back the flag.
   Reachable nested instructions, byte-reader and other expression effects,
   nesting-word provenance and intervening state changes remain unread.
+  FND-CONFIG-138 reads the byte-reader and advancement bodies: ordinary
+  cursor updates do not write the flag, and a failed end check calls its
+  known clear path. Reader inputs, remaining expression effects, reachable
+  nested instructions and later rest-entry changes remain unread.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?
