@@ -580,6 +580,7 @@ Entries by area.
 | [FND-CONFIG-102](../findings/FND-CONFIG-102.md) | Overlay 172 forwards a queued frame code with the selector byte gate zero | recorded |
 | [FND-CONFIG-103](../findings/FND-CONFIG-103.md) | Overlay 173 passes a nonzero byte gate and bypasses overlay 176 feedback at its selector call | recorded |
 | [FND-CONFIG-104](../findings/FND-CONFIG-104.md) | The resident APFM input branch maps queued mouse bit 2 to overlay 172 frame value 64 | recorded |
+| [FND-CONFIG-105](../findings/FND-CONFIG-105.md) | Overlay 174 supplies three zero-byte-gate routes to the feedback selector | recorded |
 | [RULE-CONFIG-001](../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
 | [RULE-CONFIG-002](../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
 | [RULE-CONFIG-003](../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |

@@ -123,7 +123,10 @@ None known.
   declared calls into that selector. FND-CONFIG-102 traces overlay 172's
   zero-gate code source, with a resident value-64 producer in FND-CONFIG-104.
   FND-CONFIG-103 excludes overlay 173's direct selector route by its
-  literal nonzero byte. The other nine caller sites remain unread.
+  literal nonzero byte. FND-CONFIG-105 reads overlay 174's three
+  zero-gate routes and their local code sources; the producing helpers,
+  table contents and callers remain open. The other six caller sites
+  remain unread.
   Other shared sinks' incoming paths and computed or unrelocated pointer
   calls remain open. One
   reading is that all listed sites can be reached under their local

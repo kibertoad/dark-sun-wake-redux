@@ -110,8 +110,11 @@ Next ID: Q-CONFIG-011
   eleven declared overlay callers. FND-CONFIG-102 traces overlay 172's
   zero-gate frame-code source; FND-CONFIG-104 supplies a resident
   mouse-bit-two/value-64 producer. FND-CONFIG-103 excludes overlay 173's
-  direct route by its literal nonzero gate. The other nine caller sites
-  and the live code-source state remain unread.
+  direct route by its literal nonzero gate. FND-CONFIG-105 reads overlay
+  174's three zero-gate routes: two helper-result codes and one
+  sign-extended table byte plus 235. Producing helpers, table contents
+  and callers remain open. The other six caller sites and the live
+  code-source state remain unread.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?
