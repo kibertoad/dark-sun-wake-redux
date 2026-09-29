@@ -30,18 +30,19 @@ Entries, queue files and parity rows outside CONFIG and SCRIPT.
 
 - Stage: Slices.
 - Last gate: 2026-09-29, `./tools/Test.ps1` passed (700 tests;
-  documentation check passed with 570 entries and 158 parity rows).
+  documentation check passed with 574 entries and 158 parity rows).
   Full solution build passed with zero warnings and errors.
 - Unfinished: none.
 - Blockers: none known.
 - Next:
-  - Q-CONFIG-008 and Q-SCRIPT-003, read FND-CONFIG-161's 56BD:0043
-    pointer consumer, 56BD:00BB and the following resident callees.
-    Retain FND-CONFIG-167's runtime metadata/shared-slot producers,
-    FND-CONFIG-166's active status/service effects, DS preservation and
-    FND-CONFIG-164's driver outcomes. Bound actual cache/capacity inputs,
-    resource selection and reachable MAS/99 instructions for
-    FND-CONFIG-160 and RULE-SCRIPT-010.
+  - Q-CONFIG-008 and Q-SCRIPT-003, follow FND-CONFIG-168's
+    3A8E:0003 and child callees, FND-CONFIG-169's local mode
+    callees, and FND-CONFIG-171's indirect target producers and
+    transitive preservation. Retain FND-CONFIG-170's near-buffer
+    inputs, FND-CONFIG-167's runtime metadata/shared-slot producers,
+    FND-CONFIG-166's active effects and FND-CONFIG-164's driver
+    outcomes. Bound cache/capacity inputs, resource selection and
+    reachable MAS/99 instructions for FND-CONFIG-160 and RULE-SCRIPT-010.
   - Q-CONFIG-008, follow FND-CONFIG-159's external helper effects,
     stored-pointer consumers and replacements, earlier gate producers,
     bypass state, open outcomes and archive retention.
