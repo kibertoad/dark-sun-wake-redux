@@ -72,6 +72,11 @@ verified successful release or rollback contract.
 
 ## Alternatives
 
+FND-CONFIG-167 subsequently reads the runtime dispatcher and one
+route's local rejection/result conversion. The outer returned zero
+discards that route's result; native reachability and valid metadata,
+shared-slot and interrupt dependencies remain open.
+
 Q-CONFIG-008 and Q-SCRIPT-003 retain runtime 1000:149B,
 55CD:0000's producers/consumers, valid pointer metadata,
 all caller inputs and DS preservation. One reading supplies

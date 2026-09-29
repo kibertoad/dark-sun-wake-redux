@@ -198,7 +198,8 @@ None known.
   mode-one callback-loop bypass. FND-CONFIG-164 traces the common poll's
   driver-result predicate and aliased outputs. FND-CONFIG-165 reads
   the pointer wrapper's returned-zero path; FND-CONFIG-166 bounds
-  state-clear/status entry gates. Actual cached
+  state-clear/status entry gates. FND-CONFIG-167 reads runtime dispatch,
+  returned-result conversions and shared-slot DS restoration. Actual cached
   inputs, resource and opcode effects, I/O and error outcomes remain open.
   Runtime registration, loads, valid records, reachable inputs, other writers
   and intervening helper effects remain open.

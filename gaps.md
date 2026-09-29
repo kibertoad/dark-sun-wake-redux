@@ -515,6 +515,9 @@ the same runtime call and normal returned zero. The existence of those
 checks does not establish a protected read, suppressed runtime request or
 successful release. The named callers themselves test nonnull fields;
 invalid native inputs or failures are not inferred from the local ordering.
+FND-CONFIG-167 further traces a local runtime rejection result discarded by
+the outer wrapper's zero return. This reinforces the difference between
+clearing the caller's field and proving a successful operation.
 
 **Request:** shared safety/effect summaries should check that a guard
 precedes and controls each access or call it is said to protect. Preserve

@@ -38,7 +38,9 @@ Next ID: Q-SCRIPT-008
   callee and two polls; FND-CONFIG-163 bounds its setter guard and runtime
   mode. FND-CONFIG-164 reads the common poll's register/output contract.
   FND-CONFIG-165 bounds the pointer wrapper; FND-CONFIG-166 reads
-  state-clear/status gates. Full external effects and returns, interrupt outcomes,
+  state-clear/status gates. FND-CONFIG-167 reads runtime dispatch and a
+  local rejection path whose result the wrapper discards. Full external
+  effects and returns, interrupt outcomes,
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.
   Blocks: slices 3-6.
@@ -63,8 +65,8 @@ Next ID: Q-SCRIPT-008
 
 ## Emulated call
 
-- Q-SCRIPT-007. RULE-SCRIPT-010: Do resident loader cases agree with the
-  documented early returns, cache scan, validation and age branches?
+- Q-SCRIPT-007. RULE-SCRIPT-010: Do resident loader and interrupt-free helper
+  cases agree with the documented branches and local state effects?
   Settles it: after the harness in docs/RUNTIME.md exists, fixtures using
   the rule's parameters and glossary fields for stop/current-pair paths,
   matching and duplicate cache slots, selected-number bypass, invalid
@@ -72,8 +74,11 @@ Next ID: Q-SCRIPT-008
   mixed/all-negative ages and fields left unchanged (FND-SCRIPT-021).
   Add room-search cases for empty/fragmented bounds, equality, zero and
   equal-capacity sizes, word-end wrap, signed capacity and restart progress
-  (FND-SCRIPT-022). Resource and error branches need separate provenance and cannot establish operating-system outcomes by
-  emulation. Tried: FND-SCRIPT-019 reads the local instruction paths;
+  (FND-SCRIPT-022). Once their field layouts are supported, add valid
+  early-zero status guards (FND-CONFIG-166), segment-zero dispatch and
+  interrupt-free normalized-address/rejection cases (FND-CONFIG-167).
+  Resource and error branches need separate provenance and cannot
+  establish operating-system outcomes by emulation. Tried: FND-SCRIPT-019 reads the local instruction paths;
   the emulator harness does not exist yet.
 
 ## Agent run

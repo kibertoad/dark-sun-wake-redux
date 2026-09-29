@@ -247,6 +247,9 @@ Next ID: Q-CONFIG-011
   bounds state-clear/status gates and the stable-state first-zero case.
   Runtime 1000:149B, active status and service effects, pointer/state
   writers, DS preservation and actual intervening input remain open.
+  FND-CONFIG-167 reads runtime dispatch, a bounded rejection predicate,
+  result conversions and shared-slot DS restoration. Runtime metadata,
+  bound/slot writers and actual interrupt outcomes remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?
