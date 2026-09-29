@@ -154,6 +154,10 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-135 reads a registered flag writer and another clear path.
   Their upstream dispatch, timing, callee effects and later or other writes
   remain unread; no complete range or termination invariant is established.
+  FND-CONFIG-136 traces the registered writer to pre-handler script-opcode
+  dispatch. Opcode 0x22 clears the flag before parameter reading, whose
+  nested dispatch and later effects remain unread; other rest routes, pointer
+  replacement and reachable script requests remain open.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

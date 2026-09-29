@@ -72,11 +72,12 @@ relative to rest processing or table updates.
 
 ## Alternatives
 
-Q-CONFIG-008 retains the registration's dispatch consumer,
-argument producers, replacement and invocation timing, the
+FND-CONFIG-136 reads a script-opcode dispatch consumer and its
+argument producer. Q-CONFIG-008 retains other callers, pointer
+replacement and invocation timing, the
 input-49 callee effects, other flag writers and the clear entry's
-incoming routes. No event or gameplay meaning is assigned to
-49 or 51. In particular, an argument-only formula covering the
+incoming routes. On the registered script route, 49 and 51 are
+opcodes 0x31 and 0x33 (FND-CONFIG-136); other routes remain unread. In particular, an argument-only formula covering the
 input-49 call path would require proving the callee's handling
 of SI; the branch comparison alone does not provide that proof.
 
