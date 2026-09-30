@@ -27,7 +27,7 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 - Gap 12: closed; actual two-entry tag/target controls and rejected third entry, recorded in docs/REPORTER-CASE-AUDIT.md.
 - Gap 13: open; full request and cited controls in gaps.md.
 - Gap 15: open; full request and cited controls in gaps.md.
-- Gap 16: partial; two pushed-pointer controls pass, segment loads/stored pointer controls remain.
+- Gap 16: all four instruction-owned operand forms pass source controls in toolkit PR 19/template PR 34; pending reviewed merge/adoption.
 - Gap 17: open; full request and cited controls in gaps.md.
 - Gap 20: open; full request and cited controls in gaps.md.
 - Gap 21: open; full request and cited controls in gaps.md.
@@ -59,7 +59,7 @@ Synthetic success and broad guidance do not close a game-case request. Current s
 ## Handover
 
 - Stage: Slices; this goal is tooling maintenance only.
-- Last gate: 2026-09-30, tools/Test.ps1 passes; artifacts/iret-candidate-record-validation.log. Toolkit and template candidate gates/full builds pass.
-- Unfinished: full numbered acceptance audit; toolkit PR 19 and template PR 34 review/adoption. Candidate worktrees have no unfinished implementation.
+- Last gate: 2026-10-01, tools/Test.ps1 passes; artifacts/operand-candidate-record-validation.log. Toolkit and template candidate gates/full builds pass.
+- Unfinished: full numbered acceptance audit; toolkit PR 19/template PR 34 review and adoption. Candidate worktrees have no unfinished implementation.
 - Blockers: none preventing other tooling progress.
-- Next: distinct disc-source validation for gap 5; remaining operand controls for gap 16; arithmetic/count and callee-composition capabilities required by remaining cases.
+- Next: distinct disc-source validation for gap 5; offline gate for gap 4; arithmetic/count and callee-composition capabilities required by remaining cases.
