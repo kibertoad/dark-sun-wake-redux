@@ -490,3 +490,27 @@ at `94f8f678afb05171567f48d9fb19488e48309f12`, as the owner requested.
   Keep reports/configurations in GAME_DIR. Pinned documentation must be outside
   the project-authored citation scan while retaining its exact upstream bytes.
 - Exit: reviewed tooling commit, process audit and separate handover commit.
+
+
+## Tooling verification: Dark Sun reporter cases
+
+The owner requests verification of partially implemented gaps against their
+recorded game cases, and upstream PRs for reproducible remaining reporter gaps.
+This is tooling on the research side of the clean room, not gameplay work.
+
+- Outcome: a per-request acceptance audit, removal of fully verified gaps, and
+  synthetic upstream regressions/fixes for reporter failures encountered.
+- Evidence: the existing findings named by gaps 13, 14, 18, 21, 26, 27, 32,
+  35, 36 and 42, plus related operand/segment/cleanup cases where applicable.
+  Use the documented BLD-GOG-EN-1.1 executable and declared MZ/FBOV mappings.
+- Acceptance: compare actual reports with established entry hits, canonical
+  call controls, consumed widths, path order and missing-producer conditions.
+  Unsupported paths are explicit unmet cases, never a negative finding. Keep
+  raw reports/configurations in GAME_DIR; commit only an own-words audit and
+  synthetic tooling tests. New native reachability/status claims are excluded.
+- Upstream fixes are game-agnostic and tested with entirely constructed bytes.
+  Plan changes before implementation in each target and run its canonical gate.
+  PR descriptions identify the concrete defect, its fix and remaining scope.
+- Exit: full local gate, reviewable tooling commit and separate handover; open
+  requested upstream PRs for necessary refinements. Preserve owner-only runs,
+  configured identity and existing licensed-source fingerprints.

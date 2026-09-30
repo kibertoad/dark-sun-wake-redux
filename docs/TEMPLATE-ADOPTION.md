@@ -193,3 +193,18 @@ effects, recursive origins, progress proofs and general cardinality analysis.
 Verification: 45 Python tests and 41 Node tests, 700 .NET tests, configuration,
 repository policy, offline pins, section links and the 615-entry / 158-row /
 5-deviation documentation check. Full solution build: zero warnings/errors.
+
+
+## Follow-up: recorded game-case verification
+
+The ten selected reporter requests were checked against their recorded cases,
+with the adopted toolkit revision and a separately tested refinement candidate.
+See [the full case audit](REPORTER-CASE-AUDIT.md) for inputs, expected controls,
+observations, conditional models and remaining limits. Gap 18 passes against
+the actual adopted source and is closed. Gaps 14 and 19 pass with the candidate
+fixes but remain open pending adoption. Other requests remain partially verified
+or unsupported; no group closure is claimed.
+
+Upstream review: toolkit PR 16, template PR 28 and standards/protocol PR 27.
+This session does not change the game's reporter/rule pins or any evidence
+status. Original-derived reports and configurations stay in GAME_DIR.

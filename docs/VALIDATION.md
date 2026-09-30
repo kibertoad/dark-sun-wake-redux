@@ -300,3 +300,14 @@ git add VALIDATION.md
 marked test file of a `validated` row. The check fails a `validated` row whose
 marked test file is missing from it or has changed since it was recorded, so a
 change to such a test needs a new local run before it merges.
+
+
+## Bounded reporter case verification
+
+2026-09-30: static checks against BLD-GOG-EN-1.1, located through the stable
+GAME_DIR baseline, compared the ten selected reporter requests and related
+conversion/segment/cleanup cases with their existing findings. See
+[REPORTER-CASE-AUDIT.md](REPORTER-CASE-AUDIT.md). Reports/configurations remain
+under GAME_DIR. No original program or emulated function was run; no evidence
+status changed. Gap 18 passed the actual adopted reporter. Candidate fixes for
+gaps 14 and 19 are proposed upstream and are not adopted locally yet.
