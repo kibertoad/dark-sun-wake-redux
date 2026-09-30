@@ -21,8 +21,11 @@ See the [work protocol](../vendor/upstream/work-protocol.md#working-files) (line
   warnings or errors.
 - Merged template PR 27, toolkit PR 14 and standards PR 26 are adopted with
   exact source pins, ten bounded reporters and CI/release validation. See
-  `docs/TEMPLATE-ADOPTION.md` for the individual audit. Gap 28 is closed by
-  this game's replacement fixture; game-specific reporter cases remain open.
+  `docs/TEMPLATE-ADOPTION.md` for the individual audit.
+- The tooling acceptance audit is recorded in `docs/REPORTER-CASE-AUDIT.md`;
+  `gaps.md` has 39 remaining requests. Toolkit PR 16, template PR 28 and
+  standards/protocol PR 27 are open with passing applicable CI checks.
+  Proposed reporter and rule changes remain unadopted pending upstream review.
 - Probe is none. Native DOSBox access remains owner-only; no draw probe or
   RNG hook has been implemented by this update.
 - Offline checker and section-link verification pass. Snapshot/configuration
@@ -30,7 +33,8 @@ See the [work protocol](../vendor/upstream/work-protocol.md#working-files) (line
 
 ## Unfinished
 
-None.
+Upstream review and subsequent adoption of toolkit PR 16, template PR 28 and
+standards/protocol PR 27 remain pending; no half-finished local batch.
 
 ## Blockers
 
