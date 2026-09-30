@@ -3,15 +3,7 @@
 These are the remaining requests for the restoration template and shared analysis
 tooling. They describe tooling behavior, not claims about the original game.
 
-Merged standards PR 26, toolkit PR 14 and template PR 27 are adopted. The
-ten instruction-derived reporters now cover bounded supported queries; their
-upstream acceptance suites pass. Game-specific reporter requests stay open
-until their own cases pass, as the revised standard requires. Unsupported
-queries and partial searches do not close a request. Gap 28 is removed after
-the adopted checker passes this game's retained-declaration replacement case.
-Gap 18 is also removed after the adopted reporter passes the recorded dispatch
-normalization case. Gaps 14 and 19 have passed with candidate fixes in toolkit
-PR 16, but remain open until those fixes are adopted here.
+Current website, toolkit and template main revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Game-specific requests close only after their own acceptance cases pass. Gaps 14, 18, 19 and 28 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
 Delivered capabilities, closure evidence and remaining limits are recorded in
 [the adoption record](docs/TEMPLATE-ADOPTION.md).
 
@@ -206,23 +198,6 @@ as well as reporting exact segment:offset matches. Distinct DOS segment aliases
 can name the same location. Report exact-pair and aliased-target results
 separately, and preserve the exclusion of computed or unrelocated pointers.
 
-## 14. Check known instruction hits before trusting a variable-use inventory
-
-While preparing FND-CONFIG-108, a temporary variable-use query linearly
-disassembled overlay 208 from its code-range beginning and reported no
-exact uses of two fields. A separate entry-based reading had already
-identified both reads. Decoding across the overlay's intervening data or
-instruction-boundary gaps can lose alignment and miss later known code.
-The zero-result query was discarded; no absence claim relies on it.
-
-**Request:** make shared variable-use reporters start from established
-function or exported-entry boundaries and validate at least one known
-positive instruction hit when available. Separate raw operand-pattern
-candidates from verified instructions, report undecoded ranges, and reject
-a negative result when it misses its positive control. A declared overlay
-code range is a containment bound, not proof that all its bytes can be
-linearly disassembled as one instruction stream.
-
 ## 15. Preserve ordering and shared guards in incoming-call summaries
 
 FND-CONFIG-119's seven calls to one helper are two guarded three-call
@@ -283,27 +258,6 @@ widths, group overlapping decodes, and classify them against a verified
 entry-based instruction path before counting uses. Report unresolved
 boundaries explicitly instead of selecting a width from a locally valid
 decode. This complements item 14's alignment and positive-control checks.
-
-## 19. Report effective operand size beside conversion mnemonics
-
-While preparing FND-CONFIG-138, Capstone 5.0.7 printed the same
-word-to-double-word conversion mnemonic for synthetic unprefixed and
-operand-size-prefixed sign-extension instructions in 16-bit mode. Their
-actual register widths differ. A synthetic single-instruction Unicorn
-check preserved the upper word and extended the byte for the unprefixed
-case, but extended the word into the full register for the prefixed case.
-No original-game function was executed for that tool check.
-
-The [Intel instruction reference](https://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-vol-2a-manual.pdf)
-defines the conversion by effective operand size. The original's three
-relevant locations were checked for prefixes, and the finding describes
-the register-width operation rather than trusting the printed mnemonic.
-
-**Request:** have shared 16-bit instruction reporters show effective operand
-size and register semantics for implicit-operand conversions, and add
-synthetic prefixed/unprefixed positive controls. Mark a mnemonic/width
-mismatch explicitly; a locally plausible mnemonic must not silently change
-signed-byte fields into signed-word fields in an evidence record.
 
 ## 20. Distinguish shared callees from recursive call paths
 

@@ -9,12 +9,7 @@ were checked before querying. Each reporter also checks its SHA-256 input guard.
 No original process, DOSBox, emulated function or native observation was used.
 No spec or parity status changed.
 
-Adopted reporter: toolkit `c2b21ee62fc404391e8dcfafd7029185f81241a9`.
-Refinement candidate: toolkit `2b688e66ba34ee25d9882ea4938f95b5461b0ba4`,
-PR [16](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/pull/16).
-Python 3.14 and Capstone 5.0.7. Standard remains v1 with the existing local pin.
-The candidate was tested separately; this game has not adopted the unmerged
-reporter or proposed rule changes.
+Current adopted reporter/checker: toolkit `926e287a4134512d59fe021efe6507c933da03f1`. Website rules: `3b4e6fcfca887620cdf13c8a8e62f9ca53133d60`. Template: `b9f542549840cf7ce2d254a8f9f7bf0f502daaa7`. The initial candidate was `2b688e66ba34ee25d9882ea4938f95b5461b0ba4`; revised upstream changes are now fully adopted. Python 3.14 and Capstone 5.0.7; Standard remains v1.
 
 Configurations and raw JSON reports live under `GAME_DIR/analysis/reporter-audit/`
 and are not committed. `run.mjs` records the initial cases; `verify.mjs` checks
@@ -27,7 +22,7 @@ The summary here records tool acceptance, not new claims about the game.
 
 | Gap | Case and expected control | Observed result and disposition |
 | --- | --- | --- |
-| 14 | `gap14-gate` / `gap14-code`, established entry and the two reads in FND-CONFIG-108 | Adopted effect traces stop before the known reads. Candidate entry-CFG operand observations find both with correct widths, retain unknown values/segments, report undecoded ranges and reject an offset-one bad control. Candidate passes; keep open pending adoption. |
+| 14 | `gap14-gate` / `gap14-code`, established entry and the two reads in FND-CONFIG-108 | Adopted effect traces stop before the known reads. The current adopted source finds both as conditionalAccesses with named stops/untraced callees, correct widths and unresolved effects; it retains undecoded ranges and rejects an offset-one bad control. Close the bounded discovery request, without claiming values or unconditional execution. |
 | 13 | `gap13-selector` / `gap13-setup`, eleven selector calls in FND-CONFIG-101 and six setup calls in FND-CONFIG-111 | Named overlay-domain scans recover all eleven and six encodings. Entry CFG confirms seven and two respectively; the remaining four in each inventory stay raw candidates because of unresolved dispatch routes. The FND-CONFIG-128 same-segment query recovers its later relative-call candidate, also unverified. Positive controls cannot be accepted for these missing paths. Keep open. |
 | 18 | `gap18-normalization`, FND-CONFIG-137's verified selection continuation after the byte reader returns | Both adopted and candidate dispatch reports map the recorded normalized/extended pair to position 12 and raw target 3351, with decoded transformation, range gates and the evidenced 99-word layout. Out-of-domain examples remain unresolved without an invented selection. Close this reporter request; no general expression-reader or native-input claim. |
 | 21 | `gap21-caller` / `gap21-helper`, FND-CONFIG-143 and FND-CONFIG-145 | Candidate preserves SS-based formation versus DS-based consumption and explicit unresolved aliases. The helper can finish only under a declared returning-copy model; caller loops and mixed-segment filename dependencies in FND-CONFIG-181 remain unverified. String/repeat operations are unsupported. Keep open. |
@@ -49,7 +44,7 @@ audit never uses a modeled return to remove a missing-producer condition.
 Gap 19: `gap19-reader` and `gap19-advance` check the three conversion sites
 in FND-CONFIG-138. The candidate reports AL-to-AX, 16-bit effective size and
 explicit decoder-mnemonic mismatch. Prefixed controls use entirely synthetic
-instructions. Keep the request open until the new reporting events are adopted.
+instructions. The current adopted source passes all three recorded conversion controls. Close this conversion-reporting request; the advancement body still stops at an out-of-region call.
 
 Gap 39: `gap39-frame` reaches the DS-based indexed stores in FND-CONFIG-198
 under explicitly conditional guard/request returns, retaining BP-derived offset
@@ -83,3 +78,7 @@ checks; upstream synthetic success did not determine gap closure.
 All three PRs' applicable CI checks pass. Dark Sun's existing pinned gate also
 passes: 45 Python, 41 Node and 700 .NET tests, with repository, documentation,
 configuration and upstream-pin checks passing.
+
+## Revised main adoption rerun
+
+The local verification script now imports this checkout's pinned reporter and checks the reviewed conditionalAccesses schema: the two known reads name their stop dependencies rather than masquerading as traced effects. Incorrect controls still fail. Dispatch and all three effective-width conversions pass again. Conditional continuations for the other cases were rerun with unchanged unresolved/cap limits; they do not close those requests. No original process or emulated call ran. Earlier validation counts above describe the initial PR batch.

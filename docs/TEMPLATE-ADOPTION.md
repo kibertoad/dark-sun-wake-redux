@@ -208,3 +208,12 @@ or unsupported; no group closure is claimed.
 Upstream review: toolkit PR 16, template PR 28 and standards/protocol PR 27.
 This session does not change the game's reporter/rule pins or any evidence
 status. Original-derived reports and configurations stay in GAME_DIR.
+
+
+## Revised main adoption, 2026-09-30
+
+Fully adopted website `3b4e6fcfca887620cdf13c8a8e62f9ca53133d60`, toolkit `926e287a4134512d59fe021efe6507c933da03f1` and template `b9f542549840cf7ce2d254a8f9f7bf0f502daaa7`. Reviewed the complete main-to-previous-adoption delta, including revised PRs 27/16/28, PE32 loading/reporting, raw-backed executable extent checks and separate conditionalAccesses with named dependencies. All changed reporter source, guide, license and tests are pinned exactly. The template sync mapping and Python test discovery include PE files. Local configured paths and owner-only original runtime constraints are retained; no gameplay or spec/parity statuses change.
+
+Rules/checker lock and CI action pin now name current main, with unchanged checker bytes and Standard v1. Local section ranges verify. The recorded cases were rerun against the exact adopted source: gaps 14 and 19 now close, gap 18 still passes, and 37 requests remain. See REPORTER-CASE-AUDIT.md for conditional observations and remaining limits.
+
+Validation: 92 Python, 41 Node and 700 .NET tests pass, together with repository/configuration policy, pin/section verification and the 615-entry / 158-row / 5-deviation documentation gate.

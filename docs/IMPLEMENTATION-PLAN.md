@@ -514,3 +514,10 @@ This is tooling on the research side of the clean room, not gameplay work.
 - Exit: full local gate, reviewable tooling commit and separate handover; open
   requested upstream PRs for necessary refinements. Preserve owner-only runs,
   configured identity and existing licensed-source fingerprints.
+
+
+## Adopt revised upstream reporter, template and rules
+
+Tooling maintenance, 2026-09-30. Adopt website 3b4e6fcfca887620cdf13c8a8e62f9ca53133d60, toolkit 926e287a4134512d59fe021efe6507c933da03f1 and template b9f542549840cf7ce2d254a8f9f7bf0f502daaa7. Outcome: the configured project uses the latest reviewed bounded reporters and local rules, including PE32 support and separated conditional operand observations. Dark Sun stays on its evidenced MZ/FBOV mapping; no gameplay or evidence status changes.
+
+Acceptance: exact upstream source/test/guide/license digests, updated checker/CI pins and section ranges; template adoption script includes PE files and the canonical gate discovers both Python suites. Retain project-specific inventory paths and owner-only runtime constraints. Rerun the recorded Dark Sun controls with the adopted source, close only passing requests, and preserve explicit unresolved callee/path conditions. Synthetic PE and segmented regressions, configuration preservation and the full tools/Test.ps1 gate prove adoption. Exit: all pins verify, gate/build pass, case outcomes and remaining gaps are documented. Risks: shared instruction-boundary and conditional-report changes may alter old report consumers; update the local verification script to the reviewed report schema. No owner questions.

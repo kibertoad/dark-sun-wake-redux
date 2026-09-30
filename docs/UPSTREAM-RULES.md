@@ -89,8 +89,8 @@ Owner-only native runs and captures remain governed by `AGENTS.md`.
 ## Pinned instruction reporters
 
 The separately verified reporter source, tests, guide and MIT license are pinned
-to merged toolkit PR 14 in `tools/evidence/x86-lock.json`. Install Capstone with
+to toolkit main `926e287a4134512d59fe021efe6507c933da03f1` in `tools/evidence/x86-lock.json`. Install Capstone with
 `python -m pip install -r tools/evidence/x86-reporter/requirements.txt`. Python
 3.10+ is required; EVIDENCE_PYTHON selects the interpreter. See
 [EVIDENCE-TOOLS.md](EVIDENCE-TOOLS.md) for the ten x86 commands and explicit local
-checkout adoption. The current checker bytes are unchanged at the merged pin.
+checkout adoption. The current checker bytes remain unchanged; its revision and CI action pin name the latest toolkit main. The reporter includes revised PR 16, PE32 support and separated conditional accesses.

@@ -311,3 +311,8 @@ conversion/segment/cleanup cases with their existing findings. See
 under GAME_DIR. No original program or emulated function was run; no evidence
 status changed. Gap 18 passed the actual adopted reporter. Candidate fixes for
 gaps 14 and 19 are proposed upstream and are not adopted locally yet.
+
+
+### Revised upstream adoption, 2026-09-30
+
+Adopted latest website, toolkit and template main revisions recorded in TEMPLATE-ADOPTION.md. tools/Test.ps1 passed: 92 Python tests (including PE32), 41 Node tests and 700 .NET tests; repository/configuration checks, exact source pins, local section ranges and documentation check (615 entries, 158 parity rows, 5 deviations) passed. Recorded Dark Sun static cases passed known-read controls, incorrect-control rejection, dispatch normalization and all three effective-width conversion controls against the actual adopted reporter. Conditional continuations remain conditional. No original game or emulated function ran; raw reports/configurations remain in GAME_DIR.
