@@ -15,11 +15,11 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 ## Acceptance ledger
 
 - Gap 38: closed; final merged policy-driven diagnostics/heap-dump protections adopted and verified.
-- Gap 1: locally verified exporter/join/schema; template PR 33 pending merge.
+- Gap 1: closed; merged template PR 33 refinements adopted and actual installed inventory reverified.
 - Gap 2: closed; final merged script passes actual large-map page/name controls.
 - Gap 3: closed; shared join exactly reproduces actual original-resident/mapped-overlay inventory.
 - Gap 4: open; full request and cited controls in gaps.md.
-- Gap 5: partial; portable/legacy identity checks pass, distinct disc-source validation pending; PR 33 open.
+- Gap 5: partial; portable/legacy identity checks pass, distinct disc-source validation pending; PR 33 merged and adopted.
 - Gap 8: open; full request and cited controls in gaps.md.
 - Gap 9: open; full request and cited controls in gaps.md.
 - Gap 10: open; full request and cited controls in gaps.md.
@@ -59,7 +59,7 @@ Synthetic success and broad guidance do not close a game-case request. Current s
 ## Handover
 
 - Stage: Slices; this goal is tooling maintenance only.
-- Last gate: 2026-09-30, tools/Test.ps1 and full solution build pass; output in artifacts/latest-template-validation.log and artifacts/latest-template-build.log.
-- Unfinished: full numbered acceptance audit and missing reporter capabilities; template PR 33 review/merge.
+- Last gate: 2026-09-30, tools/Test.ps1 and full solution build pass; artifacts/template-e0325e0-validation.log and artifacts/template-e0325e0-build.log.
+- Unfinished: full numbered acceptance audit; root's uncommitted string-tooling plan and toolkit branch evidence/bounded-string-effects remain pending tests and acceptance.
 - Blockers: none preventing tooling progress.
-- Next: distinct disc-source validation, remaining operand controls, then shared string/flags/overlap capabilities.
+- Next: finish bounded string/flags reporter batch, distinct disc-source validation, remaining operand controls.
