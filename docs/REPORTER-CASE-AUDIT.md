@@ -110,3 +110,9 @@ Reviewed and adopted the final merge c048c63523a1b061b5325f6b05055d98819780d7, i
 ## Merged template PR 33 acceptance
 
 Adopted final merge e0325e0b063735e94b7e3ac94b0b8b89d0a38a79. Exact merged source and synthetic tests pass, including canonical address formatting, analyzer-name rejection and input-path agreement. The retained installed-source inventory export/join and committed checker pass again. Canonical validation and full build pass; logs are artifacts/template-e0325e0-validation.log and artifacts/template-e0325e0-build.log. Gap 1 is removed. Gap 5 remains open for distinct disc-source verification; earlier pending-merge notes are historical.
+
+## Bounded string and saved-flags candidate
+
+Toolkit PR [19](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/pull/19), commit 247e30c8cbdf9448901d39891512fb9c62364ae5, and template PR [34](https://github.com/kibertoad/refurbished-dinosaurs-template/pull/34) provide sequential bounded MOVS/STOS/LODS, conditional direction provenance and intact saved-flags restoration. Synthetic segmented and flat controls pass; toolkit policy, bridge/documentation checks, full build and .NET tests pass. The one skipped toolkit test requires a Linux case-sensitive filesystem. Template canonical validation and full build pass.
+
+The actual FND-CONFIG-154 bounded prefix passes its forward/backward/unknown-direction controls in GAME_DIR/analysis/reporter-audit/verify-string.mjs. The explicit forward starting hypothesis produces 23 width bytes from DS:040C, while the unspecified input produces two direction cases. Every prefix stops at its deliberately selected boundary and makes no full-function completeness claim. Reports/configurations remain local only. Root retains its merged upstream pin pending review of these candidates. Gap 25 remains partial: the FND-CONFIG-155 overlapping IRET helper and restoration through it have not passed. Gap 24 also remains open.

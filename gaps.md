@@ -279,6 +279,8 @@ it must not impose one global linear boundary set on all control flow.
 
 ## 25. Carry the direction flag into string-store effect reports
 
+**Current disposition:** candidate toolkit PR 19 and template PR 34 pass the bounded width-prefix and synthetic saved-flags cases. The overlapping IRET helper and saved-flags propagation through that actual callee remain unverified; keep open.
+
 FND-CONFIG-154's width prefix uses repeated string stores without a
 local direction clear. FND-CONFIG-155's helper clears direction for
 its own writes, then restores the caller's saved flags. Treating that
