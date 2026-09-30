@@ -3,7 +3,7 @@
 These are the remaining requests for the restoration template and shared analysis
 tooling. They describe tooling behavior, not claims about the original game.
 
-Current website, toolkit and template main revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Game-specific requests close only after their own acceptance cases pass. Gaps 12, 14, 18, 19 and 28 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
+Current website, toolkit and template main revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Game-specific requests close only after their own acceptance cases pass. Gaps 3, 12, 14, 18, 19 and 28 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
 Delivered capabilities, closure evidence and remaining limits are recorded in
 [the adoption record](docs/TEMPLATE-ADOPTION.md).
 
@@ -33,6 +33,8 @@ to a specific research query.
 
 ## 1. Provide a standard function-inventory export path
 
+**Current disposition:** shared exporter/join and committed inventory checks pass the actual installed case; template PR [33](https://github.com/kibertoad/refurbished-dinosaurs-template/pull/33) supplies the additional committed-schema checker and awaits merge.
+
 The work protocol requires `coverage/<build ID>/<manifest path>.tsv`, but this
 checkout had no coverage exporter or documented address convention. For
 `BLD-GOG-EN-1.1/DSUN.EXE`, I added `ExportFunctionInventory.java` and
@@ -59,20 +61,6 @@ block layout when diagnosing analyzer-discovered functions.
 bounded page of blocks, while retaining an explicit output limit. This would
 allow focused inspection without a broad memory-map export.
 
-## 3. Account for analysis-view differences in coverage guidance
-
-Ghidra 12.1.3 found 1,284 resident function starts in the original MZ import.
-In the mapped-overlay import, 1,021 of those starts were absent, while the
-mapped view also found 869 starts inside overlay-code ranges. The joined TSV
-therefore uses the original import for resident code and the mapped import for
-overlay code. The 2,153 rows are analyzer-discovered starts, not proof that
-all original functions were found.
-
-**Request:** describe coverage inventories as view-specific analyzer results,
-and provide a repeatable way to combine views of a packed, overlaid or banked
-executable. A single mapped import should not silently replace the native
-import's function inventory.
-
 ## 4. Offer an offline rerun for the local test gate
 
 `./tools/Test.ps1` invokes `dotnet test` with restore on every run. In this
@@ -85,6 +73,8 @@ restored lock/assets state. Keep the normal CI path restoring packages from
 NuGet.
 
 ## 5. Define a portable inventory path for disc manifest entries
+
+**Current disposition:** portable generation and synthetic/installed committed-identity checks pass; PR 33 adds explicit evidenced legacy-path checking. Full disc inventory verification against its distinct executable remains pending.
 
 The Survey rule asks for `coverage/<build ID>/<manifest path>.tsv`. The manifest
 path `CD:DSUN.EXE` cannot be used verbatim as a Windows filename. This checkout
