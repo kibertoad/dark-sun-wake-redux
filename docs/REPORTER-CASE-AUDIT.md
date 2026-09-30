@@ -106,3 +106,7 @@ Root gate: 92 Python, 44 Node and 700 .NET tests pass. Template canonical gate: 
 ## Merged template PR 32 acceptance
 
 Reviewed and adopted the final merge c048c63523a1b061b5325f6b05055d98819780d7, including review-time requested-count headers, bounded ambiguity indices and policy-driven heap-dump protections. The revised synthetic tests pass without skips. The actual retained mapped project again reports the expected tail page and exact-name result, with requested count explicit; its read-only log is gap2-merged-adoption.log under GAME_DIR. Both entire requests 2 and 38 now have upstream delivery and local acceptance evidence and are removed from gaps.md. Earlier pending-merge notes above are historical.
+
+## Merged template PR 33 acceptance
+
+Adopted final merge e0325e0b063735e94b7e3ac94b0b8b89d0a38a79. Exact merged source and synthetic tests pass, including canonical address formatting, analyzer-name rejection and input-path agreement. The retained installed-source inventory export/join and committed checker pass again. Canonical validation and full build pass; logs are artifacts/template-e0325e0-validation.log and artifacts/template-e0325e0-build.log. Gap 1 is removed. Gap 5 remains open for distinct disc-source verification; earlier pending-merge notes are historical.

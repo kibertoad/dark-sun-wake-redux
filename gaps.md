@@ -3,26 +3,9 @@
 These are the remaining requests for the restoration template and shared analysis
 tooling. They describe tooling behavior, not claims about the original game.
 
-Current website, toolkit and template main revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Game-specific requests close only after their own acceptance cases pass. Gaps 2, 3, 12, 14, 18, 19, 28 and 38 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
+Current website, toolkit and template main revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Game-specific requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 12, 14, 18, 19, 28 and 38 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
 Delivered capabilities, closure evidence and remaining limits are recorded in
 [the adoption record](docs/TEMPLATE-ADOPTION.md).
-
-## 1. Provide a standard function-inventory export path
-
-**Current disposition:** shared exporter/join and committed inventory checks pass the actual installed case; template PR [33](https://github.com/kibertoad/refurbished-dinosaurs-template/pull/33) supplies the additional committed-schema checker and awaits merge.
-
-The work protocol requires `coverage/<build ID>/<manifest path>.tsv`, but this
-checkout had no coverage exporter or documented address convention. For
-`BLD-GOG-EN-1.1/DSUN.EXE`, I added `ExportFunctionInventory.java` and
-`Join-FunctionInventory.ps1`. The latter keeps only function starts within the
-shipped file's resident image or overlay-code ranges and writes canonical file
-offsets, because the overlays have no fixed runtime address.
-
-**Request:** add a shared exporter and schema check for the allowed columns
-(start address, size, optional researcher-given name and out-of-scope reason).
-Document how to represent segmented and overlay addresses without retaining
-code, bytes, strings or analyzer-generated names. The check should catch
-duplicate starts, invalid sizes, and starts outside the mapped source ranges.
 
 ## 4. Offer an offline rerun for the local test gate
 
@@ -37,7 +20,7 @@ NuGet.
 
 ## 5. Define a portable inventory path for disc manifest entries
 
-**Current disposition:** portable generation and synthetic/installed committed-identity checks pass; PR 33 adds explicit evidenced legacy-path checking. Full disc inventory verification against its distinct executable remains pending.
+**Current disposition:** portable generation and synthetic/installed committed-identity checks pass; Merged PR 33 adds explicit evidenced legacy-path checking. Full disc inventory verification against its distinct executable remains pending.
 
 The Survey rule asks for `coverage/<build ID>/<manifest path>.tsv`. The manifest
 path `CD:DSUN.EXE` cannot be used verbatim as a Windows filename. This checkout

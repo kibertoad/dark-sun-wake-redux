@@ -541,3 +541,8 @@ Tooling batch. Outcome: shared tooling validates a committed coverage TSV agains
 ## Latest template maintenance adoption
 
 Adopt template c048c63523a1b061b5325f6b05055d98819780d7, including PR 31's authorized-work and durable-narrative policy and PR 32's revised bounded-map/JVM diagnostics changes. Outcome: policy-driven filename denials include heap dumps; bounded map headers retain requested counts and ambiguity diagnostics give capped matching indices. Preserve configured source identity, local content restrictions and owner-only runtime. Acceptance: exact upstream tests and adapted script pass, actual mapped-project page/name controls still pass, repository policy reads deniedFileNamePatterns, canonical gate and full build pass. Update guidance and adoption provenance without rewriting historical evidence. Exit: verified current template delta and locally completed requests 2/38 close.
+
+
+## Latest template inventory refinement adoption
+
+Adopt template e0325e0b063735e94b7e3ac94b0b8b89d0a38a79 (merged PR 33), preserving configured identity, evidence and existing unfinished string-tooling plans. Outcome: inventory validation rejects noncanonical starts and analyzer default names, and reads the file at its declared repository path. Acceptance: exact merged source/tests, actual installed inventory rerun, canonical gate and full build. Exit: merged inventory capability adopted; close gap 1 only, retain gap 5 pending distinct disc-source verification.
