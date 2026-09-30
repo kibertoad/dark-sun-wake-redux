@@ -217,3 +217,10 @@ Fully adopted website `3b4e6fcfca887620cdf13c8a8e62f9ca53133d60`, toolkit `926e2
 Rules/checker lock and CI action pin now name current main, with unchanged checker bytes and Standard v1. Local section ranges verify. The recorded cases were rerun against the exact adopted source: gaps 14 and 19 now close, gap 18 still passes, and 37 requests remain. See REPORTER-CASE-AUDIT.md for conditional observations and remaining limits.
 
 Validation: 92 Python, 41 Node and 700 .NET tests pass, together with repository/configuration policy, pin/section verification and the 615-entry / 158-row / 5-deviation documentation gate.
+
+
+## Latest template PRs 31/32 adoption
+
+Adopted template main c048c63523a1b061b5325f6b05055d98819780d7 after reviewing the full delta from b9f542549840cf7ce2d254a8f9f7bf0f502daaa7. PR 31 clarifies that plans document authorized work and places changing narrative totals in generated reports, preserving quantities that support evidence or constrain behavior. PR 32's revised source adds requested page counts, capped ambiguous-name indices, policy-configured denied diagnostic names and heap-dump exclusion/redirection. Upstream regression files are copied exactly; the Ghidra category and repository checker retain configured-project adaptations. No methodology/checker/reporter pin changes are present in this template delta; inventory PR 33 work remains separate.
+
+Canonical Test.ps1 and full solution build pass; generated output is in artifacts/latest-template-validation.log and artifacts/latest-template-build.log. The merged map script compiled against Ghidra 12.1.3 and again passed the actual large-map page/name checks in read-only mode; gap2-merged-adoption.log remains GAME_DIR-only. Current policy regressions prove force-staged heap-dump and diagnostic rejection plus ordinary-log acceptance. Merged gaps 2 and 38 are closed; no game spec/parity claims changed.

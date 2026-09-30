@@ -3,33 +3,9 @@
 These are the remaining requests for the restoration template and shared analysis
 tooling. They describe tooling behavior, not claims about the original game.
 
-Current website, toolkit and template main revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Game-specific requests close only after their own acceptance cases pass. Gaps 3, 12, 14, 18, 19 and 28 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
+Current website, toolkit and template main revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Game-specific requests close only after their own acceptance cases pass. Gaps 2, 3, 12, 14, 18, 19, 28 and 38 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
 Delivered capabilities, closure evidence and remaining limits are recorded in
 [the adoption record](docs/TEMPLATE-ADOPTION.md).
-
-## 38. Keep JVM crash diagnostics out of commit candidates
-
-**Current disposition:** implemented and verified locally; template PR [32](https://github.com/kibertoad/refurbished-dinosaurs-template/pull/32) awaits merge. Ignore rules, force-staged policy rejection and local-output documentation are delivered.
-
-On 2026-09-29, the session handover named an untracked
-`hs_err_pid15480.log` in the repository root. Its header reports a native
-allocation failure during JVM startup; the command line is empty and
-`java_command` is unknown, so it does not establish which analysis task
-failed. A current process inventory contained no Java process. The file
-was left untouched because ownership remains uncertain.
-
-The template ignores Ghidra projects and build logs but did not ignore JVM
-fatal-error or replay logs. Such diagnostics can contain environment paths,
-stack details and memory excerpts; their presence is neither a durable
-finding nor proof of a live task. This checkout now ignores
-`hs_err_pid*.log` and `replay_pid*.log`.
-
-**Request:** include these exclusions in the shared template and consider
-a repository-policy rejection for explicitly staged JVM diagnostic files.
-Document how to redirect analysis crash diagnostics into local-only storage.
-Keep process ownership and terminal-state verification separate from the
-presence of a crash file, and do not attribute an unidentified JVM failure
-to a specific research query.
 
 ## 1. Provide a standard function-inventory export path
 
@@ -47,19 +23,6 @@ offsets, because the overlays have no fixed runtime address.
 Document how to represent segmented and overlay addresses without retaining
 code, bytes, strings or analyzer-generated names. The check should catch
 duplicate starts, invalid sizes, and starts outside the mapped source ranges.
-
-## 2. Make memory-block reports usable for mapped overlays
-
-**Current disposition:** implemented and verified against the actual 3,546-block map; template PR [32](https://github.com/kibertoad/refurbished-dinosaurs-template/pull/32) awaits merge. Bounded pages/exact names and diagnosed partial scope are delivered.
-
-The local-only `FBOV` mapped image produced 3,546 Ghidra memory blocks.
-`ReportMemoryBlocks.java` stopped at its 512-block limit without a report.
-The limit is useful for bounded output, but it prevents inspecting this image's
-block layout when diagnosing analyzer-discovered functions.
-
-**Request:** let the shared reporter select a named block, address range, or
-bounded page of blocks, while retaining an explicit output limit. This would
-allow focused inspection without a broad memory-map export.
 
 ## 4. Offer an offline rerun for the local test gate
 

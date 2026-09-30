@@ -45,6 +45,8 @@ question only the owner can answer goes in the plan's owner questions while
 the work that depends on it waits under `Blocked` in the queue. Everything else
 goes ahead without approval, and the owner reviews the result.
 
+Plans document authorized work; they do not require separate explicit approval before implementation or tooling proceeds. Ask only for missing owner decisions that block the requested scope.
+
 ## Specializing this template for a game
 
 Work in this order.
@@ -428,6 +430,10 @@ parity row for that ID cannot be `complete` while it does. The parity matrix
 format, and screen entry that is not superseded, so behavior
 without a spec entry gets an `unknown` entry before any code. Manual play never
 counts as a test.
+
+## Durable narrative documentation
+
+Keep changing inventory totals out of narrative documentation: test-case, file, line and imported-asset counts belong in generated reports or validation logs. Keep numbers that define behavior, constrain validation, support evidence or justify a decision. A dated measurement belongs in prose only when that context needs it. Refer to the generating command instead of maintaining a copied total.
 
 ## Architecture boundaries
 

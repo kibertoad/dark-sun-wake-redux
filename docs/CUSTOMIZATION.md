@@ -96,3 +96,6 @@ and identifiers. Values that were already substituted into prose — display nam
 copyright, shortcut name, application data directory — are not placeholders any
 more and have to be updated in place. Changing those is easiest on a fresh clone
 of the template.
+
+
+Repository policy customization retains deniedRoots and deniedFileNamePatterns. Add the original game's restricted extensions without removing local-content/JVM diagnostic protections.

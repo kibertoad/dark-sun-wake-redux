@@ -34,3 +34,6 @@ orphanCleanupLog.md
 __pycache__/
 *.pyc
 .venv/
+
+# Keep heap dumps local alongside the policy-denied JVM logs.
+*.hprof

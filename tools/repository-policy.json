@@ -1,12 +1,54 @@
 {
-  "deniedRoots": ["UserContent/", "analysis/original/", "reference/original/"],
-  "restrictedExtensions": [
-    ".666", ".bmp", ".csf", ".cue", ".dat", ".dib", ".exe", ".fnt", ".gob",
-    ".fli", ".gff", ".gif", ".gog", ".ico", ".ins", ".iso", ".jpeg", ".jpg",
-    ".low", ".mid", ".midi", ".mp3", ".ogg", ".pal", ".pcc", ".pcx", ".pdf",
-    ".png", ".rat", ".res", ".rtp", ".smk", ".voc", ".wav"
+  "deniedRoots": [
+    "UserContent/",
+    "analysis/original/",
+    "reference/original/"
   ],
-  "approvedRestrictedRoots": ["assets/clean-room/", "tests/fixtures/synthetic/"],
+  "restrictedExtensions": [
+    ".666",
+    ".bmp",
+    ".csf",
+    ".cue",
+    ".dat",
+    ".dib",
+    ".exe",
+    ".fnt",
+    ".gob",
+    ".fli",
+    ".gff",
+    ".gif",
+    ".gog",
+    ".ico",
+    ".ins",
+    ".iso",
+    ".jpeg",
+    ".jpg",
+    ".low",
+    ".mid",
+    ".midi",
+    ".mp3",
+    ".ogg",
+    ".pal",
+    ".pcc",
+    ".pcx",
+    ".pdf",
+    ".png",
+    ".rat",
+    ".res",
+    ".rtp",
+    ".smk",
+    ".voc",
+    ".wav"
+  ],
+  "approvedRestrictedRoots": [
+    "assets/clean-room/",
+    "tests/fixtures/synthetic/"
+  ],
   "maximumTrackedFileBytes": 1048576,
-  "approvedLargeFiles": []
+  "approvedLargeFiles": [],
+  "deniedFileNamePatterns": [
+    "^hs_err_pid.*\\.log$",
+    "^replay_pid.*\\.log$",
+    "\\.hprof$"
+  ]
 }

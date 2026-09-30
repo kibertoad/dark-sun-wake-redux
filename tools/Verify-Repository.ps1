@@ -19,7 +19,8 @@ foreach ($raw in $paths | Sort-Object -Unique) {
     if ($policy.restrictedExtensions -contains [IO.Path]::GetExtension($path) -and -not (Under $path $policy.approvedRestrictedRoots)) {
         $errors.Add("restricted media: $path")
     }
-    if ([IO.Path]::GetFileName($path) -match '^(hs_err_pid.*|replay_pid.*)\.log$') {
+    $fileName = [IO.Path]::GetFileName($path)
+    if (@($policy.deniedFileNamePatterns | Where-Object { $fileName -match $_ }).Count -gt 0) {
         $errors.Add("local JVM diagnostic: $path")
         continue
     }
