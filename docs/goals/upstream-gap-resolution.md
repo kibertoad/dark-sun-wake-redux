@@ -34,7 +34,7 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 - Gap 22: open; full request and cited controls in gaps.md.
 - Gap 23: open; full request and cited controls in gaps.md.
 - Gap 24: open; full request and cited controls in gaps.md.
-- Gap 25: open; full request and cited controls in gaps.md.
+- Gap 25: partial; bounded width-prefix and synthetic saved flags pass in toolkit PR 19/template PR 34; actual overlapping IRET helper remains.
 - Gap 26: open; full request and cited controls in gaps.md.
 - Gap 27: open; full request and cited controls in gaps.md.
 - Gap 29: open; full request and cited controls in gaps.md.
@@ -59,7 +59,7 @@ Synthetic success and broad guidance do not close a game-case request. Current s
 ## Handover
 
 - Stage: Slices; this goal is tooling maintenance only.
-- Last gate: 2026-09-30, tools/Test.ps1 and full solution build pass; artifacts/template-e0325e0-validation.log and artifacts/template-e0325e0-build.log.
-- Unfinished: full numbered acceptance audit; root's uncommitted string-tooling plan and toolkit branch evidence/bounded-string-effects remain pending tests and acceptance.
+- Last gate: 2026-09-30, tools/Test.ps1 passes; artifacts/string-candidate-record-validation.log. Toolkit and template candidate gates/full builds pass.
+- Unfinished: full numbered acceptance audit; toolkit PR 19 and template PR 34 review/adoption; IRET helper and explicit overlapping control-flow support.
 - Blockers: none preventing tooling progress.
-- Next: finish bounded string/flags reporter batch, distinct disc-source validation, remaining operand controls.
+- Next: explicit overlapping starts and local IRET frames for gaps 24/25, distinct disc-source validation, remaining operand controls.
