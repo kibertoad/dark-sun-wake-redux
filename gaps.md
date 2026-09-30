@@ -138,6 +138,8 @@ request in item 11.
 
 ## 16. Resolve segment-load operands before citing data addresses
 
+**Current disposition:** all four operand forms now pass instruction-owned source controls in toolkit PR 19/template PR 34 candidates. Await reviewed merge and exact-pin adoption before removing.
+
 The FND-CONFIG-120 through FND-CONFIG-131 corrections replace raw segment
 labels in earlier CONFIG findings. Resident segment loads need their MZ
 relocation applied; overlay segment loads contain shifted descriptor indices
