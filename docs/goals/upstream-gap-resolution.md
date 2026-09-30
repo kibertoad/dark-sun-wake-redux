@@ -14,9 +14,9 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 
 ## Acceptance ledger
 
-- Gap 38: locally verified; template PR 32 pending merge.
+- Gap 38: closed; final merged policy-driven diagnostics/heap-dump protections adopted and verified.
 - Gap 1: locally verified exporter/join/schema; template PR 33 pending merge.
-- Gap 2: locally verified actual large map; template PR 32 pending merge.
+- Gap 2: closed; final merged script passes actual large-map page/name controls.
 - Gap 3: closed; shared join exactly reproduces actual original-resident/mapped-overlay inventory.
 - Gap 4: open; full request and cited controls in gaps.md.
 - Gap 5: partial; portable/legacy identity checks pass, distinct disc-source validation pending; PR 33 open.
@@ -59,7 +59,7 @@ Synthetic success and broad guidance do not close a game-case request. Current s
 ## Handover
 
 - Stage: Slices; this goal is tooling maintenance only.
-- Last gate: 2026-09-30, 92 Python, 44 Node and 700 .NET tests pass.
-- Unfinished: full numbered acceptance audit and missing reporter capabilities; template PRs 32/33 review/merge.
+- Last gate: 2026-09-30, tools/Test.ps1 and full solution build pass; output in artifacts/latest-template-validation.log and artifacts/latest-template-build.log.
+- Unfinished: full numbered acceptance audit and missing reporter capabilities; template PR 33 review/merge.
 - Blockers: none preventing tooling progress.
 - Next: distinct disc-source validation, remaining operand controls, then shared string/flags/overlap capabilities.
