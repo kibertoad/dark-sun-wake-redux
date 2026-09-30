@@ -16,16 +16,10 @@ See the [work protocol](../vendor/upstream/work-protocol.md#working-files) (line
 - Stage: Slices, with slices 2 and 3 in progress. The refreshed Survey
   file-denominator exit needs the Q-EXE-003 re-audit.
 - Last gate: 2026-09-30, `./tools/Test.ps1` passed with repository-local
-  PowerShell 7 (45 Python tests, 41 Node tests, 700 .NET tests; documentation check: 615
+  PowerShell 7 (92 Python tests, 41 Node tests, 700 .NET tests; documentation check: 615
   entries, 158 parity rows, 5 deviations). The full solution builds with no
   warnings or errors.
-- Merged template PR 27, toolkit PR 14 and standards PR 26 are adopted with
-  exact source pins, ten bounded reporters and CI/release validation. See
-  `docs/TEMPLATE-ADOPTION.md` for the individual audit.
-- The tooling acceptance audit is recorded in `docs/REPORTER-CASE-AUDIT.md`;
-  `gaps.md` has 39 remaining requests. Toolkit PR 16, template PR 28 and
-  standards/protocol PR 27 are open with passing applicable CI checks.
-  Proposed reporter and rule changes remain unadopted pending upstream review.
+- Latest website, toolkit and template main revisions are fully adopted with exact source pins; see `docs/TEMPLATE-ADOPTION.md`. The case acceptance audit is in `docs/REPORTER-CASE-AUDIT.md`; `gaps.md` has 37 remaining requests. PE32 and segmented synthetic suites run in the canonical gate.
 - Probe is none. Native DOSBox access remains owner-only; no draw probe or
   RNG hook has been implemented by this update.
 - Offline checker and section-link verification pass. Snapshot/configuration
@@ -33,8 +27,7 @@ See the [work protocol](../vendor/upstream/work-protocol.md#working-files) (line
 
 ## Unfinished
 
-Upstream review and subsequent adoption of toolkit PR 16, template PR 28 and
-standards/protocol PR 27 remain pending; no half-finished local batch.
+None.
 
 ## Blockers
 
