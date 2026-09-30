@@ -82,3 +82,9 @@ configuration and upstream-pin checks passing.
 ## Revised main adoption rerun
 
 The local verification script now imports this checkout's pinned reporter and checks the reviewed conditionalAccesses schema: the two known reads name their stop dependencies rather than masquerading as traced effects. Incorrect controls still fail. Dispatch and all three effective-width conversions pass again. Conditional continuations for the other cases were rerun with unchanged unresolved/cap limits; they do not close those requests. No original process or emulated call ran. Earlier validation counts above describe the initial PR batch.
+
+## Goal batch: numeric table and pointer controls
+
+2026-09-30, current pinned tooling. Local verify-simple.mjs and gap12-tags/targets/extra configurations and reports are in GAME_DIR/analysis/reporter-audit. FND-CONFIG-096's evidenced two four-byte tags and separate two-word target table match the known tags and canonical targets. An attempted third entry is rejected with limit 2 derived from the loop, and no ASCII fallback is used. The tool requires the researcher to supply the evidenced count/limit; it does not infer the loop. Gap 12 is closed.
+
+FND-CONFIG-144's two pushed far-pointer segment operands retain raw tokens, declared fixup membership, decoded descriptors 113/116 and mapped segments/offsets. These controls pass; gap 16 remains open pending the segment-load and stored-pointer cases. No new game claims or runtime observations.
