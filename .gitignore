@@ -29,3 +29,8 @@ coverage/
 orphanCleanupLog.md
 ~$*
 *~
+
+# Python research tooling caches
+__pycache__/
+*.pyc
+.venv/

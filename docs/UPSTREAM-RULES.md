@@ -84,3 +84,13 @@ Pinned pages live in `vendor/upstream/` to keep upstream example IDs outside the
 project-authored docs citation scan. All six source files retain their upstream
 bytes, licenses and digests. The local canonical gate is `tools/Test.ps1`.
 Owner-only native runs and captures remain governed by `AGENTS.md`.
+
+
+## Pinned instruction reporters
+
+The separately verified reporter source, tests, guide and MIT license are pinned
+to merged toolkit PR 14 in `tools/evidence/x86-lock.json`. Install Capstone with
+`python -m pip install -r tools/evidence/x86-reporter/requirements.txt`. Python
+3.10+ is required; EVIDENCE_PYTHON selects the interpreter. See
+[EVIDENCE-TOOLS.md](EVIDENCE-TOOLS.md) for the ten x86 commands and explicit local
+checkout adoption. The current checker bytes are unchanged at the merged pin.

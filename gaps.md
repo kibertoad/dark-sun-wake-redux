@@ -3,12 +3,14 @@
 These are the remaining requests for the restoration template and shared analysis
 tooling. They describe tooling behavior, not claims about the original game.
 
-The selected top ten were priority groups, not 39 independently completed gap
-entries. The merged tools implement parts of these requests, and the review
-procedure covers additional research checks. Guidance alone does not close a
-request for reporter behavior. Keep individual requests until their full stated
-acceptance criteria have been checked. Delivered capabilities and remaining
-limits are recorded in [the adoption record](docs/TEMPLATE-ADOPTION.md).
+Merged standards PR 26, toolkit PR 14 and template PR 27 are adopted. The
+ten instruction-derived reporters now cover bounded supported queries; their
+upstream acceptance suites pass. Game-specific reporter requests stay open
+until their own cases pass, as the revised standard requires. Unsupported
+queries and partial searches do not close a request. Gap 28 is removed after
+the adopted checker passes this game's retained-declaration replacement case.
+Delivered capabilities, closure evidence and remaining limits are recorded in
+[the adoption record](docs/TEMPLATE-ADOPTION.md).
 
 ## 38. Keep JVM crash diagnostics out of commit candidates
 
@@ -498,22 +500,6 @@ before the graphics primitive, even though the outer caller did not test
 it; a separate request can return FFFF after partial metadata writes.
 Propagate both local and child predicates before describing an actual
 primitive attempt, and track failure writes independently at each layer.
-
-## 28. Exclude superseded rules from active function ownership
-
-Replacing RULE-SCRIPT-001 with RULE-SCRIPT-010 exposed a documentation
-checker conflict: the function-definition collection still reads the
-superseded rule's Procedure block, reports duplicate definitions, and
-assigns living references to the historical rule. The later rule-validation
-loop already skips superseded entries. This was verified in the cached
-shared checker at toolkit revision 6e3cad31b6d61280a4649a873cf890377b402a75.
-The historical Procedure now uses a `historical-text` fence, preserving
-its content while distinguishing it from active function declarations.
-
-**Request:** exclude superseded rules when collecting active function
-ownership, just as they are excluded from active procedure validation.
-Retain their text and supersession links for history, and add a checker
-fixture that replaces a rule while retaining its original declarations.
 
 ## 29. Check progress across restarted scans and repeated invalidation
 

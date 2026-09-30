@@ -14,7 +14,7 @@ afterwards. No agent run takes place, and the machine's run lock
 (`C:\ProgramData\refurbished-dinosaurs\run.lock`, or the path in
 `REFURBISHED_DINOSAURS_RUN_LOCK`) is never taken from this repository. If the
 owner lifts that rule, an agent run takes the lock as the protocol's
-[Running the original](../vendor/upstream/work-protocol.md#running-the-original) (lines 215-249)
+[Running the original](../vendor/upstream/work-protocol.md#running-the-original) (lines 217-251)
 says.
 
 ## BLD-GOG-EN-1.1
@@ -41,6 +41,6 @@ becomes `agent` once a tooling batch builds a harness that loads this build.
 
 Probe: none. Native process attachment and memory instrumentation are barred
 by the owner-only DOSBox policy. Recorded runs are not available; the protocol's
-[Recorded runs](../vendor/upstream/work-protocol.md#recorded-runs) (lines 225-237) guidance
+[Recorded runs](../vendor/upstream/work-protocol.md#recorded-runs) (lines 227-239) guidance
 does not override those limits. A future harness must document port models,
 video memory substituted with RAM and the limits of each comparison.

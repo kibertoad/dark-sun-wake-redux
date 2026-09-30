@@ -137,3 +137,59 @@ including configuration, snapshot/CI integrity, local links and the 615-entry /
 158-row / 5-deviation documentation check. The full solution builds with zero
 warnings or errors. Only bounded overlay metadata was reread by the existing
 header procedure; no original process was launched.
+
+
+## Merged bounded reporters: standards 26, toolkit 14 and template 27
+
+Adopted template merge `3e8805ea474c60e7c3234213a108cb85a9e86265` and
+toolkit merge `c2b21ee62fc404391e8dcfafd7029185f81241a9`. Exact rules now
+name standards merge `94f8f678afb05171567f48d9fb19488e48309f12`. The
+checker and CI action pin name the toolkit merge; its checker bytes are
+unchanged from the previous pin. Standard remains v1.
+
+The adopted source includes the final merge's alias invalidation, return-frame,
+branch-assumption, canonical-target and shared-step-budget fixes, rather than
+only the earlier PR branch versions. One pinned MZ/FBOV parser now supplies both
+the lightweight commands and the instruction-derived commands. The existing
+configured-project inventory joins and committed CD directory paths remain.
+
+`tools/evidence/x86-lock.json` records exact source, license, documentation and
+test digests. The canonical gate verifies the pin, runs the Python acceptance
+suite and Node bridge/integrity suites, and proves configuration preserves the
+reporter and guide even when their examples contain substitution tokens. CI and
+release validation install the pinned Capstone dependency and exercise these
+checks. Reports and configurations belong in GAME_DIR. No original program was
+run or read for this adoption and no evidence status or gameplay changed.
+
+### Individual gap audit
+
+The revised standard explicitly keeps a game's reporter request open until its
+own case passes. These upstream synthetic tests demonstrate capability; they
+are not reports on the cited Dark Sun cases. The selected ten therefore remain
+open with concrete reporters available for their next bounded research queries.
+
+| Gap | Adopted capability | Remaining acceptance work |
+| --- | --- | --- |
+| 14 | Entry-based uses, matching controls, raw candidates and undecoded ranges | Run the cited two-field inventory with its established instruction hits |
+| 21 | Effective segments, offset provenance and conditional alias identity | Check the cited caller/helper and mixed-segment filename paths; string operations are unsupported |
+| 35 | Consumed near/far stack widths and LDS/LES pointer grouping | Verify the cited mask/callback/identifier grouping and forwarding |
+| 27 | Ordered path effects, early returns, predicates and explicit external assumptions | Check the cited nested loader/cache/cleanup paths and all continuations; unknown callees stop or invalidate state |
+| 26 | Full/partial returns, producer-scoped failure contracts and caller predicates | Verify the cited initializer, truncation and raw-field consumer cases |
+| 36 | Complete byte intervals and distinct neighboring-byte producers | Run the cited byte stores followed by wider services and wrapper normalization |
+| 13 | Full named-region scans, later callers, relative calls and canonical far aliases | Query the cited complete declared caller domains and known controls; computed/unrelocated targets remain excluded |
+| 32 | Guard order, branch polarity and invalidation of reloaded targets | Check the cited metadata access, ignored rejection and intervening-callee reload paths |
+| 42 | Request width/modulus, units, observed extent/pointer and later writes | Read and query the cited lower allocator/header contracts; repeated clearing is unsupported |
+| 18 | Executed normalization/gates and declared dispatch-layout validation | Run the cited extended-bit decoder case with its evidenced table mapping/count |
+
+Gap 28 is closed. `tests/upstream/superseded-ownership.test.mjs` uses a scratch
+copy of this repository and restores the historical rule's original Procedure
+fence to the ordinary declaration format while retaining its supersession link
+and replacement. The adopted checker accepts the actual retained declarations
+without duplicate active ownership, and leaves historical text intact. This
+fulfills the requested replacement-rule fixture; no real spec entry is edited.
+All other gaps are retained, including secondary requests for unsupported string
+effects, recursive origins, progress proofs and general cardinality analysis.
+
+Verification: 45 Python tests and 41 Node tests, 700 .NET tests, configuration,
+repository policy, offline pins, section links and the 615-entry / 158-row /
+5-deviation documentation check. Full solution build: zero warnings/errors.

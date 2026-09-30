@@ -56,7 +56,7 @@ only the lines the link gives, and never a section already read this session.
    under `Live session`; `live-session` requests the owner's observation.
    Follow the local capture rules in `AGENTS.md` and
    `docs/live-sessions/README.md`.
-   The protocol's [Recorded runs](../../../vendor/upstream/work-protocol.md#recorded-runs) (lines 225-237)
+   The protocol's [Recorded runs](../../../vendor/upstream/work-protocol.md#recorded-runs) (lines 227-239)
    records draws as `{ rule, bound, result }`, stops for an uncited draw, and
    diagnoses divergence through memory evidence and a static finding rather
    than fitting the rebuild to the recording. Here Probe is `none`: agents
@@ -68,7 +68,7 @@ only the lines the link gives, and never a section already read this session.
    An emulated call is always allowed, including in a repository whose
    `AGENTS.md` keeps agents from running the original: those limits cover
    runs of the game only. For an item under `Emulated call`, follow the protocol's
-   [Emulated calls](../../../vendor/upstream/work-protocol.md#emulated-calls) (lines 251-287).
+   [Emulated calls](../../../vendor/upstream/work-protocol.md#emulated-calls) (lines 253-289).
    It needs no run lock and waits for the harness described in `docs/RUNTIME.md`.
    Write each reading under test as a procedure in
    `tools/emu/`, set up only the state the function reads (through layout
@@ -107,7 +107,7 @@ only the lines the link gives, and never a section already read this session.
    memory nothing wrote, timing, or the operating system. List its findings in
    the entry's `complete_reading`. The standard's
    [Complete readings](../../../vendor/upstream/documentation-standard.md#complete-readings) (lines 137-181)
-   and [Findings](../../../vendor/upstream/documentation-standard.md#findings) (lines 392-440)
+   and [Findings](../../../vendor/upstream/documentation-standard.md#findings) (lines 413-461)
    sections list what that covers; the parts most often missed are the
    segment each access actually goes through, every part of a stored call
    target, the other byte of a word written a byte at a time, allocation
