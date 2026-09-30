@@ -16,12 +16,13 @@ See the [work protocol](../vendor/upstream/work-protocol.md#working-files) (line
 - Stage: Slices, with slices 2 and 3 in progress. The refreshed Survey
   file-denominator exit needs the Q-EXE-003 re-audit.
 - Last gate: 2026-09-30, `./tools/Test.ps1` passed with repository-local
-  PowerShell 7 (35 Node tests, 700 .NET tests; documentation check: 615
+  PowerShell 7 (45 Python tests, 41 Node tests, 700 .NET tests; documentation check: 615
   entries, 158 parity rows, 5 deviations). The full solution builds with no
   warnings or errors.
-- Latest template main, including PRs 25 and 26, is adopted; the exact pinned
-  snapshots and CI checker agree. See `docs/TEMPLATE-ADOPTION.md` for scope
-  and gap disposition. Gap 7 is closed; unmet reporter requests remain open.
+- Merged template PR 27, toolkit PR 14 and standards PR 26 are adopted with
+  exact source pins, ten bounded reporters and CI/release validation. See
+  `docs/TEMPLATE-ADOPTION.md` for the individual audit. Gap 28 is closed by
+  this game's replacement fixture; game-specific reporter cases remain open.
 - Probe is none. Native DOSBox access remains owner-only; no draw probe or
   RNG hook has been implemented by this update.
 - Offline checker and section-link verification pass. Snapshot/configuration
