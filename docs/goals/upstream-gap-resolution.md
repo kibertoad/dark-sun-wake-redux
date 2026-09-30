@@ -24,10 +24,10 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 - Gap 9: open; full request and cited controls in gaps.md.
 - Gap 10: open; full request and cited controls in gaps.md.
 - Gap 11: open; full request and cited controls in gaps.md.
-- Gap 12: open; full request and cited controls in gaps.md.
+- Gap 12: closed; actual two-entry tag/target controls and rejected third entry, recorded in docs/REPORTER-CASE-AUDIT.md.
 - Gap 13: open; full request and cited controls in gaps.md.
 - Gap 15: open; full request and cited controls in gaps.md.
-- Gap 16: open; full request and cited controls in gaps.md.
+- Gap 16: partial; two pushed-pointer controls pass, segment loads/stored pointer controls remain.
 - Gap 17: open; full request and cited controls in gaps.md.
 - Gap 20: open; full request and cited controls in gaps.md.
 - Gap 21: open; full request and cited controls in gaps.md.
@@ -62,4 +62,4 @@ Synthetic success and broad guidance do not close a game-case request. Current s
 - Last gate: 2026-09-30, 92 Python, 41 Node and 700 .NET tests pass.
 - Unfinished: full numbered acceptance audit and missing reporter capabilities.
 - Blockers: none preventing tooling progress.
-- Next: bounded tables/operand controls, inventory joins, then shared string/flags/overlap capabilities.
+- Next: remaining operand controls and inventory joins; then shared string/flags/overlap capabilities.
