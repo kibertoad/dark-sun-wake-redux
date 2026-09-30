@@ -264,6 +264,8 @@ claiming that a function's local effects have been covered.
 
 ## 24. Allow overlapping starts when an explicit control-flow edge proves them
 
+**Current disposition:** toolkit PR 19 now passes the actual explicit interior-call control and keeps false operand boundaries rejected. Await reviewed merge and exact-pin adoption before removing.
+
 FND-CONFIG-155 follows an internal call into a byte that also belongs
 to the preceding linear instruction. The target is a valid alternate
 return path with a matching saved-flags stack frame. Rejecting it solely
@@ -279,7 +281,7 @@ it must not impose one global linear boundary set on all control flow.
 
 ## 25. Carry the direction flag into string-store effect reports
 
-**Current disposition:** candidate toolkit PR 19 and template PR 34 pass the bounded width-prefix and synthetic saved-flags cases. The overlapping IRET helper and saved-flags propagation through that actual callee remain unverified; keep open.
+**Current disposition:** candidate toolkit PR 19 and template PR 34 pass the bounded width-prefix and synthetic saved-flags cases. The complete overlapping IRET helper now passes its local restoration controls in the candidate; await reviewed merge and exact-pin adoption before removing.
 
 FND-CONFIG-154's width prefix uses repeated string stores without a
 local direction clear. FND-CONFIG-155's helper clears direction for
