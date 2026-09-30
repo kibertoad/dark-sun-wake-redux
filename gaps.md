@@ -9,6 +9,8 @@ Delivered capabilities, closure evidence and remaining limits are recorded in
 
 ## 38. Keep JVM crash diagnostics out of commit candidates
 
+**Current disposition:** implemented and verified locally; template PR [32](https://github.com/kibertoad/refurbished-dinosaurs-template/pull/32) awaits merge. Ignore rules, force-staged policy rejection and local-output documentation are delivered.
+
 On 2026-09-29, the session handover named an untracked
 `hs_err_pid15480.log` in the repository root. Its header reports a native
 allocation failure during JVM startup; the command line is empty and
@@ -45,6 +47,8 @@ code, bytes, strings or analyzer-generated names. The check should catch
 duplicate starts, invalid sizes, and starts outside the mapped source ranges.
 
 ## 2. Make memory-block reports usable for mapped overlays
+
+**Current disposition:** implemented and verified against the actual 3,546-block map; template PR [32](https://github.com/kibertoad/refurbished-dinosaurs-template/pull/32) awaits merge. Bounded pages/exact names and diagnosed partial scope are delivered.
 
 The local-only `FBOV` mapped image produced 3,546 Ghidra memory blocks.
 `ReportMemoryBlocks.java` stopped at its 512-block limit without a report.

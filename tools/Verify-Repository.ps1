@@ -19,6 +19,11 @@ foreach ($raw in $paths | Sort-Object -Unique) {
     if ($policy.restrictedExtensions -contains [IO.Path]::GetExtension($path) -and -not (Under $path $policy.approvedRestrictedRoots)) {
         $errors.Add("restricted media: $path")
     }
+    if ([IO.Path]::GetFileName($path) -match '^(hs_err_pid.*|replay_pid.*)\.log$') {
+        $errors.Add("local JVM diagnostic: $path")
+        continue
+    }
+
     $file = Join-Path $root $path
     if ([IO.File]::Exists($file) -and ([IO.FileInfo]$file).Length -gt $policy.maximumTrackedFileBytes -and $policy.approvedLargeFiles -notcontains $path) {
         $errors.Add("unreviewed large file: $path")
