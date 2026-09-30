@@ -14,9 +14,9 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 
 ## Acceptance ledger
 
-- Gap 38: open; full request and cited controls in gaps.md.
+- Gap 38: locally verified; template PR 32 pending merge.
 - Gap 1: open; full request and cited controls in gaps.md.
-- Gap 2: open; full request and cited controls in gaps.md.
+- Gap 2: locally verified actual large map; template PR 32 pending merge.
 - Gap 3: open; full request and cited controls in gaps.md.
 - Gap 4: open; full request and cited controls in gaps.md.
 - Gap 5: open; full request and cited controls in gaps.md.
@@ -59,7 +59,7 @@ Synthetic success and broad guidance do not close a game-case request. Current s
 ## Handover
 
 - Stage: Slices; this goal is tooling maintenance only.
-- Last gate: 2026-09-30, 92 Python, 41 Node and 700 .NET tests pass.
-- Unfinished: full numbered acceptance audit and missing reporter capabilities.
+- Last gate: 2026-09-30, 92 Python, 43 Node and 700 .NET tests pass.
+- Unfinished: full numbered acceptance audit and missing reporter capabilities; template PR 32 review/merge.
 - Blockers: none preventing tooling progress.
 - Next: remaining operand controls and inventory joins; then shared string/flags/overlap capabilities.
