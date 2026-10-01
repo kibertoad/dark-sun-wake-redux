@@ -3,7 +3,7 @@
 These are the remaining requests for the restoration template and shared analysis
 tooling. They describe tooling behavior, not claims about the original game.
 
-Current website, toolkit and template main revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Website `ca39d07`, toolkit `1ef21ef` and template `beaade0` add call-target, bounds, owner, incoming-coverage and carry/loop reporter capabilities; the facts gate passes and Dark Sun acceptance cases are recorded in docs/REPORTER-CASE-AUDIT.md. Game-specific requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 4, 8, 10, 11, 12, 13, 14, 16, 17, 18, 19, 22, 23, 24, 25, 28 and 38 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
+Current website, toolkit and template main revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Website `ca39d07`, toolkit `67340fc` and template `beaade0` add call-target, bounds, owner, incoming-coverage and carry/loop reporter capabilities; the facts gate passes and Dark Sun acceptance cases are recorded in docs/REPORTER-CASE-AUDIT.md. Game-specific requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 4, 8, 10, 11, 12, 13, 14, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 28 and 38 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
 Delivered capabilities, closure evidence and remaining limits are recorded in
 [the adoption record](docs/TEMPLATE-ADOPTION.md).
 
@@ -46,52 +46,6 @@ branch alternatives or still unread. Do not infer preserved state or successful
 return merely from consecutive call locations; retain callee effects as an
 explicit gap unless separately read. This complements the function-ownership
 request in item 11.
-
-## 20. Distinguish shared callees from recursive call paths
-
-**Current disposition:** toolkit PR 39 supplies a bounded callee graph with
-active-path recursion, shared-node reuse and per-caller memory observations,
-assumptions and unresolved dependencies. Candidate source and negative/cap
-controls pass; keep open pending reviewed merge, exact adoption and rerun.
-
-FND-CONFIG-140 and FND-CONFIG-141 trace two expression branches that
-converge on one lookup routine. An early description called this a cycle;
-reading the complete lookup and its children showed no call back into the
-seed search. The corrected findings record convergence. The shared lookup
-also contains a conditional table write, so revisiting its node must not
-turn it into an assumed read-only leaf.
-
-**Request:** label shared-node reuse separately from a verified recursive
-path in bounded callee summaries. Reserve a cycle label for an edge back
-into the current traversal path, and carry the shared node's known effects
-and unresolved dependencies at each caller. This complements item 11's
-function ownership and item 15's local call ordering.
-
-## 21. Preserve segment provenance for near state pointers
-
-**Current disposition:** toolkit PR 40 retains caller formation segments,
-consumed pointer arguments and callee dereference provenance in argument/effect
-reports. Source, segment-rebinding, erased-value and cap controls pass; keep
-open pending reviewed merge, exact adoption and whole-contract rerun.
-
-FND-CONFIG-145 follows a BP-derived near pointer into helpers that
-access it through DS. Equating those addresses without checking the
-caller would assume a DS-to-SS relationship that the bounded reading
-has not established. That assumption would turn conditional count
-consumption into an unsupported runtime termination claim.
-
-**Request:** shared argument and effect reports should retain the segment
-used to form and dereference a near pointer, including implicit SS for
-BP-relative operands and default DS for ordinary indirect accesses.
-Require segment-state provenance before merging them into one state
-buffer, and report aliasing as unresolved when that provenance is absent.
-This complements item 16's relocated far-pointer mapping.
-
-FND-CONFIG-181 extends this concern to filename construction: a far
-copy writes an explicit SS destination, numeric conversion writes through
-near DS offsets, the caller reads SS bytes, and filename stores use DS.
-Shared summaries must retain each step's segment provenance rather than
-infer one buffer from matching offsets or loaded template lengths.
 
 ## 26. Preserve return widths and failure encodings at each caller
 

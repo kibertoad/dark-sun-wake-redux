@@ -29,8 +29,8 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 - Gap 15: open; full request and cited controls in gaps.md.
 - Gap 16: closed; reviewed merged source adopted and actual controls reverified.
 - Gap 17: closed; final merged toolkit PR 38 adopted exactly; complete source overlap, width, rejected-control, cap and partial-search cases pass.
-- Gap 20: open; source-tested candidate delivered in toolkit PR 39; reviewed merge, exact adoption and whole-contract rerun remain.
-- Gap 21: open; source-tested candidate delivered in toolkit PR 40; reviewed merge, exact adoption and whole-contract rerun remain.
+- Gap 20: closed; final merged toolkit PR 39 adopted exactly; shared lookup writes/dependencies, rejected false-cycle and cap controls pass.
+- Gap 21: closed; final merged toolkit PR 40 adopted exactly; caller SS/callee DS, stopped-path and nonvacuous formation-cap source controls pass.
 - Gap 22: closed; entire request passes adopted target/format/boundary controls recorded in docs/REPORTER-CASE-AUDIT.md.
 - Gap 23: closed; entire request passes adopted target/format/boundary controls recorded in docs/REPORTER-CASE-AUDIT.md.
 - Gap 24: closed; reviewed merged source adopted and actual controls reverified.

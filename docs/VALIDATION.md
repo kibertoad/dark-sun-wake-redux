@@ -431,3 +431,11 @@ no native DS/SS relationship is claimed. Candidate is not adopted.
 Root canonical Invoke-Validation.ps1 -NoRestore passes after the Gap 21
 candidate acceptance record, including Test.ps1 and Release publish/smoke;
 log artifacts/near-pointer-pr40-root-validation.log.
+
+Final merged PRs 39/40 adoption (2026-10-01): exact toolkit pin
+67340fcb975449600c160ef5a4995119d4e8f127 passes graph and near-pointer
+whole-contract source controls, nonvacuous formation cap, operand overlap and
+owner regressions. Canonical NoRestore gate passes, including Test.ps1 and
+Release build/publish/smoke; log artifacts/merged-graph-provenance-validation.log.
+Template PR 43 already contains this pin at 5ee4f81; exact integrity verified
+and all applicable CI passes. No duplicate update was pushed.

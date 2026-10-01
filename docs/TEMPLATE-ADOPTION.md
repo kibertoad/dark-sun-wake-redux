@@ -295,3 +295,18 @@ Exact source, tests and guide adopted, including review refinements for encoded
 literals, repeated prefixes and distinct overlapping starts. Configured source
 controls and clipped/rejected controls pass. Template pin update is proposed
 separately; game behavior and local standard snapshots are unchanged.
+
+## Reviewed callee graph adoption, 2026-10-01
+
+Toolkit PR 39 merged as 8853eb0e9a3542ef3a5c2864b25bd95b5201ae75.
+Adopt exact source/tests/guide, including breadth-first shortest-depth traversal,
+shared per-node summaries, cycle-path validation, shared-tail overlap handling
+and tightened positive controls. Template PR 43 already carries the subsequent combined final pin.
+
+Toolkit PR 40 also merged: final exact pin
+67340fcb975449600c160ef5a4995119d4e8f127 includes reviewed near-pointer
+provenance, dereference registers on string/XCHG/far-load accesses and bounded
+newest-formation retention. Adopted exact source/tests/guide; template PR 43
+already carries both merged graph and provenance revisions at commit
+5ee4f81e7296bdc27a6425056600f1bc53acbe7f. Its applicable CI is green;
+the PR remains open. Local duplicate update discarded after verification.

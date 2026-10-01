@@ -412,3 +412,25 @@ policy/build/test/package gates; logs artifacts/near-pointer-final-*. Source
 configs/reports stay local. Gap 21 remains open pending reviewed merge, exact
 adoption and whole-contract rerun. Root pin remains 1ef21ef; no game spec,
 parity status or research queue changed.
+
+Gap 20 final delivery: merged toolkit PR 39, exact pin
+8853eb0e9a3542ef3a5c2864b25bd95b5201ae75, passes the verify-adopted.mjs
+sibling source driver's entire contract. Both callers refer to the same shared
+summary, whose reachable nodes retain the byte and word write observations and
+continuation assumptions. Root unread routes remain dependencies; false-cycle,
+node/depth/edge cap controls pass. Final review uses shortest-depth breadth-first
+reading, explicit cycle-closing paths and referenced per-node summaries; no
+shared-node shortcut drops effects. Operand overlap controls also still pass.
+The entire Gap 20 tooling contract is accepted; remove its request. Runtime
+recursion, execution and effect completeness remain unproven.
+
+Gap 21 final delivery: toolkit PR 40 merged as
+67340fcb975449600c160ef5a4995119d4e8f127 and is adopted exactly. The
+verify-adopted.mjs sibling source driver passes the entire caller-formation,
+consumed-argument and callee-dereference contract in both reports. DS/SS equality
+remains unproven and merging refused; source stops remain incomplete. The
+formation-cap control retains an actual link and still refuses merging. Final
+review retains newest formations and effective segment registers for all modeled
+access types; synthetic controls cover those cases. Gap 20 graph controls still
+pass on this final pin. Gap 21's tooling request is accepted and removed without
+claiming native segment state or runtime aliasing.

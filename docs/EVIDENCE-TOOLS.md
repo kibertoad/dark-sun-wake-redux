@@ -152,3 +152,15 @@ memory uses, rejected overlapping decodes and unresolved boundaries stay separat
 Implicit operands and relative branch targets are excluded. Controls reject raw
 starts; scan/result caps keep partial coverage and incomplete groups explicit.
 See the pinned guide for the exact contract and exclusions.
+
+`x86-callees` reads a bounded established-entry graph breadth-first, distinguishing
+shared-node reuse from a verified cycle-closing route. Per-caller references to
+`calleeSummaries` retain reachable memory observations, assumptions and unresolved
+dependencies. Effects remain incomplete; no missing write proves a read-only
+callee. Unchecked entries and caps refuse boundary/completeness claims.
+
+Argument/effect reports retain caller LEA formations and link consumed near
+pointers to dereference segment choices and producers. Equal offsets alone never
+prove DS=SS. Propagated segment equality and matching/affine symbolic offsets
+qualify modeled storage merging; unknown relationships and formation evictions
+refuse it. Pointer-related reads remain in effect reports; see the pinned guide.
