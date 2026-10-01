@@ -636,3 +636,27 @@ pass. Configured validation includes Test.ps1, Release build and assetless
 publish/smoke. Logs artifacts/package-delivery/reader020-{root,template}-
 {normal,offline}.log. No source claims, parity statuses, rule snapshot bytes or
 original-content contracts changed. Gap 27 remains open with its full request.
+
+## Gap 27 returning pointer-consumer caller control, 2026-10-02
+
+Installed reader 0.2.0 and engine 0.4.0 pass FND-CONFIG-161/168's three
+conditional returning-call/clear contracts. Each observed selector push is a
+zero word; each clear is a zero dword through its independently reloaded fixed
+segment and the corresponding field offset. A returned AX word zero or FFFF
+reaches that clear without an intervening conditional branch. The reporter
+retains each modeled result before the caller replaces AX with its field segment.
+No success, release or resource-validity conclusion is inferred from the clear.
+
+The full entry/body query is capped in later services and polling, so it does
+not establish complete function coverage. The bounded acceptance split retains
+the actual entry and ends after the three local clears. Its stopped paths and
+unknown service effects remain explicit. Balanced returns and DS/SS/BP are
+hypotheses; models invalidate memory/flags, so later field gates do not inherit
+unproved callee preservation. Step/path caps and removing the models destroy
+the positive three-clear contract for both result hypotheses. Native cleanup,
+error origins and later progress remain unconfirmed.
+
+Driver: GAME_DIR/analysis/reporter-audit/pointer-caller-effects/verify-adopted.mjs.
+Its configs/reports and verify-adopted-reader020-engine040.log remain local.
+Gap 27 stays open for head/list mutations and its other full cited contracts;
+no spec status, parity row, gameplay or native evidence changed.

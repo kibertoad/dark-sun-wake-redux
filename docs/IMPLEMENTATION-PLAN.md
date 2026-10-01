@@ -790,3 +790,26 @@ dependency controls and all retained installed-package source drivers pass.
 Configs/reports stay in GAME_DIR; no candidate PYTHONPATH is used. Exit: validated
 locks, reviewable template PR update and source regression record. No gameplay,
 rule snapshot or persisted content-contract change.
+
+## Returning pointer-consumer caller control
+
+Gap 27 acceptance uses FND-CONFIG-161/168's complete local outer-caller entry
+and installed reader 0.2.0/engine 0.4.0. Explicit balanced-return hypotheses
+retain each of the three consumer results as word zero or FFFF, followed by
+its independently addressed dword field clear. Verify the zero selector argument,
+field width/segment, returned result and absence of an intervening result branch.
+Other service results, polling return assumptions and DS/SS/BP preservation stay
+conditional; all modeled memory/flag effects remain unknown. Full-function caps
+or unreturned services cannot establish successful cleanup or native progress.
+Acceptance: all three returning-call/clear contracts pass for both result
+hypotheses; nonvacuous step/path caps and removing models reject positive coverage.
+Configs/reports stay in GAME_DIR, no proprietary fixtures or game claims change.
+Exit: installed-package source controls and canonical Test.ps1 pass. Gap 27 stays
+open until head/list, fill, cleanup/hardware, cache and snapshot contracts also pass.
+
+The full outer-caller query is explicitly state-capped in later services/polling.
+The acceptance split keeps the actual entry and stops immediately after all
+three local field clears; the epilogue and later effects remain unread. Both
+zero/FFFF return hypotheses pass exact field width/segment, selector push and
+no-intervening-result-branch controls. This proves only the bounded conditional
+caller contract and cannot establish completion of the whole helper.

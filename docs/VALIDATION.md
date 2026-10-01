@@ -534,3 +534,15 @@ gates pass; configured Release build and assetless publish/smoke pass. Logs
 artifacts/package-delivery/reader020-{root,template}-{normal,offline}.log.
 Source controls retain *-reader020-engine040.log files under GAME_DIR. The
 published child-effect limitation remains explicit and PR 60 is not adopted.
+
+Gap 27 outer-caller control (2026-10-02): installed reader 0.2.0/engine 0.4.0
+pass all three conditional zero-selector returning-call/dword-clear controls
+for AX zero and FFFF. Nonvacuous step/path and unread-service controls reject
+positive coverage. GAME_DIR/analysis/reporter-audit/pointer-caller-effects/
+verify-adopted-reader020-engine040.log. The acceptance prefix starts at the real
+entry; full later-body coverage, cleanup success and native progress stay open.
+
+Caller-control batch Test.ps1 -NoRestore passes; log
+artifacts/package-delivery/pointer-caller-root-final-test.log. Template PR 44
+at 5777ea0 passes documentation, Ubuntu Verify, zizmor and Windows installer CI;
+Linux/macOS installers are skipped by workflow scope.
