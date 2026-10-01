@@ -3,25 +3,9 @@
 These are the remaining requests for the restoration template and shared analysis
 tooling. They describe tooling behavior, not claims about the original game.
 
-Current website, toolkit and template main revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Website `ca39d07`, toolkit `b870642` and template `8d0eef3` add call-target, bounds, owner, incoming-coverage and carry/loop reporter capabilities; the facts gate passes and Dark Sun acceptance cases are recorded in docs/REPORTER-CASE-AUDIT.md. Game-specific requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 8, 10, 12, 13, 14, 16, 18, 19, 22, 23, 24, 25, 28 and 38 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
+Current website, toolkit and template main revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Website `ca39d07`, toolkit `b870642` and template `8d0eef3` add call-target, bounds, owner, incoming-coverage and carry/loop reporter capabilities; the facts gate passes and Dark Sun acceptance cases are recorded in docs/REPORTER-CASE-AUDIT.md. Game-specific requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 4, 8, 10, 12, 13, 14, 16, 18, 19, 22, 23, 24, 25, 28 and 38 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
 Delivered capabilities, closure evidence and remaining limits are recorded in
 [the adoption record](docs/TEMPLATE-ADOPTION.md).
-
-## 4. Offer an offline rerun for the local test gate
-
-**Current disposition:** local normal/offline full gates and synthetic option
-controls pass. Template PR 41 proposes the shared option; keep open until
-reviewed upstream delivery and exact adoption. Restricted native capture and
-filesystem checks remain separate limitations, not dependency-restore failures.
-
-`./tools/Test.ps1` invokes `dotnet test` with restore on every run. In this
-restricted workspace, restore failed on NuGet's service or signature endpoint
-even after a successful authorized restore had cached the packages. The same
-script passed all 700 tests when network access was available.
-
-**Request:** consider an explicit offline rerun option that uses an already
-restored lock/assets state. Keep the normal CI path restoring packages from
-NuGet.
 
 ## 5. Define a portable inventory path for disc manifest entries
 

@@ -263,3 +263,18 @@ merged PRs 33/34. New dispatch and pointer modules and tests are included in the
 hashed mapping. Full gap 13 source acceptance, capped/partial negative controls
 and canonical validation pass; REPORTER-CASE-AUDIT records the scope. This closes
 the bounded inventory request, not player reachability or universal absence.
+
+
+## Final explicit offline rerun adoption
+
+Template PR 41 merged as bd3d9a381cae7d3f015e9c089f2fe134e8a0a857.
+The configured Test.ps1 and Invoke-Validation.ps1 expose -NoRestore; default
+validation and CI retain restore. All checks, filters/count controls and
+serialization remain intact. The final portability, scratch cleanup and
+nonvacuous test refinements are adopted with this project's Test.ps1 route.
+The production host block passes fallback and caller-environment restoration
+controls. Final normal and offline gates pass; logs
+artifacts/offline-pr41-final-normal.log and artifacts/offline-pr41-final-offline.log.
+The latter uses unreachable HTTP proxies and no restore fallback. Documentation
+states existing restore state is a prerequisite and does not promise cached
+freshness. The whole gap 4 request passes and is removed. No gameplay changes.

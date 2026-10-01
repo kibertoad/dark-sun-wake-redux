@@ -386,3 +386,18 @@ checks, filters/counts and failure propagation. The restricted full rerun still
 fails native capture and Java filesystem controls; its failure is retained in
 artifacts/offline-validation-restricted-rerun.log and is not counted as acceptance.
 Shared delivery is proposed in template PR 41; gap 4 remains open pending review.
+
+
+Final template PR 41 adoption: merged revision
+bd3d9a381cae7d3f015e9c089f2fe134e8a0a857. The option tests use scratch-local
+lock files and require a build plus a test route, avoiding vacuous assertions.
+The configured gate's route is Test.ps1; its forwarding control replaces the
+template's direct dotnet-test assertion. Test.ps1 supplies its running portable
+PowerShell for these controls when PWSH is unset and restores the prior value.
+Normal and offline full gates are rerun for this final adaptation.
+
+Final normal and offline gates pass: artifacts/offline-pr41-final-normal.log and
+artifacts/offline-pr41-final-offline.log. The production portable-host block also
+passes unset-PWSH fallback and preservation of a supplied caller value; local
+probe artifacts/pr41-portable-host-control.ps1. Gap 4 is closed after this final
+merged adoption; the earlier pending-PR notes above describe prior acceptance.

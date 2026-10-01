@@ -18,7 +18,7 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 - Gap 1: closed; merged template PR 33 refinements adopted and actual installed inventory reverified.
 - Gap 2: closed; final merged script passes actual large-map page/name controls.
 - Gap 3: closed; shared join exactly reproduces actual original-resident/mapped-overlay inventory.
-- Gap 4: open; explicit local offline adaptation and normal/offline gates pass; shared template PR 41 pending reviewed delivery and adoption.
+- Gap 4: closed; final merged template PR 41 adopted with configured Test.ps1 routing; normal/offline full gates and portable-host controls pass.
 - Gap 5: partial; portable/legacy identity checks pass, distinct disc-source validation pending; PR 33 merged and adopted.
 - Gap 8: closed; entire request passes adopted target/format/boundary controls recorded in docs/REPORTER-CASE-AUDIT.md.
 - Gap 9: open; full request and cited controls in gaps.md.
