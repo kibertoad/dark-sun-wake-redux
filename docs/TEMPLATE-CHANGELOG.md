@@ -8,6 +8,145 @@ not here.
 
 A project created from this template may delete this file.
 
+## Call targets, function bounds, incoming coverage and carry arithmetic, 2026-10-01
+
+- **Reporters.** The reporter pin moves from `7da1b93` to toolkit `313bb7d`,
+  where the reporter work of toolkit PRs
+  [28](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/pull/28),
+  [29](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/pull/29),
+  [30](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/pull/30) and
+  [31](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/pull/31)
+  reached `main` through
+  [32](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/pull/32).
+- **Behaviour.** `x86-target` reports one direct call's raw words, relocation or
+  FBOV fixup chain, trampoline, canonical target and citation, and compares an
+  analyzer's address with them. `x86-bounds` and `x86-owner` report an entry's
+  reached body, holes and exits, and which entries own a site, with an
+  analyzer's size compared as a body-byte count. `formatControls` rejects a
+  query whose table counts differ from a build's known counts. Incoming reports
+  label a search over part of an overlay, section or declared segment partial
+  and say where each unverified candidate sits. The path model tracks CF and
+  adds ADC/SBB, NEG/NOT, rotates, one-operand MUL/IMUL/DIV/IDIV, JCXZ and the
+  LOOP family, with `visitLimit` in place of the fixed four passes. Review
+  fixes in the merged stack: a site whose candidate owners overlap or whose
+  entries stopped at a gap is `unresolved` rather than `unowned`; a conditional
+  branch to another entry is a conditional tail transfer; repeat and BND
+  prefixes hide no return, port access or jump; a `scanLimit` that stops short
+  makes an incoming search partial; and a target whose loaded address the
+  loader cannot resolve keeps `targetError` and gets no target.
+  (`docs/BOUNDED-EVIDENCE-REPORTERS.md`, `docs/EVIDENCE-TOOLS.md`.)
+- **Rules.** `docs/upstream/` moves from `82deb76` to `ca39d07`, where
+  [kibertoad/refurbished-dinosaurs#31](https://github.com/kibertoad/refurbished-dinosaurs/pull/31)
+  merged. It adds the call-target, boundary and ownership contracts, format-table
+  controls and the incoming-call coverage rule. Under these contracts a near
+  call takes the caller's segment, an unresolved computed jump is an exit with
+  unknown targets, a query that gives no table counts is reported as unchecked,
+  and a repeat limit and a division that may overflow are named. Section links
+  are rewritten to the new line ranges. The vendored checker stays on toolkit
+  `f7da132`.
+
+## Addresses in code comments, and a pre-commit hook, 2026-10-01
+
+Adopts the parts of
+[kibertoad/chaos-overlords-new-chrome#268](https://github.com/kibertoad/chaos-overlords-new-chrome/pull/268)
+that apply to every restoration.
+
+- **Checker.** `vendor/check-documentation.mjs` and the CI pin move from
+  toolkit `f5e62e0` to `f7da132`, where
+  [toolkit PR 23](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/pull/23)
+  merged.
+  An address a code comment gives must be recorded in an entry the comment
+  cites, or in the evidence of a cited entry. Neutral names (`fn_…`, `g_…`) are
+  always checked; plain `0x…` values only once the CI step gives `images`,
+  which `ci.yml` explains how to add.
+- **Local runs match CI.** `tools/upstream.mjs docs` passes the checker the
+  inputs the CI step gives under `with:`; a command-line option still wins.
+- **Pre-commit hook.** `.githooks/pre-commit` runs the gate's node checks on
+  the staged tree. The checks are listed once, in `tools/Invoke-NodeChecks.mjs`,
+  which `tools/Invoke-Validation.ps1` also runs. `tools/evidence/sync-x86.mjs`
+  now compares real paths before running, so a symlinked path (macOS's
+  temporary directory) no longer skips its check with exit 0.
+- **Rules.** `AGENTS.md`: evidence lives in the spec and is recorded before a
+  comment, test or commit message gives it; look for a new ID on the open pull
+  request branches too; enable the hook and do not bypass it.
+- **Acceptance.** `node tools/upstream.mjs verify`, `node tools/upstream.mjs links`
+  and `node tools/Invoke-NodeChecks.mjs` pass, and so does the upstream Node
+  suite apart from the bootstrap preservation test, which needs PowerShell.
+
+## Variable uses past a stop, and website rules up to kibertoad/refurbished-dinosaurs@3b4e6fc, 2026-09-30
+
+- **Reporters.** The reporter pin moves from `a0b91d6` to toolkit `926e287`,
+  where PR [18](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/pull/18)
+  merged.
+- **Behaviour.** `x86-uses` no longer lists a memory operand reached only past a
+  stop (an unread call, an unsupported instruction, an exhausted budget) in
+  `matches`. It goes in `conditionalAccesses`, and its `dependsOn` names every
+  stop that reaches it and every untraced call it is reached past. Such an
+  access still satisfies a positive control and always makes `negativeUsable`
+  false. A concrete segment query marks it as a possible alias rather than
+  moving it to `unresolvedAccesses`. (`docs/BOUNDED-EVIDENCE-REPORTERS.md`.)
+- **Rules.** `docs/upstream/` moves from `94f8f67` to `3b4e6fc`, where
+  [kibertoad/refurbished-dinosaurs#27](https://github.com/kibertoad/refurbished-dinosaurs/pull/27)
+  merged. The standard's report contracts gain the variable-use rule above,
+  the PUSH CS / near call far-return frame and uncorrelated unknown flag
+  producers, and the work protocol says what a reporter verification record
+  holds. The vendored checker stays on toolkit `c361820`.
+- **Acceptance.** `node tools/evidence/sync-x86.mjs --check`,
+  `node tools/upstream.mjs verify`, `node tools/upstream.mjs docs --check` and
+  `node tools/upstream.mjs links` pass, and so do the Python reporter suites.
+  The Node evidence, upstream, bridge and vendor tests pass apart from the
+  bootstrap preservation test, which needs PowerShell.
+
+## PE32/i386 bounded reports, 2026-09-30
+
+- **Reporters.** The reporter pin moves from `b51b0c0` (toolkit PR 16, see
+  "Reporter case-verification refinements") to toolkit `a0b91d6`, which
+  holds PRs [15](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/pull/15)
+  and [17](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/pull/17). The pin
+  gains `x86/pe.py` and `tests/evidence/test_pe.py`.
+  (`docs/BOUNDED-EVIDENCE-REPORTERS.md`.)
+- **PE32.** `sourceKind: "pe32"` derives preferred-base mappings from the
+  source's section table and runs the ten existing reports under a flat
+  32-bit model. Regions and entry/control sites are file offsets; memory query
+  offsets are VAs. Raw alignment padding past `VirtualSize` is not loaded
+  source, and malformed `regions` fail with a diagnosable error. PE32+,
+  rebasing, imports and computed targets stay outside the model.
+- **16-bit behaviour.** Shared changes reach MZ/FBOV reports: overlapping
+  entry-path instructions become unresolved boundary gaps, and
+  operand-size-prefixed control transfers and LEAVE stop the path. Every report
+  adds `instructionModel`, `sourceMapping` and `declaredRegions`.
+  (`docs/EVIDENCE-TOOLS.md`.)
+- **Validation.** The canonical gate, CI and release discover every Python
+  reporter suite with `test*.py`, and bootstrap preserves the added pinned files.
+- **Acceptance.** `node tools/evidence/sync-x86.mjs --check`,
+  `node tools/upstream.mjs verify` and `node tools/upstream.mjs docs --check`
+  pass, and so do the Python reporter suites. The Node evidence, upstream,
+  bridge and vendor tests pass apart from the bootstrap preservation test,
+  which needs PowerShell.
+
+## Pinned x86 reporters and website rules up to kibertoad/refurbished-dinosaurs@94f8f67, 2026-09-30
+
+- **Reporters.** `tools/evidence/x86-reporter/` holds an exact copy of the
+  toolkit's bounded 16-bit x86 reporter at `c2b21ee`, with its tests, guide
+  (`docs/BOUNDED-EVIDENCE-REPORTERS.md`) and license. `tools/evidence/report.mjs`
+  exposes it as the `x86-*` commands. `tools/evidence/x86-lock.json` records
+  the hashes, `node tools/evidence/sync-x86.mjs --check` verifies them offline,
+  and specialization leaves those bytes alone. (`docs/EVIDENCE-TOOLS.md`.)
+  `tools/evidence/legacy-image.mjs` now re-exports the pinned MZ/FBOV reader
+  instead of keeping a second copy.
+- **Validation.** The canonical gate, CI and the release test job install
+  `capstone==5.0.7` and run the Python reporter tests and the Node bridge and
+  pin tests.
+- **Website rules.** `docs/upstream/` is refreshed to `94f8f67`, which adds
+  the standard's bounded analysis report contracts and the protocol's rule for
+  reporter tooling batches. `docs/EVIDENCE-REVIEW.md` applies them, and section
+  links are regenerated. The vendored checker stays on toolkit `c361820`.
+- **Acceptance.** The following commands pass:
+  - `node tools/evidence/sync-x86.mjs --check`
+  - `node tools/upstream.mjs verify`
+  - `node tools/upstream.mjs links`
+  - `node tools/upstream.mjs docs --check`
+
 ## Website rules up to kibertoad/refurbished-dinosaurs@b923e85, 2026-09-30
 
 The local copy in `vendor/upstream/` is refreshed to the core website's
@@ -286,7 +425,7 @@ A deviation's Default is now `off`, `on` or `mandatory`. `mandatory` replaces
 `mandatory`, or `on` without being the fix of an unintended bug players do not
 rely on, carries a `Justification` item arguing that the rebuild's behavior is
 strictly better than the original's, as the
-[documentation standard](../vendor/upstream/documentation-standard.md#deviation-log) (lines 839-860)
+[documentation standard](../vendor/upstream/documentation-standard.md#deviation-log) (lines 844-865)
 now sets out. `AGENTS.md`, `DEVIATIONS.md` and `docs/VALIDATION.md` say so, and
 a test that reaches a mandatory deviation cites its ID and allows for it.
 

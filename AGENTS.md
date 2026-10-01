@@ -347,7 +347,7 @@ Never silently promote a plausible interpretation.
 
 A complete reading also covers what the standard's
 [Complete readings](vendor/upstream/documentation-standard.md#complete-readings) (lines 137-181)
-and [Findings](vendor/upstream/documentation-standard.md#findings) (lines 413-463) sections
+and [Findings](vendor/upstream/documentation-standard.md#findings) (lines 418-468) sections
 list, among them: two addresses are the same storage only where the reading
 shows the segment each is formed in and accessed through (a BP offset read
 through DS is the caller's stack only where DS equals SS there); a stored
@@ -388,6 +388,22 @@ a meaningful slice of its code or scripts. Tool procedure stays in `docs/GHIDRA.
 decompiler, instruction, or Version Tracking exports. The function inventories
 in `coverage/` are the one export that is committed, and only with the columns
 the planning section above allows.
+
+Evidence lives in the spec, not in the code that relies on it. An address,
+offset or constant that a code comment, test or commit message gives as evidence
+must already be recorded in an entry it cites, directly or in the evidence of an
+entry that one cites; when none records it, write that finding first, in the
+same research batch. The documentation check enforces this for the neutral
+names (`fn_…`, `g_…`) a code comment gives, and for plain `0x…` addresses once
+the CI job gives the image's range (see `docs/VALIDATION.md`). Before taking a
+new ID, look for it on the open pull request branches as well as `main`,
+because parallel branches each take the next free number and the check sees
+only one branch:
+
+```sh
+git fetch origin
+git grep -l <ID> $(git for-each-ref --format='%(refname)' refs/remotes/origin)
+```
 
 ## Fidelity
 
@@ -623,6 +639,12 @@ entry to `orphanCleanupLog.md` with the local timestamp and UTC offset, PID,
 process name, start time or task/session when known, the evidence that made it
 an orphan, and any related process deliberately left running. If the audit
 finds nothing to stop, do not create a log entry.
+
+Enable the pre-commit hook once in each clone, before the first commit, with
+`git config core.hooksPath .githooks`, and do not bypass it with
+`--no-verify`. It runs the gate's node checks (`tools/Invoke-NodeChecks.mjs`)
+on the staged tree in under a second, so a spec, queue or reporter-pin problem
+fails before the commit instead of in CI.
 
 ## Definition of done
 

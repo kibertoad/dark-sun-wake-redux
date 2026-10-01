@@ -73,13 +73,9 @@ if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
 }
 & node (Join-Path $root 'tools/upstream.mjs') links
 if ($LASTEXITCODE -ne 0) { throw 'Local upstream section links are invalid.' }
-& node (Join-Path $root 'tools/evidence/sync-x86.mjs') --check
-if ($LASTEXITCODE -ne 0) { throw 'Pinned reporter verification failed.' }
 $evidencePython = if ($env:EVIDENCE_PYTHON) { $env:EVIDENCE_PYTHON } else { 'python' }
 & $evidencePython -B -m unittest discover -s (Join-Path $root 'tests/evidence') -p 'test*.py'
 if ($LASTEXITCODE -ne 0) { throw 'Synthetic x86 reporter tests failed. Install the pinned evidence requirements.' }
-& node (Join-Path $root 'tools/Check-ResearchTracking.mjs')
-if ($LASTEXITCODE -ne 0) { throw 'Research queue tracking failed.' }
 & node --test (Join-Path $root 'tests/evidence/evidence.test.mjs') (Join-Path $root 'tests/upstream/upstream.test.mjs') (Join-Path $root 'tests/upstream/mapped-locations.test.mjs') (Join-Path $root 'tests/evidence/bridge.test.mjs') (Join-Path $root 'tests/evidence/vendor.test.mjs') (Join-Path $root 'tests/upstream/diagnostics.test.mjs') (Join-Path $root 'tests/upstream/memory-blocks.test.mjs') (Join-Path $root 'tests/upstream/superseded-ownership.test.mjs') (Join-Path $root 'tests/upstream/research-tracking.test.mjs') (Join-Path $root 'tests/upstream/capture-window.test.mjs') (Join-Path $root 'tests/upstream/infrastructure.test.mjs') (Join-Path $root 'tests/upstream/export-boundaries.test.mjs') (Join-Path $root 'tests/upstream/release-signing.test.mjs')
 if ($LASTEXITCODE -ne 0) { throw 'Synthetic evidence or upstream snapshot tests failed.' }
 # Node does not resolve a .bat or .cmd wrapper on PATH, so hand the check the Kaitai compiler's
@@ -89,8 +85,10 @@ if (-not $env:KSC) {
         -ErrorAction SilentlyContinue | Select-Object -First 1
     if ($kaitaiCompiler) { $env:KSC = $kaitaiCompiler.Source }
 }
-& node (Join-Path $root 'tools/upstream.mjs') docs --check --references docs
-if ($LASTEXITCODE -ne 0) { throw 'Documentation standard check failed.' }
+# The node checks are listed once, in tools/Invoke-NodeChecks.mjs, which .githooks/pre-commit also runs.
+# The documentation check takes the CI step's inputs, so it checks references in docs as CI does.
+& node (Join-Path $root 'tools/Invoke-NodeChecks.mjs')
+if ($LASTEXITCODE -ne 0) { throw 'Documentation, research tracking or reporter-pin checks failed.' }
 $artifacts = Join-Path $root 'artifacts/test'
 $testArguments = @('test', '--project', (Join-Path $root 'tests/DarkSunWakeRedux.Tests/DarkSunWakeRedux.Tests.csproj'),
   '-p:UseSharedCompilation=false', '-p:RestoreLockedMode=true', '--artifacts-path', $artifacts, '--no-progress', '-v', 'minimal')

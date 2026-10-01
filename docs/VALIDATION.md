@@ -236,7 +236,7 @@ The `Documentation standard` job in `.github/workflows/ci.yml` runs the
 [refurbished-dinosaurs-toolkit](https://github.com/kibertoad/refurbished-dinosaurs-toolkit),
 pinned to a full commit SHA, on every pull request. It checks `spec/`, `parity/`
 and `deviations/` against the standard's list of
-[checks](../vendor/upstream/documentation-standard.md#checks) (lines 782-833), compiles each
+[checks](../vendor/upstream/documentation-standard.md#checks) (lines 787-838), compiles each
 `.ksy` file with the Kaitai Struct compiler, checks that every spec and
 deviation ID cited in `src/`, `tests/`, `tools/` and `docs/` exists and is
 not superseded, fails when `spec/index/` or `PARITY.md` is stale, and fails a `validated`
@@ -247,8 +247,19 @@ deviation that exists on `main`. The toolkit's
 [setup guide](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/blob/main/docs/documentation-standard-check.md)
 lists its inputs.
 
-`./tools/Test.ps1` runs the hash-verified offline checker with
-`--check --references docs`, from the exact toolkit commit the workflow pins.
+The check also fails when a code comment gives an address that no entry the
+comment cites records, in its locations or text or in the evidence of an entry
+it cites. A neutral name (`fn_…`, `g_…`) is always an address. A plain `0x…`
+value is one only inside an image the job gives with the action's `images`
+input, so colours, masks and offsets are left alone. DSUN.EXE is an MZ
+executable, whose addresses are written `segment:offset`, so `ci.yml` gives no
+`images` input and only explains how to add one. A range larger than `max-range`
+(64 KiB by default), such as a whole section, records only its two ends, nothing
+inside it. When a
+comment fails, cite the finding that records the address, or write one.
+
+`./tools/Test.ps1` runs the hash-verified offline checker in `--check` mode
+through `tools/Invoke-NodeChecks.mjs`, with the CI step's `references: docs`, from the exact toolkit commit the workflow pins.
 It also runs the synthetic evidence and snapshot suites. Node.js 22+ and
 PowerShell 7+ (`pwsh`) are required for these suites. See
 [UPSTREAM-RULES](UPSTREAM-RULES.md) for explicit upstream checks and refreshes.
@@ -264,10 +275,24 @@ node tools/upstream.mjs docs --references docs
 git add spec/index PARITY.md
 ```
 
-The script does not check some items on the standard's list, such as the
-fixture schema and the hashes of saves and recordings; its guide lists them,
+`tools/upstream.mjs docs` passes the checker the inputs the CI step gives
+under `with:` (`code`, `references`, `images`, `max-range` and `data-dirs`), so
+a local run checks what CI checks; an option given on its command line wins.
+`--check` reports problems without writing anything. `tools/Test-TemplateInfrastructure.ps1`
+fails if the workflow stops running the check or pins it to anything but a full
+commit SHA. The script does not check some items on the standard's list, such as
+the fixture schema and the hashes of saves and recordings; its guide lists them,
 and reviewers check those by hand. A save-patch write is given as a byte offset
 and value in the experiment's Setup section.
+
+`.githooks/pre-commit` runs the gate's node checks, listed once in
+`tools/Invoke-NodeChecks.mjs`, before each commit once a clone enables it with
+`git config core.hooksPath .githooks`. It copies the index to a temporary
+directory and checks that, so it judges what is being committed: unstaged edits
+neither hide a problem nor block a clean commit. The documentation check runs
+there with `--no-ksy`, so `.ksy` compile errors still surface only in the gate
+and CI. Without `node` the hook prints a warning and lets the commit through.
+
 
 ## Tests against the original
 
@@ -316,6 +341,7 @@ gaps 14 and 19 are proposed upstream and are not adopted locally yet.
 ### Revised upstream adoption, 2026-09-30
 
 Adopted latest website, toolkit and template main revisions recorded in TEMPLATE-ADOPTION.md. tools/Test.ps1 passed: 92 Python tests (including PE32), 41 Node tests and 700 .NET tests; repository/configuration checks, exact source pins, local section ranges and documentation check (615 entries, 158 parity rows, 5 deviations) passed. Recorded Dark Sun static cases passed known-read controls, incorrect-control rejection, dispatch normalization and all three effective-width conversion controls against the actual adopted reporter. Conditional continuations remain conditional. No original game or emulated function ran; raw reports/configurations remain in GAME_DIR.
+
 
 Goal acceptance batch: verified FND-CONFIG-096 two-entry table and third-entry rejection, plus FND-CONFIG-144 pushed-pointer relocation controls against the pinned reporter. Source baseline unchanged; local queries/reports remain GAME_DIR-only. Gap 12 closed; gap 16 partial.
 

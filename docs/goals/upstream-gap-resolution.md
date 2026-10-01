@@ -59,7 +59,7 @@ Synthetic success and broad guidance do not close a game-case request. Current s
 ## Handover
 
 - Stage: Slices; tooling maintenance only.
-- Last gate: 2026-10-01, Test.ps1 and full build pass; artifacts/full-upstream-migration-validation.log and artifacts/full-upstream-migration-build.log.
-- Unfinished: remaining numbered gaps; latest website/template/toolkit migration is complete. No candidate adoption remains pending.
-- Blockers: none preventing other tooling work.
-- Next: distinct disc-source verification for gap 5, offline gate for gap 4, remaining arithmetic/count and callee-composition capabilities.
+- Last gate: 2026-10-01, tools/Invoke-Validation.ps1 passes (137 Python, 77 Node, 700 .NET); artifacts/reporter-provenance-adoption.log.
+- Unfinished: website ca39d07, toolkit 313bb7d (checker f7da132) and template 8d0eef3 are adopted. Gaps 8, 10, 11, 13, 21, 22, 23, 26, 27, 35, 39 and 42 now have reporter support whose Dark Sun cases are unrun. Gap 9 needs a game-repo fix in the UI catalog, outside this goal's scope.
+- Blockers: the facts gate (docs/SOURCE-EDITIONS.md) refuses executable analysis until latest-patch provenance and the baseline SHA-256 are recorded, so no game case can be rerun.
+- Next: once the gate passes, run x86-target on the FND-CONFIG-031 and FND-CONFIG-183/FND-COMBAT-009 calls with formatControls, x86-bounds/x86-owner on FND-CONFIG-092, -151 and -158, incoming with declared segments for FND-CONFIG-101/-111/-113, and the stopped trace cases with visitLimit; then distinct disc-source verification for gap 5 and the offline gate for gap 4.
