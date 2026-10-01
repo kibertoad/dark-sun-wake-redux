@@ -324,6 +324,9 @@ joining the handler. These are conditional tooling results, not player
 reachability or callee-effect evidence. Candidate reporter, policy, build,
 .NET and packaging gates pass; logs artifacts/owner-provenance-*.
 
-The root pin remains b870642. Gap 11 stays open until reviewed merge, exact
-adoption and a whole-contract rerun. No spec claim, parity status or research
+Template PR 42 and toolkit PRs 35?37 are merged. The exact root pin is
+c133cd48bfe6cc3cb7126616996e7d548982a068. The verify-adopted.mjs sibling
+driver passes the entire setup/handler contract with source-derived exports,
+reached ranges, analyzer disagreement, partial dispatch rejection and entry-limit
+join refusal. Gap 11 is closed after this exact-adoption rerun. No spec claim, parity status or research
 queue changes, and no original bytes/configurations/reports enter Git.

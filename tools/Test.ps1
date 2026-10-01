@@ -74,7 +74,6 @@ if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
 & node (Join-Path $root 'tools/upstream.mjs') links
 if ($LASTEXITCODE -ne 0) { throw 'Local upstream section links are invalid.' }
 $evidencePython = if ($env:EVIDENCE_PYTHON) { $env:EVIDENCE_PYTHON } else { 'python' }
-$env:PYTHONPATH = (Join-Path $root 'tools/evidence/x86-reporter') + [IO.Path]::PathSeparator + $env:PYTHONPATH
 & $evidencePython -B -m unittest discover -s (Join-Path $root 'tests/evidence') -p 'test*.py'
 if ($LASTEXITCODE -ne 0) { throw 'Synthetic x86 reporter tests failed. Install the pinned evidence requirements.' }
 & node --test (Join-Path $root 'tests/evidence/evidence.test.mjs') (Join-Path $root 'tests/upstream/upstream.test.mjs') (Join-Path $root 'tests/upstream/mapped-locations.test.mjs') (Join-Path $root 'tests/evidence/bridge.test.mjs') (Join-Path $root 'tests/evidence/vendor.test.mjs') (Join-Path $root 'tests/upstream/diagnostics.test.mjs') (Join-Path $root 'tests/upstream/memory-blocks.test.mjs') (Join-Path $root 'tests/upstream/superseded-ownership.test.mjs') (Join-Path $root 'tests/upstream/research-tracking.test.mjs') (Join-Path $root 'tests/upstream/capture-window.test.mjs') (Join-Path $root 'tests/upstream/infrastructure.test.mjs') (Join-Path $root 'tests/upstream/export-boundaries.test.mjs') (Join-Path $root 'tests/upstream/release-signing.test.mjs')

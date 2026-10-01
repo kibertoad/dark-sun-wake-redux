@@ -92,7 +92,7 @@ Coverage describes analyzer-discovered functions, not every function that exists
 
 The `x86-trace`, `x86-uses`, `x86-arguments`, `x86-effects`, `x86-returns`,
 `x86-memory`, `x86-incoming`, `x86-guards`, `x86-allocation`, `x86-dispatch`,
-`x86-operand`, `x86-target`, `x86-bounds` and `x86-owner` commands use the pinned
+`x86-operand`, `x86-target`, `x86-bounds`, `x86-owner` and `x86-pointers` commands use the pinned
 toolkit reporter. Keep configurations and reports in `GAME_DIR` and out of
 commits. Install its Python dependency with
 `python -m pip install -r tools/evidence/x86-reporter/requirements.txt`.
@@ -118,7 +118,10 @@ the relocation or FBOV fixup, the stored descriptor word and decoded index, the
 trampoline and the canonical target, and compares an analyzer's address with
 each instead of replacing them. Use `x86-bounds` and `x86-owner` before joining a
 call to its caller or bounding a reading by an analyzer's size: an analyzer's
-size is a body-byte count and is never added to a start to make an end. Give
+size is a body-byte count and is never added to a start to make an end.
+`x86-owner` includes checked-entry reached ranges, source-derived overlay exports
+and explicit boundary checks. Incomplete, contested, gapped or entry-limited
+coverage refuses a join; supplied export metadata is rejected. Give
 `formatControls` the build's known relocation, descriptor, overlay, fixup and
 trampoline counts so a misread table fails the query. Declare a resident
 segment's bounds from the build's code ranges in `segments` so an incoming
@@ -136,3 +139,9 @@ The pinned toolkit reporter now accepts `sourceKind: "pe32"` for i386 executable
 Inventory checks require eight uppercase hexadecimal offset digits, reject analyzer default names, and verify that the input file ends with its declared repositoryPath. These checks supplement researcher provenance; they do not establish it.
 
 The pinned reporter now includes `x86-operand` for instruction-owned MOV/PUSH segment immediates, direction-sensitive strings, saved flags and local IRET. Overlap proof follows a proven target through its continuation; callers reached only through contested starts remain unresolved. See the exact pinned BOUNDED-EVIDENCE-REPORTERS.md for query contracts.
+
+Computed near word jumps can use evidenced, explicitly exhaustive `indirectJumps`
+tables in CFG reports. Path reports still stop there. `x86-pointers` inventories
+MZ relocation and FBOV fixup word pairs as exact, alias, unresolved or excluded
+candidates; these are never proof of runtime pointer use. See the pinned guide
+for limits, provenance and partial-search controls.

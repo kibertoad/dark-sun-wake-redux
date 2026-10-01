@@ -631,3 +631,14 @@ propagation with command doubles, plus the real configured full gate.
 Exit: shared template PR, local normal/offline gates and exact pins pass; gap 4
 closes only after reviewed upstream delivery. No owner questions or persisted
 layout changes.
+
+## Final merged ownership reporter adoption
+
+Adopt reviewed toolkit PRs 35?37 through template PR 42: exact source/test/guide
+pin, source-derived exports, reached owner/analyzer ranges and explicit boundary
+checks. Preserve configured routing and remove the superseded PYTHONPATH override.
+Acceptance: synthetic malformed-metadata and incomplete/contested/entry-limited
+join controls, installed-source setup/handler and caller/pointer controls, exact
+hashes, normal and offline canonical gates. Conditional reachability is tooling
+evidence only; no game claims change. Exit: reviewed adoption and whole-contract
+Gap 11 record. No persisted format or owner decision changes.

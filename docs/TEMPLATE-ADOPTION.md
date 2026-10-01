@@ -278,3 +278,12 @@ artifacts/offline-pr41-final-normal.log and artifacts/offline-pr41-final-offline
 The latter uses unreachable HTTP proxies and no restore fallback. Documentation
 states existing restore state is a prerequisite and does not promise cached
 freshness. The whole gap 4 request passes and is removed. No gameplay changes.
+
+## Merged reporter adoption, 2026-10-01
+
+Template PR 42 merged as beaade054a3c125206166771b8a632ea745dc33e,
+pinning toolkit c133cd48bfe6cc3cb7126616996e7d548982a068 (PRs 35?37).
+Adopted exact reporter source, tests and guide; retained configured validation
+routing and removed the obsolete PYTHONPATH mutation. The merged test suite
+selects the vendored import path itself. Offline validation from PR 41 remains
+explicit and preserves every required check. No standard snapshot refresh.

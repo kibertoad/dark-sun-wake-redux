@@ -401,3 +401,10 @@ artifacts/offline-pr41-final-offline.log. The production portable-host block als
 passes unset-PWSH fallback and preservation of a supplied caller value; local
 probe artifacts/pr41-portable-host-control.ps1. Gap 4 is closed after this final
 merged adoption; the earlier pending-PR notes above describe prior acceptance.
+
+Merged toolkit PRs 35?37 / template PR 42 adoption (2026-10-01): exact
+reporter integrity, adopted owner/caller/pointer source controls and canonical
+normal validation pass; log artifacts/merged-pr42-validation.log. Offline
+NoRestore gate uses unavailable proxy endpoints and retains all required checks;
+log artifacts/merged-pr42-offline-validation.log. Source controls and reports
+remain in GAME_DIR/analysis/reporter-audit. No original runtime was launched.

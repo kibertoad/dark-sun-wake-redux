@@ -3,7 +3,7 @@
 These are the remaining requests for the restoration template and shared analysis
 tooling. They describe tooling behavior, not claims about the original game.
 
-Current website, toolkit and template main revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Website `ca39d07`, toolkit `b870642` and template `8d0eef3` add call-target, bounds, owner, incoming-coverage and carry/loop reporter capabilities; the facts gate passes and Dark Sun acceptance cases are recorded in docs/REPORTER-CASE-AUDIT.md. Game-specific requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 4, 8, 10, 12, 13, 14, 16, 18, 19, 22, 23, 24, 25, 28 and 38 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
+Current website, toolkit and template main revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Website `ca39d07`, toolkit `c133cd4` and template `beaade0` add call-target, bounds, owner, incoming-coverage and carry/loop reporter capabilities; the facts gate passes and Dark Sun acceptance cases are recorded in docs/REPORTER-CASE-AUDIT.md. Game-specific requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 4, 8, 10, 11, 12, 13, 14, 16, 18, 19, 22, 23, 24, 25, 28 and 38 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
 Delivered capabilities, closure evidence and remaining limits are recorded in
 [the adoption record](docs/TEMPLATE-ADOPTION.md).
 
@@ -31,25 +31,6 @@ the whole window, even though it belongs to the copied edit-box record.
 separately from copied control data, and label the latter as uncertain until
 its runtime use is established. A synthetic fixture with different values at
 `0x3A` and `0xC2` would guard against this false screen-background claim.
-
-## 11. Show function ownership alongside bounded call-chain reports
-
-**Current disposition:** handler traversal passes after merged dispatch tooling,
-but analyzer ranges and source export provenance needed explicit report fields.
-Toolkit PR 35 supplies them and passes candidate source/negative controls;
-keep open pending reviewed merge, exact adoption and full-contract rerun.
-
-FND-CONFIG-092 corrected a chain that crossed an overlay setup routine's
-return into the following frame handler. The setup and handler are adjacent
-in the file but have distinct exported trampolines. A bounded instruction
-window can hide that distinction when a call is inspected far from its entry.
-
-**Request:** let the shared call-site reporter include the containing
-analyzer function and any enclosing exported overlay entry, with their
-bounded ranges and the evidence for ownership. Flag disagreement between
-those views, and require an explicit boundary check before joining a call
-to its supposed caller. Prologues and returns are useful warnings, but
-must not silently stand in for a verified function boundary.
 
 ## 15. Preserve ordering and shared guards in incoming-call summaries
 

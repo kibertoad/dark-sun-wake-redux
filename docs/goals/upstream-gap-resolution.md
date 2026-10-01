@@ -23,7 +23,7 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 - Gap 8: closed; entire request passes adopted target/format/boundary controls recorded in docs/REPORTER-CASE-AUDIT.md.
 - Gap 9: open; full request and cited controls in gaps.md.
 - Gap 10: closed; entire request passes adopted target/format/boundary controls recorded in docs/REPORTER-CASE-AUDIT.md.
-- Gap 11: open; complete range/export/boundary candidate passes source controls in toolkit PR 35; pending reviewed merge and exact adoption.
+- Gap 11: closed; merged toolkit PRs 35?37 and template PR 42 adopted exactly; owner/analyzer ranges, source exports and partial/entry-limit rejection controls pass.
 - Gap 12: closed; actual two-entry tag/target controls and rejected third entry, recorded in docs/REPORTER-CASE-AUDIT.md.
 - Gap 13: closed; merged toolkit PR 34 adopted exactly, all caller/pointer and capped/partial controls pass; full contract acceptance in REPORTER-CASE-AUDIT.
 - Gap 15: open; full request and cited controls in gaps.md.
