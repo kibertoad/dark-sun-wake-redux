@@ -239,3 +239,8 @@ relocated words are used as runtime pointers. No original bytes or source-derive
 configurations/reports enter the PR. Upstream Python, bridge/documentation, policy,
 build and .NET gates pass. The current root pin remains 313bb7d pending reviewed
 adoption. Gaps 11 and 13 stay open, including the remaining incoming controls.
+
+## Merged toolkit 33 adoption (2026-10-01)
+
+Adopted exact toolkit revision f8c51bfc5d167c25a04f2b6ddb3f7390714dc45f, including dispatch and pointer modules, guide and synthetic tests. The adopted source driver in GAME_DIR/analysis/reporter-audit/dispatch-pr-controls/verify-adopted.mjs passes: the independently checked four-target declaration identifies the handler owner; a partial declaration remains incomplete. The relocated pointer inventory retains unresolved candidates and reports negativeUsable false. Gap 13 remains open; these controls do not satisfy its entire caller/pointer contract.
+
