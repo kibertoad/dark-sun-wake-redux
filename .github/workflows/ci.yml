@@ -35,9 +35,10 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install -r tools/evidence/x86-reporter/requirements.txt
       - name: Check synthetic evidence tools and pinned upstream snapshots
-        run: node --test tests/evidence/evidence.test.mjs tests/upstream/upstream.test.mjs tests/upstream/mapped-locations.test.mjs tests/evidence/bridge.test.mjs tests/evidence/vendor.test.mjs tests/upstream/superseded-ownership.test.mjs
+        run: node --test tests/evidence/evidence.test.mjs tests/upstream/upstream.test.mjs tests/upstream/mapped-locations.test.mjs tests/evidence/bridge.test.mjs tests/evidence/vendor.test.mjs tests/upstream/superseded-ownership.test.mjs tests/upstream/diagnostics.test.mjs tests/upstream/memory-blocks.test.mjs tests/upstream/research-tracking.test.mjs tests/upstream/capture-window.test.mjs
+      - run: node tools/Check-ResearchTracking.mjs
       - run: node tools/evidence/sync-x86.mjs --check
-      - run: python -B -m unittest discover -s tests/evidence -p test_x86.py
+      - run: python -B -m unittest discover -s tests/evidence -p 'test*.py'
       - run: dotnet restore DarkSunWakeRedux.slnx
       - run: dotnet build DarkSunWakeRedux.slnx --no-restore -v minimal
       - run: dotnet test --project tests/DarkSunWakeRedux.Tests/DarkSunWakeRedux.Tests.csproj --no-restore --no-progress -v minimal

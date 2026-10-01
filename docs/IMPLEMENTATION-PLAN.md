@@ -563,3 +563,7 @@ Tooling batch. Outcome: an operand query verifies the selected segment word belo
 ## Full upstream migration, 2026-10-01
 
 Adopt website 82deb767ab64ca9922bb6347d66d9856b7640e91, toolkit 7da1b93cdd9ac0d59dbaf82b66b4db95d578ab9d and template 7b3bbe46b251b163ee02a6539ac0d81559dbe921. Outcome: source-derived operand/string/flag reporters, contested overlap reachability, executable file-data contracts, research tracking and isolated window capture are available with the configured identity and owner-only runtime preserved. Acceptance: exact source/checker/reporter pins, valid section ranges, active questions tracked without speculative answers, synthetic capture/tracking regressions, actual reporter controls, canonical gate and full build. No proprietary content or gameplay changes. Exit: complete reviewed delta, passing checks and push to main.
+
+## Migration acceptance audit: CI coverage
+
+Ensure CI runs every adopted Python reporter suite and the same synthetic upstream/evidence checks as Test.ps1, including research tracking and Windows capture. Run the tracking check as a required step. Acceptance: canonical gate passes, assetless Release publish starts and exits via smoke-test, CI command coverage includes all migrated regressions, and exact pin checks remain valid. Preserve platform-specific skips and owner-only original runtime. Exit: audited workflow and local acceptance pass.
