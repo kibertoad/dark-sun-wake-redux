@@ -314,15 +314,17 @@ is identical to that reviewed update (b2ef1cbe9c292997c2fd20b3460c54f9568d7a6a),
 so the already adopted configured changes need no further code delta. Local
 duplicate update discarded after verification.
 
-## Merged toolkit packaging delivery, 2026-10-01
+## Published toolkit package adoption, 2026-10-02
 
-Toolkit PR 42 merged as baedab9d6e0221ecce1e878a780c7248cbd36da1;
-current toolkit main cebd5a7 carries the published-package architecture. The
-configured tooling migration contract is in IMPLEMENTATION-PLAN. npm registry
-queries return 0.0.0 packages; the Python engine has no matching published
-distribution. Release workflow 36918420387 failed because merged PR 42 has no
-release classification label. Release selection/publication remains with the
-owner. This is pending delivery, not adopted package migration; root pin remains
-67340fc. Independently, toolkit PRs 41 and 43 have been adapted to the package
-layout and pass the current local gates and source controls. Standard snapshots
-remain unchanged.
+Template PR 43 is already adopted at merged tree 79d18a20; no duplicate template
+update is needed. Toolkit PR 42's registry delivery is now available: engine
+0.1.0 and npm executable-reader/standard-checker 0.0.0. Exact archive locks replace
+copied shared implementations and their sync locks. CI, hooks, configured wrappers
+and Ghidra paths use package entry points; project-specific tools remain local.
+The methodology, Standard v1 and protocol snapshot bytes remain unchanged.
+
+Normal and NoRestore configured canonical gates pass, including Release build and
+assetless publish/smoke. Existing local-only source controls pass through the
+installed engine, preserving hash checks, rejected controls and unresolved paths.
+Logs are under artifacts/package-delivery/. Toolkit PRs 41 and 43 remain open;
+their candidate features are not included in these adopted package releases.

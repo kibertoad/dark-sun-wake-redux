@@ -466,3 +466,12 @@ artifacts/return-flow-pr43-root-validation.log.
 Gap 15 current package-layout candidate f8c756f (2026-10-01): all source
 controls and package/workspace gates pass; logs artifacts/call-order-packages-*.
 Upstream PR 41 is updated by normal push; the restoration pin is unchanged.
+
+
+Published-package migration (2026-10-02): configured normal and NoRestore canonical
+validation, adapter/protocol/CI-input controls and existing adopted Dark Sun
+reporter drivers pass. Source configs and reports stay under GAME_DIR. Exact
+engine 0.1.0, reader/checker 0.0.0 and Capstone 5.0.7 locks replace copied tooling;
+rule snapshot bytes are unchanged. Logs: artifacts/package-delivery/root-normal-validation.log
+and root-offline-validation.log. Template normal and unreachable-proxy NoRestore
+gates pass in the isolated migration worktree.

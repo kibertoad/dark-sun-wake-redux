@@ -8,12 +8,4 @@
 .githooks/** text eol=lf
 
 # Preserve exact hash-verified upstream bytes across platforms.
-vendor/** -text
-
-# Preserve the exact pinned reporter, guide and acceptance suite.
-tools/evidence/x86-reporter/** -text
-docs/BOUNDED-EVIDENCE-REPORTERS.md -text
-tests/evidence/test_x86.py -text
-tests/evidence/bridge.test.mjs -text
-
-tests/evidence/test_pe.py -text
+vendor/upstream/** -text

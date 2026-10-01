@@ -93,23 +93,18 @@ Coverage describes analyzer-discovered functions, not every function that exists
 The `x86-trace`, `x86-uses`, `x86-arguments`, `x86-effects`, `x86-returns`,
 `x86-memory`, `x86-incoming`, `x86-guards`, `x86-allocation`, `x86-dispatch`,
 `x86-operand`, `x86-target`, `x86-bounds`, `x86-owner` and `x86-pointers` commands use the pinned
-toolkit reporter. Keep configurations and reports in `GAME_DIR` and out of
-commits. Install its Python dependency with
-`python -m pip install -r tools/evidence/x86-reporter/requirements.txt`.
-See [the complete input contract and supported subset](BOUNDED-EVIDENCE-REPORTERS.md).
-In that toolkit guide, standalone `tools/evidence/report.mjs` commands correspond
-to this template's `x86-` commands, and the requirements file lives in the
-`x86-reporter/` subdirectory. The Python executable can be selected with
-`EVIDENCE_PYTHON`.
+packaged toolkit reporter. Keep configurations and reports in `GAME_DIR` and out
+of commits. Run `./tools/Restore-ToolDependencies.ps1` to install exact locked npm
+and Python dependencies. The default interpreter lives in
+`artifacts/evidence-python`; `EVIDENCE_PYTHON` may select an explicit interpreter.
+See [the shared contract and local routing](BOUNDED-EVIDENCE-REPORTERS.md).
 
-`tools/evidence/x86-lock.json` records the toolkit revision and exact hashes of
-its source, tests, documentation and license. `node tools/evidence/sync-x86.mjs
---check` verifies them offline. To adopt a reviewed revision, run the same command
-with a clean local toolkit checkout path instead of `--check`, then run the full
-validation gate. The command reads committed blobs to avoid checkout line-ending
-differences. It does not fetch upstream or change the local methodology snapshots.
-`tools/evidence/legacy-image.mjs` re-exports the pinned MZ/FBOV reader, so the
-lightweight commands and the `x86-` commands share one parser.
+`package-lock.json` and `tools/evidence/requirements.txt` identify the adopted
+registry releases and archive hashes. NoRestore verifies installed versions
+without installation or network fallback. Upgrade locks only for reviewed
+published releases, then rerun source controls and the canonical validation gate.
+Rule snapshots are independent and remain unchanged by package installation.
+`tools/evidence/legacy-image.mjs` re-exports the packaged MZ/FBOV reader.
 Existing lightweight `incoming`, `flow` and `table` commands retain their scope;
 the instruction-derived variants supply the additional analysis.
 
@@ -129,7 +124,7 @@ search over part of it is reported as partial.
 
 ## PE32 reporter adoption
 
-The pinned toolkit reporter now accepts `sourceKind: "pe32"` for i386 executables. Its loader derives preferred-base mappings from validated source sections. Regions and entry/control sites are file offsets; flat memory query offsets are VAs. The full guide documents 32-bit frames, scaled addressing, the flat-segment assumption and unsupported indirect/runtime routes. MZ/FBOV queries keep the segmented 16-bit model, but shared behaviour changes for them too: overlapping entry-path instructions become unresolved boundary gaps, operand-size-prefixed control transfers and LEAVE stop the path, an executed `push cs` before a near call makes a four-byte frame, stopped traces still inventory reachable memory operands as unresolved observations (in `conditionalAccesses`, each naming the stops and untraced calls it depends on), separate unmodelled flag producers no longer share branch outcomes, XCHG and low-result IMUL are decoded, and every report adds `instructionModel`, `sourceMapping` and `declaredRegions`. Fast validation discovers both legacy and PE Python suites with `test*.py`. No game-specific question is closed by this adoption.
+The pinned toolkit reporter now accepts `sourceKind: "pe32"` for i386 executables. Its loader derives preferred-base mappings from validated source sections. Regions and entry/control sites are file offsets; flat memory query offsets are VAs. The full guide documents 32-bit frames, scaled addressing, the flat-segment assumption and unsupported indirect/runtime routes. MZ/FBOV queries keep the segmented 16-bit model, but shared behaviour changes for them too: overlapping entry-path instructions become unresolved boundary gaps, operand-size-prefixed control transfers and LEAVE stop the path, an executed `push cs` before a near call makes a four-byte frame, stopped traces still inventory reachable memory operands as unresolved observations (in `conditionalAccesses`, each naming the stops and untraced calls it depends on), separate unmodelled flag producers no longer share branch outcomes, XCHG and low-result IMUL are decoded, and every report adds `instructionModel`, `sourceMapping` and `declaredRegions`. Shared legacy and PE synthetic suites run upstream; local validation checks package routing and configured controls. No game-specific question is closed by this adoption.
 
 
 ## Committed inventory verification

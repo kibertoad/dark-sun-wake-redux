@@ -136,7 +136,7 @@ Retain that project only locally and reuse it for focused scripts:
   $wakeProjectRoot DarkSunWakeAnalysis `
   -process 'DSUN.EXE' `
   -noanalysis `
-  -scriptPath "$PWD\tools\ghidra" `
+  -scriptPath (& ./tools/Get-GhidraScriptPath.ps1) `
   -postScript ReportFunctionSummary.java 0x00000000
 ```
 

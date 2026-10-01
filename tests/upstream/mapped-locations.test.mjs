@@ -1,3 +1,4 @@
+import { checkerScript } from "../../tools/tool-dependencies.mjs";
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {mkdtempSync,mkdirSync,writeFileSync,rmSync} from 'node:fs';
@@ -18,7 +19,7 @@ test('pinned checker accepts mapped endpoints and rejects holes and crossing ove
  put(`spec/builds/${build}.files.yaml`,`files:\n  - path: GAME.EXE\n    format: MZ\n    size: 160\n    xxh3: ${'a'.repeat(32)}\n`);
  function run(offset){
  put(`spec/findings/${finding}.md`,`---\nid: ${finding}\ntitle: Synthetic ranges\nstatus: recorded\nbuilds: [${build}]\nsuperseded_by: []\nrecorded_by: Synthetic\nreproduced_by: []\nmethod: static\nlocations:\n  - build: ${build}\n    file: GAME.EXE\n    offset: ${offset}\ntool: synthetic fixture\nenvironment: null\n---\n\n## Observation\n\nSynthetic code ranges.\n\n## Interpretation\n\nFixture only.\n\n## Alternatives\n\nNone.\n\n## How to reproduce\n\nRun the synthetic checker test.\n`);
- return spawnSync(process.execPath,[resolve(root,'vendor/check-documentation.mjs'),'--root',dir,'--no-ksy'],{encoding:'utf8'});
+ return spawnSync(process.execPath,[checkerScript(),'--root',dir,'--no-ksy'],{encoding:'utf8'});
  }
  for(const offset of ['0x20..0x40','0x50..0x80']){const result=run(offset);assert.equal(result.status,0,result.stdout+result.stderr);}
  for(const offset of ['0x40','0x3F..0x51','0x7F..0x81']){const result=run(offset);assert.notEqual(result.status,0);assert.match(result.stdout+result.stderr,/does not lie wholly inside/);}

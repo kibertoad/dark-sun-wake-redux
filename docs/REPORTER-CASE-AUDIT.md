@@ -499,3 +499,11 @@ control. Full engine/source controls, workspace lint/format/type/tests, release
 planner, repository policy, npm build/tarballs, Python wheel and .NET/NuGet
 gates pass; logs artifacts/call-order-packages-*. The source driver now uses
 the packaged bridge/engine. Candidate remains unadopted and Gap 15 remains open.
+
+Published package adoption, 2026-10-02: existing adopted source drivers for
+callee graph, near-pointer provenance, dispatch normalization, instruction
+operand ownership, overlapping owners, strings, local IRET and Gap 13 pointer
+inventories pass using the registry engine 0.1.0 and reader 0.0.0. Each retained
+source hash and rejected/capped control remains active. Driver configurations and
+reports remain under GAME_DIR/analysis/reporter-audit/. This delivery change
+neither adds native evidence nor closes the open candidate gaps 15 and 26.

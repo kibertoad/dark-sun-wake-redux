@@ -38,12 +38,11 @@ jobs:
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'
-      - run: python -m pip install -r tools/evidence/x86-reporter/requirements.txt
+      - shell: pwsh
+        run: ./tools/Restore-ToolDependencies.ps1
       - name: Check synthetic evidence tools and pinned upstream snapshots
         run: node --test tests/evidence/evidence.test.mjs tests/upstream/upstream.test.mjs tests/upstream/mapped-locations.test.mjs tests/evidence/bridge.test.mjs tests/evidence/vendor.test.mjs tests/upstream/superseded-ownership.test.mjs tests/upstream/diagnostics.test.mjs tests/upstream/memory-blocks.test.mjs tests/upstream/research-tracking.test.mjs tests/upstream/capture-window.test.mjs tests/upstream/release-signing.test.mjs tests/upstream/infrastructure.test.mjs tests/upstream/export-boundaries.test.mjs
       - run: node tools/Check-ResearchTracking.mjs
-      - run: node tools/evidence/sync-x86.mjs --check
-      - run: python -B -m unittest discover -s tests/evidence -p 'test*.py'
       - run: dotnet restore DarkSunWakeRedux.slnx --locked-mode
       - run: dotnet build DarkSunWakeRedux.slnx --no-restore -v minimal
       - run: dotnet test --project tests/DarkSunWakeRedux.Tests/DarkSunWakeRedux.Tests.csproj --no-restore --no-progress -v minimal
@@ -63,12 +62,12 @@ jobs:
           # Full history, so the check can find where a pull request forked from main and fail
           # when it deletes a spec ID, area or deviation that exists there.
           fetch-depth: 0
-      # The toolkit publishes no tags, and its setup guide pins a commit on its main branch.
+      # The published checker version matches this pinned toolkit action.
       # A plain 0x address in a code comment is checked only inside the original's image. Once a
       # finding records the image's base and size, add them to this step as `images:` and cite
       # that finding here. `node tools/upstream.mjs docs` reads this step's inputs, so a local
       # run checks the same.
-      - uses: kibertoad/refurbished-dinosaurs-toolkit/actions/check-documentation@f7da1328b2adc0a45865de45b35d42c88afdbc6b # zizmor: ignore[stale-action-refs]
+      - uses: kibertoad/refurbished-dinosaurs-toolkit/actions/check-documentation@cebd5a78e44e51ea3a8feb5275ba46d2319cc279 # zizmor: ignore[stale-action-refs]
         with:
           # The narrative docs cite spec IDs, so they must resolve too.
           references: docs

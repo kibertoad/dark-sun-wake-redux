@@ -7,7 +7,6 @@ import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 import { verifySnapshot, validateLock, prepareSnapshot, checkUpstream, ciCheckerArgs, main } from "../../tools/upstream.mjs";
-import { verify as verifyReporter } from "../../tools/evidence/sync-x86.mjs";
 import { copyWorkingTree, includedPath } from "./copy-working-tree.mjs";
 import { checkLinks, linkFile, sections } from "../../tools/upstream-sections.mjs";
 import { checks, main as runNodeChecks } from "../../tools/Invoke-NodeChecks.mjs";
@@ -35,9 +34,9 @@ test("v2, duplicate mappings, traversal, short commits and inconsistent revision
 });
 test("CI drift is rejected", t => {
   const dir = fixture(t), path = resolve(dir, ".github/workflows/ci.yml");
-  const sha = lock.files.find(f => f.path.includes("check-documentation")).revision;
-  writeFileSync(path, readFileSync(path, "utf8").replace(sha, "b".repeat(40)));
-  assert.throws(() => verifySnapshot(dir), /CI checker revision/);
+  const sha = readFileSync(path, "utf8").match(/check-documentation@([0-9a-f]{40})/)[1];
+  writeFileSync(path, readFileSync(path, "utf8").replace(sha, "main"));
+  assert.throws(() => verifySnapshot(dir), /exact commit pin/);
 });
 test("local runs take the checker inputs the CI step gives", () => {
   const step = `      - uses: kibertoad/refurbished-dinosaurs-toolkit/actions/check-documentation@${"a".repeat(40)}\n`;
@@ -60,19 +59,19 @@ test("docs passes CI's images to the checker, and a command-line value wins", as
   writeFileSync(resolve(dir, "src/Bad.cs"), "// The entry point is at 0x00401000.\nclass Bad {}\n");
   const run = (...args) => main(["docs", "--check", "--no-ksy", ...args], dir);
   assert.equal(await run(), 0);
-  writeFileSync(ci, readFileSync(ci, "utf8").replace(/(check-documentation@[0-9a-f]{40}.*\n)/, "$1        with:\n          images: 0x00400000..0x004C9000\n"));
+  writeFileSync(ci, readFileSync(ci, "utf8").replace(/\r\n/g, "\n").replace(/(check-documentation@[0-9a-f]{40}.*\n)/, "$1        with:\n          images: 0x00400000..0x004C9000\n"));
   assert.notEqual(await run(), 0);
   assert.equal(await run("--images", ""), 0);
 });
 test("refresh stages exact explicit revisions and rejects lost v1 declaration or failed download", async () => {
   const rules = "a".repeat(40), toolkit = "b".repeat(40);
   const fetcher = async url => Buffer.from(url.endsWith("documentation-standard.md") ? "follows version 1" : "synthetic");
-  const result = await prepareSnapshot(rules, toolkit, fetcher);
-  assert.equal(result.staged.length, 6); validateLock(result.lock);
-  assert.equal(result.lock.files.at(-1).revision, toolkit);
-  await assert.rejects(prepareSnapshot("main", toolkit, fetcher), /full/);
-  await assert.rejects(prepareSnapshot(rules, toolkit, async () => Buffer.from("version 2")), /Standard v1/);
-  await assert.rejects(prepareSnapshot(rules, toolkit, async () => { throw Error("offline"); }), /offline/);
+  const result = await prepareSnapshot(rules, fetcher);
+  assert.equal(result.staged.length, 4); validateLock(result.lock);
+  assert.equal(result.lock.files.at(-1).revision, rules);
+  await assert.rejects(prepareSnapshot("main", fetcher), /full/);
+  await assert.rejects(prepareSnapshot(rules, async () => Buffer.from("version 2")), /Standard v1/);
+  await assert.rejects(prepareSnapshot(rules, async () => { throw Error("offline"); }), /offline/);
   verifySnapshot(root);
 });
 test("freshness distinguishes unchanged bytes, changed content and unavailable network", async t => {
@@ -95,7 +94,7 @@ test("project configuration preserves upstream bytes and licenses", t => {
   // sensitive to configuration without changing the real pinned files.
   const scratchLockPath = resolve(dir, "tools/upstream-lock.json");
   const scratchLock = JSON.parse(readFileSync(scratchLockPath));
-  for (const path of ["vendor/upstream/documentation-standard.md", "vendor/LICENSE"]) {
+  for (const path of ["vendor/upstream/documentation-standard.md", "vendor/upstream/LICENSE"]) {
     const target = resolve(dir, path);
     const bytes = Buffer.concat([readFileSync(target), Buffer.from("\n{{DISPLAY_NAME}}\n")]);
     writeFileSync(target, bytes);
@@ -103,22 +102,11 @@ test("project configuration preserves upstream bytes and licenses", t => {
   }
   writeFileSync(scratchLockPath, JSON.stringify(scratchLock));
   verifySnapshot(dir);
-  const reporterLockPath = resolve(dir, "tools/evidence/x86-lock.json");
-  const reporterLock = JSON.parse(readFileSync(reporterLockPath));
-  for (const path of ["tools/evidence/x86-reporter/NOTICE.md", "docs/BOUNDED-EVIDENCE-REPORTERS.md"]) {
-    const target = resolve(dir, path);
-    const bytes = Buffer.concat([readFileSync(target), Buffer.from("\n{{DISPLAY_NAME}}\n")]);
-    writeFileSync(target, bytes);
-    reporterLock.files.find(f => f.path === path).sha256 = createHash("sha256").update(bytes).digest("hex");
-  }
-  writeFileSync(reporterLockPath, JSON.stringify(reporterLock));
-  verifyReporter(dir);
-  const configured = spawnSync("pwsh", ["-NoProfile", "-File", resolve(dir, "tools/Configure-Project.ps1"),
+  const configured = spawnSync(process.env.PWSH || "pwsh", ["-NoProfile", "-File", resolve(dir, "tools/Configure-Project.ps1"),
     "-ProjectName", "EvidenceSample", "-DisplayName", "Evidence Sample", "-AppId", "00000000-0000-0000-0000-000000000001",
     "-CopyrightYear", "2026", "-Force"], { cwd: dir, encoding: "utf8" });
   assert.equal(configured.status, 0, configured.error?.message ?? configured.stdout + configured.stderr);
   assert.equal(JSON.parse(readFileSync(resolve(dir, "tools/project-config.json"))).projectName, "EvidenceSample");
-  verifyReporter(dir);
   verifySnapshot(dir);
 });
 
@@ -175,7 +163,7 @@ test("link check reports misplaced, missing or stale ranges and rewrites them", 
 });
 
 test("the gate and the pre-commit hook run one list of node checks", () => {
-  assert.deepEqual(checks().map(([, script]) => script), ["tools/upstream.mjs", "tools/Check-ResearchTracking.mjs", "tools/evidence/sync-x86.mjs"]);
+  assert.deepEqual(checks().map(([, script]) => script), ["tools/upstream.mjs", "tools/Check-ResearchTracking.mjs", "tools/tool-dependencies.mjs"]);
   assert.deepEqual(checks(true)[0][2], ["docs", "--check", "--no-ksy"]);
   assert.throws(() => runNodeChecks(["--check"]), /Usage/);
   // Invoke-Validation.ps1 runs Test.ps1, which runs the shared node checks.

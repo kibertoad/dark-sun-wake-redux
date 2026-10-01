@@ -660,8 +660,24 @@ installed with reproducible locks, and passes prepared-protocol, source hash,
 existing game-case controls, documentation/policy and full canonical normal and
 NoRestore validation. Synthetic checks cover actionable missing-engine/protocol
 errors and package entry-point routing without reproducing shared tests. A
-source-build wheel or placeholder version alone is not adopted delivery. At
-2026-10-01 registry checks find npm placeholders and no published Python engine;
-that delivery dependency waits while independent gap work continues. Exit:
+source-build wheel or placeholder version alone is not adopted delivery. The registry now delivers engine 0.1.0 and npm reader/checker 0.0.0; these
+bootstrap npm releases are adopted by exact archive locks, not source builds. Exit:
 reviewed template migration, exact published dependencies, full source/control
 acceptance and canonical gates; no vendored competing implementation remains.
+
+## Locked package tooling bootstrap
+
+Tooling outcome: install exact npm dependencies from the repository lock and the
+engine/Capstone wheel hashes from Python requirements. The default Python
+environment lives under artifacts/evidence-python (Scripts/python.exe on Windows,
+bin/python elsewhere); EVIDENCE_PYTHON can select an explicitly supplied
+interpreter. Normal validation restores those dependencies; NoRestore checks
+existing dependencies and never installs or falls back to network. Standalone
+wrappers select that same project environment and give an actionable setup
+command when it is missing. Existing runtime/source-specific Ghidra wrappers
+combine the packaged shared scripts with retained project-specific scripts.
+Acceptance: locked clean normal restore, offline rerun, missing/mismatched engine
+and prepared-protocol controls, wrapper routing and configured source/control
+regressions pass; published archives contain the required modules/scripts.
+No gameplay, source manifest or rule snapshot refresh. Exit: canonical gates and
+reviewable template migration; no copied competing shared implementation remains.

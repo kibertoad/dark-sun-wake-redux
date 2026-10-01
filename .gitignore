@@ -37,3 +37,6 @@ __pycache__/
 
 # Keep heap dumps local alongside the policy-denied JVM logs.
 *.hprof
+
+# Published tooling dependencies; only their locks are committed.
+node_modules/
