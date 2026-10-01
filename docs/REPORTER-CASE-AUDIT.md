@@ -304,3 +304,26 @@ claim, research queue or parity status changed.
 Canonical Invoke-Validation.ps1 passes after exact adoption; log
 artifacts/gap13-merged-adoption-validation.log. The final shared template adoption
 is being proposed separately and does not change the root's accepted reporter.
+
+
+## Gap 11 ownership range/export follow-up
+
+The adopted owner traversal settles the handler's entry but did not expose the
+analyzer hypothesis's actual ranges or source-derived export provenance on its
+owner row. Toolkit PR 35, commit 2b74d8b, proposes checked-entry ranges,
+FBOV descriptor/trampoline/container provenance and explicit boundary results.
+The loader derives exports from hash-guarded source tables and rejects supplied
+copies. Incomplete/contested traversal cannot produce a usable join, and all
+continuation assumptions stay explicit. No body-byte count becomes an end.
+
+GAME_DIR/analysis/reporter-audit/owner-provenance-controls/verify-candidate.mjs
+passes the independent setup and dispatched-handler controls: both have their
+own source export and bounded reached ranges; the neighboring analyzer body
+ends before the handler site and disagrees. The partial dispatch control refuses
+joining the handler. These are conditional tooling results, not player
+reachability or callee-effect evidence. Candidate reporter, policy, build,
+.NET and packaging gates pass; logs artifacts/owner-provenance-*.
+
+The root pin remains b870642. Gap 11 stays open until reviewed merge, exact
+adoption and a whole-contract rerun. No spec claim, parity status or research
+queue changes, and no original bytes/configurations/reports enter Git.

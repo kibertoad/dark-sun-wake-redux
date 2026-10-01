@@ -34,6 +34,11 @@ its runtime use is established. A synthetic fixture with different values at
 
 ## 11. Show function ownership alongside bounded call-chain reports
 
+**Current disposition:** handler traversal passes after merged dispatch tooling,
+but analyzer ranges and source export provenance needed explicit report fields.
+Toolkit PR 35 supplies them and passes candidate source/negative controls;
+keep open pending reviewed merge, exact adoption and full-contract rerun.
+
 FND-CONFIG-092 corrected a chain that crossed an overlay setup routine's
 return into the following frame handler. The setup and handler are adjacent
 in the file but have distinct exported trampolines. A bounded instruction
