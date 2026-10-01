@@ -313,3 +313,16 @@ the PR merged as 79d18a20cb4d97c7153e74e5695cbb80e7ebf73e. The merged tree
 is identical to that reviewed update (b2ef1cbe9c292997c2fd20b3460c54f9568d7a6a),
 so the already adopted configured changes need no further code delta. Local
 duplicate update discarded after verification.
+
+## Merged toolkit packaging delivery, 2026-10-01
+
+Toolkit PR 42 merged as baedab9d6e0221ecce1e878a780c7248cbd36da1;
+current toolkit main cebd5a7 carries the published-package architecture. The
+configured tooling migration contract is in IMPLEMENTATION-PLAN. npm registry
+queries return 0.0.0 packages; the Python engine has no matching published
+distribution. Release workflow 36918420387 failed because merged PR 42 has no
+release classification label. Release selection/publication remains with the
+owner. This is pending delivery, not adopted package migration; root pin remains
+67340fc. Independently, toolkit PRs 41 and 43 have been adapted to the package
+layout and pass the current local gates and source controls. Standard snapshots
+remain unchanged.

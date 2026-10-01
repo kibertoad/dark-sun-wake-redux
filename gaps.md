@@ -3,7 +3,7 @@
 These are the remaining requests for the restoration template and shared analysis
 tooling. They describe tooling behavior, not claims about the original game.
 
-Current website, toolkit and template main revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Website `ca39d07`, toolkit `67340fc` and template `79d18a2` add call-target, bounds, owner, incoming-coverage and carry/loop reporter capabilities; the facts gate passes and Dark Sun acceptance cases are recorded in docs/REPORTER-CASE-AUDIT.md. Game-specific requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 4, 8, 10, 11, 12, 13, 14, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 28 and 38 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
+Last verified website, toolkit and template revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Website `ca39d07`, toolkit `67340fc` and template `79d18a2` add call-target, bounds, owner, incoming-coverage and carry/loop reporter capabilities; the facts gate passes and Dark Sun acceptance cases are recorded in docs/REPORTER-CASE-AUDIT.md. Merged toolkit PR 42 introduces published packages; migration waits on its missing release classification and Python delivery, as recorded in the goal handover. Game-specific requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 4, 8, 10, 11, 12, 13, 14, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 28 and 38 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
 Delivered capabilities, closure evidence and remaining limits are recorded in
 [the adoption record](docs/TEMPLATE-ADOPTION.md).
 
@@ -73,6 +73,11 @@ raw dimension words and a signed consumer gate. Shared return summaries
 must preserve that distinction: the same word can be an explicit index
 failure or a raw field rejected by the consumer. Neither a matching width
 nor a nonnull source establishes accepted resource contents or extent.
+
+Disposition: shared return-flow candidate toolkit PR 43 at f0d05f4 passes recorded initializer,
+wrapper and dimension source controls plus nonvacuous caps/rejected encodings;
+conditional models and unread paths remain explicit. Await reviewed merge,
+exact adoption and final whole-contract rerun. See REPORTER-CASE-AUDIT.
 
 ## 27. Check effect ordering at early exits and before external failure
 

@@ -461,3 +461,41 @@ ownership, caps and source bridge pass, along with full toolkit policy/build/
 test/package gates; logs artifacts/call-order-final-*. Gap 15 remains open until
 reviewed merge, exact adoption and whole-contract rerun. Root pin remains
 67340fc; no game spec, parity status or research queue changed.
+
+## Gap 26 width-preserving result flow follow-up
+
+Toolkit PR 43, candidate f0d05f4 on the current packaged toolkit base cebd5a7 extends return reports with declared
+width-bounded failure/result encodings and roles, caller entry/call site,
+partial and sibling-byte register writes, stored widths, explicit and implicit
+extensions, both predicate operands and signed/unsigned predicate domains.
+Producer ancestry is only dependency evidence; encoding lists are nonexhaustive
+and no nonzero gate establishes successful initialization or resource validity.
+Declarations are validated before tracing, including unreachable ones.
+
+GAME_DIR/analysis/reporter-audit/return-flow-controls/verify-candidate.mjs
+hash-guards the established official source. FND-CONFIG-156's actual failure
+return and caller's low-byte store pass without child call models; other paths
+remain stopped/unread. FND-CONFIG-190's actual unsigned reader-rejection
+returns also pass. Conditional balanced-return/register hypotheses retain
+FND-CONFIG-157's full-word comparison and boolean normalization,
+FND-CONFIG-149's sibling-byte zeroing and OR/JNE nonzero gate, and
+FND-CONFIG-189/190's signed dimension consumers. The latter retain index
+failure separately from raw word roles. Child effects, high register halves,
+actual pointer/resource contents and live outcomes remain unconfirmed. The
+consumer cases explicitly model the readers' retained SI/DI; those models
+are never complete native-call evidence. No spec claims change.
+
+Nonvacuous result/consumer/analysis and trace step/path caps remove the full
+positive initializer control. A mismatched encoding preserves the actual result
+but fails the expected failure-role control; an out-of-width encoding is rejected.
+All synthetic Python/Node, policy, .NET and package gates pass; logs
+artifacts/return-flow-final-* and return-flow-packages-*. Candidate is not adopted. Gap 26 stays open
+until reviewed merge, exact adoption and final whole-contract rerun.
+
+Gap 15 packaged-layout follow-up (2026-10-01): toolkit PR 41 at f8c756f
+preserves its published history and merges current toolkit packaging. The CLI
+usage names call-order, and the typed bridge retains its source-coverage/order
+control. Full engine/source controls, workspace lint/format/type/tests, release
+planner, repository policy, npm build/tarballs, Python wheel and .NET/NuGet
+gates pass; logs artifacts/call-order-packages-*. The source driver now uses
+the packaged bridge/engine. Candidate remains unadopted and Gap 15 remains open.

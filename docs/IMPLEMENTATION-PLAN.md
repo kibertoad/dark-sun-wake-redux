@@ -642,3 +642,26 @@ join controls, installed-source setup/handler and caller/pointer controls, exact
 hashes, normal and offline canonical gates. Conditional reachability is tooling
 evidence only; no game claims change. Exit: reviewed adoption and whole-contract
 Gap 11 record. No persisted format or owner decision changes.
+
+## Published toolkit package migration
+
+Merged toolkit PR 42 moves shared executable reading, instruction analysis,
+documentation checking and Ghidra scripts into released packages. The configured
+restoration must migrate its tooling consumers together: exact npm/Python locks,
+package imports/CLI entry points, CI and validation, hooks, updater/checker
+configuration and local tooling guides. Keep game-specific wrappers, evidence,
+source mappings and configured policy; remove copied shared modules, tests and
+obsolete sync locks only after equivalent package behavior is verified. Local
+standard snapshots remain pinned and unchanged. No src/ or game behavior changes
+belong to this tooling batch.
+
+Acceptance: a registry-delivered version of every required package is available,
+installed with reproducible locks, and passes prepared-protocol, source hash,
+existing game-case controls, documentation/policy and full canonical normal and
+NoRestore validation. Synthetic checks cover actionable missing-engine/protocol
+errors and package entry-point routing without reproducing shared tests. A
+source-build wheel or placeholder version alone is not adopted delivery. At
+2026-10-01 registry checks find npm placeholders and no published Python engine;
+that delivery dependency waits while independent gap work continues. Exit:
+reviewed template migration, exact published dependencies, full source/control
+acceptance and canonical gates; no vendored competing implementation remains.

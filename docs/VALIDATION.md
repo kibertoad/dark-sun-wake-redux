@@ -449,3 +449,20 @@ identical tree to reviewed 5ee4f81; exact toolkit pin remains 67340fc.
 Root canonical NoRestore validation passes after the Gap 15 candidate records,
 including Test.ps1 and Release build/publish/smoke; log
 artifacts/call-order-pr41-root-validation.log.
+
+Gap 26 candidate toolkit PR 43 at f0d05f4 (2026-10-01): hash-guarded source cases and
+nonvacuous cap/rejected-encoding controls, synthetic Python/Node suites,
+repository policy, .NET restore/build/tests and both packages pass; logs
+artifacts/return-flow-final-* and return-flow-packages-*. Conditional child models, unknown effects and
+stopped source paths remain explicit. Exact adopted toolkit pin is unchanged.
+
+Current package-layout candidate rerun (2026-10-01): engine/source controls,
+workspace lint/format/type checks, bridge/standard-checker/release-planner tests,
+npm build/tarballs, Python wheel and .NET tests/NuGet packages all pass. Toolkit
+PR 43 is updated by normal push with published history preserved. Root canonical
+NoRestore validation passes after acceptance records; log
+artifacts/return-flow-pr43-root-validation.log.
+
+Gap 15 current package-layout candidate f8c756f (2026-10-01): all source
+controls and package/workspace gates pass; logs artifacts/call-order-packages-*.
+Upstream PR 41 is updated by normal push; the restoration pin is unchanged.
