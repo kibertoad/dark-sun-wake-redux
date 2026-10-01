@@ -501,3 +501,14 @@ build and assetless publish/smoke. Logs artifacts/package-delivery/
 {root,template}-engine040-{normal,offline}.log. Full Gap 15/26 tooling contracts
 pass with conditional-model/native-outcome qualifications retained in
 REPORTER-CASE-AUDIT; Gap 27 remains open beyond its verified wrapper slice.
+Gap 27 resource-suffix control (2026-10-02): installed engine 0.4.0 passes
+last-field-producer, zero/FFFF conditional returns, pointer bypass and later
+clear controls; nonvacuous step/path caps and unread-service controls reject
+positive coverage. GAME_DIR/analysis/reporter-audit/effect-resource-controls/
+verify-adopted-engine040.log. This bounded conditional suffix leaves parent,
+epilogue, callees and native reachability unread; Gap 27 remains open.
+
+Template PR 44 at 9e1c94d: documentation, Ubuntu Verify, zizmor and Windows
+installer checks pass. Linux/macOS installer jobs are skipped by workflow scope.
+Resource-control batch Test.ps1 -NoRestore passes; log
+artifacts/package-delivery/effect-resource-final-test.log.

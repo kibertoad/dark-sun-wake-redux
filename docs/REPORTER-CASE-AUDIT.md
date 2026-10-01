@@ -561,3 +561,29 @@ or configuration is committed. Normal and unavailable-proxy NoRestore configured
 validation pass, including Test.ps1, Release build and assetless publish/smoke;
 template normal and offline canonical gates also pass. Logs:
 artifacts/package-delivery/{root,template}-engine040-{normal,offline}.log.
+
+## Gap 27 resource-suffix predicate control, 2026-10-02
+
+The installed engine 0.4.0 passes FND-CONFIG-179's bounded resource-suffix
+control. Source identity and descriptor ownership are checked before tracing.
+The driver starts at a recorded body instruction under explicit synthetic
+DS/SS/SP/BP assumptions; the parent body and epilogue are outside this slice.
+This is not a verified whole-function entry or native-reachability claim.
+
+For all three resource requests, both declared AX zero and FFFF hypotheses
+retain the subsequent AX OR, then a branch whose producer is the later field
+comparison. A false reading that attributes the branch to the AX OR is rejected.
+The nonzero third-pointer route bypasses the mode comparison and final clear;
+a mode-five route with a returning primitive hypothesis retains the later
+local byte clear. The local sentinel write precedes the first service request.
+All modeled calls preserve only declared DS/SS/BP hypotheses, invalidate memory
+and flags, and remain unknown-effect calls. Output assignment by an unread
+resource callee and accepted content are not inferred.
+
+The suffix exits stop at the excluded epilogue, so complete-function and native
+coverage remain false. Step/path caps and removing service models destroy the
+positive predicate contract. Every path retains transactionality as unestablished.
+Local driver: GAME_DIR/analysis/reporter-audit/effect-resource-controls/
+verify-adopted.mjs; sibling verify-adopted-engine040.log and JSON reports retain
+controls. The full Gap 27 request remains open: complete fill, linked child,
+cleanup/hardware, layered cache and snapshot paths still require acceptance.

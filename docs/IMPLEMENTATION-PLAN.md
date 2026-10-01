@@ -743,3 +743,19 @@ or capped source paths remain incomplete and cannot close Gap 27. No gameplay,
 research claims or rule snapshot changes. Exit: reproducible registry delivery,
 reviewable template lock update and recorded controls; full unresolved request
 contracts remain open until every cited case is covered.
+
+## Resource-result and last-predicate effect control
+
+Tooling acceptance for Gap 27 uses the recorded FND-CONFIG-179 resource suffix
+as a conditional starting-state slice, not a complete function or native run.
+The installed reporter must retain service results, unused AX flag producers,
+subsequent field comparisons, actual branch producers and write prefixes.
+Resource and later primitive models assume balanced returning calls and explicitly
+preserved DS/SS/BP only; memory and flags remain unknown. Synthetic start state,
+stopped suffix exits and incomplete parent/callee coverage stay visible.
+Acceptance: positive source timelines show the field comparison replaces the
+AX OR flags; nonvacuous trace/path limits destroy that positive control. A
+nonzero third pointer route skips the mode test and final local clear. No
+resource acceptance, pointer assignment by an unread callee or successful
+rollback is inferred. Configs/reports stay in GAME_DIR. Exit: recorded installed
+package controls; Gap 27 remains open until every cited source contract passes.
