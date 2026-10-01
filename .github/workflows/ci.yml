@@ -23,7 +23,9 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: kibertoad/toad-discovery-center/actions/verify-repository@caffbcf5efab3aebf4e58d44ea0b3ae0fca5a225
+      - name: Verify adopted repository policy
+        shell: pwsh
+        run: ./tools/Verify-Repository.ps1
       - name: Verify project configuration
         shell: pwsh
         run: ./tools/Verify-Configuration.ps1
