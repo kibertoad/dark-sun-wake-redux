@@ -54,21 +54,22 @@ remain unknown beyond the separately recorded Tyr structural subset.
 
 ## Latest official version readiness
 
-The existing records identify version 1.1 and the approved DSUN.EXE length and
-XXH3-128, as documented in GHIDRA.md. "No later official patch is recorded" in
-the plan is not conclusive latest-patch provenance. No recorded SHA-256 is
-available in these project documents. The migration therefore preserves those
-known facts and sets original.patchStatusEstablished to false, leaving
-latestOfficialVersion and analysisExecutable.sha256 empty.
+Version 1.1 is the latest official version, and the analysis executable is that
+version. The owner accepts https://www.patches-scrolls.de/ as authoritative patch
+information. On 2026-10-01 the owner checked its game card for *Dark Sun 2: Wake of
+the Ravager*: the Patches tab lists one patch, "patch 1.10" (posted 16.08.13), and
+nothing later. The installation's `README.TXT` heads the game data as Version 1.1,
+dated 12/14/94 (SRC-README-1.1).
 
-Bootstrap-Project.ps1 -ValidateFactsOnly refuses further executable analysis
-until a research batch resolves authoritative latest-version provenance and
-records the SHA-256 for the same approved baseline. It also rejects a mismatched
-analysis version or a string pretending to be a boolean. This does not prevent
-original-free builds, synthetic tests, packaging or bootstrap-gate tests.
-No new edition is supported and no executable was read or patched by this
-tooling migration. Once conclusive facts are recorded, they are reused rather
-than investigated each session.
+The analysis executable is `C:\GOG Games\Dark Sun 2\DSUN.EXE`: 634,416 bytes,
+XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`, SHA-256
+`ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`. The SHA-256
+was computed from the installed file on 2026-10-01. `tools/project-config.json`
+records these facts with `original.patchStatusEstablished` set to true, and
+`Bootstrap-Project.ps1 -ValidateFactsOnly` accepts them. The patch archive itself
+was not downloaded or compared, so whether its `DSUN.EXE` is byte-identical to the
+GOG one is not recorded. Once these facts are recorded they are reused rather than
+investigated each session.
 
 ## Unsupported sources
 
@@ -77,8 +78,3 @@ distribution, or modified executable is supported. A future edition requires a
 separate manifest plus evidence that its extracted output is semantically
 equivalent or intentionally versioned. Manual source selection must remain
 available even if storefront discovery is added.
-
-The owner accepts https://www.patches-scrolls.de/ as authoritative patch information
-(2026-10-01). The current site returned HTTP 403 during this tooling session;
-latest-version readiness remains unestablished until its actual listing or
-authoritative patch material can be inspected. No patch archive was downloaded.
