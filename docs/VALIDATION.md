@@ -512,3 +512,17 @@ Template PR 44 at 9e1c94d: documentation, Ubuntu Verify, zizmor and Windows
 installer checks pass. Linux/macOS installer jobs are skipped by workflow scope.
 Resource-control batch Test.ps1 -NoRestore passes; log
 artifacts/package-delivery/effect-resource-final-test.log.
+
+Gap 27 table-continuation candidate (2026-10-02): toolkit PR 60's full engine,
+workspace, real prepared-reader, lint/format/type, release-planner, .NET/policy
+and distributable archive gates pass. Installed wheel plus extracted npm archive
+smoke passes without PYTHONPATH; logs artifacts/package-delivery/indirect-effect-*.
+Full-entry partial MENU-field source controls retain count-before-child,
+failure/zero clear differences and rejected caps/wrong field. Local source logs:
+GAME_DIR/analysis/reporter-audit/child-effect-controls/{published040-limit,
+verify-candidate}.log. Broad/full-request coverage remains incomplete and the
+candidate is not adopted; no game claim, native outcome or parity status changed.
+
+Restoration table-continuation tooling batch: Test.ps1 -NoRestore passes; log
+artifacts/package-delivery/indirect-effect-root-final-test.log. Toolkit PR 60
+at 7899fbf passes release-label, Ubuntu/Windows documentation and Verify CI.

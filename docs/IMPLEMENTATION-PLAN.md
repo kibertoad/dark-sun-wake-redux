@@ -759,3 +759,22 @@ nonzero third pointer route skips the mode test and final local clear. No
 resource acceptance, pointer assignment by an unread callee or successful
 rollback is inferred. Configs/reports stay in GAME_DIR. Exit: recorded installed
 package controls; Gap 27 remains open until every cited source contract passes.
+
+## Conditional table-target effect continuations
+
+Gap 27's linked-child case is stopped by an evidenced computed jump even though
+CFG discovery retains its source target table. Plan shared tooling work without
+new instruction semantics: retain the original unresolved path, and add separate
+conditional continuation paths for declared near-word targets. Preserve prefix
+writes, stack/child state and target-selection/table-content assumptions. A
+return on one conditional route proves neither selection nor whole-call coverage.
+Reject contested/overlapping target starts and contradictory concrete operands;
+partial tables retain missing routes. Existing path/step/visit/total budgets apply
+to all continuations. Inputs and prepared protocol remain unchanged; no guessed
+selector, table contents or game-specific dispatch enters the engine.
+Acceptance: synthetic prefix mutation and child-result exits, duplicate targets,
+partial declarations, concrete mismatch, overlapping targets, loops and nonvacuous
+budgets plus a real prepared-reader synthetic case pass. Local full-entry source
+acceptance must retain unread inputs and native reachability. Exit: upstream PR,
+merged registry delivery and the complete cited restoration controls; a candidate
+alone cannot close Gap 27. No gameplay or spec claim changes.

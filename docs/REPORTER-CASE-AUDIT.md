@@ -587,3 +587,35 @@ Local driver: GAME_DIR/analysis/reporter-audit/effect-resource-controls/
 verify-adopted.mjs; sibling verify-adopted-engine040.log and JSON reports retain
 controls. The full Gap 27 request remains open: complete fill, linked child,
 cleanup/hardware, layered cache and snapshot paths still require acceptance.
+
+## Gap 27 conditional table-continuation candidate, 2026-10-02
+
+Published engine 0.4.0 and current upstream main stop the FND-CONFIG-168
+resident consumer at its computed child jump, even with a supplied source table.
+The adopted-limit control reproduces that stop. Toolkit PR 60 adds separate
+conditional declaredContinuationPaths while retaining original stopped paths.
+The evidence extension assigns no new instruction semantics or runtime selector;
+concrete operands/field addresses and repeated choices reject contradictions,
+overlapping targets cannot establish boundaries, and shared budgets remain gaps.
+Candidate summaries always leave effect completeness false.
+
+Local driver GAME_DIR/analysis/reporter-audit/child-effect-controls/
+verify-candidate.mjs uses the current reader archive and candidate engine source.
+It starts at the complete recorded resident entry. The broad four-target query
+remains path-capped and does not establish the MENU exit. Splitting at the checked
+MENU source word with an explicitly partial table permits both conditional
+balanced-return hypotheses. An AX FFFF hypothesis retains the preceding word
+count decrement and bypasses later local clears; AX zero retains the unconditional
+later pointer clears. Models preserve only declared DS/SS/BP/SI assumptions and
+invalidate memory/flags; native child effects and error origin stay unknown.
+FND-CONFIG-172's valid finite traversal reading is not contradicted by a modeled
+failure case. Other table rows, head/list mutations and outer caller controls
+remain outstanding; neither the original whole function nor the full request is
+proved complete. Wrong-field and nonvacuous path/step/boundary controls remove
+the positive contract. Configs, reports and verify-candidate.log stay local.
+
+Full candidate engine/workspace, prepared-reader integration, lint/format/types,
+release planner, .NET build/test/pack and repository policy pass. Wheel/sdist and
+npm archives build; isolated installed-wheel/extracted-reader smoke passes with
+no PYTHONPATH. Logs artifacts/package-delivery/indirect-effect-*. The candidate
+is not an adopted registry release. Gap 27 stays open with its entire contract.
