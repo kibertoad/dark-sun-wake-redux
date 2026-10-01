@@ -27,14 +27,14 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 - Gap 12: closed; actual two-entry tag/target controls and rejected third entry, recorded in docs/REPORTER-CASE-AUDIT.md.
 - Gap 13: open; full request and cited controls in gaps.md.
 - Gap 15: open; full request and cited controls in gaps.md.
-- Gap 16: all four instruction-owned operand forms pass source controls in toolkit PR 19/template PR 34; pending reviewed merge/adoption.
+- Gap 16: closed; reviewed merged source adopted and actual controls reverified.
 - Gap 17: open; full request and cited controls in gaps.md.
 - Gap 20: open; full request and cited controls in gaps.md.
 - Gap 21: open; full request and cited controls in gaps.md.
 - Gap 22: open; full request and cited controls in gaps.md.
 - Gap 23: open; full request and cited controls in gaps.md.
-- Gap 24: source controls pass in toolkit PR 19/template PR 34; pending reviewed merge and exact-pin adoption.
-- Gap 25: width-prefix, complete overlapping helper and saved-direction controls pass in toolkit PR 19/template PR 34; pending reviewed merge/adoption.
+- Gap 24: closed; reviewed merged source adopted and actual controls reverified.
+- Gap 25: closed; reviewed merged source adopted and actual controls reverified.
 - Gap 26: open; full request and cited controls in gaps.md.
 - Gap 27: open; full request and cited controls in gaps.md.
 - Gap 29: open; full request and cited controls in gaps.md.
@@ -58,8 +58,8 @@ Synthetic success and broad guidance do not close a game-case request. Current s
 
 ## Handover
 
-- Stage: Slices; this goal is tooling maintenance only.
-- Last gate: 2026-10-01, tools/Test.ps1 passes; artifacts/operand-candidate-record-validation.log. Toolkit and template candidate gates/full builds pass.
-- Unfinished: full numbered acceptance audit; toolkit PR 19/template PR 34 review and adoption. Candidate worktrees have no unfinished implementation.
-- Blockers: none preventing other tooling progress.
-- Next: distinct disc-source validation for gap 5; offline gate for gap 4; arithmetic/count and callee-composition capabilities required by remaining cases.
+- Stage: Slices; tooling maintenance only.
+- Last gate: 2026-10-01, Test.ps1 and full build pass; artifacts/full-upstream-migration-validation.log and artifacts/full-upstream-migration-build.log.
+- Unfinished: remaining numbered gaps; latest website/template/toolkit migration is complete. No candidate adoption remains pending.
+- Blockers: none preventing other tooling work.
+- Next: distinct disc-source verification for gap 5, offline gate for gap 4, remaining arithmetic/count and callee-composition capabilities.
