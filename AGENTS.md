@@ -347,7 +347,7 @@ Never silently promote a plausible interpretation.
 
 A complete reading also covers what the standard's
 [Complete readings](vendor/upstream/documentation-standard.md#complete-readings) (lines 137-181)
-and [Findings](vendor/upstream/documentation-standard.md#findings) (lines 413-461) sections
+and [Findings](vendor/upstream/documentation-standard.md#findings) (lines 413-463) sections
 list, among them: two addresses are the same storage only where the reading
 shows the segment each is formed in and accessed through (a BP offset read
 through DS is the caller's stack only where DS equals SS there); a stored
@@ -364,7 +364,7 @@ finding that a function has no other callers checks the analyzer's list with
 a second search that does not depend on function boundaries, and one about a
 dispatch table reads how the input becomes an index and what bounds it before
 naming which input selects which entry. An `offset` into overlay code lies
-wholly inside a row of its build's Code ranges section.
+wholly inside a row of its build's Code ranges section. Bytes in an executable read as data use `kind: file-data` and shipped-file offsets; unpacker-written bytes outside the load image add `unpacked: true` and use unpacked-file offsets. File-data locations cannot support Code ranges rows.
 
 Unidentified functions, globals, fields, and scripts keep neutral names
 (`fn_00478CD0`, `g_004C1F20`, `unk_2A`) until a finding or experiment shows what

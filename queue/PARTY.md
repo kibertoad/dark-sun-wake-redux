@@ -11,7 +11,7 @@ Next ID: Q-PARTY-011
   list, how it rolls the six scores and when it applies the origin modifiers, and whether it
   refuses DONE or greys out choices? Settles it: the code behind SCR-UI-004 and SCR-UI-005, then
   an owner capture of the generation screen for each disputed pair. Blocks: slice 2.
-- Q-PARTY-003. FMT-PARTY-001, FMT-PARTY-002, RULE-PARTY-004: Where does a character record keep
+- Q-PARTY-003. FMT-PARTY-001, FMT-PARTY-002, RULE-PARTY-004, RULE-MAGIC-002: Where does a character record keep
   gender, origin, alignment, classes, levels, experience, hit points and psionic strength points,
   what do `unk_02`, `unk_29`, `unk_3B` and the tail entries hold, are the scores stored before or
   after origin modifiers, and does the game accept a `version` other than 1? Settles it: the far
@@ -28,13 +28,13 @@ Next ID: Q-PARTY-011
 - Q-PARTY-006. RULE-PARTY-001: What does the game do when the player tries to begin with an
   empty party, and does a party of fewer than four play differently? Settles it: the code of the
   View Character screen's exit that begins play (SCR-UI-002). Blocks: slice 2.
-- Q-PARTY-007. RULE-PARTY-004: Which classes does the DUAL list offer: must the new class meet
+- Q-PARTY-007. RULE-PARTY-004, SCR-UI-015: Which classes does the DUAL list offer: must the new class meet
   its minimum scores, and may the current or a former class be picked? Settles it: the code
   behind the DUAL choice of SCR-UI-002. Blocks: slice 5.
 - Q-PARTY-008. RULE-PARTY-007: Does the game apply the level limits of README table 3 and its
   prime requisite bonus, and how does it count the prime requisite of a class with more than
   one? Settles it: the code that raises a character's level. Blocks: slice 5.
-- Q-PARTY-009. RULE-PARTY-008: What does a key from 1 to 4 do, in particular when its slot is
+- Q-PARTY-009. RULE-PARTY-008, RULE-COMBAT-001: What does a key from 1 to 4 do, in particular when its slot is
   empty, and is the word the party loader compares each slot with (FND-PARTY-013) the leader's
   slot? Settles it: the handler the keys 1 to 4 reach in overlay 190, which posts an event for
   the character boxes `0x2C24` to `0x2C27` (FND-COMBAT-025), and the writers of `leader`. Tried:

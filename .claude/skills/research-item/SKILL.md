@@ -107,7 +107,7 @@ only the lines the link gives, and never a section already read this session.
    memory nothing wrote, timing, or the operating system. List its findings in
    the entry's `complete_reading`. The standard's
    [Complete readings](../../../vendor/upstream/documentation-standard.md#complete-readings) (lines 137-181)
-   and [Findings](../../../vendor/upstream/documentation-standard.md#findings) (lines 413-461)
+   and [Findings](../../../vendor/upstream/documentation-standard.md#findings) (lines 413-463)
    sections list what that covers; the parts most often missed are the
    segment each access actually goes through, every part of a stored call
    target, the other byte of a word written a byte at a time, allocation
@@ -118,7 +118,7 @@ only the lines the link gives, and never a section already read this session.
    checked to decode as a call; a dispatch table finding reads how the input
    becomes an index and what bounds it. An `offset` into overlay code lies
    inside a row of its build's Code ranges section, whose finding shows the
-   range holds code. A procedure keeps each call a later decision depends on
+   range holds code with a location other than `kind: file-data`. Executable bytes read as data use `kind: file-data` and shipped offsets; unpacker-written bytes outside the load image add `unpacked: true` and use unpacked-file offsets. A procedure keeps each call a later decision depends on
    as its own step, says what a rejected or abandoned call leaves in place,
    and marks with `# visible:` comments where a change becomes visible to
    other actors. An entry that depends on any of those needs
@@ -141,7 +141,7 @@ only the lines the link gives, and never a section already read this session.
    and `docs/RUNTIME.md` allows a run, add a `Live session`
    item for the experiment that would confirm it; where no run is possible,
    say in the entry's Open questions which observation of the original would
-   confirm it, so that a tester's capture can later.
+   confirm it, so that a tester's capture can later, with `(No item: no run possible)`. Every Open questions bullet cites its item or states an exemption with a reason.
    Remove the `Spec gap (Q-...)` note of every item you closed.
 7. **Keep the check passing, and change nothing else outside `spec/`,
    `queue/` and `tools/`:**

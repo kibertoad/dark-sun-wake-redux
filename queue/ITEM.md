@@ -27,7 +27,7 @@ None.
 
 ## Live session
 
-- Q-ITEM-002. SCR-UI-008, RULE-ITEM-001, RULE-ITEM-002, RULE-ITEM-004: Where does the inventory
+- Q-ITEM-002. RULE-ITEM-001, SCR-UI-008, RULE-ITEM-002, RULE-ITEM-004, SCR-UI-019: Where does the inventory
   screen draw its item names, slots, data panel and money bar, what does clicking an item do, and
   how does a split halve an odd bundle? Settles it: the inventory-selection live session. Tried:
   the `TEXT/1000` lines of the two names an earlier capture shows, which bind no name to an item or

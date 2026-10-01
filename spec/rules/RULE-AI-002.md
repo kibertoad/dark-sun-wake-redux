@@ -58,6 +58,7 @@ None known.
   FND-AI-003, among them `28C9:0605`, which skips the rest of its routine for a combatant under
   computer control, are the next leads, together with the combat entry that Q-COMBAT-001 looks
   for (Q-AI-001).
-- Whether hostile creatures and party members under computer control use the same routine.
+- Whether hostile creatures and party members under computer control use the same routine. (Q-AI-001)
+
 - When a non-player character flees, fights back or calls for help, and whether that belongs to
-  combat or to the scripts.
+  combat or to the scripts. (Q-AI-003)

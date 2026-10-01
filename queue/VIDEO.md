@@ -4,7 +4,7 @@ Next ID: Q-VIDEO-003
 
 ## Static
 
-- Q-VIDEO-001. FMT-VIDEO-001, RULE-VIDEO-002: How does the player draw a record: what do the
+- Q-VIDEO-001. FMT-VIDEO-001, RULE-VIDEO-002, RULE-VIDEO-003: How does the player draw a record: what do the
   data of the `0x0B`, `0x0C` and `0x0F` chunks hold, how does the palette change, and what does
   the run-length routine read at the overlong last chunk of `5.FLI`'s first record? Settles it:
   the routines at `57D4:0020`, `57D7:0020`, `57DA:0020` and `57DD:0020`, and `2660:04F3` and

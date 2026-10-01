@@ -1,7 +1,7 @@
 # Spec entry templates
 
 Blank entries for each kind in `spec/`, with the front matter fields and body
-sections the [documentation standard](../vendor/upstream/documentation-standard.md#entry-types) (lines 323-778)
+sections the [documentation standard](../vendor/upstream/documentation-standard.md#entry-types) (lines 323-780)
 requires, in its order. Copy one into the directory for its kind, name the file
 after the ID (`spec/rules/RULE-COMBAT-007.md`), and replace every `<...>`. The
 standard defines what each field and section holds; this page does not repeat
@@ -18,6 +18,13 @@ it is certain that there is nothing. The documentation standard check from
 [refurbished-dinosaurs-toolkit](https://github.com/kibertoad/refurbished-dinosaurs-toolkit)
 runs on every pull request and reports what an entry is missing, as
 `docs/VALIDATION.md` describes.
+
+Each bullet in an Open questions section cites the queue item that tracks it
+(`(Q-COMBAT-004)`). A bullet no item can settle yet, such as a neutral name the
+standard requires the entry to list, or the observation that would confirm a
+reading where no run is possible, ends with `(No item: <why>)` instead.
+`tools/Check-ResearchTracking.mjs` fails any other bullet, and an exemption with
+no reason.
 
 Every Markdown file the standard defines, entries included, is at most 1,000
 lines. An entry that would pass the limit is split by what it describes, as
@@ -66,7 +73,8 @@ other_files:
 
 Code ranges is a table of the parts of each file that hold code located by
 offset, or `None.` where all code is located by address. A range is half-open,
-and a location's `offset` into overlay code lies wholly inside one row:
+a location's `offset` into overlay code lies wholly inside one row, and each
+row's finding has a location in that file that is not `kind: file-data`:
 
 ```markdown
 | File | Range | Overlay | Finding |
@@ -128,7 +136,7 @@ method: <static or dynamic>
 locations:
   - build: BLD-<ALIAS>
     file: <path from the build entry>
-    address: <range in the notation for the file's format, or offset: for data files and overlays>
+    address: <range in the notation for the file's format, or offset: for data files, overlays and kind: file-data>
 tool: <tool and version>
 environment: null
 ---
@@ -220,7 +228,7 @@ names it.
 
 An enumeration table that would take the entry past 1,000 lines goes in a
 value file beside it, named after the ID and the table
-(`spec/formats/FMT-<AREA>-<NNN>.unit_class.csv`). Its `###` heading stays in the
+(`spec/formats/FMT-AREA-NNN.unit_class.csv`). Its `###` heading stays in the
 entry, followed by a sentence naming the file. The file is CSV as RFC 4180
 defines it, in UTF-8, with the table's columns as its header row:
 
@@ -272,7 +280,7 @@ None known.
 
 A list of more than 64 values in a procedure is a `table` whose values come
 from a value file in `spec/rules/`, named after the ID and the table:
-`table sine: INT16[1024] from "RULE-<AREA>-<NNN>.sine.csv"`. The file has the
+`table sine: INT16[1024] from "RULE-AREA-NNN.sine.csv"`. The file has the
 single column `value` and one row per element, in index order, so it has as
 many rows as the type's count:
 
@@ -398,13 +406,13 @@ one. Then what the standard asks of this kind of term.>
 ## Deviation
 
 One file per deviation in `deviations/` at the repository root, named after its
-ID (`deviations/DEV-<AREA>-<NNN>.md`). Default is `off`, `on` or `mandatory`
+ID (`deviations/DEV-AREA-NNN.md`). Default is `off`, `on` or `mandatory`
 (Setting `None`). Keep the Justification item, which argues that the rebuild's
 behavior is strictly better than the original's, or that it is a small
 judgement call that makes the game better to play, for a `mandatory` deviation
 and for one that is `on` without being the fix of an unintended bug players do
 not rely on, as the
-[deviation log](../vendor/upstream/documentation-standard.md#deviation-log) (lines 837-858)
+[deviation log](../vendor/upstream/documentation-standard.md#deviation-log) (lines 839-860)
 section sets out. Delete it otherwise. IDs are never reused or renumbered, and a dropped deviation keeps
 its file.
 

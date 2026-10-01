@@ -4,7 +4,7 @@ Next ID: Q-COMBAT-009
 
 ## Static
 
-- Q-COMBAT-002. FMT-COMBAT-001, FMT-COMBAT-002, SCR-COMBAT-001: What do the unknown fields of
+- Q-COMBAT-002. FMT-COMBAT-001, FMT-COMBAT-002, SCR-COMBAT-001, RULE-AI-001: What do the unknown fields of
   the two combatant records hold, how many records does each table have, and how does
   `2D40:3E64` map `turn_combatant` to a record of each? Why does the panel show question marks
   only above 4? Settles it: a reading of `2D40:3E64` and of the code that fills the tables at
@@ -47,7 +47,7 @@ None.
 
 ## Live session
 
-- Q-COMBAT-001. RULE-COMBAT-001, RULE-COMBAT-006, SCR-COMBAT-001: How does the first ordinary
+- Q-COMBAT-001. RULE-COMBAT-001, RULE-COMBAT-006, SCR-COMBAT-001, RULE-AI-002: How does the first ordinary
   combat begin, what does one accepted attack and one turn command do, how does the turn pass from
   one combatant to the next, and how does combat end? Where are the members who appear placed,
   and what does the frame labelled as an enemy moving show? Settles it: the opening-combat live
@@ -56,7 +56,7 @@ None.
   (FND-COMBAT-001 to FND-COMBAT-017), the owner's captures and reports (FND-COMBAT-018 to
   FND-COMBAT-021), and the key routine and end-of-move menu (FND-COMBAT-025, FND-COMBAT-026).
   Blocks: slice 4.
-- Q-COMBAT-007. RULE-COMBAT-007: Does the difficulty scale a hostile creature's hit points when
+- Q-COMBAT-007. RULE-COMBAT-007, RULE-CONFIG-002: Does the difficulty scale a hostile creature's hit points when
   it appears, by how much on each setting and with what rounding, and does it change anything
   else? Settles it: from equivalent saves, the same hostile's hit points looked at on each
   setting, with the setting changed before and after the creature appears. Tried: none; no code

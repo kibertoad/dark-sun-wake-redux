@@ -89,6 +89,7 @@ None known.
   (Q-ACTOR-005).
 - Whether the drawing order is the stored order or the order of the slot records `31E0:0EFF`
   fills (FND-ACTOR-003, FND-ACTOR-004). The compared frame matches the stored order
-  (FND-IMAGE-010), but it was not checked for overlaps that would tell the two apart.
+  (FND-IMAGE-010), but it was not checked for overlaps that would tell the two apart. (Q-ACTOR-005)
+
 - Whether the pixels an image leaves undrawn keep what was there before, as for the terrain
-  (RULE-REGION-001).
+  (RULE-REGION-001). (Q-ACTOR-005)

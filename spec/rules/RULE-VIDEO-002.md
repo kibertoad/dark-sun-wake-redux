@@ -137,4 +137,4 @@ None known.
   keyboard layer (FND-VIDEO-002, FND-INPUT-005, Q-VIDEO-001).
 - What `g_57E0_1436` and `g_4E71_0C4A` hold, read here as whether to wait for the disc track and
   the track playing (FND-VIDEO-002, Q-SOUND-004).
-- How the original removes the timer slot at the end, which was not read (FND-VIDEO-002).
+- How the original removes the timer slot at the end, which was not read (FND-VIDEO-002). (Q-VIDEO-001)

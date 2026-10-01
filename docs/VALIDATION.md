@@ -236,7 +236,7 @@ The `Documentation standard` job in `.github/workflows/ci.yml` runs the
 [refurbished-dinosaurs-toolkit](https://github.com/kibertoad/refurbished-dinosaurs-toolkit),
 pinned to a full commit SHA, on every pull request. It checks `spec/`, `parity/`
 and `deviations/` against the standard's list of
-[checks](../vendor/upstream/documentation-standard.md#checks) (lines 780-831), compiles each
+[checks](../vendor/upstream/documentation-standard.md#checks) (lines 782-833), compiles each
 `.ksy` file with the Kaitai Struct compiler, checks that every spec and
 deviation ID cited in `src/`, `tests/`, `tools/` and `docs/` exists and is
 not superseded, fails when `spec/index/` or `PARITY.md` is stale, and fails a `validated`
@@ -324,3 +324,7 @@ Bounded-map/diagnostic tooling batch: root gate passed 92 Python, 43 Node and 70
 Inventory acceptance batch: read-only Ghidra shared export matches all 2,723 retained mapped-view rows; shared view join reproduces the committed installed inventory exactly (1,284 resident + 869 overlay = 2,153). New identity/schema/destination checks pass actual installed inventory and corruption controls. Root gate passes 92 Python, 44 Node, 700 .NET; template gate passes 92 Python, 40 Node, 56 .NET and clean build. Disc-source validation remains pending; no substitute-source claim.
 
 Repository policy checks all Git-visible files, including untracked files not ignored. deniedFileNamePatterns rejects JVM fatal-error/replay logs and heap dumps at any depth even if force-staged. The canonical Test.ps1 gate runs the synthetic diagnostic and bounded-map suites; current test totals belong in its generated log.
+
+## Migrated capture and research tracking
+
+The fast gate checks area queues, question IDs and reverse entry links with Check-ResearchTracking.mjs. Capture-OriginalWindow.ps1 isolates PrintWindow in a bounded worker, selects only client pixels and avoids desktop fallback. Its tests create synthetic windows. Original-game captures remain owner-only under AGENTS.md; adding this helper grants agents no original runtime access. Mixed-DPI native captures require owner validation.

@@ -21,7 +21,7 @@ Next ID: Q-SCRIPT-008
   (FND-SCRIPT-016, FND-SCRIPT-018), none of which fills the 13-byte records; the trigger instructions fill them (FND-SCRIPT-015).
   Blocks: slices 3-6.
 - Q-SCRIPT-003. RULE-SCRIPT-010, RULE-SCRIPT-002, RULE-SCRIPT-003,
-  RULE-SCRIPT-004: What do the helpers of the interpreter do: `fn_172C_31ED`,
+  RULE-SCRIPT-004, RULE-SCRIPT-009, RULE-VIDEO-003: What do the helpers of the interpreter do: `fn_172C_31ED`,
   the slot choice `fn_172C_07BB`, the buffer allocation `fn_172C_0698`, the
   error routine `fn_5702_00B1`, and the far routine at `g_57E0_02F6`; what do
   `g_4C0E_000B`, `g_4C13_032B`, `g_4C13_0325` and `g_4C0E_0002` mean; and which
@@ -145,7 +145,7 @@ Next ID: Q-SCRIPT-008
   `fn_172C_31B7` and `fn_172C_325F` do, and how are strings of kind 2 stored?
   Settles it: the handlers FND-SCRIPT-005 lists, read one instruction family at
   a time, and those four routines. Blocks: slices 3-6.
-- Q-SCRIPT-005. RULE-SCRIPT-004, RULE-SCRIPT-005: How many script variables of
+- Q-SCRIPT-005. RULE-SCRIPT-004, RULE-SCRIPT-005, RULE-SCRIPT-010: How many script variables of
   each kind are there, where and when does the game clear them, are local
   variables cleared on a region change, does a saved game hold them, and what
   do `global_name_pointers` point at? Settles it: the code that sets the far
@@ -227,6 +227,7 @@ Next ID: Q-SCRIPT-008
   Resource and error branches need separate provenance and cannot
   establish operating-system outcomes by emulation. Tried: FND-SCRIPT-019 reads the local instruction paths;
   the emulator harness does not exist yet.
+  Blocks: completing the named entry readings.
 
 ## Agent run
 

@@ -62,11 +62,14 @@ gameplay frame of the opening region matches `x_offset`, `y_offset` and `vertica
 
 - What `unk_00`, `unk_01`, `unk_06`, `unk_08`, `unk_0B` and `unk_0E` do. `unk_00` uses only bits
   1 and 4, and `unk_06` and `unk_08` may each be two bytes, since their low bytes take only 10 and
-  8 values (FND-ACTOR-001). SRC-DSUN-MUSIC-79B6927 reads them as raw words.
+  8 values (FND-ACTOR-001). SRC-DSUN-MUSIC-79B6927 reads them as raw words. (Q-ACTOR-002)
+
 - What the image numbers 11,001 to 11,008 and 13,009 that `31E0:0EFF` puts in place of `image`
   for some objects and slots name, and what the object numbers 430, 5,879, 415, 561, 541, 547
-  and 1,339 are (FND-ACTOR-003).
+  and 1,339 are (FND-ACTOR-003). (Q-ACTOR-002)
+
 - Why `vertical_offset` is kept both here and in each `ETAB` record (FMT-REGION-006), and whether
   any code reads the `ETAB` copy for drawing; `31E0:0E1B` stores that copy at `0xE` of the slot
-  record (FND-ACTOR-003).
-- How the overlay code that names the tag reads the record (FND-ACTOR-006).
+  record (FND-ACTOR-003). (Q-ACTOR-002)
+
+- How the overlay code that names the tag reads the record (FND-ACTOR-006). (Q-ACTOR-002)

@@ -50,4 +50,4 @@ copies of `GPLDATA.GFF` and both copies of `OBJEX.GFF`.
 - Whether the game reads `tag_list_offset` and `tag_list_end` or walks the tables, and whether it
   reads or writes `gaps` (Q-GFF-002).
 - That `gaps` lists free space a writer can reuse rests only on where the ranges fall
-  (FND-GFF-004).
+  (FND-GFF-004). (Q-GFF-002)

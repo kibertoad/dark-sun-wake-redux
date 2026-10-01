@@ -228,3 +228,9 @@ Canonical Test.ps1 and full solution build pass; generated output is in artifact
 ## Latest merged inventory refinements
 
 Adopted template e0325e0b063735e94b7e3ac94b0b8b89d0a38a79 (PR 33), including canonical start formatting, rejection of analyzer default names, and input-path agreement. Shared source and acceptance tests match the merged revision. Configured identity and the historical disc inventory path remain intact; gap 5 still requires its distinct disc source.
+
+## Complete upstream migration, 2026-10-01
+
+Adopted website 82deb767ab64ca9922bb6347d66d9856b7640e91, toolkit 7da1b93cdd9ac0d59dbaf82b66b4db95d578ab9d and template 7b3bbe46b251b163ee02a6539ac0d81559dbe921. Reviewed the full template delta from e0325e0: capture worker and synthetic tests, research tracking and question links, file-data/unpacked locations and checker/CI pins, instruction-owned operands, strings/saved flags/local IRET, and revised contested overlap traversal. Reporter files/tests/guide are exact pinned upstream bytes. Skills, entry templates and validation guidance retain configured paths and owner-only runtime; capture defaults use this game title. Existing queue IDs and research conclusions are preserved, with missing structural links and one existing AI question newly tracked. Generic documentation example IDs use placeholders. Empty upstream RNG/SAVE queues are already present locally; template handover and plan histories are not substituted for game records. No architecture, packaging or gameplay delta exists in these revisions.
+
+Actual width, helper effects and instruction operand controls pass against the exact adopted source. Validation output is in artifacts/full-upstream-migration-validation.log and artifacts/full-upstream-migration-build.log. Mixed-DPI original capture remains owner validation, not claimed by synthetic acceptance.

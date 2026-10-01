@@ -4,7 +4,7 @@ Next ID: Q-SOUND-009
 
 ## Static
 
-- Q-SOUND-002. FMT-SOUND-001, RULE-SOUND-001, RULE-SOUND-002: How does the sound library play a
+- Q-SOUND-002. FMT-SOUND-001, RULE-SOUND-001, RULE-SOUND-002, RULE-VIDEO-001: How does the sound library play a
   voice file or a `BVOC` resource: at what rate and volume, through which driver, and what do the
   library routines the two rules call check, play and stop? Settles it: `4611:0177`,
   `4654:04FE` with its arguments 6,000 and 6,001, `4611:0051`, `4611:03A5`, `49E9:00FD`,
@@ -13,12 +13,12 @@ Next ID: Q-SOUND-009
   extension, a helper launch and a BIOS wait (FND-SOUND-003, FND-SOUND-005), the helper's port
   output (FND-SOUND-004), and the effect and speech routines (FND-SOUND-007, FND-SOUND-008), which
   show which files play but not how. Blocks: slice 7.
-- Q-SOUND-003. RULE-SOUND-001, RULE-SOUND-002: Which effects do the 19 other callers of the
+- Q-SOUND-003. RULE-SOUND-001, RULE-SOUND-002, RULE-VIDEO-001: Which effects do the 19 other callers of the
   sound-effect routine play, and when; which lines do overlays 187 and 204 speak; and what are
   `g_57E0_0D9C`, `g_57E0_6554`, `g_57E0_14E8`, `g_57E0_4263` and `g_57E0_4275` for? Settles it:
   the callers FND-SOUND-007 and FND-SOUND-008 list, and the writers of those globals. Blocks:
   slice 7.
-- Q-SOUND-004. RULE-SOUND-003, FMT-SOUND-002: What chooses the music outside combat after
+- Q-SOUND-004. RULE-SOUND-003, FMT-SOUND-002, RULE-VIDEO-002: What chooses the music outside combat after
   startup, the 18 mode-2 songs of `DJ.DAT` that the selector never takes, and how does a disc
   track or an FM song start and end? Settles it: the writers of `music_mode` through a pointer or
   a register, the routine at `2660:0250` and the requests `2660:035E` sends, the FM branch of

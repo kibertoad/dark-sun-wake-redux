@@ -41,6 +41,7 @@ None.
 - Its layout. Split into 27 units of 42 bytes, the same bytes of each unit are 0 or small, and
   rows of 42 bytes repeat far more than rows of any other width that divides the size
   (FND-ACTOR-008), while at 81 bytes no column is constant (FND-ACTOR-013). These are patterns
-  in the data.
+  in the data. (Q-ACTOR-004)
+
 - Which code reads it. The tag occurs only in the code of overlay 204 (FND-ACTOR-006), which has
-  not been read.
+  not been read. (Q-ACTOR-004)

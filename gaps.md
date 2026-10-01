@@ -3,7 +3,7 @@
 These are the remaining requests for the restoration template and shared analysis
 tooling. They describe tooling behavior, not claims about the original game.
 
-Current website, toolkit and template main revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Game-specific requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 12, 14, 18, 19, 28 and 38 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
+Current website, toolkit and template main revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Game-specific requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 12, 14, 16, 18, 19, 24, 25, 28 and 38 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
 Delivered capabilities, closure evidence and remaining limits are recorded in
 [the adoption record](docs/TEMPLATE-ADOPTION.md).
 
@@ -136,29 +136,6 @@ return merely from consecutive call locations; retain callee effects as an
 explicit gap unless separately read. This complements the function-ownership
 request in item 11.
 
-## 16. Resolve segment-load operands before citing data addresses
-
-**Current disposition:** all four operand forms now pass instruction-owned source controls in toolkit PR 19/template PR 34 candidates. Await reviewed merge and exact-pin adoption before removing.
-
-The FND-CONFIG-120 through FND-CONFIG-131 corrections replace raw segment
-labels in earlier CONFIG findings. Resident segment loads need their MZ
-relocation applied; overlay segment loads contain shifted descriptor indices
-that need the FBOV table lookup. The instruction's numeric operand alone is
-not the mapped segment, even when its following field offset is correct.
-
-FND-CONFIG-144 also corrects FND-CONFIG-134's numeric argument reading:
-a pushed immediate was a declared overlay segment fixup for a far output
-pointer. Reading the callee's argument loads confirmed the pointer shape.
-
-**Request:** extend the bounded target resolver in item 10 beyond far calls to
-segment-register loads, stored far-pointer segments and pushed segment
-arguments. Report the instruction
-location, operand representation, declared relocation/fixup membership,
-decoded descriptor where applicable, and canonical mapped segment. Require
-that provenance alongside data-address labels in findings; preserve a raw
-operand explicitly as raw when mapping is unresolved. This prevents the same
-mapping error from recurring in data reads after call targets were corrected.
-
 ## 17. Resolve overlapping operand candidates to verified boundaries
 
 While preparing FND-CONFIG-136, a raw pointer-operand search produced both
@@ -263,39 +240,6 @@ FND-CONFIG-158 also follows a mode-setter branch beyond its first far
 return to a second return. Finding one return is not a complete bound:
 shared readers should follow every reachable branch target and exit before
 claiming that a function's local effects have been covered.
-
-## 24. Allow overlapping starts when an explicit control-flow edge proves them
-
-**Current disposition:** toolkit PR 19 now passes the actual explicit interior-call control and keeps false operand boundaries rejected. Await reviewed merge and exact-pin adoption before removing.
-
-FND-CONFIG-155 follows an internal call into a byte that also belongs
-to the preceding linear instruction. The target is a valid alternate
-return path with a matching saved-flags stack frame. Rejecting it solely
-because a linear decoder started another instruction earlier would
-invent an unread callee and miss the flags restoration.
-
-**Request:** shared boundary validation should retain per-path instruction
-starts and explicit incoming edges. Distinguish a locally decodable overlap
-with no verified incoming path from an overlap reached by a confirmed
-branch or call, and check that target's continuation separately. This
-complements item 17's rejection of unverified overlapping candidates;
-it must not impose one global linear boundary set on all control flow.
-
-## 25. Carry the direction flag into string-store effect reports
-
-**Current disposition:** candidate toolkit PR 19 and template PR 34 pass the bounded width-prefix and synthetic saved-flags cases. The complete overlapping IRET helper now passes its local restoration controls in the candidate; await reviewed merge and exact-pin adoption before removing.
-
-FND-CONFIG-154's width prefix uses repeated string stores without a
-local direction clear. FND-CONFIG-155's helper clears direction for
-its own writes, then restores the caller's saved flags. Treating that
-helper's clear as a permanent caller state would falsely make the
-following prefix's forward write span unconditional.
-
-**Request:** shared effect summaries should include the incoming direction
-flag and local clear, set and restore operations for string instructions.
-Report their write span conditionally when the entry state is unknown,
-and propagate saved-flags restoration across callees. This complements
-item 24's alternate return path and item 21's memory provenance.
 
 ## 26. Preserve return widths and failure encodings at each caller
 

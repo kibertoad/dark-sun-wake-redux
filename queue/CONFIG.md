@@ -5,7 +5,7 @@ Next ID: Q-CONFIG-011
 ## Static
 
 - Q-CONFIG-002. FMT-CONFIG-003, RULE-CONFIG-001, RULE-CONFIG-002, RULE-CONFIG-003,
-  RULE-CONFIG-004: What initializes the settings for a new game, does any path
+  RULE-CONFIG-004, SCR-UI-007: What initializes the settings for a new game, does any path
   synchronize the saved speech gate and runtime voice button state, and can
   music volume be adjusted elsewhere? Settles it:
   bounded readings of the sound-library consumers, new-game initialization and voice
@@ -37,7 +37,7 @@ Next ID: Q-CONFIG-011
   polarity, any synchronization beyond those paths or another music-level control. Blocks:
   slice 3.
 
-- Q-CONFIG-007. RULE-CONFIG-005: Does another path impose an upper limit on
+- Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
   the message-delay word, and does a new game replace the loaded-image value
   50? Settles it: a bounded reading of initialization and other direct,
   indirect and block writers. Tried: the
@@ -48,6 +48,7 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-028 finds no direct message-delay write in the Start Game
   button branch or its shared setup helper. The new-game starting value and
   indirect or block writers remain unread.
+  Blocks: completing the named entry readings.
 
 - Q-CONFIG-008. RULE-CONFIG-005: Which caller paths enter overlay 172's
   shared message routine? Settles it: complete incoming-path readings for
@@ -365,6 +366,7 @@ Next ID: Q-CONFIG-011
   state and runtime outcomes remain open.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
+  Blocks: completing the named entry readings.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?
@@ -376,6 +378,7 @@ Next ID: Q-CONFIG-011
   literal bounds and archive references, startup, lookup, direct closes
   and cleanup registration. No ordinary-state failure is established;
   indirect changes and callers remain unread.
+  Blocks: completing the named entry readings.
 
 - Q-CONFIG-005. FMT-CONFIG-001: What does the game's sound library read from each field of
   `SOUND.CFG`, including its unexplained tail? Settles it: bounded readings
@@ -394,11 +397,13 @@ Next ID: Q-CONFIG-011
   `ADV ` number with a separate ten-byte settings block and shows bit
   `0x01` of `0x14` gates the second pair; the device roles and input-record
   field meanings remain open.
+  Blocks: completing the named entry readings.
 
 - Q-CONFIG-006. FMT-CONFIG-002: How does the setup program parse `SOUND.INI`, including unknown
   or malformed keys, and what do `CardGroup` and the chunk numbers mean? Settles it: the parser
   at `SOUND_DS.EXE` `1AF6:0BF9` (FND-CONFIG-004) and its consumers. The file layout alone does
   not determine parser behavior (FND-CONFIG-007).
+  Blocks: completing the named entry readings.
 
 - Q-CONFIG-004. FMT-CONFIG-005: What is the structure and role of `PATCH.RTP`? Settles it: a
   bounded inspection of the file and references from the installed setup programs. Blocks:
@@ -424,7 +429,7 @@ None.
   gates and shipped record. The code does not decide the live I/O outcome
   or observed duration. Blocks: slice 3 message timing validation.
 
-- Q-CONFIG-001. SCR-UI-007, RULE-CONFIG-001, RULE-CONFIG-002, RULE-CONFIG-003,
+- Q-CONFIG-001. RULE-CONFIG-001, SCR-UI-007, RULE-CONFIG-002, RULE-CONFIG-003,
   RULE-CONFIG-004, RULE-CONFIG-005, FMT-CONFIG-003: What are the native
   Preferences defaults and control frames, the visible message-delay and effect-volume
   endpoints, what `F6` toggles, the difficulty and description placement, and the

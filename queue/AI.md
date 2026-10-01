@@ -1,6 +1,6 @@
 # AI
 
-Next ID: Q-AI-003
+Next ID: Q-AI-004
 
 ## Static
 
@@ -18,6 +18,8 @@ Next ID: Q-AI-003
   combatant records, and for the far pointers or calls that reach `28C9:0CFF`. Tried: a byte
   search for instructions that set bit 6 (FND-AI-003) and for direct far calls to the key
   routine (FND-AI-004). Blocks: none.
+
+- Q-AI-003. RULE-AI-002: When does a non-player character flee, fight back or call for help, and is that decided by combat or scripts? Settles it: the behavior-producing combat and script consumers for those outcomes, read with their callers. Blocks: completing RULE-AI-002.
 
 ## Emulated call
 

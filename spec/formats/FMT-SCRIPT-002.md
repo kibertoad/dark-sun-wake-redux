@@ -51,4 +51,4 @@ Read from the executable's decoder [FND-SCRIPT-010]. No sweep over the shipped s
 - Which string the game supplies for kind 1; SRC-OPENDS-5C6CBD7 and the project's earlier notes
   take it to be the active character's name (Q-SCRIPT-004).
 - What the game does with any other kind byte: the reader reads nothing more and leaves the
-  previous string (FND-SCRIPT-010), so the bytes after it would be read as code.
+  previous string (FND-SCRIPT-010), so the bytes after it would be read as code. (Q-SCRIPT-004)

@@ -4,7 +4,7 @@ Next ID: Q-TALK-002
 
 ## Static
 
-- Q-TALK-001. RULE-TALK-001: What do the two far routines of the menu instruction do: how
+- Q-TALK-001. RULE-TALK-001, SCR-UI-012: What do the two far routines of the menu instruction do: how
   `5702:0048` draws a row, why the title row is drawn in capitals, how rows past the five on
   screen are reached, and how `5702:0025` turns a click or a key into a row number? Settles it:
   reading the routines behind those entries of the resident header of overlay 188, and the
