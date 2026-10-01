@@ -52,6 +52,24 @@ the remaining region GFF files, FLI cinematics, VOC speech/effects, and Ogg
 music. Presence is observed; format semantics and required/optional status
 remain unknown beyond the separately recorded Tyr structural subset.
 
+## Latest official version readiness
+
+The existing records identify version 1.1 and the approved DSUN.EXE length and
+XXH3-128, as documented in GHIDRA.md. "No later official patch is recorded" in
+the plan is not conclusive latest-patch provenance. No recorded SHA-256 is
+available in these project documents. The migration therefore preserves those
+known facts and sets original.patchStatusEstablished to false, leaving
+latestOfficialVersion and analysisExecutable.sha256 empty.
+
+Bootstrap-Project.ps1 -ValidateFactsOnly refuses further executable analysis
+until a research batch resolves authoritative latest-version provenance and
+records the SHA-256 for the same approved baseline. It also rejects a mismatched
+analysis version or a string pretending to be a boolean. This does not prevent
+original-free builds, synthetic tests, packaging or bootstrap-gate tests.
+No new edition is supported and no executable was read or patched by this
+tooling migration. Once conclusive facts are recorded, they are reused rather
+than investigated each session.
+
 ## Unsupported sources
 
 No other GOG build, language, retail CD, floppy edition, compilation, Steam
@@ -59,3 +77,8 @@ distribution, or modified executable is supported. A future edition requires a
 separate manifest plus evidence that its extracted output is semantically
 equivalent or intentionally versioned. Manual source selection must remain
 available even if storefront discovery is added.
+
+The owner accepts https://www.patches-scrolls.de/ as authoritative patch information
+(2026-10-01). The current site returned HTTP 403 during this tooling session;
+latest-version readiness remains unestablished until its actual listing or
+authoritative patch material can be inspected. No patch archive was downloaded.

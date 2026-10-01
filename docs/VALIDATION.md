@@ -328,3 +328,7 @@ Repository policy checks all Git-visible files, including untracked files not ig
 ## Migrated capture and research tracking
 
 The fast gate checks area queues, question IDs and reverse entry links with Check-ResearchTracking.mjs. Capture-OriginalWindow.ps1 isolates PrintWindow in a bounded worker, selects only client pixels and avoids desktop fallback. Its tests create synthetic windows. Original-game captures remain owner-only under AGENTS.md; adding this helper grants agents no original runtime access. Mixed-DPI native captures require owner validation.
+
+Release safeguards: `node --test tests/upstream/release-signing.test.mjs` uses synthetic GitHub and Authenticode doubles. Live SSL.com signing, timestamp servers and repository environment policies require a separately authorized release. Configure `ES_CERTIFICATE_THUMBPRINT` in the protected `release-signing` environment and restrict its deployment branches to main.
+
+Signing workflow acceptance uses `tests/upstream/release-signing.test.mjs` synthetic tag API and certificate tests. Signed release setup requires `ES_CERTIFICATE_THUMBPRINT` and main-only deployment branches in the protected `release-signing` environment. Live signing is not exercised by synthetic acceptance.

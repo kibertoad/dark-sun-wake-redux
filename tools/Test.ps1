@@ -1,11 +1,13 @@
 [CmdletBinding()]
-param()
+param([string] $TestFilter, [ValidateRange(0, 1000000)][int] $MinimumExpectedTests = 0)
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $PSScriptRoot
 & (Join-Path $PSScriptRoot 'Verify-Repository.ps1') -RepositoryRoot $root
 if ($LASTEXITCODE -ne 0) { throw 'Repository policy failed.' }
 & (Join-Path $PSScriptRoot 'Verify-Configuration.ps1') -RepositoryRoot $root
 if ($LASTEXITCODE -ne 0) { throw 'Project configuration is incomplete.' }
+& (Join-Path $PSScriptRoot 'Test-TemplateInfrastructure.ps1') -RepositoryRoot $root
+if ($LASTEXITCODE -ne 0) { throw 'Configured infrastructure acceptance failed.' }
 $physicalPatternFixture = Join-Path ([IO.Path]::GetTempPath()) (
     "dark-sun-wake-physical-pattern-{0}.bin" -f [Guid]::NewGuid().ToString('N'))
 try {
@@ -78,7 +80,7 @@ $evidencePython = if ($env:EVIDENCE_PYTHON) { $env:EVIDENCE_PYTHON } else { 'pyt
 if ($LASTEXITCODE -ne 0) { throw 'Synthetic x86 reporter tests failed. Install the pinned evidence requirements.' }
 & node (Join-Path $root 'tools/Check-ResearchTracking.mjs')
 if ($LASTEXITCODE -ne 0) { throw 'Research queue tracking failed.' }
-& node --test (Join-Path $root 'tests/evidence/evidence.test.mjs') (Join-Path $root 'tests/upstream/upstream.test.mjs') (Join-Path $root 'tests/upstream/mapped-locations.test.mjs') (Join-Path $root 'tests/evidence/bridge.test.mjs') (Join-Path $root 'tests/evidence/vendor.test.mjs') (Join-Path $root 'tests/upstream/diagnostics.test.mjs') (Join-Path $root 'tests/upstream/memory-blocks.test.mjs') (Join-Path $root 'tests/upstream/superseded-ownership.test.mjs') (Join-Path $root 'tests/upstream/research-tracking.test.mjs') (Join-Path $root 'tests/upstream/capture-window.test.mjs')
+& node --test (Join-Path $root 'tests/evidence/evidence.test.mjs') (Join-Path $root 'tests/upstream/upstream.test.mjs') (Join-Path $root 'tests/upstream/mapped-locations.test.mjs') (Join-Path $root 'tests/evidence/bridge.test.mjs') (Join-Path $root 'tests/evidence/vendor.test.mjs') (Join-Path $root 'tests/upstream/diagnostics.test.mjs') (Join-Path $root 'tests/upstream/memory-blocks.test.mjs') (Join-Path $root 'tests/upstream/superseded-ownership.test.mjs') (Join-Path $root 'tests/upstream/research-tracking.test.mjs') (Join-Path $root 'tests/upstream/capture-window.test.mjs') (Join-Path $root 'tests/upstream/infrastructure.test.mjs') (Join-Path $root 'tests/upstream/export-boundaries.test.mjs') (Join-Path $root 'tests/upstream/release-signing.test.mjs')
 if ($LASTEXITCODE -ne 0) { throw 'Synthetic evidence or upstream snapshot tests failed.' }
 # Node does not resolve a .bat or .cmd wrapper on PATH, so hand the check the Kaitai compiler's
 # full path when KSC is unset and a Windows wrapper is installed.
@@ -90,6 +92,9 @@ if (-not $env:KSC) {
 & node (Join-Path $root 'tools/upstream.mjs') docs --check --references docs
 if ($LASTEXITCODE -ne 0) { throw 'Documentation standard check failed.' }
 $artifacts = Join-Path $root 'artifacts/test'
-dotnet test --project (Join-Path $root 'tests/DarkSunWakeRedux.Tests/DarkSunWakeRedux.Tests.csproj') `
-  -p:UseSharedCompilation=false --artifacts-path $artifacts --no-progress -v minimal
+$testArguments = @('test', '--project', (Join-Path $root 'tests/DarkSunWakeRedux.Tests/DarkSunWakeRedux.Tests.csproj'),
+  '-p:UseSharedCompilation=false', '-p:RestoreLockedMode=true', '--artifacts-path', $artifacts, '--no-progress', '-v', 'minimal')
+if ($TestFilter) { $testArguments += @('--filter', $TestFilter); Write-Warning 'Filtered .NET gate: partial acceptance.' }
+if ($MinimumExpectedTests -gt 0) { $testArguments += @('--minimum-expected-tests', $MinimumExpectedTests) }
+& dotnet @testArguments
 if ($LASTEXITCODE -ne 0) { throw 'Tests failed.' }

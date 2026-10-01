@@ -14,13 +14,26 @@ on:
         options:
           - windows
           - all
+      signed_release:
+        description: Installer platforms to sign; macOS installers are never signed
+        required: true
+        default: none
+        type: choice
+        options:
+          - none
+          - Windows
+          - Windows/Linux
 permissions: {}
 concurrency:
   group: release-${{ github.workflow }}-${{ inputs.tag }}
   cancel-in-progress: false
 jobs:
   prepare:
+    name: Validate release
+    # Also restrict release-signing's server-side deployment-branch rule to main.
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
       contents: read
     outputs:
@@ -37,13 +50,24 @@ jobs:
         env:
           RELEASE_TAG: ${{ inputs.tag }}
         run: |
-          if ($env:RELEASE_TAG -notmatch '^\d+\.\d+\.\d+$') { throw 'Tag must be x.y.z.' }
-          if (git ls-remote --tags origin "refs/tags/$env:RELEASE_TAG") { throw 'Tag already exists.' }
-          "version=$env:RELEASE_TAG" >> $env:GITHUB_OUTPUT
-          "commit=$(git rev-parse HEAD)" >> $env:GITHUB_OUTPUT
+          if ($env:RELEASE_TAG -notmatch '^(\d+\.\d+\.\d+)$') { throw 'Tag must be x.y.z.' }
+          $version = $Matches[1]
+          $commit = git rev-parse HEAD
+          if ($LASTEXITCODE -ne 0) { throw 'Could not resolve release commit.' }
+          $tags = @(git ls-remote --tags origin "refs/tags/$env:RELEASE_TAG" "refs/tags/$env:RELEASE_TAG^{}")
+          if ($LASTEXITCODE -ne 0) { throw 'Could not check release tag.' }
+          if ($tags.Count -gt 0) {
+            $peeled = @($tags | Where-Object { $_ -match '\^\{\}$' })
+            $target = if ($peeled.Count) { $peeled[0] } else { $tags[0] }
+            if (($target -split '\s+')[0] -ne $commit) { throw 'Existing tag points to a different commit.' }
+          }
+          "version=$version" >> $env:GITHUB_OUTPUT
+          "commit=$commit" >> $env:GITHUB_OUTPUT
   test:
+    name: Test release commit
     needs: prepare
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     permissions:
       contents: read
     steps:
@@ -54,17 +78,21 @@ jobs:
       - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
         with:
           dotnet-version: 10.0.400
-      - uses: kibertoad/toad-discovery-center/actions/verify-repository@caffbcf5efab3aebf4e58d44ea0b3ae0fca5a225
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'
       - run: python -m pip install -r tools/evidence/x86-reporter/requirements.txt
-      - name: Verify repository, reporters, build and tests
+      - name: Verify repository, build, and test
         shell: pwsh
-        run: ./tools/Test.ps1
+        run: ./tools/Invoke-Validation.ps1
   windows:
+    name: Build Windows x64 installer
     needs: [prepare, test]
     runs-on: windows-latest
+    timeout-minutes: 45
+    # An empty name means "no environment", so an unsigned run does not wait on the signing
+    # environment's protection rules or need its secrets.
+    environment: ${{ inputs.signed_release != 'none' && 'release-signing' || '' }}
     permissions:
       contents: read
     steps:
@@ -75,14 +103,31 @@ jobs:
       - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
         with:
           dotnet-version: 10.0.400
+      - name: Verify eSigner configuration
+        if: ${{ inputs.signed_release != 'none' }}
+        shell: pwsh
+        env:
+          ES_USERNAME: ${{ secrets.ES_USERNAME }}
+          ES_PASSWORD: ${{ secrets.ES_PASSWORD }}
+          CREDENTIAL_ID: ${{ secrets.CREDENTIAL_ID }}
+          ES_TOTP_SECRET: ${{ secrets.ES_TOTP_SECRET }}
+          ES_CERTIFICATE_THUMBPRINT: ${{ secrets.ES_CERTIFICATE_THUMBPRINT }}
+        run: |
+          $missing = @('ES_USERNAME', 'ES_PASSWORD', 'CREDENTIAL_ID', 'ES_TOTP_SECRET', 'ES_CERTIFICATE_THUMBPRINT') |
+            Where-Object { -not [Environment]::GetEnvironmentVariable($_) }
+          if ($missing.Count -ne 0) {
+            throw "Missing release-signing environment secret(s): $($missing -join ', ')."
+          }
+          if ($env:ES_CERTIFICATE_THUMBPRINT -notmatch '^[a-fA-F0-9]{40}$') { throw 'ES_CERTIFICATE_THUMBPRINT must name the expected signing certificate.' }
       - uses: kibertoad/toad-discovery-center/actions/setup-inno@caffbcf5efab3aebf4e58d44ea0b3ae0fca5a225
       - name: Provision software OpenGL for the platform smoke test
         shell: pwsh
         run: |
           # Hosted runners expose only the GDI generic OpenGL renderer, which has no framebuffer
-          # objects, so MonoGame cannot create a graphics device. Mesa's llvmpipe can. If the
-          # download fails, the smoke tests run against the runner's own driver and report the
-          # graphics failure themselves. Nothing is skipped or masked either way.
+          # objects, so MonoGame cannot create a graphics device. Mesa's llvmpipe can. While the
+          # download is unpinned this step is a deliberate no-op: the smoke tests then run against
+          # the runner's own driver and report the graphics failure themselves, which is the
+          # behaviour without this step at all. Nothing is skipped or masked either way.
           try {
             $driver = ./tools/Install-MesaSoftwareGL.ps1 `
               -DestinationPath (Join-Path $env:RUNNER_TEMP 'software-opengl')
@@ -93,14 +138,99 @@ jobs:
             Write-Warning ("Software OpenGL is unavailable, so the platform smoke tests will run " +
               "against the runner's own driver and are expected to fail: $($_.Exception.Message)")
           }
-      - shell: pwsh
+      - name: Build Windows package
+        shell: pwsh
+        run: ./tools/Publish-Windows.ps1 -SkipArchive
+      - name: Install SSL.com CodeSignTool
+        if: ${{ inputs.signed_release != 'none' }}
+        shell: pwsh
+        run: |
+          $toolPath = ./tools/Install-CodeSignTool.ps1 `
+            -DestinationPath (Join-Path $env:RUNNER_TEMP 'CodeSignTool-1.3.2')
+          "CODESIGNTOOL_PATH=$toolPath" | Out-File -FilePath $env:GITHUB_ENV -Append
+      - name: Stage executables for signing
+        if: ${{ inputs.signed_release != 'none' }}
+        shell: pwsh
+        run: |
+          $packageRoot = 'artifacts/DarkSunWakeRedux-win-x64'
+          $signingInput = 'artifacts/esigner-input'
+          $executables = @(Get-ChildItem -LiteralPath $packageRoot -Recurse -File -Filter 'DarkSunWakeRedux*.exe')
+          if ($executables.Count -eq 0) { throw "No project executables were found below '$packageRoot'." }
+          $duplicates = $executables | Group-Object Name | Where-Object Count -gt 1
+          if ($duplicates) { throw "Executable names must be unique for signing: $($duplicates.Name -join ', ')." }
+          New-Item -ItemType Directory -Path $signingInput -Force | Out-Null
+          $executables | Copy-Item -Destination $signingInput
+      - name: Sign Windows executables with SSL.com eSigner
+        if: ${{ inputs.signed_release != 'none' }}
+        shell: pwsh
+        env:
+          ES_USERNAME: ${{ secrets.ES_USERNAME }}
+          ES_PASSWORD: ${{ secrets.ES_PASSWORD }}
+          CREDENTIAL_ID: ${{ secrets.CREDENTIAL_ID }}
+          ES_TOTP_SECRET: ${{ secrets.ES_TOTP_SECRET }}
+        run: |
+          ./tools/Invoke-ESigner.ps1 `
+            -CodeSignToolPath $env:CODESIGNTOOL_PATH `
+            -InputDirectory (Join-Path $PWD 'artifacts/esigner-input') `
+            -OutputDirectory (Join-Path $PWD 'artifacts/esigner-output')
+      - name: Install and verify signed executables
+        if: ${{ inputs.signed_release != 'none' }}
+        shell: pwsh
+        env:
+          ES_CERTIFICATE_THUMBPRINT: ${{ secrets.ES_CERTIFICATE_THUMBPRINT }}
+        run: |
+          $packageRoot = 'artifacts/DarkSunWakeRedux-win-x64'
+          $expected = @(Get-ChildItem 'artifacts/esigner-input' -File -Filter '*.exe' | Select-Object -ExpandProperty Name)
+          $signed = @(Get-ChildItem 'artifacts/esigner-output' -File -Filter '*.exe')
+          $difference = @(Compare-Object $expected @($signed | Select-Object -ExpandProperty Name))
+          if ($difference.Count -ne 0) { throw "eSigner output did not match staged executables." }
+          foreach ($file in $signed) {
+            $destinations = @(Get-ChildItem $packageRoot -Recurse -File -Filter $file.Name)
+            if ($destinations.Count -ne 1) { throw "Expected one destination for '$($file.Name)'." }
+            Copy-Item $file.FullName $destinations[0].FullName -Force
+            $signature = Get-AuthenticodeSignature $destinations[0].FullName
+            if ($signature.Status -ne 'Valid' -or -not $signature.TimeStamperCertificate) {
+              throw "Invalid or untimestamped signature on '$($destinations[0].FullName)'."
+            }
+            ./tools/Assert-WindowsSignature.ps1 -Path $destinations[0].FullName -ExpectedThumbprint $env:ES_CERTIFICATE_THUMBPRINT
+          }
+      - name: Build installer from verified package
+        shell: pwsh
         env:
           RELEASE_VERSION: ${{ needs.prepare.outputs.version }}
-        run: ./tools/Build-WindowsInstaller.ps1 -Version $env:RELEASE_VERSION -Compiler "$env:INNO_COMPILER"
+        run: ./tools/Build-WindowsInstaller.ps1 -Version $env:RELEASE_VERSION -Compiler "$env:INNO_COMPILER" -SkipPackage
+      - name: Sign Windows installer with SSL.com eSigner
+        if: ${{ inputs.signed_release != 'none' }}
+        shell: pwsh
+        env:
+          ES_USERNAME: ${{ secrets.ES_USERNAME }}
+          ES_PASSWORD: ${{ secrets.ES_PASSWORD }}
+          CREDENTIAL_ID: ${{ secrets.CREDENTIAL_ID }}
+          ES_TOTP_SECRET: ${{ secrets.ES_TOTP_SECRET }}
+          RELEASE_VERSION: ${{ needs.prepare.outputs.version }}
+        run: |
+          ./tools/Invoke-ESigner.ps1 `
+            -CodeSignToolPath $env:CODESIGNTOOL_PATH `
+            -InputFile (Join-Path $PWD "artifacts/DarkSunWakeRedux-Setup-$env:RELEASE_VERSION.exe")
+      - name: Verify signed installer
+        if: ${{ inputs.signed_release != 'none' }}
+        shell: pwsh
+        env:
+          RELEASE_VERSION: ${{ needs.prepare.outputs.version }}
+          ES_CERTIFICATE_THUMBPRINT: ${{ secrets.ES_CERTIFICATE_THUMBPRINT }}
+        run: |
+          $installer = "artifacts/DarkSunWakeRedux-Setup-$env:RELEASE_VERSION.exe"
+          $signature = Get-AuthenticodeSignature $installer
+          if ($signature.Status -ne 'Valid' -or -not $signature.TimeStamperCertificate) {
+            throw "Invalid or untimestamped signature on '$installer'."
+          }
+          ./tools/Assert-WindowsSignature.ps1 -Path $installer -ExpectedThumbprint $env:ES_CERTIFICATE_THUMBPRINT
       - name: Smoke-test installed layout and shortcut
         shell: pwsh
         env:
           RELEASE_VERSION: ${{ needs.prepare.outputs.version }}
+          SIGNED_RELEASE: ${{ inputs.signed_release }}
+          ES_CERTIFICATE_THUMBPRINT: ${{ secrets.ES_CERTIFICATE_THUMBPRINT }}
         run: |
           $target = Join-Path $env:RUNNER_TEMP 'restoration-release-install-test'
           $installer = "artifacts/DarkSunWakeRedux-Setup-$env:RELEASE_VERSION.exe"
@@ -111,6 +241,13 @@ jobs:
           $link = (New-Object -ComObject WScript.Shell).CreateShortcut($shortcut)
           $expectedTarget = [IO.Path]::GetFullPath((Join-Path $target 'Game/DarkSunWakeRedux.Game.exe'))
           if ($link.TargetPath -ne $expectedTarget) { throw "Shortcut target is invalid: '$($link.TargetPath)'." }
+          if ($env:SIGNED_RELEASE -ne 'none') {
+            $signature = Get-AuthenticodeSignature $link.TargetPath
+            if ($signature.Status -ne 'Valid' -or -not $signature.TimeStamperCertificate) {
+              throw "Installed executable has an invalid or missing timestamped signature."
+            }
+            ./tools/Assert-WindowsSignature.ps1 -Path $link.TargetPath -ExpectedThumbprint $env:ES_CERTIFICATE_THUMBPRINT
+          }
           # Same as the CI smoke test: bound the wait and surface the reason. Unbounded, a launch
           # that stops on a dialog nobody can dismiss holds the release job until it times out.
           $smokeOut = Join-Path $env:RUNNER_TEMP 'platform-smoke-stdout.txt'
@@ -134,6 +271,7 @@ jobs:
           if ($env:PLATFORM_SMOKE_TEST_GL_DRIVER) { $smokeArguments += '--software-renderer' }
           $game = Start-Process $link.TargetPath -ArgumentList $smokeArguments `
             -WorkingDirectory $link.WorkingDirectory -PassThru `
+            -WindowStyle Hidden `
             -RedirectStandardOutput $smokeOut -RedirectStandardError $smokeErr
           if (-not $game.WaitForExit(120000)) {
             Write-SmokeDiagnostics
@@ -141,7 +279,7 @@ jobs:
             throw 'Installed platform smoke test did not exit within 120 seconds.'
           }
           # Empty on an ordinary run, and the software-renderer banner otherwise: a passing run
-          # prints which renderer it exercised.
+          # should say which renderer it exercised rather than leave it to be inferred.
           if ((Test-Path -LiteralPath $smokeErr) -and (Get-Item -LiteralPath $smokeErr).Length -gt 0) {
             Get-Content -LiteralPath $smokeErr | Write-Host
           }
@@ -157,10 +295,15 @@ jobs:
           name: release-windows-x64
           path: artifacts/*.exe
           if-no-files-found: error
+          retention-days: 1
   linux:
+    name: Build Linux x64 installer
     needs: [prepare, test]
-    if: ${{ inputs.installers == 'all' }}
+    if: ${{ inputs.installers != 'windows' }}
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+    # See the Windows job: an empty name means "no environment".
+    environment: ${{ inputs.signed_release == 'Windows/Linux' && 'release-signing' || '' }}
     permissions:
       contents: read
     steps:
@@ -171,28 +314,54 @@ jobs:
       - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
         with:
           dotnet-version: 10.0.400
+      - name: Verify OpenPGP configuration
+        if: ${{ inputs.signed_release == 'Windows/Linux' }}
+        shell: pwsh
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          GPG_FINGERPRINT: ${{ secrets.GPG_FINGERPRINT }}
+        run: ./tools/Invoke-GpgSigner.ps1 -TestConfiguration
       - shell: pwsh
         env:
           RELEASE_VERSION: ${{ needs.prepare.outputs.version }}
         run: ./tools/Build-LinuxInstaller.ps1 -Version $env:RELEASE_VERSION
+      - name: Sign Linux installer with OpenPGP
+        if: ${{ inputs.signed_release == 'Windows/Linux' }}
+        shell: pwsh
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          GPG_FINGERPRINT: ${{ secrets.GPG_FINGERPRINT }}
+          RELEASE_VERSION: ${{ needs.prepare.outputs.version }}
+        run: |
+          ./tools/Invoke-GpgSigner.ps1 -InputFile (Join-Path $PWD `
+            "artifacts/DarkSunWakeRedux-linux-x64-Setup-$env:RELEASE_VERSION.deb")
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: release-linux-x64
-          path: artifacts/*.deb
+          path: |
+            artifacts/*.deb
+            artifacts/*.deb.asc
           if-no-files-found: error
+          retention-days: 1
   macos:
+    name: Build macOS installer (${{ matrix.runtime }})
     needs: [prepare, test]
-    if: ${{ inputs.installers == 'all' }}
+    if: ${{ inputs.installers != 'windows' }}
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
     permissions:
       contents: read
     strategy:
       fail-fast: false
       matrix:
         include:
-          - os: macos-15
+          - arch: arm64
+            os: macos-15
             runtime: osx-arm64
-          - os: macos-15-intel
+          - arch: x64
+            os: macos-15-intel
             runtime: osx-x64
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -202,17 +371,21 @@ jobs:
       - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
         with:
           dotnet-version: 10.0.400
-      - shell: pwsh
+      - if: ${{ matrix.arch != 'x64' || inputs.installers == 'all' }}
+        shell: pwsh
         env:
           RELEASE_VERSION: ${{ needs.prepare.outputs.version }}
           TARGET_RUNTIME: ${{ matrix.runtime }}
         run: ./tools/Build-MacInstaller.ps1 -Version $env:RELEASE_VERSION -Runtime $env:TARGET_RUNTIME
-      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+      - if: ${{ matrix.arch != 'x64' || inputs.installers == 'all' }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: release-${{ matrix.runtime }}
+          name: release-macos-${{ matrix.arch }}
           path: artifacts/*.pkg
           if-no-files-found: error
+          retention-days: 1
   release:
+    name: Publish release
     needs: [prepare, windows, linux, macos]
     if: >-
       ${{
@@ -223,8 +396,9 @@ jobs:
           (needs.linux.result == 'success' && needs.macos.result == 'success'))
       }}
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
-      contents: write
+      contents: write # Required to create the annotated tag and GitHub Release.
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -235,18 +409,40 @@ jobs:
           pattern: release-*
           path: release-assets
           merge-multiple: true
-      - shell: pwsh
+      # The asset count gates tag creation: a tag pushed without a Release blocks
+      # `prepare` from ever re-running this version until someone deletes it by hand.
+      - name: Verify installer assets
+        shell: bash
+        env:
+          RELEASE_INSTALLERS: ${{ inputs.installers }}
+          SIGNED_RELEASE: ${{ inputs.signed_release }}
+        run: |
+          mapfile -t assets < <(find release-assets -type f -print | sort)
+          expected=1
+          if [[ "$RELEASE_INSTALLERS" == all ]]; then expected=4; fi
+          if [[ "$SIGNED_RELEASE" == Windows/Linux && "$RELEASE_INSTALLERS" != windows ]]; then ((expected+=1)); fi
+          if (( ${#assets[@]} != expected )); then
+            echo "Expected $expected installer(s), found ${#assets[@]}." >&2
+            exit 1
+          fi
+          printf '%s\n' "${assets[@]}" > "$RUNNER_TEMP/release-assets.txt"
+      - name: Create annotated tag
+        shell: pwsh
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ needs.prepare.outputs.version }}
-          RELEASE_INSTALLERS: ${{ inputs.installers }}
         run: |
-          $assets = @(Get-ChildItem release-assets -File)
-          $expected = if ($env:RELEASE_INSTALLERS -eq 'all') { 4 } else { 1 }
-          if ($assets.Count -ne $expected) { throw "Expected $expected installer(s); found $($assets.Count)." }
           $commit = git rev-parse HEAD
-          $tagObject = gh api --method POST "repos/$env:GITHUB_REPOSITORY/git/tags" -f "tag=$env:RELEASE_TAG" -f "message=Release $env:RELEASE_TAG" -f "object=$commit" -f type=commit --jq .sha
-          if ($LASTEXITCODE -ne 0) { throw 'Could not create annotated tag object.' }
-          gh api --method POST "repos/$env:GITHUB_REPOSITORY/git/refs" -f "ref=refs/tags/$env:RELEASE_TAG" -f "sha=$tagObject"
-          if ($LASTEXITCODE -ne 0) { throw 'Could not create tag reference.' }
-          gh release create $env:RELEASE_TAG $assets.FullName --verify-tag --generate-notes --title "Dark Sun: Wake of the Ravager Redux $env:RELEASE_TAG"
+          if ($LASTEXITCODE -ne 0) { throw 'Could not resolve release commit.' }
+          ./tools/Ensure-ReleaseTag.ps1 -Repository $env:GITHUB_REPOSITORY -Tag $env:RELEASE_TAG -Commit $commit
+      - name: Create GitHub Release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ needs.prepare.outputs.version }}
+        run: |
+          mapfile -t assets < "$RUNNER_TEMP/release-assets.txt"
+          gh release create "$RELEASE_TAG" "${assets[@]}" \
+            --verify-tag \
+            --generate-notes \
+            --title "Dark Sun: Wake of the Ravager Redux $RELEASE_TAG"

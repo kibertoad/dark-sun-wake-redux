@@ -567,3 +567,52 @@ Adopt website 82deb767ab64ca9922bb6347d66d9856b7640e91, toolkit 7da1b93cdd9ac0d5
 ## Migration acceptance audit: CI coverage
 
 Ensure CI runs every adopted Python reporter suite and the same synthetic upstream/evidence checks as Test.ps1, including research tracking and Windows capture. Run the tracking check as a required step. Use the adopted local repository checker so CI enforces configured diagnostic-filename denials rather than the older remote action. Acceptance: canonical gate passes, assetless Release publish starts and exits via smoke-test, CI command coverage includes all migrated regressions, and exact pin checks remain valid. Preserve platform-specific skips and owner-only original runtime. Exit: audited workflow and local acceptance pass.
+
+## Relevant golden-template infrastructure acceptance
+
+Tooling maintenance, authorized by the owner's request to address the remaining
+relevant migration gaps. Evidence is the capability audit in
+`docs/TEMPLATE-ACCEPTANCE.md` and golden template
+`7b3bbe46b251b163ee02a6539ac0d81559dbe921`; no gameplay or evidence-status change.
+
+- Outcome: maintainers get enforced bootstrap facts, reproducible dependencies,
+  one serialized validation entry point, optional verified signing and a root
+  launcher that forwards arguments and permits content-free smoke checks.
+- Bootstrap: add the template gate and synthetic missing-fact, false-status,
+  mismatched-version and configured-no-rewrite controls. Preserve known version
+  1.1; do not promote "no later patch recorded" into established patch status or
+  invent SHA-256/provenance. An unestablished status blocks executable analysis,
+  not original-free builds. Record any unresolved provenance explicitly.
+- Dependencies and validation: generate project dependency locks and enforce
+  locked restore. Integrate an adapted infrastructure gate into Test.ps1 and
+  CI. Serialize validation with a checkout-specific lock, run the existing
+  original-free gate, full Release build and assetless publish/smoke, and retain
+  optional test filters/count controls without bypassing policy checks.
+- Signing: adopt pinned template signing adapters and opt-in release workflow
+  support, fail closed on missing configuration, wrong/expired/revoked keys,
+  silent signer refusals and invalid Authenticode. Synthetic process doubles
+  exercise contracts without real credentials or service calls. Existing
+  unsigned release defaults remain; no release, upload or signing is executed.
+  Compare signing with New Chrome main
+  `88f4112791db0caaf488b5bcd906cabd842bd4e1`: adopt main-only preparation,
+  bounded jobs, exact project-executable selection, verified installed binaries
+  and idempotent tag reuse for the same commit. Keep this project's explicit
+  version/platform inputs and template download/error-handling improvements.
+- Launcher: retain play.bat and licensed-source refresh for ordinary play; check
+  dotnet availability, forward arguments and bypass extraction for assetless
+  and platform smoke. Synthetic command doubles prove error propagation,
+  whitespace paths, forwarding and no original-source access in smoke modes.
+- Analysis: adopt relevant guarded generic Ghidra exporters with local-only
+  destination guards and public-API compilation acceptance. Exclude PE-only
+  Inspect/citation helpers from this DOS MZ/FBOV project. Map additional bounded
+  helpers to existing reporters or adopt useful generic equivalents, preserving
+  existing overlay joins and neutral names. No original is opened or run.
+- Risks: configuration must preserve additional original fields on reconfigure;
+  filtered validation must not imply the whole gate ran; signing remains pending
+  real owner-configured release acceptance; exporter adoption cannot validate
+  game-specific address mappings; native mixed-DPI capture remains owner-only.
+- Exit: adapted infrastructure gate, synthetic negative controls, canonical
+  Test.ps1, locked full build and assetless publish/smoke pass; every audit row
+  has an explicit disposition and handover names any evidence-only remainder.
+  No new owner decision is needed for tooling; release/live-session decisions
+  stay with the owner.

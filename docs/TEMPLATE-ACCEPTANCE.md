@@ -4,16 +4,38 @@ Audit date: 2026-10-01. Audited checkout: `fb481a0`.
 
 ## Verdict
 
-The latest pinned rules, documentation checker and bounded reporters are adopted
-and pass their acceptance checks. Full golden-template capability acceptance is
-**incomplete**. Passing the configured project's gate and adopting the latest
-incremental template delta do not establish adoption of all earlier template
-infrastructure.
+The relevant infrastructure gaps found by the initial audit are now addressed.
+`tools/Invoke-Validation.ps1` passes locked restore, the canonical policy and test
+suite, Release build, assetless publish and smoke. Exporters compile against
+Ghidra 12.1.3 public APIs without opening an original program. Local-only export
+boundary controls and release/signing failure paths pass synthetic tests.
 
-This is a validation report, not a migration implementation. No game behavior,
-source identity, evidence status or proprietary content was changed. The earlier
-completion statement in TEMPLATE-ADOPTION.md applies to the incremental
-rules/reporter migration and its CI; it must not be read as full template parity.
+Latest-original-version readiness remains explicitly unresolved: version 1.1 is
+recorded, but conclusive patch provenance and the approved baseline SHA-256 are
+not yet recorded. The executable-analysis gate rejects that state. This is a
+research prerequisite, not a build failure. The owner authorized Patches Scrolls
+as a patch authority on 2026-10-01; attempts to read its current site returned
+HTTP 403. No missing patch facts were inferred from that failure.
+
+## Capability disposition after migration
+
+| Capability | Accepted disposition |
+| --- | --- |
+| Bootstrap/version gate | Defensive one-time facts gate, strict boolean, version agreement and recorded SHA-256/length controls; configuration preserves nested facts. Missing provenance fails closed. |
+| Signing | Golden pinned CodeSignTool, eSigner and OpenPGP adapters; opt-in Windows/Linux workflow. Timestamp, exact output names, expected certificate and expected GPG fingerprint required. Synthetic negative checks pass; no live signing performed. |
+| Release workflow | Compared New Chrome main `88f4112791db0caaf488b5bcd906cabd842bd4e1`. Main-only preparation, bounded jobs and same-commit tag reruns adopted. Golden downloader/error-handling improvements retained. |
+| Dependency locks | Every .NET project has a lock; locked restore passes. |
+| Validation | Checkout lock prevents concurrent runs; errors release it. Canonical gate and CI check configured infrastructure. Filtered tests report partial acceptance. |
+| Broad exports | Four golden exporters adopted with real-path local-output guards and bounded edition labels; public API compilation and synthetic boundary checks pass. Version Tracking tools remain dormant for the single supported edition. |
+| Launcher | Existing play.bat identity preserved; SDK diagnostic, argument forwarding, smoke bypass and process exit propagation pass synthetic controls. |
+| PE-oriented Inspect/citation helpers | Not applicable to DOS MZ/FBOV. Existing Inspect, ReportFbovOverlayMap, physical-pattern reporter, mapped-location checker and inventory join retain the corresponding configured capabilities, exercised by the canonical synthetic gate. No PE schema or new edition introduced. |
+| Other broad Ghidra helpers | Existing bounded pinned reporters cover the project research workflow. No broad analysis database or proprietary export enters Git. Missing optional exporter filenames are not acceptance gaps for the single-edition DOS workflow. |
+
+Evidence: `artifacts/migration-acceptance.log`, public exporter compilation under
+`artifacts/java-controls/`, and the canonical `tests/upstream/` controls. The
+following sections preserve the initial audit and its historical hosted results;
+that hosted run predates these changes. New workflow changes have local synthetic
+acceptance, not a new hosted installer run or signed release.
 
 ## Source and integrity acceptance
 
@@ -53,7 +75,7 @@ authorized development-tool/network access passed. PowerShell used a process-onl
 execution-policy override; no global Git or execution-policy setting changed.
 The successful gate's generated log is the authority for current test totals.
 
-## Failed or unaccepted golden-template requirements
+## Initial audit gaps (resolved or dispositioned above)
 
 | Capability | Observed gap | Acceptance needed |
 | --- | --- | --- |

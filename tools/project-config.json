@@ -17,6 +17,17 @@
     "original":  {
                      "title":  "Dark Sun: Wake of the Ravager",
                      "developer":  "Strategic Simulations, Inc.",
+                     "publisher": "Strategic Simulations, Inc.",
+                     "latestOfficialVersion": "",
+                     "analysisVersion": "1.1",
+                     "patchStatusEvidence": "docs/SOURCE-EDITIONS.md#latest-official-version-readiness: recorded version 1.1; conclusive latest-patch provenance and SHA-256 remain unestablished",
+                     "patchStatusEstablished": false,
+                     "analysisExecutable": {
+                         "path": "C:\\GOG Games\\Dark Sun 2\\DSUN.EXE",
+                         "byteLength": 634416,
+                         "xxh3_128": "e296af55ba2ecde7e77f555c90f33d0b",
+                         "sha256": ""
+                     },
                      "releaseYear":  "1994",
                      "genre":  "party-based computer role-playing game"
                  }

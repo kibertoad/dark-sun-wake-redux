@@ -508,6 +508,15 @@ dotnet run --project src/<Project>.Game -- --smoke-test
 
 ## Static executable analysis
 
+Before further executable analysis, run `./tools/Bootstrap-Project.ps1
+-ValidateFactsOnly`. It refuses unestablished latest-patch provenance or missing
+recorded executable identity. The current version 1.1 baseline remains recorded,
+but its latest-official-patch status and SHA-256 are not established by the
+existing records; see `docs/SOURCE-EDITIONS.md`. Resolve those facts in a research
+batch before opening the original again. Do not repeat the patch investigation
+once conclusively recorded. Original-free tooling and rebuild validation remain
+available while the gate is closed.
+
 Treat static analysis as evidence, not a search-engine oracle. Establish and
 document the approved executable's exact path, size, and XXH3-128 once, then
 reuse that stable named target for focused queries without rehashing it each

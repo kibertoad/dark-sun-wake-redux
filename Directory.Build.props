@@ -5,6 +5,8 @@
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <RestoreLockedMode Condition="'$(RestoreLockedMode)' == ''">true</RestoreLockedMode>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <!-- Keep NuGet auditing enabled, but do not turn an unreachable advisory
          service into a compiler error after dependencies have been restored. -->

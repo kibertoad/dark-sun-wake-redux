@@ -170,10 +170,14 @@ function Save-ProjectConfig([string] $path, [hashtable] $values) {
             genre = $values.OriginalGenre
         }
     }
+    # Preserve recorded original facts and future gate fields during identity-only reconfiguration.
+    foreach ($property in $config.original.PSObject.Properties) {
+        if (-not $document.original.Contains($property.Name)) { $document.original[$property.Name] = $property.Value }
+    }
     if ($PSCmdlet.ShouldProcess($path, 'Write resolved project configuration')) {
         [IO.File]::WriteAllText(
             $path,
-            (($document | ConvertTo-Json -Depth 5) + "`n"),
+            (($document | ConvertTo-Json -Depth 10) + "`n"),
             [Text.UTF8Encoding]::new($false))
     }
 }

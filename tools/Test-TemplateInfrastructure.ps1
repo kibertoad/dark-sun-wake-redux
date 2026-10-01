@@ -1,0 +1,173 @@
+[CmdletBinding()]
+param([string] $RepositoryRoot)
+
+$ErrorActionPreference = 'Stop'
+if (-not $RepositoryRoot) { $RepositoryRoot = Split-Path -Parent $PSScriptRoot }
+$root = (Resolve-Path -LiteralPath $RepositoryRoot).Path
+$failures = [Collections.Generic.List[string]]::new()
+$config = Get-Content -LiteralPath (Join-Path $root 'tools/project-config.json') -Raw | ConvertFrom-Json
+$projectName = if ($config.configured -and $config.projectName) { $config.projectName } else { 'Restoration' }
+
+function Assert-RequiredFile([string] $relative) {
+    if (-not (Test-Path -LiteralPath (Join-Path $root $relative) -PathType Leaf)) {
+        $failures.Add("missing required infrastructure file: $relative")
+    }
+}
+
+foreach ($relative in @(
+    'tools/Bootstrap-Project.ps1',
+    'tools/Invoke-Validation.ps1',
+    'tools/Assert-WindowsSignature.ps1',
+    'tools/Install-CodeSignTool.ps1',
+    'tools/Invoke-ESigner.ps1',
+    'tools/Invoke-GpgSigner.ps1',
+    "src/$projectName.Extractor/packages.lock.json",
+    # The documentation standard's layout: the spec, its licences, and the parity totals.
+    'spec/README.md',
+    'spec/LICENSE',
+    'PARITY.md',
+    # The work protocol's working files and the skills that carry out its procedures.
+    'queue/README.md',
+    'docs/HANDOVER.md',
+    'docs/DECISIONS.md',
+    'docs/goals/README.md',
+    'docs/RUNTIME.md',
+    'docs/live-sessions/README.md',
+    'docs/reports/README.md',
+    '.claude/skills/runtime-access/SKILL.md',
+    '.claude/skills/start-session/SKILL.md',
+    '.claude/skills/research-item/SKILL.md',
+    '.claude/skills/implement-rows/SKILL.md',
+    '.claude/skills/triage-report/SKILL.md',
+    '.claude/skills/live-session/SKILL.md',
+    '.claude/skills/end-session/SKILL.md',
+    '.claude/skills/plan-work/SKILL.md'
+)) { Assert-RequiredFile $relative }
+
+# The .gitkeep in each of these may go once the directory holds its first file, so only the
+# directory is required.
+foreach ($relative in @('spec/glossary', 'parity', 'deviations')) {
+    if (-not (Test-Path -LiteralPath (Join-Path $root $relative) -PathType Container)) {
+        $failures.Add("missing required infrastructure directory: $relative")
+    }
+}
+
+# The documentation standard limits every Markdown file it defines to 1,000 lines.
+$standardMarkdown = @(Get-Item -LiteralPath (Join-Path $root 'PARITY.md') -ErrorAction SilentlyContinue)
+foreach ($directory in @('spec', 'parity', 'deviations')) {
+    $path = Join-Path $root $directory
+    if (Test-Path -LiteralPath $path) {
+        $standardMarkdown += @(Get-ChildItem -LiteralPath $path -Recurse -File -Filter '*.md')
+    }
+}
+foreach ($file in $standardMarkdown) {
+    $lineCount = [IO.File]::ReadAllLines($file.FullName).Length
+    if ($lineCount -gt 1000) {
+        $relative = $file.FullName.Substring($root.Length + 1).Replace('\', '/')
+        $failures.Add("$relative has $lineCount lines; the documentation standard allows 1,000")
+    }
+}
+
+# The work protocol applies the same limit to its own files, and keeps the handover to the
+# current state in at most 200 lines.
+$protocolMarkdown = @()
+foreach ($directory in @('queue', 'docs/goals', 'docs/decisions', 'docs/live-sessions', 'docs/reports')) {
+    $path = Join-Path $root $directory
+    if (Test-Path -LiteralPath $path) {
+        $protocolMarkdown += @(Get-ChildItem -LiteralPath $path -Recurse -File -Filter '*.md')
+    }
+}
+$protocolMarkdown += @(Get-Item -LiteralPath (Join-Path $root 'docs/IMPLEMENTATION-PLAN.md') -ErrorAction SilentlyContinue)
+$protocolMarkdown += @(Get-Item -LiteralPath (Join-Path $root 'docs/DECISIONS.md') -ErrorAction SilentlyContinue)
+foreach ($file in $protocolMarkdown) {
+    $lineCount = [IO.File]::ReadAllLines($file.FullName).Length
+    if ($lineCount -gt 1000) {
+        $relative = $file.FullName.Substring($root.Length + 1).Replace('\', '/')
+        $failures.Add("$relative has $lineCount lines; the work protocol allows 1,000")
+    }
+}
+$handover = Join-Path $root 'docs/HANDOVER.md'
+if (Test-Path -LiteralPath $handover) {
+    $lineCount = [IO.File]::ReadAllLines($handover).Length
+    if ($lineCount -gt 200) {
+        $failures.Add("docs/HANDOVER.md has $lineCount lines; the work protocol allows 200 for the current state")
+    }
+}
+
+$release = Get-Content -LiteralPath (Join-Path $root '.github/workflows/release.yml') -Raw
+foreach ($required in @('signed_release:', 'release-signing', 'Invoke-ESigner.ps1',
+    'Invoke-GpgSigner.ps1', 'Get-AuthenticodeSignature')) {
+    if ($release.IndexOf($required, [StringComparison]::Ordinal) -lt 0) {
+        $failures.Add("release workflow is missing '$required'")
+    }
+}
+
+$ci = Get-Content -LiteralPath (Join-Path $root '.github/workflows/ci.yml') -Raw
+# Anchored to a uses: key, so a commented-out step does not count.
+if ($ci -notmatch '(?m)^\s*(-\s+)?uses:\s*kibertoad/refurbished-dinosaurs-toolkit/actions/check-documentation@[0-9a-f]{40}(\s|$)') {
+    $failures.Add('CI workflow does not run the documentation standard check pinned to a full commit SHA')
+}
+
+# A test that reads the original runs only on a maintainer's machine, and says so with this
+# comment, which the documentation check needs to tell it from the tests CI runs.
+$testsRoot = Join-Path $root 'tests'
+if (Test-Path -LiteralPath $testsRoot) {
+    foreach ($file in Get-ChildItem -LiteralPath $testsRoot -Recurse -File -Filter '*.cs') {
+        if ($file.Name -in @('OriginalGameFiles.cs', 'OriginalGameFilesTests.cs') -or
+            $file.FullName -match '[\\/](bin|obj)[\\/]') { continue }
+        $text = Get-Content -LiteralPath $file.FullName -Raw
+        if ($text -match '\bOriginalGameFiles\.' -and $text -notmatch 'needs:\s*GAME_DIR') {
+            $failures.Add("$($file.FullName.Substring($root.Length + 1)) uses OriginalGameFiles without a '// needs: GAME_DIR' comment")
+        }
+    }
+}
+
+$launchers = @(Get-Item -LiteralPath (Join-Path $root 'play.bat') -ErrorAction SilentlyContinue)
+if ($launchers.Count -ne 1) {
+    $failures.Add("expected the configured play.bat launcher, found $($launchers.Count)")
+}
+else {
+    $launcher = Get-Content -LiteralPath $launchers[0].FullName -Raw
+    foreach ($required in @('where dotnet', 'verify-pack', '--smoke-test', '--platform-smoke-test', '%*')) {
+        if ($launcher.IndexOf($required, [StringComparison]::OrdinalIgnoreCase) -lt 0) {
+            $failures.Add("root launcher is missing '$required'")
+        }
+    }
+}
+
+foreach ($name in @('ExportEditionAnalysis.java', 'ExportFunctionAddressCorrelations.java',
+    'ExportVersionTrackingAddressContexts.java', 'ExportVersionTrackingMatches.java')) {
+    $path = Join-Path $root "tools/ghidra/$name"
+    Assert-RequiredFile "tools/ghidra/$name"
+    if ((Test-Path -LiteralPath $path) -and
+        (Get-Content -LiteralPath $path -Raw).IndexOf('requireLocalOutput', [StringComparison]::Ordinal) -lt 0) {
+        $failures.Add("$name does not guard broad export output")
+    }
+}
+
+foreach ($name in @('latestOfficialVersion', 'analysisVersion', 'patchStatusEvidence', 'patchStatusEstablished')) {
+    if (-not $config.original.PSObject.Properties[$name]) {
+        $failures.Add("project configuration is missing original.$name")
+    }
+}
+
+if ($config.original.patchStatusEstablished -isnot [bool]) {
+    $failures.Add('original.patchStatusEstablished must be a JSON boolean')
+} elseif ($config.original.patchStatusEstablished) {
+    try { & (Join-Path $root 'tools/Bootstrap-Project.ps1') -ConfigPath (Join-Path $root 'tools/project-config.json') -ValidateFactsOnly }
+    catch { $failures.Add($_.Exception.Message) }
+} else {
+    Write-Warning 'Latest official patch provenance is unestablished; executable analysis is blocked, original-free tooling acceptance is not.'
+}
+foreach ($path in @("src/$projectName.Core", "src/$projectName.Resources", "src/$projectName.Game",
+    "src/$projectName.Extractor", "tools/$projectName.Inspect", "tests/$projectName.Tests")) {
+    Assert-RequiredFile ($path + '/packages.lock.json')
+}
+$props = Get-Content -LiteralPath (Join-Path $root 'Directory.Build.props') -Raw
+if ($props -notmatch '<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>' -or $props -notmatch '<RestoreLockedMode[^>]*>true</RestoreLockedMode>') {
+    $failures.Add('dependency lock generation and locked restore must be enabled')
+}
+if ($failures.Count) {
+    throw "Template infrastructure checks failed:`n - $($failures -join "`n - ")"
+}
+Write-Host 'Template infrastructure checks passed.'
