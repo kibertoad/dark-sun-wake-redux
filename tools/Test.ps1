@@ -1,5 +1,5 @@
 [CmdletBinding()]
-param([string] $TestFilter, [ValidateRange(0, 1000000)][int] $MinimumExpectedTests = 0)
+param([string] $TestFilter, [ValidateRange(0, 1000000)][int] $MinimumExpectedTests = 0, [switch] $NoRestore)
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $PSScriptRoot
 & (Join-Path $PSScriptRoot 'Verify-Repository.ps1') -RepositoryRoot $root
@@ -79,6 +79,8 @@ $env:PYTHONPATH = (Join-Path $root 'tools/evidence/x86-reporter') + [IO.Path]::P
 if ($LASTEXITCODE -ne 0) { throw 'Synthetic x86 reporter tests failed. Install the pinned evidence requirements.' }
 & node --test (Join-Path $root 'tests/evidence/evidence.test.mjs') (Join-Path $root 'tests/upstream/upstream.test.mjs') (Join-Path $root 'tests/upstream/mapped-locations.test.mjs') (Join-Path $root 'tests/evidence/bridge.test.mjs') (Join-Path $root 'tests/evidence/vendor.test.mjs') (Join-Path $root 'tests/upstream/diagnostics.test.mjs') (Join-Path $root 'tests/upstream/memory-blocks.test.mjs') (Join-Path $root 'tests/upstream/superseded-ownership.test.mjs') (Join-Path $root 'tests/upstream/research-tracking.test.mjs') (Join-Path $root 'tests/upstream/capture-window.test.mjs') (Join-Path $root 'tests/upstream/infrastructure.test.mjs') (Join-Path $root 'tests/upstream/export-boundaries.test.mjs') (Join-Path $root 'tests/upstream/release-signing.test.mjs')
 if ($LASTEXITCODE -ne 0) { throw 'Synthetic evidence or upstream snapshot tests failed.' }
+& node --test (Join-Path $root 'tests/upstream/offline-validation.test.mjs')
+if ($LASTEXITCODE -ne 0) { throw 'Offline validation option controls failed.' }
 # Node does not resolve a .bat or .cmd wrapper on PATH, so hand the check the Kaitai compiler's
 # full path when KSC is unset and a Windows wrapper is installed.
 if (-not $env:KSC) {
@@ -95,5 +97,6 @@ $testArguments = @('test', '--project', (Join-Path $root 'tests/DarkSunWakeRedux
   '-p:UseSharedCompilation=false', '-p:RestoreLockedMode=true', '--artifacts-path', $artifacts, '--no-progress', '-v', 'minimal')
 if ($TestFilter) { $testArguments += @('--filter', $TestFilter); Write-Warning 'Filtered .NET gate: partial acceptance.' }
 if ($MinimumExpectedTests -gt 0) { $testArguments += @('--minimum-expected-tests', $MinimumExpectedTests) }
+if ($NoRestore) { $testArguments += '--no-restore' }
 & dotnet @testArguments
 if ($LASTEXITCODE -ne 0) { throw 'Tests failed.' }

@@ -616,3 +616,18 @@ relevant migration gaps. Evidence is the capability audit in
   has an explicit disposition and handover names any evidence-only remainder.
   No new owner decision is needed for tooling; release/live-session decisions
   stay with the owner.
+
+## Explicit offline validation rerun
+
+Tooling migration for gap 4. Add -NoRestore to Test.ps1 and Invoke-Validation.ps1
+so an explicitly requested rerun reuses dependencies already restored for the
+same checkout and artifact paths. Normal validation and CI still restore. Keep
+policy, configuration, infrastructure, Python/Node gates, locked dependency
+settings, test filters/counts, Release build and assetless publish/smoke intact.
+No synthetic success substitutes for a full local NoRestore run after normal
+validation. Missing restore state fails; callers must restore again after dependency input changes. No automatic restore fallback
+is allowed. Tests verify default/offline argument forwarding and failure
+propagation with command doubles, plus the real configured full gate.
+Exit: shared template PR, local normal/offline gates and exact pins pass; gap 4
+closes only after reviewed upstream delivery. No owner questions or persisted
+layout changes.

@@ -9,6 +9,11 @@ Delivered capabilities, closure evidence and remaining limits are recorded in
 
 ## 4. Offer an offline rerun for the local test gate
 
+**Current disposition:** local normal/offline full gates and synthetic option
+controls pass. Template PR 41 proposes the shared option; keep open until
+reviewed upstream delivery and exact adoption. Restricted native capture and
+filesystem checks remain separate limitations, not dependency-restore failures.
+
 `./tools/Test.ps1` invokes `dotnet test` with restore on every run. In this
 restricted workspace, restore failed on NuGet's service or signature endpoint
 even after a successful authorized restore had cached the packages. The same

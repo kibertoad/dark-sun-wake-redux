@@ -2,7 +2,8 @@
 param(
     [ValidateRange(1, 16)][int] $MaxCpuCount = 2,
     [string] $TestFilter,
-    [ValidateRange(0, 1000000)][int] $MinimumExpectedTests = 0
+    [ValidateRange(0, 1000000)][int] $MinimumExpectedTests = 0,
+    [switch] $NoRestore
 )
 $ErrorActionPreference = 'Stop'
 $PSNativeCommandUseErrorActionPreference = $false
@@ -19,8 +20,14 @@ function Invoke-CheckedDotnet([string[]] $Arguments) {
 try {
     try { $lock = [IO.File]::Open($lockPath, 'OpenOrCreate', 'ReadWrite', 'None') }
     catch [IO.IOException] { throw "Another validation run is already active for this checkout ($lockPath)." }
-    Invoke-CheckedDotnet -Arguments @('restore', (Join-Path $root 'DarkSunWakeRedux.slnx'), '--locked-mode', "-maxCpuCount:$MaxCpuCount")
+    if ($NoRestore) {
+        Write-Host 'NoRestore: using existing restore state for this checkout and test artifact paths; no restore fallback.'
+    }
+    else {
+        Invoke-CheckedDotnet -Arguments @('restore', (Join-Path $root 'DarkSunWakeRedux.slnx'), '--locked-mode', "-maxCpuCount:$MaxCpuCount")
+    }
     $testParameters = @{ MinimumExpectedTests = $MinimumExpectedTests }
+    if ($NoRestore) { $testParameters.NoRestore = $true }
     if ($TestFilter) { $testParameters.TestFilter = $TestFilter; Write-Warning 'Filtered .NET validation is partial acceptance; all tooling/policy checks still run.' }
     & (Join-Path $PSScriptRoot 'Test.ps1') @testParameters
     if ($LASTEXITCODE -ne 0) { throw 'Canonical validation failed.' }

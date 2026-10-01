@@ -358,3 +358,31 @@ The fast gate checks area queues, question IDs and reverse entry links with Chec
 Release safeguards: `node --test tests/upstream/release-signing.test.mjs` uses synthetic GitHub and Authenticode doubles. Live SSL.com signing, timestamp servers and repository environment policies require a separately authorized release. Configure `ES_CERTIFICATE_THUMBPRINT` in the protected `release-signing` environment and restrict its deployment branches to main.
 
 Signing workflow acceptance uses `tests/upstream/release-signing.test.mjs` synthetic tag API and certificate tests. Signed release setup requires `ES_CERTIFICATE_THUMBPRINT` and main-only deployment branches in the protected `release-signing` environment. Live signing is not exercised by synthetic acceptance.
+
+## Explicit rerun without restore
+
+After a normal successful validation has restored this checkout, run
+`./tools/Invoke-Validation.ps1 -NoRestore` to rerun using those existing dependencies
+when NuGet is unavailable. `./tools/Test.ps1 -NoRestore` also supports a direct
+rerun after its normal run has populated the same test artifact paths. Restoring
+only the solution does not populate a different test artifacts path.
+
+The switch skips restore, not policy, configuration, Python/Node checks, build,
+tests or assetless publish/smoke. Normal validation and CI still restore. It never
+falls back to network restore on failure. Missing assets/packages fail through
+the .NET diagnostics. This option does not refresh or independently prove the
+freshness of cached restore state: run normal validation again after changing
+dependency inputs, lockfiles, SDK or build paths. Existing filters/count controls
+retain their normal meanings; a filtered run remains partial acceptance.
+
+
+Offline option acceptance (2026-10-01): the full configured gate passes with
+-NoRestore and unreachable HTTP proxies; log artifacts/offline-root-full-validation.log.
+The normal restoring gate is recorded in artifacts/offline-root-normal-validation.log.
+Shared template normal and sequential offline gates pass, recorded in
+artifacts/offline-template-normal-validation.log and
+offline-template-offline-sequential.log. Synthetic option controls retain all
+checks, filters/counts and failure propagation. The restricted full rerun still
+fails native capture and Java filesystem controls; its failure is retained in
+artifacts/offline-validation-restricted-rerun.log and is not counted as acceptance.
+Shared delivery is proposed in template PR 41; gap 4 remains open pending review.
