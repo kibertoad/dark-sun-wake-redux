@@ -526,3 +526,11 @@ candidate is not adopted; no game claim, native outcome or parity status changed
 Restoration table-continuation tooling batch: Test.ps1 -NoRestore passes; log
 artifacts/package-delivery/indirect-effect-root-final-test.log. Toolkit PR 60
 at 7899fbf passes release-label, Ubuntu/Windows documentation and Verify CI.
+
+Published reader 0.2.0 adoption (2026-10-02): exact registry npm lock and all
+installed-package source regressions pass with engine 0.4.0, without candidate
+imports. Configured/template normal and unavailable-proxy NoRestore canonical
+gates pass; configured Release build and assetless publish/smoke pass. Logs
+artifacts/package-delivery/reader020-{root,template}-{normal,offline}.log.
+Source controls retain *-reader020-engine040.log files under GAME_DIR. The
+published child-effect limitation remains explicit and PR 60 is not adopted.

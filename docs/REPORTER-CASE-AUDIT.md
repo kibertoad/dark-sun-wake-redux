@@ -619,3 +619,20 @@ release planner, .NET build/test/pack and repository policy pass. Wheel/sdist an
 npm archives build; isolated installed-wheel/extracted-reader smoke passes with
 no PYTHONPATH. Logs artifacts/package-delivery/indirect-effect-*. The candidate
 is not an adopted registry release. Gap 27 stays open with its entire contract.
+
+## Published reader 0.2.0 adoption, 2026-10-02
+
+The registry reader 0.2.0 from toolkit release d938689 is installed with its exact
+npm archive integrity lock in configured and template checkouts. Engine 0.4.0,
+checker 0.1.0 and Capstone 5.0.7 retain their existing locks. All retained adopted
+source drivers pass without PYTHONPATH, including guarded call order, return
+widths, pointer/dispatch inventories, ownership, graph, string/IRET and effect
+controls. Their sibling *-reader020-engine040.log files remain under GAME_DIR.
+The child-effect published-limit control still stops at its computed jump;
+PR 60's candidate continuations are not accidentally adopted.
+
+Configured and template normal and unavailable-proxy NoRestore canonical gates
+pass. Configured validation includes Test.ps1, Release build and assetless
+publish/smoke. Logs artifacts/package-delivery/reader020-{root,template}-
+{normal,offline}.log. No source claims, parity statuses, rule snapshot bytes or
+original-content contracts changed. Gap 27 remains open with its full request.

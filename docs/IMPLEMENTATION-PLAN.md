@@ -778,3 +778,15 @@ budgets plus a real prepared-reader synthetic case pass. Local full-entry source
 acceptance must retain unread inputs and native reachability. Exit: upstream PR,
 merged registry delivery and the complete cited restoration controls; a candidate
 alone cannot close Gap 27. No gameplay or spec claim changes.
+
+## Published reader 0.2.0 adoption
+
+Adopt the registry executable-reader 0.2.0 archive from toolkit release d938689
+with an exact npm lock. Engine 0.4.0 and checker 0.1.0 remain pinned. The release
+includes merged command help and prepared-reader integration; do not adopt the
+unmerged conditional-table candidate. Acceptance: normal and unavailable-proxy
+NoRestore canonical gates in configured and template checkouts, version/missing-
+dependency controls and all retained installed-package source drivers pass.
+Configs/reports stay in GAME_DIR; no candidate PYTHONPATH is used. Exit: validated
+locks, reviewable template PR update and source regression record. No gameplay,
+rule snapshot or persisted content-contract change.
