@@ -408,3 +408,8 @@ normal validation pass; log artifacts/merged-pr42-validation.log. Offline
 NoRestore gate uses unavailable proxy endpoints and retains all required checks;
 log artifacts/merged-pr42-offline-validation.log. Source controls and reports
 remain in GAME_DIR/analysis/reporter-audit. No original runtime was launched.
+
+Gap 17 upstream candidate PR 38 (2026-10-01): source acceptance plus
+Python, Node bridge/documentation, policy, .NET restore/build/tests and packages
+pass after integration with c133cd4; logs artifacts/overlap-candidates-final-*.
+Candidate is not yet adopted; licensed-source artifacts stay outside Git.

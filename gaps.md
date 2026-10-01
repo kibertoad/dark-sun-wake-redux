@@ -49,6 +49,11 @@ request in item 11.
 
 ## 17. Resolve overlapping operand candidates to verified boundaries
 
+**Current disposition:** toolkit PR 38 supplies explicit candidate widths,
+prefixes, overlap groups and entry-path classifications. The rebased candidate
+passes recorded source and negative/cap controls; keep open pending reviewed
+merge, exact adoption and whole-contract rerun.
+
 While preparing FND-CONFIG-136, a raw pointer-operand search produced both
 an actual prefixed double-word comparison and a word-width comparison
 starting one byte into it. Both decode locally, but only the former starts

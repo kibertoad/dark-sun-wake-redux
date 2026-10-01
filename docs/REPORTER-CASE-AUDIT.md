@@ -330,3 +330,25 @@ driver passes the entire setup/handler contract with source-derived exports,
 reached ranges, analyzer disagreement, partial dispatch rejection and entry-limit
 join refusal. Gap 11 is closed after this exact-adoption rerun. No spec claim, parity status or research
 queue changes, and no original bytes/configurations/reports enter Git.
+
+## Gap 17 overlapping operand candidate follow-up
+
+Toolkit PR 38, commit 0da750d on c133cd4, adds operand-candidates with literal
+memory/immediate candidates, prefixes, widths, byte spans and overlap groups.
+Entry-path memory uses alone count; other operands, rejected overlaps and
+unresolved boundaries remain distinct. Caps report omitted members and
+unsearched ranges, and raw/contested positive controls fail.
+
+GAME_DIR/analysis/reporter-audit/operand-overlap-controls/verify-candidate.mjs
+passes the recorded FND-CONFIG-136 prefixed comparison and stripped-width
+rejection; FND-CONFIG-142 preceding-byte candidates and verified reads;
+FND-CONFIG-148 candidates spanning an addition/jump and its immediate case.
+Unresolved source candidates remain explicit. Reports and configs stay local.
+Synthetic source-bridge, contested-boundary, scan-limit, omitted-group and
+failed-control tests pass, together with full toolkit policy/build/test/package
+gates (artifacts/overlap-candidates-final-*). This is conditional instruction
+ownership tooling, never runtime use or original behavior proof.
+
+Gap 17 stays open pending reviewed merge, exact adoption and whole-contract
+rerun. Root reporter pin remains c133cd4; no game spec, parity status or research
+queue changed.
