@@ -9,7 +9,7 @@ were checked before querying. Each reporter also checks its SHA-256 input guard.
 No original process, DOSBox, emulated function or native observation was used.
 No spec or parity status changed.
 
-Current adopted reporter/checker: toolkit `926e287a4134512d59fe021efe6507c933da03f1`. Website rules: `3b4e6fcfca887620cdf13c8a8e62f9ca53133d60`. Template: `b9f542549840cf7ce2d254a8f9f7bf0f502daaa7`. The initial candidate was `2b688e66ba34ee25d9882ea4938f95b5461b0ba4`; revised upstream changes are now fully adopted. Python 3.14 and Capstone 5.0.7; Standard remains v1.
+Initial adopted reporter/checker (historical; current pin is recorded in the latest batch below): toolkit `926e287a4134512d59fe021efe6507c933da03f1`. Website rules: `3b4e6fcfca887620cdf13c8a8e62f9ca53133d60`. Template: `b9f542549840cf7ce2d254a8f9f7bf0f502daaa7`. The initial candidate was `2b688e66ba34ee25d9882ea4938f95b5461b0ba4`; revised upstream changes are now fully adopted. Python 3.14 and Capstone 5.0.7; Standard remains v1.
 
 Configurations and raw JSON reports live under `GAME_DIR/analysis/reporter-audit/`
 and are not committed. `run.mjs` records the initial cases; `verify.mjs` checks
@@ -134,3 +134,34 @@ A review of command filtering found effects omitted flag/string events despite t
 ## Reviewed main migration acceptance, 2026-10-01
 
 Merged toolkit 7da1b93cdd9ac0d59dbaf82b66b4db95d578ab9d and template 7b3bbe46b251b163ee02a6539ac0d81559dbe921 are adopted exactly. The instruction-owned resident/overlay/stored/pushed controls and actual width/helper-effects controls pass again against the pinned root source (adopted-verify scripts under GAME_DIR). Revised overlap traversal retains contested-reachability boundaries with synthetic regressions. Gaps 16, 24 and 25 are removed; older candidate/pending notes above are historical. The canonical gate, synthetic capture/tracking checks and full build pass; logs stay under artifacts. No original runtime was used.
+
+## Adopted instruction-model rerun, 2026-10-01
+
+Reporter `313bb7d8baa238b5934e5ddf3f60cb2d5f4887ed`, website
+`ca39d0750e67c8c3900e8554e66a84083fe67452`, template
+`8d0eef35ec8f3b1053ba1dd129a7bd75b044cf27`. The installed executable length
+and SHA-256 match SOURCE-EDITIONS before querying; XXH3-128 was also reverified. Configurations and raw
+reports are local under GAME_DIR/analysis/reporter-audit/adopted-313bb7d-rerun;
+run.mjs replays unchanged baseline queries, conditional.mjs replays existing
+conditional configurations with visitLimit 64 and bounded step/path limits.
+The latter retains the earlier explicitly assumed returning-call models;
+completion under those models never proves an unread callee's effects.
+
+| Gap | Rerun disposition |
+| --- | --- |
+| 26 | Frame reader completes both modeled paths, without the previous carry/rotate instruction stop. Initializer still stops at repeated-instruction bound, unknown/overwritten return provenance and an undeclared callee. Raising visitLimit to 64 under its existing conditional model retains the bound and return-provenance stops. Full request stays open. |
+| 27 | Baseline loader retains completed exits and an unresolved outside-mapped-code call. The enlarged conditional query exceeds the explicit 32 MiB report bound and produces no complete report; narrow it before another attempt. Full request stays open. |
+| 35 | Registration query reaches the path cap and undeclared callees. Consumer baseline retains an undeclared callee; its existing two returning-call models complete the conditional paths. This does not verify actual preservation or end-to-end forwarding. Full request stays open. |
+| 39 | Baseline stops at undeclared callees. Enlarged conditional query exhausts the modeled-call path limit and emits no terminal paths. Neither buffer capacity nor whole-loop completion is accepted. Full request stays open. |
+| 42 | Wrapper retains undeclared callees; runtime retains an outside-mapped-code call. No unsupported-instruction stop is reported before these boundaries. This does not establish lower-heap effects or allocation units. Full request stays open. |
+| 21 | Caller retains visit-limit, unresolved/undeclared-call and return-provenance stops. Helper baseline retains an undeclared callee; its existing returning-copy model completes conditional paths. Mixed-segment filename/caller dependencies remain unverified. Full request stays open. |
+
+These are static reporter acceptance results. No original process, emulated
+call, native observation, spec claim or parity status changed. No gap closes
+from this rerun. Empty gaps arrays do not override stopped paths or an explicit
+completeWithinModel false result.
+
+
+Canonical Invoke-Validation.ps1 passes, including Test.ps1, locked restore,
+Release build and assetless publish/smoke; log: artifacts/reporter-rerun-validation.log.
+
