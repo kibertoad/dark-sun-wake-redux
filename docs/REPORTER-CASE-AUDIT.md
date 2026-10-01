@@ -503,7 +503,24 @@ the packaged bridge/engine. Candidate remains unadopted and Gap 15 remains open.
 Published package adoption, 2026-10-02: existing adopted source drivers for
 callee graph, near-pointer provenance, dispatch normalization, instruction
 operand ownership, overlapping owners, strings, local IRET and Gap 13 pointer
-inventories pass using the registry engine 0.1.0 and reader 0.0.0. Each retained
+inventories pass using the registry engine 0.1.0 and reader 0.1.0. Each retained
 source hash and rejected/capped control remains active. Driver configurations and
 reports remain under GAME_DIR/analysis/reporter-audit/. This delivery change
 neither adds native evidence nor closes the open candidate gaps 15 and 26.
+
+
+Gap 27 candidate tooling, 2026-10-02: toolkit PR 45 at 4ed65cd extends
+existing effects reports with ordered path timelines, write prefixes, nested
+unknown effects and exact-width/storage/value restoration witnesses. The
+FND-SCRIPT-019 wrapper control confirms the early returns have only prologue
+stack writes and no age/service path. Its other routes remain unread at services.
+The wider fill query exceeded the existing output limit; narrowing it preserves
+explicit path/model caps, not a complete transfer-order answer. Source driver:
+GAME_DIR/analysis/reporter-audit/effect-order-controls/verify-candidate.mjs.
+
+Complete engine, prepared-reader integration, workspace lint/format/type/tests,
+release planner, policy, .NET and distributable package gates pass. Logs are
+artifacts/effect-path-*. No original fixtures or claims changed. This is the
+shared summary slice only: all cited Gap 27 child, transfer, cleanup, predicate
+and restoration source cases and reviewed registry adoption are still required.
+Gap 27 stays open with its full original contract unchanged.

@@ -471,7 +471,25 @@ Upstream PR 41 is updated by normal push; the restoration pin is unchanged.
 Published-package migration (2026-10-02): configured normal and NoRestore canonical
 validation, adapter/protocol/CI-input controls and existing adopted Dark Sun
 reporter drivers pass. Source configs and reports stay under GAME_DIR. Exact
-engine 0.1.0, reader/checker 0.0.0 and Capstone 5.0.7 locks replace copied tooling;
+engine 0.1.0, reader/checker 0.1.0 and Capstone 5.0.7 locks replace copied tooling;
 rule snapshot bytes are unchanged. Logs: artifacts/package-delivery/root-normal-validation.log
 and root-offline-validation.log. Template normal and unreachable-proxy NoRestore
 gates pass in the isolated migration worktree.
+
+
+Published npm 0.1.0 follow-up (2026-10-02): exact released reader/checker archive
+locks and matching action revision 15ac5ee pass configured and template normal
+and unreachable-proxy NoRestore gates. All existing adopted source controls pass
+through the released bridge. Logs: artifacts/package-delivery/*-010-*.log.
+
+Gap 27 candidate PR 45: complete shared engine, prepared-reader integration,
+workspace, release planning, policy, .NET build/tests and wheel/npm package gates
+pass, with the bounded FND-SCRIPT-019 early-return control. The broad fill query
+remains incomplete under output/path limits; no complete Gap 27 acceptance is
+claimed. Logs: artifacts/effect-path-*.
+
+The final candidate package smoke uses the extracted npm tarball with an installed
+wheel in an isolated environment and no PYTHONPATH/source fallback; pre-service
+write and unknown-effect controls pass (artifacts/effect-path-real-package-smoke.log).
+Template CI's checker annotation now names its verified published tag,
+@scientific-method/standard-checker@0.1.0, beside the exact action commit.

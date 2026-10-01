@@ -318,7 +318,7 @@ duplicate update discarded after verification.
 
 Template PR 43 is already adopted at merged tree 79d18a20; no duplicate template
 update is needed. Toolkit PR 42's registry delivery is now available: engine
-0.1.0 and npm executable-reader/standard-checker 0.0.0. Exact archive locks replace
+0.1.0 and npm executable-reader/standard-checker 0.1.0. Exact archive locks replace
 copied shared implementations and their sync locks. CI, hooks, configured wrappers
 and Ghidra paths use package entry points; project-specific tools remain local.
 The methodology, Standard v1 and protocol snapshot bytes remain unchanged.

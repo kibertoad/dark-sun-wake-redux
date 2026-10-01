@@ -660,7 +660,7 @@ installed with reproducible locks, and passes prepared-protocol, source hash,
 existing game-case controls, documentation/policy and full canonical normal and
 NoRestore validation. Synthetic checks cover actionable missing-engine/protocol
 errors and package entry-point routing without reproducing shared tests. A
-source-build wheel or placeholder version alone is not adopted delivery. The registry now delivers engine 0.1.0 and npm reader/checker 0.0.0; these
+source-build wheel or placeholder version alone is not adopted delivery. The registry now delivers engine 0.1.0 and npm reader/checker 0.1.0; these
 bootstrap npm releases are adopted by exact archive locks, not source builds. Exit:
 reviewed template migration, exact published dependencies, full source/control
 acceptance and canonical gates; no vendored competing implementation remains.
@@ -681,3 +681,27 @@ and prepared-protocol controls, wrapper routing and configured source/control
 regressions pass; published archives contain the required modules/scripts.
 No gameplay, source manifest or rule snapshot refresh. Exit: canonical gates and
 reviewable template migration; no copied competing shared implementation remains.
+
+
+## Ordered effect paths and restoration witnesses
+
+Tooling outcome: existing effects reports summarize each bounded return or stopped
+path as an ordered timeline of writes, local/traced calls, assumed service
+returns, branch predicates and hardware boundaries. Preserve entry/depth/order,
+child writes and the last recorded flag producer; a later common return never
+merges distinct path contracts. Summaries name writes already made before each
+unread/conditional service, retain unknown child effects separately, and never
+infer rollback or transactionality from a result encoding. Explicit restoration
+witnesses must demonstrate matching pre-call read and post-call write storage,
+width and value provenance on a completed path, with intervening unknown effects
+remaining visible; partial restoration never becomes a transactional claim.
+
+Synthetic acceptance: early bypass vs shared return, mutations before service
+failure, traced child mutation, unrelated predicate producers, per-path snapshot
+restore/bypass, different segment/width/value rejection, incomplete paths and
+nonvacuous controls. A real prepared-reader integration case verifies delivery.
+No proprietary data or game constants in this repository. Source request acceptance
+stays in the restoration: verify every cited case and preserve pending contracts.
+Exit: canonical package gates and local source controls pass; publish a reviewed
+candidate. Request closure requires merged registry delivery and complete adopted
+source reruns. Several slices may be required; no first slice narrows that exit.
