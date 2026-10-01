@@ -254,3 +254,12 @@ Configured adaptations: the vendored rules stay under `vendor/upstream/` and sec
 Gate: `tools/Invoke-Validation.ps1` passes with repository-local PowerShell 7 (137 Python, 77 Node and 700 .NET tests, documentation check of 615 entries / 158 parity rows / 5 deviations, Release build, assetless publish and smoke). Log: `artifacts/reporter-provenance-adoption.log`. The play-launcher test needs `NoDefaultCurrentDirectoryInExePath` unset for its `cmd.exe` child; with it set it fails identically on the previous commit.
 
 No gaps.md request closes. The new `target`, `bounds`, `owner`, incoming-coverage and path-model capabilities have synthetic acceptance only. Their Dark Sun cases (gaps 8, 10, 11, 13, 21, 22, 23, 26, 27, 35, 39 and 42) need executable analysis, which the facts gate in docs/SOURCE-EDITIONS.md blocks until latest-patch provenance and the baseline SHA-256 are recorded. No original program was read or run.
+
+
+## Merged dispatch and pointer inventory adoption
+
+The exact reporter pin is toolkit b87064216317eeee0ac991a8b154d5b58a46534c,
+merged PRs 33/34. New dispatch and pointer modules and tests are included in the
+hashed mapping. Full gap 13 source acceptance, capped/partial negative controls
+and canonical validation pass; REPORTER-CASE-AUDIT records the scope. This closes
+the bounded inventory request, not player reachability or universal absence.

@@ -280,3 +280,27 @@ Candidate gates pass: synthetic Python and Node suites, repository policy,
 .NET build/tests and both package checks. Logs are artifacts/pointer-exclusions-*.
 The root pin remains f8c51bf. Gap 13 remains open until PR 34 is reviewed,
 merged, adopted exactly and the whole source-control suite passes again.
+
+
+## Gap 13 merged adoption and closure
+
+Toolkit PR 34 merged as b87064216317eeee0ac991a8b154d5b58a46534c and is
+adopted exactly, including source, guide and tests. The configured-source replay
+in GAME_DIR/analysis/reporter-audit/gap13-dispatch-complete passes verify.mjs,
+verify-pointers-adopted.mjs and verify-negative-controls.mjs. All known selector,
+setup and later-relative caller controls are confirmed instructions. Reports
+retain separate overlay/resident/relative sections, canonical sites, encoding,
+full declared coverage, candidate/contested classification and exclusions.
+The selector controls assert both the stored shifted word and decoded descriptor.
+Incoming result caps and narrowed relative ranges reject usable negatives.
+The independent resident pointer control passes exact and equivalent alias
+queries. The handler inventory retains every checked exclusion and has no
+unresolved mapping under the declared representation; capped output fails its
+negative control. Computed/unrelocated routes and runtime pointer use remain
+explicitly excluded. These qualified inventories never prove universal absence.
+The entire gap 13 tooling contract passes and its request is removed. No game
+claim, research queue or parity status changed.
+
+Canonical Invoke-Validation.ps1 passes after exact adoption; log
+artifacts/gap13-merged-adoption-validation.log. The final shared template adoption
+is being proposed separately and does not change the root's accepted reporter.

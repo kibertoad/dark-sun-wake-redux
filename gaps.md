@@ -3,7 +3,7 @@
 These are the remaining requests for the restoration template and shared analysis
 tooling. They describe tooling behavior, not claims about the original game.
 
-Current website, toolkit and template main revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Website `ca39d07`, toolkit `f8c51bf` and template `8d0eef3` add call-target, bounds, owner, incoming-coverage and carry/loop reporter capabilities; the facts gate passes and Dark Sun acceptance cases are recorded in docs/REPORTER-CASE-AUDIT.md. Game-specific requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 8, 10, 12, 14, 16, 18, 19, 22, 23, 24, 25, 28 and 38 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
+Current website, toolkit and template main revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Website `ca39d07`, toolkit `b870642` and template `8d0eef3` add call-target, bounds, owner, incoming-coverage and carry/loop reporter capabilities; the facts gate passes and Dark Sun acceptance cases are recorded in docs/REPORTER-CASE-AUDIT.md. Game-specific requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 8, 10, 12, 13, 14, 16, 18, 19, 22, 23, 24, 25, 28 and 38 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
 Delivered capabilities, closure evidence and remaining limits are recorded in
 [the adoption record](docs/TEMPLATE-ADOPTION.md).
 
@@ -61,45 +61,6 @@ bounded ranges and the evidence for ownership. Flag disagreement between
 those views, and require an explicit boundary check before joining a call
 to its supposed caller. Prologues and returns are useful warnings, but
 must not silently stand in for a verified function boundary.
-
-## 13. Provide a target-specific incoming-call inventory for FBOV and MZ
-
-**Current disposition:** all known caller positive controls pass with the
-adopted reporter and evidenced dispatch tables. Toolkit PR 34 supplies the
-remaining pointer-domain exclusion qualification; its full source controls
-pass as a candidate. Keep open until reviewed merge, exact adoption and rerun.
-
-FND-CONFIG-100 and FND-CONFIG-101 needed repeated temporary queries over
-FBOV fixups, MZ relocations and one overlay's relative-call candidates to
-trace a shared selector. The existing overlay map identifies code ranges;
-it does not produce a bounded incoming-call report for one exported entry.
-
-**Request:** add a shared reporter accepting one descriptor and trampoline
-entry, with an explicit result cap. Report declared overlay far calls and
-resident relocated far calls separately, and optionally search one declared
-code range for relative-call candidates. Include canonical source offsets,
-the inspected encoding and coverage boundary, and distinguish confirmed
-instruction sites from byte-pattern candidates. A zero-result section should
-say exactly what was searched, so it cannot be mistaken for proof that no
-computed, aliased or differently encoded route exists. This complements the
-single-call fixup resolution request in item 8.
-
-For the FND-CONFIG-111 query, require the report to show both the stored
-shifted index and decoded descriptor, and validate a known incoming-call
-inventory as a positive control before accepting negative sections. Treating
-the stored shifted index as the descriptor itself otherwise silently misses
-calls. The existing eleven-call selector inventory supplied that check here.
-
-For the FND-CONFIG-113 reading, also require relative-call reports to derive
-their search range from the complete declared segment or overlay bounds.
-A prefix ending at the target function's return misses callers later in the
-same segment; report such a range as a partial search. Keep candidate discovery
-across that range separate from bounded instruction verification at each hit.
-
-For FND-CONFIG-114, canonicalize relocated pointers by resolved file target
-as well as reporting exact segment:offset matches. Distinct DOS segment aliases
-can name the same location. Report exact-pair and aliased-target results
-separately, and preserve the exclusion of computed or unrelocated pointers.
 
 ## 15. Preserve ordering and shared guards in incoming-call summaries
 
