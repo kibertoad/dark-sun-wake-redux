@@ -79,6 +79,11 @@ decode. This complements item 14's alignment and positive-control checks.
 
 ## 20. Distinguish shared callees from recursive call paths
 
+**Current disposition:** toolkit PR 39 supplies a bounded callee graph with
+active-path recursion, shared-node reuse and per-caller memory observations,
+assumptions and unresolved dependencies. Candidate source and negative/cap
+controls pass; keep open pending reviewed merge, exact adoption and rerun.
+
 FND-CONFIG-140 and FND-CONFIG-141 trace two expression branches that
 converge on one lookup routine. An early description called this a cycle;
 reading the complete lookup and its children showed no call back into the

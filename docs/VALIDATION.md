@@ -413,3 +413,7 @@ Gap 17 upstream candidate PR 38 (2026-10-01): source acceptance plus
 Python, Node bridge/documentation, policy, .NET restore/build/tests and packages
 pass after integration with c133cd4; logs artifacts/overlap-candidates-final-*.
 Candidate is not yet adopted; licensed-source artifacts stay outside Git.
+
+Gap 20 upstream candidate PR 39 (2026-10-01): hash-guarded source controls,
+Python and full Node suites, repository policy, .NET restore/build/tests and both
+packages pass; logs artifacts/callee-graph-final-*. Candidate is not adopted.

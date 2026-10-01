@@ -352,3 +352,27 @@ ownership tooling, never runtime use or original behavior proof.
 Gap 17 stays open pending reviewed merge, exact adoption and whole-contract
 rerun. Root reporter pin remains c133cd4; no game spec, parity status or research
 queue changed.
+
+## Gap 20 shared-callee and recursion follow-up
+
+Toolkit PR 39, commit c33f1b6 on c133cd4, adds a bounded callees graph.
+An edge into the active traversal path is recursivePath; a previously read node
+outside that path is sharedNodeReuse. Incomplete or contested back edges remain
+unresolved. Each caller's summary retains reachable explicit memory observations,
+assumptions and unread dependencies. These are conditional CFG observations,
+never runtime recursion or a read-only/effect-completeness guarantee. Unchecked
+declared entries block boundary claims, and omitted/capped work stays explicit.
+
+GAME_DIR/analysis/reporter-audit/callee-graph-controls/verify-candidate.mjs uses
+FND-CONFIG-138/139/140/141's recorded entries and the hash-guarded installed
+source. The parser seed/search path and lookup wrapper converge on the same
+lookup; neither is labeled a cycle. Both callers retain the child helper's byte
+and word write observations. Unknown root routes remain dependencies. Source
+node/depth/edge caps and a false cycle control fail safely. Synthetic true
+recursion, diamond reuse, conditional writes, unresolved calls, all caps,
+unread entries, overlap rejection and source-bridge controls pass. Full toolkit
+policy, build/tests and packages pass; logs artifacts/callee-graph-final-*.
+
+Gap 20 stays open pending reviewed merge, exact adoption and whole-contract
+rerun. Root pin remains c133cd4. No original configs, reports or bytes enter Git,
+and no game spec, parity status or research queue changes.
