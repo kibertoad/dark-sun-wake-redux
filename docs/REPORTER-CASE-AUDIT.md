@@ -384,3 +384,31 @@ result cap and partial scan controls. Prefix order/repeats and literal-only
 matching use the final reviewed implementation. No unresolved source candidate is
 promoted. The entire Gap 17 tooling contract passes after exact adoption; remove
 its request. This does not establish runtime pointer use or original behavior.
+
+## Gap 21 near-pointer segment provenance follow-up
+
+Toolkit PR 40, commit 76a8ec2 on 1ef21ef, retains address formation in
+argument/effect reports and links consumed pointer parameters and dereferences
+with formation/dereference segment registers, values/producers and offset
+relations. Matching offsets alone never bind DS to SS. Propagated equal segment
+expressions and matching/affine symbolic offsets permit merging within the model;
+producer-only ancestry, unknown/rebound segments and capped formations refuse it.
+Effect reports retain the pointer-related reads. No machine alias semantics or
+runtime segment relationship is changed or inferred.
+
+GAME_DIR/analysis/reporter-audit/near-pointer-controls/verify-candidate.mjs starts
+at FND-CONFIG-143's recorded caller entry and follows FND-CONFIG-145's helpers
+under the hash-guarded installed source. Both argument and effect reports retain
+the caller's SS-based local address formation, the helper's consumed near-pointer
+argument and its DS count dereference. Their segment relationship is unresolved
+and storage merging is refused. Loop/unsupported-instruction stops and incomplete
+path coverage stay explicit. The first broader query exceeded the 32 MiB output
+cap and produced no complete report; narrowed bounded controls pass without an
+absence or runtime claim. A formation-limit source control refuses merging.
+
+Synthetic caller passing, DS=SS propagation, differing/rebound segments, field
+offsets, erased-value ancestry, caps and source bridge pass, as do full toolkit
+policy/build/test/package gates; logs artifacts/near-pointer-final-*. Source
+configs/reports stay local. Gap 21 remains open pending reviewed merge, exact
+adoption and whole-contract rerun. Root pin remains 1ef21ef; no game spec,
+parity status or research queue changed.

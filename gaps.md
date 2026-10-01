@@ -69,6 +69,11 @@ function ownership and item 15's local call ordering.
 
 ## 21. Preserve segment provenance for near state pointers
 
+**Current disposition:** toolkit PR 40 retains caller formation segments,
+consumed pointer arguments and callee dereference provenance in argument/effect
+reports. Source, segment-rebinding, erased-value and cap controls pass; keep
+open pending reviewed merge, exact adoption and whole-contract rerun.
+
 FND-CONFIG-145 follows a BP-derived near pointer into helpers that
 access it through DS. Equating those addresses without checking the
 caller would assume a DS-to-SS relationship that the bounded reading

@@ -422,3 +422,12 @@ Gap 17 final merged adoption (2026-10-01): toolkit 1ef21ef exact pin,
 complete source overlap/width/rejected/cap/partial controls and owner/pointer
 regressions pass. Canonical validation passes, including Test.ps1 and Release
 build/publish/smoke; log artifacts/gap17-merged-adoption-validation.log.
+
+Gap 21 candidate PR 40 (2026-10-01): bounded hash-guarded source controls,
+complete Python/Node suites, policy, .NET restore/build/tests and packages pass;
+logs artifacts/near-pointer-final-*. Stopped source paths remain incomplete and
+no native DS/SS relationship is claimed. Candidate is not adopted.
+
+Root canonical Invoke-Validation.ps1 -NoRestore passes after the Gap 21
+candidate acceptance record, including Test.ps1 and Release publish/smoke;
+log artifacts/near-pointer-pr40-root-validation.log.
