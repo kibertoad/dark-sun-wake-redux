@@ -561,3 +561,19 @@ artifacts/package-delivery/list-mutation-root-final-test.log. The initial sandbo
 run could not resolve a temporary Java fixture directory; its diagnostic log is
 artifacts/package-delivery/list-mutation-root-sandbox-test.log. The unchanged
 gate passes with the required temporary-directory access.
+
+Gap 27 cleanup/hardware controls (2026-10-02): installed reader 0.2.0/engine
+0.4.0 pass five declared initializer-failure cleanup-before-error cases,
+unchecked handle clears under zero/FFFF returns, sentinel bypasses and the
+conditional final byte clear. Nonvacuous step/path/unread-service controls
+reject positive continuation claims. Complete-body port-boundary inventory,
+its rejected boundary cap, the signed wrapper gate and conditional slot skips
+to the final port pass. Local log: GAME_DIR/analysis/reporter-audit/
+cleanup-hardware-effects/verify-adopted-reader020-engine040.log. Effect tracing
+stops at the first port; earlier cleanup loops, joined hardware effects,
+process survival and native outcomes remain unconfirmed. Gap 27 stays open.
+
+Cleanup/hardware tooling batch Test.ps1 -NoRestore passes; log
+artifacts/package-delivery/cleanup-hardware-root-final-test.log. Toolkit PR 60
+and template PR 44 remain open at their previously recorded heads; upstream
+PR 62 is an internal instruction-backend seam and supplies no port behavior.

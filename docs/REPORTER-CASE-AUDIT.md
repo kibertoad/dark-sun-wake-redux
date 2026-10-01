@@ -685,3 +685,38 @@ child coverage, actual record membership, callee effects and native outcomes
 remain unconfirmed. Driver and reports stay in GAME_DIR/analysis/reporter-audit/
 list-mutation-effects/; verify-adopted-reader020-engine040.log records passing
 controls without candidate imports. Gap 27 remains open for its entire contract.
+
+## Gap 27 cleanup and hardware boundary controls, 2026-10-02
+
+Installed reader 0.2.0 and engine 0.4.0 retain FND-CONFIG-183's cleanup
+before the later error request for each of five declared failing-request
+hypotheses. The query begins at the actual initializer entry and retains the
+earlier state-byte write. Cleanup and error are modeled balanced returns, not
+successful cleanup or evidence that a termination request leaves the process
+alive. Models preserve only declared DS/SS/BP hypotheses and invalidate memory
+and flags. Step/path caps and unread services reject the returning-failure order.
+
+FND-CONFIG-184's handle suffix retains all three word sentinel writes after
+their unchecked services for returned AX zero and FFFF, without an intervening
+result branch. Each sentinel bypass skips its own service and write. A returning
+fill hypothesis precedes the final byte clear. The suffix begins at a boundary
+checked from the complete local entry; earlier record/release loops and the
+epilogue are excluded, and its stopped paths cannot prove whole cleanup.
+Step/path and unread-service controls reject the complete returning-clear
+contract. All summaries leave transactionality unestablished.
+
+The complete resident hardware-body bounds report lists seven port boundaries,
+each with an explicit continuation assumption. A boundary cap rejects that
+inventory. The effect tracer stops at the first out instruction. The complete
+signed wrapper gate retains a returning at-most-one bypass and a service path
+that stops at that boundary. A conditional slot suffix, with declared DS=CS,
+retains both slot-handling skips reaching the final port boundary: one skips
+both local mutations and the other retains the flag write but skips the count
+write. Step/path controls reject the two-skip contract. This does not join the
+initial port phase to the suffix or simulate hardware, presentation or timing.
+The unsupported-port stop is a retained dependency, not evidence of no effect.
+
+Driver/configs/reports and verify-adopted-reader020-engine040.log remain in
+GAME_DIR/analysis/reporter-audit/cleanup-hardware-effects/. No candidate import,
+game claim, native run or parity status changed. Gap 27 remains open for its
+full fill, joined child/cleanup/hardware, layered-cache and snapshot contracts.

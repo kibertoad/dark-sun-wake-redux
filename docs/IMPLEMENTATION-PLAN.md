@@ -829,3 +829,20 @@ step/path caps, a lower visit bound and unread-service controls remove their
 respective positive claims. Source configs/reports stay in GAME_DIR. Exit:
 installed controls and Test.ps1 pass; whole-call/native coverage and remaining
 Gap 27 contracts stay open. No src/, spec claims or parity statuses change.
+
+## Cleanup continuations and hardware effect controls
+
+Gap 27 acceptance uses FND-CONFIG-183/184's mapped initializer failure path,
+cleanup handle suffix and resident gated VGA service. Installed reporters must
+retain cleanup before the error request under explicit returning-call hypotheses,
+handle writes after unchecked services, and port effects on paths that skip later
+slot handling. A stopped port instruction must remain a hardware dependency,
+never become successful presentation evidence. Preserve actual entry boundaries
+where practical; conditional suffixes explicitly leave earlier loops unread.
+No model may assert callee memory preservation, successful release or process
+survival. Acceptance: ordered-call/field-write and hardware-gate witnesses plus
+nonvacuous step/path/unread-service controls; any unsupported instruction or
+missing effect is an upstream tooling limitation, not a positive claim.
+Configs/reports stay under GAME_DIR. Exit: installed-package controls, or a
+bounded limitation reproduction and upstream request, with Test.ps1 passing.
+The full Gap 27 contract remains open until all cited paths are covered.
