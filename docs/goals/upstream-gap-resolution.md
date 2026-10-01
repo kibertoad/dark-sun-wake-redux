@@ -18,7 +18,7 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 - Gap 1: closed; merged template PR 33 refinements adopted and actual installed inventory reverified.
 - Gap 2: closed; final merged script passes actual large-map page/name controls.
 - Gap 3: closed; shared join exactly reproduces actual original-resident/mapped-overlay inventory.
-- Gap 4: open; full request and cited controls in gaps.md.
+- Gap 4: open; explicit local offline adaptation and normal/offline gates pass; shared template PR 41 pending reviewed delivery and adoption.
 - Gap 5: partial; portable/legacy identity checks pass, distinct disc-source validation pending; PR 33 merged and adopted.
 - Gap 8: closed; entire request passes adopted target/format/boundary controls recorded in docs/REPORTER-CASE-AUDIT.md.
 - Gap 9: open; full request and cited controls in gaps.md.
@@ -59,8 +59,8 @@ Synthetic success and broad guidance do not close a game-case request. Current s
 ## Handover
 
 - Stage: Slices; research-side tooling only. No original runtime, gameplay, spec claims or parity statuses changed.
-- Last gate: 2026-10-01 tools/Invoke-Validation.ps1 passes; log artifacts/gap13-followup-root-validation.log. Exact root reporter pin f8c51bfc5d167c25a04f2b6ddb3f7390714dc45f remains intact.
-- Priority: gap 13. Toolkit PR 34, branch tooling/qualify-pointer-inventory-exclusions in artifacts/upstream-dispatch-pr, commit 4ad9179, is open with all CI jobs passing. Shared candidate gates and licensed-source controls pass; do not claim adopted closure before reviewed merge. Acceptance records are in REPORTER-CASE-AUDIT.
-- Replay: GAME_DIR/analysis/reporter-audit/gap13-dispatch-complete/verify.mjs runs adopted caller controls; verify-pointers-candidate.mjs runs candidate pointer controls. Verify source identity before querying; keep all configs/reports local. No unresolved control remains beyond the reviewed-adoption step for these cases; rerun the whole contract after merge.
-- Unfinished: offline validation root work is in stash offline-validation-work-in-progress; candidate template checkout artifacts/upstream-offline-pr. The first restricted run failed synthetic child PowerShell execution-policy checks, not dependency restore. Diagnose artifacts/offline-validation-local.log before claiming acceptance. Template adoption of the new modules is still pending; other gap requirements remain in gaps.md.
-- Next: monitor/review toolkit PR 34; after merge adopt exact modules/guide/tests and rerun caller, pointer and capped/partial controls before closing gap 13. Propose the final exact reporter adoption to the template. Resume offline work and all other open requests; never reduce the goal condition or push this restoration without request.
+- Last gate: 2026-10-01 normal tools/Invoke-Validation.ps1 and explicit -NoRestore both pass; logs artifacts/offline-root-normal-validation.log and artifacts/offline-root-full-validation.log. Exact reporter pin f8c51bfc5d167c25a04f2b6ddb3f7390714dc45f remains intact.
+- Priority: gap 13. Toolkit PR 34, branch tooling/qualify-pointer-inventory-exclusions in artifacts/upstream-dispatch-pr, commit 4ad9179, remains open with all CI jobs passing. Shared candidate gates and source controls pass; closure requires reviewed merge, exact adoption and full rerun. Replay GAME_DIR/analysis/reporter-audit/gap13-dispatch-complete/verify.mjs and verify-pointers-candidate.mjs; verify source identity and keep configs/reports local.
+- Gap 4: local offline adaptation is committed and its temporary stash removed. Template PR 41, branch tooling/explicit-no-restore-validation in artifacts/upstream-offline-pr, commit 1ad0462, is open; documentation/security CI pass and Verify is live at handover. Template normal and sequential offline gates pass. The prior concurrent template capture failure and restricted root capture/filesystem failures remain logged, not counted as successful runs.
+- Pending: reviewed toolkit 34 and template 41 adoption; final exact reporter adoption proposal to the template; full gap 11 ownership-contract review; remaining requirements in gaps.md. No session-wide blocker, and no reduced goal condition.
+- Next: check PR 34 first and adopt/rerun after merge; check template PR 41 review/CI and address failures before closing gap 4; propose final exact reporter template adoption; verify the full gap 11 contract and continue the remaining source controls. Do not push this restoration unless requested.
