@@ -195,3 +195,26 @@ Canonical Invoke-Validation.ps1 passes after these closures, including Test.ps1,
 locked restore, Release build and assetless publish/smoke.
 Validation log: artifacts/target-boundary-validation.log.
 
+
+## Incoming coverage rerun, 2026-10-01
+
+GAME_DIR/analysis/reporter-audit/incoming-controls/verify.mjs reruns the
+selector, setup and later-relative configurations with the declared resident
+segment from FND-CONFIG-114/128, descriptor/trampoline target selection and
+independent format-table controls. It asserts all eleven selector encodings,
+all six setup encodings and the later relative-call candidate against the
+recorded inventories. Every byte of the declared search domains is scanned;
+coverage reports no unsearched ranges. This says nothing about regions outside
+those declared domains or routes the instruction walk cannot resolve.
+
+The accepted-entry walk still confirms only seven selector sites and two
+setup sites. Four in each inventory remain candidates with explicit position
+metadata. Full known-inventory positive controls fail at an unverified site
+instead of treating raw discovery as instruction proof. The later relative
+call also remains an unverified candidate and fails its positive control.
+Computed-transfer inventories remain explicit. A prefix ending at the caller
+return is correctly reported as partialSearch with unsearched segment bytes
+and negativeUsable false. Thus the new coverage controls pass but gap 13 stays
+open. FND-CONFIG-114's separate relocated-pointer exact-pair/aliased-target
+inventory has not been supplied by these call-only queries and remains part
+of the unfulfilled request. No spec claims or parity statuses change.
