@@ -218,3 +218,24 @@ and negativeUsable false. Thus the new coverage controls pass but gap 13 stays
 open. FND-CONFIG-114's separate relocated-pointer exact-pair/aliased-target
 inventory has not been supplied by these call-only queries and remains part
 of the unfulfilled request. No spec claims or parity statuses change.
+
+## Indirect dispatch and pointer inventory candidate
+
+Toolkit PR [33](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/pull/33),
+commit 45db236, adds bounded source-table indirect-jump declarations for CFG
+ownership/incoming discovery and an exact-pair/aliased-target relocated-pointer
+inventory. GAME_DIR/analysis/reporter-audit/dispatch-pr-controls/verify.mjs
+asserts the four FND-CONFIG-092 table targets before using their declared
+consumer. The candidate assigns the handler call to the handler entry, rejects
+the mistaken setup owner, and retains incompleteness under a nonexhaustive
+declaration. The table has separate discriminator and target arrays; the first
+query's interleaved-layout hypothesis failed its independently recorded target
+control and was corrected locally, with no change to the finding or tool.
+
+FND-CONFIG-114's pointer query produces separate zero exact-pair/aliased-target
+counts. Unresolved adjacent pairs remain explicit and negativeUsable is false;
+no pointer-absence claim is accepted. The tool does not establish that adjacent
+relocated words are used as runtime pointers. No original bytes or source-derived
+configurations/reports enter the PR. Upstream Python, bridge/documentation, policy,
+build and .NET gates pass. The current root pin remains 313bb7d pending reviewed
+adoption. Gaps 11 and 13 stay open, including the remaining incoming controls.
