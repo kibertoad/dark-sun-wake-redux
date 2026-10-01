@@ -660,3 +660,28 @@ Driver: GAME_DIR/analysis/reporter-audit/pointer-caller-effects/verify-adopted.m
 Its configs/reports and verify-adopted-reader020-engine040.log remain local.
 Gap 27 stays open for head/list mutations and its other full cited contracts;
 no spec status, parity row, gameplay or native evidence changed.
+
+## Gap 27 head and predecessor mutation controls, 2026-10-02
+
+Installed reader 0.2.0 and engine 0.4.0 pass the FND-CONFIG-168 actual-entry
+prefix controls through the local service following the count mutation. Separate
+guarded paths retain the head-link copy, count-one search bypass and found-
+predecessor link copy. Each copied dword retains its source value expression;
+this proves reported value provenance, not shared storage. Source/predecessor
+segments remain unknown where the report cannot resolve them. The word count
+write retains modulo-word decrement provenance and precedes the modeled service.
+
+Balanced returns and DS/SS/BP preservation are explicit hypotheses. Models
+invalidate memory and flags and retain unknown callee effects. Removing them
+retains earlier writes but prevents the returning-service positive contract.
+Step/path controls likewise reject the complete three-phase positive contract.
+A repeated-search witness reaches the copy and service under the default visit
+budget; a one-visit control rejects that witness and retains a named repeat stop.
+The reporter limit is not evidence of a native membership or iteration bound.
+
+The prefix excludes later child dispatch and epilogue. Its paths remain stopped,
+effect completeness false and transactionality unestablished. Full head/list-to-
+child coverage, actual record membership, callee effects and native outcomes
+remain unconfirmed. Driver and reports stay in GAME_DIR/analysis/reporter-audit/
+list-mutation-effects/; verify-adopted-reader020-engine040.log records passing
+controls without candidate imports. Gap 27 remains open for its entire contract.

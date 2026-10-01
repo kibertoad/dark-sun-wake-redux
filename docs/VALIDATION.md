@@ -546,3 +546,18 @@ Caller-control batch Test.ps1 -NoRestore passes; log
 artifacts/package-delivery/pointer-caller-root-final-test.log. Template PR 44
 at 5777ea0 passes documentation, Ubuntu Verify, zizmor and Windows installer CI;
 Linux/macOS installers are skipped by workflow scope.
+
+Gap 27 list-mutation controls (2026-10-02): installed reader 0.2.0/engine 0.4.0
+pass guarded head-copy, count-one bypass, predecessor-copy, word decrement
+before service and repeated-search controls. Step/path/unread-service and
+one-visit controls reject their corresponding positive contracts. Local log:
+GAME_DIR/analysis/reporter-audit/list-mutation-effects/
+verify-adopted-reader020-engine040.log. Value provenance does not establish
+storage aliases; unknown segments, callee effects, later child paths and native
+outcomes remain explicit. Whole-function and full Gap 27 acceptance stay open.
+
+List-mutation tooling batch Test.ps1 -NoRestore passes; log
+artifacts/package-delivery/list-mutation-root-final-test.log. The initial sandbox
+run could not resolve a temporary Java fixture directory; its diagnostic log is
+artifacts/package-delivery/list-mutation-root-sandbox-test.log. The unchanged
+gate passes with the required temporary-directory access.

@@ -813,3 +813,19 @@ three local field clears; the epilogue and later effects remain unread. Both
 zero/FFFF return hypotheses pass exact field width/segment, selector push and
 no-intervening-result-branch controls. This proves only the bounded conditional
 caller contract and cannot establish completion of the whole helper.
+
+## Head and predecessor mutation effect controls
+
+Gap 27 acceptance uses FND-CONFIG-168's actual resident entry bounded through
+the list/count phase and the following local service. Installed packages must
+retain the head-link copy, count-one bypass and found-predecessor link copy as
+separate guarded paths, followed by the word decrement before the service call.
+Compare copied value provenance and widths without equating source/destination
+storage or inventing record inputs. Search repetition, missing membership bounds,
+unknown segment/address values and callee effects remain explicit. Balanced
+returns and DS/SS/BP preservation are hypotheses; no memory preservation is added.
+Acceptance: all three local phase contracts and a repeated-search witness pass;
+step/path caps, a lower visit bound and unread-service controls remove their
+respective positive claims. Source configs/reports stay in GAME_DIR. Exit:
+installed controls and Test.ps1 pass; whole-call/native coverage and remaining
+Gap 27 contracts stay open. No src/, spec claims or parity statuses change.
