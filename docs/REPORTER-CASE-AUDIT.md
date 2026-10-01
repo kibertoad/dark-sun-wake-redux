@@ -434,3 +434,30 @@ review retains newest formations and effective segment registers for all modeled
 access types; synthetic controls cover those cases. Gap 20 graph controls still
 pass on this final pin. Gap 21's tooling request is accepted and removed without
 claiming native segment state or runtime aliasing.
+
+## Gap 15 guarded caller-local order follow-up
+
+Toolkit PR 41, commit bab129c on 67340fc, retains the flat incoming inventory
+and groups confirmed calls by verified containing entry and necessary CFG guard
+edges. Sequence order comes from continuation reachability, not file-address
+sorting. Branch alternatives and incomplete/shared/contested ordering stay
+explicit. Guarded loops are ordered per shared-guard visit, with recurrence
+retained. Adjacent CMP/TEST context requires a sole predecessor. Cleanup is
+observed after an assumed return and never proves return success, preserved state
+or callee effects; those remain a gap.
+
+GAME_DIR/analysis/reporter-audit/call-order-controls/verify-candidate.mjs uses
+all source-derived overlay exports and FND-CONFIG-119's recorded controls.
+It retains all seven confirmed incoming sites and proves two three-call groups
+and the conditional seventh call within their guard visits. The signed local
+word comparisons, independent guard thresholds and eight-byte cleanup remain
+explicit. Outer-loop recurrence is preserved rather than flattened into a
+single execution. False-alternative and entry/result/instruction/analysis cap
+controls reject positive ordering claims. Configs/reports stay local.
+
+Synthetic reversed-address sequence, alternatives, ambiguous comparison
+predecessors, shared guards, cleanup, guarded recurrence, shared/overlapping
+ownership, caps and source bridge pass, along with full toolkit policy/build/
+test/package gates; logs artifacts/call-order-final-*. Gap 15 remains open until
+reviewed merge, exact adoption and whole-contract rerun. Root pin remains
+67340fc; no game spec, parity status or research queue changed.

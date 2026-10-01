@@ -3,7 +3,7 @@
 These are the remaining requests for the restoration template and shared analysis
 tooling. They describe tooling behavior, not claims about the original game.
 
-Current website, toolkit and template main revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Website `ca39d07`, toolkit `67340fc` and template `beaade0` add call-target, bounds, owner, incoming-coverage and carry/loop reporter capabilities; the facts gate passes and Dark Sun acceptance cases are recorded in docs/REPORTER-CASE-AUDIT.md. Game-specific requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 4, 8, 10, 11, 12, 13, 14, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 28 and 38 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
+Current website, toolkit and template main revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Website `ca39d07`, toolkit `67340fc` and template `79d18a2` add call-target, bounds, owner, incoming-coverage and carry/loop reporter capabilities; the facts gate passes and Dark Sun acceptance cases are recorded in docs/REPORTER-CASE-AUDIT.md. Game-specific requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 4, 8, 10, 11, 12, 13, 14, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 28 and 38 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
 Delivered capabilities, closure evidence and remaining limits are recorded in
 [the adoption record](docs/TEMPLATE-ADOPTION.md).
 
@@ -33,6 +33,11 @@ its runtime use is established. A synthetic fixture with different values at
 `0x3A` and `0xC2` would guard against this false screen-background claim.
 
 ## 15. Preserve ordering and shared guards in incoming-call summaries
+
+**Current disposition:** toolkit PR 41 adds flat incoming coverage with verified
+caller groups, guard-visit order, cleanup continuations and explicit callee-effect
+gaps. Candidate source/synthetic/cap controls pass; keep open pending reviewed
+merge, exact adoption and whole-contract rerun.
 
 FND-CONFIG-119's seven calls to one helper are two guarded three-call
 sequences followed by a conditional seventh call. A flat incoming-call list

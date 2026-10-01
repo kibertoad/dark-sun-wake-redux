@@ -439,3 +439,13 @@ owner regressions. Canonical NoRestore gate passes, including Test.ps1 and
 Release build/publish/smoke; log artifacts/merged-graph-provenance-validation.log.
 Template PR 43 already contains this pin at 5ee4f81; exact integrity verified
 and all applicable CI passes. No duplicate update was pushed.
+
+Gap 15 candidate PR 41 (2026-10-01): whole source controls, synthetic
+Python/Node bridge/documentation, repository policy, .NET restore/build/tests and
+packages pass; logs artifacts/call-order-final-*. Candidate is not adopted.
+
+Template PR 43 final merge adoption (2026-10-01): merge 79d18a20 has the
+identical tree to reviewed 5ee4f81; exact toolkit pin remains 67340fc.
+Root canonical NoRestore validation passes after the Gap 15 candidate records,
+including Test.ps1 and Release build/publish/smoke; log
+artifacts/call-order-pr41-root-validation.log.

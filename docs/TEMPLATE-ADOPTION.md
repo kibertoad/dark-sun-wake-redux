@@ -309,4 +309,7 @@ provenance, dereference registers on string/XCHG/far-load accesses and bounded
 newest-formation retention. Adopted exact source/tests/guide; template PR 43
 already carries both merged graph and provenance revisions at commit
 5ee4f81e7296bdc27a6425056600f1bc53acbe7f. Its applicable CI is green;
-the PR remains open. Local duplicate update discarded after verification.
+the PR merged as 79d18a20cb4d97c7153e74e5695cbb80e7ebf73e. The merged tree
+is identical to that reviewed update (b2ef1cbe9c292997c2fd20b3460c54f9568d7a6a),
+so the already adopted configured changes need no further code delta. Local
+duplicate update discarded after verification.
