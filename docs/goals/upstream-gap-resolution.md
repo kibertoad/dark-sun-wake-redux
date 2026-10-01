@@ -25,7 +25,7 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 - Gap 10: closed; entire request passes adopted target/format/boundary controls recorded in docs/REPORTER-CASE-AUDIT.md.
 - Gap 11: open; full request and cited controls in gaps.md.
 - Gap 12: closed; actual two-entry tag/target controls and rejected third entry, recorded in docs/REPORTER-CASE-AUDIT.md.
-- Gap 13: open; full request and cited controls in gaps.md.
+- Gap 13: open; complete known caller controls pass; pointer exclusion qualification passes as toolkit PR 34 candidate, pending reviewed merge and exact adoption.
 - Gap 15: open; full request and cited controls in gaps.md.
 - Gap 16: closed; reviewed merged source adopted and actual controls reverified.
 - Gap 17: open; full request and cited controls in gaps.md.
@@ -58,8 +58,9 @@ Synthetic success and broad guidance do not close a game-case request. Current s
 
 ## Handover
 
-- Stage: Slices; research-side tooling only. No original runtime or gameplay changes.
-- Adopted toolkit PR 33 at exact merge f8c51bfc5d167c25a04f2b6ddb3f7390714dc45f, with the new dispatch/pointer modules and tests. Source controls in GAME_DIR/analysis/reporter-audit/dispatch-pr-controls/verify-adopted.mjs pass; gap 13 remains open because unresolved candidates and remaining caller controls prevent whole-request acceptance. Gap 11 remains open pending full-contract review.
-- Offline validation work is saved in Git stash `offline-validation-work-in-progress`; its candidate template checkout is artifacts/upstream-offline-pr. The first sandbox offline run failed a synthetic suite, so do not claim acceptance. Restore this work after adoption and diagnose the log artifacts/offline-validation-local.log.
-- Next: propose the exact merged toolkit adoption upstream to the template; extend individually evidenced selector/setup/relative dispatch declarations and complete gap 13 controls. Continue all remaining requests in gaps.md; no reduced completion condition.
-- Root adoption gate log: artifacts/merged-dispatch-adoption-final.log. Do not push this restoration unless requested.
+- Stage: Slices; research-side tooling only. No original runtime, gameplay, spec claims or parity statuses changed.
+- Last gate: 2026-10-01 tools/Invoke-Validation.ps1 passes; log artifacts/gap13-followup-root-validation.log. Exact root reporter pin f8c51bfc5d167c25a04f2b6ddb3f7390714dc45f remains intact.
+- Priority: gap 13. Toolkit PR 34, branch tooling/qualify-pointer-inventory-exclusions in artifacts/upstream-dispatch-pr, commit 4ad9179, is open with all CI jobs passing. Shared candidate gates and licensed-source controls pass; do not claim adopted closure before reviewed merge. Acceptance records are in REPORTER-CASE-AUDIT.
+- Replay: GAME_DIR/analysis/reporter-audit/gap13-dispatch-complete/verify.mjs runs adopted caller controls; verify-pointers-candidate.mjs runs candidate pointer controls. Verify source identity before querying; keep all configs/reports local. No unresolved control remains beyond the reviewed-adoption step for these cases; rerun the whole contract after merge.
+- Unfinished: offline validation root work is in stash offline-validation-work-in-progress; candidate template checkout artifacts/upstream-offline-pr. The first restricted run failed synthetic child PowerShell execution-policy checks, not dependency restore. Diagnose artifacts/offline-validation-local.log before claiming acceptance. Template adoption of the new modules is still pending; other gap requirements remain in gaps.md.
+- Next: monitor/review toolkit PR 34; after merge adopt exact modules/guide/tests and rerun caller, pointer and capped/partial controls before closing gap 13. Propose the final exact reporter adoption to the template. Resume offline work and all other open requests; never reduce the goal condition or push this restoration without request.
