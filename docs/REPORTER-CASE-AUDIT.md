@@ -524,3 +524,40 @@ artifacts/effect-path-*. No original fixtures or claims changed. This is the
 shared summary slice only: all cited Gap 27 child, transfer, cleanup, predicate
 and restoration source cases and reviewed registry adoption are still required.
 Gap 27 stays open with its full original contract unchanged.
+
+## Merged engine 0.4.0 adoption, 2026-10-02
+
+Toolkit PRs 41, 43 and 45 are merged. The published engine 0.4.0 wheel is
+installed by its exact SHA-256 requirements lock; npm reader/checker remain
+0.1.0. Installed-package source drivers have no PYTHONPATH override and use the
+configured withEngine routing. All retained adopted drivers pass, including
+ownership, graph, dispatch/pointer inventories, operand overlap, strings and
+IRET boundaries. Local configs/reports remain in GAME_DIR.
+
+Gap 15's complete FND-CONFIG-119 contract passes using
+GAME_DIR/analysis/reporter-audit/call-order-controls/verify-adopted.mjs:
+flat coverage, verified containing entry, sequence groups/shared guards,
+recurrence, cleanup and explicit unresolved callee effects. False-alternative
+and nonvacuous entry/result/instruction/analysis caps reject positive claims.
+Gap 15 is closed after merged delivery and canonical gates.
+
+Gap 26's complete declared width/encoding contract passes using
+GAME_DIR/analysis/reporter-audit/return-flow-controls/verify-adopted.mjs.
+Actual initializer failure/low-byte store and unsigned-reader rejection are
+retained. Wrapper normalization, sibling-byte extension/nonzero gate and signed
+raw-dimension consumers pass under explicitly conditional callee models.
+Failure roles remain distinct from raw field roles; no successful initialization,
+resource acceptance or live failure occurrence is inferred. Wrong encoding,
+out-of-width declarations and nonvacuous result/consumer/analysis/step/path caps
+reject the positive control. These qualifications remain part of the tooling
+contract. Gap 26 is closed; no native evidence or spec status changed.
+
+Gap 27's installed effect-order driver passes the SCRIPT wrapper early returns
+and retains stopped service routes and incomplete fill paths. This is only a
+verified slice: the complete fill, child, cleanup, last-predicate and snapshot
+contracts cited in gaps.md remain outstanding. Gap 27 stays open unchanged.
+Source logs: each adopted driver has a sibling *-engine040.log; no source report
+or configuration is committed. Normal and unavailable-proxy NoRestore configured
+validation pass, including Test.ps1, Release build and assetless publish/smoke;
+template normal and offline canonical gates also pass. Logs:
+artifacts/package-delivery/{root,template}-engine040-{normal,offline}.log.

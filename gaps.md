@@ -32,53 +32,6 @@ separately from copied control data, and label the latter as uncertain until
 its runtime use is established. A synthetic fixture with different values at
 `0x3A` and `0xC2` would guard against this false screen-background claim.
 
-## 15. Preserve ordering and shared guards in incoming-call summaries
-
-**Current disposition:** toolkit PR 41 adds flat incoming coverage with verified
-caller groups, guard-visit order, cleanup continuations and explicit callee-effect
-gaps. Candidate source/synthetic/cap controls pass; keep open pending reviewed
-merge, exact adoption and whole-contract rerun.
-
-FND-CONFIG-119's seven calls to one helper are two guarded three-call
-sequences followed by a conditional seventh call. A flat incoming-call list
-could be mistaken for alternative dispatch branches. The distinction matters
-because each invocation captures and restores state before the next begins.
-
-**Request:** let the shared reporter group calls by verified containing entry
-and show their local order, cleanup continuation and observed shared guard.
-Keep a flat inventory for coverage, but label whether a group is a sequence,
-branch alternatives or still unread. Do not infer preserved state or successful
-return merely from consecutive call locations; retain callee effects as an
-explicit gap unless separately read. This complements the function-ownership
-request in item 11.
-
-## 26. Preserve return widths and failure encodings at each caller
-
-FND-CONFIG-156 reads an initializer whose early allocation-failure
-path returns the word FFFF. Its caller stores only AL and the next
-caller tests only for zero. Treating every nonzero result as success
-would discard a concrete failure path. A different wrapper in
-FND-CONFIG-157 explicitly compares the full return word with FFFF
-before producing a boolean.
-
-**Request:** shared call summaries should retain each callee's return
-width and known result encodings, every caller's truncation or extension,
-the stored width and the actual branch predicate. Do not infer successful
-initialization from a nonzero check when failure encodings also pass it.
-Keep live failure occurrence and player-visible consequences separate
-from the statically demonstrated branch contract.
-
-FND-CONFIG-190 adds unsigned frame-index rejection returning FFFF,
-raw dimension words and a signed consumer gate. Shared return summaries
-must preserve that distinction: the same word can be an explicit index
-failure or a raw field rejected by the consumer. Neither a matching width
-nor a nonnull source establishes accepted resource contents or extent.
-
-Disposition: shared return-flow candidate toolkit PR 43 at f0d05f4 passes recorded initializer,
-wrapper and dimension source controls plus nonvacuous caps/rejected encodings;
-conditional models and unread paths remain explicit. Await reviewed merge,
-exact adoption and final whole-contract rerun. See REPORTER-CASE-AUDIT.
-
 ## 27. Check effect ordering at early exits and before external failure
 
 FND-SCRIPT-019 corrects an old finding that aged slots on every loader

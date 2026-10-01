@@ -493,3 +493,11 @@ wheel in an isolated environment and no PYTHONPATH/source fallback; pre-service
 write and unknown-effect controls pass (artifacts/effect-path-real-package-smoke.log).
 Template CI's checker annotation now names its verified published tag,
 @scientific-method/standard-checker@0.1.0, beside the exact action commit.
+
+Published engine 0.4.0 adoption (2026-10-02): exact registry wheel hash,
+installed-package source controls and configured/template normal and unavailable-
+proxy NoRestore gates pass. Configured validation includes Test.ps1, Release
+build and assetless publish/smoke. Logs artifacts/package-delivery/
+{root,template}-engine040-{normal,offline}.log. Full Gap 15/26 tooling contracts
+pass with conditional-model/native-outcome qualifications retained in
+REPORTER-CASE-AUDIT; Gap 27 remains open beyond its verified wrapper slice.

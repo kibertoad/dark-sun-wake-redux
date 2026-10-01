@@ -26,7 +26,7 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 - Gap 11: closed; merged toolkit PRs 35?37 and template PR 42 adopted exactly; owner/analyzer ranges, source exports and partial/entry-limit rejection controls pass.
 - Gap 12: closed; actual two-entry tag/target controls and rejected third entry, recorded in docs/REPORTER-CASE-AUDIT.md.
 - Gap 13: closed; merged toolkit PR 34 adopted exactly, all caller/pointer and capped/partial controls pass; full contract acceptance in REPORTER-CASE-AUDIT.
-- Gap 15: open; toolkit PR 41 candidate passes source and rejection controls; reviewed merge, exact adoption and final rerun remain required.
+- Gap 15: closed; merged registry engine 0.4.0 passes the complete guarded caller-order, cleanup, flat coverage and rejected/capped controls; qualifications in REPORTER-CASE-AUDIT.
 - Gap 16: closed; reviewed merged source adopted and actual controls reverified.
 - Gap 17: closed; final merged toolkit PR 38 adopted exactly; complete source overlap, width, rejected-control, cap and partial-search cases pass.
 - Gap 20: closed; final merged toolkit PR 39 adopted exactly; shared lookup writes/dependencies, rejected false-cycle and cap controls pass.
@@ -35,7 +35,7 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 - Gap 23: closed; entire request passes adopted target/format/boundary controls recorded in docs/REPORTER-CASE-AUDIT.md.
 - Gap 24: closed; reviewed merged source adopted and actual controls reverified.
 - Gap 25: closed; reviewed merged source adopted and actual controls reverified.
-- Gap 26: open; toolkit PR 43 candidate passes initializer/wrapper/dimension and nonvacuous cap controls; reviewed merge, exact package adoption and final rerun remain required.
+- Gap 26: closed; merged registry engine 0.4.0 passes initializer/wrapper/dimension width and encoding controls plus rejected/nonvacuous caps; conditional models and native limits remain explicit.
 - Gap 27: open; full request and cited controls in gaps.md.
 - Gap 29: open; full request and cited controls in gaps.md.
 - Gap 30: open; full request and cited controls in gaps.md.
