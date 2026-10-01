@@ -29,7 +29,7 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 - Gap 15: open; full request and cited controls in gaps.md.
 - Gap 16: closed; reviewed merged source adopted and actual controls reverified.
 - Gap 17: open; source-tested candidate delivered in toolkit PR 38; reviewed merge, exact adoption and whole-contract rerun remain.
-- Gap 20: open; full request and cited controls in gaps.md.
+- Gap 20: open; source-tested candidate delivered in toolkit PR 39; reviewed merge, exact adoption and whole-contract rerun remain.
 - Gap 21: open; full request and cited controls in gaps.md.
 - Gap 22: closed; entire request passes adopted target/format/boundary controls recorded in docs/REPORTER-CASE-AUDIT.md.
 - Gap 23: closed; entire request passes adopted target/format/boundary controls recorded in docs/REPORTER-CASE-AUDIT.md.
@@ -59,9 +59,10 @@ Synthetic success and broad guidance do not close a game-case request. Current s
 ## Handover
 
 - Stage: Slices; research-side tooling only. No original runtime, gameplay, spec claims or parity statuses changed.
-- Last gate: 2026-10-01 tools/Invoke-Validation.ps1 -NoRestore passes, including Test.ps1, Release build and assetless publish/smoke; log artifacts/overlap-pr38-root-validation.log. Earlier normal/offline adoption gates pass. Exact reporter pin remains c133cd48bfe6cc3cb7126616996e7d548982a068; template PR 42 merge beaade054a3c125206166771b8a632ea745dc33e.
-- Gaps 4, 11 and 13 remain closed after reviewed merged adoption and whole-contract source/control acceptance. No pending adoption for toolkit PRs 35-37 or template PRs 41-42.
-- Gap 17: toolkit PR 38 is open, branch tooling/operand-overlap-candidates in artifacts/operand-overlap-pr, commit 0da750d, rebased on c133cd4. Candidate Python, full Node bridge/documentation, policy, .NET restore/build/tests and packages pass; logs artifacts/overlap-candidates-final-*. Verify/Ubuntu CI jobs pass; Windows documentation job was confirmed in progress on the last poll.
-- Local source acceptance: GAME_DIR/analysis/reporter-audit/operand-overlap-controls/verify-candidate.mjs passes. Configs/reports stay local. Root has not adopted the candidate; Gap 17 stays open until reviewed merge, exact adoption and whole-contract rerun. No remaining autostash or dirty candidate files.
-- Next: inspect PR 38 reviewed delivery and adopt when merged; investigate Gap 20 shared-node reuse versus actual recursive paths and per-caller effects/dependencies; continue remaining stable requests in gaps.md. Full goal condition remains unchanged.
+- Last gate: 2026-10-01 tools/Invoke-Validation.ps1 -NoRestore passes, including Test.ps1, Release build and assetless publish/smoke; log artifacts/callee-pr39-root-validation.log. Exact reporter pin remains c133cd48bfe6cc3cb7126616996e7d548982a068; template PR 42 merge beaade054a3c125206166771b8a632ea745dc33e.
+- Gaps 4, 11 and 13 remain closed after reviewed merged adoption and whole-contract source/control acceptance. Toolkit PRs 35-37 and template PRs 41-42 are adopted.
+- Gap 17: toolkit PR 38 is open with all CI green; branch tooling/operand-overlap-candidates in artifacts/operand-overlap-pr, commit 0da750d. Candidate source controls and all toolkit gates pass; logs artifacts/overlap-candidates-final-*.
+- Gap 20: toolkit PR 39 is open with all CI green; branch tooling/bounded-callee-graph in artifacts/callee-graph-pr, commit c33f1b6 on c133cd4. Candidate source, synthetic graph/bridge/ownership controls and policy/build/test/package gates pass; logs artifacts/callee-graph-final-*.
+- Local source acceptance drivers remain under GAME_DIR/analysis/reporter-audit/operand-overlap-controls and callee-graph-controls. Keep source configs/reports local. Neither candidate is adopted; gaps remain open pending reviewed merge, exact adoption and whole-contract rerun. Candidate worktrees are clean; no autostash remains.
+- Next: inspect PRs 38/39 reviewed delivery and adopt when merged; address Gap 21 segment provenance for caller-formed near pointers and DS/SS dereferences using FND-CONFIG-145 controls; continue all remaining stable requests in gaps.md. Full goal condition remains unchanged.
 - Post-commit process audits found no confirmed orphan belonging to this work. Preserve reusable MSBuild workers and uncertain/other-repository processes. Do not push this restoration unless requested.
