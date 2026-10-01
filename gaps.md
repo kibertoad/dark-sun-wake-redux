@@ -3,7 +3,7 @@
 These are the remaining requests for the restoration template and shared analysis
 tooling. They describe tooling behavior, not claims about the original game.
 
-Current website, toolkit and template main revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Website `ca39d07`, toolkit `313bb7d` and template `8d0eef3` add call-target, bounds, owner, incoming-coverage and carry/loop reporter capabilities; their Dark Sun cases have not been run because executable analysis is blocked by the facts gate. Game-specific requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 12, 14, 16, 18, 19, 24, 25, 28 and 38 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
+Current website, toolkit and template main revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Website `ca39d07`, toolkit `313bb7d` and template `8d0eef3` add call-target, bounds, owner, incoming-coverage and carry/loop reporter capabilities; the facts gate passes and Dark Sun acceptance cases are recorded in docs/REPORTER-CASE-AUDIT.md. Game-specific requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 8, 10, 12, 14, 16, 18, 19, 22, 23, 24, 25, 28 and 38 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
 Delivered capabilities, closure evidence and remaining limits are recorded in
 [the adoption record](docs/TEMPLATE-ADOPTION.md).
 
@@ -30,21 +30,6 @@ start address. The join tool now accepts the manifest path explicitly.
 **Request:** define a portable encoding of manifest paths for coverage files and
 check that the path and each address prefix resolve to the same manifest entry.
 
-## 8. Resolve one FBOV far-call fixup target on demand
-
-While tracing the Start Game setup helper, raw overlay instructions appeared
-to call segments such as `0160` and `01D0`. Those words are FBOV descriptor
-encodings; the descriptor table resolves them to different resident segments,
-and one call resolves to an overlay trampoline. Treating the encoded word as a
-resident segment sends a researcher to unrelated bytes. The current overlay
-map reports code ranges, but does not answer this one-call target question.
-
-**Request:** add a bounded lookup to the shared FBOV tooling that accepts one
-shipped-file call-site offset, verifies that the segment operand has a fixup,
-and reports its descriptor index, resolved segment and target address or
-trampoline. Make an absent fixup explicit so the tool does not assign a
-plausible target to an unrelocated word.
-
 ## 9. Distinguish a window image from copied control data in UI catalogs
 
 `UiWindowResource` currently reports `Window.ImageResourceNumber` from
@@ -57,21 +42,6 @@ the whole window, even though it belongs to the copied edit-box record.
 separately from copied control data, and label the latter as uncertain until
 its runtime use is established. A synthetic fixture with different values at
 `0x3A` and `0xC2` would guard against this false screen-background claim.
-
-## 10. Normalize resident MZ far-call targets before citing them
-
-While tracing the message window's child registration, the raw far-call
-segment operands `2EBE` and `2F96` initially looked like resident addresses.
-In this Ghidra import the load image begins at segment `1000`, so the mapped
-targets are `3EBE:0008` and `3F96:000B`. Reading the raw operands as mapped
-addresses led to unrelated bytes; FND-CONFIG-031 was corrected in the next
-research batch. This is separate from the FBOV fixup problem in item 8.
-
-**Request:** give the shared executable-analysis tooling a bounded far-call
-target reporter for ordinary MZ relocations. For one call site, show the raw
-operand, whether its segment word is relocated, the import's load segment,
-the mapped segment:offset and the shipped-file offset. Make the distinction
-between a raw operand and a citable mapped address explicit.
 
 ## 11. Show function ownership alongside bounded call-chain reports
 
@@ -196,50 +166,6 @@ copy writes an explicit SS destination, numeric conversion writes through
 near DS offsets, the caller reads SS bytes, and filename stores use DS.
 Shared summaries must retain each step's segment provenance rather than
 infer one buffer from matching offsets or loaded template lengths.
-
-## 22. Validate descriptor selection before range and fixup inventories
-
-The caller query following FND-CONFIG-147 failed while treating a
-resident descriptor as an overlay. The scratch selector tested the
-resident/code flag instead of the overlay flag. The same selector had
-been used for FND-CONFIG-146's literal query. FND-CONFIG-148
-supersedes that method description after a validated repeat confirms
-its positive and rejected candidates.
-
-**Request:** shared bounded-query entry points should validate the
-spec-defined descriptor flag, header trap, resident trampoline bounds,
-payload and fixup bounds, and fixup operand membership before scanning.
-Require the build's known range and fixup counts as positive controls,
-and fail at range construction instead of allowing invalid ranges to
-be silently clipped or used in a negative finding.
-
-FND-CONFIG-183 follows a raw call through its declared descriptor and
-resident trampoline to a complete overlay body, while FND-COMBAT-009
-retains an unreconciled mapped-decompiler target for the same caller.
-Shared reports should retain all three identities: the raw fixup token,
-the descriptor/trampoline destination and the analysis environment's
-mapped address. A decompiler target name must not silently replace that
-chain. Reconcile mapping provenance before merging the two readings.
-
-## 23. Distinguish function-body byte counts from contiguous bounds
-
-The 07B1 resource reader's inventory size is 546 bytes, while its
-contiguous entry-to-return span is 549 bytes. A skipped three-byte
-instruction explains the difference. Adding the inventory's size to its
-start truncated the scratch reading before the return; FND-CONFIG-151
-uses the verified instruction-path return instead.
-
-**Request:** shared bounded readers must treat the inventory size as a
-body-byte count, not an end address. Derive local read bounds from
-verified exits and control flow, report holes or discontiguous bodies,
-and reject a claimed complete reading that lacks its return or tail
-transfer. Keep richer boundary reports local-only so the committed
-inventory retains the Standard's allowed columns.
-
-FND-CONFIG-158 also follows a mode-setter branch beyond its first far
-return to a second return. Finding one return is not a complete bound:
-shared readers should follow every reachable branch target and exit before
-claiming that a function's local effects have been covered.
 
 ## 26. Preserve return widths and failure encodings at each caller
 
@@ -577,3 +503,4 @@ normalization modulus and established caller input ranges separately.
 Keep static counterexamples labeled as arithmetic examples until their
 native reachability is established. A restricted caller range can support
 a local conclusion without upgrading it to a universal safety claim.
+

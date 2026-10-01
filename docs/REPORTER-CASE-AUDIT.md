@@ -165,3 +165,33 @@ completeWithinModel false result.
 Canonical Invoke-Validation.ps1 passes, including Test.ps1, locked restore,
 Release build and assetless publish/smoke; log: artifacts/reporter-rerun-validation.log.
 
+
+## Target, format and boundary controls, 2026-10-01
+
+The adopted reporter remains toolkit 313bb7d (website ca39d07, template
+8d0eef3; exact revisions in TEMPLATE-ADOPTION). Installed DSUN.EXE length,
+SHA-256 and XXH3-128 match SOURCE-EDITIONS. All queries use the Node loader's
+source-derived mappings. Known controls are independently recorded in
+FND-EXE-002 through FND-EXE-005: 229 descriptors, 49 overlays, 8,262 fixups
+and 854 trampolines. They are asserted before the instruction query runs.
+Local configurations, reports and replay/assertion drivers live under
+GAME_DIR/analysis/reporter-audit/target-controls and boundary-controls.
+No original runtime, emulated call, game claim or parity status changed.
+
+| Gap | Cases and acceptance disposition |
+| --- | --- |
+| 8 | target-controls/run.mjs and verify.mjs check the Start Game helper's 0160 and 01D0 FBOV encodings and its overlay-182 common-exit call from FND-CONFIG-028. Reports preserve the raw word, descriptor 44/58/182, source fixup membership, load segment, resolved address and canonical destination; the overlay call retains its resident trampoline and overlay file citation. Every positive call is an entry-path instruction. The actual no-fixup raw candidate produces relocated false and no target; its unverified boundary stays explicit. Adopted synthetic tests also cover an instruction-boundary no-relocation control. Entire bounded mapping request passes and closes. |
+| 10 | The two child-registration operands in FND-CONFIG-031 report raw 2EBE:0008 and 2F96:000B, source MZ relocation membership, load segment 1000, mapped 3EBE:0008 and 3F96:000B, and the correct shipped-file destinations/citations from FND-CONFIG-032. The APFM branch is entry-path verified after declaring the table-derived branch entries; the BUTN site remains explicitly a raw candidate under this walk. The requested relocation mapping passes for both; no whole registration-flow claim is made. Entire normalization request closes. |
+| 22 | FND-CONFIG-179/183's call retains raw 0640:0025, descriptor 200, loaded 5773:0025, resident trampoline and canonical overlay file target. FND-COMBAT-009's analyzer address is retained alongside it and flagged as disagreeing; the two game readings are not merged or modified. Wrong range/fixup counts, resident-descriptor selection, invalid trampoline selection and escaping regions fail before querying. verify-malformed.mjs mutates copies in memory only and verifies header trap, resident-as-overlay, payload/code bounds, odd fixup size, fixup operand extent and trampoline table/target bounds are rejected. Entire format/mapping-validation request passes and closes. |
+| 23 | boundary-controls/run.mjs and verify.mjs reproduce FND-CONFIG-151's body-byte count, three-byte hole and later far return; the analyzer comparison lists the return beyond start plus body size. FND-CONFIG-158's mode setter reports both far-return exits, retaining explicit port/interrupt continuation assumptions. Truncating the resource reader at start plus size or the setter at its first return produces complete false and named gaps. This proves local bounds, not callee effects or native hardware behavior. Entire boundary-report request passes and closes. |
+| 11 | The setup control is owned by FND-CONFIG-092's setup entry. The handler call is rejected as setup-owned and retains the intervening setup return as a warning; however, the handler's indirect dispatch stops its body traversal and leaves ownership unresolved. This correctly avoids the earlier false adjacency claim but does not prove the requested full handler ownership. Keep open. |
+
+The missing-fixup control is a byte-candidate test, not a new instruction
+claim. Known format counts are acceptance constants, not coverage percentages.
+Negative range controls never convert an incomplete local body into a complete
+Standard reading. No proprietary source or raw report is committed.
+
+Canonical Invoke-Validation.ps1 passes after these closures, including Test.ps1,
+locked restore, Release build and assetless publish/smoke.
+Validation log: artifacts/target-boundary-validation.log.
+

@@ -20,9 +20,9 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 - Gap 3: closed; shared join exactly reproduces actual original-resident/mapped-overlay inventory.
 - Gap 4: open; full request and cited controls in gaps.md.
 - Gap 5: partial; portable/legacy identity checks pass, distinct disc-source validation pending; PR 33 merged and adopted.
-- Gap 8: open; full request and cited controls in gaps.md.
+- Gap 8: closed; entire request passes adopted target/format/boundary controls recorded in docs/REPORTER-CASE-AUDIT.md.
 - Gap 9: open; full request and cited controls in gaps.md.
-- Gap 10: open; full request and cited controls in gaps.md.
+- Gap 10: closed; entire request passes adopted target/format/boundary controls recorded in docs/REPORTER-CASE-AUDIT.md.
 - Gap 11: open; full request and cited controls in gaps.md.
 - Gap 12: closed; actual two-entry tag/target controls and rejected third entry, recorded in docs/REPORTER-CASE-AUDIT.md.
 - Gap 13: open; full request and cited controls in gaps.md.
@@ -31,8 +31,8 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 - Gap 17: open; full request and cited controls in gaps.md.
 - Gap 20: open; full request and cited controls in gaps.md.
 - Gap 21: open; full request and cited controls in gaps.md.
-- Gap 22: open; full request and cited controls in gaps.md.
-- Gap 23: open; full request and cited controls in gaps.md.
+- Gap 22: closed; entire request passes adopted target/format/boundary controls recorded in docs/REPORTER-CASE-AUDIT.md.
+- Gap 23: closed; entire request passes adopted target/format/boundary controls recorded in docs/REPORTER-CASE-AUDIT.md.
 - Gap 24: closed; reviewed merged source adopted and actual controls reverified.
 - Gap 25: closed; reviewed merged source adopted and actual controls reverified.
 - Gap 26: open; full request and cited controls in gaps.md.
@@ -69,4 +69,5 @@ Synthetic success and broad guidance do not close a game-case request. Current s
   3. Write x86-bounds and x86-owner cases: gap 23 (FND-CONFIG-151 and FND-CONFIG-158's mode-setter branch, reporting holes) and gap 11 (FND-CONFIG-092's chain across the overlay setup routine).
   4. Rerun gap13-selector/-setup/-later-relative with declared `segments` and read `coverage`, `partialSearch`, `position` and `unresolvedTransfers`: FND-CONFIG-101 needs all eleven selector calls, FND-CONFIG-111 all six setup calls with the stored inventory as positive control, plus the FND-CONFIG-128 relative calls and FND-CONFIG-114 pointer canonicalization.
   5. Record each result in REPORTER-CASE-AUDIT.md (rewrite the case row, add new ones), close a gaps.md entry and move it to the ledger only when its whole request passes, open an upstream issue or PR for any new reporter limit, then run the gate and commit one batch.
+
 
