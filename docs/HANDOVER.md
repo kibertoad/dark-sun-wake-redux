@@ -15,11 +15,14 @@ See the [work protocol](../vendor/upstream/work-protocol.md#working-files) (line
 
 - Stage: Slices, with slices 2 and 3 in progress. The refreshed Survey
   file-denominator exit needs the Q-EXE-003 re-audit.
-- Last gate: 2026-09-30, `./tools/Test.ps1` passed with repository-local
-  PowerShell 7 (92 Python tests, 41 Node tests, 700 .NET tests; documentation check: 615
-  entries, 158 parity rows, 5 deviations). The full solution builds with no
-  warnings or errors.
-- Latest website, toolkit and template main revisions are fully adopted with exact source pins; see `docs/TEMPLATE-ADOPTION.md`. The case acceptance audit is in `docs/REPORTER-CASE-AUDIT.md`; `gaps.md` has 37 remaining requests. PE32 and segmented synthetic suites run in the canonical gate.
+- Last gate: 2026-10-01, `./tools/Test.ps1` passed with repository-local
+  PowerShell 7; output is in `artifacts/migration-final-acceptance.log`.
+  Full solution build and assetless Release publish/smoke pass.
+- The adopted website, toolkit and template revisions have exact source pins;
+  see `docs/TEMPLATE-ADOPTION.md` and `docs/REPORTER-CASE-AUDIT.md`.
+  CI includes all adopted regression suites, research tracking and local policy.
+  Hosted verification and every installer pass in
+  [CI run 36799584294](https://github.com/kibertoad/dark-sun-wake-redux/actions/runs/36799584294).
 - Probe is none. Native DOSBox access remains owner-only; no draw probe or
   RNG hook has been implemented by this update.
 - Offline checker and section-link verification pass. Snapshot/configuration
@@ -27,11 +30,13 @@ See the [work protocol](../vendor/upstream/work-protocol.md#working-files) (line
 
 ## Unfinished
 
-None.
+No unfinished migration changes. Research follow-up remains in `queue/` and
+`gaps.md`.
 
 ## Blockers
 
-None known.
+No migration blocker. High/mixed-DPI original-window capture remains
+unverified and requires owner validation; native runtime stays owner-only.
 
 ## Next
 
