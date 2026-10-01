@@ -3,7 +3,7 @@
 These are the remaining requests for the restoration template and shared analysis
 tooling. They describe tooling behavior, not claims about the original game.
 
-Current website, toolkit and template main revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Website `ca39d07`, toolkit `313bb7d` and template `8d0eef3` add call-target, bounds, owner, incoming-coverage and carry/loop reporter capabilities; the facts gate passes and Dark Sun acceptance cases are recorded in docs/REPORTER-CASE-AUDIT.md. Game-specific requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 8, 10, 12, 14, 16, 18, 19, 22, 23, 24, 25, 28 and 38 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
+Current website, toolkit and template main revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Website `ca39d07`, toolkit `f8c51bf` and template `8d0eef3` add call-target, bounds, owner, incoming-coverage and carry/loop reporter capabilities; the facts gate passes and Dark Sun acceptance cases are recorded in docs/REPORTER-CASE-AUDIT.md. Game-specific requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 8, 10, 12, 14, 16, 18, 19, 22, 23, 24, 25, 28 and 38 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
 Delivered capabilities, closure evidence and remaining limits are recorded in
 [the adoption record](docs/TEMPLATE-ADOPTION.md).
 
@@ -58,6 +58,11 @@ to its supposed caller. Prologues and returns are useful warnings, but
 must not silently stand in for a verified function boundary.
 
 ## 13. Provide a target-specific incoming-call inventory for FBOV and MZ
+
+**Current disposition:** all known caller positive controls pass with the
+adopted reporter and evidenced dispatch tables. Toolkit PR 34 supplies the
+remaining pointer-domain exclusion qualification; its full source controls
+pass as a candidate. Keep open until reviewed merge, exact adoption and rerun.
 
 FND-CONFIG-100 and FND-CONFIG-101 needed repeated temporary queries over
 FBOV fixups, MZ relocations and one overlay's relative-call candidates to

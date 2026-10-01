@@ -244,3 +244,39 @@ adoption. Gaps 11 and 13 stay open, including the remaining incoming controls.
 
 Adopted exact toolkit revision f8c51bfc5d167c25a04f2b6ddb3f7390714dc45f, including dispatch and pointer modules, guide and synthetic tests. The adopted source driver in GAME_DIR/analysis/reporter-audit/dispatch-pr-controls/verify-adopted.mjs passes: the independently checked four-target declaration identifies the handler owner; a partial declaration remains incomplete. The relocated pointer inventory retains unresolved candidates and reports negativeUsable false. Gap 13 remains open; these controls do not satisfy its entire caller/pointer contract.
 
+
+## Gap 13 complete caller controls and pointer qualification follow-up
+
+The adopted f8c51bf reporter passes all eleven selector, six setup and the
+later resident relative-call positive controls. The licensed-source identity is
+checked before queries. The replay driver is
+GAME_DIR/analysis/reporter-audit/gap13-dispatch-complete/verify.mjs; every
+positive control is a confirmed entry-path instruction, not a raw candidate.
+Searches retain complete declared-domain coverage and explicit unresolved
+computed transfers elsewhere. Source-table declarations use the independently
+recorded discriminator arrays in FND-CONFIG-102/128, and bounded reads of the
+exported caller dispatch consumers identified in FND-CONFIG-106/111/126. Nested
+event dispatches are included; no call-site start is added to bypass them.
+The resident declaration is used only under its actual segment mapping.
+These controls establish the tooling inventory, not player reachability or
+callee effects, and do not change spec claims or parity statuses.
+
+Toolkit [PR 34](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/pull/34),
+commit 4ad9179, proposes explicit pointer-domain exclusions. The candidate's
+source driver verify-pointers-candidate.mjs in the same local directory passes
+FND-CONFIG-127's independently known resident relocated-call control, first
+as an exact loaded pair and then with an equivalent alias query. The handler
+query has no exact or aliased target matches. Every formerly unresolved row
+is accounted for: a pair crosses its declared source boundary or its checked
+nonwrapping segmented arithmetic lies outside the resident load image. The
+candidate retains these rows, arithmetic and bounds as exclusions; it does
+not call them resolved pointers. Overflow stays unresolved. All exclusions
+count toward the cap, and the capped source control refuses negativeUsable.
+The uncapped controlled zero result qualifies only the declared adjacent-pair
+representation; computed, unrelocated or runtime-used pointers remain outside
+its scope. No universal absence or game-behavior claim follows.
+
+Candidate gates pass: synthetic Python and Node suites, repository policy,
+.NET build/tests and both package checks. Logs are artifacts/pointer-exclusions-*.
+The root pin remains f8c51bf. Gap 13 remains open until PR 34 is reviewed,
+merged, adopted exactly and the whole source-control suite passes again.
