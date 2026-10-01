@@ -13,46 +13,27 @@ See the [work protocol](../vendor/upstream/work-protocol.md#working-files) (line
 
 ## State
 
-- Stage: Slices, with slices 2 and 3 in progress. The refreshed Survey
-  file-denominator exit needs the Q-EXE-003 re-audit.
-- Last gate: 2026-10-01, `./tools/Test.ps1` passed with repository-local
-  PowerShell 7; output is in `artifacts/migration-reaudit-test.log`.
-  Full solution build and assetless Release publish/smoke pass.
-- The adopted website, toolkit and template revisions have exact source pins;
-  see `docs/TEMPLATE-ADOPTION.md` and `docs/REPORTER-CASE-AUDIT.md`.
-  CI includes all adopted regression suites, research tracking and local policy.
-  The broader golden-template audit is incomplete: see
-  `docs/TEMPLATE-ACCEPTANCE.md` for missing infrastructure and its failing gate.
-  Hosted verification and every installer pass in
-  [CI run 36799584294](https://github.com/kibertoad/dark-sun-wake-redux/actions/runs/36799584294).
-- Probe is none. Native DOSBox access remains owner-only; no draw probe or
-  RNG hook has been implemented by this update.
-- Offline checker and section-link verification pass. Snapshot/configuration
-  tests require the repository-local PowerShell 7 runtime on PATH.
+- Stage: Slices; slices 2 and 3 remain in progress. Survey exit still needs Q-EXE-003.
+- Last gate: 2026-10-01, tools/Invoke-Validation.ps1 and the final tools/Test.ps1 pass with repository-local PowerShell 7. Locked restore, Release build and assetless publish/smoke pass. Logs: artifacts/migration-acceptance.log and artifacts/migration-final-test.log.
+- Relevant template infrastructure gaps are addressed; capability dispositions and validation limits are in docs/TEMPLATE-ACCEPTANCE.md. Existing pinned rules and toolkit remain exact.
+- Signing/release workflow was compared with New Chrome. Shared safeguards are submitted in [template PR 38](https://github.com/kibertoad/refurbished-dinosaurs-template/pull/38). Root changes remain local; only the template PR branch was pushed.
+- Broad exporters compile against public Ghidra APIs and synthetic local-output boundaries pass. No original-game run, DOSBox control or executable analysis occurred.
+- Native runtime remains owner-only. Historical hosted installer acceptance predates this batch; new signing/workflow changes have local synthetic acceptance.
 
 ## Unfinished
 
-No unfinished implementation changes. Full golden-template acceptance still
-needs the capability dispositions in `docs/TEMPLATE-ACCEPTANCE.md`. Research
-follow-up remains in `queue/` and `gaps.md`.
+No unfinished implementation or tooling changes. Research follow-up remains in queue/ and gaps.md.
 
 ## Blockers
 
-Golden infrastructure acceptance fails for bootstrap/version-gate, signing,
-dependency-lock and guarded-export contracts; validation and launcher
-adaptations also need acceptance. High/mixed-DPI original-window capture remains
-unverified and requires owner validation; native runtime stays owner-only.
+Executable analysis requires conclusive latest-patch provenance and the approved baseline SHA-256; the new facts gate rejects the current incomplete record. The owner accepts Patches Scrolls as authoritative patch information. Current site access returned HTTP 403. See docs/SOURCE-EDITIONS.md.
+
+Live signing, repository signing-environment branch protection and high/mixed-DPI original-window capture remain separate acceptance checks. No release was performed.
 
 ## Next
 
-1. Plan and disposition the full-template acceptance gaps recorded in
-   `docs/TEMPLATE-ACCEPTANCE.md` before claiming complete migration.
-2. `Q-EXE-003`, the revised Survey listing/exclusions exit; then
-   `Q-CONFIG-008`, `Q-CONFIG-007` and `Q-CONFIG-002`, for `RULE-CONFIG-005`
-   and `FMT-CONFIG-003`.
-3. `Q-UI-005` and `Q-SAVE-001`, for `SCR-UI-013` and `SCR-UI-014`;
-   `Q-UI-002`, for `SCR-UI-007`.
-4. `Q-CONFIG-001`, the requested Preferences live session;
-   `Q-PARTY-001`, `Q-PARTY-005` and `Q-PARTY-009`.
-5. Rows with evidence already in the spec: `RULE-EXPLORE-002`,
-   `RULE-EXPLORE-003`, `RULE-EXPLORE-004` and `RULE-INPUT-002`.
+1. Resolve latest-version provenance and baseline SHA-256 before further executable analysis.
+2. Q-EXE-003 Survey exit; then Q-CONFIG-008, Q-CONFIG-007 and Q-CONFIG-002 for RULE-CONFIG-005 and FMT-CONFIG-003.
+3. Q-UI-005 and Q-SAVE-001 for SCR-UI-013 and SCR-UI-014; Q-UI-002 for SCR-UI-007.
+4. Q-CONFIG-001 owner live session; Q-PARTY-001, Q-PARTY-005 and Q-PARTY-009.
+5. Review template PR 38; configure ES_CERTIFICATE_THUMBPRINT and main-only release-signing deployment branches before a signed release.
