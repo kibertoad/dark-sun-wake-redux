@@ -26,14 +26,11 @@ No unfinished implementation or tooling changes. Research follow-up remains in q
 
 ## Blockers
 
-Executable analysis requires conclusive latest-patch provenance and the approved baseline SHA-256; the new facts gate rejects the current incomplete record. The owner accepts Patches Scrolls as authoritative patch information. Current site access returned HTTP 403. See docs/SOURCE-EDITIONS.md.
-
 Live signing, repository signing-environment branch protection and high/mixed-DPI original-window capture remain separate acceptance checks. No release was performed.
 
 ## Next
 
-1. Resolve latest-version provenance and baseline SHA-256 before further executable analysis.
-2. Q-EXE-003 Survey exit; then Q-CONFIG-008, Q-CONFIG-007 and Q-CONFIG-002 for RULE-CONFIG-005 and FMT-CONFIG-003.
-3. Q-UI-005 and Q-SAVE-001 for SCR-UI-013 and SCR-UI-014; Q-UI-002 for SCR-UI-007.
-4. Q-CONFIG-001 owner live session; Q-PARTY-001, Q-PARTY-005 and Q-PARTY-009.
-5. Review template PR 38; configure ES_CERTIFICATE_THUMBPRINT and main-only release-signing deployment branches before a signed release.
+1. Q-EXE-003 Survey exit; then Q-CONFIG-008, Q-CONFIG-007 and Q-CONFIG-002 for RULE-CONFIG-005 and FMT-CONFIG-003.
+2. Q-UI-005 and Q-SAVE-001 for SCR-UI-013 and SCR-UI-014; Q-UI-002 for SCR-UI-007.
+3. Q-CONFIG-001 owner live session; Q-PARTY-001, Q-PARTY-005 and Q-PARTY-009.
+4. Review template PR 38; configure ES_CERTIFICATE_THUMBPRINT and main-only release-signing deployment branches before a signed release.
