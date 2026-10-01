@@ -376,3 +376,11 @@ policy, build/tests and packages pass; logs artifacts/callee-graph-final-*.
 Gap 20 stays open pending reviewed merge, exact adoption and whole-contract
 rerun. Root pin remains c133cd4. No original configs, reports or bytes enter Git,
 and no game spec, parity status or research queue changes.
+
+Gap 17 final delivery: merged toolkit PR 38, exact pin
+1ef21ef46567dd108ea082a0a493f7024ba79a07, passes the verify-adopted.mjs
+sibling driver's complete source cases, rejected stripped-start positive control,
+result cap and partial scan controls. Prefix order/repeats and literal-only
+matching use the final reviewed implementation. No unresolved source candidate is
+promoted. The entire Gap 17 tooling contract passes after exact adoption; remove
+its request. This does not establish runtime pointer use or original behavior.

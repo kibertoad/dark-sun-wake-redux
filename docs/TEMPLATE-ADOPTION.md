@@ -287,3 +287,11 @@ Adopted exact reporter source, tests and guide; retained configured validation
 routing and removed the obsolete PYTHONPATH mutation. The merged test suite
 selects the vendored import path itself. Offline validation from PR 41 remains
 explicit and preserves every required check. No standard snapshot refresh.
+
+## Reviewed operand candidate adoption, 2026-10-01
+
+Toolkit PR 38 merged as 1ef21ef46567dd108ea082a0a493f7024ba79a07.
+Exact source, tests and guide adopted, including review refinements for encoded
+literals, repeated prefixes and distinct overlapping starts. Configured source
+controls and clipped/rejected controls pass. Template pin update is proposed
+separately; game behavior and local standard snapshots are unchanged.

@@ -145,3 +145,10 @@ tables in CFG reports. Path reports still stop there. `x86-pointers` inventories
 MZ relocation and FBOV fixup word pairs as exact, alias, unresolved or excluded
 candidates; these are never proof of runtime pointer use. See the pinned guide
 for limits, provenance and partial-search controls.
+
+`x86-operand-candidates` inventories encoded displacement/immediate matches,
+preserving prefix order/repeats, width and overlapping spans. Verified entry-path
+memory uses, rejected overlapping decodes and unresolved boundaries stay separate.
+Implicit operands and relative branch targets are excluded. Controls reject raw
+starts; scan/result caps keep partial coverage and incomplete groups explicit.
+See the pinned guide for the exact contract and exclusions.

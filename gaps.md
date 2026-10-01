@@ -3,7 +3,7 @@
 These are the remaining requests for the restoration template and shared analysis
 tooling. They describe tooling behavior, not claims about the original game.
 
-Current website, toolkit and template main revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Website `ca39d07`, toolkit `c133cd4` and template `beaade0` add call-target, bounds, owner, incoming-coverage and carry/loop reporter capabilities; the facts gate passes and Dark Sun acceptance cases are recorded in docs/REPORTER-CASE-AUDIT.md. Game-specific requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 4, 8, 10, 11, 12, 13, 14, 16, 18, 19, 22, 23, 24, 25, 28 and 38 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
+Current website, toolkit and template main revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Website `ca39d07`, toolkit `1ef21ef` and template `beaade0` add call-target, bounds, owner, incoming-coverage and carry/loop reporter capabilities; the facts gate passes and Dark Sun acceptance cases are recorded in docs/REPORTER-CASE-AUDIT.md. Game-specific requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 4, 8, 10, 11, 12, 13, 14, 16, 17, 18, 19, 22, 23, 24, 25, 28 and 38 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
 Delivered capabilities, closure evidence and remaining limits are recorded in
 [the adoption record](docs/TEMPLATE-ADOPTION.md).
 
@@ -46,36 +46,6 @@ branch alternatives or still unread. Do not infer preserved state or successful
 return merely from consecutive call locations; retain callee effects as an
 explicit gap unless separately read. This complements the function-ownership
 request in item 11.
-
-## 17. Resolve overlapping operand candidates to verified boundaries
-
-**Current disposition:** toolkit PR 38 supplies explicit candidate widths,
-prefixes, overlap groups and entry-path classifications. The rebased candidate
-passes recorded source and negative/cap controls; keep open pending reviewed
-merge, exact adoption and whole-contract rerun.
-
-While preparing FND-CONFIG-136, a raw pointer-operand search produced both
-an actual prefixed double-word comparison and a word-width comparison
-starting one byte into it. Both decode locally, but only the former starts
-at the containing routine's established instruction boundary. Counting both
-would invent a second use and could misstate the pointer's null check.
-The overlapping candidate was rejected before recording the finding.
-
-FND-CONFIG-142 later rejected four apparent writes starting one byte
-before verified reads. Overlap handling therefore needs to cover preceding
-instruction bytes as well as stripped prefixes. Local decodability alone
-does not establish a write or its operand width.
-
-FND-CONFIG-148 also rejects an apparent address store assembled
-from the middle of an addition and its following jump. A matching
-immediate can be an overlapping instruction candidate rather than
-an address-taking use, even when the entire candidate decodes.
-
-**Request:** have shared operand reporters retain prefixes and candidate
-widths, group overlapping decodes, and classify them against a verified
-entry-based instruction path before counting uses. Report unresolved
-boundaries explicitly instead of selecting a width from a locally valid
-decode. This complements item 14's alignment and positive-control checks.
 
 ## 20. Distinguish shared callees from recursive call paths
 

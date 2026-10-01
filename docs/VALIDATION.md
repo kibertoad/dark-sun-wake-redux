@@ -417,3 +417,8 @@ Candidate is not yet adopted; licensed-source artifacts stay outside Git.
 Gap 20 upstream candidate PR 39 (2026-10-01): hash-guarded source controls,
 Python and full Node suites, repository policy, .NET restore/build/tests and both
 packages pass; logs artifacts/callee-graph-final-*. Candidate is not adopted.
+
+Gap 17 final merged adoption (2026-10-01): toolkit 1ef21ef exact pin,
+complete source overlap/width/rejected/cap/partial controls and owner/pointer
+regressions pass. Canonical validation passes, including Test.ps1 and Release
+build/publish/smoke; log artifacts/gap17-merged-adoption-validation.log.
