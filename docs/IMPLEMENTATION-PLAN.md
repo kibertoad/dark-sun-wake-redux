@@ -1,5 +1,14 @@
 # Implementation plan
 
+## Current upstream migration
+
+- **Outcome.** Maintainers use the latest released template and toolkit capabilities with verified local standard and protocol snapshots; the rebuild's behavior and licensed-source contracts remain evidenced by the existing spec.
+- **Evidence.** Compare template commit `79d18a20cb4d97c7153e74e5695cbb80e7ebf73e`, toolkit main and published npm/PyPI versions, and the rules freshness command against the current locks. Record capability dispositions in `docs/TEMPLATE-ACCEPTANCE.md`.
+- **Acceptance.** Reconcile bootstrap, configuration, extraction boundaries, safety, launchers, CI, signing, Ghidra/reporters and documentation semantically. Retain stronger configured contracts with reasons. Keep original content local and CI synthetic; no rule or parity promotion follows a tooling update.
+- **Tests.** Exact dependency/snapshot verification, infrastructure and configuration controls, relevant synthetic reporter checks, and `./tools/Test.ps1` must pass.
+- **Risks and questions.** Preserve the pre-existing scoped-memory candidate plan and ongoing goals. Unpublished candidates do not replace released dependencies. No missing owner decision blocks this migration.
+- **Exit.** Upstream versions are checked, every template capability has an adoption or retention disposition, migration changes pass the canonical gate, and the handover records the result.
+
 This file says what the project intends and what is true now, following the
 [work protocol](../vendor/upstream/work-protocol.md). It holds no dated
 checkpoints, no status narration and no research questions: git keeps the
