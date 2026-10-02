@@ -863,3 +863,45 @@ version metadata and are not published releases. Toolkit PR 63 still needs the
 reviewed implementation and major release classification delivered to its branch,
 merge, paired registry delivery and adopted-package controls. Gap 27 remains
 open for its full contract; no game spec or parity status changed.
+
+## Gap 27 signed-handle, AL and getter-coordinate controls, 2026-10-02
+
+Installed reader 0.2.0 and engine 0.4.0 pass FND-CONFIG-191's complete
+local graphics-wrapper gates under explicit returning-validator and primitive
+result hypotheses. Each signed-negative word-input bypass occurs before any
+validator or primitive request. Nonzero AH with zero AL rejects the primitive,
+including the first-byte bypass that skips the second validator. Two nonzero
+AL results reach the primitive; its modeled zero or FFFF word is forwarded
+without overall result normalization. Model memory/flags and unpreserved
+registers remain unknown, so original argument identity after those calls and
+successful graphics are not inferred.
+
+The coordinate validator also completes its conditional instruction paths with
+all four actual getter bodies traced, without service models. Each signed
+comparison retains its flag producer and word width, first/last ordering,
+non-strict equality admission and separate 320/200 limits. Every described
+branch has both conditional directions represented; failure paths return AL
+zero and the admitted path returns AL one, with AX still unnormalized. Incoming
+handle/slot words remain symbolic, and these paths are not proof of feasible
+native states or slot capacity.
+
+A paired full trace verifies each getter's consumed SS word argument and its
+DS=CS word-field read, keeping the getter's own field offset distinct from the
+handle-derived index. Distinct declared initial SI/DI values and DS are locally
+restored on each validator return. This is instruction-model restoration under
+those query hypotheses, not a general native caller guarantee. The effects
+command intentionally omits ordinary reads; the paired trace supplies their
+provenance rather than treating omitted effect-summary reads as absent accesses.
+
+Nonvacuous step/path caps, unread getter/service regions and an overflowing
+byte-result declaration reject the positive contracts. An unmodeled wrapper
+query retaining both validator/getter traversals exceeds the reader's 32 MiB
+output limit; no complete report was produced. The unread-service rejection
+control therefore declares only the wrapper body. That bounded rejection does
+not establish the omitted child effects. No output or traversal limit was raised.
+
+Driver, configs, reports and verify-adopted-reader020-engine040.log remain in
+GAME_DIR/analysis/reporter-audit/coordinate-gates/. No candidate imports,
+original runtime, game spec or parity status changed. The request's slot
+acquisition/reference chain and partial metadata failure cases, active primitive
+and whole-caller/native behavior remain open. Gap 27 keeps its full contract.

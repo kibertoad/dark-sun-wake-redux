@@ -875,9 +875,9 @@ accepted replacement content and complete Gap 27 remain separate open gates.
 
 The joined parent bracket stops after the first callee's own clear: nested
 unknown-memory call models invalidate its ancestor return-frame bytes. Balanced
-stack height does not establish those bytes. Toolkit PR 63 records a scoped-
-memory plan and synthetic reproductions; preservation is not implemented or
-adopted. Keep this joined acceptance open while independent cache controls proceed.
+stack height does not establish those bytes. Toolkit PR 63 has a locally verified scoped-
+memory candidate and synthetic/source controls; preservation is not adopted
+and its external delivery awaits explicit approval. Keep this joined acceptance open while independent cache controls proceed.
 
 ## Replacement-pointer branch and normalization controls
 
@@ -921,3 +921,24 @@ under explicitly declared frame hypotheses while retaining unknown native effect
 No candidate imports enter adopted controls; no package adoption before reviewed
 merge and registry delivery. Exit: full upstream gates and bounded source cases,
 reviewable PR update, root Test.ps1 and handover. Full goal scope is unchanged.
+
+## Signed-handle, byte-result and coordinate gate controls
+
+Gap 27 acceptance uses FND-CONFIG-191's complete resident graphics wrapper,
+coordinate validator and four getter bodies. Installed packages must keep
+signed-negative handle bypasses distinct from AL-zero validation failures,
+verify that nonzero AH does not override AL zero, and retain the primitive
+request only after two nonzero low-byte results. Model primitive results as
+forwarded words without normalization or successful graphics claims.
+
+Trace the coordinate validator with all four actual getter regions, retaining
+its signed first/last comparisons, equality admission and separate 320/200
+limits, getter input/width/segment provenance, local AL outcomes and unread
+native slot-capacity assumptions. Do not invent concrete incoming stack values
+or interpret symbolic paths as native reachability. Acceptance: source-derived
+bounds and complete local conditional paths where possible, positive gates
+and ordering, malformed/width controls and nonvacuous step/path/unread-region
+rejections. Model effects remain explicitly unknown. Configs/reports remain
+in GAME_DIR. Exit: bounded installed-package controls, Test.ps1, acceptance
+record and handover pass. Full request, active primitives, caller state and
+native outcomes remain open; no game spec or parity status changes.

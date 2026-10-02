@@ -95,6 +95,12 @@ it; a separate request can return FFFF after partial metadata writes.
 Propagate both local and child predicates before describing an actual
 primitive attempt, and track failure writes independently at each layer.
 
+Byte-result summaries must retain AL separately from AH and the full returned
+word: nonzero AH does not turn zero AL into a passed primitive gate. Keep
+signed word-handle bypasses distinct from coordinate validation and show the
+getter argument/segment/field provenance. Locally accepted coordinate bounds
+do not establish slot capacity, native handle reachability or graphics work.
+
 
 Scoped-memory acceptance additionally needs explicit pre-call segment/base,
 byte width and evidence for any saved-frame hypotheses used to join a child to
