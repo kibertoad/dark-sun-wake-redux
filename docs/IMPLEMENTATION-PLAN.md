@@ -846,3 +846,26 @@ missing effect is an upstream tooling limitation, not a positive claim.
 Configs/reports stay under GAME_DIR. Exit: installed-package controls, or a
 bounded limitation reproduction and upstream request, with Test.ps1 passing.
 The full Gap 27 contract remains open until all cited paths are covered.
+
+## Layered cache and result-gated size controls
+
+Gap 27 acceptance uses FND-CONFIG-186/187's temporary-byte bracket, mode
+cache writer and mapped replacement-helper entry. Trace the first callee's own
+byte clear before the parent's next call; retain the mode assignment before
+the unchecked child request. In the replacement helper, separate successful
+query length rejection from both failed-query routes to the common transfer
+continuation, retain cache writes after unchecked transfer/services and expose
+post-call SI provenance rather than preserving the original number by default.
+Balanced returns and DS/SS/BP are hypotheses; memory/flags and native effects
+remain unknown. Conditional caller splits leave other parent paths unread.
+Acceptance: positive ordering/bypass/width/guard cases, zero/FFFF result
+hypotheses and nonvacuous step/path/unread-service controls through installed
+packages. Configs/reports stay in GAME_DIR; no original content enters Git.
+Exit: source controls and Test.ps1 pass. Computed-dispatch, all callers,
+accepted replacement content and complete Gap 27 remain separate open gates.
+
+The joined parent bracket stops after the first callee's own clear: nested
+unknown-memory call models invalidate its ancestor return-frame bytes. Balanced
+stack height does not establish those bytes. Toolkit PR 63 records a scoped-
+memory plan and synthetic reproductions; preservation is not implemented or
+adopted. Keep this joined acceptance open while independent cache controls proceed.

@@ -577,3 +577,26 @@ Cleanup/hardware tooling batch Test.ps1 -NoRestore passes; log
 artifacts/package-delivery/cleanup-hardware-root-final-test.log. Toolkit PR 60
 and template PR 44 remain open at their previously recorded heads; upstream
 PR 62 is an internal instruction-backend seam and supplies no port behavior.
+
+Gap 27 layered-cache controls (2026-10-02): installed reader 0.2.0/engine 0.4.0
+pass complete local replacement-helper paths under query/transfer zero and FFFF
+hypotheses, failed-query joins, the successful signed-dword rejection, cache
+bypass/write ordering and unknown post-call SI provenance. The mode writer's
+pre-request assignment and equality bypass pass; step/path/unread controls reject
+positive contracts. Local log: GAME_DIR/analysis/reporter-audit/
+layered-cache-effects/verify-adopted-reader020-engine040.log. The inner byte clear
+is retained before a stopped nested return, not joined to the parent's next call.
+Ancestor frame memory, selected-number dispatch and native content remain open.
+
+The generic nested-frame request reproduces that conservative stop on upstream
+main with synthetic near/far frames, explicit overwrite/cap controls and a real
+synthetic MZ bridge. Full engine/workspace, lint/format/types, release-planner,
+build/npm archives, .NET build/test/pack and repository policy pass. Logs:
+artifacts/package-delivery/nested-frame-*. The checker skips its Linux-only
+case-sensitive-filesystem test on Windows. The PR proposes a plan and tests;
+no preservation API or protocol change is implemented or adopted.
+
+Layered-cache tooling batch Test.ps1 -NoRestore passes; log
+artifacts/package-delivery/layered-cache-root-final-test.log. Toolkit PR 63
+publishes the scoped-memory plan/test request at 6ef1d25; no restoration push
+or package adoption accompanies it.

@@ -720,3 +720,47 @@ Driver/configs/reports and verify-adopted-reader020-engine040.log remain in
 GAME_DIR/analysis/reporter-audit/cleanup-hardware-effects/. No candidate import,
 game claim, native run or parity status changed. Gap 27 remains open for its
 full fill, joined child/cleanup/hardware, layered-cache and snapshot contracts.
+
+## Gap 27 layered cache and nested-frame controls, 2026-10-02
+
+Installed reader 0.2.0 and engine 0.4.0 pass FND-CONFIG-187's complete local
+replacement-helper returning paths under separately declared query/transfer AX
+zero and FFFF hypotheses. A successful query retains the signed dword length
+comparison and its greater-than-2,048 rejection; both failed-query byte branches
+reach the common transfer continuation without that comparison. Transfer results
+do not gate the following pointer service or cache writes. The word cache store
+retains the final modeled call's post-call SI expression, which remains unknown:
+SI preservation and equality with the original argument are not assumed. Both
+cache comparisons also retain their no-request bypass. Returning modeled-service
+paths keep unknown effects and incomplete effect semantics; complete local path
+enumeration is not accepted replacement content or native reachability.
+
+FND-CONFIG-186's complete mode writer retains its word assignment before the
+unchecked child request for zero and FFFF return hypotheses, and its equality
+bypass skips the assignment and request. Step/path caps and unread services
+reject these positive continuation contracts and the replacement-helper contract.
+Models preserve only declared DS/SS/BP; memory, flags and other registers remain
+unknown. Transactionality remains unestablished throughout.
+
+The conditional parent byte bracket traces the first callee's own clear, but
+stops at that callee's return because nested unknown-memory service models have
+invalidated the ancestor return frame. The later parent call is not reached.
+Step/path/unread controls remove the inner-clear witness. Balanced stack height
+and register preservation do not prove unchanged return or saved-register bytes.
+This is a correctly conservative stop, not a reason to silently preserve memory.
+Current upstream main reproduces the class with synthetic near/far child frames,
+a fully traced-service positive control, an explicit overwrite rejection and caps;
+a real synthetic MZ prepared-reader control also passes. A separate upstream plan
+requests bounded, explicit memory hypotheses without new instruction semantics.
+
+Driver/configs/reports and verify-adopted-reader020-engine040.log stay in
+GAME_DIR/analysis/reporter-audit/layered-cache-effects/. The joined parent bracket,
+selected-number computed dispatch, full callers/children and accepted content
+remain open. No game claim or parity status changed; Gap 27 retains its full
+contract. Upstream request gates are logged at artifacts/package-delivery/
+nested-frame-*. No proposed preservation behavior is adopted.
+
+The reviewable plan/test request is [toolkit PR 63](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/pull/63),
+head 6ef1d25, based on main 0b4694d. Its release:skip label reflects unchanged
+published behavior. R1 closes only after the full scoped-memory implementation,
+reviewed package delivery and the original joined acceptance pass.
