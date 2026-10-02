@@ -13,7 +13,7 @@ docs/goals/; queue items and findings remain in their respective durable files.
 
 ## Unfinished
 
-The pre-existing scoped-memory candidate addition to docs/IMPLEMENTATION-PLAN.md remains unstaged. It belongs to the ongoing upstream-gap-resolution work, whose goal file retains its handover. No unfinished migration work.
+No unfinished migration work. Continuing shared-tooling work and its external-delivery approval are recorded in docs/goals/upstream-gap-resolution.md; the scoped-memory acceptance plan is committed.
 
 ## Blockers
 
