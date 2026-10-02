@@ -823,3 +823,43 @@ outcomes remain outstanding; these witnesses do not close the full request.
 Driver/configs/reports and verify-adopted-reader020-engine040.log stay in
 GAME_DIR/analysis/reporter-audit/snapshot-path-effects/. No candidate imports,
 package changes, game claims or parity statuses changed. Gap 27 remains open.
+
+## Gap 27 scoped-memory candidate archive controls, 2026-10-02
+
+The scoped-memory candidate's locally built wheel and npm archive pass the
+FND-CONFIG-186 caller-bracket controls through the actual MZ prepared-reader
+bridge, without PYTHONPATH or adopted-package replacement. Archive source and
+compiled-file integrity is recorded in artifacts/package-delivery/
+scoped-memory-archive-integrity.log. Reader and engine both speak candidate
+prepared protocol 2; protocol 1 is rejected by the engine's synthetic CLI controls.
+
+Each returning service explicitly hypothesizes preservation of the pre-call
+SS:BP six-byte saved-BP/far-return interval, under the existing initial segment,
+stack and balanced-return hypotheses. The report retains each resolved interval,
+register value/producers and evidence in the conditional models, return events
+and effect summaries. It joins the parent's initial byte assignment, the child's
+own clear, the next parent request and the final parent clear in that order.
+Both later mode-gate routes reach the bracket's end; the query then stops at the
+bounded region boundary rather than establishing a whole-function return.
+
+Default models retain their conservative nested-return stop. Partial return
+scope, wrong segment, overlapping interval, unread services and nonvacuous
+step/path controls reject the joined bracket; scope/byte budget excesses fail
+with diagnostics. Synthetic near/far/PE32 cases additionally cover saved
+registers independently of return control, pre-call register changes, pushed-CS
+consumption, explicit later overwrite, unknown/wrapping addresses, distinct and
+possible segment aliases, exact budgets and stable uncached-byte terms.
+
+Modeled services and their traced ancestors retain unknown effects. The mode
+writer's no-service bypass retains its local traced classification; that does
+not erase preceding unknown services from the enclosing path. All source paths
+remain effect-incomplete with transactionality unestablished. No native service
+preservation, resource acceptance, hardware or whole-call behavior is confirmed.
+
+Driver, query configs, source reports and verify-candidate-archives.log stay in
+GAME_DIR/analysis/reporter-audit/scoped-memory-effects/. Root installed reader
+0.2.0 and engine 0.4.0 remain unchanged. Candidate packages use local development
+version metadata and are not published releases. Toolkit PR 63 still needs the
+reviewed implementation and major release classification delivered to its branch,
+merge, paired registry delivery and adopted-package controls. Gap 27 remains
+open for its full contract; no game spec or parity status changed.

@@ -3,7 +3,15 @@
 These are the remaining requests for the restoration template and shared analysis
 tooling. They describe tooling behavior, not claims about the original game.
 
-Last verified website, toolkit and template revisions are adopted, including the revised PR 27/16/28 changes and subsequent PE32 and conditional-access refinements. Website `ca39d07`, toolkit `67340fc` and template `79d18a2` add call-target, bounds, owner, incoming-coverage and carry/loop reporter capabilities; the facts gate passes and Dark Sun acceptance cases are recorded in docs/REPORTER-CASE-AUDIT.md. Merged toolkit PR 42 introduces published packages; migration waits on its missing release classification and Python delivery, as recorded in the goal handover. Game-specific requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 4, 8, 10, 11, 12, 13, 14, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 28 and 38 are removed after verification with the adopted tools; unsupported queries and partial searches remain open.
+Latest adopted template, toolkit and pinned-rule revisions and their capability
+dispositions are recorded in docs/TEMPLATE-ACCEPTANCE.md. Published reader 0.2.0,
+checker 0.1.0 and engine 0.4.0 are adopted with exact registry locks;
+tools/tool-dependencies.mjs verifies the installed packages. Candidate
+capabilities still require reviewed merge and registry delivery. Game-specific
+requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 4, 8,
+10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28 and 38
+are removed after verification with the adopted tools; unsupported queries and
+partial searches remain open.
 Delivered capabilities, closure evidence and remaining limits are recorded in
 [the adoption record](docs/TEMPLATE-ADOPTION.md).
 
@@ -86,6 +94,18 @@ before the graphics primitive, even though the outer caller did not test
 it; a separate request can return FFFF after partial metadata writes.
 Propagate both local and child predicates before describing an actual
 primitive attempt, and track failure writes independently at each layer.
+
+
+Scoped-memory acceptance additionally needs explicit pre-call segment/base,
+byte width and evidence for any saved-frame hypotheses used to join a child to
+its parent. Register preservation and a balanced service return do not establish
+saved stack bytes. Keep unknown service effects and native reachability separate
+from the joined conditional instruction path. Reject incomplete return words,
+wrong segments, aliases, wrapping intervals and scope/byte/path/step limits;
+retain explicit overwrite behavior. Cache absence must be labeled as uncached,
+never as proof that the original did not write a byte. Candidate-only controls
+do not close this request; the original caller-bracket case must pass against
+reviewed published packages.
 
 ## 29. Check progress across restarted scans and repeated invalidation
 
