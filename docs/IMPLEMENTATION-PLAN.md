@@ -907,3 +907,17 @@ Acceptance: positive bypass/restoration distinctions, guarded-return witnesses,
 word widths and nonvacuous step/path/unread-guard controls. Source configs/reports
 stay in GAME_DIR. Exit: installed controls and Test.ps1 pass; every remaining
 snapshot/commit path and the complete Gap 27 request remain open.
+
+## Scoped-memory candidate implementation
+
+Implement toolkit PR 63's bounded register-relative memory hypotheses in its
+isolated candidate: at most 32 scopes and 4,096 total bytes per modeled call,
+concrete pre-call segments/offsets, no wrap or alias overlap, explicit provenance
+and unknown memory outside the scopes. Coordinate reader/engine protocol 2 and
+major release metadata. Synthetic near/far/PE32, saved-frame, wrong/partial scope,
+explicit overwrite, invalid/unreachable declarations and cap controls must pass.
+Candidate archive source controls must join FND-CONFIG-186's caller bracket
+under explicitly declared frame hypotheses while retaining unknown native effects.
+No candidate imports enter adopted controls; no package adoption before reviewed
+merge and registry delivery. Exit: full upstream gates and bounded source cases,
+reviewable PR update, root Test.ps1 and handover. Full goal scope is unchanged.
