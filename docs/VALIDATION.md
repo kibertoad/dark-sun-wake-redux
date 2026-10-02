@@ -701,10 +701,10 @@ exact current registry versions. NoRestore remains strict and makes no fallback
 installation. Source controls and missing dependency/version controls remain
 separate from game parity validation.
 
-## Latest published engine 0.8.0 validation, 2026-10-02
+## Published engine 0.8.0 validation, 2026-10-02
 
-Reviewed PR 66 delivered during the final latest-version check; current engine
-and action pins are 0.8.0 and 592088dbdb1cc8d804ba853eb39ae6ca1215577f.
+Reviewed PR 66 delivered during the final latest-version check; that release
+and action pins were 0.8.0 and 592088dbdb1cc8d804ba853eb39ae6ca1215577f.
 Handwritten semantics are removed, with pypcode the sole instruction backend.
 Exact archive/source/installed inventory verification passes in
 artifacts/package-delivery/engine080-registry/integrity.json. Installed dependency
@@ -719,3 +719,22 @@ succeeded before an intermittent synthetic capture positive failed; that failure
 is retained in engine080-root-test-initial-capture-failure.log. The isolated
 capture recheck and full unchanged gate pass; no rejection was weakened. Gap 44
 records the diagnostic request and unconfirmed cause.
+
+## Latest published engine 0.9.0 validation, 2026-10-02
+
+Adopted engine 0.9.0 and release action/source pin
+9a4253422a35715678980f702d07f121c947a373. The npm reader/checker remain
+at their current registry versions, 0.2.0 and 0.1.0. Capstone 5.0.7 and pypcode
+4.0.0 retain their exact hashed pins. This release adds optional Ghidra callee-edge
+cross-check tooling; it does not supply native evidence or close open requests.
+
+Normal locked restore passes in artifacts/package-delivery/engine090-normal-tool-restore.log.
+Registry wheel/sdist hashes, released sources and test inventory, and installed
+package files match the release tag; the verification record is
+artifacts/package-delivery/engine090-registry/integrity.json. The configured
+Test.ps1 -NoRestore gate passes in artifacts/package-delivery/engine090-root-test.log.
+Retained original static controls run against installed packages with GAME_DIR
+and no candidate imports; logs and their summary are local under
+GAME_DIR/analysis/reporter-audit/registry-engine090-regression/. Earlier capped
+and incomplete-path qualifications remain binding. No spec or parity status,
+original-game run, or emulated result is changed by this adoption.
