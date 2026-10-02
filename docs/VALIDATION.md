@@ -661,3 +661,17 @@ missing-source skip controls also pass. Scope and retained incomplete paths are
 in REPORTER-CASE-AUDIT.md; no native run or emulation occurred. This maintainer
 control is not a parity-row original-comparison test, creates no validated status
 and introduces no persisted build or extracted-content layout.
+
+## Maintainer static fill-boundary reporter control, 2026-10-02
+
+With GAME_DIR pointing to the licensed supported source and PYTHONPATH absent,
+`node "$env:GAME_DIR/analysis/reporter-audit/fill-boundary-effects/verify-adopted.mjs"`
+passes installed reader 0.2.0/engine 0.4.0 controls for source call boundaries,
+allocation/stop/bounds/age distinctions, whole-word transfer gating, separate
+success and returning-error suffixes, post-call provenance and rejected caps or
+unread services. Local profiles/reports and
+`verify-adopted-reader020-engine040.log` retain the exact run. Missing GAME_DIR
+and source skip controls pass. REPORTER-CASE-AUDIT.md records retained loop and
+window limits; no complete joined fill, native outcome or capacity is claimed.
+This maintainer tooling control is not a parity-row comparison test and creates
+no validated status or persisted build/extraction layout.

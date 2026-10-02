@@ -389,7 +389,6 @@ build; the repository checks and tests pass without proprietary content; and
 each declared package passes clean-machine install, extract, launch, save,
 reopen and uninstall checks.
 
-
 ## Tooling maintenance: merged v1 evidence workflow
 
 Adopt template PRs 19, 21 and 22 from `e698e5b` and the merged toolkit 10/11
@@ -416,7 +415,6 @@ licensed-source identity or owner-only runtime policy changes.
 - Exit: commit the adoption and resolved-gap cleanup, audit processes, write the
   handover separately and push. No owner question or live session is needed.
 
-
 ## Tooling maintenance: template PR 17 local rules
 
 Adopt merged template PR 17 (`18a67f3`): add the exact methodology snapshot to
@@ -431,7 +429,6 @@ Acceptance: snapshot digests, heading/range checks, synthetic link tests and
 ranges and external rule-page links. Shorten canonical summaries by referring
 to the local sections, retaining local runtime exceptions and blank entry forms.
 Exit: commit the tooling adoption, update handover separately and push main.
-
 
 ## Tooling maintenance: template PR 24 restored rules
 
@@ -454,7 +451,6 @@ configured identity, existing coverage paths and owner-only native-run limits.
 - Exit: review the adapted diff and passing checks, commit the tooling batch,
   audit processes and update the handover separately. No owner questions.
 
-
 ## Tooling maintenance: latest template and PR 26
 
 Adopt template main `8ed674008cd9ce2860b19cd6ac6a569d70d2bc03`, including
@@ -475,7 +471,6 @@ Probe remains none, and no recorded native session or RNG hook is claimed.
   Recorded-run guidance grants no native-process access under the local policy.
 - Exit: tested tooling commit and separate current handover; no gameplay or
   evidence-status changes.
-
 
 ## Tooling maintenance: merged bounded reporters
 
@@ -500,7 +495,6 @@ at `94f8f678afb05171567f48d9fb19488e48309f12`, as the owner requested.
   the project-authored citation scan while retaining its exact upstream bytes.
 - Exit: reviewed tooling commit, process audit and separate handover commit.
 
-
 ## Tooling verification: Dark Sun reporter cases
 
 The owner requests verification of partially implemented gaps against their
@@ -524,33 +518,27 @@ This is tooling on the research side of the clean room, not gameplay work.
   requested upstream PRs for necessary refinements. Preserve owner-only runs,
   configured identity and existing licensed-source fingerprints.
 
-
 ## Adopt revised upstream reporter, template and rules
 
 Tooling maintenance, 2026-09-30. Adopt website 3b4e6fcfca887620cdf13c8a8e62f9ca53133d60, toolkit 926e287a4134512d59fe021efe6507c933da03f1 and template b9f542549840cf7ce2d254a8f9f7bf0f502daaa7. Outcome: the configured project uses the latest reviewed bounded reporters and local rules, including PE32 support and separated conditional operand observations. Dark Sun stays on its evidenced MZ/FBOV mapping; no gameplay or evidence status changes.
 
 Acceptance: exact upstream source/test/guide/license digests, updated checker/CI pins and section ranges; template adoption script includes PE files and the canonical gate discovers both Python suites. Retain project-specific inventory paths and owner-only runtime constraints. Rerun the recorded Dark Sun controls with the adopted source, close only passing requests, and preserve explicit unresolved callee/path conditions. Synthetic PE and segmented regressions, configuration preservation and the full tools/Test.ps1 gate prove adoption. Exit: all pins verify, gate/build pass, case outcomes and remaining gaps are documented. Risks: shared instruction-boundary and conditional-report changes may alter old report consumers; update the local verification script to the reviewed report schema. No owner questions.
 
-
 ## Full upstream gap resolution
 
 The goal in docs/goals/upstream-gap-resolution.md owns the remaining shared-tool requests. Outcome: all numbered intake requests are delivered and individually verified, with related upstream deficiencies fixed through reviewable PRs and adopted revisions. Existing findings provide source identity, locations, widths, branch contracts and expected controls; no new game claims or behavior are implemented. Acceptance includes complete request coverage, negative controls, explicit remaining assumptions, no proprietary committed fixtures, exact upstream pins, canonical tests and a per-request closure record. New missing tooling formats/readers get a specific planned batch before implementation. First checks replay the evidenced two-entry table and relocated pushed pointers; next verify the actual inventories before expanding instruction/string/loop support. Automated tests are constructed source cases upstream plus local owned-source acceptance outside Git. Exit is the goal's full ledger proven closed, not a number of green generic tests. Risk: incomplete static summaries must not be reported as native execution or whole-program proofs. No owner decisions are needed for shared tooling.
-
 
 ## Bounded memory maps and JVM diagnostics
 
 Tooling batch, 2026-09-30. Outcome: a researcher can select a bounded page or exact named block from a large analyzed map without exporting the entire map, and JVM crash/replay diagnostics stay local even if someone force-stages an ignored file. Evidence: the configured Dark Sun map has 3,546 blocks and the old reporter fails before filtering; crash logs can contain local memory and environment data. Acceptance: page offset/limit are explicit, output never exceeds 512 rows, exact-name selection diagnoses absence/ambiguity, headers state total/selected/emitted and partial scope; default still rejects an oversized whole-map request. Ignore and policy rules cover diagnostic basenames at any depth; synthetic scratch Git tests prove ordinary logs remain permitted, ignored diagnostics are omitted and forcibly staged diagnostics are rejected. Java tests use constructed maps; compile against the public installed Ghidra API and verify the recorded large map when available. No original bytes or reports committed. Exit: canonical fast gate, bounded-map cases and policy regressions pass; document upstream provenance and local-only storage. No owner questions.
 
-
 ## Verify committed function inventories
 
 Tooling batch. Outcome: shared tooling validates a committed coverage TSV against the selected build/manifest identity, mapped source ranges and portable destination, including documented configured-project legacy paths. Existing export/join preserves only start/size; committed format may additionally contain researcher-authored name and out_of_scope reason columns. Acceptance: require start/size plus only those optional columns; reject empty/duplicate/aliased starts, invalid sizes, mismatched manifest prefixes, unmapped source offsets, oversized body counts, wrong destination and undocumentated legacy paths. An explicit legacyPath requires evidence and must be a safe repository-relative .tsv path; it never changes portable generation. CLI inventory-check reads bounded TSV data and uses the hash-guarded MZ/FBOV parser. Synthetic cases prove corruption/mapping/identity failures and optional columns. Actual Dark Sun shared export must reproduce the retained mapped export; joined output matches 2,153 rows, and the installed plus separately owned disc inventories pass with their own sources and documented CD path. No original contents or rich exports in Git. Exit: all controls, canonical gates, and source identity checks pass; upstream PR tracks shared delivery.
 
-
 ## Latest template maintenance adoption
 
 Adopt template c048c63523a1b061b5325f6b05055d98819780d7, including PR 31's authorized-work and durable-narrative policy and PR 32's revised bounded-map/JVM diagnostics changes. Outcome: policy-driven filename denials include heap dumps; bounded map headers retain requested counts and ambiguity diagnostics give capped matching indices. Preserve configured source identity, local content restrictions and owner-only runtime. Acceptance: exact upstream tests and adapted script pass, actual mapped-project page/name controls still pass, repository policy reads deniedFileNamePatterns, canonical gate and full build pass. Update guidance and adoption provenance without rewriting historical evidence. Exit: verified current template delta and locally completed requests 2/38 close.
-
 
 ## Bounded string effects and saved flags
 
@@ -563,7 +551,6 @@ Adopt template e0325e0b063735e94b7e3ac94b0b8b89d0a38a79 (merged PR 33), preservi
 ## Explicit overlapping paths and local IRET frames
 
 Tooling batch. Outcome: a direct verified control-flow edge can establish an alternate instruction start inside another reached instruction; raw scan hits or independently asserted conflicting entries cannot. Keep edge provenance and independently decode both continuations. A proving edge must itself have an unconflicted boundary. Synthetic incoming/use controls retain rejection of operand-byte false calls. In segmented16, permit IRET only for a traced local push-CS/near-call frame above an intact locally saved FLAGS word at frame creation; check return IP, CS and stack balance, then consume FLAGS with normal snapshot/corruption semantics. Reject root/external, flat32, prefixed, missing or overwritten return frames. No interrupts, privilege or hardware simulation. Tests cover explicit overlap acceptance, false boundary rejection, saved caller DF restoration, corruption and invalid frames. Actual FND-CONFIG-155 must report its complete local writes and restored incoming direction under explicit nonaliasing stack hypotheses. FND-CONFIG-154 remains conditional. Exit: gates and source controls pass; upstream PRs and exact template pin track delivery without promoting game claims.
-
 
 ## Instruction-owned segment operand provenance
 
@@ -691,7 +678,6 @@ regressions pass; published archives contain the required modules/scripts.
 No gameplay, source manifest or rule snapshot refresh. Exit: canonical gates and
 reviewable template migration; no copied competing shared implementation remains.
 
-
 ## Ordered effect paths and restoration witnesses
 
 Tooling outcome: existing effects reports summarize each bounded return or stopped
@@ -715,7 +701,6 @@ Exit: canonical package gates and local source controls pass; publish a reviewed
 candidate. Request closure requires merged registry delivery and complete adopted
 source reruns. Several slices may be required; no first slice narrows that exit.
 
-
 ## Merged call-order release adoption
 
 Adopt toolkit PR 41 merge e1628488 and registry engine 0.2.0 by exact wheel hash.
@@ -726,7 +711,6 @@ callee effects pass; false-alternative and all nonvacuous cap controls reject.
 Configured and template normal/offline gates pass. Existing source controls stay
 passing. Exit: exact installed delivery and whole Gap 15 contract rerun; remove
 only Gap 15 after those gates, retaining other stable IDs and requests.
-
 
 ## Merged return-flow release adoption
 
@@ -982,3 +966,23 @@ GAME_DIR and skip absent licensed input. Exit: installed controls, explicit
 unknown-byte and unread-child qualifications, Test.ps1, acceptance record and
 separate handover. Gap 36 remains open until the complete producer-through-call
 contract passes adopted tooling; no game spec, parity or gameplay change.
+
+## Fill allocation, pre-transfer writes and failure-continuation controls
+
+Gap 27 acceptance uses FND-SCRIPT-019's complete fill body as existing
+evidence. Verify call/boundary mapping, then use explicitly conditional local
+windows around allocation, slot bounds/age writes and transfer/error continuations
+when fixed scans or unknown age branches prevent a complete joined query. Do
+not repeat the previous capped whole-fill query or treat separate windows as a
+joined path. Existing local/segment/register inputs are hypotheses, not native
+state; no memory is seeded or silently retained across services.
+
+Acceptance: stop-byte exit versus slot-bound writes; word arithmetic and byte
+age-width provenance; a transfer-result gate separate from pre-transfer writes;
+failure reaches returning error hypotheses without own rollback, while success
+appends the stop byte and updates identity/current fields. Assert exact ordering
+and nonvacuous step/path/unread controls. Unknown memory after modeled services,
+loop limits, allocator effects, capacities and original input identity remain
+explicit. GAME_DIR profiles/reports stay local and skip missing licensed input.
+Exit: bounded installed controls, retained whole-fill gaps, Test.ps1, acceptance
+record and handover; no spec, parity, gameplay or native-runtime changes.

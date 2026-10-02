@@ -984,3 +984,43 @@ parity validation. Gap 36 remains open: complete producers, normalized outer
 wrapper propagation and its complete fixture contract are not established by
 this local case. No original runtime, emulated call, gameplay, spec status or
 parity status changed.
+
+## Gap 27 fill-boundary controls, 2026-10-02
+
+Installed reader 0.2.0 and engine 0.4.0 pass source-bounded local windows
+from FND-SCRIPT-019's complete fill body. The local driver is
+`GAME_DIR/analysis/reporter-audit/fill-boundary-effects/verify-adopted.mjs`;
+its profiles/reports and `verify-adopted-reader020-engine040.log` remain beside
+it. The dependency bridge uses exact installed pins with PYTHONPATH absent,
+source hashing and source-derived whole-body call/boundary controls. GAME_DIR
+or licensed-source absence produces an explicit skip.
+
+The allocation window supplies explicit zero, ordinary-word and FFFF return
+hypotheses. It retains the byte-stop bypass separately from two ordered
+word-sized slot-bound stores and reached byte-age increments. The allocation
+input reads the current low length word and increments at word width. Unknown
+memory after the modeled allocator prevents the later local-length read from
+being equated to that earlier producer. The segment and selected-slot register
+are declared hypotheses, not native slot admission or capacity. Age comparisons
+and writes retain byte widths and signed guards. Default repeat/path limits stop
+this window before transfer; no default was increased.
+
+The separate transfer window checks zero, nonzero-AH/zero-AL and FFFF returned
+words. Only the zero word reaches the append, slot identity/reset and current
+identity/start writes, in their source order; it then reads its own local success
+byte. Other words request the error service and, under returning zero/FFFF error
+hypotheses, reach the excluded epilogue without own rollback or identity stores
+in the read suffix. The failure result read remains unknown: the earlier local
+zero is outside the window, and modeled services invalidate memory. Post-call
+input/field provenance is current storage, not frozen original caller arguments.
+Unknown destination pointers do not establish a valid append or buffer capacity.
+
+Wrong slot/width expectations and nonvacuous allocation step/path/unread controls
+reject the positive profile. Transfer step/unread-transfer/unread-error controls
+reject returning failure acceptance. Excluded selection, prior age passes, saved
+frames and epilogue prevent either window from proving a complete function. The
+pre-transfer writes and failed-transfer continuation are **not** one joined
+report path. Full fill acceptance requires bounded input/path tooling or fresh
+producer evidence; repeatedly raising caps or combining fragments is not proof.
+Gap 27 remains open. No new game claim, spec/parity status, original run or
+emulation is recorded.

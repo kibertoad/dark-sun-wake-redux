@@ -120,6 +120,18 @@ never as proof that the original did not write a byte. Candidate-only controls
 do not close this request; the original caller-bracket case must pass against
 reviewed published packages.
 
+Installed fill-boundary controls retain allocation/stop/slot-bound/age witnesses
+and a separate whole-word transfer/error continuation. These windows are not a
+joined pre-failure path. Unknown-memory service models also invalidate the
+earlier local result and length producers; do not normalize a later unknown
+result to the function's earlier zero initialization. A fixed age-loop count
+does not remove unknown per-element branch forks. Shared tooling needs a bounded,
+explicitly labeled input/path-hypothesis contract for a complete conditional fill
+query, with contradictions and omitted paths retained, rather than relying on
+repeated cap increases or stitching windows into a transactionality claim. The
+installed bounded controls and remaining requirement are recorded in
+docs/REPORTER-CASE-AUDIT.md; full fill acceptance remains open.
+
 ## 29. Check progress across restarted scans and repeated invalidation
 
 FND-SCRIPT-022 reads a nominally 16-slot room search that restarts its
