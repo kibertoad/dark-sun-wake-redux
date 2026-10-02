@@ -101,6 +101,13 @@ signed word-handle bypasses distinct from coordinate validation and show the
 getter argument/segment/field provenance. Locally accepted coordinate bounds
 do not establish slot capacity, native handle reachability or graphics work.
 
+Scanner summaries must keep the selected-slot register separate from carry-based
+admission and unknown memory effects. Retain the reference/count assignments and
+accepted-coordinate write prefix on each later FFFF return, with comparison-word
+and reference-field provenance. A stopped reference chain or incomplete scan does
+not prove absence of metadata changes, native free-slot state or termination;
+keep each capped route and the local prefixes it still reaches explicit.
+
 
 Scoped-memory acceptance additionally needs explicit pre-call segment/base,
 byte width and evidence for any saved-frame hypotheses used to join a child to

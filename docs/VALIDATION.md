@@ -351,6 +351,23 @@ Inventory acceptance batch: read-only Ghidra shared export matches all 2,723 ret
 
 Repository policy checks all Git-visible files, including untracked files not ignored. deniedFileNamePatterns rejects JVM fatal-error/replay logs and heap dumps at any depth even if force-staged. The canonical Test.ps1 gate runs the synthetic diagnostic and bounded-map suites; current test totals belong in its generated log.
 
+### Slot/reference and partial-metadata source controls, 2026-10-02
+
+Maintainer-only static reporter acceptance against the owned BLD-GOG-EN-1.1
+installation passed with installed reader 0.2.0 and engine 0.4.0. The local
+driver is GAME_DIR/analysis/reporter-audit/slot-metadata-effects/verify-adopted.mjs;
+its `// needs: GAME_DIR` marker and missing-variable/source skip controls pass.
+For these local tooling controls GAME_DIR selects the existing owned-installation
+baseline, rather than adding a new parity test or source layout.
+
+Run the retained driver with GAME_DIR set, after the locked tooling dependencies
+are available. Query/source identity is hash-checked by the reader before analysis.
+Source reports and the passing verify-adopted-reader020-engine040.log stay beside
+the driver. Qualifications, capped routes and rejected controls are recorded in
+[REPORTER-CASE-AUDIT.md](REPORTER-CASE-AUDIT.md). No native game or emulated
+function ran; no evidence or parity status changed. These controls do not supply
+a `validated` parity-row test, and no such validation record is generated.
+
 ## Migrated capture and research tracking
 
 The fast gate checks area queues, question IDs and reverse entry links with Check-ResearchTracking.mjs. Capture-OriginalWindow.ps1 isolates PrintWindow in a bounded worker, selects only client pixels and avoids desktop fallback. Its tests create synthetic windows. Original-game captures remain owner-only under AGENTS.md; adding this helper grants agents no original runtime access. Mixed-DPI native captures require owner validation.

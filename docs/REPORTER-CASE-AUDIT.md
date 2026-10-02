@@ -905,3 +905,50 @@ GAME_DIR/analysis/reporter-audit/coordinate-gates/. No candidate imports,
 original runtime, game spec or parity status changed. The request's slot
 acquisition/reference chain and partial metadata failure cases, active primitive
 and whole-caller/native behavior remain open. Gap 27 keeps its full contract.
+
+## Gap 27 slot/reference and partial-metadata controls, 2026-10-02
+
+Installed reader 0.2.0 and engine 0.4.0 pass bounded FND-CONFIG-191
+handle-request ordering controls from its complete resident entry. Source-derived
+bounds identify the local scanner described by FND-CONFIG-183. A returning
+scanner model declares selected SI offsets at the first, next and last scanner
+positions separately; it leaves carry, memory and flags unknown. Its carry-set
+branch retains FFFF before any own slot-metadata assignment. These register and
+balanced-return hypotheses do not establish a native free slot or unchanged
+caller arguments after the service.
+
+For each declared slot, the carry-clear/reference-exit paths retain the reference
+word and zero-count assignments before coordinate checks. Each of the four signed
+comparison failures returns FFFF with exactly its preceding own coordinate-store
+prefix and no own success-marker assignment. Admitted paths store every coordinate
+before the next comparison, then the success marker and the divided slot index.
+A paired trace connects each stored coordinate and comparison-left value to its
+current SS word argument, and the comparison-right value to the corresponding
+CS-relative reference field. Equal word widths do not merge the selected slot and
+reference namespaces; a neighboring selected-slot control rejects that join.
+
+The actual scanner is also traced without a service model. First-slot conditional
+metadata witnesses pass, and returned paths restore distinct declared SI/DI values
+and DS. This removes modeled memory effects only from those locally traced paths;
+it establishes no native slot availability or capacity. The query retains scanner
+and reference-loop visit stops and path-cap gaps. Neither that query nor the
+modeled scanner query is accepted as complete entry coverage.
+
+Step/path caps, unread scanner regions, call-depth exhaustion, wrong field
+namespace and an overflowing selected-word declaration reject the relevant
+positive contracts. A one-visit reference limit still permits the first reference
+exit and metadata prefix, while rejecting progressed-link metadata. That distinction
+is retained rather than treating a cap as absence of all effects. No limit was
+raised. Model-based returned paths retain unknown service effects and unestablished
+transactionality; local FFFF results do not imply external rollback or unchanged
+state. Reference-chain termination, full scan/exhaustion state and native free-flag
+preservation remain open.
+
+Driver, configs, reports and verify-adopted-reader020-engine040.log remain in
+GAME_DIR/analysis/reporter-audit/slot-metadata-effects/. The driver carries
+`// needs: GAME_DIR`, resolves the licensed source through that variable and
+reports a skip when the variable, source or retained local profile is unavailable.
+Missing-variable and missing-source controls pass; their logs are in
+artifacts/package-delivery/slot-metadata-{no-game-dir,missing-source}.log.
+No candidate import, original runtime, game spec or parity status changed. Active
+primitives, whole callers and the full Gap 27 contract remain open.

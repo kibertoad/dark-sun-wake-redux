@@ -942,3 +942,25 @@ rejections. Model effects remain explicitly unknown. Configs/reports remain
 in GAME_DIR. Exit: bounded installed-package controls, Test.ps1, acceptance
 record and handover pass. Full request, active primitives, caller state and
 native outcomes remain open; no game spec or parity status changes.
+
+## Slot/reference and partial-metadata ordering controls
+
+Gap 27 acceptance uses FND-CONFIG-191's complete handle-request entry and
+FND-CONFIG-183's slot scanner as existing evidence. Installed reports must
+retain the carry-based exhaustion exit separately from paths that write slot
+reference/count metadata before coordinate validation. Verify the four ordered
+signed comparisons, each accepted coordinate store before the next comparison,
+FFFF failure without an own success-flag store, and the later success marker
+and divided slot result. Trace reference-chain stops as unread dependencies.
+
+Start with the complete request region and a bounded returning scanner model
+with an explicitly declared selected-slot register hypothesis. Its carry and
+memory remain unknown: no case may imply a native free slot, initial capacity,
+argument identity or unchanged state. If limits prevent complete entry coverage,
+retain the stopped paths and qualify any reached local write-prefix witnesses;
+never raise a default or freeze a reference chain silently. Acceptance includes
+exhaustion and partial-write/success controls, flag/word/ordering provenance and
+nonvacuous step/path/unread scanner rejections. Configs/reports remain in
+GAME_DIR. Exit: bounded installed controls, explicit retained limits, Test.ps1,
+acceptance record and handover. Full caller/scan/chain/native coverage and the
+complete request remain open; no game spec or parity change is authorized.
