@@ -1060,3 +1060,22 @@ work or fresh evidence; Gap 27 stays open. PR 63 merged its planning/test delta
 only, so scoped-memory candidate acceptance remains unadopted. The published
 engine's default backend remains handwritten; importing pypcode does not grant
 hardware or whole-program fidelity.
+
+## Published engine 0.8.0 pypcode cutover, 2026-10-02
+
+Reviewed PR 66/release source 592088dbdb1cc8d804ba853eb39ae6ca1215577f
+removes the handwritten backend. Registry engine 0.8.0 uses pypcode alone;
+reader/checker and Capstone/pypcode versions remain as above. Archive hashes,
+complete shipped source inventory, wheel/sdist source/test and installed source
+match the release tag. Integrity evidence:
+artifacts/package-delivery/engine080-registry/integrity.json.
+
+Retained installed source controls and the conservative linked-child limit
+control pass with PYTHONPATH absent. Their local logs/summary and preserved
+previous-version reports are under
+GAME_DIR/analysis/reporter-audit/registry-engine080-regression/. Installed
+synthetic MZ routing, dependency rejection, prepared mismatch and conditional
+target prefix/cap controls also pass. The existing source-case limits and full
+gap contracts remain binding. No unresolved MENU return, complete fill, native
+hardware or game parity is inferred from the backend change. No original was
+run or emulated; no game spec/parity status changed.

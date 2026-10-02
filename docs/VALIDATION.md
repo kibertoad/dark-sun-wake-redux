@@ -700,3 +700,22 @@ passes in engine070-normal-tool-restore.log; its fresh npm install retains the
 exact current registry versions. NoRestore remains strict and makes no fallback
 installation. Source controls and missing dependency/version controls remain
 separate from game parity validation.
+
+## Latest published engine 0.8.0 validation, 2026-10-02
+
+Reviewed PR 66 delivered during the final latest-version check; current engine
+and action pins are 0.8.0 and 592088dbdb1cc8d804ba853eb39ae6ca1215577f.
+Handwritten semantics are removed, with pypcode the sole instruction backend.
+Exact archive/source/installed inventory verification passes in
+artifacts/package-delivery/engine080-registry/integrity.json. Installed dependency
+and conditional-target tests pass; retained static source and linked-child limit
+controls pass in GAME_DIR/analysis/reporter-audit/registry-engine080-regression/.
+Earlier incomplete-path qualifications remain; no validated parity status,
+native run or emulation is claimed.
+
+The configured Test.ps1 -NoRestore gate passes in
+artifacts/package-delivery/engine080-root-test.log. Initial normal restore
+succeeded before an intermittent synthetic capture positive failed; that failure
+is retained in engine080-root-test-initial-capture-failure.log. The isolated
+capture recheck and full unchanged gate pass; no rejection was weakened. Gap 44
+records the diagnostic request and unconfirmed cause.

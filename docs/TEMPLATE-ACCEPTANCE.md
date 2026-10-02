@@ -8,12 +8,12 @@ and rule snapshots retain their earlier accepted revisions.
 
 | Component | Verified current target | Disposition |
 | --- | --- | --- |
-| Template | `79d18a20cb4d97c7153e74e5695cbb80e7ebf73e` | Latest merged template capabilities already adopted; configured adaptations retained. |
-| Toolkit | `98395df03fab3990bca3a3de5cb1dcd1ae0df3a3` | Latest reviewed main/release source; CI action advanced, with unchanged action/checker source. |
+| Template | `79d18a20cb4d97c7153e74e5695cbb80e7ebf73e` | Previously accepted template capabilities retained; configured adaptations preserved. |
+| Toolkit | `592088dbdb1cc8d804ba853eb39ae6ca1215577f` | Latest reviewed main/release source; CI action advanced, with unchanged action/checker source. |
 | Executable reader | `0.2.0` | Exact npm archive lock and installed version already current. |
 | Standard checker | `0.1.0` | Exact npm archive lock and installed version already current. |
-| Evidence engine | `0.7.0` | Exact PyPI wheel hash; every shipped source/test and installed engine file matches the release archive/tag. |
-| pypcode runtime | `4.0.0` | Latest engine-required version, with published cross-platform wheel hashes and installed-version rejection controls. |
+| Evidence engine | `0.8.0` | Exact PyPI wheel hash; every shipped source/test and installed engine file matches the release archive/tag. |
+| pypcode runtime | `4.0.0` | Latest engine-required version, with published cross-platform wheel hashes and installed-version rejection controls; pypcode is the sole instruction backend. |
 | Standard v1, methodology and protocol | `ca39d0750e67c8c3900e8554e66a84083fe67452` | Retained accepted snapshot; offline digests match. No rule freshness check or refresh in this toolkit update. |
 
 Comparison uses a clean, commit-selected template under ignored artifacts,
@@ -33,12 +33,14 @@ the historical version and prerequisite statements below.
 | Inspect, citations and inventory | Retain DOS MZ/FBOV mapped-location checks, spec hash/source identity verification and established CD inventory paths. Generic PE-specific citation and image helpers do not replace DOS contracts. |
 | Rules, skills and documentation | Pinned rules remain under vendor/upstream with checked section ranges. Retain origin terminology, owner-only DOSBox policy, no automatic push, extraction gate and stronger evidence requirements. Existing research goals and candidate work retain their own scope. |
 
-Validation: `tools/Invoke-Validation.ps1` runs the required `tools/Test.ps1`,
+Earlier full migration validation: `tools/Invoke-Validation.ps1` runs `tools/Test.ps1`,
 configuration and repository checks, synthetic infrastructure/reporting tests,
 locked restore, Release build and assetless publish/smoke. Generated evidence:
 `artifacts/template-migration/canonical-validation.log` and
 `artifacts/template-migration/final-validation.log`. No game behavior, spec claim,
-parity status or research-request closure follows from this migration.
+parity status or research-request closure follows from this migration. Latest
+toolkit-only source and configured gate evidence is recorded in VALIDATION.md
+and artifacts/package-delivery/engine080-root-test.log.
 
 ## Historical acceptance audit
 

@@ -349,3 +349,16 @@ contains the reviewed backend seam/pypcode phases; its default remains handwritt
 No native behavior, hardware validation or full gap closure follows from adoption.
 Template and pinned local rules are retained; no snapshot refresh or release was
 performed. Canonical configured validation is recorded in VALIDATION.md.
+
+## Latest toolkit pypcode cutover, 2026-10-02
+
+During the final latest-version check, reviewed PR 66 delivered engine 0.8.0 at
+592088dbdb1cc8d804ba853eb39ae6ca1215577f. This supersedes the current version and
+backend disposition in the preceding adoption record: handwritten semantics are
+removed and pypcode is the sole instruction backend. CI action/engine pins are
+advanced; reader/checker and exact Capstone/pypcode locks stay current. Every
+shipped source, archive source/test, installed source and source inventory matches
+the release tag. Installed synthetic dependency/conditional-target controls and
+retained original static controls, including the conservative linked-child limit
+case, pass. Qualifications and full gap contracts stay open; no native outcome
+or parity claim follows from the backend cutover.

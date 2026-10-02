@@ -5,8 +5,9 @@ tooling. They describe tooling behavior, not claims about the original game.
 
 Latest adopted template, toolkit and pinned-rule revisions and their capability
 dispositions are recorded in docs/TEMPLATE-ACCEPTANCE.md. Published reader 0.2.0,
-checker 0.1.0 and engine 0.7.0 are adopted with exact registry locks;
+checker 0.1.0 and engine 0.8.0 are adopted with exact registry locks;
 Capstone 5.0.7 and pypcode 4.0.0 are locked runtime dependencies;
+the reviewed release removes handwritten instruction semantics;
 tools/tool-dependencies.mjs verifies the installed packages. Candidate
 capabilities still require reviewed merge and registry delivery. Game-specific
 requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 4, 8,
@@ -411,3 +412,19 @@ Keep static counterexamples labeled as arithmetic examples until their
 native reachability is established. A restricted caller range can support
 a local conclusion without upgrading it to a universal safety claim.
 
+
+## 44. Diagnose intermittent synthetic window-capture acceptance failures
+
+During latest-toolkit validation, the unchanged direct synthetic capture test
+received a uniform frame and failed its nonuniform positive control. The bounded
+isolated recheck passed, including invalid/blank rejection. The first failure
+is retained in artifacts/package-delivery/engine080-root-test-initial-capture-failure.log;
+engine080-capture-recheck.log retains the isolated recheck. There is no evidence of a toolkit-backend cause or
+an original-game renderer outcome.
+
+**Request:** capture fixtures should report which setup/capture/rejection stage
+failed and retain bounded readiness/message-delivery diagnostics when a synthetic
+positive renderer returns a uniform frame. Establish any cause with repeated
+controlled evidence before changing the fixture or capture helper. Keep uniform
+frame rejection, invalid-handle rejection and pixel-source checks mandatory;
+a retry or an isolated pass is not a reason to accept blank frames.
