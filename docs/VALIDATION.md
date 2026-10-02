@@ -600,3 +600,18 @@ Layered-cache tooling batch Test.ps1 -NoRestore passes; log
 artifacts/package-delivery/layered-cache-root-final-test.log. Toolkit PR 63
 publishes the scoped-memory plan/test request at 6ef1d25; no restoration push
 or package adoption accompanies it.
+
+Gap 27 replacement-pointer controls (2026-10-02): installed reader 0.2.0/engine
+0.4.0 pass both local wrapper branches, conditional release and each bypass,
+default/post-call input value provenance, dword clears, word zero extension and
+explicit AX-zero normalization under zero/FFFF local-service hypotheses. Complete
+local returning paths remain conditional with unknown child effects. Step/path
+and unread-service controls reject the full positive contract. Local log:
+GAME_DIR/analysis/reporter-audit/replacement-pointer-effects/
+verify-adopted-reader020-engine040.log. Active children, byte/word gates,
+snapshots, accepted content and native outcomes remain open; Gap 27 stays open.
+
+Replacement-pointer tooling batch Test.ps1 -NoRestore passes; log
+artifacts/package-delivery/replacement-pointer-root-final-test.log. Toolkit
+PRs 60 and 63 remain open at their recorded heads; neither candidate behavior
+nor the scoped-memory proposal has been adopted.

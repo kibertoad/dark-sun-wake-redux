@@ -764,3 +764,31 @@ The reviewable plan/test request is [toolkit PR 63](https://github.com/kibertoad
 head 6ef1d25, based on main 0b4694d. Its release:skip label reflects unchanged
 published behavior. R1 closes only after the full scoped-memory implementation,
 reviewed package delivery and the original joined acceptance pass.
+
+## Gap 27 replacement-pointer wrapper controls, 2026-10-02
+
+Installed reader 0.2.0 and engine 0.4.0 pass FND-CONFIG-188's complete
+local returning wrapper paths under explicit zero/FFFF local-service hypotheses.
+The null branch retains both later old-pointer release gates and their separate
+bypasses, then the default-pointer copy and two dword clears. The nonnull branch
+retains its post-service stacked-pointer copy, separate dword clear and word-to-
+dword zero extension; it makes no own old-pointer release. Full argument widths,
+SS attribution and copied/extended value expressions are checked independently.
+
+The post-call pointer expression differs from the pre-call branch input after
+unknown-memory service models; the report does not freeze the original argument
+or infer accepted content. The modeled release's zero DX:AX follows the separately
+recorded wrapper return contract, without a successful release claim. Local
+service zero and FFFF hypotheses both reach the wrapper's own AX-zero producer.
+Normalization does not validate child work, a presentation or callback state.
+
+Models preserve only declared DS/SS/BP and balanced returns. All other registers,
+memory and flags remain unknown. Complete local conditional path enumeration is
+distinct from effect completeness: every path retains unknown service effects
+and unestablished transactionality. Nonvacuous step/path caps and unread-service
+controls reject the full positive branch/width/normalization contract.
+
+Driver/configs/reports and verify-adopted-reader020-engine040.log remain in
+GAME_DIR/analysis/reporter-audit/replacement-pointer-effects/. Active service
+children, neighboring-byte/word gates, snapshots, full callers and native outcomes
+remain open. No spec claim or parity status changes; Gap 27 keeps its full scope.

@@ -869,3 +869,18 @@ unknown-memory call models invalidate its ancestor return-frame bytes. Balanced
 stack height does not establish those bytes. Toolkit PR 63 records a scoped-
 memory plan and synthetic reproductions; preservation is not implemented or
 adopted. Keep this joined acceptance open while independent cache controls proceed.
+
+## Replacement-pointer branch and normalization controls
+
+Gap 27 acceptance uses FND-CONFIG-188's complete resident wrapper. Installed
+packages must retain the pre-call null/nonnull split, both conditional old-pointer
+release gates, default/input pointer assignment, dword clears and word-to-dword
+zero extension. Later reads must stay separate from the original stacked inputs
+after unknown-memory services. Verify explicit AX zero after returning final
+service hypotheses, without accepted-content, release or presentation claims.
+Models preserve only declared DS/SS/BP and balanced returns; other effects remain
+unknown. Acceptance: both branches and release bypasses, zero/FFFF local-service
+return hypotheses, width/value provenance and nonvacuous step/path/unread controls.
+Source configs/reports remain in GAME_DIR. Exit: installed controls and Test.ps1
+pass; active child services, neighboring-byte/word gates, snapshots and full Gap
+27 remain separate open contracts. No gameplay, spec claims or parity changes.
