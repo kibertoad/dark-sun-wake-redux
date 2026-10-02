@@ -278,6 +278,15 @@ conditions, rather than merging them into the low-byte field's meaning.
 Carry those conditions through normalized wrapper results and synthetic
 fixture definitions. This complements item 26's return-register widths.
 
+Installed local helper/service controls now retain a known low byte and missing
+high-byte producer on stack-guard bypasses, while a returning unknown-memory
+guard invalidates both byte producers. Keep these cases distinct even when the
+segment and stack registers are preserved. A stopped ancestor frame or capped
+active-service route is not proof that the wider consumer was absent. The
+bounded case and rejected interval/width controls are recorded in
+docs/REPORTER-CASE-AUDIT.md; full producer and normalized-wrapper acceptance
+remains open.
+
 ## 37. Separate ordinary memory transfers from hardware presentation evidence
 
 FND-CONFIG-192 reads a graphics primitive whose common transfer path

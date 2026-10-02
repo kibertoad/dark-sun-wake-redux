@@ -952,3 +952,35 @@ Missing-variable and missing-source controls pass; their logs are in
 artifacts/package-delivery/slot-metadata-{no-game-dir,missing-source}.log.
 No candidate import, original runtime, game spec or parity status changed. Active
 primitives, whole callers and the full Gap 27 contract remain open.
+
+## Gap 36 neighboring-byte/word controls, 2026-10-02
+
+Installed reader 0.2.0 and engine 0.4.0 pass the bounded joined resident
+byte-helper/service case from FND-CONFIG-187 and FND-CONFIG-188. The local
+`GAME_DIR/analysis/reporter-audit/neighbor-word-effects/verify-adopted.mjs`
+uses the locked dependency bridge, verifies the licensed source hash and retains
+its profiles/reports and `verify-adopted-reader020-engine040.log` locally.
+Absent GAME_DIR or licensed source produces an explicit skip; no candidate
+imports or PYTHONPATH are used.
+
+On paths bypassing the service's conditional stack guard, the later word read
+retains the helper's low-byte zero producer, a missing high-byte producer, a
+two-byte addressed interval and the actual word comparison as flag producer.
+Both admitted and bypassed word-gate routes remain conditional. On paths using
+a declared returning guard model, memory invalidation removes both earlier byte
+producers, despite preserved DS/SS/BP and a balanced return. Own byte stores
+remain in the timeline; they do not become evidence of post-call contents.
+
+Wrong-neighbor and wrong-consumer-width controls reject the profile. Step/path
+caps, an unread service and an unread guard reject the full bounded distinction.
+The unread-guard control still retains direct guard-bypass witnesses, so it is
+not evidence of universal absence. Active child dependencies, default path gaps
+and ancestor return-frame stops remain explicit. No limits were increased.
+Illustrative zero-low-byte/high-byte arithmetic cases are explicitly synthetic;
+no source memory was seeded or native byte reachability inferred.
+
+This is tooling acceptance against existing findings, not a new game finding or
+parity validation. Gap 36 remains open: complete producers, normalized outer
+wrapper propagation and its complete fixture contract are not established by
+this local case. No original runtime, emulated call, gameplay, spec status or
+parity status changed.

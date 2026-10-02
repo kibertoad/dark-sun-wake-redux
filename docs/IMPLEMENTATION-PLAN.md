@@ -964,3 +964,21 @@ nonvacuous step/path/unread scanner rejections. Configs/reports remain in
 GAME_DIR. Exit: bounded installed controls, explicit retained limits, Test.ps1,
 acceptance record and handover. Full caller/scan/chain/native coverage and the
 complete request remain open; no game spec or parity change is authorized.
+
+## Neighboring-byte and word-consumer provenance controls
+
+Gap 36 acceptance uses FND-CONFIG-187's resident byte helper and
+FND-CONFIG-188's word-gated resident services. Trace the zero/count helper
+through its declared service body with conditional returning stack guards,
+retaining own byte clears separately from later full-word reads and branches.
+Unknown-memory guard models must invalidate earlier byte provenance; a balanced
+return or preserved segment does not establish either neighboring byte.
+
+Acceptance: exact segment, offset, width and call order; distinguish bypasses
+from active-service routes; no low-byte-only admission claim or native high-byte
+assumption. Wrong-width/neighbor controls and bounded step/path/unread controls
+must reject the positive local contract. Source configs/reports remain in
+GAME_DIR and skip absent licensed input. Exit: installed controls, explicit
+unknown-byte and unread-child qualifications, Test.ps1, acceptance record and
+separate handover. Gap 36 remains open until the complete producer-through-call
+contract passes adopted tooling; no game spec, parity or gameplay change.

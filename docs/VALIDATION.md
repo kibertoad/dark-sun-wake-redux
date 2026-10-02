@@ -648,3 +648,16 @@ artifacts/package-delivery/snapshot-path-root-final-test.log. The local driver
 uses GAME_DIR and reports a skip when it or the licensed source is absent;
 missing-game-dir.log and missing-source.log retain those controls beside the
 source reports. The fresh licensed-source run passes. Package pins are unchanged.
+
+## Maintainer static neighboring-byte reporter control, 2026-10-02
+
+With GAME_DIR pointing to the licensed supported source and PYTHONPATH absent,
+`node "$env:GAME_DIR/analysis/reporter-audit/neighbor-word-effects/verify-adopted.mjs"`
+passes against installed reader 0.2.0 and engine 0.4.0. Source verification,
+joined low-byte/word provenance, returning-guard invalidation, exact intervals,
+flag producers and rejected width/neighbor/cap/unread controls pass. Its local
+`verify-adopted-reader020-engine040.log` records the result. Absent GAME_DIR and
+missing-source skip controls also pass. Scope and retained incomplete paths are
+in REPORTER-CASE-AUDIT.md; no native run or emulation occurred. This maintainer
+control is not a parity-row original-comparison test, creates no validated status
+and introduces no persisted build or extracted-content layout.
