@@ -5,7 +5,8 @@ tooling. They describe tooling behavior, not claims about the original game.
 
 Latest adopted template, toolkit and pinned-rule revisions and their capability
 dispositions are recorded in docs/TEMPLATE-ACCEPTANCE.md. Published reader 0.2.0,
-checker 0.1.0 and engine 0.4.0 are adopted with exact registry locks;
+checker 0.1.0 and engine 0.7.0 are adopted with exact registry locks;
+Capstone 5.0.7 and pypcode 4.0.0 are locked runtime dependencies;
 tools/tool-dependencies.mjs verifies the installed packages. Candidate
 capabilities still require reviewed merge and registry delivery. Game-specific
 requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 4, 8,
@@ -131,6 +132,15 @@ query, with contradictions and omitted paths retained, rather than relying on
 repeated cap increases or stitching windows into a transactionality claim. The
 installed bounded controls and remaining requirement are recorded in
 docs/REPORTER-CASE-AUDIT.md; full fill acceptance remains open.
+
+Reviewed PR 60 is now delivered in the adopted engine, but its original MENU
+candidate positive is not reproduced under the reviewed shared path budget.
+Ordinary paths consume the smaller query budget; restoring the broad query's
+default budget reaches the output cap. Preserve both diagnostics and the unmet
+positive contract. Conditional continuation availability on synthetic inputs
+does not close the original linked-child request or prove a missing native path.
+The bounded input/path-hypothesis work above must handle these shared budgets
+without silently dropping ordinary routes or treating an unread target as absent.
 
 ## 29. Check progress across restarted scans and repeated invalidation
 

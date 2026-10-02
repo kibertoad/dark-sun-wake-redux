@@ -2,17 +2,19 @@
 
 ## Current migration acceptance, 2026-10-02
 
-Upstream main and the public package registries were checked for the owner's
-migration request. The following are the latest delivered versions:
+Toolkit main and the public package registries were rechecked for the owner's
+latest-toolkit request. Toolkit targets below are current at that check; template
+and rule snapshots retain their earlier accepted revisions.
 
 | Component | Verified current target | Disposition |
 | --- | --- | --- |
 | Template | `79d18a20cb4d97c7153e74e5695cbb80e7ebf73e` | Latest merged template capabilities already adopted; configured adaptations retained. |
-| Toolkit | `0b4694df7edb621c19171dd79718458378c811a2` | CI documentation action advanced to current main; action and checker source are unchanged from the previous pin. |
+| Toolkit | `98395df03fab3990bca3a3de5cb1dcd1ae0df3a3` | Latest reviewed main/release source; CI action advanced, with unchanged action/checker source. |
 | Executable reader | `0.2.0` | Exact npm archive lock and installed version already current. |
 | Standard checker | `0.1.0` | Exact npm archive lock and installed version already current. |
-| Evidence engine | `0.4.0` | Hash-locked PyPI wheel already current; installed engine files match latest toolkit main after EOL normalization. |
-| Standard v1, methodology and protocol | `ca39d0750e67c8c3900e8554e66a84083fe67452` | Freshness command confirms every snapshot unchanged; offline digests match. |
+| Evidence engine | `0.7.0` | Exact PyPI wheel hash; every shipped source/test and installed engine file matches the release archive/tag. |
+| pypcode runtime | `4.0.0` | Latest engine-required version, with published cross-platform wheel hashes and installed-version rejection controls. |
+| Standard v1, methodology and protocol | `ca39d0750e67c8c3900e8554e66a84083fe67452` | Retained accepted snapshot; offline digests match. No rule freshness check or refresh in this toolkit update. |
 
 Comparison uses a clean, commit-selected template under ignored artifacts,
 rather than the older sibling checkout. The file comparison is generated in
@@ -26,10 +28,10 @@ the historical version and prerequisite statements below.
 | Bootstrap and configuration | Adopted one-time latest-version gate and configured regression controls remain; project-config records provenance, length and SHA-256. Earlier unresolved-prerequisite prose is historical. No re-investigation of established game facts. |
 | Parsing and original-content policy | Retain bounded DOS MZ/FBOV tooling, configured restricted extensions and local-content/diagnostic protections, all exercised by synthetic controls. |
 | Launchers and validation | Retain play.bat identity, argument/exit/smoke contracts, serialized validation, Test.ps1 routing, strict NoRestore and locked dependencies. Template process stopping is not copied: this task does not own pre-existing processes. No long-running test category currently requires separate selection. |
-| CI, packaging and signing | Retain configured platform/installer jobs, pinned signing adapters, main-only signed-release safeguards and signature rejection controls; update only the unchanged latest toolkit checker action pin. No release or live signing is part of migration. |
-| Shared Ghidra and instruction reporters | Use published engine script directory and reader entry points instead of reintroducing template-vendored implementations. Shared source matches current main; local tests cover routing, versions and diagnostics. Retained broad exporters guard local-only output. |
+| CI, packaging and signing | Retain configured platform/installer jobs, pinned signing adapters, main-only signed-release safeguards and signature rejection controls; advance the unchanged latest toolkit checker action pin. No release or live signing is part of migration. |
+| Shared Ghidra and instruction reporters | Use published engine script directory and reader entry points instead of reintroducing template-vendored implementations. Installed source matches its release tag; local tests cover routing, versions, pypcode and diagnostics. Retained broad exporters guard local-only output. |
 | Inspect, citations and inventory | Retain DOS MZ/FBOV mapped-location checks, spec hash/source identity verification and established CD inventory paths. Generic PE-specific citation and image helpers do not replace DOS contracts. |
-| Rules, skills and documentation | Exact latest rules remain under vendor/upstream with checked section ranges. Retain origin terminology, owner-only DOSBox policy, no automatic push, extraction gate and stronger evidence requirements. Existing research goals and candidate work retain their own scope. |
+| Rules, skills and documentation | Pinned rules remain under vendor/upstream with checked section ranges. Retain origin terminology, owner-only DOSBox policy, no automatic push, extraction gate and stronger evidence requirements. Existing research goals and candidate work retain their own scope. |
 
 Validation: `tools/Invoke-Validation.ps1` runs the required `tools/Test.ps1`,
 configuration and repository checks, synthetic infrastructure/reporting tests,

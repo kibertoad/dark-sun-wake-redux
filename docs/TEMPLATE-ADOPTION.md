@@ -329,3 +329,23 @@ assetless publish/smoke. Existing local-only source controls pass through the
 installed engine, preserving hash checks, rejected controls and unresolved paths.
 Logs are under artifacts/package-delivery/. Toolkit PRs 41 and 43 remain open;
 their candidate features are not included in these adopted package releases.
+
+## Latest reviewed toolkit adoption, 2026-10-02
+
+The owner's latest-toolkit request advances the CI action to reviewed main
+98395df03fab3990bca3a3de5cb1dcd1ae0df3a3 and the engine to published 0.7.0.
+Reader 0.2.0/checker 0.1.0 remain latest; their exact npm locks are unchanged.
+Engine/Capstone/pypcode are hash-locked runtime dependencies. Every wheel source,
+sdist source/test and installed engine file matches the release archive/tag.
+Public-index uncached hash-locked wheel download and dependency rejection tests
+pass. Source regressions and limits are recorded in REPORTER-CASE-AUDIT.md.
+
+PR 60 is reviewed and delivered; the installed conditional-target API passes a
+synthetic prefix-write/return and capped-route check. Its former original MENU
+candidate positive does not pass the reviewed shared budgets: capped ordinary
+paths and broad output limits remain explicit. Gap 27 stays open. PR 63 merged
+only its plan/tests, not the local scoped-memory implementation. Engine 0.7.0
+contains the reviewed backend seam/pypcode phases; its default remains handwritten.
+No native behavior, hardware validation or full gap closure follows from adoption.
+Template and pinned local rules are retained; no snapshot refresh or release was
+performed. Canonical configured validation is recorded in VALIDATION.md.

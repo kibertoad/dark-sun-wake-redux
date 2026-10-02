@@ -1024,3 +1024,39 @@ report path. Full fill acceptance requires bounded input/path tooling or fresh
 producer evidence; repeatedly raising caps or combining fragments is not proof.
 Gap 27 remains open. No new game claim, spec/parity status, original run or
 emulation is recorded.
+
+## Latest engine 0.7.0 acceptance and linked-child limits, 2026-10-02
+
+Reviewed toolkit main/release tag 98395df03fab3990bca3a3de5cb1dcd1ae0df3a3
+is adopted with registry engine 0.7.0, reader 0.2.0, checker 0.1.0, Capstone
+5.0.7 and pypcode 4.0.0. Registry hashes and every wheel source, sdist source/test
+and installed engine file match. Integrity evidence:
+artifacts/package-delivery/engine070-registry/integrity.json. The checker/action
+source is unchanged across the pin update. Installed dependency tests reject
+missing/wrong pypcode and preserve prepared-protocol mismatch diagnostics.
+
+All retained adopted source drivers pass with PYTHONPATH absent; generated
+summary/logs are under GAME_DIR/analysis/reporter-audit/registry-engine070-regression/.
+Previous profiles/reports were retained there before regeneration. Earlier scope
+qualifications, limits and gap dispositions remain binding. No source input or
+report is committed; no native run, emulation, spec or parity status changes.
+
+PR 60's reviewed conditional-target API passes the installed synthetic MZ test
+in tests/upstream/tool-dependencies.test.mjs: conditional return retains its prefix
+write beside the ordinary unresolved jump, while a shared path cap rejects it.
+The original FND-CONFIG-168 MENU candidate control was rechecked using installed
+packages. At its smaller path budget, ordinary paths exhaust the shared budget
+and no MENU return witness is available. Restoring the broad query's default path
+budget hits the reader's output cap; it was not raised or repeatedly retried.
+The conservative installed source control is
+GAME_DIR/analysis/reporter-audit/child-effect-controls/verify-delivery-limits.mjs,
+with verify-delivery-limits-reader020-engine070.log beside it. These positive
+limit-reporting checks do not substitute for the unmet conditional-return control.
+
+Reviewed delivery supersedes the earlier unmerged-candidate acceptance, not its
+full request contract. No conditional-path absence or native error origin is
+inferred. Complete linked-child acceptance needs bounded explicit input/path
+work or fresh evidence; Gap 27 stays open. PR 63 merged its planning/test delta
+only, so scoped-memory candidate acceptance remains unadopted. The published
+engine's default backend remains handwritten; importing pypcode does not grant
+hardware or whole-program fidelity.

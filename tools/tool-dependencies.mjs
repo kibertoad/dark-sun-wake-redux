@@ -28,8 +28,10 @@ export function checkerScript() {
 }
 export function verifyEngine(root = ROOT, env = process.env) {
   const expected = [...readFileSync(resolve(root, "tools/evidence/requirements.txt"), "utf8").matchAll(/^([a-z-]+)==([^\s]+) /gm)];
-  if (expected.length !== 2) throw new Error("Engine requirements must pin the engine and Capstone wheel hashes.");
-  const child = spawnSync(enginePython(root, env), ["-c", "import importlib.metadata,json; print(json.dumps({n:importlib.metadata.version(n) for n in ['scientific-method-engine','capstone']}))"],
+  const runtimePackages = ["scientific-method-engine", "capstone", "pypcode"];
+  if (expected.length !== runtimePackages.length || runtimePackages.some(name => expected.filter(([, n, v]) => n === name && /^\d+\.\d+\.\d+$/.test(v)).length !== 1))
+    throw new Error("Engine requirements must exactly pin engine, Capstone and pypcode wheel hashes.");
+  const child = spawnSync(enginePython(root, env), ["-c", "import importlib.metadata,json; print(json.dumps({n:importlib.metadata.version(n) for n in ['scientific-method-engine','capstone','pypcode']}))"],
     {encoding: "utf8", timeout: 30000, maxBuffer: 65536, env});
   if (child.error || child.status !== 0) throw new Error(`Published Python engine unavailable. ${SETUP}`);
   const versions = JSON.parse(child.stdout);

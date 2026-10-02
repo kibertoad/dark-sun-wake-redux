@@ -986,3 +986,12 @@ loop limits, allocator effects, capacities and original input identity remain
 explicit. GAME_DIR profiles/reports stay local and skip missing licensed input.
 Exit: bounded installed controls, retained whole-fill gaps, Test.ps1, acceptance
 record and handover; no spec, parity, gameplay or native-runtime changes.
+
+## Reviewed engine 0.7.0 adoption
+
+Adopt the latest reviewed action pin and exact registry wheel; match sources to
+its release tag. Lock pypcode with engine/Capstone and verify all runtime pins.
+Run retained source controls plus the full linked-child conditional-target case
+against installed packages without candidate imports. Preserve default backend,
+unread paths, conditional targets and all remaining gap contracts. Exit: archive
+integrity, meaningful dependency rejections, source controls and Test.ps1 pass.

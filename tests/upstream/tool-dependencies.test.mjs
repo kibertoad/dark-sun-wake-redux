@@ -41,3 +41,32 @@ test("installed engine refuses incompatible prepared protocol before source acce
   const r=spawnSync(enginePython(),["-m","scientific_method_engine","trace","-"],{input:JSON.stringify({preparedProtocol:99}),encoding:"utf8"});
   assert.notEqual(r.status,0);assert.match(r.stderr,/protocol 99/);assert.match(r.stderr,/Install matching/);
 });
+
+
+test("pypcode is required and its installed version must match the exact runtime lock", t => {
+  const dir=scratch(t); mkdirSync(join(dir,"tools/evidence"),{recursive:true});
+  const path=join(dir,"tools/evidence/requirements.txt"), lock=readFileSync(join(root,"tools/evidence/requirements.txt"),"utf8");
+  writeFileSync(path,lock.replace(/^pypcode==.*$/m,""));
+  assert.throws(() => verifyEngine(dir,{...process.env,EVIDENCE_PYTHON:enginePython()}), /exactly pin engine, Capstone and pypcode/);
+  writeFileSync(path,lock.replace(/pypcode==\d+\.\d+\.\d+/,"pypcode==99.0.0"));
+  assert.throws(() => verifyEngine(dir,{...process.env,EVIDENCE_PYTHON:enginePython()}), /pypcode.*expected 99.0.0/);
+});
+
+
+test("installed table continuations keep prefix writes beside the ordinary stopped path", t => {
+  const dir=scratch(t), data=Buffer.alloc(512);data.write("MZ");data.writeUInt16LE(1,4);data.writeUInt16LE(4,8);
+  data.set([0xc7,0x06,0x20,0x00,0x01,0x00,0xff,0xe3],64);
+  data.set([0xb8,0xff,0xff,0xc3],80);data.writeUInt16LE(16,112);
+  writeFileSync(join(dir,"source.bin"),data);
+  const config={source:"source.bin",sourceKind:"mz",sha256:createHash("sha256").update(data).digest("hex"),entry:64,
+    registers:{ds:8192,ss:12288,sp:65280},regions:[{name:"synthetic",start:64,end:84,ip:0,segment:4096,entries:[64],evidence:"synthetic MZ"}],
+    indirectJumps:[{site:70,exhaustive:false,evidence:"synthetic conditional route; selector unknown",table:{start:112,count:1,stride:2,evidence:"synthetic near-word table"}}]};
+  const path=join(dir,"config.json");writeFileSync(path,JSON.stringify(config));
+  const r=run(["x86-effects",path]);
+  assert.equal(r.completeWithinModel,false);assert(r.paths.some(p=>!p.returned&&p.stopSite===70));
+  assert(r.declaredContinuationPaths.some(p=>p.returned&&p.registers.ax.value===65535&&p.events.some(e=>e.kind==="write"&&e.site===64&&e.width===2&&e.value.value===1)));
+  assert(r.effectOrdering.declaredContinuationPaths.every(p=>!p.effectCompleteWithinModel));
+  writeFileSync(path,JSON.stringify({...config,maxPaths:1}));
+  const capped=run(["x86-effects",path]);assert.equal(capped.completeWithinModel,false);
+  assert(!capped.declaredContinuationPaths.some(p=>p.returned));
+});
