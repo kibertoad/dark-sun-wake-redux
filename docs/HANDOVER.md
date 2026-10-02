@@ -1,28 +1,19 @@
 # Handover
 
-Where the work outside any goal stands now. Rewrite this file at the end of
-every session that works under no goal; do not append to it. A session under a
-goal writes the same sections in its goal file's Handover instead, so two
-sessions running at once never write the same file. It is at most 200 lines.
-History is in git, open research questions are in `queue/`, the plan is in
-`docs/IMPLEMENTATION-PLAN.md`, the goals running are the files in
-`docs/goals/`, and the open live session requests are the files in
-`docs/live-sessions/`. Name items and entries by ID; what research found or
-tried belongs in the spec and the queue, never here.
-See the [work protocol](../vendor/upstream/work-protocol.md#working-files) (lines 10-30).
+Current work outside a goal. Active research goals retain their own handovers in
+docs/goals/; queue items and findings remain in their respective durable files.
 
 ## State
 
 - Stage: Slices; slices 2 and 3 remain in progress. Survey exit still needs Q-EXE-003.
-- Last gate: 2026-10-01, tools/Invoke-Validation.ps1 and the final tools/Test.ps1 pass with repository-local PowerShell 7. Locked restore, Release build and assetless publish/smoke pass. Logs: artifacts/migration-acceptance.log and artifacts/migration-final-test.log.
-- Relevant template infrastructure gaps are addressed; capability dispositions and validation limits are in docs/TEMPLATE-ACCEPTANCE.md. Existing pinned rules and toolkit remain exact.
-- Signing/release workflow was compared with New Chrome. Shared safeguards are submitted in [template PR 38](https://github.com/kibertoad/refurbished-dinosaurs-template/pull/38). Root changes remain local; only the template PR branch was pushed.
-- Broad exporters compile against public Ghidra APIs and synthetic local-output boundaries pass. No original-game run, DOSBox control or executable analysis occurred.
-- Native runtime remains owner-only. Historical hosted installer acceptance predates this batch; new signing/workflow changes have local synthetic acceptance.
+- Last gate: 2026-10-02, tools/Invoke-Validation.ps1 passed, including tools/Test.ps1, locked restore, Release build and assetless publish/smoke. Evidence: artifacts/template-migration/final-validation.log.
+- Latest upstream migration is complete. Template 79d18a20, toolkit 0b4694df, reader 0.2.0, checker 0.1.0 and engine 0.4.0 are current. Standard/methodology/protocol ca39d075 freshness and offline digests pass. Capability dispositions: docs/TEMPLATE-ACCEPTANCE.md.
+- Established latest-original-version readiness is recorded in project-config and SOURCE-EDITIONS. Native runtime remains owner-only; no original run or executable analysis occurred in the migration.
+- Process audit found no migration-owned orphan requiring termination; reusable MSBuild nodes remain untouched.
 
 ## Unfinished
 
-No unfinished implementation or tooling changes. Research follow-up remains in queue/ and gaps.md.
+The pre-existing scoped-memory candidate addition to docs/IMPLEMENTATION-PLAN.md remains unstaged. It belongs to the ongoing upstream-gap-resolution work, whose goal file retains its handover. No unfinished migration work.
 
 ## Blockers
 
@@ -30,7 +21,8 @@ Live signing, repository signing-environment branch protection and high/mixed-DP
 
 ## Next
 
-1. Q-EXE-003 Survey exit; then Q-CONFIG-008, Q-CONFIG-007 and Q-CONFIG-002 for RULE-CONFIG-005 and FMT-CONFIG-003.
-2. Q-UI-005 and Q-SAVE-001 for SCR-UI-013 and SCR-UI-014; Q-UI-002 for SCR-UI-007.
-3. Q-CONFIG-001 owner live session; Q-PARTY-001, Q-PARTY-005 and Q-PARTY-009.
-4. Review template PR 38; configure ES_CERTIFICATE_THUMBPRINT and main-only release-signing deployment branches before a signed release.
+1. Continue existing goals from their handovers; migration does not close research requests.
+2. Q-EXE-003 Survey exit; then Q-CONFIG-008, Q-CONFIG-007 and Q-CONFIG-002 for RULE-CONFIG-005 and FMT-CONFIG-003.
+3. Q-UI-005 and Q-SAVE-001 for SCR-UI-013 and SCR-UI-014; Q-UI-002 for SCR-UI-007.
+4. Q-CONFIG-001 owner live session; Q-PARTY-001, Q-PARTY-005 and Q-PARTY-009.
+5. Configure ES_CERTIFICATE_THUMBPRINT and main-only release-signing deployment branches before a signed release.
