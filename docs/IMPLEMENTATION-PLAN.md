@@ -884,3 +884,17 @@ return hypotheses, width/value provenance and nonvacuous step/path/unread contro
 Source configs/reports remain in GAME_DIR. Exit: installed controls and Test.ps1
 pass; active child services, neighboring-byte/word gates, snapshots and full Gap
 27 remain separate open contracts. No gameplay, spec claims or parity changes.
+
+## Snapshot bypass and local restoration-path controls
+
+Gap 27 acceptance uses FND-CONFIG-189's two complete resident service entries.
+Retain word-gate bypasses without snapshots, snapshot-bearing early exits and
+reachable local restoration stores as distinct paths. Verify saved-word and
+restoration value provenance only on paths whose intervening instructions were
+read; unknown child effects never establish rollback. Returning stack-guard
+models preserve only declared DS/SS/BP, with memory/flags unknown. Other callees,
+callbacks, handle-failure commits and native outcomes remain unread dependencies.
+Acceptance: positive bypass/restoration distinctions, guarded-return witnesses,
+word widths and nonvacuous step/path/unread-guard controls. Source configs/reports
+stay in GAME_DIR. Exit: installed controls and Test.ps1 pass; every remaining
+snapshot/commit path and the complete Gap 27 request remain open.

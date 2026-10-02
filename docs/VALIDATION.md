@@ -615,3 +615,19 @@ Replacement-pointer tooling batch Test.ps1 -NoRestore passes; log
 artifacts/package-delivery/replacement-pointer-root-final-test.log. Toolkit
 PRs 60 and 63 remain open at their recorded heads; neither candidate behavior
 nor the scoped-memory proposal has been adopted.
+
+Gap 27 snapshot-path controls (2026-10-02): installed reader 0.2.0/engine 0.4.0
+pass word-gate bypass, snapshot-bearing early-exit and matching saved-word/local
+restoration-store distinctions from both complete service entries. Earlier handle
+clears and a reachable local commit-before-restoration route are retained.
+Step/path/unread-guard controls reject the qualified returning-guard contract.
+Local log: GAME_DIR/analysis/reporter-audit/snapshot-path-effects/
+verify-adopted-reader020-engine040.log. Effect queries retain unread active child
+paths; handle-request-failure commits, callbacks and native outcomes remain open.
+No whole-call rollback or complete Gap 27 acceptance is claimed.
+
+Snapshot-path tooling batch Test.ps1 -NoRestore passes; log
+artifacts/package-delivery/snapshot-path-root-final-test.log. The local driver
+uses GAME_DIR and reports a skip when it or the licensed source is absent;
+missing-game-dir.log and missing-source.log retain those controls beside the
+source reports. The fresh licensed-source run passes. Package pins are unchanged.

@@ -792,3 +792,34 @@ Driver/configs/reports and verify-adopted-reader020-engine040.log remain in
 GAME_DIR/analysis/reporter-audit/replacement-pointer-effects/. Active service
 children, neighboring-byte/word gates, snapshots, full callers and native outcomes
 remain open. No spec claim or parity status changes; Gap 27 keeps its full scope.
+
+## Gap 27 snapshot bypass and local restoration paths, 2026-10-02
+
+Installed reader 0.2.0 and engine 0.4.0 start at both complete resident
+FND-CONFIG-189 service entries. The bounds queries retain complete local body
+coverage under their stated continuation assumptions; effect queries remain
+incomplete because active children and callbacks are unread. Neither query lifts
+a path limit or substitutes a suffix for the entry.
+
+Each service retains separate returned word-gate bypasses without a snapshot,
+snapshot-bearing early exits without the restoration store, and reachable local
+restoration stores. On the latter witnesses, the DS word read, SS saved-word
+write and later DS word assignment retain identical value expressions and order,
+with no intervening call after the snapshot. This proves the reported value
+assignment, not transactionality or unchanged external state. The before-service
+FFFF mode exit skips restoration. The after-service early exits retain their
+preceding handle-sentinel writes; a reachable local mode route retains all common
+commit stores before the restoration assignment.
+
+Positive contracts require an explicitly modeled returning stack guard with
+declared DS/SS/BP preservation only; memory/flags and other registers remain
+unknown. Step/path caps and removing that guard model reject these qualified
+return contracts. Other guard-bypass paths do not rescue the rejected hypothesis.
+Unread active child calls remain separate stopped paths. Every summary leaves
+transactionality unestablished. Stored handle-request failure followed by commit,
+callback routes, post-call snapshot preservation, all active children and native
+outcomes remain outstanding; these witnesses do not close the full request.
+
+Driver/configs/reports and verify-adopted-reader020-engine040.log stay in
+GAME_DIR/analysis/reporter-audit/snapshot-path-effects/. No candidate imports,
+package changes, game claims or parity statuses changed. Gap 27 remains open.
