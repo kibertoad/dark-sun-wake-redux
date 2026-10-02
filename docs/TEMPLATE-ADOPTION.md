@@ -2,9 +2,10 @@
 
 Current full-template acceptance is recorded in [TEMPLATE-ACCEPTANCE.md](TEMPLATE-ACCEPTANCE.md).
 The 2026-10-01 audit found older infrastructure gaps, now addressed with
-configured adaptations and local acceptance. Latest patch provenance and the
-approved baseline SHA-256 remain prerequisites for executable analysis. Historical
-completion statements below describe their incremental adoption scope.
+configured adaptations and local acceptance. The current migration record in
+TEMPLATE-ACCEPTANCE.md supersedes historical version and prerequisite statements
+below; project-config records established latest-patch provenance and SHA-256.
+Historical completion statements describe their incremental adoption scope.
 
 Source: refurbished-dinosaurs-template `e698e5b`, incorporating PRs 19, 21 and 22.
 Checker: refurbished-dinosaurs-toolkit `1560349d2e7430fd6b1b229b0b52f3782d08d3b0`
