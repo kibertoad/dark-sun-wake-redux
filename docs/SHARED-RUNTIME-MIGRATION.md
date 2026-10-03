@@ -10,3 +10,7 @@ and is not required by this migration.
 Game save payloads, version admission, slot naming, defaults, audio routing, fades, voice limits
 and control policies remain local. Synthetic checks establish migration behavior, not parity
 with the original game or live device behavior. No original assets entered this change.
+
+Self-contained installers use separate committed runtime/mode lock profiles. Ordinary build
+locks remain unchanged. Profile maintenance names the target runtime explicitly, and CI
+rejects a missing or mismatched packaging lock instead of regenerating it.
