@@ -43,3 +43,7 @@ passes, including Java export-boundary and .NET settings controls.
 The validation-lease fixture now uses production path initialization, so Windows short
 and long TEMP paths select the same lock. Synthetic failure and exclusion controls pass locally.
 Original-game parity and live-device behavior were not assessed.
+
+Installer packaging uses committed target/mode lock profiles with explicit RuntimeIdentifier.
+All profiles pass locked restore; missing, mismatched and cross-host controls pass.
+Publishers preserve locked mode; regeneration is an explicit maintenance command.
