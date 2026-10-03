@@ -1,6 +1,9 @@
 using System.Text.Json;
 using DarkSunWakeRedux.Resources;
 
+if (args.Length == 2 && args[0].Equals("fli-check", StringComparison.OrdinalIgnoreCase))
+    return FliInspection.Run(args[1]);
+
 if (args.Length == 3 && args[0].Equals("resource-pattern", StringComparison.OrdinalIgnoreCase))
 {
     try
@@ -836,6 +839,7 @@ if (args.Length == 4 && args[0].Equals("object-record-overlap", StringComparison
 if (args.Length != 1 || !Directory.Exists(args[0]))
 {
     Console.Error.WriteLine("Usage:");
+    Console.Error.WriteLine("  DarkSunWakeRedux.Inspect fli-check <owned-original.fli>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect <owned-original-directory>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect image-preview <owned-original.gff> <tag; use _ for padded space> <image-number> <palette-number> [frame-index] <outside-repository.bmp>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect gff <owned-original.gff>");

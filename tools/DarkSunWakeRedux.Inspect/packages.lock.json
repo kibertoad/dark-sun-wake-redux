@@ -2,6 +2,12 @@
   "version": 1,
   "dependencies": {
     "net10.0": {
+      "RefurbishedDinosaurs.Media.Fli": {
+        "type": "Direct",
+        "requested": "[1.0.0, )",
+        "resolved": "1.0.0",
+        "contentHash": "wBZqGCLPCQpYwK7r+9f4qJ6jZpHfNYiRnWOd/S+jlE7HDsrw+Eu5vzPzmbB1M1yv6GJoJA00V6mdIPA7FN837A=="
+      },
       "System.IO.Hashing": {
         "type": "Transitive",
         "resolved": "10.0.12",
