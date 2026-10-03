@@ -117,8 +117,8 @@
       },
       "RefurbishedDinosaurs.Core": {
         "type": "Transitive",
-        "resolved": "1.1.0-preview.shared-runtime",
-        "contentHash": "YUzN8acJwrpFK8HI8HBKMmFWJfp+PIzKPtKgG6eh/zCljRKLbTwTm1g9H2KVYyyK/sKIebp6yAENlyJ3Un8NhQ=="
+        "resolved": "1.3.0",
+        "contentHash": "cLJf4odnkvRoj3XvpsLf0LdsaWWRf4dDog4QC8JT/d071LtpBAnGPNCKmW7xONM5EddSXM8fzTsraHOmNQ2nGw=="
       },
       "RefurbishedDinosaurs.Media.Fli": {
         "type": "Transitive",
@@ -221,7 +221,7 @@
           "DarkSunWakeRedux.Core": "[1.0.0, )",
           "DarkSunWakeRedux.Resources": "[1.0.0, )",
           "MonoGame.Framework.DesktopGL": "[3.8.5.1, )",
-          "RefurbishedDinosaurs.Core": "[1.1.0-preview.shared-runtime, )"
+          "RefurbishedDinosaurs.Core": "[1.3.0, )"
         }
       },
       "darksunwakeredux.inspect": {
