@@ -73,7 +73,7 @@ test('validation serializes a checkout and releases its lock even when a command
   const dir=fixture(t);mkdirSync(join(dir,'tools'));
   copyFileSync(join(root,'tools/Invoke-Validation.ps1'),join(dir,'tools/Invoke-Validation.ps1'));
   const result=wrapper(t, `
-$root=${literal(dir)}
+$root=(Resolve-Path -LiteralPath (Join-Path ${literal(join(dir,'tools'))} '..')).Path
 $hash=[Security.Cryptography.SHA256]::Create()
 try { $id=[BitConverter]::ToString($hash.ComputeHash([Text.Encoding]::UTF8.GetBytes($root.ToUpperInvariant()))).Replace('-','') } finally { $hash.Dispose() }
 $path=Join-Path ([IO.Path]::GetTempPath()) "restoration-validation-$($id.Substring(0,16)).lock"
