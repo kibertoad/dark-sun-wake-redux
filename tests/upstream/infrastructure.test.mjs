@@ -82,7 +82,8 @@ try {
   try { & (Join-Path $root 'tools/Invoke-Validation.ps1'); throw 'accepted competing validation' }
   catch { if ($_.Exception.Message -notmatch 'Another validation run') { throw } }
 } finally { $handle.Dispose() }
-function global:dotnet { $global:LASTEXITCODE=7 }
+function global:Invoke-SyntheticDotnet { $global:LASTEXITCODE=7 }
+Set-Alias -Name dotnet -Value Invoke-SyntheticDotnet -Scope Global
 try { & (Join-Path $root 'tools/Invoke-Validation.ps1'); throw 'accepted failed restore' }
 catch { if ($_.Exception.Message -notmatch 'restore failed with exit code 7') { throw } }
 $handle=[IO.File]::Open($path,'OpenOrCreate','ReadWrite','None');$handle.Dispose()
