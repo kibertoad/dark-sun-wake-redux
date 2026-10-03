@@ -3,4 +3,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\DarkSunWakeRedux.Resources\DarkSunWakeRedux.Resources.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="RefurbishedDinosaurs.Media.Fli" Version="1.0.0" />
+    <InternalsVisibleTo Include="DarkSunWakeRedux.Tests" />
+  </ItemGroup>
 </Project>

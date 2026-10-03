@@ -719,3 +719,14 @@ succeeded before an intermittent synthetic capture positive failed; that failure
 is retained in engine080-root-test-initial-capture-failure.log. The isolated
 capture recheck and full unchanged gate pass; no rejection was weakened. Gap 44
 records the diagnostic request and unconfirmed cause.
+
+## Shared FLI format readiness
+
+Run `dotnet run --project tools/DarkSunWakeRedux.Inspect -- fli-check <owned-file>`
+to index and decode AF11 playback records with RefurbishedDinosaurs.Media.Fli.
+The tool writes metadata only; source files remain unchanged. It excludes the
+trailing ring record from playback and reports unsupported or malformed files.
+This checks the published format implementation, not original decoder parity.
+The unresolved chunk behavior and malformed historical record in FMT-VIDEO-001
+remain open. Cinematic dispatch, caller timing, skip handling and still-picture
+fallback remain unimplemented; this adoption does not change their parity rows.
