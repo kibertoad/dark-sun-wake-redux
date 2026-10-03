@@ -30,3 +30,6 @@ Live signing, repository signing-environment branch protection and high/mixed-DP
 Shared FLI readiness tooling: Inspect `fli-check` now uses RefurbishedDinosaurs.Media.Fli 1.0.0.
 Synthetic COPY, FLC rejection and chunk-overrun tests pass. It does not implement cinematic
 playback or raise spec status. Original-media validation remains local and was not run.
+
+The toolkit documentation action version comment now matches its pinned commit.
+Zizmor passes locally with the CI default persona.
