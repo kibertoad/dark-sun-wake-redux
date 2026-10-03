@@ -13,6 +13,12 @@
           "NVorbis": "0.10.4"
         }
       },
+      "RefurbishedDinosaurs.Core": {
+        "type": "Direct",
+        "requested": "[1.1.0-preview.shared-runtime, )",
+        "resolved": "1.1.0-preview.shared-runtime",
+        "contentHash": "YUzN8acJwrpFK8HI8HBKMmFWJfp+PIzKPtKgG6eh/zCljRKLbTwTm1g9H2KVYyyK/sKIebp6yAENlyJ3Un8NhQ=="
+      },
       "MonoGame.Library.OpenAL": {
         "type": "Transitive",
         "resolved": "1.24.3.4",

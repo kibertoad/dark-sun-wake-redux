@@ -54,24 +54,11 @@ public static class LaunchSettingsStore
         var target = Path.GetFullPath(path);
         using var primary = TryParse(target);
         using var backup = TryParse(target + BackupSuffix);
-        var recovered = false;
-        var defaulted = false;
-        var wideMapView = ReadBoolean(primary, WideMapViewField)
-            ?? Recover(ReadBoolean(backup, WideMapViewField))
-            ?? UseDefault(LaunchSettings.Default.WideMapView);
-        return new(new(wideMapView), recovered, defaulted);
-
-        T? Recover<T>(T? value) where T : struct
-        {
-            recovered |= value.HasValue;
-            return value;
-        }
-
-        T UseDefault<T>(T value)
-        {
-            defaulted = true;
-            return value;
-        }
+        var field = RefurbishedDinosaurs.Core.Persistence.SettingsRecovery.Select(
+            ReadBoolean(primary, WideMapViewField), ReadBoolean(backup, WideMapViewField),
+            LaunchSettings.Default.WideMapView, _ => true);
+        return new(new(field.Value), field.Source == RefurbishedDinosaurs.Core.Persistence.SettingsSource.Backup,
+            field.Source == RefurbishedDinosaurs.Core.Persistence.SettingsSource.Default);
     }
 
     public static void WriteAtomic(string path, LaunchSettings settings)
@@ -79,33 +66,11 @@ public static class LaunchSettingsStore
         ArgumentException.ThrowIfNullOrWhiteSpace(path);
         ArgumentNullException.ThrowIfNull(settings);
         var bytes = Serialize(settings);
-        var target = Path.GetFullPath(path);
-        var directory = Path.GetDirectoryName(target)
-            ?? throw new ArgumentException("The settings path needs a parent folder.", nameof(path));
-        Directory.CreateDirectory(directory);
-        var temporary = target + $".{Guid.NewGuid():N}.tmp";
-        var backupTemporary = target + BackupSuffix + $".{Guid.NewGuid():N}.tmp";
-        try
+        RefurbishedDinosaurs.Core.Persistence.RecoverableFile.Write(path, stream => stream.Write(bytes), candidate =>
         {
-            WriteDurably(temporary, bytes);
-            // Only a copy that reads back becomes the backup, so a damaged file never replaces a
-            // good backup. A file with a version this build does not know is dropped with no copy
-            // kept. The primary stays in place until the final rename replaces it.
-            using (var current = TryParse(target))
-            {
-                if (current is not null)
-                {
-                    File.Copy(target, backupTemporary, overwrite: false);
-                    File.Move(backupTemporary, target + BackupSuffix, overwrite: true);
-                }
-            }
-            File.Move(temporary, target, overwrite: true);
-        }
-        finally
-        {
-            if (File.Exists(temporary)) File.Delete(temporary);
-            if (File.Exists(backupTemporary)) File.Delete(backupTemporary);
-        }
+            using var parsed = TryParse(candidate);
+            if (parsed is null) throw new InvalidDataException("Settings generation is invalid.");
+        }, error => error is IOException or InvalidDataException or UnauthorizedAccessException);
     }
 
     public static byte[] Serialize(LaunchSettings settings)
@@ -125,14 +90,6 @@ public static class LaunchSettingsStore
         return buffer.ToArray();
     }
 
-    private static void WriteDurably(string path, byte[] bytes)
-    {
-        using var stream = new FileStream(path, FileMode.CreateNew, FileAccess.Write,
-            FileShare.None, bufferSize: 4096, FileOptions.WriteThrough);
-        stream.Write(bytes);
-        stream.Flush(flushToDisk: true);
-    }
-
     /// <summary>
     /// Returns the file's root object when the file exists, fits the size limit, parses, and
     /// carries a version this build knows; otherwise null.
@@ -142,10 +99,7 @@ public static class LaunchSettingsStore
         try
         {
             if (!File.Exists(path)) return null;
-            using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
-            if (stream.Length is <= 0 or > MaximumBytes) return null;
-            var bytes = new byte[stream.Length];
-            stream.ReadExactly(bytes);
+            var bytes = RefurbishedDinosaurs.Core.Persistence.RecoverableFile.ReadBounded(path, MaximumBytes);
             var document = JsonDocument.Parse(bytes, DocumentOptions);
             if (document.RootElement.ValueKind == JsonValueKind.Object &&
                 document.RootElement.TryGetProperty(VersionField, out var version) &&
@@ -156,7 +110,7 @@ public static class LaunchSettingsStore
             document.Dispose();
             return null;
         }
-        catch (Exception exception) when (exception is IOException or
+        catch (Exception exception) when (exception is IOException or InvalidDataException or
             UnauthorizedAccessException or JsonException or NotSupportedException or
             System.Security.SecurityException or ArgumentException)
         {
