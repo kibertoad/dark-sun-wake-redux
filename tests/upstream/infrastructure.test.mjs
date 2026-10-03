@@ -71,23 +71,21 @@ test('identity reconfiguration preserves recorded original facts and nested fing
 
 test('validation serializes a checkout and releases its lock even when a command fails', t => {
   const dir=fixture(t);mkdirSync(join(dir,'tools'));
-  writeFileSync(join(dir,'tools/Invoke-Validation.ps1'), readFileSync(join(root,'tools/Invoke-Validation.ps1'),'utf8').replace('$lock = $null', "Write-Output ('production-lock:' + $lockPath)\n$lock = $null"));
+  const source=readFileSync(join(root,'tools/Invoke-Validation.ps1'),'utf8');
+  copyFileSync(join(root,'tools/Invoke-Validation.ps1'),join(dir,'tools/Invoke-Validation.ps1'));
+  // Invoke a sibling script with production's unchanged initialization. Windows can expose
+  // TEMP through an 8.3 alias while PSScriptRoot expands it; duplicating the hash uses another lock.
+  const boundary=source.indexOf('$lock = $null');assert(boundary>0);
+  writeFileSync(join(dir,'tools/GetValidationLock.ps1'),source.slice(0,boundary)+'\n$lockPath\n');
   const result=wrapper(t, `
-$root=(Resolve-Path -LiteralPath (Join-Path ${literal(join(dir,'tools'))} '..')).Path
-$hash=[Security.Cryptography.SHA256]::Create()
-try { $id=[BitConverter]::ToString($hash.ComputeHash([Text.Encoding]::UTF8.GetBytes($root.ToUpperInvariant()))).Replace('-','') } finally { $hash.Dispose() }
-Write-Output ('fixture-root:'+ $root)
-$path=Join-Path ([IO.Path]::GetTempPath()) "restoration-validation-$($id.Substring(0,16)).lock"
-Write-Output ('fixture-lock:'+ $path)
+$root=${literal(dir)}
+$path=& (Join-Path $root 'tools/GetValidationLock.ps1')
 $handle=[IO.File]::Open($path,'OpenOrCreate','ReadWrite','None')
 try {
-  Write-Output 'phase:competing-validation'
   try { & (Join-Path $root 'tools/Invoke-Validation.ps1'); throw 'accepted competing validation' }
   catch { if ($_.Exception.Message -notmatch 'Another validation run') { throw } }
 } finally { $handle.Dispose() }
-Write-Output 'phase:failed-restore'
-function global:Invoke-SyntheticDotnet { $global:LASTEXITCODE=7 }
-Set-Alias -Name dotnet -Value Invoke-SyntheticDotnet -Scope Global
+function dotnet { $global:LASTEXITCODE=7 }
 try { & (Join-Path $root 'tools/Invoke-Validation.ps1'); throw 'accepted failed restore' }
 catch { if ($_.Exception.Message -notmatch 'restore failed with exit code 7') { throw } }
 $handle=[IO.File]::Open($path,'OpenOrCreate','ReadWrite','None');$handle.Dispose()
