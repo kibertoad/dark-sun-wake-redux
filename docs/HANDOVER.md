@@ -13,7 +13,7 @@ docs/goals/; queue items and findings remain in their respective durable files.
 
 ## Unfinished
 
-No unfinished migration work. Continuing shared-tooling work and its external-delivery approval are recorded in docs/goals/upstream-gap-resolution.md; the scoped-memory acceptance plan is committed.
+The earlier template migration is complete. Shared runtime migration remains draft pending toolkit publication. Continuing shared-tooling work and its external-delivery approval are recorded in docs/goals/upstream-gap-resolution.md; the scoped-memory acceptance plan is committed.
 
 ## Blockers
 
@@ -33,3 +33,11 @@ playback or raise spec status. Original-media validation remains local and was n
 
 The toolkit documentation action version comment now matches its pinned commit.
 Zizmor passes locally with the CI default persona.
+
+## Shared runtime migration
+
+Branch: `feat/shared-runtime-primitives`. See [migration status](SHARED-RUNTIME-MIGRATION.md).
+The solution build and .NET settings suite passed. The full canonical gate remains blocked by missing javac in its existing export-boundary test.
+The migration remains draft until toolkit PRs #86–#89 release the required APIs. Replace
+candidate NuGet pins and regenerate locks against nuget.org before marking ready.
+Original-game parity and live-device behavior were not assessed.
