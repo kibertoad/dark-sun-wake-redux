@@ -39,5 +39,7 @@ Zizmor passes locally with the CI default persona.
 Branch: `feat/shared-runtime-primitives`. See [migration status](SHARED-RUNTIME-MIGRATION.md).
 The solution build, .NET settings suite and full canonical gate passed with a workspace-local JDK.
 The migration uses public 1.3.0 packages and refreshed NuGet locks. The full canonical gate
-passes, including Java export-boundary controls and all 703 .NET tests.
+passes, including Java export-boundary and .NET settings controls.
+The validation-lease fixture now uses production path initialization, so Windows short
+and long TEMP paths select the same lock. Synthetic failure and exclusion controls pass locally.
 Original-game parity and live-device behavior were not assessed.
