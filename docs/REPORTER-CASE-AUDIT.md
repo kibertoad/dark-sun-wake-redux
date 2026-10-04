@@ -1199,3 +1199,44 @@ This recovers the earlier missing conditional MENU witness using new delivered
 tooling, not increased ordinary budgets or filtered paths. Runtime table inputs
 and external-service effects remain hypotheses, and no native or whole-Gap 27
 claim follows. The full fill case remains separate under toolkit ADR 0008.
+
+## Published engine 4 broader release acceptance, 2026-10-04
+
+The integrity-verified published sdist source suite runs 426 tests successfully
+with one monorepo-only reader case skipped. Unicorn 2.1.4 is a test-only oracle
+in the isolated delivery runtime, not an adopted runtime dependency. The suite
+imports its sdist source; the earlier shipped-source inventory comparison proves
+that source matches the wheel and release commit. Log:
+artifacts/continuation-budget-delivery/full-source-tests-final.log.
+The skipped PE32 bridge assertions were then executed through published reader
+2.0.0 and installed engine 4.0.0, with checkout PYTHONPATH removed. Valid mapping
+passes and a mismatched mapping rejects. Log: pe-bridge.log in the same directory.
+
+The complete prior retained control inventory was attempted. Nineteen groups
+pass with installed engine 4.0.0 and published reader 2.0.0. Two original drivers
+remain failing and are not counted as passing or silently weakened:
+
+- cleanup-hardware-effects expects a first-OUT stop. Delivered hardware-boundary
+  events intentionally continue segmented instruction analysis, while the report
+  retains completeWithinModel=false and effectOrdering.allPathsRead=false.
+  New hardware-boundary/placement acceptance must replace the historical stop
+  contract explicitly, including FND-CONFIG-192/198 case requirements in issue 109.
+- child-effect-controls exceeds the reader's 32 MiB output cap with inherited
+  default continuation settings. No complete report is produced. A separate copy
+  with only continuationBudget.paths=0 passes every historical assertion, including
+  unresolved ordinary dispatch and absent conditional child returns. This isolates
+  the changed continuation workload; it does not validate the capped broad query.
+  The independently passing bounded MENU positive remains the new conditional
+  witness; no larger ordinary budgets or stitched reports were used.
+
+Source configs/reports and inventory:
+GAME_DIR/analysis/reporter-audit/engine4-retained-regression/summary.json.
+Logs: artifacts/continuation-budget-delivery/retained-regression.log,
+retained-regression-remainder.log and child-disabled.log. Historical reports are
+preserved. Drivers adapt published-package routing and guarded hash naming;
+the disabled child copy additionally declares its explicit zero-path budget.
+Inherited console version labels describe old drivers, not loaded packages.
+
+Adopted reader/engine 2.0.0 remains unchanged pending hardware and bounded
+continuation migration acceptance. No gap, game claim or native behavior was
+promoted. The goal remains active.
