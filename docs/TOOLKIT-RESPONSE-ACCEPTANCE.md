@@ -453,3 +453,43 @@ now tracks the actual connected evidence, both whole guard controls and
 nonvacuous rejected/stopped cases. It does not request relaxed conservative
 verdicts. Gap 32 remains open; neither existing occurrence holds nor creating
 this tracker proves full consumer acceptance.
+
+## Gap 33 recursive result-origin controls, 2026-10-04
+
+The installed reader 2.1.0/engine 7.3.0 runs the complete FND-CONFIG-172 helper
+region with a guarded source identity and explicit bounded return/frame
+hypotheses. Original graph fields remain unknown. No spec/parity claim changes
+and no original execution or emulation follow from these tooling controls.
+
+Returned no-recursion leaf paths supply zero. A supplied recursive FFFF
+retains its compare and branch dependencies as a conditional modeled result.
+The helper then writes a fresh FFFF immediate; its own return records that
+separate local value producer. Both result flows keep successEstablished false.
+A new immediate producer is not proof of an originating semantic/native error.
+Supplying recursive zero instead yields only zero on returned paths, including
+continuations that discard the modeled pointer-wrapper result.
+
+These are bounded conditional paths, not complete finite-tree acceptance.
+Both queries retain loop stops and path-limit gaps, completeWithinModel false
+and nativeReachability unconfirmed. A one-step cap removes recursive-call and
+normal-return witnesses. No limits were raised: 100 steps/path, 16 paths,
+1500 total steps and visit limit 2. The query uses sourceKind=mz, XXH3 guard,
+returnBytes=4, unknown SP/BP and labelled saved-frame scopes. The helper's
+return contract records an encoding, not its native reachability or origin.
+The selector/recursive/guard/pointer-return models do not supply graph memory
+or establish valid records and eventually terminating traversal.
+
+**Gap 33 remains open.** Real recursive producer/selector evidence, finite
+valid-state conditions and complete caller/leaf controls remain required;
+FND-CONFIG-174/175 normalized/discarded-result acceptance is not yet tested in
+this batch. The handbook's direct base-producer origin recipe needs a caveat
+for a tested recursive error re-encoded as a new immediate. After checking
+current issues for duplicates, [issue 200](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/200)
+requests the supported recipe/guidance and tracks the remaining source exit.
+The engine's local value provenance is not reported as wrong.
+
+Local reports/configs: GAME_DIR/analysis/reporter-audit/result-origin730/.
+Ignored assertion drivers/logs: artifacts/engine73/explore-result-origin.mjs,
+verify-result-origin.mjs, result-origin-explore.log and result-origin-controls.log.
+Instruction-boundary metadata stays local; no original bytes, code or dumps
+are committed or attached upstream.

@@ -74,6 +74,8 @@ Gap 31's connected prefix stops at INT 33h before ordered output stores. The sep
 
 Gap 32 now has complete local conditional metadata branches and both callback reload/result controls at unchanged bounds. Target scopes hold at reached occurrences; whole order controls remain undecided because unread modeled callees on bypass paths could contain the anchor. Root return does not prove saved-frame preservation when unknown marker writes alias it. Keep Gap 32 open for actual bracket/callee and producer coverage, tracked in toolkit issue 198; do not repeat by increasing budgets.
 
+Gap 33's bounded source helper distinguishes conditional zero leaves, recursive FFFF dependencies and a fresh local error immediate, but unknown graph fields retain loop stops and path gaps. A supplied recursive error and a new immediate are not an established native leaf origin. Toolkit issue 200 requests the supported re-encoding recipe/guidance. No synthetic direct-copy origin or isolated returned path closes the full contract.
+
 ## Handover
 
 - Stage: Slices; research-side tooling. Condition/Scope unchanged. No game spec, parity, original run or emulation changed.

@@ -240,6 +240,12 @@ These cases reinforce result-origin analysis without broadening it into
 unconditional success or preservation claims.
 
 
+Bounded source controls now distinguish zero leaves, a supplied recursive
+error's compare/branch dependency and the subsequent fresh error immediate.
+Loop stops and path gaps keep whole acceptance incomplete. Toolkit issue 200
+tracks the re-encoding/origin guidance and remaining full source contract;
+see TOOLKIT-RESPONSE-ACCEPTANCE. No native error origin or termination is inferred.
+
 ## 34. Bound transform output counts independently of input counts
 
 FND-CONFIG-177 reads a pairwise region operation whose private output
