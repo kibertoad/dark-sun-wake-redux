@@ -493,3 +493,29 @@ Ignored assertion drivers/logs: artifacts/engine73/explore-result-origin.mjs,
 verify-result-origin.mjs, result-origin-explore.log and result-origin-controls.log.
 Instruction-boundary metadata stays local; no original bytes, code or dumps
 are committed or attached upstream.
+
+### Normalized result consumer controls, 2026-10-04
+
+FND-CONFIG-174's complete normalizer region now has source controls on the
+installed reader 2.1.0/engine 7.3.0. Source identity, full instruction span and
+call selectors are verified. Under explicit balanced return/frame hypotheses,
+both zero and FFFF supplied callee results yield zero on every retained normal
+return. Reached optional external calls make the comparison nonvacuous.
+Earlier gated calls are not all covered: both queries retain six path-limit
+gaps, even though every retained path returns. completeWithinModel remains
+false and nativeReachability unconfirmed. No full path coverage is accepted.
+
+The one-step negative removes all return witnesses. Bounds remain 256 steps
+per path, 16 paths and 1500 total steps; initial memory and SP/BP are unknown,
+DS/SS are explicit hypotheses, and only stated frame scopes survive calls.
+This is discarded-result tooling evidence, not successful external operation,
+valid caller state, native producer admission or transitive preservation.
+Gap 33 remains open for graph producers and complete caller/leaf controls.
+FND-CONFIG-175 preservation acceptance remains separate and unfinished.
+
+Local configs/reports are result-origin730/normalizer-0 and normalizer-65535
+under GAME_DIR/analysis/reporter-audit/; ignored driver/log are
+artifacts/engine73/verify-normalizer.mjs and normalizer.log. Additional results
+were added to [existing issue 200](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/200#issuecomment-5984025397);
+no duplicate issue or closure. No original execution, spec/parity change,
+window stitching or larger traversal budget occurred.

@@ -76,6 +76,8 @@ Gap 32 now has complete local conditional metadata branches and both callback re
 
 Gap 33's bounded source helper distinguishes conditional zero leaves, recursive FFFF dependencies and a fresh local error immediate, but unknown graph fields retain loop stops and path gaps. A supplied recursive error and a new immediate are not an established native leaf origin. Toolkit issue 200 requests the supported re-encoding recipe/guidance. No synthetic direct-copy origin or isolated returned path closes the full contract.
 
+FND-CONFIG-174 normalized-result controls now retain zero returns under both zero and FFFF callee hypotheses, with reached optional calls, but dropped gated paths remain. Every retained path returning is not complete coverage. Preserve the source reports; retry requires actual state producers or a supported bounded recipe, not higher caps. FND-CONFIG-175 preservation controls remain separate.
+
 ## Handover
 
 - Stage: Slices; research-side tooling. Condition/Scope unchanged. No game spec, parity, original run or emulation changed.
