@@ -1451,3 +1451,37 @@ result rather than a duplicate feature request.
 
 Canonical Test.ps1 -NoRestore passes: artifacts/issue-response-review/loop-root-gate.log.
 The qualified consumer result was posted to toolkit issue 114; no duplicate issue was opened.
+
+## Gap 30: runtime-mode and pre-store guard acceptance, 2026-10-04
+
+The complete requesting tooling contract passes on adopted engine 6.2.0 /
+reader 2.0.0, using FND-CONFIG-163 and FND-CONFIG-061 as read-only inputs.
+Gap 30 is closed; no original-game claim or parity status changes. The exit is
+retention of conditional guards, runtime mode, ordered dependencies and unresolved
+external outcomes, not proof that cleanup or operating-system termination succeeds.
+
+| Requirement | Authoritative source-case control |
+|---|---|
+| Keep the pre-store guard | The complete setter query splits at its unsigned-below stack guard. The bypass path stores the four-byte supplied pointer and returns; the other calls the guard before any pointer store and stops at its diagnostic interrupt. The ordered effect timeline and path guard retain both alternatives. |
+| Carry mode through cleanup | The actual far wrapper pushes literal mode one and zero middle argument, then enters the actual near runtime body. Its reads and path guards retain those values before and after two declared balanced service returns. Each service preserves only the saved SI/BP, near return and three argument words; outside memory and flags remain unknown. The service summaries explicitly retain modeled-return status, unknownEffects and same-path conditionalModel scope references. |
+| Identify reached/bypassed callbacks and indirect calls | Mode one bypasses the recorded exit-callback table and the indirect calls through the three fields named in FND-CONFIG-163. The distinct original mode-zero wrapper provides a nonvacuous contrast: with unknown callback count it reaches either the callback-table dependency or the subsequent local cleanup call, then stops at those unread dependencies. No actual callback target/count or native table traversal is invented. Complete-body boundary metadata verifies the selected call sites. |
+| Separate requests, return and success | Under the stated service hypotheses, mode one reaches the recorded interrupt with AH selecting DOS termination and unknown AL. The report stops at the unmodeled handler, has no returned path and stays completeWithinModel=false/nativeReachability=unconfirmed. The setter's diagnostic interrupt is conditional and separate. No wrapper return instruction or hardware placement is interpreted as successful termination, complete cleanup or fallback behavior. |
+| Reject missing provenance and insufficient coverage | A one-step query and the unread-service query remove the termination witness. Removing scopes loses the return-frame/argument provenance: a path stops at the unknown return target and termination placement becomes unresolved. All controls retain their gaps/stops; no larger budget or state stitching is used. |
+
+The positive is a connected wrapper-to-runtime-to-termination-prefix query,
+not a stitched guard-interrupt continuation. The setter query correctly stops
+at its earlier diagnostic interrupt; the encoded route recorded in the existing
+finding does not license assuming that handler returns. Only the termination
+prefix through the first interrupt is declared; its uncharacterized fallback
+is excluded and never reported read. The unknown service effects remain part
+of the accepted report, as the request requires.
+
+Local source configs/reports and verified neutral boundary metadata:
+GAME_DIR/analysis/reporter-audit/runtime-mode-controls/. Assertions and concise
+result: artifacts/issue-response-review/verify-runtime-mode.mjs and
+runtime-mode-acceptance.log. Exact installed dependency/source provenance is the
+engine 6.2.0 adoption recorded in TOOLKIT-RESPONSE-ACCEPTANCE.md. No original
+runtime/emulation, game spec or other goal's queue work occurred.
+
+Canonical Test.ps1 -NoRestore passes: artifacts/issue-response-review/runtime-mode-root-gate.log.
+The additional scoped-memory consumer result was posted to existing toolkit issue 73 after duplicate review.

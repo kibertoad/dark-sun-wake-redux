@@ -38,7 +38,7 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 - Gap 26: closed; merged registry engine 0.4.0 passes initializer/wrapper/dimension width and encoding controls plus rejected/nonvacuous caps; conditional models and native limits remain explicit.
 - Gap 27: open; full request and cited controls in gaps.md.
 - Gap 29: open; full request and cited controls in gaps.md.
-- Gap 30: open; full request and cited controls in gaps.md.
+- Gap 30: closed; actual mode-one/mode-zero wrappers, setter pre-store guard, modeled-service scope provenance, separate diagnostic/termination requests and nonvacuous cap/unread/unscoped controls pass; full contract in REPORTER-CASE-AUDIT.
 - Gap 31: open; full request and cited controls in gaps.md.
 - Gap 32: open; full request and cited controls in gaps.md.
 - Gap 33: open; full request and cited controls in gaps.md.

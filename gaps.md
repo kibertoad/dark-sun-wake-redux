@@ -11,7 +11,7 @@ the reviewed release removes handwritten instruction semantics;
 tools/tool-dependencies.mjs verifies the installed packages. Candidate
 capabilities still require reviewed merge and registry delivery. Game-specific
 requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 4, 8,
-10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 38 and 39
+10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 30, 38 and 39
 are removed after verification with the adopted tools; unsupported queries and
 partial searches remain open.
 Delivered capabilities, closure evidence and remaining limits are recorded in
@@ -164,22 +164,6 @@ and the state that must change for progress. Check wrapped arithmetic
 and repeated no-op invalidation before claiming a bounded search or
 successful eviction. Keep local repeated-state examples distinct from
 native reachability, and retain comparison signedness at each gate.
-
-## 30. Carry runtime mode and pre-store guards into cleanup summaries
-
-FND-CONFIG-163 follows a guard before a callback setter's pointer write.
-Its runtime path uses mode one, bypassing the exit-callback-table loop
-recorded for mode zero in FND-CONFIG-061. Reusing the ordinary exit summary
-would incorrectly place that registered cleanup loop on this branch.
-The bypass does not prove that other callees or the operating system have
-no cleanup effects.
-
-**Request:** shared call summaries should retain guards before apparently
-simple stores and carry each runtime mode through cleanup branches. Name
-which callback tables and indirect calls a branch reaches or bypasses.
-Keep interrupt requests, successful termination and other cleanup effects
-separate; a wrapper's return instruction does not establish that its
-interrupt or cleanup dependencies return.
 
 ## 31. Preserve output aliasing and the register origin of loop predicates
 
