@@ -4,8 +4,8 @@ These are the remaining requests for the restoration template and shared analysi
 tooling. They describe tooling behavior, not claims about the original game.
 
 Latest adopted template, toolkit and pinned-rule revisions and their capability
-dispositions are recorded in docs/TEMPLATE-ACCEPTANCE.md. Published reader 0.2.0,
-checker 0.1.0 and engine 0.9.0 are adopted with exact registry locks;
+dispositions are recorded in docs/TEMPLATE-ACCEPTANCE.md. Published reader 1.0.0,
+checker 0.2.0 and engine 1.0.1 are adopted with exact registry locks;
 Capstone 5.0.7 and pypcode 4.0.0 are locked runtime dependencies;
 the reviewed release removes handwritten instruction semantics;
 tools/tool-dependencies.mjs verifies the installed packages. Candidate

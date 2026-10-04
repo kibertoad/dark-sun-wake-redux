@@ -1,5 +1,20 @@
 # Template and toolkit acceptance audit
 
+## Windows gate environment follow-up, 2026-10-04
+
+The canonical `tools/Test.ps1 -NoRestore` passes with normal user access and
+process-scoped `PSExecutionPolicyPreference=Bypass`; evidence is
+`artifacts/goal-continuation-authorized-test.log`. Restricted child PowerShell
+policy stops the synthetic capture tests before their assertions. Template
+[issue 55](https://github.com/kibertoad/refurbished-dinosaurs-template/issues/55)
+records that setup concern after duplicate checking; no capture guard was changed.
+
+Sandbox Java realpath access to the inherited temporary directory also failed.
+Putting temporary fixtures inside this checkout clears that access failure but
+invalidates the configuration-copy test's non-checkout control. Use an accessible
+temporary directory outside any checkout. These environment failures do not
+establish a capture defect or close a reporter gap.
+
 ## Current migration acceptance, 2026-10-04
 
 The owner asked for the latest template. Template main was
