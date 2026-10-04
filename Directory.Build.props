@@ -7,6 +7,9 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     <RestoreLockedMode Condition="'$(RestoreLockedMode)' == ''">true</RestoreLockedMode>
+    <NuGetLockFilePath Condition="'$(PackageLockProfile)' != ''">$(MSBuildThisFileDirectory)packaging/locks/$(PackageLockProfile)/$(MSBuildProjectName).packages.lock.json</NuGetLockFilePath>
+    <PackageRuntimeVersion Condition="'$(PackageLockProfile)' != ''">10.0.12</PackageRuntimeVersion>
+    <RuntimeFrameworkVersion Condition="'$(PackageLockProfile)' != ''">$(PackageRuntimeVersion)</RuntimeFrameworkVersion>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <!-- Keep NuGet auditing enabled, but do not turn an unreachable advisory
          service into a compiler error after dependencies have been restored. -->

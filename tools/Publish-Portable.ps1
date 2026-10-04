@@ -54,9 +54,9 @@ $common = @(
     '--artifacts-path', $buildRoot,
     '--verbosity', 'minimal'
 )
-& dotnet publish (Join-Path $repositoryRoot 'src/DarkSunWakeRedux.Game/DarkSunWakeRedux.Game.csproj') @common --output $gameOutput
+& dotnet publish (Join-Path $repositoryRoot 'src/DarkSunWakeRedux.Game/DarkSunWakeRedux.Game.csproj') @common "-p:PackageLockProfile=$Runtime-singlefile" --output $gameOutput
 if ($LASTEXITCODE -ne 0) { throw 'Game publish failed.' }
-& dotnet publish (Join-Path $repositoryRoot 'src/DarkSunWakeRedux.Extractor/DarkSunWakeRedux.Extractor.csproj') @common --output $toolOutput
+& dotnet publish (Join-Path $repositoryRoot 'src/DarkSunWakeRedux.Extractor/DarkSunWakeRedux.Extractor.csproj') @common "-p:PackageLockProfile=$Runtime-singlefile" --output $toolOutput
 if ($LASTEXITCODE -ne 0) { throw 'Asset Extractor publish failed.' }
 Remove-Item -LiteralPath $buildRoot -Recurse -Force
 

@@ -72,12 +72,15 @@ test('identity reconfiguration preserves recorded original facts and nested fing
 
 test('validation serializes a checkout and releases its lock even when a command fails', t => {
   const dir=fixture(t);mkdirSync(join(dir,'tools'));
+  const source=readFileSync(join(root,'tools/Invoke-Validation.ps1'),'utf8');
   copyFileSync(join(root,'tools/Invoke-Validation.ps1'),join(dir,'tools/Invoke-Validation.ps1'));
+  // Invoke a sibling script with production's unchanged initialization. Windows can expose
+  // TEMP through an 8.3 alias while PSScriptRoot expands it; duplicating the hash uses another lock.
+  const boundary=source.indexOf('$lock = $null');assert(boundary>0);
+  writeFileSync(join(dir,'tools/GetValidationLock.ps1'),source.slice(0,boundary)+'\n$lockPath\n');
   const result=wrapper(t, `
 $root=${literal(dir)}
-$hash=[Security.Cryptography.SHA256]::Create()
-try { $id=[BitConverter]::ToString($hash.ComputeHash([Text.Encoding]::UTF8.GetBytes($root.ToUpperInvariant()))).Replace('-','') } finally { $hash.Dispose() }
-$path=Join-Path ([IO.Path]::GetTempPath()) "restoration-validation-$($id.Substring(0,16)).lock"
+$path=& (Join-Path $root 'tools/GetValidationLock.ps1')
 $handle=[IO.File]::Open($path,'OpenOrCreate','ReadWrite','None')
 try {
   try { & (Join-Path $root 'tools/Invoke-Validation.ps1'); throw 'accepted competing validation' }

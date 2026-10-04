@@ -1,4 +1,12 @@
 <Project>
+  <ItemGroup Condition="'$(PackageLockProfile)' != ''">
+    <KnownILLinkPack Update="Microsoft.NET.ILLink.Tasks" ILLinkPackVersion="$(PackageRuntimeVersion)" />
+  </ItemGroup>
+  <Target Name="RequirePackagingLock" BeforeTargets="CollectPackageReferences"
+          Condition="'$(PackageLockProfile)' != '' and '$(RestoreLockedMode)' == 'true'">
+    <Error Condition="!Exists('$(NuGetLockFilePath)')"
+           Text="Committed packaging lock required: $(NuGetLockFilePath)" />
+  </Target>
   <PropertyGroup>
     <MaximumSourceFileLines Condition="'$(MaximumSourceFileLines)' == ''">1000</MaximumSourceFileLines>
   </PropertyGroup>

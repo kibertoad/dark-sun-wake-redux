@@ -41,7 +41,7 @@ jobs:
       - shell: pwsh
         run: ./tools/Restore-ToolDependencies.ps1
       - name: Check synthetic evidence tools and pinned upstream snapshots
-        run: node --test tests/evidence/evidence.test.mjs tests/upstream/upstream.test.mjs tests/upstream/mapped-locations.test.mjs tests/evidence/bridge.test.mjs tests/evidence/vendor.test.mjs tests/upstream/superseded-ownership.test.mjs tests/upstream/diagnostics.test.mjs tests/upstream/memory-blocks.test.mjs tests/upstream/research-tracking.test.mjs tests/upstream/capture-window.test.mjs tests/upstream/release-signing.test.mjs tests/upstream/infrastructure.test.mjs tests/upstream/export-boundaries.test.mjs
+        run: node --test tests/evidence/evidence.test.mjs tests/upstream/upstream.test.mjs tests/upstream/mapped-locations.test.mjs tests/evidence/bridge.test.mjs tests/evidence/vendor.test.mjs tests/upstream/superseded-ownership.test.mjs tests/upstream/diagnostics.test.mjs tests/upstream/memory-blocks.test.mjs tests/upstream/research-tracking.test.mjs tests/upstream/capture-window.test.mjs tests/upstream/release-signing.test.mjs tests/upstream/infrastructure.test.mjs tests/upstream/export-boundaries.test.mjs tests/upstream/packaging-locks.test.mjs
       - run: node tools/Check-ResearchTracking.mjs
       - run: dotnet restore DarkSunWakeRedux.slnx --locked-mode
       - run: dotnet build DarkSunWakeRedux.slnx --no-restore -v minimal

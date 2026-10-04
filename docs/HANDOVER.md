@@ -14,11 +14,11 @@ docs/goals/; queue items and findings remain in their respective durable files.
 
 ## Unfinished
 
-No unfinished migration work. Continuing shared-tooling work and its external-delivery approval are recorded in docs/goals/upstream-gap-resolution.md; the scoped-memory acceptance plan is committed.
+The earlier template migration is complete. Shared runtime migration uses the published RefurbishedDinosaurs 2.0.0 packages pinned in Directory.Build.props. Continuing shared-tooling work and its external-delivery approval are recorded in docs/goals/upstream-gap-resolution.md; the scoped-memory acceptance plan is committed.
 
 ## Blockers
 
-PR 4 (shared settings storage, RefurbishedDinosaurs.Core 1.3.0) overlaps this migration in Directory.Build.props, the Game csproj and package locks; it needs a rebase onto 2.0.0. Live signing, repository signing-environment branch protection and high/mixed-DPI original-window capture remain separate acceptance checks. No release was performed.
+Live signing, repository signing-environment branch protection and high/mixed-DPI original-window capture remain separate acceptance checks. No release was performed.
 
 ## Next
 
@@ -34,3 +34,17 @@ playback or raise spec status. Original-media validation remains local and was n
 
 The toolkit documentation action version comment now matches its pinned commit.
 Zizmor passes locally with the CI default persona.
+
+## Shared runtime migration
+
+Branch: `feat/shared-runtime-primitives`. See [migration status](SHARED-RUNTIME-MIGRATION.md).
+The solution build, .NET settings suite and full canonical gate passed with a workspace-local JDK.
+The migration uses public 2.0.0 packages and refreshed NuGet and packaging locks. The full canonical gate
+passes, including Java export-boundary and .NET settings controls.
+The validation-lease fixture now uses production path initialization, so Windows short
+and long TEMP paths select the same lock. Synthetic failure and exclusion controls pass locally.
+Original-game parity and live-device behavior were not assessed.
+
+Installer packaging uses committed target/mode lock profiles with explicit RuntimeIdentifier.
+All profiles pass locked restore; missing, mismatched and cross-host controls pass.
+Publishers preserve locked mode; regeneration is an explicit maintenance command.
