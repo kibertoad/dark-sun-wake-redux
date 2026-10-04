@@ -1079,3 +1079,24 @@ target prefix/cap controls also pass. The existing source-case limits and full
 gap contracts remain binding. No unresolved MENU return, complete fill, native
 hardware or game parity is inferred from the backend change. No original was
 run or emulated; no game spec/parity status changed.
+
+## Scoped-memory mainline review, 2026-10-04
+
+Toolkit PR 74 merged as 9b75c0e5b30a7e82792ef953e8d90530ea461aed.
+Reviewed main 164ef6673c077022b729a9532d7ace8358241d4b contains explicit
+callModels[].preservesMemory hypotheses and prepared protocol 3. The source
+contract rejects malformed/unreachable declarations and unresolved, overlapping
+or wrapping scopes, retains only declared bytes, keeps uncached bytes unknown,
+and carries conditional provenance without establishing external-call effects.
+
+The merged source's scoped-memory unittest suite passes using its isolated
+PYTHONPATH with the existing locked Capstone/pypcode dependencies. Evidence:
+artifacts/scoped-memory-main-review-controls.log. These are synthetic source
+controls, not published-package or original-game acceptance. GitHub lists paired
+reader/engine 2.0.0 releases and later engine releases; archive integrity, installed
+source equivalence and complete requesting cases have not been checked here.
+
+The earlier conflicting forward-port is preserved for historical comparison but
+need not be resumed as missing implementation. Issue 73 and Gap 27 remain open
+pending delivery acceptance and the complete Dark Sun nested caller-bracket case.
+No adopted dependency, original report, spec claim or parity status changed.
