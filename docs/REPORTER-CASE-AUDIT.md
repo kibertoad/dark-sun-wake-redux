@@ -1416,3 +1416,38 @@ reports: GAME_DIR/analysis/reporter-audit/cleanup-predecessor-controls/.
 The closure condition still requires supported connected-entry/control evidence;
 do not invent a root frame, inherit successful-path assignments on bypasses,
 filter stopped paths or label the overall controls held.
+
+## Gap 29 source-case progress controls, 2026-10-04
+
+The adopted engine 6.2.0 / reader 2.0.0 runs the retained FND-SCRIPT-022
+collision-increment windows and FND-CONFIG-161 final-poll windows. Source guards
+are XXH3; the legacy local configs are normalized before the published reader.
+No original execution, emulation or game evidence promotion occurred.
+
+| Full request | Passing evidence | Remaining qualification |
+|---|---|---|
+| Wrapped arithmetic before a progress claim | A supplied word end of 65535 stores candidate zero after word increment and zero extension; 65534 stores 65535. Every retained path has that first four-byte store. A one-step cap removes the store witness. | Entry registers are explicit conditional hypotheses. The later cache fields and found byte remain unknown; no native collision or complete search is established. |
+| Restart edges and state changes | The original scan backedge and nested replacement-age backedge are retained. The final external-poll model with result bit set reaches its original polling backedge. | Visit/path stops remain explicit. Slot count does not prove a bounded restarted search. |
+| Comparison signedness | Slot interval gates are explicitly unsigned and the nested age gate signed in iteration rows. The common room branch retains its signed jge predicate with two 32-bit operands. | The capacity operand is unresolved; this is not a supplied high-bit-capacity example or a claim that the ordinary producer reaches it. |
+| External calls and repeated state | Poll result zero reaches the final clearing store without a restart; result one restarts and never reaches that store. The iteration reports memoryForgotten with invalidated stack bytes and no stateRepeatsArrival. Step caps remove the clearing/backedge witnesses. | Both narrow windows remain incomplete: the zero case lacks a proven root return frame; the one case stops at the repeat bound. The unknown-memory model forbids inferring a repeated whole state from unchanged registers. |
+| Repeated no-op invalidation | Published synthetic no-op/repeated-state and possibly-aliasing-write controls pass in the verified release suite. | The Dark Sun example requires known slot starts, signed ages and capacity across the connected scan/eviction route. Current unknown-memory queries do not supply them. A generic synthetic success does not satisfy this source case. |
+
+Gap 29 remains open for its complete source contract, particularly the bounded
+no-op eviction/restarted-search case and its input provenance. FND-SCRIPT-022
+already distinguishes the conditional high-bit-capacity example from the known
+ordinary initializer; no finding or queue item is changed here. Do not repeat
+the old unknown-input query with larger limits or infer cache contents from a
+register-only window. Retry needs an evidence-bounded connected route or supported
+inputs. The existing issue 143 input-design discussion is conditional on that
+evidence; these windows alone do not establish an upstream input bug.
+
+Drivers, configs and reports stay in
+GAME_DIR/analysis/reporter-audit/loop-progress-controls/. Compact current logs:
+artifacts/issue-response-review/loop-acceptance.log and loop-final-controls.log.
+The earlier installed-loop-suite.log tested engine 4.0.0; current engine 6.2.0
+loop controls are included in the verified published release suite recorded in
+artifacts/issue144/release-suite.log. Tracker 114 receives the qualified consumer
+result rather than a duplicate feature request.
+
+Canonical Test.ps1 -NoRestore passes: artifacts/issue-response-review/loop-root-gate.log.
+The qualified consumer result was posted to toolkit issue 114; no duplicate issue was opened.

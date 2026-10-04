@@ -147,6 +147,8 @@ without silently dropping ordinary routes or treating an unread target as absent
 
 ## 29. Check progress across restarted scans and repeated invalidation
 
+**Current disposition:** adopted source controls pass for the wrapped candidate increment, scan/age restart edges, signedness and conditional external-poll outcomes. The complete no-op eviction/input-provenance case remains open; see docs/REPORTER-CASE-AUDIT.md.
+
 FND-SCRIPT-022 reads a nominally 16-slot room search that restarts its
 index after a collision and retries after cache invalidation. A wrapped
 end increment can restore the same candidate; invalidating an already
