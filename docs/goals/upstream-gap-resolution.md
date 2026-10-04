@@ -86,6 +86,8 @@ Gap 34's connected pair query now reaches actual initializer/fill and pair selec
 
 Gap 34/FND-CONFIG-182 conditional source controls distinguish advanced copy and original-base zero locations, signed wrap and source-work bypass. Actual bounded-copy tracing reaches the declared byte count but stops on unknown return provenance before the caller zero. Toolkit issue 213 has the qualified feedback. Keep conditional lengths/frame scopes separate from real string/pointer producers; retry the actual-copy route only with new admitted-storage/alias evidence or supported input tooling.
 
+Gap 36's normalized-wrapper query retains both full word intervals and missing neighboring-byte provenance on a zero-return path, including conditional child requests. Path-limit gaps remain; the earlier byte-clear case is not its connected producer. Complete low/high-byte and segment producers, caller/service coverage and fixture acceptance remain open. Existing source reports need new producer evidence or supported input tooling before another whole-case retry.
+
 ## Handover
 
 - Stage: Slices; research-side tooling. Condition/Scope unchanged. No game spec, parity, original run or emulation changed.

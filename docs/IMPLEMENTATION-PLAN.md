@@ -1,11 +1,11 @@
 # Implementation plan
 
-## Output cardinality and append-capacity tooling acceptance
+## Overlapping byte/word and normalized-wrapper tooling acceptance
 
-- **Outcome.** Separate generated output cardinality from input count bounds and the append destination gate; retain rejected pre-write and conditional accepted continuations.
-- **Evidence.** FND-CONFIG-176/177/178/182 are read-only acceptance inputs. Published reader 2.1.0/engine 7.3.0 source tracing supplies bounded path, call and write reports.
-- **Acceptance.** Hash-guard actual append and connected pair-wrapper/helper instructions with unknown count/pointer producers and explicit returning-call/frame hypotheses. Trace initializer/fill, pair selection, append and final copy without inventing entry memory. Keep stops, aliases and changed-count uncertainty; neither a local count gate nor conditional return establishes native capacity, feasible geometry or rollback. For FND-CONFIG-182, use a verified post-limit-load boundary with an observed root frame and explicit SI/length hypotheses; compare the original destination base with the advanced copy request and retain signed/wrapped cases and unknown aliases. No game spec/parity changes or original execution.
-- **Tests and Exit.** Verify the rejection precedes copy/count writes, retain accepted copy and count-reload provenance, and remove the witness with a step cap. Connected queries retain actual initialization, string operations and every alias, loop or path stop at unchanged bounds. Whole Gap 34 also requires expansion/split and terminator/base controls, producer invariants and complete source acceptance; partial append success leaves it open. Run the canonical gate before committing.
+- **Outcome.** Retain complete word-guard intervals and neighboring-byte provenance through the actual replacement wrapper's normalized result, without treating cleared byte flags or AX zero as performed service work.
+- **Evidence.** FND-CONFIG-187/188/189 are read-only acceptance inputs. Published reader 2.1.0/engine 7.3.0 retain read/write intervals, byte producers and conditional call scopes.
+- **Acceptance.** Trace the complete replacement wrapper and both actual service bodies with explicit conditional call returns and register/frame/field scopes. Unknown input bytes, indirect targets, stopped callees and capped paths remain unknown; scope preservation is a hypothesis. No seeded entry memory, selected branch outcomes, stitched windows, spec/parity changes or original execution.
+- **Tests and Exit.** Verify both two-byte guards and their missing byte producers remain visible on normalized returning paths; retain modeled failure results and wrapper's own zero. Compare scoped/unscoped calls and unread/capped controls. Full Gap 36 also needs real byte/high-byte producers and complete fixture acceptance. Run the canonical gate before commit.
 
 This file says what the project intends and what is true now, following the
 [work protocol](../vendor/upstream/work-protocol.md). It holds no dated
