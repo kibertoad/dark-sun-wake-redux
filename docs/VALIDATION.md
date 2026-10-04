@@ -740,3 +740,14 @@ and no candidate imports; logs and their summary are local under
 GAME_DIR/analysis/reporter-audit/registry-engine090-regression/. Earlier capped
 and incomplete-path qualifications remain binding. No spec or parity status,
 original-game run, or emulated result is changed by this adoption.
+
+## Shared FLI format readiness
+
+Run `dotnet run --project tools/DarkSunWakeRedux.Inspect -- fli-check <owned-file>`
+to index and decode AF11 playback records with RefurbishedDinosaurs.Media.Fli.
+The tool writes metadata only; source files remain unchanged. It excludes the
+trailing ring record from playback and reports unsupported or malformed files.
+This checks the published format implementation, not original decoder parity.
+The unresolved chunk behavior and malformed historical record in FMT-VIDEO-001
+remain open. Cinematic dispatch, caller timing, skip handling and still-picture
+fallback remain unimplemented; this adoption does not change their parity rows.

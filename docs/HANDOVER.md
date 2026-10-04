@@ -26,3 +26,10 @@ Live signing, repository signing-environment branch protection and high/mixed-DP
 3. Q-UI-005 and Q-SAVE-001 for SCR-UI-013 and SCR-UI-014; Q-UI-002 for SCR-UI-007.
 4. Q-CONFIG-001 owner live session; Q-PARTY-001, Q-PARTY-005 and Q-PARTY-009.
 5. Configure ES_CERTIFICATE_THUMBPRINT and main-only release-signing deployment branches before a signed release.
+
+Shared FLI readiness tooling: Inspect `fli-check` now uses RefurbishedDinosaurs.Media.Fli 1.0.0.
+Synthetic COPY, FLC rejection and chunk-overrun tests pass. It does not implement cinematic
+playback or raise spec status. Original-media validation remains local and was not run.
+
+The toolkit documentation action version comment now matches its pinned commit.
+Zizmor passes locally with the CI default persona.

@@ -8,6 +8,7 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.9.0" />
     <PackageReference Include="xunit.v3" Version="4.0.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="4.0.0" />
+    <ProjectReference Include="../../tools/DarkSunWakeRedux.Inspect/DarkSunWakeRedux.Inspect.csproj" />
     <ProjectReference Include="../../src/DarkSunWakeRedux.Core/DarkSunWakeRedux.Core.csproj" />
     <ProjectReference Include="../../src/DarkSunWakeRedux.Extractor/DarkSunWakeRedux.Extractor.csproj" />
     <ProjectReference Include="../../src/DarkSunWakeRedux.Game/DarkSunWakeRedux.Game.csproj" />
