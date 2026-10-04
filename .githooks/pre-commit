@@ -17,7 +17,8 @@ checkout=$(pwd)
 git_dir=$(git rev-parse --absolute-git-dir)
 # A separate step, so a failed mktemp stops the hook instead of leaving $staged empty.
 staged=$(mktemp -d)
-trap 'rm -rf "$staged"' EXIT
+# Unlink the dependency junction before removing the staged snapshot.
+trap 'rm -f "$staged/node_modules"; rm -rf "$staged"' EXIT
 trap 'exit 1' HUP INT TERM
 git checkout-index --all --prefix="$staged/"
 # The index snapshot omits ignored installed dependencies. Reuse the checkout's
@@ -26,7 +27,7 @@ if [ ! -d "$checkout/node_modules" ]; then
   echo "pre-commit: run ./tools/Restore-ToolDependencies.ps1 first." >&2
   exit 1
 fi
-cp -R "$checkout/node_modules" "$staged/node_modules"
+node -e 'require("fs").symlinkSync(process.argv[1], process.argv[2], "junction")' "$checkout/node_modules" "$staged/node_modules"
 if [ -z "${EVIDENCE_PYTHON:-}" ]; then
   EVIDENCE_PYTHON=$(node --input-type=module -e 'import {enginePython} from "./tools/tool-dependencies.mjs"; console.log(enginePython());')
   export EVIDENCE_PYTHON

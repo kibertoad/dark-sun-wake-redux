@@ -3,7 +3,7 @@
 ## Current upstream migration
 
 - **Outcome.** Maintainers use the latest released template and toolkit capabilities with verified local standard and protocol snapshots; the rebuild's behavior and licensed-source contracts remain evidenced by the existing spec.
-- **Evidence.** Compare template commit `79d18a20cb4d97c7153e74e5695cbb80e7ebf73e`, toolkit main and published npm/PyPI versions, and the rules freshness command against the current locks. Record capability dispositions in `docs/TEMPLATE-ACCEPTANCE.md`.
+- **Evidence.** Compare template commit `049f30036e612e3680838a59d4995ad8f0c85e00` against accepted `39d31fdef9d7420e8571ab6d09e3b3026be05010`, including pre-commit dependency links and release safeguards. Verify template rule and package pins against current locks. Record capability dispositions in `docs/TEMPLATE-ACCEPTANCE.md`.
 - **Acceptance.** Reconcile bootstrap, configuration, extraction boundaries, safety, launchers, CI, signing, Ghidra/reporters and documentation semantically. Retain stronger configured contracts with reasons. Keep original content local and CI synthetic; no rule or parity promotion follows a tooling update.
 - **Tests.** Exact dependency/snapshot verification, infrastructure and configuration controls, relevant synthetic reporter checks, and `./tools/Test.ps1` must pass.
 - **Risks and questions.** Preserve the pre-existing scoped-memory candidate plan and ongoing goals. Unpublished candidates do not replace released dependencies. No missing owner decision blocks this migration.

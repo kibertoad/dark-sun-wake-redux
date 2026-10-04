@@ -1,5 +1,29 @@
 # Template and toolkit acceptance audit
 
+## Current template sync, 2026-10-04
+
+Template main `049f30036e612e3680838a59d4995ad8f0c85e00` was fetched and
+rechecked after validation. The complete delta from accepted `39d31fd` is
+accounted for below; earlier acceptance records remain historical.
+
+| Changed capability | Disposition |
+| --- | --- |
+| Pre-commit dependency link | Adopted Node-created junction with explicit unlink before snapshot cleanup; retained configured exact-lock verification and EVIDENCE_PYTHON routing. |
+| Release workflow | Adopted explicit off-main failure, existing-Release rerun rejection and no-mac-x64 preset. Retained configured packaging locks, signing default none, artifact contracts and bounded job durations. No release performed. |
+| Signature helper | Already identical to latest template; retained. |
+| Tag helper | Adopted exact latest source, including newline-preserving error messages; tag identity/create/rejection controls pass. |
+| Release tests and gate routing | Adopted exact latest synthetic release tests; Test.ps1 runs them inside its selected PWSH scope alongside offline controls. Invoke-Validation retains configured locking, restore, build and publish orchestration. |
+| Releasing and validation guidance | Signing, rerun and branch prerequisites reconciled; configured multi-platform CI retained. Existing VALIDATION signing prerequisites already cover the template change. |
+| Plan, handover and template changelog | Current plan target updated, handover rewritten separately, and provenance recorded here rather than copying template-specific state or its outside-project plan reference. |
+| Rule snapshots and package pins | No changes in this template delta; installed exact locks and pinned offline rule verification pass. |
+
+`tools/Invoke-Validation.ps1` passed with locked restore, canonical checks,
+Release build and assetless publish/smoke. Evidence:
+`artifacts/template-latest-sync-validation.log`. The original game was not run
+or read; no spec or parity claim changed. Local synthetic capture diagnostics
+are reported separately in template issue 58; Gap 44's historical cause remains
+unconfirmed.
+
 ## Windows gate environment follow-up, 2026-10-04
 
 The canonical `tools/Test.ps1 -NoRestore` passes with normal user access and

@@ -13,6 +13,7 @@ on:
         type: choice
         options:
           - windows
+          - no-mac-x64
           - all
       signed_release:
         description: Installer platforms to sign; macOS installers are never signed
@@ -30,8 +31,6 @@ concurrency:
 jobs:
   prepare:
     name: Validate release
-    # Also restrict release-signing's server-side deployment-branch rule to main.
-    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -40,6 +39,13 @@ jobs:
       version: ${{ steps.version.outputs.version }}
       commit: ${{ steps.version.outputs.commit }}
     steps:
+      # Reject an off-main dispatch instead of finishing green with every job skipped.
+      - name: Require dispatch from main
+        shell: pwsh
+        env:
+          DISPATCH_REF: ${{ github.ref }}
+        run: |
+          if ($env:DISPATCH_REF -ne 'refs/heads/main') { throw "Releases run only from main, not '$env:DISPATCH_REF'." }
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: main
@@ -48,6 +54,7 @@ jobs:
       - id: version
         shell: pwsh
         env:
+          GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ inputs.tag }}
         run: |
           if ($env:RELEASE_TAG -notmatch '^(\d+\.\d+\.\d+)$') { throw 'Tag must be x.y.z.' }
@@ -60,6 +67,8 @@ jobs:
             $peeled = @($tags | Where-Object { $_ -match '\^\{\}$' })
             $target = if ($peeled.Count) { $peeled[0] } else { $tags[0] }
             if (($target -split '\s+')[0] -ne $commit) { throw 'Existing tag points to a different commit.' }
+            gh release view $env:RELEASE_TAG --repo $env:GITHUB_REPOSITORY --json tagName *> $null
+            if ($LASTEXITCODE -eq 0) { throw 'A GitHub Release already exists for this tag.' }
           }
           "version=$version" >> $env:GITHUB_OUTPUT
           "commit=$commit" >> $env:GITHUB_OUTPUT
@@ -407,8 +416,8 @@ jobs:
           pattern: release-*
           path: release-assets
           merge-multiple: true
-      # The asset count gates tag creation: a tag pushed without a Release blocks
-      # `prepare` from ever re-running this version until someone deletes it by hand.
+      # A rerun can finish a tag without a Release while main remains at that commit.
+      # Verify asset completeness before creating or reusing the tag.
       - name: Verify installer assets
         shell: bash
         env:
@@ -417,6 +426,7 @@ jobs:
         run: |
           mapfile -t assets < <(find release-assets -type f -print | sort)
           expected=1
+          if [[ "$RELEASE_INSTALLERS" == no-mac-x64 ]]; then expected=3; fi
           if [[ "$RELEASE_INSTALLERS" == all ]]; then expected=4; fi
           if [[ "$SIGNED_RELEASE" == Windows/Linux && "$RELEASE_INSTALLERS" != windows ]]; then ((expected+=1)); fi
           if (( ${#assets[@]} != expected )); then
