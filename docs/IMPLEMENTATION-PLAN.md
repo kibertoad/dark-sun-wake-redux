@@ -1,11 +1,12 @@
 # Implementation plan
 
-## Published symbolic-frame tooling adoption
+## Interrupt-boundary alias reporting tooling
 
-- **Outcome.** Adopt engine 7.3.0 and reader 2.1.0 for protocol 3: observed narrower frames compose with symbolic memory scopes; site-width provenance and conditional caller-continuation inventories are available.
-- **Evidence.** Release cfe7c4e8d97c521620059f2a35d4d25c5dc4db09, ADR 0012/0013 and toolkit response 145. Existing CONFIG/SCRIPT findings are read-only consumer inputs.
-- **Acceptance.** Keep symbolic-base intervals and unknown concrete offsets explicit, reject uncertain scope overlap, and preserve call-model/native qualifications. Retain changed Ghidra jump/edge fall-through disagreements. Rerun affected frame, argument, scope, loop, mode and caller-continuation controls without larger defaults or invented frames. Whole gaps close only against their full recorded contracts.
-- **Tests and Exit.** Registry hash/source verification, complete installed release suite and bridge, consumer positive and nonvacuous rejection/limit controls, canonical validation. Preserve other dependency pins and all game evidence/parity statuses; no original runtime or gameplay changes.
+- **Outcome.** Verify whether shared effect reports can retain equal output pointers, ordered overwrites and the independent returned-register predicate across an unresolved interrupt, without claiming its live result sequence.
+- **Evidence.** FND-CONFIG-164 is a read-only acceptance input; engine 7.3.0's documented hard interrupt stop and ADR 0008 govern conditional inputs.
+- **Acceptance.** Keep reached prefix and independent suffix results separate. A stopped prefix must not imply output stores occurred. Report all query hypotheses, source guards, limits, native uncertainty and missing memory/driver inputs. Check upstream duplicates before proposing any unsupported-input design; leave Gap 31 open unless its full source case passes.
+- **Issue 143 follow-up.** Check the observed entry-frame helper at a verified post-prologue boundary of FND-CONFIG-192, preserving unknown memory and original limits. An established frame does not supply a connected caller route, initialized slot fields or decided hardware placement. Reply with actual diagnostics and remaining consumer evidence; do not request entry-memory design from a disconnected query.
+- **Tests and Exit.** Installed-release rerun, independent known/missing BX controls, witness-removing caps and source transfer-frame controls; pinned rules/documentation and canonical repository gates. No proprietary output in Git, original execution, game spec changes, larger defaults or stitched claims.
 
 This file says what the project intends and what is true now, following the
 [work protocol](../vendor/upstream/work-protocol.md). It holds no dated

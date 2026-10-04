@@ -70,6 +70,8 @@ The full FND-CONFIG-192 symbolic query with explicit DS/SS/SP and unknown input 
 
 FND-CONFIG-199 frame/scope composition is delivered in engine 7.3.0. Verified post-prologue entries establish an unknown-root frame and preserve scoped suffix provenance. The original late-entry prefix still drops paths; whole last-writer controls remain undecided even when all retained suffixes return. Gap 40 remains open for complete predecessor coverage. Do not fabricate frame memory, omit required scopes, stitch windows or raise caps to manufacture acceptance.
 
+Gap 31's connected prefix stops at INT 33h before ordered output stores. The separate BX-copy controls do not bridge it. entryFrame does not carry argument memory; modeling the entire poll call skips the stores. Toolkit issue 190 requests the supported bounded recipe or accurate unsupported-case guidance. Keep the documented hard stop; no larger budgets or window stitching.
+
 ## Handover
 
 - Stage: Slices; research-side tooling. Condition/Scope unchanged. No game spec, parity, original run or emulation changed.

@@ -179,6 +179,11 @@ Distinguish a wrapper's deterministic copies from the interrupt or external
 callee's actual result sequence. This complements item 21's memory provenance
 and item 29's loop-progress requirements.
 
+The connected query proves equal output pointers before INT 33h, then stops
+before its two stores. Independent BX-copy controls do not bridge that stop.
+The remaining supported-recipe/guidance ask is toolkit issue 190; see
+TOOLKIT-RESPONSE-ACCEPTANCE for controls and native qualifications.
+
 ## 32. Check whether validation precedes the access it appears to protect
 
 FND-CONFIG-165 reads a pointer wrapper that dereferences metadata before

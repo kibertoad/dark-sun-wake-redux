@@ -1559,3 +1559,48 @@ GAME_DIR/analysis/reporter-audit/cleanup-predecessor-controls/connected-entry/en
 source-composition.log and composition-negatives.log record the assertions.
 Issue 143 remains open: observed frames do not supply producer memory or settle
 hardware placement along the incomplete connected route.
+
+## Issue 143 response and Gap 31 boundary audit, 2026-10-04
+
+Issue 143's requested consumer evidence remains the actual connected
+initializer-to-transfer route, call depth, later slot/count/mask writers and
+external inputs. A disconnected initializer does not prove the continuous
+recipe impossible. The published migration and observed-frame helper are
+adopted; no entry-memory design is demanded from incomplete route evidence.
+
+FND-CONFIG-192's verified saved-register boundary now establishes SP -8 and
+BP -2 relative to unknown root SP, with unknown prefix memory. The original
+200-step/16-path/5000-total-step/visit-limit-4 bounds remain unchanged. The
+whole query still stops at step/visit limits, drops paths and leaves reached
+hardware placement unresolved. A one-step control prevents frame establishment
+and reaches no hardware boundary. This is helper acceptance, not Gap 37 closure.
+The command is effects with entryFrame.from, a complete declared region,
+XXH3 source guard and explicit DS/SS hypotheses, without SP/BP or memory rows.
+Local reports are transfer-frame730 and transfer-frame-cap730 under
+GAME_DIR/analysis/reporter-audit/issue-response-review/; the assertion summary
+is artifacts/engine73/transfer-frame.log. The response is recorded on
+[issue 143](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/143#issuecomment-5983733344).
+
+Gap 31's connected source prefix on reader 2.1.0/engine 7.3.0 retains the same
+far scratch pointer twice, then stops at INT 33h before output writes and
+BX-to-AX copy. Independent BX 0/1 controls preserve the register origin,
+while missing BX leaves AX unknown; they are not connected to the prefix.
+The witness-removing prefix cap and unused callModel-at-INT diagnostic pass.
+Original call storage/driver effects and result sequences remain conditions.
+No ordered-overwrite or caller-predicate whole control is accepted.
+
+The exact-release handbook maps Gap 31 to lastWriter after both stores and
+origin on the loop predicate using a modeled service register, but a CALL
+model cannot continue the interrupt; modeling the whole wrapper skips the
+writes. Post-interrupt entryFrame cannot carry caller-built pointers or saved
+memory. The all-state duplicate check found adjacent issues 7, 73, 109, 136
+and 143, without this connected effect-contract ask. Focused
+[issue 190](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/190)
+asks for a supported bounded recipe or accurate unsupported-case guidance;
+any conditional hardware-return input needs its own design. The documented
+hard stop is not reported as a bug. Gap 31 remains open.
+
+Source configs/reports stay under GAME_DIR/analysis/reporter-audit/poll-alias-controls/.
+The installed rerun summaries are artifacts/engine73/poll-prefix.log and
+poll-controls.log. No original execution, frame-memory invention, window
+stitching, spec/parity change or raised budget occurred.
