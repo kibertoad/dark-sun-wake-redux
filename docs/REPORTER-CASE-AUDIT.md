@@ -1125,3 +1125,29 @@ external service preservation, complete original-case acceptance, all toolkit
 capabilities, or adoption into the restoration's locks. Gap 27 and issue 73 stay
 open for the complete requesting Dark Sun caller-bracket case. The older
 conflicting implementation candidates remain untouched.
+
+## Published scoped-memory Dark Sun bracket control, 2026-10-04
+
+Bootstrap facts validation passed before the bounded static rerun. The retained
+caller-bracket control from the earlier candidate archive audit was routed
+through isolated published reader/engine 2.0.0, with no PYTHONPATH source fallback.
+The runtime import resolves to the isolated installed wheel. The reader config
+now uses the documented executable xxh3 identity; no input range or analysis
+budget was enlarged. Declared overlap is rejected before tracing by the published
+validator. Its exact byte-bound error wording replaces the old generic limit
+expectation; the initial assertion failure is retained separately.
+
+The conditional joined bracket passes, together with default stopped behavior,
+partial/wrong-segment/overlap rejection, step/path/unread controls and scope/byte
+limits. Ordered writes before, within and after the child calls are checked.
+Unknown external-service effects and conditional scope provenance remain in the
+reports; no whole-function or native preservation claim follows.
+
+Driver, configs and reports remain local-only under
+GAME_DIR/analysis/reporter-audit/protocol3-scoped-memory-controls/.
+Logs: artifacts/protocol3-delivery/original-bracket-controls.log and
+original-bracket-controls-final.log. The retained source case starts at the
+bracket and stops after its final clear; earlier mode/input gates and later
+parent work remain unread. This verifies that bounded requesting control on
+published tooling, not Gap 27's entire effect-ordering contract. Adopted project
+dependency locks, spec entries and parity statuses remain unchanged.
