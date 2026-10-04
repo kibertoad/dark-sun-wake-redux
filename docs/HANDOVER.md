@@ -7,7 +7,7 @@ docs/goals/; queue items and findings remain in their respective durable files.
 
 - Stage: Slices; slices 2 and 3 remain in progress. Survey exit still needs Q-EXE-003.
 - Last gate: 2026-10-04, tools/Invoke-Validation.ps1 passed (715 .NET tests, 75 upstream node tests), including locked restore, Release build and assetless publish/smoke. Evidence: artifacts/template-migration/template-39d31fd-validation.log. Run it with NoDefaultCurrentDirectoryInExePath unset: when set, cmd.exe cannot find the launcher test's invoke.cmd.
-- Template 39d31fd is adopted: standard c1758fd, checker 0.2.0 (action a260e39), reader 1.0.0, engine 1.0.1, RefurbishedDinosaurs 2.0.0 .NET packages and the toolkit's software OpenGL action. Dispositions: docs/TEMPLATE-ACCEPTANCE.md.
+- Template 049f300 is adopted after the requested latest-template sync. Standard c1758fd, checker 0.2.0, reader 1.0.0, engine 1.0.1 and RefurbishedDinosaurs 2.0.0 pins remain unchanged. Current sync validation: artifacts/template-latest-sync-validation.log; dispositions: docs/TEMPLATE-ACCEPTANCE.md.
 - Required asset pack revision is 36. The owner's revision-35 pack under LocalAppData is rejected until play.bat re-extracts it.
 - Established latest-original-version readiness is recorded in project-config and SOURCE-EDITIONS. Native runtime remains owner-only; no original run or executable analysis occurred in the migration.
 - Process audit found no migration-owned orphan requiring termination; reusable MSBuild nodes remain untouched.
