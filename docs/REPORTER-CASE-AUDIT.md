@@ -1240,3 +1240,44 @@ Inherited console version labels describe old drivers, not loaded packages.
 Adopted reader/engine 2.0.0 remains unchanged pending hardware and bounded
 continuation migration acceptance. No gap, game claim or native behavior was
 promoted. The goal remains active.
+
+## Published hardware-boundary migration controls, 2026-10-04
+
+The historical first-OUT-stop driver is preserved. A separate migrated driver
+retains every initializer/handle assertion and verifies the delivered engine 4
+hardware contract. In the FND-CONFIG-184 service, returning modeled paths reach
+all seven explicit port events. Initial boundaries occur on every traced path;
+later boundaries remain unresolved because stopped paths lack them. The signed
+wrapper has a returning bypass, so its hardware placement is conditional.
+Port event orders are disjoint from ordinary RAM write orders, and any path
+containing them remains effect-incomplete with native reachability unconfirmed.
+Unknown inputs stay unknown; supplied values are listed query assumptions.
+Wrong input site/width rejects, and instruction/path/step caps remove positive
+coverage. The mid-function suffix reaches its final ports on both retained skip
+arms, then explicitly rejects its missing return frame at the epilogue. No
+frame was fabricated and no local-return claim follows from that suffix.
+Driver and reports: GAME_DIR/analysis/reporter-audit/engine4-retained-regression/
+cleanup-hardware-effects/hardware-migration/. Result:
+artifacts/continuation-budget-delivery/hardware-migration.log.
+
+FND-CONFIG-192's complete local static port inventory passes, and a one-
+instruction bound rejects complete inventory coverage. This is not dynamic
+common/overlap transfer acceptance: slots, chains, masks, counts, scratch/native
+mapping and aliases still need bounded explicit inputs. Gap 37 remains open.
+
+A first-store prefix of FND-CONFIG-198 passes with different DS/SS, explicitly
+equal DS/SS, and unknown DS. The final BX-addressed word store is DS-relative
+in every case; its BP-derived offset expression is unchanged, while its physical
+interval differs with the selected segment. Unknown DS stays unresolved.
+A one-step cap removes the store witness. Balanced service-return and named
+register-preservation hypotheses remain explicit; reserving the SS frame proves
+no DS storage capacity or complete alias/callee safety. An initial longer
+prefix exhausted the modeled-call path cap and produced no paths; the bounded
+first-store query uses 32 steps, not enlarged limits or a stitched loop result.
+Gap 39 remains partial, not closed.
+Driver and reports: GAME_DIR/analysis/reporter-audit/engine4-case-controls/.
+Result: artifacts/continuation-budget-delivery/case-controls.log.
+
+These are installed published-engine controls, with no original execution or
+emulation. Engine 2.0.0 stays adopted pending the outstanding full acceptance
+contracts. No game spec/parity status changed.
