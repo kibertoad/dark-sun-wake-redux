@@ -1,11 +1,11 @@
 # Implementation plan
 
-## Published continuation and hardware tooling adoption
+## Argument-width consistency tooling adoption
 
-- **Outcome.** Adopt published engine 4.0.0 with reader 2.0.0 for prepared protocol 3: scoped call-memory hypotheses, explicit hardware boundaries and separate declared-continuation budgets are available through verified installed packages.
-- **Evidence.** Release commit 897f640dfa8d144caef23082be1d1ff3d78aba23, exact archive/source inventory, published source suite, installed PE bridge, retained regressions, migrated cleanup hardware controls, bounded MENU and disabled-continuation controls in docs/REPORTER-CASE-AUDIT.md.
-- **Acceptance.** Preserve reader/checker and Capstone/pypcode/xxhash locks. Ordinary budgets and unresolved native, memory, loop and path conditions remain explicit. Historical first-OUT stop and shared-continuation negative controls keep their provenance; current migrated controls verify the delivered contract. Capped broad reports remain incomplete. Game-specific full gap closure is tracked separately and is not implied by package adoption.
-- **Tests and Exit.** Hash-locked restore, canonical validation, installed-version and prepared-protocol rejection pass. Complete retained inventory is accounted for by unchanged controls or explicit documented migrations. No game spec, parity status, original runtime or gameplay changes. Risk: consumers must choose bounded continuation inputs and interpret hardware events separately from RAM writes.
+- **Outcome.** Adopt published engine 6.2.0 with protocol-3 reader 2.0.0, distinguishing consistent observed argument reads from fully settled frames.
+- **Evidence.** Toolkit issue 144, merged PR 142 and release bf46e8aa2a2d4dbe35a65fe8bee86a7d279323c6; FND-CONFIG-179/180 are read-only consumer inputs.
+- **Acceptance.** The known registration call reports observed widths 4/2/4 without inventing bypass reads. Conflicts, no-read and limit controls remain explicit; consistency settles no open frame. Migrate per-path conditionalModel scope references and retain Ghidra fall-through disagreements. Preserve other package pins and all game evidence and parity statuses.
+- **Tests and Exit.** Verify published archive hashes and source, run the published source suite against the installed engine, synthetic conflict/bypass/no-read controls, the bounded Dark Sun caller/callee case and canonical repository gate. Record full gap acceptance separately from this release adoption; no gameplay or original runtime changes.
 
 This file says what the project intends and what is true now, following the
 [work protocol](../vendor/upstream/work-protocol.md). It holds no dated

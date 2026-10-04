@@ -241,3 +241,42 @@ Local reproduction: prepare-compact-wrapper.py and compact-wrapper.log under
 artifacts/issue-response-review; configs/reports and the driver stay in
 GAME_DIR/analysis/reporter-audit/compact-wrapper-controls. Production pins,
 original content, game spec/parity and runtime remain untouched.
+
+## Issue 144: published argument-width consistency adoption, 2026-10-04
+
+Engine 6.2.0 is adopted with existing reader 2.0.0 and prepared protocol 3.
+The wheel hash is pinned in tools/evidence/requirements.txt. Published wheel,
+sdist, installed package and release bf46e8aa2a2d4dbe35a65fe8bee86a7d279323c6
+source agree. The published source suite passes, including the installed reader
+PE bridge, nonvacuous width/grouping conflicts, bypasses, no-read and window-limit
+controls. Unicorn is isolated as a synthetic test oracle, not a runtime dependency.
+Integrity and validation logs are under artifacts/issue144/.
+
+The FND-CONFIG-179 caller plus FND-CONFIG-180 callee query uses the unchanged
+bounded config from issue 144, without entry-memory values or modeled calls.
+The registration site has six traced frames. readWidths contains offset 0 width
+4 on six paths, offset 4 width 2 on six paths, and offset 6 width 4 on four
+paths; each grouping is consumed width only. widthsConsistent is true and
+conflictingWidths is empty. agreed stays false: every frame remains unsettled,
+including bypasses with unread slots. The report remains incomplete with
+path-limit gaps and unread callees. A one-step control removes the call witness.
+The conditional-setter-only query is not the positive case. Proprietary configs
+and reports stay under GAME_DIR/analysis/reporter-audit/issue-response-review/;
+consumer assertions and a compact summary are in artifacts/issue144/consumer.log.
+
+Engine upgrade migration: repository wrappers do not consume removed inline
+preservedMemoryScopes or Ghidra counts. Connected cleanup predecessor controls
+pass on the installed release, retaining their undecided whole-query controls.
+A separate migration check resolves call-return conditionalModel indices into
+the same path's conditionalModels and verifies scoped entries are nonempty;
+inline copies are absent. Ghidra fall-through disagreement controls pass in the
+published suite; no false agreement was accepted or original export rewritten.
+The bridge's compact transport retains its existing output limit.
+
+Issue 144's released-feature and bounded consumer exit is satisfied. This does
+not establish unread arguments, complete native behavior, or the full Gap 35
+contract; gaps.md and the goal ledger retain Gap 35 pending that broader exit.
+No game spec, parity status, gameplay or original runtime changes.
+
+Canonical Test.ps1 -NoRestore passes: artifacts/issue144/root-gate.log. Issue 144
+is closed as completed after the verified response; the broader ledger is unchanged.

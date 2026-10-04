@@ -5,7 +5,7 @@ tooling. They describe tooling behavior, not claims about the original game.
 
 Latest adopted template, toolkit and pinned-rule revisions and their capability
 dispositions are recorded in docs/TEMPLATE-ACCEPTANCE.md. Published reader 2.0.0,
-checker 0.2.0 and engine 4.0.0 are adopted with exact registry locks;
+checker 0.2.0 and engine 6.2.0 are adopted with exact registry locks;
 Capstone 5.0.7 and pypcode 4.0.0 are locked runtime dependencies;
 the reviewed release removes handwritten instruction semantics;
 tools/tool-dependencies.mjs verifies the installed packages. Candidate

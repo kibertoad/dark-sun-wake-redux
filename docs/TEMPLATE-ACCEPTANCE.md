@@ -285,3 +285,10 @@ golden infrastructure gate pass alongside Test.ps1, full build, assetless
 publish/smoke and applicable hosted installer checks. A new pin alone cannot
 close this audit. Preserve historical adoption results and record the broader
 acceptance result explicitly.
+
+## Engine 6.2.0 adoption, 2026-10-04
+
+Engine 6.2.0 is adopted with reader 2.0.0/protocol 3. Exact source integrity,
+published-suite and Dark Sun argument-width acceptance plus Engine upgrades
+migration checks are recorded in TOOLKIT-RESPONSE-ACCEPTANCE.md. Other pins
+remain unchanged. Full Gap 35 acceptance remains separate.
