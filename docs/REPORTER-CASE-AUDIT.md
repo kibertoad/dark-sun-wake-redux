@@ -1100,3 +1100,28 @@ The earlier conflicting forward-port is preserved for historical comparison but
 need not be resumed as missing implementation. Issue 73 and Gap 27 remain open
 pending delivery acceptance and the complete Dark Sun nested caller-bracket case.
 No adopted dependency, original report, spec claim or parity status changed.
+
+## Isolated published protocol-3 delivery, 2026-10-04
+
+Registry reader 2.0.0 and engine 2.0.0 were verified in ignored isolated storage;
+project dependency locks remain unchanged. Engine wheel and sdist SHA-256 match
+both PyPI metadata and the GitHub release digests. The complete shipped Python
+and Java source inventory matches release commit
+9b75c0e5b30a7e82792ef953e8d90530ea461aed byte for byte; sdist source matches the
+wheel. Reader's resolved version and archive integrity match registry metadata.
+Integrity evidence: artifacts/protocol3-delivery/integrity.json and its audit
+scripts; npm package-lock.json records the reader archive and dependencies.
+
+Published-engine scoped-memory controls pass. Release bridge tests were routed
+through the installed reader's exported report API and installed engine, with
+monorepo source fallback forbidden. Explicit near/far frame hypotheses, stopped
+partial/default models, rejected declarations and budgets pass. Logs:
+artifacts/protocol3-delivery/installed-memory-controls.log and
+artifacts/protocol3-delivery/installed-bridge-controls.log. The engine import
+resolves inside installed-engine and reports prepared protocol 3.
+
+This verifies the bounded published delivery controls only. It does not establish
+external service preservation, complete original-case acceptance, all toolkit
+capabilities, or adoption into the restoration's locks. Gap 27 and issue 73 stay
+open for the complete requesting Dark Sun caller-bracket case. The older
+conflicting implementation candidates remain untouched.

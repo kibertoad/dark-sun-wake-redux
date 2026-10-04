@@ -44,7 +44,7 @@ its runtime use is established. A synthetic fixture with different values at
 
 ## 27. Check effect ordering at early exits and before external failure
 
-Scoped-memory implementation follow-up: [toolkit issue 73](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/73). PR 74 delivers the mainline implementation; the older interrupted forward-port is historical. Published-package and complete Dark Sun requesting-case acceptance remain unverified, so the capability is unadopted here.
+Scoped-memory implementation follow-up: [toolkit issue 73](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/73). PR 74 delivers the mainline implementation; the older interrupted forward-port is historical. Isolated published-package integrity and synthetic bridge/scoped-memory controls pass, as recorded in REPORTER-CASE-AUDIT. Complete Dark Sun requesting-case acceptance remains unverified, and project dependency locks are unchanged.
 
 FND-SCRIPT-019 corrects an old finding that aged slots on every loader
 return and a rule that treated a failed transfer as leaving its slot
