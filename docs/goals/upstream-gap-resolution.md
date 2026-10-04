@@ -80,6 +80,8 @@ FND-CONFIG-174 normalized-result controls now retain zero returns under both zer
 
 FND-CONFIG-175 copy-wrapper bypasses return zero, while balanced models of its callee omit the recorded eight-byte argument cleanup and leave the copy route stopped at root stack balance. This is model insufficiency, not native failure or performed-copy evidence. Retry with the actual primitive and verified argument producers; do not invent an unsupported stack adjustment or stitch reports.
 
+The actual FND-CONFIG-175 primitive now resolves the balanced-model cleanup mismatch, but unknown copy pointers invalidate return/saved-state provenance. No gap-free report or reached cleanup proves full return preservation while copy routes stop. Retry requires real argument producers and admitted distinct storage, not another frame-only model.
+
 ## Handover
 
 - Stage: Slices; research-side tooling. Condition/Scope unchanged. No game spec, parity, original run or emulation changed.

@@ -1741,3 +1741,26 @@ artifacts/engine73/verify-copy-wrapper.mjs and copy-wrapper.log.
 The next acceptance should trace the actual primitive with verified argument
 producers, rather than use the inadequate balanced model or stitch windows.
 No original execution, spec/parity change or raised traversal bounds occurred.
+
+### Actual primitive replaces the balanced-copy model, 2026-10-04
+
+The FND-CONFIG-175 wrapper now declares and traces the actual bounded copy
+primitive. Its two reached string-operation routes reach the encoded return
+with eight-byte argument cleanup. The prior balanced-model stack mismatch is
+removed without an invented cleanup parameter or stack write.
+
+Unknown source/destination pointer storage still prevents full preservation:
+copy routes stop with unknown/overwritten return-target provenance, and saved
+DS/SI values become unknown. Four bypass routes return zero and retain the
+stated DS/SI input values. No path gaps are present, but stopped copy routes
+keep completeWithinModel false and nativeReachability unconfirmed. A one-step
+cap removes string operations and return witnesses. Ordinary memory copying
+is not native successful-copy, capacity, alias safety or rendered output.
+
+The next acceptance requires actual pointer/argument producers and distinct
+admitted storage; the frame/segment register hypotheses alone cannot prove
+those conditions. Gap 33 remains open. Local configs/reports are
+result-origin730/copy-actual under GAME_DIR/analysis/reporter-audit/;
+ignored assertions are artifacts/engine73/verify-actual-copy.mjs and
+actual-copy-controls.log. No original execution, spec/parity changes, enlarged
+bounds or stitched state were used.
