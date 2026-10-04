@@ -99,3 +99,83 @@ reports remain only in GAME_DIR/analysis/reporter-audit/issue-response-review;
 the driver and log are ignored local artifacts. The command invokes the
 published reader's arguments/effects commands. No proprietary report is posted
 upstream or committed.
+
+## 2026-10-04: issue 113 and connected cleanup frames
+
+The new [issue 113 response](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/113)
+accepts the per-read predecessor results but identifies the missing suffix
+return frame as a toolkit limitation. Its proposed entryFrame field is in
+[PR 140](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/pull/140),
+head ff38793c09b9957b9ebe068c7aa021a5a6034b65, still open when checked.
+PyPI still publishes engine 6.1.1. No candidate code was adopted.
+
+### Adopted connected-entry controls
+
+Reader 2.0.0 and engine 4.0.0 traced the complete FND-CONFIG-199 caller from
+its actual prologue, independently for first-request failure, second-request
+failure and two acquisitions. The original bounds remain 1000 steps per path,
+5000 total steps and 64 paths. Explicit DS/SS/SP inputs and balanced returning
+service/register hypotheses remain conditional, not native facts.
+
+The bounded preservation hypothesis covers thirty SS/BP-relative bytes:
+twelve local bytes, saved SI/DI and BP, the far return frame and eight argument
+bytes. It retains existing bytes only; unknown inputs and unwritten locals
+stay unknown, and flags and memory outside the scope remain unknown. The
+prologue runs in the same query; no suffix receives invented saved contents.
+
+Every retained path now returns without the former missing-root-frame stop.
+Observed lastWriter occurrences satisfy the declared writers. First-request
+failure leaves both bytes of the second cleanup word without a local writer;
+later acquisition cases retain the second assignment. Nonetheless, both whole
+controls remain undecided: path-limit gaps remain, and returned paths which
+bypass the anchor crossed modeled callees. A held observed occurrence does not
+prove the whole control. Gap 40 remains open.
+
+The one-step and unread-service controls remove the cleanup witness. Removing
+memory scopes loses the earlier assignment's value. A contradictory second-slot
+writer declaration fails the report. These assertions run in the ignored local
+connected-entry driver; results are in
+artifacts/continuation-budget-delivery/connected-cleanup.log.
+
+### Unreleased entryFrame composition control
+
+The exact PR 140 source was exported into an isolated candidate directory,
+without altering a checkout or production locks. Published reader 2.1.0 ran
+that source with the verified published engine dependencies. The candidate's
+complete EntryFrameTests pass; a separate synthetic control verifies its import
+comes from that candidate, rather than claiming a published-wheel result.
+
+The actual candidate query starts at the first request and names the complete
+caller as entryFrame.from. Its region declares both entries; SP/BP inputs are
+omitted as ADR 0012 requires. DS/SS/SI/DI, models, scopes and the original
+bounds are explicit. The prefix crosses frame setup, the stack-limit service,
+optional image/frame-reader work and coordinate gates before acquisition.
+
+All three scoped cases leave entryFrame unestablished. The prefix stops at
+the stack-limit or frame-reader service; the suffix stops at its modeled
+request. The diagnostic is "preservesMemory address unresolved: segment and
+base must be concrete before the call". ADR 0012 observes a frame relative to
+unknown entry SP and rejects supplied SP/BP; the scope resolver requires a
+concrete base. Removing scopes instead leaves prefix path-limit gaps and loses
+saved-slot provenance, so it is not accepted as a workaround.
+
+A synthetic prologue, modeled service, narrower assignment/read and epilogue
+isolates the interaction. Without a memory scope, the frame is established,
+all paths return and the writer control holds. Adding only a bounded scope for
+four locals and saved BP makes the frame unestablished and the control
+undecided. Supplying concrete SP with entryFrame is rejected. The three
+interaction controls pass against the exact candidate source; no original
+bytes or instructions appear in that synthetic case.
+
+The sanitized source case and reproducible synthetic control were added to
+[issue 113](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/113#issuecomment-5982560966),
+rather than opening a duplicate. Logs are entry-frame-cleanup.log,
+entry-frame-suite.log and entry-frame-scope.log under
+artifacts/continuation-budget-delivery. Original-derived configs/reports stay
+only in GAME_DIR/analysis/reporter-audit/cleanup-predecessor-controls/connected-entry.
+No original execution/emulation, spec claim or parity status changed.
+
+Next acceptance needs a delivered supported way to compose observed frames
+with bounded saved-memory scopes, then the remaining prefix coverage. Do not
+retry the same capped connected body with larger bounds, silently drop scopes,
+or count an unreleased synthetic pass as consumer closure.
