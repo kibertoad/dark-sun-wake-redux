@@ -1,11 +1,11 @@
 # Implementation plan
 
-## Published scoped-memory tooling adoption
+## Published continuation and hardware tooling adoption
 
-- **Outcome.** Bounded static queries can use explicit pre-call byte-preservation hypotheses through matching published reader/engine 2.0.0, without importing candidate source.
-- **Evidence.** Merged toolkit PR 74, archive/source integrity, installed synthetic bridge and memory-scope controls, and the retained original-source regression inventory in docs/REPORTER-CASE-AUDIT.md. No native service preservation or whole-gap completion follows.
-- **Acceptance.** Adopt reader and engine together for prepared protocol 3. Preserve exact archive locks, unchanged Capstone/pypcode/xxhash versions, conditional provenance and existing analysis budgets. Older prepared protocol 2 is rejected before source access.
-- **Tests and Exit.** Normal hash-locked restore, canonical validation and synthetic protocol rejection pass; all retained source control groups pass against the published pair. Record adoption and remaining case limits. No game spec or parity status changes.
+- **Outcome.** Adopt published engine 4.0.0 with reader 2.0.0 for prepared protocol 3: scoped call-memory hypotheses, explicit hardware boundaries and separate declared-continuation budgets are available through verified installed packages.
+- **Evidence.** Release commit 897f640dfa8d144caef23082be1d1ff3d78aba23, exact archive/source inventory, published source suite, installed PE bridge, retained regressions, migrated cleanup hardware controls, bounded MENU and disabled-continuation controls in docs/REPORTER-CASE-AUDIT.md.
+- **Acceptance.** Preserve reader/checker and Capstone/pypcode/xxhash locks. Ordinary budgets and unresolved native, memory, loop and path conditions remain explicit. Historical first-OUT stop and shared-continuation negative controls keep their provenance; current migrated controls verify the delivered contract. Capped broad reports remain incomplete. Game-specific full gap closure is tracked separately and is not implied by package adoption.
+- **Tests and Exit.** Hash-locked restore, canonical validation, installed-version and prepared-protocol rejection pass. Complete retained inventory is accounted for by unchanged controls or explicit documented migrations. No game spec, parity status, original runtime or gameplay changes. Risk: consumers must choose bounded continuation inputs and interpret hardware events separately from RAM writes.
 
 This file says what the project intends and what is true now, following the
 [work protocol](../vendor/upstream/work-protocol.md). It holds no dated

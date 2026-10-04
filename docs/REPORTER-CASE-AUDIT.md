@@ -1309,3 +1309,36 @@ this entry remains a question on toolkit issue 109, rather than an invented
 memory configuration or patched original. Do not repeat this capped full-body
 query without new usable input tooling, an evidence-backed narrower entry or a
 supported producer trace. Gap 37 and engine adoption remain open.
+
+## Callee segment controls and published engine adoption, 2026-10-04
+
+FND-CONFIG-198's bounded first-store prefix passes with DS preserved, explicitly
+replaced, explicitly equal to SS, and unpreserved through returning call models.
+The BX-addressed store uses the post-call DS, its offset expression is unchanged,
+and its physical interval changes accordingly. An unpreserved DS stays unknown;
+removing the unread-child model removes the store witness. Every returning
+model retains unknown memory/flag effects, and all reports stay incomplete with
+native reachability unconfirmed. Controls: callee-segments.log in
+artifacts/continuation-budget-delivery; source driver/configs/reports:
+GAME_DIR/analysis/reporter-audit/engine4-case-controls/verify-callee-segments.mjs.
+No SS reservation, DS equality or register preservation establishes complete
+storage capacity, alias safety or native callee behavior. Gap 39 stays open.
+
+Published engine 4.0.0 is adopted by exact verified wheel hash with reader 2.0.0;
+prepared protocol remains 3. Release adoption is supported by the complete
+source suite/inventory, installed bridge, nineteen unchanged retained groups,
+explicit cleanup hardware migration, disabled-continuation historical controls
+and the bounded MENU positive. Game-specific gap contracts remain separate.
+The earlier handover's requirement to finish every dynamic game contract before
+package adoption was too broad; it did not identify a package regression.
+Full canonical adoption validation:
+artifacts/continuation-budget-delivery/adoption-validation.log.
+No whole gap, game spec or parity status changes follow from adoption.
+
+The canonical installed synthetic continuation control was migrated from its
+historical shared-cap expectation. It now verifies a continuation can return
+under the ordinary one-path cap, disabling continuations removes the witness,
+its own one-step cap removes the witness, and ordinary paths/gaps compare equal
+with continuations disabled. Full validation passes after this explicit contract
+migration; no assertion was simply deleted. Test-only Unicorn is not installed
+by the project's runtime requirements.

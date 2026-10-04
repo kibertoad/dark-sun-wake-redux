@@ -1,5 +1,15 @@
 # Template and toolkit acceptance audit
 
+## Published engine 4 adoption, 2026-10-04
+
+Engine 4.0.0 is adopted with reader 2.0.0 for prepared protocol 3. The exact
+wheel/source-release verification, published source suite, installed PE bridge,
+retained inventory and explicit hardware/continuation migrations are recorded
+in REPORTER-CASE-AUDIT.md. Checker and Capstone/pypcode/xxhash stay pinned.
+Full adoption validation: artifacts/continuation-budget-delivery/adoption-validation.log.
+Game-specific unresolved producer, alias, native-device and whole-gap contracts
+remain open; capped queries are not accepted as complete reports.
+
 ## Published scoped-memory pair adoption, 2026-10-04
 
 Reader and engine 2.0.0 are adopted together for prepared protocol 3, ahead of
