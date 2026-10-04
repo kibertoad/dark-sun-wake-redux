@@ -1,11 +1,11 @@
 # Implementation plan
 
-## Recursive and normalized result-origin tooling acceptance
+## Output cardinality and append-capacity tooling acceptance
 
-- **Outcome.** Distinguish a finite zero-result leaf, a conditional recursive error propagation and an originating error; retain discarded external results and bounded graph/termination assumptions.
-- **Evidence.** FND-CONFIG-172/174/175 are read-only acceptance inputs. Installed reader 2.1.0/engine 7.3.0 provide observed entry frames, return contracts and origin controls.
-- **Acceptance.** Use verified instruction boundaries and explicitly labelled register/return hypotheses, without entry memory, selected branch outcomes or stitched windows. Preserve all unread calls, stops and gaps; syntactic error stores/return values do not prove an originating native error. No game spec/parity changes or original execution.
-- **Tests and Exit.** Hash-guarded leaf and recursive-case source queries; wrong/missing input and witness-removing limit controls; complete contract audit and canonical gate before closure. Check upstream duplicates before reporting any limitation and retain finite/valid-state assumptions.
+- **Outcome.** Separate generated output cardinality from input count bounds and the append destination gate; retain rejected pre-write and conditional accepted continuations.
+- **Evidence.** FND-CONFIG-176/177/178/182 are read-only acceptance inputs. Published reader 2.1.0/engine 7.3.0 source tracing supplies bounded path, call and write reports.
+- **Acceptance.** Hash-guard actual append instructions with unknown count/pointer producers and explicit returning-call/frame hypotheses. Keep stops, aliases and changed-count uncertainty; neither a local count gate nor conditional return establishes native capacity, feasible geometry or rollback. No game spec/parity changes or original execution.
+- **Tests and Exit.** Verify the rejection precedes copy/count writes, retain accepted copy and count-reload provenance, and remove the witness with a step cap. Whole Gap 34 also requires expansion/split and terminator/base controls, producer invariants and complete source acceptance; partial append success leaves it open. Run the canonical gate before committing.
 
 This file says what the project intends and what is true now, following the
 [work protocol](../vendor/upstream/work-protocol.md). It holds no dated

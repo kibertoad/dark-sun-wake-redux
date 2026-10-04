@@ -1764,3 +1764,13 @@ result-origin730/copy-actual under GAME_DIR/analysis/reporter-audit/;
 ignored assertions are artifacts/engine73/verify-actual-copy.mjs and
 actual-copy-controls.log. No original execution, spec/parity changes, enlarged
 bounds or stitched state were used.
+
+## Gap 34 append-capacity source controls (2026-10-04)
+
+Published reader 2.1.0 / engine 7.3.0 trace the complete append body from FND-CONFIG-176 with the supported MZ identity check, unknown pointer/count inputs and explicit balanced guard/copy models. The frame scope is a conditional preservation hypothesis; it does not preserve destination contents or establish native input admission. No original run, game spec or parity status changed.
+
+The retained rejection paths return FFFF before the copy request and before the destination count write. Accepted paths retain the copy request, a subsequent count reload and an increment whose provenance comes from that reload. The report does not reuse the admitted pre-call count as the increment's input: the post-call count remains unknown. Thus the local gate alone cannot establish a post-call count invariant or destination safety under unknown copy effects/aliases. All retained paths return with no gaps and completeWithinModel is true, while nativeReachability remains unconfirmed.
+
+Nonvacuous controls remove the copy model and retain rejection while stopping accepted continuations; a one-step cap removes returns and count-update witnesses. The local source identity, selectors, configs and full reports remain in GAME_DIR/analysis/reporter-audit/result-origin730/append-*; ignored drivers and assertions are artifacts/engine73/explore-append.mjs and verify-append.mjs, with append-controls.log. No original-derived instruction exports or reports are committed.
+
+This verifies the local pre-write capacity/result ordering only. FND-CONFIG-177's pairwise expansion and FND-CONFIG-178's syntactic split bound still need actual connected producer/callee acceptance, finite admitted inputs and alias/guard qualifications. FND-CONFIG-182's copy-versus-terminator base and wrapped-length controls also remain required. Gap 34 stays open: complete conditional append paths do not establish feasible geometry, native capacity, whole-transform safety or rollback.
