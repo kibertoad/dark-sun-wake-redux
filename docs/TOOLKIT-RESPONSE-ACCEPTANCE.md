@@ -585,3 +585,23 @@ The connected report reaches actual initialization and string fills, including 6
 Nonvacuous controls omit the actual fill region, exhaust the string budget, and cap the query at one step. Each removes the connected pair-selection witness and returned continuation. Full configs/reports remain local under GAME_DIR/analysis/reporter-audit/result-origin730/pair-*; ignored hash-guarded selectors and source assertions are artifacts/engine73/pair-sites.py, explore-pair.mjs and verify-pair.mjs, with pair-controls.log. The accepted symbolic frame scopes remain guard hypotheses, not native input/alias preservation evidence.
 
 An all-state duplicate check found no cardinality/pairwise/split/Gap 34 tracker. Toolkit [issue 213](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/213) now records the full remaining consumer contract and asks for a supported bounded recipe or an accurately documented expressiveness boundary after producer evidence. It does not report conservative limits as a defect. Gap 34 remains open for actual count/record producers and duplicate/overlap invariants, feasible split paths versus FND-CONFIG-178's syntactic bound, alias/callee effects, and FND-CONFIG-182's copy/terminator-base controls. Do not repeat this unknown-input query with larger caps; retry needs new producers, a justified connected route or supported input tooling.
+
+## Gap 34 path-copy and terminator-base controls (2026-10-04)
+
+Published reader 2.1.0 / engine 7.3.0 now trace FND-CONFIG-182's actual caller instructions from the verified boundary immediately after the limit load. entryFrame from the helper root establishes SP=-8/BP=-2 relative to unknown root SP. SI=80 and destination/source length returns are explicit conditional inputs, with register and symbolic frame preservation on modeled calls. The MZ/XXH3 source guard remains required. Bounds are maxSteps=100, maxPaths=16 and totalSteps=1000; no entry memory, branch choices, original execution or stitched reports are supplied.
+
+| Conditional prefix/source length | Counted copy request | Explicit zero location |
+| --- | --- | --- |
+| 0 / 80 | 79 bytes at original destination | Original destination +78 |
+| 3 / 77 | 76 bytes at original destination +3 | Original destination +75 |
+| 40 / 40 | 39 bytes at original destination +40 | Original destination +38 |
+| 80 / 0 | Source work skipped | No explicit zero |
+| 8000 / 8000 hexadecimal | Signed first gate admits negative length; word sum wraps to zero and selects concatenation | No truncation zero |
+
+Source assertions compare the actual pushed destination-offset expression with the explicit zero write's interval base, rather than assuming the zero follows the advanced copy destination. Count zero displacement is normalized to the base expression by the engine. The conditional paths return with completeWithinModel=true and no gaps, while nativeReachability remains unconfirmed. Alias invalidations and unknown final SI/DI/BP remain visible: entryFrame does not carry saved prefix bytes, and a returned report is not a native register-preservation or pointer-validity proof.
+
+Replacing the truncated-copy model in the 40/40 case with the real bounded primitive reaches 19 word copies and one byte copy. It then stops on unknown return-target provenance before the caller's explicit zero write. The gap-free stopped report is incomplete; the modeled copy continuation does not establish that real terminator execution. No native failure, corruption or successful content is claimed.
+
+A one-step cap removes observed frame establishment; removing the copy model removes the explicit-zero witness; removing SI preservation removes the fixed-limit relation. All source controls pass. Original-derived selectors/configs/reports stay local under GAME_DIR/analysis/reporter-audit/result-origin730/path-*; ignored drivers/assertions are artifacts/engine73/path-append-sites.py, explore-path-append.mjs, explore-path-copy.mjs and verify-path-append.mjs, with path-append-controls.log.
+
+Relevant new details were added to existing [toolkit issue 213](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/213#issuecomment-5984294234). Gap 34 remains open for real count/string/pointer producers, admitted storage and aliases, actual scans/concatenation and connected return coverage, plus the pairwise/split contract. Conditional lengths and capacity-like branch limits do not prove native input admission, safe storage, rollback or full generated-cardinality acceptance. Retry this actual-copy case only with new pointer/alias evidence or supported input tooling.

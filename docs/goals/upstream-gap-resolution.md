@@ -84,6 +84,8 @@ The actual FND-CONFIG-175 primitive now resolves the balanced-model cleanup mism
 
 Gap 34's connected pair query now reaches actual initializer/fill and pair selection, but path/loop stops retain no append witness. The returned no-pair route does not establish generated cardinality or native admission. Toolkit issue 213 tracks complete producer/cardinality/capacity acceptance and supported-query guidance. Retry only with new count/record producers, an evidence-bounded connected route or supported input tooling, not higher caps or window stitching.
 
+Gap 34/FND-CONFIG-182 conditional source controls distinguish advanced copy and original-base zero locations, signed wrap and source-work bypass. Actual bounded-copy tracing reaches the declared byte count but stops on unknown return provenance before the caller zero. Toolkit issue 213 has the qualified feedback. Keep conditional lengths/frame scopes separate from real string/pointer producers; retry the actual-copy route only with new admitted-storage/alias evidence or supported input tooling.
+
 ## Handover
 
 - Stage: Slices; research-side tooling. Condition/Scope unchanged. No game spec, parity, original run or emulation changed.
