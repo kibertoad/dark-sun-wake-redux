@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
+import { mkdtempSync, writeFileSync, rmSync, mkdirSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -20,8 +20,25 @@ test('direct capture reads an offscreen synthetic window and rejects invalid or 
   t.after(() => rmSync(scratch, { recursive: true, force: true }));
   const runner = join(scratch, 'acceptance.ps1');
   writeFileSync(runner, String.raw`
-param($Source, $Output)
+param($Source, $Output, [switch]$ForceUniformPositive)
 $ErrorActionPreference = 'Stop'
+$form=$null
+$stage='setup'
+function Write-CaptureDiagnostics($Failure) {
+ $details=[ordered]@{stage=$stage;error=$Failure;handleCreated=$false}
+ if($null -ne $form) {
+  $details.handleCreated=$form.IsHandleCreated
+  $details.visible=$form.Visible
+  $details.clientWidth=$form.ClientSize.Width
+  $details.clientHeight=$form.ClientSize.Height
+  $details.uniform=$form.Uniform
+  $details.paintCount=$form.PaintCount
+  $details.printCount=$form.PrintCount
+  $details.printClientCount=$form.PrintClientCount
+ }
+ [Console]::Error.WriteLine('capture-fixture: '+($details | ConvertTo-Json -Compress))
+}
+try {
 Add-Type -AssemblyName System.Drawing
 Add-Type -AssemblyName System.Windows.Forms
 $sourceText = Get-Content -LiteralPath $Source -Raw
@@ -36,11 +53,13 @@ Add-Type -ReferencedAssemblies System.Windows.Forms,System.Drawing -TypeDefiniti
 using System; using System.Drawing; using System.Windows.Forms;
 public class CaptureCanvas : Form {
  public bool Uniform;
+ public int PaintCount, PrintCount, PrintClientCount;
  public CaptureCanvas(){ClientSize=new Size(32,16);StartPosition=FormStartPosition.Manual;Location=new Point(-10000,-10000);}
  protected override bool ShowWithoutActivation { get { return true; } }
- protected override void OnPaint(PaintEventArgs e) { e.Graphics.Clear(Color.Red); if(!Uniform) e.Graphics.FillRectangle(Brushes.Lime,16,0,16,16); }
+ protected override void OnPaint(PaintEventArgs e) { PaintCount++; e.Graphics.Clear(Color.Red); if(!Uniform) e.Graphics.FillRectangle(Brushes.Lime,16,0,16,16); }
  protected override void WndProc(ref Message m) {
   if(m.Msg==0x317 || m.Msg==0x318) {
+   if(m.Msg==0x317) PrintCount++; else PrintClientCount++;
    using(var g=Graphics.FromHdc(m.WParam)) {
     g.Clear(Color.Red); if(!Uniform) g.FillRectangle(Brushes.Lime,16,0,16,16);
    } m.Result=new IntPtr(1); return;
@@ -49,12 +68,15 @@ public class CaptureCanvas : Form {
 }
 '@
 $form=[CaptureCanvas]::new()
-try {
+ $stage='show'
  $form.Show(); $form.Refresh()
  $handle=$form.Handle
  $bounds=[pscustomobject]@{Width=32;Height=16;X=0;Y=0}
  $path=Join-Path $Output 'valid.png'
+ $form.Uniform=[bool]$ForceUniformPositive
+ $stage='positive-capture'
  Save-DirectScreenFrame $handle $bounds $path
+ $stage='positive-pixels'
  $bitmap=[Drawing.Bitmap]::new($path)
  try {
   if ($bitmap.GetPixel(4,8).ToArgb() -ne [Drawing.Color]::Red.ToArgb() -or
@@ -62,14 +84,41 @@ try {
  } finally {$bitmap.Dispose()}
  $form.Uniform=$true
  $form.Refresh()
+ $stage='blank-rejection'
  try {Save-DirectScreenFrame $handle $bounds (Join-Path $Output 'blank.png');throw 'Blank result accepted'}
  catch {if($_.Exception.Message -notmatch 'uniform frame'){throw}}
+ $stage='invalid-handle-rejection'
  try {Save-DirectScreenFrame ([IntPtr]0) $bounds (Join-Path $Output 'invalid.png');throw 'Invalid window accepted'}
  catch {if($_.Exception.Message -notmatch 'does not support direct capture'){throw}}
+ $stage='rejected-output-check'
  if((Test-Path (Join-Path $Output 'blank.png')) -or (Test-Path (Join-Path $Output 'invalid.png'))){throw 'Rejected frame written'}
-} finally {$form.Dispose()}
+ $stage='complete'
+ Write-CaptureDiagnostics $null
+} catch {
+ Write-CaptureDiagnostics $_.Exception.Message
+ throw
+} finally {if($null -ne $form){$form.Dispose()}}
 `);
   const result = spawnSync('powershell.exe', ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', runner,
     resolve(import.meta.dirname, '../../tools/Capture-OriginalWindow.ps1'), scratch], { encoding: 'utf8', timeout: 30000 });
   assert.equal(result.status, 0, result.stdout + result.stderr);
+  const success = JSON.parse(result.stderr.split(/\r?\n/).find(line => line.startsWith('capture-fixture: ')).slice('capture-fixture: '.length));
+  assert.equal(success.stage, 'complete');
+  const rejectedOutput = join(scratch, 'diagnostic-control');
+  mkdirSync(rejectedOutput);
+  const rejected = spawnSync('powershell.exe', ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', runner,
+    resolve(import.meta.dirname, '../../tools/Capture-OriginalWindow.ps1'), rejectedOutput, '-ForceUniformPositive'],
+    { encoding: 'utf8', timeout: 30000 });
+  assert.equal(rejected.status, 1, rejected.stdout + rejected.stderr);
+  const diagnostics = JSON.parse(rejected.stderr.split(/\r?\n/).find(line => line.startsWith('capture-fixture: ')).slice('capture-fixture: '.length));
+  assert.equal(diagnostics.stage, 'positive-capture');
+  assert.match(diagnostics.error, /uniform frame/);
+  assert.equal(diagnostics.handleCreated, true);
+  assert.equal(diagnostics.visible, true);
+  assert.ok(diagnostics.clientWidth >= 32, 'client contains the sampled width');
+  assert.ok(diagnostics.clientHeight >= 16, 'client contains the sampled height');
+  assert.equal(diagnostics.uniform, true);
+  assert.ok(Number.isInteger(diagnostics.printCount) && diagnostics.printCount >= 0);
+  assert.ok(Number.isInteger(diagnostics.printClientCount) && diagnostics.printClientCount >= 0);
+  assert.equal(existsSync(join(rejectedOutput, 'valid.png')), false);
 });
