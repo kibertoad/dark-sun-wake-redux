@@ -2,6 +2,23 @@
   "version": 1,
   "dependencies": {
     "net10.0": {
+      "RefurbishedDinosaurs.Core": {
+        "type": "Direct",
+        "requested": "[2.0.0, 2.0.0]",
+        "resolved": "2.0.0",
+        "contentHash": "O03uMOGp38jEumFKpw2svP4mtDbd/dwKG3j4D2m/b+22l164iZLuqsS1VQvdnoXrA0nFgR2dzXPyUNyQgvugOw==",
+        "dependencies": {
+          "System.IO.Hashing": "10.0.12"
+        }
+      },
+      "RefurbishedDinosaurs.LegacyFormats": {
+        "type": "Transitive",
+        "resolved": "2.0.0",
+        "contentHash": "skANV6TEw9vlWXaCqnjkxeh/3IB/kdFOMJSrLuQb84bYTFUPXtyCsJNeAL/krKW+vz4Nfdn6D0AOdeMwwmDsVQ==",
+        "dependencies": {
+          "RefurbishedDinosaurs.Core": "2.0.0"
+        }
+      },
       "System.IO.Hashing": {
         "type": "Transitive",
         "resolved": "10.0.12",
@@ -10,7 +27,8 @@
       "darksunwakeredux.resources": {
         "type": "Project",
         "dependencies": {
-          "System.IO.Hashing": "[10.0.12, )"
+          "RefurbishedDinosaurs.Core": "[2.0.0, 2.0.0]",
+          "RefurbishedDinosaurs.LegacyFormats": "[2.0.0, 2.0.0]"
         }
       }
     }

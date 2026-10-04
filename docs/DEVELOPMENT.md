@@ -19,7 +19,7 @@ documented source default with `DARK_SUN_WAKE_PATH` when necessary.
 Extraction is transactional: a new content pack is staged and fully verified
 before it replaces the previous verified pack. The ignored default
 `UserContent` pack is persistent; keep and reuse it unless extractor or pack
-contract changes require replacement. The current required revision 35 pack contains 16,401
+contract changes require replacement. The current required revision 36 pack contains 16,401
 lossless DSOP corpus assets (233 source files and 16,168 GFF records) plus 123
 specialized derivatives for the evidenced startup, party, ADD-list, Tyr, all-region structural catalogs, menus,
 dialogue, and character metadata. The runtime never loads opaque payloads.
@@ -39,6 +39,15 @@ default to `%LOCALAPPDATA%\DarkSunWakeRedux\Screenshots`; pass
 `--screenshot-folder <path>` to the Game executable to direct them elsewhere.
 Each filename includes a millisecond local timestamp, is created without
 overwriting an existing file, and is reported in the window title.
+
+The validation gate and the pre-commit hook also run the documentation check and
+the evidence tooling tests, which need Node.js 22 or newer and Python 3.12 or
+newer. Install their locked packages once per clone, and again whenever
+`package-lock.json` or `tools/evidence/requirements.txt` changes:
+
+```powershell
+./tools/Restore-ToolDependencies.ps1
+```
 
 Build and test the complete solution with:
 

@@ -1,78 +1,8 @@
-using System.Text;
-using System.Text.Json;
+using RefurbishedDinosaurs.Core.Assets;
+using RefurbishedDinosaurs.Core.IO;
+using RefurbishedDinosaurs.Core.Paths;
 
 namespace DarkSunWakeRedux.Resources;
-
-public sealed record SourceManifest(string GameId, string SourceEdition, IReadOnlyList<SourceFile> Files)
-{
-    public static SourceManifest Load(Stream stream)
-    {
-        var result = JsonSerializer.Deserialize<SourceManifest>(stream,
-            new JsonSerializerOptions { PropertyNameCaseInsensitive = true, AllowTrailingCommas = true })
-            ?? throw new InvalidDataException("Source manifest is empty.");
-        result.Validate();
-        return result;
-    }
-
-    public void Validate()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(GameId);
-        ArgumentException.ThrowIfNullOrWhiteSpace(SourceEdition);
-        if (Files is null || Files.Count == 0)
-            throw new InvalidDataException("A source manifest requires at least one fingerprint.");
-
-        var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        foreach (var file in Files)
-        {
-            if (file is null) throw new InvalidDataException("Source manifest contains a null file record.");
-            var path = Normalize(file.Path);
-            if (!seen.Add(path)) throw new InvalidDataException($"Duplicate source path '{path}'.");
-            if (file.Size < 0 || !ContentHash.IsValid(file.Xxh3))
-                throw new InvalidDataException($"Invalid fingerprint for '{path}'.");
-        }
-    }
-
-    public string Fingerprint()
-    {
-        var canonical = string.Join('\n', Files.OrderBy(file => file.Path, StringComparer.OrdinalIgnoreCase)
-            .Select(file => $"{Normalize(file.Path)}\0{file.Size}\0{file.Xxh3.ToLowerInvariant()}"));
-        return ContentHash.Xxh3(Encoding.UTF8.GetBytes(canonical));
-    }
-
-    public static string Normalize(string path)
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(path);
-        var normalized = path.Replace('\\', '/');
-        if (Path.IsPathRooted(path) || normalized.Split('/').Any(part => part is "" or "." or ".."))
-            throw new InvalidDataException($"Source path must be relative: '{path}'.");
-        return normalized;
-    }
-}
-
-public sealed record SourceFile(string Path, long Size, string Xxh3);
-
-public sealed record AssetPackFile(
-    string Path,
-    long Size,
-    string Xxh3,
-    string SourcePath,
-    string MediaType,
-    string Conversion);
-
-public sealed record AssetPackManifest(
-    int RequiredRevision,
-    string GameId,
-    string SourceEdition,
-    string SourceFingerprintXxh3,
-    string ExtractorVersion,
-    IReadOnlyList<AssetPackFile> Files);
-
-public sealed record ContentDiagnostic(
-    string Code,
-    string Message,
-    string? Path = null,
-    string? Expected = null,
-    string? Actual = null);
 
 public sealed record StartMenuButtonAsset(
     string Name,
@@ -164,20 +94,20 @@ public sealed record InteractionButtonAsset(
             frame.Width == FrameWidth && frame.Height == FrameHeight);
 }
 
-public sealed record SourceIdentification(
-    SourceManifest? Edition,
-    IReadOnlyList<ContentDiagnostic> Diagnostics)
-{
-    public bool IsSupported => Edition is not null;
-}
-
+/// <summary>
+/// This game's original-content rules: its id, its asset records, where its asset pack lives, and
+/// what the pack is checked against. Identifying the owner's copy and verifying the pack are the
+/// toolkit's (<c>AssetVerifier</c> and <see cref="InstalledAssetVerifier"/>).
+/// </summary>
 public static class OriginalContent
 {
-    // Required extraction revision. Bump only when the derived-asset inventory
-    // or semantic contract changes; `play.bat` then replaces stale local packs.
-    // Older packs are deliberately rejected; this is not a compatibility promise.
-    public const int RequiredAssetPackRevision = 35;
+    // Required extraction revision, written as the pack manifest's format version. Bump it when
+    // the derived-asset inventory, its semantic contract or the manifest layout changes;
+    // `play.bat` then replaces stale local packs. Older packs are deliberately rejected; this is
+    // not a compatibility promise.
+    public const int RequiredAssetPackRevision = 36;
     public const string GameId = "dark-sun-wake-redux";
+    public const string AssetPackManifestFileName = "manifest.json";
     public const string TitleImageAssetPath = "images/title.dsix";
     public const string InterfaceFontAssetPath = "fonts/interface.dsft";
     public const string TextCatalogAssetPath = "text/resources.dstx";
@@ -203,13 +133,14 @@ public static class OriginalContent
     public const string OpeningLeaderImageAssetPath = "images/exploration/opening-leader.dsix";
     public const uint OpeningLeaderObjectResourceNumber = 305;
     public const uint OpeningLeaderImageResourceNumber = 599;
-    // The full owned corpus currently emits 16,168 GFF-resource entries plus
-    // 233 raw source-file entries; retain a bounded but corpus-scale manifest.
-    public const long MaximumManifestBytes = 16 * 1024 * 1024;
+    // The full owned corpus emits over 16,000 GFF-resource entries plus the raw source files, a
+    // manifest of about 5.4 MB. The toolkit's default read limit is 4 MiB, so the pack manifest is
+    // read with this bound instead.
+    public const int MaximumManifestBytes = 16 * 1024 * 1024;
 
     public static string RegionCatalogAssetPathFor(string sourcePath)
     {
-        var normalized = SourceManifest.Normalize(sourcePath);
+        var normalized = PortableAssetPath.Relative(sourcePath);
         if (normalized.Contains('/'))
             throw new InvalidDataException(
                 $"Region catalog source path must name a root archive: '{sourcePath}'.");
@@ -455,209 +386,83 @@ public static class OriginalContent
         new("view-psionics", "images/character-generation/modal/view-psionics.dsix", 2047, 2047, 7, 47, 90, 7, 93, 7, 3)
     ];
 
-    public static string DefaultAssetPackPath() => Path.Combine(
-        Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-        "DarkSunWakeRedux", "UserContent");
+    /// <summary>The per-user directory names the game and the Extractor share.</summary>
+    public static RestorationPathOptions PathOptions { get; } = new("DarkSunWakeRedux");
 
-    public static async Task<SourceIdentification> IdentifyAsync(
-        string root,
-        IEnumerable<SourceManifest> editions,
-        CancellationToken cancellationToken = default)
+    /// <summary>
+    /// What an asset pack is checked against. The pack directory holds nothing but the pack, so a
+    /// file the manifest does not list is a problem.
+    /// </summary>
+    public static InstalledAssetExpectations AssetPackExpectations { get; } =
+        new(RequiredAssetPackRevision, GameId, AssetPackManifestFileName, RejectUnlistedFiles: true);
+
+    /// <summary>The per-user directory for settings, saves and logs.</summary>
+    /// <exception cref="InvalidOperationException">The account has no local application data folder.</exception>
+    public static string StateRoot()
     {
-        var diagnostics = new List<ContentDiagnostic>();
-        foreach (var edition in editions.OrderBy(candidate => candidate.SourceEdition, StringComparer.Ordinal))
-        {
-            var editionDiagnostics = await VerifySourceAsync(root, edition, cancellationToken);
-            if (editionDiagnostics.Count == 0) return new(edition, []);
-            diagnostics.AddRange(editionDiagnostics.Select(item => item with
-            {
-                Message = $"{edition.SourceEdition}: {item.Message}"
-            }));
-        }
-        if (diagnostics.Count == 0)
-            diagnostics.Add(new("source_editions_missing", "The Extractor contains no supported-edition manifests."));
-        return new(null, diagnostics);
+        var localApplicationData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        // RestorationPaths would reject the empty folder with an ArgumentException naming its parameter,
+        // which tells a player nothing.
+        if (string.IsNullOrWhiteSpace(localApplicationData))
+            throw new InvalidOperationException("This account has no local application data folder, so the " +
+                "per-user directory for the asset pack, settings and logs cannot be resolved.");
+        return RestorationPaths.ResolveStateRoot(PathOptions, localApplicationData);
     }
 
-    public static async Task<IReadOnlyList<ContentDiagnostic>> VerifySourceAsync(
-        string root,
-        SourceManifest manifest,
-        CancellationToken cancellationToken = default)
+    /// <summary>The per-user asset pack the Extractor writes and the game reads by default.</summary>
+    public static string DefaultAssetPackPath() => Path.Combine(StateRoot(), PathOptions.ContentDirectory);
+
+    /// <summary>Reads one supported edition's manifest and checks that it belongs to this game.</summary>
+    /// <exception cref="InvalidDataException">The manifest is invalid or names another game.</exception>
+    public static AssetManifest LoadEdition(Stream json)
     {
-        manifest.Validate();
-        if (string.IsNullOrWhiteSpace(root) || !Directory.Exists(root))
-            return [new("source_root_missing", "The selected source directory does not exist.", root)];
-
-        var diagnostics = new List<ContentDiagnostic>();
-        foreach (var expected in manifest.Files)
-        {
-            var relative = SourceManifest.Normalize(expected.Path);
-            var path = SafeTarget(root, relative);
-            if (!File.Exists(path))
-            {
-                diagnostics.Add(new("source_file_missing", $"Required source file is missing: {relative}", relative));
-                continue;
-            }
-
-            var actualSize = new FileInfo(path).Length;
-            if (actualSize != expected.Size)
-            {
-                diagnostics.Add(new("source_size_mismatch", $"Source file has the wrong size: {relative}",
-                    relative, expected.Size.ToString(), actualSize.ToString()));
-                continue;
-            }
-
-            await using var stream = File.OpenRead(path);
-            var hash = await ContentHash.Xxh3Async(stream, cancellationToken);
-            if (!hash.Equals(expected.Xxh3, StringComparison.OrdinalIgnoreCase))
-                diagnostics.Add(new("source_hash_mismatch", $"Source file has the wrong XXH3-128: {relative}",
-                    relative, expected.Xxh3.ToLowerInvariant(), hash));
-        }
-        return diagnostics;
+        var edition = AssetManifest.Load(json);
+        if (!string.Equals(edition.GameId, GameId, StringComparison.Ordinal))
+            throw new InvalidDataException(
+                $"Edition manifest '{edition.SourceEdition}' is for '{edition.GameId}', not '{GameId}'.");
+        return edition;
     }
 
-    public static async Task<IReadOnlyList<ContentDiagnostic>> VerifyInstalledAsync(
+    /// <summary>
+    /// Checks the asset pack at <paramref name="root"/> as the game does at startup: the toolkit's
+    /// <see cref="InstalledAssetVerifier"/> against <see cref="AssetPackExpectations"/>, with the
+    /// manifest read up to <see cref="MaximumManifestBytes"/>, and every file recording the media
+    /// type and conversion it was produced with. A missing or unreadable manifest is reported, not
+    /// thrown.
+    /// </summary>
+    public static async Task<InstalledAssetVerification> VerifyInstalledAsync(
         string root,
         CancellationToken cancellationToken = default)
     {
-        var manifestPath = Path.Combine(root, "manifest.json");
+        ArgumentException.ThrowIfNullOrWhiteSpace(root);
+        var manifestPath = SafePath.Below(root, AssetPackManifestFileName);
         if (!File.Exists(manifestPath))
-            return [new("pack_manifest_missing",
-                $"Asset-pack manifest not found. Run DarkSunWakeRedux.Extractor against a supported GOG installation.",
-                manifestPath)];
+            return new([new(InstalledAssetProblem.ManifestMissing, AssetPackManifestFileName,
+                "Asset-pack manifest not found. Run DarkSunWakeRedux.Extractor against a supported GOG installation.")], 0);
 
-        AssetPackManifest? manifest;
+        InstalledAssetManifest manifest;
         try
         {
-            var info = new FileInfo(manifestPath);
-            if (info.Length > MaximumManifestBytes)
-                return [new("pack_manifest_too_large", "Asset-pack manifest exceeds the safety limit.",
-                    "manifest.json", MaximumManifestBytes.ToString(), info.Length.ToString())];
-            await using var stream = File.OpenRead(manifestPath);
-            manifest = await JsonSerializer.DeserializeAsync<AssetPackManifest>(stream,
-                cancellationToken: cancellationToken);
+            manifest = InstalledAssetManifest.Read(manifestPath, MaximumManifestBytes);
         }
-        catch (Exception exception) when (exception is JsonException or IOException or UnauthorizedAccessException)
+        catch (Exception exception) when (exception is InvalidDataException or IOException
+                                         or UnauthorizedAccessException)
         {
-            return [new("pack_manifest_unreadable", $"Asset-pack manifest cannot be read: {exception.Message}",
-                "manifest.json")];
+            return new([new(InstalledAssetProblem.ManifestUnreadable, AssetPackManifestFileName,
+                $"Asset-pack manifest cannot be read: {exception.Message}")], 0);
         }
 
-        if (manifest is null) return [new("pack_manifest_empty", "Asset-pack manifest is empty.", "manifest.json")];
-        var diagnostics = ValidatePackManifest(manifest);
-        if (diagnostics.Count != 0) return diagnostics;
-
-        var expectedPaths = new HashSet<string>(PathComparer);
-        foreach (var asset in manifest.Files)
-        {
-            string path;
-            try { path = SafeTarget(root, asset.Path); }
-            catch (InvalidDataException)
-            {
-                diagnostics.Add(new("pack_path_unsafe", $"Asset path escapes the pack: {asset.Path}", asset.Path));
-                continue;
-            }
-            expectedPaths.Add(path);
-            if (!File.Exists(path))
-            {
-                diagnostics.Add(new("pack_asset_missing", $"Asset is missing: {asset.Path}", asset.Path));
-                continue;
-            }
-            var actualSize = new FileInfo(path).Length;
-            if (actualSize != asset.Size)
-            {
-                diagnostics.Add(new("pack_asset_size_mismatch", $"Asset has the wrong size: {asset.Path}",
-                    asset.Path, asset.Size.ToString(), actualSize.ToString()));
-                continue;
-            }
-            await using var stream = File.OpenRead(path);
-            var hash = await ContentHash.Xxh3Async(stream, cancellationToken);
-            if (!hash.Equals(asset.Xxh3, StringComparison.OrdinalIgnoreCase))
-                diagnostics.Add(new("pack_asset_hash_mismatch", $"Asset has the wrong XXH3-128: {asset.Path}",
-                    asset.Path, asset.Xxh3.ToLowerInvariant(), hash));
-        }
-
-        try
-        {
-            foreach (var installedPath in Directory.EnumerateFiles(root, "*", SearchOption.AllDirectories))
-            {
-                var fullPath = Path.GetFullPath(installedPath);
-                if (PathComparer.Equals(fullPath, Path.GetFullPath(manifestPath))) continue;
-                if (!expectedPaths.Contains(fullPath))
-                    diagnostics.Add(new("pack_asset_unexpected", "Asset pack contains an unexpected file.",
-                        Path.GetRelativePath(root, fullPath).Replace('\\', '/')));
-            }
-        }
-        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException)
-        {
-            diagnostics.Add(new("pack_inventory_unreadable",
-                $"Asset-pack inventory cannot be read: {exception.Message}"));
-        }
-        return diagnostics;
+        var verification = await InstalledAssetVerifier.VerifyAsync(
+            root, manifest, AssetPackExpectations, cancellationToken);
+        // The toolkit leaves media type and conversion optional; every file in this pack records both.
+        var provenance = (manifest.Files ?? [])
+            .Where(asset => asset is not null &&
+                (string.IsNullOrWhiteSpace(asset.MediaType) || string.IsNullOrWhiteSpace(asset.Conversion?.Method)))
+            .Select(asset => new InstalledAssetIssue(InstalledAssetProblem.InvalidRecord, asset.Path,
+                $"Asset media type or conversion is missing: {asset.Path}"))
+            .ToArray();
+        return provenance.Length == 0
+            ? verification
+            : new([.. verification.Issues, .. provenance], verification.VerifiedFiles);
     }
-
-    private static List<ContentDiagnostic> ValidatePackManifest(AssetPackManifest manifest)
-    {
-        var diagnostics = new List<ContentDiagnostic>();
-        if (manifest.RequiredRevision != RequiredAssetPackRevision)
-            diagnostics.Add(new("pack_revision_mismatch", "Asset pack is not the currently required extraction output.",
-                "manifest.json", RequiredAssetPackRevision.ToString(), manifest.RequiredRevision.ToString()));
-        if (!string.Equals(manifest.GameId, GameId, StringComparison.Ordinal))
-            diagnostics.Add(new("pack_game_mismatch", "Asset pack belongs to a different game.", "manifest.json",
-                GameId, manifest.GameId));
-        if (string.IsNullOrWhiteSpace(manifest.SourceEdition))
-            diagnostics.Add(new("pack_source_missing", "Asset-pack source edition is missing.", "manifest.json"));
-        if (!ContentHash.IsValid(manifest.SourceFingerprintXxh3))
-            diagnostics.Add(new("pack_source_hash_invalid", "Asset-pack source fingerprint is invalid.", "manifest.json"));
-        if (string.IsNullOrWhiteSpace(manifest.ExtractorVersion))
-            diagnostics.Add(new("pack_extractor_version_missing", "Extractor version is missing.", "manifest.json"));
-        if (manifest.Files is null || manifest.Files.Count == 0)
-        {
-            diagnostics.Add(new("pack_inventory_empty", "Asset pack contains no files.", "manifest.json"));
-            return diagnostics;
-        }
-
-        var paths = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        foreach (var asset in manifest.Files)
-        {
-            if (asset is null || string.IsNullOrWhiteSpace(asset.Path))
-            {
-                diagnostics.Add(new("pack_path_missing", "Asset path is missing.", "manifest.json"));
-                continue;
-            }
-            string normalized;
-            try { normalized = SourceManifest.Normalize(asset.Path); }
-            catch (InvalidDataException)
-            {
-                diagnostics.Add(new("pack_path_unsafe", $"Asset path is unsafe: {asset.Path}", asset.Path));
-                continue;
-            }
-            if (!paths.Add(normalized))
-                diagnostics.Add(new("pack_path_duplicate", $"Asset path is duplicated: {normalized}", normalized));
-            if (asset.Size < 0 || !ContentHash.IsValid(asset.Xxh3))
-                diagnostics.Add(new("pack_fingerprint_invalid", $"Asset fingerprint is invalid: {normalized}", normalized));
-            if (string.IsNullOrWhiteSpace(asset.SourcePath))
-                diagnostics.Add(new("pack_provenance_missing", $"Asset source path is missing: {normalized}", normalized));
-            if (string.IsNullOrWhiteSpace(asset.MediaType) || string.IsNullOrWhiteSpace(asset.Conversion))
-                diagnostics.Add(new("pack_conversion_missing", $"Asset media type or conversion is missing: {normalized}", normalized));
-        }
-        return diagnostics;
-    }
-
-    private static string SafeTarget(string root, string relative)
-    {
-        if (Path.IsPathFullyQualified(relative)) throw new InvalidDataException("Path must be relative.");
-        var normalized = SourceManifest.Normalize(relative).Replace('/', Path.DirectorySeparatorChar);
-        var fullRoot = Path.GetFullPath(root).TrimEnd(
-            Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar) + Path.DirectorySeparatorChar;
-        var target = Path.GetFullPath(Path.Combine(root, normalized));
-        if (!target.StartsWith(fullRoot, OperatingSystem.IsWindows()
-                ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal))
-            throw new InvalidDataException("Path escapes content root.");
-        return target;
-    }
-
-    private static StringComparer PathComparer => OperatingSystem.IsWindows()
-        ? StringComparer.OrdinalIgnoreCase
-        : StringComparer.Ordinal;
 }

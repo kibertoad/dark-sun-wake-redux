@@ -50,7 +50,7 @@ The region resources are `FMT-REGION-001` to `FMT-REGION-006`, and the terrain
 drawing is `RULE-REGION-001`. The rebuild's reader caps the region name at 64
 bytes and the entity table at 16,384 records, requires the exact map dimensions
 and 16x16 tile frames, and rejects missing local tiles or external objects with
-region/resource context. Required pack revision 35 serializes each
+region/resource context. Required pack revision 36 serializes each
 manifest-selected region independently as a source-derived
 `regions/structural/rgnxxx.dsrg` DSRG v1 catalog, reads it back before
 promotion, and assigns no selection, travel, camera, entity, or gameplay meaning

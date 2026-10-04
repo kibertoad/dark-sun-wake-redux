@@ -1,6 +1,6 @@
 # Bounded evidence tools
 
-Requires Node.js 22 or later. No npm install is needed. Run synthetic tests with
+Requires Node.js 22 or later and the packages `./tools/Restore-ToolDependencies.ps1` installs. Run synthetic tests with
 `node --test tests/evidence/evidence.test.mjs`; the canonical validation gate
 runs them too. These tools read metadata and never run an original executable.
 They implement Standard v1 conventions; report schemas are tooling interfaces,
@@ -9,10 +9,12 @@ not a new spec version. Keep reports/configs under ignored `analysis/original/`.
 ## Identity and locations
 
 Run `node tools/evidence/report.mjs operand analysis/original/operand.json`.
-A config names `source` relative to the config, its explicit `sha256` baseline,
-`loadSegment` (default 4096), numeric `site` at the segment operand, and numeric
-`targetOffset`. The SHA-256 guard binds the local tool input; retain the
-Standard's XXH3-128 build fingerprint and build ID in the finding itself.
+A config names `source` relative to the config, its `xxh3` (the XXH3-128 hash the
+build entry gives, as 32 lower-case hex digits), `loadSegment` (default 4096),
+numeric `site` at the segment operand, and numeric `targetOffset`. Every command,
+including the `x86-` ones, refuses a source with another hash and a config that
+still names a `sha256`; the report's `sourceIdentity` repeats the `xxh3` it checked.
+`node tools/evidence/xxh3.mjs <file>...` prints a file's xxh3 the same way.
 The source may be an ordinary MZ or an MZ followed by a Borland FBOV envelope.
 Other extended formats fail explicitly. Resident ranges include data: location
 resolution alone does not establish an instruction or behavior.
@@ -92,8 +94,10 @@ Coverage describes analyzer-discovered functions, not every function that exists
 
 The `x86-trace`, `x86-uses`, `x86-arguments`, `x86-effects`, `x86-returns`,
 `x86-memory`, `x86-incoming`, `x86-guards`, `x86-allocation`, `x86-dispatch`,
-`x86-operand`, `x86-target`, `x86-bounds`, `x86-owner` and `x86-pointers` commands use the pinned
-packaged toolkit reporter. Keep configurations and reports in `GAME_DIR` and out
+`x86-operand`, `x86-operand-candidates`, `x86-target`, `x86-bounds`, `x86-owner`,
+`x86-callees` and `x86-pointers` commands run the report of the same name from
+`@scientific-method/executable-reader`, which hands every one but `pointers` to
+`scientific-method-engine`. Keep configurations and reports in `GAME_DIR` and out
 of commits. Run `./tools/Restore-ToolDependencies.ps1` to install exact locked npm
 and Python dependencies. The default interpreter lives in
 `artifacts/evidence-python`; `EVIDENCE_PYTHON` may select an explicit interpreter.
@@ -122,9 +126,14 @@ trampoline counts so a misread table fails the query. Declare a resident
 segment's bounds from the build's code ranges in `segments` so an incoming
 search over part of it is reported as partial.
 
-## PE32 reporter adoption
+## PE32 executables
 
-The pinned toolkit reporter now accepts `sourceKind: "pe32"` for i386 executables. Its loader derives preferred-base mappings from validated source sections. Regions and entry/control sites are file offsets; flat memory query offsets are VAs. The full guide documents 32-bit frames, scaled addressing, the flat-segment assumption and unsupported indirect/runtime routes. MZ/FBOV queries keep the segmented 16-bit model, but shared behaviour changes for them too: overlapping entry-path instructions become unresolved boundary gaps, operand-size-prefixed control transfers and LEAVE stop the path, an executed `push cs` before a near call makes a four-byte frame, stopped traces still inventory reachable memory operands as unresolved observations (in `conditionalAccesses`, each naming the stops and untraced calls it depends on), separate unmodelled flag producers no longer share branch outcomes, XCHG and low-result IMUL are decoded, and every report adds `instructionModel`, `sourceMapping` and `declaredRegions`. Shared legacy and PE synthetic suites run upstream; local validation checks package routing and configured controls. No game-specific question is closed by this adoption.
+The `x86-` commands also accept `sourceKind: "pe32"` for i386 executables. The
+loader derives preferred-base mappings from validated source sections. Regions
+and entry/control sites are file offsets; flat memory query offsets are VAs. The
+toolkit guide documents 32-bit frames, scaled addressing, the flat-segment
+assumption and the unsupported indirect and runtime routes. This project's
+executable is MZ/FBOV, so these queries keep the segmented 16-bit model.
 
 
 ## Committed inventory verification

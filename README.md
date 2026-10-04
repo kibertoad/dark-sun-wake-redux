@@ -57,7 +57,7 @@ on purpose. The parts of the rebuild that have no spec entry stand as follows:
 | Part | Status |
 |---|---|
 | Source recognition | Implemented. One English GOG build has an exact 233-file immutable inventory, and all 279 installed files have a game-data, mutable, wrapper or documentation disposition. Synthetic mismatch tests pass and the owned build verifies. |
-| Asset pack | Implemented. Required revision 35 keeps all 233 source files and every one of the 16,168 GFF descriptors as 16,401 DSOP assets, plus 123 specialized derivatives (16,524 assets). The pack contract checks version, game and source identity, inventory, hashes, provenance, media type, conversion and unexpected files. |
+| Asset pack | Implemented. Required revision 36 keeps all 233 source files and every one of the 16,168 GFF descriptors as 16,401 DSOP assets, plus 123 specialized derivatives (16,524 assets). The pack contract checks version, game and source identity, inventory, hashes, provenance, media type, conversion and unexpected files. |
 | Error behavior | Implemented. A missing or invalid pack and a source mismatch return a diagnostic that says what to do. |
 | Saves and replays | Partial. Start-flow snapshot schema 5 and replay format 3 with hash-verified replay are implemented in memory. Native save files, migration and whole-game coverage are not started. |
 | Packaging | Identity configured. Packages are not release-ready while decoders are missing. |

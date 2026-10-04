@@ -894,8 +894,8 @@ snapshot/commit path and the complete Gap 27 request remain open.
 
 ## Scoped-memory candidate implementation
 
-Implement toolkit PR 63's bounded register-relative memory hypotheses in its
-isolated candidate: at most 32 scopes and 4,096 total bytes per modeled call,
+Forward-port the completed scoped-memory helper to latest reviewed toolkit main
+in a new isolated implementation candidate: at most 32 scopes and 4,096 total bytes per modeled call,
 concrete pre-call segments/offsets, no wrap or alias overlap, explicit provenance
 and unknown memory outside the scopes. Coordinate reader/engine protocol 2 and
 major release metadata. Synthetic near/far/PE32, saved-frame, wrong/partial scope,
@@ -904,7 +904,8 @@ Candidate archive source controls must join FND-CONFIG-186's caller bracket
 under explicitly declared frame hypotheses while retaining unknown native effects.
 No candidate imports enter adopted controls; no package adoption before reviewed
 merge and registry delivery. Exit: full upstream gates and bounded source cases,
-reviewable PR update, root Test.ps1 and handover. Full goal scope is unchanged.
+a new reviewable PR body, root Test.ps1 and handover. Preserve pypcode-only
+instruction semantics and existing budgets. Full goal scope is unchanged.
 
 ## Signed-handle, byte-result and coordinate gate controls
 
@@ -996,5 +997,4 @@ against installed packages without candidate imports. Verify released backend,
 unread paths, conditional targets and all remaining gap contracts. Exit: archive
 integrity, meaningful dependency rejections, source controls and Test.ps1 pass.
 
-
-Shared FLI readiness: Inspect `fli-check` uses RefurbishedDinosaurs.Media.Fli 1.0.0 without exporting media. Exit: synthetic COPY, FLC rejection and chunk-overrun checks pass. Gameplay playback and original decoder questions remain separate spec work.
+Shared FLI readiness: Inspect `fli-check` uses the pinned RefurbishedDinosaurs.Media.Fli without exporting media. Exit: synthetic COPY, FLC rejection and chunk-overrun checks pass. Gameplay playback and original decoder questions remain separate spec work.

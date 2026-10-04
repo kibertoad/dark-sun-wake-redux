@@ -1,4 +1,6 @@
 using DarkSunWakeRedux.Resources;
+using RefurbishedDinosaurs.Core.Assets;
+using RefurbishedDinosaurs.Core.IO;
 
 namespace DarkSunWakeRedux.Extractor;
 
@@ -21,10 +23,10 @@ public static class StartupAssetExtractor
     public const uint FontNumber = 100;
     public const uint PartyWindowImageNumber = 19004;
 
-    public static async Task<AssetPackManifest> WritePackAsync(
+    public static async Task<InstalledAssetManifest> WritePackAsync(
         string sourceRoot,
         string stagingRoot,
-        SourceManifest edition,
+        AssetManifest edition,
         string extractorVersion,
         CancellationToken cancellationToken = default)
     {
@@ -80,7 +82,7 @@ public static class StartupAssetExtractor
         var interfacePalette = IndexedPalette.Read(
             archive.GetResource(PaletteTag, InterfacePaletteNumber).Span,
             $"{SourcePath}:{PaletteTag}#{InterfacePaletteNumber}");
-        var files = new List<AssetPackFile>();
+        var files = new List<InstalledAsset>();
 
         var title = IndexedImage.Read(archive.GetResource(TitleImageTag, TitleImageNumber),
             $"{SourcePath}:{TitleImageTag}#{TitleImageNumber}");
@@ -253,26 +255,27 @@ public static class StartupAssetExtractor
         files.AddRange(await WriteOpaqueCorpusAsync(sourceRoot, edition.Files, stagingRoot,
             cancellationToken));
 
-        return new AssetPackManifest(
+        return new InstalledAssetManifest(
             OriginalContent.RequiredAssetPackRevision,
             OriginalContent.GameId,
             edition.SourceEdition,
             edition.Fingerprint(),
-            extractorVersion,
-            files);
+            DateTimeOffset.UtcNow,
+            files,
+            extractorVersion);
     }
 
-    private static async Task<IReadOnlyList<AssetPackFile>> WriteOpaqueCorpusAsync(
+    private static async Task<IReadOnlyList<InstalledAsset>> WriteOpaqueCorpusAsync(
         string sourceRoot,
-        IReadOnlyList<SourceFile> sourceFiles,
+        IReadOnlyList<AssetFileSpec> sourceFiles,
         string stagingRoot,
         CancellationToken cancellationToken)
     {
-        var files = new List<AssetPackFile>();
+        var files = new List<InstalledAsset>();
         foreach (var sourceFile in sourceFiles.OrderBy(file => file.Path,
                      StringComparer.OrdinalIgnoreCase))
         {
-            var sourcePath = SourceManifest.Normalize(sourceFile.Path);
+            var sourcePath = PortableAssetPath.Relative(sourceFile.Path);
             var inputPath = Path.Combine(sourceRoot,
                 sourcePath.Replace('/', Path.DirectorySeparatorChar));
             var sourcePayload = await File.ReadAllBytesAsync(inputPath, cancellationToken);
@@ -304,7 +307,7 @@ public static class StartupAssetExtractor
         $"{Convert.ToHexString(System.Text.Encoding.ASCII.GetBytes(resource.Tag)).ToLowerInvariant()}-" +
         $"{resource.Number}.dsop";
 
-    private static async Task<AssetPackFile> WriteOpaquePayloadAsync(
+    private static async Task<InstalledAsset> WriteOpaquePayloadAsync(
         string stagingRoot,
         string relativePath,
         byte[] payload,
@@ -321,13 +324,13 @@ public static class StartupAssetExtractor
         if (!decoded.Bytes.AsSpan().SequenceEqual(packed.Bytes))
             throw new InvalidDataException($"The opaque payload for {sourcePath} failed verification.");
         verify.Position = 0;
-        var hash = await ContentHash.Xxh3Async(verify, cancellationToken);
-        return new(relativePath, verify.Length, hash, sourcePath,
+        var hash = await FileFingerprint.Xxh3Async(verify, cancellationToken);
+        return PackAsset.Create(relativePath, verify.Length, hash, sourcePath,
             "application/vnd.dark-sun-wake-redux.opaque-payload",
             $"{sourceDescription} -> DSOP v{PackedOpaquePayload.FormatVersion}");
     }
 
-    private static async Task<AssetPackFile> ExtractLayerAsync(
+    private static async Task<InstalledAsset> ExtractLayerAsync(
         GffArchive archive,
         IndexedPalette palette,
         string stagingRoot,
@@ -347,7 +350,7 @@ public static class StartupAssetExtractor
             $"{PaletteTag}#{InterfacePaletteNumber}", cancellationToken);
     }
 
-    private static async Task<AssetPackFile> WriteCharacterCatalogAsync(
+    private static async Task<InstalledAsset> WriteCharacterCatalogAsync(
         string stagingRoot,
         IReadOnlyList<GffCharacterCatalogEntry> characters,
         CancellationToken cancellationToken)
@@ -361,13 +364,13 @@ public static class StartupAssetExtractor
         await using var verify = File.OpenRead(target);
         PackedCharacterCatalog.Read(verify, relativePath);
         verify.Position = 0;
-        var hash = await ContentHash.Xxh3Async(verify, cancellationToken);
-        return new(relativePath, verify.Length, hash, CharacterSourcePath,
+        var hash = await FileFingerprint.Xxh3Async(verify, cancellationToken);
+        return PackAsset.Create(relativePath, verify.Length, hash, CharacterSourcePath,
             "application/vnd.dark-sun-wake-redux.character-catalog",
             $"CHAR identity/abilities/envelope + PSIN mask -> DSCH v{PackedCharacterCatalog.FormatVersion}");
     }
 
-    private static async Task<AssetPackFile> WritePreferencesTextCatalogAsync(
+    private static async Task<InstalledAsset> WritePreferencesTextCatalogAsync(
         string stagingRoot,
         ExecutablePreferencesText text,
         CancellationToken cancellationToken)
@@ -388,13 +391,13 @@ public static class StartupAssetExtractor
         await using var verify = File.OpenRead(target);
         PackedTextCatalog.Read(verify, relativePath);
         verify.Position = 0;
-        var hash = await ContentHash.Xxh3Async(verify, cancellationToken);
-        return new(relativePath, verify.Length, hash, ExecutableSourcePath,
+        var hash = await FileFingerprint.Xxh3Async(verify, cancellationToken);
+        return PackAsset.Create(relativePath, verify.Length, hash, ExecutableSourcePath,
             "application/vnd.dark-sun-wake-redux.text-catalog",
             $"bounded Preferences difficulty/description/About strings -> DSTX v{PackedTextCatalog.FormatVersion}");
     }
 
-    private static async Task<AssetPackFile> WriteGplScriptAsync(
+    private static async Task<InstalledAsset> WriteGplScriptAsync(
         string stagingRoot,
         GffArchive archive,
         string tag,
@@ -415,13 +418,13 @@ public static class StartupAssetExtractor
             throw new InvalidDataException(
                 $"The derived {tag.Trim()} #{number} script failed verification.");
         verify.Position = 0;
-        var hash = await ContentHash.Xxh3Async(verify, cancellationToken);
-        return new(relativePath, verify.Length, hash, GplSourcePath,
+        var hash = await FileFingerprint.Xxh3Async(verify, cancellationToken);
+        return PackAsset.Create(relativePath, verify.Length, hash, GplSourcePath,
             "application/vnd.dark-sun-wake-redux.script-resource",
             $"{tag.Trim()} #{number} bytecode with source tag -> DSGP v{PackedGplScript.FormatVersion}");
     }
 
-    private static async Task<AssetPackFile> WriteRegionAsync(
+    private static async Task<InstalledAsset> WriteRegionAsync(
         string stagingRoot,
         GffRegion region,
         CancellationToken cancellationToken)
@@ -437,14 +440,14 @@ public static class StartupAssetExtractor
         if (decoded.ResourceNumber != 50 || decoded.Name != "Tyr")
             throw new InvalidDataException("The derived Tyr region failed identity verification.");
         verify.Position = 0;
-        var hash = await ContentHash.Xxh3Async(verify, cancellationToken);
-        return new(relativePath, verify.Length, hash, TyrRegionSourcePath,
+        var hash = await FileFingerprint.Xxh3Async(verify, cancellationToken);
+        return PackAsset.Create(relativePath, verify.Length, hash, TyrRegionSourcePath,
             "application/vnd.dark-sun-wake-redux.region",
             $"RNME/PAL/MAP/GMAP/TILE/ETAB + {ObjectSourcePath}:OJFF references -> " +
             $"DSRG v{PackedRegion.FormatVersion}");
     }
 
-    private static async Task<AssetPackFile> WriteObjectCatalogAsync(
+    private static async Task<InstalledAsset> WriteObjectCatalogAsync(
         string stagingRoot,
         GffObjectFrameCatalog objects,
         CancellationToken cancellationToken)
@@ -460,14 +463,14 @@ public static class StartupAssetExtractor
         if (decoded.Definitions.Count != objects.Entries.Count)
             throw new InvalidDataException("The derived Tyr object catalog failed count verification.");
         verify.Position = 0;
-        var hash = await ContentHash.Xxh3Async(verify, cancellationToken);
-        return new(relativePath, verify.Length, hash, ObjectSourcePath,
+        var hash = await FileFingerprint.Xxh3Async(verify, cancellationToken);
+        return PackAsset.Create(relativePath, verify.Length, hash, ObjectSourcePath,
             "application/vnd.dark-sun-wake-redux.object-frame-catalog",
             $"{TyrRegionSourcePath}:ETAB referenced {ObjectSourcePath}:OJFF/BMP -> " +
             $"DSOB v{PackedObjectFrameCatalog.FormatVersion}");
     }
 
-    private static async Task<AssetPackFile> WriteUiCatalogAsync(
+    private static async Task<InstalledAsset> WriteUiCatalogAsync(
         string stagingRoot,
         GffArchive archive,
         string relativePath,
@@ -517,14 +520,14 @@ public static class StartupAssetExtractor
         await using var verify = File.OpenRead(target);
         PackedUiCatalog.Read(verify, relativePath);
         verify.Position = 0;
-        var hash = await ContentHash.Xxh3Async(verify, cancellationToken);
-        return new(relativePath, verify.Length, hash, SourcePath,
+        var hash = await FileFingerprint.Xxh3Async(verify, cancellationToken);
+        return PackAsset.Create(relativePath, verify.Length, hash, SourcePath,
             "application/vnd.dark-sun-wake-redux.ui-catalog",
             $"WIND#{string.Join(',', windowResourceNumbers)} " +
             $"resolved child graph -> DSUI v{PackedUiCatalog.FormatVersion}");
     }
 
-    private static async Task<AssetPackFile> WriteTextCatalogAsync(
+    private static async Task<InstalledAsset> WriteTextCatalogAsync(
         string stagingRoot,
         GffArchive archive,
         CancellationToken cancellationToken)
@@ -542,12 +545,12 @@ public static class StartupAssetExtractor
         await using var verify = File.OpenRead(target);
         PackedTextCatalog.Read(verify, OriginalContent.TextCatalogAssetPath);
         verify.Position = 0;
-        var hash = await ContentHash.Xxh3Async(verify, cancellationToken);
-        return new(OriginalContent.TextCatalogAssetPath, verify.Length, hash, SourcePath,
+        var hash = await FileFingerprint.Xxh3Async(verify, cancellationToken);
+        return PackAsset.Create(OriginalContent.TextCatalogAssetPath, verify.Length, hash, SourcePath,
             "application/vnd.dark-sun-wake-redux.text-catalog", "all TEXT resources -> DSTX v1");
     }
 
-    private static async Task<AssetPackFile> WriteFontAsync(
+    private static async Task<InstalledAsset> WriteFontAsync(
         string stagingRoot,
         IndexedBitmapFont font,
         CancellationToken cancellationToken)
@@ -560,13 +563,13 @@ public static class StartupAssetExtractor
         await using var verify = File.OpenRead(target);
         PackedIndexedBitmapFont.Read(verify, relativePath);
         verify.Position = 0;
-        var hash = await ContentHash.Xxh3Async(verify, cancellationToken);
-        return new(relativePath, verify.Length, hash, SourcePath,
+        var hash = await FileFingerprint.Xxh3Async(verify, cancellationToken);
+        return PackAsset.Create(relativePath, verify.Length, hash, SourcePath,
             "application/vnd.dark-sun-wake-redux.indexed-font",
             $"{FontTag}#{FontNumber} -> DSFT v{PackedIndexedBitmapFont.FormatVersion}");
     }
 
-    private static async Task<AssetPackFile> WriteImageAsync(
+    private static async Task<InstalledAsset> WriteImageAsync(
         string stagingRoot,
         string relativePath,
         IndexedImage image,
@@ -582,8 +585,8 @@ public static class StartupAssetExtractor
         await using var verify = File.OpenRead(target);
         PackedIndexedImage.Read(verify, relativePath);
         verify.Position = 0;
-        var hash = await ContentHash.Xxh3Async(verify, cancellationToken);
-        return new(relativePath, verify.Length, hash, sourcePath,
+        var hash = await FileFingerprint.Xxh3Async(verify, cancellationToken);
+        return PackAsset.Create(relativePath, verify.Length, hash, sourcePath,
             "application/vnd.dark-sun-wake-redux.indexed-image",
             $"{sourceMapping} -> DSIX v{PackedIndexedImage.FormatVersion}");
     }

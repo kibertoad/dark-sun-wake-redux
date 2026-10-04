@@ -6,7 +6,7 @@ import { tmpdir } from "node:os";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
-import { verifySnapshot, validateLock, prepareSnapshot, checkUpstream, ciCheckerArgs, main } from "../../tools/upstream.mjs";
+import { verifySnapshot, validateLock, prepareSnapshot, checkUpstream, ciCheckerArgs, checkerEntry, main } from "../../tools/upstream.mjs";
 import { copyWorkingTree, includedPath } from "./copy-working-tree.mjs";
 import { checkLinks, linkFile, sections } from "../../tools/upstream-sections.mjs";
 import { checks, main as runNodeChecks } from "../../tools/Invoke-NodeChecks.mjs";
@@ -15,28 +15,38 @@ const lock = JSON.parse(readFileSync(resolve(root, "tools/upstream-lock.json")))
 function fixture(t) {
   const dir = mkdtempSync(resolve(tmpdir(), "v1-snapshot-"));
   t.after(() => rmSync(dir, { recursive: true, force: true }));
-  for (const path of [...lock.files.map(f => f.path), "tools/upstream-lock.json", ".github/workflows/ci.yml"]) {
+  for (const path of [...lock.files.map(f => f.path), "tools/upstream-lock.json", ".github/workflows/ci.yml", "package.json"]) {
     mkdirSync(dirname(resolve(dir, path)), { recursive: true }); cpSync(resolve(root, path), resolve(dir, path));
   }
   return dir;
 }
 test("pinned bytes and active CI action agree offline", () => assert.equal(verifySnapshot(root).standardVersion, 1));
-test("edited source or checker is rejected before execution", t => {
+test("edited source is rejected before execution", t => {
   const dir = fixture(t); writeFileSync(resolve(dir, lock.files[0].path), "edited");
   assert.throws(() => verifySnapshot(dir), /digest mismatch/);
 });
 test("v2, duplicate mappings, traversal, short commits and inconsistent revisions fail", () => {
   for (const mutate of [x => x.standardVersion = 2, x => x.files[1] = x.files[0],
     x => x.files[0].path = "../escape", x => x.files[0].revision = "abc",
-    x => x.files[0].revision = "a".repeat(40)]) {
+    x => x.files[0].revision = "a".repeat(40), x => delete x.checker, x => x.checker.revision = "abc",
+    x => x.checker.version = "^0.2.0", x => x.checker.repository = "someone/else"]) {
     const copy = structuredClone(lock); mutate(copy); assert.throws(() => validateLock(copy));
   }
 });
 test("CI drift is rejected", t => {
   const dir = fixture(t), path = resolve(dir, ".github/workflows/ci.yml");
-  const sha = readFileSync(path, "utf8").match(/check-documentation@([0-9a-f]{40})/)[1];
-  writeFileSync(path, readFileSync(path, "utf8").replace(sha, "main"));
-  assert.throws(() => verifySnapshot(dir), /exact commit pin/);
+  writeFileSync(path, readFileSync(path, "utf8").replace(lock.checker.revision, "b".repeat(40)));
+  assert.throws(() => verifySnapshot(dir), /CI checker action/);
+  writeFileSync(path, readFileSync(path, "utf8").replace("b".repeat(40), "main"));
+  assert.throws(() => verifySnapshot(dir), /CI checker action/);
+});
+test("a checker version other than the action's is rejected", t => {
+  const dir = fixture(t), path = resolve(dir, "package.json"), manifest = JSON.parse(readFileSync(path, "utf8"));
+  manifest.devDependencies["@scientific-method/standard-checker"] = `^${lock.checker.version}`;
+  writeFileSync(path, JSON.stringify(manifest));
+  assert.throws(() => verifySnapshot(dir), /exactly/);
+  assert.throws(() => checkerEntry({ ...lock, checker: { ...lock.checker, version: "0.0.1" } }), /not the pinned 0\.0\.1/);
+  assert.match(checkerEntry(lock), /standard-checker/);
 });
 test("local runs take the checker inputs the CI step gives", () => {
   const step = `      - uses: kibertoad/refurbished-dinosaurs-toolkit/actions/check-documentation@${"a".repeat(40)}\n`;
@@ -65,25 +75,42 @@ test("docs passes CI's images to the checker, and a command-line value wins", as
 });
 test("refresh stages exact explicit revisions and rejects lost v1 declaration or failed download", async () => {
   const rules = "a".repeat(40), toolkit = "b".repeat(40);
-  const fetcher = async url => Buffer.from(url.endsWith("documentation-standard.md") ? "follows version 1" : "synthetic");
-  const result = await prepareSnapshot(rules, fetcher);
+  const manifest = JSON.stringify({ name: "@scientific-method/standard-checker", version: "9.8.7" });
+  const tag = "https://api.github.com/repos/kibertoad/refurbished-dinosaurs-toolkit/git/ref/tags/@scientific-method/standard-checker@9.8.7";
+  const tagged = (sha, type = "commit") => Buffer.from(JSON.stringify({ object: { sha, type } }));
+  const fetcher = async url => url === tag ? tagged(toolkit) : Buffer.from(url.endsWith("documentation-standard.md") ? "follows version 1"
+    : url.endsWith(`${toolkit}/packages/standard-checker/package.json`) ? manifest : "synthetic");
+  const result = await prepareSnapshot(rules, toolkit, fetcher);
   assert.equal(result.staged.length, 4); validateLock(result.lock);
-  assert.equal(result.lock.files.at(-1).revision, rules);
-  await assert.rejects(prepareSnapshot("main", fetcher), /full/);
-  await assert.rejects(prepareSnapshot(rules, async () => Buffer.from("version 2")), /Standard v1/);
-  await assert.rejects(prepareSnapshot(rules, async () => { throw Error("offline"); }), /offline/);
+  assert.ok(result.lock.files.every(f => f.revision === rules));
+  assert.deepEqual(result.lock.checker, { repository: "kibertoad/refurbished-dinosaurs-toolkit", revision: toolkit, version: "9.8.7" });
+  await assert.rejects(prepareSnapshot(rules, toolkit, async url => url.endsWith("package.json") ? Buffer.from("{}") : fetcher(url)), /release version/);
+  // A commit after the release can carry the same version with unreleased checker changes.
+  await assert.rejects(prepareSnapshot(rules, toolkit, async url => url === tag ? tagged("c".repeat(40)) : fetcher(url)), /not the one tagged/);
+  const annotated = "d".repeat(40), viaAnnotatedTag = async url => url === tag ? tagged(annotated, "tag")
+    : url.endsWith(`/git/tags/${annotated}`) ? tagged(toolkit) : fetcher(url);
+  assert.equal((await prepareSnapshot(rules, toolkit, viaAnnotatedTag)).lock.checker.version, "9.8.7");
+  await assert.rejects(prepareSnapshot("main", toolkit, fetcher), /full/);
+  await assert.rejects(prepareSnapshot(rules, "main", fetcher), /full/);
+  await assert.rejects(prepareSnapshot(rules, toolkit, async () => Buffer.from("version 2")), /Standard v1/);
+  await assert.rejects(prepareSnapshot(rules, toolkit, async () => { throw Error("offline"); }), /offline/);
   verifySnapshot(root);
 });
 test("freshness distinguishes unchanged bytes, changed content and unavailable network", async t => {
   const dir = fixture(t);
   const fetcher = async url => {
     if (url.includes("api.github.com")) return Buffer.from(JSON.stringify({ sha: "c".repeat(40) }));
+    if (url.endsWith("/packages/standard-checker/package.json"))
+      return Buffer.from(JSON.stringify({ name: "@scientific-method/standard-checker", version: lock.checker.version }));
     const f = lock.files.find(f => url.endsWith("/" + f.source) && url.includes(f.repository + "/"));
     return readFileSync(resolve(dir, f.path));
   };
   assert.ok((await checkUpstream(dir, fetcher)).every(r => !r.changed));
   const changed = await checkUpstream(dir, async url => url.endsWith("work-protocol.md") ? Buffer.from("changed") : fetcher(url));
   assert.equal(changed.filter(r => r.changed).length, 1);
+  const released = await checkUpstream(dir, async url => url.endsWith("standard-checker/package.json")
+    ? Buffer.from(JSON.stringify({ name: "@scientific-method/standard-checker", version: "99.0.0" })) : fetcher(url));
+  assert.deepEqual(released.filter(r => r.changed).map(r => [r.path, r.upstream]), [["@scientific-method/standard-checker", "99.0.0"]]);
   await assert.rejects(checkUpstream(dir, async () => { throw Error("network unavailable"); }), /network unavailable/);
   verifySnapshot(dir);
 });

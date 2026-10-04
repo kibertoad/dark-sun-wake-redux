@@ -5,6 +5,7 @@ using DarkSunWakeRedux.Resources;
 // Read before the try so the failure path knows whether this launch is a person or a smoke test.
 var platformSmoke = args.Contains("--platform-smoke-test", StringComparer.OrdinalIgnoreCase);
 var contentSmoke = args.Contains("--content-smoke-test", StringComparer.OrdinalIgnoreCase);
+string? assetPack = null;
 try
 {
     // Decided before the --smoke-test shortcut so that asking for software rendering in a mode
@@ -22,19 +23,17 @@ try
     if (args.Contains("--smoke-test", StringComparer.OrdinalIgnoreCase)) return 0;
     if (softwareRendering.Enabled) SoftwareRenderer.Apply(softwareRendering.DriverPath!);
     var screenshotFolder = Option(args, "--screenshot-folder");
-    string? assetPack = null;
     if (!platformSmoke)
     {
         assetPack = Option(args, "--asset-pack") ?? OriginalContent.DefaultAssetPackPath();
-        var diagnostics = await OriginalContent.VerifyInstalledAsync(assetPack);
-        if (diagnostics.Count != 0)
+        var verification = await OriginalContent.VerifyInstalledAsync(assetPack);
+        if (!verification.IsValid)
         {
             var details = string.Join(Environment.NewLine,
-                diagnostics.Select(diagnostic => $"[{diagnostic.Code}] {diagnostic.Message}"));
+                verification.Issues.Select(issue => $"[{issue.Problem}] {issue.Detail}"));
+            // The startup failure report names the asset pack and how to recreate it.
             throw new InvalidDataException(
-                $"A verified local asset pack is required at '{assetPack}'." + Environment.NewLine +
-                "Run DarkSunWakeRedux.Extractor against your legally owned GOG installation." +
-                Environment.NewLine + details);
+                "A verified local asset pack is required." + Environment.NewLine + details);
         }
         if (contentSmoke)
         {
@@ -755,7 +754,7 @@ try
 }
 catch (Exception exception)
 {
-    StartupFailureReporter.Report(exception, allowDialog: !platformSmoke && !contentSmoke);
+    StartupFailureReporter.Report(exception, assetPack, unattended: platformSmoke || contentSmoke);
     return 1;
 }
 

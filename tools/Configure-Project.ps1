@@ -56,7 +56,7 @@ $ErrorActionPreference = 'Stop'
 # solution file. Configuring a repository twice renames from the previously
 # configured name instead, so a project can still be renamed later.
 $templateName = 'Restoration'
-$excludedDirectories = @('.git', 'bin', 'obj', 'artifacts', 'TestResults', 'UserContent', 'analysis', 'reference')
+$excludedDirectories = @('.git', 'bin', 'obj', 'artifacts', 'TestResults', 'UserContent', 'analysis', 'reference', 'node_modules')
 $textExtensions = @('.cs', '.csproj', '.slnx', '.md', '.json', '.ps1', '.bat', '.iss', '.yml', '.yaml', '.props', '.targets')
 $textFileNames = @('LICENSE', 'NOTICE')
 

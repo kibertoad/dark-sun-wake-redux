@@ -1,24 +1,26 @@
 using DarkSunWakeRedux.Resources;
+using RefurbishedDinosaurs.Core.Assets;
+using RefurbishedDinosaurs.Core.IO;
 
 namespace DarkSunWakeRedux.Extractor;
 
 public static class RegionCatalogExtractor
 {
-    public static IReadOnlyList<string> SourcePaths(SourceManifest edition)
+    public static IReadOnlyList<string> SourcePaths(AssetManifest edition)
     {
         ArgumentNullException.ThrowIfNull(edition);
         edition.Validate();
         return edition.Files
-            .Select(file => SourceManifest.Normalize(file.Path))
+            .Select(file => PortableAssetPath.Relative(file.Path))
             .Where(IsRegionSourcePath)
             .OrderBy(path => path, StringComparer.OrdinalIgnoreCase)
             .ToArray();
     }
 
-    public static async Task<IReadOnlyList<AssetPackFile>> WriteAsync(
+    public static async Task<IReadOnlyList<InstalledAsset>> WriteAsync(
         string sourceRoot,
         string stagingRoot,
-        SourceManifest edition,
+        AssetManifest edition,
         GffArchive objectArchive,
         CancellationToken cancellationToken = default)
     {
@@ -31,7 +33,7 @@ public static class RegionCatalogExtractor
             throw new InvalidDataException(
                 "The supported source manifest contains no RGNxxx.GFF region archives.");
         var outputPaths = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        var files = new List<AssetPackFile>(sourcePaths.Count);
+        var files = new List<InstalledAsset>(sourcePaths.Count);
         foreach (var sourcePath in sourcePaths)
         {
             var relativePath = OriginalContent.RegionCatalogAssetPathFor(sourcePath);
@@ -58,7 +60,7 @@ public static class RegionCatalogExtractor
         return sourcePath.AsSpan(3, 3).ToString().All(Uri.IsHexDigit);
     }
 
-    private static async Task<AssetPackFile> WriteRegionAsync(
+    private static async Task<InstalledAsset> WriteRegionAsync(
         string stagingRoot,
         string relativePath,
         string sourcePath,
@@ -79,8 +81,8 @@ public static class RegionCatalogExtractor
             throw new InvalidDataException(
                 $"{sourcePath}: the derived structural region catalog failed verification.");
         verify.Position = 0;
-        var hash = await ContentHash.Xxh3Async(verify, cancellationToken);
-        return new(relativePath, verify.Length, hash, sourcePath,
+        var hash = await FileFingerprint.Xxh3Async(verify, cancellationToken);
+        return PackAsset.Create(relativePath, verify.Length, hash, sourcePath,
             "application/vnd.dark-sun-wake-redux.region",
             "RNME/PAL/MAP/GMAP/TILE/ETAB + OBJEX.GFF:OJFF references -> " +
             $"source-derived structural DSRG v{PackedRegion.FormatVersion}");

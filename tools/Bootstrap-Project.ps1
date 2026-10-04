@@ -27,9 +27,9 @@ if ($config.original.latestOfficialVersion -cne $config.original.analysisVersion
 }
 $identity = $config.original.analysisExecutable
 if (-not $identity -or ($identity.byteLength -isnot [long] -and $identity.byteLength -isnot [int]) -or
-    $identity.byteLength -le 0 -or $identity.sha256 -notmatch '^[a-fA-F0-9]{64}$' -or
+    $identity.byteLength -le 0 -or $identity.xxh3_128 -cnotmatch '^[0-9a-f]{32}$' -or
     [string]::IsNullOrWhiteSpace($identity.path)) {
-    throw 'Established patch status requires original.analysisExecutable path, positive byteLength and a recorded SHA-256. Do not invent a fingerprint.'
+    throw 'Established patch status requires original.analysisExecutable path, positive byteLength and a recorded xxh3_128 (32 lower-case hex digits, as xxhsum -H2 prints). Do not invent a fingerprint.'
 }
 if ($ValidateFactsOnly) { Write-Host 'Bootstrap version and identity facts verified; no files changed.'; return }
 if ($config.configured) {

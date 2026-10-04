@@ -1,6 +1,8 @@
 using DarkSunWakeRedux.Extractor;
 using DarkSunWakeRedux.Resources;
 using Xunit;
+using RefurbishedDinosaurs.Core.Assets;
+using RefurbishedDinosaurs.Core.IO;
 
 namespace DarkSunWakeRedux.Tests;
 
@@ -14,7 +16,7 @@ public sealed class SourceCorpusInventoryTests
             name => name.EndsWith(".json", StringComparison.Ordinal));
         using var stream = assembly.GetManifestResourceStream(resourceName);
         Assert.NotNull(stream);
-        var manifest = SourceManifest.Load(stream);
+        var manifest = AssetManifest.Load(stream);
 
         Assert.Equal(OriginalContent.GameId, manifest.GameId);
         Assert.Equal(233, manifest.Files.Count);
@@ -40,7 +42,7 @@ public sealed class SourceCorpusInventoryTests
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .Count());
         Assert.Equal(manifest.Files.Count, manifest.Files
-            .Select(file => SourceManifest.Normalize(file.Path))
+            .Select(file => PortableAssetPath.Relative(file.Path))
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .Count());
     }
@@ -63,7 +65,7 @@ public sealed class SourceCorpusInventoryTests
                 TestContext.Current.CancellationToken);
             await File.WriteAllTextAsync(Path.Combine(root, "unins000.exe"), "uninstaller",
                 TestContext.Current.CancellationToken);
-            var manifest = new SourceManifest("game", "edition",
+            var manifest = new AssetManifest("game", "edition",
                 [new("DATA.GFF", 1, new string('0', 32))]);
 
             var inventory = SourceCorpusInventory.Read(root, manifest);
@@ -92,7 +94,7 @@ public sealed class SourceCorpusInventoryTests
         {
             await File.WriteAllBytesAsync(Path.Combine(root, "UNKNOWN.BIN"), [1],
                 TestContext.Current.CancellationToken);
-            var manifest = new SourceManifest("game", "edition",
+            var manifest = new AssetManifest("game", "edition",
                 [new("DATA.GFF", 1, new string('0', 32))]);
 
             var inventory = SourceCorpusInventory.Read(root, manifest);

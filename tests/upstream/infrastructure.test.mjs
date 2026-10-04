@@ -27,7 +27,7 @@ test('bootstrap refuses missing/unestablished/mismatched facts and requires a re
   const base=JSON.parse(readFileSync(join(root,'tools/project-config.json')));
   const valid=structuredClone(base);
   Object.assign(valid.original, {latestOfficialVersion:'1.1',analysisVersion:'1.1',patchStatusEstablished:true,
-    patchStatusEvidence:'Synthetic patch provenance',analysisExecutable:{path:'synthetic.exe',byteLength:16,sha256:'a'.repeat(64)}});
+    patchStatusEvidence:'Synthetic patch provenance',analysisExecutable:{path:'synthetic.exe',byteLength:16,xxh3_128:'a'.repeat(32)}});
   const check=config=>{writeFileSync(path,JSON.stringify(config));return run(join(root,'tools/Bootstrap-Project.ps1'),['-ConfigPath',path,'-ValidateFactsOnly']);};
   assert.equal(check(valid).status,0);
   for(const [mutate,pattern] of [
@@ -35,8 +35,9 @@ test('bootstrap refuses missing/unestablished/mismatched facts and requires a re
     [x=>x.original.patchStatusEstablished=false,/Patch status is not established/],
     [x=>x.original.patchStatusEstablished='true',/Patch status is not established/],
     [x=>x.original.analysisVersion='1.0',/differs from latest/],
-    [x=>x.original.analysisExecutable.sha256='',/recorded SHA-256/],
-    [x=>x.original.analysisExecutable.byteLength=0,/recorded SHA-256/]
+    [x=>x.original.analysisExecutable.xxh3_128='',/recorded xxh3_128/],
+    [x=>x.original.analysisExecutable.xxh3_128='A'.repeat(32),/recorded xxh3_128/],
+    [x=>x.original.analysisExecutable.byteLength=0,/recorded xxh3_128/]
   ]){const config=structuredClone(valid);mutate(config);const result=check(config);assert.notEqual(result.status,0);assert.match(output(result),pattern);}
   writeFileSync(path,JSON.stringify(valid));
   const before=readFileSync(path);

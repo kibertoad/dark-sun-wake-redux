@@ -6,14 +6,15 @@ docs/goals/; queue items and findings remain in their respective durable files.
 ## State
 
 - Stage: Slices; slices 2 and 3 remain in progress. Survey exit still needs Q-EXE-003.
-- Last gate: 2026-10-02, tools/Invoke-Validation.ps1 passed, including tools/Test.ps1, locked restore, Release build and assetless publish/smoke. Evidence: artifacts/template-migration/final-validation.log.
-- Latest upstream migration is complete. Template 79d18a20, toolkit 0b4694df, reader 0.2.0, checker 0.1.0 and engine 0.4.0 are current. Standard/methodology/protocol ca39d075 freshness and offline digests pass. Capability dispositions: docs/TEMPLATE-ACCEPTANCE.md.
+- Last gate: 2026-10-04, tools/Invoke-Validation.ps1 passed (715 .NET tests, 75 upstream node tests), including locked restore, Release build and assetless publish/smoke. Evidence: artifacts/template-migration/template-39d31fd-validation.log. Run it with NoDefaultCurrentDirectoryInExePath unset: when set, cmd.exe cannot find the launcher test's invoke.cmd.
+- Template 39d31fd is adopted: standard c1758fd, checker 0.2.0 (action a260e39), reader 1.0.0, engine 1.0.1, RefurbishedDinosaurs 2.0.0 .NET packages and the toolkit's software OpenGL action. Dispositions: docs/TEMPLATE-ACCEPTANCE.md.
+- Required asset pack revision is 36. The owner's revision-35 pack under LocalAppData is rejected until play.bat re-extracts it.
 - Established latest-original-version readiness is recorded in project-config and SOURCE-EDITIONS. Native runtime remains owner-only; no original run or executable analysis occurred in the migration.
 - Process audit found no migration-owned orphan requiring termination; reusable MSBuild nodes remain untouched.
 
 ## Unfinished
 
-The earlier template migration is complete. Shared runtime migration uses published toolkit 1.3.0 packages. Continuing shared-tooling work and its external-delivery approval are recorded in docs/goals/upstream-gap-resolution.md; the scoped-memory acceptance plan is committed.
+The earlier template migration is complete. Shared runtime migration uses the published RefurbishedDinosaurs 2.0.0 packages pinned in Directory.Build.props. Continuing shared-tooling work and its external-delivery approval are recorded in docs/goals/upstream-gap-resolution.md; the scoped-memory acceptance plan is committed.
 
 ## Blockers
 
@@ -38,7 +39,7 @@ Zizmor passes locally with the CI default persona.
 
 Branch: `feat/shared-runtime-primitives`. See [migration status](SHARED-RUNTIME-MIGRATION.md).
 The solution build, .NET settings suite and full canonical gate passed with a workspace-local JDK.
-The migration uses public 1.3.0 packages and refreshed NuGet locks. The full canonical gate
+The migration uses public 2.0.0 packages and refreshed NuGet and packaging locks. The full canonical gate
 passes, including Java export-boundary and .NET settings controls.
 The validation-lease fixture now uses production path initialization, so Windows short
 and long TEMP paths select the same lock. Synthetic failure and exclusion controls pass locally.

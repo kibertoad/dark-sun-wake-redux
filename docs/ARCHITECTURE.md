@@ -16,9 +16,14 @@ licensed GOG copy -> Extractor -> verified local asset pack -> Game
 - `DarkSunWakeRedux.Core`: deterministic commands, events, explicit RNG, quest
   and combat state, native saves, and replays. No MonoGame, format parsing, I/O,
   wall clock, or ambient randomness.
-- `DarkSunWakeRedux.Resources`: bounded original-format readers, source
-  manifests, asset-pack schemas, verification, and provenance contracts. No
-  MonoGame.
+- `DarkSunWakeRedux.Resources`: bounded original-format readers, the asset
+  records the pack holds, and this game's original-content rules in
+  `OriginalContent`: its game id, required pack revision, pack location and
+  pack checks. No MonoGame. Edition manifests, pack manifests, source and pack
+  verification, and pack staging come from the exactly pinned
+  [`RefurbishedDinosaurs.Core` and `RefurbishedDinosaurs.LegacyFormats`](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/blob/main/docs/runtime-libraries.md)
+  NuGet packages, whose version `Directory.Build.props` sets once
+  (`RefurbishedDinosaursVersion`).
 - `DarkSunWakeRedux.Extractor`: separately runnable legal-copy verification and
   transactional extraction. It depends on Resources, reads the original source,
   and writes a staged/versioned pack. It never modifies or executes the source.
@@ -31,14 +36,22 @@ licensed GOG copy -> Extractor -> verified local asset pack -> Game
 
 ## Asset-pack transaction
 
-The Extractor verifies the full source fingerprint before decoding,
-write into a unique sibling staging directory, generate a manifest containing
-format/extractor versions and exact output inventory, re-open and hash every
-output, reject unexpected files, then atomically replace the installed pack.
-If any step fails, staging is removed and the last verified pack is restored.
+Edition manifests are the package's `AssetManifest`. The Extractor matches the
+owner's directory against every one with `AssetVerifier.IdentifyAsync` and refuses
+a copy that no manifest, or more than one, describes. After that it decodes into
+a unique sibling staging directory (the package's `StagedAssetPack`), writes an
+`InstalledAssetManifest` holding the required revision as its format version, the
+source edition and fingerprint, the extractor version and the exact output
+inventory, re-opens and hashes every output through `InstalledAssetVerifier`, and
+rejects unlisted files. Every file records its source path, media type and
+conversion. Only then is the staged pack committed, which swaps it in and
+restores the previous pack if the swap fails. A pack that fails verification is
+never committed, so the last verified pack stays in place. The full corpus
+manifest is about 7.8 MB, so `OriginalContent` reads it with a 16 MiB bound
+instead of the package's 4 MiB default.
 Current code exercises this transaction for every byte of the 233-file source
 baseline and every one of its 16,168 GFF records, retained as source-mapped DSOP
-assets where no semantic contract is established. The same required revision 35 pack also carries
+assets where no semantic contract is established. The same required revision 36 pack also carries
 the 123 evidenced specialized derivatives for startup, party, ADD-list, Tyr,
 the source-derived structural catalogs for every owned region,
 Game Menu/Preferences, character, inventory, Cast, Effects, and first dialogue.
@@ -57,8 +70,11 @@ the default or explicit `--asset-pack` directory before creating the game window
 and displays the measured start shell plus controls, the party-overview shell,
 and the ADD-list shell reached through their Core states. Title sequencing and
 ADD-list content/interaction remain pending.
-Failure is reported with stable diagnostic codes,
-local technical details, and a command to run the Extractor.
+Failure is reported through the package's `StartupFailure` with the
+verifier's problem names, the asset pack path, `startup-error.log` under the
+per-user state directory, and the Extractor command to run. The Windows error
+dialog appears only when a person launched the game; a smoke test or a run with
+`CI` set never blocks on it.
 
 ## Determinism
 

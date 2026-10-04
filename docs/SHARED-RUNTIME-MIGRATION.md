@@ -2,7 +2,7 @@
 
 Bounded settings reads, validated backup writes and per-field recovery provenance.
 
-The migration uses published `1.3.0` NuGet packages for the required shared APIs:
+The migration uses published `2.0.0` NuGet packages for the required shared APIs:
 portable paths, recoverable persistence, and PCM/audio with streaming WAVE.
 Only packages used by this restoration are referenced. Input support is independent
 and is not required by this migration.
