@@ -1,11 +1,11 @@
 # Implementation plan
 
-## Overlapping byte/word and normalized-wrapper tooling acceptance
+## Bounded eviction-helper tooling acceptance
 
-- **Outcome.** Retain complete word-guard intervals and neighboring-byte provenance through the actual replacement wrapper's normalized result, without treating cleared byte flags or AX zero as performed service work.
-- **Evidence.** FND-CONFIG-187/188/189 are read-only acceptance inputs. Published reader 2.1.0/engine 7.3.0 retain read/write intervals, byte producers and conditional call scopes.
-- **Acceptance.** Trace the complete replacement wrapper and both actual service bodies with explicit conditional call returns and register/frame/field scopes. Unknown input bytes, indirect targets, stopped callees and capped paths remain unknown; scope preservation is a hypothesis. No seeded entry memory, selected branch outcomes, stitched windows, spec/parity changes or original execution.
-- **Tests and Exit.** Verify both two-byte guards and their missing byte producers remain visible on normalized returning paths; retain modeled failure results and wrapper's own zero. Compare scoped/unscoped calls and unread/capped controls. Full Gap 36 also needs real byte/high-byte producers and complete fixture acceptance. Run the canonical gate before commit.
+- **Outcome.** Trace the actual selected-slot memory and four invalidating writes, distinguishing an eviction request or marker write from a proven repeated no-op state.
+- **Evidence.** FND-SCRIPT-021/022 are read-only inputs. The complete eviction helper has a fixed 16-slot age scan and no calls; the room-search restart is a separate unbounded dependency.
+- **Acceptance.** Hash-guard the complete helper with unknown age/cache inputs and unknown root SP/BP. A per-helper visitLimit of 17 is justified by its 16 iterations plus final condition; this does not raise the old room-search query or defaults. Retain path gaps, unresolved selected-slot inputs, missing prior values and native qualifications. No tail-register substitution for frame memory, entry memory, branch choices, stitching, spec/parity changes or original execution.
+- **Tests and Exit.** Retain signed-age comparisons, selected-slot rereads, ordered three word/one byte invalidations and returned index on retained helper paths. A four-visit control and one-step cap remove completed write witnesses. Full Gap 29 still needs the connected repeated no-op search and actual capacity/cache producers; helper completion alone is insufficient. Canonical gate before commit.
 
 This file says what the project intends and what is true now, following the
 [work protocol](../vendor/upstream/work-protocol.md). It holds no dated

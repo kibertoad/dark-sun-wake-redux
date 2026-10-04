@@ -88,6 +88,8 @@ Gap 34/FND-CONFIG-182 conditional source controls distinguish advanced copy and 
 
 Gap 36's normalized-wrapper query retains both full word intervals and missing neighboring-byte provenance on a zero-return path, including conditional child requests. Path-limit gaps remain; the earlier byte-clear case is not its connected producer. Complete low/high-byte and segment producers, caller/service coverage and fixture acceptance remain open. Existing source reports need new producer evidence or supported input tooling before another whole-case retry.
 
+Gap 29's new complete call-free eviction-helper query uses its known 16-slot bound and retains every selected-index outcome and ordered invalidating writes. Path gaps and unknown prior markers still prevent a repeated no-op/native-state claim. The old room-search query/defaults are unchanged; toolkit issue 114 has the qualified consumer details. Retry the whole search only with real admitted cache/age/capacity producers or supported input tooling, not tail-register substitution or higher unresolved-loop caps.
+
 ## Handover
 
 - Stage: Slices; research-side tooling. Condition/Scope unchanged. No game spec, parity, original run or emulation changed.
