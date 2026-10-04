@@ -64,22 +64,23 @@ The FND-CONFIG-191 handle-request query retains reference-loop visit stops even 
 
 FND-SCRIPT-019 fill allocation and transfer windows remain disjoint. The pre-transfer age loop stops at default repeat/path limits, while unknown-memory calls invalidate earlier local length/result producers. No window stitching or repeat of the old capped whole-fill query is authorized as acceptance; retry needs bounded explicit input/path tooling or fresh producer evidence.
 
-The reviewed PR 60 shared path budget prevents the former original MENU candidate positive: ordinary paths exhaust the smaller budget and the broad default-budget report reaches the output cap. The installed limit control passes, but the original conditional return contract stays open. Retry only with new bounded input/path tooling or fresh producer evidence.
+The reviewed PR 60 shared path budget prevents the former original MENU candidate positive: ordinary paths exhaust the smaller budget and the broad default-budget report reaches the output cap. The installed limit control passes, but the original conditional return contract stays open. The historical failure is now superseded as a tooling capability limit by isolated published engine 4.0.0 continuation-budget controls: the conditional MENU witness passes with ordinary paths/gaps unchanged. Broader release acceptance and adoption remain separate; the ordinary unresolved computed jump and full fill limits remain.
 
 ## Handover
 
 - Stage: Slices; research-side tooling only. Condition/Scope remain unchanged. No game spec/parity status, original run or emulation changed.
-- Last gate: 2026-10-04 normal tools/Invoke-Validation.ps1 passed, artifacts/protocol3-delivery/adoption-validation-final.log; final Test.ps1 -NoRestore passed, adoption-final-gate.log. Exact published locks, pinned rules/documentation, protocol-2 rejection, Release build and assetless smoke pass.
+- Last gate: 2026-10-04 Test.ps1 -NoRestore passed, artifacts/continuation-budget-delivery/root-gate.log. Adopted reader/engine 2.0.0 locks remain unchanged. Published isolated engine 4.0.0 source integrity, synthetic continuation budgets and conditional MENU controls pass.
 - Template remains 049f30036e612e3680838a59d4995ad8f0c85e00. Reader/engine 2.0.0 are now adopted together for prepared protocol 3; checker 0.2.0 and other runtime/rule pins remain unchanged. Complete retained source-control inventory passes; original reports and limits remain qualified in REPORTER-CASE-AUDIT. No broader gap was closed.
 - Template issues 55/58 record capture setup and diagnostics; historical Gap 44 cause remains unconfirmed. Toolkit issue 73 now records passing published delivery, bounded Dark Sun bracket, retained regressions and paired adoption. Broader Gap 27 remains open. No rule snapshot changed.
-- Unfinished: older conflicting candidates remain untouched and historical. Published protocol-3 delivery and retained regression controls pass; paired packages are adopted. Complete effect-ordering contracts, earlier gates/later work and native preservation remain unconfirmed. Review checkout and isolated published runtime remain in artifacts for comparison.
+- Unfinished: older candidates remain historical and untouched. Isolated published engine 4.0.0 is verified only for source integrity, continuation-budget synthetic controls and the conditional MENU case; adoption and broader release acceptance remain outstanding. Adopted engine stays 2.0.0. No native preservation or whole-gap claim follows.
 - Blockers: broader complete effect-ordering contracts and bounded producer/path evidence remain outstanding. Original runtime and capture labels remain owner-only. The sandbox temporary-directory access prerequisite remains recorded in TEMPLATE-ACCEPTANCE; no checks were weakened.
 - Process audit found no confirmed session-owned orphan. Reusable MSBuild and unrelated/uncertain processes were left running. No pushes occurred.
-- Next: broader Gap 27 producer/path evidence for linked-child MENU return and FND-SCRIPT-019 fill. Adopted protocol-3 scopes permit explicit conditional byte hypotheses, never implicit preservation or raised budgets. Retained regression inventory: GAME_DIR/analysis/reporter-audit/protocol3-retained-regression/summary.json; do not repeat passed bounded prefixes as complete contracts.
-- Next: bounded input/path tooling or fresh producer evidence for complete FND-SCRIPT-019 fill and linked-child acceptance; never repeat capped broad queries or raise defaults without new evidence.
+- Next: verify broader published engine 4.0.0 synthetic/retained source controls before adoption. Integrity and MENU result: artifacts/continuation-budget-delivery/integrity.json and menu-controls.log; source reports: GAME_DIR/analysis/reporter-audit/continuation-budget-controls/. Do not repeat this passed conditional witness as full Gap 27 acceptance.
+- Next: FND-SCRIPT-019 conditional fill under toolkit ADR 0008/issue 77, with fresh producer evidence or delivered input tooling. Separate continuation budgets do not resolve per-element forking; do not repeat capped broad queries or raise ordinary defaults.
 - Next: FND-CONFIG-184 earlier cleanup loops with unread service effects retained.
 - Next: remaining FND-CONFIG-186/187 dispatch/Gap 36 producer-wrapper contracts, FND-CONFIG-189 snapshots and FND-CONFIG-191 scan-reference controls.
 - Next: remaining joined hardware paths and stable gap contracts, including Gap 44 synthetic-capture diagnostics. Template issue 55 concerns setup and does not explain that earlier intermittent capture-positive failure.
+
 
 
 
