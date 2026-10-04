@@ -1376,3 +1376,43 @@ local epilogue, whose missing root frame is rejected; no returning-original
 claim is made. Dynamic trace reports are used because effects presentation
 intentionally filters ordinary reads. No original run, emulation, game finding
 or parity status changed. Gap 37 and native alias/capacity research remain open.
+
+## Cleanup assignment predecessor controls, 2026-10-04
+
+Gap 40 remains open. Adopted reader 2.0.0/engine 4.0.0 now passes bounded
+FND-CONFIG-199 controls starting at the first request's verified call boundary.
+The complete local bounds map confirms both requests, transfer and cleanup calls.
+First failure, second failure and two-acquisition cases are independent queries,
+with explicit BP/SP/segment/register and balanced-service hypotheses. Six SS/BP
+bytes covering the flag and handle slots may be preserved across services;
+this preserves existing producers only and never initializes unread bytes.
+
+First-request FFFF skips the second request and its own slot store. Cleanup's
+first slot reads FFFF; the second reads unknown with two missing byte producers
+and no preceding own slot write. Both unknown-sentinel release/bypass outcomes
+are reported. Second-request FFFF and two acquisitions retain their own slot
+assignments under the declared scopes and follow the recorded release/transfer
+sequence. A zero first-handle hypothesis also reaches release: the encoded
+cleanup predicates compare with FFFF, not a general admitted-index check.
+This does not establish a native invalid release or a reproduced defect.
+
+Unscoped returning services invalidate the earlier slot producer. Unread-service
+and one-step controls remove the cleanup witness. All primary suffix cases have
+no dropped-path gaps but stop at the epilogue's missing root frame; no frame was
+fabricated and no original return is claimed.
+
+The shared per-byte lastWriter controls report the appropriate writer on each
+assigned predecessor and unwritten entry state on first failure. Every observed
+read occurrence satisfies its declared writer alternatives, but every overall
+control stays undecided because the suffix paths stop before their ends.
+Wrong writer declarations reject; the step cap stays undecided with no accepted
+complete assertion. These occurrence facts are not a held whole-query result.
+
+Complete published LastWriterTests pass against the adopted wheel (implementation
+origin asserted). Synthetic instructions only; no original execution/emulation.
+Logs: artifacts/continuation-budget-delivery/cleanup-predecessors.log,
+cleanup-relational.log and installed-writer-suite.log. Source drivers/configs/
+reports: GAME_DIR/analysis/reporter-audit/cleanup-predecessor-controls/.
+The closure condition still requires supported connected-entry/control evidence;
+do not invent a root frame, inherit successful-path assignments on bypasses,
+filter stopped paths or label the overall controls held.
