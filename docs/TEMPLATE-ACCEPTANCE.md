@@ -12,7 +12,9 @@ not establish native service preservation or complete any broader gap contract.
 
 ## Latest template dependency maintenance sync, 2026-10-04
 
-Template main `192208ce350ef2f573092d1286418f0d417cbbc4` was fetched. The complete
+Template main `7a798184faddb271da2ec52745887972fdcdeb72` was fetched after the
+initial 192208c maintenance sync; the additional xUnit 4.0.1 patch and
+refreshed test package lock are adopted. The complete
 changed-file delta from `049f300` is accounted for here.
 
 | Capability | Disposition |
