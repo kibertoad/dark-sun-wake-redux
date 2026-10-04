@@ -7,7 +7,7 @@ docs/goals/; queue items and findings remain in their respective durable files.
 
 - Stage: Slices; slices 2 and 3 remain in progress. Survey exit still needs Q-EXE-003.
 - Last gate: 2026-10-04, tools/Invoke-Validation.ps1 passed, including tools/Test.ps1, locked restore, Release build and assetless publish/smoke. Evidence: artifacts/template-dependency-sync-validation.log.
-- Template 192208c is adopted after the requested latest-template sync. Standard c1758fd, checker 0.2.0, reader/engine 2.0.0 and shared runtime pins remain unchanged. Weekly NuGet update policy is installed; verified project-local interpreter routing is retained. Dispositions: docs/TEMPLATE-ACCEPTANCE.md.
+- Template 7a79818 is adopted after the requested latest-template sync. Standard c1758fd, checker 0.2.0, reader/engine 2.0.0 and shared runtime pins remain unchanged. Weekly NuGet update policy and xUnit 4.0.1 are installed; verified project-local interpreter routing is retained. Dispositions: docs/TEMPLATE-ACCEPTANCE.md.
 - Required asset pack revision is 36. The owner's revision-35 pack under LocalAppData is rejected until play.bat re-extracts it.
 - Established latest-original-version readiness is recorded in project-config and SOURCE-EDITIONS. Native runtime remains owner-only; no original run or executable analysis occurred in the migration.
 - Process audit found no migration-owned orphan requiring termination; reusable MSBuild nodes remain untouched.
