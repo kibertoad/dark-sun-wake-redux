@@ -72,6 +72,8 @@ FND-CONFIG-199 frame/scope composition is delivered in engine 7.3.0. Verified po
 
 Gap 31's connected prefix stops at INT 33h before ordered output stores. The separate BX-copy controls do not bridge it. entryFrame does not carry argument memory; modeling the entire poll call skips the stores. Toolkit issue 190 requests the supported bounded recipe or accurate unsupported-case guidance. Keep the documented hard stop; no larger budgets or window stitching.
 
+Gap 32 now has complete local conditional metadata branches and both callback reload/result controls at unchanged bounds. Target scopes hold at reached occurrences; whole order controls remain undecided because unread modeled callees on bypass paths could contain the anchor. Root return does not prove saved-frame preservation when unknown marker writes alias it. Keep Gap 32 open for actual bracket/callee and producer coverage; do not repeat by increasing budgets.
+
 ## Handover
 
 - Stage: Slices; research-side tooling. Condition/Scope unchanged. No game spec, parity, original run or emulation changed.

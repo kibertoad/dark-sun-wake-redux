@@ -208,6 +208,12 @@ field and segment provenance. Shared summaries should retain intervening
 writers/callees and distinguish a checked snapshot from a later reload.
 
 
+Installed source controls now retain metadata ordering, rejected-path writes,
+conditional zero returns and both target reloads through observed frames.
+Scoped target preservation holds at reached occurrences; whole controls remain
+undecided on modeled-callee bypasses. Gap 32 stays open for complete bracket
+coverage and producer evidence; see TOOLKIT-RESPONSE-ACCEPTANCE.
+
 ## 33. Distinguish recursive error propagation from an originating error
 
 FND-CONFIG-172 reads a MENU helper whose FFFF return only propagates

@@ -1,12 +1,11 @@
 # Implementation plan
 
-## Interrupt-boundary alias reporting tooling
+## Guard and access ordering tooling acceptance
 
-- **Outcome.** Verify whether shared effect reports can retain equal output pointers, ordered overwrites and the independent returned-register predicate across an unresolved interrupt, without claiming its live result sequence.
-- **Evidence.** FND-CONFIG-164 is a read-only acceptance input; engine 7.3.0's documented hard interrupt stop and ADR 0008 govern conditional inputs.
-- **Acceptance.** Keep reached prefix and independent suffix results separate. A stopped prefix must not imply output stores occurred. Report all query hypotheses, source guards, limits, native uncertainty and missing memory/driver inputs. Check upstream duplicates before proposing any unsupported-input design; leave Gap 31 open unless its full source case passes.
-- **Issue 143 follow-up.** Check the observed entry-frame helper at a verified post-prologue boundary of FND-CONFIG-192, preserving unknown memory and original limits. An established frame does not supply a connected caller route, initialized slot fields or decided hardware placement. Reply with actual diagnostics and remaining consumer evidence; do not request entry-memory design from a disconnected query.
-- **Tests and Exit.** Installed-release rerun, independent known/missing BX controls, witness-removing caps and source transfer-frame controls; pinned rules/documentation and canonical repository gates. No proprietary output in Git, original execution, game spec changes, larger defaults or stitched claims.
+- **Outcome.** Verify the complete Gap 32 shared reporting contract: metadata reads before checks, failure writes and unsuppressed requests, cleared pointer versus resource-release results, and guarded snapshots versus reloaded indirect targets.
+- **Evidence.** FND-CONFIG-165/167/171 are read-only source inputs. Published reader 2.1.0/engine 7.3.0 provide explicit symbolic scopes and relational ordering controls.
+- **Acceptance.** Retain actual ordering, access widths, intervening calls, conditional frame/segment preservation and unknown native outcomes. Scope only explicitly labelled frame bytes; missing/unread/changed inputs and witness-removing caps must reject whole claims. No native valid-pointer or release-success inference, original execution, raised defaults or stitched windows.
+- **Tests and Exit.** Hash-guarded original source positive and negative controls through installed packages; full canonical gate, exact dependency verification and complete contract audit before any gap closure. Duplicate-check upstream concerns and record unresolved acceptance without changing spec or parity.
 
 This file says what the project intends and what is true now, following the
 [work protocol](../vendor/upstream/work-protocol.md). It holds no dated

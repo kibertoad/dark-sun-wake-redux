@@ -1604,3 +1604,40 @@ Source configs/reports stay under GAME_DIR/analysis/reporter-audit/poll-alias-co
 The installed rerun summaries are artifacts/engine73/poll-prefix.log and
 poll-controls.log. No original execution, frame-memory invention, window
 stitching, spec/parity change or raised budget occurred.
+
+## Gap 32 guard and reload acceptance, 2026-10-04
+
+Reader 2.1.0/engine 7.3.0 now passes stronger FND-CONFIG-165/171 source controls.
+The complete finding spans, hash guard and post-stack-guard entry boundary are
+verified. No game spec or parity changes follow from these tooling checks.
+
+| Contract | Verified consumer result | Qualification |
+|---|---|---|
+| Metadata access precedes validation | Every metadata-wrapper branch retains the two-byte read before the null guard, with no protecting guard attached. An order assertion naming the later guard fails. | This describes local ordering, not a reachable native invalid-pointer access. |
+| Failure does not suppress the runtime request | Null and marker-failure paths retain the flag-one write before the same runtime call; the matching branch retains its byte clear. All three conditional paths return without dropped paths. | Runtime return and saved-frame scopes are explicit hypotheses. Unknown marker storage can alias the saved frame; returned paths alone do not prove its preservation. |
+| Cleared return versus release success | A supplied rejected AX/DX result is overwritten by the outer zero result on each path. | The modeled result is not a native error origin or successful release. FND-CONFIG-167's recorded runtime result analysis remains the read-only input, not a new claim. |
+| Checked snapshot versus reload | Both callback sites retain the preceding nonnull gate, bracket call and fresh four-byte target read. Frame-only scopes leave identity unknown; separate target-field plus DS preservation yields sameTargetValue and held order occurrences. | Target preservation is an explicit four-byte hypothesis, not actual callee preservation. Intervening calls remain in relational occurrences. |
+| Callback result branch coverage | Zero modeled callback results cover all four gate combinations; nonzero cases retain zero bypass and FFFF local returns. No path gaps at the original limits. | The narrower query establishes only observed SP/BP offsets. Prefix memory is not copied. Scope hypotheses and supplied returns remain visible. |
+| Nonvacuous controls | Unread runtime call stops before return; one-step caps remove read/frame/call witnesses. Unscoped metadata cases lose saved-BP identity. Removing DS loses target identity, and DS scopes without DS preservation are rejected. | A root return or conditional completeWithinModel is not native state preservation or successful callback execution. |
+
+**Gap 32 remains open.** Stable-target occurrences hold, but whole relational
+controls remain undecided: unread modeled callees on anchor-bypass paths could
+contain the anchor. The published tracker requires controlled consumer exits;
+per-occurrence success is not a whole-control closure. The next acceptance
+needs actual bracket/callee coverage and field/segment producers, without
+larger budgets or stitched windows.
+
+The callback query uses entryFrame.from with a verified post-stack-guard entry,
+explicit DS/SS/DI hypotheses, unknown SP/BP and bounded frame scopes. The stable
+variant additionally scopes only the four-byte callback field. Existing limits
+are unchanged: 256 steps/path, 16 paths and 1500 total steps. Model effects not
+listed remain unknown. Earlier whole-entry path gaps are retained, not treated
+as full acceptance.
+
+Local reports/configs: GAME_DIR/analysis/reporter-audit/guard-order730/.
+Assertion drivers/logs: artifacts/engine73/verify-guard-contract.mjs,
+verify-callback-results.mjs, verify-target-relations.mjs and their logs.
+After checking existing issues, extra consumer details were added to
+[existing tracker 113](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/113#issuecomment-5983866493).
+Its administrative closure is unchanged; no duplicate issue was created.
+No original execution, emulation, native output claim or source implementation occurred.
