@@ -85,13 +85,13 @@ The actual FND-CONFIG-175 primitive now resolves the balanced-model cleanup mism
 ## Handover
 
 - Stage: Slices; research-side tooling. Condition/Scope unchanged. No game spec, parity, original run or emulation changed.
-- Last gate: 2026-10-04 Test.ps1 -NoRestore passed, artifacts/engine73/actual-copy-root-gate.log. Reader 2.1.0 / engine 7.3.0 / protocol 3 remain adopted; exact locks verified and other pins unchanged.
-- Current acceptance: Gap 33 now has bounded source result-flow controls and focused issue 200, but remains open for full source acceptance. Gap 32/issue 198 remains open. Gap 35 and issue 145 remain completed; broader Gap 40 stays open.
-- Unfinished: preserve local result-origin730 configs/reports and ignored engine73 result-origin logs/drivers. FND-CONFIG-174 bounded normalizer controls now pass with dropped paths explicitly retained; FND-CONFIG-175 copy bypass controls pass; the actual primitive resolves cleanup, while copy routes stop on return-frame alias uncertainty. Preserve result-origin730/copy-wrapper and engine73/copy-wrapper.log. Preserve normalizer configs/reports and engine73/normalizer.log. Earlier guard-order730 controls and whole-query qualifications remain binding.
-- Blockers: Gap 33 needs recursive graph/selector producers, finite valid-state evidence and complete caller/leaf controls; issue 200 tracks the re-encoding recipe. Gap 32 needs actual bracket/callee and target producers. Gap 37 needs connected route evidence; Gap 31 awaits issue 190's recipe; Gap 40 needs complete predecessors. No stitching, invented memory or higher caps.
-- Process audit: no confirmed session-owned orphan; reusable MSBuild and unrelated/uncertain work preserved. No pushes occurred.
-- Next: Gap 34 output cardinality and capacity controls; Gap 33/FND-CONFIG-175 retry needs actual pointer producers and admitted distinct storage, not a repeat of unknown-pointer copying.
-- Next: Gap 33/issue 200 producer evidence and supported re-encoding recipe; retain incomplete recursive and normalizer queries.
+- Last gate: 2026-10-04 Test.ps1 -NoRestore passed, artifacts/engine73/append-root-gate.log. Reader 2.1.0 / engine 7.3.0 / protocol 3 remain adopted; exact locks verified and other pins unchanged.
+- Current acceptance: Gap 34 local append source controls pass, with whole contract still open; durable matrix is in TOOLKIT-RESPONSE-ACCEPTANCE and REPORTER-CASE-AUDIT. Gap 33/issue 200 and Gap 32/issue 198 remain open. Gap 35 and issue 145 remain completed; broader Gap 40 stays open.
+- Unfinished: preserve local result-origin730/append-* configs/reports and ignored engine73 append drivers/logs. Preserve recursive, normalizer and actual-copy cases, earlier guard-order730 controls and their whole-query qualifications.
+- Blockers: Gap 34 needs full generated-cardinality, producer/alias and terminator/base acceptance. Gap 33 needs complete graph/selector/pointer producers and supported re-encoding recipe; issue 200 tracks it. Gap 32 needs actual bracket/callee and target producers. Gap 37 needs connected route evidence; Gap 31 awaits issue 190; Gap 40 needs complete predecessors. No stitching, invented memory or higher caps.
+- Process audit: no confirmed session-owned orphan; reusable MSBuild and unrelated Rechaos validation preserved. No pushes occurred.
+- Next: Gap 34/FND-CONFIG-177/178 pairwise and split cardinality controls, followed by FND-CONFIG-182 terminator/base controls; retain current append controls.
+- Next: Gap 33/issue 200 producer evidence and supported re-encoding recipe; actual-copy retry only with real pointer producers and admitted distinct storage.
 - Next: Gap 32/issue 198 and Gap 37/issue 143 complete connected coverage only with new producer evidence or supported recipes; Gap 31 only after new response/delivery.
 - Next: Gap 40 predecessors; Gap 29 no-op controls and FND-SCRIPT-019 bounded fill inputs.
 - Next: Gap 36 dispatch, FND-CONFIG-189 snapshots, FND-CONFIG-191 reference-scan controls and Gap 44 capture diagnostics.
