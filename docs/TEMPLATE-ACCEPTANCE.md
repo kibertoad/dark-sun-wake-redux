@@ -9,6 +9,12 @@ policy stops the synthetic capture tests before their assertions. Template
 [issue 55](https://github.com/kibertoad/refurbished-dinosaurs-template/issues/55)
 records that setup concern after duplicate checking; no capture guard was changed.
 
+Both synthetic child launches now declare `-ExecutionPolicy Bypass` for that
+process only. The direct Node test run under a Restricted parent policy passes
+the stalled-worker recovery, physical-edge, invalid-window and blank-frame
+controls; evidence is `artifacts/capture-restricted-parent.log`. This corrects
+test setup without changing persistent policy or the capture implementation.
+
 Sandbox Java realpath access to the inherited temporary directory also failed.
 Putting temporary fixtures inside this checkout clears that access failure but
 invalidates the configuration-copy test's non-checkout control. Use an accessible

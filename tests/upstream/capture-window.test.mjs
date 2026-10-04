@@ -8,7 +8,7 @@ test('worker times out a stalled renderer and captures physical client edges on 
   if (process.platform !== 'win32') return t.skip('Windows worker acceptance');
   const scratch = mkdtempSync(join(tmpdir(), 'capture-worker-'));
   t.after(() => rmSync(scratch, { recursive: true, force: true }));
-  const result = spawnSync('powershell.exe', ['-NoProfile', '-File',
+  const result = spawnSync('powershell.exe', ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-File',
     resolve(import.meta.dirname, 'capture-worker.ps1'),
     resolve(import.meta.dirname, '../../tools/Capture-OriginalWindow.ps1'), scratch],
     { encoding: 'utf8', timeout: 30000 });
@@ -69,7 +69,7 @@ try {
  if((Test-Path (Join-Path $Output 'blank.png')) -or (Test-Path (Join-Path $Output 'invalid.png'))){throw 'Rejected frame written'}
 } finally {$form.Dispose()}
 `);
-  const result = spawnSync('powershell.exe', ['-NoProfile', '-File', runner,
+  const result = spawnSync('powershell.exe', ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', runner,
     resolve(import.meta.dirname, '../../tools/Capture-OriginalWindow.ps1'), scratch], { encoding: 'utf8', timeout: 30000 });
   assert.equal(result.status, 0, result.stdout + result.stderr);
 });
