@@ -1,6 +1,42 @@
 # Template and toolkit acceptance audit
 
-## Current migration acceptance, 2026-10-02
+## Current migration acceptance, 2026-10-04
+
+The owner asked for the latest template. Template main was
+`39d31fdef9d7420e8571ab6d09e3b3026be05010` (template PR 46), one commit after the
+previously accepted `79d18a2`. Its file changes were mapped onto this configured
+project and each was adopted or adapted as below. The toolkit already publishes
+newer reader and engine releases (2.0); this migration takes the versions the
+template pins.
+
+| Component | Target | Disposition |
+| --- | --- | --- |
+| Template | `39d31fdef9d7420e8571ab6d09e3b3026be05010` | Adopted with the configured adaptations below. |
+| Standard v1, methodology and protocol | `c1758fd9c2fd253e28fb4328412061d7e92ce14a` | Standard text refreshed (rules numbered, still v1); methodology, protocol and license bytes unchanged. Section link ranges rewritten. |
+| Standard checker | `0.2.0`, action at toolkit `a260e391fe2dea67f0034d5480e2bb439b0663ac` | The lock records the action commit and the version it carries; `upstream.mjs` requires the CI pin, the lock and `package.json` to agree and refuses another installed version. Refresh accepts only the toolkit commit tagged for the release. |
+| Executable reader | `1.0.0` | Exact npm lock. Prepared-config protocol 2: sources are named by xxh3, and a config naming sha256 is refused. |
+| Evidence engine | `1.0.1` | Exact wheel hash, plus hash-pinned xxhash 4.0.1 (new engine dependency); Capstone 5.0.7 and pypcode 4.0.0 unchanged. |
+| RefurbishedDinosaurs .NET packages | `2.0.0` | Core and LegacyFormats replace the local edition manifest, source and pack verification, staging, path and startup-failure code. Set once in `Directory.Build.props`. |
+| Software OpenGL action | toolkit `6ab530df7851354c98e833a2beb76dbe0f71e421` | Replaces `Install-MesaSoftwareGL.ps1` in CI and release; the step fails when the driver cannot be installed. |
+
+| Capability | Disposition and reason |
+| --- | --- |
+| Package manager | npm with `package-lock.json` and `Restore-ToolDependencies.ps1` stay; the template's pnpm switch is not adopted. The project's restore already verifies exact versions and archive integrity, and the checker pin checks apply to `package.json` the same way. |
+| Python requirements | Remain in `tools/evidence/requirements.txt` with `--require-hashes`, installed into `artifacts/evidence-python`; the template's unhashed `requirements-evidence.txt` is not adopted. |
+| xxh3 naming | Evidence configs, captured frames (checkpoint schema 3) and the analysis gate use xxh3. The gate now requires `analysisExecutable.xxh3_128`; the SHA-256 stays in SOURCE-EDITIONS as a historical record only. |
+| Asset pack | Required revision 36: the manifest is the toolkit's installed-asset layout. Retained project contracts: unlisted files rejected, a 16 MiB manifest cap (the corpus-scale manifest exceeds the toolkit's 4 MiB default), and required media type and conversion on every file. Revision 35 packs are rejected and `play.bat` re-extracts. |
+| Edition identification | `AssetVerifier.IdentifyAsync`; a copy two manifests match is refused. Only directory sources are supported, so the template's ISO and CUE/BIN tests are not copied. |
+| Startup failures | `StartupFailure.Report` from Core; a small local wrapper supplies the stale-pack recovery text and suppresses the dialog for smoke tests and CI. |
+| Inspect | Uses `FileFingerprint`; it never had the template's SpecHash or `--sha256` citation option. |
+
+Verified against the owned GOG copy without running the original: `verify-source`
+gives fingerprint `5dfea1d78b28656cb1ce976f81dd77d4`, matching the existing pack; a
+scratch extraction produced 16,524 files that `verify-pack` accepts, and the
+Game's content smoke test exits 0. Gate log:
+`artifacts/template-migration/template-39d31fd-validation.log`. No spec claim,
+parity status or research request changes.
+
+## Earlier migration acceptance, 2026-10-02
 
 Toolkit main and the public package registries were rechecked for the owner's
 latest-toolkit request. Toolkit targets below are current at that check; template

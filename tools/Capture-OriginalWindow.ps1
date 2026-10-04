@@ -1,7 +1,7 @@
 [CmdletBinding()]
 param(
     [string] $ProcessName = '',
-    [string] $WindowTitle = '{{ORIGINAL_TITLE}}',
+    [string] $WindowTitle = 'Dark Sun: Wake of the Ravager',
     [string] $Experiment = 'manual',
     [string] $OutputRoot,
     [ValidateRange(1, 30)]

@@ -997,5 +997,4 @@ against installed packages without candidate imports. Verify released backend,
 unread paths, conditional targets and all remaining gap contracts. Exit: archive
 integrity, meaningful dependency rejections, source controls and Test.ps1 pass.
 
-
-Shared FLI readiness: Inspect `fli-check` uses RefurbishedDinosaurs.Media.Fli 1.0.0 without exporting media. Exit: synthetic COPY, FLC rejection and chunk-overrun checks pass. Gameplay playback and original decoder questions remain separate spec work.
+Shared FLI readiness: Inspect `fli-check` uses the pinned RefurbishedDinosaurs.Media.Fli without exporting media. Exit: synthetic COPY, FLC rejection and chunk-overrun checks pass. Gameplay playback and original decoder questions remain separate spec work.
