@@ -362,3 +362,11 @@ the release tag. Installed synthetic dependency/conditional-target controls and
 retained original static controls, including the conservative linked-child limit
 case, pass. Qualifications and full gap contracts stay open; no native outcome
 or parity claim follows from the backend cutover.
+
+## Adopted effective-segment request closure
+
+Gap 39 closes against reader 2.0.0/engine 4.0.0 after full contract review in
+docs/REPORTER-CASE-AUDIT.md: all recorded original BX access sites, distinct
+offset/segment identity, explicit alias/equality/callee hypotheses and the
+installed synthetic suite pass. No native storage-safety, full-loop, game-spec
+or parity promotion follows; gap 37 remains open.

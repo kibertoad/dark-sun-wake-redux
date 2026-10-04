@@ -46,7 +46,7 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 - Gap 35: open; full request and cited controls in gaps.md.
 - Gap 36: open; full request and cited controls in gaps.md.
 - Gap 37: open; full request and cited controls in gaps.md.
-- Gap 39: open; full request and cited controls in gaps.md.
+- Gap 39: closed; adopted effective-segment/alias synthetic suite and all four original BX access sites pass the complete classification/provenance/preservation contract. Closure audit: REPORTER-CASE-AUDIT. Native storage safety remains separate.
 - Gap 40: open; full request and cited controls in gaps.md.
 - Gap 41: open; full request and cited controls in gaps.md.
 - Gap 42: open; full request and cited controls in gaps.md.

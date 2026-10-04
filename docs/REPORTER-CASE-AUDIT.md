@@ -1342,3 +1342,37 @@ its own one-step cap removes the witness, and ordinary paths/gaps compare equal
 with continuations disabled. Full validation passes after this explicit contract
 migration; no assertion was simply deleted. Test-only Unicorn is not installed
 by the project's runtime requirements.
+
+## Gap 39 full tooling-contract acceptance, 2026-10-04
+
+Gap 39 is closed against adopted reader 2.0.0/engine 4.0.0. Its request is
+correct effective-segment classification, distinct offset/segment provenance,
+and explicit equality, alias and preservation assumptions. It does not require
+native frame safety, full original execution or a complete 256-iteration loop.
+The historical capped first-loop query and earlier partial dispositions remain
+historical; closure uses the following additional evidence.
+
+| Request | Authoritative acceptance |
+| --- | --- |
+| Every recorded frame-indexed access uses its final addressing register's default segment | A bounded hash-verified pass over FND-CONFIG-198's complete local range identifies all four BX word-access sites without overrides. Adopted source controls cover the first store and both second-loop loads and post-release store; all report effectiveSegmentRegister=ds. |
+| BP-derived offset is separate from segment identity | Whole-entry first-store controls retain BP/entry-SP provenance. Narrow second-loop controls declare BP, BX, index and incoming AX base independently; unchanged numeric offsets yield different physical intervals with different DS. Missing AX leaves the second load's offset unresolved. |
+| Reservation does not prove DS storage identity/capacity | Different and unknown DS cases remain distinct or unresolved despite the same SS/frame values. Queries remain incomplete and make no capacity claim. Synthetic BP/SS override cases retain SS separately. |
+| DS/SS equality and aliases remain explicit | Adopted synthetic tests cover unknown, different and explicitly equal segments, equality created by instructions, and a DS write invalidating potentially aliased frame bytes instead of merging them. Source equality is a stated register hypothesis, not inferred from BP. |
+| Callee preservation remains explicit | First-store and second-loop source controls preserve, replace or lose DS through labelled balanced return models. The post-call store follows returned DS; unread child and step controls remove the store witness. Models retain unknown memory/flags, never native service safety. |
+| Fixtures say what they test | Six complete published EffectiveSegmentTests run against the installed adopted wheel (implementation origin asserted), with synthetic instructions/state only. Original cases are static reports, not execution or emulator fixtures. |
+
+Source controls: GAME_DIR/analysis/reporter-audit/engine4-case-controls/
+verify-second-loop.mjs and its second-loop*.json reports. BX boundary inventory
+contains only site, width, access role, base and override fields, not original
+bytes or disassembly, and remains local-only. Results:
+artifacts/continuation-budget-delivery/second-loop.log and
+installed-segment-suite.log; earlier case-controls.log and callee-segments.log
+retain the first-store and callee controls.
+
+The second-loop entry is a verified access boundary inside the existing finding's
+range. Its BP/index/BX/AX and segment values are explicit suffix hypotheses, not
+state inherited from a separately run window. Both release/bypass arms reach the
+local epilogue, whose missing root frame is rejected; no returning-original
+claim is made. Dynamic trace reports are used because effects presentation
+intentionally filters ordinary reads. No original run, emulation, game finding
+or parity status changed. Gap 37 and native alias/capacity research remain open.

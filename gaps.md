@@ -11,7 +11,7 @@ the reviewed release removes handwritten instruction semantics;
 tools/tool-dependencies.mjs verifies the installed packages. Candidate
 capabilities still require reviewed merge and registry delivery. Game-specific
 requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 4, 8,
-10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28 and 38
+10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 38 and 39
 are removed after verification with the adopted tools; unsupported queries and
 partial searches remain open.
 Delivered capabilities, closure evidence and remaining limits are recorded in
@@ -328,23 +328,6 @@ pixels. A fixture with substituted RAM or mocked port values must identify
 what it actually tests and leave native output unconfirmed. Keep slot,
 segment, count, mask and alias assumptions separate from the transfer
 algorithm's local completion and register restoration.
-
-
-## 39. Resolve the effective segment of frame-indexed accesses
-
-FND-CONFIG-198 reserves an SS stack frame but accesses its numeric
-BP-derived offsets through BX without a segment override. Those loads
-and stores use DS. Naming the storage a local array before checking
-DS/SS provenance would turn a conditional memory contract into an
-unsupported safety claim.
-
-**Request:** shared segmented-code reports should show the effective
-segment of each memory access, including the default selected by the
-final addressing register. Track an address copied from BP separately
-from the segment used after it is moved or added to BX. A stack-size
-reservation alone must not establish the capacity or identity of the
-storage actually accessed. Keep DS/SS equality, frame aliases and
-callee preservation explicit in static summaries and emulator fixtures.
 
 
 ## 40. Check cleanup-slot assignment on each failure edge
