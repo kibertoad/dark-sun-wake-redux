@@ -4,6 +4,7 @@ using DarkSunWakeRedux.Extractor;
 using DarkSunWakeRedux.Game;
 using DarkSunWakeRedux.Resources;
 using Xunit;
+using RefurbishedDinosaurs.Core.Assets;
 
 namespace DarkSunWakeRedux.Tests;
 
@@ -39,7 +40,7 @@ public sealed partial class StartupAssetExtractorTests
             var regionSourcePath = Path.Combine(sourceRoot, StartupAssetExtractor.TyrRegionSourcePath);
             await File.WriteAllBytesAsync(regionSourcePath, GffRegionTests.RegionArchive(),
                 TestContext.Current.CancellationToken);
-            var edition = new SourceManifest(OriginalContent.GameId, "synthetic-title-edition",
+            var edition = new AssetManifest(OriginalContent.GameId, "synthetic-title-edition",
                 [await FingerprintAsync(sourceRoot, StartupAssetExtractor.SourcePath),
                     await FingerprintAsync(sourceRoot, StartupAssetExtractor.ExecutableSourcePath),
                     await FingerprintAsync(sourceRoot, StartupAssetExtractor.GplSourcePath),
@@ -61,7 +62,7 @@ public sealed partial class StartupAssetExtractorTests
             var titleOpaque = Assert.Single(manifest.Files,
                 item => item.Path == "corpus/gff/resource.gff/424d5020-11011.dsop");
             Assert.Equal(StartupAssetExtractor.SourcePath, titleOpaque.SourcePath);
-            Assert.Contains("byte-identical GFF resource", titleOpaque.Conversion,
+            Assert.Contains("byte-identical GFF resource", titleOpaque.Conversion!.Method,
                 StringComparison.Ordinal);
             using (var opaqueStream = File.OpenRead(Path.Combine(output,
                        titleOpaque.Path.Replace('/', Path.DirectorySeparatorChar))))
@@ -90,28 +91,28 @@ public sealed partial class StartupAssetExtractorTests
                     OriginalContent.PreferencesDescriptionTextResourceNumber].Count);
             }
             var asset = Assert.Single(manifest.Files, item => item.Path == OriginalContent.TitleImageAssetPath);
-            Assert.Contains("BMP #11011", asset.Conversion, StringComparison.Ordinal);
-            Assert.Contains("PAL #11011", asset.Conversion, StringComparison.Ordinal);
+            Assert.Contains("BMP #11011", asset.Conversion!.Method, StringComparison.Ordinal);
+            Assert.Contains("PAL #11011", asset.Conversion!.Method, StringComparison.Ordinal);
             foreach (var layer in OriginalContent.StartMenuLayers)
             {
                 var layerAsset = Assert.Single(manifest.Files, item => item.Path == layer.Path);
-                Assert.Contains($"BMP #{layer.ImageResourceNumber}", layerAsset.Conversion,
+                Assert.Contains($"BMP #{layer.ImageResourceNumber}", layerAsset.Conversion!.Method,
                     StringComparison.Ordinal);
-                Assert.Contains("PAL #1000", layerAsset.Conversion, StringComparison.Ordinal);
+                Assert.Contains("PAL #1000", layerAsset.Conversion!.Method, StringComparison.Ordinal);
             }
             foreach (var layer in OriginalContent.PartyOverviewLayers)
             {
                 var layerAsset = Assert.Single(manifest.Files, item => item.Path == layer.Path);
-                Assert.Contains($"BMP #{layer.ImageResourceNumber}", layerAsset.Conversion,
+                Assert.Contains($"BMP #{layer.ImageResourceNumber}", layerAsset.Conversion!.Method,
                     StringComparison.Ordinal);
-                Assert.Contains("PAL #1000", layerAsset.Conversion, StringComparison.Ordinal);
+                Assert.Contains("PAL #1000", layerAsset.Conversion!.Method, StringComparison.Ordinal);
             }
             foreach (var image in OriginalContent.AddExistingCharacterAssets)
             {
                 var imageAsset = Assert.Single(manifest.Files, item => item.Path == image.Path);
                 Assert.Contains($"{image.Tag}#{image.ResourceNumber}",
-                    imageAsset.Conversion, StringComparison.Ordinal);
-                Assert.Contains("PAL #1000", imageAsset.Conversion, StringComparison.Ordinal);
+                    imageAsset.Conversion!.Method, StringComparison.Ordinal);
+                Assert.Contains("PAL #1000", imageAsset.Conversion!.Method, StringComparison.Ordinal);
                 using var imageStream = File.OpenRead(Path.Combine(output,
                     image.Path.Replace('/', Path.DirectorySeparatorChar)));
                 Assert.Equal(image.FrameCount, PackedIndexedImage.Read(imageStream).Frames.Count);
@@ -119,8 +120,8 @@ public sealed partial class StartupAssetExtractorTests
             foreach (var button in OriginalContent.StartMenuButtons)
             {
                 var buttonAsset = Assert.Single(manifest.Files, item => item.Path == button.Path);
-                Assert.Contains($"ICON#{button.ImageResourceNumber}", buttonAsset.Conversion, StringComparison.Ordinal);
-                Assert.Contains("PAL #1000", buttonAsset.Conversion, StringComparison.Ordinal);
+                Assert.Contains($"ICON#{button.ImageResourceNumber}", buttonAsset.Conversion!.Method, StringComparison.Ordinal);
+                Assert.Contains("PAL #1000", buttonAsset.Conversion!.Method, StringComparison.Ordinal);
                 using var buttonStream = File.OpenRead(Path.Combine(output,
                     button.Path.Replace('/', Path.DirectorySeparatorChar)));
                 Assert.Equal(4, PackedIndexedImage.Read(buttonStream).Frames.Count);
@@ -128,7 +129,7 @@ public sealed partial class StartupAssetExtractorTests
             foreach (var button in OriginalContent.CharacterGenerationButtons)
             {
                 var buttonAsset = Assert.Single(manifest.Files, item => item.Path == button.Path);
-                Assert.Contains($"ICON#{button.ImageResourceNumber}", buttonAsset.Conversion, StringComparison.Ordinal);
+                Assert.Contains($"ICON#{button.ImageResourceNumber}", buttonAsset.Conversion!.Method, StringComparison.Ordinal);
                 using var buttonStream = File.OpenRead(Path.Combine(output,
                     button.Path.Replace('/', Path.DirectorySeparatorChar)));
                 Assert.Equal(button.FrameCount, PackedIndexedImage.Read(buttonStream).Frames.Count);
@@ -136,19 +137,19 @@ public sealed partial class StartupAssetExtractorTests
             foreach (var button in OriginalContent.CharacterGenerationModalButtons)
             {
                 var buttonAsset = Assert.Single(manifest.Files, item => item.Path == button.Path);
-                Assert.Contains($"ICON#{button.ImageResourceNumber}", buttonAsset.Conversion, StringComparison.Ordinal);
+                Assert.Contains($"ICON#{button.ImageResourceNumber}", buttonAsset.Conversion!.Method, StringComparison.Ordinal);
             }
             var gameMenuLayer = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.GameMenuLayer.Path);
-            Assert.Contains("BMP #10000", gameMenuLayer.Conversion, StringComparison.Ordinal);
-            Assert.Contains("PAL #1000", gameMenuLayer.Conversion, StringComparison.Ordinal);
+            Assert.Contains("BMP #10000", gameMenuLayer.Conversion!.Method, StringComparison.Ordinal);
+            Assert.Contains("PAL #1000", gameMenuLayer.Conversion!.Method, StringComparison.Ordinal);
             foreach (var button in OriginalContent.GameMenuButtons
                          .Concat(OriginalContent.PreferencesButtons)
                          .DistinctBy(asset => asset.Path))
             {
                 var buttonAsset = Assert.Single(manifest.Files, item => item.Path == button.Path);
                 Assert.Contains($"ICON#{button.ImageResourceNumber}",
-                    buttonAsset.Conversion, StringComparison.Ordinal);
+                    buttonAsset.Conversion!.Method, StringComparison.Ordinal);
                 using var buttonStream = File.OpenRead(Path.Combine(output,
                     button.Path.Replace('/', Path.DirectorySeparatorChar)));
                 Assert.Equal(button.FrameCount,
@@ -159,7 +160,7 @@ public sealed partial class StartupAssetExtractorTests
                 var cursorAsset = Assert.Single(manifest.Files,
                     item => item.Path == cursor.Path);
                 Assert.Contains($"ICON#{cursor.ResourceNumber}",
-                    cursorAsset.Conversion, StringComparison.Ordinal);
+                    cursorAsset.Conversion!.Method, StringComparison.Ordinal);
                 using var cursorStream = File.OpenRead(Path.Combine(output,
                     cursor.Path.Replace('/', Path.DirectorySeparatorChar)));
                 var cursorFrame = Assert.Single(PackedIndexedImage.Read(cursorStream).Frames);
@@ -171,16 +172,16 @@ public sealed partial class StartupAssetExtractorTests
                 var interactionAsset = Assert.Single(manifest.Files,
                     item => item.Path == interaction.Path);
                 Assert.Contains($"ICON#{interaction.ImageResourceNumber}",
-                    interactionAsset.Conversion, StringComparison.Ordinal);
+                    interactionAsset.Conversion!.Method, StringComparison.Ordinal);
             }
             var portraitAsset = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.FirstTyrDialoguePortraitAssetPath);
             Assert.Equal(StartupAssetExtractor.GplSourcePath, portraitAsset.SourcePath);
-            Assert.Contains("PORT#18", portraitAsset.Conversion, StringComparison.Ordinal);
+            Assert.Contains("PORT#18", portraitAsset.Conversion!.Method, StringComparison.Ordinal);
             var scriptAsset = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.FirstTyrDialogueScriptAssetPath);
             Assert.Equal(StartupAssetExtractor.GplSourcePath, scriptAsset.SourcePath);
-            Assert.Contains("GPL #135", scriptAsset.Conversion, StringComparison.Ordinal);
+            Assert.Contains("GPL #135", scriptAsset.Conversion!.Method, StringComparison.Ordinal);
             using (var scriptStream = File.OpenRead(Path.Combine(output,
                        OriginalContent.FirstTyrDialogueScriptAssetPath.Replace(
                            '/', Path.DirectorySeparatorChar))))
@@ -193,7 +194,7 @@ public sealed partial class StartupAssetExtractorTests
             }
             var globalsAsset = Assert.Single(manifest.Files, item => item.Path == OriginalContent.DialogueGlobalStringsScriptAssetPath);
             Assert.Equal(StartupAssetExtractor.GplSourcePath, globalsAsset.SourcePath);
-            Assert.Contains("MAS #99", globalsAsset.Conversion, StringComparison.Ordinal);
+            Assert.Contains("MAS #99", globalsAsset.Conversion!.Method, StringComparison.Ordinal);
             using (var globalsStream = File.OpenRead(Path.Combine(output,
                        OriginalContent.DialogueGlobalStringsScriptAssetPath.Replace(
                            '/', Path.DirectorySeparatorChar))))
@@ -205,12 +206,12 @@ public sealed partial class StartupAssetExtractorTests
             }
             var inventoryLayer = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.InventoryLayer.Path);
-            Assert.Contains("BMP #13001", inventoryLayer.Conversion, StringComparison.Ordinal);
-            Assert.Contains("PAL #1000", inventoryLayer.Conversion, StringComparison.Ordinal);
+            Assert.Contains("BMP #13001", inventoryLayer.Conversion!.Method, StringComparison.Ordinal);
+            Assert.Contains("PAL #1000", inventoryLayer.Conversion!.Method, StringComparison.Ordinal);
             var combatPanelLayer = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.CombatStatusPanelLayer.Path);
-            Assert.Contains("BMP #19003", combatPanelLayer.Conversion, StringComparison.Ordinal);
-            Assert.Contains("PAL #1000", combatPanelLayer.Conversion, StringComparison.Ordinal);
+            Assert.Contains("BMP #19003", combatPanelLayer.Conversion!.Method, StringComparison.Ordinal);
+            Assert.Contains("PAL #1000", combatPanelLayer.Conversion!.Method, StringComparison.Ordinal);
             using (var combatPanelStream = File.OpenRead(Path.Combine(output,
                        OriginalContent.CombatStatusPanelLayer.Path.Replace(
                            '/', Path.DirectorySeparatorChar))))
@@ -223,15 +224,15 @@ public sealed partial class StartupAssetExtractorTests
                 var titleLayer = Assert.Single(manifest.Files,
                     item => item.Path == layer.Path);
                 Assert.Contains($"BMP #{layer.ImageResourceNumber}",
-                    titleLayer.Conversion, StringComparison.Ordinal);
-                Assert.Contains("PAL #1000", titleLayer.Conversion, StringComparison.Ordinal);
+                    titleLayer.Conversion!.Method, StringComparison.Ordinal);
+                Assert.Contains("PAL #1000", titleLayer.Conversion!.Method, StringComparison.Ordinal);
             }
             var windowAsset = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.PartyWindowImageAssetPath);
-            Assert.Contains("BMP #19004", windowAsset.Conversion, StringComparison.Ordinal);
+            Assert.Contains("BMP #19004", windowAsset.Conversion!.Method, StringComparison.Ordinal);
             var fontAsset = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.InterfaceFontAssetPath);
-            Assert.Contains("FONT#100", fontAsset.Conversion, StringComparison.Ordinal);
+            Assert.Contains("FONT#100", fontAsset.Conversion!.Method, StringComparison.Ordinal);
             using (var fontStream = File.OpenRead(Path.Combine(output,
                        OriginalContent.InterfaceFontAssetPath.Replace('/', Path.DirectorySeparatorChar))))
             {
@@ -246,7 +247,7 @@ public sealed partial class StartupAssetExtractorTests
             var characterAsset = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.CharacterCatalogAssetPath);
             Assert.Equal(StartupAssetExtractor.CharacterSourcePath, characterAsset.SourcePath);
-            Assert.Contains("DSCH v1", characterAsset.Conversion, StringComparison.Ordinal);
+            Assert.Contains("DSCH v1", characterAsset.Conversion!.Method, StringComparison.Ordinal);
             using (var characterStream = File.OpenRead(Path.Combine(output,
                        OriginalContent.CharacterCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar))))
             {
@@ -258,8 +259,8 @@ public sealed partial class StartupAssetExtractorTests
             var regionAsset = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.TyrRegionAssetPath);
             Assert.Equal(StartupAssetExtractor.TyrRegionSourcePath, regionAsset.SourcePath);
-            Assert.Contains("OBJEX.GFF:OJFF", regionAsset.Conversion, StringComparison.Ordinal);
-            Assert.Contains("DSRG v1", regionAsset.Conversion, StringComparison.Ordinal);
+            Assert.Contains("OBJEX.GFF:OJFF", regionAsset.Conversion!.Method, StringComparison.Ordinal);
+            Assert.Contains("DSRG v1", regionAsset.Conversion!.Method, StringComparison.Ordinal);
             using (var regionStream = File.OpenRead(Path.Combine(output,
                        OriginalContent.TyrRegionAssetPath.Replace('/', Path.DirectorySeparatorChar))))
             {
@@ -271,14 +272,14 @@ public sealed partial class StartupAssetExtractorTests
                 item => item.Path == OriginalContent.RegionCatalogAssetPathFor(
                     StartupAssetExtractor.TyrRegionSourcePath));
             Assert.Equal(StartupAssetExtractor.TyrRegionSourcePath, structuralRegion.SourcePath);
-            Assert.Contains("source-derived structural DSRG v1", structuralRegion.Conversion,
+            Assert.Contains("source-derived structural DSRG v1", structuralRegion.Conversion!.Method,
                 StringComparison.Ordinal);
             var objectAsset = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.TyrObjectCatalogAssetPath);
             Assert.Equal(StartupAssetExtractor.ObjectSourcePath, objectAsset.SourcePath);
-            Assert.Contains("RGN032.GFF:ETAB", objectAsset.Conversion, StringComparison.Ordinal);
-            Assert.Contains("OBJEX.GFF:OJFF/BMP", objectAsset.Conversion, StringComparison.Ordinal);
-            Assert.Contains("DSOB v1", objectAsset.Conversion, StringComparison.Ordinal);
+            Assert.Contains("RGN032.GFF:ETAB", objectAsset.Conversion!.Method, StringComparison.Ordinal);
+            Assert.Contains("OBJEX.GFF:OJFF/BMP", objectAsset.Conversion!.Method, StringComparison.Ordinal);
+            Assert.Contains("DSOB v1", objectAsset.Conversion!.Method, StringComparison.Ordinal);
             using (var objectStream = File.OpenRead(Path.Combine(output,
                        OriginalContent.TyrObjectCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar))))
             {
@@ -291,9 +292,9 @@ public sealed partial class StartupAssetExtractorTests
             var leaderAsset = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.OpeningLeaderImageAssetPath);
             Assert.Equal(StartupAssetExtractor.ObjectSourcePath, leaderAsset.SourcePath);
-            Assert.Contains("OJFF #305", leaderAsset.Conversion, StringComparison.Ordinal);
-            Assert.Contains("BMP #599", leaderAsset.Conversion, StringComparison.Ordinal);
-            Assert.Contains("RGN032.GFF:PAL #50", leaderAsset.Conversion, StringComparison.Ordinal);
+            Assert.Contains("OJFF #305", leaderAsset.Conversion!.Method, StringComparison.Ordinal);
+            Assert.Contains("BMP #599", leaderAsset.Conversion!.Method, StringComparison.Ordinal);
+            Assert.Contains("RGN032.GFF:PAL #50", leaderAsset.Conversion!.Method, StringComparison.Ordinal);
             using (var leaderStream = File.OpenRead(Path.Combine(output,
                        OriginalContent.OpeningLeaderImageAssetPath.Replace(
                            '/', Path.DirectorySeparatorChar))))
@@ -306,7 +307,7 @@ public sealed partial class StartupAssetExtractorTests
             var uiAsset = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.StartFlowUiCatalogAssetPath);
             Assert.Contains("WIND#18501,19500,19501,19502,19503,19504,19505",
-                uiAsset.Conversion, StringComparison.Ordinal);
+                uiAsset.Conversion!.Method, StringComparison.Ordinal);
             using (var uiStream = File.OpenRead(Path.Combine(output,
                        OriginalContent.StartFlowUiCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar))))
             {
@@ -319,7 +320,7 @@ public sealed partial class StartupAssetExtractorTests
             }
             var gameMenuUiAsset = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.GameMenuUiCatalogAssetPath);
-            Assert.Contains("WIND#10500,16500", gameMenuUiAsset.Conversion, StringComparison.Ordinal);
+            Assert.Contains("WIND#10500,16500", gameMenuUiAsset.Conversion!.Method, StringComparison.Ordinal);
             using (var uiStream = File.OpenRead(Path.Combine(output,
                        OriginalContent.GameMenuUiCatalogAssetPath.Replace('/', Path.DirectorySeparatorChar))))
             {
@@ -333,7 +334,7 @@ public sealed partial class StartupAssetExtractorTests
             }
             var destinationUiAsset = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.ExplorationDestinationUiCatalogAssetPath);
-            Assert.Contains("WIND#11500,13500", destinationUiAsset.Conversion,
+            Assert.Contains("WIND#11500,13500", destinationUiAsset.Conversion!.Method,
                 StringComparison.Ordinal);
             using (var uiStream = File.OpenRead(Path.Combine(output,
                        OriginalContent.ExplorationDestinationUiCatalogAssetPath.Replace(
@@ -348,7 +349,7 @@ public sealed partial class StartupAssetExtractorTests
             }
             var interactionUiAsset = Assert.Single(manifest.Files,
                 item => item.Path == OriginalContent.InteractionUiCatalogAssetPath);
-            Assert.Contains("WIND#3020,12500,12501", interactionUiAsset.Conversion,
+            Assert.Contains("WIND#3020,12500,12501", interactionUiAsset.Conversion!.Method,
                 StringComparison.Ordinal);
             using (var uiStream = File.OpenRead(Path.Combine(output,
                        OriginalContent.InteractionUiCatalogAssetPath.Replace(
@@ -361,8 +362,8 @@ public sealed partial class StartupAssetExtractorTests
                 Assert.Equal((318, 72, 4), Geometry(ui, 12500));
                 Assert.Equal((318, 58, 7), Geometry(ui, 12501));
             }
-            Assert.Empty(await OriginalContent.VerifyInstalledAsync(
-                output, TestContext.Current.CancellationToken));
+            Assert.Empty((await OriginalContent.VerifyInstalledAsync(
+                output, TestContext.Current.CancellationToken)).Issues);
             using var packedStream = File.OpenRead(Path.Combine(output, "images", "title.dsix"));
             var packed = PackedIndexedImage.Read(packedStream);
             var frame = Assert.Single(packed.Frames);
@@ -405,9 +406,9 @@ public sealed partial class StartupAssetExtractorTests
                 TestContext.Current.CancellationToken);
             string hash;
             await using (var sourceStream = File.OpenRead(sourcePath))
-                hash = await ContentHash.Xxh3Async(sourceStream, TestContext.Current.CancellationToken);
-            var edition = new SourceManifest(OriginalContent.GameId, "synthetic-title-edition",
-                [new SourceFile(StartupAssetExtractor.SourcePath, new FileInfo(sourcePath).Length, hash)]);
+                hash = await FileFingerprint.Xxh3Async(sourceStream, TestContext.Current.CancellationToken);
+            var edition = new AssetManifest(OriginalContent.GameId, "synthetic-title-edition",
+                [new AssetFileSpec(StartupAssetExtractor.SourcePath, new FileInfo(sourcePath).Length, hash)]);
 
             var exception = await Assert.ThrowsAsync<FileNotFoundException>(() =>
                 StartupAssetExtractor.WritePackAsync(
@@ -631,11 +632,11 @@ public sealed partial class StartupAssetExtractorTests
         return stream.ToArray();
     }
 
-    private static async Task<SourceFile> FingerprintAsync(string root, string relativePath)
+    private static async Task<AssetFileSpec> FingerprintAsync(string root, string relativePath)
     {
         var path = Path.Combine(root, relativePath);
         await using var stream = File.OpenRead(path);
-        var hash = await ContentHash.Xxh3Async(stream, TestContext.Current.CancellationToken);
+        var hash = await FileFingerprint.Xxh3Async(stream, TestContext.Current.CancellationToken);
         return new(relativePath, stream.Length, hash);
     }
 

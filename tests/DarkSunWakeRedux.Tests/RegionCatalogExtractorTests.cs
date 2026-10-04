@@ -1,6 +1,7 @@
 using DarkSunWakeRedux.Extractor;
 using DarkSunWakeRedux.Resources;
 using Xunit;
+using RefurbishedDinosaurs.Core.Assets;
 
 namespace DarkSunWakeRedux.Tests;
 
@@ -20,7 +21,7 @@ public sealed class RegionCatalogExtractorTests
                 GffRegionTests.RegionArchive(), TestContext.Current.CancellationToken);
             await File.WriteAllBytesAsync(Path.Combine(sourceRoot, "RGN001.GFF"),
                 GffRegionTests.RegionArchive(), TestContext.Current.CancellationToken);
-            var edition = new SourceManifest("game", "synthetic",
+            var edition = new AssetManifest("game", "synthetic",
             [
                 await FingerprintAsync(sourceRoot, "RGN033.GFF"),
                 await FingerprintAsync(sourceRoot, "RGN001.GFF")
@@ -63,7 +64,7 @@ public sealed class RegionCatalogExtractorTests
             await File.WriteAllBytesAsync(Path.Combine(sourceRoot, "RGN033.GFF"),
                 GffRegionTests.RegionArchive(mapLength: GffRegion.MapByteCount - 1),
                 TestContext.Current.CancellationToken);
-            var edition = new SourceManifest("game", "synthetic",
+            var edition = new AssetManifest("game", "synthetic",
                 [await FingerprintAsync(sourceRoot, "RGN033.GFF")]);
             using var objectStream = new MemoryStream(GffRegionTests.ObjectArchive());
             var objects = GffArchive.Read(objectStream, "OBJEX.GFF");
@@ -84,7 +85,7 @@ public sealed class RegionCatalogExtractorTests
     [Fact]
     public void RejectsDuplicateRegionSourcePathsBeforeDerivingOutputPaths()
     {
-        var edition = new SourceManifest("game", "synthetic",
+        var edition = new AssetManifest("game", "synthetic",
         [
             new("RGN001.GFF", 0, new string('0', 32)),
             new("rgn001.gff", 0, new string('1', 32))
@@ -93,14 +94,14 @@ public sealed class RegionCatalogExtractorTests
         var exception = Assert.Throws<InvalidDataException>(() =>
             RegionCatalogExtractor.SourcePaths(edition));
 
-        Assert.Contains("Duplicate source path", exception.Message);
+        Assert.Contains("Duplicate asset path", exception.Message);
     }
 
-    private static async Task<SourceFile> FingerprintAsync(string sourceRoot, string path)
+    private static async Task<AssetFileSpec> FingerprintAsync(string sourceRoot, string path)
     {
         var inputPath = Path.Combine(sourceRoot, path);
         await using var input = File.OpenRead(inputPath);
-        return new(path, input.Length, await ContentHash.Xxh3Async(input, TestContext.Current.CancellationToken));
+        return new(path, input.Length, await FileFingerprint.Xxh3Async(input, TestContext.Current.CancellationToken));
     }
 
     private static string TestRoot() => Path.Combine(Path.GetTempPath(),

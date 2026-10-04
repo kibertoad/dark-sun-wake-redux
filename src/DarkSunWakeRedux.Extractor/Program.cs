@@ -1,6 +1,8 @@
 using System.Reflection;
 using DarkSunWakeRedux.Extractor;
 using DarkSunWakeRedux.Resources;
+using RefurbishedDinosaurs.Core.Assets;
+using RefurbishedDinosaurs.LegacyFormats;
 
 return await RunAsync(args);
 
@@ -10,7 +12,7 @@ static async Task<int> RunAsync(string[] args)
     {
         if (args.Length == 0 || args[0] is "--help" or "-h") return Usage();
         var command = args[0].ToLowerInvariant();
-        var output = Option(args, "--output") ?? OriginalContent.DefaultAssetPackPath();
+        var requestedOutput = Option(args, "--output");
         var editions = LoadManifests();
 
         if (command == "list-editions")
@@ -19,27 +21,54 @@ static async Task<int> RunAsync(string[] args)
             return 0;
         }
         if (command == "verify-pack")
-            return Report(await OriginalContent.VerifyInstalledAsync(output), $"Verified asset pack at {output}");
+        {
+            // Resolved only here: the per-user default fails where no local application data folder
+            // exists, which must not stop the commands that never touch the pack.
+            var packOutput = requestedOutput ?? OriginalContent.DefaultAssetPackPath();
+            var verification = await OriginalContent.VerifyInstalledAsync(packOutput);
+            if (!verification.IsValid)
+            {
+                foreach (var issue in verification.Issues)
+                    Console.Error.WriteLine($"[{issue.Problem}] {issue.Detail}");
+                return 3;
+            }
+            Console.WriteLine($"Verified asset pack at {packOutput}");
+            return 0;
+        }
 
         var source = Option(args, "--source");
         if (string.IsNullOrWhiteSpace(source))
             return Fail("source_required", "--source must name a legally owned GOG installation.", 64);
 
-        var identification = await OriginalContent.IdentifyAsync(source, editions);
+        var identification = await AssetVerifier.IdentifyAsync(source, editions);
         if (!identification.IsSupported)
         {
+            if (identification.IsAmbiguous)
+            {
+                // Two edition manifests describe this copy; they need a file that tells them apart.
+                Console.Error.WriteLine("[edition_ambiguous] The selected source matches more than one edition: " +
+                    string.Join(", ", identification.Matches.Select(edition => edition.SourceEdition)) + ".");
+                return 2;
+            }
             Console.Error.WriteLine("The selected directory does not match a supported edition.");
-            return Report(identification.Diagnostics, null, 2);
+            if (identification.Mismatches.Count == 0)
+                Console.Error.WriteLine("[source_editions_missing] The Extractor contains no supported-edition manifests.");
+            foreach (var mismatch in identification.Mismatches)
+            foreach (var issue in mismatch.Issues)
+                Console.Error.WriteLine($"[{issue.Problem}] {mismatch.Edition.SourceEdition}: " +
+                    (issue.Path is null ? issue.Detail : $"{issue.Path}: {issue.Detail}"));
+            return 2;
         }
+        var supported = identification.Edition!;
         if (command == "verify-source")
         {
-            Console.WriteLine($"Verified {identification.Edition!.SourceEdition}.");
-            Console.WriteLine($"Source fingerprint: {identification.Edition.Fingerprint()}");
+            Console.WriteLine($"Verified {supported.SourceEdition}.");
+            Console.WriteLine($"Source fingerprint: {supported.Fingerprint()}");
             return 0;
         }
         if (command == "inventory-source")
         {
-            var inventory = SourceCorpusInventory.Read(source, identification.Edition!);
+            var inventory = SourceCorpusInventory.Read(source, supported);
             foreach (var group in inventory.Records.GroupBy(record => record.Disposition)
                          .OrderBy(group => group.Key))
                 Console.WriteLine($"{group.Key}: {group.Count()} file(s)");
@@ -51,9 +80,10 @@ static async Task<int> RunAsync(string[] args)
         }
         if (command != "extract") return Usage();
 
+        var output = requestedOutput ?? OriginalContent.DefaultAssetPackPath();
         var version = Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "unknown";
         var manifest = await AssetPackInstaller.InstallAsync(output, staging =>
-            StartupAssetExtractor.WritePackAsync(source, staging, identification.Edition!, version));
+            StartupAssetExtractor.WritePackAsync(source, staging, supported, version));
         Console.WriteLine($"Installed verified asset pack for {manifest.SourceEdition} at {output}.");
         Console.WriteLine($"Extracted {manifest.Files.Count} file(s) transactionally.");
         return 0;
@@ -65,7 +95,7 @@ static async Task<int> RunAsync(string[] args)
     }
 }
 
-static SourceManifest[] LoadManifests()
+static AssetManifest[] LoadManifests()
 {
     var assembly = Assembly.GetExecutingAssembly();
     return assembly.GetManifestResourceNames()
@@ -74,24 +104,9 @@ static SourceManifest[] LoadManifests()
         .Select(name =>
         {
             using var stream = assembly.GetManifestResourceStream(name)!;
-            return SourceManifest.Load(stream);
+            return OriginalContent.LoadEdition(stream);
         })
         .ToArray();
-}
-
-static int Report(
-    IReadOnlyList<ContentDiagnostic> diagnostics,
-    string? success,
-    int errorCode = 3)
-{
-    if (diagnostics.Count == 0)
-    {
-        if (success is not null) Console.WriteLine(success);
-        return 0;
-    }
-    foreach (var diagnostic in diagnostics)
-        Console.Error.WriteLine($"[{diagnostic.Code}] {diagnostic.Message}");
-    return errorCode;
 }
 
 static int Fail(string code, string message, int exitCode)

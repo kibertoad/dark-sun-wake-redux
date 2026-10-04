@@ -1,5 +1,6 @@
 using System.Text.Json;
 using DarkSunWakeRedux.Resources;
+using RefurbishedDinosaurs.Core.Assets;
 
 if (args.Length == 2 && args[0].Equals("fli-check", StringComparison.OrdinalIgnoreCase))
     return FliInspection.Run(args[1]);
@@ -275,7 +276,7 @@ if (args.Length == 2 && args[0].Equals("font-catalog", StringComparison.OrdinalI
                     .Select((glyph, character) => glyph == character)
                     .Count(matches => matches),
                 distinctMappedGlyphs = font.CharacterMap.Distinct().Count(),
-                characterMapXxh3 = ContentHash.Xxh3(font.CharacterMap.ToArray()),
+                characterMapXxh3 = FileFingerprint.Xxh3(font.CharacterMap.ToArray()),
                 distinctPixelIndices = font.Glyphs.SelectMany(glyph => glyph.Pixels)
                     .Distinct().Count(),
                 minimumPixelIndex = font.Glyphs.SelectMany(glyph => glyph.Pixels)
@@ -563,10 +564,10 @@ if (args.Length == 3 && args[0].Equals("unlzexe", StringComparison.OrdinalIgnore
         {
             packedPath,
             packedSize = packed.Length,
-            packedXxh3 = ContentHash.Xxh3(packed),
+            packedXxh3 = FileFingerprint.Xxh3(packed),
             outputPath,
             unpackedSize = unpacked.Length,
-            unpackedXxh3 = ContentHash.Xxh3(unpacked)
+            unpackedXxh3 = FileFingerprint.Xxh3(unpacked)
         }, new JsonSerializerOptions { WriteIndented = true }));
         return 0;
     }
@@ -874,7 +875,7 @@ foreach (var path in Directory.EnumerateFiles(root, "*", SearchOption.AllDirecto
     {
         path = Path.GetRelativePath(root, path).Replace('\\', '/'),
         size = stream.Length,
-        xxh3 = await ContentHash.Xxh3Async(stream)
+        xxh3 = await FileFingerprint.Xxh3Async(stream)
     });
 }
 Console.WriteLine(JsonSerializer.Serialize(new { root, files }, new JsonSerializerOptions { WriteIndented = true }));

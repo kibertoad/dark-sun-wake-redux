@@ -1,4 +1,5 @@
-using DarkSunWakeRedux.Resources;
+using RefurbishedDinosaurs.Core.Assets;
+using RefurbishedDinosaurs.Core.IO;
 
 namespace DarkSunWakeRedux.Extractor;
 
@@ -19,17 +20,17 @@ public sealed record SourceCorpusInventory(IReadOnlyList<SourceCorpusInventoryRe
     public bool IsComplete => Records.All(record =>
         record.Disposition != SourceCorpusDisposition.Unrepresented);
 
-    public static SourceCorpusInventory Read(string root, SourceManifest manifest)
+    public static SourceCorpusInventory Read(string root, AssetManifest manifest)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(root);
         ArgumentNullException.ThrowIfNull(manifest);
         manifest.Validate();
         var fullRoot = Path.GetFullPath(root).TrimEnd(
             Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar) + Path.DirectorySeparatorChar;
-        var included = manifest.Files.Select(file => SourceManifest.Normalize(file.Path))
+        var included = manifest.Files.Select(file => PortableAssetPath.Relative(file.Path))
             .ToHashSet(StringComparer.OrdinalIgnoreCase);
         var records = Directory.EnumerateFiles(fullRoot, "*", SearchOption.AllDirectories)
-            .Select(path => SourceManifest.Normalize(Path.GetRelativePath(fullRoot, path)))
+            .Select(path => Path.GetRelativePath(fullRoot, path).Replace('\\', '/'))
             .Order(StringComparer.OrdinalIgnoreCase)
             .Select(path => new SourceCorpusInventoryRecord(path,
                 included.Contains(path) ? SourceCorpusDisposition.ImmutableGameData : ClassifyExcluded(path)))

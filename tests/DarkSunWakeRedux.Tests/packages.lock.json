@@ -115,10 +115,26 @@
         "resolved": "0.10.4",
         "contentHash": "WYnil3DhQHzjCY0dM9I2B3r1vWip90AOuQd25KE4NrjPQBg0tBJFluRLm5YPnO5ZLDmwrfosY8jCQGQRmWI/Pg=="
       },
+      "RefurbishedDinosaurs.Core": {
+        "type": "Transitive",
+        "resolved": "2.0.0",
+        "contentHash": "O03uMOGp38jEumFKpw2svP4mtDbd/dwKG3j4D2m/b+22l164iZLuqsS1VQvdnoXrA0nFgR2dzXPyUNyQgvugOw==",
+        "dependencies": {
+          "System.IO.Hashing": "10.0.12"
+        }
+      },
+      "RefurbishedDinosaurs.LegacyFormats": {
+        "type": "Transitive",
+        "resolved": "2.0.0",
+        "contentHash": "skANV6TEw9vlWXaCqnjkxeh/3IB/kdFOMJSrLuQb84bYTFUPXtyCsJNeAL/krKW+vz4Nfdn6D0AOdeMwwmDsVQ==",
+        "dependencies": {
+          "RefurbishedDinosaurs.Core": "2.0.0"
+        }
+      },
       "RefurbishedDinosaurs.Media.Fli": {
         "type": "Transitive",
-        "resolved": "1.0.0",
-        "contentHash": "wBZqGCLPCQpYwK7r+9f4qJ6jZpHfNYiRnWOd/S+jlE7HDsrw+Eu5vzPzmbB1M1yv6GJoJA00V6mdIPA7FN837A=="
+        "resolved": "2.0.0",
+        "contentHash": "Bgd2asHVIo4f8Yp8kPIuaLzNQTn/XSFeNfTLI2jH0DdtcKacFArrFu/bvrqqQVMhCnkNjPloJepdDXV1mmQdXg=="
       },
       "System.IO.Hashing": {
         "type": "Transitive",
@@ -207,7 +223,8 @@
       "darksunwakeredux.extractor": {
         "type": "Project",
         "dependencies": {
-          "DarkSunWakeRedux.Resources": "[1.0.0, )"
+          "DarkSunWakeRedux.Resources": "[1.0.0, )",
+          "RefurbishedDinosaurs.Core": "[2.0.0, 2.0.0]"
         }
       },
       "darksunwakeredux.game": {
@@ -215,20 +232,22 @@
         "dependencies": {
           "DarkSunWakeRedux.Core": "[1.0.0, )",
           "DarkSunWakeRedux.Resources": "[1.0.0, )",
-          "MonoGame.Framework.DesktopGL": "[3.8.5.1, )"
+          "MonoGame.Framework.DesktopGL": "[3.8.5.1, )",
+          "RefurbishedDinosaurs.Core": "[2.0.0, 2.0.0]"
         }
       },
       "darksunwakeredux.inspect": {
         "type": "Project",
         "dependencies": {
           "DarkSunWakeRedux.Resources": "[1.0.0, )",
-          "RefurbishedDinosaurs.Media.Fli": "[1.0.0, )"
+          "RefurbishedDinosaurs.Media.Fli": "[2.0.0, 2.0.0]"
         }
       },
       "darksunwakeredux.resources": {
         "type": "Project",
         "dependencies": {
-          "System.IO.Hashing": "[10.0.12, )"
+          "RefurbishedDinosaurs.Core": "[2.0.0, 2.0.0]",
+          "RefurbishedDinosaurs.LegacyFormats": "[2.0.0, 2.0.0]"
         }
       }
     }

@@ -1,6 +1,7 @@
 {
   "gameId": "dark-sun-wake-redux",
   "sourceEdition": "GOG English build 52095422060333615 (product 1432903719)",
+  "sourceKind": "directory",
   "files": [
     {
       "path": "1.FLI",

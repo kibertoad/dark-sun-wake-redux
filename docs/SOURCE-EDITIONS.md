@@ -17,8 +17,13 @@ runtime defaults or committed content.
 | Underlying DOS revision | Version 1.1, dated 1994-12-14 (`BLD-GOG-EN-1.1`); physical retail-media provenance remains unknown |
 | Manifest | `src/DarkSunWakeRedux.Extractor/source-manifests/gog-en-52095422060333615.json` |
 
-The recognition manifest records exact paths, sizes, and XXH3-128 values for all
-233 immutable baseline inputs: 26 GFF containers, 147 VOC files, five FLI
+The recognition manifest is a `RefurbishedDinosaurs.Core` `AssetManifest` with
+`sourceKind` `directory`. Its `xxh3` values are the ones the build manifest gives,
+and `DarkSunWakeRedux.Inspect <directory>` prints the size and `xxh3` of every
+file. The Extractor tries every manifest it embeds, reports why each failed, and
+refuses a copy that more than one manifest matches, because those manifests do
+not tell the editions apart. It records exact paths, sizes, and XXH3-128 values
+for all 233 immutable baseline inputs: 26 GFF containers, 147 VOC files, five FLI
 files, 40 music tracks, the disc image/descriptor, original helper executables,
 and static configuration/data files. `inventory-source` additionally assigns
 each of the 279 currently installed files an explicit disposition: game data,

@@ -2,6 +2,7 @@
   <PropertyGroup><OutputType>Exe</OutputType></PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="../DarkSunWakeRedux.Resources/DarkSunWakeRedux.Resources.csproj" />
+    <PackageReference Include="RefurbishedDinosaurs.Core" Version="[$(RefurbishedDinosaursVersion)]" />
     <EmbeddedResource Include="source-manifests/*.json" />
   </ItemGroup>
 </Project>
