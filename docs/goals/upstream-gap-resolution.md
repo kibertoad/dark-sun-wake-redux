@@ -81,12 +81,12 @@ FND-CONFIG-174 normalized-result controls now retain zero returns under both zer
 ## Handover
 
 - Stage: Slices; research-side tooling. Condition/Scope unchanged. No game spec, parity, original run or emulation changed.
-- Last gate: 2026-10-04 Test.ps1 -NoRestore passed, artifacts/engine73/origin-root-gate.log. Reader 2.1.0 / engine 7.3.0 / protocol 3 remain adopted; exact locks verified and other pins unchanged.
+- Last gate: 2026-10-04 Test.ps1 -NoRestore passed, artifacts/engine73/normalizer-root-gate.log. Reader 2.1.0 / engine 7.3.0 / protocol 3 remain adopted; exact locks verified and other pins unchanged.
 - Current acceptance: Gap 33 now has bounded source result-flow controls and focused issue 200, but remains open for full source acceptance. Gap 32/issue 198 remains open. Gap 35 and issue 145 remain completed; broader Gap 40 stays open.
-- Unfinished: preserve local result-origin730 configs/reports and ignored engine73 result-origin logs/drivers. FND-CONFIG-174/175 normalizer/discarded-result controls remain to run. Earlier guard-order730 controls and whole-query qualifications remain binding.
+- Unfinished: preserve local result-origin730 configs/reports and ignored engine73 result-origin logs/drivers. FND-CONFIG-174 bounded normalizer controls now pass with dropped paths explicitly retained; FND-CONFIG-175 preservation controls remain to run. Preserve normalizer configs/reports and engine73/normalizer.log. Earlier guard-order730 controls and whole-query qualifications remain binding.
 - Blockers: Gap 33 needs recursive graph/selector producers, finite valid-state evidence and complete caller/leaf controls; issue 200 tracks the re-encoding recipe. Gap 32 needs actual bracket/callee and target producers. Gap 37 needs connected route evidence; Gap 31 awaits issue 190's recipe; Gap 40 needs complete predecessors. No stitching, invented memory or higher caps.
 - Process audit: no confirmed session-owned orphan; reusable MSBuild and unrelated/uncertain work preserved. No pushes occurred.
-- Next: Gap 33/FND-CONFIG-174/175 normalized/discarded nested results and preservation conditions, using bounded source controls.
+- Next: Gap 33/FND-CONFIG-175 preservation conditions and copy bypass versus performed-copy results; revisit FND-CONFIG-174 gated gaps only with new producer evidence.
 - Next: Gap 34 output cardinality versus input bounds and append capacity, with producer/native qualifications.
 - Next: Gap 32/issue 198 and Gap 37/issue 143 complete connected coverage only with new producer evidence or supported recipes; Gap 31 only after new response/delivery.
 - Next: Gap 40 predecessors; Gap 29 no-op controls and FND-SCRIPT-019 bounded fill inputs.
