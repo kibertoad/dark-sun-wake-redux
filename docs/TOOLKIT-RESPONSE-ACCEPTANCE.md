@@ -179,3 +179,65 @@ Next acceptance needs a delivered supported way to compose observed frames
 with bounded saved-memory scopes, then the remaining prefix coverage. Do not
 retry the same capped connected body with larger bounds, silently drop scopes,
 or count an unreleased synthetic pass as consumer closure.
+
+## 2026-10-04: downstream-request tracker cleanup
+
+The owner explicitly requested reviewing the open downstream-request issues
+from Dark Sun, closing resolved or mostly resolved trackers and replacing the
+latter with focused remaining upstream asks. The label inventory contained
+108, 109, 110, 111, 113 and 114. Issue 111's requests are from sub-culture-max
+and enemy-reinfestation, so it was left open and unchanged.
+
+| Original | Disposition | Remaining work |
+|---|---|---|
+| 108 shared runtime | Closed completed for delivered upstream feature work. | Dark Sun input migration remains consumer work; no toolkit defect or new implementation ask was found. R1/R2 accepted, R3 not applicable. |
+| 109 hardware/segments | Closed as superseded, not as full consumer acceptance. | [143](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/143): transfer starting-state support/decision and placement acceptance; Gap 39 remains accepted closed. |
+| 110 argument frames | Closed as superseded. | [144](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/144): release PR 142's consistent observed-width fields and verify the Dark Sun case. |
+| 113 relational controls | Closed as superseded. | [145](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/145): observed frame/saved-memory scope composition, with synthetic reproduction and consumer acceptance. |
+| 114 loop reporting | Closed completed for delivered upstream feature work. | Local Gap 29 source-case validation remains; no demonstrated outstanding upstream implementation ask. |
+
+Before creating replacements, all open issues and focused all-state searches
+were checked. The overlapping reports were the three original trackers and
+closed issue 73; there was no separate focused issue for the remaining asks.
+PRs 140 and 142 were still open. Follow-ups link their existing implementation
+work and request delivery/acceptance, rather than duplicate implementation.
+
+Issue 143 explicitly preserves the consumer provenance needed before any new
+entry-memory design decision; it does not call unresolved placement a bug or
+demand that input unconditionally. Issue 144 retains open bypass frames and
+the distinction between agreed frames and consistent observed reads. Issue 145
+includes the candidate scope interaction, not just a request to rerun tests.
+
+The resulting open labelled set was verified as 111, 143, 144 and 145. Closure
+comments explain the handoffs and retained local work. Administrative closure
+does not change gaps.md, any goal acceptance-ledger status, a spec claim or
+parity. Local gaps 29, 35, 37 and 40, and the other consumer-only relational
+cases, remain open until their entire contracts pass. No pushes occurred.
+
+## 2026-10-04: compact published bridge removes wrapper transport failure
+
+Reader 2.1.0 / published engine 6.1.1 was tested in the isolated, verified
+installation, with no candidate source override. The source identity and
+Bootstrap-Project.ps1 -ValidateFactsOnly gate pass. The FND-CONFIG-191 wrapper
+query declares both actual validator/getter traversals, no call models, and
+retains the existing 200-step, 64-path, 20000-total-step and visit-limit-4 bounds.
+The same config was sent through adopted reader 2.0.0 / engine 4.0.0 and the
+isolated published pair. The reader's spawn call was observed without changing
+its arguments, output cap, timeout or returned data.
+
+The adopted bridge reproduces ENOBUFS at its unchanged 33554432-byte limit,
+producing no complete report. The published compact bridge carries 15673737
+bytes and parses a report; formatting that returned object with two-space
+indentation would take 36502840 bytes. This demonstrates the transport benefit
+without claiming the old aborted report was semantically compared in full.
+
+The produced report retains a step-limit stop and completeWithinModel=false,
+despite no dropped-path gaps. Native reachability stays unconfirmed. Producing
+a report is not complete wrapper/primitive coverage or closure of Gap 27.
+This supersedes only the historical inability to obtain that bounded broad
+report; original-case control coverage and adoption remain separate work.
+
+Local reproduction: prepare-compact-wrapper.py and compact-wrapper.log under
+artifacts/issue-response-review; configs/reports and the driver stay in
+GAME_DIR/analysis/reporter-audit/compact-wrapper-controls. Production pins,
+original content, game spec/parity and runtime remain untouched.
