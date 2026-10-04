@@ -75,13 +75,13 @@ Gap 31's connected prefix stops at INT 33h before ordered output stores. The sep
 ## Handover
 
 - Stage: Slices; research-side tooling. Condition/Scope unchanged. No game spec, parity, original run or emulation changed.
-- Last gate: 2026-10-04 Test.ps1 -NoRestore passed, artifacts/engine73/root-gate.log. Published reader 2.1.0 / engine 7.3.0 / protocol 3 adopted with exact locks and source/installed integrity checks; complete published suite and consumer controls pass. Other pins unchanged.
-- Current acceptance: Gap 35 closed in REPORTER-CASE-AUDIT. Focused issue 145 closed after verified delivery; Gap 40 stays open. Issue 144 remains completed with additional consumer feedback; issue 143 stays open. Original broad trackers remain closed; unrelated issue 111 untouched.
-- Unfinished: Gap 31 controls retained only in ignored/local artifacts (poll-alias-controls); no closure or upstream request claimed. Gap 29 source no-op input case remains open. Preserve loop-progress-controls and engine73 consumer logs rather than repeat capped whole queries.
-- Blockers: Gap 37 needs supported producer-memory inputs or complete connected-route evidence; Gap 40 needs complete predecessor coverage. Observed frames do not supply memory. Do not stitch windows, omit required scopes or raise caps. Native runtime remains owner-only.
+- Last gate: 2026-10-04 Test.ps1 -NoRestore passed, artifacts/engine73/continuation-root-gate.log. Reader 2.1.0 / engine 7.3.0 / protocol 3 remain adopted; exact locks and source checks pass. Other pins unchanged.
+- Current acceptance: Gap 35 and focused issue 145 remain completed; broader Gap 40 remains open. Issue 143 has the new observed-frame consumer response and remains open. Gap 31 has focused upstream issue 190 after duplicate review; it remains open.
+- Unfinished: Gap 31's bounded controls and missing connected acceptance are recorded in TOOLKIT-RESPONSE-ACCEPTANCE, with local poll-alias-controls and ignored engine73 logs retained. Gap 29 source no-op case remains open. No whole-query closure follows from helper or isolated controls.
+- Blockers: Gap 37 needs the connected caller route/depth and later writer/external-input evidence requested by issue 143. Gap 31 needs the supported recipe/design response on issue 190. Gap 40 needs complete predecessor coverage. Do not stitch windows, invent prefix memory, omit scopes or raise caps.
 - Process audit: no confirmed session-owned orphan; unrelated/uncertain work preserved. No pushes occurred.
-- Next: Gap 31/FND-CONFIG-164 output aliasing and BX-derived poll predicate; continue retained bounded controls with explicit interrupt dependency.
-- Next: Gap 40 complete predecessor contract after the delivered frame/scope composition; keep whole controls undecided until full exit passes.
-- Next: Gap 37/issue 143 connected producer route and hardware placement with usable input evidence.
+- Next: Gap 32/FND-CONFIG-165/167/171 guard/access ordering and checked-target reload provenance, with whole positive and stopped/invalidated controls.
+- Next: Gap 40 complete predecessor contract after delivered frame/scope composition; retain undecided whole controls.
+- Next: Gap 37/issue 143 connected route and producer evidence; Gap 31/issue 190 only after a new supported recipe or delivery.
 - Next: Gap 29 source no-op controls and FND-SCRIPT-019 bounded fill inputs under ADR 0008.
 - Next: Gap 36/FND-CONFIG-186/187 dispatch, FND-CONFIG-189 snapshots, FND-CONFIG-191 reference-scan controls and Gap 44 capture diagnostics.
