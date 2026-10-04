@@ -292,3 +292,13 @@ Engine 6.2.0 is adopted with reader 2.0.0/protocol 3. Exact source integrity,
 published-suite and Dark Sun argument-width acceptance plus Engine upgrades
 migration checks are recorded in TOOLKIT-RESPONSE-ACCEPTANCE.md. Other pins
 remain unchanged. Full Gap 35 acceptance remains separate.
+
+## Reader 2.1.0 / engine 7.3.0 adoption, 2026-10-04
+
+Published releases are adopted with exact registry locks and installed-file
+integrity verification. The published engine suite and Dark Sun frame/scope,
+full consumed-argument and retained runtime-mode controls pass. Detailed source,
+migration and acceptance qualifications are in TOOLKIT-RESPONSE-ACCEPTANCE.md.
+Gap 35 closes; issue 145's composition exit passes; Gap 40 and issue 143 remain
+open for their separate whole-query contracts. Prepared protocol 3, checker,
+.NET packages, configured template and vendored rules stay unchanged.

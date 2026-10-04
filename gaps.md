@@ -4,14 +4,14 @@ These are the remaining requests for the restoration template and shared analysi
 tooling. They describe tooling behavior, not claims about the original game.
 
 Latest adopted template, toolkit and pinned-rule revisions and their capability
-dispositions are recorded in docs/TEMPLATE-ACCEPTANCE.md. Published reader 2.0.0,
-checker 0.2.0 and engine 6.2.0 are adopted with exact registry locks;
+dispositions are recorded in docs/TEMPLATE-ACCEPTANCE.md. Published reader 2.1.0,
+checker 0.2.0 and engine 7.3.0 are adopted with exact registry locks;
 Capstone 5.0.7 and pypcode 4.0.0 are locked runtime dependencies;
 the reviewed release removes handwritten instruction semantics;
 tools/tool-dependencies.mjs verifies the installed packages. Candidate
 capabilities still require reviewed merge and registry delivery. Game-specific
 requests close only after their own acceptance cases pass. Gaps 1, 2, 3, 4, 8,
-10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 30, 38 and 39
+10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 30, 35, 38 and 39
 are removed after verification with the adopted tools; unsupported queries and
 partial searches remain open.
 Delivered capabilities, closure evidence and remaining limits are recorded in
@@ -258,21 +258,6 @@ while the copy advances by the prefix length. Shared summaries should
 track the base of each write and signed or wrapped length gates; a limit
 argument alone does not prove termination at the conventional boundary
 or valid storage on every branch.
-
-## 35. Reconstruct stack arguments through the callee before grouping pointers
-
-FND-CONFIG-179 supersedes FND-CONFIG-169 after FND-CONFIG-180
-checks the callee's argument widths. Grouping pushes by an adjacent
-segment fixup had assigned the mask word to the callback offset. The
-callee instead consumes a word mask, a far callback and a word identifier.
-Its forwarding to separate setters confirms those boundaries.
-
-**Request:** shared call reports should map pushed words into the callee's
-BP-relative argument widths, accounting for near/far return frames and
-explicit widening. A relocated segment operand locates a segment; it does
-not by itself determine the surrounding argument boundary. Keep competing
-groupings open until the consuming widths and forwarding settle them, and
-supersede incorrect findings while updating active citations.
 
 ## 36. Preserve overlapping memory access widths across call summaries
 

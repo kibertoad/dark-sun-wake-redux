@@ -1,11 +1,11 @@
 # Implementation plan
 
-## Argument-width consistency tooling adoption
+## Published symbolic-frame tooling adoption
 
-- **Outcome.** Adopt published engine 6.2.0 with protocol-3 reader 2.0.0, distinguishing consistent observed argument reads from fully settled frames.
-- **Evidence.** Toolkit issue 144, merged PR 142 and release bf46e8aa2a2d4dbe35a65fe8bee86a7d279323c6; FND-CONFIG-179/180 are read-only consumer inputs.
-- **Acceptance.** The known registration call reports observed widths 4/2/4 without inventing bypass reads. Conflicts, no-read and limit controls remain explicit; consistency settles no open frame. Migrate per-path conditionalModel scope references and retain Ghidra fall-through disagreements. Preserve other package pins and all game evidence and parity statuses.
-- **Tests and Exit.** Verify published archive hashes and source, run the published source suite against the installed engine, synthetic conflict/bypass/no-read controls, the bounded Dark Sun caller/callee case and canonical repository gate. Record full gap acceptance separately from this release adoption; no gameplay or original runtime changes.
+- **Outcome.** Adopt engine 7.3.0 and reader 2.1.0 for protocol 3: observed narrower frames compose with symbolic memory scopes; site-width provenance and conditional caller-continuation inventories are available.
+- **Evidence.** Release cfe7c4e8d97c521620059f2a35d4d25c5dc4db09, ADR 0012/0013 and toolkit response 145. Existing CONFIG/SCRIPT findings are read-only consumer inputs.
+- **Acceptance.** Keep symbolic-base intervals and unknown concrete offsets explicit, reject uncertain scope overlap, and preserve call-model/native qualifications. Retain changed Ghidra jump/edge fall-through disagreements. Rerun affected frame, argument, scope, loop, mode and caller-continuation controls without larger defaults or invented frames. Whole gaps close only against their full recorded contracts.
+- **Tests and Exit.** Registry hash/source verification, complete installed release suite and bridge, consumer positive and nonvacuous rejection/limit controls, canonical validation. Preserve other dependency pins and all game evidence/parity statuses; no original runtime or gameplay changes.
 
 This file says what the project intends and what is true now, following the
 [work protocol](../vendor/upstream/work-protocol.md). It holds no dated

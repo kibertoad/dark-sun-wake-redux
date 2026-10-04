@@ -280,3 +280,83 @@ No game spec, parity status, gameplay or original runtime changes.
 
 Canonical Test.ps1 -NoRestore passes: artifacts/issue144/root-gate.log. Issue 144
 is closed as completed after the verified response; the broader ledger is unchanged.
+
+## Published reader 2.1.0 / engine 7.3.0 adoption, 2026-10-04
+
+Exact npm integrity and hashed Python requirements now pin reader 2.1.0 and
+engine 7.3.0. The wheel, sdist, installed production/test packages and release
+cfe7c4e8d97c521620059f2a35d4d25c5dc4db09 agree byte for byte for engine code;
+the locked npm tarball agrees with installed reader files. The published engine
+suite passes with the installed package, including the Node PE bridge test,
+without PYTHONPATH source fallback. Verification logs are under
+artifacts/engine73/. Checker 0.2.0, runtime dependency pins, template, local
+upstream rules and shared .NET packages remain unchanged.
+
+The intervening releases add observed entry frames, caller-byte read provenance,
+caller-return inventory continuation, Ghidra flow refinements and symbolic-base
+memory scopes. Prepared protocol remains 3. Scope reports now include interval;
+symbolic offset/linear bounds are null. Consumer assertions use interval rather
+than treating those null fields as concrete addresses. Engine 7's Ghidra report
+changes include ghidraContinues and falls-through/basis fields; local wrappers
+do not consume the changed count or assume unconditional jumps fall through.
+The published tests exercise the revised agreement contract. Unknown segments,
+possibly overlapping scope bases, partial preservation, alias writes, wrong
+writers and entry caps remain conservative failures or undecided results.
+
+### Gap 35: entire tooling request accepted
+
+FND-CONFIG-179/180 remain read-only acceptance inputs. Their existing supersession
+and active citations already replace the incorrect historical grouping.
+The actual registration caller now exposes every consumed offset/width:
+window 0/4, identifier 4/2, callback 6/4 and mask 10/2. Each has positive
+fromCallerOnPaths. Two consuming frames settle with twelve mapped argument
+bytes; two null-window bypass frames stay open, so site agreed remains false
+while widthsConsistent is true. Callback grouping uses two adjacent words at
+6 and 8; mask is its own word at 10. The former grouping starting at 8 is absent.
+
+This case conditionally models the two setter calls as balanced far returns,
+preserving the explicitly scoped saved frame/arguments and stated registers.
+DS and SS are concrete query hypotheses; SP and BP stay unknown. These models
+are not native setter-preservation evidence. Removing scopes loses the mask's
+caller-byte provenance and settles no registration frame; a one-step cap
+removes the known call witness. The separate unmodeled registration case retains
+window and identifier derived reads in the real resident setter, two frames
+down. It is not stitched to the modeled continuation. Published near/far,
+address-wrap, widening, forwarding, overlapping-width, slot-reuse and unread
+controls pass. Together these satisfy the shared reporting request; Gap 35 is
+removed. Whole caller coverage, native execution and successful registration
+are not established: path gaps and bypasses remain explicit.
+
+Local configurations/reports stay under
+GAME_DIR/analysis/reporter-audit/issue-response-review/; drivers and logs are
+artifacts/engine73/verify-gap35-exit.mjs, gap35-exit.log and arguments.log.
+
+### Issue 145 delivered; Gap 40 remains open
+
+The exact issue reproducer now establishes its observed frame and holds its
+control, with no concrete root SP/BP. The original late-entry cleanup cases
+no longer stop at unresolved scope bases. Their prefix still exceeds the
+recorded path budget, so entryFrame is not established for that entry.
+A verified post-prologue instruction boundary instead gives one prefix path,
+SP -18 and BP -2 relative to unknown root SP, established in all three cases.
+Scoped suffixes retain assignment provenance and return on every retained path.
+First-failure, second-failure and two-acquisition whole controls are still
+undecided: path drops and modeled bypasses prevent whole-query acceptance.
+Neither the limits nor original call hypotheses were broadened.
+
+The capped prefix fails frame establishment. Removing scopes rejects whole
+acceptance; unknown SS retains the unresolved-scope stop. Published partial,
+wrong-writer, alias and overlap controls pass. This satisfies issue 145's
+composition exit, separately from Gap 40's complete predecessor contract.
+No frame memory is inferred from entryFrame, no native run is claimed, and
+no dropped path is silently accepted. Local reports are under
+GAME_DIR/analysis/reporter-audit/cleanup-predecessor-controls/connected-entry/engine730/;
+source-composition.log and composition-negatives.log record the assertions.
+Issue 143 remains open: observed frames do not supply producer memory or settle
+hardware placement along the incomplete connected route.
+
+Canonical Test.ps1 -NoRestore passes (artifacts/engine73/root-gate.log).
+Retained runtime-mode and loop controls pass again on the new installed engine;
+logs are runtime-regression.log and loop-regression.log. Issue 145 is closed
+with [verified consumer feedback](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/145#issuecomment-5983684370);
+issue 144 has [full Gap 35 feedback](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/144#issuecomment-5983684860).

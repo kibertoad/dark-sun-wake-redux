@@ -43,7 +43,7 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 - Gap 32: open; full request and cited controls in gaps.md.
 - Gap 33: open; full request and cited controls in gaps.md.
 - Gap 34: open; full request and cited controls in gaps.md.
-- Gap 35: open; full request and cited controls in gaps.md.
+- Gap 35: closed; all consumed widths, caller-byte provenance, callback/mask separation, actual setter forwarding and scoped/unscoped/capped controls pass with reader 2.1.0/engine 7.3.0; full contract in REPORTER-CASE-AUDIT.
 - Gap 36: open; full request and cited controls in gaps.md.
 - Gap 37: open; full request and cited controls in gaps.md.
 - Gap 39: closed; adopted effective-segment/alias synthetic suite and all four original BX access sites pass the complete classification/provenance/preservation contract. Closure audit: REPORTER-CASE-AUDIT. Native storage safety remains separate.
@@ -68,7 +68,7 @@ The reviewed PR 60 shared path budget prevents the former original MENU candidat
 
 The full FND-CONFIG-192 symbolic query with explicit DS/SS/SP and unknown input memory stops or drops every path under its recorded bounds. Hardware sites reached stay unresolved. Producer-established root fields cannot be supplied directly through the current entry-memory API (none exists); ADR 0008 forbids invented path hypotheses. Toolkit issue 109 now supplies the connected producer-trace/register-only narrow-entry recipe. The bounded producer-entry attempt and remaining route coverage are recorded in TOOLKIT-RESPONSE-ACCEPTANCE. Retry only with new usable inputs, a justified narrower entry or the actual connected caller route; do not raise bounds or stitch windows.
 
-FND-CONFIG-199 first-request failure, second failure and two-acquisition suffix cases retain per-byte cleanup assignment differences under explicit SS/BP scopes. A new whole-prologue query returns on every retained path, but global controls remain undecided because paths are dropped and returned bypasses cross modeled callees. Candidate PR 140 entryFrame cannot compose with the required scopes: unknown entry SP/BP makes scope addresses unresolved, and explicit SP/BP is forbidden. Removing scopes instead leaves prefix path-limit gaps and loses provenance. Do not fabricate a frame, drop the scopes or accept occurrences as held whole-query controls. Unscoped/unread/capped/wrong-writer controls pass. Gap 40 stays open; issue 113 now has the exact candidate diagnostic and a synthetic reproducer. Retry requires delivered supported frame/scope composition or fresh bounded input evidence, not larger bounds.
+FND-CONFIG-199 frame/scope composition is delivered in engine 7.3.0. Verified post-prologue entries establish an unknown-root frame and preserve scoped suffix provenance. The original late-entry prefix still drops paths; whole last-writer controls remain undecided even when all retained suffixes return. Gap 40 remains open for complete predecessor coverage. Do not fabricate frame memory, omit required scopes, stitch windows or raise caps to manufacture acceptance.
 
 ## Handover
 
