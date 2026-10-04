@@ -1281,3 +1281,31 @@ Result: artifacts/continuation-budget-delivery/case-controls.log.
 These are installed published-engine controls, with no original execution or
 emulation. Engine 2.0.0 stays adopted pending the outstanding full acceptance
 contracts. No game spec/parity status changed.
+
+## Bounded symbolic graphics primitive, 2026-10-04
+
+An installed-engine 4 query starts FND-CONFIG-192's full local body with explicit
+DS/SS/SP values and otherwise unknown slot/argument/scratch memory. It uses the
+existing primitive limits (200 steps, 16 paths, 5,000 total steps, visit limit 4).
+Four hardware sites are reached across stopped paths. All hardware placements
+remain unresolved because stopped/dropped paths leave coverage open; there is
+no returning path. Step/visit stops and path-limit gaps are explicit. Every
+reached hardware site belongs to the complete static boundary inventory; input
+values remain unknown, output interpretation disclaims rendered/device results,
+and hardware orders stay separate from RAM writes. A one-step control removes
+all hardware witnesses. No dropped path is accepted as a negative observation.
+
+Controls: artifacts/continuation-budget-delivery/primitive-symbolic-controls.log.
+Driver and reports: GAME_DIR/analysis/reporter-audit/engine4-case-controls/
+verify-symbolic.mjs and primitive-symbolic*.json. These are conditional symbolic
+instruction reports, not execution, emulation, accepted buffer state or pixels.
+
+FND-CONFIG-193 supplies root-field producer contracts, but the released tracer
+has register/flag/call/port hypotheses and no entry-memory value input. A producer
+reading alone therefore does not make those memory values available to this
+query. ADR 0008's decision against branch/path hypotheses is respected. The
+supported way to express producer-established slot/stack/scratch values across
+this entry remains a question on toolkit issue 109, rather than an invented
+memory configuration or patched original. Do not repeat this capped full-body
+query without new usable input tooling, an evidence-backed narrower entry or a
+supported producer trace. Gap 37 and engine adoption remain open.
