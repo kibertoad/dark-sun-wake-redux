@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { mkdtempSync, mkdirSync, readFileSync, writeFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { resolve, join } from "node:path";
-import { createHash } from "node:crypto";
+import { sourceXxh3 } from "@scientific-method/executable-reader";
 import { spawnSync } from "node:child_process";
 import { verifyNpmPackages, verifyEngine, enginePython, withEngine, checkerScript } from "../../tools/tool-dependencies.mjs";
 import { run } from "../../tools/evidence/report.mjs";
@@ -29,7 +29,7 @@ test("exact npm lock and installed-version mismatch are rejected", t => {
 test("wrapper routes a synthetic MZ through the installed engine and restores environment", t => {
   const dir=scratch(t), data=Buffer.alloc(512); data.write("MZ");data.writeUInt16LE(1,4);data.writeUInt16LE(4,8);data[64]=0xc3;
   writeFileSync(join(dir,"source.bin"),data);
-  writeFileSync(join(dir,"config.json"),JSON.stringify({source:"source.bin",sourceKind:"mz",sha256:createHash("sha256").update(data).digest("hex"),entry:64,
+  writeFileSync(join(dir,"config.json"),JSON.stringify({source:"source.bin",sourceKind:"mz",xxh3:sourceXxh3(data),entry:64,
     regions:[{name:"synthetic",start:64,end:65,ip:0,segment:4096,entries:[64],evidence:"synthetic MZ"}]}));
   const previous=process.env.EVIDENCE_PYTHON;
   assert.equal(run(["x86-effects",join(dir,"config.json")]).completeWithinModel,true);
@@ -47,7 +47,7 @@ test("pypcode is required and its installed version must match the exact runtime
   const dir=scratch(t); mkdirSync(join(dir,"tools/evidence"),{recursive:true});
   const path=join(dir,"tools/evidence/requirements.txt"), lock=readFileSync(join(root,"tools/evidence/requirements.txt"),"utf8");
   writeFileSync(path,lock.replace(/^pypcode==.*$/m,""));
-  assert.throws(() => verifyEngine(dir,{...process.env,EVIDENCE_PYTHON:enginePython()}), /exactly pin engine, Capstone and pypcode/);
+  assert.throws(() => verifyEngine(dir,{...process.env,EVIDENCE_PYTHON:enginePython()}), /exactly pin engine, Capstone, pypcode and xxhash/);
   writeFileSync(path,lock.replace(/pypcode==\d+\.\d+\.\d+/,"pypcode==99.0.0"));
   assert.throws(() => verifyEngine(dir,{...process.env,EVIDENCE_PYTHON:enginePython()}), /pypcode.*expected 99.0.0/);
 });
@@ -58,7 +58,7 @@ test("installed table continuations keep prefix writes beside the ordinary stopp
   data.set([0xc7,0x06,0x20,0x00,0x01,0x00,0xff,0xe3],64);
   data.set([0xb8,0xff,0xff,0xc3],80);data.writeUInt16LE(16,112);
   writeFileSync(join(dir,"source.bin"),data);
-  const config={source:"source.bin",sourceKind:"mz",sha256:createHash("sha256").update(data).digest("hex"),entry:64,
+  const config={source:"source.bin",sourceKind:"mz",xxh3:sourceXxh3(data),entry:64,
     registers:{ds:8192,ss:12288,sp:65280},regions:[{name:"synthetic",start:64,end:84,ip:0,segment:4096,entries:[64],evidence:"synthetic MZ"}],
     indirectJumps:[{site:70,exhaustive:false,evidence:"synthetic conditional route; selector unknown",table:{start:112,count:1,stride:2,evidence:"synthetic near-word table"}}]};
   const path=join(dir,"config.json");writeFileSync(path,JSON.stringify(config));

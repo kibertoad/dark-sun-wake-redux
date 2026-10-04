@@ -14,6 +14,13 @@ const FILES = [
   ["kibertoad/refurbished-dinosaurs", "website/content/english/pages/work-protocol.md", "vendor/upstream/work-protocol.md"],
   ["kibertoad/refurbished-dinosaurs", "LICENSE", "vendor/upstream/LICENSE"],
 ];
+// The checker is the npm package @scientific-method/standard-checker. CI runs the toolkit's action at a
+// commit; the lock records that commit and the package version it carries, which package.json pins.
+const TOOLKIT = "kibertoad/refurbished-dinosaurs-toolkit";
+const CHECKER = "@scientific-method/standard-checker";
+const CHECKER_MANIFEST = "packages/standard-checker/package.json";
+const ACTION = `${TOOLKIT}/actions/check-documentation@`;
+const VERSION = /^\d+\.\d+\.\d+$/;
 const MAX_FILE = 2 * 1024 * 1024;
 const V1 = /follows version 1(?![0-9]|\.[0-9])/;
 const digest = (bytes) => createHash("sha256").update(bytes).digest("hex");
@@ -25,6 +32,8 @@ function read(path, max = MAX_FILE) {
 }
 export function validateLock(lock) {
   if (lock.standardVersion !== 1 || !Array.isArray(lock.files) || lock.files.length !== FILES.length) throw new Error("Snapshot must pin Standard v1 and all expected source files");
+  const { checker } = lock;
+  if (!checker || checker.repository !== TOOLKIT || !revision(checker.revision) || !VERSION.test(checker.version ?? "")) throw new Error("Snapshot must pin the checker action's full commit and the exact package version it carries");
   const seen = new Set(), revisions = new Map();
   for (const f of lock.files) {
     if (!FILES.some(([repo, source, path]) => f.repository === repo && f.source === source && f.path === path) || seen.has(f.path)) throw new Error("Unknown, duplicate or unsafe snapshot mapping");
@@ -40,15 +49,25 @@ export function verifySnapshot(root = ROOT) {
   const standard = read(resolve(root, "vendor/upstream/documentation-standard.md")).toString("utf8");
   if (!V1.test(standard)) throw new Error("The pinned Standard text no longer identifies version 1; review is required");
   const ci = read(resolve(root, ".github/workflows/ci.yml")).toString("utf8");
-  const pins = ci.split(/\r?\n/).filter(line => line.includes("kibertoad/refurbished-dinosaurs-toolkit/actions/check-documentation@"));
-  if (pins.length !== 1 || !/@[0-9a-f]{40}(?:\s|$)/.test(pins[0])) throw new Error("CI checker action must use an exact commit pin");
+  const pins = ci.split(/\r?\n/).filter((line) => line.includes(ACTION));
+  if (pins.length !== 1 || !pins[0].trim().startsWith(`- uses: ${ACTION}${lock.checker.revision}`) || !/@[0-9a-f]{40}(?:\s|$)/.test(pins[0])) throw new Error("CI checker action differs from the commit the snapshot pins");
+  const pinned = JSON.parse(read(resolve(root, "package.json"), 65536)).devDependencies?.[CHECKER];
+  if (pinned !== lock.checker.version) throw new Error(`package.json must pin ${CHECKER} to exactly ${lock.checker.version}, the version the CI action's commit carries`);
   return lock;
+}
+// The installed checker, after tool-dependencies.mjs has checked the npm lock and installation. It
+// must be the version the lock pins, so a stale node_modules cannot check against other rules than CI.
+export function checkerEntry(lock, script = checkerScript) {
+  const entry = script();
+  const manifest = JSON.parse(read(resolve(dirname(entry), "..", "package.json"), 65536));
+  if (manifest.name !== CHECKER || manifest.version !== lock.checker.version) throw new Error(`Installed ${CHECKER} is ${manifest.version}, not the pinned ${lock.checker.version}; run ./tools/Restore-ToolDependencies.ps1`);
+  return entry;
 }
 // The checker inputs the CI step gives under with:, as the arguments the action passes for them, so a
 // local run checks what CI checks. Only flat "key: value" lines are read; anything else fails.
 const INPUTS = ["code", "references", "images", "max-range", "data-dirs"];
 export function ciCheckerArgs(ci) {
-  const lines = ci.split(/\r?\n/), at = lines.findIndex((line) => line.includes("kibertoad/refurbished-dinosaurs-toolkit/actions/check-documentation@"));
+  const lines = ci.split(/\r?\n/), at = lines.findIndex((line) => line.includes(ACTION));
   if (at < 0) throw new Error("CI does not run the pinned checker action");
   const indent = (line) => line.length - line.trimStart().length, ignored = (line) => !line.trim() || line.trim().startsWith("#");
   const step = indent(lines[at]), args = [];
@@ -78,37 +97,54 @@ async function download(url) {
   for await (const part of response.body) { count += part.length; if (count > MAX_FILE) throw new Error("Upstream response exceeds snapshot limit"); parts.push(part); }
   return Buffer.concat(parts);
 }
-export async function prepareSnapshot(rules, fetchFile = download) {
-  if (!revision(rules)) throw new Error("Refresh requires an explicit full --rules commit SHA");
+async function checkerVersion(toolkit, fetchFile) {
+  const { name, version } = JSON.parse(await fetchFile(`https://raw.githubusercontent.com/${TOOLKIT}/${toolkit}/${CHECKER_MANIFEST}`));
+  if (name !== CHECKER || !VERSION.test(version ?? "")) throw new Error(`The toolkit commit carries no ${CHECKER} release version`);
+  return version;
+}
+// The action runs the checker source at the pinned commit, and local runs the published package. The
+// two hold the same rules only at the commit the toolkit tagged for that release: a later commit can
+// carry the same version in package.json with unreleased changes.
+async function releasedChecker(toolkit, fetchFile) {
+  const version = await checkerVersion(toolkit, fetchFile), api = `https://api.github.com/repos/${TOOLKIT}/git`;
+  let { object } = JSON.parse(await fetchFile(`${api}/ref/tags/${CHECKER}@${version}`));
+  if (object?.type === "tag") ({ object } = JSON.parse(await fetchFile(`${api}/tags/${object.sha}`)));
+  if (object?.type !== "commit" || object.sha !== toolkit) throw new Error(`The toolkit commit is not the one tagged ${CHECKER}@${version}; pass the commit of that release`);
+  return version;
+}
+export async function prepareSnapshot(rules, toolkit, fetchFile = download) {
+  if (!revision(rules) || !revision(toolkit)) throw new Error("Refresh requires explicit full --rules and --toolkit commit SHAs");
   const staged = await Promise.all(FILES.map(async ([repository, source, path]) => {
-    const rev = rules;
-    const bytes = await fetchFile(`https://raw.githubusercontent.com/${repository}/${rev}/${source}`);
+    const bytes = await fetchFile(`https://raw.githubusercontent.com/${repository}/${rules}/${source}`);
     if (!Buffer.isBuffer(bytes) || bytes.length > MAX_FILE) throw new Error("Invalid snapshot response");
-    return { metadata: { repository, revision: rev, source, path, sha256: digest(bytes) }, bytes };
+    return { metadata: { repository, revision: rules, source, path, sha256: digest(bytes) }, bytes };
   }));
   if (!V1.test(staged[0].bytes.toString("utf8"))) throw new Error("Refresh would change or lose Standard v1; review required");
-  return { lock: { standardVersion: 1, captured: new Date().toISOString().slice(0, 10), files: staged.map((x) => x.metadata) }, staged };
+  const checker = { repository: TOOLKIT, revision: toolkit, version: await releasedChecker(toolkit, fetchFile) };
+  return { lock: { standardVersion: 1, captured: new Date().toISOString().slice(0, 10), checker, files: staged.map((x) => x.metadata) }, staged };
 }
 export async function checkUpstream(root = ROOT, fetchFile = download) {
-  const lock = verifySnapshot(root), repos = [...new Set(lock.files.map((f) => f.repository))];
+  const lock = verifySnapshot(root), repos = [...new Set([...lock.files.map((f) => f.repository), TOOLKIT])];
   const heads = new Map(await Promise.all(repos.map(async (repo) => {
     const info = JSON.parse(await fetchFile(`https://api.github.com/repos/${repo}/commits/main`));
     if (!revision(info.sha)) throw new Error("Upstream did not return a full commit SHA");
     return [repo, info.sha];
   })));
-  return Promise.all(lock.files.map(async (f) => {
+  const files = await Promise.all(lock.files.map(async (f) => {
     const latest = heads.get(f.repository), bytes = await fetchFile(`https://raw.githubusercontent.com/${f.repository}/${latest}/${f.source}`);
     return { path: f.path, pinned: f.revision, upstream: latest, changed: digest(bytes) !== f.sha256 };
   }));
+  const latest = await checkerVersion(heads.get(TOOLKIT), fetchFile);
+  return [...files, { path: CHECKER, pinned: lock.checker.version, upstream: latest, changed: latest !== lock.checker.version }];
 }
 export async function main(args, root = ROOT) {
   const [command, ...rest] = args;
-  if (command === "verify" && !rest.length) { verifySnapshot(root); console.log("Pinned Standard v1, Methodology, Protocol digests verified offline; upstream freshness not checked."); return 0; }
+  if (command === "verify" && !rest.length) { verifySnapshot(root); console.log("Pinned Standard v1, Methodology and Protocol digests and the checker pins verified offline; upstream freshness not checked."); return 0; }
   if (command === "docs") {
-    verifySnapshot(root);
+    const checker = checkerEntry(verifySnapshot(root));
     // The checker keeps the last value of an option, so arguments given here override CI's inputs.
     const fromCi = ciCheckerArgs(read(resolve(root, ".github/workflows/ci.yml")).toString("utf8"));
-    const result = spawnSync(process.execPath, [checkerScript(), "--root", root, ...fromCi, ...rest], { cwd: root, stdio: "inherit" });
+    const result = spawnSync(process.execPath, [checker, "--root", root, ...fromCi, ...rest], { cwd: root, stdio: "inherit" });
     if (result.error) throw result.error;
     return result.status ?? 1;
   }
@@ -122,16 +158,24 @@ export async function main(args, root = ROOT) {
   if (command === "check-upstream" && !rest.length) {
     const reports = await checkUpstream(root); console.log(JSON.stringify(reports, null, 2)); return reports.some((r) => r.changed) ? 2 : 0;
   }
-  if (command === "refresh" && rest.length === 2 && rest[0] === "--rules") {
+  if (command === "refresh" && rest.length === 4 && rest[0] === "--rules" && rest[2] === "--toolkit") {
     // Fetch every file before any mutation. Failed downloads leave the snapshot untouched.
-    const { lock, staged } = await prepareSnapshot(rest[1]);
-    const writes = [...staged.map(x => [x.metadata.path, x.bytes]),
+    const { lock, staged } = await prepareSnapshot(rest[1], rest[3]);
+    const ci = read(resolve(root, ".github/workflows/ci.yml")).toString("utf8");
+    const pattern = new RegExp(`${ACTION.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}[0-9a-f]{40}`, "g");
+    if ((ci.match(pattern) ?? []).length !== 1) throw new Error("Expected exactly one pinned checker action");
+    const manifest = JSON.parse(read(resolve(root, "package.json"), 65536));
+    if (!manifest.devDependencies?.[CHECKER]) throw new Error(`package.json does not pin ${CHECKER}`);
+    manifest.devDependencies[CHECKER] = lock.checker.version;
+    const writes = [...staged.map((x) => [x.metadata.path, x.bytes]),
+      [".github/workflows/ci.yml", Buffer.from(ci.replace(pattern, `${ACTION}${lock.checker.revision}`))],
+      ["package.json", Buffer.from(JSON.stringify(manifest, null, 2) + "\n")],
       ["tools/upstream-lock.json", Buffer.from(JSON.stringify(lock, null, 2) + "\n")]];
     // Lock is written last: an interrupted refresh fails verification before the checker executes.
     for (const [path, bytes] of writes) { const target = resolve(root, path); mkdirSync(dirname(target), { recursive: true }); writeFileSync(target + ".refresh", bytes); renameSync(target + ".refresh", target); }
-    verifySnapshot(root); console.log("Refreshed explicit revisions. Review the diff and run the canonical gate before committing."); return 0;
+    verifySnapshot(root); console.log(`Refreshed explicit revisions; the checker is ${CHECKER} ${lock.checker.version}. Run npm install to update package-lock.json and ./tools/Restore-ToolDependencies.ps1, review the diff and run the canonical gate before committing.`); return 0;
   }
-  throw new Error("Usage: upstream.mjs verify | docs [checker arguments] | links [--write] | check-upstream | refresh --rules <full-sha>");
+  throw new Error("Usage: upstream.mjs verify | docs [checker arguments] | links [--write] | check-upstream | refresh --rules <full-sha> --toolkit <full-sha>");
 }
 // Node resolves symlinks for the entry module, so compare real paths; a mismatch would skip main() and exit 0.
 const invokedDirectly = (() => { try { return process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.argv[1])).href; } catch { return false; } })();

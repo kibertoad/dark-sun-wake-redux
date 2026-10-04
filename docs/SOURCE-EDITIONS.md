@@ -65,7 +65,8 @@ The analysis executable is `C:\GOG Games\Dark Sun 2\DSUN.EXE`: 634,416 bytes,
 XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`, SHA-256
 `ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c`. The SHA-256
 was computed from the installed file on 2026-10-01. `tools/project-config.json`
-records these facts with `original.patchStatusEstablished` set to true, and
+records the path, length and XXH3-128, the hash the standard names every file by,
+together with the other facts with `original.patchStatusEstablished` set to true, and
 `Bootstrap-Project.ps1 -ValidateFactsOnly` accepts them. The patch archive itself
 was not downloaded or compared, so whether its `DSUN.EXE` is byte-identical to the
 GOG one is not recorded. Once these facts are recorded they are reused rather than

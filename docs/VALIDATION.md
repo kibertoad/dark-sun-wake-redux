@@ -236,7 +236,7 @@ The `Documentation standard` job in `.github/workflows/ci.yml` runs the
 [refurbished-dinosaurs-toolkit](https://github.com/kibertoad/refurbished-dinosaurs-toolkit),
 pinned to a full commit SHA, on every pull request. It checks `spec/`, `parity/`
 and `deviations/` against the standard's list of
-[checks](../vendor/upstream/documentation-standard.md#checks) (lines 787-838), compiles each
+[checks](../vendor/upstream/documentation-standard.md#checks) (lines 947-998), compiles each
 `.ksy` file with the Kaitai Struct compiler, checks that every spec and
 deviation ID cited in `src/`, `tests/`, `tools/` and `docs/` exists and is
 not superseded, fails when `spec/index/` or `PARITY.md` is stale, and fails a `validated`
@@ -258,8 +258,10 @@ executable, whose addresses are written `segment:offset`, so `ci.yml` gives no
 inside it. When a
 comment fails, cite the finding that records the address, or write one.
 
-`./tools/Test.ps1` runs the hash-verified offline checker in `--check` mode
-through `tools/Invoke-NodeChecks.mjs`, with the CI step's `references: docs`, from the exact toolkit commit the workflow pins.
+`./tools/Test.ps1` runs the installed checker package in `--check` mode through
+`tools/Invoke-NodeChecks.mjs`, with the CI step's `references: docs`. The package
+is the `@scientific-method/standard-checker` version that the toolkit commit the
+workflow pins carries; `tools/upstream.mjs` refuses another installed version.
 It also runs the synthetic evidence and snapshot suites. Node.js 22+ and
 PowerShell 7+ (`pwsh`) are required for these suites. See
 [UPSTREAM-RULES](UPSTREAM-RULES.md) for explicit upstream checks and refreshes.
@@ -370,7 +372,7 @@ a `validated` parity-row test, and no such validation record is generated.
 
 ## Migrated capture and research tracking
 
-The fast gate checks area queues, question IDs and reverse entry links with Check-ResearchTracking.mjs. Capture-OriginalWindow.ps1 isolates PrintWindow in a bounded worker, selects only client pixels and avoids desktop fallback. Its tests create synthetic windows. Original-game captures remain owner-only under AGENTS.md; adding this helper grants agents no original runtime access. Mixed-DPI native captures require owner validation.
+The fast gate checks area queues, question IDs and reverse entry links with Check-ResearchTracking.mjs. Capture-OriginalWindow.ps1 isolates PrintWindow in a bounded worker, selects only client pixels and avoids desktop fallback. It names each frame by its xxh3, computed after the burst by tools/evidence/xxh3.mjs (the executable reader's sourceXxh3), so it checks for Node.js and the installed reader before capturing; checkpoint.json is schema version 3, which replaced each frame's sha256 with xxh3. Its tests create synthetic windows. Original-game captures remain owner-only under AGENTS.md; adding this helper grants agents no original runtime access. Mixed-DPI native captures require owner validation.
 
 Release safeguards: `node --test tests/upstream/release-signing.test.mjs` uses synthetic GitHub and Authenticode doubles. Live SSL.com signing, timestamp servers and repository environment policies require a separately authorized release. Configure `ES_CERTIFICATE_THUMBPRINT` in the protected `release-signing` environment and restrict its deployment branches to main.
 

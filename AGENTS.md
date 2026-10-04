@@ -346,8 +346,8 @@ certain than the rest goes in its own entry or in its Open questions section.
 Never silently promote a plausible interpretation.
 
 A complete reading also covers what the standard's
-[Complete readings](vendor/upstream/documentation-standard.md#complete-readings) (lines 137-181)
-and [Findings](vendor/upstream/documentation-standard.md#findings) (lines 418-468) sections
+[Complete readings](vendor/upstream/documentation-standard.md#complete-readings) (lines 181-273)
+and [Findings](vendor/upstream/documentation-standard.md#findings) (lines 578-628) sections
 list, among them: two addresses are the same storage only where the reading
 shows the segment each is formed in and accessed through (a BP offset read
 through DS is the caller's stack only where DS equals SS there); a stored
@@ -461,8 +461,18 @@ Keep changing inventory totals out of narrative documentation: test-case, file, 
   may depend on both of the above.
 - `<Project>.Extractor`: separately runnable licensed-source verification and
   transactional asset extraction over `Resources`.
-- `<Project>.Inspect`: read-only tooling over `Resources`.
+- `<Project>.Inspect`: read-only tooling over the original's media.
 - `<Project>.Tests`: architecture, safety, and behavioral tests.
+
+Game-independent readers and runtime helpers come from the `RefurbishedDinosaurs.*`
+NuGet packages, pinned at an exact version in `Directory.Build.props`: media
+sources, edition identification and legacy formats from
+`RefurbishedDinosaurs.LegacyFormats`; asset-pack manifests, staging, safe paths,
+per-user locations and startup failure reporting from `RefurbishedDinosaurs.Core`.
+Use a package type before writing a local one, and keep game-specific formats,
+names and rules in the projects above; the
+[shared runtime libraries guide](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/blob/main/docs/runtime-libraries.md)
+says what each package covers.
 
 **Rules live in `Core`; screens map them.** Every decision the original makes â€”
 a flag cascade, a gate, a branch table, an outcome selector, a state
@@ -526,11 +536,10 @@ dotnet run --project src/<Project>.Game -- --smoke-test
 
 Before further executable analysis, run `./tools/Bootstrap-Project.ps1
 -ValidateFactsOnly`. It refuses unestablished latest-patch provenance or missing
-recorded executable identity. The current version 1.1 baseline remains recorded,
-but its latest-official-patch status and SHA-256 are not established by the
-existing records; see `docs/SOURCE-EDITIONS.md`. Resolve those facts in a research
-batch before opening the original again. Do not repeat the patch investigation
-once conclusively recorded. Original-free tooling and rebuild validation remain
+recorded executable identity. Version 1.1 is recorded as the latest official
+version, with the analysis executable's path, length and XXH3-128; see
+`docs/SOURCE-EDITIONS.md`. Do not repeat the patch investigation unless the owner
+asks. Original-free tooling and rebuild validation remain
 available while the gate is closed.
 
 Treat static analysis as evidence, not a search-engine oracle. Establish and
@@ -643,7 +652,7 @@ finds nothing to stop, do not create a log entry.
 Enable the pre-commit hook once in each clone, before the first commit, with
 `git config core.hooksPath .githooks`, and do not bypass it with
 `--no-verify`. It runs the gate's node checks (`tools/Invoke-NodeChecks.mjs`)
-on the staged tree in under a second, so a spec, queue or reporter-pin problem
+on the staged tree in under a second, so a spec, queue or checker-pin problem
 fails before the commit instead of in CI.
 
 ## Definition of done

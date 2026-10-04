@@ -25,8 +25,7 @@
                      "analysisExecutable": {
                          "path": "C:\\GOG Games\\Dark Sun 2\\DSUN.EXE",
                          "byteLength": 634416,
-                         "xxh3_128": "e296af55ba2ecde7e77f555c90f33d0b",
-                         "sha256": "ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c"
+                         "xxh3_128": "e296af55ba2ecde7e77f555c90f33d0b"
                      },
                      "releaseYear":  "1994",
                      "genre":  "party-based computer role-playing game"

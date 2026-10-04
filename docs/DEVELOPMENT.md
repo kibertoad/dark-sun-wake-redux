@@ -40,6 +40,15 @@ default to `%LOCALAPPDATA%\DarkSunWakeRedux\Screenshots`; pass
 Each filename includes a millisecond local timestamp, is created without
 overwriting an existing file, and is reported in the window title.
 
+The validation gate and the pre-commit hook also run the documentation check and
+the evidence tooling tests, which need Node.js 22 or newer and Python 3.12 or
+newer. Install their locked packages once per clone, and again whenever
+`package-lock.json` or `tools/evidence/requirements.txt` changes:
+
+```powershell
+./tools/Restore-ToolDependencies.ps1
+```
+
 Build and test the complete solution with:
 
 ```powershell
