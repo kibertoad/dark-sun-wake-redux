@@ -1641,3 +1641,14 @@ After checking existing issues, extra consumer details were added to
 [existing tracker 113](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/113#issuecomment-5983866493).
 Its administrative closure is unchanged; no duplicate issue was created.
 No original execution, emulation, native output claim or source implementation occurred.
+
+### Open follow-up for Gap 32
+
+At the owner's request, the current open toolkit issues were checked for the
+remaining bracket/callee coverage and target-field/segment producer work.
+Tracker 113 is closed; issues 143 and 190 concern different contracts.
+[Issue 198](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/198)
+now tracks the actual connected evidence, both whole guard controls and
+nonvacuous rejected/stopped cases. It does not request relaxed conservative
+verdicts. Gap 32 remains open; neither existing occurrence holds nor creating
+this tracker proves full consumer acceptance.

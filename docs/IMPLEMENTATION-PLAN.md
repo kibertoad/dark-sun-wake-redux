@@ -1,11 +1,11 @@
 # Implementation plan
 
-## Guard and access ordering tooling acceptance
+## Recursive and normalized result-origin tooling acceptance
 
-- **Outcome.** Verify the complete Gap 32 shared reporting contract: metadata reads before checks, failure writes and unsuppressed requests, cleared pointer versus resource-release results, and guarded snapshots versus reloaded indirect targets.
-- **Evidence.** FND-CONFIG-165/167/171 are read-only source inputs. Published reader 2.1.0/engine 7.3.0 provide explicit symbolic scopes and relational ordering controls.
-- **Acceptance.** Retain actual ordering, access widths, intervening calls, conditional frame/segment preservation and unknown native outcomes. Scope only explicitly labelled frame bytes; missing/unread/changed inputs and witness-removing caps must reject whole claims. No native valid-pointer or release-success inference, original execution, raised defaults or stitched windows.
-- **Tests and Exit.** Hash-guarded original source positive and negative controls through installed packages; full canonical gate, exact dependency verification and complete contract audit before any gap closure. Duplicate-check upstream concerns and record unresolved acceptance without changing spec or parity.
+- **Outcome.** Distinguish a finite zero-result leaf, a conditional recursive error propagation and an originating error; retain discarded external results and bounded graph/termination assumptions.
+- **Evidence.** FND-CONFIG-172/174/175 are read-only acceptance inputs. Installed reader 2.1.0/engine 7.3.0 provide observed entry frames, return contracts and origin controls.
+- **Acceptance.** Use verified instruction boundaries and explicitly labelled register/return hypotheses, without entry memory, selected branch outcomes or stitched windows. Preserve all unread calls, stops and gaps; syntactic error stores/return values do not prove an originating native error. No game spec/parity changes or original execution.
+- **Tests and Exit.** Hash-guarded leaf and recursive-case source queries; wrong/missing input and witness-removing limit controls; complete contract audit and canonical gate before closure. Check upstream duplicates before reporting any limitation and retain finite/valid-state assumptions.
 
 This file says what the project intends and what is true now, following the
 [work protocol](../vendor/upstream/work-protocol.md). It holds no dated
