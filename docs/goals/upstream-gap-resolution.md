@@ -82,6 +82,8 @@ FND-CONFIG-175 copy-wrapper bypasses return zero, while balanced models of its c
 
 The actual FND-CONFIG-175 primitive now resolves the balanced-model cleanup mismatch, but unknown copy pointers invalidate return/saved-state provenance. No gap-free report or reached cleanup proves full return preservation while copy routes stop. Retry requires real argument producers and admitted distinct storage, not another frame-only model.
 
+Gap 34's connected pair query now reaches actual initializer/fill and pair selection, but path/loop stops retain no append witness. The returned no-pair route does not establish generated cardinality or native admission. Toolkit issue 213 tracks complete producer/cardinality/capacity acceptance and supported-query guidance. Retry only with new count/record producers, an evidence-bounded connected route or supported input tooling, not higher caps or window stitching.
+
 ## Handover
 
 - Stage: Slices; research-side tooling. Condition/Scope unchanged. No game spec, parity, original run or emulation changed.
