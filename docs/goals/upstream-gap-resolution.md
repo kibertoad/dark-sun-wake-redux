@@ -77,13 +77,13 @@ Gap 32 now has complete local conditional metadata branches and both callback re
 ## Handover
 
 - Stage: Slices; research-side tooling. Condition/Scope unchanged. No game spec, parity, original run or emulation changed.
-- Last gate: 2026-10-04 Test.ps1 -NoRestore passed, artifacts/engine73/continuation-root-gate.log. Reader 2.1.0 / engine 7.3.0 / protocol 3 remain adopted; exact locks and source checks pass. Other pins unchanged.
-- Current acceptance: Gap 35 and focused issue 145 remain completed; broader Gap 40 remains open. Issue 143 has the new observed-frame consumer response and remains open. Gap 31 has focused upstream issue 190 after duplicate review; it remains open.
-- Unfinished: Gap 31's bounded controls and missing connected acceptance are recorded in TOOLKIT-RESPONSE-ACCEPTANCE, with local poll-alias-controls and ignored engine73 logs retained. Gap 29 source no-op case remains open. No whole-query closure follows from helper or isolated controls.
-- Blockers: Gap 37 needs the connected caller route/depth and later writer/external-input evidence requested by issue 143. Gap 31 needs the supported recipe/design response on issue 190. Gap 40 needs complete predecessor coverage. Do not stitch windows, invent prefix memory, omit scopes or raise caps.
-- Process audit: no confirmed session-owned orphan; unrelated/uncertain work preserved. No pushes occurred.
-- Next: Gap 32/FND-CONFIG-165/167/171 guard/access ordering and checked-target reload provenance, with whole positive and stopped/invalidated controls.
-- Next: Gap 40 complete predecessor contract after delivered frame/scope composition; retain undecided whole controls.
-- Next: Gap 37/issue 143 connected route and producer evidence; Gap 31/issue 190 only after a new supported recipe or delivery.
-- Next: Gap 29 source no-op controls and FND-SCRIPT-019 bounded fill inputs under ADR 0008.
-- Next: Gap 36/FND-CONFIG-186/187 dispatch, FND-CONFIG-189 snapshots, FND-CONFIG-191 reference-scan controls and Gap 44 capture diagnostics.
+- Last gate: 2026-10-04 Test.ps1 -NoRestore passed, artifacts/engine73/guard-root-gate.log. Reader 2.1.0 / engine 7.3.0 / protocol 3 remain adopted with exact verified locks; other pins unchanged.
+- Current acceptance: Gap 32 has new full local conditional controls and an acceptance matrix in TOOLKIT-RESPONSE-ACCEPTANCE, but remains open for the whole relational exit. Additional results are on existing issue 113; no duplicate issue or reopening. Gap 35 and focused issue 145 remain completed; broader Gap 40 stays open.
+- Unfinished: preserve local guard-order730 configs/reports and ignored engine73 guard-contract, callback-results and target-relations logs. Whole control qualifications remain binding; do not infer native state or closure from occurrence holds. Gap 29 source no-op case remains open.
+- Blockers: Gap 32 needs actual bracket/callee coverage and field/segment producers. Gap 37/issue 143 needs connected route/depth and later writer/external-input evidence. Gap 31 awaits the supported recipe/design answer on issue 190. Gap 40 needs complete predecessor coverage. No stitching, invented memory or larger caps.
+- Process audit: no confirmed session-owned orphan; reusable MSBuild and unrelated/uncertain work preserved. No pushes occurred.
+- Next: Gap 33/FND-CONFIG-172/174/175 leaf result origins, recursive propagation and discarded/normalized nested results, with finite-state qualifications.
+- Next: Gap 32 bracket/callee and producer coverage only with new evidence or a supported complete recipe; retain whole controls as undecided.
+- Next: Gap 40 predecessor contract; Gap 37 connected route; Gap 31 only after new delivery/recipe.
+- Next: Gap 29 no-op controls and FND-SCRIPT-019 bounded fill inputs under ADR 0008.
+- Next: Gap 36 dispatch, FND-CONFIG-189 snapshots, FND-CONFIG-191 reference-scan controls and Gap 44 capture diagnostics.
