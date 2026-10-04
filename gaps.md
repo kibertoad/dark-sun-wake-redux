@@ -4,8 +4,8 @@ These are the remaining requests for the restoration template and shared analysi
 tooling. They describe tooling behavior, not claims about the original game.
 
 Latest adopted template, toolkit and pinned-rule revisions and their capability
-dispositions are recorded in docs/TEMPLATE-ACCEPTANCE.md. Published reader 1.0.0,
-checker 0.2.0 and engine 1.0.1 are adopted with exact registry locks;
+dispositions are recorded in docs/TEMPLATE-ACCEPTANCE.md. Published reader 2.0.0,
+checker 0.2.0 and engine 2.0.0 are adopted with exact registry locks;
 Capstone 5.0.7 and pypcode 4.0.0 are locked runtime dependencies;
 the reviewed release removes handwritten instruction semantics;
 tools/tool-dependencies.mjs verifies the installed packages. Candidate
@@ -44,7 +44,7 @@ its runtime use is established. A synthetic fixture with different values at
 
 ## 27. Check effect ordering at early exits and before external failure
 
-Scoped-memory implementation follow-up: [toolkit issue 73](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/73). PR 74 delivers the mainline implementation; the older interrupted forward-port is historical. Isolated published-package integrity and synthetic bridge/scoped-memory controls pass, as recorded in REPORTER-CASE-AUDIT. Complete Dark Sun requesting-case acceptance remains unverified, and project dependency locks are unchanged.
+Scoped-memory implementation follow-up: [toolkit issue 73](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/73). PR 74 delivers the mainline implementation; the older interrupted forward-port is historical. Isolated published-package integrity and synthetic bridge/scoped-memory controls pass, as recorded in REPORTER-CASE-AUDIT. The retained bounded Dark Sun bracket and regression controls pass, and the published pair is adopted. Broader complete Dark Sun effect-ordering acceptance remains unverified.
 
 FND-SCRIPT-019 corrects an old finding that aged slots on every loader
 return and a rule that treated a failed transfer as leaving its slot

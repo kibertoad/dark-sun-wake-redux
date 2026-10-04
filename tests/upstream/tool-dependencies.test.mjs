@@ -38,8 +38,10 @@ test("wrapper routes a synthetic MZ through the installed engine and restores en
   assert.equal(process.env.EVIDENCE_PYTHON,previous);
 });
 test("installed engine refuses incompatible prepared protocol before source access", () => {
-  const r=spawnSync(enginePython(),["-m","scientific_method_engine","trace","-"],{input:JSON.stringify({preparedProtocol:99}),encoding:"utf8"});
-  assert.notEqual(r.status,0);assert.match(r.stderr,/protocol 99/);assert.match(r.stderr,/Install matching/);
+  for (const protocol of [2,99]) {
+    const r=spawnSync(enginePython(),["-m","scientific_method_engine","trace","-"],{input:JSON.stringify({preparedProtocol:protocol}),encoding:"utf8"});
+    assert.notEqual(r.status,0);assert.match(r.stderr,new RegExp('protocol '+protocol));assert.match(r.stderr,/Install matching/);
+  }
 });
 
 

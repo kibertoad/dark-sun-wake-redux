@@ -1151,3 +1151,25 @@ bracket and stops after its final clear; earlier mode/input gates and later
 parent work remain unread. This verifies that bounded requesting control on
 published tooling, not Gap 27's entire effect-ordering contract. Adopted project
 dependency locks, spec entries and parity statuses remain unchanged.
+
+## Adopted published protocol-3 pair, 2026-10-04
+
+The prior retained regression inventory was replayed against isolated published
+reader/engine 2.0.0. Every listed group passes; the generating driver resumes
+only unfinished groups. New configs/reports/logs and the compared inventory:
+GAME_DIR/analysis/reporter-audit/protocol3-retained-regression/summary.json.
+Historical reports are preserved. Drivers adapt installed-package routing and
+hash naming only; source assertions, hypotheses and analysis budgets remain.
+Some console version labels are inherited literals and are not import evidence.
+
+The child-effect control still lacks the MENU return witness under the shared
+path budget. Conditional partial scans, separated fill windows and native
+limits retain their earlier qualifications. Regression success closes no gap.
+
+Matching reader and engine 2.0.0 are now adopted through exact npm integrity and
+hash-locked Python wheel requirements. Capstone, pypcode and xxhash pins stay
+unchanged. Prepared protocol 2 and other mismatches are rejected before source
+access. Normal canonical validation, including locked restore, Release build
+and assetless publish/smoke, passes; evidence:
+artifacts/protocol3-delivery/adoption-validation-final.log. Candidate source is
+not used by the adopted gate, and no game spec/parity status changed.

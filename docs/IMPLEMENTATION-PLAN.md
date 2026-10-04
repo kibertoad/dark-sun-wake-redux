@@ -1,13 +1,11 @@
 # Implementation plan
 
-## Current upstream migration
+## Published scoped-memory tooling adoption
 
-- **Outcome.** Maintainers use the latest released template and toolkit capabilities with verified local standard and protocol snapshots; the rebuild's behavior and licensed-source contracts remain evidenced by the existing spec.
-- **Evidence.** Compare template commit `049f30036e612e3680838a59d4995ad8f0c85e00` against accepted `39d31fdef9d7420e8571ab6d09e3b3026be05010`, including pre-commit dependency links and release safeguards. Verify template rule and package pins against current locks. Record capability dispositions in `docs/TEMPLATE-ACCEPTANCE.md`.
-- **Acceptance.** Reconcile bootstrap, configuration, extraction boundaries, safety, launchers, CI, signing, Ghidra/reporters and documentation semantically. Retain stronger configured contracts with reasons. Keep original content local and CI synthetic; no rule or parity promotion follows a tooling update.
-- **Tests.** Exact dependency/snapshot verification, infrastructure and configuration controls, relevant synthetic reporter checks, and `./tools/Test.ps1` must pass.
-- **Risks and questions.** Preserve the pre-existing scoped-memory candidate plan and ongoing goals. Unpublished candidates do not replace released dependencies. No missing owner decision blocks this migration.
-- **Exit.** Upstream versions are checked, every template capability has an adoption or retention disposition, migration changes pass the canonical gate, and the handover records the result.
+- **Outcome.** Bounded static queries can use explicit pre-call byte-preservation hypotheses through matching published reader/engine 2.0.0, without importing candidate source.
+- **Evidence.** Merged toolkit PR 74, archive/source integrity, installed synthetic bridge and memory-scope controls, and the retained original-source regression inventory in docs/REPORTER-CASE-AUDIT.md. No native service preservation or whole-gap completion follows.
+- **Acceptance.** Adopt reader and engine together for prepared protocol 3. Preserve exact archive locks, unchanged Capstone/pypcode/xxhash versions, conditional provenance and existing analysis budgets. Older prepared protocol 2 is rejected before source access.
+- **Tests and Exit.** Normal hash-locked restore, canonical validation and synthetic protocol rejection pass; all retained source control groups pass against the published pair. Record adoption and remaining case limits. No game spec or parity status changes.
 
 This file says what the project intends and what is true now, following the
 [work protocol](../vendor/upstream/work-protocol.md). It holds no dated

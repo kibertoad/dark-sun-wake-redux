@@ -1,5 +1,15 @@
 # Template and toolkit acceptance audit
 
+## Published scoped-memory pair adoption, 2026-10-04
+
+Reader and engine 2.0.0 are adopted together for prepared protocol 3, ahead of
+template 049f300's older tooling pins. Exact archive/source integrity, installed
+synthetic and retained original-source controls are recorded in
+REPORTER-CASE-AUDIT.md. The checker stays 0.2.0; Capstone/pypcode/xxhash and
+vendored rule pins remain unchanged. Normal full validation passes; evidence:
+artifacts/protocol3-delivery/adoption-validation-final.log. This adoption does
+not establish native service preservation or complete any broader gap contract.
+
 ## Current template sync, 2026-10-04
 
 Template main `049f30036e612e3680838a59d4995ad8f0c85e00` was fetched and
