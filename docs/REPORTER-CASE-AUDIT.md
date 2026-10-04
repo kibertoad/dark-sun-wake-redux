@@ -1173,3 +1173,29 @@ access. Normal canonical validation, including locked restore, Release build
 and assetless publish/smoke, passes; evidence:
 artifacts/protocol3-delivery/adoption-validation-final.log. Candidate source is
 not used by the adopted gate, and no game spec/parity status changed.
+
+## Published continuation-budget MENU control, 2026-10-04
+
+Toolkit PR 76 merged as 897f640dfa8d144caef23082be1d1ff3d78aba23 and is
+published in engine 4.0.0. Registry wheel/sdist hashes match GitHub release
+metadata; the complete shipped Python/Java source matches that commit. Integrity:
+artifacts/continuation-budget-delivery/integrity.json. The isolated installed
+runtime uses prepared protocol 3 with published reader 2.0.0. Adopted engine
+2.0.0 remains unchanged.
+
+Published synthetic continuation-budget controls pass; evidence:
+artifacts/continuation-budget-delivery/synthetic-controls.log. The retained
+conditional MENU input was rerun with an explicitly reported separate budget.
+The ordinary path/step/visit inputs were unchanged. Ordinary paths and ordinary
+gaps compare equal with continuations disabled and enabled. The declared MENU
+child-return witness is reached conditionally; paths disabled and a continuation
+step cap remove it, with limits reported. The unresolved ordinary computed jump
+is retained and completeWithinModel remains false.
+
+Driver, configs and reports:
+GAME_DIR/analysis/reporter-audit/continuation-budget-controls/.
+Result log: artifacts/continuation-budget-delivery/menu-controls.log.
+This recovers the earlier missing conditional MENU witness using new delivered
+tooling, not increased ordinary budgets or filtered paths. Runtime table inputs
+and external-service effects remain hypotheses, and no native or whole-Gap 27
+claim follows. The full fill case remains separate under toolkit ADR 0008.
