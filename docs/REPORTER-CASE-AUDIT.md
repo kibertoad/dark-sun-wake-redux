@@ -1718,3 +1718,26 @@ artifacts/engine73/verify-normalizer.mjs and normalizer.log. Additional results
 were added to [existing issue 200](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/200#issuecomment-5984025397);
 no duplicate issue or closure. No original execution, spec/parity change,
 window stitching or larger traversal budget occurred.
+
+### Copy-bypass and callee-cleanup control, 2026-10-04
+
+The installed FND-CONFIG-175 copy-wrapper source control distinguishes normal
+zero-return bypass paths from the route requesting the copy primitive. Explicit
+balanced return models preserve stated DS/SI and frame bytes conditionally;
+zero at the local continuation does not identify whether copying occurred.
+The copy-request route stops at the wrapper return with a stack-balance
+mismatch. The recorded primitive removes eight argument bytes, which the
+balanced call model does not express. This is not a native failure or a
+reporter instruction bug. No unsupported cleanup field or preserved stack
+adjustment is invented to turn the case green.
+
+A one-step cap removes all return witnesses. Without service models, bypasses
+still return zero and unread service routes stop. These controls do not accept
+performed-copy, native preservation, complete bracket effects or Gap 33 closure.
+The complete source span/call selectors and hash guard are verified. Configs
+and reports remain local in result-origin730/copy-wrapper under
+GAME_DIR/analysis/reporter-audit/; ignored driver/log are
+artifacts/engine73/verify-copy-wrapper.mjs and copy-wrapper.log.
+The next acceptance should trace the actual primitive with verified argument
+producers, rather than use the inadequate balanced model or stitch windows.
+No original execution, spec/parity change or raised traversal bounds occurred.

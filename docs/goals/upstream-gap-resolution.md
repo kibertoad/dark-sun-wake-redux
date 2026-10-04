@@ -78,6 +78,8 @@ Gap 33's bounded source helper distinguishes conditional zero leaves, recursive 
 
 FND-CONFIG-174 normalized-result controls now retain zero returns under both zero and FFFF callee hypotheses, with reached optional calls, but dropped gated paths remain. Every retained path returning is not complete coverage. Preserve the source reports; retry requires actual state producers or a supported bounded recipe, not higher caps. FND-CONFIG-175 preservation controls remain separate.
 
+FND-CONFIG-175 copy-wrapper bypasses return zero, while balanced models of its callee omit the recorded eight-byte argument cleanup and leave the copy route stopped at root stack balance. This is model insufficiency, not native failure or performed-copy evidence. Retry with the actual primitive and verified argument producers; do not invent an unsupported stack adjustment or stitch reports.
+
 ## Handover
 
 - Stage: Slices; research-side tooling. Condition/Scope unchanged. No game spec, parity, original run or emulation changed.
