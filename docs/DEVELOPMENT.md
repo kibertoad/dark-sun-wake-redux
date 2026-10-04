@@ -49,6 +49,16 @@ newer. Install their locked packages once per clone, and again whenever
 ./tools/Restore-ToolDependencies.ps1
 ```
 
+Dependabot proposes weekly NuGet updates, grouping RefurbishedDinosaurs packages
+and xUnit packages. SabreTools.Serialization stays pinned to its reviewed
+InstallShield expansion evidence and is updated manually. The documentation
+checker moves only through the owner-requested upstream refresh workflow in
+`docs/UPSTREAM-RULES.md`. Review executable-reader and scientific-method-engine
+releases together for prepared-config protocol compatibility, update exact npm
+locks and hash-locked Python requirements, then run `tools/Invoke-Validation.ps1`.
+The existing project-local Python interpreter and installed-version checks remain
+mandatory; `EVIDENCE_PYTHON` may select an explicitly verified environment.
+
 Build and test the complete solution with:
 
 ```powershell

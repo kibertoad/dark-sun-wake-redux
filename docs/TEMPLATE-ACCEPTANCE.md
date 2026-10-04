@@ -10,6 +10,22 @@ vendored rule pins remain unchanged. Normal full validation passes; evidence:
 artifacts/protocol3-delivery/adoption-validation-final.log. This adoption does
 not establish native service preservation or complete any broader gap contract.
 
+## Latest template dependency maintenance sync, 2026-10-04
+
+Template main `192208ce350ef2f573092d1286418f0d417cbbc4` was fetched. The complete
+changed-file delta from `049f300` is accounted for here.
+
+| Capability | Disposition |
+| --- | --- |
+| Dependabot | Adopted weekly NuGet groups and reviewed SabreTools exclusion; adapted npm/Python guidance to exact npm and hash-locked Python dependencies. |
+| Interpreter helper, report wrapper and memory-block tests | Retained stronger project-local interpreter selection, verified installed pins, withEngine and ghidraScriptPath routing. No competing PATH-probing helper added. |
+| Evidence test and validation comments | Existing verified interpreter routing already covers their purpose. |
+| Development and evidence setup guidance | Updated maintenance policy; retained documented locked setup instead of template global pip installation. |
+| Template changelog | Provenance recorded here; template-specific historical state remains upstream. |
+
+Validation evidence: `artifacts/template-dependency-sync-validation.log`.
+No original game files were read or run; no spec or parity status changed.
+
 ## Current template sync, 2026-10-04
 
 Template main `049f30036e612e3680838a59d4995ad8f0c85e00` was fetched and

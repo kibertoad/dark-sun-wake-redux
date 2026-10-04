@@ -1,0 +1,43 @@
+version: 2
+updates:
+  # NuGet packages of every project. The RefurbishedDinosaurs.* packages release together and share
+  # one pinned version (RefurbishedDinosaursVersion in Directory.Build.props), so they arrive as one
+  # pull request.
+  #
+  # The npm and pip packages are not listed, because none of them can be bumped on its own:
+  # - @scientific-method/standard-checker moves only through `node tools/upstream.mjs refresh`, which
+  #   a person starts and which also moves the CI action pin, tools/upstream-lock.json and the
+  #   package-lock.json integrity (docs/UPSTREAM-RULES.md). A package.json-only bump fails the
+  #   upstream tests.
+  # - @scientific-method/executable-reader (npm) drives scientific-method-engine (pip,
+  #   tools/evidence/requirements.txt) over a versioned protocol. Dependabot cannot group across
+  #   ecosystems, so a protocol change would arrive as two pull requests that each fail alone.
+  #   Review compatible releases and their exact locks in one change by hand (docs/DEVELOPMENT.md).
+  - package-ecosystem: nuget
+    directory: /
+    schedule:
+      interval: weekly
+    # Shared runtime releases retain downstream acceptance and locked restore checks.
+    cooldown:
+      default-days: 7
+      exclude:
+        - RefurbishedDinosaurs.*
+    # SabreTools.Serialization is pinned to the version whose expanded output was compared with
+    # Unshield and whose license was reviewed upstream; its acceptance evidence stays in the template.
+    # Moving it means redoing that evidence, so it is bumped by hand.
+    ignore:
+      - dependency-name: SabreTools.Serialization
+    groups:
+      refurbished-dinosaurs:
+        patterns:
+          - RefurbishedDinosaurs.*
+      # Groups apply to version updates only. A security update to one RefurbishedDinosaurs.*
+      # package still edits the shared version property, so it is grouped too.
+      refurbished-dinosaurs-security:
+        applies-to: security-updates
+        patterns:
+          - RefurbishedDinosaurs.*
+      # xunit.v3 and xunit.runner.visualstudio release on the same version.
+      xunit:
+        patterns:
+          - xunit.*
