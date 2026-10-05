@@ -110,8 +110,8 @@ Gap 29's new complete call-free eviction-helper query uses its known 16-slot bou
 - Stage: Slices; research-side tooling. Original Condition/Scope and issue 5
   consumer scope remain active. No game spec/parity, original run or original
   emulation changed.
-- Last gate: 2026-10-05 Test.ps1 -NoRestore passed for the actual-bracket batch;
-  log: artifacts/engine91/brackets-test.log. An earlier sandbox attempt was blocked
+- Last gate: 2026-10-05 Test.ps1 -NoRestore passed for the actual-recursion batch;
+  log: artifacts/engine91/recursion-test.log. An earlier sandbox attempt was blocked
   by Java temporary-directory access; the unrestricted required gate passed.
   Earlier Invoke-Validation.ps1 passed, including Test.ps1,
   locked restore, Release build and assetless smoke. Log:
@@ -126,7 +126,8 @@ Gap 29's new complete call-free eviction-helper query uses its known 16-slot bou
   whole caller/frame and repeating-route controls remain open. Issue 5's
   Gaps 32/33/34/37 also remain open for their recorded consumer exits.
 - Unfinished: preserve GAME_DIR reporter-audit/issue5-poll, issue5-poll91,
-  issue5-root91, issue5-producers91, issue5-initializer91, issue5-brackets91 and engine91
+  issue5-root91, issue5-producers91, issue5-initializer91, issue5-brackets91,
+  issue5-recursion91 and engine91
   configs/reports, plus ignored artifacts/engine91 drivers/logs.
   Earlier result-origin730 append/pair/path/width/eviction, recursive,
   normalizer and actual-copy controls remain inputs. Guard-order730 is
@@ -139,18 +140,19 @@ Gap 29's new complete call-free eviction-helper query uses its known 16-slot bou
   Gap 36 connected byte/segment producers and fixtures; Gap 40 predecessors;
   FND-CONFIG-191 reference scans; FND-SCRIPT-019 bounded fill; Gap 44 diagnostics.
   Prior requester dispositions remain in AWAITING-REQUESTER-AUDIT.md.
-- Process audit: no confirmed session-owned orphan after the actual-bracket commit;
+- Process audit: no confirmed session-owned orphan after the actual-recursion commit;
   reusable MSBuild, unrelated work and CUA processes are preserved.
 - Push: user explicitly authorized the validated commits to be pushed to main
   after automatic approval review requested confirmation. Check Git for sync state.
 - Next: Issue 5 Gap 31: resolve remaining DOS/poll/setter dependencies and
   caller-frame coverage using actual producers at unchanged unresolved bounds.
-- Next: Issue 5 Gap 33: real finite child/selector/leaf producers and caller
-  coverage; actual-copy inputs need admitted distinct storage.
+- Next: Issue 5 Gap 33: admitted finite graph/count/record-length producers,
+  whole recursive/caller coverage and actual-copy storage/alias inputs.
 - Next: Issue 5 Gap 34: real known-count cardinality positives and connected
   pair/split/copy/terminator controls with producer and alias evidence.
 - Next: Issue 5 Gap 32: callback-field/segment producers, remaining middle
   callees, admitted storage, guards and both whole callback routes.
 - Next: Issue 5 Gap 37: startup-to-transfer route, later writers/external
   producers and known-answer placement controls.
+
 
