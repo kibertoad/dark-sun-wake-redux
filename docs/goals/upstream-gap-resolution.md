@@ -169,8 +169,11 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   bounds. Omitted-helper and one-step controls remove that witness.
 - Next: Gap 31 complete required caller routes and downstream producers;
   preserve old incomplete prefixes and unchanged query bounds.
-- Next: Gap 32 actual writer reachability and callback target/segment/storage
-  producers; follow produced pointers with released engine 10.0.0.
+- Gap 32 independent resident direct-reference follow-up yields no new
+  producer: docs/CALLBACK-PRODUCER-REFERENCE-AUDIT.md. This is a bounded
+  negative, not an absence claim or shared-tool defect.
+- Next: Gap 32 actual indirect registration-table or caller input producers;
+  no repeat of direct-call/adjacent-pair searches without new evidence.
 - Next: Gap 33 admitted finite graph/count/record-length and actual-copy
   storage/alias inputs for whole recursive/caller controls.
 - Next: Gap 34 connected caller-root and pre-guard frames now reach the
