@@ -818,3 +818,37 @@ routes remain required for Gap 32; no whole guard or preservation exit closes.
 
 Exact production integrity and the full Test.ps1 gate passed; logs:
 `artifacts/engine91/refresh-integrity.log` and `refresh-test.log`.
+
+## Issue 5: callback writer candidate census, 2026-10-05
+
+The published operand-candidates reporter searched A119/A11B literal operands
+from committed DSUN function-inventory entries. Resident mappings and source
+containers came from the shared MZ/FBOV loader. Overlay coordinates are source
+analysis views, not inferred admitted runtime segments. Overlapping inventory
+spans were merged with every declared entry preserved; function spans crossing
+one source container were explicitly excluded. Default per-report instruction,
+scan and result bounds were unchanged. Batched reports retain partial search,
+undecoded/unmapped edges, overlap classification and excluded ranges.
+
+Source reports/configs: `GAME_DIR/analysis/reporter-audit/issue5-writers91/`.
+Ignored drivers: `artifacts/engine91/callback-writers.mjs` and
+`callback-writer-controls.mjs`. The summary links each candidate to its batch.
+An entry-based four-byte DS write candidate occurs at file site 209427 in the
+inventory entry starting at 209409. A neighboring entry at 209435 has a
+four-byte read candidate at 209457. These are leads for bounded producer and
+caller follow-up, not new game-spec claims. They do not establish segment
+admission, incoming pointer identity, caller reachability or dispatch safety.
+No direct literal A11B use was retained; implicit/computed/aliased writes and
+partial-search boundaries prevent any absence claim.
+
+The writer positive control passes. An interior wrong-site control is rejected;
+one-byte search loses its anchor and reports partial search. All four known
+callback reads from FND-CONFIG-171 pass memory-use controls. The census does
+not prove a unique writer: source-container exclusions and undecoded edges,
+computed pointer accesses and aliases remain. Gap 32 remains open; the next
+step is this writer entry's actual input and callers, then storage/segment and
+whole callback routes, rather than repeating the capped consumer trace.
+
+Exact production integrity and full Test.ps1 passed. Logs:
+`artifacts/engine91/writers-integrity.log`, `writers-controls.log` and
+`writers-test.log`. No original runtime, imported input memory or emulation.

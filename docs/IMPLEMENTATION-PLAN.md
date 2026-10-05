@@ -1,5 +1,17 @@
 ﻿# Implementation plan
 
+## Issue 5 callback writer candidate census
+
+Search the committed DSUN function inventory for encoded A119/A11B operands
+with the published operand-candidates reporter. Derive resident/source-container
+mappings through the shared MZ/FBOV loader; overlay coordinates are analysis
+views, not admitted runtime segments. Batch declared function entries within the
+reporter's limits. Keep candidate classifications, overlap, partial search and
+boundary gaps explicit. Validate known callback reads as positive controls and
+reject wrong-site controls. Exit: local writer leads and their entry ownership
+for bounded follow-up, never a universal absence or semantic producer claim.
+Keep original-derived selectors and reports under GAME_DIR only.
+
 ## Issue 5 actual middle-service dependencies
 
 Use FND-CONFIG-171/174/188/189/191/197 as read-only inputs. Extend the existing actual
