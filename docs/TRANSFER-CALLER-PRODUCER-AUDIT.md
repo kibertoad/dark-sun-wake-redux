@@ -151,3 +151,24 @@ state producers through callback continuation. Source-local reports:
 GAME_DIR/analysis/reporter-audit/issue5-parent-prefixes100 and
 issue5-parent-dispatch100. Ignored drivers/logs: artifacts/engine100/
 parent-prefixes.*, parent-dispatch.* and parent-dispatch-controls.*.
+
+## Connected pre-allocation callees
+
+Actual parent relocation mappings and committed numeric inventory bounds now
+carry both callback-root conditional streams into the pre-allocation resident
+callees. The Save/Load action control helper returns into its actual caller;
+both parents then reach the same resident helper and its further callees.
+No returning-call model, selected input, supplied frame or memory was added.
+
+The next stops are actual unknown indirect targets, a further computed dispatch,
+an unmodeled interrupt and unresolved loop/step/path bounds. These retain the
+unknown native resource/control state. Neither full callback-root stream reaches
+the allocation entry. Ordinary routes and stop sites exactly match the previous
+reports; every added stream retains its declared dispatch assumptions.
+
+Source-local reports: GAME_DIR/analysis/reporter-audit/issue5-parent-callees100,
+including successive source-mapped callee stages. Ignored drivers and controls:
+artifacts/engine100/parent-callees*. No query limit was increased. Next evidence
+is the helper dispatch inputs, indirect target producers and required service
+effects; repeating the same capped roots would not answer those questions.
+Whole Gap 37 remains open.
