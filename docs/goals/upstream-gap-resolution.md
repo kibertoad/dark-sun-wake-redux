@@ -6,6 +6,11 @@ Fully resolve all 37 remaining requests recorded in gaps.md at goal intake. Each
 
 ## Scope
 
+Current user-requested work: complete every part of project issue 5 that needs
+no further upstream input. This covers Gaps 31, 32, 33, 34 and 37, including
+real connected caller/callee and producer coverage, whole controls and their
+negative cases. The broader ledger and completion condition remain unchanged.
+
 Areas: shared tooling, upstream rules/adoption and tooling acceptance records only. Research-side tooling batches. Read existing CONFIG/SCRIPT findings as acceptance inputs; do not claim or modify those research areas owned by config-static. No gameplay implementation.
 
 ## Must not touch
@@ -70,7 +75,15 @@ The full FND-CONFIG-192 symbolic query with explicit DS/SS/SP and unknown input 
 
 FND-CONFIG-199 frame/scope composition is delivered in engine 7.3.0. Verified post-prologue entries establish an unknown-root frame and preserve scoped suffix provenance. The original late-entry prefix still drops paths; whole last-writer controls remain undecided even when all retained suffixes return. Gap 40 remains open for complete predecessor coverage. Do not fabricate frame memory, omit required scopes, stitch windows or raise caps to manufacture acceptance.
 
-Gap 31's connected prefix stops at INT 33h before ordered output stores. The separate BX-copy controls do not bridge it. entryFrame does not carry argument memory; modeling the entire poll call skips the stores. Toolkit issue 190 requests the supported bounded recipe or accurate unsupported-case guidance. Keep the documented hard stop; no larger budgets or window stitching.
+Gap 31's historical INT 33h hard stop is superseded by the adopted conditional
+interrupt model. The late poll still lacks an established caller root frame.
+The issue5-poll root trace including FND-CONFIG-162 stops at its optional pointer
+helper and fallback setter before any late-entry arrival. Read those actual
+callees next; no upstream reply is needed for that step. Engine 9.1.0 supplies the missing scratch-memory checkpoint probe. Its local
+DX last-writer controls pass, but connected root/frame coverage is still missing.
+Unknown BX origin
+holds only at reached predicates; whole controls remain undecided. No larger
+budgets, invented memory, synthetic reads or window stitching.
 
 Gap 32 now has complete local conditional metadata branches and both callback reload/result controls at unchanged bounds. Target scopes hold at reached occurrences; whole order controls remain undecided because unread modeled callees on bypass paths could contain the anchor. Root return does not prove saved-frame preservation when unknown marker writes alias it. Keep Gap 32 open for actual bracket/callee and producer coverage, tracked in toolkit issue 198; do not repeat by increasing budgets.
 
@@ -92,17 +105,45 @@ Gap 29's new complete call-free eviction-helper query uses its known 16-slot bou
 
 ## Handover
 
-- Stage: Slices; research-side tooling. Condition/Scope unchanged. No game spec, parity, original run or emulation changed.
-- Last gate: 2026-10-05 Invoke-Validation.ps1 passed, artifacts/engine811/validation.log. Reader 2.1.0 / engine 8.1.1 / protocol 3 and runtime 6.2.0 are adopted; exact locks verified.
-- Current acceptance: Gap 29 complete eviction-helper controls pass with selected-index coverage, but connected no-op/input acceptance stays open. Gap 36 normalized-wrapper width/provenance controls pass with path gaps and full producer/fixture acceptance still open. Gap 34 append, bounded pair and conditional copy/terminator-base controls pass with explicit coverage limits; whole contract stays open under issue 213; durable matrix is in TOOLKIT-RESPONSE-ACCEPTANCE and REPORTER-CASE-AUDIT. Gap 33/issue 200 and Gap 32/issue 198 remain open. Gap 35 and issue 145 remain completed; broader Gap 40 stays open.
-- Unfinished: preserve local result-origin730/append-*, pair-*, path-*, width-* and eviction-* configs/reports and ignored engine73 drivers/logs. Preserve recursive, normalizer and actual-copy cases, earlier guard-order730 controls and their whole-query qualifications.
-- Blockers: Gap 29 needs real admitted cache/age/capacity inputs and connected restarted-search coverage. Gap 36 needs connected low/high-byte and segment producers, complete service coverage and fixtures. Gap 34/issue 213 needs full generated-cardinality, real string/count/pointer producers and admitted aliases/storage; retain connected query limits and actual-copy stop. Gap 33 needs complete graph/selector/pointer producers and supported re-encoding recipe; issue 200 tracks it. Gap 32 needs actual bracket/callee and target producers. Gap 37 needs connected route evidence; Gap 31 awaits issue 190; Gap 40 needs complete predecessors. No stitching, invented memory or higher unresolved-query caps.
-- Issue audit: docs/AWAITING-REQUESTER-AUDIT.md records all requester-waiting dispositions. Verified closed #158/#160/#161/#162 and superseded #159 with existing focused #218/#202; #207 already covers stream friction. Remaining focused requests need consumer controls and stay open. No duplicate follow-ups created.
-- Released migration complete: engine 8.1.1 and runtime 6.2.0 adopted; reader 2.1.0/checker 0.2.0 remain current. Full published suite, exact source integrity and canonical validation/build/smoke pass. Conditional controls and unmet issue exits are recorded in TOOLKIT-RESPONSE-ACCEPTANCE; project issue 5 tracks remaining consumer work.
-- Process audit: no confirmed session-owned orphan; reusable MSBuild, unrelated Rechaos/MagicMayhem work and CUA processes preserved. User authorized pushing completed work to main.
-- Next: Current toolkit responses/deliveries and FND-CONFIG-189 state snapshots; Gap 29 whole-search retry needs real cache/age/capacity producers.
-- Next: Gap 33/issue 200 producer evidence and supported re-encoding recipe; actual-copy retry only with real pointer producers and admitted distinct storage.
-- Next: Gap 32/issue 198 and Gap 37/issue 143 complete connected coverage only with new producer evidence or supported recipes; Gap 31 only after new response/delivery.
-- Next: Gap 40 predecessors and FND-SCRIPT-019 bounded fill inputs.
-- Next: Gap 36 connected producers/fixtures, FND-CONFIG-191 reference-scan controls and Gap 44 capture diagnostics.
-
+- Stage: Slices; research-side tooling. Original Condition/Scope and issue 5
+  consumer scope remain active. No game spec/parity, original run or original
+  emulation changed.
+- Last gate: 2026-10-05 Invoke-Validation.ps1 passed, including Test.ps1,
+  locked restore, Release build and assetless smoke. Log:
+  artifacts/engine91/validation.log. Required PowerShell 7 is at
+  artifacts/pwsh7/runtime/pwsh.exe; set PWSH for infrastructure controls.
+- Adopted: runtime 6.6.0, engine 9.1.0, reader 2.1.0 and checker 0.2.0.
+  Exact wheel/sdist/tag/installed bytes and released tests verified;
+  complete published suite passes. Ordinary and all packaging locks updated.
+- Acceptance audit: docs/LATEST-RELEASE-GAP-AUDIT.md covers every remaining
+  gaps.md request. No complete gap closes through this release alone.
+  Gap 31's missing scratch-read anchor is resolved by the new checkpoint probe;
+  whole caller/frame and repeating-route controls remain open. Issue 5's
+  Gaps 32/33/34/37 also remain open for their recorded consumer exits.
+- Unfinished: preserve GAME_DIR reporter-audit/issue5-poll, issue5-poll91 and
+  engine91 configs/reports, plus ignored artifacts/engine91 drivers/logs.
+  Earlier result-origin730 append/pair/path/width/eviction, recursive,
+  normalizer, actual-copy and guard-order730 controls remain valid inputs.
+- Blockers: real producer/callee/alias/admission evidence and full connected
+  controls are required. This is available consumer work rather than a reason
+  to await upstream. No invented entry memory, synthetic original reads,
+  stitched state or larger unresolved-query caps.
+- Other ledger work: Gap 29 admitted cache/age/capacity and restarted search;
+  Gap 36 connected byte/segment producers and fixtures; Gap 40 predecessors;
+  FND-CONFIG-191 reference scans; FND-SCRIPT-019 bounded fill; Gap 44 diagnostics.
+  Prior requester dispositions remain in AWAITING-REQUESTER-AUDIT.md.
+- Process audit: no confirmed session-owned orphan after the adoption commit;
+  reusable MSBuild, unrelated work and CUA processes are preserved.
+- Push: automatic approval review rejected pushing to main without trusted
+  explicit authorization. Finished local commits await user permission to push.
+- Next: Issue 5 Gap 31: include FND-CONFIG-165's pointer wrapper and
+  FND-CONFIG-162/163's setters in the actual root-frame trace. Keep unknown
+  storage and record the next unread dependencies at unchanged bounds.
+- Next: Issue 5 Gap 33: real finite child/selector/leaf producers and caller
+  coverage; actual-copy inputs need admitted distinct storage.
+- Next: Issue 5 Gap 34: real known-count cardinality positives and connected
+  pair/split/copy/terminator controls with producer and alias evidence.
+- Next: Issue 5 Gap 32: actual brackets/callees and callback target/segment
+  producer coverage.
+- Next: Issue 5 Gap 37: startup-to-transfer route, later writers/external
+  producers and known-answer placement controls.
