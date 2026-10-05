@@ -160,7 +160,7 @@ callees. The Save/Load action control helper returns into its actual caller;
 both parents then reach the same resident helper and its further callees.
 No returning-call model, selected input, supplied frame or memory was added.
 
-The next stops are actual unknown indirect targets, a further computed dispatch,
+The next stops include an undeclared direct near-call target, computed dispatch,
 an unmodeled interrupt and unresolved loop/step/path bounds. These retain the
 unknown native resource/control state. Neither full callback-root stream reaches
 the allocation entry. Ordinary routes and stop sites exactly match the previous
@@ -169,6 +169,40 @@ reports; every added stream retains its declared dispatch assumptions.
 Source-local reports: GAME_DIR/analysis/reporter-audit/issue5-parent-callees100,
 including successive source-mapped callee stages. Ignored drivers and controls:
 artifacts/engine100/parent-callees*. No query limit was increased. Next evidence
-is the helper dispatch inputs, indirect target producers and required service
+is the helper dispatch inputs, actual dependency bodies and required service
 effects; repeating the same capped roots would not answer those questions.
 Whole Gap 37 remains open.
+
+## Static producer map and focused selector verification
+
+Static source readings now separate the actual Start Game argument boundary
+from the Exit branch reached first by the broad conditional trace budget.
+Both Start Game and Save/Load supply selector four to the resident helper.
+Focused traces retain its two-byte read and the actual push producer, without
+register or memory seeds or returning-call models. Omitting the argument prefix
+loses the concrete selector; a one-step cap loses the read altogether.
+
+The helper compares the unsigned selector with five before indexing its six
+source word targets. The source entry for index four selects the field-update
+branch. This is a source-table reading, not proof that runtime code never
+changes the table, that callback events occur, or that lookup succeeds.
+
+The previously described unknown indirect target is corrected: the diagnostic
+helper's stopping call is a relative near call with a source-derived target
+outside the declared regions. Its inventory row is only the initial fragment;
+a source jump immediately leaves that fragment. No unknown callback pointer
+was demonstrated at that stop. Do not reuse the old classification.
+
+The actual Start window opener supplies resource 19500 to the overlay window
+acquisition entry documented by FND-CONFIG-018/030/034, then stores both words
+of its returned far pointer in the storage the callback loads. Existing findings
+identify acquisition, registration and activation failure gates. A focused
+argument-boundary report resolves the acquisition call to that actual body;
+it does not model success or connect separate runtime states. The resource
+reader, registration writes and subsequent writers to that pointer/child graph
+are the concrete next producers, rather than another broad root expansion.
+
+Source-local reports: GAME_DIR/analysis/reporter-audit/issue5-parent-selector100.
+Ignored drivers: artifacts/engine100/parent-selector.mjs and
+window-acquisition-boundary.mjs. Original instruction context stays local; no
+new spec status or gameplay behavior is asserted. Whole Gap 37 remains open.
