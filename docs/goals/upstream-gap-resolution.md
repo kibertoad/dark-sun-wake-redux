@@ -134,8 +134,8 @@ Gap 29's new complete call-free eviction-helper query uses its known 16-slot bou
   Prior requester dispositions remain in AWAITING-REQUESTER-AUDIT.md.
 - Process audit: no confirmed session-owned orphan after the adoption commit;
   reusable MSBuild, unrelated work and CUA processes are preserved.
-- Push: automatic approval review rejected pushing to main without trusted
-  explicit authorization. Finished local commits await user permission to push.
+- Push: user explicitly authorized the validated commits to be pushed to main
+  after automatic approval review requested confirmation. Check Git for sync state.
 - Next: Issue 5 Gap 31: include FND-CONFIG-165's pointer wrapper and
   FND-CONFIG-162/163's setters in the actual root-frame trace. Keep unknown
   storage and record the next unread dependencies at unchanged bounds.
