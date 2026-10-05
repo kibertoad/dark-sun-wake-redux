@@ -36,7 +36,7 @@ initial inventory; concurrent consumer updates were preserved.
 
 These are already focused trackers for their remaining asks. No duplicate
 follow-up was opened merely because a release or merged PR exists. Engine
-8.1.0 is now published; this project still pins 7.3.0 pending exact-source,
-complete published-suite and consumer migration verification. The isolated
-8.0.0 attempt and its missing test-only Unicorn dependency are unfinished,
-not a production upgrade or a toolkit defect.
+8.1.1 and runtime 6.2.0 are now adopted with exact-source and complete-suite
+verification. Source-case responses are recorded in TOOLKIT-RESPONSE-ACCEPTANCE.
+Project issue 5 tracks remaining evidence/connected-query work; the five focused
+Dark Sun toolkit requests remain open because their exits are not fully met.

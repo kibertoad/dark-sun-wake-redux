@@ -633,3 +633,46 @@ A post-selection register-only tail was rejected as a recipe before query accept
 Configs/reports remain local under GAME_DIR/analysis/reporter-audit/result-origin730/eviction-*; original instruction context remains local only. Ignored hash/selectors and source assertions are artifacts/engine73/eviction-selectors.py, explore-eviction.mjs and verify-eviction.mjs, with eviction-controls.log. Relevant new consumer details were added to existing [toolkit issue 114](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/114#issuecomment-5984446761), whose delivered feature remains closed. No newly demonstrated shared-tool defect or duplicate feature issue is claimed.
 
 Gap 29 remains open for the complete connected repeated no-op eviction/restarted-search case and real cache/age/capacity producers. FND-SCRIPT-022 explicitly distinguishes the hypothetical high-bit-capacity example from FND-CONFIG-156's ordinary capacity producer. This helper's completed writes and selected-index outcomes do not establish ordinary termination, repeated whole state or native high-bit capacity. Keep old unresolved search bounds unchanged; retry needs new producers, a justified connected route or supported input tooling.
+
+## Published runtime 6.2.0 / engine 8.1.1 acceptance, 2026-10-05
+
+Reader 2.1.0/checker 0.2.0 remain current; prepared protocol remains 3. Engine
+wheel SHA-256 is pinned in tools/evidence/requirements.txt. Registry hashes,
+wheel/sdist/release-tag/installed bytes and the complete released suite pass,
+including the actual installed engine Node bridge. Canonical Test.ps1, locked
+restore, Release build and assetless publish/smoke pass. All packaging profiles
+are regenerated for runtime 6.2.0. Logs are in artifacts/engine811/.
+
+FND-CONFIG-172 returns queries implement the issue 200 recipe at unchanged
+limits, unknown graph memory and explicit conditional models. Old broad frame
+scopes now correctly stop when they overlap the processor-written return frame.
+Revised hypotheses preserve existing caller stack upward from pre-call SP and
+exclude that frame. The recursive compare-input control holds at every reached
+occurrence; matching-branch and local-output producer hold at reached checkpoints.
+Wrong recursive output origin is rejected; the one-step cap removes checkpoints.
+Whole verdicts remain undecided with stopped/dropped routes and unread modeled
+callees on bypasses. No native leaf error or finite traversal is established.
+
+FND-CONFIG-164 connected caller/wrapper queries consume the released interrupt
+model. Hardware vector and conditional return are retained; CX then DX write
+through the same pointer, and returned AX follows supplied BX. Zero and one
+select opposite caller branches. Default/unscoped/capped controls stop as expected.
+The zero case retains an unmatched caller root frame; the one case retains the
+repeat/step stop. The actual caller has no post-store scratch read for the
+proposed lastWriter anchor; this remains a supported-query/consumer question,
+not permission to add a synthetic read. Issue 190 stays open.
+
+FND-CONFIG-176 append controls with corrected conditional caller-stack scopes
+retain accepted zero and rejected FFFF returns, the pre-copy gate and fresh
+unknown count reload. FND-CONFIG-199 registration argument controls retain the
+consistent consumed widths under explicit scopes. The new three-state width
+contract and conservative occurrence lower bounds are retained. No whole Gap 34
+cardinality positive, capacity safety, rollback or feasible geometry is inferred.
+
+Posted verified responses on toolkit issues 143, 190, 198, 200 and 213. None meets
+its full closure exit. Project follow-up:
+https://github.com/kibertoad/dark-sun-wake-redux/issues/5.
+Issue 111 is shared with other restorations; its current awaiting controls do
+not name this project, so no unrelated consumer request was closed. Original-derived
+configs/reports are local at GAME_DIR/analysis/reporter-audit/engine811; no original
+execution, emulation, game spec or parity change occurred.

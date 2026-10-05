@@ -2,10 +2,10 @@
 
 ## Published engine migration and upstream-response acceptance
 
-- **Outcome.** Adopt released engine changes only after exact-source and complete published-suite verification, retaining three-state argument-width results and unresolved consumer provenance. Apply merged result-origin guidance; interrupt/cardinality fixes require their own published delivery.
-- **Evidence.** Toolkit engine 8.0.0 release and its migration guide, PR 204, and responses on issues 190/198/200/213. Existing findings remain read-only acceptance inputs.
+- **Outcome.** Adopt runtime 6.2.0 and engine 8.1.1 after exact-source and complete published-suite verification; refresh ordinary/target-mode NuGet locks and engine wheel hash. Retain three-state argument-width results and unresolved consumer provenance; verify delivered interrupt/cardinality and result-origin guidance.
+- **Evidence.** Toolkit runtime 6.2.0 and engine 8.1.1 registry releases and migration guides, PRs 204/214/215/217, and responses on issues 190/198/200/213. Existing findings remain read-only acceptance inputs.
 - **Acceptance.** Verify wheel/sdist/released source and installed bytes in an isolated environment before changing production pins. Rerun actual registration width and scoped/unscoped/capped controls; widthsConsistent=null requires retaining uncertainty and reassessing affected closure claims. No original run, spec/parity changes or unsupported input hypotheses.
-- **Tests and Exit.** Complete published engine suite including the installed-engine Node bridge, relevant Dark Sun argument/preservation controls and canonical Test.ps1. Keep interrupt/count changes pending until published delivery and consumer verification; use merged documentation's compare/order/output and wrong-origin controls before focused issue closure. Whole-gap closure still requires all original acceptance criteria.
+- **Tests and Exit.** Complete published engine suite including the installed-engine Node bridge, relevant Dark Sun argument/preservation controls and canonical Test.ps1. Review breaking image/overlay/volume/width contracts; verify packaging locks, Release build and assetless smoke. Track unmet requester exits without duplicate upstream issues; use merged documentation's compare/order/output and wrong-origin controls before focused issue closure. Whole-gap closure still requires all original acceptance criteria.
 
 This file says what the project intends and what is true now, following the
 [work protocol](../vendor/upstream/work-protocol.md). It holds no dated
@@ -996,4 +996,3 @@ Shared FLI readiness: Inspect `fli-check` uses the pinned RefurbishedDinosaurs.M
 ## Latest template dependency maintenance sync
 
 Adopt template main 7a798184faddb271da2ec52745887972fdcdeb72, including xUnit 4.0.1 and its refreshed test lock. Outcome: weekly NuGet updates group shared runtime and xUnit packages, retain the reviewed SabreTools pin, and leave manually coordinated npm/Python tooling updates to the existing exact-lock workflow. Retain the stronger verified project-local interpreter routing instead of adding PATH probing. Evidence: complete ten-file delta from 049f300 and docs/TEMPLATE-ACCEPTANCE.md. Acceptance: adapted Dependabot policy, updated maintenance guidance, canonical Test.ps1 and full Invoke-Validation gate pass; no configured identity, proprietary content, spec status or gameplay changes. Exit: every changed capability accounted for and validation passes. Risk: update proposals still require locked-package acceptance. No owner questions.
-

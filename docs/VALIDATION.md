@@ -751,3 +751,5 @@ This checks the published format implementation, not original decoder parity.
 The unresolved chunk behavior and malformed historical record in FMT-VIDEO-001
 remain open. Cinematic dispatch, caller timing, skip handling and still-picture
 fallback remain unimplemented; this adoption does not change their parity rows.
+
+2026-10-05: Shared runtime 6.2.0 and engine 8.1.1 adoption. Exact wheel/sdist/tag/installed engine bytes and complete published suite pass (artifacts/engine811/release-suite.log). Canonical Test.ps1, locked restore, Release build and assetless publish/smoke pass (artifacts/engine811/validation.log); packaging profiles refreshed. Conditional source controls and remaining exits are recorded in TOOLKIT-RESPONSE-ACCEPTANCE. No original runtime or emulation ran.
