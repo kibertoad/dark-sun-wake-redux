@@ -66,6 +66,13 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 
 ## Dead ends
 
+The destination-field relocation census and published caller ownership reports
+are recorded in TRANSFER-CALLER-PRODUCER-AUDIT. Allocator callback roots retain
+dispatch gaps; the documented Start Game branch is a separate local positive.
+The cleanup caller has an unresolved jump despite confirmed call ownership.
+Retry those roots only with verified dispatch/entry/mapping evidence, not higher
+caps or repeated censuses. Confirmed consumer calls do not join DS field history.
+
 The callback writer's existing boundary-based caller census and new independent
 resident encoded-transfer check retain no admitted reference. Bare offset words
 remain unclassified; computed/indirect and synthesized pointers remain open.
@@ -131,11 +138,11 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Exact adopted dependencies: runtime 7.0.0, engine 10.1.0, reader 2.1.0 and
   checker 1.1.0. Release integrity and canonical adoption records remain in
   docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
-- Latest batch: connected FND-CONFIG-186 caller/callee graph acceptance in
-  docs/TRANSFER-CALLER-PRODUCER-AUDIT.md and docs/FIVE-GAP-CONTRACT-AUDIT.md.
+- Latest batch: destination-field producer/consumer incoming-reference controls
+  in docs/TRANSFER-CALLER-PRODUCER-AUDIT.md.
   Full Test.ps1 -NoRestore passed on 2026-10-06; log
-  artifacts/engine101/connected-caller-test.log. Complete declared caller graph
-  and request/release omission and instruction-cap controls passed. Release
+  artifacts/engine101/field-incoming-test.log. Relocation census, resident caller
+  ownership, documented branch and instruction-cap controls passed. Release
   integrity records remain current. Toolkit issue 290's capability is
   delivered and verified. No unfinished tracked files. A private preliminary
   shared-pointer incoming-call census revalidates FND-CONFIG-207; it is not a
