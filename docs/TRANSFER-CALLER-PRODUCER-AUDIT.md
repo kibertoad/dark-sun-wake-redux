@@ -467,3 +467,42 @@ under artifacts/engine100. Next is the specific allocation-return/field handoff
 and later cleanup-write dependency, retaining current DS and slot/alias limits.
 No game specification or parity status changes. All five full connected exits
 remain open.
+
+## Gap 37 destination allocation and later replacement routes, 2026-10-06
+
+Published caller-order analysis now confirms the allocation call feeding the
+first destination-field store within the candidate's entry CFG. The capped
+negative loses usable ordering. The documented allocator and free-slot scan
+also resolve as a separate connected call graph with usable complete local
+bodies. This does not complete the parent, whose earlier callees and current
+state remain unverified.
+
+FND-CONFIG-183 bounds the successful allocator's returned slot-derived handle;
+its all-ones failures remain separate. The candidate copies that word into its
+current DS-relative field before testing failure. Neither a resolved call edge
+nor a bounded successful return proves that this invocation succeeds, that the
+field preserves it, or that the later transfer sees the same physical storage.
+The scanner does not reserve the selected slot on its own.
+
+The later writer's child is the cleanup wrapper documented by FND-CONFIG-184.
+Fresh full-wrapper decoder controls, starting after its parameter load with
+explicit register hypotheses, cover the signed-at-most-one bypass for zero,
+one, the failure sentinel and the most negative word. Each returns the supplied
+word with whole conditional controls held. A wrong unconditional-sentinel
+control is rejected, and the one-step cap loses all value anchors. These are
+conditional decoder cases, not native field inputs or a joined producer history.
+
+The positive service hypothesis reaches the actual release call and stops there
+unmodeled. The wrapper's source assigns the failure sentinel after that call
+returns, discarding its returned AX; service success and effects are not tested.
+Thus replacement must distinguish unchanged bypass words from the wrapper's
+own sentinel assignment after a returning hardware-bearing service. The earlier
+field's allocator origin cannot be assumed to survive this replacement.
+
+Private reports/readings remain under issue5-transfer-mask100. Ignored drivers:
+transfer-destination-allocator-connection.mjs, transfer-cleanup-word-controls.mjs
+and transfer-cleanup-word-negative.mjs under artifacts/engine100. No native field
+memory was supplied, no old capped traversal bound was increased, and no stopped
+positive-service path is accepted as completion. Next is current DS and the
+specific field-to-consumer preservation/order, alongside slot/transfer aliases.
+No game specification or parity status changes. All five full exits remain open.
