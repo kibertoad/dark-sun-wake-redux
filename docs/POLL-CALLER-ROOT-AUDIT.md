@@ -419,3 +419,39 @@ drivers/logs: poll-file-check-resolution.mjs, poll-file-check-bounds.mjs,
 poll-file-check-child-resolution.mjs and poll-file-check-connected.mjs under
 artifacts/engine100. This tooling acceptance changes no native claim, source
 finding or parity status. All five full connected exits remain open.
+
+## Resolved validation edge and caller carry provenance, 2026-10-06
+
+The file-check status service's previously unread validation edge is now included
+in the published connected graph. Its bounded instruction reading tests the two
+argument words for zero and sets its return/carry state; it does not validate a
+storage range, access filename bytes or write DS. The graph now has usable local
+bodies and no unresolved call edges in this declared scope. DOS interrupts and
+callee-return assumptions remain explicit; this is not complete native behavior,
+loop termination or preservation across interrupt/alias effects.
+
+Omitting the validator restores the unresolved edge. The one-instruction graph
+loses usable local completion. These controls replace the earlier unread-edge
+qualification with a resolved source-local dependency, without changing the
+remaining storage and hardware qualifications.
+
+The caller adjusts SP after the validator returns and before branching on carry.
+That adjustment produces the branch flags; the validator's returned carry is not
+the tested carry. Actual two-instruction trace controls, using explicit post-call
+SP hypotheses and otherwise unknown returned flags, retain the adjustment as
+flag producer. The non-wrapping hypothesis rejects the branch and the wrapping
+hypothesis takes it. Omitting the adjustment leaves both branch outcomes
+unresolved, while the one-instruction cap reaches neither branch outcome.
+
+These are conditional decoder/provenance controls. They seed no native memory,
+do not prove the caller's actual SP, and stop at their stated step limit. No
+native failure, admitted wrap, service success or bug is inferred. A caller's
+branch after a service is not evidence that it tested the service's return flags;
+the intervening flag producer must be retained.
+
+Private reports/readings remain under issue5-poll-state-incoming100. Driver/log:
+artifacts/engine100/poll-file-check-validation.mjs and its log. The source-local
+validation dependency is resolved; next are formatter bounds, other intervening
+calls and this service graph's explicit interrupt/saved-storage conditions.
+No specification or parity status changes. All five full connected exits remain
+open.
