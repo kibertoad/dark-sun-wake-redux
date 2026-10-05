@@ -131,11 +131,12 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Exact adopted dependencies: runtime 7.0.0, engine 10.1.0, reader 2.1.0 and
   checker 1.1.0. Release integrity and canonical adoption records remain in
   docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
-- Latest batch: PR 293 release adoption and mask-bound acceptance in
-  docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TRANSFER-CALLER-PRODUCER-AUDIT.md.
+- Latest batch: connected FND-CONFIG-186 caller/callee graph acceptance in
+  docs/TRANSFER-CALLER-PRODUCER-AUDIT.md and docs/FIVE-GAP-CONTRACT-AUDIT.md.
   Full Test.ps1 -NoRestore passed on 2026-10-06; log
-  artifacts/engine101/adoption-test.log. Released engine regression suite and
-  focused positive/negative controls passed. Toolkit issue 290's capability is
+  artifacts/engine101/connected-caller-test.log. Complete declared caller graph
+  and request/release omission and instruction-cap controls passed. Release
+  integrity records remain current. Toolkit issue 290's capability is
   delivered and verified. No unfinished tracked files. A private preliminary
   shared-pointer incoming-call census revalidates FND-CONFIG-207; it is not a
   completed additional connected control or a new native claim.
@@ -144,7 +145,7 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   Original hardware output, external results and input admission remain qualified.
 - Next, Gap 37: current DS and field-to-consumer preservation/order, plus
   slot/transfer aliases needed for a whole control. Source-local hardware placement, mask-prefix
-  provenance and the wrapper/validator/getter/primitive graph have records. Keep native
+  provenance and the connected caller/request/transfer/cleanup graph have records. Keep native
   input, later-writer and hardware output limits; the initializer remains
   separate. Expand archive/startup only for a specific missing dependency.
 - Next, Gap 31: formatter output bounds, file-check interrupt/alias conditions,
