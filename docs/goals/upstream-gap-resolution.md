@@ -223,3 +223,14 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   Startup-to-transfer, incoming flag/data, later writers and sound/I/O
   producers remain. FBOV code cannot be executed in the resident harness;
   do not repeat the capped disconnected startup scan or claim pixels.
+
+- Connected pre-allocation callee acceptance is recorded in
+  docs/TRANSFER-CALLER-PRODUCER-AUDIT.md. Full Test.ps1 passed on 2026-10-05
+  with required temporary-directory access; the sandbox-only run failed a
+  Java filesystem-boundary control. No implementation or spec status changed.
+- Owner-directed approach: static cross-references and source readings discover
+  connected producer/dependency chains; bounded traces and emulated calls
+  verify specific claims afterward. Do not continue broad root expansion
+  against the same unknown dispatch, service, loop and indirect-call inputs.
+- Next: identify actual pre-allocation helper dispatch inputs and indirect-call
+  storage producers, then verify a producer-backed connected chain.
