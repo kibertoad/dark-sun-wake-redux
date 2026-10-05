@@ -77,9 +77,11 @@ FND-CONFIG-199 frame/scope composition is delivered in engine 7.3.0. Verified po
 
 Gap 31's historical INT 33h hard stop is superseded by the adopted conditional
 interrupt model. The late poll still lacks an established caller root frame.
-The issue5-poll root trace including FND-CONFIG-162 stops at its optional pointer
-helper and fallback setter before any late-entry arrival. Read those actual
-callees next; no upstream reply is needed for that step. Engine 9.1.0 supplies the missing scratch-memory checkpoint probe. Its local
+The issue5-root91 trace includes the documented pointer wrapper, both setters
+and runtime dependencies. Unmodeled DOS and bounded routes remain; actual
+caller-origin controls reach both registration stores. Gap37's initializer
+known-answer and byte-writer controls pass separately. See the latest-release
+audit for the local reports and limitations. Engine 9.1.0 supplies the missing scratch-memory checkpoint probe. Its local
 DX last-writer controls pass, but connected root/frame coverage is still missing.
 Unknown BX origin
 holds only at reached predicates; whole controls remain undecided. No larger
@@ -108,7 +110,10 @@ Gap 29's new complete call-free eviction-helper query uses its known 16-slot bou
 - Stage: Slices; research-side tooling. Original Condition/Scope and issue 5
   consumer scope remain active. No game spec/parity, original run or original
   emulation changed.
-- Last gate: 2026-10-05 Invoke-Validation.ps1 passed, including Test.ps1,
+- Last gate: 2026-10-05 Test.ps1 -NoRestore passed for the producer batch;
+  log: artifacts/engine91/connected-test.log. The sandbox attempt was blocked
+  by Java temporary-directory access; the unrestricted required gate passed.
+  Earlier Invoke-Validation.ps1 passed, including Test.ps1,
   locked restore, Release build and assetless smoke. Log:
   artifacts/engine91/validation.log. Required PowerShell 7 is at
   artifacts/pwsh7/runtime/pwsh.exe; set PWSH for infrastructure controls.
@@ -120,8 +125,9 @@ Gap 29's new complete call-free eviction-helper query uses its known 16-slot bou
   Gap 31's missing scratch-read anchor is resolved by the new checkpoint probe;
   whole caller/frame and repeating-route controls remain open. Issue 5's
   Gaps 32/33/34/37 also remain open for their recorded consumer exits.
-- Unfinished: preserve GAME_DIR reporter-audit/issue5-poll, issue5-poll91 and
-  engine91 configs/reports, plus ignored artifacts/engine91 drivers/logs.
+- Unfinished: preserve GAME_DIR reporter-audit/issue5-poll, issue5-poll91,
+  issue5-root91, issue5-producers91, issue5-initializer91 and engine91
+  configs/reports, plus ignored artifacts/engine91 drivers/logs.
   Earlier result-origin730 append/pair/path/width/eviction, recursive,
   normalizer, actual-copy and guard-order730 controls remain valid inputs.
 - Blockers: real producer/callee/alias/admission evidence and full connected
@@ -136,9 +142,8 @@ Gap 29's new complete call-free eviction-helper query uses its known 16-slot bou
   reusable MSBuild, unrelated work and CUA processes are preserved.
 - Push: user explicitly authorized the validated commits to be pushed to main
   after automatic approval review requested confirmation. Check Git for sync state.
-- Next: Issue 5 Gap 31: include FND-CONFIG-165's pointer wrapper and
-  FND-CONFIG-162/163's setters in the actual root-frame trace. Keep unknown
-  storage and record the next unread dependencies at unchanged bounds.
+- Next: Issue 5 Gap 31: resolve remaining DOS/poll/setter dependencies and
+  caller-frame coverage using actual producers at unchanged unresolved bounds.
 - Next: Issue 5 Gap 33: real finite child/selector/leaf producers and caller
   coverage; actual-copy inputs need admitted distinct storage.
 - Next: Issue 5 Gap 34: real known-count cardinality positives and connected
