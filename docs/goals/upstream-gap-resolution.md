@@ -120,13 +120,15 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 
 ## Handover
 
-- Stage: Slices; research-side tooling. Original Condition/Scope and issue 5
+- Stage: Slices; research-side tooling. Active five-gap Condition/Scope and issue 5
   consumer scope remain active. No game spec/parity, original run or emulation.
 - Latest validation: 2026-10-05 canonical Invoke-Validation.ps1 passed,
   including full Test.ps1, locked restore, Release build and assetless smoke.
   Log: artifacts/engine100/canonical-validation.log. Every packaging profile
   passes locked verification: packaging-check.log. Final Test.ps1 -NoRestore
-  passes: precommit-test.log. PowerShell 7: artifacts/pwsh7/runtime/pwsh.exe.
+  passes: precommit-test.log. Latest full batch Test.ps1 also passes:
+  artifacts/engine100/count-root-test.log; exact integrity: count-root-integrity.log.
+  PowerShell 7: artifacts/pwsh7/runtime/pwsh.exe.
 - Adopted: runtime 7.0.0, engine 10.0.0, reader 2.1.0, checker 1.1.0.
   Engine tag: eaeaad180f36cd6ccab1198410e40ca9421cd4e5.
   Checker tag/action: c79d7fe3addb3fb14bc5f118f19f47571aa4c3f0.
@@ -143,10 +145,11 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   are complete; whole consumer evidence exits remain incomplete.
 - Unfinished: preserve all GAME_DIR reporter-audit/issue5-* and prior
   result-origin730/guard-order730 controls, plus engine100-brackets,
-  engine100-writer-inputs and engine100-count-inputs. Preserve ignored
+  engine100-writer-inputs, engine100-count-inputs, engine100-count-roots,
+  engine100-count-pre-guard and engine100-count-root-controls. Preserve ignored
   artifacts/engine91 and engine100 drivers, integrity sources and logs.
   No invented entry memory, stitched state or larger unresolved-query caps.
-- Process audit: artifacts/engine100/adoption-final-process-audit.json.
+- Process audit: artifacts/engine100/count-root-process-audit.json.
   No confirmed session-owned orphan; reusable MSBuild and CUA remain untouched.
 - Push: user explicitly authorized validated main pushes. Read branch/remote
   synchronization directly from Git.
@@ -155,8 +158,12 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   producers; follow produced pointers with released engine 10.0.0.
 - Next: Gap 33 admitted finite graph/count/record-length and actual-copy
   storage/alias inputs for whole recursive/caller controls.
-- Next: Gap 34 count-one callers now have local input-origin controls;
-  complete frame/storage admission before append cardinality and full
-  pair/split/copy/terminator acceptance. Reports: issue5-count-callers91.
+- Next: Gap 34 connected caller-root and pre-guard frames now reach the
+  count-one store and retain it through actual copy into normalization.
+  Local origin/last-writer/order controls pass with negatives; whole controls
+  remain undecided. Follow finite normalization and subsequent pair/split
+  routes using new producer evidence, never larger unresolved-query caps.
+  Evaluate permitted resident-only emulated-call tooling after the static
+  attempts if it can supply conditional finite-input coverage; no game run.
 - Next: Gap 37 startup-to-transfer, incoming flag/data, later writers and
   sound/I/O producers. Do not repeat the capped disconnected startup scan.
