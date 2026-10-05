@@ -229,3 +229,16 @@ locked packaging profiles and qualified source controls. Update issue 274 and
 project issue 5 with actual results; record remaining migration requirements.
 Exit: exact published adoption and passing gates, with delivered capability
 separated from incomplete consumer evidence. No game spec or parity changes.
+
+## Connected count-one root and pre-guard frame controls
+
+Trace the newly identified caller roots with actual buffer/fill/copy bodies.
+A narrower entry may precede the first guard only when the actual prologue
+establishes its frame; memory stays unknown and no earlier result is supplied.
+Remove incidental incoming register hypotheses. Verify the actual count-one
+store and its last-writer/origin through record copy into normalization, with
+wrong writer, omitted copy/setup, unformed-frame and cap controls. Keep all
+unread DOS, branch/loop and path/step stops. This is a connected producer
+witness, not complete append cardinality or native admitted geometry.
+Exit: source-produced nonzero count witnesses with explicit remaining routes,
+full Test.ps1, acceptance record and separate handover. All reports stay local.

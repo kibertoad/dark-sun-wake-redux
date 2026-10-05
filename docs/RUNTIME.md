@@ -24,9 +24,11 @@ and `dosbox_darksun2_single.conf` (`machine=svga_s3`, `memsize 16`,
 `cycles fixed 15000`, `sbtype sb16`), started through `RAVAGER.BAT`, as the
 build entry and the environment of the owner's captures record.
 
-Emulator harness: none. `tools/emu/` does not exist yet. Emulated calls are
-always allowed, whatever the rules on running the game, so the last row
-becomes `agent` once a tooling batch builds a harness that loads this build.
+Emulator harness: tools/emu/resident-call.mjs with Unicorn 2.1.4, restored
+from hash-locked test-only wheels. The published executable-reader loads the
+MZ resident image and source relocations. A declared far, no-argument root can
+be called without a game process or run lock. Raw memory and argument seeding
+wait for supported layout/parameter bindings; FBOV code stays out of reach.
 
 | Capability | Who | Tried | What would change it |
 |---|---|---|---|
@@ -36,7 +38,7 @@ becomes `agent` once a tooling batch builds a harness that loads this build.
 | Load a patched save | person | Not tried. The owner can place a save in the installation's save slots and load it from the game's menu. | A live session that asks for it. |
 | Capture frames and sound | person, frames only | Frames: the owner's Ctrl+F5 screenshots, 320x200 in the game's palette, cited by the dynamic findings of the COMBAT, PARTY and UI areas. Sound: not tried; DOSBox 0.74-2 records sound with Ctrl+F6. | A live session that asks for a sound recording. |
 | Play back a recording the original made | none | The game has no recording feature the spec knows of, and DOSBox 0.74-2 does not replay input. | A finding that the game records and replays input. |
-| Call a single function in the emulator harness (no run lock) | none | No harness. | A tooling batch that builds `tools/emu/` with Unicorn in 16-bit real mode, loading the resident MZ image of `DSUN.EXE`, which carries no packer. Code in the `FBOV` overlay pack stays out of reach, as the protocol says of overlay code. |
+| Call a single function in the emulator harness (no run lock) | agent, resident far roots within the current no-argument contract | Unicorn 2.1.4 loads the hash-verified GOG resident MZ and applies its relocations. FND-CONFIG-193 initializer controls return with source-written roots/free flags, unchanged loaded high bytes and restored registers. | Supported named parameter/layout bindings extend input cases. Overlay code, native hardware and timing remain outside this harness. |
 
 
 Probe: none. Native process attachment and memory instrumentation are barred
@@ -44,3 +46,20 @@ by the owner-only DOSBox policy. Recorded runs are not available; the protocol's
 [Recorded runs](../vendor/upstream/work-protocol.md#recorded-runs) (lines 227-239) guidance
 does not override those limits. A future harness must document port models,
 video memory substituted with RAM and the limits of each comparison.
+
+## Resident-call stubs and limits
+
+The harness permits named interrupt stops only. It cannot assume an unknown
+handler returned or retained memory/registers. Port substitutions separately
+name read/write direction, width and the glossary name of each supplied value.
+An undeclared interrupt, port, code path or instruction boundary stops the call;
+an FBOV overlay interrupt cannot be supplied as a stub. Synthetic controls cover
+these failures. The actual initializer reaches no hardware service or port.
+
+Loaded memory comes from the resident MZ, with synthetic zero-filled RAM outside
+it and a harness-owned far-return frame. Video addresses are ordinary RAM; no
+pixels, device state, sound, input or timer are emulated. Instructions, writes,
+observations and branch-direction coverage are bounded and recorded locally.
+The initializer controls seed no original memory field. No game claim/parity
+status or startup-to-transfer/caller admission changes merely from these tests.
+See tools/emu/README.md and docs/VALIDATION.md.

@@ -769,3 +769,30 @@ PowerShell 5.1 run failed infrastructure tests because pwsh was absent from
 PATH; it is retained as gate.log. No original runtime or original emulation
 occurred. Every remaining full gap stays open; LATEST-RELEASE-GAP-AUDIT.md
 records the per-contract release assessment.
+
+## Resident emulated-call tooling, 2026-10-05
+
+Unicorn 2.1.4 is a separately hash-locked test-only dependency in tools/emu/;
+Test.ps1 restores it and runs the synthetic MZ/CPU boundary controls. These need
+no copy of the game. The licensed FND-CONFIG-193 control carries needs: GAME_DIR
+and is explicitly skipped when that variable is absent. To repeat it locally:
+
+```powershell
+$env:GAME_DIR = 'C:/GOG Games/Dark Sun 2'
+node --test tests/evidence/emulator.test.mjs
+```
+
+The maintainer run passes both register contexts, the known roots/pool words,
+low-byte free flags with loaded high bytes retained, DS/SI/DI restoration and
+both directions of the declared-body loop branch. Instruction/write caps and an
+omitted return region reject. No original memory fields were seeded. Reports
+stay under GAME_DIR/analysis/reporter-audit/emulated-initializer, with exclusive
+creation; no source bytes or reports enter Git. No game process, DOSBox, runtime
+capture or spec/parity promotion occurred. This is harness delivery acceptance,
+not a complete startup-to-transfer experiment or evidence of native output.
+Logs: artifacts/emulator/licensed-controls.log and initializer-controls.log;
+canonical batch gate: artifacts/emulator/canonical-validation.log.
+
+The installed test-only emulator matches every package file in the official
+registry-hash-verified wheel (artifacts/emulator/unicorn-integrity.log). Final
+Test.ps1 after offset-wrap controls also passes (artifacts/emulator/final-test.log).

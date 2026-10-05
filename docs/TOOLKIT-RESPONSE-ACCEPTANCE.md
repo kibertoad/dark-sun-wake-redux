@@ -954,3 +954,30 @@ engine100-count-pre-guard and engine100-count-root-controls. Drivers/logs:
 artifacts/engine100/count-root-callers.mjs, count-pre-guard-frames.mjs,
 count-root-controls.mjs and their corresponding logs. Canonical batch checks
 are recorded in count-root-test.log; exact engine integrity remains verified.
+
+## Resident emulated-call harness and initializer control, 2026-10-05
+
+The permitted research harness now loads the licensed resident MZ through the
+published executable-reader, applies source relocations and calls one declared
+far function in Unicorn 2.1.4. No FBOV code or game process is started. Synthetic
+controls cover far-call relocation/return, identity, instruction-boundary and
+code-mutation rejection, stack overlap, named interrupt stops, separately named
+port directions/widths, ordinary RAM effects and nonvacuous limits. Canonical
+Test.ps1 uses hash-locked test-only Unicorn; it is not a shipped game dependency.
+
+The actual FND-CONFIG-193 no-argument initializer returns in loaded/default and
+register-restoration contexts without seeded original memory fields. Its root
+and paragraph words match the static known answers. All free flags have their
+source-written low byte, while their loaded high bytes stay unchanged; writes
+are byte-width at those positions. DS/SI/DI return to their entry values. Both
+loop directions in the declared body execute. Instruction/write limits and an
+omitted return region reject the positive. No hardware boundary is reached.
+
+Licensed tests skip without GAME_DIR. Configs and numeric traces are local in
+GAME_DIR/analysis/reporter-audit/emulated-initializer. Logs:
+artifacts/emulator/licensed-controls.log and initializer-controls.log. Runtime
+capability and stub limitations are recorded in RUNTIME.md; controls and the
+canonical gate are recorded in VALIDATION.md. This verifies harness delivery
+and source-local agreement only. It does not promote a game entry, establish
+caller/input admission or join startup to a later transfer. All five consumer
+exits remain open. Raw parameter-memory seeding waits for supported layouts.

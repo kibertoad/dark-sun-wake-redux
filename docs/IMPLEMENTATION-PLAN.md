@@ -13,21 +13,25 @@ Exit: actual input/count witnesses and remaining alias/storage/route limits.
 Reports/selectors remain local under GAME_DIR; whole Gap 34 stays open until
 known append cardinality and pair/split/copy/terminator exits all pass.
 
-## Connected count-one root and pre-guard frame controls
+## Resident-only emulated-call evidence tooling
 
-Trace the newly identified caller roots with actual buffer/fill/copy bodies.
-A narrower entry may precede the first guard only when the actual prologue
-establishes its frame; memory stays unknown and no earlier result is supplied.
-Remove incidental incoming register hypotheses. Verify the actual count-one
-store and its last-writer/origin through record copy into normalization, with
-wrong writer, omitted copy/setup, unformed-frame and cap controls. Keep all
-unread DOS, branch/loop and path/step stops. This is a connected producer
-witness, not complete append cardinality or native admitted geometry.
-Exit: source-produced nonzero count witnesses with explicit remaining routes,
-full Test.ps1, acceptance record and separate handover. All reports stay local.
+Build the permitted Unicorn harness under tools/emu using the published MZ
+reader for hash, bounds and source relocations. Load only resident code; deny
+overlay transfers, undeclared execution, unsupported interrupts/ports, modified
+code and step/write limits. Execute one declared function and record numeric
+instruction/branch coverage, registers and bounded memory effects, without a
+game process, DOSBox or pixels. Hash-locked test-only Unicorn runs synthetic CI
+controls without licensed content.
+Original reports/configs stay in GAME_DIR; never write a prepared image to Git.
+Verify the FND-CONFIG-193 no-argument initializer without seeded memory fields,
+comparing loaded high bytes and source-written roots.
+Seeding waits for supported fields/parameters. Synthetic relocation/return,
+boundary, port, interrupt and limit
+controls plus full Test.ps1 must pass. Exit: working resident-call capability
+and conditional evidence. Full five-gap exits still require caller/input
+admission; existing game findings stay read-only.
 
 Completed bounded adoption plans: [archive](implementation-plans/COMPLETED-SHARED-ADOPTION.md).
-
 ## Issue 5 callback writer candidate census
 
 Search the committed DSUN function inventory for encoded A119/A11B operands
