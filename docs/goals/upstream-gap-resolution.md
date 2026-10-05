@@ -164,6 +164,9 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   docs/POLL-CALLER-ROOT-AUDIT.md. Actual prologue/argument producers now
   reach the DX final writer and BX predicate without supplied SP/BP/memory.
   Census is partial; repeated and downstream paths remain incomplete.
+- Gap 31 explicit BX zero/one cases now follow actual exit/repeat branches;
+  zero reaches real state clear from the caller root, then stops at unchanged
+  bounds. Omitted-helper and one-step controls remove that witness.
 - Next: Gap 31 complete required caller routes and downstream producers;
   preserve old incomplete prefixes and unchanged query bounds.
 - Next: Gap 32 actual writer reachability and callback target/segment/storage
