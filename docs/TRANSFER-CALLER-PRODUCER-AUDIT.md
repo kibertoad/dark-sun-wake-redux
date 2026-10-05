@@ -28,3 +28,25 @@ Source-local configs/reports: GAME_DIR/analysis/reporter-audit/
 issue5-transfer-callers100, issue5-transfer-wrapper-callers100 and
 issue5-transfer-producers100. Ignored drivers/logs: artifacts/engine100/
 transfer-callers.*, transfer-wrapper-callers.* and transfer-producers.*.
+
+## Connected slot-write and getter control
+
+Adding the actual transfer wrapper, coordinate validator, all coordinate
+getters and primitive reaches the first validator getter at unchanged limits.
+A conditional scanner route produces handle zero; the caller forwards that
+actual result through SI into the wrapper and validator. Its native admission
+is unknown, not supplied or inferred from the initializer's separate control.
+
+The getter reads coordinate 10 from the request's actual slot assignment.
+Origin controls retain both the caller push and request-store producers;
+last-writer controls identify the request store rather than the argument push.
+Wrong push-as-direct-slot-writer is rejected. Missing scanner and one-step
+controls remove downstream witnesses. Whole controls remain undecided.
+
+The primitive is declared but not reached. Unknown second handle, slot flags
+and fields, scanner repeats, path drops and step stops retain incomplete
+validation/transfer coverage. This is a connected producer-store-consumer
+witness, not hardware presentation or an admitted native handle proof.
+Source-local reports: GAME_DIR/analysis/reporter-audit/
+issue5-transfer-continuation100. Ignored drivers/logs: artifacts/engine100/
+transfer-continuation.* and transfer-continuation-controls.*.
