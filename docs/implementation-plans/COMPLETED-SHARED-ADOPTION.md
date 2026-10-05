@@ -95,3 +95,17 @@ actual recursion and caller coverage remain required for whole closure.
 Source-derived artifacts stay under GAME_DIR. Exit: record actual dependencies,
 local versus whole verdicts, admitted-state gaps and next available work.
 
+
+## Issue 5 actual region-count caller
+
+Use FND-CONFIG-173/175/176/177/178 and FND-UI-011 as read-only inputs to
+trace the actual list caller's fixed-region initialization, count-one setup
+and connected pair/split/copy dependencies. Replace the historical guard
+models with FND-CONFIG-163's actual guard. Keep unknown incoming data, SP/BP
+and the old pair-query bounds. Check count producers at reached reads and
+append witnesses; omitted fill/caller dependencies and one-step controls
+must lose witnesses. Do not seed counts, alias admission or record geometry.
+Store source-derived reports under GAME_DIR. Exit: record real count/writer
+provenance, whole versus local controls, unread dependencies and remaining
+known-append-count acceptance without larger caps or stitched state.
+

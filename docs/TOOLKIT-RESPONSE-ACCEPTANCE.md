@@ -833,3 +833,37 @@ batch used actual producer tracing instead. No new upstream tool defect or
 input requirement was demonstrated. Findings/parity remain unchanged, and no
 original runtime/emulation, fabricated memory, stitched state or larger
 unresolved-query bound was used.
+
+## Gap 37 actual initializer caller continuation, 2026-10-05
+
+Engine 9.1.0 now traverses FND-CONFIG-193's actual two-zero push/call/cleanup
+window into the initializer and out to FND-CONFIG-149's following mode test.
+This justified narrow entry assumes earlier startup helpers returned; it does
+not import their state or prove their archive/I/O outcomes. The independently
+source-bounded initializer loop limits remain unchanged. No calls are modeled.
+
+The actual nested initializer return retains all previous root/pool/flag-byte
+last-writer controls, and the caller restores its pre-window SP before the
+mode test. The same field controls also hold at the actual caller checkpoint.
+The latter query declares FS=1BF3 solely to address the resident fields:
+this window and initializer do not use FS for their work, and the probe
+supplies no data. It is an explicit inspection-address hypothesis, not native
+segment admission. The resident initializer CS and caller overlay CS are
+distinct; claiming the overlay CS addresses those fields is rejected.
+
+All reached occurrences hold; whole controls stay undecided because each
+following mode route stops at its unread helper. Wrong-root-writer and
+wrong-segment controls reject; missing-initializer and one-step controls
+remove the witnesses. All driver assertions pass. An initially incorrect
+expectation that the wrong-segment case would be undecided was corrected to
+the actual rejection after checking the propagated selectors and intervals.
+
+Source-derived configs/reports remain under
+GAME_DIR/analysis/reporter-audit/issue5-startup91; ignored driver/log:
+artifacts/engine91/actual-startup-initializer.mjs and actual-startup-initializer.log.
+Gap37 remains open for the full startup-to-transfer route, later writers,
+external/state producers, admission and known-answer hardware placement.
+No initializer memory is stitched into a disconnected transfer, and no
+original runtime/emulation, spec/parity change, invented memory or increased
+unresolved-transfer bound was used. Following helper/caller work remains
+consumer research; no additional upstream input was needed for this case.
