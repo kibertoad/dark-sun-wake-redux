@@ -867,3 +867,42 @@ No initializer memory is stitched into a disconnected transfer, and no
 original runtime/emulation, spec/parity change, invented memory or increased
 unresolved-transfer bound was used. Following helper/caller work remains
 consumer research; no additional upstream input was needed for this case.
+
+## Gap 37 actual mode helpers and setup clear, 2026-10-05
+
+Engine 9.1.0 now includes FND-CONFIG-155's actual zero-mode reset and its
+explicit overlapping internal IRET entry, FND-CONFIG-159's actual nonzero-mode
+body, FND-CONFIG-144's setup and actual fill callees, and FND-CONFIG-149's
+following byte-gate body. No call models or memory inputs are supplied, and
+the previous caller query limits are unchanged. The real internal IRET is a
+local stack continuation, not an external interrupt observation.
+
+The retained zero-mode path restores its saved flags through that IRET and
+reaches setup. Resident root/pool/flag-byte writers hold at setup entry and
+again after the actual table fill, before the next setup initializer call.
+A probe of slot523's three cleared bytes names the two-byte repeated store
+for its first two bytes and the trailing byte store for its last byte. Its
+GS=4F49 input is an explicit unused inspection-address hypothesis, like the
+resident FS probe; it supplies no contents or native storage admission.
+All reached writer occurrences hold; whole verdicts remain undecided.
+
+The setup-return checkpoint still has no witnesses. An initial expectation
+that it would be reached was disproved and corrected: unknown direction-flag
+forks, path gaps and unread helpers remain. FND-CONFIG-154 explicitly leaves
+that incoming flag unresolved; no clear flag or gate value was supplied to
+manufacture the return. After including the real fill, the retained setup
+path reaches the next initializer call rather than stopping at the fill.
+The separate nonzero helper query stops at its SOUND.CFG acquisition or
+returns on its local gate bypass; it supplies no state to the caller query.
+
+Wrong root writers reject at reached setup-entry anchors. Omitting the zero
+helper removes the internal IRET witness; omitting the fill removes the
+after-clear field/table witnesses; one-step controls remove the anchors.
+All experiment assertions pass. Local source reports/configs:
+GAME_DIR/analysis/reporter-audit/issue5-modes91; ignored driver/log:
+artifacts/engine91/actual-mode-helpers.mjs and actual-mode-helpers.log.
+Gap37 remains open for incoming flag/data producers, full setup/caller and
+startup-to-transfer coverage, later writers/external inputs and hardware
+placement. No native run/emulation, spec/parity change, stitched state,
+seeded memory or larger unresolved-query bound was used. No additional
+upstream input was required for this source extension.

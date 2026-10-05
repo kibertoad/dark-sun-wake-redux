@@ -109,3 +109,11 @@ Store source-derived reports under GAME_DIR. Exit: record real count/writer
 provenance, whole versus local controls, unread dependencies and remaining
 known-append-count acceptance without larger caps or stitched state.
 
+
+For Gap 37, verify FND-CONFIG-193's actual call-free initializer as a producer
+control for FND-CONFIG-192. Its fixed 254-iteration loop permits a separately
+documented finite visit bound; do not increase the old unknown-transfer query's
+bounds. Check both fixed roots and pool words, low-byte flag writes with the
+unwritten high bytes retained, and wrong-writer/visit/step negatives. This
+known-answer producer control does not join startup to a later transfer.
+

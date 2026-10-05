@@ -18,12 +18,6 @@ hardware stops. Independent callee windows cannot supply ancestor state.
 Verify actual caller-literal provenance at both fallback registration stores;
 wrong poll-result provenance, omitted setter and one-step controls must lose
 or reject the witness. A reached store does not establish callback dispatch.
-For Gap 37, verify FND-CONFIG-193's actual call-free initializer as a producer
-control for FND-CONFIG-192. Its fixed 254-iteration loop permits a separately
-documented finite visit bound; do not increase the old unknown-transfer query's
-bounds. Check both fixed roots and pool words, low-byte flag writes with the
-unwritten high bytes retained, and wrong-writer/visit/step negatives. This
-known-answer producer control does not join startup to a later transfer.
 
 ## Issue 5 initializer caller connection
 
@@ -37,7 +31,13 @@ Missing-initializer, wrong-writer and cap controls must lose or reject witnesses
 This justified narrow caller entry assumes earlier startup helpers returned;
 it neither imports their state nor joins a later transfer. Keep original
 reports under GAME_DIR and record unmodeled following helpers and whole-route
-limits. Exit: actual caller/initializer controls and next startup dependencies.
+limits. Include FND-CONFIG-155/159's real mode helpers, their explicit internal
+IRET entry and FND-CONFIG-144's setup body; check surviving resident-field
+writers at setup continuation, with omitted-helper, wrong-writer and cap controls.
+Separate helper queries cannot supply caller state. Exit: reached setup routes,
+local/whole controls, unknown I/O/producer dependencies and next actual callers.
+Inspect table byte writers and resident roots after the real fill; an unused GS
+address hypothesis supplies no table memory or native storage admission.
 Completed release-adoption plans: [shared adoption archive](implementation-plans/COMPLETED-SHARED-ADOPTION.md).
 
 This file says what the project intends and what is true now, following the
@@ -988,6 +988,8 @@ Shared FLI readiness: Inspect `fli-check` uses the pinned RefurbishedDinosaurs.M
 ## Latest template dependency maintenance sync
 
 Adopt template main 7a798184faddb271da2ec52745887972fdcdeb72, including xUnit 4.0.1 and its refreshed test lock. Outcome: weekly NuGet updates group shared runtime and xUnit packages, retain the reviewed SabreTools pin, and leave manually coordinated npm/Python tooling updates to the existing exact-lock workflow. Retain the stronger verified project-local interpreter routing instead of adding PATH probing. Evidence: complete ten-file delta from 049f300 and docs/TEMPLATE-ACCEPTANCE.md. Acceptance: adapted Dependabot policy, updated maintenance guidance, canonical Test.ps1 and full Invoke-Validation gate pass; no configured identity, proprietary content, spec status or gameplay changes. Exit: every changed capability accounted for and validation passes. Risk: update proposals still require locked-package acceptance. No owner questions.
+
+
 
 
 
