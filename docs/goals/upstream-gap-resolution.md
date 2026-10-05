@@ -67,8 +67,9 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 ## Dead ends
 
 The destination-field relocation census and published caller ownership reports
-are recorded in TRANSFER-CALLER-PRODUCER-AUDIT. Allocator callback roots retain
-dispatch gaps; the documented Start Game branch is a separate local positive.
+are recorded in TRANSFER-CALLER-PRODUCER-AUDIT. The documented callback root
+now has source-table ordering controls; another allocator caller retains its
+dispatch gap. Declared-source ordering does not prove native input/table state.
 The cleanup caller has an unresolved jump despite confirmed call ownership.
 Retry those roots only with verified dispatch/entry/mapping evidence, not higher
 caps or repeated censuses. Confirmed consumer calls do not join DS field history.
@@ -138,11 +139,11 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Exact adopted dependencies: runtime 7.0.0, engine 10.1.0, reader 2.1.0 and
   checker 1.1.0. Release integrity and canonical adoption records remain in
   docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
-- Latest batch: destination-field producer/consumer incoming-reference controls
+- Latest batch: callback-root source-dispatch ordering controls
   in docs/TRANSFER-CALLER-PRODUCER-AUDIT.md.
   Full Test.ps1 -NoRestore passed on 2026-10-06; log
-  artifacts/engine101/field-incoming-test.log. Relocation census, resident caller
-  ownership, documented branch and instruction-cap controls passed. Release
+  artifacts/engine101/start-root-dispatch-test.log. Bounded source readings,
+  declared-table root ordering, omission and instruction-cap controls passed. Release
   integrity records remain current. Toolkit issue 290's capability is
   delivered and verified. No unfinished tracked files. A private preliminary
   shared-pointer incoming-call census revalidates FND-CONFIG-207; it is not a
