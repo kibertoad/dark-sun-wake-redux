@@ -98,3 +98,62 @@ whole symbolic-control pass. Existing game findings/parity stay unchanged;
 all five full connected exits remain open. Next trace the particular prior
 callee or interrupt preservation condition needed by a missing whole control,
 rather than repeating an unknown-result loop with a larger budget.
+
+## Exact stopped routes and downstream input guards, 2026-10-05
+
+A census of the current root, zero-BX and one-BX reports distinguishes their
+actual stops. The retained route reaching the poll has returned through the
+wrapper and then reaches the ordinary instruction limit: after the zero case
+it reaches the state-clear entry, and after the set-bit case it starts another
+argument-formation sequence. Other retained routes stop in the setter's DOS
+guard or at the instruction limit in the setter. Dropped paths remain in the
+pointer/runtime and setter regions. Those reports do not establish a lost
+frame on the reached poll route. Do not describe all these distinct limits as
+one unresolved frame-preservation failure, or rerun them with larger budgets.
+
+Fresh published call graphs identify the state-clear and status bodies' local
+inputs and unread services, using FND-CONFIG-166 as a read-only input. The
+state-clear graph resolves its local forwarding call, while its service calls
+and the forwarder's external child remain unread. Local CFG completion and
+boundary usability do not make those callee effects complete. An initial query
+also declared the unrelated status entry without reaching it; the reporter
+correctly retained unchecked-entry dependencies. The clear-only query removes
+that unused declaration, not an actual required callee, and retains unresolved
+external-service edges. The broader status graph and its exclusions are kept.
+
+The published caller-order report verifies necessary guard edges before the
+clear-forwarder call. It reports a normalized-register bit test followed by a
+word-width DS-relative state test. The first is not a test of bit zero in the
+raw pointed configuration word: the body first converts that word to a
+zero/nonzero result. Reading only the adjacent register test would lose the
+input's actual meaning. The status body uses the same normalization and state
+gate. The pointer and current pointed word remain native input conditions;
+FND-CONFIG-020 supplies a known configuration-pointer producer, not a complete
+history of this later buffer, its extent or intervening writers.
+
+Focused post-load register hypotheses verify this distinction through the
+actual source instructions. For zero, both local bodies return completely,
+with observed prologue frames and no external call on those conditional paths.
+Nonzero, high-bit-only and all-bits-set hypotheses reach the state gate; unread
+active-service paths retain incomplete reports. No configuration memory value
+is supplied. These AX hypotheses are not observed native buffer values or a
+connected producer witness: the frame-prefix observation does not establish
+that the original load produced them. They cannot be substituted for the
+missing caller/buffer/state provenance or a whole Gap 31 control.
+
+An instruction-limit caller-order control loses the required accepted guard
+ordering. Existing wrong-writer, unread, unscoped and poll-cap controls remain.
+No old poll budget was increased, native driver sequence invented, original
+function/game executed, or game spec/parity changed.
+
+Original-derived configs/reports stay under
+GAME_DIR/analysis/reporter-audit/issue5-poll-state-inputs100. Drivers/logs:
+artifacts/engine100/poll-blocker-census.py, poll-state-inputs.mjs,
+poll-state-guards.mjs, poll-state-prefix.py and poll-state-normalization.mjs.
+The normalization and caller-order assertions are recorded in their logs.
+
+Next connected inputs: current configuration-pointer/pointed-word and state-word
+producers and intervening writes, alongside the setter's DOS condition. Keep
+instruction/path limits, external return/preservation conditions and missing
+input evidence separate. Whole connected controls for Gap 31, and all five
+full exits, remain unverified.
