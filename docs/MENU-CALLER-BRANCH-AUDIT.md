@@ -27,3 +27,20 @@ caller/recursive/cleanup coverage. No game spec or parity status changed.
 Source-local reports/configs: GAME_DIR/analysis/reporter-audit/
 issue5-menu-callers100. Ignored drivers/logs: artifacts/engine100/
 menu-callers.* and menu-branch.*.
+
+## Actual cleanup dependency continuation
+
+The next connected query adds the real pointer cleanup wrapper, dispatcher,
+linked helper, request/comparison and DOS wrapper bodies recorded in
+FND-CONFIG-165/167. It substitutes no returning-call or preservation models.
+The branch reaches the wrapper, dispatcher and linked helper; omitted
+recursive-helper and one-step controls still remove the recursive witness.
+Unknown pointers, loop/step stops, unmapped instructions and dropped paths
+remain, including cleanup and recursive alternatives. The query proves
+additional actual callee reading, not successful release, returned state,
+finite graph admission or complete error-origin coverage.
+
+Earlier count and bracket dependency mappings already use documented CS:IP;
+no mapping correction was justified there. Their results remain qualified.
+Source reports/configs: GAME_DIR/analysis/reporter-audit/issue5-menu-cleanup100.
+Ignored driver/log: artifacts/engine100/menu-cleanup.mjs and menu-cleanup.log.
