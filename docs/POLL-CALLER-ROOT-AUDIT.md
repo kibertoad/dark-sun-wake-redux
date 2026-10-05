@@ -44,3 +44,57 @@ interrupt. The one case retains a poll repeat stop. Neither is a driver
 observation, whole termination proof or inherited downstream state fixture.
 Source-local reports: GAME_DIR/analysis/reporter-audit/issue5-poll-progress100.
 Ignored driver/log: artifacts/engine100/poll-progress.mjs and poll-progress.log.
+
+## Both aliased callers and repeating argument structure, 2026-10-05
+
+Published engine 10.0.0 bounds reports now cover both complete documented
+FND-CONFIG-161/162 caller bodies and the FND-CONFIG-164 interrupt wrapper.
+Joint declared regions resolve the outer helper's actual near call to its
+first local callee, rather than leaving that target undeclared. Each local CFG
+reaches its documented far return without holes or unresolved branch gaps.
+Calls and the interrupt still carry explicit continuation assumptions. This
+is local CFG coverage, not proof that every external call returns normally.
+
+An independent bounded instruction-structure check verifies both callers'
+prologues and allocation of the local scratch word. Immediately before each
+poll call, each pushes current SS, forms BP minus two in AX, pushes that offset,
+then pushes the same SS and AX for the other output. Neither pair is formed
+from DS or from the scratch word's previous contents. After the call each
+removes the argument words, tests returned AX bit zero, and branches back to
+the beginning of that same argument-formation sequence. Thus repetition does
+not locally change which pair is passed or replace the register predicate
+with the overwritten scratch word. This conditional structural check covers
+both documented callers, not just the previously traced first caller.
+
+The complete wrapper has no own branch or further call around the two output
+stores. It loads the first supplied far pointer and writes CX, then loads the
+second and writes DX, then copies BX into AX before restoring saved registers.
+Under unchanged valid argument storage and the stated external preservation
+conditions, equal output pointers therefore retain DX and the caller's bit
+test follows driver BX. Saving/restoring caller BP does not prove that an
+interrupt leaves the wrapper's current BP, output argument words or other
+memory intact. Prior callees can also affect caller-frame state; those inputs
+and effects remain acceptance conditions, not a newly established ABI promise.
+
+One-instruction controls for either caller lose its poll-call witness; the
+wrapper control loses its interrupt witness. They remain incomplete and are
+not counted as absent calls or hardware. Existing wrong-first-writer, unread,
+unscoped and symbolic-cap controls are retained. No symbolic traversal bound
+was increased, no result sequence or original memory was supplied, and no
+function/game was executed.
+
+Configs, complete numeric reports and the argument/back-edge summary are local
+under GAME_DIR/analysis/reporter-audit/issue5-poll-cfg100. Drivers/assertions:
+artifacts/engine100/poll-cfg-bounds.mjs, poll-cfg-reading.py,
+poll-cfg-controls.py and poll-cfg-joint-controls.mjs; corresponding logs are
+ignored artifacts. The independent structure check does not claim that its
+summary is a new published API field.
+
+Gap 31 now has verified local CFG and repeating argument/predicate structure
+for both named aliased callers. Whole connected frame/callee preservation,
+admitted storage, driver result sequences and downstream producer acceptance
+remain unverified. Static back-edge coverage is not a finite-termination or
+whole symbolic-control pass. Existing game findings/parity stay unchanged;
+all five full connected exits remain open. Next trace the particular prior
+callee or interrupt preservation condition needed by a missing whole control,
+rather than repeating an unknown-result loop with a larger budget.
