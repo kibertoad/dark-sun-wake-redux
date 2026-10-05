@@ -232,5 +232,12 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   connected producer/dependency chains; bounded traces and emulated calls
   verify specific claims afterward. Do not continue broad root expansion
   against the same unknown dispatch, service, loop and indirect-call inputs.
-- Next: identify actual pre-allocation helper dispatch inputs and indirect-call
-  storage producers, then verify a producer-backed connected chain.
+- Static producer-map and focused argument controls are recorded in
+  docs/TRANSFER-CALLER-PRODUCER-AUDIT.md; Test.ps1 passed on 2026-10-05.
+  Corrected the prior indirect-target classification to an undeclared direct
+  near-call dependency. Both actual argument prefixes retain selector four;
+  omitted prefixes and one-step controls lose it. Whole Gap 37 stays open.
+- Next: connect window resource acquisition, registration writes, activation
+  gates and later pointer/child-graph writers before another broad root trace.
+  Keep static discovery first and focused verification afterward.
+  Gaps 31/32/33/34 retain their whole completion conditions unchanged.
