@@ -1,4 +1,4 @@
-# Completed shared tooling adoption plans
+﻿# Completed shared tooling adoption plans
 
 ## Tooling maintenance: latest template and PR 26
 
@@ -151,3 +151,18 @@ memory to the startup query. Inspection FS/GS hypotheses supply no contents
 or native admission. Reports stay under GAME_DIR. Exit: actual reached
 initializer routes, whole/local verdicts, remaining state and transfer gaps.
 
+
+## Latest reviewed toolkit adoption
+
+Adopt the latest reviewed action pin and exact registry wheel; match sources to
+its release tag. Lock pypcode with engine/Capstone and verify all runtime pins.
+Run retained source controls plus the full linked-child conditional-target case
+against installed packages without candidate imports. Verify released backend,
+unread paths, conditional targets and all remaining gap contracts. Exit: archive
+integrity, meaningful dependency rejections, source controls and Test.ps1 pass.
+
+Shared FLI readiness: Inspect `fli-check` uses the pinned RefurbishedDinosaurs.Media.Fli without exporting media. Exit: synthetic COPY, FLC rejection and chunk-overrun checks pass. Gameplay playback and original decoder questions remain separate spec work.
+
+## Latest template dependency maintenance sync
+
+Adopt template main 7a798184faddb271da2ec52745887972fdcdeb72, including xUnit 4.0.1 and its refreshed test lock. Outcome: weekly NuGet updates group shared runtime and xUnit packages, retain the reviewed SabreTools pin, and leave manually coordinated npm/Python tooling updates to the existing exact-lock workflow. Retain the stronger verified project-local interpreter routing instead of adding PATH probing. Evidence: complete ten-file delta from 049f300 and docs/TEMPLATE-ACCEPTANCE.md. Acceptance: adapted Dependabot policy, updated maintenance guidance, canonical Test.ps1 and full Invoke-Validation gate pass; no configured identity, proprietary content, spec status or gameplay changes. Exit: every changed capability accounted for and validation passes. Risk: update proposals still require locked-package acceptance. No owner questions.

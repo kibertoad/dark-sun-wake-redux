@@ -1,5 +1,17 @@
 ﻿# Implementation plan
 
+## Issue 5 actual middle-service dependencies
+
+Use FND-CONFIG-171/174/188/189 as read-only inputs. Extend the existing actual
+bracket query with the complete 409B:1675 and 3D72:0B84/0942 bodies, without
+new call models, input memory or increased query bounds. Preserve callback
+origin/order controls and report which real service entries and unread child
+calls are reached. Omitted middle-service and one-step controls must remove
+those witnesses. Exit: record actual connected dependency coverage and remaining
+producer/storage/guard gaps; local entries never establish whole callback routes.
+If earlier caller stops prevent entry, separately test the documented middle
+entry with unknown input state; do not import caller memory or claim a join.
+
 ## Issue 5 connected poll acceptance
 
 Research-side tooling only. Use FND-CONFIG-161/162/163/164/165/166/167 as read-only inputs to test
@@ -965,28 +977,3 @@ loop limits, allocator effects, capacities and original input identity remain
 explicit. GAME_DIR profiles/reports stay local and skip missing licensed input.
 Exit: bounded installed controls, retained whole-fill gaps, Test.ps1, acceptance
 record and handover; no spec, parity, gameplay or native-runtime changes.
-
-## Latest reviewed toolkit adoption
-
-Adopt the latest reviewed action pin and exact registry wheel; match sources to
-its release tag. Lock pypcode with engine/Capstone and verify all runtime pins.
-Run retained source controls plus the full linked-child conditional-target case
-against installed packages without candidate imports. Verify released backend,
-unread paths, conditional targets and all remaining gap contracts. Exit: archive
-integrity, meaningful dependency rejections, source controls and Test.ps1 pass.
-
-Shared FLI readiness: Inspect `fli-check` uses the pinned RefurbishedDinosaurs.Media.Fli without exporting media. Exit: synthetic COPY, FLC rejection and chunk-overrun checks pass. Gameplay playback and original decoder questions remain separate spec work.
-
-## Latest template dependency maintenance sync
-
-Adopt template main 7a798184faddb271da2ec52745887972fdcdeb72, including xUnit 4.0.1 and its refreshed test lock. Outcome: weekly NuGet updates group shared runtime and xUnit packages, retain the reviewed SabreTools pin, and leave manually coordinated npm/Python tooling updates to the existing exact-lock workflow. Retain the stronger verified project-local interpreter routing instead of adding PATH probing. Evidence: complete ten-file delta from 049f300 and docs/TEMPLATE-ACCEPTANCE.md. Acceptance: adapted Dependabot policy, updated maintenance guidance, canonical Test.ps1 and full Invoke-Validation gate pass; no configured identity, proprietary content, spec status or gameplay changes. Exit: every changed capability accounted for and validation passes. Risk: update proposals still require locked-package acceptance. No owner questions.
-
-
-
-
-
-
-
-
-
-
