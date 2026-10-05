@@ -109,14 +109,13 @@ finding already records its call to the allocation entry with zero. The
 Save/Load action continuation likewise has an actual zero push before its
 confirmed call; its earlier mode test/callees remain conditions.
 
-The committed inventory represented the Save/Load callback by its initial
-fragment and separate interior fragments, leaving the confirmed call outside
-its declared search ranges. The Start Game callback was missing altogether.
-Verified callback endpoints precede the documented external dispatch tables.
-The numeric inventory now expands the first callback's range and adds the
-second; existing interior entries remain. These rows contain no original code,
-bytes, strings or names. They describe known source ranges, not complete
-execution or established analysis coverage.
+The old acceptance search treated body-byte counts as contiguous ranges,
+leaving confirmed calls outside its declared search domain. The Start Game
+callback also lacked an inventory entry. Verified source spans precede the
+documented external dispatch tables and are declared independently in queries.
+Original analyzer measurements and interior entries remain; the new callback
+entry uses the published reporter's measured partial body count. These rows
+contain no original code, bytes, strings or names and claim no complete reading.
 
 Future caller searches must include these ranges and preserve unresolved
 computed dispatch. The next work is their actual prefixes and initialization
@@ -219,9 +218,10 @@ activation. Those recorded failure gates remain conditions, not modeled success.
 The local position-registration caller's actual relocated far call is confirmed
 by the published incoming reporter against the full resident registrar. This
 search is deliberately partial and cannot prove no other callers. The numeric
-inventory row previously ended inside registration; it now extends through
-the final far return identified by FND-CONFIG-031, excluding its external
-dispatch tables. No original code or table data enters the inventory.
+inventory body-byte count does not supply an end address. The query uses the
+full source span identified by FND-CONFIG-031, excluding its external dispatch
+tables; the original analyzer count is preserved. No original code or table
+data enters the inventory.
 
 Static reading connects the registrar's child resolver output to its two
 child-pointer stores, using the same child offset byte, word count and stride
@@ -260,3 +260,36 @@ Source-local reports: GAME_DIR/analysis/reporter-audit/issue5-resource-root100.
 Ignored driver: artifacts/engine100/resource-root-writers.mjs. This map connects
 previously recorded producer findings to the acceptance search domain without
 promoting a spec entry or supplying native state. Whole Gap 37 remains open.
+
+## Reader publication and body-count controls
+
+FND-CONFIG-151 records output-pointer publication before later archive/seek/read
+gates. Fresh bounded source context agrees: the acquisition helper reads and
+returns its local pointer after the reader call without branching on its status.
+The older generic failure wording in FND-CONFIG-038 cannot support an assumption
+that every reader error leaves a null output. This acceptance record uses the
+more detailed recorded ordering and retains intervening callee, alias/storage
+and native failure-admission questions; it does not establish an observed defect.
+Spec reconciliation remains research work outside this tooling-only scope.
+
+The published bounds report independently reproduces FND-CONFIG-151's reached
+body bytes and full source span. It retains the far return beyond start plus
+body bytes, the internal hole, and returning-callee assumptions. A query that
+uses the count as its end loses the return and is incomplete; a one-instruction
+control is also incomplete. Complete here describes only the local CFG under
+those assumptions, not original resource delivery or whole Gap 37.
+
+Earlier inventory expansions incorrectly substituted spans for measurements.
+The registrar's original analyzer count is restored and independently matches
+the source CFG with its unresolved dispatch. Save/Load retains its original
+analyzer count rather than a span or a different decoder's partial count.
+The newly added Start Game entry uses the published partial body-byte count;
+its unresolved dispatch remains explicit. Both new archive rows independently
+match complete local body-byte measurements. Source-span query regions remain
+separate from these inventory metrics. Old size-as-end searches are partial
+candidate searches and cannot support absence or full coverage.
+
+Source-local reports: GAME_DIR/analysis/reporter-audit/issue5-resource-reader-
+bounds100. Ignored drivers/controls: artifacts/engine100/resource-reader-bounds*,
+archive-body-counts.mjs and callback-body-counts.mjs. No original content or
+new gameplay/spec status is committed. All five whole exits remain open.

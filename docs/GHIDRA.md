@@ -159,6 +159,12 @@ committed file are offsets in the shipped `DSUN.EXE`, written as
 discovery does not prove that every original function was found. The inventory
 contains no code, bytes, strings or auto-generated names.
 
+Known entries added outside that export use measured body-byte counts from
+the published bounded reporter, with its partial dispatch and continuation
+assumptions retained in local reports. Body-byte counts are not end addresses:
+query regions use independently documented source spans. Never replace a body
+count with its span length merely to extend a search domain.
+
 The disc's distinct `CD:DSUN.EXE` also has an inventory, at
 `coverage/BLD-GOG-EN-1.1/CD/DSUN.EXE.tsv`. The `CD:` manifest prefix becomes
 the `CD/` directory because Windows cannot use a colon in a filename. Extract
