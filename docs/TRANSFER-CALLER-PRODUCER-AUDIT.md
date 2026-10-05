@@ -121,3 +121,33 @@ execution or established analysis coverage.
 Future caller searches must include these ranges and preserve unresolved
 computed dispatch. The next work is their actual prefixes and initialization
 order, not a repeated old partial census. Whole Gap 37 remains incomplete.
+
+## Actual callback roots and declared dispatch continuations
+
+Fresh traces from both documented callback prologues retain their actual
+frames and unknown event/control inputs. Ordinary paths stop at computed
+dispatch, bounded selector loops or unread callback callees. Allocation is
+not reached on those ordinary paths.
+
+The delivered indirectJumps mechanism reads the documented source word tables.
+Declarations are non-exhaustive and name both table layout and consumer
+evidence (FND-UI-035/037); they assign no event, control ID, register or memory.
+Separate declaredContinuationPaths now follow the documented event-two
+branches from the real root streams, preserving each table assumption.
+The Start Game continuation stops at its first unread resident pair call;
+the Save/Load action continuation stops at its first unread control call.
+Other branch dependencies remain separate. No assumed continuation is
+presented as ordinary reachability, complete effects or native input evidence.
+
+Ordinary instruction paths and stop sites exactly match the undeclared-root
+reports. Disabling continuation paths leaves them unchanged and removes all
+conditional witnesses; a one-step cap removes the conditional witnesses too.
+All controls pass without increased limits or state stitching. The toolkit
+already supplies this conditional dispatch feature; no new issue was opened.
+Issue 151 separately documents that entryFrame does not follow declared tables.
+
+Next: actual pre-allocation resident/control callees, followed by frame and
+state producers through callback continuation. Source-local reports:
+GAME_DIR/analysis/reporter-audit/issue5-parent-prefixes100 and
+issue5-parent-dispatch100. Ignored drivers/logs: artifacts/engine100/
+parent-prefixes.*, parent-dispatch.* and parent-dispatch-controls.*.
