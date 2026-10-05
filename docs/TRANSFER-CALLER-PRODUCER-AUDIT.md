@@ -506,3 +506,28 @@ memory was supplied, no old capped traversal bound was increased, and no stopped
 positive-service path is accepted as completion. Next is current DS and the
 specific field-to-consumer preservation/order, alongside slot/transfer aliases.
 No game specification or parity status changes. All five full exits remain open.
+
+## PR 293 released mask bounds, 2026-10-06
+
+Engine 10.1.0 delivers toolkit issue 290 through PR 293. The exact released
+wheel is now adopted; tag and artifact integrity are recorded in
+LATEST-RELEASE-GAP-AUDIT.md. The published regression suite passes.
+
+The same complete returning synthetic unknown-word AND-three query changes
+from undecided to held. Known-word and zero-mask controls still hold; the
+unmasked unknown remains undecided. The actual documented mask-prefix query,
+with unchanged bounds and no invented memory, now retains a held unsigned
+index-bound occurrence. Port number, selector and table-read origin occurrences
+also hold. Removing the index mask leaves the numeric occurrence undecided;
+removing the table load rejects the producer assertion; one step loses every
+anchor. The actual whole controls remain undecided because the later string
+copy count is unresolved. A local numeric hold does not complete the transfer.
+
+Private actual configs/reports are under
+GAME_DIR/analysis/reporter-audit/issue5-transfer-mask101. Ignored drivers and
+logs are artifacts/engine101/masked-index-controls.mjs and
+transfer-mask-controls.mjs, alongside summarize.mjs. Previous engine 10.0.0
+reports are retained. No native table values, caller admission, storage aliases
+or rendered output are established by this fix. All five full exits remain open;
+the next Gap 37 dependency is the field-to-consumer segment/preservation chain
+and admitted transfer/count producers, rather than the repaired mask arithmetic.

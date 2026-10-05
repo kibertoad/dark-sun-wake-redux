@@ -66,10 +66,11 @@ from this audit alone.
 
 The actual Gap 37 mask prefix now retains port-number, selector-byte and
 mask-read producer occurrences with omission/cap controls. Its numeric masked
-index bound remains undecided. A separate complete returning synthetic case
-confirms a constant-mask unsigned-bound expressiveness limit, now tracked in
-toolkit issue 290. This supersedes the earlier audit's absence of a demonstrated
-new capability limitation for this particular control only. See the latest
+index bound was undecided in engine 10.0.0. PR 293 delivers toolkit issue 290
+in engine 10.1.0: the complete returning synthetic case now holds, and the
+actual masked-index occurrence holds. Omission and cap controls retain their
+negative outcomes; the stopped actual query's whole verdict stays undecided.
+This removes that specific demonstrated capability limitation. See the latest
 section of TRANSFER-CALLER-PRODUCER-AUDIT. It does not complete any of the five
 whole connected exits or establish native mask contents/hardware output.
 

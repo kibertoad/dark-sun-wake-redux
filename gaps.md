@@ -335,8 +335,10 @@ now have published source-local acceptance with omission and limit negatives.
 A focused mask prefix retains the port number, selector byte and table-read
 origin; whole controls and native table contents remain unverified. A fully
 returning synthetic unknown-word AND-three case exposes an unsigned-bound
-expressiveness limit in engine 10.0.0. Duplicate-checked toolkit issue 290
-requests that specific capability; it does not replace caller/input, later
+expressiveness limit in engine 10.0.0. PR 293 delivers toolkit issue 290 in
+engine 10.1.0. The returning synthetic control and actual local mask-bound
+occurrence now hold; omission/cap negatives pass and the stopped actual whole
+control stays undecided. This does not replace caller/input, later
 writer, mask admission or hardware-output evidence. See
 TRANSFER-CALLER-PRODUCER-AUDIT and project issue 5. Gap 37 remains open.
 

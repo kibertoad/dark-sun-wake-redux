@@ -1,11 +1,28 @@
-# Latest release gap audit, 2026-10-05
+# Latest release gap audit, 2026-10-06
 
 The [five-gap contract audit](FIVE-GAP-CONTRACT-AUDIT.md) distinguishes delivered
 toolkit work, pending connected consumer acceptance and original-game unknowns.
 The active connected-evidence goal remains open. An open consumer exit is not
 by itself an undelivered library feature or a demonstrated migration blocker.
 
-Registry verification selected scientific-method-engine 10.0.0 and
+The PR 293 follow-up adopts scientific-method-engine 10.1.0, released at tag
+2007f0f0be3c3919cf36b467ae519b75da996f55, matching the merge commit.
+Wheel SHA-256 is d458056ba12d677b50f36fa8fa4215570fdf0ceafe679f9df0bb25916541b35c;
+sdist SHA-256 is 8921997a75323d55a3aefa53079b7aca250918ce3dfc941f5dee0fcd890d6a92.
+Downloaded hashes match published release digests. Wheel production files,
+sdist production files and the installed package match. The published test
+suite passes; logs and integrity driver are under artifacts/engine101.
+The exact wheel pin in tools/evidence/requirements.txt is updated. This focused
+adoption leaves runtime, reader, checker and the local rules snapshot unchanged.
+
+Issue 290's constant-mask bound reproducer now holds on a complete returning
+synthetic query. The actual Gap 37 mask-bound occurrence also holds, while its
+whole verdict stays undecided at the unresolved later copy count. Unmasked,
+omitted table-load and one-step controls retain negative outcomes. This removes
+the demonstrated mask-bound reporting limitation, without closing Gap 37 or
+any other full connected exit. See TRANSFER-CALLER-PRODUCER-AUDIT.md.
+
+The preceding release baseline selected scientific-method-engine 10.0.0 and
 RefurbishedDinosaurs 7.0.0; reader 2.1.0 remains current and checker 1.1.0
 is adopted at tag c79d7fe3addb3fb14bc5f118f19f47571aa4c3f0.
 Engine tag scientific-method-engine@10.0.0 resolves to
