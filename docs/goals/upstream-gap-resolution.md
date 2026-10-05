@@ -160,9 +160,12 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   No confirmed session-owned orphan; reusable MSBuild and CUA remain untouched.
 - Push: user explicitly authorized validated main pushes. Read branch/remote
   synchronization directly from Git.
-- Next: Gap 31 incoming resident caller census for the actual poll wrapper
-  and source-produced aliased output/frame arguments. Preserve the old
-  incomplete FND-CONFIG-161 prefix; do not repeat it at larger bounds.
+- Gap 31 fresh incoming census and first aliased caller root controls pass:
+  docs/POLL-CALLER-ROOT-AUDIT.md. Actual prologue/argument producers now
+  reach the DX final writer and BX predicate without supplied SP/BP/memory.
+  Census is partial; repeated and downstream paths remain incomplete.
+- Next: Gap 31 complete required caller routes and downstream producers;
+  preserve old incomplete prefixes and unchanged query bounds.
 - Next: Gap 32 actual writer reachability and callback target/segment/storage
   producers; follow produced pointers with released engine 10.0.0.
 - Next: Gap 33 admitted finite graph/count/record-length and actual-copy
