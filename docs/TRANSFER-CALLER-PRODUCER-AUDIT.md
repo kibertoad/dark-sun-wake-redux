@@ -507,6 +507,40 @@ positive-service path is accepted as completion. Next is current DS and the
 specific field-to-consumer preservation/order, alongside slot/transfer aliases.
 No game specification or parity status changes. All five full exits remain open.
 
+## Callback-root dispatch to the destination producer, 2026-10-06
+
+The previous branch-local positive now has a published callback-root ordering
+control. Private source checks corroborate FND-UI-035/FND-CONFIG-028's button
+consumer, subtraction, unsigned bound, word-index shift and documented targets.
+They also bound the preceding selector scan and its parallel target-word array.
+The actual FBOV code start supplies the source-table offset base; the historical
+location label is not used as that base. All table targets remain within the
+declared callback code. Original table words and instruction contexts stay local.
+
+With both exhaustive source-derived declarations, the published call-order query
+confirms the destination-producer call from the callback root and retains usable
+local ordering without a root dispatch gap. Exhaustiveness here covers the read
+source tables and their bounded consumers. It does not establish native selector
+inputs, unchanged table memory, overlay load address or effects of the returning
+callees. The declarations and continuation assumptions remain in the reports.
+
+Omitting either declaration loses usable root ordering and leaves its computed
+transfer unresolved. The producer call remains owned through the other declared
+route: in particular, the preceding selector table contains a target to the same
+branch. Thus the omission negative is incomplete ordering, not call absence.
+The one-instruction control loses confirmed ownership. Do not claim that the
+button/event gate is necessary for every source route to this branch, or that a
+table-declared path proves an input gesture or native execution.
+
+This removes the specific callback-root dispatch gap for source-local ordering.
+It does not join the allocator result/DS field with the later transfer consumer,
+resolve intervening callee effects or satisfy a full dynamic connected control.
+Other callback-root candidates retain their prior gaps. Private reading and
+reports are under issue5-transfer-field-incoming101; ignored drivers/assertions
+are artifacts/engine101/start-dispatch-reading.py and start-dispatch-root-order.mjs,
+with corresponding logs. No memory seeding, window stitching or increased old
+traversal bounds. All five full exits remain open; no game spec or parity change.
+
 ## Destination-field producer incoming references, 2026-10-06
 
 A new published-reader census follows the verified destination-field writer
