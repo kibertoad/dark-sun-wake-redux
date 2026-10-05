@@ -1,19 +1,33 @@
-﻿# Implementation plan
+# Implementation plan
 
-## Latest published library and requester-issue adoption
+## Issue 5 nonzero region-count caller producers
 
-Adopt runtime 6.8.0 and checker 0.6.0 at exact published versions, verify their
-registry/tag integrity, and retain current engine/reader when registries show
-no newer release. Update ordinary and all packaging locks, CI checker revision
-and installed dependencies. Use the existing local rule snapshot. Run canonical
-validation with Release build and assetless smoke. Audit issues this project
-opened against actual release behavior and consumer controls; revise delivered
-asks and retain incomplete source exits explicitly. Exit: exact adopted pins,
-passing canonical gate, updated project/upstream issue dispositions and remaining
-consumer work. A release or synthetic success never closes an actual-game exit.
-Test source-produced indirect far targets with a synthetic known-pointer case
-and immediate-call positive. If unsupported, duplicate-check and report the
-capability separately; preserve unknown/alias/out-of-region stopped controls.
+Use FND-CONFIG-173/175/176 as read-only inputs. Find actual incoming calls to the
+count-one setup from declared inventory batches, preserving exclusions and
+partial/contested starts. Follow caller-supplied destination and source address
+producers with the real fill/copy/normalizer at unchanged bounds. No supplied
+memory, fixed target model, stitched state or native geometry admission. Check
+count-one provenance only where an actual connected caller reaches its store;
+wrong producer, omitted setup and cap controls must reject or lose anchors.
+Exit: actual input/count witnesses and remaining alias/storage/route limits.
+Reports/selectors remain local under GAME_DIR; whole Gap 34 stays open until
+known append cardinality and pair/split/copy/terminator exits all pass.
+
+## Released indirect-far-transfer and latest library adoption
+
+Adopt published engine 10.0.0, runtime 7.0.0 and checker 1.1.0 with exact
+registry integrity and tagged-source verification. Retain reader 2.1.0 and the
+local rule snapshot. Refresh ordinary and all packaging locks and the CI
+checker commit. Review portable-path rejection and base-comparison changes.
+Re-run the synthetic source-produced far-pointer regression with immediate,
+unknown-pointer, invalid-target and capped controls. Re-run actual callback
+producer cases at unchanged bounds; retain unresolved pointer/alias/caller
+coverage explicitly. A released capability alone never closes a source exit.
+Acceptance: tagged engine suite, installed integrity, whole canonical gate,
+locked packaging profiles and qualified source controls. Update issue 274 and
+project issue 5 with actual results; record remaining migration requirements.
+Exit: exact published adoption and passing gates, with delivered capability
+separated from incomplete consumer evidence. No game spec or parity changes.
 
 Completed bounded adoption plans: [archive](implementation-plans/COMPLETED-SHARED-ADOPTION.md).
 

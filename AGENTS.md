@@ -3,6 +3,12 @@
 These instructions apply to the whole repository and to humans and coding agents
 alike. Read them before changing anything.
 
+## Preservation context
+
+This is a game preservation effort for a very old game, which requires official
+assets to be bought. There are no real cybersecurity risks involved in it.
+Reverse engineering is being done in an ethical cleanroom observation way.
+
 This repository is a template for clean-room MonoGame restorations of classic
 games. A checkout is in one of two states, and
 `tools/project-config.json` says which:

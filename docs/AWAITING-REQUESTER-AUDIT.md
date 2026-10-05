@@ -46,3 +46,12 @@ shared change in their latest replies. Delivered requests are separated from
 source prerequisites, which remain in Dark Sun issue 5. #198 R5 now has its
 own focused request, #274, with a synthetic positive/control reproduction.
 No outstanding cross-project analyzer or disc acceptance is closed here.
+
+## Released #274 confirmation
+
+Engine 10.0.0 delivers PR 281. Its instruction-produced pointer regression,
+immediate-call positive, unknown/undeclared-target negatives and one-step control
+pass on the installed registry release. Runtime 7.0.0 and checker 1.1.0 are
+also adopted and validated. No undelivered #274 capability remains; Dark Sun
+issue 5 retains actual pointer/storage and connected caller/producer acceptance.
+Cross-project acceptance remains with its respective requesters.

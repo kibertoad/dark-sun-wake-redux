@@ -1,15 +1,15 @@
-﻿# Latest release gap audit, 2026-10-05
+# Latest release gap audit, 2026-10-05
 
-Registry verification selected scientific-method-engine 9.1.0 and
-RefurbishedDinosaurs 6.8.0; reader 2.1.0 remains current and checker 0.6.0
-is adopted at tag 87895543d39974a14ef85a0e0a4aeefc5f5aa241.
-Engine tag scientific-method-engine@9.1.0 resolves to
-d928d5c68106b22671c4b7ecb2402cb692d2cd9e. Wheel SHA-256 is
-b65e3ffb69858f13596621d7b357ce9c468b655107039f75df2c91078fe1e178;
-sdist SHA-256 is d24c11f7d1343c61ced0a43a29a282a87f840e0001aac063e29ff066e226c13c.
+Registry verification selected scientific-method-engine 10.0.0 and
+RefurbishedDinosaurs 7.0.0; reader 2.1.0 remains current and checker 1.1.0
+is adopted at tag c79d7fe3addb3fb14bc5f118f19f47571aa4c3f0.
+Engine tag scientific-method-engine@10.0.0 resolves to
+eaeaad180f36cd6ccab1198410e40ca9421cd4e5. Wheel SHA-256 is
+f31e59b5eb0c3bae9a3b9b60063b5dcbe7c144cb181e6a33c327312af19f2bba;
+sdist SHA-256 is 391b52d3905e1ec0e55cc4d324866b7571dc13cfbdec6278857d5f7eeba9ca20.
 Wheel, sdist, tagged production files, installed files and released tests agree.
 The full published suite passes with its test-only Unicorn oracle and the
-installed-engine Node bridge. Logs are artifacts/engine91/release-suite.log.
+installed-engine Node bridge. Logs are artifacts/engine100/release-tests.log.
 
 Compared with engine 8.1.1, PR 236 changes Ghidra instruction-start diagnostics
 and flow-export coverage; PR 244 adds checkpoint memory last-writer probes.
@@ -25,7 +25,7 @@ The local rules snapshot is unchanged; no standards refresh was requested.
 | 27 | No effect-order traversal change. Complete connected fill/bracket coverage remains required. |
 | 29 | No loop/input change. Admitted cache, age and capacity producers and connected restarted-search controls remain required. |
 | 31 | New memory probe removes the missing-read anchor limitation. Actual DX last-writer and BX-origin occurrences hold; wrong-writer, unread, unscoped and cap controls retain their expected outcomes. Whole verdicts remain undecided because caller-frame formation and repeating routes are incomplete. |
-| 32 | No engine change. Actual writer input provenance is retained locally; whole caller/storage controls remain open. New synthetic instruction-produced indirect far-target traversal limit is toolkit #274. |
+| 32 | PR 281 delivers toolkit #274: a produced ptr16:16 target now enters exact declared code. Installed positive and negative controls pass. Actual callback reloads still have unknown pointer words and storage/caller gaps; whole controls remain undecided. |
 | 33 | No recursive provenance change. Replayed compare/input and re-encoding controls retain local witnesses and whole undecided verdicts; real finite child/selector/leaf and caller coverage remains required. |
 | 34 | No cardinality/admission change. Known append-count positives, real input/pointer/alias producers and connected pair/split/copy/terminator coverage remain required. |
 | 36 | No width/provenance change. Connected low/high-byte and segment producers, normalized service coverage and fixtures remain required. |
@@ -107,3 +107,34 @@ by separating delivered requests from consumer evidence.
 
 Logs: artifacts/engine91/latest-canonical-validation.log,
 checker060-integrity.log, checker060-release-tests.log and indirect-far-repro.log.
+
+## Released migration and confirmation
+
+Engine 10.0.0 includes PR 281 for toolkit #274. The original synthetic
+instruction-produced pointer now enters its declared target and returns, with
+both pointer writers retained. Immediate far-call control returns; unknown and
+undeclared targets stop with their distinct reasons; a one-step control never
+reaches the target. Actual bracket/writer controls run on the installed release
+at unchanged bounds. Their local origins remain held, while whole verdicts stay
+undecided. Actual callback words are unknown; declared code cannot substitute
+for a pointer producer. Source reports: GAME_DIR/analysis/reporter-audit/
+engine100-brackets and engine100-writer-inputs.
+
+Runtime 7.0.0 rejects control and Windows-reserved characters in portable paths.
+Checker 1.0/1.1 add F# citations and explicit skipped base comparisons; the CI
+action requires its comparison base. Exact CI/tag pins are updated; the local
+rule snapshot is unchanged. Tagged checker build matches installed distribution
+bytes and registry integrity. Official NuGet signatures, canonical content
+hashes and all cached package contents match. Ordinary and every packaging
+profile are refreshed. Full canonical validation passes, including Test.ps1,
+locked restore, Release build and assetless smoke. Tagged engine/checker suites
+pass with their explicit platform skips.
+
+Verification: artifacts/engine100/engine-integrity.log, release-tests.log,
+package-integrity.log, checker-tests.log, indirect-far-controls.log,
+actual-brackets.log, actual-writer-inputs.log and canonical-validation.log.
+Toolkit #274 is closed after the released confirmation; project issue 5 is
+revised to the current versions and consumer exits.
+The library update and its compatibility validation are complete. The five
+connected-evidence exits in project issue 5 remain consumer work; no new
+undelivered toolkit requirement was demonstrated by these reruns.

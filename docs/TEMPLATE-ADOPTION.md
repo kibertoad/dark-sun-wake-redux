@@ -382,3 +382,12 @@ the latest registry versions. Local rules are unchanged. Full adoption gate,
 Release build and assetless smoke: artifacts/engine91/latest-canonical-validation.log.
 Requester dispositions and new toolkit #274 are recorded in
 LATEST-RELEASE-GAP-AUDIT.md; unresolved consumer exits stay in project issue 5.
+
+## Released far-transfer and latest-library migration, 2026-10-05
+
+Adopted runtime 7.0.0, engine 10.0.0 and checker 1.1.0; reader remains 2.1.0.
+Exact registry/tag integrity, all packaging locks, full canonical validation,
+Release build and assetless smoke pass. Toolkit #274's produced indirect-far
+transfer now passes installed positive and rejected-pointer controls. Actual
+source controls retain their unknown input and incomplete caller qualifications.
+See LATEST-RELEASE-GAP-AUDIT.md; issue 5 remains open for connected evidence.

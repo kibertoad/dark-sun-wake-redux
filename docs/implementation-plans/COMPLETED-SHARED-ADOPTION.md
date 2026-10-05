@@ -1,4 +1,4 @@
-﻿# Completed shared tooling adoption plans
+# Completed shared tooling adoption plans
 
 ## Tooling maintenance: latest template and PR 26
 
@@ -198,3 +198,18 @@ hardware stops. Independent callee windows cannot supply ancestor state.
 Verify actual caller-literal provenance at both fallback registration stores;
 wrong poll-result provenance, omitted setter and one-step controls must lose
 or reject the witness. A reached store does not establish callback dispatch.
+
+## Latest published library and requester-issue adoption
+
+Adopt runtime 6.8.0 and checker 0.6.0 at exact published versions, verify their
+registry/tag integrity, and retain current engine/reader when registries show
+no newer release. Update ordinary and all packaging locks, CI checker revision
+and installed dependencies. Use the existing local rule snapshot. Run canonical
+validation with Release build and assetless smoke. Audit issues this project
+opened against actual release behavior and consumer controls; revise delivered
+asks and retain incomplete source exits explicitly. Exit: exact adopted pins,
+passing canonical gate, updated project/upstream issue dispositions and remaining
+consumer work. A release or synthetic success never closes an actual-game exit.
+Test source-produced indirect far targets with a synthetic known-pointer case
+and immediate-call positive. If unsupported, duplicate-check and report the
+capability separately; preserve unknown/alias/out-of-region stopped controls.

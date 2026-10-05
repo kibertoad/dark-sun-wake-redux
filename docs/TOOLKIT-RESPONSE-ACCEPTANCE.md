@@ -1,4 +1,4 @@
-﻿# Toolkit response acceptance
+# Toolkit response acceptance
 
 Earlier response records: [acceptance archive](TOOLKIT-RESPONSE-ACCEPTANCE-ARCHIVE.md).
 
@@ -887,3 +887,38 @@ whole caller/storage controls. All issue 5 gaps remain open.
 Exact production integrity and full Test.ps1 passed. Logs:
 `artifacts/engine91/writer-callers-integrity.log`, `writer-input-controls.log`
 and `writer-callers-test.log`. No original runtime or emulation occurred.
+
+## Released indirect-far migration and count caller inputs, 2026-10-05
+
+Adopted engine 10.0.0, runtime 7.0.0 and checker 1.1.0; reader remains 2.1.0.
+Exact registry/tag, installed production, signed NuGet content, canonical and
+packaging gates pass. The #274 synthetic pointer positive now enters declared
+code and returns with both actual synthetic writers. Immediate, unknown,
+undeclared and one-step controls pass. Actual bracket and writer controls retain
+local witnesses and whole undecided results at unchanged bounds. Toolkit #274's
+capability is delivered; this does not establish unknown original pointer words.
+Logs and remaining exits: LATEST-RELEASE-GAP-AUDIT.md.
+
+Gap 34 has new source-derived incoming count-one setup calls from declared
+function-inventory batches. Four confirmed entry-based calls are retained.
+Negative searches remain unusable where exclusions/unresolved transfers apply;
+this is not a complete caller census. Narrow argument windows start after their
+own last control transfer and assume it returned, with unknown entry frame and
+input memory. They are not joined to preceding windows or claimed native paths.
+
+Every reached first destination-input read retains its actual caller argument
+producers. Local origin occurrences hold for all four callers; whole controls
+remain undecided. Wrong caller-entry producer is rejected; omitted setup and
+one-step controls lose anchors. The actual fill stops on unknown/overwritten
+return provenance before count-one is stored, with alternate unmodeled DOS
+routes. No nonzero append-count or admitted destination capacity is established.
+
+Actual frame-prefix attempts for two callers now include the documented reverse
+buffer, coordinate and copy bodies from FND-CONFIG-175. Arrivals are retained,
+but alternate DOS routes prevent establishing the frame. No invented memory,
+fixed callback target, higher caps, emulation or game spec/parity change.
+Reports: GAME_DIR/analysis/reporter-audit/issue5-count-callers91 and
+engine100-count-inputs. Logs: artifacts/engine91/count-callers-source.log,
+count-caller-frames.log, count-buffer-frames.log; artifacts/engine100/
+count-input-controls.log. Full Gap 34 pair/split/copy/terminator acceptance and
+all five issue 5 consumer exits remain open.
