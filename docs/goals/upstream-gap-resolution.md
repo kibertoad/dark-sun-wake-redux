@@ -156,8 +156,8 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   whole recursive/caller coverage and actual-copy storage/alias inputs.
 - Next: Issue 5 Gap 34: nonzero count/record and one-record caller storage
   producers, known append cardinality and complete pair/split/copy/terminator routes.
-- Next: Issue 5 Gap 32: callback-field/segment producers, remaining middle
-  callees (next sites 209825/210167/210222/233496), admitted storage, guards
-  and both whole callback routes.
+- Next: Issue 5 Gap 32: follow candidate writer entry 209409 and its inputs/
+  callers; establish segment/storage admission and both whole callback routes.
+  Remaining middle dependency sites: 209825/210167/210222/233496.
 - Next: Issue 5 Gap 37: incoming flag/data and external sound/I/O producers,
   later writers and actual transfer callers; do not repeat the capped startup scan.
