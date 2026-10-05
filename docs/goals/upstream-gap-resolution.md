@@ -237,7 +237,10 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   Corrected the prior indirect-target classification to an undeclared direct
   near-call dependency. Both actual argument prefixes retain selector four;
   omitted prefixes and one-step controls lose it. Whole Gap 37 stays open.
-- Next: connect window resource acquisition, registration writes, activation
-  gates and later pointer/child-graph writers before another broad root trace.
-  Keep static discovery first and focused verification afterward.
-  Gaps 31/32/33/34 retain their whole completion conditions unchanged.
+- Latest static producer-map acceptance and numeric inventory repairs are
+  recorded in docs/TRANSFER-CALLER-PRODUCER-AUDIT.md; full Test.ps1 passed
+  on 2026-10-05, including documentation checks. No spec status changed.
+- Next: FND-CONFIG-034/037/038/039/068 resource-reader input, archive selection,
+  address-taking growth and later writer coverage; connect those actual
+  producer routes before another broad root trace. Static discovery remains
+  first, with focused verification afterward. All five whole exits stay open.
