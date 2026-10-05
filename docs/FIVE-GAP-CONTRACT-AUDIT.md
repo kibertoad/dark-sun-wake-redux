@@ -62,6 +62,17 @@ acceptance result. Keep previous partial reports, unresolved scopes and
 negative controls intact. No new owner-run request or toolkit issue follows
 from this audit alone.
 
+## Connected Gap 37 caller graph
+
+The published callee query now covers the actual FND-CONFIG-186 caller's
+request, transfer and cleanup children, including the hardware-bearing release.
+Its declared graph is complete with no unresolved edges or unchecked entries;
+request/release omissions and an instruction cap lose graph completion.
+This removes missing direct-callee coverage within that scope. Dynamic whole
+controls, admitted slot/count inputs and preservation against storage/stack
+aliases remain incomplete. See TRANSFER-CALLER-PRODUCER-AUDIT.md; no full exit
+is closed by this source-local graph result.
+
 ## Subsequent focused control
 
 The actual Gap 37 mask prefix now retains port-number, selector-byte and

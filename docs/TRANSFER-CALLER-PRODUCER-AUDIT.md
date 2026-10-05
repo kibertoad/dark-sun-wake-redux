@@ -507,6 +507,43 @@ positive-service path is accepted as completion. Next is current DS and the
 specific field-to-consumer preservation/order, alongside slot/transfer aliases.
 No game specification or parity status changes. All five full exits remain open.
 
+## Connected caller, request, transfer and cleanup graph, 2026-10-06
+
+The published engine 10.1.0 callee query now starts at the actual caller in
+FND-CONFIG-186 rather than the transfer wrapper alone. It joins that caller
+to FND-CONFIG-191's request and validator, FND-CONFIG-183's free-slot scan,
+the coordinate getters, FND-CONFIG-192's primitive, FND-CONFIG-184's cleanup
+wrapper and FND-CONFIG-194's release service. Complete local bodies and all
+encoded edges resolve inside this declared graph. The graph's explicit
+completeWithinDeclaredGraph result is true; there are no unresolved edges or
+unchecked entries. The generated report holds the node/edge inventory and
+both primitive and release hardware boundaries.
+
+Removing the request leaves its caller edges unresolved and the disconnected
+scanner unchecked. Removing the release leaves the cleanup service edge
+unresolved even though remaining nodes retain usable local bodies. The latter
+control demonstrates why node-boundary usability alone cannot prove complete
+callee coverage. The one-instruction control retains only an incomplete caller
+and unchecked children. Each negative loses completeWithinDeclaredGraph.
+
+This completes source-local direct-callee coverage for this caller scope, not
+its dynamic paths or native input admission. The read-only findings describe
+normal request/primitive/release restoration of saved DS/SI/DI, but also retain
+unverified reference chains and dynamic writes/copies that may alias metadata
+or saved stack storage. The release can move buffers and change unsaved ES/DF
+and graphics state. Therefore missing callees are no longer the blocker in
+this declared caller graph; native segment/field identity, preservation against
+aliases and admitted finite transfer/count producers remain unproved. Do not
+replace these dependencies with scoped preservation models or infer a native
+successful transfer from graph completion.
+
+No native memory was seeded or trace windows joined, and no old traversal
+bound was raised. Private reports are under
+GAME_DIR/analysis/reporter-audit/issue5-transfer-caller-graph101; the ignored
+driver/assertions and log are artifacts/engine101/transfer-caller-connected-graph.mjs
+and transfer-caller-connected-graph.log. All five full exits remain open.
+No game specification, parity status or other research goal changes.
+
 ## PR 293 released mask bounds, 2026-10-06
 
 Engine 10.1.0 delivers toolkit issue 290 through PR 293. The exact released
