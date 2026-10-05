@@ -1,5 +1,10 @@
 # Latest release gap audit, 2026-10-05
 
+The [five-gap contract audit](FIVE-GAP-CONTRACT-AUDIT.md) distinguishes delivered
+toolkit work, pending connected consumer acceptance and original-game unknowns.
+The active connected-evidence goal remains open. An open consumer exit is not
+by itself an undelivered library feature or a demonstrated migration blocker.
+
 Registry verification selected scientific-method-engine 10.0.0 and
 RefurbishedDinosaurs 7.0.0; reader 2.1.0 remains current and checker 1.1.0
 is adopted at tag c79d7fe3addb3fb14bc5f118f19f47571aa4c3f0.
