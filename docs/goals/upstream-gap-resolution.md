@@ -177,6 +177,10 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Gap 33 literal count census and actual candidate traces exclude fixed
   segment-zero stores as MENU producer evidence; see
   docs/MENU-PRODUCER-CANDIDATE-AUDIT.md. No absence claim or memory seeds.
+- Gap 33 actual MENU dispatch branch now reaches recursive helper and real
+  record getter using documented CS:IP mappings; see
+  docs/MENU-CALLER-BRANCH-AUDIT.md. Prefix frame/selection and finite inputs
+  remain unknown; omitted-callee and cap controls pass.
 - Next: Gap 33 object-loading/copy and caller argument producers, admitted
   finite graph/count/record-length and actual-copy storage/alias inputs.
 - Next: Gap 34 connected caller-root and pre-guard frames now reach the
