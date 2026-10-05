@@ -387,3 +387,40 @@ Do not infer mask admission from a bounded index, hardware success from the
 port event, or full startup coverage from a prefix. Game findings/parity remain
 unchanged. All five full connected exits remain open; the new upstream request
 addresses this specific control rather than replacing their other evidence.
+
+## Gap 37 mask-index scratch producer placement, 2026-10-06
+
+Toolkit issue 290 remains open with no response or delivery evidence at this
+check. The unchanged numeric-bound query was not repeated. A fresh full-body
+source reading instead follows the scratch word consumed by the mask prefix.
+
+The primitive reads the second stacked handle, doubles its word slot index,
+loads that slot's horizontal-coordinate word, copies it into intermediate
+scratch and then into the mask-index scratch word. Its entry selects DS from
+CS before these accesses. The later mask prefix explicitly loads the scratch
+through CS and applies the two-bit mask before the indexed table read. This
+follows the original field path already described by FND-CONFIG-192; it supplies
+no native handle, field value or mask-table contents.
+
+Independent full-entry CFG controls show that removing any of the named
+handle-load, slot-read, scratch-copy, index-load/mask or DS-selection instructions
+disconnects the actual table-read site. The second-handle argument reading also
+rejects a first-handle alternative. All source-local DS assignments that can
+precede the mask-scratch store reduce to the entry CS selection; later transfer
+DS changes cannot reach that earlier store on this CFG. The source is call-free
+and interrupt-free, with ports retained as explicit hardware boundaries.
+
+These controls establish placement of the primitive's own explicit producers,
+not complete runtime last-writer coverage. Dynamic slot addresses, stack aliases,
+reference admission and actual transfer ranges remain unverified; copied ranges
+may alias shared scratch or the mask table. Later rows reuse scratch after
+transfers. CFG domination cannot prove native memory stability, mask admission,
+finite malformed-input behavior or hardware output. The unresolved published
+numeric-mask control remains separate from this producer reading.
+
+Private reports/readings remain under issue5-transfer-mask100. Ignored drivers:
+transfer-mask-scratch-reading.py, transfer-mask-scratch-segments.py and
+transfer-mask-scratch-placement.py under artifacts/engine100. Next is the specific
+second-handle slot producer/admission and the transfer-alias dependency of a
+whole control, rather than unrelated archive history. No game specification or
+parity status changes; all five full connected exits remain open.
