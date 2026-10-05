@@ -723,3 +723,41 @@ because the caller frame and repeat route are incomplete. Runtime 6.6.0,
 engine 9.1.0, exact-source checks and canonical validation are adopted.
 See LATEST-RELEASE-GAP-AUDIT.md for every remaining request and retained exit.
 No complete gap, game spec or parity status changed.
+
+## Gap 32 actual bracket traversal, 2026-10-05
+
+Engine 9.1.0 source traversal now includes FND-CONFIG-171's real before/after
+brackets and gated middle helper, FND-CONFIG-099/175's buffer and coordinate
+helpers, actual forward copy, and shared-CS pointer setter/getter. The former
+models for those calls are removed. Unknown SP/BP, the existing frame-prefix
+query and unresolved-route bounds remain unchanged. Findings stay read-only.
+
+The retained path reaches the second fresh callback target after the actual
+before bracket and reaches the actual after bracket and getter. The actual
+DS:A057/A059 input read is retained as a producer of both shared-CS word
+stores. Both reached store-origin controls hold locally; whole verdicts are
+undecided. The later getter does not retain that setter origin across the
+remaining callback model, whose unscoped effects remain unknown. Its reached
+origin control is undecided. No implicit shared-CS preservation was added.
+
+Both whole target-order controls remain undecided. The first callback anchor
+has no witness in the retained bounded routes; second-anchor occurrences are
+undecided, rather than inherited holds from the older bracket hypotheses.
+Path gaps, unknown target/segment/alias producers and root return-frame stops
+remain. The old root guard model's frame scope is rejected as overlapping the
+processor-written return frame. Replacing it with FND-CONFIG-163's actual
+body exposes the unmodeled DOS interrupt on guarded prefix and helper routes;
+it does not establish the whole root frame. The older 7.3.0 acceptance is
+historical conditional-model evidence, not current actual-route coverage.
+
+The wrong null-gate control rejects a reached callback witness. Omitting the
+before bracket stops at its call sites, and one-step controls remove frame,
+callback and relational witnesses. All experiment assertions pass. Original
+configs/reports are local under GAME_DIR/analysis/reporter-audit/issue5-brackets91;
+ignored driver/log: artifacts/engine91/actual-brackets.mjs and actual-brackets.log.
+
+Gap32 remains open for the actual callback-field producer, admitted storage,
+remaining middle-helper callees, guard outcomes, both callback routes and
+whole controls. These are consumer research steps; no new upstream capability
+limitation has been demonstrated. No original runtime/emulation, entry-memory
+fabrication, stitched state, larger unresolved bounds, spec or parity change.
