@@ -2,7 +2,7 @@
 
 ## Issue 5 actual middle-service dependencies
 
-Use FND-CONFIG-171/174/188/189 as read-only inputs. Extend the existing actual
+Use FND-CONFIG-171/174/188/189/191/197 as read-only inputs. Extend the existing actual
 bracket query with the complete 409B:1675 and 3D72:0B84/0942 bodies, without
 new call models, input memory or increased query bounds. Preserve callback
 origin/order controls and report which real service entries and unread child
@@ -11,6 +11,10 @@ those witnesses. Exit: record actual connected dependency coverage and remaining
 producer/storage/guard gaps; local entries never establish whole callback routes.
 If earlier caller stops prevent entry, separately test the documented middle
 entry with unknown input state; do not import caller memory or claim a join.
+Extend with the documented refresh and handle-forwarding bodies. Verify actual
+temporary-field argument producers on reached writes, with a wrong producer,
+omitted wrapper and one-step negatives. Separate explicit restoration from
+whole preservation; unknown aliases, targets and external services remain open.
 
 ## Issue 5 connected poll acceptance
 

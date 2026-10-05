@@ -791,3 +791,30 @@ Exact published-source integrity passed; full Test.ps1 result is recorded in
 `artifacts/engine91/middle-test.log`. Earlier response sections were moved to
 TOOLKIT-RESPONSE-ACCEPTANCE-ARCHIVE.md; completed maintenance plans were moved
 to the existing shared-adoption archive to preserve narrative size limits.
+
+## Issue 5: connected refresh argument producer, 2026-10-05
+
+Authoritative issue 5 remains open with Gaps 31/32/33/34/37. Read-only inputs
+FND-CONFIG-171/174/188/189/191/197 now extend the actual middle-entry trace
+with both refresh wrappers, handle forwarding/gates and coordinate getters.
+Original query bounds, unknown state and existing callback hypotheses remain
+unchanged. Source reports: `GAME_DIR/analysis/reporter-audit/issue5-refresh91/`;
+ignored driver: `artifacts/engine91/actual-refresh.mjs`.
+
+The trace reaches the first refresh wrapper and its before-call temporary
+field assignment. The actual caller argument producer is retained at every
+reached assignment occurrence; whole origin control remains undecided because
+stopped/dropped routes remain. A false call-site producer is rejected. Omitted
+wrapper and one-step controls remove the producer anchor. No imported memory
+or conditional replacement producer was supplied.
+
+The later field-restoration write is not retained. A reached service now stops
+at undeclared child site 209825; unresolved callback transfer at 210167,
+resident call at 210222 and middle-helper call at 233496 remain. DOS guard
+and path stops persist. The main callback caller's earlier unresolved frame
+and storage routes are not joined by this separate middle entry. Admitted
+callback records, target/segment writers, stable segments and complete return
+routes remain required for Gap 32; no whole guard or preservation exit closes.
+
+Exact production integrity and the full Test.ps1 gate passed; logs:
+`artifacts/engine91/refresh-integrity.log` and `refresh-test.log`.
