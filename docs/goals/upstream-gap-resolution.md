@@ -204,7 +204,11 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Gap 37 second-handle producer census finds real overlay allocator stores
   and cleanup rewrites. First-field narrow query traces actual allocator
   coordinates 0,0,27,15/count 7 and returned zero/one/FFFF. Prefix, pool/slot
-  admission and second-request frame/repeat stops remain; no state stitching.
+  admission and scanner-repeat stops remain; no state stitching. Rejection
+  cleanup frame mismatch is a narrow-entry limitation, not a second-call fault.
+- Gap 37 relocated trampoline references reveal two actual incoming calls
+  outside the old inventory search. Exact-boundary reporter controls confirm
+  target identity; actual routine prefixes and initialization order remain.
 - Next: Gap 37 the resident no-argument initializer has repeatable concrete
   known-answer, register, byte-width and declared loop-direction controls.
   Startup-to-transfer, incoming flag/data, later writers and sound/I/O
