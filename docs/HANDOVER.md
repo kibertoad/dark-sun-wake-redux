@@ -6,15 +6,15 @@ docs/goals/; queue items and findings remain in their respective durable files.
 ## State
 
 - Stage: Slices; slices 2 and 3 remain in progress. Survey exit still needs Q-EXE-003.
-- Last gate: 2026-10-04, tools/Invoke-Validation.ps1 passed, including tools/Test.ps1, locked restore, Release build and assetless publish/smoke. Evidence: artifacts/template-dependency-sync-validation.log.
-- Template 7a79818 is adopted after the requested latest-template sync. Standard c1758fd, checker 0.2.0, reader 2.0.0 and engine 4.0.0 are adopted; shared runtime pins remain unchanged. Weekly NuGet update policy and xUnit 4.0.1 are installed; verified project-local interpreter routing is retained. Dispositions: docs/TEMPLATE-ACCEPTANCE.md.
+- Last gate: 2026-10-05, tools/Invoke-Validation.ps1 passed, including tools/Test.ps1, locked restore, Release build and assetless publish/smoke. Evidence: artifacts/engine811/validation.log.
+- Template 7a79818 is adopted after the requested latest-template sync. Standard c1758fd, checker 0.2.0, reader 2.1.0 and engine 8.1.1 are adopted; shared runtime pins are 6.2.0. Weekly NuGet update policy and xUnit 4.0.1 are installed; verified project-local interpreter routing is retained. Dispositions: docs/TEMPLATE-ACCEPTANCE.md.
 - Required asset pack revision is 36. The owner's revision-35 pack under LocalAppData is rejected until play.bat re-extracts it.
 - Established latest-original-version readiness is recorded in project-config and SOURCE-EDITIONS. Native runtime remains owner-only; no original run or executable analysis occurred in the migration.
-- Process audit found no migration-owned orphan requiring termination; reusable MSBuild nodes remain untouched.
+- Process audit found no session-owned orphan requiring termination; reusable MSBuild nodes remain untouched.
 
 ## Unfinished
 
-The earlier template migration is complete. Shared runtime migration uses the published RefurbishedDinosaurs 2.0.0 packages pinned in Directory.Build.props. Continuing shared-tooling work and its external-delivery approval are recorded in docs/goals/upstream-gap-resolution.md; the scoped-memory acceptance plan is committed.
+The earlier template migration is complete. Shared runtime migration uses the published RefurbishedDinosaurs 6.2.0 packages pinned in Directory.Build.props. Continuing shared-tooling work and its external-delivery approval are recorded in docs/goals/upstream-gap-resolution.md; the scoped-memory acceptance plan is committed.
 
 ## Blockers
 
@@ -28,7 +28,7 @@ Live signing, repository signing-environment branch protection and high/mixed-DP
 4. Q-CONFIG-001 owner live session; Q-PARTY-001, Q-PARTY-005 and Q-PARTY-009.
 5. Configure ES_CERTIFICATE_THUMBPRINT and main-only release-signing deployment branches before a signed release.
 
-Shared FLI readiness tooling: Inspect `fli-check` now uses RefurbishedDinosaurs.Media.Fli 1.0.0.
+Shared FLI readiness tooling: Inspect `fli-check` now uses RefurbishedDinosaurs.Media.Fli 6.2.0.
 Synthetic COPY, FLC rejection and chunk-overrun tests pass. It does not implement cinematic
 playback or raise spec status. Original-media validation remains local and was not run.
 
@@ -37,9 +37,9 @@ Zizmor passes locally with the CI default persona.
 
 ## Shared runtime migration
 
-Branch: `feat/shared-runtime-primitives`. See [migration status](SHARED-RUNTIME-MIGRATION.md).
+See [migration status](SHARED-RUNTIME-MIGRATION.md).
 The solution build, .NET settings suite and full canonical gate passed with a workspace-local JDK.
-The migration uses public 2.0.0 packages and refreshed NuGet and packaging locks. The full canonical gate
+The migration uses public 6.2.0 packages and refreshed NuGet and packaging locks. The full canonical gate
 passes, including Java export-boundary and .NET settings controls.
 The validation-lease fixture now uses production path initialization, so Windows short
 and long TEMP paths select the same lock. Synthetic failure and exclusion controls pass locally.
@@ -48,3 +48,17 @@ Original-game parity and live-device behavior were not assessed.
 Installer packaging uses committed target/mode lock profiles with explicit RuntimeIdentifier.
 All profiles pass locked restore; missing, mismatched and cross-host controls pass.
 Publishers preserve locked mode; regeneration is an explicit maintenance command.
+
+## Latest shared-library and requester acceptance
+
+Runtime 6.2.0 and engine 8.1.1 are adopted with refreshed exact dependency and
+packaging locks. Complete published engine suite and exact source integrity,
+canonical Test.ps1, locked packaging profiles, Release build and assetless smoke
+pass. Evidence: artifacts/engine811/release-suite.log, final-gate.log,
+packaging-check.log and validation.log.
+
+Toolkit issues 143/190/198/200/213 received verified consumer responses and stay
+open under their own exits. Project issue 5 tracks remaining connected-query and
+producer evidence. Details: TOOLKIT-RESPONSE-ACCEPTANCE.md and the existing goal
+handover. No original execution/emulation or game spec/parity changes occurred.
+Original-derived configs/reports remain at GAME_DIR/analysis/reporter-audit/engine811.
