@@ -193,6 +193,10 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   routes using new producer evidence, never larger unresolved-query caps.
   The resident-only harness now exists. Raw memory/argument seeding waits
   for supported layout/parameter bindings; do not guess them from a test.
+- Gap 37 fresh caller census and actual coordinate caller trace establish
+  consumed 10,10,38,26 words from real pushes through request/scanner;
+  docs/TRANSFER-CALLER-PRODUCER-AUDIT.md. No supplied handle, frame or memory.
+  Slot repeats, dropped paths and undeclared wrapper continuation remain.
 - Next: Gap 37 the resident no-argument initializer has repeatable concrete
   known-answer, register, byte-width and declared loop-direction controls.
   Startup-to-transfer, incoming flag/data, later writers and sound/I/O
