@@ -424,3 +424,46 @@ transfer-mask-scratch-placement.py under artifacts/engine100. Next is the specif
 second-handle slot producer/admission and the transfer-alias dependency of a
 whole control, rather than unrelated archive history. No game specification or
 parity status changes; all five full connected exits remain open.
+
+## Gap 37 second-handle admission and field-writer candidates, 2026-10-06
+
+Published caller-order controls retain the actual primitive call behind both
+signed-handle gates and both coordinate-validator result gates. The capped
+negative loses usable ordering. Independent source assertions follow the
+wrapper's second word through DI into the primitive's second stacked argument,
+and distinguish word-sized signed handle checks from byte-sized AL result
+checks. A full-AX validator interpretation is rejected. Callee and saved-frame
+preservation remain conditions on that argument handoff.
+
+FND-CONFIG-191's coordinate getters and validator do not bound a nonnegative
+handle index or validate its slot flags/storage. The specific second-handle
+input in FND-CONFIG-186 comes from a current DS-relative destination field;
+matching it to the primitive's admitted slot needs that field's producers and
+preservation, not a broader claim that coordinate acceptance validates storage.
+
+A function-boundary-independent literal census, followed by bounded linear
+candidate decoding, identifies direct word-store candidates in overlay 182.
+Published operand reports now verify their entry-path instruction ownership and
+word width; instruction-limit controls lose ownership. Raw literal hits and the
+separate indexed byte candidate do not establish uses of the same field. This
+is not an exhaustive writer search: computed, aliased and cross-segment writes
+remain outside the literal census, and current DS identity is unverified.
+
+The first candidate saves an allocator return before testing the word against
+the all-ones failure value. Its child mapping resolves to FND-CONFIG-183's slot
+allocator. The second passes the current field to FND-CONFIG-184's cleanup
+wrapper and replaces it with that service's returned word. Their bounded source
+readings establish these local producer roles, not a successful allocation,
+preserved field, valid later handle or primitive invocation. In particular,
+store-before-failure-test is not an admitted-input positive. FND-CONFIG-028
+records a caller of the first candidate; its native route and intervening effects
+remain unverified.
+
+Private reports/readings remain under issue5-transfer-mask100. Ignored drivers:
+transfer-mask-handle-guards.mjs, transfer-mask-handle-widths.py,
+transfer-destination-handle-candidates.py, transfer-destination-handle-reading.py,
+transfer-destination-handle-filter.py and transfer-destination-writer-controls.mjs
+under artifacts/engine100. Next is the specific allocation-return/field handoff
+and later cleanup-write dependency, retaining current DS and slot/alias limits.
+No game specification or parity status changes. All five full connected exits
+remain open.
