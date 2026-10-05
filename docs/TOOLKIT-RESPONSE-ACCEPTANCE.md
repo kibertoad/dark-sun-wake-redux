@@ -922,3 +922,35 @@ engine100-count-inputs. Logs: artifacts/engine91/count-callers-source.log,
 count-caller-frames.log, count-buffer-frames.log; artifacts/engine100/
 count-input-controls.log. Full Gap 34 pair/split/copy/terminator acceptance and
 all five issue 5 consumer exits remain open.
+
+## Connected count-one caller frames and retained count, 2026-10-05
+
+The next Gap 34 attempt starts at actual incoming caller roots with the newly
+declared reverse buffer/coordinate/copy dependencies. It removes the incidental
+SI register hypothesis and supplies no entry SP/BP or memory. Unlike the older
+argument-only entries, each root forms BP from its own stack and allocates its
+frame before the supplied destination is produced. Reached paths now execute
+the real zero fill and the count-one store, then the actual record copy and
+normalization entry. This supersedes the earlier no-count-store result for these
+root routes; it does not change the qualified late-entry results themselves.
+
+A narrower entry immediately before the first guard establishes its frame by
+tracing only that actual prologue. Memory stays unknown; the query traces every
+later buffer, fill and copy operation itself. The normalizer's reached count
+read is one, with the setup store retained as its origin and last writer. All
+reached count-origin, last-writer and ordering occurrences hold. No window
+memory or earlier result is carried into the query. The actual record copy
+therefore does not overwrite this count on those reached routes.
+
+Whole verdicts remain undecided: unmodeled DOS branches, path gaps and unchanged
+step bounds stop normalization/continuations. No setup normal-return witness,
+append cardinality, full pair/split route or native geometry/capacity admission
+is claimed. Wrong initializer-call writer is rejected. Omitted copy or setup,
+missing formed frame and one-step controls lose the normalization anchors.
+No original run, emulation, increased bounds, game spec or parity change.
+
+Reports: GAME_DIR/analysis/reporter-audit/engine100-count-roots,
+engine100-count-pre-guard and engine100-count-root-controls. Drivers/logs:
+artifacts/engine100/count-root-callers.mjs, count-pre-guard-frames.mjs,
+count-root-controls.mjs and their corresponding logs. Canonical batch checks
+are recorded in count-root-test.log; exact engine integrity remains verified.

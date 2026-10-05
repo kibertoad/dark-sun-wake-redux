@@ -213,3 +213,19 @@ consumer work. A release or synthetic success never closes an actual-game exit.
 Test source-produced indirect far targets with a synthetic known-pointer case
 and immediate-call positive. If unsupported, duplicate-check and report the
 capability separately; preserve unknown/alias/out-of-region stopped controls.
+
+## Released indirect-far-transfer and latest library adoption
+
+Adopt published engine 10.0.0, runtime 7.0.0 and checker 1.1.0 with exact
+registry integrity and tagged-source verification. Retain reader 2.1.0 and the
+local rule snapshot. Refresh ordinary and all packaging locks and the CI
+checker commit. Review portable-path rejection and base-comparison changes.
+Re-run the synthetic source-produced far-pointer regression with immediate,
+unknown-pointer, invalid-target and capped controls. Re-run actual callback
+producer cases at unchanged bounds; retain unresolved pointer/alias/caller
+coverage explicitly. A released capability alone never closes a source exit.
+Acceptance: tagged engine suite, installed integrity, whole canonical gate,
+locked packaging profiles and qualified source controls. Update issue 274 and
+project issue 5 with actual results; record remaining migration requirements.
+Exit: exact published adoption and passing gates, with delivered capability
+separated from incomplete consumer evidence. No game spec or parity changes.

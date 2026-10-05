@@ -2,14 +2,21 @@
 
 ## Condition
 
-Fully resolve all 37 remaining requests recorded in gaps.md at goal intake. Each numbered request must have delivered behavior satisfying its entire acceptance contract and a recorded passing Dark Sun case where applicable. Remove only proven addressed requests, retain stable IDs, and open upstream PRs for any additional shared standard/protocol/tool limitation found. Upstream proposals alone do not prove adopted completion. Canonical validation and exact-source integrity must pass after each finished batch. No smaller completion condition or fixed turn limit.
+Produce complete connected evidence for Gaps 31, 32, 33, 34 and 37 in project
+issue 5, as explicitly requested by the owner. Each gap must satisfy its whole
+contract in gaps.md through the adopted published tools, with actual caller,
+producer and callee coverage and all cited positive and negative controls.
+Keep unknown native inputs, hardware output and externally supplied results
+explicit; local witnesses, synthetic success and stopped paths do not prove
+whole completion. Exact-source integrity and canonical validation must pass.
+The wider historical ledger remains recorded below but is not this goal's exit.
 
 ## Scope
 
 Current user-requested work: complete every part of project issue 5 that needs
 no further upstream input. This covers Gaps 31, 32, 33, 34 and 37, including
 real connected caller/callee and producer coverage, whole controls and their
-negative cases. The broader ledger and completion condition remain unchanged.
+negative cases. The five-gap completion condition above is the active owner-requested exit.
 
 Areas: shared tooling, upstream rules/adoption and tooling acceptance records only. Research-side tooling batches. Read existing CONFIG/SCRIPT findings as acceptance inputs; do not claim or modify those research areas owned by config-static. No gameplay implementation.
 

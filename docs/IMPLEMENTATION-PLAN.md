@@ -13,21 +13,18 @@ Exit: actual input/count witnesses and remaining alias/storage/route limits.
 Reports/selectors remain local under GAME_DIR; whole Gap 34 stays open until
 known append cardinality and pair/split/copy/terminator exits all pass.
 
-## Released indirect-far-transfer and latest library adoption
+## Connected count-one root and pre-guard frame controls
 
-Adopt published engine 10.0.0, runtime 7.0.0 and checker 1.1.0 with exact
-registry integrity and tagged-source verification. Retain reader 2.1.0 and the
-local rule snapshot. Refresh ordinary and all packaging locks and the CI
-checker commit. Review portable-path rejection and base-comparison changes.
-Re-run the synthetic source-produced far-pointer regression with immediate,
-unknown-pointer, invalid-target and capped controls. Re-run actual callback
-producer cases at unchanged bounds; retain unresolved pointer/alias/caller
-coverage explicitly. A released capability alone never closes a source exit.
-Acceptance: tagged engine suite, installed integrity, whole canonical gate,
-locked packaging profiles and qualified source controls. Update issue 274 and
-project issue 5 with actual results; record remaining migration requirements.
-Exit: exact published adoption and passing gates, with delivered capability
-separated from incomplete consumer evidence. No game spec or parity changes.
+Trace the newly identified caller roots with actual buffer/fill/copy bodies.
+A narrower entry may precede the first guard only when the actual prologue
+establishes its frame; memory stays unknown and no earlier result is supplied.
+Remove incidental incoming register hypotheses. Verify the actual count-one
+store and its last-writer/origin through record copy into normalization, with
+wrong writer, omitted copy/setup, unformed-frame and cap controls. Keep all
+unread DOS, branch/loop and path/step stops. This is a connected producer
+witness, not complete append cardinality or native admitted geometry.
+Exit: source-produced nonzero count witnesses with explicit remaining routes,
+full Test.ps1, acceptance record and separate handover. All reports stay local.
 
 Completed bounded adoption plans: [archive](implementation-plans/COMPLETED-SHARED-ADOPTION.md).
 

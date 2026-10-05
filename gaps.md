@@ -282,6 +282,14 @@ track the base of each write and signed or wrapped length gates; a limit
 argument alone does not prove termination at the conventional boundary
 or valid storage on every branch.
 
+Connected source caller roots now execute the count-one store and retain it
+through actual record copy into normalization. Pre-guard frames are established
+from the real prologues without supplied stack values or memory. Reached
+count-origin, last-writer and order controls hold; whole results remain
+undecided at unmodeled DOS, path and step stops. These input witnesses do not
+establish generated append counts or full pair/split/copy/terminator acceptance.
+See TOOLKIT-RESPONSE-ACCEPTANCE and project issue 5.
+
 ## 36. Preserve overlapping memory access widths across call summaries
 
 FND-CONFIG-187's callers write bytes at 332C and 332E, while
