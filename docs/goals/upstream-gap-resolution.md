@@ -213,6 +213,11 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   numeric inventory: expanded Save/Load body, added missing Start Game body,
   retained interior entries. Real zero arguments identified; dispatch/prefix
   state and initialization-to-transfer join remain unproved.
+- Gap 37 actual callback roots now have source-table conditional continuation
+  streams through event-two dispatch. Ordinary routes/stops are unchanged;
+  disabled and cap controls pass. First unread resident/control calls now
+  bound the actual pre-allocation prefixes. Tables are non-exhaustive; no
+  native event values, memory, stitched state or higher limits supplied.
 - Next: Gap 37 the resident no-argument initializer has repeatable concrete
   known-answer, register, byte-width and declared loop-direction controls.
   Startup-to-transfer, incoming flag/data, later writers and sound/I/O
