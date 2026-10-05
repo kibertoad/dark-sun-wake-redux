@@ -10,19 +10,19 @@
       },
       "RefurbishedDinosaurs.Core": {
         "type": "Direct",
-        "requested": "[6.6.0, 6.6.0]",
-        "resolved": "6.6.0",
-        "contentHash": "djUVMM9ter6Ia7GE4JNCtxyEL5tPJ269F5AO7b9GDHPFt4NEIlbYnxb484ix4U0qssMvwEQS+JQ8qSsLF1wgig==",
+        "requested": "[6.8.0, 6.8.0]",
+        "resolved": "6.8.0",
+        "contentHash": "wyXu8fh8V8CNdD28lp8cb3AveWTS+CQNd++PYQwXdSA13XZ3B0q58JgEcmkNNgx8oIJijMx8heW70nHtrZ5eww==",
         "dependencies": {
           "System.IO.Hashing": "10.0.12"
         }
       },
       "RefurbishedDinosaurs.LegacyFormats": {
         "type": "Transitive",
-        "resolved": "6.6.0",
-        "contentHash": "iQygm99+qyT/JtZ+eFf1GBnlB+2Ie2lOq5jKckCZMV4tbOg5hBJoK74T/frJaUXIlIKXSIXZx4KcZgKYds3sHA==",
+        "resolved": "6.8.0",
+        "contentHash": "P7kNa1gdXcvDTPf7JBpCY9nAQDRFsYBEQtsYMhJ8d6fWue1N1q6cy3fD8eZNYuq4KLfY3VwiskDdO8bC7V/gWg==",
         "dependencies": {
-          "RefurbishedDinosaurs.Core": "6.6.0"
+          "RefurbishedDinosaurs.Core": "6.8.0"
         }
       },
       "System.IO.Hashing": {
@@ -33,8 +33,8 @@
       "darksunwakeredux.resources": {
         "type": "Project",
         "dependencies": {
-          "RefurbishedDinosaurs.Core": "[6.6.0, 6.6.0]",
-          "RefurbishedDinosaurs.LegacyFormats": "[6.6.0, 6.6.0]"
+          "RefurbishedDinosaurs.Core": "[6.8.0, 6.8.0]",
+          "RefurbishedDinosaurs.LegacyFormats": "[6.8.0, 6.8.0]"
         }
       }
     },

@@ -1,5 +1,22 @@
 ﻿# Implementation plan
 
+## Latest published library and requester-issue adoption
+
+Adopt runtime 6.8.0 and checker 0.6.0 at exact published versions, verify their
+registry/tag integrity, and retain current engine/reader when registries show
+no newer release. Update ordinary and all packaging locks, CI checker revision
+and installed dependencies. Use the existing local rule snapshot. Run canonical
+validation with Release build and assetless smoke. Audit issues this project
+opened against actual release behavior and consumer controls; revise delivered
+asks and retain incomplete source exits explicitly. Exit: exact adopted pins,
+passing canonical gate, updated project/upstream issue dispositions and remaining
+consumer work. A release or synthetic success never closes an actual-game exit.
+Test source-produced indirect far targets with a synthetic known-pointer case
+and immediate-call positive. If unsupported, duplicate-check and report the
+capability separately; preserve unknown/alias/out-of-region stopped controls.
+
+Completed bounded adoption plans: [archive](implementation-plans/COMPLETED-SHARED-ADOPTION.md).
+
 ## Issue 5 callback writer candidate census
 
 Search the committed DSUN function inventory for encoded A119/A11B operands
@@ -32,38 +49,6 @@ Extend with the documented refresh and handle-forwarding bodies. Verify actual
 temporary-field argument producers on reached writes, with a wrong producer,
 omitted wrapper and one-step negatives. Separate explicit restoration from
 whole preservation; unknown aliases, targets and external services remain open.
-
-## Issue 5 connected poll acceptance
-
-Research-side tooling only. Use FND-CONFIG-161/162/163/164/165/166/167 as read-only inputs to test
-whether the real caller entry can establish the late poll's root frame with
-`entryFrame`, and whether the actual predicate retains interrupt BX provenance.
-Keep the existing query bounds, unknown input memory and explicit conditional
-interrupt scopes. Compare unknown BX with supplied zero/one, unread interrupt,
-unscoped frame and one-step controls. Keep original-derived configs/reports in
-GAME_DIR. Exit: record the actual frame-formation and per-occurrence verdicts,
-including stopped/dropped routes; a failed formation or absent scratch read
-cannot be replaced by invented memory, a synthetic anchor or stitched state.
-This bounded acceptance step does not by itself close Gap 31 or issue 5.
-Extend the connected root query with each already documented real callee body,
-record its branch/frame/producer dependencies, and retain unread paths and
-hardware stops. Independent callee windows cannot supply ancestor state.
-Verify actual caller-literal provenance at both fallback registration stores;
-wrong poll-result provenance, omitted setter and one-step controls must lose
-or reject the witness. A reached store does not establish callback dispatch.
-
-## Issue 5 actual state-clear and status window
-
-Use FND-CONFIG-162/166 as read-only inputs. Include the real 03A5/0051/0407
-bodies in the root dependency set, then test the actual post-driver call window
-with unknown incoming memory and SP/BP at the original query limits. A narrow
-entry assumes the preceding driver poll returned; it supplies no poll/frame
-state. Check actual zero-result producers, stable DS gate byte writers and
-caller predicate ordering, with omitted status/clear and cap negatives.
-Keep active device calls, storage/alias admission and true root formation open.
-Source reports stay under GAME_DIR. Exit: reached state/status producers,
-local versus whole controls and remaining connected caller dependencies.
-Completed release-adoption plans: [shared adoption archive](implementation-plans/COMPLETED-SHARED-ADOPTION.md).
 
 This file says what the project intends and what is true now, following the
 [work protocol](../vendor/upstream/work-protocol.md). It holds no dated

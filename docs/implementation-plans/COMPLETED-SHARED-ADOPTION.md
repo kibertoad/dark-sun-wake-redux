@@ -166,3 +166,35 @@ Shared FLI readiness: Inspect `fli-check` uses the pinned RefurbishedDinosaurs.M
 ## Latest template dependency maintenance sync
 
 Adopt template main 7a798184faddb271da2ec52745887972fdcdeb72, including xUnit 4.0.1 and its refreshed test lock. Outcome: weekly NuGet updates group shared runtime and xUnit packages, retain the reviewed SabreTools pin, and leave manually coordinated npm/Python tooling updates to the existing exact-lock workflow. Retain the stronger verified project-local interpreter routing instead of adding PATH probing. Evidence: complete ten-file delta from 049f300 and docs/TEMPLATE-ACCEPTANCE.md. Acceptance: adapted Dependabot policy, updated maintenance guidance, canonical Test.ps1 and full Invoke-Validation gate pass; no configured identity, proprietary content, spec status or gameplay changes. Exit: every changed capability accounted for and validation passes. Risk: update proposals still require locked-package acceptance. No owner questions.
+
+## Issue 5 actual state-clear and status window
+
+Use FND-CONFIG-162/166 as read-only inputs. Include the real 03A5/0051/0407
+bodies in the root dependency set, then test the actual post-driver call window
+with unknown incoming memory and SP/BP at the original query limits. A narrow
+entry assumes the preceding driver poll returned; it supplies no poll/frame
+state. Check actual zero-result producers, stable DS gate byte writers and
+caller predicate ordering, with omitted status/clear and cap negatives.
+Keep active device calls, storage/alias admission and true root formation open.
+Source reports stay under GAME_DIR. Exit: reached state/status producers,
+local versus whole controls and remaining connected caller dependencies.
+Completed release-adoption plans: [shared adoption archive](implementation-plans/COMPLETED-SHARED-ADOPTION.md).
+
+## Issue 5 connected poll acceptance
+
+Research-side tooling only. Use FND-CONFIG-161/162/163/164/165/166/167 as read-only inputs to test
+whether the real caller entry can establish the late poll's root frame with
+`entryFrame`, and whether the actual predicate retains interrupt BX provenance.
+Keep the existing query bounds, unknown input memory and explicit conditional
+interrupt scopes. Compare unknown BX with supplied zero/one, unread interrupt,
+unscoped frame and one-step controls. Keep original-derived configs/reports in
+GAME_DIR. Exit: record the actual frame-formation and per-occurrence verdicts,
+including stopped/dropped routes; a failed formation or absent scratch read
+cannot be replaced by invented memory, a synthetic anchor or stitched state.
+This bounded acceptance step does not by itself close Gap 31 or issue 5.
+Extend the connected root query with each already documented real callee body,
+record its branch/frame/producer dependencies, and retain unread paths and
+hardware stops. Independent callee windows cannot supply ancestor state.
+Verify actual caller-literal provenance at both fallback registration stores;
+wrong poll-result provenance, omitted setter and one-step controls must lose
+or reject the witness. A reached store does not establish callback dispatch.

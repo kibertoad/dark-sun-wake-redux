@@ -1,4 +1,4 @@
-﻿# Awaiting-requester issue audit
+# Awaiting-requester issue audit
 
 Audit date: 2026-10-05. Scope: open issues authored by kibertoad carrying
 `awaiting-requester`, across kibertoad repositories. All matched issues were
@@ -23,20 +23,26 @@ initial inventory; concurrent consumer updates were preserved.
 | Issue | Remaining acceptance |
 | --- | --- |
 | #111 | Released Ghidra scripts need each named restoration's versioned positive controls. The response covers sub-culture-max and enemy-reinfestation; synthetic script checks do not replace these. |
-| #143 | Real startup-to-transfer route, input producers and known-answer placement control. Existing frame establishment is insufficient. |
 | #172 | Consumer adoption and directory/cue/bin positive controls using the chosen paths, including Linux case behavior. |
 | #173 | Consumer directory-resolution controls, ambiguity/link rejection and removal of the local resolver after adoption. |
 | #174 | Actual-disc source-to-stage path/size/hash equivalence and committed-stage verification. |
 | #175 | Adopt asynchronous/long-sector extraction and compare actual audio outputs; track extents alone address only part of the request. |
-| #190 | Published interrupt-return model adoption and connected alias/origin/store controls with negative cases. PR #214 merged; release is not consumer acceptance. |
-| #198 | Actual bracket/callee coverage and real target producers making both whole controls decidable, with rejected/stopped controls intact. |
-| #200 | Run the merged #215 compare-origin, matching-branch order, local-output producer and wrong-origin recipe on the actual helper. Full Gap 33 additionally needs leaf/caller coverage. |
 | #207 | Stream-overload adoption, actual embedded-overlay validation and in-memory volume negative controls. |
-| #213 | Adopt the occurrence-count correction/guidance and run a known append-count positive control with real count/capacity producers. |
 
 These are already focused trackers for their remaining asks. No duplicate
 follow-up was opened merely because a release or merged PR exists. Engine
 8.1.1 and runtime 6.2.0 are now adopted with exact-source and complete-suite
 verification. Source-case responses are recorded in TOOLKIT-RESPONSE-ACCEPTANCE.
-Project issue 5 tracks remaining evidence/connected-query work; the five focused
-Dark Sun toolkit requests remain open because their exits are not fully met.
+Project issue 5 tracks remaining evidence/connected-query work. The five old
+Dark Sun toolkit requests are revised as delivered shared-tool work; their
+consumer prerequisites remain open locally. New toolkit #274 tracks the
+verified instruction-produced indirect far-call traversal capability.
+
+## Dark Sun requester revision after latest library adoption
+
+Runtime 6.8.0 and checker 0.6.0 are adopted; engine 9.1.0 and reader 2.1.0
+remain latest. Requests #143/#190/#198/#200/#213 have no remaining undelivered
+shared change in their latest replies. Delivered requests are separated from
+source prerequisites, which remain in Dark Sun issue 5. #198 R5 now has its
+own focused request, #274, with a synthetic positive/control reproduction.
+No outstanding cross-project analyzer or disc acceptance is closed here.

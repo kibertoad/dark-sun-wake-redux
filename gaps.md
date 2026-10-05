@@ -5,7 +5,7 @@ tooling. They describe tooling behavior, not claims about the original game.
 
 Latest adopted template, toolkit and pinned-rule revisions and their capability
 dispositions are recorded in docs/TEMPLATE-ACCEPTANCE.md. Published reader 2.1.0,
-checker 0.2.0 and engine 9.1.0 are adopted with exact registry locks;
+checker 0.6.0 and engine 9.1.0 are adopted with exact registry locks;
 Capstone 5.0.7 and pypcode 4.0.0 are locked runtime dependencies;
 the reviewed release removes handwritten instruction semantics;
 tools/tool-dependencies.mjs verifies the installed packages. Candidate
@@ -214,7 +214,9 @@ Installed source controls now retain metadata ordering, rejected-path writes,
 conditional zero returns and both target reloads through observed frames.
 Scoped target preservation holds at reached occurrences; whole controls remain
 undecided on modeled-callee bypasses. Gap 32 stays open for complete bracket
-coverage and producer evidence, now tracked in toolkit issue 198; see
+coverage and producer evidence in project issue 5. Toolkit issue 198 has
+its delivered asks accounted for; new instruction-produced indirect far-call
+coverage is tracked separately in toolkit issue 274. See
 TOOLKIT-RESPONSE-ACCEPTANCE.
 
 ## 33. Distinguish recursive error propagation from an originating error

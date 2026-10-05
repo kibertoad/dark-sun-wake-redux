@@ -370,3 +370,15 @@ docs/REPORTER-CASE-AUDIT.md: all recorded original BX access sites, distinct
 offset/segment identity, explicit alias/equality/callee hypotheses and the
 installed synthetic suite pass. No native storage-safety, full-loop, game-spec
 or parity promotion follows; gap 37 remains open.
+
+## Published runtime 6.8.0 and checker 0.6.0 adoption, 2026-10-05
+
+Runtime 6.8.0 replaces 6.6.0 in ordinary and every supported packaging lock.
+Checker 0.6.0 replaces 0.2.0; CI uses its exact release commit
+87895543d39974a14ef85a0e0a4aeefc5f5aa241. Tagged compiler rebuild and npm
+integrity verify installed distribution bytes; the tagged synthetic suite
+passes with explicit platform skips. Reader 2.1.0 and engine 9.1.0 remain
+the latest registry versions. Local rules are unchanged. Full adoption gate,
+Release build and assetless smoke: artifacts/engine91/latest-canonical-validation.log.
+Requester dispositions and new toolkit #274 are recorded in
+LATEST-RELEASE-GAP-AUDIT.md; unresolved consumer exits stay in project issue 5.

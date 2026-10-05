@@ -1,7 +1,8 @@
-# Latest release gap audit, 2026-10-05
+﻿# Latest release gap audit, 2026-10-05
 
 Registry verification selected scientific-method-engine 9.1.0 and
-RefurbishedDinosaurs 6.6.0; reader 2.1.0 and checker 0.2.0 remain current.
+RefurbishedDinosaurs 6.8.0; reader 2.1.0 remains current and checker 0.6.0
+is adopted at tag 87895543d39974a14ef85a0e0a4aeefc5f5aa241.
 Engine tag scientific-method-engine@9.1.0 resolves to
 d928d5c68106b22671c4b7ecb2402cb692d2cd9e. Wheel SHA-256 is
 b65e3ffb69858f13596621d7b357ce9c468b655107039f75df2c91078fe1e178;
@@ -12,7 +13,7 @@ installed-engine Node bridge. Logs are artifacts/engine91/release-suite.log.
 
 Compared with engine 8.1.1, PR 236 changes Ghidra instruction-start diagnostics
 and flow-export coverage; PR 244 adds checkpoint memory last-writer probes.
-Compared with runtime 6.2.0, PRs 238–241 add opt-in PCX short-stream filling,
+Compared with runtime 6.2.0, PRs 238â€“241 add opt-in PCX short-stream filling,
 static random transitions and two InstallShield content-source formats.
 None supplies the missing original caller, data or edition evidence.
 The local rules snapshot is unchanged; no standards refresh was requested.
@@ -24,7 +25,7 @@ The local rules snapshot is unchanged; no standards refresh was requested.
 | 27 | No effect-order traversal change. Complete connected fill/bracket coverage remains required. |
 | 29 | No loop/input change. Admitted cache, age and capacity producers and connected restarted-search controls remain required. |
 | 31 | New memory probe removes the missing-read anchor limitation. Actual DX last-writer and BX-origin occurrences hold; wrong-writer, unread, unscoped and cap controls retain their expected outcomes. Whole verdicts remain undecided because caller-frame formation and repeating routes are incomplete. |
-| 32 | No guard/producer change. Actual bracket/callee and callback target/segment coverage remains required. |
+| 32 | No engine change. Actual writer input provenance is retained locally; whole caller/storage controls remain open. New synthetic instruction-produced indirect far-target traversal limit is toolkit #274. |
 | 33 | No recursive provenance change. Replayed compare/input and re-encoding controls retain local witnesses and whole undecided verdicts; real finite child/selector/leaf and caller coverage remains required. |
 | 34 | No cardinality/admission change. Known append-count positives, real input/pointer/alias producers and connected pair/split/copy/terminator coverage remain required. |
 | 36 | No width/provenance change. Connected low/high-byte and segment producers, normalized service coverage and fixtures remain required. |
@@ -78,3 +79,31 @@ Producing the remaining caller, producer and connected-route evidence is
 consumer research work here. It requires no extra upstream input unless a
 specific missing tool capability is demonstrated. No original run, original
 emulation, invented memory, stitched state or spec/parity change was used.
+
+## Latest library and requester disposition revision
+
+NuGet/npm/PyPI registry checks select runtime 6.8.0, checker 0.6.0, reader
+2.1.0 and engine 9.1.0. Runtime 6.7/6.8 improve InstallShield archive handling;
+checker 0.3 through 0.6 add typed field checks, explicit skipped compilation,
+fixture-hash diagnostics, retirement of layout-free unknown format listings,
+and duplicate build-manifest detection. These do not change engine traversal.
+The exact checker tag rebuild matches all installed dist files and its registry
+integrity matches the lock. Its released synthetic suite passes, with platform
+skips explicitly retained. Ordinary and all packaging profiles adopt runtime
+6.8.0. Official NuGet signatures and canonical content hashes verify; all
+package contents match the installed cache. Signature-bearing archive bytes
+are not substituted for the canonical content hash. Verification logs are
+artifacts/engine91/runtime680-integrity.json and runtime680-content-match.log.
+Canonical validation includes Release build and assetless smoke.
+
+The five old Dark Sun toolkit trackers carry delivered shared-tool requests
+and consumer prerequisites. Their delivered requests are accounted for; source
+coverage stays in project issue 5. Toolkit #274 is a new, duplicate-checked
+capability request: a wholly synthetic instruction-produced far pointer is
+known at its indirect call, but the declared target is not followed. Immediate
+far-call positive returns and unknown-pointer negative stops. No proprietary
+bytes or invented original state were used. No whole game gap is closed merely
+by separating delivered requests from consumer evidence.
+
+Logs: artifacts/engine91/latest-canonical-validation.log,
+checker060-integrity.log, checker060-release-tests.log and indirect-far-repro.log.
