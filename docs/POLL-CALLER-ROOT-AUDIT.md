@@ -254,3 +254,39 @@ Next: resolve the specific DS-preservation and buffer-production dependencies
 on these verified routes, keeping relocation-search exclusions and callee-return
 assumptions. Do not expand unrelated sound behavior or seed native memory to
 manufacture a connected positive.
+
+## Buffer consumer's guarded helper handoff, 2026-10-06
+
+The additional state-write candidate's bounded instruction reading follows the
+argument into a saved register and three helper calls. The state-word store
+writes the immediate value one only on the route passing their result gates.
+This is source-local producer structure, not evidence that native services
+succeed or that its DS-relative field is the poll consumer's physical storage.
+
+The final helper has independently verified bounds inside its inventory-adjacent
+query window. Its reached interval ends at the decoded far return; the inventory
+body-byte count was not used as the window endpoint. The local report is complete
+only under the explicit return assumption for its unread external callee.
+
+Published caller-order controls now retain the helper call and its required
+configuration-bit, configuration-byte, prior error-word and prior nonzero-result
+edges. The caller's argument cleanup is observed after assumed return, not
+callee success or preservation. The one-instruction control loses confirmed
+ordering. An initial undeclared-target query was rejected; adding a declaration
+only after the independent bounds check makes that failure explicit rather than
+treating missing code as a negative caller result.
+
+Independent helper reading shows the actual filename-offset parameter is paired
+with the current DS for its external call, alongside the caller's mode argument.
+Its return is copied at word width and tested against the all-ones error value.
+Neither a near offset argument nor the helper's explicit DS argument proves that
+DS was preserved along earlier calls, that the buffer is initialized and bounded,
+or that the external service returned successfully. These are now identifiable
+dependencies of this connected route, rather than reasons to read unrelated
+sound behavior.
+
+Private source readings and reports remain under issue5-poll-state-incoming100.
+Ignored drivers/logs: poll-state-consumer-reading.py,
+poll-state-helper-bounds.mjs and poll-state-consumer-guards.mjs under
+artifacts/engine100. No original instructions enter Git; no source finding or
+parity status changes. Full connected acceptance remains unverified.
