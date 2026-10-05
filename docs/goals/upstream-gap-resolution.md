@@ -121,13 +121,18 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 ## Handover
 
 - Stage: Slices; research-side tooling. Active five-gap Condition/Scope and issue 5
-  consumer scope remain active. No game spec/parity, original run or emulation.
+  consumer scope remain active. No game spec/parity or original-game run.
+  Resident single-function emulated-call controls now run without DOSBox.
 - Latest validation: 2026-10-05 canonical Invoke-Validation.ps1 passed,
   including full Test.ps1, locked restore, Release build and assetless smoke.
   Log: artifacts/engine100/canonical-validation.log. Every packaging profile
   passes locked verification: packaging-check.log. Final Test.ps1 -NoRestore
   passes: precommit-test.log. Latest full batch Test.ps1 also passes:
   artifacts/engine100/count-root-test.log; exact integrity: count-root-integrity.log.
+  Latest emulator batch canonical gate passes: artifacts/emulator/
+  canonical-validation.log; final full Test.ps1 passes: final-test.log.
+  Licensed controls: licensed-controls.log. Optional test-only Unicorn 2.1.4
+  exact wheel/installed integrity: unicorn-integrity.log.
   PowerShell 7: artifacts/pwsh7/runtime/pwsh.exe.
 - Adopted: runtime 7.0.0, engine 10.0.0, reader 2.1.0, checker 1.1.0.
   Engine tag: eaeaad180f36cd6ccab1198410e40ca9421cd4e5.
@@ -147,13 +152,17 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   result-origin730/guard-order730 controls, plus engine100-brackets,
   engine100-writer-inputs, engine100-count-inputs, engine100-count-roots,
   engine100-count-pre-guard and engine100-count-root-controls. Preserve ignored
-  artifacts/engine91 and engine100 drivers, integrity sources and logs.
+  artifacts/engine91 and engine100 drivers, integrity sources and logs;
+  artifacts/emulator logs and GAME_DIR/emulated-initializer reports/configs.
+  Source configs live under analysis/reporter-audit/emulated-initializer.
   No invented entry memory, stitched state or larger unresolved-query caps.
-- Process audit: artifacts/engine100/count-root-process-audit.json.
+- Process audit: artifacts/emulator/commit-process-audit.json.
   No confirmed session-owned orphan; reusable MSBuild and CUA remain untouched.
 - Push: user explicitly authorized validated main pushes. Read branch/remote
   synchronization directly from Git.
-- Next: Gap 31 actual DOS/poll/setter and root-frame connected coverage.
+- Next: Gap 31 incoming resident caller census for the actual poll wrapper
+  and source-produced aliased output/frame arguments. Preserve the old
+  incomplete FND-CONFIG-161 prefix; do not repeat it at larger bounds.
 - Next: Gap 32 actual writer reachability and callback target/segment/storage
   producers; follow produced pointers with released engine 10.0.0.
 - Next: Gap 33 admitted finite graph/count/record-length and actual-copy
@@ -163,7 +172,10 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   Local origin/last-writer/order controls pass with negatives; whole controls
   remain undecided. Follow finite normalization and subsequent pair/split
   routes using new producer evidence, never larger unresolved-query caps.
-  Evaluate permitted resident-only emulated-call tooling after the static
-  attempts if it can supply conditional finite-input coverage; no game run.
-- Next: Gap 37 startup-to-transfer, incoming flag/data, later writers and
-  sound/I/O producers. Do not repeat the capped disconnected startup scan.
+  The resident-only harness now exists. Raw memory/argument seeding waits
+  for supported layout/parameter bindings; do not guess them from a test.
+- Next: Gap 37 the resident no-argument initializer has repeatable concrete
+  known-answer, register, byte-width and declared loop-direction controls.
+  Startup-to-transfer, incoming flag/data, later writers and sound/I/O
+  producers remain. FBOV code cannot be executed in the resident harness;
+  do not repeat the capped disconnected startup scan or claim pixels.
