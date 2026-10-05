@@ -1,0 +1,58 @@
+# Latest release gap audit, 2026-10-05
+
+Registry verification selected scientific-method-engine 9.1.0 and
+RefurbishedDinosaurs 6.6.0; reader 2.1.0 and checker 0.2.0 remain current.
+Engine tag scientific-method-engine@9.1.0 resolves to
+d928d5c68106b22671c4b7ecb2402cb692d2cd9e. Wheel SHA-256 is
+b65e3ffb69858f13596621d7b357ce9c468b655107039f75df2c91078fe1e178;
+sdist SHA-256 is d24c11f7d1343c61ced0a43a29a282a87f840e0001aac063e29ff066e226c13c.
+Wheel, sdist, tagged production files, installed files and released tests agree.
+The full published suite passes with its test-only Unicorn oracle and the
+installed-engine Node bridge. Logs are artifacts/engine91/release-suite.log.
+
+Compared with engine 8.1.1, PR 236 changes Ghidra instruction-start diagnostics
+and flow-export coverage; PR 244 adds checkpoint memory last-writer probes.
+Compared with runtime 6.2.0, PRs 238–241 add opt-in PCX short-stream filling,
+static random transitions and two InstallShield content-source formats.
+None supplies the missing original caller, data or edition evidence.
+The local rules snapshot is unchanged; no standards refresh was requested.
+
+| Remaining gap | Release effect and completion evidence still needed |
+| --- | --- |
+| 5 | No portable inventory change. Distinct disc executable/inventory acceptance is still required. |
+| 9 | PCX filling does not change the UI window catalog. True window image versus copied control fields remains unaddressed. |
+| 27 | No effect-order traversal change. Complete connected fill/bracket coverage remains required. |
+| 29 | No loop/input change. Admitted cache, age and capacity producers and connected restarted-search controls remain required. |
+| 31 | New memory probe removes the missing-read anchor limitation. Actual DX last-writer and BX-origin occurrences hold; wrong-writer, unread, unscoped and cap controls retain their expected outcomes. Whole verdicts remain undecided because caller-frame formation and repeating routes are incomplete. |
+| 32 | No guard/producer change. Actual bracket/callee and callback target/segment coverage remains required. |
+| 33 | No recursive provenance change. Replayed compare/input and re-encoding controls retain local witnesses and whole undecided verdicts; real finite child/selector/leaf and caller coverage remains required. |
+| 34 | No cardinality/admission change. Known append-count positives, real input/pointer/alias producers and connected pair/split/copy/terminator coverage remain required. |
+| 36 | No width/provenance change. Connected low/high-byte and segment producers, normalized service coverage and fixtures remain required. |
+| 37 | Ghidra diagnostics do not supply the startup-to-transfer route. Actual later writers/external producers and known-answer placement controls remain required. |
+| 40 | Checkpoint probes do not establish missing cleanup predecessors. Complete assignment and caller-frame coverage remains required. |
+| 41 | Checkpoint probes can inspect output bytes but do not establish formatter output or native capacity. Complete count/terminator/caller controls remain required. |
+| 42 | No allocator or clearing change. Request arithmetic, extent, header and complete clearing/callee controls remain required. |
+| 43 | No arithmetic admission change. Complete restricted caller-range and counterexample acceptance remains required. |
+| 44 | No capture-helper or fixture change. Repeated controlled capture diagnostics and cause evidence remain required. |
+
+No remaining full gap meets its closure exit solely through these releases.
+This audit covers the release changes against each request; it is not a new
+complete reading of the original. Preserve every request in gaps.md.
+
+The actual FND-CONFIG-164 checkpoint at the caller predicate inspects the
+two-byte SS:BP scratch slot without adding an original read. Both reached
+occurrences name the later DX store, and both predicates retain unknown
+interrupt BX provenance. Claiming the earlier CX store as the last writer is
+rejected. Unread interrupt, missing frame scope and one-step cases remove
+probe witnesses. Bounds and unknown input memory remain unchanged. Whole
+controls are undecided, with the exit route lacking its root frame and the
+repeating route stopped. Source configs/reports are local at
+GAME_DIR/analysis/reporter-audit/issue5-poll91; driver/assertions are
+artifacts/engine91/issue5-poll.mjs and poll-controls.log.
+
+The FND-CONFIG-161 root-frame query with the actual FND-CONFIG-162 first
+callee stops at its optional pointer helper and fallback setter. Include
+their already documented bodies next. This is available consumer work and
+requires no upstream input. No original run, original emulation, invented
+memory, larger unresolved-query bounds, stitched state or spec/parity change
+was used.

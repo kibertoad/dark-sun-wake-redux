@@ -753,3 +753,19 @@ remain open. Cinematic dispatch, caller timing, skip handling and still-picture
 fallback remain unimplemented; this adoption does not change their parity rows.
 
 2026-10-05: Shared runtime 6.2.0 and engine 8.1.1 adoption. Exact wheel/sdist/tag/installed engine bytes and complete published suite pass (artifacts/engine811/release-suite.log). Canonical Test.ps1, locked restore, Release build and assetless publish/smoke pass (artifacts/engine811/validation.log); packaging profiles refreshed. Conditional source controls and remaining exits are recorded in TOOLKIT-RESPONSE-ACCEPTANCE. No original runtime or emulation ran.
+
+### Latest runtime 6.6.0 / engine 9.1.0 acceptance, 2026-10-05
+
+Exact engine wheel/sdist/tag/installed code and released tests agree; the full
+published suite passes with the synthetic Unicorn oracle and installed-engine
+Node bridge. Latest checkpoint memory probes pass the actual poll DX-writer
+positive and wrong-CX-writer/unread/unscoped/cap controls; whole verdicts stay
+undecided. Recursive provenance controls retain their prior qualifications.
+Ordinary and all packaging-profile locks are refreshed. Invoke-Validation.ps1
+passes canonical Test.ps1, locked restore, Release build and assetless smoke
+using artifacts/pwsh7/runtime/pwsh.exe. Logs: artifacts/engine91/release-suite.log,
+poll-controls.log, consumer.log and validation.log. The initial Windows
+PowerShell 5.1 run failed infrastructure tests because pwsh was absent from
+PATH; it is retained as gate.log. No original runtime or original emulation
+occurred. Every remaining full gap stays open; LATEST-RELEASE-GAP-AUDIT.md
+records the per-contract release assessment.

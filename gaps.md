@@ -5,7 +5,7 @@ tooling. They describe tooling behavior, not claims about the original game.
 
 Latest adopted template, toolkit and pinned-rule revisions and their capability
 dispositions are recorded in docs/TEMPLATE-ACCEPTANCE.md. Published reader 2.1.0,
-checker 0.2.0 and engine 7.3.0 are adopted with exact registry locks;
+checker 0.2.0 and engine 9.1.0 are adopted with exact registry locks;
 Capstone 5.0.7 and pypcode 4.0.0 are locked runtime dependencies;
 the reviewed release removes handwritten instruction semantics;
 tools/tool-dependencies.mjs verifies the installed packages. Candidate
@@ -179,10 +179,12 @@ Distinguish a wrapper's deterministic copies from the interrupt or external
 callee's actual result sequence. This complements item 21's memory provenance
 and item 29's loop-progress requirements.
 
-The connected query proves equal output pointers before INT 33h, then stops
-before its two stores. Independent BX-copy controls do not bridge that stop.
-The remaining supported-recipe/guidance ask is toolkit issue 190; see
-TOOLKIT-RESPONSE-ACCEPTANCE for controls and native qualifications.
+The adopted interrupt model reaches both stores and the actual BX predicate.
+Engine 9.1.0 adds a checkpoint memory probe, so the real caller no longer
+needs a scratch-word read to check its last writer. Reached DX-writer and BX
+origin occurrences hold; stopped repeat routes and the unestablished caller
+frame keep whole acceptance open. See docs/TOOLKIT-RESPONSE-ACCEPTANCE.md
+and toolkit issue 190; no larger bounds or stitched state is accepted.
 
 ## 32. Check whether validation precedes the access it appears to protect
 

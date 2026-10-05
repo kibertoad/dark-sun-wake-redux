@@ -676,3 +676,50 @@ Issue 111 is shared with other restorations; its current awaiting controls do
 not name this project, so no unrelated consumer request was closed. Original-derived
 configs/reports are local at GAME_DIR/analysis/reporter-audit/engine811; no original
 execution, emulation, game spec or parity change occurred.
+
+## Issue 5 poll provenance and caller-frame acceptance, 2026-10-05
+
+Reader 2.1.0 / engine 8.1.1 now apply the interrupt BX origin control to
+FND-CONFIG-164's actual caller predicate, with BX left unknown in the model.
+Both reached predicate occurrences retain that input and hold locally. Whole
+verdicts remain undecided because the repeat route stops at the existing step
+bound and the exit route lacks an established caller root frame. Supplied BX
+zero/one select the previous branch outcomes but are constants rather than
+origin inputs; their origin occurrences correctly remain undecided.
+
+The unread interrupt, omitted memory scope and one-step controls have no
+predicate occurrence. A wrong CX input has no held occurrence and reports
+that CX is absent from the value's inputs. It remains undecided, rather than
+violated, behind the modeled interrupt; do not claim a rejected whole control.
+
+Removing the supplied SP/BP and asking `entryFrame` to trace from the real
+FND-CONFIG-161 entry yields no arrival at the late poll. Adding the complete
+FND-CONFIG-162 first local callee replaces the initial unresolved local call
+with two stopped routes: the optional pointer helper and the fallback setter
+lie outside the declared regions. Thus a late-entry frame cannot yet be
+established by supplying the root name alone. These are specific missing
+callee inputs for the next connected acceptance step, not an engine defect or
+an upstream-input dependency. No larger bounds or preserved prefix memory
+were introduced.
+
+Configs and full reports remain in GAME_DIR/analysis/reporter-audit/issue5-poll;
+the ignored driver and assertion log are artifacts/engine811/issue5-poll.mjs
+and issue5-poll.log. Bounds remain the prior 64 steps per path, four paths,
+256 total steps and visit limit four. Source identity is checked by the reader.
+The driver checks the local BX witness and disappearance controls and keeps
+the failed frame explicit. These are tooling controls against read-only
+FND-CONFIG-161/162/164, with no game spec, parity, native run or emulation change.
+Gap 31 and issue 5 remain open for connected callee/frame coverage, a supported
+real store anchor and complete positive/negative controls. Gaps 32/33/34/37
+remain in the issue's scope.
+
+## Latest engine 9.1.0 checkpoint acceptance, 2026-10-05
+
+The new lastWriter address probe resolves the missing scratch-read anchor
+above without adding a read to the original path. Actual FND-CONFIG-164
+DX-writer and BX-input occurrences hold; wrong CX writer is rejected and
+unread/unscoped/cap controls lose witnesses. Whole verdicts remain undecided
+because the caller frame and repeat route are incomplete. Runtime 6.6.0,
+engine 9.1.0, exact-source checks and canonical validation are adopted.
+See LATEST-RELEASE-GAP-AUDIT.md for every remaining request and retained exit.
+No complete gap, game spec or parity status changed.
