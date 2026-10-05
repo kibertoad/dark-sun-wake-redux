@@ -67,7 +67,8 @@ routes store allocator-produced FFFF. Slot/pool admission remains conditional
 on unknown flags and pool words, not proved by the separate initializer test.
 
 Missing allocator and one-step controls remove the field assignment witness.
-The second request retains return-frame/stack and scanner-repeat stops; no
+Accepted continuations retain scanner-repeat stops. Rejection cleanup reaches
+a final frame mismatch because the narrow entry omitted its prologue; no
 second-field completion, joined transfer state or valid native slot is claimed.
 These are actual producer instructions and outputs, not substituted handle
 fixtures. Complete prefix, initialization, intervening writers and transfer
@@ -76,3 +77,26 @@ continuation remain required before Gap 37 can close.
 Source-local reports: GAME_DIR/analysis/reporter-audit/issue5-second-handles100
 and issue5-second-handle-producers100. Ignored drivers/logs:
 artifacts/engine100/second-handle-writers.* and second-handle-producers.*.
+
+## Allocation parent references and stop correction
+
+The final frame mismatch belongs to overlay rejection cleanup after a rejected
+first request, not the second allocator return. The narrow allocation window
+cannot prove the omitted prologue's saved state. Retain that query limitation;
+there is no evidence of a native frame failure.
+
+A new incoming census retains no caller within its partial inventory domain.
+An independent relocated-pair search against the source-derived resident
+trampoline finds two references outside that declared inventory. Exact-site
+instruction checks decode both as far calls, and published incoming reports
+resolve each to the actual allocation body. These declared call-boundary
+entries prove target identity only, not routine starts or preceding reachability.
+Overlay analysis coordinates were rejected as a runtime pointer query; the
+correct query uses the descriptor-resolved resident trampoline. No validation
+was disabled to obtain the references.
+
+The next evidence is the two actual caller prefixes and their initialization
+order. Neither supplies state to the earlier allocation or transfer query.
+Source reports: GAME_DIR/analysis/reporter-audit/issue5-allocation-parent-callers100.
+Ignored drivers/logs: artifacts/engine100/allocation-parent-* and
+allocation-trampoline.mjs. Whole Gap 37 remains open.
