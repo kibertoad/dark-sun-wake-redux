@@ -368,3 +368,54 @@ poll-buffer-route-controls.py and poll-buffer-formatter-relocations.mjs under
 artifacts/engine100. The CFG controls assume calls return and do not prove native
 branch feasibility. No native claim, specification or parity status changes;
 all five full connected exits remain open.
+
+## Intervening file-check helper's connected service graph, 2026-10-06
+
+The three instruction-owned file-check calls in FND-SOUND-007/008 resolve through
+the same declared FBOV trampoline to one overlay entry. A fresh bounds report
+over its inventory-adjacent window reaches its far return; the one-instruction
+negative loses complete return and both call sites. Its explicit analysis segment
+is a decoding view, not a native load address. The resident-only emulator cannot
+execute this overlay, and no native run was attempted.
+
+Private instruction reading shows that the helper inspects the supplied far
+filename and has a conditional state-reader loop before forwarding that pointer
+with a local stack-buffer pointer to another service. Neither the helper nor its
+call-free state-reader child directly writes DS or the filename buffer. Loop
+termination and unchanged state are not established by a complete local CFG.
+
+The published connected graph now resolves the overlay helper, the conditional
+state reader, the filename-status service and its state getter/setter. Their
+local boundaries are usable, but the status service retains an unread external
+validation edge and explicit DOS-interrupt continuations. Omitting the state
+reader restores an unresolved edge; the one-instruction graph loses usable
+completion. Complete local nodes do not make this a whole connected pass.
+
+The status service saves DS and other registers, calls the state getter,
+conditionally supplies its caller's stack-buffer pointer to the state setter,
+loads the far filename, and reaches a DOS interrupt. Its shared cleanup calls
+the setter again and restores saved registers after both result paths. The state
+setter has its own DS save/load/restore structure. These are observed source
+operations, not proof of native DOS effects or saved-frame preservation.
+
+The getter copies interrupt-produced ES:BX into DX:AX, then restores its incoming
+ES:BX from the stack. Its caller immediately saves ES and BX into the local pair
+later supplied to the cleanup setter. It does not save the getter's returned
+DX:AX pair there. Conditional on intact saved storage, these are different
+producer routes; calling the getter does not establish that the cleanup pair
+contains the queried state. This is relevant to the original discarded-result
+and snapshot-provenance contracts. Native equality, service-state corruption or
+an intended bug fix is not inferred.
+
+The previously opaque intervening call now has specific remaining dependencies:
+the external validation result/effects, interrupt results and writes, validity
+of the local buffer, and aliases with filename or saved-frame storage. Do not
+treat the local allocation as an established service-output bound, or classify
+the filename as preserved merely because the helper has no direct buffer store.
+Current DS, terminator/output bounds and later writers remain unverified.
+
+Private reports/readings remain under issue5-poll-state-incoming100. Ignored
+drivers/logs: poll-file-check-resolution.mjs, poll-file-check-bounds.mjs,
+poll-file-check-child-resolution.mjs and poll-file-check-connected.mjs under
+artifacts/engine100. This tooling acceptance changes no native claim, source
+finding or parity status. All five full connected exits remain open.
