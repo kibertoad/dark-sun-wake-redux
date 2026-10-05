@@ -28,3 +28,19 @@ and no game spec claim or parity status changed.
 Source-local configs/reports: GAME_DIR/analysis/reporter-audit/
 issue5-poll-callers100. Ignored drivers and logs: artifacts/engine100/
 poll-callers.*, poll-caller-roots.* and poll-root-controls.*.
+
+## Connected result-dependent continuation
+
+Separate explicit interrupt cases supply BX zero and BX one. The actual
+prologue-root trace takes the caller's exit branch for zero and reaches the
+real state-clear entry; one takes the repeat branch. Both retain the root's
+actual pointer formation and last-writer/predicate controls. The downstream
+state-clear and status bodies are declared, not substituted returning calls.
+Removing state clear or using a one-step cap removes its entry witness.
+
+The zero case stops inside state clear at the unchanged step bound; pointer
+wrapper and registration alternatives retain dropped paths and an unmodeled
+interrupt. The one case retains a poll repeat stop. Neither is a driver
+observation, whole termination proof or inherited downstream state fixture.
+Source-local reports: GAME_DIR/analysis/reporter-audit/issue5-poll-progress100.
+Ignored driver/log: artifacts/engine100/poll-progress.mjs and poll-progress.log.
