@@ -50,9 +50,31 @@ repeating route stopped. Source configs/reports are local at
 GAME_DIR/analysis/reporter-audit/issue5-poll91; driver/assertions are
 artifacts/engine91/issue5-poll.mjs and poll-controls.log.
 
-The FND-CONFIG-161 root-frame query with the actual FND-CONFIG-162 first
-callee stops at its optional pointer helper and fallback setter. Include
-their already documented bodies next. This is available consumer work and
-requires no upstream input. No original run, original emulation, invented
-memory, larger unresolved-query bounds, stitched state or spec/parity change
-was used.
+The follow-up FND-CONFIG-161 root-frame query includes the documented
+FND-CONFIG-162/163/165/167 callee bodies. It now reaches an unmodeled DOS
+interrupt and bounded poll/setter routes; whole frame coverage remains
+undecided. Existing unresolved-query bounds were preserved. The actual
+caller's callback literal reaches both the overlay and resident registration
+stores. Both local origin controls hold; a poll-derived origin is rejected,
+and omitted-setter and one-step controls remove the witnesses. Reports are
+local under GAME_DIR/analysis/reporter-audit/issue5-root91 and
+issue5-producers91; drivers are artifacts/engine91/root-dependencies.mjs and
+callback-producers.mjs.
+
+For Gap37, the actual FND-CONFIG-193 call-free initializer returns completely
+within its conditional model. Known-answer root and pool words agree, and
+last-writer controls hold for those words and for the first and last free
+flag words: the low byte is written and the high byte retains entry-state
+provenance. Wrong-root-writer, one-step and four-visit controls retain their
+expected rejection or undecided outcomes. Its separate finite visit bound
+comes from the documented fixed loop, not an increased bound on unresolved
+transfer queries. The initial region accidentally excluded the documented
+return instruction; including that endpoint corrected the query. Reports
+are local under GAME_DIR/analysis/reporter-audit/issue5-initializer91, with
+driver artifacts/engine91/initializer-producers.mjs. This does not connect
+startup state to a later transfer or establish native admission.
+
+Producing the remaining caller, producer and connected-route evidence is
+consumer research work here. It requires no extra upstream input unless a
+specific missing tool capability is demonstrated. No original run, original
+emulation, invented memory, stitched state or spec/parity change was used.

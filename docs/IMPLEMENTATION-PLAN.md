@@ -2,7 +2,7 @@
 
 ## Issue 5 connected poll acceptance
 
-Research-side tooling only. Use FND-CONFIG-161/162/164 as read-only inputs to test
+Research-side tooling only. Use FND-CONFIG-161/162/163/164/165/167 as read-only inputs to test
 whether the real caller entry can establish the late poll's root frame with
 `entryFrame`, and whether the actual predicate retains interrupt BX provenance.
 Keep the existing query bounds, unknown input memory and explicit conditional
@@ -12,6 +12,18 @@ GAME_DIR. Exit: record the actual frame-formation and per-occurrence verdicts,
 including stopped/dropped routes; a failed formation or absent scratch read
 cannot be replaced by invented memory, a synthetic anchor or stitched state.
 This bounded acceptance step does not by itself close Gap 31 or issue 5.
+Extend the connected root query with each already documented real callee body,
+record its branch/frame/producer dependencies, and retain unread paths and
+hardware stops. Independent callee windows cannot supply ancestor state.
+Verify actual caller-literal provenance at both fallback registration stores;
+wrong poll-result provenance, omitted setter and one-step controls must lose
+or reject the witness. A reached store does not establish callback dispatch.
+For Gap 37, verify FND-CONFIG-193's actual call-free initializer as a producer
+control for FND-CONFIG-192. Its fixed 254-iteration loop permits a separately
+documented finite visit bound; do not increase the old unknown-transfer query's
+bounds. Check both fixed roots and pool words, low-byte flag writes with the
+unwritten high bytes retained, and wrong-writer/visit/step negatives. This
+known-answer producer control does not join startup to a later transfer.
 
 ## Latest published release acceptance
 
