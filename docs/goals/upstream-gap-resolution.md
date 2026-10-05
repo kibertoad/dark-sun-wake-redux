@@ -128,15 +128,17 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Research-side tooling goal remains active. Gaps 31, 32, 33, 34 and 37 retain
   their complete connected-evidence exits. No game specification or parity
   status changed; existing CONFIG/SCRIPT findings remain read-only inputs.
-- Exact adopted dependencies: runtime 7.0.0, engine 10.0.0, reader 2.1.0 and
+- Exact adopted dependencies: runtime 7.0.0, engine 10.1.0, reader 2.1.0 and
   checker 1.1.0. Release integrity and canonical adoption records remain in
   docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
-- Latest batch: independent callback reference-form controls in
-  docs/FIVE-GAP-CONTRACT-AUDIT.md. Full Test.ps1 -NoRestore passed
-  on 2026-10-06; log artifacts/engine100/callback-reference-forms-test.log. Documentation
-  checks passed; their base comparison was explicitly skipped. No unfinished files. Toolkit issue 290 tracks a
-  demonstrated unsigned constant-mask bound limitation; other evidence work
-  can continue independently.
+- Latest batch: PR 293 release adoption and mask-bound acceptance in
+  docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TRANSFER-CALLER-PRODUCER-AUDIT.md.
+  Full Test.ps1 -NoRestore passed on 2026-10-06; log
+  artifacts/engine101/adoption-test.log. Released engine regression suite and
+  focused positive/negative controls passed. Toolkit issue 290's capability is
+  delivered and verified. No unfinished tracked files. A private preliminary
+  shared-pointer incoming-call census revalidates FND-CONFIG-207; it is not a
+  completed additional connected control or a new native claim.
 - Keep the distinction between delivered shared requests, pending connected
   acceptance and original-game unknowns. The audit changes no completion exit.
   Original hardware output, external results and input admission remain qualified.
