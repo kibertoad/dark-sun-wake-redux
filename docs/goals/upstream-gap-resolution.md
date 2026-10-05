@@ -126,17 +126,18 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Exact adopted dependencies: runtime 7.0.0, engine 10.0.0, reader 2.1.0 and
   checker 1.1.0. Release integrity and canonical adoption records remain in
   docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
-- Latest batch: actual transfer hardware-placement acceptance in
+- Latest batch: actual transfer mask-prefix and upstream-bound acceptance in
   docs/TRANSFER-CALLER-PRODUCER-AUDIT.md. Full Test.ps1 -NoRestore passed
-  on 2026-10-05; log artifacts/engine100/transfer-boundary-test.log. Documentation
-  checks passed; their base comparison was explicitly skipped. No unfinished
-  files or newly demonstrated upstream capability blocker.
+  on 2026-10-05; log artifacts/engine100/transfer-mask-test.log. Documentation
+  checks passed; their base comparison was explicitly skipped. No unfinished files. Toolkit issue 290 tracks a
+  demonstrated unsigned constant-mask bound limitation; other evidence work
+  can continue independently.
 - Keep the distinction between delivered shared requests, pending connected
   acceptance and original-game unknowns. The audit changes no completion exit.
   Original hardware output, external results and input admission remain qualified.
 - Next, Gap 37: identify the particular slot or mask producer needed for a
-  missing whole transfer control. Source-local hardware placement and the
-  wrapper/validator/getter/primitive graph have acceptance records. Keep native
+  missing whole transfer control. Source-local hardware placement, mask-prefix
+  provenance and the wrapper/validator/getter/primitive graph have records. Keep native
   input, later-writer and hardware output limits; the initializer remains
   separate. Expand archive/startup only for a specific missing dependency.
 - Next, Gap 31/32: map actual whole alias/predicate and guard/reload controls to
