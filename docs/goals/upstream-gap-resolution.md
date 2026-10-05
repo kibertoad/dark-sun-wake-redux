@@ -201,6 +201,10 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   the wrapper/validator/first getter. Origin and last-writer controls hold
   locally, with rejected push-as-slot-writer. Primitive remains unreached;
   unknown native admission, second handle and bounded alternatives remain.
+- Gap 37 second-handle producer census finds real overlay allocator stores
+  and cleanup rewrites. First-field narrow query traces actual allocator
+  coordinates 0,0,27,15/count 7 and returned zero/one/FFFF. Prefix, pool/slot
+  admission and second-request frame/repeat stops remain; no state stitching.
 - Next: Gap 37 the resident no-argument initializer has repeatable concrete
   known-answer, register, byte-width and declared loop-direction controls.
   Startup-to-transfer, incoming flag/data, later writers and sound/I/O
