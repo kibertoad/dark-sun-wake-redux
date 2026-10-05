@@ -290,3 +290,41 @@ Ignored drivers/logs: poll-state-consumer-reading.py,
 poll-state-helper-bounds.mjs and poll-state-consumer-guards.mjs under
 artifacts/engine100. No original instructions enter Git; no source finding or
 parity status changes. Full connected acceptance remains unverified.
+
+## Filename service and segment-restoration structure, 2026-10-06
+
+The buffer helper's external filename service now has independent published
+bounds over the inventory-adjacent source window. The reporter reaches its
+shared far return and explicitly records a DOS interrupt and three optional
+unread near calls as continuation assumptions. The one-instruction negative
+loses complete return and interrupt coverage.
+
+A connected helper/service call graph resolves their actual far-call edge.
+Both local node boundaries are usable, while the three undeclared near-call
+edges remain unresolved. Node-local completeness is not graph completeness.
+Caller-order controls independently confirm the helper's service handoff and
+argument cleanup after assumed return; their capped negative loses usable
+ordering. No native field memory, external results or pointer values were seeded.
+
+The private instruction reading identifies an entry DS save, a load of the far
+filename argument into DS and the offset register, and a shared DS restore before
+the far return. The service uses the supplied mode to select optional routes,
+and handles the DOS carry-result paths separately. Its error paths may change
+DS temporarily and write error storage before the shared cleanup. The helper
+continues to distinguish the full-word all-ones error value from other returns.
+
+This establishes the service's save/load/restore structure, not unconditional
+preservation across unknown interrupt/callee writes or aliases of saved stack
+storage. The connected caller supplies mode one; the source-local initial mode
+tests skip optional preparation on that value. Post-interrupt register tests
+must still retain the interrupt's preservation conditions. Do not infer an
+actual successful open, a valid filename buffer, or native DOS register effects
+from this structural reading.
+
+Private reports/readings remain under issue5-poll-state-incoming100. Ignored
+drivers/logs: poll-filename-service.mjs, poll-filename-handoff.mjs and
+poll-filename-service-negative.mjs under artifacts/engine100. Next dependencies
+are buffer construction and its earlier callee effects, plus the explicit
+saved-frame/interrupt conditions on this now-resolved service edge. This tooling
+record changes no native claim, specification or parity status; all five full
+connected exits remain open.
