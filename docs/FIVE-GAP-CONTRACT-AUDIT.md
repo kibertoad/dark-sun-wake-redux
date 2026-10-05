@@ -72,3 +72,34 @@ toolkit issue 290. This supersedes the earlier audit's absence of a demonstrated
 new capability limitation for this particular control only. See the latest
 section of TRANSFER-CALLER-PRODUCER-AUDIT. It does not complete any of the five
 whole connected exits or establish native mask contents/hardware output.
+
+## Gap 32 independent callback reference forms, 2026-10-06
+
+The known callback-field writer already has stacked-input and literal-candidate
+controls; the earlier caller census found no confirmed direct caller with its
+exclusions retained. A fresh function-boundary-independent resident-byte search
+now checks relative near call/jump encodings, including word-IP wrap candidates,
+and raw far call/jump representations for that writer. Known resident near and
+far calls are positive controls. No target candidate is retained in those
+specific resident encoding domains.
+
+A separate whole-file word census retains bare writer-offset candidates. Their
+bounded linear contexts do not establish a pointer-producing instruction or a
+native reference to this writer. Linear decoding cannot classify embedded data
+or prove entry-path ownership, and an offset without its segment does not name
+this target. No candidate is promoted to a native pointer producer.
+
+The negative remains unusable as an absence-of-callers claim. Computed or
+indirect transfers, synthesized pointer parts, overlay/native mapping and
+unclassified data references remain outside the verified domains. This adds an
+independent check to the earlier boundary-based census; it neither proves the
+writer dead nor admits its unknown stacked callback pointer.
+
+Private source/identity reports and candidate contexts:
+GAME_DIR/analysis/reporter-audit/issue5-callback-reference-forms100. Ignored
+drivers: artifacts/engine100/callback-reference-forms.mjs and
+callback-reference-word-contexts.py. The unchanged capped consumer/writer
+queries were not repeated. Next work needs a verified constructed/computed
+reference or the actual bracket's producer/effect dependency; another identical
+literal or direct-caller census cannot complete the connected callback exit.
+All five complete contracts and native uncertainty qualifications remain intact.
