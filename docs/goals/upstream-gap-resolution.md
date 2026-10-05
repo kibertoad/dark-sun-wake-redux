@@ -197,6 +197,10 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   consumed 10,10,38,26 words from real pushes through request/scanner;
   docs/TRANSFER-CALLER-PRODUCER-AUDIT.md. No supplied handle, frame or memory.
   Slot repeats, dropped paths and undeclared wrapper continuation remain.
+- Gap 37 real request-produced handle and coordinate slot store now reach
+  the wrapper/validator/first getter. Origin and last-writer controls hold
+  locally, with rejected push-as-slot-writer. Primitive remains unreached;
+  unknown native admission, second handle and bounded alternatives remain.
 - Next: Gap 37 the resident no-argument initializer has repeatable concrete
   known-answer, register, byte-width and declared loop-direction controls.
   Startup-to-transfer, incoming flag/data, later writers and sound/I/O
