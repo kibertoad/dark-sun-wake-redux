@@ -214,3 +214,43 @@ Do not use the shipped file as entry memory, equate DS offsets without segment
 proof, or turn a zero-register hypothesis into a native continuation. All five
 full connected exits remain unverified; issue 290 remains open without delivery
 information at this check.
+
+## State-write candidate's incoming callers, 2026-10-06
+
+A relocation-aware incoming-call search finds two direct far-call candidates
+for the additional state-write window. The known poll call is a positive
+search control. The search reports no unresolved relocation candidates, but
+excludes near, computed and unrelocated callers; it is not an exhaustive caller
+claim.
+
+Published call-order analysis now confirms both candidates as entry-path
+instructions within the source spans documented by FND-SOUND-007 and
+FND-SOUND-008. Both caller boundaries and ordering are usable at the configured
+bounds, with no unchecked declared entries. The one-instruction negative loses
+both confirmed calls and usable ordering. Necessary CFG edges remain structural
+conditions, not observed runtime values or proof that earlier callees preserve
+the tested fields. Return-continuation assumptions remain explicit.
+
+An independent whole-span instruction reading verifies that both calls push
+the filename-buffer offset already described in those findings. Neither caller
+directly writes DS. That scan does not prove transitive DS preservation: earlier
+calls, including the second caller's conditional status/clear route, remain
+relevant. The argument offset alone establishes neither initialized buffer
+contents nor valid storage, and cannot join the candidate's DS-relative write
+to the poll consumer's physical field.
+
+This replaces the candidate's wholly unverified incoming route with two verified
+direct caller paths and their immediate argument formation. It does not promote
+the candidate to an exhaustive native producer or complete the read-to-consumer
+handoff. The existing source findings remain read-only; no native behavior or
+parity status changes. All five full connected exits remain open.
+
+Private reports/configurations: GAME_DIR/analysis/reporter-audit/
+issue5-poll-state-incoming100. Ignored drivers/logs:
+artifacts/engine100/poll-state-incoming.mjs, poll-state-caller-order.mjs,
+poll-state-caller-order.log and poll-state-caller-reading.py.
+
+Next: resolve the specific DS-preservation and buffer-production dependencies
+on these verified routes, keeping relocation-search exclusions and callee-return
+assumptions. Do not expand unrelated sound behavior or seed native memory to
+manufacture a connected positive.
