@@ -1,4 +1,4 @@
-﻿# Upstream gap resolution
+# Upstream gap resolution
 
 ## Condition
 
@@ -114,50 +114,52 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 ## Handover
 
 - Stage: Slices; research-side tooling. Original Condition/Scope and issue 5
-  consumer scope remain active. No game spec/parity, original run or original
-  emulation changed.
-- Last gate: 2026-10-05 Test.ps1 -NoRestore passed for the callback-writer-census batch;
-  log: artifacts/engine91/writers-test.log. An earlier sandbox attempt was blocked
-  by Java temporary-directory access; the unrestricted required gate passed.
-  Earlier Invoke-Validation.ps1 passed, including Test.ps1,
-  locked restore, Release build and assetless smoke. Log:
-  artifacts/engine91/validation.log. Required PowerShell 7 is at
-  artifacts/pwsh7/runtime/pwsh.exe; set PWSH for infrastructure controls.
-- Adopted: runtime 6.6.0, engine 9.1.0, reader 2.1.0 and checker 0.2.0.
-  Exact wheel/sdist/tag/installed bytes and released tests verified;
-  complete published suite passes. Ordinary and all packaging locks updated.
-- Acceptance audit: docs/LATEST-RELEASE-GAP-AUDIT.md covers every remaining
-  gaps.md request. No complete gap closes through this release alone.
-  Gap 31's missing scratch-read anchor is resolved by the new checkpoint probe;
-  whole caller/frame and repeating-route controls remain open. Issue 5's
-  Gaps 32/33/34/37 also remain open for their recorded consumer exits.
+  consumer scope remain active. No game spec/parity, original run or emulation.
+- Latest validation: 2026-10-05 canonical Invoke-Validation.ps1 passed,
+  including full Test.ps1, locked restore, Release build and assetless smoke.
+  Log: artifacts/engine91/latest-canonical-validation.log. Every packaging
+  profile also passes locked verification: latest-packaging-check.log.
+  PowerShell 7: artifacts/pwsh7/runtime/pwsh.exe; set PWSH for controls.
+- Adopted: runtime 6.8.0, engine 9.1.0, reader 2.1.0, checker 0.6.0.
+  Checker release tag: 87895543d39974a14ef85a0e0a4aeefc5f5aa241.
+  Tagged checker rebuild matches installed dist and npm integrity; tagged
+  synthetic suite passes with explicit platform skips. Official NuGet signature,
+  canonical content hash and cached content checks pass. Engine exact-source
+  integrity remains verified. Local rules snapshot unchanged.
+- Issue dispositions: toolkit #143/#190/#198/#200/#213 are closed as delivered
+  shared-tool requests. All unfinished consumer exits remain in project issue 5,
+  which is open with revised current versions and scope. New toolkit #274 is open
+  for the independently verified indirect-call traversal capability.
+- Acceptance audit: docs/LATEST-RELEASE-GAP-AUDIT.md and
+  docs/TOOLKIT-RESPONSE-ACCEPTANCE.md. No full game gap was closed by the upgrade
+  or the upstream-request disposition revision. Gaps 31/32/33/34/37 remain open.
 - Unfinished: preserve GAME_DIR reporter-audit/issue5-poll, issue5-poll91,
   issue5-root91, issue5-producers91, issue5-initializer91, issue5-brackets91,
-  issue5-recursion91, issue5-count91, issue5-startup91, issue5-modes91, issue5-setup91, issue5-status91, issue5-middle91, issue5-refresh91, issue5-writers91 and engine91
-  configs/reports, plus ignored artifacts/engine91 drivers/logs.
-  Earlier result-origin730 append/pair/path/width/eviction, recursive,
-  normalizer and actual-copy controls remain inputs. Guard-order730 is
-  historical model evidence; its root guard scope needs current-contract review.
-- Blockers: real producer/callee/alias/admission evidence and full connected
-  controls are required. This is available consumer work rather than a reason
-  to await upstream. No invented entry memory, synthetic original reads,
-  stitched state or larger unresolved-query caps.
-- Other ledger work: Gap 29 admitted cache/age/capacity and restarted search;
-  Gap 36 connected byte/segment producers and fixtures; Gap 40 predecessors;
-  FND-CONFIG-191 reference scans; FND-SCRIPT-019 bounded fill; Gap 44 diagnostics.
-  Prior requester dispositions remain in AWAITING-REQUESTER-AUDIT.md.
-- Process audit: no confirmed session-owned orphan after the callback-writer-census commit;
-  reusable MSBuild, unrelated work and CUA processes are preserved.
-- Push: user explicitly authorized the validated commits to be pushed to main
-  after automatic approval review requested confirmation. Check Git for sync state.
-- Next: Issue 5 Gap 31: resolve remaining DOS/poll/setter dependencies and
-  caller-frame coverage using actual producers at unchanged unresolved bounds.
+  issue5-recursion91, issue5-count91, issue5-startup91, issue5-modes91,
+  issue5-setup91, issue5-status91, issue5-middle91, issue5-refresh91,
+  issue5-writers91 and issue5-writer-callers91. Preserve ignored engine91
+  drivers, source reports, reproductions and logs. Earlier result-origin730
+  and guard-order730 controls remain qualified historical inputs.
+- Dependencies: toolkit #274 needs upstream work. Other caller/producer/storage
+  acceptance remains available consumer work. No invented entry memory,
+  synthetic original reads, stitched state or larger unresolved-query caps.
+- Other ledger work: Gap 29 cache/age/capacity and restarted search; Gap 36
+  byte/segment producers and fixtures; Gap 40 predecessors; FND-CONFIG-191
+  scans; FND-SCRIPT-019 fill; Gap 44 diagnostics. Cross-project requests in
+  AWAITING-REQUESTER-AUDIT.md are not closed by this project's adoption.
+- Process audit: no confirmed session-owned orphan after the latest-adoption
+  commit; reusable MSBuild, unrelated work and CUA processes are preserved.
+- Push: user explicitly authorized pushing validated work to main. Get current
+  branch/commit/remote synchronization from Git.
+- Next: Issue 5 Gap 31: actual DOS/poll/setter dependencies and caller-frame
+  coverage at unchanged unresolved-query bounds.
+- Next: Issue 5 Gap 32: writer entry 209409 input/caller/reference admission,
+  callback target/segment and storage producers, and both whole routes; follow
+  toolkit #274 for released traversal support. Middle dependency sites:
+  209825/210167/210222/233496.
 - Next: Issue 5 Gap 33: admitted finite graph/count/record-length producers,
   whole recursive/caller coverage and actual-copy storage/alias inputs.
-- Next: Issue 5 Gap 34: nonzero count/record and one-record caller storage
-  producers, known append cardinality and complete pair/split/copy/terminator routes.
-- Next: Issue 5 Gap 32: follow candidate writer entry 209409 and its inputs/
-  callers; establish segment/storage admission and both whole callback routes.
-  Remaining middle dependency sites: 209825/210167/210222/233496.
-- Next: Issue 5 Gap 37: incoming flag/data and external sound/I/O producers,
-  later writers and actual transfer callers; do not repeat the capped startup scan.
+- Next: Issue 5 Gap 34: nonzero count/record and caller storage producers,
+  known append cardinality and complete pair/split/copy/terminator routes.
+- Next: Issue 5 Gap 37: incoming flag/data and sound/I/O producers, later
+  writers and actual transfer callers; do not repeat the capped startup scan.
