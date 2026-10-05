@@ -100,3 +100,24 @@ order. Neither supplies state to the earlier allocation or transfer query.
 Source reports: GAME_DIR/analysis/reporter-audit/issue5-allocation-parent-callers100.
 Ignored drivers/logs: artifacts/engine100/allocation-parent-* and
 allocation-trampoline.mjs. Whole Gap 37 remains open.
+
+## Parent ownership and inventory repair
+
+FND-UI-037 identifies the first parent as the Save/Load callback; FND-UI-035
+and FND-CONFIG-028 identify the second as the Start Game callback. The latter
+finding already records its call to the allocation entry with zero. The
+Save/Load action continuation likewise has an actual zero push before its
+confirmed call; its earlier mode test/callees remain conditions.
+
+The committed inventory represented the Save/Load callback by its initial
+fragment and separate interior fragments, leaving the confirmed call outside
+its declared search ranges. The Start Game callback was missing altogether.
+Verified callback endpoints precede the documented external dispatch tables.
+The numeric inventory now expands the first callback's range and adds the
+second; existing interior entries remain. These rows contain no original code,
+bytes, strings or names. They describe known source ranges, not complete
+execution or established analysis coverage.
+
+Future caller searches must include these ranges and preserve unresolved
+computed dispatch. The next work is their actual prefixes and initialization
+order, not a repeated old partial census. Whole Gap 37 remains incomplete.
