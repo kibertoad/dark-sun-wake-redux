@@ -120,132 +120,32 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 
 ## Handover
 
-- Stage: Slices; research-side tooling. Active five-gap Condition/Scope and issue 5
-  consumer scope remain active. No game spec/parity or original-game run.
-  Resident single-function emulated-call controls now run without DOSBox.
-- Latest validation: 2026-10-05 canonical Invoke-Validation.ps1 passed,
-  including full Test.ps1, locked restore, Release build and assetless smoke.
-  Log: artifacts/engine100/canonical-validation.log. Every packaging profile
-  passes locked verification: packaging-check.log. Final Test.ps1 -NoRestore
-  passes: precommit-test.log. Latest full batch Test.ps1 also passes:
-  artifacts/engine100/count-root-test.log; exact integrity: count-root-integrity.log.
-  Latest emulator batch canonical gate passes: artifacts/emulator/
-  canonical-validation.log; final full Test.ps1 passes: final-test.log.
-  Licensed controls: licensed-controls.log. Optional test-only Unicorn 2.1.4
-  exact wheel/installed integrity: unicorn-integrity.log.
-  PowerShell 7: artifacts/pwsh7/runtime/pwsh.exe.
-- Adopted: runtime 7.0.0, engine 10.0.0, reader 2.1.0, checker 1.1.0.
-  Engine tag: eaeaad180f36cd6ccab1198410e40ca9421cd4e5.
-  Checker tag/action: c79d7fe3addb3fb14bc5f118f19f47571aa4c3f0.
-  Registry/wheel/sdist/tag/installed engine integrity and complete release suite
-  pass. Checker tagged rebuild and registry integrity match installed dist;
-  tagged suite passes with explicit platform skips. Official signed NuGet
-  canonical hashes and cache content match. Local rule snapshot unchanged.
-- Issue dispositions: toolkit #143/#190/#198/#200/#213 are closed as delivered
-  requests. #274 is released in engine 10.0.0 and closed after installed
-  positive/negative confirmation. Project issue 5 is revised and remains open
-  for Gaps 31/32/33/34/37. No new undelivered capability was demonstrated.
-- Acceptance audit: docs/LATEST-RELEASE-GAP-AUDIT.md and
-  docs/TOOLKIT-RESPONSE-ACCEPTANCE.md. Library update and compatibility gates
-  are complete; whole consumer evidence exits remain incomplete.
-- Unfinished: preserve all GAME_DIR reporter-audit/issue5-* and prior
-  result-origin730/guard-order730 controls, plus engine100-brackets,
-  engine100-writer-inputs, engine100-count-inputs, engine100-count-roots,
-  engine100-count-pre-guard and engine100-count-root-controls. Preserve ignored
-  artifacts/engine91 and engine100 drivers, integrity sources and logs;
-  artifacts/emulator logs and GAME_DIR/emulated-initializer reports/configs.
-  Source configs live under analysis/reporter-audit/emulated-initializer.
-  No invented entry memory, stitched state or larger unresolved-query caps.
-- Process audit: artifacts/emulator/commit-process-audit.json.
-  No confirmed session-owned orphan; reusable MSBuild and CUA remain untouched.
-- Push: user explicitly authorized validated main pushes. Read branch/remote
-  synchronization directly from Git.
-- Gap 31 fresh incoming census and first aliased caller root controls pass:
-  docs/POLL-CALLER-ROOT-AUDIT.md. Actual prologue/argument producers now
-  reach the DX final writer and BX predicate without supplied SP/BP/memory.
-  Census is partial; repeated and downstream paths remain incomplete.
-- Gap 31 explicit BX zero/one cases now follow actual exit/repeat branches;
-  zero reaches real state clear from the caller root, then stops at unchanged
-  bounds. Omitted-helper and one-step controls remove that witness.
-- Next: Gap 31 complete required caller routes and downstream producers;
-  preserve old incomplete prefixes and unchanged query bounds.
-- Gap 32 independent resident direct-reference follow-up yields no new
-  producer: docs/CALLBACK-PRODUCER-REFERENCE-AUDIT.md. This is a bounded
-  negative, not an absence claim or shared-tool defect.
-- Next: Gap 32 actual indirect registration-table or caller input producers;
-  no repeat of direct-call/adjacent-pair searches without new evidence.
-- Gap 33 literal count census and actual candidate traces exclude fixed
-  segment-zero stores as MENU producer evidence; see
-  docs/MENU-PRODUCER-CANDIDATE-AUDIT.md. No absence claim or memory seeds.
-- Gap 33 actual MENU dispatch branch now reaches recursive helper and real
-  record getter using documented CS:IP mappings; see
-  docs/MENU-CALLER-BRANCH-AUDIT.md. Prefix frame/selection and finite inputs
-  remain unknown; omitted-callee and cap controls pass.
-- Gap 33 fresh real cleanup dependencies now reach pointer wrapper, runtime
-  dispatcher and linked helper from the MENU branch. No call models added;
-  unknown pointers and stopped/dropped alternatives retain incomplete coverage.
-- Next: Gap 33 object-loading/copy and caller argument producers, admitted
-  finite graph/count/record-length and actual-copy storage/alias inputs.
-- Next: Gap 34 connected caller-root and pre-guard frames now reach the
-  count-one store and retain it through actual copy into normalization.
-  Local origin/last-writer/order controls pass with negatives; whole controls
-  remain undecided. Follow finite normalization and subsequent pair/split
-  routes using new producer evidence, never larger unresolved-query caps.
-  The resident-only harness now exists. Raw memory/argument seeding waits
-  for supported layout/parameter bindings; do not guess them from a test.
-- Gap 37 fresh caller census and actual coordinate caller trace establish
-  consumed 10,10,38,26 words from real pushes through request/scanner;
-  docs/TRANSFER-CALLER-PRODUCER-AUDIT.md. No supplied handle, frame or memory.
-  Slot repeats, dropped paths and undeclared wrapper continuation remain.
-- Gap 37 real request-produced handle and coordinate slot store now reach
-  the wrapper/validator/first getter. Origin and last-writer controls hold
-  locally, with rejected push-as-slot-writer. Primitive remains unreached;
-  unknown native admission, second handle and bounded alternatives remain.
-- Gap 37 second-handle producer census finds real overlay allocator stores
-  and cleanup rewrites. First-field narrow query traces actual allocator
-  coordinates 0,0,27,15/count 7 and returned zero/one/FFFF. Prefix, pool/slot
-  admission and scanner-repeat stops remain; no state stitching. Rejection
-  cleanup frame mismatch is a narrow-entry limitation, not a second-call fault.
-- Gap 37 relocated trampoline references reveal two actual incoming calls
-  outside the old inventory search. Exact-boundary reporter controls confirm
-  target identity; actual routine prefixes and initialization order remain.
-- Gap 37 parents are documented Save/Load and Start Game callbacks. Fixed
-  numeric inventory: expanded Save/Load body, added missing Start Game body,
-  retained interior entries. Real zero arguments identified; dispatch/prefix
-  state and initialization-to-transfer join remain unproved.
-- Gap 37 actual callback roots now have source-table conditional continuation
-  streams through event-two dispatch. Ordinary routes/stops are unchanged;
-  disabled and cap controls pass. First unread resident/control calls now
-  bound the actual pre-allocation prefixes. Tables are non-exhaustive; no
-  native event values, memory, stitched state or higher limits supplied.
-- Next: Gap 37 the resident no-argument initializer has repeatable concrete
-  known-answer, register, byte-width and declared loop-direction controls.
-  Startup-to-transfer, incoming flag/data, later writers and sound/I/O
-  producers remain. FBOV code cannot be executed in the resident harness;
-  do not repeat the capped disconnected startup scan or claim pixels.
-
-- Connected pre-allocation callee acceptance is recorded in
-  docs/TRANSFER-CALLER-PRODUCER-AUDIT.md. Full Test.ps1 passed on 2026-10-05
-  with required temporary-directory access; the sandbox-only run failed a
-  Java filesystem-boundary control. No implementation or spec status changed.
-- Owner-directed approach: static cross-references and source readings discover
-  connected producer/dependency chains; bounded traces and emulated calls
-  verify specific claims afterward. Do not continue broad root expansion
-  against the same unknown dispatch, service, loop and indirect-call inputs.
-- Static producer-map and focused argument controls are recorded in
-  docs/TRANSFER-CALLER-PRODUCER-AUDIT.md; Test.ps1 passed on 2026-10-05.
-  Corrected the prior indirect-target classification to an undeclared direct
-  near-call dependency. Both actual argument prefixes retain selector four;
-  omitted prefixes and one-step controls lose it. Whole Gap 37 stays open.
-- Latest static producer-map acceptance and numeric inventory repairs are
-  recorded in docs/TRANSFER-CALLER-PRODUCER-AUDIT.md; full Test.ps1 passed
-  on 2026-10-05, including documentation checks. No spec status changed.
-- Latest measured-body/source-span correction and reader-publication acceptance
-  are recorded in docs/TRANSFER-CALLER-PRODUCER-AUDIT.md; full Test.ps1
-  passed on 2026-10-05. Original analyzer counts are preserved where known;
-  known-entry additions use measured bounded body bytes, never span lengths.
-- Next: FND-CONFIG-151/152 reader-to-transfer dependencies, returning-callee
-  effects, output storage/aliases and later archive writers. Do not assume
-  reader errors imply null output. FND-CONFIG-038 wording needs research
-  reconciliation outside this tooling-only goal. Keep explicit source spans
-  separate from inventory metrics. All five whole exits remain open.
+- Research-side tooling goal remains active. Gaps 31, 32, 33, 34 and 37 retain
+  their complete connected-evidence exits. No game specification or parity
+  status changed; existing CONFIG/SCRIPT findings remain read-only inputs.
+- Exact adopted dependencies: runtime 7.0.0, engine 10.0.0, reader 2.1.0 and
+  checker 1.1.0. Release integrity and canonical adoption records remain in
+  docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
+- Latest batch: docs/FIVE-GAP-CONTRACT-AUDIT.md. Full Test.ps1 -NoRestore passed
+  on 2026-10-05; log artifacts/engine100/five-gap-contract-test.log. Documentation
+  checks passed; their base comparison was explicitly skipped. No unfinished
+  files or newly demonstrated upstream capability blocker.
+- Keep the distinction between delivered shared requests, pending connected
+  acceptance and original-game unknowns. The audit changes no completion exit.
+  Original hardware output, external results and input admission remain qualified.
+- Next, Gap 37: audit actual transfer hardware-site placement and caller
+  argument evidence against both the original reporting request and issue 5.
+  Existing initializer controls are not a transfer-boundary positive. Expand
+  the archive/startup chain only for a specifically identified missing producer.
+- Next, Gap 31/32: map actual whole alias/predicate and guard/reload controls to
+  caller-frame, producer and intervening-callee evidence; preserve all negatives.
+- Next, Gap 33/34: verify complete leaf/caller and known append-cardinality
+  controls, retaining admitted-input and alias limits. Do not count local
+  occurrences or synthetic success as whole completion.
+- Restrictions: no original runtime/DOSBox, invented field memory, stitched
+  trace windows or increased bounds on unresolved queries. The resident harness
+  cannot execute FBOV overlays. Use static source/cross-reference readings to
+  identify a specific connected dependency, then bounded traces/emulated calls.
+- Function inventory sizes remain body-byte counts, not range endpoints. Use
+  explicitly verified source spans for queries and retain contested ownership.
+  Reader failure/null-output reconciliation belongs outside this tooling goal.
