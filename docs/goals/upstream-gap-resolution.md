@@ -174,8 +174,11 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   negative, not an absence claim or shared-tool defect.
 - Next: Gap 32 actual indirect registration-table or caller input producers;
   no repeat of direct-call/adjacent-pair searches without new evidence.
-- Next: Gap 33 admitted finite graph/count/record-length and actual-copy
-  storage/alias inputs for whole recursive/caller controls.
+- Gap 33 literal count census and actual candidate traces exclude fixed
+  segment-zero stores as MENU producer evidence; see
+  docs/MENU-PRODUCER-CANDIDATE-AUDIT.md. No absence claim or memory seeds.
+- Next: Gap 33 object-loading/copy and caller argument producers, admitted
+  finite graph/count/record-length and actual-copy storage/alias inputs.
 - Next: Gap 34 connected caller-root and pre-guard frames now reach the
   count-one store and retain it through actual copy into normalization.
   Local origin/last-writer/order controls pass with negatives; whole controls
