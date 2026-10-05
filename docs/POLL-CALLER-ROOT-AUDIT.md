@@ -157,3 +157,60 @@ producers and intervening writes, alongside the setter's DOS condition. Keep
 instruction/path limits, external return/preservation conditions and missing
 input evidence separate. Whole connected controls for Gap 31, and all five
 full exits, remain unverified.
+
+## Configuration-pointer producer and state-write candidate, 2026-10-06
+
+The current licensed configuration still matches FND-CONFIG-003's recorded
+identity and field description. Its relevant pointed-word source value is
+nonzero. The earlier post-load AX-zero tests are therefore conditional decoder
+controls, not evidence of the shipped-file input or a native zero-guard path.
+FND-CONFIG-019's loader does not establish a full-length read by comparing a
+non-error read count with the request, and later buffer writes remain unresolved.
+File identity alone does not prove the later resident field's value.
+
+A fresh published bounds report covers the receiving window documented by
+FND-CONFIG-020 through its local return. Its near initialization callee is
+outside the declaration; the local CFG's return-continuation assumption does
+not prove that callee's effects. The actual trace retains a reached four-byte
+DS-relative pointer store copied from the argument load. Source-origin,
+full-width last-writer and store-before-initializer-preparation controls hold
+at that reached store/preparation boundary. A wrong argument-load-as-writer
+control is rejected, and the one-step control removes all anchors. Whole
+controls remain undecided at the unread initialization call. No original
+pointer, configuration memory or field value was seeded.
+
+The pointer probe is before the next stack write. It establishes the field's
+writer at that boundary, not preservation across that stack write or callee,
+physical DS/SS disjointness, valid native pointer storage, successful file load,
+or producer-to-status joining. Returned bypass paths do not establish the
+pointer-store route's completion.
+
+A function-boundary-independent literal census identifies state-word candidates
+across the shipped executable. Literal equality is not an instruction use or a
+runtime-storage identity. In the already documented windows, decoded operands
+retain the status/clear word reads and the clear's word write. A separate
+inventory-entry candidate has a matching DS-relative word write verified by
+the published CFG/operand reporter. Its source query window ends at the adjacent
+inventory entry, rather than at start plus body-byte count; the bounded CFG
+independently reaches the final return. The instruction-limit negative loses
+that writer's accepted instruction ownership.
+
+The additional write remains a candidate: its caller reachability, DS formation
+and preservation, aliases and connection to the consumer's current field have
+not been established. Other raw candidates and indirect/aliased writes are
+unread. Neither the literal census nor the local candidate report proves an
+exhaustive producer list or that the state word is stable. No new native state
+claim or game finding/parity status is added by this tooling acceptance.
+
+Reports/configs and the licensed configuration summary remain local under
+GAME_DIR/analysis/reporter-audit/issue5-poll-sound-producers100. Drivers/logs:
+artifacts/engine100/poll-sound-producers.mjs, poll-sound-write-reading.py,
+poll-sound-pointer-controls.mjs, poll-state-word-literals.py,
+poll-state-writer-candidate.mjs and poll-state-writer-negative.mjs.
+
+Next: the candidate writer's actual incoming route and segment provenance,
+initialization/later buffer writers and the full read-to-consumer handoff.
+Do not use the shipped file as entry memory, equate DS offsets without segment
+proof, or turn a zero-register hypothesis into a native continuation. All five
+full connected exits remain unverified; issue 290 remains open without delivery
+information at this check.
