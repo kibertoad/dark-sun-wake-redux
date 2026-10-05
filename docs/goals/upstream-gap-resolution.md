@@ -126,17 +126,19 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Exact adopted dependencies: runtime 7.0.0, engine 10.0.0, reader 2.1.0 and
   checker 1.1.0. Release integrity and canonical adoption records remain in
   docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
-- Latest batch: docs/FIVE-GAP-CONTRACT-AUDIT.md. Full Test.ps1 -NoRestore passed
-  on 2026-10-05; log artifacts/engine100/five-gap-contract-test.log. Documentation
+- Latest batch: actual transfer hardware-placement acceptance in
+  docs/TRANSFER-CALLER-PRODUCER-AUDIT.md. Full Test.ps1 -NoRestore passed
+  on 2026-10-05; log artifacts/engine100/transfer-boundary-test.log. Documentation
   checks passed; their base comparison was explicitly skipped. No unfinished
   files or newly demonstrated upstream capability blocker.
 - Keep the distinction between delivered shared requests, pending connected
   acceptance and original-game unknowns. The audit changes no completion exit.
   Original hardware output, external results and input admission remain qualified.
-- Next, Gap 37: audit actual transfer hardware-site placement and caller
-  argument evidence against both the original reporting request and issue 5.
-  Existing initializer controls are not a transfer-boundary positive. Expand
-  the archive/startup chain only for a specifically identified missing producer.
+- Next, Gap 37: identify the particular slot or mask producer needed for a
+  missing whole transfer control. Source-local hardware placement and the
+  wrapper/validator/getter/primitive graph have acceptance records. Keep native
+  input, later-writer and hardware output limits; the initializer remains
+  separate. Expand archive/startup only for a specific missing dependency.
 - Next, Gap 31/32: map actual whole alias/predicate and guard/reload controls to
   caller-frame, producer and intervening-callee evidence; preserve all negatives.
 - Next, Gap 33/34: verify complete leaf/caller and known append-cardinality
