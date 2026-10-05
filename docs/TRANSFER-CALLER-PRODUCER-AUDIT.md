@@ -293,3 +293,52 @@ Source-local reports: GAME_DIR/analysis/reporter-audit/issue5-resource-reader-
 bounds100. Ignored drivers/controls: artifacts/engine100/resource-reader-bounds*,
 archive-body-counts.mjs and callback-body-counts.mjs. No original content or
 new gameplay/spec status is committed. All five whole exits remain open.
+
+## Gap 37 actual transfer hardware placement, 2026-10-05
+
+The published engine 10.0.0 `bounds` query now reads the complete resident
+primitive documented by FND-CONFIG-192, with source identity guarded by the
+published reader. Its local CFG covers the documented span without holes,
+calls or unresolved branches and reaches the final far return. Every reported
+port access has an explicit continuation assumption. This is local CFG
+completion, not complete input evidence or a native hardware execution.
+
+An independent bounded Capstone CFG census agrees with the published port
+instruction sites and directions. Removing each site in turn and checking
+whether the return remains reachable identifies two common port writes; the
+other port sites have bypass routes. This checks syntactic return-path
+placement only, not the feasibility of every branch, device success or native
+pixels. It agrees with the existing finding's common plane setup and optional
+scratch/plane-update paths. The report does not substitute RAM effects for VGA
+output, claim accepted scratch/storage, or supply original memory values.
+
+The published `callees` query connects the actual FND-CONFIG-191 transfer
+wrapper to both validator calls, all four coordinate getters and the
+FND-CONFIG-192 primitive. Each declared node has complete local CFG coverage;
+the primitive is the hardware-bearing child. The wrapper's guards still decide
+whether that child is called. Graph connectivity is not proof that an original
+invocation passes those guards or that the original caller's slot/reference,
+segment, mask and alias conditions are admitted.
+
+Nonvacuous controls pass: a one-instruction bound and a region truncated before
+the transfer expose no hardware sites and remain incomplete. Omitting the
+primitive from the wrapper graph or limiting the graph to its root loses the
+hardware-bearing child. None is accepted as evidence of hardware absence.
+No old unresolved symbolic traversal bound was raised or repeated.
+
+Configs, complete numeric reports and the placement summary are local under
+GAME_DIR/analysis/reporter-audit/issue5-transfer-boundaries100. Drivers and
+assertion logs are artifacts/engine100/transfer-boundaries.mjs,
+transfer-boundary-placement.py, transfer-boundary-graph.mjs and
+transfer-boundary-controls.mjs with their corresponding logs. The placement
+classification derives from the independently checked CFG; it is not a new
+field claimed to exist in the published bounds API.
+
+This supplies actual source-local hardware placement and connected
+wrapper/callee classification for Gap 37. The initializer remains a separate
+control. Whole startup/caller/input and later-writer acceptance, finite valid
+reference chains, storage/mask/alias admission and native hardware output remain
+unverified. Existing game findings and parity are unchanged; all five full
+connected exits remain open. Next identify which slot or mask producer is
+required for a specific missing transfer control, rather than treating every
+archive dependency as a placement prerequisite.
