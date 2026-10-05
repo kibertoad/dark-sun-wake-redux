@@ -507,6 +507,50 @@ positive-service path is accepted as completion. Next is current DS and the
 specific field-to-consumer preservation/order, alongside slot/transfer aliases.
 No game specification or parity status changes. All five full exits remain open.
 
+## Destination-field producer incoming references, 2026-10-06
+
+A new published-reader census follows the verified destination-field writer
+candidates and the transfer-field consumer through all declared MZ relocations
+and FBOV fixups. It retains allocator-writer references from overlay callers,
+a separate cleanup-writer reference from resident code, and resident consumer
+references. The known primitive call remains a positive mapping control. The
+source-derived reports retain near, computed, unrelocated and instruction-path
+exclusions; no result is an exhaustive absence claim or shared DS identity.
+
+Inventory-adjacent bounded linear contexts align the retained candidates with
+far-call instructions. Published entry-path checks retain dispatch/undecoded
+gaps in the allocator's full callback roots. The documented Start Game branch
+in FND-CONFIG-028 supplies a separately justified branch start: its published
+call-order query confirms the call to the allocator-field writer with usable
+local ordering. A one-instruction negative loses that ownership and leaves a
+raw candidate. This is branch-local source acceptance, not proof that native
+callback dispatch reaches that branch. The query still lists undeclared child
+and target-body edges; local ordering does not establish their effects.
+
+The resident cleanup-writer and consumer calls also have published entry-path
+instruction ownership. The consumer callers retain usable local ordering;
+the cleanup caller's unresolved jump prevents full usable ordering. Their
+capped controls lose the confirmed calls. This
+distinguishes those references from the allocator roots' dispatch-limited
+candidates, but still supplies no joined producer-to-consumer execution history.
+
+The other inventory-window reports retain their own candidate, undecoded and
+unmapped limitations. Do not use linear alignment, inventory membership or an
+empty confirmed-call list to infer native callers or absence. All resident
+views were checked against the MZ header; overlay analysis segments are explicit
+coordinates, not load addresses. The separate documented-branch entry is not a
+stitched trace or a supplied native state.
+
+Private census, contexts and published reports are under
+GAME_DIR/analysis/reporter-audit/issue5-transfer-field-incoming101. Ignored
+drivers/logs are transfer-field-incoming.mjs, transfer-field-caller-windows.py,
+transfer-field-caller-order.mjs and transfer-field-start-branch.mjs under
+artifacts/engine101. The next dependency is actual dispatch/segment producers
+and effects between these producer candidates and the transfer consumer;
+the census does not join those histories. No original-memory seed or higher
+unresolved traversal bound was used. All five full exits remain open; no game
+specification, parity status or other research goal changes.
+
 ## Connected caller, request, transfer and cleanup graph, 2026-10-06
 
 The published engine 10.1.0 callee query now starts at the actual caller in
