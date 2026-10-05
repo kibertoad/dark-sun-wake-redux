@@ -330,6 +330,15 @@ pixels. A fixture with substituted RAM or mocked port values must identify
 what it actually tests and leave native output unconfirmed. Keep slot,
 segment, count, mask and alias assumptions separate from the transfer
 algorithm's local completion and register restoration.
+Actual primitive hardware-site placement and the wrapper/validator/getter graph
+now have published source-local acceptance with omission and limit negatives.
+A focused mask prefix retains the port number, selector byte and table-read
+origin; whole controls and native table contents remain unverified. A fully
+returning synthetic unknown-word AND-three case exposes an unsigned-bound
+expressiveness limit in engine 10.0.0. Duplicate-checked toolkit issue 290
+requests that specific capability; it does not replace caller/input, later
+writer, mask admission or hardware-output evidence. See
+TRANSFER-CALLER-PRODUCER-AUDIT and project issue 5. Gap 37 remains open.
 
 
 ## 40. Check cleanup-slot assignment on each failure edge

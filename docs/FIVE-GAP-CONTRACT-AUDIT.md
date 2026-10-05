@@ -61,3 +61,14 @@ chain further; reading unrelated resource history is not itself a transfer
 acceptance result. Keep previous partial reports, unresolved scopes and
 negative controls intact. No new owner-run request or toolkit issue follows
 from this audit alone.
+
+## Subsequent focused control
+
+The actual Gap 37 mask prefix now retains port-number, selector-byte and
+mask-read producer occurrences with omission/cap controls. Its numeric masked
+index bound remains undecided. A separate complete returning synthetic case
+confirms a constant-mask unsigned-bound expressiveness limit, now tracked in
+toolkit issue 290. This supersedes the earlier audit's absence of a demonstrated
+new capability limitation for this particular control only. See the latest
+section of TRANSFER-CALLER-PRODUCER-AUDIT. It does not complete any of the five
+whole connected exits or establish native mask contents/hardware output.

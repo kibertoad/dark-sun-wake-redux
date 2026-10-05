@@ -342,3 +342,48 @@ unverified. Existing game findings and parity are unchanged; all five full
 connected exits remain open. Next identify which slot or mask producer is
 required for a specific missing transfer control, rather than treating every
 archive dependency as a placement prerequisite.
+
+## Gap 37 mask-byte dependency and numeric-bound limitation, 2026-10-05
+
+A focused source reading and published trace of FND-CONFIG-192's destination
+mask prefix now separate its inputs: a current scratch word is masked to two
+bits, a byte is loaded through explicit CS-relative indexed addressing, AL is
+set to the indexed-port selector, and DX is set to the destination-mask port.
+The byte therefore comes from the named four-byte mask table, not from an
+ordinary DS-relative archive field. Its current contents and intervening writers
+remain unknown. This does not establish accepted mask values or VGA output.
+
+The narrowly entered trace supplies no original memory values, root-slot state,
+register inputs or hardware model. Reached port-number, selector-byte and
+mask-read-origin occurrences hold. Omitting the table load rejects the claimed
+byte origin, and the one-step control loses every anchor. Whole controls remain
+undecided: the query starts inside the primitive and its later repeated copy
+has an unresolved count. Port output is recorded as leaving the instruction
+model; conditional continuation does not execute or validate the device.
+This source-local prefix does not establish the omitted frame, caller or slot
+history and is not substituted for a whole connected transfer positive.
+
+The masked-index unsigned upper-bound control remains undecided even locally.
+A separate wholly synthetic complete returning query isolates this reporting
+limitation: an unknown word ANDed with three returns with a bound-of-three
+control undecided, while known-input and zero-mask controls hold. The unmasked
+unknown negative stays undecided. No hardware, callee, original data or stopped
+path explains the synthetic result. This is conservative expressiveness, not
+an unsound accepted bound. Duplicate-checked toolkit [issue 290](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/290)
+requests sound constant-mask unsigned bounds or a supported equivalent recipe,
+with width/signedness, omitted-mask and incomplete-query controls. Delivery is
+pending; do not claim the engine proves the index bound already.
+
+Original-derived configs/reports stay under
+GAME_DIR/analysis/reporter-audit/issue5-transfer-mask100. Source reading,
+assertions and logs are artifacts/engine100/transfer-mask-reading.py,
+transfer-mask-controls.mjs and transfer-mask-controls.log. The independent
+synthetic reproducer is masked-index-controls.mjs, with fixtures/reports in
+artifacts/engine100/masked-index-controls and masked-index-controls.log.
+
+Next producer evidence is the current CS mask table and its writes, alongside
+the particular slot/reference inputs needed by a missing whole transfer control.
+Do not infer mask admission from a bounded index, hardware success from the
+port event, or full startup coverage from a prefix. Game findings/parity remain
+unchanged. All five full connected exits remain open; the new upstream request
+addresses this specific control rather than replacing their other evidence.
