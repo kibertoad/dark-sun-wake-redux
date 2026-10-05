@@ -117,49 +117,39 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   consumer scope remain active. No game spec/parity, original run or emulation.
 - Latest validation: 2026-10-05 canonical Invoke-Validation.ps1 passed,
   including full Test.ps1, locked restore, Release build and assetless smoke.
-  Log: artifacts/engine91/latest-canonical-validation.log. Every packaging
-  profile also passes locked verification: latest-packaging-check.log.
-  PowerShell 7: artifacts/pwsh7/runtime/pwsh.exe; set PWSH for controls.
-- Adopted: runtime 6.8.0, engine 9.1.0, reader 2.1.0, checker 0.6.0.
-  Checker release tag: 87895543d39974a14ef85a0e0a4aeefc5f5aa241.
-  Tagged checker rebuild matches installed dist and npm integrity; tagged
-  synthetic suite passes with explicit platform skips. Official NuGet signature,
-  canonical content hash and cached content checks pass. Engine exact-source
-  integrity remains verified. Local rules snapshot unchanged.
+  Log: artifacts/engine100/canonical-validation.log. Every packaging profile
+  passes locked verification: packaging-check.log. Final Test.ps1 -NoRestore
+  passes: precommit-test.log. PowerShell 7: artifacts/pwsh7/runtime/pwsh.exe.
+- Adopted: runtime 7.0.0, engine 10.0.0, reader 2.1.0, checker 1.1.0.
+  Engine tag: eaeaad180f36cd6ccab1198410e40ca9421cd4e5.
+  Checker tag/action: c79d7fe3addb3fb14bc5f118f19f47571aa4c3f0.
+  Registry/wheel/sdist/tag/installed engine integrity and complete release suite
+  pass. Checker tagged rebuild and registry integrity match installed dist;
+  tagged suite passes with explicit platform skips. Official signed NuGet
+  canonical hashes and cache content match. Local rule snapshot unchanged.
 - Issue dispositions: toolkit #143/#190/#198/#200/#213 are closed as delivered
-  shared-tool requests. All unfinished consumer exits remain in project issue 5,
-  which is open with revised current versions and scope. New toolkit #274 is open
-  for the independently verified indirect-call traversal capability.
+  requests. #274 is released in engine 10.0.0 and closed after installed
+  positive/negative confirmation. Project issue 5 is revised and remains open
+  for Gaps 31/32/33/34/37. No new undelivered capability was demonstrated.
 - Acceptance audit: docs/LATEST-RELEASE-GAP-AUDIT.md and
-  docs/TOOLKIT-RESPONSE-ACCEPTANCE.md. No full game gap was closed by the upgrade
-  or the upstream-request disposition revision. Gaps 31/32/33/34/37 remain open.
-- Unfinished: preserve GAME_DIR reporter-audit/issue5-poll, issue5-poll91,
-  issue5-root91, issue5-producers91, issue5-initializer91, issue5-brackets91,
-  issue5-recursion91, issue5-count91, issue5-startup91, issue5-modes91,
-  issue5-setup91, issue5-status91, issue5-middle91, issue5-refresh91,
-  issue5-writers91 and issue5-writer-callers91. Preserve ignored engine91
-  drivers, source reports, reproductions and logs. Earlier result-origin730
-  and guard-order730 controls remain qualified historical inputs.
-- Dependencies: toolkit #274 needs upstream work. Other caller/producer/storage
-  acceptance remains available consumer work. No invented entry memory,
-  synthetic original reads, stitched state or larger unresolved-query caps.
-- Other ledger work: Gap 29 cache/age/capacity and restarted search; Gap 36
-  byte/segment producers and fixtures; Gap 40 predecessors; FND-CONFIG-191
-  scans; FND-SCRIPT-019 fill; Gap 44 diagnostics. Cross-project requests in
-  AWAITING-REQUESTER-AUDIT.md are not closed by this project's adoption.
-- Process audit: no confirmed session-owned orphan after the latest-adoption
-  commit; reusable MSBuild, unrelated work and CUA processes are preserved.
-- Push: user explicitly authorized pushing validated work to main. Get current
-  branch/commit/remote synchronization from Git.
-- Next: Issue 5 Gap 31: actual DOS/poll/setter dependencies and caller-frame
-  coverage at unchanged unresolved-query bounds.
-- Next: Issue 5 Gap 32: writer entry 209409 input/caller/reference admission,
-  callback target/segment and storage producers, and both whole routes; follow
-  toolkit #274 for released traversal support. Middle dependency sites:
-  209825/210167/210222/233496.
-- Next: Issue 5 Gap 33: admitted finite graph/count/record-length producers,
-  whole recursive/caller coverage and actual-copy storage/alias inputs.
-- Next: Issue 5 Gap 34: nonzero count/record and caller storage producers,
-  known append cardinality and complete pair/split/copy/terminator routes.
-- Next: Issue 5 Gap 37: incoming flag/data and sound/I/O producers, later
-  writers and actual transfer callers; do not repeat the capped startup scan.
+  docs/TOOLKIT-RESPONSE-ACCEPTANCE.md. Library update and compatibility gates
+  are complete; whole consumer evidence exits remain incomplete.
+- Unfinished: preserve all GAME_DIR reporter-audit/issue5-* and prior
+  result-origin730/guard-order730 controls, plus engine100-brackets,
+  engine100-writer-inputs and engine100-count-inputs. Preserve ignored
+  artifacts/engine91 and engine100 drivers, integrity sources and logs.
+  No invented entry memory, stitched state or larger unresolved-query caps.
+- Process audit: artifacts/engine100/adoption-final-process-audit.json.
+  No confirmed session-owned orphan; reusable MSBuild and CUA remain untouched.
+- Push: user explicitly authorized validated main pushes. Read branch/remote
+  synchronization directly from Git.
+- Next: Gap 31 actual DOS/poll/setter and root-frame connected coverage.
+- Next: Gap 32 actual writer reachability and callback target/segment/storage
+  producers; follow produced pointers with released engine 10.0.0.
+- Next: Gap 33 admitted finite graph/count/record-length and actual-copy
+  storage/alias inputs for whole recursive/caller controls.
+- Next: Gap 34 count-one callers now have local input-origin controls;
+  complete frame/storage admission before append cardinality and full
+  pair/split/copy/terminator acceptance. Reports: issue5-count-callers91.
+- Next: Gap 37 startup-to-transfer, incoming flag/data, later writers and
+  sound/I/O producers. Do not repeat the capped disconnected startup scan.
