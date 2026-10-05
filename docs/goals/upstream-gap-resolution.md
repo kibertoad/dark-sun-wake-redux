@@ -209,6 +209,10 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Gap 37 relocated trampoline references reveal two actual incoming calls
   outside the old inventory search. Exact-boundary reporter controls confirm
   target identity; actual routine prefixes and initialization order remain.
+- Gap 37 parents are documented Save/Load and Start Game callbacks. Fixed
+  numeric inventory: expanded Save/Load body, added missing Start Game body,
+  retained interior entries. Real zero arguments identified; dispatch/prefix
+  state and initialization-to-transfer join remain unproved.
 - Next: Gap 37 the resident no-argument initializer has repeatable concrete
   known-answer, register, byte-width and declared loop-direction controls.
   Startup-to-transfer, incoming flag/data, later writers and sound/I/O
