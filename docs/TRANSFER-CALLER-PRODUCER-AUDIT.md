@@ -206,3 +206,57 @@ Source-local reports: GAME_DIR/analysis/reporter-audit/issue5-parent-selector100
 Ignored drivers: artifacts/engine100/parent-selector.mjs and
 window-acquisition-boundary.mjs. Original instruction context stays local; no
 new spec status or gameplay behavior is asserted. Whole Gap 37 remains open.
+
+## Window acquisition and registration dependency map
+
+The actual opener's acquisition call resolves to the overlay helper already
+recorded by FND-CONFIG-018/030/034. Its resource-request helper initializes a
+local far result, passes the requested WIND number and its output address to
+the resident reader wrapper, and returns the two result words. Acquisition
+then tests that pointer before position registration, callback storage and
+activation. Those recorded failure gates remain conditions, not modeled success.
+
+The local position-registration caller's actual relocated far call is confirmed
+by the published incoming reporter against the full resident registrar. This
+search is deliberately partial and cannot prove no other callers. The numeric
+inventory row previously ended inside registration; it now extends through
+the final far return identified by FND-CONFIG-031, excluding its external
+dispatch tables. No original code or table data enters the inventory.
+
+Static reading connects the registrar's child resolver output to its two
+child-pointer stores, using the same child offset byte, word count and stride
+that the later lookup consumes (FND-UI-008/011). Window list/position writes
+precede completion of child registration. FND-CONFIG-030/031 retain failure
+gates and later callback initialization, so the pointer store alone cannot
+prove a complete graph or rollback. The resident resource reader's archive,
+allocation, read and fallback producers remain the next specific dependencies.
+No ordinary runtime state or unconditional acquisition success is asserted.
+
+Source-local cross-reference report: GAME_DIR/analysis/reporter-audit/
+issue5-window-registration100/incoming.report.json. Ignored driver:
+artifacts/engine100/window-registration.mjs. The actual acquisition argument
+boundary report remains under issue5-parent-selector100. Whole Gap 37 and
+the other four connected-evidence gaps remain open.
+
+## Archive-root census reconciled with existing findings
+
+The fresh literal-field census initially retained four direct archive-root
+stores. Reconciliation with FND-CONFIG-037/068 showed that both the archive
+initializer and archive-open routine were absent from the committed inventory.
+Their existing documented ranges and final source returns now supply two
+numeric inventory rows. A fresh published operand-candidate census includes
+all six literal stores listed by FND-CONFIG-068, with their four-byte widths
+and DS accesses retained. The pre-repair report remains local for comparison.
+
+This is corrected search coverage, not a no-other-writers claim. The known
+address-taking record-growth call remains a separate producer route, and the
+source-container exclusions and partial domains remain explicit. FND-CONFIG-039
+connects startup archive open to the resource name selection and graphics
+handoff; FND-CONFIG-068 records the initial option gate that excludes growth
+on the newly opened resource record. Later selection, close, options, aliases
+and externally supplied read/allocation outcomes still need their own bounds.
+
+Source-local reports: GAME_DIR/analysis/reporter-audit/issue5-resource-root100.
+Ignored driver: artifacts/engine100/resource-root-writers.mjs. This map connects
+previously recorded producer findings to the acceptance search domain without
+promoting a spec entry or supplying native state. Whole Gap 37 remains open.
