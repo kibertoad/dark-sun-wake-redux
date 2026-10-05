@@ -110,8 +110,8 @@ Gap 29's new complete call-free eviction-helper query uses its known 16-slot bou
 - Stage: Slices; research-side tooling. Original Condition/Scope and issue 5
   consumer scope remain active. No game spec/parity, original run or original
   emulation changed.
-- Last gate: 2026-10-05 Test.ps1 -NoRestore passed for the actual-startup-caller batch;
-  log: artifacts/engine91/startup-test.log. An earlier sandbox attempt was blocked
+- Last gate: 2026-10-05 Test.ps1 -NoRestore passed for the actual-mode/setup batch;
+  log: artifacts/engine91/modes-test.log. An earlier sandbox attempt was blocked
   by Java temporary-directory access; the unrestricted required gate passed.
   Earlier Invoke-Validation.ps1 passed, including Test.ps1,
   locked restore, Release build and assetless smoke. Log:
@@ -127,7 +127,7 @@ Gap 29's new complete call-free eviction-helper query uses its known 16-slot bou
   Gaps 32/33/34/37 also remain open for their recorded consumer exits.
 - Unfinished: preserve GAME_DIR reporter-audit/issue5-poll, issue5-poll91,
   issue5-root91, issue5-producers91, issue5-initializer91, issue5-brackets91,
-  issue5-recursion91, issue5-count91, issue5-startup91 and engine91
+  issue5-recursion91, issue5-count91, issue5-startup91, issue5-modes91 and engine91
   configs/reports, plus ignored artifacts/engine91 drivers/logs.
   Earlier result-origin730 append/pair/path/width/eviction, recursive,
   normalizer and actual-copy controls remain inputs. Guard-order730 is
@@ -140,7 +140,7 @@ Gap 29's new complete call-free eviction-helper query uses its known 16-slot bou
   Gap 36 connected byte/segment producers and fixtures; Gap 40 predecessors;
   FND-CONFIG-191 reference scans; FND-SCRIPT-019 bounded fill; Gap 44 diagnostics.
   Prior requester dispositions remain in AWAITING-REQUESTER-AUDIT.md.
-- Process audit: no confirmed session-owned orphan after the actual-startup-caller commit;
+- Process audit: no confirmed session-owned orphan after the actual-mode/setup commit;
   reusable MSBuild, unrelated work and CUA processes are preserved.
 - Push: user explicitly authorized the validated commits to be pushed to main
   after automatic approval review requested confirmation. Check Git for sync state.
@@ -152,9 +152,6 @@ Gap 29's new complete call-free eviction-helper query uses its known 16-slot bou
   producers, known append cardinality and complete pair/split/copy/terminator routes.
 - Next: Issue 5 Gap 32: callback-field/segment producers, remaining middle
   callees, admitted storage, guards and both whole callback routes.
-- Next: Issue 5 Gap 37: include FND-CONFIG-155/159's actual mode helpers in
-  the caller trace; continue to setup, later writers and transfer placement.
-
-
-
+- Next: Issue 5 Gap 37: include FND-CONFIG-147's actual initializer/list
+  helpers; retain incoming flag/data, sound/I/O and full transfer-route requirements.
 
