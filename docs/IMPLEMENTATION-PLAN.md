@@ -2,7 +2,7 @@
 
 ## Issue 5 connected poll acceptance
 
-Research-side tooling only. Use FND-CONFIG-161/162/163/164/165/167 as read-only inputs to test
+Research-side tooling only. Use FND-CONFIG-161/162/163/164/165/166/167 as read-only inputs to test
 whether the real caller entry can establish the late poll's root frame with
 `entryFrame`, and whether the actual predicate retains interrupt BX provenance.
 Keep the existing query bounds, unknown input memory and explicit conditional
@@ -19,17 +19,17 @@ Verify actual caller-literal provenance at both fallback registration stores;
 wrong poll-result provenance, omitted setter and one-step controls must lose
 or reject the witness. A reached store does not establish callback dispatch.
 
-## Issue 5 setup initializer dependencies
+## Issue 5 actual state-clear and status window
 
-Use FND-CONFIG-147/144 as read-only inputs. Include real 03C1, 0C92, 0CC2,
-0B54 and overlay0106 bodies in the existing actual startup/setup trace.
-Check table/root writers at reached initializer continuations, selected input
-and head/slot producers, with omitted initializer and cap negatives.
-Retain original limits and incoming flag/data uncertainty. A separate setup
-entry may establish its own clear-to-list producer controls but supplies no
-memory to the startup query. Inspection FS/GS hypotheses supply no contents
-or native admission. Reports stay under GAME_DIR. Exit: actual reached
-initializer routes, whole/local verdicts, remaining state and transfer gaps.
+Use FND-CONFIG-162/166 as read-only inputs. Include the real 03A5/0051/0407
+bodies in the root dependency set, then test the actual post-driver call window
+with unknown incoming memory and SP/BP at the original query limits. A narrow
+entry assumes the preceding driver poll returned; it supplies no poll/frame
+state. Check actual zero-result producers, stable DS gate byte writers and
+caller predicate ordering, with omitted status/clear and cap negatives.
+Keep active device calls, storage/alias admission and true root formation open.
+Source reports stay under GAME_DIR. Exit: reached state/status producers,
+local versus whole controls and remaining connected caller dependencies.
 Completed release-adoption plans: [shared adoption archive](implementation-plans/COMPLETED-SHARED-ADOPTION.md).
 
 This file says what the project intends and what is true now, following the
@@ -980,6 +980,7 @@ Shared FLI readiness: Inspect `fli-check` uses the pinned RefurbishedDinosaurs.M
 ## Latest template dependency maintenance sync
 
 Adopt template main 7a798184faddb271da2ec52745887972fdcdeb72, including xUnit 4.0.1 and its refreshed test lock. Outcome: weekly NuGet updates group shared runtime and xUnit packages, retain the reviewed SabreTools pin, and leave manually coordinated npm/Python tooling updates to the existing exact-lock workflow. Retain the stronger verified project-local interpreter routing instead of adding PATH probing. Evidence: complete ten-file delta from 049f300 and docs/TEMPLATE-ACCEPTANCE.md. Acceptance: adapted Dependabot policy, updated maintenance guidance, canonical Test.ps1 and full Invoke-Validation gate pass; no configured identity, proprietary content, spec status or gameplay changes. Exit: every changed capability accounted for and validation passes. Risk: update proposals still require locked-package acceptance. No owner questions.
+
 
 
 

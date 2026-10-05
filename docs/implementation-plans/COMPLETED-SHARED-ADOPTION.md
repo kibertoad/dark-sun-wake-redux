@@ -138,3 +138,16 @@ local/whole controls, unknown I/O/producer dependencies and next actual callers.
 Inspect table byte writers and resident roots after the real fill; an unused GS
 address hypothesis supplies no table memory or native storage admission.
 
+
+## Issue 5 setup initializer dependencies
+
+Use FND-CONFIG-147/144 as read-only inputs. Include real 03C1, 0C92, 0CC2,
+0B54 and overlay0106 bodies in the existing actual startup/setup trace.
+Check table/root writers at reached initializer continuations, selected input
+and head/slot producers, with omitted initializer and cap negatives.
+Retain original limits and incoming flag/data uncertainty. A separate setup
+entry may establish its own clear-to-list producer controls but supplies no
+memory to the startup query. Inspection FS/GS hypotheses supply no contents
+or native admission. Reports stay under GAME_DIR. Exit: actual reached
+initializer routes, whole/local verdicts, remaining state and transfer gaps.
+

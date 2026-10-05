@@ -939,3 +939,39 @@ unchanged, no call model was introduced, and no original runtime/emulation,
 fabricated memory, stitched state or larger unresolved-query bound was used.
 Gap37 remains open for full startup/setup and transfer coverage, incoming
 flag/data and external producers, later writers and hardware placement.
+
+## Gap 31 actual state-clear and status gates, 2026-10-05
+
+Engine 9.1.0 now includes FND-CONFIG-166's actual state-clear, status and
+forwarder bodies in the root dependency set. The root formation remains
+unestablished behind the previous poll/guard/step/path stops. A justified
+narrow caller window starts at FND-CONFIG-162's actual status-clear call,
+assuming the preceding driver poll returned; it supplies none of that poll's
+memory or caller-frame state. No calls are modeled in this window.
+
+The window reaches the real status entry but drops its zero-return routes at
+the original path bound. The status helper's separate actual entry retains
+two zero-returning gate paths. Their local zero producer and unchanged
+DS gate-word byte controls hold at every reached occurrence. The caller
+window also retains entry-state provenance for that gate word at its reached
+status read. This proves modeled byte preservation there, not a zero input,
+valid pointed storage, native immediate return or complete active processing.
+All whole controls remain undecided behind unread device calls and stopped
+or dropped routes. The independent status query supplies no state to the
+caller window or the root-frame query.
+
+A wrong caller-call-site zero origin is rejected. Omitting state clear or
+status removes its downstream witnesses, and one-step caps remove them too.
+All driver assertions pass. Initial assumptions that the caller window would
+retain a zero-return witness were corrected after inspecting its path gaps;
+no bounds or starting memory were changed to obtain one.
+
+Source-derived selectors/configs/reports remain under
+GAME_DIR/analysis/reporter-audit/issue5-status91 and issue5-root91;
+ignored driver/log: artifacts/engine91/actual-status-window.mjs and
+actual-status-window.log. The bounded selector records only the actual call
+boundary, not original instructions. Gap31 remains open for true root/frame
+coverage, interrupt/result sequences, active device/callee and input producers,
+whole controls and their negative cases. No original runtime/emulation,
+spec/parity change, stitched state, fabricated memory or larger unresolved
+query bound was used. This source work required no extra upstream input.
