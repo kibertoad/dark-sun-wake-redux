@@ -50,3 +50,29 @@ witness, not hardware presentation or an admitted native handle proof.
 Source-local reports: GAME_DIR/analysis/reporter-audit/
 issue5-transfer-continuation100. Ignored drivers/logs: artifacts/engine100/
 transfer-continuation.* and transfer-continuation-controls.*.
+
+## Actual second-handle producer found
+
+A fresh literal-field census finds overlay allocation-result assignments to
+the transfer caller's two handle fields and later cleanup rewrites. The search
+remains partial; implicit/aliased writes and excluded source ranges remain.
+
+A fresh narrow entry at the first allocation argument boundary traces the
+real slot allocator and scanner into the first handle-field store. The
+preceding overlay prefix and its frame are not established by that entry.
+No memory, return value, call model or concrete stack register is supplied.
+The accepted allocator routes write coordinates 0,0,27,15 and paragraph count
+7, then store actual returned handles zero or one in the first field. Other
+routes store allocator-produced FFFF. Slot/pool admission remains conditional
+on unknown flags and pool words, not proved by the separate initializer test.
+
+Missing allocator and one-step controls remove the field assignment witness.
+The second request retains return-frame/stack and scanner-repeat stops; no
+second-field completion, joined transfer state or valid native slot is claimed.
+These are actual producer instructions and outputs, not substituted handle
+fixtures. Complete prefix, initialization, intervening writers and transfer
+continuation remain required before Gap 37 can close.
+
+Source-local reports: GAME_DIR/analysis/reporter-audit/issue5-second-handles100
+and issue5-second-handle-producers100. Ignored drivers/logs:
+artifacts/engine100/second-handle-writers.* and second-handle-producers.*.
