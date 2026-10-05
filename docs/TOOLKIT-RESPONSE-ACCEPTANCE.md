@@ -852,3 +852,38 @@ whole callback routes, rather than repeating the capped consumer trace.
 Exact production integrity and full Test.ps1 passed. Logs:
 `artifacts/engine91/writers-integrity.log`, `writers-controls.log` and
 `writers-test.log`. No original runtime, imported input memory or emulation.
+
+## Issue 5: actual writer input and caller/reference census, 2026-10-05
+
+Followed the candidate writer entry with unknown SP/BP and input memory, the
+actual runtime guard, conditional DS/SS analysis values, and the existing
+64-step/four-path bounds. No call model or supplied callback value was added.
+Source reports: `GAME_DIR/analysis/reporter-audit/issue5-writer-callers91/`;
+ignored drivers: `artifacts/engine91/callback-writer-callers.mjs`,
+`callback-writer-input-controls.mjs` and `callback-writer-omission.mjs`.
+
+The reached four-byte store retains its actual SS stacked-input read as a
+producer. Every reached origin occurrence holds; the whole control remains
+undecided because the alternate guard route stops at unmodeled DOS. One
+normal-return route is retained. Unknown incoming pointer bytes remain unknown,
+with no segment/record/storage admission or callback-target validity claim.
+A false prologue producer is rejected; one-step and omitted-store controls
+lose the anchor and preserve their stopped-route qualification.
+
+The incoming search reuses the declared source inventory batches, explicitly
+adds the actual writer region to every query and keeps each search domain
+separate. No confirmed direct incoming call is retained. This is not a claim
+that the writer has no callers: computed/unrelocated transfers, excluded source
+ranges, undecoded/contested starts and partial container coverage remain.
+A separate source-derived relocated-pair inventory retains no exact or aliased
+pair; source-representation exclusions make negativeUsable false. That inventory
+cannot eliminate synthesized pointers, computed calls or unrelocated data.
+
+The next producer work is to resolve those reference forms or demonstrate the
+writer's actual runtime admission before joining it to callback dispatch. The
+local stacked-input origin does not close Gap 32's target/segment producers or
+whole caller/storage controls. All issue 5 gaps remain open.
+
+Exact production integrity and full Test.ps1 passed. Logs:
+`artifacts/engine91/writer-callers-integrity.log`, `writer-input-controls.log`
+and `writer-callers-test.log`. No original runtime or emulation occurred.

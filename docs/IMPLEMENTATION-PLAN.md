@@ -11,6 +11,11 @@ boundary gaps explicit. Validate known callback reads as positive controls and
 reject wrong-site controls. Exit: local writer leads and their entry ownership
 for bounded follow-up, never a universal absence or semantic producer claim.
 Keep original-derived selectors and reports under GAME_DIR only.
+Follow the writer input with a bounded actual-entry trace and scan declared
+inventory batches for incoming calls and relocated pointer pairs. Preserve
+partial/contested coverage;
+unknown stacked input is provenance, never an admitted callback target.
+Wrong producer, cap and omitted writer controls must reject or lose anchors.
 
 ## Issue 5 actual middle-service dependencies
 
