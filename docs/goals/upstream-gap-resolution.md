@@ -240,7 +240,12 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Latest static producer-map acceptance and numeric inventory repairs are
   recorded in docs/TRANSFER-CALLER-PRODUCER-AUDIT.md; full Test.ps1 passed
   on 2026-10-05, including documentation checks. No spec status changed.
-- Next: FND-CONFIG-034/037/038/039/068 resource-reader input, archive selection,
-  address-taking growth and later writer coverage; connect those actual
-  producer routes before another broad root trace. Static discovery remains
-  first, with focused verification afterward. All five whole exits stay open.
+- Latest measured-body/source-span correction and reader-publication acceptance
+  are recorded in docs/TRANSFER-CALLER-PRODUCER-AUDIT.md; full Test.ps1
+  passed on 2026-10-05. Original analyzer counts are preserved where known;
+  known-entry additions use measured bounded body bytes, never span lengths.
+- Next: FND-CONFIG-151/152 reader-to-transfer dependencies, returning-callee
+  effects, output storage/aliases and later archive writers. Do not assume
+  reader errors imply null output. FND-CONFIG-038 wording needs research
+  reconciliation outside this tooling-only goal. Keep explicit source spans
+  separate from inventory metrics. All five whole exits remain open.
