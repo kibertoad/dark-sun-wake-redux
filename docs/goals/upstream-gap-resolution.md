@@ -66,6 +66,11 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 
 ## Dead ends
 
+The callback writer's existing boundary-based caller census and new independent
+resident encoded-transfer check retain no admitted reference. Bare offset words
+remain unclassified; computed/indirect and synthesized pointers remain open.
+Do not repeat these censuses without new reference-form or bracket-effect evidence.
+
 Synthetic success and broad guidance do not close a game-case request. Adopted/default static conditional call models invalidate memory/flags; candidate explicit scopes are hypotheses, not native preservation evidence. Existing cases stopped by unread callees or loop/path caps remain incomplete.
 
 Register-only returning-call hypotheses cannot recover ancestor stack bytes after unknown-memory nested services. The retained inner write is not a joined parent continuation; the historical attempt predates merged toolkit PR 74. New scoped-memory tooling permits a fresh bounded acceptance attempt after delivery verification, never silently preserved frames.
@@ -126,9 +131,9 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Exact adopted dependencies: runtime 7.0.0, engine 10.0.0, reader 2.1.0 and
   checker 1.1.0. Release integrity and canonical adoption records remain in
   docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
-- Latest batch: destination allocation and replacement return routes in
-  docs/TRANSFER-CALLER-PRODUCER-AUDIT.md. Full Test.ps1 -NoRestore passed
-  on 2026-10-06; log artifacts/engine100/transfer-destination-routes-test.log. Documentation
+- Latest batch: independent callback reference-form controls in
+  docs/FIVE-GAP-CONTRACT-AUDIT.md. Full Test.ps1 -NoRestore passed
+  on 2026-10-06; log artifacts/engine100/callback-reference-forms-test.log. Documentation
   checks passed; their base comparison was explicitly skipped. No unfinished files. Toolkit issue 290 tracks a
   demonstrated unsigned constant-mask bound limitation; other evidence work
   can continue independently.
@@ -146,8 +151,8 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   handoff. Reports are in the latest poll audit. A matching DS displacement is
   not storage identity; post-load zero hypotheses are not shipped-file inputs.
   Keep read completeness, caller/input admission and later writes unverified.
-- Next, Gap 32: map whole guard/reload controls to pointer/segment producers
-  and intervening-callee effects, preserving all negative cases.
+- Next, Gap 32: verified constructed/computed writer references or the actual
+  bracket's producer/effect dependency, preserving existing whole-control negatives.
 - Next, Gap 33/34: verify complete leaf/caller and known append-cardinality
   controls, retaining admitted-input and alias limits. Do not count local
   occurrences or synthetic success as whole completion.
