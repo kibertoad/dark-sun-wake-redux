@@ -25,22 +25,18 @@ bounds. Check both fixed roots and pool words, low-byte flag writes with the
 unwritten high bytes retained, and wrong-writer/visit/step negatives. This
 known-answer producer control does not join startup to a later transfer.
 
-## Issue 5 actual callback brackets
+## Issue 5 actual recursive selectors
 
-Use FND-CONFIG-099/171/175 as read-only evidence. Replace modeled bracket
-calls in the existing Gap32 query with their actual complete source bodies,
-including buffer/coordinate copies and shared-CS pointer setters/getters.
-Keep unknown SP/BP, existing entry-frame formation, query limits and remaining
-external hypotheses explicit. Include the actual gated middle helper where
-its documented body is available. Compare target reload, DS/SI preservation,
-callback-result and whole order coverage with the earlier models. Omitted
-copy/bracket and one-step cases must lose witnesses. Unknown guard outcomes,
-remaining external bodies, aliases and target producers stay unresolved;
-no native callback identity or successful release follows. Store all
-source-derived queries/reports under GAME_DIR. Exit: record actual reached
-callees, stops/gaps, local versus whole controls and the next missing producers,
-without increasing unresolved-query bounds or stitching independent windows.
-
+Use FND-CONFIG-172/163/165/167 as read-only inputs. Replace the modeled MENU
+selector, recursive result, guard and pointer wrapper with documented source
+bodies in stages. Retain unknown graph/count/length fields, SP/BP and the
+original query limits. Check actual selector pointer producers and reached
+leaf/local returns, recursive compare/output origins and guard stops.
+Omitted-selector, wrong local-zero producer and one-step controls must lose
+or reject witnesses. Do not supply graph memory or assume finite traversal;
+actual recursion and caller coverage remain required for whole closure.
+Source-derived artifacts stay under GAME_DIR. Exit: record actual dependencies,
+local versus whole verdicts, admitted-state gaps and next available work.
 Completed release-adoption plans: [shared adoption archive](implementation-plans/COMPLETED-SHARED-ADOPTION.md).
 
 This file says what the project intends and what is true now, following the
@@ -991,5 +987,6 @@ Shared FLI readiness: Inspect `fli-check` uses the pinned RefurbishedDinosaurs.M
 ## Latest template dependency maintenance sync
 
 Adopt template main 7a798184faddb271da2ec52745887972fdcdeb72, including xUnit 4.0.1 and its refreshed test lock. Outcome: weekly NuGet updates group shared runtime and xUnit packages, retain the reviewed SabreTools pin, and leave manually coordinated npm/Python tooling updates to the existing exact-lock workflow. Retain the stronger verified project-local interpreter routing instead of adding PATH probing. Evidence: complete ten-file delta from 049f300 and docs/TEMPLATE-ACCEPTANCE.md. Acceptance: adapted Dependabot policy, updated maintenance guidance, canonical Test.ps1 and full Invoke-Validation gate pass; no configured identity, proprietary content, spec status or gameplay changes. Exit: every changed capability accounted for and validation passes. Risk: update proposals still require locked-package acceptance. No owner questions.
+
 
 

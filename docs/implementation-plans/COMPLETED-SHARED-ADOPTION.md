@@ -63,3 +63,21 @@ smoke must pass. No spec/parity change or original runtime is authorized.
 - **Tests and Exit.** Complete published engine suite including the installed-engine Node bridge, relevant Dark Sun argument/preservation controls and canonical Test.ps1. Review breaking image/overlay/volume/width contracts; verify packaging locks, Release build and assetless smoke. Track unmet requester exits without duplicate upstream issues; use merged documentation's compare/order/output and wrong-origin controls before focused issue closure. Whole-gap closure still requires all original acceptance criteria.
 
 
+
+## Issue 5 actual callback brackets
+
+Use FND-CONFIG-099/171/175 as read-only evidence. Replace modeled bracket
+calls in the existing Gap32 query with their actual complete source bodies,
+including buffer/coordinate copies and shared-CS pointer setters/getters.
+Keep unknown SP/BP, existing entry-frame formation, query limits and remaining
+external hypotheses explicit. Include the actual gated middle helper where
+its documented body is available. Compare target reload, DS/SI preservation,
+callback-result and whole order coverage with the earlier models. Omitted
+copy/bracket and one-step cases must lose witnesses. Unknown guard outcomes,
+remaining external bodies, aliases and target producers stay unresolved;
+no native callback identity or successful release follows. Store all
+source-derived queries/reports under GAME_DIR. Exit: record actual reached
+callees, stops/gaps, local versus whole controls and the next missing producers,
+without increasing unresolved-query bounds or stitching independent windows.
+
+

@@ -761,3 +761,37 @@ remaining middle-helper callees, guard outcomes, both callback routes and
 whole controls. These are consumer research steps; no new upstream capability
 limitation has been demonstrated. No original runtime/emulation, entry-memory
 fabrication, stitched state, larger unresolved bounds, spec or parity change.
+
+## Gap 33 actual selector and recursive leaf producers, 2026-10-05
+
+Engine 9.1.0 now traverses FND-CONFIG-172's actual selector and recursive call
+instead of supplying a selector pointer and child FFFF result. Staged controls
+then replace the root guard with FND-CONFIG-163's actual body and the pointer
+wrapper/runtime models with FND-CONFIG-165/167's documented source regions.
+The final query has no call models. Graph/count/record-length memory and SP/BP
+remain unknown; the original step/path/visit limits are unchanged.
+
+The actual recursive child reaches its local zero return on a retained route,
+and that zero producer reaches the parent's comparison. Actual child-zero,
+local-zero-return and selector-offset producer controls hold at every reached
+occurrence. Their whole verdicts remain undecided. The final query's returned
+root paths are zero; this describes retained conditional paths, not an
+unconditional finite traversal or absence of a native error. Dropped runtime
+routes, repeat/step stops and the unmodeled DOS guard remain explicit.
+
+Claiming the local FFFF producer as the source of the actual child zero is
+rejected. Omitting the selector removes the child-comparison producer witness,
+and one-step controls remove every origin witness. All driver assertions pass.
+The intermediate selector-only query still supplies a recursive FFFF and
+retains conditional error returns; it is not used as actual leaf evidence.
+The source-derived reports/configs are local under
+GAME_DIR/analysis/reporter-audit/issue5-recursion91; ignored driver/log:
+artifacts/engine91/actual-recursion.mjs and actual-recursion.log.
+
+Gap33 remains open for admitted finite graph/count/length producers, full
+recursive and caller coverage, and normalized/copy dependencies. Actual leaf
+provenance replaces a modeled result at reached comparisons; it does not
+close the whole native error-origin contract. No source findings or parity
+statuses changed, and no original runtime/emulation, fabricated entry memory,
+stitched state or larger unresolved-query bounds were used. No extra upstream
+input was needed for this source traversal.
