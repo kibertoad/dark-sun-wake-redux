@@ -328,3 +328,43 @@ are buffer construction and its earlier callee effects, plus the explicit
 saved-frame/interrupt conditions on this now-resolved service edge. This tooling
 record changes no native claim, specification or parity status; all five full
 connected exits remain open.
+
+## Filename construction routes and intervening calls, 2026-10-06
+
+Independent whole-span readings of FND-SOUND-007 and FND-SOUND-008 retain the
+actual destination arguments at their four formatting call sites. The published
+relocation reader resolves all four to the resident formatter documented by
+FND-CONFIG-203. These are instruction-owned sites from the caller readings;
+relocation candidates alone would not establish executable caller paths. Search
+controls and exclusions remain in the private report; the driver checks the
+reader's callSite field explicitly.
+
+Independent CFG omission controls show that removing the sound caller's sole
+formatter disconnects its consumer call. Removing all three formatter sites in
+the speech caller also disconnects its consumer. Removing any single speech
+formatter still leaves an alternative route. Backward traversal identifies all
+three as possible last declared formatting calls before the consumer, including
+the fallback rewrite route. This is a structural union of alternatives, not a
+claim that one conversion dominates every native route.
+
+The sound route has a file-check call between formatting and consumption. The
+speech routes additionally retain conditional check, stop and status/clear
+calls. Their exact sites remain private. These intervening calls are now a
+bounded preservation-dependency list for the connected buffer handoff. A last
+declared formatter call is not a last memory writer: any intervening callee,
+changed DS or aliased write could alter the buffer used by the consumer.
+
+FND-CONFIG-203's existing formatter reading separates the output count from its
+extra terminator and leaves conversion admission/capacity unresolved. The sound
+filenames use conversions outside that entry's literal-only path; the selected
+plain decimal bound in FND-CONFIG-205 cannot establish their general output
+length. The caller's destination offset does not supply a capacity contract.
+Keep current format/source contents, argument-segment identity, output bounds,
+termination, aliases and callee preservation unverified.
+
+Private readings and controls remain under issue5-poll-state-incoming100.
+Ignored drivers/logs: poll-buffer-producer-reading.py,
+poll-buffer-route-controls.py and poll-buffer-formatter-relocations.mjs under
+artifacts/engine100. The CFG controls assume calls return and do not prove native
+branch feasibility. No native claim, specification or parity status changes;
+all five full connected exits remain open.
