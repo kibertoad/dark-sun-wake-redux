@@ -117,3 +117,24 @@ bounds. Check both fixed roots and pool words, low-byte flag writes with the
 unwritten high bytes retained, and wrong-writer/visit/step negatives. This
 known-answer producer control does not join startup to a later transfer.
 
+
+## Issue 5 initializer caller connection
+
+Use FND-CONFIG-193/149 as read-only evidence. Traverse the actual two-zero
+push/call/cleanup window into the real initializer, keeping its independently
+justified finite-loop bounds. Verify its root/pool/byte producers at the nested
+return and the actual caller's restored SP before its following mode test.
+An unused FS selector hypothesis addresses the resident fields at that caller
+checkpoint only; it supplies no data or native segment admission.
+Missing-initializer, wrong-writer and cap controls must lose or reject witnesses.
+This justified narrow caller entry assumes earlier startup helpers returned;
+it neither imports their state nor joins a later transfer. Keep original
+reports under GAME_DIR and record unmodeled following helpers and whole-route
+limits. Include FND-CONFIG-155/159's real mode helpers, their explicit internal
+IRET entry and FND-CONFIG-144's setup body; check surviving resident-field
+writers at setup continuation, with omitted-helper, wrong-writer and cap controls.
+Separate helper queries cannot supply caller state. Exit: reached setup routes,
+local/whole controls, unknown I/O/producer dependencies and next actual callers.
+Inspect table byte writers and resident roots after the real fill; an unused GS
+address hypothesis supplies no table memory or native storage admission.
+

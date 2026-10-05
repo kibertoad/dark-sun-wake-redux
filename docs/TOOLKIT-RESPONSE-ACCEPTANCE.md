@@ -906,3 +906,36 @@ startup-to-transfer coverage, later writers/external inputs and hardware
 placement. No native run/emulation, spec/parity change, stitched state,
 seeded memory or larger unresolved-query bound was used. No additional
 upstream input was required for this source extension.
+
+## Gap 37 actual setup list and counter producers, 2026-10-05
+
+Engine 9.1.0 now includes FND-CONFIG-147's real range initializers, list
+inserter and overlay record-reset scan in the connected startup/setup query.
+The startup path reaches the inserter and scan, then stops at its unchanged
+step bound; it has no initializer-return checkpoint witness. The earlier
+incoming direction-flag/path gaps and nonzero-mode external call remain.
+
+A separate query starts at the actual setup entry and creates its own clear
+and list state. It reaches the first range initializer's return. Both retained
+direction cases preserve slot523's original clear writers there. The first
+inserted slot's byte and paired word instead name the actual inserter writes,
+and the DS head word names its actual new-head store. The inserted index
+retains the real setup counter-seed producer. All reached occurrences hold;
+whole verdicts remain undecided because later scans hit the original bounds
+and paths are omitted. No starting table/head contents or gate/flag values
+are supplied, and no state from this query is imported into startup.
+
+Claiming the earlier fill as the inserted slot's writer is rejected. Removing
+the range initializer removes every insertion/return witness, and one-step
+controls remove them too. All driver assertions pass. These local producer
+controls do not prove the whole finite construction, native admission, setup
+completion or the later graphics-transfer route.
+
+Source configs/reports are local under
+GAME_DIR/analysis/reporter-audit/issue5-setup91; ignored driver/log:
+artifacts/engine91/actual-setup-lists.mjs and actual-setup-lists.log.
+The FS/GS inputs remain inspection-address hypotheses. Findings/parity are
+unchanged, no call model was introduced, and no original runtime/emulation,
+fabricated memory, stitched state or larger unresolved-query bound was used.
+Gap37 remains open for full startup/setup and transfer coverage, incoming
+flag/data and external producers, later writers and hardware placement.
