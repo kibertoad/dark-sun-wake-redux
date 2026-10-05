@@ -81,3 +81,17 @@ callees, stops/gaps, local versus whole controls and the next missing producers,
 without increasing unresolved-query bounds or stitching independent windows.
 
 
+
+## Issue 5 actual recursive selectors
+
+Use FND-CONFIG-172/163/165/167 as read-only inputs. Replace the modeled MENU
+selector, recursive result, guard and pointer wrapper with documented source
+bodies in stages. Retain unknown graph/count/length fields, SP/BP and the
+original query limits. Check actual selector pointer producers and reached
+leaf/local returns, recursive compare/output origins and guard stops.
+Omitted-selector, wrong local-zero producer and one-step controls must lose
+or reject witnesses. Do not supply graph memory or assume finite traversal;
+actual recursion and caller coverage remain required for whole closure.
+Source-derived artifacts stay under GAME_DIR. Exit: record actual dependencies,
+local versus whole verdicts, admitted-state gaps and next available work.
+

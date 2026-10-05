@@ -795,3 +795,41 @@ close the whole native error-origin contract. No source findings or parity
 statuses changed, and no original runtime/emulation, fabricated entry memory,
 stitched state or larger unresolved-query bounds were used. No extra upstream
 input was needed for this source traversal.
+
+## Gap 34 actual caller count provenance, 2026-10-05
+
+Engine 9.1.0 now traces FND-CONFIG-173's actual list caller before the pair
+operation, with FND-CONFIG-176's initializer/fill and one-record setup,
+FND-CONFIG-177/178's pair/split/sentinel/copy regions and the documented
+coordinate, selector and runtime dependencies. Historical guard models are
+removed; FND-CONFIG-163's actual guard exposes DOS stops. No call models or
+entry memory are supplied. The old pair-query bounds remain unchanged.
+
+The actual fixed-region initialization's zero count reaches a concrete pair
+input read. Its origin names the actual fill instruction, and its last-writer
+control names that same instruction. Both hold at every reached occurrence;
+whole verdicts remain undecided. Claiming the fill preparation instruction as
+the last writer is rejected. Omitting the fill or limiting the query to one
+step removes both witnesses. All driver assertions pass. Read anchors use
+full trace events; the initial effects-only inspection omitted reads and was
+not evidence that the count lacked a producer.
+
+This is a real zero-count producer case, not the requested known nonzero
+append-count positive. The actual caller reaches pair, normalizer and later
+copy/sentinel dependencies, while path/step gaps and DOS stops retain incomplete
+coverage. The separate actual one-record root stops at unknown/overwritten
+return provenance after filling its unknown supplied destination, or at the
+DOS guard; it does not reach its count-one store. That is a storage/alias and
+caller-input dependency, not proof the native setup fails. No initialized
+count or memory from one query is imported into another.
+
+Reports/configs remain local under
+GAME_DIR/analysis/reporter-audit/issue5-count91; ignored driver/log:
+artifacts/engine91/actual-count-caller.mjs and actual-count-caller.log.
+Gap34 remains open for real nonzero count/record/pointer and alias admission,
+known append cardinality, complete pair/split/copy/terminator routes and whole
+controls. The adopted guidance explicitly has no entry-memory input; this
+batch used actual producer tracing instead. No new upstream tool defect or
+input requirement was demonstrated. Findings/parity remain unchanged, and no
+original runtime/emulation, fabricated memory, stitched state or larger
+unresolved-query bound was used.
