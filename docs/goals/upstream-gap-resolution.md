@@ -116,8 +116,8 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Stage: Slices; research-side tooling. Original Condition/Scope and issue 5
   consumer scope remain active. No game spec/parity, original run or original
   emulation changed.
-- Last gate: 2026-10-05 Test.ps1 -NoRestore passed for the actual-refresh-producer batch;
-  log: artifacts/engine91/refresh-test.log. An earlier sandbox attempt was blocked
+- Last gate: 2026-10-05 Test.ps1 -NoRestore passed for the callback-writer-census batch;
+  log: artifacts/engine91/writers-test.log. An earlier sandbox attempt was blocked
   by Java temporary-directory access; the unrestricted required gate passed.
   Earlier Invoke-Validation.ps1 passed, including Test.ps1,
   locked restore, Release build and assetless smoke. Log:
@@ -133,7 +133,7 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   Gaps 32/33/34/37 also remain open for their recorded consumer exits.
 - Unfinished: preserve GAME_DIR reporter-audit/issue5-poll, issue5-poll91,
   issue5-root91, issue5-producers91, issue5-initializer91, issue5-brackets91,
-  issue5-recursion91, issue5-count91, issue5-startup91, issue5-modes91, issue5-setup91, issue5-status91, issue5-middle91, issue5-refresh91 and engine91
+  issue5-recursion91, issue5-count91, issue5-startup91, issue5-modes91, issue5-setup91, issue5-status91, issue5-middle91, issue5-refresh91, issue5-writers91 and engine91
   configs/reports, plus ignored artifacts/engine91 drivers/logs.
   Earlier result-origin730 append/pair/path/width/eviction, recursive,
   normalizer and actual-copy controls remain inputs. Guard-order730 is
@@ -146,7 +146,7 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   Gap 36 connected byte/segment producers and fixtures; Gap 40 predecessors;
   FND-CONFIG-191 reference scans; FND-SCRIPT-019 bounded fill; Gap 44 diagnostics.
   Prior requester dispositions remain in AWAITING-REQUESTER-AUDIT.md.
-- Process audit: no confirmed session-owned orphan after the actual-refresh-producer commit;
+- Process audit: no confirmed session-owned orphan after the callback-writer-census commit;
   reusable MSBuild, unrelated work and CUA processes are preserved.
 - Push: user explicitly authorized the validated commits to be pushed to main
   after automatic approval review requested confirmation. Check Git for sync state.
