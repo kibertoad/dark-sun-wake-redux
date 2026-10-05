@@ -181,6 +181,9 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   record getter using documented CS:IP mappings; see
   docs/MENU-CALLER-BRANCH-AUDIT.md. Prefix frame/selection and finite inputs
   remain unknown; omitted-callee and cap controls pass.
+- Gap 33 fresh real cleanup dependencies now reach pointer wrapper, runtime
+  dispatcher and linked helper from the MENU branch. No call models added;
+  unknown pointers and stopped/dropped alternatives retain incomplete coverage.
 - Next: Gap 33 object-loading/copy and caller argument producers, admitted
   finite graph/count/record-length and actual-copy storage/alias inputs.
 - Next: Gap 34 connected caller-root and pre-guard frames now reach the
