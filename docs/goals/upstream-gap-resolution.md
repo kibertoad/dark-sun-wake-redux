@@ -75,6 +75,11 @@ Connected value/segment read origins hold locally, while the earlier source
 word's byte-writer control is undecided under possible aliases. A read origin
 does not establish the writer that supplied it; do not use that membership to
 admit upstream metadata or replace the missing current input evidence.
+The preceding FND-CONFIG-165 wrapper now supplies the dispatcher's reached
+segment-argument byte writers through actual calls. Deeper local origins remain,
+but metadata admission, alias returns and dropped paths still prevent a complete
+caller/native-preservation claim. Retry with its documented preceding callers
+and current pointer producers, never imported dispatcher or heap-entry state.
 
 The separate actual heap-entry scope now reaches exact-size singleton removal
 and the caller's header copy, but linked-removal/split aliases and dropped paths
@@ -246,11 +251,11 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Exact adopted dependencies: runtime 7.0.0, engine 10.1.0, reader 2.1.0 and
   checker 1.1.0. Release integrity and canonical adoption records remain in
   docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
-- Latest batch: connected heap-header read/segment origins versus upstream byte writers in
+- Latest batch: preceding pointer-wrapper connection and dispatcher argument controls in
   docs/TRANSFER-CALLER-PRODUCER-AUDIT.md. Previous capability reconciliation
   aligns AGENTS.md, RUNTIME.md and the research procedure with the delivered harness.
   Full assetless Test.ps1 -NoRestore passed on 2026-10-06; log
-  artifacts/engine101/heap-header-origins-gate.log. Final documentation base comparison
+  artifacts/engine101/heap-pointer-wrapper-gate.log. Final documentation base comparison
   passed. Toolkit issue 251 has the diagnostic follow-up. Release integrity records remain current.
   Toolkit issue 290's capability is delivered and verified; issue 299 tracks a new
   isolated capability limit. Issue 300 requests clearer return-width diagnostics.
@@ -296,6 +301,9 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   argument and storage-identity evidence before joining the header consumer.
   Local read origins now have controls; upstream source-word byte writers remain
   undecided under aliases and need their own current-input evidence.
+  FND-CONFIG-165 now connects the preceding wrapper to the dispatcher argument
+  and deeper witnesses. Next inspect FND-CONFIG-161/162's actual preceding caller
+  routes with these real children, retaining current pointer and metadata limits.
   Expand archive/startup only for a specific missing dependency.
 - Next, Gap 31: formatter output bounds, file-check interrupt/alias conditions,
   other intervening calls and later buffer
