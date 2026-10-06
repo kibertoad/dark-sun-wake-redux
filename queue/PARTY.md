@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-011
+Next ID: Q-PARTY-013
 
 ## Static
 
@@ -39,12 +39,19 @@ Next ID: Q-PARTY-011
   slot? Settles it: the handler the keys 1 to 4 reach in overlay 190, which posts an event for
   the character boxes `0x2C24` to `0x2C27` (FND-COMBAT-025), and the writers of `leader`. Tried:
   the leader buttons, which store the slot at `4C13:0369` (FND-COMBAT-023). Blocks: slice 3.
-- Q-PARTY-010. RULE-PARTY-006: Which code calls the party loader at `DSUN.EXE+0x00068E8D` in
-  overlay 182, does START GAME reach it, and what happens when `CHARSAVE.GFF` or one of its four
-  records is missing? Settles it: the far callers of the routine through overlay 182's
-  resident header, traced back to the START GAME button of SCR-UI-001. Tried: literal searches
-  for the character numbers, the archive name and the tags (FND-PARTY-007, FND-PARTY-008,
-  FND-PARTY-009), which found no caller. Blocks: slice 2.
+- Q-PARTY-011. RULE-PARTY-006: Does the START GAME path reach the loader call, that is, pass
+  the early returns of the overlay 182 routine at `DSUN.EXE+0x000699B7` (the word at `DS:0DAB`,
+  the far calls at `DSUN.EXE+0x00069AA5` and `0x00069AC1`) and find the placed-object count at
+  `DS:264E` equal to 0 at its gate at `DSUN.EXE+0x00069B2D`? Settles it: the writers of
+  `DS:264E` reached between the Start Game branch at `DSUN.EXE+0x0008126E` and the gate,
+  starting with overlay 187's entries `0x2424` and `0x206E` and its stores at
+  `DSUN.EXE+0x000709B1` and `0x000710A0` (FND-PARTY-021), and the producers of `DS:0DAB` and of
+  the two calls' results. Blocks: slice 2.
+- Q-PARTY-012. RULE-PARTY-006, FMT-PARTY-001: What happens on START GAME when `CHARSAVE.GFF` or
+  one of records 40 to 43 is missing? Settles it: the far load routine the loader calls at
+  `DSUN.EXE+0x00068F02` (canonical target `0x0002260A`), read for its result when the archive
+  cannot be opened and when the record is absent, and the loader's handling of that result
+  (FND-PARTY-013, FND-PARTY-021). Blocks: slice 2.
 
 ## Emulated call
 
@@ -60,7 +67,8 @@ None.
   party slots, and not 53 or 33? Settles it: the shipped-party live session, with captures taken
   before any play so that experience and hit points can be compared with records 41 and 53, and
   43 and 33. Tried: the static reading FND-PARTY-013 finds a routine that loads characters 40
-  to 43 but not its caller (Q-PARTY-010), and the earlier captures FND-PARTY-020, taken after
+  to 43, FND-PARTY-021 traces START GAME to it through a gate on the placed-object count
+  (Q-PARTY-011), and the earlier captures FND-PARTY-020, taken after
   play, match 40, 41 or 53, 42, and 33 or 43. Blocks: slice 2.
 
 ## Source

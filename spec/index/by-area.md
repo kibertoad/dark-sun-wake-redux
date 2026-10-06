@@ -305,6 +305,7 @@ Entries by area.
 | [FND-PARTY-018](../findings/FND-PARTY-018.md) | No CHAR header byte or word of records 40 and 42 holds the label positions of their gender, origin, alignment or class | recorded |
 | [FND-PARTY-019](../findings/FND-PARTY-019.md) | No PLYL resource in RESOURCE.GFF holds a character number as a byte or 16-bit word | recorded |
 | [FND-PARTY-020](../findings/FND-PARTY-020.md) | The four View Character captures show a party whose names and scores match CHAR records 40, 41 or 53, 42, and 33 or 43 | recorded |
+| [FND-PARTY-021](../findings/FND-PARTY-021.md) | START GAME reaches the overlay 182 party loader through two overlay 182 routines, gated on an empty placed-object table | recorded |
 | [RULE-PARTY-001](../rules/RULE-PARTY-001.md) | A party has one to four characters | sourced |
 | [RULE-PARTY-002](../rules/RULE-PARTY-002.md) | What a new character may be | sourced |
 | [RULE-PARTY-003](../rules/RULE-PARTY-003.md) | Which psionic disciplines and elemental sphere a new character chooses | sourced |

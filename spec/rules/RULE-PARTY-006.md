@@ -4,7 +4,7 @@ title: START GAME supplies characters 40 to 43 as the party
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-013, FND-PARTY-020, SRC-MANUAL-1994]
+evidence: [FND-PARTY-013, FND-PARTY-021, FND-PARTY-020, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [FMT-PARTY-001, SCR-UI-001]
@@ -18,7 +18,8 @@ the numbers 40, 41, 42 and 43, in that order.
 ## When it runs
 
 When a game begins from START GAME on the start window (SCR-UI-001) [SRC-MANUAL-1994,
-FND-PARTY-020].
+FND-PARTY-020]. The Start Game branch calls the overlay 182 routine that runs the loader only
+while the placed-object count (`DS:264E`) is 0 [FND-PARTY-021].
 
 ## Parameters
 
@@ -60,9 +61,13 @@ None known.
 
 ## Open questions
 
-- Which code runs the loading routine of FND-PARTY-013, and whether START GAME reaches it. The
-  owner's captures of a game started with START GAME show the four characters in this order,
-  but they do not tell 41 from 53 or 43 from 33, so they agree with the routine without proving
-  that it is the one START GAME runs (FND-PARTY-020, Q-PARTY-010, Q-PARTY-001).
-- What START GAME does when `CHARSAVE.GFF` or one of the four records is missing
-  (FND-PARTY-008, Q-PARTY-010).
+- Whether the placed-object count is 0 when START GAME reaches the gate, so that the loader
+  runs. FND-PARTY-021 shows START GAME reaching the loader only through that gate, after overlay
+  187 entries that write the count and three early returns. The owner's captures of a game
+  started with START GAME show the four characters in this order, but they do not tell 41 from 53
+  or 43 from 33 (FND-PARTY-020). The reading of the count's writers on that path would settle it
+  statically (Q-PARTY-011); the shipped-party live session would confirm it (Q-PARTY-001).
+- What START GAME does when `CHARSAVE.GFF` or one of the four records is missing. The loader
+  skips the second load for a slot whose first load returns `0xFFFF` but still places the slot
+  (FND-PARTY-013); what the far load routine returns for a missing archive or record is unread
+  (FND-PARTY-008, Q-PARTY-012).

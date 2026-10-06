@@ -223,7 +223,7 @@ Entries by status.
 
 ## recorded
 
-429 entries.
+430 entries.
 
 | ID | Title |
 |---|---|
@@ -533,6 +533,7 @@ Entries by status.
 | [FND-PARTY-018](../findings/FND-PARTY-018.md) | No CHAR header byte or word of records 40 and 42 holds the label positions of their gender, origin, alignment or class |
 | [FND-PARTY-019](../findings/FND-PARTY-019.md) | No PLYL resource in RESOURCE.GFF holds a character number as a byte or 16-bit word |
 | [FND-PARTY-020](../findings/FND-PARTY-020.md) | The four View Character captures show a party whose names and scores match CHAR records 40, 41 or 53, 42, and 33 or 43 |
+| [FND-PARTY-021](../findings/FND-PARTY-021.md) | START GAME reaches the overlay 182 party loader through two overlay 182 routines, gated on an empty placed-object table |
 | [FND-REGION-001](../findings/FND-REGION-001.md) | Each of the 20 region files holds one region's name, palette, two maps, entity table and tiles |
 | [FND-REGION-002](../findings/FND-REGION-002.md) | Every MAP is 12,544 bytes, each naming a TILE of its own file that is one 16x16 frame |
 | [FND-REGION-003](../findings/FND-REGION-003.md) | Every GMAP is 12,544 bytes whose values are only 0x00, 0x40, 0x80 and 0xC0 |
