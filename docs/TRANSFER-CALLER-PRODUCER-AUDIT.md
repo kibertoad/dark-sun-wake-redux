@@ -1,5 +1,47 @@
 # Transfer caller and coordinate producers, 2026-10-05
 
+## Connected callback reload and unread-identity limit, 2026-10-06
+
+Read-only FND-CONFIG-171/175 and the verified full preceding bracket supply a
+fresh wrapper query with the actual root prologue, real bracket/copy/coordinate
+and shared-pointer bodies. The prior limits, regions and register hypotheses
+are unchanged. All call models and entry-frame presets remain absent. No native
+callback target or memory is supplied. Both callback reload sites are reached;
+each stops because the far pointer's two words remain unknown. Every reached
+gate-to-reload identity occurrence is undecided. Omitting the preceding bracket
+removes both reload witnesses; one step reaches neither. The query also retains
+actual guard-interrupt stops, an out-of-region middle-service call and path-limit
+gaps. Returning bypass paths do not establish whole coverage.
+
+The read terms before and after the bracket use different memory epochs. The
+path includes unknown-offset stack writes, so this report alone cannot show
+that all writes are disjoint. A separate wholly synthetic published-reader
+control isolates a narrower capability limit: two reads of an unmodeled word,
+with a concrete disjoint word store between them, receive different epoch-based
+identities. Both bounded paths return without stops or gaps; the order identity
+control is undecided. Replacing the store with NOPs yields held; an overlapping
+store stays undecided. These outcomes are asserted in the ignored driver.
+Installed engine code increments the global unread-memory epoch on every store.
+
+After all-state duplicate searches, this independently reproduced limitation
+was reported as [toolkit issue 299](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/299). It requests stable observed-unknown byte
+identity only where write disjointness is proved, retaining unknown alias/call
+invalidation. It does not claim that fixing the isolated case proves callback
+targets, native stack disjointness or whole game-case acceptance. No preservation
+workaround, fabricated SP or higher bound is introduced. Retry the wrapper only
+with new producer/alias evidence or a delivered capability addressing this
+specific limit; all five full exits remain open.
+
+Private wrapper queries/reports: UserContent/analysis/reporter-audit/callback-actual-before101.
+Ignored driver/log: artifacts/engine101/callback-actual-before.mjs. Synthetic
+reproduction: artifacts/engine101/unread-disjoint-repro.mjs and its report directory.
+No original execution or emulation, game specification or parity change.
+
+Validation: bootstrap facts, offline rules, hash-verified published source queries,
+synthetic assertions and full assetless `tools/Test.ps1 -NoRestore` passed on
+2026-10-06, including documentation base comparison. Log:
+artifacts/engine101/callback-actual-before-gate.log. Original-dependent tests skip.
+
 ## Full preceding bracket with source-generated record address, 2026-10-06
 
 The actual preceding-bracket prologue from read-only FND-CONFIG-171/175
