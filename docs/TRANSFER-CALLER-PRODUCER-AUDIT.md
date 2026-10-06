@@ -1,5 +1,60 @@
 # Transfer caller and coordinate producers, 2026-10-05
 
+## Release entry correction and prologue controls, 2026-10-06
+
+The earlier direct-release reports treated an inventory-adjacent window start
+as the caller entry. A bounded source review now shows that this window starts
+before the caller's prologue, in bytes that must not be admitted as its executed
+prefix. Consequently, the historical reports below establish only coverage and
+ordering from their supplied declarations. Their descriptions of a verified
+actual producer entry and complete caller coverage are withdrawn. Their raw
+reports remain retained; their graph completion is not native entry evidence.
+The previous connected DS trace and its earlier-loop interpretation are also
+superseded as acceptance of the caller's real prefix.
+
+A separate same-segment encoded-transfer search finds a candidate targeting
+the prologue. A published call-order check confirms that call's instruction
+ownership and usable ordering within a bounded local source scope. Its
+one-instruction control leaves only an unconfirmed candidate. This supplies
+an independently checked incoming target, not the native parent entry, its
+reachability or its argument admission. The relocation census has no positive
+for this target and explicitly excludes near and computed transfers; it proves
+no absence.
+
+With the preceding bytes excluded and the corresponding code coordinates
+adjusted, the published callee query still completes the declared graph.
+The corrected prologue trace keeps all earlier traversal limits and register
+hypotheses. The checkpoint immediately after DS selection holds at reached
+occurrences. A wrong-DS assertion is rejected and one step reaches no
+checkpoint. Whole controls remain undecided; no native field memory, return
+value or preservation model was supplied.
+
+All later destination-field and release-argument checkpoints remain unreached.
+Some retained paths return through a bypass. Other paths stop on straight-line
+prefix step limits or repeat the unresolved reference traversal. Thus these
+reports do not establish field history, admitted reference-chain length,
+segment preservation across later calls or a successful native transfer.
+The next dependencies are actual caller arguments, reference/flag producers
+and justified prefix coverage, rather than an invented state or larger limit.
+
+Private source contexts, incoming searches, configs and reports are retained
+in UserContent/analysis/reporter-audit/release-prefix101. Ignored drivers/logs
+are artifacts/engine101/release-prefix-reading.py, release-entry-reading.py,
+release-prefix-controls.mjs and release-prefix-ds-controls.mjs, with their logs.
+This corrects tooling acceptance only; no game spec, parity status or other
+goal's research entries change. All five full connected exits remain open.
+
+Validation: bootstrap facts, published query assertions and the full assetless
+`tools/Test.ps1 -NoRestore` gate passed on 2026-10-06. Log:
+artifacts/engine101/release-prefix-gate.log. Original-dependent tests skipped;
+the final documentation check passed including base comparison. Earlier sandbox
+runs reported a missing merge base because Git refused repository ownership;
+a scoped read-only trust override finds the existing merge base. The error
+classification follow-up is recorded on
+[toolkit issue 251](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/251#issuecomment-6012884447)
+after duplicate review. No original game or emulated function was run for this
+correction.
+
 ## Direct release producer graph acceptance, 2026-10-06
 
 The direct-release field producer now has complete source-local callee coverage
