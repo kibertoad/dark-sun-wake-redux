@@ -1,5 +1,55 @@
 # Transfer caller and coordinate producers, 2026-10-05
 
+## Full bracket with source-generated record address, 2026-10-06
+
+The bracket's own literal record-address preparation supplies a fresh input
+route beyond the earlier generic-copy and getter-suffix queries. A published
+trace now starts at FND-CONFIG-171's actual producing-bracket prologue and
+includes FND-CONFIG-175's real copy, coordinate and getter bodies. It reuses
+the older bracket profile's unchanged step/path/total limits and register
+hypotheses. All call models and its former late-entry frame declaration are
+removed. Actual instructions form and unwind the frame; no suffix state is
+imported.
+
+A retained path reaches the real copy primitive, coordinate helpers, getter,
+both pointer-word stores and the bracket's normal far return. The getter-origin
+and four-byte last-writer controls hold locally, as does DS restoration at
+that return. Retained-report assertions verify the primitive's exact contiguous
+138-byte source and destination intervals, each word width, and the returning
+path's DI value against the explicit entry hypothesis. These controls establish
+the connected conditional copy/store/return path at this entry, not native
+record capacity or actual register admission.
+
+Removing the copy primitive leaves its call unresolved and removes every
+getter/store witness. One step also reaches no requested checkpoint. Other
+full-bracket paths stop at the real runtime guard's unmodeled DOS interrupt,
+including a path that already reached the primitive. Thus no whole verdict or
+completeWithinModel result is promoted. Interrupt effects and eventual runtime
+outcomes remain external conditions, not assumed harmless returns.
+
+This supersedes the omitted-frame limitation for the producing bracket under
+these source-generated argument and register hypotheses. The earlier generic
+unknown-pointer and separate getter-suffix reports retain their own limits;
+they are not stitched into this result. It does not connect the bracket's
+current record to the stopped transfer parent, resolve callback targets or
+establish initialization and later shared-pointer writers. The next dependency
+is that actual incoming callback/parent route and its current-record producers,
+with guard-path qualification retained.
+
+Private configs and reports are in
+UserContent/analysis/reporter-audit/full-bracket-record101. Ignored drivers and
+logs are artifacts/engine101/full-bracket-record-controls.mjs and
+full-bracket-footprint.mjs, with their logs. No native field memory,
+preservation model, joined windows or higher unresolved-query limits were
+supplied. No game spec, parity status or other goal's entries change; all five
+full connected exits remain open.
+
+Validation: bootstrap facts, published full-bracket and footprint assertions
+and the full assetless `tools/Test.ps1 -NoRestore` gate passed on 2026-10-06.
+Log: artifacts/engine101/full-bracket-record-gate.log. Final documentation checks
+include base comparison; original-dependent tests skipped with GAME_DIR absent.
+No original game or emulated function was run.
+
 ## Getter-to-stored-pointer suffix and bracket ordering, 2026-10-06
 
 Read-only FND-CONFIG-171/175 provide the actual getter and the bracket helper's
