@@ -66,6 +66,13 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 
 ## Dead ends
 
+The separate actual heap-entry scope now reaches exact-size singleton removal
+and the caller's header copy, but linked-removal/split aliases and dropped paths
+remain. Its root return checks width/balance only; unknown header writes lose
+saved-DS provenance. Do not import that witness into outer acquisition or infer
+root-target preservation. Issue 300 has the new synthetic scope distinction.
+Retry with +8/root/link and alias producers, not another budget or frozen state.
+
 The allocation chain now includes FND-CONFIG-211/212/167's actual lower heap
 and request bodies. Split header witnesses stop at unknown saved-target aliases;
 acquisition/growth stop at a callee-produced near-to-far frame conversion.
@@ -229,22 +236,24 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Exact adopted dependencies: runtime 7.0.0, engine 10.1.0, reader 2.1.0 and
   checker 1.1.0. Release integrity and canonical adoption records remain in
   docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
-- Latest batch: lower heap header provenance and callee return-frame conversion in
+- Latest batch: exact-size heap entry/removal and root-return validation scope in
   docs/TRANSFER-CALLER-PRODUCER-AUDIT.md. Previous capability reconciliation
   aligns AGENTS.md, RUNTIME.md and the research procedure with the delivered harness.
   Full assetless Test.ps1 -NoRestore passed on 2026-10-06; log
-  artifacts/engine101/lower-heap-gate.log. Final documentation base comparison
+  artifacts/engine101/exact-heap-gate.log. Final documentation base comparison
   passed. Toolkit issue 251 has the diagnostic follow-up. Release integrity records remain current.
   Toolkit issue 290's capability is delivered and verified; issue 299 tracks a new
   isolated capability limit. Issue 300 requests clearer return-width diagnostics.
   No unfinished tracked
   files. Synthetic capture readiness is fixed locally; template issue 73 has
   recovery evidence. The production capture helper is unchanged. Private new reports are in
-  UserContent/analysis/reporter-audit/lower-heap101; prior allocation reports remain
+  UserContent/analysis/reporter-audit/exact-heap101; prior lower reports remain
+  in lower-heap101 and allocation reports
   in allocation-chain101, FONT entry reports in font-request101 and release reports
   in normalizer-release101. New toolkit issue 302 isolates frame-conversion support;
-  issue 300 has the related diagnostic distinction.
-  Toolkit issues 301/299 remain open with no upstream replies checked this session.
+  issue 300 has the related diagnostic and root-versus-nested scope distinctions.
+  Toolkit issues 301/302 remain open with no upstream replies checked this session.
+  Issue 299's unread-identity limit remains separate.
   The setter census remains
   a bounded locator, not complete native writer coverage.
 - Keep the distinction between delivered shared requests, pending connected
@@ -269,6 +278,9 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   support. Require admitted reader counts, heap/header aliases, bounds, direction
   and runtime effects before joining acquisition state. The alternate header
   origin remains undecided, not a rejected negative.
+  The separate documented heap-entry scope now reaches exact singleton removal
+  and the caller's header-copy witnesses; require +8, free-root/link and alias
+  producers before treating it as native storage or an outer-route result.
   Expand archive/startup only for a specific missing dependency.
 - Next, Gap 31: formatter output bounds, file-check interrupt/alias conditions,
   other intervening calls and later buffer
