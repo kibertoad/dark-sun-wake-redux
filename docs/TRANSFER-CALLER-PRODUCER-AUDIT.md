@@ -507,6 +507,45 @@ positive-service path is accepted as completion. Next is current DS and the
 specific field-to-consumer preservation/order, alongside slot/transfer aliases.
 No game specification or parity status changes. All five full exits remain open.
 
+## Release callers and the fixed-root admission dependency, 2026-10-06
+
+The actual caller literal does not establish that its referenced fixed slot
+still has FND-CONFIG-193's initialized flags or fields. FND-CONFIG-194's release
+can mutate flags, cursor and later segment fields. The signed cleanup-wrapper
+guard in FND-CONFIG-184 protects fixed roots on that wrapper route; treating it
+as protection across all release callers would leave a caller-coverage gap.
+
+A fresh published-reader relocation census retains release references outside
+that wrapper as well as its known call. A second, function-boundary-independent
+byte search covers encoded near calls/jumps in the documented graphics segment
+view with word-offset wrap. Its known slot-scan call is a positive encoding
+control. Both searches retain computed, stored, alias and ownership limitations;
+neither supplies a universal absence result or native handle values.
+
+Bounded source contexts align near-release candidates with instructions.
+Published call-order checks confirm the direct near-release calls in one helper
+and retain usable local ordering. Those calls enter the release service directly,
+with no cleanup wrapper interposed. Their necessary edges retain caller-specific
+conditions, including sentinel comparisons; they are not the wrapper's signed
+handle gate or proof that the released arguments are admitted. The source query
+still has undeclared child effects. Capped controls lose confirmed ownership.
+
+Other aligned near candidates stay outside verified entry paths in their current
+windows. Retain them as candidates; full entry/mapping/dispatch readings are
+needed before counting their ordering. Relocated candidates outside the already
+verified wrapper likewise still need caller-path and argument-producer reading.
+The new evidence rules out relying on wrapper coverage alone; it does not prove
+that a fixed root is actually released or that every direct caller permits one.
+
+Private census, contexts and published reports are under
+GAME_DIR/analysis/reporter-audit/issue5-transfer-release-callers101. Ignored
+drivers/logs are artifacts/engine101/transfer-release-callers.mjs,
+transfer-release-near-windows.py and transfer-release-near-order.mjs. Next is
+the confirmed direct callers' handle producers and remaining entry/alias forms,
+alongside the other slot/transfer writers. No native memory seed, joined windows,
+old-trace bound increase or game spec/parity change. All five full exits remain
+open; initialized root fields are not supplied to the consumer as native memory.
+
 ## Actual caller literal through the consumer into its request, 2026-10-06
 
 Bounded source contexts for the resident consumer parents retain intervening
