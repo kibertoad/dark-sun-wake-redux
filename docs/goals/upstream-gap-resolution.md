@@ -66,6 +66,13 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 
 ## Dead ends
 
+The connected parent trace includes its real preceding helper but stops at
+unknown object-write/saved-return aliasing or the existing reference repeat
+bound. Its static graph retains an optional unresolved far callback. Retry only
+with current shared-pointer/record producers and callback target/effect evidence;
+do not model the helper as returning harmlessly, import a separate setter state,
+stitch windows or raise bounds. Details: TRANSFER-CALLER-PRODUCER-AUDIT.
+
 Release caller coverage includes the recorded relocation/near census and
 one conditional local source scope with bounded field-producer and own DS-placement
 controls. Its inventory-window start is withdrawn as a native entry; use the
@@ -157,20 +164,23 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Exact adopted dependencies: runtime 7.0.0, engine 10.1.0, reader 2.1.0 and
   checker 1.1.0. Release integrity and canonical adoption records remain in
   docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
-- Latest batch: release entry correction and prologue controls in
+- Latest batch: connected parent helper and argument barrier controls in
   docs/TRANSFER-CALLER-PRODUCER-AUDIT.md.
   Full assetless Test.ps1 -NoRestore passed on 2026-10-06; log
-  artifacts/engine101/release-prefix-gate.log. Final documentation base comparison
+  artifacts/engine101/release-parent-gate.log. Final documentation base comparison
   passed. Toolkit issue 251 has the diagnostic follow-up. Release integrity records remain current.
   Toolkit issue 290's capability is delivered and verified. No unfinished tracked
   files. Private connected reports are in
-  UserContent/analysis/reporter-audit/release-prefix101. The preliminary
+  UserContent/analysis/reporter-audit/release-arguments101. The preliminary
   shared-pointer census remains local and is not a completed connected control.
 - Keep the distinction between delivered shared requests, pending connected
   acceptance and original-game unknowns. The audit changes no completion exit.
   Original hardware output, external results and input admission remain qualified.
-- Next, Gap 37: native caller entry/argument admission, reference/flag producers
-  and justified prefix coverage before later release DS checkpoints; then
+- Next, Gap 37: connect current shared-pointer/record producers from the read-only
+  FND-CONFIG-175/206/207 inputs to the parent helper, and resolve the optional
+  callback's full far target/effects. Then native caller argument admission,
+  reference/flag producers and prefix coverage before later release DS checkpoints;
+  then
   current DS and field-to-consumer preservation/order, plus
   FND-CONFIG-194 child-return/field preservation, other direct callers and slot/transfer aliases needed
   for a whole control. Source-local hardware placement, mask-prefix
