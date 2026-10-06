@@ -1,3 +1,4 @@
+#Requires -Version 7.0
 [CmdletBinding()]
 param([string] $TestFilter, [ValidateRange(0, 1000000)][int] $MinimumExpectedTests = 0, [switch] $NoRestore)
 $ErrorActionPreference = 'Stop'
