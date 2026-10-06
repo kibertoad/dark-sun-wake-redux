@@ -50,10 +50,12 @@ Next ID: Q-PARTY-013
   (FND-PARTY-022); their callees and the path from program start to the start window were not
   followed. Blocks: slice 2.
 - Q-PARTY-012. RULE-PARTY-006, FMT-PARTY-001: What happens on START GAME when `CHARSAVE.GFF` or
-  one of records 40 to 43 is missing? Settles it: the far load routine the loader calls at
-  `DSUN.EXE+0x00068F02` (canonical target `0x0002260A`), read for its result when the archive
-  cannot be opened and when the record is absent, and the loader's handling of that result
-  (FND-PARTY-013, FND-PARTY-021). Blocks: slice 2.
+  one of records 40 to 43 is missing? Settles it: the resource-system routines `38FF:05B5` and
+  `38FF:04AB` that the loader `2D40:000A` calls, read for which archives they search and what they
+  return, or whether they stop the program, when the archive is absent and when the record is
+  absent. Tried: `2D40:000A` returns `0xFFFF` when either lookup returns nonzero, and the party
+  loader then skips the slot's second load but still places it (FND-PARTY-023, FND-PARTY-013).
+  Blocks: slice 2.
 
 ## Emulated call
 

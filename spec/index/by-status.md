@@ -223,7 +223,7 @@ Entries by status.
 
 ## recorded
 
-431 entries.
+432 entries.
 
 | ID | Title |
 |---|---|
@@ -535,6 +535,7 @@ Entries by status.
 | [FND-PARTY-020](../findings/FND-PARTY-020.md) | The four View Character captures show a party whose names and scores match CHAR records 40, 41 or 53, 42, and 33 or 43 |
 | [FND-PARTY-021](../findings/FND-PARTY-021.md) | START GAME reaches the overlay 182 party loader through two overlay 182 routines, gated on an empty placed-object table |
 | [FND-PARTY-022](../findings/FND-PARTY-022.md) | The placed-object count starts at 0, and eight direct stores in five routines change it |
+| [FND-PARTY-023](../findings/FND-PARTY-023.md) | The resource-to-slot loader 2D40:000A returns 0xFFFF when either resource lookup it makes fails |
 | [FND-REGION-001](../findings/FND-REGION-001.md) | Each of the 20 region files holds one region's name, palette, two maps, entity table and tiles |
 | [FND-REGION-002](../findings/FND-REGION-002.md) | Every MAP is 12,544 bytes, each naming a TILE of its own file that is one 16x16 frame |
 | [FND-REGION-003](../findings/FND-REGION-003.md) | Every GMAP is 12,544 bytes whose values are only 0x00, 0x40, 0x80 and 0xC0 |

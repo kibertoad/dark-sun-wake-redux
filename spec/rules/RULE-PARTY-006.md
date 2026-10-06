@@ -70,5 +70,6 @@ None known.
   (Q-PARTY-011), and the shipped-party live session would confirm it (Q-PARTY-001).
 - What START GAME does when `CHARSAVE.GFF` or one of the four records is missing. The loader
   skips the second load for a slot whose first load returns `0xFFFF` but still places the slot
-  (FND-PARTY-013); what the far load routine returns for a missing archive or record is unread
-  (FND-PARTY-008, Q-PARTY-012).
+  (FND-PARTY-013), and the far load routine returns `0xFFFF` when its resource lookup fails
+  (FND-PARTY-023); what the lookup does for a missing archive or record is unread (FND-PARTY-008,
+  Q-PARTY-012).

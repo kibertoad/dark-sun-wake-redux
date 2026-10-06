@@ -307,6 +307,7 @@ Entries by area.
 | [FND-PARTY-020](../findings/FND-PARTY-020.md) | The four View Character captures show a party whose names and scores match CHAR records 40, 41 or 53, 42, and 33 or 43 | recorded |
 | [FND-PARTY-021](../findings/FND-PARTY-021.md) | START GAME reaches the overlay 182 party loader through two overlay 182 routines, gated on an empty placed-object table | recorded |
 | [FND-PARTY-022](../findings/FND-PARTY-022.md) | The placed-object count starts at 0, and eight direct stores in five routines change it | recorded |
+| [FND-PARTY-023](../findings/FND-PARTY-023.md) | The resource-to-slot loader 2D40:000A returns 0xFFFF when either resource lookup it makes fails | recorded |
 | [RULE-PARTY-001](../rules/RULE-PARTY-001.md) | A party has one to four characters | sourced |
 | [RULE-PARTY-002](../rules/RULE-PARTY-002.md) | What a new character may be | sourced |
 | [RULE-PARTY-003](../rules/RULE-PARTY-003.md) | Which psionic disciplines and elemental sphere a new character chooses | sourced |
