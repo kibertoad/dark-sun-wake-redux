@@ -69,9 +69,12 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 Getter/store suffix controls retain both word origins and all four byte writers,
 but omit the preceding guard/copy and incoming frame. Their final return stops;
 the static wrapper ordering does not supply callback targets or preserved state.
-Do not import the suffix into the setter or parent query. Retry the full bracket
-only with new actual incoming storage/frame/callback producers, respecting the
-existing copy-alias dead ends below. Details: TRANSFER-CALLER-PRODUCER-AUDIT.
+Do not import the suffix into the setter or parent query. The subsequent full
+bracket query returns conditionally with source-generated record arguments and
+the real copy, coordinate and getter/store bodies. Guard interrupt paths still
+stop; generic unknown-pointer copy limits remain. Whole acceptance needs actual
+incoming callback/parent and current-record producers, not guard-return models
+or higher caps. Details: TRANSFER-CALLER-PRODUCER-AUDIT.
 
 Shared setter source-local argument controls distinguish literal record addresses
 from the stored-pointer input. Their post-setter continuations remain undeclared;
@@ -177,20 +180,20 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Exact adopted dependencies: runtime 7.0.0, engine 10.1.0, reader 2.1.0 and
   checker 1.1.0. Release integrity and canonical adoption records remain in
   docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
-- Latest batch: getter/store suffix and static bracket-order controls in
+- Latest batch: full bracket source-generated record, copy/store and return controls in
   docs/TRANSFER-CALLER-PRODUCER-AUDIT.md.
   Full assetless Test.ps1 -NoRestore passed on 2026-10-06; log
-  artifacts/engine101/stored-pointer-producer-gate.log. Final documentation base comparison
+  artifacts/engine101/full-bracket-record-gate.log. Final documentation base comparison
   passed. Toolkit issue 251 has the diagnostic follow-up. Release integrity records remain current.
   Toolkit issue 290's capability is delivered and verified. No unfinished tracked
   files. Private connected reports are in
-  UserContent/analysis/reporter-audit/stored-pointer-producer101. The setter census remains
+  UserContent/analysis/reporter-audit/full-bracket-record101. The setter census remains
   a bounded locator, not complete native writer coverage.
 - Keep the distinction between delivered shared requests, pending connected
   acceptance and original-game unknowns. The audit changes no completion exit.
   Original hardware output, external results and input admission remain qualified.
-- Next, Gap 37: actual incoming storage/frame/callback producers for the full
-  bracket from FND-CONFIG-171/175 before revisiting its copy barrier. Retain the
+- Next, Gap 37: actual incoming callback/parent route and current-record producers
+  for the full bracket from FND-CONFIG-171/175, retaining guard qualification. Keep the
   separate FND-CONFIG-206/207 producer inputs and later replacements; then connect
   the current record to the parent helper and resolve the optional
   callback's full far target/effects. Then native caller argument admission,
