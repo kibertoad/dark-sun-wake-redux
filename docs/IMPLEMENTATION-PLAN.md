@@ -93,7 +93,7 @@ owner's decisions, and `docs/HANDOVER.md` says where the last session stopped.
 | Latest version | 1.1, the version `SRC-README-1.1` gives the installed game data. No later official patch is recorded. |
 | Editions available for validation | `BLD-GOG-EN-1.1`; `docs/SOURCE-EDITIONS.md` holds the detail. |
 | Existing research relied on | `SRC-MANUAL-1994`, `SRC-GAMEFAQS-81038`, `SRC-DSUN-MUSIC-79B6927`, `SRC-LIBGFF-839B11D`, `SRC-OPENDS-5C6CBD7`, `SRC-README-1.1`, `SRC-YOUTUBE-FLOMVOSHEOM` |
-| Stage | Slices. Intake and Runtime access have ended. The earlier Survey exit is recorded in `docs/BOOTSTRAP-CHECKLIST.md`; its refreshed complete-file-denominator re-audit remains open as `Q-EXE-003`. |
+| Stage | Slices. Intake, Runtime access and Survey have ended; their exits are recorded in `docs/BOOTSTRAP-CHECKLIST.md`. |
 
 ## Scope
 

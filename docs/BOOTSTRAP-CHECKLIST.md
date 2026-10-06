@@ -14,8 +14,8 @@ and `docs/CUSTOMIZATION.md` documents every configuration knob.
 - [x] Fill in `docs/IMPLEMENTATION-PLAN.md`.
 - [x] Runtime access: fill in `docs/RUNTIME.md` with the `runtime-access`
       skill, answering every capability for the analysis build.
-- [ ] Survey: reconcile a repeatable complete installation/media listing with
-      the manifest and individually reasoned Other files (`Q-EXE-003`). Give
+- [x] Survey: reconcile a repeatable complete installation/media listing with
+      the manifest and individually reasoned Other files (BLD-GOG-EN-1.1). Give
       every file the manifest lists as `data` a format entry,
       export a function inventory of each file the analysis reads to
       `coverage/<build ID>/<manifest path>.tsv`, add a screen entry for every
