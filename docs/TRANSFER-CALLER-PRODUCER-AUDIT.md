@@ -1386,3 +1386,29 @@ Private reports: UserContent/analysis/reporter-audit/heap-header-candidates101.
 Ignored drivers: artifacts/engine101/heap-header-candidates.mjs,
 heap-header-candidate-controls.mjs and heap-header-dispatcher-controls.mjs.
 Validation is recorded in artifacts/engine101/heap-header-candidates-gate.log.
+
+## Candidate read origins versus upstream writers, 2026-10-06
+
+The connected dispatcher scope now carries explicit value and segment origin
+controls. At reached candidate DS writes the source-read origin holds; at
+candidate ES writes both retained source-read origins hold. Both segment-origin
+controls retain the dispatcher's incoming argument read. These are local dataflow
+witnesses with unknown values, not admitted native pointer or metadata inputs.
+The earlier source word's byte-writer control remains undecided for both bytes:
+the report records possible aliasing writes. A later destination write does not
+establish an earlier source writer, even when a read belongs to its value origin.
+
+Omitting the candidate helper or stopping after one step loses every anchor.
+All whole verdicts remain undecided at unchanged bounds, with the previous
+alias-return and path-limit stops. This adds a qualified connected dependency
+record, not a joined header-consumer result. Current input/segment and upstream
+field-writer evidence is still required; no entry memory, new return model,
+original run, game specification or parity change was introduced.
+
+Private configs/reports remain in
+UserContent/analysis/reporter-audit/heap-header-candidates101, named
+dispatcher-origins, origin-one-step and origin-omit-helper. The ignored driver
+is artifacts/engine101/heap-header-origin-controls.mjs. Installed origin and
+lastWriter semantics behave as documented; no new shared defect is claimed.
+Toolkit issues 301/302 were checked and remain open without replies.
+Canonical validation log: artifacts/engine101/heap-header-origins-gate.log.
