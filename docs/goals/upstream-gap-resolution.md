@@ -66,6 +66,12 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 
 ## Dead ends
 
+Release caller coverage now includes the recorded relocation/near census and
+one verified direct-caller scope. Other near candidates need entry/mapping
+evidence. Do not infer fixed-root preservation from the signed cleanup wrapper:
+the direct callers' argument producers and effects remain unverified. Retry
+with those dependencies, not repeated censuses or higher unresolved trace caps.
+
 The actual caller literal reaches consumer and request parameter anchors, with
 value/origin and omission/wrong-value/cap controls recorded in the transfer audit.
 Whole routes still stop at undeclared parent children or existing step/visit
@@ -145,11 +151,11 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Exact adopted dependencies: runtime 7.0.0, engine 10.1.0, reader 2.1.0 and
   checker 1.1.0. Release integrity and canonical adoption records remain in
   docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
-- Latest batch: actual caller literal-to-consumer/request producer controls
+- Latest batch: direct graphics-release caller controls
   in docs/TRANSFER-CALLER-PRODUCER-AUDIT.md.
   Full Test.ps1 -NoRestore passed on 2026-10-06; log
-  artifacts/engine101/consumer-literal-test.log. Connected value/origin,
-  omitted-push, wrong-value and step-cap controls passed. Release
+  artifacts/engine101/release-callers-test.log. Relocation/near positive controls,
+  verified direct-call ordering and instruction-cap controls passed. Release
   integrity records remain current. Toolkit issue 290's capability is
   delivered and verified. No unfinished tracked files. A private preliminary
   shared-pointer incoming-call census revalidates FND-CONFIG-207; it is not a
@@ -158,7 +164,8 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   acceptance and original-game unknowns. The audit changes no completion exit.
   Original hardware output, external results and input admission remain qualified.
 - Next, Gap 37: current DS and field-to-consumer preservation/order, plus
-  slot/transfer aliases needed for a whole control. Source-local hardware placement, mask-prefix
+  FND-CONFIG-194 direct-caller handle producers and slot/transfer aliases needed
+  for a whole control. Source-local hardware placement, mask-prefix
   provenance and the connected caller/request/transfer/cleanup graph have records. Keep native
   input, later-writer and hardware output limits; the initializer remains
   separate. Expand archive/startup only for a specific missing dependency.
