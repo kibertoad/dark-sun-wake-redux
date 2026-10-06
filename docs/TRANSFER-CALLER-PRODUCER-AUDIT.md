@@ -769,6 +769,43 @@ driver/assertions and log are artifacts/engine101/transfer-caller-connected-grap
 and transfer-caller-connected-graph.log. All five full exits remain open.
 No game specification, parity status or other research goal changes.
 
+## Connected release caller DS checkpoints, 2026-10-06
+
+The adopted engine 10.1.0 trace now uses the complete direct release producer
+graph recorded above, including the adjacent helper. It starts at the same
+verified caller entry and retains the previous step, path, total-step and visit
+limits. Checkpoint relations ask whether current DS equals the caller's code
+segment at every recorded destination-field write and release-argument read.
+The existing root register hypotheses remain explicit; no native field memory,
+callee-preservation model or new entry state was supplied.
+
+Every checkpoint has zero occurrences and an undecided whole verdict. Retained
+routes stop in the caller's earlier loops on the existing step or visit limits,
+before any destination-field writer. The graph's static completeness therefore
+does not provide a dynamic field-preservation witness. Omitting the request
+body produces the same stops and zero occurrences: this is a nondiscriminating
+control, not evidence that request effects are absent or irrelevant. The
+one-step control also reaches no checkpoint. All reports remain incomplete.
+
+This changes the next dependency to the actual earlier loop inputs and progress,
+before attempting request-return field history. Do not repeat this whole-root
+query with larger bounds, substitute a later entry for the missing prefix, or
+infer storage identity from source-local segment placement. No game finding,
+spec status, parity row or native behavior claim changes; all five exits remain
+open. Private configs, reports and summaries are in the ignored local store
+UserContent/analysis/reporter-audit/release-connected-ds101. The ignored driver
+and log are artifacts/engine101/transfer-release-connected-ds.mjs and
+transfer-release-connected-ds.log.
+
+Validation: bootstrap facts, the bounded trace assertions and the full assetless
+`tools/Test.ps1 -NoRestore` gate passed on 2026-10-06. Gate log:
+artifacts/engine101/release-connected-ds-gate.log. Original-dependent emulator
+tests skipped with GAME_DIR absent. The documentation check still skips base
+comparison because HEAD has no merge base with origin/main. Earlier sandbox
+attempts failed on protected Temp/build paths; an in-checkout Temp workaround
+invalidated the non-Git scratch control and was removed. A capture-worker
+timeout did not recur in the final full gate.
+
 ## PR 293 released mask bounds, 2026-10-06
 
 Engine 10.1.0 delivers toolkit issue 290 through PR 293. The exact released
