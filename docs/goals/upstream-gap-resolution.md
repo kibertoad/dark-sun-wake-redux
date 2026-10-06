@@ -66,6 +66,12 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 
 ## Dead ends
 
+The FND-CONFIG-207 caller supplies all twelve argument-byte writers at the
+FND-CONFIG-208 wrapper entry, but its ENTER frame instruction is unsupported
+in engine 10.1.0. Deeper signature, optional-output and shared-reader controls
+are unreached. Toolkit issue 301 has paired synthetic frame controls. Retry
+after supported semantics are delivered, not by skipping or modeling the prologue.
+
 FND-CONFIG-174's earlier root returns were bypass-only. Adding the actual
 FND-CONFIG-194 callee now retains connected release/parent returns, but compaction
 repeat/path stops, unknown indirect targets and runtime DOS guards remain.
@@ -214,17 +220,20 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Exact adopted dependencies: runtime 7.0.0, engine 10.1.0, reader 2.1.0 and
   checker 1.1.0. Release integrity and canonical adoption records remain in
   docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
-- Latest batch: connected normalizer-release returns and cancelled-origin controls in
-  docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
+- Latest batch: FONT request entry handoff and isolated ENTER frame limit in
+  docs/TRANSFER-CALLER-PRODUCER-AUDIT.md. Previous capability reconciliation
+  aligns AGENTS.md, RUNTIME.md and the research procedure with the delivered harness.
   Full assetless Test.ps1 -NoRestore passed on 2026-10-06; log
-  artifacts/engine101/normalizer-release-gate.log. Final documentation base comparison
+  artifacts/engine101/font-request-gate.log. Final documentation base comparison
   passed. Toolkit issue 251 has the diagnostic follow-up. Release integrity records remain current.
   Toolkit issue 290's capability is delivered and verified; issue 299 tracks a new
   isolated capability limit. Issue 300 requests clearer return-width diagnostics.
   No unfinished tracked
   files. Synthetic capture readiness is fixed locally; template issue 73 has
-  recovery evidence. The production capture helper is unchanged. Private connected reports are in
-  UserContent/analysis/reporter-audit/normalizer-release101. The setter census remains
+  recovery evidence. The production capture helper is unchanged. Private new reports are in
+  UserContent/analysis/reporter-audit/font-request101; prior connected release reports
+  remain in normalizer-release101. Toolkit issue 301 tracks unsupported ENTER semantics.
+  The setter census remains
   a bounded locator, not complete native writer coverage.
 - Keep the distinction between delivered shared requests, pending connected
   acceptance and original-game unknowns. The audit changes no completion exit.
@@ -241,7 +250,9 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   for a whole control. Source-local hardware placement, mask-prefix
   provenance and the connected caller/request/transfer/cleanup graph have records. Keep native
   input, later-writer and hardware output limits; the initializer remains
-  separate. Expand archive/startup only for a specific missing dependency.
+  separate. FND-CONFIG-207/208's request handoff now has local controls; its
+  deeper forwarding awaits delivered ENTER semantics, without a prologue bypass.
+  Expand archive/startup only for a specific missing dependency.
 - Next, Gap 31: formatter output bounds, file-check interrupt/alias conditions,
   other intervening calls and later buffer
   writers and the full read-to-consumer
@@ -255,7 +266,9 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   occurrences or synthetic success as whole completion.
 - Restrictions: no original runtime/DOSBox, invented field memory, stitched
   trace windows or increased bounds on unresolved queries. The resident harness
-  cannot execute FBOV overlays. Use static source/cross-reference readings to
+  admits no-argument far roots and cannot execute FBOV overlays; raw memory or
+  argument seeding needs supported named layout/parameter bindings.
+  Use static source/cross-reference readings to
   identify a specific connected dependency, then bounded traces/emulated calls.
 - Function inventory sizes remain body-byte counts, not range endpoints. Use
   explicitly verified source spans for queries and retain contested ownership.
