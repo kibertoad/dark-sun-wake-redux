@@ -674,20 +674,7 @@ acceptance and canonical gates; no vendored competing implementation remains.
 
 ## Locked package tooling bootstrap
 
-Tooling outcome: install exact npm dependencies from the repository lock and the
-engine/Capstone wheel hashes from Python requirements. The default Python
-environment lives under artifacts/evidence-python (Scripts/python.exe on Windows,
-bin/python elsewhere); EVIDENCE_PYTHON can select an explicitly supplied
-interpreter. Normal validation restores those dependencies; NoRestore checks
-existing dependencies and never installs or falls back to network. Standalone
-wrappers select that same project environment and give an actionable setup
-command when it is missing. Existing runtime/source-specific Ghidra wrappers
-combine the packaged shared scripts with retained project-specific scripts.
-Acceptance: locked clean normal restore, offline rerun, missing/mismatched engine
-and prepared-protocol controls, wrapper routing and configured source/control
-regressions pass; published archives contain the required modules/scripts.
-No gameplay, source manifest or rule snapshot refresh. Exit: canonical gates and
-reviewable template migration; no copied competing shared implementation remains.
+Tooling outcome: install exact npm dependencies from the repository lock and the engine/Capstone wheel hashes from Python requirements. The default Python environment lives under artifacts/evidence-python (Scripts/python.exe on Windows, bin/python elsewhere); EVIDENCE_PYTHON can select an explicitly supplied interpreter. Normal validation restores those dependencies; NoRestore checks existing dependencies and never installs or falls back to network. Standalone wrappers select that same project environment and give an actionable setup command when it is missing. Existing runtime/source-specific Ghidra wrappers combine the packaged shared scripts with retained project-specific scripts. Acceptance: locked clean normal restore, offline rerun, missing/mismatched engine and prepared-protocol controls, wrapper routing and configured source/control regressions pass; published archives contain the required modules/scripts. No gameplay, source manifest or rule snapshot refresh. Exit: canonical gates and reviewable template migration; no copied competing shared implementation remains.
 
 ## Ordered effect paths and restoration witnesses
 
@@ -998,3 +985,7 @@ loop limits, allocator effects, capacities and original input identity remain
 explicit. GAME_DIR profiles/reports stay local and skip missing licensed input.
 Exit: bounded installed controls, retained whole-fill gaps, Test.ps1, acceptance
 record and handover; no spec, parity, gameplay or native-runtime changes.
+
+## Synthetic capture fixture readiness
+
+Tooling batch, 2026-10-06. Outcome: the Windows validation gate verifies its synthetic capture source is ready before its single capture assertion. Evidence: repeated positive-control failures recorded in template issue 73; actual decorated client width differs from the requested small fixture width, and offscreen-first presentation does not prove patterned pixel readiness. Acceptance: use exact-sized undecorated synthetic forms; independently verify known source pixels within a bounded readiness wait before moving offscreen; use independently initialized patterned and uniform forms. Preserve positive pixel comparison, uniform rejection, invalid-handle rejection and no rejected output. Do not retry capture assertions, change the production helper or control an original-game window. Tests: direct synthetic capture, deliberate uniform positive, worker timeout/recovery, canonical assetless gate. Exit: all these controls pass and fixture setup failure gives bounded diagnostics. No owner questions; no game behavior or content contract changes.

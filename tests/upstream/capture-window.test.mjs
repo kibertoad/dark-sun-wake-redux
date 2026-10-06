@@ -32,6 +32,7 @@ function Write-CaptureDiagnostics($Failure) {
   $details.clientWidth=$form.ClientSize.Width
   $details.clientHeight=$form.ClientSize.Height
   $details.uniform=$form.Uniform
+  $details.readyVerified=$form.ReadyVerified
   $details.paintCount=$form.PaintCount
   $details.printCount=$form.PrintCount
   $details.printClientCount=$form.PrintClientCount
@@ -50,11 +51,12 @@ if ($errors.Count) { throw 'Capture helper did not parse' }
 $function=$ast.Find({param($n) $n -is [Management.Automation.Language.FunctionDefinitionAst] -and $n.Name -eq 'Save-DirectScreenFrame'}, $true)
 Invoke-Expression $function.Extent.Text
 Add-Type -ReferencedAssemblies System.Windows.Forms,System.Drawing -TypeDefinition @'
-using System; using System.Drawing; using System.Windows.Forms;
+using System; using System.Drawing; using System.Windows.Forms; using System.Runtime.InteropServices;
 public class CaptureCanvas : Form {
- public bool Uniform;
+ [DllImport("dwmapi.dll")] public static extern int DwmFlush();
+ public bool Uniform, ReadyVerified;
  public int PaintCount, PrintCount, PrintClientCount;
- public CaptureCanvas(){ClientSize=new Size(32,16);StartPosition=FormStartPosition.Manual;Location=new Point(-10000,-10000);}
+ public CaptureCanvas(){FormBorderStyle=FormBorderStyle.None;AutoScaleMode=AutoScaleMode.None;ShowInTaskbar=false;ClientSize=new Size(160,96);StartPosition=FormStartPosition.Manual;Location=new Point(0,0);}
  protected override bool ShowWithoutActivation { get { return true; } }
  protected override void OnPaint(PaintEventArgs e) { PaintCount++; e.Graphics.Clear(Color.Red); if(!Uniform) e.Graphics.FillRectangle(Brushes.Lime,16,0,16,16); }
  protected override void WndProc(ref Message m) {
@@ -67,11 +69,36 @@ public class CaptureCanvas : Form {
  }
 }
 '@
+function Wait-FixtureReady($Canvas) {
+ $stage='fixture-readiness'
+ $deadline=[Diagnostics.Stopwatch]::StartNew()
+ do {
+  [Windows.Forms.Application]::DoEvents(); $Canvas.Refresh()
+  if($Canvas.ClientSize.Width -ne 160 -or $Canvas.ClientSize.Height -ne 96) {throw 'Synthetic fixture client size differs from 160x96'}
+  $probe=[Drawing.Bitmap]::new(160,96)
+  try {
+   $Canvas.DrawToBitmap($probe,[Drawing.Rectangle]::new(0,0,160,96))
+   $right=if($Canvas.Uniform){[Drawing.Color]::Red}else{[Drawing.Color]::Lime}
+   $ready=$probe.GetPixel(4,8).ToArgb() -eq [Drawing.Color]::Red.ToArgb() -and $probe.GetPixel(24,8).ToArgb() -eq $right.ToArgb()
+  } finally {$probe.Dispose()}
+  if($ready){
+   if([CaptureCanvas]::DwmFlush() -ne 0){throw 'Synthetic compositor readiness flush failed'}
+   $Canvas.ReadyVerified=$true
+   return
+  }
+  Start-Sleep -Milliseconds 25
+ } while($deadline.ElapsedMilliseconds -lt 2000)
+ throw 'Synthetic source pixels were not ready within 2000ms'
+}
 $form=[CaptureCanvas]::new()
+ $form.Uniform=[bool]$ForceUniformPositive
  $stage='show'
  $form.Show(); $form.Refresh()
+ $stage='fixture-readiness'
+ Wait-FixtureReady $form
+ $form.Location=[Drawing.Point]::new(-10000,-10000)
  $handle=$form.Handle
- $bounds=[pscustomobject]@{Width=32;Height=16;X=0;Y=0}
+ $bounds=[pscustomobject]@{Width=160;Height=96;X=0;Y=0}
  $path=Join-Path $Output 'valid.png'
  $form.Uniform=[bool]$ForceUniformPositive
  $stage='positive-capture'
@@ -82,8 +109,12 @@ $form=[CaptureCanvas]::new()
   if ($bitmap.GetPixel(4,8).ToArgb() -ne [Drawing.Color]::Red.ToArgb() -or
       $bitmap.GetPixel(24,8).ToArgb() -ne [Drawing.Color]::Lime.ToArgb()) {throw 'Captured pixels are not from the target renderer'}
  } finally {$bitmap.Dispose()}
- $form.Uniform=$true
- $form.Refresh()
+ $form.Dispose()
+ $form=[CaptureCanvas]::new(); $form.Uniform=$true
+ $stage='blank-show'; $form.Show(); $form.Refresh()
+ $stage='blank-readiness'; Wait-FixtureReady $form
+ $form.Location=[Drawing.Point]::new(-10000,-10000)
+ $handle=$form.Handle
  $stage='blank-rejection'
  try {Save-DirectScreenFrame $handle $bounds (Join-Path $Output 'blank.png');throw 'Blank result accepted'}
  catch {if($_.Exception.Message -notmatch 'uniform frame'){throw}}
@@ -118,6 +149,9 @@ $form=[CaptureCanvas]::new()
   assert.ok(diagnostics.clientWidth >= 32, 'client contains the sampled width');
   assert.ok(diagnostics.clientHeight >= 16, 'client contains the sampled height');
   assert.equal(diagnostics.uniform, true);
+  assert.equal(diagnostics.readyVerified, true);
+  assert.equal(diagnostics.clientWidth, 160);
+  assert.equal(diagnostics.clientHeight, 96);
   assert.ok(Number.isInteger(diagnostics.printCount) && diagnostics.printCount >= 0);
   assert.ok(Number.isInteger(diagnostics.printClientCount) && diagnostics.printClientCount >= 0);
   assert.equal(existsSync(join(rejectedOutput, 'valid.png')), false);

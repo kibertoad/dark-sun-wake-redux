@@ -796,3 +796,17 @@ canonical batch gate: artifacts/emulator/canonical-validation.log.
 The installed test-only emulator matches every package file in the official
 registry-hash-verified wheel (artifacts/emulator/unicorn-integrity.log). Final
 Test.ps1 after offset-wrap controls also passes (artifacts/emulator/final-test.log).
+
+Synthetic fixture readiness validation, 2026-10-06: the fixture uses a 160 by
+96 undecorated client with autoscaling disabled, verifies its two known source
+pixels within a 2000ms readiness loop, then synchronizes outstanding application
+surface updates with [DwmFlush](https://learn.microsoft.com/en-us/windows/win32/api/dwmapi/nf-dwmapi-dwmflush)
+before moving offscreen. The single capture assertion is unchanged in purpose;
+positive pixels, a fresh uniform form, invalid handle and absent rejected output
+remain strict. Deliberately uniform positive input proves rejection after source
+readiness, with actual-size and readiness diagnostics. The test subprocess retains
+its outer timeout. This establishes synthetic fixture readiness, not freshness
+or parity of an original-game capture. Production capture code is unchanged.
+Focused controls: artifacts/engine101/capture-readiness-targeted3.log.Full assetless `tools/Test.ps1 -NoRestore` passed after the readiness fix; log:
+artifacts/engine101/capture-readiness-full-gate4.log. Documentation base comparison
+passed; original-dependent tests skipped.
