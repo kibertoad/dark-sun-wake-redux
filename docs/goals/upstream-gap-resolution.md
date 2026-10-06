@@ -66,6 +66,13 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 
 ## Dead ends
 
+The fully read preceding bracket reaches both callback reload sites in the
+actual wrapper, but identities remain undecided, targets unresolved and guard,
+middle-service and path-limit stops explicit. Toolkit issue 299 separately tracks
+the synthetic disjoint-write unread-identity limit. Retry only with new target/
+alias producers or delivered relevant tooling; do not invent SP/target memory,
+assume preservation or raise bounds. Details: TRANSFER-CALLER-PRODUCER-AUDIT.
+
 Getter/store suffix controls retain both word origins and all four byte writers,
 but omit the preceding guard/copy and incoming frame. Their final return stops;
 the static wrapper ordering does not supply callback targets or preserved state.
@@ -182,14 +189,15 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Exact adopted dependencies: runtime 7.0.0, engine 10.1.0, reader 2.1.0 and
   checker 1.1.0. Release integrity and canonical adoption records remain in
   docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
-- Latest batch: full preceding bracket reverse copy, setter and return controls in
+- Latest batch: connected callback reload controls and synthetic identity-limit report in
   docs/TRANSFER-CALLER-PRODUCER-AUDIT.md.
   Full assetless Test.ps1 -NoRestore passed on 2026-10-06; log
-  artifacts/engine101/full-before-bracket-gate.log. Final documentation base comparison
+  artifacts/engine101/callback-actual-before-gate.log. Final documentation base comparison
   passed. Toolkit issue 251 has the diagnostic follow-up. Release integrity records remain current.
-  Toolkit issue 290's capability is delivered and verified. No unfinished tracked
+  Toolkit issue 290's capability is delivered and verified; issue 299 tracks a new
+  isolated capability limit. No unfinished tracked
   files. Private connected reports are in
-  UserContent/analysis/reporter-audit/full-before-bracket101. The setter census remains
+  UserContent/analysis/reporter-audit/callback-actual-before101. The setter census remains
   a bounded locator, not complete native writer coverage.
 - Keep the distinction between delivered shared requests, pending connected
   acceptance and original-game unknowns. The audit changes no completion exit.
