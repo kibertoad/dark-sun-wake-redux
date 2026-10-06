@@ -21,7 +21,8 @@ When the player presses `Q` during a party member's turn in combat (RULE-COMBAT-
 
 ## Parameters
 
-`x` and `y`, the place of the character's figure on the screen.
+- `x`: the horizontal place of the character's figure on the screen.
+- `y`: the vertical place of the character's figure on the screen.
 
 ## Inputs
 

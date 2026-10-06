@@ -25,9 +25,9 @@ known.
 
 ## Parameters
 
-`frame`, an FMT-IMAGE-002, then `pixels` and `drawn`, two lists of `frame.width * frame.height`
-`UINT8` values that the caller makes with every element 0. Pixel `(x, y)` of the frame is element
-`y * frame.width + x` of each.
+- `frame: FMT-IMAGE-002`: the frame to decode.
+- `pixels: UINT8[frame.width * frame.height]`: the palette index of each pixel, which the caller makes with every element 0. Pixel `(x, y)` of the frame is element `y * frame.width + x`.
+- `drawn: UINT8[frame.width * frame.height]`: whether the frame draws each pixel, made and indexed the same way as `pixels`.
 
 ## Inputs
 
