@@ -981,3 +981,41 @@ canonical gate are recorded in VALIDATION.md. This verifies harness delivery
 and source-local agreement only. It does not promote a game entry, establish
 caller/input admission or join startup to a later transfer. All five consumer
 exits remain open. Raw parameter-memory seeding waits for supported layouts.
+
+## Gap 33 actual normalizing root and bypass coverage, 2026-10-06
+
+Read-only FND-CONFIG-174 and the declared real service regions from the prior
+middle-helper query support a fresh trace at the normalizing helper's actual
+prologue. The existing middle-query limits and register hypotheses are unchanged.
+The far-return root width is explicit; all call models and entry-frame presets
+are removed. Graph, field and argument memory remain unknown.
+
+Every retained root return is zero, with the helper's own final clear included
+as its producer. Both source-origin and value controls hold at every reached
+return. A claim that these returns are FFFF is rejected; one step reaches no
+return witness. Crucially, retained returning paths contain no nested calls:
+they are bypass coverage only. The driver asserts that distinction rather than
+crediting the real service regions as completed transitive result-discard paths.
+
+Continuing paths still stop at undeclared callees, an unresolved indirect target
+or the actual runtime guard's unmodeled DOS interrupt; path-limit gaps remain.
+Whole controls stay undecided and completeWithinModel is false. This supplies
+actual root bypass controls, not complete caller/leaf provenance, successful
+service operation, finite graph admission or unconditional zero termination.
+The next query needs continuing-branch field/argument producers and the specific
+unread callees, not higher bounds, fabricated inputs or harmless-return models.
+No game specification, parity status or other goal changes; all five full exits
+remain open. No new shared-tool defect is inferred from these stops.
+
+Private queries/reports: UserContent/analysis/reporter-audit/normalizer-root101.
+Ignored drivers/logs: artifacts/engine101/normalizer-root.mjs and
+normalizer-root-controls.mjs. Bootstrap facts, pinned-rule verification,
+hash-verified published queries and positive/rejected/cap assertions passed.
+No original game or emulated function ran.
+
+The earlier full gate failed on synthetic capture readiness; its targeted rerun
+also failed. The separately committed fixture fix (8ccbb6a) restores the gate
+without weakening capture assertions or changing source-query inputs. Full
+assetless `tools/Test.ps1 -NoRestore` passed on 2026-10-06, including documentation
+base comparison. Log: artifacts/engine101/normalizer-root-recovered-gate.log.
+Source controls passed again; original-dependent tests skipped.
