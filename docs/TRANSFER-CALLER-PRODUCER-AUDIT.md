@@ -507,6 +507,46 @@ positive-service path is accepted as completion. Next is current DS and the
 specific field-to-consumer preservation/order, alongside slot/transfer aliases.
 No game specification or parity status changes. All five full exits remain open.
 
+## Direct release argument field producers, 2026-10-06
+
+The confirmed direct near-release caller reloads word arguments from its shared
+fields. Private bounded source readings now pair those loads with local writers:
+the helper copies actual request or allocator AX returns after stack cleanup,
+and a conditional field also has an earlier sentinel assignment. No instruction
+between each identified returning call and its AX store changes that value.
+FND-CONFIG-191 and FND-CONFIG-183 retain the respective child failure and
+accepted-return contracts; a stored return is not an accepted-handle claim.
+
+Published operand-candidate queries confirm each recorded word writer and
+argument reload as an entry-owned use. The instruction-cap control loses field
+ownership. Separate published call-order queries confirm the request/allocator
+producer calls with usable local ordering. They retain the unmodeled other
+children and callee-return assumptions; this is not a complete dynamic origin
+through the intervening helper calls.
+
+An independent complete local CFG checks the helper's own DS assignment:
+selection from CS dominates every recorded writer and argument load, and the
+own restoration cannot reach those accesses again. This supplies the local
+segment-selection dependency rather than silently equating DS-relative offsets.
+It does not prove that intervening callees preserve DS or saved stack bytes,
+or exclude dynamic copies/aliases and other writers. All original contexts and
+the word-field map remain private.
+
+The direct release arguments therefore have bounded source-local producer
+coverage beyond an unexplained field read. They still need successful/free-slot
+and reference admission, field preservation and complete mutator coverage before
+they can establish the fixed roots' native state. The conditional sentinel
+writer and returning failures remain distinct from successful temporary handles;
+do not assume every recorded field contains a valid non-root slot.
+
+Private reports/readings remain under issue5-transfer-release-callers101.
+Ignored drivers and logs: artifacts/engine101/transfer-release-producer-reading.py,
+transfer-release-producer-placement.py and transfer-release-producer-controls.mjs.
+No native memory seeding, register substitution for these field values, joined
+windows or increased old traversal bounds. Next is the actual child return/
+field-preservation chain and other release/slot mutators. All five full exits
+remain open; no game spec, parity status or other research goal changes.
+
 ## Release callers and the fixed-root admission dependency, 2026-10-06
 
 The actual caller literal does not establish that its referenced fixed slot
