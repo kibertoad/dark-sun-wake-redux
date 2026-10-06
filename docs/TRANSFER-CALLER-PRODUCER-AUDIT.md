@@ -1349,3 +1349,40 @@ omission/step negatives, and synthetic root/nested scope controls pass.
 Full assetless Test.ps1 -NoRestore passed on 2026-10-06; log
 artifacts/engine101/exact-heap-gate.log. Final documentation checking includes
 the base comparison. Original-dependent tests skipped without GAME_DIR.
+
+## Heap header candidate ownership and dispatcher witnesses, 2026-10-06
+
+Read-only FND-CONFIG-167/210/211 and the committed resident helper inventory
+bound this tooling search. Inventory sizes are body-byte counts. The declared
+helper family contains owned word-write candidates using displacement +8
+through DS and ES, and the known consumer word read. An overlapping unprefixed
+decoding is rejected as a use. These are locator results, not proof of header
+meaning, storage identity or a complete native writer census. Computed and
+implicit accesses, outside callees and runtime segment admission remain outside
+this finite search.
+
+Querying +9 loses the known anchors. Omitting the candidate helper loses its
+writes while retaining the consumer read. An instruction cap makes the candidate
+boundaries unresolved and uncounted. The report's partialSearch flag remains
+false because the linear byte scan is complete; CFG gaps and ownership must
+also be inspected. This is a qualification of the documented report scope,
+not a shared-tool defect.
+
+A separate connected trace starts at FND-CONFIG-167's actual pointer-dispatcher
+prologue and includes its real declared helpers and bounds dependency. Both
+candidate write controls hold at reached occurrences. Wrong DS writer and wrong
+unprefixed overlap writer controls are rejected; omitting the helper or allowing
+one step reaches neither anchor. Whole controls remain undecided. Unknown
+saved-return aliases and path limits stop the positive query; the omission
+control also retains an unmodeled interrupt. No bounds were increased, no input
+memory was seeded and no harmless-return model was supplied.
+
+These witnesses do not join the writes to the later consumed header. Current
+DS/ES, pointer arguments, free-root/link inputs, aliases and caller admission
+remain unproved. All five complete gap exits remain open. No game specification,
+parity status or implementation changed; no original game function ran.
+
+Private reports: UserContent/analysis/reporter-audit/heap-header-candidates101.
+Ignored drivers: artifacts/engine101/heap-header-candidates.mjs,
+heap-header-candidate-controls.mjs and heap-header-dispatcher-controls.mjs.
+Validation is recorded in artifacts/engine101/heap-header-candidates-gate.log.
