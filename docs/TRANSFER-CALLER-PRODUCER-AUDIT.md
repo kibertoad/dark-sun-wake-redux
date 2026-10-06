@@ -507,6 +507,46 @@ positive-service path is accepted as completion. Next is current DS and the
 specific field-to-consumer preservation/order, alongside slot/transfer aliases.
 No game specification or parity status changes. All five full exits remain open.
 
+## Actual caller literal through the consumer into its request, 2026-10-06
+
+Bounded source contexts for the resident consumer parents retain intervening
+helpers and no own DS assignment in those linear readings. That does not prove
+DS preservation: callee effects, physical segment identity and copy aliases are
+still dependencies. The parents' published consumer-call ownership remains the
+input to this follow-up, not proof that their native routes execute.
+
+One owned caller pushes a literal immediately before the consumer. A fresh
+connected trace begins at that actual producer instruction, follows the actual
+consumer prologue/parameter read and reaches its request call. Both the value
+and original-instruction origin controls hold at reached request-call anchors.
+The same trace then follows the actual free-slot scan and request parameter
+load; its reached parameter anchors retain that value and the original caller
+producer. This is an instruction-produced argument, not a register hypothesis,
+invented argument memory or a join of independently executed windows.
+
+Removing the literal push rejects the caller-producer origin claim. A wrong
+literal-value assertion is rejected. The one-step control reaches none of the
+consumer/request anchors. Whole verdicts remain undecided: later routes retain
+undeclared parent children, existing step/visit stops and unknown reference or
+slot state. Reached caller/parameter occurrences are not full admitted input
+coverage or proof of a successful request/transfer.
+
+The request's subsequent reference-index formation and metadata gates remain
+those recorded by FND-CONFIG-191. The new producer controls do not establish
+the selected slot, root flags, finite reference chains, native DS field history,
+capacity or hardware output. Earlier input/frame hypotheses remain listed in
+the query; no actual ancestor state is supplied by the narrow producer entry.
+No unresolved traversal limit was increased.
+
+Private connected configs, reports, source readings and negative rejections are
+under GAME_DIR/analysis/reporter-audit/issue5-transfer-consumer-producer101.
+The parent readings remain in issue5-transfer-field-incoming101. Ignored
+drivers/assertions are artifacts/engine101/transfer-consumer-parent-effects.py,
+transfer-request-reference-reading.py and transfer-consumer-literal-producer.mjs,
+with the latter's log. Next is admitted slot/reference and segment/alias evidence,
+plus effects between the destination producer and this consumer. All five full
+exits remain open; no game spec, parity status or other research goal changes.
+
 ## Callback-root dispatch to the destination producer, 2026-10-06
 
 The previous branch-local positive now has a published callback-root ordering
