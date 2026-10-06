@@ -85,6 +85,11 @@ handoff into that wrapper. The current pointer field has no upstream byte-writer
 evidence in these queries; fallback-setter calls, alias returns and path gaps
 remain. Retry with current field producers and the specific real setter/poll
 dependencies, not argument-width witnesses alone or increased unresolved bounds.
+The actual setter/poll extension now retains registration order and equal
+full-width values before stopping at the poll's INT 33h or guard's INT 21h.
+Dropped setter branches and aliases remain. These stops need explicit justified
+external-effect evidence before continuation; do not infer native driver results,
+callback dispatch or later field preservation from the reached stores.
 
 The separate actual heap-entry scope now reaches exact-size singleton removal
 and the caller's header copy, but linked-removal/split aliases and dropped paths
@@ -256,11 +261,11 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Exact adopted dependencies: runtime 7.0.0, engine 10.1.0, reader 2.1.0 and
   checker 1.1.0. Release integrity and canonical adoption records remain in
   docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
-- Latest batch: earlier caller prologues and full-width pointer argument controls in
+- Latest batch: earlier caller actual registration order/value and poll boundaries in
   docs/TRANSFER-CALLER-PRODUCER-AUDIT.md. Previous capability reconciliation
   aligns AGENTS.md, RUNTIME.md and the research procedure with the delivered harness.
   Full assetless Test.ps1 -NoRestore passed on 2026-10-06; log
-  artifacts/engine101/heap-earlier-callers-gate.log. Final documentation base comparison
+  artifacts/engine101/heap-caller-registration-gate.log. Final documentation base comparison
   passed. Toolkit issue 251 has the diagnostic follow-up. Release integrity records remain current.
   Toolkit issue 290's capability is delivered and verified; issue 299 tracks a new
   isolated capability limit. Issue 300 requests clearer return-width diagnostics.
@@ -308,8 +313,10 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   undecided under aliases and need their own current-input evidence.
   FND-CONFIG-161/162 now connect earlier caller prologues through FND-CONFIG-165
   to the dispatcher with full-width argument controls. Require current pointer
-  field writers and actual fallback-setter/poll bodies before later continuations;
-  preserve metadata admission, alias and external-result limits.
+  field writers before later continuations. Actual fallback setters and the poll
+  are now included, with order/value controls and explicit INT21/INT33 stops;
+  require justified service effects and current inputs before continuing them.
+  Preserve metadata admission, alias and external-result limits.
   Expand archive/startup only for a specific missing dependency.
 - Next, Gap 31: formatter output bounds, file-check interrupt/alias conditions,
   other intervening calls and later buffer
