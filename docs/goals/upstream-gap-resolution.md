@@ -152,21 +152,20 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Exact adopted dependencies: runtime 7.0.0, engine 10.1.0, reader 2.1.0 and
   checker 1.1.0. Release integrity and canonical adoption records remain in
   docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
-- Latest batch: complete direct release producer callee graph and omission controls
-  in docs/TRANSFER-CALLER-PRODUCER-AUDIT.md.
-  Full Test.ps1 -NoRestore passed on 2026-10-06; log
-  artifacts/engine101/release-connected-wrap-test.log. Source graph completion,
-  omitted-helper/request negatives and cap controls passed. Release
-  integrity records remain current. Toolkit issue 290's capability is
-  delivered and verified. No unfinished tracked files. A private preliminary
-  shared-pointer incoming-call census revalidates FND-CONFIG-207; it is not a
-  completed additional connected control or a new native claim. The planned
-  return-to-field trace was not completed; only the finished source graph
-  acceptance is recorded in this batch.
+- Latest batch: bounded connected release caller DS checkpoint acceptance in
+  docs/TRANSFER-CALLER-PRODUCER-AUDIT.md.
+  Full assetless Test.ps1 -NoRestore passed on 2026-10-06; log
+  artifacts/engine101/release-connected-ds-gate.log. Documentation base comparison
+  remains skipped without a merge base. Release integrity records remain current.
+  Toolkit issue 290's capability is delivered and verified. No unfinished tracked
+  files. Private connected reports are in
+  UserContent/analysis/reporter-audit/release-connected-ds101. The preliminary
+  shared-pointer census remains local and is not a completed connected control.
 - Keep the distinction between delivered shared requests, pending connected
   acceptance and original-game unknowns. The audit changes no completion exit.
   Original hardware output, external results and input admission remain qualified.
-- Next, Gap 37: current DS and field-to-consumer preservation/order, plus
+- Next, Gap 37: caller-prefix loop inputs/progress needed before the connected
+  release DS checkpoints can be reached; then current DS and field-to-consumer preservation/order, plus
   FND-CONFIG-194 child-return/field preservation, other direct callers and slot/transfer aliases needed
   for a whole control. Source-local hardware placement, mask-prefix
   provenance and the connected caller/request/transfer/cleanup graph have records. Keep native
