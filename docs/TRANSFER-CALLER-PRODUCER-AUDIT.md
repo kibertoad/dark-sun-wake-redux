@@ -1509,3 +1509,29 @@ reversed-order, omission and one-step controls. Ignored drivers:
 artifacts/engine101/heap-caller-setter-poll.mjs and
 heap-caller-registration-controls.mjs. Canonical validation log:
 artifacts/engine101/heap-caller-registration-gate.log.
+
+## Current pointer field locator scope, 2026-10-06
+
+The two read-only FND-CONFIG-161/162 caller bodies now have a bounded operand
+ownership search for each documented pointer displacement and its upper word.
+The owned double-word reads and paired word stores retain their widths and DS
+access classification. Apparent GS-prefixed word uses overlapping the valid
+instructions are rejected and uncounted. Cap, neighboring-offset and omitted-
+caller controls lose the known anchors.
+
+These are the documented consumers and returned-pointer stores, not newly
+established allocation producers. Outgoing unmapped edges leave partialSearch
+true; neither a complete native writer census nor producer absence is claimed.
+Computed addresses, aliases, intervening callees and segment identity remain
+outside the locator. Existing spec references to the field do not supply its
+upstream allocation/storage history. Further native producer acceptance requires
+new evidence outside these caller bodies; repeating them cannot settle it.
+
+Private reports remain in
+UserContent/analysis/reporter-audit/heap-header-candidates101, named
+current-pointer with displacement suffixes and pointer-cap, pointer-wrong-offset
+and pointer-omit-earlier controls. Ignored drivers:
+artifacts/engine101/current-pointer-candidates.mjs and
+current-pointer-candidate-controls.mjs. No game spec/parity change or original
+or emulated game execution. All five complete exits remain open.
+Canonical validation log: artifacts/engine101/current-pointer-locator-gate.log.
