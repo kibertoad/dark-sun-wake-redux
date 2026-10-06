@@ -493,3 +493,42 @@ positive relations and false/scopeless/unmodeled/cap negatives passed.
 Full assetless `tools/Test.ps1 -NoRestore` passed on 2026-10-06, including
 documentation base comparison. Log: artifacts/engine101/file-state-snapshot-gate.log.
 Original-dependent tests skip with GAME_DIR absent.
+
+## Actual file-check root to service argument handoff, 2026-10-06
+
+The resolved overlay file-check entry supplies a fresh connected source query
+from its real prologue into the actual resident file-status service. All prior
+poll step/path/total/visit limits remain unchanged, with explicit DS/SS
+hypotheses and no call/interrupt model, entry-frame preset or supplied memory.
+The source's own local allocation and argument formation are executed by the
+published symbolic reader; no original function or game is run.
+
+At each reached service-entry checkpoint, all ten argument bytes retain their
+actual individual writers: the four-byte filename forwarded from the caller's
+argument storage, the locally formed stack-buffer offset, its SS word and the
+zero mode word. The stack-buffer offset's own address-formation origin holds
+locally. Naming the mode push as a buffer-segment byte writer is rejected.
+Omitting the resident service removes both checkpoint controls; one step reaches
+neither. These controls verify the connected local argument layout and producer
+route, not filename contents, unchanged root arguments, valid storage capacity
+or successful service output.
+
+The full query stops at the real getter's unmodeled DOS interrupt on the reached
+service routes. It also retains a path-limit gap and a separate root-return
+frame/balance stop. Neither is suppressed or described as native failure.
+Every whole control remains undecided; no higher bound or preservation model
+is introduced. The prior conditional queried-state snapshot query remains
+separate and is not imported into this caller state. Service/alias outcomes,
+formatter bounds, later filename writes and original caller admission remain
+required for the complete handoff. No game specification or parity changes;
+all five full connected exits remain open.
+
+Private configs/reports: UserContent/analysis/reporter-audit/file-check-handoff101.
+Ignored drivers/logs: artifacts/engine101/file-check-handoff.mjs and
+file-check-handoff-controls.mjs. Bootstrap facts, offline pinned rules,
+hash-verified source queries, positive byte-writer/origin and false/omitted/cap
+controls passed.
+
+Full assetless `tools/Test.ps1 -NoRestore` passed on 2026-10-06, including
+documentation base comparison. Log: artifacts/engine101/file-check-handoff-gate.log.
+Original-dependent tests skip with GAME_DIR absent.
