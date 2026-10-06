@@ -1248,3 +1248,55 @@ omission and step negatives pass. The full assetless Test.ps1 -NoRestore
 passed on 2026-10-06; log artifacts/engine101/allocation-chain-gate.log.
 Final documentation checking includes the base comparison. Original-dependent
 emulator tests skipped without GAME_DIR; no original call was performed.
+
+## Lower heap headers and callee-produced return frames, 2026-10-06
+
+Read-only FND-CONFIG-211/212/167 supply the previously unread lower heap
+helpers, request arithmetic, bounds comparator and runtime resize dependency.
+Reader 2.1.0 / engine 10.1.0 add their actual bounded bodies to the connected
+FND-CONFIG-209/210 query without models, entry memory, frame presets or larger
+budgets. First-acquisition and growth paths reach the real memory-request
+body and its segment-shift helper. CL four and high input word zero hold
+there; the wrong shift count sixteen is rejected. Omitting that helper loses
+those anchors while retaining the separate split-header occurrences.
+
+Tail-split paths retain the paragraph-count origin in their own extent
+write, current DS equality with the computed allocated segment, the old
+block-segment origin in their predecessor field, and the allocated-segment
+origin in the following block's backlink. Omitting the split body loses
+those occurrences while retaining request/shift entry controls. One step
+reaches none. These are source-local dataflow witnesses, not admitted heap
+metadata, valid block storage or a returned allocation. Their unknown writes
+invalidate saved-target provenance; the split's return remains stopped.
+
+The alternate header-count producer is not present in the observed producer
+list, but its origin control remains undecided at reached writes because
+input history is unknown. It is never held and is not a rejected negative.
+All whole verdicts remain undecided; path and string-count/budget gaps remain.
+The exact-removal body is declared without a retained entry witness. No
+declaration supplies the missing current links, bounds, direction or capacity.
+
+Acquisition/growth stop at the shift helper's real far return after its own
+near-to-far frame conversion. Wholly synthetic controls isolate this engine
+limit: a callee-produced frame stops, whereas an ordinary near return and a
+caller-built far frame return. A corrupted-segment conversion stays stopped.
+Independent Unicorn 2.1.4 execution of only the synthetic converted frame
+returns to its sentinel with balanced stack consumption. No original code
+or game function runs in that comparison. After an all-state duplicate audit,
+toolkit issue 302 requests actual target/stack provenance support without
+relaxing width, alias or corrupted-target rejection:
+https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/302.
+
+Private original readings/configs/reports remain in
+UserContent/analysis/reporter-audit/lower-heap101. Ignored drivers/logs are
+artifacts/engine101/lower-heap-controls.mjs, lower-heap-reading.py,
+near-far-reframe-repro.mjs and near-far-cpu-control.py. No game spec or parity
+changes. All five whole exits remain open; the next request continuation
+requires delivered frame-conversion support, with heap/input aliases still
+separate from that tooling limit.
+
+Validation: bootstrap facts, connected source controls, omission/cap controls,
+rejected shift count, qualified alternate origin and synthetic frame/CPU
+controls pass. Full assetless Test.ps1 -NoRestore passed on 2026-10-06; log
+artifacts/engine101/lower-heap-gate.log. Final documentation checking includes
+the base comparison. Original-dependent tests skipped without GAME_DIR.
