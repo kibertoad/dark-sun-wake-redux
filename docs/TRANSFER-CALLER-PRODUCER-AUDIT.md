@@ -1,5 +1,41 @@
 # Transfer caller and coordinate producers, 2026-10-05
 
+## Full preceding bracket with source-generated record address, 2026-10-06
+
+The actual preceding-bracket prologue from read-only FND-CONFIG-171/175
+provides a new connected route through its own fixed-record argument, real
+buffer and coordinate helpers, copy primitive and shared-CS pointer setter.
+The producing-bracket query's limits, register hypotheses and declared regions
+are unchanged; only the entry and requested controls change. No call model,
+entry-frame preset, imported state or concrete pointer memory is supplied.
+
+A retained path returns through all these real bodies. Both setter-word origin
+controls hold locally from the bracket's own stored-pointer load. A false claim
+that the copy primitive produces that pointer is rejected. Removing the copy
+primitive stops at its unresolved call before either setter witness; one step
+reaches neither witness. Report assertions verify the returning path's exact
+contiguous 138-byte copy from the supplied fixed record to the internal buffer,
+with two-byte operations and the explicit root DS hypothesis. The real root
+return retains DS and DI against their entry hypotheses; the DS relation holds
+locally. This proves neither record contents/capacity nor native register and
+stored-pointer admission.
+
+Other paths stop at the actual guard's unmodeled DOS interrupt, including one
+that reaches the primitive. Every whole verdict remains undecided and
+completeWithinModel remains false. This connects the preceding bracket's
+conditional local route without joining either bracket to an actual callback
+or the stopped transfer parent. Native callback targets/effects, current-record
+producers, later replacements and guard outcomes remain dependencies.
+
+Private queries/reports: UserContent/analysis/reporter-audit/full-before-bracket101.
+Ignored drivers/logs: artifacts/engine101/full-before-bracket.mjs and
+full-before-footprint.mjs. No original game or emulated function ran; no game
+specification, parity status or other goal changed. All five full exits remain
+open. Bootstrap facts, offline pinned-rule verification, published positive,
+false-origin, omission and cap controls passed. Full assetless `tools/Test.ps1 -NoRestore` passed on 2026-10-06, including
+documentation base comparison. Log: artifacts/engine101/full-before-bracket-gate.log.
+Recorded source length and XXH3 identity also match; original-dependent tests skip.
+
 ## Full bracket with source-generated record address, 2026-10-06
 
 The bracket's own literal record-address preparation supplies a fresh input
