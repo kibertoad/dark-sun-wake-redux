@@ -160,3 +160,43 @@ revised to the current versions and consumer exits.
 The library update and its compatibility validation are complete. The five
 connected-evidence exits in project issue 5 remain consumer work; no new
 undelivered toolkit requirement was demonstrated by these reruns.
+
+## Merged identity, return diagnostics and ENTER adoption, 2026-10-06
+
+Engine 11.0.0 is adopted with reader 2.1.0 unchanged. Published 10.1.1 carries
+PR 304; the 11.0.0 tag includes PRs 305/307 and inherits that fix. Official
+PyPI wheel and source hashes match the downloaded artifacts; every installed
+production file equals both wheel and source. The exact wheel hash is pinned
+in tools/evidence/requirements.txt. Local index metadata initially lagged the
+release; installation from the downloaded official wheel still enforced hashes.
+The local methodology/Standard/Protocol snapshot was not refreshed.
+
+The no-write and disjoint-write synthetic reload controls hold; overlapping
+storage remains undecided. In the actual preceding callback bracket, both
+gate-to-reload identity controls now hold at reached occurrences. Omitted-bracket
+and one-step negatives lose those witnesses. Callback words remain unknown,
+with unresolved far targets, interrupts, an unread middle service and path gaps.
+The delivered identity fix does not admit native targets or complete Gap 32/37.
+
+Synthetic ENTER and expanded-frame controls return the same expected value.
+The actual FND-CONFIG-207/208 request now traverses ENTER and retains both its
+twelve-byte input and twenty-byte shared-reader handoffs. Every reached byte
+writer control holds. Wrong selector/reader writers reject; omitted acquisition,
+signature or reader dependencies and one-step controls lose their respective
+anchors. Actual routes still stop at unread callees, an undeclared continuation
+and the guard interrupt. Whole controls are undecided and coverage incomplete.
+No prologue bypass, input memory, new call model or increased bound was used.
+
+Return controls use the new diagnostic strings. The default-width far root
+reports width failure with balanced stack; its declared-far counterpart returns.
+Root returnCheck explicitly leaves target/segment unread. Unknown-store nested
+returns remain unproved, while distinct-storage nested returns compare their
+target successfully. Callee-produced near-to-far conversion still fails both
+width and balance and leaves target words unread; ordinary-near and caller-built
+far-frame controls return. Toolkit issue 302 remains an open capability request.
+
+All five complete connected-evidence exits remain open. No game specification,
+parity or original-content contract changed; no original/emulated game ran.
+Private original reports: UserContent/analysis/reporter-audit/upstream110.
+Ignored integrity, synthetic, actual and negative-control drivers/logs:
+artifacts/engine110. Canonical gate: artifacts/engine110/canonical-gate.log.
