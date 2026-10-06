@@ -69,8 +69,11 @@ only the lines the link gives, and never a section already read this session.
    `AGENTS.md` keeps agents from running the original: those limits cover
    runs of the game only. For an item under `Emulated call`, follow the protocol's
    [Emulated calls](../../../vendor/upstream/work-protocol.md#emulated-calls) (lines 253-289).
-   It needs no run lock and waits for the harness described in `docs/RUNTIME.md`.
-   Write each reading under test as a procedure in
+   It needs no run lock. Check the current harness contract in `docs/RUNTIME.md`
+   and `tools/emu/README.md`; the delivered resident harness admits no-argument
+   far roots, while raw memory/argument seeding waits for supported named
+   parameter/layout bindings. Never substitute a native run for an unsupported
+   harness case. Write each reading under test as a procedure in
    `tools/emu/`, set up only the state the function reads (through layout
    fields that are `supported` or `established`), choose the special values,
    the type edges, cases for every branch and seeded random cases, run them

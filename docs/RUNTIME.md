@@ -44,8 +44,9 @@ wait for supported layout/parameter bindings; FBOV code stays out of reach.
 Probe: none. Native process attachment and memory instrumentation are barred
 by the owner-only DOSBox policy. Recorded runs are not available; the protocol's
 [Recorded runs](../vendor/upstream/work-protocol.md#recorded-runs) (lines 227-239) guidance
-does not override those limits. A future harness must document port models,
-video memory substituted with RAM and the limits of each comparison.
+does not override those limits. Each emulated-call setup must document port
+models, video memory substituted with RAM and the limits of each comparison,
+within the current resident-call contract below.
 
 ## Resident-call stubs and limits
 

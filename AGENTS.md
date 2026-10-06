@@ -261,9 +261,12 @@ Static work precedes emulated calls and owner runs within the protocol's order.
 A live-session item needs its own static attempt or asks to confirm a static
 reading. Never wait idle for an owner run or tester report.
 
-The planned Unicorn harness in `tools/emu/` calls one function of `DSUN.EXE`
-without starting the game or DOSBox. It cannot reach the FBOV overlay pack and
-does not exist yet; those items wait for a tooling batch (`docs/RUNTIME.md`).
+The delivered Unicorn harness in `tools/emu/` calls one declared resident
+function of `DSUN.EXE` without starting the game or DOSBox. Its current contract
+supports far roots without arguments; raw memory and argument seeding require
+supported named parameter/layout bindings before the tooling can admit them.
+It cannot reach the FBOV overlay pack. Use `docs/RUNTIME.md` and
+`tools/emu/README.md` for the current capabilities and limits.
 Emulated calls need no owner decision or run lock. The owner-only native capture
 rules under "Native runtime visual validation" remain binding.
 
