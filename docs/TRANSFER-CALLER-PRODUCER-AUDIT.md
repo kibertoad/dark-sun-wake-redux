@@ -1444,3 +1444,35 @@ artifacts/engine101/heap-pointer-wrapper-connected.mjs and
 heap-pointer-wrapper-controls.mjs. No game specification/parity change or
 original/emulated game run. All five complete exits remain open.
 Canonical validation log: artifacts/engine101/heap-pointer-wrapper-gate.log.
+
+## Earlier pointer callers and complete argument width, 2026-10-06
+
+Read-only FND-CONFIG-161/162 supply two preceding prologues and verified overlay
+spans. Separate connected queries begin at each, following the actual local
+caller, pointer wrapper, dispatcher and declared helper bodies. Neither starts
+after the pointer test or imports a standalone child state. Bounds, unknown
+input memory and explicit DS/SS hypotheses remain unchanged.
+
+The wrapper's reached far-pointer read retains all four byte writers from the
+actual preceding argument push. Both caller roots retain this local control and
+the deeper dispatcher argument/read-origin witnesses. Substituting the caller's
+return-frame push as the pointer writer is rejected. Omitting the wrapper body
+or allowing one step loses every anchor. The current pointer field read itself
+lacks all four upstream byte writers, so full argument width does not establish
+the field's native producer, object identity or metadata validity.
+
+The actual fallback-setter call remains outside this query's declared bodies.
+Unknown saved-target aliases stop helper and some wrapper returns; path gaps
+remain. All whole controls are undecided and completeWithinModel is false.
+No poll, callback registration, outer cleanup completion, native release or
+caller storage preservation is inferred. These connected caller witnesses do
+not join the header candidates to the separate heap consumer.
+
+Private configs/reports remain in
+UserContent/analysis/reporter-audit/heap-header-candidates101 under
+earlier-caller-connected and outer-helper-connected, including full-width,
+wrong-frame-writer, omitted-wrapper and one-step controls. Ignored drivers:
+artifacts/engine101/heap-earlier-callers.mjs and heap-earlier-caller-controls.mjs.
+No game specification/parity change or original/emulated game run; all five
+complete exits remain open. Canonical validation log:
+artifacts/engine101/heap-earlier-callers-gate.log.
