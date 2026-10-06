@@ -66,6 +66,14 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 
 ## Dead ends
 
+FND-CONFIG-174's actual root zero/origin controls hold on retained bypass
+returns only. No retained returning path traverses a nested call; continuing
+routes stop at unread callees, an unknown indirect target or the runtime DOS
+guard, with path gaps. Retry with continuing-branch field/argument producers
+and the specific unread callees, not modeled harmless returns or larger bounds.
+Details: TOOLKIT-RESPONSE-ACCEPTANCE.
+
+
 The actual overlay file-check root reaches the resident service with all ten
 argument-byte writers and local stack-buffer address origin held. Its corrected
 far-return declaration admits the retained bypass return; the earlier frame stop
@@ -204,25 +212,17 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Exact adopted dependencies: runtime 7.0.0, engine 10.1.0, reader 2.1.0 and
   checker 1.1.0. Release integrity and canonical adoption records remain in
   docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
-- Unfinished tooling acceptance: actual normalizer-root bypass controls and
-  rejected nonzero/cap controls pass, but canonical Test.ps1 failed on the
-  synthetic positive capture. Targeted capture rerun failed identically; template
-  issue 73 has the actual-size/message diagnostics. No acceptance batch committed.
-  Pending prose: artifacts/engine101/normalizer-root-pending-audit.md; private
-  queries: UserContent/analysis/reporter-audit/normalizer-root101. Logs:
-  artifacts/engine101/normalizer-root-gate.log and normalizer-capture-rerun.log.
-  Fix/adopt bounded synthetic fixture readiness, rerun the full gate, then restore
-  and commit the pending audit. Do not retry capture assertions or relax rejection.
-- Latest batch: corrected file-check far-return controls and diagnostic request in
-  docs/POLL-CALLER-ROOT-AUDIT.md.
+- Latest batch: normalizer-root bypass zero/origin controls in
+  docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
   Full assetless Test.ps1 -NoRestore passed on 2026-10-06; log
-  artifacts/engine101/file-check-far-handoff-gate.log. Final documentation base comparison
+  artifacts/engine101/normalizer-root-recovered-gate.log. Final documentation base comparison
   passed. Toolkit issue 251 has the diagnostic follow-up. Release integrity records remain current.
   Toolkit issue 290's capability is delivered and verified; issue 299 tracks a new
   isolated capability limit. Issue 300 requests clearer return-width diagnostics.
   No unfinished tracked
-  files. Private connected reports are in
-  UserContent/analysis/reporter-audit/file-check-handoff101. The setter census remains
+  files. Synthetic capture readiness is fixed locally; template issue 73 has
+  recovery evidence. The production capture helper is unchanged. Private connected reports are in
+  UserContent/analysis/reporter-audit/normalizer-root101. The setter census remains
   a bounded locator, not complete native writer coverage.
 - Keep the distinction between delivered shared requests, pending connected
   acceptance and original-game unknowns. The audit changes no completion exit.
