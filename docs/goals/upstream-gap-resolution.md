@@ -66,6 +66,13 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 
 ## Dead ends
 
+The real file-status prologue/getter route distinguishes queried AX/DX from
+the caller snapshot of restored incoming ES/BX under explicit interrupt/frame
+hypotheses. Removing the scope loses return provenance; the next setter interrupt
+and path limits stop whole acceptance. Retry with actual service/alias and
+filename handoff inputs, not broader harmless-return summaries or higher caps.
+Details: POLL-CALLER-ROOT-AUDIT.
+
 The fully read preceding bracket reaches both callback reload sites in the
 actual wrapper, but identities remain undecided, targets unresolved and guard,
 middle-service and path-limit stops explicit. Toolkit issue 299 separately tracks
@@ -189,15 +196,15 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Exact adopted dependencies: runtime 7.0.0, engine 10.1.0, reader 2.1.0 and
   checker 1.1.0. Release integrity and canonical adoption records remain in
   docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
-- Latest batch: connected callback reload controls and synthetic identity-limit report in
-  docs/TRANSFER-CALLER-PRODUCER-AUDIT.md.
+- Latest batch: connected file-status queried/saved-state producer controls in
+  docs/POLL-CALLER-ROOT-AUDIT.md.
   Full assetless Test.ps1 -NoRestore passed on 2026-10-06; log
-  artifacts/engine101/callback-actual-before-gate.log. Final documentation base comparison
+  artifacts/engine101/file-state-snapshot-gate.log. Final documentation base comparison
   passed. Toolkit issue 251 has the diagnostic follow-up. Release integrity records remain current.
   Toolkit issue 290's capability is delivered and verified; issue 299 tracks a new
   isolated capability limit. No unfinished tracked
   files. Private connected reports are in
-  UserContent/analysis/reporter-audit/callback-actual-before101. The setter census remains
+  UserContent/analysis/reporter-audit/file-state-snapshot101. The setter census remains
   a bounded locator, not complete native writer coverage.
 - Keep the distinction between delivered shared requests, pending connected
   acceptance and original-game unknowns. The audit changes no completion exit.
