@@ -42,11 +42,13 @@ Next ID: Q-PARTY-013
 - Q-PARTY-011. RULE-PARTY-006: Does the START GAME path reach the loader call, that is, pass
   the early returns of the overlay 182 routine at `DSUN.EXE+0x000699B7` (the word at `DS:0DAB`,
   the far calls at `DSUN.EXE+0x00069AA5` and `0x00069AC1`) and find the placed-object count at
-  `DS:264E` equal to 0 at its gate at `DSUN.EXE+0x00069B2D`? Settles it: the writers of
-  `DS:264E` reached between the Start Game branch at `DSUN.EXE+0x0008126E` and the gate,
-  starting with overlay 187's entries `0x2424` and `0x206E` and its stores at
-  `DSUN.EXE+0x000709B1` and `0x000710A0` (FND-PARTY-021), and the producers of `DS:0DAB` and of
-  the two calls' results. Blocks: slice 2.
+  `DS:264E` equal to 0 at its gate at `DSUN.EXE+0x00069B2D`? Settles it: the callers of the
+  five routines that store to the count (FND-PARTY-022), shown not to run between program start
+  and the gate, or the first one that does; and the producers of `DS:0DAB` and of the two calls'
+  results. Tried: the count's load-image value (0), its direct stores, the far references to the
+  overlay writers, and the three routines on the START GAME path read to their returns
+  (FND-PARTY-022); their callees and the path from program start to the start window were not
+  followed. Blocks: slice 2.
 - Q-PARTY-012. RULE-PARTY-006, FMT-PARTY-001: What happens on START GAME when `CHARSAVE.GFF` or
   one of records 40 to 43 is missing? Settles it: the far load routine the loader calls at
   `DSUN.EXE+0x00068F02` (canonical target `0x0002260A`), read for its result when the archive

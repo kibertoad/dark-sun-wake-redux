@@ -65,8 +65,9 @@ None known.
   runs. FND-PARTY-021 shows START GAME reaching the loader only through that gate, after overlay
   187 entries that write the count and three early returns. The owner's captures of a game
   started with START GAME show the four characters in this order, but they do not tell 41 from 53
-  or 43 from 33 (FND-PARTY-020). The reading of the count's writers on that path would settle it
-  statically (Q-PARTY-011); the shipped-party live session would confirm it (Q-PARTY-001).
+  or 43 from 33 (FND-PARTY-020). The count starts at 0, and five routines store to it
+  (FND-PARTY-022); showing that none of them runs before the gate would settle it statically
+  (Q-PARTY-011), and the shipped-party live session would confirm it (Q-PARTY-001).
 - What START GAME does when `CHARSAVE.GFF` or one of the four records is missing. The loader
   skips the second load for a slot whose first load returns `0xFFFF` but still places the slot
   (FND-PARTY-013); what the far load routine returns for a missing archive or record is unread
