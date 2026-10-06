@@ -1,5 +1,54 @@
 # Transfer caller and coordinate producers, 2026-10-05
 
+## Connected parent helper and argument barrier, 2026-10-06
+
+The corrected release caller now has a connected trace from its previously
+owned local parent scope. A bounded source review supplies the real preceding
+call-free helper, including its far return, reference traversal and object
+write. The parent scope also contains an optional stored far callback before
+the release caller's argument preparation. No callback target or preservation
+model is supplied. The published static graph retains that computed edge as
+unresolved, while the remaining declared children are checked.
+
+The real-helper trace stops before returning to the parent. Its object write
+has unknown destination provenance, so saved-return provenance is invalidated;
+other paths stop on the existing reference-traversal repeat bound. This is a
+conservative alias barrier, not evidence of native stack corruption. Thus no
+corrected caller prologue or prepared zero-word input checkpoint is reached.
+The same connected trace declares the real caller and its downstream graph,
+but their declarations do not manufacture an execution history.
+
+Omitting the helper stops at the parent's first unresolved call. A one-step
+control stops before that call. Neither reaches any requested checkpoint.
+These negatives distinguish missing source coverage from the actual helper's
+unknown-storage barrier. All whole verdicts remain undecided; source-local
+argument preparation alone is not a consumed-argument witness.
+
+The next input dependency is the helper's current object/reference provenance
+and its write's relationship to saved stack storage, alongside the optional
+callback's full far target and effects. Keep this separate from the release
+caller's later slot/reference producers. No invented object memory, assumed
+nonaliasing, returning-call model, joined windows or larger unresolved bounds
+were used. Parent native-entry admission remains unverified. All five full
+exits remain open; no game spec, parity status or other goal's entries change.
+
+Private source contexts, configs and reports are in
+UserContent/analysis/reporter-audit/release-arguments101. Ignored drivers/logs
+are artifacts/engine101/release-arguments-reading.py and
+release-parent-connected.mjs, with release-parent-connected.log.
+
+Read-only FND-CONFIG-175/206/207 supply existing shared-pointer setter and
+record-address producer inputs for a future connected attempt. Their separate
+records do not establish the current object on this parent route or its
+nonaliasing with the saved return. Retain current segment, later-writer and
+record-lifetime conditions rather than importing their state into this trace.
+
+Validation: bootstrap facts, published graph/trace assertions and the full
+assetless `tools/Test.ps1 -NoRestore` gate passed on 2026-10-06. Log:
+artifacts/engine101/release-parent-gate.log. The final documentation check
+includes base comparison; original-dependent tests skipped with GAME_DIR
+absent. No original game or emulated function was run.
+
 ## Release entry correction and prologue controls, 2026-10-06
 
 The earlier direct-release reports treated an inventory-adjacent window start
