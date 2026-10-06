@@ -66,11 +66,13 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 
 ## Dead ends
 
-The separate FND-CONFIG-209/210 allocation-chain query reaches real request
-writers and runtime rejection returns, but lower heap calls, string count/budget
-stops and path gaps prevent whole acceptance. Retry with admitted reader counts,
-heap/header and direction producers plus lower helper readings, not nonnull
-models, stitched acquisition state or increased unresolved bounds. Details:
+The allocation chain now includes FND-CONFIG-211/212/167's actual lower heap
+and request bodies. Split header witnesses stop at unknown saved-target aliases;
+acquisition/growth stop at a callee-produced near-to-far frame conversion.
+Toolkit issue 302 has synthetic/CPU controls for that new capability limit.
+String and path gaps remain. Retry with delivered conversion semantics plus
+admitted count, heap/header, direction and bound producers, not nonnull models,
+stitched acquisition state or increased unresolved bounds. Details:
 TRANSFER-CALLER-PRODUCER-AUDIT.
 
 The FND-CONFIG-207 caller supplies all twelve argument-byte writers at the
@@ -227,19 +229,21 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Exact adopted dependencies: runtime 7.0.0, engine 10.1.0, reader 2.1.0 and
   checker 1.1.0. Release integrity and canonical adoption records remain in
   docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
-- Latest batch: connected allocation request and runtime rejection controls in
+- Latest batch: lower heap header provenance and callee return-frame conversion in
   docs/TRANSFER-CALLER-PRODUCER-AUDIT.md. Previous capability reconciliation
   aligns AGENTS.md, RUNTIME.md and the research procedure with the delivered harness.
   Full assetless Test.ps1 -NoRestore passed on 2026-10-06; log
-  artifacts/engine101/allocation-chain-gate.log. Final documentation base comparison
+  artifacts/engine101/lower-heap-gate.log. Final documentation base comparison
   passed. Toolkit issue 251 has the diagnostic follow-up. Release integrity records remain current.
   Toolkit issue 290's capability is delivered and verified; issue 299 tracks a new
   isolated capability limit. Issue 300 requests clearer return-width diagnostics.
   No unfinished tracked
   files. Synthetic capture readiness is fixed locally; template issue 73 has
   recovery evidence. The production capture helper is unchanged. Private new reports are in
-  UserContent/analysis/reporter-audit/allocation-chain101; FONT entry reports remain
-  in font-request101 and prior release reports in normalizer-release101.
+  UserContent/analysis/reporter-audit/lower-heap101; prior allocation reports remain
+  in allocation-chain101, FONT entry reports in font-request101 and release reports
+  in normalizer-release101. New toolkit issue 302 isolates frame-conversion support;
+  issue 300 has the related diagnostic distinction.
   Toolkit issues 301/299 remain open with no upstream replies checked this session.
   The setter census remains
   a bounded locator, not complete native writer coverage.
@@ -260,9 +264,11 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   input, later-writer and hardware output limits; the initializer remains
   separate. FND-CONFIG-207/208's request handoff now has local controls; its
   deeper forwarding awaits delivered ENTER semantics, without a prologue bypass.
-  Its separate FND-CONFIG-209/210 allocation dependency has reached request and
-  rejection controls; next require admitted reader counts, lower heap effects,
-  header/storage and direction producers before joining acquisition state.
+  FND-CONFIG-211/212/167 extend the separate allocation dependency into real lower
+  header/request bodies. Its next request continuation needs delivered issue 302
+  support. Require admitted reader counts, heap/header aliases, bounds, direction
+  and runtime effects before joining acquisition state. The alternate header
+  origin remains undecided, not a rejected negative.
   Expand archive/startup only for a specific missing dependency.
 - Next, Gap 31: formatter output bounds, file-check interrupt/alias conditions,
   other intervening calls and later buffer
