@@ -1160,3 +1160,42 @@ reports are retained. No native table values, caller admission, storage aliases
 or rendered output are established by this fix. All five full exits remain open;
 the next Gap 37 dependency is the field-to-consumer segment/preservation chain
 and admitted transfer/count producers, rather than the repaired mask arithmetic.
+## FONT request entry handoff and ENTER barrier, 2026-10-06
+
+Read-only FND-CONFIG-207/208/038 supply a new connected dependency for the
+current record's lookup field. Published reader 2.1.0 and engine 10.1.0 trace
+the actual FONT request preparation into the real acquisition wrapper. The
+source-generated tag, selector 100 and null optional-output argument occupy
+twelve bytes; all their individual byte writers hold at the wrapper entry.
+The selector's wrong-writer control is rejected. Omitting the wrapper or
+limiting the trace to one step loses that checkpoint. No supplied stack,
+entry-memory, entryFrame or returning-call model produces this handoff.
+
+The wrapper's first instruction is the actual local-frame ENTER. The engine
+stops there with an unsupported-instruction diagnostic. The signature helper
+and shared reader are declared, but neither their execution nor the requested
+twenty-byte reader handoff is reached. An absence of optional-output writes
+on this stopped prefix does not prove the null-output bypass. Every whole
+verdict remains undecided, with completeWithinModel false. The starting
+preparation scope is not an admitted native caller root or a whole function.
+
+Wholly synthetic ENTER level-zero frames with local sizes zero and four stop
+at the same instruction. Corresponding explicit PUSH BP, BP formation and
+local stack allocation followed by LEAVE and a far return complete and return
+the chosen AX value. These controls isolate missing ENTER semantics, rather
+than an argument mismatch or an original-game failure. After an all-state
+title/body duplicate check, toolkit issue 301 requests width-correct,
+provenance-carrying support; nested frame forms must remain separately bounded:
+https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/301.
+
+Private original readings/configs/reports remain in
+UserContent/analysis/reporter-audit/font-request101. Synthetic drivers and
+controls are under artifacts/engine101/font-request-controls.mjs and
+enter-repro.mjs, with their logs. Existing traversal bounds and explicit DS/SS
+hypotheses remain unchanged. No original or emulated game function ran; no
+game spec or parity status changed. All five complete exits remain open.
+
+Validation: bootstrap identity facts, source handoff negatives, paired synthetic
+frame controls and the full assetless Test.ps1 -NoRestore passed on 2026-10-06.
+Log: artifacts/engine101/font-request-gate.log. Final documentation checking
+includes the base comparison. Original-dependent tests skipped without GAME_DIR.

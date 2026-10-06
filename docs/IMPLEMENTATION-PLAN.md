@@ -1,5 +1,13 @@
 # Implementation plan
 
+## Issue 5 FONT request producer handoff
+
+Tooling acceptance uses read-only FND-CONFIG-207/208/038 to trace the actual
+three-double-word request preparation into its wrapper and signature helper.
+Check caller-byte writers, null optional-output bypass and source-generated reader forwarding, with wrong-writer, omitted-body and step negatives.
+Retain runtime guard, archive/input, alias and reader-result limits; no seeded memory or harmless-return models.
+Exit: installed controls, Test.ps1 and a qualified acceptance record; whole Gap 37 and all five exits remain open.
+
 ## Issue 5 nonzero region-count caller producers
 
 Use FND-CONFIG-173/175/176 as read-only inputs. Find actual incoming calls to the
