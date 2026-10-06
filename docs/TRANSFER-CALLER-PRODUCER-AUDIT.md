@@ -1199,3 +1199,52 @@ Validation: bootstrap identity facts, source handoff negatives, paired synthetic
 frame controls and the full assetless Test.ps1 -NoRestore passed on 2026-10-06.
 Log: artifacts/engine101/font-request-gate.log. Final documentation checking
 includes the base comparison. Original-dependent tests skipped without GAME_DIR.
+
+## Connected allocation request and rejection controls, 2026-10-06
+
+Read-only FND-CONFIG-209/210 add the actual resource-allocation wrapper,
+both modular product helpers, runtime allocation/clear wrapper and heap
+admission body. Reader 2.1.0 / engine 10.1.0 trace these connected bodies
+from the resource-allocation prologue at the existing bounds, with no supplied
+SP/BP, entryFrame, memory or returning-call model. Original input arguments
+remain unknown; this does not join the upstream FONT acquisition or reader.
+
+At the runtime wrapper entry, every byte writer of its eight argument bytes
+holds. The second double word's actual pushed words are one and zero. The
+first argument retains distinct low-increment and high-carry instruction
+origins. Its own modular product is then forwarded as a four-byte request
+to the heap admission body, with every pushed byte writer held there.
+Producer membership is not a numerical product or capacity proof. In
+particular, the upstream reader's multiplier one and transfer-count identity
+are not admitted by starting this separate wrapper with unknown arguments.
+
+Reached rejection checkpoints hold AX and DX zero separately; retained heap
+returns restore the explicitly declared incoming DS. The connected report
+retains actual parent returns after those child rejections. Wrong high-versus-
+low increment provenance, a wrong runtime argument writer, and FFFF instead
+of rejection DX zero are rejected. Omitting the first product helper or
+runtime wrapper loses both handoffs. Omitting the heap body loses its own
+handoff and rejection/return checkpoints while retaining the earlier wrapper
+handoff. One step reaches none of these anchors.
+
+Other routes stop at unread lower heap calls, unresolved string repetition
+or its existing iteration budget; path-limit gaps remain. CompleteWithinModel
+is false and all whole-control verdicts are undecided. The fill and selected
+cursor-update bodies are declared, but declaration and a bounded chunk do not
+prove performed clearing, direction, returned storage capacity, header extent,
+marker safety or native pointer admission. No bounds were raised. The fill's
+argument-cleanup return is included through its complete instruction width.
+No native or emulated game function ran, and no game spec or parity changed.
+
+Private source readings/configs/reports remain in
+UserContent/analysis/reporter-audit/allocation-chain101. Drivers and logs are
+artifacts/engine101/allocation-chain-controls.mjs, allocation-chain-reading.py
+and allocation-helper-reading.py. The next dependencies are the admitted
+reader count, runtime heap/header producers and lower helper effects, not a
+nonnull-return model or another capped repetition. All five exits remain open.
+
+Validation: identity facts, connected source controls and all wrong-value,
+omission and step negatives pass. The full assetless Test.ps1 -NoRestore
+passed on 2026-10-06; log artifacts/engine101/allocation-chain-gate.log.
+Final documentation checking includes the base comparison. Original-dependent
+emulator tests skipped without GAME_DIR; no original call was performed.
