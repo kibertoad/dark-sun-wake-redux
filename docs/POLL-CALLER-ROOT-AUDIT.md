@@ -532,3 +532,41 @@ controls passed.
 Full assetless `tools/Test.ps1 -NoRestore` passed on 2026-10-06, including
 documentation base comparison. Log: artifacts/engine101/file-check-handoff-gate.log.
 Original-dependent tests skip with GAME_DIR absent.
+
+## File-check root return-width correction, 2026-10-06
+
+The earlier handoff trace inherited a graph query with no returnBytes field.
+The reader therefore declared the root near-return width, while this actual
+entry ends in a far return. Its reported frame/balance stop occurred with SP
+already equal to the entry SP: the failed condition was query return width.
+The earlier stop is withdrawn as an unresolved source frame/balance dependency;
+it demonstrates neither native stack corruption nor a LEAVE implementation
+failure. Historical configs and reports remain intact.
+
+A corrected query explicitly declares the source's far-return width. No other
+register, memory, model, region or traversal limit changes. The retained bypass
+path now returns; all argument-byte writer and stack-buffer origin occurrences
+still hold locally. The wrong segment writer is still rejected, and omission
+and one-step controls still remove both witnesses. Service routes continue to
+stop at the real getter's unmodeled DOS interrupt, and the existing path-limit
+gap remains. Whole verdicts stay undecided and completeWithinModel stays false.
+No state from the standalone conditional snapshot query is imported.
+
+A wholly synthetic one-instruction far-return source independently reproduces
+the diagnostic ambiguity: default near width stops with the combined frame/
+balance reason, while explicit far width returns with no stack mutations.
+After duplicate searches, [toolkit issue 300](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/300) requests distinct failed-predicate
+fields or reasons. It asks for no default change or relaxed rejection; this
+was a consumer query error, not an execution defect. Native argument admission,
+service/alias conditions, filename preservation and formatter bounds remain
+open; all five full exits remain open. No game specification or parity changes.
+
+Private corrected reports remain under file-check-handoff101 with far-prefixed
+names. Ignored driver/log: artifacts/engine101/file-check-far-handoff-controls.mjs.
+Synthetic driver/reports: artifacts/engine101/return-width-repro.mjs and its
+directory. Bootstrap facts, offline rules, hash-verified published queries and
+positive/negative assertions passed. No original execution or emulation occurred.
+
+Full assetless `tools/Test.ps1 -NoRestore` passed on 2026-10-06, including
+documentation base comparison. Log: artifacts/engine101/file-check-far-handoff-gate.log.
+Original-dependent tests skip with GAME_DIR absent.
