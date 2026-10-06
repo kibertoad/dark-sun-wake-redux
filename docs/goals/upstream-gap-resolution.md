@@ -204,6 +204,15 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Exact adopted dependencies: runtime 7.0.0, engine 10.1.0, reader 2.1.0 and
   checker 1.1.0. Release integrity and canonical adoption records remain in
   docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
+- Unfinished tooling acceptance: actual normalizer-root bypass controls and
+  rejected nonzero/cap controls pass, but canonical Test.ps1 failed on the
+  synthetic positive capture. Targeted capture rerun failed identically; template
+  issue 73 has the actual-size/message diagnostics. No acceptance batch committed.
+  Pending prose: artifacts/engine101/normalizer-root-pending-audit.md; private
+  queries: UserContent/analysis/reporter-audit/normalizer-root101. Logs:
+  artifacts/engine101/normalizer-root-gate.log and normalizer-capture-rerun.log.
+  Fix/adopt bounded synthetic fixture readiness, rerun the full gate, then restore
+  and commit the pending audit. Do not retry capture assertions or relax rejection.
 - Latest batch: corrected file-check far-return controls and diagnostic request in
   docs/POLL-CALLER-ROOT-AUDIT.md.
   Full assetless Test.ps1 -NoRestore passed on 2026-10-06; log
