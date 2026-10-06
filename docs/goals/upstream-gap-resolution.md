@@ -270,22 +270,21 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   Local controls and synthetic witnesses do not satisfy those whole contracts.
   No new CONFIG/SCRIPT findings are available beyond the recorded inputs.
   These research areas remain claimed by config-static; this goal cannot
-  manufacture or promote their missing claims. Toolkit issues 299, 301 and
-  302 were rechecked and remain open without replies. First consecutive
-  no-progress blocker audit: no new admissible evidence or delivered capability
-  was found for the retained stopped queries. Keep the goal active; resume a
-  specific query only with new relevant findings or delivered tooling.
-- Research-side tooling goal remains active. Gaps 31, 32, 33, 34 and 37 retain
+  manufacture or promote their missing claims. The owner's requested merged-PR
+  update supersedes the tooling part of the prior blocker audit: engine 11.0.0
+  delivers PRs 304/305/307. Actual callback identity and FONT forwarding controls
+  now reach new held witnesses; remaining original-game inputs stay unproved.
+- Research-side tooling scope is unchanged. Gaps 31, 32, 33, 34 and 37 retain
   their complete connected-evidence exits. No game specification or parity
   status changed; existing CONFIG/SCRIPT findings remain read-only inputs.
-- Exact adopted dependencies: runtime 7.0.0, engine 10.1.0, reader 2.1.0 and
+- Exact adopted dependencies: runtime 7.0.0, engine 11.0.0, reader 2.1.0 and
   checker 1.1.0. Release integrity and canonical adoption records remain in
   docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
-- Latest batch: current pointer-field locator ownership and full/split-width controls in
-  docs/TRANSFER-CALLER-PRODUCER-AUDIT.md. Previous capability reconciliation
+- Latest batch: released identity, ENTER and return-check adoption in
+  docs/LATEST-RELEASE-GAP-AUDIT.md. Previous capability reconciliation
   aligns AGENTS.md, RUNTIME.md and the research procedure with the delivered harness.
   Full assetless Test.ps1 -NoRestore passed on 2026-10-06; log
-  artifacts/engine101/current-pointer-locator-gate.log. Final documentation base comparison
+  artifacts/engine110/canonical-gate.log. Final documentation base comparison
   passed. Toolkit issue 251 has the diagnostic follow-up. Release integrity records remain current.
   Toolkit issue 290's capability is delivered and verified; issue 299 tracks a new
   isolated capability limit. Issue 300 requests clearer return-width diagnostics.
@@ -298,8 +297,10 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   in allocation-chain101, FONT entry reports in font-request101 and release reports
   in normalizer-release101. New toolkit issue 302 isolates frame-conversion support;
   issue 300 has the related diagnostic and root-versus-nested scope distinctions.
-  Toolkit issues 301/302 remain open with no upstream replies checked this session.
-  Issue 299's unread-identity limit remains separate.
+  Toolkit issues 299/300/301 have delivered changes and consumer confirmations;
+  issue 302 remains open without a reply. New private reports are in
+  UserContent/analysis/reporter-audit/upstream110; integrity and synthetic logs
+  are in artifacts/engine110. The source and installed wheel bytes match.
   The setter census remains
   a bounded locator, not complete native writer coverage.
 - Keep the distinction between delivered shared requests, pending connected
@@ -318,7 +319,10 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   provenance and the connected caller/request/transfer/cleanup graph have records. Keep native
   input, later-writer and hardware output limits; the initializer remains
   separate. FND-CONFIG-207/208's request handoff now has local controls; its
-  deeper forwarding awaits delivered ENTER semantics, without a prologue bypass.
+  deeper forwarding now reaches all twenty shared-reader argument bytes through
+  real ENTER semantics. Follow the specific unread reader callee and request
+  continuation before claiming acquisition success; preserve signature/reader
+  omission and wrong-byte controls, without a prologue bypass.
   FND-CONFIG-211/212/167 extend the separate allocation dependency into real lower
   header/request bodies. Its next request continuation needs delivered issue 302
   support. Require admitted reader counts, heap/header aliases, bounds, direction
