@@ -1300,3 +1300,52 @@ rejected shift count, qualified alternate origin and synthetic frame/CPU
 controls pass. Full assetless Test.ps1 -NoRestore passed on 2026-10-06; log
 artifacts/engine101/lower-heap-gate.log. Final documentation checking includes
 the base comparison. Original-dependent tests skipped without GAME_DIR.
+
+## Exact-size heap entry and root-return scope, 2026-10-06
+
+The previously dropped exact-size path is now tested from FND-CONFIG-210's
+documented heap prologue, with FND-CONFIG-211's real removal body and the
+same declared lower dependencies. This is a separate source scope, not
+imported caller state or a joined FONT/reader/allocation route. Reader 2.1.0
+/ engine 10.1.0 retain the same bounds, unknown stacked inputs and explicit
+DS/SS hypotheses. No entryFrame, input memory or return model is supplied.
+
+The source-derived paragraph-count origin reaches the actual removal entry. Singleton paths
+clear both bytes of the free-root word, return to the actual caller, and
+copy its selected block's word at +8 to +2. The copy's read origin and both
+destination byte writers hold; retained root returns have offset four in AX
+and unknown segment in DX. Omitting removal loses these anchors; one step
+reaches none. A wrong header-copy writer and FFFF in place of the singleton
+clear value are rejected. Linked removal returns still stop on unknown
+saved-target aliases, as do split returns. Frame-conversion and path gaps remain;
+all whole verdicts are undecided and completeWithinModel is false.
+
+The singleton header write invalidates other tracked storage, including the
+shared saved-DS word; returned DS is unknown. Its positive root-return flag
+does not establish target-byte preservation. The installed engine's root
+return handling checks width and stack balance, then finishes without reading
+a root target. Nested returns separately validate caller-produced target words.
+The helper's actual call-return and caller header write are retained witnesses;
+an emitted return event alone would not prove that its validation passed.
+
+Paired wholly synthetic controls show that scope distinction: an unknown-
+segment word store followed by a root far return is complete within the model;
+the same store inside a near child stops on unknown target provenance. A
+distinct known-segment child control returns. All retain nativeReachability
+unconfirmed. After an all-state duplicate review, the new reporting detail
+was added to existing toolkit diagnostic issue 300, requesting explicit checks
+attempted and root-target-not-checked scope, without changing those semantics.
+
+Private original configs/reports are in
+UserContent/analysis/reporter-audit/exact-heap101. Ignored drivers and logs:
+artifacts/engine101/exact-heap-entry.mjs, exact-heap-controls.mjs and
+root-return-scope.mjs. No original or emulated game function ran; only static
+original reading/reporting and synthetic controls. No spec or parity change.
+All five complete exits remain open. Current +8/root/link producers, aliases,
+native admission, direction and storage capacity remain separate dependencies.
+
+Validation: identity facts, heap-entry positives, wrong writer/value and
+omission/step negatives, and synthetic root/nested scope controls pass.
+Full assetless Test.ps1 -NoRestore passed on 2026-10-06; log
+artifacts/engine101/exact-heap-gate.log. Final documentation checking includes
+the base comparison. Original-dependent tests skipped without GAME_DIR.
