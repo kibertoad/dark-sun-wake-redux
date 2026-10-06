@@ -1412,3 +1412,35 @@ is artifacts/engine101/heap-header-origin-controls.mjs. Installed origin and
 lastWriter semantics behave as documented; no new shared defect is claimed.
 Toolkit issues 301/302 were checked and remain open without replies.
 Canonical validation log: artifacts/engine101/heap-header-origins-gate.log.
+
+## Preceding pointer wrapper connected to dispatcher, 2026-10-06
+
+Read-only FND-CONFIG-165 supplies the complete preceding wrapper entry and
+span. The new scope begins at that prologue and follows its actual dispatcher
+call through the declared real helpers. It retains the early metadata read;
+the later null test is not substituted for pointer admission. Neither the
+standalone dispatcher state nor the heap-entry state was imported.
+
+At the dispatcher's reached segment-argument read, both byte writers from the
+wrapper's actual argument push hold. Substituting the other argument push as
+writer is rejected. The deeper candidate value/segment read-origin controls
+still hold locally, while upstream source-word byte writers remain undecided.
+Omitting the dispatcher body or allowing one step loses every control anchor.
+Bounds and unknown input memory are unchanged; no child-return model is added.
+
+This connects a real preceding caller to the local witnesses, but not native
+pointer admission, metadata capacity or a later heap consumer. Unknown saved-
+return aliases and path limits remain; every whole control is undecided and
+completeWithinModel is false. A reached call does not establish its return,
+restored caller storage or a successful native operation. The original wrapper's
+zero-result continuation is already described by FND-CONFIG-165; this audit
+does not promote it into a complete connected preservation claim.
+
+Private configs/reports remain in
+UserContent/analysis/reporter-audit/heap-header-candidates101, named
+pointer-wrapper-connected and wrapper-connected-controls, with wrong-argument,
+omitted-dispatcher and one-step controls. Ignored drivers:
+artifacts/engine101/heap-pointer-wrapper-connected.mjs and
+heap-pointer-wrapper-controls.mjs. No game specification/parity change or
+original/emulated game run. All five complete exits remain open.
+Canonical validation log: artifacts/engine101/heap-pointer-wrapper-gate.log.
