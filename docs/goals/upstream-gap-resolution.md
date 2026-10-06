@@ -74,7 +74,9 @@ bracket query returns conditionally with source-generated record arguments and
 the real copy, coordinate and getter/store bodies. Guard interrupt paths still
 stop; generic unknown-pointer copy limits remain. Whole acceptance needs actual
 incoming callback/parent and current-record producers, not guard-return models
-or higher caps. Details: TRANSFER-CALLER-PRODUCER-AUDIT.
+or higher caps. The full preceding bracket also returns conditionally through
+its real reverse copy and stored-pointer setter; this does not admit the native
+pointer or join callback/parent state. Details: TRANSFER-CALLER-PRODUCER-AUDIT.
 
 Shared setter source-local argument controls distinguish literal record addresses
 from the stored-pointer input. Their post-setter continuations remain undeclared;
@@ -180,14 +182,14 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Exact adopted dependencies: runtime 7.0.0, engine 10.1.0, reader 2.1.0 and
   checker 1.1.0. Release integrity and canonical adoption records remain in
   docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
-- Latest batch: full bracket source-generated record, copy/store and return controls in
+- Latest batch: full preceding bracket reverse copy, setter and return controls in
   docs/TRANSFER-CALLER-PRODUCER-AUDIT.md.
   Full assetless Test.ps1 -NoRestore passed on 2026-10-06; log
-  artifacts/engine101/full-bracket-record-gate.log. Final documentation base comparison
+  artifacts/engine101/full-before-bracket-gate.log. Final documentation base comparison
   passed. Toolkit issue 251 has the diagnostic follow-up. Release integrity records remain current.
   Toolkit issue 290's capability is delivered and verified. No unfinished tracked
   files. Private connected reports are in
-  UserContent/analysis/reporter-audit/full-bracket-record101. The setter census remains
+  UserContent/analysis/reporter-audit/full-before-bracket101. The setter census remains
   a bounded locator, not complete native writer coverage.
 - Keep the distinction between delivered shared requests, pending connected
   acceptance and original-game unknowns. The audit changes no completion exit.
