@@ -66,12 +66,14 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 
 ## Dead ends
 
-FND-CONFIG-174's actual root zero/origin controls hold on retained bypass
-returns only. No retained returning path traverses a nested call; continuing
-routes stop at unread callees, an unknown indirect target or the runtime DOS
-guard, with path gaps. Retry with continuing-branch field/argument producers
-and the specific unread callees, not modeled harmless returns or larger bounds.
-Details: TOOLKIT-RESPONSE-ACCEPTANCE.
+FND-CONFIG-174's earlier root returns were bypass-only. Adding the actual
+FND-CONFIG-194 callee now retains connected release/parent returns, but compaction
+repeat/path stops, unknown indirect targets and runtime DOS guards remain.
+Equal-operand zeroing retains cancelled operand producers: pair numerical value
+with origin, rather than treating membership as propagation. Toolkit issue 200
+has the synthetic distinction/guidance request. Retry with slot/flag/count/segment
+and alias producers plus complete caller paths, not harmless-return models or
+higher bounds. Details: TOOLKIT-RESPONSE-ACCEPTANCE.
 
 
 The actual overlay file-check root reaches the resident service with all ten
@@ -212,17 +214,17 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Exact adopted dependencies: runtime 7.0.0, engine 10.1.0, reader 2.1.0 and
   checker 1.1.0. Release integrity and canonical adoption records remain in
   docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
-- Latest batch: normalizer-root bypass zero/origin controls in
+- Latest batch: connected normalizer-release returns and cancelled-origin controls in
   docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
   Full assetless Test.ps1 -NoRestore passed on 2026-10-06; log
-  artifacts/engine101/normalizer-root-recovered-gate.log. Final documentation base comparison
+  artifacts/engine101/normalizer-release-gate.log. Final documentation base comparison
   passed. Toolkit issue 251 has the diagnostic follow-up. Release integrity records remain current.
   Toolkit issue 290's capability is delivered and verified; issue 299 tracks a new
   isolated capability limit. Issue 300 requests clearer return-width diagnostics.
   No unfinished tracked
   files. Synthetic capture readiness is fixed locally; template issue 73 has
   recovery evidence. The production capture helper is unchanged. Private connected reports are in
-  UserContent/analysis/reporter-audit/normalizer-root101. The setter census remains
+  UserContent/analysis/reporter-audit/normalizer-release101. The setter census remains
   a bounded locator, not complete native writer coverage.
 - Keep the distinction between delivered shared requests, pending connected
   acceptance and original-game unknowns. The audit changes no completion exit.
