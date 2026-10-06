@@ -1,5 +1,52 @@
 # Transfer caller and coordinate producers, 2026-10-05
 
+## Getter-to-stored-pointer suffix and bracket ordering, 2026-10-06
+
+Read-only FND-CONFIG-171/175 provide the actual getter and the bracket helper's
+two word stores. A published connected suffix trace starts before that getter
+call, executes its real body, and follows returned DX and AX into the distinct
+segment-word and offset-word stores. Both word-origin controls hold locally.
+The checkpoint after both stores retains their individual last writers for all
+four bytes. Report assertions also verify the two-byte widths, destination
+intervals and segment-word store preceding the offset-word store.
+
+Naming the segment-word getter read as the offset word's producer is rejected.
+Swapping the two word writers in the four-byte checkpoint is rejected. Removing
+the getter stops at the unresolved call and reaches neither store; one step
+reaches no requested checkpoint. The positive suffix stops on the omitted
+caller frame at its final return, and every whole verdict remains undecided.
+No supplied pointer value, prepared field memory or invented root frame makes
+this a complete bracket trace.
+
+A separate published static call-order query from FND-CONFIG-171's actual
+callback wrapper confirms both calls to the producing bracket helper and their
+own necessary guard edges. An instruction-cap control removes their ownership.
+Usable ordering means source-local caller CFG ordering only: each guard reads
+its own current callback field, and neither its value nor the callback target
+is preserved by that result. No computed callback body or transitive effect
+is inferred. These controls do not connect this wrapper to the stopped parent
+helper or make its record distinct from saved stack storage.
+
+The next dependency is the actual bracket's preceding copy and guard effects,
+its incoming frame and the callback/parent route that selects the current
+record, including later replacements. The suffix state is not imported into
+the setter controls or parent trace. Existing limits and register hypotheses
+are unchanged; no native memory, preservation model, joined windows or larger
+unresolved bounds were supplied. No game spec, parity status or other goal's
+entries change; all five full connected exits remain open.
+
+Private contexts, configs, reports and rejected controls are in
+UserContent/analysis/reporter-audit/stored-pointer-producer101. Ignored drivers
+and logs are artifacts/engine101/stored-pointer-producer-reading.py,
+stored-pointer-producer-controls.mjs, stored-pointer-bracket-order.mjs and
+stored-pointer-write-order.mjs, with their logs.
+
+Validation: bootstrap facts, published producer/last-writer/order assertions
+and the full assetless `tools/Test.ps1 -NoRestore` gate passed on 2026-10-06.
+Log: artifacts/engine101/stored-pointer-producer-gate.log. Final documentation
+checks include base comparison; original-dependent tests skipped with GAME_DIR
+absent. No original game or emulated function was run.
+
 ## Shared setter argument classes and stored-pointer control, 2026-10-06
 
 The existing FND-CONFIG-175/207 setter census is reused as a locator for new
