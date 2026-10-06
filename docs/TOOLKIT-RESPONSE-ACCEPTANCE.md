@@ -1019,3 +1019,48 @@ without weakening capture assertions or changing source-query inputs. Full
 assetless `tools/Test.ps1 -NoRestore` passed on 2026-10-06, including documentation
 base comparison. Log: artifacts/engine101/normalizer-root-recovered-gate.log.
 Source controls passed again; original-dependent tests skipped.
+
+## Gap 33 connected release returns and cancelled origin membership, 2026-10-06
+
+Read-only FND-CONFIG-194 supplies the actual slot-release callee omitted by the
+prior FND-CONFIG-174 root query. Adding only its recorded complete region, with
+unchanged limits, register hypotheses and no models or supplied memory, now
+retains parent returns after real nested calls at both direct release sites.
+Both post-call origin checkpoints retain the callee's port-read producer. At
+the later parent return, the result is zero and the parent's own zeroing site is
+included. Removing the release region loses both nested-result checkpoints,
+while genuine bypass returns remain; one step reaches none of the controls.
+
+This supersedes bypass-only coverage for the newly included conditional routes,
+not the earlier query itself. Compaction repeat stops, path gaps and the actual
+runtime DOS guard remain. Whole controls are undecided and completeWithinModel
+is false. No native port effects, accepted slots, finite compaction, successful
+release or complete caller/leaf provenance is inferred.
+
+An attempted exclusion check exposed a separate origin distinction: the port
+producer remains in the parent's zero-valued AX producer set. A wholly synthetic
+no-call control confirms equal-operand XOR zeroing folds the value to zero while
+retaining old operand origins; requiring the old producer holds. An immediate
+zero replacement rejects that old-producer control. Installed value operations
+explicitly retain combined origins when folding equal XOR/sub operands. This is
+not a numerical-execution bug or evidence that the parent propagates a nonzero
+result. Producer membership alone does not establish value propagation across
+algebraic cancellation. The numerical zero and source's zeroing operation must
+remain paired with the origin report.
+
+After duplicate searches, the verified synthetic distinction and request for
+clear paired value/producer guidance were added to existing toolkit issue 200.
+No silent origin-semantics change or weaker control is requested. Actual slot,
+flag/count/segment producers, unknown indirect targets, alias admission and
+complete compaction/caller paths remain dependencies; all five exits stay open.
+No game specification/parity changes or original runtime/emulation occurred.
+
+Private reports: UserContent/analysis/reporter-audit/normalizer-release101.
+Ignored drivers/logs: artifacts/engine101/normalizer-release.mjs and its log;
+synthetic paired controls in cancelled-origin-repro.mjs and its directory.
+Bootstrap facts, pinned rules, hash-verified queries and source/synthetic
+assertions passed.
+
+Full assetless `tools/Test.ps1 -NoRestore` passed on 2026-10-06, including
+documentation base comparison. Log: artifacts/engine101/normalizer-release-gate.log.
+Original-dependent tests skipped with GAME_DIR absent.
