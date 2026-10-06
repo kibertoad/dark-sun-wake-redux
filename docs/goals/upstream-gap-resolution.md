@@ -261,6 +261,20 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 
 ## Handover
 
+- Completion audit on 2026-10-06: all five exits remain unproved. Gap 31 needs
+  complete connected frame/output-alias and external-result coverage; Gap 32
+  needs actual checked-target producers and intervening effects; Gap 33 needs
+  complete recursive leaf/graph and finite-traversal evidence; Gap 34 needs
+  actual generated-cardinality, storage and producer coverage; Gap 37 needs
+  admitted pointer/count/mask/alias producers and complete connected paths.
+  Local controls and synthetic witnesses do not satisfy those whole contracts.
+  No new CONFIG/SCRIPT findings are available beyond the recorded inputs.
+  These research areas remain claimed by config-static; this goal cannot
+  manufacture or promote their missing claims. Toolkit issues 299, 301 and
+  302 were rechecked and remain open without replies. First consecutive
+  no-progress blocker audit: no new admissible evidence or delivered capability
+  was found for the retained stopped queries. Keep the goal active; resume a
+  specific query only with new relevant findings or delivered tooling.
 - Research-side tooling goal remains active. Gaps 31, 32, 33, 34 and 37 retain
   their complete connected-evidence exits. No game specification or parity
   status changed; existing CONFIG/SCRIPT findings remain read-only inputs.
