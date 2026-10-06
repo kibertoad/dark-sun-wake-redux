@@ -5,8 +5,8 @@ description: Implement rebuild behaviour for parity rows of the current slice fr
 
 # Implementation batch
 
-The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#implementation-batches) (lines 158-174)
-and the standard's [implementation side](../../../vendor/upstream/documentation-standard.md#implementation-side) (lines 1000-1116).
+The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#implementation-batches) (lines 162-178)
+and the standard's [implementation side](../../../vendor/upstream/documentation-standard.md#implementation-side) (lines 1064-1188).
 Open a linked section only when a step leaves a question it answers, read
 only the lines the link gives, and never a section already read this session.
 
@@ -68,7 +68,15 @@ skill. That keeps the clean room, and it tests whether the spec says enough.
    shared value through input, `Core`, presentation and a save and restore,
    with distinct values per axis, and test what a second actor sees at each
    `# visible:` point. A checkpoint or replay change follows the protocol's
-   [Checkpoints and replay](../../../vendor/upstream/work-protocol.md#checkpoints-and-replay) (lines 182-190).
+   [Checkpoints and replay](../../../vendor/upstream/work-protocol.md#checkpoints-and-replay) (lines 256-264).
+   Where the entry has the shape they describe, add the cases in
+   [Calls that combine results](../../../vendor/upstream/work-protocol.md#calls-that-combine-results) (lines 180-196),
+   [Rules behind an adapter](../../../vendor/upstream/work-protocol.md#rules-behind-an-adapter) (lines 198-214),
+   [Arithmetic at the original's widths](../../../vendor/upstream/work-protocol.md#arithmetic-at-the-originals-widths) (lines 216-232),
+   [Allocation, containers and cleanup](../../../vendor/upstream/work-protocol.md#allocation-containers-and-cleanup) (lines 240-254)
+   and [Continuation cases](../../../vendor/upstream/work-protocol.md#continuation-cases) (lines 266-292).
+   A `mandatory` deviation whose Replaces item names a row gets its tests in
+   the deviation's Tests item, and the row keeps Tests `None`.
    None of these tests validates a row.
 7. **Update the parity rows** (Code, Tests, Notes) and run the documentation
    check and `./tools/Test.ps1`.

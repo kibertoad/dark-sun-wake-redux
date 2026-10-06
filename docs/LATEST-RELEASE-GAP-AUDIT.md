@@ -200,3 +200,36 @@ parity or original-content contract changed; no original/emulated game ran.
 Private original reports: UserContent/analysis/reporter-audit/upstream110.
 Ignored integrity, synthetic, actual and negative-control drivers/logs:
 artifacts/engine110. Canonical gate: artifacts/engine110/canonical-gate.log.
+
+## Engine 12 frame-conversion adoption, 2026-10-06
+
+Engine 12.0.0 (PR 308, toolkit issue 302) is adopted with reader 2.2.0, whose
+only change is the PE `imports` command; neither changes the dependencies.
+The wheel hash from PyPI is pinned in tools/evidence/requirements.txt and the
+locked restore installed it. Shared runtime packages move from 7.0.0 to
+10.0.0; releases 8 to 10 change only the InstallShield readers, which this
+project does not use, and the solution builds and tests unchanged.
+
+Synthetic controls: the callee-produced near-to-far conversion now returns,
+with its nested return check ending at the frame end and both target and
+segment matching the call. The wrong-segment variant stops with `far return
+segment changed`, the incomplete conversion stops on width with its words
+unread, and the ordinary-near and caller-built far controls still return.
+
+Actual allocation chain (FND-CONFIG-211/212/167 helpers, query otherwise as
+recorded in lower-heap101): at 128 steps per path the request's shift-helper
+far return is followed on four paths with target and segment matching the call,
+and no path stops there. The CL=4/DX=0 controls hold on all four occurrences,
+CL=16 is rejected, and omitting the helper's body removes the occurrences.
+Paths then stop at an unresolved string repetition count and existing loop
+limits. At the recorded 256 steps per path the run fails as a whole on the
+engine's term-size cap, so no report is produced; toolkit issue 316 has the
+synthetic reproduction and asks for a per-path stop. No bound was raised.
+
+Toolkit issue 302 is confirmed and closed. All five complete
+connected-evidence exits remain open. No game specification, parity or
+original-content contract changed; no original or emulated game ran.
+Private original reports: UserContent/analysis/reporter-audit/lower-heap120.
+Ignored drivers and logs: artifacts/engine120. Canonical gate (assetless, with
+the machine-wide GAME_DIR and NoDefaultCurrentDirectoryInExePath unset):
+artifacts/engine120/canonical-gate.log.

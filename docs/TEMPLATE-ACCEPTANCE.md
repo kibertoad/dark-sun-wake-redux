@@ -1,5 +1,27 @@
 # Template and toolkit acceptance audit
 
+## Rules efa138b, checker 2.2.0 and template ebdd5c3, 2026-10-06
+
+The vendored Standard, Methodology and Protocol move from `c1758fd` to
+`efa138ba212260b23bb4eb599e61336a7126c973`, still Standard v1. The checker
+moves from 1.1.0 to 2.2.0, the release at toolkit
+`92a5592055559013373ea243a458f4ffc4fa05c4`; the CI action pin, the lock and
+`package.json` agree. Template main `ebdd5c3` (four commits after `7a79818`)
+is the template side of the same change.
+
+| Change | Disposition |
+| --- | --- |
+| `deviated` parity status, deviation Replaces and Tests items (checker 2.1.0) | `PARITY.md` regenerated with the new Status row; deviation template in SPEC-ENTRY-TEMPLATES and the plan-work skill updated as the template did. No current deviation replaces an entry entirely, so no row changes status. |
+| Argument counts (checker 2.2.0) | RULE-IMAGE-001 and RULE-COMBAT-005 Parameters are in the countable list form. The other uncounted sections stay in prose: SCRIPT rules belong to the config-static goal, RULE-IMAGE-002 has a flag with no notation type, and the emitting rules would fail falsely until toolkit issue 317 is decided. |
+| Findings edited in place only without changing what they record (IDENTIFIERS-8) | No finding changed. |
+| Queue trailer lists only closed items; goal-file commits are not batches | research-item and end-session skills say so. |
+| New test sections (calls that combine results, rules behind an adapter, widths, allocation and cleanup, continuation cases) | implement-rows points to them with line ranges. |
+| Template Test SDK 18.10.1 | Adopted with a refreshed test lock. |
+| Checker 2.0.0 `starting_state` forms, 1.0.0 `.fs` citations | Existing experiments and code pass; no change needed. |
+
+Section line ranges were rewritten with `node tools/upstream.mjs links --write`.
+No spec claim or parity status changed.
+
 ## Published engine 4 adoption, 2026-10-04
 
 Engine 4.0.0 is adopted with reader 2.0.0 for prepared protocol 3. The exact

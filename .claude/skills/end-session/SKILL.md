@@ -5,7 +5,7 @@ description: Close a work session on this restoration - stop processes the sessi
 
 # End a session
 
-The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#sessions) (lines 207-215).
+The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#sessions) (lines 321-329).
 Open a linked section only when a step leaves a question it answers, read
 only the lines the link gives, and never a section already read this session.
 
@@ -17,11 +17,14 @@ orphans and agents never touch DOSBox or take the original-game run lock.
    Reusable MSBuild nodes are not orphans. Never touch DOSBox: the owner runs
    it. Follow the post-commit orphan-process audit in `AGENTS.md`, including
    its log. Sessions here never take the run lock (`docs/RUNTIME.md`).
-2. **Goal**: if the goal's condition holds, or the goal is dropped, delete its
-   file in `docs/goals/` and say which in the commit message, and move
-   anything in its Handover still worth handing on (a blocker, a `wip/`
-   branch) to `docs/HANDOVER.md`. If it continues, add any new dead end to its
-   file.
+2. **Goal**: if the goal's condition holds, or the goal is dropped, the
+   handover commit in step 4 deletes its file in `docs/goals/`, says which in
+   its message, and moves anything in its Handover still worth handing on (a
+   blocker, a `wip/` branch) to `docs/HANDOVER.md`; the batch that met the
+   condition left the file in place. If it continues, add any new dead end to
+   its file. A session under no goal that finds a goal-deletion commit on the
+   main branch merges it first and keeps what it added to `docs/HANDOVER.md`
+   unless this session dealt with it.
 3. **Working tree**: every finished batch is already committed. For anything
    half done, finish it, discard it, or leave it out of the batch commits and
    describe it under Unfinished in the handover. Where the working tree does
@@ -37,7 +40,8 @@ orphans and agents never touch DOSBox or take the original-game run lock.
    Get the branch, commit and remote sync state from Git when needed; do not
    copy them into the handover. Never write what research found or tried.
    Delete what is no longer true instead of adding below it. Stay under 200
-   lines. Commit the handover on its own.
+   lines. Commit the handover on its own, with no trailers: it changes
+   nothing outside `docs/HANDOVER.md` and `docs/goals/`.
 5. **Push** the branch unless `AGENTS.md` says the owner pushes or the user
    has instructed otherwise. Check Git directly for the branch's remote sync
    state when reporting it; do not copy a count into the handover.

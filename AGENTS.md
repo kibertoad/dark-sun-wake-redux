@@ -43,7 +43,7 @@ script or reviewer can check. Guesses belong in `queue/` or an entry's Open
 questions, not in an API.
 
 The owner decides only what the work protocol's
-[What needs the owner](vendor/upstream/work-protocol.md#what-needs-the-owner) (lines 328-330)
+[What needs the owner](vendor/upstream/work-protocol.md#what-needs-the-owner) (lines 442-444)
 lists: eligibility and supported editions, scope and non-goals, any deviation
 whose Default is `on` or `mandatory`, features outside the parity matrix,
 releases, and live sessions. Those decisions go in `docs/DECISIONS.md`, and a
@@ -355,8 +355,8 @@ certain than the rest goes in its own entry or in its Open questions section.
 Never silently promote a plausible interpretation.
 
 A complete reading also covers what the standard's
-[Complete readings](vendor/upstream/documentation-standard.md#complete-readings) (lines 181-273)
-and [Findings](vendor/upstream/documentation-standard.md#findings) (lines 578-628) sections
+[Complete readings](vendor/upstream/documentation-standard.md#complete-readings) (lines 191-291)
+and [Findings](vendor/upstream/documentation-standard.md#findings) (lines 606-680) sections
 list, among them: two addresses are the same storage only where the reading
 shows the segment each is formed in and accessed through (a BP offset read
 through DS is the caller's stack only where DS equals SS there); a stored
@@ -516,8 +516,8 @@ the host, says whether a snapshot may be restored more than once, and never
 drops unsaved state such as a paused path search silently. These tests
 compare the rebuild with the spec or with itself, so none of them validates a
 parity row; see the protocol's
-[Implementation batches](vendor/upstream/work-protocol.md#implementation-batches) (lines 158-174)
-and [Checkpoints and replay](vendor/upstream/work-protocol.md#checkpoints-and-replay) (lines 182-190).
+[Implementation batches](vendor/upstream/work-protocol.md#implementation-batches) (lines 162-178)
+and [Checkpoints and replay](vendor/upstream/work-protocol.md#checkpoints-and-replay) (lines 256-264).
 
 Each rule ships with fast-gate tests over synthetic state. The rule itself is
 usually a static class over the serializable state type, called by `Game`.

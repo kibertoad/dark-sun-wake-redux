@@ -2,7 +2,7 @@
 
 What can be done with the original game running, and who can do it. The
 `runtime-access` skill keeps this file current; see the
-[work protocol](../vendor/upstream/work-protocol.md#runtime-access) (lines 42-60). This
+[work protocol](../vendor/upstream/work-protocol.md#runtime-access) (lines 42-62). This
 file says what is true now: replace an answer when a tool, emulator, machine or
 owner rule changes it. Findings from runs go in `spec/`, never here.
 
@@ -14,7 +14,7 @@ afterwards. No agent run takes place, and the machine's run lock
 (`C:\ProgramData\refurbished-dinosaurs\run.lock`, or the path in
 `REFURBISHED_DINOSAURS_RUN_LOCK`) is never taken from this repository. If the
 owner lifts that rule, an agent run takes the lock as the protocol's
-[Running the original](../vendor/upstream/work-protocol.md#running-the-original) (lines 217-251)
+[Running the original](../vendor/upstream/work-protocol.md#running-the-original) (lines 331-365)
 says.
 
 ## BLD-GOG-EN-1.1
@@ -43,7 +43,7 @@ wait for supported layout/parameter bindings; FBOV code stays out of reach.
 
 Probe: none. Native process attachment and memory instrumentation are barred
 by the owner-only DOSBox policy. Recorded runs are not available; the protocol's
-[Recorded runs](../vendor/upstream/work-protocol.md#recorded-runs) (lines 227-239) guidance
+[Recorded runs](../vendor/upstream/work-protocol.md#recorded-runs) (lines 341-353) guidance
 does not override those limits. Each emulated-call setup must document port
 models, video memory substituted with RAM and the limits of each comparison,
 within the current resident-call contract below.

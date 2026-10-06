@@ -1,7 +1,7 @@
 # Spec entry templates
 
 Blank entries for each kind in `spec/`, with the front matter fields and body
-sections the [documentation standard](../vendor/upstream/documentation-standard.md#entry-types) (lines 468-945)
+sections the [documentation standard](../vendor/upstream/documentation-standard.md#entry-types) (lines 496-1008)
 requires, in its order. Copy one into the directory for its kind, name the file
 after the ID (`spec/rules/RULE-COMBAT-007.md`), and replace every `<...>`. The
 standard defines what each field and section holds; this page does not repeat
@@ -10,7 +10,7 @@ it.
 Rules, formats, screens and bugs may also have `complete_reading`, a list of
 the static findings that together read all of the entry, which makes it
 `established` without a run (see the standard's
-[Complete readings](../vendor/upstream/documentation-standard.md#complete-readings) (lines 181-273)).
+[Complete readings](../vendor/upstream/documentation-standard.md#complete-readings) (lines 191-291)).
 Leave it out until such a reading exists.
 
 A section with nothing to say is kept and says `None known.`, or `None.` where
@@ -412,18 +412,24 @@ behavior is strictly better than the original's, or that it is a small
 judgement call that makes the game better to play, for a `mandatory` deviation
 and for one that is `on` without being the fix of an unintended bug players do
 not rely on, as the
-[deviation log](../vendor/upstream/documentation-standard.md#deviation-log) (lines 1004-1025)
-section sets out. Delete it otherwise. IDs are never reused or renumbered, and a dropped deviation keeps
-its file.
+[deviation log](../vendor/upstream/documentation-standard.md#deviation-log) (lines 1068-1094)
+section sets out. Delete it otherwise. Keep the Replaces item only on a
+`mandatory` deviation that replaces some of the entries in Departs from
+entirely, and name only those; keep the Tests item only when test files check
+that the rebuild does what the Reason says. A row a Replaces item names becomes
+`deviated` once every `mandatory` deviation it lists has a Tests item. IDs are
+never reused or renumbered, and a dropped deviation keeps its file.
 
 ````markdown
 # DEV-<AREA>-<NNN>
 
 - Departs from: <rule, format, screen or bug IDs>
+- Replaces: <the rule, format or screen IDs of Departs from that a mandatory deviation replaces entirely>
 - Reason: <what the original does and why the rebuild differs>
 - Setting: <setting name, or None>
 - Default: <off, on or mandatory>
 - Justification: <why the rebuild's behaviour is strictly better, or what the judgement call improves and why no player would miss the original's>
+- Tests: <test files that check the rebuild does what the Reason says, each citing this ID>
 - Dropped: no
 ````
 

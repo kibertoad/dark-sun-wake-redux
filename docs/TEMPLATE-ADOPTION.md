@@ -391,3 +391,11 @@ Release build and assetless smoke pass. Toolkit #274's produced indirect-far
 transfer now passes installed positive and rejected-pointer controls. Actual
 source controls retain their unknown input and incomplete caller qualifications.
 See LATEST-RELEASE-GAP-AUDIT.md; issue 5 remains open for connected evidence.
+
+## Rules efa138b, checker 2.2.0, engine 12 and runtime 10, 2026-10-06
+
+Adopted the Standard, Methodology and Protocol at `efa138b`, checker 2.2.0,
+reader 2.2.0, engine 12.0.0, runtime 10.0.0 and the template's Test SDK
+18.10.1. Locked restore, all packaging locks and the canonical gate pass.
+Rule and template dispositions are in TEMPLATE-ACCEPTANCE.md; toolkit #302's
+confirmation and the new #316 and #317 are in LATEST-RELEASE-GAP-AUDIT.md.

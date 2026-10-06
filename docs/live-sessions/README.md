@@ -2,7 +2,7 @@
 
 One file per run of the original an agent has asked for, named after it:
 `docs/live-sessions/opening-combat.md`. The
-[work protocol](../../vendor/upstream/work-protocol.md#live-sessions) (lines 241-251) sets the
+[work protocol](../../vendor/upstream/work-protocol.md#live-sessions) (lines 355-365) sets the
 rules. In this repository coding agents never launch, control, capture or stop
 DOSBox, so every live session is run by the repository owner alone: the owner
 plays the script and takes the captures, and the agent reads them afterwards.
