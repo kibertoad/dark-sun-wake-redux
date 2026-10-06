@@ -80,6 +80,11 @@ segment-argument byte writers through actual calls. Deeper local origins remain,
 but metadata admission, alias returns and dropped paths still prevent a complete
 caller/native-preservation claim. Retry with its documented preceding callers
 and current pointer producers, never imported dispatcher or heap-entry state.
+FND-CONFIG-161/162's earlier prologues now retain the complete four-byte pointer
+handoff into that wrapper. The current pointer field has no upstream byte-writer
+evidence in these queries; fallback-setter calls, alias returns and path gaps
+remain. Retry with current field producers and the specific real setter/poll
+dependencies, not argument-width witnesses alone or increased unresolved bounds.
 
 The separate actual heap-entry scope now reaches exact-size singleton removal
 and the caller's header copy, but linked-removal/split aliases and dropped paths
@@ -251,11 +256,11 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Exact adopted dependencies: runtime 7.0.0, engine 10.1.0, reader 2.1.0 and
   checker 1.1.0. Release integrity and canonical adoption records remain in
   docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
-- Latest batch: preceding pointer-wrapper connection and dispatcher argument controls in
+- Latest batch: earlier caller prologues and full-width pointer argument controls in
   docs/TRANSFER-CALLER-PRODUCER-AUDIT.md. Previous capability reconciliation
   aligns AGENTS.md, RUNTIME.md and the research procedure with the delivered harness.
   Full assetless Test.ps1 -NoRestore passed on 2026-10-06; log
-  artifacts/engine101/heap-pointer-wrapper-gate.log. Final documentation base comparison
+  artifacts/engine101/heap-earlier-callers-gate.log. Final documentation base comparison
   passed. Toolkit issue 251 has the diagnostic follow-up. Release integrity records remain current.
   Toolkit issue 290's capability is delivered and verified; issue 299 tracks a new
   isolated capability limit. Issue 300 requests clearer return-width diagnostics.
@@ -301,9 +306,10 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   argument and storage-identity evidence before joining the header consumer.
   Local read origins now have controls; upstream source-word byte writers remain
   undecided under aliases and need their own current-input evidence.
-  FND-CONFIG-165 now connects the preceding wrapper to the dispatcher argument
-  and deeper witnesses. Next inspect FND-CONFIG-161/162's actual preceding caller
-  routes with these real children, retaining current pointer and metadata limits.
+  FND-CONFIG-161/162 now connect earlier caller prologues through FND-CONFIG-165
+  to the dispatcher with full-width argument controls. Require current pointer
+  field writers and actual fallback-setter/poll bodies before later continuations;
+  preserve metadata admission, alias and external-result limits.
   Expand archive/startup only for a specific missing dependency.
 - Next, Gap 31: formatter output bounds, file-check interrupt/alias conditions,
   other intervening calls and later buffer
