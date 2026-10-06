@@ -66,6 +66,12 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 
 ## Dead ends
 
+The actual caller literal reaches consumer and request parameter anchors, with
+value/origin and omission/wrong-value/cap controls recorded in the transfer audit.
+Whole routes still stop at undeclared parent children or existing step/visit
+bounds. Retry only with admitted slot/reference/alias producers or new child
+effects; the known literal does not supply root flags or ancestor state.
+
 The destination-field relocation census and published caller ownership reports
 are recorded in TRANSFER-CALLER-PRODUCER-AUDIT. The documented callback root
 now has source-table ordering controls; another allocator caller retains its
@@ -139,11 +145,11 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Exact adopted dependencies: runtime 7.0.0, engine 10.1.0, reader 2.1.0 and
   checker 1.1.0. Release integrity and canonical adoption records remain in
   docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
-- Latest batch: callback-root source-dispatch ordering controls
+- Latest batch: actual caller literal-to-consumer/request producer controls
   in docs/TRANSFER-CALLER-PRODUCER-AUDIT.md.
   Full Test.ps1 -NoRestore passed on 2026-10-06; log
-  artifacts/engine101/start-root-dispatch-test.log. Bounded source readings,
-  declared-table root ordering, omission and instruction-cap controls passed. Release
+  artifacts/engine101/consumer-literal-test.log. Connected value/origin,
+  omitted-push, wrong-value and step-cap controls passed. Release
   integrity records remain current. Toolkit issue 290's capability is
   delivered and verified. No unfinished tracked files. A private preliminary
   shared-pointer incoming-call census revalidates FND-CONFIG-207; it is not a
