@@ -81,16 +81,41 @@ from the disc's.
 
 ## Other files
 
-The installation adds GOG's DOSBox in `DOSBOX/` with its configuration files
-`dosbox_darksun2.conf` and `dosbox_darksun2_single.conf`, `Manual.pdf` and a byte-identical copy
-named `ds_wakerave_manual_pdf.pdf` (SRC-MANUAL-1994), `Cluebook.pdf`, `README.TXT`
-(SRC-README-1.1), icons, the GOG metadata files `goggame-1432903719.*`, `EULA.txt`,
-`webcache.zip`, `goglog.ini` and the uninstaller `unins000.*`. DOSBox writes screenshots to
-`capture/` and the game's writes land in `cloud_saves/`.
+The listing covers two things: every file under the install directory, recursively, and every
+file of the ISO 9660 volume on the data track of `game.gog`, read as 2,352-byte `MODE2/2352`
+sectors with the 2,048 bytes of user data at offset 24 and walked from the root directory record
+of the primary volume descriptor at sector 16. An installed file is listed by its path relative
+to the install directory, and a disc file as `CD:` and its path on the disc without the `;1`
+version suffix. The listing did not go inside any archive: `webcache.zip`,
+`DOSBOX/dosbox-0.74-2.1.tar.gz` and the disc's `MENZO/DATA.A00` and `PANZER/DATA.A00` are listed
+as single files, and so are the GFF files, whose members are the subject of the GFF format
+entries.
 
-The disc also holds its installer (`INSTALL.EXE`, `INSTALL.NFO`, `BOOT.NFO`), which the manifest
-leaves out, and the directories `MENZO/` and `PANZER/`, each with an installer and an ARJ
-archive for other products, which it leaves out as well.
+`node tools/evidence/build-listing.mjs <install dir> <install dir>/game.gog
+spec/builds/BLD-GOG-EN-1.1.files.yaml spec/builds/BLD-GOG-EN-1.1.other-files.yaml` in the
+rebuild's repository makes the listing, hashes each file with xxh3 and compares it with the
+manifest and the list of other files. It exits with code 0 only when every path in the listing is
+in the manifest with the manifest's size and xxh3, or in the list of other files, and every path
+of both files is in the listing. A path in the list of other files that ends in `/` stands for
+every file under that directory, and the tool counts those files without hashing them.
+
+Run on 2026-10-06 over the installation described under Obtaining, it listed 4,919 installed
+files and 264 disc files, and exited with 0: 483 paths matched the manifest (232 installed, 251
+on the disc), 78 were named in the list of other files, and 4,622 lay under `analysis/`. 7-Zip
+22.01, given the same track stripped to 2,048-byte sectors, listed the same 264 disc paths with
+the same sizes.
+
+The paths the manifest leaves out, each with its reason, are in
+`BLD-GOG-EN-1.1.other-files.yaml`. They are GOG's DOSBox in `DOSBOX/` and its configuration files
+`dosbox_darksun2.conf` and `dosbox_darksun2_single.conf`, the disc image `game.gog` itself,
+whose files are listed under `CD:`, `Manual.pdf` and a byte-identical copy named
+`ds_wakerave_manual_pdf.pdf` (SRC-MANUAL-1994), `Cluebook.pdf`, `README.TXT` (SRC-README-1.1),
+the shortcut and icons, GOG's metadata, licence, web cache and install log, and the uninstaller
+`unins000.*`. Three directories hold nothing the build ships: DOSBox writes screenshots to
+`capture/`, the game's writes land in `cloud_saves/`, and `analysis/` holds this repository's
+local reports. On the disc they are its installer (`INSTALL.EXE`, `INSTALL.NFO`, `BOOT.NFO`) and
+the directories `MENZO/` and `PANZER/`, each with an installer, an ARJ extractor and an ARJ
+archive for other products.
 
 ## Code ranges
 

@@ -1,0 +1,107 @@
+other_files:
+  - path: game.gog
+    reason: Raw MODE2/2352 image of the disc, which game.ins mounts as D:; the files of its ISO 9660 volume are listed under CD:.
+  - path: dosbox_darksun2.conf
+    reason: GOG's DOSBox configuration (emulated machine, sound card, cycles); DOSBox reads it, the game does not.
+  - path: dosbox_darksun2_single.conf
+    reason: GOG's DOSBox configuration that mounts the drives and runs RAVAGER.BAT; DOSBox reads it, the game does not.
+  - path: DOSBOX/DOSBox.exe
+    reason: GOG's DOSBox 0.74-2 build, the emulator that runs the game.
+  - path: DOSBOX/SDL.dll
+    reason: Library of GOG's DOSBox build.
+  - path: DOSBOX/SDL_net.dll
+    reason: Library of GOG's DOSBox build.
+  - path: DOSBOX/GOGDOSConfig.exe
+    reason: GOG's configuration program for DOSBox.
+  - path: DOSBOX/dosbox-0.74-2.1.tar.gz
+    reason: Source archive of GOG's DOSBox build, shipped for its licence.
+  - path: DOSBOX/DOSBox 0.74-2 Manual.txt
+    reason: DOSBox documentation.
+  - path: DOSBOX/Documentation/AUTHORS.txt
+    reason: DOSBox documentation.
+  - path: DOSBOX/Documentation/COPYING.txt
+    reason: DOSBox licence.
+  - path: DOSBOX/Documentation/INSTALL.txt
+    reason: DOSBox documentation.
+  - path: DOSBOX/Documentation/NEWS.txt
+    reason: DOSBox documentation.
+  - path: DOSBOX/Documentation/README.txt
+    reason: DOSBox documentation.
+  - path: DOSBOX/Documentation/THANKS.txt
+    reason: DOSBox documentation.
+  - path: DOSBOX/Video Codec/Video Instructions.txt
+    reason: Documentation of the ZMBV codec DOSBox records video with.
+  - path: DOSBOX/Video Codec/zmbv.dll
+    reason: ZMBV video codec for DOSBox recordings.
+  - path: DOSBOX/Video Codec/zmbv.inf
+    reason: Installer information for the ZMBV codec.
+  - path: DOSBOX/stdout.txt
+    reason: DOSBox's console log, written when DOSBox runs.
+  - path: Launch Dark Sun 2 - Wake of the Ravager.lnk
+    reason: Windows shortcut that starts GOG's DOSBox.
+  - path: Manual.pdf
+    reason: The game's manual (SRC-MANUAL-1994); documentation the game does not read.
+  - path: ds_wakerave_manual_pdf.pdf
+    reason: Byte-identical copy of Manual.pdf (SRC-MANUAL-1994).
+  - path: Cluebook.pdf
+    reason: Clue book shipped by GOG; documentation the game does not read.
+  - path: README.TXT
+    reason: The installation's readme (SRC-README-1.1); documentation the game does not read.
+  - path: EULA.txt
+    reason: GOG's licence agreement.
+  - path: gog.ico
+    reason: GOG icon for the shortcut.
+  - path: support.ico
+    reason: GOG icon for the support link.
+  - path: goggame-1432903719.ico
+    reason: GOG icon for the game.
+  - path: goggame-1432903719.info
+    reason: GOG Galaxy metadata giving the game ID, build ID and language.
+  - path: goggame-1432903719.hashdb
+    reason: GOG Galaxy metadata of the installed files.
+  - path: goggame-1432903719.script
+    reason: GOG Galaxy install script (DOSBox configuration, registry values, cloud_saves).
+  - path: goglog.ini
+    reason: GOG installer log of the directories, configuration files, registry values and save files it set up.
+  - path: webcache.zip
+    reason: GOG Galaxy web content.
+  - path: unins000.dat
+    reason: Uninstaller data of GOG's installer.
+  - path: unins000.exe
+    reason: Uninstaller of GOG's installer.
+  - path: unins000.ini
+    reason: Uninstaller settings of GOG's installer.
+  - path: unins000.msg
+    reason: Uninstaller messages of GOG's installer.
+  - path: capture/
+    reason: DOSBox writes its screenshots and recordings here when the game runs; nothing in it ships with the build.
+  - path: cloud_saves/
+    reason: DOSBox overlays this directory on C:, so the game's writes (saves and the files it rewrites) land here when it runs; GOG's installer creates it empty.
+  - path: analysis/
+    reason: This repository's ignored local analysis reports, kept beside the game files; nothing in it ships with the build.
+  - path: CD:INSTALL.EXE
+    reason: The disc's installer, which copies the game to a hard disk; the game does not run it.
+  - path: CD:INSTALL.NFO
+    reason: Data file of the disc's installer.
+  - path: CD:BOOT.NFO
+    reason: Data file of the disc's installer.
+  - path: CD:MENZO/INSTALL.EXE
+    reason: Installer of another product on the same disc.
+  - path: CD:MENZO/INSTALL.NFO
+    reason: Data file of another product's installer on the same disc.
+  - path: CD:MENZO/BOOT.NFO
+    reason: Data file of another product's installer on the same disc.
+  - path: CD:MENZO/DEARJ.EXE
+    reason: ARJ extractor of another product's installer on the same disc.
+  - path: CD:MENZO/DATA.A00
+    reason: ARJ archive of another product on the same disc; the listing did not go inside it.
+  - path: CD:PANZER/INSTALL.EXE
+    reason: Installer of another product on the same disc.
+  - path: CD:PANZER/INSTALL.NFO
+    reason: Data file of another product's installer on the same disc.
+  - path: CD:PANZER/BOOT.NFO
+    reason: Data file of another product's installer on the same disc.
+  - path: CD:PANZER/DEARJ.EXE
+    reason: ARJ extractor of another product's installer on the same disc.
+  - path: CD:PANZER/DATA.A00
+    reason: ARJ archive of another product on the same disc; the listing did not go inside it.
