@@ -106,9 +106,11 @@ Retry with +8/root/link and alias producers, not another budget or frozen state.
 
 The allocation chain now includes FND-CONFIG-211/212/167's actual lower heap
 and request bodies. Split header witnesses stop at unknown saved-target aliases;
-acquisition/growth stop at a callee-produced near-to-far frame conversion.
-Toolkit issue 302 has synthetic/CPU controls for that new capability limit.
-String and path gaps remain. Retry with delivered conversion semantics plus
+engine 12.0.0 (toolkit 302) follows the shift helper's converted far return.
+At 128 steps the paths then stop at an unresolved string repetition count and
+loop limits; at the recorded 256 steps the whole run fails on the engine's
+term-size cap (toolkit 316), so do not raise bounds to get past it.
+String and path gaps remain. Retry with
 admitted count, heap/header, direction and bound producers, not nonnull models,
 stitched acquisition state or increased unresolved bounds. Details:
 TRANSFER-CALLER-PRODUCER-AUDIT.
@@ -277,17 +279,18 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Research-side tooling scope is unchanged. Gaps 31, 32, 33, 34 and 37 retain
   their complete connected-evidence exits. No game specification or parity
   status changed; existing CONFIG/SCRIPT findings remain read-only inputs.
-- Exact adopted dependencies: runtime 7.0.0, engine 11.0.0, reader 2.1.0 and
-  checker 1.1.0. Release integrity and canonical adoption records remain in
-  docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
-- Latest batch: released identity, ENTER and return-check adoption in
-  docs/LATEST-RELEASE-GAP-AUDIT.md. Previous capability reconciliation
-  aligns AGENTS.md, RUNTIME.md and the research procedure with the delivered harness.
-  Full assetless Test.ps1 -NoRestore passed on 2026-10-06; log
-  artifacts/engine110/canonical-gate.log. Final documentation base comparison
-  passed. Toolkit issue 251 has the diagnostic follow-up. Release integrity records remain current.
-  Toolkit issue 290's capability is delivered and verified; issue 299 tracks a new
-  isolated capability limit. Issue 300 requests clearer return-width diagnostics.
+- Exact adopted dependencies: rules efa138b, runtime 10.0.0, engine 12.0.0,
+  reader 2.2.0 and checker 2.2.0. Adoption records are in
+  docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TEMPLATE-ACCEPTANCE.md.
+- Latest batch: rules, checker, engine 12 and runtime 10 adoption. Toolkit 302
+  is confirmed and closed. Open toolkit requests from this goal: 316 (term-size
+  cap fails a whole report) and 317 (checker counts an event's emitter as its
+  handler; seven emitting rules keep prose Parameters until it is decided).
+  Toolkit 200 has our 2026-10-06 cancelled-operand question without a reply.
+  Assetless Test.ps1 passed on 2026-10-06 with the machine-wide GAME_DIR and
+  NoDefaultCurrentDirectoryInExePath unset (both leak in from other projects);
+  log artifacts/engine120/canonical-gate.log. Reports: lower-heap120.
+  Earlier: toolkit issues 299/300/301 delivered and confirmed.
   No unfinished tracked
   files. Synthetic capture readiness is fixed locally; template issue 73 has
   recovery evidence. The production capture helper is unchanged. Private new reports are in
@@ -295,10 +298,7 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   in exact-heap101; prior lower reports remain
   in lower-heap101 and allocation reports
   in allocation-chain101, FONT entry reports in font-request101 and release reports
-  in normalizer-release101. New toolkit issue 302 isolates frame-conversion support;
-  issue 300 has the related diagnostic and root-versus-nested scope distinctions.
-  Toolkit issues 299/300/301 have delivered changes and consumer confirmations;
-  issue 302 remains open without a reply. New private reports are in
+  in normalizer-release101. Private reports from engine 11 are in
   UserContent/analysis/reporter-audit/upstream110; integrity and synthetic logs
   are in artifacts/engine110. The source and installed wheel bytes match.
   The setter census remains
@@ -324,8 +324,9 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   continuation before claiming acquisition success; preserve signature/reader
   omission and wrong-byte controls, without a prologue bypass.
   FND-CONFIG-211/212/167 extend the separate allocation dependency into real lower
-  header/request bodies. Its next request continuation needs delivered issue 302
-  support. Require admitted reader counts, heap/header aliases, bounds, direction
+  header/request bodies. Its request continuation now passes the converted
+  frame and stops at the string repetition count; the 256-step run waits on
+  toolkit 316. Require admitted reader counts, heap/header aliases, bounds, direction
   and runtime effects before joining acquisition state. The alternate header
   origin remains undecided, not a rejected negative.
   The separate documented heap-entry scope now reaches exact singleton removal
