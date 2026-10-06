@@ -1,5 +1,56 @@
 # Transfer caller and coordinate producers, 2026-10-05
 
+## Shared setter argument classes and stored-pointer control, 2026-10-06
+
+The existing FND-CONFIG-175/207 setter census is reused as a locator for new
+bounded argument controls, with the recorded FONT-path call as its positive
+mapping control. Its declared MZ/FBOV search still excludes near, computed and
+unrelocated references and does not prove complete native writer coverage.
+No absence claim follows from the census.
+
+For each retained call candidate, the published trace starts at the source's
+argument preparation and enters the real complete setter. Fixed record-address
+preparations retain the literal offset's value and original instruction producer
+at the setter's input checkpoint. The segment matches the caller's explicit
+root DS hypothesis. The stored-pointer input instead retains provenance
+from its actual field-reading push; it is not classified as a literal address.
+These are bounded local instruction witnesses, not native predecessor admission.
+
+A wrong fixed-offset control is rejected. One step reaches no setter input.
+Asserting the fixed address on the stored-pointer path remains undecided even
+at the reached checkpoint, while naming a fixed-literal instruction as that
+pointer's producer is rejected. The latter controls rule out treating every
+observed setter input as the same fixed record. Actual stored-field contents,
+their segment, their writers and their lifetime remain unestablished here.
+
+Every argument-scope report remains incomplete and stops at the undeclared
+caller continuation after the setter returns and its arguments are removed.
+Thus none joins an installation to the parent helper's later object write or
+proves that write distinct from the saved stack. The next dependency includes
+the stored-pointer field's own producer and the parent route's installation and
+replacement ordering, alongside later shared-pointer writers and callback
+effects. No fixed record state is imported into the stopped parent query.
+
+Private census, source contexts, configs, reports and rejected controls are in
+UserContent/analysis/reporter-audit/shared-setter101. Ignored drivers/logs are
+artifacts/engine101/shared-setter-incoming.mjs, shared-setter-contexts.py,
+shared-setter-body.py, shared-setter-controls.mjs and
+shared-setter-saved-negatives.mjs, with their logs. Existing traversal limits
+and root hypotheses are retained. No native memory, preservation model, joined
+windows or larger unresolved bounds were supplied. No game spec, parity status
+or other goal's entries change; all five full connected exits remain open.
+
+Read-only FND-CONFIG-171 identifies the stored-pointer field's getter-result
+producer inside a separate bracket helper. Together with FND-CONFIG-175, this
+provides the next source input without assuming native save/restore semantics
+or combining the bracket helper's state with this parent route.
+
+Validation: bootstrap facts, published argument controls and the full assetless
+`tools/Test.ps1 -NoRestore` gate passed on 2026-10-06. Log:
+artifacts/engine101/shared-setter-gate.log. The final documentation check includes
+base comparison; original-dependent tests skipped with GAME_DIR absent. No
+original game or emulated function was run.
+
 ## Connected parent helper and argument barrier, 2026-10-06
 
 The corrected release caller now has a connected trace from its previously
