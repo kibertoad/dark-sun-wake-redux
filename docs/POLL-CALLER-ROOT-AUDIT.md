@@ -455,3 +455,41 @@ validation dependency is resolved; next are formatter bounds, other intervening
 calls and this service graph's explicit interrupt/saved-storage conditions.
 No specification or parity status changes. All five full connected exits remain
 open.
+
+## Connected queried-state versus caller snapshot controls, 2026-10-06
+
+The resolved file-status service graph supplies a fresh trace from its actual
+prologue through the real getter and both caller snapshot stores. It reuses the
+existing poll profile's step/path/total/visit bounds. SS/DS remain explicit
+hypotheses; distinct incoming ES/BX and queried ES/BX values are added solely
+to distinguish their producer routes. The getter's DOS interrupt has an explicit
+conditional return model and saved-memory scope covering its saved words, call
+frame and the caller's saved frame through BP. No SP/BP value or entry memory
+is supplied, and no native service-state guarantee is inferred.
+
+At the caller snapshot checkpoint, AX/DX equal the distinct hypothetical queried
+pair while each actual local store receives the corresponding restored incoming
+ES/BX word. All four relations hold locally. The claim that the snapshot's
+segment word instead equals the queried segment is rejected. Removing the
+memory scope stops at the getter return with unknown return-target provenance,
+before every witness. Removing the interrupt model stops at the getter's real
+interrupt; one step also reaches no requested anchor. Thus saved-register and
+frame preservation are explicit conditions, not incidental defaults.
+
+The connected query then reaches the actual state setter and stops at its
+unmodeled interrupt. Path-limit gaps around the validator/carry branch remain;
+all whole verdicts are undecided and completeWithinModel is false. This provides
+a connected conditional producer control for the already recorded distinction,
+not native snapshot equality, correctness, state corruption, successful cleanup
+or complete filename preservation. Neither the handler nor the original game
+was executed. No native claim, game specification or parity status changes.
+All five full exits remain open.
+
+Private configs/reports: UserContent/analysis/reporter-audit/file-state-snapshot101.
+Ignored driver/log: artifacts/engine101/file-state-snapshot.mjs and its log.
+Bootstrap facts, offline pinned rules, hash-verified published source queries,
+positive relations and false/scopeless/unmodeled/cap negatives passed.
+
+Full assetless `tools/Test.ps1 -NoRestore` passed on 2026-10-06, including
+documentation base comparison. Log: artifacts/engine101/file-state-snapshot-gate.log.
+Original-dependent tests skip with GAME_DIR absent.
