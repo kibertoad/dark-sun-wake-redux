@@ -90,6 +90,12 @@ full-width values before stopping at the poll's INT 33h or guard's INT 21h.
 Dropped setter branches and aliases remain. These stops need explicit justified
 external-effect evidence before continuation; do not infer native driver results,
 callback dispatch or later field preservation from the reached stores.
+The caller-body pointer locator distinguishes owned full-width reads and split
+word stores from rejected GS-prefix overlaps. Unmapped outgoing edges keep it
+partial; this is no allocation-producer or native writer-absence evidence.
+Existing spec does not provide upstream field producers. Do not repeat this
+finite family without new producer evidence; continue another connected gap
+dependency while those original-game inputs remain unverified.
 
 The separate actual heap-entry scope now reaches exact-size singleton removal
 and the caller's header copy, but linked-removal/split aliases and dropped paths
@@ -261,11 +267,11 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Exact adopted dependencies: runtime 7.0.0, engine 10.1.0, reader 2.1.0 and
   checker 1.1.0. Release integrity and canonical adoption records remain in
   docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
-- Latest batch: earlier caller actual registration order/value and poll boundaries in
+- Latest batch: current pointer-field locator ownership and full/split-width controls in
   docs/TRANSFER-CALLER-PRODUCER-AUDIT.md. Previous capability reconciliation
   aligns AGENTS.md, RUNTIME.md and the research procedure with the delivered harness.
   Full assetless Test.ps1 -NoRestore passed on 2026-10-06; log
-  artifacts/engine101/heap-caller-registration-gate.log. Final documentation base comparison
+  artifacts/engine101/current-pointer-locator-gate.log. Final documentation base comparison
   passed. Toolkit issue 251 has the diagnostic follow-up. Release integrity records remain current.
   Toolkit issue 290's capability is delivered and verified; issue 299 tracks a new
   isolated capability limit. Issue 300 requests clearer return-width diagnostics.
