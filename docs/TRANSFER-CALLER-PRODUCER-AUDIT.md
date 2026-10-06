@@ -1476,3 +1476,36 @@ artifacts/engine101/heap-earlier-callers.mjs and heap-earlier-caller-controls.mj
 No game specification/parity change or original/emulated game run; all five
 complete exits remain open. Canonical validation log:
 artifacts/engine101/heap-earlier-callers-gate.log.
+
+## Earlier caller registration and poll boundaries, 2026-10-06
+
+The earlier FND-CONFIG-161/162 prologue scopes now include the actual overlay
+and resident setters, FND-CONFIG-163's guard, FND-CONFIG-164's complete poll,
+and FND-CONFIG-166's documented state-clear/forwarder bodies. All remain read-only
+acceptance inputs. There are no new return/interrupt models, input memory or
+increased bounds. The newly reached poll stops at its INT 33h hardware boundary;
+the setter guard stops at INT 21h. Those events do not establish driver results,
+diagnostic output, callback execution or eventual poll completion.
+
+At reached resident registration stores, order controls retain the preceding
+overlay store and equal full-width pointer values. Both actual stores retain
+the caller-supplied pointer; this is a source-local value witness, not proof of
+the callback's effects or continued storage identity. Reversing the two stores
+is rejected. Omitting the resident setter or allowing one step loses the order
+anchor. The previous pointer handoff and deeper local origins still occur in
+the extended queries, while source-word byte writers remain undecided.
+
+Unknown saved-target aliases and path limits remain, including dropped setter
+branches. Every whole control remains undecided and completeWithinModel is
+false. No stopped interrupt is replaced with a preservation assumption; no
+later shared-helper continuation or joined heap consumer is claimed. All five
+complete exits remain open, without game spec/parity changes or original or
+emulated game execution.
+
+Private configs/reports remain in
+UserContent/analysis/reporter-audit/heap-header-candidates101 under the two
+earlier caller names, with setter-poll and registration-controls suffixes plus
+reversed-order, omission and one-step controls. Ignored drivers:
+artifacts/engine101/heap-caller-setter-poll.mjs and
+heap-caller-registration-controls.mjs. Canonical validation log:
+artifacts/engine101/heap-caller-registration-gate.log.
