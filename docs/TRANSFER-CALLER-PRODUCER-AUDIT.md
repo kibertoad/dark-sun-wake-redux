@@ -1,5 +1,33 @@
 # Transfer caller and coordinate producers, 2026-10-05
 
+## Direct release producer graph acceptance, 2026-10-06
+
+The direct-release field producer now has complete source-local callee coverage
+within its declared graph. The published engine joins the actual producer to
+the request, allocator, free-slot scan, transfer primitive, release service and
+the adjacent helper identified by read-only FND-CONFIG-185. The helper's
+published boundary check resolves its reachable body inside the inventory-adjacent
+window; the window endpoint was not inferred from the inventory's body-byte count.
+The positive report has completeWithinDeclaredGraph true, with no unresolved
+edges or unchecked entries. Hardware boundaries remain explicit in the report.
+
+Removing the adjacent helper leaves its caller edges unresolved. Removing the
+request leaves request edges unresolved. The one-instruction control leaves an
+incomplete caller and unchecked children. Each negative loses graph completion.
+These controls verify source coverage, not dynamic field preservation or native
+input admission. Unknown slot chains, transfer aliases, saved-state aliases and
+hardware effects remain dependencies of the full Gap 37 contract.
+
+Private configs and reports are under
+GAME_DIR/analysis/reporter-audit/issue5-transfer-release-callers101, named
+producer-helper-connected, without-adjacent-helper, without-request and
+connected-one-instruction. Ignored drivers are
+artifacts/engine101/transfer-release-connected-graph.mjs and
+transfer-release-connected-helper.mjs. No new connected return-to-field trace
+was completed in this batch. No native memory was seeded, trace windows joined
+or old traversal bounds increased. All five full exits remain open; no game
+specification or parity status changes.
+
 Read-only inputs: FND-CONFIG-183/186/191/192. Published reader 2.1.0 and
 engine 10.0.0 incoming-call censuses confirm the transfer wrapper's primitive
 call and resident/overlay callers of that wrapper. Searches remain partial;
