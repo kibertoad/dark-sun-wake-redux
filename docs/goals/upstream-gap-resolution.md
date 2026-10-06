@@ -66,6 +66,13 @@ src/, game spec claims, parity statuses, other goals' queue items, proprietary c
 
 ## Dead ends
 
+The actual overlay file-check root reaches the resident service with all ten
+argument-byte writers and local stack-buffer address origin held. Getter DOS,
+path-limit and separate root-return frame/balance stops remain. Retry with
+specific service/alias or root-frame evidence; do not import the standalone
+snapshot query, assume filename preservation or raise caps. Details:
+POLL-CALLER-ROOT-AUDIT.
+
 The real file-status prologue/getter route distinguishes queried AX/DX from
 the caller snapshot of restored incoming ES/BX under explicit interrupt/frame
 hypotheses. Removing the scope loses return provenance; the next setter interrupt
@@ -196,15 +203,15 @@ connected scope; no cap increase, repeated capped scan or state stitching.
 - Exact adopted dependencies: runtime 7.0.0, engine 10.1.0, reader 2.1.0 and
   checker 1.1.0. Release integrity and canonical adoption records remain in
   docs/LATEST-RELEASE-GAP-AUDIT.md and docs/TOOLKIT-RESPONSE-ACCEPTANCE.md.
-- Latest batch: connected file-status queried/saved-state producer controls in
+- Latest batch: actual file-check root service argument-handoff controls in
   docs/POLL-CALLER-ROOT-AUDIT.md.
   Full assetless Test.ps1 -NoRestore passed on 2026-10-06; log
-  artifacts/engine101/file-state-snapshot-gate.log. Final documentation base comparison
+  artifacts/engine101/file-check-handoff-gate.log. Final documentation base comparison
   passed. Toolkit issue 251 has the diagnostic follow-up. Release integrity records remain current.
   Toolkit issue 290's capability is delivered and verified; issue 299 tracks a new
   isolated capability limit. No unfinished tracked
   files. Private connected reports are in
-  UserContent/analysis/reporter-audit/file-state-snapshot101. The setter census remains
+  UserContent/analysis/reporter-audit/file-check-handoff101. The setter census remains
   a bounded locator, not complete native writer coverage.
 - Keep the distinction between delivered shared requests, pending connected
   acceptance and original-game unknowns. The audit changes no completion exit.
