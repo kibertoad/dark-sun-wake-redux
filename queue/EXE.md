@@ -165,7 +165,8 @@ Next ID: Q-EXE-010
   priority/local-F publication (FND-EXE-120), and bounded shared slot-byte/
   mask publishers (FND-EXE-121), and optional first-mode slot admission/clearing
   (FND-EXE-122), and second-mode bounds/group gate/load ordering (FND-EXE-123).
-  Table/slot producers and selected callee
+  Selected-callee prefix gates, reader calls and recursive fallback are recorded
+  in FND-EXE-124. Table/slot producers and remaining selected callee
   effects remain open. These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
