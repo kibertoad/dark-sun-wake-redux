@@ -42,6 +42,7 @@ Entries by area.
 | [FND-EXE-026](../findings/FND-EXE-026.md) | A compiled append loop derives its slot from a signed byte and initializes after iteration | recorded |
 | [FND-EXE-027](../findings/FND-EXE-027.md) | A compiled list producer inserts its allocation result before dispatching an output word | recorded |
 | [FND-EXE-028](../findings/FND-EXE-028.md) | Bounded list-producer output dispatch converges on a value reread | recorded |
+| [FND-EXE-029](../findings/FND-EXE-029.md) | A dispatch helper searches sentinel-linked nodes and returns an unvalidated stored word | recorded |
 
 ## GFF
 

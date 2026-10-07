@@ -69,7 +69,8 @@ Next ID: Q-EXE-010
   failure-object prefix/bitmap fallback boundaries (FND-EXE-025), and a bounded
   append/initializer caller sequence (FND-EXE-026), and an earlier list producer
   with insertion before status dispatch (FND-EXE-027), and the bounded output
-  table/default paths and shared reread (FND-EXE-028). These bounded
+  table/default paths and shared reread (FND-EXE-028), and a shared helper
+  sentinel-linked search (FND-EXE-029). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete

@@ -134,6 +134,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   construction effects, status meanings and dispatch targets remain open.
   FND-EXE-028 resolves the bounded dispatch targets and shared output reread;
   helper effects, aliases and final continuations remain conditional.
+  FND-EXE-029 reads the first shared helper as a sentinel-linked search;
+  comparison semantics, collection producers and returned-word lifetime remain open.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
   are compatible with multiple encodings too. FND-EXE-008 identifies the
