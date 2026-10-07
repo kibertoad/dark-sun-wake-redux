@@ -51,12 +51,14 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Stage: Slices. The ongoing protocol objective remains active on this local
   goal branch. Completed workflow tooling and EXE research are committed.
 - Last full gate: 2026-10-07, assetless Test.ps1 -NoRestore passed.
-  Logs: artifacts/exe-payload-capacity-full-gate.log and artifacts/exe-payload-capacity-docs.log.
+  Logs: artifacts/template-followup-full-gate.log and artifacts/template-followup-docs.log.
   Documentation generation and explicit main-base checking passed;
   existing argument-check skips remain. Pre-commit checks passed.
   The last full source-listing reconciliation remains
   artifacts/exe-dosbox-pe-listing.log; this batch changed no manifest.
-- Unfinished: no tracked work remains. EXE follow-up items remain Q-EXE-005,
+- Unfinished: no tracked work remains. The interrupted Q-EXE-009 reading is
+  local in GAME_DIR/analysis/exe-batches/dosbox-pe-capacity-failure.log;
+  review it and remaining bounded paths before recording a finding. EXE follow-up items remain Q-EXE-005,
   Q-EXE-006, Q-EXE-007, Q-EXE-008 and Q-EXE-009; Q-EXE-001 retains its
   retry requirement. Local static-analysis reports and the saved interpreter
   Ghidra project remain in GAME_DIR/analysis/exe-batches for continuation.
