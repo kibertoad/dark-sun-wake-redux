@@ -218,7 +218,9 @@ reading of callers, external commands or interpreter behavior is claimed.
   resolves selected byte/word slots and records fresh-table word composition
   plus a byte transfer route. FND-EXE-100 records mapping publishers, object
   selection, source reentry and post-read reset/restoration. FND-EXE-101
-  records category/flag state admission and copied-word publication; producers,
+  records category/flag state admission and copied-word publication. FND-EXE-102
+  records helper depth/callback publication and distinct conditional/normal
+  restoration; downstream targets, producers,
   indirect targets and actual state admission remain open.
   Native frame admission, callback invocation, selector effects, allocation units, capacity, aliases
   and lifetime remain conditional.

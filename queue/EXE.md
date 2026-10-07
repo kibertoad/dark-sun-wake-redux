@@ -142,7 +142,8 @@ Next ID: Q-EXE-010
   fresh-table word composition and a byte transfer route (FND-EXE-099),
   and biased mapping publication, source reentry and retained-result reset/
   restoration (FND-EXE-100), and category/flag mapping-state admission with
-  copied-word publication (FND-EXE-101). These bounded
+  copied-word publication (FND-EXE-101), and helper depth/callback publication
+  with distinct conditional and normal restoration (FND-EXE-102). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete

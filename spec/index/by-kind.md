@@ -177,7 +177,7 @@ Entries by kind.
 
 ## findings
 
-550 entries.
+551 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -539,6 +539,7 @@ Entries by kind.
 | [FND-EXE-099](../findings/FND-EXE-099.md) | Physical fallback slots select a shared byte transfer path and a fresh-table two-call word method | recorded |
 | [FND-EXE-100](../findings/FND-EXE-100.md) | Fallback publishers bias direct mappings and append reset indices after mode-dependent object selection | recorded |
 | [FND-EXE-101](../findings/FND-EXE-101.md) | Larger fallback flag gates select mapping states and preserve upper bytes in copied-word publication | recorded |
+| [FND-EXE-102](../findings/FND-EXE-102.md) | Fallback helper publishes a depth-indexed record while conditional callback restoration differs from normal cleanup | recorded |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant | recorded |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead | recorded |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) | recorded |
