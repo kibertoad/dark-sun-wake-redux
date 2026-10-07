@@ -51,6 +51,7 @@ Entries by area.
 | [FND-EXE-035](../findings/FND-EXE-035.md) | Payload storage rounds a capacity word and initializes its three-word prefix | recorded |
 | [FND-EXE-036](../findings/FND-EXE-036.md) | Capacity-limit helper constructs a local value and decrements its preceding word before failure publication | recorded |
 | [FND-EXE-037](../findings/FND-EXE-037.md) | Capacity-limit object construction publishes a payload field before replacing its first word | recorded |
+| [FND-EXE-038](../findings/FND-EXE-038.md) | Temporary production distinguishes null input from equal endpoints before payload copying | recorded |
 
 ## GFF
 
