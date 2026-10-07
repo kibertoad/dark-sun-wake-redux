@@ -51,7 +51,7 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Stage: Slices. The ongoing protocol objective remains active on this local
   goal branch. Completed workflow tooling and EXE research are committed.
 - Last full gate: 2026-10-07, assetless Test.ps1 -NoRestore passed.
-  Logs: artifacts/exe-capacity-failure-full-gate.log and artifacts/exe-capacity-failure-docs.log.
+  Logs: artifacts/exe-object-construction-full-gate.log and artifacts/exe-object-construction-docs.log.
   Documentation generation and explicit main-base checking passed;
   existing argument-check skips remain. Pre-commit checks passed.
   The last full source-listing reconciliation remains
@@ -81,8 +81,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   its narrow downstream guard has synthetic controls. No upstream fix delivery
   is claimed. Toolkit issue 111 also records the reference-type guidance concern.
 - Next: recheck shared goal claims, then Q-EXE-009 using FND-EXE-015,
-  FND-EXE-017 through FND-EXE-036 for remaining filename-helper
-  storage construction and failure-consumer/handler contracts, then
+  FND-EXE-017 through FND-EXE-037 for remaining filename-helper
+  temporary production and failure-consumer/handler contracts, then
   preceding-word producers and downstream output, then
   collection initialization/lifetime,
   list-producer callee effects,
