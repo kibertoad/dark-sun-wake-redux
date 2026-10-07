@@ -110,6 +110,7 @@ Entries by area.
 | [FND-EXE-094](../findings/FND-EXE-094.md) | PATH source readers separate word-boundary dispatch from bounded byte copy and final terminator | recorded |
 | [FND-EXE-095](../findings/FND-EXE-095.md) | PATH final output helper separates replacement, alias copies and pointer returns | recorded |
 | [FND-EXE-096](../findings/FND-EXE-096.md) | PATH preparation helper computes replacement spans and publishes length after optional copy and release | recorded |
+| [FND-EXE-097](../findings/FND-EXE-097.md) | PATH preparation uses a prefix-base return while its stored handler forwards before the copy tail | recorded |
 
 ## GFF
 

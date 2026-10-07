@@ -210,7 +210,9 @@ reading of callers, external commands or interpreter behavior is claimed.
   callees without establishing the record-list extent.
   FND-EXE-095 records final output replacement/alias choices and pointer returns;
   FND-EXE-096 records preparation spans, release admission and publication,
-  retaining its unread new-prefix producer and stored handler.
+  retaining new-prefix and stored-handler admission limits. FND-EXE-097
+  composes FND-EXE-035's prefix producer with that caller and recovers the
+  saved handler, retaining native frame and shared-tail input uncertainty.
   Native frame admission, callback invocation, selector effects, allocation units, capacity, aliases
   and lifetime remain conditional.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
