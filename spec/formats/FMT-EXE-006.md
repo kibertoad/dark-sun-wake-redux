@@ -208,6 +208,9 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-093 records PATH source advancement, key admission and untested output
   helper completion; FND-EXE-094 records its word-boundary and bounded-copy
   callees without establishing the record-list extent.
+  FND-EXE-095 records final output replacement/alias choices and pointer returns;
+  FND-EXE-096 records preparation spans, release admission and publication,
+  retaining its unread new-prefix producer and stored handler.
   Native frame admission, callback invocation, selector effects, allocation units, capacity, aliases
   and lifetime remain conditional.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?

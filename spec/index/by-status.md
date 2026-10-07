@@ -223,7 +223,7 @@ Entries by status.
 
 ## recorded
 
-524 entries.
+526 entries.
 
 | ID | Title |
 |---|---|
@@ -561,6 +561,8 @@ Entries by status.
 | [FND-EXE-092](../findings/FND-EXE-092.md) | Composed metadata caller keeps first-field stores separate from later marker and relative-target stages |
 | [FND-EXE-093](../findings/FND-EXE-093.md) | PATH producer advances before key admission and returns one after untested output-helper completion |
 | [FND-EXE-094](../findings/FND-EXE-094.md) | PATH source readers separate word-boundary dispatch from bounded byte copy and final terminator |
+| [FND-EXE-095](../findings/FND-EXE-095.md) | PATH final output helper separates replacement, alias copies and pointer returns |
+| [FND-EXE-096](../findings/FND-EXE-096.md) | PATH preparation helper computes replacement spans and publishes length after optional copy and release |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) |

@@ -134,7 +134,8 @@ Next ID: Q-EXE-010
   (FND-EXE-091), and composed metadata first-field admission, stores and
   continued cursor stages (FND-EXE-092), PATH source/key/output-helper gates
   (FND-EXE-093), and word-boundary reads with bounded record copying
-  (FND-EXE-094). These bounded
+  (FND-EXE-094), final output replacement/alias gates (FND-EXE-095), and
+  preparation spans, releases and publication (FND-EXE-096). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete
