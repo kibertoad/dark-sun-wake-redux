@@ -144,6 +144,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   producers, auxiliary effects and ownership remain unresolved.
   FND-EXE-033 reads the add-one auxiliary and a distinct previous-value
   exchange-add return; ownership and caller cleanup contracts remain open.
+  FND-EXE-034 traces negative-path payload copying and length publication;
+  allocation units, capacity, aliases and lifetime remain conditional.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
   are compatible with multiple encodings too. FND-EXE-008 identifies the

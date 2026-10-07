@@ -47,6 +47,7 @@ Entries by area.
 | [FND-EXE-031](../findings/FND-EXE-031.md) | A sentinel collection producer skips creation on a match and links new storage after helper calls | recorded |
 | [FND-EXE-032](../findings/FND-EXE-032.md) | A collection field helper chooses publication through a signed preceding-word guard | recorded |
 | [FND-EXE-033](../findings/FND-EXE-033.md) | Two preceding-word helpers differ in whether they return the value before addition | recorded |
+| [FND-EXE-034](../findings/FND-EXE-034.md) | Negative-path field storage copies a payload and rereads its source length for publication | recorded |
 
 ## GFF
 
