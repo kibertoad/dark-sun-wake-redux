@@ -123,7 +123,9 @@ Next ID: Q-EXE-010
   (FND-EXE-080), and the selected prefix's paired increments and distinct context initializer
   (FND-EXE-081), mutable cleanup-cursor reloads and next-slot publication
   (FND-EXE-082), and the first cleanup target with its separately admitted pointer-constructor path
-  (FND-EXE-083). These bounded
+  (FND-EXE-083), shared old-value decrement gates and ordered resource-call continuations
+  (FND-EXE-084), and reverse-slot releases with three-word initialization
+  (FND-EXE-085). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete

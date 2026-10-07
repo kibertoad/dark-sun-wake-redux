@@ -97,6 +97,8 @@ Entries by area.
 | [FND-EXE-081](../findings/FND-EXE-081.md) | First selected startup callbacks preserve two empty bodies, increment paired words and initialize a distinct context | recorded |
 | [FND-EXE-082](../findings/FND-EXE-082.md) | Registered cleanup dispatch rereads a mutable cursor before publishing its next slot | recorded |
 | [FND-EXE-083](../findings/FND-EXE-083.md) | First cleanup target tail-selects paired pointer replacement without resetting adjacent words | recorded |
+| [FND-EXE-084](../findings/FND-EXE-084.md) | Two cleanup callbacks share an old-value decrement gate and ordered indirect-resource calls | recorded |
+| [FND-EXE-085](../findings/FND-EXE-085.md) | Third cleanup target visits twenty-six slots in reverse and retains their direct pointer fields | recorded |
 
 ## GFF
 
