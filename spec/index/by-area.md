@@ -90,6 +90,7 @@ Entries by area.
 | [FND-EXE-074](../findings/FND-EXE-074.md) | Pool-associated wrappers gate exact wait and semaphore imports and convert their full-word returns | recorded |
 | [FND-EXE-075](../findings/FND-EXE-075.md) | Pool initialization publishes an all-ones counter and unchecked semaphore return before once completion | recorded |
 | [FND-EXE-076](../findings/FND-EXE-076.md) | Physical shared-guard literal search finds three candidates absent from the current decoded reference list | recorded |
+| [FND-EXE-077](../findings/FND-EXE-077.md) | Controlled recovery classifies the three additional guard literals as full-word reads with conditional frame admission | recorded |
 
 ## GFF
 

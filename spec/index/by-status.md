@@ -223,7 +223,7 @@ Entries by status.
 
 ## recorded
 
-506 entries.
+507 entries.
 
 | ID | Title |
 |---|---|
@@ -543,6 +543,7 @@ Entries by status.
 | [FND-EXE-074](../findings/FND-EXE-074.md) | Pool-associated wrappers gate exact wait and semaphore imports and convert their full-word returns |
 | [FND-EXE-075](../findings/FND-EXE-075.md) | Pool initialization publishes an all-ones counter and unchecked semaphore return before once completion |
 | [FND-EXE-076](../findings/FND-EXE-076.md) | Physical shared-guard literal search finds three candidates absent from the current decoded reference list |
+| [FND-EXE-077](../findings/FND-EXE-077.md) | Controlled recovery classifies the three additional guard literals as full-word reads with conditional frame admission |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) |
