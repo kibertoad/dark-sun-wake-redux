@@ -56,7 +56,11 @@ An owner-approved history repair remains separate from this maintenance scope.
   existing argument-check skips remain. Pre-commit checks passed.
   The last full source-listing reconciliation remains
   artifacts/exe-dosbox-pe-listing.log; this batch changed no manifest.
-- Unfinished: no tracked work remains. EXE follow-up items remain Q-EXE-005,
+- Unfinished: no tracked work remains. Q-EXE-009 has incomplete local
+  reports dosbox-pe-shared-target-record.log and
+  dosbox-pe-shared-target-bootstrap.log in GAME_DIR/analysis/exe-batches.
+  Continue the initializer branch reading and import verification before
+  allocating a finding ID; decompiler labels remain unverified. EXE follow-up items remain Q-EXE-005,
   Q-EXE-006, Q-EXE-007, Q-EXE-008 and Q-EXE-009; Q-EXE-001 retains its
   retry requirement. Local static-analysis reports and the saved interpreter
   Ghidra project remain in GAME_DIR/analysis/exe-batches for continuation.
