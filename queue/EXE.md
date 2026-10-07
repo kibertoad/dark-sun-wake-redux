@@ -125,7 +125,9 @@ Next ID: Q-EXE-010
   (FND-EXE-082), and the first cleanup target with its separately admitted pointer-constructor path
   (FND-EXE-083), shared old-value decrement gates and ordered resource-call continuations
   (FND-EXE-084), and reverse-slot releases with three-word initialization
-  (FND-EXE-085). These bounded
+  (FND-EXE-085), distinct status/handler gates (FND-EXE-086), signature-selected
+  head effects and fresh-mode saved-state transfer (FND-EXE-087), and overlap
+  construction with distinct stored handlers (FND-EXE-088). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete

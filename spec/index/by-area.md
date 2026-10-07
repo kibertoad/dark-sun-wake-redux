@@ -99,6 +99,9 @@ Entries by area.
 | [FND-EXE-083](../findings/FND-EXE-083.md) | First cleanup target tail-selects paired pointer replacement without resetting adjacent words | recorded |
 | [FND-EXE-084](../findings/FND-EXE-084.md) | Two cleanup callbacks share an old-value decrement gate and ordered indirect-resource calls | recorded |
 | [FND-EXE-085](../findings/FND-EXE-085.md) | Third cleanup target visits twenty-six slots in reverse and retains their direct pointer fields | recorded |
+| [FND-EXE-086](../findings/FND-EXE-086.md) | Resource handler and ordinary setter publish status before distinct onward gates | recorded |
+| [FND-EXE-087](../findings/FND-EXE-087.md) | Shared-head selection negates before dispatch and freshly chooses saved-state publication | recorded |
+| [FND-EXE-088](../findings/FND-EXE-088.md) | Status-overlap transfer constructs before decrement admission and keeps distinct handler routes | recorded |
 
 ## GFF
 

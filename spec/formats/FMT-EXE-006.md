@@ -196,7 +196,11 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-083 traces the first cleanup target and separately admitted paired-pointer constructor;
   FND-EXE-084 traces shared old-value cleanup gates and ordered indirect-resource calls;
   FND-EXE-085 traces reverse-slot release admission and partial-word initialization;
-  allocation units, capacity, aliases and lifetime remain conditional.
+  FND-EXE-086 records distinct status-store and handler gates; FND-EXE-087
+  records signature-selected head effects and fresh-mode saved-state transfer;
+  FND-EXE-088 records overlap construction and distinct stored handlers.
+  Native frame admission, callback effects, allocation units, capacity, aliases
+  and lifetime remain conditional.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
   are compatible with multiple encodings too. FND-EXE-008 identifies the
