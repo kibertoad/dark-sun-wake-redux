@@ -79,6 +79,7 @@ Entries by area.
 | [FND-EXE-063](../findings/FND-EXE-063.md) | Nibble-nine byte reader sign-fills only after termination under a full-word shift guard | recorded |
 | [FND-EXE-064](../findings/FND-EXE-064.md) | Matching helpers combine marker strides, low-byte virtual results and zero-terminated index scans | recorded |
 | [FND-EXE-065](../findings/FND-EXE-065.md) | Callback matching combines signed pair branches and preserves a full-word fallback test across a shared jump | recorded |
+| [FND-EXE-066](../findings/FND-EXE-066.md) | Second terminal wrapper calls a shared-field target whose initial helper tail-jumps through the current finalizer field | recorded |
 
 ## GFF
 
