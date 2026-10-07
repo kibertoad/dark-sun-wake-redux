@@ -176,7 +176,7 @@ Entries by kind.
 
 ## findings
 
-451 entries.
+454 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -506,6 +506,9 @@ Entries by kind.
 | [FND-PARTY-021](../findings/FND-PARTY-021.md) | START GAME reaches the overlay 182 party loader through two overlay 182 routines, gated on an empty placed-object table | recorded |
 | [FND-PARTY-022](../findings/FND-PARTY-022.md) | The placed-object count starts at 0, and eight direct stores in five routines change it | recorded |
 | [FND-PARTY-023](../findings/FND-PARTY-023.md) | The resource-to-slot loader 2D40:000A returns 0xFFFF when either resource lookup it makes fails | recorded |
+| [FND-PARTY-024](../findings/FND-PARTY-024.md) | The view-mode word at DS:0DAB and the word at DS:0D9C start at 0, and the routines that can make them nonzero first | recorded |
+| [FND-PARTY-025](../findings/FND-PARTY-025.md) | The two calls before the party-loader gate reserve off-screen video memory, and fail only when the reservation table or the pool is full | recorded |
+| [FND-PARTY-026](../findings/FND-PARTY-026.md) | No direct call made between program start and the party-loader gate reaches a writer of the placed-object count or of the gate's mode words | recorded |
 | [FND-REGION-001](../findings/FND-REGION-001.md) | Each of the 20 region files holds one region's name, palette, two maps, entity table and tiles | recorded |
 | [FND-REGION-002](../findings/FND-REGION-002.md) | Every MAP is 12,544 bytes, each naming a TILE of its own file that is one 16x16 frame | recorded |
 | [FND-REGION-003](../findings/FND-REGION-003.md) | Every GMAP is 12,544 bytes whose values are only 0x00, 0x40, 0x80 and 0xC0 | recorded |

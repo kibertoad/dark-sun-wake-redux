@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-013
+Next ID: Q-PARTY-014
 
 ## Static
 
@@ -39,16 +39,17 @@ Next ID: Q-PARTY-013
   slot? Settles it: the handler the keys 1 to 4 reach in overlay 190, which posts an event for
   the character boxes `0x2C24` to `0x2C27` (FND-COMBAT-025), and the writers of `leader`. Tried:
   the leader buttons, which store the slot at `4C13:0369` (FND-COMBAT-023). Blocks: slice 3.
-- Q-PARTY-011. RULE-PARTY-006: Does the START GAME path reach the loader call, that is, pass
-  the early returns of the overlay 182 routine at `DSUN.EXE+0x000699B7` (the word at `DS:0DAB`,
-  the far calls at `DSUN.EXE+0x00069AA5` and `0x00069AC1`) and find the placed-object count at
-  `DS:264E` equal to 0 at its gate at `DSUN.EXE+0x00069B2D`? Settles it: the callers of the
-  five routines that store to the count (FND-PARTY-022), shown not to run between program start
-  and the gate, or the first one that does; and the producers of `DS:0DAB` and of the two calls'
-  results. Tried: the count's load-image value (0), its direct stores, the far references to the
-  overlay writers, and the three routines on the START GAME path read to their returns
-  (FND-PARTY-022); their callees and the path from program start to the start window were not
-  followed. Blocks: slice 2.
+- Q-PARTY-011. RULE-PARTY-006: Can any of the 60 indirect calls that FND-PARTY-026 leaves
+  unresolved, on the paths from program start through START GAME to the gate at overlay 182
+  offset `0x12DD`, reach a routine that changes the placed-object count at `DS:264E`
+  (FND-PARTY-022) or makes the word at `DS:0DAB` nonzero (FND-PARTY-024)? Settles it: the
+  producers of each pointer those calls read, shown to hold no such routine before the gate, or
+  the first one that does. Tried: the count's start value and direct stores, the far references
+  to the overlay writers and three routines on the path (FND-PARTY-022); the start values and
+  writers of `DS:0DAB` and `DS:0D9C` (FND-PARTY-024); a recursive-descent graph of every direct
+  call and bounded jump table from program start, the start window loop, the Start Game branch
+  and the gate routine, which reaches none of those routines and leaves these 60 calls
+  (FND-PARTY-026). Blocks: slice 2.
 - Q-PARTY-012. RULE-PARTY-006, FMT-PARTY-001: What happens on START GAME when `CHARSAVE.GFF` or
   one of records 40 to 43 is missing? Settles it: the resource-system routines `38FF:05B5` and
   `38FF:04AB` that the loader `2D40:000A` calls, read for which archives they search and what they
@@ -56,6 +57,13 @@ Next ID: Q-PARTY-013
   absent. Tried: `2D40:000A` returns `0xFFFF` when either lookup returns nonzero, and the party
   loader then skips the slot's second load but still places it (FND-PARTY-023, FND-PARTY-013).
   Blocks: slice 2.
+- Q-PARTY-013. RULE-PARTY-006: Does either call to the video-memory reservation routine
+  `1BF3:27A8` at `DSUN.EXE+0x00069AA5` and `0x00069AC1` return `0xFFFF` on START GAME, so that the
+  gate routine returns before its gate? Settles it: every reservation and release of that pool
+  made between program start and the gate, with the sizes and the entries still held at the
+  gate. Tried: the reservation routine, its pool and the two calls' sizes (7 and 54 of 2,067
+  paragraphs) (FND-PARTY-025); the reservations made before the gate were not listed. Blocks:
+  slice 2.
 
 ## Emulated call
 

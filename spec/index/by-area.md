@@ -308,6 +308,9 @@ Entries by area.
 | [FND-PARTY-021](../findings/FND-PARTY-021.md) | START GAME reaches the overlay 182 party loader through two overlay 182 routines, gated on an empty placed-object table | recorded |
 | [FND-PARTY-022](../findings/FND-PARTY-022.md) | The placed-object count starts at 0, and eight direct stores in five routines change it | recorded |
 | [FND-PARTY-023](../findings/FND-PARTY-023.md) | The resource-to-slot loader 2D40:000A returns 0xFFFF when either resource lookup it makes fails | recorded |
+| [FND-PARTY-024](../findings/FND-PARTY-024.md) | The view-mode word at DS:0DAB and the word at DS:0D9C start at 0, and the routines that can make them nonzero first | recorded |
+| [FND-PARTY-025](../findings/FND-PARTY-025.md) | The two calls before the party-loader gate reserve off-screen video memory, and fail only when the reservation table or the pool is full | recorded |
+| [FND-PARTY-026](../findings/FND-PARTY-026.md) | No direct call made between program start and the party-loader gate reaches a writer of the placed-object count or of the gate's mode words | recorded |
 | [RULE-PARTY-001](../rules/RULE-PARTY-001.md) | A party has one to four characters | sourced |
 | [RULE-PARTY-002](../rules/RULE-PARTY-002.md) | What a new character may be | sourced |
 | [RULE-PARTY-003](../rules/RULE-PARTY-003.md) | Which psionic disciplines and elemental sphere a new character chooses | sourced |
