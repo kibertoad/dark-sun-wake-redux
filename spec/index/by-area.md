@@ -113,6 +113,7 @@ Entries by area.
 | [FND-EXE-097](../findings/FND-EXE-097.md) | PATH preparation uses a prefix-base return while its stored handler forwards before the copy tail | recorded |
 | [FND-EXE-098](../findings/FND-EXE-098.md) | PATH mapped-table reset producers distinguish consecutive ranges from a retained index list | recorded |
 | [FND-EXE-099](../findings/FND-EXE-099.md) | Physical fallback slots select a shared byte transfer path and a fresh-table two-call word method | recorded |
+| [FND-EXE-100](../findings/FND-EXE-100.md) | Fallback publishers bias direct mappings and append reset indices after mode-dependent object selection | recorded |
 
 ## GFF
 

@@ -216,7 +216,9 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-098 records consecutive/list reset producers and a mutable fixed
   fallback first word; index admission remains open. FND-EXE-099 physically
   resolves selected byte/word slots and records fresh-table word composition
-  plus a byte transfer route; larger methods and actual state admission remain open.
+  plus a byte transfer route. FND-EXE-100 records mapping publishers, object
+  selection, source reentry and post-read reset/restoration; larger flag paths,
+  indirect targets and actual state admission remain open.
   Native frame admission, callback invocation, selector effects, allocation units, capacity, aliases
   and lifetime remain conditional.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
