@@ -89,7 +89,8 @@ Next ID: Q-EXE-010
   (FND-EXE-046), and resource/helper-derived mode publication
   (FND-EXE-047), and exact record/wait imports and zero-result tail return
   (FND-EXE-048), and pre-helper saved-link cleanup through a fresh mode
-  (FND-EXE-049). These bounded
+  (FND-EXE-049), and construction-caller setup/cleanup return handling
+  (FND-EXE-050). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete

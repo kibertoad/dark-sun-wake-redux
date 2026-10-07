@@ -63,6 +63,7 @@ Entries by area.
 | [FND-EXE-047](../findings/FND-EXE-047.md) | Mode resource initialization publishes a saved index and a zero-helper-derived mode | recorded |
 | [FND-EXE-048](../findings/FND-EXE-048.md) | Record setup resolves TLS imports and tail-returns the later error query on a zero result | recorded |
 | [FND-EXE-049](../findings/FND-EXE-049.md) | Record cleanup restores a pre-helper saved link through a freshly selected mode | recorded |
+| [FND-EXE-050](../findings/FND-EXE-050.md) | Field and nested-object callers continue without testing record setup or cleanup returns | recorded |
 
 ## GFF
 
