@@ -175,6 +175,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-062 traces guarded typed reads, base adjustment and cursor return;
   FND-EXE-063 bounds nibble-nine termination, sign fill and full-word output;
   FND-EXE-064 traces matching strides, low-byte virtual results and index scans;
+  FND-EXE-065 bounds matching classification, fallback flag preservation and cursor hops;
   allocation units, capacity, aliases and lifetime remain conditional.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers

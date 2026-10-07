@@ -78,6 +78,7 @@ Entries by area.
 | [FND-EXE-062](../findings/FND-EXE-062.md) | Typed metadata reader separates guarded width dispatch from zero bypass, base adjustment and one indirect read | recorded |
 | [FND-EXE-063](../findings/FND-EXE-063.md) | Nibble-nine byte reader sign-fills only after termination under a full-word shift guard | recorded |
 | [FND-EXE-064](../findings/FND-EXE-064.md) | Matching helpers combine marker strides, low-byte virtual results and zero-terminated index scans | recorded |
+| [FND-EXE-065](../findings/FND-EXE-065.md) | Callback matching combines signed pair branches and preserves a full-word fallback test across a shared jump | recorded |
 
 ## GFF
 

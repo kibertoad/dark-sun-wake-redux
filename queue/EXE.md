@@ -104,7 +104,8 @@ Next ID: Q-EXE-010
   (FND-EXE-061), and guarded typed reads, zero bypass and cursor return
   (FND-EXE-062), and nibble-nine byte termination and sign-fill output
   (FND-EXE-063), and marker-stride matching, low-byte virtual-result publication
-  and decoded-zero index scans (FND-EXE-064). These bounded
+  and decoded-zero index scans (FND-EXE-064), and matching classification, opposite helper-result tests
+  and full-word fallback flags (FND-EXE-065). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete
