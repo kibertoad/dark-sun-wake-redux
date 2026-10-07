@@ -93,6 +93,8 @@ Entries by area.
 | [FND-EXE-077](../findings/FND-EXE-077.md) | Controlled recovery classifies the three additional guard literals as full-word reads with conditional frame admission | recorded |
 | [FND-EXE-078](../findings/FND-EXE-078.md) | Shared guard and pool words occupy virtual-only BSS and have no overlapping declared base-relocation sites | recorded |
 | [FND-EXE-079](../findings/FND-EXE-079.md) | Declared startup reaches an x87 initializer and a memory-update helper whose equal table bounds skip its loop | recorded |
+| [FND-EXE-080](../findings/FND-EXE-080.md) | Startup guard publishes before reverse-order callback dispatch and returns the later atexit result | recorded |
+| [FND-EXE-081](../findings/FND-EXE-081.md) | First selected startup callbacks preserve two empty bodies, increment paired words and initialize a distinct context | recorded |
 
 ## GFF
 

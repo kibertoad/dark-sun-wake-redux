@@ -119,7 +119,9 @@ Next ID: Q-EXE-010
   guard-address candidates absent from decoded references (FND-EXE-076), and their controlled
   read classification with conditional frame/state prefixes (FND-EXE-077), virtual-only guard
   storage and declared relocation-site limits (FND-EXE-078), and actual startup callees
-  with an empty row-update route (FND-EXE-079). These bounded
+  with an empty row-update route (FND-EXE-079), pre-dispatch guard publication and reverse callbacks
+  (FND-EXE-080), and the selected prefix's paired increments and distinct context initializer
+  (FND-EXE-081). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete

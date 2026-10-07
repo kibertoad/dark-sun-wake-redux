@@ -190,6 +190,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-077 classifies those candidates as reads and records their conditional frame/state prefixes;
   FND-EXE-078 bounds virtual-only guard storage and excludes overlapping declared relocation sites;
   FND-EXE-079 grounds startup callees and their empty memory-update route;
+  FND-EXE-080 traces pre-dispatch guard publication, reverse callbacks and registration return;
+  FND-EXE-081 reads the selected prefix's paired increments and distinct context initializer;
   allocation units, capacity, aliases and lifetime remain conditional.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
