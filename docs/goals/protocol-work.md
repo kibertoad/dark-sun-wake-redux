@@ -36,28 +36,29 @@ An owner-approved history repair remains separate from this maintenance scope.
 
 ## Handover
 
-- Stage: Slices. Research-side repository workflow maintenance; no game
-  spec, parity, queue or behavior changes.
-- Last full gate: 2026-10-07, assetless `tools/Test.ps1 -NoRestore` passed
-  in this isolated worktree. Logs and known checker argument-check skips are
-  recorded in docs/VALIDATION.md; pinned rule and link verification passed.
-- Unfinished: none in this worktree. Local changes remain on the goal branch
-  for the owner's review and merge; no push was performed.
-- Environment: use PowerShell 7 from the parent checkout's
-  artifacts/pwsh7/runtime/pwsh.exe and its locked EVIDENCE_PYTHON interpreter.
-  Clear GAME_DIR and NoDefaultCurrentDirectoryInExePath. TEMP/TMP must belong
-  to the account actually executing the test process: escalated commands use
-  the owner account, ordinary sandbox commands use the sandbox account.
-  For hooks, export this worktree's artifacts/hook-tmp as TMPDIR inside Git
-  Bash; keep the hook enabled. Reusable MSBuild nodes were left running;
-  the post-commit process audit found no confirmed orphan to stop.
-- Blockers: the parent checkout's commit-message repair remains pending
-  owner approval and is recorded in docs/HANDOVER.md. It does not block this
-  isolated goal. Do not rewrite main or another session's commit history.
-- Upstream: existing template issues 80 and 82 have this consumer's
-  discovery and execution-account evidence. These local controls do not
-  establish that the upstream template has adopted all of issue 80.
-- Next: audit the remaining issue-80 summaries against the pinned local
-  rules; report new relevant details to existing issues before opening any
-  duplicate. Add any needed new research area to this branch's goal scope
-  in a separate claim commit before taking its queue item.
+- Stage: Slices. Research-side repository workflow maintenance so far; no
+  game spec, parity, queue or behavior changes in these tooling batches.
+- Last full gate: 2026-10-07, assetless Test.ps1 -NoRestore passed in this
+  isolated worktree. Current logs and known argument-check skips are in
+  docs/VALIDATION.md; pinned digests/links and explicit main-base comparison
+  passed. The current rule-template checker controls passed too.
+- Unfinished: none in this worktree. All completed work remains local for
+  owner review; no push was performed.
+- Environment: PowerShell 7 is in the parent checkout's
+  artifacts/pwsh7/runtime/pwsh.exe; select its locked evidence-python
+  interpreter with EVIDENCE_PYTHON. Clear GAME_DIR and
+  NoDefaultCurrentDirectoryInExePath. TEMP/TMP belong to the account actually
+  executing the process. For hooks export this worktree's artifacts/hook-tmp
+  as TMPDIR inside Git Bash; keep the hook enabled. Reusable MSBuild nodes
+  and other projects' processes were preserved; no confirmed orphan needed
+  stopping in the post-commit audit.
+- Blockers: the parent checkout's metadata repair still awaits owner
+  approval; docs/HANDOVER.md records it. It does not block isolated work.
+  Do not rewrite main or another session's commits.
+- Upstream: template issue 80 has local discovery, research-summary and
+  template acceptance; issue 82 has executing-account evidence. Local
+  acceptance does not prove upstream template adoption or package delivery.
+- Next: recheck the shared clone's goal claims and other sessions' work,
+  then select Q-EXE-002 (FMT-EXE-006) if unclaimed. Add EXE to this goal's
+  scope and adjust its Must not touch in a separate claim commit before
+  researching it. Retain CONFIG/SCRIPT and the upstream gap ledger exclusions.
