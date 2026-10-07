@@ -138,7 +138,8 @@ Next ID: Q-EXE-010
   preparation spans, releases and publication (FND-EXE-096), and composed
   prefix-base admission with a recovered preparation handler (FND-EXE-097),
   and consecutive/list mapping reset producers with mutable fallback first-word
-  selection (FND-EXE-098). These bounded
+  selection (FND-EXE-098), and physically selected fallback methods with
+  fresh-table word composition and a byte transfer route (FND-EXE-099). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete
