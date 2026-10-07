@@ -85,7 +85,11 @@ Next ID: Q-EXE-010
   FND-EXE-020 now reads the filename byte scan and output-prefix setup.
   Next: read component transformations and their failure/output paths, then
   the object prefix's producers and drive-object virtual targets. A bounded
-  local scan is not yet a complete caller-output contract.
+  local scan is not yet a complete caller-output contract. FND-EXE-021 now
+  reads the component transformations, terminal/nonterminal failure values
+  and output mutations retained on failure. Next: trace the selected object's
+  prefix producers, caller storage/alias contracts and drive-object virtual
+  targets, then remaining selector/PATH/EXIT provenance.
   Blocks: resolved wrapper-helper and continuation description.
 
 ## Emulated call

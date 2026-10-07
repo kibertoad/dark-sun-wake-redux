@@ -117,7 +117,9 @@ reading of callers, external commands or interpreter behavior is claimed.
   slots; unchanged bare helper tokens take the local filename-lookup branch,
   conditional on their delivery. FND-EXE-020 records the filename helper's
   byte scan and prefix setup, separating consumed and emitted bounds.
-  Component handling, prefix provenance and complete resolution remain open.
+  FND-EXE-021 now reads component transformations, return/failure branches
+  and retained output mutations. Prefix provenance, caller contracts and
+  complete resolution remain open.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
   are compatible with multiple encodings too. FND-EXE-008 identifies the
