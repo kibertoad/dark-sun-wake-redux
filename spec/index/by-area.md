@@ -82,6 +82,7 @@ Entries by area.
 | [FND-EXE-066](../findings/FND-EXE-066.md) | Second terminal wrapper calls a shared-field target whose initial helper tail-jumps through the current finalizer field | recorded |
 | [FND-EXE-067](../findings/FND-EXE-067.md) | Classification-one helper preserves counter ordering and returns a saved payload after cleanup before its caller ignores it | recorded |
 | [FND-EXE-068](../findings/FND-EXE-068.md) | Guarded context acquisition separates initialization, preserved-error lookup and zero-return publication | recorded |
+| [FND-EXE-069](../findings/FND-EXE-069.md) | Context initialization derives its guard from a converted allocation result without always writing the index | recorded |
 
 ## GFF
 
