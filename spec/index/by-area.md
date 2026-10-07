@@ -70,6 +70,7 @@ Entries by area.
 | [FND-EXE-054](../findings/FND-EXE-054.md) | Second selector calls a saved argument target before the current record target and distinguishes zero, seven and eight | recorded |
 | [FND-EXE-055](../findings/FND-EXE-055.md) | Stored callback builds a nested saved-state record and returns separately saved early-exit statuses after cleanup | recorded |
 | [FND-EXE-056](../findings/FND-EXE-056.md) | Callback access helpers reread a selected-record local and use full-width indexed stores and wrapped count adjustments | recorded |
+| [FND-EXE-057](../findings/FND-EXE-057.md) | Signature-selected callback reloads saved state and prepares selected-record fields before returning seven | recorded |
 
 ## GFF
 

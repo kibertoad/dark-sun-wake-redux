@@ -96,7 +96,8 @@ Next ID: Q-EXE-010
   (FND-EXE-053), and second-selector callback order and distinct result gates
   (FND-EXE-054), and nested callback record writers and early status returns
   (FND-EXE-055), and selected-record access and wrapped field adjustments
-  (FND-EXE-056). These bounded
+  (FND-EXE-056), and signature-selected state and seven-return preparation
+  (FND-EXE-057). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete
