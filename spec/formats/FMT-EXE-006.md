@@ -165,6 +165,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-052 traces selected-record publication and saved-state indirect transfer;
   FND-EXE-053 traces register-input selection and mutable-local link traversal;
   FND-EXE-054 traces the second selector and its two distinct callback result gates;
+  FND-EXE-055 traces nested callback record writers and early-exit status reloads;
   allocation units, capacity, aliases and lifetime remain conditional.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
