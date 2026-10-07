@@ -66,6 +66,7 @@ Entries by area.
 | [FND-EXE-050](../findings/FND-EXE-050.md) | Field and nested-object callers continue without testing record setup or cleanup returns | recorded |
 | [FND-EXE-051](../findings/FND-EXE-051.md) | Recovered stored handlers adjust the incoming frame and select distinct forwarding paths | recorded |
 | [FND-EXE-052](../findings/FND-EXE-052.md) | Handler forwarding publishes a selected record before restoring frame and stack for an indirect jump | recorded |
+| [FND-EXE-053](../findings/FND-EXE-053.md) | Register-input selector traverses a mutable record local and separates callback results from a saved match guard | recorded |
 
 ## GFF
 

@@ -163,6 +163,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-050 bounds setup/cleanup return handling in construction callers;
   FND-EXE-051 traces recovered stored-handler prefixes and forwarding branches;
   FND-EXE-052 traces selected-record publication and saved-state indirect transfer;
+  FND-EXE-053 traces register-input selection and mutable-local link traversal;
   allocation units, capacity, aliases and lifetime remain conditional.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
