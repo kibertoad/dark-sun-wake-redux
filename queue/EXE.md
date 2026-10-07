@@ -155,7 +155,8 @@ Next ID: Q-EXE-010
   and gated state transfers (FND-EXE-110), and value-one capture/progress
   and reinsertion (FND-EXE-111), and zero-branch progress/read ordering
   and fresh post-call count decisions (FND-EXE-112), and first-callee
-  byte-write/removal and scheduling prefix (FND-EXE-113). These bounded
+  byte-write/removal and scheduling prefix (FND-EXE-113), and equality
+  priority/state-call continuation (FND-EXE-114). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete
