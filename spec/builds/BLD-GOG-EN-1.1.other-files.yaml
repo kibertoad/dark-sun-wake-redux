@@ -1,8 +1,6 @@
 other_files:
   - path: game.gog
     reason: Raw MODE2/2352 image of the disc, which game.ins mounts as D:; the files of its ISO 9660 volume are listed under CD:.
-  - path: DOSBOX/DOSBox.exe
-    reason: GOG's DOSBox 0.74-2 build, the emulator that runs the game.
   - path: DOSBOX/SDL.dll
     reason: Library of GOG's DOSBox build.
   - path: DOSBOX/SDL_net.dll

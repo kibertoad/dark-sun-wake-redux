@@ -114,4 +114,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   active batch after a failed label search (SRC-DOSBOX-GOG-0742), predicting
   failures for all three target spellings. Normalization or continued-batch
   readings would require contrary shipped-interpreter evidence; source
-  correspondence is not established.
+  correspondence is not established. FND-EXE-011 now directly records a
+  compiled target-token path that retains the trailing colon. FND-EXE-012
+  records its search callee and conditional normal-path cleanup restoration.
+  These bounded findings support the source reading without settling command
+  dispatch, external file operations or exceptional paths.

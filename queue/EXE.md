@@ -30,8 +30,12 @@ Next ID: Q-EXE-010
   cannot decide how the shell interprets those tokens. New reading:
   SRC-DOSBOX-GOG-0742 predicts literal trailing-colon matching and deletion
   of the active batch on a failed label search. Next static step: establish
-  the relevant source-to-shipped-binary correspondence; source predictions
-  alone do not settle native behavior. Blocks: complete shell outcome description.
+  the relevant source-to-shipped-binary correspondence. FND-EXE-011 and
+  FND-EXE-012 now locate compiled token normalization, search and conditional
+  normal cleanup. Next: read the command-record consumer and all target/object
+  inputs, then external file helpers and exceptional cleanup. These partial
+  direct readings do not establish the complete shell outcome.
+  Blocks: complete shell outcome description.
 
 - Q-EXE-007. FMT-EXE-006: Do the shipped game or sound-setup executables
   launch any batch helpers? Settles it: direct executable launch references

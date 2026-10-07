@@ -1955,3 +1955,7 @@ files:
     format: data
     size: 1738
     xxh3: 4e2165bac0fdad1899cb8704c8d8ba2e
+  - path: DOSBOX/DOSBox.exe
+    format: PE
+    size: 3802624
+    xxh3: 09861838aa3018346f9f15c9a4f5925c

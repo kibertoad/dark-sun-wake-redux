@@ -76,6 +76,25 @@ packed by LZEXE 0.91 (the signature `LZ91` at offset `0x1C`), so its manifest it
 unpacked file, and addresses in it are addresses in the unpacked file with its load image at
 segment `0x1000`.
 
+### Shipped interpreter
+
+`DOSBOX/DOSBox.exe` is an i386 PE32 executable addressed by full virtual
+addresses at its header's preferred image base `0x00400000` (FND-EXE-011).
+It is included in the manifest because its compiled label-handling paths
+are studied in FND-EXE-011 and FND-EXE-012. Executable data locations use
+shipped-file offsets, separately from code addresses. This does not change
+the original game's 16-bit integer width or treat the interpreter as a second
+game edition.
+
+The interpreter function inventory is
+`coverage/BLD-GOG-EN-1.1/DOSBOX/DOSBox.exe.tsv`: Ghidra 12.1.3 function starts
+at that preferred image base and body byte counts only, with no inferred
+names. It comes from a fresh PE import whose automatic analysis stopped at
+a 180-second timeout, followed by recovery of cited entries during these
+findings and a final start/size export. It is an analyzer-discovered inventory,
+not a census; body size is not a contiguous function span. Existing MZ
+file-offset inventory tools do not validate these PE virtual addresses.
+
 ## Compared with other builds
 
 No other build has been studied. Whether the disc image is byte-identical to a retail CD of

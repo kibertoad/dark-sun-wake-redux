@@ -4,7 +4,7 @@ title: DOSBox 0.74-2.1 source archive shipped with the GOG distribution
 superseded_by: []
 author: The DOSBox Team and contributors
 date: unknown
-location: DOSBOX/dosbox-0.74-2.1.tar.gz in the installation of BLD-GOG-EN-1.1
+location: dosbox-0.74-2.1.tar.gz in the DOSBOX directory of the installation of BLD-GOG-EN-1.1
 xxh3: 4099c9880bcc0eba22e7ccf1b0537f3f
 licence: GPL-2.0-or-later, as stated in the inspected source headers; COPYING supplies GPL version 2
 ---

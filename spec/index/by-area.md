@@ -24,6 +24,8 @@ Entries by area.
 | [FND-EXE-008](../findings/FND-EXE-008.md) | Seven manifest-identified batch files contain CRLF command text with distinct launch and setup roles | recorded |
 | [FND-EXE-009](../findings/FND-EXE-009.md) | The disc sound helper names two absent jump labels and one colon-suffixed target | recorded |
 | [FND-EXE-010](../findings/FND-EXE-010.md) | GOG launch metadata selects a configuration with separate game and sound-helper branches | recorded |
+| [FND-EXE-011](../findings/FND-EXE-011.md) | Shipped DOSBox target-token routine retains a trailing colon | recorded |
+| [FND-EXE-012](../findings/FND-EXE-012.md) | Compiled batch-label search calls cleanup that restores saved shell fields | recorded |
 
 ## GFF
 
