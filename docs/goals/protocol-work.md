@@ -51,7 +51,7 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Stage: Slices. The ongoing protocol objective remains active on this local
   goal branch. Completed workflow tooling and EXE research are committed.
 - Last full gate: 2026-10-07, assetless Test.ps1 -NoRestore passed.
-  Logs: artifacts/exe-pool-guard-full-gate.log and artifacts/exe-pool-guard-docs.log.
+  Logs: artifacts/exe-guard-provenance-full-gate.log and artifacts/exe-guard-provenance-docs.log.
   Documentation generation and explicit main-base checking passed;
   existing argument-check skips remain. Remote-base ancestry was rechecked
   and is available; explicit local main-base checking passed. Pre-commit
@@ -85,7 +85,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   Follow-up: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6044911287.
   Related PR 339 is open; its released writer-control rerun remains pending.
 - Next: recheck shared goal claims, then Q-EXE-009 using FND-EXE-015,
-  FND-EXE-017 through FND-EXE-076 for shared-guard candidate code provenance/lifetime, dispatcher-frame admission and optional callback effects
+  FND-EXE-017 through FND-EXE-077 for shared-guard startup/indirect writers and lifetime, dispatcher-frame admission and optional callback effects
   plus static-context/flag producer contracts, concrete dispatch targets, stream bounds and dispatcher admission, then zero-state helpers, then higher caller returns, then temporary caller ranges
   and failure-consumer/handler contracts, then
   preceding-word producers and downstream output, then
