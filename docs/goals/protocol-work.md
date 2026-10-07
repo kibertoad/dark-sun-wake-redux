@@ -49,7 +49,7 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Stage: Slices. The ongoing protocol objective remains active on this local
   goal branch. Completed workflow tooling and EXE research are committed.
 - Last full gate: 2026-10-07, assetless Test.ps1 -NoRestore passed.
-  Logs: artifacts/exe-conversion-final-gate.log and artifacts/exe-conversion-docs.log.
+  Logs: artifacts/exe-filename-full-gate.log and artifacts/exe-filename-docs.log.
   Documentation generation and explicit main-base checking passed;
   existing argument-check skips remain. Pre-commit checks passed.
   The last full source-listing reconciliation remains
@@ -77,8 +77,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   80 and 82, and toolkit issues 325 and 327 retain the earlier reports.
   No upstream fix delivery is claimed.
 - Next: recheck shared goal claims, then Q-EXE-009 using FND-EXE-015,
-  FND-EXE-017, FND-EXE-018 and FND-EXE-019 for remaining filename-helper
-  output/alias and drive-object coverage, selector provenance, PATH admission
+  FND-EXE-017 through FND-EXE-020 for remaining filename-helper
+  component/output, prefix-producer and drive-object coverage, PATH admission
   and remaining flag/EXIT paths. Q-EXE-006 uses FND-EXE-013 for
   batch-input/parser and helper/cleanup coverage.
   Continue Q-EXE-008, Q-EXE-007 and Q-EXE-005 when evidence permits. Keep
