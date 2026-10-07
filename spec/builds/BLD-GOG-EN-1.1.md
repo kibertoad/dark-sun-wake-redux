@@ -82,7 +82,7 @@ segment `0x1000`.
 addresses at its header's preferred image base `0x00400000` (FND-EXE-011).
 It is included in the manifest because its compiled label-handling paths
 are studied in FND-EXE-011, FND-EXE-012, FND-EXE-013, FND-EXE-014,
-FND-EXE-015 and FND-EXE-016. Executable data locations use
+FND-EXE-015, FND-EXE-016 and FND-EXE-017. Executable data locations use
 shipped-file offsets, separately from code addresses. This does not change
 the original game's 16-bit integer width or treat the interpreter as a second
 game edition.

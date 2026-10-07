@@ -68,8 +68,12 @@ Next ID: Q-EXE-010
   then the declared mount/overlay inputs. FND-EXE-015 now records compiled
   local/PATH candidate order and its unread drive-predicate boundary;
   FND-EXE-016 records the distinct count-80 PATH scan. Next: trace the
-  normalization/index producer and drive-object targets, PATH input writers
+  remaining normalization/index provenance and drive-object targets, PATH input writers
   and long-segment admission, then remaining flag/EXIT and mount inputs.
+  FND-EXE-017 now records the initial selector stores, unsigned range and
+  nonnull table guards, and failure output mutation. Next: identify the
+  initial selector writers and later normalization outputs before attributing
+  a complete bound to the caller's consumed index.
   Blocks: resolved wrapper-helper and continuation description.
 
 ## Emulated call

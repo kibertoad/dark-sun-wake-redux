@@ -108,7 +108,9 @@ reading of callers, external commands or interpreter behavior is claimed.
   unread normalization/drive-object boundary, so installed-BAT resolution
   remains conditional. FND-EXE-016 separately identifies the count-80 PATH
   scan that can advance past NUL; supported-input reachability and subsequent
-  effects remain unknown.
+  effects remain unknown. FND-EXE-017 records initial selector production
+  and guarded table access, without settling later normalization, initial
+  selector writers or drive-object behavior.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
   are compatible with multiple encodings too. FND-EXE-008 identifies the
