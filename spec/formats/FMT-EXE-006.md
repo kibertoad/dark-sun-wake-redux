@@ -9,7 +9,7 @@ byte_order: null
 size: null
 text: true
 definition: null
-evidence: [FND-EXE-008, FND-EXE-009]
+evidence: [FND-EXE-008, FND-EXE-009, FND-EXE-010]
 conflicting: []
 split_with: []
 related: []
@@ -53,6 +53,16 @@ fall-through names `SOUND_DS` and unloads that TSR. The GM1 label loads
 the smaller bank then jumps to undefined `RUN_ARIA`. These describe the
 shipped command text, not an observed execution or shell error outcome.
 
+The distribution's declared primary task selects a DOSBox configuration
+with separate game and setup branches (FND-EXE-010). Its menu admits choices
+123 and tests ERRORLEVEL thresholds 3, 2 and 1 in that order, selecting exit,
+setup and game labels respectively. After declaring installation and overlay
+mounts on C and the disc mount on D, and changing to C, its game label names
+bare `ravager`; its setup label names bare `sound`. Those names match the
+installed helper stems. The text after them jumps to exit and launcher,
+respectively, but resolution and actual continuation remain open. The named
+installed helpers themselves both end with EXIT.
+
 ## Enumerations and flags
 
 No binary enumeration or byte-order field applies to this text listing.
@@ -70,10 +80,22 @@ reading of callers, external commands or interpreter behavior is claimed.
 
 ## Open questions
 
-- Which helpers are launched by the shipped game, setup or distribution
-  wrapper (Q-EXE-004)? Invocation from their filenames is one possible
-  reading; direct manual use is another. FND-EXE-008 shows their contents,
-  but provides no caller evidence for either. Launch references settle it.
+- Does the shipped game or sound-setup executable launch any batch helpers
+  (Q-EXE-007)? Automatic invocation and manual-only use both remain possible.
+  FND-EXE-008 describes helper contents; FND-EXE-010 establishes wrapper
+  command branches, not executable callers. Direct executable launch
+  references traced through their inputs settle it.
+- Which disc helpers does the disc installer select (Q-EXE-008)? Selection
+  by its installer and standalone manual use are competing readings. The
+  file roles in FND-EXE-008 support neither caller claim. Direct installer
+  launch references and selection inputs settle it.
+- How does the shipped wrapper resolve the two bare helper commands and
+  continue after them (Q-EXE-009)? Resolution to installed batch files is
+  consistent with the declared mounts, but command-search order, batch
+  chaining and EXIT handling may affect that result and the textual return
+  path (FND-EXE-010). Reading the shipped interpreter's resolution and
+  continuation code under the declared launch inputs settles the static
+  behavior; mutable overlay substitutions remain conditional.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
   are compatible with multiple encodings too. FND-EXE-008 identifies the

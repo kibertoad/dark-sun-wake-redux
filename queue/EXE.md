@@ -1,6 +1,6 @@
 # EXE
 
-Next ID: Q-EXE-007
+Next ID: Q-EXE-010
 
 ## Static
 
@@ -16,12 +16,6 @@ Next ID: Q-EXE-007
   (FND-EXE-007), which reads signature-and-length records and takes no pack
   input. Blocks: none.
 
-- Q-EXE-004. FMT-EXE-006: Which batch helpers does the game, setup or
-  distribution wrapper actually launch? Settles it: direct launch references
-  traced through their selectors and inputs. Tried: complete seven-file
-  command-text reading (FND-EXE-008), which describes targets but not callers.
-  Split from Q-EXE-002. Blocks: complete caller coverage.
-
 - Q-EXE-005. FMT-EXE-006: Which code page interprets the disc sound helper's
   display bytes? Settles it: direct interpreter configuration or code-page/font
   selection evidence that distinguishes compatible decoders. Tried: all bytes
@@ -35,6 +29,27 @@ Next ID: Q-EXE-007
   behavior. Tried: complete label and jump reading (FND-EXE-009); the file
   cannot decide how the shell interprets those tokens. Blocks: complete shell
   outcome description.
+
+- Q-EXE-007. FMT-EXE-006: Do the shipped game or sound-setup executables
+  launch any batch helpers? Settles it: direct executable launch references
+  traced through selectors and arguments, including computed command names.
+  Tried: complete helper contents (FND-EXE-008) and distribution-wrapper
+  reading (FND-EXE-010); neither locates an executable caller. Split from
+  Q-EXE-004. Blocks: complete game/setup caller coverage.
+
+- Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
+  Settles it: direct installer launch references and their selection inputs.
+  Tried: helper contents and GOG wrapper (FND-EXE-008, FND-EXE-010), which
+  do not cover the disc installer. Split from Q-EXE-004. Blocks: complete
+  disc-installer caller coverage.
+
+- Q-EXE-009. FMT-EXE-006: How does the shipped interpreter resolve the bare
+  ravager/sound commands and continue after them in the declared GOG wrapper?
+  Settles it: interpreter command-search, batch-chaining and EXIT code read
+  under the declared working directory, mounts and configuration order;
+  keep mutable overlay substitutions conditional. Tried: primary task and
+  complete wrapper text (FND-EXE-010), which cannot decide shell behavior.
+  Blocks: resolved wrapper-helper and continuation description.
 
 ## Emulated call
 

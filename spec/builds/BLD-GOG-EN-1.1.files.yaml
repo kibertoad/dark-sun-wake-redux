@@ -1943,3 +1943,15 @@ files:
     format: data
     size: 8746
     xxh3: 3f8fbe288d20883ac43f2de9684a5700
+  - path: dosbox_darksun2.conf
+    format: data
+    size: 11449
+    xxh3: fea45ead019fd253fcb5589b9dc84330
+  - path: dosbox_darksun2_single.conf
+    format: data
+    size: 1076
+    xxh3: b838a6b91eb47f1a3694ed8281305b3e
+  - path: goggame-1432903719.info
+    format: data
+    size: 1738
+    xxh3: 4e2165bac0fdad1899cb8704c8d8ba2e

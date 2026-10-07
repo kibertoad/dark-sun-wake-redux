@@ -28,8 +28,11 @@ GOG starts the game with its DOSBox 0.74-2 build and the configuration files
 `dosbox_darksun2.conf` and `dosbox_darksun2_single.conf`. They emulate an S3 SVGA card
 (`machine=svga_s3`) with 16 MB of memory, a Sound Blaster 16, and a fixed 15,000 cycles. The second
 file mounts the install directory as `C:`, overlays the `cloud_saves` directory on it so that
-writes land there, mounts `game.ins` as `D:`, and runs `RAVAGER.BAT` from `C:`, which runs
-`DSUN -W0 -L`. The executable the game runs is therefore the installed `DSUN.EXE`.
+writes land there, mounts `game.ins` as `D:`, and offers game, sound setup and exit branches. The
+game branch names bare `ravager`, the setup branch bare `sound` (FND-EXE-010).
+These match the installed batch-file stems, but interpreter search and batch
+continuation remain Q-EXE-009. The installed launcher names `DSUN -W0 -L`
+(FND-EXE-008).
 
 Eight installed files differ from the files of the same name on the disc: `DSUN.EXE`,
 `RESOURCE.GFF`, `GPLDATA.GFF`, `OBJEX.GFF`, `CHARSAVE.GFF`, `SOUND.INI`, `SOUND.BAT` and
@@ -99,15 +102,17 @@ in the manifest with the manifest's size and xxh3, or in the list of other files
 of both files is in the listing. A path in the list of other files that ends in `/` stands for
 every file under that directory, and the tool counts those files without hashing them.
 
-Run on 2026-10-06 over the installation described under Obtaining, it listed 4,919 installed
-files and 264 disc files, and exited with 0: 483 paths matched the manifest (232 installed, 251
-on the disc), 78 were named in the list of other files, and 4,622 lay under `analysis/`. 7-Zip
-22.01, given the same track stripped to 2,048-byte sectors, listed the same 264 disc paths with
-the same sizes.
+The Survey listing command reconciles the complete installation and disc with
+the manifest and Other files list. Its path and hash results remain in local
+validation output, rather than copied totals here. An independent 7-Zip 22.01
+listing of the track stripped to 2,048-byte sectors agreed on disc paths and
+sizes.
 
 The paths the manifest leaves out, each with its reason, are in
-`BLD-GOG-EN-1.1.other-files.yaml`. They are GOG's DOSBox in `DOSBOX/` and its configuration files
-`dosbox_darksun2.conf` and `dosbox_darksun2_single.conf`, the disc image `game.gog` itself,
+`BLD-GOG-EN-1.1.other-files.yaml`. The now-studied launch metadata `goggame-1432903719.info` and both
+`dosbox_darksun2` configuration files are hashed in the manifest for the direct
+wrapper finding FND-EXE-010; this does not make them game-read resources.
+The remaining excluded paths include GOG's DOSBox in `DOSBOX/`, the disc image `game.gog` itself,
 whose files are listed under `CD:`, `Manual.pdf` and a byte-identical copy named
 `ds_wakerave_manual_pdf.pdf` (SRC-MANUAL-1994), `Cluebook.pdf`, `README.TXT` (SRC-README-1.1),
 the shortcut and icons, GOG's metadata, licence, web cache and install log, and the uninstaller

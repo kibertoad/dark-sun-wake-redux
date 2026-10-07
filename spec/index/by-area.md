@@ -23,6 +23,7 @@ Entries by area.
 | [FND-EXE-007](../findings/FND-EXE-007.md) | The only resident routine that calls both the DOS seek and read wrappers is a signature-and-length record reader | recorded |
 | [FND-EXE-008](../findings/FND-EXE-008.md) | Seven manifest-identified batch files contain CRLF command text with distinct launch and setup roles | recorded |
 | [FND-EXE-009](../findings/FND-EXE-009.md) | The disc sound helper names two absent jump labels and one colon-suffixed target | recorded |
+| [FND-EXE-010](../findings/FND-EXE-010.md) | GOG launch metadata selects a configuration with separate game and sound-helper branches | recorded |
 
 ## GFF
 
