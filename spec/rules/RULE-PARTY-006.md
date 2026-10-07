@@ -66,10 +66,10 @@ None known.
   overlay 187 entries and three early returns. For the reading that it does: the count and the
   word at `DS:0DAB` start at 0 (FND-PARTY-022, FND-PARTY-024), and no direct call made between
   program start and the gate reaches a routine that changes the count or makes that word nonzero
-  (FND-PARTY-026). Still open: 60 indirect calls on those paths whose targets are unresolved
-  (FND-PARTY-026, Q-PARTY-011), and whether either of the gate routine's two video-memory
-  reservations fails, which depends on the reservations made before it (FND-PARTY-025,
-  Q-PARTY-013). The owner's captures of a game started with START GAME show the four characters
+  (FND-PARTY-026). Still open: 56 indirect calls on those paths whose targets are unresolved
+  (FND-PARTY-026, FND-PARTY-027, Q-PARTY-011), and whether either of the gate routine's two
+  video-memory reservations fails, which depends on the reservations held when it runs
+  (FND-PARTY-025, FND-PARTY-027, Q-PARTY-013). The owner's captures of a game started with START GAME show the four characters
   in this order, but they do not tell 41 from 53 or 43 from 33 (FND-PARTY-020); the
   shipped-party live session would confirm it (Q-PARTY-001).
 - What START GAME does when `CHARSAVE.GFF` or one of the four records is missing. The loader
