@@ -66,7 +66,8 @@ Next ID: Q-EXE-010
   paths with an object-plus-four prefix transfer (FND-EXE-022), and record
   append/growth arithmetic and publication boundaries (FND-EXE-023), and
   allocation/release import and local retry boundaries (FND-EXE-024), and
-  failure-object prefix/bitmap fallback boundaries (FND-EXE-025). These bounded
+  failure-object prefix/bitmap fallback boundaries (FND-EXE-025), and a bounded
+  append/initializer caller sequence (FND-EXE-026). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete

@@ -128,6 +128,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   callback state, exceptional effects and caller inputs remain conditional.
   FND-EXE-025 reads the separate failure-object prefix and bitmap fallback,
   without establishing its lifetime or final exceptional outcome.
+  FND-EXE-026 links a bounded caller loop to append and initialization;
+  earlier selector admission, list/object producers and aliases remain unread.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
   are compatible with multiple encodings too. FND-EXE-008 identifies the
