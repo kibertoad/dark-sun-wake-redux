@@ -177,7 +177,7 @@ Entries by kind.
 
 ## findings
 
-511 entries.
+512 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -500,6 +500,7 @@ Entries by kind.
 | [FND-EXE-060](../findings/FND-EXE-060.md) | Callback metadata reader uses independent byte markers and returns a cursor separately from stored relative targets | recorded |
 | [FND-EXE-061](../findings/FND-EXE-061.md) | Marker modifier selects zero-return branches and a full-byte bypass before its mask-class abort boundary | recorded |
 | [FND-EXE-062](../findings/FND-EXE-062.md) | Typed metadata reader separates guarded width dispatch from zero bypass, base adjustment and one indirect read | recorded |
+| [FND-EXE-063](../findings/FND-EXE-063.md) | Nibble-nine byte reader sign-fills only after termination under a full-word shift guard | recorded |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant | recorded |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead | recorded |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) | recorded |

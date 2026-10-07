@@ -76,6 +76,7 @@ Entries by area.
 | [FND-EXE-060](../findings/FND-EXE-060.md) | Callback metadata reader uses independent byte markers and returns a cursor separately from stored relative targets | recorded |
 | [FND-EXE-061](../findings/FND-EXE-061.md) | Marker modifier selects zero-return branches and a full-byte bypass before its mask-class abort boundary | recorded |
 | [FND-EXE-062](../findings/FND-EXE-062.md) | Typed metadata reader separates guarded width dispatch from zero bypass, base adjustment and one indirect read | recorded |
+| [FND-EXE-063](../findings/FND-EXE-063.md) | Nibble-nine byte reader sign-fills only after termination under a full-word shift guard | recorded |
 
 ## GFF
 
