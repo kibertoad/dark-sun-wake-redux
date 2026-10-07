@@ -138,6 +138,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   comparison semantics, collection producers and returned-word lifetime remain open.
   FND-EXE-030 reads stored-length and unsigned-byte comparison operations;
   valid storage, producer contracts and downstream effects remain conditional.
+  FND-EXE-031 traces one collection producer and direct link-write order;
+  field helpers, ownership, initialization and cleanup remain unread.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
   are compatible with multiple encodings too. FND-EXE-008 identifies the

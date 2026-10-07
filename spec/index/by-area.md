@@ -44,6 +44,7 @@ Entries by area.
 | [FND-EXE-028](../findings/FND-EXE-028.md) | Bounded list-producer output dispatch converges on a value reread | recorded |
 | [FND-EXE-029](../findings/FND-EXE-029.md) | A dispatch helper searches sentinel-linked nodes and returns an unvalidated stored word | recorded |
 | [FND-EXE-030](../findings/FND-EXE-030.md) | Node comparison uses a stored payload length and unsigned byte ordering | recorded |
+| [FND-EXE-031](../findings/FND-EXE-031.md) | A sentinel collection producer skips creation on a match and links new storage after helper calls | recorded |
 
 ## GFF
 
