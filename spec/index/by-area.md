@@ -31,6 +31,7 @@ Entries by area.
 | [FND-EXE-015](../findings/FND-EXE-015.md) | Compiled command lookup tests the supplied name then COM EXE BAT before PATH candidates | recorded |
 | [FND-EXE-016](../findings/FND-EXE-016.md) | Compiled count-80 PATH continuation scans for a semicolon without a NUL stop | recorded |
 | [FND-EXE-017](../findings/FND-EXE-017.md) | Compiled filename helper writes and bounds a drive selector before its table load | recorded |
+| [FND-EXE-018](../findings/FND-EXE-018.md) | Compiled selector writers differ in guard order and success meaning | recorded |
 
 ## GFF
 

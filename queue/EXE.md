@@ -73,7 +73,11 @@ Next ID: Q-EXE-010
   FND-EXE-017 now records the initial selector stores, unsigned range and
   nonnull table guards, and failure output mutation. Next: identify the
   initial selector writers and later normalization outputs before attributing
-  a complete bound to the caller's consumed index.
+  a complete bound to the caller's consumed index. FND-EXE-018 now reads
+  two direct selector writers, their guard-order difference and a bounded
+  external-command caller. Next: identify its imported conversion and input
+  gates, remaining aliases/initialization and subordinate virtual targets;
+  do not equate a truthy setter return with an update.
   Blocks: resolved wrapper-helper and continuation description.
 
 ## Emulated call
