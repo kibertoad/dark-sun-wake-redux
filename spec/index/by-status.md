@@ -223,7 +223,7 @@ Entries by status.
 
 ## recorded
 
-436 entries.
+437 entries.
 
 | ID | Title |
 |---|---|
@@ -540,6 +540,7 @@ Entries by status.
 | [FND-PARTY-025](../findings/FND-PARTY-025.md) | The two calls before the party-loader gate reserve off-screen video memory, and fail only when the reservation table or the pool is full |
 | [FND-PARTY-026](../findings/FND-PARTY-026.md) | No direct call made between program start and the party-loader gate reaches a writer of the placed-object count or of the gate's mode words |
 | [FND-PARTY-027](../findings/FND-PARTY-027.md) | Startup holds a full-screen reservation of the video-memory pool, which leaves 1,067 paragraphs for later reservations |
+| [FND-PARTY-028](../findings/FND-PARTY-028.md) | Of the other reservations before the party-loader gate, the scroll routine releases all it takes, and two routines each keep one entry |
 | [FND-REGION-001](../findings/FND-REGION-001.md) | Each of the 20 region files holds one region's name, palette, two maps, entity table and tiles |
 | [FND-REGION-002](../findings/FND-REGION-002.md) | Every MAP is 12,544 bytes, each naming a TILE of its own file that is one 16x16 frame |
 | [FND-REGION-003](../findings/FND-REGION-003.md) | Every GMAP is 12,544 bytes whose values are only 0x00, 0x40, 0x80 and 0xC0 |

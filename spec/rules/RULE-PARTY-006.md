@@ -69,7 +69,7 @@ None known.
   (FND-PARTY-026). Still open: 56 indirect calls on those paths whose targets are unresolved
   (FND-PARTY-026, FND-PARTY-027, Q-PARTY-011), and whether either of the gate routine's two
   video-memory reservations fails, which depends on the reservations held when it runs
-  (FND-PARTY-025, FND-PARTY-027, Q-PARTY-013). The owner's captures of a game started with START GAME show the four characters
+  (FND-PARTY-025, FND-PARTY-027, FND-PARTY-028, Q-PARTY-013). The owner's captures of a game started with START GAME show the four characters
   in this order, but they do not tell 41 from 53 or 43 from 33 (FND-PARTY-020); the
   shipped-party live session would confirm it (Q-PARTY-001).
 - What START GAME does when `CHARSAVE.GFF` or one of the four records is missing. The loader

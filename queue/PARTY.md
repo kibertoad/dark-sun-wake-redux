@@ -61,12 +61,13 @@ Next ID: Q-PARTY-014
 - Q-PARTY-013. RULE-PARTY-006: Do the video-memory reservations held when START GAME reaches the
   gate, other than the startup one, take more than 1,006 paragraphs or 251 entries, so that one
   of the gate routine's calls to `1BF3:27A8` at `DSUN.EXE+0x00069AA5` and `0x00069AC1` returns
-  `0xFFFF` and the routine returns before its gate? Settles it: the sizes of the reservations at
-  `DSUN.EXE+0x000166EB`, `0x00016755`, `0x000167B8`, `0x00033411` and `0x00037156`, and which
-  of them are released before the gate. Tried: the reservation routine, its pool and the two
-  calls' sizes (FND-PARTY-025); the startup reservation of 1,000 paragraphs, held until the
-  program ends, and the list of other reservation sites before the gate (FND-PARTY-027).
-  Blocks: slice 2.
+  `0xFFFF` and the routine returns before its gate? Settles it: the size of the mouse pointer
+  image at `DS:A145`, the writers of the caret height at `DS:A189`, and whether `41E1:0215`
+  releases the caret entry at `DS:A191` before `41E1:000B` makes a new one. Tried: the
+  reservation routine, its pool and the two calls' sizes (FND-PARTY-025); the startup
+  reservation of 1,000 paragraphs, held until the program ends (FND-PARTY-027); the scroll,
+  pointer and caret routines, of which only the last two keep an entry after they return
+  (FND-PARTY-028). Blocks: slice 2.
 
 ## Emulated call
 

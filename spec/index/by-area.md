@@ -312,6 +312,7 @@ Entries by area.
 | [FND-PARTY-025](../findings/FND-PARTY-025.md) | The two calls before the party-loader gate reserve off-screen video memory, and fail only when the reservation table or the pool is full | recorded |
 | [FND-PARTY-026](../findings/FND-PARTY-026.md) | No direct call made between program start and the party-loader gate reaches a writer of the placed-object count or of the gate's mode words | recorded |
 | [FND-PARTY-027](../findings/FND-PARTY-027.md) | Startup holds a full-screen reservation of the video-memory pool, which leaves 1,067 paragraphs for later reservations | recorded |
+| [FND-PARTY-028](../findings/FND-PARTY-028.md) | Of the other reservations before the party-loader gate, the scroll routine releases all it takes, and two routines each keep one entry | recorded |
 | [RULE-PARTY-001](../rules/RULE-PARTY-001.md) | A party has one to four characters | sourced |
 | [RULE-PARTY-002](../rules/RULE-PARTY-002.md) | What a new character may be | sourced |
 | [RULE-PARTY-003](../rules/RULE-PARTY-003.md) | Which psionic disciplines and elemental sphere a new character chooses | sourced |
