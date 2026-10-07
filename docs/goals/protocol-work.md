@@ -51,7 +51,7 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Stage: Slices. The ongoing protocol objective remains active on this local
   goal branch. Completed workflow tooling and EXE research are committed.
 - Last full gate: 2026-10-07, assetless Test.ps1 -NoRestore passed.
-  Logs: artifacts/exe-startup-init-full-gate.log and artifacts/exe-startup-init-docs.log.
+  Logs: artifacts/exe-startup-cleanup-full-gate.log and artifacts/exe-startup-cleanup-docs-check.log.
   Documentation generation and explicit main-base checking passed;
   existing argument-check skips remain. Remote-base ancestry was rechecked
   and is available; explicit local main-base checking passed. Pre-commit
@@ -71,6 +71,10 @@ An owner-approved history repair remains separate from this maintenance scope.
   follow the corrected literal quoting in docs/GHIDRA.md; both directories
   were verified through the Windows launcher. Original-program execution
   remains prohibited.
+- Template context: the root checkout adopted template 0b9ab9c separately.
+  This goal worktree retains its verified pinned rules and dependencies; no merge
+  or rebase was performed during this research batch. Toolkit issue 353 records
+  the root adoption's external-source citation diagnostic.
 - Process audit: reusable MSBuild nodes and other sessions' or uncertain
   processes were preserved. No confirmed session orphan required stopping.
 - Blockers: the parent checkout's history-message repair awaits owner
@@ -83,9 +87,9 @@ An owner-approved history repair remains separate from this maintenance scope.
   its narrow downstream guard has synthetic controls. No upstream fix delivery
   is claimed. Toolkit issue 111 also records the reference-type guidance concern.
   Follow-up: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6044911287.
-  Related PR 339 is open; its released writer-control rerun remains pending.
+  Related PR 339 needs a delivered-fix check; its released writer-control rerun remains pending.
 - Next: recheck shared goal claims, then Q-EXE-009 using FND-EXE-015,
-  FND-EXE-017 through FND-EXE-081 for remaining startup callbacks and registration effects, shared-guard indirect writers/lifetime, dispatcher-frame admission and optional callback effects
+  FND-EXE-017 through FND-EXE-083 for remaining cleanup targets (starting with FND-EXE-082's slot one), startup callbacks and registration effects, shared-guard indirect writers/lifetime, dispatcher-frame admission and optional callback effects
   plus static-context/flag producer contracts, concrete dispatch targets, stream bounds and dispatcher admission, then zero-state helpers, then higher caller returns, then temporary caller ranges
   and failure-consumer/handler contracts, then
   preceding-word producers and downstream output, then
