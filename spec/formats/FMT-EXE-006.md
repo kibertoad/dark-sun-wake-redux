@@ -213,6 +213,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   retaining new-prefix and stored-handler admission limits. FND-EXE-097
   composes FND-EXE-035's prefix producer with that caller and recovers the
   saved handler, retaining native frame and shared-tail input uncertainty.
+  FND-EXE-098 records consecutive/list reset producers and a mutable fixed
+  fallback first word; index admission and concrete methods remain open.
   Native frame admission, callback invocation, selector effects, allocation units, capacity, aliases
   and lifetime remain conditional.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
