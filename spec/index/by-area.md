@@ -136,6 +136,7 @@ Entries by area.
 | [FND-EXE-120](../findings/FND-EXE-120.md) | Post-record nonzero-byte priority path publishes local flags before the shared counter suffix | recorded |
 | [FND-EXE-121](../findings/FND-EXE-121.md) | Shared state helpers bound input to sixteen slots and publish byte and mask state in different orders | recorded |
 | [FND-EXE-122](../findings/FND-EXE-122.md) | Optional first-mode slot scan clears byte and masks before its selected call | recorded |
+| [FND-EXE-123](../findings/FND-EXE-123.md) | Optional second-mode scan bounds positions to sixteen and adds a count-dependent group gate | recorded |
 
 ## GFF
 

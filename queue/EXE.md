@@ -164,7 +164,8 @@ Next ID: Q-EXE-010
   priority/state suffix admission (FND-EXE-119), and post-record nonzero-byte
   priority/local-F publication (FND-EXE-120), and bounded shared slot-byte/
   mask publishers (FND-EXE-121), and optional first-mode slot admission/clearing
-  (FND-EXE-122). Second-mode scan, table/slot producers and selected callee
+  (FND-EXE-122), and second-mode bounds/group gate/load ordering (FND-EXE-123).
+  Table/slot producers and selected callee
   effects remain open. These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
