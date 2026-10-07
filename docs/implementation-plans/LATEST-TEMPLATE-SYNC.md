@@ -76,3 +76,16 @@ summary. Retain the evidence-backed parameter placeholder and unknown-signature
 warning rather than replace it with a no-argument assertion. All other changed
 files contain generic profile placeholders, changelog history, lock equivalents
 or line-range refreshes already represented by this configured project.
+
+## Follow-up synchronization: 403a749 (2026-10-07)
+
+Target only this configured repository. The canonical template's origin/main
+adds command-scoped Git ownership guidance since 25c5808. Adopt that section
+in AGENTS.md, using the resolved trusted checkout or worktree path and keeping
+the exception local to each command. It grants no push authorization.
+Acceptance: the guidance matches the canonical section, avoids wildcard and
+global exceptions, and the documentation checks and assetless Test.ps1 gate
+pass. No runtime, package, evidence, or game behavior changes are required.
+Risk: a broader exception would trust unrelated repositories; retain the exact
+checkout scope. Exit: validated guidance and a separate handover are committed
+locally without pushing. No owner questions block this maintenance.

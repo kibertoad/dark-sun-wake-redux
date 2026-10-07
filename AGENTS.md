@@ -664,6 +664,20 @@ observations without assigning that identity. If neither a timestamp window,
 date-and-hour slot, nor explicit filename list is authorized, ask the owner
 before inspecting any candidate image.
 
+## Git ownership in the Windows sandbox
+
+The Windows sandbox may run Git as a different account from the checkout owner.
+For an authorized, trusted checkout, use a command-scoped exception from the
+first Git command: `git -c safe.directory=<resolved-absolute-checkout-path> ...`.
+Use forward slashes in the Windows path and quote the whole
+`safe.directory=<path>` argument if it contains spaces. In a separate worktree,
+use that worktree's path; with `git -C`, use the target checkout's path.
+
+Keep the exception scoped to the known checkout. Do not use `safe.directory=*`
+or change global Git configuration. The exception does not authorize a remote
+change or a push; verify the configured push destination under the project's
+repository instructions before pushing.
+
 ## Post-commit orphan-process audit
 
 After every commit, inspect running processes for orphaned work launched while
