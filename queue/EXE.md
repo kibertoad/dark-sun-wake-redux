@@ -170,7 +170,8 @@ Next ID: Q-EXE-010
   Physical full-width targets and shared four-call return widths are recorded
   in FND-EXE-126; larger zero-mode publication/reentry and full return in FND-EXE-127.
   Nonzero-mode lookup and missing-entry reloads are recorded in FND-EXE-128.
-  Permission/publication branches, table/slot producers and remaining selected callee
+  Mode/entry-bit selector gates and precedence are recorded in FND-EXE-129.
+  Selector continuations, table/slot producers and remaining selected callee
   effects remain open. These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix

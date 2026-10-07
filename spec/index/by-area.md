@@ -142,6 +142,7 @@ Entries by area.
 | [FND-EXE-126](../findings/FND-EXE-126.md) | Physical full-width fallback slots select a four-call method that retains upper return bits | recorded |
 | [FND-EXE-127](../findings/FND-EXE-127.md) | Larger full-width reader zero mode publishes mapping before reentry and keeps the full returned value | recorded |
 | [FND-EXE-128](../findings/FND-EXE-128.md) | Full-width nonzero-mode lookup retries retained entry offsets through a fresh backing pointer | recorded |
+| [FND-EXE-129](../findings/FND-EXE-129.md) | Full-width reader combines mode-dependent entry-bit gates into four local selector values | recorded |
 
 ## GFF
 
