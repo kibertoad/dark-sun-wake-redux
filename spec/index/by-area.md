@@ -62,6 +62,7 @@ Entries by area.
 | [FND-EXE-046](../findings/FND-EXE-046.md) | Record-mode admission distinguishes direct clearing from initialization and a flag wait loop | recorded |
 | [FND-EXE-047](../findings/FND-EXE-047.md) | Mode resource initialization publishes a saved index and a zero-helper-derived mode | recorded |
 | [FND-EXE-048](../findings/FND-EXE-048.md) | Record setup resolves TLS imports and tail-returns the later error query on a zero result | recorded |
+| [FND-EXE-049](../findings/FND-EXE-049.md) | Record cleanup restores a pre-helper saved link through a freshly selected mode | recorded |
 
 ## GFF
 
