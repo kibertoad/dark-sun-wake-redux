@@ -48,14 +48,12 @@ An owner-approved history repair remains separate from this maintenance scope.
 
 - Stage: Slices. The ongoing protocol objective remains active on this local
   goal branch. Completed workflow tooling and EXE research are committed.
-- Last full gate: 2026-10-07, assetless Test.ps1 -NoRestore passed for both
-  the research batch and the separate Windows Ghidra documentation fix.
-  Logs: artifacts/exe-dispatch-full-gate.log and
-  artifacts/ghidra-script-path-full-gate.log. Documentation generation and
-  explicit main-base checking passed in artifacts/exe-dispatch-docs.log;
+- Last full gate: 2026-10-07, assetless Test.ps1 -NoRestore passed.
+  Logs: artifacts/exe-lookup-full-gate.log and artifacts/exe-lookup-docs.log.
+  Documentation generation and explicit main-base checking passed;
   existing argument-check skips remain. Pre-commit checks passed.
   The last full source-listing reconciliation remains
-  artifacts/exe-dosbox-pe-listing.log; these batches changed no manifest.
+  artifacts/exe-dosbox-pe-listing.log; this batch changed no manifest.
 - Unfinished: no tracked work remains. EXE follow-up items remain Q-EXE-005,
   Q-EXE-006, Q-EXE-007, Q-EXE-008 and Q-EXE-009; Q-EXE-001 retains its
   retry requirement. Local static-analysis reports and the saved interpreter
@@ -78,8 +76,9 @@ An owner-approved history repair remains separate from this maintenance scope.
   launch defect and the successful two-directory control. Template issues
   80 and 82, and toolkit issues 325 and 327 retain the earlier reports.
   No upstream fix delivery is claimed.
-- Next: recheck shared goal claims, then Q-EXE-006 using FND-EXE-013 for
-  batch-input/parser provenance and the remaining helper/cleanup paths;
-  Q-EXE-009 using FND-EXE-014 for lookup, other flag writers and EXIT.
+- Next: recheck shared goal claims, then Q-EXE-009 using FND-EXE-015 and
+  FND-EXE-016 for normalization/index producers, drive-object provenance,
+  PATH writers/admission and remaining flag/EXIT paths; Q-EXE-006 using
+  FND-EXE-013 for batch-input/parser and helper/cleanup coverage.
   Continue Q-EXE-008, Q-EXE-007 and Q-EXE-005 when evidence permits. Keep
   CONFIG/SCRIPT and the gap ledger excluded; never run DOSBox or a shell harness.
