@@ -144,6 +144,7 @@ Entries by area.
 | [FND-EXE-128](../findings/FND-EXE-128.md) | Full-width nonzero-mode lookup retries retained entry offsets through a fresh backing pointer | recorded |
 | [FND-EXE-129](../findings/FND-EXE-129.md) | Full-width reader combines mode-dependent entry-bit gates into four local selector values | recorded |
 | [FND-EXE-130](../findings/FND-EXE-130.md) | Full-width reader publishes retained entry flags before mapping and conditionally removes the last reset-list entry | recorded |
+| [FND-EXE-131](../findings/FND-EXE-131.md) | Selected prefix helper admits sixty-four stored selectors and shares a zero-return default without clearing the selector | recorded |
 
 ## GFF
 

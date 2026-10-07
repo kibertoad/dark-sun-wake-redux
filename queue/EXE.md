@@ -172,7 +172,8 @@ Next ID: Q-EXE-010
   Nonzero-mode lookup and missing-entry reloads are recorded in FND-EXE-128.
   Mode/entry-bit selector gates and precedence are recorded in FND-EXE-129.
   Retained-entry publication, full-width reentry and last-entry cleanup are recorded
-  in FND-EXE-130. Helper/indirect effects, table/slot producers and remaining selected callee
+  in FND-EXE-130; selected-prefix admission/physical targets/default in FND-EXE-131.
+  Prefix branch/indirect effects, table/slot producers and remaining selected callee
   effects remain open. These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
