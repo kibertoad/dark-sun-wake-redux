@@ -153,6 +153,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-040 traces their conditional raw-prefix release boundary;
   FND-EXE-041 traces a mutable final target and its normal-return import boundary;
   FND-EXE-042 traces the bounded encoded shared-record reader;
+  FND-EXE-043 traces record selection, initialization and shared-pointer publication;
   allocation units, capacity, aliases and lifetime remain conditional.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers

@@ -82,7 +82,8 @@ Next ID: Q-EXE-010
   construction and failure publication (FND-EXE-039), and raw-prefix
   release forwarding (FND-EXE-040), and mutable final-target/import
   boundaries (FND-EXE-041), and encoded shared-record reading
-  (FND-EXE-042). These bounded
+  (FND-EXE-042), and shared-record initialization/publication
+  (FND-EXE-043). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete

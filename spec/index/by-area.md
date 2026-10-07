@@ -56,6 +56,7 @@ Entries by area.
 | [FND-EXE-040](../findings/FND-EXE-040.md) | Conditional payload release forwards the raw prefix pointer except for one fixed address | recorded |
 | [FND-EXE-041](../findings/FND-EXE-041.md) | Failure finalization reads a mutable indirect target before reaching an abort import | recorded |
 | [FND-EXE-042](../findings/FND-EXE-042.md) | Shared-record reader decodes thirty-two atom-name bytes after a nonzero import result | recorded |
+| [FND-EXE-043](../findings/FND-EXE-043.md) | Shared-record initialization verifies an encoded allocation before publishing target-field pointers | recorded |
 
 ## GFF
 
