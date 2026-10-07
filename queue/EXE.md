@@ -162,7 +162,8 @@ Next ID: Q-EXE-010
   byte merge with fresh write arithmetic (FND-EXE-117), and shared counters
   with latch-setting tail insertion (FND-EXE-118), and gate-absent
   priority/state suffix admission (FND-EXE-119), and post-record nonzero-byte
-  priority/local-F publication (FND-EXE-120). These bounded
+  priority/local-F publication (FND-EXE-120), and bounded shared slot-byte/
+  mask publishers (FND-EXE-121). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete

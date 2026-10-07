@@ -134,6 +134,7 @@ Entries by area.
 | [FND-EXE-118](../findings/FND-EXE-118.md) | Shared flag counters precede a latch-setting tail insertion with no local rollback | recorded |
 | [FND-EXE-119](../findings/FND-EXE-119.md) | Object-gate-absent priority path rejoins local-flag publication after optional state calls | recorded |
 | [FND-EXE-120](../findings/FND-EXE-120.md) | Post-record nonzero-byte priority path publishes local flags before the shared counter suffix | recorded |
+| [FND-EXE-121](../findings/FND-EXE-121.md) | Shared state helpers bound input to sixteen slots and publish byte and mask state in different orders | recorded |
 
 ## GFF
 

@@ -239,6 +239,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-118 records shared counters and latch-setting tail insertion;
   FND-EXE-119 records gate-absent priority/state calls and local-F suffix admission;
   FND-EXE-120 records post-record nonzero-byte priority and local-F publication;
+  FND-EXE-121 records shared bounded slot-byte/mask publishers and return widths;
   floating numeric contracts, downstream targets, producers,
   indirect targets and actual state admission remain open.
   Native frame admission, callback invocation, selector effects, allocation units, capacity, aliases
