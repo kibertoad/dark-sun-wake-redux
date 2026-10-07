@@ -428,7 +428,9 @@ section sets out. Delete it otherwise. Keep the Replaces item only on a
 `mandatory` deviation that replaces some of the entries in Departs from
 entirely, and name only those; keep the Tests item only when test files check
 that the rebuild does what the Reason says. A row a Replaces item names becomes
-`deviated` once every `mandatory` deviation it lists has a Tests item. IDs are
+`deviated` once every `mandatory` deviation it lists has a Tests item, and its
+own Tests is `None`, since the tests of what the rebuild does in its place are
+the deviation's Tests item. IDs are
 never reused or renumbered, and a dropped deviation keeps its file.
 
 ````markdown

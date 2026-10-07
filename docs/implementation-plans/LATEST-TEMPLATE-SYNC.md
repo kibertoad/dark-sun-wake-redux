@@ -49,3 +49,30 @@ Report reproducible template defects after checking duplicate issues.
 Exit: the matrix is reconciled with actual changes, checks pass, the validated
 migration and handover are committed locally, and no push occurs. No owner
 questions block this authorized maintenance.
+
+## Follow-up synchronization: 25c5808 (2026-10-07)
+
+Target only this configured repository. Compare committed 99c3e11 with
+25c5808bb497d863aded815e50838ee1e6d94256 from the canonical clone.
+The pinned rule digests/checker, runtime 10.0.0 and Python engine 12.0.0
+already match; retain them without a rules refresh. Adopt executable-reader
+2.3.0 with its npm lock and the additional applicable evidence-review guidance.
+Retain existing stronger local session, clean-room, no-push and validation
+contracts; reconcile overlapping guidance rather than overwrite them.
+Acceptance: exact dependencies verify, offline rules and link checks pass,
+documentation and the assetless full Test.ps1 gate pass. Review every changed
+upstream capability for adoption or explicit retention. Risks: generic runtime
+permissions and obsolete rule paths must not replace configured constraints.
+No owner questions block this maintenance. Commit migration and handover
+separately; leave the interrupted research report local for later continuation.
+
+Reconciliation: architecture/media/extraction/configuration, release/signing,
+CI checker pin, Python locks and runtime packages already match or retain
+stronger configured behavior. Existing goal discovery, separate handover commits,
+Queue trailer restrictions, supersession/query-value guidance and implementation
+case links already cover the template additions. Adopt the expanded evidence
+review, mandatory-deviation test clarification and concrete implementation test
+summary. Retain the evidence-backed parameter placeholder and unknown-signature
+warning rather than replace it with a no-argument assertion. All other changed
+files contain generic profile placeholders, changelog history, lock equivalents
+or line-range refreshes already represented by this configured project.

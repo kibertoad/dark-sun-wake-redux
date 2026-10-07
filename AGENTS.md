@@ -560,6 +560,26 @@ parity row; see the protocol's
 [Implementation batches](vendor/upstream/work-protocol.md#implementation-batches) (lines 162-178)
 and [Checkpoints and replay](vendor/upstream/work-protocol.md#checkpoints-and-replay) (lines 256-264).
 
+The protocol adds test cases for four more shapes of rule, which also
+compare the rebuild with the spec and validate no row. A caller that combines
+its callees' results (stops at the first event, keeps the last result, ORs
+statuses, or calls a fallback on one exact status) is tested through the
+consumer of its result as well as alone, with an earlier callee reporting and
+a later one returning 0. A rule moved into the rules layer is tested directly
+and again through its adapter, which hands back the same shared objects and
+read-only collections, rejects no input the entry gives an outcome for, and
+keeps what a rule did before a failure. Arithmetic the entry says wraps,
+truncates or converts is tested at the edges of each type (largest and
+smallest values, shift counts of 0 and 32, a divisor of -1, values outside
+every narrower type through the adapter). Allocation, removal and cleanup are
+tested with a test-supplied allocator and release routine that record calls,
+return null, fill blocks with a pattern, and read or change the container
+when called. See the protocol's
+[Calls that combine results](vendor/upstream/work-protocol.md#calls-that-combine-results) (lines 180-196),
+[Rules behind an adapter](vendor/upstream/work-protocol.md#rules-behind-an-adapter) (lines 198-214),
+[Arithmetic at the original's widths](vendor/upstream/work-protocol.md#arithmetic-at-the-originals-widths) (lines 216-232)
+and [Allocation, containers and cleanup](vendor/upstream/work-protocol.md#allocation-containers-and-cleanup) (lines 240-254).
+
 Each rule ships with fast-gate tests over synthetic state. The rule itself is
 usually a static class over the serializable state type, called by `Game`.
 When a bug is traced to branch logic in `Game`, extract the rule into `Core`,
