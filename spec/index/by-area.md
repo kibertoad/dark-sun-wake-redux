@@ -140,6 +140,7 @@ Entries by area.
 | [FND-EXE-124](../findings/FND-EXE-124.md) | Selected callee prefix publishes input byte and gates two reader calls or recursive fallback | recorded |
 | [FND-EXE-125](../findings/FND-EXE-125.md) | Full-width mapped reader separates one four-byte access from independently mapped boundary bytes | recorded |
 | [FND-EXE-126](../findings/FND-EXE-126.md) | Physical full-width fallback slots select a four-call method that retains upper return bits | recorded |
+| [FND-EXE-127](../findings/FND-EXE-127.md) | Larger full-width reader zero mode publishes mapping before reentry and keeps the full returned value | recorded |
 
 ## GFF
 

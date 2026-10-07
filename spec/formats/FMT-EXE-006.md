@@ -245,7 +245,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-124 records selected-callee prefix gates, reader calls and recursive fallback;
   FND-EXE-125 records full-width mapped reads and independent boundary-byte assembly;
   FND-EXE-126 records physical full-width targets and the shared four-call return widths;
-  table/slot producers, larger reader target and remaining selected callee effects remain open.
+  FND-EXE-127 records larger full-width zero-mode publication/reentry and full returns;
+  table/slot producers, nonzero-mode reader branches and remaining selected callee effects remain open.
   floating numeric contracts, downstream targets, producers,
   indirect targets and actual state admission remain open.
   Native frame admission, callback invocation, selector effects, allocation units, capacity, aliases

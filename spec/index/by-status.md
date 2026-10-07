@@ -223,7 +223,7 @@ Entries by status.
 
 ## recorded
 
-556 entries.
+557 entries.
 
 | ID | Title |
 |---|---|
@@ -593,6 +593,7 @@ Entries by status.
 | [FND-EXE-124](../findings/FND-EXE-124.md) | Selected callee prefix publishes input byte and gates two reader calls or recursive fallback |
 | [FND-EXE-125](../findings/FND-EXE-125.md) | Full-width mapped reader separates one four-byte access from independently mapped boundary bytes |
 | [FND-EXE-126](../findings/FND-EXE-126.md) | Physical full-width fallback slots select a four-call method that retains upper return bits |
+| [FND-EXE-127](../findings/FND-EXE-127.md) | Larger full-width reader zero mode publishes mapping before reentry and keeps the full returned value |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) |
