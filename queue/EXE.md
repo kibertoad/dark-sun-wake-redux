@@ -70,7 +70,8 @@ Next ID: Q-EXE-010
   append/initializer caller sequence (FND-EXE-026), and an earlier list producer
   with insertion before status dispatch (FND-EXE-027), and the bounded output
   table/default paths and shared reread (FND-EXE-028), and a shared helper
-  sentinel-linked search (FND-EXE-029). These bounded
+  sentinel-linked search (FND-EXE-029) and stored-length comparison
+  operations (FND-EXE-030). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete
