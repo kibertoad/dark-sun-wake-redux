@@ -44,9 +44,10 @@ docs/goals/; queue items and findings stay in their own files.
 
 ## Next
 
-1. Q-PARTY-011, then Q-PARTY-012, for RULE-PARTY-006 (slice 2). Q-PARTY-012
-   reads the shared resource reader, which config-static's CONFIG findings also
-   cover; coordinate with that goal before adding entries in its areas.
+1. Q-PARTY-013, Q-PARTY-011 (56 indirect calls left), then Q-PARTY-012, for
+   RULE-PARTY-006 (slice 2). Q-PARTY-012 reads the shared resource reader,
+   which config-static's CONFIG findings also cover; coordinate with that goal
+   before adding entries in its areas.
 2. Q-PARTY-002, Q-PARTY-003, Q-PARTY-004 and Q-PARTY-006 (slice 2).
 3. Q-UI-005 and Q-SAVE-001 for SCR-UI-013 and SCR-UI-014; Q-UI-002 for SCR-UI-007.
 4. Q-EXE-002 and Q-EXE-001.
@@ -62,6 +63,12 @@ docs/goals/; queue items and findings stay in their own files.
   stores inside the install directory.
 - refurbished-dinosaurs-template issue 82: inherited owner TEMP/TMP causes
   Java canonical-path access failure under sandbox validation.
+- refurbished-dinosaurs-toolkit issue 322: a reachability command over the
+  call graph, with unresolved sites listed.
+- refurbished-dinosaurs-toolkit issue 323: an inventory check reporting call
+  targets missing from a committed inventory.
+- refurbished-dinosaurs-toolkit issue 319: comment adding a one-sentence
+  Parameters section case.
 
 ## Shared runtime migration
 
