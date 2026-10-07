@@ -126,6 +126,7 @@ Entries by area.
 | [FND-EXE-110](../findings/FND-EXE-110.md) | Callback value seven publishes a flag before priority selection and tail-transfers only on a gated state change | recorded |
 | [FND-EXE-111](../findings/FND-EXE-111.md) | Callback value one captures the indexed byte before record progress and reinserts after gated calls | recorded |
 | [FND-EXE-112](../findings/FND-EXE-112.md) | Callback zero branch reads the old index after progress and rereads count after scheduling or a virtual call | recorded |
+| [FND-EXE-113](../findings/FND-EXE-113.md) | First callback callee writes or replaces a byte before pair removal and conditional scheduling | recorded |
 
 ## GFF
 

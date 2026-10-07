@@ -231,6 +231,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-110 records value-seven priority publication and gated state transfers;
   FND-EXE-111 records value-one byte capture, progress and callback reinsertion;
   FND-EXE-112 records zero-branch old-index reads and post-call count rereads;
+  FND-EXE-113 records the first callee byte-write/removal and scheduling prefix;
   floating numeric contracts, downstream targets, producers,
   indirect targets and actual state admission remain open.
   Native frame admission, callback invocation, selector effects, allocation units, capacity, aliases
