@@ -55,6 +55,7 @@ Entries by area.
 | [FND-EXE-039](../findings/FND-EXE-039.md) | Null-input failure route constructs a payload field before signed decrement and shared publication | recorded |
 | [FND-EXE-040](../findings/FND-EXE-040.md) | Conditional payload release forwards the raw prefix pointer except for one fixed address | recorded |
 | [FND-EXE-041](../findings/FND-EXE-041.md) | Failure finalization reads a mutable indirect target before reaching an abort import | recorded |
+| [FND-EXE-042](../findings/FND-EXE-042.md) | Shared-record reader decodes thirty-two atom-name bytes after a nonzero import result | recorded |
 
 ## GFF
 
