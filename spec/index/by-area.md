@@ -119,6 +119,7 @@ Entries by area.
 | [FND-EXE-103](../findings/FND-EXE-103.md) | Grounded wait target turns negative callback results into completion and separates indexed dispatch from retry | recorded |
 | [FND-EXE-104](../findings/FND-EXE-104.md) | Wait admission retains distinct sum exits and publishes callback-list removal before free-list insertion | recorded |
 | [FND-EXE-105](../findings/FND-EXE-105.md) | Callback insertion consumes a free node while removers unlink every matching target or target-argument pair | recorded |
+| [FND-EXE-106](../findings/FND-EXE-106.md) | Callback pool links are initialized before head publication and the counter helper retains callback successors | recorded |
 
 ## GFF
 

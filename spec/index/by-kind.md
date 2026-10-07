@@ -177,7 +177,7 @@ Entries by kind.
 
 ## findings
 
-554 entries.
+555 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -543,6 +543,7 @@ Entries by kind.
 | [FND-EXE-103](../findings/FND-EXE-103.md) | Grounded wait target turns negative callback results into completion and separates indexed dispatch from retry | recorded |
 | [FND-EXE-104](../findings/FND-EXE-104.md) | Wait admission retains distinct sum exits and publishes callback-list removal before free-list insertion | recorded |
 | [FND-EXE-105](../findings/FND-EXE-105.md) | Callback insertion consumes a free node while removers unlink every matching target or target-argument pair | recorded |
+| [FND-EXE-106](../findings/FND-EXE-106.md) | Callback pool links are initialized before head publication and the counter helper retains callback successors | recorded |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant | recorded |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead | recorded |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) | recorded |
