@@ -51,7 +51,7 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Stage: Slices. The ongoing protocol objective remains active on this local
   goal branch. Completed workflow tooling and EXE research are committed.
 - Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore passed.
-  Logs: artifacts/exe-callback-flags-full-gate.log and artifacts/exe-callback-flags-docs-check.log.
+  Logs: artifacts/exe-callback-one-full-gate.log and artifacts/exe-callback-one-docs-check.log.
   Documentation generation and explicit main-base checking passed;
   existing argument-check skips remain. Remote-base ancestry was rechecked
   and is available; explicit local main-base checking passed. Pre-commit
@@ -92,7 +92,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   Toolkit issue 350 received a duplicate follow-up on inventory ownership:
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/350#issuecomment-6046763133.
 - Next: recheck shared goal claims, then Q-EXE-009 using FND-EXE-015,
-  FND-EXE-017 through FND-EXE-110 for zero/one callback consumer branches and scheduling, virtual targets and value-two/seven callee effects, slot/object-field and caller input producers, initialization admission/lifetime and other target producers and optional admission dispatch, floating numeric/environment contracts, indexed-handler producers and wait-pointer admission, shared continuation/reader effects and category/global producers, mapping-object virtual targets/extent, list-count writers and range-index admission, then shared byte-transfer callee effects, then PATH input-list object and remaining mapped-table producers, then saved-handler admission, prefix modifier/displacement producers and first-object target admission, shared cleanup resource targets, counter initialization/lifetime, remaining cleanup targets, startup callbacks and registration effects, shared-guard indirect writers/lifetime, dispatcher-frame admission and optional callback effects
+  FND-EXE-017 through FND-EXE-111 for zero callback consumer branch, record bounds and callee effects, virtual targets and value-two/seven callee effects, slot/object-field and caller input producers, initialization admission/lifetime and other target producers and optional admission dispatch, floating numeric/environment contracts, indexed-handler producers and wait-pointer admission, shared continuation/reader effects and category/global producers, mapping-object virtual targets/extent, list-count writers and range-index admission, then shared byte-transfer callee effects, then PATH input-list object and remaining mapped-table producers, then saved-handler admission, prefix modifier/displacement producers and first-object target admission, shared cleanup resource targets, counter initialization/lifetime, remaining cleanup targets, startup callbacks and registration effects, shared-guard indirect writers/lifetime, dispatcher-frame admission and optional callback effects
   plus static-context/flag producer contracts, concrete dispatch targets, stream bounds and dispatcher admission, then zero-state helpers, then higher caller returns, then temporary caller ranges
   and failure-consumer/handler contracts, then
   preceding-word producers and downstream output, then
