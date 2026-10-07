@@ -125,6 +125,7 @@ Entries by area.
 | [FND-EXE-109](../findings/FND-EXE-109.md) | Callback consumer has dedicated word dispatch and clears six fields only after its value-two call returns | recorded |
 | [FND-EXE-110](../findings/FND-EXE-110.md) | Callback value seven publishes a flag before priority selection and tail-transfers only on a gated state change | recorded |
 | [FND-EXE-111](../findings/FND-EXE-111.md) | Callback value one captures the indexed byte before record progress and reinserts after gated calls | recorded |
+| [FND-EXE-112](../findings/FND-EXE-112.md) | Callback zero branch reads the old index after progress and rereads count after scheduling or a virtual call | recorded |
 
 ## GFF
 

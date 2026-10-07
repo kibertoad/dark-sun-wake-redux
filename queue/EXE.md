@@ -153,7 +153,8 @@ Next ID: Q-EXE-010
   selection and shifted-word forwarding (FND-EXE-108), and downstream
   dispatch/value-two clearing (FND-EXE-109), and value-seven flag priority
   and gated state transfers (FND-EXE-110), and value-one capture/progress
-  and reinsertion (FND-EXE-111). These bounded
+  and reinsertion (FND-EXE-111), and zero-branch progress/read ordering
+  and fresh post-call count decisions (FND-EXE-112). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete
