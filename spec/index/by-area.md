@@ -33,6 +33,7 @@ Entries by area.
 | [FND-EXE-017](../findings/FND-EXE-017.md) | Compiled filename helper writes and bounds a drive selector before its table load | recorded |
 | [FND-EXE-018](../findings/FND-EXE-018.md) | Compiled selector writers differ in guard order and success meaning | recorded |
 | [FND-EXE-019](../findings/FND-EXE-019.md) | Compiled external-command drive selection requires an exact colon suffix | recorded |
+| [FND-EXE-020](../findings/FND-EXE-020.md) | Compiled filename scan counts consumed bytes separately from emitted bytes | recorded |
 
 ## GFF
 

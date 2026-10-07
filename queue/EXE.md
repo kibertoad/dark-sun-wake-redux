@@ -82,6 +82,10 @@ Next ID: Q-EXE-010
   finish the filename helper's later output/alias and drive-object path,
   then initial selector provenance, PATH admission and remaining EXIT/flag
   paths. External CRT locale behavior stays conditional where relevant.
+  FND-EXE-020 now reads the filename byte scan and output-prefix setup.
+  Next: read component transformations and their failure/output paths, then
+  the object prefix's producers and drive-object virtual targets. A bounded
+  local scan is not yet a complete caller-output contract.
   Blocks: resolved wrapper-helper and continuation description.
 
 ## Emulated call

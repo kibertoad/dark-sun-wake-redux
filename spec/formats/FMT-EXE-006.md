@@ -115,7 +115,9 @@ reading of callers, external commands or interpreter behavior is claimed.
   admission, indirect writers and later virtual effects remain unknown.
   FND-EXE-019 identifies the exact drive-command suffix gates and CRT import
   slots; unchanged bare helper tokens take the local filename-lookup branch,
-  conditional on their delivery. Complete resolution remains open.
+  conditional on their delivery. FND-EXE-020 records the filename helper's
+  byte scan and prefix setup, separating consumed and emitted bounds.
+  Component handling, prefix provenance and complete resolution remain open.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
   are compatible with multiple encodings too. FND-EXE-008 identifies the
