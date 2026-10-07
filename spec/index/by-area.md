@@ -40,6 +40,7 @@ Entries by area.
 | [FND-EXE-024](../findings/FND-EXE-024.md) | Compiled allocation wrapper substitutes zero requests and retries through a callback | recorded |
 | [FND-EXE-025](../findings/FND-EXE-025.md) | Allocation failure-object storage has an eighty-byte prefix and a bitmap fallback | recorded |
 | [FND-EXE-026](../findings/FND-EXE-026.md) | A compiled append loop derives its slot from a signed byte and initializes after iteration | recorded |
+| [FND-EXE-027](../findings/FND-EXE-027.md) | A compiled list producer inserts its allocation result before dispatching an output word | recorded |
 
 ## GFF
 
