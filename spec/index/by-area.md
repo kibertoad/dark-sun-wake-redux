@@ -28,6 +28,8 @@ Entries by area.
 | [FND-EXE-012](../findings/FND-EXE-012.md) | Compiled batch-label search calls cleanup that restores saved shell fields | recorded |
 | [FND-EXE-013](../findings/FND-EXE-013.md) | Compiled command dispatcher selects the GOTO record and preserves its two-word call target | recorded |
 | [FND-EXE-014](../findings/FND-EXE-014.md) | Compiled batch-selection branch gates active-batch cleanup with a CALL flag | recorded |
+| [FND-EXE-015](../findings/FND-EXE-015.md) | Compiled command lookup tests the supplied name then COM EXE BAT before PATH candidates | recorded |
+| [FND-EXE-016](../findings/FND-EXE-016.md) | Compiled count-80 PATH continuation scans for a semicolon without a NUL stop | recorded |
 
 ## GFF
 

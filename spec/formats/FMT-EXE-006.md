@@ -102,7 +102,13 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-013 and FND-EXE-014 now provide compiled dispatch and a conditional
   batch-cleanup distinction, including the CALL flag interval. Command/mount
   inputs, other flag writers and exceptional/EXIT paths must still decide
-  the complete continuation.
+  the complete continuation. FND-EXE-015 now records supplied-name, COM,
+  EXE and BAT ordering before admitted PATH candidates, conditional on
+  normal helpers and a valid input. Its availability predicate crosses an
+  unread normalization/drive-object boundary, so installed-BAT resolution
+  remains conditional. FND-EXE-016 separately identifies the count-80 PATH
+  scan that can advance past NUL; supported-input reachability and subsequent
+  effects remain unknown.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
   are compatible with multiple encodings too. FND-EXE-008 identifies the

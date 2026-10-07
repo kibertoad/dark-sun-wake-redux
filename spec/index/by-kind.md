@@ -177,7 +177,7 @@ Entries by kind.
 
 ## findings
 
-463 entries.
+465 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -452,6 +452,8 @@ Entries by kind.
 | [FND-EXE-012](../findings/FND-EXE-012.md) | Compiled batch-label search calls cleanup that restores saved shell fields | recorded |
 | [FND-EXE-013](../findings/FND-EXE-013.md) | Compiled command dispatcher selects the GOTO record and preserves its two-word call target | recorded |
 | [FND-EXE-014](../findings/FND-EXE-014.md) | Compiled batch-selection branch gates active-batch cleanup with a CALL flag | recorded |
+| [FND-EXE-015](../findings/FND-EXE-015.md) | Compiled command lookup tests the supplied name then COM EXE BAT before PATH candidates | recorded |
+| [FND-EXE-016](../findings/FND-EXE-016.md) | Compiled count-80 PATH continuation scans for a semicolon without a NUL stop | recorded |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant | recorded |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead | recorded |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) | recorded |

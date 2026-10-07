@@ -65,7 +65,12 @@ Next ID: Q-EXE-010
   FND-EXE-013 and FND-EXE-014 now record compiled external-command dispatch,
   the conditional batch cleanup gate and CALL flag writes. Next: read the
   lookup helper and extension selection, all flag writers and EXIT paths,
-  then the declared mount/overlay inputs. Blocks: resolved wrapper-helper and continuation description.
+  then the declared mount/overlay inputs. FND-EXE-015 now records compiled
+  local/PATH candidate order and its unread drive-predicate boundary;
+  FND-EXE-016 records the distinct count-80 PATH scan. Next: trace the
+  normalization/index producer and drive-object targets, PATH input writers
+  and long-segment admission, then remaining flag/EXIT and mount inputs.
+  Blocks: resolved wrapper-helper and continuation description.
 
 ## Emulated call
 
