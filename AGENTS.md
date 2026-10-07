@@ -382,6 +382,36 @@ output is not source: inferred names, types, signedness, casts, and control flow
 can be wrong, so inspect bounded instruction context when the distinction
 matters.
 
+Corrections to findings and experiments follow
+[Identifiers](vendor/upstream/documentation-standard.md#identifiers) (lines 120-160).
+Only edits that preserve every recorded fact are made in place. A changed
+observation, location, query, reproduction step or interpretation supersedes
+the whole entry, preserving its old text. Replacement entries use new IDs,
+start at `recorded` with their own recorder, and explain the old error in
+Alternatives (Conclusion for an experiment). Review what each citing entry
+and glossary claim depended on when moving citations: keep a status only
+where the remaining evidence supports it, and use `disputed` where the
+corrected original evidence contradicts the claim. Replacements preserve a
+complete reading only where they still cover the corrected part fully.
+
+A complete reading also follows callee register returns through loop re-entry
+stores, names the last writer of each outgoing argument byte, and tracks ESP
+from entry through deferred or combined cleanup wherever it forms an address.
+Read allocation and cleanup in execution order on every path; follow how a
+caller keeps, combines or drops its callees' results; and establish each
+adjacent dispatch table's own indexing and bound. An empty reference search
+needs controls located independently of the mapping under test and controls
+for each kind it searches; list the reference kinds it excludes. PE imported
+targets come from import-table slots, and pointer tables from the build's
+bytes, rather than inferred names or neighboring globals.
+
+A finding's How to reproduce may name tools and versions, a `tools/` script
+and its commit, and the command. The finding itself gives every query value
+that decides its result, including entries, ranges, limits and controls, so
+an uncommitted local configuration is not required to know those values.
+Observation and Interpretation describe the result independently of the tool;
+rules, formats, screens and bugs cite that evidence without research procedure.
+
 Durable findings go in `spec/`, one entry per file named after its ID, and not
 in conversation history or large retained dumps. IDs are never reused or
 renumbered, and an entry that turns out wrong becomes `superseded`. The spec

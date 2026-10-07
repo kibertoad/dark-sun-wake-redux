@@ -854,3 +854,34 @@ Gate log: `artifacts/protocol-skill-sync-gate3.log`; explicit base comparison:
 Downstream details were added to existing template issue 80 (goal-skill
 summaries) and issue 82 (temporary-directory/account diagnostics), after the
 related issue searches and comment review. No duplicate request was opened.
+
+Research procedure and rule-template validation, 2026-10-07: the local workflow
+summaries were checked against the unchanged pinned Standard efa138ba's
+Identifiers, Complete readings and Findings sections. research-item, AGENTS.md
+and EVIDENCE-REVIEW.md now state whole-entry supersession for factual corrections,
+new recorded replacements and citation-dependent status review; self-contained
+query values and independent negative-search controls; register-return loop
+progress, outgoing argument writers, deferred ESP cleanup, allocation/cleanup
+order, combined caller results and separate adjacent-table bounds. The existing
+implement-rows links and mandatory-deviation test guidance already cover the
+requested protocol sections and needed no change.
+
+The actual rule-template Parameters example was passed to the installed
+checker 2.2.0's parameterCount and checkArgumentCounts functions using synthetic
+rule objects only. It counts one parameter, accepts its one-argument call,
+rejects both missing and extra arguments without skipping, accepts a known
+empty list with a zero-argument call, and explicitly skips an unresolved list.
+Combined names and trailing prose remain uncountable. No existing game-rule
+Parameters, spec evidence, statuses, parity rows or queues were changed to
+remove checker skips. Controls: artifacts/verify-rule-parameters.mjs;
+output: artifacts/rule-parameters-controls.log.
+
+Pinned digests and section links, diff whitespace validation and the explicit
+main-base documentation comparison passed. Full assetless Test.ps1 -NoRestore
+passed with all 715 .NET tests succeeding; its known argument-check skips
+remain documented. Logs: artifacts/procedure-evidence-docs.log and
+artifacts/procedure-evidence-gate.log. Use the executing account's temporary
+directory, clear GAME_DIR and NoDefaultCurrentDirectoryInExePath and select
+the already installed locked interpreter as in the isolated goal's handover.
+No original runtime or proprietary input was used. The implementation plan
+remains within its required line limit and links the bounded tooling plan.

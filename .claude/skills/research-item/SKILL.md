@@ -54,6 +54,13 @@ only the lines the link gives, and never a section already read this session.
    (`fn_00478CD0`) until evidence shows what a thing does. Keep decompiler
    output, listings and dumps in ignored local storage, and read bounded
    instruction context when signedness or control flow matters.
+   A negative search needs a positive control located independently of the
+   mapping being checked, a control for each reference kind searched, and an
+   explicit list of kinds excluded. No instructions returned is not proof
+   of absence: distinguish an empty range, an unmapped range and missing
+   analyzer ownership. Resolve PE imported callees by their import-table
+   slots, and pointer-table targets from the build's bytes, not inferred
+   names, call order or nearby globals.
    Agents never run the game or take its run lock here. Items needing a run go
    under `Live session`; `live-session` requests the owner's observation.
    Follow the local capture rules in `AGENTS.md` and
@@ -104,6 +111,24 @@ only the lines the link gives, and never a section already read this session.
    value patterns, names, the manual, similar games) is recorded as findings
    and named in Open questions for or against a reading, never listed in
    `evidence`, and leaves the entry `unknown` or `sourced`.
+   Corrections follow [Identifiers](../../../vendor/upstream/documentation-standard.md#identifiers) (lines 120-160):
+   edit a finding or experiment in place only when its recorded facts stay
+   the same. A factual correction, including query values, reproduction
+   steps or interpretation, supersedes the whole entry. Keep its old text;
+   put the still-valid and corrected observations under new IDs, each
+   starting recorded with its own recorded_by. Replacements name the old
+   entry and the error in Alternatives (an experiment uses Conclusion).
+   Review what every citing entry and glossary claim relied on before
+   moving citations: unchanged facts may preserve status, unsupported facts
+   lower it, and contradicting original evidence makes a claim disputed.
+   A complete_reading remains complete only if the replacements cover the
+   corrected part fully. Cosmetic edits alone need no replacement.
+   How to reproduce may name the tool/version, a tools/ script and its
+   commit, and the command. Give every result-driving query value in the
+   finding itself, including entries, ranges, limits and controls; an
+   uncommitted local configuration is not the only record of those values.
+   Keep tool-independent observations in Observation and Interpretation,
+   and research-tool procedure out of rules, formats, screens and bugs.
    A complete reading makes an entry `established` with no run, and is the
    usual way there: every branch, every place a format is read or written,
    every caller and every write to the state it reads, every indirect call
@@ -118,7 +143,15 @@ only the lines the link gives, and never a section already read this session.
    target, the other byte of a word written a byte at a time, allocation
    sizes and units, a bound on the number of outputs, return values at the
    width each caller tests, cleanup read once per path into it, and errors
-   passed back through recursion. A "no other caller" finding needs a second
+   passed back through recursion. Also trace
+   register-return values through stores on every loop re-entry before
+   deciding whether it progresses; name each argument byte's last writer
+   before the callee reads it, not only the caller's pushes; and track ESP
+   from entry through deferred or combined cleanup at each address formed
+   from it. Read allocation and cleanup in execution order on every failure
+   path, follow how the caller keeps, combines or drops callee results, and
+   establish each adjacent dispatch table's own indexing and bounds.
+   A "no other caller" finding needs a second
    search independent of the analyzer's function boundaries, with each hit
    checked to decode as a call; a dispatch table finding reads how the input
    becomes an index and what bounds it. An `offset` into overlay code lies

@@ -36,7 +36,11 @@ return and effects. Do not infer a whole-file range from start plus body size.
 Before naming a field, record its segment or owning object, offset, width,
 lifetime and the paths that initialize it. Resolve aliases and indirect writes.
 For arguments, establish the caller's pushed width and order, near/far return
-frame, callee consumption and cleanup. Describe arguments by semantic parameter
+frame, callee consumption and cleanup, and each byte's last writer before the
+callee reads it. A wrapper writing into the outgoing slots may replace the
+pushed value. Track ESP from entry at every ESP-derived address, including
+arguments awaiting cleanup across more than one call. Describe arguments by
+semantic parameter
 in the spec; keep machine details in the finding that proves the mapping.
 
 Synthetic example: DS:0020 and SS:0020 are different storage unless the segment
@@ -80,7 +84,11 @@ larger or narrower API contract.
 
 A complete reading covers loops and recursive calls as well as branch outcomes.
 Identify a decreasing measure, bounded state progression, or explicit assumptions
-needed for termination. Distinguish the origin of an error from its propagation.
+needed for termination. Follow callee register returns into the stores on each
+loop re-entry, including entries inside a block, before calling a loop endless.
+Distinguish the origin of an error from its propagation. Follow the instructions
+that keep, combine or discard each callee result into the caller's return; a
+warning or a child failure is not automatically the caller's return value.
 A shared callee reached twice is not recursion; a cycle in the call graph needs
 its own progress argument. Reaching all local branches is insufficient when a
 callee, callback or external input can prevent return.
@@ -96,8 +104,13 @@ bounded original observation through the repository's runtime policy.
 ## Negative evidence and queue size
 
 A negative result names the searched build/file, mapped ranges, match semantics,
-positive controls, caps and exclusions. A raw byte search is not an instruction
-search; absence from analyzer-defined strings is not absence from loaded bytes.
+positive controls, caps and exclusions. Locate a control independently of the
+mapping under test; the same wrong mapping cannot validate itself. Exercise
+each searched reference kind and list the kinds not searched. Distinguish
+empty, unmapped and unanalyzed ranges. Import-slot identity comes from the
+PE import directory's thunk-width tables; pointer-table entries come from
+the build's bytes and each table's own indexing and bounds.
+A raw byte search is not an instruction search; absence from analyzer-defined strings is not absence from loaded bytes.
 A relocated far-call scan excludes near, computed and unrelocated calls. A
 successful control proves that control was covered, not that exclusions vanished.
 A cap, failed control or unresolved mapping prevents an exhaustive negative.
@@ -106,8 +119,12 @@ Give each queue item one falsifiable question and a `Settles it:` condition. If 
 question requires independent segment identity, caller bounds and hardware
 behavior, split it into separately identified items and cite dependencies. Close
 only what the spec answers, in the same commit. Keep competing readings and their
-support in the entry. A repeated attempt without new evidence follows the
-Protocol's move-to-settling-evidence rule; do not append an endless list of tasks.
+support in the entry. Give result-driving query values in the finding itself,
+including entries, searched ranges, limits and controls. A tool/version and a
+repository research script's path and commit may explain reproduction, but a
+local-only configuration never substitutes for those values or for an
+observation written independently of the tool.
+A repeated attempt without new evidence follows the Protocol's move-to-settling-evidence rule; do not append an endless list of tasks.
 
 ## Status and inventories
 
@@ -115,6 +132,17 @@ Keep the v1 statuses. No tool output automatically promotes a claim. A complete
 reading cites all relevant findings; unresolved dependencies limit the claim or
 remain separate questions. Contradiction makes a claim disputed; supersession
 preserves history and transfers active citations to the replacements.
+
+Under [Identifiers](../vendor/upstream/documentation-standard.md#identifiers) (lines 120-160),
+a factual correction to any part of a finding or experiment supersedes the
+whole entry. Keep its old text and give the still-valid and corrected
+observations new IDs at recorded, with the replacement's own recorder. Name
+the old error in Alternatives (Conclusion for an experiment). Review each
+citing claim's dependency before replacing citations: unchanged facts can
+preserve its status, unsupported parts cannot, and contradicting original
+evidence makes it disputed. A previously complete reading remains complete
+only where the replacements cover the corrected part fully. Only edits that
+leave every recorded fact unchanged are made in place.
 
 Inventories contain only function starts, body sizes and permitted
 researcher-authored names/reasons. Export raw analyzer coordinates locally, map

@@ -258,6 +258,8 @@ related: []
 
 ## Parameters
 
+- `parameter`: <type and meaning of this one semantic parameter>
+
 ## Inputs
 
 ## Procedure
@@ -277,6 +279,15 @@ None known.
 
 ## Open questions
 ````
+
+Replace the Parameters example with one item per parameter the evidence
+establishes, in call order. Each item starts with one code span containing
+its name (optionally its type), immediately followed by a colon. A known
+empty list says `None.`. An unresolved list may say `None known.`; prose,
+combined names or extra prose after the list cannot be counted by the pinned
+checker and leave the affected argument checks explicitly skipped. Do not
+invent a signature to remove that skip. Inputs describes state the rule reads,
+separately from the parameters supplied by its caller.
 
 A list of more than 64 values in a procedure is a `table` whose values come
 from a value file in `spec/rules/`, named after the ID and the table:

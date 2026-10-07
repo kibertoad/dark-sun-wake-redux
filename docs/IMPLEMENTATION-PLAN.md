@@ -996,3 +996,4 @@ Exit: bounded installed controls, retained whole-fill gaps, Test.ps1, acceptance
 record and handover; no spec, parity, gameplay or native-runtime changes.
 
 Local no-push goal discovery: [tooling plan](implementation-plans/PROTOCOL-GOAL-DISCOVERY.md).
+Research procedure and template review: [tooling plan](implementation-plans/PROCEDURE-EVIDENCE-REVIEW.md).
