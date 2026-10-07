@@ -223,7 +223,7 @@ Entries by status.
 
 ## recorded
 
-488 entries.
+489 entries.
 
 | ID | Title |
 |---|---|
@@ -525,6 +525,7 @@ Entries by status.
 | [FND-EXE-056](../findings/FND-EXE-056.md) | Callback access helpers reread a selected-record local and use full-width indexed stores and wrapped count adjustments |
 | [FND-EXE-057](../findings/FND-EXE-057.md) | Signature-selected callback reloads saved state and prepares selected-record fields before returning seven |
 | [FND-EXE-058](../findings/FND-EXE-058.md) | Ordinary callback classifies a signed stored word and saves matched state on a distinct six-return path |
+| [FND-EXE-059](../findings/FND-EXE-059.md) | Matching byte reader accumulates seven-bit groups with masked shifts and writes one word only at termination |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) |

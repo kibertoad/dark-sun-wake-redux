@@ -72,6 +72,7 @@ Entries by area.
 | [FND-EXE-056](../findings/FND-EXE-056.md) | Callback access helpers reread a selected-record local and use full-width indexed stores and wrapped count adjustments | recorded |
 | [FND-EXE-057](../findings/FND-EXE-057.md) | Signature-selected callback reloads saved state and prepares selected-record fields before returning seven | recorded |
 | [FND-EXE-058](../findings/FND-EXE-058.md) | Ordinary callback classifies a signed stored word and saves matched state on a distinct six-return path | recorded |
+| [FND-EXE-059](../findings/FND-EXE-059.md) | Matching byte reader accumulates seven-bit groups with masked shifts and writes one word only at termination | recorded |
 
 ## GFF
 
