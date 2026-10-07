@@ -146,6 +146,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   exchange-add return; ownership and caller cleanup contracts remain open.
   FND-EXE-034 traces negative-path payload copying and length publication;
   FND-EXE-035 traces capacity rounding and three-word prefix initialization;
+  FND-EXE-036 traces the bounded capacity-limit construction/publication path;
   allocation units, capacity, aliases and lifetime remain conditional.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers

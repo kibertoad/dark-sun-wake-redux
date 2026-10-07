@@ -75,7 +75,8 @@ Next ID: Q-EXE-010
   signed field-publication branches (FND-EXE-032), and preceding-word addition
   helpers with distinct return contracts (FND-EXE-033), and negative-path
   payload-copy/length publication (FND-EXE-034), and storage capacity rounding
-  and prefix initialization (FND-EXE-035). These bounded
+  and prefix initialization (FND-EXE-035), and the capacity-limit temporary
+  construction/decrement/publication path (FND-EXE-036). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete
