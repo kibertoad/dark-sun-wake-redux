@@ -72,7 +72,8 @@ Next ID: Q-EXE-010
   table/default paths and shared reread (FND-EXE-028), and a shared helper
   sentinel-linked search (FND-EXE-029) and stored-length comparison
   operations (FND-EXE-030), a collection creation/link path (FND-EXE-031),
-  and signed field-publication branches (FND-EXE-032). These bounded
+  signed field-publication branches (FND-EXE-032), and preceding-word addition
+  helpers with distinct return contracts (FND-EXE-033). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete

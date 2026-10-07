@@ -83,7 +83,7 @@ addresses at its header's preferred image base `0x00400000` (FND-EXE-011).
 It is included in the manifest because its compiled label-handling paths
 are studied in FND-EXE-011, FND-EXE-012, FND-EXE-013, FND-EXE-014,
 FND-EXE-015, FND-EXE-016, FND-EXE-017, FND-EXE-018, FND-EXE-019 and
-FND-EXE-020, FND-EXE-021, FND-EXE-022, FND-EXE-023, FND-EXE-024, FND-EXE-025, FND-EXE-026, FND-EXE-027, FND-EXE-028, FND-EXE-029, FND-EXE-030, FND-EXE-031 and FND-EXE-032. Executable data locations use
+FND-EXE-020, FND-EXE-021, FND-EXE-022, FND-EXE-023, FND-EXE-024, FND-EXE-025, FND-EXE-026, FND-EXE-027, FND-EXE-028, FND-EXE-029, FND-EXE-030, FND-EXE-031, FND-EXE-032 and FND-EXE-033. Executable data locations use
 shipped-file offsets, separately from code addresses. This does not change
 the original game's 16-bit integer width or treat the interpreter as a second
 game edition.

@@ -142,6 +142,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   field helpers, ownership, initialization and cleanup remain unread.
   FND-EXE-032 reads signed field-publication branches; preceding-word
   producers, auxiliary effects and ownership remain unresolved.
+  FND-EXE-033 reads the add-one auxiliary and a distinct previous-value
+  exchange-add return; ownership and caller cleanup contracts remain open.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
   are compatible with multiple encodings too. FND-EXE-008 identifies the
