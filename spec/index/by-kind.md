@@ -177,7 +177,7 @@ Entries by kind.
 
 ## findings
 
-523 entries.
+524 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -512,6 +512,7 @@ Entries by kind.
 | [FND-EXE-072](../findings/FND-EXE-072.md) | Published head target uses unsigned mode admission and tail-forwards an adjusted payload after an optional callback | recorded |
 | [FND-EXE-073](../findings/FND-EXE-073.md) | Payload tail helper clears a floored pool bitmap bit or frees the adjusted prefix by unsigned address range | recorded |
 | [FND-EXE-074](../findings/FND-EXE-074.md) | Pool-associated wrappers gate exact wait and semaphore imports and convert their full-word returns | recorded |
+| [FND-EXE-075](../findings/FND-EXE-075.md) | Pool initialization publishes an all-ones counter and unchecked semaphore return before once completion | recorded |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant | recorded |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead | recorded |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) | recorded |
