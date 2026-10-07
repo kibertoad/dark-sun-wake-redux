@@ -217,7 +217,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   fallback first word; index admission remains open. FND-EXE-099 physically
   resolves selected byte/word slots and records fresh-table word composition
   plus a byte transfer route. FND-EXE-100 records mapping publishers, object
-  selection, source reentry and post-read reset/restoration; larger flag paths,
+  selection, source reentry and post-read reset/restoration. FND-EXE-101
+  records category/flag state admission and copied-word publication; producers,
   indirect targets and actual state admission remain open.
   Native frame admission, callback invocation, selector effects, allocation units, capacity, aliases
   and lifetime remain conditional.

@@ -114,6 +114,7 @@ Entries by area.
 | [FND-EXE-098](../findings/FND-EXE-098.md) | PATH mapped-table reset producers distinguish consecutive ranges from a retained index list | recorded |
 | [FND-EXE-099](../findings/FND-EXE-099.md) | Physical fallback slots select a shared byte transfer path and a fresh-table two-call word method | recorded |
 | [FND-EXE-100](../findings/FND-EXE-100.md) | Fallback publishers bias direct mappings and append reset indices after mode-dependent object selection | recorded |
+| [FND-EXE-101](../findings/FND-EXE-101.md) | Larger fallback flag gates select mapping states and preserve upper bytes in copied-word publication | recorded |
 
 ## GFF
 
