@@ -143,7 +143,9 @@ Next ID: Q-EXE-010
   and biased mapping publication, source reentry and retained-result reset/
   restoration (FND-EXE-100), and category/flag mapping-state admission with
   copied-word publication (FND-EXE-101), and helper depth/callback publication
-  with distinct conditional and normal restoration (FND-EXE-102). These bounded
+  with distinct conditional and normal restoration (FND-EXE-102), and grounded
+  wait-target/callback linkage with signed dispatch and full-width retry
+  gates (FND-EXE-103). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete
