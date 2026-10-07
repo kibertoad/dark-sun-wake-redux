@@ -53,7 +53,9 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Last full gate: 2026-10-07, assetless Test.ps1 -NoRestore passed.
   Logs: artifacts/exe-record-accessors-full-gate.log and artifacts/exe-record-accessors-docs.log.
   Documentation generation and explicit main-base checking passed;
-  existing argument-check skips remain. Pre-commit checks passed.
+  existing argument-check skips remain. The full gate also skipped its
+  origin/main comparison because no merge-base was available; the explicit
+  local main-base documentation check passed. Pre-commit checks passed.
   The last full source-listing reconciliation remains
   artifacts/exe-dosbox-pe-listing.log; this batch changed no manifest.
 - Unfinished: no tracked work remains. EXE follow-up items remain Q-EXE-005,
