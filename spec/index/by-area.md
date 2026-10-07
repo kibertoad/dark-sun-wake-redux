@@ -60,6 +60,7 @@ Entries by area.
 | [FND-EXE-044](../findings/FND-EXE-044.md) | Shared-record local names append a thirty-three-byte shipped tail and terminator | recorded |
 | [FND-EXE-045](../findings/FND-EXE-045.md) | Record setup initializes missing shared storage before mode-dependent link publication | recorded |
 | [FND-EXE-046](../findings/FND-EXE-046.md) | Record-mode admission distinguishes direct clearing from initialization and a flag wait loop | recorded |
+| [FND-EXE-047](../findings/FND-EXE-047.md) | Mode resource initialization publishes a saved index and a zero-helper-derived mode | recorded |
 
 ## GFF
 

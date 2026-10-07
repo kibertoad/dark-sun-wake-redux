@@ -223,7 +223,7 @@ Entries by status.
 
 ## recorded
 
-476 entries.
+477 entries.
 
 | ID | Title |
 |---|---|
@@ -513,6 +513,7 @@ Entries by status.
 | [FND-EXE-044](../findings/FND-EXE-044.md) | Shared-record local names append a thirty-three-byte shipped tail and terminator |
 | [FND-EXE-045](../findings/FND-EXE-045.md) | Record setup initializes missing shared storage before mode-dependent link publication |
 | [FND-EXE-046](../findings/FND-EXE-046.md) | Record-mode admission distinguishes direct clearing from initialization and a flag wait loop |
+| [FND-EXE-047](../findings/FND-EXE-047.md) | Mode resource initialization publishes a saved index and a zero-helper-derived mode |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) |
