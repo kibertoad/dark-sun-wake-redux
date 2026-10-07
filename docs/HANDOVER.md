@@ -3,6 +3,16 @@
 Current work outside a goal. Active goals keep their own handovers in
 docs/goals/; queue items and findings stay in their own files.
 
+## Latest template update
+
+- Applied template 25c5808 to this checkout in local commits 7a66e54 and 8683cee.
+  Migration and retained contracts: docs/implementation-plans/LATEST-TEMPLATE-SYNC.md.
+- Canonical assetless tools/Test.ps1 passed on 2026-10-07; log:
+  artifacts/latest-template-sync-gate.log. Existing documentation skips remain.
+- Current project plans and owner-only runtime restrictions are preserved.
+  Capture fixture planning moved to docs/implementation-plans/SYNTHETIC-CAPTURE-READINESS.md.
+- No push. The separate goal/protocol-work worktree remains independent.
+
 ## State
 
 - Stage: Slices; slices 2 and 3 remain in progress. Intake, Runtime access and
