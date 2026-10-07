@@ -30,6 +30,12 @@ owner's rule, owner live sessions and the emulator harness.
    - play back a recording the original made;
    - call a single function of the executable in the emulator harness in
      `tools/emu/` (this starts no process of the game and needs no lock).
+
+   Treat each part of a capability separately: each input device the game
+   reads, memory reads/breakpoints/dumps, and frames/sound where applicable.
+   A common answer requires evidence for every part; otherwise retain distinct
+   answers and their provenance. An unverified part cannot admit a run that
+   needs it. This guidance grants no original-game access to an agent.
 3. **Write `docs/RUNTIME.md`** from its headings: each answer names what it
    comes from (the rule, the live session or the tool and version tried) and
    each `none` or `person` says what would change it. For the harness, record
@@ -41,5 +47,8 @@ owner's rule, owner live sessions and the emulator harness.
    they take the machine's run lock as the protocol's
    [Running the original](../../../vendor/upstream/work-protocol.md#running-the-original) (lines 331-365)
    says, and items move to `Agent run`.
+   Each queued run names the capability parts it needs in Settles it. An
+   unavailable part blocks that run; any required person-only part makes it
+   an owner live session. Only an owner policy change can admit an Agent run.
 5. **Commit**, then print the status block from `research-item` with
    `Batch: runtime access`.

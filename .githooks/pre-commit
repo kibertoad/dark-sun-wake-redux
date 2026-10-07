@@ -13,7 +13,7 @@ if ! command -v node >/dev/null 2>&1; then
   echo "pre-commit: node is not on the path, so the checks were skipped; CI runs them." >&2
   exit 0
 fi
-checkout=$(pwd)
+checkout=$(git rev-parse --show-toplevel)
 git_dir=$(git rev-parse --absolute-git-dir)
 # A separate step, so a failed mktemp stops the hook instead of leaving $staged empty.
 staged=$(mktemp -d)

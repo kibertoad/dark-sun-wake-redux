@@ -49,3 +49,22 @@ what a research attempt tried on a question goes under its queue item's
 `Tried:`. `Handover` holds what `docs/HANDOVER.md` holds, for this goal only,
 and is rewritten at the end of every session under the goal. Progress is not
 written here: the queue and the commits show it.
+
+## Standing goals and run marker
+
+An open-ended owner goal keeps its full condition across sessions. The handover
+is a checkpoint; a finished batch, long conversation or pending check does not
+complete that goal. Continue work when an available item remains. Honor an owner
+request to stop or wrap up without starting another item. A wrap-up records the
+remaining work and commits the handover; it preserves any existing no-push rule.
+Goal completion and blocked status require the active thread's evidence audits.
+The local no-push claim rules above remain authoritative; this does not authorize
+a second goal in this clone or a push to main.
+
+In Claude Code, start-session runs node tools/goal-run.mjs start <name> in the
+claimed worktree. Its marker lives in that worktree's Git directory. The Stop
+hook binds only an identified conversation; another worktree or conversation,
+an absent goal, invalid input or missing session ID passes without consuming its
+allowance. Three held-back stops with unchanged HEAD permit stops until another
+commit. Explicit stop removes the marker; it does not delete the goal claim.
+Codex's active thread goal manages its own continuation and status.
