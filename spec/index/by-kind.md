@@ -177,7 +177,7 @@ Entries by kind.
 
 ## findings
 
-485 entries.
+486 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -474,6 +474,7 @@ Entries by kind.
 | [FND-EXE-034](../findings/FND-EXE-034.md) | Negative-path field storage copies a payload and rereads its source length for publication | recorded |
 | [FND-EXE-035](../findings/FND-EXE-035.md) | Payload storage rounds a capacity word and initializes its three-word prefix | recorded |
 | [FND-EXE-036](../findings/FND-EXE-036.md) | Capacity-limit helper constructs a local value and decrements its preceding word before failure publication | recorded |
+| [FND-EXE-037](../findings/FND-EXE-037.md) | Capacity-limit object construction publishes a payload field before replacing its first word | recorded |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant | recorded |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead | recorded |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) | recorded |

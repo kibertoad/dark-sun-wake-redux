@@ -76,7 +76,8 @@ Next ID: Q-EXE-010
   helpers with distinct return contracts (FND-EXE-033), and negative-path
   payload-copy/length publication (FND-EXE-034), and storage capacity rounding
   and prefix initialization (FND-EXE-035), and the capacity-limit temporary
-  construction/decrement/publication path (FND-EXE-036). These bounded
+  construction/decrement/publication path (FND-EXE-036), and object
+  first-word/payload-field construction order (FND-EXE-037). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete

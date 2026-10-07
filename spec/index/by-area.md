@@ -50,6 +50,7 @@ Entries by area.
 | [FND-EXE-034](../findings/FND-EXE-034.md) | Negative-path field storage copies a payload and rereads its source length for publication | recorded |
 | [FND-EXE-035](../findings/FND-EXE-035.md) | Payload storage rounds a capacity word and initializes its three-word prefix | recorded |
 | [FND-EXE-036](../findings/FND-EXE-036.md) | Capacity-limit helper constructs a local value and decrements its preceding word before failure publication | recorded |
+| [FND-EXE-037](../findings/FND-EXE-037.md) | Capacity-limit object construction publishes a payload field before replacing its first word | recorded |
 
 ## GFF
 
