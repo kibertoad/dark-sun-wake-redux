@@ -223,7 +223,7 @@ Entries by status.
 
 ## recorded
 
-457 entries.
+458 entries.
 
 | ID | Title |
 |---|---|
@@ -494,6 +494,7 @@ Entries by status.
 | [FND-EXE-025](../findings/FND-EXE-025.md) | Allocation failure-object storage has an eighty-byte prefix and a bitmap fallback |
 | [FND-EXE-026](../findings/FND-EXE-026.md) | A compiled append loop derives its slot from a signed byte and initializes after iteration |
 | [FND-EXE-027](../findings/FND-EXE-027.md) | A compiled list producer inserts its allocation result before dispatching an output word |
+| [FND-EXE-028](../findings/FND-EXE-028.md) | Bounded list-producer output dispatch converges on a value reread |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) |

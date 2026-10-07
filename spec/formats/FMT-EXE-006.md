@@ -132,6 +132,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   earlier selector admission, list/object producers and aliases remain unread.
   FND-EXE-027 traces one earlier list producer and construction-call inputs;
   construction effects, status meanings and dispatch targets remain open.
+  FND-EXE-028 resolves the bounded dispatch targets and shared output reread;
+  helper effects, aliases and final continuations remain conditional.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
   are compatible with multiple encodings too. FND-EXE-008 identifies the
