@@ -49,10 +49,11 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Stage: Slices. The ongoing protocol objective remains active on this local
   goal branch. Completed workflow tooling and EXE research are committed.
 - Last full gate: 2026-10-07, assetless Test.ps1 -NoRestore passed. Current
-  logs: artifacts/exe-wrappers-full-gate.log and
-  artifacts/exe-wrappers-docs.log. Explicit main-base documentation checking
-  passed; existing argument-check skips remain. Full installation/disc
-  reconciliation passed in artifacts/exe-wrappers-listing.log. Hooks passed.
+  logs: artifacts/exe-shell-source-full-gate.log and
+  artifacts/exe-shell-source-docs.log. Explicit main-base documentation checking
+  passed; existing argument-check skips remain. The last inventory reconciliation
+  remains artifacts/exe-wrappers-listing.log; this batch changed no build
+  inventory. Pre-commit checks passed.
 - Unfinished: none in this worktree. No pushes were performed. EXE follow-up
   items remain Q-EXE-005, Q-EXE-006, Q-EXE-007, Q-EXE-008 and Q-EXE-009;
   Q-EXE-001 retains its retry requirement.
@@ -69,7 +70,8 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Upstream: toolkit issue 325 records the bounded MODE2 content-source
   request. Template issues 80 and 82 retain the workflow and temporary-path
   reports. No upstream delivery is claimed.
-- Next: recheck shared goal claims, then take Q-EXE-009 and Q-EXE-006 using
-  static interpreter evidence before considering owner observations. Follow
-  with Q-EXE-008, Q-EXE-007 and Q-EXE-005 as evidence permits. Keep
-  CONFIG/SCRIPT and the gap ledger excluded.
+- Next: recheck shared goal claims, then Q-EXE-009 and Q-EXE-006: verify
+  relevant shipped-interpreter routines and launch/mount inputs statically,
+  using SRC-DOSBOX-GOG-0742 as a lead without assuming binary correspondence.
+  Continue Q-EXE-008, Q-EXE-007 and Q-EXE-005 when evidence permits. Keep
+  CONFIG/SCRIPT and the gap ledger excluded; never run DOSBox or a shell harness.
