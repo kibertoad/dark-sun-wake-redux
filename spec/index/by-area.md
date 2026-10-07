@@ -67,6 +67,7 @@ Entries by area.
 | [FND-EXE-051](../findings/FND-EXE-051.md) | Recovered stored handlers adjust the incoming frame and select distinct forwarding paths | recorded |
 | [FND-EXE-052](../findings/FND-EXE-052.md) | Handler forwarding publishes a selected record before restoring frame and stack for an indirect jump | recorded |
 | [FND-EXE-053](../findings/FND-EXE-053.md) | Register-input selector traverses a mutable record local and separates callback results from a saved match guard | recorded |
+| [FND-EXE-054](../findings/FND-EXE-054.md) | Second selector calls a saved argument target before the current record target and distinguishes zero, seven and eight | recorded |
 
 ## GFF
 
