@@ -225,6 +225,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   records admission sum exits, callback-list order and budget publication.
   FND-EXE-105 records callback insertion and repeated-match removers;
   FND-EXE-106 records pool links and retained-successor callback traversal;
+  FND-EXE-107 records fixed-target insertion/removal wrappers and argument construction;
   floating numeric contracts, downstream targets, producers,
   indirect targets and actual state admission remain open.
   Native frame admission, callback invocation, selector effects, allocation units, capacity, aliases

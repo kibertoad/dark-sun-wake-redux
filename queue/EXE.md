@@ -148,7 +148,8 @@ Next ID: Q-EXE-010
   gates (FND-EXE-103), and admission sum exits, callback-list order and
   budget publication (FND-EXE-104), and free-node callback insertion with
   repeated-match removers (FND-EXE-105), and pool link initialization with
-  retained-successor callback traversal (FND-EXE-106). These bounded
+  retained-successor callback traversal (FND-EXE-106), and fixed-target
+  insertion/removal wrapper inputs (FND-EXE-107). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete
