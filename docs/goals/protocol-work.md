@@ -51,14 +51,12 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Stage: Slices. The ongoing protocol objective remains active on this local
   goal branch. Completed workflow tooling and EXE research are committed.
 - Last full gate: 2026-10-07, assetless Test.ps1 -NoRestore passed.
-  Logs: artifacts/template-followup-full-gate.log and artifacts/template-followup-docs.log.
+  Logs: artifacts/exe-capacity-failure-full-gate.log and artifacts/exe-capacity-failure-docs.log.
   Documentation generation and explicit main-base checking passed;
   existing argument-check skips remain. Pre-commit checks passed.
   The last full source-listing reconciliation remains
   artifacts/exe-dosbox-pe-listing.log; this batch changed no manifest.
-- Unfinished: no tracked work remains. The interrupted Q-EXE-009 reading is
-  local in GAME_DIR/analysis/exe-batches/dosbox-pe-capacity-failure.log;
-  review it and remaining bounded paths before recording a finding. EXE follow-up items remain Q-EXE-005,
+- Unfinished: no tracked work remains. EXE follow-up items remain Q-EXE-005,
   Q-EXE-006, Q-EXE-007, Q-EXE-008 and Q-EXE-009; Q-EXE-001 retains its
   retry requirement. Local static-analysis reports and the saved interpreter
   Ghidra project remain in GAME_DIR/analysis/exe-batches for continuation.
@@ -83,8 +81,9 @@ An owner-approved history repair remains separate from this maintenance scope.
   its narrow downstream guard has synthetic controls. No upstream fix delivery
   is claimed. Toolkit issue 111 also records the reference-type guidance concern.
 - Next: recheck shared goal claims, then Q-EXE-009 using FND-EXE-015,
-  FND-EXE-017 through FND-EXE-035 for remaining filename-helper
-  remaining storage failure/caller contracts, preceding-word producers and downstream output, then
+  FND-EXE-017 through FND-EXE-036 for remaining filename-helper
+  storage construction and failure-consumer/handler contracts, then
+  preceding-word producers and downstream output, then
   collection initialization/lifetime,
   list-producer callee effects,
   output meanings and later cleanup,
