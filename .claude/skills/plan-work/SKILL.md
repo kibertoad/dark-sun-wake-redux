@@ -93,3 +93,11 @@ Split research and implementation into separate goals. An implementation
 goal's condition allows no change under `spec/` beyond added open questions
 and `unknown` entries, and accepts a `partial` row only with a `Spec gap:` note. Never write a goal
 like "finish the combat system": nobody can check it.
+
+## Required runtime parts
+
+When creating or moving a run item, name each capability part its Settles it
+needs. Use only parts whose answers in docs/RUNTIME.md admit that work; an
+unavailable or unverified required part blocks the item. Person-only parts
+require an owner live session. Per-part answers do not override the prohibition
+on agent DOSBox operation, attachment, captures or run-lock acquisition here.

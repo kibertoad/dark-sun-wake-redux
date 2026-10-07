@@ -14,6 +14,8 @@
     <!-- Keep NuGet auditing enabled, but do not turn an unreachable advisory
          service into a compiler error after dependencies have been restored. -->
     <WarningsNotAsErrors>$(WarningsNotAsErrors);NU1900</WarningsNotAsErrors>
+    <!-- Redirected intermediate output must not ingest generated source left under bin/obj. -->
+    <DefaultItemExcludes>$(DefaultItemExcludes);**/bin/**;**/obj/**</DefaultItemExcludes>
     <!-- The RefurbishedDinosaurs.* runtime packages release together and are pinned exactly. Every
          project that references one uses this version, so a bump is one edit and the projects
          that reference each other cannot pin conflicting versions. -->

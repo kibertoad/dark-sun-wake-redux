@@ -56,3 +56,14 @@ orphans and agents never touch DOSBox or take the original-game run lock.
 6. **Report** the final status block from `research-item`, followed by one
    line on anything the owner has to decide or do, such as a live session
    request waiting for an answer.
+
+## Goal checkpoint and stop
+
+A handover is a checkpoint while the goal remains active. Resume start-session
+and the next available item; do not redefine completion around a finished batch.
+When the owner requests wrap-up, start no new item, finish or document the current
+batch and commit the separate handover. Preserve existing no-push instructions:
+wrap-up alone does not revoke them. When an actual stop reason applies in Claude
+Code, run node tools/goal-run.mjs stop and record that reason. Follow the active
+thread's completion and blocked audits for Codex; a hook timeout is no proof of
+completion or of a blocker.

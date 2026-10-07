@@ -225,3 +225,11 @@ Next: <queue item ID, entry and question>
 
 An item that needs a person goes under `Live session` with enough detail for
 `live-session` to script it; do not wait for one.
+
+## Required runtime parts
+
+When creating or moving a run item, name each capability part its Settles it
+needs. Use only parts whose answers in docs/RUNTIME.md admit that work; an
+unavailable or unverified required part blocks the item. Person-only parts
+require an owner live session. Per-part answers do not override the prohibition
+on agent DOSBox operation, attachment, captures or run-lock acquisition here.

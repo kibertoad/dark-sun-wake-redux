@@ -75,3 +75,11 @@ a live session and never replace the seed.
    changed and `Queue:` for the items it closed, and print the status block from `research-item` for each. The
    first batch puts what the session showed about the tools into
    `docs/RUNTIME.md`, and the last one deletes the request file.
+
+## Required runtime parts
+
+When creating or moving a run item, name each capability part its Settles it
+needs. Use only parts whose answers in docs/RUNTIME.md admit that work; an
+unavailable or unverified required part blocks the item. Person-only parts
+require an owner live session. Per-part answers do not override the prohibition
+on agent DOSBox operation, attachment, captures or run-lock acquisition here.

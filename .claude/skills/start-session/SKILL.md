@@ -69,3 +69,10 @@ This skill is the procedure; where they differ, the protocol wins.
      not open `queue/` or `docs/reports/`.
 7. Say in two or three lines what you picked and why, then hand over to
    `research-item`, `implement-rows` or `live-session`.
+
+## Claude goal marker
+
+When this session runs in Claude Code under an authoritative goal claim, run
+node tools/goal-run.mjs start <name> in its own worktree after discovering the
+claim. The Stop hook uses that worktree's Git-local marker, never a tracked file.
+Codex goal lifecycle is controlled by its active thread goal, not this Claude hook.
