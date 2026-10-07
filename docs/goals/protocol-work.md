@@ -51,16 +51,12 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Stage: Slices. The ongoing protocol objective remains active on this local
   goal branch. Completed workflow tooling and EXE research are committed.
 - Last full gate: 2026-10-07, assetless Test.ps1 -NoRestore passed.
-  Logs: artifacts/exe-payload-release-full-gate.log and artifacts/exe-payload-release-docs.log.
+  Logs: artifacts/exe-failure-final-full-gate.log and artifacts/exe-failure-final-docs.log.
   Documentation generation and explicit main-base checking passed;
   existing argument-check skips remain. Pre-commit checks passed.
   The last full source-listing reconciliation remains
   artifacts/exe-dosbox-pe-listing.log; this batch changed no manifest.
-- Unfinished: no tracked work remains. Q-EXE-009 has incomplete local
-  reports dosbox-pe-failure-final-call.log, dosbox-pe-failure-indirect-call.log,
-  dosbox-pe-failure-final-thunk.log and dosbox-pe-failure-imports.log in
-  GAME_DIR/analysis/exe-batches. Review their scope and unresolved target
-  producers/handler before allocating a finding ID. EXE follow-up items remain Q-EXE-005,
+- Unfinished: no tracked work remains. EXE follow-up items remain Q-EXE-005,
   Q-EXE-006, Q-EXE-007, Q-EXE-008 and Q-EXE-009; Q-EXE-001 retains its
   retry requirement. Local static-analysis reports and the saved interpreter
   Ghidra project remain in GAME_DIR/analysis/exe-batches for continuation.
@@ -85,7 +81,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   its narrow downstream guard has synthetic controls. No upstream fix delivery
   is claimed. Toolkit issue 111 also records the reference-type guidance concern.
 - Next: recheck shared goal claims, then Q-EXE-009 using FND-EXE-015,
-  FND-EXE-017 through FND-EXE-040 for remaining filename-helper
+  FND-EXE-017 through FND-EXE-041 for remaining filename-helper
   temporary caller ranges and failure-consumer/handler contracts, then
   preceding-word producers and downstream output, then
   collection initialization/lifetime,
