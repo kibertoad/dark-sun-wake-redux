@@ -27,8 +27,11 @@ Next ID: Q-EXE-010
   Settles it: static reading of the actual interpreter's label matching and
   error paths, with an owner observation only for environment-dependent
   behavior. Tried: complete label and jump reading (FND-EXE-009); the file
-  cannot decide how the shell interprets those tokens. Blocks: complete shell
-  outcome description.
+  cannot decide how the shell interprets those tokens. New reading:
+  SRC-DOSBOX-GOG-0742 predicts literal trailing-colon matching and deletion
+  of the active batch on a failed label search. Next static step: establish
+  the relevant source-to-shipped-binary correspondence; source predictions
+  alone do not settle native behavior. Blocks: complete shell outcome description.
 
 - Q-EXE-007. FMT-EXE-006: Do the shipped game or sound-setup executables
   launch any batch helpers? Settles it: direct executable launch references
@@ -49,6 +52,10 @@ Next ID: Q-EXE-010
   under the declared working directory, mounts and configuration order;
   keep mutable overlay substitutions conditional. Tried: primary task and
   complete wrapper text (FND-EXE-010), which cannot decide shell behavior.
+  New reading: SRC-DOSBOX-GOG-0742 predicts COM/EXE/BAT search and replacement
+  of the wrapper by a bare batch command, preserving it only for CALL. Next
+  static step: verify the relevant compiled routines and mount/file lookup
+  inputs; the bundled source alone is not a binary correspondence proof.
   Blocks: resolved wrapper-helper and continuation description.
 
 ## Emulated call

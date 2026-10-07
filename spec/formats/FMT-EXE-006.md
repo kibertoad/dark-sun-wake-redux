@@ -95,7 +95,11 @@ reading of callers, external commands or interpreter behavior is claimed.
   chaining and EXIT handling may affect that result and the textual return
   path (FND-EXE-010). Reading the shipped interpreter's resolution and
   continuation code under the declared launch inputs settles the static
-  behavior; mutable overlay substitutions remain conditional.
+  behavior; mutable overlay substitutions remain conditional. The bundled
+  source predicts replacement of the wrapper by a bare batch command, not
+  return to it, because only CALL retains the active batch
+  (SRC-DOSBOX-GOG-0742). The competing return reading remains unsupported;
+  source-to-binary correspondence and command/mount inputs must decide it.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
   are compatible with multiple encodings too. FND-EXE-008 identifies the
@@ -106,3 +110,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   in this file, but not interpreter normalization or error handling. A
   static reading of the actual interpreter's label handling settles its
   behavior; any environment-dependent outcome needs an owner observation.
+  The bundled source retains a target's trailing colon and deletes the
+  active batch after a failed label search (SRC-DOSBOX-GOG-0742), predicting
+  failures for all three target spellings. Normalization or continued-batch
+  readings would require contrary shipped-interpreter evidence; source
+  correspondence is not established.

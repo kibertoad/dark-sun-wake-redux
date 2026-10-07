@@ -14,10 +14,11 @@ Entries by kind.
 
 ## sources
 
-7 entries.
+8 entries.
 
 | ID | Title | Status |
 |---|---|---|
+| [SRC-DOSBOX-GOG-0742](../sources/SRC-DOSBOX-GOG-0742.md) | DOSBox 0.74-2.1 source archive shipped with the GOG distribution | None |
 | [SRC-DSUN-MUSIC-79B6927](../sources/SRC-DSUN-MUSIC-79B6927.md) | dsun_music, resource tools for the Dark Sun games by John Glassmyer, commit 79b6927 | None |
 | [SRC-GAMEFAQS-81038](../sources/SRC-GAMEFAQS-81038.md) | Dark Sun: Wake of the Ravager, Guide and Walkthrough, version 1.13 | None |
 | [SRC-LIBGFF-839B11D](../sources/SRC-LIBGFF-839B11D.md) | libgff, a reimplementation library for the Dark Sun games, commit 839b11d | None |
