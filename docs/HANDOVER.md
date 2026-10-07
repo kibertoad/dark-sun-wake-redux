@@ -7,11 +7,16 @@ docs/goals/; queue items and findings stay in their own files.
 
 - Stage: Slices; slices 2 and 3 remain in progress. Intake, Runtime access and
   Survey have ended (docs/BOOTSTRAP-CHECKLIST.md).
-- Last gate: 2026-10-06, `./tools/Test.ps1` passed. Run it with PowerShell 7
+- Last gate: 2026-10-07, `./tools/Test.ps1 -NoRestore` passed. Run it with PowerShell 7
   (`artifacts/pwsh7/runtime/pwsh.exe` here; Windows PowerShell 5.1 now refuses
   it) and with `GAME_DIR` and `NoDefaultCurrentDirectoryInExePath` unset, since
   both are set machine-wide for other projects. Template issue 81 asks for a
   per-project fix.
+- Sandbox validation: set process-local TEMP/TMP to the executing account's
+  accessible temporary directory (template issue 82). In this session Git's
+  shell could not create the hook snapshot there: set TMPDIR inside Git Bash
+  to the writable `artifacts/hook-tmp` directory before committing. Keep the
+  hook enabled. Validation and failure logs are listed in docs/VALIDATION.md.
 - Upstream adoption state: docs/TEMPLATE-ACCEPTANCE.md and
   docs/LATEST-RELEASE-GAP-AUDIT.md.
 - Required asset pack revision is 36. The owner's revision-35 pack under
@@ -49,6 +54,8 @@ None.
   project's reconciliation is `tools/evidence/build-listing.mjs`.
 - refurbished-dinosaurs-template issue 81: machine-wide `GAME_DIR` and local
   stores inside the install directory.
+- refurbished-dinosaurs-template issue 82: inherited owner TEMP/TMP causes
+  Java canonical-path access failure under sandbox validation.
 
 ## Shared runtime migration
 
