@@ -223,7 +223,7 @@ Entries by status.
 
 ## recorded
 
-562 entries.
+563 entries.
 
 | ID | Title |
 |---|---|
@@ -599,6 +599,7 @@ Entries by status.
 | [FND-EXE-130](../findings/FND-EXE-130.md) | Full-width reader publishes retained entry flags before mapping and conditionally removes the last reset-list entry |
 | [FND-EXE-131](../findings/FND-EXE-131.md) | Selected prefix helper admits sixty-four stored selectors and shares a zero-return default without clearing the selector |
 | [FND-EXE-132](../findings/FND-EXE-132.md) | Selected prefix width branches publish a full mask then clear selector while the zero-selector branch retains the mask |
+| [FND-EXE-133](../findings/FND-EXE-133.md) | Physical byte-indexed prefix lookup contributes four for even set-bit counts and zero for odd counts |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) |

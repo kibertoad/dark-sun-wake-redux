@@ -146,6 +146,7 @@ Entries by area.
 | [FND-EXE-130](../findings/FND-EXE-130.md) | Full-width reader publishes retained entry flags before mapping and conditionally removes the last reset-list entry | recorded |
 | [FND-EXE-131](../findings/FND-EXE-131.md) | Selected prefix helper admits sixty-four stored selectors and shares a zero-return default without clearing the selector | recorded |
 | [FND-EXE-132](../findings/FND-EXE-132.md) | Selected prefix width branches publish a full mask then clear selector while the zero-selector branch retains the mask | recorded |
+| [FND-EXE-133](../findings/FND-EXE-133.md) | Physical byte-indexed prefix lookup contributes four for even set-bit counts and zero for odd counts | recorded |
 
 ## GFF
 

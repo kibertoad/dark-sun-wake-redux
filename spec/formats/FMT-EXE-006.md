@@ -251,7 +251,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-130 records full-width retained-entry publication, reentry and last-entry cleanup;
   FND-EXE-131 records selected-prefix selector admission, physical targets and shared default;
   FND-EXE-132 records prefix width masks, retain-mask branch and selector clearing;
-  table/slot producers, lookup/other prefix effects and remaining selected callee effects remain open.
+  FND-EXE-133 records all physical byte-indexed mask contributions;
+  table/slot producers, runtime writers/other prefix effects and remaining selected callee effects remain open.
   floating numeric contracts, downstream targets, producers,
   indirect targets and actual state admission remain open.
   Native frame admission, callback invocation, selector effects, allocation units, capacity, aliases

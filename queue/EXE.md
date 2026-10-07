@@ -174,7 +174,8 @@ Next ID: Q-EXE-010
   Retained-entry publication, full-width reentry and last-entry cleanup are recorded
   in FND-EXE-130; selected-prefix admission/physical targets/default in FND-EXE-131.
   Prefix width masks, retain-mask branch and selector clearing are recorded in FND-EXE-132.
-  Lookup/other prefix effects, table/slot producers and remaining selected callee
+  All physical byte-indexed mask contributions are recorded in FND-EXE-133.
+  Runtime writers/other prefix effects, table/slot producers and remaining selected callee
   effects remain open. These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
