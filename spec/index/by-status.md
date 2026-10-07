@@ -223,7 +223,7 @@ Entries by status.
 
 ## recorded
 
-480 entries.
+481 entries.
 
 | ID | Title |
 |---|---|
@@ -517,6 +517,7 @@ Entries by status.
 | [FND-EXE-048](../findings/FND-EXE-048.md) | Record setup resolves TLS imports and tail-returns the later error query on a zero result |
 | [FND-EXE-049](../findings/FND-EXE-049.md) | Record cleanup restores a pre-helper saved link through a freshly selected mode |
 | [FND-EXE-050](../findings/FND-EXE-050.md) | Field and nested-object callers continue without testing record setup or cleanup returns |
+| [FND-EXE-051](../findings/FND-EXE-051.md) | Recovered stored handlers adjust the incoming frame and select distinct forwarding paths |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) |

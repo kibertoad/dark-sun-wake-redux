@@ -161,6 +161,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-048 resolves record/wait imports and the zero-result tail return;
   FND-EXE-049 traces saved-link cleanup and its freshly selected mode;
   FND-EXE-050 bounds setup/cleanup return handling in construction callers;
+  FND-EXE-051 traces recovered stored-handler prefixes and forwarding branches;
   allocation units, capacity, aliases and lifetime remain conditional.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
