@@ -188,6 +188,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-075 traces the pool counter writer, unchecked creation result and once completion;
   FND-EXE-076 locates three physical guard-address candidates outside the decoded reference list;
   FND-EXE-077 classifies those candidates as reads and records their conditional frame/state prefixes;
+  FND-EXE-078 bounds virtual-only guard storage and excludes overlapping declared relocation sites;
+  FND-EXE-079 grounds startup callees and their empty memory-update route;
   allocation units, capacity, aliases and lifetime remain conditional.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers

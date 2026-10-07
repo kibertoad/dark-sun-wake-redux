@@ -91,6 +91,8 @@ Entries by area.
 | [FND-EXE-075](../findings/FND-EXE-075.md) | Pool initialization publishes an all-ones counter and unchecked semaphore return before once completion | recorded |
 | [FND-EXE-076](../findings/FND-EXE-076.md) | Physical shared-guard literal search finds three candidates absent from the current decoded reference list | recorded |
 | [FND-EXE-077](../findings/FND-EXE-077.md) | Controlled recovery classifies the three additional guard literals as full-word reads with conditional frame admission | recorded |
+| [FND-EXE-078](../findings/FND-EXE-078.md) | Shared guard and pool words occupy virtual-only BSS and have no overlapping declared base-relocation sites | recorded |
+| [FND-EXE-079](../findings/FND-EXE-079.md) | Declared startup reaches an x87 initializer and a memory-update helper whose equal table bounds skip its loop | recorded |
 
 ## GFF
 

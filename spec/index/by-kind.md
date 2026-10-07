@@ -177,7 +177,7 @@ Entries by kind.
 
 ## findings
 
-526 entries.
+528 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -515,6 +515,8 @@ Entries by kind.
 | [FND-EXE-075](../findings/FND-EXE-075.md) | Pool initialization publishes an all-ones counter and unchecked semaphore return before once completion | recorded |
 | [FND-EXE-076](../findings/FND-EXE-076.md) | Physical shared-guard literal search finds three candidates absent from the current decoded reference list | recorded |
 | [FND-EXE-077](../findings/FND-EXE-077.md) | Controlled recovery classifies the three additional guard literals as full-word reads with conditional frame admission | recorded |
+| [FND-EXE-078](../findings/FND-EXE-078.md) | Shared guard and pool words occupy virtual-only BSS and have no overlapping declared base-relocation sites | recorded |
+| [FND-EXE-079](../findings/FND-EXE-079.md) | Declared startup reaches an x87 initializer and a memory-update helper whose equal table bounds skip its loop | recorded |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant | recorded |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead | recorded |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) | recorded |
