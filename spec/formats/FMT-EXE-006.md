@@ -184,6 +184,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-071 bounds head-associated target guards, outgoing slots and passed-through returns;
   FND-EXE-072 connects a published head target to unsigned mode and adjusted-payload tail dispatch;
   FND-EXE-073 traces payload-range bitmap clearing, separate guard reads and prefix-adjusted free;
+  FND-EXE-074 resolves the pool-associated wait/signal imports and their return predicates;
   allocation units, capacity, aliases and lifetime remain conditional.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
