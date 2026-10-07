@@ -15,14 +15,19 @@ it with a narrower goal. Keep its unfinished work and next actions here.
 
 Research-side repository workflow and tooling: local session skills, goal
 discovery and handovers, protocol conformance, validation and upstream reports.
-Further research areas are added only after checking the shared clone's
-authoritative goal claims and other sessions' work.
+Research areas: EXE, beginning with Q-EXE-002 and FMT-EXE-006. Research batches
+may change EXE entries, queue/EXE.md and parity/EXE.md, with generated indexes
+and PARITY.md kept consistent. Other areas are read-only. Further research
+areas are added only after checking the shared clone's authoritative goal
+claims and other sessions' work.
 
 ## Must not touch
 
 Other sessions' worktrees, uncommitted work and commit history; original-game
-runtime or DOSBox; `src/`, gameplay, spec claims, parity statuses, CONFIG/SCRIPT
-research and the separate upstream gap acceptance ledger. Do not push to main.
+runtime or DOSBox; `src/`, gameplay implementation, claims or parity rows
+outside EXE, CONFIG/SCRIPT research and the separate upstream gap acceptance
+ledger. Do not push to main. Native and emulated game execution are outside
+this goal's batch-file research scope; read original files statically only.
 An owner-approved history repair remains separate from this maintenance scope.
 
 ## Dead ends
