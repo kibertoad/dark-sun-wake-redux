@@ -167,7 +167,8 @@ Next ID: Q-EXE-010
   (FND-EXE-122), and second-mode bounds/group gate/load ordering (FND-EXE-123).
   Selected-callee prefix gates, reader calls and recursive fallback are recorded
   in FND-EXE-124; full-width mapping and boundary-byte assembly in FND-EXE-125.
-  Concrete reader targets, table/slot producers and remaining selected callee
+  Physical full-width targets and shared four-call return widths are recorded
+  in FND-EXE-126. Larger reader target, table/slot producers and remaining selected callee
   effects remain open. These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
