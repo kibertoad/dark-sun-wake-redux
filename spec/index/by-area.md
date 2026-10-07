@@ -52,6 +52,7 @@ Entries by area.
 | [FND-EXE-036](../findings/FND-EXE-036.md) | Capacity-limit helper constructs a local value and decrements its preceding word before failure publication | recorded |
 | [FND-EXE-037](../findings/FND-EXE-037.md) | Capacity-limit object construction publishes a payload field before replacing its first word | recorded |
 | [FND-EXE-038](../findings/FND-EXE-038.md) | Temporary production distinguishes null input from equal endpoints before payload copying | recorded |
+| [FND-EXE-039](../findings/FND-EXE-039.md) | Null-input failure route constructs a payload field before signed decrement and shared publication | recorded |
 
 ## GFF
 

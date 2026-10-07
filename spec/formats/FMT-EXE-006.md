@@ -149,6 +149,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-036 traces the bounded capacity-limit construction/publication path;
   FND-EXE-037 traces its object first-word and payload-field publication order;
   FND-EXE-038 traces temporary input/end production and range-copy branches;
+  FND-EXE-039 traces the bounded null-input construction and failure route;
   allocation units, capacity, aliases and lifetime remain conditional.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
