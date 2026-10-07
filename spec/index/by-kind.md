@@ -177,7 +177,7 @@ Entries by kind.
 
 ## findings
 
-472 entries.
+473 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -461,6 +461,7 @@ Entries by kind.
 | [FND-EXE-021](../findings/FND-EXE-021.md) | Compiled filename components shorten names and retain output mutations on failure | recorded |
 | [FND-EXE-022](../findings/FND-EXE-022.md) | Compiled pointer installation paths differ in prefix transfer and publication order | recorded |
 | [FND-EXE-023](../findings/FND-EXE-023.md) | Compiled record append delegates full storage to a width-sensitive insertion helper | recorded |
+| [FND-EXE-024](../findings/FND-EXE-024.md) | Compiled allocation wrapper substitutes zero requests and retries through a callback | recorded |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant | recorded |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead | recorded |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) | recorded |

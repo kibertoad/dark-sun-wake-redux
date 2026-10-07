@@ -64,9 +64,10 @@ Next ID: Q-EXE-010
   FND-EXE-018, FND-EXE-019), filename byte/component transformations and
   retained failure writes (FND-EXE-020, FND-EXE-021), and two pointer-installation
   paths with an object-plus-four prefix transfer (FND-EXE-022), and record
-  append/growth arithmetic and publication boundaries (FND-EXE-023). These bounded
+  append/growth arithmetic and publication boundaries (FND-EXE-023), and
+  allocation/release import and local retry boundaries (FND-EXE-024). These bounded
   readings do not establish the complete shell outcome. Next: trace record
-  construction and caller invariants, allocation/release contracts, prefix
+  construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete
   vtable targets and remaining pointer/selector writers, then PATH admission,
   flag/EXIT continuations and declared mount/overlay inputs. Unread virtual

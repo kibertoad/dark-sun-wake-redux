@@ -123,7 +123,9 @@ reading of callers, external commands or interpreter behavior is claimed.
   paths and one direct prefix transfer; constructors, concrete virtual targets
   and storage/alias bounds remain unread. FND-EXE-023 records a direct record
   append and its conditional growth path; allocation contracts, object
-  construction and caller invariants still need evidence.
+  construction and caller invariants still need evidence. FND-EXE-024
+  identifies allocation/release imports and local retry/return boundaries;
+  callback state, exceptional effects and caller inputs remain conditional.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
   are compatible with multiple encodings too. FND-EXE-008 identifies the

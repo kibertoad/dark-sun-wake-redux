@@ -37,6 +37,7 @@ Entries by area.
 | [FND-EXE-021](../findings/FND-EXE-021.md) | Compiled filename components shorten names and retain output mutations on failure | recorded |
 | [FND-EXE-022](../findings/FND-EXE-022.md) | Compiled pointer installation paths differ in prefix transfer and publication order | recorded |
 | [FND-EXE-023](../findings/FND-EXE-023.md) | Compiled record append delegates full storage to a width-sensitive insertion helper | recorded |
+| [FND-EXE-024](../findings/FND-EXE-024.md) | Compiled allocation wrapper substitutes zero requests and retries through a callback | recorded |
 
 ## GFF
 
