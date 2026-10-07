@@ -79,7 +79,8 @@ Next ID: Q-EXE-010
   construction/decrement/publication path (FND-EXE-036), and object
   first-word/payload-field construction order (FND-EXE-037), and temporary
   input/end production and range copying (FND-EXE-038), and null-input
-  construction and failure publication (FND-EXE-039). These bounded
+  construction and failure publication (FND-EXE-039), and raw-prefix
+  release forwarding (FND-EXE-040). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete
