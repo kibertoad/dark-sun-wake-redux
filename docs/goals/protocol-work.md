@@ -20,6 +20,8 @@ may change EXE entries, queue/EXE.md and parity/EXE.md, with generated indexes
 and PARITY.md kept consistent. The EXE launch-reference scope also covers
 BLD-GOG-EN-1.1 inventory and
 wrapper-provenance corrections needed to cite the studied distribution files.
+It includes SRC-DOSBOX-GOG-0742 and its EXE question citations for the shipped
+interpreter source archive; source-to-binary correspondence stays explicit.
 Other areas are read-only. Further research
 areas are added only after checking the shared clone's authoritative goal
 claims and other sessions' work.
