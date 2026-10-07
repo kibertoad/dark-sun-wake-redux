@@ -115,7 +115,8 @@ Next ID: Q-EXE-010
   and adjusted-payload tail dispatch (FND-EXE-072), and payload-range bitmap clearing, separate guard reads
   and prefix-adjusted free (FND-EXE-073), and exact pool-associated wait/signal imports
   with full-word predicates and ignored caller returns (FND-EXE-074), and the pool counter writer,
-  unchecked semaphore creation result and once completion (FND-EXE-075). These bounded
+  unchecked semaphore creation result and once completion (FND-EXE-075), and independent physical
+  guard-address candidates absent from decoded references (FND-EXE-076). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete

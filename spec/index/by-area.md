@@ -89,6 +89,7 @@ Entries by area.
 | [FND-EXE-073](../findings/FND-EXE-073.md) | Payload tail helper clears a floored pool bitmap bit or frees the adjusted prefix by unsigned address range | recorded |
 | [FND-EXE-074](../findings/FND-EXE-074.md) | Pool-associated wrappers gate exact wait and semaphore imports and convert their full-word returns | recorded |
 | [FND-EXE-075](../findings/FND-EXE-075.md) | Pool initialization publishes an all-ones counter and unchecked semaphore return before once completion | recorded |
+| [FND-EXE-076](../findings/FND-EXE-076.md) | Physical shared-guard literal search finds three candidates absent from the current decoded reference list | recorded |
 
 ## GFF
 
