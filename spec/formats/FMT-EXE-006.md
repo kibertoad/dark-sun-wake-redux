@@ -205,6 +205,9 @@ reading of callers, external commands or interpreter behavior is claimed.
   and physically selected zero-return fallback method.
   FND-EXE-092 composes first-field helper admission, destination stores and
   later cursor/marker stages without establishing stream bounds.
+  FND-EXE-093 records PATH source advancement, key admission and untested output
+  helper completion; FND-EXE-094 records its word-boundary and bounded-copy
+  callees without establishing the record-list extent.
   Native frame admission, callback invocation, selector effects, allocation units, capacity, aliases
   and lifetime remain conditional.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?

@@ -132,7 +132,9 @@ Next ID: Q-EXE-010
   dispatch with distinct low-byte fallback gates (FND-EXE-090), and retained
   pre-reader modifier/displacement with a physical zero-return fallback target
   (FND-EXE-091), and composed metadata first-field admission, stores and
-  continued cursor stages (FND-EXE-092). These bounded
+  continued cursor stages (FND-EXE-092), PATH source/key/output-helper gates
+  (FND-EXE-093), and word-boundary reads with bounded record copying
+  (FND-EXE-094). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete

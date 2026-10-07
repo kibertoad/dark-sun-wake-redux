@@ -106,6 +106,8 @@ Entries by area.
 | [FND-EXE-090](../findings/FND-EXE-090.md) | Handler helper retains two low-byte fallback gates after a direct stored-target call | recorded |
 | [FND-EXE-091](../findings/FND-EXE-091.md) | Handler scan retains a pre-reader modifier and a physically selected zero-return fallback method | recorded |
 | [FND-EXE-092](../findings/FND-EXE-092.md) | Composed metadata caller keeps first-field stores separate from later marker and relative-target stages | recorded |
+| [FND-EXE-093](../findings/FND-EXE-093.md) | PATH producer advances before key admission and returns one after untested output-helper completion | recorded |
+| [FND-EXE-094](../findings/FND-EXE-094.md) | PATH source readers separate word-boundary dispatch from bounded byte copy and final terminator | recorded |
 
 ## GFF
 
