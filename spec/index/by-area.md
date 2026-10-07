@@ -75,6 +75,7 @@ Entries by area.
 | [FND-EXE-059](../findings/FND-EXE-059.md) | Matching byte reader accumulates seven-bit groups with masked shifts and writes one word only at termination | recorded |
 | [FND-EXE-060](../findings/FND-EXE-060.md) | Callback metadata reader uses independent byte markers and returns a cursor separately from stored relative targets | recorded |
 | [FND-EXE-061](../findings/FND-EXE-061.md) | Marker modifier selects zero-return branches and a full-byte bypass before its mask-class abort boundary | recorded |
+| [FND-EXE-062](../findings/FND-EXE-062.md) | Typed metadata reader separates guarded width dispatch from zero bypass, base adjustment and one indirect read | recorded |
 
 ## GFF
 
