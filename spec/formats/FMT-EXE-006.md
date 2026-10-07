@@ -248,7 +248,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-127 records larger full-width zero-mode publication/reentry and full returns;
   FND-EXE-128 records full-width two-level lookup and missing-entry reload contracts;
   FND-EXE-129 records full-width mode/entry-bit selector gates and their precedence;
-  table/slot producers, selector continuations and remaining selected callee effects remain open.
+  FND-EXE-130 records full-width retained-entry publication, reentry and last-entry cleanup;
+  table/slot producers, helper/indirect effects and remaining selected callee effects remain open.
   floating numeric contracts, downstream targets, producers,
   indirect targets and actual state admission remain open.
   Native frame admission, callback invocation, selector effects, allocation units, capacity, aliases
