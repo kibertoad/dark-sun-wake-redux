@@ -58,6 +58,7 @@ Entries by area.
 | [FND-EXE-042](../findings/FND-EXE-042.md) | Shared-record reader decodes thirty-two atom-name bytes after a nonzero import result | recorded |
 | [FND-EXE-043](../findings/FND-EXE-043.md) | Shared-record initialization verifies an encoded allocation before publishing target-field pointers | recorded |
 | [FND-EXE-044](../findings/FND-EXE-044.md) | Shared-record local names append a thirty-three-byte shipped tail and terminator | recorded |
+| [FND-EXE-045](../findings/FND-EXE-045.md) | Record setup initializes missing shared storage before mode-dependent link publication | recorded |
 
 ## GFF
 

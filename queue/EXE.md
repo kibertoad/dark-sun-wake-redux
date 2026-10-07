@@ -84,7 +84,8 @@ Next ID: Q-EXE-010
   boundaries (FND-EXE-041), and encoded shared-record reading
   (FND-EXE-042), and shared-record initialization/publication
   (FND-EXE-043), and copied-tail/local-name termination
-  (FND-EXE-044). These bounded
+  (FND-EXE-044), and lazy initialization/record publication
+  (FND-EXE-045). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete
