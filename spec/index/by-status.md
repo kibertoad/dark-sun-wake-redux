@@ -223,7 +223,7 @@ Entries by status.
 
 ## recorded
 
-537 entries.
+538 entries.
 
 | ID | Title |
 |---|---|
@@ -574,6 +574,7 @@ Entries by status.
 | [FND-EXE-105](../findings/FND-EXE-105.md) | Callback insertion consumes a free node while removers unlink every matching target or target-argument pair |
 | [FND-EXE-106](../findings/FND-EXE-106.md) | Callback pool links are initialized before head publication and the counter helper retains callback successors |
 | [FND-EXE-107](../findings/FND-EXE-107.md) | Callback wrappers combine a zero-extended word with an object field and tail-transfer to insertion or pair removal |
+| [FND-EXE-108](../findings/FND-EXE-108.md) | Fixed callback selects one of four object slots and forwards a shifted low word only for a nonnull slot |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) |
