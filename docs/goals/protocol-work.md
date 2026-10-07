@@ -17,7 +17,9 @@ Research-side repository workflow and tooling: local session skills, goal
 discovery and handovers, protocol conformance, validation and upstream reports.
 Research areas: EXE, beginning with Q-EXE-002 and FMT-EXE-006. Research batches
 may change EXE entries, queue/EXE.md and parity/EXE.md, with generated indexes
-and PARITY.md kept consistent. Other areas are read-only. Further research
+and PARITY.md kept consistent. The EXE launch-reference scope also covers BLD-GOG-EN-1.1 inventory and
+wrapper-provenance corrections needed to cite the studied distribution files.
+Other areas are read-only. Further research
 areas are added only after checking the shared clone's authoritative goal
 claims and other sessions' work.
 
