@@ -223,7 +223,7 @@ Entries by status.
 
 ## recorded
 
-544 entries.
+545 entries.
 
 | ID | Title |
 |---|---|
@@ -581,6 +581,7 @@ Entries by status.
 | [FND-EXE-112](../findings/FND-EXE-112.md) | Callback zero branch reads the old index after progress and rereads count after scheduling or a virtual call |
 | [FND-EXE-113](../findings/FND-EXE-113.md) | First callback callee writes or replaces a byte before pair removal and conditional scheduling |
 | [FND-EXE-114](../findings/FND-EXE-114.md) | First-callee equality branch publishes mask one and rejoins after optional state-change calls |
+| [FND-EXE-115](../findings/FND-EXE-115.md) | Local-flag-zero continuation writes a second-record zero byte or returns without another callback call |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) |

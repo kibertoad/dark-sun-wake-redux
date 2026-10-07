@@ -128,6 +128,7 @@ Entries by area.
 | [FND-EXE-112](../findings/FND-EXE-112.md) | Callback zero branch reads the old index after progress and rereads count after scheduling or a virtual call | recorded |
 | [FND-EXE-113](../findings/FND-EXE-113.md) | First callback callee writes or replaces a byte before pair removal and conditional scheduling | recorded |
 | [FND-EXE-114](../findings/FND-EXE-114.md) | First-callee equality branch publishes mask one and rejoins after optional state-change calls | recorded |
+| [FND-EXE-115](../findings/FND-EXE-115.md) | Local-flag-zero continuation writes a second-record zero byte or returns without another callback call | recorded |
 
 ## GFF
 
