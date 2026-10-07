@@ -6,6 +6,16 @@ Use it only against the repository owner's legally owned local executable.
 Ghidra projects, binaries, byte dumps, screenshots, and full disassembly or
 decompiler output must never be added to Git.
 
+Use the documented executable identity check against its build entry before
+interpreting addresses, retaining the stable-path fingerprint policy below.
+Another version of the executable is another build, with its own
+`spec/builds/` entry, and a finding lists it only when it was checked there
+too, with a location in each build. Addresses are written in the
+[notation](../vendor/upstream/documentation-standard.md#notation) (lines 377-414) for the
+executable's format: the full virtual address at the header's image base for
+PE, and `segment:offset` for MZ, COM, and NE, with the load segment the
+standard fixes for each.
+
 This workflow follows the established practice in
 `C:\sources\rechaos-overlords`: establish and document the executable
 fingerprint once for its stable approved path, keep a

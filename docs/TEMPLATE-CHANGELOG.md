@@ -465,7 +465,7 @@ sets how restoration work is planned, tracked and handed on.
 ## Spec file size limit, 2026-09-25
 
 Follows the documentation standard's new
-[File size](../vendor/upstream/documentation-standard.md#file-size) (lines 104-118) section,
+[File size](../vendor/upstream/documentation-standard.md#file-size) (lines 106-120) section,
 which limits every Markdown file it defines to 1,000 lines and splits the files
 that grew with the whole project.
 
@@ -494,7 +494,7 @@ A deviation's Default is now `off`, `on` or `mandatory`. `mandatory` replaces
 `mandatory`, or `on` without being the fix of an unintended bug players do not
 rely on, carries a `Justification` item arguing that the rebuild's behavior is
 strictly better than the original's, as the
-[documentation standard](../vendor/upstream/documentation-standard.md#deviation-log) (lines 1068-1094)
+[documentation standard](../vendor/upstream/documentation-standard.md#deviation-log) (lines 1071-1097)
 now sets out. `AGENTS.md`, `DEVIATIONS.md` and `docs/VALIDATION.md` say so, and
 a test that reaches a mandatory deviation cites its ID and allows for it.
 

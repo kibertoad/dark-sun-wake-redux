@@ -49,6 +49,21 @@ newer. Install their locked packages once per clone, and again whenever
 ./tools/Restore-ToolDependencies.ps1
 ```
 
+Enable the repository's Git hooks once per clone with
+`git config core.hooksPath .githooks`: the pre-commit hook runs the node checks
+on the staged tree, and the commit-msg hook checks the addresses a commit
+message gives.
+
+`spec/index/` and `PARITY.md` change on the main branch only. Pull requests
+leave them alone, and the documentation check fails one that edits them; the
+scheduled job in `.github/workflows/nightly-generated.yml` regenerates them on
+`main` and pushes the commit as `github-actions[bot]`. Where `main` requires
+pull requests, that push is rejected until the repository lets the job through,
+by adding GitHub Actions to the ruleset's bypass list or by giving the job a
+token that may bypass it (`docs/VALIDATION.md`, "Spec checks"). To read current
+copies locally, run `node tools/upstream.mjs docs --generate` and do not commit
+what it writes.
+
 Dependabot proposes weekly NuGet updates, grouping RefurbishedDinosaurs packages
 and xUnit packages. SabreTools.Serialization stays pinned to its reviewed
 InstallShield expansion evidence and is updated manually. The documentation

@@ -2,9 +2,21 @@
 
 One file per long-running goal while it runs, named after it:
 `docs/goals/combat-static.md`. The
-[work protocol](../../vendor/upstream/work-protocol.md#coding-agents-and-long-running-goals) (lines 446-497)
-says how to write the condition. Delete the file in the commit that meets or
-drops the goal; git keeps it. The files here are the list of goals running.
+[work protocol](../../vendor/upstream/work-protocol.md#coding-agents-and-long-running-goals) (lines 482-533)
+says how to write the condition. The files here are the list of goals running
+(or, where sessions cannot push to the main branch, the `goal/` branches; see
+below).
+
+The batch whose work meets the goal's condition leaves the file in place, and a
+later commit deletes it, moving what is still worth handing on to
+`docs/HANDOVER.md` and leaving the rest of that file as it was. For the
+session's own goal, met or dropped during the session, that is the session's
+handover commit. Any other goal, such as one dropped between sessions or found
+to have been met by an earlier batch, loses its file in a commit of its own. A
+commit that creates a goal file, changes the areas it claims or deletes it is
+not a batch: it changes nothing outside `docs/HANDOVER.md` and `docs/goals/`,
+leaves the documentation check and the fast gate passing, and carries no
+trailers. Git keeps the deleted file.
 
 A goal file:
 

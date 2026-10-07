@@ -89,3 +89,44 @@ pass. No runtime, package, evidence, or game behavior changes are required.
 Risk: a broader exception would trust unrelated repositories; retain the exact
 checkout scope. Exit: validated guidance and a separate handover are committed
 locally without pushing. No owner questions block this maintenance.
+## Follow-up synchronization: 0b9ab9c (2026-10-07)
+
+Target only this configured repository. Adopt canonical template 0b9ab9c,
+including its pinned Standard/Protocol revision e84495f and checker 2.5.0.
+The owner's latest-template request authorizes this bundled rules refresh.
+Preserve vendor/upstream paths, npm locks, locked Python tooling, configured
+identity, game evidence, owner-only original runtime and mandatory full gate.
+
+Adopt scheduled main-only spec index/parity generation, commit-message address
+checks, stricter code/spec separation, coverage reporting guidance and bounded
+PE32/MZ/FBOV inventory normalization. Keep generated files out of this batch.
+Update applicable skills and docs semantically; retain project-specific source
+mappings, stronger hooks and tests. Do not claim provenance/region TSV support
+that checker 2.5.0 does not provide. No source analysis or gameplay changes.
+
+Acceptance: snapshot digests, exact checker/action/package pins and section
+links agree; synthetic malformed/format/ownership inventory controls pass;
+commit-message checks work; documentation and assetless Test.ps1 pass. Audit
+processes, commit the migration and a separate handover locally, without push.
+Risks: new citation/separation checks may expose existing documentation gaps;
+repair their wording without changing original-game claims. Scheduled pushes
+may require existing repository permissions; no settings or workflow runs are
+changed here. Exit: reconciled migration, passing gates and local commits.
+No owner questions block this maintenance.
+
+Reconciliation: adapt the scheduled job to npm ci and retain the local staged-tree
+hook, exact Python environment and mandatory full Test.ps1. Local checker runs
+use local main as their default base; CI retains its PR base. Keep existing
+Inspect package-based tools: the template's AddressCitationTests exercise local
+PortableExecutableImage/AddressCitations types that this project superseded,
+so their unrelated test file is not imported. Existing adopted tooling controls
+remain the acceptance for that retained implementation. Clarify two external
+libgff citations as explicit external links to avoid treating its source tree
+as this rebuild; original claims and statuses remain unchanged.
+
+Observed exit: focused controls and the full assetless gate passed, including
+local/CI/explicit-base and forbidden branch-edit controls. Documentation passes
+with existing argument-count skips and the scheduled-generation comparison skip.
+The external-source diagnostic was reported after duplicate checks as toolkit
+issue 353; the local citation clarification keeps the check enabled. Configured
+runtime/media/release/extraction contracts and generated files remain unchanged.
