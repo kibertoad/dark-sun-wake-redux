@@ -51,11 +51,11 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Stage: Slices. The ongoing protocol objective remains active on this local
   goal branch. Completed workflow tooling and EXE research are committed.
 - Last full gate: 2026-10-07, assetless Test.ps1 -NoRestore passed.
-  Logs: artifacts/exe-record-accessors-full-gate.log and artifacts/exe-record-accessors-docs.log.
+  Logs: artifacts/exe-callback-restored-state-full-gate.log and artifacts/exe-callback-restored-state-docs.log.
   Documentation generation and explicit main-base checking passed;
-  existing argument-check skips remain. The full gate also skipped its
-  origin/main comparison because no merge-base was available; the explicit
-  local main-base documentation check passed. Pre-commit checks passed.
+  existing argument-check skips remain. Remote-base ancestry was rechecked
+  and is available; explicit local main-base checking passed. Pre-commit
+  checks passed.
   The last full source-listing reconciliation remains
   artifacts/exe-dosbox-pe-listing.log; this batch changed no manifest.
 - Unfinished: no tracked work remains. EXE follow-up items remain Q-EXE-005,
@@ -83,8 +83,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   its narrow downstream guard has synthetic controls. No upstream fix delivery
   is claimed. Toolkit issue 111 also records the reference-type guidance concern.
 - Next: recheck shared goal claims, then Q-EXE-009 using FND-EXE-015,
-  FND-EXE-017 through FND-EXE-056 for remaining filename-helper
-  callback signature/matching continuations, helper contracts and dispatch-frame provenance, then higher caller returns, then temporary caller ranges
+  FND-EXE-017 through FND-EXE-057 for remaining filename-helper
+  remaining callback matching, zero-state and negative-path helper contracts, then higher caller returns, then temporary caller ranges
   and failure-consumer/handler contracts, then
   preceding-word producers and downstream output, then
   collection initialization/lifetime,
