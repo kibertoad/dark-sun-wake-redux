@@ -131,7 +131,8 @@ Next ID: Q-EXE-010
   release admission and first-word cleanup (FND-EXE-089), and stored-target
   dispatch with distinct low-byte fallback gates (FND-EXE-090), and retained
   pre-reader modifier/displacement with a physical zero-return fallback target
-  (FND-EXE-091). These bounded
+  (FND-EXE-091), and composed metadata first-field admission, stores and
+  continued cursor stages (FND-EXE-092). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete
