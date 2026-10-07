@@ -26,7 +26,13 @@ docs/goals/; queue items and findings stay in their own files.
 
 ## Unfinished
 
-None.
+- Commit-message repair awaits owner approval: the validation commit fa0d8d1
+  has the shortened title `Record`. A concurrent research commit 4e5d4e8 was
+  accidentally amended as 290a177 with the validation message and lost its
+  original Spec trailer. Its original message remains available through
+  `git show -s --format=%B 4e5d4e8`; the research tree is unchanged. Automatic
+  approval review rejected a message-only rebase because it rewrites shared
+  history. Do not retry without approval or amend the current HEAD.
 
 ## Blockers
 
