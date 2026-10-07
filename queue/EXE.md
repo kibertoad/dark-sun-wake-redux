@@ -77,7 +77,11 @@ Next ID: Q-EXE-010
   two direct selector writers, their guard-order difference and a bounded
   external-command caller. Next: identify its imported conversion and input
   gates, remaining aliases/initialization and subordinate virtual targets;
-  do not equate a truthy setter return with an update.
+  do not equate a truthy setter return with an update. FND-EXE-019 now
+  identifies exact drive-command suffix gates and linked CRT imports. Next:
+  finish the filename helper's later output/alias and drive-object path,
+  then initial selector provenance, PATH admission and remaining EXIT/flag
+  paths. External CRT locale behavior stays conditional where relevant.
   Blocks: resolved wrapper-helper and continuation description.
 
 ## Emulated call

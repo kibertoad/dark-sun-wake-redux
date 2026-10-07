@@ -113,6 +113,9 @@ reading of callers, external commands or interpreter behavior is claimed.
   selector writers or drive-object behavior. FND-EXE-018 reads two direct
   selector writers and their differing success/update predicates; caller
   admission, indirect writers and later virtual effects remain unknown.
+  FND-EXE-019 identifies the exact drive-command suffix gates and CRT import
+  slots; unchanged bare helper tokens take the local filename-lookup branch,
+  conditional on their delivery. Complete resolution remains open.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
   are compatible with multiple encodings too. FND-EXE-008 identifies the
