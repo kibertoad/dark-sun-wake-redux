@@ -235,6 +235,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-114 records its equality priority and optional state-call continuation;
   FND-EXE-115 records local-F-zero second-record writes and distinct returns;
   FND-EXE-116 records nonzero-F counter/write ordering and fresh current-byte reads;
+  FND-EXE-117 records exact-equality byte merging and fresh write-position arithmetic;
   floating numeric contracts, downstream targets, producers,
   indirect targets and actual state admission remain open.
   Native frame admission, callback invocation, selector effects, allocation units, capacity, aliases

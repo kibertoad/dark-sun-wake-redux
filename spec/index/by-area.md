@@ -130,6 +130,7 @@ Entries by area.
 | [FND-EXE-114](../findings/FND-EXE-114.md) | First-callee equality branch publishes mask one and rejoins after optional state-change calls | recorded |
 | [FND-EXE-115](../findings/FND-EXE-115.md) | Local-flag-zero continuation writes a second-record zero byte or returns without another callback call | recorded |
 | [FND-EXE-116](../findings/FND-EXE-116.md) | Nonzero local flags increment a counter before fresh record arithmetic and reread the current byte after writing | recorded |
+| [FND-EXE-117](../findings/FND-EXE-117.md) | Exact-equality record merge conditionally increments a counter before fresh write-position arithmetic | recorded |
 
 ## GFF
 
