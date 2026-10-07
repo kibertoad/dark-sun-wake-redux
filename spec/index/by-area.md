@@ -124,6 +124,7 @@ Entries by area.
 | [FND-EXE-108](../findings/FND-EXE-108.md) | Fixed callback selects one of four object slots and forwards a shifted low word only for a nonnull slot | recorded |
 | [FND-EXE-109](../findings/FND-EXE-109.md) | Callback consumer has dedicated word dispatch and clears six fields only after its value-two call returns | recorded |
 | [FND-EXE-110](../findings/FND-EXE-110.md) | Callback value seven publishes a flag before priority selection and tail-transfers only on a gated state change | recorded |
+| [FND-EXE-111](../findings/FND-EXE-111.md) | Callback value one captures the indexed byte before record progress and reinserts after gated calls | recorded |
 
 ## GFF
 
