@@ -50,8 +50,8 @@ An owner-approved history repair remains separate from this maintenance scope.
 
 - Stage: Slices. The ongoing protocol objective remains active on this local
   goal branch. Completed workflow tooling and EXE research are committed.
-- Last full gate: 2026-10-07, assetless Test.ps1 -NoRestore passed.
-  Logs: artifacts/exe-cleanup-second-full-gate.log and artifacts/exe-cleanup-second-docs-check.log.
+- Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore passed.
+  Logs: artifacts/exe-resource-handler-full-gate.log and artifacts/exe-resource-handler-docs-check.log.
   Documentation generation and explicit main-base checking passed;
   existing argument-check skips remain. Remote-base ancestry was rechecked
   and is available; explicit local main-base checking passed. Pre-commit
@@ -89,8 +89,10 @@ An owner-approved history repair remains separate from this maintenance scope.
   Follow-up: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6044911287.
   Related PR 339 is merged (verified 2026-10-07); package delivery and
   the released writer-control rerun remain pending.
+  Toolkit issue 350 received a duplicate follow-up on inventory ownership:
+  https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/350#issuecomment-6046763133.
 - Next: recheck shared goal claims, then Q-EXE-009 using FND-EXE-015,
-  FND-EXE-017 through FND-EXE-085 for shared cleanup resource targets and saved-handler admission, counter initialization/lifetime, remaining cleanup targets, startup callbacks and registration effects, shared-guard indirect writers/lifetime, dispatcher-frame admission and optional callback effects
+  FND-EXE-017 through FND-EXE-088 for saved-handler admission, selected callback continuation, shared cleanup resource targets, counter initialization/lifetime, remaining cleanup targets, startup callbacks and registration effects, shared-guard indirect writers/lifetime, dispatcher-frame admission and optional callback effects
   plus static-context/flag producer contracts, concrete dispatch targets, stream bounds and dispatcher admission, then zero-state helpers, then higher caller returns, then temporary caller ranges
   and failure-consumer/handler contracts, then
   preceding-word producers and downstream output, then
