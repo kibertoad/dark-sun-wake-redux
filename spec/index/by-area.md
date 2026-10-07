@@ -74,6 +74,7 @@ Entries by area.
 | [FND-EXE-058](../findings/FND-EXE-058.md) | Ordinary callback classifies a signed stored word and saves matched state on a distinct six-return path | recorded |
 | [FND-EXE-059](../findings/FND-EXE-059.md) | Matching byte reader accumulates seven-bit groups with masked shifts and writes one word only at termination | recorded |
 | [FND-EXE-060](../findings/FND-EXE-060.md) | Callback metadata reader uses independent byte markers and returns a cursor separately from stored relative targets | recorded |
+| [FND-EXE-061](../findings/FND-EXE-061.md) | Marker modifier selects zero-return branches and a full-byte bypass before its mask-class abort boundary | recorded |
 
 ## GFF
 

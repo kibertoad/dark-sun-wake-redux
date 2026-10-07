@@ -100,7 +100,8 @@ Next ID: Q-EXE-010
   (FND-EXE-057), and ordinary signed admission, iteration and six-return stores
   (FND-EXE-058), and matching byte consumption and terminating word outputs
   (FND-EXE-059), and metadata markers, cursor returns and relative targets
-  (FND-EXE-060). These bounded
+  (FND-EXE-060), and modifier mask classes, marker bypass and zero callees
+  (FND-EXE-061). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete
