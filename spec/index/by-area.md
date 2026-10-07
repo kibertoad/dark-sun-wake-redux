@@ -122,6 +122,7 @@ Entries by area.
 | [FND-EXE-106](../findings/FND-EXE-106.md) | Callback pool links are initialized before head publication and the counter helper retains callback successors | recorded |
 | [FND-EXE-107](../findings/FND-EXE-107.md) | Callback wrappers combine a zero-extended word with an object field and tail-transfer to insertion or pair removal | recorded |
 | [FND-EXE-108](../findings/FND-EXE-108.md) | Fixed callback selects one of four object slots and forwards a shifted low word only for a nonnull slot | recorded |
+| [FND-EXE-109](../findings/FND-EXE-109.md) | Callback consumer has dedicated word dispatch and clears six fields only after its value-two call returns | recorded |
 
 ## GFF
 
