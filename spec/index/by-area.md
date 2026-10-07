@@ -95,6 +95,8 @@ Entries by area.
 | [FND-EXE-079](../findings/FND-EXE-079.md) | Declared startup reaches an x87 initializer and a memory-update helper whose equal table bounds skip its loop | recorded |
 | [FND-EXE-080](../findings/FND-EXE-080.md) | Startup guard publishes before reverse-order callback dispatch and returns the later atexit result | recorded |
 | [FND-EXE-081](../findings/FND-EXE-081.md) | First selected startup callbacks preserve two empty bodies, increment paired words and initialize a distinct context | recorded |
+| [FND-EXE-082](../findings/FND-EXE-082.md) | Registered cleanup dispatch rereads a mutable cursor before publishing its next slot | recorded |
+| [FND-EXE-083](../findings/FND-EXE-083.md) | First cleanup target tail-selects paired pointer replacement without resetting adjacent words | recorded |
 
 ## GFF
 

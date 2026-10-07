@@ -121,7 +121,9 @@ Next ID: Q-EXE-010
   storage and declared relocation-site limits (FND-EXE-078), and actual startup callees
   with an empty row-update route (FND-EXE-079), pre-dispatch guard publication and reverse callbacks
   (FND-EXE-080), and the selected prefix's paired increments and distinct context initializer
-  (FND-EXE-081). These bounded
+  (FND-EXE-081), mutable cleanup-cursor reloads and next-slot publication
+  (FND-EXE-082), and the first cleanup target with its separately admitted pointer-constructor path
+  (FND-EXE-083). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete

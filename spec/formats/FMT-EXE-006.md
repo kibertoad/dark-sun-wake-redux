@@ -192,6 +192,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-079 grounds startup callees and their empty memory-update route;
   FND-EXE-080 traces pre-dispatch guard publication, reverse callbacks and registration return;
   FND-EXE-081 reads the selected prefix's paired increments and distinct context initializer;
+  FND-EXE-082 traces mutable cleanup-cursor reloads, next-word reads and publication;
+  FND-EXE-083 traces the first cleanup target and separately admitted paired-pointer constructor;
   allocation units, capacity, aliases and lifetime remain conditional.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers

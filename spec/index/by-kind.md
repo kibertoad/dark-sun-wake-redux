@@ -177,7 +177,7 @@ Entries by kind.
 
 ## findings
 
-530 entries.
+532 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -519,6 +519,8 @@ Entries by kind.
 | [FND-EXE-079](../findings/FND-EXE-079.md) | Declared startup reaches an x87 initializer and a memory-update helper whose equal table bounds skip its loop | recorded |
 | [FND-EXE-080](../findings/FND-EXE-080.md) | Startup guard publishes before reverse-order callback dispatch and returns the later atexit result | recorded |
 | [FND-EXE-081](../findings/FND-EXE-081.md) | First selected startup callbacks preserve two empty bodies, increment paired words and initialize a distinct context | recorded |
+| [FND-EXE-082](../findings/FND-EXE-082.md) | Registered cleanup dispatch rereads a mutable cursor before publishing its next slot | recorded |
+| [FND-EXE-083](../findings/FND-EXE-083.md) | First cleanup target tail-selects paired pointer replacement without resetting adjacent words | recorded |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant | recorded |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead | recorded |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) | recorded |
