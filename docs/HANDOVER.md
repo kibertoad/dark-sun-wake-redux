@@ -5,10 +5,12 @@ docs/goals/; queue items and findings stay in their own files.
 
 ## Latest template update
 
-- Applied template 25c5808 to this checkout in local commits 7a66e54 and 8683cee.
+- Applied latest template 403a749 in local commit c6dd863, following 25c5808
+  in local commits 7a66e54 and 8683cee.
   Migration and retained contracts: docs/implementation-plans/LATEST-TEMPLATE-SYNC.md.
 - Canonical assetless tools/Test.ps1 passed on 2026-10-07; log:
-  artifacts/latest-template-sync-gate.log. Existing documentation skips remain.
+  artifacts/template-403a749-test.log. Documentation checks passed with existing skips;
+  log: artifacts/template-403a749-docs.log.
 - Current project plans and owner-only runtime restrictions are preserved.
   Capture fixture planning moved to docs/implementation-plans/SYNTHETIC-CAPTURE-READINESS.md.
 - No push. The separate goal/protocol-work worktree remains independent.
