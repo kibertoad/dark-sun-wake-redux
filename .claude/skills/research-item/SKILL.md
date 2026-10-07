@@ -20,8 +20,10 @@ only the lines the link gives, and never a section already read this session.
 2. **Pick one item** from `queue/<AREA>.md`, or a few about the same entry,
    within the areas your goal claims (an item is taken only if every entry it
    names is in one of them; to take another area, add it to the goal's scope
-   first, only if no other goal file claims it, and get that onto the main
-   branch). Read the entries it names, their Open questions sections and any
+   first, only if no other authoritative goal claim owns it, and commit that
+   separately before the batch. Use `plan-work` for claim discovery and the
+   main/PR or local `goal/<name>` route; a no-push goal needs no main push).
+   Read the entries it names, their Open questions sections and any
    `Tried:` note. Take up an item that has a `Tried:` note only with something
    that attempt did not have: new evidence, a new tool, or a reading nobody
    has tried. If that second attempt ends in the same place, move the item to

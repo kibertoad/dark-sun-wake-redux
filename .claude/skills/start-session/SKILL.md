@@ -6,6 +6,7 @@ description: Resume restoration work at the start of a session. Use before any r
 # Start a session
 
 The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#sessions) (lines 321-329).
+Goal discovery follows [Coding agents and long-running goals](../../../vendor/upstream/work-protocol.md#coding-agents-and-long-running-goals) (lines 446-497).
 Open a linked section only when a step leaves a question it answers, read
 only the lines the link gives, and never a section already read this session.
 This skill is the procedure; where they differ, the protocol wins.
@@ -13,16 +14,31 @@ This skill is the procedure; where they differ, the protocol wins.
 1. Decide the session's side: research (with tooling that reads the original)
    or implementation (with tooling that runs the rebuild). A session never
    holds both.
-2. Find the session's handover. Under a goal it is the Handover section of
-   the goal's file in `docs/goals/`; read the whole file. With no goal it is
-   `docs/HANDOVER.md`. If the user gave a goal with no file, write the file
-   first (see `docs/goals/README.md`), check that no other goal file claims
-   the same areas, and get it onto the main branch before the first batch.
+2. Discover the authoritative goal claim before selecting the handover. Where
+   sessions cannot push to main, including an owner's no-push instruction,
+   run `git branch --list 'goal/*'` at session start and again before starting
+   or resuming a goal. Inspect `docs/goals/` at each listed branch's tip,
+   not just in the current checkout: a branch whose tip still has its goal
+   file holds the one running goal. Resume it in its own worktree; start no
+   second goal, even for different areas. A copy on main claims nothing.
+   A separate clone or cloud container cannot discover these local claims,
+   even after fetching; it starts no goal without the owner's statement that
+   none is running. Where claims can reach main, check the goal files there.
+   Under a goal read its whole file and Handover section. With no goal read
+   `docs/HANDOVER.md`. For a new goal follow `plan-work` and
+   `docs/goals/README.md`: publish its claim first where authorized, or make
+   its first commit on `goal/<name>` create the file in the shared clone and
+   repeat the branch listing afterwards. If another goal is present, delete
+   the just-created goal branch and start no goal. Goal-claim commits are
+   separate from batches and carry no trailers.
    An implementation session reads no research goal files.
 3. Compare the handover with reality: `git status`, `git log --oneline -10`,
    the current branch, and any `wip/` branch the handover names. Anything
    uncommitted that the handover does not mention belongs to someone else or
    to a crashed session: report it and leave it alone.
+   Each session works in its own worktree or branch and writes only its own
+   goal's handover. Never repair a message by amending an unchecked shared
+   HEAD; confirm the commit belongs to this session first.
 4. Verify the pinned rules with `node tools/upstream.mjs verify`. Read only
    the local copy under `vendor/upstream/`, assumed current.
    Check for updates or refresh it only when the owner asks in the current

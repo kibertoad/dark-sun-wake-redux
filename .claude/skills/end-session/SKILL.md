@@ -6,6 +6,7 @@ description: Close a work session on this restoration - stop processes the sessi
 # End a session
 
 The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#sessions) (lines 321-329).
+Goal completion follows [Coding agents and long-running goals](../../../vendor/upstream/work-protocol.md#coding-agents-and-long-running-goals) (lines 446-497).
 Open a linked section only when a step leaves a question it answers, read
 only the lines the link gives, and never a section already read this session.
 
@@ -25,6 +26,11 @@ orphans and agents never touch DOSBox or take the original-game run lock.
    its file. A session under no goal that finds a goal-deletion commit on the
    main branch merges it first and keeps what it added to `docs/HANDOVER.md`
    unless this session dealt with it.
+   Where claims cannot reach main, delete the completed or dropped goal's
+   file on its authoritative `goal/<name>` branch: this ends the claim even
+   before the owner merges it. A stale copy on main claims nothing. Leave
+   the branch available for the owner's merge; do not delete another goal's
+   branch or rewrite another session's commits.
 3. **Working tree**: every finished batch is already committed. For anything
    half done, finish it, discard it, or leave it out of the batch commits and
    describe it under Unfinished in the handover. Where the working tree does
@@ -42,6 +48,8 @@ orphans and agents never touch DOSBox or take the original-game run lock.
    Delete what is no longer true instead of adding below it. Stay under 200
    lines. Commit the handover on its own, with no trailers: it changes
    nothing outside `docs/HANDOVER.md` and `docs/goals/`.
+   Confirm the worktree, branch, staged paths and current HEAD belong to
+   this session before committing. Use a new commit for the handover.
 5. **Push** the branch unless `AGENTS.md` says the owner pushes or the user
    has instructed otherwise. Check Git directly for the branch's remote sync
    state when reporting it; do not copy a count into the handover.

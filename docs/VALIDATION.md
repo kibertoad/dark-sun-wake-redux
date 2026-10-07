@@ -825,3 +825,32 @@ passed with its reported argument-check skips; this does not establish those
 skipped checks or any original-game behavior. No original runtime was started.
 Failure log: `artifacts/session-20261007-gate.log`; passing log:
 `artifacts/session-20261007-gate-sandbox-temp.log`.
+
+Local no-push goal discovery, 2026-10-07: the workflow skills and goal README
+were checked against the unchanged pinned Protocol efa138ba. A constructed
+repository and two worktrees verified shared local branch discovery; a main-only
+copy was not a claim; deleting the branch-tip file ended a claim; a separate
+clone retained only remote-tracking goal branches; and a second constructed
+creation was detected by the final listing and only its new branch was removed.
+The actual isolated goal worktree also discovers its claim from the shared
+clone. These controls establish Git discovery behavior, not any game claim or
+an atomic lock between sessions. Procedure and output remain local in
+`artifacts/verify-goal-discovery.cjs` and `artifacts/goal-discovery-controls.log`.
+
+The completed capture-readiness plan was moved intact to the existing plan
+archive so the current implementation plan remains within its required line
+limit. `node tools/upstream.mjs verify`, `node tools/upstream.mjs links`,
+`git diff --check`, and documentation validation with `--base main` passed.
+The full assetless `tools/Test.ps1 -NoRestore` passed in this isolated worktree
+with all 715 .NET tests succeeding; the checker retains its reported argument
+checks skipped for prose Parameters. The earlier attempts stopped at the plan
+line limit, then at a temporary directory belonging to the other execution
+account. The passing run used PowerShell 7, the verified owner account's own
+TEMP/TMP, cleared GAME_DIR and NoDefaultCurrentDirectoryInExePath, and the
+already installed hash-locked interpreter selected with EVIDENCE_PYTHON.
+Gate log: `artifacts/protocol-skill-sync-gate3.log`; explicit base comparison:
+`artifacts/protocol-skill-docs-base.log`. No original runtime was launched.
+
+Downstream details were added to existing template issue 80 (goal-skill
+summaries) and issue 82 (temporary-directory/account diagnostics), after the
+related issue searches and comment review. No duplicate request was opened.

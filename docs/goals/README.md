@@ -3,8 +3,11 @@
 One file per long-running goal while it runs, named after it:
 `docs/goals/combat-static.md`. The
 [work protocol](../../vendor/upstream/work-protocol.md#coding-agents-and-long-running-goals) (lines 446-497)
-says how to write the condition. Delete the file in the commit that meets or
-drops the goal; git keeps it. The files here are the list of goals running.
+says how to write the condition. The batch that meets the condition leaves
+the file in place; a later handover-only commit deletes it and adds anything
+still worth handing on to `docs/HANDOVER.md`. Creation, scope-change, deletion
+and handover commits are separate from batches and carry no trailers. Git
+keeps the goal's history.
 
 A goal file:
 
@@ -40,10 +43,32 @@ None known.
 
 `Scope` names the areas the goal claims. A goal takes up a queue item only if
 every entry it names is in one of those areas, and adds an area to its scope
-only while no other goal file claims it. The file, and every change to its
-scope, reaches the main branch before the first batch that relies on it, so
-every session sees the claim; where sessions cannot push, only one goal runs
-at a time. `Dead ends` records tools and approaches that failed across the
+only while no other authoritative goal claim owns it. Where sessions can
+push to main, the file and each scope change reach main before the first
+batch that relies on them; where work lands through pull requests, the
+claim's separate pull request is merged first.
+
+Where sessions cannot push to main, including an owner's no-push instruction,
+only one goal runs in the shared clone. At session start, and again before
+starting or resuming a goal, run `git branch --list 'goal/*'` and inspect
+`docs/goals/` at each listed branch's tip. A branch `goal/<name>` whose tip
+still has `docs/goals/<name>.md` holds the claim. Resume it in its own
+worktree; start no second goal, even for different areas. If none runs, make
+the new branch's first commit create its goal file, then repeat the listing.
+If another listed branch now has its goal file, delete the just-created
+branch and start no goal. A copy of a goal file merged onto main claims
+nothing; deleting the file on its goal branch ends the claim before that
+deletion is merged. Keep the branch for the owner's merge.
+
+Worktrees of one clone share local branches; separate clones and cloud
+containers cannot see the claims, even after fetching remote-tracking branches.
+A session outside the shared clone's worktrees starts no goal unless the owner
+says none is running. Each session uses its own worktree or branch and writes
+only its own goal file's handover. Under no goal, merge a goal-deletion commit
+found on main before rewriting `docs/HANDOVER.md`, keeping its additions unless
+the session dealt with them.
+
+`Dead ends` records tools and approaches that failed across the
 whole goal, in a line or two each, so a resumed session does not repeat them;
 what a research attempt tried on a question goes under its queue item's
 `Tried:`. `Handover` holds what `docs/HANDOVER.md` holds, for this goal only,

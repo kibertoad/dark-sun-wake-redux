@@ -995,6 +995,4 @@ explicit. GAME_DIR profiles/reports stay local and skip missing licensed input.
 Exit: bounded installed controls, retained whole-fill gaps, Test.ps1, acceptance
 record and handover; no spec, parity, gameplay or native-runtime changes.
 
-## Synthetic capture fixture readiness
-
-Tooling batch, 2026-10-06. Outcome: the Windows validation gate verifies its synthetic capture source is ready before its single capture assertion. Evidence: repeated positive-control failures recorded in template issue 73; actual decorated client width differs from the requested small fixture width, and offscreen-first presentation does not prove patterned pixel readiness. Acceptance: use exact-sized undecorated synthetic forms; independently verify known source pixels within a bounded readiness wait before moving offscreen; use independently initialized patterned and uniform forms. Preserve positive pixel comparison, uniform rejection, invalid-handle rejection and no rejected output. Do not retry capture assertions, change the production helper or control an original-game window. Tests: direct synthetic capture, deliberate uniform positive, worker timeout/recovery, canonical assetless gate. Exit: all these controls pass and fixture setup failure gives bounded diagnostics. No owner questions; no game behavior or content contract changes.
+Local no-push goal discovery: [tooling plan](implementation-plans/PROTOCOL-GOAL-DISCOVERY.md).

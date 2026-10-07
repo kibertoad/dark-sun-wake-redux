@@ -68,10 +68,27 @@ what was tried, the documentation check passes on the last commit, and each
 batch ended with a status block; or stop after 40 turns.
 ```
 
-Write the goal file from `docs/goals/README.md`, check that no other goal file
-claims the same areas, get the file onto the main branch before the goal's
-first batch (where sessions cannot push, run only one goal at a time), and
-give the user the condition to paste after `/goal`.
+Write the goal file from `docs/goals/README.md`. Where sessions can push to
+main, check the goal files there for overlapping claims, and get the file and
+each scope change onto main before the first batch that relies on it; where
+work lands through pull requests, merge the claim's separate pull request first.
+Do not push against an owner's instruction.
+
+Where sessions cannot push to main, run `git branch --list 'goal/*'` at
+session start and again before starting or resuming a goal. Inspect each
+listed branch's tip for its goal file. Only one goal runs in the shared
+clone, even across different areas. Resume that goal on its branch in its
+own worktree. If none runs, start `goal/<name>` and make its first commit
+create `docs/goals/<name>.md`; list the branches again after that commit.
+If another branch now has its goal file, delete the just-created branch and
+start no goal. The branch tip holds the claim; a merged copy on main claims
+nothing, and deleting the file at the branch tip ends it. A separate clone
+or cloud container starts no goal unless the owner says none is running;
+fetching remote-tracking branches does not make local branch discovery work.
+Creation, scope-change and deletion commits are separate from batches, change
+only `docs/goals/` and `docs/HANDOVER.md`, and carry no trailers. Use a separate
+worktree or branch for each session and keep its handover in its goal file.
+Give the user the condition to paste after `/goal` when proposing a new goal.
 Split research and implementation into separate goals. An implementation
 goal's condition allows no change under `spec/` beyond added open questions
 and `unknown` entries, and accepts a `partial` row only with a `Spec gap:` note. Never write a goal
