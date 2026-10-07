@@ -146,7 +146,8 @@ Next ID: Q-EXE-010
   with distinct conditional and normal restoration (FND-EXE-102), and grounded
   wait-target/callback linkage with signed dispatch and full-width retry
   gates (FND-EXE-103), and admission sum exits, callback-list order and
-  budget publication (FND-EXE-104). These bounded
+  budget publication (FND-EXE-104), and free-node callback insertion with
+  repeated-match removers (FND-EXE-105). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete
