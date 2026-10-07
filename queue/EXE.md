@@ -159,7 +159,8 @@ Next ID: Q-EXE-010
   priority/state-call continuation (FND-EXE-114), and local-F-zero
   second-record writes/returns (FND-EXE-115), and nonzero-F counter/write
   ordering and fresh current-byte reads (FND-EXE-116), and exact-equality
-  byte merge with fresh write arithmetic (FND-EXE-117). These bounded
+  byte merge with fresh write arithmetic (FND-EXE-117), and shared counters
+  with latch-setting tail insertion (FND-EXE-118). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete

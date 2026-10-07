@@ -131,6 +131,7 @@ Entries by area.
 | [FND-EXE-115](../findings/FND-EXE-115.md) | Local-flag-zero continuation writes a second-record zero byte or returns without another callback call | recorded |
 | [FND-EXE-116](../findings/FND-EXE-116.md) | Nonzero local flags increment a counter before fresh record arithmetic and reread the current byte after writing | recorded |
 | [FND-EXE-117](../findings/FND-EXE-117.md) | Exact-equality record merge conditionally increments a counter before fresh write-position arithmetic | recorded |
+| [FND-EXE-118](../findings/FND-EXE-118.md) | Shared flag counters precede a latch-setting tail insertion with no local rollback | recorded |
 
 ## GFF
 
