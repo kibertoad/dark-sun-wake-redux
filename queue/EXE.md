@@ -111,7 +111,8 @@ Next ID: Q-EXE-010
   and post-publication zero stores (FND-EXE-068), and initialization index stores, converted guard writes
   and ignored callback values (FND-EXE-069), and stored-handler state branches, signed cleanup counters
   and the separate context getter (FND-EXE-070), and head-associated indirect target guards, outgoing slots
-  and passed-through returns (FND-EXE-071). These bounded
+  and passed-through returns (FND-EXE-071), and published head-target mode admission, optional callback
+  and adjusted-payload tail dispatch (FND-EXE-072). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete

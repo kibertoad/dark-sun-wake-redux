@@ -85,6 +85,7 @@ Entries by area.
 | [FND-EXE-069](../findings/FND-EXE-069.md) | Context initialization derives its guard from a converted allocation result without always writing the index | recorded |
 | [FND-EXE-070](../findings/FND-EXE-070.md) | Stored callback handler separates exact state-one finalization from signed counter cleanup and forwarding | recorded |
 | [FND-EXE-071](../findings/FND-EXE-071.md) | Head cleanup callee guards an offset-eight indirect target and returns its result unchanged | recorded |
+| [FND-EXE-072](../findings/FND-EXE-072.md) | Published head target uses unsigned mode admission and tail-forwards an adjusted payload after an optional callback | recorded |
 
 ## GFF
 
