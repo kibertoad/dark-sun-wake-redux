@@ -54,42 +54,21 @@ Next ID: Q-EXE-010
 
 - Q-EXE-009. FMT-EXE-006: How does the shipped interpreter resolve the bare
   ravager/sound commands and continue after them in the declared GOG wrapper?
-  Settles it: interpreter command-search, batch-chaining and EXIT code read
-  under the declared working directory, mounts and configuration order;
-  keep mutable overlay substitutions conditional. Tried: primary task and
-  complete wrapper text (FND-EXE-010), which cannot decide shell behavior.
-  New reading: SRC-DOSBOX-GOG-0742 predicts COM/EXE/BAT search and replacement
-  of the wrapper by a bare batch command, preserving it only for CALL. Next
-  static step: verify the relevant compiled routines and mount/file lookup
-  inputs; the bundled source alone is not a binary correspondence proof.
-  FND-EXE-013 and FND-EXE-014 now record compiled external-command dispatch,
-  the conditional batch cleanup gate and CALL flag writes. Next: read the
-  lookup helper and extension selection, all flag writers and EXIT paths,
-  then the declared mount/overlay inputs. FND-EXE-015 now records compiled
-  local/PATH candidate order and its unread drive-predicate boundary;
-  FND-EXE-016 records the distinct count-80 PATH scan. Next: trace the
-  remaining normalization/index provenance and drive-object targets, PATH input writers
-  and long-segment admission, then remaining flag/EXIT and mount inputs.
-  FND-EXE-017 now records the initial selector stores, unsigned range and
-  nonnull table guards, and failure output mutation. Next: identify the
-  initial selector writers and later normalization outputs before attributing
-  a complete bound to the caller's consumed index. FND-EXE-018 now reads
-  two direct selector writers, their guard-order difference and a bounded
-  external-command caller. Next: identify its imported conversion and input
-  gates, remaining aliases/initialization and subordinate virtual targets;
-  do not equate a truthy setter return with an update. FND-EXE-019 now
-  identifies exact drive-command suffix gates and linked CRT imports. Next:
-  finish the filename helper's later output/alias and drive-object path,
-  then initial selector provenance, PATH admission and remaining EXIT/flag
-  paths. External CRT locale behavior stays conditional where relevant.
-  FND-EXE-020 now reads the filename byte scan and output-prefix setup.
-  Next: read component transformations and their failure/output paths, then
-  the object prefix's producers and drive-object virtual targets. A bounded
-  local scan is not yet a complete caller-output contract. FND-EXE-021 now
-  reads the component transformations, terminal/nonterminal failure values
-  and output mutations retained on failure. Next: trace the selected object's
-  prefix producers, caller storage/alias contracts and drive-object virtual
-  targets, then remaining selector/PATH/EXIT provenance.
+  Settles it: complete interpreter command-search, batch chaining and EXIT
+  reading under declared working directory, mounts and configuration order;
+  mutable overlay substitutions remain conditional. Tried: complete wrapper
+  text (FND-EXE-010), bundled source lead (SRC-DOSBOX-GOG-0742), compiled
+  dispatch/CALL and conditional batch replacement (FND-EXE-013, FND-EXE-014),
+  local/PATH candidate order and the count-80 scan (FND-EXE-015, FND-EXE-016),
+  initial selector production/writers and drive-command gates (FND-EXE-017,
+  FND-EXE-018, FND-EXE-019), filename byte/component transformations and
+  retained failure writes (FND-EXE-020, FND-EXE-021), and two pointer-installation
+  paths with an object-plus-four prefix transfer (FND-EXE-022). These bounded
+  readings do not establish the complete shell outcome. Next: trace record
+  and object construction, prefix length/storage/alias contracts, concrete
+  vtable targets and remaining pointer/selector writers, then PATH admission,
+  flag/EXIT continuations and declared mount/overlay inputs. Unread virtual
+  and CRT effects stay conditional; truthy return is not proof of an update.
   Blocks: resolved wrapper-helper and continuation description.
 
 ## Emulated call

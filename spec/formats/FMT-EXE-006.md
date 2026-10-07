@@ -119,7 +119,9 @@ reading of callers, external commands or interpreter behavior is claimed.
   byte scan and prefix setup, separating consumed and emitted bounds.
   FND-EXE-021 now reads component transformations, return/failure branches
   and retained output mutations. Prefix provenance, caller contracts and
-  complete resolution remain open.
+  complete resolution remain open. FND-EXE-022 records two pointer-installation
+  paths and one direct prefix transfer; constructors, concrete virtual targets
+  and storage/alias bounds remain unread.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
   are compatible with multiple encodings too. FND-EXE-008 identifies the

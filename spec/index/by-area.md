@@ -35,6 +35,7 @@ Entries by area.
 | [FND-EXE-019](../findings/FND-EXE-019.md) | Compiled external-command drive selection requires an exact colon suffix | recorded |
 | [FND-EXE-020](../findings/FND-EXE-020.md) | Compiled filename scan counts consumed bytes separately from emitted bytes | recorded |
 | [FND-EXE-021](../findings/FND-EXE-021.md) | Compiled filename components shorten names and retain output mutations on failure | recorded |
+| [FND-EXE-022](../findings/FND-EXE-022.md) | Compiled pointer installation paths differ in prefix transfer and publication order | recorded |
 
 ## GFF
 
