@@ -13,7 +13,7 @@ Entries by area.
 | [FMT-EXE-003](../formats/FMT-EXE-003.md) | FBOV overlay header in the resident image | supported |
 | [FMT-EXE-004](../formats/FMT-EXE-004.md) | FBOV overlay trampoline | supported |
 | [FMT-EXE-005](../formats/FMT-EXE-005.md) | FBOV overlay code block with its fixup list | supported |
-| [FMT-EXE-006](../formats/FMT-EXE-006.md) | BAT launch files | unknown |
+| [FMT-EXE-006](../formats/FMT-EXE-006.md) | BAT launch files | supported |
 | [FND-EXE-001](../findings/FND-EXE-001.md) | DSUN.EXE ends in an FBOV overlay pack that follows its MZ load image | recorded |
 | [FND-EXE-002](../findings/FND-EXE-002.md) | The FBOV segment table has 229 eight-byte descriptors, 49 of them with flag value 3 | recorded |
 | [FND-EXE-003](../findings/FND-EXE-003.md) | 49 overlay headers in the resident image locate the code and fixup blocks of the FBOV payload | recorded |
@@ -21,6 +21,8 @@ Entries by area.
 | [FND-EXE-005](../findings/FND-EXE-005.md) | Each overlay's fixup list names words in its code that hold a segment-table index times eight | recorded |
 | [FND-EXE-006](../findings/FND-EXE-006.md) | Several four-letter GFF tags occur in DSUN.EXE only inside overlay code | recorded |
 | [FND-EXE-007](../findings/FND-EXE-007.md) | The only resident routine that calls both the DOS seek and read wrappers is a signature-and-length record reader | recorded |
+| [FND-EXE-008](../findings/FND-EXE-008.md) | Seven manifest-identified batch files contain CRLF command text with distinct launch and setup roles | recorded |
+| [FND-EXE-009](../findings/FND-EXE-009.md) | The disc sound helper names two absent jump labels and one colon-suffixed target | recorded |
 
 ## GFF
 

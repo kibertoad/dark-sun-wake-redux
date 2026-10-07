@@ -1,6 +1,6 @@
 # EXE
 
-Next ID: Q-EXE-004
+Next ID: Q-EXE-007
 
 ## Static
 
@@ -16,9 +16,25 @@ Next ID: Q-EXE-004
   (FND-EXE-007), which reads signature-and-length records and takes no pack
   input. Blocks: none.
 
-- Q-EXE-002. FMT-EXE-006: What commands and encoding do the installed and disc `.BAT` files
-  contain, and which ones does the game or setup invoke? Settles it: bounded readings of the seven
-  files and of references that launch them. Blocks: Survey format coverage.
+- Q-EXE-004. FMT-EXE-006: Which batch helpers does the game, setup or
+  distribution wrapper actually launch? Settles it: direct launch references
+  traced through their selectors and inputs. Tried: complete seven-file
+  command-text reading (FND-EXE-008), which describes targets but not callers.
+  Split from Q-EXE-002. Blocks: complete caller coverage.
+
+- Q-EXE-005. FMT-EXE-006: Which code page interprets the disc sound helper's
+  display bytes? Settles it: direct interpreter configuration or code-page/font
+  selection evidence that distinguishes compatible decoders. Tried: all bytes
+  profiled (FND-EXE-008); the high-byte set does not select a unique code page.
+  Split from Q-EXE-002. Blocks: original display encoding identification.
+
+- Q-EXE-006. FMT-EXE-006: How does the supported interpreter handle the
+  undefined jump labels and colon-suffixed target in the disc sound helper?
+  Settles it: static reading of the actual interpreter's label matching and
+  error paths, with an owner observation only for environment-dependent
+  behavior. Tried: complete label and jump reading (FND-EXE-009); the file
+  cannot decide how the shell interprets those tokens. Blocks: complete shell
+  outcome description.
 
 ## Emulated call
 

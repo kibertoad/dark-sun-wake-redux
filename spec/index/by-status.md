@@ -6,14 +6,13 @@ Entries by status.
 
 ## unknown
 
-11 entries.
+10 entries.
 
 | ID | Title |
 |---|---|
 | [FMT-ACTOR-002](../formats/FMT-ACTOR-002.md) | Object data resource |
 | [FMT-ACTOR-003](../formats/FMT-ACTOR-003.md) | MONR resource |
 | [FMT-CONFIG-005](../formats/FMT-CONFIG-005.md) | PATCH.RTP file |
-| [FMT-EXE-006](../formats/FMT-EXE-006.md) | BAT launch files |
 | [FMT-SOUND-003](../formats/FMT-SOUND-003.md) | STDPATCH.AD files |
 | [FMT-SOUND-004](../formats/FMT-SOUND-004.md) | ADV files on the disc |
 | [FMT-SOUND-005](../formats/FMT-SOUND-005.md) | GOG disc-audio Ogg tracks |
@@ -66,7 +65,7 @@ Entries by status.
 
 ## supported
 
-111 entries.
+112 entries.
 
 | ID | Title |
 |---|---|
@@ -84,6 +83,7 @@ Entries by status.
 | [FMT-EXE-003](../formats/FMT-EXE-003.md) | FBOV overlay header in the resident image |
 | [FMT-EXE-004](../formats/FMT-EXE-004.md) | FBOV overlay trampoline |
 | [FMT-EXE-005](../formats/FMT-EXE-005.md) | FBOV overlay code block with its fixup list |
+| [FMT-EXE-006](../formats/FMT-EXE-006.md) | BAT launch files |
 | [FMT-GFF-001](../formats/FMT-GFF-001.md) | GFF resource container |
 | [FMT-GFF-002](../formats/FMT-GFF-002.md) | GFF directory |
 | [FMT-GFF-003](../formats/FMT-GFF-003.md) | GFF tag table |
@@ -223,7 +223,7 @@ Entries by status.
 
 ## recorded
 
-437 entries.
+439 entries.
 
 | ID | Title |
 |---|---|
@@ -474,6 +474,8 @@ Entries by status.
 | [FND-EXE-005](../findings/FND-EXE-005.md) | Each overlay's fixup list names words in its code that hold a segment-table index times eight |
 | [FND-EXE-006](../findings/FND-EXE-006.md) | Several four-letter GFF tags occur in DSUN.EXE only inside overlay code |
 | [FND-EXE-007](../findings/FND-EXE-007.md) | The only resident routine that calls both the DOS seek and read wrappers is a signature-and-length record reader |
+| [FND-EXE-008](../findings/FND-EXE-008.md) | Seven manifest-identified batch files contain CRLF command text with distinct launch and setup roles |
+| [FND-EXE-009](../findings/FND-EXE-009.md) | The disc sound helper names two absent jump labels and one colon-suffixed target |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) |
@@ -697,7 +699,7 @@ Entries whose Open questions section says more than None known.
 | [FMT-EXE-003](../formats/FMT-EXE-003.md) | FBOV overlay header in the resident image | supported |
 | [FMT-EXE-004](../formats/FMT-EXE-004.md) | FBOV overlay trampoline | supported |
 | [FMT-EXE-005](../formats/FMT-EXE-005.md) | FBOV overlay code block with its fixup list | supported |
-| [FMT-EXE-006](../formats/FMT-EXE-006.md) | BAT launch files | unknown |
+| [FMT-EXE-006](../formats/FMT-EXE-006.md) | BAT launch files | supported |
 | [FMT-GFF-001](../formats/FMT-GFF-001.md) | GFF resource container | supported |
 | [FMT-GFF-002](../formats/FMT-GFF-002.md) | GFF directory | supported |
 | [FMT-GFF-003](../formats/FMT-GFF-003.md) | GFF tag table | supported |
