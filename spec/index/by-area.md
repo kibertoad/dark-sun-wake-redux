@@ -59,6 +59,7 @@ Entries by area.
 | [FND-EXE-043](../findings/FND-EXE-043.md) | Shared-record initialization verifies an encoded allocation before publishing target-field pointers | recorded |
 | [FND-EXE-044](../findings/FND-EXE-044.md) | Shared-record local names append a thirty-three-byte shipped tail and terminator | recorded |
 | [FND-EXE-045](../findings/FND-EXE-045.md) | Record setup initializes missing shared storage before mode-dependent link publication | recorded |
+| [FND-EXE-046](../findings/FND-EXE-046.md) | Record-mode admission distinguishes direct clearing from initialization and a flag wait loop | recorded |
 
 ## GFF
 

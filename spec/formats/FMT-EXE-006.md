@@ -156,6 +156,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-043 traces record selection, initialization and shared-pointer publication;
   FND-EXE-044 bounds the shipped copied tail and local name terminators;
   FND-EXE-045 traces lazy initialization and mode-dependent record publication;
+  FND-EXE-046 traces mode admission, flag publication and the bounded wait loop;
   allocation units, capacity, aliases and lifetime remain conditional.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
