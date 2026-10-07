@@ -81,6 +81,7 @@ Entries by area.
 | [FND-EXE-065](../findings/FND-EXE-065.md) | Callback matching combines signed pair branches and preserves a full-word fallback test across a shared jump | recorded |
 | [FND-EXE-066](../findings/FND-EXE-066.md) | Second terminal wrapper calls a shared-field target whose initial helper tail-jumps through the current finalizer field | recorded |
 | [FND-EXE-067](../findings/FND-EXE-067.md) | Classification-one helper preserves counter ordering and returns a saved payload after cleanup before its caller ignores it | recorded |
+| [FND-EXE-068](../findings/FND-EXE-068.md) | Guarded context acquisition separates initialization, preserved-error lookup and zero-return publication | recorded |
 
 ## GFF
 

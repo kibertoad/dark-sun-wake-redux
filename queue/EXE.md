@@ -107,7 +107,8 @@ Next ID: Q-EXE-010
   and decoded-zero index scans (FND-EXE-064), and matching classification, opposite helper-result tests
   and full-word fallback flags (FND-EXE-065), and the second terminal wrapper, normal-return fallback
   and initial shared-target tail dispatch (FND-EXE-066), and classification-one counter/link effects, saved payload
-  and untested caller finalization (FND-EXE-067). These bounded
+  and untested caller finalization (FND-EXE-067), and guarded context acquisition, converted TLS returns
+  and post-publication zero stores (FND-EXE-068). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete
