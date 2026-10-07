@@ -177,7 +177,7 @@ Entries by kind.
 
 ## findings
 
-461 entries.
+463 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -450,6 +450,8 @@ Entries by kind.
 | [FND-EXE-010](../findings/FND-EXE-010.md) | GOG launch metadata selects a configuration with separate game and sound-helper branches | recorded |
 | [FND-EXE-011](../findings/FND-EXE-011.md) | Shipped DOSBox target-token routine retains a trailing colon | recorded |
 | [FND-EXE-012](../findings/FND-EXE-012.md) | Compiled batch-label search calls cleanup that restores saved shell fields | recorded |
+| [FND-EXE-013](../findings/FND-EXE-013.md) | Compiled command dispatcher selects the GOTO record and preserves its two-word call target | recorded |
+| [FND-EXE-014](../findings/FND-EXE-014.md) | Compiled batch-selection branch gates active-batch cleanup with a CALL flag | recorded |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant | recorded |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead | recorded |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) | recorded |

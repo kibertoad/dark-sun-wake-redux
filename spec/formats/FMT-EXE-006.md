@@ -99,7 +99,10 @@ reading of callers, external commands or interpreter behavior is claimed.
   source predicts replacement of the wrapper by a bare batch command, not
   return to it, because only CALL retains the active batch
   (SRC-DOSBOX-GOG-0742). The competing return reading remains unsupported;
-  source-to-binary correspondence and command/mount inputs must decide it.
+  FND-EXE-013 and FND-EXE-014 now provide compiled dispatch and a conditional
+  batch-cleanup distinction, including the CALL flag interval. Command/mount
+  inputs, other flag writers and exceptional/EXIT paths must still decide
+  the complete continuation.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
   are compatible with multiple encodings too. FND-EXE-008 identifies the
@@ -117,5 +120,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   correspondence is not established. FND-EXE-011 now directly records a
   compiled target-token path that retains the trailing colon. FND-EXE-012
   records its search callee and conditional normal-path cleanup restoration.
-  These bounded findings support the source reading without settling command
-  dispatch, external file operations or exceptional paths.
+  FND-EXE-013 additionally reads the compiled command-record consumer and
+  both words of its call target. These bounded findings support the source
+  reading without settling batch-line production, external file operations
+  or exceptional paths.

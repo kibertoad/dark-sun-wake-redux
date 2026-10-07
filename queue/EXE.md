@@ -32,9 +32,11 @@ Next ID: Q-EXE-010
   of the active batch on a failed label search. Next static step: establish
   the relevant source-to-shipped-binary correspondence. FND-EXE-011 and
   FND-EXE-012 now locate compiled token normalization, search and conditional
-  normal cleanup. Next: read the command-record consumer and all target/object
-  inputs, then external file helpers and exceptional cleanup. These partial
-  direct readings do not establish the complete shell outcome.
+  normal cleanup. FND-EXE-013 now reads the command-record consumer and its
+  two-word call target. Next: trace batch-line production and the parser
+  helper outputs into this input path, then external file helpers and
+  exceptional cleanup. These partial direct readings do not establish the
+  complete shell outcome.
   Blocks: complete shell outcome description.
 
 - Q-EXE-007. FMT-EXE-006: Do the shipped game or sound-setup executables
@@ -60,7 +62,10 @@ Next ID: Q-EXE-010
   of the wrapper by a bare batch command, preserving it only for CALL. Next
   static step: verify the relevant compiled routines and mount/file lookup
   inputs; the bundled source alone is not a binary correspondence proof.
-  Blocks: resolved wrapper-helper and continuation description.
+  FND-EXE-013 and FND-EXE-014 now record compiled external-command dispatch,
+  the conditional batch cleanup gate and CALL flag writes. Next: read the
+  lookup helper and extension selection, all flag writers and EXIT paths,
+  then the declared mount/overlay inputs. Blocks: resolved wrapper-helper and continuation description.
 
 ## Emulated call
 
