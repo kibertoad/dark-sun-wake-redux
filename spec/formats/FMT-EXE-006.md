@@ -201,6 +201,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-088 records overlap construction and distinct stored handlers.
   FND-EXE-089 records selected-callback release admission and first-word cleanup;
   FND-EXE-090 records its downstream stored-target and low-byte fallback gates.
+  FND-EXE-091 records this caller's pre-reader modifier, explicit displacement
+  and physically selected zero-return fallback method.
   Native frame admission, callback invocation, selector effects, allocation units, capacity, aliases
   and lifetime remain conditional.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?

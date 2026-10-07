@@ -129,7 +129,9 @@ Next ID: Q-EXE-010
   head effects and fresh-mode saved-state transfer (FND-EXE-087), and overlap
   construction with distinct stored handlers (FND-EXE-088), selected-callback
   release admission and first-word cleanup (FND-EXE-089), and stored-target
-  dispatch with distinct low-byte fallback gates (FND-EXE-090). These bounded
+  dispatch with distinct low-byte fallback gates (FND-EXE-090), and retained
+  pre-reader modifier/displacement with a physical zero-return fallback target
+  (FND-EXE-091). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete
