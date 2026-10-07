@@ -177,7 +177,7 @@ Entries by kind.
 
 ## findings
 
-480 entries.
+481 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -469,6 +469,7 @@ Entries by kind.
 | [FND-EXE-029](../findings/FND-EXE-029.md) | A dispatch helper searches sentinel-linked nodes and returns an unvalidated stored word | recorded |
 | [FND-EXE-030](../findings/FND-EXE-030.md) | Node comparison uses a stored payload length and unsigned byte ordering | recorded |
 | [FND-EXE-031](../findings/FND-EXE-031.md) | A sentinel collection producer skips creation on a match and links new storage after helper calls | recorded |
+| [FND-EXE-032](../findings/FND-EXE-032.md) | A collection field helper chooses publication through a signed preceding-word guard | recorded |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant | recorded |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead | recorded |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) | recorded |

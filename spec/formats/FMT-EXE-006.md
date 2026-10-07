@@ -140,6 +140,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   valid storage, producer contracts and downstream effects remain conditional.
   FND-EXE-031 traces one collection producer and direct link-write order;
   field helpers, ownership, initialization and cleanup remain unread.
+  FND-EXE-032 reads signed field-publication branches; preceding-word
+  producers, auxiliary effects and ownership remain unresolved.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
   are compatible with multiple encodings too. FND-EXE-008 identifies the

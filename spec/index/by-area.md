@@ -45,6 +45,7 @@ Entries by area.
 | [FND-EXE-029](../findings/FND-EXE-029.md) | A dispatch helper searches sentinel-linked nodes and returns an unvalidated stored word | recorded |
 | [FND-EXE-030](../findings/FND-EXE-030.md) | Node comparison uses a stored payload length and unsigned byte ordering | recorded |
 | [FND-EXE-031](../findings/FND-EXE-031.md) | A sentinel collection producer skips creation on a match and links new storage after helper calls | recorded |
+| [FND-EXE-032](../findings/FND-EXE-032.md) | A collection field helper chooses publication through a signed preceding-word guard | recorded |
 
 ## GFF
 
