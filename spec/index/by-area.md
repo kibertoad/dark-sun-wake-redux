@@ -138,6 +138,7 @@ Entries by area.
 | [FND-EXE-122](../findings/FND-EXE-122.md) | Optional first-mode slot scan clears byte and masks before its selected call | recorded |
 | [FND-EXE-123](../findings/FND-EXE-123.md) | Optional second-mode scan bounds positions to sixteen and adds a count-dependent group gate | recorded |
 | [FND-EXE-124](../findings/FND-EXE-124.md) | Selected callee prefix publishes input byte and gates two reader calls or recursive fallback | recorded |
+| [FND-EXE-125](../findings/FND-EXE-125.md) | Full-width mapped reader separates one four-byte access from independently mapped boundary bytes | recorded |
 
 ## GFF
 

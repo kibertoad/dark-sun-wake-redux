@@ -243,7 +243,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-122 records optional first-mode slot admission and pre-call clearing;
   FND-EXE-123 records second-mode position bounds, group gate and load ordering;
   FND-EXE-124 records selected-callee prefix gates, reader calls and recursive fallback;
-  table/slot producers and remaining selected callee effects remain open.
+  FND-EXE-125 records full-width mapped reads and independent boundary-byte assembly;
+  table/slot producers, concrete reader targets and remaining selected callee effects remain open.
   floating numeric contracts, downstream targets, producers,
   indirect targets and actual state admission remain open.
   Native frame admission, callback invocation, selector effects, allocation units, capacity, aliases

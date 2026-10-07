@@ -166,7 +166,8 @@ Next ID: Q-EXE-010
   mask publishers (FND-EXE-121), and optional first-mode slot admission/clearing
   (FND-EXE-122), and second-mode bounds/group gate/load ordering (FND-EXE-123).
   Selected-callee prefix gates, reader calls and recursive fallback are recorded
-  in FND-EXE-124. Table/slot producers and remaining selected callee
+  in FND-EXE-124; full-width mapping and boundary-byte assembly in FND-EXE-125.
+  Concrete reader targets, table/slot producers and remaining selected callee
   effects remain open. These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
