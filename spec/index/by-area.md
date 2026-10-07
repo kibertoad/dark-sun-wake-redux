@@ -83,6 +83,7 @@ Entries by area.
 | [FND-EXE-067](../findings/FND-EXE-067.md) | Classification-one helper preserves counter ordering and returns a saved payload after cleanup before its caller ignores it | recorded |
 | [FND-EXE-068](../findings/FND-EXE-068.md) | Guarded context acquisition separates initialization, preserved-error lookup and zero-return publication | recorded |
 | [FND-EXE-069](../findings/FND-EXE-069.md) | Context initialization derives its guard from a converted allocation result without always writing the index | recorded |
+| [FND-EXE-070](../findings/FND-EXE-070.md) | Stored callback handler separates exact state-one finalization from signed counter cleanup and forwarding | recorded |
 
 ## GFF
 

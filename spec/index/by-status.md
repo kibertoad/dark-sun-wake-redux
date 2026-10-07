@@ -223,7 +223,7 @@ Entries by status.
 
 ## recorded
 
-499 entries.
+500 entries.
 
 | ID | Title |
 |---|---|
@@ -536,6 +536,7 @@ Entries by status.
 | [FND-EXE-067](../findings/FND-EXE-067.md) | Classification-one helper preserves counter ordering and returns a saved payload after cleanup before its caller ignores it |
 | [FND-EXE-068](../findings/FND-EXE-068.md) | Guarded context acquisition separates initialization, preserved-error lookup and zero-return publication |
 | [FND-EXE-069](../findings/FND-EXE-069.md) | Context initialization derives its guard from a converted allocation result without always writing the index |
+| [FND-EXE-070](../findings/FND-EXE-070.md) | Stored callback handler separates exact state-one finalization from signed counter cleanup and forwarding |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) |

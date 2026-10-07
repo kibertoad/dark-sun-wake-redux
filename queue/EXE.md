@@ -109,7 +109,8 @@ Next ID: Q-EXE-010
   and initial shared-target tail dispatch (FND-EXE-066), and classification-one counter/link effects, saved payload
   and untested caller finalization (FND-EXE-067), and guarded context acquisition, converted TLS returns
   and post-publication zero stores (FND-EXE-068), and initialization index stores, converted guard writes
-  and ignored callback values (FND-EXE-069). These bounded
+  and ignored callback values (FND-EXE-069), and stored-handler state branches, signed cleanup counters
+  and the separate context getter (FND-EXE-070). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete

@@ -180,6 +180,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-067 traces classification-one counter/link effects, saved return and caller continuation;
   FND-EXE-068 traces guarded context acquisition, converted TLS returns and post-publication zero stores;
   FND-EXE-069 traces initialization index stores, converted guard writes and ignored callback values;
+  FND-EXE-070 traces stored-handler state branches, signed cleanup counters and its context getter;
   allocation units, capacity, aliases and lifetime remain conditional.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
