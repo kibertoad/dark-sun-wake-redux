@@ -151,6 +151,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-038 traces temporary input/end production and range-copy branches;
   FND-EXE-039 traces the bounded null-input construction and failure route;
   FND-EXE-040 traces their conditional raw-prefix release boundary;
+  FND-EXE-041 traces a mutable final target and its normal-return import boundary;
   allocation units, capacity, aliases and lifetime remain conditional.
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers

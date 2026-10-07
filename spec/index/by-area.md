@@ -54,6 +54,7 @@ Entries by area.
 | [FND-EXE-038](../findings/FND-EXE-038.md) | Temporary production distinguishes null input from equal endpoints before payload copying | recorded |
 | [FND-EXE-039](../findings/FND-EXE-039.md) | Null-input failure route constructs a payload field before signed decrement and shared publication | recorded |
 | [FND-EXE-040](../findings/FND-EXE-040.md) | Conditional payload release forwards the raw prefix pointer except for one fixed address | recorded |
+| [FND-EXE-041](../findings/FND-EXE-041.md) | Failure finalization reads a mutable indirect target before reaching an abort import | recorded |
 
 ## GFF
 
