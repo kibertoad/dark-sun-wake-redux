@@ -221,7 +221,9 @@ reading of callers, external commands or interpreter behavior is claimed.
   records category/flag state admission and copied-word publication. FND-EXE-102
   records helper depth/callback publication and distinct conditional/normal
   restoration. FND-EXE-103 grounds the conditional wait-target/callback link
-  and distinct signed/full-width retry and dispatch gates; downstream targets, producers,
+  and distinct signed/full-width retry and dispatch gates. FND-EXE-104
+  records admission sum exits, callback-list order and budget publication;
+  floating numeric contracts, downstream targets, producers,
   indirect targets and actual state admission remain open.
   Native frame admission, callback invocation, selector effects, allocation units, capacity, aliases
   and lifetime remain conditional.
