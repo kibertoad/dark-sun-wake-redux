@@ -41,29 +41,27 @@ An owner-approved history repair remains separate from this maintenance scope.
 
 ## Handover
 
-- Stage: Slices. Research-side repository workflow maintenance so far; no
-  game spec, parity, queue or behavior changes in these tooling batches.
-- Last full gate: 2026-10-07, assetless Test.ps1 -NoRestore passed in this
-  isolated worktree. Current logs and known argument-check skips are in
-  docs/VALIDATION.md; pinned digests/links and explicit main-base comparison
-  passed. The current rule-template checker controls passed too.
-- Unfinished: none in this worktree. All completed work remains local for
-  owner review; no push was performed.
-- Environment: PowerShell 7 is in the parent checkout's
-  artifacts/pwsh7/runtime/pwsh.exe; select its locked evidence-python
-  interpreter with EVIDENCE_PYTHON. Clear GAME_DIR and
-  NoDefaultCurrentDirectoryInExePath. TEMP/TMP belong to the account actually
-  executing the process. For hooks export this worktree's artifacts/hook-tmp
-  as TMPDIR inside Git Bash; keep the hook enabled. Reusable MSBuild nodes
-  and other projects' processes were preserved; no confirmed orphan needed
-  stopping in the post-commit audit.
-- Blockers: the parent checkout's metadata repair still awaits owner
-  approval; docs/HANDOVER.md records it. It does not block isolated work.
-  Do not rewrite main or another session's commits.
-- Upstream: template issue 80 has local discovery, research-summary and
-  template acceptance; issue 82 has executing-account evidence. Local
-  acceptance does not prove upstream template adoption or package delivery.
-- Next: recheck the shared clone's goal claims and other sessions' work,
-  then select Q-EXE-002 (FMT-EXE-006) if unclaimed. Add EXE to this goal's
-  scope and adjust its Must not touch in a separate claim commit before
-  researching it. Retain CONFIG/SCRIPT and the upstream gap ledger exclusions.
+- Stage: Slices. The ongoing protocol objective remains active on this local
+  goal branch. Workflow tooling batches and the EXE research batch are complete.
+- Last full gate: 2026-10-07, assetless Test.ps1 -NoRestore passed. This
+  batch's logs are artifacts/exe-batches-full-gate.log and
+  artifacts/exe-batches-docs.log. Explicit main-base documentation checking
+  passed; existing argument-check skips remain. Pre-commit checks passed.
+- Unfinished: none in this worktree. No pushes were performed. Research
+  follow-ups remain Q-EXE-004, Q-EXE-005, Q-EXE-006 and Q-EXE-001.
+- Environment: use the parent checkout's portable PowerShell and locked
+  evidence-python interpreter. Clear GAME_DIR and
+  NoDefaultCurrentDirectoryInExePath. TEMP/TMP must belong to the account
+  actually executing the process. For hooks export this worktree's
+  artifacts/hook-tmp as TMPDIR inside Git Bash. Keep hooks enabled.
+- Process audit: reusable MSBuild nodes and uncertain or unrelated processes
+  were preserved. No confirmed session orphan required stopping.
+- Blockers: the parent checkout's history-message repair awaits owner
+  approval and remains recorded in docs/HANDOVER.md. Do not rewrite shared
+  history; this does not block isolated work.
+- Upstream: toolkit issue 325 records the bounded MODE2 content-source
+  request after duplicate checks. Template issues 80 and 82 retain the
+  workflow and temporary-directory reports. No upstream delivery is claimed.
+- Next: recheck shared goal claims and select Q-EXE-004; then Q-EXE-005 and
+  Q-EXE-006 in static-first order. Q-EXE-001 needs a new tool, evidence or
+  reading before retry. Keep CONFIG/SCRIPT and the gap ledger excluded.
