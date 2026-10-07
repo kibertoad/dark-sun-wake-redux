@@ -177,7 +177,7 @@ Entries by kind.
 
 ## findings
 
-568 entries.
+569 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -557,6 +557,7 @@ Entries by kind.
 | [FND-EXE-117](../findings/FND-EXE-117.md) | Exact-equality record merge conditionally increments a counter before fresh write-position arithmetic | recorded |
 | [FND-EXE-118](../findings/FND-EXE-118.md) | Shared flag counters precede a latch-setting tail insertion with no local rollback | recorded |
 | [FND-EXE-119](../findings/FND-EXE-119.md) | Object-gate-absent priority path rejoins local-flag publication after optional state calls | recorded |
+| [FND-EXE-120](../findings/FND-EXE-120.md) | Post-record nonzero-byte priority path publishes local flags before the shared counter suffix | recorded |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant | recorded |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead | recorded |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) | recorded |
