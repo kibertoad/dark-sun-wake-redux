@@ -102,6 +102,8 @@ Entries by area.
 | [FND-EXE-086](../findings/FND-EXE-086.md) | Resource handler and ordinary setter publish status before distinct onward gates | recorded |
 | [FND-EXE-087](../findings/FND-EXE-087.md) | Shared-head selection negates before dispatch and freshly chooses saved-state publication | recorded |
 | [FND-EXE-088](../findings/FND-EXE-088.md) | Status-overlap transfer constructs before decrement admission and keeps distinct handler routes | recorded |
+| [FND-EXE-089](../findings/FND-EXE-089.md) | Selected callback changes its first word before old-value release admission and final cleanup | recorded |
+| [FND-EXE-090](../findings/FND-EXE-090.md) | Handler helper retains two low-byte fallback gates after a direct stored-target call | recorded |
 
 ## GFF
 

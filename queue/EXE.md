@@ -127,7 +127,9 @@ Next ID: Q-EXE-010
   (FND-EXE-084), and reverse-slot releases with three-word initialization
   (FND-EXE-085), distinct status/handler gates (FND-EXE-086), signature-selected
   head effects and fresh-mode saved-state transfer (FND-EXE-087), and overlap
-  construction with distinct stored handlers (FND-EXE-088). These bounded
+  construction with distinct stored handlers (FND-EXE-088), selected-callback
+  release admission and first-word cleanup (FND-EXE-089), and stored-target
+  dispatch with distinct low-byte fallback gates (FND-EXE-090). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete

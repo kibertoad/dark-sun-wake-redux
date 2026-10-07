@@ -177,7 +177,7 @@ Entries by kind.
 
 ## findings
 
-537 entries.
+539 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -526,6 +526,8 @@ Entries by kind.
 | [FND-EXE-086](../findings/FND-EXE-086.md) | Resource handler and ordinary setter publish status before distinct onward gates | recorded |
 | [FND-EXE-087](../findings/FND-EXE-087.md) | Shared-head selection negates before dispatch and freshly chooses saved-state publication | recorded |
 | [FND-EXE-088](../findings/FND-EXE-088.md) | Status-overlap transfer constructs before decrement admission and keeps distinct handler routes | recorded |
+| [FND-EXE-089](../findings/FND-EXE-089.md) | Selected callback changes its first word before old-value release admission and final cleanup | recorded |
+| [FND-EXE-090](../findings/FND-EXE-090.md) | Handler helper retains two low-byte fallback gates after a direct stored-target call | recorded |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant | recorded |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead | recorded |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) | recorded |
