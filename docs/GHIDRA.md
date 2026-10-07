@@ -136,9 +136,13 @@ Retain that project only locally and reuse it for focused scripts:
   $wakeProjectRoot DarkSunWakeAnalysis `
   -process 'DSUN.EXE' `
   -noanalysis `
-  -scriptPath (& ./tools/Get-GhidraScriptPath.ps1) `
+  -scriptPath ('"' + (& ./tools/Get-GhidraScriptPath.ps1) + '"') `
   -postScript ReportFunctionSummary.java 0x00000000
 ```
+
+The extra literal quotes keep the semicolon-separated script directories in one
+argument through the Windows batch launcher. Without them, the second directory
+can be rejected by Ghidra as a separate argument, even under PowerShell 7.
 
 The address above is intentionally a placeholder example, not a finding. Replace
 it only with an address selected through an evidence-led query.
