@@ -177,7 +177,7 @@ Entries by kind.
 
 ## findings
 
-558 entries.
+559 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -547,6 +547,7 @@ Entries by kind.
 | [FND-EXE-107](../findings/FND-EXE-107.md) | Callback wrappers combine a zero-extended word with an object field and tail-transfer to insertion or pair removal | recorded |
 | [FND-EXE-108](../findings/FND-EXE-108.md) | Fixed callback selects one of four object slots and forwards a shifted low word only for a nonnull slot | recorded |
 | [FND-EXE-109](../findings/FND-EXE-109.md) | Callback consumer has dedicated word dispatch and clears six fields only after its value-two call returns | recorded |
+| [FND-EXE-110](../findings/FND-EXE-110.md) | Callback value seven publishes a flag before priority selection and tail-transfers only on a gated state change | recorded |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant | recorded |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead | recorded |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) | recorded |

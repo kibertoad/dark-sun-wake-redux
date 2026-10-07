@@ -151,7 +151,8 @@ Next ID: Q-EXE-010
   retained-successor callback traversal (FND-EXE-106), and fixed-target
   insertion/removal wrapper inputs (FND-EXE-107), and fixed callback slot
   selection and shifted-word forwarding (FND-EXE-108), and downstream
-  dispatch/value-two clearing (FND-EXE-109). These bounded
+  dispatch/value-two clearing (FND-EXE-109), and value-seven flag priority
+  and gated state transfers (FND-EXE-110). These bounded
   readings do not establish the complete shell outcome. Next: trace record
   construction and caller invariants, allocation callback/exceptional contracts, prefix
   length/storage/alias contracts, concrete
