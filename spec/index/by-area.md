@@ -57,6 +57,7 @@ Entries by area.
 | [FND-EXE-041](../findings/FND-EXE-041.md) | Failure finalization reads a mutable indirect target before reaching an abort import | recorded |
 | [FND-EXE-042](../findings/FND-EXE-042.md) | Shared-record reader decodes thirty-two atom-name bytes after a nonzero import result | recorded |
 | [FND-EXE-043](../findings/FND-EXE-043.md) | Shared-record initialization verifies an encoded allocation before publishing target-field pointers | recorded |
+| [FND-EXE-044](../findings/FND-EXE-044.md) | Shared-record local names append a thirty-three-byte shipped tail and terminator | recorded |
 
 ## GFF
 
