@@ -807,6 +807,21 @@ remain strict. Deliberately uniform positive input proves rejection after source
 readiness, with actual-size and readiness diagnostics. The test subprocess retains
 its outer timeout. This establishes synthetic fixture readiness, not freshness
 or parity of an original-game capture. Production capture code is unchanged.
-Focused controls: artifacts/engine101/capture-readiness-targeted3.log.Full assetless `tools/Test.ps1 -NoRestore` passed after the readiness fix; log:
+Focused controls: artifacts/engine101/capture-readiness-targeted3.log. Full assetless `tools/Test.ps1 -NoRestore` passed after the readiness fix; log:
 artifacts/engine101/capture-readiness-full-gate4.log. Documentation base comparison
 passed; original-dependent tests skipped.
+
+Sandbox-account assetless validation, 2026-10-07: `tools/Test.ps1 -NoRestore`
+passed with PowerShell 7 after clearing `GAME_DIR` and
+`NoDefaultCurrentDirectoryInExePath` and setting process-local `TEMP` and `TMP`
+to the executing sandbox account's existing temporary directory. The inherited
+owner-account temporary directory caused Java `Path.toRealPath()` to fail with
+`AccessDeniedException` in the broad-export boundary control. The guard remained
+unchanged; the rerun verified its accepted scratch output and rejected checkout
+and traversal cases. No global environment settings were changed.
+Pinned rules and tooling integrity, repository/configuration checks, synthetic
+suites and the full .NET suite passed (715 tests). The documentation checker
+passed with its reported argument-check skips; this does not establish those
+skipped checks or any original-game behavior. No original runtime was started.
+Failure log: `artifacts/session-20261007-gate.log`; passing log:
+`artifacts/session-20261007-gate-sandbox-temp.log`.
