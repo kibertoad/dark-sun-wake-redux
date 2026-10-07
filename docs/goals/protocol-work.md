@@ -13,6 +13,8 @@ it with a narrower goal. Keep its unfinished work and next actions here.
 
 ## Scope
 
+The owner-requested latest-template synchronization is authorized tooling within this goal.
+
 Research-side repository workflow and tooling: local session skills, goal
 discovery and handovers, protocol conformance, validation and upstream reports.
 Research areas: EXE, including the FMT-EXE-006 follow-up questions. Research batches
@@ -49,7 +51,7 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Stage: Slices. The ongoing protocol objective remains active on this local
   goal branch. Completed workflow tooling and EXE research are committed.
 - Last full gate: 2026-10-07, assetless Test.ps1 -NoRestore passed.
-  Logs: artifacts/exe-components-full-gate.log and artifacts/exe-components-docs.log.
+  Logs: artifacts/latest-template-sync-final-gate.log and artifacts/template-sync-docs.log.
   Documentation generation and explicit main-base checking passed;
   existing argument-check skips remain. Pre-commit checks passed.
   The last full source-listing reconciliation remains
@@ -75,7 +77,9 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Upstream: template issue 83 records the Windows combined-script-path
   launch defect and the successful two-directory control. Template issues
   80 and 82, and toolkit issues 325 and 327 retain the earlier reports.
-  No upstream fix delivery is claimed.
+  Template issue 86 records the reproduced goal-hook missing-identity defect;
+  its narrow downstream guard has synthetic controls. No upstream fix delivery
+  is claimed.
 - Next: recheck shared goal claims, then Q-EXE-009 using FND-EXE-015,
   FND-EXE-017 through FND-EXE-021 for remaining filename-helper
   prefix-producer, caller storage/alias and drive-object coverage, PATH admission
