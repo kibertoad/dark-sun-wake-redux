@@ -53,7 +53,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
 - Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore and endpoint checks passed.
-  EXE research through FND-EXE-210, measured-baseline tooling and independent
+  EXE research through FND-EXE-211, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
   and its independently failing-before/passing-after synthetic regression.
@@ -117,8 +117,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   its narrow downstream guard has synthetic controls. No upstream fix delivery
   is claimed. Toolkit issue 111 also records the reference-type guidance concern.
   Follow-up: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6044911287.
-  Related PR 339 is merged (verified 2026-10-07); package delivery and
-  the released FND-EXE-022 operand-writer control rerun remains pending.
+  Related PR 339 is merged; released FND-EXE-022 writer controls passed in FND-EXE-211.
+  Rerun: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6068134095.
   Toolkit issue 350 received a duplicate follow-up on inventory ownership:
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/350#issuecomment-6046763133.
   Toolkit issue 111 also received a duplicate-checked request for explicit
