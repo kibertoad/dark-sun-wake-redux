@@ -278,6 +278,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-157 records guarded full equality with fresh d/n/v bytes and later full D;
   FND-EXE-158 records strict byte comparison, saved inputs and bounded partial-register mask work;
   FND-EXE-159 records strict word comparison with retained words, fresh bytes and later word D;
+  FND-EXE-160 records strict full comparison with retained inputs, fresh n/d/v bytes and later full D;
   table/slot producers, runtime writers/other prefix effects and remaining selected callee effects remain open.
   floating numeric contracts, downstream targets, producers,
   indirect targets and actual state admission remain open.
