@@ -1,0 +1,8 @@
+{
+  "excludedExecutables": [
+    {
+      "file": "DOSBOX/DOSBox.exe",
+      "reason": "Bundled emulator, not reimplemented game behavior; owner scope clarification recorded in docs/DECISIONS.md on 2026-10-09."
+    }
+  ]
+}

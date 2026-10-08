@@ -126,7 +126,7 @@ original's files and the asset-pack contracts, with no MonoGame.
 **Non-goals.** The repository and packages contain no original assets,
 executables, archives, manuals, clue books, screenshots, saves or extracted
 data. The project does not copy original source or static-analysis output,
-reproduce DOSBox, invent cut content, rewrite the campaign, or support an
+reproduce or count DOSBox as game research, invent cut content, rewrite the campaign, or support an
 edition nobody has fingerprinted. Multiplayer, a level editor and other AD&D
 titles are out of scope. Loading the original's saves and importing a
 *Shattered Lands* party are not promised (owner question O2).

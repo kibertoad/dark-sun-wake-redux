@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Compares measured analysis snapshots with existing inventories; addresses/counts only.
-import {readFileSync,writeFileSync,mkdirSync,cpSync,existsSync,readdirSync} from 'node:fs';
+import {readFileSync,writeFileSync,mkdirSync,cpSync,existsSync,readdirSync,rmSync} from 'node:fs';
 import {resolve,join,dirname} from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
@@ -23,8 +23,14 @@ function linear(s){if(s.includes(':')){const[a,b]=s.split(':').map(x=>parseInt(x
 const pair=n=>`${Math.floor(n/16).toString(16).toUpperCase().padStart(4,'0')}:${(n%16).toString(16).toUpperCase().padStart(4,'0')}`;
 const hex=n=>'0x'+n.toString(16).toUpperCase().padStart(8,'0');
 function main(directory){
- const base=resolve(directory),views=JSON.parse(text(join(base,'views.json'))),reportRoot=join(base,'measurement-root');
+ const base=resolve(directory),allViews=JSON.parse(text(join(base,'views.json'))),reportRoot=join(base,'measurement-root');
+ const scope=JSON.parse(text(join(root,'tools/evidence/research-scope.json')));
+ const views=allViews.filter(v=>!scope.excludedExecutables.some(x=>x.file===v.manifest));
  mkdirSync(reportRoot,{recursive:true});cpSync(join(root,'spec'),join(reportRoot,'spec'),{recursive:true});
+ for(const excluded of scope.excludedExecutables){
+  if(!/^[A-Za-z0-9_.-]+(?:\/[A-Za-z0-9_.-]+)*$/.test(excluded.file)||excluded.file.split('/').includes('..'))throw Error('Unsafe excluded manifest');
+  rmSync(join(reportRoot,'coverage/BLD-GOG-EN-1.1',excluded.file+'.tsv'),{force:true});
+ }
  const problems=[];const spec=loadSpec({config:parseOptions(['--root',root]),problem:(...args)=>problems.push(args)});
  if(problems.length)throw Error(`Spec load has ${problems.length} problems`);
  const byFile=new Map(),audits=[];

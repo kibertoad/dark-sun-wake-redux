@@ -28,13 +28,22 @@ parity, data-format coverage, queue sizes and formal complete-reading availabili
 Whole-file search citations can touch every function without reading its behavior.
 Neither citation coverage nor container-format coverage is gameplay completion.
 
-Existing committed inventories remain separate from these fresh snapshots until
-mapping and body anomalies are reconciled. In particular, fresh definitions
+The SVIEW, PATCH and CHARTRAN inventories use repeated,
+range-aware snapshots validated against their unchanged starts and sizes.
+Their provenance and regions files accompany them. The SOUND_DS candidate
+passes coverage validation but exposes historical finding endpoints during
+the documentation check; review those instructions before replacement.
+DOSBox is excluded by the owner's scope clarification in `docs/DECISIONS.md`;
+its historical inventory is archived under `docs/host-analysis/` and the
+baseline excludes it through `tools/evidence/research-scope.json`.
+The two DSUN inventories
+remain separate from fresh snapshots until mapping and body anomalies are
+reconciled. In particular, fresh definitions
 outside declared overlay code ranges are retained and reported rather than
 clipped to make the standard reporter accept them. Local report output and
 analysis projects stay in GAME_DIR; no generated report is committed.
 
-The retained historical inventories are not a valid input to the current
+The retained historical DSUN and SOUND_DS inventories are not valid input to the current
 `standard-coverage` command: filename-plus-offset starts and lower-case MZ
 addresses fail its notation checks. A failed run's zero denominator is not
 zero research coverage. Use the range-aware audit comparison for provisional
@@ -42,6 +51,17 @@ figures, identify its snapshot and revision, and disclose
 `standardReporterAnomalies`; do not present that comparison as a passing
 standard inventory check. Reconcile mapping, body ownership and declared code
 ranges before replacing inventories, rather than merely changing their spelling.
+
+`node tools/evidence/migrate-inventory.mjs <views.json> <staging-directory>
+<manifest-path>...` stages unchanged single-view inventories with full body
+ranges. It verifies source XXH3/MD5, exporter SHA256, repeated exports, ordered
+unique starts, unchanged starts/sizes, entry inclusion, body unions, region
+containment and anomaly counters. It refuses annotated historical rows and
+multi-view mappings pending explicit reconciliation. Check both exporter
+completion markers in the original log and run the standard coverage checker
+against staged files before replacement. Staging uses exclusive writes and
+never replaces a committed file. Keep source/configs/logs local; only the
+address/count inventories, provenance and region metadata are committed.
 
 Requires Node.js 22 or later and the packages `./tools/Restore-ToolDependencies.ps1` installs. Run synthetic tests with
 `node --test tests/evidence/evidence.test.mjs`; the canonical validation gate

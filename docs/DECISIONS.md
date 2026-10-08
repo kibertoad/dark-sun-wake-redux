@@ -1,5 +1,14 @@
 # Decisions
 
+## 2026-10-09: Exclude DOSBox from game-restoration research coverage
+
+The owner clarified that DOSBox is an emulator on top of the game and is
+not being reimplemented. Its functions do not count toward game research
+coverage or complete-reading priorities. Retain existing host research as
+historical context, but direct executable research to the game and its own
+utilities. Distribution and launch configuration may still be documented
+where needed to identify or import the licensed game.
+
 Decisions the owner has made about scope and product that are not in the spec:
 which editions are supported, what is out of scope, features outside the
 parity matrix, release timing. Live sessions are answered in their request

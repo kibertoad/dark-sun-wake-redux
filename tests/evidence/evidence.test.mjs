@@ -11,6 +11,20 @@ import { run } from "../../tools/evidence/report.mjs";
 import { readPe32 } from "../../tools/evidence/pe-image.mjs";
 import { peTransferCandidates } from "../../tools/evidence/pe-transfers.mjs";
 import { overlayBodyPartitions } from "../../tools/evidence/overlay-bodies.mjs";
+import { unchangedInventory } from "../../tools/evidence/migrate-inventory.mjs";
+
+test('inventory migration preserves complete disjoint bodies and rejects unresolved changes',()=>{
+ const old='start\tsize\n1000:0000\t4\n';
+ const fresh='start\tsize\tranges\n1000:0000\t4\t1000:0000..1000:0002 1000:0004..1000:0006\n';
+ const provenance='key\tvalue\nfunctions\t1\nsummed_body_bytes\t4\nunique_body_bytes\t4\nbody_bytes_outside_regions\t0\nentries_without_instruction\t0\n';
+ const regions='start\tsize\tbody_bytes\tinstructions\tinstructions_outside\tdata\tdata_outside\tundefined\tundefined_outside\n1000:0000\t8\t4\t4\t0\t0\t0\t4\t4\n';
+ assert.equal(unchangedInventory(old,fresh,provenance,regions),fresh);
+ assert.throws(()=>unchangedInventory(old.replace('\t4','\t5'),fresh,provenance,regions),/changed/);
+ assert.throws(()=>unchangedInventory(old,fresh,provenance.replace('entries_without_instruction\t0','entries_without_instruction\t1'),regions),/anomalies/);
+ assert.throws(()=>unchangedInventory(old,fresh.replace('1000:0004..1000:0006','1000:0001..1000:0003'),provenance,regions),/body/);
+ assert.throws(()=>unchangedInventory(old,fresh.replace('1000:0004..1000:0006','1000:0008..1000:000A'),provenance,regions),/body/);
+ assert.throws(()=>unchangedInventory(old.replace('start\tsize','start\tsize\tname').replace('\t4\n','\t4\tname\n'),fresh,provenance,regions),/Annotations/);
+});
 
 function synthetic() {
   const b = Buffer.alloc(592), w = (p, n) => b.writeUInt16LE(n, p), d = (p, n) => b.writeUInt32LE(n, p);
