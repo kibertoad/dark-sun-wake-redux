@@ -376,6 +376,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-238 reads the priority callee's carry gates, unresolved far
   callback, saved registers, full-width product and far error transfer.
   Direct callee effects, pointer writers, stack aliases and native state remain open.
+  Tried: FND-EXE-239 reads the shared gate's sole explicit carry-clear
+  normal return and six call sites; three distinct callees, native state,
+  saved-stack integrity and intervening writes remain unresolved.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
