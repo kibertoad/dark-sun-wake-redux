@@ -388,6 +388,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-242 reads a source-derived segment-to-header candidate's
   bounds, preceding-segment link, marker and published-segment checks.
   Native callers, input/state admission and field writers remain unresolved.
+  Tried: FND-EXE-243 reads the adjacent state consumer's separate SS word
+  traversals and store/cleanup order; its incoming bound does not cover the
+  second traversal. Native frames, link writers and independent bounds remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
