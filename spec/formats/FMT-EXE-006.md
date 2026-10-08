@@ -171,6 +171,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-196 traces ordinary signed admission, helper iteration and six-return stores;
   FND-EXE-197 bounds one nested-record source prefix's conditional read extent;
   FND-EXE-198 narrows selected-local frame origin and ordinary nested lifetime;
+  FND-EXE-199 narrows zero-mode alias candidates with full-width mode admission;
   SRC-WIN32-X86-ABI supplies an external host flat-mode and ordinary ABI
   contract, without admitting native segments or every local helper's effects;
   FND-EXE-059 bounds the matching byte reader and terminating full-word outputs;

@@ -271,6 +271,9 @@ Next ID: Q-EXE-011
   SRC-WIN32-X86-ABI supplies the external flat-mode/register-preservation
   contract; its sample selectors do not establish native DS/SS bases, and
   generic calling conventions cannot replace local argument/effect readings.
+  FND-EXE-199 narrows zero-mode incoming-slot overlaps using the actual mode
+  guard and duplicate outgoing words. Nonzero-word admission/preservation,
+  remaining partial overlaps and selected-local aliases remain required.
   FND-EXE-168 narrows explicit decoded publication sites and separates fresh
   allocation from decoded existing/fallback origins. Next: decoded-record
   input admission and allocator/storage lifetime; retain excluded indirect
