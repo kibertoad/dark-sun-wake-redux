@@ -58,6 +58,8 @@ bounded source reader; this does not establish native loader behavior.
   records both omitted candidate bytes and extra analyzer-owned chunks.
   FND-EXE-226 supplies resident handler callee leads, retaining the unresolved
   far callback and native frame/segment admission before attributing transfers.
+  FND-EXE-227 identifies the resident far-jump rewrite's separate segment
+  source; live header production and post-call count/segment admission remain open.
 
 - Whether the loader replaces each fixup word with the segment its descriptor names, and which
   segment that is for a descriptor of an overlay (FND-EXE-007, Q-EXE-001).

@@ -341,7 +341,10 @@ Next ID: Q-EXE-014
   beyond the descriptor both require review, not just scalar size correction.
   Tried: FND-EXE-226 supplies the initial resident handler's direct callee
   and unresolved far callback; its complete CFG still assumes all calls return.
-  Next: the handler callee and callback admission, then descriptor 198's native entry
+  Tried: FND-EXE-227 identifies the far-jump rewrite and its separate live
+  segment source, retaining optional-callee and post-call count/segment effects.
+  Next: header word 0x0010's producer and live header/callee admission,
+  then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
   Blocks: reconciled executable denominator and complete-reading declarations
   that depend on those function boundaries.

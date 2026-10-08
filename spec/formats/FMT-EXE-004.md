@@ -44,3 +44,5 @@ All 854 trampolines of the installed `DSUN.EXE` and all 863 of the disc's [FND-E
 
 - Whether a far call to a trampoline loads the overlay and jumps to `target`, and what `unk_04`
   holds at run time (FND-EXE-007, Q-EXE-001).
+  FND-EXE-227 records a conditional resident rewrite into a far-jump offset
+  and segment; live header/segment production and actual transfer remain unread.
