@@ -312,8 +312,8 @@ FND-EXE-166 reader-return endpoint and FND-EXE-022 one-byte-return controls.
 Extending the reader window by one instruction produced two spans separated
 by its listing gap. Starting inside the branch was refused without a span.
 These controls validate the reporter's actual licensed-source cases; rich
-reports remain local. FND-EXE-022's separate operand-writer search is still
-pending and is not discharged by a context or span report.
+reports remain local. FND-EXE-211 separately records the released operand-writer
+controls; that evidence comes from its candidate search, not a context or span report.
 
 `ReportCitationBoundaries.java` takes 1..32 `start..end` queries, optionally
 suffixed `:return`. End is exclusive. It checks only the start instruction

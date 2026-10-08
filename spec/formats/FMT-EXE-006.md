@@ -121,7 +121,9 @@ reading of callers, external commands or interpreter behavior is claimed.
   and retained output mutations. Prefix provenance, caller contracts and
   complete resolution remain open. FND-EXE-022 records two pointer-installation
   paths and one direct prefix transfer; constructors, concrete virtual targets
-  and storage/alias bounds remain unread. FND-EXE-023 records a direct record
+  and storage/alias bounds remain unread. FND-EXE-211 classifies its two known
+  indexed writers within bounded bodies, retaining unsearched code and callees.
+  FND-EXE-023 records a direct record
   append and its conditional growth path; allocation contracts, object
   construction and caller invariants still need evidence. FND-EXE-024
   identifies allocation/release imports and local retry/return boundaries;

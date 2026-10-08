@@ -107,7 +107,8 @@ Next ID: Q-EXE-011
   initial selector production/writers and drive-command gates (FND-EXE-017,
   FND-EXE-018, FND-EXE-019), filename byte/component transformations and
   retained failure writes (FND-EXE-020, FND-EXE-021), and two pointer-installation
-  paths with an object-plus-four prefix transfer (FND-EXE-022), and record
+  paths with an object-plus-four prefix transfer (FND-EXE-022), their bounded
+  indexed-writer controls (FND-EXE-211), and record
   append/growth arithmetic and publication boundaries (FND-EXE-023), and
   allocation/release import and local retry boundaries (FND-EXE-024), and
   failure-object prefix/bitmap fallback boundaries (FND-EXE-025), and a bounded
