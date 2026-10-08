@@ -166,7 +166,7 @@ An owner-approved history repair remains separate from this maintenance scope.
      FND-EXE-165 is the current replacement; do not reuse superseded citation
      locations. Require selected-local and field-writer admission before a
      complete_reading declaration. Follow FND-EXE-166's specific remaining
-     obligations: setup preservation, FND-EXE-198's admitted frame/segment path,
+     obligations: setup preservation and SRC-WIN32-X86-ABI contract admission,
      lifetime, FND-EXE-197's source/offset-28 preservation, aliases and indirect uses.
      FND-EXE-167 is the current setup-prefix replacement. Follow its shared-base
      producers through FND-EXE-043 and FND-EXE-170, segment admission and
