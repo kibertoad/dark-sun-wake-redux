@@ -56,10 +56,9 @@ An owner-approved history repair remains separate from this maintenance scope.
   all EXE research batches and the measured-baseline tooling batch.
   The latest complete-reading boundary correction passed the full assetless
   gate and pre-commit checks; existing argument-check skips remain.
-  FND-EXE-166's caller/input research batch also passed that gate and hooks.
-  FND-EXE-167's setup-preservation research batch passed the full gate and hooks.
-  FND-EXE-168's shared-publication research batch passed the full gate and hooks.
-  FND-EXE-170 and SRC-MS-CRT-ASSERT passed the full assetless gate and hooks.
+  FND-EXE-171 passed the full assetless gate and hooks.
+  Prior caller/input, setup-preservation, shared-publication and failure-import
+  research batches passed the full assetless gate and hooks.
   Explicit main-base documentation checking passed; generated files were left unchanged.
   Existing argument-check skips remain. Remote-base ancestry was rechecked
   and is available; explicit local main-base checking passed. Pre-commit
@@ -172,6 +171,9 @@ An owner-approved history repair remains separate from this maintenance scope.
      decoder's input obligations; retain original state and lifetime limits.
      SRC-MS-CRT-ASSERT is an external contract only; follow the loaded CRT
      effects and conditional failure continuations in FND-EXE-170.
+     FND-EXE-171 replaces the startup reading. Its fixed-bound helper needs
+     independent physical relative-target and interior-entry admission checks;
+     retain the decoded-reference and exact address-word search exclusions.
      FND-EXE-164 is
      the latest composed reading; follow concrete offset-24 callback
      producers and input consumption for FND-EXE-163/FND-EXE-053, then
