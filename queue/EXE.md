@@ -349,6 +349,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-229 reads the comparison helper's word/carry results and
   caller restoration, with semantic ES-write control. Other state writers,
   publisher callees and native segment/storage admission remain unresolved.
+  Tried: FND-EXE-230 identifies one source-word writer and its wrapped
+  header-word increment; actual input bounds, other writers and the remainder
+  of the writing procedure remain unread.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
