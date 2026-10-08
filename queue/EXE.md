@@ -262,6 +262,9 @@ Next ID: Q-EXE-011
   address-word searches and its post-setup argument reload. Next closure
   check: setup preservation of that incoming slot, selected-local lifetime,
   offset-28 field writers and excluded computed/indirect uses. FND-EXE-167
+  and FND-EXE-197 retain distinct setup and concrete-source obligations:
+  the latter bounds one shipped prefix's conditional five-byte read, without
+  admitting runtime selection, field/source preservation or aliases. FND-EXE-167
   narrows direct setup writes under the flat-address model; shared-base
   provenance, DS/SS identity and other callee effects remain required.
   FND-EXE-168 narrows explicit decoded publication sites and separates fresh
