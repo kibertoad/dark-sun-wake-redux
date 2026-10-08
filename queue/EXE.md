@@ -335,8 +335,12 @@ Next ID: Q-EXE-014
   Equal numeric offsets or a generic Win32 ABI sample do not settle it.
   Existing evidence: FND-EXE-198 supplies the live frame geometry;
   FND-EXE-167 separates pointer stores from stack accesses;
-  SRC-WIN32-X86-ABI is an external contract only. Next: locate concrete
-  segment-state producers and intervening writes in the shipped host code.
+  SRC-WIN32-X86-ABI is an external contract only. Next: classify remaining
+  empty effects and unsearched instruction streams; establish the initial-state
+  supplier and external-preservation evidence separately from explicit setters.
+  Tried: FND-EXE-217's controlled p-code output census and individual opaque
+  instruction classification. Empty effects, undecoded/interior streams,
+  external preservation and initial descriptor bases remain unadmitted.
   If static code cannot admit the loaded bases, state the exact external
   input/runtime evidence required rather than silently assuming equality.
   Blocks: reader storage-identity admission in Q-EXE-009.

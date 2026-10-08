@@ -326,6 +326,9 @@ reading of callers, external commands or interpreter behavior is claimed.
   ordinary reader route, while FND-EXE-167/168/200/201 retain intervening
   alias and producer alternatives. The settling evidence for each is in its
   queue item; none is discharged by citation coverage or a finite prefix.
+  FND-EXE-217 adds the controlled decoded DS/SS-output domain and opaque-site
+  classifications for Q-EXE-011. Its zero modeled matches do not admit initial
+  descriptor bases or preservation through missing/opaque and external effects.
   Preserved-selector-input and alias-modified-input readings remain open:
   the former needs setup, selected-local lifetime and field-writer admission;
   the latter needs a concrete intervening writer (Q-EXE-009). Neither a
