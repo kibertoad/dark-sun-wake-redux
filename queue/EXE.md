@@ -364,6 +364,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-234 reads the tail helper's incoming-BP SS word traversal,
   matching stores and caller result consumption; native link/stack admission,
   saved-slot aliases and traversal/output bounds remain unresolved.
+  Tried: FND-EXE-235 reads cleanup rewrite/callback/clear order and returned
+  CX consumption. The DS-relative near callback's writers and native target,
+  output bounds and segment/saved-slot admission remain unresolved.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
