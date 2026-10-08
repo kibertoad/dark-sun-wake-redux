@@ -338,6 +338,11 @@ Next ID: Q-EXE-014
   address words; FND-EXE-208 compares physical rel32 and decoded interior
   targets. Next: classify the excluded transfer representations and establish
   which can actually supply this body as a target; follow their producers.
+  Tried: FND-EXE-219 adds controlled short/conditional forms and a raw
+  short-jump candidate in the preceding undecoded gap. Five-form physical
+  and controlled decoded incoming searches find no admitted direct route
+  into that gap. Next: its excluded transfer/prefix and alternate-stream
+  admission, without declaring the raw candidate padding or a caller.
   Blocks: reader caller-completeness admission in Q-EXE-009.
 
 - Q-EXE-013. FMT-EXE-006: What last writes the selected-record reader's

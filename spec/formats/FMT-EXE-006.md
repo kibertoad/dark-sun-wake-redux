@@ -333,6 +333,9 @@ reading of callers, external commands or interpreter behavior is claimed.
   with a separate WAIT control that prevents equating empty p-code with a NOP.
   Actual initial descriptor and external-preservation evidence remains required
   by Q-EXE-011; the classification does not establish storage identity.
+  FND-EXE-219 identifies an undecoded short-jump candidate into the reader
+  and controlled empty direct-incoming domains for its preceding gap.
+  Its admission remains Q-EXE-012; neither padding nor a second caller is established.
   Preserved-selector-input and alias-modified-input readings remain open:
   the former needs setup, selected-local lifetime and field-writer admission;
   the latter needs a concrete intervening writer (Q-EXE-009). Neither a
