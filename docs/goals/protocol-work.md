@@ -153,7 +153,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   1. Q-EXE-010, FMT-EXE-005: reconcile revision-2 comparison in
      GAME_DIR/analysis/work-baseline/relocation-reconciled. Revisit
      FND-EXE-173's segment/dispatch reading against FND-EXE-174's snapshots.
-     Retain old artifacts and committed inventories for comparison.
+     Retain old artifacts and committed inventories for comparison. For Q-EXE-001,
+     continue local overlay-vector-producers and overlay-loader-prefix reports.
   2. Q-EXE-009, FMT-EXE-006: continue producer/lifetime contracts and
      the remaining dependencies listed in its queue item toward the first
      qualifying complete-reading package. Check FND-EXE-056's bounded reader
@@ -191,7 +192,6 @@ An owner-approved history repair remains separate from this maintenance scope.
      The boundary audit through FND-EXE-160 is complete; range corrections
      for FND-EXE-131 through FND-EXE-144 are committed.
      Aggregate executable coverage was checked before this reading.
-     Other prefix writer leads remain in the local reference report.
   3. Q-EXE-006 and Q-EXE-008, FMT-EXE-006: batch-input/parser and
      helper/cleanup coverage from FND-EXE-013, then disc-installer callers.
   4. Q-EXE-007, FMT-EXE-006: game/setup launch references.
