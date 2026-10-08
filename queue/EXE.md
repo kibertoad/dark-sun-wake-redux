@@ -406,6 +406,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-248 reads the content-transfer helper's seek/read requests,
   unchecked seek carry, short-read exit and actual caller carry consumption.
   DOS effects, handle/offset writers, destination extent and aliases remain open.
+  Tried: FND-EXE-249 reads the post-transfer word rewrites, shifted-count edge
+  and nested pattern/search contract. Native table/count admission, independent
+  extents, saved-stack aliases and other incoming transfers remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
