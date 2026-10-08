@@ -51,7 +51,7 @@ These are successive stores, not an atomic publication of three cells.
 
 FND-EXE-043's verified allocation-and-registration route retains its
 saved allocation only after the masked nonzero identifier is passed to
-FND-EXE-042's reader and the reader's full returned word compares equal
+FND-EXE-170's reader and the reader's full returned word compares equal
 to that saved allocation. The comparison path restores the masked
 identifier into a separate register, uses it as the admission flag and
 joins publication on the nonzero equality route. A returned record is
@@ -66,7 +66,7 @@ same publication join. The existing-record route also copies that reader's
 full return into the selected-base register and falls through to the join.
 The local join itself cannot tell which storage origin supplied that word.
 
-FND-EXE-042 reads the leading four-byte value through its decoded address
+FND-EXE-170 reads the leading four-byte value through its decoded address
 and accepts equality to 60 on its ordinary return. That is a record-content
 test, not an allocation-origin or non-stack test. Neither that test nor
 publication of base-plus-four and base-plus-eight establishes disjointness
@@ -110,6 +110,6 @@ Read fifty-five instructions from `0x00600734`, retaining only the three
 cited spans. Follow the saved allocation, reader return, masked identifier,
 comparison and admission flag, release before fallback lookup, full-word
 selected-base writes, pending outgoing cleanup and successive global stores.
-Use FND-EXE-042 and FND-EXE-043 for the other initializer and reader branches,
+Use FND-EXE-170 and FND-EXE-043 for the other initializer and reader branches,
 and FND-EXE-167 for the distinct callback-frame preservation question.
 Keep rich reports local and execute no original program.

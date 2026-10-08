@@ -82,7 +82,7 @@ Next ID: Q-EXE-010
   construction and failure publication (FND-EXE-039), and raw-prefix
   release forwarding (FND-EXE-040), and mutable final-target/import
   boundaries (FND-EXE-041), and encoded shared-record reading
-  (FND-EXE-042), and shared-record initialization/publication
+  (FND-EXE-170, including the physical CRT failure import and conditional local continuations; SRC-MS-CRT-ASSERT is an external contract only), and shared-record initialization/publication
   (FND-EXE-043), and copied-tail/local-name termination
   (FND-EXE-169), and lazy initialization/record publication
   (FND-EXE-167), and mode admission/flag waiting

@@ -13,7 +13,7 @@ licence: null
 
 Read on 2026-10-08 for Q-EXE-009. These are published external API
 contracts for the names independently identified in FND-EXE-043 and
-FND-EXE-042, not observations of an executed system library.
+FND-EXE-170, not observations of an executed system library.
 
 - [AddAtomA](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-addatoma),
   updated 2024-11-20: accepts a terminated string of at most 255 bytes.
@@ -36,7 +36,7 @@ unchanged tail, while retrieval retains the first registered case pattern.
 This is an inference from the external contracts and FND-EXE-043's producer,
 not a native observation or proof of the stored record's lifetime.
 
-The initialized extent needed by FND-EXE-042's fixed thirty-two-byte decode
+The initialized extent needed by FND-EXE-170's fixed thirty-two-byte decode
 must come from the actual returned name and its admitted identifier. A
 nonzero result alone does not prove that extent. A known unchanged
 initializer-produced name has the extent in FND-EXE-169, but existing table

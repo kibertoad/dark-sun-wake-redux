@@ -31,7 +31,7 @@ FND-EXE-043, each 65 or 97. Each tail is copied immediately after that prefix
 using eight 32-bit loads/stores and one two-byte load/store. Therefore, under
 unchanged tail storage and normal reads, each local buffer contains sixty-five
 nonzero bytes and one NUL, at relative index 65. The final two-byte copy supplies
-the last nonzero tail byte and the terminator. FND-EXE-042 requests 66 bytes
+the last nonzero tail byte and the terminator. FND-EXE-170 requests 66 bytes
 from the name import; this observation establishes the initializer-produced
 name extent, not all inputs that can reach that reader.
 

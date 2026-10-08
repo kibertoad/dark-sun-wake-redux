@@ -41,7 +41,7 @@ contents and terminator are not interpreted in this finding.
 It calls `0x00602540` with that buffer and tests only the low sixteen return
 bits. The thunk's slot `0x02431804` is FindAtomA from KERNEL32.dll by bounded
 physical import reading. Nonzero masks the returned word to sixteen bits,
-passes it in the return register to FND-EXE-042's reader, then saves the reader
+passes it in the return register to FND-EXE-170's reader, then saves the reader
 result as the selected base and joins publication. There is no local result-null
 check on the reader result. Import names include NUL in the cited file ranges.
 
@@ -79,7 +79,7 @@ That thunk's slot `0x024317D8` is AddAtomA from KERNEL32.dll, independently
 mapped with malloc/free controls matching FND-EXE-024.
 
 The low sixteen return bits are tested. Zero selects fallback. Nonzero is
-masked and passed in the return register to FND-EXE-042's reader. Its full
+masked and passed in the return register to FND-EXE-170's reader. Its full
 returned pointer is compared with the saved allocation. Equality retains
 the nonzero masked identifier and selects publication with that allocation.
 Inequality selects fallback regardless of the reader's returned word.
@@ -122,7 +122,7 @@ bounded PE descriptors and terminated lookup thunks with malloc/free controls.
 Track the nonzero entry exit, both local buffers, allocation/null branch,
 repeated-store count and segment, all field stores, mask initialization and
 encoding loop, low-half guards, reader comparison, release before fallback
-lookup, combined outgoing cleanup and publication order. Use FND-EXE-042 for
+lookup, combined outgoing cleanup and publication order. Use FND-EXE-170 for
 the register-input reader and the cited import findings. Retain unread tail,
 external and lifetime effects as conditional. Keep rich reports local and
 execute no interpreter or game.
