@@ -278,6 +278,8 @@ Next ID: Q-EXE-011
   FND-EXE-209 supplies two concrete callback/metadata producers; admit each
   selected origin; FND-EXE-210 bounds both distinct conditional prefix extents.
   Source/field preservation and downstream stream/target consumption remain open.
+  FND-EXE-212 adds branch-specific count writers and finite conditional pair
+  consumption; fixed-arm admission, preservation and later matching still need evidence.
   FND-EXE-167 narrows direct setup writes under the flat-address model;
   shared-base provenance, DS/SS identity, indirect aliases and preservation
   through the other setup routes and callees remain required.
