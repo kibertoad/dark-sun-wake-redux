@@ -52,7 +52,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   works in this repository, so the goal runs on main in the single checkout,
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
-- Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore passed after reader-closure split.
+- Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore and synthetic segment controls passed.
   EXE research through FND-EXE-216, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
@@ -67,8 +67,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   Refreshed comparison: GAME_DIR/analysis/work-baseline/relocation-reconciled;
   legacy coverage rejection is documented in docs/EVIDENCE-TOOLS.md. Inventories remain
   pending definition/mapping reconciliation; do not discard anomalous ranges
-  or publish unverified replacements. Candidate reports remain local; durable
-  reader evidence is in FND-EXE-166, with no complete-reading promotion.
+  or publish unverified replacements. Segment report: GAME_DIR/analysis/work-baseline/decoded-segment-output-audit.log;
+  durable reader evidence remains FND-EXE-166, with no complete-reading promotion.
 - Owner priority: complete-reading closure now takes precedence over broad
   new partial readings. Use Q-EXE-009 and FMT-EXE-006 to assemble a bounded
   evidence package, checking complete bodies, independent caller searches,
@@ -147,7 +147,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   Interrupt-use capability: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/370.
   Intermittent synthetic capture gate: https://github.com/kibertoad/dark-sun-wake-redux/issues/7; rechecks passed.
   Toolkit span rerun: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6068047179; R1/R3 passed; deliberate-prefix follow-up: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/343#issuecomment-6068249317.
-  Inventory migration follow-up: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6068550782.
+  Inventory/segment follow-ups: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6068550782 and https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6068837696.
   Partial-overlap/guard follow-ups: https://github.com/kibertoad/refurbished-dinosaurs/issues/37#issuecomment-6066902929 and https://github.com/kibertoad/refurbished-dinosaurs/issues/37#issuecomment-6067099318.
 - Next, after rechecking shared goal claims:
   1. Q-EXE-010, FMT-EXE-005: reconcile revision-2 comparison in
@@ -159,7 +159,7 @@ An owner-approved history repair remains separate from this maintenance scope.
      Admit FND-EXE-185's backing memory, destination extent and aliases; follow
      FND-EXE-186's selector/table writers and FND-EXE-187's request, wrapper-record,
      FND-EXE-192's provenance and FND-EXE-195's excluded setter forms; retain lifetime contracts.
-  2. Q-EXE-011/012/013, FMT-EXE-006: resolve reader identity/callers/writers;
+  2. Q-EXE-011: classify segment-audit opaque effects and initial bases; then Q-EXE-012/013.
      retain Q-EXE-009's full wrapper scope and dependencies toward the first
      qualifying complete-reading package. Check FND-EXE-056's bounded reader
      candidate against FND-EXE-165's inputs, FND-EXE-196 and FND-EXE-053's producers;
