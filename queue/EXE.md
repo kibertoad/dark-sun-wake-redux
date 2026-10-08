@@ -421,6 +421,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-253 reads both replacement cleanup bodies and their distinct
   state-clear paths, interrupt and post-call reloads. Live slot/segment admission,
   external contracts, flag/pointer writers and low-memory aliases remain open.
+  Tried: FND-EXE-254 follows the first callback writer's helper-result gate,
+  early flag and argument stores and fresh post-call product publications.
+  Native frame/segment preservation, cleanup-flag writers and bounds remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
