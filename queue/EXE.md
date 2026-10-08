@@ -343,6 +343,9 @@ Next ID: Q-EXE-014
   and controlled decoded incoming searches find no admitted direct route
   into that gap. Next: its excluded transfer/prefix and alternate-stream
   admission, without declaring the raw candidate padding or a caller.
+  Tried: FND-EXE-220 extends the controlled physical absolute-word search
+  to every gap and reader byte address. Computed, split, relative and
+  runtime-written target representations remain outside that search.
   Blocks: reader caller-completeness admission in Q-EXE-009.
 
 - Q-EXE-013. FMT-EXE-006: What last writes the selected-record reader's

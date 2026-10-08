@@ -336,6 +336,9 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-219 identifies an undecoded short-jump candidate into the reader
   and controlled empty direct-incoming domains for its preceding gap.
   Its admission remains Q-EXE-012; neither padding nor a second caller is established.
+  FND-EXE-220 excludes exact shipped four-byte absolute address words for
+  every byte address in that gap and reader; other target representations
+  and their producers remain Q-EXE-012.
   Preserved-selector-input and alias-modified-input readings remain open:
   the former needs setup, selected-local lifetime and field-writer admission;
   the latter needs a concrete intervening writer (Q-EXE-009). Neither a
