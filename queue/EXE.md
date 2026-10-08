@@ -34,7 +34,9 @@ Next ID: Q-EXE-011
   pointer producer and counter-helper success return; establish counter
   initialization/unit/lifetime, failure effects and callback setup. FND-EXE-184
   records setup state ordering and result consumption; read its builder,
-  diagnostic and metadata callees, state producers and dispatch. Blocks: none.
+  diagnostic and metadata callees, state producers and dispatch. FND-EXE-185
+  resolves the selected builder arm; establish its backing-memory producers,
+  destination extent and callback-table dispatch. Blocks: none.
 
 - Q-EXE-005. FMT-EXE-006: Which code page interprets the disc sound helper's
   display bytes? Settles it: direct interpreter configuration or code-page/font

@@ -60,6 +60,8 @@ bounded source reader; this does not establish native loader behavior.
   counter admission, failure behavior and callback setup remain unread.
   FND-EXE-184 follows setup ordering and result consumption; callee effects,
   state admission, metadata extents and dispatch remain unresolved.
+  FND-EXE-185 bounds the selected builder arm and its return; backing memory,
+  admitted destination extent and callback dispatch remain unread.
 
 - Which analyzer-owned body fragments are native code under the original CS
   bindings (Q-EXE-010)? FND-EXE-173 separates their physical source regions
