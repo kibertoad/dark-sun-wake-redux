@@ -10,19 +10,19 @@ method: static
 locations:
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A180E..0x004A1870
+    address: 0x004A180E..0x004A1875
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A1FB3..0x004A1FBB
+    address: 0x004A1FB3..0x004A1FC0
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A1FD6..0x004A1FD9
+    address: 0x004A1FD6..0x004A1FDE
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
     address: 0x004A2280..0x004A2287
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A18D2..0x004A18DC
+    address: 0x004A18D2..0x004A18E1
 tool: Ghidra 12.1.3 PUBLIC bounded complementary-count full-width prefix branch reading
 environment: null
 ---
@@ -96,3 +96,11 @@ subtraction before masked shift counts, retained N/V, alternate clears,
 XOR sign flags and both direct joins. Check Alternatives' count/sign cases
 as local arithmetic controls, not native inputs. No native or emulated
 execution is part of this finding.
+
+The location ranges use exclusive ends, including the final transfers
+already described above. Verify the corrected boundaries with additional
+windows at `0x004A1870`, `0x004A1FBB`, `0x004A1FD9`, `0x004A18DC`,
+each with limit two; the following instruction starts are their exclusive ends.
+The range ending at `0x004A2287` already ends after its final jump;
+a window at `0x004A2282` with limit three confirms the reported gap
+starts there. The gap remains outside the cited range and is not an absence claim.

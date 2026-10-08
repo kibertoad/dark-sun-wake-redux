@@ -13,13 +13,13 @@ locations:
     address: 0x004A1875..0x004A18D7
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A1FE6..0x004A2013
+    address: 0x004A1FE6..0x004A2018
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A1FDE..0x004A1FE1
+    address: 0x004A1FDE..0x004A1FE6
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A2226..0x004A222E
+    address: 0x004A2226..0x004A2233
 tool: Ghidra 12.1.3 PUBLIC bounded complementary word-count prefix branch reading
 environment: null
 ---
@@ -99,3 +99,11 @@ subtraction and shift, alternate mask clears, retained N/V XOR and
 fresh tail reads. Check counts zero, one, 16, 17 and 33 and each word
 high-bit combination as local arithmetic controls, not native inputs.
 No native or emulated execution is part of this finding.
+
+The location ranges use exclusive ends, including the final transfers
+already described above. Verify the corrected boundaries with additional
+windows at `0x004A2013`, `0x004A1FE1`, `0x004A222E`,
+each with limit two; the following instruction starts are their exclusive ends.
+The range ending at `0x004A18D7` delegates its remaining shared suffix
+to FND-EXE-142 as described above; it does not truncate the final instruction
+of the locally described portion.

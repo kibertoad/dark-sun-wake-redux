@@ -10,13 +10,13 @@ method: static
 locations:
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A18E1..0x004A195F
+    address: 0x004A18E1..0x004A1964
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A2073..0x004A20B3
+    address: 0x004A2073..0x004A20B8
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A2233..0x004A223B
+    address: 0x004A2233..0x004A2240
 tool: Ghidra 12.1.3 PUBLIC bounded complementary byte-count prefix branch reading
 environment: null
 ---
@@ -98,3 +98,8 @@ writers on each path, bounded subtraction, zero-extension, alternate clears,
 retained V and final flags transfer. Check counts zero, one, eight, nine,
 32 and 33 and each byte high-bit combination as local arithmetic controls,
 not native inputs. No native or emulated execution is part of this finding.
+
+The location ranges use exclusive ends, including the final transfers
+already described above. Verify the corrected boundaries with additional
+windows at `0x004A195F`, `0x004A20B3`, `0x004A223B`,
+each with limit two; the following instruction starts are their exclusive ends.
