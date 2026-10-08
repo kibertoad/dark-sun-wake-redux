@@ -373,6 +373,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-237 reads the replacement callback's ordered state-bit
   dispatch and both direct targets; native DS/caller admission, state-byte
   writers and the two callee effects remain unresolved.
+  Tried: FND-EXE-238 reads the priority callee's carry gates, unresolved far
+  callback, saved registers, full-width product and far error transfer.
+  Direct callee effects, pointer writers, stack aliases and native state remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
