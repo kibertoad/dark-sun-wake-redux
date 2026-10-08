@@ -6,9 +6,9 @@ How much of the spec in `spec/` the rebuild does. The rows are in `parity/`, one
 
 | Status | Rows |
 |---|---|
-| unknown | 10 |
+| unknown | 11 |
 | sourced | 30 |
-| supported | 92 |
+| supported | 91 |
 | established | 0 |
 | disputed | 1 |
 | implemented | 25 |

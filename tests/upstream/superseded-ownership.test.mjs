@@ -22,7 +22,7 @@ test("game rule replacement retains historical declarations without active owner
   const retained = original.replace("```historical-text", "```text");
   writeFileSync(file, retained);
   const checked = spawnSync(process.execPath, [checkerScript(),
-    "--root", scratch, "--check"], { cwd: scratch, encoding: "utf8", timeout: 120000 });
+    "--root", scratch], { cwd: scratch, encoding: "utf8", timeout: 120000 });
   assert.equal(checked.status, 0, checked.error?.message ?? checked.stdout + checked.stderr);
   assert.equal(readFileSync(file, "utf8"), retained);
 });

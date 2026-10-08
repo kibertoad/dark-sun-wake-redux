@@ -17,11 +17,14 @@ and `docs/CUSTOMIZATION.md` documents every configuration knob.
 - [x] Survey: reconcile a repeatable complete installation/media listing with
       the manifest and individually reasoned Other files (BLD-GOG-EN-1.1). Give
       every file the manifest lists as `data` a format entry,
-      export a function inventory of each file the analysis reads to
+      export a function inventory in the standard's per-format notation of each file the analysis reads to
       `coverage/<build ID>/<manifest path>.tsv`, add a screen entry for every
       screen the manual mentions, and keep a `queue/<AREA>.md` for every area.
 
 ## Configure
+
+- [ ] If main requires pull requests, configure the scheduled generated-documentation
+      job's push permission before relying on refreshed indexes (docs/VALIDATION.md).
 
 - [x] Fill in `tools/project-config.json` and run `./tools/Configure-Project.ps1`.
 - [x] Run `./tools/Verify-Configuration.ps1` and resolve every finding.

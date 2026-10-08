@@ -22,10 +22,10 @@ Selected fingerprinted members are under `dosbox-0.74-2.1/`:
 
 | Member | Bytes | XXH3-128 |
 |---|---|---|
-| src/shell/shell_misc.cpp | 17059 | f4a3f1ffdc5a7f2999b1556e1d8a209c |
-| src/shell/shell_batch.cpp | 5534 | 7608684dea106b5777910dbdb1acdf3f |
-| src/shell/shell_cmds.cpp | 31920 | c151f2e30abdd2f471469042dddb6384 |
-| src/shell/shell.cpp | 25590 | 866b71fc7e4cd8c7b119d991db51604c |
+| dosbox-0.74-2.1/src/shell/shell_misc.cpp | 17059 | f4a3f1ffdc5a7f2999b1556e1d8a209c |
+| dosbox-0.74-2.1/src/shell/shell_batch.cpp | 5534 | 7608684dea106b5777910dbdb1acdf3f |
+| dosbox-0.74-2.1/src/shell/shell_cmds.cpp | 31920 | c151f2e30abdd2f471469042dddb6384 |
+| dosbox-0.74-2.1/src/shell/shell.cpp | 25590 | 866b71fc7e4cd8c7b119d991db51604c |
 | include/shell.h | 3979 | a8055205228a02b5bdcee6058f4e930f |
 | COPYING | 17992 | 95ba191925e071364b68b7eda4757d94 |
 
@@ -92,7 +92,7 @@ consumers: Execute and Which; batch constructor, destructor, ReadLine and
 Goto; DoCommand, CMD_CALL, CMD_EXIT, CMD_GOTO and CMD_IF; shell constructor,
 RunInternal, Run, AUTOEXEC constructor and first-shell setup. Inspect the
 local StripSpaces helpers in shell_cmds.cpp and ltrim/rtrim/trim in
-src/misc/support.cpp too: those helpers strip whitespace, not a trailing
+dosbox-0.74-2.1/src/misc/support.cpp too: those helpers strip whitespace, not a trailing
 colon. CMD_IF's
 ERRORLEVEL path compares the stored return code against its parsed threshold
 with greater-than-or-equal before dispatching the remaining command.

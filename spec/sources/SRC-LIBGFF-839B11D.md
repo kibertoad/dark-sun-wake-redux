@@ -12,7 +12,7 @@ licence: MIT
 ## Use
 
 A clean-room reimplementation of the games' GFF reader and GPL script
-interpreter. Its `src/gpl/state.c` shows how its authors reset local and
+interpreter. Its [libgff’s state.c](https://github.com/dsoageofheroes/libgff/blob/839b11d0ac63492e28f70968cfc3d967828958f5/src/gpl/state.c) shows how its authors reset local and
 global script variables. It is somebody else's reading of the scripts, so it
 supports a claim only as a secondary source next to a reading of this build's
 data or executable.

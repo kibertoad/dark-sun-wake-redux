@@ -111,7 +111,7 @@ only the lines the link gives, and never a section already read this session.
    value patterns, names, the manual, similar games) is recorded as findings
    and named in Open questions for or against a reading, never listed in
    `evidence`, and leaves the entry `unknown` or `sourced`.
-   Corrections follow [Identifiers](../../../vendor/upstream/documentation-standard.md#identifiers) (lines 120-160):
+   Corrections follow [Identifiers](../../../vendor/upstream/documentation-standard.md#identifiers) (lines 122-162):
    edit a finding or experiment in place only when its recorded facts stay
    the same. A factual correction, including query values, reproduction
    steps or interpretation, supersedes the whole entry. Keep its old text;
@@ -136,8 +136,8 @@ only the lines the link gives, and never a section already read this session.
    decide a result, and nothing left to interrupts or threads (`# may run:`),
    memory nothing wrote, timing, or the operating system. List its findings in
    the entry's `complete_reading`. The standard's
-   [Complete readings](../../../vendor/upstream/documentation-standard.md#complete-readings) (lines 191-291)
-   and [Findings](../../../vendor/upstream/documentation-standard.md#findings) (lines 606-680)
+   [Complete readings](../../../vendor/upstream/documentation-standard.md#complete-readings) (lines 193-293)
+   and [Findings](../../../vendor/upstream/documentation-standard.md#findings) (lines 608-682)
    sections list what that covers; the parts most often missed are the
    segment each access actually goes through, every part of a stored call
    target, the other byte of a word written a byte at a time, allocation
@@ -201,9 +201,12 @@ only the lines the link gives, and never a section already read this session.
      the new entry's row;
    - `Spec gap:` notes: add item IDs (step 1) and remove the notes of closed
      items.
-8. **Check**: run the documentation check (it rewrites `spec/index/` and
-   `PARITY.md`; commit what it writes). Resolve a merge conflict in those
-   files by taking either side and running the check again, never by hand.
+8. **Check**: run the documentation check with `--check`. Leave
+   `spec/index/` and `PARITY.md` as they are: they change only on the main
+   branch, where a scheduled job regenerates them, and the check fails a
+   batch that edits one. To read current copies, run
+   `node tools/upstream.mjs docs --generate` and do not commit what it
+   writes (restore the files before committing).
 9. **Commit** with a message saying what was found and on what evidence, ending
    in a `Spec:` trailer listing the entries created or changed, and a
    `Parity:` trailer listing the rows whose status changed, if any, and a

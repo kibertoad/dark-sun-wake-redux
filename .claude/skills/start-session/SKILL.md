@@ -6,7 +6,7 @@ description: Resume restoration work at the start of a session. Use before any r
 # Start a session
 
 The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#sessions) (lines 321-329).
-Goal discovery follows [Coding agents and long-running goals](../../../vendor/upstream/work-protocol.md#coding-agents-and-long-running-goals) (lines 446-497).
+Goal discovery follows [Coding agents and long-running goals](../../../vendor/upstream/work-protocol.md#coding-agents-and-long-running-goals) (lines 482-533).
 Open a linked section only when a step leaves a question it answers, read
 only the lines the link gives, and never a section already read this session.
 This skill is the procedure; where they differ, the protocol wins.
@@ -47,6 +47,12 @@ This skill is the procedure; where they differ, the protocol wins.
    on a clean tree is the first thing to fix.
 5. Read the plan's stage and current slice in `docs/IMPLEMENTATION-PLAN.md`,
    and check `docs/live-sessions/` for a request the owner has accepted.
+   Where `coverage/` holds function inventories, `npm exec -- standard-coverage`
+   prints how much of each file the spec cites and which functions no entry
+   cites; read the figures there and commit none of them. `spec/index/` and
+   `PARITY.md` on a branch are as old as the main branch it last took in;
+   `node tools/upstream.mjs docs --generate` writes current copies, which are
+   read and not committed.
 6. Pick the next work:
    - Research: first triage the open reports in `docs/reports/` that the
      goal may take (`triage-report`). Then turn every `Spec gap:` note in

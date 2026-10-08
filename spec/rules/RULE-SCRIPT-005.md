@@ -56,7 +56,7 @@ None known.
 
 ## What the sources say
 
-SRC-LIBGFF-839B11D, `src/gpl/state.c`, `gff_gpl_state_init`: clears 800 global flags, 400 global
+SRC-LIBGFF-839B11D, [libgff’s state.c](https://github.com/dsoageofheroes/libgff/blob/839b11d0ac63492e28f70968cfc3d967828958f5/src/gpl/state.c), `gff_gpl_state_init`: clears 800 global flags, 400 global
 numbers, 40 global big numbers, 32 global strings and 13 global names, and then the local flags,
 numbers and big numbers (64, 32 and 40 of them). A comment on its local state says it will have
 to be tied to a region. Its sizes are its own choices and have not been compared with this

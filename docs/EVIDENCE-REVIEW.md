@@ -6,7 +6,7 @@ rules it applies are the Standard and Protocol in the local
 reasoning in findings, complete-reading citations and Open questions using the
 existing v1 fields; do not add unsupported schema fields.
 
-Apply the [bounded analysis report contracts](../vendor/upstream/documentation-standard.md#bounded-analysis-reports) (lines 293-373)
+Apply the [bounded analysis report contracts](../vendor/upstream/documentation-standard.md#bounded-analysis-reports) (lines 295-375)
 to each supported query. Keep configurations and reports in `GAME_DIR` and out
 of commits. A report's complete-search claim covers only its stated domain and
 model. A game's request for reporter behaviour stays open until the reporter
@@ -165,12 +165,12 @@ about computed targets.
 
 An operating-system or library function reached through a PE import address
 table is named by the slot's address and the import the file's import tables
-put there, read as [STATUS-42](../vendor/upstream/documentation-standard.md#status-42) (lines 363-365)
+put there, read as [STATUS-42](../vendor/upstream/documentation-standard.md#status-42) (lines 365-367)
 describes, never by its position in a listing such as `dumpbin /imports`. The
 query names a positive control slot. Arguments at a call site can confirm or
 contradict a mapping, never identify an import. A finding about what a table of
 pointers holds reads the entries from the build's bytes as
-[STATUS-43](../vendor/upstream/documentation-standard.md#status-43) (lines 371-373) describes: address,
+[STATUS-43](../vendor/upstream/documentation-standard.md#status-43) (lines 373-375) describes: address,
 stride, pointer offset and width, count and the code that bounds it, the
 mapping, and per entry the length read and its terminator. An analyzer listing
 is compared with the bytes, never used in their place, and an entry that points
@@ -196,7 +196,7 @@ preserves history and transfers active citations to the replacements.
 A finding or experiment is edited in place only where nothing it records
 changes (spelling, formatting, a broken link, a rewording that states the same
 facts). Any correction to a recorded fact supersedes the whole entry under
-[IDENTIFIERS-8](../vendor/upstream/documentation-standard.md#identifiers-8) (lines 152-160): the
+[IDENTIFIERS-8](../vendor/upstream/documentation-standard.md#identifiers-8) (lines 154-162): the
 observations that still hold go into replacements under new IDs, which start
 `recorded` and say in Alternatives (an experiment's Conclusion) what was wrong
 and how it was found. Every citing entry and glossary claim then moves to the
@@ -207,7 +207,7 @@ A finding's How to reproduce may name the tool and version, a script under
 from a configuration kept in `GAME_DIR` that the result depends on. Rules,
 formats, screens and bugs name no research tool; they cite the finding.
 
-Under [Identifiers](../vendor/upstream/documentation-standard.md#identifiers) (lines 120-160),
+Under [Identifiers](../vendor/upstream/documentation-standard.md#identifiers) (lines 122-162),
 a factual correction to any part of a finding or experiment supersedes the
 whole entry. Keep its old text and give the still-valid and corrected
 observations new IDs at recorded, with the replacement's own recorder. Name
@@ -222,5 +222,7 @@ Inventories contain only function starts, body sizes and permitted
 researcher-authored names/reasons. Export raw analyzer coordinates locally, map
 them through declared views, reject ambiguous ownership and use portable paths.
 Coverage totals describe the measured inventory, including exclusions; they are
-not a percentage of understood behavior. Original bytes, generated analyzer names
+not a percentage of understood behavior. `npm exec -- standard-coverage` computes
+them from the inventories and the spec's locations when they are wanted, and
+they are not committed. Original bytes, generated analyzer names
 and analysis reports stay outside Git.

@@ -6,7 +6,7 @@ parity matrix, release timing. Live sessions are answered in their request
 files in `docs/live-sessions/`, and the tooling the work protocol asks for
 needs no decision. Newest first. A decision that departs from the original is
 also a deviation in `deviations/`. See the
-[work protocol](../vendor/upstream/work-protocol.md#what-needs-the-owner) (lines 442-444).
+[work protocol](../vendor/upstream/work-protocol.md#what-needs-the-owner) (lines 478-480).
 
 Each entry is a `##` heading of the form `YYYY-MM-DD: what was decided`,
 followed by the reason in a short paragraph and what it rules in or out.

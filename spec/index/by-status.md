@@ -6,13 +6,14 @@ Entries by status.
 
 ## unknown
 
-10 entries.
+11 entries.
 
 | ID | Title |
 |---|---|
 | [FMT-ACTOR-002](../formats/FMT-ACTOR-002.md) | Object data resource |
 | [FMT-ACTOR-003](../formats/FMT-ACTOR-003.md) | MONR resource |
 | [FMT-CONFIG-005](../formats/FMT-CONFIG-005.md) | PATCH.RTP file |
+| [FMT-EXE-006](../formats/FMT-EXE-006.md) | BAT launch files |
 | [FMT-SOUND-003](../formats/FMT-SOUND-003.md) | STDPATCH.AD files |
 | [FMT-SOUND-004](../formats/FMT-SOUND-004.md) | ADV files on the disc |
 | [FMT-SOUND-005](../formats/FMT-SOUND-005.md) | GOG disc-audio Ogg tracks |
@@ -65,7 +66,7 @@ Entries by status.
 
 ## supported
 
-112 entries.
+111 entries.
 
 | ID | Title |
 |---|---|
@@ -83,7 +84,6 @@ Entries by status.
 | [FMT-EXE-003](../formats/FMT-EXE-003.md) | FBOV overlay header in the resident image |
 | [FMT-EXE-004](../formats/FMT-EXE-004.md) | FBOV overlay trampoline |
 | [FMT-EXE-005](../formats/FMT-EXE-005.md) | FBOV overlay code block with its fixup list |
-| [FMT-EXE-006](../formats/FMT-EXE-006.md) | BAT launch files |
 | [FMT-GFF-001](../formats/FMT-GFF-001.md) | GFF resource container |
 | [FMT-GFF-002](../formats/FMT-GFF-002.md) | GFF directory |
 | [FMT-GFF-003](../formats/FMT-GFF-003.md) | GFF tag table |
@@ -223,7 +223,7 @@ Entries by status.
 
 ## recorded
 
-574 entries.
+437 entries.
 
 | ID | Title |
 |---|---|
@@ -474,143 +474,6 @@ Entries by status.
 | [FND-EXE-005](../findings/FND-EXE-005.md) | Each overlay's fixup list names words in its code that hold a segment-table index times eight |
 | [FND-EXE-006](../findings/FND-EXE-006.md) | Several four-letter GFF tags occur in DSUN.EXE only inside overlay code |
 | [FND-EXE-007](../findings/FND-EXE-007.md) | The only resident routine that calls both the DOS seek and read wrappers is a signature-and-length record reader |
-| [FND-EXE-008](../findings/FND-EXE-008.md) | Seven manifest-identified batch files contain CRLF command text with distinct launch and setup roles |
-| [FND-EXE-009](../findings/FND-EXE-009.md) | The disc sound helper names two absent jump labels and one colon-suffixed target |
-| [FND-EXE-010](../findings/FND-EXE-010.md) | GOG launch metadata selects a configuration with separate game and sound-helper branches |
-| [FND-EXE-011](../findings/FND-EXE-011.md) | Shipped DOSBox target-token routine retains a trailing colon |
-| [FND-EXE-012](../findings/FND-EXE-012.md) | Compiled batch-label search calls cleanup that restores saved shell fields |
-| [FND-EXE-013](../findings/FND-EXE-013.md) | Compiled command dispatcher selects the GOTO record and preserves its two-word call target |
-| [FND-EXE-014](../findings/FND-EXE-014.md) | Compiled batch-selection branch gates active-batch cleanup with a CALL flag |
-| [FND-EXE-015](../findings/FND-EXE-015.md) | Compiled command lookup tests the supplied name then COM EXE BAT before PATH candidates |
-| [FND-EXE-016](../findings/FND-EXE-016.md) | Compiled count-80 PATH continuation scans for a semicolon without a NUL stop |
-| [FND-EXE-017](../findings/FND-EXE-017.md) | Compiled filename helper writes and bounds a drive selector before its table load |
-| [FND-EXE-018](../findings/FND-EXE-018.md) | Compiled selector writers differ in guard order and success meaning |
-| [FND-EXE-019](../findings/FND-EXE-019.md) | Compiled external-command drive selection requires an exact colon suffix |
-| [FND-EXE-020](../findings/FND-EXE-020.md) | Compiled filename scan counts consumed bytes separately from emitted bytes |
-| [FND-EXE-021](../findings/FND-EXE-021.md) | Compiled filename components shorten names and retain output mutations on failure |
-| [FND-EXE-022](../findings/FND-EXE-022.md) | Compiled pointer installation paths differ in prefix transfer and publication order |
-| [FND-EXE-023](../findings/FND-EXE-023.md) | Compiled record append delegates full storage to a width-sensitive insertion helper |
-| [FND-EXE-024](../findings/FND-EXE-024.md) | Compiled allocation wrapper substitutes zero requests and retries through a callback |
-| [FND-EXE-025](../findings/FND-EXE-025.md) | Allocation failure-object storage has an eighty-byte prefix and a bitmap fallback |
-| [FND-EXE-026](../findings/FND-EXE-026.md) | A compiled append loop derives its slot from a signed byte and initializes after iteration |
-| [FND-EXE-027](../findings/FND-EXE-027.md) | A compiled list producer inserts its allocation result before dispatching an output word |
-| [FND-EXE-028](../findings/FND-EXE-028.md) | Bounded list-producer output dispatch converges on a value reread |
-| [FND-EXE-029](../findings/FND-EXE-029.md) | A dispatch helper searches sentinel-linked nodes and returns an unvalidated stored word |
-| [FND-EXE-030](../findings/FND-EXE-030.md) | Node comparison uses a stored payload length and unsigned byte ordering |
-| [FND-EXE-031](../findings/FND-EXE-031.md) | A sentinel collection producer skips creation on a match and links new storage after helper calls |
-| [FND-EXE-032](../findings/FND-EXE-032.md) | A collection field helper chooses publication through a signed preceding-word guard |
-| [FND-EXE-033](../findings/FND-EXE-033.md) | Two preceding-word helpers differ in whether they return the value before addition |
-| [FND-EXE-034](../findings/FND-EXE-034.md) | Negative-path field storage copies a payload and rereads its source length for publication |
-| [FND-EXE-035](../findings/FND-EXE-035.md) | Payload storage rounds a capacity word and initializes its three-word prefix |
-| [FND-EXE-036](../findings/FND-EXE-036.md) | Capacity-limit helper constructs a local value and decrements its preceding word before failure publication |
-| [FND-EXE-037](../findings/FND-EXE-037.md) | Capacity-limit object construction publishes a payload field before replacing its first word |
-| [FND-EXE-038](../findings/FND-EXE-038.md) | Temporary production distinguishes null input from equal endpoints before payload copying |
-| [FND-EXE-039](../findings/FND-EXE-039.md) | Null-input failure route constructs a payload field before signed decrement and shared publication |
-| [FND-EXE-040](../findings/FND-EXE-040.md) | Conditional payload release forwards the raw prefix pointer except for one fixed address |
-| [FND-EXE-041](../findings/FND-EXE-041.md) | Failure finalization reads a mutable indirect target before reaching an abort import |
-| [FND-EXE-042](../findings/FND-EXE-042.md) | Shared-record reader decodes thirty-two atom-name bytes after a nonzero import result |
-| [FND-EXE-043](../findings/FND-EXE-043.md) | Shared-record initialization verifies an encoded allocation before publishing target-field pointers |
-| [FND-EXE-044](../findings/FND-EXE-044.md) | Shared-record local names append a thirty-three-byte shipped tail and terminator |
-| [FND-EXE-045](../findings/FND-EXE-045.md) | Record setup initializes missing shared storage before mode-dependent link publication |
-| [FND-EXE-046](../findings/FND-EXE-046.md) | Record-mode admission distinguishes direct clearing from initialization and a flag wait loop |
-| [FND-EXE-047](../findings/FND-EXE-047.md) | Mode resource initialization publishes a saved index and a zero-helper-derived mode |
-| [FND-EXE-048](../findings/FND-EXE-048.md) | Record setup resolves TLS imports and tail-returns the later error query on a zero result |
-| [FND-EXE-049](../findings/FND-EXE-049.md) | Record cleanup restores a pre-helper saved link through a freshly selected mode |
-| [FND-EXE-050](../findings/FND-EXE-050.md) | Field and nested-object callers continue without testing record setup or cleanup returns |
-| [FND-EXE-051](../findings/FND-EXE-051.md) | Recovered stored handlers adjust the incoming frame and select distinct forwarding paths |
-| [FND-EXE-052](../findings/FND-EXE-052.md) | Handler forwarding publishes a selected record before restoring frame and stack for an indirect jump |
-| [FND-EXE-053](../findings/FND-EXE-053.md) | Register-input selector traverses a mutable record local and separates callback results from a saved match guard |
-| [FND-EXE-054](../findings/FND-EXE-054.md) | Second selector calls a saved argument target before the current record target and distinguishes zero, seven and eight |
-| [FND-EXE-055](../findings/FND-EXE-055.md) | Stored callback builds a nested saved-state record and returns separately saved early-exit statuses after cleanup |
-| [FND-EXE-056](../findings/FND-EXE-056.md) | Callback access helpers reread a selected-record local and use full-width indexed stores and wrapped count adjustments |
-| [FND-EXE-057](../findings/FND-EXE-057.md) | Signature-selected callback reloads saved state and prepares selected-record fields before returning seven |
-| [FND-EXE-058](../findings/FND-EXE-058.md) | Ordinary callback classifies a signed stored word and saves matched state on a distinct six-return path |
-| [FND-EXE-059](../findings/FND-EXE-059.md) | Matching byte reader accumulates seven-bit groups with masked shifts and writes one word only at termination |
-| [FND-EXE-060](../findings/FND-EXE-060.md) | Callback metadata reader uses independent byte markers and returns a cursor separately from stored relative targets |
-| [FND-EXE-061](../findings/FND-EXE-061.md) | Marker modifier selects zero-return branches and a full-byte bypass before its mask-class abort boundary |
-| [FND-EXE-062](../findings/FND-EXE-062.md) | Typed metadata reader separates guarded width dispatch from zero bypass, base adjustment and one indirect read |
-| [FND-EXE-063](../findings/FND-EXE-063.md) | Nibble-nine byte reader sign-fills only after termination under a full-word shift guard |
-| [FND-EXE-064](../findings/FND-EXE-064.md) | Matching helpers combine marker strides, low-byte virtual results and zero-terminated index scans |
-| [FND-EXE-065](../findings/FND-EXE-065.md) | Callback matching combines signed pair branches and preserves a full-word fallback test across a shared jump |
-| [FND-EXE-066](../findings/FND-EXE-066.md) | Second terminal wrapper calls a shared-field target whose initial helper tail-jumps through the current finalizer field |
-| [FND-EXE-067](../findings/FND-EXE-067.md) | Classification-one helper preserves counter ordering and returns a saved payload after cleanup before its caller ignores it |
-| [FND-EXE-068](../findings/FND-EXE-068.md) | Guarded context acquisition separates initialization, preserved-error lookup and zero-return publication |
-| [FND-EXE-069](../findings/FND-EXE-069.md) | Context initialization derives its guard from a converted allocation result without always writing the index |
-| [FND-EXE-070](../findings/FND-EXE-070.md) | Stored callback handler separates exact state-one finalization from signed counter cleanup and forwarding |
-| [FND-EXE-071](../findings/FND-EXE-071.md) | Head cleanup callee guards an offset-eight indirect target and returns its result unchanged |
-| [FND-EXE-072](../findings/FND-EXE-072.md) | Published head target uses unsigned mode admission and tail-forwards an adjusted payload after an optional callback |
-| [FND-EXE-073](../findings/FND-EXE-073.md) | Payload tail helper clears a floored pool bitmap bit or frees the adjusted prefix by unsigned address range |
-| [FND-EXE-074](../findings/FND-EXE-074.md) | Pool-associated wrappers gate exact wait and semaphore imports and convert their full-word returns |
-| [FND-EXE-075](../findings/FND-EXE-075.md) | Pool initialization publishes an all-ones counter and unchecked semaphore return before once completion |
-| [FND-EXE-076](../findings/FND-EXE-076.md) | Physical shared-guard literal search finds three candidates absent from the current decoded reference list |
-| [FND-EXE-077](../findings/FND-EXE-077.md) | Controlled recovery classifies the three additional guard literals as full-word reads with conditional frame admission |
-| [FND-EXE-078](../findings/FND-EXE-078.md) | Shared guard and pool words occupy virtual-only BSS and have no overlapping declared base-relocation sites |
-| [FND-EXE-079](../findings/FND-EXE-079.md) | Declared startup reaches an x87 initializer and a memory-update helper whose equal table bounds skip its loop |
-| [FND-EXE-080](../findings/FND-EXE-080.md) | Startup guard publishes before reverse-order callback dispatch and returns the later atexit result |
-| [FND-EXE-081](../findings/FND-EXE-081.md) | First selected startup callbacks preserve two empty bodies, increment paired words and initialize a distinct context |
-| [FND-EXE-082](../findings/FND-EXE-082.md) | Registered cleanup dispatch rereads a mutable cursor before publishing its next slot |
-| [FND-EXE-083](../findings/FND-EXE-083.md) | First cleanup target tail-selects paired pointer replacement without resetting adjacent words |
-| [FND-EXE-084](../findings/FND-EXE-084.md) | Two cleanup callbacks share an old-value decrement gate and ordered indirect-resource calls |
-| [FND-EXE-085](../findings/FND-EXE-085.md) | Third cleanup target visits twenty-six slots in reverse and retains their direct pointer fields |
-| [FND-EXE-086](../findings/FND-EXE-086.md) | Resource handler and ordinary setter publish status before distinct onward gates |
-| [FND-EXE-087](../findings/FND-EXE-087.md) | Shared-head selection negates before dispatch and freshly chooses saved-state publication |
-| [FND-EXE-088](../findings/FND-EXE-088.md) | Status-overlap transfer constructs before decrement admission and keeps distinct handler routes |
-| [FND-EXE-089](../findings/FND-EXE-089.md) | Selected callback changes its first word before old-value release admission and final cleanup |
-| [FND-EXE-090](../findings/FND-EXE-090.md) | Handler helper retains two low-byte fallback gates after a direct stored-target call |
-| [FND-EXE-091](../findings/FND-EXE-091.md) | Handler scan retains a pre-reader modifier and a physically selected zero-return fallback method |
-| [FND-EXE-092](../findings/FND-EXE-092.md) | Composed metadata caller keeps first-field stores separate from later marker and relative-target stages |
-| [FND-EXE-093](../findings/FND-EXE-093.md) | PATH producer advances before key admission and returns one after untested output-helper completion |
-| [FND-EXE-094](../findings/FND-EXE-094.md) | PATH source readers separate word-boundary dispatch from bounded byte copy and final terminator |
-| [FND-EXE-095](../findings/FND-EXE-095.md) | PATH final output helper separates replacement, alias copies and pointer returns |
-| [FND-EXE-096](../findings/FND-EXE-096.md) | PATH preparation helper computes replacement spans and publishes length after optional copy and release |
-| [FND-EXE-097](../findings/FND-EXE-097.md) | PATH preparation uses a prefix-base return while its stored handler forwards before the copy tail |
-| [FND-EXE-098](../findings/FND-EXE-098.md) | PATH mapped-table reset producers distinguish consecutive ranges from a retained index list |
-| [FND-EXE-099](../findings/FND-EXE-099.md) | Physical fallback slots select a shared byte transfer path and a fresh-table two-call word method |
-| [FND-EXE-100](../findings/FND-EXE-100.md) | Fallback publishers bias direct mappings and append reset indices after mode-dependent object selection |
-| [FND-EXE-101](../findings/FND-EXE-101.md) | Larger fallback flag gates select mapping states and preserve upper bytes in copied-word publication |
-| [FND-EXE-102](../findings/FND-EXE-102.md) | Fallback helper publishes a depth-indexed record while conditional callback restoration differs from normal cleanup |
-| [FND-EXE-103](../findings/FND-EXE-103.md) | Grounded wait target turns negative callback results into completion and separates indexed dispatch from retry |
-| [FND-EXE-104](../findings/FND-EXE-104.md) | Wait admission retains distinct sum exits and publishes callback-list removal before free-list insertion |
-| [FND-EXE-105](../findings/FND-EXE-105.md) | Callback insertion consumes a free node while removers unlink every matching target or target-argument pair |
-| [FND-EXE-106](../findings/FND-EXE-106.md) | Callback pool links are initialized before head publication and the counter helper retains callback successors |
-| [FND-EXE-107](../findings/FND-EXE-107.md) | Callback wrappers combine a zero-extended word with an object field and tail-transfer to insertion or pair removal |
-| [FND-EXE-108](../findings/FND-EXE-108.md) | Fixed callback selects one of four object slots and forwards a shifted low word only for a nonnull slot |
-| [FND-EXE-109](../findings/FND-EXE-109.md) | Callback consumer has dedicated word dispatch and clears six fields only after its value-two call returns |
-| [FND-EXE-110](../findings/FND-EXE-110.md) | Callback value seven publishes a flag before priority selection and tail-transfers only on a gated state change |
-| [FND-EXE-111](../findings/FND-EXE-111.md) | Callback value one captures the indexed byte before record progress and reinserts after gated calls |
-| [FND-EXE-112](../findings/FND-EXE-112.md) | Callback zero branch reads the old index after progress and rereads count after scheduling or a virtual call |
-| [FND-EXE-113](../findings/FND-EXE-113.md) | First callback callee writes or replaces a byte before pair removal and conditional scheduling |
-| [FND-EXE-114](../findings/FND-EXE-114.md) | First-callee equality branch publishes mask one and rejoins after optional state-change calls |
-| [FND-EXE-115](../findings/FND-EXE-115.md) | Local-flag-zero continuation writes a second-record zero byte or returns without another callback call |
-| [FND-EXE-116](../findings/FND-EXE-116.md) | Nonzero local flags increment a counter before fresh record arithmetic and reread the current byte after writing |
-| [FND-EXE-117](../findings/FND-EXE-117.md) | Exact-equality record merge conditionally increments a counter before fresh write-position arithmetic |
-| [FND-EXE-118](../findings/FND-EXE-118.md) | Shared flag counters precede a latch-setting tail insertion with no local rollback |
-| [FND-EXE-119](../findings/FND-EXE-119.md) | Object-gate-absent priority path rejoins local-flag publication after optional state calls |
-| [FND-EXE-120](../findings/FND-EXE-120.md) | Post-record nonzero-byte priority path publishes local flags before the shared counter suffix |
-| [FND-EXE-121](../findings/FND-EXE-121.md) | Shared state helpers bound input to sixteen slots and publish byte and mask state in different orders |
-| [FND-EXE-122](../findings/FND-EXE-122.md) | Optional first-mode slot scan clears byte and masks before its selected call |
-| [FND-EXE-123](../findings/FND-EXE-123.md) | Optional second-mode scan bounds positions to sixteen and adds a count-dependent group gate |
-| [FND-EXE-124](../findings/FND-EXE-124.md) | Selected callee prefix publishes input byte and gates two reader calls or recursive fallback |
-| [FND-EXE-125](../findings/FND-EXE-125.md) | Full-width mapped reader separates one four-byte access from independently mapped boundary bytes |
-| [FND-EXE-126](../findings/FND-EXE-126.md) | Physical full-width fallback slots select a four-call method that retains upper return bits |
-| [FND-EXE-127](../findings/FND-EXE-127.md) | Larger full-width reader zero mode publishes mapping before reentry and keeps the full returned value |
-| [FND-EXE-128](../findings/FND-EXE-128.md) | Full-width nonzero-mode lookup retries retained entry offsets through a fresh backing pointer |
-| [FND-EXE-129](../findings/FND-EXE-129.md) | Full-width reader combines mode-dependent entry-bit gates into four local selector values |
-| [FND-EXE-130](../findings/FND-EXE-130.md) | Full-width reader publishes retained entry flags before mapping and conditionally removes the last reset-list entry |
-| [FND-EXE-131](../findings/FND-EXE-131.md) | Selected prefix helper admits sixty-four stored selectors and shares a zero-return default without clearing the selector |
-| [FND-EXE-132](../findings/FND-EXE-132.md) | Selected prefix width branches publish a full mask then clear selector while the zero-selector branch retains the mask |
-| [FND-EXE-133](../findings/FND-EXE-133.md) | Physical byte-indexed prefix lookup contributes four for even set-bit counts and zero for odd counts |
-| [FND-EXE-134](../findings/FND-EXE-134.md) | Two prefix branches replace mask bits from distinct word and shifted full-width input contracts |
-| [FND-EXE-135](../findings/FND-EXE-135.md) | Byte and full-width prefix branches use distinct exact-input gates and lookup read ordering |
-| [FND-EXE-136](../findings/FND-EXE-136.md) | Three count-driven prefix selectors distinguish complementary counts and fresh word versus retained full-width comparisons |
-| [FND-EXE-137](../findings/FND-EXE-137.md) | Signed word and full-width prefix shifts share a fresh-count mask gate and unconditional high-mask clear |
-| [FND-EXE-138](../findings/FND-EXE-138.md) | Signed byte prefix shift retains its count and lookup input through the final mask gate |
-| [FND-EXE-139](../findings/FND-EXE-139.md) | Full-width logical prefix shift reloads its count for a one-count sign gate and final mask replacement |
-| [FND-EXE-140](../findings/FND-EXE-140.md) | Word prefix shift zero-extends its input and uses a fresh word count with a retained word-sign gate |
-| [FND-EXE-141](../findings/FND-EXE-141.md) | Zero-extended byte prefix shift retains count and lookup input while a saved byte supplies its sign gate |
-| [FND-EXE-142](../findings/FND-EXE-142.md) | Complementary-count full-width prefix branch replaces mask bits from retained sign disagreement and fresh lookup/count reads |
-| [FND-EXE-143](../findings/FND-EXE-143.md) | Word complementary-count prefix branch clears its extracted-bit mask above sixteen while retaining later sign comparisons |
-| [FND-EXE-144](../findings/FND-EXE-144.md) | Complementary byte-count prefix branch saves count and input while retaining its lookup byte |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) |
@@ -834,7 +697,7 @@ Entries whose Open questions section says more than None known.
 | [FMT-EXE-003](../formats/FMT-EXE-003.md) | FBOV overlay header in the resident image | supported |
 | [FMT-EXE-004](../formats/FMT-EXE-004.md) | FBOV overlay trampoline | supported |
 | [FMT-EXE-005](../formats/FMT-EXE-005.md) | FBOV overlay code block with its fixup list | supported |
-| [FMT-EXE-006](../formats/FMT-EXE-006.md) | BAT launch files | supported |
+| [FMT-EXE-006](../formats/FMT-EXE-006.md) | BAT launch files | unknown |
 | [FMT-GFF-001](../formats/FMT-GFF-001.md) | GFF resource container | supported |
 | [FMT-GFF-002](../formats/FMT-GFF-002.md) | GFF directory | supported |
 | [FMT-GFF-003](../formats/FMT-GFF-003.md) | GFF tag table | supported |

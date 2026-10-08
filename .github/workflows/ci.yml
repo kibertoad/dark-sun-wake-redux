@@ -66,14 +66,16 @@ jobs:
       # the commit and the @scientific-method/standard-checker version it carries, which package.json
       # pins for local runs; `node tools/upstream.mjs refresh` moves all three together. The commit
       # carries a package release tag rather than an action version, so the pin has no version comment.
-      # A plain 0x address in a code comment is checked only inside the original's image. Once a
+      # A plain 0x address used in code or its comments is checked only inside the original's image. Once a
       # finding records the image's base and size, add them to this step as `images:` and cite
       # that finding here. `node tools/upstream.mjs docs` reads this step's inputs, so a local
       # run checks the same.
-      - uses: kibertoad/refurbished-dinosaurs-toolkit/actions/check-documentation@92a5592055559013373ea243a458f4ffc4fa05c4 # zizmor: ignore[stale-action-refs,ref-version-mismatch]
+      - uses: kibertoad/refurbished-dinosaurs-toolkit/actions/check-documentation@3591b6642dcd67291b4061b05d1e7b9295a75fdf # zizmor: ignore[stale-action-refs,ref-version-mismatch]
         with:
           # The narrative docs cite spec IDs, so they must resolve too.
           references: docs
+          # The nightly workflow owns generated indexes and parity totals on main.
+          scheduled-generation: "true"
       - name: Check the size limits of the work protocol files
         shell: pwsh
         run: ./tools/Verify-WorkingFiles.ps1

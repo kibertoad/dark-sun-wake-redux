@@ -236,10 +236,13 @@ The `Documentation standard` job in `.github/workflows/ci.yml` runs the
 [refurbished-dinosaurs-toolkit](https://github.com/kibertoad/refurbished-dinosaurs-toolkit),
 pinned to a full commit SHA, on every pull request. It checks `spec/`, `parity/`
 and `deviations/` against the standard's list of
-[checks](../vendor/upstream/documentation-standard.md#checks) (lines 1010-1062), compiles each
+[checks](../vendor/upstream/documentation-standard.md#checks) (lines 1012-1065), compiles each
 `.ksy` file with the Kaitai Struct compiler, checks that every spec and
-deviation ID cited in `src/`, `tests/`, `tools/` and `docs/` exists and is
-not superseded, fails when `spec/index/` or `PARITY.md` is stale, and fails a `validated`
+deviation ID cited in `src/`, `tests/`, `tools/` and `docs/` exists and is not
+superseded, fails a spec file that names a path under `src/` or `tests/` (the
+action's `rebuild` input) or the file name of a source file there, fails a
+pull request that edits, adds or removes a file in `spec/index/` or
+`PARITY.md` (see below), and fails a `validated`
 row whose marked tests are not in `VALIDATION.md` as they are now (see
 [Tests against the original](#tests-against-the-original)). It fetches
 the full history so it can fail a pull request that deletes a spec ID, area or
@@ -249,14 +252,22 @@ lists its inputs.
 
 The check also fails when a code comment gives an address that no entry the
 comment cites records, in its locations or text or in the evidence of an entry
-it cites. A neutral name (`fn_…`, `g_…`) is always an address. A plain `0x…`
-value is one only inside an image the job gives with the action's `images`
-input, so colours, masks and offsets are left alone. DSUN.EXE is an MZ
-executable, whose addresses are written `segment:offset`, so `ci.yml` gives no
-`images` input and only explains how to add one. A range larger than `max-range`
-(64 KiB by default), such as a whole section, records only its two ends, nothing
-inside it. When a
-comment fails, cite the finding that records the address, or write one.
+it cites, and when the code itself uses one, as a number or inside a string,
+that neither the comment trailing its line nor the nearest comment above it
+cites an entry for. It reads C#, TypeScript, JavaScript and PowerShell (`#` and
+`<# â€¦ #>`) comments. A neutral name (`fn_â€¦`, `g_â€¦`) is always an address. A
+plain `0xâ€¦` value is one only inside an image the job gives with the action's
+`images` input, so colours, masks and offsets are left alone. DSUN.EXE is MZ and uses
+segment:offset addresses; CI retains no image input. Take
+the base and size from the finding that records them. A range larger than
+`max-range` (64 KiB by default), such as a whole section, records only its two
+ends, nothing inside it. When a comment or a use fails, cite the finding that
+records the address, or write one. A test that needs addresses of its own, such
+as a synthetic executable, places them where no executable of the period loads
+(the template's use `0x7F000000`) and builds any neutral name at run time, so
+nothing in it reads as an address of the original. The commit-msg hook in
+`.githooks/` runs the same rule over a commit message
+(`node tools/upstream.mjs docs --message <file>`).
 
 `./tools/Test.ps1` runs the installed checker package in `--check` mode through
 `tools/Invoke-NodeChecks.mjs`, with the CI step's `references: docs`. The package
@@ -268,21 +279,62 @@ PowerShell 7+ (`pwsh`) are required for these suites. See
 With `kaitai-struct-compiler` on `PATH` it also compiles the `.ksy` files;
 without it the documentation checker warns and skips them.
 
-The check writes `spec/index/` and `PARITY.md`; nobody edits them by hand. After
-changing the spec, `parity/` or `deviations/`, run the script without `--check`
-and commit what it writes:
+### Generated files on the main branch
+
+The checker writes `spec/index/` and `PARITY.md`; nobody edits them by hand.
+The CI step sets the action's `scheduled-generation` input, so they change on
+the main branch only, as the standard's
+[Where it lives](../vendor/upstream/documentation-standard.md#where-it-lives) (lines 24-104)
+allows. On a pull request the check neither writes them nor compares them with
+the spec, and fails the change if it edits, adds or removes one of them since
+it forked from `main`. A branch therefore never changes them and never has a
+merge conflict in them, and its copies are as old as the `main` it last took
+in.
+
+The job in `.github/workflows/nightly-generated.yml` brings them up to date.
+It runs daily, and on a manual dispatch from `main`. A scheduled run looks up
+the `main` commit of the job's last successful run and stops, saying so, when
+no commit since then touches `spec/`, `parity/` or `deviations/` outside
+`spec/index/`. A failed or missed run does not move that commit, so its
+changes are picked up by the next run. With no earlier successful run, or when
+that commit is no longer on `main`, the run regenerates. Otherwise it runs
+`node tools/upstream.mjs docs --generate --no-ksy` on `main`, commits nothing
+when the check fails or the files are already current, and otherwise commits
+them as `github-actions[bot]` and pushes to `main`. It tries the push up to
+three times, fetching `main` and regenerating after each rejection.
+
+The job pushes with the workflow's own token. Where `main` requires pull
+requests (a ruleset or branch protection), that push is rejected, and the
+files on `main` stop changing, until the repository lets the job through: add
+GitHub Actions to the ruleset's bypass list, or store a token that may bypass
+the rule as a secret and use it in place of `github.token` in the workflow.
+The workflow changes no repository settings itself.
+
+To read current copies on a branch, run the checker package the workflow's
+commit carries, with Node.js 22 or newer after `npm install`, with
+`--generate`, and do not commit what it writes:
 
 ```sh
-node tools/upstream.mjs docs --references docs
-git add spec/index PARITY.md
+node tools/upstream.mjs docs --generate
+git restore spec/index PARITY.md   # before committing
 ```
 
+A restoration that removes `scheduled-generation` from the CI step goes back
+to committing them: every change runs `node tools/upstream.mjs docs` and
+commits what it writes, the check fails a change that leaves them stale, and a
+merge conflict in them is resolved by taking either side and running the check
+again. Remove the nightly workflow in the same change.
+
+### Local runs
+
 `tools/upstream.mjs docs` passes the checker the inputs the CI step gives
-under `with:` (`code`, `references`, `images`, `max-range` and `data-dirs`), so
-a local run checks what CI checks; an option given on its command line wins.
-`--check` reports problems without writing anything. `tools/Test-TemplateInfrastructure.ps1`
+under `with:` (`code`, `references`, `images`, `max-range`, `data-dirs`,
+`rebuild` and `scheduled-generation`), so a local run checks what CI checks; an
+option given on its command line wins, and `--generate` drops
+`scheduled-generation`. `--check` reports problems without writing anything. `tools/Test-TemplateInfrastructure.ps1`
 fails if the workflow stops running the check or pins it to anything but a full
-commit SHA. The script does not check some items on the standard's list, such as
+commit SHA, and, while the step sets `scheduled-generation`, if the nightly
+workflow is missing. The script does not check some items on the standard's list, such as
 the fixture schema and the hashes of saves and recordings; its guide lists them,
 and reviewers check those by hand. A save-patch write is given as a byte offset
 and value in the experiment's Setup section.
@@ -885,3 +937,13 @@ directory, clear GAME_DIR and NoDefaultCurrentDirectoryInExePath and select
 the already installed locked interpreter as in the isolated goal's handover.
 No original runtime or proprietary input was used. The implementation plan
 remains within its required line limit and links the bounded tooling plan.
+
+## Template 0b9ab9c adoption validation (2026-10-07)
+
+The assetless canonical gate is recorded in artifacts/template-0b9ab9c-test.log.
+Focused inventory/upstream controls: artifacts/template-0b9ab9c-targeted.log.
+The offline documentation run: artifacts/template-0b9ab9c-docs.log, with existing
+argument-count skips and the intentional scheduled-generation comparison skip.
+Local baseline controls distinguish unpublished local main, an explicit old
+base, CI's remote base and a forbidden new branch edit. No original was run,
+no workflow was dispatched and no repository settings were changed.

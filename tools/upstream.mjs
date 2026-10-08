@@ -65,7 +65,7 @@ export function checkerEntry(lock, script = checkerScript) {
 }
 // The checker inputs the CI step gives under with:, as the arguments the action passes for them, so a
 // local run checks what CI checks. Only flat "key: value" lines are read; anything else fails.
-const INPUTS = ["code", "references", "images", "max-range", "data-dirs"];
+const INPUTS = ["code", "references", "images", "max-range", "data-dirs", "rebuild", "scheduled-generation"];
 export function ciCheckerArgs(ci) {
   const lines = ci.split(/\r?\n/), at = lines.findIndex((line) => line.includes(ACTION));
   if (at < 0) throw new Error("CI does not run the pinned checker action");
@@ -85,8 +85,18 @@ export function ciCheckerArgs(ci) {
     if (!m) throw new Error(`Unsupported CI checker input line: ${line.trim()}`);
     const [, key, ...values] = m, value = values.find((v) => v !== undefined) ?? "";
     if (!INPUTS.includes(key)) continue;
-    // The action always passes code and references, and the other inputs only when they are set.
-    if (value || key === "code" || key === "references") args.push(`--${key}`, value);
+    // scheduled-generation is a flag, which the action passes only for the exact value "true". Other
+    // spellings are refused: GitHub's YAML may read an unquoted True or TRUE as a boolean and hand
+    // the action "true", where this reader would see a different string.
+    if (key === "scheduled-generation") {
+      if (!["true", "false", ""].includes(value)) throw new Error(`CI scheduled-generation must be "true" or "false", not ${value}`);
+      if (value === "true") args.push("--scheduled-generation");
+      continue;
+    }
+    // The action always passes code, references and rebuild (an empty rebuild turns its check off),
+    // and the other inputs only when they are set. Without a rebuild line, the checker's default
+    // is the action's.
+    if (value || key === "code" || key === "references" || key === "rebuild") args.push(`--${key}`, value);
   }
   return args;
 }
@@ -143,8 +153,18 @@ export async function main(args, root = ROOT) {
   if (command === "docs") {
     const checker = checkerEntry(verifySnapshot(root));
     // The checker keeps the last value of an option, so arguments given here override CI's inputs.
-    const fromCi = ciCheckerArgs(read(resolve(root, ".github/workflows/ci.yml")).toString("utf8"));
-    const result = spawnSync(process.execPath, [checker, "--root", root, ...fromCi, ...rest], { cwd: root, stdio: "inherit" });
+    // A flag cannot be overridden that way, so --generate drops CI's --scheduled-generation: the
+    // check then writes spec/index/ and PARITY.md, as the scheduled job on the main branch does.
+    const generate = rest.includes("--generate"), passed = rest.filter((a) => a !== "--generate");
+    const fromCi = ciCheckerArgs(read(resolve(root, ".github/workflows/ci.yml")).toString("utf8"))
+      .filter((a) => !(generate && a === "--scheduled-generation"));
+    // Local work is committed without pushing; origin/main can precede already adopted generated
+    // files. Compare local batches with the authoritative local main when it exists. CI retains
+    // its pull-request base, and an explicit --base always wins.
+    const localMain = !process.env.GITHUB_ACTIONS && !passed.includes("--base") &&
+      spawnSync("git", ["-C", root, "rev-parse", "--verify", "refs/heads/main"], { stdio: "ignore" }).status === 0;
+    const base = localMain ? ["--base", "main"] : [];
+    const result = spawnSync(process.execPath, [checker, "--root", root, ...fromCi, ...base, ...passed], { cwd: root, stdio: "inherit" });
     if (result.error) throw result.error;
     return result.status ?? 1;
   }
@@ -175,7 +195,7 @@ export async function main(args, root = ROOT) {
     for (const [path, bytes] of writes) { const target = resolve(root, path); mkdirSync(dirname(target), { recursive: true }); writeFileSync(target + ".refresh", bytes); renameSync(target + ".refresh", target); }
     verifySnapshot(root); console.log(`Refreshed explicit revisions; the checker is ${CHECKER} ${lock.checker.version}. Run npm install to update package-lock.json and ./tools/Restore-ToolDependencies.ps1, review the diff and run the canonical gate before committing.`); return 0;
   }
-  throw new Error("Usage: upstream.mjs verify | docs [checker arguments] | links [--write] | check-upstream | refresh --rules <full-sha> --toolkit <full-sha>");
+  throw new Error("Usage: upstream.mjs verify | docs [--generate] [checker arguments] | links [--write] | check-upstream | refresh --rules <full-sha> --toolkit <full-sha>");
 }
 // Node resolves symlinks for the entry module, so compare real paths; a mismatch would skip main() and exit 0.
 const invokedDirectly = (() => { try { return process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.argv[1])).href; } catch { return false; } })();

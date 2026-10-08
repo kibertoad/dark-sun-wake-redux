@@ -3,6 +3,29 @@
 Current work outside a goal. Active goals keep their own handovers in
 docs/goals/; queue items and findings stay in their own files.
 
+## Latest template update
+
+- Applied canonical template 0b9ab9c in local commit be4e962, following
+  403a749, 25c5808 and the earlier configured synchronization.
+  Migration and retained contracts: docs/implementation-plans/LATEST-TEMPLATE-SYNC.md.
+- Adopted pinned Standard/Protocol e84495f, checker 2.5.0, scheduled main-only
+  generated documentation, commit-message checks and safer inventory tooling.
+  Existing configured architecture, media, release and runtime contracts remain.
+- Canonical assetless tools/Test.ps1 passed on 2026-10-07; log:
+  artifacts/template-0b9ab9c-test.log. Documentation passed with existing skips;
+  log: artifacts/template-0b9ab9c-docs.log. Process audit found no task-owned
+  orphan to stop: artifacts/template-0b9ab9c-process-audit.json.
+- Local documentation checks default to local main when available; CI keeps
+  its PR base and explicit --base wins. Generated files were not changed.
+  The nightly job is installed but was not dispatched; its protected-main
+  push permissions remain an operational check before relying on it.
+- Clarified external libgff source citations without changing claims or status.
+  The diagnostic is tracked in toolkit issue 353.
+- Current project plans and owner-only runtime restrictions are preserved.
+  Capture fixture planning: docs/implementation-plans/SYNTHETIC-CAPTURE-READINESS.md.
+- No push. The separate goal/protocol-work worktree remains independent and
+  has not been migrated or rebased by this task.
+
 ## State
 
 - Stage: Slices; slices 2 and 3 remain in progress. Intake, Runtime access and
