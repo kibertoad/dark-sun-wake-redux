@@ -52,8 +52,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   works in this repository, so the goal runs on main in the single checkout,
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
-- Last full gate: 2026-10-09, assetless Test.ps1 -NoRestore passed for relative-form tooling and gap research.
-  EXE research through FND-EXE-219, measured-baseline tooling and independent
+- Last full gate: 2026-10-09, assetless Test.ps1 -NoRestore passed for absolute-word research (715 tests).
+  EXE research through FND-EXE-220, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
   and its independently failing-before/passing-after synthetic regression.
@@ -159,7 +159,7 @@ An owner-approved history repair remains separate from this maintenance scope.
      Admit FND-EXE-185's backing memory, destination extent and aliases; follow
      FND-EXE-186's selector/table writers and FND-EXE-187's request, wrapper-record,
      FND-EXE-192's provenance and FND-EXE-195's excluded setter forms; retain lifetime contracts.
-  2. Q-EXE-012: follow FND-EXE-219's excluded gap-entry forms; Q-EXE-013 remains independent, Q-EXE-011 blocked.
+  2. Owner priority: migrate inventories, validate standard coverage; then Q-EXE-012/013. Q-EXE-011 blocked.
      retain Q-EXE-009's full wrapper scope and dependencies toward the first
      qualifying complete-reading package. Check FND-EXE-056's bounded reader
      candidate against FND-EXE-165's inputs, FND-EXE-196 and FND-EXE-053's producers;
