@@ -156,7 +156,7 @@ An owner-approved history repair remains separate from this maintenance scope.
      GAME_DIR/analysis/work-baseline/relocation-reconciled. Revisit
      FND-EXE-173's segment/dispatch reading against FND-EXE-174's snapshots.
      Retain old artifacts and committed inventories for comparison. For Q-EXE-001,
-     establish FND-EXE-175's callers and FND-EXE-182's field/registration producers.
+     establish FND-EXE-175's callers and FND-EXE-182's distinct consumers and pointer producer.
   2. Q-EXE-009, FMT-EXE-006: continue producer/lifetime contracts and
      the remaining dependencies listed in its queue item toward the first
      qualifying complete-reading package. Check FND-EXE-056's bounded reader
