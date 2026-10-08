@@ -187,6 +187,7 @@ Next ID: Q-EXE-010
   FND-EXE-143 records the complementary word-count boundary and continued sign gates;
   FND-EXE-144 records the complementary byte-count boundary and saved/retained inputs;
   FND-EXE-145 records the full-width result-nibble equality and exact-result gates with retained mask one;
+  FND-EXE-146 records word/full-width retained-result widths, opposite nibble gates and shared-tail input producers;
   Runtime writers/other prefix effects, table/slot producers and remaining selected callee
   effects remain open. These bounded
   readings do not establish the complete shell outcome. Next: trace record
