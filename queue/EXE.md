@@ -157,7 +157,8 @@ Next ID: Q-EXE-011
   (FND-EXE-062), and nibble-nine byte termination and sign-fill output
   (FND-EXE-063), and marker-stride matching, low-byte virtual-result publication
   and decoded-zero index scans (FND-EXE-214), and matching classification, opposite helper-result tests
-  and full-word fallback flags (FND-EXE-215), and the second terminal wrapper, normal-return fallback
+  and full-word fallback flags (FND-EXE-215), and pair-decoder direct write/frame
+  separation from the counter and saved cursor (FND-EXE-216), and the second terminal wrapper, normal-return fallback
   and initial shared-target tail dispatch (FND-EXE-066), and classification-one counter/link effects, saved payload
   and untested caller finalization (FND-EXE-067), and guarded context acquisition, converted TLS returns
   and post-publication zero stores (FND-EXE-068), and initialization index stores, converted guard writes

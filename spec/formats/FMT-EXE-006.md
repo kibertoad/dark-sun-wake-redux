@@ -314,6 +314,9 @@ reading of callers, external commands or interpreter behavior is claimed.
   it does not admit all record origins or later matching and cleanup behavior.
   FND-EXE-213 follows one count-one nonmatching-signature path through negative
   decoding to conditional saved six; preservation and other routes remain open.
+  FND-EXE-216 separates the pair decoders' direct output and stack stores from
+  the saved loop counter and cursor under equal segment bases. Pre-loop input,
+  source/stack alias admission and normally terminating decodes remain open.
   Preserved-selector-input and alias-modified-input readings remain open:
   the former needs setup, selected-local lifetime and field-writer admission;
   the latter needs a concrete intervening writer (Q-EXE-009). Neither a
