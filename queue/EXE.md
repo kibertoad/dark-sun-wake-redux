@@ -19,7 +19,9 @@ Next ID: Q-EXE-011
   Next: establish its incoming transfers and state/segment producers, then
   follow the listed callees into handler installation and loading.
   FND-EXE-176 resolves the initial state/vector pointer; account for every
-  writer and the vector procedure's replacement with the old pointer. Blocks: none.
+  writer and the vector procedure's replacement with the old pointer.
+  FND-EXE-177 adds the gated cleanup consumer; resolve its two callbacks
+  and state gate producers before claiming cleanup completion. Blocks: none.
 
 - Q-EXE-005. FMT-EXE-006: Which code page interprets the disc sound helper's
   display bytes? Settles it: direct interpreter configuration or code-page/font

@@ -49,7 +49,8 @@ bounded source reader; this does not establish native loader behavior.
   FND-EXE-175 supplies a bounded resident candidate; its caller admission and
   state/segment producers remain unread, so it does not settle the loader.
   FND-EXE-176 resolves its initial state segment and vector pointer; their
-  writers and native admission still require reading.
+  writers and native admission still require reading. FND-EXE-177 adds a
+  gated vector-exchange consumer with two unresolved cleanup callbacks.
 
 - Which analyzer-owned body fragments are native code under the original CS
   bindings (Q-EXE-010)? FND-EXE-173 separates their physical source regions
