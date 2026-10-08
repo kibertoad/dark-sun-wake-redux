@@ -62,6 +62,8 @@ bounded source reader; this does not establish native loader behavior.
   source; live header production and post-call count/segment admission remain open.
   FND-EXE-228 supplies the segment-field producer store and retains its
   state-word, saved-header and intervening-callee admission dependencies.
+  FND-EXE-229 separates a helper's word/carry results from the published
+  segment reload; remaining state and callee admission is still required.
 
 - Whether the loader replaces each fixup word with the segment its descriptor names, and which
   segment that is for a descriptor of an overlay (FND-EXE-007, Q-EXE-001).

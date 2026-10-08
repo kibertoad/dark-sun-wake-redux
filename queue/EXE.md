@@ -346,6 +346,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-228 locates the segment-field store from a post-call state
   reload; state-word writers, saved-header storage and seven callee effects
   remain unread. Its returning-call CFG does not prove allocation or termination.
+  Tried: FND-EXE-229 reads the comparison helper's word/carry results and
+  caller restoration, with semantic ES-write control. Other state writers,
+  publisher callees and native segment/storage admission remain unresolved.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
