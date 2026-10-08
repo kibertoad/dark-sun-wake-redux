@@ -1,25 +1,25 @@
 ---
-id: FND-EXE-065
+id: FND-EXE-215
 title: Callback matching combines signed pair branches and preserves a full-word fallback test across a shared jump
-status: superseded
+status: recorded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: [FND-EXE-215]
+superseded_by: []
 recorded_by: kibertoad
 reproduced_by: []
 method: static
 locations:
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x005F53A7..0x005F546C
+    address: 0x005F53A7..0x005F546D
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x005F54B8..0x005F5549
+    address: 0x005F54B8..0x005F554A
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x005F51D1..0x005F5267
+    address: 0x005F51D1..0x005F5268
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x005F52A0..0x005F52D3
+    address: 0x005F52A0..0x005F52D4
 tool: Ghidra 12.1.3 PUBLIC, bounded instruction reading
 environment: null
 ---
@@ -45,22 +45,22 @@ It then classifies the first decoded word at signed 32-bit width:
 | First decoded word | Local branch |
 |---|---|
 | Zero | Set the seen-zero byte to one, then inspect the second decoded word |
-| Positive | Use FND-EXE-064's stride/typed helper and conditional object match |
+| Positive | Use FND-EXE-214's stride/typed helper and conditional object match |
 | Negative | Use the index scan when saved object is nonzero, or a separate unsigned decode when it is zero |
 
 On the positive branch it passes the metadata local and first decoded word
-to FND-EXE-064's stride/typed helper. A decoded return of zero sets the match
+to FND-EXE-214's stride/typed helper. A decoded return of zero sets the match
 marker directly. A nonzero return with saved object zero does not match and
 moves to the second-word test. With saved object nonzero it writes all ones
 to its nested record's state word, prepares the decoded return and saved
-object with the address of its candidate local, and calls FND-EXE-064's
+object with the address of its candidate local, and calls FND-EXE-214's
 conditional object matcher. A true low byte sets the match marker; false
 moves to the second-word test.
 
 On the negative branch with saved object nonzero it prepares the metadata
 local, saved object and candidate value in registers and the negative first
 decoded word in one outgoing stack slot. It writes the nested state to all
-ones, calls FND-EXE-064's index scan, and removes sixteen outgoing bytes.
+ones, calls FND-EXE-214's index scan, and removes sixteen outgoing bytes.
 Here a true low-byte return moves to the second-word test; false sets the
 match marker. This is the reverse of the positive object's matching test.
 The scan takes the candidate by value into its own local, whereas the
@@ -133,6 +133,13 @@ record lifecycle, matching schema or shell outcome is established or implemented
 
 ## Alternatives
 
+This replaces FND-EXE-065. Its ends `0x005F546C`, `0x005F5549` and
+`0x005F52D3` cut final jumps; their exclusive ends are `0x005F546D`,
+`0x005F554A` and `0x005F52D4`. Its aligned end `0x005F5267` omitted
+the terminal one-byte return; including that return ends at `0x005F5268`.
+All observations are retained with those corrected spans and the corrected
+helper citation. No complete-reading declaration existed or status promotion follows.
+
 Using one helper truth convention for every branch, branching on the unsigned
 reader's return, falling through its skipped low-byte test, hopping from the
 second reader's end, treating a zero first word as immediate termination,
@@ -154,3 +161,11 @@ displacement base, opposite helper truth tests, the fallback comparison's flags
 across its jump, classification arithmetic and conditional six/seven/eight
 consumers. Keep terminal callees, bounds, aliases and exceptional effects
 conditional. Keep rich reports local and execute no interpreter or game.
+
+
+With engine 13.6.0, verify old and corrected locations using ReportCitationBoundaries.
+Use `:return` on `005F51D1..005F5267` and `005F51D1..005F5268` to
+distinguish an aligned prefix from a range containing its return. Run
+ReportInstructionWindow, count one, at `0x005F5468`, `0x005F5545`,
+`0x005F52CE` and `0x005F5267`. Their spans independently provide
+the corrected ends above. Keep endpoint alignment distinct from complete reading.

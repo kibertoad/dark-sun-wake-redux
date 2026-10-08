@@ -23,7 +23,7 @@ environment: null
 
 ## Observation
 
-FND-EXE-065's alternate suffix with a negative saved state reaches the
+FND-EXE-215's alternate suffix with a negative saved state reaches the
 call to `0x005FD150`. This helper creates its conventional frame, reserves
 twenty stack bytes, loads the full pointer at `0x0242F650`, and reads the
 full target word through that pointer. It pushes that target as one full-word
@@ -105,7 +105,7 @@ Use FND-EXE-011's length and XXH3-verified PE and image base. Read thirty-five
 instructions from `0x005FD120` and eight from `0x00600520`, restricting new
 claims to the three cited bodies and excluding alignment and later entries.
 Use FND-EXE-041 for finalizer dispatch, replacement and exact abort import,
-FND-EXE-043 for allocation stores and publication, and FND-EXE-065 for the
+FND-EXE-043 for allocation stores and publication, and FND-EXE-215 for the
 callback's negative-state caller. Track both outer pointer words, the full
 stack target, frame and outgoing reservation, untested normal-return call,
 current-base reload, restored-frame tail jump and possible changed identities.

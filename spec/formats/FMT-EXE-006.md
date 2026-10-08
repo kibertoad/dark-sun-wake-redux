@@ -188,8 +188,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-061 bounds modifier mask classes, marker bypass and local zero callees;
   FND-EXE-062 traces guarded typed reads, base adjustment and cursor return;
   FND-EXE-063 bounds nibble-nine termination, sign fill and full-word output;
-  FND-EXE-064 traces matching strides, low-byte virtual results and index scans;
-  FND-EXE-065 bounds matching classification, fallback flag preservation and cursor hops;
+  FND-EXE-214 traces matching strides, low-byte virtual results and index scans;
+  FND-EXE-215 bounds matching classification, fallback flag preservation and cursor hops;
   FND-EXE-066 traces the second terminal wrapper and initial shared-target tail dispatch;
   FND-EXE-067 traces classification-one counter/link effects, saved return and caller continuation;
   FND-EXE-068 traces guarded context acquisition, converted TLS returns and post-publication zero stores;

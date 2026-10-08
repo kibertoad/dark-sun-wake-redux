@@ -59,7 +59,7 @@ ECX addressing local -72. FND-EXE-060 records this reader's separate marker
 and output contracts; admission of this saved input remains conditional. It then
 calls `0x005F5040` with EAX addressing local -72, ECX saved head plus 80,
 EDX freshly loaded through saved head, and one explicit stack word from
-local -132. FND-EXE-064 records the matching helper's separate scan and
+local -132. FND-EXE-214 records the matching helper's separate scan and
 indirect-call contracts. Only low byte AL is tested on normal return. Nonzero calls
 `0x005FAF40` (FND-EXE-087), rather than testing a full-word success value.
 

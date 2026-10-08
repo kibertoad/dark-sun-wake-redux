@@ -43,12 +43,12 @@ the stored handler alone does not establish either invariant.
 The pre-reader local -64 is exactly output offset eight from local -72.
 FND-EXE-060's reader has no direct store at that offset. Its direct output
 stores therefore retain this caller's previously saved prefix-offset-36
-word as the modifier consumed by FND-EXE-064's indexed typed reader,
+word as the modifier consumed by FND-EXE-214's indexed typed reader,
 subject to unread callee writes and aliases. It is not a proved zero field
 or a newly supplied metadata output. Normal reader completion stores its
 relative target at output offset twelve, local -60, and independently
 returns its continued cursor. The handler does not save that cursor for
-either later scan call. The scan in FND-EXE-064 starts at output offset
+either later scan call. The scan in FND-EXE-214 starts at output offset
 twelve minus the explicit displacement minus one, with both subtractions
 wrapping at 32-bit width. Here each call's displacement is saved local
 -132, not the metadata reader's returned cursor or its byte count.
@@ -62,7 +62,7 @@ index. Indirect writes or aliases can change the scan local despite an unsuccess
 comparison, which has no direct copy-back. The fallback zero is the initial
 candidate, not proof of its value on every iteration.
 Decoded zero ends the scan without calling the comparator, as separately
-recorded in FND-EXE-064. The first object's identity still comes from the
+recorded in FND-EXE-214. The first object's identity still comes from the
 indexed typed read and is not established by the fixed second object.
 
 The fixed second object's shipped first word at virtual `0x00755E18`,
@@ -90,7 +90,7 @@ used after the bypass, so zero is not silently replaced by the second
 object. A nonzero returned AL copies the current candidate back to the
 scan's candidate local and gives full-word comparator return one; zero
 does not directly perform that copy and returns zero. Indirect writes or
-aliases can still affect the local or its caller. FND-EXE-064 records this
+aliases can still affect the local or its caller. FND-EXE-214 records this
 per-call behavior; the concrete zero-return target narrows only its first
 dispatch gate for the fixed fallback object.
 
@@ -127,7 +127,7 @@ Other stored targets are not admitted or characterized here. Read fifteen
 instructions at `005F5900`, restricting claims through `005F5906` and
 excluding the next method. Read forty-eight at `005F4FF0`, restricting to
 its cited body. Read forty at `005F5040` as the scan-prefix control, using
-FND-EXE-064 for the complete direct return branches. Reuse FND-EXE-090's
+FND-EXE-214 for the complete direct return branches. Reuse FND-EXE-090's
 fifty-instruction `005F55E0` and sixty-five-instruction `005F5695` queries,
 and FND-EXE-060 for output stores. Track relative field locations, full
 versus low-byte results, fresh pointer loads and every remaining call/alias

@@ -1,9 +1,9 @@
 ---
-id: FND-EXE-064
+id: FND-EXE-214
 title: Matching helpers combine marker strides, low-byte virtual results and zero-terminated index scans
-status: superseded
+status: recorded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: [FND-EXE-214]
+superseded_by: []
 recorded_by: kibertoad
 reproduced_by: []
 method: static
@@ -19,7 +19,7 @@ locations:
     address: 0x005F5040..0x005F509F
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x005F53A7..0x005F5519
+    address: 0x005F53A7..0x005F551A
 tool: Ghidra 12.1.3 PUBLIC, bounded instruction reading
 environment: null
 ---
@@ -138,6 +138,11 @@ parser is established or implemented.
 
 ## Alternatives
 
+This replaces FND-EXE-064. Its callback location ended inside the five-byte
+jump at `0x005F5515`; the correct exclusive end is `0x005F551A`.
+The observations are preserved with the complete final instruction. No
+complete-reading declaration existed, and no status promotion follows.
+
 Returning the typed reader's advanced cursor, choosing an eight-byte read
 merely because the stride is eight, treating marker 255 as a successful null
 result, testing whole virtual return words, publishing the caller cell on both
@@ -161,3 +166,10 @@ Use FND-EXE-196/060 for the metadata region and preceding callback state,
 FND-EXE-059/062/063 for reader contracts. Keep concrete targets, input bounds,
 aliases and exceptional effects conditional. Keep rich reports local and
 execute no interpreter or game.
+
+
+Verify the old and corrected callback endpoints with ReportCitationBoundaries
+queries `005F53A7..005F5519` and `005F53A7..005F551A`. With engine
+13.6.0, run ReportInstructionWindow at `0x005F5515`, count one; its
+span ends at `0x005F551A`. The other three location endpoints are aligned.
+Endpoint classification does not establish interior completeness or runtime admission.
