@@ -219,7 +219,11 @@ Next ID: Q-EXE-010
   check: setup preservation of that incoming slot, selected-local lifetime,
   offset-28 field writers and excluded computed/indirect uses. FND-EXE-167
   narrows direct setup writes under the flat-address model; shared-base
-  provenance, DS/SS identity and other callee effects remain required. Do not count
+  provenance, DS/SS identity and other callee effects remain required.
+  FND-EXE-168 narrows explicit decoded publication sites and separates fresh
+  allocation from decoded existing/fallback origins. Next: decoded-record
+  input admission and allocator/storage lifetime; retain excluded indirect
+  writers and segment identities. Do not count
   the bounded body as a complete reading before those inputs are admitted.
   Blocks: resolved wrapper-helper and continuation description.
 

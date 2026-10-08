@@ -298,7 +298,11 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-167 separates setup's caller-owned record store from the incoming
   slot numerically, conditional on equal DS/SS bases. A disjoint shared base
   and an overlapping shared-base store remain competing readings until its
-  producers and segment identities settle them (Q-EXE-009).
+  producers and segment identities settle them (Q-EXE-009). FND-EXE-168
+  separates fresh and decoded-existing publication origins; the reader's
+  leading-value test alone cannot settle allocation ownership or stack
+  separation. Decoded input, lifetime and indirect-writer admission remain
+  Q-EXE-009.
 
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
