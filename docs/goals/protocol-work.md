@@ -52,7 +52,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   works in this repository, so the goal runs on main in the single checkout,
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
-- Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore passed.
+- Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore recheck and endpoint controls passed.
   EXE research through FND-EXE-198, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
@@ -107,8 +107,6 @@ An owner-approved history repair remains separate from this maintenance scope.
   Escalated CIM command-line/parent inspection works. Reusable MSBuild nodes
   and active work for another repository were preserved; no confirmed session
   orphan was stopped.
-  The baseline's read-only duplicate exports and subsequent candidate probes
-  exited as well; reusable MSBuild nodes and uncertain ownership were preserved.
 - Blockers: the parent checkout's history-message repair awaits owner
   approval and remains recorded in docs/HANDOVER.md. Do not rewrite shared
   history; this does not block isolated work.
@@ -148,6 +146,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   Ghidra rendering follow-up: https://github.com/NationalSecurityAgency/ghidra/issues/9739#issuecomment-6064374250.
   Interrupt-use capability: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/370.
   Intermittent synthetic capture gate: https://github.com/kibertoad/dark-sun-wake-redux/issues/7; rechecks passed.
+  Endpoint diagnostic follow-up: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6066576722.
+  Worker deadline follow-up: https://github.com/kibertoad/refurbished-dinosaurs-template/issues/73#issuecomment-6066679859.
 - Next, after rechecking shared goal claims:
   1. Q-EXE-010, FMT-EXE-005: reconcile revision-2 comparison in
      GAME_DIR/analysis/work-baseline/relocation-reconciled. Revisit
