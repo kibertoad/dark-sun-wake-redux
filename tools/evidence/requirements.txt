@@ -1,6 +1,6 @@
 # Published wheels only; normal restore enforces every hash.
-scientific-method-engine==13.3.0 \
-    --hash=sha256:d1df234c673e1c5310b1434222c2d753d2c3a71953d1566412beba1a29567518
+scientific-method-engine==13.5.0 \
+    --hash=sha256:97dc24f4f1da9b2c32330867c44ef3b076ca4ed5e2a961bf98c7b06186267985
 capstone==5.0.7 \
     --hash=sha256:388af4ddb9224d3b4f9269673ee575b3f94f77774d48b3f1a283ad13c29a106a \
     --hash=sha256:467716e6555d50cb3526b290f0dbdccb5f961839b1f1e299b484fb5d814173e6 \

@@ -165,3 +165,18 @@ pins and section links agree, the documentation check and the assetless
 Risk: the 11.0.0 `RecoverableFile` exception change; this project calls only
 `Write` and `ReadBounded`. Exit: one local commit with the migration and a
 separate handover commit. No owner questions remain.
+
+## Shared-library update (2026-10-08)
+
+The owner requested the latest shared libraries. Upgrade standard-checker
+2.8.0 to 2.9.0 at release commit 1477e6ae304ef4973fa9b0fb91fff67a3f395b9e
+and scientific-method-engine 13.3.0 to 13.5.0 using its published wheel hash.
+Executable-reader 2.4.0 and the three RefurbishedDinosaurs packages at 11.0.0
+are already the latest published stable releases. Preserve the pinned rules
+snapshot and all game, extraction and runtime contracts.
+
+Acceptance: exact npm and Python dependencies restore, checker/action pins
+agree, snapshot verification and the full assetless tools/Test.ps1 pass.
+Risk: newer checks may expose documentation gaps; address only demonstrated
+compatibility failures without promoting evidence statuses. Exit: validated
+local tooling commit and separate goal handover; no push or owner question.
