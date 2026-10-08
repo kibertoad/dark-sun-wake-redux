@@ -269,6 +269,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-148 records guarded full-width admission, fresh byte masks and retained sign inputs;
   FND-EXE-149 records shared word comparison inputs, later result-word reads and saved-byte lookup admission;
   FND-EXE-150 records guarded word admission, full guard width and retained-word/saved-byte inputs;
+  FND-EXE-151 records saved original bytes before working increment and register reuse in guarded byte admission;
   table/slot producers, runtime writers/other prefix effects and remaining selected callee effects remain open.
   floating numeric contracts, downstream targets, producers,
   indirect targets and actual state admission remain open.
