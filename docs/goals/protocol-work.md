@@ -96,7 +96,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   were verified through the Windows launcher. Original-program execution
   remains prohibited.
 - Template context: template 0b9ab9c, rules 11884c7 and checker 2.9.0 are
-  integrated on main; engine 13.5.0 is installed from its hash-locked wheel.
+  integrated on main; engine 13.6.0 and reader 2.5.0 exact locks passed restore and the full gate.
   Assetless Test.ps1 passed on 2026-10-08. The initial synthetic capture
   timing failure passed in isolation and in the full rerun. Write
   range ends half-open (research-item skill).
@@ -118,7 +118,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   is claimed. Toolkit issue 111 also records the reference-type guidance concern.
   Follow-up: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6044911287.
   Related PR 339 is merged (verified 2026-10-07); package delivery and
-  the released writer-control rerun remain pending.
+  the released FND-EXE-022 operand-writer control rerun remains pending.
   Toolkit issue 350 received a duplicate follow-up on inventory ownership:
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/350#issuecomment-6046763133.
   Toolkit issue 111 also received a duplicate-checked request for explicit
@@ -146,7 +146,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   Ghidra rendering follow-up: https://github.com/NationalSecurityAgency/ghidra/issues/9739#issuecomment-6064374250.
   Interrupt-use capability: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/370.
   Intermittent synthetic capture gate: https://github.com/kibertoad/dark-sun-wake-redux/issues/7; rechecks passed.
-  Toolkit numeric rerun: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6067580411; PR 371 is merged; engine 13.6.0 and reader 2.5.0 await a separate tooling update and span rerun.
+  Toolkit span rerun: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6068047179; released R1/R3 controls passed; retain R2 inventory and R4 endpoint audits.
   Worker deadline follow-up: https://github.com/kibertoad/refurbished-dinosaurs-template/issues/73#issuecomment-6066679859.
   Partial-overlap/guard follow-ups: https://github.com/kibertoad/refurbished-dinosaurs/issues/37#issuecomment-6066902929 and https://github.com/kibertoad/refurbished-dinosaurs/issues/37#issuecomment-6067099318.
 - Next, after rechecking shared goal claims:
