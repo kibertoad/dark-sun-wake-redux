@@ -115,10 +115,10 @@ An owner-approved history repair remains separate from this maintenance scope.
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6058496258.
 - Next, after rechecking shared goal claims:
   1. Q-EXE-009, FMT-EXE-006: audit remaining prefix finding boundaries
-     from FND-EXE-136 onward, then producer/lifetime contracts and
+     from FND-EXE-139 onward, then producer/lifetime contracts and
      the remaining dependencies listed in its queue item. FND-EXE-160 is
      the latest bounded reading; FND-EXE-133's range correction is committed.
-     FND-EXE-132/134/135 range corrections are committed.
+     FND-EXE-132/134/135/136/137/138 range corrections are committed.
      Check aggregate coverage before selecting a new branch.
   2. Q-EXE-006, FMT-EXE-006: batch-input/parser and helper/cleanup coverage
      from FND-EXE-013.
