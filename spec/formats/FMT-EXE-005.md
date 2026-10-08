@@ -56,6 +56,8 @@ bounded source reader; this does not establish native loader behavior.
   FND-EXE-180 follows the paired external-target producer; live preservation
   and provider correspondence remain unresolved. FND-EXE-182 supplies a
   bounded shipped-interpreter match whose field/registration admission is open.
+  FND-EXE-183 traces its packed-pointer producer and bounded counter return;
+  counter admission, failure behavior and callback setup remain unread.
 
 - Which analyzer-owned body fragments are native code under the original CS
   bindings (Q-EXE-010)? FND-EXE-173 separates their physical source regions
