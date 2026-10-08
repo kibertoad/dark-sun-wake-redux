@@ -155,7 +155,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-042 traces the bounded encoded shared-record reader;
   FND-EXE-043 traces record selection, initialization and shared-pointer publication;
   FND-EXE-044 bounds the shipped copied tail and local name terminators;
-  FND-EXE-045 traces lazy initialization and mode-dependent record publication;
+  FND-EXE-167 traces lazy initialization and mode-dependent record publication;
   FND-EXE-046 traces mode admission, flag publication and the bounded wait loop;
   FND-EXE-047 traces imported resource and local-helper mode publication;
   FND-EXE-048 resolves record/wait imports and the zero-result tail return;
@@ -295,6 +295,10 @@ reading of callers, external commands or interpreter behavior is claimed.
   the former needs setup, selected-local lifetime and field-writer admission;
   the latter needs a concrete intervening writer (Q-EXE-009). Neither a
   single decoded call site nor the small leaf body establishes the format.
+  FND-EXE-167 separates setup's caller-owned record store from the incoming
+  slot numerically, conditional on equal DS/SS bases. A disjoint shared base
+  and an overlapping shared-base store remain competing readings until its
+  producers and segment identities settle them (Q-EXE-009).
 
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers

@@ -79,7 +79,7 @@ that distinguishes those two callers. Its nested callees and potential
 aliases are not proved unable to access caller memory. It instead builds
 a local record rooted at frame minus 64, storing callback `0x005F50A0`,
 metadata pointer `0x006EEFF4`, and saved handler target `0x005F9B38`, then
-passes the record to FND-EXE-045's setup helper `0x006008F0`.
+passes the record to FND-EXE-167's setup helper `0x006008F0`.
 
 After normal setup return it writes all ones at frame minus 60, and calls
 FND-EXE-033's exchange-add helper `0x005F5760` with address `0x02427E00`
@@ -179,7 +179,7 @@ and 40 at `004AD9C0`, restricting claims to each cited helper body before
 gaps. Read 65 at `005F9AA0`, seven at `005F9B65` to check its final return,
 and 42 at `005F9B70`, retaining only its counter-call prefix through `005F9BC2`.
 Use FND-EXE-033's complete exchange-add body and trace old versus updated
-values through every caller test. Use FND-EXE-045/049 for record setup/cleanup.
+values through every caller test. Use FND-EXE-167/049 for record setup/cleanup.
 Read 55 at `006D2100` and 38 at `006D21C0`; retain only the cited ordinary
 regions, exclude the missing `006D2191` handler and following functions.
 Trace pointer adjustments, result width, all-ones increment gate, fresh object

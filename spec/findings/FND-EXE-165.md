@@ -23,7 +23,7 @@ environment: null
 FND-EXE-050 records construction callers storing `0x005F50A0` as a local
 record target. This callback begins with its own conventional frame and
 saved-register prologue, reserves 172 local stack bytes, then constructs a
-nested record at frame offset minus 108 before calling FND-EXE-045's setup
+nested record at frame offset minus 108 before calling FND-EXE-167's setup
 helper with that address.
 
 The direct pre-setup writers relative to this nested record are:
@@ -38,7 +38,7 @@ The direct pre-setup writers relative to this nested record are:
 
 These are local writers, not a complete record layout. The first record word
 is not directly initialized by this prefix before setup; setup supplies its
-mode-dependent link as described by FND-EXE-045. The offset-32, offset-36 and
+mode-dependent link as described by FND-EXE-167. The offset-32, offset-36 and
 offset-40 writers have the same relative offsets consumed by FND-EXE-052,
 but this does not prove that its selector chooses this particular nested record.
 The frame address is an adjusted local address, not this callback's unadjusted
@@ -118,7 +118,7 @@ Check both final instructions through their last byte and treat range ends as ex
 and handler code even where the windows print it. Follow pre-setup stack
 capture, nested-record-relative writers, original argument slots, separate
 status and helper-result locals, exact signature guard, both early joins,
-cleanup argument and the status reload after cleanup. Use FND-EXE-045 and
+cleanup argument and the status reload after cleanup. Use FND-EXE-167 and
 FND-EXE-049 for local record helpers and FND-EXE-052 through FND-EXE-054
 for consumers without assuming selected-record identity. Keep callee, alias
 and exceptional effects conditional. Keep rich reports local and execute no

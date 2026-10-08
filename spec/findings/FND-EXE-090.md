@@ -27,7 +27,7 @@ FND-EXE-089's stored handler supplies a saved frame word to `0x005F55E0`.
 FND-EXE-051 and FND-EXE-088 record other stored-handler callers without
 establishing native frame admission. This helper sets up a record at frame
 -124, with callback `0x005F50A0`, metadata `0x006EE834` and stored handler
-`0x005F5655`, through `0x006008F0` (FND-EXE-045). It calls `0x005FABA0`
+`0x005F5655`, through `0x006008F0` (FND-EXE-167). It calls `0x005FABA0`
 with its first input and then freshly reloads that stack argument, subtracts
 48 at 32-bit width, and reads words from this prefix. Offset 32 is saved
 at local -128, offset 24 at -132, offset 12 at -136, and offset 36 at -64.

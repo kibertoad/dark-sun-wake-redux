@@ -25,7 +25,7 @@ the overlap publication helper. Its actual invocation and caller input
 remain conditional on that helper's downstream effects. This callback
 saves its first input pointer at frame -96, constructs a record at -92
 with callback `0x005F50A0`, metadata `0x006EF6EC` and handler `0x005FEA07`,
-and calls `0x006008F0` (FND-EXE-045). On normal return it reloads the saved
+and calls `0x006008F0` (FND-EXE-167). On normal return it reloads the saved
 pointer, writes full word `0x00759B28` through it, then reads payload from
 offset four. There is no local pointer-null guard before either access.
 It saves payload minus twelve, with 32-bit arithmetic, at local -100.

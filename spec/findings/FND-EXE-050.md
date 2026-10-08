@@ -27,11 +27,11 @@ environment: null
 ## Observation
 
 FND-EXE-032's field helper forms a stack-local address at frame offset
-minus 124 and passes it to FND-EXE-045's setup helper. Before that call it
+minus 124 and passes it to FND-EXE-167's setup helper. Before that call it
 stores other local record values, including the handler target
 `0x006D6D20` at frame offset minus 88. This target is stored, not called
 by the direct ordinary path studied here. The caller does not initialize
-the first word at the passed record address before setup; FND-EXE-045
+the first word at the passed record address before setup; FND-EXE-167
 describes setup's mode-dependent write to that word.
 
 On normal setup return the very next instruction loads the original source
@@ -102,6 +102,6 @@ unread handlers. Follow both passed local addresses, first-word pre-call
 writers, setup-return last writers, both field branches and the addition
 branch's join, outgoing cleanup slots and the register writes through each
 epilogue. Use FND-EXE-032, FND-EXE-033 and FND-EXE-037 for publication,
-and FND-EXE-045, FND-EXE-048 and FND-EXE-049 for record/import behavior.
+and FND-EXE-167, FND-EXE-048 and FND-EXE-049 for record/import behavior.
 Keep normal return and indirect effects conditional. Keep rich reports local
 and execute no interpreter or game.

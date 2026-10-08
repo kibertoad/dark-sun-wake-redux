@@ -25,7 +25,7 @@ both reach `0x006D69A0` with four full-word inputs. Denote them object,
 A, B and C without assigning unproved semantic types. The helper saves
 the object at frame -96 and sets up a local record at -92, storing
 callback `0x005F50A0`, metadata `0x006EE8B3` and handler `0x006D6AD0`,
-through `0x006008F0` (FND-EXE-045). The handler is undisassembled in
+through `0x006008F0` (FND-EXE-167). The handler is undisassembled in
 the current bounded report and is excluded; native frame admission and
 exceptional behavior remain unresolved.
 

@@ -37,7 +37,7 @@ A bounded physical prefix inspection places a conventional frame prologue
 at `0x005FC4F0` in the PE's executable section. An independent 32-bit decode
 of 96 physically backed bytes from that boundary agrees with the subsequent
 Ghidra instructions. The prefix constructs a nested record using the same
-already-read setup and callback entries as FND-EXE-045/055. It also directly
+already-read setup and callback entries as FND-EXE-167/055. It also directly
 calls the independently located guard-reading helper `0x005FB8B0` before
 the first literal. These connected prefix instructions and known call
 boundaries ground the local decoding; the literal positions themselves
@@ -55,7 +55,7 @@ pointer before outgoing setup space. Its record begins at frame minus 140:
 | 36 | stored target `0x005FC650` |
 | 40 | stack pointer before outgoing setup space |
 
-It passes the record address to FND-EXE-045's setup, removes sixteen
+It passes the record address to FND-EXE-167's setup, removes sixteen
 outgoing bytes after normal return and writes all ones to record offset
 four. It then calls `0x005FB8B0`; the following full-word guard load replaces
 that callee's return in the return register before the guard test. The

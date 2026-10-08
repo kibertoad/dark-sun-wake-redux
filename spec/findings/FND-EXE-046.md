@@ -17,7 +17,7 @@ environment: null
 
 ## Observation
 
-FND-EXE-045 calls `0x00600860` when its shared record mode is negative.
+FND-EXE-167 calls `0x00600860` when its shared record mode is negative.
 This body saves the pointer at `0x0242F640`, reads the full word at
 `0x0242C910` and forms saved base plus 52 at 32-bit width. If the shared
 word is zero or that derived address is zero, it writes zero at saved base
@@ -52,7 +52,7 @@ The direct clearing path before any external call uses the initially saved base.
 
 ## Interpretation
 
-This narrows FND-EXE-045's negative-mode boundary to explicit guards, an
+This narrows FND-EXE-167's negative-mode boundary to explicit guards, an
 initialization branch, a flag wait and a fresh mode decision. It does not prove
 termination, concurrency safety, thread-local semantics or external helper
 behavior. Q-EXE-009 retains shared-word/pointer producers, initializer and import
@@ -75,6 +75,6 @@ forty instructions from its entry and eighteen from `0x006008C0`, restricting
 claims to the cited body and excluding following functions. Track the saved
 base, derived-address guard, shared word, flag reads, full return test, initializer
 call before flag publication, wait-loop argument and saved polling address,
-shared-pointer reread and signed mode decision. Use FND-EXE-045 for caller
+shared-pointer reread and signed mode decision. Use FND-EXE-167 for caller
 admission. Keep unread external effects and possible pointer changes conditional.
 Keep rich reports local and execute no interpreter or game.

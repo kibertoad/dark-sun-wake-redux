@@ -52,7 +52,7 @@ environment: null
 
 ## Observation
 
-The five direct thunks used by FND-EXE-045 and FND-EXE-046 jump through
+The five direct thunks used by FND-EXE-167 and FND-EXE-046 jump through
 specific PE import slots. Physical descriptor and lookup-thunk reading maps
 those slots to these KERNEL32.dll names, including their terminating bytes:
 
@@ -70,7 +70,7 @@ loop calls Sleep with zero, then rereads the saved completion-flag address.
 This identifies the imports; it does not make the loop bounded or establish
 concurrent writers, scheduling, or whether an imported call returns normally.
 
-In FND-EXE-045, the nonzero-mode path saves GetLastError's return, passes
+In FND-EXE-167, the nonzero-mode path saves GetLastError's return, passes
 its saved offset-44 word to TlsGetValue, then passes the first saved return
 to SetLastError. After these calls return normally it stores TlsGetValue's
 saved return in the supplied record's first word. It then rereads the shared
@@ -80,7 +80,7 @@ and its full-width result test; there is no intervening local rollback.
 The two index reads are distinct and need not be equal without a lifetime
 or interleaving argument.
 
-The zero-result continuation left unread in FND-EXE-045 begins at
+The zero-result continuation left unread in FND-EXE-167 begins at
 `0x0060097C`. It restores the stack to the saved-register region, restores
 three saved registers and the frame pointer, then jumps to `0x00602490`.
 FND-EXE-047 resolves that thunk to GetLastError. No new return address is
@@ -88,7 +88,7 @@ pushed by this tail jump: on normal external return the later error query
 returns to the record-setup caller using the restored caller frame. This
 path therefore does not merely return the zero from TlsSetValue or restore
 the first saved error value again. The nonzero-result path remains the
-ordinary frame-restoration return described by FND-EXE-045.
+ordinary frame-restoration return described by FND-EXE-167.
 
 ## Interpretation
 
@@ -116,6 +116,6 @@ Map each exact slot through the physical PE descriptors and terminated lookup
 thunks rather than analyzer symbol ordering; bound names and include their
 terminators. Use the independently checked malloc/free mappings in FND-EXE-024
 as controls. Follow the saved returns, record store, fresh index, full-width
-result test and restored caller frame using FND-EXE-045 and FND-EXE-046.
+result test and restored caller frame using FND-EXE-167 and FND-EXE-046.
 Use FND-EXE-047 for the final error-query import. Keep rich reports local and
 execute no interpreter or game.

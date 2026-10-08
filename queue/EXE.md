@@ -85,7 +85,7 @@ Next ID: Q-EXE-010
   (FND-EXE-042), and shared-record initialization/publication
   (FND-EXE-043), and copied-tail/local-name termination
   (FND-EXE-044), and lazy initialization/record publication
-  (FND-EXE-045), and mode admission/flag waiting
+  (FND-EXE-167), and mode admission/flag waiting
   (FND-EXE-046), and resource/helper-derived mode publication
   (FND-EXE-047), and exact record/wait imports and zero-result tail return
   (FND-EXE-048), and pre-helper saved-link cleanup through a fresh mode
@@ -217,7 +217,9 @@ Next ID: Q-EXE-010
   FND-EXE-166 narrows the field reader's decoded direct-call and physical
   address-word searches and its post-setup argument reload. Next closure
   check: setup preservation of that incoming slot, selected-local lifetime,
-  offset-28 field writers and excluded computed/indirect uses. Do not count
+  offset-28 field writers and excluded computed/indirect uses. FND-EXE-167
+  narrows direct setup writes under the flat-address model; shared-base
+  provenance, DS/SS identity and other callee effects remain required. Do not count
   the bounded body as a complete reading before those inputs are admitted.
   Blocks: resolved wrapper-helper and continuation description.
 

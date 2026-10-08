@@ -1,9 +1,9 @@
 ---
 id: FND-EXE-045
 title: Record setup initializes missing shared storage before mode-dependent link publication
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-EXE-167]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

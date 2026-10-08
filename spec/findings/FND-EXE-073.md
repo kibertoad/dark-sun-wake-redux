@@ -22,7 +22,7 @@ original argument with the adjusted payload address. This helper creates
 its own conventional frame and nested record at frame offset minus 64.
 The record stores FND-EXE-165's callback entry, unread metadata `0x006EF274`,
 a frame-minus-twelve local address, stored handler `0x005FCFC9`, and the
-stack pointer before outgoing setup space. It calls FND-EXE-045's setup
+stack pointer before outgoing setup space. It calls FND-EXE-167's setup
 with that record and then reads its first original full-word argument.
 The tail jump retained the original caller's return address; no mode word
 is supplied in that first slot after FND-EXE-072's rewrite.
@@ -116,7 +116,7 @@ Use FND-EXE-011's length and XXH3-verified PE and image base. Read ninety
 instructions from `0x005FCEF0`, restricting claims to the cited body and
 excluding later entries and stored handlers. Use FND-EXE-025 for bitmap
 allocation/prefix relations, FND-EXE-024 for the exact free import,
-FND-EXE-045/049 for setup/cleanup, and FND-EXE-071/072 for the incoming
+FND-EXE-167/049 for setup/cleanup, and FND-EXE-071/072 for the incoming
 tail argument and ignored return. Track unsigned half-open bounds, floor
 index and rotate width, before/after guard reads, publication order, free
 input wrap, common cleanup and return-register preservation. Keep callee,

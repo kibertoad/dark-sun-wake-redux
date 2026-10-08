@@ -27,7 +27,7 @@ FND-EXE-086's status overlap tail-transfers to `0x005F6F10`, having replaced
 the first input slot with `0x00754560`. This target builds a local record
 at frame -124, with callback `0x005F50A0`, metadata `0x006EEA84`, saved
 handler `0x005F6FB0` and frame/stack words, then calls `0x006008F0`
-(FND-EXE-045). It calls `0x006D6BE0` with local -40 as its first output,
+(FND-EXE-167). It calls `0x006D6BE0` with local -40 as its first output,
 incoming first input as its second and local -56 as its third, after
 writing two to local record state -120. Producer behavior and the validity
 of its output remain unresolved here, as in FND-EXE-036.
