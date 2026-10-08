@@ -229,6 +229,10 @@ Next ID: Q-EXE-010
   admission and input extent against FND-EXE-169; those external contracts
   do not prove native buffer, pointer or lifetime state. Do not count
   the bounded body as a complete reading before those inputs are admitted.
+  FND-EXE-172 completes the independent physical rel32 comparison for
+  FND-EXE-171's fixed-bound helper. Remaining caller/interior admission
+  needs other transfer representations and computed/runtime target producers;
+  matching physical and decoded domains alone does not settle those.
   Blocks: resolved wrapper-helper and continuation description.
 
 ## Emulated call

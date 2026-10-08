@@ -309,6 +309,11 @@ reading of callers, external commands or interpreter behavior is claimed.
   changed-name result alone does not. Identifier/name admission, runtime
   writes and storage lifetime distinguish those readings (Q-EXE-009).
 
+  FND-EXE-172 independently checks physical rel32 candidates into the
+  fixed-bound startup helper, agreeing with FND-EXE-171's decoded domain.
+  Unchecked transfer representations and runtime-written code still prevent
+  a complete caller declaration (Q-EXE-009).
+
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
   are compatible with multiple encodings too. FND-EXE-008 identifies the
