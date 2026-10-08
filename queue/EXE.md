@@ -17,7 +17,9 @@ Next ID: Q-EXE-011
   input. FND-EXE-175 adds an original-source bounded resident candidate
   with explicit call targets and unresolved interrupt/root-frame stops.
   Next: establish its incoming transfers and state/segment producers, then
-  follow the listed callees into handler installation and loading. Blocks: none.
+  follow the listed callees into handler installation and loading.
+  FND-EXE-176 resolves the initial state/vector pointer; account for every
+  writer and the vector procedure's replacement with the old pointer. Blocks: none.
 
 - Q-EXE-005. FMT-EXE-006: Which code page interprets the disc sound helper's
   display bytes? Settles it: direct interpreter configuration or code-page/font
@@ -249,6 +251,8 @@ Next ID: Q-EXE-011
   corrected-derivative partitions; the repair alone does not reconcile bodies.
   FND-EXE-175 supplies a bounded resident candidate and explicit trace stops;
   read its native callers and segment/input producers before using its callees.
+  FND-EXE-176 adds the relocated state segment and initial handler pointer,
+  with live pointer/vector writers and native CS admission still unresolved.
   Next: descriptor 198's entry
   and CS admission, then the remaining suspect target producers.
   Blocks: reconciled executable denominator and complete-reading declarations
