@@ -370,6 +370,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-236 reads the near-callback default and two replacement
   stores; native writer DS, replacement-target effects, other scalar hits'
   storage identities and invocation order remain unresolved.
+  Tried: FND-EXE-237 reads the replacement callback's ordered state-bit
+  dispatch and both direct targets; native DS/caller admission, state-byte
+  writers and the two callee effects remain unresolved.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
