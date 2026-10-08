@@ -162,6 +162,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-203 reads its direct allocation wrapper and retains imported preservation;
   FND-EXE-204 separates neighboring cursor reads from fixed publications;
   FND-EXE-205 separates scalar initialization from indirect and imported writes;
+  FND-EXE-206 validates the shared numeric gate-neighbor search and its exclusions;
   FND-EXE-047 traces imported resource and local-helper mode publication;
   FND-EXE-048 resolves record/wait imports and the zero-result tail return;
   FND-EXE-049 traces saved-link cleanup and its freshly selected mode;
