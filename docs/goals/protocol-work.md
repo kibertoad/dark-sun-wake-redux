@@ -53,14 +53,14 @@ An owner-approved history repair remains separate from this maintenance scope.
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
 - Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore and endpoint checks passed.
-  EXE research through FND-EXE-213, measured-baseline tooling and independent
+  EXE research through FND-EXE-215, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
   and its independently failing-before/passing-after synthetic regression.
   Existing argument-check skips remain; generated files are unchanged.
   Corrected revision-2 fresh projects and repeatable exports are local.
   Review old mapped-snapshot dependencies before accepting native claims.
-- Unfinished: matching endpoint corrections are uncommitted. Follow-up items remain Q-EXE-005,
+- Unfinished: no tracked work remains. EXE follow-up items remain Q-EXE-005,
   Q-EXE-006, Q-EXE-007, Q-EXE-008, Q-EXE-009 and Q-EXE-010; Q-EXE-001 retains its
   retry requirement. Local static-analysis reports and the saved interpreter
   Ghidra project remain in GAME_DIR/analysis/exe-batches for continuation.
@@ -189,7 +189,7 @@ An owner-approved history repair remains separate from this maintenance scope.
      retain each search's exclusions before declaring complete caller coverage.
      FND-EXE-164 is
      the latest composed reading; follow FND-EXE-209's callback/metadata
-     producers and FND-EXE-210/212/213's input/count admission; finish endpoint corrections, then
+     producers and FND-EXE-210/212/213's input/count admission; use FND-EXE-214/215, then
      saved-state writers and FND-EXE-162's preceding-callee effects.
      FND-EXE-161's remaining callee/frame contracts still limit saved-value
      survival and diagnostic completion.
