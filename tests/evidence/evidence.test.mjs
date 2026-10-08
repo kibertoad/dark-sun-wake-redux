@@ -317,6 +317,51 @@ test('physical PE transfers preserve signed/wrapping and interior targets, exclu
   assert.deepEqual(r.candidates.map(c=>c.target),[0x10,0x20]);
 });
 
+test('physical relative forms require kind controls and preserve signed short and conditional destinations',()=>{
+  const b=syntheticPe(), base=0x7f001000;
+  b.writeUInt32LE(0x80,0x178+8); b.writeUInt32LE(0x100,0x178+16); b.writeUInt32LE(0x200,0x178+20);
+  b.fill(0x90,0x200,0x300);
+  const put=(offset,kind,target)=>{
+    const site=base+offset, at=0x200+offset;
+    if(kind==='jump-rel8'||kind==='conditional-rel8') {
+      b[at]=kind==='jump-rel8'?0xeb:0x7f; b.writeInt8(target-site-2,at+1);
+    } else {
+      const conditional=kind==='conditional-rel32', length=conditional?6:5;
+      b[at]=conditional?0x0f:kind==='call-rel32'?0xe8:0xe9;
+      if(conditional)b[at+1]=0x80;
+      b.writeInt32LE((target-site-length)|0,at+(conditional?2:1));
+    }
+  };
+  const forms=['call-rel32','jump-rel32','jump-rel8','conditional-rel8','conditional-rel32'];
+  const controls=forms.map((kind,i)=>({start:base+0x60+i,end:base+0x61+i,kind}));
+  forms.forEach((kind,i)=>put(i*8,kind,controls[i].start));
+  put(0x30,'jump-rel8',base+0x41); put(0x34,'conditional-rel8',base+0x42);
+  put(0x38,'conditional-rel32',base+0x43);
+  const cfg={forms,targets:[{start:base+0x40,end:base+0x50}],controls};
+  let r=peTransferCandidates(b,cfg);
+  assert.deepEqual(r.controls.map(c=>c.candidates),[1,1,1,1,1]);
+  assert.deepEqual(r.candidates.filter(c=>c.targetIndices.length).map(c=>[c.site-base,c.target-base,c.encodingBytes]),
+    [[0x30,0x41,2],[0x34,0x42,2],[0x38,0x43,6]]);
+  put(0x40,'jump-rel8',base+0x10); put(0x44,'conditional-rel8',base+0x11);
+  put(0x48,'conditional-rel32',base+0x12);
+  r=peTransferCandidates(b,{...cfg,targets:[{start:base+0x10,end:base+0x13}]});
+  for(const target of [base+0x10,base+0x11,base+0x12])
+    assert(r.candidates.some(c=>c.target===target&&c.targetIndices.length));
+  put(0x7b,'conditional-rel32',base+0x43); // Complete in raw padding, not in mapped bytes.
+  b[0x27f]=0xeb; b[0x280]=0xc0; // Short encoding crosses the mapped boundary.
+  r=peTransferCandidates(b,cfg);
+  assert(!r.candidates.some(c=>c.site===base+0x7b||c.site===base+0x7f));
+  assert.throws(()=>peTransferCandidates(b,{...cfg,forms:['conditional-rel8','conditional-rel8']}),/unique/);
+  assert.throws(()=>peTransferCandidates(b,{...cfg,forms:['loop-rel8']}),/supported/);
+  assert.throws(()=>peTransferCandidates(b,{...cfg,controls:controls.slice(1)}),/every selected form/);
+  assert.throws(()=>peTransferCandidates(b,{...cfg,controls:controls.map(({kind,...range})=>range)}),/selected kind/);
+  assert.throws(()=>peTransferCandidates(b,{...cfg,controls:[null]}),/control range/);
+  const wrong=controls.map(c=>({...c})); wrong[2].start++; wrong[2].end++;
+  assert.throws(()=>peTransferCandidates(b,{...cfg,controls:wrong}),/no physical candidate/);
+  assert.throws(()=>peTransferCandidates(b,{...cfg,limit:1}),/exceed limit/);
+  assert(r.exclusions.includes('rel16 and LOOP/JCXZ-family transfers'));
+});
+
 test('overlay body classification partitions all bytes and keeps entry placement separate',t=>{
  const b=synthetic(), image=readMz(b);
  const ranges=[{start:552,end:570,entry:532},{start:80,end:85,entry:532},{start:510,end:534,entry:80}];

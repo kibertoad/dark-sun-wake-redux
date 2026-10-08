@@ -261,7 +261,16 @@ physically backed executable sections, computes signed rel32 destinations with
 Virtual-only bytes, unmapped raw padding, data sections and cross-region encodings
 are excluded. Instruction boundaries and prefix interpretation are unverified:
 candidates can lie in operands or data embedded in code. Rel8/rel16, conditional,
-far, indirect, computed and runtime-written transfers remain outside the search.
+far, indirect, computed and runtime-written transfers remain outside the default search.
+An explicit `forms` list can select `call-rel32`, `jump-rel32`, `jump-rel8`,
+`conditional-rel8` and `conditional-rel32`. These add EB, 70..7F and
+0F-80..0F-8F opcode forms, with the signed displacement read at the appropriate
+width and the destination measured after two, five or six bytes. Every selected
+form requires an independent positive control with a matching `kind`; a control
+hit of another kind cannot satisfy it. Unknown or duplicate forms are rejected.
+The report lists selected forms, encoding lengths and remaining exclusions.
+Rel16, LOOP/JCXZ-family, far, indirect, computed and runtime-written transfers
+remain excluded. Prefixes and instruction starts are still unverified.
 An empty target result with passing controls is not a complete caller declaration.
 Keep configurations and licensed-source results in GAME_DIR, never in Git.
 ### Overlay function-body anomaly classification
