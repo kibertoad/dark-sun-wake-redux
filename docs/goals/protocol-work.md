@@ -53,7 +53,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
 - Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore and endpoint checks passed.
-  EXE research through FND-EXE-199, measured-baseline tooling and independent
+  EXE research through FND-EXE-200, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
   and its independently failing-before/passing-after synthetic regression.
@@ -169,7 +169,7 @@ An owner-approved history repair remains separate from this maintenance scope.
      complete_reading declaration. Follow FND-EXE-166's specific remaining
      obligations: setup preservation and SRC-WIN32-X86-ABI contract admission,
      lifetime, FND-EXE-197's source preservation, FND-EXE-199's remaining aliases and indirect uses.
-     FND-EXE-167 is the current setup-prefix replacement. Follow its shared-base
+     FND-EXE-167 and FND-EXE-200 are the setup/mode replacements. Follow their shared-base
      producers through FND-EXE-043 and FND-EXE-170, segment admission and
      intervening callee effects before treating the reader's input as preserved.
      FND-EXE-168 retains the explicit-writer search domain and remaining
