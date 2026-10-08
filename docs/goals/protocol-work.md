@@ -56,6 +56,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   all EXE research batches and the measured-baseline tooling batch.
   The latest complete-reading boundary correction passed the full assetless
   gate and pre-commit checks; existing argument-check skips remain.
+  FND-EXE-166's caller/input research batch also passed that gate and hooks.
   Explicit main-base documentation checking passed; generated files were left unchanged.
   Existing argument-check skips remain. Remote-base ancestry was rechecked
   and is available; explicit local main-base checking passed. Pre-commit
@@ -68,7 +69,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   Measured snapshot exports, audit sidecars and comparisons are in
   GAME_DIR/analysis/work-baseline. Existing committed inventories were retained
   pending definition/mapping reconciliation; do not discard anomalous ranges
-  or publish unverified replacements. Candidate closure probes are local only.
+  or publish unverified replacements. Candidate reports remain local; durable
+  reader evidence is in FND-EXE-166, with no complete-reading promotion.
 - Owner priority: complete-reading closure now takes precedence over broad
   new partial readings. Use Q-EXE-009 and FMT-EXE-006 to assemble a bounded
   evidence package, checking complete bodies, independent caller searches,
@@ -142,7 +144,9 @@ An owner-approved history repair remains separate from this maintenance scope.
      use independent reference controls before claiming caller completeness.
      FND-EXE-165 is the current replacement; do not reuse superseded citation
      locations. Require selected-local and field-writer admission before a
-     complete_reading declaration. Local candidate probes are not findings.
+     complete_reading declaration. Follow FND-EXE-166's specific remaining
+     obligations: setup preservation of the incoming slot, selected-local
+     lifetime, offset-28 writers, stack aliases and excluded indirect uses.
      FND-EXE-164 is
      the latest composed reading; follow concrete offset-24 callback
      producers and input consumption for FND-EXE-163/FND-EXE-053, then
