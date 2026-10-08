@@ -355,6 +355,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-231 reads that writer's later DS switch and both paths'
   ordered stores; actual segment/header admission, destination aliasing and
   other source-word writers remain unresolved.
+  Tried: FND-EXE-232 reads the carry-path helper's resets, subtractions and
+  final replacement; traversal/stack bounds, source-word writers and its
+  remaining callee effects still need admission.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
