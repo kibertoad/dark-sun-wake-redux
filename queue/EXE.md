@@ -367,6 +367,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-235 reads cleanup rewrite/callback/clear order and returned
   CX consumption. The DS-relative near callback's writers and native target,
   output bounds and segment/saved-slot admission remain unresolved.
+  Tried: FND-EXE-236 reads the near-callback default and two replacement
+  stores; native writer DS, replacement-target effects, other scalar hits'
+  storage identities and invocation order remain unresolved.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
