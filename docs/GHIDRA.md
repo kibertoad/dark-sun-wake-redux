@@ -264,3 +264,19 @@ inventory or mapping merely because a new tool is available.
 ReportMemoryBlocks.java accepts `page <zero-based-start> <count>` (count 1..512) or `name <exact-name>`. Page ordering is the current program's block order; repeat queries against the same unchanged analysis. The header reports total blocks, starting index, emitted count and whether the selection is partial; a page header also reports the requested count, so a page ending past the map is visibly clipped. Start equal to total emits an empty page. Whole-map requests above 512 fail rather than silently truncate. Exact names reject missing blocks, and ambiguous names list the matching indices to page to. Reports stay in GAME_DIR; no code or bytes are emitted.
 
 JVM fatal-error/replay logs and heap dumps (`*.hprof`) are ignored and rejected by repository policy (`deniedFileNamePatterns` in `tools/repository-policy.json`) even when force-staged, at any directory depth. Start analysis with `-XX:ErrorFile=<local-only-dir>/hs_err_pid%p.log`, `-XX:ReplayDataFile=<local-only-dir>/replay_pid%p.log` and, when heap dumps are enabled, `-XX:HeapDumpPath=<local-only-dir>` in the analysis JVM options (`JAVA_TOOL_OPTIONS` for that invocation); choose GAME_DIR/analysis or a unique temporary directory, never a tracked output. Logs do not prove task ownership or a live process; inspect PID, command line and task provenance before any cleanup.
+
+## FBOV analysis mapper relocation revision 2
+
+The mapper now emits `MapperContractRevision: 2`. Earlier revisions added
+trampoline and code-fixup relocation pairs in segment/offset order while the
+MZ writer emitted offset/segment order. An independent synthetic MZ-reader
+regression fails before the correction and passes after it, retaining original
+relocation sites and resolving both rewritten segment words to their targets.
+
+Regenerate analysis derivatives at new GAME_DIR paths and import fresh projects;
+retain old images, snapshots and reports for comparison. Do not carry an old
+snapshot's discovery or computed-target ownership into the corrected denominator
+without re-export and source-mapping review. Original-content sources are unchanged.
+Mapped-image findings need dependency review before they support native behavior;
+this tooling fix alone does not supersede every historical observation or establish
+a complete reading. The mapper output and analysis derivatives are local-only.

@@ -230,3 +230,18 @@ boundaries and distinguish resident body fragments from overlay entries; invalid
 ranges and format-control mismatches fail. Licensed results stay in GAME_DIR.
 Full Test.ps1 passes before a tooling commit. Exit: measured classification and
 separate goal handover; actual boundary repairs require a later research reading.
+
+## Analysis-image relocation correction (2026-10-08)
+
+Verify and correct newly added MZ relocation pairs in the FBOV analysis-image
+builder. Existing pairs and its writer use offset then segment; new trampoline
+and code-fixup additions must use that same order. This repairs local analysis
+derivatives only and establishes no original runtime or gameplay behavior.
+
+Acceptance: a wholly synthetic FBOV file retains its original relocations and
+adds relocation sites at exactly the rewritten trampoline segment word and code
+fixup segment word. The independent MZ reader validates the derivative and
+resolves both to the intended synthetic targets. Demonstrate the test fails
+before the fix, then pass full assetless Test.ps1. Regenerated licensed images
+and fresh snapshots remain local; old snapshots/coverage remain provisional.
+Exit: tested tooling commit, upstream report and separate goal handover; no push.

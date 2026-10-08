@@ -5,6 +5,7 @@ import {tmpdir} from 'node:os';
 import {resolve, join} from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {copyWorkingTree} from './copy-working-tree.mjs';
+import {readMz} from '../../tools/evidence/legacy-image.mjs';
 const root = resolve(import.meta.dirname, '../..');
 const pwsh = process.env.PWSH || 'pwsh';
 const run = (file, args=[], options={}) => spawnSync(pwsh, ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', file, ...args], {encoding:'utf8', timeout:120000, ...options});
@@ -14,6 +15,25 @@ function fixture(t) {
   t.after(() => rmSync(dir, {recursive:true, force:true}));
   return dir;
 }
+
+test('mapped FBOV relocations reach rewritten segment words, preserving original sites', t => {
+  const dir=fixture(t), source=join(dir,'source.exe'), mapped=join(dir,'mapped.exe');
+  const b=Buffer.alloc(592), w=(p,n)=>b.writeUInt16LE(n,p), d=(p,n)=>b.writeUInt32LE(n,p);
+  b.write('MZ'); w(4,1); w(8,4); w(6,2); w(24,28);
+  w(28,19); w(32,35);
+  b[80]=0x9a; w(81,32); w(83,12); b[96]=0x9a; w(97,16); w(99,13);
+  b.write('FBOV',512); d(516,64); d(520,128); d(524,2);
+  w(136,12); w(140,2); w(256,0x3fcd); d(260,0); w(264,32); w(266,2); w(268,1);
+  w(288,0x3fcd); w(290,0); b[532]=0x9a; w(533,16); w(535,0); w(560,7);
+  writeFileSync(source,b);
+  const r=run(join(root,'tools/ghidra/New-FbovMappedImage.ps1'),['-SourcePath',source,'-OutputPath',mapped]);
+  assert.equal(r.status,0,output(r));
+  const result=readMz(readFileSync(mapped)), shifted=p=>result.header+p-64;
+  assert.deepEqual([...result.relocations].sort((a,b)=>a-b),[83,99,291,535].map(shifted));
+  assert.equal(result.resolveOperand(shifted(291),0).fileOffset,'0x'+shifted(528).toString(16).toUpperCase().padStart(8,'0'));
+  assert.equal(result.resolveOperand(shifted(535),16).fileOffset,'0x'+shifted(80).toString(16).toUpperCase().padStart(8,'0'));
+  assert.equal(readFileSync(source).equals(b),true);
+});
 function wrapper(t, code, options={}) {
   const dir=fixture(t), file=join(dir,'control.ps1');
   writeFileSync(file, "$ErrorActionPreference='Stop'\n"+code);

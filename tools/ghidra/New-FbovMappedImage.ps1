@@ -116,7 +116,8 @@ for ($index = 0; $index -lt $segmentCount; $index++) {
         $bytes[$trapOffset] = 0xea
         Write-UInt16 $bytes ($trapOffset + 1) ([uint16]($targetOffset + $codeDisplacement))
         Write-UInt16 $bytes ($trapOffset + 3) $codeSegment
-        $relocations.Add(@($segment, [uint16](($trapOffset + 3) - $overlayHeaderOffset)))
+        # MZ records store the operand offset first, then its segment.
+        $relocations.Add(@([uint16](($trapOffset + 3) - $overlayHeaderOffset), $segment))
         $trampolineCount++
     }
 
@@ -131,7 +132,7 @@ for ($index = 0; $index -lt $segmentCount; $index++) {
         }
         $targetSegment = Read-UInt16 $bytes ($segmentTableOffset + $targetDescriptorIndex * 8)
         Write-UInt16 $bytes ($codeOffset + $codeWordOffset) $targetSegment
-        $relocations.Add(@($codeSegment, [uint16]($codeWordOffset + $codeDisplacement)))
+        $relocations.Add(@([uint16]($codeWordOffset + $codeDisplacement), $codeSegment))
         if (($encodedSegment -band 1) -ne 0) { $functionReferenceFixupCount++ }
     }
 }
@@ -174,6 +175,7 @@ finally {
 }
 
 [pscustomobject]@{
+    MapperContractRevision = 2
     SourcePath = $sourceFullPath
     OutputPath = $outputFullPath
     OverlayHeaderCount = $overlayCount
