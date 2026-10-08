@@ -53,7 +53,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
 - Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore and endpoint checks passed.
-  EXE research through FND-EXE-212, measured-baseline tooling and independent
+  EXE research through FND-EXE-213, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
   and its independently failing-before/passing-after synthetic regression.
@@ -189,7 +189,7 @@ An owner-approved history repair remains separate from this maintenance scope.
      retain each search's exclusions before declaring complete caller coverage.
      FND-EXE-164 is
      the latest composed reading; follow FND-EXE-209's callback/metadata
-     producers and FND-EXE-210/212's input/count admission for FND-EXE-053, then
+     producers and FND-EXE-210/212/213's input/count admission; review FND-EXE-064/065 endpoints, then
      saved-state writers and FND-EXE-162's preceding-callee effects.
      FND-EXE-161's remaining callee/frame contracts still limit saved-value
      survival and diagnostic completion.
