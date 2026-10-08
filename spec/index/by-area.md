@@ -148,6 +148,7 @@ Entries by area.
 | [FND-EXE-132](../findings/FND-EXE-132.md) | Selected prefix width branches publish a full mask then clear selector while the zero-selector branch retains the mask | recorded |
 | [FND-EXE-133](../findings/FND-EXE-133.md) | Physical byte-indexed prefix lookup contributes four for even set-bit counts and zero for odd counts | recorded |
 | [FND-EXE-134](../findings/FND-EXE-134.md) | Two prefix branches replace mask bits from distinct word and shifted full-width input contracts | recorded |
+| [FND-EXE-135](../findings/FND-EXE-135.md) | Byte and full-width prefix branches use distinct exact-input gates and lookup read ordering | recorded |
 
 ## GFF
 

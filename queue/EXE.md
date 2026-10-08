@@ -176,6 +176,7 @@ Next ID: Q-EXE-010
   Prefix width masks, retain-mask branch and selector clearing are recorded in FND-EXE-132.
   All physical byte-indexed mask contributions are recorded in FND-EXE-133.
   Distinct word-field and byte-count/full-width mask branches are recorded in FND-EXE-134.
+  FND-EXE-135 records byte/full-width exact-input gates and retained/fresh lookup ordering;
   Runtime writers/other prefix effects, table/slot producers and remaining selected callee
   effects remain open. These bounded
   readings do not establish the complete shell outcome. Next: trace record
