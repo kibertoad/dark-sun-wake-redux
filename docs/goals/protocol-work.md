@@ -53,9 +53,9 @@ An owner-approved history repair remains separate from this maintenance scope.
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
 - Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore passed for
-  both the EXE research and local Java setup documentation batches.
+  all EXE research batches in the current session.
   Explicit main-base documentation checking passed; generated files were left unchanged.
-  existing argument-check skips remain. Remote-base ancestry was rechecked
+  Existing argument-check skips remain. Remote-base ancestry was rechecked
   and is available; explicit local main-base checking passed. Pre-commit
   checks passed.
   The last full source-listing reconciliation was run locally; its log was not committed. This batch changed no manifest.
@@ -91,7 +91,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   The owner requested today's wrap-up and authorized pushing main afterward.
   That wrap-up is complete; the resumed objective keeps Q-EXE-009 next.
   Current continuation does not authorize another push.
-- Process audit: both full gates and all bounded Ghidra queries exited.
+- Process audit: all full gates and bounded Ghidra queries exited.
   Escalated CIM command-line/parent inspection works. Reusable MSBuild nodes
   and active work for another repository were preserved; no confirmed session
   orphan was stopped.
@@ -109,11 +109,16 @@ An owner-approved history repair remains separate from this maintenance scope.
   the released writer-control rerun remain pending.
   Toolkit issue 350 received a duplicate follow-up on inventory ownership:
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/350#issuecomment-6046763133.
+  Toolkit issue 111 also received a duplicate-checked request for explicit
+  exclusive boundaries in bounded instruction reports, with proposed synthetic
+  controls and no claim of delivered support:
+  https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6058496258.
 - Next, after rechecking shared goal claims:
   1. Q-EXE-009, FMT-EXE-006: continue unrecorded prefix branches from
      FND-EXE-131's dispatch mapping, then producer/lifetime contracts and
-     the remaining dependencies listed in its queue item. FND-EXE-145 is
-     the latest bounded reading; check existing coverage before selecting a branch.
+     the remaining dependencies listed in its queue item. FND-EXE-147 is
+     the latest bounded reading; FND-EXE-133's range correction is committed.
+     Check existing coverage before selecting a branch.
   2. Q-EXE-006, FMT-EXE-006: batch-input/parser and helper/cleanup coverage
      from FND-EXE-013.
   3. Q-EXE-008, FMT-EXE-006: disc-installer caller coverage.
