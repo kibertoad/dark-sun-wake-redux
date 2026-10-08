@@ -199,3 +199,19 @@ Use synthetic regions/functions to verify overlap, gaps and partition arithmetic
 Full Test.ps1 passes before the tooling commit. Exit: measured baseline and
 reviewable comparison, with remaining unknown scope recorded explicitly. No
 owner decision or original-game execution is required.
+
+## Independent PE caller candidates (2026-10-08)
+
+For complete-reading review, add a hash-guarded physical PE32 relative-transfer
+candidate report independent of analyzer function boundaries. Reuse the bounded
+PE section reader; scan only physically backed executable bytes that the loader
+maps, excluding raw padding and virtual-only tails. Report near CALL/JMP rel32
+candidates targeting declared half-open address ranges, including interior entries.
+Require an independently known positive control and fail on result-limit overflow.
+Candidates do not establish decoded instruction boundaries or reachable callers.
+
+Acceptance: synthetic checks cover signed displacement, 32-bit wrapping, interior
+targets, data/padding exclusions, truncated encodings and failed controls/caps;
+the full assetless Test.ps1 passes. Licensed results remain in GAME_DIR.
+Exit: validated tooling commit and separate handover; no native run or status
+promotion. Remaining indirect and differently encoded transfers stay explicit.

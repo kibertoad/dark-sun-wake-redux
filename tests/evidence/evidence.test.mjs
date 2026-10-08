@@ -9,6 +9,7 @@ import { reviewFlow, boundedTable } from "../../tools/evidence/review.mjs";
 import { inventoryPath, parseInventory, joinInventories, verifyInventory } from "../../tools/evidence/inventory.mjs";
 import { run } from "../../tools/evidence/report.mjs";
 import { readPe32 } from "../../tools/evidence/pe-image.mjs";
+import { peTransferCandidates } from "../../tools/evidence/pe-transfers.mjs";
 
 function synthetic() {
   const b = Buffer.alloc(592), w = (p, n) => b.writeUInt16LE(n, p), d = (p, n) => b.writeUInt32LE(n, p);
@@ -283,4 +284,34 @@ test("PE inventories write flat virtual addresses inside executable sections", (
   assert.throws(() => run(["incoming", config]), /MZ sources only/);
   writeFileSync(config, JSON.stringify({ ...cfg, sourceKind: "le" }));
   assert.throws(() => run(["inventory", config]), /sourceKind/);
+});
+
+test('physical PE transfers preserve signed/wrapping and interior targets, exclude padding/data, and fail closed', t => {
+  const b=syntheticPe(), base=0x7f001000;
+  b.writeUInt32LE(0x80,0x178+8); b.writeUInt32LE(0x100,0x178+16); b.writeUInt32LE(0x200,0x178+20);
+  b.writeUInt32LE(0x100,0x1a0+16); b.writeUInt32LE(0x300,0x1a0+20);
+  const write=(file,site,target,op=0xe8)=>{b[file]=op;b.writeInt32LE((target-site-5)|0,file+1);};
+  write(0x200,base,base+0x60); write(0x220,base+0x20,base+0x43); write(0x260,base+0x60,base+0x40,0xe9);
+  write(0x290,base+0x90,base+0x44); write(0x300,0x7f002000,base+0x44);
+  write(0x27c,base+0x7c,base+0x44);
+  const cfg={sourceKind:'pe32',targets:[{start:base+0x40,end:base+0x50}],controls:[{start:base+0x60,end:base+0x61}]};
+  let r=peTransferCandidates(b,cfg);
+  assert.deepEqual(r.candidates.map(c=>[c.site-base,c.target-base,c.kind]),[[0,0x60,'call-rel32'],[0x20,0x43,'call-rel32'],[0x60,0x40,'jump-rel32']]);
+  assert.equal(r.regions[0].fileEnd,0x280);
+  assert.throws(()=>peTransferCandidates(b,{...cfg,limit:2}),/exceed limit/);
+  assert.throws(()=>peTransferCandidates(b,{...cfg,controls:[{start:base+0x70,end:base+0x71}]}),/no physical candidate/);
+  assert.throws(()=>peTransferCandidates(b,{...cfg,controls:cfg.targets}),/independent/);
+  assert.throws(()=>peTransferCandidates(b,{...cfg,limit:0}),/limit/);
+  assert.throws(()=>peTransferCandidates(b,{...cfg,targets:[{start:2,end:1}]}),/half-open/);
+  const dir=mkdtempSync(join(tmpdir(),'physical-pe-')); t.after(()=>rmSync(dir,{recursive:true,force:true}));
+  writeFileSync(join(dir,'source.bin'),b); const path=join(dir,'query.json');
+  const query={...cfg,source:'source.bin',xxh3:sourceXxh3(b)}; writeFileSync(path,JSON.stringify(query));
+  assert.equal(run(['pe-transfers',path]).candidates.length,3);
+  writeFileSync(path,JSON.stringify({...query,xxh3:'0'.repeat(32)}));
+  assert.throws(()=>run(['pe-transfers',path]),/xxh3 does not match/);
+  b.writeUInt16LE(0x1c0,0x84); assert.throws(()=>peTransferCandidates(b,cfg),/i386/); b.writeUInt16LE(0x14c,0x84);
+  b.writeUInt32LE(0xffffd000,0x98+28);
+  write(0x200,0xffffe000,0x10); write(0x220,0xffffe020,0x20);
+  r=peTransferCandidates(b,{targets:[{start:0x20,end:0x21}],controls:[{start:0x10,end:0x11}]});
+  assert.deepEqual(r.candidates.map(c=>c.target),[0x10,0x20]);
 });

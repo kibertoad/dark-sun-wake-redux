@@ -44,7 +44,8 @@ export function readPe32(bytes) {
       span(rawStart, rawSize, bytes.length, "PE section raw bytes");
       if (rawStart < sizeOfHeaders) throw new Error("PE section raw bytes overlap headers");
     }
-    const section = { view: `section-${i}`, start: imageBase + address, end: imageBase + address + size, rawStart, rawSize, code: !!(characteristics & (CODE | EXECUTE)) };
+    const section = { view: `section-${i}`, start: imageBase + address, end: imageBase + address + size, rawStart, rawSize,
+      mappedRawSize: virtualSize ? Math.min(rawSize, virtualSize) : rawSize, code: !!(characteristics & (CODE | EXECUTE)) };
     for (const s of sections) {
       if (section.start < s.end && s.start < section.end) throw new Error("Overlapping PE sections");
       if (rawSize && s.rawSize && rawStart < s.rawStart + s.rawSize && s.rawStart < rawStart + rawSize) throw new Error("Overlapping PE raw sections");
@@ -53,5 +54,5 @@ export function readPe32(bytes) {
   }
   const ranges = sections.filter((s) => s.code).map(({ view, start, end }) => ({ view, start, end }));
   if (!ranges.length) throw new Error("PE file has no executable section");
-  return { format: "PE", imageBase, sizeOfImage, ranges };
+  return { format: "PE", imageBase, sizeOfImage, ranges, sections };
 }

@@ -237,3 +237,21 @@ pointers to dereference segment choices and producers. Equal offsets alone never
 prove DS=SS. Propagated segment equality and matching/affine symbolic offsets
 qualify modeled storage merging; unknown relationships and formation evictions
 refuse it. Pointer-related reads remain in effect reports; see the pinned guide.
+
+### Independent physical PE32 transfer candidates
+
+`node tools/evidence/report.mjs pe-transfers <local-config.json>` requires
+`sourceKind: pe32`, `source`, the explicit `xxh3`, `targets` and `controls`.
+Each target/control is a half-open `{start, end}` address range; controls must
+not overlap targets and each must produce a candidate. `limit` defaults to 128
+and is at most 16384; an overflow fails rather than returning a partial search.
+
+The i386-only scanner examines every possible five-byte E8/E9 start in loaded,
+physically backed executable sections, computes signed rel32 destinations with
+32-bit wrapping, and reports source offsets, destinations and matching ranges.
+Virtual-only bytes, unmapped raw padding, data sections and cross-region encodings
+are excluded. Instruction boundaries and prefix interpretation are unverified:
+candidates can lie in operands or data embedded in code. Rel8/rel16, conditional,
+far, indirect, computed and runtime-written transfers remain outside the search.
+An empty target result with passing controls is not a complete caller declaration.
+Keep configurations and licensed-source results in GAME_DIR, never in Git.
