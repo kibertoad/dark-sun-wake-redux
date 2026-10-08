@@ -299,6 +299,22 @@ review, rather than blanket supersession or automatic status promotion.
 
 ## Citation endpoint controls
 
+Engine 13.6.0's shared `ReportInstructionWindow` prints a `span:` for
+each contiguous run of displayed instructions: its half-open range, byte
+count, last byte and instruction count. Copy the exclusive end from that
+span, not the last instruction's start or last byte. Separate spans retain
+listing gaps; they are not one continuous code range. A refused interior
+start prints no span. These are listing boundaries, not proof of reachable
+code, source identity or complete reading.
+
+The released reporter passed the FND-EXE-200 multibyte-branch endpoint,
+FND-EXE-166 reader-return endpoint and FND-EXE-022 one-byte-return controls.
+Extending the reader window by one instruction produced two spans separated
+by its listing gap. Starting inside the branch was refused without a span.
+These controls validate the reporter's actual licensed-source cases; rich
+reports remain local. FND-EXE-022's separate operand-writer search is still
+pending and is not discharged by a context or span report.
+
 `ReportCitationBoundaries.java` takes 1..32 `start..end` queries, optionally
 suffixed `:return`. End is exclusive. It checks only the start instruction
 and the instruction containing end-minus-one, independently of function
