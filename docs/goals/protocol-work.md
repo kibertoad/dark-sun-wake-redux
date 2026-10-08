@@ -52,8 +52,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   works in this repository, so the goal runs on main in the single checkout,
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
-- Last full gate: 2026-10-09, assetless Test.ps1 -NoRestore passed for FND-EXE-221 research (715 tests).
-  EXE research through FND-EXE-221, measured-baseline tooling and independent
+- Last full gate: 2026-10-09, assetless Test.ps1 -NoRestore passed for FND-EXE-222 research (715 tests).
+  EXE research through FND-EXE-222, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
   and its independently failing-before/passing-after synthetic regression.
@@ -156,10 +156,10 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Utility migration tooling is committed. The SOUND_DS candidate remains local
   under GAME_DIR/analysis/work-baseline/migration-20261009; no unfinished code.
 - Migration follow-up: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6069548929.
-- Overlay diagnostic follow-up: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/369#issuecomment-6069644259.
+- Overlay diagnostic follow-up: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/369#issuecomment-6069709551.
 - Next, after rechecking shared goal claims:
   1. Finish installed and CD DSUN inventory reconciliation under Q-EXE-010,
-     FMT-EXE-005; follow FND-EXE-221 native CS and candidate decoding obligations.
+     FMT-EXE-005; follow FND-EXE-222 native CS, outer-entry/frame and body ownership obligations.
   2. Check claims before expanding into CONFIG for SOUND_DS endpoint review
      (FND-CONFIG-004 and FND-CONFIG-022); supersede factual errors under Standard.
   3. Rerun standard-coverage on all in-scope inventories once valid; retain
