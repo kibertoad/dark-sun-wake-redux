@@ -52,8 +52,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   works in this repository, so the goal runs on main in the single checkout,
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
-- Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore recheck and endpoint controls passed.
-  EXE research through FND-EXE-198, measured-baseline tooling and independent
+- Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore and endpoint checks passed.
+  EXE research through FND-EXE-199, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
   and its independently failing-before/passing-after synthetic regression.
@@ -148,6 +148,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   Intermittent synthetic capture gate: https://github.com/kibertoad/dark-sun-wake-redux/issues/7; rechecks passed.
   Endpoint diagnostic follow-up: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6066576722.
   Worker deadline follow-up: https://github.com/kibertoad/refurbished-dinosaurs-template/issues/73#issuecomment-6066679859.
+  Partial-overlap admission follow-up: https://github.com/kibertoad/refurbished-dinosaurs/issues/37#issuecomment-6066902929.
 - Next, after rechecking shared goal claims:
   1. Q-EXE-010, FMT-EXE-005: reconcile revision-2 comparison in
      GAME_DIR/analysis/work-baseline/relocation-reconciled. Revisit
@@ -167,7 +168,7 @@ An owner-approved history repair remains separate from this maintenance scope.
      locations. Require selected-local and field-writer admission before a
      complete_reading declaration. Follow FND-EXE-166's specific remaining
      obligations: setup preservation and SRC-WIN32-X86-ABI contract admission,
-     lifetime, FND-EXE-197's source/offset-28 preservation, aliases and indirect uses.
+     lifetime, FND-EXE-197's source preservation, FND-EXE-199's remaining aliases and indirect uses.
      FND-EXE-167 is the current setup-prefix replacement. Follow its shared-base
      producers through FND-EXE-043 and FND-EXE-170, segment admission and
      intervening callee effects before treating the reader's input as preserved.
