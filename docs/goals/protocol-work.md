@@ -52,8 +52,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   works in this repository, so the goal runs on main in the single checkout,
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
-- Last full gate: 2026-10-09, assetless Test.ps1 -NoRestore and empty-effect controls passed.
-  EXE research through FND-EXE-218, measured-baseline tooling and independent
+- Last full gate: 2026-10-09, assetless Test.ps1 -NoRestore passed for relative-form tooling and gap research.
+  EXE research through FND-EXE-219, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
   and its independently failing-before/passing-after synthetic regression.
@@ -138,7 +138,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   The duplicate-checked failure-import continuation example is recorded at
   https://github.com/kibertoad/refurbished-dinosaurs/issues/52#issuecomment-6062587659.
   The duplicate-checked independent PE transfer adapter suggestion is recorded at
-  https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/26#issuecomment-6062932353.
+  https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/26#issuecomment-6069205456.
   The duplicate-checked physical body-classification diagnostic is tracked at
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/369.
   The confirmed mapper repair and downstream revalidation are tracked at
@@ -146,7 +146,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   Ghidra rendering follow-up: https://github.com/NationalSecurityAgency/ghidra/issues/9739#issuecomment-6064374250.
   Interrupt-use capability: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/370.
   Intermittent synthetic capture gate: https://github.com/kibertoad/dark-sun-wake-redux/issues/7; rechecks passed.
-  Toolkit span rerun: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6068047179; R1/R3 passed; deliberate-prefix follow-up: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/343#issuecomment-6068249317.
+  Toolkit span rerun: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6068047179; R1/R3 passed; inclusive-query follow-up: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/343#issuecomment-6069274891.
   Inventory/segment follow-ups: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6068550782 and https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6069043576.
   Partial-overlap/guard follow-ups: https://github.com/kibertoad/refurbished-dinosaurs/issues/37#issuecomment-6066902929 and https://github.com/kibertoad/refurbished-dinosaurs/issues/37#issuecomment-6067099318.
 - Next, after rechecking shared goal claims:
@@ -159,7 +159,7 @@ An owner-approved history repair remains separate from this maintenance scope.
      Admit FND-EXE-185's backing memory, destination extent and aliases; follow
      FND-EXE-186's selector/table writers and FND-EXE-187's request, wrapper-record,
      FND-EXE-192's provenance and FND-EXE-195's excluded setter forms; retain lifetime contracts.
-  2. Q-EXE-012/013: continue caller/input admission; Q-EXE-011 is blocked after FND-EXE-217/218.
+  2. Q-EXE-012: follow FND-EXE-219's excluded gap-entry forms; Q-EXE-013 remains independent, Q-EXE-011 blocked.
      retain Q-EXE-009's full wrapper scope and dependencies toward the first
      qualifying complete-reading package. Check FND-EXE-056's bounded reader
      candidate against FND-EXE-165's inputs, FND-EXE-196 and FND-EXE-053's producers;
