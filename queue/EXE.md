@@ -412,6 +412,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-250 follows the header-dispatched transfer wrapper's carry
   consumption and the handler's ordered publications and loop re-entry values.
   Live dispatch, counter/link writers, aliases and termination remain open.
+  Tried: FND-EXE-251 extends the vector initializer through handle open/close
+  publications and the actual caller's far-return frame and carry consumption.
+  DOS outcomes, name/mode producers, state identity and other writers remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
