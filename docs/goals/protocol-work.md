@@ -56,7 +56,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   all EXE research batches and the measured-baseline tooling batch.
   The latest complete-reading boundary correction passed the full assetless
   gate and pre-commit checks; existing argument-check skips remain.
-  FND-EXE-171 passed the full assetless gate and hooks.
+  FND-EXE-171 and physical PE transfer tooling passed the full assetless
+  gate and hooks. The independent measurement is available locally for research.
   Prior caller/input, setup-preservation, shared-publication and failure-import
   research batches passed the full assetless gate and hooks.
   Explicit main-base documentation checking passed; generated files were left unchanged.
@@ -146,6 +147,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   https://github.com/kibertoad/refurbished-dinosaurs/issues/37#issuecomment-6062349322.
   The duplicate-checked failure-import continuation example is recorded at
   https://github.com/kibertoad/refurbished-dinosaurs/issues/52#issuecomment-6062587659.
+  The duplicate-checked independent PE transfer adapter suggestion is recorded at
+  https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/26#issuecomment-6062932353.
 - Next, after rechecking shared goal claims:
   1. Q-EXE-009, FMT-EXE-006: continue producer/lifetime contracts and
      the remaining dependencies listed in its queue item toward the first
@@ -172,7 +175,8 @@ An owner-approved history repair remains separate from this maintenance scope.
      SRC-MS-CRT-ASSERT is an external contract only; follow the loaded CRT
      effects and conditional failure continuations in FND-EXE-170.
      FND-EXE-171 replaces the startup reading. Its fixed-bound helper needs
-     independent physical relative-target and interior-entry admission checks;
+     a research finding citing the committed physical-transfer measurement;
+     then check remaining transfer forms and interior-entry admission;
      retain the decoded-reference and exact address-word search exclusions.
      FND-EXE-164 is
      the latest composed reading; follow concrete offset-24 callback
