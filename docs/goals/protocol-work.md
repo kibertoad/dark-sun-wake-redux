@@ -30,7 +30,7 @@ claims and other sessions' work.
 
 ## Must not touch
 
-Other sessions' worktrees, uncommitted work and commit history; original-game
+Other sessions' uncommitted work and commit history; original-game
 runtime or DOSBox; `src/`, gameplay implementation, claims or parity rows
 outside EXE, CONFIG/SCRIPT research and the separate upstream gap acceptance
 ledger. Push only when explicitly authorized. Native and emulated game execution are outside
@@ -40,16 +40,18 @@ An owner-approved history repair remains separate from this maintenance scope.
 ## Dead ends
 
 - The earlier shared-checkout amend replaced a concurrent research commit's
-  message. Use this isolated worktree, commit new work only, and do not amend
-  another session's HEAD. The pending repair is recorded in docs/HANDOVER.md.
+  message. Commit new work only, and never amend a commit this session did
+  not just make. The pending repair is recorded in docs/HANDOVER.md.
 - Git Bash could not create its hook snapshot in the inherited temporary
-  directory. Set TMPDIR inside Git Bash to this worktree's writable
+  directory. Set TMPDIR inside Git Bash to the checkout's writable
   artifacts/hook-tmp; keep the pre-commit hook enabled.
 
 ## Handover
 
-- Stage: Slices. The ongoing protocol objective remains active on this local
-  goal branch. Completed workflow tooling and EXE research are committed.
+- Stage: Slices. The ongoing protocol objective remains active. One agent
+  works in this repository, so the goal runs on main in the single checkout,
+  with no goal branch or worktree. Completed workflow tooling and EXE research
+  are committed.
 - Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore passed.
   Documentation generation and explicit main-base checking passed;
   existing argument-check skips remain. Remote-base ancestry was rechecked
@@ -60,23 +62,23 @@ An owner-approved history repair remains separate from this maintenance scope.
   Q-EXE-006, Q-EXE-007, Q-EXE-008 and Q-EXE-009; Q-EXE-001 retains its
   retry requirement. Local static-analysis reports and the saved interpreter
   Ghidra project remain in GAME_DIR/analysis/exe-batches for continuation.
-- Environment: use the parent checkout's portable PowerShell and locked
-  evidence-python interpreter. Clear GAME_DIR and
+- Environment: use the checkout's portable PowerShell
+  (artifacts/pwsh7/runtime/pwsh.exe) and locked evidence-python interpreter. Clear GAME_DIR and
   NoDefaultCurrentDirectoryInExePath. TEMP/TMP must belong to the account
-  actually executing the process. For hooks export this worktree's
+  actually executing the process. For hooks export the checkout's
   artifacts/hook-tmp as TMPDIR inside Git Bash. Keep hooks enabled. Reuse the
   saved Ghidra program with -noanalysis. For combined script directories,
   follow the corrected literal quoting in docs/GHIDRA.md; both directories
   were verified through the Windows launcher. Original-program execution
   remains prohibited.
-- Template context: current template 0b9ab9c and checker 2.5.0 are integrated.
-  Combined assetless Test.ps1 -NoRestore passed on 2026-10-08 in the research
-  worktree.
+- Template context: template 0b9ab9c, rules 11884c7 and checker 2.8.0 are
+  integrated on main; assetless Test.ps1 passed there on 2026-10-08. Write
+  range ends half-open (research-item skill).
   Generated indexes were refreshed on main. Archive member citations are
   qualified; toolkit issue 353 has the new archive case. Template issue 90
   records fixture-baseline assumptions under scheduled generation.
   The owner requested today's wrap-up and authorized pushing main afterward.
-  No new item is started. Resume Q-EXE-009 in the isolated worktree next time.
+  No new item is started. Resume Q-EXE-009 on main next time.
 - Process audit: reusable MSBuild nodes and other sessions' or uncertain
   processes were preserved. No confirmed session orphan required stopping.
 - Blockers: the parent checkout's history-message repair awaits owner

@@ -9,9 +9,9 @@ Commit e7016d7 adopts rules 11884c7, checker 2.8.0, RefurbishedDinosaurs
 11.0.0, executable-reader 2.4.0 and engine 13.3.0; template main is still the
 adopted 0b9ab9c. It corrects 107 DOSBox.exe range ends in place under the
 owner's decision in docs/DECISIONS.md. Assetless Test.ps1 passed with 715
-.NET tests. Pushed to main. The protocol-work worktree is still at 4fcf09c: merge
-main into it before resuming Q-EXE-009, and write range ends half-open
-(research-item skill). Docs no longer cite gitignored `artifacts/` files
+.NET tests. Pushed to main. Resume Q-EXE-009 on main, writing range ends
+half-open (research-item skill); the protocol-work worktree and its goal
+branch are removed, since one agent works here. Docs no longer cite gitignored `artifacts/` files
 (AGENTS.md forbids it); the research drivers they named are committed in
 tools/research/ and read GAME_DIR, and their reports are under
 GAME_DIR/analysis/reporter-audit/ (moved from UserContent/analysis/).
@@ -20,7 +20,7 @@ GAME_DIR/analysis/reporter-audit/ (moved from UserContent/analysis/).
 
 Completed protocol research and current template updates are integrated on main.
 The ongoing goal remains documented in docs/goals/protocol-work.md; resume
-Q-EXE-009 in its isolated worktree. Final research entry: FND-EXE-144.
+Q-EXE-009 on main. Final research entry: FND-EXE-144.
 Combined assetless Test.ps1 -NoRestore passed, including all .NET tests.
 Main's indexes and parity were regenerated. Documentation checks retain their
 reported argument-count skips. No original runtime was started.
