@@ -352,6 +352,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-230 identifies one source-word writer and its wrapped
   header-word increment; actual input bounds, other writers and the remainder
   of the writing procedure remain unread.
+  Tried: FND-EXE-231 reads that writer's later DS switch and both paths'
+  ordered stores; actual segment/header admission, destination aliasing and
+  other source-word writers remain unresolved.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
