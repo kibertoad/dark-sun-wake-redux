@@ -82,8 +82,10 @@ An owner-approved history repair remains separate from this maintenance scope.
   follow the corrected literal quoting in docs/GHIDRA.md; both directories
   were verified through the Windows launcher. Original-program execution
   remains prohibited.
-- Template context: template 0b9ab9c, rules 11884c7 and checker 2.8.0 are
-  integrated on main; assetless Test.ps1 passed there on 2026-10-08. Write
+- Template context: template 0b9ab9c, rules 11884c7 and checker 2.9.0 are
+  integrated on main; engine 13.5.0 is installed from its hash-locked wheel.
+  Assetless Test.ps1 passed on 2026-10-08. The initial synthetic capture
+  timing failure passed in isolation and in the full rerun. Write
   range ends half-open (research-item skill).
   Generated indexes were refreshed on main. Archive member citations are
   qualified; toolkit issue 353 has the new archive case. Template issue 90
@@ -114,12 +116,11 @@ An owner-approved history repair remains separate from this maintenance scope.
   controls and no claim of delivered support:
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6058496258.
 - Next, after rechecking shared goal claims:
-  1. Q-EXE-009, FMT-EXE-006: audit remaining prefix finding boundaries
-     from FND-EXE-145 onward, then producer/lifetime contracts and
+  1. Q-EXE-009, FMT-EXE-006: continue producer/lifetime contracts and
      the remaining dependencies listed in its queue item. FND-EXE-160 is
      the latest bounded reading; FND-EXE-133's range correction is committed.
-     Range corrections for FND-EXE-132 and FND-EXE-134 through
-     FND-EXE-144 are committed.
+     The boundary audit through FND-EXE-160 is complete; range corrections
+     for FND-EXE-131 through FND-EXE-144 are committed.
      Check aggregate coverage before selecting a new branch.
   2. Q-EXE-006, FMT-EXE-006: batch-input/parser and helper/cleanup coverage
      from FND-EXE-013.
