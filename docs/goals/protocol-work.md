@@ -53,7 +53,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
 - Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore and endpoint checks passed.
-  EXE research through FND-EXE-209, measured-baseline tooling and independent
+  EXE research through FND-EXE-210, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
   and its independently failing-before/passing-after synthetic regression.
@@ -146,7 +146,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   Ghidra rendering follow-up: https://github.com/NationalSecurityAgency/ghidra/issues/9739#issuecomment-6064374250.
   Interrupt-use capability: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/370.
   Intermittent synthetic capture gate: https://github.com/kibertoad/dark-sun-wake-redux/issues/7; rechecks passed.
-  Toolkit numeric rerun: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6067580411; span delivery PR 371 was open on 2026-10-08; retain local endpoint controls.
+  Toolkit numeric rerun: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6067580411; PR 371 is merged; engine 13.6.0 and reader 2.5.0 await a separate tooling update and span rerun.
   Worker deadline follow-up: https://github.com/kibertoad/refurbished-dinosaurs-template/issues/73#issuecomment-6066679859.
   Partial-overlap/guard follow-ups: https://github.com/kibertoad/refurbished-dinosaurs/issues/37#issuecomment-6066902929 and https://github.com/kibertoad/refurbished-dinosaurs/issues/37#issuecomment-6067099318.
 - Next, after rechecking shared goal claims:
@@ -189,7 +189,7 @@ An owner-approved history repair remains separate from this maintenance scope.
      retain each search's exclusions before declaring complete caller coverage.
      FND-EXE-164 is
      the latest composed reading; follow FND-EXE-209's callback/metadata
-     producers and input consumption for FND-EXE-163/FND-EXE-053, then
+     producers and FND-EXE-210's input/target admission for FND-EXE-053, then
      saved-state writers and FND-EXE-162's preceding-callee effects.
      FND-EXE-161's remaining callee/frame contracts still limit saved-value
      survival and diagnostic completion.
