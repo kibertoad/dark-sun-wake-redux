@@ -266,6 +266,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-145 records the full-width result-nibble equality and exact-result gates with retained mask one;
   FND-EXE-146 records word/full-width retained-result widths, opposite nibble gates and shared-tail input producers;
   FND-EXE-147 records retained-byte result comparisons and lookup inputs with opposite nibble gates;
+  FND-EXE-148 records guarded full-width admission, fresh byte masks and retained sign inputs;
   table/slot producers, runtime writers/other prefix effects and remaining selected callee effects remain open.
   floating numeric contracts, downstream targets, producers,
   indirect targets and actual state admission remain open.
