@@ -116,7 +116,7 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Next, after rechecking shared goal claims:
   1. Q-EXE-009, FMT-EXE-006: continue unrecorded prefix branches from
      FND-EXE-131's dispatch mapping, then producer/lifetime contracts and
-     the remaining dependencies listed in its queue item. FND-EXE-147 is
+     the remaining dependencies listed in its queue item. FND-EXE-149 is
      the latest bounded reading; FND-EXE-133's range correction is committed.
      Check existing coverage before selecting a branch.
   2. Q-EXE-006, FMT-EXE-006: batch-input/parser and helper/cleanup coverage
