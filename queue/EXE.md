@@ -28,7 +28,9 @@ Next ID: Q-EXE-011
   and saved-stack integrity before claiming preservation. FND-EXE-180 and
   SRC-DOSBOX-GOG-0742 connect the paired producer to an external-provider
   contract; live target identity, writers and source/binary correspondence
-  remain unresolved. Blocks: none.
+  remain unresolved. FND-EXE-181 adds a bounded shipped-provider pattern;
+  read its input/output field identities, pointer producer and registration
+  consumer before accepting correspondence. Blocks: none.
 
 - Q-EXE-005. FMT-EXE-006: Which code page interprets the disc sound helper's
   display bytes? Settles it: direct interpreter configuration or code-page/font
