@@ -40,7 +40,9 @@ Next ID: Q-EXE-011
   table consumer; establish its selector/table writers, callee effects,
   callback inputs and root callers. FND-EXE-187 traces the backing-base producer
   and controlled CRT imports; read request producers/range, wrapper records,
-  retry target, initialization, loaded CRT effects and lifetime. Blocks: none.
+  retry target, initialization, loaded CRT effects and lifetime. FND-EXE-188
+  reads local record-helper paths; establish shared state/selector producers,
+  initializer/import contracts, frame preservation and record aliases. Blocks: none.
 
 - Q-EXE-005. FMT-EXE-006: Which code page interprets the disc sound helper's
   display bytes? Settles it: direct interpreter configuration or code-page/font

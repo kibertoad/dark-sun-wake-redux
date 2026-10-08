@@ -66,6 +66,8 @@ bounded source reader; this does not establish native loader behavior.
   producers, target contracts and native admission remain unresolved.
   FND-EXE-187 traces a backing-base producer and controlled CRT imports;
   input extent, loaded CRT effects, nonlocal continuations and lifetime remain open.
+  FND-EXE-188 records shared and imported record-storage paths; state admission,
+  callee effects, aliases and nonlocal continuations remain unread.
 
 - Which analyzer-owned body fragments are native code under the original CS
   bindings (Q-EXE-010)? FND-EXE-173 separates their physical source regions
