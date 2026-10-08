@@ -215,3 +215,18 @@ targets, data/padding exclusions, truncated encodings and failed controls/caps;
 the full assetless Test.ps1 passes. Licensed results remain in GAME_DIR.
 Exit: validated tooling commit and separate handover; no native run or status
 promotion. Remaining indirect and differently encoded transfers stay explicit.
+
+## Overlay body anomaly reconciliation (2026-10-08)
+
+Classify each measured anomalous function-body span against the verified MZ/FBOV
+source layout, separately from the function's entry. Reuse the bounded published
+reader and explicit format-count controls. Partition every queried half-open span
+into resident load image, overlay code, fixup table, verified zero padding or
+other file bytes. Retain every span and report entry placement independently.
+Do not delete analyzer-owned bytes or widen Code ranges to make a check pass.
+
+Acceptance: synthetic checks prove exact partitioning across code/fixup/padding
+boundaries and distinguish resident body fragments from overlay entries; invalid
+ranges and format-control mismatches fail. Licensed results stay in GAME_DIR.
+Full Test.ps1 passes before a tooling commit. Exit: measured classification and
+separate goal handover; actual boundary repairs require a later research reading.

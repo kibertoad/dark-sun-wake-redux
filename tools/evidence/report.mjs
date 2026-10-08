@@ -10,6 +10,8 @@ import { reviewFlow, boundedTable } from "./review.mjs";
 import { joinInventories, inventoryPath, verifyInventory } from "./inventory.mjs";
 import { readPe32 } from "./pe-image.mjs";
 import { peTransferCandidates } from "./pe-transfers.mjs";
+import { overlayBodyPartitions } from "./overlay-bodies.mjs";
+import { checkFormatControls } from "@scientific-method/executable-reader/legacy-image";
 
 function readBounded(path, max = 256 * 1024 * 1024) {
   const stat = statSync(path);
@@ -18,14 +20,14 @@ function readBounded(path, max = 256 * 1024 * 1024) {
 }
 export function run(args) {
   const [command, configPath, ...extra] = args;
-  if (!command || !configPath || extra.length) throw new Error("Usage: node tools/evidence/report.mjs <operand|incoming|flow|table|inventory|inventory-check|pe-transfers|x86-COMMAND> <local-config.json>");
+  if (!command || !configPath || extra.length) throw new Error("Usage: node tools/evidence/report.mjs <operand|incoming|flow|table|inventory|inventory-check|pe-transfers|overlay-bodies|x86-COMMAND> <local-config.json>");
   const configFile = resolve(configPath);
   // The executable reader reads and bounds its own config, and runs scientific-method-engine for x86 commands.
   if (command.startsWith("x86-")) return withEngine(() => runX86([command.slice(4), configFile]));
   const config = JSON.parse(readBounded(configFile, 16 * 1024 * 1024)), base = dirname(configFile);
   const local = (p) => { if (typeof p !== "string" || !p) throw new Error("Expected an input path"); return resolve(base, p); };
   if (command === "flow") return reviewFlow(JSON.parse(readBounded(local(config.graph), 32 * 1024 * 1024)), config.entry, config.limit);
-  if (!["operand", "incoming", "table", "inventory", "inventory-check", "pe-transfers"].includes(command)) throw new Error(`Unknown report command: ${command}`);
+  if (!["operand", "incoming", "table", "inventory", "inventory-check", "pe-transfers", "overlay-bodies"].includes(command)) throw new Error(`Unknown report command: ${command}`);
   // The source is named by the xxh3 its build entry gives, as the x86 commands name it.
   if ("sha256" in config) throw new Error("sha256 is no longer read; name the source by its xxh3");
   if (!/^[0-9a-f]{32}$/.test(config.xxh3 ?? "")) throw new Error("xxh3 must be the source's XXH3-128 hash as 32 lower-case hex digits");
@@ -36,6 +38,14 @@ export function run(args) {
   else if (command === "pe-transfers") {
     if (config.sourceKind !== "pe32") throw new Error("pe-transfers requires sourceKind pe32");
     result = peTransferCandidates(bytes, config);
+  }
+  else if (command === "overlay-bodies") {
+    if (config.sourceKind !== "mz") throw new Error("overlay-bodies requires sourceKind mz");
+    const image = readMz(bytes, config.loadSegment);
+    if (!config.formatControls || !Number.isInteger(config.formatControls.overlays) || config.formatControls.overlays < 1)
+      throw new Error("Supply an explicit positive overlay-count control");
+    checkFormatControls(image, config.formatControls);
+    result = overlayBodyPartitions(image, config.ranges);
   }
   else {
     // Inventories of a PE32 file name flat addresses; every other command reads MZ and FBOV only.

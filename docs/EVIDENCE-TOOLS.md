@@ -255,3 +255,17 @@ candidates can lie in operands or data embedded in code. Rel8/rel16, conditional
 far, indirect, computed and runtime-written transfers remain outside the search.
 An empty target result with passing controls is not a complete caller declaration.
 Keep configurations and licensed-source results in GAME_DIR, never in Git.
+### Overlay function-body anomaly classification
+
+`overlay-bodies` accepts a hash-guarded `sourceKind: mz` configuration with
+`formatControls` (including a positive `overlays` count) and `ranges`.
+Each range has file-offset `start`, exclusive `end` and a separate `entry`.
+The bounded MZ/FBOV reader supplies resident and overlay code/fixup intervals;
+inter-block and trailing remainders are called zero padding only when every
+byte in that remainder is zero. Other bytes stay explicitly unclassified.
+Every span is partitioned completely, without dropping analyzer body fragments.
+Entry placement is separate: an overlay-entry function can own a resident or
+fixup-range fragment in an analyzer snapshot. That does not prove native flow,
+valid function ownership, or justify widening Code ranges. Invalid spans and
+format-count controls fail; at most 4096 spans are accepted. Licensed-source
+configs/reports remain in GAME_DIR. Inventory changes need separate research.
