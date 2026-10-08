@@ -136,7 +136,8 @@ Next ID: Q-EXE-011
   (FND-EXE-203), and neighboring cursor fixed-store/zero-request distinctions
   (FND-EXE-204), and scalar publication/indirect-write and reused-slot limits
   (FND-EXE-205), and controlled shared numeric operand-domain agreement
-  (FND-EXE-206), and resource/helper-derived mode publication
+  (FND-EXE-206), and bounded-width physical overlap-start encodings
+  (FND-EXE-207), and resource/helper-derived mode publication
   (FND-EXE-047), and exact record/wait imports and zero-result tail return
   (FND-EXE-048), and pre-helper saved-link cleanup through a fresh mode
   (FND-EXE-049), and construction-caller setup/cleanup return handling
