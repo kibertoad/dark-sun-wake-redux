@@ -154,6 +154,7 @@ Entries by area.
 | [FND-EXE-138](../findings/FND-EXE-138.md) | Signed byte prefix shift retains its count and lookup input through the final mask gate | recorded |
 | [FND-EXE-139](../findings/FND-EXE-139.md) | Full-width logical prefix shift reloads its count for a one-count sign gate and final mask replacement | recorded |
 | [FND-EXE-140](../findings/FND-EXE-140.md) | Word prefix shift zero-extends its input and uses a fresh word count with a retained word-sign gate | recorded |
+| [FND-EXE-141](../findings/FND-EXE-141.md) | Zero-extended byte prefix shift retains count and lookup input while a saved byte supplies its sign gate | recorded |
 
 ## GFF
 

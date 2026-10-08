@@ -182,6 +182,7 @@ Next ID: Q-EXE-010
   FND-EXE-138 records the signed byte shift with retained count and lookup inputs;
   FND-EXE-139 records full-width logical shift and fresh-count one/sign mask gates;
   FND-EXE-140 records zero-extended word shifts and fresh-word count/retained-sign gates;
+  FND-EXE-141 records zero-extended byte shifts with retained count/lookup and saved-byte sign;
   Runtime writers/other prefix effects, table/slot producers and remaining selected callee
   effects remain open. These bounded
   readings do not establish the complete shell outcome. Next: trace record
