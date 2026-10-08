@@ -327,24 +327,6 @@ Next ID: Q-EXE-014
   and CS admission, then the remaining suspect target producers.
   Blocks: reconciled executable denominator and complete-reading declarations
   that depend on those function boundaries.
-- Q-EXE-011. FMT-EXE-006: Do the selected-record reader's pointer accesses
-  address the same storage as the forwarding frame's selected local?
-  Settles it: establish the segment bases used to form and dereference the
-  selected-local address at the actual reader call, including intervening
-  segment setters/restorers on the admitted forwarding/selector/setup route.
-  Equal numeric offsets or a generic Win32 ABI sample do not settle it.
-  Existing evidence: FND-EXE-198 supplies the live frame geometry;
-  FND-EXE-167 separates pointer stores from stack accesses;
-  SRC-WIN32-X86-ABI is an external contract only. Next: classify remaining
-  empty effects and unsearched instruction streams; establish the initial-state
-  supplier and external-preservation evidence separately from explicit setters.
-  Tried: FND-EXE-217's controlled p-code output census and individual opaque
-  instruction classification. Empty effects, undecoded/interior streams,
-  external preservation and initial descriptor bases remain unadmitted.
-  If static code cannot admit the loaded bases, state the exact external
-  input/runtime evidence required rather than silently assuming equality.
-  Blocks: reader storage-identity admission in Q-EXE-009.
-
 - Q-EXE-012. FMT-EXE-006: Which shipped-code transfers can enter the
   selected-record reader or an interior instruction in its direct body?
   Settles it: locate every admitted caller and interior entry for the
@@ -392,4 +374,21 @@ None.
 
 ## Blocked
 
-None.
+- Q-EXE-011. FMT-EXE-006: Do the selected-record reader's pointer accesses
+  address the same storage as the forwarding frame's selected local?
+  Settles it: establish the actual initial DS/SS descriptor bases and their
+  preservation on the forwarding/selector/setup/reader route, including
+  intervening segment setters, external and exceptional effects.
+  Tried: FND-EXE-198's frame geometry, FND-EXE-167's distinct pointer/stack
+  accesses, FND-EXE-217's controlled decoded output search and opaque-site
+  classification, and FND-EXE-218's exhaustive empty-effect class accounting
+  within that listing. These do not admit initial native bases. The external
+  SRC-WIN32-X86-ABI sample does not establish the loaded process state.
+  Waiting on: admissible initial host-descriptor and external-preservation
+  evidence. docs/RUNTIME.md admits no native memory/register inspection;
+  the current harness covers resident MZ calls, not the host PE. Screenshot
+  sessions cannot measure descriptor bases. A new source/tool/reading that
+  admits those inputs can reopen this item without relaxing storage identity.
+  Unsearched instruction streams and exceptional effects remain explicit;
+  Q-EXE-012/013 continue independently, without assuming equal bases.
+  Blocks: reader storage-identity admission in Q-EXE-009.

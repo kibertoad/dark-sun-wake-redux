@@ -329,6 +329,10 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-217 adds the controlled decoded DS/SS-output domain and opaque-site
   classifications for Q-EXE-011. Its zero modeled matches do not admit initial
   descriptor bases or preservation through missing/opaque and external effects.
+  FND-EXE-218 classifies the saved listing's empty effects as decoded NOPs,
+  with a separate WAIT control that prevents equating empty p-code with a NOP.
+  Actual initial descriptor and external-preservation evidence remains required
+  by Q-EXE-011; the classification does not establish storage identity.
   Preserved-selector-input and alias-modified-input readings remain open:
   the former needs setup, selected-local lifetime and field-writer admission;
   the latter needs a concrete intervening writer (Q-EXE-009). Neither a
