@@ -52,7 +52,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   works in this repository, so the goal runs on main in the single checkout,
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
-- Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore passed after pair-frame research.
+- Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore passed after reader-closure split.
   EXE research through FND-EXE-216, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
@@ -61,7 +61,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   Corrected revision-2 fresh projects and repeatable exports are local.
   Review old mapped-snapshot dependencies before accepting native claims.
 - Unfinished: no tracked work remains. EXE follow-up items remain Q-EXE-005,
-  Q-EXE-006, Q-EXE-007, Q-EXE-008, Q-EXE-009 and Q-EXE-010; Q-EXE-001 retains its
+  Q-EXE-006/007/008/009/010 and reader prerequisites Q-EXE-011/012/013; Q-EXE-001 retains its
   retry requirement. Local static-analysis reports and the saved interpreter
   Ghidra project remain in GAME_DIR/analysis/exe-batches for continuation.
   Refreshed comparison: GAME_DIR/analysis/work-baseline/relocation-reconciled;
@@ -159,8 +159,8 @@ An owner-approved history repair remains separate from this maintenance scope.
      Admit FND-EXE-185's backing memory, destination extent and aliases; follow
      FND-EXE-186's selector/table writers and FND-EXE-187's request, wrapper-record,
      FND-EXE-192's provenance and FND-EXE-195's excluded setter forms; retain lifetime contracts.
-  2. Q-EXE-009, FMT-EXE-006: continue producer/lifetime contracts and
-     the remaining dependencies listed in its queue item toward the first
+  2. Q-EXE-011/012/013, FMT-EXE-006: resolve reader identity/callers/writers;
+     retain Q-EXE-009's full wrapper scope and dependencies toward the first
      qualifying complete-reading package. Check FND-EXE-056's bounded reader
      candidate against FND-EXE-165's inputs, FND-EXE-196 and FND-EXE-053's producers;
      use independent reference controls before claiming caller completeness.
