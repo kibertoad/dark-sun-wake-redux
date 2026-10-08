@@ -323,6 +323,10 @@ Next ID: Q-EXE-014
   read its native callers and segment/input producers before using its callees.
   FND-EXE-176 adds the relocated state segment and initial handler pointer,
   with live pointer/vector writers and native CS admission still unresolved.
+  Tried: FND-EXE-221 independently bounds descriptor 198's adjacent
+  eighteen-slot table and checks all four distinct descriptor-base targets;
+  three are undisassembled in the corrected snapshot. Native CS and candidate
+  instruction admission remain necessary before body reconciliation.
   Next: descriptor 198's entry
   and CS admission, then the remaining suspect target producers.
   Blocks: reconciled executable denominator and complete-reading declarations

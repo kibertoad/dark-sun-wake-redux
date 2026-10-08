@@ -44,6 +44,11 @@ bounded source reader; this does not establish native loader behavior.
 
 ## Open questions
 
+- Q-EXE-010 retains overlay body reconciliation. FND-EXE-221 independently
+  bounds an adjacent dispatch table, but three candidate targets lack decoded
+  instruction starts in the corrected snapshot. Table dimensions do not
+  establish runtime CS or complete body ownership.
+
 - Whether the loader replaces each fixup word with the segment its descriptor names, and which
   segment that is for a descriptor of an overlay (FND-EXE-007, Q-EXE-001).
   FND-EXE-175 supplies a bounded resident candidate; its caller admission and
