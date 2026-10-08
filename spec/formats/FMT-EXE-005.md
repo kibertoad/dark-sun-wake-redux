@@ -46,6 +46,8 @@ bounded source reader; this does not establish native loader behavior.
 
 - Whether the loader replaces each fixup word with the segment its descriptor names, and which
   segment that is for a descriptor of an overlay (FND-EXE-007, Q-EXE-001).
+  FND-EXE-175 supplies a bounded resident candidate; its caller admission and
+  state/segment producers remain unread, so it does not settle the loader.
 
 - Which analyzer-owned body fragments are native code under the original CS
   bindings (Q-EXE-010)? FND-EXE-173 separates their physical source regions
