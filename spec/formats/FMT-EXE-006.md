@@ -160,6 +160,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-201 retains negative-mode direct-clear aliases and their sign-byte admission;
   FND-EXE-202 retains gate-neighbor indexed-store and callee-preservation limits;
   FND-EXE-203 reads its direct allocation wrapper and retains imported preservation;
+  FND-EXE-204 separates neighboring cursor reads from fixed publications;
   FND-EXE-047 traces imported resource and local-helper mode publication;
   FND-EXE-048 resolves record/wait imports and the zero-result tail return;
   FND-EXE-049 traces saved-link cleanup and its freshly selected mode;
