@@ -336,7 +336,10 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-224 independently bounds all four tables and supplies a
   conditional outer-body traversal. Native entry/CS, input/frame admission
   and analyzer ownership still require reconciliation before replacement.
-  Next: descriptor 198's entry
+  Tried: FND-EXE-225 resolves the candidate's stored trampoline target and
+  compares complete body sets: missing candidate chunks and extra ownership
+  beyond the descriptor both require review, not just scalar size correction.
+  Next: descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
   Blocks: reconciled executable denominator and complete-reading declarations
   that depend on those function boundaries.

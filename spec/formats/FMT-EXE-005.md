@@ -54,6 +54,8 @@ bounded source reader; this does not establish native loader behavior.
   candidate; its whole-function body is not supplied by those tail readings.
   FND-EXE-224 resolves those traversal omissions under an explicit descriptor
   binding; native segment and ownership admission remain unresolved.
+  FND-EXE-225 connects its entry to a stored resident trampoline target and
+  records both omitted candidate bytes and extra analyzer-owned chunks.
 
 - Whether the loader replaces each fixup word with the segment its descriptor names, and which
   segment that is for a descriptor of an overlay (FND-EXE-007, Q-EXE-001).
