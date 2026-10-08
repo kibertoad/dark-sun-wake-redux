@@ -261,12 +261,13 @@ Next ID: Q-EXE-011
   FND-EXE-166 narrows the field reader's decoded direct-call and physical
   address-word searches and its post-setup argument reload. Next closure
   check: setup preservation of that incoming slot, selected-local lifetime,
-  offset-28 field writers and excluded computed/indirect uses. FND-EXE-167
-  and FND-EXE-197 retain distinct setup and concrete-source obligations:
-  the latter bounds one shipped prefix's conditional five-byte read, without
-  admitting runtime selection, field/source preservation or aliases. FND-EXE-167
-  narrows direct setup writes under the flat-address model; shared-base
-  provenance, DS/SS identity and other callee effects remain required.
+  offset-28 field writers and excluded computed/indirect uses. FND-EXE-197
+  bounds one shipped prefix's conditional five-byte read; runtime selection,
+  field/source preservation and aliases remain required. FND-EXE-198 narrows
+  the selected-local's forwarding-frame origin and ordinary nested lifetime.
+  FND-EXE-167 narrows direct setup writes under the flat-address model;
+  shared-base provenance, DS/SS identity, indirect aliases and preservation
+  through the other setup routes and callees remain required.
   FND-EXE-168 narrows explicit decoded publication sites and separates fresh
   allocation from decoded existing/fallback origins. Next: decoded-record
   input admission and allocator/storage lifetime; retain excluded indirect

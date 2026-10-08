@@ -170,6 +170,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-057 traces signature-selected saved-state reads and seven-return preparation;
   FND-EXE-196 traces ordinary signed admission, helper iteration and six-return stores;
   FND-EXE-197 bounds one nested-record source prefix's conditional read extent;
+  FND-EXE-198 narrows selected-local frame origin and ordinary nested lifetime;
   FND-EXE-059 bounds the matching byte reader and terminating full-word outputs;
   FND-EXE-060 traces metadata marker branches, cursor returns and relative targets;
   FND-EXE-061 bounds modifier mask classes, marker bypass and local zero callees;
