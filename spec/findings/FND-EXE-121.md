@@ -13,7 +13,7 @@ locations:
     address: 0x004F2060..0x004F20D0
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004F20E0..0x004F2105
+    address: 0x004F20E0..0x004F2106
 tool: Ghidra 12.1.3 PUBLIC bounded shared state-helper reading
 environment: null
 ---

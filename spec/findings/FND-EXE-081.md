@@ -10,16 +10,16 @@ method: static
 locations:
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x005FF590..0x005FF594
+    address: 0x005FF590..0x005FF595
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x005FDB40..0x005FDBEC
+    address: 0x005FDB40..0x005FDBED
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x005FDAB0..0x005FDAB4
+    address: 0x005FDAB0..0x005FDAB5
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x005FC860..0x005FC874
+    address: 0x005FC860..0x005FC875
 tool: Ghidra 12.1.3 PUBLIC bounded instruction reading with physical callback-table provenance
 environment: null
 ---

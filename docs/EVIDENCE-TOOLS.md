@@ -109,11 +109,17 @@ permitted inventory columns; keep view reports/configs local. Document the
 selected views and exclusions in the build/Ghidra guide in project-authored words.
 Coverage describes analyzer-discovered functions, not every function that exists.
 The protocol's [Creating and checking an inventory](../vendor/upstream/work-protocol.md#creating-and-checking-an-inventory) (lines 454-462)
-says how to export and check one. Checker 2.5.0 reads every `.tsv` file under
-`coverage/` as an inventory with only the four columns above, so the
-`.provenance.tsv` and `.regions.tsv` files and the column of body ranges that
-the protocol describes fail `standard-coverage` until a checker release reads
-them. Keep provenance and region totals local until then.
+says how to export and check one. Checker 2.8.0 reads an optional `ranges`
+column after the four above: half-open `start..end` ranges separated by
+spaces, whose total is the row's size and one of which holds the start, for a
+function whose body is not one range from its start. It no longer reads the
+`.provenance.tsv` and `.regions.tsv` files beside an inventory as inventories.
+A row without `ranges` is measured as one contiguous body, and the range-end
+check fails any range that ends on that body's last byte (start plus size
+minus one). The DOSBox inventory's sizes count the addresses of bodies with
+gaps (BLD-GOG-EN-1.1), so a correct range can fail there; check such a
+failure against the instructions before moving an end. The shared
+`ExportFunctionInventory.java` still writes no `ranges` column.
 
 `npm exec -- standard-coverage` reads the committed inventories and prints, per
 file, the share of in-scope functions and bytes that an entry's `locations`

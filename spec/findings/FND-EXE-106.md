@@ -13,7 +13,7 @@ locations:
     address: 0x004F2C36..0x004F2C9E
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004F28B0..0x004F2905
+    address: 0x004F28B0..0x004F2906
 tool: Ghidra 12.1.3 PUBLIC bounded callback pool and counter reading
 environment: null
 ---
@@ -42,7 +42,7 @@ unread contracts; this is not proof that either list is always valid. A
 later call can change the published state, and no durable lifetime follows
 from this reached segment alone.
 
-The complete local body `0x004F28B0..0x004F2905` saves EBX and
+The complete local body `0x004F28B0..0x004F2906` saves EBX and
 reserves eight stack bytes. It first publishes full zero to `0x0075B0E8`,
 reads active head and full `0x006F00A0`, increments full
 `0x01D271CC` modulo thirty-two bits, then publishes the retained

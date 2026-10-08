@@ -111,7 +111,7 @@ only the lines the link gives, and never a section already read this session.
    value patterns, names, the manual, similar games) is recorded as findings
    and named in Open questions for or against a reading, never listed in
    `evidence`, and leaves the entry `unknown` or `sourced`.
-   Corrections follow [Identifiers](../../../vendor/upstream/documentation-standard.md#identifiers) (lines 122-162):
+   Corrections follow [Identifiers](../../../vendor/upstream/documentation-standard.md#identifiers) (lines 122-166):
    edit a finding or experiment in place only when its recorded facts stay
    the same. A factual correction, including query values, reproduction
    steps or interpretation, supersedes the whole entry. Keep its old text;
@@ -136,8 +136,8 @@ only the lines the link gives, and never a section already read this session.
    decide a result, and nothing left to interrupts or threads (`# may run:`),
    memory nothing wrote, timing, or the operating system. List its findings in
    the entry's `complete_reading`. The standard's
-   [Complete readings](../../../vendor/upstream/documentation-standard.md#complete-readings) (lines 193-293)
-   and [Findings](../../../vendor/upstream/documentation-standard.md#findings) (lines 608-682)
+   [Complete readings](../../../vendor/upstream/documentation-standard.md#complete-readings) (lines 197-297)
+   and [Findings](../../../vendor/upstream/documentation-standard.md#findings) (lines 693-767)
    sections list what that covers; the parts most often missed are the
    segment each access actually goes through, every part of a stored call
    target, the other byte of a word written a byte at a time, allocation
@@ -156,7 +156,11 @@ only the lines the link gives, and never a section already read this session.
    checked to decode as a call; a dispatch table finding reads how the input
    becomes an index and what bounds it. An `offset` into overlay code lies
    inside a row of its build's Code ranges section, whose finding shows the
-   range holds code with a location other than `kind: file-data`. Executable bytes read as data use `kind: file-data` and shipped offsets; unpacker-written bytes outside the load image add `unpacked: true` and use unpacked-file offsets. A procedure keeps each call a later decision depends on
+   range holds code with a location other than `kind: file-data`. Every range,
+   in a location, the text, a table or a value range, ends at the byte after
+   the last one it covers: Ghidra's maximum address is the last byte, so add
+   one, and a range that ends with an instruction ends after that instruction
+   ([Notation](../../../vendor/upstream/documentation-standard.md#notation) (lines 381-420)). Executable bytes read as data use `kind: file-data` and shipped offsets; unpacker-written bytes outside the load image add `unpacked: true` and use unpacked-file offsets. A procedure keeps each call a later decision depends on
    as its own step, says what a rejected or abandoned call leaves in place,
    and marks with `# visible:` comments where a change becomes visible to
    other actors. An entry that depends on any of those needs

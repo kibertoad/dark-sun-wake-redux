@@ -1,5 +1,28 @@
 # Template and toolkit acceptance audit
 
+## Rules 11884c7, checker 2.8.0, runtime 11.0.0 and engine 13.3.0, 2026-10-08
+
+Template main is still `0b9ab9c`, adopted on 2026-10-07, so no template
+files change. The vendored Standard and Protocol move from `e84495f` to
+`11884c726449d121045e272bb5672c05d61f5351`, still Standard v1; the
+methodology and license bytes are unchanged. The checker moves from 2.5.0 to
+2.8.0, the release at toolkit `6ff0e4c876892c54e0d59ad02f91cb42102f1374`; the
+CI action pin, the lock and `package.json` agree.
+
+| Change | Disposition |
+| --- | --- |
+| Every range is half-open, including value ranges; in-place correction of an end written as the last byte (IDENTIFIERS-8) | 106 DOSBox.exe ranges in 52 findings corrected in place. Decoding from each range start shows 53 old ends cut an instruction and 53 left off the final one-byte `ret` of a range covering its function; each new end is an instruction boundary. The research-item skill states the rule. |
+| Range-end check (checker 2.6.0), body `ranges` column (2.8.0) | FND-EXE-142's correct range failed because the DOSBox inventory's size counts the addresses of a body with gaps. The owner authorized widening it in place over the `jmp` its text describes (docs/DECISIONS.md). EVIDENCE-TOOLS describes the column and the limit. |
+| Squashing superseded entries (`--squashed`, checker 2.7.0) | No entry is squashed. |
+| Build listing record and numbered Builds rules (ENTRY-TYPES-9 to 19) | Optional. BLD-GOG-EN-1.1 keeps its Other files section; checker 2.8.0 does not read a listing record. |
+| Survey exit excludes archive members | No change to the plan's Survey state. |
+| Argument-count skip wording (2.7.1, 2.7.2), `dist` exclusion (2.5.1) | Same skips as before; no change needed. |
+| RefurbishedDinosaurs 11.0.0 | See SHARED-RUNTIME-MIGRATION.md. |
+| executable-reader 2.4.0, engine 13.3.0 | Zero-PointerToRawData PE sections and the `reach` command are additive. Engine 13's scalar-constant scripts load `scientificmethod/OperandConstants.java`, which the installed script directory supplies through `tools/Get-GhidraScriptPath.ps1`. |
+
+Section line ranges were rewritten with `node tools/upstream.mjs links --write`.
+No spec status or parity row changed.
+
 ## Rules efa138b, checker 2.2.0 and template ebdd5c3, 2026-10-06
 
 The vendored Standard, Methodology and Protocol move from `c1758fd` to

@@ -15,6 +15,18 @@ Self-contained installers use separate committed runtime/mode lock profiles. Ord
 locks and target/mode locks are refreshed together for the release. Profile maintenance names the target runtime explicitly, and CI
 rejects a missing or mismatched packaging lock instead of regenerating it.
 
+## Runtime 11.0.0, 2026-10-08
+
+`RefurbishedDinosaursVersion` moves from 10.0.0 to 11.0.0, and the ordinary
+and every target/mode NuGet lock are regenerated. The release adds
+`RecoverableFile.ReadAndRepair` and `Restore`, makes `Read` throw
+`FileGenerationsUnreadableException` when neither generation loads, and
+promotes a written file with `File.Replace`. `LaunchSettings` calls only
+`Write` and `ReadBounded` and reads both generations itself through
+`SettingsRecovery`, so no consumer code changes. On Windows a rewritten
+settings file now keeps the replaced file's creation time and attributes.
+The pack revision remains 36.
+
 ## Latest release acceptance, 2026-10-05
 
 Runtime 6.2.0 is registry-verified and pinned exactly through Directory.Build.props.

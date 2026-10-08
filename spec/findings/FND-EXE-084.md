@@ -10,31 +10,31 @@ method: static
 locations:
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A7E90..0x004A7EF7
+    address: 0x004A7E90..0x004A7EF8
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A7F00..0x004A7F0B
+    address: 0x004A7F00..0x004A7F0C
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A7F10..0x004A7F1B
+    address: 0x004A7F10..0x004A7F1C
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004AD9C0..0x004ADA27
+    address: 0x004AD9C0..0x004ADA28
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004ADA30..0x004ADA3B
+    address: 0x004ADA30..0x004ADA3C
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004ADA40..0x004ADA4B
+    address: 0x004ADA40..0x004ADA4C
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x005F9AA0..0x005F9B6C
+    address: 0x005F9AA0..0x005F9B6D
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
     address: 0x005F9B70..0x005F9BC2
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x006D2100..0x006D2190
+    address: 0x006D2100..0x006D2191
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
     address: 0x006D21C0..0x006D2210

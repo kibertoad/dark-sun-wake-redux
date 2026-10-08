@@ -13,10 +13,10 @@ locations:
     address: 0x005FD3A0..0x005FD453
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x00601840..0x006018AE
+    address: 0x00601840..0x006018AF
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x00601910..0x00601938
+    address: 0x00601910..0x00601939
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
     address: 0x00601940..0x0060196A

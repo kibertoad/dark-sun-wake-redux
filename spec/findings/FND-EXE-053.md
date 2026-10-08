@@ -10,7 +10,7 @@ method: static
 locations:
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x00600AD0..0x00600B43
+    address: 0x00600AD0..0x00600B44
 tool: Ghidra 12.1.3 PUBLIC, bounded instruction and function reporters
 environment: null
 ---

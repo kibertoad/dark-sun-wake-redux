@@ -10,10 +10,10 @@ method: static
 locations:
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x005F6F10..0x005F6FAD
+    address: 0x005F6F10..0x005F6FAE
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x005F6FB0..0x005F6FF7
+    address: 0x005F6FB0..0x005F6FF8
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
     address: 0x005FEB60..0x005FEC1F

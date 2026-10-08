@@ -1,7 +1,7 @@
 # Spec entry templates
 
 Blank entries for each kind in `spec/`, with the front matter fields and body
-sections the [documentation standard](../vendor/upstream/documentation-standard.md#entry-types) (lines 498-1010)
+sections the [documentation standard](../vendor/upstream/documentation-standard.md#entry-types) (lines 504-1095)
 requires, in its order. Copy one into the directory for its kind, name the file
 after the ID (`spec/rules/RULE-COMBAT-007.md`), and replace every `<...>`. The
 standard defines what each field and section holds; this page does not repeat
@@ -10,7 +10,7 @@ it.
 Rules, formats, screens and bugs may also have `complete_reading`, a list of
 the static findings that together read all of the entry, which makes it
 `established` without a run (see the standard's
-[Complete readings](../vendor/upstream/documentation-standard.md#complete-readings) (lines 193-293)).
+[Complete readings](../vendor/upstream/documentation-standard.md#complete-readings) (lines 197-297)).
 Leave it out until such a reading exists.
 
 A section with nothing to say is kept and says `None known.`, or `None.` where
@@ -423,7 +423,7 @@ behavior is strictly better than the original's, or that it is a small
 judgement call that makes the game better to play, for a `mandatory` deviation
 and for one that is `on` without being the fix of an unintended bug players do
 not rely on, as the
-[deviation log](../vendor/upstream/documentation-standard.md#deviation-log) (lines 1071-1097)
+[deviation log](../vendor/upstream/documentation-standard.md#deviation-log) (lines 1159-1185)
 section sets out. Delete it otherwise. Keep the Replaces item only on a
 `mandatory` deviation that replaces some of the entries in Departs from
 entirely, and name only those; keep the Tests item only when test files check

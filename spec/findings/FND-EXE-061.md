@@ -13,10 +13,10 @@ locations:
     address: 0x005F4CC0..0x005F4D28
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x00600AB0..0x00600AB6
+    address: 0x00600AB0..0x00600AB7
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x00600AC0..0x00600AC6
+    address: 0x00600AC0..0x00600AC7
 tool: Ghidra 12.1.3 PUBLIC, bounded instruction and function reporters
 environment: null
 ---

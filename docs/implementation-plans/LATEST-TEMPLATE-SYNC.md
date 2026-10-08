@@ -144,3 +144,24 @@ process audit and separate goal handover complete. Exit: main fast-forwards
 to the validated integration and is pushed as explicitly requested by the owner.
 Risk: stricter checks may expose old documentation gaps; no gameplay or original
 runtime work is added. No new research item is started during wrap-up.
+
+## Rules 11884c7, checker 2.8.0 and shared libraries (2026-10-08)
+
+The owner asked for the latest template, protocol, standard and shared
+libraries. Template main is still the adopted `0b9ab9c`. Refresh the rules from
+`e84495f` to `11884c726449d121045e272bb5672c05d61f5351` (still Standard v1)
+and the checker from 2.5.0 to 2.8.0 at its release tag commit `6ff0e4c`.
+Move RefurbishedDinosaurs.Core, LegacyFormats and Media.Fli to 11.0.0,
+executable-reader to 2.4.0 and the Python engine to 13.3.0 with its wheel
+hash, and regenerate every NuGet lock. No game behaviour changes.
+
+Checker 2.6.0's range-end check fails 108 DOSBox.exe ranges that end on an
+inventoried function's last byte. Correct them in place where decoding shows
+the written end cuts an instruction or leaves off the final one-byte `ret` of
+a range that covers its function; the owner authorized FND-EXE-142's in-place
+correction (docs/DECISIONS.md, 2026-10-08). Acceptance: snapshot digests,
+pins and section links agree, the documentation check and the assetless
+`tools/Test.ps1` pass, and no finding's text changes beyond its range ends.
+Risk: the 11.0.0 `RecoverableFile` exception change; this project calls only
+`Write` and `ReadBounded`. Exit: one local commit with the migration and a
+separate handover commit. No owner questions remain.

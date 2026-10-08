@@ -368,8 +368,8 @@ certain than the rest goes in its own entry or in its Open questions section.
 Never silently promote a plausible interpretation.
 
 A complete reading also covers what the standard's
-[Complete readings](vendor/upstream/documentation-standard.md#complete-readings) (lines 193-293)
-and [Findings](vendor/upstream/documentation-standard.md#findings) (lines 608-682) sections
+[Complete readings](vendor/upstream/documentation-standard.md#complete-readings) (lines 197-297)
+and [Findings](vendor/upstream/documentation-standard.md#findings) (lines 693-767) sections
 list, among them: two addresses are the same storage only where the reading
 shows the segment each is formed in and accessed through (a BP offset read
 through DS is the caller's stack only where DS equals SS there); a stored
@@ -396,7 +396,7 @@ can be wrong, so inspect bounded instruction context when the distinction
 matters.
 
 Corrections to findings and experiments follow
-[Identifiers](vendor/upstream/documentation-standard.md#identifiers) (lines 122-162).
+[Identifiers](vendor/upstream/documentation-standard.md#identifiers) (lines 122-166).
 Only edits that preserve every recorded fact are made in place. A changed
 observation, location, query, reproduction step or interpretation supersedes
 the whole entry, preserving its old text. Replacement entries use new IDs,

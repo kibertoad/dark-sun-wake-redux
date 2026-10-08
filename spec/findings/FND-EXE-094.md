@@ -10,10 +10,10 @@ method: static
 locations:
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004F6570..0x004F6639
+    address: 0x004F6570..0x004F663A
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004F7330..0x004F738B
+    address: 0x004F7330..0x004F738C
 tool: Ghidra 12.1.3 PUBLIC bounded instruction reading
 environment: null
 ---

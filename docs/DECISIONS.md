@@ -16,6 +16,18 @@ file in `docs/decisions/`, starting at `001.md`, filled up to the limit and
 never changed after. This file keeps the newest entries and links to the
 numbered files here. A decision is never reworded when it moves.
 
+## 2026-10-08: Location corrections are made in place while nothing outside consumes the spec
+
+No one outside this repository relies on its entry IDs yet, and no pull
+requests are open, so a finding whose location needs correcting is edited in
+place instead of superseded. The first use is FND-EXE-142, whose range
+`0x004A2280..0x004A2282` checker 2.8.0 failed against the DOSBox inventory row
+`0x004A0DE0`: that row's size counts the addresses of a body with gaps, so
+start plus size lands on the first byte of the `jmp 0x004A18D2` the finding
+describes. Its range now covers that `jmp` as well. This applies only until
+the spec is relied on outside the repository; after that, corrections follow
+IDENTIFIERS-7 and IDENTIFIERS-8.
+
 ## 2026-09-26: Every launch opens on a launch options screen, and Wide map view starts on
 
 The rebuild's settings, the deviations that have one, are chosen on a screen

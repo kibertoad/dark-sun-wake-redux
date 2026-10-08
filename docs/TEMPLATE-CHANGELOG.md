@@ -494,7 +494,7 @@ A deviation's Default is now `off`, `on` or `mandatory`. `mandatory` replaces
 `mandatory`, or `on` without being the fix of an unintended bug players do not
 rely on, carries a `Justification` item arguing that the rebuild's behavior is
 strictly better than the original's, as the
-[documentation standard](../vendor/upstream/documentation-standard.md#deviation-log) (lines 1071-1097)
+[documentation standard](../vendor/upstream/documentation-standard.md#deviation-log) (lines 1159-1185)
 now sets out. `AGENTS.md`, `DEVIATIONS.md` and `docs/VALIDATION.md` say so, and
 a test that reaches a mandatory deviation cites its ID and allows for it.
 
