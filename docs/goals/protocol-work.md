@@ -58,6 +58,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   gate and pre-commit checks; existing argument-check skips remain.
   FND-EXE-166's caller/input research batch also passed that gate and hooks.
   FND-EXE-167's setup-preservation research batch passed the full gate and hooks.
+  FND-EXE-168's shared-publication research batch passed the full gate and hooks.
   Explicit main-base documentation checking passed; generated files were left unchanged.
   Existing argument-check skips remain. Remote-base ancestry was rechecked
   and is available; explicit local main-base checking passed. Pre-commit
@@ -137,6 +138,10 @@ An owner-approved history repair remains separate from this maintenance scope.
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6061345747.
   Additional duplicate-checked exclusive-end controls are recorded at
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6061558347.
+  The duplicate-checked external-buffer and decoded-pointer admission example
+  is recorded in the existing Standard publication issue:
+  https://github.com/kibertoad/refurbished-dinosaurs/issues/37#issuecomment-6062088446.
+  It requests application guidance, not a status relaxation or delivered fix.
 - Next, after rechecking shared goal claims:
   1. Q-EXE-009, FMT-EXE-006: continue producer/lifetime contracts and
      the remaining dependencies listed in its queue item toward the first
@@ -151,6 +156,11 @@ An owner-approved history repair remains separate from this maintenance scope.
      FND-EXE-167 is the current setup-prefix replacement. Follow its shared-base
      producers through FND-EXE-043 and FND-EXE-042, segment admission and
      intervening callee effects before treating the reader's input as preserved.
+     FND-EXE-168 retains the explicit-writer search domain and remaining
+     decoded-record origins, initialized input extent, allocator/storage
+     lifetime and excluded indirect writers. Continue the actual atom-buffer
+     producer/consumer and failure contracts rather than relying on a name
+     or a header predicate for storage admission.
      FND-EXE-164 is
      the latest composed reading; follow concrete offset-24 callback
      producers and input consumption for FND-EXE-163/FND-EXE-053, then
