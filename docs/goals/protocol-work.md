@@ -157,7 +157,7 @@ An owner-approved history repair remains separate from this maintenance scope.
      obligations: setup preservation of the incoming slot, selected-local
      lifetime, offset-28 writers, stack aliases and excluded indirect uses.
      FND-EXE-167 is the current setup-prefix replacement. Follow its shared-base
-     producers through FND-EXE-043 and FND-EXE-042, segment admission and
+     producers through FND-EXE-043 and Q-EXE-009, segment admission and
      intervening callee effects before treating the reader's input as preserved.
      FND-EXE-168 retains the explicit-writer search domain and remaining
      decoded-record origins, initialized input extent, allocator/storage
@@ -165,7 +165,7 @@ An owner-approved history repair remains separate from this maintenance scope.
      producer/consumer and failure contracts rather than relying on a name
      or a header predicate for storage admission.
      Use SRC-WIN32-ATOMS as an external contract only. FND-EXE-169 is the
-     current tail-extent replacement. Check FND-EXE-042's admitted identifiers,
+     current tail-extent replacement. Check Q-EXE-009's admitted identifiers,
      unchanged name/initialized extent and failure helper before closing the
      decoder's input obligations; retain original state and lifetime limits.
      FND-EXE-164 is
