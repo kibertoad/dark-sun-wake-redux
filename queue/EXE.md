@@ -397,6 +397,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-245 reads the intervening descriptor scan and size callee,
   identifying the threshold producer and direct bound-store exclusions.
   Native inputs, descriptor/header aliases and saved-slot preservation remain open.
+  Tried: FND-EXE-246 reads the post-bound helper's first header-segment
+  publications and concrete downstream calls, including an interior writer
+  entry. Arithmetic/input admission, downstream effects and aliases remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
