@@ -9,11 +9,12 @@ Commit e7016d7 adopts rules 11884c7, checker 2.8.0, RefurbishedDinosaurs
 11.0.0, executable-reader 2.4.0 and engine 13.3.0; template main is still the
 adopted 0b9ab9c. It corrects 107 DOSBox.exe range ends in place under the
 owner's decision in docs/DECISIONS.md. Assetless Test.ps1 passed with 715
-.NET tests. Not pushed. The protocol-work worktree is still at 4fcf09c: merge
+.NET tests. Pushed to main. The protocol-work worktree is still at 4fcf09c: merge
 main into it before resuming Q-EXE-009, and write range ends half-open
 (research-item skill). Docs no longer cite gitignored `artifacts/` files
 (AGENTS.md forbids it); the research drivers they named are committed in
-tools/research/, and local reports stay under GAME_DIR.
+tools/research/ and read GAME_DIR, and their reports are under
+GAME_DIR/analysis/reporter-audit/ (moved from UserContent/analysis/).
 
 ## Today’s wrap-up (2026-10-08)
 
