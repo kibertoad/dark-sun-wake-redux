@@ -56,7 +56,9 @@ Next ID: Q-EXE-011
   retaining record admission and lifetime requirements. FND-EXE-194 follows
   dispatch continuations and the failure import; its controlled direct-call
   searches exclude indirect setter uses. Establish those uses and loaded
-  callback/failure contracts before closure. Blocks: none.
+  callback/failure contracts before closure. FND-EXE-195 excludes the shipped
+  contiguous absolute setter dword with stored-target controls; calculated,
+  relocated, encoded and runtime-created targets remain unresolved. Blocks: none.
 
 - Q-EXE-005. FMT-EXE-006: Which code page interprets the disc sound helper's
   display bytes? Settles it: direct interpreter configuration or code-page/font
