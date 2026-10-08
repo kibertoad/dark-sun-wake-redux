@@ -65,7 +65,14 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Environment: use the checkout's portable PowerShell
   (artifacts/pwsh7/runtime/pwsh.exe) and locked evidence-python interpreter. Clear GAME_DIR and
   NoDefaultCurrentDirectoryInExePath. TEMP/TMP must belong to the account
-  actually executing the process. For hooks export the checkout's
+  actually executing the process. Under CodexSandboxOffline, explicitly set
+  TEMP/TMP to C:/Users/CodexSandboxOffline/AppData/Local/Temp; the inherited
+  kiber temp directory fails Java real-path resolution even when Node can
+  create files there. The standard command runner currently fails before
+  process creation; node_repl child_process runs local tooling successfully.
+  Scope Git trust to this checkout with -c safe.directory or inherited
+  GIT_CONFIG_COUNT/KEY/VALUE for child Git calls; do not change global trust.
+  For hooks export the checkout's
   artifacts/hook-tmp as TMPDIR inside Git Bash. Keep hooks enabled. Reuse the
   saved Ghidra program with -noanalysis. For combined script directories,
   follow the corrected literal quoting in docs/GHIDRA.md; both directories
@@ -78,9 +85,12 @@ An owner-approved history repair remains separate from this maintenance scope.
   qualified; toolkit issue 353 has the new archive case. Template issue 90
   records fixture-baseline assumptions under scheduled generation.
   The owner requested today's wrap-up and authorized pushing main afterward.
-  No new item is started. Resume Q-EXE-009 on main next time.
-- Process audit: reusable MSBuild nodes and other sessions' or uncertain
-  processes were preserved. No confirmed session orphan required stopping.
+  That wrap-up is complete; the resumed objective keeps Q-EXE-009 next.
+  Current continuation does not authorize another push.
+- Process audit: both validation processes exited; no Java/testhost remained.
+  Process-family inspection succeeded, but CIM command-line/parent inspection
+  was denied under the sandbox account. Remaining .NET nodes and uncertain
+  processes were preserved; no confirmed session orphan was stopped.
 - Blockers: the parent checkout's history-message repair awaits owner
   approval and remains recorded in docs/HANDOVER.md. Do not rewrite shared
   history; this does not block isolated work.
