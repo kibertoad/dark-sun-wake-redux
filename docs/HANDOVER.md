@@ -3,6 +3,18 @@
 Current work outside a goal. Active goals keep their own handovers in
 docs/goals/; queue items and findings stay in their own files.
 
+## Upstream update (2026-10-08)
+
+Commit e7016d7 adopts rules 11884c7, checker 2.8.0, RefurbishedDinosaurs
+11.0.0, executable-reader 2.4.0 and engine 13.3.0; template main is still the
+adopted 0b9ab9c. It corrects 107 DOSBox.exe range ends in place under the
+owner's decision in docs/DECISIONS.md. Assetless Test.ps1 passed with 715
+.NET tests. Not pushed. The protocol-work worktree is still at 4fcf09c: merge
+main into it before resuming Q-EXE-009, and write range ends half-open
+(research-item skill). docs/VALIDATION.md cites 64 local `artifacts/` logs
+that are gitignored; the owner questioned that, and removing them is not yet
+decided.
+
 ## Today’s wrap-up (2026-10-08)
 
 Completed protocol research and current template updates are integrated on main.
@@ -23,7 +35,7 @@ reusable processes; no confirmed task orphan was found during integration.
 
 - Stage: Slices; slices 2 and 3 remain in progress. Intake, Runtime access and
   Survey have ended (docs/BOOTSTRAP-CHECKLIST.md).
-- Last gate: 2026-10-07, `./tools/Test.ps1 -NoRestore` passed. Run it with PowerShell 7
+- Last gate: 2026-10-08, `./tools/Test.ps1` passed. Run it with PowerShell 7
   (`artifacts/pwsh7/runtime/pwsh.exe` here; Windows PowerShell 5.1 now refuses
   it) and with `GAME_DIR` and `NoDefaultCurrentDirectoryInExePath` unset, since
   both are set machine-wide for other projects. Template issue 81 asks for a
