@@ -54,6 +54,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   are committed.
 - Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore passed for
   all EXE research batches and the measured-baseline tooling batch.
+  The latest complete-reading boundary correction passed the full assetless
+  gate and pre-commit checks; existing argument-check skips remain.
   Explicit main-base documentation checking passed; generated files were left unchanged.
   Existing argument-check skips remain. Remote-base ancestry was rechecked
   and is available; explicit local main-base checking passed. Pre-commit
@@ -130,12 +132,17 @@ An owner-approved history repair remains separate from this maintenance scope.
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6058496258.
   The duplicate-checked denominator exporter request is recorded at
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6061345747.
+  Additional duplicate-checked exclusive-end controls are recorded at
+  https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6061558347.
 - Next, after rechecking shared goal claims:
   1. Q-EXE-009, FMT-EXE-006: continue producer/lifetime contracts and
      the remaining dependencies listed in its queue item toward the first
      qualifying complete-reading package. Check FND-EXE-056's bounded reader
      candidate against FND-EXE-165's inputs and FND-EXE-053's producers;
      use independent reference controls before claiming caller completeness.
+     FND-EXE-165 is the current replacement; do not reuse superseded citation
+     locations. Require selected-local and field-writer admission before a
+     complete_reading declaration. Local candidate probes are not findings.
      FND-EXE-164 is
      the latest composed reading; follow concrete offset-24 callback
      producers and input consumption for FND-EXE-163/FND-EXE-053, then
