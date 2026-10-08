@@ -100,7 +100,7 @@ This rules out explaining a later nonzero guard merely by reading a stored
 file word or by a direct relocation of that storage. It does not establish
 what the platform loader puts there, what startup code later writes, whether
 the guard remains zero, or a complete pool lifetime. Those dependencies
-remain Q-EXE-009; FND-EXE-079 follows the declared startup entry separately.
+remain Q-EXE-009; FND-EXE-171 follows the declared startup entry separately.
 
 ## Alternatives
 

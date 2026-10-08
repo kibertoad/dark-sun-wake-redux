@@ -31,7 +31,7 @@ environment: null
 
 ## Observation
 
-FND-EXE-079's later startup callee directly calls `0x005C45C0`. This helper
+FND-EXE-171's later startup callee directly calls `0x005C45C0`. This helper
 reads the full word at `0x02427BC0` and tests it against zero. Any nonzero
 word restores the frame and returns with that loaded word still in the
 return register. Zero instead directly stores one to that word, restores
@@ -100,7 +100,7 @@ The table helper restores its own saved register/frame and returns the
 atexit result unchanged. It does not convert that result to a Boolean or
 restore the guard on a nonzero result. The guard helper's zero-input route
 therefore passes this later raw result through, whereas its nonzero-input
-route returns the loaded guard. FND-EXE-079's immediate caller makes another
+route returns the loaded guard. FND-EXE-171's immediate caller makes another
 call without testing this result. Registration success, callback lifetime
 and the stored `0x005C4540` callback's effects are not established here.
 
@@ -131,7 +131,7 @@ the unchanged shipped count is not an all-input runtime bound.
 
 ## How to reproduce
 
-Verify FND-EXE-011's PE identity and FND-EXE-079's incoming startup call. Read
+Verify FND-EXE-011's PE identity and FND-EXE-171's incoming startup call. Read
 22 instructions from `005C45C0`, 42 from `005C4570` and five from `00401250`,
 restricting claims to the cited bodies and excluding later entries after gaps.
 Map `0x006EBF10` to physical bytes and read consecutive full words, checking

@@ -1,9 +1,9 @@
 ---
-id: FND-EXE-079
+id: FND-EXE-171
 title: Declared startup reaches an x87 initializer and a memory-update helper whose equal table bounds skip its loop
-status: superseded
+status: recorded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: [FND-EXE-171]
+superseded_by: []
 recorded_by: kibertoad
 reproduced_by: []
 method: static
@@ -16,7 +16,7 @@ locations:
     address: 0x00401110..0x00401202
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x005C4500..0x005C4527
+    address: 0x005C4500..0x005C4528
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
     address: 0x005C4530..0x005C4537
@@ -104,6 +104,37 @@ continuations, constructor/admission contracts and any indirect writes still
 need evidence. A name or position in startup is not a complete initialization
 reading.
 
+### Controlled decoded caller domain
+
+A fresh read includes the final one-byte return at `0x005C4527`. The old
+half-open range excluded it. The caller at `0x004011B2` directly invokes
+this helper; the body takes no original arguments and uses identical
+32-bit immediate cursor and end values before its unsigned carry test.
+The ordinary path therefore takes no row-body iteration, makes no non-stack
+memory access and invokes no helper. Its stack push is restored by the pop,
+and its return removes no original argument bytes.
+
+A reference query for this entry and an independent enumeration of all
+decoded instruction operands both locate that call. Control `0x005C4530`
+locates independently read startup call `0x00401124`; both searches also
+report `0x004010BE`. The control's latter caller is not used to establish
+any new startup behavior. These searches finish below their respective
+200-reference and combined 256-instruction caps.
+
+A complete shipped-file search for the four-byte little-endian encoding of
+`0x005C4500` finds no occurrences. Independent stored-handler control
+`0x005F50A0`, grounded in FND-EXE-165, finds 748 occurrences. Both searches
+cover FND-EXE-011's 3,802,624-byte source and stay below 16,384 matches.
+Occurrences are address-word candidates, not caller counts; the empty target
+result excludes only that exact encoding in shipped bytes, not computed,
+relative, relocated, runtime-written or differently represented targets.
+
+Neither decoded search covers computed targets, symbolic operands absent from the
+literal text, undecoded bytes or unrecognized stored pointers. They do not
+prove that no additional caller or interior entry exists. Complete caller
+admission remains Q-EXE-009; the corrected return boundary is not itself
+a complete_reading declaration.
+
 ## Interpretation
 
 The declared startup supplies grounded callees for the guard's initialization
@@ -113,6 +144,10 @@ producer of the virtual guard through the studied local mechanism. Q-EXE-009
 retains imported/indirect effects, the later initialization helper and runtime
 storage/lifetime; the entire startup and eventual guard value remain open.
 No original process, API, FPU or loader was executed.
+
+This replaces FND-EXE-079 because its helper range stopped at the return's
+start rather than after it. Its original startup observations are preserved;
+the additional caller searches have only the explicit domains given above.
 
 ## Alternatives
 
@@ -138,3 +173,16 @@ order, pointer-return indirect store, the helper's jump to its unsigned
 condition, both constant bounds, inaccessible row body, later outgoing word
 order and saved return. Keep external, alias and interior-entry effects
 conditional; keep rich reports local and execute no original interpreter.
+
+Repeat ReportReferences with target `0x005C4500` and control `0x005C4530`
+(cap 200 each), then ReportInstructionText with tokens `005c4500` and
+`005c4530` (combined cap 256). Read forty instructions from `0x00401110`
+for the independently located control call, and the original eighty for the
+helper caller. Use Ghidra 12.1.3 PUBLIC, the shared evidence engine 13.5.0
+and local ReportInstructionText at repository revision 892511d, read-only
+with automatic analysis disabled. Keep excluded search kinds explicit.
+Run tools/ghidra/ReportPhysicalBytePattern.ps1 at repository revision
+892511d over the complete verified shipped source, MaximumMatches 16384,
+with patterns `00 45 5C 00` and control `A0 50 5F 00`. These are address
+encodings, not instruction signatures. Keep occurrence reports in GAME_DIR;
+none of their bytes or broad analysis output belongs in Git.
