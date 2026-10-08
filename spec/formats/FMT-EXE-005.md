@@ -52,6 +52,8 @@ bounded source reader; this does not establish native loader behavior.
   saved-listing incompleteness alone does not exclude their decoding.
   FND-EXE-223 retains three unresolved computed transfers in the outer
   candidate; its whole-function body is not supplied by those tail readings.
+  FND-EXE-224 resolves those traversal omissions under an explicit descriptor
+  binding; native segment and ownership admission remain unresolved.
 
 - Whether the loader replaces each fixup word with the segment its descriptor names, and which
   segment that is for a descriptor of an overlay (FND-EXE-007, Q-EXE-001).

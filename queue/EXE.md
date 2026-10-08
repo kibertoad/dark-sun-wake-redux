@@ -333,7 +333,10 @@ Next ID: Q-EXE-014
   ownership, incoming frames or runtime dispatch.
   Tried: FND-EXE-223 extends the source traversal to the outer candidate;
   three additional computed jumps require independent consumer/bound readings.
-  Next: those remaining dispatch producers and descriptor 198's entry
+  Tried: FND-EXE-224 independently bounds all four tables and supplies a
+  conditional outer-body traversal. Native entry/CS, input/frame admission
+  and analyzer ownership still require reconciliation before replacement.
+  Next: descriptor 198's entry
   and CS admission, then the remaining suspect target producers.
   Blocks: reconciled executable denominator and complete-reading declarations
   that depend on those function boundaries.
