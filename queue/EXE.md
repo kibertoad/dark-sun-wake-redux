@@ -214,6 +214,11 @@ Next ID: Q-EXE-010
   vtable targets and remaining pointer/selector writers, then PATH admission,
   flag/EXIT continuations and declared mount/overlay inputs. Unread virtual
   and CRT effects stay conditional; truthy return is not proof of an update.
+  FND-EXE-166 narrows the field reader's decoded direct-call and physical
+  address-word searches and its post-setup argument reload. Next closure
+  check: setup preservation of that incoming slot, selected-local lifetime,
+  offset-28 field writers and excluded computed/indirect uses. Do not count
+  the bounded body as a complete reading before those inputs are admitted.
   Blocks: resolved wrapper-helper and continuation description.
 
 ## Emulated call

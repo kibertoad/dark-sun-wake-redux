@@ -288,6 +288,14 @@ reading of callers, external commands or interpreter behavior is claimed.
   indirect targets and actual state admission remain open.
   Native frame admission, callback invocation, selector effects, allocation units, capacity, aliases
   and lifetime remain conditional.
+
+  FND-EXE-166 separately narrows a selected-record reader's direct-call
+  and raw address-word domains and records its post-setup argument reload.
+  Preserved-selector-input and alias-modified-input readings remain open:
+  the former needs setup, selected-local lifetime and field-writer admission;
+  the latter needs a concrete intervening writer (Q-EXE-009). Neither a
+  single decoded call site nor the small leaf body establishes the format.
+
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers
   are compatible with multiple encodings too. FND-EXE-008 identifies the
