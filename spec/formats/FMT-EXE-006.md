@@ -157,6 +157,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-169 bounds the shipped copied tail and local name terminators;
   FND-EXE-167 traces lazy initialization and mode-dependent record publication;
   FND-EXE-200 traces mode admission, flag publication and the bounded wait loop;
+  FND-EXE-201 retains negative-mode direct-clear aliases and their sign-byte admission;
   FND-EXE-047 traces imported resource and local-helper mode publication;
   FND-EXE-048 resolves record/wait imports and the zero-result tail return;
   FND-EXE-049 traces saved-link cleanup and its freshly selected mode;
