@@ -52,7 +52,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   works in this repository, so the goal runs on main in the single checkout,
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
-- Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore and endpoint checks passed.
+- Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore passed after coverage guidance.
   EXE research through FND-EXE-215, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
@@ -64,8 +64,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   Q-EXE-006, Q-EXE-007, Q-EXE-008, Q-EXE-009 and Q-EXE-010; Q-EXE-001 retains its
   retry requirement. Local static-analysis reports and the saved interpreter
   Ghidra project remain in GAME_DIR/analysis/exe-batches for continuation.
-  Measured snapshot exports, audit sidecars and comparisons are in
-  GAME_DIR/analysis/work-baseline. Existing committed inventories were retained
+  Refreshed comparison: GAME_DIR/analysis/work-baseline/relocation-reconciled;
+  legacy coverage rejection is documented in docs/EVIDENCE-TOOLS.md. Inventories remain
   pending definition/mapping reconciliation; do not discard anomalous ranges
   or publish unverified replacements. Candidate reports remain local; durable
   reader evidence is in FND-EXE-166, with no complete-reading promotion.
@@ -147,7 +147,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   Interrupt-use capability: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/370.
   Intermittent synthetic capture gate: https://github.com/kibertoad/dark-sun-wake-redux/issues/7; rechecks passed.
   Toolkit span rerun: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6068047179; R1/R3 passed; deliberate-prefix follow-up: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/343#issuecomment-6068249317.
-  Worker deadline follow-up: https://github.com/kibertoad/refurbished-dinosaurs-template/issues/73#issuecomment-6066679859.
+  Inventory migration follow-up: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6068550782.
   Partial-overlap/guard follow-ups: https://github.com/kibertoad/refurbished-dinosaurs/issues/37#issuecomment-6066902929 and https://github.com/kibertoad/refurbished-dinosaurs/issues/37#issuecomment-6067099318.
 - Next, after rechecking shared goal claims:
   1. Q-EXE-010, FMT-EXE-005: reconcile revision-2 comparison in
