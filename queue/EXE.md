@@ -44,7 +44,9 @@ Next ID: Q-EXE-011
   reads local record-helper paths; establish shared state/selector producers,
   initializer/import contracts, frame preservation and record aliases. FND-EXE-189
   resolves local selector publication; establish shared/gate/flag producers,
-  imported preservation, admitted extent and wait completion. Blocks: none.
+  imported preservation, admitted extent and wait completion. FND-EXE-190
+  reads shared-record publication; establish query extent, low-word helper
+  decoding, adopted-record admission, source globals and lifetime. Blocks: none.
 
 - Q-EXE-005. FMT-EXE-006: Which code page interprets the disc sound helper's
   display bytes? Settles it: direct interpreter configuration or code-page/font
