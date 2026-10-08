@@ -268,6 +268,9 @@ Next ID: Q-EXE-011
   FND-EXE-167 narrows direct setup writes under the flat-address model;
   shared-base provenance, DS/SS identity, indirect aliases and preservation
   through the other setup routes and callees remain required.
+  SRC-WIN32-X86-ABI supplies the external flat-mode/register-preservation
+  contract; its sample selectors do not establish native DS/SS bases, and
+  generic calling conventions cannot replace local argument/effect readings.
   FND-EXE-168 narrows explicit decoded publication sites and separates fresh
   allocation from decoded existing/fallback origins. Next: decoded-record
   input admission and allocator/storage lifetime; retain excluded indirect
