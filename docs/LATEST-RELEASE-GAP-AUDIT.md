@@ -11,7 +11,7 @@ Wheel SHA-256 is d458056ba12d677b50f36fa8fa4215570fdf0ceafe679f9df0bb25916541b35
 sdist SHA-256 is 8921997a75323d55a3aefa53079b7aca250918ce3dfc941f5dee0fcd890d6a92.
 Downloaded hashes match published release digests. Wheel production files,
 sdist production files and the installed package match. The published test
-suite passes; logs and integrity driver are under artifacts/engine101.
+suite passes.
 The exact wheel pin in tools/evidence/requirements.txt is updated. This focused
 adoption leaves runtime, reader, checker and the local rules snapshot unchanged.
 
@@ -31,7 +31,7 @@ f31e59b5eb0c3bae9a3b9b60063b5dcbe7c144cb181e6a33c327312af19f2bba;
 sdist SHA-256 is 391b52d3905e1ec0e55cc4d324866b7571dc13cfbdec6278857d5f7eeba9ca20.
 Wheel, sdist, tagged production files, installed files and released tests agree.
 The full published suite passes with its test-only Unicorn oracle and the
-installed-engine Node bridge. Logs are artifacts/engine100/release-tests.log.
+installed-engine Node bridge.
 
 Compared with engine 8.1.1, PR 236 changes Ghidra instruction-start diagnostics
 and flow-export coverage; PR 244 adds checkpoint memory last-writer probes.
@@ -71,7 +71,7 @@ probe witnesses. Bounds and unknown input memory remain unchanged. Whole
 controls are undecided, with the exit route lacking its root frame and the
 repeating route stopped. Source configs/reports are local at
 GAME_DIR/analysis/reporter-audit/issue5-poll91; driver/assertions are
-artifacts/engine91/issue5-poll.mjs and poll-controls.log.
+tools/research/engine91/issue5-poll.mjs.
 
 The follow-up FND-CONFIG-161 root-frame query includes the documented
 FND-CONFIG-162/163/165/167 callee bodies. It now reaches an unmodeled DOS
@@ -81,7 +81,7 @@ caller's callback literal reaches both the overlay and resident registration
 stores. Both local origin controls hold; a poll-derived origin is rejected,
 and omitted-setter and one-step controls remove the witnesses. Reports are
 local under GAME_DIR/analysis/reporter-audit/issue5-root91 and
-issue5-producers91; drivers are artifacts/engine91/root-dependencies.mjs and
+issue5-producers91; drivers are tools/research/engine91/root-dependencies.mjs and
 callback-producers.mjs.
 
 For Gap37, the actual FND-CONFIG-193 call-free initializer returns completely
@@ -94,7 +94,7 @@ comes from the documented fixed loop, not an increased bound on unresolved
 transfer queries. The initial region accidentally excluded the documented
 return instruction; including that endpoint corrected the query. Reports
 are local under GAME_DIR/analysis/reporter-audit/issue5-initializer91, with
-driver artifacts/engine91/initializer-producers.mjs. This does not connect
+driver tools/research/engine91/initializer-producers.mjs. This does not connect
 startup state to a later transfer or establish native admission.
 
 Producing the remaining caller, producer and connected-route evidence is
@@ -114,8 +114,7 @@ integrity matches the lock. Its released synthetic suite passes, with platform
 skips explicitly retained. Ordinary and all packaging profiles adopt runtime
 6.8.0. Official NuGet signatures and canonical content hashes verify; all
 package contents match the installed cache. Signature-bearing archive bytes
-are not substituted for the canonical content hash. Verification logs are
-artifacts/engine91/runtime680-integrity.json and runtime680-content-match.log.
+are not substituted for the canonical content hash.
 Canonical validation includes Release build and assetless smoke.
 
 The five old Dark Sun toolkit trackers carry delivered shared-tool requests
@@ -126,9 +125,6 @@ known at its indirect call, but the declared target is not followed. Immediate
 far-call positive returns and unknown-pointer negative stops. No proprietary
 bytes or invented original state were used. No whole game gap is closed merely
 by separating delivered requests from consumer evidence.
-
-Logs: artifacts/engine91/latest-canonical-validation.log,
-checker060-integrity.log, checker060-release-tests.log and indirect-far-repro.log.
 
 ## Released migration and confirmation
 
@@ -152,9 +148,6 @@ profile are refreshed. Full canonical validation passes, including Test.ps1,
 locked restore, Release build and assetless smoke. Tagged engine/checker suites
 pass with their explicit platform skips.
 
-Verification: artifacts/engine100/engine-integrity.log, release-tests.log,
-package-integrity.log, checker-tests.log, indirect-far-controls.log,
-actual-brackets.log, actual-writer-inputs.log and canonical-validation.log.
 Toolkit #274 is closed after the released confirmation; project issue 5 is
 revised to the current versions and consumer exits.
 The library update and its compatibility validation are complete. The five
@@ -198,8 +191,7 @@ far-frame controls return. Toolkit issue 302 remains an open capability request.
 All five complete connected-evidence exits remain open. No game specification,
 parity or original-content contract changed; no original/emulated game ran.
 Private original reports: UserContent/analysis/reporter-audit/upstream110.
-Ignored integrity, synthetic, actual and negative-control drivers/logs:
-artifacts/engine110. Canonical gate: artifacts/engine110/canonical-gate.log.
+Drivers: tools/research/engine110/.
 
 ## Engine 12 frame-conversion adoption, 2026-10-06
 
@@ -230,6 +222,5 @@ Toolkit issue 302 is confirmed and closed. All five complete
 connected-evidence exits remain open. No game specification, parity or
 original-content contract changed; no original or emulated game ran.
 Private original reports: UserContent/analysis/reporter-audit/lower-heap120.
-Ignored drivers and logs: artifacts/engine120. Canonical gate (assetless, with
-the machine-wide GAME_DIR and NoDefaultCurrentDirectoryInExePath unset):
-artifacts/engine120/canonical-gate.log.
+Drivers: tools/research/engine120/. The canonical gate was run assetless, with
+the machine-wide GAME_DIR and NoDefaultCurrentDirectoryInExePath unset.

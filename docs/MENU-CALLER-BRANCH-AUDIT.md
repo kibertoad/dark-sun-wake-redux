@@ -25,8 +25,7 @@ Gap 33 remains open for actual object/count/length/pointer producers and whole
 caller/recursive/cleanup coverage. No game spec or parity status changed.
 
 Source-local reports/configs: GAME_DIR/analysis/reporter-audit/
-issue5-menu-callers100. Ignored drivers/logs: artifacts/engine100/
-menu-callers.* and menu-branch.*.
+issue5-menu-callers100.
 
 ## Actual cleanup dependency continuation
 
@@ -43,4 +42,4 @@ finite graph admission or complete error-origin coverage.
 Earlier count and bracket dependency mappings already use documented CS:IP;
 no mapping correction was justified there. Their results remain qualified.
 Source reports/configs: GAME_DIR/analysis/reporter-audit/issue5-menu-cleanup100.
-Ignored driver/log: artifacts/engine100/menu-cleanup.mjs and menu-cleanup.log.
+Driver: tools/research/engine100/menu-cleanup.mjs.

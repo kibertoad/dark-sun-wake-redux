@@ -25,8 +25,8 @@ a report is not complete wrapper/primitive coverage or closure of Gap 27.
 This supersedes only the historical inability to obtain that bounded broad
 report; original-case control coverage and adoption remain separate work.
 
-Local reproduction: prepare-compact-wrapper.py and compact-wrapper.log under
-artifacts/issue-response-review; configs/reports and the driver stay in
+Local reproduction script: prepare-compact-wrapper.py under
+tools/research/issue-response-review; configs/reports and the driver stay in
 GAME_DIR/analysis/reporter-audit/compact-wrapper-controls. Production pins,
 original content, game spec/parity and runtime remain untouched.
 
@@ -38,7 +38,6 @@ sdist, installed package and release bf46e8aa2a2d4dbe35a65fe8bee86a7d279323c6
 source agree. The published source suite passes, including the installed reader
 PE bridge, nonvacuous width/grouping conflicts, bypasses, no-read and window-limit
 controls. Unicorn is isolated as a synthetic test oracle, not a runtime dependency.
-Integrity and validation logs are under artifacts/issue144/.
 
 The FND-CONFIG-179 caller plus FND-CONFIG-180 callee query uses the unchanged
 bounded config from issue 144, without entry-memory values or modeled calls.
@@ -49,8 +48,7 @@ conflictingWidths is empty. agreed stays false: every frame remains unsettled,
 including bypasses with unread slots. The report remains incomplete with
 path-limit gaps and unread callees. A one-step control removes the call witness.
 The conditional-setter-only query is not the positive case. Proprietary configs
-and reports stay under GAME_DIR/analysis/reporter-audit/issue-response-review/;
-consumer assertions and a compact summary are in artifacts/issue144/consumer.log.
+and reports stay under GAME_DIR/analysis/reporter-audit/issue-response-review/.
 
 Engine upgrade migration: repository wrappers do not consume removed inline
 preservedMemoryScopes or Ghidra counts. Connected cleanup predecessor controls
@@ -66,7 +64,7 @@ not establish unread arguments, complete native behavior, or the full Gap 35
 contract; gaps.md and the goal ledger retain Gap 35 pending that broader exit.
 No game spec, parity status, gameplay or original runtime changes.
 
-Canonical Test.ps1 -NoRestore passes: artifacts/issue144/root-gate.log. Issue 144
+Canonical Test.ps1 -NoRestore passes. Issue 144
 is closed as completed after the verified response; the broader ledger is unchanged.
 
 ## Published reader 2.1.0 / engine 7.3.0 adoption, 2026-10-04
@@ -76,9 +74,8 @@ engine 7.3.0. The wheel, sdist, installed production/test packages and release
 cfe7c4e8d97c521620059f2a35d4d25c5dc4db09 agree byte for byte for engine code;
 the locked npm tarball agrees with installed reader files. The published engine
 suite passes with the installed package, including the Node PE bridge test,
-without PYTHONPATH source fallback. Verification logs are under
-artifacts/engine73/. Checker 0.2.0, runtime dependency pins, template, local
-upstream rules and shared .NET packages remain unchanged.
+without PYTHONPATH source fallback. Checker 0.2.0, runtime dependency pins,
+template, local upstream rules and shared .NET packages remain unchanged.
 
 The intervening releases add observed entry frames, caller-byte read provenance,
 caller-return inventory continuation, Ghidra flow refinements and symbolic-base
@@ -117,7 +114,7 @@ are not established: path gaps and bypasses remain explicit.
 
 Local configurations/reports stay under
 GAME_DIR/analysis/reporter-audit/issue-response-review/; drivers and logs are
-artifacts/engine73/verify-gap35-exit.mjs, gap35-exit.log and arguments.log.
+tools/research/engine73/verify-gap35-exit.mjs, gap35-exit.log and arguments.log.
 
 ### Issue 145 delivered; Gap 40 remains open
 
@@ -143,9 +140,9 @@ source-composition.log and composition-negatives.log record the assertions.
 Issue 143 remains open: observed frames do not supply producer memory or settle
 hardware placement along the incomplete connected route.
 
-Canonical Test.ps1 -NoRestore passes (artifacts/engine73/root-gate.log).
-Retained runtime-mode and loop controls pass again on the new installed engine;
-logs are runtime-regression.log and loop-regression.log. Issue 145 is closed
+Canonical Test.ps1 -NoRestore passes.
+Retained runtime-mode and loop controls pass again on the new installed engine.
+Issue 145 is closed
 with [verified consumer feedback](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/145#issuecomment-5983684370);
 issue 144 has [full Gap 35 feedback](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/144#issuecomment-5983684860).
 
@@ -166,8 +163,8 @@ and reaches no hardware boundary. This is helper acceptance, not Gap 37 closure.
 The command is effects with entryFrame.from, a complete declared region,
 XXH3 source guard and explicit DS/SS hypotheses, without SP/BP or memory rows.
 Local reports are transfer-frame730 and transfer-frame-cap730 under
-GAME_DIR/analysis/reporter-audit/issue-response-review/; the assertion summary
-is artifacts/engine73/transfer-frame.log. The response is recorded on
+GAME_DIR/analysis/reporter-audit/issue-response-review/.
+The response is recorded on
 [issue 143](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/143#issuecomment-5983733344).
 
 Gap 31's connected source prefix on reader 2.1.0/engine 7.3.0 retains the same
@@ -190,8 +187,7 @@ any conditional hardware-return input needs its own design. The documented
 hard stop is not reported as a bug. Gap 31 remains open.
 
 Source configs/reports stay under GAME_DIR/analysis/reporter-audit/poll-alias-controls/.
-The installed rerun summaries are artifacts/engine73/poll-prefix.log and
-poll-controls.log. No original execution, frame-memory invention, window
+No original execution, frame-memory invention, window
 stitching, spec/parity change or raised budget occurred.
 
 ## Gap 32 guard and reload acceptance, 2026-10-04
@@ -224,7 +220,7 @@ listed remain unknown. Earlier whole-entry path gaps are retained, not treated
 as full acceptance.
 
 Local reports/configs: GAME_DIR/analysis/reporter-audit/guard-order730/.
-Assertion drivers/logs: artifacts/engine73/verify-guard-contract.mjs,
+Assertion drivers/logs: tools/research/engine73/verify-guard-contract.mjs,
 verify-callback-results.mjs, verify-target-relations.mjs and their logs.
 After checking existing issues, extra consumer details were added to
 [existing tracker 113](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/113#issuecomment-5983866493).
@@ -277,7 +273,7 @@ requests the supported recipe/guidance and tracks the remaining source exit.
 The engine's local value provenance is not reported as wrong.
 
 Local reports/configs: GAME_DIR/analysis/reporter-audit/result-origin730/.
-Ignored assertion drivers/logs: artifacts/engine73/explore-result-origin.mjs,
+Ignored assertion drivers/logs: tools/research/engine73/explore-result-origin.mjs,
 verify-result-origin.mjs, result-origin-explore.log and result-origin-controls.log.
 Instruction-boundary metadata stays local; no original bytes, code or dumps
 are committed or attached upstream.
@@ -302,8 +298,8 @@ Gap 33 remains open for graph producers and complete caller/leaf controls.
 FND-CONFIG-175 preservation acceptance remains separate and unfinished.
 
 Local configs/reports are result-origin730/normalizer-0 and normalizer-65535
-under GAME_DIR/analysis/reporter-audit/; ignored driver/log are
-artifacts/engine73/verify-normalizer.mjs and normalizer.log. Additional results
+under GAME_DIR/analysis/reporter-audit/; the driver is
+tools/research/engine73/verify-normalizer.mjs. Additional results
 were added to [existing issue 200](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/200#issuecomment-5984025397);
 no duplicate issue or closure. No original execution, spec/parity change,
 window stitching or larger traversal budget occurred.
@@ -325,8 +321,8 @@ still return zero and unread service routes stop. These controls do not accept
 performed-copy, native preservation, complete bracket effects or Gap 33 closure.
 The complete source span/call selectors and hash guard are verified. Configs
 and reports remain local in result-origin730/copy-wrapper under
-GAME_DIR/analysis/reporter-audit/; ignored driver/log are
-artifacts/engine73/verify-copy-wrapper.mjs and copy-wrapper.log.
+GAME_DIR/analysis/reporter-audit/; the driver is
+tools/research/engine73/verify-copy-wrapper.mjs.
 The next acceptance should trace the actual primitive with verified argument
 producers, rather than use the inadequate balanced model or stitch windows.
 No original execution, spec/parity change or raised traversal bounds occurred.
@@ -350,7 +346,7 @@ The next acceptance requires actual pointer/argument producers and distinct
 admitted storage; the frame/segment register hypotheses alone cannot prove
 those conditions. Gap 33 remains open. Local configs/reports are
 result-origin730/copy-actual under GAME_DIR/analysis/reporter-audit/;
-ignored assertions are artifacts/engine73/verify-actual-copy.mjs and
+ignored assertions are tools/research/engine73/verify-actual-copy.mjs and
 actual-copy-controls.log. No original execution, spec/parity changes, enlarged
 bounds or stitched state were used.
 
@@ -360,7 +356,7 @@ Published reader 2.1.0 / engine 7.3.0 trace the complete append body from FND-CO
 
 The retained rejection paths return FFFF before the copy request and before the destination count write. Accepted paths retain the copy request, a subsequent count reload and an increment whose provenance comes from that reload. The report does not reuse the admitted pre-call count as the increment's input: the post-call count remains unknown. Thus the local gate alone cannot establish a post-call count invariant or destination safety under unknown copy effects/aliases. All retained paths return with no gaps and completeWithinModel is true, while nativeReachability remains unconfirmed.
 
-Nonvacuous controls remove the copy model and retain rejection while stopping accepted continuations; a one-step cap removes returns and count-update witnesses. The local source identity, selectors, configs and full reports remain in GAME_DIR/analysis/reporter-audit/result-origin730/append-*; ignored drivers and assertions are artifacts/engine73/explore-append.mjs and verify-append.mjs, with append-controls.log. No original-derived instruction exports or reports are committed.
+Nonvacuous controls remove the copy model and retain rejection while stopping accepted continuations; a one-step cap removes returns and count-update witnesses. The local source identity, selectors, configs and full reports remain in GAME_DIR/analysis/reporter-audit/result-origin730/append-*; drivers and assertions are in tools/research/engine73/explore-append.mjs and verify-append.mjs. No original-derived instruction exports or reports are committed.
 
 This verifies the local pre-write capacity/result ordering only. FND-CONFIG-177's pairwise expansion and FND-CONFIG-178's syntactic split bound still need actual connected producer/callee acceptance, finite admitted inputs and alias/guard qualifications. FND-CONFIG-182's copy-versus-terminator base and wrapped-length controls also remain required. Gap 34 stays open: complete conditional append paths do not establish feasible geometry, native capacity, whole-transform safety or rollback.
 
@@ -370,7 +366,7 @@ The published reader 2.1.0 / engine 7.3.0 source query now includes the complete
 
 The connected report reaches actual initialization and string fills, including 69 word iterations for the private 138-byte region, and the pair-selection call. It retains path-limit gaps and loop/step stops. No retained path reaches the append call; its returned zero path contains neither pair selection nor append. That return is not an overflow witness or whole-transform acceptance. The included append region does not itself prove connected capacity coverage when traversal never reaches it.
 
-Nonvacuous controls omit the actual fill region, exhaust the string budget, and cap the query at one step. Each removes the connected pair-selection witness and returned continuation. Full configs/reports remain local under GAME_DIR/analysis/reporter-audit/result-origin730/pair-*; ignored hash-guarded selectors and source assertions are artifacts/engine73/pair-sites.py, explore-pair.mjs and verify-pair.mjs, with pair-controls.log. The accepted symbolic frame scopes remain guard hypotheses, not native input/alias preservation evidence.
+Nonvacuous controls omit the actual fill region, exhaust the string budget, and cap the query at one step. Each removes the connected pair-selection witness and returned continuation. Full configs/reports remain local under GAME_DIR/analysis/reporter-audit/result-origin730/pair-*; ignored hash-guarded selectors and source assertions are tools/research/engine73/pair-sites.py, explore-pair.mjs and verify-pair.mjs, with pair-controls.log. The accepted symbolic frame scopes remain guard hypotheses, not native input/alias preservation evidence.
 
 An all-state duplicate check found no cardinality/pairwise/split/Gap 34 tracker. Toolkit [issue 213](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/213) now records the full remaining consumer contract and asks for a supported bounded recipe or an accurately documented expressiveness boundary after producer evidence. It does not report conservative limits as a defect. Gap 34 remains open for actual count/record producers and duplicate/overlap invariants, feasible split paths versus FND-CONFIG-178's syntactic bound, alias/callee effects, and FND-CONFIG-182's copy/terminator-base controls. Do not repeat this unknown-input query with larger caps; retry needs new producers, a justified connected route or supported input tooling.
 
@@ -390,7 +386,7 @@ Source assertions compare the actual pushed destination-offset expression with t
 
 Replacing the truncated-copy model in the 40/40 case with the real bounded primitive reaches 19 word copies and one byte copy. It then stops on unknown return-target provenance before the caller's explicit zero write. The gap-free stopped report is incomplete; the modeled copy continuation does not establish that real terminator execution. No native failure, corruption or successful content is claimed.
 
-A one-step cap removes observed frame establishment; removing the copy model removes the explicit-zero witness; removing SI preservation removes the fixed-limit relation. All source controls pass. Original-derived selectors/configs/reports stay local under GAME_DIR/analysis/reporter-audit/result-origin730/path-*; ignored drivers/assertions are artifacts/engine73/path-append-sites.py, explore-path-append.mjs, explore-path-copy.mjs and verify-path-append.mjs, with path-append-controls.log.
+A one-step cap removes observed frame establishment; removing the copy model removes the explicit-zero witness; removing SI preservation removes the fixed-limit relation. All source controls pass. Original-derived selectors/configs/reports stay local under GAME_DIR/analysis/reporter-audit/result-origin730/path-*; drivers and assertions are in tools/research/engine73/path-append-sites.py, explore-path-append.mjs, explore-path-copy.mjs and verify-path-append.mjs.
 
 Relevant new details were added to existing [toolkit issue 213](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/213#issuecomment-5984294234). Gap 34 remains open for real count/string/pointer producers, admitted storage and aliases, actual scans/concatenation and connected return coverage, plus the pairwise/split contract. Conditional lengths and capacity-like branch limits do not prove native input admission, safe storage, rollback or full generated-cardinality acceptance. Retry this actual-copy case only with new pointer/alias evidence or supported input tooling.
 
@@ -404,7 +400,7 @@ Zero and FFFF child-result hypotheses both retain normalized zero returns. The f
 
 A rejected attempted fixed-offset memory-scope shape was corrected before acceptance: the supported API requires an address-width general-register base. No artificial register-zero hypothesis was introduced to preserve global flags. Only the stated frame scopes appear in the accepted configs. The source controls instead retain unknown/invalidation provenance for both addressed bytes.
 
-Full selectors/configs/reports remain local under GAME_DIR/analysis/reporter-audit/result-origin730/width-*; ignored drivers/assertions are artifacts/engine73/width-wrapper-sites.py, explore-width-wrapper.mjs and verify-width-wrapper.mjs, with width-wrapper-controls.log. An all-state upstream duplicate review found no specific Gap 36 tracker, but these results expose no new shared-tool defect or design request: the widths and conservative missing-producer qualifications work. No issue was created solely for outstanding consumer research.
+Full selectors/configs/reports remain local under GAME_DIR/analysis/reporter-audit/result-origin730/width-*; drivers and assertions are in tools/research/engine73/width-wrapper-sites.py, explore-width-wrapper.mjs and verify-width-wrapper.mjs. An all-state upstream duplicate review found no specific Gap 36 tracker, but these results expose no new shared-tool defect or design request: the widths and conservative missing-producer qualifications work. No issue was created solely for outstanding consumer research.
 
 Gap 36 stays open for connected real low/high-byte and segment producers, complete normalized caller/service coverage and the full fixture contract. No game spec/parity/queue status, native execution or emulation changed. Retry producer-sensitive paths only with new evidence, a justified connected route or supported input tooling; do not seed neighboring bytes, omit model effects or increase caps to manufacture admission.
 
@@ -418,7 +414,7 @@ All retained helper paths return, while path-limit gaps keep completeWithinModel
 
 A post-selection register-only tail was rejected as a recipe before query acceptance: the actual tail rereads the selected byte from its frame before each marker write. The connected helper creates that local producer itself; unrelated tail-register values or fabricated saved memory are not substitutes. This is tooling acceptance against the existing finding, with no game spec, parity, queue, original execution or emulation change.
 
-Configs/reports remain local under GAME_DIR/analysis/reporter-audit/result-origin730/eviction-*; original instruction context remains local only. Ignored hash/selectors and source assertions are artifacts/engine73/eviction-selectors.py, explore-eviction.mjs and verify-eviction.mjs, with eviction-controls.log. Relevant new consumer details were added to existing [toolkit issue 114](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/114#issuecomment-5984446761), whose delivered feature remains closed. No newly demonstrated shared-tool defect or duplicate feature issue is claimed.
+Configs/reports remain local under GAME_DIR/analysis/reporter-audit/result-origin730/eviction-*; original instruction context remains local only. Ignored hash/selectors and source assertions are tools/research/engine73/eviction-selectors.py, explore-eviction.mjs and verify-eviction.mjs, with eviction-controls.log. Relevant new consumer details were added to existing [toolkit issue 114](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/114#issuecomment-5984446761), whose delivered feature remains closed. No newly demonstrated shared-tool defect or duplicate feature issue is claimed.
 
 Gap 29 remains open for the complete connected repeated no-op eviction/restarted-search case and real cache/age/capacity producers. FND-SCRIPT-022 explicitly distinguishes the hypothetical high-bit-capacity example from FND-CONFIG-156's ordinary capacity producer. This helper's completed writes and selected-index outcomes do not establish ordinary termination, repeated whole state or native high-bit capacity. Keep old unresolved search bounds unchanged; retry needs new producers, a justified connected route or supported input tooling.
 
@@ -429,7 +425,7 @@ wheel SHA-256 is pinned in tools/evidence/requirements.txt. Registry hashes,
 wheel/sdist/release-tag/installed bytes and the complete released suite pass,
 including the actual installed engine Node bridge. Canonical Test.ps1, locked
 restore, Release build and assetless publish/smoke pass. All packaging profiles
-are regenerated for runtime 6.2.0. Logs are in artifacts/engine811/.
+are regenerated for runtime 6.2.0.
 
 FND-CONFIG-172 returns queries implement the issue 200 recipe at unchanged
 limits, unknown graph memory and explicit conditional models. Old broad frame
@@ -491,8 +487,8 @@ an upstream-input dependency. No larger bounds or preserved prefix memory
 were introduced.
 
 Configs and full reports remain in GAME_DIR/analysis/reporter-audit/issue5-poll;
-the ignored driver and assertion log are artifacts/engine811/issue5-poll.mjs
-and issue5-poll.log. Bounds remain the prior 64 steps per path, four paths,
+the driver with its assertions is tools/research/engine811/issue5-poll.mjs.
+Bounds remain the prior 64 steps per path, four paths,
 256 total steps and visit limit four. Source identity is checked by the reader.
 The driver checks the local BX witness and disappearance controls and keeps
 the failed frame explicit. These are tooling controls against read-only
@@ -542,7 +538,7 @@ The wrong null-gate control rejects a reached callback witness. Omitting the
 before bracket stops at its call sites, and one-step controls remove frame,
 callback and relational witnesses. All experiment assertions pass. Original
 configs/reports are local under GAME_DIR/analysis/reporter-audit/issue5-brackets91;
-ignored driver/log: artifacts/engine91/actual-brackets.mjs and actual-brackets.log.
+driver: tools/research/engine91/actual-brackets.mjs.
 
 Gap32 remains open for the actual callback-field producer, admitted storage,
 remaining middle-helper callees, guard outcomes, both callback routes and
@@ -573,8 +569,8 @@ and one-step controls remove every origin witness. All driver assertions pass.
 The intermediate selector-only query still supplies a recursive FFFF and
 retains conditional error returns; it is not used as actual leaf evidence.
 The source-derived reports/configs are local under
-GAME_DIR/analysis/reporter-audit/issue5-recursion91; ignored driver/log:
-artifacts/engine91/actual-recursion.mjs and actual-recursion.log.
+GAME_DIR/analysis/reporter-audit/issue5-recursion91; driver:
+tools/research/engine91/actual-recursion.mjs.
 
 Gap33 remains open for admitted finite graph/count/length producers, full
 recursive and caller coverage, and normalized/copy dependencies. Actual leaf
@@ -612,8 +608,8 @@ caller-input dependency, not proof the native setup fails. No initialized
 count or memory from one query is imported into another.
 
 Reports/configs remain local under
-GAME_DIR/analysis/reporter-audit/issue5-count91; ignored driver/log:
-artifacts/engine91/actual-count-caller.mjs and actual-count-caller.log.
+GAME_DIR/analysis/reporter-audit/issue5-count91; driver:
+tools/research/engine91/actual-count-caller.mjs.
 Gap34 remains open for real nonzero count/record/pointer and alias admission,
 known append cardinality, complete pair/split/copy/terminator routes and whole
 controls. The adopted guidance explicitly has no entry-memory input; this
@@ -647,8 +643,8 @@ expectation that the wrong-segment case would be undecided was corrected to
 the actual rejection after checking the propagated selectors and intervals.
 
 Source-derived configs/reports remain under
-GAME_DIR/analysis/reporter-audit/issue5-startup91; ignored driver/log:
-artifacts/engine91/actual-startup-initializer.mjs and actual-startup-initializer.log.
+GAME_DIR/analysis/reporter-audit/issue5-startup91; driver:
+tools/research/engine91/actual-startup-initializer.mjs.
 Gap37 remains open for the full startup-to-transfer route, later writers,
 external/state producers, admission and known-answer hardware placement.
 No initializer memory is stitched into a disconnected transfer, and no
@@ -687,8 +683,8 @@ Wrong root writers reject at reached setup-entry anchors. Omitting the zero
 helper removes the internal IRET witness; omitting the fill removes the
 after-clear field/table witnesses; one-step controls remove the anchors.
 All experiment assertions pass. Local source reports/configs:
-GAME_DIR/analysis/reporter-audit/issue5-modes91; ignored driver/log:
-artifacts/engine91/actual-mode-helpers.mjs and actual-mode-helpers.log.
+GAME_DIR/analysis/reporter-audit/issue5-modes91; driver:
+tools/research/engine91/actual-mode-helpers.mjs.
 Gap37 remains open for incoming flag/data producers, full setup/caller and
 startup-to-transfer coverage, later writers/external inputs and hardware
 placement. No native run/emulation, spec/parity change, stitched state,
@@ -720,8 +716,8 @@ controls do not prove the whole finite construction, native admission, setup
 completion or the later graphics-transfer route.
 
 Source configs/reports are local under
-GAME_DIR/analysis/reporter-audit/issue5-setup91; ignored driver/log:
-artifacts/engine91/actual-setup-lists.mjs and actual-setup-lists.log.
+GAME_DIR/analysis/reporter-audit/issue5-setup91; driver:
+tools/research/engine91/actual-setup-lists.mjs.
 The FS/GS inputs remain inspection-address hypotheses. Findings/parity are
 unchanged, no call model was introduced, and no original runtime/emulation,
 fabricated memory, stitched state or larger unresolved-query bound was used.
@@ -756,8 +752,8 @@ no bounds or starting memory were changed to obtain one.
 
 Source-derived selectors/configs/reports remain under
 GAME_DIR/analysis/reporter-audit/issue5-status91 and issue5-root91;
-ignored driver/log: artifacts/engine91/actual-status-window.mjs and
-actual-status-window.log. The bounded selector records only the actual call
+driver: tools/research/engine91/actual-status-window.mjs.
+The bounded selector records only the actual call
 boundary, not original instructions. Gap31 remains open for true root/frame
 coverage, interrupt/result sequences, active device/callee and input producers,
 whole controls and their negative cases. No original runtime/emulation,
@@ -770,8 +766,8 @@ query bound was used. This source work required no extra upstream input.
 Read-only acceptance inputs: FND-CONFIG-171/174/188/189. Added the complete
 normalizer and before/after service bodies to the actual bracket configuration.
 No input memory, new models or increased bounds were supplied. Source configs
-and reports: `GAME_DIR/analysis/reporter-audit/issue5-middle91/`; ignored driver:
-`artifacts/engine91/actual-middle.mjs`.
+and reports: `GAME_DIR/analysis/reporter-audit/issue5-middle91/`; driver:
+`tools/research/engine91/actual-middle.mjs`.
 
 The connected callback caller retains earlier frame/stack, DOS and path stops;
 it reaches none of the three new service entries. Both whole order controls
@@ -787,8 +783,8 @@ stops include unresolved far transfer at site 210167 and undeclared calls at
 inputs, not proof of native callback admission, field/segment producers or a
 joined caller route. No complete Gap 32 exit is claimed.
 
-Exact published-source integrity passed; full Test.ps1 result is recorded in
-`artifacts/engine91/middle-test.log`. Earlier response sections were moved to
+Exact published-source integrity passed; a full Test.ps1 run was recorded in
+a local log that is not committed. Earlier response sections were moved to
 TOOLKIT-RESPONSE-ACCEPTANCE-ARCHIVE.md; completed maintenance plans were moved
 to the existing shared-adoption archive to preserve narrative size limits.
 
@@ -799,7 +795,7 @@ FND-CONFIG-171/174/188/189/191/197 now extend the actual middle-entry trace
 with both refresh wrappers, handle forwarding/gates and coordinate getters.
 Original query bounds, unknown state and existing callback hypotheses remain
 unchanged. Source reports: `GAME_DIR/analysis/reporter-audit/issue5-refresh91/`;
-ignored driver: `artifacts/engine91/actual-refresh.mjs`.
+driver: `tools/research/engine91/actual-refresh.mjs`.
 
 The trace reaches the first refresh wrapper and its before-call temporary
 field assignment. The actual caller argument producer is retained at every
@@ -816,8 +812,7 @@ and storage routes are not joined by this separate middle entry. Admitted
 callback records, target/segment writers, stable segments and complete return
 routes remain required for Gap 32; no whole guard or preservation exit closes.
 
-Exact production integrity and the full Test.ps1 gate passed; logs:
-`artifacts/engine91/refresh-integrity.log` and `refresh-test.log`.
+Exact production integrity and the full Test.ps1 gate passed.
 
 ## Issue 5: callback writer candidate census, 2026-10-05
 
@@ -831,7 +826,7 @@ scan and result bounds were unchanged. Batched reports retain partial search,
 undecoded/unmapped edges, overlap classification and excluded ranges.
 
 Source reports/configs: `GAME_DIR/analysis/reporter-audit/issue5-writers91/`.
-Ignored drivers: `artifacts/engine91/callback-writers.mjs` and
+Drivers: `tools/research/engine91/callback-writers.mjs` and
 `callback-writer-controls.mjs`. The summary links each candidate to its batch.
 An entry-based four-byte DS write candidate occurs at file site 209427 in the
 inventory entry starting at 209409. A neighboring entry at 209435 has a
@@ -849,9 +844,8 @@ computed pointer accesses and aliases remain. Gap 32 remains open; the next
 step is this writer entry's actual input and callers, then storage/segment and
 whole callback routes, rather than repeating the capped consumer trace.
 
-Exact production integrity and full Test.ps1 passed. Logs:
-`artifacts/engine91/writers-integrity.log`, `writers-controls.log` and
-`writers-test.log`. No original runtime, imported input memory or emulation.
+Exact production integrity and full Test.ps1 passed. No original runtime,
+imported input memory or emulation.
 
 ## Issue 5: actual writer input and caller/reference census, 2026-10-05
 
@@ -859,7 +853,7 @@ Followed the candidate writer entry with unknown SP/BP and input memory, the
 actual runtime guard, conditional DS/SS analysis values, and the existing
 64-step/four-path bounds. No call model or supplied callback value was added.
 Source reports: `GAME_DIR/analysis/reporter-audit/issue5-writer-callers91/`;
-ignored drivers: `artifacts/engine91/callback-writer-callers.mjs`,
+drivers: `tools/research/engine91/callback-writer-callers.mjs`,
 `callback-writer-input-controls.mjs` and `callback-writer-omission.mjs`.
 
 The reached four-byte store retains its actual SS stacked-input read as a
@@ -884,9 +878,8 @@ writer's actual runtime admission before joining it to callback dispatch. The
 local stacked-input origin does not close Gap 32's target/segment producers or
 whole caller/storage controls. All issue 5 gaps remain open.
 
-Exact production integrity and full Test.ps1 passed. Logs:
-`artifacts/engine91/writer-callers-integrity.log`, `writer-input-controls.log`
-and `writer-callers-test.log`. No original runtime or emulation occurred.
+Exact production integrity and full Test.ps1 passed. No original runtime or
+emulation occurred.
 
 ## Released indirect-far migration and count caller inputs, 2026-10-05
 
@@ -918,9 +911,7 @@ buffer, coordinate and copy bodies from FND-CONFIG-175. Arrivals are retained,
 but alternate DOS routes prevent establishing the frame. No invented memory,
 fixed callback target, higher caps, emulation or game spec/parity change.
 Reports: GAME_DIR/analysis/reporter-audit/issue5-count-callers91 and
-engine100-count-inputs. Logs: artifacts/engine91/count-callers-source.log,
-count-caller-frames.log, count-buffer-frames.log; artifacts/engine100/
-count-input-controls.log. Full Gap 34 pair/split/copy/terminator acceptance and
+engine100-count-inputs. Full Gap 34 pair/split/copy/terminator acceptance and
 all five issue 5 consumer exits remain open.
 
 ## Connected count-one caller frames and retained count, 2026-10-05
@@ -951,7 +942,7 @@ No original run, emulation, increased bounds, game spec or parity change.
 
 Reports: GAME_DIR/analysis/reporter-audit/engine100-count-roots,
 engine100-count-pre-guard and engine100-count-root-controls. Drivers/logs:
-artifacts/engine100/count-root-callers.mjs, count-pre-guard-frames.mjs,
+tools/research/engine100/count-root-callers.mjs, count-pre-guard-frames.mjs,
 count-root-controls.mjs and their corresponding logs. Canonical batch checks
 are recorded in count-root-test.log; exact engine integrity remains verified.
 
@@ -974,8 +965,7 @@ loop directions in the declared body execute. Instruction/write limits and an
 omitted return region reject the positive. No hardware boundary is reached.
 
 Licensed tests skip without GAME_DIR. Configs and numeric traces are local in
-GAME_DIR/analysis/reporter-audit/emulated-initializer. Logs:
-artifacts/emulator/licensed-controls.log and initializer-controls.log. Runtime
+GAME_DIR/analysis/reporter-audit/emulated-initializer. Runtime
 capability and stub limitations are recorded in RUNTIME.md; controls and the
 canonical gate are recorded in VALIDATION.md. This verifies harness delivery
 and source-local agreement only. It does not promote a game entry, establish
@@ -1008,7 +998,7 @@ No game specification, parity status or other goal changes; all five full exits
 remain open. No new shared-tool defect is inferred from these stops.
 
 Private queries/reports: UserContent/analysis/reporter-audit/normalizer-root101.
-Ignored drivers/logs: artifacts/engine101/normalizer-root.mjs and
+Drivers: tools/research/engine101/normalizer-root.mjs and
 normalizer-root-controls.mjs. Bootstrap facts, pinned-rule verification,
 hash-verified published queries and positive/rejected/cap assertions passed.
 No original game or emulated function ran.
@@ -1017,7 +1007,7 @@ The earlier full gate failed on synthetic capture readiness; its targeted rerun
 also failed. The separately committed fixture fix (8ccbb6a) restores the gate
 without weakening capture assertions or changing source-query inputs. Full
 assetless `tools/Test.ps1 -NoRestore` passed on 2026-10-06, including documentation
-base comparison. Log: artifacts/engine101/normalizer-root-recovered-gate.log.
+base comparison.
 Source controls passed again; original-dependent tests skipped.
 
 ## Gap 33 connected release returns and cancelled origin membership, 2026-10-06
@@ -1056,11 +1046,11 @@ complete compaction/caller paths remain dependencies; all five exits stay open.
 No game specification/parity changes or original runtime/emulation occurred.
 
 Private reports: UserContent/analysis/reporter-audit/normalizer-release101.
-Ignored drivers/logs: artifacts/engine101/normalizer-release.mjs and its log;
+Drivers: tools/research/engine101/normalizer-release.mjs;
 synthetic paired controls in cancelled-origin-repro.mjs and its directory.
 Bootstrap facts, pinned rules, hash-verified queries and source/synthetic
 assertions passed.
 
 Full assetless `tools/Test.ps1 -NoRestore` passed on 2026-10-06, including
-documentation base comparison. Log: artifacts/engine101/normalizer-release-gate.log.
+documentation base comparison.
 Original-dependent tests skipped with GAME_DIR absent.

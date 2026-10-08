@@ -11,17 +11,16 @@ adopted 0b9ab9c. It corrects 107 DOSBox.exe range ends in place under the
 owner's decision in docs/DECISIONS.md. Assetless Test.ps1 passed with 715
 .NET tests. Not pushed. The protocol-work worktree is still at 4fcf09c: merge
 main into it before resuming Q-EXE-009, and write range ends half-open
-(research-item skill). docs/VALIDATION.md's 64 local `artifacts/`
-log citations were removed; AGENTS.md now forbids them. About 230 more remain
-in the audit documents, some naming uncommitted driver scripts.
+(research-item skill). Docs no longer cite gitignored `artifacts/` files
+(AGENTS.md forbids it); the research drivers they named are committed in
+tools/research/, and local reports stay under GAME_DIR.
 
 ## Today’s wrap-up (2026-10-08)
 
 Completed protocol research and current template updates are integrated on main.
 The ongoing goal remains documented in docs/goals/protocol-work.md; resume
 Q-EXE-009 in its isolated worktree. Final research entry: FND-EXE-144.
-Combined assetless Test.ps1 -NoRestore passed, including all .NET tests; log:
-UserContent/worktrees/protocol-work/artifacts/wrapup-merge-full-gate-fixed-fixtures.log.
+Combined assetless Test.ps1 -NoRestore passed, including all .NET tests.
 Main's indexes and parity were regenerated. Documentation checks retain their
 reported argument-count skips. No original runtime was started.
 Toolkit issue 353 has the external-archive citation case; template issue 90

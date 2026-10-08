@@ -20,7 +20,8 @@ control isolates a narrower capability limit: two reads of an unmodeled word,
 with a concrete disjoint word store between them, receive different epoch-based
 identities. Both bounded paths return without stops or gaps; the order identity
 control is undecided. Replacing the store with NOPs yields held; an overlapping
-store stays undecided. These outcomes are asserted in the ignored driver.
+store stays undecided. These outcomes are asserted in
+tools/research/engine101/unread-disjoint-repro.mjs.
 Installed engine code increments the global unread-memory epoch on every store.
 
 After all-state duplicate searches, this independently reproduced limitation
@@ -33,14 +34,14 @@ with new producer/alias evidence or a delivered capability addressing this
 specific limit; all five full exits remain open.
 
 Private wrapper queries/reports: UserContent/analysis/reporter-audit/callback-actual-before101.
-Ignored driver/log: artifacts/engine101/callback-actual-before.mjs. Synthetic
-reproduction: artifacts/engine101/unread-disjoint-repro.mjs and its report directory.
+Driver: tools/research/engine101/callback-actual-before.mjs. Synthetic
+reproduction: tools/research/engine101/unread-disjoint-repro.mjs.
 No original execution or emulation, game specification or parity change.
 
 Validation: bootstrap facts, offline rules, hash-verified published source queries,
 synthetic assertions and full assetless `tools/Test.ps1 -NoRestore` passed on
-2026-10-06, including documentation base comparison. Log:
-artifacts/engine101/callback-actual-before-gate.log. Original-dependent tests skip.
+2026-10-06, including documentation base comparison. Original-dependent tests
+skip.
 
 ## Full preceding bracket with source-generated record address, 2026-10-06
 
@@ -70,12 +71,12 @@ or the stopped transfer parent. Native callback targets/effects, current-record
 producers, later replacements and guard outcomes remain dependencies.
 
 Private queries/reports: UserContent/analysis/reporter-audit/full-before-bracket101.
-Ignored drivers/logs: artifacts/engine101/full-before-bracket.mjs and
+Drivers: tools/research/engine101/full-before-bracket.mjs and
 full-before-footprint.mjs. No original game or emulated function ran; no game
 specification, parity status or other goal changed. All five full exits remain
 open. Bootstrap facts, offline pinned-rule verification, published positive,
 false-origin, omission and cap controls passed. Full assetless `tools/Test.ps1 -NoRestore` passed on 2026-10-06, including
-documentation base comparison. Log: artifacts/engine101/full-before-bracket-gate.log.
+documentation base comparison.
 Recorded source length and XXH3 identity also match; original-dependent tests skip.
 
 ## Full bracket with source-generated record address, 2026-10-06
@@ -115,16 +116,16 @@ is that actual incoming callback/parent route and its current-record producers,
 with guard-path qualification retained.
 
 Private configs and reports are in
-UserContent/analysis/reporter-audit/full-bracket-record101. Ignored drivers and
-logs are artifacts/engine101/full-bracket-record-controls.mjs and
-full-bracket-footprint.mjs, with their logs. No native field memory,
+UserContent/analysis/reporter-audit/full-bracket-record101. Drivers are
+tools/research/engine101/full-bracket-record-controls.mjs and
+full-bracket-footprint.mjs. No native field memory,
 preservation model, joined windows or higher unresolved-query limits were
 supplied. No game spec, parity status or other goal's entries change; all five
 full connected exits remain open.
 
 Validation: bootstrap facts, published full-bracket and footprint assertions
 and the full assetless `tools/Test.ps1 -NoRestore` gate passed on 2026-10-06.
-Log: artifacts/engine101/full-bracket-record-gate.log. Final documentation checks
+Final documentation checks
 include base comparison; original-dependent tests skipped with GAME_DIR absent.
 No original game or emulated function was run.
 
@@ -164,14 +165,14 @@ unresolved bounds were supplied. No game spec, parity status or other goal's
 entries change; all five full connected exits remain open.
 
 Private contexts, configs, reports and rejected controls are in
-UserContent/analysis/reporter-audit/stored-pointer-producer101. Ignored drivers
-and logs are artifacts/engine101/stored-pointer-producer-reading.py,
+UserContent/analysis/reporter-audit/stored-pointer-producer101. Drivers
+are tools/research/engine101/stored-pointer-producer-reading.py,
 stored-pointer-producer-controls.mjs, stored-pointer-bracket-order.mjs and
-stored-pointer-write-order.mjs, with their logs.
+stored-pointer-write-order.mjs.
 
 Validation: bootstrap facts, published producer/last-writer/order assertions
 and the full assetless `tools/Test.ps1 -NoRestore` gate passed on 2026-10-06.
-Log: artifacts/engine101/stored-pointer-producer-gate.log. Final documentation
+Final documentation
 checks include base comparison; original-dependent tests skipped with GAME_DIR
 absent. No original game or emulated function was run.
 
@@ -207,10 +208,10 @@ replacement ordering, alongside later shared-pointer writers and callback
 effects. No fixed record state is imported into the stopped parent query.
 
 Private census, source contexts, configs, reports and rejected controls are in
-UserContent/analysis/reporter-audit/shared-setter101. Ignored drivers/logs are
-artifacts/engine101/shared-setter-incoming.mjs, shared-setter-contexts.py,
+UserContent/analysis/reporter-audit/shared-setter101. Drivers are
+tools/research/engine101/shared-setter-incoming.mjs, shared-setter-contexts.py,
 shared-setter-body.py, shared-setter-controls.mjs and
-shared-setter-saved-negatives.mjs, with their logs. Existing traversal limits
+shared-setter-saved-negatives.mjs. Existing traversal limits
 and root hypotheses are retained. No native memory, preservation model, joined
 windows or larger unresolved bounds were supplied. No game spec, parity status
 or other goal's entries change; all five full connected exits remain open.
@@ -221,8 +222,8 @@ provides the next source input without assuming native save/restore semantics
 or combining the bracket helper's state with this parent route.
 
 Validation: bootstrap facts, published argument controls and the full assetless
-`tools/Test.ps1 -NoRestore` gate passed on 2026-10-06. Log:
-artifacts/engine101/shared-setter-gate.log. The final documentation check includes
+`tools/Test.ps1 -NoRestore` gate passed on 2026-10-06.
+The final documentation check includes
 base comparison; original-dependent tests skipped with GAME_DIR absent. No
 original game or emulated function was run.
 
@@ -259,9 +260,9 @@ were used. Parent native-entry admission remains unverified. All five full
 exits remain open; no game spec, parity status or other goal's entries change.
 
 Private source contexts, configs and reports are in
-UserContent/analysis/reporter-audit/release-arguments101. Ignored drivers/logs
-are artifacts/engine101/release-arguments-reading.py and
-release-parent-connected.mjs, with release-parent-connected.log.
+UserContent/analysis/reporter-audit/release-arguments101. Drivers
+are tools/research/engine101/release-arguments-reading.py and
+release-parent-connected.mjs.
 
 Read-only FND-CONFIG-175/206/207 supply existing shared-pointer setter and
 record-address producer inputs for a future connected attempt. Their separate
@@ -270,8 +271,8 @@ nonaliasing with the saved return. Retain current segment, later-writer and
 record-lifetime conditions rather than importing their state into this trace.
 
 Validation: bootstrap facts, published graph/trace assertions and the full
-assetless `tools/Test.ps1 -NoRestore` gate passed on 2026-10-06. Log:
-artifacts/engine101/release-parent-gate.log. The final documentation check
+assetless `tools/Test.ps1 -NoRestore` gate passed on 2026-10-06.
+The final documentation check
 includes base comparison; original-dependent tests skipped with GAME_DIR
 absent. No original game or emulated function was run.
 
@@ -313,15 +314,15 @@ The next dependencies are actual caller arguments, reference/flag producers
 and justified prefix coverage, rather than an invented state or larger limit.
 
 Private source contexts, incoming searches, configs and reports are retained
-in UserContent/analysis/reporter-audit/release-prefix101. Ignored drivers/logs
-are artifacts/engine101/release-prefix-reading.py, release-entry-reading.py,
-release-prefix-controls.mjs and release-prefix-ds-controls.mjs, with their logs.
+in UserContent/analysis/reporter-audit/release-prefix101. Drivers
+are tools/research/engine101/release-prefix-reading.py, release-entry-reading.py,
+release-prefix-controls.mjs and release-prefix-ds-controls.mjs.
 This corrects tooling acceptance only; no game spec, parity status or other
 goal's research entries change. All five full connected exits remain open.
 
 Validation: bootstrap facts, published query assertions and the full assetless
-`tools/Test.ps1 -NoRestore` gate passed on 2026-10-06. Log:
-artifacts/engine101/release-prefix-gate.log. Original-dependent tests skipped;
+`tools/Test.ps1 -NoRestore` gate passed on 2026-10-06.
+Original-dependent tests skipped;
 the final documentation check passed including base comparison. Earlier sandbox
 runs reported a missing merge base because Git refused repository ownership;
 a scoped read-only trust override finds the existing merge base. The error
@@ -351,8 +352,8 @@ hardware effects remain dependencies of the full Gap 37 contract.
 Private configs and reports are under
 GAME_DIR/analysis/reporter-audit/issue5-transfer-release-callers101, named
 producer-helper-connected, without-adjacent-helper, without-request and
-connected-one-instruction. Ignored drivers are
-artifacts/engine101/transfer-release-connected-graph.mjs and
+connected-one-instruction. Drivers are
+tools/research/engine101/transfer-release-connected-graph.mjs and
 transfer-release-connected-helper.mjs. No new connected return-to-field trace
 was completed in this batch. No native memory was seeded, trace windows joined
 or old traversal bounds increased. All five full exits remain open; no game
@@ -384,8 +385,7 @@ No original game was run and no game spec/parity claim changed.
 
 Source-local configs/reports: GAME_DIR/analysis/reporter-audit/
 issue5-transfer-callers100, issue5-transfer-wrapper-callers100 and
-issue5-transfer-producers100. Ignored drivers/logs: artifacts/engine100/
-transfer-callers.*, transfer-wrapper-callers.* and transfer-producers.*.
+issue5-transfer-producers100.
 
 ## Connected slot-write and getter control
 
@@ -406,8 +406,7 @@ and fields, scanner repeats, path drops and step stops retain incomplete
 validation/transfer coverage. This is a connected producer-store-consumer
 witness, not hardware presentation or an admitted native handle proof.
 Source-local reports: GAME_DIR/analysis/reporter-audit/
-issue5-transfer-continuation100. Ignored drivers/logs: artifacts/engine100/
-transfer-continuation.* and transfer-continuation-controls.*.
+issue5-transfer-continuation100.
 
 ## Actual second-handle producer found
 
@@ -433,8 +432,7 @@ fixtures. Complete prefix, initialization, intervening writers and transfer
 continuation remain required before Gap 37 can close.
 
 Source-local reports: GAME_DIR/analysis/reporter-audit/issue5-second-handles100
-and issue5-second-handle-producers100. Ignored drivers/logs:
-artifacts/engine100/second-handle-writers.* and second-handle-producers.*.
+and issue5-second-handle-producers100.
 
 ## Allocation parent references and stop correction
 
@@ -456,7 +454,7 @@ was disabled to obtain the references.
 The next evidence is the two actual caller prefixes and their initialization
 order. Neither supplies state to the earlier allocation or transfer query.
 Source reports: GAME_DIR/analysis/reporter-audit/issue5-allocation-parent-callers100.
-Ignored drivers/logs: artifacts/engine100/allocation-parent-* and
+Driver: tools/research/engine100/
 allocation-trampoline.mjs. Whole Gap 37 remains open.
 
 ## Parent ownership and inventory repair
@@ -506,8 +504,7 @@ Issue 151 separately documents that entryFrame does not follow declared tables.
 Next: actual pre-allocation resident/control callees, followed by frame and
 state producers through callback continuation. Source-local reports:
 GAME_DIR/analysis/reporter-audit/issue5-parent-prefixes100 and
-issue5-parent-dispatch100. Ignored drivers/logs: artifacts/engine100/
-parent-prefixes.*, parent-dispatch.* and parent-dispatch-controls.*.
+issue5-parent-dispatch100.
 
 ## Connected pre-allocation callees
 
@@ -524,8 +521,8 @@ the allocation entry. Ordinary routes and stop sites exactly match the previous
 reports; every added stream retains its declared dispatch assumptions.
 
 Source-local reports: GAME_DIR/analysis/reporter-audit/issue5-parent-callees100,
-including successive source-mapped callee stages. Ignored drivers and controls:
-artifacts/engine100/parent-callees*. No query limit was increased. Next evidence
+including successive source-mapped callee stages.
+No query limit was increased. Next evidence
 is the helper dispatch inputs, actual dependency bodies and required service
 effects; repeating the same capped roots would not answer those questions.
 Whole Gap 37 remains open.
@@ -560,7 +557,7 @@ reader, registration writes and subsequent writers to that pointer/child graph
 are the concrete next producers, rather than another broad root expansion.
 
 Source-local reports: GAME_DIR/analysis/reporter-audit/issue5-parent-selector100.
-Ignored drivers: artifacts/engine100/parent-selector.mjs and
+Drivers: tools/research/engine100/parent-selector.mjs and
 window-acquisition-boundary.mjs. Original instruction context stays local; no
 new spec status or gameplay behavior is asserted. Whole Gap 37 remains open.
 
@@ -591,8 +588,8 @@ allocation, read and fallback producers remain the next specific dependencies.
 No ordinary runtime state or unconditional acquisition success is asserted.
 
 Source-local cross-reference report: GAME_DIR/analysis/reporter-audit/
-issue5-window-registration100/incoming.report.json. Ignored driver:
-artifacts/engine100/window-registration.mjs. The actual acquisition argument
+issue5-window-registration100/incoming.report.json. Driver:
+tools/research/engine100/window-registration.mjs. The actual acquisition argument
 boundary report remains under issue5-parent-selector100. Whole Gap 37 and
 the other four connected-evidence gaps remain open.
 
@@ -615,7 +612,7 @@ on the newly opened resource record. Later selection, close, options, aliases
 and externally supplied read/allocation outcomes still need their own bounds.
 
 Source-local reports: GAME_DIR/analysis/reporter-audit/issue5-resource-root100.
-Ignored driver: artifacts/engine100/resource-root-writers.mjs. This map connects
+Driver: tools/research/engine100/resource-root-writers.mjs. This map connects
 previously recorded producer findings to the acceptance search domain without
 promoting a spec entry or supplying native state. Whole Gap 37 remains open.
 
@@ -648,7 +645,7 @@ separate from these inventory metrics. Old size-as-end searches are partial
 candidate searches and cannot support absence or full coverage.
 
 Source-local reports: GAME_DIR/analysis/reporter-audit/issue5-resource-reader-
-bounds100. Ignored drivers/controls: artifacts/engine100/resource-reader-bounds*,
+bounds100. Drivers: tools/research/engine100/
 archive-body-counts.mjs and callback-body-counts.mjs. No original content or
 new gameplay/spec status is committed. All five whole exits remain open.
 
@@ -686,7 +683,7 @@ No old unresolved symbolic traversal bound was raised or repeated.
 
 Configs, complete numeric reports and the placement summary are local under
 GAME_DIR/analysis/reporter-audit/issue5-transfer-boundaries100. Drivers and
-assertion logs are artifacts/engine100/transfer-boundaries.mjs,
+assertion logs are tools/research/engine100/transfer-boundaries.mjs,
 transfer-boundary-placement.py, transfer-boundary-graph.mjs and
 transfer-boundary-controls.mjs with their corresponding logs. The placement
 classification derives from the independently checked CFG; it is not a new
@@ -733,11 +730,10 @@ with width/signedness, omitted-mask and incomplete-query controls. Delivery is
 pending; do not claim the engine proves the index bound already.
 
 Original-derived configs/reports stay under
-GAME_DIR/analysis/reporter-audit/issue5-transfer-mask100. Source reading,
-assertions and logs are artifacts/engine100/transfer-mask-reading.py,
-transfer-mask-controls.mjs and transfer-mask-controls.log. The independent
-synthetic reproducer is masked-index-controls.mjs, with fixtures/reports in
-artifacts/engine100/masked-index-controls and masked-index-controls.log.
+GAME_DIR/analysis/reporter-audit/issue5-transfer-mask100. Source reading
+and assertions are tools/research/engine100/transfer-mask-reading.py and
+transfer-mask-controls.mjs. The independent synthetic reproducer is
+masked-index-controls.mjs.
 
 Next producer evidence is the current CS mask table and its writes, alongside
 the particular slot/reference inputs needed by a missing whole transfer control.
@@ -776,9 +772,9 @@ transfers. CFG domination cannot prove native memory stability, mask admission,
 finite malformed-input behavior or hardware output. The unresolved published
 numeric-mask control remains separate from this producer reading.
 
-Private reports/readings remain under issue5-transfer-mask100. Ignored drivers:
+Private reports/readings remain under issue5-transfer-mask100. Drivers:
 transfer-mask-scratch-reading.py, transfer-mask-scratch-segments.py and
-transfer-mask-scratch-placement.py under artifacts/engine100. Next is the specific
+transfer-mask-scratch-placement.py under tools/research/engine100. Next is the specific
 second-handle slot producer/admission and the transfer-alias dependency of a
 whole control, rather than unrelated archive history. No game specification or
 parity status changes; all five full connected exits remain open.
@@ -817,11 +813,11 @@ store-before-failure-test is not an admitted-input positive. FND-CONFIG-028
 records a caller of the first candidate; its native route and intervening effects
 remain unverified.
 
-Private reports/readings remain under issue5-transfer-mask100. Ignored drivers:
+Private reports/readings remain under issue5-transfer-mask100. Drivers:
 transfer-mask-handle-guards.mjs, transfer-mask-handle-widths.py,
 transfer-destination-handle-candidates.py, transfer-destination-handle-reading.py,
 transfer-destination-handle-filter.py and transfer-destination-writer-controls.mjs
-under artifacts/engine100. Next is the specific allocation-return/field handoff
+under tools/research/engine100. Next is the specific allocation-return/field handoff
 and later cleanup-write dependency, retaining current DS and slot/alias limits.
 No game specification or parity status changes. All five full connected exits
 remain open.
@@ -857,9 +853,9 @@ Thus replacement must distinguish unchanged bypass words from the wrapper's
 own sentinel assignment after a returning hardware-bearing service. The earlier
 field's allocator origin cannot be assumed to survive this replacement.
 
-Private reports/readings remain under issue5-transfer-mask100. Ignored drivers:
+Private reports/readings remain under issue5-transfer-mask100. Drivers:
 transfer-destination-allocator-connection.mjs, transfer-cleanup-word-controls.mjs
-and transfer-cleanup-word-negative.mjs under artifacts/engine100. No native field
+and transfer-cleanup-word-negative.mjs under tools/research/engine100. No native field
 memory was supplied, no old capped traversal bound was increased, and no stopped
 positive-service path is accepted as completion. Next is current DS and the
 specific field-to-consumer preservation/order, alongside slot/transfer aliases.
@@ -898,7 +894,7 @@ writer and returning failures remain distinct from successful temporary handles;
 do not assume every recorded field contains a valid non-root slot.
 
 Private reports/readings remain under issue5-transfer-release-callers101.
-Ignored drivers and logs: artifacts/engine101/transfer-release-producer-reading.py,
+Drivers: tools/research/engine101/transfer-release-producer-reading.py,
 transfer-release-producer-placement.py and transfer-release-producer-controls.mjs.
 No native memory seeding, register substitution for these field values, joined
 windows or increased old traversal bounds. Next is the actual child return/
@@ -937,7 +933,7 @@ that a fixed root is actually released or that every direct caller permits one.
 
 Private census, contexts and published reports are under
 GAME_DIR/analysis/reporter-audit/issue5-transfer-release-callers101. Ignored
-drivers/logs are artifacts/engine101/transfer-release-callers.mjs,
+drivers/logs are tools/research/engine101/transfer-release-callers.mjs,
 transfer-release-near-windows.py and transfer-release-near-order.mjs. Next is
 the confirmed direct callers' handle producers and remaining entry/alias forms,
 alongside the other slot/transfer writers. No native memory seed, joined windows,
@@ -978,7 +974,7 @@ No unresolved traversal limit was increased.
 Private connected configs, reports, source readings and negative rejections are
 under GAME_DIR/analysis/reporter-audit/issue5-transfer-consumer-producer101.
 The parent readings remain in issue5-transfer-field-incoming101. Ignored
-drivers/assertions are artifacts/engine101/transfer-consumer-parent-effects.py,
+drivers/assertions are tools/research/engine101/transfer-consumer-parent-effects.py,
 transfer-request-reference-reading.py and transfer-consumer-literal-producer.mjs,
 with the latter's log. Next is admitted slot/reference and segment/alias evidence,
 plus effects between the destination producer and this consumer. All five full
@@ -1013,9 +1009,9 @@ This removes the specific callback-root dispatch gap for source-local ordering.
 It does not join the allocator result/DS field with the later transfer consumer,
 resolve intervening callee effects or satisfy a full dynamic connected control.
 Other callback-root candidates retain their prior gaps. Private reading and
-reports are under issue5-transfer-field-incoming101; ignored drivers/assertions
-are artifacts/engine101/start-dispatch-reading.py and start-dispatch-root-order.mjs,
-with corresponding logs. No memory seeding, window stitching or increased old
+reports are under issue5-transfer-field-incoming101; drivers and assertions
+are in tools/research/engine101/start-dispatch-reading.py and
+start-dispatch-root-order.mjs. No memory seeding, window stitching or increased old
 traversal bounds. All five full exits remain open; no game spec or parity change.
 
 ## Destination-field producer incoming references, 2026-10-06
@@ -1056,7 +1052,7 @@ Private census, contexts and published reports are under
 GAME_DIR/analysis/reporter-audit/issue5-transfer-field-incoming101. Ignored
 drivers/logs are transfer-field-incoming.mjs, transfer-field-caller-windows.py,
 transfer-field-caller-order.mjs and transfer-field-start-branch.mjs under
-artifacts/engine101. The next dependency is actual dispatch/segment producers
+tools/research/engine101. The next dependency is actual dispatch/segment producers
 and effects between these producer candidates and the transfer consumer;
 the census does not join those histories. No original-memory seed or higher
 unresolved traversal bound was used. All five full exits remain open; no game
@@ -1095,8 +1091,8 @@ successful transfer from graph completion.
 No native memory was seeded or trace windows joined, and no old traversal
 bound was raised. Private reports are under
 GAME_DIR/analysis/reporter-audit/issue5-transfer-caller-graph101; the ignored
-driver/assertions and log are artifacts/engine101/transfer-caller-connected-graph.mjs
-and transfer-caller-connected-graph.log. All five full exits remain open.
+driver/assertions are tools/research/engine101/transfer-caller-connected-graph.mjs.
+All five full exits remain open.
 No game specification, parity status or other research goal changes.
 
 ## Connected release caller DS checkpoints, 2026-10-06
@@ -1123,13 +1119,12 @@ query with larger bounds, substitute a later entry for the missing prefix, or
 infer storage identity from source-local segment placement. No game finding,
 spec status, parity row or native behavior claim changes; all five exits remain
 open. Private configs, reports and summaries are in the ignored local store
-UserContent/analysis/reporter-audit/release-connected-ds101. The ignored driver
-and log are artifacts/engine101/transfer-release-connected-ds.mjs and
-transfer-release-connected-ds.log.
+UserContent/analysis/reporter-audit/release-connected-ds101. The driver
+is tools/research/engine101/transfer-release-connected-ds.mjs.
 
 Validation: bootstrap facts, the bounded trace assertions and the full assetless
-`tools/Test.ps1 -NoRestore` gate passed on 2026-10-06. Gate log:
-artifacts/engine101/release-connected-ds-gate.log. Original-dependent emulator
+`tools/Test.ps1 -NoRestore` gate passed on 2026-10-06.
+Original-dependent emulator
 tests skipped with GAME_DIR absent. The documentation check still skips base
 comparison because HEAD has no merge base with origin/main. Earlier sandbox
 attempts failed on protected Temp/build paths; an in-checkout Temp workaround
@@ -1153,8 +1148,8 @@ anchor. The actual whole controls remain undecided because the later string
 copy count is unresolved. A local numeric hold does not complete the transfer.
 
 Private actual configs/reports are under
-GAME_DIR/analysis/reporter-audit/issue5-transfer-mask101. Ignored drivers and
-logs are artifacts/engine101/masked-index-controls.mjs and
+GAME_DIR/analysis/reporter-audit/issue5-transfer-mask101. Drivers are
+tools/research/engine101/masked-index-controls.mjs and
 transfer-mask-controls.mjs, alongside summarize.mjs. Previous engine 10.0.0
 reports are retained. No native table values, caller admission, storage aliases
 or rendered output are established by this fix. All five full exits remain open;
@@ -1190,14 +1185,14 @@ https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/301.
 
 Private original readings/configs/reports remain in
 UserContent/analysis/reporter-audit/font-request101. Synthetic drivers and
-controls are under artifacts/engine101/font-request-controls.mjs and
+controls are under tools/research/engine101/font-request-controls.mjs and
 enter-repro.mjs, with their logs. Existing traversal bounds and explicit DS/SS
 hypotheses remain unchanged. No original or emulated game function ran; no
 game spec or parity status changed. All five complete exits remain open.
 
 Validation: bootstrap identity facts, source handoff negatives, paired synthetic
 frame controls and the full assetless Test.ps1 -NoRestore passed on 2026-10-06.
-Log: artifacts/engine101/font-request-gate.log. Final documentation checking
+Final documentation checking
 includes the base comparison. Original-dependent tests skipped without GAME_DIR.
 
 ## Connected allocation request and rejection controls, 2026-10-06
@@ -1238,14 +1233,14 @@ No native or emulated game function ran, and no game spec or parity changed.
 
 Private source readings/configs/reports remain in
 UserContent/analysis/reporter-audit/allocation-chain101. Drivers and logs are
-artifacts/engine101/allocation-chain-controls.mjs, allocation-chain-reading.py
+tools/research/engine101/allocation-chain-controls.mjs, allocation-chain-reading.py
 and allocation-helper-reading.py. The next dependencies are the admitted
 reader count, runtime heap/header producers and lower helper effects, not a
 nonnull-return model or another capped repetition. All five exits remain open.
 
 Validation: identity facts, connected source controls and all wrong-value,
 omission and step negatives pass. The full assetless Test.ps1 -NoRestore
-passed on 2026-10-06; log artifacts/engine101/allocation-chain-gate.log.
+passed on 2026-10-06.
 Final documentation checking includes the base comparison. Original-dependent
 emulator tests skipped without GAME_DIR; no original call was performed.
 
@@ -1288,8 +1283,8 @@ relaxing width, alias or corrupted-target rejection:
 https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/302.
 
 Private original readings/configs/reports remain in
-UserContent/analysis/reporter-audit/lower-heap101. Ignored drivers/logs are
-artifacts/engine101/lower-heap-controls.mjs, lower-heap-reading.py,
+UserContent/analysis/reporter-audit/lower-heap101. Drivers are
+tools/research/engine101/lower-heap-controls.mjs, lower-heap-reading.py,
 near-far-reframe-repro.mjs and near-far-cpu-control.py. No game spec or parity
 changes. All five whole exits remain open; the next request continuation
 requires delivered frame-conversion support, with heap/input aliases still
@@ -1297,8 +1292,8 @@ separate from that tooling limit.
 
 Validation: bootstrap facts, connected source controls, omission/cap controls,
 rejected shift count, qualified alternate origin and synthetic frame/CPU
-controls pass. Full assetless Test.ps1 -NoRestore passed on 2026-10-06; log
-artifacts/engine101/lower-heap-gate.log. Final documentation checking includes
+controls pass. Full assetless Test.ps1 -NoRestore passed on 2026-10-06.
+Final documentation checking includes
 the base comparison. Original-dependent tests skipped without GAME_DIR.
 
 ## Exact-size heap entry and root-return scope, 2026-10-06
@@ -1337,8 +1332,8 @@ was added to existing toolkit diagnostic issue 300, requesting explicit checks
 attempted and root-target-not-checked scope, without changing those semantics.
 
 Private original configs/reports are in
-UserContent/analysis/reporter-audit/exact-heap101. Ignored drivers and logs:
-artifacts/engine101/exact-heap-entry.mjs, exact-heap-controls.mjs and
+UserContent/analysis/reporter-audit/exact-heap101. Drivers:
+tools/research/engine101/exact-heap-entry.mjs, exact-heap-controls.mjs and
 root-return-scope.mjs. No original or emulated game function ran; only static
 original reading/reporting and synthetic controls. No spec or parity change.
 All five complete exits remain open. Current +8/root/link producers, aliases,
@@ -1346,8 +1341,8 @@ native admission, direction and storage capacity remain separate dependencies.
 
 Validation: identity facts, heap-entry positives, wrong writer/value and
 omission/step negatives, and synthetic root/nested scope controls pass.
-Full assetless Test.ps1 -NoRestore passed on 2026-10-06; log
-artifacts/engine101/exact-heap-gate.log. Final documentation checking includes
+Full assetless Test.ps1 -NoRestore passed on 2026-10-06.
+Final documentation checking includes
 the base comparison. Original-dependent tests skipped without GAME_DIR.
 
 ## Heap header candidate ownership and dispatcher witnesses, 2026-10-06
@@ -1383,9 +1378,9 @@ remain unproved. All five complete gap exits remain open. No game specification,
 parity status or implementation changed; no original game function ran.
 
 Private reports: UserContent/analysis/reporter-audit/heap-header-candidates101.
-Ignored drivers: artifacts/engine101/heap-header-candidates.mjs,
+Drivers: tools/research/engine101/heap-header-candidates.mjs,
 heap-header-candidate-controls.mjs and heap-header-dispatcher-controls.mjs.
-Validation is recorded in artifacts/engine101/heap-header-candidates-gate.log.
+Canonical validation was run; its log was not committed.
 
 ## Candidate read origins versus upstream writers, 2026-10-06
 
@@ -1407,11 +1402,11 @@ original run, game specification or parity change was introduced.
 
 Private configs/reports remain in
 UserContent/analysis/reporter-audit/heap-header-candidates101, named
-dispatcher-origins, origin-one-step and origin-omit-helper. The ignored driver
-is artifacts/engine101/heap-header-origin-controls.mjs. Installed origin and
+dispatcher-origins, origin-one-step and origin-omit-helper. The driver
+is tools/research/engine101/heap-header-origin-controls.mjs. Installed origin and
 lastWriter semantics behave as documented; no new shared defect is claimed.
 Toolkit issues 301/302 were checked and remain open without replies.
-Canonical validation log: artifacts/engine101/heap-header-origins-gate.log.
+Canonical validation was run; its log was not committed.
 
 ## Preceding pointer wrapper connected to dispatcher, 2026-10-06
 
@@ -1439,11 +1434,11 @@ does not promote it into a complete connected preservation claim.
 Private configs/reports remain in
 UserContent/analysis/reporter-audit/heap-header-candidates101, named
 pointer-wrapper-connected and wrapper-connected-controls, with wrong-argument,
-omitted-dispatcher and one-step controls. Ignored drivers:
-artifacts/engine101/heap-pointer-wrapper-connected.mjs and
+omitted-dispatcher and one-step controls. Drivers:
+tools/research/engine101/heap-pointer-wrapper-connected.mjs and
 heap-pointer-wrapper-controls.mjs. No game specification/parity change or
 original/emulated game run. All five complete exits remain open.
-Canonical validation log: artifacts/engine101/heap-pointer-wrapper-gate.log.
+Canonical validation was run; its log was not committed.
 
 ## Earlier pointer callers and complete argument width, 2026-10-06
 
@@ -1471,11 +1466,11 @@ not join the header candidates to the separate heap consumer.
 Private configs/reports remain in
 UserContent/analysis/reporter-audit/heap-header-candidates101 under
 earlier-caller-connected and outer-helper-connected, including full-width,
-wrong-frame-writer, omitted-wrapper and one-step controls. Ignored drivers:
-artifacts/engine101/heap-earlier-callers.mjs and heap-earlier-caller-controls.mjs.
+wrong-frame-writer, omitted-wrapper and one-step controls. Drivers:
+tools/research/engine101/heap-earlier-callers.mjs and heap-earlier-caller-controls.mjs.
 No game specification/parity change or original/emulated game run; all five
-complete exits remain open. Canonical validation log:
-artifacts/engine101/heap-earlier-callers-gate.log.
+complete exits remain open.
+Canonical validation was run; its log was not committed.
 
 ## Earlier caller registration and poll boundaries, 2026-10-06
 
@@ -1505,10 +1500,10 @@ emulated game execution.
 Private configs/reports remain in
 UserContent/analysis/reporter-audit/heap-header-candidates101 under the two
 earlier caller names, with setter-poll and registration-controls suffixes plus
-reversed-order, omission and one-step controls. Ignored drivers:
-artifacts/engine101/heap-caller-setter-poll.mjs and
-heap-caller-registration-controls.mjs. Canonical validation log:
-artifacts/engine101/heap-caller-registration-gate.log.
+reversed-order, omission and one-step controls. Drivers:
+tools/research/engine101/heap-caller-setter-poll.mjs and
+heap-caller-registration-controls.mjs.
+Canonical validation was run; its log was not committed.
 
 ## Current pointer field locator scope, 2026-10-06
 
@@ -1530,8 +1525,8 @@ new evidence outside these caller bodies; repeating them cannot settle it.
 Private reports remain in
 UserContent/analysis/reporter-audit/heap-header-candidates101, named
 current-pointer with displacement suffixes and pointer-cap, pointer-wrong-offset
-and pointer-omit-earlier controls. Ignored drivers:
-artifacts/engine101/current-pointer-candidates.mjs and
+and pointer-omit-earlier controls. Drivers:
+tools/research/engine101/current-pointer-candidates.mjs and
 current-pointer-candidate-controls.mjs. No game spec/parity change or original
 or emulated game execution. All five complete exits remain open.
-Canonical validation log: artifacts/engine101/current-pointer-locator-gate.log.
+Canonical validation was run; its log was not committed.

@@ -51,7 +51,6 @@ Engine 4.0.0 is adopted with reader 2.0.0 for prepared protocol 3. The exact
 wheel/source-release verification, published source suite, installed PE bridge,
 retained inventory and explicit hardware/continuation migrations are recorded
 in REPORTER-CASE-AUDIT.md. Checker and Capstone/pypcode/xxhash stay pinned.
-Full adoption validation: artifacts/continuation-budget-delivery/adoption-validation.log.
 Game-specific unresolved producer, alias, native-device and whole-gap contracts
 remain open; capped queries are not accepted as complete reports.
 
@@ -61,9 +60,8 @@ Reader and engine 2.0.0 are adopted together for prepared protocol 3, ahead of
 template 049f300's older tooling pins. Exact archive/source integrity, installed
 synthetic and retained original-source controls are recorded in
 REPORTER-CASE-AUDIT.md. The checker stays 0.2.0; Capstone/pypcode/xxhash and
-vendored rule pins remain unchanged. Normal full validation passes; evidence:
-artifacts/protocol3-delivery/adoption-validation-final.log. This adoption does
-not establish native service preservation or complete any broader gap contract.
+vendored rule pins remain unchanged. Normal full validation passes. This
+adoption does not establish native service preservation or complete any broader gap contract.
 
 ## Latest template dependency maintenance sync, 2026-10-04
 
@@ -80,7 +78,6 @@ changed-file delta from `049f300` is accounted for here.
 | Development and evidence setup guidance | Updated maintenance policy; retained documented locked setup instead of template global pip installation. |
 | Template changelog | Provenance recorded here; template-specific historical state remains upstream. |
 
-Validation evidence: `artifacts/template-dependency-sync-validation.log`.
 No original game files were read or run; no spec or parity status changed.
 
 ## Current template sync, 2026-10-04
@@ -101,8 +98,7 @@ accounted for below; earlier acceptance records remain historical.
 | Rule snapshots and package pins | No changes in this template delta; installed exact locks and pinned offline rule verification pass. |
 
 `tools/Invoke-Validation.ps1` passed with locked restore, canonical checks,
-Release build and assetless publish/smoke. Evidence:
-`artifacts/template-latest-sync-validation.log`. The original game was not run
+Release build and assetless publish/smoke. The original game was not run
 or read; no spec or parity claim changed. Local synthetic capture diagnostics
 are reported separately in template issue 58; Gap 44's historical cause remains
 unconfirmed.
@@ -110,8 +106,7 @@ unconfirmed.
 ## Windows gate environment follow-up, 2026-10-04
 
 The canonical `tools/Test.ps1 -NoRestore` passes with normal user access and
-process-scoped `PSExecutionPolicyPreference=Bypass`; evidence is
-`artifacts/goal-continuation-authorized-test.log`. Restricted child PowerShell
+process-scoped `PSExecutionPolicyPreference=Bypass`. Restricted child PowerShell
 policy stops the synthetic capture tests before their assertions. Template
 [issue 55](https://github.com/kibertoad/refurbished-dinosaurs-template/issues/55)
 records that setup concern after duplicate checking; no capture guard was changed.
@@ -119,7 +114,7 @@ records that setup concern after duplicate checking; no capture guard was change
 Both synthetic child launches now declare `-ExecutionPolicy Bypass` for that
 process only. The direct Node test run under a Restricted parent policy passes
 the stalled-worker recovery, physical-edge, invalid-window and blank-frame
-controls; evidence is `artifacts/capture-restricted-parent.log`. This corrects
+controls. This corrects
 test setup without changing persistent policy or the capture implementation.
 
 Sandbox Java realpath access to the inherited temporary directory also failed.
@@ -160,8 +155,7 @@ template pins.
 Verified against the owned GOG copy without running the original: `verify-source`
 gives fingerprint `5dfea1d78b28656cb1ce976f81dd77d4`, matching the existing pack; a
 scratch extraction produced 16,524 files that `verify-pack` accepts, and the
-Game's content smoke test exits 0. Gate log:
-`artifacts/template-migration/template-39d31fd-validation.log`. No spec claim,
+Game's content smoke test exits 0. No spec claim,
 parity status or research request changes.
 
 ## Earlier migration acceptance, 2026-10-02
@@ -181,8 +175,8 @@ and rule snapshots retain their earlier accepted revisions.
 | Standard v1, methodology and protocol | `ca39d0750e67c8c3900e8554e66a84083fe67452` | Retained accepted snapshot; offline digests match. No rule freshness check or refresh in this toolkit update. |
 
 Comparison uses a clean, commit-selected template under ignored artifacts,
-rather than the older sibling checkout. The file comparison is generated in
-`artifacts/template-migration/file-comparison.json`. Current acceptance supersedes
+rather than the older sibling checkout. The file comparison is generated
+locally and is not committed. Current acceptance supersedes
 the historical version and prerequisite statements below.
 
 | Capability | Current disposition and reason |
@@ -199,12 +193,9 @@ the historical version and prerequisite statements below.
 
 Earlier full migration validation: `tools/Invoke-Validation.ps1` runs `tools/Test.ps1`,
 configuration and repository checks, synthetic infrastructure/reporting tests,
-locked restore, Release build and assetless publish/smoke. Generated evidence:
-`artifacts/template-migration/canonical-validation.log` and
-`artifacts/template-migration/final-validation.log`. No game behavior, spec claim,
+locked restore, Release build and assetless publish/smoke. No game behavior, spec claim,
 parity status or research-request closure follows from this migration. Latest
-toolkit-only source and configured gate evidence is recorded in VALIDATION.md
-and artifacts/package-delivery/engine080-root-test.log.
+toolkit-only source and configured gate evidence is recorded in VALIDATION.md.
 
 ## Historical acceptance audit
 
@@ -240,9 +231,8 @@ HTTP 403. No missing patch facts were inferred from that failure.
 | PE-oriented Inspect/citation helpers | Not applicable to DOS MZ/FBOV. Existing Inspect, ReportFbovOverlayMap, physical-pattern reporter, mapped-location checker and inventory join retain the corresponding configured capabilities, exercised by the canonical synthetic gate. No PE schema or new edition introduced. |
 | Other broad Ghidra helpers | Existing bounded pinned reporters cover the project research workflow. No broad analysis database or proprietary export enters Git. Missing optional exporter filenames are not acceptance gaps for the single-edition DOS workflow. |
 
-Evidence: `artifacts/migration-acceptance.log`, public exporter compilation under
-`artifacts/java-controls/`, and the canonical `tests/upstream/` controls. The
-following sections preserve the initial audit and its historical hosted results;
+Evidence: public exporter compilation and the canonical `tests/upstream/`
+controls. The following sections preserve the initial audit and its historical hosted results;
 that hosted run predates these changes. New workflow changes have local synthetic
 acceptance, not a new hosted installer run or signed release.
 
@@ -266,10 +256,10 @@ directory; neither sibling repository was modified.
 
 | Check | Result | Evidence |
 | --- | --- | --- |
-| Canonical tools/Test.ps1 | Pass, including Python, Node, .NET, repository/configuration, documentation, tracking, capture and pin checks | artifacts/migration-reaudit-test.log |
-| Full solution build | Pass, zero warnings/errors | artifacts/migration-reaudit-build.log |
-| Release publish and assetless smoke | Pass; published output has no UserContent directory | artifacts/migration-reaudit-publish.log and artifacts/migration-reaudit-assetless/ |
-| Golden Test-TemplateInfrastructure.ps1 against this checkout | **Fail** | artifacts/migration-reaudit-infrastructure.log |
+| Canonical tools/Test.ps1 | Pass, including Python, Node, .NET, repository/configuration, documentation, tracking, capture and pin checks | Local run; log not committed |
+| Full solution build | Pass, zero warnings/errors | Local run; log not committed |
+| Release publish and assetless smoke | Pass; published output has no UserContent directory | Local run; log and output not committed |
+| Golden Test-TemplateInfrastructure.ps1 against this checkout | **Fail** | Local run; log not committed |
 | Hosted platform and installer acceptance | All jobs pass at `8e6be85537bb480d84aa4fac049efc4efaf24639` | [CI run 36799584294](https://github.com/kibertoad/dark-sun-wake-redux/actions/runs/36799584294) |
 
 Hosted results were re-read from GitHub, including job steps. Between that

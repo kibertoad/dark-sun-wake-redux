@@ -288,8 +288,8 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   handler; seven emitting rules keep prose Parameters until it is decided).
   Toolkit 200 has our 2026-10-06 cancelled-operand question without a reply.
   Assetless Test.ps1 passed on 2026-10-06 with the machine-wide GAME_DIR and
-  NoDefaultCurrentDirectoryInExePath unset (both leak in from other projects);
-  log artifacts/engine120/canonical-gate.log. Reports: lower-heap120.
+  NoDefaultCurrentDirectoryInExePath unset (both leak in from other projects).
+  Reports: lower-heap120.
   Earlier: toolkit issues 299/300/301 delivered and confirmed.
   No unfinished tracked
   files. Synthetic capture readiness is fixed locally; template issue 73 has
@@ -299,8 +299,8 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   in lower-heap101 and allocation reports
   in allocation-chain101, FONT entry reports in font-request101 and release reports
   in normalizer-release101. Private reports from engine 11 are in
-  UserContent/analysis/reporter-audit/upstream110; integrity and synthetic logs
-  are in artifacts/engine110. The source and installed wheel bytes match.
+  UserContent/analysis/reporter-audit/upstream110.
+  The source and installed wheel bytes match.
   The setter census remains
   a bounded locator, not complete native writer coverage.
 - Keep the distinction between delivered shared requests, pending connected

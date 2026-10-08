@@ -230,7 +230,7 @@ Validation: 92 Python, 41 Node and 700 .NET tests pass, together with repository
 
 Adopted template main c048c63523a1b061b5325f6b05055d98819780d7 after reviewing the full delta from b9f542549840cf7ce2d254a8f9f7bf0f502daaa7. PR 31 clarifies that plans document authorized work and places changing narrative totals in generated reports, preserving quantities that support evidence or constrain behavior. PR 32's revised source adds requested page counts, capped ambiguous-name indices, policy-configured denied diagnostic names and heap-dump exclusion/redirection. Upstream regression files are copied exactly; the Ghidra category and repository checker retain configured-project adaptations. No methodology/checker/reporter pin changes are present in this template delta; inventory PR 33 work remains separate.
 
-Canonical Test.ps1 and full solution build pass; generated output is in artifacts/latest-template-validation.log and artifacts/latest-template-build.log. The merged map script compiled against Ghidra 12.1.3 and again passed the actual large-map page/name checks in read-only mode; gap2-merged-adoption.log remains GAME_DIR-only. Current policy regressions prove force-staged heap-dump and diagnostic rejection plus ordinary-log acceptance. Merged gaps 2 and 38 are closed; no game spec/parity claims changed.
+Canonical Test.ps1 and full solution build pass. The merged map script compiled against Ghidra 12.1.3 and again passed the actual large-map page/name checks in read-only mode; gap2-merged-adoption.log remains GAME_DIR-only. Current policy regressions prove force-staged heap-dump and diagnostic rejection plus ordinary-log acceptance. Merged gaps 2 and 38 are closed; no game spec/parity claims changed.
 
 ## Latest merged inventory refinements
 
@@ -240,11 +240,11 @@ Adopted template e0325e0b063735e94b7e3ac94b0b8b89d0a38a79 (PR 33), including can
 
 Adopted website 82deb767ab64ca9922bb6347d66d9856b7640e91, toolkit 7da1b93cdd9ac0d59dbaf82b66b4db95d578ab9d and template 7b3bbe46b251b163ee02a6539ac0d81559dbe921. Reviewed the full template delta from e0325e0: capture worker and synthetic tests, research tracking and question links, file-data/unpacked locations and checker/CI pins, instruction-owned operands, strings/saved flags/local IRET, and revised contested overlap traversal. Reporter files/tests/guide are exact pinned upstream bytes. Skills, entry templates and validation guidance retain configured paths and owner-only runtime; capture defaults use this game title. Existing queue IDs and research conclusions are preserved, with missing structural links and one existing AI question newly tracked. Generic documentation example IDs use placeholders. Empty upstream RNG/SAVE queues are already present locally; template handover and plan histories are not substituted for game records. No architecture, packaging or gameplay delta exists in these revisions.
 
-Actual width, helper effects and instruction operand controls pass against the exact adopted source. Validation output is in artifacts/full-upstream-migration-validation.log and artifacts/full-upstream-migration-build.log. Mixed-DPI original capture remains owner validation, not claimed by synthetic acceptance.
+Actual width, helper effects and instruction operand controls pass against the exact adopted source. Mixed-DPI original capture remains owner validation, not claimed by synthetic acceptance.
 
 ## Migration acceptance audit, 2026-10-01
 
-The requirement-by-requirement audit found CI still selected only test_x86.py and omitted adopted tracking/capture regressions. The audit also found CI's old remote policy action lacked the adopted diagnostic-filename protections; CI now invokes the local repository checker. CI now runs all reporter suites and the same synthetic evidence/upstream tests as the canonical local gate, and requires research tracking. The canonical gate passes again. Assetless Release publish and smoke-test exit successfully with no UserContent directory. Exact pins and source bytes were audited against the adopted revisions; configured owner-only runtime remains intact. High/mixed-DPI original-window capture is an explicit upstream limitation, not covered by this machine's synthetic acceptance. Final hosted acceptance passes at code revision `8e6be85537bb480d84aa4fac049efc4efaf24639`: [CI run 36799584294](https://github.com/kibertoad/dark-sun-wake-redux/actions/runs/36799584294), including documentation, Windows/Linux/Intel macOS/Apple Silicon verification, assetless publish/smoke, and all installer jobs. The final local canonical gate also passes (`artifacts/migration-final-acceptance.log`). No unfinished migration changes remain; remaining game-research requests stay tracked separately in `gaps.md` and `queue/`.
+The requirement-by-requirement audit found CI still selected only test_x86.py and omitted adopted tracking/capture regressions. The audit also found CI's old remote policy action lacked the adopted diagnostic-filename protections; CI now invokes the local repository checker. CI now runs all reporter suites and the same synthetic evidence/upstream tests as the canonical local gate, and requires research tracking. The canonical gate passes again. Assetless Release publish and smoke-test exit successfully with no UserContent directory. Exact pins and source bytes were audited against the adopted revisions; configured owner-only runtime remains intact. High/mixed-DPI original-window capture is an explicit upstream limitation, not covered by this machine's synthetic acceptance. Final hosted acceptance passes at code revision `8e6be85537bb480d84aa4fac049efc4efaf24639`: [CI run 36799584294](https://github.com/kibertoad/dark-sun-wake-redux/actions/runs/36799584294), including documentation, Windows/Linux/Intel macOS/Apple Silicon verification, assetless publish/smoke, and all installer jobs. The final local canonical gate also passes. No unfinished migration changes remain; remaining game-research requests stay tracked separately in `gaps.md` and `queue/`.
 
 ## Call-target, bounds and owner reporters and code-comment addresses, 2026-10-01
 
@@ -252,7 +252,7 @@ Adopted template `8d0eef35ec8f3b1053ba1dd129a7bd75b044cf27` after reviewing the 
 
 Configured adaptations: the vendored rules stay under `vendor/upstream/` and section links were rewritten to the new line ranges. `tools/Test.ps1` runs `tools/Invoke-NodeChecks.mjs` in place of its separate documentation, research-tracking and reporter-pin steps; `tools/Invoke-Validation.ps1` keeps this repository's structure and runs Test.ps1. Two template assertions in `tests/upstream/upstream.test.mjs` were adapted: this repository's CI step passes `references: docs`, and the shared node checks are run from Test.ps1. The CI step keeps `references: docs` and the working-file size check. DSUN.EXE is MZ, so no `images` input is set and plain `0x` comment values are not checked; no code comment uses an `fn_`/`g_` neutral name.
 
-Gate: `tools/Invoke-Validation.ps1` passes with repository-local PowerShell 7 (137 Python, 77 Node and 700 .NET tests, documentation check of 615 entries / 158 parity rows / 5 deviations, Release build, assetless publish and smoke). Log: `artifacts/reporter-provenance-adoption.log`. The play-launcher test needs `NoDefaultCurrentDirectoryInExePath` unset for its `cmd.exe` child; with it set it fails identically on the previous commit.
+Gate: `tools/Invoke-Validation.ps1` passes with repository-local PowerShell 7 (137 Python, 77 Node and 700 .NET tests, documentation check of 615 entries / 158 parity rows / 5 deviations, Release build, assetless publish and smoke). The play-launcher test needs `NoDefaultCurrentDirectoryInExePath` unset for its `cmd.exe` child; with it set it fails identically on the previous commit.
 
 No gaps.md request closes. The new `target`, `bounds`, `owner`, incoming-coverage and path-model capabilities have synthetic acceptance only. Their Dark Sun cases (gaps 8, 10, 11, 13, 21, 22, 23, 26, 27, 35, 39 and 42) need executable analysis, which the facts gate in docs/SOURCE-EDITIONS.md blocks until latest-patch provenance and the baseline SHA-256 are recorded. No original program was read or run.
 
@@ -274,8 +274,7 @@ validation and CI retain restore. All checks, filters/count controls and
 serialization remain intact. The final portability, scratch cleanup and
 nonvacuous test refinements are adopted with this project's Test.ps1 route.
 The production host block passes fallback and caller-environment restoration
-controls. Final normal and offline gates pass; logs
-artifacts/offline-pr41-final-normal.log and artifacts/offline-pr41-final-offline.log.
+controls. Final normal and offline gates pass.
 The latter uses unreachable HTTP proxies and no restore fallback. Documentation
 states existing restore state is a prerequisite and does not promise cached
 freshness. The whole gap 4 request passes and is removed. No gameplay changes.
@@ -327,7 +326,7 @@ The methodology, Standard v1 and protocol snapshot bytes remain unchanged.
 Normal and NoRestore configured canonical gates pass, including Release build and
 assetless publish/smoke. Existing local-only source controls pass through the
 installed engine, preserving hash checks, rejected controls and unresolved paths.
-Logs are under artifacts/package-delivery/. Toolkit PRs 41 and 43 remain open;
+Toolkit PRs 41 and 43 remain open;
 their candidate features are not included in these adopted package releases.
 
 ## Latest reviewed toolkit adoption, 2026-10-02
@@ -379,7 +378,7 @@ Checker 0.6.0 replaces 0.2.0; CI uses its exact release commit
 integrity verify installed distribution bytes; the tagged synthetic suite
 passes with explicit platform skips. Reader 2.1.0 and engine 9.1.0 remain
 the latest registry versions. Local rules are unchanged. Full adoption gate,
-Release build and assetless smoke: artifacts/engine91/latest-canonical-validation.log.
+Release build and assetless smoke were run; the log is not committed.
 Requester dispositions and new toolkit #274 are recorded in
 LATEST-RELEASE-GAP-AUDIT.md; unresolved consumer exits stay in project issue 5.
 

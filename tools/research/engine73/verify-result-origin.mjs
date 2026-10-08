@@ -1,0 +1,10 @@
+import {readFileSync,writeFileSync} from 'node:fs';import {run} from '../../../node_modules/@scientific-method/executable-reader/dist/src/report.js';import assert from 'node:assert/strict';
+const root='C:/GOG Games/Dark Sun 2/analysis/reporter-audit/result-origin730';
+for(const ax of [65535,0]){
+ const c=JSON.parse(readFileSync(`${root}/recursive-${ax}.json`));const r=JSON.parse(readFileSync(`${root}/recursive-${ax}.report.json`));assert(!r.completeWithinModel);assert(r.gaps.length>0);assert(r.paths.some(p=>p.stop));assert.equal(r.nativeReachability,'unconfirmed');
+ const leaves=r.paths.filter(p=>p.returned&&!p.returnFlows.results.some(f=>f.callSite===203614));assert(leaves.length>0);assert(leaves.every(p=>p.registers.ax.value===0));
+ for(const p of r.paths.filter(p=>p.returned&&p.registers.ax.value===65535)){assert.equal(ax,65535);assert(p.events.some(e=>e.kind==='branch'&&e.site===203623&&!e.taken));const f=p.returnFlows.results.find(f=>f.callSite===203614);assert(f&&f.conditionalModel&&f.resultContract.matchesFailureEncoding&&!f.successEstablished);assert(f.consumers.some(e=>e.site===203620&&e.dependentValueFields.includes('left')));const own=p.returnFlows.results.find(f=>f.callSite===null);assert(own&&!own.conditionalModel&&own.resultContract.value.producers.includes(203625));assert(!own.successEstablished);}
+ if(ax===0)assert(r.paths.filter(p=>p.returned).every(p=>p.registers.ax.value===0));else assert(r.paths.some(p=>p.returned&&p.registers.ax.value===65535));
+ const f=`${root}/cap-${ax}.json`;writeFileSync(f,JSON.stringify({...c,maxSteps:1}));const cap=run(['returns',f]);writeFileSync(`${root}/cap-${ax}.report.json`,JSON.stringify(cap));assert(!cap.paths.some(p=>p.returned));assert(!cap.paths.some(p=>p.events.some(e=>e.site===203614||e.site===203656)));
+}
+console.log('Conditional leaf zero, recursive FFFF test dependency, separate local re-encoding and zero-return child controls pass; stopped/dropped paths retain incomplete coverage, nonvacuous caps remove result witnesses, no native failure origin or termination is accepted.');

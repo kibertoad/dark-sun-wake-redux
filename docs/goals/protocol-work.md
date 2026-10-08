@@ -51,13 +51,11 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Stage: Slices. The ongoing protocol objective remains active on this local
   goal branch. Completed workflow tooling and EXE research are committed.
 - Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore passed.
-  Logs: artifacts/exe-prefix-144-full-gate.log and artifacts/exe-prefix-144-docs-check.log.
   Documentation generation and explicit main-base checking passed;
   existing argument-check skips remain. Remote-base ancestry was rechecked
   and is available; explicit local main-base checking passed. Pre-commit
   checks passed.
-  The last full source-listing reconciliation remains
-  artifacts/exe-dosbox-pe-listing.log; this batch changed no manifest.
+  The last full source-listing reconciliation was run locally; its log was not committed. This batch changed no manifest.
 - Unfinished: no tracked work remains. EXE follow-up items remain Q-EXE-005,
   Q-EXE-006, Q-EXE-007, Q-EXE-008 and Q-EXE-009; Q-EXE-001 retains its
   retry requirement. Local static-analysis reports and the saved interpreter
@@ -72,8 +70,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   were verified through the Windows launcher. Original-program execution
   remains prohibited.
 - Template context: current template 0b9ab9c and checker 2.5.0 are integrated.
-  Combined assetless Test.ps1 -NoRestore passed on 2026-10-08; log:
-  artifacts/wrapup-merge-full-gate-fixed-fixtures.log in the research worktree.
+  Combined assetless Test.ps1 -NoRestore passed on 2026-10-08 in the research
+  worktree.
   Generated indexes were refreshed on main. Archive member citations are
   qualified; toolkit issue 353 has the new archive case. Template issue 90
   records fixture-baseline assumptions under scheduled generation.

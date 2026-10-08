@@ -42,7 +42,6 @@ sdist, release-tag and installed production bytes agree. The full released
 suite, including the installed-engine Node bridge and test-only Unicorn controls,
 passes; Unicorn is not added to production requirements and no original is emulated.
 
-Validation logs: artifacts/engine811/release-suite.log and validation.log.
 Issue response acceptance is in TOOLKIT-RESPONSE-ACCEPTANCE.md. Remaining source
 acceptance is tracked by project issue 5; focused toolkit issues remain open.
 
@@ -58,8 +57,8 @@ remains 36. Ordinary and every target/mode NuGet lock are regenerated.
 Engine 9.0.0 changes Ghidra exact-start diagnostics and bounded-flow coverage;
 9.1.0 adds lastWriter checkpoint memory probes. Packaged scripts retain their
 shared helper directory. No local parser consumes the changed window/export
-format. Exact wheel/sdist/tag/installed bytes and the full released suite pass
-in artifacts/engine91/release-suite.log, including synthetic Unicorn oracle
+format. Exact wheel/sdist/tag/installed bytes and the full released suite pass,
+including synthetic Unicorn oracle
 and installed-engine Node bridge tests. Unicorn remains test-only.
 
 Gap-by-gap disposition is in LATEST-RELEASE-GAP-AUDIT.md. Source controls remain

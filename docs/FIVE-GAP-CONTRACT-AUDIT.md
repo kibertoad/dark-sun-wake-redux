@@ -109,7 +109,7 @@ writer dead nor admits its unknown stacked callback pointer.
 
 Private source/identity reports and candidate contexts:
 GAME_DIR/analysis/reporter-audit/issue5-callback-reference-forms100. Ignored
-drivers: artifacts/engine100/callback-reference-forms.mjs and
+drivers: tools/research/engine100/callback-reference-forms.mjs and
 callback-reference-word-contexts.py. The unchanged capped consumer/writer
 queries were not repeated. Next work needs a verified constructed/computed
 reference or the actual bracket's producer/effect dependency; another identical

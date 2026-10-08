@@ -24,8 +24,8 @@ uses LegacyFormats. No vendored implementation replaces the package imports.
 | R3 PCM/audio/WAVE | No PCM/WAVE conversion or playback consumer was found in src or the Inspect tooling. Not claimed as adopted or tested. |
 | R4 input | Not migrated: Game retains previous KeyboardState and local chord/edge helpers. A separate implementation batch must preserve existing input semantics while adopting InputState/InputBindings and run the game's binding controls. The current research-side goal does not authorize changes to src. |
 
-The full consumer Test.ps1 -NoRestore gate passed. Its log is
-artifacts/issue108-root-gate.log. Toolkit release status is resolved, but the
+The full consumer Test.ps1 -NoRestore gate passed.
+Toolkit release status is resolved, but the
 consumer-wide issue is not closed while R4 remains outstanding. No new consumer
 PR or push was made in this batch.
 
@@ -94,7 +94,7 @@ open; no hand-reading workaround was deleted. Closure requires settled widths
 and forwarding controls against adopted packages, not this qualified candidate.
 
 Reproduction: set EVIDENCE_PYTHON to the isolated candidate Python, then run
-node artifacts/issue-response-review/run-cases.mjs. Configs and original-derived
+node tools/research/issue-response-review/run-cases.mjs. Configs and original-derived
 reports remain only in GAME_DIR/analysis/reporter-audit/issue-response-review;
 the driver and log are ignored local artifacts. The command invokes the
 published reader's arguments/effects commands. No proprietary report is posted
@@ -134,8 +134,7 @@ prove the whole control. Gap 40 remains open.
 The one-step and unread-service controls remove the cleanup witness. Removing
 memory scopes loses the earlier assignment's value. A contradictory second-slot
 writer declaration fails the report. These assertions run in the ignored local
-connected-entry driver; results are in
-artifacts/continuation-budget-delivery/connected-cleanup.log.
+connected-entry driver, which is not committed.
 
 ### Unreleased entryFrame composition control
 
@@ -169,9 +168,7 @@ bytes or instructions appear in that synthetic case.
 
 The sanitized source case and reproducible synthetic control were added to
 [issue 113](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/113#issuecomment-5982560966),
-rather than opening a duplicate. Logs are entry-frame-cleanup.log,
-entry-frame-suite.log and entry-frame-scope.log under
-artifacts/continuation-budget-delivery. Original-derived configs/reports stay
+rather than opening a duplicate. Original-derived configs/reports stay
 only in GAME_DIR/analysis/reporter-audit/cleanup-predecessor-controls/connected-entry.
 No original execution/emulation, spec claim or parity status changed.
 

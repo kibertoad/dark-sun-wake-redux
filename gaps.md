@@ -415,10 +415,8 @@ a local conclusion without upgrading it to a universal safety claim.
 
 During latest-toolkit validation, the unchanged direct synthetic capture test
 received a uniform frame and failed its nonuniform positive control. The bounded
-isolated recheck passed, including invalid/blank rejection. The first failure
-is retained in artifacts/package-delivery/engine080-root-test-initial-capture-failure.log;
-engine080-capture-recheck.log retains the isolated recheck. There is no evidence of a toolkit-backend cause or
-an original-game renderer outcome.
+isolated recheck passed, including invalid/blank rejection. There is no evidence
+of a toolkit-backend cause or an original-game renderer outcome.
 
 **Request:** capture fixtures should report which setup/capture/rejection stage
 failed and retain bounded readiness/message-delivery diagnostics when a synthetic

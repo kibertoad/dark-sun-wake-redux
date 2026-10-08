@@ -26,8 +26,7 @@ No budgets were increased, no state was stitched, no original game was run,
 and no game spec claim or parity status changed.
 
 Source-local configs/reports: GAME_DIR/analysis/reporter-audit/
-issue5-poll-callers100. Ignored drivers and logs: artifacts/engine100/
-poll-callers.*, poll-caller-roots.* and poll-root-controls.*.
+issue5-poll-callers100.
 
 ## Connected result-dependent continuation
 
@@ -43,7 +42,7 @@ wrapper and registration alternatives retain dropped paths and an unmodeled
 interrupt. The one case retains a poll repeat stop. Neither is a driver
 observation, whole termination proof or inherited downstream state fixture.
 Source-local reports: GAME_DIR/analysis/reporter-audit/issue5-poll-progress100.
-Ignored driver/log: artifacts/engine100/poll-progress.mjs and poll-progress.log.
+Driver: tools/research/engine100/poll-progress.mjs.
 
 ## Both aliased callers and repeating argument structure, 2026-10-05
 
@@ -85,7 +84,7 @@ function/game was executed.
 
 Configs, complete numeric reports and the argument/back-edge summary are local
 under GAME_DIR/analysis/reporter-audit/issue5-poll-cfg100. Drivers/assertions:
-artifacts/engine100/poll-cfg-bounds.mjs, poll-cfg-reading.py,
+tools/research/engine100/poll-cfg-bounds.mjs, poll-cfg-reading.py,
 poll-cfg-controls.py and poll-cfg-joint-controls.mjs; corresponding logs are
 ignored artifacts. The independent structure check does not claim that its
 summary is a new published API field.
@@ -148,7 +147,7 @@ function/game executed, or game spec/parity changed.
 
 Original-derived configs/reports stay under
 GAME_DIR/analysis/reporter-audit/issue5-poll-state-inputs100. Drivers/logs:
-artifacts/engine100/poll-blocker-census.py, poll-state-inputs.mjs,
+tools/research/engine100/poll-blocker-census.py, poll-state-inputs.mjs,
 poll-state-guards.mjs, poll-state-prefix.py and poll-state-normalization.mjs.
 The normalization and caller-order assertions are recorded in their logs.
 
@@ -204,7 +203,7 @@ claim or game finding/parity status is added by this tooling acceptance.
 
 Reports/configs and the licensed configuration summary remain local under
 GAME_DIR/analysis/reporter-audit/issue5-poll-sound-producers100. Drivers/logs:
-artifacts/engine100/poll-sound-producers.mjs, poll-sound-write-reading.py,
+tools/research/engine100/poll-sound-producers.mjs, poll-sound-write-reading.py,
 poll-sound-pointer-controls.mjs, poll-state-word-literals.py,
 poll-state-writer-candidate.mjs and poll-state-writer-negative.mjs.
 
@@ -246,9 +245,9 @@ handoff. The existing source findings remain read-only; no native behavior or
 parity status changes. All five full connected exits remain open.
 
 Private reports/configurations: GAME_DIR/analysis/reporter-audit/
-issue5-poll-state-incoming100. Ignored drivers/logs:
-artifacts/engine100/poll-state-incoming.mjs, poll-state-caller-order.mjs,
-poll-state-caller-order.log and poll-state-caller-reading.py.
+issue5-poll-state-incoming100. Drivers:
+tools/research/engine100/poll-state-incoming.mjs, poll-state-caller-order.mjs
+and poll-state-caller-reading.py.
 
 Next: resolve the specific DS-preservation and buffer-production dependencies
 on these verified routes, keeping relocation-search exclusions and callee-return
@@ -286,9 +285,9 @@ dependencies of this connected route, rather than reasons to read unrelated
 sound behavior.
 
 Private source readings and reports remain under issue5-poll-state-incoming100.
-Ignored drivers/logs: poll-state-consumer-reading.py,
+Drivers: poll-state-consumer-reading.py,
 poll-state-helper-bounds.mjs and poll-state-consumer-guards.mjs under
-artifacts/engine100. No original instructions enter Git; no source finding or
+tools/research/engine100. No original instructions enter Git; no source finding or
 parity status changes. Full connected acceptance remains unverified.
 
 ## Filename service and segment-restoration structure, 2026-10-06
@@ -323,7 +322,7 @@ from this structural reading.
 
 Private reports/readings remain under issue5-poll-state-incoming100. Ignored
 drivers/logs: poll-filename-service.mjs, poll-filename-handoff.mjs and
-poll-filename-service-negative.mjs under artifacts/engine100. Next dependencies
+poll-filename-service-negative.mjs under tools/research/engine100. Next dependencies
 are buffer construction and its earlier callee effects, plus the explicit
 saved-frame/interrupt conditions on this now-resolved service edge. This tooling
 record changes no native claim, specification or parity status; all five full
@@ -363,9 +362,9 @@ Keep current format/source contents, argument-segment identity, output bounds,
 termination, aliases and callee preservation unverified.
 
 Private readings and controls remain under issue5-poll-state-incoming100.
-Ignored drivers/logs: poll-buffer-producer-reading.py,
+Drivers: poll-buffer-producer-reading.py,
 poll-buffer-route-controls.py and poll-buffer-formatter-relocations.mjs under
-artifacts/engine100. The CFG controls assume calls return and do not prove native
+tools/research/engine100. The CFG controls assume calls return and do not prove native
 branch feasibility. No native claim, specification or parity status changes;
 all five full connected exits remain open.
 
@@ -417,7 +416,7 @@ Current DS, terminator/output bounds and later writers remain unverified.
 Private reports/readings remain under issue5-poll-state-incoming100. Ignored
 drivers/logs: poll-file-check-resolution.mjs, poll-file-check-bounds.mjs,
 poll-file-check-child-resolution.mjs and poll-file-check-connected.mjs under
-artifacts/engine100. This tooling acceptance changes no native claim, source
+tools/research/engine100. This tooling acceptance changes no native claim, source
 finding or parity status. All five full connected exits remain open.
 
 ## Resolved validation edge and caller carry provenance, 2026-10-06
@@ -450,7 +449,7 @@ branch after a service is not evidence that it tested the service's return flags
 the intervening flag producer must be retained.
 
 Private reports/readings remain under issue5-poll-state-incoming100. Driver/log:
-artifacts/engine100/poll-file-check-validation.mjs and its log. The source-local
+tools/research/engine100/poll-file-check-validation.mjs. The source-local
 validation dependency is resolved; next are formatter bounds, other intervening
 calls and this service graph's explicit interrupt/saved-storage conditions.
 No specification or parity status changes. All five full connected exits remain
@@ -486,12 +485,12 @@ was executed. No native claim, game specification or parity status changes.
 All five full exits remain open.
 
 Private configs/reports: UserContent/analysis/reporter-audit/file-state-snapshot101.
-Ignored driver/log: artifacts/engine101/file-state-snapshot.mjs and its log.
+Driver: tools/research/engine101/file-state-snapshot.mjs.
 Bootstrap facts, offline pinned rules, hash-verified published source queries,
 positive relations and false/scopeless/unmodeled/cap negatives passed.
 
 Full assetless `tools/Test.ps1 -NoRestore` passed on 2026-10-06, including
-documentation base comparison. Log: artifacts/engine101/file-state-snapshot-gate.log.
+documentation base comparison.
 Original-dependent tests skip with GAME_DIR absent.
 
 ## Actual file-check root to service argument handoff, 2026-10-06
@@ -524,13 +523,13 @@ required for the complete handoff. No game specification or parity changes;
 all five full connected exits remain open.
 
 Private configs/reports: UserContent/analysis/reporter-audit/file-check-handoff101.
-Ignored drivers/logs: artifacts/engine101/file-check-handoff.mjs and
+Drivers: tools/research/engine101/file-check-handoff.mjs and
 file-check-handoff-controls.mjs. Bootstrap facts, offline pinned rules,
 hash-verified source queries, positive byte-writer/origin and false/omitted/cap
 controls passed.
 
 Full assetless `tools/Test.ps1 -NoRestore` passed on 2026-10-06, including
-documentation base comparison. Log: artifacts/engine101/file-check-handoff-gate.log.
+documentation base comparison.
 Original-dependent tests skip with GAME_DIR absent.
 
 ## File-check root return-width correction, 2026-10-06
@@ -562,11 +561,11 @@ service/alias conditions, filename preservation and formatter bounds remain
 open; all five full exits remain open. No game specification or parity changes.
 
 Private corrected reports remain under file-check-handoff101 with far-prefixed
-names. Ignored driver/log: artifacts/engine101/file-check-far-handoff-controls.mjs.
-Synthetic driver/reports: artifacts/engine101/return-width-repro.mjs and its
+names. Driver: tools/research/engine101/file-check-far-handoff-controls.mjs.
+Synthetic driver/reports: tools/research/engine101/return-width-repro.mjs and its
 directory. Bootstrap facts, offline rules, hash-verified published queries and
 positive/negative assertions passed. No original execution or emulation occurred.
 
 Full assetless `tools/Test.ps1 -NoRestore` passed on 2026-10-06, including
-documentation base comparison. Log: artifacts/engine101/file-check-far-handoff-gate.log.
+documentation base comparison.
 Original-dependent tests skip with GAME_DIR absent.

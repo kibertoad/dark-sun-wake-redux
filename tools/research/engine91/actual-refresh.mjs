@@ -1,0 +1,24 @@
+﻿import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
+import {resolve} from 'node:path';
+import assert from 'node:assert/strict';
+import {run} from '../../../node_modules/@scientific-method/executable-reader/dist/src/report.js';
+process.env.EVIDENCE_PYTHON=resolve('artifacts/evidence-python/Scripts/python.exe');
+const base='C:/GOG Games/Dark Sun 2/analysis/reporter-audit',dir=`${base}/issue5-refresh91`;mkdirSync(dir,{recursive:true});
+const cfg=JSON.parse(readFileSync(`${base}/issue5-middle91/actual-middle-entry.json`));
+const add=(name,start,end,segment,ip,evidence)=>cfg.regions.push({name,start,end,segment,ip,entries:[start],evidence});
+add('actual-refresh-before',0x33705,0x33730,0x3d72,0x0de5,'FND-CONFIG-197 complete wrapper');
+add('actual-refresh-after',0x33730,0x3375b,0x3d72,0x0e10,'FND-CONFIG-197 complete wrapper');
+add('actual-handle-forward',0x2611d,0x26130,0x2d40,0x3b1d,'FND-CONFIG-191 complete wrapper');
+add('actual-handle-gates',0x26130,0x26167,0x2d40,0x3b30,'FND-CONFIG-191 complete handle gates');
+add('actual-coordinate-gates',0x26167,0x261d1,0x2d40,0x3b67,'FND-CONFIG-191 complete coordinate gates');
+for(const [name,start,end,ip] of [['first',0x153d3,0x153e9,0x42a3],['last',0x153e9,0x153ff,0x42b9],['second',0x153ff,0x15415,0x42cf],['end',0x15415,0x1542b,0x42e5]]) add(`actual-coordinate-${name}`,start,end,0x1bf3,ip,'FND-CONFIG-191 complete getter');
+const query=(name,c)=>{writeFileSync(`${dir}/${name}.json`,JSON.stringify(c));const r=run(['guards',`${dir}/${name}.json`]);writeFileSync(`${dir}/${name}.report.json`,JSON.stringify(r));console.log(JSON.stringify({name,steps:r.stepsUsed,complete:r.completeWithinModel,entries:[...new Set(r.paths.flatMap(p=>p.events.map(e=>e.entry)))],stops:r.paths.map(p=>({returned:p.returned,site:p.stopSite,reason:p.stop})),gaps:r.gaps,controls:r.relationalControls?.controls}));return r;};
+const r=query('actual-refresh-connected',cfg);assert(r.paths.some(p=>p.events.some(e=>e.entry===0x33705)));
+const omit=query('omitted-refresh',{...cfg,regions:cfg.regions.filter(x=>!x.name.startsWith('actual-refresh-'))});assert(omit.paths.some(p=>p.stopSite===233481));
+const cap=query('one-step',{...cfg,maxSteps:1});assert(!cap.paths.some(p=>p.events.some(e=>e.entry===0x33705)));
+console.log('Actual refresh connected dependency controls passed');
+const controlled=structuredClone(cfg); controlled.relationalControls=[{name:'actual-refresh-argument-producer',kind:'origin',at:{site:210719,event:'write'},value:{field:'value'},expect:{producers:{include:[233477]}}}];
+const pr=query('actual-field-producer',controlled);const pc=pr.relationalControls.controls[0];assert.equal(pc.verdict,'undecided');assert(pc.paths.flatMap(p=>p.occurrences).length>0);assert(pc.paths.flatMap(p=>p.occurrences).every(o=>o.verdict==='held'));
+const wrong=structuredClone(controlled);wrong.relationalControls[0].expect.producers.include=[233481];try{query('wrong-callsite-producer',wrong);throw Error('wrong producer accepted')}catch(e){assert.match(e.message,/violated|producer/);console.log('Wrong call-site producer rejected');}
+const cp=query('producer-one-step',{...controlled,maxSteps:1});assert.equal(cp.relationalControls.controls[0].occurrences,0);
+const op=query('producer-omitted-wrapper',{...controlled,regions:controlled.regions.filter(x=>!x.name.startsWith('actual-refresh-'))});assert.equal(op.relationalControls.controls[0].occurrences,0);

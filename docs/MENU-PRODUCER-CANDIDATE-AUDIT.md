@@ -29,5 +29,4 @@ producers next; do not repeat this literal census or substitute a finite
 synthetic graph for native producer evidence.
 
 Source-local configs/reports: GAME_DIR/analysis/reporter-audit/
-issue5-menu-producers100. Ignored drivers/logs: artifacts/engine100/
-menu-producers.* and menu-candidate-controls.*.
+issue5-menu-producers100.
