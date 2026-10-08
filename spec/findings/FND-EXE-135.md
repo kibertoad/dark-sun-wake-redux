@@ -10,16 +10,16 @@ method: static
 locations:
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A1064..0x004A110F
+    address: 0x004A1064..0x004A1114
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A2189..0x004A21A1
+    address: 0x004A2189..0x004A21A6
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A2151..0x004A216A
+    address: 0x004A2151..0x004A216F
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A1E69..0x004A1E70
+    address: 0x004A1E69..0x004A1E75
 tool: Ghidra 12.1.3 PUBLIC bounded byte and full-width prefix branch reading
 environment: null
 ---
@@ -118,3 +118,9 @@ retained BL versus the fresh lookup byte, publication and selector clearing.
 Compare zero/nonzero and low-nibble cases independently; use the exact-N,
 upper-byte-only V and distinct high-bit examples in Alternatives as local
 arithmetic controls. No native or emulated execution is part of this observation.
+
+The location ranges use exclusive ends, including the final transfers
+already described above. To verify their boundaries, additionally read
+`0x004A110F`, `0x004A21A1`, `0x004A216A` and `0x004A1E70`,
+each with limit two; their following instruction starts are the declared
+exclusive ends.

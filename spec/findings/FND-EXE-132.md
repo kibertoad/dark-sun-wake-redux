@@ -10,13 +10,13 @@ method: static
 locations:
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A0E2E..0x004A0EFC
+    address: 0x004A0E2E..0x004A0F01
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A1803..0x004A1809
+    address: 0x004A1803..0x004A180E
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A1E1E..0x004A1E33
+    address: 0x004A1E1E..0x004A1E38
 tool: Ghidra 12.1.3 PUBLIC bounded selected-prefix width and shared return reading
 environment: null
 ---
@@ -114,3 +114,8 @@ zero, the highest bit of each consumed width and input bits above the
 narrower width as local arithmetic controls; leave T symbolic until its
 own physical/value evidence is recorded. No native or emulated execution
 is part of this observation.
+
+The location ranges use exclusive ends, including the final transfers
+already described above. To verify their boundaries, additionally read
+`0x004A0EFC`, `0x004A1809` and `0x004A1E33`, each with limit
+two; their following instruction starts are the declared exclusive ends.
