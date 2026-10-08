@@ -55,11 +55,12 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore passed.
   EXE research through FND-EXE-173, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
-  and enabled hooks. The classification reports are available in GAME_DIR.
+  and enabled hooks. Mapper relocation revision 2 also passed the full gate
+  and its independently failing-before/passing-after synthetic regression.
   Existing argument-check skips remain; generated files are unchanged.
-  Explicit main-base documentation checking passed in the earlier baseline;
-  the latest full gate and staged snapshot checks passed.
   This batch changes no manifest or executable inventory.
+  Corrected revision-2 derivatives are local; fresh imports/exports are pending.
+  Review old mapped-snapshot dependencies before accepting native claims.
 - Unfinished: no tracked work remains. EXE follow-up items remain Q-EXE-005,
   Q-EXE-006, Q-EXE-007, Q-EXE-008, Q-EXE-009 and Q-EXE-010; Q-EXE-001 retains its
   retry requirement. Local static-analysis reports and the saved interpreter
@@ -146,10 +147,13 @@ An owner-approved history repair remains separate from this maintenance scope.
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/26#issuecomment-6062932353.
   The duplicate-checked physical body-classification diagnostic is tracked at
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/369.
+  The confirmed mapper repair and downstream revalidation are tracked at
+  https://github.com/kibertoad/dark-sun-wake-redux/issues/6.
 - Next, after rechecking shared goal claims:
-  1. Q-EXE-010, FMT-EXE-005: follow FND-EXE-173's descriptor-198 entry
-     and native CS admission before reconciling the dispatch table and body.
-     Retain original inventories until boundary and target producers are read.
+  1. Q-EXE-010, FMT-EXE-005: import fresh projects from revision-2 derivatives
+     produced by 7e48eb9, then repeat inventory and region audits. Revisit
+     FND-EXE-173's segment/dispatch reading against corrected snapshots.
+     Retain old artifacts and committed inventories for comparison.
   2. Q-EXE-009, FMT-EXE-006: continue producer/lifetime contracts and
      the remaining dependencies listed in its queue item toward the first
      qualifying complete-reading package. Check FND-EXE-056's bounded reader
