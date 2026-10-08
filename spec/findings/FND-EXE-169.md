@@ -1,9 +1,9 @@
 ---
-id: FND-EXE-044
+id: FND-EXE-169
 title: Shared-record local names append a thirty-three-byte shipped tail and terminator
-status: superseded
+status: recorded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: [FND-EXE-169]
+superseded_by: []
 recorded_by: kibertoad
 reproduced_by: []
 method: static
@@ -11,7 +11,7 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
     kind: file-data
-    offset: 0x00352050..0x00352071
+    offset: 0x00352050..0x00352072
 tool: Ghidra 12.1.3 PUBLIC and bounded physical PE section mapping
 environment: null
 ---
@@ -51,6 +51,14 @@ an external meaning to its text.
 
 ## Alternatives
 
+This replaces FND-EXE-044, whose half-open shipped-file location omitted
+the terminator it described. The thirty-four-byte extent starts at
+`0x00352050` and ends exclusively at `0x00352072`; the terminator at
+relative index 33 is included. A fresh hash-guarded bounded physical read
+agrees with all earlier observations. Runtime immutability and admitted
+reader inputs remain unproved.
+
+
 A shipped tail with an earlier NUL, no NUL within the copied extent, or a
 terminator outside the final two-byte copy is ruled out by the verified bytes
 and cited construction. Assuming every reader input has this extent merely
@@ -68,3 +76,10 @@ the final two-byte copy. A reference query at `0x00754E50` locates the known
 reads but is not used as a negative writer proof. Keep runtime storage and
 other caller extents conditional. Keep rich reports local and execute no
 interpreter or game.
+
+Independently run the hash-guarded table reporter with the shipped source
+XXH3 above, start `0x00352050`, count 34, stride one, limit 34 and one
+unsigned field named value at offset zero with width one. The count comes
+from the eight dword copies plus one word copy in FND-EXE-043. The table
+has 34 values and its first zero is at relative index 33. Keep that raw
+report local; retain no writing or byte dump in the repository.

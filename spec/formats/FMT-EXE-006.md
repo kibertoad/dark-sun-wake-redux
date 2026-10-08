@@ -154,7 +154,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-041 traces a mutable final target and its normal-return import boundary;
   FND-EXE-042 traces the bounded encoded shared-record reader;
   FND-EXE-043 traces record selection, initialization and shared-pointer publication;
-  FND-EXE-044 bounds the shipped copied tail and local name terminators;
+  FND-EXE-169 bounds the shipped copied tail and local name terminators;
   FND-EXE-167 traces lazy initialization and mode-dependent record publication;
   FND-EXE-046 traces mode admission, flag publication and the bounded wait loop;
   FND-EXE-047 traces imported resource and local-helper mode publication;
@@ -302,7 +302,12 @@ reading of callers, external commands or interpreter behavior is claimed.
   separates fresh and decoded-existing publication origins; the reader's
   leading-value test alone cannot settle allocation ownership or stack
   separation. Decoded input, lifetime and indirect-writer admission remain
-  Q-EXE-009.
+  Q-EXE-009. SRC-WIN32-ATOMS predicts that case-insensitive lookup can
+  match the encoded registration name while preserving its first registered
+  case pattern. With an unchanged initializer-produced name, FND-EXE-169's
+  extent supplies a possible complete decode input; a nonzero short or
+  changed-name result alone does not. Identifier/name admission, runtime
+  writes and storage lifetime distinguish those readings (Q-EXE-009).
 
 - Which code page interprets the disc sound display bytes (Q-EXE-005)?
   Several OEM code pages may agree on those byte values; ASCII-only helpers

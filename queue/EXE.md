@@ -84,7 +84,7 @@ Next ID: Q-EXE-010
   boundaries (FND-EXE-041), and encoded shared-record reading
   (FND-EXE-042), and shared-record initialization/publication
   (FND-EXE-043), and copied-tail/local-name termination
-  (FND-EXE-044), and lazy initialization/record publication
+  (FND-EXE-169), and lazy initialization/record publication
   (FND-EXE-167), and mode admission/flag waiting
   (FND-EXE-046), and resource/helper-derived mode publication
   (FND-EXE-047), and exact record/wait imports and zero-result tail return
@@ -223,7 +223,11 @@ Next ID: Q-EXE-010
   FND-EXE-168 narrows explicit decoded publication sites and separates fresh
   allocation from decoded existing/fallback origins. Next: decoded-record
   input admission and allocator/storage lifetime; retain excluded indirect
-  writers and segment identities. Do not count
+  writers and segment identities. SRC-WIN32-ATOMS adds the published local
+  atom contracts: case-insensitive matching preserves the first name's case,
+  and retrieval returns a copied length. Check unchanged identifier/name
+  admission and input extent against FND-EXE-169; those external contracts
+  do not prove native buffer, pointer or lifetime state. Do not count
   the bounded body as a complete reading before those inputs are admitted.
   Blocks: resolved wrapper-helper and continuation description.
 
