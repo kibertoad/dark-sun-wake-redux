@@ -358,6 +358,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-232 reads the carry-path helper's resets, subtractions and
   final replacement; traversal/stack bounds, source-word writers and its
   remaining callee effects still need admission.
+  Tried: FND-EXE-233 reads the shared callee's publication/copy/store order
+  and separate wrapped copy and rewrite counts. Its tail callee, physical
+  aliases, buffer/stack bounds and native header admission remain unresolved.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
