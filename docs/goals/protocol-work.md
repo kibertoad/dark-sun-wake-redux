@@ -53,12 +53,11 @@ An owner-approved history repair remains separate from this maintenance scope.
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
 - Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore passed.
-  EXE research through FND-EXE-175, measured-baseline tooling and independent
+  EXE research through FND-EXE-176, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
   and its independently failing-before/passing-after synthetic regression.
   Existing argument-check skips remain; generated files are unchanged.
-  This batch changes no manifest or executable inventory.
   Corrected revision-2 fresh projects and repeatable exports are local.
   Review old mapped-snapshot dependencies before accepting native claims.
 - Unfinished: no tracked work remains. EXE follow-up items remain Q-EXE-005,
@@ -149,12 +148,13 @@ An owner-approved history repair remains separate from this maintenance scope.
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/369.
   The confirmed mapper repair and downstream revalidation are tracked at
   https://github.com/kibertoad/dark-sun-wake-redux/issues/6#issuecomment-6063990997.
+  Ghidra rendering follow-up: https://github.com/NationalSecurityAgency/ghidra/issues/9739#issuecomment-6064374250.
 - Next, after rechecking shared goal claims:
   1. Q-EXE-010, FMT-EXE-005: reconcile revision-2 comparison in
      GAME_DIR/analysis/work-baseline/relocation-reconciled. Revisit
      FND-EXE-173's segment/dispatch reading against FND-EXE-174's snapshots.
      Retain old artifacts and committed inventories for comparison. For Q-EXE-001,
-     establish FND-EXE-175's callers and state/segment producers, then callees.
+     establish FND-EXE-175's callers and FND-EXE-176's field writers, then callees.
   2. Q-EXE-009, FMT-EXE-006: continue producer/lifetime contracts and
      the remaining dependencies listed in its queue item toward the first
      qualifying complete-reading package. Check FND-EXE-056's bounded reader
