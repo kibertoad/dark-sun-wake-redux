@@ -223,7 +223,7 @@ Entries by status.
 
 ## recorded
 
-566 entries.
+567 entries.
 
 | ID | Title |
 |---|---|
@@ -603,6 +603,7 @@ Entries by status.
 | [FND-EXE-134](../findings/FND-EXE-134.md) | Two prefix branches replace mask bits from distinct word and shifted full-width input contracts |
 | [FND-EXE-135](../findings/FND-EXE-135.md) | Byte and full-width prefix branches use distinct exact-input gates and lookup read ordering |
 | [FND-EXE-136](../findings/FND-EXE-136.md) | Three count-driven prefix selectors distinguish complementary counts and fresh word versus retained full-width comparisons |
+| [FND-EXE-137](../findings/FND-EXE-137.md) | Signed word and full-width prefix shifts share a fresh-count mask gate and unconditional high-mask clear |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) |

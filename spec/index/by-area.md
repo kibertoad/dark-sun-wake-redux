@@ -150,6 +150,7 @@ Entries by area.
 | [FND-EXE-134](../findings/FND-EXE-134.md) | Two prefix branches replace mask bits from distinct word and shifted full-width input contracts | recorded |
 | [FND-EXE-135](../findings/FND-EXE-135.md) | Byte and full-width prefix branches use distinct exact-input gates and lookup read ordering | recorded |
 | [FND-EXE-136](../findings/FND-EXE-136.md) | Three count-driven prefix selectors distinguish complementary counts and fresh word versus retained full-width comparisons | recorded |
+| [FND-EXE-137](../findings/FND-EXE-137.md) | Signed word and full-width prefix shifts share a fresh-count mask gate and unconditional high-mask clear | recorded |
 
 ## GFF
 

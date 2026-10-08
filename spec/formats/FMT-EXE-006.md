@@ -255,6 +255,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-134 records distinct word-field and byte-count/full-width mask branches;
   FND-EXE-135 records byte/full-width exact-input gates and retained/fresh lookup ordering;
   FND-EXE-136 records complementary count gates and fresh-word versus full-width comparisons;
+  FND-EXE-137 records signed word/full-width shifts and their fresh-count mask gate;
   table/slot producers, runtime writers/other prefix effects and remaining selected callee effects remain open.
   floating numeric contracts, downstream targets, producers,
   indirect targets and actual state admission remain open.

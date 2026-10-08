@@ -178,6 +178,7 @@ Next ID: Q-EXE-010
   Distinct word-field and byte-count/full-width mask branches are recorded in FND-EXE-134.
   FND-EXE-135 records byte/full-width exact-input gates and retained/fresh lookup ordering;
   FND-EXE-136 records complementary count gates and fresh-word versus full-width comparisons;
+  FND-EXE-137 records signed word/full-width shifts and their fresh-count mask gate;
   Runtime writers/other prefix effects, table/slot producers and remaining selected callee
   effects remain open. These bounded
   readings do not establish the complete shell outcome. Next: trace record
