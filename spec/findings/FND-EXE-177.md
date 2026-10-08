@@ -1,9 +1,9 @@
 ---
 id: FND-EXE-177
 title: A resident cleanup candidate conditionally exchanges the vector before two unresolved near callbacks
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-EXE-252]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

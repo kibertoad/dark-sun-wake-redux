@@ -70,7 +70,7 @@ bounded source reader; this does not establish native loader behavior.
   FND-EXE-175 supplies a bounded resident candidate; its caller admission and
   state/segment producers remain unread, so it does not settle the loader.
   FND-EXE-176 resolves its initial state segment and vector pointer; their
-  writers and native admission still require reading. FND-EXE-177 adds a
+  writers and native admission still require reading. FND-EXE-252 adds a
   gated vector-exchange consumer with two unresolved cleanup callbacks.
   FND-EXE-178 separates their shipped defaults from concrete later writer leads.
   FND-EXE-179 records intervening callee restoration and external dependencies.

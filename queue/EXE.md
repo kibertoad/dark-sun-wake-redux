@@ -20,7 +20,7 @@ Next ID: Q-EXE-014
   follow the listed callees into handler installation and loading.
   FND-EXE-176 resolves the initial state/vector pointer; account for every
   writer and the vector procedure's replacement with the old pointer.
-  FND-EXE-177 adds the gated cleanup consumer; resolve its two callbacks
+  FND-EXE-252 corrects the initializer-only gate; resolve both callbacks
   and state gate producers before claiming cleanup completion.
   FND-EXE-178 adds default-stub and replacement-writer leads; follow their
   segment preservation and target bodies. FND-EXE-179 lists the intervening
@@ -415,6 +415,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-251 extends the vector initializer through handle open/close
   publications and the actual caller's far-return frame and carry consumption.
   DOS outcomes, name/mode producers, state identity and other writers remain open.
+  Tried: FND-EXE-252 supersedes the incorrect full-cleanup gate reading; both
+  branches reach the two callback continuations. Post-callee DS identity, far
+  return frames, live targets and preservation remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
