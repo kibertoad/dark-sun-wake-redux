@@ -345,3 +345,30 @@ directory in `artifacts/`. Use PowerShell 7. It checks completion markers and
 expected classifications because a headless exit code alone can hide a script
 failure. The fixture and logs remain local; only the synthetic project is
 deleted by headless. This optional installed-Ghidra check needs no GAME_DIR.
+
+`ReportSegmentWrites.java DS+SS 256` enumerates named segment-register outputs
+in every decoded instruction's p-code, independently of function ownership
+and rendered operand order. Use plus-separated unique x86 segment names
+(CS, DS, ES, SS, FS, GS) and an output limit from 1 through 10000. Commas are
+not used because the Windows headless launcher splits them. The reporter
+does not disassemble or change the program. Run it read-only with analysis
+disabled and retain source identity and the saved snapshot with the local report.
+
+The summary distinguishes scanned instructions, matching instructions,
+emitted matches, truncation, CALLOTHER-bearing instructions and instructions
+without p-code. Opaque instruction addresses are emitted under their own
+limit and truncation flag for follow-up reading. A segment output is a
+decoded candidate, not a proved native state change. A zero-match result
+does not cover opaque effects, undecoded bytes, external or generated code,
+or initial descriptor bases, and cannot establish DS/SS identity. Empty
+p-code can include a harmless NOP; it is reported rather than silently
+treated as evidence of complete modeling.
+
+`tools/ghidra/Test-SegmentWrites.ps1 -GhidraHome <installation> -JavaHome <jdk>`
+uses a disposable synthetic x86-32 BinaryLoader project and checks a DS read
+against MOV-to-DS, MOV-to-SS, POP-DS, LSS and LDS writes, plus an opaque INT3,
+empty-p-code NOP, truncation and rejected duplicate-name/zero-limit queries.
+It executes no instruction. The Java test admits only the named synthetic
+fixture and expected bytes; never run it on a licensed program. Completion
+markers and classifications are checked because headless exit success can
+hide a script exception. This optional installed-Ghidra test needs no GAME_DIR.
