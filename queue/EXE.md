@@ -433,6 +433,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-257 reads the second setup helper's external/direct paths,
   pre-failure gate and distinct full-word and partial-byte stores. Native pointer
   and flag writers, external contracts and partial-byte initialization remain open.
+  Tried: FND-EXE-258 follows the full second initializer's retained pointer,
+  fallback publications, partial-byte consumers and endpoint-difference result.
+  Environment/callee contracts, local output admission and lifecycle remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
