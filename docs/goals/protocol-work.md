@@ -53,7 +53,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
 - Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore passed.
-  EXE research through FND-EXE-177, measured-baseline tooling and independent
+  EXE research through FND-EXE-178, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
   and its independently failing-before/passing-after synthetic regression.
@@ -156,7 +156,7 @@ An owner-approved history repair remains separate from this maintenance scope.
      GAME_DIR/analysis/work-baseline/relocation-reconciled. Revisit
      FND-EXE-173's segment/dispatch reading against FND-EXE-174's snapshots.
      Retain old artifacts and committed inventories for comparison. For Q-EXE-001,
-     establish FND-EXE-175's callers and FND-EXE-176/FND-EXE-177's field/callback producers.
+     establish FND-EXE-175's callers and FND-EXE-178's writer-path callee/segment contracts.
   2. Q-EXE-009, FMT-EXE-006: continue producer/lifetime contracts and
      the remaining dependencies listed in its queue item toward the first
      qualifying complete-reading package. Check FND-EXE-056's bounded reader
