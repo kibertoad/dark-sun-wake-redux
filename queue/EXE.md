@@ -339,7 +339,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-225 resolves the candidate's stored trampoline target and
   compares complete body sets: missing candidate chunks and extra ownership
   beyond the descriptor both require review, not just scalar size correction.
-  Next: descriptor 198's native entry
+  Tried: FND-EXE-226 supplies the initial resident handler's direct callee
+  and unresolved far callback; its complete CFG still assumes all calls return.
+  Next: the handler callee and callback admission, then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
   Blocks: reconciled executable denominator and complete-reading declarations
   that depend on those function boundaries.

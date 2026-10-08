@@ -56,6 +56,8 @@ bounded source reader; this does not establish native loader behavior.
   binding; native segment and ownership admission remain unresolved.
   FND-EXE-225 connects its entry to a stored resident trampoline target and
   records both omitted candidate bytes and extra analyzer-owned chunks.
+  FND-EXE-226 supplies resident handler callee leads, retaining the unresolved
+  far callback and native frame/segment admission before attributing transfers.
 
 - Whether the loader replaces each fixup word with the segment its descriptor names, and which
   segment that is for a descriptor of an overlay (FND-EXE-007, Q-EXE-001).
