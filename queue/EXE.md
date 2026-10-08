@@ -242,7 +242,9 @@ Next ID: Q-EXE-011
   with source code/fixup/padding regions before replacing inventories.
   Tried: FND-EXE-173 classifies all fifteen anomalous body spans separately
   from their valid overlay entries and compares one bounded table under the
-  descriptor and analyzer-alias segment bases. Next: descriptor 198's entry
+  descriptor and analyzer-alias segment bases. FND-EXE-174 records the fresh
+  corrected-derivative partitions; the repair alone does not reconcile bodies.
+  Next: descriptor 198's entry
   and CS admission, then the remaining suspect target producers.
   Blocks: reconciled executable denominator and complete-reading declarations
   that depend on those function boundaries.

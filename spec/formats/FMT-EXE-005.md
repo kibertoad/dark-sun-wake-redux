@@ -49,7 +49,9 @@ bounded source reader; this does not establish native loader behavior.
 
 - Which analyzer-owned body fragments are native code under the original CS
   bindings (Q-EXE-010)? FND-EXE-173 separates their physical source regions
-  from their valid overlay entries. A descriptor-base dispatch reading keeps
+  from their valid overlay entries. FND-EXE-174 shows that fresh analysis after
+  relocation-pair repair still assigns non-code fragments to overlay bodies.
+  A descriptor-base dispatch reading keeps
   eleven targets inside code; the analyzer-alias reading places most outside.
   Native segment producers and every admitted target must settle those competing
   interpretations before the affected boundaries or denominator are accepted.
