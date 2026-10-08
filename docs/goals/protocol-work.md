@@ -57,6 +57,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   The latest complete-reading boundary correction passed the full assetless
   gate and pre-commit checks; existing argument-check skips remain.
   FND-EXE-166's caller/input research batch also passed that gate and hooks.
+  FND-EXE-167's setup-preservation research batch passed the full gate and hooks.
   Explicit main-base documentation checking passed; generated files were left unchanged.
   Existing argument-check skips remain. Remote-base ancestry was rechecked
   and is available; explicit local main-base checking passed. Pre-commit
@@ -147,6 +148,9 @@ An owner-approved history repair remains separate from this maintenance scope.
      complete_reading declaration. Follow FND-EXE-166's specific remaining
      obligations: setup preservation of the incoming slot, selected-local
      lifetime, offset-28 writers, stack aliases and excluded indirect uses.
+     FND-EXE-167 is the current setup-prefix replacement. Follow its shared-base
+     producers through FND-EXE-043 and FND-EXE-042, segment admission and
+     intervening callee effects before treating the reader's input as preserved.
      FND-EXE-164 is
      the latest composed reading; follow concrete offset-24 callback
      producers and input consumption for FND-EXE-163/FND-EXE-053, then
