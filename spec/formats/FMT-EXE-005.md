@@ -68,6 +68,8 @@ bounded source reader; this does not establish native loader behavior.
   input extent, loaded CRT effects, nonlocal continuations and lifetime remain open.
   FND-EXE-188 records shared and imported record-storage paths; state admission,
   callee effects, aliases and nonlocal continuations remain unread.
+  FND-EXE-189 resolves local selector publication and a constant-callee return;
+  gate/state producers, imported effects and waiting behavior remain open.
 
 - Which analyzer-owned body fragments are native code under the original CS
   bindings (Q-EXE-010)? FND-EXE-173 separates their physical source regions
