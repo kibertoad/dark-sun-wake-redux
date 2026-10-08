@@ -34,6 +34,15 @@ outside declared overlay code ranges are retained and reported rather than
 clipped to make the standard reporter accept them. Local report output and
 analysis projects stay in GAME_DIR; no generated report is committed.
 
+The retained historical inventories are not a valid input to the current
+`standard-coverage` command: filename-plus-offset starts and lower-case MZ
+addresses fail its notation checks. A failed run's zero denominator is not
+zero research coverage. Use the range-aware audit comparison for provisional
+figures, identify its snapshot and revision, and disclose
+`standardReporterAnomalies`; do not present that comparison as a passing
+standard inventory check. Reconcile mapping, body ownership and declared code
+ranges before replacing inventories, rather than merely changing their spelling.
+
 Requires Node.js 22 or later and the packages `./tools/Restore-ToolDependencies.ps1` installs. Run synthetic tests with
 `node --test tests/evidence/evidence.test.mjs`; the canonical validation gate
 runs them too. These tools read metadata and never run an original executable.
