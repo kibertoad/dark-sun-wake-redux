@@ -385,6 +385,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-241 follows gate helper outputs through both paths' stores
   and stack-depth balance, including final AX/carry results. Native inputs,
   field/link writers, aliases, bounds and saved-slot integrity remain open.
+  Tried: FND-EXE-242 reads a source-derived segment-to-header candidate's
+  bounds, preceding-segment link, marker and published-segment checks.
+  Native callers, input/state admission and field writers remain unresolved.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
