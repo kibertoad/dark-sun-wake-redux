@@ -13,6 +13,8 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class ReportSegmentWrites extends GhidraScript {
     public static Set<String> writes(Program program, Instruction instruction, String[] names) {
@@ -53,13 +55,20 @@ public class ReportSegmentWrites extends GhidraScript {
         long scanned = 0, matched = 0, opaque = 0, missing = 0;
         List<String> results = new ArrayList<>();
         List<String> opaqueSites = new ArrayList<>();
+        Map<String, Long> emptyKinds = new TreeMap<>();
+        Map<String, String> emptyFirst = new TreeMap<>();
         InstructionIterator instructions = currentProgram.getListing().getInstructions(true);
         while (instructions.hasNext()) {
             monitor.checkCancelled();
             Instruction instruction = instructions.next();
             scanned++;
             PcodeOp[] effects = instruction.getPcode();
-            if (effects.length == 0) missing++;
+            if (effects.length == 0) {
+                missing++;
+                String kind = instruction.getMnemonicString().toUpperCase(Locale.ROOT);
+                emptyKinds.merge(kind, 1L, Long::sum);
+                emptyFirst.putIfAbsent(kind, instruction.getAddress().toString());
+            }
             boolean hasOpaque = false;
             for (PcodeOp op : effects) if (op.getOpcode() == PcodeOp.CALLOTHER) hasOpaque = true;
             if (hasOpaque) {
@@ -75,10 +84,19 @@ public class ReportSegmentWrites extends GhidraScript {
         }
         for (String result : results) println(result);
         for (String site : opaqueSites) println(site);
+        int emptyKindsEmitted = 0;
+        for (Map.Entry<String, Long> kind : emptyKinds.entrySet()) {
+            if (emptyKindsEmitted >= limit) break;
+            println("emptyMnemonic=" + kind.getKey() + " count=" + kind.getValue()
+                + " firstAddress=" + emptyFirst.get(kind.getKey()));
+            emptyKindsEmitted++;
+        }
         println("Completed decoded segment-output audit: scanned=" + scanned + " matches=" + matched
             + " emitted=" + results.size() + " truncated=" + (matched > limit)
             + " opaqueInstructions=" + opaque + " noPcodeInstructions=" + missing
-            + " opaqueSitesEmitted=" + opaqueSites.size() + " opaqueSitesTruncated=" + (opaque > limit));
+            + " opaqueSitesEmitted=" + opaqueSites.size() + " opaqueSitesTruncated=" + (opaque > limit)
+            + " emptyClasses=" + emptyKinds.size() + " emptyClassesEmitted=" + emptyKindsEmitted
+            + " emptyClassesTruncated=" + (emptyKinds.size() > limit));
         println("Domain: current decoded listing only; opaque effects, undecoded bytes, external code,"
             + " runtime-generated instructions and initial descriptor bases are not established.");
     }

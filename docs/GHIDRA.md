@@ -363,11 +363,17 @@ does not cover opaque effects, undecoded bytes, external or generated code,
 or initial descriptor bases, and cannot establish DS/SS identity. Empty
 p-code can include a harmless NOP; it is reported rather than silently
 treated as evidence of complete modeling.
+Empty effects are additionally grouped by decoded mnemonic, with full counts,
+the first instruction address for each class,
+and a separate class-output cap. Check `emptyClassesTruncated` before treating
+the emitted classes as exhaustive. These labels classify the analyzer's empty
+effects; they do not prove that every such instruction is harmless or native.
 
 `tools/ghidra/Test-SegmentWrites.ps1 -GhidraHome <installation> -JavaHome <jdk>`
 uses a disposable synthetic x86-32 BinaryLoader project and checks a DS read
 against MOV-to-DS, MOV-to-SS, POP-DS, LSS and LDS writes, plus an opaque INT3,
-empty-p-code NOP, truncation and rejected duplicate-name/zero-limit queries.
+empty-p-code NOP and WAIT, independent class-output truncation and rejected
+duplicate-name/zero-limit queries.
 It executes no instruction. The Java test admits only the named synthetic
 fixture and expected bytes; never run it on a licensed program. Completion
 markers and classifications are checked because headless exit success can

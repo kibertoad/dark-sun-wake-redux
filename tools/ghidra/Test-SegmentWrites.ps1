@@ -6,8 +6,8 @@ $root = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $out = Join-Path $root ('artifacts/segment-effect-controls/' + [Guid]::NewGuid().ToString('N'))
 [IO.Directory]::CreateDirectory($out) | Out-Null
 $fixture = Join-Path $out 'segment-effects-synthetic.bin'
-# Entirely synthetic: read DS, write DS, write SS, pop DS, LSS, LDS, INT3, NOP, return.
-[IO.File]::WriteAllBytes($fixture, [byte[]]@(0x8c,0xd8,0x8e,0xd8,0x8e,0xd0,0x1f,0x0f,0xb2,0,0xc5,0,0xcc,0x90,0xc3))
+# Entirely synthetic: read DS, write DS, write SS, pop DS, LSS, LDS, INT3, NOP, WAIT, return.
+[IO.File]::WriteAllBytes($fixture, [byte[]]@(0x8c,0xd8,0x8e,0xd8,0x8e,0xd0,0x1f,0x0f,0xb2,0,0xc5,0,0xcc,0x90,0x9b,0xc3))
 $headless = Join-Path $GhidraHome 'support/analyzeHeadless.bat'
 if (!(Test-Path -LiteralPath $headless -PathType Leaf)) { throw 'Ghidra launcher not found.' }
 $scripts = '"' + (& (Join-Path $root 'tools/Get-GhidraScriptPath.ps1')) + '"'
@@ -23,10 +23,14 @@ try {
     $validExit = $LASTEXITCODE
     $valid = [IO.File]::ReadAllText($validLog)
     if ($validExit -ne 0 -or $valid -notmatch 'Synthetic segment-output controls passed\.' -or
-        $valid -notmatch 'scanned=9 matches=5 emitted=5 truncated=false opaqueInstructions=1 noPcodeInstructions=1' -or
-        $valid -notmatch 'scanned=9 matches=5 emitted=1 truncated=true opaqueInstructions=1 noPcodeInstructions=1' -or
+        $valid -notmatch 'scanned=10 matches=5 emitted=5 truncated=false opaqueInstructions=1 noPcodeInstructions=2' -or
+        $valid -notmatch 'scanned=10 matches=5 emitted=1 truncated=true opaqueInstructions=1 noPcodeInstructions=2' -or
         $valid -notmatch 'opaqueAddress=0000100c' -or
         $valid -notmatch 'opaqueSitesEmitted=1 opaqueSitesTruncated=false' -or
+        $valid -notmatch 'emptyMnemonic=NOP count=1 firstAddress=0000100d' -or
+        $valid -notmatch 'emptyMnemonic=WAIT count=1 firstAddress=0000100e' -or
+        $valid -notmatch 'emptyClasses=2 emptyClassesEmitted=2 emptyClassesTruncated=false' -or
+        $valid -notmatch 'emptyClasses=2 emptyClassesEmitted=1 emptyClassesTruncated=true' -or
         $valid -match 'address=00001000 writes=') {
         throw "Synthetic valid segment controls failed; see $validLog"
     }
