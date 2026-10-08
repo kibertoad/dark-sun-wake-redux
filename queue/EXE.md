@@ -382,6 +382,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-240 reads all three shared-gate helpers' explicit size,
   selection and link effects. Native inputs, link/field writers, aliases,
   traversal/output bounds and caller result consumption remain unresolved.
+  Tried: FND-EXE-241 follows gate helper outputs through both paths' stores
+  and stack-depth balance, including final AX/carry results. Native inputs,
+  field/link writers, aliases, bounds and saved-slot integrity remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
