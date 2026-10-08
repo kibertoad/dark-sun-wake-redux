@@ -427,6 +427,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-255 traces the setup helper's pre-failure repeat gate, cleanup
   flag/handle producers and duplicated full-word status. Native lifecycle,
   interrupt contracts, argument writers and aliases remain open.
+  Tried: FND-EXE-256 reads the second callback writer's exact pair comparisons,
+  pre-call publications and conditional two-pass mechanism. Native local/frame
+  preservation, argument/state writers and helper effects remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
