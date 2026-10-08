@@ -54,7 +54,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   are committed.
 - Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore passed.
   EXE research through FND-EXE-172, measured-baseline tooling and independent
-  physical PE transfer tooling passed their full gates and enabled hooks.
+  physical PE transfer and overlay-body classification tooling passed full gates
+  and enabled hooks. The classification reports are available in GAME_DIR.
   Existing argument-check skips remain; generated files are unchanged.
   Explicit main-base documentation checking passed in the earlier baseline;
   the latest full gate and staged snapshot checks passed.
@@ -143,8 +144,13 @@ An owner-approved history repair remains separate from this maintenance scope.
   https://github.com/kibertoad/refurbished-dinosaurs/issues/52#issuecomment-6062587659.
   The duplicate-checked independent PE transfer adapter suggestion is recorded at
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/26#issuecomment-6062932353.
+  The duplicate-checked physical body-classification diagnostic is tracked at
+  https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/369.
 - Next, after rechecking shared goal claims:
-  1. Q-EXE-009, FMT-EXE-006: continue producer/lifetime contracts and
+  1. Q-EXE-001, FMT-EXE-005: record the source-layout classifications from
+     overlay-bodies at b69bbdd and investigate anomalous analyzer-owned fragments
+     before replacing executable inventories or declaring denominator repair.
+  2. Q-EXE-009, FMT-EXE-006: continue producer/lifetime contracts and
      the remaining dependencies listed in its queue item toward the first
      qualifying complete-reading package. Check FND-EXE-056's bounded reader
      candidate against FND-EXE-165's inputs and FND-EXE-053's producers;
