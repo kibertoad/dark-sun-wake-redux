@@ -200,6 +200,7 @@ Next ID: Q-EXE-010
   FND-EXE-156 records guarded word equality with retained words, fresh byte inputs and later word D;
   FND-EXE-157 records guarded full equality with fresh d/n/v bytes and later full D;
   FND-EXE-158 records strict byte comparison, saved inputs and bounded partial-register mask work;
+  FND-EXE-159 records strict word comparison with retained words, fresh bytes and later word D;
   Runtime writers/other prefix effects, table/slot producers and remaining selected callee
   effects remain open. These bounded
   readings do not establish the complete shell outcome. Next: trace record
