@@ -1,9 +1,9 @@
 ---
-id: FND-EXE-181
-title: Shipped interpreter has a bounded two-service candidate matching the external provider source pattern
-status: superseded
+id: FND-EXE-182
+title: Shipped interpreter two-service candidate has distinct argument-consumer leads
+status: recorded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: [FND-EXE-182]
+superseded_by: []
 recorded_by: kibertoad
 reproduced_by: []
 method: static
@@ -32,8 +32,10 @@ argument cleanup. It lists no calls, interrupts or decoding gaps.
 
 The saved listing gives two positive references to the candidate address:
 stores of that address as a stack argument at `0x00568E96` and
-`0x0069A0E3`. Both are followed by a call to `0x004BDB20`. They are
-registration leads, not established callers or exhaustive reference results.
+`0x0069A0E3`. The first is followed by a call at `0x00568E9D` to
+`0x004BDB70`; the second by a call at `0x0069A0EA` to `0x004BDB20`.
+They are distinct consumer leads, not established callers or exhaustive
+reference results.
 The input word, output fields, stored dword producer, registration consumer
 and other references are not yet read completely.
 
@@ -49,6 +51,11 @@ field producers, registration and dispatch admission, live target identity
 and preservation. No complete-reading declaration follows.
 
 ## Alternatives
+
+This replaces FND-EXE-181, which incorrectly assigned both argument consumers
+to `0x004BDB20`. Bounded instruction context shows the first instead calls
+`0x004BDB70`. The two consumers cannot be treated as one registration path.
+The service-body observation is retained; no complete reading existed to preserve.
 
 A match of two constants alone would be circumstantial. The additional
 byte result and two-word split supply a narrower behavioral correspondence,
