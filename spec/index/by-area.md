@@ -152,6 +152,7 @@ Entries by area.
 | [FND-EXE-136](../findings/FND-EXE-136.md) | Three count-driven prefix selectors distinguish complementary counts and fresh word versus retained full-width comparisons | recorded |
 | [FND-EXE-137](../findings/FND-EXE-137.md) | Signed word and full-width prefix shifts share a fresh-count mask gate and unconditional high-mask clear | recorded |
 | [FND-EXE-138](../findings/FND-EXE-138.md) | Signed byte prefix shift retains its count and lookup input through the final mask gate | recorded |
+| [FND-EXE-139](../findings/FND-EXE-139.md) | Full-width logical prefix shift reloads its count for a one-count sign gate and final mask replacement | recorded |
 
 ## GFF
 

@@ -180,6 +180,7 @@ Next ID: Q-EXE-010
   FND-EXE-136 records complementary count gates and fresh-word versus full-width comparisons;
   FND-EXE-137 records signed word/full-width shifts and their fresh-count mask gate;
   FND-EXE-138 records the signed byte shift with retained count and lookup inputs;
+  FND-EXE-139 records full-width logical shift and fresh-count one/sign mask gates;
   Runtime writers/other prefix effects, table/slot producers and remaining selected callee
   effects remain open. These bounded
   readings do not establish the complete shell outcome. Next: trace record
