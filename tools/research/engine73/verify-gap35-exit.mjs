@@ -1,7 +1,8 @@
 import {readFileSync,writeFileSync} from 'node:fs';
 import {run} from '../../../node_modules/@scientific-method/executable-reader/dist/src/report.js';
 import assert from 'node:assert/strict';
-const root='C:/GOG Games/Dark Sun 2/analysis/reporter-audit/issue-response-review';
+const GAME_DIR=process.env.GAME_DIR;if(!GAME_DIR)throw new Error('Set GAME_DIR to the supported Dark Sun build.');
+const root=GAME_DIR+'/analysis/reporter-audit/issue-response-review';
 const c=JSON.parse(readFileSync(`${root}/gap35-scoped-setters730.json`));const r=JSON.parse(readFileSync(`${root}/gap35-scoped-setters730.report.json`));const site=r.argumentFrameSites.find(s=>s.callSite===434930);
 assert(!site.agreed&&site.widthsConsistent);assert.deepEqual(site.conflictingWidths,[]);
 for(const [offset,width] of [[0,4],[4,2],[6,4],[10,2]]) assert(site.readWidths.some(w=>w.offset===offset&&w.width===width&&w.fromCallerOnPaths.length>0));

@@ -1,6 +1,8 @@
 from pathlib import Path
 import json,xxhash
-p=Path('C:/GOG Games/Dark Sun 2/analysis/reporter-audit/issue5-transfer-mask100');b=Path('C:/GOG Games/Dark Sun 2/DSUN.EXE').read_bytes();assert xxhash.xxh3_128_hexdigest(b)=='e296af55ba2ecde7e77f555c90f33d0b'
+import os,sys
+GAME_DIR=os.environ.get('GAME_DIR') or sys.exit('Set GAME_DIR to the supported Dark Sun build.')
+p=Path(GAME_DIR+'/analysis/reporter-audit/issue5-transfer-mask100');b=Path(GAME_DIR+'/DSUN.EXE').read_bytes();assert xxhash.xxh3_128_hexdigest(b)=='e296af55ba2ecde7e77f555c90f33d0b'
 rows=[]
 for n in range(len(b)-1):
  if b[n:n+2]==bytes([0,0x14]):rows.append(n)

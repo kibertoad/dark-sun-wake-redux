@@ -1,7 +1,8 @@
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';import {resolve} from 'node:path';import assert from 'node:assert/strict';
 import {run} from '../../../node_modules/@scientific-method/executable-reader/dist/src/report.js';
+const GAME_DIR=process.env.GAME_DIR;if(!GAME_DIR)throw new Error('Set GAME_DIR to the supported Dark Sun build.');
 process.env.EVIDENCE_PYTHON=resolve('artifacts/evidence-python/Scripts/python.exe');
-const b='C:/GOG Games/Dark Sun 2/analysis/reporter-audit',d=`${b}/issue5-transfer-consumer-producer101`;mkdirSync(d,{recursive:true});
+const b=GAME_DIR+'/analysis/reporter-audit',d=`${b}/issue5-transfer-consumer-producer101`;mkdirSync(d,{recursive:true});
 const c=JSON.parse(readFileSync(`${b}/issue5-transfer-caller-graph101/actual.json`));
 c.entry=180389;c.regions.push({name:'documented-owned-literal-caller',start:179076,end:180627,segment:0x1000+Math.floor((179076-0x5200)/16),ip:(179076-0x5200)%16,entries:[179076,180389,180391],evidence:'Published resident consumer incoming ownership and source literal immediately preceding it; narrow entry is not proof of ancestor reachability'});
 c.relationalControls=[{name:'consumer-request-literal-value',kind:'relation',at:{site:139027,event:'checkpoint'},left:{field:'registers.di'},op:'eq',right:1},{name:'consumer-request-literal-origin',kind:'origin',at:{site:139027,event:'checkpoint'},value:{field:'registers.di'},expect:{producers:{include:[180389]}}}];

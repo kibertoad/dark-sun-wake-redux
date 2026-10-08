@@ -4,7 +4,9 @@ from collections import deque
 from capstone import Cs,CS_ARCH_X86,CS_MODE_16
 from capstone.x86_const import X86_OP_IMM
 import xxhash
-base=Path('C:/GOG Games/Dark Sun 2/analysis/reporter-audit/issue5-transfer-boundaries100')
+import os,sys
+GAME_DIR=os.environ.get('GAME_DIR') or sys.exit('Set GAME_DIR to the supported Dark Sun build.')
+base=Path(GAME_DIR+'/analysis/reporter-audit/issue5-transfer-boundaries100')
 c=json.loads((base/'documented-primitive.json').read_text());r=json.loads((base/'documented-primitive.report.json').read_text())
 data=Path(c['source']).read_bytes();assert xxhash.xxh3_128_hexdigest(data)==c['xxh3']
 start,end=0x154de,0x15853;ip=0x43ae;decoder=Cs(CS_ARCH_X86,CS_MODE_16);decoder.detail=True

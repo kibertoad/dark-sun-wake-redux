@@ -1,5 +1,6 @@
 ﻿import {readFileSync,writeFileSync,mkdirSync} from 'node:fs'; import {resolve} from 'node:path'; import assert from 'node:assert/strict'; import {run} from '../../../node_modules/@scientific-method/executable-reader/dist/src/report.js';
-process.env.EVIDENCE_PYTHON=resolve('artifacts/evidence-python/Scripts/python.exe'); const base='C:/GOG Games/Dark Sun 2/analysis/reporter-audit';const dir=`${base}/issue5-count91`;mkdirSync(dir,{recursive:true});
+const GAME_DIR=process.env.GAME_DIR;if(!GAME_DIR)throw new Error('Set GAME_DIR to the supported Dark Sun build.');
+process.env.EVIDENCE_PYTHON=resolve('artifacts/evidence-python/Scripts/python.exe'); const base=GAME_DIR+'/analysis/reporter-audit';const dir=`${base}/issue5-count91`;mkdirSync(dir,{recursive:true});
 const c=JSON.parse(readFileSync(`${base}/result-origin730/pair-connected.json`));c.callModels=[];c.entry=0x2fae3;
 const add=(name,start,end,segment,ip,evidence)=>c.regions.push({name,start,end,segment,ip,entries:[start],evidence});
 add('actual-list-caller',0x2fae3,0x2fd93,0x3a8e,3,'FND-CONFIG-173 complete list caller; counts/graph/aliases remain unknown');

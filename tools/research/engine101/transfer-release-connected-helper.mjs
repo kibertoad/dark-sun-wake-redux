@@ -1,7 +1,8 @@
 import {readFileSync,writeFileSync} from 'node:fs';import {resolve} from 'node:path';import assert from 'node:assert/strict';
 import {run} from '../../../node_modules/@scientific-method/executable-reader/dist/src/report.js';
+const GAME_DIR=process.env.GAME_DIR;if(!GAME_DIR)throw new Error('Set GAME_DIR to the supported Dark Sun build.');
 process.env.EVIDENCE_PYTHON=resolve('artifacts/evidence-python/Scripts/python.exe');
-const d='C:/GOG Games/Dark Sun 2/analysis/reporter-audit/issue5-transfer-release-callers101';
+const d=GAME_DIR+'/analysis/reporter-audit/issue5-transfer-release-callers101';
 const c=JSON.parse(readFileSync(`${d}/connected-producer-graph.json`));
 c.regions.push({name:'referenced-adjacent-helper',start:88147,end:88618,segment:0x1bf3,ip:0x4723,entries:[88147],evidence:'FND-CONFIG-185 identifies this service; inventory-adjacent window, source body and effects require published boundary checks; native inputs remain unknown'});
 for(const [name,q] of [['producer-helper-connected',c],['without-adjacent-helper',{...c,regions:c.regions.filter(r=>r.name!=='referenced-adjacent-helper')}],['without-request',{...c,regions:c.regions.filter(r=>r.name!=='documented-handle-request')}],['connected-one-instruction',{...c,instructionLimit:1}]]){

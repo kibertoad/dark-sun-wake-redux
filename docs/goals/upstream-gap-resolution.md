@@ -294,12 +294,12 @@ connected scope; no cap increase, repeated capped scan or state stitching.
   No unfinished tracked
   files. Synthetic capture readiness is fixed locally; template issue 73 has
   recovery evidence. The production capture helper is unchanged. Private new reports are in
-  UserContent/analysis/reporter-audit/heap-header-candidates101; prior reports remain
+  GAME_DIR/analysis/reporter-audit/heap-header-candidates101; prior reports remain
   in exact-heap101; prior lower reports remain
   in lower-heap101 and allocation reports
   in allocation-chain101, FONT entry reports in font-request101 and release reports
   in normalizer-release101. Private reports from engine 11 are in
-  UserContent/analysis/reporter-audit/upstream110.
+  GAME_DIR/analysis/reporter-audit/upstream110.
   The source and installed wheel bytes match.
   The setter census remains
   a bounded locator, not complete native writer coverage.

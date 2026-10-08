@@ -1,5 +1,6 @@
 import {readFileSync,writeFileSync} from 'node:fs';import {run} from '../../../node_modules/@scientific-method/executable-reader/dist/src/report.js';import assert from 'node:assert/strict';
-const root='C:/GOG Games/Dark Sun 2/analysis/reporter-audit/guard-order730';
+const GAME_DIR=process.env.GAME_DIR;if(!GAME_DIR)throw new Error('Set GAME_DIR to the supported Dark Sun build.');
+const root=GAME_DIR+'/analysis/reporter-audit/guard-order730';
 function q(name,c,command='guards'){const f=`${root}/${name}.json`;writeFileSync(f,JSON.stringify(c));const r=run([command,f]);writeFileSync(`${root}/${name}.report.json`,JSON.stringify(r));return r;}
 const m=JSON.parse(readFileSync(`${root}/metadata.json`));m.callModels=m.callModels.map(x=>({...x,cases:[{registers:{ax:0xffff,dx:0x1234}}],evidence:x.evidence+'; arbitrary rejected-result hypothesis, not native successful release'}));
 const metadata=q('metadata-rejection',m);assert.equal(metadata.gaps.length,0);assert.equal(metadata.paths.length,3);assert(metadata.paths.every(p=>p.returned));assert.equal(metadata.nativeReachability,'unconfirmed');

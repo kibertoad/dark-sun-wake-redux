@@ -9,9 +9,11 @@ p=Path('docs/IMPLEMENTATION-PLAN.md');s=p.read_text(encoding='utf-8');a=s.index(
 '''+s[z:];p.write_text(s,encoding='utf-8')
 import hashlib,json
 from capstone import Cs,CS_ARCH_X86,CS_MODE_16
-b=Path('C:/GOG Games/Dark Sun 2/DSUN.EXE').read_bytes();assert hashlib.sha256(b).hexdigest()=='ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c'
+import os,sys
+GAME_DIR=os.environ.get('GAME_DIR') or sys.exit('Set GAME_DIR to the supported Dark Sun build.')
+b=Path(GAME_DIR+'/DSUN.EXE').read_bytes();assert hashlib.sha256(b).hexdigest()=='ce02ee1f31c2339fc3e16926e370639af782a5ecd6c8a6081140fa23445fc92c'
 c=Cs(CS_ARCH_X86,CS_MODE_16);out=[]
 for name,start,end,seg,ip in [('replacement',0x33c0d,0x33c85,0x3d72,0x12ed),('before-service',0x334a4,0x336a3,0x3d72,0xb84),('after-service',0x33262,0x3347f,0x3d72,0x942)]:
  ins=list(c.disasm(b[start:end],start));assert sum(i.size for i in ins)==end-start,name
  out.append({'name':name,'start':start,'end':end,'segment':seg,'ip':ip,'entries':[start],'calls':[{'site':i.address,'target':i.op_str} for i in ins if i.mnemonic in ('call','lcall')],'guards':[i.address for i in ins if '0x332c' in i.op_str or '0x332e' in i.op_str]})
-Path('C:/GOG Games/Dark Sun 2/analysis/reporter-audit/result-origin730/width-wrapper-sites.json').write_text(json.dumps(out));print(json.dumps([{'name':r['name'],'calls':r['calls'],'guards':r['guards']} for r in out]))
+Path(GAME_DIR+'/analysis/reporter-audit/result-origin730/width-wrapper-sites.json').write_text(json.dumps(out));print(json.dumps([{'name':r['name'],'calls':r['calls'],'guards':r['guards']} for r in out]))

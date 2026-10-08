@@ -2,8 +2,10 @@ from pathlib import Path
 import json,xxhash
 from capstone import Cs,CS_ARCH_X86,CS_MODE_16
 from capstone.x86_const import X86_OP_IMM
-d=Path('C:/GOG Games/Dark Sun 2/analysis/reporter-audit/issue5-transfer-release-callers101')
-r=json.loads((d/'direct-release-producer-reading.json').read_text());b=Path('C:/GOG Games/Dark Sun 2/DSUN.EXE').read_bytes();assert xxhash.xxh3_128_hexdigest(b)=='e296af55ba2ecde7e77f555c90f33d0b'
+import os,sys
+GAME_DIR=os.environ.get('GAME_DIR') or sys.exit('Set GAME_DIR to the supported Dark Sun build.')
+d=Path(GAME_DIR+'/analysis/reporter-audit/issue5-transfer-release-callers101')
+r=json.loads((d/'direct-release-producer-reading.json').read_text());b=Path(GAME_DIR+'/DSUN.EXE').read_bytes();assert xxhash.xxh3_128_hexdigest(b)=='e296af55ba2ecde7e77f555c90f33d0b'
 m=Cs(CS_ARCH_X86,CS_MODE_16);m.detail=True;ins=list(m.disasm(b[91236:92484],91236));assert sum(i.size for i in ins)==1248
 edges={}
 for i in ins:

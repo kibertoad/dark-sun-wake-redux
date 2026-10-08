@@ -1,6 +1,7 @@
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';import {resolve} from 'node:path';import assert from 'node:assert/strict';import {run} from '../../../node_modules/@scientific-method/executable-reader/dist/src/report.js';
-process.env.EVIDENCE_PYTHON=resolve('artifacts/evidence-python/Scripts/python.exe');const d=resolve('UserContent/analysis/reporter-audit/font-request101');mkdirSync(d,{recursive:true});
-const b=JSON.parse(readFileSync('UserContent/analysis/reporter-audit/full-bracket-record101/full-bracket-record.json'));
+const GAME_DIR=process.env.GAME_DIR;if(!GAME_DIR)throw new Error('Set GAME_DIR to the supported Dark Sun build.');
+process.env.EVIDENCE_PYTHON=resolve('artifacts/evidence-python/Scripts/python.exe');const d=resolve(GAME_DIR+'/analysis/reporter-audit/font-request101');mkdirSync(d,{recursive:true});
+const b=JSON.parse(readFileSync(GAME_DIR+'/analysis/reporter-audit/full-bracket-record101/full-bracket-record.json'));
 const region=(name,start,end,segment,ip,evidence)=>({name,start,end,segment,ip,entries:[start],evidence});
 const regions=[region('font-request-preparation',192513,192598,0x39d1,0xf1,'FND-CONFIG-207 source preparation scope; no incoming frame or native admission'),region('acquisition-wrapper',189992,190107,0x38ff,0x438,'FND-CONFIG-208 complete wrapper'),region('archive-signature-helper',191934,191975,0x39a9,0x12e,'FND-CONFIG-208 complete signature helper'),region('shared-reader',190881,191430,0x38ff,0x7b1,'FND-CONFIG-038 bounded shared reader; transitive dependencies remain undeclared'),...b.regions.filter(r=>['actual-stack-guard','shared-cs-setter'].includes(r.name))];
 const writers=(name,site,expected)=>({name,kind:'lastWriter',at:{site,event:'checkpoint'},address:{segment:'ss',base:'sp',displacement:4,width:expected.length},byteWriters:expected.map(x=>[x])});

@@ -2,8 +2,10 @@ import json
 from pathlib import Path
 from capstone import Cs, CS_ARCH_X86, CS_MODE_16
 from capstone.x86 import X86_OP_REG
-root=Path('C:/GOG Games/Dark Sun 2/analysis/reporter-audit/issue5-poll-state-incoming100')
-b=Path('C:/GOG Games/Dark Sun 2/DSUN.EXE').read_bytes()
+import os,sys
+GAME_DIR=os.environ.get('GAME_DIR') or sys.exit('Set GAME_DIR to the supported Dark Sun build.')
+root=Path(GAME_DIR+'/analysis/reporter-audit/issue5-poll-state-incoming100')
+b=Path(GAME_DIR+'/DSUN.EXE').read_bytes()
 md=Cs(CS_ARCH_X86,CS_MODE_16); md.detail=True
 out=[]
 for start,end,site in [(0x22212,0x222ea,0x222c8),(0x222ea,0x2247d,0x223ed)]:

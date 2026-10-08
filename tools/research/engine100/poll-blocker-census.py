@@ -1,6 +1,8 @@
 import json
 from pathlib import Path
-base=Path('C:/GOG Games/Dark Sun 2/analysis/reporter-audit')
+import os,sys
+GAME_DIR=os.environ.get('GAME_DIR') or sys.exit('Set GAME_DIR to the supported Dark Sun build.')
+base=Path(GAME_DIR+'/analysis/reporter-audit')
 for name,relative in [('root','issue5-poll-callers100/aliased-caller-root-controls.report.json'),('exit-case','issue5-poll-progress100/bx-0.report.json'),('repeat-case','issue5-poll-progress100/bx-1.report.json')]:
  r=json.loads((base/relative).read_text());rows=[]
  for p in r['paths']:

@@ -997,7 +997,7 @@ unread callees, not higher bounds, fabricated inputs or harmless-return models.
 No game specification, parity status or other goal changes; all five full exits
 remain open. No new shared-tool defect is inferred from these stops.
 
-Private queries/reports: UserContent/analysis/reporter-audit/normalizer-root101.
+Private queries/reports: GAME_DIR/analysis/reporter-audit/normalizer-root101.
 Drivers: tools/research/engine101/normalizer-root.mjs and
 normalizer-root-controls.mjs. Bootstrap facts, pinned-rule verification,
 hash-verified published queries and positive/rejected/cap assertions passed.
@@ -1045,7 +1045,7 @@ flag/count/segment producers, unknown indirect targets, alias admission and
 complete compaction/caller paths remain dependencies; all five exits stay open.
 No game specification/parity changes or original runtime/emulation occurred.
 
-Private reports: UserContent/analysis/reporter-audit/normalizer-release101.
+Private reports: GAME_DIR/analysis/reporter-audit/normalizer-release101.
 Drivers: tools/research/engine101/normalizer-release.mjs;
 synthetic paired controls in cancelled-origin-repro.mjs and its directory.
 Bootstrap facts, pinned rules, hash-verified queries and source/synthetic

@@ -1,9 +1,10 @@
 import {readFileSync,writeFileSync} from 'node:fs';
 import {run} from './reader/node_modules/@scientific-method/executable-reader/dist/src/report.js';
 import assert from 'node:assert/strict';
-const local='C:/GOG Games/Dark Sun 2/analysis/reporter-audit/issue-response-review';
+const GAME_DIR=process.env.GAME_DIR;if(!GAME_DIR)throw new Error('Set GAME_DIR to the supported Dark Sun build.');
+const local=GAME_DIR+'/analysis/reporter-audit/issue-response-review';
 for(const name of ['gap35-register','gap35-consumer-conditional']) {
- const c=JSON.parse(readFileSync(`C:/GOG Games/Dark Sun 2/analysis/reporter-audit/${name}.json`));
+ const c=JSON.parse(readFileSync(`${GAME_DIR}/analysis/reporter-audit/${name}.json`));
  delete c.sha256;c.xxh3='e296af55ba2ecde7e77f555c90f33d0b';
  const file=`${local}/${name}.json`;writeFileSync(file,JSON.stringify(c));
  try {const r=run(['arguments',file]);writeFileSync(`${local}/${name}.report.json`,JSON.stringify(r));
@@ -14,7 +15,7 @@ const full=JSON.parse(readFileSync(`${local}/gap35-register.report.json`));
 const known=full.paths.flatMap(p=>p.argumentFrames??[]).filter(f=>f.callSite===434930);
 assert(known.length>0);assert(known.some(f=>f.groupings.some(g=>g.offset===6&&g.width===4)));
 assert(full.argumentFrameSites.find(s=>s.callSite===434930).agreed===false);
-const source='C:/GOG Games/Dark Sun 2/DSUN.EXE';
+const source=GAME_DIR+'/DSUN.EXE';
 const base={source,sourceKind:'mz',xxh3:'e296af55ba2ecde7e77f555c90f33d0b',returnBytes:4,instructionLimit:2000,maxSteps:200,maxPaths:16,totalSteps:5000,visitLimit:4,registers:{ds:0x57e0,ss:0x9000,sp:0xf000}};
 const consumer={name:'transfer',start:0x154de,end:0x15853,segment:0x1bf3,ip:0x43ae,entries:[0x154de],evidence:'FND-CONFIG-192 complete local body; unknown memory inputs'};
 const producer={name:'producer',start:0x1384b,end:0x138d7,segment:0x1bf3,ip:0x271b,entries:[0x1384b],evidence:'FND-CONFIG-193 complete initializer; no producer-consumer call edge inferred'};

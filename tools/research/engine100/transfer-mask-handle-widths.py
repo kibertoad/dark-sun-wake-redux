@@ -1,6 +1,8 @@
 import json
 from pathlib import Path
-p=Path('C:/GOG Games/Dark Sun 2/analysis/reporter-audit/issue5-transfer-mask100');rows=json.loads((p/'wrapper-validator-slot-reading.json').read_text());t={r['site']:r for r in rows}
+import os,sys
+GAME_DIR=os.environ.get('GAME_DIR') or sys.exit('Set GAME_DIR to the supported Dark Sun build.')
+p=Path(GAME_DIR+'/analysis/reporter-audit/issue5-transfer-mask100');rows=json.loads((p/'wrapper-validator-slot-reading.json').read_text());t={r['site']:r for r in rows}
 assert t[155960]['operands']=='di, word ptr [bp + 8]'
 assert t[155993]['operands']=='di' and t[155994]['operands']=='si'
 assert t[155963]['operands']=='si, si' and t[155967]['operands']=='di, di'

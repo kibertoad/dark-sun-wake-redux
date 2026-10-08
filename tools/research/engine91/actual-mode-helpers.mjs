@@ -1,5 +1,6 @@
 ﻿import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';import {resolve} from 'node:path';import assert from 'node:assert/strict';import {run} from '../../../node_modules/@scientific-method/executable-reader/dist/src/report.js';
-process.env.EVIDENCE_PYTHON=resolve('artifacts/evidence-python/Scripts/python.exe');const base='C:/GOG Games/Dark Sun 2/analysis/reporter-audit';const dir=`${base}/issue5-modes91`;mkdirSync(dir,{recursive:true});
+const GAME_DIR=process.env.GAME_DIR;if(!GAME_DIR)throw new Error('Set GAME_DIR to the supported Dark Sun build.');
+process.env.EVIDENCE_PYTHON=resolve('artifacts/evidence-python/Scripts/python.exe');const base=GAME_DIR+'/analysis/reporter-audit';const dir=`${base}/issue5-modes91`;mkdirSync(dir,{recursive:true});
 const c=JSON.parse(readFileSync(`${base}/issue5-startup91/actual-caller-checkpoint-fields.json`));const caller=c.regions.find(x=>x.name==='actual-startup-call-window');caller.end=0x676ad;caller.evidence+='; FND-CONFIG-149 following setup and00C0 boundaries';
 const add=(name,start,end,segment,ip,entries,evidence)=>c.regions.push({name,start,end,segment,ip,entries,evidence});
 add('zero-mode-reset',0x3dcef,0x3dd3a,0x4842,0x06cf,[0x3dcef,0x3dd30],'FND-CONFIG-155 complete reset and explicit overlapping IRET target; no external interrupt');

@@ -1,12 +1,13 @@
 // Rerun the recorded lower-heap acquisition/growth query (#302 consumer case) on engine 12.0.0.
-// Reads and writes only private reports under UserContent; prints neutral summaries.
+// Reads and writes only private reports under GAME_DIR; prints neutral summaries.
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { run } from '../../../node_modules/@scientific-method/executable-reader/dist/src/report.js';
+const GAME_DIR=process.env.GAME_DIR;if(!GAME_DIR)throw new Error('Set GAME_DIR to the supported Dark Sun build.');
 
 process.env.EVIDENCE_PYTHON = resolve('artifacts/evidence-python/Scripts/python.exe');
-const src = resolve('UserContent/analysis/reporter-audit/lower-heap101');
-const out = resolve('UserContent/analysis/reporter-audit/lower-heap120');
+const src = resolve(GAME_DIR+'/analysis/reporter-audit/lower-heap101');
+const out = resolve(GAME_DIR+'/analysis/reporter-audit/lower-heap120');
 mkdirSync(out, { recursive: true });
 const c = JSON.parse(readFileSync(`${src}/connected-controls.json`));
 const SHIFT_RETF = 22393;

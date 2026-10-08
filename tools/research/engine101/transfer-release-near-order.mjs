@@ -1,7 +1,8 @@
 import {readFileSync,writeFileSync} from 'node:fs';import {resolve} from 'node:path';import assert from 'node:assert/strict';
 import {run} from '../../../node_modules/@scientific-method/executable-reader/dist/src/report.js';
+const GAME_DIR=process.env.GAME_DIR;if(!GAME_DIR)throw new Error('Set GAME_DIR to the supported Dark Sun build.');
 process.env.EVIDENCE_PYTHON=resolve('artifacts/evidence-python/Scripts/python.exe');
-const b='C:/GOG Games/Dark Sun 2/analysis/reporter-audit',d=`${b}/issue5-transfer-release-callers101`;
+const b=GAME_DIR+'/analysis/reporter-audit',d=`${b}/issue5-transfer-release-callers101`;
 const c=JSON.parse(readFileSync(`${b}/issue5-transfer-caller-graph101/actual.json`));delete c.entry;delete c.relationalControls;
 const windows=JSON.parse(readFileSync(`${d}/near-caller-windows.json`));
 const owners=[...new Map(windows.map(w=>[w.start,w])).values()];

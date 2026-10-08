@@ -2,8 +2,9 @@
 import {resolve} from 'node:path';
 import assert from 'node:assert/strict';
 import {run} from '../../../node_modules/@scientific-method/executable-reader/dist/src/report.js';
+const GAME_DIR=process.env.GAME_DIR;if(!GAME_DIR)throw new Error('Set GAME_DIR to the supported Dark Sun build.');
 process.env.EVIDENCE_PYTHON=resolve('artifacts/evidence-python/Scripts/python.exe');
-const base='C:/GOG Games/Dark Sun 2/analysis/reporter-audit',dir=`${base}/issue5-refresh91`;mkdirSync(dir,{recursive:true});
+const base=GAME_DIR+'/analysis/reporter-audit',dir=`${base}/issue5-refresh91`;mkdirSync(dir,{recursive:true});
 const cfg=JSON.parse(readFileSync(`${base}/issue5-middle91/actual-middle-entry.json`));
 const add=(name,start,end,segment,ip,evidence)=>cfg.regions.push({name,start,end,segment,ip,entries:[start],evidence});
 add('actual-refresh-before',0x33705,0x33730,0x3d72,0x0de5,'FND-CONFIG-197 complete wrapper');

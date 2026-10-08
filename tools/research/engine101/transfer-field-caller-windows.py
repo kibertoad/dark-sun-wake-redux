@@ -1,10 +1,12 @@
 from pathlib import Path
 import bisect,json,xxhash
 from capstone import Cs,CS_ARCH_X86,CS_MODE_16
-b=Path('C:/GOG Games/Dark Sun 2/DSUN.EXE').read_bytes()
+import os,sys
+GAME_DIR=os.environ.get('GAME_DIR') or sys.exit('Set GAME_DIR to the supported Dark Sun build.')
+b=Path(GAME_DIR+'/DSUN.EXE').read_bytes()
 assert xxhash.xxh3_128_hexdigest(b)=='e296af55ba2ecde7e77f555c90f33d0b'
 starts=sorted(int(l.split('\t')[0].split('+')[1],16) for l in Path('coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv').read_text().splitlines() if l.startswith('DSUN.EXE+'))
-d=Path('C:/GOG Games/Dark Sun 2/analysis/reporter-audit/issue5-transfer-field-incoming101')
+d=Path(GAME_DIR+'/analysis/reporter-audit/issue5-transfer-field-incoming101')
 m=Cs(CS_ARCH_X86,CS_MODE_16);m.detail=True
 out=[]
 for site in [0x7df32,0x812e5,0x1cd08,0x283c1,0x2874f,0x2c0a7]:

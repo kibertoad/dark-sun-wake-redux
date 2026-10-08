@@ -13,7 +13,8 @@ configuration or report made from the original stays in `GAME_DIR`
 (documentation standard, How to reproduce). Some read the output of an earlier
 driver. Run one from the repository root with the locked tooling installed
 (`./tools/Restore-ToolDependencies.ps1`) and `GAME_DIR` pointing at the
-supported build.
+supported build; a driver stops with an error when `GAME_DIR` is unset. On a
+machine where `GAME_DIR` is set for another project, set it for the run.
 
 A finding never depends on one of these scripts alone: it states every value
 its result depends on.

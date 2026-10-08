@@ -1,7 +1,8 @@
 import {readFileSync,writeFileSync} from 'node:fs';import {resolve} from 'node:path';import assert from 'node:assert/strict';
 import {run} from '../../../node_modules/@scientific-method/executable-reader/dist/src/report.js';
+const GAME_DIR=process.env.GAME_DIR;if(!GAME_DIR)throw new Error('Set GAME_DIR to the supported Dark Sun build.');
 process.env.EVIDENCE_PYTHON=resolve('artifacts/evidence-python/Scripts/python.exe');
-const d='C:/GOG Games/Dark Sun 2/analysis/reporter-audit/issue5-transfer-field-incoming101';
+const d=GAME_DIR+'/analysis/reporter-audit/issue5-transfer-field-incoming101';
 const c=JSON.parse(readFileSync(`${d}/allocator-field-writer-actual.json`));
 c.regions=c.regions.filter(r=>r.name!=='caller-515384');c.searchRegions=['caller-528688'];
 c.regions.find(r=>r.name==='caller-528688').entries=[0x8126e];

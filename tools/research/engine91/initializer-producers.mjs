@@ -2,8 +2,9 @@
 import {resolve} from 'node:path';
 import assert from 'node:assert/strict';
 import {run} from '../../../node_modules/@scientific-method/executable-reader/dist/src/report.js';
+const GAME_DIR=process.env.GAME_DIR;if(!GAME_DIR)throw new Error('Set GAME_DIR to the supported Dark Sun build.');
 process.env.EVIDENCE_PYTHON=resolve('artifacts/evidence-python/Scripts/python.exe');
-const root='C:/GOG Games/Dark Sun 2/analysis/reporter-audit';const dir=`${root}/issue5-initializer91`;mkdirSync(dir,{recursive:true});
+const root=GAME_DIR+'/analysis/reporter-audit';const dir=`${root}/issue5-initializer91`;mkdirSync(dir,{recursive:true});
 const source=JSON.parse(readFileSync(`${root}/issue5-root91/documented-runtime-dependencies.json`));
 const c={source:source.source,sourceKind:'mz',xxh3:source.xxh3,returnBytes:4,entry:0x1384b,registers:{ss:0x9000,ds:0x57e0},maxSteps:2048,totalSteps:4096,maxPaths:2,visitLimit:255,regions:[{name:'graphics-pool-initializer',start:0x1384b,end:0x138d8,segment:0x1bf3,ip:0x271b,entries:[0x1384b],evidence:'FND-CONFIG-193 complete call-free body; fixed 254-iteration loop, source-bounded visit count; SS/DS are explicit conditional input registers, not native admission'}]};
 const query=(name,config)=>{const f=`${dir}/${name}.json`;writeFileSync(f,JSON.stringify(config));const r=run(['effects',f]);writeFileSync(`${dir}/${name}.report.json`,JSON.stringify(r));console.log(JSON.stringify({name,steps:r.stepsUsed,paths:r.paths.length,gaps:r.gaps,complete:r.completeWithinModel,stops:r.paths.map(p=>p.stop),controls:r.relationalControls?.controls.map(x=>({name:x.name,verdict:x.verdict,occurrences:x.occurrences,reasons:x.reasons}))}));return r;};

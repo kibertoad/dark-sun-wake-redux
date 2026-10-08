@@ -1,7 +1,8 @@
 import {readFileSync,writeFileSync} from 'node:fs';
 import {run} from '../../../node_modules/@scientific-method/executable-reader/dist/src/report.js';
 import assert from 'node:assert/strict';
-const root='C:/GOG Games/Dark Sun 2/analysis/reporter-audit/runtime-mode-controls';
+const GAME_DIR=process.env.GAME_DIR;if(!GAME_DIR)throw new Error('Set GAME_DIR to the supported Dark Sun build.');
+const root=GAME_DIR+'/analysis/reporter-audit/runtime-mode-controls';
 const read=name=>JSON.parse(readFileSync(`${root}/${name}.json`));
 function q(name,c){const f=`${root}/${name}.json`;writeFileSync(f,JSON.stringify(c));const r=run(['effects',f]);writeFileSync(`${root}/${name}.report.json`,JSON.stringify(r));return r;}
 const one=read('two-services');

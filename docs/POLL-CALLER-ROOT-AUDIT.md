@@ -484,7 +484,7 @@ or complete filename preservation. Neither the handler nor the original game
 was executed. No native claim, game specification or parity status changes.
 All five full exits remain open.
 
-Private configs/reports: UserContent/analysis/reporter-audit/file-state-snapshot101.
+Private configs/reports: GAME_DIR/analysis/reporter-audit/file-state-snapshot101.
 Driver: tools/research/engine101/file-state-snapshot.mjs.
 Bootstrap facts, offline pinned rules, hash-verified published source queries,
 positive relations and false/scopeless/unmodeled/cap negatives passed.
@@ -522,7 +522,7 @@ formatter bounds, later filename writes and original caller admission remain
 required for the complete handoff. No game specification or parity changes;
 all five full connected exits remain open.
 
-Private configs/reports: UserContent/analysis/reporter-audit/file-check-handoff101.
+Private configs/reports: GAME_DIR/analysis/reporter-audit/file-check-handoff101.
 Drivers: tools/research/engine101/file-check-handoff.mjs and
 file-check-handoff-controls.mjs. Bootstrap facts, offline pinned rules,
 hash-verified source queries, positive byte-writer/origin and false/omitted/cap

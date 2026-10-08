@@ -3,7 +3,9 @@ from pathlib import Path
 from capstone import Cs,CS_ARCH_X86,CS_MODE_16
 from capstone.x86_const import X86_OP_MEM
 import xxhash
-p=Path('C:/GOG Games/Dark Sun 2/analysis/reporter-audit/issue5-transfer-boundaries100')
+import os,sys
+GAME_DIR=os.environ.get('GAME_DIR') or sys.exit('Set GAME_DIR to the supported Dark Sun build.')
+p=Path(GAME_DIR+'/analysis/reporter-audit/issue5-transfer-boundaries100')
 c=json.loads((p/'documented-primitive.json').read_text());data=Path(c['source']).read_bytes();assert xxhash.xxh3_128_hexdigest(data)==c['xxh3']
 md=Cs(CS_ARCH_X86,CS_MODE_16);md.detail=True
 matches=[]

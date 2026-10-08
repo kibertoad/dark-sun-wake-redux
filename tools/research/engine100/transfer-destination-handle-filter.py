@@ -2,7 +2,9 @@ from pathlib import Path
 import json,bisect
 from capstone import Cs,CS_ARCH_X86,CS_MODE_16
 from capstone.x86_const import X86_OP_MEM
-p=Path('C:/GOG Games/Dark Sun 2/analysis/reporter-audit/issue5-transfer-mask100');b=Path('C:/GOG Games/Dark Sun 2/DSUN.EXE').read_bytes();starts=[int(l.split('\t')[0].split('+')[1],16) for l in Path('coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv').read_text().splitlines() if l.startswith('DSUN.EXE+')];sites=json.loads((p/'destination-handle-literal-candidates.json').read_text())['sites'];m=Cs(CS_ARCH_X86,CS_MODE_16);m.detail=True;out=[]
+import os,sys
+GAME_DIR=os.environ.get('GAME_DIR') or sys.exit('Set GAME_DIR to the supported Dark Sun build.')
+p=Path(GAME_DIR+'/analysis/reporter-audit/issue5-transfer-mask100');b=Path(GAME_DIR+'/DSUN.EXE').read_bytes();starts=[int(l.split('\t')[0].split('+')[1],16) for l in Path('coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv').read_text().splitlines() if l.startswith('DSUN.EXE+')];sites=json.loads((p/'destination-handle-literal-candidates.json').read_text())['sites'];m=Cs(CS_ARCH_X86,CS_MODE_16);m.detail=True;out=[]
 for c in sites:
  k=bisect.bisect_right(starts,c)-1
  if k<0 or k+1>=len(starts):continue

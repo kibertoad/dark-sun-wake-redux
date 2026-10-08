@@ -3,7 +3,9 @@ from pathlib import Path
 from collections import deque
 from capstone import Cs,CS_ARCH_X86,CS_MODE_16
 from capstone.x86 import X86_OP_IMM
-p=Path('C:/GOG Games/Dark Sun 2/analysis/reporter-audit/issue5-poll-state-incoming100');b=Path('C:/GOG Games/Dark Sun 2/DSUN.EXE').read_bytes();md=Cs(CS_ARCH_X86,CS_MODE_16);md.detail=True
+import os,sys
+GAME_DIR=os.environ.get('GAME_DIR') or sys.exit('Set GAME_DIR to the supported Dark Sun build.')
+p=Path(GAME_DIR+'/analysis/reporter-audit/issue5-poll-state-incoming100');b=Path(GAME_DIR+'/DSUN.EXE').read_bytes();md=Cs(CS_ARCH_X86,CS_MODE_16);md.detail=True
 out=[]
 for start,end,consumer,producers in [(139794,140010,139976,{139947}),(140010,140413,140269,{140107,140147,140197})]:
  ins=list(md.disasm(b[start:end],start));assert sum(i.size for i in ins)==end-start

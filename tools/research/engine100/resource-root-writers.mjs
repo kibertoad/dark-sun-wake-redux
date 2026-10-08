@@ -3,8 +3,9 @@ import {resolve} from 'node:path';
 import assert from 'node:assert/strict';
 import {run,sourceXxh3} from '../../../node_modules/@scientific-method/executable-reader/dist/src/report.js';
 import {readMz} from '../../../node_modules/@scientific-method/executable-reader/dist/src/legacy-image.js';
+const GAME_DIR=process.env.GAME_DIR;if(!GAME_DIR)throw new Error('Set GAME_DIR to the supported Dark Sun build.');
 process.env.EVIDENCE_PYTHON=resolve('artifacts/evidence-python/Scripts/python.exe');
-const source='C:/GOG Games/Dark Sun 2/DSUN.EXE',bytes=readFileSync(source),image=readMz(bytes),dir='C:/GOG Games/Dark Sun 2/analysis/reporter-audit/issue5-resource-root100';mkdirSync(dir,{recursive:true});
+const source=GAME_DIR+'/DSUN.EXE',bytes=readFileSync(source),image=readMz(bytes),dir=GAME_DIR+'/analysis/reporter-audit/issue5-resource-root100';mkdirSync(dir,{recursive:true});
 const rows=readFileSync('coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv','utf8').trim().split(/\r?\n/).slice(1).map(line=>{const [a,s]=line.split('\t');return {start:Number(a.split('+')[1]),size:Number(s)}});
 const regions=[],excluded=[];
 for(const {start,size} of rows){const end=start+size,container=image.ranges.find(r=>start>=r.start&&end<=r.end);if(!container){excluded.push({start,size,reason:'outside one source container'});continue;}let segment,ip;if(container.view==='resident'){segment=image.loadSegment+Math.floor((start-image.header)/16);ip=(start-image.header)%16;}else{const o=image.overlays.find(o=>o.start===container.start);segment=image.loadSegment+image.descriptors[o.descriptor].segment;ip=start-o.start;}if(ip+size>65536){excluded.push({start,size,reason:'analysis instruction boundary'});continue;}regions.push({name:`inventory-${start}`,start,end,segment,ip,entries:[start],evidence:'committed function inventory entry/bounds; MZ resident or source descriptor analysis view only'});}

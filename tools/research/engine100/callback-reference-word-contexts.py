@@ -1,7 +1,9 @@
 from pathlib import Path
 import json,bisect
 from capstone import Cs,CS_ARCH_X86,CS_MODE_16
-p=Path('C:/GOG Games/Dark Sun 2/analysis/reporter-audit/issue5-callback-reference-forms100');c=json.loads((p/'reference-form-census.json').read_text());b=Path('C:/GOG Games/Dark Sun 2/DSUN.EXE').read_bytes();starts=[int(l.split('\t')[0].split('+')[1],16) for l in Path('coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv').read_text().splitlines() if l.startswith('DSUN.EXE+')];m=Cs(CS_ARCH_X86,CS_MODE_16);rows=[]
+import os,sys
+GAME_DIR=os.environ.get('GAME_DIR') or sys.exit('Set GAME_DIR to the supported Dark Sun build.')
+p=Path(GAME_DIR+'/analysis/reporter-audit/issue5-callback-reference-forms100');c=json.loads((p/'reference-form-census.json').read_text());b=Path(GAME_DIR+'/DSUN.EXE').read_bytes();starts=[int(l.split('\t')[0].split('+')[1],16) for l in Path('coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv').read_text().splitlines() if l.startswith('DSUN.EXE+')];m=Cs(CS_ARCH_X86,CS_MODE_16);rows=[]
 for site in c['writerOffsetWordCandidates']:
  k=bisect.bisect_right(starts,site)-1
  if k<0 or k+1>=len(starts):continue

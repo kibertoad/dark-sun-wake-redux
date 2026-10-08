@@ -2,8 +2,9 @@
 import assert from 'node:assert/strict';
 import {resolve} from 'node:path';
 import {run} from '../../../node_modules/@scientific-method/executable-reader/dist/src/report.js';
+const GAME_DIR=process.env.GAME_DIR;if(!GAME_DIR)throw new Error('Set GAME_DIR to the supported Dark Sun build.');
 process.env.EVIDENCE_PYTHON=resolve('artifacts/evidence-python/Scripts/python.exe');
-const base='C:/GOG Games/Dark Sun 2/analysis/reporter-audit';const dir=`${base}/issue5-producers91`;mkdirSync(dir,{recursive:true});
+const base=GAME_DIR+'/analysis/reporter-audit';const dir=`${base}/issue5-producers91`;mkdirSync(dir,{recursive:true});
 const c=JSON.parse(readFileSync(`${base}/issue5-root91/documented-runtime-dependencies.json`));
 delete c.entryFrame;c.entry=c.regions.find(x=>x.name==='caller').start;c.relationalControls=[];
 c.callModels[0].cases=[{registers:{bx:0}}];

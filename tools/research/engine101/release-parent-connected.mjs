@@ -1,8 +1,9 @@
 ﻿import {readFileSync,writeFileSync} from 'node:fs';import {resolve} from 'node:path';import assert from 'node:assert/strict';
 import {run} from '../../../node_modules/@scientific-method/executable-reader/dist/src/report.js';
+const GAME_DIR=process.env.GAME_DIR;if(!GAME_DIR)throw new Error('Set GAME_DIR to the supported Dark Sun build.');
 process.env.EVIDENCE_PYTHON=resolve('artifacts/evidence-python/Scripts/python.exe');
-const d=resolve('UserContent/analysis/reporter-audit/release-arguments101');
-const c=JSON.parse(readFileSync('UserContent/analysis/reporter-audit/release-prefix101/prefix-ds.json'));
+const d=resolve(GAME_DIR+'/analysis/reporter-audit/release-arguments101');
+const c=JSON.parse(readFileSync(GAME_DIR+'/analysis/reporter-audit/release-prefix101/prefix-ds.json'));
 c.entry=93710;c.regions.push({name:'actual-parent-prefix-helper',start:93532,end:93710,segment:0x1bf3,ip:93532-0x11130,entries:[93532],evidence:'Bounded source call-free body ending in far return; native object/reference admission remains unknown'},{name:'source-local-parent-window',start:93710,end:94018,segment:0x1bf3,ip:93710-0x11130,entries:[93710],evidence:'Owned caller local scope, not complete native ancestor entry admission'});
 c.relationalControls=[{name:'parent-reaches-corrected-prologue',kind:'relation',at:{site:91372,event:'checkpoint'},left:{field:'registers.ds'},op:'eq',right:0x1bf3},{name:'caller-zero-word-consumed',kind:'relation',at:{site:91544,event:'checkpoint'},left:{field:'registers.ax'},op:'eq',right:0},{name:'caller-zero-word-origin',kind:'origin',at:{site:91544,event:'checkpoint'},value:{field:'registers.ax'},expect:{producers:{include:[93824]}}}];
 for(const [name,command,q] of [['parent-graph','callees',{...c,relationalControls:undefined}],['parent-connected','trace',c],['parent-without-helper','trace',{...c,regions:c.regions.filter(r=>r.name!=='actual-parent-prefix-helper')}],['parent-one-step','trace',{...c,maxSteps:1}]]){

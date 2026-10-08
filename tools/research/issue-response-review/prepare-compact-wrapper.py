@@ -1,5 +1,5 @@
 from pathlib import Path
-folder=Path('C:/GOG Games/Dark Sun 2/analysis/reporter-audit/compact-wrapper-controls')
+folder=Path(GAME_DIR+'/analysis/reporter-audit/compact-wrapper-controls')
 folder.mkdir(exist_ok=True)
 script=r'''
 import {readFileSync,writeFileSync} from 'node:fs';
@@ -9,11 +9,13 @@ import {syncBuiltinESMExports} from 'node:module';
 import assert from 'node:assert/strict';
 import {run as oldRun} from 'file:///C:/sources/dark-sun-wake-redux/artifacts/protocol3-delivery/node_modules/@scientific-method/executable-reader/dist/src/report.js';
 import {run as newRun} from 'file:///C:/sources/dark-sun-wake-redux/artifacts/issue-response-review/reader/node_modules/@scientific-method/executable-reader/dist/src/report.js';
+import os,sys
+GAME_DIR=os.environ.get('GAME_DIR') or sys.exit('Set GAME_DIR to the supported Dark Sun build.')
 assert(!process.env.PYTHONPATH);
 const rawSpawn=cp.spawnSync,wire=[];
 cp.spawnSync=(...args)=>{const r=rawSpawn(...args);wire.push({python:args[0],command:args[1][3],bytes:Buffer.byteLength(r.stdout??''),limit:args[2]?.maxBuffer,error:r.error?.code,status:r.status});return r;};
 syncBuiltinESMExports();
-const sourceRoot='C:/GOG Games/Dark Sun 2/analysis/reporter-audit/coordinate-gates/';
+const sourceRoot=GAME_DIR+'/analysis/reporter-audit/coordinate-gates/';
 const source=JSON.parse(readFileSync(sourceRoot+'wrapper-rejected-unread-services.json','utf8'));
 const complete=JSON.parse(readFileSync(sourceRoot+'validator-traced-getters.json','utf8'));
 assert.equal(source.entry,0x26130);assert(source.callModels.length===0);

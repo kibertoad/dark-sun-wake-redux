@@ -190,7 +190,7 @@ far-frame controls return. Toolkit issue 302 remains an open capability request.
 
 All five complete connected-evidence exits remain open. No game specification,
 parity or original-content contract changed; no original/emulated game ran.
-Private original reports: UserContent/analysis/reporter-audit/upstream110.
+Private original reports: GAME_DIR/analysis/reporter-audit/upstream110.
 Drivers: tools/research/engine110/.
 
 ## Engine 12 frame-conversion adoption, 2026-10-06
@@ -221,6 +221,6 @@ synthetic reproduction and asks for a per-path stop. No bound was raised.
 Toolkit issue 302 is confirmed and closed. All five complete
 connected-evidence exits remain open. No game specification, parity or
 original-content contract changed; no original or emulated game ran.
-Private original reports: UserContent/analysis/reporter-audit/lower-heap120.
+Private original reports: GAME_DIR/analysis/reporter-audit/lower-heap120.
 Drivers: tools/research/engine120/. The canonical gate was run assetless, with
 the machine-wide GAME_DIR and NoDefaultCurrentDirectoryInExePath unset.

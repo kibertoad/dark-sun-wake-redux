@@ -1,7 +1,8 @@
 ﻿import {readFileSync,writeFileSync} from 'node:fs';import {resolve} from 'node:path';import assert from 'node:assert/strict';
 import {run} from '../../../node_modules/@scientific-method/executable-reader/dist/src/report.js';
+const GAME_DIR=process.env.GAME_DIR;if(!GAME_DIR)throw new Error('Set GAME_DIR to the supported Dark Sun build.');
 process.env.EVIDENCE_PYTHON=resolve('artifacts/evidence-python/Scripts/python.exe');
-const d=resolve('UserContent/analysis/reporter-audit/release-prefix101');const c=JSON.parse(readFileSync(`${d}/prologue-trace.json`));
+const d=resolve(GAME_DIR+'/analysis/reporter-audit/release-prefix101');const c=JSON.parse(readFileSync(`${d}/prologue-trace.json`));
 c.relationalControls.unshift({name:'prologue-ds-selection',kind:'relation',at:{site:91372,event:'checkpoint'},left:{field:'registers.ds'},op:'eq',right:0x1bf3});
 for(const [name,q] of [['prefix-ds',c],['prefix-wrong-ds',{...c,relationalControls:[{...c.relationalControls[0],right:0x57e0}]}],['prefix-one-step',{...c,maxSteps:1}]]){
  const f=`${d}/${name}.json`;writeFileSync(f,JSON.stringify(q));let r;

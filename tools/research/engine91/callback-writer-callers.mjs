@@ -2,8 +2,9 @@
 import {resolve} from 'node:path';
 import assert from 'node:assert/strict';
 import {run} from '../../../node_modules/@scientific-method/executable-reader/dist/src/report.js';
+const GAME_DIR=process.env.GAME_DIR;if(!GAME_DIR)throw new Error('Set GAME_DIR to the supported Dark Sun build.');
 process.env.EVIDENCE_PYTHON=resolve('artifacts/evidence-python/Scripts/python.exe');
-const base='C:/GOG Games/Dark Sun 2/analysis/reporter-audit',dir=`${base}/issue5-writer-callers91`;mkdirSync(dir,{recursive:true});
+const base=GAME_DIR+'/analysis/reporter-audit',dir=`${base}/issue5-writer-callers91`;mkdirSync(dir,{recursive:true});
 const owner=JSON.parse(readFileSync(`${base}/issue5-writers91/field-41241-batch-6.json`));
 const writer=owner.regions.find(r=>r.start===209409);assert(writer);
 const cfg={source:owner.source,sourceKind:owner.sourceKind,xxh3:owner.xxh3,regions:[writer,{name:'actual-stack-guard',start:0x8048,end:0x805a,segment:0x1000,ip:0x2e48,entries:[0x8048],evidence:'FND-CONFIG-163 actual guard'}],entry:209409,registers:{ds:0x57e0,ss:0x9000},maxSteps:64,maxPaths:4,totalSteps:256,visitLimit:4,returnBytes:4};

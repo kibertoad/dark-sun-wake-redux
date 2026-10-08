@@ -1,7 +1,8 @@
 import {readFileSync,writeFileSync} from 'node:fs';import {resolve} from 'node:path';import assert from 'node:assert/strict';
 import {run} from '../../../node_modules/@scientific-method/executable-reader/dist/src/report.js';
+const GAME_DIR=process.env.GAME_DIR;if(!GAME_DIR)throw new Error('Set GAME_DIR to the supported Dark Sun build.');
 process.env.EVIDENCE_PYTHON=resolve('artifacts/evidence-python/Scripts/python.exe');
-const b='C:/GOG Games/Dark Sun 2/analysis/reporter-audit',d=`${b}/issue5-transfer-release-callers101`;
+const b=GAME_DIR+'/analysis/reporter-audit',d=`${b}/issue5-transfer-release-callers101`;
 const base=JSON.parse(readFileSync(`${d}/actual-near-callers.json`));delete base.target;delete base.searchRegions;
 const reading=JSON.parse(readFileSync(`${d}/direct-release-producer-reading.json`));
 base.regions=base.regions.filter(r=>r.start===91236);

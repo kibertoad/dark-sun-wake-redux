@@ -2,8 +2,9 @@
 import {resolve} from 'node:path';
 import assert from 'node:assert/strict';
 import {run} from '../../../node_modules/@scientific-method/executable-reader/dist/src/report.js';
+const GAME_DIR=process.env.GAME_DIR;if(!GAME_DIR)throw new Error('Set GAME_DIR to the supported Dark Sun build.');
 process.env.EVIDENCE_PYTHON=resolve('artifacts/evidence-python/Scripts/python.exe');
-const dir='C:/GOG Games/Dark Sun 2/analysis/reporter-audit/issue5-writers91';
+const dir=GAME_DIR+'/analysis/reporter-audit/issue5-writers91';
 const summary=JSON.parse(readFileSync(`${dir}/summary.json`));const owner=summary.summaries.find(s=>s.field===0xa119&&s.candidates.some(c=>c.site===209427));assert(owner);
 const base=JSON.parse(readFileSync(`${dir}/field-${owner.field}-batch-${owner.batch}.json`));
 const query=(name,cfg)=>{const file=`${dir}/${name}.json`;writeFileSync(file,JSON.stringify(cfg));const r=run(['operand-candidates',file]);writeFileSync(`${dir}/${name}.report.json`,JSON.stringify(r));console.log(JSON.stringify({name,partial:r.partialSearch,truncated:r.truncated,counts:r.counts,controlSites:r.controls}));return r;};

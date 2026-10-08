@@ -3,7 +3,9 @@ from pathlib import Path
 from capstone import Cs,CS_ARCH_X86,CS_MODE_16
 from capstone.x86_const import X86_OP_MEM,X86_OP_IMM
 import xxhash
-p=Path('C:/GOG Games/Dark Sun 2/analysis/reporter-audit/issue5-poll-cfg100')
+import os,sys
+GAME_DIR=os.environ.get('GAME_DIR') or sys.exit('Set GAME_DIR to the supported Dark Sun build.')
+p=Path(GAME_DIR+'/analysis/reporter-audit/issue5-poll-cfg100')
 md=Cs(CS_ARCH_X86,CS_MODE_16);md.detail=True
 for root in [558273,558369,241092]:
  c=json.loads((p/f'{root}.json').read_text());r=json.loads((p/f'{root}.report.json').read_text());data=Path(c['source']).read_bytes();assert xxhash.xxh3_128_hexdigest(data)==c['xxh3'];region=c['regions'][0]

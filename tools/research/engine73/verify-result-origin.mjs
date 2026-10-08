@@ -1,5 +1,6 @@
 import {readFileSync,writeFileSync} from 'node:fs';import {run} from '../../../node_modules/@scientific-method/executable-reader/dist/src/report.js';import assert from 'node:assert/strict';
-const root='C:/GOG Games/Dark Sun 2/analysis/reporter-audit/result-origin730';
+const GAME_DIR=process.env.GAME_DIR;if(!GAME_DIR)throw new Error('Set GAME_DIR to the supported Dark Sun build.');
+const root=GAME_DIR+'/analysis/reporter-audit/result-origin730';
 for(const ax of [65535,0]){
  const c=JSON.parse(readFileSync(`${root}/recursive-${ax}.json`));const r=JSON.parse(readFileSync(`${root}/recursive-${ax}.report.json`));assert(!r.completeWithinModel);assert(r.gaps.length>0);assert(r.paths.some(p=>p.stop));assert.equal(r.nativeReachability,'unconfirmed');
  const leaves=r.paths.filter(p=>p.returned&&!p.returnFlows.results.some(f=>f.callSite===203614));assert(leaves.length>0);assert(leaves.every(p=>p.registers.ax.value===0));

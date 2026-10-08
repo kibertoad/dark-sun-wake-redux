@@ -1,5 +1,6 @@
 import {readFileSync,writeFileSync} from 'node:fs';import {resolve} from 'node:path';import {run} from '../../../node_modules/@scientific-method/executable-reader/dist/src/report.js';
+const GAME_DIR=process.env.GAME_DIR;if(!GAME_DIR)throw new Error('Set GAME_DIR to the supported Dark Sun build.');
 process.env.EVIDENCE_PYTHON=resolve('artifacts/evidence-python/Scripts/python.exe');
-const b='C:/GOG Games/Dark Sun 2/analysis/reporter-audit',d=`${b}/issue5-transfer-boundaries100`;
+const b=GAME_DIR+'/analysis/reporter-audit',d=`${b}/issue5-transfer-boundaries100`;
 const c=JSON.parse(readFileSync(`${b}/issue5-transfer-continuation100/actual-caller-request.json`));c.entry=0x26130;c.regions=c.regions.filter(r=>['transfer-wrapper','coordinate-validator','graphics-primitive'].includes(r.name)||r.name.startsWith('getter-'));
 delete c.relationalControls;const f=`d`.replace('d',`${d}/wrapper-callees.json`);writeFileSync(f,JSON.stringify(c));const r=run(['callees',f]);writeFileSync(`${d}/wrapper-callees.report.json`,JSON.stringify(r));console.log(JSON.stringify(r));

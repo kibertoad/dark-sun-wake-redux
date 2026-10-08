@@ -1,7 +1,8 @@
 import {readFileSync,writeFileSync} from 'node:fs';import {resolve} from 'node:path';
 import {run} from '../../../node_modules/@scientific-method/executable-reader/dist/src/report.js';
+const GAME_DIR=process.env.GAME_DIR;if(!GAME_DIR)throw new Error('Set GAME_DIR to the supported Dark Sun build.');
 process.env.EVIDENCE_PYTHON=resolve('artifacts/evidence-python/Scripts/python.exe');
-const b='C:/GOG Games/Dark Sun 2/analysis/reporter-audit',d=`${b}/issue5-transfer-release-callers101`;
+const b=GAME_DIR+'/analysis/reporter-audit',d=`${b}/issue5-transfer-release-callers101`;
 const c=JSON.parse(readFileSync(`${d}/producer-request-return-order.json`));delete c.target;delete c.searchRegions;c.entry=91236;
 const core=JSON.parse(readFileSync(`${b}/issue5-transfer-caller-graph101/actual.json`));
 c.regions.push(...core.regions.filter(r=>['graphics-primitive','documented-release-service'].includes(r.name)),{name:'documented-slot-allocator',start:80088,end:80221,segment:0x1bf3,ip:0x27a8,entries:[80088],evidence:'FND-CONFIG-183 complete allocator; native admission remains unknown'});

@@ -1,5 +1,6 @@
 ﻿import {readFileSync,writeFileSync,mkdirSync} from 'node:fs'; import {resolve} from 'node:path'; import assert from 'node:assert/strict'; import {run} from '../../../node_modules/@scientific-method/executable-reader/dist/src/report.js';
-process.env.EVIDENCE_PYTHON=resolve('artifacts/evidence-python/Scripts/python.exe'); const base='C:/GOG Games/Dark Sun 2/analysis/reporter-audit'; const dir=`${base}/issue5-recursion91`; mkdirSync(dir,{recursive:true});
+const GAME_DIR=process.env.GAME_DIR;if(!GAME_DIR)throw new Error('Set GAME_DIR to the supported Dark Sun build.');
+process.env.EVIDENCE_PYTHON=resolve('artifacts/evidence-python/Scripts/python.exe'); const base=GAME_DIR+'/analysis/reporter-audit'; const dir=`${base}/issue5-recursion91`; mkdirSync(dir,{recursive:true});
 const c=JSON.parse(readFileSync(`${base}/result-origin730/recursive-65535.json`)); for(const m of c.callModels)m.preservesMemory=[{segment:'ss',base:'sp',bytes:32,evidence:'Conditional existing caller stack/arguments at pre-call SP upward; excludes processor-written return frame; unknown graph and native alias admission'}];
 c.regions.push({name:'actual-selector',start:0x310ff,end:0x311aa,segment:0x3ba6,ip:0x049f,entries:[0x310ff],evidence:'FND-CONFIG-172 complete selector; named MENU caller supplies word one; count/length memory remains unknown'});
 c.callModels=c.callModels.filter(x=>x.site!==203585);

@@ -33,7 +33,7 @@ workaround, fabricated SP or higher bound is introduced. Retry the wrapper only
 with new producer/alias evidence or a delivered capability addressing this
 specific limit; all five full exits remain open.
 
-Private wrapper queries/reports: UserContent/analysis/reporter-audit/callback-actual-before101.
+Private wrapper queries/reports: GAME_DIR/analysis/reporter-audit/callback-actual-before101.
 Driver: tools/research/engine101/callback-actual-before.mjs. Synthetic
 reproduction: tools/research/engine101/unread-disjoint-repro.mjs.
 No original execution or emulation, game specification or parity change.
@@ -70,7 +70,7 @@ conditional local route without joining either bracket to an actual callback
 or the stopped transfer parent. Native callback targets/effects, current-record
 producers, later replacements and guard outcomes remain dependencies.
 
-Private queries/reports: UserContent/analysis/reporter-audit/full-before-bracket101.
+Private queries/reports: GAME_DIR/analysis/reporter-audit/full-before-bracket101.
 Drivers: tools/research/engine101/full-before-bracket.mjs and
 full-before-footprint.mjs. No original game or emulated function ran; no game
 specification, parity status or other goal changed. All five full exits remain
@@ -116,7 +116,7 @@ is that actual incoming callback/parent route and its current-record producers,
 with guard-path qualification retained.
 
 Private configs and reports are in
-UserContent/analysis/reporter-audit/full-bracket-record101. Drivers are
+GAME_DIR/analysis/reporter-audit/full-bracket-record101. Drivers are
 tools/research/engine101/full-bracket-record-controls.mjs and
 full-bracket-footprint.mjs. No native field memory,
 preservation model, joined windows or higher unresolved-query limits were
@@ -165,7 +165,7 @@ unresolved bounds were supplied. No game spec, parity status or other goal's
 entries change; all five full connected exits remain open.
 
 Private contexts, configs, reports and rejected controls are in
-UserContent/analysis/reporter-audit/stored-pointer-producer101. Drivers
+GAME_DIR/analysis/reporter-audit/stored-pointer-producer101. Drivers
 are tools/research/engine101/stored-pointer-producer-reading.py,
 stored-pointer-producer-controls.mjs, stored-pointer-bracket-order.mjs and
 stored-pointer-write-order.mjs.
@@ -208,7 +208,7 @@ replacement ordering, alongside later shared-pointer writers and callback
 effects. No fixed record state is imported into the stopped parent query.
 
 Private census, source contexts, configs, reports and rejected controls are in
-UserContent/analysis/reporter-audit/shared-setter101. Drivers are
+GAME_DIR/analysis/reporter-audit/shared-setter101. Drivers are
 tools/research/engine101/shared-setter-incoming.mjs, shared-setter-contexts.py,
 shared-setter-body.py, shared-setter-controls.mjs and
 shared-setter-saved-negatives.mjs. Existing traversal limits
@@ -260,7 +260,7 @@ were used. Parent native-entry admission remains unverified. All five full
 exits remain open; no game spec, parity status or other goal's entries change.
 
 Private source contexts, configs and reports are in
-UserContent/analysis/reporter-audit/release-arguments101. Drivers
+GAME_DIR/analysis/reporter-audit/release-arguments101. Drivers
 are tools/research/engine101/release-arguments-reading.py and
 release-parent-connected.mjs.
 
@@ -314,7 +314,7 @@ The next dependencies are actual caller arguments, reference/flag producers
 and justified prefix coverage, rather than an invented state or larger limit.
 
 Private source contexts, incoming searches, configs and reports are retained
-in UserContent/analysis/reporter-audit/release-prefix101. Drivers
+in GAME_DIR/analysis/reporter-audit/release-prefix101. Drivers
 are tools/research/engine101/release-prefix-reading.py, release-entry-reading.py,
 release-prefix-controls.mjs and release-prefix-ds-controls.mjs.
 This corrects tooling acceptance only; no game spec, parity status or other
@@ -1118,8 +1118,8 @@ before attempting request-return field history. Do not repeat this whole-root
 query with larger bounds, substitute a later entry for the missing prefix, or
 infer storage identity from source-local segment placement. No game finding,
 spec status, parity row or native behavior claim changes; all five exits remain
-open. Private configs, reports and summaries are in the ignored local store
-UserContent/analysis/reporter-audit/release-connected-ds101. The driver
+open. Private configs, reports and summaries are in the local store
+GAME_DIR/analysis/reporter-audit/release-connected-ds101. The driver
 is tools/research/engine101/transfer-release-connected-ds.mjs.
 
 Validation: bootstrap facts, the bounded trace assertions and the full assetless
@@ -1184,7 +1184,7 @@ provenance-carrying support; nested frame forms must remain separately bounded:
 https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/301.
 
 Private original readings/configs/reports remain in
-UserContent/analysis/reporter-audit/font-request101. Synthetic drivers and
+GAME_DIR/analysis/reporter-audit/font-request101. Synthetic drivers and
 controls are under tools/research/engine101/font-request-controls.mjs and
 enter-repro.mjs, with their logs. Existing traversal bounds and explicit DS/SS
 hypotheses remain unchanged. No original or emulated game function ran; no
@@ -1232,7 +1232,7 @@ argument-cleanup return is included through its complete instruction width.
 No native or emulated game function ran, and no game spec or parity changed.
 
 Private source readings/configs/reports remain in
-UserContent/analysis/reporter-audit/allocation-chain101. Drivers and logs are
+GAME_DIR/analysis/reporter-audit/allocation-chain101. Drivers and logs are
 tools/research/engine101/allocation-chain-controls.mjs, allocation-chain-reading.py
 and allocation-helper-reading.py. The next dependencies are the admitted
 reader count, runtime heap/header producers and lower helper effects, not a
@@ -1283,7 +1283,7 @@ relaxing width, alias or corrupted-target rejection:
 https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/302.
 
 Private original readings/configs/reports remain in
-UserContent/analysis/reporter-audit/lower-heap101. Drivers are
+GAME_DIR/analysis/reporter-audit/lower-heap101. Drivers are
 tools/research/engine101/lower-heap-controls.mjs, lower-heap-reading.py,
 near-far-reframe-repro.mjs and near-far-cpu-control.py. No game spec or parity
 changes. All five whole exits remain open; the next request continuation
@@ -1332,7 +1332,7 @@ was added to existing toolkit diagnostic issue 300, requesting explicit checks
 attempted and root-target-not-checked scope, without changing those semantics.
 
 Private original configs/reports are in
-UserContent/analysis/reporter-audit/exact-heap101. Drivers:
+GAME_DIR/analysis/reporter-audit/exact-heap101. Drivers:
 tools/research/engine101/exact-heap-entry.mjs, exact-heap-controls.mjs and
 root-return-scope.mjs. No original or emulated game function ran; only static
 original reading/reporting and synthetic controls. No spec or parity change.
@@ -1377,7 +1377,7 @@ DS/ES, pointer arguments, free-root/link inputs, aliases and caller admission
 remain unproved. All five complete gap exits remain open. No game specification,
 parity status or implementation changed; no original game function ran.
 
-Private reports: UserContent/analysis/reporter-audit/heap-header-candidates101.
+Private reports: GAME_DIR/analysis/reporter-audit/heap-header-candidates101.
 Drivers: tools/research/engine101/heap-header-candidates.mjs,
 heap-header-candidate-controls.mjs and heap-header-dispatcher-controls.mjs.
 Canonical validation was run; its log was not committed.
@@ -1401,7 +1401,7 @@ field-writer evidence is still required; no entry memory, new return model,
 original run, game specification or parity change was introduced.
 
 Private configs/reports remain in
-UserContent/analysis/reporter-audit/heap-header-candidates101, named
+GAME_DIR/analysis/reporter-audit/heap-header-candidates101, named
 dispatcher-origins, origin-one-step and origin-omit-helper. The driver
 is tools/research/engine101/heap-header-origin-controls.mjs. Installed origin and
 lastWriter semantics behave as documented; no new shared defect is claimed.
@@ -1432,7 +1432,7 @@ zero-result continuation is already described by FND-CONFIG-165; this audit
 does not promote it into a complete connected preservation claim.
 
 Private configs/reports remain in
-UserContent/analysis/reporter-audit/heap-header-candidates101, named
+GAME_DIR/analysis/reporter-audit/heap-header-candidates101, named
 pointer-wrapper-connected and wrapper-connected-controls, with wrong-argument,
 omitted-dispatcher and one-step controls. Drivers:
 tools/research/engine101/heap-pointer-wrapper-connected.mjs and
@@ -1464,7 +1464,7 @@ caller storage preservation is inferred. These connected caller witnesses do
 not join the header candidates to the separate heap consumer.
 
 Private configs/reports remain in
-UserContent/analysis/reporter-audit/heap-header-candidates101 under
+GAME_DIR/analysis/reporter-audit/heap-header-candidates101 under
 earlier-caller-connected and outer-helper-connected, including full-width,
 wrong-frame-writer, omitted-wrapper and one-step controls. Drivers:
 tools/research/engine101/heap-earlier-callers.mjs and heap-earlier-caller-controls.mjs.
@@ -1498,7 +1498,7 @@ complete exits remain open, without game spec/parity changes or original or
 emulated game execution.
 
 Private configs/reports remain in
-UserContent/analysis/reporter-audit/heap-header-candidates101 under the two
+GAME_DIR/analysis/reporter-audit/heap-header-candidates101 under the two
 earlier caller names, with setter-poll and registration-controls suffixes plus
 reversed-order, omission and one-step controls. Drivers:
 tools/research/engine101/heap-caller-setter-poll.mjs and
@@ -1523,7 +1523,7 @@ upstream allocation/storage history. Further native producer acceptance requires
 new evidence outside these caller bodies; repeating them cannot settle it.
 
 Private reports remain in
-UserContent/analysis/reporter-audit/heap-header-candidates101, named
+GAME_DIR/analysis/reporter-audit/heap-header-candidates101, named
 current-pointer with displacement suffixes and pointer-cap, pointer-wrong-offset
 and pointer-omit-earlier controls. Drivers:
 tools/research/engine101/current-pointer-candidates.mjs and

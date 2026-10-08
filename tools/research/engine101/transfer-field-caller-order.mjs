@@ -1,7 +1,8 @@
 import {readFileSync,writeFileSync} from 'node:fs';import {resolve} from 'node:path';
 import assert from 'node:assert/strict';import {run} from '../../../node_modules/@scientific-method/executable-reader/dist/src/report.js';
+const GAME_DIR=process.env.GAME_DIR;if(!GAME_DIR)throw new Error('Set GAME_DIR to the supported Dark Sun build.');
 process.env.EVIDENCE_PYTHON=resolve('artifacts/evidence-python/Scripts/python.exe');
-const b='C:/GOG Games/Dark Sun 2/analysis/reporter-audit',d=`${b}/issue5-transfer-field-incoming101`;
+const b=GAME_DIR+'/analysis/reporter-audit',d=`${b}/issue5-transfer-field-incoming101`;
 const base=JSON.parse(readFileSync(`${b}/issue5-transfer-mask100/destination-field-432567-actual.json`));delete base.query;delete base.entry;
 const windows=JSON.parse(readFileSync(`${d}/caller-window-contexts.json`));
 for(const [name,target,end,sites] of [['allocator-field-writer',432567,433525,[515890,529125]],['cleanup-field-writer',433525,433703,[118024]],['transfer-field-consumer',139006,139137,[164801,165711,180391]]]){
