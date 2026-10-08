@@ -10,13 +10,13 @@ method: static
 locations:
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A12C4..0x004A1319
+    address: 0x004A12C4..0x004A131F
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A21FA..0x004A21FD
+    address: 0x004A21FA..0x004A2202
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A1F30..0x004A1F41
+    address: 0x004A1F30..0x004A1F46
 tool: Ghidra 12.1.3 PUBLIC bounded zero-extended word prefix shift reading
 environment: null
 ---
@@ -98,3 +98,8 @@ versus word sign test, masked decrement counts, alternate clears, fresh
 word D, retained N/V, fresh lookup byte and flags across direct transfers.
 Check Alternatives' controls as local arithmetic examples, not native
 inputs. No native or emulated execution is part of this finding.
+
+The location ranges use exclusive ends, including the final transfers
+already described above. Verify them with additional windows at
+`0x004A1319`, `0x004A21FD`, `0x004A1F41`, each with limit two;
+the following instruction starts are their declared exclusive ends.
