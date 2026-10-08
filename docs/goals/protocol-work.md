@@ -53,7 +53,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
 - Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore passed.
-  EXE research through FND-EXE-187, measured-baseline tooling and independent
+  EXE research through FND-EXE-188, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
   and its independently failing-before/passing-after synthetic regression.
@@ -157,7 +157,7 @@ An owner-approved history repair remains separate from this maintenance scope.
      FND-EXE-183's counter admission and FND-EXE-184's diagnostic/metadata contracts.
      Admit FND-EXE-185's backing memory, destination extent and aliases; follow
      FND-EXE-186's selector/table writers and FND-EXE-187's request, wrapper-record,
-     CRT and lifetime contracts. Local allocation and failure leads remain available.
+     FND-EXE-188's state/import/alias contracts; retain CRT and lifetime obligations.
   2. Q-EXE-009, FMT-EXE-006: continue producer/lifetime contracts and
      the remaining dependencies listed in its queue item toward the first
      qualifying complete-reading package. Check FND-EXE-056's bounded reader
