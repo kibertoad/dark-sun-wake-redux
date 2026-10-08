@@ -280,3 +280,19 @@ without re-export and source-mapping review. Original-content sources are unchan
 Mapped-image findings need dependency review before they support native behavior;
 this tooling fix alone does not supersede every historical observation or establish
 a complete reading. The mapper output and analysis derivatives are local-only.
+
+## Segment-register move rendering in Ghidra 12.1.3
+
+Ghidra 12.1.3 renders the register forms of x86 opcode `8E /r` with reversed
+operands. The installed processor constructors retain the correct assignment
+semantics while their display templates put the general register first. This is
+tracked upstream in [Ghidra issue 9739](https://github.com/NationalSecurityAgency/ghidra/issues/9739)
+and the earlier [real-mode report 9635](https://github.com/NationalSecurityAgency/ghidra/issues/9635).
+
+Instruction-window and instruction-text reporters use Ghidra's rendered listing.
+Do not infer segment producers or absence of segment writes from that text alone.
+Check bounded original bytes and instruction semantics through the pinned reader
+and engine. Keep original-source and loaded-relocation values distinct. Operand
+index consumers also need review; a display error is not evidence that p-code
+has the opposite assignment. Historical readings require individual dependency
+review, rather than blanket supersession or automatic status promotion.
