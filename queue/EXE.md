@@ -38,7 +38,9 @@ Next ID: Q-EXE-011
   resolves the selected builder arm; establish its backing-memory producers,
   destination extent and callback-table dispatch. FND-EXE-186 bounds the
   table consumer; establish its selector/table writers, callee effects,
-  callback inputs and root callers. Blocks: none.
+  callback inputs and root callers. FND-EXE-187 traces the backing-base producer
+  and controlled CRT imports; read request producers/range, wrapper records,
+  retry target, initialization, loaded CRT effects and lifetime. Blocks: none.
 
 - Q-EXE-005. FMT-EXE-006: Which code page interprets the disc sound helper's
   display bytes? Settles it: direct interpreter configuration or code-page/font
