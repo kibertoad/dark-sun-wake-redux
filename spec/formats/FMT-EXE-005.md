@@ -38,9 +38,18 @@ None known.
 ## Coverage
 
 All 49 blocks of the installed `DSUN.EXE`, with 8,262 fixups, and the sizes of all 49 of the
-disc's [FND-EXE-003, FND-EXE-005]. The disc's fixup words were not checked.
+disc's [FND-EXE-003, FND-EXE-005]. FND-EXE-173 additionally validates both sources'
+fixup-table dimensions, operand bounds and descriptor-index admission through the
+bounded source reader; this does not establish native loader behavior.
 
 ## Open questions
 
 - Whether the loader replaces each fixup word with the segment its descriptor names, and which
   segment that is for a descriptor of an overlay (FND-EXE-007, Q-EXE-001).
+
+- Which analyzer-owned body fragments are native code under the original CS
+  bindings (Q-EXE-010)? FND-EXE-173 separates their physical source regions
+  from their valid overlay entries. A descriptor-base dispatch reading keeps
+  eleven targets inside code; the analyzer-alias reading places most outside.
+  Native segment producers and every admitted target must settle those competing
+  interpretations before the affected boundaries or denominator are accepted.

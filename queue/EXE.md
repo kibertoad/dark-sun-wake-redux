@@ -1,6 +1,6 @@
 # EXE
 
-Next ID: Q-EXE-010
+Next ID: Q-EXE-011
 
 ## Static
 
@@ -235,6 +235,17 @@ Next ID: Q-EXE-010
   matching physical and decoded domains alone does not settle those.
   Blocks: resolved wrapper-helper and continuation description.
 
+- Q-EXE-010. FMT-EXE-005: Which analyzer-owned overlay body fragments
+  represent native code under the original code-segment and jump-table bindings?
+  Settles it: establish the native CS producers and input-to-index bounds,
+  validate every admitted table target and reconcile each suspect function body
+  with source code/fixup/padding regions before replacing inventories.
+  Tried: FND-EXE-173 classifies all fifteen anomalous body spans separately
+  from their valid overlay entries and compares one bounded table under the
+  descriptor and analyzer-alias segment bases. Next: descriptor 198's entry
+  and CS admission, then the remaining suspect target producers.
+  Blocks: reconciled executable denominator and complete-reading declarations
+  that depend on those function boundaries.
 ## Emulated call
 
 None.
