@@ -48,6 +48,8 @@ bounded source reader; this does not establish native loader behavior.
   bounds an adjacent dispatch table, but three candidate targets lack decoded
   instruction starts in the corrected snapshot. Table dimensions do not
   establish runtime CS or complete body ownership.
+  FND-EXE-222 supplies conditional source-decoded tails at those candidates;
+  saved-listing incompleteness alone does not exclude their decoding.
 
 - Whether the loader replaces each fixup word with the segment its descriptor names, and which
   segment that is for a descriptor of an overlay (FND-EXE-007, Q-EXE-001).

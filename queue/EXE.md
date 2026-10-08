@@ -327,6 +327,10 @@ Next ID: Q-EXE-014
   eighteen-slot table and checks all four distinct descriptor-base targets;
   three are undisassembled in the corrected snapshot. Native CS and candidate
   instruction admission remain necessary before body reconciliation.
+  Tried: FND-EXE-222 decodes all four descriptor-base candidates from the
+  shipped source and closes their conditional tails with the separately
+  bounded eleven-slot table. This does not admit native CS, whole-function
+  ownership, incoming frames or runtime dispatch.
   Next: descriptor 198's entry
   and CS admission, then the remaining suspect target producers.
   Blocks: reconciled executable denominator and complete-reading declarations
