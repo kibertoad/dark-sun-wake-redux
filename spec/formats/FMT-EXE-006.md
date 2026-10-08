@@ -262,6 +262,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-141 records zero-extended byte shifts with retained count/lookup and saved-byte sign;
   FND-EXE-142 records complementary full-width shifts and retained sign/fresh tail gates;
   FND-EXE-143 records the complementary word-count boundary and continued sign gates;
+  FND-EXE-144 records the complementary byte-count boundary and saved/retained inputs;
   table/slot producers, runtime writers/other prefix effects and remaining selected callee effects remain open.
   floating numeric contracts, downstream targets, producers,
   indirect targets and actual state admission remain open.

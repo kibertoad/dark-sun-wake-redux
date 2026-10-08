@@ -157,6 +157,7 @@ Entries by area.
 | [FND-EXE-141](../findings/FND-EXE-141.md) | Zero-extended byte prefix shift retains count and lookup input while a saved byte supplies its sign gate | recorded |
 | [FND-EXE-142](../findings/FND-EXE-142.md) | Complementary-count full-width prefix branch replaces mask bits from retained sign disagreement and fresh lookup/count reads | recorded |
 | [FND-EXE-143](../findings/FND-EXE-143.md) | Word complementary-count prefix branch clears its extracted-bit mask above sixteen while retaining later sign comparisons | recorded |
+| [FND-EXE-144](../findings/FND-EXE-144.md) | Complementary byte-count prefix branch saves count and input while retaining its lookup byte | recorded |
 
 ## GFF
 
