@@ -191,6 +191,7 @@ Next ID: Q-EXE-010
   FND-EXE-147 records retained-byte result comparisons and lookup inputs with opposite nibble gates;
   FND-EXE-148 records guarded full-width admission, fresh byte masks and retained sign inputs;
   FND-EXE-149 records shared word comparison inputs, later result-word reads and saved-byte lookup admission;
+  FND-EXE-150 records guarded word admission, full guard width and retained-word/saved-byte inputs;
   Runtime writers/other prefix effects, table/slot producers and remaining selected callee
   effects remain open. These bounded
   readings do not establish the complete shell outcome. Next: trace record
