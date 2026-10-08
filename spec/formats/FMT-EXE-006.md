@@ -260,6 +260,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-139 records full-width logical shift and fresh-count one/sign mask gates;
   FND-EXE-140 records zero-extended word shifts and fresh-word count/retained-sign gates;
   FND-EXE-141 records zero-extended byte shifts with retained count/lookup and saved-byte sign;
+  FND-EXE-142 records complementary full-width shifts and retained sign/fresh tail gates;
   table/slot producers, runtime writers/other prefix effects and remaining selected callee effects remain open.
   floating numeric contracts, downstream targets, producers,
   indirect targets and actual state admission remain open.

@@ -177,7 +177,7 @@ Entries by kind.
 
 ## findings
 
-590 entries.
+591 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -579,6 +579,7 @@ Entries by kind.
 | [FND-EXE-139](../findings/FND-EXE-139.md) | Full-width logical prefix shift reloads its count for a one-count sign gate and final mask replacement | recorded |
 | [FND-EXE-140](../findings/FND-EXE-140.md) | Word prefix shift zero-extends its input and uses a fresh word count with a retained word-sign gate | recorded |
 | [FND-EXE-141](../findings/FND-EXE-141.md) | Zero-extended byte prefix shift retains count and lookup input while a saved byte supplies its sign gate | recorded |
+| [FND-EXE-142](../findings/FND-EXE-142.md) | Complementary-count full-width prefix branch replaces mask bits from retained sign disagreement and fresh lookup/count reads | recorded |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant | recorded |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead | recorded |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) | recorded |
