@@ -157,7 +157,7 @@ writer and masks, stride upper bytes, index-product wrap, record offsets,
 typed output last writer and discarded cursor, two complete indirect pointer
 loads, outgoing slots and cleanup, low-byte truth tests, conditional local
 indirection/publication, decoded-zero termination and both scan exits.
-Use FND-EXE-058/060 for the metadata region and preceding callback state,
+Use FND-EXE-196/060 for the metadata region and preceding callback state,
 FND-EXE-059/062/063 for reader contracts. Keep concrete targets, input bounds,
 aliases and exceptional effects conditional. Keep rich reports local and
 execute no interpreter or game.

@@ -26,7 +26,7 @@ environment: null
 
 ## Observation
 
-FND-EXE-058's positive counted-read path enters this matching region only
+FND-EXE-196's positive counted-read path enters this matching region only
 when its saved incremented word and derived cursor word are both nonzero.
 This region initializes two independent local bytes to zero: a seen-zero
 marker and a match marker. These describe the observed writes, not inferred
@@ -99,7 +99,7 @@ that included a zero first word from one that did not. It does not turn a
 successful negative scan into classification three: that scan's true return
 continues rather than setting the match marker.
 
-All these classes enter FND-EXE-058's common join, which first saves return
+All these classes enter FND-EXE-196's common join, which first saves return
 status eight. Classification zero goes to cleanup/status return immediately.
 With bit one of the second argument set, classification two also returns
 eight through cleanup; classification three takes the signature-conditioned

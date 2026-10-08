@@ -20,7 +20,7 @@ environment: null
 
 ## Observation
 
-FND-EXE-058 prepares three register inputs for this helper: the callback's
+FND-EXE-196 prepares three register inputs for this helper: the callback's
 sixth argument, the nonzero offset-28 reader result, and a local output
 address. This body saves those register values as context, input cursor and
 output address. It reads no original stack-argument slot for those inputs.
@@ -68,7 +68,7 @@ local input-length, cursor-wrap, target-bound or output-size validation.
 Source and output aliasing remain conditional; earlier output writes can
 change later input where storage overlaps.
 
-For FND-EXE-058, normal reader completion establishes the output byte later
+For FND-EXE-196, normal reader completion establishes the output byte later
 loaded at frame offset minus 36, and the full word later loaded at frame
 offset minus 40, by their relative positions in the prepared local region.
 The return provides the starting cursor for its subsequent repeated reads.
@@ -100,7 +100,7 @@ A decoded offset alone does not validate its destination.
 Use FND-EXE-011's verified PE and image base. Summarize `0x005F4EA0`,
 read eighty instructions there, eight from `0x005F4F5D`, five from
 `0x005F4F73`, and seven from `0x00600A90`. Restrict claims to the listed
-bodies and exclude the later functions printed. Use FND-EXE-058 for register
+bodies and exclude the later functions printed. Use FND-EXE-196 for register
 writers and output consumers, and FND-EXE-059 for decoded words and cursors.
 Track all three saved inputs, local zero-query contract, independent marker
 branches, byte versus word stores, typed-reader preparation, both offset

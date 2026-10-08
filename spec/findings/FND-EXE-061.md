@@ -24,7 +24,7 @@ environment: null
 ## Observation
 
 FND-EXE-060 prepares a zero-extended marker and original context in registers
-before calling this helper. FND-EXE-058 also prepares a zero-extended metadata
+before calling this helper. FND-EXE-196 also prepares a zero-extended metadata
 byte and the callback's sixth argument. This body reads the marker from the
 incoming return register, not a stack-argument slot. It initializes its
 local result register to zero and first compares the incoming low byte with
@@ -72,7 +72,7 @@ For FND-EXE-060's first non-255 marker, the prepared modifier result supplied
 to the subsequent typed reader is therefore zero for these admitted classes.
 This does not establish what that typed reader does with zero, how many bytes
 it consumes, or whether the overall metadata read succeeds. For
-FND-EXE-058's metadata-byte call, the saved result is likewise zero on these
+FND-EXE-196's metadata-byte call, the saved result is likewise zero on these
 local ordinary branches. Its later consumers still require their own reading.
 
 ## Interpretation
@@ -99,7 +99,7 @@ Use FND-EXE-011's verified PE and image base. Summarize `0x005F4CC0`,
 read thirty instructions there, eighteen from `0x005F4D00`, and twelve
 from `0x00600AB0`. Restrict claims to the cited bodies, excluding the later
 functions printed. Use FND-EXE-060 for the previously read zero helper and
-prepared metadata inputs, FND-EXE-058 for the other callback caller, and
+prepared metadata inputs, FND-EXE-196 for the other callback caller, and
 FND-EXE-041 for the exact abort import. Track low-byte bypass priority,
 full-word mask, all eight classes, context preparation versus consumption,
 constant returns and frame restoration. Keep marker admission, import and

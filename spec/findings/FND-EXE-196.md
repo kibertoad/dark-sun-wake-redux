@@ -1,19 +1,19 @@
 ---
-id: FND-EXE-058
+id: FND-EXE-196
 title: Ordinary callback classifies a signed stored word and saves matched state on a distinct six-return path
-status: superseded
+status: recorded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: [FND-EXE-196]
+superseded_by: []
 recorded_by: kibertoad
 reproduced_by: []
 method: static
 locations:
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x005F5156..0x005F5267
+    address: 0x005F5156..0x005F5268
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x005F5340..0x005F53A6
+    address: 0x005F5340..0x005F53A7
 tool: Ghidra 12.1.3 PUBLIC, bounded instruction reading
 environment: null
 ---
@@ -101,6 +101,13 @@ matching algorithm or record lifecycle is established.
 
 ## Alternatives
 
+This replaces FND-EXE-058, whose first location omitted the one-byte RET
+at `0x005F5267` and whose second stopped inside the six-byte conditional
+jump at `0x005F53A1`. Their corrected exclusive ends are
+`0x005F5268` and `0x005F53A7`. The recorded observations are retained;
+the widened spans cover the described return and final classification
+branch fully. No complete-reading declaration existed to preserve.
+
 Treating the accessor-adjusted value as an unsigned loop bound, treating
 zero as one loop iteration, terminating the loop on a zero helper return,
 or treating six as seven are ruled out by the instructions. The five stores
@@ -120,3 +127,10 @@ width, local last-writer gaps, classification zero/one/two boundaries,
 low-byte bit-one guard, signature stores in order and saved six after cleanup.
 Keep callee, alias and exceptional effects conditional. Keep rich reports
 local and execute no interpreter or game.
+
+Verify the corrected ends with ReportInstructionWindow at `0x005F5263`,
+count five, and at `0x005F5340`, count 35. The first prints the RET
+as its final instruction; the second shows the final conditional jump
+ending immediately before `0x005F53A7`. Exclude subsequent matching
+instructions from this finding. These boundary controls supplement the
+original bounded windows above, rather than changing their interpretation.

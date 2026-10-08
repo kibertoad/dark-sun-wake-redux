@@ -17,7 +17,7 @@ environment: null
 
 ## Observation
 
-FND-EXE-058 prepares a chained input pointer in the return register and a
+FND-EXE-196 prepares a chained input pointer in the return register and a
 local output address in an auxiliary register before each call to this
 helper. The helper consumes those incoming register values directly: it
 saves the output address before changing that register's low byte and saves
@@ -59,7 +59,7 @@ a terminating payload of one produce eight: the sixth group's shift count
 is thirty-five masked to three. These controls describe the instruction
 arithmetic, not a claim that such streams occur in the shipped resources.
 
-For FND-EXE-058's positive-counter loop, normal termination of each helper
+For FND-EXE-196's positive-counter loop, normal termination of each helper
 call establishes a full-word last writer for the two prepared output locals.
 Its first returned pointer becomes the second input and its second returned
 pointer becomes the next iteration's input. Under valid storage and the
@@ -71,7 +71,7 @@ counter bound does not independently bound bytes consumed per value.
 ## Interpretation
 
 The repeated helper now has a direct register-input, byte-consumption,
-full-word output and pointer-return contract. It narrows FND-EXE-058's local
+full-word output and pointer-return contract. It narrows FND-EXE-196's local
 last-writer gaps on normally terminating reads, without establishing where
 the input stream begins, how much storage it has, or what decoded values
 mean. Q-EXE-009 retains input provenance and bounds, stream structure,
@@ -93,7 +93,7 @@ by its absent local rejection paths.
 
 Use FND-EXE-011's verified PE and image base. Summarize `0x005F4D30`
 and read thirty-five instructions there, restricting claims to the cited
-body and excluding the later helper. Use FND-EXE-058 for incoming register
+body and excluding the later helper. Use FND-EXE-196 for incoming register
 writers and chained pointer consumption. Track the saved output address,
 low-byte overwrite, full accumulator and shift words, payload mask, shift
 count width, OR combination, terminating byte, sole output store and pointer
