@@ -132,7 +132,8 @@ Next ID: Q-EXE-011
   (FND-EXE-167), and mode admission/flag waiting
   (FND-EXE-200), and conditional negative-mode duplicate-word clearing
   (FND-EXE-201), and gate-neighbor unsigned-index publication limits
-  (FND-EXE-202), and resource/helper-derived mode publication
+  (FND-EXE-202), and its direct allocation/import preservation boundary
+  (FND-EXE-203), and resource/helper-derived mode publication
   (FND-EXE-047), and exact record/wait imports and zero-result tail return
   (FND-EXE-048), and pre-helper saved-link cleanup through a fresh mode
   (FND-EXE-049), and construction-caller setup/cleanup return handling
