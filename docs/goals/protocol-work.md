@@ -17,12 +17,12 @@ The owner-requested latest-template synchronization is authorized tooling within
 
 Research-side repository workflow and tooling: local session skills, goal
 discovery and handovers, protocol conformance, validation and upstream reports.
-Research areas: EXE, including the FMT-EXE-006 follow-up questions. Research batches
+Research areas: EXE for the game and its utilities. DOSBox complete readings are excluded. Research batches
 may change EXE entries, queue/EXE.md and parity/EXE.md, with generated indexes
 and PARITY.md kept consistent. The EXE launch-reference scope also covers
 BLD-GOG-EN-1.1 inventory and
 wrapper-provenance corrections needed to cite the studied distribution files.
-It includes SRC-DOSBOX-GOG-0742 and its EXE question citations for the shipped
+Historical context includes SRC-DOSBOX-GOG-0742 and its EXE citations for the shipped
 interpreter source archive; source-to-binary correspondence stays explicit.
 Other areas are read-only. Further research
 areas are added only after checking the shared clone's authoritative goal
@@ -52,7 +52,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   works in this repository, so the goal runs on main in the single checkout,
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
-- Last full gate: 2026-10-09, assetless Test.ps1 -NoRestore passed for absolute-word research (715 tests).
+- Last full gate: 2026-10-09, assetless Test.ps1 -NoRestore passed for inventory/scope tooling (715 tests).
   EXE research through FND-EXE-220, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
@@ -149,52 +149,19 @@ An owner-approved history repair remains separate from this maintenance scope.
   Toolkit span rerun: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6068047179; R1/R3 passed; inclusive-query follow-up: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/343#issuecomment-6069274891.
   Inventory/segment follow-ups: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6068550782 and https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6069043576.
   Partial-overlap/guard follow-ups: https://github.com/kibertoad/refurbished-dinosaurs/issues/37#issuecomment-6066902929 and https://github.com/kibertoad/refurbished-dinosaurs/issues/37#issuecomment-6067099318.
+- Owner scope clarification: DOSBox is excluded from game coverage and new
+  complete-reading work (docs/DECISIONS.md, 2026-10-09). Its historical
+  inventory is archived under docs/host-analysis/; prior host questions
+  remain historical references, not this goal's research priorities.
+- Utility migration tooling is committed. The SOUND_DS candidate remains local
+  under GAME_DIR/analysis/work-baseline/migration-20261009; no unfinished code.
+- Migration follow-up: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6069548929.
 - Next, after rechecking shared goal claims:
-  1. Q-EXE-010, FMT-EXE-005: reconcile revision-2 comparison in
-     GAME_DIR/analysis/work-baseline/relocation-reconciled. Revisit
-     FND-EXE-173's segment/dispatch reading against FND-EXE-174's snapshots.
-     Retain old artifacts and committed inventories for comparison. For Q-EXE-001,
-     establish FND-EXE-175's callers, FND-EXE-182's distinct consumers, and
-     FND-EXE-183's counter admission and FND-EXE-184's diagnostic/metadata contracts.
-     Admit FND-EXE-185's backing memory, destination extent and aliases; follow
-     FND-EXE-186's selector/table writers and FND-EXE-187's request, wrapper-record,
-     FND-EXE-192's provenance and FND-EXE-195's excluded setter forms; retain lifetime contracts.
-  2. Owner priority: migrate inventories, validate standard coverage; then Q-EXE-012/013. Q-EXE-011 blocked.
-     retain Q-EXE-009's full wrapper scope and dependencies toward the first
-     qualifying complete-reading package. Check FND-EXE-056's bounded reader
-     candidate against FND-EXE-165's inputs, FND-EXE-196 and FND-EXE-053's producers;
-     use independent reference controls before claiming caller completeness.
-     FND-EXE-165 is the current replacement; do not reuse superseded citation
-     locations. Require selected-local and field-writer admission before a
-     complete_reading declaration. Follow FND-EXE-166's specific remaining
-     obligations: FND-EXE-208's excluded transfers, setup and ABI contract admission,
-     lifetime, FND-EXE-197's source preservation and FND-EXE-205/207's indirect/encoding limits.
-     FND-EXE-167 and FND-EXE-200 are the setup/mode replacements. Follow their shared-base
-     producers through FND-EXE-043 and FND-EXE-170, segment admission and
-     intervening callee effects before treating the reader's input as preserved.
-     FND-EXE-168 retains the explicit-writer search domain and remaining
-     decoded-record origins, initialized input extent, allocator/storage
-     lifetime and excluded indirect writers. Continue the actual atom-buffer
-     producer/consumer and failure contracts rather than relying on a name
-     or a header predicate for storage admission.
-     Use SRC-WIN32-ATOMS as an external contract only. FND-EXE-169 is the
-     current tail-extent replacement. Check FND-EXE-170's admitted identifiers,
-     unchanged name/initialized extent and failure helper before closing the
-     decoder's input obligations; retain original state and lifetime limits.
-     SRC-MS-CRT-ASSERT is an external contract only; follow the loaded CRT
-     effects and conditional failure continuations in FND-EXE-170.
-     FND-EXE-171 is the corrected startup reading; FND-EXE-172 is its
-     independent physical/decoded interior-flow comparison. Next check
-     remaining transfer representations and computed/runtime target producers;
-     retain each search's exclusions before declaring complete caller coverage.
-     FND-EXE-164 is
-     the latest composed reading; follow FND-EXE-209's callback/metadata
-     producers and FND-EXE-210/212/213/216's input/count/frame admission; use FND-EXE-214/215, then
-     saved-state writers and FND-EXE-162's preceding-callee effects.
-     FND-EXE-161's remaining callee/frame contracts still limit saved-value
-     survival and diagnostic completion.
-  3. Q-EXE-006 and Q-EXE-008, FMT-EXE-006: batch-input/parser and
-     helper/cleanup coverage from FND-EXE-013, then disc-installer callers.
-  4. Q-EXE-007, FMT-EXE-006: game/setup launch references.
-  5. Q-EXE-005, FMT-EXE-006: interpreter code-page evidence when available.
-  Keep CONFIG/SCRIPT and the gap ledger excluded; never run DOSBox or a shell harness.
+  1. Finish installed and CD DSUN inventory reconciliation under Q-EXE-010,
+     FMT-EXE-005; retain anomalous definitions pending verified correction.
+  2. Check claims before expanding into CONFIG for SOUND_DS endpoint review
+     (FND-CONFIG-004 and FND-CONFIG-022); supersede factual errors under Standard.
+  3. Rerun standard-coverage on all in-scope inventories once valid; retain
+     citation coverage separately from complete-reading availability.
+  4. Choose a bounded game-code reading and its actual caller/state obligations;
+     preserve EXE questions relevant to the game and retire host-only priorities.
