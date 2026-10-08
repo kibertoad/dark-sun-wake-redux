@@ -53,7 +53,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
 - Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore passed.
-  EXE research through FND-EXE-173, measured-baseline tooling and independent
+  EXE research through FND-EXE-174, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
   and its independently failing-before/passing-after synthetic regression.
@@ -148,11 +148,11 @@ An owner-approved history repair remains separate from this maintenance scope.
   The duplicate-checked physical body-classification diagnostic is tracked at
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/369.
   The confirmed mapper repair and downstream revalidation are tracked at
-  https://github.com/kibertoad/dark-sun-wake-redux/issues/6.
+  https://github.com/kibertoad/dark-sun-wake-redux/issues/6#issuecomment-6063990997.
 - Next, after rechecking shared goal claims:
   1. Q-EXE-010, FMT-EXE-005: reconcile revision-2 comparison in
      GAME_DIR/analysis/work-baseline/relocation-reconciled. Revisit
-     FND-EXE-173's segment/dispatch reading against corrected snapshots.
+     FND-EXE-173's segment/dispatch reading against FND-EXE-174's snapshots.
      Retain old artifacts and committed inventories for comparison.
   2. Q-EXE-009, FMT-EXE-006: continue producer/lifetime contracts and
      the remaining dependencies listed in its queue item toward the first
