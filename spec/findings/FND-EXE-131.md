@@ -10,10 +10,10 @@ method: static
 locations:
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A0DE0..0x004A0E2D
+    address: 0x004A0DE0..0x004A0E2E
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    offset: 0x00322180..0x0032227F
+    offset: 0x00322180..0x00322280
     kind: file-data
 tool: Verified physical PE dispatch words and Ghidra 12.1.3 PUBLIC bounded prefix dispatch reading
 environment: null
@@ -137,3 +137,9 @@ on the mapping. The exact slots, span and all result-driving targets are
 recorded above; keep raw queries local. Check selector zero, 43, 54, 63,
 64 and a sign-bit-set value as local admission controls, not native inputs.
 No native or emulated execution is part of this observation.
+
+The location ranges use exclusive ends. A window at `0x004A0E2D`
+with limit two confirms the described default return is followed by the
+next instruction at the code range's exclusive end. The file-data range
+ends after all sixty-four four-byte slots; its final included byte is
+`0x0032227F`, as the table extent above already states.
