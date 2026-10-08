@@ -409,6 +409,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-249 reads the post-transfer word rewrites, shifted-count edge
   and nested pattern/search contract. Native table/count admission, independent
   extents, saved-stack aliases and other incoming transfers remain open.
+  Tried: FND-EXE-250 follows the header-dispatched transfer wrapper's carry
+  consumption and the handler's ordered publications and loop re-entry values.
+  Live dispatch, counter/link writers, aliases and termination remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
