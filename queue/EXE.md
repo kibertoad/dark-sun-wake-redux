@@ -400,6 +400,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-246 reads the post-bound helper's first header-segment
   publications and concrete downstream calls, including an interior writer
   entry. Arithmetic/input admission, downstream effects and aliases remain open.
+  Tried: FND-EXE-247 reads the interior writer entry's separate caller guard,
+  skipped outer obligations and returned-register consumption. Native count,
+  header/SS aliases, output bounds and other incoming transfers remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
