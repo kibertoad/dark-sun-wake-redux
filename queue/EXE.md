@@ -379,6 +379,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-239 reads the shared gate's sole explicit carry-clear
   normal return and six call sites; three distinct callees, native state,
   saved-stack integrity and intervening writes remain unresolved.
+  Tried: FND-EXE-240 reads all three shared-gate helpers' explicit size,
+  selection and link effects. Native inputs, link/field writers, aliases,
+  traversal/output bounds and caller result consumption remain unresolved.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
