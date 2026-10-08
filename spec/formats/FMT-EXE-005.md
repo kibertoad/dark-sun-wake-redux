@@ -60,6 +60,8 @@ bounded source reader; this does not establish native loader behavior.
   far callback and native frame/segment admission before attributing transfers.
   FND-EXE-227 identifies the resident far-jump rewrite's separate segment
   source; live header production and post-call count/segment admission remain open.
+  FND-EXE-228 supplies the segment-field producer store and retains its
+  state-word, saved-header and intervening-callee admission dependencies.
 
 - Whether the loader replaces each fixup word with the segment its descriptor names, and which
   segment that is for a descriptor of an overlay (FND-EXE-007, Q-EXE-001).

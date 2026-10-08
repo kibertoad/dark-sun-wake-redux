@@ -343,7 +343,10 @@ Next ID: Q-EXE-014
   and unresolved far callback; its complete CFG still assumes all calls return.
   Tried: FND-EXE-227 identifies the far-jump rewrite and its separate live
   segment source, retaining optional-callee and post-call count/segment effects.
-  Next: header word 0x0010's producer and live header/callee admission,
+  Tried: FND-EXE-228 locates the segment-field store from a post-call state
+  reload; state-word writers, saved-header storage and seven callee effects
+  remain unread. Its returning-call CFG does not prove allocation or termination.
+  Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
   Blocks: reconciled executable denominator and complete-reading declarations
