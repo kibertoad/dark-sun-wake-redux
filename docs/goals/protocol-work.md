@@ -53,7 +53,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
 - Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore passed for
-  all EXE research batches in the current session.
+  all EXE research batches and the measured-baseline tooling batch.
   Explicit main-base documentation checking passed; generated files were left unchanged.
   Existing argument-check skips remain. Remote-base ancestry was rechecked
   and is available; explicit local main-base checking passed. Pre-commit
@@ -63,6 +63,17 @@ An owner-approved history repair remains separate from this maintenance scope.
   Q-EXE-006, Q-EXE-007, Q-EXE-008 and Q-EXE-009; Q-EXE-001 retains its
   retry requirement. Local static-analysis reports and the saved interpreter
   Ghidra project remain in GAME_DIR/analysis/exe-batches for continuation.
+  Measured snapshot exports, audit sidecars and comparisons are in
+  GAME_DIR/analysis/work-baseline. Existing committed inventories were retained
+  pending definition/mapping reconciliation; do not discard anomalous ranges
+  or publish unverified replacements. Candidate closure probes are local only.
+- Owner priority: complete-reading closure now takes precedence over broad
+  new partial readings. Use Q-EXE-009 and FMT-EXE-006 to assemble a bounded
+  evidence package, checking complete bodies, independent caller searches,
+  every input/state writer, indirect targets, return consumption and external
+  dependencies against STATUS-4 through STATUS-13. Add complete_reading only
+  after those obligations are satisfied; recorded findings and citation coverage
+  are not substitutes. Address boundary anomalies that affect the candidate.
 - Environment: use the checkout's portable PowerShell
   (artifacts/pwsh7/runtime/pwsh.exe) and locked evidence-python interpreter. Clear GAME_DIR and
   NoDefaultCurrentDirectoryInExePath. TEMP/TMP must belong to the account
@@ -97,6 +108,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   Escalated CIM command-line/parent inspection works. Reusable MSBuild nodes
   and active work for another repository were preserved; no confirmed session
   orphan was stopped.
+  The baseline's read-only duplicate exports and subsequent candidate probes
+  exited as well; reusable MSBuild nodes and uncertain ownership were preserved.
 - Blockers: the parent checkout's history-message repair awaits owner
   approval and remains recorded in docs/HANDOVER.md. Do not rewrite shared
   history; this does not block isolated work.
@@ -115,9 +128,15 @@ An owner-approved history repair remains separate from this maintenance scope.
   exclusive boundaries in bounded instruction reports, with proposed synthetic
   controls and no claim of delivered support:
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6058496258.
+  The duplicate-checked denominator exporter request is recorded at
+  https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6061345747.
 - Next, after rechecking shared goal claims:
   1. Q-EXE-009, FMT-EXE-006: continue producer/lifetime contracts and
-     the remaining dependencies listed in its queue item. FND-EXE-164 is
+     the remaining dependencies listed in its queue item toward the first
+     qualifying complete-reading package. Check FND-EXE-056's bounded reader
+     candidate against FND-EXE-055's inputs and FND-EXE-053's producers;
+     use independent reference controls before claiming caller completeness.
+     FND-EXE-164 is
      the latest composed reading; follow concrete offset-24 callback
      producers and input consumption for FND-EXE-163/FND-EXE-053, then
      saved-state writers and FND-EXE-162's preceding-callee effects.
