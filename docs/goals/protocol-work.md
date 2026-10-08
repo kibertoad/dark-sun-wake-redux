@@ -52,8 +52,9 @@ An owner-approved history repair remains separate from this maintenance scope.
   works in this repository, so the goal runs on main in the single checkout,
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
-- Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore passed.
-  Documentation generation and explicit main-base checking passed;
+- Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore passed for
+  both the EXE research and local Java setup documentation batches.
+  Explicit main-base documentation checking passed; generated files were left unchanged.
   existing argument-check skips remain. Remote-base ancestry was rechecked
   and is available; explicit local main-base checking passed. Pre-commit
   checks passed.
@@ -68,13 +69,16 @@ An owner-approved history repair remains separate from this maintenance scope.
   actually executing the process. Under CodexSandboxOffline, explicitly set
   TEMP/TMP to C:/Users/CodexSandboxOffline/AppData/Local/Temp; the inherited
   kiber temp directory fails Java real-path resolution even when Node can
-  create files there. The standard command runner currently fails before
-  process creation; node_repl child_process runs local tooling successfully.
+  create files there. The sandbox command runner fails before process creation;
+  approved escalated commands work, and node_repl child_process is a fallback
+  for read-only checks. Git writes require the escalated runner.
   Scope Git trust to this checkout with -c safe.directory or inherited
   GIT_CONFIG_COUNT/KEY/VALUE for child Git calls; do not change global trust.
   For hooks export the checkout's
   artifacts/hook-tmp as TMPDIR inside Git Bash. Keep hooks enabled. Reuse the
-  saved Ghidra program with -noanalysis. For combined script directories,
+  saved Ghidra program with -noanalysis. Use the installed Temurin 25.0.4.1
+  runtime at C:/Program Files/Eclipse Adoptium/jdk-25.0.4.101-hotspot;
+  docs/GHIDRA.md now names that verified path. For combined script directories,
   follow the corrected literal quoting in docs/GHIDRA.md; both directories
   were verified through the Windows launcher. Original-program execution
   remains prohibited.
@@ -87,10 +91,10 @@ An owner-approved history repair remains separate from this maintenance scope.
   The owner requested today's wrap-up and authorized pushing main afterward.
   That wrap-up is complete; the resumed objective keeps Q-EXE-009 next.
   Current continuation does not authorize another push.
-- Process audit: both validation processes exited; no Java/testhost remained.
-  Process-family inspection succeeded, but CIM command-line/parent inspection
-  was denied under the sandbox account. Remaining .NET nodes and uncertain
-  processes were preserved; no confirmed session orphan was stopped.
+- Process audit: both full gates and all bounded Ghidra queries exited.
+  Escalated CIM command-line/parent inspection works. Reusable MSBuild nodes
+  and active work for another repository were preserved; no confirmed session
+  orphan was stopped.
 - Blockers: the parent checkout's history-message repair awaits owner
   approval and remains recorded in docs/HANDOVER.md. Do not rewrite shared
   history; this does not block isolated work.
@@ -105,19 +109,14 @@ An owner-approved history repair remains separate from this maintenance scope.
   the released writer-control rerun remain pending.
   Toolkit issue 350 received a duplicate follow-up on inventory ownership:
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/350#issuecomment-6046763133.
-- Next: recheck shared goal claims, then Q-EXE-009 using FND-EXE-015,
-  FND-EXE-017 through FND-EXE-144 for prefix field/count/runtime state producers and other dispatch branch effects, publisher indirect targets, remaining selected callee branches, table/slot producers and caller input admission, record producers/bounds/lifetime and callee effects, virtual targets and value-two/seven callee effects, slot/object-field and caller input producers, initialization admission/lifetime and other target producers and optional admission dispatch, floating numeric/environment contracts, indexed-handler producers and wait-pointer admission, shared continuation/reader effects and category/global producers, mapping-object virtual targets/extent, list-count writers and range-index admission, then shared byte-transfer callee effects, then PATH input-list object and remaining mapped-table producers, then saved-handler admission, prefix modifier/displacement producers and first-object target admission, shared cleanup resource targets, counter initialization/lifetime, remaining cleanup targets, startup callbacks and registration effects, shared-guard indirect writers/lifetime, dispatcher-frame admission and optional callback effects
-  plus static-context/flag producer contracts, concrete dispatch targets, stream bounds and dispatcher admission, then zero-state helpers, then higher caller returns, then temporary caller ranges
-  and failure-consumer/handler contracts, then
-  preceding-word producers and downstream output, then
-  collection initialization/lifetime,
-  list-producer callee effects,
-  output meanings and later cleanup,
-  append-caller selector admission, object construction and aliases,
-  concrete virtual targets,
-  allocation callback/exceptional contracts and failure-pool lifetime,
-  prefix storage/alias and virtual-target coverage, PATH admission
-  and remaining flag/EXIT paths. Q-EXE-006 uses FND-EXE-013 for
-  batch-input/parser and helper/cleanup coverage.
-  Continue Q-EXE-008, Q-EXE-007 and Q-EXE-005 when evidence permits. Keep
-  CONFIG/SCRIPT and the gap ledger excluded; never run DOSBox or a shell harness.
+- Next, after rechecking shared goal claims:
+  1. Q-EXE-009, FMT-EXE-006: continue unrecorded prefix branches from
+     FND-EXE-131's dispatch mapping, then producer/lifetime contracts and
+     the remaining dependencies listed in its queue item. FND-EXE-145 is
+     the latest bounded reading; check existing coverage before selecting a branch.
+  2. Q-EXE-006, FMT-EXE-006: batch-input/parser and helper/cleanup coverage
+     from FND-EXE-013.
+  3. Q-EXE-008, FMT-EXE-006: disc-installer caller coverage.
+  4. Q-EXE-007, FMT-EXE-006: game/setup launch references.
+  5. Q-EXE-005, FMT-EXE-006: interpreter code-page evidence when available.
+  Keep CONFIG/SCRIPT and the gap ledger excluded; never run DOSBox or a shell harness.
