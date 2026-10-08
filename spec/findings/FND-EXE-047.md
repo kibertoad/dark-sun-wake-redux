@@ -34,7 +34,7 @@ environment: null
 
 ## Observation
 
-FND-EXE-046 calls `0x00600800` before publishing its flag. This direct
+FND-EXE-200 calls `0x00600800` before publishing its flag. This direct
 body saves the pointer read at `0x0242F640`, calls `0x00602560` and compares
 the full returned word with all ones. The thunk's PE slot `0x02431898`
 is TlsAlloc from KERNEL32.dll by bounded import reading.
@@ -60,7 +60,7 @@ are not inferred from this local branch alone.
 
 Both mode stores use the initially saved base rather than a new shared-pointer
 read. There is no local base-null check, previous-index release, rollback or
-explicit status calculation beyond the mode stores. FND-EXE-046 subsequently
+explicit status calculation beyond the mode stores. FND-EXE-200 subsequently
 writes its completion flag and rereads the shared pointer, so helper publication
 and the caller's later mode selection remain distinct events.
 

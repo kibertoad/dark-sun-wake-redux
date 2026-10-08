@@ -29,7 +29,7 @@ reads full shared pointer `0x0242F640` as S. There is no initial
 P-null guard. Zero S calls `0x006005B0`, reloads S and reads its
 full offset-48 word without another null test. An initially negative
 signed offset-48 word, or a negative word after initialization, calls
-`0x00600860` and reloads S. FND-EXE-043 and FND-EXE-046 ground
+`0x00600860` and reloads S. FND-EXE-043 and FND-EXE-200 ground
 those helpers' separate boundaries.
 
 At `0x00600B74` it freshly reads S offset 48. Zero selects the

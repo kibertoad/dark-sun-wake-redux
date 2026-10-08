@@ -52,7 +52,7 @@ environment: null
 
 ## Observation
 
-The five direct thunks used by FND-EXE-167 and FND-EXE-046 jump through
+The five direct thunks used by FND-EXE-167 and FND-EXE-200 jump through
 specific PE import slots. Physical descriptor and lookup-thunk reading maps
 those slots to these KERNEL32.dll names, including their terminating bytes:
 
@@ -64,7 +64,7 @@ those slots to these KERNEL32.dll names, including their terminating bytes:
 | `0x00602440` | `0x02431888` | SetLastError |
 | `0x00602590` | `0x024318A4` | TlsSetValue |
 
-Thus FND-EXE-046 passes its saved base-offset-56 address to
+Thus FND-EXE-200 passes its saved base-offset-56 address to
 InterlockedIncrement and tests the full returned word for zero. Its wait
 loop calls Sleep with zero, then rereads the saved completion-flag address.
 This identifies the imports; it does not make the loop bounded or establish
@@ -116,6 +116,6 @@ Map each exact slot through the physical PE descriptors and terminated lookup
 thunks rather than analyzer symbol ordering; bound names and include their
 terminators. Use the independently checked malloc/free mappings in FND-EXE-024
 as controls. Follow the saved returns, record store, fresh index, full-width
-result test and restored caller frame using FND-EXE-167 and FND-EXE-046.
+result test and restored caller frame using FND-EXE-167 and FND-EXE-200.
 Use FND-EXE-047 for the final error-query import. Keep rich reports local and
 execute no interpreter or game.

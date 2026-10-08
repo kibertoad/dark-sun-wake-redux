@@ -1,16 +1,16 @@
 ---
-id: FND-EXE-046
+id: FND-EXE-200
 title: Record-mode admission distinguishes direct clearing from initialization and a flag wait loop
-status: superseded
+status: recorded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: [FND-EXE-200]
+superseded_by: []
 recorded_by: kibertoad
 reproduced_by: []
 method: static
 locations:
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x00600860..0x006008E8
+    address: 0x00600860..0x006008E9
 tool: Ghidra 12.1.3 PUBLIC
 environment: null
 ---
@@ -61,6 +61,14 @@ established by this bounded static sequence alone.
 
 ## Alternatives
 
+This replaces FND-EXE-046, whose exclusive end at `0x006008E8`
+cut the two-byte jump starting at `0x006008E7`. The correct exclusive
+end is `0x006008E9`; that jump returns to the shared-pointer reread
+at `0x006008D3`. The old observations are retained with their full
+final instruction included. No complete-reading declaration existed
+to preserve, and correcting the endpoint does not admit callers,
+shared storage, external effects or termination.
+
 Testing the base rather than its adjusted address, writing the flag before
 initialization, polling a freshly reloaded base every iteration, or clearing a
 nonnegative mode unconditionally are ruled out by the bounded instructions.
@@ -78,3 +86,11 @@ call before flag publication, wait-loop argument and saved polling address,
 shared-pointer reread and signed mode decision. Use FND-EXE-167 for caller
 admission. Keep unread external effects and possible pointer changes conditional.
 Keep rich reports local and execute no interpreter or game.
+
+Verify the old and corrected exclusive ends with ReportCitationBoundaries
+queries `00600860..006008E8` and `00600860..006008E9`. The old end is
+interior to an instruction; the corrected end is aligned. Read
+ReportInstructionWindow at `0x006008C0`, count 22, restricting claims
+to addresses before `0x006008E9`. The final jump's target is the reread
+already described above. Endpoint classification does not establish
+interior decoding, reachability, source identity or a complete reading.

@@ -45,7 +45,7 @@ incoming pointer, with no initial pointer-null check. A zero field calls
 the callee's raw EAX on return. A nonzero field reads shared pointer
 `0x0242F640`. A zero shared pointer calls `0x006005B0` and reloads it; a
 negative signed mode at shared offset 48 calls `0x00600860`, reloads the
-shared pointer and rereads the mode. FND-EXE-043 and FND-EXE-046 record
+shared pointer and rereads the mode. FND-EXE-043 and FND-EXE-200 record
 those helpers' separate boundaries.
 
 Mode zero obtains its initial candidate from shared offset 40. Nonzero

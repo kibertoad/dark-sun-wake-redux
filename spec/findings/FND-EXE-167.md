@@ -95,7 +95,7 @@ corruption or a new supported state.
 Other setup routes invoke initialization, mode admission or imported
 helpers before publication. Their writes, returned storage, register
 preservation and possible aliases require the contracts retained in
-FND-EXE-043, FND-EXE-046, FND-EXE-047 and FND-EXE-048. The nonzero-mode
+FND-EXE-043, FND-EXE-200, FND-EXE-047 and FND-EXE-048. The nonzero-mode
 local record store likewise targets the supplied address only if the
 intervening calls preserve it. Neither that conditional store nor local
 frame separation proves the incoming slot survives every route. The

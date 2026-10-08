@@ -26,7 +26,7 @@ on the supplied record. Later original arguments are not read in this body.
 It reads the shared pointer at `0x0242F640`. A zero pointer calls
 FND-EXE-043's initializer, then rereads the pointer and its word at offset 48
 without a local null guard. A nonzero pointer reads offset 48 directly.
-If that word is negative at signed 32-bit width, it calls FND-EXE-046's
+If that word is negative at signed 32-bit width, it calls FND-EXE-200's
 mode-admission helper, rereads the shared pointer and reads offset 48 again.
 A nonnegative initial mode also reaches a fresh offset-48 read. The initial
 mode and the later mode are not one frozen value.
@@ -85,7 +85,7 @@ and excluding the later functions the window also prints. Track the first
 argument's word before all helpers, the zero-pointer branch, signed initial
 mode test, fresh mode and shared-pointer reads, zero-mode store, four
 outgoing slots, full-width return test and both frame-restoration paths.
-Use FND-EXE-043, FND-EXE-046, FND-EXE-047 and FND-EXE-048 for the helper
+Use FND-EXE-043, FND-EXE-200, FND-EXE-047 and FND-EXE-048 for the helper
 and exact import identities. Do not treat the analyzer's decompiled import
 argument count as an external ABI proof. Keep rich reports local and execute
 no interpreter or game.

@@ -21,7 +21,7 @@ FND-EXE-051's handlers call this forwarding body with a saved word in the
 first outgoing slot. The body saves its first original 32-bit argument,
 reads the shared pointer at `0x0242F640`, and selects an initial record.
 A zero shared pointer calls FND-EXE-043's initializer and rereads the
-pointer. A negative signed offset-48 mode calls FND-EXE-046's admission
+pointer. A negative signed offset-48 mode calls FND-EXE-200's admission
 helper and rereads the pointer. The later mode read is distinct from the
 initial signed guard.
 
@@ -106,7 +106,7 @@ and restrict claims to the cited range, excluding the following function.
 Track both local record words, the first-argument offset-12 guard, prepared
 selector registers, full-width seven test, later pointer/mode reads, retained
 selected record, TLS zero/nonzero join and exact order of target/frame/stack
-loads. Use FND-EXE-043 and FND-EXE-046 for local helpers and FND-EXE-041,
+loads. Use FND-EXE-043 and FND-EXE-200 for local helpers and FND-EXE-041,
 FND-EXE-047 and FND-EXE-048 for exact imported targets. Keep unread selectors,
 record layouts and exceptional effects conditional. Keep rich reports local
 and execute no interpreter or game.
