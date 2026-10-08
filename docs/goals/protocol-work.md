@@ -59,7 +59,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   FND-EXE-166's caller/input research batch also passed that gate and hooks.
   FND-EXE-167's setup-preservation research batch passed the full gate and hooks.
   FND-EXE-168's shared-publication research batch passed the full gate and hooks.
-  FND-EXE-169 and SRC-WIN32-ATOMS passed the full gate and hooks.
+  FND-EXE-170 and SRC-MS-CRT-ASSERT passed the full assetless gate and hooks.
   Explicit main-base documentation checking passed; generated files were left unchanged.
   Existing argument-check skips remain. Remote-base ancestry was rechecked
   and is available; explicit local main-base checking passed. Pre-commit
@@ -145,6 +145,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   It requests application guidance, not a status relaxation or delivered fix.
   The duplicate-checked lookup-identity control is recorded at
   https://github.com/kibertoad/refurbished-dinosaurs/issues/37#issuecomment-6062349322.
+  The duplicate-checked failure-import continuation example is recorded at
+  https://github.com/kibertoad/refurbished-dinosaurs/issues/52#issuecomment-6062587659.
 - Next, after rechecking shared goal claims:
   1. Q-EXE-009, FMT-EXE-006: continue producer/lifetime contracts and
      the remaining dependencies listed in its queue item toward the first
@@ -157,7 +159,7 @@ An owner-approved history repair remains separate from this maintenance scope.
      obligations: setup preservation of the incoming slot, selected-local
      lifetime, offset-28 writers, stack aliases and excluded indirect uses.
      FND-EXE-167 is the current setup-prefix replacement. Follow its shared-base
-     producers through FND-EXE-043 and Q-EXE-009, segment admission and
+     producers through FND-EXE-043 and FND-EXE-170, segment admission and
      intervening callee effects before treating the reader's input as preserved.
      FND-EXE-168 retains the explicit-writer search domain and remaining
      decoded-record origins, initialized input extent, allocator/storage
@@ -165,9 +167,11 @@ An owner-approved history repair remains separate from this maintenance scope.
      producer/consumer and failure contracts rather than relying on a name
      or a header predicate for storage admission.
      Use SRC-WIN32-ATOMS as an external contract only. FND-EXE-169 is the
-     current tail-extent replacement. Check Q-EXE-009's admitted identifiers,
+     current tail-extent replacement. Check FND-EXE-170's admitted identifiers,
      unchanged name/initialized extent and failure helper before closing the
      decoder's input obligations; retain original state and lifetime limits.
+     SRC-MS-CRT-ASSERT is an external contract only; follow the loaded CRT
+     effects and conditional failure continuations in FND-EXE-170.
      FND-EXE-164 is
      the latest composed reading; follow concrete offset-24 callback
      producers and input consumption for FND-EXE-163/FND-EXE-053, then
