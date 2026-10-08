@@ -331,7 +331,9 @@ Next ID: Q-EXE-014
   shipped source and closes their conditional tails with the separately
   bounded eleven-slot table. This does not admit native CS, whole-function
   ownership, incoming frames or runtime dispatch.
-  Next: descriptor 198's entry
+  Tried: FND-EXE-223 extends the source traversal to the outer candidate;
+  three additional computed jumps require independent consumer/bound readings.
+  Next: those remaining dispatch producers and descriptor 198's entry
   and CS admission, then the remaining suspect target producers.
   Blocks: reconciled executable denominator and complete-reading declarations
   that depend on those function boundaries.
