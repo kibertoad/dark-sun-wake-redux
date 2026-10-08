@@ -403,6 +403,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-247 reads the interior writer entry's separate caller guard,
   skipped outer obligations and returned-register consumption. Native count,
   header/SS aliases, output bounds and other incoming transfers remain open.
+  Tried: FND-EXE-248 reads the content-transfer helper's seek/read requests,
+  unchecked seek carry, short-read exit and actual caller carry consumption.
+  DOS effects, handle/offset writers, destination extent and aliases remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
