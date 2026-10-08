@@ -266,8 +266,10 @@ Next ID: Q-EXE-011
   flag/EXIT continuations and declared mount/overlay inputs. Unread virtual
   and CRT effects stay conditional; truthy return is not proof of an update.
   FND-EXE-166 narrows the field reader's decoded direct-call and physical
-  address-word searches and its post-setup argument reload. Next closure
-  check: setup preservation of that incoming slot, selected-local lifetime,
+  address-word searches and its post-setup argument reload. FND-EXE-208 adds
+  the physical E8/E9 and decoded interior-flow comparison; its excluded
+  transfer representations remain open. Next check: setup preservation of
+  that incoming slot, selected-local lifetime,
   offset-28 field writers and excluded computed/indirect uses. FND-EXE-197
   bounds one shipped prefix's conditional five-byte read; runtime selection,
   field/source preservation and aliases remain required. FND-EXE-198 narrows

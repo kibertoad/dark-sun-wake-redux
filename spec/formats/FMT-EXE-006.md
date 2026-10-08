@@ -303,6 +303,8 @@ reading of callers, external commands or interpreter behavior is claimed.
 
   FND-EXE-166 separately narrows a selected-record reader's direct-call
   and raw address-word domains and records its post-setup argument reload.
+  FND-EXE-208 adds the bounded physical near-transfer/interior-flow comparison;
+  excluded transfer representations still prevent a complete caller claim.
   Preserved-selector-input and alias-modified-input readings remain open:
   the former needs setup, selected-local lifetime and field-writer admission;
   the latter needs a concrete intervening writer (Q-EXE-009). Neither a
