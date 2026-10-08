@@ -30,7 +30,7 @@ The current research machine has:
 | Tool | Version | Location |
 |---|---|---|
 | Ghidra | 12.1.3 | `C:\Users\kiber\AppData\Local\Programs\Ghidra\ghidra_12.1.3_PUBLIC` |
-| Eclipse Temurin JDK | 21.0.12.1 | `C:\Users\kiber\AppData\Local\Programs\Java\jdk-21.0.12.1+1` |
+| Eclipse Temurin JDK | 25.0.4.1 | `C:\Program Files\Eclipse Adoptium\jdk-25.0.4.101-hotspot` |
 
 Check `support\analyzeHeadless.bat` and `bin\java.exe` at these paths before
 searching the machine or installing anything. A sandboxed process may need
@@ -127,7 +127,7 @@ fingerprinted executable directly:
 
 ```powershell
 $wakeGhidraHome = 'C:\Users\kiber\AppData\Local\Programs\Ghidra\ghidra_12.1.3_PUBLIC'
-$wakeJavaHome = 'C:\Users\kiber\AppData\Local\Programs\Java\jdk-21.0.12.1+1'
+$wakeJavaHome = 'C:\Program Files\Eclipse Adoptium\jdk-25.0.4.101-hotspot'
 $env:GHIDRA_HOME = $wakeGhidraHome
 $env:JAVA_HOME = $wakeJavaHome
 $env:Path = "$wakeJavaHome\bin;$wakeGhidraHome;$wakeGhidraHome\support;$env:Path"
