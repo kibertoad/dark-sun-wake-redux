@@ -424,6 +424,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-254 follows the first callback writer's helper-result gate,
   early flag and argument stores and fresh post-call product publications.
   Native frame/segment preservation, cleanup-flag writers and bounds remain open.
+  Tried: FND-EXE-255 traces the setup helper's pre-failure repeat gate, cleanup
+  flag/handle producers and duplicated full-word status. Native lifecycle,
+  interrupt contracts, argument writers and aliases remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
