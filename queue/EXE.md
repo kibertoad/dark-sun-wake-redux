@@ -25,7 +25,10 @@ Next ID: Q-EXE-011
   FND-EXE-178 adds default-stub and replacement-writer leads; follow their
   segment preservation and target bodies. FND-EXE-179 lists the intervening
   callee returns, interrupts and unresolved far targets; follow their producers
-  and saved-stack integrity before claiming preservation. Blocks: none.
+  and saved-stack integrity before claiming preservation. FND-EXE-180 and
+  SRC-DOSBOX-GOG-0742 connect the paired producer to an external-provider
+  contract; live target identity, writers and source/binary correspondence
+  remain unresolved. Blocks: none.
 
 - Q-EXE-005. FMT-EXE-006: Which code page interprets the disc sound helper's
   display bytes? Settles it: direct interpreter configuration or code-page/font

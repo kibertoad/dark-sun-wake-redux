@@ -53,6 +53,8 @@ bounded source reader; this does not establish native loader behavior.
   gated vector-exchange consumer with two unresolved cleanup callbacks.
   FND-EXE-178 separates their shipped defaults from concrete later writer leads.
   FND-EXE-179 records intervening callee restoration and external dependencies.
+  FND-EXE-180 follows the paired external-target producer; live preservation
+  and provider correspondence remain unresolved.
 
 - Which analyzer-owned body fragments are native code under the original CS
   bindings (Q-EXE-010)? FND-EXE-173 separates their physical source regions

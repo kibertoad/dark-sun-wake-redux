@@ -15,7 +15,7 @@ This is the source archive that accompanies GOG's interpreter distribution,
 not the game's source. The archive is 1334686 bytes. Its package name is
 not proof that the installed DOSBox executable was compiled from exactly
 these files, with known patches or build options. The readings below are
-external-source leads for Q-EXE-006 and Q-EXE-009, not original-runtime
+external-source leads for Q-EXE-001, Q-EXE-006, Q-EXE-009 and Q-EXE-010, not original-runtime
 observations or a complete reading of the shipped executable.
 
 Selected fingerprinted members are under `dosbox-0.74-2.1/`:
@@ -28,6 +28,22 @@ Selected fingerprinted members are under `dosbox-0.74-2.1/`:
 | dosbox-0.74-2.1/src/shell/shell.cpp | 25590 | 866b71fc7e4cd8c7b119d991db51604c |
 | include/shell.h | 3979 | a8055205228a02b5bdcee6058f4e930f |
 | COPYING | 17992 | 95ba191925e071364b68b7eda4757d94 |
+| dosbox-0.74-2.1/src/ints/xms.cpp | 13797 | 39a22225c052b3c6beaf49502bde3153 |
+
+### Extended-memory provider lead
+
+In the fingerprinted `xms.cpp`, the multiplex handler recognizes request
+`0x4300` and returns admission byte `0x80`. Request `0x4310` returns the
+XMS callback's segment and offset in ES and BX. The provider is registered
+only when the interpreter's xms configuration enables it. These are external
+source contracts for Q-EXE-001 and Q-EXE-010, not evidence of which handler
+the shipped interpreter installs or that its binary corresponds to this source.
+
+The callback dispatches on AH: service zero returns its version, eight queries
+free extended memory, nine allocates it, twelve locks a handle, ten frees it,
+thirteen unlocks it and eleven moves a block. The source supplies a hookable
+callback that returns far; neither its code location nor preservation properties
+are established for the shipped binary by this source reading.
 
 ### Command and batch reading
 
