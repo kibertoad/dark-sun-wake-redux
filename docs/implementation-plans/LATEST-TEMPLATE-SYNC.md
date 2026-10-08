@@ -180,3 +180,22 @@ agree, snapshot verification and the full assetless tools/Test.ps1 pass.
 Risk: newer checks may expose documentation gaps; address only demonstrated
 compatibility failures without promoting evidence statuses. Exit: validated
 local tooling commit and separate goal handover; no push or owner question.
+
+## Owner-requested measured work baseline (2026-10-08)
+
+Run the pinned Protocol's Measuring progress procedure, including the denominator
+audit rather than reporting absent audit files as the result. Tooling creates
+read-only snapshot exports with complete function body ranges, source hash,
+tool/snapshot/export provenance, executable-region partitions and unassigned
+bytes. Keep analysis databases and rich diagnostics in GAME_DIR. Recreate
+missing snapshots from verified licensed sources and retain existing inventory
+definitions separately until their mapping and differences are reconciled.
+
+Acceptance: duplicate exports agree; instruction/data/undefined classes are
+disjoint and sum to each measured region; union body counts do not double-count
+overlap; source mapping and exclusions are explicit. Compare mapping, citation,
+complete-reading availability, parity, data-format coverage and queue separately.
+Use synthetic regions/functions to verify overlap, gaps and partition arithmetic.
+Full Test.ps1 passes before the tooling commit. Exit: measured baseline and
+reviewable comparison, with remaining unknown scope recorded explicitly. No
+owner decision or original-game execution is required.

@@ -1,5 +1,39 @@
 # Bounded evidence tools
 
+## Measured work baseline
+
+`tools/ghidra/Measure-ResearchBaseline.ps1` runs the pinned Protocol's
+denominator audit for the configured build. Supply `-GameDirectory`, an
+outside-repository `-OutputDirectory`, `-GhidraHome` and `-JavaHome` from
+`docs/GHIDRA.md`. It reuses the saved DOSBox reading project and imports missing
+static snapshots. No original program is executed. Prepare `sources/` beneath
+the output directory with the hash-verified CD `DSUN.EXE` as `CD-DSUN.EXE`,
+`CHARTRAN-UNPACKED.EXE` using the Inspect tool's `unlzexe` command, and
+`INST-MAPPED.EXE` / `CD-MAPPED.EXE` using `New-FbovMappedImage.ps1` on their
+respective editions. The runner rejects mismatching shipped and unpacked hashes.
+
+Each frozen snapshot is exported twice with `-readOnly -noanalysis`.
+`ExportResearchBaseline.java` writes complete body ranges, provenance and
+instruction/data/undefined region partitions, including counts outside recognized
+bodies. Completion markers and byte-identical duplicate files are mandatory.
+MZ initialized regions are an upper-bound envelope including data and padding;
+overlay regions are explicitly mapped code ranges, and PE uses loaded executable
+regions. Undefined bytes are uncertain, not proved undiscovered code.
+
+Run `node tools/evidence/work-baseline.mjs <OutputDirectory>` to produce
+`work-comparison.json` and `citation-coverage.json` beside the local audits.
+The comparison separates discovery/boundary changes from research citations,
+unions overlapping bodies, accounts for identical CD aliases, and reports
+parity, data-format coverage, queue sizes and formal complete-reading availability.
+Whole-file search citations can touch every function without reading its behavior.
+Neither citation coverage nor container-format coverage is gameplay completion.
+
+Existing committed inventories remain separate from these fresh snapshots until
+mapping and body anomalies are reconciled. In particular, fresh definitions
+outside declared overlay code ranges are retained and reported rather than
+clipped to make the standard reporter accept them. Local report output and
+analysis projects stay in GAME_DIR; no generated report is committed.
+
 Requires Node.js 22 or later and the packages `./tools/Restore-ToolDependencies.ps1` installs. Run synthetic tests with
 `node --test tests/evidence/evidence.test.mjs`; the canonical validation gate
 runs them too. These tools read metadata and never run an original executable.
