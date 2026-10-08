@@ -282,6 +282,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-161 records a gated save/restore writer route with AL-only admission and a byte-derived return;
   FND-EXE-162 records its stored callback with signed return gates and a conditional last-pair comparison;
   FND-EXE-163 records the diagnostic first transfer with mutable candidate traversal and distinct saved-state admission;
+  FND-EXE-164 composes its candidate reset with register-input selection and full-seven state-transfer admission;
   table/slot producers, runtime writers/other prefix effects and remaining selected callee effects remain open.
   floating numeric contracts, downstream targets, producers,
   indirect targets and actual state admission remain open.

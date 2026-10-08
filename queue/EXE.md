@@ -205,6 +205,7 @@ Next ID: Q-EXE-010
   FND-EXE-161 records a gated save/restore writer route with AL-only admission and a byte-derived return;
   FND-EXE-162 records its stored callback with signed return gates and a conditional last-pair comparison;
   FND-EXE-163 records the diagnostic first transfer with mutable candidate traversal and distinct saved-state admission;
+  FND-EXE-164 composes its candidate reset with register-input selection and full-seven state-transfer admission;
   Runtime writers/other prefix effects, table/slot producers and remaining selected callee
   effects remain open. These bounded
   readings do not establish the complete shell outcome. Next: trace record
