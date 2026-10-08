@@ -53,7 +53,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
 - Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore passed.
-  EXE research through FND-EXE-172, measured-baseline tooling and independent
+  EXE research through FND-EXE-173, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. The classification reports are available in GAME_DIR.
   Existing argument-check skips remain; generated files are unchanged.
@@ -61,7 +61,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   the latest full gate and staged snapshot checks passed.
   This batch changes no manifest or executable inventory.
 - Unfinished: no tracked work remains. EXE follow-up items remain Q-EXE-005,
-  Q-EXE-006, Q-EXE-007, Q-EXE-008 and Q-EXE-009; Q-EXE-001 retains its
+  Q-EXE-006, Q-EXE-007, Q-EXE-008, Q-EXE-009 and Q-EXE-010; Q-EXE-001 retains its
   retry requirement. Local static-analysis reports and the saved interpreter
   Ghidra project remain in GAME_DIR/analysis/exe-batches for continuation.
   Measured snapshot exports, audit sidecars and comparisons are in
@@ -147,9 +147,9 @@ An owner-approved history repair remains separate from this maintenance scope.
   The duplicate-checked physical body-classification diagnostic is tracked at
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/369.
 - Next, after rechecking shared goal claims:
-  1. Q-EXE-001, FMT-EXE-005: record the source-layout classifications from
-     overlay-bodies at b69bbdd and investigate anomalous analyzer-owned fragments
-     before replacing executable inventories or declaring denominator repair.
+  1. Q-EXE-010, FMT-EXE-005: follow FND-EXE-173's descriptor-198 entry
+     and native CS admission before reconciling the dispatch table and body.
+     Retain original inventories until boundary and target producers are read.
   2. Q-EXE-009, FMT-EXE-006: continue producer/lifetime contracts and
      the remaining dependencies listed in its queue item toward the first
      qualifying complete-reading package. Check FND-EXE-056's bounded reader
@@ -188,9 +188,8 @@ An owner-approved history repair remains separate from this maintenance scope.
      for FND-EXE-131 through FND-EXE-144 are committed.
      Aggregate executable coverage was checked before this reading.
      Other prefix writer leads remain in the local reference report.
-  2. Q-EXE-006, FMT-EXE-006: batch-input/parser and helper/cleanup coverage
-     from FND-EXE-013.
-  3. Q-EXE-008, FMT-EXE-006: disc-installer caller coverage.
+  3. Q-EXE-006 and Q-EXE-008, FMT-EXE-006: batch-input/parser and
+     helper/cleanup coverage from FND-EXE-013, then disc-installer callers.
   4. Q-EXE-007, FMT-EXE-006: game/setup launch references.
   5. Q-EXE-005, FMT-EXE-006: interpreter code-page evidence when available.
   Keep CONFIG/SCRIPT and the gap ledger excluded; never run DOSBox or a shell harness.
