@@ -53,7 +53,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
 - Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore passed.
-  EXE research through FND-EXE-176, measured-baseline tooling and independent
+  EXE research through FND-EXE-177, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
   and its independently failing-before/passing-after synthetic regression.
@@ -149,12 +149,14 @@ An owner-approved history repair remains separate from this maintenance scope.
   The confirmed mapper repair and downstream revalidation are tracked at
   https://github.com/kibertoad/dark-sun-wake-redux/issues/6#issuecomment-6063990997.
   Ghidra rendering follow-up: https://github.com/NationalSecurityAgency/ghidra/issues/9739#issuecomment-6064374250.
+  Interrupt-use capability: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/370.
+  Intermittent synthetic capture gate: https://github.com/kibertoad/dark-sun-wake-redux/issues/7; rechecks passed.
 - Next, after rechecking shared goal claims:
   1. Q-EXE-010, FMT-EXE-005: reconcile revision-2 comparison in
      GAME_DIR/analysis/work-baseline/relocation-reconciled. Revisit
      FND-EXE-173's segment/dispatch reading against FND-EXE-174's snapshots.
      Retain old artifacts and committed inventories for comparison. For Q-EXE-001,
-     establish FND-EXE-175's callers and FND-EXE-176's field writers, then callees.
+     establish FND-EXE-175's callers and FND-EXE-176/FND-EXE-177's field/callback producers.
   2. Q-EXE-009, FMT-EXE-006: continue producer/lifetime contracts and
      the remaining dependencies listed in its queue item toward the first
      qualifying complete-reading package. Check FND-EXE-056's bounded reader
@@ -189,9 +191,7 @@ An owner-approved history repair remains separate from this maintenance scope.
      saved-state writers and FND-EXE-162's preceding-callee effects.
      FND-EXE-161's remaining callee/frame contracts still limit saved-value
      survival and diagnostic completion.
-     The boundary audit through FND-EXE-160 is complete; range corrections
-     for FND-EXE-131 through FND-EXE-144 are committed.
-     Aggregate executable coverage was checked before this reading.
+     FND-EXE-131 through FND-EXE-144 boundary corrections remain committed.
   3. Q-EXE-006 and Q-EXE-008, FMT-EXE-006: batch-input/parser and
      helper/cleanup coverage from FND-EXE-013, then disc-installer callers.
   4. Q-EXE-007, FMT-EXE-006: game/setup launch references.
