@@ -52,8 +52,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   works in this repository, so the goal runs on main in the single checkout,
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
-- Last full gate: 2026-10-09, assetless Test.ps1 -NoRestore passed for FND-EXE-225 research (715 tests).
-  EXE research through FND-EXE-225, measured-baseline tooling and independent
+- Last full gate: 2026-10-09, assetless Test.ps1 -NoRestore passed for FND-EXE-226 research (715 tests).
+  EXE research through FND-EXE-226, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
   and its independently failing-before/passing-after synthetic regression.
@@ -159,7 +159,7 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Overlay diagnostic follow-up: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/369#issuecomment-6069855019.
 - Next, after rechecking shared goal claims:
   1. Finish installed and CD DSUN inventory reconciliation under Q-EXE-010,
-     FMT-EXE-005; follow FND-EXE-225 native loader/CS, incoming frame and ownership obligations.
+     FMT-EXE-005; follow FND-EXE-226 handler callee/callback, native CS/frame and ownership obligations.
   2. Check claims before expanding into CONFIG for SOUND_DS endpoint review
      (FND-CONFIG-004 and FND-CONFIG-022); supersede factual errors under Standard.
   3. Rerun standard-coverage on all in-scope inventories once valid; retain
