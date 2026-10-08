@@ -312,6 +312,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   Selection, preservation and downstream target/stream admission remain open.
   FND-EXE-212 bounds concrete count writers and conditional initial matching pairs;
   it does not admit all record origins or later matching and cleanup behavior.
+  FND-EXE-213 follows one count-one nonmatching-signature path through negative
+  decoding to conditional saved six; preservation and other routes remain open.
   Preserved-selector-input and alias-modified-input readings remain open:
   the former needs setup, selected-local lifetime and field-writer admission;
   the latter needs a concrete intervening writer (Q-EXE-009). Neither a

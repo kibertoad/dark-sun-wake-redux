@@ -280,6 +280,8 @@ Next ID: Q-EXE-011
   Source/field preservation and downstream stream/target consumption remain open.
   FND-EXE-212 adds branch-specific count writers and finite conditional pair
   consumption; fixed-arm admission, preservation and later matching still need evidence.
+  FND-EXE-213 follows its count-one nonmatching-signature negative lookup to
+  conditional saved six; actual selection, other routes and cleanup remain open.
   FND-EXE-167 narrows direct setup writes under the flat-address model;
   shared-base provenance, DS/SS identity, indirect aliases and preservation
   through the other setup routes and callees remain required.
