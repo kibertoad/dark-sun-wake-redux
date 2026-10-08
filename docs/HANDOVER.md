@@ -11,9 +11,9 @@ adopted 0b9ab9c. It corrects 107 DOSBox.exe range ends in place under the
 owner's decision in docs/DECISIONS.md. Assetless Test.ps1 passed with 715
 .NET tests. Not pushed. The protocol-work worktree is still at 4fcf09c: merge
 main into it before resuming Q-EXE-009, and write range ends half-open
-(research-item skill). docs/VALIDATION.md cites 64 local `artifacts/` logs
-that are gitignored; the owner questioned that, and removing them is not yet
-decided.
+(research-item skill). docs/VALIDATION.md's 64 local `artifacts/`
+log citations were removed; AGENTS.md now forbids them. About 230 more remain
+in the audit documents, some naming uncommitted driver scripts.
 
 ## Today’s wrap-up (2026-10-08)
 

@@ -448,14 +448,11 @@ retain their normal meanings; a filtered run remains partial acceptance.
 
 
 Offline option acceptance (2026-10-01): the full configured gate passes with
--NoRestore and unreachable HTTP proxies; log artifacts/offline-root-full-validation.log.
-The normal restoring gate is recorded in artifacts/offline-root-normal-validation.log.
-Shared template normal and sequential offline gates pass, recorded in
-artifacts/offline-template-normal-validation.log and
-offline-template-offline-sequential.log. Synthetic option controls retain all
-checks, filters/counts and failure propagation. The restricted full rerun still
-fails native capture and Java filesystem controls; its failure is retained in
-artifacts/offline-validation-restricted-rerun.log and is not counted as acceptance.
+-NoRestore and unreachable HTTP proxies, and the normal restoring gate passes.
+Shared template normal and sequential offline gates pass. Synthetic option
+controls retain all checks, filters/counts and failure propagation. The
+restricted full rerun still fails native capture and Java filesystem controls,
+and is not counted as acceptance.
 Shared delivery is proposed in template PR 41; gap 4 remains open pending review.
 
 
@@ -467,75 +464,68 @@ template's direct dotnet-test assertion. Test.ps1 supplies its running portable
 PowerShell for these controls when PWSH is unset and restores the prior value.
 Normal and offline full gates are rerun for this final adaptation.
 
-Final normal and offline gates pass: artifacts/offline-pr41-final-normal.log and
-artifacts/offline-pr41-final-offline.log. The production portable-host block also
-passes unset-PWSH fallback and preservation of a supplied caller value; local
-probe artifacts/pr41-portable-host-control.ps1. Gap 4 is closed after this final
+Final normal and offline gates pass. The production portable-host block also
+passes unset-PWSH fallback and preservation of a supplied caller value. Gap 4 is closed after this final
 merged adoption; the earlier pending-PR notes above describe prior acceptance.
 
 Merged toolkit PRs 35?37 / template PR 42 adoption (2026-10-01): exact
 reporter integrity, adopted owner/caller/pointer source controls and canonical
-normal validation pass; log artifacts/merged-pr42-validation.log. Offline
-NoRestore gate uses unavailable proxy endpoints and retains all required checks;
-log artifacts/merged-pr42-offline-validation.log. Source controls and reports
+normal validation pass. The offline NoRestore gate uses unavailable proxy
+endpoints, retains all required checks and passes. Source controls and reports
 remain in GAME_DIR/analysis/reporter-audit. No original runtime was launched.
 
 Gap 17 upstream candidate PR 38 (2026-10-01): source acceptance plus
 Python, Node bridge/documentation, policy, .NET restore/build/tests and packages
-pass after integration with c133cd4; logs artifacts/overlap-candidates-final-*.
+pass after integration with c133cd4.
 Candidate is not yet adopted; licensed-source artifacts stay outside Git.
 
 Gap 20 upstream candidate PR 39 (2026-10-01): hash-guarded source controls,
 Python and full Node suites, repository policy, .NET restore/build/tests and both
-packages pass; logs artifacts/callee-graph-final-*. Candidate is not adopted.
+packages pass. Candidate is not adopted.
 
 Gap 17 final merged adoption (2026-10-01): toolkit 1ef21ef exact pin,
 complete source overlap/width/rejected/cap/partial controls and owner/pointer
 regressions pass. Canonical validation passes, including Test.ps1 and Release
-build/publish/smoke; log artifacts/gap17-merged-adoption-validation.log.
+build/publish/smoke.
 
 Gap 21 candidate PR 40 (2026-10-01): bounded hash-guarded source controls,
-complete Python/Node suites, policy, .NET restore/build/tests and packages pass;
-logs artifacts/near-pointer-final-*. Stopped source paths remain incomplete and
+complete Python/Node suites, policy, .NET restore/build/tests and packages pass.
+Stopped source paths remain incomplete and
 no native DS/SS relationship is claimed. Candidate is not adopted.
 
 Root canonical Invoke-Validation.ps1 -NoRestore passes after the Gap 21
-candidate acceptance record, including Test.ps1 and Release publish/smoke;
-log artifacts/near-pointer-pr40-root-validation.log.
+candidate acceptance record, including Test.ps1 and Release publish/smoke.
 
 Final merged PRs 39/40 adoption (2026-10-01): exact toolkit pin
 67340fcb975449600c160ef5a4995119d4e8f127 passes graph and near-pointer
 whole-contract source controls, nonvacuous formation cap, operand overlap and
 owner regressions. Canonical NoRestore gate passes, including Test.ps1 and
-Release build/publish/smoke; log artifacts/merged-graph-provenance-validation.log.
+Release build/publish/smoke.
 Template PR 43 already contains this pin at 5ee4f81; exact integrity verified
 and all applicable CI passes. No duplicate update was pushed.
 
 Gap 15 candidate PR 41 (2026-10-01): whole source controls, synthetic
 Python/Node bridge/documentation, repository policy, .NET restore/build/tests and
-packages pass; logs artifacts/call-order-final-*. Candidate is not adopted.
+packages pass. Candidate is not adopted.
 
 Template PR 43 final merge adoption (2026-10-01): merge 79d18a20 has the
 identical tree to reviewed 5ee4f81; exact toolkit pin remains 67340fc.
 Root canonical NoRestore validation passes after the Gap 15 candidate records,
-including Test.ps1 and Release build/publish/smoke; log
-artifacts/call-order-pr41-root-validation.log.
+including Test.ps1 and Release build/publish/smoke.
 
 Gap 26 candidate toolkit PR 43 at f0d05f4 (2026-10-01): hash-guarded source cases and
 nonvacuous cap/rejected-encoding controls, synthetic Python/Node suites,
-repository policy, .NET restore/build/tests and both packages pass; logs
-artifacts/return-flow-final-* and return-flow-packages-*. Conditional child models, unknown effects and
+repository policy, .NET restore/build/tests and both packages pass. Conditional child models, unknown effects and
 stopped source paths remain explicit. Exact adopted toolkit pin is unchanged.
 
 Current package-layout candidate rerun (2026-10-01): engine/source controls,
 workspace lint/format/type checks, bridge/standard-checker/release-planner tests,
 npm build/tarballs, Python wheel and .NET tests/NuGet packages all pass. Toolkit
 PR 43 is updated by normal push with published history preserved. Root canonical
-NoRestore validation passes after acceptance records; log
-artifacts/return-flow-pr43-root-validation.log.
+NoRestore validation passes after acceptance records.
 
 Gap 15 current package-layout candidate f8c756f (2026-10-01): all source
-controls and package/workspace gates pass; logs artifacts/call-order-packages-*.
+controls and package/workspace gates pass.
 Upstream PR 41 is updated by normal push; the restoration pin is unchanged.
 
 
@@ -543,33 +533,31 @@ Published-package migration (2026-10-02): configured normal and NoRestore canoni
 validation, adapter/protocol/CI-input controls and existing adopted Dark Sun
 reporter drivers pass. Source configs and reports stay under GAME_DIR. Exact
 engine 0.1.0, reader/checker 0.1.0 and Capstone 5.0.7 locks replace copied tooling;
-rule snapshot bytes are unchanged. Logs: artifacts/package-delivery/root-normal-validation.log
-and root-offline-validation.log. Template normal and unreachable-proxy NoRestore
+rule snapshot bytes are unchanged. Template normal and unreachable-proxy NoRestore
 gates pass in the isolated migration worktree.
 
 
 Published npm 0.1.0 follow-up (2026-10-02): exact released reader/checker archive
 locks and matching action revision 15ac5ee pass configured and template normal
 and unreachable-proxy NoRestore gates. All existing adopted source controls pass
-through the released bridge. Logs: artifacts/package-delivery/*-010-*.log.
+through the released bridge.
 
 Gap 27 candidate PR 45: complete shared engine, prepared-reader integration,
 workspace, release planning, policy, .NET build/tests and wheel/npm package gates
 pass, with the bounded FND-SCRIPT-019 early-return control. The broad fill query
 remains incomplete under output/path limits; no complete Gap 27 acceptance is
-claimed. Logs: artifacts/effect-path-*.
+claimed.
 
 The final candidate package smoke uses the extracted npm tarball with an installed
 wheel in an isolated environment and no PYTHONPATH/source fallback; pre-service
-write and unknown-effect controls pass (artifacts/effect-path-real-package-smoke.log).
+write and unknown-effect controls pass.
 Template CI's checker annotation now names its verified published tag,
 @scientific-method/standard-checker@0.1.0, beside the exact action commit.
 
 Published engine 0.4.0 adoption (2026-10-02): exact registry wheel hash,
 installed-package source controls and configured/template normal and unavailable-
 proxy NoRestore gates pass. Configured validation includes Test.ps1, Release
-build and assetless publish/smoke. Logs artifacts/package-delivery/
-{root,template}-engine040-{normal,offline}.log. Full Gap 15/26 tooling contracts
+build and assetless publish/smoke. Full Gap 15/26 tooling contracts
 pass with conditional-model/native-outcome qualifications retained in
 REPORTER-CASE-AUDIT; Gap 27 remains open beyond its verified wrapper slice.
 Gap 27 resource-suffix control (2026-10-02): installed engine 0.4.0 passes
@@ -581,28 +569,25 @@ epilogue, callees and native reachability unread; Gap 27 remains open.
 
 Template PR 44 at 9e1c94d: documentation, Ubuntu Verify, zizmor and Windows
 installer checks pass. Linux/macOS installer jobs are skipped by workflow scope.
-Resource-control batch Test.ps1 -NoRestore passes; log
-artifacts/package-delivery/effect-resource-final-test.log.
+Resource-control batch Test.ps1 -NoRestore passes.
 
 Gap 27 table-continuation candidate (2026-10-02): toolkit PR 60's full engine,
 workspace, real prepared-reader, lint/format/type, release-planner, .NET/policy
 and distributable archive gates pass. Installed wheel plus extracted npm archive
-smoke passes without PYTHONPATH; logs artifacts/package-delivery/indirect-effect-*.
+smoke passes without PYTHONPATH.
 Full-entry partial MENU-field source controls retain count-before-child,
 failure/zero clear differences and rejected caps/wrong field. Local source logs:
 GAME_DIR/analysis/reporter-audit/child-effect-controls/{published040-limit,
 verify-candidate}.log. Broad/full-request coverage remains incomplete and the
 candidate is not adopted; no game claim, native outcome or parity status changed.
 
-Restoration table-continuation tooling batch: Test.ps1 -NoRestore passes; log
-artifacts/package-delivery/indirect-effect-root-final-test.log. Toolkit PR 60
+Restoration table-continuation tooling batch: Test.ps1 -NoRestore passes. Toolkit PR 60
 at 7899fbf passes release-label, Ubuntu/Windows documentation and Verify CI.
 
 Published reader 0.2.0 adoption (2026-10-02): exact registry npm lock and all
 installed-package source regressions pass with engine 0.4.0, without candidate
 imports. Configured/template normal and unavailable-proxy NoRestore canonical
-gates pass; configured Release build and assetless publish/smoke pass. Logs
-artifacts/package-delivery/reader020-{root,template}-{normal,offline}.log.
+gates pass; configured Release build and assetless publish/smoke pass.
 Source controls retain *-reader020-engine040.log files under GAME_DIR. The
 published child-effect limitation remains explicit and PR 60 is not adopted.
 
@@ -613,8 +598,7 @@ positive coverage. GAME_DIR/analysis/reporter-audit/pointer-caller-effects/
 verify-adopted-reader020-engine040.log. The acceptance prefix starts at the real
 entry; full later-body coverage, cleanup success and native progress stay open.
 
-Caller-control batch Test.ps1 -NoRestore passes; log
-artifacts/package-delivery/pointer-caller-root-final-test.log. Template PR 44
+Caller-control batch Test.ps1 -NoRestore passes. Template PR 44
 at 5777ea0 passes documentation, Ubuntu Verify, zizmor and Windows installer CI;
 Linux/macOS installers are skipped by workflow scope.
 
@@ -627,10 +611,8 @@ verify-adopted-reader020-engine040.log. Value provenance does not establish
 storage aliases; unknown segments, callee effects, later child paths and native
 outcomes remain explicit. Whole-function and full Gap 27 acceptance stay open.
 
-List-mutation tooling batch Test.ps1 -NoRestore passes; log
-artifacts/package-delivery/list-mutation-root-final-test.log. The initial sandbox
-run could not resolve a temporary Java fixture directory; its diagnostic log is
-artifacts/package-delivery/list-mutation-root-sandbox-test.log. The unchanged
+List-mutation tooling batch Test.ps1 -NoRestore passes. The initial sandbox
+run could not resolve a temporary Java fixture directory. The unchanged
 gate passes with the required temporary-directory access.
 
 Gap 27 cleanup/hardware controls (2026-10-02): installed reader 0.2.0/engine
@@ -644,8 +626,7 @@ cleanup-hardware-effects/verify-adopted-reader020-engine040.log. Effect tracing
 stops at the first port; earlier cleanup loops, joined hardware effects,
 process survival and native outcomes remain unconfirmed. Gap 27 stays open.
 
-Cleanup/hardware tooling batch Test.ps1 -NoRestore passes; log
-artifacts/package-delivery/cleanup-hardware-root-final-test.log. Toolkit PR 60
+Cleanup/hardware tooling batch Test.ps1 -NoRestore passes. Toolkit PR 60
 and template PR 44 remain open at their previously recorded heads; upstream
 PR 62 is an internal instruction-backend seam and supplies no port behavior.
 
@@ -662,13 +643,11 @@ Ancestor frame memory, selected-number dispatch and native content remain open.
 The generic nested-frame request reproduces that conservative stop on upstream
 main with synthetic near/far frames, explicit overwrite/cap controls and a real
 synthetic MZ bridge. Full engine/workspace, lint/format/types, release-planner,
-build/npm archives, .NET build/test/pack and repository policy pass. Logs:
-artifacts/package-delivery/nested-frame-*. The checker skips its Linux-only
+build/npm archives, .NET build/test/pack and repository policy pass. The checker skips its Linux-only
 case-sensitive-filesystem test on Windows. The PR proposes a plan and tests;
 no preservation API or protocol change is implemented or adopted.
 
-Layered-cache tooling batch Test.ps1 -NoRestore passes; log
-artifacts/package-delivery/layered-cache-root-final-test.log. Toolkit PR 63
+Layered-cache tooling batch Test.ps1 -NoRestore passes. Toolkit PR 63
 publishes the scoped-memory plan/test request at 6ef1d25; no restoration push
 or package adoption accompanies it.
 
@@ -682,8 +661,7 @@ GAME_DIR/analysis/reporter-audit/replacement-pointer-effects/
 verify-adopted-reader020-engine040.log. Active children, byte/word gates,
 snapshots, accepted content and native outcomes remain open; Gap 27 stays open.
 
-Replacement-pointer tooling batch Test.ps1 -NoRestore passes; log
-artifacts/package-delivery/replacement-pointer-root-final-test.log. Toolkit
+Replacement-pointer tooling batch Test.ps1 -NoRestore passes. Toolkit
 PRs 60 and 63 remain open at their recorded heads; neither candidate behavior
 nor the scoped-memory proposal has been adopted.
 
@@ -697,8 +675,7 @@ verify-adopted-reader020-engine040.log. Effect queries retain unread active chil
 paths; handle-request-failure commits, callbacks and native outcomes remain open.
 No whole-call rollback or complete Gap 27 acceptance is claimed.
 
-Snapshot-path tooling batch Test.ps1 -NoRestore passes; log
-artifacts/package-delivery/snapshot-path-root-final-test.log. The local driver
+Snapshot-path tooling batch Test.ps1 -NoRestore passes. The local driver
 uses GAME_DIR and reports a skip when it or the licensed source is absent;
 missing-game-dir.log and missing-source.log retain those controls beside the
 source reports. The fresh licensed-source run passes. Package pins are unchanged.
@@ -738,8 +715,7 @@ are still latest. Requirements lock engine, Capstone 5.0.7 and pypcode 4.0.0
 wheels; the verifier checks every installed runtime version and rejects a
 missing/mismatched pypcode pin. Installed synthetic MZ routing, prepared mismatch
 and conditional-table prefix/cap controls pass. Registry archive/source integrity
-is retained in artifacts/package-delivery/engine070-registry/integrity.json; an
-uncached public-index hash-locked download passes in engine070-clean-registry-restore.log.
+matches, and an uncached public-index hash-locked download passes.
 
 Retained installed-package original static controls pass with GAME_DIR present
 and no PYTHONPATH; their local summary/logs and previous reports are in
@@ -748,9 +724,8 @@ linked-child MENU positive remains capped; its separate installed delivery-limit
 control passes with the qualifications in REPORTER-CASE-AUDIT.md. No validated
 parity status or native/emulated outcome is generated by these tooling checks.
 
-Configured Test.ps1 -NoRestore passes in
-artifacts/package-delivery/engine070-root-test.log. Normal locked tool restore
-passes in engine070-normal-tool-restore.log; its fresh npm install retains the
+Configured Test.ps1 -NoRestore passes. Normal locked tool restore
+passes; its fresh npm install retains the
 exact current registry versions. NoRestore remains strict and makes no fallback
 installation. Source controls and missing dependency/version controls remain
 separate from game parity validation.
@@ -760,17 +735,14 @@ separate from game parity validation.
 Reviewed PR 66 delivered during the final latest-version check; that release
 and action pins were 0.8.0 and 592088dbdb1cc8d804ba853eb39ae6ca1215577f.
 Handwritten semantics are removed, with pypcode the sole instruction backend.
-Exact archive/source/installed inventory verification passes in
-artifacts/package-delivery/engine080-registry/integrity.json. Installed dependency
+Exact archive/source/installed inventory verification passes. Installed dependency
 and conditional-target tests pass; retained static source and linked-child limit
 controls pass in GAME_DIR/analysis/reporter-audit/registry-engine080-regression/.
 Earlier incomplete-path qualifications remain; no validated parity status,
 native run or emulation is claimed.
 
-The configured Test.ps1 -NoRestore gate passes in
-artifacts/package-delivery/engine080-root-test.log. Initial normal restore
-succeeded before an intermittent synthetic capture positive failed; that failure
-is retained in engine080-root-test-initial-capture-failure.log. The isolated
+The configured Test.ps1 -NoRestore gate passes. Initial normal restore
+succeeded before an intermittent synthetic capture positive failed. The isolated
 capture recheck and full unchanged gate pass; no rejection was weakened. Gap 44
 records the diagnostic request and unconfirmed cause.
 
@@ -782,11 +754,9 @@ at their current registry versions, 0.2.0 and 0.1.0. Capstone 5.0.7 and pypcode
 4.0.0 retain their exact hashed pins. This release adds optional Ghidra callee-edge
 cross-check tooling; it does not supply native evidence or close open requests.
 
-Normal locked restore passes in artifacts/package-delivery/engine090-normal-tool-restore.log.
-Registry wheel/sdist hashes, released sources and test inventory, and installed
-package files match the release tag; the verification record is
-artifacts/package-delivery/engine090-registry/integrity.json. The configured
-Test.ps1 -NoRestore gate passes in artifacts/package-delivery/engine090-root-test.log.
+Normal locked restore passes. Registry wheel/sdist hashes, released sources and
+test inventory, and installed package files match the release tag. The
+configured Test.ps1 -NoRestore gate passes.
 Retained original static controls run against installed packages with GAME_DIR
 and no candidate imports; logs and their summary are local under
 GAME_DIR/analysis/reporter-audit/registry-engine090-regression/. Earlier capped
@@ -804,7 +774,7 @@ The unresolved chunk behavior and malformed historical record in FMT-VIDEO-001
 remain open. Cinematic dispatch, caller timing, skip handling and still-picture
 fallback remain unimplemented; this adoption does not change their parity rows.
 
-2026-10-05: Shared runtime 6.2.0 and engine 8.1.1 adoption. Exact wheel/sdist/tag/installed engine bytes and complete published suite pass (artifacts/engine811/release-suite.log). Canonical Test.ps1, locked restore, Release build and assetless publish/smoke pass (artifacts/engine811/validation.log); packaging profiles refreshed. Conditional source controls and remaining exits are recorded in TOOLKIT-RESPONSE-ACCEPTANCE. No original runtime or emulation ran.
+2026-10-05: Shared runtime 6.2.0 and engine 8.1.1 adoption. Exact wheel/sdist/tag/installed engine bytes and complete published suite pass. Canonical Test.ps1, locked restore, Release build and assetless publish/smoke pass; packaging profiles refreshed. Conditional source controls and remaining exits are recorded in TOOLKIT-RESPONSE-ACCEPTANCE. No original runtime or emulation ran.
 
 ### Latest runtime 6.6.0 / engine 9.1.0 acceptance, 2026-10-05
 
@@ -815,10 +785,9 @@ positive and wrong-CX-writer/unread/unscoped/cap controls; whole verdicts stay
 undecided. Recursive provenance controls retain their prior qualifications.
 Ordinary and all packaging-profile locks are refreshed. Invoke-Validation.ps1
 passes canonical Test.ps1, locked restore, Release build and assetless smoke
-using artifacts/pwsh7/runtime/pwsh.exe. Logs: artifacts/engine91/release-suite.log,
-poll-controls.log, consumer.log and validation.log. The initial Windows
+using artifacts/pwsh7/runtime/pwsh.exe. The initial Windows
 PowerShell 5.1 run failed infrastructure tests because pwsh was absent from
-PATH; it is retained as gate.log. No original runtime or original emulation
+PATH. No original runtime or original emulation
 occurred. Every remaining full gap stays open; LATEST-RELEASE-GAP-AUDIT.md
 records the per-contract release assessment.
 
@@ -842,12 +811,11 @@ stay under GAME_DIR/analysis/reporter-audit/emulated-initializer, with exclusive
 creation; no source bytes or reports enter Git. No game process, DOSBox, runtime
 capture or spec/parity promotion occurred. This is harness delivery acceptance,
 not a complete startup-to-transfer experiment or evidence of native output.
-Logs: artifacts/emulator/licensed-controls.log and initializer-controls.log;
-canonical batch gate: artifacts/emulator/canonical-validation.log.
+The canonical batch gate passes.
 
 The installed test-only emulator matches every package file in the official
-registry-hash-verified wheel (artifacts/emulator/unicorn-integrity.log). Final
-Test.ps1 after offset-wrap controls also passes (artifacts/emulator/final-test.log).
+registry-hash-verified wheel. Final Test.ps1 after offset-wrap controls also
+passes.
 
 Synthetic fixture readiness validation, 2026-10-06: the fixture uses a 160 by
 96 undecorated client with autoscaling disabled, verifies its two known source
@@ -859,8 +827,8 @@ remain strict. Deliberately uniform positive input proves rejection after source
 readiness, with actual-size and readiness diagnostics. The test subprocess retains
 its outer timeout. This establishes synthetic fixture readiness, not freshness
 or parity of an original-game capture. Production capture code is unchanged.
-Focused controls: artifacts/engine101/capture-readiness-targeted3.log. Full assetless `tools/Test.ps1 -NoRestore` passed after the readiness fix; log:
-artifacts/engine101/capture-readiness-full-gate4.log. Documentation base comparison
+Focused controls and the full assetless `tools/Test.ps1 -NoRestore` passed
+after the readiness fix. Documentation base comparison
 passed; original-dependent tests skipped.
 
 Sandbox-account assetless validation, 2026-10-07: `tools/Test.ps1 -NoRestore`
@@ -875,8 +843,6 @@ Pinned rules and tooling integrity, repository/configuration checks, synthetic
 suites and the full .NET suite passed (715 tests). The documentation checker
 passed with its reported argument-check skips; this does not establish those
 skipped checks or any original-game behavior. No original runtime was started.
-Failure log: `artifacts/session-20261007-gate.log`; passing log:
-`artifacts/session-20261007-gate-sandbox-temp.log`.
 
 Local no-push goal discovery, 2026-10-07: the workflow skills and goal README
 were checked against the unchanged pinned Protocol efa138ba. A constructed
@@ -886,8 +852,8 @@ clone retained only remote-tracking goal branches; and a second constructed
 creation was detected by the final listing and only its new branch was removed.
 The actual isolated goal worktree also discovers its claim from the shared
 clone. These controls establish Git discovery behavior, not any game claim or
-an atomic lock between sessions. Procedure and output remain local in
-`artifacts/verify-goal-discovery.cjs` and `artifacts/goal-discovery-controls.log`.
+an atomic lock between sessions. The control script was not committed, so
+they cannot be repeated from the repository.
 
 The completed capture-readiness plan was moved intact to the existing plan
 archive so the current implementation plan remains within its required line
@@ -899,9 +865,8 @@ checks skipped for prose Parameters. The earlier attempts stopped at the plan
 line limit, then at a temporary directory belonging to the other execution
 account. The passing run used PowerShell 7, the verified owner account's own
 TEMP/TMP, cleared GAME_DIR and NoDefaultCurrentDirectoryInExePath, and the
-already installed hash-locked interpreter selected with EVIDENCE_PYTHON.
-Gate log: `artifacts/protocol-skill-sync-gate3.log`; explicit base comparison:
-`artifacts/protocol-skill-docs-base.log`. No original runtime was launched.
+already installed hash-locked interpreter selected with EVIDENCE_PYTHON. The
+explicit base comparison passed. No original runtime was launched.
 
 Downstream details were added to existing template issue 80 (goal-skill
 summaries) and issue 82 (temporary-directory/account diagnostics), after the
@@ -925,14 +890,12 @@ rejects both missing and extra arguments without skipping, accepts a known
 empty list with a zero-argument call, and explicitly skips an unresolved list.
 Combined names and trailing prose remain uncountable. No existing game-rule
 Parameters, spec evidence, statuses, parity rows or queues were changed to
-remove checker skips. Controls: artifacts/verify-rule-parameters.mjs;
-output: artifacts/rule-parameters-controls.log.
+remove checker skips. The control script was not committed.
 
 Pinned digests and section links, diff whitespace validation and the explicit
 main-base documentation comparison passed. Full assetless Test.ps1 -NoRestore
 passed with all 715 .NET tests succeeding; its known argument-check skips
-remain documented. Logs: artifacts/procedure-evidence-docs.log and
-artifacts/procedure-evidence-gate.log. Use the executing account's temporary
+remain documented. Use the executing account's temporary
 directory, clear GAME_DIR and NoDefaultCurrentDirectoryInExePath and select
 the already installed locked interpreter as in the isolated goal's handover.
 No original runtime or proprietary input was used. The implementation plan
@@ -940,10 +903,9 @@ remains within its required line limit and links the bounded tooling plan.
 
 ## Template 0b9ab9c adoption validation (2026-10-07)
 
-The assetless canonical gate is recorded in artifacts/template-0b9ab9c-test.log.
-Focused inventory/upstream controls: artifacts/template-0b9ab9c-targeted.log.
-The offline documentation run: artifacts/template-0b9ab9c-docs.log, with existing
-argument-count skips and the intentional scheduled-generation comparison skip.
+The assetless canonical gate, focused inventory/upstream controls and the
+offline documentation run passed, with existing argument-count skips and the
+intentional scheduled-generation comparison skip.
 Local baseline controls distinguish unpublished local main, an explicit old
 base, CI's remote base and a forbidden new branch edit. No original was run,
 no workflow was dispatched and no repository settings were changed.

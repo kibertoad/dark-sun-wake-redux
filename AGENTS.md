@@ -285,6 +285,10 @@ rules under "Native runtime visual validation" remain binding.
 
 Every batch runs `./tools/Test.ps1` before commit, ends with the skills' status
 block, and uses the protocol's Spec, Parity, Queue and Report trailers as needed.
+A committed document never cites a file under `artifacts/` as evidence: the
+directory is gitignored, so the file exists only on one machine. State the
+result in the document, and commit any script a result depends on under
+`tools/` or `tests/`. Reports built from licensed sources stay in `GAME_DIR`.
 
 ## Rules that never bend
 
