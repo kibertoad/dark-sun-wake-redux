@@ -194,6 +194,7 @@ Next ID: Q-EXE-010
   FND-EXE-150 records guarded word admission, full guard width and retained-word/saved-byte inputs;
   FND-EXE-151 records saved original bytes before working increment and register reuse in guarded byte admission;
   FND-EXE-152 records shared byte comparison and saved D/V inputs without guard admission;
+  FND-EXE-153 records shared full comparison with fresh byte inputs and a later full result read;
   Runtime writers/other prefix effects, table/slot producers and remaining selected callee
   effects remain open. These bounded
   readings do not establish the complete shell outcome. Next: trace record
