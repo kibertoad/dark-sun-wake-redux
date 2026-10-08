@@ -202,6 +202,7 @@ Next ID: Q-EXE-010
   FND-EXE-158 records strict byte comparison, saved inputs and bounded partial-register mask work;
   FND-EXE-159 records strict word comparison with retained words, fresh bytes and later word D;
   FND-EXE-160 records strict full comparison with retained inputs, fresh n/d/v bytes and later full D;
+  FND-EXE-161 records a gated save/restore writer route with AL-only admission and a byte-derived return;
   Runtime writers/other prefix effects, table/slot producers and remaining selected callee
   effects remain open. These bounded
   readings do not establish the complete shell outcome. Next: trace record
