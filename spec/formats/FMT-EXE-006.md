@@ -275,6 +275,7 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-154 records retained-word zero-nibble and exact-minimum tests with a fresh-byte lookup;
   FND-EXE-155 records guarded byte equality, saved original inputs and a flipped high-mask XOR;
   FND-EXE-156 records guarded word equality with retained words, fresh byte inputs and later word D;
+  FND-EXE-157 records guarded full equality with fresh d/n/v bytes and later full D;
   table/slot producers, runtime writers/other prefix effects and remaining selected callee effects remain open.
   floating numeric contracts, downstream targets, producers,
   indirect targets and actual state admission remain open.
