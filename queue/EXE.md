@@ -418,6 +418,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-252 supersedes the incorrect full-cleanup gate reading; both
   branches reach the two callback continuations. Post-callee DS identity, far
   return frames, live targets and preservation remain open.
+  Tried: FND-EXE-253 reads both replacement cleanup bodies and their distinct
+  state-clear paths, interrupt and post-call reloads. Live slot/segment admission,
+  external contracts, flag/pointer writers and low-memory aliases remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
