@@ -59,6 +59,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   FND-EXE-166's caller/input research batch also passed that gate and hooks.
   FND-EXE-167's setup-preservation research batch passed the full gate and hooks.
   FND-EXE-168's shared-publication research batch passed the full gate and hooks.
+  FND-EXE-169 and SRC-WIN32-ATOMS passed the full gate and hooks.
   Explicit main-base documentation checking passed; generated files were left unchanged.
   Existing argument-check skips remain. Remote-base ancestry was rechecked
   and is available; explicit local main-base checking passed. Pre-commit
@@ -142,6 +143,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   is recorded in the existing Standard publication issue:
   https://github.com/kibertoad/refurbished-dinosaurs/issues/37#issuecomment-6062088446.
   It requests application guidance, not a status relaxation or delivered fix.
+  The duplicate-checked lookup-identity control is recorded at
+  https://github.com/kibertoad/refurbished-dinosaurs/issues/37#issuecomment-6062349322.
 - Next, after rechecking shared goal claims:
   1. Q-EXE-009, FMT-EXE-006: continue producer/lifetime contracts and
      the remaining dependencies listed in its queue item toward the first
@@ -161,6 +164,10 @@ An owner-approved history repair remains separate from this maintenance scope.
      lifetime and excluded indirect writers. Continue the actual atom-buffer
      producer/consumer and failure contracts rather than relying on a name
      or a header predicate for storage admission.
+     Use SRC-WIN32-ATOMS as an external contract only. FND-EXE-169 is the
+     current tail-extent replacement. Check FND-EXE-042's admitted identifiers,
+     unchanged name/initialized extent and failure helper before closing the
+     decoder's input obligations; retain original state and lifetime limits.
      FND-EXE-164 is
      the latest composed reading; follow concrete offset-24 callback
      producers and input consumption for FND-EXE-163/FND-EXE-053, then
