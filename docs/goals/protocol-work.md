@@ -117,11 +117,12 @@ An owner-approved history repair remains separate from this maintenance scope.
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6058496258.
 - Next, after rechecking shared goal claims:
   1. Q-EXE-009, FMT-EXE-006: continue producer/lifetime contracts and
-     the remaining dependencies listed in its queue item. FND-EXE-163 is
-     the latest bounded reading; follow its selected-helper return and
-     saved-state dependencies, then FND-EXE-162's preceding-callee effects
-     and FND-EXE-161's remaining callee/frame contracts before treating
-     saved-value survival or diagnostic completion as established.
+     the remaining dependencies listed in its queue item. FND-EXE-164 is
+     the latest composed reading; follow concrete offset-24 callback
+     producers and input consumption for FND-EXE-163/FND-EXE-053, then
+     saved-state writers and FND-EXE-162's preceding-callee effects.
+     FND-EXE-161's remaining callee/frame contracts still limit saved-value
+     survival and diagnostic completion.
      The boundary audit through FND-EXE-160 is complete; range corrections
      for FND-EXE-131 through FND-EXE-144 are committed.
      Aggregate executable coverage was checked before this reading.
