@@ -10,13 +10,13 @@ method: static
 locations:
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A13C0..0x004A1435
+    address: 0x004A13C0..0x004A1437
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A1D0F..0x004A1D1D
+    address: 0x004A1D0F..0x004A1D22
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A1E38..0x004A1E4F
+    address: 0x004A1E38..0x004A1E54
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
     address: 0x004A0F68..0x004A0FB3
@@ -110,3 +110,10 @@ masked shift count, full N versus the fresh zero-extended W, retained V,
 independent bit clears/sets and direct joins. Check the count controls and
 width distinctions in Alternatives as local arithmetic cases; they are not
 native input observations. No native or emulated execution is part of this finding.
+
+The location ranges use exclusive ends. Verify the final transfers
+already described above with additional windows at `0x004A1435`,
+`0x004A1D1D` and `0x004A1E4F`, each with limit two; the
+following instruction starts are their exclusive ends. The separately
+cited continuation ending at `0x004A0FB3` delegates its remaining
+shared suffix to FND-EXE-134 as described above.

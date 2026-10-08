@@ -10,13 +10,13 @@ method: static
 locations:
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A125E..0x004A12BF
+    address: 0x004A125E..0x004A12C4
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A1F19..0x004A1F2B
+    address: 0x004A1F19..0x004A1F30
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A101D..0x004A1020
+    address: 0x004A101D..0x004A1025
 tool: Ghidra 12.1.3 PUBLIC bounded signed byte prefix shift reading
 environment: null
 ---
@@ -94,3 +94,8 @@ DL's lookup/high-bit uses, final BL test and publication order. Check the
 count/sign examples in Alternatives as local arithmetic controls; they are
 not native input observations. No native or emulated execution is part of
 this finding.
+
+The location ranges use exclusive ends, including the final transfers
+already described above. Verify them with additional windows at
+`0x004A12BF`, `0x004A1F2B` and `0x004A1020`, each with limit
+two; the following instruction starts are their declared exclusive ends.

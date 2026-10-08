@@ -10,19 +10,19 @@ method: static
 locations:
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A0FBD..0x004A1062
+    address: 0x004A0FBD..0x004A1064
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A1F03..0x004A1F14
+    address: 0x004A1F03..0x004A1F19
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A1E14..0x004A1E19
+    address: 0x004A1E14..0x004A1E1E
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A20EF..0x004A20F2
+    address: 0x004A20EF..0x004A20F7
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x004A217B..0x004A2184
+    address: 0x004A217B..0x004A2189
 tool: Ghidra 12.1.3 PUBLIC bounded signed prefix shift branch reading
 environment: null
 ---
@@ -107,3 +107,9 @@ clears, the shared AND mask, high-bit contributions, fresh lookup/count
 reads and publication order. Check Alternatives' count and width examples
 as local arithmetic controls, not native observations. No native or emulated
 execution is part of this finding.
+
+The location ranges use exclusive ends, including the final transfers
+already described above. Verify them with additional windows at
+`0x004A1062`, `0x004A1F14`, `0x004A1E19`, `0x004A20F2`
+and `0x004A2184`, each with limit two; the following instruction
+starts are their declared exclusive ends.
