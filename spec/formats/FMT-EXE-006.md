@@ -317,6 +317,15 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-216 separates the pair decoders' direct output and stack stores from
   the saved loop counter and cursor under equal segment bases. Pre-loop input,
   source/stack alias admission and normally terminating decodes remain open.
+  The selected-record reader's closure dependencies are separated from the
+  full wrapper outcome: Q-EXE-011 requires actual segment-state evidence to
+  distinguish equal-offset stack and pointer accesses; Q-EXE-012 requires
+  caller/interior-target producers beyond the controlled direct domains;
+  Q-EXE-013 requires the last writers and lifetime of the actual pointer
+  chain and offset-28 word. FND-EXE-166/198 and FND-EXE-208 favor the
+  ordinary reader route, while FND-EXE-167/168/200/201 retain intervening
+  alias and producer alternatives. The settling evidence for each is in its
+  queue item; none is discharged by citation coverage or a finite prefix.
   Preserved-selector-input and alias-modified-input readings remain open:
   the former needs setup, selected-local lifetime and field-writer admission;
   the latter needs a concrete intervening writer (Q-EXE-009). Neither a

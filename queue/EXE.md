@@ -1,6 +1,6 @@
 # EXE
 
-Next ID: Q-EXE-011
+Next ID: Q-EXE-014
 
 ## Static
 
@@ -305,6 +305,9 @@ Next ID: Q-EXE-011
   FND-EXE-171's fixed-bound helper. Remaining caller/interior admission
   needs other transfer representations and computed/runtime target producers;
   matching physical and decoded domains alone does not settle those.
+  Complete-reading prerequisites for the selected-record reader are tracked
+  separately in Q-EXE-011, Q-EXE-012 and Q-EXE-013. Their closure does not
+  settle the rest of this wrapper question or the downstream metadata stream.
   Blocks: resolved wrapper-helper and continuation description.
 
 - Q-EXE-010. FMT-EXE-005: Which analyzer-owned overlay body fragments
@@ -324,6 +327,49 @@ Next ID: Q-EXE-011
   and CS admission, then the remaining suspect target producers.
   Blocks: reconciled executable denominator and complete-reading declarations
   that depend on those function boundaries.
+- Q-EXE-011. FMT-EXE-006: Do the selected-record reader's pointer accesses
+  address the same storage as the forwarding frame's selected local?
+  Settles it: establish the segment bases used to form and dereference the
+  selected-local address at the actual reader call, including intervening
+  segment setters/restorers on the admitted forwarding/selector/setup route.
+  Equal numeric offsets or a generic Win32 ABI sample do not settle it.
+  Existing evidence: FND-EXE-198 supplies the live frame geometry;
+  FND-EXE-167 separates pointer stores from stack accesses;
+  SRC-WIN32-X86-ABI is an external contract only. Next: locate concrete
+  segment-state producers and intervening writes in the shipped host code.
+  If static code cannot admit the loaded bases, state the exact external
+  input/runtime evidence required rather than silently assuming equality.
+  Blocks: reader storage-identity admission in Q-EXE-009.
+
+- Q-EXE-012. FMT-EXE-006: Which shipped-code transfers can enter the
+  selected-record reader or an interior instruction in its direct body?
+  Settles it: locate every admitted caller and interior entry for the
+  half-open body in FND-EXE-166, resolving target producers for relevant
+  indirect/computed transfers and checking unsearched encoded transfer kinds
+  with independently located positive controls. Retain each search's domain,
+  cap, source identity and exclusions; analyzer boundaries are not controls.
+  Existing evidence: FND-EXE-166 covers decoded direct calls and exact raw
+  address words; FND-EXE-208 compares physical rel32 and decoded interior
+  targets. Next: classify the excluded transfer representations and establish
+  which can actually supply this body as a target; follow their producers.
+  Blocks: reader caller-completeness admission in Q-EXE-009.
+
+- Q-EXE-013. FMT-EXE-006: What last writes the selected-record reader's
+  actual incoming pointer chain and offset-28 word before its call?
+  Settles it: trace the incoming sixth slot, its pointed-to selected local,
+  selected record and full offset-28 field through every admitted writer and
+  intervening setup/callee path. Admit each record origin's lifetime and
+  aliases and read any partial overwrite byte by byte. Use Q-EXE-011 for
+  storage identity and Q-EXE-012 for additional incoming routes.
+  Existing evidence: FND-EXE-165/166 supply the reload and reader contract;
+  FND-EXE-198 supplies one selected-local lifetime; FND-EXE-167/168/200/201
+  retain setup, shared-base origin and conditional overlap routes;
+  FND-EXE-209 supplies distinct direct metadata producers.
+  Next: follow shared-base and selected-record producer admission before
+  treating a header predicate, finite file prefix or ordinary ABI contract
+  as pointer preservation. Metadata byte-stream consumers stay Q-EXE-009.
+  Blocks: reader input/writer completeness in Q-EXE-009.
+
 ## Emulated call
 
 None.
