@@ -391,6 +391,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-243 reads the adjacent state consumer's separate SS word
   traversals and store/cleanup order; its incoming bound does not cover the
   second traversal. Native frames, link writers and independent bounds remain open.
+  Tried: FND-EXE-244 identifies loader-entry writes to the lower/upper bounds
+  and current segment from SS-relative inputs, followed by a post-call wrapped
+  difference check. Native inputs, preservation and the intervening callee remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
