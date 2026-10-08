@@ -10,7 +10,7 @@ method: static
 locations:
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    offset: 0x002F1770..0x002F196F
+    offset: 0x002F1770..0x002F1970
     kind: file-data
 tool: Identity-verified bounded physical PE word queries and exhaustive byte-domain arithmetic comparison
 environment: null
@@ -21,9 +21,10 @@ environment: null
 FND-EXE-132 records a zero-extended sixteen-bit lookup at
 `0x006F2B70` plus twice byte B in the selected prefix helper. Its
 local byte width bounds B to zero through 255. The same verified shipped
-PE maps that entire 512-byte table to physical offsets `0x002F1770`
-through `0x002F196F`, with every two-byte word contiguous inside
-file-backed data. The final word starts at loaded address
+PE maps that entire 512-byte table to the half-open physical range
+`0x002F1770..0x002F1970`, with every two-byte word contiguous inside
+file-backed data. The last covered byte is `0x002F196F`.
+The final word starts at loaded address
 `0x006F2D6E` and shipped offset `0x002F196E`.
 
 Reading all 256 little-endian words gives only values zero and four.
