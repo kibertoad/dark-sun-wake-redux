@@ -5,7 +5,7 @@
 Continue the owner's active thread objective: work according to the pinned
 Protocol, document results using the Standard, report upstream improvements or
 concerns after checking existing issues and add relevant details to duplicates,
-and keep committing complete work without pushing to main.
+and keep committing complete work; push only when explicitly authorized.
 
 The owner has supplied no finite project-completion exit or turn limit. A
 completed maintenance batch does not complete this ongoing objective or replace
@@ -33,7 +33,7 @@ claims and other sessions' work.
 Other sessions' worktrees, uncommitted work and commit history; original-game
 runtime or DOSBox; `src/`, gameplay implementation, claims or parity rows
 outside EXE, CONFIG/SCRIPT research and the separate upstream gap acceptance
-ledger. Do not push to main. Native and emulated game execution are outside
+ledger. Push only when explicitly authorized. Native and emulated game execution are outside
 this goal's batch-file research scope; read original files statically only.
 An owner-approved history repair remains separate from this maintenance scope.
 
@@ -51,7 +51,7 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Stage: Slices. The ongoing protocol objective remains active on this local
   goal branch. Completed workflow tooling and EXE research are committed.
 - Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore passed.
-  Logs: artifacts/exe-prefix-143-full-gate.log and artifacts/exe-prefix-143-docs-check.log.
+  Logs: artifacts/exe-prefix-144-full-gate.log and artifacts/exe-prefix-144-docs-check.log.
   Documentation generation and explicit main-base checking passed;
   existing argument-check skips remain. Remote-base ancestry was rechecked
   and is available; explicit local main-base checking passed. Pre-commit
@@ -71,10 +71,14 @@ An owner-approved history repair remains separate from this maintenance scope.
   follow the corrected literal quoting in docs/GHIDRA.md; both directories
   were verified through the Windows launcher. Original-program execution
   remains prohibited.
-- Template context: the root checkout adopted template 0b9ab9c separately.
-  This goal worktree retains its verified pinned rules and dependencies; no merge
-  or rebase was performed during this research batch. Toolkit issue 353 records
-  the root adoption's external-source citation diagnostic.
+- Template context: current template 0b9ab9c and checker 2.5.0 are integrated.
+  Combined assetless Test.ps1 -NoRestore passed on 2026-10-08; log:
+  artifacts/wrapup-merge-full-gate-fixed-fixtures.log in the research worktree.
+  Generated indexes were refreshed on main. Archive member citations are
+  qualified; toolkit issue 353 has the new archive case. Template issue 90
+  records fixture-baseline assumptions under scheduled generation.
+  The owner requested today's wrap-up and authorized pushing main afterward.
+  No new item is started. Resume Q-EXE-009 in the isolated worktree next time.
 - Process audit: reusable MSBuild nodes and other sessions' or uncertain
   processes were preserved. No confirmed session orphan required stopping.
 - Blockers: the parent checkout's history-message repair awaits owner
@@ -92,7 +96,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   Toolkit issue 350 received a duplicate follow-up on inventory ownership:
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/350#issuecomment-6046763133.
 - Next: recheck shared goal claims, then Q-EXE-009 using FND-EXE-015,
-  FND-EXE-017 through FND-EXE-143 for prefix field/count/runtime state producers and other dispatch branch effects, publisher indirect targets, remaining selected callee branches, table/slot producers and caller input admission, record producers/bounds/lifetime and callee effects, virtual targets and value-two/seven callee effects, slot/object-field and caller input producers, initialization admission/lifetime and other target producers and optional admission dispatch, floating numeric/environment contracts, indexed-handler producers and wait-pointer admission, shared continuation/reader effects and category/global producers, mapping-object virtual targets/extent, list-count writers and range-index admission, then shared byte-transfer callee effects, then PATH input-list object and remaining mapped-table producers, then saved-handler admission, prefix modifier/displacement producers and first-object target admission, shared cleanup resource targets, counter initialization/lifetime, remaining cleanup targets, startup callbacks and registration effects, shared-guard indirect writers/lifetime, dispatcher-frame admission and optional callback effects
+  FND-EXE-017 through FND-EXE-144 for prefix field/count/runtime state producers and other dispatch branch effects, publisher indirect targets, remaining selected callee branches, table/slot producers and caller input admission, record producers/bounds/lifetime and callee effects, virtual targets and value-two/seven callee effects, slot/object-field and caller input producers, initialization admission/lifetime and other target producers and optional admission dispatch, floating numeric/environment contracts, indexed-handler producers and wait-pointer admission, shared continuation/reader effects and category/global producers, mapping-object virtual targets/extent, list-count writers and range-index admission, then shared byte-transfer callee effects, then PATH input-list object and remaining mapped-table producers, then saved-handler admission, prefix modifier/displacement producers and first-object target admission, shared cleanup resource targets, counter initialization/lifetime, remaining cleanup targets, startup callbacks and registration effects, shared-guard indirect writers/lifetime, dispatcher-frame admission and optional callback effects
   plus static-context/flag producer contracts, concrete dispatch targets, stream bounds and dispatcher admission, then zero-state helpers, then higher caller returns, then temporary caller ranges
   and failure-consumer/handler contracts, then
   preceding-word producers and downstream output, then

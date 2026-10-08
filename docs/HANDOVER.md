@@ -3,28 +3,21 @@
 Current work outside a goal. Active goals keep their own handovers in
 docs/goals/; queue items and findings stay in their own files.
 
-## Latest template update
+## Today’s wrap-up (2026-10-08)
 
-- Applied canonical template 0b9ab9c in local commit be4e962, following
-  403a749, 25c5808 and the earlier configured synchronization.
-  Migration and retained contracts: docs/implementation-plans/LATEST-TEMPLATE-SYNC.md.
-- Adopted pinned Standard/Protocol e84495f, checker 2.5.0, scheduled main-only
-  generated documentation, commit-message checks and safer inventory tooling.
-  Existing configured architecture, media, release and runtime contracts remain.
-- Canonical assetless tools/Test.ps1 passed on 2026-10-07; log:
-  artifacts/template-0b9ab9c-test.log. Documentation passed with existing skips;
-  log: artifacts/template-0b9ab9c-docs.log. Process audit found no task-owned
-  orphan to stop: artifacts/template-0b9ab9c-process-audit.json.
-- Local documentation checks default to local main when available; CI keeps
-  its PR base and explicit --base wins. Generated files were not changed.
-  The nightly job is installed but was not dispatched; its protected-main
-  push permissions remain an operational check before relying on it.
-- Clarified external libgff source citations without changing claims or status.
-  The diagnostic is tracked in toolkit issue 353.
-- Current project plans and owner-only runtime restrictions are preserved.
-  Capture fixture planning: docs/implementation-plans/SYNTHETIC-CAPTURE-READINESS.md.
-- No push. The separate goal/protocol-work worktree remains independent and
-  has not been migrated or rebased by this task.
+Completed protocol research and current template updates are integrated on main.
+The ongoing goal remains documented in docs/goals/protocol-work.md; resume
+Q-EXE-009 in its isolated worktree. Final research entry: FND-EXE-144.
+Combined assetless Test.ps1 -NoRestore passed, including all .NET tests; log:
+UserContent/worktrees/protocol-work/artifacts/wrapup-merge-full-gate-fixed-fixtures.log.
+Main's indexes and parity were regenerated. Documentation checks retain their
+reported argument-count skips. No original runtime was started.
+Toolkit issue 353 has the external-archive citation case; template issue 90
+records scheduled-generation fixture assumptions. The owner explicitly asked
+to wrap up for today and push main after completion. Do not start another item.
+Hooks remain enabled; use an absolute GIT_INDEX_FILE for main commits when the
+staged snapshot runs Git from a temporary directory. Preserve unknown and
+reusable processes; no confirmed task orphan was found during integration.
 
 ## State
 
