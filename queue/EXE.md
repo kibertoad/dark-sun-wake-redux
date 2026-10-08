@@ -394,6 +394,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-244 identifies loader-entry writes to the lower/upper bounds
   and current segment from SS-relative inputs, followed by a post-call wrapped
   difference check. Native inputs, preservation and the intervening callee remain open.
+  Tried: FND-EXE-245 reads the intervening descriptor scan and size callee,
+  identifying the threshold producer and direct bound-store exclusions.
+  Native inputs, descriptor/header aliases and saved-slot preservation remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
