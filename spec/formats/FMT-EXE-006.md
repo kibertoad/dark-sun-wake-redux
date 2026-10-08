@@ -306,7 +306,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-208 adds the bounded physical near-transfer/interior-flow comparison;
   excluded transfer representations still prevent a complete caller claim.
   FND-EXE-209 supplies distinct metadata writers for two ordinary callback
-  record origins; selection, source extent and preservation remain open.
+  record origins; FND-EXE-210 bounds their conditional prefix read extents.
+  Selection, preservation and downstream target/stream admission remain open.
   Preserved-selector-input and alias-modified-input readings remain open:
   the former needs setup, selected-local lifetime and field-writer admission;
   the latter needs a concrete intervening writer (Q-EXE-009). Neither a
