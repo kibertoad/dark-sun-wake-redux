@@ -20,7 +20,7 @@ environment: null
 
 ## Observation
 
-After FND-EXE-055's offset-28 reader returns nonzero, the ordinary path
+After FND-EXE-165's offset-28 reader returns nonzero, the ordinary path
 prepares the sixth original argument, that returned word and a local output
 address in registers and calls `0x005F4EA0`. It saves the full return in a
 separate local. It then zero-extends a byte from the prepared local region,
@@ -33,7 +33,7 @@ immediately decrements the full returned word after removing outgoing stack
 space. The two 32-bit adjustments cancel modulo that width, so this local
 value equals the offset-four word fetched by that accessor. It saves the
 value as a loop counter, initializes separate saved words to zero, and sets
-the return status to eight. A negative signed value reaches FND-EXE-055's
+the return status to eight. A negative signed value reaches FND-EXE-165's
 cleanup/status-return join. Zero selects classification one. A positive
 value enters `0x005F5340`.
 
@@ -66,7 +66,7 @@ bit one in the low byte of the second original argument selects the branch
 studied here; a clear bit enters FND-EXE-057's shared suffix. With bit one
 set, classification two also returns eight through cleanup. Other nonzero
 classifications reread the third and fourth arguments and compare the exact
-signature pair from FND-EXE-055.
+signature pair from FND-EXE-165.
 
 For a matching pair, it writes five full words to the saved
 fifth-argument-minus-48 base, in this order:
@@ -75,8 +75,8 @@ fifth-argument-minus-48 base, in this order:
 |---|---|
 | 24 | Saved classification-associated word, initially zero before matching |
 | 28 | Saved derived word, initially zero before matching |
-| 32 | Saved offset-28 reader result from FND-EXE-055 |
-| 40 | Fifth original argument plus 32, prepared in FND-EXE-055 |
+| 32 | Saved offset-28 reader result from FND-EXE-165 |
+| 40 | Fifth original argument plus 32, prepared in FND-EXE-165 |
 | 36 | Saved incremented word, initially zero before matching |
 
 The loop or later matching paths may change those saved words; this table
@@ -112,7 +112,7 @@ outputs, and unchanged-looking offsets do not establish storage identity.
 
 Use FND-EXE-011's verified PE and image base. Read sixty-five instructions
 from `0x005F5156` and one hundred from `0x005F5340`, restricting claims
-to the cited ranges and excluding later matching code. Use FND-EXE-055
+to the cited ranges and excluding later matching code. Use FND-EXE-165
 for entry, saved base, reader result and cleanup, FND-EXE-056 for exact
 accessor arithmetic, and FND-EXE-057 for the shared suffix. Track chained
 helper returns, output-address preparation, signed counter guard, decrement

@@ -20,7 +20,7 @@ environment: null
 FND-EXE-072 restores its frame and tail-jumps here after replacing its first
 original argument with the adjusted payload address. This helper creates
 its own conventional frame and nested record at frame offset minus 64.
-The record stores FND-EXE-055's callback entry, unread metadata `0x006EF274`,
+The record stores FND-EXE-165's callback entry, unread metadata `0x006EF274`,
 a frame-minus-twelve local address, stored handler `0x005FCFC9`, and the
 stack pointer before outgoing setup space. It calls FND-EXE-045's setup
 with that record and then reads its first original full-word argument.

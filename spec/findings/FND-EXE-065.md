@@ -32,7 +32,7 @@ This region initializes two independent local bytes to zero: a seen-zero
 marker and a match marker. These describe the observed writes, not inferred
 meanings for the metadata. It tests bit eight of the second original
 argument's low byte. Set initializes a saved object word to zero. Clear
-rereads FND-EXE-055's third/fourth signature pair; mismatch likewise uses
+rereads FND-EXE-165's third/fourth signature pair; mismatch likewise uses
 zero, while equality reads the full word at the saved fifth-argument-minus-48
 base into that object local. Both arms begin at the saved derived cursor.
 
@@ -105,7 +105,7 @@ With bit one of the second argument set, classification two also returns
 eight through cleanup; classification three takes the signature-conditioned
 five-store branch and returns six after cleanup, even on signature mismatch.
 For that branch, the base offset-forty store reads the current candidate local.
-FND-EXE-055 initializes it from fifth argument plus 32, but a successful
+FND-EXE-165 initializes it from fifth argument plus 32, but a successful
 positive object match can replace that word through its prepared address
 before this store. The initial address is not its unconditional final value.
 
@@ -147,7 +147,7 @@ Use FND-EXE-011's length and XXH3-verified PE and image base. Read one hundred
 instructions from `0x005F5391`, sixty-five from `0x005F551A`, forty from
 `0x005F51D1`, and seventeen from `0x005F52A0`, restricting claims to the cited
 ranges and excluding stored-handler and other function entries. Use
-FND-EXE-055/057/058 for prior writers, signature and cleanup, and
+FND-EXE-165/057/058 for prior writers, signature and cleanup, and
 FND-EXE-059/063/064 for helper outputs, cursor returns and candidate updates.
 Track byte initialization, full-word signed branches, both reader returns,
 displacement base, opposite helper truth tests, the fallback comparison's flags

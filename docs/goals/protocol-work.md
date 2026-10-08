@@ -134,7 +134,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   1. Q-EXE-009, FMT-EXE-006: continue producer/lifetime contracts and
      the remaining dependencies listed in its queue item toward the first
      qualifying complete-reading package. Check FND-EXE-056's bounded reader
-     candidate against FND-EXE-055's inputs and FND-EXE-053's producers;
+     candidate against FND-EXE-165's inputs and FND-EXE-053's producers;
      use independent reference controls before claiming caller completeness.
      FND-EXE-164 is
      the latest composed reading; follow concrete offset-24 callback

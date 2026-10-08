@@ -32,7 +32,7 @@ a record address. None locally checks either address for zero or valid
 storage, and none calls another helper in its cited body. Each performs
 ordinary frame restoration and returns.
 
-The helper at `0x00600A80`, called by FND-EXE-055 with the callback's
+The helper at `0x00600A80`, called by FND-EXE-165 with the callback's
 sixth argument, returns the full word at record offset 28. The zero-result
 early exit in that finding therefore tests this fetched field, not an
 independently computed success status. The helper rereads the selected local
@@ -57,7 +57,7 @@ there is no explicit success calculation. This direct writer does not prove
 that any caller's outgoing index or value is admissible or that the destination
 cannot alias the selected-local address or other state.
 
-FND-EXE-055's callback prefix supplies a selected-local address as the first
+FND-EXE-165's callback prefix supplies a selected-local address as the first
 argument to the offset-28 reader. These helpers perform
 indirections through the caller-supplied address, not direct accesses to one
 cached record. The later callback's field meanings and complete input producers
@@ -88,6 +88,6 @@ Use FND-EXE-011's verified PE and image base. Read thirty instructions from
 to each cited body and excluding gaps. Follow original argument widths,
 the two-stage dereference, exact read/store offsets, indexed effective address,
 wrapped arithmetic, unchanged versus written fields and return-register last
-writers. Use FND-EXE-055 for the sixth-argument caller and its zero-field
+writers. Use FND-EXE-165 for the sixth-argument caller and its zero-field
 consumer. Keep caller bounds, field semantics, lifetime and alias admission
 conditional. Keep rich reports local and execute no interpreter or game.

@@ -1,19 +1,19 @@
 ---
-id: FND-EXE-055
+id: FND-EXE-165
 title: Stored callback builds a nested saved-state record and returns separately saved early-exit statuses after cleanup
-status: superseded
+status: recorded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: [FND-EXE-165]
+superseded_by: []
 recorded_by: kibertoad
 reproduced_by: []
 method: static
 locations:
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x005F50A0..0x005F5155
+    address: 0x005F50A0..0x005F5156
   - build: BLD-GOG-EN-1.1
     file: DOSBOX/DOSBox.exe
-    address: 0x005F5322..0x005F533E
+    address: 0x005F5322..0x005F533F
 tool: Ghidra 12.1.3 PUBLIC, bounded instruction and function reporters
 environment: null
 ---
@@ -92,6 +92,15 @@ record lifecycle is established.
 
 ## Alternatives
 
+This replaces FND-EXE-055, whose two half-open locations omitted the last
+byte of the conditional jump at the prefix end and the cleanup RET. The
+prefix ends exclusively at `0x005F5156`, after the six-byte conditional jump
+starting at `0x005F5150`; cleanup ends exclusively at `0x005F533F`, after the
+one-byte return at `0x005F533E`. The previous bounded observations remain
+supported by these corrected complete instruction spans. This correction
+adds no full-callback, caller-completeness or valid-storage claim.
+
+
 Treating this callback as a leaf that has no nested record, storing its
 unadjusted frame pointer at record offset 32, using setup's return to gate
 these argument reads, or returning cleanup's result on these early exits
@@ -104,8 +113,8 @@ of either early exit.
 ## How to reproduce
 
 Use FND-EXE-011's verified PE and image base. Summarize `0x005F50A0`,
-read ninety instructions there and one hundred ten from `0x005F5223`.
-Restrict claims to the two cited ranges; exclude later matching, publication
+read ninety instructions there and twelve from `0x005F5322`.
+Check both final instructions through their last byte and treat range ends as exclusive. Restrict claims to the two cited ranges; exclude later matching, publication
 and handler code even where the windows print it. Follow pre-setup stack
 capture, nested-record-relative writers, original argument slots, separate
 status and helper-result locals, exact signature guard, both early joins,

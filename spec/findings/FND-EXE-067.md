@@ -27,7 +27,7 @@ FND-EXE-057's classification-one route prepares the saved fifth-argument-minus-4
 base plus 48 as one outgoing full-word argument to `0x005FABA0`. This helper
 creates a conventional frame with saved registers and sixty local stack bytes.
 It prepares a nested record at frame offset minus 64: offset 24 receives
-FND-EXE-055's callback entry, offset 28 receives `0x006EF064`, offset 32 receives
+FND-EXE-165's callback entry, offset 28 receives `0x006EF064`, offset 32 receives
 its local frame-minus-twelve address, offset 36 receives stored handler
 `0x005FAC77`, and offset 40 receives the stack pointer before outgoing setup
 space. It passes that record to FND-EXE-045's setup helper. The metadata and
@@ -38,7 +38,7 @@ After normal setup it removes sixteen outgoing bytes and calls
 original argument minus 48 at 32-bit width as a base, saves the returned
 context address separately, and reads that context's first full word as a
 saved old head. No local null guard precedes the context read. It then reads
-full words at base offsets 48 and 52 and compares them with FND-EXE-055's
+full words at base offsets 48 and 52 and compares them with FND-EXE-165's
 signature pair. The saved old head is not refreshed after these reads.
 
 On signature mismatch, a nonzero saved old head sets the nested state word
@@ -135,7 +135,7 @@ Use FND-EXE-011's length and XXH3-verified PE and image base. Read eighty
 instructions from `0x005FABA0`, thirty-five from `0x005FD2F0`, ten from
 `0x005FD362`, two from `0x005FD37A`, and twelve from `0x005F5596`; restrict
 claims to the cited bodies and exclude later entries and stored handlers.
-Use FND-EXE-045/049 for setup/cleanup, FND-EXE-055/057 for prior writers and
+Use FND-EXE-045/049 for setup/cleanup, FND-EXE-165/057 for prior writers and
 signature admission, and FND-EXE-041 for finalization. Track saved old head,
 all counter widths and ordered stores, negative subtraction boundary,
 conditional linking, payload last read before cleanup, address versus word

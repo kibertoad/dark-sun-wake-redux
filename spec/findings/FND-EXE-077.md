@@ -49,7 +49,7 @@ pointer before outgoing setup space. Its record begins at frame minus 140:
 
 | Record field offset | Prefix writer |
 |---|---|
-| 24 | FND-EXE-055's callback entry `0x005F50A0` |
+| 24 | FND-EXE-165's callback entry `0x005F50A0` |
 | 28 | unread metadata `0x006EF0F4` |
 | 32 | frame-minus-24 address |
 | 36 | stored target `0x005FC650` |

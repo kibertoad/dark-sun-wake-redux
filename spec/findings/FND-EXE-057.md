@@ -23,7 +23,7 @@ environment: null
 
 ## Observation
 
-FND-EXE-055's exact signature and second-argument-six guard enters
+FND-EXE-165's exact signature and second-argument-six guard enters
 `0x005F5268`. It uses the saved fifth-argument-minus-48 base to read full
 words at offsets 24, 32 and 36 into separate locals. It compares the
 last word with one at unsigned 32-bit width and constructs a classification
@@ -33,7 +33,7 @@ it is not a signed-positive test.
 It tests bit eight in the low byte of the second original argument. A set
 bit bypasses a further signature comparison. A clear bit rereads the third
 and fourth arguments and checks the same pair of constants recorded in
-FND-EXE-055. A matching pair enters `0x005F5470`. On the signature-six
+FND-EXE-165. A matching pair enters `0x005F5470`. On the signature-six
 entry with unchanged argument words and valid storage, that is the direct
 selected route. This shared suffix also has other incoming paths whose
 classification producers remain outside this finding.
@@ -72,7 +72,7 @@ saved-base offset 36 on the negative path. These are separate storage paths;
 identity is not inferred from similar offsets or numbers.
 
 After normal helper return it saves return status seven, calls ordinary
-nested-record cleanup as in FND-EXE-055, reloads that saved status and
+nested-record cleanup as in FND-EXE-165, reloads that saved status and
 returns through normal frame restoration. It does not return any accessor's
 or cleanup's result. No direct indexed-writer status test gates this join.
 Unread callees' register/local preservation, alias effects and exceptional
@@ -107,7 +107,7 @@ merged into one storage identity without separate evidence.
 Use FND-EXE-011's verified PE and image base. Read eighty instructions from
 `0x005F5268`, forty-eight from `0x005F5470`, and twelve from
 `0x005F5596`, restricting claims to the cited ranges and excluding later
-continuations. Use FND-EXE-055 for base derivation, signature admission and
+continuations. Use FND-EXE-165 for base derivation, signature admission and
 nested cleanup, and FND-EXE-056 for helper argument consumption and stores.
 Track unsigned classification, low-byte flag and signature rereads, signed
 state guard, separate saved/source words, outgoing writer indices and values,

@@ -26,7 +26,7 @@ environment: null
 
 ## Observation
 
-FND-EXE-055 directly stores `0x005F5562` as its nested record's handler.
+FND-EXE-165 directly stores `0x005F5562` as its nested record's handler.
 At that entry the code adds 24 to the incoming frame-pointer register,
 reads the full word at adjusted-frame offset minus 100, and saves it at
 adjusted-frame offset minus 176. It then compares the word at adjusted-frame
@@ -56,7 +56,7 @@ this read. A zero head returns through frame restoration without a direct
 context or head-field store.
 
 For a nonzero head it reads full words at head offsets 48 and 52 and checks
-FND-EXE-055's signature pair. Mismatch first stores zero to the context's
+FND-EXE-165's signature pair. Mismatch first stores zero to the context's
 first word, then prepares head plus 48 in one outgoing stack slot for
 `0x00601110`. That callee remains unread. On normal return it restores its
 frame and returns without testing the callee's result or restoring the head.
@@ -89,7 +89,7 @@ callee, while zero counter reaches FND-EXE-041's finalizer without an ordinary
 return established. No direct local rollback reverses earlier writes.
 
 The context getter creates a nested record through FND-EXE-045's setup,
-with FND-EXE-055's callback entry, unread metadata `0x006EF294`, adjusted
+with FND-EXE-165's callback entry, unread metadata `0x006EF294`, adjusted
 frame local and stored handler `0x005FD2B6`. It reads the full guard at
 `0x0071B180` and initializes a saved result to address `0x0242BE70`. Guard
 zero calls FND-EXE-049's cleanup, reloads the saved address and returns.
@@ -132,7 +132,7 @@ Use FND-EXE-011's length and XXH3-verified PE and image base. Read forty
 instructions from `0x005F5562`, seventy from `0x005FACB0`, and fifty-two from
 `0x005FD220`; restrict claims to the cited ranges and exclude ordinary
 classification-one, later entries and stored getter handlers. Use
-FND-EXE-055 for the handler writer and signature pair, FND-EXE-045/049 for
+FND-EXE-165 for the handler writer and signature pair, FND-EXE-045/049 for
 setup/cleanup, FND-EXE-052 for forwarding, FND-EXE-067 for the helper result,
 FND-EXE-068 for lookup, and FND-EXE-041 for finalization. Track adjusted frame
 provenance, exact state comparison, saved input across cleanup, signed counter
