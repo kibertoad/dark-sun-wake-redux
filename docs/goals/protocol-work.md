@@ -52,19 +52,13 @@ An owner-approved history repair remains separate from this maintenance scope.
   works in this repository, so the goal runs on main in the single checkout,
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
-- Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore passed for
-  all EXE research batches and the measured-baseline tooling batch.
-  The latest complete-reading boundary correction passed the full assetless
-  gate and pre-commit checks; existing argument-check skips remain.
-  FND-EXE-171 and physical PE transfer tooling passed the full assetless
-  gate and hooks. The independent measurement is available locally for research.
-  Prior caller/input, setup-preservation, shared-publication and failure-import
-  research batches passed the full assetless gate and hooks.
-  Explicit main-base documentation checking passed; generated files were left unchanged.
-  Existing argument-check skips remain. Remote-base ancestry was rechecked
-  and is available; explicit local main-base checking passed. Pre-commit
-  checks passed.
-  The last full source-listing reconciliation was run locally; its log was not committed. This batch changed no manifest.
+- Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore passed.
+  EXE research through FND-EXE-172, measured-baseline tooling and independent
+  physical PE transfer tooling passed their full gates and enabled hooks.
+  Existing argument-check skips remain; generated files are unchanged.
+  Explicit main-base documentation checking passed in the earlier baseline;
+  the latest full gate and staged snapshot checks passed.
+  This batch changes no manifest or executable inventory.
 - Unfinished: no tracked work remains. EXE follow-up items remain Q-EXE-005,
   Q-EXE-006, Q-EXE-007, Q-EXE-008 and Q-EXE-009; Q-EXE-001 retains its
   retry requirement. Local static-analysis reports and the saved interpreter
@@ -174,10 +168,10 @@ An owner-approved history repair remains separate from this maintenance scope.
      decoder's input obligations; retain original state and lifetime limits.
      SRC-MS-CRT-ASSERT is an external contract only; follow the loaded CRT
      effects and conditional failure continuations in FND-EXE-170.
-     FND-EXE-171 replaces the startup reading. Its fixed-bound helper needs
-     a research finding citing the committed physical-transfer measurement;
-     then check remaining transfer forms and interior-entry admission;
-     retain the decoded-reference and exact address-word search exclusions.
+     FND-EXE-171 is the corrected startup reading; FND-EXE-172 is its
+     independent physical/decoded interior-flow comparison. Next check
+     remaining transfer representations and computed/runtime target producers;
+     retain each search's exclusions before declaring complete caller coverage.
      FND-EXE-164 is
      the latest composed reading; follow concrete offset-24 callback
      producers and input consumption for FND-EXE-163/FND-EXE-053, then
