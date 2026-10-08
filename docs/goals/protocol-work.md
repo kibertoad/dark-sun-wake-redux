@@ -103,9 +103,6 @@ An owner-approved history repair remains separate from this maintenance scope.
   Generated indexes were refreshed on main. Archive member citations are
   qualified; toolkit issue 353 has the new archive case. Template issue 90
   records fixture-baseline assumptions under scheduled generation.
-  The owner requested today's wrap-up and authorized pushing main afterward.
-  That wrap-up is complete; the resumed objective keeps Q-EXE-009 next.
-  Current continuation does not authorize another push.
 - Process audit: all full gates and bounded Ghidra queries exited.
   Escalated CIM command-line/parent inspection works. Reusable MSBuild nodes
   and active work for another repository were preserved; no confirmed session
@@ -195,7 +192,6 @@ An owner-approved history repair remains separate from this maintenance scope.
      saved-state writers and FND-EXE-162's preceding-callee effects.
      FND-EXE-161's remaining callee/frame contracts still limit saved-value
      survival and diagnostic completion.
-     FND-EXE-131 through FND-EXE-144 boundary corrections remain committed.
   3. Q-EXE-006 and Q-EXE-008, FMT-EXE-006: batch-input/parser and
      helper/cleanup coverage from FND-EXE-013, then disc-installer callers.
   4. Q-EXE-007, FMT-EXE-006: game/setup launch references.
