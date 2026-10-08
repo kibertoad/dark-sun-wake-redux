@@ -52,8 +52,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   works in this repository, so the goal runs on main in the single checkout,
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
-- Last full gate: 2026-10-08, assetless Test.ps1 -NoRestore and synthetic segment controls passed.
-  EXE research through FND-EXE-216, measured-baseline tooling and independent
+- Last full gate: 2026-10-09, assetless Test.ps1 -NoRestore passed after corrected segment findings.
+  EXE research through FND-EXE-217, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
   and its independently failing-before/passing-after synthetic regression.
@@ -159,7 +159,7 @@ An owner-approved history repair remains separate from this maintenance scope.
      Admit FND-EXE-185's backing memory, destination extent and aliases; follow
      FND-EXE-186's selector/table writers and FND-EXE-187's request, wrapper-record,
      FND-EXE-192's provenance and FND-EXE-195's excluded setter forms; retain lifetime contracts.
-  2. Q-EXE-011: classify segment-audit opaque effects and initial bases; then Q-EXE-012/013.
+  2. Q-EXE-011: use FND-EXE-217, classify empty effects/unsearched streams and initial bases; then Q-EXE-012/013.
      retain Q-EXE-009's full wrapper scope and dependencies toward the first
      qualifying complete-reading package. Check FND-EXE-056's bounded reader
      candidate against FND-EXE-165's inputs, FND-EXE-196 and FND-EXE-053's producers;
