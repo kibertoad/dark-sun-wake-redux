@@ -78,6 +78,8 @@ bounded source reader; this does not establish native loader behavior.
   runtime suffix preservation and returned initialized extent remain unresolved.
   FND-EXE-193 adds callback-slot consumers and a field +4 mutation path;
   setter inputs, other writers, copied targets and record lifetime remain open.
+  FND-EXE-194 follows callback continuations and the failure import; indirect
+  setter uses and loaded callee effects still prevent a complete reading.
 
 - Which analyzer-owned body fragments are native code under the original CS
   bindings (Q-EXE-010)? FND-EXE-173 separates their physical source regions

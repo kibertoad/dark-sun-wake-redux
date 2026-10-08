@@ -53,7 +53,10 @@ Next ID: Q-EXE-011
   existing atom provenance, admitted retrieval extent and record lifetime.
   FND-EXE-193 establishes callback-slot indirection and a field +4 setter;
   follow setter callers/arguments, other field writers and copied targets,
-  retaining record admission and lifetime requirements. Blocks: none.
+  retaining record admission and lifetime requirements. FND-EXE-194 follows
+  dispatch continuations and the failure import; its controlled direct-call
+  searches exclude indirect setter uses. Establish those uses and loaded
+  callback/failure contracts before closure. Blocks: none.
 
 - Q-EXE-005. FMT-EXE-006: Which code page interprets the disc sound helper's
   display bytes? Settles it: direct interpreter configuration or code-page/font
