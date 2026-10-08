@@ -72,6 +72,8 @@ bounded source reader; this does not establish native loader behavior.
   gate/state producers, imported effects and waiting behavior remain open.
   FND-EXE-190 separates new and adopted shared-record publication; adopted
   extent, helper decoding, source globals and lifetime remain unresolved.
+  FND-EXE-191 reads fixed-prefix pointer recovery; initialized input,
+  admitted identifiers, failure completion and record lifetime remain open.
 
 - Which analyzer-owned body fragments are native code under the original CS
   bindings (Q-EXE-010)? FND-EXE-173 separates their physical source regions

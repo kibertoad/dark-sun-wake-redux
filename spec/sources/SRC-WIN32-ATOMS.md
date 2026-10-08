@@ -11,7 +11,7 @@ licence: null
 
 ## Use
 
-Read on 2026-10-08 for Q-EXE-009. These are published external API
+Read on 2026-10-08 for Q-EXE-009; also used for Q-EXE-001. These are published external API
 contracts for the names independently identified in FND-EXE-043 and
 FND-EXE-170, not observations of an executed system library.
 

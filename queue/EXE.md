@@ -46,7 +46,9 @@ Next ID: Q-EXE-011
   resolves local selector publication; establish shared/gate/flag producers,
   imported preservation, admitted extent and wait completion. FND-EXE-190
   reads shared-record publication; establish query extent, low-word helper
-  decoding, adopted-record admission, source globals and lifetime. Blocks: none.
+  decoding, adopted-record admission, source globals and lifetime. FND-EXE-191
+  resolves local recovery; establish initialized prefix, admitted identifiers,
+  unchanged names, record extent/lifetime and loaded failure effects. Blocks: none.
 
 - Q-EXE-005. FMT-EXE-006: Which code page interprets the disc sound helper's
   display bytes? Settles it: direct interpreter configuration or code-page/font
