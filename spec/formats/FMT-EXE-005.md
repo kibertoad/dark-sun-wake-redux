@@ -74,6 +74,8 @@ bounded source reader; this does not establish native loader behavior.
   extent, helper decoding, source globals and lifetime remain unresolved.
   FND-EXE-191 reads fixed-prefix pointer recovery; initialized input,
   admitted identifiers, failure completion and record lifetime remain open.
+  FND-EXE-192 closes local query prefix/tail extent; existing atom provenance,
+  runtime suffix preservation and returned initialized extent remain unresolved.
 
 - Which analyzer-owned body fragments are native code under the original CS
   bindings (Q-EXE-010)? FND-EXE-173 separates their physical source regions
