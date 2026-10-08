@@ -296,3 +296,36 @@ and engine. Keep original-source and loaded-relocation values distinct. Operand
 index consumers also need review; a display error is not evidence that p-code
 has the opposite assignment. Historical readings require individual dependency
 review, rather than blanket supersession or automatic status promotion.
+
+## Citation endpoint controls
+
+`ReportCitationBoundaries.java` takes 1..32 `start..end` queries, optionally
+suffixed `:return`. End is exclusive. It checks only the start instruction
+and the instruction containing end-minus-one, independently of function
+ownership. Interior endpoints, mapped bytes with no decoded instruction and
+unmapped bytes remain distinct. `:return` additionally checks whether the
+last included decoded instruction is x86 RET/RETF; it catches an aligned span
+that stops before the claimed return. It does not infer that every citation
+must end in a return. An undecoded endpoint produces unknown return status.
+
+Run it read-only with analysis disabled against the saved source project.
+The output contains only addresses and classifications. A completed diagnostic
+does not validate interior coverage, source mapping, reachability, callers,
+aliases or runtime state, and does not create complete-reading declarations.
+An invalid or unrepresentable range fails before any query result is emitted.
+
+Synthetic integration: import a local 16-byte `citation-boundaries-synthetic.bin`
+with a NOP, a six-byte conditional branch to the following one-byte RET, and
+eight trailing zero bytes, using BinaryLoader at base `0x1000` and processor
+`x86:LE:32:default`, with analysis disabled. Run `TestCitationBoundaries.java`
+in that separate disposable project; it admits only the named fixture with
+the expected prefix and disassembles only its eight-byte control interval.
+Never run the synthetic harness against licensed sources. The reporter itself
+does not disassemble or mutate a program.
+
+`tools/ghidra/Test-CitationBoundaries.ps1 -GhidraHome <installation> -JavaHome
+<jdk>` automates fixture creation and valid/rejected queries under a fresh
+directory in `artifacts/`. Use PowerShell 7. It checks completion markers and
+expected classifications because a headless exit code alone can hide a script
+failure. The fixture and logs remain local; only the synthetic project is
+deleted by headless. This optional installed-Ghidra check needs no GAME_DIR.

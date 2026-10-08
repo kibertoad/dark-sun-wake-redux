@@ -909,3 +909,28 @@ intentional scheduled-generation comparison skip.
 Local baseline controls distinguish unpublished local main, an explicit old
 base, CI's remote base and a forbidden new branch edit. No original was run,
 no workflow was dispatched and no repository settings were changed.
+
+## Citation endpoint diagnostic validation (2026-10-08)
+
+Ghidra 12.1.3 with Temurin 25.0.4.1 compiled and ran the new reporter
+and its synthetic-only integration harness in a disposable binary project.
+The controls passed for complete branch/RET boundaries, interior endpoints,
+an aligned span omitting its required RET, mapped undefined bytes and an
+unmapped range. Reversed input and an excessive query count were rejected;
+a valid first query followed by invalid input emitted no partial results.
+
+The read-only, no-analysis rerun on the saved interpreter project reproduced
+FND-EXE-196's old endpoint defects and accepted its corrected endpoints.
+This validates listing agreement only, not source identity, interior coverage,
+reachability or a complete reading. No original program was executed and
+no analysis, finding, inventory or status was changed by the diagnostic.
+
+The reusable synthetic runner passed. The canonical assetless gate initially
+passed, then a final rerun hit the synthetic worker-deadline assertion.
+Focused capture controls and the subsequent full Test.ps1 -NoRestore recheck
+passed. This establishes intermittence, not its cause; timing and rejected-output
+assertions were retained. The extra worker failure phase is reported in the
+[existing template diagnostics issue](https://github.com/kibertoad/refurbished-dinosaurs-template/issues/73#issuecomment-6066679859).
+The endpoint controls add tested detail to the
+[existing toolkit request](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6066576722),
+without claiming shared-package delivery.
