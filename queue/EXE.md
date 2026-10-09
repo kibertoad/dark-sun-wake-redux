@@ -85,6 +85,11 @@ Next ID: Q-EXE-014
   mutable low-word bound and advanced-pointer final test. Continue the
   record/count writers and DS admission, 1000:2AF6 and later pathname
   consumers; a selected pointer is not a validated or reserved extent.
+  Tried: FND-EXE-370 reads the selector, mode parser and initializer, and
+  follows the retained-rt route to explicit attribute/open service selectors.
+  The first wrapper's CX word comes from saved incoming DI, not a pushed
+  zero. Admit record/state writers, interrupt-preserved options and later
+  handle/buffer helpers before an execution exclusion or complete reading.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
