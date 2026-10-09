@@ -280,6 +280,9 @@ Next ID: Q-EXE-024
   Tried: FND-EXE-527 reads 2254's zero-result return, metadata-derived
   word copy and cleanup ordering. Follow outer callers/input producers,
   storage/segments, other writers and earlier startup/launch coverage.
+  Tried: FND-EXE-528 reads 302B and 2FCE, including signed adjustment,
+  scan bounds and state-before-positioning stores. Follow actual record/buffer
+  producers, native contracts, other callers/writers and earlier startup coverage.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
