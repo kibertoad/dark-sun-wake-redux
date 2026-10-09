@@ -53,8 +53,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   the earlier single-agent exception for work on main is retired. Completed
   workflow tooling and EXE research are committed.
 - Last full gate: 2026-10-09, assetless Test.ps1 -NoRestore and explicit
-  main-base documentation validation passed for the last committed cleanup-callee batch.
-  EXE research, measured-baseline tooling and independent
+  main-base documentation validation passed for the FND-EXE-286 replacement batch.
+  EXE research through FND-EXE-286, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
   and its independently failing-before/passing-after synthetic regression.
