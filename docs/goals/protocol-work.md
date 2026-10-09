@@ -190,9 +190,9 @@ An owner-approved history repair remains separate from this maintenance scope.
      and buffer. Q-EXE-024 (Source) holds what the program never reads.
      Next: Q-EXE-001's last part, any read of the pack header fields from
      the file outside the manager's startup (DOS 3Fh/42h on the program's
-     For field-offset searches use the engine's operand-candidates, which
-     matches any memory operand with that displacement, first.
-     own file). IDs from FND-EXE-560 up are this session's; Codex allocates below them.
+     own file). For field-offset searches use the engine's operand-candidates,
+     which matches any memory operand with that displacement, first.
+     IDs from FND-EXE-560 up are this session's; Codex allocates below them.
   5. Follow Q-EXE-007's game-edition consumers under FMT-EXE-006: FND-EXE-556 complete cache callback/state writers and native contracts, FND-EXE-392 preliminary native contracts and FND-EXE-391 other slot producers/published targets, FND-EXE-559 gate/target writers and native admission, FND-EXE-558 complete registration callers/state writers and predecessor/error contracts, FND-EXE-555 other general targets, FND-EXE-531 storage admission, native contracts and remaining startup dependencies.
   6. Done: the DSUN resident rows now come from a single import with the
      overlays as file-backed overlay blocks (docs/EVIDENCE-TOOLS.md), which
