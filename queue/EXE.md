@@ -97,6 +97,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-356 follows 1000:0519's post-interrupt DX-bit return
   and caller flag update without a status check. Continue native result and
   record-byte admission, 1000:37F1 and 1000:2873, aliases and lifetime.
+  Tried: FND-EXE-380 records the shipped limit-word initializer and the
+  first five selector-byte initializers. These do not admit incoming state;
+  trace startup, actual DS, aliases and later writers before applying them.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
