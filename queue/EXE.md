@@ -7,15 +7,16 @@ Next ID: Q-EXE-024
 - Q-EXE-001. FMT-EXE-001, FMT-EXE-002, FMT-EXE-003, FMT-EXE-004: What do the
   remaining overlay-manager fields hold? Which other code reads the pack's
   `segment_table_offset` or `segment_count`; what `unk_02` and `unk_06` hold and
-  `flags` 0, 1 and 4 mean for descriptors that are not overlays; what the
-  manager keeps in header words `0x1C` and `0x1E`? Settles it: the placement code's use
-  of `0x1C` in the installed `DSUN.EXE`, every reader of the
-  segment table at `55E8:0000` (the fixup pass reads it by index). Tried:
+  `flags` 0, 1 and 4 mean for descriptors that are not overlays; and does code
+  outside the manager use header word `0x1E`? Settles it: every reader of the
+  segment table at `55E8:0000` (the fixup pass reads it by index) and of the
+  overlay headers outside segment `4AE5`. Tried:
   FND-EXE-560 to FND-EXE-564 read the installed manager's startup, descriptor
   walk, `INT 3Fh` handler, trampoline forms and overlay cache, which settle
   which fields the startup reads, the bit-1 overlay test, header `+0x02` and
   `+0x0E` to `+0x1B` and the trampoline forms, and FND-EXE-565 finds the
-  disc's manager the same code; FND-EXE-520 and FND-EXE-227/228/248 read the load,
+  disc's manager the same code; FND-EXE-566 reads the buffer queue through
+  `+0x1C` and finds no use of `+0x1E` in the manager; FND-EXE-520 and FND-EXE-227/228/248 read the load,
   fixup and placement paths, and FND-EXE-175 to FND-EXE-180 the handler's
   setup. FND-EXE-181 to FND-EXE-195 followed a lead into the host executable,
   which this goal's scope excludes. Blocks: none.
