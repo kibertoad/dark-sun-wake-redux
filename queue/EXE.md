@@ -341,6 +341,10 @@ Next ID: Q-EXE-014
   header-count copy bound and discarded release result. Continue actual
   header/extent admission, shared request and DS writers, overlap, segment
   wrap and lifetime; the local byte bound does not prove valid storage.
+  Tried: FND-EXE-298 bounds direct request-word scans and the wrapper's
+  incoming domains, retaining an additional allocator near-call candidate.
+  Ground that candidate's path, CS and arguments next; other write/call
+  forms, aliases and admitted header state remain unresolved.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
