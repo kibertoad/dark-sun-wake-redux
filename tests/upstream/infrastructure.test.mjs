@@ -174,6 +174,8 @@ if ($env:GNUPGHOME -ne 'synthetic-previous-home' -or (Test-Path -LiteralPath $gl
   assert.notEqual(missing.status,0);assert.match(output(missing),/Missing OpenPGP environment/);
 });
 
+// A player's cmd.exe finds play.bat in the current directory; agent shells set this variable, which stops that.
+const withoutCwdLookupBlock=env=>Object.fromEntries(Object.entries(env).filter(([name])=>name.toLowerCase()!=='nodefaultcurrentdirectoryinexepath'));
 test('play launcher forwards quoted arguments, bypasses source for smoke and preserves failures', {skip:process.platform!=='win32'}, t => {
   const dir=fixture(t), commands=join(dir,'commands');mkdirSync(commands);
   copyFileSync(join(root,'play.bat'),join(dir,'play.bat'));
@@ -181,7 +183,7 @@ test('play launcher forwards quoted arguments, bypasses source for smoke and pre
   writeFileSync(fake,`@echo off\r\necho %*>>"%SYNTHETIC_DOTNET_LOG%"\r\nif "%1"=="build" exit /b %SYNTHETIC_BUILD_EXIT%\r\nif "%1"=="run" if "%4"=="src\\DarkSunWakeRedux.Extractor" exit /b 13\r\nexit /b %SYNTHETIC_GAME_EXIT%\r\n`);
   const invoke=(args,build=0,game=0)=>{
     const entry=join(dir,'invoke.cmd');writeFileSync(entry,`@echo off\r\ncall play.bat ${args}\r\nexit /b %errorlevel%\r\n`);
-    return spawnSync('cmd.exe',['/d','/c','invoke.cmd'],{cwd:dir,encoding:'utf8',env:{...process.env,PATH:commands+';'+process.env.PATH,DARK_SUN_WAKE_PATH:join(dir,'never-present-source'),SYNTHETIC_DOTNET_LOG:log,SYNTHETIC_BUILD_EXIT:String(build),SYNTHETIC_GAME_EXIT:String(game)}});
+    return spawnSync('cmd.exe',['/d','/c','invoke.cmd'],{cwd:dir,encoding:'utf8',env:{...withoutCwdLookupBlock(process.env),PATH:commands+';'+process.env.PATH,DARK_SUN_WAKE_PATH:join(dir,'never-present-source'),SYNTHETIC_DOTNET_LOG:log,SYNTHETIC_BUILD_EXIT:String(build),SYNTHETIC_GAME_EXIT:String(game)}});
   };
   for(const flag of ['--smoke-test','--platform-smoke-test']){
     rmSync(log,{force:true});const r=invoke(`${flag} --asset-pack "a path with spaces"`);assert.equal(r.status,0,output(r));

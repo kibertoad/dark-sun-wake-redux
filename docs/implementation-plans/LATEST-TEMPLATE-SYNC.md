@@ -201,8 +201,9 @@ Result: the full assetless `tools/Test.ps1 -NoRestore` passed on 2026-10-09
 artifacts/pwsh7/runtime/pwsh.exe, the 10.0.400 SDK in `~/.dotnet` first on
 PATH, `GAME_DIR` set to the Dark Sun install and
 `NoDefaultCurrentDirectoryInExePath` unset. With the agent shell's own
-`GAME_DIR` (another project's directory) the resident-initializer test fails,
-and with that variable set the play-launcher test cannot start `invoke.cmd`.
+`GAME_DIR` (another project's directory) the resident-initializer test fails.
+The play-launcher test now drops `NoDefaultCurrentDirectoryInExePath` from
+the environment it gives cmd.exe, so it passes in agent shells that set it.
 
 ## Owner-requested measured work baseline (2026-10-08)
 
