@@ -34,6 +34,12 @@ memory address or malformed resource is not evidence of a cybersecurity task.
 Do not add security experiments or security claims to answer a preservation
 question that can be settled by local static evidence.
 
+The intended work has no cybersecurity objective: success means documenting or
+reproducing the game, not discovering security weaknesses. Preserve that framing
+in task descriptions, tool requests and handovers. Judge a proposed action by
+its actual inputs, targets and effects; the project's benign purpose does not
+authorize an operation outside its preservation scope.
+
 ### Keep operations within preservation scope
 
 Do not invent a cybersecurity task from a game-analysis question. Prefer
@@ -83,6 +89,11 @@ security research to overcome a tooling limitation.
   preservation question and use an approved static reader or synthetic fixture.
   Record what remains unanswered; do not create an exploit demonstration or
   broaden access to obtain the missing evidence.
+- Stop the specific step if it requires unrelated access, collecting credentials,
+  weakening protections or executing outside the declared runtime contract.
+  Continue independent preservation work, document the evidence gap, and report
+  the concrete limitation. Do not treat that limitation as a new security task
+  or as permission to bypass a safeguard.
 - Prefer static analysis and synthetic reproduction when answering game-format
   or behavior questions. Do not execute unknown helper programs or downloaded
   binaries merely to see what they do; inspect them or use approved tooling.
