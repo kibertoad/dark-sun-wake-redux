@@ -164,12 +164,13 @@ reading of callers, external commands or interpreter behavior is claimed.
   image makes no direct launch request; the game editions remain Q-EXE-007.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;
   startup, actual DS, aliases and later writers must admit their runtime use.
-- Which driver files does the sound utility load, and do they request
-  program execution (Q-EXE-015)? FND-EXE-491 finds that its indirect far
-  calls stay in the image except for driver images that 1000:4127 reads from
-  files named by a device record, the interrupt 66 and saved timer handlers,
-  and one null timer registration. The name producers and a census of the
-  loaded files settle it.
+- Can the sound utility's installed drivers request program execution
+  indirectly (Q-EXE-017)? FND-EXE-491 finds that its indirect far calls
+  leave the image only for drivers read from named files, the interrupt 66
+  and saved timer handlers, and one null timer registration. FND-EXE-492
+  finds that only the disc's 19 Miles .ADV files pass the install test and
+  that their direct interrupt 21 requests are AH=35 and AH=62 only. Their
+  runtime-built requests, indirect transfers and chained vectors settle it.
 - Does the sound utility dispatch its null timer registration (Q-EXE-016)?
   FND-EXE-491 locates the registration at 1C08:1485 and the dispatch's state
   test; writers of that slot's state word settle it.

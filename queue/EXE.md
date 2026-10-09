@@ -1,6 +1,6 @@
 # EXE
 
-Next ID: Q-EXE-017
+Next ID: Q-EXE-018
 
 ## Static
 
@@ -183,18 +183,17 @@ Next ID: Q-EXE-017
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
   references cannot launch a helper, so its pathname consumers no longer
   decide this question. FND-EXE-491 traces its indirect far targets:
-  code outside the image is loaded driver code (Q-EXE-015) or a null timer
-  slot (Q-EXE-016). The game editions' sound.bat consumers remain unread here.
+  code outside the image is loaded driver code or a null timer slot
+  (Q-EXE-016). FND-EXE-492 limits installable drivers to 19 disc .ADV files
+  with no AH=4B request; their indirect paths remain Q-EXE-017. The game editions' sound.bat consumers remain unread here.
 
-- Q-EXE-015. FMT-EXE-006: Which files does the sound utility load as
-  driver images, and does their code request program execution? Settles it:
-  the producers of the name fields at offsets 16 and 24 of the device record
-  DS:[E017] and of the directory string DS:EB7E, the files those names select
-  in BLD-GOG-EN-1.1 or its disc, and a census of each file's interrupt 21
-  selectors. FND-EXE-491 shows that 1000:4127 reads these files at run time
-  and installs them as the only code outside the image reached by the
-  CS:0E1E calls and the driver timer callback. Blocks: a launch exclusion
-  for the sound utility under FMT-EXE-006.
+- Q-EXE-017. FMT-EXE-006: Can the 19 disc driver files the sound utility
+  installs reach a program-execution request through code other than their
+  direct interrupt 21 instructions? Settles it: in each CD:*.ADV file, every
+  runtime-built interrupt request, indirect transfer and vector chained after
+  its AH=35 reads, traced to a target and selector. FND-EXE-492 censuses only
+  their direct interrupt 21 instructions (AH=35 and AH=62). Blocks: a launch
+  exclusion for the sound utility under FMT-EXE-006.
 
 - Q-EXE-016. FMT-EXE-006: Does the sound utility ever dispatch the timer
   slot it registers with 0000:0000 at 1C08:1485? Settles it: every writer of
