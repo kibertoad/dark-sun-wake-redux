@@ -75,8 +75,11 @@ None known.
   program start and the gate reaches a routine that changes the count or makes that word nonzero
   (FND-PARTY-031). Still open: 56 indirect calls on those paths whose targets are unresolved
   (FND-PARTY-031, FND-PARTY-032, Q-PARTY-011), and whether either of the gate routine's two
-  video-memory reservations fails, which depends on the reservations held when it runs
-  (FND-PARTY-030, FND-PARTY-032, FND-PARTY-033, Q-PARTY-013). The owner's captures of a game started with START GAME show the four characters
+  video-memory reservations fails (FND-PARTY-030, FND-PARTY-032, FND-PARTY-033). While the
+  pointer is an `ICON` neither can fail on space, since the caret and pointer saves then hold at
+  most 1,006 paragraphs, the room left, and no direct route before the gate makes it another
+  image (FND-PARTY-035, FND-PARTY-036, FND-PARTY-037); a route through the unresolved indirect
+  calls stays open (Q-PARTY-011). The owner's captures of a game started with START GAME show the four characters
   in this order, but they do not tell 41 from 53 or 43 from 33 (FND-PARTY-020); the
   shipped-party live session would confirm it (Q-PARTY-001).
 - Where `CHARSAVE.GFF` is opened from rests on the start-up code passing the program's path as
