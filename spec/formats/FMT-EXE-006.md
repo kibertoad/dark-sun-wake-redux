@@ -217,6 +217,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   0F68 and storage/state admission remain Q-EXE-007.
   FND-EXE-516 reads shared-offset request guards and returns;
   initial offset, segments and storage/state admission remain Q-EXE-007.
+  FND-EXE-517 records the shipped offset seed and explicit margin setter;
+  caller/writer and runtime storage admission remain Q-EXE-007.
   FND-EXE-490 finds no AH=4B request among the sound utility's 69 interrupt
   21 instructions or its stack-thunk callers, and no interrupt 2E. Its load
   image makes no direct launch request; the game editions remain Q-EXE-007.

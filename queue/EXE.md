@@ -265,6 +265,9 @@ Next ID: Q-EXE-023
   Tried: FND-EXE-516 reads 0F68's shared-offset update and stack-margin
   guards. Follow DS:009C initialization/writers, actual DS/SS and storage
   extent, caller stack depth and remaining initialization/startup effects.
+  Tried: FND-EXE-517 records the shipped offset seed and 0F46/0F99
+  setter path. Follow setter callers/inputs, other shared-word writers,
+  actual segments, stack/storage extent and remaining startup effects.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
