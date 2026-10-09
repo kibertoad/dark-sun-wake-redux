@@ -44,8 +44,4 @@ bounded source reader; this does not establish native loader behavior.
 
 ## Open questions
 
-- Does any computed near transfer inside an overlay that holds one of
-  FND-EXE-173's fixup spans target its own fixup table (Q-EXE-023)?
-  FND-EXE-523 shows that no owning body, trampoline or direct near branch
-  reaches the fixup and padding spans. Reading every computed near transfer
-  in each holder's code, with its table's bound and words, settles it.
+None known.

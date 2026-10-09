@@ -276,16 +276,6 @@ Next ID: Q-EXE-024
   do not cover the disc installer. Split from Q-EXE-004. Blocks: complete
   disc-installer caller coverage.
 
-- Q-EXE-023. FMT-EXE-005: Does any computed near transfer in an overlay
-  that holds one of FND-EXE-173's fixup spans target its own fixup table?
-  FND-EXE-523 rules out the owning bodies, trampolines and direct near
-  branches. The holders are descriptors 180, 194, 203 and 209 (installed)
-  and 188, 194, 197, 199, 210 and 212 (disc). Settles it:
-  every computed near jump and call in each holder's code, with the bound
-  and words of each table it reads, none naming an offset at or past the
-  holder's code size.
-  Blocks: none.
-
 ## Emulated call
 
 None.
