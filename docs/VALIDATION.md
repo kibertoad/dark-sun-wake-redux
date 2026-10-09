@@ -432,6 +432,15 @@ Signing workflow acceptance uses `tests/upstream/release-signing.test.mjs` synth
 
 ## Explicit rerun without restore
 
+For `Test.ps1` on Windows, `TEMP` and `TMP` must name a writable directory belonging to the
+account executing validation, outside every Git checkout. Do not substitute
+`artifacts/` for this directory: the mapped-image synthetic test deliberately
+rejects repository output, and the configuration-copy test requires a temporary
+directory that is not inside a Git checkout. An inherited path for another
+account can fail before either test runs.
+This differs from the Git hook's `TMPDIR`, which may use `artifacts/hook-tmp`
+for repository-only index snapshots.
+
 After a normal successful validation has restored this checkout, run
 `./tools/Invoke-Validation.ps1 -NoRestore` to rerun using those existing dependencies
 when NuGet is unavailable. `./tools/Test.ps1 -NoRestore` also supports a direct
