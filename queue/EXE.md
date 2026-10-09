@@ -166,6 +166,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-471 reads 2EF1's pointer/count publication and signed
   result plus 2EB3's fixed-count selected pass. Follow 3720/27FC and later
   pathname continuation, table/record producers, preservation, extents and aliases.
+  Tried: FND-EXE-472 reads 3720/06FF's count gates, byte transform,
+  unchecked trailing-byte slot and 1A position-result discard. Follow 27FC,
+  later pathname consumers, native results/preservation, extents and producers.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.

@@ -151,6 +151,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   lower callees, producers, extents and later consumers remain Q-EXE-007.
   FND-EXE-471 reads refill publication and the fixed-count preliminary pass;
   lower reads, producers, extents and later consumers remain Q-EXE-007.
+  FND-EXE-472 reads lower count/byte processing and unchecked extra-result use;
+  native admission, producers, extents and later consumers remain Q-EXE-007.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;
   startup, actual DS, aliases and later writers must admit their runtime use.
 - Which disc helpers does the disc installer select (Q-EXE-008)? Selection
