@@ -319,13 +319,13 @@ None.
 
 ## Source
 
-- Q-EXE-024. FMT-EXE-002: What do `unk_02` and `unk_06` record for the
-  descriptors that are not overlays, and what do `flags` values 0, 1 and 4
-  mean? Settles it: the linker's own description of the FBOV segment table it
-  writes. Tried: FND-EXE-567 finds that the program reads none of them beyond
-  `flags` bit 1 and whether `unk_02` is 0, so no static reading of
-  `DSUN.EXE` can say. Split from Q-EXE-001, which FND-EXE-569 closed.
-  Blocks: none.
+- Q-EXE-024. FMT-EXE-002: What do `flags` values 0, 1 and 4 mean? Settles
+  it: the linker's own description of the FBOV segment table it writes.
+  Tried: FND-EXE-567 finds that the program reads no `flags` bit but bit 1.
+  FND-EXE-571 settles `unk_02` and `unk_06` as each segment's end and start
+  offsets and finds code in the flags-1 segments and data in the flags-0
+  ones, which is circumstantial; the flags-4 descriptors hold no bytes.
+  Split from Q-EXE-001, which FND-EXE-569 closed. Blocks: none.
 
 ## Blocked
 
