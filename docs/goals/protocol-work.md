@@ -61,8 +61,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   Existing argument-check skips remain; generated files are unchanged.
   Corrected revision-2 fresh projects and repeatable exports are local.
   Review old mapped-snapshot dependencies before accepting native claims.
-- Unfinished: concurrent EXE edits appeared after the clean-tree start check;
-  leave the queue, format and new finding edits to their originating session.
+- Unfinished: the concurrent EXE batch and its checkpoint are now committed;
+  recheck the worktree immediately before each mutation.
   EXE follow-up items remain Q-EXE-005,
   Q-EXE-006/007/008/009/010 and reader prerequisites Q-EXE-011/012/013; Q-EXE-001 retains its
   retry requirement. Local static-analysis reports and the saved interpreter
@@ -166,6 +166,8 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Transformed-count control: https://github.com/kibertoad/refurbished-dinosaurs/issues/54#issuecomment-6071069456.
 - Repeat-entry failure-prefix control: https://github.com/kibertoad/refurbished-dinosaurs/issues/52#issuecomment-6071281483.
 - Synthetic decoder reproduction: https://github.com/capstone-engine/capstone/issues/1226#issuecomment-6071383629.
+- Continuation consistency follow-up (duplicate-checked template issue 69):
+  https://github.com/kibertoad/refurbished-dinosaurs-template/issues/69#issuecomment-6080088432.
 - Next, after rechecking shared goal claims:
   1. Finish installed and CD DSUN inventory reconciliation under Q-EXE-010,
      FMT-EXE-005; follow FND-EXE-228 through FND-EXE-273 remaining downstream callees, header/count and state/link writers, arithmetic bounds and aliases. Follow Q-EXE-010 indirect producers; retain its literal-query retry requirement.
