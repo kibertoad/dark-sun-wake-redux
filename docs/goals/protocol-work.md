@@ -184,6 +184,20 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Synthetic decoder reproduction: https://github.com/capstone-engine/capstone/issues/1226#issuecomment-6071383629.
 - Continuation consistency follow-up (duplicate-checked template issue 69):
   https://github.com/kibertoad/refurbished-dinosaurs-template/issues/69#issuecomment-6080088432.
+- Isolated batch branch session/protocol-exec-census-20261009 (worktree
+  artifacts/worktrees/protocol-exec-census), started 2026-10-09 because a
+  second writer was committing to goal/protocol-work in the shared checkout.
+  It holds FND-EXE-490..493: the sound utility's load image makes no AH=4B or
+  interrupt 2E request; its indirect far calls leave the image only for the
+  disc's 19 Miles .ADV drivers (direct requests AH=35/62 only), the interrupt
+  66 and saved timer handlers, and a null timer slot. Q-EXE-014/015 closed;
+  Q-EXE-016 (stale CS:01B2 start order) and Q-EXE-017 (driver indirect
+  paths) are open. Integrate into goal/protocol-work only when the shared
+  index is clean; queue/EXE.md and FMT-EXE-006 will conflict with the other
+  writer's Tried notes, keep both sides. Its pathname-consumer chain under
+  Q-EXE-007 no longer decides the sound utility's launch question.
+  Upstream: https://github.com/kibertoad/refurbished-dinosaurs/issues/90 and
+  https://github.com/kibertoad/refurbished-dinosaurs-template/issues/69#issuecomment-6086383540.
 - Next, after rechecking shared goal claims:
   1. Finish installed and CD DSUN inventory reconciliation under Q-EXE-010,
      FMT-EXE-005; follow Q-EXE-010 shared request/DS writers, shared-state lifetime,
