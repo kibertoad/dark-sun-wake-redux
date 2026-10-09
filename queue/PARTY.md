@@ -56,16 +56,20 @@ Next ID: Q-PARTY-015
   opened from? Settles it: the start-up code from program entry to the call of `277D:0004`, read
   for how it builds the argument list on each DOS version. Split from Q-PARTY-012, which
   FND-PARTY-034 closed. Blocks: none.
-- Q-PARTY-013. RULE-PARTY-006: Do the video-memory reservations held when START GAME reaches the
-  gate, other than the startup one, take more than 1,006 paragraphs or 251 entries, so that one
-  of the gate routine's calls to `1BF3:27A8` at `DSUN.EXE+0x00069AA5` and `0x00069AC1` returns
-  `0xFFFF` and the routine returns before its gate? Settles it: the size of the mouse pointer
-  image at `DS:A145`, the writers of the caret height at `DS:A189`, and whether `41E1:0215`
-  releases the caret entry at `DS:A191` before `41E1:000B` makes a new one. Tried: the
-  reservation routine, its pool and the two calls' sizes (FND-PARTY-030); the startup
+- Q-PARTY-013. RULE-PARTY-006: Before START GAME reaches the gate, does a call of `3D72:120B`
+  with a nonzero `ICON` number or of `3D72:12ED` with a nonzero image leave a pointer image in
+  place at `DS:A14D`, with `DS:A13D` 0, whose frame at `DS:A151` makes the pointer save and the
+  caret reservation together hold more than 1,006 paragraphs, so that one of the gate routine's
+  calls to `1BF3:27A8` at `DSUN.EXE+0x00069AA5` and `0x00069AC1` returns `0xFFFF`? Settles it:
+  the callers of `3D72:120B` and `3D72:12ED` on the paths of FND-PARTY-031 and the images and
+  frames they pass, and, if a large image is possible, the caret heights in the tables at offset
+  `0x9C` of the edit-field objects that `409B:11B7` and `409B:0D48` take before the gate. Tried:
+  the reservation routine, its pool and the two calls' sizes (FND-PARTY-030); the startup
   reservation of 1,000 paragraphs, held until the program ends (FND-PARTY-032); the scroll,
   pointer and caret routines, of which only the last two keep an entry after they return
-  (FND-PARTY-033). Blocks: slice 2.
+  (FND-PARTY-033); the caret's release of its earlier entries, the writers of its height, and the
+  startup pointer image `ICON` 100, whose frames take at most 2 paragraphs (FND-PARTY-035).
+  Blocks: slice 2.
 
 ## Emulated call
 
