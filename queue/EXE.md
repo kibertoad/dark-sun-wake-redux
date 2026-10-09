@@ -299,6 +299,9 @@ Next ID: Q-EXE-025
   Tried: FND-EXE-401 bounds the installed resident shared-word literal search
   with independent read/write controls. Continue cross-region/computed accesses,
   segment provenance and unresolved routes; no whole-program writer census is claimed.
+  Tried: FND-EXE-402 includes the adjacent resident native-helper region.
+  Follow computed transfers, actual segment provenance and other-region writers;
+  native boundaries remain unadmitted rather than treated as missing local writes.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
