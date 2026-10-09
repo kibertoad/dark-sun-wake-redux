@@ -223,6 +223,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   alternate cleanup and remaining writer/state admission remain Q-EXE-007.
   FND-EXE-519 reads alternate cleanup and link-helper fall-through;
   block/state admission and remaining callers remain Q-EXE-007.
+  FND-EXE-526 reads the other positive setter-call lead and outer caller;
+  grow/copy and input/storage admission remain Q-EXE-007.
   FND-EXE-490 finds no AH=4B request among the sound utility's 69 interrupt
   21 instructions or its stack-thunk callers, and no interrupt 2E. Its load
   image makes no direct launch request; the game editions remain Q-EXE-007.
