@@ -157,6 +157,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-377 follows the actual pathname continuation's matcher,
   table mapper, unchecked position calls and first-byte suppression. Follow
   2D48/2F81, continuation 158E:011A and pattern/table/state admission.
+  Tried: FND-EXE-378 reads 2D48's three request roles, segment binding
+  and signed count adjustment. Follow 2F81 and later pathname
+  continuation, record/flag producers, native preservation, extents and aliases.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
