@@ -283,6 +283,9 @@ Next ID: Q-EXE-024
   Tried: FND-EXE-528 reads 302B and 2FCE, including signed adjustment,
   scan bounds and state-before-positioning stores. Follow actual record/buffer
   producers, native contracts, other callers/writers and earlier startup coverage.
+  Tried: FND-EXE-529 reads the first-priority startup target and five segment
+  relocations. Follow 029B/029A, 15A5, 0010/000F and 02AD, their cleanup,
+  state/segment admission and earlier launch coverage.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct

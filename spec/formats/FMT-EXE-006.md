@@ -229,6 +229,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   outer callers and storage/segment admission remain Q-EXE-007.
   FND-EXE-528 reads the positioning dependency's buffered adjustment and
   state-before-native-call ordering; record/native admission remains Q-EXE-007.
+  FND-EXE-529 reads the earlier first-priority startup target and its relocated
+  segment operands; its callees and startup admission remain Q-EXE-007.
   FND-EXE-490 finds no AH=4B request among the sound utility's 69 interrupt
   21 instructions or its stack-thunk callers, and no interrupt 2E. Its load
   image makes no direct launch request; the game editions remain Q-EXE-007.
