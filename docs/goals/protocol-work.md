@@ -17,7 +17,7 @@ The owner-requested latest-template synchronization is authorized tooling within
 
 Research-side repository workflow and tooling: local session skills, goal
 discovery and handovers, protocol conformance, validation and upstream reports.
-Research areas: EXE for the game and its utilities. DOSBox complete readings are excluded. Research batches
+Research areas: EXE for the game and its utilities. Future game-code readings use installed DSUN.EXE only under docs/SOURCE-EDITIONS.md and the 2026-10-10 decision in docs/DECISIONS.md; earlier disc comparisons remain historical. DOSBox complete readings are excluded. Research batches
 may change EXE entries, queue/EXE.md and parity/EXE.md, with generated indexes
 and PARITY.md read locally and left uncommitted. The EXE launch-reference scope also covers
 BLD-GOG-EN-1.1 inventory and
@@ -57,7 +57,7 @@ An owner-approved history repair remains separate from this maintenance scope.
 
 - Integrated: session/protocol-rt-interface-20261009's verified mode-interface
   batch passed the combined gate with the FND-EXE-355 follow-up on 2026-10-09.
-- Stage: Slices; goal active. Isolated research through FND-EXE-398 passed the assetless full gate (715 tests), final main-base documentation check and enabled hooks on 2026-10-10.
+- Stage: Slices; goal active. Isolated research through FND-EXE-398 and the combined installed-edition policy/decision ledger passed the assetless full gate (715 tests), final main-base documentation check and enabled hooks on 2026-10-10.
   Codex continuation uses session/protocol-codex-research-20261010 in artifacts/worktrees/protocol-codex-research; its dependency junction is read-only and EVIDENCE_PYTHON uses the existing isolated root interpreter. Resume this worktree before mutations; integrate only committed artifacts.
   FND-EXE-393 committed-main recovery is validated; preserve existing commits and other sessions' work. Upstream follow-up: https://github.com/kibertoad/refurbished-dinosaurs-template/issues/69#issuecomment-6089749395.
   AGENTS.md preservation guidance passed the full gate. Duplicate-checked arithmetic-control follow-up: https://github.com/kibertoad/refurbished-dinosaurs/issues/54#issuecomment-6089974953. No new upstream concern identified in the FND-EXE-398 batch.
