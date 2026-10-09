@@ -121,6 +121,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-364 reads 3B03's count guard and direct route, 05CC's
   unchecked preliminary result and 3C54's carry-dependent publication. Follow
   the 3B6D byte-processing path and native/state preservation and admission.
+  Tried: FND-EXE-365 reads newline expansion, post-store batching and
+  separate input/output result arithmetic. Admit nonwrapping frame/source state,
+  native SI/DI/DS preservation, extents and aliases before assigning outcomes.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
