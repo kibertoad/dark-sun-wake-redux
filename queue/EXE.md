@@ -196,6 +196,9 @@ Next ID: Q-EXE-018
   Tried: FND-EXE-481 follows local formatter flush, callback descriptor
   mutation and nested cleanup. Follow conversion dispatch, input producers,
   total output bounds, aliases and the optional consumer.
+  Tried: FND-EXE-482 follows normalized string dispatch, argument width,
+  scan exhaustion and signed default padding. Follow actual DS/source and
+  callback admission, other conversions and the optional consumer.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
