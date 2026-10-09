@@ -172,6 +172,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-473 reads 27FC's immediate flag result, held-pair request,
   final returned-pair comparison and carry-error paths. Follow later pathname
   consumers, native contracts/preservation, frame state and index/flag producers.
+  Tried: FND-EXE-474 follows pathname continuation 158E:011A's
+  selected quantity, overwritten reads, inclusive copy and reverse separator
+  search. Follow 158E:01D3, index/frame preservation, extents and producers.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
