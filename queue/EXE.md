@@ -478,6 +478,9 @@ Next ID: Q-EXE-014
   and indexed/aliased/runtime-produced accesses remain excluded. Do not repeat
   these literal queries without new mapping or reference coverage; next follow
   indirect target producers and segment-qualified aliases from admitted code.
+  Tried: FND-EXE-269 follows the declared MZ startup's source-segment slot
+  publication across its DS switch. Incoming storage, interrupt preservation,
+  other slot writers and native loader entry remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
