@@ -203,5 +203,11 @@ An owner-approved history repair remains separate from this maintenance scope.
   4a. PARTY: FND-PARTY-034 closed Q-PARTY-012 (CHARSAVE.GFF is opened
      from the program's directory; a failed open prints a message and exits
      with status 1). Q-PARTY-014 asks how the start-up code builds argv[0].
-     Next PARTY items: Q-PARTY-013, then Q-PARTY-011, for RULE-PARTY-006.
+     FND-PARTY-035 to FND-PARTY-037 closed Q-PARTY-013: with any ICON pointer the
+     gate's reservations fit, and the engine's reach (tools/research/exec-census/
+     reach_config.py, pointer_reach.json) finds no direct pre-gate route to a
+     non-ICON pointer; Q-PARTY-011 now carries that residue. Reach results:
+     toolkit #322 (comment 6090940330); one-byte-function range-end false
+     positive: #343 (comment 6090940519). Next PARTY item: Q-PARTY-011, whose
+     indirect calls reach can now list with their routines.
   5. Follow Q-EXE-007's game-edition consumers under FMT-EXE-006: FND-EXE-397 native target/register/record contracts, callers/writers and buffer aliases; FND-EXE-398 native file-request contracts, type-four callers/writers and storage admission; FND-EXE-399 type-one shared-segment and slot-input writers/callers: use FND-EXE-401 and the local controlled package to extend literal searches to other evidenced resident regions, then computed accesses and segment provenance; native contracts and buffer admission remain; FND-EXE-396 native quantity/register contracts; FND-EXE-556 complete cache callback/state writers and native contracts, FND-EXE-395 native request semantics/preservation, scratch/descriptor writers and argument producers; FND-EXE-394 native query/record/register contracts and storage writers, FND-EXE-392 preliminary native contracts and FND-EXE-391 other slot producers/published targets, FND-EXE-559 gate/target writers and native admission, FND-EXE-558 complete registration callers/state writers and predecessor/error contracts, FND-EXE-555 other general targets, FND-EXE-531 storage admission, native contracts and remaining startup dependencies.
