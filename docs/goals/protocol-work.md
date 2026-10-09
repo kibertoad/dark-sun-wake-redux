@@ -28,6 +28,11 @@ CONFIG is added for correcting SOUND_DS location ranges in CONFIG findings
 (claims checked 2026-10-09: no `goal/*` branch claims CONFIG, and
 `config-static.md` is a copy from main): those findings, their replacements
 (FND-CONFIG-213, FND-CONFIG-214) and the citations of them.
+CONFIG, INPUT, PARTY, SAVE, TIME and VIDEO are added for correcting the
+DSUN.EXE location ranges that end on an inventoried function's last byte
+once the reconciled DSUN inventory replaces the historical one (claims
+checked 2026-10-09: goal/protocol-work is the only `goal/*` branch): those
+findings, their replacements and the citations of them.
 Other areas are read-only. Further research
 areas are added only after checking the shared clone's authoritative goal
 claims and other sessions' work.
