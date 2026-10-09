@@ -244,6 +244,9 @@ Next ID: Q-EXE-020
   Tried: FND-EXE-509 traces startup's separate saved-segment, DS/SS
   and zero-fill producers. Follow native preservation, later startup/callers
   and record/table writers before admitting diagnostic state.
+  Tried: FND-EXE-510 reads 0220's priority dispatch and seven shipped
+  targets, including relocated far segments. Follow target bodies, SI/DI
+  preservation, table writers and subsequent record/segment state admission.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
