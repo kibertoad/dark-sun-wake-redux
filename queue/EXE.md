@@ -169,6 +169,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-472 reads 3720/06FF's count gates, byte transform,
   unchecked trailing-byte slot and 1A position-result discard. Follow 27FC,
   later pathname consumers, native results/preservation, extents and producers.
+  Tried: FND-EXE-473 reads 27FC's immediate flag result, held-pair request,
+  final returned-pair comparison and carry-error paths. Follow later pathname
+  consumers, native contracts/preservation, frame state and index/flag producers.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.

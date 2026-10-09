@@ -153,6 +153,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   lower reads, producers, extents and later consumers remain Q-EXE-007.
   FND-EXE-472 reads lower count/byte processing and unchecked extra-result use;
   native admission, producers, extents and later consumers remain Q-EXE-007.
+  FND-EXE-473 reads the zero-read classifier's flag and native-pair paths;
+  native/state admission and later pathname consumers remain Q-EXE-007.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;
   startup, actual DS, aliases and later writers must admit their runtime use.
 - Which disc helpers does the disc installer select (Q-EXE-008)? Selection
