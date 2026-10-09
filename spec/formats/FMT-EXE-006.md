@@ -299,6 +299,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   writers; link termination, segment/input admission and native effects stay open.
   FND-EXE-408 bounds additional link-field candidates and reads one retrying
   writer; its helper, other writers and storage/preservation contracts stay open.
+  FND-EXE-409 supplies that helper's outputs, selection and untested final
+  tag stores; target effects, complete writers and storage admission stay open.
   FND-EXE-490 finds no AH=4B request among the sound utility's 69 interrupt
   21 instructions or its stack-thunk callers, and no interrupt 2E. Its load
   image makes no direct launch request; the game editions remain Q-EXE-007.
