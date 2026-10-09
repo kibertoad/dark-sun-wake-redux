@@ -445,6 +445,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-261 connects the direct transfer wrapper's rounded count,
   source/destination formation and carry consumer, including maximal-size wrap.
   Live dispatch, header writers, external zero-count/output contracts remain open.
+  Tried: FND-EXE-262 records zero initial/current link words and the initial
+  word's unresolved relocation query. Live producers, indexed/bulk writes,
+  other code regions and effective DS/lifecycle admission remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
