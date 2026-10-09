@@ -88,6 +88,9 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-350 locates literal sound.bat names in both game editions and
   an autoexec.bat suffix in the sound utility. These are consumer-reading
   leads, not launch evidence; their writers and consumers remain Q-EXE-007.
+  FND-EXE-360 traces the utility's stack pathname into the interface also
+  used for sound.ini. Its deeper callees, segment/input admission and later
+  paths still prevent an execution exclusion; the game consumers remain unread.
 - Which disc helpers does the disc installer select (Q-EXE-008)? Selection
   by its installer and standalone manual use are competing readings. The
   file roles in FND-EXE-008 support neither caller claim. Direct installer

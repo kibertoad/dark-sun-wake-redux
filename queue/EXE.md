@@ -72,6 +72,11 @@ Next ID: Q-EXE-014
   zero-byte writer before distinguishing display/file access from launch.
   Extensionless, encoded, split and runtime-constructed names remain outside
   this literal search; the question remains Static for consumer reading.
+  Tried: FND-EXE-360 follows the utility suffix through a stack constructor,
+  its append helper and the same interface used with sound.ini. Read the
+  interface's two near callees, returned-byte producer's external wrapper,
+  caller/data-segment admission and later paths before a launch exclusion.
+  The game editions' sound.bat consumers remain separate targets.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
