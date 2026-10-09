@@ -187,8 +187,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   3. standard-coverage now accepts every in-scope inventory. Read its
      uncited DSUN.EXE functions when choosing item 4's reading; keep
      citation coverage separate from complete-reading availability. The
-     disc inventory is mostly uncited because findings cite the installed
-     build; cite it only where the two editions differ.
+     installed DSUN.EXE is the sole game-code target; prior disc comparisons
+     are historical under docs/SOURCE-EDITIONS.md.
   4. Done: the overlay manager in segment 4AE5 (FND-EXE-560 to
      FND-EXE-569) closed Q-EXE-001. Q-EXE-024 (Source) asks the linker's
      documentation what the unread descriptor fields record. Next bounded
