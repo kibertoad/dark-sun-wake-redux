@@ -157,6 +157,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   native/state admission and later pathname consumers remain Q-EXE-007.
   FND-EXE-474 reads later pathname byte-copy and reverse-search tests;
   continuation, index/frame admission and extents remain Q-EXE-007.
+  FND-EXE-475 identifies the second filename and sequential configuration markers;
+  later conversion/consumers and segment/string admission remain Q-EXE-007.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;
   startup, actual DS, aliases and later writers must admit their runtime use.
 - Which disc helpers does the disc installer select (Q-EXE-008)? Selection

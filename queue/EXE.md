@@ -175,6 +175,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-474 follows pathname continuation 158E:011A's
   selected quantity, overwritten reads, inclusive copy and reverse separator
   search. Follow 158E:01D3, index/frame preservation, extents and producers.
+  Tried: FND-EXE-475 follows the second sw32.ini stack pathname,
+  its mode and sequential section/field matches. Follow 158E:0284's
+  conversion/consumers, actual DS, frame/string extents, aliases and preservation.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
