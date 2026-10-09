@@ -190,19 +190,12 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-490 finds no AH=4B request among the sound utility's 69 interrupt
   21 instructions or its stack-thunk callers, and no interrupt 2E. Its load
   image makes no direct launch request; the game editions remain Q-EXE-007.
+  FND-EXE-496 and FND-EXE-497 find that its installable drivers request no
+  program execution and transfer out only to callbacks it never registers
+  or to resident programs outside the build, and FND-EXE-498 and
+  FND-EXE-501 find that SBAWE32.ADV, in its use, reaches only code entries.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;
   startup, actual DS, aliases and later writers must admit their runtime use.
-- Can the sound utility make SBAWE32.ADV send control through a table
-  entry that is not code (Q-EXE-018)? FND-EXE-496 finds that the
-  utility's 19 installable drivers request no program execution in their
-  decoded code and transfer out only to host callbacks and resident
-  programs outside the build, and FND-EXE-497 finds that the utility never
-  registers a callback and requests only driver functions 0064..0067.
-  SBAWE32.ADV's dispatch through DS:4428 takes an unmasked caller byte with
-  code entries only for 0..127, and FND-EXE-498 finds that its four
-  switches in 0x2C28 read code bytes as targets at the driver's base. The
-  bytes that the 17 reachable calls to 0x01ED pass, and the writers of the
-  channel word at DS:434C, settle it.
 - Which disc helpers does the disc installer select (Q-EXE-008)? Selection
   by its installer and standalone manual use are competing readings. The
   file roles in FND-EXE-008 support neither caller claim. Direct installer

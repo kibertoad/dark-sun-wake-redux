@@ -230,20 +230,9 @@ Next ID: Q-EXE-020
   limits installable drivers to 19 disc .ADV files with no AH=4B request.
   FND-EXE-496 finds their decoded code transfers out only to host callbacks,
   which FND-EXE-497 shows the utility never registers, and to resident
-  programs outside the build; SBAWE32.ADV's residual path is Q-EXE-018.
+  programs outside the build. FND-EXE-498 and FND-EXE-501 find that
+  SBAWE32.ADV, in the utility's use, sends control only to code entries.
   The game editions' sound.bat consumers remain unread here.
-
-- Q-EXE-018. FMT-EXE-006: Can the sound utility make SBAWE32.ADV send
-  control through a table entry that is not code? Settles it: for each of
-  the 17 calls to 0x01ED reachable from driver functions 0064..0067 (the
-  only ones FND-EXE-497 finds the utility requests), the status and data
-  bytes it can pass, and the writers of the channel word at DS:434C; either
-  a data byte of 80 or more for status B0..BF, or a call into 0x27FA with a
-  nonzero third argument on channel 9 while that word is 0081, 0082, 0083
-  or 0087, reaches non-code targets. FND-EXE-496 finds the DS:4428 table is
-  code only for entries 0..127, and FND-EXE-498 finds the four switches in
-  0x2C28 read code bytes as targets at the driver's base. Blocks: a launch
-  exclusion for the sound utility under FMT-EXE-006.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
