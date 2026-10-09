@@ -181,11 +181,13 @@ An owner-approved history repair remains separate from this maintenance scope.
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/388 (entry ID clashes between writers) and
   https://github.com/kibertoad/refurbished-dinosaurs/issues/91 (Q-EXE-010 and Q-EXE-007 Tried-note growth).
 - Next, after rechecking shared goal claims:
-  1. Finish installed and CD DSUN inventory reconciliation under Q-EXE-010,
-     FMT-EXE-005; follow Q-EXE-010 shared request/DS writers, shared-state lifetime,
-     allocator header production, returned extents and state admission,
-     then remaining downstream callees, header/count and state/link writers,
-     arithmetic bounds and aliases. Retain its indirect-producer and literal-query obligations.
+  1. DSUN inventory reconciliation under FMT-EXE-005, split on 2026-10-09 at
+     the owner's choice: Q-EXE-010 now asks only where CS offset 0 falls when
+     the overlay manager enters an overlay. Read the writers of DS:0x0120
+     before FND-EXE-228's store and the caller of FND-EXE-248's read; do not
+     return to allocator validity, extents or lifetimes, which do not decide
+     it. Q-EXE-020 (descriptor 198's targets), Q-EXE-021 (spans in code or
+     the resident image) and Q-EXE-022 (fixup and padding spans) follow it.
   2. SOUND_DS is done: FND-CONFIG-213 and FND-CONFIG-214 correct the range
      ends, and coverage/ holds the migrated range-aware inventory. Run
      migrate-inventory.mjs from the shared checkout: it hashes the exporter
