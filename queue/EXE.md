@@ -271,6 +271,9 @@ Next ID: Q-EXE-024
   Tried: FND-EXE-518 reads 20A3's selected 20C0 setter path,
   including stores before rejection. Follow 20FA, candidate caller 22A2,
   other writers and block/segment/frame admission before cleanup closure.
+  Tried: FND-EXE-519 reads 20FA's metadata merging, 214F call
+  and 2133 fall-through. Follow remaining setter callers and writers,
+  block/link producers, segments, extents and earlier startup effects.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
