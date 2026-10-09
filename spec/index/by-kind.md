@@ -14,7 +14,7 @@ Entries by kind.
 
 ## sources
 
-8 entries.
+11 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -23,8 +23,11 @@ Entries by kind.
 | [SRC-GAMEFAQS-81038](../sources/SRC-GAMEFAQS-81038.md) | Dark Sun: Wake of the Ravager, Guide and Walkthrough, version 1.13 | None |
 | [SRC-LIBGFF-839B11D](../sources/SRC-LIBGFF-839B11D.md) | libgff, a reimplementation library for the Dark Sun games, commit 839b11d | None |
 | [SRC-MANUAL-1994](../sources/SRC-MANUAL-1994.md) | Dark Sun: Wake of the Ravager rule book, PDF shipped with the GOG release | None |
+| [SRC-MS-CRT-ASSERT](../sources/SRC-MS-CRT-ASSERT.md) | Microsoft CRT assertion failure contract | None |
 | [SRC-OPENDS-5C6CBD7](../sources/SRC-OPENDS-5C6CBD7.md) | OpenDS, a Dark Sun reverse-engineering project with a GPL disassembler, commit 5c6cbd7 | None |
 | [SRC-README-1.1](../sources/SRC-README-1.1.md) | README.TXT for version 1.1, shipped with the GOG release | None |
+| [SRC-WIN32-ATOMS](../sources/SRC-WIN32-ATOMS.md) | Microsoft Win32 local atom API contracts | None |
+| [SRC-WIN32-X86-ABI](../sources/SRC-WIN32-X86-ABI.md) | Microsoft Win32 x86 flat-mode and calling-convention contract | None |
 | [SRC-YOUTUBE-FLOMVOSHEOM](../sources/SRC-YOUTUBE-FLOMVOSHEOM.md) | Dark Sun: Wake of the Ravager playthrough, YouTube video FLoMVOSHeOM | None |
 
 ## formats
@@ -177,7 +180,7 @@ Entries by kind.
 
 ## findings
 
-593 entries.
+721 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -479,11 +482,11 @@ Entries by kind.
 | [FND-EXE-039](../findings/FND-EXE-039.md) | Null-input failure route constructs a payload field before signed decrement and shared publication | recorded |
 | [FND-EXE-040](../findings/FND-EXE-040.md) | Conditional payload release forwards the raw prefix pointer except for one fixed address | recorded |
 | [FND-EXE-041](../findings/FND-EXE-041.md) | Failure finalization reads a mutable indirect target before reaching an abort import | recorded |
-| [FND-EXE-042](../findings/FND-EXE-042.md) | Shared-record reader decodes thirty-two atom-name bytes after a nonzero import result | recorded |
+| [FND-EXE-042](../findings/FND-EXE-042.md) | Shared-record reader decodes thirty-two atom-name bytes after a nonzero import result | superseded |
 | [FND-EXE-043](../findings/FND-EXE-043.md) | Shared-record initialization verifies an encoded allocation before publishing target-field pointers | recorded |
-| [FND-EXE-044](../findings/FND-EXE-044.md) | Shared-record local names append a thirty-three-byte shipped tail and terminator | recorded |
-| [FND-EXE-045](../findings/FND-EXE-045.md) | Record setup initializes missing shared storage before mode-dependent link publication | recorded |
-| [FND-EXE-046](../findings/FND-EXE-046.md) | Record-mode admission distinguishes direct clearing from initialization and a flag wait loop | recorded |
+| [FND-EXE-044](../findings/FND-EXE-044.md) | Shared-record local names append a thirty-three-byte shipped tail and terminator | superseded |
+| [FND-EXE-045](../findings/FND-EXE-045.md) | Record setup initializes missing shared storage before mode-dependent link publication | superseded |
+| [FND-EXE-046](../findings/FND-EXE-046.md) | Record-mode admission distinguishes direct clearing from initialization and a flag wait loop | superseded |
 | [FND-EXE-047](../findings/FND-EXE-047.md) | Mode resource initialization publishes a saved index and a zero-helper-derived mode | recorded |
 | [FND-EXE-048](../findings/FND-EXE-048.md) | Record setup resolves TLS imports and tail-returns the later error query on a zero result | recorded |
 | [FND-EXE-049](../findings/FND-EXE-049.md) | Record cleanup restores a pre-helper saved link through a freshly selected mode | recorded |
@@ -492,17 +495,17 @@ Entries by kind.
 | [FND-EXE-052](../findings/FND-EXE-052.md) | Handler forwarding publishes a selected record before restoring frame and stack for an indirect jump | recorded |
 | [FND-EXE-053](../findings/FND-EXE-053.md) | Register-input selector traverses a mutable record local and separates callback results from a saved match guard | recorded |
 | [FND-EXE-054](../findings/FND-EXE-054.md) | Second selector calls a saved argument target before the current record target and distinguishes zero, seven and eight | recorded |
-| [FND-EXE-055](../findings/FND-EXE-055.md) | Stored callback builds a nested saved-state record and returns separately saved early-exit statuses after cleanup | recorded |
+| [FND-EXE-055](../findings/FND-EXE-055.md) | Stored callback builds a nested saved-state record and returns separately saved early-exit statuses after cleanup | superseded |
 | [FND-EXE-056](../findings/FND-EXE-056.md) | Callback access helpers reread a selected-record local and use full-width indexed stores and wrapped count adjustments | recorded |
 | [FND-EXE-057](../findings/FND-EXE-057.md) | Signature-selected callback reloads saved state and prepares selected-record fields before returning seven | recorded |
-| [FND-EXE-058](../findings/FND-EXE-058.md) | Ordinary callback classifies a signed stored word and saves matched state on a distinct six-return path | recorded |
+| [FND-EXE-058](../findings/FND-EXE-058.md) | Ordinary callback classifies a signed stored word and saves matched state on a distinct six-return path | superseded |
 | [FND-EXE-059](../findings/FND-EXE-059.md) | Matching byte reader accumulates seven-bit groups with masked shifts and writes one word only at termination | recorded |
 | [FND-EXE-060](../findings/FND-EXE-060.md) | Callback metadata reader uses independent byte markers and returns a cursor separately from stored relative targets | recorded |
 | [FND-EXE-061](../findings/FND-EXE-061.md) | Marker modifier selects zero-return branches and a full-byte bypass before its mask-class abort boundary | recorded |
 | [FND-EXE-062](../findings/FND-EXE-062.md) | Typed metadata reader separates guarded width dispatch from zero bypass, base adjustment and one indirect read | recorded |
 | [FND-EXE-063](../findings/FND-EXE-063.md) | Nibble-nine byte reader sign-fills only after termination under a full-word shift guard | recorded |
-| [FND-EXE-064](../findings/FND-EXE-064.md) | Matching helpers combine marker strides, low-byte virtual results and zero-terminated index scans | recorded |
-| [FND-EXE-065](../findings/FND-EXE-065.md) | Callback matching combines signed pair branches and preserves a full-word fallback test across a shared jump | recorded |
+| [FND-EXE-064](../findings/FND-EXE-064.md) | Matching helpers combine marker strides, low-byte virtual results and zero-terminated index scans | superseded |
+| [FND-EXE-065](../findings/FND-EXE-065.md) | Callback matching combines signed pair branches and preserves a full-word fallback test across a shared jump | superseded |
 | [FND-EXE-066](../findings/FND-EXE-066.md) | Second terminal wrapper calls a shared-field target whose initial helper tail-jumps through the current finalizer field | recorded |
 | [FND-EXE-067](../findings/FND-EXE-067.md) | Classification-one helper preserves counter ordering and returns a saved payload after cleanup before its caller ignores it | recorded |
 | [FND-EXE-068](../findings/FND-EXE-068.md) | Guarded context acquisition separates initialization, preserved-error lookup and zero-return publication | recorded |
@@ -516,7 +519,7 @@ Entries by kind.
 | [FND-EXE-076](../findings/FND-EXE-076.md) | Physical shared-guard literal search finds three candidates absent from the current decoded reference list | recorded |
 | [FND-EXE-077](../findings/FND-EXE-077.md) | Controlled recovery classifies the three additional guard literals as full-word reads with conditional frame admission | recorded |
 | [FND-EXE-078](../findings/FND-EXE-078.md) | Shared guard and pool words occupy virtual-only BSS and have no overlapping declared base-relocation sites | recorded |
-| [FND-EXE-079](../findings/FND-EXE-079.md) | Declared startup reaches an x87 initializer and a memory-update helper whose equal table bounds skip its loop | recorded |
+| [FND-EXE-079](../findings/FND-EXE-079.md) | Declared startup reaches an x87 initializer and a memory-update helper whose equal table bounds skip its loop | superseded |
 | [FND-EXE-080](../findings/FND-EXE-080.md) | Startup guard publishes before reverse-order callback dispatch and returns the later atexit result | recorded |
 | [FND-EXE-081](../findings/FND-EXE-081.md) | First selected startup callbacks preserve two empty bodies, increment paired words and initialize a distinct context | recorded |
 | [FND-EXE-082](../findings/FND-EXE-082.md) | Registered cleanup dispatch rereads a mutable cursor before publishing its next slot | recorded |
@@ -582,6 +585,134 @@ Entries by kind.
 | [FND-EXE-142](../findings/FND-EXE-142.md) | Complementary-count full-width prefix branch replaces mask bits from retained sign disagreement and fresh lookup/count reads | recorded |
 | [FND-EXE-143](../findings/FND-EXE-143.md) | Word complementary-count prefix branch clears its extracted-bit mask above sixteen while retaining later sign comparisons | recorded |
 | [FND-EXE-144](../findings/FND-EXE-144.md) | Complementary byte-count prefix branch saves count and input while retaining its lookup byte | recorded |
+| [FND-EXE-145](../findings/FND-EXE-145.md) | Full-width prefix branch uses a low-nibble equality gate and an exact-result high-mask gate while retaining mask one | recorded |
+| [FND-EXE-146](../findings/FND-EXE-146.md) | Word and full-width retained-result prefix branches use opposite nibble gates and distinct exact-result values | recorded |
+| [FND-EXE-147](../findings/FND-EXE-147.md) | Byte retained-result prefix branches use opposite nibble gates and keep their initial byte for the common lookup | recorded |
+| [FND-EXE-148](../findings/FND-EXE-148.md) | Full-width prefix branch combines guarded unsigned admission with fresh byte masks and retained sign inputs | recorded |
+| [FND-EXE-149](../findings/FND-EXE-149.md) | Shared word prefix branch keeps initial comparison words separate from fresh bytes and a later result word | recorded |
+| [FND-EXE-150](../findings/FND-EXE-150.md) | Guarded word prefix branch retains word comparison inputs while saving a later byte for lookup | recorded |
+| [FND-EXE-151](../findings/FND-EXE-151.md) | Guarded byte prefix branch saves original inputs before its working-byte increment and register reuse | recorded |
+| [FND-EXE-152](../findings/FND-EXE-152.md) | Shared byte prefix branch saves comparison and result bytes for subsequent masks | recorded |
+| [FND-EXE-153](../findings/FND-EXE-153.md) | Shared full prefix comparison separates fresh byte inputs from later full result tests | recorded |
+| [FND-EXE-154](../findings/FND-EXE-154.md) | Retained word prefix branch uses zero nibble and exact minimum-word tests | recorded |
+| [FND-EXE-155](../findings/FND-EXE-155.md) | Guarded byte prefix branch admits equality conditionally and preserves original bytes for later masks | recorded |
+| [FND-EXE-156](../findings/FND-EXE-156.md) | Guarded word equality prefix retains initial words alongside fresh byte and word inputs | recorded |
+| [FND-EXE-157](../findings/FND-EXE-157.md) | Guarded full equality prefix combines retained inputs with fresh byte and full reads | recorded |
+| [FND-EXE-158](../findings/FND-EXE-158.md) | Strict byte prefix comparison preserves saved inputs and bounds partial-register mask work | recorded |
+| [FND-EXE-159](../findings/FND-EXE-159.md) | Strict word prefix comparison retains initial words alongside fresh byte and word inputs | recorded |
+| [FND-EXE-160](../findings/FND-EXE-160.md) | Strict full prefix comparison separates retained inputs from fresh byte and full reads | recorded |
+| [FND-EXE-161](../findings/FND-EXE-161.md) | Gated prefix writer restores saved words after two untested continuations | recorded |
+| [FND-EXE-162](../findings/FND-EXE-162.md) | Stored callback separates signed callee returns from the last-pair comparison | recorded |
+| [FND-EXE-163](../findings/FND-EXE-163.md) | First diagnostic transfer separates mutable candidate traversal from saved-state admission | recorded |
+| [FND-EXE-164](../findings/FND-EXE-164.md) | First transfer resets its candidate before register-input selection and retains only full-seven admission | recorded |
+| [FND-EXE-165](../findings/FND-EXE-165.md) | Stored callback builds a nested saved-state record and returns separately saved early-exit statuses after cleanup | recorded |
+| [FND-EXE-166](../findings/FND-EXE-166.md) | Selected-record reader has one decoded direct-call site and consumes a post-setup sixth-slot reload | recorded |
+| [FND-EXE-167](../findings/FND-EXE-167.md) | Record setup initializes missing shared storage before mode-dependent link publication | recorded |
+| [FND-EXE-168](../findings/FND-EXE-168.md) | Explicit shared-base publications select allocated or decoded storage without a local stack-disjointness test | recorded |
+| [FND-EXE-169](../findings/FND-EXE-169.md) | Shared-record local names append a thirty-three-byte shipped tail and terminator | recorded |
+| [FND-EXE-170](../findings/FND-EXE-170.md) | Shared-record reader decodes thirty-two atom-name bytes after a nonzero import result | recorded |
+| [FND-EXE-171](../findings/FND-EXE-171.md) | Declared startup reaches an x87 initializer and a memory-update helper whose equal table bounds skip its loop | recorded |
+| [FND-EXE-172](../findings/FND-EXE-172.md) | Independent physical rel32 scan agrees with the empty-table helper's decoded caller domain | recorded |
+| [FND-EXE-173](../findings/FND-EXE-173.md) | Overlay body anomalies include non-code fragments and a segment-alias dispatch discrepancy | recorded |
+| [FND-EXE-174](../findings/FND-EXE-174.md) | Corrected relocation mapping retains physically non-code overlay body fragments | recorded |
+| [FND-EXE-175](../findings/FND-EXE-175.md) | A resident overlay-loader candidate has a bounded body beyond the saved analyzer listing | recorded |
+| [FND-EXE-176](../findings/FND-EXE-176.md) | Resident loader candidate state holds an initial interrupt-3F vector and far handler pointer | recorded |
+| [FND-EXE-177](../findings/FND-EXE-177.md) | A resident cleanup candidate conditionally exchanges the vector before two unresolved near callbacks | superseded |
+| [FND-EXE-178](../findings/FND-EXE-178.md) | Cleanup callback defaults name a far-return stub but later explicit writers supply other offsets | recorded |
+| [FND-EXE-179](../findings/FND-EXE-179.md) | Callback-writer callees restore DS locally but retain interrupt and computed-call dependencies | recorded |
+| [FND-EXE-180](../findings/FND-EXE-180.md) | A multiplex-result far pointer is stored as two words and consumed by the overlay-memory candidates | recorded |
+| [FND-EXE-181](../findings/FND-EXE-181.md) | Shipped interpreter has a bounded two-service candidate matching the external provider source pattern | superseded |
+| [FND-EXE-182](../findings/FND-EXE-182.md) | Shipped interpreter two-service candidate has distinct argument-consumer leads | recorded |
+| [FND-EXE-183](../findings/FND-EXE-183.md) | Shipped provider pointer producer packs a bounded word-counter return | recorded |
+| [FND-EXE-184](../findings/FND-EXE-184.md) | Shipped provider setup changes state before its builder result is admitted | recorded |
+| [FND-EXE-185](../findings/FND-EXE-185.md) | Provider setup mode sixteen selects an arm with six-or-ten-byte output and return | recorded |
+| [FND-EXE-186](../findings/FND-EXE-186.md) | Shipped callback consumer admits signed indexes and preserves a nonzero callback result | recorded |
+| [FND-EXE-187](../findings/FND-EXE-187.md) | Provider backing-base producer stores an allocation return before admission and reaches controlled CRT imports | recorded |
+| [FND-EXE-188](../findings/FND-EXE-188.md) | Allocation record helpers select shared or imported thread-local storage and retain distinct cleanup paths | recorded |
+| [FND-EXE-189](../findings/FND-EXE-189.md) | Record selector publication follows a constant-zero local stub and keeps failure and wait paths separate | recorded |
+| [FND-EXE-190](../findings/FND-EXE-190.md) | Shared record producer separates new allocation fields from adopted-pointer publication | recorded |
+| [FND-EXE-191](../findings/FND-EXE-191.md) | Adopted-pointer recovery decodes a fixed buffer prefix before checking its record header | recorded |
+| [FND-EXE-192](../findings/FND-EXE-192.md) | Shared-record query producers build a sixty-six-byte terminated name with a fixed pointer prefix | recorded |
+| [FND-EXE-193](../findings/FND-EXE-193.md) | Published shared-record fields are mutable callback slots with distinct consumers | recorded |
+| [FND-EXE-194](../findings/FND-EXE-194.md) | Shared callback dispatch continuations reach the failure import while direct setter searches remain bounded | recorded |
+| [FND-EXE-195](../findings/FND-EXE-195.md) | Controlled shipped-file literal search finds no stored dword equal to the callback setter address | recorded |
+| [FND-EXE-196](../findings/FND-EXE-196.md) | Ordinary callback classifies a signed stored word and saves matched state on a distinct six-return path | recorded |
+| [FND-EXE-197](../findings/FND-EXE-197.md) | The nested record's shipped metadata prefix gives a five-byte conditional reader path | recorded |
+| [FND-EXE-198](../findings/FND-EXE-198.md) | Forwarding supplies a live selected-local slot above the nested callback and reader frames | recorded |
+| [FND-EXE-199](../findings/FND-EXE-199.md) | Zero-mode setup admission excludes some incoming-slot overlaps when duplicate callback words are nonzero | recorded |
+| [FND-EXE-200](../findings/FND-EXE-200.md) | Record-mode admission distinguishes direct clearing from initialization and a flag wait loop | recorded |
+| [FND-EXE-201](../findings/FND-EXE-201.md) | Negative-mode direct clearing can invalidate duplicate-word overlap exclusions before link publication | recorded |
+| [FND-EXE-202](../findings/FND-EXE-202.md) | Gate-neighbor indexed publication has an unsigned index guard and a distinct callee-preservation obligation | recorded |
+| [FND-EXE-203](../findings/FND-EXE-203.md) | Gate-neighbor allocation helper forwards one full request without a local index-register write or retry | recorded |
+| [FND-EXE-204](../findings/FND-EXE-204.md) | Neighboring cursor helpers read through a shared pointer and publish two fixed cells with different zero-request paths | recorded |
+| [FND-EXE-205](../findings/FND-EXE-205.md) | Neighboring scalar initializer publishes allocation returns before unchecked indirect writes and reuses outgoing argument slots | recorded |
+| [FND-EXE-206](../findings/FND-EXE-206.md) | Shared numeric operand search reproduces the corrected gate-neighbor domain with independent reference-kind controls | recorded |
+| [FND-EXE-207](../findings/FND-EXE-207.md) | Physical gate-overlap start search excludes neighboring contiguous address encodings within an eight-byte write envelope | recorded |
+| [FND-EXE-208](../findings/FND-EXE-208.md) | Physical near-transfer and decoded-flow searches agree on the selected-record reader's direct caller | recorded |
+| [FND-EXE-209](../findings/FND-EXE-209.md) | Two ordinary construction callers prepare the same callback with distinct metadata addresses | recorded |
+| [FND-EXE-210](../findings/FND-EXE-210.md) | Ordinary record metadata prefixes take distinct finite bypass paths through the metadata reader | recorded |
+| [FND-EXE-211](../findings/FND-EXE-211.md) | Released operand search classifies both known indexed pointer-array publications as writes | recorded |
+| [FND-EXE-212](../findings/FND-EXE-212.md) | Concrete record count writers select distinct finite matching-prefix paths | recorded |
+| [FND-EXE-213](../findings/FND-EXE-213.md) | Concrete count-one metadata takes a negative-pair lookup and saved-six return on the nonmatching-signature path | recorded |
+| [FND-EXE-214](../findings/FND-EXE-214.md) | Matching helpers combine marker strides, low-byte virtual results and zero-terminated index scans | recorded |
+| [FND-EXE-215](../findings/FND-EXE-215.md) | Callback matching combines signed pair branches and preserves a full-word fallback test across a shared jump | recorded |
+| [FND-EXE-216](../findings/FND-EXE-216.md) | Ordinary pair decoders have direct write intervals separate from the saved loop counter | recorded |
+| [FND-EXE-217](../findings/FND-EXE-217.md) | Decoded host segment-output search leaves initial bases and external preservation unresolved | recorded |
+| [FND-EXE-218](../findings/FND-EXE-218.md) | Empty effects in the decoded host listing all classify as NOP without admitting initial segment bases | recorded |
+| [FND-EXE-219](../findings/FND-EXE-219.md) | A physical short-jump candidate reaches the reader from a gap with no controlled direct incoming transfer | recorded |
+| [FND-EXE-220](../findings/FND-EXE-220.md) | Gap and reader addresses have no exact four-byte absolute representation in the shipped executable | recorded |
+| [FND-EXE-221](../findings/FND-EXE-221.md) | Descriptor 198 has an independently bounded adjacent dispatch table with three undecoded candidate targets | recorded |
+| [FND-EXE-222](../findings/FND-EXE-222.md) | Source decoding reaches conditional return tails from all four descriptor-base dispatch targets | recorded |
+| [FND-EXE-223](../findings/FND-EXE-223.md) | Outer descriptor-198 candidate retains three additional unresolved computed transfers | recorded |
+| [FND-EXE-224](../findings/FND-EXE-224.md) | Four independently bounded descriptor-198 tables close a conditional outer procedure traversal | recorded |
+| [FND-EXE-225](../findings/FND-EXE-225.md) | Descriptor-198 trampoline names the candidate entry while analyzer ownership omits and adds different bytes | recorded |
+| [FND-EXE-226](../findings/FND-EXE-226.md) | Initial resident handler candidate has direct loader leads and an unresolved far callback before interrupt return | recorded |
+| [FND-EXE-227](../findings/FND-EXE-227.md) | Resident helper rewrites trampoline offsets and segments into far jumps | recorded |
+| [FND-EXE-228](../findings/FND-EXE-228.md) | Resident publisher writes the live trampoline segment from a post-call state-word reload | recorded |
+| [FND-EXE-229](../findings/FND-EXE-229.md) | Segment publisher compares a word difference while preserving a separate carry-path result | recorded |
+| [FND-EXE-230](../findings/FND-EXE-230.md) | Segment-state writer adds a wrapped sixteen-bit header-word increment | recorded |
+| [FND-EXE-231](../findings/FND-EXE-231.md) | Segment-state writer switches DS before ordered header-word stores | recorded |
+| [FND-EXE-232](../findings/FND-EXE-232.md) | Carry-path helper resets subtracts and finally replaces the published state word | recorded |
+| [FND-EXE-233](../findings/FND-EXE-233.md) | Shared loader helper publishes before copying and conditionally rewrites trampoline segments | recorded |
+| [FND-EXE-234](../findings/FND-EXE-234.md) | Tail helper follows incoming BP words through SS and conditionally replaces matching words | recorded |
+| [FND-EXE-235](../findings/FND-EXE-235.md) | Cleanup rewrites trampoline slots before a conditional unresolved near callback | recorded |
+| [FND-EXE-236](../findings/FND-EXE-236.md) | Cleanup near-callback default differs from two later decoded replacement stores | recorded |
+| [FND-EXE-237](../findings/FND-EXE-237.md) | Replacement cleanup callback prioritizes one state bit before a second dispatch path | recorded |
+| [FND-EXE-238](../findings/FND-EXE-238.md) | Priority cleanup path gates a far callback before a full-width segment product | recorded |
+| [FND-EXE-239](../findings/FND-EXE-239.md) | Shared cleanup gate explicitly clears carry on its sole decoded normal return | recorded |
+| [FND-EXE-240](../findings/FND-EXE-240.md) | Shared gate helpers use wrapped size and stop linked selection at the first rejected candidate | recorded |
+| [FND-EXE-241](../findings/FND-EXE-241.md) | Shared gate consumes helper results in order and returns zero AX after its final link traversal | recorded |
+| [FND-EXE-242](../findings/FND-EXE-242.md) | Segment-to-header candidate checks state bounds marker and published segment before far return | recorded |
+| [FND-EXE-243](../findings/FND-EXE-243.md) | Adjacent stack-word consumer starts its second traversal at the first stop without repeating its upper bound | recorded |
+| [FND-EXE-244](../findings/FND-EXE-244.md) | Loader-entry candidate initializes segment bounds from SS-relative inputs before a wrapped difference check | recorded |
+| [FND-EXE-245](../findings/FND-EXE-245.md) | Intervening descriptor scan computes the range-check threshold from wrapped header sizes | recorded |
+| [FND-EXE-246](../findings/FND-EXE-246.md) | Post-bound helper publishes linked-header segments before downstream content and callback work | recorded |
+| [FND-EXE-247](../findings/FND-EXE-247.md) | Post-bound caller enters trampoline writer after its outer guards and checks its own count | recorded |
+| [FND-EXE-248](../findings/FND-EXE-248.md) | Post-bound content transfer ignores seek carry and rejects short reads | recorded |
+| [FND-EXE-249](../findings/FND-EXE-249.md) | Post-transfer helper rewrites segment words before an optional pattern and target search | recorded |
+| [FND-EXE-250](../findings/FND-EXE-250.md) | Header-dispatched transfer wrapper propagates read carry but clears optional rewrite results | recorded |
+| [FND-EXE-251](../findings/FND-EXE-251.md) | Vector initializer stores the DOS open result as the transfer handle without checking carry | recorded |
+| [FND-EXE-252](../findings/FND-EXE-252.md) | Cleanup gate skips only the vector initializer and both paths continue through two callbacks | recorded |
+| [FND-EXE-253](../findings/FND-EXE-253.md) | Replacement cleanup targets clear state on different paths without a common success result | recorded |
+| [FND-EXE-254](../findings/FND-EXE-254.md) | First cleanup callback writer publishes only after a zero helper result and retains earlier flag changes | recorded |
+| [FND-EXE-255](../findings/FND-EXE-255.md) | Setup helper publishes its repeat-entry gate before external failures and duplicates the final status byte | recorded |
+| [FND-EXE-256](../findings/FND-EXE-256.md) | Second cleanup writer repeats bounded setup before callback publication and retains an endpoint low-word comparison | recorded |
+| [FND-EXE-257](../findings/FND-EXE-257.md) | Second setup helper separates external calls from direct pointer replacement and partial high-byte stores | recorded |
+| [FND-EXE-258](../findings/FND-EXE-258.md) | Second initializer retains provider publications across fallback and returns current endpoint difference | recorded |
+| [FND-EXE-259](../findings/FND-EXE-259.md) | Buffer helper selects external transfer requests and truncates the direct word count to sixteen bits | recorded |
+| [FND-EXE-260](../findings/FND-EXE-260.md) | Initial transfer-request words retain nonzero adjacent bytes that partial stores do not initialize | recorded |
+| [FND-EXE-261](../findings/FND-EXE-261.md) | Direct transfer wrapper derives a physical destination and follows carry without a zero-request bypass | recorded |
+| [FND-EXE-262](../findings/FND-EXE-262.md) | Resident loader initial and current link slots start at zero rather than a relocated segment | recorded |
+| [FND-EXE-263](../findings/FND-EXE-263.md) | Wider scalar query finds CS-relative candidates and misses an independently known undisassembled link consumer | recorded |
+| [FND-EXE-264](../findings/FND-EXE-264.md) | Resident name construction has a bounded tail but no local prefix-length guard | recorded |
+| [FND-EXE-265](../findings/FND-EXE-265.md) | Resident filename callers include a direct bounded tail and an unbounded external-string copy | recorded |
+| [FND-EXE-266](../findings/FND-EXE-266.md) | Shipped default filename input terminates within the bounded tail copy | recorded |
+| [FND-EXE-267](../findings/FND-EXE-267.md) | Resident header reader gates stack-buffer consumption and preserves a distinct wrapped offset calculation | recorded |
+| [FND-EXE-268](../findings/FND-EXE-268.md) | Another initial loader-segment pointer targets the filename comparison input rather than the selected root | recorded |
+| [FND-EXE-269](../findings/FND-EXE-269.md) | Declared MZ startup publishes the filename source-segment slot from incoming storage | recorded |
+| [FND-EXE-270](../findings/FND-EXE-270.md) | Startup first callee saves four vector pairs and restores its incoming data segment | recorded |
+| [FND-EXE-271](../findings/FND-EXE-271.md) | Startup initializer selection reaches a loader wrapper with an explicit root call frame | recorded |
+| [FND-EXE-272](../findings/FND-EXE-272.md) | Loader allocation callee rounds byte requests to paragraphs and traverses mutable segment links | recorded |
 | [FND-EXPLORE-001](../findings/FND-EXPLORE-001.md) | The cell routines of segment 25AF read bit 6 of a cell as a block and set or clear bits 5 and 6 together for an occupant | recorded |
 | [FND-EXPLORE-002](../findings/FND-EXPLORE-002.md) | Slot footprints are square cell sets sized by a byte of the combatant details record, and an object numbered 430 or -430 occupies a 21-cell area instead | recorded |
 | [FND-EXPLORE-003](../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) | recorded |
