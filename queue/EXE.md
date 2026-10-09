@@ -266,6 +266,9 @@ Next ID: Q-EXE-024
   Tried: FND-EXE-549 reads 177C/298E and adjacent 17F2, including
   upper-bound changes on failure, native BX result and four-byte cleanup.
   Follow initial pair/cache producers, native contracts and remaining startup work.
+  Tried: FND-EXE-550 reads shipped pair/cache zeros and startup's conditional
+  upper-word replacement before dispatch. Follow native preservation, complete
+  writer coverage, segment/storage admission and the 02AD failure target.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
