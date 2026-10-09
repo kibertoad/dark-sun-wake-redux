@@ -498,6 +498,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-274 reads the larger-count split helper and its DS/DX returns;
   incoming DS/DX identity, header writers, arithmetic bounds and aliases remain
   unresolved. The other helper contracts remain unread.
+  Tried: FND-EXE-275 reads the fallback and its separate alignment call;
+  the 1000:1831 contract, DS preservation, failure effects and returned extents
+  remain unread. Follow that callee before assuming contiguous allocation.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
