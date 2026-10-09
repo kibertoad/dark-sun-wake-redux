@@ -58,6 +58,8 @@ bounded source reader; this does not establish native loader behavior.
   open. FND-EXE-277 resolves local arithmetic and comparison helpers with
   word-width wrapping; state admission, updater effects and writer coverage
   remain open.
+  FND-EXE-278 follows the final updater's ordinary cleanup and failure-bound
+  publication; its far callee, state writers and admitted ranges remain open.
   FND-EXE-222 supplies conditional source-decoded tails at those candidates;
   saved-listing incompleteness alone does not exclude their decoding.
   FND-EXE-223 retains three unresolved computed transfers in the outer

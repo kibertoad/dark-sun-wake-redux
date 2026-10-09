@@ -507,6 +507,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-277 reads the arithmetic and comparison helpers, including
   normalization, wrapping and local DS preservation. State-word admission,
   writer coverage and the final updater still prevent closure.
+  Tried: FND-EXE-278 reads the final updater's argument cleanup and bound
+  publication on failure. Its far callee, post-call preservation, state-word
+  writers and admitted arithmetic ranges still prevent closure.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
