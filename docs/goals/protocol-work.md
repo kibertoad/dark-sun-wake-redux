@@ -54,10 +54,10 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Stage: Slices; goal active. Resume the authoritative local claim and preserve other sessions' work.
 - Last full gate: 2026-10-09, assetless Test.ps1 -NoRestore and explicit
   main-base documentation validation passed for EXE research through FND-EXE-299
-  and follow-ups FND-EXE-351/352/353/354/355/356/357/358/359/361/362/363/364/365/366/367/368/369, including integrated FND-EXE-360/370/380.
+  and follow-ups FND-EXE-351/352/353/354/355/356/357/358/359/361/362/363/364/365/366/367/368/369/371, including integrated FND-EXE-360/370/380.
   The final gate passed after correcting a draft location kind and integrating
   the referenced pending batch; the prior issue-7 rerun remains recorded.
-  Preservation-context guidance, measured-baseline tooling and independent
+  Preservation-context and blocked-tool guidance, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
   and its independently failing-before/passing-after synthetic regression.
@@ -197,4 +197,4 @@ An owner-approved history repair remains separate from this maintenance scope.
   4. Choose a bounded game-code reading and its actual caller/state obligations;
      preserve EXE questions relevant to the game and retire host-only priorities.
   5. Follow Q-EXE-007's configuration/cleanup callees and segment/input
-     admission in FND-EXE-360/353/354/355/356/357/358/359/361/362/363/364/365/366/367/368/369/370/380.
+     admission in FND-EXE-360/353/354/355/356/357/358/359/361/362/363/364/365/366/367/368/369/370/371/380.
