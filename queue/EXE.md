@@ -531,6 +531,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-286 resolves and reads those two callee bodies, including
   overwritten outgoing arguments and saved-AX restoration. Nested calls,
   DS provenance, state writers and interrupt effects still prevent closure.
+  Tried: FND-EXE-287 reads the nested interrupt wrappers and resolves the
+  temporary data segment. Trace pointer/state writers and admitted lifecycle;
+  native interrupt effects and first-wrapper DS preservation remain unresolved.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.

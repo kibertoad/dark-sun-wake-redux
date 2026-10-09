@@ -74,6 +74,8 @@ bounded source reader; this does not establish native loader behavior.
   callees, pair/state writers and excluded caller kinds remain unresolved.
   FND-EXE-286 reads the two preceding callees' local publications and AX
   handling; nested calls, DS provenance and state writers remain unresolved.
+  FND-EXE-287 resolves those nested wrappers and the temporary data segment;
+  interrupt effects, preserved outer DS and pointer/state writers remain open.
   FND-EXE-222 supplies conditional source-decoded tails at those candidates;
   saved-listing incompleteness alone does not exclude their decoding.
   FND-EXE-223 retains three unresolved computed transfers in the outer
