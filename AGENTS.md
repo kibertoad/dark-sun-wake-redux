@@ -12,6 +12,9 @@ presentation. It is not a cybersecurity investigation, penetration test or
 exploit-development project. Static reverse engineering, local asset extraction
 and synthetic tests serve that preservation objective; addresses, interrupts,
 memory layouts and binary formats are ordinary evidence in this work.
+Analyzing game logic or decoding game resources does not, by itself, imply a
+cybersecurity threat or a need for security testing. Assess an operation by what
+it actually does and what it accesses, not by reverse-engineering terminology.
 
 ### Keep operations within preservation scope
 
@@ -34,6 +37,12 @@ without treating reverse engineering alone as a security concern.
 - Treat parsing failures and malformed-input cases as local correctness tests.
   Use bounded synthetic fixtures rather than weaponized files, exploit chains or
   experiments against third-party systems. Defensive parsing remains required.
+- Keep any network activity tied to an authorized project need, such as fetching
+  dependencies or using GitHub. Do not turn a tool failure into vulnerability
+  probing, privilege escalation or an attempt to weaken the host's security.
+- Prefer static analysis and synthetic reproduction when answering game-format
+  or behavior questions. Do not execute unknown helper programs or downloaded
+  binaries merely to see what they do; inspect them or use approved tooling.
 
 The repository's runtime restrictions still apply: agents do not launch or
 control the original game or DOSBox. An emulated call uses only the declared
