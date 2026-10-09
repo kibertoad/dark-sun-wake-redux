@@ -278,6 +278,9 @@ Next ID: Q-EXE-025
   Tried: FND-EXE-393 reads type-two slot publication, query-dependent clamps
   and its far no-op cleanup. Follow 15F3:03B3/0371 query contracts, other
   type producers/targets, complete caller/writer coverage and state admission.
+  Tried: FND-EXE-394 reads both type-two query bodies and the near probe.
+  Follow native record/register contracts and storage writers, other producers
+  and published targets; valid terminating records and SI/DI preservation remain unadmitted.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
