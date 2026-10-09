@@ -190,18 +190,17 @@ reading of callers, external commands or interpreter behavior is claimed.
   image makes no direct launch request; the game editions remain Q-EXE-007.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;
   startup, actual DS, aliases and later writers must admit their runtime use.
-- Can SBAWE32.ADV's controller dispatch run past its code entries
-  (Q-EXE-018)? FND-EXE-496 finds that the sound utility's 19 installable
-  drivers request no program execution in their decoded code and transfer
-  out only to host callbacks and resident programs outside the build, and
-  FND-EXE-497 finds that the utility never registers a callback. The
-  dispatch through SBAWE32.ADV's table at 4428 takes an unmasked caller byte,
-  and only entries 0..127 are code offsets; the bytes the 21 callers of
-  0x01ED pass settle it.
-- With which CS does SBAWE32.ADV's code above file 0x1A80 run
-  (Q-EXE-019)? FND-EXE-496 finds that its four switch tables fit a CS based
-  at file 0x1A80 while the decoded entry path keeps the driver's base. The
-  CS of every entry into that code settles it.
+- Can the sound utility make SBAWE32.ADV send control through a table
+  entry that is not code (Q-EXE-018)? FND-EXE-496 finds that the
+  utility's 19 installable drivers request no program execution in their
+  decoded code and transfer out only to host callbacks and resident
+  programs outside the build, and FND-EXE-497 finds that the utility never
+  registers a callback and requests only driver functions 0064..0067.
+  SBAWE32.ADV's dispatch through DS:4428 takes an unmasked caller byte with
+  code entries only for 0..127, and FND-EXE-498 finds that its four
+  switches in 0x2C28 read code bytes as targets at the driver's base. The
+  bytes that the 17 reachable calls to 0x01ED pass, and the writers of the
+  channel word at DS:434C, settle it.
 - Which disc helpers does the disc installer select (Q-EXE-008)? Selection
   by its installer and standalone manual use are competing readings. The
   file roles in FND-EXE-008 support neither caller claim. Direct installer

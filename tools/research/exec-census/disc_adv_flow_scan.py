@@ -15,7 +15,8 @@ It follows direct jumps, calls and fall-through, stops at ret, retf, iret and jm
 decoded byte count, every interrupt instruction with the nearest preceding immediate AX or AH
 writer, every far transfer (with the `les` or `mov es` that set ES for one through ES), every near transfer
 through memory, every decoded write to each CS-relative slot a far transfer reads, every
-immediate operand with a CD byte, and every ret or retf right after a push. It then lists install and disc files whose names end in .SYS or .COM or whose
+immediate operand with a CD byte, and every ret or retf right after a push. For SBAWE32.ADV it
+also prints the evidence for the CS its code above file 0x1A80 runs with (FND-EXE-498). It then lists install and disc files whose names end in .SYS or .COM or whose
 bytes contain ULTRAMID or MVSOUND. Everything is read in memory; nothing is executed.
 """
 import io
@@ -89,6 +90,39 @@ def far_seeds(seen):
     return out
 
 
+def sbawe32_base_report(body, seen):
+    """FND-EXE-498: evidence for the CS that SBAWE32.ADV's code above file 0x1A80 runs with."""
+    split = 0x1A80
+    inbound = [f"0x{p:04X}->{i.op_str}" for p, i in sorted(seen.items()) if p < split
+               and re.match(r"j|call|loop", i.mnemonic) and i.op_str.startswith("0x") and int(i.op_str, 16) >= split]
+    print(f"    near transfers from below 0x{split:04X} into code above: {inbound}")
+    for t in sorted(set(struct.unpack_from("<128H", body, 0x4428))):
+        print(f"    DS:4428 target {t:04X}: base {body[t:t + 4].hex(' ')}, +0x{split:04X} "
+              f"{body[t + split:t + split + 4].hex(' ')}")
+    imm = [f"0x{p:04X} {i.mnemonic} {i.op_str}" for p, i in sorted(seen.items()) if i.op_str.split(", ")[-1] == "0x1a8"]
+    raw_far = [f"0x{p:04X} {struct.unpack_from('<H', body, p + 3)[0]:04X}:{struct.unpack_from('<H', body, p + 1)[0]:04X}"
+               f"{' (decoded)' if p in seen else ''}"
+               for p in range(len(body) - 5) if body[p] in (0x9A, 0xEA) and struct.unpack_from("<H", body, p + 3)[0] < 0x1000]
+    writes = []
+    for p, i in sorted(seen.items()):
+        dest = i.op_str.split(", ")[0]
+        m = re.search(r"\[(?:.*\+ )?(0x[0-9a-f]+)\]", dest)
+        if "," in i.op_str and m and 0x1206 <= int(m.group(1), 16) < 0x12F2 and i.mnemonic not in ("cmp", "test", "push"):
+            writes.append(f"0x{p:04X} {i.mnemonic} {i.op_str}")
+    print(f"    decoded immediates 01A8: {imm or 'none'}; 9A/EA bytes with segment below 1000: {raw_far}; "
+          f"decoded writes into 0x1206..0x12F2: {writes or 'none'}")
+    for target in (0x2C28, 0x27FA):
+        near_callers = [f"0x{p:04X}" for p in range(len(body) - 3) if body[p] == 0xE8
+                        and (p + 3 + struct.unpack_from("<h", body, p + 1)[0]) & 0xFFFF == target]
+        words = [f"0x{p:04X}" for p in range(len(body) - 1) if struct.unpack_from("<H", body, p)[0] == target]
+        print(f"    near callers of 0x{target:04X}: {near_callers}; words equal to {target:04X}: {words}")
+    for site, operand, count in ((0x2C81, 0x1206, 10), (0x2CAB, 0x1230, 15), (0x2CDF, 0x1264, 17), (0x2D3C, 0x12C2, 24)):
+        words = struct.unpack_from(f"<{count}H", body, operand)
+        print(f"    switch 0x{site:04X} at the driver's base reads file 0x{operand:04X}: "
+              f"{' '.join(f'{w:04X}' for w in words)}; at +0x{split:04X} file 0x{operand + split:04X}: "
+              f"{' '.join(f'{w:04X}' for w in sorted(set(struct.unpack_from(f'<{count}H', body, operand + split))))}")
+
+
 def selector(items, k):
     for _, x in reversed(items[max(0, k - 12):k]):
         if x.mnemonic == "mov" and re.fullmatch(r"a[xh], 0x[0-9a-f]+", x.op_str):
@@ -155,8 +189,10 @@ for path in sorted(files):
                    and re.match(r"(word ptr |dword ptr )?cs:\[(%s|%s)\]," % (hex(s), hex(s + 2)), i.op_str)]
         print(f"    slot cs:[{s:04X}] writers: {'; '.join(writers) or 'none'}; shipped bytes "
               f"{body[s:s + 4].hex(' ')}")
+    if path == "CD:SBAWE32.ADV":
+        sbawe32_base_report(body, seen)
 
-names, strings, checked = [], [], 0
+names, strings, unreadable, checked = [], [], [], 0
 needles = (b"ULTRAMID", b"MVSOUND")
 for dirpath, _, filenames in os.walk(root):
     for name in filenames:
@@ -164,10 +200,14 @@ for dirpath, _, filenames in os.walk(root):
         rel = os.path.relpath(full, root).replace("\\", "/")
         if rel == "game.gog":
             continue
-        checked += 1
         if name.upper().endswith((".SYS", ".COM")):
             names.append(rel)
-        data = open(full, "rb").read()
+        try:
+            data = open(full, "rb").read()
+        except OSError as error:
+            unreadable.append(f"{rel} ({type(error).__name__})")
+            continue
+        checked += 1
         strings += [(rel, n.decode()) for n in needles if n in data]
 
 SECTOR, DATA = 2352, 24
@@ -209,6 +249,7 @@ with open(os.path.join(root, "game.gog"), "rb") as f:
     pvd = sectors(16, 1)
     tree(int.from_bytes(pvd[158:162], "little"), int.from_bytes(pvd[166:170], "little"), "")
 
-print(f"install files {checked}, disc files {disc_checked}; .SYS/.COM names: {names or 'none'}")
+print(f"install files read {checked}, unreadable {unreadable or 'none'}, disc files {disc_checked}; "
+      f".SYS/.COM names: {names or 'none'}")
 for rel, s in sorted(strings):
     print(f"    {rel} contains {s}")
