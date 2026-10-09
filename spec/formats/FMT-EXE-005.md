@@ -53,7 +53,9 @@ bounded source reader; this does not establish native loader behavior.
   split helper; incoming segment identity, header writers and arithmetic bounds
   still prevent allocation closure. FND-EXE-275 reads the fallback alignment
   call sequence; its callee contract, failure effects and returned extent remain
-  unresolved.
+  unresolved. FND-EXE-276 follows its request callee through guards and a
+  saved-state return; arithmetic helpers, state updater and state writers remain
+  open.
   FND-EXE-222 supplies conditional source-decoded tails at those candidates;
   saved-listing incompleteness alone does not exclude their decoding.
   FND-EXE-223 retains three unresolved computed transfers in the outer

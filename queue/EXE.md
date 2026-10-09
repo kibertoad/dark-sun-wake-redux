@@ -501,6 +501,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-275 reads the fallback and its separate alignment call;
   the 1000:1831 contract, DS preservation, failure effects and returned extents
   remain unread. Follow that callee before assuming contiguous allocation.
+  Tried: FND-EXE-276 reads the fallback request callee and saved-pair return;
+  arithmetic/comparison helpers, final state updater and all state-word writers
+  remain unread. Preserve the signed guard and failure-state obligations.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
