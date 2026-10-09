@@ -186,6 +186,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-493 and FND-EXE-494 find that the null timer registration and the
   CS:0E1E calls run only through the DIGPAK function table, which no build
   file installs.
+  FND-EXE-495 finds that the drivers store no interrupt opcode immediate and
+  lists their candidate indirect far transfers, whose pointers remain unread.
 - Which disc helpers does the disc installer select (Q-EXE-008)? Selection
   by its installer and standalone manual use are competing readings. The
   file roles in FND-EXE-008 support neither caller claim. Direct installer

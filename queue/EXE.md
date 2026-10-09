@@ -214,6 +214,10 @@ Next ID: Q-EXE-018
   its AH=35 reads, traced to a target and selector. FND-EXE-492 censuses only
   their direct interrupt 21 instructions (AH=35 and AH=62). Blocks: a launch
   exclusion for the sound utility under FMT-EXE-006.
+  Tried: FND-EXE-495 finds no immediate CD store in any of the 19 files and
+  lists their candidate far transfers through memory and far immediates.
+  Read each listed pointer's writers, and whether the far-immediate regions
+  are code, before an indirect-path exclusion.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
