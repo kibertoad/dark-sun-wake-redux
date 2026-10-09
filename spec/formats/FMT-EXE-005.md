@@ -66,6 +66,8 @@ bounded source reader; this does not establish native loader behavior.
   publications; admitted state, remaining writers and interrupt effects stay open.
   FND-EXE-281 adds a segment-qualified list-link writer candidate; callers,
   segment admission, other writers and publication timing remain unresolved.
+  FND-EXE-282 establishes one writer call's DS producer and a merge fall-through
+  into unlinking; incoming state, other callers and header admission remain open.
   FND-EXE-222 supplies conditional source-decoded tails at those candidates;
   saved-listing incompleteness alone does not exclude their decoding.
   FND-EXE-223 retains three unresolved computed transfers in the outer

@@ -519,6 +519,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-281 reads a list-link writer candidate, including temporary SS
   access and flag restoration before its final stores. Establish incoming
   transfers and DS producers, other writers, aliases and interrupt admission.
+  Tried: FND-EXE-282 establishes one list-writer call and incoming-DX DS
+  producer, plus the merge fall-through into unlinking. Trace incoming DX,
+  other callers, header/count writers and admitted segment ranges next.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
