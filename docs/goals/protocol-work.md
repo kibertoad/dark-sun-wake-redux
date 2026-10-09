@@ -48,12 +48,12 @@ An owner-approved history repair remains separate from this maintenance scope.
 
 ## Handover
 
-- Pending integration: session/protocol-rt-interface-20261009 holds b7cafa5
-  for Q-EXE-007's mode interface; its 2026-10-09 gate passed 715 .NET tests.
+- Integrated: session/protocol-rt-interface-20261009's verified mode-interface
+  batch passed the combined gate with the FND-EXE-355 follow-up on 2026-10-09.
 - Stage: Slices; goal active. Resume the authoritative local claim and preserve other sessions' work.
 - Last full gate: 2026-10-09, assetless Test.ps1 -NoRestore and explicit
   main-base documentation validation passed for EXE research through FND-EXE-299
-  and follow-ups FND-EXE-351/352/353/354, including integrated FND-EXE-360.
+  and follow-ups FND-EXE-351/352/353/354/355, including integrated FND-EXE-360/370.
   The final gate passed after correcting a draft location kind and integrating
   the referenced pending batch; the prior issue-7 rerun remains recorded.
   Preservation-context guidance, measured-baseline tooling and independent
@@ -195,5 +195,5 @@ An owner-approved history repair remains separate from this maintenance scope.
      citation coverage separately from complete-reading availability.
   4. Choose a bounded game-code reading and its actual caller/state obligations;
      preserve EXE questions relevant to the game and retire host-only priorities.
-  5. Integrate Q-EXE-007's tested session batch when clean, then follow the
-     deeper callees and segment/input admission in FND-EXE-360/353/354.
+  5. Follow Q-EXE-007's configuration/cleanup callees and segment/input
+     admission in FND-EXE-360/353/354/355/370.
