@@ -70,6 +70,8 @@ bounded source reader; this does not establish native loader behavior.
   into unlinking; incoming state, other callers and header admission remain open.
   FND-EXE-283 adds selected cleanup's ordered head publications and retained
   outgoing-pair provenance; state admission, writers and lifetime remain open.
+  FND-EXE-284 adds a relocation-backed gated cleanup caller; its earlier
+  callees, pair/state writers and excluded caller kinds remain unresolved.
   FND-EXE-222 supplies conditional source-decoded tails at those candidates;
   saved-listing incompleteness alone does not exclude their decoding.
   FND-EXE-223 retains three unresolved computed transfers in the outer

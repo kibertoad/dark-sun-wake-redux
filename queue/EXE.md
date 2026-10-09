@@ -525,6 +525,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-283 reads selected cleanup's branch publications and retained
   pair through unlinking. Existing FND-CONFIG-167 covers wrapper selection;
   segment/state producers, other callers and saved-DS lifetime remain open.
+  Tried: FND-EXE-284's controlled relocated-call census adds a gated cleanup
+  caller. Read its preceding far callees and pair/state writers; retain near,
+  computed and unrelocated caller exclusions and the literal-query retry.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
