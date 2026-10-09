@@ -72,6 +72,8 @@ bounded source reader; this does not establish native loader behavior.
   outgoing-pair provenance; state admission, writers and lifetime remain open.
   FND-EXE-284 adds a relocation-backed gated cleanup caller; its earlier
   callees, pair/state writers and excluded caller kinds remain unresolved.
+  FND-EXE-285 reads the two preceding callees' local publications and AX
+  handling; nested calls, DS provenance and state writers remain unresolved.
   FND-EXE-222 supplies conditional source-decoded tails at those candidates;
   saved-listing incompleteness alone does not exclude their decoding.
   FND-EXE-223 retains three unresolved computed transfers in the outer

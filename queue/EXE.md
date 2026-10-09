@@ -528,6 +528,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-284's controlled relocated-call census adds a gated cleanup
   caller. Read its preceding far callees and pair/state writers; retain near,
   computed and unrelocated caller exclusions and the literal-query retry.
+  Tried: FND-EXE-285 resolves and reads those two callee bodies, including
+  overwritten outgoing arguments and saved-AX restoration. Nested calls,
+  DS provenance, state writers and interrupt effects still prevent closure.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
