@@ -201,6 +201,12 @@ Next ID: Q-EXE-018
   registration returns, traced to its consumers. FND-EXE-491 locates the
   registration and the dispatch's state test. Blocks: a launch exclusion for
   the sound utility under FMT-EXE-006.
+  Tried: FND-EXE-493 reads every state writer. Only 1C08:08B3 sets state 2,
+  and its one live caller with a registration handle passes CS:01B2, the
+  driver timer handle that releases leave unchanged. Read the call order of
+  driver shutdown, DIGPAK initialization and 1C08:0C1B, and 1C08:063C's
+  effect on a held slot, to decide whether a stale CS:01B2 can name the
+  null slot.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.

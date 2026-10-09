@@ -173,7 +173,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   runtime-built requests, indirect transfers and chained vectors settle it.
 - Does the sound utility dispatch its null timer registration (Q-EXE-016)?
   FND-EXE-491 locates the registration at 1C08:1485 and the dispatch's state
-  test; writers of that slot's state word settle it.
+  test. FND-EXE-493 finds that only a stale driver timer handle in CS:01B2
+  can start that slot; the call order that could leave one settles it.
 - Which disc helpers does the disc installer select (Q-EXE-008)? Selection
   by its installer and standalone manual use are competing readings. The
   file roles in FND-EXE-008 support neither caller claim. Direct installer
