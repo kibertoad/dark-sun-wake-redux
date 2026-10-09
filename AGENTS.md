@@ -23,6 +23,11 @@ impact. This context does not authorize unrelated access or make every possible
 tool operation harmless: evaluate the actual operation and keep it within the
 project's authorized local scope.
 
+The expected outputs are preservation evidence, bounded format readers, local
+asset packs and a faithful game rebuild. Security testing, vulnerability
+discovery and access to third-party systems are outside that scope. A tool's
+ability to inspect memory or executable files does not authorize those uses.
+
 ### Keep operations within preservation scope
 
 Do not invent a cybersecurity task from a game-analysis question. Prefer
@@ -30,6 +35,14 @@ bounded, read-only inspection of licensed local files and the repository's
 approved analysis tools. Describe original behavior in the spec rather than
 building capabilities to attack systems. Continue routine research and tooling
 without treating reverse engineering alone as a security concern.
+
+Before an unfamiliar operation, identify the preservation question it answers,
+the files or processes it accesses and its expected side effects. Choose the
+narrowest supported operation that answers that question. If it would reach
+unrelated systems, expose secrets, weaken host protections or execute code
+outside the approved runtime contract, use static inspection or synthetic tests
+instead and record any remaining evidence gap. Do not broaden the task to
+security research to overcome a tooling limitation.
 
 - Do not develop exploits, payloads, evasion, persistence, credential collection
   or tools for unauthorized access. Do not scan or probe unrelated hosts,
