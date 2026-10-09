@@ -44,10 +44,13 @@ bounded source reader; this does not establish native loader behavior.
 
 ## Open questions
 
-- Q-EXE-010 retains overlay body reconciliation. FND-EXE-221 independently
-  bounds an adjacent dispatch table, but three candidate targets lack decoded
-  instruction starts in the corrected snapshot. Table dimensions do not
-  establish runtime CS or complete body ownership. FND-EXE-273 reads one
+- When the overlay manager enters an overlay's code, does CS offset 0 fall
+  on the descriptor's first code byte (Q-EXE-010)? The descriptor-base and
+  analyzer-alias readings of FND-EXE-173 are the competing answers.
+  FND-EXE-227 takes the trampoline's target segment from header word 0x10,
+  FND-EXE-228 stores that word from DS:0x0120, and FND-EXE-248 reads code to
+  offset 0 of the segment its caller passes. The writers of DS:0x0120 and the
+  producer of that read's segment and file position settle it. FND-EXE-273 reads one
   allocation unlink helper; live link/header admission, physical aliases and
   the remaining allocator contracts stay open. FND-EXE-274 reads the larger-count
   split helper; incoming segment identity, header writers and arithmetic bounds
@@ -170,11 +173,19 @@ bounded source reader; this does not establish native loader behavior.
   FND-EXE-195 adds a controlled negative literal-pointer search; excluded
   representations and runtime state still require evidence.
 
-- Which analyzer-owned body fragments are native code under the original CS
-  bindings (Q-EXE-010)? FND-EXE-173 separates their physical source regions
-  from their valid overlay entries. FND-EXE-174 shows that fresh analysis after
-  relocation-pair repair still assigns non-code fragments to overlay bodies.
-  A descriptor-base dispatch reading keeps
-  eleven targets inside code; the analyzer-alias reading places most outside.
-  Native segment producers and every admitted target must settle those competing
-  interpretations before the affected boundaries or denominator are accepted.
+- Which instructions does descriptor 198's dispatch reach (Q-EXE-020)? Read
+  at the descriptor base, its eleven targets lie inside the overlay's code;
+  at the analyzer-alias base most lie outside (FND-EXE-173). FND-EXE-221 to
+  FND-EXE-225 bound the adjacent tables and decode the descriptor-base
+  candidates, three of which lack decoded instruction starts in the corrected
+  snapshot. Q-EXE-010's answer selects the base; each target then has to
+  decode as an instruction start of its function.
+- Do the four anomalous spans that are not wholly fixups or padding belong to
+  the bodies that own them (Q-EXE-021)? FND-EXE-173 places three in overlay
+  code and one in the resident load image. A bounded transfer from each
+  owning entry, or the span's own callers, settles it.
+- Does any native transfer reach the fixup-table and zero-padding bytes the
+  analyzer assigns to overlay bodies (Q-EXE-022)? FND-EXE-173 and FND-EXE-174
+  show that analysis, including after relocation-pair repair, assigns them to
+  bodies. Accounting for every analyzer reference into them, as a table read
+  at the wrong base or data decoded as code, settles it.

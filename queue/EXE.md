@@ -1,6 +1,6 @@
 # EXE
 
-Next ID: Q-EXE-020
+Next ID: Q-EXE-023
 
 ## Static
 
@@ -270,11 +270,18 @@ Next ID: Q-EXE-020
   do not cover the disc installer. Split from Q-EXE-004. Blocks: complete
   disc-installer caller coverage.
 
-- Q-EXE-010. FMT-EXE-005: Which analyzer-owned overlay body fragments
-  represent native code under the original code-segment and jump-table bindings?
-  Settles it: establish the native CS producers and input-to-index bounds,
-  validate every admitted table target and reconcile each suspect function body
-  with source code/fixup/padding regions before replacing inventories.
+- Q-EXE-010. FMT-EXE-005: When the overlay manager enters an overlay's code,
+  does CS offset 0 fall on the descriptor's first code byte? FND-EXE-227's
+  trampoline takes its target segment from header word 0x10, which
+  FND-EXE-228 stores from DS:0x0120; FND-EXE-248 reads code to offset 0 of
+  the segment its caller passes in AX, from the file position in CX:DX.
+  Settles it: the writers of DS:0x0120 that reach FND-EXE-228's store,
+  showing whether that value is the segment FND-EXE-248's read receives (or
+  differs from it by a computed amount), and the producer of that read's
+  CX:DX relative to the descriptor's code start in the file. Allocation
+  validity, extents, lifetimes and interrupt effects do not decide this and
+  stay out of it. The descriptor-base and analyzer-alias readings of
+  FND-EXE-173 are the competing answers.
   Tried: FND-EXE-173 classifies all fifteen anomalous body spans separately
   from their valid overlay entries and compares one bounded table under the
   descriptor and analyzer-alias segment bases. FND-EXE-174 records the fresh
@@ -283,22 +290,6 @@ Next ID: Q-EXE-020
   read its native callers and segment/input producers before using its callees.
   FND-EXE-176 adds the relocated state segment and initial handler pointer,
   with live pointer/vector writers and native CS admission still unresolved.
-  Tried: FND-EXE-221 independently bounds descriptor 198's adjacent
-  eighteen-slot table and checks all four distinct descriptor-base targets;
-  three are undisassembled in the corrected snapshot. Native CS and candidate
-  instruction admission remain necessary before body reconciliation.
-  Tried: FND-EXE-222 decodes all four descriptor-base candidates from the
-  shipped source and closes their conditional tails with the separately
-  bounded eleven-slot table. This does not admit native CS, whole-function
-  ownership, incoming frames or runtime dispatch.
-  Tried: FND-EXE-223 extends the source traversal to the outer candidate;
-  three additional computed jumps require independent consumer/bound readings.
-  Tried: FND-EXE-224 independently bounds all four tables and supplies a
-  conditional outer-body traversal. Native entry/CS, input/frame admission
-  and analyzer ownership still require reconciliation before replacement.
-  Tried: FND-EXE-225 resolves the candidate's stored trampoline target and
-  compares complete body sets: missing candidate chunks and extra ownership
-  beyond the descriptor both require review, not just scalar size correction.
   Tried: FND-EXE-226 supplies the initial resident handler's direct callee
   and unresolved far callback; its complete CFG still assumes all calls return.
   Tried: FND-EXE-227 identifies the far-jump rewrite and its separate live
@@ -548,11 +539,57 @@ Next ID: Q-EXE-020
   and FND-CONFIG-183's grounded overlay request, with separate MZ/FBOV
   incoming controls. Continue remaining caller admission and direction
   provenance; the concrete request pattern does not establish valid extent.
-  Next: the segment source state-word and live header/callee admission,
-  then descriptor 198's native entry
-  and CS admission, then the remaining suspect target producers.
-  Blocks: reconciled executable denominator and complete-reading declarations
-  that depend on those function boundaries.
+  Next: the writers of DS:0x0120 before FND-EXE-228's store, then the
+  caller that passes AX and CX:DX to FND-EXE-248's read.
+  Blocks: Q-EXE-020, Q-EXE-021 and Q-EXE-022.
+
+- Q-EXE-020. FMT-EXE-005: Which instructions does descriptor 198's dispatch
+  at analysis alias 921E:0135 reach? FND-EXE-173 bounds its index to eleven
+  entries and reads the table at the descriptor base (0x0008753C, all targets
+  inside the overlay's code) and at the analyzer-alias base (0x0008760C, most
+  outside). Settles it: Q-EXE-010's answer selects the base; then each of the
+  eleven targets under it decodes as an instruction start of the function
+  whose entry is 0x00087459, and the producers of the dispatch's index word
+  admit only the bounded values.
+  Tried: FND-EXE-221 independently bounds descriptor 198's adjacent
+  eighteen-slot table and checks all four distinct descriptor-base targets;
+  three are undisassembled in the corrected snapshot. Native CS and candidate
+  instruction admission remain necessary before body reconciliation.
+  Tried: FND-EXE-222 decodes all four descriptor-base candidates from the
+  shipped source and closes their conditional tails with the separately
+  bounded eleven-slot table. This does not admit native CS, whole-function
+  ownership, incoming frames or runtime dispatch.
+  Tried: FND-EXE-223 extends the source traversal to the outer candidate;
+  three additional computed jumps require independent consumer/bound readings.
+  Tried: FND-EXE-224 independently bounds all four tables and supplies a
+  conditional outer-body traversal. Native entry/CS, input/frame admission
+  and analyzer ownership still require reconciliation before replacement.
+  Tried: FND-EXE-225 resolves the candidate's stored trampoline target and
+  compares complete body sets: missing candidate chunks and extra ownership
+  beyond the descriptor both require review, not just scalar size correction.
+  Blocks: Q-EXE-022 and the DSUN inventory reconciliation under FMT-EXE-005.
+
+- Q-EXE-021. FMT-EXE-005: Do the four anomalous spans that are not wholly
+  fixups or padding belong to the bodies that own them? FND-EXE-173 places
+  installed 0x0006D090..0x0006D150 (entry 0x0006B581, descriptor 183) and
+  disc 0x00095F30..0x000961E5 (entry 0x0009674B) and
+  0x00099380..0x000995C3 (entry 0x00097BED, both descriptor 211) in overlay
+  code, and disc 0x00055519..0x0005553D (entry 0x0005E2ED, descriptor 173)
+  in the resident load image. Settles it: for each span, a transfer from its
+  owning function's entry that reaches the span's first instruction under
+  Q-EXE-010's CS, with every computed transfer on the way bounded, or the
+  span's own callers when no such transfer exists.
+  Blocks: the DSUN inventory reconciliation under FMT-EXE-005.
+
+- Q-EXE-022. FMT-EXE-005: Does any native transfer reach the fixup-table and
+  zero-padding bytes the analyzer assigns to overlay bodies? FND-EXE-173 and
+  FND-EXE-174 partition the anomalous spans of the installed and disc
+  snapshots: thirteen touch fixup tables and six touch zero padding.
+  Settles it: for each fixup or padding part in FND-EXE-173's table, every
+  analyzer reference into it, each shown to come from a table read at the
+  wrong base or from decoding data as code, or else a transfer admitted under
+  Q-EXE-010's CS and Q-EXE-020's targets that does reach it.
+  Blocks: the DSUN inventory reconciliation under FMT-EXE-005.
 
 ## Emulated call
 
