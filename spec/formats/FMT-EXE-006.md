@@ -243,6 +243,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   captured prior-pair return; 177C and state admission remain Q-EXE-007.
   FND-EXE-549 reads the publisher's current/upper-pair writes and native
   wrapper results; native contracts and initial producers remain Q-EXE-007.
+  FND-EXE-550 reads shipped pair/cache zeros and the pre-dispatch upper-word
+  writer; native preservation and complete writer coverage remain Q-EXE-007.
   FND-EXE-490 finds no AH=4B request among the sound utility's 69 interrupt
   21 instructions or its stack-thunk callers, and no interrupt 2E. Its load
   image makes no direct launch request; the game editions remain Q-EXE-007.
