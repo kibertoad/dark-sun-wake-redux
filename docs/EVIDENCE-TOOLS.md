@@ -28,11 +28,13 @@ parity, data-format coverage, queue sizes and formal complete-reading availabili
 Whole-file search citations can touch every function without reading its behavior.
 Neither citation coverage nor container-format coverage is gameplay completion.
 
-The SVIEW, PATCH and CHARTRAN inventories use repeated,
+The SVIEW, PATCH, CHARTRAN and SOUND_DS inventories use repeated,
 range-aware snapshots validated against their unchanged starts and sizes.
-Their provenance and regions files accompany them. The SOUND_DS candidate
-passes coverage validation but exposes historical finding endpoints during
-the documentation check; review those instructions before replacement.
+Their provenance and regions files accompany them. SOUND_DS was migrated
+after FND-CONFIG-213 and FND-CONFIG-214 corrected the finding ranges that
+ended on a function's last instruction. `migrate-inventory.mjs` hashes the
+exporter source as the checkout holds it, so the recorded exporter revision
+matches only a checkout with Windows line endings.
 DOSBox is excluded by the owner's scope clarification in `docs/DECISIONS.md`;
 its historical inventory is archived under `docs/host-analysis/` and the
 baseline excludes it through `tools/evidence/research-scope.json`.
@@ -43,9 +45,9 @@ outside declared overlay code ranges are retained and reported rather than
 clipped to make the standard reporter accept them. Local report output and
 analysis projects stay in GAME_DIR; no generated report is committed.
 
-The retained historical DSUN and SOUND_DS inventories are not valid input to the current
-`standard-coverage` command: filename-plus-offset starts and lower-case MZ
-addresses fail its notation checks. A failed run's zero denominator is not
+The retained historical DSUN inventories are not valid input to the current
+`standard-coverage` command: their filename-plus-offset starts fail its
+notation checks. A failed run's zero denominator is not
 zero research coverage. Use the range-aware audit comparison for provisional
 figures, identify its snapshot and revision, and disclose
 `standardReporterAnomalies`; do not present that comparison as a passing
