@@ -53,6 +53,14 @@ fall-through names `SOUND_DS` and unloads that TSR. The GM1 label loads
 the smaller bank then jumps to undefined `RUN_ARIA`. These describe the
 shipped command text, not an observed execution or shell error outcome.
 
+The disc's helpers are not studied further. The disc's `SOUND.BAT` is the
+version 1.0 copy that the installation replaces (FND-EXE-570), and the
+other four open DOS startup files in an editor and are named by no
+command of GOG's launch configuration (FND-EXE-010); whether the game
+launches any helper remains Q-EXE-007. Their display encoding, how an interpreter
+handles the disc `SOUND.BAT`'s undefined labels, and which disc helpers the
+disc installer launches are left unread.
+
 The distribution's declared primary task selects a DOSBox configuration
 with separate game and setup branches (FND-EXE-010). Its menu admits choices
 123 and tests ERRORLEVEL thresholds 3, 2 and 1 in that order, selecting exit,
@@ -280,10 +288,6 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-501 find that SBAWE32.ADV, in its use, reaches only code entries.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;
   startup, actual DS, aliases and later writers must admit their runtime use.
-- Which disc helpers does the disc installer select (Q-EXE-008)? Selection
-  by its installer and standalone manual use are competing readings. The
-  file roles in FND-EXE-008 support neither caller claim. Direct installer
-  launch references and selection inputs settle it.
 - How does the shipped wrapper resolve the two bare helper commands and
   continue after them (Q-EXE-009)? Resolution to installed batch files is
   consistent with the declared mounts, but command-search order, batch
@@ -557,28 +561,3 @@ reading of callers, external commands or interpreter behavior is claimed.
   Unchecked transfer representations and runtime-written code still prevent
   a complete caller declaration (Q-EXE-009).
 
-- Which code page interprets the disc sound display bytes (Q-EXE-005)?
-  Several OEM code pages may agree on those byte values; ASCII-only helpers
-  are compatible with multiple encodings too. FND-EXE-008 identifies the
-  bytes, not an exclusive decoder. Interpreter configuration or font/code
-  page selection evidence settles it.
-  FND-EXE-340 finds no literal code-page assignments in the declared GOG
-  configuration pair; its automatic keyboard-layout setting does not identify
-  the disc helper's executing decoder. A declaration tied to that environment
-  is still required; literal-token absence is not runtime absence.
-- How does the supported interpreter resolve missing labels and the
-  colon-suffixed target (Q-EXE-006)? FND-EXE-009 rules out hidden definitions
-  in this file, but not interpreter normalization or error handling. A
-  static reading of the actual interpreter's label handling settles its
-  behavior; any environment-dependent outcome needs an owner observation.
-  The bundled source retains a target's trailing colon and deletes the
-  active batch after a failed label search (SRC-DOSBOX-GOG-0742), predicting
-  failures for all three target spellings. Normalization or continued-batch
-  readings would require contrary shipped-interpreter evidence; source
-  correspondence is not established. FND-EXE-011 now directly records a
-  compiled target-token path that retains the trailing colon. FND-EXE-012
-  records its search callee and conditional normal-path cleanup restoration.
-  FND-EXE-013 additionally reads the compiled command-record consumer and
-  both words of its call target. These bounded findings support the source
-  reading without settling batch-line production, external file operations
-  or exceptional paths.

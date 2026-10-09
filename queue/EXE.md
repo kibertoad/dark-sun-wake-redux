@@ -304,11 +304,6 @@ Next ID: Q-EXE-025
   SBAWE32.ADV, in the utility's use, sends control only to code entries.
   The game editions' sound.bat consumers remain unread here.
 
-- Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
-  Settles it: direct installer launch references and their selection inputs.
-  Tried: helper contents and GOG wrapper (FND-EXE-008, FND-EXE-010), which
-  do not cover the disc installer. Split from Q-EXE-004. Blocks: complete
-  disc-installer caller coverage.
 
 ## Emulated call
 
@@ -324,18 +319,6 @@ None.
 
 ## Source
 
-- Q-EXE-005. FMT-EXE-006: Which code page interprets the disc sound helper's
-  display bytes? Settles it: a distribution declaration or code-page/font
-  selection record tied to the disc helper's actual launch environment and
-  distinguishing compatible decoders. Tried: FND-EXE-008's complete byte
-  profile does not select a unique code page. FND-EXE-340's new complete-file
-  literal-token searches of the declared GOG configuration pair find no
-  codepage= or country= token, and the written keyboard layout is auto.
-  That installed launch configuration does not establish the disc helper's
-  executing environment. Reopen static work only with a declaration or
-  selection record that distinguishes the decoder; host-internal complete
-  readings remain outside owner-approved scope. Split from Q-EXE-002.
-  Blocks: original display encoding identification.
 - Q-EXE-024. FMT-EXE-002: What do `unk_02` and `unk_06` record for the
   descriptors that are not overlays, and what do `flags` values 0, 1 and 4
   mean? Settles it: the linker's own description of the FBOV segment table it
@@ -346,25 +329,6 @@ None.
 
 ## Blocked
 
-- Q-EXE-006. FMT-EXE-006: How does the supported interpreter handle the
-  undefined jump labels and colon-suffixed target in the disc sound helper?
-  Settles it: static reading of the actual interpreter's label matching and
-  error paths, with an owner observation only for environment-dependent
-  behavior. Tried: complete label and jump reading (FND-EXE-009); the file
-  cannot decide how the shell interprets those tokens. New reading:
-  SRC-DOSBOX-GOG-0742 predicts literal trailing-colon matching and deletion
-  of the active batch on a failed label search. Next static step: establish
-  the relevant source-to-shipped-binary correspondence. FND-EXE-011 and
-  FND-EXE-012 now locate compiled token normalization, search and conditional
-  normal cleanup. FND-EXE-013 now reads the command-record consumer and its
-  two-word call target. Next: trace batch-line production and the parser
-  helper outputs into this input path, then external file helpers and
-  exceptional cleanup. These partial direct readings do not establish the
-  complete shell outcome.
-  Blocks: complete shell outcome description.
-  Waiting on: an owner scope change admitting DOSBox complete-reading work.
-  The 2026-10-09 decision in docs/DECISIONS.md excludes this host-code
-  question from game-restoration priorities; its evidence remains historical.
 
 - Q-EXE-009. FMT-EXE-006: How does the shipped interpreter resolve the bare
   ravager/sound commands and continue after them in the declared GOG wrapper?
