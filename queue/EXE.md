@@ -323,6 +323,9 @@ Next ID: Q-EXE-025
   Tried: FND-EXE-409 reads 1425:060B's output/selection/transfer paths.
   Continue link-field writers 0AA5/0B0B/1296, complete callers, current DS,
   output aliases and slot-target preservation/native effects.
+  Tried: FND-EXE-411 reads 0AA5/0B0B through the complete listed
+  release spans. Continue the writer at 1296, complete callers/writers,
+  admitted links/head/output storage, current DS and target preservation.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
