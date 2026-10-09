@@ -1,6 +1,6 @@
 # EXE
 
-Next ID: Q-EXE-015
+Next ID: Q-EXE-017
 
 ## Static
 
@@ -182,19 +182,26 @@ Next ID: Q-EXE-015
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
   references cannot launch a helper, so its pathname consumers no longer
-  decide this question. Indirect targets outside the image moved to
-  Q-EXE-014. The game editions' sound.bat consumers remain unread here.
+  decide this question. FND-EXE-491 traces its indirect far targets:
+  code outside the image is loaded driver code (Q-EXE-015) or a null timer
+  slot (Q-EXE-016). The game editions' sound.bat consumers remain unread here.
 
-- Q-EXE-014. FMT-EXE-006: Can any indirect far call in the sound utility
-  reach code outside its load image other than the saved timer handler and
-  the CS:0E1E entries? Settles it: the writers of the six-byte records walked
-  at 1000:0222/0263, the far-pointer table indexed by DS:DA98 at 1000:0319,
-  the hooks DS:DB9C..DBA7 and the CS:[SI+8] table at file 0xD91A, each
-  traced to a value inside or outside file 0x1400..0x1E5E0, plus the producer
-  of the ES segment and the file whose bytes it holds before the CS:0E1E
-  calls. Split from Q-EXE-007 by FND-EXE-490, whose census covers only code
-  in the load image and the stack thunk. Blocks: a launch exclusion for
-  the sound utility and its complete caller coverage under FMT-EXE-006.
+- Q-EXE-015. FMT-EXE-006: Which files does the sound utility load as
+  driver images, and does their code request program execution? Settles it:
+  the producers of the name fields at offsets 16 and 24 of the device record
+  DS:[E017] and of the directory string DS:EB7E, the files those names select
+  in BLD-GOG-EN-1.1 or its disc, and a census of each file's interrupt 21
+  selectors. FND-EXE-491 shows that 1000:4127 reads these files at run time
+  and installs them as the only code outside the image reached by the
+  CS:0E1E calls and the driver timer callback. Blocks: a launch exclusion
+  for the sound utility under FMT-EXE-006.
+
+- Q-EXE-016. FMT-EXE-006: Does the sound utility ever dispatch the timer
+  slot it registers with 0000:0000 at 1C08:1485? Settles it: every writer of
+  that slot's state word CS:[slot*2 + 006E] with value 2, and the handle the
+  registration returns, traced to its consumers. FND-EXE-491 locates the
+  registration and the dispatch's state test. Blocks: a launch exclusion for
+  the sound utility under FMT-EXE-006.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
