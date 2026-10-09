@@ -325,9 +325,10 @@ None.
 - Q-EXE-024. FMT-EXE-002: What do `flags` values 0, 1 and 4 mean? Settles
   it: the linker's own description of the FBOV segment table it writes.
   Tried: FND-EXE-567 finds that the program reads no `flags` bit but bit 1.
-  FND-EXE-571 settles `unk_02` and `unk_06` as each segment's end and start
-  offsets and finds code in the flags-1 segments and data in the flags-0
-  ones, which is circumstantial; the flags-4 descriptors hold no bytes.
+  FND-EXE-571 settles `end_offset` and `start_offset` (once `unk_02` and
+  `unk_06`) as each segment's end and start offsets, and finds code in
+  the flags-1 segments and data in the flags-0 ones, which is
+  circumstantial; the flags-4 descriptors hold no bytes.
   A 2026-10-10 web search for Borland's description of the overlay segment
   table found only a third-party layout naming the four words, with no
   meaning for the flags values. SRC-BCPP-40-DOSREF describes the overlay

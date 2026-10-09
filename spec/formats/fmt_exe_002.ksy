@@ -10,7 +10,7 @@ seq:
     doc: |
       Paragraph relative to the start of the load image. For an overlay,
       segment + 0x1000 is the segment of its fmt_exe_003 header.
-  - id: unk_02
+  - id: end_offset
     type: u2
     doc: |
       Offset in segment just past the segment's last byte in the load
@@ -18,7 +18,7 @@ seq:
   - id: flags
     type: u2
     enum: fbov_segment
-  - id: unk_06
+  - id: start_offset
     type: u2
     doc: Offset in segment of the segment's first byte; 0 for every overlay.
 enums:
