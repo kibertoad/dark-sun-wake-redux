@@ -226,6 +226,9 @@ Next ID: Q-EXE-020
   Tried: FND-EXE-500 follows diagnostic length, selected byte dispatch
   and buffered/native-write character paths. Follow actual DS and record
   admission, 345B's other branches, flush/error helpers and caller coverage.
+  Tried: FND-EXE-502 reads 06BA's signed error mapping and 07B0's
+  pre-request flag clear, request arguments and failure pair. Follow actual
+  DS, table/state writers, flush paths and broader game caller coverage.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
