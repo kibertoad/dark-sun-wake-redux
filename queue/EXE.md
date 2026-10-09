@@ -305,6 +305,9 @@ Next ID: Q-EXE-025
   Tried: FND-EXE-403 reads the full registration caller's local records,
   wrapped count and current-segment pointer production. Follow entry DS/SI,
   preceding callees, frame aliases and actual manager consumption.
+  Tried: FND-EXE-404 reads 1425:13D2's low-byte selector and result flow
+  through the known native quantity helper. Continue DS/SI provenance, native
+  preservation and the pointer callees 1000:406D and 2D40:3DC2.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct

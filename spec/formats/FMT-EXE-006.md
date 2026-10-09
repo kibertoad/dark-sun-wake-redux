@@ -289,6 +289,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   interrupt effects and computed transfers still leave writer coverage open.
   FND-EXE-403 reads the registration caller's local input producers and
   wrapped count; DS provenance and intervening call effects remain Q-EXE-007.
+  FND-EXE-404 supplies the first caller helper's byte-input and local result
+  dependency; native preservation and subsequent pointer callees remain open.
   FND-EXE-490 finds no AH=4B request among the sound utility's 69 interrupt
   21 instructions or its stack-thunk callers, and no interrupt 2E. Its load
   image makes no direct launch request; the game editions remain Q-EXE-007.
