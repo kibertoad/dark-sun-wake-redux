@@ -7,7 +7,7 @@ doc: |
   A numbered cinematic n.FLI: a 128-byte header, then frame records to
   the end of the file. The game's player shows the first frame_count
   records.
-doc-ref: FMT-VIDEO-001, FND-VIDEO-001, FND-VIDEO-002
+doc-ref: FMT-VIDEO-001, FND-VIDEO-001, FND-VIDEO-008
 seq:
   - id: file_size
     type: u4

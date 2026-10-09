@@ -25,7 +25,7 @@ environment: null
 
 Resident 45B9:0034's complete local body occupies file
 span `0x0003ADC4..0x0003ADE9`, ending with far return
-at `0x0003ADE8`. FND-INPUT-004 previously records it
+at `0x0003ADE8`. FND-INPUT-010 previously records it
 among the INT 33h wrappers. This reading focuses on the
 two shared-helper caller sites in FND-CONFIG-161 and
 FND-CONFIG-162 rather than re-inventorying those wrappers.
@@ -103,5 +103,5 @@ saved registers separately. Revisit the two verified
 caller spans from their overlay entries and compare both
 pushed far pointers before their call to 45B9:0034.
 Follow their exact AX-bit test, not the overwritten local
-word, around the back edge. Keep FND-INPUT-004's wrapper
+word, around the back edge. Keep FND-INPUT-010's wrapper
 inventory separate from any claim about live results.

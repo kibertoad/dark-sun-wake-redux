@@ -1,9 +1,9 @@
 ---
 id: FND-TIME-002
 title: The four INT 15h calls in DSUN.EXE ask for extended-memory services, not the BIOS wait
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-TIME-006]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

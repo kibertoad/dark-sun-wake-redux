@@ -1,9 +1,9 @@
 ---
 id: FND-CONFIG-082
 title: The keyboard packet supplies the event-six word to the global fallback
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-CONFIG-216]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

@@ -4,7 +4,7 @@ title: When an FLI cannot play, the cinematic's still pictures are shown for up 
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-INPUT-005, FND-VIDEO-002, FND-VIDEO-004, FND-VIDEO-005, FND-VIDEO-006, FND-TIME-004]
+evidence: [FND-INPUT-005, FND-VIDEO-008, FND-VIDEO-004, FND-VIDEO-005, FND-VIDEO-006, FND-TIME-004]
 conflicting: []
 split_with: []
 related: [RULE-TIME-001]

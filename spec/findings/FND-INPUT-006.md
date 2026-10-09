@@ -1,9 +1,9 @@
 ---
 id: FND-INPUT-006
 title: The BIOS shift-flag routine 44B6:0011 has eleven far callers
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-INPUT-011]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

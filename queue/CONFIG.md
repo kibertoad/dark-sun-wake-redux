@@ -76,8 +76,8 @@ Next ID: Q-CONFIG-011
   the `WIND/18501` callback. FND-CONFIG-079 identifies the guarded resident
   event-dispatch route into that callback. FND-CONFIG-080 identifies two
   event-record discriminators for the callback's message branch.
-  FND-CONFIG-081 traces a conditional pointer-hit producer for the first;
-  physical input mapping and live state remain open. FND-CONFIG-082 shows
+  FND-CONFIG-215 traces a conditional pointer-hit producer for the first;
+  physical input mapping and live state remain open. FND-CONFIG-216 shows
   that a keyboard packet can carry the second discriminator. FND-CONFIG-083
   traces the list callback's global registration and the event-six fallback
   route into it. FND-CONFIG-084 traces one temporary replacement and
@@ -92,7 +92,7 @@ Next ID: Q-CONFIG-011
   route into its shared message sink; its live event and record inputs remain
   open. FND-CONFIG-089 finds a matching shipped button and conditional
   pointer-hit route in one of its windows, but physical input and live
-  window state remain open. FND-CONFIG-090 traces the callback's unsigned
+  window state remain open. FND-CONFIG-217 traces the callback's unsigned
   event-bit threshold to the queued mouse packet; the bit meanings and
   remaining live gates remain open. FND-CONFIG-092 separates overlay 175's
   setup from a registered frame handler whose value-32 branch enters the

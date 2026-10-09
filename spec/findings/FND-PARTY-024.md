@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-024
 title: The view-mode word at DS:0DAB and the word at DS:0D9C start at 0, and the routines that can make them nonzero first
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-029]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

@@ -47,7 +47,7 @@ file offset `0x6FE30`; the entry at `56EF:00FC` leads to its offset `0x2546`,
 9. rebuilds the installed path and goes to the fallback when `56BD:0034` does not find it or when
    `DS:13F6` or `DS:13F7` is 0;
 10. sets the byte at `DS:6298` to 1 when `n` is 2 and to 0 otherwise;
-11. calls `5755:0043` (FND-VIDEO-002) with the installed path, `n + 35`, the byte at `DS:13F4` and
+11. calls `5755:0043` (FND-VIDEO-008) with the installed path, `n + 35`, the byte at `DS:13F4` and
     a delay of 1,000 when `n` is 3, 4,000 when `n` is 5, and the word at `DS:13F2` otherwise;
 12. calls `1BF3:2973` with `0x113` (FND-VIDEO-003), `1BF3:4723` with 1 and then with 0, and
     `3D72:0D83`;

@@ -28,13 +28,13 @@ environment: null
 
 The resident event builder's kind-two path calls `3D72:0009` with its
 local input packet at physical file offset `0x0002FABB`
-(FND-CONFIG-081). The pointer routine reads a word at packet offset
+(FND-CONFIG-215). The pointer routine reads a word at packet offset
 `0x0C` into DI at `0x00032951`. That is the seventh word of the
 14-byte mouse packet, carrying driver event bits (FND-INPUT-005).
 
 The pointer routine searches registered windows and children, retaining
 its current selected control pointer at DS:A125 and containing window
-at DS:A121 (FND-CONFIG-081, FND-UI-011). Its later branch at
+at DS:A121 (FND-CONFIG-215, FND-UI-011). Its later branch at
 `0x00032C84` continues only if DI has bit `0x04` or `0x10` set.
 After an intervening resident call it requires DS:A125 to be nonzero,
 reads the selected record's tag and selects a four-tag dispatch table.

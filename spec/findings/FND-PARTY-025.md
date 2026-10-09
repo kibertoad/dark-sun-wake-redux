@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-025
 title: The two calls before the party-loader gate reserve off-screen video memory, and fail only when the reservation table or the pool is full
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-030]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

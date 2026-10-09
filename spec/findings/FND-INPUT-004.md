@@ -1,9 +1,9 @@
 ---
 id: FND-INPUT-004
 title: Eleven INT 33h wrappers in segment 45B9 pass mouse services through to their callers
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-INPUT-010]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

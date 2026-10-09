@@ -51,7 +51,7 @@ and its code at file offset `0x671E0`:
 | overlay 180, offsets `0x12`, `0x879`, `0x8B5` | `0x671F2`, `0x67A59`, `0x67A95` | 3, when `4E71:0001` is not `0xFFFF`; then `4E71:0001` becomes `0xFFFF` |
 | overlay 180, offsets `0x88D`, `0x8C9` | `0x67A6D`, `0x67AA9` | 3 |
 | overlay 187, offset `0x27B2` | `0x725E2` | `0x113`, after a cinematic (FND-VIDEO-004) |
-| overlay 196, offset `0x279` | `0x831E9` | `0x13`, before an FLI plays (FND-VIDEO-002) |
+| overlay 196, offset `0x279` | `0x831E9` | `0x13`, before an FLI plays (FND-VIDEO-008) |
 
 `1000:1136` loads `DS` with `0x40`. It passes any `AH` other than 0 and `0x0F` straight to
 `INT 10h`. For `AH` 0 with modes 2 and 3 it checks for a VGA through `INT 10h` `AX` `0x1A00` and

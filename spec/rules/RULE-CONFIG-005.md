@@ -91,8 +91,8 @@ None known.
   traces overlay 171's list message sites to a choice and window callback;
   FND-CONFIG-079 identifies the resident event-dispatch route into it, and
   FND-CONFIG-080 identifies two event-record discriminators for its message
-  branch; FND-CONFIG-081 traces the conditional pointer-hit route to one,
-  while FND-CONFIG-082 and FND-CONFIG-083 trace the keyboard packet and
+  branch; FND-CONFIG-215 traces the conditional pointer-hit route to one,
+  while FND-CONFIG-216 and FND-CONFIG-083 trace the keyboard packet and
   global fallback path for the other. FND-CONFIG-084 bounds one temporary
   global-callback replacement and restoration path. FND-CONFIG-085
   identifies overlay 182 paths that install a resident key callback or zero,
@@ -104,7 +104,7 @@ None known.
   FND-CONFIG-088 traces an overlay 213 callback's guarded event-two route
   into another shared message sink, with the event producer still open.
   FND-CONFIG-089 identifies a conditional button-pointer producer for that
-  event identifier in one of the shipped windows. FND-CONFIG-090 traces
+  event identifier in one of the shipped windows. FND-CONFIG-217 traces
   that callback's event-bit threshold to the mouse packet before the shared
   message branch. FND-CONFIG-092 separates overlay 175's setup from its
   registered frame handler: its value-32 branch enters the helper with

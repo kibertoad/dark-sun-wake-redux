@@ -37,12 +37,12 @@ sequence for the values 513, 544, 556, 816 and 904 (`0x201`, `0x220`, `0x22C`, `
   `0x83` to the first port and `0x0B` to the second. It has one direct caller.
 
 The bytes from the write of `0x36` to the second write to port `0x40` are the same as those of the
-game's routine at `DSUN.EXE` `4868:033C` (FND-TIME-005).
+game's routine at `DSUN.EXE` `4868:033C` (FND-TIME-007).
 
 ## Interpretation
 
 The first two routines read and program channel 0 of the timer chip, as the game does
-(FND-TIME-004, FND-TIME-005), and come from code the two programs share, likely the sound
+(FND-TIME-004, FND-TIME-007), and come from code the two programs share, likely the sound
 library. The third writes to two ports of a card whose base address is a variable. None of the
 six names a file, a sample rate or a duration.
 

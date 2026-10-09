@@ -74,7 +74,7 @@ None known.
 ## Open questions
 
 - No code that maps a key to a screen is known. Keys reach the game as BIOS key words with the
-  shift flags (FND-INPUT-005), several routines test the shift keys (FND-INPUT-006), the game
+  shift flags (FND-INPUT-005), several routines test the shift keys (FND-INPUT-011), the game
   does not read the keyboard port directly (FND-INPUT-007), the combat keys are not compared
   together in one function (FND-INPUT-008), and the overlay route above the keyboard routine is
   not a key dispatcher (FND-INPUT-009, Q-INPUT-002).

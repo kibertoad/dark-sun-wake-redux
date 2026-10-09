@@ -5,4 +5,4 @@ branch and the Start Game window's Exit to DOS branch set it to 0. It
 starts at 1 and controls whether the resident main loop continues or
 returns. After the return, the startup path performs cleanup and calls
 the DOS terminate service; indirect cleanup and interrupt results are
-not established [FND-SAVE-010, FND-SAVE-011, FND-UI-035].
+not established [FND-SAVE-010, FND-SAVE-012, FND-UI-035].

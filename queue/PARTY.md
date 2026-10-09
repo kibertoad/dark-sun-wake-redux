@@ -39,18 +39,18 @@ Next ID: Q-PARTY-014
   slot? Settles it: the handler the keys 1 to 4 reach in overlay 190, which posts an event for
   the character boxes `0x2C24` to `0x2C27` (FND-COMBAT-025), and the writers of `leader`. Tried:
   the leader buttons, which store the slot at `4C13:0369` (FND-COMBAT-023). Blocks: slice 3.
-- Q-PARTY-011. RULE-PARTY-006: Can any of the 56 indirect calls that FND-PARTY-026 leaves
+- Q-PARTY-011. RULE-PARTY-006: Can any of the 56 indirect calls that FND-PARTY-031 leaves
   unresolved, other than the four in `1038:0008` that run only as the program ends
-  (FND-PARTY-027), on the paths from program start through START GAME to the gate at overlay 182
+  (FND-PARTY-032), on the paths from program start through START GAME to the gate at overlay 182
   offset `0x12DD`, reach a routine that changes the placed-object count at `DS:264E`
-  (FND-PARTY-022) or makes the word at `DS:0DAB` nonzero (FND-PARTY-024)? Settles it: the
+  (FND-PARTY-022) or makes the word at `DS:0DAB` nonzero (FND-PARTY-029)? Settles it: the
   producers of each pointer those calls read, shown to hold no such routine before the gate, or
   the first one that does. Tried: the count's start value and direct stores, the far references
   to the overlay writers and three routines on the path (FND-PARTY-022); the start values and
-  writers of `DS:0DAB` and `DS:0D9C` (FND-PARTY-024); a recursive-descent graph of every direct
+  writers of `DS:0DAB` and `DS:0D9C` (FND-PARTY-029); a recursive-descent graph of every direct
   call and bounded jump table from program start, the start window loop, the Start Game branch
   and the gate routine, which reaches none of those routines and leaves 60 calls
-  (FND-PARTY-026); the exit table read by `1038:0008` (FND-PARTY-027). Blocks: slice 2.
+  (FND-PARTY-031); the exit table read by `1038:0008` (FND-PARTY-032). Blocks: slice 2.
 - Q-PARTY-012. RULE-PARTY-006, FMT-PARTY-001: What happens on START GAME when `CHARSAVE.GFF` or
   one of records 40 to 43 is missing? Settles it: the resource-system routines `38FF:05B5` and
   `38FF:04AB` that the loader `2D40:000A` calls, read for which archives they search and what they
@@ -64,10 +64,10 @@ Next ID: Q-PARTY-014
   `0xFFFF` and the routine returns before its gate? Settles it: the size of the mouse pointer
   image at `DS:A145`, the writers of the caret height at `DS:A189`, and whether `41E1:0215`
   releases the caret entry at `DS:A191` before `41E1:000B` makes a new one. Tried: the
-  reservation routine, its pool and the two calls' sizes (FND-PARTY-025); the startup
-  reservation of 1,000 paragraphs, held until the program ends (FND-PARTY-027); the scroll,
+  reservation routine, its pool and the two calls' sizes (FND-PARTY-030); the startup
+  reservation of 1,000 paragraphs, held until the program ends (FND-PARTY-032); the scroll,
   pointer and caret routines, of which only the last two keep an entry after they return
-  (FND-PARTY-028). Blocks: slice 2.
+  (FND-PARTY-033). Blocks: slice 2.
 
 ## Emulated call
 

@@ -39,10 +39,10 @@ DOSBox is excluded by the owner's scope clarification in `docs/DECISIONS.md`;
 its historical inventory is archived under `docs/host-analysis/` and the
 baseline excludes it through `tools/evidence/research-scope.json`.
 The two DSUN inventories
-remain separate from fresh snapshots until mapping and body anomalies are
-reconciled. In particular, fresh definitions
-outside declared overlay code ranges are retained and reported rather than
-clipped to make the standard reporter accept them. Local report output and
+come from the reconciliation path below. It clips an overlay body only to the
+code range that holds its entry, and only after a finding shows that nothing
+reaches the removed part of that overlay's own fixup table; the clip log lists
+every removed range. Local report output and
 analysis projects stay in GAME_DIR; no generated report is committed.
 
 The DSUN reconciliation path joins two views of each edition. Copy the
@@ -71,14 +71,15 @@ and regions files under the `@CD` path convention. Like
 `migrate-inventory.mjs`, it hashes tool sources as checked out, so run it
 from a checkout with Windows line endings.
 
-The retained historical DSUN inventories are not valid input to the current
-`standard-coverage` command: their filename-plus-offset starts fail its
-notation checks. A failed run's zero denominator is not
-zero research coverage. Use the range-aware audit comparison for provisional
-figures, identify its snapshot and revision, and disclose
-`standardReporterAnomalies`; do not present that comparison as a passing
-standard inventory check. Reconcile mapping, body ownership and declared code
-ranges before replacing inventories, rather than merely changing their spelling.
+The committed `coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv` and
+`coverage/BLD-GOG-EN-1.1/@CD/DSUN.EXE.tsv` were staged by this join from the
+`INST-` and `CD-` resident and `overlay-owned` snapshots of 2026-10-08 and
+2026-10-09, and `standard-coverage` accepts both. Their provenance files name
+both snapshots and the exporter, clip and join revisions. The installed
+inventory expects `2707:048E` (resident) and `6F0E:1A7C` (overlay, file offset
+`0x00065D5C`) to have no decoded instruction; the disc inventory expects none.
+`report.mjs inventory-check` predates the `ranges` column and rejects these
+files, so check them with `standard-coverage`.
 
 `node tools/evidence/migrate-inventory.mjs <views.json> <staging-directory>
 <manifest-path>...` stages unchanged single-view inventories with full body

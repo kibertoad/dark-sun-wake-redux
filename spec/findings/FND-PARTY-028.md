@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-028
 title: Of the other reservations before the party-loader gate, the scroll routine releases all it takes, and two routines each keep one entry
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-033]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

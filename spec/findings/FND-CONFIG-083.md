@@ -39,7 +39,7 @@ current window's `0xF5` callback. If the current pointer or callback is
 absent, it clears the current pointer and calls `DS:A0F1` when nonzero,
 passing the unchanged 24-byte event record. The event builder's generic
 kind-one fallback clears the current-window pointer and changes the event
-first word to 6 (FND-CONFIG-082). Overlay 171's callback has an event-six
+first word to 6 (FND-CONFIG-216). Overlay 171's callback has an event-six
 branch for word `0x1C0D` at event offset 12 (FND-CONFIG-080).
 
 ## Interpretation
@@ -72,4 +72,4 @@ Disassemble overlay 171 at `0x00058395..0x000583C8` and resolve the
 Map its `571F:0034` trampoline to `0x000794E1` and follow the call to
 resident `39D1:0418` at file offset `0x0002F328`. Read the fallback path
 `0x0002F6E2..0x0002F75F`, and compare the event builder and callback table
-in FND-CONFIG-082 and FND-CONFIG-080.
+in FND-CONFIG-216 and FND-CONFIG-080.

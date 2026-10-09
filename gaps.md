@@ -19,12 +19,11 @@ Delivered capabilities, closure evidence and remaining limits are recorded in
 
 ## 5. Define a portable inventory path for disc manifest entries
 
-**Current disposition:** portable generation and synthetic/installed committed-identity checks pass; Merged PR 33 adds explicit evidenced legacy-path checking. Full disc inventory verification against its distinct executable remains pending.
+**Current disposition:** portable generation and synthetic/installed committed-identity checks pass; Merged PR 33 adds explicit evidenced legacy-path checking. The disc inventory now sits at the portable `@CD/` path and is joined against its own executable, whose XXH3-128 and MD5 the join checks. The `inventory-check` command still rejects the `ranges` column that range-aware inventories carry, so the committed inventories are checked with `standard-coverage` instead.
 
 The Survey rule asks for `coverage/<build ID>/<manifest path>.tsv`. The manifest
 path `CD:DSUN.EXE` cannot be used verbatim as a Windows filename. This checkout
-uses `coverage/BLD-GOG-EN-1.1/CD/DSUN.EXE.tsv` and retains `CD:DSUN.EXE` in each
-start address. The join tool now accepts the manifest path explicitly.
+uses `coverage/BLD-GOG-EN-1.1/@CD/DSUN.EXE.tsv`, the encoding `inventoryPath` writes.
 
 **Request:** define a portable encoding of manifest paths for coverage files and
 check that the path and each address prefix resolve to the same manifest entry.

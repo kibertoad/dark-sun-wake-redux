@@ -1,9 +1,9 @@
 ---
 id: FND-CONFIG-081
 title: The resident pointer path returns a matched button number as an event-two identifier
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-CONFIG-215]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

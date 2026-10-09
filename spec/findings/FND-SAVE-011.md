@@ -1,9 +1,9 @@
 ---
 id: FND-SAVE-011
 title: Clearing DS 1462 makes the resident main loop return
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-SAVE-012]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

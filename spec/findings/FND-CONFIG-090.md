@@ -1,9 +1,9 @@
 ---
 id: FND-CONFIG-090
 title: The item-feedback callback limits mouse event bits before its shared message path
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-CONFIG-217]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

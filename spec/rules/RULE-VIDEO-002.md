@@ -4,7 +4,7 @@ title: The FLI player shows the first record after a wait and then one record ev
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-INPUT-005, FND-VIDEO-001, FND-VIDEO-002, FND-VIDEO-003, FND-VIDEO-006, FND-SOUND-008, FND-SOUND-010, FND-SOUND-013]
+evidence: [FND-INPUT-005, FND-VIDEO-001, FND-VIDEO-008, FND-VIDEO-003, FND-VIDEO-006, FND-SOUND-008, FND-SOUND-010, FND-SOUND-013]
 conflicting: []
 split_with: []
 related: [RULE-VIDEO-004, RULE-SOUND-002, RULE-SOUND-003, FMT-VIDEO-001]
@@ -19,7 +19,7 @@ the file's header gives, or while a Shift key is held when skipping is allowed.
 
 ## When it runs
 
-From `play_cinematic` (RULE-VIDEO-001), the only caller found (FND-VIDEO-002, FND-VIDEO-004).
+From `play_cinematic` (RULE-VIDEO-001), the only caller found (FND-VIDEO-008, FND-VIDEO-004).
 
 ## Parameters
 
@@ -131,10 +131,10 @@ None known.
 ## Open questions
 
 - How the chunks of a record are drawn and how the palette changes: the routines behind
-  `FliRecordShown` were not read (FND-VIDEO-002, Q-VIDEO-001).
+  `FliRecordShown` were not read (FND-VIDEO-008, Q-VIDEO-001).
 - What `fn_1BF3_2973` does beyond setting the mode (FND-VIDEO-003), and what `fn_2660_04F3`,
   `fn_1000_1C32` do, and what the BIOS reports in `fn_44B6_0011` under an emulator or a modern
-  keyboard layer (FND-VIDEO-002, FND-INPUT-005, Q-VIDEO-001).
+  keyboard layer (FND-VIDEO-008, FND-INPUT-005, Q-VIDEO-001).
 - What `g_57E0_1436` and `g_4E71_0C4A` hold, read here as whether to wait for the disc track and
-  the track playing (FND-VIDEO-002, Q-SOUND-004).
-- How the original removes the timer slot at the end, which was not read (FND-VIDEO-002). (Q-VIDEO-001)
+  the track playing (FND-VIDEO-008, Q-SOUND-004).
+- How the original removes the timer slot at the end, which was not read (FND-VIDEO-008). (Q-VIDEO-001)

@@ -25,7 +25,7 @@ These paths were followed in the load image and in the overlay-mapped copy of `D
 | The `MONR` tag | Bytes in overlay 204 with no reference and no decoded instruction | FND-ACTOR-006 |
 | The `ETAB` tag | No literal of the tag in the load image | FND-REGION-007 |
 | The `RDFF` requests of the object slots | Indexed record requests that give no field a role | FND-ACTOR-003, FND-ACTOR-005 |
-| The mouse coordinates and the key packets | Wrappers and a packet queue with no recovered reader, and a validation gate in overlay 195 | FND-INPUT-004, FND-INPUT-005, FND-COMBAT-012 to FND-COMBAT-017 |
+| The mouse coordinates and the key packets | Wrappers and a packet queue with no recovered reader, and a validation gate in overlay 195 | FND-INPUT-010, FND-INPUT-005, FND-COMBAT-012 to FND-COMBAT-017 |
 | The random number generator | A shared routine and the panel's initialisation, with no rule-level caller | FND-RNG-001 to FND-RNG-008 |
 
 None of them leads to a routine that takes a hostile's record and chooses a target, a move, an

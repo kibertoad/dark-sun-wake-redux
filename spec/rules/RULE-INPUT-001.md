@@ -66,5 +66,5 @@ None known.
 - Where the game keeps the mode, and whether the right button does anything else on other
   screens (Q-INPUT-001).
 - No code that handles a right click is known. The mouse driver's events reach the game through
-  the wrappers of FND-INPUT-004 and the handler of FND-INPUT-005, which queues each event as a
+  the wrappers of FND-INPUT-010 and the handler of FND-INPUT-005, which queues each event as a
   packet; the code that reads the queue is not recovered (Q-INPUT-002).

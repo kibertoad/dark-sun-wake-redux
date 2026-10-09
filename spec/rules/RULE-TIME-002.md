@@ -4,7 +4,7 @@ title: The timer interrupt runs at the shortest period any of 17 timer slots ask
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-TIME-005]
+evidence: [FND-TIME-007]
 conflicting: []
 split_with: []
 related: []

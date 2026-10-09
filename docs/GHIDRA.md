@@ -159,19 +159,17 @@ it only with an address selected through an evidence-led query.
 
 ## Function inventory
 
-For the Survey inventory of `BLD-GOG-EN-1.1`, run
-`ExportFunctionInventory.java` once on the original `DSUN.EXE` import and once
-on a separate import of the local-only image made by
-`New-FbovMappedImage.ps1`. Give each run a distinct temporary TSV path. Then
-run `Join-FunctionInventory.ps1` with those paths, the original executable as
-`-SourcePath`, and `coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv` as `-OutputPath`.
-The join takes resident functions from the original import and overlay-code
-functions from the mapped import. Their auto-analysis results differ, so the
-mapped import does not replace the original resident inventory. Starts in the
-committed file are offsets in the shipped `DSUN.EXE`, written as
-`DSUN.EXE+0x...`; sizes are Ghidra function-body byte counts. Ghidra's
-discovery does not prove that every original function was found. The inventory
-contains no code, bytes, strings or auto-generated names.
+The Survey inventory of `BLD-GOG-EN-1.1`'s `DSUN.EXE` joins two views: the
+original import for resident functions and the relocation-corrected mapped
+import for overlay functions. Their auto-analysis results differ, so the
+mapped import does not replace the original resident inventory. The procedure
+is the DSUN reconciliation path in [EVIDENCE-TOOLS](EVIDENCE-TOOLS.md).
+Resident starts are `segment:offset` with the load image at segment `0x1000`;
+overlay starts are eight-digit offsets in the shipped file, each inside a row
+of the build's Code ranges. Each row gives the function's body byte count and
+its body ranges. Ghidra's discovery does not prove that every original function
+was found. The inventory contains no code, bytes, strings or auto-generated
+names.
 
 Known entries added outside that export use measured body-byte counts from
 the published bounded reporter, with its partial dispatch and continuation
@@ -180,14 +178,13 @@ query regions use independently documented source spans. Never replace a body
 count with its span length merely to extend a search domain.
 
 The disc's distinct `CD:DSUN.EXE` also has an inventory, at
-`coverage/BLD-GOG-EN-1.1/CD/DSUN.EXE.tsv`. The `CD:` manifest prefix becomes
-the `CD/` directory because Windows cannot use a colon in a filename. Extract
+`coverage/BLD-GOG-EN-1.1/@CD/DSUN.EXE.tsv`. The `CD:` manifest prefix becomes
+the `@CD/` directory because Windows cannot use a colon in a filename. Extract
 the file from track 1 of `game.gog` into a local-only path, verify its 634,704
 bytes and XXH3-128 `318cd5ec0559901add3780097162a919`, then run the same
-original and mapped imports. Pass `-ManifestPath 'CD:DSUN.EXE'` to
-`Join-FunctionInventory.ps1` so the start addresses retain the manifest path.
-Ghidra 12.1.3 found 1,283 resident starts in the original import and 858
-overlay-code starts in the mapped import, for 2,141 rows.
+imports and join with `manifest` set to `CD:DSUN.EXE`. Ghidra 12.1.3 gave 1,282
+resident and 860 overlay rows, for 2,142; the installed file gave 1,284 and
+853, for 2,137.
 
 The `SOUND_DS.EXE.tsv`, `SVIEW.EXE.tsv` and `PATCH.EXE.tsv` files under
 `coverage/BLD-GOG-EN-1.1/` come from direct MZ imports of the installed
@@ -250,13 +247,12 @@ claim-dependent checks. `ExportBoundedFlow.java` records local flow metadata;
 `ExportFunctionInventory.java` now publishes its output only after traversal
 completes. Reports remain local; synthetic tests run in `tools/Test.ps1`.
 
-Keep `Join-FunctionInventory.ps1` for the established DSUN mapped-image pipeline:
-it converts that import's overlay coordinates and filters mapped-view starts.
-The shared join instead accepts resident segmented coordinates or already
-canonical file offsets, then enforces explicit view ownership. Existing committed
-inventories keep their documented paths, including `CD/DSUN.EXE.tsv`; new shared
-exports use the collision-resistant `@CD/` encoding. Never replace a historical
-inventory or mapping merely because a new tool is available.
+`Join-FunctionInventory.ps1` wrote the earlier start-and-size DSUN inventories
+and is no longer the route for them; `join-overlay-views.mjs` replaces it.
+The shared join accepts resident segmented coordinates or already canonical
+file offsets, then enforces explicit view ownership. Exports use the
+collision-resistant `@CD/` encoding. Never replace an inventory or mapping
+merely because a new tool is available.
 
 
 ## Large memory maps and JVM diagnostics

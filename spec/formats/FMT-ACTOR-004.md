@@ -9,7 +9,7 @@ byte_order: little
 size: 37
 text: false
 definition: fmt_actor_004.ksy
-evidence: [FND-ACTOR-003, FND-ACTOR-005, FND-COMBAT-025, FND-COMBAT-026, FND-EXPLORE-003, FND-EXPLORE-005, FND-INPUT-006, FND-PARTY-013]
+evidence: [FND-ACTOR-003, FND-ACTOR-005, FND-COMBAT-025, FND-COMBAT-026, FND-EXPLORE-003, FND-EXPLORE-005, FND-INPUT-011, FND-PARTY-013]
 conflicting: []
 split_with: []
 related: [RULE-COMBAT-004, RULE-COMBAT-005]
@@ -24,7 +24,7 @@ table at the far pointer `57E0:67B7` [FND-ACTOR-003], and treats the slot number
 
 | Offset | Size | Type | Name | Meaning | Status | Evidence |
 |---|---|---|---|---|---|---|
-| `0x00` | 1 | `UINT8` | `unk_00` | Purpose unknown. Copied from byte `0x0` of the definition. For a party slot, bit 7 set hides the member: the party loader and key 6 set it, key 5 clears it, and the occupancy routines pass over the slot. Bit 5 set makes the movement routine do nothing. One caller of the shift-key routine looks for a record with bit 4 set. | supported | FND-ACTOR-003, FND-EXPLORE-003, FND-EXPLORE-005, FND-INPUT-006, FND-PARTY-013 |
+| `0x00` | 1 | `UINT8` | `unk_00` | Purpose unknown. Copied from byte `0x0` of the definition. For a party slot, bit 7 set hides the member: the party loader and key 6 set it, key 5 clears it, and the occupancy routines pass over the slot. Bit 5 set makes the movement routine do nothing. One caller of the shift-key routine looks for a record with bit 4 set. | supported | FND-ACTOR-003, FND-EXPLORE-003, FND-EXPLORE-005, FND-INPUT-011, FND-PARTY-013 |
 | `0x01` | 2 | `UINT16LE` | `entry_index` | Index of the 8-byte entry of the table at `57E0:67B7` the slot was filled from. | supported | FND-ACTOR-003, FND-ACTOR-005 |
 | `0x03` | 2 | `INT16LE` | `x` | Horizontal place of the object's figure: the entry's first word less the definition's word at `0x2`. Less the word at `57E0:1408`, it is where the end-of-move menu is placed from. | supported | FND-ACTOR-003, FND-COMBAT-025, FND-COMBAT-026 |
 | `0x05` | 2 | `INT16LE` | `y` | Vertical place of the object's figure: the entry's second word less the definition's word at `0x4` and its signed byte at `0xA`. Less the word at `57E0:140A`, it is where the end-of-move menu is placed from. | supported | FND-ACTOR-003, FND-COMBAT-025, FND-COMBAT-026 |

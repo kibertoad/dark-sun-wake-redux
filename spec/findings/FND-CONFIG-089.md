@@ -38,7 +38,7 @@ graphs differ:
 | `WIND/15503` | `APFM/15200` at (0, 0), `EBOX/15400` at (9, 15) |
 
 The `BUTN/15305` record is 18 by 18 and has event-mask word zero.
-`BUTN/15304` is 27 by 11 and has mask `0x0050`. As FND-CONFIG-081 reads
+`BUTN/15304` is 27 by 11 and has mask `0x0050`. As FND-CONFIG-215 reads
 from resident code, the pointer-hit path can return a matched button's
 resource number as event word at offset 2 after a two-phase selection,
 provided its mask bit 2 is clear and a local control check passes. The
@@ -58,7 +58,7 @@ whether any text is shown or delayed.
 
 ## Alternatives
 
-FND-CONFIG-090 traces the copied driver event bits to a later callback
+FND-CONFIG-217 traces the copied driver event bits to a later callback
 threshold. The physical device action mapped to those bits, the local
 control check, which window is current in a live state, and the selected
 record fields remain open. Keyboard, synthetic or indirect event producers
@@ -73,4 +73,4 @@ window offset `0x105`, then inspect the `BUTN/15305` and `/15304` records
 at `+0x00031FD8` and `+0x00031F66` for size and mask. Disassemble overlay
 213 around `0x000992C1..0x000992E4` and `0x0009A980..0x0009A9A5`
 for the window numbers and callback pointer. Follow the generic event path
-as in FND-CONFIG-081 and FND-CONFIG-079.
+as in FND-CONFIG-215 and FND-CONFIG-079.

@@ -79,7 +79,7 @@ The one record past the frame count is the published format's loop frame. The on
 
 ## Alternatives
 
-The chunk names come from the published format; FND-VIDEO-002 shows which types the game's
+The chunk names come from the published format; FND-VIDEO-008 shows which types the game's
 player treats how. Whether the game shows the record past the frame count is shown there as well.
 
 ## How to reproduce

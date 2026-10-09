@@ -40,7 +40,7 @@ the pointer. The overlay 180 caller removes the arguments without
 checking this return value.
 
 The executable's startup entry calls the resident main routine and,
-after it returns, calls `1000:03DF` with its result (FND-SAVE-011).
+after it returns, calls `1000:03DF` with its result (FND-SAVE-012).
 That wrapper reaches `1000:0388`, whose zero-mode branch decrements
 the callback count and far-calls each stored pointer until the count
 is zero, then proceeds through further cleanup and a DOS termination
@@ -73,4 +73,4 @@ resident header at physical file offset `0x0004BD20`. Disassemble
 `0x0000550B..0x00005538`, `0x00005588..0x000055DF`, and
 `0x000055DF..0x000055EE`. The segment-zero resident calls use the
 documented `0x1000` load segment. Compare the main-loop return route
-with FND-SAVE-011 and the callback target with FND-CONFIG-059.
+with FND-SAVE-012 and the callback target with FND-CONFIG-059.

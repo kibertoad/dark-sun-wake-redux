@@ -1,9 +1,9 @@
 ---
 id: FND-TIME-005
 title: A resident routine reprograms timer channel 0 to the shortest of up to 17 periods given in microseconds
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-TIME-007]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

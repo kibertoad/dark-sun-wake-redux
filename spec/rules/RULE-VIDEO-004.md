@@ -4,7 +4,7 @@ title: While an FLI plays, a timer slot with a period of 1,000 microseconds coun
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-VIDEO-002, FND-TIME-005]
+evidence: [FND-VIDEO-008, FND-TIME-007]
 conflicting: []
 split_with: []
 related: [RULE-TIME-002]
@@ -20,7 +20,7 @@ routine the slot runs adds 1 to a counter each time, so the player can wait in m
 Once per tick of `fli_tick`, from the start of `play_fli` (RULE-VIDEO-002) to its end. The
 player's setup takes a free slot of the library RULE-TIME-002 describes, sets its period to
 1,000,000 divided by 1,000 microseconds and starts it; the library then sets the timer chip to the
-shortest period of the slots in use (FND-VIDEO-002, FND-TIME-005).
+shortest period of the slots in use (FND-VIDEO-008, FND-TIME-007).
 
 ## Parameters
 
@@ -59,4 +59,4 @@ None known.
 
 - Whether another slot with a shorter period is in use while an FLI plays, and how the library
   then decides when to run each slot's routine: the interrupt handler that calls the slots was not
-  read, so the rate of `fli_tick` is shown only for the FLI slot alone (FND-TIME-005, Q-TIME-002).
+  read, so the rate of `fli_tick` is shown only for the FLI slot alone (FND-TIME-007, Q-TIME-002).

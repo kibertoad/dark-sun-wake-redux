@@ -45,7 +45,7 @@ counts ticks between frames or moves.
 
 ## Alternatives
 
-Other clocks remain possible and are recorded in FND-TIME-003 to FND-TIME-005. What the value at
+Other clocks remain possible and are recorded in FND-TIME-003, FND-TIME-004 and FND-TIME-007. What the value at
 `DS:00D2` and the 14-byte records are for was not read; the mixer could seed a generator, but
 RULE-RNG-001's generator was not found to read `DS:00D2`.
 

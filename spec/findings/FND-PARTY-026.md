@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-026
 title: No direct call made between program start and the party-loader gate reaches a writer of the placed-object count or of the gate's mode words
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-031]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

@@ -10,7 +10,7 @@ Next ID: Q-VIDEO-003
   the routines at `57D4:0020`, `57D7:0020`, `57DA:0020` and `57DD:0020`, and `2660:04F3` and
   `1000:1C32`. Tried: searches for the FLI header magic, the numbered cinematic
   names and their templates, and the static title image's resource number; the magic led to the
-  player of overlay 196 (FND-VIDEO-002), which shows how records are read and paced but not how
+  player of overlay 196 (FND-VIDEO-008), which shows how records are read and paced but not how
   chunks are decoded. Blocks: slice 7.
 - Q-VIDEO-002. RULE-VIDEO-001, RULE-VIDEO-003: When do cinematics 2 to 5 play, and what do the
   helper routines of the cinematic code do? Settles it: the scripts that run opcode `0x22` with

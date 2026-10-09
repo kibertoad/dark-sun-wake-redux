@@ -30,7 +30,7 @@ offset `0x0002F0E8`, bounded 16-bit disassembly shows:
 The preceding path copies the double word at `DS:A145` to `DS:A14D`
 when a local helper returns zero, then reaches these two read
 instructions. The far calls target `45B9:00BB` and `45B9:00D3`, the
-mouse-driver wrappers identified in FND-INPUT-004. The first places 7
+mouse-driver wrappers identified in FND-INPUT-010. The first places 7
 in `AX` and the two by-value arguments in `CX` and `DX` before `INT 33h`;
 the second does the same with service 8. Neither wrapper writes to a
 display-bound word or receives its address.
@@ -58,5 +58,5 @@ Disassemble the approved `DSUN.EXE` from the branch target at
 little-endian address words at `0x0002F0F2` and `0x0002F102` by their
 containing instructions. Apply the MZ relocation to the two far calls,
 then disassemble the wrappers at physical file offsets
-`0x0003AE4B..0x0003AE7B`; compare their services with FND-INPUT-004 and
+`0x0003AE4B..0x0003AE7B`; compare their services with FND-INPUT-010 and
 the full raw-hit inventory in FND-CONFIG-036.

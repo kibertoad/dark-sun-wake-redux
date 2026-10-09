@@ -179,7 +179,7 @@ rejecting unsupported semantics:
   exit, and that the `INT 10h` wrapper at `1000:1136` serves the C runtime's
   text output. The routines that draw into the planes were not read.
 - The mouse and keyboard reach the game through the wrappers and hooks of
-  `FND-INPUT-004` to `FND-INPUT-006`, which queue key words and mouse events as
+  `FND-INPUT-005`, `FND-INPUT-010` and `FND-INPUT-011`, which queue key words and mouse events as
   packets. They do not identify axes, a global transform, control hit testing,
   gestures, or a key-to-action map, so the measured canvas, the DSUI contracts
   and `RULE-INPUT-001` to `RULE-INPUT-003` remain authoritative.

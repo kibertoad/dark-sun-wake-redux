@@ -38,13 +38,13 @@ The list failure message has two bounded event-record routes into its
 callback: `(first word 2, word at offset 2 = 18301)` and `(first word 6,
 word at offset 12 = 0x1C0D)`. Both require the state word to be `0xFFFF`.
 The first discriminator matches a button number in the shipped list window;
-FND-CONFIG-081 follows the generic pointer path that can return that number.
+FND-CONFIG-215 follows the generic pointer path that can return that number.
 
 ## Alternatives
 
-FND-CONFIG-081 establishes a conditional pointer-hit route to the first
+FND-CONFIG-215 establishes a conditional pointer-hit route to the first
 record, but not the physical device mapping or whether the list state ever
-meets the failure guard in ordinary use. FND-CONFIG-082 shows how a keyboard
+meets the failure guard in ordinary use. FND-CONFIG-216 shows how a keyboard
 packet can carry the second discriminator. FND-CONFIG-083 shows that the
 generic event-six fallback can reach this same callback through global
 registration, subject to that registration and the list state remaining

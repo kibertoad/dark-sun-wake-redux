@@ -37,7 +37,7 @@ at `0x00067A47` before the later graphics-initializer call at
 resident `4448:002C`. The resident routine calls `1000:3603` with the
 pointer and then calls `1000:03DF` with status 1. The latter reaches
 the runtime cleanup and DOS `INT 21h` terminate-process request
-(FND-SAVE-011). If the termination request returns, the static code
+(FND-SAVE-012). If the termination request returns, the static code
 after the helper call remains reachable; the operating-system outcome
 was not observed.
 
@@ -63,4 +63,4 @@ Compare the approved installed directory and
 Disassemble `0x000675FD..0x0006765C` for selection and the failure
 branch, `0x00067A47..0x00067A83` for the message helper, and
 `0x000396AC..0x000396C8` for resident `4448:002C`. Follow its
-`1000:03DF` call through the runtime exit path in FND-SAVE-011.
+`1000:03DF` call through the runtime exit path in FND-SAVE-012.

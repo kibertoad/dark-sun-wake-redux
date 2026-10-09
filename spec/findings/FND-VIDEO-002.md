@@ -1,9 +1,9 @@
 ---
 id: FND-VIDEO-002
 title: Overlay 196 plays an FLI file to the screen, one frame record every given number of 1 ms ticks, and stops after the header's frame count
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-VIDEO-008]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

@@ -31,7 +31,7 @@ The overlay route above the keyboard routine found by references is not a key di
 ## Alternatives
 
 Ghidra's decompilation of the callers was unreliable, and it missed the far calls that
-FND-INPUT-006 lists.
+FND-INPUT-011 lists.
 
 ## How to reproduce
 
