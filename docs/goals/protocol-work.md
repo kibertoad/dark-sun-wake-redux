@@ -27,7 +27,7 @@ interpreter source archive; source-to-binary correspondence stays explicit.
 CONFIG is added for correcting SOUND_DS location ranges in CONFIG findings
 (claims checked 2026-10-09: no `goal/*` branch claims CONFIG, and
 `config-static.md` is a copy from main): those findings, their replacements
-and the citations of them.
+(FND-CONFIG-213, FND-CONFIG-214) and the citations of them.
 Other areas are read-only. Further research
 areas are added only after checking the shared clone's authoritative goal
 claims and other sessions' work.
@@ -195,8 +195,8 @@ An owner-approved history repair remains separate from this maintenance scope.
      allocator header production, returned extents and state admission,
      then remaining downstream callees, header/count and state/link writers,
      arithmetic bounds and aliases. Retain its indirect-producer and literal-query obligations.
-  2. SOUND_DS inventory: the CONFIG findings' ranges are being corrected to
-     end where a valid inventory's functions end. Replace the historical
+  2. SOUND_DS inventory: FND-CONFIG-213 and FND-CONFIG-214 now end their
+     ranges where a valid inventory's functions end. Replace the historical
      inventory with a range-aware snapshot (provenance and regions files, as
      for SVIEW) and rerun the documentation check against it.
   3. Rerun standard-coverage on all in-scope inventories once valid; retain
