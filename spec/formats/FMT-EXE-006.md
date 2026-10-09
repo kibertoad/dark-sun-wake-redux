@@ -225,6 +225,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   block/state admission and remaining callers remain Q-EXE-007.
   FND-EXE-526 reads the other positive setter-call lead and outer caller;
   grow/copy and input/storage admission remain Q-EXE-007.
+  FND-EXE-527 reads the grow branch's allocation, word copy and cleanup;
+  outer callers and storage/segment admission remain Q-EXE-007.
   FND-EXE-490 finds no AH=4B request among the sound utility's 69 interrupt
   21 instructions or its stack-thunk callers, and no interrupt 2E. Its load
   image makes no direct launch request; the game editions remain Q-EXE-007.
