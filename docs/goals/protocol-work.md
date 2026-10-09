@@ -190,8 +190,9 @@ An owner-approved history repair remains separate from this maintenance scope.
      disc inventory is mostly uncited because findings cite the installed
      build; cite it only where the two editions differ.
   4. The bounded game-code reading is the overlay manager in segment 4AE5
-     (Q-EXE-001). FND-EXE-560 to FND-EXE-562 cover startup, the descriptor
-     walk, the INT 3Fh handler and trampoline forms. Next: manager code after
-     4AE5:0900 (header words 0x0E, 0x14, 0x16), then the disc edition's manager.
+     (Q-EXE-001). FND-EXE-560 to FND-EXE-564 cover startup, the descriptor
+     walk, the INT 3Fh handler, trampoline forms and the EMS/extended cache.
+     Next: header word 0x1C in the placement code, then the disc edition's
+     manager (compare segment 4AE5's bytes between editions first).
      IDs from FND-EXE-560 up are this session's; Codex allocates below them.
   5. Follow Q-EXE-007's game-edition consumers under FMT-EXE-006: FND-EXE-551 general cleanup callers/targets and native contracts, FND-EXE-531 storage admission, remaining startup dependencies.
