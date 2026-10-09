@@ -106,6 +106,9 @@ bounded source reader; this does not establish native loader behavior.
   FND-EXE-298 bounds direct request-word and caller searches and retains
   an additional allocator near-call candidate; its path, native CS and
   arguments, unsearched forms and aliases remain unresolved.
+  FND-EXE-299 reads its candidate body through the wrapped-product request
+  and chunked fill; incoming reachability, pointer advancement, direction
+  and allocation extent remain unresolved.
   FND-EXE-222 supplies conditional source-decoded tails at those candidates;
   saved-listing incompleteness alone does not exclude their decoding.
   FND-EXE-223 retains three unresolved computed transfers in the outer

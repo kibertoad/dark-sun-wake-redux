@@ -345,6 +345,10 @@ Next ID: Q-EXE-014
   incoming domains, retaining an additional allocator near-call candidate.
   Ground that candidate's path, CS and arguments next; other write/call
   forms, aliases and admitted header state remain unresolved.
+  Tried: FND-EXE-299 connects a relocated incoming candidate to the
+  product-request body and follows its chunk-fill argument writers.
+  Continue incoming entry/path and argument admission, 1000:0583,
+  direction-flag provenance and valid extents before closure.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
