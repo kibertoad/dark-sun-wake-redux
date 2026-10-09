@@ -286,6 +286,9 @@ Next ID: Q-EXE-024
   Tried: FND-EXE-529 reads the first-priority startup target and five segment
   relocations. Follow 029B/029A, 15A5, 0010/000F and 02AD, their cleanup,
   state/segment admission and earlier launch coverage.
+  Tried: FND-EXE-530 reads 029B/029A and 07AD/07AC, including
+  ES changes, metadata stores, fixed traversal and the 011A producer.
+  Follow table/field and segment admission, other startup callees and consumers.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
