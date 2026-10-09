@@ -109,6 +109,8 @@ bounded source reader; this does not establish native loader behavior.
   FND-EXE-299 reads its candidate body through the wrapped-product request
   and chunked fill; incoming reachability, pointer advancement, direction
   and allocation extent remain unresolved.
+  FND-EXE-351 resolves that local pointer update and chunk preservation;
+  native extents, direction provenance, incoming paths and aliases remain open.
   FND-EXE-222 supplies conditional source-decoded tails at those candidates;
   saved-listing incompleteness alone does not exclude their decoding.
   FND-EXE-223 retains three unresolved computed transfers in the outer

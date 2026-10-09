@@ -349,6 +349,10 @@ Next ID: Q-EXE-014
   product-request body and follows its chunk-fill argument writers.
   Continue incoming entry/path and argument admission, 1000:0583,
   direction-flag provenance and valid extents before closure.
+  Tried: FND-EXE-351 reads 1000:0583's signed delta branches and shared
+  tail, ordered local-pointer stores and SI preservation. Continue outer
+  caller admission, direction provenance, actual extents, aliases and
+  lifetime; encoded normalization is not validated destination storage.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
