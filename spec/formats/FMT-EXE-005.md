@@ -92,6 +92,9 @@ bounded source reader; this does not establish native loader behavior.
   FND-EXE-293 reads that storage producer's request increment and unchecked
   header-derived byte write; header production, returned extents and state
   admission remain unresolved.
+  FND-EXE-294 connects the allocator's selected DX and DS and bounds one
+  conditional header-derived address calculation; actual segment admission,
+  header stability, aliases and extent lifetime remain unresolved.
   FND-EXE-222 supplies conditional source-decoded tails at those candidates;
   saved-listing incompleteness alone does not exclude their decoding.
   FND-EXE-223 retains three unresolved computed transfers in the outer

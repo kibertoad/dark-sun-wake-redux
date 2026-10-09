@@ -325,6 +325,10 @@ Next ID: Q-EXE-014
   header-derived write and unchanged returned pair. Continue allocator header
   production and returned segment/offset bounds, state writers and lifetime;
   the unchecked nonzero path does not establish a valid writable extent.
+  Tried: FND-EXE-294 traces DX into DS at each list comparison and the
+  exact/split helper inputs, with the selected request's conditional address
+  calculation. Continue actual segment admission, header/count writers,
+  aliases and extent lifetime; local segment equality is not valid storage.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
