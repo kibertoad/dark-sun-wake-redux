@@ -489,6 +489,9 @@ Next ID: Q-EXE-014
   pointer to a wrapper that constructs the root's far frame and tests its word
   result. External allocation, startup preservation, other callers and live
   target/input writers remain open.
+  Tried: FND-EXE-272 follows the root wrapper's allocation request through
+  paragraph conversion, link traversal and shared DS restoration. Four helper
+  effects, list/slot writers and returned initialized extent remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
