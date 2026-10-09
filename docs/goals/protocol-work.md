@@ -59,7 +59,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   documentation edit was committed separately; recheck ownership before mutation. EXE follow-up items remain Q-EXE-005, Q-EXE-006/007/008/009/010 and reader prerequisites Q-EXE-011/012/013; Q-EXE-001 retains its retry requirement. Local static-analysis reports and the saved interpreter Ghidra project remain in GAME_DIR/analysis/exe-batches for continuation. Refreshed comparison: GAME_DIR/analysis/work-baseline/relocation-reconciled; legacy coverage rejection is documented in docs/EVIDENCE-TOOLS.md. Inventories remain pending definition/mapping reconciliation; do not discard anomalous ranges
   or publish unverified replacements. Segment report: GAME_DIR/analysis/work-baseline/decoded-segment-output-audit.log; durable reader evidence remains FND-EXE-166, with no complete-reading promotion.
 - Owner priority: complete-reading closure now takes precedence over broad
-  new partial readings. Use Q-EXE-010 and FMT-EXE-005 for game-code closure; DOSBox complete-reading questions remain historical and blocked by scope. Assemble a bounded evidence package, checking complete bodies, independent caller searches, every input/state writer, indirect targets, return consumption and external dependencies against STATUS-4 through STATUS-13. Add complete_reading only
+  new partial readings. Use Q-EXE-020 to Q-EXE-022 and FMT-EXE-005 for game-code closure; DOSBox complete-reading questions remain historical and blocked by scope. Assemble a bounded evidence package, checking complete bodies, independent caller searches, every input/state writer, indirect targets, return consumption and external dependencies against STATUS-4 through STATUS-13. Add complete_reading only
   after those obligations are satisfied; recorded findings and citation coverage are not substitutes. Address boundary anomalies that affect the candidate.
 - Queue-scope checkpoint: the isolated session branch
   session/protocol-host-queue-20261009 holds the integrated planning batch moving Q-EXE-006/009/012/013 to Blocked and updating Q-EXE-011's scope restriction.
@@ -181,11 +181,12 @@ An owner-approved history repair remains separate from this maintenance scope.
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/388 (entry ID clashes between writers) and
   https://github.com/kibertoad/refurbished-dinosaurs/issues/91 (Q-EXE-010 and Q-EXE-007 Tried-note growth).
 - Next, after rechecking shared goal claims:
-  1. Finish installed and CD DSUN inventory reconciliation under Q-EXE-010,
-     FMT-EXE-005; follow Q-EXE-010 shared request/DS writers, shared-state lifetime,
-     allocator header production, returned extents and state admission,
-     then remaining downstream callees, header/count and state/link writers,
-     arithmetic bounds and aliases. Retain its indirect-producer and literal-query obligations.
+  1. DSUN inventory reconciliation under FMT-EXE-005. FND-EXE-520 settled
+     Q-EXE-010: CS offset 0 is the descriptor's first code byte, so
+     descriptor 198's table is at 0x0008753C. Next is Q-EXE-020 (descriptor
+     198's targets), where FND-EXE-221 to FND-EXE-225 already decode the
+     descriptor-base candidates; then Q-EXE-021 (spans in code or the
+     resident image) and Q-EXE-022 (fixup and padding spans).
   2. SOUND_DS is done: FND-CONFIG-213 and FND-CONFIG-214 correct the range
      ends, and coverage/ holds the migrated range-aware inventory. Run
      migrate-inventory.mjs from the shared checkout: it hashes the exporter
