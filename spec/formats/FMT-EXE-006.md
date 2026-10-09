@@ -159,8 +159,16 @@ reading of callers, external commands or interpreter behavior is claimed.
   continuation, index/frame admission and extents remain Q-EXE-007.
   FND-EXE-475 identifies the second filename and sequential configuration markers;
   later conversion/consumers and segment/string admission remain Q-EXE-007.
+  FND-EXE-490 finds no AH=4B request among the sound utility's 69 interrupt
+  21 instructions or its stack-thunk callers, and no interrupt 2E. Its load
+  image makes no direct launch request; the game editions remain Q-EXE-007.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;
   startup, actual DS, aliases and later writers must admit their runtime use.
+- Can an indirect far call in the sound utility reach code outside its load
+  image that requests a launch (Q-EXE-014)? FND-EXE-490 locates the startup,
+  exit and atexit records, the DS:DB9C..DBA7 hooks, a CS table call and two
+  calls into ES-based code, without tracing their pointer values. Writers of
+  those pointers and the producer of the ES segment settle it.
 - Which disc helpers does the disc installer select (Q-EXE-008)? Selection
   by its installer and standalone manual use are competing readings. The
   file roles in FND-EXE-008 support neither caller claim. Direct installer
