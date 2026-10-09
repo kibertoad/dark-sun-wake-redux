@@ -313,6 +313,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   callback layout; encoded-word producers and native/storage admission stay open.
   FND-EXE-416 reads linked-node allocation, count publication and repeated
   template requests; state producers and native/storage admission stay open.
+  FND-EXE-417 reads dirty flushing, tail inspection and predecessor release;
+  stable structure, output freshness and native/storage admission stay open.
   FND-EXE-490 finds no AH=4B request among the sound utility's 69 interrupt
   21 instructions or its stack-thunk callers, and no interrupt 2E. Its load
   image makes no direct launch request; the game editions remain Q-EXE-007.
