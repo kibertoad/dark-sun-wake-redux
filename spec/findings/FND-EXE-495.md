@@ -1,9 +1,9 @@
 ---
 id: FND-EXE-495
 title: Disc Miles drivers build no interrupt opcode at run time and hold few indirect far transfers
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-EXE-496]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

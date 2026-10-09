@@ -178,18 +178,18 @@ reading of callers, external commands or interpreter behavior is claimed.
   image makes no direct launch request; the game editions remain Q-EXE-007.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;
   startup, actual DS, aliases and later writers must admit their runtime use.
-- Can the sound utility's installed drivers request program execution
-  indirectly (Q-EXE-017)? FND-EXE-491 finds that its indirect far calls
-  leave the image only for drivers read from named files, the interrupt 66
-  and saved timer handlers, and one null timer registration. FND-EXE-492
-  finds that only the disc's 19 Miles .ADV files pass the install test and
-  that their direct interrupt 21 requests are AH=35 and AH=62 only. Their
-  runtime-built requests, indirect transfers and chained vectors settle it.
-  FND-EXE-493 and FND-EXE-494 find that the null timer registration and the
-  CS:0E1E calls run only through the DIGPAK function table, which no build
-  file installs.
-  FND-EXE-495 finds that the drivers store no interrupt opcode immediate and
-  lists their candidate indirect far transfers, whose pointers remain unread.
+- Can SBAWE32.ADV's controller dispatch run past its code entries
+  (Q-EXE-018)? FND-EXE-496 finds that the sound utility's 19 installable
+  drivers request no program execution in their decoded code and transfer
+  out only to host callbacks and resident programs outside the build, and
+  FND-EXE-497 finds that the utility never registers a callback. The
+  dispatch through SBAWE32.ADV's table at 4428 takes an unmasked caller byte,
+  and only entries 0..127 are code offsets; the bytes the 21 callers of
+  0x01ED pass settle it.
+- With which CS does SBAWE32.ADV's code above file 0x1A80 run
+  (Q-EXE-019)? FND-EXE-496 finds that its four switch tables fit a CS based
+  at file 0x1A80 while the decoded entry path keeps the driver's base. The
+  CS of every entry into that code settles it.
 - Which disc helpers does the disc installer select (Q-EXE-008)? Selection
   by its installer and standalone manual use are competing readings. The
   file roles in FND-EXE-008 support neither caller claim. Direct installer

@@ -1,6 +1,6 @@
 # EXE
 
-Next ID: Q-EXE-018
+Next ID: Q-EXE-020
 
 ## Static
 
@@ -206,21 +206,26 @@ Next ID: Q-EXE-018
   decide this question. FND-EXE-491 traces its indirect far targets:
   code outside the image is loaded driver code or a null timer slot, which
   FND-EXE-494 shows needs a DIGPAK image the build lacks. FND-EXE-492
-  limits installable drivers to 19 disc .ADV files with no AH=4B request;
-  their indirect paths remain Q-EXE-017. The game editions' sound.bat
-  consumers remain unread here.
+  limits installable drivers to 19 disc .ADV files with no AH=4B request.
+  FND-EXE-496 finds their decoded code transfers out only to host callbacks,
+  which FND-EXE-497 shows the utility never registers, and to resident
+  programs outside the build; SBAWE32.ADV's residual paths are Q-EXE-018
+  and Q-EXE-019. The game editions' sound.bat consumers remain unread here.
 
-- Q-EXE-017. FMT-EXE-006: Can the 19 disc driver files the sound utility
-  installs reach a program-execution request through code other than their
-  direct interrupt 21 instructions? Settles it: in each CD:*.ADV file, every
-  runtime-built interrupt request, indirect transfer and vector chained after
-  its AH=35 reads, traced to a target and selector. FND-EXE-492 censuses only
-  their direct interrupt 21 instructions (AH=35 and AH=62). Blocks: a launch
-  exclusion for the sound utility under FMT-EXE-006.
-  Tried: FND-EXE-495 finds no immediate CD store in any of the 19 files and
-  lists their candidate far transfers through memory and far immediates.
-  Read each listed pointer's writers, and whether the far-immediate regions
-  are code, before an indirect-path exclusion.
+- Q-EXE-018. FMT-EXE-006: Can SBAWE32.ADV's controller dispatch at 0x1B4A
+  receive an index of 128 or more? Settles it: the byte each of the 21 near
+  callers of 0x01ED passes as the data byte for status B0..BF, traced to a
+  mask, a bound or an unbounded source. FND-EXE-496 finds entries 0..127 of
+  the table at 4428 are code offsets and later entries are not, with no mask
+  in 0x1A45 or 0x1B22. Blocks: a launch exclusion for the sound utility under
+  FMT-EXE-006.
+
+- Q-EXE-019. FMT-EXE-006: With which CS does SBAWE32.ADV's code above file
+  0x1A80 run? Settles it: every entry into the routines from 0x1A84 on,
+  traced to the CS it runs with, and each switch at 0x2C81, 0x2CAB, 0x2CDF
+  and 0x2D3C read under that base. FND-EXE-496 finds the switch tables fit a
+  CS based at file 0x1A80 while the decoded entry path keeps the driver's
+  base. Blocks: a launch exclusion for the sound utility under FMT-EXE-006.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
