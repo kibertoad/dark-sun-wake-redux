@@ -190,6 +190,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-479 follows repeated table selection and parsed-word
   publication, signed search limits and ambiguous zero lookup. Follow
   158E:06B0, base/limit/row and field consumers, extents, aliases and lifetime.
+  Tried: FND-EXE-480 follows final buffer publication, fixed-limit copy
+  exhaustion and unchecked optional-call result. Follow formatter 0F25,
+  callback, 190F:0000, source/global producers, extents and state admission.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
