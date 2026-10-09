@@ -1,6 +1,6 @@
 # EXE
 
-Next ID: Q-EXE-023
+Next ID: Q-EXE-024
 
 ## Static
 
@@ -276,15 +276,15 @@ Next ID: Q-EXE-023
   do not cover the disc installer. Split from Q-EXE-004. Blocks: complete
   disc-installer caller coverage.
 
-- Q-EXE-022. FMT-EXE-005: Does any native transfer reach the fixup-table and
-  zero-padding bytes the analyzer assigns to overlay bodies? FND-EXE-173 and
-  FND-EXE-174 partition the anomalous spans of the installed and disc
-  snapshots: thirteen touch fixup tables and six touch zero padding.
-  Settles it: for each fixup or padding part in FND-EXE-173's table, every
-  analyzer reference into it, each shown to come from a table read at the
-  wrong base or from decoding data as code, or else a transfer admitted under
-  FND-EXE-520's CS and FND-EXE-521's targets that does reach it.
-  Blocks: the DSUN inventory reconciliation under FMT-EXE-005.
+- Q-EXE-023. FMT-EXE-005: Does any computed near transfer in an overlay
+  that holds one of FND-EXE-173's fixup spans target its own fixup table?
+  FND-EXE-523 rules out the owning bodies, trampolines and direct near
+  branches. The holders are descriptors 180, 194, 203 and 209 (installed)
+  and 188, 194, 197, 199, 210 and 212 (disc). Settles it:
+  every computed near jump and call in each holder's code, with the bound
+  and words of each table it reads, none naming an offset at or past the
+  holder's code size.
+  Blocks: none.
 
 ## Emulated call
 
