@@ -285,6 +285,22 @@ reading of callers, external commands or interpreter behavior is claimed.
   callees; native mapping, callers/writers and buffer admission remain Q-EXE-007.
   FND-EXE-401 bounds a resident literal search for the shared segment word;
   cross-region/computed writers and segment provenance remain Q-EXE-007.
+  FND-EXE-402 extends that literal search into resident native helpers;
+  interrupt effects and computed transfers still leave writer coverage open.
+  FND-EXE-403 reads the registration caller's local input producers and
+  wrapped count; DS provenance and intervening call effects remain Q-EXE-007.
+  FND-EXE-404 supplies the first caller helper's byte-input and local result
+  dependency; native preservation and subsequent pointer callees remain open.
+  FND-EXE-405 binds both pointer callees to existing copy/append readings;
+  source/extent/alias admission and manager consumption remain Q-EXE-007.
+  FND-EXE-406 reads the manager's record bindings, local gate/slot writes
+  and mutable callback continuation; remaining helper/storage contracts stay open.
+  FND-EXE-407 supplies both direct manager helper bodies and packed-table
+  writers; link termination, segment/input admission and native effects stay open.
+  FND-EXE-408 bounds additional link-field candidates and reads one retrying
+  writer; its helper, other writers and storage/preservation contracts stay open.
+  FND-EXE-409 supplies that helper's outputs, selection and untested final
+  tag stores; target effects, complete writers and storage admission stay open.
   FND-EXE-490 finds no AH=4B request among the sound utility's 69 interrupt
   21 instructions or its stack-thunk callers, and no interrupt 2E. Its load
   image makes no direct launch request; the game editions remain Q-EXE-007.

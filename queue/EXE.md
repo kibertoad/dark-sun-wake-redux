@@ -299,6 +299,30 @@ Next ID: Q-EXE-025
   Tried: FND-EXE-401 bounds the installed resident shared-word literal search
   with independent read/write controls. Continue cross-region/computed accesses,
   segment provenance and unresolved routes; no whole-program writer census is claimed.
+  Tried: FND-EXE-402 includes the adjacent resident native-helper region.
+  Follow computed transfers, actual segment provenance and other-region writers;
+  native boundaries remain unadmitted rather than treated as missing local writes.
+  Tried: FND-EXE-403 reads the full registration caller's local records,
+  wrapped count and current-segment pointer production. Follow entry DS/SI,
+  preceding callees, frame aliases and actual manager consumption.
+  Tried: FND-EXE-404 reads 1425:13D2's low-byte selector and result flow
+  through the known native quantity helper. Continue DS/SI provenance, native
+  preservation and the pointer callees 1000:406D and 2D40:3DC2.
+  Tried: FND-EXE-405 connects those pointer calls to FND-CONFIG-181/182.
+  Continue entry DS/SI, source termination/extents, frame aliases and actual
+  manager consumption; the supplied append limit is not storage admission.
+  Tried: FND-EXE-406 connects manager inputs, validation, gate/argument writes
+  and callback continuation. Follow 1425:076B/0591, DS/alias admission,
+  preservation and the independent inventory ownership discrepancy.
+  Tried: FND-EXE-407 reads 1425:0591/076B and connects indexed callbacks,
+  prefix writes and stored-link traversal. Follow complete link/table writers,
+  DS/input/storage admission, target preservation and native contracts.
+  Tried: FND-EXE-408 controls the link-field candidate search and reads
+  1425:08E4's retry/publication path. Follow 1425:060B, remaining candidate
+  writers, computed accesses, DS/alias admission and preservation.
+  Tried: FND-EXE-409 reads 1425:060B's output/selection/transfer paths.
+  Continue link-field writers 0AA5/0B0B/1296, complete callers, current DS,
+  output aliases and slot-target preservation/native effects.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
