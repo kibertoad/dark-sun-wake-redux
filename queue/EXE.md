@@ -187,6 +187,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-478 follows Dma and MIDI field collection, repeated
   fixed mapping and discarded cleanup. Follow 158E:0496's consumers,
   retained DI/native preservation, actual DS/frame state, extents and producers.
+  Tried: FND-EXE-479 follows repeated table selection and parsed-word
+  publication, signed search limits and ambiguous zero lookup. Follow
+  158E:06B0, base/limit/row and field consumers, extents, aliases and lifetime.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
