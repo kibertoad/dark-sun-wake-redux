@@ -60,12 +60,6 @@ Next ID: Q-EXE-014
   contiguous absolute setter dword with stored-target controls; calculated,
   relocated, encoded and runtime-created targets remain unresolved. Blocks: none.
 
-- Q-EXE-005. FMT-EXE-006: Which code page interprets the disc sound helper's
-  display bytes? Settles it: direct interpreter configuration or code-page/font
-  selection evidence that distinguishes compatible decoders. Tried: all bytes
-  profiled (FND-EXE-008); the high-byte set does not select a unique code page.
-  Split from Q-EXE-002. Blocks: original display encoding identification.
-
 - Q-EXE-007. FMT-EXE-006: Do the shipped game or sound-setup executables
   launch any batch helpers? Settles it: direct executable launch references
   traced through selectors and arguments, including computed command names.
@@ -353,7 +347,18 @@ None.
 
 ## Source
 
-None.
+- Q-EXE-005. FMT-EXE-006: Which code page interprets the disc sound helper's
+  display bytes? Settles it: a distribution declaration or code-page/font
+  selection record tied to the disc helper's actual launch environment and
+  distinguishing compatible decoders. Tried: FND-EXE-008's complete byte
+  profile does not select a unique code page. FND-EXE-340's new complete-file
+  literal-token searches of the declared GOG configuration pair find no
+  codepage= or country= token, and the written keyboard layout is auto.
+  That installed launch configuration does not establish the disc helper's
+  executing environment. Reopen static work only with a declaration or
+  selection record that distinguishes the decoder; host-internal complete
+  readings remain outside owner-approved scope. Split from Q-EXE-002.
+  Blocks: original display encoding identification.
 
 ## Blocked
 

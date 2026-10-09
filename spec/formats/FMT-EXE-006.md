@@ -367,6 +367,10 @@ reading of callers, external commands or interpreter behavior is claimed.
   are compatible with multiple encodings too. FND-EXE-008 identifies the
   bytes, not an exclusive decoder. Interpreter configuration or font/code
   page selection evidence settles it.
+  FND-EXE-340 finds no literal code-page assignments in the declared GOG
+  configuration pair; its automatic keyboard-layout setting does not identify
+  the disc helper's executing decoder. A declaration tied to that environment
+  is still required; literal-token absence is not runtime absence.
 - How does the supported interpreter resolve missing labels and the
   colon-suffixed target (Q-EXE-006)? FND-EXE-009 rules out hidden definitions
   in this file, but not interpreter normalization or error handling. A
