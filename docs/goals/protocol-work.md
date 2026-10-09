@@ -179,7 +179,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   Upstream: https://github.com/kibertoad/refurbished-dinosaurs/issues/90 and
   https://github.com/kibertoad/refurbished-dinosaurs-template/issues/69#issuecomment-6086383540 and
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/388 (entry ID clashes between writers) and
-  https://github.com/kibertoad/refurbished-dinosaurs/issues/91 (Q-EXE-010 and Q-EXE-007 Tried-note growth).
+  https://github.com/kibertoad/refurbished-dinosaurs/issues/91 (Q-EXE-010 and Q-EXE-007 Tried-note growth) and
+  https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/393 (parity Notes still cite closed Q-EXE-010).
 - Next, after rechecking shared goal claims:
   1. DSUN inventory reconciliation under FMT-EXE-005. FND-EXE-520 settled
      Q-EXE-010: CS offset 0 is the descriptor's first code byte, so
