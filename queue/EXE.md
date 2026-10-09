@@ -181,6 +181,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-476 follows three-byte field conversion, fixed word
   mapping and one-byte Irq conversion store. Follow 2713, 158E:0347's
   consumers, actual DS/frame admission, extents, aliases and preservation.
+  Tried: FND-EXE-477 reads 2713's classification, decimal-prefix
+  accumulation, width transition, modular sign and selected shipped table bits.
+  Follow later stored-word consumers and actual source/table/frame admission.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.

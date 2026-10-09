@@ -161,6 +161,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   later conversion/consumers and segment/string admission remain Q-EXE-007.
   FND-EXE-476 reads field-byte collection, fixed mapping and second conversion store;
   converter, later consumers and input/state admission remain Q-EXE-007.
+  FND-EXE-477 reads the converter's decimal-prefix and modular-width behavior;
+  runtime table/source admission and later consumers remain Q-EXE-007.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;
   startup, actual DS, aliases and later writers must admit their runtime use.
 - Which disc helpers does the disc installer select (Q-EXE-008)? Selection
