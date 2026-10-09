@@ -54,7 +54,7 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Stage: Slices; goal active. Resume the authoritative local claim and preserve other sessions' work.
 - Last full gate: 2026-10-09, assetless Test.ps1 -NoRestore and explicit
   main-base documentation validation passed for EXE research through FND-EXE-299
-  and follow-ups FND-EXE-351/352/353/354/355/356/357/358/359/361/362/363/364/365/366/367/368/369/371, including integrated FND-EXE-360/370/380.
+  and follow-ups FND-EXE-351/352/353/354/355/356/357/358/359/361/362/363/364/365/366/367/368/369/371/372, including integrated FND-EXE-360/370/380.
   The final gate passed after correcting a draft location kind and integrating
   the referenced pending batch; the prior issue-7 rerun remains recorded.
   Preservation-context and blocked-tool guidance, measured-baseline tooling and independent
@@ -164,7 +164,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   https://github.com/kibertoad/dark-sun-wake-redux/issues/6#issuecomment-6063990997.
   Ghidra rendering follow-up: https://github.com/NationalSecurityAgency/ghidra/issues/9739#issuecomment-6064374250.
   Interrupt-use capability: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/370.
-  Synthetic capture timeout follow-up: https://github.com/kibertoad/dark-sun-wake-redux/issues/7#issuecomment-6084577757; isolated/full rechecks passed; no repair claimed.
+  Synthetic capture timeout follow-ups: https://github.com/kibertoad/dark-sun-wake-redux/issues/7#issuecomment-6084577757 and https://github.com/kibertoad/dark-sun-wake-redux/issues/7#issuecomment-6085508883; latest isolated recheck failed; full recheck passed; no repair claimed.
   Toolkit span rerun: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6068047179; R1/R3 passed; inclusive-query follow-up: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/343#issuecomment-6069274891.
   Inventory/segment follow-ups: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6068550782 and https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6069043576.
   Partial-overlap/guard follow-ups: https://github.com/kibertoad/refurbished-dinosaurs/issues/37#issuecomment-6066902929 and https://github.com/kibertoad/refurbished-dinosaurs/issues/37#issuecomment-6067099318.
@@ -197,4 +197,4 @@ An owner-approved history repair remains separate from this maintenance scope.
   4. Choose a bounded game-code reading and its actual caller/state obligations;
      preserve EXE questions relevant to the game and retire host-only priorities.
   5. Follow Q-EXE-007's configuration/cleanup callees and segment/input
-     admission in FND-EXE-360/353/354/355/356/357/358/359/361/362/363/364/365/366/367/368/369/370/371/380.
+     admission in FND-EXE-360/353/354/355/356/357/358/359/361/362/363/364/365/366/367/368/369/370/371/372/380.
