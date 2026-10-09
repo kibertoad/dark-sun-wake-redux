@@ -442,6 +442,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-260 records selected initial request words and nonzero neighbors
   of partial-byte stores. Live preservation, consumer layout, overlapping writers
   and initialized output extent remain open.
+  Tried: FND-EXE-261 connects the direct transfer wrapper's rounded count,
+  source/destination formation and carry consumer, including maximal-size wrap.
+  Live dispatch, header writers, external zero-count/output contracts remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
