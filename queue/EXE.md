@@ -331,6 +331,10 @@ Next ID: Q-EXE-014
   paths and unchecked callee continuations. Continue 1000:1622, actual
   segment/header admission, other writers and aliases; offset four does
   not prove that a request or cleanup succeeded.
+  Tried: FND-EXE-297 follows 1000:1622's DX-only allocation test,
+  header-count copy bound and discarded release result. Continue actual
+  header/extent admission, shared request and DS writers, overlap, segment
+  wrap and lifetime; the local byte bound does not prove valid storage.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.

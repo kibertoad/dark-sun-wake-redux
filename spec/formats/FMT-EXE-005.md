@@ -100,6 +100,9 @@ bounded source reader; this does not establish native loader behavior.
   FND-EXE-296 follows its larger-existing-count helper's ordered header
   publications and discarded callee results; the other helper, admitted
   extents, aliases and state lifetime remain unresolved.
+  FND-EXE-297 follows the other helper's header-count copy and unchecked
+  release, with a separate local byte-count bound; admitted storage,
+  overlap, segment wrap and shared-state lifetime remain unresolved.
   FND-EXE-222 supplies conditional source-decoded tails at those candidates;
   saved-listing incompleteness alone does not exclude their decoding.
   FND-EXE-223 retains three unresolved computed transfers in the outer
