@@ -463,6 +463,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-267 follows stack-buffer read gates, caller carry consumption,
   seek continuation and the offset calculation's overwritten carry. External
   initialized output, frame preservation and loop/input admission remain open.
+  Tried: FND-EXE-268 identifies another initial loader-segment pointer whose
+  offset overlaps a known comparison input, not the selected root. Pointer
+  consumers, alternative transfer representations and native entry remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
