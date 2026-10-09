@@ -329,6 +329,9 @@ Next ID: Q-EXE-025
   Tried: FND-EXE-412 reads the remaining literal writer at 1296 and its
   signed quantity loop with allocation/accounting/reconnection failure prefixes.
   Continue complete callers, computed/cross-region writers and storage/native admission.
+  Tried: FND-EXE-413 reads one extension caller's unsigned dispatch and
+  its signed shrink helper. Continue 0FA3 selector production, caller/input
+  admission, broader callers, computed writers and segment/native/storage contracts.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
