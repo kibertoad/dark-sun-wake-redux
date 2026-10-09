@@ -52,8 +52,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   works in this repository, so the goal runs on main in the single checkout,
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
-- Last full gate: 2026-10-09, assetless Test.ps1 -NoRestore passed for FND-EXE-263 research (715 tests).
-  EXE research through FND-EXE-263, measured-baseline tooling and independent
+- Last full gate: 2026-10-09, assetless Test.ps1 -NoRestore passed for FND-EXE-264 research (715 tests).
+  EXE research through FND-EXE-264, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
   and its independently failing-before/passing-after synthetic regression.
@@ -164,7 +164,7 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Synthetic decoder reproduction: https://github.com/capstone-engine/capstone/issues/1226#issuecomment-6071383629.
 - Next, after rechecking shared goal claims:
   1. Finish installed and CD DSUN inventory reconciliation under Q-EXE-010,
-     FMT-EXE-005; follow FND-EXE-228 through FND-EXE-263 remaining downstream callees, header/count and state/link writers, arithmetic bounds and aliases.
+     FMT-EXE-005; follow FND-EXE-228 through FND-EXE-264 remaining downstream callees, header/count and state/link writers, arithmetic bounds and aliases.
   2. Check claims before expanding into CONFIG for SOUND_DS endpoint review
      (FND-CONFIG-004 and FND-CONFIG-022); supersede factual errors under Standard.
   3. Rerun standard-coverage on all in-scope inventories once valid; retain
