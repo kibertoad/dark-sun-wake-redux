@@ -133,6 +133,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-368 reads 19FB/1A95's alternate field combinations,
   retained-segment replacement and explicit SS-field access order. Admit field
   producers, aliases, shared CS state and re-entry; matching terminal 1E34 remains open.
+  Tried: FND-EXE-369 reads 1E34/06C2/1DBE/25FD's encoded pair gate,
+  rounded quantity, saved-BX return and sentinel-selected state changes. Admit
+  bounds/base writers, native preservation/results, extents, aliases and shared state.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
