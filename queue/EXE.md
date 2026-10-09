@@ -298,6 +298,9 @@ Next ID: Q-EXE-024
   Tried: FND-EXE-547 reads 14C4/1528, differing padding-result handling
   and published header sources. Follow 1831 and its callees, shared-word/record
   producers, units/segments/extents and remaining startup dependencies.
+  Tried: FND-EXE-548 reads 1831 and its arithmetic/comparison helpers,
+  including signed bounds, normalized pairs and capture order. Follow 177C,
+  shared-pair producers, actual storage and remaining startup dependencies.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct

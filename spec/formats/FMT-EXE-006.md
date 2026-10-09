@@ -239,6 +239,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   returned pairs; remaining producers and callees remain Q-EXE-007.
   FND-EXE-547 reads both block producers' alignment tests and header stores;
   their common request callee and storage admission remain Q-EXE-007.
+  FND-EXE-548 reads that request's arithmetic, normalized comparisons and
+  captured prior-pair return; 177C and state admission remain Q-EXE-007.
   FND-EXE-490 finds no AH=4B request among the sound utility's 69 interrupt
   21 instructions or its stack-thunk callers, and no interrupt 2E. Its load
   image makes no direct launch request; the game editions remain Q-EXE-007.
