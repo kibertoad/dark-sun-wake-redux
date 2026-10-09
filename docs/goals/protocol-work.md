@@ -62,7 +62,7 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Integrated: session/protocol-rt-interface-20261009's verified mode-interface
   batch passed the combined gate with the FND-EXE-355 follow-up on 2026-10-09.
 - Stage: Slices; goal active. Isolated research through FND-EXE-402 and the combined installed-edition policy/decision ledger passed the assetless full gate (715 tests), final main-base documentation check and enabled hooks on 2026-10-10.
-  Codex continuation uses session/protocol-codex-research-20261010 in artifacts/worktrees/protocol-codex-research; its dependency junction is read-only and EVIDENCE_PYTHON uses the existing isolated root interpreter. FND-EXE-399 and the concurrent segment-span/source/edition changes passed the combined assetless full gate (715 tests) and main-base documentation check on 2026-10-10; FND-EXE-402 integration awaits merging the advanced goal tip into this isolated worktree and passing a combined full gate; preserve both histories.
+  Codex continuation uses session/protocol-codex-research-20261010 in artifacts/worktrees/protocol-codex-research; its dependency junction is read-only and EVIDENCE_PYTHON uses the existing isolated root interpreter. FND-EXE-399 and the concurrent segment-span/source/edition changes passed the combined assetless full gate (715 tests) and main-base documentation check on 2026-10-10; FND-EXE-402 and concurrent PARTY research passed the combined assetless full gate (715 tests) and main-base documentation check on 2026-10-10; preserve both histories and integrate only committed artifacts.
   FND-EXE-393 committed-main recovery is validated; preserve existing commits and other sessions' work. Upstream follow-up: https://github.com/kibertoad/refurbished-dinosaurs-template/issues/69#issuecomment-6089749395.
   AGENTS.md preservation framing and out-of-scope stop guidance passed the assetless full gate (715 tests), explicit main-base documentation check and enabled hooks on 2026-10-10. No new upstream concern identified. Duplicate-checked arithmetic-control follow-up: https://github.com/kibertoad/refurbished-dinosaurs/issues/54#issuecomment-6089974953.
 - Last full gate: 2026-10-10, assetless Test.ps1 -NoRestore and explicit
@@ -183,25 +183,16 @@ An owner-approved history repair remains separate from this maintenance scope.
   https://github.com/kibertoad/refurbished-dinosaurs-template/issues/93 (inventory-check rejects the ranges column) and
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6089321886 (single import of DSUN.EXE cannot replace the join).
 - Next, after rechecking shared goal claims:
-  1. DSUN inventory reconciliation is done: join-overlay-views.mjs joined the resident and clipped overlay views into the installed and @CD/ disc inventories, and FND-CONFIG-215 to FND-CONFIG-217, FND-INPUT-010/011, FND-PARTY-029 to FND-PARTY-033, FND-SAVE-012, FND-TIME-006/007 and FND-VIDEO-008 replace findings whose ranges ended on a closing return.
-     Also done: the DSUN resident rows now come from a single import with the
-     overlays as file-backed overlay blocks (docs/EVIDENCE-TOOLS.md), which
-     adds the resident functions only overlay code calls. FND-VIDEO-009 and FND-VIDEO-010 replace the two findings whose ranges it showed short.
-  2. SOUND_DS is done: FND-CONFIG-213 and FND-CONFIG-214 correct the range ends, and coverage/ holds the migrated range-aware inventory. Run migrate-inventory.mjs from the shared checkout: it hashes the exporter as checked out, and the recorded revision needs Windows line endings.
-  3. standard-coverage now accepts every in-scope inventory. Read its
-     uncited DSUN.EXE functions when choosing item 4's reading; keep
-     citation coverage separate from complete-reading availability. The
-     installed DSUN.EXE is the sole game-code target; prior disc comparisons
-     are historical under docs/SOURCE-EDITIONS.md.
-  4. Done: the overlay manager in segment 4AE5 (FND-EXE-560 to
+  1. Inventory reconciliation is complete under docs/EVIDENCE-TOOLS.md: FND-CONFIG-213..217, FND-INPUT-010/011, FND-PARTY-029..033, FND-SAVE-012, FND-TIME-006/007 and FND-VIDEO-008..010. Preserve range-aware inventories and the recorded Windows-line-ending exporter provenance when using migrate-inventory.mjs from the shared checkout.
+  2. standard-coverage accepts every in-scope inventory. Use uncited installed DSUN.EXE functions to choose item 3's reading; citation coverage is separate from complete-reading availability.
+     Installed DSUN.EXE is the sole game-code target; prior disc comparisons remain historical under docs/SOURCE-EDITIONS.md.
+  3. Done: the overlay manager in segment 4AE5 (FND-EXE-560 to
      FND-EXE-569) closed Q-EXE-001. FND-EXE-570 records the disc edition; FND-EXE-571 covers segment spans.
      Q-EXE-024 (Source) asks only what flags 0, 1 and 4 mean. Toolkit #323 tracks inventory-check, #401 the instruction limit, and #402 span offsets; answer them when the toolkit replies. Next bounded
      game-code reading: pick from standard-coverage's uncited DSUN.EXE
      functions. For field-offset searches use the engine's
      operand-candidates first. IDs from FND-EXE-560 up are this session's;
      Codex allocates below them.
-  4a. PARTY: FND-PARTY-034 closed Q-PARTY-012 (CHARSAVE.GFF is opened
-     from the program's directory; a failed open prints a message and exits
-     with status 1). Q-PARTY-014 asks how the start-up code builds argv[0].
+  4. PARTY: FND-PARTY-034 closed Q-PARTY-012. Q-PARTY-014 tracks start-up argv[0] production.
      Next PARTY items: Q-PARTY-013, then Q-PARTY-011, for RULE-PARTY-006.
   5. Follow Q-EXE-007's game-edition consumers under FMT-EXE-006: FND-EXE-397 native target/register/record contracts, callers/writers and buffer aliases; FND-EXE-398 native file-request contracts, type-four callers/writers and storage admission; FND-EXE-399 type-one shared-segment and slot-input writers/callers: use FND-EXE-401 and the local controlled package to extend literal searches to other evidenced resident regions, then computed accesses and segment provenance; native contracts and buffer admission remain; FND-EXE-396 native quantity/register contracts; FND-EXE-556 complete cache callback/state writers and native contracts, FND-EXE-395 native request semantics/preservation, scratch/descriptor writers and argument producers; FND-EXE-394 native query/record/register contracts and storage writers, FND-EXE-392 preliminary native contracts and FND-EXE-391 other slot producers/published targets, FND-EXE-559 gate/target writers and native admission, FND-EXE-558 complete registration callers/state writers and predecessor/error contracts, FND-EXE-555 other general targets, FND-EXE-531 storage admission, native contracts and remaining startup dependencies.
