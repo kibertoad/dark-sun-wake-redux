@@ -229,6 +229,9 @@ Next ID: Q-EXE-020
   Tried: FND-EXE-502 reads 06BA's signed error mapping and 07B0's
   pre-request flag clear, request arguments and failure pair. Follow actual
   DS, table/state writers, flush paths and broader game caller coverage.
+  Tried: FND-EXE-503 reads 2F13/2F94's record updates, mismatch
+  handling and aggregate result disposal. Follow 3DCC, actual DS and
+  record/table admission, other byte-dispatch branches and game callers.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
