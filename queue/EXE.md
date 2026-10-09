@@ -250,6 +250,9 @@ Next ID: Q-EXE-020
   Tried: FND-EXE-511 reads target 0886's indexed initialization and
   conditional diagnostic-flag clear. Follow 0705's return, 364E's record
   writes and preservation, the earlier target and remaining startup/callers.
+  Tried: FND-EXE-512 reads 0705/364E's return masking, signed mode
+  guard and stores before allocation failure. Follow native preservation,
+  302B/20A3/2172, earlier startup target and remaining state writers/callers.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
