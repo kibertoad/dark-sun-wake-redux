@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-014
+Next ID: Q-PARTY-015
 
 ## Static
 
@@ -51,13 +51,11 @@ Next ID: Q-PARTY-014
   call and bounded jump table from program start, the start window loop, the Start Game branch
   and the gate routine, which reaches none of those routines and leaves 60 calls
   (FND-PARTY-031); the exit table read by `1038:0008` (FND-PARTY-032). Blocks: slice 2.
-- Q-PARTY-012. RULE-PARTY-006, FMT-PARTY-001: What happens on START GAME when `CHARSAVE.GFF` or
-  one of records 40 to 43 is missing? Settles it: the resource-system routines `38FF:05B5` and
-  `38FF:04AB` that the loader `2D40:000A` calls, read for which archives they search and what they
-  return, or whether they stop the program, when the archive is absent and when the record is
-  absent. Tried: `2D40:000A` returns `0xFFFF` when either lookup returns nonzero, and the party
-  loader then skips the slot's second load but still places it (FND-PARTY-023, FND-PARTY-013).
-  Blocks: slice 2.
+- Q-PARTY-014. RULE-PARTY-006: What does the C run time pass as the main routine `277D:0004`'s
+  `argv[0]`, the string whose directory part becomes `DS:44F2`, the directory `CHARSAVE.GFF` is
+  opened from? Settles it: the start-up code from program entry to the call of `277D:0004`, read
+  for how it builds the argument list on each DOS version. Split from Q-PARTY-012, which
+  FND-PARTY-034 closed. Blocks: none.
 - Q-PARTY-013. RULE-PARTY-006: Do the video-memory reservations held when START GAME reaches the
   gate, other than the startup one, take more than 1,006 paragraphs or 251 entries, so that one
   of the gate routine's calls to `1BF3:27A8` at `DSUN.EXE+0x00069AA5` and `0x00069AC1` returns

@@ -33,6 +33,10 @@ DSUN.EXE location ranges that end on an inventoried function's last byte
 once the reconciled DSUN inventory replaces the historical one (claims
 checked 2026-10-09: goal/protocol-work is the only `goal/*` branch): those
 findings, their replacements and the citations of them.
+PARTY is added for research batches on its Static queue items, starting with
+Q-PARTY-012, which block slice 2 (claims checked 2026-10-10:
+goal/protocol-work is the only `goal/*` branch, and its other work is in EXE):
+PARTY entries, queue/PARTY.md and parity/PARTY.md.
 Other areas are read-only. Further research
 areas are added only after checking the shared clone's authoritative goal
 claims and other sessions' work.
@@ -196,4 +200,8 @@ An owner-approved history repair remains separate from this maintenance scope.
      functions. For field-offset searches use the engine's
      operand-candidates first. IDs from FND-EXE-560 up are this session's;
      Codex allocates below them.
+  4a. PARTY: FND-PARTY-034 closed Q-PARTY-012 (CHARSAVE.GFF is opened
+     from the program's directory; a failed open prints a message and exits
+     with status 1). Q-PARTY-014 asks how the start-up code builds argv[0].
+     Next PARTY items: Q-PARTY-013, then Q-PARTY-011, for RULE-PARTY-006.
   5. Follow Q-EXE-007's game-edition consumers under FMT-EXE-006: FND-EXE-397 native target/register/record contracts, callers/writers and buffer aliases; FND-EXE-398 native file-request contracts, type-four callers/writers and storage admission; FND-EXE-399 type-one shared-segment and slot-input writers/callers: use FND-EXE-401 and the local controlled package to extend literal searches to other evidenced resident regions, then computed accesses and segment provenance; native contracts and buffer admission remain; FND-EXE-396 native quantity/register contracts; FND-EXE-556 complete cache callback/state writers and native contracts, FND-EXE-395 native request semantics/preservation, scratch/descriptor writers and argument producers; FND-EXE-394 native query/record/register contracts and storage writers, FND-EXE-392 preliminary native contracts and FND-EXE-391 other slot producers/published targets, FND-EXE-559 gate/target writers and native admission, FND-EXE-558 complete registration callers/state writers and predecessor/error contracts, FND-EXE-555 other general targets, FND-EXE-531 storage admission, native contracts and remaining startup dependencies.
