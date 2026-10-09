@@ -114,6 +114,14 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Blockers: Q-EXE-011 awaits identity evidence under queue/EXE.md and docs/RUNTIME.md.
   The parent history-message repair still awaits owner approval in docs/HANDOVER.md.
   Do not rewrite shared history; continue independent Q-EXE-012/013 work.
+- Validation-temp follow-up: the assetless Test.ps1 -NoRestore gate passed
+  with the executing account's external temporary directory. Guidance is
+  committed in docs/VALIDATION.md. Duplicate-checked template issue 82 update:
+  https://github.com/kibertoad/refurbished-dinosaurs-template/issues/82#issuecomment-6083050870.
+- Validation-temp follow-up: the assetless Test.ps1 -NoRestore gate passed
+  with the executing account's external temporary directory. Guidance is
+  committed in docs/VALIDATION.md. Duplicate-checked template issue 82 update:
+  https://github.com/kibertoad/refurbished-dinosaurs-template/issues/82#issuecomment-6083050870.
 - Upstream: template issue 83 records the Windows combined-script-path
   launch defect and the successful two-directory control. Template issues
   80 and 82, and toolkit issues 325 and 327 retain the earlier reports.
