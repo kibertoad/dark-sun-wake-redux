@@ -43,32 +43,23 @@ Next ID: Q-PARTY-015
   unresolved, other than the four in `1038:0008` that run only as the program ends
   (FND-PARTY-032), on the paths from program start through START GAME to the gate at overlay 182
   offset `0x12DD`, reach a routine that changes the placed-object count at `DS:264E`
-  (FND-PARTY-022) or makes the word at `DS:0DAB` nonzero (FND-PARTY-029)? Settles it: the
-  producers of each pointer those calls read, shown to hold no such routine before the gate, or
-  the first one that does. Tried: the count's start value and direct stores, the far references
+  (FND-PARTY-022), makes the word at `DS:0DAB` nonzero (FND-PARTY-029), or makes the mouse
+  pointer an image other than an `ICON`, through `3D72:120B`, `3D72:12ED` or one of the 14 sites
+  of FND-PARTY-036, which could make the gate routine's reservations fail (FND-PARTY-035)?
+  Settles it: the producers of each pointer those calls read, shown to hold no such routine
+  before the gate, or the first one that does. Tried: the count's start value and direct stores, the far references
   to the overlay writers and three routines on the path (FND-PARTY-022); the start values and
   writers of `DS:0DAB` and `DS:0D9C` (FND-PARTY-029); a recursive-descent graph of every direct
   call and bounded jump table from program start, the start window loop, the Start Game branch
   and the gate routine, which reaches none of those routines and leaves 60 calls
-  (FND-PARTY-031); the exit table read by `1038:0008` (FND-PARTY-032). Blocks: slice 2.
+  (FND-PARTY-031); the exit table read by `1038:0008` (FND-PARTY-032); the engine's `reach` from
+  the same starts, which leaves the same 60 calls and one Ctrl-Break call and reaches none of the
+  pointer sites (FND-PARTY-037). Blocks: slice 2.
 - Q-PARTY-014. RULE-PARTY-006: What does the C run time pass as the main routine `277D:0004`'s
   `argv[0]`, the string whose directory part becomes `DS:44F2`, the directory `CHARSAVE.GFF` is
   opened from? Settles it: the start-up code from program entry to the call of `277D:0004`, read
   for how it builds the argument list on each DOS version. Split from Q-PARTY-012, which
   FND-PARTY-034 closed. Blocks: none.
-- Q-PARTY-013. RULE-PARTY-006: Between program start and the gate at overlay 182 `0x12DD`, does
-  any of the 14 call sites that can make the mouse pointer an image other than an `ICON` run
-  (FND-PARTY-036), leaving with `DS:A13D` 0 a pointer image whose save and the caret reservation
-  together hold more than 1,006 paragraphs, so that one of the gate routine's calls to
-  `1BF3:27A8` returns `0xFFFF`? Settles it: the routines holding those sites (the flag-0 callers
-  of overlay 182 `+0x059C`, `2C5F:0C8D`, overlay 182 `+0x19F8` and overlay 208 `0x00092A83`)
-  checked against the routines FND-PARTY-031 finds reachable before the gate, and for any that
-  is reached, the size of the image it sets. Tried: the reservation routine, its pool and the two
-  calls' sizes (FND-PARTY-030); the startup reservation of 1,000 paragraphs (FND-PARTY-032); the
-  scroll, pointer and caret routines (FND-PARTY-033); the caret's release of its earlier entries,
-  its height's writers and the startup pointer `ICON` 100 (FND-PARTY-035); every `ICON` frame,
-  at most 6 paragraphs, the `ICON` 19110 pointer that overlay 182 `+0x016B` sets before the gate,
-  and the direct callers of both pointer-image setters (FND-PARTY-036). Blocks: slice 2.
 
 ## Emulated call
 
