@@ -124,6 +124,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-365 reads newline expansion, post-store batching and
   separate input/output result arithmetic. Admit nonwrapping frame/source state,
   native SI/DI/DS preservation, extents and aliases before assigning outcomes.
+  Tried: FND-EXE-366 reads 29F8's captured limit, selected-call count
+  and low-word pointer traversal without result tests. Admit segment/table extent,
+  flag writers, preservation and wrapped-pointer/re-entry behavior.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.

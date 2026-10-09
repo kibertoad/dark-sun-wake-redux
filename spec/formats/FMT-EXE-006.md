@@ -123,6 +123,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   byte-processing and native/state admission remain under Q-EXE-007.
   FND-EXE-365 reads byte expansion, batching and return arithmetic;
   native preservation and frame/source/extent admission remain Q-EXE-007.
+  FND-EXE-366 reads preliminary cleanup's selected-call iterator; segment,
+  table/flag state, preservation and re-entry admission remain Q-EXE-007.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;
   startup, actual DS, aliases and later writers must admit their runtime use.
 - Which disc helpers does the disc installer select (Q-EXE-008)? Selection
