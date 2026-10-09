@@ -89,6 +89,9 @@ bounded source reader; this does not establish native loader behavior.
   FND-EXE-292 grounds one incoming path and its supplied-pointer arguments,
   including unchecked gate-setter continuations; storage production,
   upstream admission and state lifetime remain unresolved.
+  FND-EXE-293 reads that storage producer's request increment and unchecked
+  header-derived byte write; header production, returned extents and state
+  admission remain unresolved.
   FND-EXE-222 supplies conditional source-decoded tails at those candidates;
   saved-listing incompleteness alone does not exclude their decoding.
   FND-EXE-223 retains three unresolved computed transfers in the outer

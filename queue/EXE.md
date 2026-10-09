@@ -321,6 +321,10 @@ Next ID: Q-EXE-014
   candidate, with pointer/size widths and discarded gate-setter returns.
   Continue its storage producer, upstream entry admission and state writers;
   nonzero storage and local gate publications do not settle native readiness.
+  Tried: FND-EXE-293 reads the supplied-storage producer's request increment,
+  header-derived write and unchanged returned pair. Continue allocator header
+  production and returned segment/offset bounds, state writers and lifetime;
+  the unchecked nonzero path does not establish a valid writable extent.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
