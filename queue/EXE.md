@@ -317,6 +317,9 @@ Next ID: Q-EXE-025
   Tried: FND-EXE-407 reads 1425:0591/076B and connects indexed callbacks,
   prefix writes and stored-link traversal. Follow complete link/table writers,
   DS/input/storage admission, target preservation and native contracts.
+  Tried: FND-EXE-408 controls the link-field candidate search and reads
+  1425:08E4's retry/publication path. Follow 1425:060B, remaining candidate
+  writers, computed accesses, DS/alias admission and preservation.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
