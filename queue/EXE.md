@@ -115,6 +115,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-362 reads 0EF5's DS restoration/carry paths and 04CE's
   signed-word mapping, including the minimum-word negation case. Admit native
   preservation, table/state writers and actual DS; other cleanup helpers remain open.
+  Tried: FND-EXE-363 reads 292B's wrapped count and pre-call stores,
+  mismatch exception and separate caller returns. Follow 3B03/29F8, their
+  result/preservation contracts, flag writers and record/buffer admission.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
