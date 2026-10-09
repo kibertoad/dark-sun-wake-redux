@@ -179,26 +179,20 @@ An owner-approved history repair remains separate from this maintenance scope.
   https://github.com/kibertoad/refurbished-dinosaurs/issues/91 (Q-EXE-010 and Q-EXE-007 Tried-note growth) and
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/393 (parity Notes still cite closed Q-EXE-010).
 - Next, after rechecking shared goal claims:
-  1. DSUN inventory reconciliation under FMT-EXE-005. Its questions are
-     closed: FND-EXE-520 (CS offset 0 is the descriptor's first code byte),
-     FND-EXE-521 (descriptor 198's dispatch), FND-EXE-522 (the four
-     code-or-image spans), FND-EXE-523/524 (fixup and padding spans) and
-     FND-EXE-525 (FND-EXE-174's corrected-snapshot spans) show that no
-     anomalous span in either snapshot generation belongs to the body the
-     analyzer gives it. What remains is tooling: migrate-inventory.mjs
-     refuses multi-view DSUN mappings, so it needs a reconciliation step that
-     joins the resident and overlay views of the relocation-corrected
-     snapshots (GAME_DIR analysis/work-baseline) and drops the spans these
-     findings cite (and descriptor 198's 841 extra bytes, FND-EXE-225). Then
-     item 3.
+  1. DSUN inventory reconciliation is done: join-overlay-views.mjs joined
+     the resident and clipped overlay views into the installed and @CD/ disc
+     inventories, and FND-CONFIG-215 to FND-CONFIG-217, FND-INPUT-010/011,
+     FND-PARTY-029 to FND-PARTY-033, FND-SAVE-012, FND-TIME-006/007 and
+     FND-VIDEO-008 replace findings whose ranges ended on a closing return.
   2. SOUND_DS is done: FND-CONFIG-213 and FND-CONFIG-214 correct the range
      ends, and coverage/ holds the migrated range-aware inventory. Run
      migrate-inventory.mjs from the shared checkout: it hashes the exporter
      as checked out, and the recorded revision needs Windows line endings.
-  3. Rerun standard-coverage on all in-scope inventories once valid; retain
-     citation coverage separately from complete-reading availability.
-     The CD inventory sits under CD/, which the checker rejects; the
-     manifest path CD:DSUN.EXE needs @CD/ (docs/EVIDENCE-TOOLS.md).
+  3. standard-coverage now accepts every in-scope inventory. Read its
+     uncited DSUN.EXE functions when choosing item 4's reading; keep
+     citation coverage separate from complete-reading availability. The
+     disc inventory is mostly uncited because findings cite the installed
+     build; cite it only where the two editions differ.
   4. Choose a bounded game-code reading and its actual caller/state obligations;
      preserve EXE questions relevant to the game and retire host-only priorities.
   5. Follow Q-EXE-007's game-edition consumers under FMT-EXE-006: FND-EXE-529 startup callees and cleanup contracts, record/buffer and segment admission, outer callers and native contracts.
