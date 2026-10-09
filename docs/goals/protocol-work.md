@@ -48,17 +48,17 @@ An owner-approved history repair remains separate from this maintenance scope.
 
 ## Handover
 
-- Pending integration: session/protocol-launch-consumer-20261009 holds
-  verified batch 427a817 for FND-EXE-360 / FMT-EXE-006 / Q-EXE-007.
-  Its 2026-10-09 assetless gate passed with 715 .NET tests; preserve shared edits.
+- Integrated: the verified session/protocol-launch-consumer-20261009 batch
+  for FND-EXE-360 / FMT-EXE-006 / Q-EXE-007 passed the integrated full gate.
 - Stage: Slices. The ongoing protocol objective remains active. Resume the
   authoritative local goal claim using start-session branch-tip discovery;
   the earlier single-agent exception for work on main is retired. Completed
   workflow tooling and EXE research are committed.
 - Last full gate: 2026-10-09, assetless Test.ps1 -NoRestore and explicit
   main-base documentation validation passed for EXE research through FND-EXE-299
-  and the follow-up FND-EXE-351.
-  This batch's full gate passed on its first run; the prior issue-7 rerun remains recorded.
+  and follow-ups FND-EXE-351/352, including integrated FND-EXE-360.
+  The final gate passed after correcting a draft location kind and integrating
+  the referenced pending batch; the prior issue-7 rerun remains recorded.
   Preservation-context guidance, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
@@ -196,5 +196,4 @@ An owner-approved history repair remains separate from this maintenance scope.
      citation coverage separately from complete-reading availability.
   4. Choose a bounded game-code reading and its actual caller/state obligations;
      preserve EXE questions relevant to the game and retire host-only priorities.
-  5. Integrate Q-EXE-007's verified session batch after the shared tree is clean;
-     then follow FND-EXE-360's deeper callees and segment/input admission.
+  5. Follow Q-EXE-007, FND-EXE-360's deeper callees and segment/input admission.
