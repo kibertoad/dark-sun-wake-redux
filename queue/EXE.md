@@ -199,6 +199,24 @@ Next ID: Q-EXE-020
   Tried: FND-EXE-482 follows normalized string dispatch, argument width,
   scan exhaustion and signed default padding. Follow actual DS/source and
   callback admission, other conversions and the optional consumer.
+  Tried: FND-EXE-483 follows optional consumer text collectors, signed
+  length traversal and unchecked row publication. Follow 190F:019F,
+  producer/frame extents, initialization calls, aliases and preservation.
+  Tried: FND-EXE-484 follows coordinate arguments, row consumers,
+  signed size comparison and spacing division. Follow 190F:02DF,
+  downstream effects, count/object producers, extents and remaining returns.
+  Tried: FND-EXE-485 follows spacing recurrence, row interfaces and
+  mixed argument provenance. Follow 190F:04CA, interfaces 08E5 and
+  1A7C:01C6, record consumers, extents, aliases and preservation.
+  Tried: FND-EXE-486 follows polling, sequential selector transforms,
+  record matches and remaining caller returns. Follow 08E5 and 1A7C
+  interfaces, selector/count and input producers, extents and preservation.
+  Tried: FND-EXE-487 follows nine-byte row registration, byte argument
+  consumption and polling mode selection. Follow 00EA, 022A, 20DF,
+  readiness/count/flag producers, table extents, aliases and actual DS.
+  Tried: FND-EXE-488 follows byte and coordinate modes, result widths,
+  readiness loops and numeric sentinel collision cases. Follow 00EA,
+  20DF, input/table producers, count admission, extents and preservation.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct

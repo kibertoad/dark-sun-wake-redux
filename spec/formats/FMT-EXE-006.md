@@ -173,6 +173,18 @@ reading of callers, external commands or interpreter behavior is claimed.
   conversion dispatch, total output and state admission remain Q-EXE-007.
   FND-EXE-482 conditionally binds plain string dispatch and default padding;
   source/table admission and remaining consumer paths remain Q-EXE-007.
+  FND-EXE-483 reads optional consumer text collectors and signed traversal;
+  producer/frame admission and later consumer paths remain Q-EXE-007.
+  FND-EXE-484 reads coordinate arguments and signed spacing arithmetic;
+  downstream effects and count/object admission remain Q-EXE-007.
+  FND-EXE-485 reads spacing recurrence and row-interface argument provenance;
+  interface effects, record consumers and state admission remain Q-EXE-007.
+  FND-EXE-486 reads remaining local selector and return paths;
+  input/interface effects and state admission remain Q-EXE-007.
+  FND-EXE-487 reads row registration and local polling mode selection;
+  readiness/table admission and downstream modes remain Q-EXE-007.
+  FND-EXE-488 reads downstream byte/coordinate modes and scan sentinel;
+  readiness, native input and table/count admission remain Q-EXE-007.
   FND-EXE-490 finds no AH=4B request among the sound utility's 69 interrupt
   21 instructions or its stack-thunk callers, and no interrupt 2E. Its load
   image makes no direct launch request; the game editions remain Q-EXE-007.

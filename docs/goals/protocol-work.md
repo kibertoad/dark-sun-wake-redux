@@ -40,12 +40,9 @@ An owner-approved history repair remains separate from this maintenance scope.
 ## Dead ends
 
 - The earlier shared-checkout amend replaced a concurrent research commit's
-  message. Commit new work only, and never amend a commit this session did
-  not just make. The pending repair is recorded in docs/HANDOVER.md.
-  A concurrent integration absorbed staged handover edits; isolate future checkpoint commits.
+  message. Commit new work only, and never amend a commit this session did not just make. The pending repair is recorded in docs/HANDOVER.md. A concurrent integration absorbed staged handover edits; isolate future checkpoint commits.
 - Git Bash could not create its hook snapshot in the inherited temporary
-  directory. Set TMPDIR inside Git Bash to the checkout's writable
-  artifacts/hook-tmp; keep the pre-commit hook enabled.
+  directory. Set TMPDIR inside Git Bash to the checkout's writable artifacts/hook-tmp; keep the pre-commit hook enabled.
 
 ## Handover
 
@@ -53,20 +50,9 @@ An owner-approved history repair remains separate from this maintenance scope.
   batch passed the combined gate with the FND-EXE-355 follow-up on 2026-10-09.
 - Stage: Slices; goal active. Resume the authoritative local claim and preserve other sessions' work.
 - Last full gate: 2026-10-09, assetless Test.ps1 -NoRestore and explicit
-  main-base documentation validation passed for EXE research through FND-EXE-299
-  and follow-ups FND-EXE-351/352/353/354/355/356/357/358/359/361/362/363/364/365/366/367/368/369/371/372/373/374/375/376/377/378/379/471/472/473/474/475/476/477/478/479/480/481/482, including integrated FND-EXE-360/370/380.
-  The final gate passed after correcting a draft location kind and integrating
-  the referenced pending batch; the prior issue-7 rerun remains recorded.
-  Updated preservation-context and blocked-tool guidance, measured-baseline tooling and independent
-  physical PE transfer and overlay-body classification tooling passed full gates
-  and enabled hooks. Mapper relocation revision 2 also passed the full gate
-  and its independently failing-before/passing-after synthetic regression.
-  Argument-check skips remain; stale local-main recovery passed: https://github.com/kibertoad/refurbished-dinosaurs-template/issues/92; no wrapper fix claimed.
-  Corrected revision-2 fresh projects and repeatable exports are local.
-  Review old mapped-snapshot dependencies before accepting native claims.
+  main-base documentation validation passed for EXE research through FND-EXE-299 and follow-ups FND-EXE-351/352/353/354/355/356/357/358/359/361/362/363/364/365/366/367/368/369/371/372/373/374/375/376/377/378/379/471/472/473/474/475/476/477/478/479/480/481/482/483/484/485/486/487/488, including integrated FND-EXE-360/370/380. The final gate passed after correcting a draft location kind and integrating the referenced pending batch; the prior issue-7 rerun remains recorded. Updated preservation-context and blocked-tool guidance, measured-baseline tooling and independent physical PE transfer and overlay-body classification tooling passed full gates and enabled hooks. Mapper relocation revision 2 also passed the full gate and its independently failing-before/passing-after synthetic regression. Argument-check skips remain; stale local-main recovery passed: https://github.com/kibertoad/refurbished-dinosaurs-template/issues/92; no wrapper fix claimed. Corrected revision-2 fresh projects and repeatable exports are local. Review old mapped-snapshot dependencies before accepting native claims.
 - Unfinished: this session's EXE batch is committed. The unrelated validation
-  documentation edit was committed separately; recheck ownership before mutation.
-  EXE follow-up items remain Q-EXE-005,
+  documentation edit was committed separately; recheck ownership before mutation. EXE follow-up items remain Q-EXE-005,
   Q-EXE-006/007/008/009/010 and reader prerequisites Q-EXE-011/012/013; Q-EXE-001 retains its
   retry requirement. Local static-analysis reports and the saved interpreter
   Ghidra project remain in GAME_DIR/analysis/exe-batches for continuation.
@@ -217,4 +203,4 @@ An owner-approved history repair remains separate from this maintenance scope.
   4. Choose a bounded game-code reading and its actual caller/state obligations;
      preserve EXE questions relevant to the game and retire host-only priorities.
   5. Follow Q-EXE-007's configuration/cleanup callees and segment/input
-     admission in FND-EXE-360/353/354/355/356/357/358/359/361/362/363/364/365/366/367/368/369/370/371/372/373/374/375/376/377/378/379/380/471/472/473/474/475/476/477/478/479/480/481/482.
+     admission in FND-EXE-360/353/354/355/356/357/358/359/361/362/363/364/365/366/367/368/369/370/371/372/373/374/375/376/377/378/379/380/471/472/473/474/475/476/477/478/479/480/481/482/483/484/485/486/487/488.
