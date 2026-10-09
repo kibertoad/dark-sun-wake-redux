@@ -279,6 +279,12 @@ Next ID: Q-EXE-025
   Tried: FND-EXE-559 reads both registered callback callees, including mutable
   slot targets, unassigned AX and a native wrapper whose carry mapping is ignored.
   Follow slot/gate/target writers, complete caller coverage and native admission.
+  Tried: FND-EXE-391 reads type-one slot publication and its relocated cleanup
+  target. Follow 15F3:02C3/02A9 output writers, other type producers, all
+  caller/state writers, aliases and native admission before a complete contract.
+  Tried: FND-EXE-392 traces the type-one producer's preliminary outputs and
+  companion word return. Follow native preservation/results, all callers/writers,
+  other type producers and the two other published targets with admitted inputs.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
