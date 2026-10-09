@@ -197,6 +197,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   3DCC, record/state admission and broader coverage remain Q-EXE-007.
   FND-EXE-504 reads 3DCC's guards, expansion and short-write returns;
   DS/SS, record/state admission and broader coverage remain Q-EXE-007.
+  FND-EXE-507 reads remaining local byte-dispatch branches and copy/fallback
+  helpers; actual state/segments and broader callers remain Q-EXE-007.
   FND-EXE-490 finds no AH=4B request among the sound utility's 69 interrupt
   21 instructions or its stack-thunk callers, and no interrupt 2E. Its load
   image makes no direct launch request; the game editions remain Q-EXE-007.
