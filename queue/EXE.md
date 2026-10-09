@@ -220,6 +220,9 @@ Next ID: Q-EXE-020
   Tried: FND-EXE-489 binds readiness to returned BX bit tests and
   coordinate reads to returned CX/DX. Follow native input/segment and
   error-helper admission, table/count producers, aliases and 08E5.
+  Tried: FND-EXE-499 follows both game editions' containing diagnostic
+  through overlay 180 and a resident word-forwarding interface. Follow
+  actual DS, producer and deeper output-like callees before a launch claim.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct

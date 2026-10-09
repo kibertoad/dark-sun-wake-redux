@@ -187,6 +187,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   readiness, native input and table/count admission remain Q-EXE-007.
   FND-EXE-489 binds readiness and coordinate consumers to returned registers;
   native input/segment admission and interface effects remain Q-EXE-007.
+  FND-EXE-499 identifies both game editions' containing diagnostic and
+  its positive consumers; actual DS and deeper call effects remain Q-EXE-007.
   FND-EXE-490 finds no AH=4B request among the sound utility's 69 interrupt
   21 instructions or its stack-thunk callers, and no interrupt 2E. Its load
   image makes no direct launch request; the game editions remain Q-EXE-007.
