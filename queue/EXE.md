@@ -178,6 +178,24 @@ Next ID: Q-EXE-018
   Tried: FND-EXE-475 follows the second sw32.ini stack pathname,
   its mode and sequential section/field matches. Follow 158E:0284's
   conversion/consumers, actual DS, frame/string extents, aliases and preservation.
+  Tried: FND-EXE-476 follows three-byte field conversion, fixed word
+  mapping and one-byte Irq conversion store. Follow 2713, 158E:0347's
+  consumers, actual DS/frame admission, extents, aliases and preservation.
+  Tried: FND-EXE-477 reads 2713's classification, decimal-prefix
+  accumulation, width transition, modular sign and selected shipped table bits.
+  Follow later stored-word consumers and actual source/table/frame admission.
+  Tried: FND-EXE-478 follows Dma and MIDI field collection, repeated
+  fixed mapping and discarded cleanup. Follow 158E:0496's consumers,
+  retained DI/native preservation, actual DS/frame state, extents and producers.
+  Tried: FND-EXE-479 follows repeated table selection and parsed-word
+  publication, signed search limits and ambiguous zero lookup. Follow
+  158E:06B0, base/limit/row and field consumers, extents, aliases and lifetime.
+  Tried: FND-EXE-480 follows final buffer publication, fixed-limit copy
+  exhaustion and unchecked optional-call result. Follow formatter 0F25,
+  callback, 190F:0000, source/global producers, extents and state admission.
+  Tried: FND-EXE-481 follows local formatter flush, callback descriptor
+  mutation and nested cleanup. Follow conversion dispatch, input producers,
+  total output bounds, aliases and the optional consumer.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct

@@ -159,6 +159,18 @@ reading of callers, external commands or interpreter behavior is claimed.
   continuation, index/frame admission and extents remain Q-EXE-007.
   FND-EXE-475 identifies the second filename and sequential configuration markers;
   later conversion/consumers and segment/string admission remain Q-EXE-007.
+  FND-EXE-476 reads field-byte collection, fixed mapping and second conversion store;
+  converter, later consumers and input/state admission remain Q-EXE-007.
+  FND-EXE-477 reads the converter's decimal-prefix and modular-width behavior;
+  runtime table/source admission and later consumers remain Q-EXE-007.
+  FND-EXE-478 reads remaining field collection and unequal result validation;
+  retained-word consumers and input/preservation admission remain Q-EXE-007.
+  FND-EXE-479 reads retained-word publication through repeated table searches;
+  table/field admission and later continuation remain Q-EXE-007.
+  FND-EXE-480 reads final buffer publication and unchecked optional-call result;
+  formatter, source/global extents and optional consumer remain Q-EXE-007.
+  FND-EXE-481 reads formatter flush and callback descriptor advancement;
+  conversion dispatch, total output and state admission remain Q-EXE-007.
   FND-EXE-490 finds no AH=4B request among the sound utility's 69 interrupt
   21 instructions or its stack-thunk callers, and no interrupt 2E. Its load
   image makes no direct launch request; the game editions remain Q-EXE-007.

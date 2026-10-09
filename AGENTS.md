@@ -18,6 +18,10 @@ it actually does and what it accesses, not by reverse-engineering terminology.
 The project has no objective involving live targets, sensitive systems or
 security weaknesses. Keep questions, tool invocations and reports specific to
 game preservation; do not add attack-oriented experiments to ordinary analysis.
+Routine restoration work has no cybersecurity objective or intended security
+impact. This context does not authorize unrelated access or make every possible
+tool operation harmless: evaluate the actual operation and keep it within the
+project's authorized local scope.
 
 ### Keep operations within preservation scope
 
@@ -46,6 +50,9 @@ without treating reverse engineering alone as a security concern.
 - When a tool is blocked, diagnose its inputs, paths and documented requirements
   first. Prefer an existing supported tool or a narrower read-only operation;
   do not try exploit techniques, impersonation or access-control workarounds.
+  A blocked operation is a tooling limitation, not a reason to begin security
+  research. Continue independent preservation work and report the specific
+  limitation when it prevents progress.
 - Prefer static analysis and synthetic reproduction when answering game-format
   or behavior questions. Do not execute unknown helper programs or downloaded
   binaries merely to see what they do; inspect them or use approved tooling.
