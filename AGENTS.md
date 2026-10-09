@@ -28,6 +28,12 @@ asset packs and a faithful game rebuild. Security testing, vulnerability
 discovery and access to third-party systems are outside that scope. A tool's
 ability to inspect memory or executable files does not authorize those uses.
 
+Treat the project's purpose as non-sensitive restoration, while checking the
+scope of each operation separately. A reference to an interrupt, executable,
+memory address or malformed resource is not evidence of a cybersecurity task.
+Do not add security experiments or security claims to answer a preservation
+question that can be settled by local static evidence.
+
 ### Keep operations within preservation scope
 
 Do not invent a cybersecurity task from a game-analysis question. Prefer
@@ -73,6 +79,10 @@ security research to overcome a tooling limitation.
   A blocked operation is a tooling limitation, not a reason to begin security
   research. Continue independent preservation work and report the specific
   limitation when it prevents progress.
+- If a proposed step raises cybersecurity concerns, narrow that step to the
+  preservation question and use an approved static reader or synthetic fixture.
+  Record what remains unanswered; do not create an exploit demonstration or
+  broaden access to obtain the missing evidence.
 - Prefer static analysis and synthetic reproduction when answering game-format
   or behavior questions. Do not execute unknown helper programs or downloaded
   binaries merely to see what they do; inspect them or use approved tooling.
