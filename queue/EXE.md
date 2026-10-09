@@ -109,6 +109,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-359 resolves 05AC/052A's retained-word argument binding,
   local cleanup and digit-production bounds. Admit 1487's returned destination
   capacity and preservation; other cleanup helpers and source state remain open.
+  Tried: FND-EXE-361 follows 1487/3AE4/30EB's scan, copy and low-word
+  destination advance, including unchecked scan exhaustion. Admit substituted
+  storage, termination, extents and frame aliases; other cleanup helpers remain open.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
