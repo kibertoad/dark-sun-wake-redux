@@ -184,16 +184,13 @@ An owner-approved history repair remains separate from this maintenance scope.
      disc inventory is mostly uncited because findings cite the installed
      build; cite it only where the two editions differ.
   4. The bounded game-code reading is the overlay manager in segment 4AE5
-     (Q-EXE-001). FND-EXE-560 to FND-EXE-564 cover startup, the descriptor
-     walk, the INT 3Fh handler, trampoline forms and the EMS/extended cache;
-     FND-EXE-565 finds the disc's manager the same code one byte lower in
-     segment 4AD6; FND-EXE-566 reads the buffer queue (+0x1C link, +0x1B
-     passes) and finds no manager use of +0x1E. Next: readers of the segment
-     table and of overlay headers outside 4AE5 (non-overlay descriptors'
-     unk_02/unk_06 and flags 0, 1, 4; header +0x1E). For field-offset
-     searches use the engine's operand-candidates, which matches any memory
-     operand with that displacement, before a hand-written byte scan.
-     IDs from FND-EXE-560 up are this session's; Codex allocates below them.
+     (Q-EXE-001). FND-EXE-560 to FND-EXE-568 cover startup, the descriptor
+     walk, the INT 3Fh handler, trampoline forms, the EMS/extended cache, the
+     disc edition, the buffer queue, the table's readers and the overlay file
+     and buffer. Q-EXE-024 (Source) holds what the program never reads.
+     Next: Q-EXE-001's last part, any read of the pack header fields from
+     the file outside the manager's startup (DOS 3Fh/42h on the program's
+     own file). IDs from FND-EXE-560 up are this session's.
   5. Follow Q-EXE-007's game-edition consumers under FMT-EXE-006: FND-EXE-556 complete cache callback/state writers and native contracts, FND-EXE-391 preliminary output helpers 15F3:02C3/02A9 and other slot producers, FND-EXE-559 gate/target writers and native admission, FND-EXE-558 complete registration callers/state writers and predecessor/error contracts, FND-EXE-555 other general targets, FND-EXE-531 storage admission, native contracts and remaining startup dependencies.
   6. Done: the DSUN resident rows now come from a single import with the
      overlays as file-backed overlay blocks (docs/EVIDENCE-TOOLS.md), which
