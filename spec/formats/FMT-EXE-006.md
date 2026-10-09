@@ -171,10 +171,9 @@ reading of callers, external commands or interpreter behavior is claimed.
   finds that only the disc's 19 Miles .ADV files pass the install test and
   that their direct interrupt 21 requests are AH=35 and AH=62 only. Their
   runtime-built requests, indirect transfers and chained vectors settle it.
-- Does the sound utility dispatch its null timer registration (Q-EXE-016)?
-  FND-EXE-491 locates the registration at 1C08:1485 and the dispatch's state
-  test. FND-EXE-493 finds that only a stale driver timer handle in CS:01B2
-  can start that slot; the call order that could leave one settles it.
+  FND-EXE-493 and FND-EXE-494 find that the null timer registration and the
+  CS:0E1E calls run only through the DIGPAK function table, which no build
+  file installs.
 - Which disc helpers does the disc installer select (Q-EXE-008)? Selection
   by its installer and standalone manual use are competing readings. The
   file roles in FND-EXE-008 support neither caller claim. Direct installer

@@ -183,9 +183,10 @@ Next ID: Q-EXE-018
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
   references cannot launch a helper, so its pathname consumers no longer
   decide this question. FND-EXE-491 traces its indirect far targets:
-  code outside the image is loaded driver code or a null timer slot
-  (Q-EXE-016). FND-EXE-492 limits installable drivers to 19 disc .ADV files
-  with no AH=4B request; their indirect paths remain Q-EXE-017. The game editions' sound.bat consumers remain unread here.
+  code outside the image is loaded driver code or a null timer slot, which
+  FND-EXE-494 shows needs a DIGPAK image the build lacks. FND-EXE-492 limits installable drivers to 19 disc .ADV files
+  with no AH=4B request; their indirect paths remain Q-EXE-017. The game
+  editions' sound.bat consumers remain unread here.
 
 - Q-EXE-017. FMT-EXE-006: Can the 19 disc driver files the sound utility
   installs reach a program-execution request through code other than their
@@ -194,19 +195,6 @@ Next ID: Q-EXE-018
   its AH=35 reads, traced to a target and selector. FND-EXE-492 censuses only
   their direct interrupt 21 instructions (AH=35 and AH=62). Blocks: a launch
   exclusion for the sound utility under FMT-EXE-006.
-
-- Q-EXE-016. FMT-EXE-006: Does the sound utility ever dispatch the timer
-  slot it registers with 0000:0000 at 1C08:1485? Settles it: every writer of
-  that slot's state word CS:[slot*2 + 006E] with value 2, and the handle the
-  registration returns, traced to its consumers. FND-EXE-491 locates the
-  registration and the dispatch's state test. Blocks: a launch exclusion for
-  the sound utility under FMT-EXE-006.
-  Tried: FND-EXE-493 reads every state writer. Only 1C08:08B3 sets state 2,
-  and its one live caller with a registration handle passes CS:01B2, the
-  driver timer handle that releases leave unchanged. Read the call order of
-  driver shutdown, DIGPAK initialization and 1C08:0C1B, and 1C08:063C's
-  effect on a held slot, to decide whether a stale CS:01B2 can name the
-  null slot.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
