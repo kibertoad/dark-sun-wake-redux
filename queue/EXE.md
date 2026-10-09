@@ -338,6 +338,9 @@ Next ID: Q-EXE-025
   Tried: FND-EXE-415 reads 0B26/0BB4 and distinguishes the two
   callback layouts. Continue record-zero/link/encoded-word producers, slot
   target/argument writers, complete callers and alias/preservation/native admission.
+  Tried: FND-EXE-416 reads 0CDD's allocation/count/template request
+  ordering. Continue 0DE9, count/link/encoded-word writers, complete callers,
+  template/destination aliases and slot-target preservation/native admission.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
