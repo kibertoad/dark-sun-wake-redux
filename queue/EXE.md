@@ -112,6 +112,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-361 follows 1487/3AE4/30EB's scan, copy and low-word
   destination advance, including unchecked scan exhaustion. Admit substituted
   storage, termination, extents and frame aliases; other cleanup helpers remain open.
+  Tried: FND-EXE-362 reads 0EF5's DS restoration/carry paths and 04CE's
+  signed-word mapping, including the minimum-word negation case. Admit native
+  preservation, table/state writers and actual DS; other cleanup helpers remain open.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
