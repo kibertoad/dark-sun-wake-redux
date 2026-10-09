@@ -90,6 +90,10 @@ Next ID: Q-EXE-014
   The first wrapper's CX word comes from saved incoming DI, not a pushed
   zero. Admit record/state writers, interrupt-preserved options and later
   handle/buffer helpers before an execution exclusion or complete reading.
+  Tried: FND-EXE-355 follows 1000:2AF6 and the selected rt parser path,
+  ordered result stores and distinct failure continuations. Continue
+  1000:317F, 1000:0519, 1000:37F1 and 1000:2873, segment/record
+  admission and later consumers before claiming an operation or exclusion.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
