@@ -48,12 +48,9 @@ An owner-approved history repair remains separate from this maintenance scope.
 
 ## Handover
 
-- Integrated: the verified session/protocol-launch-consumer-20261009 batch
-  for FND-EXE-360 / FMT-EXE-006 / Q-EXE-007 passed the integrated full gate.
-- Stage: Slices. The ongoing protocol objective remains active. Resume the
-  authoritative local goal claim using start-session branch-tip discovery;
-  the earlier single-agent exception for work on main is retired. Completed
-  workflow tooling and EXE research are committed.
+- Pending integration: session/protocol-rt-interface-20261009 holds b7cafa5
+  for Q-EXE-007's mode interface; its 2026-10-09 gate passed 715 .NET tests.
+- Stage: Slices; goal active. Resume the authoritative local claim and preserve other sessions' work.
 - Last full gate: 2026-10-09, assetless Test.ps1 -NoRestore and explicit
   main-base documentation validation passed for EXE research through FND-EXE-299
   and follow-ups FND-EXE-351/352/353/354, including integrated FND-EXE-360.
@@ -129,6 +126,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   https://github.com/kibertoad/refurbished-dinosaurs-template/issues/82#issuecomment-6083050870.
 - Duplicate-checked synthetic pattern-query provenance suggestion:
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6083510628.
+- Duplicate-checked saved-register argument acceptance example:
+  https://github.com/kibertoad/refurbished-dinosaurs/issues/37#issuecomment-6083940211.
 - Upstream: template issue 83 records the Windows combined-script-path
   launch defect and the successful two-directory control. Template issues
   80 and 82, and toolkit issues 325 and 327 retain the earlier reports.
@@ -196,4 +195,5 @@ An owner-approved history repair remains separate from this maintenance scope.
      citation coverage separately from complete-reading availability.
   4. Choose a bounded game-code reading and its actual caller/state obligations;
      preserve EXE questions relevant to the game and retire host-only priorities.
-  5. Follow Q-EXE-007, FND-EXE-360/353/354's deeper callees and segment/input admission.
+  5. Integrate Q-EXE-007's tested session batch when clean, then follow the
+     deeper callees and segment/input admission in FND-EXE-360/353/354.
