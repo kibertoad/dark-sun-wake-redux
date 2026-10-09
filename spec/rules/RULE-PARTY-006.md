@@ -4,7 +4,7 @@ title: START GAME supplies characters 40 to 43 as the party
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-013, FND-PARTY-021, FND-PARTY-020, FND-PARTY-023, FND-PARTY-034, SRC-MANUAL-1994]
+evidence: [FND-PARTY-013, FND-PARTY-021, FND-PARTY-020, FND-PARTY-023, FND-PARTY-034, FND-PARTY-038, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [FMT-PARTY-001, SCR-UI-001]
@@ -42,7 +42,8 @@ records of the same number [FND-PARTY-013].
 
 Before each slot's load, the game opens `CHARSAVE.GFF` in the directory the program was started
 from, unless it is already open. When that open fails, the game prints that the file was not
-found, with that directory, and ends with status 1, so no slot is loaded [FND-PARTY-034]. When a
+found, with that directory, and ends with status 1, so no slot is loaded [FND-PARTY-034,
+FND-PARTY-038]. When a
 character record is missing, the slot's load fails and the slot is placed without its `PSIN`,
 `PSST` and `SPST` records [FND-PARTY-013, FND-PARTY-023, FND-PARTY-034].
 
@@ -73,17 +74,23 @@ None known.
   overlay 187 entries and three early returns. For the reading that it does: the count and the
   word at `DS:0DAB` start at 0 (FND-PARTY-022, FND-PARTY-029), and no direct call made between
   program start and the gate reaches a routine that changes the count or makes that word nonzero
-  (FND-PARTY-031). Still open: 56 indirect calls on those paths whose targets are unresolved
-  (FND-PARTY-031, FND-PARTY-032, Q-PARTY-011), and whether either of the gate routine's two
+  (FND-PARTY-031). The pointers most indirect calls on those paths read hold routines from which
+  no route reaches one (FND-PARTY-039, FND-PARTY-040). Still open: the routes through the run of
+  `MAS` 99, where 32 opcodes' handlers and the loader-error routine lead to such routines
+  (FND-PARTY-040, Q-PARTY-015); 9 indirect calls whose targets are unread (FND-PARTY-039, FND-PARTY-040, Q-PARTY-011);
+  and whether either of the gate routine's two
   video-memory reservations fails (FND-PARTY-030, FND-PARTY-032, FND-PARTY-033). While the
   pointer is an `ICON` neither can fail on space, since the caret and pointer saves then hold at
   most 1,006 paragraphs, the room left, and no direct route before the gate makes it another
-  image (FND-PARTY-035, FND-PARTY-036, FND-PARTY-037); a route through the unresolved indirect
-  calls stays open (Q-PARTY-011). The owner's captures of a game started with START GAME show the four characters
+  image (FND-PARTY-035, FND-PARTY-036, FND-PARTY-037); routes through `MAS` 99 and the
+  unresolved indirect calls stay open (Q-PARTY-015, Q-PARTY-011). The owner's captures of a game started with START GAME show the four characters
   in this order, but they do not tell 41 from 53 or 43 from 33 (FND-PARTY-020); the
   shipped-party live session would confirm it (Q-PARTY-001).
-- Where `CHARSAVE.GFF` is opened from rests on the start-up code passing the program's path as
-  `argv[0]` to the main routine, which is unread (FND-PARTY-034, Q-PARTY-014).
+- Where `CHARSAVE.GFF` is opened from rests on DOS reporting version 3 or later and placing the
+  program's full path after the environment, which the C run time copies as `argv[0]`; with an
+  earlier version `argv[0]` is empty and the name is opened in the current directory
+  (FND-PARTY-034, FND-PARTY-038). (No item: what the DOS of GOG's DOSBox reports and writes
+  there shows only in a run, and no run is possible.)
 - Whether the program ends after a failed `CHARSAVE.GFF` open depends on the operating system
   carrying out the run time's terminate request (FND-CONFIG-062, FND-PARTY-034); a run without
   the file would show it (No item: agents cannot run the game, and no owner session asks for a

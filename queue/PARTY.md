@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-015
+Next ID: Q-PARTY-016
 
 ## Static
 
@@ -39,27 +39,39 @@ Next ID: Q-PARTY-015
   slot? Settles it: the handler the keys 1 to 4 reach in overlay 190, which posts an event for
   the character boxes `0x2C24` to `0x2C27` (FND-COMBAT-025), and the writers of `leader`. Tried:
   the leader buttons, which store the slot at `4C13:0369` (FND-COMBAT-023). Blocks: slice 3.
-- Q-PARTY-011. RULE-PARTY-006: Can any of the 56 indirect calls that FND-PARTY-031 leaves
-  unresolved, other than the four in `1038:0008` that run only as the program ends
-  (FND-PARTY-032), on the paths from program start through START GAME to the gate at overlay 182
-  offset `0x12DD`, reach a routine that changes the placed-object count at `DS:264E`
+- Q-PARTY-011. RULE-PARTY-006: Can any of the 9 indirect calls whose targets FND-PARTY-039 and
+  FND-PARTY-040 leave open on the paths from program start through START GAME to the gate at
+  overlay 182 offset `0x12DD` (the 8 calls through record fields at `ES:BX` and `ES:SI`, and
+  `call [di+0x6393]` at `0x1767E`, whose `DS` was not traced), other than through the run of
+  `MAS` 99 (Q-PARTY-015), reach a routine that changes the placed-object count at `DS:264E`
   (FND-PARTY-022), makes the word at `DS:0DAB` nonzero (FND-PARTY-029), or makes the mouse
   pointer an image other than an `ICON`, through `3D72:120B`, `3D72:12ED` or one of the 14 sites
   of FND-PARTY-036, which could make the gate routine's reservations fail (FND-PARTY-035)?
-  Settles it: the producers of each pointer those calls read, shown to hold no such routine
-  before the gate, or the first one that does. Tried: the count's start value and direct stores, the far references
-  to the overlay writers and three routines on the path (FND-PARTY-022); the start values and
-  writers of `DS:0DAB` and `DS:0D9C` (FND-PARTY-029); a recursive-descent graph of every direct
-  call and bounded jump table from program start, the start window loop, the Start Game branch
-  and the gate routine, which reaches none of those routines and leaves 60 calls
-  (FND-PARTY-031); the exit table read by `1038:0008` (FND-PARTY-032); the engine's `reach` from
-  the same starts, which leaves the same 60 calls and one Ctrl-Break call and reaches none of the
-  pointer sites (FND-PARTY-037). Blocks: slice 2.
-- Q-PARTY-014. RULE-PARTY-006: What does the C run time pass as the main routine `277D:0004`'s
-  `argv[0]`, the string whose directory part becomes `DS:44F2`, the directory `CHARSAVE.GFF` is
-  opened from? Settles it: the start-up code from program entry to the call of `277D:0004`, read
-  for how it builds the argument list on each DOS version. Split from Q-PARTY-012, which
-  FND-PARTY-034 closed. Blocks: none.
+  Settles it: the producers of each record field and pointer those calls read, shown to hold no
+  such routine before the gate, or the first one that does. Tried: the count's start value and
+  direct stores, the far references to the overlay writers and three routines on the path
+  (FND-PARTY-022); the start values and writers of `DS:0DAB` and `DS:0D9C` (FND-PARTY-029); a
+  recursive-descent graph of every direct call and bounded jump table from program start, the
+  start window loop, the Start Game branch and the gate routine, which reaches none of those
+  routines and leaves 60 calls (FND-PARTY-031); the exit table read by `1038:0008`
+  (FND-PARTY-032); the engine's `reach` from the same starts, which leaves the same 60 calls and
+  one Ctrl-Break call and reaches none of the pointer sites (FND-PARTY-037); the start values and
+  displacement stores of every pointer those 61 calls read, which leave only the record fields
+  unenumerated (FND-PARTY-039); and `reach` rounds that add those values as starts once their
+  writers are reached, whose only routes to the targets pass the run of `MAS` 99
+  (FND-PARTY-040). Blocks: slice 2.
+- Q-PARTY-015. RULE-PARTY-006: Before the gate at overlay 182 offset `0x12DD`, does the run of
+  `MAS` 99 that overlay 188 `+046C` starts through `172C:000C` (FND-CONFIG-160, FND-PARTY-040)
+  execute an opcode whose handler, with the operands the script gives it, changes the placed-object
+  count at `DS:264E`, makes `DS:0DAB` nonzero or makes the pointer an image other than an `ICON`,
+  and does the script's load fail, so that `172C:0299` calls `5702:00B1`, which leads to
+  `28C9:0CFF` being stored at `DS:A0F1`? Of the 129 opcodes, the handlers of `0x08`, `0x0B`,
+  `0x0D`, `0x1A`, `0x22`, `0x24`, `0x25`, `0x2A`, `0x2B`, `0x2D`, `0x2F`, `0x32`, `0x35` to `0x3C`,
+  `0x42`, `0x43`, `0x44`, `0x48`, `0x4F`, `0x50`, `0x51`, `0x54`, `0x5C`, `0x5E`, `0x62` and `0x80`
+  reach such a routine through resolved calls (FND-PARTY-040). Settles it: the opcodes `MAS` 99
+  executes from offset 0 until its frames unwind or it stops, read from the installed resource
+  (FMT-SCRIPT-001, FND-SCRIPT-001) along the interpreter's control flow, and for each listed opcode
+  it executes, the handler's path for its operands. Split from Q-PARTY-011. Blocks: slice 2.
 
 ## Emulated call
 
