@@ -196,6 +196,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-481 follows local formatter flush, callback descriptor
   mutation and nested cleanup. Follow conversion dispatch, input producers,
   total output bounds, aliases and the optional consumer.
+  Tried: FND-EXE-482 follows normalized string dispatch, argument width,
+  scan exhaustion and signed default padding. Follow actual DS/source and
+  callback admission, other conversions and the optional consumer.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.

@@ -171,6 +171,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   formatter, source/global extents and optional consumer remain Q-EXE-007.
   FND-EXE-481 reads formatter flush and callback descriptor advancement;
   conversion dispatch, total output and state admission remain Q-EXE-007.
+  FND-EXE-482 conditionally binds plain string dispatch and default padding;
+  source/table admission and remaining consumer paths remain Q-EXE-007.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;
   startup, actual DS, aliases and later writers must admit their runtime use.
 - Which disc helpers does the disc installer select (Q-EXE-008)? Selection
