@@ -495,6 +495,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-273 reads the exact-size unlink helper and ordinary DS
   restoration; incoming DX, live link writers, physical aliases and the other
   allocation helper contracts remain open.
+  Tried: FND-EXE-274 reads the larger-count split helper and its DS/DX returns;
+  incoming DS/DX identity, header writers, arithmetic bounds and aliases remain
+  unresolved. The other helper contracts remain unread.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
