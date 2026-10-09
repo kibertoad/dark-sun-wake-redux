@@ -80,6 +80,9 @@ bounded source reader; this does not establish native loader behavior.
   admission, other writers and lifecycle callers remain unresolved.
   FND-EXE-289 supplies a relocated setup-call candidate without a grounded
   instruction path; caller reachability and state provenance remain open.
+  FND-EXE-290 follows a previously named setup entry through that call and
+  shared publications; incoming caller admission, allocation preservation,
+  the second setup callee and state lifetime remain unresolved.
   FND-EXE-222 supplies conditional source-decoded tails at those candidates;
   saved-listing incompleteness alone does not exclude their decoding.
   FND-EXE-223 retains three unresolved computed transfers in the outer

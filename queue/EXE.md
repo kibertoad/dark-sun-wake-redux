@@ -540,6 +540,10 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-289's controlled setup incoming query returns one relocated
   candidate, but isolated decoding and an ungrounded earlier start do not
   establish its entry path. Recover an independently grounded caller next.
+  Tried: FND-EXE-290 follows the entry already named by FND-INPUT-005
+  through shared publications and both setup calls. Recover the incoming
+  candidate's path and argument writers, allocation DS/CX preservation,
+  the second setup callee and state lifetime before closure.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
