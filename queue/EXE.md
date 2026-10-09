@@ -290,6 +290,9 @@ Next ID: Q-EXE-025
   Tried: FND-EXE-397 reads both remaining type-three published callees,
   zero-work field writes, mutable request defaults and odd-byte staging. Follow
   native pointer/register/record effects, complete callers/writers, bounds/aliases and type four.
+  Tried: FND-EXE-398 reads type four's producer, immediate native helpers
+  and published targets. Follow actual callers/input/state writers, native contracts,
+  pointer/quantity/index aliases and the remaining startup dependencies.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct

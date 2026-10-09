@@ -1,5 +1,16 @@
 # Decisions
 
+## 2026-10-10: Research the installed 1.1 game files
+
+The owner decided that the restoration targets the installed files and that
+game-rule research uses the installed `DSUN.EXE`. The disc copies of the eight
+files replaced during installation are the older release and are excluded from
+new findings, inventories, coverage figures, queue items and code. Earlier disc
+comparisons remain historical and are not extended. Disc-only inputs used by
+the installed game remain in scope; the source of `CHARSAVE.GFF` read at
+runtime remains an open question. The exact file list and scope are recorded
+in [SOURCE-EDITIONS.md](SOURCE-EDITIONS.md#disc-copies-are-not-studied).
+
 ## 2026-10-09: Exclude DOSBox from game-restoration research coverage
 
 The owner clarified that DOSBox is an emulator on top of the game and is

@@ -279,6 +279,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   native contracts, complete callers/writers and remaining targets remain Q-EXE-007.
   FND-EXE-397 reads its two remaining published callees and shipped request
   defaults; native effects, complete callers/writers and type four remain Q-EXE-007.
+  FND-EXE-398 reads type four, its immediate helpers and published targets;
+  native contracts, actual callers/writers and storage admission remain Q-EXE-007.
   FND-EXE-490 finds no AH=4B request among the sound utility's 69 interrupt
   21 instructions or its stack-thunk callers, and no interrupt 2E. Its load
   image makes no direct launch request; the game editions remain Q-EXE-007.
