@@ -106,6 +106,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-358 distinguishes 1000:2873's preliminary failure from
   later record clears, and records 1000:27B6/05F5's local paths. Follow its
   remaining callees and SI/stack preservation before assigning release or rollback.
+  Tried: FND-EXE-359 resolves 05AC/052A's retained-word argument binding,
+  local cleanup and digit-production bounds. Admit 1487's returned destination
+  capacity and preservation; other cleanup helpers and source state remain open.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.

@@ -111,6 +111,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   state admission remain under Q-EXE-007 before an execution exclusion.
   FND-EXE-358 reads cleanup's distinct result/store paths; remaining helper
   effects, SI/stack preservation and record admission stay under Q-EXE-007.
+  FND-EXE-359 resolves the retained-word numeric conversion and local stack
+  cleanup; destination admission and other helper contracts remain Q-EXE-007.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;
   startup, actual DS, aliases and later writers must admit their runtime use.
 - Which disc helpers does the disc installer select (Q-EXE-008)? Selection
