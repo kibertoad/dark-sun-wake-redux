@@ -275,6 +275,9 @@ Next ID: Q-EXE-025
   Tried: FND-EXE-392 traces the type-one producer's preliminary outputs and
   companion word return. Follow native preservation/results, all callers/writers,
   other type producers and the two other published targets with admitted inputs.
+  Tried: FND-EXE-393 reads type-two slot publication, query-dependent clamps
+  and its far no-op cleanup. Follow 15F3:03B3/0371 query contracts, other
+  type producers/targets, complete caller/writer coverage and state admission.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
