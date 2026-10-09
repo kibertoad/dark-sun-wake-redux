@@ -205,6 +205,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   native preservation and later state/writer admission remain Q-EXE-007.
   FND-EXE-510 reads the startup priority dispatcher and shipped targets;
   callee effects, segment/state admission and broader callers remain Q-EXE-007.
+  FND-EXE-511 identifies an early conditional diagnostic-flag writer;
+  0705/364E, state admission and remaining callers remain Q-EXE-007.
   FND-EXE-490 finds no AH=4B request among the sound utility's 69 interrupt
   21 instructions or its stack-thunk callers, and no interrupt 2E. Its load
   image makes no direct launch request; the game editions remain Q-EXE-007.

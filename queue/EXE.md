@@ -247,6 +247,9 @@ Next ID: Q-EXE-020
   Tried: FND-EXE-510 reads 0220's priority dispatch and seven shipped
   targets, including relocated far segments. Follow target bodies, SI/DI
   preservation, table writers and subsequent record/segment state admission.
+  Tried: FND-EXE-511 reads target 0886's indexed initialization and
+  conditional diagnostic-flag clear. Follow 0705's return, 364E's record
+  writes and preservation, the earlier target and remaining startup/callers.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
