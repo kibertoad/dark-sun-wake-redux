@@ -145,6 +145,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-373 follows 1E73's signed gate, arithmetic callees,
   candidate bounds and saved-prior-pair return. Admit inputs, stored pairs,
   native preservation, frame aliases and state writers before extent claims.
+  Tried: FND-EXE-374 identifies neighboring entry shared-state writes and
+  its source-field copy count, chunk bounds and unchecked terminal result.
+  Follow its callers, 1CD9, headers, extents, aliases and shared-state lifetime.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.

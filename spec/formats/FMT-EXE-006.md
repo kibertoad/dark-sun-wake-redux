@@ -137,6 +137,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   lower-helper, preservation and extent/state admission remain Q-EXE-007.
   FND-EXE-373 reads the lower quantity helper's gates and saved-prior return;
   input, bound/state writers, native and frame/extent admission remain Q-EXE-007.
+  FND-EXE-374 identifies neighboring shared-state producers and copy arithmetic;
+  callers, remaining helpers, headers and extent/state admission remain Q-EXE-007.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;
   startup, actual DS, aliases and later writers must admit their runtime use.
 - Which disc helpers does the disc installer select (Q-EXE-008)? Selection
