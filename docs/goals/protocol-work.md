@@ -184,7 +184,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   Its pathname-consumer chain under Q-EXE-007 no longer decides the sound
   utility's launch question.
   Upstream: https://github.com/kibertoad/refurbished-dinosaurs/issues/90 and
-  https://github.com/kibertoad/refurbished-dinosaurs-template/issues/69#issuecomment-6086383540.
+  https://github.com/kibertoad/refurbished-dinosaurs-template/issues/69#issuecomment-6086383540 and
+  https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/388 (entry ID clashes between writers).
 - Next, after rechecking shared goal claims:
   1. Finish installed and CD DSUN inventory reconciliation under Q-EXE-010,
      FMT-EXE-005; follow Q-EXE-010 shared request/DS writers, shared-state lifetime,
