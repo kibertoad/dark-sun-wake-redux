@@ -4,7 +4,7 @@ title: A cinematic plays its FLI from the installation, copying it from the disc
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-VIDEO-008, FND-VIDEO-003, FND-VIDEO-004, FND-VIDEO-005, FND-VIDEO-006, FND-VIDEO-007, FND-SOUND-006, FND-SOUND-007, FND-SOUND-008, FND-SOUND-010, FND-SOUND-011, FND-SOUND-012, FND-COMBAT-023, FND-COMBAT-026]
+evidence: [FND-VIDEO-008, FND-VIDEO-009, FND-VIDEO-004, FND-VIDEO-010, FND-VIDEO-006, FND-VIDEO-007, FND-SOUND-006, FND-SOUND-007, FND-SOUND-008, FND-SOUND-010, FND-SOUND-011, FND-SOUND-012, FND-COMBAT-023, FND-COMBAT-026]
 conflicting: []
 split_with: []
 related: [RULE-VIDEO-002, RULE-VIDEO-003, RULE-SOUND-002, FMT-VIDEO-001]
@@ -24,7 +24,7 @@ Each FLI plays with song `n + 35`, one frame every 107 ms.
 
 `play_cinematic` runs at startup with 1, or with the number the `-C` test switch gives, when
 digital sound, sound and cinematics are on, and from script opcode `0x22` with 6 as its first
-parameter and `n` as its third (FND-VIDEO-005). `prefetch_cinematic` runs each time a region is
+parameter and `n` as its third (FND-VIDEO-010). `prefetch_cinematic` runs each time a region is
 loaded, after `current_region` is set, with the region's number (FND-VIDEO-007).
 
 ## Parameters
@@ -186,7 +186,7 @@ None known.
 ## Open questions
 
 - Which scripts use opcode `0x22` with request 6 and which numbers they pass, and so when
-  cinematics 2 to 5 play (FND-VIDEO-005, Q-VIDEO-002).
+  cinematics 2 to 5 play (FND-VIDEO-010, Q-VIDEO-002).
 - What `fn_187_2802` compares the length with: `fn_44DE_04A1` fills in words of which it
   multiplies the first two (FND-VIDEO-004, Q-VIDEO-002).
 - What `fn_4544_0000`, `fn_187_21EA`, `fn_44DE_0127`, `fn_44DE_02A9` and `fn_44DE_0569` do beyond
@@ -198,7 +198,7 @@ None known.
   (FND-VIDEO-007, Q-VIDEO-002).
 - Whether anything reads `installed_fli_lengths` (FND-VIDEO-007, Q-VIDEO-002).
 - What `fn_56BD_0034`, `fn_44DE_0086` and `fn_44DE_003A` do beyond testing for, opening and
-  closing a file, and what `fn_1BF3_2973` does beyond setting the screen mode (FND-VIDEO-003,
+  closing a file, and what `fn_1BF3_2973` does beyond setting the screen mode (FND-VIDEO-009,
   Q-SOUND-002).
 - What `g_57E0_4263` stands for beyond marking that the music mode was set after a spoken line
   (FND-SOUND-008, Q-SOUND-003).

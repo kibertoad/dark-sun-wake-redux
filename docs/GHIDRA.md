@@ -159,22 +159,19 @@ it only with an address selected through an evidence-led query.
 
 ## Function inventory
 
-The Survey inventory of `BLD-GOG-EN-1.1`'s `DSUN.EXE` joins two views: the
-original import for resident functions and the relocation-corrected mapped
-import for overlay functions. Their auto-analysis results differ, so the
-mapped import does not replace the original resident inventory. The procedure
+The Survey inventory of `BLD-GOG-EN-1.1`'s `DSUN.EXE` joins two views: a
+single import of the shipped file with its overlays added as file-backed
+overlay blocks, for resident functions, and the relocation-corrected mapped
+import for overlay functions. The single import sees calls from overlay code,
+so its resident rows include functions only overlay code calls, among them
+trampolines in the overlay headers. Its overlay rows differ from the mapped
+view's, which the inventory keeps (toolkit issue 111). The procedure
 is the DSUN reconciliation path in [EVIDENCE-TOOLS](EVIDENCE-TOOLS.md).
 Resident starts are `segment:offset` with the load image at segment `0x1000`;
 overlay starts are eight-digit offsets in the shipped file, each inside a row
 of the build's Code ranges. Each row gives the function's body byte count and
 its body ranges. Ghidra's discovery does not prove that every original function
-was found. The resident rows come from the plain import, which never sees
-calls from overlay code, so they leave out resident functions that only overlay
-code calls: a single import with the overlays added as file-backed overlay
-blocks found 201 such starts in the installed file and 198 in the disc's, 198
-of the installed ones also functions in the full mapped view (toolkit issue 111,
-2026-10-10). That single import does not replace the join: its overlay rows
-differ from the mapped view's. The inventory contains no code, bytes, strings or auto-generated
+was found. The inventory contains no code, bytes, strings or auto-generated
 names.
 
 Known entries added outside that export use measured body-byte counts from
@@ -188,9 +185,9 @@ The disc's distinct `CD:DSUN.EXE` also has an inventory, at
 the `@CD/` directory because Windows cannot use a colon in a filename. Extract
 the file from track 1 of `game.gog` into a local-only path, verify its 634,704
 bytes and XXH3-128 `318cd5ec0559901add3780097162a919`, then run the same
-imports and join with `manifest` set to `CD:DSUN.EXE`. Ghidra 12.1.3 gave 1,282
-resident and 860 overlay rows, for 2,142; the installed file gave 1,284 and
-853, for 2,137.
+imports and join with `manifest` set to `CD:DSUN.EXE`. Ghidra 12.1.3 gave 1,480
+resident and 860 overlay rows, for 2,340; the installed file gave 1,485 and
+853, for 2,338. The plain import alone gave 1,282 and 1,284 resident rows.
 
 The `SOUND_DS.EXE.tsv`, `SVIEW.EXE.tsv` and `PATCH.EXE.tsv` files under
 `coverage/BLD-GOG-EN-1.1/` come from direct MZ imports of the installed
@@ -216,7 +213,8 @@ rows are mapped-image `segment:offset` addresses with the mapped file's hash,
 and it neither clips overlay bodies nor joins the views. The DSUN inventories
 therefore still come from `join-overlay-views.mjs`. Its `entry` rows name the
 same starts without an instruction as the join's expectations: `2707:048E` in
-the installed resident view and `6F0E:1A7C` in its overlay view.
+the installed resident view, `6F0E:1A7C` in its overlay view and `5662:00F7`
+in the disc's resident view.
 
 ## Bounded script pattern
 

@@ -1,9 +1,9 @@
 ---
-id: FND-VIDEO-005
+id: FND-VIDEO-010
 title: The cinematic routine runs at startup with cinematic 1 unless a test switch picks another, and from script opcode 0x22 with request 6
-status: superseded
+status: recorded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: [FND-VIDEO-010]
+superseded_by: []
 recorded_by: kibertoad
 reproduced_by: []
 method: static
@@ -16,7 +16,7 @@ locations:
     address: 172C:0F84..172C:0FC1
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
-    address: 5787:0066..5787:006A
+    address: 5787:0066..5787:006B
 tool: Capstone 5.0.7 16-bit disassembly with Python 3.14.7, MZ relocations applied for a load image at segment 0x1000; far calls in overlays found through their fixup words and the segment table at file offset 0x4B080; Python byte searches of the whole DSUN.EXE for far calls to the cinematic entries
 environment: null
 ---
@@ -67,6 +67,12 @@ the cinematic's number as its third.
 requests of opcode `0x22`. Which scripts use request 6, with which numbers, was not searched, so
 when cinematics 2 to 5 play is not shown. Only direct far calls were searched; a call through a
 pointer would not be found.
+
+This replaces FND-VIDEO-005, whose location for the trampoline at `5787:0066` ended at
+`5787:006A`, covering four of its five bytes (FMT-EXE-004). The documentation check found this
+when the `DSUN.EXE` inventory, rebuilt from a single import that sees calls from overlay code,
+placed a function whose body includes the whole trampoline. The location now ends at `5787:006B`.
+Its other observations are unchanged.
 
 ## How to reproduce
 

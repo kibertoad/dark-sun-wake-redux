@@ -1,19 +1,19 @@
 ---
-id: FND-VIDEO-003
+id: FND-VIDEO-009
 title: The game sets BIOS mode 0x13 and unchains it for play, uses plain mode 0x13 for cinematics and mode 3 on exit, while the INT 10h wrapper at 1000:1136 serves text services
-status: superseded
+status: recorded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: [FND-VIDEO-009]
+superseded_by: []
 recorded_by: kibertoad
 reproduced_by: []
 method: static
 locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
-    address: 1BF3:2973..1BF3:2A49
+    address: 1BF3:2973..1BF3:2A4A
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
-    address: 1BF3:2A4A..1BF3:2A60
+    address: 1BF3:2A4A..1BF3:2A61
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 1000:1136..1000:11BE
@@ -79,8 +79,14 @@ Which of overlay 180's routines run at startup and which on exit was read from t
 from their callers. The routines the game draws with after the switch were not read, so how it
 lays out the four planes is not shown here.
 
+This replaces FND-VIDEO-003, whose first two locations ended at `1BF3:2A49` and `1BF3:2A60`, the
+closing `retf` of each routine, instead of the byte after it. The documentation check found this
+when the `DSUN.EXE` inventory, rebuilt from a single import that sees calls from overlay code,
+placed functions at `1BF3:2973` and `1BF3:2A4A`. The ends now give the byte after each `retf`.
+Its other observations are unchanged.
+
 ## How to reproduce
 
-Search the load image for `CD 10`; disassemble `1BF3:2973` to `1BF3:2A60` and `1000:1136` to
+Search the load image for `CD 10`; disassemble `1BF3:2973` to `1BF3:2A61` and `1000:1136` to
 `1000:11BE`; scan segment `1000` for `E8` calls reaching `1000:1136`; search the overlays for
 `9A 73 29 58 00`, a far call to `1BF3:2973` through descriptor `0x58`.

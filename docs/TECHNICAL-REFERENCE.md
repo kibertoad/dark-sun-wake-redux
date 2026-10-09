@@ -174,7 +174,7 @@ rejecting unsupported semantics:
   indices 0 to 320 that eight functions call, and a separate window-image
   request path. The title resource #11011 has no observed connection to either,
   so neither title sequencing nor image composition is inferred.
-- `FND-VIDEO-003` finds that the game sets BIOS mode `0x13` unchained into
+- `FND-VIDEO-009` finds that the game sets BIOS mode `0x13` unchained into
   four planes at startup, plain mode `0x13` for cinematics and text mode 3 on
   exit, and that the `INT 10h` wrapper at `1000:1136` serves the C runtime's
   text output. The routines that draw into the planes were not read.

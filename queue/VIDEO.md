@@ -18,7 +18,7 @@ Next ID: Q-VIDEO-003
   `44DE:04A1`, `4544:0000`, `1BF3:4723`, `1BF3:4C09`, `1BF3:4FEB`, `5787:005C`, `56BD:0057`,
   offsets `0x206E`, `0x21EA`, `0x2424` and `0x2A21` of overlay 187, the readers of
   `4E28:0005` and `DS:6298`, and what `DS:14E5` is for. Tried: the cinematic routine, its two
-  callers and the region copier (FND-VIDEO-004, FND-VIDEO-005, FND-VIDEO-007), which show how a
+  callers and the region copier (FND-VIDEO-004, FND-VIDEO-010, FND-VIDEO-007), which show how a
   cinematic plays but not which scripts ask for one. Blocks: slice 7.
 
 ## Emulated call

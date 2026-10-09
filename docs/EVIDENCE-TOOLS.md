@@ -45,7 +45,19 @@ reaches the removed part of that overlay's own fixup table; the clip log lists
 every removed range. Local report output and
 analysis projects stay in GAME_DIR; no generated report is committed.
 
-The DSUN reconciliation path joins two views of each edition. Copy the
+The DSUN reconciliation path joins two views of each edition. For the
+resident view, copy the resident snapshot (the plain MZ import, auto-analyzed)
+to a new project. Write the overlay plan with `python -I
+tools/ghidra/fbov_overlay_plan.py <shipped> <mapped image> <mapping JSON>
+<plan.json>`, and go on only when it prints `mismatches 0`: every overlay's
+fixed-up code then equals the mapped image's. Run `tools/ghidra/AddFbovOverlayBlocks.java <plan.json>`
+on the copy without `-readOnly`. It adds each overlay as a file-backed overlay
+block at its mapped segment, writes the fixups, creates functions at the
+trampoline targets and reanalyzes only those blocks, so resident functions that
+only overlay code calls get their starts. Export it with
+`ExportResearchBaseline.java`, passing the plain import's resident regions
+(the rows of its regions file as start..exclusive-end), which leaves the
+overlay blocks out. For the overlay view, copy the
 relocation-corrected overlay snapshot (revision 2 mapper) to a new project,
 run `tools/ghidra/ClipBodiesToEntryRegion.java` on the copy without
 `-readOnly`, passing the overlays' mapped code ranges from
@@ -73,11 +85,13 @@ from a checkout with Windows line endings.
 
 The committed `coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv` and
 `coverage/BLD-GOG-EN-1.1/@CD/DSUN.EXE.tsv` were staged by this join from the
-`INST-` and `CD-` resident and `overlay-owned` snapshots of 2026-10-08 and
-2026-10-09, and `standard-coverage` accepts both. Their provenance files name
-both snapshots and the exporter, clip and join revisions. The installed
-inventory expects `2707:048E` (resident) and `6F0E:1A7C` (overlay, file offset
-`0x00065D5C`) to have no decoded instruction; the disc inventory expects none.
+`INST-` and `CD-` single-import resident views of 2026-10-10 and the
+`overlay-owned` snapshots of 2026-10-09, and `standard-coverage` accepts both.
+Their provenance files name both snapshots and the exporter, clip and join
+revisions. The installed inventory expects `2707:048E` (resident) and
+`6F0E:1A7C` (overlay, file offset `0x00065D5C`) to have no decoded
+instruction; the disc inventory expects `5662:00F7`, a trampoline start in an
+overlay header that overlay code calls.
 `report.mjs inventory-check` predates the `ranges` column and rejects these
 files, so check them with `standard-coverage`.
 
