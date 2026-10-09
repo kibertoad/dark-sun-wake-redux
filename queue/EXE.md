@@ -504,6 +504,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-276 reads the fallback request callee and saved-pair return;
   arithmetic/comparison helpers, final state updater and all state-word writers
   remain unread. Preserve the signed guard and failure-state obligations.
+  Tried: FND-EXE-277 reads the arithmetic and comparison helpers, including
+  normalization, wrapping and local DS preservation. State-word admission,
+  writer coverage and the final updater still prevent closure.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.

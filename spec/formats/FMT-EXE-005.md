@@ -55,7 +55,9 @@ bounded source reader; this does not establish native loader behavior.
   call sequence; its callee contract, failure effects and returned extent remain
   unresolved. FND-EXE-276 follows its request callee through guards and a
   saved-state return; arithmetic helpers, state updater and state writers remain
-  open.
+  open. FND-EXE-277 resolves local arithmetic and comparison helpers with
+  word-width wrapping; state admission, updater effects and writer coverage
+  remain open.
   FND-EXE-222 supplies conditional source-decoded tails at those candidates;
   saved-listing incompleteness alone does not exclude their decoding.
   FND-EXE-223 retains three unresolved computed transfers in the outer
