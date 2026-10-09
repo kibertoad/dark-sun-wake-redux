@@ -83,11 +83,11 @@ An owner-approved history repair remains separate from this maintenance scope.
   after those obligations are satisfied; recorded findings and citation coverage
   are not substitutes. Address boundary anomalies that affect the candidate.
 - Queue-scope checkpoint: the isolated session branch
-  session/protocol-host-queue-20261009 holds the tested planning batch moving
+  session/protocol-host-queue-20261009 holds the integrated planning batch moving
   Q-EXE-006/009/012/013 to Blocked and updating Q-EXE-011's scope restriction.
   Documentation, queue tracking and assetless Test.ps1 -NoRestore passed on
-  2026-10-09, including 715 .NET tests. Integrate this batch into the
-  authoritative goal branch only when its shared queue edits are committed.
+  2026-10-09, including 715 .NET tests. The integrated documentation and
+  queue-reference checks passed with the concurrent EXE research preserved.
 - Environment: use the checkout's portable PowerShell
   (artifacts/pwsh7/runtime/pwsh.exe) and locked evidence-python interpreter. Clear GAME_DIR and
   NoDefaultCurrentDirectoryInExePath. TEMP/TMP must belong to the account
