@@ -451,6 +451,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-263 checks wider positive scalar candidates and an independent
   source consumer missing from the saved listing. CS overrides and incomplete
   analyzer coverage prevent admitting them as exhaustive state-link writers.
+  Tried: FND-EXE-264 follows indexed name-buffer writes into the initial state
+  segment: bounded tail output does not bound the preceding prefix. Native
+  prefix limits, frame/segment preservation and overlapping writes remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
