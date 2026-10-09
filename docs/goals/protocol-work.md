@@ -199,4 +199,4 @@ An owner-approved history repair remains separate from this maintenance scope.
   4. Choose a bounded game-code reading and its actual caller/state obligations;
      preserve EXE questions relevant to the game and retire host-only priorities.
   5. Follow Q-EXE-007's game-edition sound.bat consumers under FMT-EXE-006;
-     retain the utility's remaining driver questions in Q-EXE-018/019.
+     retain the utility's remaining driver question in Q-EXE-018.
