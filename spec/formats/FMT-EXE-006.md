@@ -85,6 +85,9 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-008 describes helper contents; FND-EXE-010 establishes wrapper
   command branches, not executable callers. Direct executable launch
   references traced through their inputs settle it.
+  FND-EXE-350 locates literal sound.bat names in both game editions and
+  an autoexec.bat suffix in the sound utility. These are consumer-reading
+  leads, not launch evidence; their writers and consumers remain Q-EXE-007.
 - Which disc helpers does the disc installer select (Q-EXE-008)? Selection
   by its installer and standalone manual use are competing readings. The
   file roles in FND-EXE-008 support neither caller claim. Direct installer

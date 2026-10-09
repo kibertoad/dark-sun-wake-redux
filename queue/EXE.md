@@ -66,6 +66,12 @@ Next ID: Q-EXE-014
   Tried: complete helper contents (FND-EXE-008) and distribution-wrapper
   reading (FND-EXE-010); neither locates an executable caller. Split from
   Q-EXE-004. Blocks: complete game/setup caller coverage.
+  Tried: FND-EXE-350's new complete physical ASCII suffix census identifies
+  one sound.bat lead in each game edition and one autoexec.bat suffix in
+  the sound utility. Trace their actual consumers and the utility's leading
+  zero-byte writer before distinguishing display/file access from launch.
+  Extensionless, encoded, split and runtime-constructed names remain outside
+  this literal search; the question remains Static for consumer reading.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
