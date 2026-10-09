@@ -184,9 +184,10 @@ Next ID: Q-EXE-018
   references cannot launch a helper, so its pathname consumers no longer
   decide this question. FND-EXE-491 traces its indirect far targets:
   code outside the image is loaded driver code or a null timer slot, which
-  FND-EXE-494 shows needs a DIGPAK image the build lacks. FND-EXE-492 limits installable drivers to 19 disc .ADV files
-  with no AH=4B request; their indirect paths remain Q-EXE-017. The game
-  editions' sound.bat consumers remain unread here.
+  FND-EXE-494 shows needs a DIGPAK image the build lacks. FND-EXE-492
+  limits installable drivers to 19 disc .ADV files with no AH=4B request;
+  their indirect paths remain Q-EXE-017. The game editions' sound.bat
+  consumers remain unread here.
 
 - Q-EXE-017. FMT-EXE-006: Can the 19 disc driver files the sound utility
   installs reach a program-execution request through code other than their
