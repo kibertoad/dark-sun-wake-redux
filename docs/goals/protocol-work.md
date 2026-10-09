@@ -173,16 +173,18 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Isolated batch branch session/protocol-exec-census-20261009 (worktree
   artifacts/worktrees/protocol-exec-census), started 2026-10-09 because a
   second writer was committing to goal/protocol-work in the shared checkout.
-  It holds FND-EXE-490..497: the sound utility's load image makes no AH=4B or
+  It holds FND-EXE-490..498: the sound utility's load image makes no AH=4B or
   interrupt 2E request; its indirect far calls leave the image only for the
   disc's 19 Miles .ADV drivers, the interrupt 66 and saved timer handlers,
   and a null timer slot that runs only for a DIGPAK image the build lacks.
   The drivers' decoded code requests no program execution and transfers out
   only to host callbacks, which the utility never registers, and to resident
-  Gravis or Media Vision programs outside the build. FND-EXE-496 replaced
-  an earlier census whose alignment vote kept misdecodes. Open:
-  Q-EXE-018 (SBAWE32.ADV dispatch index of 128 or more) and Q-EXE-019 (CS
-  base of SBAWE32.ADV's code above file 0x1A80). Integrate into
+  Gravis or Media Vision programs outside the build. The utility requests
+  only driver functions 0064..0067. FND-EXE-496 replaced an earlier census
+  whose alignment vote kept misdecodes. SBAWE32.ADV runs its C module at the
+  driver's base, so its four switches read code bytes as targets
+  (FND-EXE-498). Open: Q-EXE-018 (which bytes the 17 calls to 0x01ED
+  reachable from 0064..0067 pass). Integrate into
   goal/protocol-work only when the shared index is clean, by fast-forward
   when the goal tip is already merged into the branch; queue/EXE.md and
   FMT-EXE-006 conflict with the other writer's Tried notes, keep both sides.
