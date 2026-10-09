@@ -193,6 +193,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-480 follows final buffer publication, fixed-limit copy
   exhaustion and unchecked optional-call result. Follow formatter 0F25,
   callback, 190F:0000, source/global producers, extents and state admission.
+  Tried: FND-EXE-481 follows local formatter flush, callback descriptor
+  mutation and nested cleanup. Follow conversion dispatch, input producers,
+  total output bounds, aliases and the optional consumer.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
