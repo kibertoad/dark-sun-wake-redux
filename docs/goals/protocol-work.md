@@ -195,12 +195,14 @@ An owner-approved history repair remains separate from this maintenance scope.
      allocator header production, returned extents and state admission,
      then remaining downstream callees, header/count and state/link writers,
      arithmetic bounds and aliases. Retain its indirect-producer and literal-query obligations.
-  2. SOUND_DS inventory: FND-CONFIG-213 and FND-CONFIG-214 now end their
-     ranges where a valid inventory's functions end. Replace the historical
-     inventory with a range-aware snapshot (provenance and regions files, as
-     for SVIEW) and rerun the documentation check against it.
+  2. SOUND_DS is done: FND-CONFIG-213 and FND-CONFIG-214 correct the range
+     ends, and coverage/ holds the migrated range-aware inventory. Run
+     migrate-inventory.mjs from the shared checkout: it hashes the exporter
+     as checked out, and the recorded revision needs Windows line endings.
   3. Rerun standard-coverage on all in-scope inventories once valid; retain
      citation coverage separately from complete-reading availability.
+     The CD inventory sits under CD/, which the checker rejects; the
+     manifest path CD:DSUN.EXE needs @CD/ (docs/EVIDENCE-TOOLS.md).
   4. Choose a bounded game-code reading and its actual caller/state obligations;
      preserve EXE questions relevant to the game and retire host-only priorities.
   5. Follow Q-EXE-007's game-edition consumers under FMT-EXE-006: 3DCC, record/state admission and remaining caller coverage.
