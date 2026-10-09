@@ -53,16 +53,17 @@ An owner-approved history repair remains separate from this maintenance scope.
   the earlier single-agent exception for work on main is retired. Completed
   workflow tooling and EXE research are committed.
 - Last full gate: 2026-10-09, assetless Test.ps1 -NoRestore and explicit
-  main-base documentation validation passed for the owner-requested preservation-context guidance batch.
-  EXE research through FND-EXE-289, measured-baseline tooling and independent
+  main-base documentation validation passed for EXE research through FND-EXE-290.
+  The existing issue-7 synthetic capture timeout passed in isolation and on the full rerun.
+  Preservation-context guidance, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
   and its independently failing-before/passing-after synthetic regression.
   Existing argument-check skips remain; generated files are unchanged.
   Corrected revision-2 fresh projects and repeatable exports are local.
   Review old mapped-snapshot dependencies before accepting native claims.
-- Unfinished: the concurrent EXE batch and its checkpoint are now committed;
-  recheck the worktree immediately before each mutation.
+- Unfinished: this session's EXE batch is committed. An unrelated local edit
+  to docs/VALIDATION.md remains untouched; recheck ownership before mutation.
   EXE follow-up items remain Q-EXE-005,
   Q-EXE-006/007/008/009/010 and reader prerequisites Q-EXE-011/012/013; Q-EXE-001 retains its
   retry requirement. Local static-analysis reports and the saved interpreter
