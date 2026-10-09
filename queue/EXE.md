@@ -330,8 +330,8 @@ None.
   ones, which is circumstantial; the flags-4 descriptors hold no bytes.
   A 2026-10-10 web search for Borland's description of the overlay segment
   table found only a third-party layout naming the four words, with no
-  meaning for the flags values. The Borland C++ 4.0 DOS reference manual
-  was found but not read.
+  meaning for the flags values. SRC-BCPP-40-DOSREF describes the overlay
+  manager but not the executable's segment table.
   Split from Q-EXE-001, which FND-EXE-569 closed. Blocks: none.
 
 ## Blocked
