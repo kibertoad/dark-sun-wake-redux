@@ -209,6 +209,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   0705/364E, state admission and remaining callers remain Q-EXE-007.
   FND-EXE-512 reads returned-bit masking and initialization stores/failure;
   native and deeper callee contracts remain Q-EXE-007.
+  FND-EXE-513 reads allocation-wrapper segment and traversal obligations;
+  deeper allocation and state admission remain Q-EXE-007.
   FND-EXE-490 finds no AH=4B request among the sound utility's 69 interrupt
   21 instructions or its stack-thunk callers, and no interrupt 2E. Its load
   image makes no direct launch request; the game editions remain Q-EXE-007.
