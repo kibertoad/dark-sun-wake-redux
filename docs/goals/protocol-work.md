@@ -78,7 +78,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   Generated indexes were refreshed on main. Archive member citations are
   qualified; toolkit issue 353 has the new archive case. Template issue 90
   records fixture-baseline assumptions under scheduled generation.
-- Process audit: all full gates and bounded Ghidra queries exited. The 2026-10-09 checkpoint preserved reusable MSBuild nodes and another repository\'s active flow check; no confirmed orphan was stopped.
+- Process audit: all full gates and bounded Ghidra queries exited. The 2026-10-09 checkpoint preserved reusable MSBuild nodes and another repository's active flow check; no confirmed orphan was stopped.
   Escalated CIM command-line/parent inspection works. Reusable MSBuild nodes
   and active work for another repository were preserved; no confirmed session
   orphan was stopped.
