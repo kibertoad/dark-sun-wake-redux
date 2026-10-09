@@ -45,6 +45,32 @@ outside declared overlay code ranges are retained and reported rather than
 clipped to make the standard reporter accept them. Local report output and
 analysis projects stay in GAME_DIR; no generated report is committed.
 
+The DSUN reconciliation path joins two views of each edition. Copy the
+relocation-corrected overlay snapshot (revision 2 mapper) to a new project,
+run `tools/ghidra/ClipBodiesToEntryRegion.java` on the copy without
+`-readOnly`, passing the overlays' mapped code ranges from
+`ReportFbovOverlayMap.ps1`. It removes from each function body the
+addresses outside the code range that holds its entry, which FND-EXE-520
+shows near flow cannot reach, and prints every removed range.
+A removed range in the entry's own fixup table needs a finding that nothing
+reaches it (FND-EXE-523 to FND-EXE-525 cover the current snapshots). Export
+the copy twice with `ExportResearchBaseline.java` and the same regions, and
+list entries with no decoded instruction with
+`ReportEntriesWithoutInstruction.java` (read-only). Then
+`node tools/evidence/join-overlay-views.mjs <config.json> <staging-directory>`
+joins the resident view and the clipped overlay view. The config names
+`build`, `manifest`, the shipped `source` with its `xxh3` and `md5`, the
+`mapping` JSON, `resident` and `overlay` objects with each export's `-a`
+`stem` and the `source` it read, and `expectedWithoutInstruction` with
+`resident` and `overlay` lists of segment:offset entries. Resident rows keep
+segment:offset starts; overlay rows become shipped-file offsets, and the
+join rejects any overlay body range outside its entry's Code ranges row,
+overlapping or duplicated bodies, changed counts and unexpected
+entries without an instruction. It writes the inventory and its provenance
+and regions files under the `@CD` path convention. Like
+`migrate-inventory.mjs`, it hashes tool sources as checked out, so run it
+from a checkout with Windows line endings.
+
 The retained historical DSUN inventories are not valid input to the current
 `standard-coverage` command: their filename-plus-offset starts fail its
 notation checks. A failed run's zero denominator is not

@@ -12,6 +12,7 @@ import { readPe32 } from "../../tools/evidence/pe-image.mjs";
 import { peTransferCandidates } from "../../tools/evidence/pe-transfers.mjs";
 import { overlayBodyPartitions } from "../../tools/evidence/overlay-bodies.mjs";
 import { unchangedInventory } from "../../tools/evidence/migrate-inventory.mjs";
+import { joinOverlayViews } from "../../tools/evidence/join-overlay-views.mjs";
 
 test('inventory migration preserves complete disjoint bodies and rejects unresolved changes',()=>{
  const old='start\tsize\n1000:0000\t4\n';
@@ -24,6 +25,26 @@ test('inventory migration preserves complete disjoint bodies and rejects unresol
  assert.throws(()=>unchangedInventory(old,fresh.replace('1000:0004..1000:0006','1000:0001..1000:0003'),provenance,regions),/body/);
  assert.throws(()=>unchangedInventory(old,fresh.replace('1000:0004..1000:0006','1000:0008..1000:000A'),provenance,regions),/body/);
  assert.throws(()=>unchangedInventory(old.replace('start\tsize','start\tsize\tname').replace('\t4\n','\t4\tname\n'),fresh,provenance,regions),/Annotations/);
+});
+
+test('overlay view join converts overlay rows to file offsets and keeps bodies in their own code range',()=>{
+ const columns='start\tsize\tbody_bytes\tinstructions\tinstructions_outside\tdata\tdata_outside\tundefined\tundefined_outside\n';
+ const provenance=(n,without=0)=>`key\tvalue\nfunctions\t1\nsummed_body_bytes\t${n}\nunique_body_bytes\t${n}\nbody_bytes_outside_regions\t0\nentries_without_instruction\t${without}\n`;
+ const resident={tsv:'start\tsize\tranges\n1000:0000\t4\t1000:0000..1000:0004\n',provenance:provenance(4),regions:columns+'1000:0000\t256\t4\t4\t0\t0\t0\t252\t252\n'};
+ const overlay={tsv:'start\tsize\tranges\n1011:0002\t3\t1011:0000..1011:0003\n',provenance:provenance(3),regions:columns+'1011:0000\t16\t3\t3\t0\t0\t0\t13\t13\n'};
+ const overlays=[{start:0x310,end:0x320,mappedStart:'1011:0000'},{start:0x320,end:0x330,mappedStart:'1012:0000'}];
+ const base={resident,overlay,headerBytes:0x200,imageEnd:0x300,overlays};
+ const joined=joinOverlayViews(base);
+ assert.equal(joined.tsv,'start\tsize\tranges\n1000:0000\t4\t1000:0000..1000:0004\n0x00000312\t3\t0x00000310..0x00000313\n');
+ assert.equal(joined.regions,columns+'1000:0000\t256\t4\t4\t0\t0\t0\t252\t252\n0x00000310\t16\t3\t3\t0\t0\t0\t13\t13\n');
+ // A body part in the next overlay's code range is outside the entry's own range.
+ const across={...overlay,tsv:'start\tsize\tranges\n1011:0002\t4\t1011:0000..1011:0003 1012:0000..1012:0001\n',provenance:provenance(4)};
+ assert.throws(()=>joinOverlayViews({...base,overlay:across}),/outside its entry's code range/);
+ assert.throws(()=>joinOverlayViews({...base,resident:{...resident,tsv:'start\tsize\tranges\n1000:0000\t4\t1000:00FE..1000:0102\n'}}),/outside the load image|Invalid body/);
+ assert.throws(()=>joinOverlayViews({...base,overlay:{...overlay,provenance:provenance(3,1)}}),/without an instruction/);
+ const flagged=joinOverlayViews({...base,overlay:{...overlay,provenance:provenance(3,1)},expectedWithoutInstruction:{resident:[],overlay:['1011:0002']}});
+ assert.deepEqual(flagged.report.withoutInstruction,['0x00000312']);
+ assert.throws(()=>joinOverlayViews({...base,overlays:[{...overlays[0],mappedStart:'1011:0001'},overlays[1]]}),/in place/);
 });
 
 function synthetic() {
