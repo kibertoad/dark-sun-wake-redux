@@ -4,16 +4,6 @@ Next ID: Q-EXE-025
 
 ## Static
 
-- Q-EXE-001. FMT-EXE-001: Does any code read the pack's
-  `segment_table_offset` or `segment_count` from the file? Settles it: every
-  DOS read or seek of the program's own file outside the overlay manager's
-  startup, traced to the bytes it reads. Tried: FND-EXE-560 reads the
-  startup, which reads the pack header without these fields; FND-EXE-561 to
-  FND-EXE-568 read the rest of the manager, find the disc's the same code,
-  and find that only the manager names the table's segment in memory and
-  that no code reads header word `0x1E` or a descriptor's `unk_06`.
-  FND-EXE-181 to FND-EXE-195 followed a lead into the host executable, which
-  this goal's scope excludes. Blocks: none.
 - Q-EXE-007. FMT-EXE-006: Do the shipped game or sound-setup executables
   launch any batch helpers? Settles it: direct executable launch references
   traced through selectors and arguments, including computed command names.
@@ -336,7 +326,8 @@ None.
   mean? Settles it: the linker's own description of the FBOV segment table it
   writes. Tried: FND-EXE-567 finds that the program reads none of them beyond
   `flags` bit 1 and whether `unk_02` is 0, so no static reading of
-  `DSUN.EXE` can say. Split from Q-EXE-001. Blocks: none.
+  `DSUN.EXE` can say. Split from Q-EXE-001, which FND-EXE-569 closed.
+  Blocks: none.
 
 ## Blocked
 
