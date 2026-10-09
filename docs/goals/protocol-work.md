@@ -48,6 +48,11 @@ An owner-approved history repair remains separate from this maintenance scope.
 
 ## Handover
 
+- Pending integration: session/protocol-codepage-20261009 holds the finished
+  research batch e90d950 for FND-EXE-340, FMT-EXE-006 and Q-EXE-005.
+  Its assetless Test.ps1 -NoRestore and documentation/queue checks passed
+  on 2026-10-09, including 715 .NET tests. Shared queue edits prevented
+  integration; preserve them and cherry-pick the batch only on a clean tree.
 - Stage: Slices. The ongoing protocol objective remains active. Resume the
   authoritative local goal claim using start-session branch-tip discovery;
   the earlier single-agent exception for work on main is retired. Completed
@@ -186,6 +191,8 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Continuation consistency follow-up (duplicate-checked template issue 69):
   https://github.com/kibertoad/refurbished-dinosaurs-template/issues/69#issuecomment-6080088432.
 - Next, after rechecking shared goal claims:
+  0. Integrate the tested Q-EXE-005 batch from session/protocol-codepage-20261009
+     after confirming the authoritative goal worktree is clean.
   1. Finish installed and CD DSUN inventory reconciliation under Q-EXE-010,
      FMT-EXE-005; follow Q-EXE-010 remaining request helpers, shared-state lifetime,
      allocator header production, returned extents and state admission,
