@@ -48,9 +48,9 @@ An owner-approved history repair remains separate from this maintenance scope.
 
 ## Handover
 
-- Display-encoding checkpoint: the FND-EXE-340 / FMT-EXE-006 batch is
-  integrated; Q-EXE-005 is under Source. Its isolated assetless gate passed
-  on 2026-10-09 with 715 .NET tests; integrated documentation and queue checks passed.
+- Independent EXE checkpoints: FND-EXE-340 and FND-EXE-350 are integrated;
+  Q-EXE-005 is Source and Q-EXE-007 remains Static. Both isolated assetless
+  gates passed on 2026-10-09 with 715 .NET tests; integrated checks passed.
 - Stage: Slices. The ongoing protocol objective remains active. Resume the
   authoritative local goal claim using start-session branch-tip discovery;
   the earlier single-agent exception for work on main is retired. Completed
@@ -121,15 +121,13 @@ An owner-approved history repair remains separate from this maintenance scope.
   orphan was stopped.
 - Blockers: Q-EXE-011 awaits identity evidence under queue/EXE.md and docs/RUNTIME.md.
   The parent history-message repair still awaits owner approval in docs/HANDOVER.md.
-  Do not rewrite shared history; continue independent Q-EXE-012/013 work.
+  Do not rewrite shared history; host-only prerequisites remain blocked by scope.
 - Validation-temp follow-up: the assetless Test.ps1 -NoRestore gate passed
   with the executing account's external temporary directory. Guidance is
   committed in docs/VALIDATION.md. Duplicate-checked template issue 82 update:
   https://github.com/kibertoad/refurbished-dinosaurs-template/issues/82#issuecomment-6083050870.
-- Validation-temp follow-up: the assetless Test.ps1 -NoRestore gate passed
-  with the executing account's external temporary directory. Guidance is
-  committed in docs/VALIDATION.md. Duplicate-checked template issue 82 update:
-  https://github.com/kibertoad/refurbished-dinosaurs-template/issues/82#issuecomment-6083050870.
+- Duplicate-checked synthetic pattern-query provenance suggestion:
+  https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6083510628.
 - Upstream: template issue 83 records the Windows combined-script-path
   launch defect and the successful two-directory control. Template issues
   80 and 82, and toolkit issues 325 and 327 retain the earlier reports.
@@ -197,3 +195,5 @@ An owner-approved history repair remains separate from this maintenance scope.
      citation coverage separately from complete-reading availability.
   4. Choose a bounded game-code reading and its actual caller/state obligations;
      preserve EXE questions relevant to the game and retire host-only priorities.
+  5. Trace Q-EXE-007's FND-EXE-350 literal-name consumers and path writers,
+     retaining the computed and extensionless-name exclusions.
