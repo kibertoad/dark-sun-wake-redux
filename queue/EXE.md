@@ -537,6 +537,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-288 follows the cleanup's saved-pointer and byte-gate setup,
   including outgoing argument writers and unchecked interrupt continuations.
   Other writers, returned-pointer admission and lifecycle callers remain open.
+  Tried: FND-EXE-289's controlled setup incoming query returns one relocated
+  candidate, but isolated decoding and an ungrounded earlier start do not
+  establish its entry path. Recover an independently grounded caller next.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
