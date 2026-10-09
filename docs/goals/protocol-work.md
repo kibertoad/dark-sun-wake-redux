@@ -19,7 +19,7 @@ Research-side repository workflow and tooling: local session skills, goal
 discovery and handovers, protocol conformance, validation and upstream reports.
 Research areas: EXE for the game and its utilities. DOSBox complete readings are excluded. Research batches
 may change EXE entries, queue/EXE.md and parity/EXE.md, with generated indexes
-and PARITY.md kept consistent. The EXE launch-reference scope also covers
+and PARITY.md read locally and left uncommitted. The EXE launch-reference scope also covers
 BLD-GOG-EN-1.1 inventory and
 wrapper-provenance corrections needed to cite the studied distribution files.
 Historical context includes SRC-DOSBOX-GOG-0742 and its EXE citations for the shipped
@@ -48,11 +48,12 @@ An owner-approved history repair remains separate from this maintenance scope.
 
 ## Handover
 
-- Stage: Slices. The ongoing protocol objective remains active. One agent
-  works in this repository, so the goal runs on main in the single checkout,
-  with no goal branch or worktree. Completed workflow tooling and EXE research
-  are committed.
-- Last full gate: 2026-10-09, assetless Test.ps1 -NoRestore passed for FND-EXE-272 research (715 tests).
+- Stage: Slices. The ongoing protocol objective remains active. Resume the
+  authoritative local goal claim using start-session branch-tip discovery;
+  the earlier single-agent exception for work on main is retired. Completed
+  workflow tooling and EXE research are committed.
+- Last full gate: 2026-10-09, assetless Test.ps1 -NoRestore and explicit
+  main-base documentation validation passed during goal-claim reconciliation.
   EXE research through FND-EXE-272, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
@@ -60,7 +61,9 @@ An owner-approved history repair remains separate from this maintenance scope.
   Existing argument-check skips remain; generated files are unchanged.
   Corrected revision-2 fresh projects and repeatable exports are local.
   Review old mapped-snapshot dependencies before accepting native claims.
-- Unfinished: no tracked work remains. EXE follow-up items remain Q-EXE-005,
+- Unfinished: concurrent EXE edits appeared after the clean-tree start check;
+  leave the queue, format and new finding edits to their originating session.
+  EXE follow-up items remain Q-EXE-005,
   Q-EXE-006/007/008/009/010 and reader prerequisites Q-EXE-011/012/013; Q-EXE-001 retains its
   retry requirement. Local static-analysis reports and the saved interpreter
   Ghidra project remain in GAME_DIR/analysis/exe-batches for continuation.
