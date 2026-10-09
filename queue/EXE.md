@@ -344,6 +344,9 @@ Next ID: Q-EXE-025
   Tried: FND-EXE-417 reads 0DE9's dirty prefix, tail/output inspection
   and predecessor release. Continue complete callers, count/link/encoded-word
   and six-record writers, destination freshness, aliases and native preservation.
+  Tried: FND-EXE-418 reads 1049's dirty prefix, aligned retry, identity
+  scan and creation stores. Continue complete callers, DS:00CE/00D2
+  producers, output freshness and current-segment/register/native admission.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
