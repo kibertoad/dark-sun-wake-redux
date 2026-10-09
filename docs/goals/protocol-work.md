@@ -173,7 +173,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/388 (entry ID clashes between writers) and
   https://github.com/kibertoad/refurbished-dinosaurs/issues/91 (Q-EXE-010 and Q-EXE-007 Tried-note growth),
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/393 (parity Notes still cite closed Q-EXE-010) and
-  https://github.com/kibertoad/refurbished-dinosaurs-template/issues/93 (inventory-check rejects the ranges column).
+  https://github.com/kibertoad/refurbished-dinosaurs-template/issues/93 (inventory-check rejects the ranges column) and
+  https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6089321886 (single import of DSUN.EXE cannot replace the join).
 - Next, after rechecking shared goal claims:
   1. DSUN inventory reconciliation is done: join-overlay-views.mjs joined
      the resident and clipped overlay views into the installed and @CD/ disc
@@ -191,8 +192,13 @@ An owner-approved history repair remains separate from this maintenance scope.
      build; cite it only where the two editions differ.
   4. The bounded game-code reading is the overlay manager in segment 4AE5
      (Q-EXE-001). FND-EXE-560 to FND-EXE-564 cover startup, the descriptor
-     walk, the INT 3Fh handler, trampoline forms and the EMS/extended cache.
-     Next: header word 0x1C in the placement code, then the disc edition's
-     manager (compare segment 4AE5's bytes between editions first).
+     walk, the INT 3Fh handler, trampoline forms and the EMS/extended cache;
+     FND-EXE-565 finds the disc's manager the same code one byte lower in
+     segment 4AD6. Next: header word 0x1C in the placement code, then the
+     other readers of the pack fields and the non-overlay descriptors.
      IDs from FND-EXE-560 up are this session's; Codex allocates below them.
   5. Follow Q-EXE-007's game-edition consumers under FMT-EXE-006: FND-EXE-555 cleanup table callee and callback registration/writers, FND-EXE-531 storage admission, native contracts and remaining startup dependencies.
+  6. The DSUN inventories leave out resident functions only overlay code
+     calls (201 installed, 198 disc; docs/GHIDRA.md "Function inventory").
+     Add them to the join from the full mapped view, then recheck the
+     citations whose ranges they touch. Toolkit issue 111 keeps the join.
