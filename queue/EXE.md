@@ -205,6 +205,9 @@ Next ID: Q-EXE-018
   Tried: FND-EXE-484 follows coordinate arguments, row consumers,
   signed size comparison and spacing division. Follow 190F:02DF,
   downstream effects, count/object producers, extents and remaining returns.
+  Tried: FND-EXE-485 follows spacing recurrence, row interfaces and
+  mixed argument provenance. Follow 190F:04CA, interfaces 08E5 and
+  1A7C:01C6, record consumers, extents, aliases and preservation.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
