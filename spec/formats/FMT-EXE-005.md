@@ -95,6 +95,8 @@ bounded source reader; this does not establish native loader behavior.
   FND-EXE-294 connects the allocator's selected DX and DS and bounds one
   conditional header-derived address calculation; actual segment admission,
   header stability, aliases and extent lifetime remain unresolved.
+  FND-EXE-295 adds another shared saved-DS writer and its nested allocator
+  path; incoming callers, remaining helpers, aliases and state lifetime stay open.
   FND-EXE-222 supplies conditional source-decoded tails at those candidates;
   saved-listing incompleteness alone does not exclude their decoding.
   FND-EXE-223 retains three unresolved computed transfers in the outer

@@ -329,6 +329,10 @@ Next ID: Q-EXE-014
   exact/split helper inputs, with the selected request's conditional address
   calculation. Continue actual segment admission, header/count writers,
   aliases and extent lifetime; local segment equality is not valid storage.
+  Tried: FND-EXE-295 records shipped zero words and follows an adjacent
+  wrapper to another shared saved-DS writer and nested allocator path.
+  Continue its incoming callers, helpers 1000:169E and 1000:1622,
+  other writers and aliases; shipped data does not establish live state.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
