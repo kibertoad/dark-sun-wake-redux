@@ -293,6 +293,9 @@ Next ID: Q-EXE-025
   Tried: FND-EXE-398 reads type four's producer, immediate native helpers
   and published targets. Follow actual callers/input/state writers, native contracts,
   pointer/quantity/index aliases and the remaining startup dependencies.
+  Tried: FND-EXE-399 reads installed type-one targets and their local-copy
+  callees, including native phases before zero-count copies and whole-word results.
+  Follow actual callers/input/state writers, shared-segment/native contracts and buffer aliases.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
