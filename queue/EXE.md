@@ -118,6 +118,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-363 reads 292B's wrapped count and pre-call stores,
   mismatch exception and separate caller returns. Follow 3B03/29F8, their
   result/preservation contracts, flag writers and record/buffer admission.
+  Tried: FND-EXE-364 reads 3B03's count guard and direct route, 05CC's
+  unchecked preliminary result and 3C54's carry-dependent publication. Follow
+  the 3B6D byte-processing path and native/state preservation and admission.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.

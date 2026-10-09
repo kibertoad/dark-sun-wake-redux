@@ -119,6 +119,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   mapping; native preservation and table/segment admission remain Q-EXE-007.
   FND-EXE-363 records preliminary cleanup's pre-call mutations and flag-dependent
   result comparison; downstream contracts and state admission remain Q-EXE-007.
+  FND-EXE-364 reads the downstream count guard and direct request wrappers;
+  byte-processing and native/state admission remain under Q-EXE-007.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;
   startup, actual DS, aliases and later writers must admit their runtime use.
 - Which disc helpers does the disc installer select (Q-EXE-008)? Selection
