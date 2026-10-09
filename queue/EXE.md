@@ -256,6 +256,21 @@ Next ID: Q-EXE-024
   Tried: FND-EXE-513 reads 2172's DS-based stack-derived input,
   size arithmetic and retained head sentinel. Follow 21D2/2212/223B/2133,
   segment/link/block admission and earlier startup/caller effects.
+  Tried: FND-EXE-514 reads 2133/223B and adjacent head writer 214F,
+  resolving local BX preservation and ordered metadata/link writes. Follow
+  21D2/2212, block/head producers, 214F callers and storage/segment admission.
+  Tried: FND-EXE-515 reads 21D2/2212's requests and ordered header
+  publication. Follow 0F68, storage/segment admission, shared-state writers
+  and remaining initialization/startup callers.
+  Tried: FND-EXE-516 reads 0F68's shared-offset update and stack-margin
+  guards. Follow DS:009C initialization/writers, actual DS/SS and storage
+  extent, caller stack depth and remaining initialization/startup effects.
+  Tried: FND-EXE-517 records the shipped offset seed and 0F46/0F99
+  setter path. Follow setter callers/inputs, other shared-word writers,
+  actual segments, stack/storage extent and remaining startup effects.
+  Tried: FND-EXE-518 reads 20A3's selected 20C0 setter path,
+  including stores before rejection. Follow 20FA, candidate caller 22A2,
+  other writers and block/segment/frame admission before cleanup closure.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct

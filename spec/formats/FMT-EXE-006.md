@@ -211,6 +211,16 @@ reading of callers, external commands or interpreter behavior is claimed.
   native and deeper callee contracts remain Q-EXE-007.
   FND-EXE-513 reads allocation-wrapper segment and traversal obligations;
   deeper allocation and state admission remain Q-EXE-007.
+  FND-EXE-514 reads selected-block and shared-head mutation helpers;
+  block/storage producers and remaining initialization remain Q-EXE-007.
+  FND-EXE-515 reads immediate block publication and sentinel paths;
+  0F68 and storage/state admission remain Q-EXE-007.
+  FND-EXE-516 reads shared-offset request guards and returns;
+  initial offset, segments and storage/state admission remain Q-EXE-007.
+  FND-EXE-517 records the shipped offset seed and explicit margin setter;
+  caller/writer and runtime storage admission remain Q-EXE-007.
+  FND-EXE-518 reads one setter caller's prior global/link mutations;
+  alternate cleanup and remaining writer/state admission remain Q-EXE-007.
   FND-EXE-490 finds no AH=4B request among the sound utility's 69 interrupt
   21 instructions or its stack-thunk callers, and no interrupt 2E. Its load
   image makes no direct launch request; the game editions remain Q-EXE-007.
