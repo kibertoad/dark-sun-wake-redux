@@ -77,6 +77,10 @@ Next ID: Q-EXE-014
   interface's two near callees, returned-byte producer's external wrapper,
   caller/data-segment admission and later paths before a launch exclusion.
   The game editions' sound.bat consumers remain separate targets.
+  Tried: FND-EXE-353 follows the selected interrupt wrapper's segment record,
+  register transfers and output word-six store into the producer's stack byte.
+  Continue native result/input admission, error helper 1000:04CE and the
+  file-interface near callees; this does not establish pathname usability or launch.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
