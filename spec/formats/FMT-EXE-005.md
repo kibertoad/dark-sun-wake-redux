@@ -44,10 +44,6 @@ bounded source reader; this does not establish native loader behavior.
 
 ## Open questions
 
-- Do the four anomalous spans that are not wholly fixups or padding belong to
-  the bodies that own them (Q-EXE-021)? FND-EXE-173 places three in overlay
-  code and one in the resident load image. A bounded transfer from each
-  owning entry, or the span's own callers, settles it.
 - Does any native transfer reach the fixup-table and zero-padding bytes the
   analyzer assigns to overlay bodies (Q-EXE-022)? FND-EXE-173 and FND-EXE-174
   show that analysis, including after relocation-pair repair, assigns them to

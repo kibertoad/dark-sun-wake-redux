@@ -276,18 +276,6 @@ Next ID: Q-EXE-023
   do not cover the disc installer. Split from Q-EXE-004. Blocks: complete
   disc-installer caller coverage.
 
-- Q-EXE-021. FMT-EXE-005: Do the four anomalous spans that are not wholly
-  fixups or padding belong to the bodies that own them? FND-EXE-173 places
-  installed 0x0006D090..0x0006D150 (entry 0x0006B581, descriptor 183) and
-  disc 0x00095F30..0x000961E5 (entry 0x0009674B) and
-  0x00099380..0x000995C3 (entry 0x00097BED, both descriptor 211) in overlay
-  code, and disc 0x00055519..0x0005553D (entry 0x0005E2ED, descriptor 173)
-  in the resident load image. Settles it: for each span, a transfer from its
-  owning function's entry that reaches the span's first instruction under
-  the CS of FND-EXE-520, with every computed transfer on the way bounded, or the
-  span's own callers when no such transfer exists.
-  Blocks: the DSUN inventory reconciliation under FMT-EXE-005.
-
 - Q-EXE-022. FMT-EXE-005: Does any native transfer reach the fixup-table and
   zero-padding bytes the analyzer assigns to overlay bodies? FND-EXE-173 and
   FND-EXE-174 partition the anomalous spans of the installed and disc
