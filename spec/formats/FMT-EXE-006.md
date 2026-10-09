@@ -143,6 +143,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   callers, field/state writers, native outcomes and extent admission remain Q-EXE-007.
   FND-EXE-376 reads preliminary configuration, adjusted scan count and pair test;
   producers, extents, frames and native/state admission remain Q-EXE-007.
+  FND-EXE-377 follows the pathname's byte matcher and position continuation;
+  later consumers, reader/position contracts and state admission remain Q-EXE-007.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;
   startup, actual DS, aliases and later writers must admit their runtime use.
 - Which disc helpers does the disc installer select (Q-EXE-008)? Selection

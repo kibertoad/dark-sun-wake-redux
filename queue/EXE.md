@@ -154,6 +154,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-376 reads 2CC8/2C46/05CC's first-result guard,
   signed adjusted quantity, scan bounds, ordered stores and native pair test.
   Admit producers, extents, frames, aliases, actual DS and native preservation.
+  Tried: FND-EXE-377 follows the actual pathname continuation's matcher,
+  table mapper, unchecked position calls and first-byte suppression. Follow
+  2D48/2F81, continuation 158E:011A and pattern/table/state admission.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
