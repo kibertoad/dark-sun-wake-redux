@@ -466,6 +466,18 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-268 identifies another initial loader-segment pointer whose
   offset overlaps a known comparison input, not the selected root. Pointer
   consumers, alternative transfer representations and native entry remain open.
+  Tried: on 2026-10-09, INST-resident read-only queries for memory scalars
+  0x02A6/0x02A8 and exact references to 55E8:02A6, 55E8:02A8 and
+  4AE5:0010 returned no listing matches. An independent resident raw-operand
+  candidate scan also supplied no positive lead at those two displacements.
+  The scan used FND-EXE-236's installed identity, shipped range
+  0x00005200..0x0004AEE0, and sixteen-bit decoding from up to six bytes
+  before each matching little-endian displacement; it did not admit boundaries.
+  These are uncontrolled negative leads, not absence evidence: scalar queries
+  cover decoded instructions only, references require analyzer-defined objects,
+  and indexed/aliased/runtime-produced accesses remain excluded. Do not repeat
+  these literal queries without new mapping or reference coverage; next follow
+  indirect target producers and segment-qualified aliases from admitted code.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
