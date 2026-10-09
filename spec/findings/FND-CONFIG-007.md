@@ -56,7 +56,7 @@ group.
 
 ## Interpretation
 
-`SOUND.INI` is the setup program's list of sound cards (FND-CONFIG-004): for each card, its drivers
+`SOUND.INI` is the setup program's list of sound cards (FND-CONFIG-213): for each card, its drivers
 for real mode and protected mode, the numbers of the driver chunks, and the addresses, IRQs and DMA
 channels it can use, the first of each being the default. The game itself does not read it
 (FND-CONFIG-005). The installed copy was written for this release with fewer cards than the

@@ -69,7 +69,7 @@ root. It continues at 158E:0496, outside this reading. No local failure
 after field collection rolls back the earlier frame stores. A matching
 or read exit uses the same previously recorded common exit.
 
-Under FND-CONFIG-004's segment 1E36 and MZ header size 1400,
+Under FND-CONFIG-213's segment 1E36 and MZ header size 1400,
 the bounded shipped strings at offsets 05FC, 0601, 0608 and 060E
 are respectively Dma=, [MIDI], Port= and Irq=, each zero-terminated.
 Those source identities are file-data; applying them at the caller requires

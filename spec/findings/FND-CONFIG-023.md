@@ -39,7 +39,7 @@ tag `ADV ` (`0x20564441`) and a local output address to `38FF:05B5` at
 `DSUN.EXE+0x0003D132`. Prior bounded readings identify that entry as a
 resource-size query (FND-SCRIPT-019, FND-SOUND-007). The installed values
 are 11 and 8 respectively (FND-CONFIG-003), and setup copies them from
-separate input-record fields (FND-CONFIG-022).
+separate input-record fields (FND-CONFIG-214).
 
 ## Interpretation
 

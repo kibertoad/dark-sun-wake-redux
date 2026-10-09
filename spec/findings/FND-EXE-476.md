@@ -72,7 +72,7 @@ relocation record 165, zero-based. Its encoded segment 064C becomes
 independently of a flat analyzer address.
 
 The continuing caller passes the same retained record pair to 1BD4:02AA
-with current DS:05F7. Under FND-CONFIG-004's segment 1E36 and
+with current DS:05F7. Under FND-CONFIG-213's segment 1E36 and
 MZ header size 1400, that bounded shipped string is Irq= followed by
 zero. Actual DS admission remains separate. Full returned AX zero exits;
 any nonzero result continues. No position-reset call intervenes between

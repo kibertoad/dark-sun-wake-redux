@@ -91,7 +91,7 @@ are:
   a track is not read (`Q-SOUND-002`, `Q-SOUND-004`), so the rebuild plays no
   sound yet.
 - `SOUND.CFG` is `FMT-CONFIG-001`: the sound helper `SOUND_DS.EXE` reads
-  `SOUND.INI` (`FMT-CONFIG-002`) and writes it (`FND-CONFIG-004`), and the main
+  `SOUND.INI` (`FMT-CONFIG-002`) and writes it (`FND-CONFIG-213`), and the main
   executable reads it through its sound library (`FND-CONFIG-005`). The main
   executable never names or starts the helper (`FND-SOUND-005`), and the
   helper holds no VOC header, `.VOC` name or BIOS wait (`FND-SOUND-003`); its

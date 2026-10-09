@@ -34,7 +34,7 @@ environment: null
 ## Observation
 
 FND-EXE-350's utility suffix maps to a data-segment offset of 0x05C0
-under FND-CONFIG-004's segment 1E36 and the 0x1400-byte MZ header.
+under FND-CONFIG-213's segment 1E36 and the 0x1400-byte MZ header.
 The shipped file contains `:\autoexec.bat` followed by a zero byte and
 `rt` followed by a zero byte. The source's zero byte before the colon is
 not the byte this consumer uses as its pathname's first character.
@@ -42,7 +42,7 @@ not the byte this consumer uses as its pathname's first character.
 A decoded scalar search for 0x05BF, 0x05C0, 0x05C1, 0xE91F and
 0xD904 returns two operands: immediate 0x05C0 at 158E:0057 and
 immediate 0xD904 at 1AF6:0016. The second is the independently recorded
-sound.ini argument in FND-CONFIG-004. The report covers every disassembled
+sound.ini argument in FND-CONFIG-213. The report covers every disassembled
 instruction and does not reach its 300-match cap. Undecoded bytes and
 computed references remain outside this search; it is not a writer census.
 
@@ -73,7 +73,7 @@ wrapping. These are its local instructions, not admitted caller bounds.
 The caller next supplies current DS with offset 0x05CF and the same
 SS-relative local far pointer to 1000:2C11, again removing eight bytes.
 If current DS is 1E36, the first pointer selects the shipped `rt` mode.
-FND-CONFIG-004 identifies the same callee at the sound.ini opening site.
+FND-CONFIG-213 identifies the same callee at the sound.ini opening site.
 The returned DX:AX pair is saved in SS-relative BP minus two and minus
 four, then reloaded and OR-tested. A zero pair sets AX to zero and
 jumps to 158E:06F9, which restores DI, SI, SP and BP and far-returns.

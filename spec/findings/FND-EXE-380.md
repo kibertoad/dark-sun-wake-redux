@@ -42,7 +42,7 @@ The shipped SOUND_DS.EXE has length 204593 and XXH3-128
 236c2dc23c071eca421eb5b427caee57, matching FND-EXE-350's identity.
 Its little-endian word at shipped offset 0x0001D498 is twenty.
 With MZ header size 0x1400 and modeled load segment 0x1000,
-this is the source storage for 1E36:DD38. FND-CONFIG-004 supplies the
+this is the source storage for 1E36:DD38. FND-CONFIG-213 supplies the
 utility's data-segment convention; FND-EXE-370 identifies the selector's
 DS-relative read of that offset. This source correspondence does not
 establish the actual segment or value at the selector's invocation.

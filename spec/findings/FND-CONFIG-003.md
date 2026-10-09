@@ -45,7 +45,7 @@ digital driver's chunk number among other values. The installed file was made fo
 ## Alternatives
 
 The field boundaries and meanings were first read from the values and their
-match with one `SOUND.INI` record. FND-CONFIG-022 now identifies direct
+match with one `SOUND.INI` record. FND-CONFIG-214 now identifies direct
 writers for the nine-byte tail but does not establish what the input-record
 fields mean; the two ten-byte blocks have not been traced field by field.
 Which block is music and which is digital cannot be told from equal installed

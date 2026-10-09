@@ -9,7 +9,7 @@ byte_order: null
 size: null
 text: true
 definition: null
-evidence: [FND-CONFIG-003, FND-CONFIG-004, FND-CONFIG-006, FND-CONFIG-007]
+evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007]
 conflicting: []
 split_with: []
 related: []
@@ -18,7 +18,7 @@ related: []
 ## Layout
 
 ASCII text in lines ended by CR LF, read by the sound setup program and never by the game
-[FND-CONFIG-004, FND-CONFIG-005]. A `;` starts a comment that runs to the end of the line, and a
+[FND-CONFIG-213, FND-CONFIG-005]. A `;` starts a comment that runs to the end of the line, and a
 line that starts with `//` is a separator. Every other line that is not blank is a key, a name in
 square brackets, followed by spaces (tabs in the disc's copy) and an optional value: a decimal
 integer, which may be -1, a hexadecimal integer written with `0x`, or a string in square brackets.
@@ -98,4 +98,4 @@ Every line of the installed file and of the disc's copy [FND-CONFIG-007].
 ## Open questions
 
 - How the setup program parses the file and what it does with keys it does not expect, and what
-  `CardGroup` and the chunk numbers mean (FND-CONFIG-004, FND-CONFIG-007, Q-CONFIG-006).
+  `CardGroup` and the chunk numbers mean (FND-CONFIG-213, FND-CONFIG-007, Q-CONFIG-006).

@@ -4,7 +4,7 @@ meta:
   license: MIT
   endian: le
 doc: The 59-byte SOUND.CFG that the sound setup program writes.
-doc-ref: FMT-CONFIG-001, FND-CONFIG-003, FND-CONFIG-004
+doc-ref: FMT-CONFIG-001, FND-CONFIG-003, FND-CONFIG-213
 seq:
   - id: unk_00
     type: u2

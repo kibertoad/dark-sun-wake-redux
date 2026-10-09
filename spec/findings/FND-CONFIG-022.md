@@ -1,9 +1,9 @@
 ---
 id: FND-CONFIG-022
 title: Sound setup populates the nine-byte SOUND.CFG tail from a record and a constant
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-CONFIG-214]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

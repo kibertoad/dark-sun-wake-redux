@@ -1,9 +1,9 @@
 ---
 id: FND-CONFIG-004
 title: SOUND_DS.EXE reads sound.ini and writes the 59 bytes of sound.cfg, run by SOUND.BAT
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-CONFIG-213]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

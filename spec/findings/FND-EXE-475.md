@@ -35,7 +35,7 @@ current DS:05E0. FND-EXE-360 reads that helper's finite but unchecked
 terminator scans and copy, pointer return and local register restoration.
 The caller supplies no destination capacity to those calls.
 
-Under FND-CONFIG-004's data-segment binding 1E36 and MZ header
+Under FND-CONFIG-213's data-segment binding 1E36 and MZ header
 size 1400, the bounded shipped strings at those data offsets are colon
 followed by backslash, a single backslash and the filename sw32.ini,
 respectively. Each ends in zero. The mode at offset 05E9 is rt followed

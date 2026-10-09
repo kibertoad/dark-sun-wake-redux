@@ -70,7 +70,7 @@ returns far without incoming argument cleanup. It makes no call or interrupt,
 does not write the source or table locally and does not return a source
 endpoint. All source, frame and table aliases remain separate admission.
 
-Under FND-CONFIG-004's data-segment binding 1E36 and MZ header size
+Under FND-CONFIG-213's data-segment binding 1E36 and MZ header size
 1400, the inspected shipped classification entries for byte 00, plus,
 minus and each digit 30..39 all have bit 0001 clear. This is shipped
 file-data only; actual DS and later table writers are not established here.
