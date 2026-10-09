@@ -301,6 +301,24 @@ reading of callers, external commands or interpreter behavior is claimed.
   writer; its helper, other writers and storage/preservation contracts stay open.
   FND-EXE-409 supplies that helper's outputs, selection and untested final
   tag stores; target effects, complete writers and storage admission stay open.
+  FND-EXE-411 reads the two linked-record release writers and ordered
+  failure prefixes; cycle freedom, other writers and storage admission stay open.
+  FND-EXE-412 reads the remaining literal extension writer and ordered
+  accounting/reconnection failures; callers, computed writers and admission stay open.
+  FND-EXE-413 reads one quantity-adjustment caller and its signed shrink
+  helper; selector production, broader callers and native/storage admission stay open.
+  FND-EXE-414 reads the six-record selector and head-loading wrapper;
+  identity/state producers, deeper callees and native/storage admission stay open.
+  FND-EXE-415 reads the record-zero lookup and distinct second-slot
+  callback layout; encoded-word producers and native/storage admission stay open.
+  FND-EXE-416 reads linked-node allocation, count publication and repeated
+  template requests; state producers and native/storage admission stay open.
+  FND-EXE-417 reads dirty flushing, tail inspection and predecessor release;
+  stable structure, output freshness and native/storage admission stay open.
+  FND-EXE-418 reads record creation, aligned load retry and ordered
+  state publication; callers, output freshness and native/storage admission stay open.
+  FND-EXE-419 reads release publication and one scalar-checking wrapper;
+  broader callers, state producers and native/storage admission stay open.
   FND-EXE-490 finds no AH=4B request among the sound utility's 69 interrupt
   21 instructions or its stack-thunk callers, and no interrupt 2E. Its load
   image makes no direct launch request; the game editions remain Q-EXE-007.

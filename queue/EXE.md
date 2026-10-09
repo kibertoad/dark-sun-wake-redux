@@ -323,6 +323,33 @@ Next ID: Q-EXE-025
   Tried: FND-EXE-409 reads 1425:060B's output/selection/transfer paths.
   Continue link-field writers 0AA5/0B0B/1296, complete callers, current DS,
   output aliases and slot-target preservation/native effects.
+  Tried: FND-EXE-411 reads 0AA5/0B0B through the complete listed
+  release spans. Continue the writer at 1296, complete callers/writers,
+  admitted links/head/output storage, current DS and target preservation.
+  Tried: FND-EXE-412 reads the remaining literal writer at 1296 and its
+  signed quantity loop with allocation/accounting/reconnection failure prefixes.
+  Continue complete callers, computed/cross-region writers and storage/native admission.
+  Tried: FND-EXE-413 reads one extension caller's unsigned dispatch and
+  its signed shrink helper. Continue 0FA3 selector production, caller/input
+  admission, broader callers, computed writers and segment/native/storage contracts.
+  Tried: FND-EXE-414 reads 0FA3 selection and 0C54/0C04 publication
+  paths. Continue 0B26/0BB4, identity/head/age/dirty writers, broader callers,
+  input/output aliases and current-segment/register/native/storage admission.
+  Tried: FND-EXE-415 reads 0B26/0BB4 and distinguishes the two
+  callback layouts. Continue record-zero/link/encoded-word producers, slot
+  target/argument writers, complete callers and alias/preservation/native admission.
+  Tried: FND-EXE-416 reads 0CDD's allocation/count/template request
+  ordering. Continue 0DE9, count/link/encoded-word writers, complete callers,
+  template/destination aliases and slot-target preservation/native admission.
+  Tried: FND-EXE-417 reads 0DE9's dirty prefix, tail/output inspection
+  and predecessor release. Continue complete callers, count/link/encoded-word
+  and six-record writers, destination freshness, aliases and native preservation.
+  Tried: FND-EXE-418 reads 1049's dirty prefix, aligned retry, identity
+  scan and creation stores. Continue complete callers, DS:00CE/00D2
+  producers, output freshness and current-segment/register/native admission.
+  Tried: FND-EXE-419 reads 1146 and its 1769 wrapper, including
+  unused-state publication before later reclamation. Continue complete callers,
+  scalar/head/dirty/count writers, input/alias/extents and native preservation.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
