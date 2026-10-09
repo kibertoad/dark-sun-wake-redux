@@ -181,6 +181,29 @@ Risk: newer checks may expose documentation gaps; address only demonstrated
 compatibility failures without promoting evidence statuses. Exit: validated
 local tooling commit and separate goal handover; no push or owner question.
 
+## Checker 4.0.1 and rules a9884ae (2026-10-09)
+
+The owner requested the checker update. Refresh standard-checker 2.9.0 to
+4.0.1 at its tagged release commit
+9b6cd19a4535663e9c2e5a4a2672e414a1255b64, with the rules at
+a9884ae244bab87fed24b1deeeaf84745e60f6f4, whose only change since 11884c7
+is the Standard's one-file-per-validation-run rule that checker 3.0.0
+enforces. This repository has no `VALIDATION.md` record to migrate.
+Checker 4.0.0 stops printing coverage figures for an inventory with an
+invalid row, so the historical DSUN inventories report `not measured`.
+
+Acceptance: pins agree, snapshot verification, regenerated link ranges, the
+documentation check and the full assetless tools/Test.ps1 pass. Exit: one
+local tooling commit; no push.
+
+Result: the full assetless `tools/Test.ps1 -NoRestore` passed on 2026-10-09
+(Node suites without failures, 715 .NET tests), run with
+artifacts/pwsh7/runtime/pwsh.exe, the 10.0.400 SDK in `~/.dotnet` first on
+PATH, `GAME_DIR` set to the Dark Sun install and
+`NoDefaultCurrentDirectoryInExePath` unset. With the agent shell's own
+`GAME_DIR` (another project's directory) the resident-initializer test fails,
+and with that variable set the play-launcher test cannot start `invoke.cmd`.
+
 ## Owner-requested measured work baseline (2026-10-08)
 
 Run the pinned Protocol's Measuring progress procedure, including the denominator
