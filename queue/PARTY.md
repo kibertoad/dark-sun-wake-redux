@@ -56,20 +56,19 @@ Next ID: Q-PARTY-015
   opened from? Settles it: the start-up code from program entry to the call of `277D:0004`, read
   for how it builds the argument list on each DOS version. Split from Q-PARTY-012, which
   FND-PARTY-034 closed. Blocks: none.
-- Q-PARTY-013. RULE-PARTY-006: Before START GAME reaches the gate, does a call of `3D72:120B`
-  with a nonzero `ICON` number or of `3D72:12ED` with a nonzero image leave a pointer image in
-  place at `DS:A14D`, with `DS:A13D` 0, whose frame at `DS:A151` makes the pointer save and the
-  caret reservation together hold more than 1,006 paragraphs, so that one of the gate routine's
-  calls to `1BF3:27A8` at `DSUN.EXE+0x00069AA5` and `0x00069AC1` returns `0xFFFF`? Settles it:
-  the callers of `3D72:120B` and `3D72:12ED` on the paths of FND-PARTY-031 and the images and
-  frames they pass, and, if a large image is possible, the caret heights in the tables at offset
-  `0x9C` of the edit-field objects that `409B:11B7` and `409B:0D48` take before the gate. Tried:
-  the reservation routine, its pool and the two calls' sizes (FND-PARTY-030); the startup
-  reservation of 1,000 paragraphs, held until the program ends (FND-PARTY-032); the scroll,
-  pointer and caret routines, of which only the last two keep an entry after they return
-  (FND-PARTY-033); the caret's release of its earlier entries, the writers of its height, and the
-  startup pointer image `ICON` 100, whose frames take at most 2 paragraphs (FND-PARTY-035).
-  Blocks: slice 2.
+- Q-PARTY-013. RULE-PARTY-006: Between program start and the gate at overlay 182 `0x12DD`, does
+  any of the 14 call sites that can make the mouse pointer an image other than an `ICON` run
+  (FND-PARTY-036), leaving with `DS:A13D` 0 a pointer image whose save and the caret reservation
+  together hold more than 1,006 paragraphs, so that one of the gate routine's calls to
+  `1BF3:27A8` returns `0xFFFF`? Settles it: the routines holding those sites (the flag-0 callers
+  of overlay 182 `+0x059C`, `2C5F:0C8D`, overlay 182 `+0x19F8` and overlay 208 `0x00092A83`)
+  checked against the routines FND-PARTY-031 finds reachable before the gate, and for any that
+  is reached, the size of the image it sets. Tried: the reservation routine, its pool and the two
+  calls' sizes (FND-PARTY-030); the startup reservation of 1,000 paragraphs (FND-PARTY-032); the
+  scroll, pointer and caret routines (FND-PARTY-033); the caret's release of its earlier entries,
+  its height's writers and the startup pointer `ICON` 100 (FND-PARTY-035); every `ICON` frame,
+  at most 6 paragraphs, the `ICON` 19110 pointer that overlay 182 `+0x016B` sets before the gate,
+  and the direct callers of both pointer-image setters (FND-PARTY-036). Blocks: slice 2.
 
 ## Emulated call
 
