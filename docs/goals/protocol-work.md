@@ -74,14 +74,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   artifacts/hook-tmp as TMPDIR inside Git Bash. Keep hooks enabled. Reuse the saved Ghidra program with -noanalysis. Use the installed Temurin 25.0.4.1 runtime at C:/Program Files/Eclipse Adoptium/jdk-25.0.4.101-hotspot; docs/GHIDRA.md now names that verified path. For combined script directories, follow the corrected literal quoting in docs/GHIDRA.md; both directories
   were verified through the Windows launcher. Original-program execution remains prohibited.
 - Template context: template 0b9ab9c, rules 11884c7 and checker 2.9.0 are
-  integrated on main; engine 13.6.0 and reader 2.5.0 exact locks passed restore and the full gate. Assetless Test.ps1 passed on 2026-10-08. The initial synthetic capture
-  timing failure passed in isolation and in the full rerun. On
-  goal/protocol-work, checker 4.0.1 and rules a9884ae replace 2.9.0 and
-  11884c7 (2d530bb); the full gate passed with the environment in
-  docs/implementation-plans/LATEST-TEMPLATE-SYNC.md. Write
-  range ends half-open (research-item skill).
-  Generated indexes were refreshed on main. Archive member citations are
-  qualified; toolkit issue 353 has the new archive case. Template issue 90
+  integrated on main; engine 13.6.0 and reader 2.5.0 exact locks passed restore and the full gate. Assetless Test.ps1 passed on 2026-10-08. The initial synthetic capture timing failure passed in isolation and in the full rerun. On goal/protocol-work, checker 4.0.1 and rules a9884ae replace 2.9.0 and
+  11884c7 (2d530bb); the full gate passed with the environment in docs/implementation-plans/LATEST-TEMPLATE-SYNC.md. Write range ends half-open (research-item skill). Generated indexes were refreshed on main. Archive member citations are qualified; toolkit issue 353 has the new archive case. Template issue 90
   records fixture-baseline assumptions under scheduled generation.
 - Process audit: all full gates and bounded Ghidra queries exited. The 2026-10-09 checkpoint preserved reusable MSBuild nodes and other repositories' active work and uncertain-owned toolkit Python; no confirmed orphan was stopped.
   Escalated CIM command-line/parent inspection works. Reusable MSBuild nodes
