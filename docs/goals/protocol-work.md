@@ -184,11 +184,15 @@ An owner-approved history repair remains separate from this maintenance scope.
   1. DSUN inventory reconciliation under FMT-EXE-005. Its questions are
      closed: FND-EXE-520 (CS offset 0 is the descriptor's first code byte),
      FND-EXE-521 (descriptor 198's dispatch), FND-EXE-522 (the four
-     code-or-image spans) and FND-EXE-523/524 (fixup and padding spans) show
-     that none of FND-EXE-173's anomalous spans belongs to the body the
-     analyzer gives it. What remains is the inventories themselves: rebuild
-     the installed and disc DSUN inventories without those spans (FND-EXE-225
-     has descriptor 198's 841 extra bytes too), then item 3.
+     code-or-image spans), FND-EXE-523/524 (fixup and padding spans) and
+     FND-EXE-525 (FND-EXE-174's corrected-snapshot spans) show that no
+     anomalous span in either snapshot generation belongs to the body the
+     analyzer gives it. What remains is tooling: migrate-inventory.mjs
+     refuses multi-view DSUN mappings, so it needs a reconciliation step that
+     joins the resident and overlay views of the relocation-corrected
+     snapshots (GAME_DIR analysis/work-baseline) and drops the spans these
+     findings cite (and descriptor 198's 841 extra bytes, FND-EXE-225). Then
+     item 3.
   2. SOUND_DS is done: FND-CONFIG-213 and FND-CONFIG-214 correct the range
      ends, and coverage/ holds the migrated range-aware inventory. Run
      migrate-inventory.mjs from the shared checkout: it hashes the exporter
