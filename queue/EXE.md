@@ -269,6 +269,9 @@ Next ID: Q-EXE-024
   Tried: FND-EXE-550 reads shipped pair/cache zeros and startup's conditional
   upper-word replacement before dispatch. Follow native preservation, complete
   writer coverage, segment/storage admission and the 02AD failure target.
+  Tried: FND-EXE-551 reads 02AD's selected write/cleanup chain and native
+  termination request, including the no-return dependency. Follow native contracts,
+  other 0388 callers/stored targets, actual frames/segments and startup dependencies.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct

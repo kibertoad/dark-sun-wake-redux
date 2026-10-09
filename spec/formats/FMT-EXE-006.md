@@ -245,6 +245,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   wrapper results; native contracts and initial producers remain Q-EXE-007.
   FND-EXE-550 reads shipped pair/cache zeros and the pre-dispatch upper-word
   writer; native preservation and complete writer coverage remain Q-EXE-007.
+  FND-EXE-551 reads startup failure's selected cleanup and native request;
+  native contracts and other cleanup callers/targets remain Q-EXE-007.
   FND-EXE-490 finds no AH=4B request among the sound utility's 69 interrupt
   21 instructions or its stack-thunk callers, and no interrupt 2E. Its load
   image makes no direct launch request; the game editions remain Q-EXE-007.
