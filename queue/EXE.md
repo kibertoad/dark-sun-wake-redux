@@ -142,6 +142,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-372 reads 1AF5/1B59's request quantities, distinct alignment
   checks and saved-segment publication. Follow 1E73, preservation and state
   changes before admitting units, extents, rollback, aliases or re-entry.
+  Tried: FND-EXE-373 follows 1E73's signed gate, arithmetic callees,
+  candidate bounds and saved-prior-pair return. Admit inputs, stored pairs,
+  native preservation, frame aliases and state writers before extent claims.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
