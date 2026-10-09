@@ -54,24 +54,17 @@ An owner-approved history repair remains separate from this maintenance scope.
   batch passed the combined gate with the FND-EXE-355 follow-up on 2026-10-09.
 - Stage: Slices; goal active. Resume the authoritative local claim and preserve other sessions' work.
 - Last full gate: 2026-10-09, assetless Test.ps1 -NoRestore and explicit
-  main-base documentation validation passed for EXE research through FND-EXE-299 and follow-ups FND-EXE-351/352/353/354/355/356/357/358/359/361/362/363/364/365/366/367/368/369/371/372/373/374/375/376/377/378/379/471/472/473/474/475/476/477/478/479/480/481/482/483/484/485/486/487/488/489/499/500/502/503, including integrated FND-EXE-360/370/380. The final gate passed after correcting a draft location kind and integrating the referenced pending batch; the prior issue-7 rerun remains recorded. Updated preservation-context and blocked-tool guidance, measured-baseline tooling and independent physical PE transfer and overlay-body classification tooling passed full gates and enabled hooks. Mapper relocation revision 2 also passed the full gate and its independently failing-before/passing-after synthetic regression. Argument-check skips remain; stale local-main recovery passed: https://github.com/kibertoad/refurbished-dinosaurs-template/issues/92; no wrapper fix claimed. Corrected revision-2 fresh projects and repeatable exports are local. Review old mapped-snapshot dependencies before accepting native claims.
+  main-base documentation validation passed for EXE research through FND-EXE-299 and follow-ups FND-EXE-351/352/353/354/355/356/357/358/359/361/362/363/364/365/366/367/368/369/371/372/373/374/375/376/377/378/379/471/472/473/474/475/476/477/478/479/480/481/482/483/484/485/486/487/488/489/499/500/502/503/504, including integrated FND-EXE-360/370/380. The final gate passed after correcting a draft location kind and integrating the referenced pending batch; the prior issue-7 rerun remains recorded. Updated preservation-context and blocked-tool guidance, measured-baseline tooling and independent physical PE transfer and overlay-body classification tooling passed full gates and enabled hooks. Mapper relocation revision 2 also passed the full gate and its independently failing-before/passing-after synthetic regression. Argument-check skips remain; stale local-main recovery passed: https://github.com/kibertoad/refurbished-dinosaurs-template/issues/92; no wrapper fix claimed. Corrected revision-2 fresh projects and repeatable exports are local. Review old mapped-snapshot dependencies before accepting native claims.
 - Unfinished: this session's EXE batch is committed. The unrelated validation
   documentation edit was committed separately; recheck ownership before mutation. EXE follow-up items remain Q-EXE-005, Q-EXE-006/007/008/009/010 and reader prerequisites Q-EXE-011/012/013; Q-EXE-001 retains its retry requirement. Local static-analysis reports and the saved interpreter Ghidra project remain in GAME_DIR/analysis/exe-batches for continuation. Refreshed comparison: GAME_DIR/analysis/work-baseline/relocation-reconciled; legacy coverage rejection is documented in docs/EVIDENCE-TOOLS.md. Inventories remain pending definition/mapping reconciliation; do not discard anomalous ranges
   or publish unverified replacements. Segment report: GAME_DIR/analysis/work-baseline/decoded-segment-output-audit.log; durable reader evidence remains FND-EXE-166, with no complete-reading promotion.
 - Owner priority: complete-reading closure now takes precedence over broad
-  new partial readings. Use Q-EXE-010 and FMT-EXE-005 for game-code closure; DOSBox complete-reading questions remain historical and blocked by scope.
-  Assemble a bounded
-  evidence package, checking complete bodies, independent caller searches,
-  every input/state writer, indirect targets, return consumption and external
-  dependencies against STATUS-4 through STATUS-13. Add complete_reading only
-  after those obligations are satisfied; recorded findings and citation coverage
-  are not substitutes. Address boundary anomalies that affect the candidate.
+  new partial readings. Use Q-EXE-010 and FMT-EXE-005 for game-code closure; DOSBox complete-reading questions remain historical and blocked by scope. Assemble a bounded evidence package, checking complete bodies, independent caller searches, every input/state writer, indirect targets, return consumption and external dependencies against STATUS-4 through STATUS-13. Add complete_reading only
+  after those obligations are satisfied; recorded findings and citation coverage are not substitutes. Address boundary anomalies that affect the candidate.
 - Queue-scope checkpoint: the isolated session branch
-  session/protocol-host-queue-20261009 holds the integrated planning batch moving
-  Q-EXE-006/009/012/013 to Blocked and updating Q-EXE-011's scope restriction.
+  session/protocol-host-queue-20261009 holds the integrated planning batch moving Q-EXE-006/009/012/013 to Blocked and updating Q-EXE-011's scope restriction.
 - Environment: use the checkout's portable PowerShell
-  (artifacts/pwsh7/runtime/pwsh.exe) and locked evidence-python interpreter. Clear GAME_DIR and
-  NoDefaultCurrentDirectoryInExePath. TEMP/TMP must belong to the account
+  (artifacts/pwsh7/runtime/pwsh.exe) and locked evidence-python interpreter. Clear GAME_DIR and NoDefaultCurrentDirectoryInExePath. TEMP/TMP must belong to the account
   actually executing the process. Under CodexSandboxOffline, explicitly set
   TEMP/TMP to C:/Users/CodexSandboxOffline/AppData/Local/Temp; the inherited
   kiber temp directory fails Java real-path resolution even when Node can
@@ -205,4 +198,4 @@ An owner-approved history repair remains separate from this maintenance scope.
      manifest path CD:DSUN.EXE needs @CD/ (docs/EVIDENCE-TOOLS.md).
   4. Choose a bounded game-code reading and its actual caller/state obligations;
      preserve EXE questions relevant to the game and retire host-only priorities.
-  5. Follow Q-EXE-007's game-edition consumers under FMT-EXE-006: 3DCC, record/state admission and remaining caller coverage.
+  5. Follow Q-EXE-007's game-edition consumers under FMT-EXE-006: DS/SS and record/state admission, remaining byte-dispatch branches and caller coverage.
