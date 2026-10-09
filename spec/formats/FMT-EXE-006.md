@@ -147,6 +147,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   later consumers, reader/position contracts and state admission remain Q-EXE-007.
   FND-EXE-378 reads position-helper request ordering and signed adjustment;
   reader, producers, native preservation and later consumers remain Q-EXE-007.
+  FND-EXE-379 reads the reader root's byte/full-word returns and refill loop;
+  lower callees, producers, extents and later consumers remain Q-EXE-007.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;
   startup, actual DS, aliases and later writers must admit their runtime use.
 - Which disc helpers does the disc installer select (Q-EXE-008)? Selection
