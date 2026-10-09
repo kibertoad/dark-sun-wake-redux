@@ -311,6 +311,9 @@ Next ID: Q-EXE-025
   Tried: FND-EXE-405 connects those pointer calls to FND-CONFIG-181/182.
   Continue entry DS/SI, source termination/extents, frame aliases and actual
   manager consumption; the supplied append limit is not storage admission.
+  Tried: FND-EXE-406 connects manager inputs, validation, gate/argument writes
+  and callback continuation. Follow 1425:076B/0591, DS/alias admission,
+  preservation and the independent inventory ownership discrepancy.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
