@@ -36,6 +36,13 @@ approved analysis tools. Describe original behavior in the spec rather than
 building capabilities to attack systems. Continue routine research and tooling
 without treating reverse engineering alone as a security concern.
 
+Frame each task in preservation terms: which game behavior or resource is being
+understood, which licensed local input supplies the evidence, and which bounded
+output will document or reproduce it. Reading executable headers, following a
+game function statically, decoding an asset and testing a parser with synthetic
+inputs are ordinary restoration tasks. Do not reinterpret them as requests to
+find vulnerabilities, demonstrate exploitation or test a system's defenses.
+
 Before an unfamiliar operation, identify the preservation question it answers,
 the files or processes it accesses and its expected side effects. Choose the
 narrowest supported operation that answers that question. If it would reach
@@ -69,6 +76,13 @@ security research to overcome a tooling limitation.
 - Prefer static analysis and synthetic reproduction when answering game-format
   or behavior questions. Do not execute unknown helper programs or downloaded
   binaries merely to see what they do; inspect them or use approved tooling.
+- Do not expand a preservation tool into a general-purpose memory injector,
+  remote execution tool or arbitrary program runner. Keep inputs, entry points,
+  memory mappings and outputs limited to the documented game-analysis contract;
+  reject unsupported operations rather than adding an unrestricted fallback.
+- Before sharing diagnostics, review the output for licensed content, unrelated
+  host information and secrets. Report the preservation result in your own words
+  and retain original-derived material only in the approved local stores.
 
 The repository's runtime restrictions still apply: agents do not launch or
 control the original game or DOSBox. An emulated call uses only the declared
