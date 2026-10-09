@@ -44,14 +44,6 @@ bounded source reader; this does not establish native loader behavior.
 
 ## Open questions
 
-- Which instructions does descriptor 198's dispatch reach (Q-EXE-020)? Read
-  at the descriptor base, its eleven targets lie inside the overlay's code;
-  at the analyzer-alias base most lie outside (FND-EXE-173). FND-EXE-221 to
-  FND-EXE-225 bound the adjacent tables and decode the descriptor-base
-  candidates, three of which lack decoded instruction starts in the corrected
-  snapshot. FND-EXE-520 shows that CS offset 0 is the descriptor's first
-  code byte, which selects the descriptor base; each target then has to
-  decode as an instruction start of its function.
 - Do the four anomalous spans that are not wholly fixups or padding belong to
   the bodies that own them (Q-EXE-021)? FND-EXE-173 places three in overlay
   code and one in the resident load image. A bounded transfer from each

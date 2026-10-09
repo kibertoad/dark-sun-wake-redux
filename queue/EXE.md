@@ -276,33 +276,6 @@ Next ID: Q-EXE-023
   do not cover the disc installer. Split from Q-EXE-004. Blocks: complete
   disc-installer caller coverage.
 
-- Q-EXE-020. FMT-EXE-005: Which instructions does descriptor 198's dispatch
-  at analysis alias 921E:0135 reach? FND-EXE-173 bounds its index to eleven
-  entries and reads the table at the descriptor base (0x0008753C, all targets
-  inside the overlay's code) and at the analyzer-alias base (0x0008760C, most
-  outside). Settles it: FND-EXE-520 places CS offset 0 on the descriptor's first
-  code byte, which selects the descriptor base; each of the eleven targets
-  under it decodes as an instruction start of the function
-  whose entry is 0x00087459, and the producers of the dispatch's index word
-  admit only the bounded values.
-  Tried: FND-EXE-221 independently bounds descriptor 198's adjacent
-  eighteen-slot table and checks all four distinct descriptor-base targets;
-  three are undisassembled in the corrected snapshot. Native CS and candidate
-  instruction admission remain necessary before body reconciliation.
-  Tried: FND-EXE-222 decodes all four descriptor-base candidates from the
-  shipped source and closes their conditional tails with the separately
-  bounded eleven-slot table. This does not admit native CS, whole-function
-  ownership, incoming frames or runtime dispatch.
-  Tried: FND-EXE-223 extends the source traversal to the outer candidate;
-  three additional computed jumps require independent consumer/bound readings.
-  Tried: FND-EXE-224 independently bounds all four tables and supplies a
-  conditional outer-body traversal. Native entry/CS, input/frame admission
-  and analyzer ownership still require reconciliation before replacement.
-  Tried: FND-EXE-225 resolves the candidate's stored trampoline target and
-  compares complete body sets: missing candidate chunks and extra ownership
-  beyond the descriptor both require review, not just scalar size correction.
-  Blocks: Q-EXE-022 and the DSUN inventory reconciliation under FMT-EXE-005.
-
 - Q-EXE-021. FMT-EXE-005: Do the four anomalous spans that are not wholly
   fixups or padding belong to the bodies that own them? FND-EXE-173 places
   installed 0x0006D090..0x0006D150 (entry 0x0006B581, descriptor 183) and
@@ -322,7 +295,7 @@ Next ID: Q-EXE-023
   Settles it: for each fixup or padding part in FND-EXE-173's table, every
   analyzer reference into it, each shown to come from a table read at the
   wrong base or from decoding data as code, or else a transfer admitted under
-  FND-EXE-520's CS and Q-EXE-020's targets that does reach it.
+  FND-EXE-520's CS and FND-EXE-521's targets that does reach it.
   Blocks: the DSUN inventory reconciliation under FMT-EXE-005.
 
 ## Emulated call
