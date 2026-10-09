@@ -196,6 +196,22 @@ helper whose XXH3-128 is
 shipped compressed file. Each inventory keeps only starts inside its MZ load
 image and the function-body byte counts Ghidra reported.
 
+Engine 15.0.0's shared `ExportFunctionInventory.java <inventory.tsv>
+<snapshot>` writes the same rows for these four helpers from their snapshots:
+the same starts, sizes and bodies, with the `ranges` cell left empty for a
+body that is the `size` bytes from its start, and `standard-coverage` accepts
+them. Two runs repeat byte for byte. It also writes a provenance file (XXH3-128,
+SHA-256, Ghidra version, snapshot, script and helper hashes) and a regions file
+of Ghidra's executable blocks with `entry` rows for starts that hold no
+instruction. Run it with the package's `ghidra-scripts` directory as
+`-scriptPath`, into paths where none of the three files exists. For `DSUN.EXE`
+it exports each view on its own: the overlay view is the mapped image, so its
+rows are mapped-image `segment:offset` addresses with the mapped file's hash,
+and it neither clips overlay bodies nor joins the views. The DSUN inventories
+therefore still come from `join-overlay-views.mjs`. Its `entry` rows name the
+same starts without an instruction as the join's expectations: `2707:048E` in
+the installed resident view and `6F0E:1A7C` in its overlay view.
+
 ## Bounded script pattern
 
 Adapt the reusable headless scripts and methodology from
