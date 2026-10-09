@@ -99,9 +99,11 @@ file-offset inventory tools do not validate these PE virtual addresses.
 
 ## Compared with other builds
 
-No other build has been studied. Whether the disc image is byte-identical to a retail CD of
-version 1.0 or 1.1 is not known, and neither is the history of the installed files that differ
-from the disc's.
+No other build has been studied. The disc's `DSUN.EXE` is version 1.0 and the installed one
+version 1.1, and the installed `PATCH.RTP` records the disc copies' sizes as the old sizes and
+the installed copies' as the new for seven of the eight files that differ (FND-EXE-570). Whether
+applying it to the disc's files gives the installed ones byte for byte is not known, and neither
+is whether the disc image is byte-identical to a retail CD of version 1.0.
 
 ## Other files
 
