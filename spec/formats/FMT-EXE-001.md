@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_exe_001.ksy
-evidence: [FND-EXE-001, FND-EXE-002, FND-EXE-003, FND-EXE-560, FND-EXE-561, FND-EXE-563, FND-EXE-565]
+evidence: [FND-EXE-001, FND-EXE-002, FND-EXE-003, FND-EXE-560, FND-EXE-561, FND-EXE-563, FND-EXE-565, FND-EXE-567]
 conflicting: []
 split_with: []
 related: []
@@ -27,7 +27,7 @@ states what the shipped files hold.
 |---|---|---|---|---|---|---|
 | `0x00` | 4 | `char[4]` | `magic` | `FBOV`, ASCII, with no NUL. The installed file's manager requires `FB` and skips a block whose next two bytes are not `OV` by that block's `payload_size`. | supported | FND-EXE-001, FND-EXE-560 |
 | `0x04` | 4 | `UINT32LE` | `payload_size` | Bytes in `payload`: 276,656 in the installed file, 277,264 in the disc's. The pack ends exactly at the end of the file. The manager stores it in `57E0:356C` (`57D7:34E0` on the disc) and caps an EMS or extended-memory overlay cache at it. | supported | FND-EXE-001, FND-EXE-560, FND-EXE-563, FND-EXE-565 |
-| `0x08` | 4 | `UINT32LE` | `segment_table_offset` | File offset of the segment table, `FMT-EXE-002[segment_count]`, which lies in the resident load image: `0x4B080` (`55E8:0000`) installed, `0x4AF90` (`55D9:0000`) on the disc. The manager does not read it and walks the table at `55E8:0000` (`55D9:0000` on the disc) directly. | supported | FND-EXE-001, FND-EXE-002, FND-EXE-560, FND-EXE-561, FND-EXE-565 |
+| `0x08` | 4 | `UINT32LE` | `segment_table_offset` | File offset of the segment table, `FMT-EXE-002[segment_count]`, which lies in the resident load image: `0x4B080` (`55E8:0000`) installed, `0x4AF90` (`55D9:0000`) on the disc. The manager does not read it and walks the table at `55E8:0000` (`55D9:0000` on the disc) directly; no other code names the table's segment. | supported | FND-EXE-001, FND-EXE-002, FND-EXE-560, FND-EXE-561, FND-EXE-565, FND-EXE-567 |
 | `0x0C` | 4 | `UINT32LE` | `segment_count` | Number of segment-table descriptors, 229 in both files. The installed file's manager does not read it; its walk stops after 229 records at a fixed bound. | supported | FND-EXE-001, FND-EXE-002, FND-EXE-560, FND-EXE-561 |
 | `0x10` | `payload_size` | `BYTE[payload_size]` | `payload` | One FMT-EXE-005 block for each overlaid segment, at the offset from this field's start that the segment's overlay header (FMT-EXE-003) gives, each padded with zeros to a multiple of 16 bytes, and zeros after the last block. | supported | FND-EXE-003 |
 | | | | | Total size `16 + payload_size` | | |
@@ -48,5 +48,5 @@ overlay blocks and their padding account for every payload byte [FND-EXE-001, FN
 
 ## Open questions
 
-- Whether code other than the overlay manager's startup reads `segment_table_offset` or
-  `segment_count` (Q-EXE-001).
+- Whether any code reads `segment_table_offset` or `segment_count` from the file; the overlay
+  manager's startup reads the pack header but not these fields [FND-EXE-560] (Q-EXE-001).

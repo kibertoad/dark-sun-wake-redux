@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_exe_003.ksy
-evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-004, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563, FND-EXE-565, FND-EXE-566]
+evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-004, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563, FND-EXE-565, FND-EXE-566, FND-EXE-567]
 conflicting: []
 split_with: []
 related: []
@@ -30,7 +30,7 @@ this one's trampolines.
 | `0x08` | 2 | `UINT16LE` | `code_size` | Bytes of code in the block. | supported | FND-EXE-003 |
 | `0x0A` | 2 | `UINT16LE` | `fixup_size` | Bytes of fixup list in the block after the code; always even. | supported | FND-EXE-003 |
 | `0x0C` | 2 | `UINT16LE` | `trampoline_count` | Number of trampolines after the header, 1 to 53. | supported | FND-EXE-003, FND-EXE-004 |
-| `0x0E` | 18 | `BYTE[18]` | `unk_0E` | All 0 in every header of both files. At run time the installed file's manager keeps, at these header offsets: the next header in an overlay cache's chain at `0x0E`, the load segment at `0x10`, the next kept header's segment at `0x12`, the position of the overlay's copy in the cache as a doubleword at `0x14`, the near address of the routine that loads it at `0x18` (`0x04C6` from the file, `0x0A4B` from EMS, `0x0BFE` from extended memory), state bits at byte `0x1A` (`0xFF` leaves the header out), at byte `0x1B` the number of extra passes the overlay gets at the head of the buffer queue before it is evicted, and at `0x1C` the next overlay in that queue of loaded overlays. The manager does not use `0x1E`. | supported | FND-EXE-003, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563, FND-EXE-566 |
+| `0x0E` | 18 | `BYTE[18]` | `unk_0E` | All 0 in every header of both files. At run time the installed file's manager keeps, at these header offsets: the next header in an overlay cache's chain at `0x0E`, the load segment at `0x10`, the next kept header's segment at `0x12`, the position of the overlay's copy in the cache as a doubleword at `0x14`, the near address of the routine that loads it at `0x18` (`0x04C6` from the file, `0x0A4B` from EMS, `0x0BFE` from extended memory), state bits at byte `0x1A` (`0xFF` leaves the header out), at byte `0x1B` the number of extra passes the overlay gets at the head of the buffer queue before it is evicted, and at `0x1C` the next overlay in that queue of loaded overlays. No code found uses `0x1E`. | supported | FND-EXE-003, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563, FND-EXE-566, FND-EXE-567 |
 | `0x20` | `trampoline_count * 5` | `FMT-EXE-004[trampoline_count]` | `trampolines` | The overlay's resident entry points. | supported | FND-EXE-004 |
 | | | | | Total size `32 + trampoline_count * 5` | | |
 
@@ -50,5 +50,4 @@ inside its overlay's code [FND-EXE-003, FND-EXE-004].
 
 ## Open questions
 
-- Whether code outside the overlay manager uses header word `0x1E`; the manager does not
-  [FND-EXE-566] (Q-EXE-001).
+None known.

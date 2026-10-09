@@ -1,25 +1,19 @@
 # EXE
 
-Next ID: Q-EXE-024
+Next ID: Q-EXE-025
 
 ## Static
 
-- Q-EXE-001. FMT-EXE-001, FMT-EXE-002, FMT-EXE-003, FMT-EXE-004: What do the
-  remaining overlay-manager fields hold? Which other code reads the pack's
-  `segment_table_offset` or `segment_count`; what `unk_02` and `unk_06` hold and
-  `flags` 0, 1 and 4 mean for descriptors that are not overlays; and does code
-  outside the manager use header word `0x1E`? Settles it: every reader of the
-  segment table at `55E8:0000` (the fixup pass reads it by index) and of the
-  overlay headers outside segment `4AE5`. Tried:
-  FND-EXE-560 to FND-EXE-564 read the installed manager's startup, descriptor
-  walk, `INT 3Fh` handler, trampoline forms and overlay cache, which settle
-  which fields the startup reads, the bit-1 overlay test, header `+0x02` and
-  `+0x0E` to `+0x1B` and the trampoline forms, and FND-EXE-565 finds the
-  disc's manager the same code; FND-EXE-566 reads the buffer queue through
-  `+0x1C` and finds no use of `+0x1E` in the manager; FND-EXE-520 and FND-EXE-227/228/248 read the load,
-  fixup and placement paths, and FND-EXE-175 to FND-EXE-180 the handler's
-  setup. FND-EXE-181 to FND-EXE-195 followed a lead into the host executable,
-  which this goal's scope excludes. Blocks: none.
+- Q-EXE-001. FMT-EXE-001: Does any code read the pack's
+  `segment_table_offset` or `segment_count` from the file? Settles it: every
+  DOS read or seek of the program's own file outside the overlay manager's
+  startup, traced to the bytes it reads. Tried: FND-EXE-560 reads the
+  startup, which reads the pack header without these fields; FND-EXE-561 to
+  FND-EXE-568 read the rest of the manager, find the disc's the same code,
+  and find that only the manager names the table's segment in memory and
+  that no code reads header word `0x1E` or a descriptor's `unk_06`.
+  FND-EXE-181 to FND-EXE-195 followed a lead into the host executable, which
+  this goal's scope excludes. Blocks: none.
 - Q-EXE-007. FMT-EXE-006: Do the shipped game or sound-setup executables
   launch any batch helpers? Settles it: direct executable launch references
   traced through selectors and arguments, including computed command names.
@@ -331,6 +325,12 @@ None.
   selection record that distinguishes the decoder; host-internal complete
   readings remain outside owner-approved scope. Split from Q-EXE-002.
   Blocks: original display encoding identification.
+- Q-EXE-024. FMT-EXE-002: What do `unk_02` and `unk_06` record for the
+  descriptors that are not overlays, and what do `flags` values 0, 1 and 4
+  mean? Settles it: the linker's own description of the FBOV segment table it
+  writes. Tried: FND-EXE-567 finds that the program reads none of them beyond
+  `flags` bit 1 and whether `unk_02` is 0, so no static reading of
+  `DSUN.EXE` can say. Split from Q-EXE-001. Blocks: none.
 
 ## Blocked
 

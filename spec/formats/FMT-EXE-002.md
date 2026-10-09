@@ -9,7 +9,7 @@ byte_order: little
 size: 8
 text: false
 definition: fmt_exe_002.ksy
-evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-561]
+evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-561, FND-EXE-567]
 conflicting: []
 split_with: []
 related: []
@@ -24,9 +24,9 @@ overlay by the index of its descriptor ("overlay 182").
 | Offset | Size | Type | Name | Meaning | Status | Evidence |
 |---|---|---|---|---|---|---|
 | `0x00` | 2 | `UINT16LE` | `segment` | A paragraph number relative to the start of the load image, from 0 to 21,039. For an overlay descriptor, `segment + 0x1000` is the segment of its FMT-EXE-003 header. | supported | FND-EXE-002 |
-| `0x02` | 2 | `UINT16LE` | `unk_02` | For an overlay descriptor, the size in bytes of its resident header, `32 + 5 * trampoline_count`. Purpose unknown for the others. | supported | FND-EXE-002 |
-| `0x04` | 2 | `UINT16LE` | `flags` | 0, 1, 3 or 4; see below. | supported | FND-EXE-002 |
-| `0x06` | 2 | `UINT16LE` | `unk_06` | 0 for every overlay descriptor. Purpose unknown. | supported | FND-EXE-002 |
+| `0x02` | 2 | `UINT16LE` | `unk_02` | For an overlay descriptor, the size in bytes of its resident header, `32 + 5 * trampoline_count`. Purpose unknown for the others. At run time only whether it is 0 is read, by the overlay manager's descriptor walk. | supported | FND-EXE-002, FND-EXE-561, FND-EXE-567 |
+| `0x04` | 2 | `UINT16LE` | `flags` | 0, 1, 3 or 4; see below. Code reads only bit 1. | supported | FND-EXE-002, FND-EXE-567 |
+| `0x06` | 2 | `UINT16LE` | `unk_06` | 0 for every overlay descriptor. Purpose unknown; no code reads it. | supported | FND-EXE-002, FND-EXE-567 |
 | `0x08` | | | | Total size 8 | | |
 
 ## Enumerations and flags
@@ -52,4 +52,5 @@ number of each `flags` value and the same overlay indexes [FND-EXE-002].
 ## Open questions
 
 - What `unk_02` and `unk_06` hold for the descriptors that are not overlays, and what values 0, 1
-  and 4 of `flags` distinguish (Q-EXE-001).
+  and 4 of `flags` distinguish. The program does not read them [FND-EXE-567], so only the
+  linker's description of the table can say (Q-EXE-024).
