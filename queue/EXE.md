@@ -279,6 +279,9 @@ Next ID: Q-EXE-024
   Tried: FND-EXE-557 reads general cleanup registration's exact count guard,
   paired-word stores and post-store count increment. Follow its callers and return
   consumption, complete count/table writers and aliases, and other stored targets.
+  Tried: FND-EXE-558 traces one registration caller's relocated pointer words,
+  full-word result test and registered callback's two calls. Follow complete caller
+  coverage, predecessor/callback/error callees and admitted count/table state.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct

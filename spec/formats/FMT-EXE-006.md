@@ -253,6 +253,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   complete writers, driver/native contracts and registration remain Q-EXE-007.
   FND-EXE-557 reads general callback registration's equality guard and ordered
   target/count writes; all callers, writers and input admission remain Q-EXE-007.
+  FND-EXE-558 supplies a relocated registration caller and callback sequence;
+  complete callers/writers and downstream effects remain Q-EXE-007.
   FND-EXE-490 finds no AH=4B request among the sound utility's 69 interrupt
   21 instructions or its stack-thunk callers, and no interrupt 2E. Its load
   image makes no direct launch request; the game editions remain Q-EXE-007.
