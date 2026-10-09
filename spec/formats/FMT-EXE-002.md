@@ -9,7 +9,7 @@ byte_order: little
 size: 8
 text: false
 definition: fmt_exe_002.ksy
-evidence: [FND-EXE-002, FND-EXE-003]
+evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-561]
 conflicting: []
 split_with: []
 related: []
@@ -37,7 +37,7 @@ overlay by the index of its descriptor ("overlay 182").
 |---|---|---|---|---|
 | `0` | `FBOV_SEGMENT_0` | Purpose unknown; 79 descriptors in the installed file. | supported | FND-EXE-002 |
 | `1` | `FBOV_SEGMENT_1` | Purpose unknown; 87 descriptors. | supported | FND-EXE-002 |
-| `3` | `FBOV_SEGMENT_OVERLAY` | An overlaid segment: `segment` locates its FMT-EXE-003 header. 49 descriptors, indexes 169 to 217. | supported | FND-EXE-002, FND-EXE-003 |
+| `3` | `FBOV_SEGMENT_OVERLAY` | An overlaid segment: `segment` locates its FMT-EXE-003 header. 49 descriptors, indexes 169 to 217. The installed file's overlay manager keeps a descriptor as an overlay when bit 1 of `flags` is set and `unk_02` is not 0; 3 is the only value with bit 1 set. | supported | FND-EXE-002, FND-EXE-003, FND-EXE-561 |
 | `4` | `FBOV_SEGMENT_4` | Purpose unknown; 14 descriptors. | supported | FND-EXE-002 |
 
 ## Differences between builds
@@ -53,5 +53,3 @@ number of each `flags` value and the same overlay indexes [FND-EXE-002].
 
 - What `unk_02` and `unk_06` hold for the descriptors that are not overlays, and what values 0, 1
   and 4 of `flags` distinguish (Q-EXE-001).
-- Whether the code tests the whole value 3 or bit 1 of `flags`, which is set only in value 3
-  (Q-EXE-001).

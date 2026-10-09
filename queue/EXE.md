@@ -4,62 +4,24 @@ Next ID: Q-EXE-024
 
 ## Static
 
-- Q-EXE-001. FMT-EXE-001, FMT-EXE-002, FMT-EXE-003, FMT-EXE-004,
-  FMT-EXE-005: How does the overlay manager load an overlay? Which code
-  reads the pack header and the segment table, what do the descriptor words
-  `unk_02` and `unk_06` and the `flags` values 0, 1 and 4 mean, what does the
-  `INT 3Fh` trap do with a trampoline's `target`, what fills the overlay
-  header's zero fields at run time, and how are the fixups applied? Settles
-  it: the `INT 3Fh` handler that the startup code installs, read through its
-  file reads, the header fields it writes and the fixup loop. Tried: the only
-  resident routine that calls both literal DOS seek and read wrappers
-  (FND-EXE-007), which reads signature-and-length records and takes no pack
-  input. FND-EXE-175 adds an original-source bounded resident candidate
-  with explicit call targets and unresolved interrupt/root-frame stops.
-  Next: establish its incoming transfers and state/segment producers, then
-  follow the listed callees into handler installation and loading.
-  FND-EXE-176 resolves the initial state/vector pointer; account for every
-  writer and the vector procedure's replacement with the old pointer.
-  FND-EXE-252 corrects the initializer-only gate; resolve both callbacks
-  and state gate producers before claiming cleanup completion.
-  FND-EXE-178 adds default-stub and replacement-writer leads; follow their
-  segment preservation and target bodies. FND-EXE-179 lists the intervening
-  callee returns, interrupts and unresolved far targets; follow their producers
-  and saved-stack integrity before claiming preservation. FND-EXE-180 and
-  SRC-DOSBOX-GOG-0742 connect the paired producer to an external-provider
-  contract; live target identity, writers and source/binary correspondence
-  remain unresolved. FND-EXE-182 adds a bounded shipped-provider pattern;
-  read its input/output field identities, pointer producer and registration
-  consumer before accepting correspondence. FND-EXE-183 follows the packed
-  pointer producer and counter-helper success return; establish counter
-  initialization/unit/lifetime, failure effects and callback setup. FND-EXE-184
-  records setup state ordering and result consumption; read its builder,
-  diagnostic and metadata callees, state producers and dispatch. FND-EXE-185
-  resolves the selected builder arm; establish its backing-memory producers,
-  destination extent and callback-table dispatch. FND-EXE-186 bounds the
-  table consumer; establish its selector/table writers, callee effects,
-  callback inputs and root callers. FND-EXE-187 traces the backing-base producer
-  and controlled CRT imports; read request producers/range, wrapper records,
-  retry target, initialization, loaded CRT effects and lifetime. FND-EXE-188
-  reads local record-helper paths; establish shared state/selector producers,
-  initializer/import contracts, frame preservation and record aliases. FND-EXE-189
-  resolves local selector publication; establish shared/gate/flag producers,
-  imported preservation, admitted extent and wait completion. FND-EXE-190
-  reads shared-record publication; establish query extent, low-word helper
-  decoding, adopted-record admission, source globals and lifetime. FND-EXE-191
-  resolves local recovery; establish initialized prefix, admitted identifiers,
-  unchanged names, record extent/lifetime and loaded failure effects. FND-EXE-192
-  resolves producer query extent; establish runtime suffix preservation,
-  existing atom provenance, admitted retrieval extent and record lifetime.
-  FND-EXE-193 establishes callback-slot indirection and a field +4 setter;
-  follow setter callers/arguments, other field writers and copied targets,
-  retaining record admission and lifetime requirements. FND-EXE-194 follows
-  dispatch continuations and the failure import; its controlled direct-call
-  searches exclude indirect setter uses. Establish those uses and loaded
-  callback/failure contracts before closure. FND-EXE-195 excludes the shipped
-  contiguous absolute setter dword with stored-target controls; calculated,
-  relocated, encoded and runtime-created targets remain unresolved. Blocks: none.
-
+- Q-EXE-001. FMT-EXE-001, FMT-EXE-002, FMT-EXE-003, FMT-EXE-004: What do the
+  remaining overlay-manager fields hold? Which other code reads the pack's
+  `segment_table_offset` or `segment_count`; what `unk_02` and `unk_06` hold and
+  `flags` 0, 1 and 4 mean for descriptors that are not overlays; what the
+  manager keeps in header words `0x0E`, `0x14`, `0x16`, `0x1C` and `0x1E`; and
+  does the disc's manager read the pack, the table, the headers and the
+  trampolines as the installed one does? Settles it: the manager code after
+  `4AE5:0900` in the installed `DSUN.EXE` that uses header offsets `0x0E`,
+  `0x14` and `0x16`, the placement code's use of `0x1C`, every reader of the
+  segment table at `55E8:0000` (the fixup pass reads it by index), and the
+  disc manager's startup, walk, handler and trampoline writer. Tried:
+  FND-EXE-560 to FND-EXE-562 read the installed manager's startup, descriptor
+  walk, `INT 3Fh` handler and trampoline forms, which settle which fields the
+  startup reads, the bit-1 overlay test, header `+0x02`, `+0x10` to `+0x1B`
+  and the trampoline forms; FND-EXE-520 and FND-EXE-227/228/248 read the load,
+  fixup and placement paths, and FND-EXE-175 to FND-EXE-180 the handler's
+  setup. FND-EXE-181 to FND-EXE-195 followed a lead into the host executable,
+  which this goal's scope excludes. Blocks: none.
 - Q-EXE-007. FMT-EXE-006: Do the shipped game or sound-setup executables
   launch any batch helpers? Settles it: direct executable launch references
   traced through selectors and arguments, including computed command names.

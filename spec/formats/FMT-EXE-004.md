@@ -9,7 +9,7 @@ byte_order: little
 size: 5
 text: false
 definition: fmt_exe_004.ksy
-evidence: [FND-EXE-004]
+evidence: [FND-EXE-004, FND-EXE-562]
 conflicting: []
 split_with: []
 related: []
@@ -23,9 +23,9 @@ address in the resident image is the header's segment and offset `0x20 + 5 * i`,
 
 | Offset | Size | Type | Name | Meaning | Status | Evidence |
 |---|---|---|---|---|---|---|
-| `0x00` | 2 | `BYTE[2]` | `trap` | `CD 3F`, the instruction `INT 3Fh`, in every trampoline. | supported | FND-EXE-004 |
+| `0x00` | 2 | `BYTE[2]` | `trap` | `CD 3F`, the instruction `INT 3Fh`, in every trampoline. In the installed file the handler loads the overlay, the manager rewrites every trampoline of it as `EA`, `target` and the load segment, a far jump into the loaded code, and returns to the trampoline; unloading writes `CD 3F`, `target` and 0 back. | supported | FND-EXE-004, FND-EXE-562 |
 | `0x02` | 2 | `UINT16LE` | `target` | An offset in the overlay's code; less than the header's `code_size` in every trampoline. | supported | FND-EXE-004 |
-| `0x04` | 1 | `UINT8` | `unk_04` | 0 in every trampoline of both files. Purpose unknown. | supported | FND-EXE-004 |
+| `0x04` | 1 | `UINT8` | `unk_04` | 0 in every trampoline of both files. In the far-jump form it is the high byte of the load segment. | supported | FND-EXE-004, FND-EXE-562 |
 | `0x05` | | | | Total size 5 | | |
 
 ## Enumerations and flags
@@ -42,7 +42,5 @@ All 854 trampolines of the installed `DSUN.EXE` and all 863 of the disc's [FND-E
 
 ## Open questions
 
-- Whether a far call to a trampoline loads the overlay and jumps to `target`, and what `unk_04`
-  holds at run time (FND-EXE-007, Q-EXE-001).
-  FND-EXE-227 records a conditional resident rewrite into a far-jump offset
-  and segment; live header/segment production and actual transfer remain unread.
+- Whether the disc's overlay manager handles trampolines as the installed one does
+  (Q-EXE-001).
