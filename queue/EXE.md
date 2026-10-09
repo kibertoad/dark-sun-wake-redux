@@ -136,6 +136,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-369 reads 1E34/06C2/1DBE/25FD's encoded pair gate,
   rounded quantity, saved-BX return and sentinel-selected state changes. Admit
   bounds/base writers, native preservation/results, extents, aliases and shared state.
+  Tried: FND-EXE-371 reads 1BD6/1BE0's quantity conversion and candidate
+  search plus 1BB3's split stores and distinct fitted returns. Follow 1AF5/1B59,
+  unit/extent admission, topology, shared CS-state writers, aliases and re-entry.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
