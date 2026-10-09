@@ -187,8 +187,12 @@ An owner-approved history repair remains separate from this maintenance scope.
      (Q-EXE-001). FND-EXE-560 to FND-EXE-564 cover startup, the descriptor
      walk, the INT 3Fh handler, trampoline forms and the EMS/extended cache;
      FND-EXE-565 finds the disc's manager the same code one byte lower in
-     segment 4AD6. Next: header word 0x1C in the placement code, then the
-     other readers of the pack fields and the non-overlay descriptors.
+     segment 4AD6; FND-EXE-566 reads the buffer queue (+0x1C link, +0x1B
+     passes) and finds no manager use of +0x1E. Next: readers of the segment
+     table and of overlay headers outside 4AE5 (non-overlay descriptors'
+     unk_02/unk_06 and flags 0, 1, 4; header +0x1E). For field-offset
+     searches use the engine's operand-candidates, which matches any memory
+     operand with that displacement, before a hand-written byte scan.
      IDs from FND-EXE-560 up are this session's; Codex allocates below them.
   5. Follow Q-EXE-007's game-edition consumers under FMT-EXE-006: FND-EXE-556 complete cache callback/state writers and native contracts, FND-EXE-557 registration callers/return consumption and count/table writers, FND-EXE-555 other general targets, FND-EXE-531 storage admission, native contracts and remaining startup dependencies.
   6. The DSUN inventories leave out resident functions only overlay code
