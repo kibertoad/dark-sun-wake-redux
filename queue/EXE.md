@@ -100,6 +100,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-380 records the shipped limit-word initializer and the
   first five selector-byte initializers. These do not admit incoming state;
   trace startup, actual DS, aliases and later writers before applying them.
+  Tried: FND-EXE-357 separates 1000:37F1's pre-mutation rejection from
+  its later allocation failure after record/global stores. Continue 1000:2CC8,
+  1000:1ACC, 1000:1BD6, caller cleanup 1000:2873 and state/preservation admission.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.

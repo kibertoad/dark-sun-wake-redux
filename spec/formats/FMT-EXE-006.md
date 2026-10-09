@@ -106,6 +106,9 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-356 resolves the local returned-bit helper and its unchecked
   interrupt continuation; native results, record admission and remaining
   configuration/cleanup callees stay open.
+  FND-EXE-357 reads the configuration helper's distinct failure prefixes
+  and buffer publication; its allocation/cleanup callees, preservation and
+  state admission remain under Q-EXE-007 before an execution exclusion.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;
   startup, actual DS, aliases and later writers must admit their runtime use.
 - Which disc helpers does the disc installer select (Q-EXE-008)? Selection
