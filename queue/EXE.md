@@ -274,6 +274,18 @@ Next ID: Q-EXE-024
   Tried: FND-EXE-519 reads 20FA's metadata merging, 214F call
   and 2133 fall-through. Follow remaining setter callers and writers,
   block/link producers, segments, extents and earlier startup effects.
+  Tried: FND-EXE-526 admits setter lead 22A2 through 2289/22CB,
+  including discarded failure and metadata writes. Follow 2254, outer
+  callers/input producers, other writers and storage/segment admission.
+  Tried: FND-EXE-527 reads 2254's zero-result return, metadata-derived
+  word copy and cleanup ordering. Follow outer callers/input producers,
+  storage/segments, other writers and earlier startup/launch coverage.
+  Tried: FND-EXE-528 reads 302B and 2FCE, including signed adjustment,
+  scan bounds and state-before-positioning stores. Follow actual record/buffer
+  producers, native contracts, other callers/writers and earlier startup coverage.
+  Tried: FND-EXE-529 reads the first-priority startup target and five segment
+  relocations. Follow 029B/029A, 15A5, 0010/000F and 02AD, their cleanup,
+  state/segment admission and earlier launch coverage.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
