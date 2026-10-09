@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_exe_003.ksy
-evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-004, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563]
+evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-004, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563, FND-EXE-565]
 conflicting: []
 split_with: []
 related: []
@@ -51,5 +51,4 @@ inside its overlay's code [FND-EXE-003, FND-EXE-004].
 ## Open questions
 
 - What the manager keeps in header words `0x1C` and `0x1E`; the placement code uses `0x1C`.
-  Whether the disc's manager uses the header as the installed one does is also open
   (Q-EXE-001).
