@@ -47,7 +47,9 @@ bounded source reader; this does not establish native loader behavior.
 - Q-EXE-010 retains overlay body reconciliation. FND-EXE-221 independently
   bounds an adjacent dispatch table, but three candidate targets lack decoded
   instruction starts in the corrected snapshot. Table dimensions do not
-  establish runtime CS or complete body ownership.
+  establish runtime CS or complete body ownership. FND-EXE-273 reads one
+  allocation unlink helper; live link/header admission, physical aliases and
+  the remaining allocator contracts stay open.
   FND-EXE-222 supplies conditional source-decoded tails at those candidates;
   saved-listing incompleteness alone does not exclude their decoding.
   FND-EXE-223 retains three unresolved computed transfers in the outer

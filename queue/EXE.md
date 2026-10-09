@@ -492,6 +492,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-272 follows the root wrapper's allocation request through
   paragraph conversion, link traversal and shared DS restoration. Four helper
   effects, list/slot writers and returned initialized extent remain open.
+  Tried: FND-EXE-273 reads the exact-size unlink helper and ordinary DS
+  restoration; incoming DX, live link writers, physical aliases and the other
+  allocation helper contracts remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
