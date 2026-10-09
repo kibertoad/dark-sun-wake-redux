@@ -211,6 +211,9 @@ Next ID: Q-EXE-018
   Tried: FND-EXE-486 follows polling, sequential selector transforms,
   record matches and remaining caller returns. Follow 08E5 and 1A7C
   interfaces, selector/count and input producers, extents and preservation.
+  Tried: FND-EXE-487 follows nine-byte row registration, byte argument
+  consumption and polling mode selection. Follow 00EA, 022A, 20DF,
+  readiness/count/flag producers, table extents, aliases and actual DS.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
