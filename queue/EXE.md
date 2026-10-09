@@ -454,6 +454,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-264 follows indexed name-buffer writes into the initial state
   segment: bounded tail output does not bound the preceding prefix. Native
   prefix limits, frame/segment preservation and overlapping writes remain open.
+  Tried: FND-EXE-265 distinguishes the direct tail caller from the earlier
+  external-string copy, whose rewind does not undo writes. Native external
+  input limits and interrupt/frame/segment preservation remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
