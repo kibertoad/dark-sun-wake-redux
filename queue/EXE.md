@@ -163,6 +163,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-379 reads 2F81's cached-byte/failure distinction,
   refill result gate and uncached delimiter loop. Follow 2EF1/2EB3/3720/27FC,
   later pathname continuation and producer/preservation/extent admission.
+  Tried: FND-EXE-471 reads 2EF1's pointer/count publication and signed
+  result plus 2EB3's fixed-count selected pass. Follow 3720/27FC and later
+  pathname continuation, table/record producers, preservation, extents and aliases.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
