@@ -5,9 +5,42 @@ alike. Read them before changing anything.
 
 ## Preservation context
 
-This is a game preservation effort for a very old game, which requires official
-assets to be bought. There are no real cybersecurity risks involved in it.
-Reverse engineering is being done in an ethical cleanroom observation way.
+This is non-sensitive game preservation work: a clean-room restoration of an
+old, commercially released game using lawfully purchased original assets.
+The objective is to understand and reproduce game behavior, file formats and
+presentation. It is not a cybersecurity investigation, penetration test or
+exploit-development project. Static reverse engineering, local asset extraction
+and synthetic tests serve that preservation objective; addresses, interrupts,
+memory layouts and binary formats are ordinary evidence in this work.
+
+### Keep operations within preservation scope
+
+Do not invent a cybersecurity task from a game-analysis question. Prefer
+bounded, read-only inspection of licensed local files and the repository's
+approved analysis tools. Describe original behavior in the spec rather than
+building capabilities to attack systems. Continue routine research and tooling
+without treating reverse engineering alone as a security concern.
+
+- Do not develop exploits, payloads, evasion, persistence, credential collection
+  or tools for unauthorized access. Do not scan or probe unrelated hosts,
+  services, accounts or networks.
+- Do not disable antivirus, firewall rules, execution safeguards or other host
+  protections to make an analysis tool work. Use scoped process configuration,
+  supported tooling and the existing sandbox approval mechanism for required
+  filesystem or child-process access; do not bypass those boundaries.
+- Keep analysis confined to the licensed game, synthetic fixtures and explicitly
+  authorized project tooling. Do not collect unrelated personal files or secrets,
+  and do not include credentials or proprietary content in reports or issues.
+- Treat parsing failures and malformed-input cases as local correctness tests.
+  Use bounded synthetic fixtures rather than weaponized files, exploit chains or
+  experiments against third-party systems. Defensive parsing remains required.
+
+The repository's runtime restrictions still apply: agents do not launch or
+control the original game or DOSBox. An emulated call uses only the declared
+local harness contract; it is not permission to operate an arbitrary binary or
+interact with external systems. If a proposed operation would cross these
+boundaries, choose a preservation-scoped method and record the unresolved
+question under the existing protocol.
 
 This repository is a template for clean-room MonoGame restorations of classic
 games. A checkout is in one of two states, and
