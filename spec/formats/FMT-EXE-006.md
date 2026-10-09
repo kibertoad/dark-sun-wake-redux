@@ -94,6 +94,9 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-353 connects the prefix-byte read to the wrapper's returned-DX
   store and separates segment/input records; interrupt results, unwritten
   inputs, error continuation and downstream file operations remain open.
+  FND-EXE-354 reads the pointer selector's signed gate and post-increment
+  bound comparison; record/count admission, the other near callee and
+  later pathname operations remain unresolved.
 - Which disc helpers does the disc installer select (Q-EXE-008)? Selection
   by its installer and standalone manual use are competing readings. The
   file roles in FND-EXE-008 support neither caller claim. Direct installer

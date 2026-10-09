@@ -81,6 +81,10 @@ Next ID: Q-EXE-014
   register transfers and output word-six store into the producer's stack byte.
   Continue native result/input admission, error helper 1000:04CE and the
   file-interface near callees; this does not establish pathname usability or launch.
+  Tried: FND-EXE-354 follows 1000:2BC7's signed record-byte test,
+  mutable low-word bound and advanced-pointer final test. Continue the
+  record/count writers and DS admission, 1000:2AF6 and later pathname
+  consumers; a selected pointer is not a validated or reserved extent.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
