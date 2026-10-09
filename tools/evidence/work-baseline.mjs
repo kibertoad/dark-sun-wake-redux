@@ -19,6 +19,15 @@ export function validateRegion(r){
  if(Number(r.body_bytes)>Number(r.size))throw Error('Body count exceeds region');
 }
 export function inventoryDelta(prior,current){return {added:[...current.keys()].filter(k=>!prior.has(k)).length,removedOrMerged:[...prior.keys()].filter(k=>!current.has(k)).length,changedBodySizes:[...current].filter(([k,f])=>prior.has(k)&&prior.get(k)!==f.size).length};}
+export function missingExecutables(buildFiles,measured,excluded){
+ const excludedPaths=new Set(excluded.map(x=>x.file)),missing=[];
+ for(const[build,files]of buildFiles)for(const f of files){
+  if(excludedPaths.has(f.path)||measured.has(f.path)||!['MZ','COM','NE','PE','LE','LX','ELF'].includes(f.unpacked?.format??f.format))continue;
+  const alias=files.find(a=>!excludedPaths.has(a.path)&&measured.has(a.path)&&a.xxh3===f.xxh3&&a.size===f.size);
+  missing.push({build,file:f.path,byteIdenticalMeasuredAlias:alias?.path??null});
+ }
+ return missing;
+}
 function linear(s){if(s.includes(':')){const[a,b]=s.split(':').map(x=>parseInt(x,16));return a*16+b;}return parseInt(s,16);}
 const pair=n=>`${Math.floor(n/16).toString(16).toUpperCase().padStart(4,'0')}:${(n%16).toString(16).toUpperCase().padStart(4,'0')}`;
 const hex=n=>'0x'+n.toString(16).toUpperCase().padStart(8,'0');
@@ -82,9 +91,7 @@ function main(directory){
   dataFiles.push({build,file:f.path,supportedFormats:ids});
  }
  const queue={};for(const file of readdirSync(join(root,'queue')).filter(x=>x.endsWith('.md')&&x!=='README.md')){let kind='';for(const line of text(join(root,'queue',file)).split(/\r?\n/)){if(line.startsWith('## '))kind=line.slice(3);if(/^- Q-[A-Z]+-\d+\./.test(line))queue[kind]=(queue[kind]??0)+1;}}
- const missingCodeFiles=[];
- for(const[build,files]of spec.buildFiles)for(const f of files.filter(f=>['MZ','COM','NE','PE','LE','LX','ELF'].includes(f.unpacked?.format??f.format)))if(!byFile.has(f.path)){
- const alias=files.find(a=>byFile.has(a.path)&&a.xxh3===f.xxh3&&a.size===f.size);missingCodeFiles.push({build,file:f.path,byteIdenticalMeasuredAlias:alias?.path??null});}
+ const missingCodeFiles=missingExecutables(spec.buildFiles,byFile,scope.excludedExecutables);
  const citationAreas={};for(const f of coverage.inventories)for(const fn of f.list){const areas=new Set(fn.citedBy.map(id=>id.split('-')[1]));if(!areas.size)areas.add('unassigned');for(const area of areas){citationAreas[area]??={functions:0,files:{}};citationAreas[area].functions++;citationAreas[area].files[f.file]??=[];citationAreas[area].files[f.file].push(...fn.physicalBody);}}
  for(const r of Object.values(citationAreas)){r.uniqueBytes=Object.values(r.files).reduce((n,ranges)=>n+bytes(ranges),0);delete r.files;}
  const parityText=text(join(root,'PARITY.md'));const parity={status:{},code:{}};let section='status';for(const line of parityText.split(/\r?\n/)){if(line==='| Code | Rows |')section='code';if(line==='## Areas')break;const m=/^\| ([a-z]+) \| (\d+) \|$/.exec(line);if(m)parity[section][m[1]]=Number(m[2]);}
