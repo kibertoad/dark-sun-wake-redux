@@ -199,6 +199,9 @@ Next ID: Q-EXE-018
   Tried: FND-EXE-482 follows normalized string dispatch, argument width,
   scan exhaustion and signed default padding. Follow actual DS/source and
   callback admission, other conversions and the optional consumer.
+  Tried: FND-EXE-483 follows optional consumer text collectors, signed
+  length traversal and unchecked row publication. Follow 190F:019F,
+  producer/frame extents, initialization calls, aliases and preservation.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
