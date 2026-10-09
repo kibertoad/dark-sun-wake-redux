@@ -170,8 +170,9 @@ An owner-approved history repair remains separate from this maintenance scope.
   Upstream: https://github.com/kibertoad/refurbished-dinosaurs/issues/90 and
   https://github.com/kibertoad/refurbished-dinosaurs-template/issues/69#issuecomment-6086383540 and
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/388 (entry ID clashes between writers) and
-  https://github.com/kibertoad/refurbished-dinosaurs/issues/91 (Q-EXE-010 and Q-EXE-007 Tried-note growth) and
-  https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/393 (parity Notes still cite closed Q-EXE-010).
+  https://github.com/kibertoad/refurbished-dinosaurs/issues/91 (Q-EXE-010 and Q-EXE-007 Tried-note growth),
+  https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/393 (parity Notes still cite closed Q-EXE-010) and
+  https://github.com/kibertoad/refurbished-dinosaurs-template/issues/93 (inventory-check rejects the ranges column).
 - Next, after rechecking shared goal claims:
   1. DSUN inventory reconciliation is done: join-overlay-views.mjs joined
      the resident and clipped overlay views into the installed and @CD/ disc
