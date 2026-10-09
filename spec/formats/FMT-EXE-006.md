@@ -317,6 +317,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   stable structure, output freshness and native/storage admission stay open.
   FND-EXE-418 reads record creation, aligned load retry and ordered
   state publication; callers, output freshness and native/storage admission stay open.
+  FND-EXE-419 reads release publication and one scalar-checking wrapper;
+  broader callers, state producers and native/storage admission stay open.
   FND-EXE-490 finds no AH=4B request among the sound utility's 69 interrupt
   21 instructions or its stack-thunk callers, and no interrupt 2E. Its load
   image makes no direct launch request; the game editions remain Q-EXE-007.
