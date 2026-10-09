@@ -195,6 +195,7 @@ An owner-approved history repair remains separate from this maintenance scope.
      operand with that displacement, before a hand-written byte scan.
      IDs from FND-EXE-560 up are this session's; Codex allocates below them.
   5. Follow Q-EXE-007's game-edition consumers under FMT-EXE-006: FND-EXE-556 complete cache callback/state writers and native contracts, FND-EXE-559 slot/gate/target producers and native admission, FND-EXE-558 complete registration callers/state writers and predecessor/error contracts, FND-EXE-555 other general targets, FND-EXE-531 storage admission, native contracts and remaining startup dependencies.
-  6. The DSUN inventories leave out resident functions only overlay code
-     calls (201 installed, 198 disc; docs/GHIDRA.md "Function inventory").
-     Add them to the join from the full mapped view, then recheck the citations whose ranges they touch. Toolkit issue 111 keeps the join.
+  6. Done: the DSUN resident rows now come from a single import with the
+     overlays as file-backed overlay blocks (docs/EVIDENCE-TOOLS.md), which
+     adds the resident functions only overlay code calls. FND-VIDEO-009 and
+     FND-VIDEO-010 replace the two findings whose ranges it showed short.
