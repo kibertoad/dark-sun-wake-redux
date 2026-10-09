@@ -62,6 +62,8 @@ bounded source reader; this does not establish native loader behavior.
   publication; its far callee, state writers and admitted ranges remain open.
   FND-EXE-279 follows that far wrapper and error-helper cleanup; the interrupt,
   post-interrupt preservation and state/table writers remain unresolved.
+  FND-EXE-280 follows the initial allocation helper's separate calls and shared
+  publications; admitted state, remaining writers and interrupt effects stay open.
   FND-EXE-222 supplies conditional source-decoded tails at those candidates;
   saved-listing incompleteness alone does not exclude their decoding.
   FND-EXE-223 retains three unresolved computed transfers in the outer

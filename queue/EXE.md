@@ -513,6 +513,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-279 follows the far wrapper and error-helper cleanup, tracing
   the saved post-interrupt BX into the updater result. Interrupt effects,
   post-interrupt DS/SI preservation and state/table writers remain unresolved.
+  Tried: FND-EXE-280 reads the initial allocation helper, its ignored intermediate
+  results and shared-state publications. Remaining state/link writers, shared
+  DS-slot lifetime, aliases and interrupt effects still prevent closure.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
