@@ -133,6 +133,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   stored bounds/base and native/extent admission remain Q-EXE-007.
   FND-EXE-371 reads buffer quantity, candidate search and exact/split returns;
   growth/unit/extent and topology/shared-state admission remain Q-EXE-007.
+  FND-EXE-372 reads growth request ordering, alignment and segment publication;
+  lower-helper, preservation and extent/state admission remain Q-EXE-007.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;
   startup, actual DS, aliases and later writers must admit their runtime use.
 - Which disc helpers does the disc installer select (Q-EXE-008)? Selection
