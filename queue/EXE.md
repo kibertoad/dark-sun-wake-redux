@@ -522,6 +522,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-282 establishes one list-writer call and incoming-DX DS
   producer, plus the merge fall-through into unlinking. Trace incoming DX,
   other callers, header/count writers and admitted segment ranges next.
+  Tried: FND-EXE-283 reads selected cleanup's branch publications and retained
+  pair through unlinking. Existing FND-CONFIG-167 covers wrapper selection;
+  segment/state producers, other callers and saved-DS lifetime remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
