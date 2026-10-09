@@ -232,6 +232,9 @@ Next ID: Q-EXE-020
   Tried: FND-EXE-503 reads 2F13/2F94's record updates, mismatch
   handling and aggregate result disposal. Follow 3DCC, actual DS and
   record/table admission, other byte-dispatch branches and game callers.
+  Tried: FND-EXE-504 reads 3DCC's quantity guards, expansion and
+  mixed-count short-write returns. Follow actual DS/SS and frame/storage
+  admission, record/table writers, remaining dispatch branches and game callers.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
