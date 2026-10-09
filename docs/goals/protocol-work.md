@@ -48,9 +48,9 @@ An owner-approved history repair remains separate from this maintenance scope.
 
 ## Handover
 
-- Independent EXE checkpoints: FND-EXE-340 and FND-EXE-350 are integrated;
-  Q-EXE-005 is Source and Q-EXE-007 remains Static. Both isolated assetless
-  gates passed on 2026-10-09 with 715 .NET tests; integrated checks passed.
+- Pending integration: session/protocol-launch-consumer-20261009 holds
+  verified batch 427a817 for FND-EXE-360 / FMT-EXE-006 / Q-EXE-007.
+  Its 2026-10-09 assetless gate passed with 715 .NET tests; preserve shared edits.
 - Stage: Slices. The ongoing protocol objective remains active. Resume the
   authoritative local goal claim using start-session branch-tip discovery;
   the earlier single-agent exception for work on main is retired. Completed
@@ -196,5 +196,5 @@ An owner-approved history repair remains separate from this maintenance scope.
      citation coverage separately from complete-reading availability.
   4. Choose a bounded game-code reading and its actual caller/state obligations;
      preserve EXE questions relevant to the game and retire host-only priorities.
-  5. Trace Q-EXE-007's FND-EXE-350 literal-name consumers and path writers,
-     retaining the computed and extensionless-name exclusions.
+  5. Integrate Q-EXE-007's verified session batch after the shared tree is clean;
+     then follow FND-EXE-360's deeper callees and segment/input admission.
