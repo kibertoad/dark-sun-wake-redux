@@ -52,7 +52,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   works in this repository, so the goal runs on main in the single checkout,
   with no goal branch or worktree. Completed workflow tooling and EXE research
   are committed.
-- Last full gate: 2026-10-09, assetless Test.ps1 -NoRestore passed for coverage-scope consistency tooling (715 tests).
+- Last full gate: 2026-10-09, assetless Test.ps1 -NoRestore passed for complete-reading declaration-count tooling (715 tests).
   EXE research through FND-EXE-266, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
   and enabled hooks. Mapper relocation revision 2 also passed the full gate
@@ -153,7 +153,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   complete-reading work (docs/DECISIONS.md, 2026-10-09). Its historical
   inventory is archived under docs/host-analysis/; prior host questions
   remain historical references, not this goal's research priorities.
-- Coverage-scope consistency tooling passed synthetic controls and the real local baseline rerun.
+- Coverage-scope and complete-reading declaration-count tooling passed synthetic controls and real local baseline reruns.
 - Utility migration tooling is committed. The SOUND_DS candidate remains local
   under GAME_DIR/analysis/work-baseline/migration-20261009; no unfinished code.
 - Migration follow-up: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6069548929.
