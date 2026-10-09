@@ -17,6 +17,10 @@ const keyed=s=>Object.fromEntries(rows(s).rows.map(r=>[r.key,r.value]));
 const segmented=s=>{if(!/^[0-9a-f]{4}:[0-9a-f]{4}$/i.test(s))throw Error('Expected segment:offset');return [parseInt(s.slice(0,4),16),parseInt(s.slice(5),16)];};
 const seg=s=>s.toUpperCase();
 const hex8=n=>'0x'+n.toString(16).toUpperCase().padStart(8,'0');
+// Ghidra writes a range's exclusive end as a normalized segmented address (4842:063A..4000:8AE5).
+// Write it in the start's segment, as the spec writes ranges, when the offset fits.
+function sameSegment(range){const [a,b]=range.split('..'),[s,o]=segmented(a),[t,p]=segmented(b),end=(t-s)*16+p;
+ return end>o&&end<=0xFFFF?`${seg(a)}..${seg(a.slice(0,5))}${end.toString(16).toUpperCase().padStart(4,'0')}`:`${seg(a)}..${seg(b)}`;}
 
 // headerBytes: MZ header size; imageEnd: file offset after the load image; overlays: [{start,end,mappedStart}]
 // with start..end the shipped code range and mappedStart the segment:offset of its first byte in the
@@ -43,7 +47,7 @@ export function joinOverlayViews({resident, overlay, headerBytes, imageEnd, over
    viewSummed+=size;viewAll.push(...body);
    if(name==='resident'){
     if(body.some(([a,b])=>a<headerBytes||b>imageEnd))throw Error(`Resident body outside the load image at ${r.start}`);
-    out.push({at,line:`${seg(r.start)}\t${size}\t${r.ranges.split(' ').map(x=>x.split('..').map(seg).join('..')).join(' ')}`});
+    out.push({at,line:`${seg(r.start)}\t${size}\t${r.ranges.split(' ').map(sameSegment).join(' ')}`});
    }else{
     const own=ownRow(at);
     if(!own)throw Error(`Overlay entry outside every code range at ${r.start}`);

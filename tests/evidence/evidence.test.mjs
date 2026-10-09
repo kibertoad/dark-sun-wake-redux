@@ -45,6 +45,9 @@ test('overlay view join converts overlay rows to file offsets and keeps bodies i
  const flagged=joinOverlayViews({...base,overlay:{...overlay,provenance:provenance(3,1)},expectedWithoutInstruction:{resident:[],overlay:['1011:0002']}});
  assert.deepEqual(flagged.report.withoutInstruction,['0x00000312']);
  assert.throws(()=>joinOverlayViews({...base,overlays:[{...overlays[0],mappedStart:'1011:0001'},overlays[1]]}),/in place/);
+ // A normalized end in another segment is written in the start's segment.
+ const normalized={...resident,tsv:'start\tsize\tranges\n1000:0000\t4\t1000:0000..1000:0002 1000:0010..1001:0002\n'};
+ assert.match(joinOverlayViews({...base,resident:normalized}).tsv,/1000:0000\.\.1000:0002 1000:0010\.\.1000:0012\n/);
 });
 
 function synthetic() {
