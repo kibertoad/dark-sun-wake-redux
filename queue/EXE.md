@@ -151,6 +151,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-375 reads 1CD9's selected field stores, held terminal
   arguments and retained-old-segment return despite ignored results. Admit
   callers, count/link and shared-state writers, extents, aliases and native paths.
+  Tried: FND-EXE-376 reads 2CC8/2C46/05CC's first-result guard,
+  signed adjusted quantity, scan bounds, ordered stores and native pair test.
+  Admit producers, extents, frames, aliases, actual DS and native preservation.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
