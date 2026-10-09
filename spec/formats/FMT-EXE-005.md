@@ -111,6 +111,9 @@ bounded source reader; this does not establish native loader behavior.
   and allocation extent remain unresolved.
   FND-EXE-351 resolves that local pointer update and chunk preservation;
   native extents, direction provenance, incoming paths and aliases remain open.
+  FND-EXE-352 connects existing wrapper evidence to a grounded overlay
+  request path and controls both relocation kinds; remaining callers,
+  native admission, direction and valid extents remain unresolved.
   FND-EXE-222 supplies conditional source-decoded tails at those candidates;
   saved-listing incompleteness alone does not exclude their decoding.
   FND-EXE-223 retains three unresolved computed transfers in the outer

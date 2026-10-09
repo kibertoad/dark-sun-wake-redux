@@ -358,6 +358,10 @@ Next ID: Q-EXE-014
   tail, ordered local-pointer stores and SI preservation. Continue outer
   caller admission, direction provenance, actual extents, aliases and
   lifetime; encoded normalization is not validated destination storage.
+  Tried: FND-EXE-352 connects FND-CONFIG-209's existing wrapper reading
+  and FND-CONFIG-183's grounded overlay request, with separate MZ/FBOV
+  incoming controls. Continue remaining caller admission and direction
+  provenance; the concrete request pattern does not establish valid extent.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
