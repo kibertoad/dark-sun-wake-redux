@@ -77,6 +77,27 @@ was not downloaded or compared, so whether its `DSUN.EXE` is byte-identical to t
 GOG one is not recorded. Once these facts are recorded they are reused rather than
 investigated each session.
 
+## Disc copies are not studied
+
+The rebuild targets the installed files, and the installed `DSUN.EXE` is the
+only executable the game's rules are read from. The disc image's copies of the
+eight files the installation replaces (`DSUN.EXE`, `RESOURCE.GFF`,
+`GPLDATA.GFF`, `OBJEX.GFF`, `CHARSAVE.GFF`, `SOUND.INI`, `SOUND.BAT` and
+`STDPATCH.AD`) are the older release: the disc's `DSUN.EXE` says `VERSION 1.0`
+and the installed one `VERSION 1.1`, and the installed `PATCH.RTP` records the
+disc copies' sizes as the old sizes and the installed copies' as the new for
+seven of them (FND-EXE-570). The owner decided on 2026-10-10 that these disc
+copies are ignored: no findings, inventories, coverage figures, queue items or
+code are made for them. Findings recorded before that decision keep their disc
+locations as history and are not extended.
+
+The rest of the disc stays in scope where the installed game reads it at run
+time: GOG mounts the image as `D:`, and the disc-only files, such as the sound
+drivers, are inputs of the installed game. Whether the installed `DSUN.EXE`
+reads `CHARSAVE.GFF` from `C:` or from `D:` is still open (the build entry's
+description), and the answer decides whether the disc copy of that one file
+matters.
+
 ## Unsupported sources
 
 No other GOG build, language, retail CD, floppy edition, compilation, Steam

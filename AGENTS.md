@@ -723,7 +723,9 @@ Before further executable analysis, run `./tools/Bootstrap-Project.ps1
 recorded executable identity. Version 1.1 is recorded as the latest official
 version, with the analysis executable's path, length and XXH3-128; see
 `docs/SOURCE-EDITIONS.md`. Do not repeat the patch investigation unless the owner
-asks. Original-free tooling and rebuild validation remain
+asks. Read only the installed files: the disc image's copies of the files the
+installation replaces, `CD:DSUN.EXE` among them, are version 1.0 and are not
+studied (`docs/SOURCE-EDITIONS.md`, "Disc copies are not studied"). Original-free tooling and rebuild validation remain
 available while the gate is closed.
 
 Treat static analysis as evidence, not a search-engine oracle. Establish and
