@@ -485,6 +485,10 @@ Next ID: Q-EXE-014
   candidate, distinguishing stored vector pairs and DS changes/restoration.
   External effects, saved-stack preservation and restoration/native loader
   admission remain open.
+  Tried: FND-EXE-271 links the bounded startup initializer selector and initial
+  pointer to a wrapper that constructs the root's far frame and tests its word
+  result. External allocation, startup preservation, other callers and live
+  target/input writers remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
