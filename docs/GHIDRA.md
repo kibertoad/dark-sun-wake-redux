@@ -168,7 +168,13 @@ Resident starts are `segment:offset` with the load image at segment `0x1000`;
 overlay starts are eight-digit offsets in the shipped file, each inside a row
 of the build's Code ranges. Each row gives the function's body byte count and
 its body ranges. Ghidra's discovery does not prove that every original function
-was found. The inventory contains no code, bytes, strings or auto-generated
+was found. The resident rows come from the plain import, which never sees
+calls from overlay code, so they leave out resident functions that only overlay
+code calls: a single import with the overlays added as file-backed overlay
+blocks found 201 such starts in the installed file and 198 in the disc's, 198
+of the installed ones also functions in the full mapped view (toolkit issue 111,
+2026-10-10). That single import does not replace the join: its overlay rows
+differ from the mapped view's. The inventory contains no code, bytes, strings or auto-generated
 names.
 
 Known entries added outside that export use measured body-byte counts from
