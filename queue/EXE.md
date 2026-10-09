@@ -544,6 +544,10 @@ Next ID: Q-EXE-014
   through shared publications and both setup calls. Recover the incoming
   candidate's path and argument writers, allocation DS/CX preservation,
   the second setup callee and state lifetime before closure.
+  Tried: FND-EXE-291 follows the second setup callee and its interrupt
+  wrapper, with final outgoing word writers and ordered failure publications.
+  Continue incoming caller provenance, allocation preservation and state
+  writers; interrupt effects and post-interrupt DS remain unresolved.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
