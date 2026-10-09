@@ -289,6 +289,15 @@ Next ID: Q-EXE-024
   Tried: FND-EXE-530 reads 029B/029A and 07AD/07AC, including
   ES changes, metadata stores, fixed traversal and the 011A producer.
   Follow table/field and segment admission, other startup callees and consumers.
+  Tried: FND-EXE-531 reads 15A5's request transform, segment-link sentinel,
+  pair result and shared DS restoration. Follow 14C4/1528/1582/143B,
+  their state/storage contracts and remaining startup dependencies.
+  Tried: FND-EXE-546 reads 143B/1582, segment-selected link stores and
+  returned AX/DX through 15A5. Follow 14C4/1528, record/link and shared-word
+  producers, units/extents, aliases, other callers and startup dependencies.
+  Tried: FND-EXE-547 reads 14C4/1528, differing padding-result handling
+  and published header sources. Follow 1831 and its callees, shared-word/record
+  producers, units/segments/extents and remaining startup dependencies.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
