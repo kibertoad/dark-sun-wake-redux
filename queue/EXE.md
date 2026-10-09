@@ -481,6 +481,10 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-269 follows the declared MZ startup's source-segment slot
   publication across its DS switch. Incoming storage, interrupt preservation,
   other slot writers and native loader entry remain open.
+  Tried: FND-EXE-270 reads startup's first callee and the adjacent restoration
+  candidate, distinguishing stored vector pairs and DS changes/restoration.
+  External effects, saved-stack preservation and restoration/native loader
+  admission remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
