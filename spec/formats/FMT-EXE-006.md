@@ -127,6 +127,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   table/flag state, preservation and re-entry admission remain Q-EXE-007.
   FND-EXE-367 reads the bit-four buffer helper's segment dispatch and matching
   path; alternate/terminal contracts and shared/link state remain Q-EXE-007.
+  FND-EXE-368 reads the alternate buffer path's segment and field updates;
+  topology/extent/alias and shared-state admission remain Q-EXE-007.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;
   startup, actual DS, aliases and later writers must admit their runtime use.
 - Which disc helpers does the disc installer select (Q-EXE-008)? Selection

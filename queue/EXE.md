@@ -130,6 +130,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-367 reads 1ACC's segment-only dispatch and 1998/1A6C's
   matching path and held arguments. Follow 19FB/1E34, shared CS state writers,
   link/segment admission, extents, aliases and re-entry before release claims.
+  Tried: FND-EXE-368 reads 19FB/1A95's alternate field combinations,
+  retained-segment replacement and explicit SS-field access order. Admit field
+  producers, aliases, shared CS state and re-entry; matching terminal 1E34 remains open.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
