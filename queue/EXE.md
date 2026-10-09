@@ -448,6 +448,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-262 records zero initial/current link words and the initial
   word's unresolved relocation query. Live producers, indexed/bulk writes,
   other code regions and effective DS/lifecycle admission remain open.
+  Tried: FND-EXE-263 checks wider positive scalar candidates and an independent
+  source consumer missing from the saved listing. CS overrides and incomplete
+  analyzer coverage prevent admitting them as exhaustive state-link writers.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
