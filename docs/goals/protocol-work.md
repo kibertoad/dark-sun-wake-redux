@@ -53,7 +53,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   the earlier single-agent exception for work on main is retired. Completed
   workflow tooling and EXE research are committed.
 - Last full gate: 2026-10-09, assetless Test.ps1 -NoRestore and explicit
-  main-base documentation validation passed for EXE research through FND-EXE-291.
+  main-base documentation validation passed for EXE research through FND-EXE-292.
   This batch's full gate passed on its first run; the prior issue-7 rerun remains recorded.
   Preservation-context guidance, measured-baseline tooling and independent
   physical PE transfer and overlay-body classification tooling passed full gates
@@ -179,7 +179,9 @@ An owner-approved history repair remains separate from this maintenance scope.
   https://github.com/kibertoad/refurbished-dinosaurs-template/issues/69#issuecomment-6080088432.
 - Next, after rechecking shared goal claims:
   1. Finish installed and CD DSUN inventory reconciliation under Q-EXE-010,
-     FMT-EXE-005; follow Q-EXE-010 remaining downstream callees, header/count and state/link writers, arithmetic bounds and aliases. Follow Q-EXE-010 indirect producers; retain its literal-query retry requirement.
+     FMT-EXE-005; follow Q-EXE-010 supplied-storage producer and state admission,
+     then remaining downstream callees, header/count and state/link writers,
+     arithmetic bounds and aliases. Retain its indirect-producer and literal-query obligations.
   2. Check claims before expanding into CONFIG for SOUND_DS endpoint review
      (FND-CONFIG-004 and FND-CONFIG-022); supersede factual errors under Standard.
   3. Rerun standard-coverage on all in-scope inventories once valid; retain
