@@ -94,6 +94,9 @@ Next ID: Q-EXE-014
   ordered result stores and distinct failure continuations. Continue
   1000:317F, 1000:0519, 1000:37F1 and 1000:2873, segment/record
   admission and later consumers before claiming an operation or exclusion.
+  Tried: FND-EXE-356 follows 1000:0519's post-interrupt DX-bit return
+  and caller flag update without a status check. Continue native result and
+  record-byte admission, 1000:37F1 and 1000:2873, aliases and lifetime.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.

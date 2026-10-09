@@ -103,6 +103,9 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-355 follows the selected mode through ordered record stores and
   downstream request/configuration calls; their effects, storage admission
   and later pathname consumers remain unresolved.
+  FND-EXE-356 resolves the local returned-bit helper and its unchecked
+  interrupt continuation; native results, record admission and remaining
+  configuration/cleanup callees stay open.
 - Which disc helpers does the disc installer select (Q-EXE-008)? Selection
   by its installer and standalone manual use are competing readings. The
   file roles in FND-EXE-008 support neither caller claim. Direct installer
