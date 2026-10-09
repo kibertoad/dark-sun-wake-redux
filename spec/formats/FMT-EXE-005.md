@@ -86,6 +86,9 @@ bounded source reader; this does not establish native loader behavior.
   FND-EXE-291 resolves that callee's local argument writers and hidden
   interrupt result; interrupt effects, DS admission, other writers and
   incoming caller provenance still prevent closure.
+  FND-EXE-292 grounds one incoming path and its supplied-pointer arguments,
+  including unchecked gate-setter continuations; storage production,
+  upstream admission and state lifetime remain unresolved.
   FND-EXE-222 supplies conditional source-decoded tails at those candidates;
   saved-listing incompleteness alone does not exclude their decoding.
   FND-EXE-223 retains three unresolved computed transfers in the outer

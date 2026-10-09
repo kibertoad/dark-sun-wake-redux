@@ -548,6 +548,10 @@ Next ID: Q-EXE-014
   wrapper, with final outgoing word writers and ordered failure publications.
   Continue incoming caller provenance, allocation preservation and state
   writers; interrupt effects and post-interrupt DS remain unresolved.
+  Tried: FND-EXE-292 follows the existing resident entry to the setup
+  candidate, with pointer/size widths and discarded gate-setter returns.
+  Continue its storage producer, upstream entry admission and state writers;
+  nonzero storage and local gate publications do not settle native readiness.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
