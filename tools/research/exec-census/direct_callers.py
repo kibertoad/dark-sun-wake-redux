@@ -2,7 +2,8 @@
 
 Usage: python -I direct_callers.py PATH_TO_DSUN.EXE TARGET [TARGET ...]
 
-A TARGET is a resident address SEGMENT:OFFSET (load image at segment 0x1000) or an overlay
+A TARGET is a resident address SEGMENT:OFFSET (load image at segment 0x1000; it is first written
+in the segment of the segment-table descriptor whose span holds it, FND-EXE-571) or an overlay
 routine DESCRIPTOR+OFFSET (the offset in that overlay's code, hexadecimal). Checks the installed
 DSUN.EXE's size and XXH3-128 and searches the raw bytes for:
 
@@ -81,9 +82,14 @@ for item in sys.argv[2:]:
     print(f"-- {item}")
     if ":" in item:
         seg, off = (int(p, 16) for p in item.split(":"))
-        raw = seg - 0x1000
-        descriptor = next((i for i, r in enumerate(rows) if r[0] == raw and r[2] != 3), None)
-        sites = far_sites(off, raw, descriptor if descriptor is not None else -1)
+        linear = (seg - 0x1000) * 16 + off
+        # The segment-table descriptor whose span (FND-EXE-571) holds the address gives its code segment.
+        descriptor = next((i for i, r in enumerate(rows) if r[2] in (0, 1) and r[0] * 16 + r[3] <= linear < r[0] * 16 + r[1]), None)
+        raw = rows[descriptor][0] if descriptor is not None else seg - 0x1000
+        off = linear - raw * 16
+        if (raw + 0x1000, off) != (seg, int(item.split(":")[1], 16)):
+            print(f"as {raw + 0x1000:04X}:{off:04X}")
+        sites = far_sites(off, raw, descriptor) if descriptor is not None else []
         base = header + raw * 16
         sites += near_sites(base + off, base, min(base + 0x10000, image_end))
     else:
