@@ -24,10 +24,10 @@ BLD-GOG-EN-1.1 inventory and
 wrapper-provenance corrections needed to cite the studied distribution files.
 Historical context includes SRC-DOSBOX-GOG-0742 and its EXE citations for the shipped
 interpreter source archive; source-to-binary correspondence stays explicit.
-CONFIG is added for correcting the SOUND_DS location ranges of FND-CONFIG-004
-and FND-CONFIG-022 (claims checked 2026-10-09: no `goal/*` branch claims
-CONFIG, and `config-static.md` is a copy from main): those findings, their
-replacements and the citations of them in CONFIG and EXE entries.
+CONFIG is added for correcting SOUND_DS location ranges in CONFIG findings
+(claims checked 2026-10-09: no `goal/*` branch claims CONFIG, and
+`config-static.md` is a copy from main): those findings, their replacements
+and the citations of them.
 Other areas are read-only. Further research
 areas are added only after checking the shared clone's authoritative goal
 claims and other sessions' work.
@@ -195,8 +195,10 @@ An owner-approved history repair remains separate from this maintenance scope.
      allocator header production, returned extents and state admission,
      then remaining downstream callees, header/count and state/link writers,
      arithmetic bounds and aliases. Retain its indirect-producer and literal-query obligations.
-  2. Check claims before expanding into CONFIG for SOUND_DS endpoint review
-     (FND-CONFIG-004 and FND-CONFIG-022); supersede factual errors under Standard.
+  2. SOUND_DS inventory: the CONFIG findings' ranges are being corrected to
+     end where a valid inventory's functions end. Replace the historical
+     inventory with a range-aware snapshot (provenance and regions files, as
+     for SVIEW) and rerun the documentation check against it.
   3. Rerun standard-coverage on all in-scope inventories once valid; retain
      citation coverage separately from complete-reading availability.
   4. Choose a bounded game-code reading and its actual caller/state obligations;
