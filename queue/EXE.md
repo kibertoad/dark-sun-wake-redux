@@ -287,6 +287,9 @@ Next ID: Q-EXE-025
   Tried: FND-EXE-396 reads type-three publication, its exact-one preliminary
   helper and cleanup route. Follow native pointer/results/preservation, quantity
   and index writers/aliases, targets 15F3:06B6/076B and type four.
+  Tried: FND-EXE-397 reads both remaining type-three published callees,
+  zero-work field writes, mutable request defaults and odd-byte staging. Follow
+  native pointer/register/record effects, complete callers/writers, bounds/aliases and type four.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
