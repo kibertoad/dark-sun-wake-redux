@@ -148,6 +148,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-374 identifies neighboring entry shared-state writes and
   its source-field copy count, chunk bounds and unchecked terminal result.
   Follow its callers, 1CD9, headers, extents, aliases and shared-state lifetime.
+  Tried: FND-EXE-375 reads 1CD9's selected field stores, held terminal
+  arguments and retained-old-segment return despite ignored results. Admit
+  callers, count/link and shared-state writers, extents, aliases and native paths.
 
 - Q-EXE-008. FMT-EXE-006: Which disc helpers does the disc installer launch?
   Settles it: direct installer launch references and their selection inputs.
