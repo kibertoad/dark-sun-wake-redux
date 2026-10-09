@@ -175,6 +175,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   source/table admission and remaining consumer paths remain Q-EXE-007.
   FND-EXE-483 reads optional consumer text collectors and signed traversal;
   producer/frame admission and later consumer paths remain Q-EXE-007.
+  FND-EXE-484 reads coordinate arguments and signed spacing arithmetic;
+  downstream effects and count/object admission remain Q-EXE-007.
   FND-EXE-490 finds no AH=4B request among the sound utility's 69 interrupt
   21 instructions or its stack-thunk callers, and no interrupt 2E. Its load
   image makes no direct launch request; the game editions remain Q-EXE-007.
