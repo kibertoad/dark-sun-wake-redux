@@ -74,12 +74,20 @@ An owner-approved history repair remains separate from this maintenance scope.
   or publish unverified replacements. Segment report: GAME_DIR/analysis/work-baseline/decoded-segment-output-audit.log;
   durable reader evidence remains FND-EXE-166, with no complete-reading promotion.
 - Owner priority: complete-reading closure now takes precedence over broad
-  new partial readings. Use Q-EXE-009 and FMT-EXE-006 to assemble a bounded
+  new partial readings. Use Q-EXE-010 and FMT-EXE-005 for game-code closure;
+  DOSBox complete-reading questions remain historical and blocked by scope.
+  Assemble a bounded
   evidence package, checking complete bodies, independent caller searches,
   every input/state writer, indirect targets, return consumption and external
   dependencies against STATUS-4 through STATUS-13. Add complete_reading only
   after those obligations are satisfied; recorded findings and citation coverage
   are not substitutes. Address boundary anomalies that affect the candidate.
+- Queue-scope checkpoint: the isolated session branch
+  session/protocol-host-queue-20261009 holds the tested planning batch moving
+  Q-EXE-006/009/012/013 to Blocked and updating Q-EXE-011's scope restriction.
+  Documentation, queue tracking and assetless Test.ps1 -NoRestore passed on
+  2026-10-09, including 715 .NET tests. Integrate this batch into the
+  authoritative goal branch only when its shared queue edits are committed.
 - Environment: use the checkout's portable PowerShell
   (artifacts/pwsh7/runtime/pwsh.exe) and locked evidence-python interpreter. Clear GAME_DIR and
   NoDefaultCurrentDirectoryInExePath. TEMP/TMP must belong to the account
