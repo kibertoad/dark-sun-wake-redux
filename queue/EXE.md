@@ -256,6 +256,9 @@ Next ID: Q-EXE-020
   Tried: FND-EXE-513 reads 2172's DS-based stack-derived input,
   size arithmetic and retained head sentinel. Follow 21D2/2212/223B/2133,
   segment/link/block admission and earlier startup/caller effects.
+  Tried: FND-EXE-514 reads 2133/223B and adjacent head writer 214F,
+  resolving local BX preservation and ordered metadata/link writes. Follow
+  21D2/2212, block/head producers, 214F callers and storage/segment admission.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
