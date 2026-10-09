@@ -33,6 +33,10 @@ DSUN.EXE location ranges that end on an inventoried function's last byte
 once the reconciled DSUN inventory replaces the historical one (claims
 checked 2026-10-09: goal/protocol-work is the only `goal/*` branch): those
 findings, their replacements and the citations of them.
+PARTY is added for research batches on its Static queue items, starting with
+Q-PARTY-012, which block slice 2 (claims checked 2026-10-10:
+goal/protocol-work is the only `goal/*` branch, and its other work is in EXE):
+PARTY entries, queue/PARTY.md and parity/PARTY.md.
 Other areas are read-only. Further research
 areas are added only after checking the shared clone's authoritative goal
 claims and other sessions' work.
