@@ -1,9 +1,9 @@
 ---
-id: FND-EXE-285
-title: Gated cleanup callees clear byte state while replacing or preserving AX
-status: superseded
+id: FND-EXE-286
+title: Corrected cleanup argument writer replaces the pushed AX word
+status: recorded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: [FND-EXE-286]
+superseded_by: []
 recorded_by: kibertoad
 reproduced_by: []
 method: static
@@ -34,7 +34,7 @@ Other values write 0x0802 to DS-relative word 0x33BE and set AX to
 saves flags and disables maskable interrupts. It pushes CS-relative
 words 0x000E and 0x000C, then AX. It temporarily establishes BP from
 SP and writes word nine at SS-relative BP plus two, replacing the
-previously pushed word from CS-relative 0x000C. It restores BP and
+previously pushed AX word. It restores BP and
 makes a far call whose contract is unread here.
 
 On ordinary continuation it removes six outgoing argument bytes,
@@ -65,15 +65,29 @@ valid saved pair or successful release is established.
 
 ## Alternatives
 
+This supersedes FND-EXE-285: its temporary-BP interpretation placed the
+word-nine store in the second outgoing argument. The extra saved BP makes
+BP plus two refer to the first argument, the pushed AX word. The remaining
+callee-body observations are retained here; the CS-relative pointer words
+are not locally overwritten by that store.
+
+With temporary BP at the saved-BP word, the stack words at BP plus zero,
+two, four and six are respectively saved BP, pushed AX, the word from
+CS-relative 0x000C and the word from CS-relative 0x000E. Restoring BP
+removes only the saved-BP word before the far call. The corrected store
+therefore supplies nine as the first argument and preserves both following
+pointer words. This is the explicit frame accounting missing from the old
+interpretation.
+
 Treating the second's local error AX as its return ignores the final pop.
-Treating its second outgoing word as the original CS-relative 0x000C
-value ignores the last stack writer. Treating its saved DS as restoring
+Treating its first outgoing word as the pushed AX value ignores the
+last stack writer. Treating its saved DS as restoring
 the outer caller's initial DS assumes the first callee preserved it.
 Cleared byte state and zero returns do not prove nested operation success.
 
 ## How to reproduce
 
-At revision aa86487, require installed DSUN.EXE's XXH3-128
+At revision 24533e1, require installed DSUN.EXE's XXH3-128
 e296af55ba2ecde7e77f555c90f33d0b recorded in FND-EXE-176. Resolve
 operand sites 0x00039897 with targetOffset 0x0040 and 0x0003989C
 with targetOffset 0x0075 using the committed operand reporter and load
