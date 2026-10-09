@@ -1,11 +1,20 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {union,bytes,inventoryDelta,validateRegion,missingExecutables} from '../../tools/evidence/work-baseline.mjs';
+import {union,bytes,inventoryDelta,validateRegion,missingExecutables,completeReadingDeclarations} from '../../tools/evidence/work-baseline.mjs';
 test('baseline union counts shared tails once while preserving discontiguous gaps',()=>{
  assert.equal(bytes([[0,10],[8,20],[32,40]]),28);
  assert.deepEqual(union([[32,40],[8,20],[0,10]]),[[0,20],[32,40]]);
  assert.equal(bytes([[0,10],[10,12],[9,11]]),12);
  assert.throws(()=>bytes([[4,4]]),/Invalid body range/);
+});
+test('complete-reading progress counts active declarations rather than findings or evidence references',()=>{
+ const absent=[{meta:{status:'recorded'}},{meta:{status:'supported',complete_reading:[]}}];
+ assert.equal(completeReadingDeclarations(absent),0);
+ assert.equal(completeReadingDeclarations([...absent,
+  {meta:{status:'established',complete_reading:['evidence-a','evidence-b']}},
+  {meta:{status:'established',complete_reading:['evidence-a']}},
+  {meta:{status:'superseded',complete_reading:['evidence-c']}}
+ ]),2);
 });
 test('missing work excludes hosts while preserving unmeasured games and measured aliases',()=>{
  const files=[
