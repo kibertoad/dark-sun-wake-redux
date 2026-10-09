@@ -231,6 +231,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   state-before-native-call ordering; record/native admission remains Q-EXE-007.
   FND-EXE-529 reads the earlier first-priority startup target and its relocated
   segment operands; its callees and startup admission remain Q-EXE-007.
+  FND-EXE-530 reads the first startup helper's fixed traversal and bounded
+  quantity producer; actual table/segment admission remains Q-EXE-007.
   FND-EXE-490 finds no AH=4B request among the sound utility's 69 interrupt
   21 instructions or its stack-thunk callers, and no interrupt 2E. Its load
   image makes no direct launch request; the game editions remain Q-EXE-007.
