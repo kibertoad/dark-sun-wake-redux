@@ -42,6 +42,7 @@ An owner-approved history repair remains separate from this maintenance scope.
 - The earlier shared-checkout amend replaced a concurrent research commit's
   message. Commit new work only, and never amend a commit this session did
   not just make. The pending repair is recorded in docs/HANDOVER.md.
+  A concurrent integration absorbed staged handover edits; isolate future checkpoint commits.
 - Git Bash could not create its hook snapshot in the inherited temporary
   directory. Set TMPDIR inside Git Bash to the checkout's writable
   artifacts/hook-tmp; keep the pre-commit hook enabled.
