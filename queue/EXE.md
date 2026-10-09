@@ -516,6 +516,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-280 reads the initial allocation helper, its ignored intermediate
   results and shared-state publications. Remaining state/link writers, shared
   DS-slot lifetime, aliases and interrupt effects still prevent closure.
+  Tried: FND-EXE-281 reads a list-link writer candidate, including temporary SS
+  access and flag restoration before its final stores. Establish incoming
+  transfers and DS producers, other writers, aliases and interrupt admission.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
