@@ -439,6 +439,9 @@ Next ID: Q-EXE-014
   Tried: FND-EXE-259 follows the local-buffer helper's separate request paths,
   rounded/truncated counts, byte classification and carry/result contract.
   External initialized extent, request writers and effective aliases remain open.
+  Tried: FND-EXE-260 records selected initial request words and nonzero neighbors
+  of partial-byte stores. Live preservation, consumer layout, overlapping writers
+  and initialized output extent remain open.
   Next: the segment source state-word and live header/callee admission,
   then descriptor 198's native entry
   and CS admission, then the remaining suspect target producers.
