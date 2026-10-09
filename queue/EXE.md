@@ -262,6 +262,9 @@ Next ID: Q-EXE-023
   Tried: FND-EXE-515 reads 21D2/2212's requests and ordered header
   publication. Follow 0F68, storage/segment admission, shared-state writers
   and remaining initialization/startup callers.
+  Tried: FND-EXE-516 reads 0F68's shared-offset update and stack-margin
+  guards. Follow DS:009C initialization/writers, actual DS/SS and storage
+  extent, caller stack depth and remaining initialization/startup effects.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
