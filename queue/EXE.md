@@ -208,6 +208,9 @@ Next ID: Q-EXE-018
   Tried: FND-EXE-485 follows spacing recurrence, row interfaces and
   mixed argument provenance. Follow 190F:04CA, interfaces 08E5 and
   1A7C:01C6, record consumers, extents, aliases and preservation.
+  Tried: FND-EXE-486 follows polling, sequential selector transforms,
+  record matches and remaining caller returns. Follow 08E5 and 1A7C
+  interfaces, selector/count and input producers, extents and preservation.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
