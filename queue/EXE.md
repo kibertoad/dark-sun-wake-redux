@@ -273,6 +273,12 @@ Next ID: Q-EXE-024
   Tried: FND-EXE-555 reads general cleanup dispatch and shipped relocated
   callbacks. Follow 4AE5:0193/4AD6:0192, pointer/count registration writers,
   actual table/segment admission, native contracts and remaining startup work.
+  Tried: FND-EXE-556 reads the cleanup table's manager target and cache
+  callbacks, including positive target writers and unchecked native continuations.
+  Follow complete state/pointer writers, driver contracts and general registration.
+  Tried: FND-EXE-557 reads general cleanup registration's exact count guard,
+  paired-word stores and post-store count increment. Follow its callers and return
+  consumption, complete count/table writers and aliases, and other stored targets.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct

@@ -249,6 +249,10 @@ reading of callers, external commands or interpreter behavior is claimed.
   native contracts and other cleanup callers/targets remain Q-EXE-007.
   FND-EXE-555 reads general cleanup's reverse-priority dispatcher and shipped
   callbacks; target bodies and runtime writers remain Q-EXE-007.
+  FND-EXE-556 reads the manager cleanup target and mutable cache callbacks;
+  complete writers, driver/native contracts and registration remain Q-EXE-007.
+  FND-EXE-557 reads general callback registration's equality guard and ordered
+  target/count writes; all callers, writers and input admission remain Q-EXE-007.
   FND-EXE-490 finds no AH=4B request among the sound utility's 69 interrupt
   21 instructions or its stack-thunk callers, and no interrupt 2E. Its load
   image makes no direct launch request; the game editions remain Q-EXE-007.

@@ -59,7 +59,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   batch passed the combined gate with the FND-EXE-355 follow-up on 2026-10-09.
 - Stage: Slices; goal active. AGENTS.md task framing and bounded-tool safeguards passed the assetless full gate (715 tests) and main-base documentation check on 2026-10-10; no upstream defect identified. Resume the authoritative local claim and preserve other sessions' work.
 - Last full gate: 2026-10-10, assetless Test.ps1 -NoRestore and explicit
-  main-base documentation validation passed for EXE research through FND-EXE-299 and follow-ups FND-EXE-351/352/353/354/355/356/357/358/359/361/362/363/364/365/366/367/368/369/371/372/373/374/375/376/377/378/379/471/472/473/474/475/476/477/478/479/480/481/482/483/484/485/486/487/488/489/499/500/502/503/504/507/508/509/510/511/512/513/514/515/516/517/518/519/526/527/528/529/530/531/546/547/548/549/550/551/555, including integrated FND-EXE-360/370/380. The final gate passed after correcting a draft location kind and integrating the referenced pending batch; the prior issue-7 rerun remains recorded. Updated preservation-context and blocked-tool guidance, measured-baseline tooling and independent physical PE transfer and overlay-body classification tooling passed full gates and enabled hooks. Mapper relocation revision 2 also passed the full gate and its independently failing-before/passing-after synthetic regression. Argument-check skips remain; stale local-main recovery passed: https://github.com/kibertoad/refurbished-dinosaurs-template/issues/92; no wrapper fix claimed. Corrected revision-2 fresh projects and repeatable exports are local. Review old mapped-snapshot dependencies before accepting native claims.
+  main-base documentation validation passed for EXE research through FND-EXE-299 and follow-ups FND-EXE-351/352/353/354/355/356/357/358/359/361/362/363/364/365/366/367/368/369/371/372/373/374/375/376/377/378/379/471/472/473/474/475/476/477/478/479/480/481/482/483/484/485/486/487/488/489/499/500/502/503/504/507/508/509/510/511/512/513/514/515/516/517/518/519/526/527/528/529/530/531/546/547/548/549/550/551/555/556/557, including integrated FND-EXE-360/370/380. The final gate passed after correcting a draft location kind and integrating the referenced pending batch; the prior issue-7 rerun remains recorded. Updated preservation-context and blocked-tool guidance, measured-baseline tooling and independent physical PE transfer and overlay-body classification tooling passed full gates and enabled hooks. Mapper relocation revision 2 also passed the full gate and its independently failing-before/passing-after synthetic regression. Argument-check skips remain; stale local-main recovery passed: https://github.com/kibertoad/refurbished-dinosaurs-template/issues/92; no wrapper fix claimed. Corrected revision-2 fresh projects and repeatable exports are local. Review old mapped-snapshot dependencies before accepting native claims.
 - Unfinished: this session's EXE batch is committed. The unrelated validation
   documentation edit was committed separately; recheck ownership before mutation. EXE follow-up items remain Q-EXE-005, Q-EXE-006/007/008/009/010 and reader prerequisites Q-EXE-011/012/013; Q-EXE-001 retains its retry requirement. Local static-analysis reports and the saved interpreter Ghidra project remain in GAME_DIR/analysis/exe-batches for continuation. Refreshed comparison: GAME_DIR/analysis/work-baseline/relocation-reconciled; legacy coverage rejection is documented in docs/EVIDENCE-TOOLS.md. Inventories remain pending definition/mapping reconciliation; do not discard anomalous ranges
   or publish unverified replacements. Segment report: GAME_DIR/analysis/work-baseline/decoded-segment-output-audit.log; durable reader evidence remains FND-EXE-166, with no complete-reading promotion.
@@ -176,15 +176,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   https://github.com/kibertoad/refurbished-dinosaurs-template/issues/93 (inventory-check rejects the ranges column) and
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6089321886 (single import of DSUN.EXE cannot replace the join).
 - Next, after rechecking shared goal claims:
-  1. DSUN inventory reconciliation is done: join-overlay-views.mjs joined
-     the resident and clipped overlay views into the installed and @CD/ disc
-     inventories, and FND-CONFIG-215 to FND-CONFIG-217, FND-INPUT-010/011,
-     FND-PARTY-029 to FND-PARTY-033, FND-SAVE-012, FND-TIME-006/007 and
-     FND-VIDEO-008 replace findings whose ranges ended on a closing return.
-  2. SOUND_DS is done: FND-CONFIG-213 and FND-CONFIG-214 correct the range
-     ends, and coverage/ holds the migrated range-aware inventory. Run
-     migrate-inventory.mjs from the shared checkout: it hashes the exporter
-     as checked out, and the recorded revision needs Windows line endings.
+  1. DSUN inventory reconciliation is done: join-overlay-views.mjs joined the resident and clipped overlay views into the installed and @CD/ disc inventories, and FND-CONFIG-215 to FND-CONFIG-217, FND-INPUT-010/011, FND-PARTY-029 to FND-PARTY-033, FND-SAVE-012, FND-TIME-006/007 and FND-VIDEO-008 replace findings whose ranges ended on a closing return.
+  2. SOUND_DS is done: FND-CONFIG-213 and FND-CONFIG-214 correct the range ends, and coverage/ holds the migrated range-aware inventory. Run migrate-inventory.mjs from the shared checkout: it hashes the exporter as checked out, and the recorded revision needs Windows line endings.
   3. standard-coverage now accepts every in-scope inventory. Read its
      uncited DSUN.EXE functions when choosing item 4's reading; keep
      citation coverage separate from complete-reading availability. The
@@ -197,7 +190,7 @@ An owner-approved history repair remains separate from this maintenance scope.
      segment 4AD6. Next: header word 0x1C in the placement code, then the
      other readers of the pack fields and the non-overlay descriptors.
      IDs from FND-EXE-560 up are this session's; Codex allocates below them.
-  5. Follow Q-EXE-007's game-edition consumers under FMT-EXE-006: FND-EXE-555 cleanup table callee and callback registration/writers, FND-EXE-531 storage admission, native contracts and remaining startup dependencies.
+  5. Follow Q-EXE-007's game-edition consumers under FMT-EXE-006: FND-EXE-556 complete cache callback/state writers and native contracts, FND-EXE-557 registration callers/return consumption and count/table writers, FND-EXE-555 other general targets, FND-EXE-531 storage admission, native contracts and remaining startup dependencies.
   6. The DSUN inventories leave out resident functions only overlay code
      calls (201 installed, 198 disc; docs/GHIDRA.md "Function inventory").
      Add them to the join from the full mapped view, then recheck the
