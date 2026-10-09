@@ -190,8 +190,11 @@ An owner-approved history repair remains separate from this maintenance scope.
      installed DSUN.EXE is the sole game-code target; prior disc comparisons
      are historical under docs/SOURCE-EDITIONS.md.
   4. Done: the overlay manager in segment 4AE5 (FND-EXE-560 to
-     FND-EXE-569) closed Q-EXE-001. Q-EXE-024 (Source) asks the linker's
-     documentation what the unread descriptor fields record. Next bounded
+     FND-EXE-569) closed Q-EXE-001. FND-EXE-570 records the disc DSUN.EXE as
+     version 1.0. FND-EXE-571 reads unk_02/unk_06 as segment span offsets;
+     Q-EXE-024 (Source) now asks only what flags 0, 1 and 4 mean. Toolkit
+     #323 has the inventory-check result, #401 the instruction limit and
+     #402 the span offsets; answer them when the toolkit replies. Next bounded
      game-code reading: pick from standard-coverage's uncited DSUN.EXE
      functions. For field-offset searches use the engine's
      operand-candidates first. IDs from FND-EXE-560 up are this session's;
