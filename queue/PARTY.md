@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-022
+Next ID: Q-PARTY-024
 
 ## Static
 
@@ -12,16 +12,28 @@ Next ID: Q-PARTY-022
   refuses DONE or greys out choices? Settles it: the code behind SCR-UI-004 and SCR-UI-005, then
   an owner capture of the generation screen for each disputed pair. Blocks: slice 2.
 - Q-PARTY-003. FMT-PARTY-001, RULE-PARTY-004, RULE-MAGIC-002: Where does a character record keep
-  experience and psionic strength points, what distinguishes the four class codes each of Cleric,
+  psionic strength points, what distinguishes the four class codes each of Cleric,
   Druid and Ranger have beyond their colour, what do the record's remaining `unk_` fields hold, and
   are the scores stored before or after origin modifiers? Settles it: the other routines that print
   the character sheet from the record at `DS:1429` (FND-PARTY-055), among them overlay 186's use of
-  the `EXP: ` label at `DS:137D`, and the code that sets a class code during generation. Tried: a
+  the code that sets a class code during generation. Tried: a
   search of the headers of records 40 and 42 for the label positions of their gender, origin,
   alignment and class (FND-PARTY-018); FND-PARTY-049, FND-PARTY-051 and FND-PARTY-055 to
   FND-PARTY-057 place hit points, the object offset, the combatant identifier, the control flags,
-  greatest hit points, origin, gender, alignment, class codes with their names, and levels; the
-  experience and psionic points are not among the fields read so far. Blocks: slice 2.
+  greatest hit points, origin, gender, alignment, class codes with their names, and levels, and
+  FND-PARTY-058 places experience at `0x45`; the psionic points are not among the fields read so
+  far. Blocks: slice 2.
+- Q-PARTY-022. FMT-PARTY-001: Are the class bytes at `+0x1B` to `+0x1D` of the details record,
+  when overlay 186 `+0421` and overlay 183 `+13B7` index `DATA` 1000 by them less 1, the 17-code
+  values a `CHAR` record stores or values converted to the 8-name numbering of `DS:1164`? The
+  shipped experience matches the rows of the 8 names, and the stored codes run to 17 while the
+  resource has 8 rows (FND-PARTY-057, FND-PARTY-058). Settles it: every write to those bytes after
+  the load of FND-PARTY-051, among them overlay 183 `+0B38..+0B76`, and the six overlay 210 calls
+  of overlay 185 `+0000`. Blocks: slice 2.
+- Q-PARTY-023. FMT-PARTY-001: How does a character's level follow experience: when does overlay
+  183 `+13B7..+14D0` run, what bounds the level it raises, and what do the class positions it
+  skips (the byte at `-4` of its frame tested bit by bit) and level 15 mean? Settles it: a complete
+  reading of overlay 183 from the routine's entry and of its callers (FND-PARTY-058). Blocks: slice 2.
 - Q-PARTY-020. FMT-PARTY-006: What does a 23-byte record of a type-2 or type-4 chunk hold, and
   what do the character's combatant words at `0x08`, `0x0A` and `0x0C`, and a record's word at
   `0x08`, which type-2 chunks fill with handles, lead to? Settles it: the code that reads the

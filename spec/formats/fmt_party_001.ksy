@@ -9,7 +9,7 @@ doc: |
   A CHAR resource of the character archive, one per character: a chain of chunks
   (fmt_party_006) ending at one whose type is 0xFF. Every shipped record starts with a
   type-1 chunk at 0x00 and a type-3 chunk at 0x3B, given here field by field.
-doc-ref: FMT-PARTY-001, FND-PARTY-001, FND-PARTY-003, FND-PARTY-020, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-055, FND-PARTY-056
+doc-ref: FMT-PARTY-001, FND-PARTY-001, FND-PARTY-003, FND-PARTY-020, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-055, FND-PARTY-056, FND-PARTY-058
 seq:
   - id: type
     type: u1
@@ -72,8 +72,11 @@ seq:
   - id: details_header
     size: 10
     doc: A chunk header with type 3, kind 3, field 15 and length 66.
-  - id: unk_45
-    size: 8
+  - id: experience
+    type: u4
+    doc: The character's experience points, copied to the combatant details record.
+  - id: unk_49
+    size: 4
   - id: max_hit_points
     type: s2
     doc: The character's greatest hit points, copied to the combatant details record.

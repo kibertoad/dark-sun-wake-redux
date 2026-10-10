@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_001.ksy
-evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057]
+evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057, FND-PARTY-058]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-006]
@@ -57,7 +57,8 @@ offsets hold for every record the game writes and reads back.
 | `0x29` | 2 | `BYTE[2]` | `unk_29` | Purpose unknown. A load copies it to bytes `0x1F` and `0x20` of the FMT-COMBAT-001 record. | supported | FND-PARTY-049 |
 | `0x2B` | 16 | `char[16]` | `name` | The character's name, printable ASCII ending at the first NUL, 6 to 15 characters in the shipped records. Bytes after the NUL may hold leftover text. | established | FND-PARTY-001, FND-PARTY-020 |
 | `0x3B` | 10 | FMT-PARTY-006 header | `details_header` | `chunk_type` 3, `target_chunk` 0, `kind` 3, `field` 15 and `len_data` 66 in every shipped record, so the load copies the next 66 bytes into the character's FMT-COMBAT-002 record and stores its number in the character's `details_index`. | supported | FND-PARTY-051, FND-PARTY-052 |
-| `0x45` | 8 | `BYTE[8]` | `unk_45` | Purpose unknown. A load copies it to the FMT-COMBAT-002 record's `unk_00`. | supported | FND-PARTY-051 |
+| `0x45` | 4 | `UINT32LE` | `experience` | The character's experience points. A load copies it to the FMT-COMBAT-002 record's first dword, which the character sheet prints after `EXP: ` and which overlay 183 compares with the class thresholds of `DATA` 1000 to raise the levels; 30,000 to 2,475,000 in the shipped records. | supported | FND-PARTY-051, FND-PARTY-058 |
+| `0x49` | 4 | `BYTE[4]` | `unk_49` | Purpose unknown. A load copies it to the FMT-COMBAT-002 record's dword at `+0x04`; 3,000 in eleven shipped records, and equal to or above `experience` in the others. | supported | FND-PARTY-051, FND-PARTY-058 |
 | `0x4D` | 2 | `INT16LE` | `max_hit_points` | The character's greatest hit points. A load copies it to the FMT-COMBAT-002 record's `max_hit_points`; 21 to 165 in the shipped records. | supported | FND-PARTY-051, FND-PARTY-053 |
 | `0x4F` | 4 | `BYTE[4]` | `unk_4f` | Purpose unknown. A load copies it to the FMT-COMBAT-002 record's `unk_0A`. | supported | FND-PARTY-051 |
 | `0x53` | 2 | `UINT16LE` | `unk_53` | Purpose unknown. A load copies it to the FMT-COMBAT-002 record's `unk_0E`; equal to `combatant_id` in 14 of the 19 shipped records. | supported | FND-PARTY-051, FND-PARTY-053 |
@@ -116,12 +117,11 @@ ends within its slot [FND-PARTY-001, FND-PARTY-005, FND-PARTY-052].
 
 ## Open questions
 
-- Where the record keeps the experience and psionic strength points the View Character screen
-  shows, what distinguishes the four codes of Cleric, Druid and Ranger beyond their colour, and what
-  `unk_04`, `unk_0c`, `unk_0e`, `unk_12`, `unk_1c`, `unk_1f`, `unk_29`, `unk_45`, `unk_4f`, `unk_53`,
+- Where the record keeps the psionic strength points the View Character screen shows, what distinguishes the four codes of Cleric, Druid and Ranger beyond their colour, and what
+  `unk_04`, `unk_0c`, `unk_0e`, `unk_12`, `unk_1c`, `unk_1f`, `unk_29`, `unk_49`, `unk_4f`, `unk_53`,
   `unk_55`, `unk_5a` and `unk_66` hold. The two chunks at `0x00` and `0x3B` are the only ones that
   reach the combatant and details records, so the screen's values are in them or in the records of
-  the later chunks (FND-PARTY-018, FND-PARTY-020, FND-PARTY-051, FND-PARTY-057, Q-PARTY-003).
+  the later chunks (FND-PARTY-018, FND-PARTY-020, FND-PARTY-051, FND-PARTY-057, FND-PARTY-058, Q-PARTY-003).
 - What `combatant_id` identifies: overlay 184 writes the combatant record's copy of it to a
   `CACT` resource (FND-PARTY-012), and the shipped values are never the record's own number
   (FND-PARTY-050, Q-PARTY-003).
