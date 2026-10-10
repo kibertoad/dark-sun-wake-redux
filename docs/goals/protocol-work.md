@@ -176,6 +176,13 @@ An owner-approved history repair remains separate from this maintenance scope.
   kill award outside a fight), the debug keys via 175+0B61/211+0880 -> 190+139B, and the
   interpreter via 171+0AA5's character placement (31E0:0121); not 173+07AD. RULE-PARTY-013 now
   says the pre-gain step sets combat_mark 0 -> 1 in mode 2 (no effect on who gains).
+- FND-PARTY-135 replaces the first object-unload finding: the eviction loop 31E0:0D09 also unloads
+  entries (31E0:0DF5, through a pointer at bp-4 the 60-byte search missed) but skips slots below
+  0x30, so party entries stay loaded; RULE-PARTY-013 cites 135. FND-PARTY-134 (Q-PARTY-026): every
+  route from the message window 172+05DB to the award passes the view draw's object load and the
+  state-2 (party slot) calls of 31E0:044C/0B4A. FND-PARTY-136: start-up (188+0D20) lists slots
+  4..0x2F on DS:56ED and frees 0x30..0x13E, never 0..3; 2D40:03C1 frees a slot below 0x30 onto
+  56ED. Q-PARTY-026 left: does the DUAL path call 2D40:03C1 for slot 0..3.
 - Upstream duplicate checks for this session's points: the old DS:0DAB finding's wrong address
   was a project error that IDENTIFIERS-8 (protocol #66) already covers, so no issue was filed;
   #96 was filed after searching protocol #46, #66, #95 and toolkit #436, #269, #80; the
