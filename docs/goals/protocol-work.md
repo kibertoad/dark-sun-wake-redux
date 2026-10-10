@@ -152,6 +152,11 @@ An owner-approved history repair remains separate from this maintenance scope.
 - FND-PARTY-128: 45B9:0034 is INT 33h fn 3 (mouse read), so 199's loops wait for the left button
   to come up; 190+11C1's three callers (172+03A6, 172+065E, 209+12AA) restore the handler they
   saved. Q-PARTY-065 now waits on the scripts and kills reaching 188+16E9 while mode 2 holds.
+- FND-PARTY-129: reach walk (q065_mode2_window_reach.json) from the 24 calls of 182+1856, cut at
+  182+19F8, reaches the interpreter and 188+16E9 only via 182+15D7 +16C7, which needs DS:0DAB 4.
+  Negative not usable (37 unresolved); code after a window returns to its caller in mode 2 is
+  unread. The cut uses leaf + noReturn on +19F8; filed toolkit #465 for a query-scoped stop
+  (searched: #412 noReturn, #413, #457, #462, #404, #322; none covers it).
 - Upstream duplicate checks for this session's points: the old DS:0DAB finding's wrong address
   was a project error that IDENTIFIERS-8 (protocol #66) already covers, so no issue was filed;
   #96 was filed after searching protocol #46, #66, #95 and toolkit #436, #269, #80; the
