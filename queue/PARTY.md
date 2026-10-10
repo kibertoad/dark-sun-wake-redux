@@ -32,7 +32,11 @@ Next ID: Q-PARTY-053
   that a hit with `DATA` 104 or `DATA` 225 drains a level, and what do the three overlay 197 calls
   before its saving throw test (FND-PARTY-101)? Settles it: a reading of `+0D2F`'s callers
   (overlay 179 `+0D1A` and `+1299`, overlay 193 `+04DE`) back to the item they pass, and of
-  overlay 197 `575A:0093`, `575A:0098` and `575A:009D`. Blocks: nothing yet.
+  overlay 197 `575A:0093`, `575A:0098` and `575A:009D`. Blocks: nothing yet. Tried: FND-PARTY-102
+  reads the 16 far callers of `+0C7F`: the overlay 173 swing and the overlay 195 and 204 calls pass
+  -1 and overlay 193 passes `DATA` 100, 79, 221 and 18, none holding 59; left are overlay 193
+  `+13EC` and overlay 204 `+12B4`, which pass their arguments, and the routes through `+11DC` and
+  overlay 193 `+003C`.
 - Q-PARTY-042. FMT-PARTY-001: What does the program do on a divide by 0, which the level drain
   reaches for a character with one class above level 1 (FND-PARTY-082)? Settles it: the startup
   code's setting of the interrupt 0 vector and the handler it installs, read to its end. Blocks: nothing yet.
