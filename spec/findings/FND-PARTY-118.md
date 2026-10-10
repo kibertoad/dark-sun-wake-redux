@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-118
 title: Removing a placed entry through 31E0:05BB releases its object through 31E0:044C with no test that keeps the party objects 0 to 3 off the free list
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-119]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

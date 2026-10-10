@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-117
 title: An RDFF actor is loaded into an object the loader takes from free lists that start at object 4, so it can occupy a party object 0 to 3 only after 2D40:03C1 releases that object
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-119]
 recorded_by: kibertoad
 reproduced_by: []
 method: static
