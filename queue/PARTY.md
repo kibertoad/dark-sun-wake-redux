@@ -38,7 +38,7 @@ Next ID: Q-PARTY-066
   `DS:0DAB` that FND-PARTY-123 lists, read for the display state each one enters (overlay 182
   `+1856` enters 2 from any value other than 0 and 2, and `+19F8` leaves 2 or 3 for 1), the
   register store at `2B1C:0000`, and the state on each caller's path. Blocks: nothing yet. Tried:
-  FND-PARTY-029 shows the word starts at 0.
+  FND-PARTY-124 shows the word starts at 0 and that no store puts 3 in it.
 - Q-PARTY-045. RULE-PARTY-015: Does any enemy's `kill_experience` divided by the filled party
   slots reach 32,768, so that killing it lowers each member's experience (FND-PARTY-086,
   FND-PARTY-094)? Settles it: the routine that loads an `RDFF` resource of `OBJEX.GFF` into the

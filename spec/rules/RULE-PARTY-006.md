@@ -77,7 +77,7 @@ None known.
 - Whether the gate routine reaches its gate with the placed-object count at 0, so that the
   loader runs. FND-PARTY-021 shows START GAME reaching the loader only through that gate, after
   overlay 187 entries and three early returns. For the reading that it does: the count and the
-  word at `DS:0DAB` start at 0 (FND-PARTY-022, FND-PARTY-029), and no direct call made between
+  word at `DS:0DAB` start at 0 (FND-PARTY-022, FND-PARTY-124), and no direct call made between
   program start and the gate reaches a routine that changes the count or makes that word nonzero
   (FND-PARTY-031). The pointers most indirect calls on those paths read hold routines from which
   no route reaches one (FND-PARTY-039, FND-PARTY-040). The run of `MAS` 99 on those paths executes

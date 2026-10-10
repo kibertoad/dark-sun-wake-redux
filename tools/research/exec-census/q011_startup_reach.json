@@ -1,8 +1,8 @@
 {
  "starts": ["4AE5:0D27", "1000:0886", "1000:11C1", "1000:12D9", "1000:2877", "1000:29AA", "1000:3B56"],
  "leaves": [
-  {"site": "182+1856", "reason": "FND-PARTY-029: returns before any call while DS:0DAB is 0"},
-  {"site": "182+19F8", "reason": "FND-PARTY-029: returns before any call while DS:0DAB is 0"}
+  {"site": "182+1856", "reason": "FND-PARTY-124: returns before any call while DS:0DAB is 0"},
+  {"site": "182+19F8", "reason": "FND-PARTY-124: returns before any call while DS:0DAB is 0"}
  ],
  "targets": [
   "0x271E3", "0x27404", "0x709B1", "0x709C5", "0x710A0", "0x710A8", "0x89297", "0x892D0",

@@ -10,8 +10,8 @@
   "362C:0000", "3D72:0B84", "1BF3:27A8"
  ],
  "leaves": [
-  {"site": "182+1856", "reason": "FND-PARTY-029: returns before any call while DS:0DAB is 0"},
-  {"site": "182+19F8", "reason": "FND-PARTY-029: returns before any call while DS:0DAB is 0"}
+  {"site": "182+1856", "reason": "FND-PARTY-124: returns before any call while DS:0DAB is 0"},
+  {"site": "182+19F8", "reason": "FND-PARTY-124: returns before any call while DS:0DAB is 0"}
  ],
  "targets": [
   "3D72:12ED", "3D72:120B",
