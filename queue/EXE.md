@@ -353,6 +353,9 @@ Next ID: Q-EXE-025
   Tried: FND-EXE-431 reads 1720's creation output, including the
   retained segment and reloaded second offset. Continue complete callers,
   input/output aliases and extents, state producers and native preservation.
+  Tried: FND-EXE-432 reads 1879's wrapped total and conditional
+  previous-quantity output. Continue complete callers and input/state admission,
+  repeated selection, snapshot/output aliases and native preservation.
   Tried: FND-EXE-490 counts every interrupt 21 instruction in the sound
   utility's load image and the stack-thunk wrapper's nine callers; none
   selects AH=4B, and the image has no interrupt 2E. The utility's direct
