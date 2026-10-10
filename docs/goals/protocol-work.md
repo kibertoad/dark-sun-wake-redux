@@ -183,6 +183,10 @@ An owner-approved history repair remains separate from this maintenance scope.
   state-2 (party slot) calls of 31E0:044C/0B4A. FND-PARTY-136: start-up (188+0D20) lists slots
   4..0x2F on DS:56ED and frees 0x30..0x13E, never 0..3; 2D40:03C1 frees a slot below 0x30 onto
   56ED. Q-PARTY-026 left: does the DUAL path call 2D40:03C1 for slot 0..3.
+- FND-PARTY-137 (q026_dual_slot_release_reach.json): from 209+123E the walk reaches 2D40:03C1 only
+  below the view draw's 31E0:0EFF (slots 0x13F or evicted >= 0x30), not the overlay 175/184/187/189
+  releases. Q-PARTY-026 left: slots freed by 188+12C3 and 2D40:31E6 on those routes. Commented on
+  protocol #95 (two more supersessions needing the three-commit workaround).
 - Upstream duplicate checks for this session's points: the old DS:0DAB finding's wrong address
   was a project error that IDENTIFIERS-8 (protocol #66) already covers, so no issue was filed;
   #96 was filed after searching protocol #46, #66, #95 and toolkit #436, #269, #80; the
