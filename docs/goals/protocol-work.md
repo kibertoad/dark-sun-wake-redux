@@ -167,7 +167,7 @@ An owner-approved history repair remains separate from this maintenance scope.
 - FND-PARTY-131: 4F49:0C33 state 2 is set by 184+1648 for a new party member's object slot, so
   FND-PARTY-130's branch is the party member's object load. Q-PARTY-054 now asks whether a party
   member's DS:67B7 entry can hold a negative +6 when 182+19F8 redraws the view at a level gain.
-- FND-PARTY-132: the only store that unloads a DS:67B7 entry (negative +6) is 187+071D, which has
+- The first object-unload finding: 187+071D unloads a DS:67B7 entry (negative +6) and has
   no call or pointer reference; opcode 0x22 function 9 renumbers only unloaded entries; 289B:0094
   removes an entry by shifting. Q-PARTY-054 closed (7effd4bc); RULE-PARTY-013's open question now
   names the mode-2 combat mark store and Q-PARTY-065.
