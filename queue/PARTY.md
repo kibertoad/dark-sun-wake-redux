@@ -4,36 +4,6 @@ Next ID: Q-PARTY-066
 
 ## Static
 
-- Q-PARTY-026. FMT-PARTY-001: On the DUAL path, does anything the routine at overlay 209 `+123E`
-  calls before `+14FF` store another slot in the word at `4E71:0B44`, so that overlay 184 `+1DCE`
-  takes the class bytes of a different character from the one whose records it copies
-  (FND-PARTY-073, FND-PARTY-080)? Settles it: the routes from overlay 172 `+05DB` to overlay 188
-  `+1604` read for the state they need while overlay 190 offers `DUAL` (`DS:0DAB` among it), and
-  the argument overlay 210 `+0740` passes to overlay 209 `+0000`, `+0218` and `+0A84`, read for
-  whether it can differ from the DUAL slot and whether the word is set back before `+14FF`.
-  Tried: FND-PARTY-080 reads the other three callers of `+1DCE`, where the slots are the same, and
-  a reach run from the DUAL routine's 14 calls reaches three overlay 209 stores to the word, only
-  through overlay 172 `+05DB` and overlays 173, 188 and 210; the routes were not read for the state
-  they need; FND-PARTY-081 shows overlay 210 `+0740` passes overlay 209 `+0000` the slot whose
-  Preserver level rose, so the question is whether that can be another slot on this path.
-  FND-PARTY-134 shows every route from overlay 172 `+05DB` to the award passes the view draw's
-  object load and calls made only for an object slot of state 2 (a party member's), which leaves
-  which slot `31E0:0EFF` hands on when it loads an unloaded entry. FND-PARTY-135 and
-  FND-PARTY-136 show it is a slot from the free lists, or one the eviction frees, which skips slots
-  below 0x30, and that the lists hold a party slot only after `2D40:03C1` frees it. FND-PARTY-137
-  finds the DUAL path reaching `2D40:03C1` only below the view draw's object load, where the slots
-  freed are 0x13F or evicted ones. FND-PARTY-138 reads every release: only the unload `31E0:05BB`
-  can free a party slot, the DUAL routine reaches it only through overlay 187 `+1B67`, which
-  unloads slots 5 to 0x13F, and overlay 171 `+0D15`, which unloads the current character, is
-  reached from seven mode-2 handlers but not from overlay 172 `+04C5`. FND-PARTY-139 finds the
-  DUAL path's event loops reaching only overlay 172 `+0816`, overlay 209 `+169C` and overlay 190
-  `+0092`, and only `+169C` reaching the unload other than through overlay 187 `+1B67`, by way of
-  the object placement `31E0:0121`, overlay 193 `+13EC` and overlay 206 `+0E1E`. FND-PARTY-140
-  shows overlay 206 `+0E1E` unloads no slot below 4 and finds the other unloaders on those routes:
-  overlay 179 `+1373`, overlay 193 `+003C`, `371D:050F` and overlay 206 `+0000`; left is which
-  slot each unloads there, and the conditions on the route from overlay 209 `+169C` through
-  overlay 184 `+2107` and overlay 191 `+05DB` to `31E0:0121`.
-  Blocks: slice 2.
 - Q-PARTY-053. RULE-PARTY-013: How do the spell window of overlay 209 `+0218` and the psionic
   power window of overlay 209 `+0A84` behave as screens, so that `gain_one_level` can show them
   after the saving throws of a new greatest level in class code 11 or 12 (FND-PARTY-104)? Settles
