@@ -10,7 +10,6 @@ import { inventoryPath, parseInventory, joinInventories, verifyInventory } from 
 import { run } from "../../tools/evidence/report.mjs";
 import { readPe32 } from "../../tools/evidence/pe-image.mjs";
 import { peTransferCandidates } from "../../tools/evidence/pe-transfers.mjs";
-import { overlayBodyPartitions } from "../../tools/evidence/overlay-bodies.mjs";
 import { unchangedInventory } from "../../tools/evidence/migrate-inventory.mjs";
 import { joinOverlayViews } from "../../tools/evidence/join-overlay-views.mjs";
 
@@ -400,21 +399,21 @@ test('physical relative forms require kind controls and preserve signed short an
   assert(r.exclusions.includes('rel16 and LOOP/JCXZ-family transfers'));
 });
 
-test('overlay body classification partitions all bytes and keeps entry placement separate',t=>{
- const b=synthetic(), image=readMz(b);
- const ranges=[{start:552,end:570,entry:532},{start:80,end:85,entry:532},{start:510,end:534,entry:80}];
- let result=overlayBodyPartitions(image,ranges);
- assert.deepEqual(result.spans[0].parts.map(p=>[p.start,p.end,p.kind]),[[552,560,'overlay-code'],[560,562,'overlay-fixups'],[562,570,'zero-padding']]);
- assert.equal(result.spans[1].entryKind,'overlay-code'); assert.equal(result.spans[1].parts[0].kind,'resident-load-image');
- assert.deepEqual(result.spans[2].parts.map(p=>p.kind),['resident-load-image','other-file-bytes','overlay-code']);
- for(const span of result.spans) assert.equal(span.parts.reduce((n,p)=>n+p.end-p.start,0),span.end-span.start);
- b[565]=1; result=overlayBodyPartitions(readMz(b),ranges); assert.equal(result.spans[0].parts[2].kind,'other-file-bytes'); b[565]=0;
- assert.throws(()=>overlayBodyPartitions(image,[{start:0,end:999,entry:80}]),/Invalid/);
- assert.throws(()=>overlayBodyPartitions(image,[]),/1..4096/);
+test('the reader bodies report partitions body fragments and keeps entry placement separate',t=>{
+ const b=synthetic();
  const dir=mkdtempSync(join(tmpdir(),'overlay-body-'));t.after(()=>rmSync(dir,{recursive:true,force:true}));
  writeFileSync(join(dir,'source.bin'),b);const path=join(dir,'query.json');
- const cfg={source:'source.bin',sourceKind:'mz',xxh3:sourceXxh3(b),formatControls:{overlays:1,fixups:1},ranges};
- writeFileSync(path,JSON.stringify(cfg));assert.equal(run(['overlay-bodies',path]).spans.length,3);
- writeFileSync(path,JSON.stringify({...cfg,formatControls:{overlays:2}}));assert.throws(()=>run(['overlay-bodies',path]),/source tables yield/);
- writeFileSync(path,JSON.stringify({...cfg,formatControls:{fixups:1}}));assert.throws(()=>run(['overlay-bodies',path]),/overlay-count control/);
+ const functions=[{entry:532,body:[{start:552,end:570}]},{entry:532,body:[{start:80,end:85}]},{entry:80,body:[{start:510,end:534}]}];
+ const cfg={source:'source.bin',sourceKind:'mz',xxh3:sourceXxh3(b),formatControls:{overlays:1,fixups:1},functions};
+ writeFileSync(path,JSON.stringify(cfg));
+ const parts=(r,i)=>r.functions[i].fragments.flatMap(f=>f.parts);
+ let r=run(['x86-bodies',path]);
+ assert.deepEqual(parts(r,0).map(p=>[p.start,p.end,p.kind]),[[552,560,'overlay-code'],[560,562,'fixup-table'],[562,570,'zero-padding']]);
+ assert.equal(r.functions[1].entry.kind,'overlay-code'); assert.equal(parts(r,1)[0].kind,'resident');
+ for(let i=0;i<3;i++) assert.equal(parts(r,i).reduce((n,p)=>n+p.end-p.start,0),r.functions[i].bytes);
+ b[565]=1; writeFileSync(join(dir,'source.bin'),b);
+ writeFileSync(path,JSON.stringify({...cfg,xxh3:sourceXxh3(b)}));
+ assert.notEqual(parts(run(['x86-bodies',path]),0)[2].kind,'zero-padding'); b[565]=0;
+ writeFileSync(join(dir,'source.bin'),b);
+ writeFileSync(path,JSON.stringify({...cfg,formatControls:{overlays:2}}));assert.throws(()=>run(['x86-bodies',path]));
 });

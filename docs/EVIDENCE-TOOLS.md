@@ -336,17 +336,19 @@ Rel16, LOOP/JCXZ-family, far, indirect, computed and runtime-written transfers
 remain excluded. Prefixes and instruction starts are still unverified.
 An empty target result with passing controls is not a complete caller declaration.
 Keep configurations and licensed-source results in GAME_DIR, never in Git.
-### Overlay function-body anomaly classification
+### Function-body classification
 
-`overlay-bodies` accepts a hash-guarded `sourceKind: mz` configuration with
-`formatControls` (including a positive `overlays` count) and `ranges`.
-Each range has file-offset `start`, exclusive `end` and a separate `entry`.
-The bounded MZ/FBOV reader supplies resident and overlay code/fixup intervals;
-inter-block and trailing remainders are called zero padding only when every
-byte in that remainder is zero. Other bytes stay explicitly unclassified.
-Every span is partitioned completely, without dropping analyzer body fragments.
-Entry placement is separate: an overlay-entry function can own a resident or
-fixup-range fragment in an analyzer snapshot. That does not prove native flow,
-valid function ownership, or justify widening Code ranges. Invalid spans and
-format-count controls fail; at most 4096 spans are accepted. Licensed-source
-configs/reports remain in GAME_DIR. Inventory changes need separate research.
+`x86-bodies` runs the reader's `bodies` report (toolkit #369). It takes a
+hash-guarded `sourceKind: mz` configuration with `formatControls` and
+`functions`, each an `entry` and `body` ranges as file offsets with exclusive
+ends, and partitions every fragment by the MZ and FBOV tables into resident
+image, overlay stub, overlay code and fixup table per descriptor, zero padding
+(only when every byte is zero) and undeclared bytes. The entry is placed on its
+own, and parts of another kind or descriptor are marked outside the entry's
+region, so another overlay's code counts as outside. A function may carry
+`candidate: { ranges, evidence }`, such as a reading's instruction span; the
+report then gives the bytes both sides hold and each side's own, with neither
+treated as right. It decodes no instruction and establishes neither native
+flow nor ownership, and it never justifies widening Code ranges.
+Licensed-source configs/reports remain in GAME_DIR. Inventory changes need
+separate research.
