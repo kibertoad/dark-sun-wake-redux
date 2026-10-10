@@ -35,7 +35,8 @@ Next ID: Q-PARTY-066
   greatest hit points, origin, gender, alignment, class codes with their names, and levels, and
   FND-PARTY-058 and FND-PARTY-059 place experience at `0x45` and the current and greatest
   psionic points at `0x0C` and `0x51`. FND-PARTY-142 shows `0x5A` holds the base scores, and
-  with FND-PARTY-071 that the scores are stored with the origin modifiers added. Blocks: slice 2.
+  with FND-PARTY-071 that the scores are stored with the origin modifiers added. FND-PARTY-143 shows `0x1F` is the
+  combatant kind. Blocks: slice 2.
 - Q-PARTY-020. FMT-PARTY-006: What does a 23-byte record of a type-2 or type-4 chunk hold, and
   what do the character's combatant words at `0x08`, `0x0A` and `0x0C`, and a record's word at
   `0x08`, which type-2 chunks fill with handles, lead to? Settles it: the code that reads the
