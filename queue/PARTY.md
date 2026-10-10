@@ -45,7 +45,10 @@ Next ID: Q-PARTY-066
   message window returns to the mode it found, which leaves scripts run from other windows, such
   as an item use from the inventory. FND-PARTY-127 shows that entering mode 2 unregisters the main
   view's key handler `28C9:0CFF` and that the level gain's first step registers it again, and leaves
-  the windows that save and restore the handler and whether `45B9:0034` hands events to it.
+  the windows that save and restore the handler and whether `45B9:0034` hands events to it;
+  FND-PARTY-128 shows `45B9:0034` only reads the mouse and that the three windows that read the
+  handler put it back, which leaves the scripts and kills that reach overlay 188 `+16E9` while a
+  window holds mode 2.
 - Q-PARTY-045. RULE-PARTY-015: Does any enemy's `kill_experience` divided by the filled party
   slots reach 32,768, so that killing it lowers each member's experience (FND-PARTY-086,
   FND-PARTY-094)? Settles it: the routine that loads an `RDFF` resource of `OBJEX.GFF` into the
