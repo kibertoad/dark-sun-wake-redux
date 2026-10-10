@@ -23,22 +23,6 @@ Next ID: Q-PARTY-066
   it: screen entries for the two windows from their handlers and fill routines (overlay 209
   `+00C2`, `+03DC`, `+0622`, `+0C84`, `+0E2D` and `+0EF0`), with overlay 211 `+208C`, overlay 177
   `+0A45` for spell 0 and the cases for events 2, 4 and 0x80 read. Blocks: slice 2.
-- Q-PARTY-054. RULE-PARTY-013: While `DS:0DAB` is 2 or 3, does anything overlay 182 `+19F8`
-  calls when overlay 199 `+0C21` runs it before a level gain store to a party member's combatant,
-  details, `SPST` or `PSST` records (FND-PARTY-081, FND-CONFIG-161)? Settles it: a reading of
-  `28C9:250A`, `2C5F:0139`, `39D1:0430`, `39D1:0448`, overlay 182 `+01EF` and the call through
-  trampoline `571F:0034` with `28C9:0CFF` for such stores. Blocks: nothing yet. Waiting on:
-  Q-PARTY-065 when it shows `DS:0DAB` is never 2 or 3 there, which would make the question moot.
-  Tried: a reach run from `+0C21` reaches 927 routines, so a reach run cannot rule stores out;
-  FND-PARTY-123 reads `+0C21` and `+19F8`, whose one store to the records sets a combat mark of 0
-  to 1 while `DS:0DAB` is 2, which leaves the gain's slot test unchanged. FND-PARTY-130 walks each
-  callee: only `2C5F:0139` reaches routines that load a record pointer, all through the view draw
-  `31BA:000E` loading an object whose byte at `4F49:0C33` is 2 (`31E0:0B4A`), which leaves when
-  such an object can be unloaded at a level gain. FND-PARTY-131 shows state 2 marks a party
-  member's object slot (overlay 184 `+1648`), so what is left is whether a party member's entry
-  in the table at `DS:67B7` can hold a negative word at `+6` when `+19F8` redraws the view.
-  FND-PARTY-132 finds the only unloading store in overlay 187 `+071D`, which nothing references,
-  and leaves writes made through a pointer held longer than 60 bytes of code.
 - Q-PARTY-065. RULE-PARTY-013: What does the word at `DS:0DAB` hold when overlay 210 `+0B44` or
   `+0B55` runs, from each of its callers (overlay 173 `+07AD` at a fight's end, overlay 188
   `+16E9` for an experience award, and the debug keys of overlay 190)? Settles it: the stores of

@@ -237,8 +237,11 @@ None known.
   code 11 or learns or enhances one or two psionic powers for class code 12, changing FMT-PARTY-005
   and FMT-PARTY-004 (FND-PARTY-104); the procedure leaves them out until those windows have screen
   entries (Q-PARTY-053).
-- Whether the routines overlay 199 `+0C21` calls before the gain change any of the member's
-  records: its own body stores none of them (FND-CONFIG-161), and its callees were not read
-  (Q-PARTY-054).
+- Whether the step before the gain changes a member's combat mark: overlay 199 `+0C21` stores none
+  of the member's records itself (FND-CONFIG-161), and of its callees overlay 182 `+19F8` sets a
+  combat mark of 0 to 1 while `DS:0DAB` is 2 (FND-PARTY-123); the routines `+19F8` runs in that
+  mode reach the record writers only by loading a party member's object that is not loaded, which
+  no referenced code brings about (FND-PARTY-130 to FND-PARTY-132). Which mode holds when the gain
+  runs is not settled (Q-PARTY-065).
 - That the messages and draws happen in this order in play: a capture of a party gaining levels
   after a fight would confirm it (Q-PARTY-037).
