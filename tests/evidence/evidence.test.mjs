@@ -56,6 +56,7 @@ function synthetic() {
   b[80] = 0x9A; w(81, 32); w(83, 12);
   b[96] = 0x9A; w(97, 16); w(99, 13); // Different segment pair, same trampoline.
   b.write("FBOV", 512); d(516, 64); d(520, 128); d(524, 2);
+  w(130, 48); // Descriptor 0: resident span over load-image bytes 0 to 48 (file 64 to 112).
   w(136, 12); w(140, 2);
   w(256, 0x3FCD); d(260, 0); w(264, 32); w(266, 2); w(268, 1);
   w(288, 0x3FCD); w(290, 0);
