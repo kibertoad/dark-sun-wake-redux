@@ -4,7 +4,7 @@ title: Which classes the generation screen offers
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-058, FND-PARTY-063, FND-PARTY-065, FND-PARTY-068]
+evidence: [FND-PARTY-058, FND-PARTY-063, FND-PARTY-065, FND-PARTY-068, FND-PARTY-069]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-002, RULE-PARTY-007, SCR-UI-004]
@@ -76,7 +76,7 @@ leaves an order the procedure would not have offered: every order reachable by a
 classes and removing any passes `classes_offered` for each class given the ones before it
 (FND-PARTY-068).
 
-`origin_classes` gives no class to an origin where README table 3 gives no level limit, and every
+Nothing writes the table `origin_classes` copies (FND-PARTY-069). `origin_classes` gives no class to an origin where README table 3 gives no level limit, and every
 class to one where it gives a limit (RULE-PARTY-007).
 
 ## What the sources say
@@ -91,7 +91,5 @@ None known.
 
 ## Open questions
 
-- Whether the words at `4E68:0000` are written after load: a search for stores to them would
-  settle that the screen uses the shipped values (Q-PARTY-029).
 - Whether DONE or the class minimum scores refuse a set of classes the buttons offered
   (Q-PARTY-002).

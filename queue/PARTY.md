@@ -25,10 +25,6 @@ Next ID: Q-PARTY-030
   window's `+0CE3`, `+0D2C` and `+0D95`. Tried: FND-PARTY-063 and FND-PARTY-066 read the class
   buttons and the sphere window, FND-PARTY-067 the discipline window, and FND-PARTY-068 which
   classes the buttons offer. Blocks: slice 2.
-- Q-PARTY-029. RULE-PARTY-009: Is any of the eight words at `4E68:0000` written after load?
-  Settles it: a search for stores through a segment register loaded with `4E68` (segment word
-  `0x0368`) to offsets `0x00` to `0x0F`, with a positive control, and of every far pointer formed
-  to that segment (FND-PARTY-068). Blocks: slice 2.
 - Q-PARTY-003. FMT-PARTY-001, RULE-PARTY-004, RULE-MAGIC-002: What do the record's remaining `unk_`
   fields hold, and are the scores stored before or after origin modifiers? Settles it: the other
   routines that print the character sheet from the record at `DS:1429` (FND-PARTY-055), and the
