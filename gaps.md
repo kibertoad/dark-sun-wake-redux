@@ -182,8 +182,8 @@ The adopted interrupt model reaches both stores and the actual BX predicate.
 Engine 9.1.0 adds a checkpoint memory probe, so the real caller no longer
 needs a scratch-word read to check its last writer. Reached DX-writer and BX
 origin occurrences hold; stopped repeat routes and the unestablished caller
-frame keep whole acceptance open. See docs/TOOLKIT-RESPONSE-ACCEPTANCE.md
-and toolkit issue 190; no larger bounds or stitched state is accepted.
+frame keep whole acceptance open. See docs/TOOLKIT-RESPONSE-ACCEPTANCE.md;
+no larger bounds or stitched state is accepted.
 
 ## 32. Check whether validation precedes the access it appears to protect
 
@@ -213,8 +213,7 @@ Installed source controls now retain metadata ordering, rejected-path writes,
 conditional zero returns and both target reloads through observed frames.
 Scoped target preservation holds at reached occurrences; whole controls remain
 undecided on modeled-callee bypasses. Gap 32 stays open for complete bracket
-coverage and producer evidence in project issue 5. Toolkit issue 198 has
-its delivered asks accounted for. Engine 10.0.0 delivers issue 274 and the
+coverage and producer evidence in project issue 5. In engine 10.0.0 the
 produced indirect-far regression passes; actual pointer producers remain in
 project issue 5. See
 TOOLKIT-RESPONSE-ACCEPTANCE.
@@ -246,9 +245,8 @@ unconditional success or preservation claims.
 
 Bounded source controls now distinguish zero leaves, a supplied recursive
 error's compare/branch dependency and the subsequent fresh error immediate.
-Loop stops and path gaps keep whole acceptance incomplete. Toolkit issue 200
-tracks the re-encoding/origin guidance and remaining full source contract;
-see TOOLKIT-RESPONSE-ACCEPTANCE. No native error origin or termination is inferred.
+Loop stops and path gaps keep whole acceptance incomplete; the re-encoding
+and origin guidance is in TOOLKIT-RESPONSE-ACCEPTANCE. No native error origin or termination is inferred.
 
 ## 34. Bound transform output counts independently of input counts
 

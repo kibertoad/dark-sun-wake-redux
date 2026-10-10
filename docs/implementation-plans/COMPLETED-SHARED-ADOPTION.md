@@ -58,7 +58,7 @@ smoke must pass. No spec/parity change or original runtime is authorized.
 ## Published engine migration and upstream-response acceptance
 
 - **Outcome.** Adopt runtime 6.2.0 and engine 8.1.1 after exact-source and complete published-suite verification; refresh ordinary/target-mode NuGet locks and engine wheel hash. Retain three-state argument-width results and unresolved consumer provenance; verify delivered interrupt/cardinality and result-origin guidance.
-- **Evidence.** Toolkit runtime 6.2.0 and engine 8.1.1 registry releases and migration guides, PRs 204/214/215/217, and responses on issues 190/198/200/213. Existing findings remain read-only acceptance inputs.
+- **Evidence.** Toolkit runtime 6.2.0 and engine 8.1.1 registry releases and migration guides, and PRs 204/214/215/217. Existing findings remain read-only acceptance inputs.
 - **Acceptance.** Verify wheel/sdist/released source and installed bytes in an isolated environment before changing production pins. Rerun actual registration width and scoped/unscoped/capped controls; widthsConsistent=null requires retaining uncertainty and reassessing affected closure claims. No original run, spec/parity changes or unsupported input hypotheses.
 - **Tests and Exit.** Complete published engine suite including the installed-engine Node bridge, relevant Dark Sun argument/preservation controls and canonical Test.ps1. Review breaking image/overlay/volume/width contracts; verify packaging locks, Release build and assetless smoke. Track unmet requester exits without duplicate upstream issues; use merged documentation's compare/order/output and wrong-origin controls before focused issue closure. Whole-gap closure still requires all original acceptance criteria.
 

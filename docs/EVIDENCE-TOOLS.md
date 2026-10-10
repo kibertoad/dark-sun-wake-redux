@@ -338,7 +338,7 @@ An empty target result with passing controls is not a complete caller declaratio
 Keep configurations and licensed-source results in GAME_DIR, never in Git.
 ### Function-body classification
 
-`x86-bodies` runs the reader's `bodies` report (toolkit #369). It takes a
+`x86-bodies` runs the reader's `bodies` report. It takes a
 hash-guarded `sourceKind: mz` configuration with `formatControls` and
 `functions`, each an `entry` and `body` ranges as file offsets with exclusive
 ends, and partitions every fragment by the MZ and FBOV tables into resident

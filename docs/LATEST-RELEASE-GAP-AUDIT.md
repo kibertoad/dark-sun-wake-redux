@@ -47,7 +47,7 @@ The local rules snapshot is unchanged; no standards refresh was requested.
 | 27 | No effect-order traversal change. Complete connected fill/bracket coverage remains required. |
 | 29 | No loop/input change. Admitted cache, age and capacity producers and connected restarted-search controls remain required. |
 | 31 | New memory probe removes the missing-read anchor limitation. Actual DX last-writer and BX-origin occurrences hold; wrong-writer, unread, unscoped and cap controls retain their expected outcomes. Whole verdicts remain undecided because caller-frame formation and repeating routes are incomplete. |
-| 32 | PR 281 delivers toolkit #274: a produced ptr16:16 target now enters exact declared code. Installed positive and negative controls pass. Actual callback reloads still have unknown pointer words and storage/caller gaps; whole controls remain undecided. |
+| 32 | PR 281: a produced ptr16:16 target now enters exact declared code. Installed positive and negative controls pass. Actual callback reloads still have unknown pointer words and storage/caller gaps; whole controls remain undecided. |
 | 33 | No recursive provenance change. Replayed compare/input and re-encoding controls retain local witnesses and whole undecided verdicts; real finite child/selector/leaf and caller coverage remains required. |
 | 34 | Actual caller prologues now establish pre-guard frames. Connected fill/setup/copy reaches the count-one store and retains it at normalization; local origin/last-writer/order controls hold. DOS, path and step stops still prevent whole normalization and known append-cardinality acceptance. Pair/split/copy/terminator exits remain required. |
 | 36 | No width/provenance change. Connected low/high-byte and segment producers, normalized service coverage and fixtures remain required. |
@@ -119,16 +119,16 @@ Canonical validation includes Release build and assetless smoke.
 
 The five old Dark Sun toolkit trackers carry delivered shared-tool requests
 and consumer prerequisites. Their delivered requests are accounted for; source
-coverage stays in project issue 5. Toolkit #274 is a new, duplicate-checked
-capability request: a wholly synthetic instruction-produced far pointer is
-known at its indirect call, but the declared target is not followed. Immediate
-far-call positive returns and unknown-pointer negative stops. No proprietary
-bytes or invented original state were used. No whole game gap is closed merely
+coverage stays in project issue 5. In engine 9.1.0 a wholly synthetic
+instruction-produced far pointer is known at its indirect call, but the
+declared target is not followed. Immediate far-call positive returns and
+unknown-pointer negative stops. No proprietary bytes or invented original
+state were used. No whole game gap is closed merely
 by separating delivered requests from consumer evidence.
 
 ## Released migration and confirmation
 
-Engine 10.0.0 includes PR 281 for toolkit #274. The original synthetic
+Engine 10.0.0 includes PR 281. The original synthetic
 instruction-produced pointer now enters its declared target and returns, with
 both pointer writers retained. Immediate far-call control returns; unknown and
 undeclared targets stop with their distinct reasons; a one-step control never
@@ -148,8 +148,7 @@ profile are refreshed. Full canonical validation passes, including Test.ps1,
 locked restore, Release build and assetless smoke. Tagged engine/checker suites
 pass with their explicit platform skips.
 
-Toolkit #274 is closed after the released confirmation; project issue 5 is
-revised to the current versions and consumer exits.
+Project issue 5 is revised to the current versions and consumer exits.
 The library update and its compatibility validation are complete. The five
 connected-evidence exits in project issue 5 remain consumer work; no new
 undelivered toolkit requirement was demonstrated by these reruns.
@@ -186,7 +185,7 @@ Root returnCheck explicitly leaves target/segment unread. Unknown-store nested
 returns remain unproved, while distinct-storage nested returns compare their
 target successfully. Callee-produced near-to-far conversion still fails both
 width and balance and leaves target words unread; ordinary-near and caller-built
-far-frame controls return. Toolkit issue 302 remains an open capability request.
+far-frame controls return.
 
 All five complete connected-evidence exits remain open. No game specification,
 parity or original-content contract changed; no original/emulated game ran.
@@ -195,7 +194,7 @@ Drivers: tools/research/engine110/.
 
 ## Engine 12 frame-conversion adoption, 2026-10-06
 
-Engine 12.0.0 (PR 308, toolkit issue 302) is adopted with reader 2.2.0, whose
+Engine 12.0.0 (PR 308) is adopted with reader 2.2.0, whose
 only change is the PE `imports` command; neither changes the dependencies.
 The wheel hash from PyPI is pinned in tools/evidence/requirements.txt and the
 locked restore installed it. Shared runtime packages move from 7.0.0 to
@@ -215,10 +214,9 @@ and no path stops there. The CL=4/DX=0 controls hold on all four occurrences,
 CL=16 is rejected, and omitting the helper's body removes the occurrences.
 Paths then stop at an unresolved string repetition count and existing loop
 limits. At the recorded 256 steps per path the run fails as a whole on the
-engine's term-size cap, so no report is produced; toolkit issue 316 has the
-synthetic reproduction and asks for a per-path stop. No bound was raised.
+engine's term-size cap, so no report is produced. No bound was raised.
 
-Toolkit issue 302 is confirmed and closed. All five complete
+All five complete
 connected-evidence exits remain open. No game specification, parity or
 original-content contract changed; no original or emulated game ran.
 Private original reports: GAME_DIR/analysis/reporter-audit/lower-heap120.

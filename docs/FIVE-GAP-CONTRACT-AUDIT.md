@@ -26,10 +26,9 @@ this audit has not rerun every case or promoted a local hold to a whole hold.
 
 ## Delivery and migration are separate checks
 
-Current GitHub issue state confirms toolkit requests 143, 190, 198, 200, 213
-and 274 are closed. Their delivered work is recorded in the release acceptance
-documents. Closure of those issues is evidence of disposition, not evidence
-that all original-game consumer exits pass. No new missing capability is
+The shared-tool work these gaps asked for is delivered and recorded in the
+release acceptance documents. That delivery does not show that the
+original-game consumer exits pass. No new missing capability is
 demonstrated by this audit.
 
 The original requests explicitly preserve unknown external results, finite

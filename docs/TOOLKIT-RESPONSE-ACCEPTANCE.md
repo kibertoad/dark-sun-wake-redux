@@ -30,7 +30,7 @@ tools/research/issue-response-review; configs/reports and the driver stay in
 GAME_DIR/analysis/reporter-audit/compact-wrapper-controls. Production pins,
 original content, game spec/parity and runtime remain untouched.
 
-## Issue 144: published argument-width consistency adoption, 2026-10-04
+## Published argument-width consistency adoption, 2026-10-04
 
 Engine 6.2.0 is adopted with existing reader 2.0.0 and prepared protocol 3.
 The wheel hash is pinned in tools/evidence/requirements.txt. Published wheel,
@@ -40,7 +40,7 @@ PE bridge, nonvacuous width/grouping conflicts, bypasses, no-read and window-lim
 controls. Unicorn is isolated as a synthetic test oracle, not a runtime dependency.
 
 The FND-CONFIG-179 caller plus FND-CONFIG-180 callee query uses the unchanged
-bounded config from issue 144, without entry-memory values or modeled calls.
+bounded config of the argument-width request, without entry-memory values or modeled calls.
 The registration site has six traced frames. readWidths contains offset 0 width
 4 on six paths, offset 4 width 2 on six paths, and offset 6 width 4 on four
 paths; each grouping is consumed width only. widthsConsistent is true and
@@ -59,13 +59,12 @@ inline copies are absent. Ghidra fall-through disagreement controls pass in the
 published suite; no false agreement was accepted or original export rewritten.
 The bridge's compact transport retains its existing output limit.
 
-Issue 144's released-feature and bounded consumer exit is satisfied. This does
+The released feature's bounded consumer exit is satisfied. This does
 not establish unread arguments, complete native behavior, or the full Gap 35
 contract; gaps.md and the goal ledger retain Gap 35 pending that broader exit.
 No game spec, parity status, gameplay or original runtime changes.
 
-Canonical Test.ps1 -NoRestore passes. Issue 144
-is closed as completed after the verified response; the broader ledger is unchanged.
+Canonical Test.ps1 -NoRestore passes. The broader ledger is unchanged.
 
 ## Published reader 2.1.0 / engine 7.3.0 adoption, 2026-10-04
 
@@ -116,9 +115,9 @@ Local configurations/reports stay under
 GAME_DIR/analysis/reporter-audit/issue-response-review/; drivers and logs are
 tools/research/engine73/verify-gap35-exit.mjs, gap35-exit.log and arguments.log.
 
-### Issue 145 delivered; Gap 40 remains open
+### Observed-frame composition delivered; Gap 40 remains open
 
-The exact issue reproducer now establishes its observed frame and holds its
+The exact upstream reproducer now establishes its observed frame and holds its
 control, with no concrete root SP/BP. The original late-entry cleanup cases
 no longer stop at unresolved scope bases. Their prefix still exceeds the
 recorded path budget, so entryFrame is not established for that entry.
@@ -131,24 +130,21 @@ Neither the limits nor original call hypotheses were broadened.
 
 The capped prefix fails frame establishment. Removing scopes rejects whole
 acceptance; unknown SS retains the unresolved-scope stop. Published partial,
-wrong-writer, alias and overlap controls pass. This satisfies issue 145's
+wrong-writer, alias and overlap controls pass. This satisfies the
 composition exit, separately from Gap 40's complete predecessor contract.
 No frame memory is inferred from entryFrame, no native run is claimed, and
 no dropped path is silently accepted. Local reports are under
 GAME_DIR/analysis/reporter-audit/cleanup-predecessor-controls/connected-entry/engine730/;
 source-composition.log and composition-negatives.log record the assertions.
-Issue 143 remains open: observed frames do not supply producer memory or settle
+Observed frames do not supply producer memory or settle
 hardware placement along the incomplete connected route.
 
 Canonical Test.ps1 -NoRestore passes.
 Retained runtime-mode and loop controls pass again on the new installed engine.
-Issue 145 is closed
-with [verified consumer feedback](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/145#issuecomment-5983684370);
-issue 144 has [full Gap 35 feedback](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/144#issuecomment-5983684860).
 
-## Issue 143 response and Gap 31 boundary audit, 2026-10-04
+## Transfer starting-state response and Gap 31 boundary audit, 2026-10-04
 
-Issue 143's requested consumer evidence remains the actual connected
+The transfer starting-state request's consumer evidence remains the actual connected
 initializer-to-transfer route, call depth, later slot/count/mask writers and
 external inputs. A disconnected initializer does not prove the continuous
 recipe impossible. The published migration and observed-frame helper are
@@ -164,8 +160,6 @@ The command is effects with entryFrame.from, a complete declared region,
 XXH3 source guard and explicit DS/SS hypotheses, without SP/BP or memory rows.
 Local reports are transfer-frame730 and transfer-frame-cap730 under
 GAME_DIR/analysis/reporter-audit/issue-response-review/.
-The response is recorded on
-[issue 143](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/143#issuecomment-5983733344).
 
 Gap 31's connected source prefix on reader 2.1.0/engine 7.3.0 retains the same
 far scratch pointer twice, then stops at INT 33h before output writes and
@@ -179,11 +173,8 @@ The exact-release handbook maps Gap 31 to lastWriter after both stores and
 origin on the loop predicate using a modeled service register, but a CALL
 model cannot continue the interrupt; modeling the whole wrapper skips the
 writes. Post-interrupt entryFrame cannot carry caller-built pointers or saved
-memory. The all-state duplicate check found adjacent issues 7, 73, 109, 136
-and 143, without this connected effect-contract ask. Focused
-[issue 190](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/190)
-asks for a supported bounded recipe or accurate unsupported-case guidance;
-any conditional hardware-return input needs its own design. The documented
+memory. A supported bounded recipe or accurate unsupported-case guidance is
+needed; any conditional hardware-return input needs its own design. The documented
 hard stop is not reported as a bug. Gap 31 remains open.
 
 Source configs/reports stay under GAME_DIR/analysis/reporter-audit/poll-alias-controls/.
@@ -231,12 +222,10 @@ No original execution, emulation, native output claim or source implementation o
 
 At the owner's request, the current open toolkit issues were checked for the
 remaining bracket/callee coverage and target-field/segment producer work.
-Tracker 113 is closed; issues 143 and 190 concern different contracts.
-[Issue 198](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/198)
-now tracks the actual connected evidence, both whole guard controls and
-nonvacuous rejected/stopped cases. It does not request relaxed conservative
-verdicts. Gap 32 remains open; neither existing occurrence holds nor creating
-this tracker proves full consumer acceptance.
+Tracker 113 is closed. The remaining work is the actual connected evidence,
+both whole guard controls and nonvacuous rejected/stopped cases, with no
+relaxed conservative verdicts. Gap 32 remains open; existing occurrence holds
+do not prove full consumer acceptance.
 
 ## Gap 33 recursive result-origin controls, 2026-10-04
 
@@ -267,9 +256,7 @@ or establish valid records and eventually terminating traversal.
 valid-state conditions and complete caller/leaf controls remain required;
 FND-CONFIG-174/175 normalized/discarded-result acceptance is not yet tested in
 this batch. The handbook's direct base-producer origin recipe needs a caveat
-for a tested recursive error re-encoded as a new immediate. After checking
-current issues for duplicates, [issue 200](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/200)
-requests the supported recipe/guidance and tracks the remaining source exit.
+for a tested recursive error re-encoded as a new immediate.
 The engine's local value provenance is not reported as wrong.
 
 Local reports/configs: GAME_DIR/analysis/reporter-audit/result-origin730/.
@@ -299,9 +286,7 @@ FND-CONFIG-175 preservation acceptance remains separate and unfinished.
 
 Local configs/reports are result-origin730/normalizer-0 and normalizer-65535
 under GAME_DIR/analysis/reporter-audit/; the driver is
-tools/research/engine73/verify-normalizer.mjs. Additional results
-were added to [existing issue 200](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/200#issuecomment-5984025397);
-no duplicate issue or closure. No original execution, spec/parity change,
+tools/research/engine73/verify-normalizer.mjs. No original execution, spec/parity change,
 window stitching or larger traversal budget occurred.
 
 ### Copy-bypass and callee-cleanup control, 2026-10-04
@@ -368,7 +353,7 @@ The connected report reaches actual initialization and string fills, including 6
 
 Nonvacuous controls omit the actual fill region, exhaust the string budget, and cap the query at one step. Each removes the connected pair-selection witness and returned continuation. Full configs/reports remain local under GAME_DIR/analysis/reporter-audit/result-origin730/pair-*; ignored hash-guarded selectors and source assertions are tools/research/engine73/pair-sites.py, explore-pair.mjs and verify-pair.mjs, with pair-controls.log. The accepted symbolic frame scopes remain guard hypotheses, not native input/alias preservation evidence.
 
-An all-state duplicate check found no cardinality/pairwise/split/Gap 34 tracker. Toolkit [issue 213](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/213) now records the full remaining consumer contract and asks for a supported bounded recipe or an accurately documented expressiveness boundary after producer evidence. It does not report conservative limits as a defect. Gap 34 remains open for actual count/record producers and duplicate/overlap invariants, feasible split paths versus FND-CONFIG-178's syntactic bound, alias/callee effects, and FND-CONFIG-182's copy/terminator-base controls. Do not repeat this unknown-input query with larger caps; retry needs new producers, a justified connected route or supported input tooling.
+The full remaining consumer contract needs a supported bounded recipe or an accurately documented expressiveness boundary after producer evidence; conservative limits are not a defect. Gap 34 remains open for actual count/record producers and duplicate/overlap invariants, feasible split paths versus FND-CONFIG-178's syntactic bound, alias/callee effects, and FND-CONFIG-182's copy/terminator-base controls. Do not repeat this unknown-input query with larger caps; retry needs new producers, a justified connected route or supported input tooling.
 
 ## Gap 34 path-copy and terminator-base controls (2026-10-04)
 
@@ -388,7 +373,7 @@ Replacing the truncated-copy model in the 40/40 case with the real bounded primi
 
 A one-step cap removes observed frame establishment; removing the copy model removes the explicit-zero witness; removing SI preservation removes the fixed-limit relation. All source controls pass. Original-derived selectors/configs/reports stay local under GAME_DIR/analysis/reporter-audit/result-origin730/path-*; drivers and assertions are in tools/research/engine73/path-append-sites.py, explore-path-append.mjs, explore-path-copy.mjs and verify-path-append.mjs.
 
-Relevant new details were added to existing [toolkit issue 213](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/213#issuecomment-5984294234). Gap 34 remains open for real count/string/pointer producers, admitted storage and aliases, actual scans/concatenation and connected return coverage, plus the pairwise/split contract. Conditional lengths and capacity-like branch limits do not prove native input admission, safe storage, rollback or full generated-cardinality acceptance. Retry this actual-copy case only with new pointer/alias evidence or supported input tooling.
+Gap 34 remains open for real count/string/pointer producers, admitted storage and aliases, actual scans/concatenation and connected return coverage, plus the pairwise/split contract. Conditional lengths and capacity-like branch limits do not prove native input admission, safe storage, rollback or full generated-cardinality acceptance. Retry this actual-copy case only with new pointer/alias evidence or supported input tooling.
 
 ## Gap 36 normalized-wrapper word provenance controls (2026-10-05)
 
@@ -414,7 +399,7 @@ All retained helper paths return, while path-limit gaps keep completeWithinModel
 
 A post-selection register-only tail was rejected as a recipe before query acceptance: the actual tail rereads the selected byte from its frame before each marker write. The connected helper creates that local producer itself; unrelated tail-register values or fabricated saved memory are not substitutes. This is tooling acceptance against the existing finding, with no game spec, parity, queue, original execution or emulation change.
 
-Configs/reports remain local under GAME_DIR/analysis/reporter-audit/result-origin730/eviction-*; original instruction context remains local only. Ignored hash/selectors and source assertions are tools/research/engine73/eviction-selectors.py, explore-eviction.mjs and verify-eviction.mjs, with eviction-controls.log. Relevant new consumer details were added to existing [toolkit issue 114](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/114#issuecomment-5984446761), whose delivered feature remains closed. No newly demonstrated shared-tool defect or duplicate feature issue is claimed.
+Configs/reports remain local under GAME_DIR/analysis/reporter-audit/result-origin730/eviction-*; original instruction context remains local only. Ignored hash/selectors and source assertions are tools/research/engine73/eviction-selectors.py, explore-eviction.mjs and verify-eviction.mjs, with eviction-controls.log. No newly demonstrated shared-tool defect or duplicate feature issue is claimed.
 
 Gap 29 remains open for the complete connected repeated no-op eviction/restarted-search case and real cache/age/capacity producers. FND-SCRIPT-022 explicitly distinguishes the hypothetical high-bit-capacity example from FND-CONFIG-156's ordinary capacity producer. This helper's completed writes and selected-index outcomes do not establish ordinary termination, repeated whole state or native high-bit capacity. Keep old unresolved search bounds unchanged; retry needs new producers, a justified connected route or supported input tooling.
 
@@ -427,7 +412,7 @@ including the actual installed engine Node bridge. Canonical Test.ps1, locked
 restore, Release build and assetless publish/smoke pass. All packaging profiles
 are regenerated for runtime 6.2.0.
 
-FND-CONFIG-172 returns queries implement the issue 200 recipe at unchanged
+FND-CONFIG-172 returns queries implement the recursive-error recipe at unchanged
 limits, unknown graph memory and explicit conditional models. Old broad frame
 scopes now correctly stop when they overlap the processor-written return frame.
 Revised hypotheses preserve existing caller stack upward from pre-call SP and
@@ -444,7 +429,7 @@ select opposite caller branches. Default/unscoped/capped controls stop as expect
 The zero case retains an unmatched caller root frame; the one case retains the
 repeat/step stop. The actual caller has no post-store scratch read for the
 proposed lastWriter anchor; this remains a supported-query/consumer question,
-not permission to add a synthetic read. Issue 190 stays open.
+not permission to add a synthetic read.
 
 FND-CONFIG-176 append controls with corrected conditional caller-stack scopes
 retain accepted zero and rejected FFFF returns, the pre-copy gate and fresh
@@ -453,8 +438,7 @@ consistent consumed widths under explicit scopes. The new three-state width
 contract and conservative occurrence lower bounds are retained. No whole Gap 34
 cardinality positive, capacity safety, rollback or feasible geometry is inferred.
 
-Posted verified responses on toolkit issues 143, 190, 198, 200 and 213. None meets
-its full closure exit. Project follow-up:
+Project follow-up:
 https://github.com/kibertoad/dark-sun-wake-redux/issues/5.
 Issue 111 is shared with other restorations; its current awaiting controls do
 not name this project, so no unrelated consumer request was closed. Original-derived
@@ -885,11 +869,11 @@ emulation occurred.
 
 Adopted engine 10.0.0, runtime 7.0.0 and checker 1.1.0; reader remains 2.1.0.
 Exact registry/tag, installed production, signed NuGet content, canonical and
-packaging gates pass. The #274 synthetic pointer positive now enters declared
+packaging gates pass. The synthetic indirect-far pointer positive now enters declared
 code and returns with both actual synthetic writers. Immediate, unknown,
 undeclared and one-step controls pass. Actual bracket and writer controls retain
-local witnesses and whole undecided results at unchanged bounds. Toolkit #274's
-capability is delivered; this does not establish unknown original pointer words.
+local witnesses and whole undecided results at unchanged bounds. The capability
+is delivered; this does not establish unknown original pointer words.
 Logs and remaining exits: LATEST-RELEASE-GAP-AUDIT.md.
 
 Gap 34 has new source-derived incoming count-one setup calls from declared
@@ -1038,8 +1022,7 @@ result. Producer membership alone does not establish value propagation across
 algebraic cancellation. The numerical zero and source's zeroing operation must
 remain paired with the origin report.
 
-After duplicate searches, the verified synthetic distinction and request for
-clear paired value/producer guidance were added to existing toolkit issue 200.
+The verified synthetic distinction needs clear paired value/producer guidance.
 No silent origin-semantics change or weaker control is requested. Actual slot,
 flag/count/segment producers, unknown indirect targets, alias admission and
 complete compaction/caller paths remain dependencies; all five exits stay open.

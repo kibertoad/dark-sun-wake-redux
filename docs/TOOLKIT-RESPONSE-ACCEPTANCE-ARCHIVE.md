@@ -182,16 +182,16 @@ or count an unreleased synthetic pass as consumer closure.
 The owner explicitly requested reviewing the open downstream-request issues
 from Dark Sun, closing resolved or mostly resolved trackers and replacing the
 latter with focused remaining upstream asks. The label inventory contained
-108, 109, 110, 111, 113 and 114. Issue 111's requests are from sub-culture-max
+108, 109, 110, 111 and 113, and the loop-reporting tracker. Issue 111's requests are from sub-culture-max
 and enemy-reinfestation, so it was left open and unchanged.
 
 | Original | Disposition | Remaining work |
 |---|---|---|
 | 108 shared runtime | Closed completed for delivered upstream feature work. | Dark Sun input migration remains consumer work; no toolkit defect or new implementation ask was found. R1/R2 accepted, R3 not applicable. |
-| 109 hardware/segments | Closed as superseded, not as full consumer acceptance. | [143](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/143): transfer starting-state support/decision and placement acceptance; Gap 39 remains accepted closed. |
-| 110 argument frames | Closed as superseded. | [144](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/144): release PR 142's consistent observed-width fields and verify the Dark Sun case. |
-| 113 relational controls | Closed as superseded. | [145](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/145): observed frame/saved-memory scope composition, with synthetic reproduction and consumer acceptance. |
-| 114 loop reporting | Closed completed for delivered upstream feature work. | Local Gap 29 source-case validation remains; no demonstrated outstanding upstream implementation ask. |
+| 109 hardware/segments | Closed as superseded, not as full consumer acceptance. | Focused follow-up: transfer starting-state support/decision and placement acceptance; Gap 39 remains accepted closed. |
+| 110 argument frames | Closed as superseded. | Focused follow-up: release PR 142's consistent observed-width fields and verify the Dark Sun case. |
+| 113 relational controls | Closed as superseded. | Focused follow-up: observed frame/saved-memory scope composition, with synthetic reproduction and consumer acceptance. |
+| Loop reporting | Closed completed for delivered upstream feature work. | Local Gap 29 source-case validation remains; no demonstrated outstanding upstream implementation ask. |
 
 Before creating replacements, all open issues and focused all-state searches
 were checked. The overlapping reports were the three original trackers and
@@ -199,13 +199,13 @@ closed issue 73; there was no separate focused issue for the remaining asks.
 PRs 140 and 142 were still open. Follow-ups link their existing implementation
 work and request delivery/acceptance, rather than duplicate implementation.
 
-Issue 143 explicitly preserves the consumer provenance needed before any new
+The starting-state follow-up preserves the consumer provenance needed before any new
 entry-memory design decision; it does not call unresolved placement a bug or
-demand that input unconditionally. Issue 144 retains open bypass frames and
-the distinction between agreed frames and consistent observed reads. Issue 145
-includes the candidate scope interaction, not just a request to rerun tests.
+demand that input unconditionally. The argument-frame follow-up retains open bypass frames and
+the distinction between agreed frames and consistent observed reads. The scope follow-up
+includes the candidate scope interaction as well as a request to rerun tests.
 
-The resulting open labelled set was verified as 111, 143, 144 and 145. Closure
+The resulting open labelled set was verified as 111 and the three focused follow-ups. Closure
 comments explain the handoffs and retained local work. Administrative closure
 does not change gaps.md, any goal acceptance-ledger status, a spec claim or
 parity. Local gaps 29, 35, 37 and 40, and the other consumer-only relational

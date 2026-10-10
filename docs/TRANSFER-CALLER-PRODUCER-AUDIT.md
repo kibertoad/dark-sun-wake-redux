@@ -1178,10 +1178,8 @@ Wholly synthetic ENTER level-zero frames with local sizes zero and four stop
 at the same instruction. Corresponding explicit PUSH BP, BP formation and
 local stack allocation followed by LEAVE and a far return complete and return
 the chosen AX value. These controls isolate missing ENTER semantics, rather
-than an argument mismatch or an original-game failure. After an all-state
-title/body duplicate check, toolkit issue 301 requests width-correct,
-provenance-carrying support; nested frame forms must remain separately bounded:
-https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/301.
+than an argument mismatch or an original-game failure. Nested frame forms
+must remain separately bounded.
 
 Private original readings/configs/reports remain in
 GAME_DIR/analysis/reporter-audit/font-request101. Synthetic drivers and
@@ -1277,10 +1275,7 @@ limit: a callee-produced frame stops, whereas an ordinary near return and a
 caller-built far frame return. A corrupted-segment conversion stays stopped.
 Independent Unicorn 2.1.4 execution of only the synthetic converted frame
 returns to its sentinel with balanced stack consumption. No original code
-or game function runs in that comparison. After an all-state duplicate audit,
-toolkit issue 302 requests actual target/stack provenance support without
-relaxing width, alias or corrupted-target rejection:
-https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/302.
+or game function runs in that comparison.
 
 Private original readings/configs/reports remain in
 GAME_DIR/analysis/reporter-audit/lower-heap101. Drivers are
@@ -1405,7 +1400,6 @@ GAME_DIR/analysis/reporter-audit/heap-header-candidates101, named
 dispatcher-origins, origin-one-step and origin-omit-helper. The driver
 is tools/research/engine101/heap-header-origin-controls.mjs. Installed origin and
 lastWriter semantics behave as documented; no new shared defect is claimed.
-Toolkit issues 301/302 were checked and remain open without replies.
 Canonical validation was run; its log was not committed.
 
 ## Preceding pointer wrapper connected to dispatcher, 2026-10-06

@@ -379,14 +379,14 @@ integrity verify installed distribution bytes; the tagged synthetic suite
 passes with explicit platform skips. Reader 2.1.0 and engine 9.1.0 remain
 the latest registry versions. Local rules are unchanged. Full adoption gate,
 Release build and assetless smoke were run; the log is not committed.
-Requester dispositions and new toolkit #274 are recorded in
+Requester dispositions are recorded in
 LATEST-RELEASE-GAP-AUDIT.md; unresolved consumer exits stay in project issue 5.
 
 ## Released far-transfer and latest-library migration, 2026-10-05
 
 Adopted runtime 7.0.0, engine 10.0.0 and checker 1.1.0; reader remains 2.1.0.
 Exact registry/tag integrity, all packaging locks, full canonical validation,
-Release build and assetless smoke pass. Toolkit #274's produced indirect-far
+Release build and assetless smoke pass. The produced indirect-far
 transfer now passes installed positive and rejected-pointer controls. Actual
 source controls retain their unknown input and incomplete caller qualifications.
 See LATEST-RELEASE-GAP-AUDIT.md; issue 5 remains open for connected evidence.
@@ -396,5 +396,5 @@ See LATEST-RELEASE-GAP-AUDIT.md; issue 5 remains open for connected evidence.
 Adopted the Standard, Methodology and Protocol at `efa138b`, checker 2.2.0,
 reader 2.2.0, engine 12.0.0, runtime 10.0.0 and the template's Test SDK
 18.10.1. Locked restore, all packaging locks and the canonical gate pass.
-Rule and template dispositions are in TEMPLATE-ACCEPTANCE.md; toolkit #302's
-confirmation and the new #316 and #317 are in LATEST-RELEASE-GAP-AUDIT.md.
+Rule and template dispositions are in TEMPLATE-ACCEPTANCE.md; the engine 12
+frame-conversion confirmation is in LATEST-RELEASE-GAP-AUDIT.md.

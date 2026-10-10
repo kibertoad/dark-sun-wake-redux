@@ -20,9 +20,8 @@ an isolated writer return into the consumer. A genuine incoming pointer or
 registration-table producer is still required for the released engine's
 instruction-produced indirect-call support to apply to this game case.
 
-Toolkit issue 213's published response confirms that producer and alias
-relations are consumer evidence. A new issue for unknown incoming state would
-repeat that request without a demonstrated shared defect; none was opened.
+Producer and alias relations are consumer evidence, so unknown incoming state
+is not a shared defect; no upstream issue was opened for it.
 
 Source-local search results: GAME_DIR/analysis/reporter-audit/
 engine100-writer-inputs/independent-near-call-hits.json,

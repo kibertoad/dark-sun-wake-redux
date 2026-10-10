@@ -35,23 +35,4 @@ follow-up was opened merely because a release or merged PR exists. Engine
 verification. Source-case responses are recorded in TOOLKIT-RESPONSE-ACCEPTANCE.
 Project issue 5 tracks remaining evidence/connected-query work. The five old
 Dark Sun toolkit requests are revised as delivered shared-tool work; their
-consumer prerequisites remain open locally. New toolkit #274 tracks the
-verified instruction-produced indirect far-call traversal capability.
-
-## Dark Sun requester revision after latest library adoption
-
-Runtime 6.8.0 and checker 0.6.0 are adopted; engine 9.1.0 and reader 2.1.0
-remain latest. Requests #143/#190/#198/#200/#213 have no remaining undelivered
-shared change in their latest replies. Delivered requests are separated from
-source prerequisites, which remain in Dark Sun issue 5. #198 R5 now has its
-own focused request, #274, with a synthetic positive/control reproduction.
-No outstanding cross-project analyzer or disc acceptance is closed here.
-
-## Released #274 confirmation
-
-Engine 10.0.0 delivers PR 281. Its instruction-produced pointer regression,
-immediate-call positive, unknown/undeclared-target negatives and one-step control
-pass on the installed registry release. Runtime 7.0.0 and checker 1.1.0 are
-also adopted and validated. No undelivered #274 capability remains; Dark Sun
-issue 5 retains actual pointer/storage and connected caller/producer acceptance.
-Cross-project acceptance remains with its respective requesters.
+consumer prerequisites remain open locally.

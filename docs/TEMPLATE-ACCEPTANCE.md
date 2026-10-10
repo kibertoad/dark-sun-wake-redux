@@ -35,7 +35,7 @@ is the template side of the same change.
 | Change | Disposition |
 | --- | --- |
 | `deviated` parity status, deviation Replaces and Tests items (checker 2.1.0) | `PARITY.md` regenerated with the new Status row; deviation template in SPEC-ENTRY-TEMPLATES and the plan-work skill updated as the template did. No current deviation replaces an entry entirely, so no row changes status. |
-| Argument counts (checker 2.2.0) | RULE-IMAGE-001 and RULE-COMBAT-005 Parameters are in the countable list form. The other uncounted sections stay in prose: SCRIPT rules belong to the config-static goal, RULE-IMAGE-002 has a flag with no notation type, and the emitting rules would fail falsely until toolkit issue 317 is decided. |
+| Argument counts (checker 2.2.0) | RULE-IMAGE-001 and RULE-COMBAT-005 Parameters are in the countable list form. The other uncounted sections stay in prose: SCRIPT rules belong to the config-static goal, RULE-IMAGE-002 has a flag with no notation type, and the emitting rules would fail falsely. |
 | Findings edited in place only without changing what they record (IDENTIFIERS-8) | No finding changed. |
 | Queue trailer lists only closed items; goal-file commits are not batches | research-item and end-session skills say so. |
 | New test sections (calls that combine results, rules behind an adapter, widths, allocation and cleanup, continuation cases) | implement-rows points to them with line ranges. |
