@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-057
+Next ID: Q-PARTY-058
 
 ## Static
 
@@ -51,11 +51,12 @@ Next ID: Q-PARTY-057
   call in overlay 179 `+11DC` never runs; FND-PARTY-108 shows the spell path through overlay 193
   `+2290`; FND-PARTY-109 reads the party's cast of a type 4 spell, which can strike a party member
   while a Shift key is held, and leaves the enemy callers.
-- Q-PARTY-055. BUG-PARTY-006: Can a party member's spell list at `DS:9C20`, which overlay 211
-  `+10F4` casts from, hold `DATA` 104 or `DATA` 225? Settles it: the writers of `DS:9C20` and
-  `DS:9D79` read for the spells they take, and the source of each (the `SPST` resource and the
-  memorized spells), with FND-PARTY-104's spell ranges, which hold 104 and not 225. Blocks:
-  nothing yet.
+- Q-PARTY-057. BUG-PARTY-006: Can a party member have a nonzero count of level 9 wizard spells or
+  level 7 druid spells to cast, with the cast window set to that level, so that it can cast the
+  spell `DATA` 104 or 225 (FND-PARTY-110)? Settles it: the writers of the counts at
+  `DS:4469 + 34 * slot + level` and `DS:4474 + 34 * slot + level` and of the levels at
+  `DS:43E0 + slot` and `DS:43E4 + slot` read for their bounds, and the spell window of
+  FND-PARTY-104 read for whether it offers level 9. Blocks: nothing yet.
 - Q-PARTY-056. BUG-PARTY-006: What do overlay 197 `575A:0093`, `575A:0098` and `575A:009D`, which
   the hit routine calls before its saving throw test, decide for a spell of `DATA` 104 or 225 on a
   party member (FND-PARTY-108)? Settles it: the three routines read for every branch that can stop
