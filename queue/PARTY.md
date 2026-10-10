@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-065
+Next ID: Q-PARTY-066
 
 ## Static
 
@@ -23,18 +23,22 @@ Next ID: Q-PARTY-065
   it: screen entries for the two windows from their handlers and fill routines (overlay 209
   `+00C2`, `+03DC`, `+0622`, `+0C84`, `+0E2D` and `+0EF0`), with overlay 211 `+208C`, overlay 177
   `+0A45` for spell 0 and the cases for events 2, 4 and 0x80 read. Blocks: slice 2.
-- Q-PARTY-054. RULE-PARTY-013: Does anything overlay 199 `+0C21` calls before a level gain store to
-  a party member's combatant, details, `SPST` or `PSST` records (FND-PARTY-081, FND-CONFIG-161)?
-  Settles it: a reading of overlay 199 `+0BC1`, overlay 182 `+0128` and `+19F8`, overlay 187
-  `+2B91`, overlay 190 `+11A1` and the resident callees `444C:0092`, `45B9:0034`, `4611:0051`,
-  `4611:03A5`, `3D72:0D83` and `2C5F:0182` for such stores, or a reach run from `+0C21` with those
-  stores as targets. Blocks: nothing yet. Tried: a reach run from `+0C21` with the leaf of
-  FND-PARTY-090 reaches 927 routines, through overlay 182 `+19F8` into window and event code as far
-  as the `4E71:0B44` store of overlay 209 `+0218`, so a reach run cannot rule stores out; overlay
-  182 `+19F8` makes its far calls only when `DS:0DAB` is 2 or 3 (FND-PARTY-029), and the value of
-  `DS:0DAB` when a level gain runs was not read; FND-PARTY-123 reads `+0C21` and `+19F8`, whose
-  one store to the records sets a combat mark of 0 to 1 while `DS:0DAB` is 2, which leaves the
-  gain's slot test unchanged, and lists the callees still unread.
+- Q-PARTY-054. RULE-PARTY-013: While `DS:0DAB` is 2 or 3, does anything overlay 182 `+19F8`
+  calls when overlay 199 `+0C21` runs it before a level gain store to a party member's combatant,
+  details, `SPST` or `PSST` records (FND-PARTY-081, FND-CONFIG-161)? Settles it: a reading of
+  `28C9:250A`, `2C5F:0139`, `39D1:0430`, `39D1:0448`, overlay 182 `+01EF` and the call through
+  trampoline `571F:0034` with `28C9:0CFF` for such stores. Blocks: nothing yet. Waiting on:
+  Q-PARTY-065 when it shows `DS:0DAB` is never 2 or 3 there, which would make the question moot.
+  Tried: a reach run from `+0C21` reaches 927 routines, so a reach run cannot rule stores out;
+  FND-PARTY-123 reads `+0C21` and `+19F8`, whose one store to the records sets a combat mark of 0
+  to 1 while `DS:0DAB` is 2, which leaves the gain's slot test unchanged.
+- Q-PARTY-065. RULE-PARTY-013: What does the word at `DS:0DAB` hold when overlay 210 `+0B44` or
+  `+0B55` runs, from each of its callers (overlay 173 `+07AD` at a fight's end, overlay 188
+  `+16E9` for an experience award, and the debug keys of overlay 190)? Settles it: the stores of
+  `DS:0DAB` that FND-PARTY-123 lists, read for the display state each one enters (overlay 182
+  `+1856` enters 2 from any value other than 0 and 2, and `+19F8` leaves 2 or 3 for 1), the
+  register store at `2B1C:0000`, and the state on each caller's path. Blocks: nothing yet. Tried:
+  FND-PARTY-029 shows the word starts at 0.
 - Q-PARTY-045. RULE-PARTY-015: Does any enemy's `kill_experience` divided by the filled party
   slots reach 32,768, so that killing it lowers each member's experience (FND-PARTY-086,
   FND-PARTY-094)? Settles it: the routine that loads an `RDFF` resource of `OBJEX.GFF` into the
