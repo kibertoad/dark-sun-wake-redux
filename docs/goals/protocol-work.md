@@ -239,6 +239,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   spells below 115 for class codes 11 and 18 only. SCR-PARTY-001/002 added; RULE-PARTY-013's
   gain_one_level shows them (new parameters combat_mark, unknown_spells). Q-PARTY-066 asks for
   the drawing routines, the description window and 186+00B8 with 100.
+  Filed protocol #112 (the screen mouse input table has no column for the button and event)
+  after searching the Standard's issues for screen, mouse, pointer and hover; #45 is unrelated.
 - Lead for unk_2a: overlay 204 +0203 pushes 0x0660:0x00BB (the setter trampoline 5787:00BB) as a
   value before a near call to its dispatcher at +019C, so the setter is passed as a callback.
   Filed toolkit #474 (list where a routine's far address is used as a value) after checking
