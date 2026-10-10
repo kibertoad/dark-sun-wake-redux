@@ -241,6 +241,12 @@ An owner-approved history repair remains separate from this maintenance scope.
   the drawing routines, the description window and 186+00B8 with 100.
   Filed protocol #112 (the screen mouse input table has no column for the button and event)
   after searching the Standard's issues for screen, mouse, pointer and hover; #45 is unrelated.
+- Q-PARTY-066 settled (FND-PARTY-155): 209+07D0 writes two centred lines (rows 81/88 of the
+  spell window, 70/77 of the psionic one) after overdrawing the old text kept at DS:9C18/9C14;
+  190+0000's last argument is a frame of ICON 15104 (0/1 spell, 5/8 psionic); 186+00B8 n waits n
+  retrace starts (1BF3:2A74 polls 3DA bit 3); 213+16EE opens WIND 15503 at (86,56) with the icon
+  and SPIN m (RESOURCE.GFF SPIN 1..269 = DATA+1); closing it runs 3A8E:060D, which calls the fill
+  stored at window +0xF9 by 3A8E:0D0C, so the frames work again. BUTN/11319 is always closed.
 - Lead for unk_2a: overlay 204 +0203 pushes 0x0660:0x00BB (the setter trampoline 5787:00BB) as a
   value before a near call to its dispatcher at +019C, so the setter is passed as a callback.
   Filed toolkit #474 (list where a routine's far address is used as a value) after checking
