@@ -4,7 +4,7 @@ title: Which psionic disciplines and elemental sphere a new character chooses
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [SRC-MANUAL-1994, SRC-README-1.1, FND-PARTY-073, FND-PARTY-066, FND-PARTY-067]
+evidence: [SRC-MANUAL-1994, SRC-README-1.1, FND-PARTY-073, FND-PARTY-066, FND-PARTY-077]
 conflicting: []
 split_with: []
 related: [SCR-UI-004, SCR-UI-005]
@@ -58,6 +58,10 @@ The discipline codes follow the manual's order, psychokinesis 0, psychometabolis
 2, and the sphere codes air 0, earth 1, fire 2 and water 3; the first choice is code 0 in both. A
 multi-class psionicist has all three disciplines.
 
+In the discipline window a psionicist can turn any discipline off and back on, but the character
+cannot be finished until all three are on again. Any other character holds one discipline: the
+other two take no presses until the player turns the current one off (FND-PARTY-077).
+
 ## What the sources say
 
 SRC-MANUAL-1994, pages 8 and 9, says psionicists have all three disciplines and every other
@@ -73,6 +77,4 @@ None known.
 
 ## Open questions
 
-- Whether a psionicist can turn one of the three disciplines off in the discipline window: the
-  window's handler passes the pressed button to routines whose effect on the other buttons was not
-  read (FND-PARTY-067, Q-PARTY-002).
+None.

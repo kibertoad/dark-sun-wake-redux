@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-067
 title: The generation screen's discipline window sets DS:42C0 bits 0x80, 0x40 and 0x20 for buttons 2038 to 2040, whose icons read P.KINESIS, P.METAB and TELEPATHY, and overlay 184 +1876 stores them as bits 0, 1 and 2 of the slot's PSIN byte at 4E71:0A55
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-077]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

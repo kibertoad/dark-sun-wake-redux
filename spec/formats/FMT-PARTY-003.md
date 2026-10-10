@@ -9,7 +9,7 @@ byte_order: little
 size: 1
 text: false
 definition: fmt_party_003.ksy
-evidence: [FND-PARTY-002, FND-PARTY-011, FND-PARTY-012, FND-PARTY-067]
+evidence: [FND-PARTY-002, FND-PARTY-011, FND-PARTY-012, FND-PARTY-077]
 conflicting: []
 split_with: []
 related: []
@@ -24,7 +24,7 @@ four-slot table, one byte per party slot, and the transfer utility writes it the
 
 | Offset | Size | Type | Name | Meaning | Status | Evidence |
 |---|---|---|---|---|---|---|
-| `0x00` | 1 | `UINT8` | `disciplines` | The character's psionic disciplines, one bit each (see the flags below). Generation sets the bits from the discipline window when it stores the character; 1, 2, 4, 5, 6 or 7 in the shipped resources. | supported | FND-PARTY-002, FND-PARTY-012, FND-PARTY-067 |
+| `0x00` | 1 | `UINT8` | `disciplines` | The character's psionic disciplines, one bit each (see the flags below). Generation sets the bits from the discipline window when it stores the character; 1, 2, 4, 5, 6 or 7 in the shipped resources. | supported | FND-PARTY-002, FND-PARTY-012, FND-PARTY-077 |
 | `0x01` | | | | Total size 1 | | |
 
 ## Enumerations and flags
@@ -33,9 +33,9 @@ four-slot table, one byte per party slot, and the transfer utility writes it the
 
 | Value | Name | Meaning | Status | Evidence |
 |---|---|---|---|---|
-| `0x01` | `DISCIPLINE_PSYCHOKINESIS` | Psychokinesis, the first button of the generation screen's discipline window. | supported | FND-PARTY-067 |
-| `0x02` | `DISCIPLINE_PSYCHOMETABOLISM` | Psychometabolism, the second button. | supported | FND-PARTY-067 |
-| `0x04` | `DISCIPLINE_TELEPATHY` | Telepathy, the third button. | supported | FND-PARTY-067 |
+| `0x01` | `DISCIPLINE_PSYCHOKINESIS` | Psychokinesis, the first button of the generation screen's discipline window. | supported | FND-PARTY-077 |
+| `0x02` | `DISCIPLINE_PSYCHOMETABOLISM` | Psychometabolism, the second button. | supported | FND-PARTY-077 |
+| `0x04` | `DISCIPLINE_TELEPATHY` | Telepathy, the third button. | supported | FND-PARTY-077 |
 
 ## Differences between builds
 

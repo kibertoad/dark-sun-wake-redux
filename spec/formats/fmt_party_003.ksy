@@ -4,7 +4,7 @@ meta:
   license: MIT
   endian: le
 doc: The one-byte PSIN resource kept beside each CHAR resource.
-doc-ref: FMT-PARTY-003, FND-PARTY-002, FND-PARTY-012, FND-PARTY-067
+doc-ref: FMT-PARTY-003, FND-PARTY-002, FND-PARTY-012, FND-PARTY-077
 seq:
   - id: disciplines
     type: u1

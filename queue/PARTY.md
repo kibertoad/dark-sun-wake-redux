@@ -19,11 +19,6 @@ Next ID: Q-PARTY-035
   over the calls it makes, checking which of the 11 stores to the word it reaches and with what
   value. Tried: FND-PARTY-064 reads the other three callers of `+1DCE` and the edit path, where the
   slots are the same; the DUAL path's calls were not followed. Blocks: slice 2.
-- Q-PARTY-002. RULE-PARTY-003: Can a psionicist turn one of its three disciplines off in the
-  discipline window? Settles it: overlay 183 `+0CE3`, `+0D2C` and `+0D95`, read for what they do
-  to the window's buttons (FND-PARTY-067). Tried: FND-PARTY-063, FND-PARTY-066 and FND-PARTY-067
-  read the class buttons and the two windows; FND-PARTY-068, FND-PARTY-070, FND-PARTY-071 and
-  FND-PARTY-072 settled the classes, DONE, the scores and the alignment. Blocks: slice 2.
 - Q-PARTY-031. RULE-PARTY-010: What does the word at offset `0x12` of the 24-byte event a window
   handler receives hold, which overlay 183 `+0000` turns into a step of 1 below 8 and -1 otherwise?
   Settles it: the code that builds that event for a button press, read for that word
