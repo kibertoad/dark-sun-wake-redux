@@ -206,6 +206,11 @@ An owner-approved history repair remains separate from this maintenance scope.
   193+003C, 206+0000 and the kind-3 records of 371D:050F (added by 193+2BCB) unload objects placed
   through 31E0:0121 with slot -1, so from the free lists. No party slot is freed on the DUAL path,
   so 4E71:0B44 keeps the DUAL slot and 184+1DCE copies the right character.
+- Q-PARTY-003: FND-PARTY-142 names CHAR 0x5A base_scores (details +0x15, copied at the finish;
+  197+1E7B rebuilds the current scores at combatant +0x19 from them and the 10-byte entries at
+  4E71:0251); the before/after-modifier question is answered (after, FND-PARTY-071) and dropped.
+  FND-PARTY-143 names 0x1F combatant_kind (combatant +0x15, FND-PARTY-095), 0 in every record.
+  field_reads.py --table is textual: its 19c9 hits at +0x12 were details reads of the origin.
 - Upstream duplicate checks for this session's points: the old DS:0DAB finding's wrong address
   was a project error that IDENTIFIERS-8 (protocol #66) already covers, so no issue was filed;
   #96 was filed after searching protocol #46, #66, #95 and toolkit #436, #269, #80; the
