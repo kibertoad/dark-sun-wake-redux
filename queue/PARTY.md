@@ -12,11 +12,12 @@ Next ID: Q-PARTY-066
   `+0A45` for spell 0 and the cases for events 2, 4 and 0x80 read. Blocks: slice 2.
 - Q-PARTY-045. RULE-PARTY-015: Does any enemy's `kill_experience` divided by the filled party
   slots reach 32,768, so that killing it lowers each member's experience (FND-PARTY-086,
-  FND-PARTY-094)? Settles it: the routine that loads an `RDFF` resource of `OBJEX.GFF` into the
-  combatant and details records, read to show whether it copies the bytes at `0x0A` and `0x3B`
-  as the CHAR loader does, and the placements of `RDFF` 430 and 541 in the regions. Blocks:
-  nothing yet. Tried: FND-PARTY-094 finds `RDFF` 430 (107,000) and 541 (33,000), of kind 7, with
-  CHAR chunk headers; the loader is the ACTOR area's Q-ACTOR-003, outside this goal's claim.
+  FND-PARTY-094)? Settles it: what moves objects 430 and 541 out of the region `Limbo`, where
+  their only `ETAB` records are, read to show whether the party can fight them. Blocks: nothing
+  yet. Tried: FND-PARTY-094 finds `RDFF` 430 (107,000) and 541 (33,000), of kind 7, with CHAR
+  chunk headers; FND-PARTY-153 shows `RDFF` resources load through the CHAR chunk walk and finds
+  both objects only in `RGN0FF.GFF`. Scripts that move objects are the SCRIPT area's, outside
+  this goal's claim.
 - Q-PARTY-062. BUG-PARTY-006: Does anything other than a block copy, or a copy FND-PARTY-115's
   searches do not reach, put a value other than 0 in bytes `+0x0E` or `+0x0F` of a party member's
   FMT-COMBAT-001 record? Settles it: the reads of a saved game into the table at `DS:19C9` and the
