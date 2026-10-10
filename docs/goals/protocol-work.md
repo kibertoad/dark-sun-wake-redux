@@ -194,6 +194,14 @@ An owner-approved history repair remains separate from this maintenance scope.
   172+04C5. Q-PARTY-026 left: which handlers are registered while the DUAL message window is up.
   Filed toolkit #466 (reach: which starts reach each target), after checking #322, #412, #413,
   #457, #462 and #465.
+- FND-PARTY-139 (q026_dual_event_reads_reach.json, q026_message_handler_reach.json): 39D1:0752
+  dispatches kind 3 to DS:A0F5 (only ever null or 190+0092), else DS:A0FD's +0xF5 or DS:A0F1;
+  39D1:097D gives key events only to the window it is asked about. DUAL loops reach 172+0816,
+  209+169C and 190+0092; only 209+169C reaches 05BB outside 187+1B67, via 31E0:0121.
+- FND-PARTY-140: 206+0E1E unloads no slot < 4. Cutting unloaders in turn from 209+169C leaves
+  179+1373, 193+003C, 371D:050F and 206+0000, all after 184+2107 -> 191+05DB -> 31E0:0121 ->
+  193+12A8. Q-PARTY-026 left: which slots those four unload there. The per-start and repeated-cut
+  walks are what toolkit #466 asks the engine to report in one run.
 - Upstream duplicate checks for this session's points: the old DS:0DAB finding's wrong address
   was a project error that IDENTIFIERS-8 (protocol #66) already covers, so no issue was filed;
   #96 was filed after searching protocol #46, #66, #95 and toolkit #436, #269, #80; the
