@@ -1,9 +1,15 @@
 # PARTY
 
-Next ID: Q-PARTY-035
+Next ID: Q-PARTY-037
 
 ## Static
 
+- Q-PARTY-036. RULE-PARTY-010, RULE-PARTY-011, RULE-PARTY-012: Can a key press the generation
+  screen's portrait, score, hit point or alignment button, and if so what step does it give, given
+  that the event's word at `0x12` then holds two bytes the 10-byte key packet does not carry?
+  Settles it: `409B:0D48` and the table it reads through `DS:A17F`, read for the windows `DS:1431`
+  uses, and the last writer of the event buffer's bytes `0x0A..0x0D` before a key packet is read
+  (FND-PARTY-078). Blocks: slice 2.
 - Q-PARTY-028. FMT-PARTY-001: How does a character's level follow experience in play: which
   routine raises the level bytes once experience passes a threshold, how many levels it raises at
   once, and does level 15 end it, as the character sheet's skip of a level-15 position suggests
@@ -19,10 +25,6 @@ Next ID: Q-PARTY-035
   over the calls it makes, checking which of the 11 stores to the word it reaches and with what
   value. Tried: FND-PARTY-064 reads the other three callers of `+1DCE` and the edit path, where the
   slots are the same; the DUAL path's calls were not followed. Blocks: slice 2.
-- Q-PARTY-031. RULE-PARTY-010: What does the word at offset `0x12` of the 24-byte event a window
-  handler receives hold, which overlay 183 `+0000` turns into a step of 1 below 8 and -1 otherwise?
-  Settles it: the code that builds that event for a button press, read for that word
-  (FND-PARTY-070). Blocks: slice 2.
 - Q-PARTY-003. FMT-PARTY-001, RULE-PARTY-004, RULE-MAGIC-002: What do the record's remaining `unk_`
   fields hold, and are the scores stored before or after origin modifiers? Settles it: the other
   routines that print the character sheet from the record at `DS:1429` (FND-PARTY-055), and the
@@ -85,6 +87,11 @@ None.
 
 ## Live session
 
+- Q-PARTY-035. RULE-PARTY-010, RULE-PARTY-011, RULE-PARTY-012: Does the left mouse button step
+  the generation screen's buttons forward and the right one back? Settles it: an owner capture of
+  a score, the hit points and the alignment after one left press and after one right press on each
+  button (FND-PARTY-078). Tried: the static reading FND-PARTY-078, which rests on the mouse driver's
+  meaning of the event bits. Blocks: slice 2.
 - Q-PARTY-032. RULE-PARTY-011: Does pressing the alignment button with Ctrl held skip the
   classes' check, so that a fighter can be stepped to lawful evil and stored that way? Settles it:
   an owner capture of the generation screen's alignment after each press with Ctrl held, starting
