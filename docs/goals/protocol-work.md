@@ -112,6 +112,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   leaves the party object off every list. RDFF loads through the allocators never get objects 0..3.
   Left: the kind-0 RDFF loads of overlays 178, 191, 201, whose object comes from an argument or a
   map lookup.
+- Filed protocol #95: a batch that supersedes an entry the handover cites cannot pass the docs
+  check without a handover edit; the workaround is handover commit, batch, handover commit.
 - Template context: template 0b9ab9c, rules 11884c7 and checker 2.9.0 are
   integrated on main; engine 13.6.0 and reader 2.5.0 exact locks passed restore and the full gate. Assetless Test.ps1 passed on 2026-10-08. The initial synthetic capture timing failure passed in isolation and in the full rerun. On goal/protocol-work, checker 4.0.1 and rules a9884ae replace 2.9.0 and
   11884c7 (2d530bb); the full gate passed with the environment in docs/implementation-plans/LATEST-TEMPLATE-SYNC.md. Write range ends half-open (research-item skill). Generated indexes were refreshed on main. Archive member citations are qualified. Template issue 90
