@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-132
 title: The one routine found that marks a loaded object table entry unloaded, overlay 187 +071D, has no call or pointer reference in DSUN.EXE, and script opcode 0x22 function 9 renumbers only entries that are already unloaded
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-135]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

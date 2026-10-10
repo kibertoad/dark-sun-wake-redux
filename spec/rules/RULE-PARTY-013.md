@@ -4,7 +4,7 @@ title: How a character gains levels in play
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-057, FND-PARTY-058, FND-PARTY-074, FND-PARTY-081, FND-PARTY-083, FND-PARTY-084, FND-PARTY-085, FND-PARTY-086, FND-PARTY-089, FND-PARTY-088, FND-PARTY-090, FND-PARTY-096, FND-PARTY-097, FND-PARTY-098, FND-PARTY-108, FND-PARTY-123, FND-PARTY-130, FND-PARTY-131, FND-PARTY-132, FND-PARTY-133]
+evidence: [FND-PARTY-057, FND-PARTY-058, FND-PARTY-074, FND-PARTY-081, FND-PARTY-083, FND-PARTY-084, FND-PARTY-085, FND-PARTY-086, FND-PARTY-089, FND-PARTY-088, FND-PARTY-090, FND-PARTY-096, FND-PARTY-097, FND-PARTY-098, FND-PARTY-108, FND-PARTY-123, FND-PARTY-130, FND-PARTY-131, FND-PARTY-133, FND-PARTY-135]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-012, RULE-PARTY-014, RULE-PARTY-015, RULE-RNG-001, FMT-PARTY-001, FMT-PARTY-004, FMT-PARTY-005]
@@ -36,7 +36,7 @@ Before the gain, when it runs while a window holds display mode 2, each party me
 change which members gain. The original reaches that from a spell cast in the spell window that
 kills a hostile combatant outside a fight, from the debug keys, and from a script that the
 add-character window starts (FND-PARTY-123, FND-PARTY-133). Nothing else the step runs changes a
-member's records (FND-PARTY-130 to FND-PARTY-132).
+member's records (FND-PARTY-130, FND-PARTY-131, FND-PARTY-135).
 
 ## Parameters
 
