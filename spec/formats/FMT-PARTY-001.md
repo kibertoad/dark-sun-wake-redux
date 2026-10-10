@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_001.ksy
-evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057, FND-PARTY-058, FND-PARTY-059, FND-PARTY-073, FND-PARTY-066, FND-PARTY-074, FND-PARTY-081, FND-PARTY-082, FND-PARTY-083, FND-PARTY-085, FND-PARTY-086]
+evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057, FND-PARTY-058, FND-PARTY-059, FND-PARTY-073, FND-PARTY-066, FND-PARTY-074, FND-PARTY-081, FND-PARTY-082, FND-PARTY-083, FND-PARTY-085, FND-PARTY-086, FND-PARTY-091]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-006]
@@ -47,7 +47,7 @@ offsets hold for every record the game writes and reads back.
 | `0x1C` | 2 | `BYTE[2]` | `unk_1c` | Purpose unknown. A load copies it to bytes `0x12` and `0x13` of the FMT-COMBAT-001 record. | supported | FND-PARTY-049 |
 | `0x1E` | 1 | `UINT8` | `combat_mark` | A load copies it to the FMT-COMBAT-001 record's `combat_mark` and makes that 1 when it is 0; 0 or 1 in the shipped records. | supported | FND-PARTY-049, FND-PARTY-050 |
 | `0x1F` | 1 | `UINT8` | `unk_1f` | Purpose unknown. A load copies it to byte `0x15` of the FMT-COMBAT-001 record. | supported | FND-PARTY-049 |
-| `0x20` | 1 | `UINT8` | `thac0` | 20 less the best, over the class groups, of the group's greatest level less 1 times the group's rate (8 priest, 12 warrior, 4 wizard, 6 rogue) over 12. A load copies it to byte `0x16` of the FMT-COMBAT-001 record; storing a character, a class change and each level gained in play set it. | supported | FND-PARTY-049, FND-PARTY-085 |
+| `0x20` | 1 | `UINT8` | `thac0` | 20 less the best, over the class groups, of the group's greatest level less 1 times the group's rate (8 priest, 12 warrior, 4 wizard, 6 rogue) over 12. A load copies it to byte `0x16` of the FMT-COMBAT-001 record; storing a character, a class change and each level gained in play set it. The attack routine of overlay 173 takes it as the attacker's THAC0: an attack hits on a roll of 1 to 20 that is 20, or not 1 and at least the THAC0 less bonuses less a value for the target. | supported | FND-PARTY-049, FND-PARTY-085, FND-PARTY-091 |
 | `0x21` | 1 | `UINT8` | `unk_21` | Purpose unknown. A load copies it to byte `0x17` of the FMT-COMBAT-001 record. | supported | FND-PARTY-049 |
 | `0x22` | 1 | `UINT8` | `control_flags` | A load copies it to the FMT-COMBAT-001 record's byte at `0x18`, whose bits 5 and 6 are `computer_control` and `control_locked`; 0 in the shipped records. | supported | FND-PARTY-049, FND-PARTY-050 |
 | `0x23` | 1 | `UINT8` | `strength` | Strength, 12 to 24 in the shipped records. | established | FND-PARTY-003, FND-PARTY-020 |

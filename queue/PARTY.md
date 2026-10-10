@@ -29,11 +29,11 @@ Next ID: Q-PARTY-049
   and overlay 209 `+0000` and the window of `+0A84`, which run for a new Preserver or Psionicist
   level, change (FND-PARTY-081, FND-PARTY-084)? Settles it: a reading of those routines. Tried:
   FND-PARTY-085 reads the other four routines a level calls. Blocks: slice 2.
-- Q-PARTY-044. RULE-PARTY-014, BUG-PARTY-004, BUG-PARTY-005: Which code reads the combatant byte at
-  `0x16` and the details bytes at `0x24`, `0x25`, `0x27` and `0x31..0x35`, and does it use them as
-  THAC0, attacks and saving throws (FND-PARTY-085)? Settles it: `field_stores.py`-style searches for
-  reads with those displacements through the tables at `DS:19C5` and `DS:19C9`, each hit read for
-  its use. Blocks: slice 2.
+- Q-PARTY-044. RULE-PARTY-014, BUG-PARTY-004, BUG-PARTY-005: Which code reads the details bytes at
+  `0x24`, `0x25`, `0x27` and `0x31..0x35`, and does it use them as attacks and saving throws
+  (FND-PARTY-085)? Settles it: `field_reads.py --es --table 19c5` for those displacements, each hit
+  read for its use. Blocks: slice 2. Tried: FND-PARTY-091 settles the combatant byte at `0x16` as
+  THAC0 and finds the details byte at `0x24` read at overlay 173 `+25C4`, not followed.
 - Q-PARTY-045. RULE-PARTY-015: Does any enemy's `kill_experience` divided by the filled party
   slots reach 32,768, so that killing it lowers each member's experience (FND-PARTY-086)? Settles
   it: the details dword at `0x04` of every enemy a fight can load, read from the files that fill

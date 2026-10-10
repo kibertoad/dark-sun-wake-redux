@@ -4,7 +4,7 @@ title: Class flags, attack rate, THAC0 and saving throws from a character's clas
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-074, FND-PARTY-081, FND-PARTY-083, FND-PARTY-085]
+evidence: [FND-PARTY-074, FND-PARTY-081, FND-PARTY-083, FND-PARTY-085, FND-PARTY-091]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-013, RULE-COMBAT-002]
@@ -126,6 +126,6 @@ None known.
 
 ## Open questions
 
-- Which code reads these values, and as what: the combatant byte at `0x16` as THAC0, the bytes at
-  `0x24`, `0x25` and `0x27` as attacks, and the five bytes at `0x31` as saving throws, rest on the
-  shape of the formulas (Q-PARTY-044).
+- Which code reads the other values, and as what: the bytes at `0x24`, `0x25` and `0x27` as
+  attacks and the five bytes at `0x31` as saving throws rest on the shape of the formulas; the
+  combatant byte at `0x16` is read as the attacker's THAC0 (FND-PARTY-091, Q-PARTY-044).
