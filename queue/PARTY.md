@@ -16,6 +16,9 @@ Next ID: Q-PARTY-066
   through overlay 172 `+05DB` and overlays 173, 188 and 210; the routes were not read for the state
   they need; FND-PARTY-081 shows overlay 210 `+0740` passes overlay 209 `+0000` the slot whose
   Preserver level rose, so the question is whether that can be another slot on this path.
+  FND-PARTY-134 shows every route from overlay 172 `+05DB` to the award passes the view draw's
+  object load and calls made only for an object slot of state 2 (a party member's), which leaves
+  which slot `31E0:0EFF` hands on when it loads an unloaded entry.
   Blocks: slice 2.
 - Q-PARTY-053. RULE-PARTY-013: How do the spell window of overlay 209 `+0218` and the psionic
   power window of overlay 209 `+0A84` behave as screens, so that `gain_one_level` can show them
