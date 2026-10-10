@@ -1,15 +1,15 @@
 # PARTY
 
-Next ID: Q-PARTY-066
+Next ID: Q-PARTY-067
 
 ## Static
 
-- Q-PARTY-053. RULE-PARTY-013: How do the spell window of overlay 209 `+0218` and the psionic
-  power window of overlay 209 `+0A84` behave as screens, so that `gain_one_level` can show them
-  after the saving throws of a new greatest level in class code 11 or 12 (FND-PARTY-104)? Settles
-  it: screen entries for the two windows from their handlers and fill routines (overlay 209
-  `+00C2`, `+03DC`, `+0622`, `+0C84`, `+0E2D` and `+0EF0`), with overlay 211 `+208C`, overlay 177
-  `+0A45` for spell 0 and the cases for events 2, 4 and 0x80 read. Blocks: slice 2.
+- Q-PARTY-066. SCR-PARTY-001, SCR-PARTY-002: Where do the spell and psionic power windows draw their
+  text line and frame highlight, what does the description a right-button release opens show, and
+  do the frames answer the pointer again after it closes (FND-PARTY-154)? Settles it: overlay 209
+  `+07D0`, overlay 190 `+0000` with last arguments 0, 1, 5 and 8, overlay 213 `+16EE` and `+02D5`,
+  and overlay 186 `+00B8` with 100 read, and whether `BUTN/11319` is closed to presses. Blocks:
+  nothing yet.
 - Q-PARTY-045. RULE-PARTY-015: Does any enemy's `kill_experience` divided by the filled party
   slots reach 32,768, so that killing it lowers each member's experience (FND-PARTY-086,
   FND-PARTY-094)? Settles it: what moves objects 430 and 541 out of the region `Limbo`, where

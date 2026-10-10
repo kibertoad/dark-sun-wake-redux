@@ -4,10 +4,10 @@ title: How a character gains levels in play
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-057, FND-PARTY-058, FND-PARTY-074, FND-PARTY-081, FND-PARTY-083, FND-PARTY-084, FND-PARTY-085, FND-PARTY-086, FND-PARTY-089, FND-PARTY-088, FND-PARTY-090, FND-PARTY-096, FND-PARTY-097, FND-PARTY-098, FND-PARTY-108, FND-PARTY-123, FND-PARTY-130, FND-PARTY-131, FND-PARTY-133, FND-PARTY-135]
+evidence: [FND-PARTY-057, FND-PARTY-058, FND-PARTY-074, FND-PARTY-081, FND-PARTY-083, FND-PARTY-084, FND-PARTY-085, FND-PARTY-086, FND-PARTY-089, FND-PARTY-088, FND-PARTY-090, FND-PARTY-096, FND-PARTY-097, FND-PARTY-098, FND-PARTY-108, FND-PARTY-123, FND-PARTY-130, FND-PARTY-131, FND-PARTY-133, FND-PARTY-135, FND-PARTY-104, FND-PARTY-154]
 conflicting: []
 split_with: []
-related: [RULE-PARTY-012, RULE-PARTY-014, RULE-PARTY-015, RULE-RNG-001, FMT-PARTY-001, FMT-PARTY-004, FMT-PARTY-005]
+related: [RULE-PARTY-012, RULE-PARTY-014, RULE-PARTY-015, RULE-RNG-001, FMT-PARTY-001, FMT-PARTY-004, FMT-PARTY-005, SCR-PARTY-001, SCR-PARTY-002]
 ---
 
 ## Summary
@@ -50,7 +50,7 @@ last, in this member's gain or an earlier one, and otherwise the slot the game l
 a record another screen was given, or the generation screen's working record (FND-PARTY-076,
 FND-PARTY-084, FND-PARTY-088, FND-PARTY-090, FND-PARTY-097, Q-PARTY-050); `hit_points` and `max_hit_points`; `psionic_points` and
 `max_psionic_points`; `class_flags`, `class_attack_rate`, `attack_rate`, `natural_attack_rates`, `thac0` and
-`saving_throws`, the FMT-PARTY-001 fields RULE-PARTY-014 sets; `name`, the character's name; `one_each`, true when each class gains one
+`saving_throws`, the FMT-PARTY-001 fields RULE-PARTY-014 sets; `name`, the character's name; `combat_mark`, FMT-PARTY-001 `combat_mark` as the combatant record holds it; `unknown_spells`, for each spell level `k` from 1 to 15, the number of spells of the range FND-PARTY-104 gives for `k` whose bit in the character's FMT-PARTY-005 known spells is clear, the bits from spell 120 being read from the next slot's entry; `one_each`, true when each class gains one
 level without the experience test.
 
 ## Inputs
@@ -157,7 +157,8 @@ define gain_one_level(member, i):
     let distance = member.max_hit_points - member.hit_points
     member.levels[i] = member.levels[i] + 1
     member.hit_die_total = member.hit_die_total + level_hit_die(member.origin, member.codes, member.levels, member.greatest_levels, i, member.constitution)
-    if member.greatest_levels[i] < member.levels[i]:
+    let raised = member.greatest_levels[i] < member.levels[i]
+    if raised:
         member.greatest_levels[i] = member.levels[i]
     member.class_flags = class_flags(member.origin, member.codes, member.levels)
     member.class_attack_rate = class_attack_rate(member.origin, member.codes, member.levels)
@@ -167,6 +168,15 @@ define gain_one_level(member, i):
     member.thac0 = thac0(member.origin, member.codes, member.levels)
     for s in 0..5:
         member.saving_throws[s] = saving_throw(member.origin, member.codes, member.levels, member.constitution, s)
+    if raised and member.codes[i] == 11 and member.combat_mark < 7:
+        let offered = false
+        for k in 1..member.levels[i] + 1:
+            if member.unknown_spells[k] > 0:
+                offered = true
+        if offered:
+            show SCR-PARTY-001
+    if raised and member.codes[i] == 12:
+        show SCR-PARTY-002
     member.max_hit_points = greatest_hit_points(member.origin, member.codes, member.levels, member.greatest_levels, member.hit_die_total, member.constitution)
     member.hit_points = member.max_hit_points - distance
     # visible: the level and hit points
@@ -239,10 +249,5 @@ None known.
   slot in `4C13:0369` current when that slot meets the trigger's distance test (FND-PARTY-097,
   FND-PARTY-098), and whether any script that can run in a fight
   holds that opcode was not read (Q-PARTY-050).
-- The choices a new greatest level offers: after the saving throws of a level that raises
-  `greatest_levels`, the original opens a window in which the player learns one spell for class
-  code 11 or learns or enhances one or two psionic powers for class code 12, changing FMT-PARTY-005
-  and FMT-PARTY-004 (FND-PARTY-104); the procedure leaves them out until those windows have screen
-  entries (Q-PARTY-053).
 - That the messages and draws happen in this order in play: a capture of a party gaining levels
   after a fight would confirm it (Q-PARTY-037).
