@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_001.ksy
-evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057, FND-PARTY-058, FND-PARTY-059, FND-PARTY-073, FND-PARTY-066, FND-PARTY-074, FND-PARTY-081, FND-PARTY-082, FND-PARTY-083, FND-PARTY-085, FND-PARTY-086, FND-PARTY-091, FND-PARTY-100, FND-PARTY-096, FND-PARTY-099, FND-PARTY-108, FND-PARTY-071, FND-PARTY-070, FND-PARTY-142, FND-PARTY-095, FND-PARTY-143, FND-PARTY-144]
+evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057, FND-PARTY-058, FND-PARTY-059, FND-PARTY-073, FND-PARTY-066, FND-PARTY-074, FND-PARTY-081, FND-PARTY-082, FND-PARTY-083, FND-PARTY-085, FND-PARTY-086, FND-PARTY-091, FND-PARTY-100, FND-PARTY-096, FND-PARTY-099, FND-PARTY-108, FND-PARTY-071, FND-PARTY-070, FND-PARTY-142, FND-PARTY-095, FND-PARTY-143, FND-PARTY-144, FND-PARTY-145]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-006]
@@ -73,7 +73,8 @@ offsets hold for every record the game writes and reads back.
 | `0x5A` | 6 | `UINT8[6]` | `base_scores` | The six ability scores as generated, origin modifiers included, in the order of `0x23` to `0x28`. A load copies them to bytes `0x15` to `0x1A` of the FMT-COMBAT-002 record, from which overlay 197 `+1E7B` sets the current scores; equal to `0x23` to `0x28` in 18 of the 19 shipped records, and one below the strength in resource 50. | supported | FND-PARTY-051, FND-PARTY-070, FND-PARTY-142 |
 | `0x60` | 3 | `UINT8[3]` | `classes` | Up to three class codes (see the enumeration below), 0 for none, nonzero ones first. The character sheet prints a level for each nonzero one. | supported | FND-PARTY-051, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057 |
 | `0x63` | 3 | `UINT8[3]` | `levels` | The level in each class of `classes`, 0 where the class is 0; printed from the details record's bytes `0x1E` to `0x20`. In play overlay 210 raises a level while the experience reaches the class's next threshold, up to 15, and its level drain lowers it when a party member receives the effect code 59, which a strike by the item of `DATA` number 313 on an attack roll of 20 sends, as do the spells `DATA` 104 and 225, whose byte `+0x19` is 59, used in a fight on a target that fails its saving throw, and a script through function 23 of opcode `0x22`; the class change of overlay 209 sets the new class to level 1. | supported | FND-PARTY-051, FND-PARTY-055, FND-PARTY-056, FND-PARTY-081, FND-PARTY-082, FND-PARTY-083, FND-PARTY-096, FND-PARTY-108 |
-| `0x66` | 3 | `BYTE[3]` | `unk_66` | Purpose unknown. A load copies it to bytes `0x21` to `0x23` of the FMT-COMBAT-002 record. | supported | FND-PARTY-051 |
+| `0x66` | 1 | `INT8` | `base_armor_class` | The character's armor class before items and dexterity. A load copies it to byte `0x21` of the FMT-COMBAT-002 record, from which overlay 173 `+2C00` computes the armor class an attack is rolled against; 10 or, for five of the six thri-kreen, 5 in the shipped records, with 0 and 7 once each. | supported | FND-PARTY-051, FND-PARTY-145 |
+| `0x67` | 2 | `BYTE[2]` | `unk_67` | Purpose unknown. A load copies it to bytes `0x22` and `0x23` of the FMT-COMBAT-002 record. | supported | FND-PARTY-051 |
 | `0x69` | 1 | `UINT8` | `class_attack_rate` | 2, plus 1 for each of a warrior-group level above 0, above 6 and above 12. A load copies it to byte `0x24` of the FMT-COMBAT-002 record; storing a character, a class change and each level gained in play set it. The swing of overlay 173 takes it as an armed attack's rate unless the weapon's own rate applies. | supported | FND-PARTY-051, FND-PARTY-085, FND-PARTY-100 |
 | `0x6A` | 1 | `UINT8` | `attack_rate` | The rate of natural attack 0: `class_attack_rate`, or 8 for a thri-kreen. A load copies it to byte `0x25` of the FMT-COMBAT-002 record; set with `class_attack_rate`. The swing of overlay 173 takes it for an attack without a weapon, in the place of a weapon's rate. | supported | FND-PARTY-051, FND-PARTY-085, FND-PARTY-100 |
 | `0x6B` | 2 | `UINT8[2]` | `natural_attack_rates` | The rates of natural attacks 1 and 2; overlay 210 sets the second to 2 for a thri-kreen. A load copies them to bytes `0x26` and `0x27` of the FMT-COMBAT-002 record, which the swing reads as `attack_rate` is read. | supported | FND-PARTY-051, FND-PARTY-085, FND-PARTY-100 |
@@ -136,7 +137,7 @@ ends within its slot [FND-PARTY-001, FND-PARTY-005, FND-PARTY-052].
 ## Open questions
 
 - What `unk_04`, `unk_0e`, `unk_12`, `unk_1c`, `unk_21`, `unk_2a`, `unk_53`,
-  `unk_66`, `unk_7b` and `unk_81` hold. The two chunks at `0x00` and `0x3B` are the only ones that
+  `unk_67`, `unk_7b` and `unk_81` hold. The two chunks at `0x00` and `0x3B` are the only ones that
   reach the combatant and details records, so the screen's values are in them or in the records of
   the later chunks (FND-PARTY-020, FND-PARTY-051, FND-PARTY-057, FND-PARTY-058,
   FND-PARTY-059, Q-PARTY-003).

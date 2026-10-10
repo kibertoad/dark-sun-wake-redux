@@ -126,8 +126,11 @@ seq:
     repeat: expr
     repeat-expr: 3
     doc: The level in each class.
-  - id: unk_66
-    size: 3
+  - id: base_armor_class
+    type: s1
+    doc: The armor class before items and dexterity.
+  - id: unk_67
+    size: 2
   - id: class_attack_rate
     type: u1
   - id: attack_rate
