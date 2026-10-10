@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-030
+Next ID: Q-PARTY-033
 
 ## Static
 
@@ -17,14 +17,20 @@ Next ID: Q-PARTY-030
   over the calls it makes, checking which of the 11 stores to the word it reaches and with what
   value. Tried: FND-PARTY-064 reads the other three callers of `+1DCE` and the edit path, where the
   slots are the same; the DUAL path's calls were not followed. Blocks: slice 2.
-- Q-PARTY-002. RULE-PARTY-002, RULE-PARTY-003, RULE-PARTY-005, RULE-PARTY-009: What does the character
-  generation screen check beyond the class buttons: how it rolls the six scores and when it
-  applies the origin modifiers, whether DONE refuses a character for its scores, gender,
-  alignment or class minimums, and whether a psionicist can turn a discipline off? Settles it:
-  the code behind SCR-UI-004 and SCR-UI-005 for DONE, the score buttons and the discipline
-  window's `+0CE3`, `+0D2C` and `+0D95`. Tried: FND-PARTY-063 and FND-PARTY-066 read the class
-  buttons and the sphere window, FND-PARTY-067 the discipline window, and FND-PARTY-068 which
-  classes the buttons offer. Blocks: slice 2.
+- Q-PARTY-002. RULE-PARTY-003: Can a psionicist turn one of its three disciplines off in the
+  discipline window? Settles it: overlay 183 `+0CE3`, `+0D2C` and `+0D95`, read for what they do
+  to the window's buttons (FND-PARTY-067). Tried: FND-PARTY-063, FND-PARTY-066 and FND-PARTY-067
+  read the class buttons and the two windows; FND-PARTY-068, FND-PARTY-070, FND-PARTY-071 and
+  FND-PARTY-072 settled the classes, DONE, the scores and the alignment. Blocks: slice 2.
+- Q-PARTY-030. RULE-PARTY-002, RULE-PARTY-010: What hit points can a new character have, and what
+  random draws follow the scores in a roll? Settles it: overlay 184 `+015D`, which the roll routine
+  calls with the roll's flag and the addresses of `DS:42D6` and `DS:42D8`, the rest of overlay 184
+  `+033E` after it, and overlay 183 `+0BE9..+0C41` in `+0A3E`, which holds the word at `+0x08`
+  between those two (FND-PARTY-070, FND-PARTY-071). Blocks: slice 2.
+- Q-PARTY-031. RULE-PARTY-010: What does the word at offset `0x12` of the 24-byte event a window
+  handler receives hold, which overlay 183 `+0000` turns into a step of 1 below 8 and -1 otherwise?
+  Settles it: the code that builds that event for a button press, read for that word
+  (FND-PARTY-070). Blocks: slice 2.
 - Q-PARTY-003. FMT-PARTY-001, RULE-PARTY-004, RULE-MAGIC-002: What do the record's remaining `unk_`
   fields hold, and are the scores stored before or after origin modifiers? Settles it: the other
   routines that print the character sheet from the record at `DS:1429` (FND-PARTY-055), and the
@@ -87,6 +93,12 @@ None.
 
 ## Live session
 
+- Q-PARTY-032. RULE-PARTY-011: Does pressing the alignment button with Ctrl held skip the
+  classes' check, so that a fighter can be stepped to lawful evil and stored that way? Settles it:
+  an owner capture of the generation screen's alignment after each press with Ctrl held, starting
+  from true neutral, then of the View Character screen after DONE (FND-PARTY-072). Tried: the
+  static reading FND-PARTY-072, which rests on the BIOS meaning of bit 4 of the keyboard flags.
+  Blocks: slice 2.
 - Q-PARTY-027. BUG-PARTY-002: Does a character made with a Druid first and a Preserver second
   start at level 6 Druid and level 7 Preserver with 40,000 experience, where the Druid's own table
   gives level 7 from 35,000, and what level does its stored record hold for the unused third class?

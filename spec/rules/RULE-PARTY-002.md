@@ -1,35 +1,39 @@
 ---
 id: RULE-PARTY-002
 title: What a new character may be
-status: sourced
+status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [SRC-MANUAL-1994, SRC-README-1.1]
+evidence: [SRC-MANUAL-1994, FND-PARTY-063, FND-PARTY-066, FND-PARTY-067, FND-PARTY-068, FND-PARTY-070, FND-PARTY-071, FND-PARTY-072]
 conflicting: []
 split_with: []
-related: [RULE-PARTY-007, RULE-PARTY-009, SCR-UI-004]
+related: [RULE-PARTY-003, RULE-PARTY-005, RULE-PARTY-007, RULE-PARTY-009, RULE-PARTY-010, RULE-PARTY-011, SCR-UI-004]
 ---
 
 ## Summary
 
-A new character has an origin, a gender, an alignment that is good or neutral, six ability
-scores from 9 to 24, and one to three classes. A human has one class; other origins may combine
-up to three in the combinations the generation screen offers (RULE-PARTY-009). Each class needs minimum ability scores, and each
-origin allows only some classes. Muls are always male and thri-kreen always female.
+A new character takes its origin and gender from one of 14 portraits: male and female for the
+first six origins, a male mul and a female thri-kreen. It has one to three classes in a
+combination the generation screen offers, an alignment all its classes allow, and six scores
+within the bounds its classes and origin set. DONE can be pressed only when the character has a
+class and a discipline, a sphere if it is a cleric or druid, and all three disciplines if it is a
+psionicist.
 
 ## When it runs
 
-`character_allowed` runs when the player clicks DONE on the character generation screen
-(SCR-UI-004), and `class_allowed` for each class the player considers there (SRC-MANUAL-1994,
-pages 7 to 9).
+`character_allowed` describes what DONE on the character generation screen can store
+(SCR-UI-004), and `done_enabled` runs whenever a class, sphere or discipline changes
+(FND-PARTY-070).
 
 ## Parameters
 
-`origin`, the character's `origin` code, 0 to 7. `gender`, 0 for male and 1 for female, in the
-order of the executable's labels (FND-PARTY-017). `alignment`, the character's `alignment` code,
-0 to 8. `classes`, a list of one or more `character_class` codes. `character_class`, one such
-code. `scores`, the six ability scores in the order strength, dexterity, constitution,
-intelligence, wisdom, charisma, as FMT-PARTY-001 stores them.
+`portrait`, the portrait number, 0 to 13. `origin`, the character's `origin` code, 0 to 7.
+`gender`, 0 for male and 1 for female, in the order of the executable's labels (FND-PARTY-017).
+`alignment`, the character's `alignment` code, 0 to 8. `classes`, a list of zero to three
+`character_class` codes in the order the screen keeps them. `scores`, the six ability scores in
+the order strength, dexterity, constitution, intelligence, wisdom, charisma, as FMT-PARTY-001
+stores them. `disciplines`, the number of psionic disciplines chosen, 0 to 3, and `sphere_chosen`,
+true when an elemental sphere is chosen (RULE-PARTY-003).
 
 ## Inputs
 
@@ -38,41 +42,57 @@ None beyond the parameters.
 ## Procedure
 
 ```text
-define class_allowed(origin, character_class, scores):
-    # Minimum scores, six per class in the order of scores
-    let minimum: UINT8[48] = [0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 12, 15, 9, 0, 0, 0, 0, 0, 13, 12, 15, 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 11, 12, 15, 0, 13, 13, 14, 0, 14, 0, 0, 9, 0, 0, 0, 0]
-    for ability in 0..6:
-        if scores[ability] < minimum[character_class * 6 + ability]:
-            return false
-    return class_level_limit(origin, character_class) != 0
+define portrait_origin(portrait):
+    if portrait == 13:
+        return 7
+    return portrait / 2
 
-define character_allowed(origin, gender, alignment, classes, scores):
-    for ability in 0..6:
-        if scores[ability] < 9 or scores[ability] > 24:
+define portrait_gender(portrait):
+    if portrait == 12:
+        return 0
+    if portrait == 13:
+        return 1
+    return portrait % 2
+
+define done_enabled(classes, disciplines, sphere_chosen):
+    if count(classes) == 0 or disciplines == 0:
+        return false
+    for each c in classes:
+        if (c == 0 or c == 1) and not sphere_chosen:
             return false
-    if origin == 6 and gender != 0:
+        if c == 5 and disciplines != 3:
+            return false
+    return true
+
+define character_allowed(origin, gender, alignment, classes, scores, disciplines, sphere_chosen):
+    let has_portrait = false
+    for portrait in 0..14:
+        if portrait_origin(portrait) == origin and portrait_gender(portrait) == gender:
+            has_portrait = true
+    if not has_portrait:
         return false
-    if origin == 7 and gender != 1:
-        return false
-    if alignment == 2 or alignment == 5 or alignment == 8:
+    if not done_enabled(classes, disciplines, sphere_chosen):
         return false
     let n = count(classes)
-    if n < 1 or n > 3:
-        return false
-    if origin == 0 and n != 1:
-        return false
     for i in 0..n:
-        if not class_allowed(origin, classes[i], scores):
-            return false
         # classes_offered never offers a class already in its list
         if (classes_offered(origin, classes[0..i]) >> (7 - classes[i])) & 1 == 0:
+            return false
+        if not alignment_allowed(classes[i], alignment):
+            return false
+    for ability in 0..6:
+        if scores[ability] < score_minimum(classes, ability):
+            return false
+        if scores[ability] > score_maximum(origin, ability):
             return false
     return true
 ```
 
 ## Outputs
 
-Each function returns true or false and changes no state.
+`portrait_origin` and `portrait_gender` return the codes a portrait sets. `done_enabled` returns
+whether DONE can be pressed, and `character_allowed` whether the screen can store the character.
+None changes state.
 
 ## Edge cases
 
@@ -82,14 +102,19 @@ and thri-kreen 7; the alignment codes lawful good 0, lawful neutral 1, lawful ev
 3, true neutral 4, neutral evil 5, chaotic good 6, chaotic neutral 7 and chaotic evil 8. They are
 the positions of the executable's labels (FND-PARTY-016, FND-PARTY-017), which is not shown to be
 how the game stores them; the generation screen numbers the classes 1 to 8 in the same order
-(FND-PARTY-063). Which classes may go together, and in which order, comes from RULE-PARTY-009's
-`classes_offered`, whose table forbids cleric with druid as the manual does and many other
-combinations besides; `classes` is in the order the screen keeps them. `class_level_limit`
-(RULE-PARTY-007) is nonzero exactly for the classes `classes_offered` gives an origin with no
-class.
+(FND-PARTY-063). The screen stores origin, gender and alignment counting from 1 (FND-PARTY-070).
 
-Scores are checked after origin modifiers (RULE-PARTY-005) only if the game applies them before
-DONE, which is not known.
+DONE checks only the classes, the disciplines and the sphere; the screen keeps the rest within
+these limits as the player chooses (RULE-PARTY-009, RULE-PARTY-010, RULE-PARTY-011), so it never
+refuses a character for them. Choosing a portrait remakes the character as a true neutral fighter
+with rolled scores. A human has one class, a gladiator no other class, and no character cleric
+with druid, all through `classes_offered`. `class_level_limit` (RULE-PARTY-007) is nonzero exactly
+for the classes `classes_offered` gives an origin with no class. The scores are bounded after the
+origin modifiers (RULE-PARTY-005), and every bound lies within 9 to 24.
+
+Holding Ctrl while stepping the alignment lets a character reach DONE with an alignment its
+classes forbid (RULE-PARTY-011), which `character_allowed` does not cover. Rangers and druids
+choose a sphere too, but DONE does not require it for a ranger.
 
 ## What the sources say
 
@@ -99,11 +124,11 @@ SRC-MANUAL-1994:
 - Page 8: a new character starts as a fighter; humans take one class, other origins up to three,
   and cleric and druid cannot be combined.
 - Page 16: ability scores run from 9 to 24.
-- Pages 19 to 22: the minimum scores of each class, as the procedure's list gives them: cleric
-  wisdom 9; druid wisdom 12 and charisma 15; fighter strength 9; gladiator strength 13, dexterity
-  12 and constitution 15; preserver intelligence 9; psionicist constitution 11, intelligence 12
-  and wisdom 15; ranger strength 13, dexterity 13, constitution 14 and wisdom 14; thief dexterity
-  9.
+- Pages 19 to 22: the minimum scores of each class: cleric wisdom 9; druid wisdom 12 and charisma
+  15; fighter strength 9; gladiator strength 13, dexterity 12 and constitution 15; preserver
+  intelligence 9; psionicist constitution 11, intelligence 12 and wisdom 15; ranger strength 13,
+  dexterity 13, constitution 14 and wisdom 14; thief dexterity 9. The game's minimums are higher
+  (RULE-PARTY-010).
 - Page 22: a player character's alignment must be good or neutral.
 
 SRC-README-1.1, table 3, gives which classes each origin may take (RULE-PARTY-007).
@@ -114,9 +139,5 @@ None known.
 
 ## Open questions
 
-- Whether the generation screen enforces the scores, genders, alignment and class minimums by
-  refusing DONE, by greying out choices, or not at all (it greys out the classes RULE-PARTY-009
-  does not offer, FND-PARTY-068), and whether the minimums apply to scores before or after origin modifiers
-  (Q-PARTY-002).
-- How the six scores are rolled and what editing them allows (SRC-MANUAL-1994, page 9;
-  Q-PARTY-002).
+- What the hit points of a new character may be: the screen holds them between two bounds a
+  routine after each roll sets (Q-PARTY-030).
