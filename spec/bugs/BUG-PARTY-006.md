@@ -7,7 +7,7 @@ superseded_by: []
 impact: crash
 intent: unintended
 player_reliance: unknown
-evidence: [FND-PARTY-082, FND-PARTY-105, FND-PARTY-096, FND-PARTY-108, FND-PARTY-109, FND-PARTY-110, FND-PARTY-111, FND-PARTY-112, FND-PARTY-113, FND-PARTY-114, FND-PARTY-115, FND-PARTY-116]
+evidence: [FND-PARTY-082, FND-PARTY-105, FND-PARTY-096, FND-PARTY-108, FND-PARTY-109, FND-PARTY-110, FND-PARTY-111, FND-PARTY-112, FND-PARTY-113, FND-PARTY-114, FND-PARTY-115, FND-PARTY-116, FND-PARTY-117]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-013, FMT-PARTY-001]
@@ -68,7 +68,7 @@ None known.
   level above 15 or the byte at `DS:13F8` set (FND-PARTY-111). The byte is set only behind the
   `-k911` debug switch, and the game's stores and the shipped party list keep levels at 15 or
   below; four `OBJEX` actors are Preservers at 18 or 20 (FND-PARTY-116). Whether such an actor can
-  join the party is Q-PARTY-063.
+  join the party, which needs a party object released first (FND-PARTY-117), is Q-PARTY-063.
 - Whether any party member has type bytes that make the calls before the hit routine's saving
   throw stop the spells for it, which they do for the types 2, 3, 7, 11, 13 and 16 (FND-PARTY-112);
   the shipped and transferred characters and the characters generation stores hold 0, and no
