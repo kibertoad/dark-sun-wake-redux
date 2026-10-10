@@ -18,7 +18,8 @@ Next ID: Q-PARTY-020
   routine that overlays 171 and 182 call with `CHAR` and 7 to load a record into a party slot
   (FND-PARTY-012, FND-PARTY-013), read against the 49-byte party records at `DS:19C9`. Tried: a
   search of the headers of records 40 and 42 for the label positions of their gender, origin,
-  alignment and class (FND-PARTY-018). Blocks: slice 2.
+  alignment and class (FND-PARTY-018); FND-PARTY-049 shows the load copies a record's bytes
+  `0x0A` to `0x3A` into the party record, so each party record field names a `CHAR` field. Blocks: slice 2.
 - Q-PARTY-004. FMT-PARTY-003, RULE-PARTY-003: Does each bit of the `PSIN` byte stand for one
   psionic discipline, and which? Settles it: the code that reads the four-slot `PSIN` table
   overlay 186 fills (FND-PARTY-012), or the discipline list of SCR-UI-005. Blocks: slice 2.
@@ -47,8 +48,10 @@ Next ID: Q-PARTY-020
   the ADD window, 66 from the screen's handler) store 0 to the count or make `DS:0DAB`
   nonzero? Settles it: the code of `NEW` (overlay 184 `+07D8`, and whether it reaches
   `+1029`'s placement call at `+12E5`), of overlay 190 `+139B` and `+0802` read for the events
-  that reach the `DS:13FB` setter overlay 173 `+3CDA` and the pointer-image sites, and each
-  unresolved transfer of the two runs resolved or shown unreachable. Tried: FND-PARTY-045 run 4
+  that reach the `DS:13FB` setter overlay 173 `+3CDA` and the pointer-image sites, each
+  unresolved transfer of the two runs resolved or shown unreachable, and `56E9:0025`, overlay
+  171 `+0938` and `56BD:00A2` read for stores to the party record between `ADD`'s load and its
+  placement (FND-PARTY-049). Tried: FND-PARTY-045 run 4
   found the routes; FND-PARTY-046 reads `ADD`, which increments the count and leaves no store
   that clears it on the way back to the start window. Blocks: slice 2.
 - Q-PARTY-018. RULE-PARTY-006: After a confirmed load from the start window's Load Saved Game
@@ -56,14 +59,6 @@ Next ID: Q-PARTY-020
   what placed-object count and `DS:0DAB`? Settles it: the load routine overlay 192 `+05ED`,
   overlay 182 `+19F8`, `28C9:2522`, the gate routine called with 0, and whether window 19500 or
   its handler survives those calls (FND-PARTY-045). Blocks: slice 2.
-- Q-PARTY-019. RULE-PARTY-006: After `ADD` loads a stored character, is 300 plus the word at
-  `0x10` of the slot's 49-byte record at `DS:19C9` an object number with an `OJFF` resource in
-  `OBJEX.GFF` (300 to 313 or 320 to 326), so that `31E0:0EFF`'s request succeeds and
-  `31E0:0121` reaches its increment? Settles it: the writer of that word in the `CHAR` load
-  `2D40:000A` (the reading Q-PARTY-003 asks for) and the values the stored characters give it.
-  Tried: FND-PARTY-047 (the `DS:265B` test passes) and FND-PARTY-048 (the `RDFF` load is
-  skipped and the slot-record test passes, so only the `OJFF` request can fail).
-  Blocks: slice 2.
 
 ## Emulated call
 

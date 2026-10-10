@@ -4,7 +4,7 @@ title: START GAME supplies characters 40 to 43 as the party
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-013, FND-PARTY-021, FND-PARTY-020, FND-PARTY-023, FND-PARTY-034, FND-PARTY-038, SRC-MANUAL-1994]
+evidence: [FND-PARTY-013, FND-PARTY-021, FND-PARTY-020, FND-PARTY-023, FND-PARTY-034, FND-PARTY-038, FND-PARTY-046, FND-PARTY-047, FND-PARTY-048, FND-PARTY-049, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [FMT-PARTY-001, SCR-UI-001]
@@ -58,6 +58,11 @@ The numbers are computed from 40 and the slot, so the executable holds no list o
 (FND-PARTY-005). No other installed archive has `CHAR` records, so the lookup cannot find the
 four elsewhere [FND-PARTY-034].
 
+The loader does not run when the count is already nonzero at the gate. Choosing `ADD` on an
+empty character box of the Create Characters screen before START GAME loads a stored character
+and places it, which makes the count nonzero, and Esc back to the start window leaves it so
+(FND-PARTY-046, FND-PARTY-047, FND-PARTY-048, FND-PARTY-049); see Open questions for what that reading rests on.
+
 ## What the sources say
 
 SRC-MANUAL-1994, page 2, says START GAME begins play with a party that has already been made,
@@ -86,9 +91,9 @@ None known.
   first: `ADD` on an empty character box loads a stored character and places it with the
   routine that increments the count, and Esc returns to the start window with no store that
   clears it, so START GAME would then skip the loader and begin with the screen's party
-  (FND-PARTY-046). Start-up sets the byte the placement helper tests first (FND-PARTY-047), and of its
-  other tests only the `OJFF` request for the added character can fail (FND-PARTY-048,
-  Q-PARTY-019). Still open: which other actions on that screen change the count, and whether
+  (FND-PARTY-046). Start-up sets the byte the placement helper tests first (FND-PARTY-047), of its other
+  tests only the `OJFF` request can fail (FND-PARTY-048), and every stored character gives
+  an object number that has one (FND-PARTY-049). Still open: which other actions on that screen change the count, and whether
   a routine behind the unresolved transfers of those runs clears it (FND-PARTY-045,
   FND-PARTY-046, Q-PARTY-017); whether START
   GAME can still be chosen after a confirmed load, and with what count (FND-PARTY-045,
