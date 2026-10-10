@@ -149,6 +149,13 @@ An owner-approved history repair remains separate from this maintenance scope.
   28C9:0CFF (190+11A1 with null); only 182+1167, +15D7, +19F8 and 199+0BC1 register it, and
   199+0BC1 runs first in every gain. Left for Q-PARTY-065: windows that save/restore the handler
   via 190+11C1 (23 far callers), 45B9:0034 event dispatch, and scripts run from mode 2 windows.
+- FND-PARTY-128: 45B9:0034 is INT 33h fn 3 (mouse read), so 199's loops wait for the left button
+  to come up; 190+11C1's three callers (172+03A6, 172+065E, 209+12AA) restore the handler they
+  saved. Q-PARTY-065 now waits on the scripts and kills reaching 188+16E9 while mode 2 holds.
+- Upstream duplicate checks for this session's points: the old DS:0DAB finding's wrong address
+  was a project error that IDENTIFIERS-8 (protocol #66) already covers, so no issue was filed;
+  #96 was filed after searching protocol #46, #66, #95 and toolkit #436, #269, #80; the
+  Q-PARTY-052/064 and 054/065 splits went to protocol #91 as comments.
 - Filed protocol #95: a batch that supersedes an entry the handover cites cannot pass the docs
   check without a handover edit; the workaround is handover commit, batch, handover commit.
 - Template context: template 0b9ab9c, rules 11884c7 and checker 2.9.0 are
