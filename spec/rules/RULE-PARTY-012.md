@@ -4,7 +4,7 @@ title: Hit points of a new character
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-065, FND-PARTY-070, FND-PARTY-071, FND-PARTY-073, FND-PARTY-074, FND-PARTY-075]
+evidence: [FND-PARTY-065, FND-PARTY-070, FND-PARTY-071, FND-PARTY-073, FND-PARTY-074, FND-PARTY-075, FND-PARTY-076]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-002, RULE-PARTY-010, RULE-RNG-001, SCR-UI-004]
@@ -30,8 +30,11 @@ button; `rolled_hit_points` when a class is chosen or removed and on each roll w
 `origin`, the character's `origin` code. `classes`, the list of the character's `character_class`
 codes in the order the screen keeps them, and `levels`, the level of each, from RULE-PARTY-007's
 starting levels as the screen sets them (FND-PARTY-065). `constitution`, the character's
-constitution score. `floor_constitution`, the constitution held in the character's details
-record, which the roll's floor reads (FND-PARTY-074). `hit_points`, the greatest hit points.
+constitution score. `floor_constitution`, the constitution the screen's working details
+record held when the screen opened: 10 if no character has been finished or opened for editing
+since the program started, and otherwise the constitution of the character finished or opened
+last, which for a character being edited is its own stored constitution (FND-PARTY-074,
+FND-PARTY-076). `hit_points`, the greatest hit points.
 `step`, 1 or -1.
 
 ## Inputs
@@ -141,6 +144,11 @@ of at least that number, and skips the whole roll when the levels last rolled ad
 the current ones; neither happens at generation, where a human has one class and the screen
 records the levels just before it rolls.
 
+The floor does not follow the constitution the player rolls or steps on the screen: the working
+record takes the scores only at DONE (FND-PARTY-076). A new character made after one with a
+constitution of 20 or more can therefore have its hit die rolls raised to 2, 3 or 4, and one made
+after a lower constitution gets the floor of 1 even with a constitution of 20 or more.
+
 ## What the sources say
 
 No source read for this entry describes the generation screen's hit points or the classes' hit dice.
@@ -151,5 +159,4 @@ None known.
 
 ## Open questions
 
-- Which constitution the roll's floor reads while a character is made: the details record's score
-  is filled from the scores only at DONE (Q-PARTY-033).
+None.

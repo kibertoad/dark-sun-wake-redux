@@ -24,11 +24,6 @@ Next ID: Q-PARTY-035
   to the window's buttons (FND-PARTY-067). Tried: FND-PARTY-063, FND-PARTY-066 and FND-PARTY-067
   read the class buttons and the two windows; FND-PARTY-068, FND-PARTY-070, FND-PARTY-071 and
   FND-PARTY-072 settled the classes, DONE, the scores and the alignment. Blocks: slice 2.
-- Q-PARTY-033. RULE-PARTY-012: Which constitution does the hit die floor read while a character
-  is made? Overlay 210 `+0000` reads the slot details record's byte at `+0x17`, which the finish
-  fills from the combatant scores only at DONE. Settles it: every write to that byte of the
-  generation details record `4E4F:0029` and of the slot's record before the roll, read in
-  execution order (FND-PARTY-070, FND-PARTY-074). Blocks: slice 2.
 - Q-PARTY-031. RULE-PARTY-010: What does the word at offset `0x12` of the 24-byte event a window
   handler receives hold, which overlay 183 `+0000` turns into a step of 1 below 8 and -1 otherwise?
   Settles it: the code that builds that event for a button press, read for that word
