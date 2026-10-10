@@ -41,7 +41,9 @@ Next ID: Q-PARTY-066
   FND-PARTY-124 shows the word starts at 0 and that no store puts 3 in it. FND-PARTY-125 shows that the
   main view's tick runs no fight step while a window overlay 182 `+1856` opened is up, and leaves
   the map click callers of the fight step `28C9:305F`, overlay 182 `+1167`'s gate and the award
-  paths of overlay 188 `+16E9`.
+  paths of overlay 188 `+16E9`; FND-PARTY-126 shows `+1167` acts only from mode 0 and that the
+  message window returns to the mode it found, which leaves scripts run from other windows, such
+  as an item use from the inventory.
 - Q-PARTY-045. RULE-PARTY-015: Does any enemy's `kill_experience` divided by the filled party
   slots reach 32,768, so that killing it lowers each member's experience (FND-PARTY-086,
   FND-PARTY-094)? Settles it: the routine that loads an `RDFF` resource of `OBJEX.GFF` into the
