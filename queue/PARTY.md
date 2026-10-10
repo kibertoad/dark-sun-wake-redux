@@ -51,8 +51,11 @@ Next ID: Q-PARTY-055
   overlay 193 `+003C`. FND-PARTY-103: overlay 204 `+12B4` gets `DATA` 148, 157, 159 and 178, none
   holding 59, and overlay 193 `+13EC` the word at `+0` of a record of the table at `51F1:0000`.
   FND-PARTY-106: nothing writes that table and none of its 112 words is 104 or 225, so no caller
-  of `+0C7F` passes either; left are the routes through `+11DC` and overlay 193 `+003C` and the
-  three overlay 197 calls.
+  of `+0C7F` passes either. FND-PARTY-107: the `+0D2F` call in `+11DC` never runs, and overlay 193
+  `+003C` passes its third argument, fixed (124, 305, 307, 308, 311, none holding 59) or computed
+  at overlay 197 `+1202`, overlay 198 `+00EF` and `+013D`, overlay 193 `+22CF`, overlay 176 `+03BD`
+  and `+048A`, overlay 177 `+04FE` and overlay 204 `+19AF`; those and the three overlay 197 calls
+  are left.
 - Q-PARTY-003. FMT-PARTY-001, RULE-PARTY-004, RULE-MAGIC-002: What do the record's remaining `unk_`
   fields hold, and are the scores stored before or after origin modifiers? Settles it: the other
   routines that print the character sheet from the record at `DS:1429` (FND-PARTY-055), and the
