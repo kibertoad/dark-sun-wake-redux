@@ -19,7 +19,7 @@ Entries by status.
 
 ## superseded
 
-11 entries.
+13 entries.
 
 | ID | Title |
 |---|---|
@@ -34,10 +34,12 @@ Entries by status.
 | [FND-EXE-079](../../findings/FND-EXE-079.md) | Declared startup reaches an x87 initializer and a memory-update helper whose equal table bounds skip its loop |
 | [FND-EXE-177](../../findings/FND-EXE-177.md) | A resident cleanup candidate conditionally exchanges the vector before two unresolved near callbacks |
 | [FND-EXE-181](../../findings/FND-EXE-181.md) | Shipped interpreter has a bounded two-service candidate matching the external provider source pattern |
+| [FND-EXE-285](../../findings/FND-EXE-285.md) | Gated cleanup callees clear byte state while replacing or preserving AX |
+| [FND-EXE-495](../../findings/FND-EXE-495.md) | Disc Miles drivers build no interrupt opcode at run time and hold few indirect far transfers |
 
 ## recorded
 
-261 entries.
+430 entries.
 
 | ID | Title |
 |---|---|
@@ -302,6 +304,175 @@ Entries by status.
 | [FND-EXE-270](../../findings/FND-EXE-270.md) | Startup first callee saves four vector pairs and restores its incoming data segment |
 | [FND-EXE-271](../../findings/FND-EXE-271.md) | Startup initializer selection reaches a loader wrapper with an explicit root call frame |
 | [FND-EXE-272](../../findings/FND-EXE-272.md) | Loader allocation callee rounds byte requests to paragraphs and traverses mutable segment links |
+| [FND-EXE-273](../../findings/FND-EXE-273.md) | Exact-size allocation helper unlinks a segment and conditionally preserves DS |
+| [FND-EXE-274](../../findings/FND-EXE-274.md) | Larger-count allocation helper splits segment storage and publishes neighbor headers |
+| [FND-EXE-275](../../findings/FND-EXE-275.md) | Allocation fallback makes a separate alignment request and retains the first segment |
+| [FND-EXE-276](../../findings/FND-EXE-276.md) | Fallback request callee guards a candidate before returning the saved state pair |
+| [FND-EXE-277](../../findings/FND-EXE-277.md) | Fallback arithmetic helpers normalize segment pairs with word-width wrapping |
+| [FND-EXE-278](../../findings/FND-EXE-278.md) | Fallback state updater publishes a new bound on its zero-result path |
+| [FND-EXE-279](../../findings/FND-EXE-279.md) | Updater far wrapper returns the interrupt bound after recording an error |
+| [FND-EXE-280](../../findings/FND-EXE-280.md) | Initial allocation helper retains zero-size and alignment call effects before its final test |
+| [FND-EXE-281](../../findings/FND-EXE-281.md) | List-link writer uses temporary SS to insert a segment beside the current head |
+| [FND-EXE-282](../../findings/FND-EXE-282.md) | Segment-return candidate calls the list writer and falls through to unlink after a merge |
+| [FND-EXE-283](../../findings/FND-EXE-283.md) | Selected-segment cleanup publishes head state before its bounded pair-setter call |
+| [FND-EXE-284](../../findings/FND-EXE-284.md) | Relocated return-wrapper call census adds a gated cleanup caller |
+| [FND-EXE-286](../../findings/FND-EXE-286.md) | Corrected cleanup argument writer replaces the pushed AX word |
+| [FND-EXE-287](../../findings/FND-EXE-287.md) | Cleanup nested wrappers preserve selected registers around interrupt requests |
+| [FND-EXE-288](../../findings/FND-EXE-288.md) | Cleanup pointer and byte gate are published by an unchecked interrupt setup path |
+| [FND-EXE-289](../../findings/FND-EXE-289.md) | Relocated setup-call candidate remains unproved as an instruction-path caller |
+| [FND-EXE-290](../../findings/FND-EXE-290.md) | Buffer setup candidate reaches hook setup after publishing shared state |
+| [FND-EXE-291](../../findings/FND-EXE-291.md) | Second setup callee gates an interrupt wrapper and hides its returned AX |
+| [FND-EXE-292](../../findings/FND-EXE-292.md) | Setup caller passes supplied storage and continues through discarded status returns |
+| [FND-EXE-293](../../findings/FND-EXE-293.md) | Supplied-storage producer increments its request and writes through a returned header count |
+| [FND-EXE-294](../../findings/FND-EXE-294.md) | Allocator list selection connects DX to the selected header segment |
+| [FND-EXE-295](../../findings/FND-EXE-295.md) | An adjacent request wrapper reaches another shared saved-DS writer |
+| [FND-EXE-296](../../findings/FND-EXE-296.md) | Larger-existing-count helper publishes headers before unchecked cleanup requests |
+| [FND-EXE-297](../../findings/FND-EXE-297.md) | Smaller-existing-count helper copies by old header count before unchecked release |
+| [FND-EXE-298](../../findings/FND-EXE-298.md) | Bounded direct-writer and near-call searches retain a further allocator caller lead |
+| [FND-EXE-299](../../findings/FND-EXE-299.md) | Allocator caller candidate requests a wrapped product and fills it in bounded chunks |
+| [FND-EXE-340](../../findings/FND-EXE-340.md) | Declared GOG configuration pair lacks exact codepage= and country= tokens |
+| [FND-EXE-350](../../findings/FND-EXE-350.md) | Shipped game and sound utility contain distinct literal batch-name leads |
+| [FND-EXE-351](../../findings/FND-EXE-351.md) | Fill-loop pointer helper normalizes a stored pair and preserves the chunk register |
+| [FND-EXE-352](../../findings/FND-EXE-352.md) | Existing allocation-wrapper evidence connects an independently controlled overlay caller |
+| [FND-EXE-353](../../findings/FND-EXE-353.md) | Sound utility prefix-byte wrapper stores returned DX into its stack record |
+| [FND-EXE-354](../../findings/FND-EXE-354.md) | Sound utility pointer selector advances before testing its derived record bound |
+| [FND-EXE-355](../../findings/FND-EXE-355.md) | Sound utility mode continuation publishes a record result before downstream configuration |
+| [FND-EXE-356](../../findings/FND-EXE-356.md) | Sound utility configuration helper returns a post-interrupt DX bit without status checking |
+| [FND-EXE-357](../../findings/FND-EXE-357.md) | Sound utility configuration separates early rejection from mutated-state allocation failure |
+| [FND-EXE-358](../../findings/FND-EXE-358.md) | Sound utility cleanup distinguishes preliminary failure from later record clearing |
+| [FND-EXE-359](../../findings/FND-EXE-359.md) | Sound utility cleanup formats its retained word through bounded decimal conversion |
+| [FND-EXE-360](../../findings/FND-EXE-360.md) | Sound utility constructs a stack pathname before its existing file-interface call |
+| [FND-EXE-361](../../findings/FND-EXE-361.md) | Sound utility formatting destination advances after an unchecked bounded source scan |
+| [FND-EXE-362](../../findings/FND-EXE-362.md) | Sound utility final cleanup request restores DS before mapping a carry-set result |
+| [FND-EXE-363](../../findings/FND-EXE-363.md) | Sound utility preliminary cleanup mutates its record before a flag-dependent result comparison |
+| [FND-EXE-364](../../findings/FND-EXE-364.md) | Sound utility downstream count guard precedes unchecked preliminary and carry-dependent requests |
+| [FND-EXE-365](../../findings/FND-EXE-365.md) | Sound utility byte processing checks its batching threshold after newline expansion |
+| [FND-EXE-366](../../findings/FND-EXE-366.md) | Sound utility preliminary cleanup iterator counts selected calls rather than successful results |
+| [FND-EXE-367](../../findings/FND-EXE-367.md) | Sound utility bit-four buffer helper dispatches by segment and retains arguments across link adjustment |
+| [FND-EXE-368](../../findings/FND-EXE-368.md) | Sound utility alternate buffer path preserves distinct retained segments across field combinations |
+| [FND-EXE-369](../../findings/FND-EXE-369.md) | Sound utility terminal buffer helper separates pair bounds from sentinel-selected state updates |
+| [FND-EXE-370](../../findings/FND-EXE-370.md) | Sound utility rt interface reaches conditional attribute and open request paths |
+| [FND-EXE-371](../../findings/FND-EXE-371.md) | Sound utility buffer quantity helper separates exact-fit and split segment returns |
+| [FND-EXE-372](../../findings/FND-EXE-372.md) | Sound utility growth helpers distinguish preliminary alignment and later failure checks |
+| [FND-EXE-373](../../findings/FND-EXE-373.md) | Sound utility quantity helper returns saved prior pair after terminal publication |
+| [FND-EXE-374](../../findings/FND-EXE-374.md) | Sound utility neighboring resize entry publishes shared quantity before segment dispatch |
+| [FND-EXE-375](../../findings/FND-EXE-375.md) | Sound utility smaller-buffer helper retains old segment after unchecked terminal calls |
+| [FND-EXE-376](../../findings/FND-EXE-376.md) | Sound utility preliminary configuration adjusts quantity before unchecked caller continuation |
+| [FND-EXE-377](../../findings/FND-EXE-377.md) | Sound utility pathname continuation matches bytes before unchecked position adjustments |
+| [FND-EXE-378](../../findings/FND-EXE-378.md) | Sound utility position helper retains second request pair after tested restoration request |
+| [FND-EXE-379](../../findings/FND-EXE-379.md) | Sound utility record reader distinguishes unsigned cached bytes from full-word failure |
+| [FND-EXE-380](../../findings/FND-EXE-380.md) | Sound utility shipped selector-state initializer values |
+| [FND-EXE-391](../../findings/FND-EXE-391.md) | Game type-one slot producer publishes relocated targets but returns zero even without publication |
+| [FND-EXE-392](../../findings/FND-EXE-392.md) | Game slot request writes quantity on every exit and handle only after native AH zero |
+| [FND-EXE-393](../../findings/FND-EXE-393.md) | Game type-two slot clamps a queried span and its cleanup forwards to a far no-op |
+| [FND-EXE-394](../../findings/FND-EXE-394.md) | Game type-two queries round a native record value and condition a firmware request on an installation probe |
+| [FND-EXE-395](../../findings/FND-EXE-395.md) | Game type-two published targets reorder six words and stage odd counts around native requests |
+| [FND-EXE-396](../../findings/FND-EXE-396.md) | Game type-three slot publication follows an exact-one native result and a mutable quantity helper |
+| [FND-EXE-397](../../findings/FND-EXE-397.md) | Game type-three published callees retain request-field writes on zero work and stage odd bytes through mutable records |
+| [FND-EXE-398](../../findings/FND-EXE-398.md) | Game type-four slot retains a native word after unchecked positioning and carry-mapped zero-count requests |
+| [FND-EXE-399](../../findings/FND-EXE-399.md) | Game type-one published targets make native requests before zero-count copies and map the full result word |
+| [FND-EXE-401](../../findings/FND-EXE-401.md) | Bounded installed resident literal search retains four shared-segment accesses and unresolved routes |
+| [FND-EXE-402](../../findings/FND-EXE-402.md) | Extending the shared-word literal search into resident native helpers retains interrupt and computed boundaries |
+| [FND-EXE-403](../../findings/FND-EXE-403.md) | Registration caller prepares stack records and narrows a wrapped quantity without assigning DS locally |
+| [FND-EXE-404](../../findings/FND-EXE-404.md) | Registration input helper ignores the argument high byte and admits only zero or uppercase selectors |
+| [FND-EXE-405](../../findings/FND-EXE-405.md) | Registration pointer calls copy without a capacity and append with signed length gates |
+| [FND-EXE-406](../../findings/FND-EXE-406.md) | Registration manager validates a terminated record sequence before publishing a gate and consuming mutable quantities |
+| [FND-EXE-407](../../findings/FND-EXE-407.md) | Manager table writers call mutable slot targets and retain an unbounded stored-link traversal |
+| [FND-EXE-408](../../findings/FND-EXE-408.md) | Controlled link-field search exposes a writer that retries mutable records before publishing three outputs |
+| [FND-EXE-409](../../findings/FND-EXE-409.md) | Indexed record lookup publishes an early output and writes tags after an untested transfer result |
+| [FND-EXE-411](../../findings/FND-EXE-411.md) | Linked-record release clears its caller head before mutable-node updates and can fail after publication |
+| [FND-EXE-412](../../findings/FND-EXE-412.md) | Linked-record extension publishes accounting before reconnecting a newly allocated node |
+| [FND-EXE-413](../../findings/FND-EXE-413.md) | Quantity adjustment dispatches unsigned comparisons to signed link helpers and publishes the caller quantity on success |
+| [FND-EXE-414](../../findings/FND-EXE-414.md) | Six-record selection publishes identity and output before loading the selected head |
+| [FND-EXE-415](../../findings/FND-EXE-415.md) | Identity lookup starts at record zero and supplies distinct first-slot and second-slot callback layouts |
+| [FND-EXE-416](../../findings/FND-EXE-416.md) | Linked-node initialization publishes the count before repeated template requests |
+| [FND-EXE-417](../../findings/FND-EXE-417.md) | Tail reclamation flushes dirty records and tests callback output before releasing a predecessor link |
+| [FND-EXE-418](../../findings/FND-EXE-418.md) | Record creation retries aligned loads and publishes state before a time-dependent word update |
+| [FND-EXE-419](../../findings/FND-EXE-419.md) | Record release publishes unused state before tail reclamation and returns its result |
+| [FND-EXE-431](../../findings/FND-EXE-431.md) | Creation wrapper publishes two words using a reloaded offset and retained output segment |
+| [FND-EXE-432](../../findings/FND-EXE-432.md) | Quantity addition wraps the requested total and publishes the previous quantity only after adjustment success |
+| [FND-EXE-433](../../findings/FND-EXE-433.md) | Quantity query selects a record before admission checks and publishes one doubleword |
+| [FND-EXE-471](../../findings/FND-EXE-471.md) | Sound utility refill resets current pointer before storing and classifying returned count |
+| [FND-EXE-472](../../findings/FND-EXE-472.md) | Sound utility lower read transforms bytes and copies trailing-request slot without result test |
+| [FND-EXE-473](../../findings/FND-EXE-473.md) | Sound utility zero-read classifier compares final returned pair after held-pair request |
+| [FND-EXE-474](../../findings/FND-EXE-474.md) | Sound utility pathname continuation uses inclusive byte loop and unbounded reverse separator search |
+| [FND-EXE-475](../../findings/FND-EXE-475.md) | Sound utility constructs sw32.ini pathname and sequentially matches section and field markers |
+| [FND-EXE-476](../../findings/FND-EXE-476.md) | Sound utility field caller maps three-byte conversion low word before reading one-byte Irq field |
+| [FND-EXE-477](../../findings/FND-EXE-477.md) | Sound utility string converter accumulates decimal prefix without error or overflow result |
+| [FND-EXE-478](../../findings/FND-EXE-478.md) | Sound utility collects Dma and MIDI fields with different mapped-result checks |
+| [FND-EXE-479](../../findings/FND-EXE-479.md) | Sound utility publishes parsed words through repeated table searches with ambiguous zero lookup |
+| [FND-EXE-480](../../findings/FND-EXE-480.md) | Sound utility final configuration continuation copies a scanned string and ignores optional-call result |
+| [FND-EXE-481](../../findings/FND-EXE-481.md) | Sound utility formatter flush callback advances destination without a capacity check |
+| [FND-EXE-482](../../findings/FND-EXE-482.md) | Sound utility string conversion dispatch uses normalized classification and signed default width |
+| [FND-EXE-483](../../findings/FND-EXE-483.md) | Sound utility optional consumer collects two text regions with signed traversal and unchecked row counts |
+| [FND-EXE-484](../../findings/FND-EXE-484.md) | Sound utility optional consumer derives coordinates and signed spacing without local admission checks |
+| [FND-EXE-485](../../findings/FND-EXE-485.md) | Sound utility spacing consumer derives row records and passes a mixed-provenance argument word |
+| [FND-EXE-486](../../findings/FND-EXE-486.md) | Sound utility optional consumer polls and transforms selection words before matching row results |
+| [FND-EXE-487](../../findings/FND-EXE-487.md) | Sound utility row registration consumes a byte and polling selects downstream modes |
+| [FND-EXE-488](../../findings/FND-EXE-488.md) | Sound utility input modes return row indices or transformed bytes and use an unadmitted scan sentinel |
+| [FND-EXE-489](../../findings/FND-EXE-489.md) | Sound utility readiness tests returned BX bits while coordinate samples consume returned CX and DX |
+| [FND-EXE-490](../../findings/FND-EXE-490.md) | Sound utility load image selects no DOS program-execution service at any interrupt 21 site |
+| [FND-EXE-491](../../findings/FND-EXE-491.md) | Sound utility indirect far calls stay in its image except driver code loaded from named files |
+| [FND-EXE-492](../../findings/FND-EXE-492.md) | Only the disc's Miles driver files pass the sound utility's driver test and none requests program execution |
+| [FND-EXE-493](../../findings/FND-EXE-493.md) | Sound utility starts its null timer slot only through a stale driver timer handle |
+| [FND-EXE-494](../../findings/FND-EXE-494.md) | Sound utility null timer registration and CS:0E1E calls run only through its DIGPAK function table |
+| [FND-EXE-496](../../findings/FND-EXE-496.md) | Disc Miles drivers request no program execution and transfer out only to host callbacks and resident programs |
+| [FND-EXE-497](../../findings/FND-EXE-497.md) | Sound utility asks installed drivers only for functions 0064 to 0067 |
+| [FND-EXE-498](../../findings/FND-EXE-498.md) | SBAWE32.ADV runs its code above file 0x1A80 at the driver's base, so its four switches read code bytes as targets |
+| [FND-EXE-499](../../findings/FND-EXE-499.md) | Both game editions pass the batch-name diagnostic through an overlay message interface |
+| [FND-EXE-500](../../findings/FND-EXE-500.md) | Game diagnostic chain counts source bytes and selects buffered or DOS-write character paths |
+| [FND-EXE-501](../../findings/FND-EXE-501.md) | For the sound utility's four driver functions, SBAWE32.ADV dispatches only through code table entries |
+| [FND-EXE-502](../../findings/FND-EXE-502.md) | Game diagnostic helpers map signed error words and clear a handle flag before positioning |
+| [FND-EXE-503](../../findings/FND-EXE-503.md) | Game diagnostic flush updates record state before writes and ignores per-record results in its aggregate path |
+| [FND-EXE-504](../../findings/FND-EXE-504.md) | Game diagnostic write helper expands line bytes and returns mixed input and output counts on short writes |
+| [FND-EXE-507](../../findings/FND-EXE-507.md) | Game counted-byte dispatch selects direct copying or writes with overflow-sensitive buffer tests |
+| [FND-EXE-508](../../findings/FND-EXE-508.md) | Both game editions ship the diagnostic record with handle one and line-flush and failure-bypass flags |
+| [FND-EXE-509](../../findings/FND-EXE-509.md) | Game startup saves its relocated data segment and later selects stack and zero-fill segments through separate producers |
+| [FND-EXE-510](../../findings/FND-EXE-510.md) | Game startup chooses priority entries and marks each before near or far dispatch |
+| [FND-EXE-511](../../findings/FND-EXE-511.md) | Game startup target clears conditional diagnostic flags and forwards freshly tested modes |
+| [FND-EXE-512](../../findings/FND-EXE-512.md) | Game diagnostic initialization masks a returned handle bit and changes record state before allocation |
+| [FND-EXE-513](../../findings/FND-EXE-513.md) | Game buffer allocation wrapper reads a stack-derived offset through DS and retains its initial link sentinel |
+| [FND-EXE-514](../../findings/FND-EXE-514.md) | Game allocator selected-block helpers rewire links and publish split metadata without local extent checks |
+| [FND-EXE-515](../../findings/FND-EXE-515.md) | Game allocator block producers publish headers after a sentinel-tested request |
+| [FND-EXE-516](../../findings/FND-EXE-516.md) | Game allocator request advances a shared offset only below a stack-relative margin |
+| [FND-EXE-517](../../findings/FND-EXE-517.md) | Game allocation offset ships at the zero-fill endpoint and has a stack-margin setter |
+| [FND-EXE-518](../../findings/FND-EXE-518.md) | Game allocator selected cleanup updates globals before a stack-margin setter can reject |
+| [FND-EXE-519](../../findings/FND-EXE-519.md) | Game allocator alternate cleanup merges metadata and falls into link removal |
+| [FND-EXE-520](../../findings/FND-EXE-520.md) | The overlay manager loads each overlay's code to offset 0 of the segment its trampolines enter |
+| [FND-EXE-521](../../findings/FND-EXE-521.md) | Descriptor 198's first trampoline enters a 227-byte procedure whose four dispatch tables name only its own instruction starts |
+| [FND-EXE-522](../../findings/FND-EXE-522.md) | No near transfer from the four owning entries reaches FND-EXE-173's code-or-image anomalous spans |
+| [FND-EXE-523](../../findings/FND-EXE-523.md) | No owning body, trampoline or direct near branch reaches FND-EXE-173's fixup-table and padding spans |
+| [FND-EXE-524](../../findings/FND-EXE-524.md) | Every computed near jump reached in the ten fixup-holding overlays is bounded and stays in their code |
+| [FND-EXE-525](../../findings/FND-EXE-525.md) | The corrected-snapshot anomalous spans that FND-EXE-522 and FND-EXE-523 do not cover are not their owners' code either |
+| [FND-EXE-526](../../findings/FND-EXE-526.md) | Game size-adjustment caller discards setter failure after metadata changes |
+| [FND-EXE-527](../../findings/FND-EXE-527.md) | Game grow helper copies words before cleanup and returns zero on allocation failure |
+| [FND-EXE-528](../../findings/FND-EXE-528.md) | Game record positioning resets state before native positioning and sign-extends its buffered adjustment |
+| [FND-EXE-529](../../findings/FND-EXE-529.md) | Game first-priority startup target selects a quantity and branches to resident failure code |
+| [FND-EXE-530](../../findings/FND-EXE-530.md) | Game early startup scans fixed slots and writes segment-selected metadata before bounded quantity calculation |
+| [FND-EXE-531](../../findings/FND-EXE-531.md) | Game resident request wrapper traverses segment links and restores DS from a shared code word |
+| [FND-EXE-546](../../findings/FND-EXE-546.md) | Game resident request selected paths change segment links and return a segment-offset pair |
+| [FND-EXE-547](../../findings/FND-EXE-547.md) | Game resident block producers handle alignment results differently before publishing segment headers |
+| [FND-EXE-548](../../findings/FND-EXE-548.md) | Game common request checks normalized pairs before returning a captured prior pair |
+| [FND-EXE-549](../../findings/FND-EXE-549.md) | Game request publisher changes its upper bound on native failure and commits a pair on sentinel success |
+| [FND-EXE-550](../../findings/FND-EXE-550.md) | Game startup can replace its upper segment before priority dispatch while shipped pair words begin zero |
+| [FND-EXE-551](../../findings/FND-EXE-551.md) | Game startup failure selects direct cleanup before a native termination request |
+| [FND-EXE-555](../../findings/FND-EXE-555.md) | Game general cleanup selects reverse priorities and begins with relocated no-op callbacks |
+| [FND-EXE-556](../../findings/FND-EXE-556.md) | Game manager cleanup follows mutable cache callbacks and leaves native results unchecked |
+| [FND-EXE-557](../../findings/FND-EXE-557.md) | Game cleanup registration rejects only count 32 and stores the segment before the offset |
+| [FND-EXE-558](../../findings/FND-EXE-558.md) | Game caller registers a relocated cleanup pair and tests the full registration result |
+| [FND-EXE-559](../../findings/FND-EXE-559.md) | Registered game cleanup dispatches mutable slots and then uses a carry-clearing native wrapper |
+| [FND-EXE-560](../../findings/FND-EXE-560.md) | The overlay manager's startup reads only the FBOV magic and payload size, and skips other FB blocks |
+| [FND-EXE-561](../../findings/FND-EXE-561.md) | The overlay manager keeps a descriptor when bit 1 of its flags is set and its second word is not 0 |
+| [FND-EXE-562](../../findings/FND-EXE-562.md) | The INT 3Fh handler loads an overlay and returns into its trampolines, which the manager switches between INT 3Fh and far-jump forms |
+| [FND-EXE-563](../../findings/FND-EXE-563.md) | The overlay manager can copy unloaded overlays into an EMS or extended-memory cache, tracked in header words 0x0E to 0x18 |
+| [FND-EXE-564](../../findings/FND-EXE-564.md) | Overlay 180 asks for an EMS overlay cache of up to 64 pages and, when that fails, an extended-memory one |
+| [FND-EXE-565](../../findings/FND-EXE-565.md) | The disc DSUN.EXE's overlay manager is the installed one's code one byte lower in segment 4AD6 |
+| [FND-EXE-566](../../findings/FND-EXE-566.md) | The overlay manager keeps loaded overlays in a buffer as a queue linked through header word 0x1C, and never uses word 0x1E |
+| [FND-EXE-567](../../findings/FND-EXE-567.md) | Only the overlay manager reads the segment table, using only segment, flags bit 1 and whether unk_02 is 0, and other code names an overlay header only to reach a trampoline |
+| [FND-EXE-568](../../findings/FND-EXE-568.md) | The overlay manager reads its overlays from the running program's own file and allocates a buffer of twice the largest overlay |
+| [FND-EXE-569](../../findings/FND-EXE-569.md) | Only the overlay manager's startup looks for the FBOV pack header, in both DSUN.EXE editions |
+| [FND-EXE-570](../../findings/FND-EXE-570.md) | The disc's DSUN.EXE is version 1.0 and the installed one version 1.1, and PATCH.RTP records the disc's sizes as the old and the installed sizes as the new for seven differing files |
+| [FND-EXE-571](../../findings/FND-EXE-571.md) | Each FBOV segment descriptor's unk_06 and unk_02 are the start and end offsets of its segment's bytes, and the spans tile DSUN.EXE's load image |
 
 ## Open questions
 
@@ -309,9 +480,5 @@ Entries whose Open questions section says more than None known.
 
 | ID | Title | Status |
 |---|---|---|
-| [FMT-EXE-001](../../formats/FMT-EXE-001.md) | FBOV overlay pack at the end of DSUN.EXE | supported |
 | [FMT-EXE-002](../../formats/FMT-EXE-002.md) | FBOV segment-table descriptor | supported |
-| [FMT-EXE-003](../../formats/FMT-EXE-003.md) | FBOV overlay header in the resident image | supported |
-| [FMT-EXE-004](../../formats/FMT-EXE-004.md) | FBOV overlay trampoline | supported |
-| [FMT-EXE-005](../../formats/FMT-EXE-005.md) | FBOV overlay code block with its fixup list | supported |
 | [FMT-EXE-006](../../formats/FMT-EXE-006.md) | BAT launch files | supported |

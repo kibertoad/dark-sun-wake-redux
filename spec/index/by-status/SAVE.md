@@ -15,6 +15,14 @@ Entries by status.
 | [RULE-SAVE-001](../../rules/RULE-SAVE-001.md) | The F1 and F2 screens and F3 exit choice |
 | [RULE-SAVE-002](../../rules/RULE-SAVE-002.md) | The number and file name of a saved game |
 
+## superseded
+
+1 entries.
+
+| ID | Title |
+|---|---|
+| [FND-SAVE-011](../../findings/FND-SAVE-011.md) | Clearing DS 1462 makes the resident main loop return |
+
 ## recorded
 
 11 entries.
@@ -31,7 +39,7 @@ Entries by status.
 | [FND-SAVE-008](../../findings/FND-SAVE-008.md) | Saving updates DARKRUN.GFF resources before copying it to a numbered save file |
 | [FND-SAVE-009](../../findings/FND-SAVE-009.md) | The later PREF and GREQ save writes select the CHARSAVE.GFF archive |
 | [FND-SAVE-010](../../findings/FND-SAVE-010.md) | Overlay 190 sends F1 and F2 to Save and Load and F3 to an exit choice |
-| [FND-SAVE-011](../../findings/FND-SAVE-011.md) | Clearing DS 1462 makes the resident main loop return |
+| [FND-SAVE-012](../../findings/FND-SAVE-012.md) | Clearing DS 1462 makes the resident main loop return |
 
 ## Open questions
 
