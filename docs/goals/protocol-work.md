@@ -208,9 +208,12 @@ An owner-approved history repair remains separate from this maintenance scope.
      q011_setter_sites_reach, q011_window_handlers_*, q011_start_handler_reach and
      q011_main_window_handler_reach.json): APFM +0x5A/+0x5E/+0x70 stay 0, window +0xF9/+0xFD
      stay 0 on the START GAME path, and no handler is dispatched between the gate routine's
-     +11D5 and the gate. Next PARTY item: Q-PARTY-017, the start window's 0x4B65 (overlay 212
-     +061C) and 0x4B66 (overlay 192 +0000) branches taken before START GAME; run 5 hit the
-     instruction limit, so split it per handler. Inventory rows 3EBE:001F, 3EBE:09B6 and
+     +11D5 and the gate. FND-PARTY-045 (q017_*.json, one start per handler) shows Load Saved
+     Game opens no route unless a load is confirmed (DS:0690 guards 192+03AC; only overlay 204
+     +044A sets it) and that Create Characters (window 11500) sends its events to overlay 190
+     +139B/+0D89/+0802, which reach two count stores. Next PARTY item: Q-PARTY-017, which of
+     those overlay 190 routes the character screen's actions take; Q-PARTY-018 asks whether
+     START GAME is still reachable after a confirmed load. Inventory rows 3EBE:001F, 3EBE:09B6 and
      1000:02AD have boundary anomalies (FND-PARTY-044); upstream: toolkit #412 (reach no-return
      declarations) and #413 (inventory row starts inside instructions). The owner asked about
      live probes (reconqueror-style); no policy change was made, so Probe stays none.

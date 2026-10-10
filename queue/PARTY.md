@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-018
+Next ID: Q-PARTY-019
 
 ## Static
 
@@ -39,19 +39,24 @@ Next ID: Q-PARTY-018
   slot? Settles it: the handler the keys 1 to 4 reach in overlay 190, which posts an event for
   the character boxes `0x2C24` to `0x2C27` (FND-COMBAT-025), and the writers of `leader`. Tried:
   the leader buttons, which store the slot at `4C13:0369` (FND-COMBAT-023). Blocks: slice 3.
-- Q-PARTY-017. RULE-PARTY-006: When the player takes the start window's button `0x4B65`
-  (overlay 212 `+061C`, window `0x2CEC`) or `0x4B66` (overlay 192 `+0000`, window `0x4844`)
-  before START GAME, and the start loop continues, can that branch or its window's handlers
-  (overlay 212 `+0967`, `+0000`, `+0A57`, overlay 190 `+0092` and `+361C`; overlay 192 `+0785`
-  and `+022B`) change the placed-object count at `DS:264E` (FND-PARTY-022), make the word at
-  `DS:0DAB` nonzero (FND-PARTY-029), make the mouse pointer an image other than an `ICON`
-  (FND-PARTY-036), or leave a window callback or `DS:A0F1` value that the gate routine's
-  reservations (FND-PARTY-035) or its run up to the gate at overlay 182 `0x12DD` calls? Settles
-  it: the code of those branches and handlers, read for which events reach the routes
-  FND-PARTY-044's run 5 finds to the count's stores, `2C5F:0CBF`, `2C5F:0CF1`, overlay 182
-  `+15D7` and the gate routine, and for whether each returns to the start loop with that state
-  changed. Tried: the seven record-field calls on paths where START GAME is the first choice,
-  which open no route (FND-PARTY-044). Blocks: slice 2.
+- Q-PARTY-017. RULE-PARTY-006: When the player opens Create Characters (start window button
+  `0x4B65`, overlay 212 `+061C`, window `0x2CEC`) before START GAME and the start loop
+  continues, which actions on that screen take the routes from overlay 190 `+139B`, `+0D89` and
+  `+0802` (called by the handler overlay 212 `+0967`), or from the window's other handlers
+  (overlay 212 `+0000` and `+0A57`, overlay 190 `+0092` and `+361C`), to the count's stores
+  `0x271E3` and `0x27404` (FND-PARTY-022), the `DS:13FB` setter overlay 173 `+3CDA`
+  (FND-PARTY-031) and the pointer-image sites `2C5F:0CBF`, `2C5F:0CF1`, `0x777F7`, `0x9106C`
+  and `0x910C6` (FND-PARTY-036), and does the start loop reach START GAME with the count,
+  `DS:0DAB`, the pointer image or a window callback changed? Settles it: the code of those
+  overlay 190 routines, read for which events and party states reach each route, and the
+  screen's exit back to the start window. Tried: the routes from the handler's three overlay
+  190 calls, found but not read for the events that take them (FND-PARTY-045 run 4).
+  Blocks: slice 2.
+- Q-PARTY-018. RULE-PARTY-006: After a confirmed load from the start window's Load Saved Game
+  window (overlay 192 `+0785`, confirm branch `+0B21`), can START GAME still be chosen, and with
+  what placed-object count and `DS:0DAB`? Settles it: the load routine overlay 192 `+05ED`,
+  overlay 182 `+19F8`, `28C9:2522`, the gate routine called with 0, and whether window 19500 or
+  its handler survives those calls (FND-PARTY-045). Blocks: slice 2.
 
 ## Emulated call
 

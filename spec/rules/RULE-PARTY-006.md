@@ -81,15 +81,17 @@ None known.
   such routines (FND-PARTY-040), fails only on a file call's result (FND-PARTY-042). The 7 calls
   through window and `APFM` record fields hold, on paths where START GAME is the first
   start-window choice, no routine that opens a route (FND-PARTY-044), and the two calls
-  FND-PARTY-043 reads reach none. Still open:
-  whether taking the start window's `0x4B65` or `0x4B66` button first, whose windows' handlers do
-  reach such routines, changes the count before START GAME (FND-PARTY-044, Q-PARTY-017);
-  and whether either of the gate routine's two
+  FND-PARTY-043 reads reach none. Opening Load Saved Game first and leaving it without loading
+  opens no route either (FND-PARTY-045). Still open: whether opening Create Characters first,
+  whose screen sends its events to routines from which routes reach two of the count's stores,
+  changes the count before START GAME (FND-PARTY-044, FND-PARTY-045, Q-PARTY-017); whether START
+  GAME can still be chosen after a confirmed load, and with what count (FND-PARTY-045,
+  Q-PARTY-018); and whether either of the gate routine's two
   video-memory reservations fails (FND-PARTY-030, FND-PARTY-032, FND-PARTY-033). While the
   pointer is an `ICON` neither can fail on space, since the caret and pointer saves then hold at
   most 1,006 paragraphs, the room left, and no direct route before the gate makes it another
-  image (FND-PARTY-035, FND-PARTY-036, FND-PARTY-037); routes through those
-  branches stay open (Q-PARTY-017). The owner's captures of a game started with START GAME show the four characters
+  image (FND-PARTY-035, FND-PARTY-036, FND-PARTY-037); routes through Create Characters or
+  after a load stay open (Q-PARTY-017, Q-PARTY-018). The owner's captures of a game started with START GAME show the four characters
   in this order, but they do not tell 41 from 53 or 43 from 33 (FND-PARTY-020); the
   shipped-party live session would confirm it (Q-PARTY-001).
 - Where `CHARSAVE.GFF` is opened from rests on DOS reporting version 3 or later and placing the
