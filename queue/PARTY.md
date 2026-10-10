@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-024
+Next ID: Q-PARTY-026
 
 ## Static
 
@@ -21,13 +21,11 @@ Next ID: Q-PARTY-024
   greatest hit points, origin, gender, alignment, class codes with their names, and levels, and
   FND-PARTY-058 and FND-PARTY-059 place experience at `0x45` and the current and greatest
   psionic points at `0x0C` and `0x51`. Blocks: slice 2.
-- Q-PARTY-022. FMT-PARTY-001: Are the class bytes at `+0x1B` to `+0x1D` of the details record,
-  when overlay 186 `+0421` and overlay 183 `+13B7` index `DATA` 1000 by them less 1, the 17-code
-  values a `CHAR` record stores or values converted to the 8-name numbering of `DS:1164`? The
-  shipped experience matches the rows of the 8 names, and the stored codes run to 17 while the
-  resource has 8 rows (FND-PARTY-057, FND-PARTY-058). Settles it: every write to those bytes after
-  the load of FND-PARTY-051, among them overlay 183 `+0B38..+0B76`, and the six overlay 210 calls
-  of overlay 185 `+0000`. Blocks: slice 2.
+- Q-PARTY-024. BUG-PARTY-001, FMT-PARTY-001: Which class numbering does a character made in
+  generation keep: overlay 183 names classes through `DS:1164` and indexes `DATA` 1000 by the code
+  less 1, while play and the shipped records use the 17 codes of `DS:1487` (FND-PARTY-057,
+  FND-PARTY-060)? Settles it: the callers of overlay 183 `+0A3E` and the values they pass, and the
+  code that stores the finished character's details record. Blocks: slice 2.
 - Q-PARTY-023. FMT-PARTY-001: How does a character's level follow experience: when does overlay
   183 `+13B7..+14D0` run, what bounds the level it raises, and what do the class positions it
   skips (the byte at `-4` of its frame tested bit by bit) and level 15 mean? Settles it: a complete
@@ -87,6 +85,13 @@ None.
 
 ## Live session
 
+- Q-PARTY-025. BUG-PARTY-001: Does the character sheet print, in brackets after the experience,
+  the threshold of the row numbered by the class code less 1, so that a supplied Cleric (code 2) at
+  level 7 shows 60000 where its class's table gives 110000, and what does it show for a Fighter,
+  Gladiator or Thief (codes 9, 10 and 17)? Settles it: an owner capture of the View Character
+  screen for each supplied character before any play, compared with records 40 to 43 and
+  FND-PARTY-058's table. Tried: the static reading FND-PARTY-058 and FND-PARTY-060. Blocks:
+  slice 2.
 - Q-PARTY-001. RULE-PARTY-006: Does START GAME put characters 40, 41, 42 and 43 into the four
   party slots, and not 53 or 33? Settles it: the shipped-party live session, with captures taken
   before any play so that experience and hit points can be compared with records 41 and 53, and
