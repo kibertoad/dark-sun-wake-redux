@@ -7,7 +7,7 @@ superseded_by: []
 evidence: [FND-PARTY-057, FND-PARTY-058, FND-PARTY-074, FND-PARTY-081, FND-PARTY-083, FND-PARTY-084, FND-PARTY-085, FND-PARTY-086, FND-PARTY-089, FND-PARTY-088, FND-PARTY-090, FND-PARTY-096, FND-PARTY-097, FND-PARTY-098, FND-PARTY-101]
 conflicting: []
 split_with: []
-related: [RULE-PARTY-012, RULE-PARTY-014, RULE-PARTY-015, RULE-RNG-001, FMT-PARTY-001]
+related: [RULE-PARTY-012, RULE-PARTY-014, RULE-PARTY-015, RULE-RNG-001, FMT-PARTY-001, FMT-PARTY-004, FMT-PARTY-005]
 ---
 
 ## Summary
@@ -231,8 +231,13 @@ None known.
   slot in `4C13:0369` current when that slot meets the trigger's distance test (FND-PARTY-097,
   FND-PARTY-098), and whether any script that can run in a fight
   holds that opcode was not read (Q-PARTY-050).
-- What else a level changes: for a new Preserver or Psionicist level the original calls overlay
-  209 routines, and before the gain it calls overlay 199 `+0C21`, none of which this entry covers
-  (Q-PARTY-039).
+- The choices a new greatest level offers: after the saving throws of a level that raises
+  `greatest_levels`, the original opens a window in which the player learns one spell for class
+  code 11 or learns or enhances one or two psionic powers for class code 12, changing FMT-PARTY-005
+  and FMT-PARTY-004 (FND-PARTY-104); the procedure leaves them out until those windows have screen
+  entries (Q-PARTY-053).
+- Whether the routines overlay 199 `+0C21` calls before the gain change any of the member's
+  records: its own body stores none of them (FND-CONFIG-161), and its callees were not read
+  (Q-PARTY-054).
 - That the messages and draws happen in this order in play: a capture of a party gaining levels
   after a fight would confirm it (Q-PARTY-037).

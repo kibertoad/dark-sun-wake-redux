@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-053
+Next ID: Q-PARTY-055
 
 ## Static
 
@@ -17,10 +17,18 @@ Next ID: Q-PARTY-053
   they need; FND-PARTY-081 shows overlay 210 `+0740` passes overlay 209 `+0000` the slot whose
   Preserver level rose, so the question is whether that can be another slot on this path.
   Blocks: slice 2.
-- Q-PARTY-039. RULE-PARTY-013: What do overlay 199 `+0C21`, which runs before each level gain,
-  and overlay 209 `+0000` and the window of `+0A84`, which run for a new Preserver or Psionicist
-  level, change (FND-PARTY-081, FND-PARTY-084)? Settles it: a reading of those routines. Tried:
-  FND-PARTY-085 reads the other four routines a level calls. Blocks: slice 2.
+- Q-PARTY-053. RULE-PARTY-013: How do the spell window of overlay 209 `+0218` and the psionic
+  power window of overlay 209 `+0A84` behave as screens, so that `gain_one_level` can show them
+  after the saving throws of a new greatest level in class code 11 or 12 (FND-PARTY-104)? Settles
+  it: screen entries for the two windows from their handlers and fill routines (overlay 209
+  `+00C2`, `+03DC`, `+0622`, `+0C84`, `+0E2D` and `+0EF0`), with overlay 211 `+208C`, overlay 177
+  `+0A45` for spell 0 and the cases for events 2, 4 and 0x80 read. Blocks: slice 2.
+- Q-PARTY-054. RULE-PARTY-013: Does anything overlay 199 `+0C21` calls before a level gain store to
+  a party member's combatant, details, `SPST` or `PSST` records (FND-PARTY-081, FND-CONFIG-161)?
+  Settles it: a reading of overlay 199 `+0BC1`, overlay 182 `+0128` and `+19F8`, overlay 187
+  `+2B91`, overlay 190 `+11A1` and the resident callees `444C:0092`, `45B9:0034`, `4611:0051`,
+  `4611:03A5`, `3D72:0D83` and `2C5F:0182` for such stores, or a reach run from `+0C21` with those
+  stores as targets. Blocks: nothing yet.
 - Q-PARTY-045. RULE-PARTY-015: Does any enemy's `kill_experience` divided by the filled party
   slots reach 32,768, so that killing it lowers each member's experience (FND-PARTY-086,
   FND-PARTY-094)? Settles it: the routine that loads an `RDFF` resource of `OBJEX.GFF` into the
@@ -58,9 +66,12 @@ Next ID: Q-PARTY-053
   `0x08`, which type-2 chunks fill with handles, lead to? Settles it: the code that reads the
   table at `DS:19C1` and those words, such as the View Character screen's possessions
   (SCR-UI-002). Blocks: slice 2.
-- Q-PARTY-005. FMT-PARTY-004, FMT-PARTY-005: What do the `PSST` and `SPST` bytes hold, and what
+- Q-PARTY-005. FMT-PARTY-004, FMT-PARTY-005: What does bit 0 of a `PSST` byte hold, and what
   does the game do when it reads a 9-byte `SPST` into its 15-byte table entry? Settles it: the
-  code that reads the four-slot tables overlay 186 fills (FND-PARTY-012). Blocks: slice 3.
+  code that reads and writes the four-slot tables overlay 186 fills (FND-PARTY-012), and the read
+  entry `37FC:04AB` for a resource shorter than the size it is given. Tried: FND-PARTY-104 reads
+  the level-gain windows, which show `SPST` as the known spells and bits 1 to 7 of `PSST` as power
+  ranks, and keep bit 0. Blocks: slice 3.
 - Q-PARTY-006. RULE-PARTY-001: What does the game do when the player tries to begin with an
   empty party, and does a party of fewer than four play differently? Settles it: the code of the
   View Character screen's exit that begins play (SCR-UI-002). Blocks: slice 2.
