@@ -39,9 +39,12 @@ Next ID: Q-PARTY-049
   the other ES reads at those displacements use other pointers and no read without ES follows
   the details pointers. Only a computed address or a copy is left.
 - Q-PARTY-045. RULE-PARTY-015: Does any enemy's `kill_experience` divided by the filled party
-  slots reach 32,768, so that killing it lowers each member's experience (FND-PARTY-086)? Settles
-  it: the details dword at `0x04` of every enemy a fight can load, read from the files that fill
-  enemy details records. Blocks: nothing yet.
+  slots reach 32,768, so that killing it lowers each member's experience (FND-PARTY-086,
+  FND-PARTY-094)? Settles it: the routine that loads an `RDFF` resource of `OBJEX.GFF` into the
+  combatant and details records, read to show whether it copies the bytes at `0x0A` and `0x3B`
+  as the CHAR loader does, and the placements of `RDFF` 430 and 541 in the regions. Blocks:
+  nothing yet. Tried: FND-PARTY-094 finds `RDFF` 430 (107,000) and 541 (33,000), of kind 7, with
+  CHAR chunk headers; the loader is the ACTOR area's Q-ACTOR-003, outside this goal's claim.
 - Q-PARTY-046. RULE-PARTY-015: Are the combatant `kind` values 7 to 11 the enemies and 0, 4, 5 and 6
   the party and its allies (FND-PARTY-086)? Settles it: the code that stores the combatant byte at
   `0x15` for party members and for loaded enemies. Blocks: nothing yet.

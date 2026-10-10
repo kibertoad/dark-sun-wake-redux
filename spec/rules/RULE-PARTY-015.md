@@ -104,6 +104,9 @@ None known.
 ## Open questions
 
 - Whether any enemy's `kill_experience` divided by the filled slots reaches 32,768, so that a
-  kill lowers the party's experience: the details records of enemies were not read (Q-PARTY-045).
+  kill lowers the party's experience: `RDFF` 430 of `OBJEX.GFF`, of kind 7, holds 107,000 where
+  a CHAR record holds `kill_experience`, which would do so with three filled slots or fewer, but
+  that `RDFF` resources load as CHAR records do rests on matching chunk headers (FND-PARTY-094,
+  Q-PARTY-045).
 - That `kind` 7 to 11 are the enemies and 0, 4, 5 and 6 the party and its allies rests on the
   two masks (Q-PARTY-046).
