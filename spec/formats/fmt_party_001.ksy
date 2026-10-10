@@ -181,8 +181,14 @@ seq:
     repeat: expr
     repeat-expr: 3
     doc: The greatest level held in each class position.
-  - id: unk_81
-    size: 6
+  - id: attack_sound
+    type: u2
+    doc: Sound of the character's natural attack; 0 for the default sound 98.
+  - id: damage_sound
+    type: u2
+    doc: Sound the damage routine plays for the character; 0 for none.
+  - id: unk_85
+    size: 2
   - id: chunks
     type: fmt_party_006
     repeat: until

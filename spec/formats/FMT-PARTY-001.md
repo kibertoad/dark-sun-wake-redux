@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_001.ksy
-evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057, FND-PARTY-058, FND-PARTY-059, FND-PARTY-073, FND-PARTY-066, FND-PARTY-074, FND-PARTY-081, FND-PARTY-082, FND-PARTY-083, FND-PARTY-085, FND-PARTY-086, FND-PARTY-091, FND-PARTY-100, FND-PARTY-096, FND-PARTY-099, FND-PARTY-108, FND-PARTY-071, FND-PARTY-070, FND-PARTY-142, FND-PARTY-095, FND-PARTY-143, FND-PARTY-144, FND-PARTY-145, FND-PARTY-146, FND-PARTY-147, FND-PARTY-148, FND-PARTY-113]
+evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057, FND-PARTY-058, FND-PARTY-059, FND-PARTY-073, FND-PARTY-066, FND-PARTY-074, FND-PARTY-081, FND-PARTY-082, FND-PARTY-083, FND-PARTY-085, FND-PARTY-086, FND-PARTY-091, FND-PARTY-100, FND-PARTY-096, FND-PARTY-099, FND-PARTY-108, FND-PARTY-071, FND-PARTY-070, FND-PARTY-142, FND-PARTY-095, FND-PARTY-143, FND-PARTY-144, FND-PARTY-145, FND-PARTY-146, FND-PARTY-147, FND-PARTY-148, FND-PARTY-113, FND-PARTY-149]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-006]
@@ -88,7 +88,9 @@ offsets hold for every record the game writes and reads back.
 | `0x76` | 5 | `UINT8[5]` | `saving_throws` | Five saves, each the least over the class groups of a starting value less a fall per level, the fall capped (FND-PARTY-085, BUG-PARTY-004). A load copies them to bytes `0x31` to `0x35` of the FMT-COMBAT-002 record; storing a character, a class change and each level gained in play set them. A saving throw against an effect whose `DATA` record names save 1 to 5 compares a d20 roll with the byte of that number (FND-PARTY-099). | supported | FND-PARTY-051, FND-PARTY-085, FND-PARTY-099 |
 | `0x7B` | 3 | `BYTE[3]` | `unk_7b` | Purpose unknown. A load copies it to bytes `0x36` to `0x38` of the FMT-COMBAT-002 record, so its byte at `0x7C` lands on `footprint`. | supported | FND-PARTY-051 |
 | `0x7E` | 3 | `UINT8[3]` | `greatest_levels` | The greatest level the character has held in each class position. A load copies it to bytes `0x39` to `0x3B` of the FMT-COMBAT-002 record. Generation copies `levels` here, a new level in play above the byte raises it, and the level drain leaves it; a roll is added to `hit_die_total` only while the sum of `levels` is not below the sum of these bytes. | supported | FND-PARTY-051, FND-PARTY-074, FND-PARTY-081, FND-PARTY-082 |
-| `0x81` | 6 | `BYTE[6]` | `unk_81` | Purpose unknown. A load copies it to bytes `0x3C` to `0x41` of the FMT-COMBAT-002 record. | supported | FND-PARTY-051 |
+| `0x81` | 2 | `UINT16LE` | `attack_sound` | The number of the sound the character's natural attack makes, 0 for the default sound 98. A load copies it to the FMT-COMBAT-002 record's word at `0x3C`, which overlay 179 `+0D2F` plays; 67 or 68 in four shipped records and 0 in the others. | supported | FND-PARTY-051, FND-PARTY-149 |
+| `0x83` | 2 | `UINT16LE` | `damage_sound` | The number of a sound the damage routine plays for the character through overlay 206 `+0000`, 0 for none. A load copies it to the FMT-COMBAT-002 record's word at `0x3E`; 69 in one shipped record and 0 in the others. | supported | FND-PARTY-051, FND-PARTY-149 |
+| `0x85` | 2 | `BYTE[2]` | `unk_85` | Purpose unknown. A load copies it to bytes `0x40` and `0x41` of the FMT-COMBAT-002 record; overlays 174 and 198 use the first as a count. 0 in the shipped records. | supported | FND-PARTY-051, FND-PARTY-149 |
 | `0x87` | `33 * (chunk_count - 2)` | FMT-PARTY-006`[chunk_count - 2]` | `chunks` | The other chunks, each of `chunk_type` 2 or 4 with 23 bytes of data in the shipped records. | supported | FND-PARTY-051, FND-PARTY-052 |
 | | 10 | FMT-PARTY-006 header | `end` | `chunk_type` 0xFF and `len_data` 0, the other bytes as at `0x01` to `0x07`. | supported | FND-PARTY-051, FND-PARTY-052 |
 | | | | | Total size `145 + 33 * (chunk_count - 2)` in the shipped records | | |
@@ -141,7 +143,7 @@ ends within its slot [FND-PARTY-001, FND-PARTY-005, FND-PARTY-052].
 ## Open questions
 
 - What `unk_18`, `unk_1c`, `unk_21`, `unk_2a`,
-  `unk_68`, `unk_7b` and `unk_81` hold. The two chunks at `0x00` and `0x3B` are the only ones that
+  `unk_68`, `unk_7b` and `unk_85` hold. The two chunks at `0x00` and `0x3B` are the only ones that
   reach the combatant and details records, so the screen's values are in them or in the records of
   the later chunks (FND-PARTY-020, FND-PARTY-051, FND-PARTY-057, FND-PARTY-058,
   FND-PARTY-059, Q-PARTY-003).
