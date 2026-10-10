@@ -4,12 +4,6 @@ Next ID: Q-PARTY-067
 
 ## Static
 
-- Q-PARTY-066. SCR-PARTY-001, SCR-PARTY-002: Where do the spell and psionic power windows draw their
-  text line and frame highlight, what does the description a right-button release opens show, and
-  do the frames answer the pointer again after it closes (FND-PARTY-154)? Settles it: overlay 209
-  `+07D0`, overlay 190 `+0000` with last arguments 0, 1, 5 and 8, overlay 213 `+16EE` and `+02D5`,
-  and overlay 186 `+00B8` with 100 read, and whether `BUTN/11319` is closed to presses. Blocks:
-  nothing yet.
 - Q-PARTY-045. RULE-PARTY-015: Does any enemy's `kill_experience` divided by the filled party
   slots reach 32,768, so that killing it lowers each member's experience (FND-PARTY-086,
   FND-PARTY-094)? Settles it: what moves objects 430 and 541 out of the region `Limbo`, where
