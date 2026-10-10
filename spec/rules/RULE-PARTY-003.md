@@ -1,10 +1,10 @@
 ---
 id: RULE-PARTY-003
 title: Which psionic disciplines and elemental sphere a new character chooses
-status: sourced
+status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [SRC-MANUAL-1994, SRC-README-1.1]
+evidence: [SRC-MANUAL-1994, SRC-README-1.1, FND-PARTY-063, FND-PARTY-066, FND-PARTY-067]
 conflicting: []
 split_with: []
 related: [SCR-UI-004, SCR-UI-005]
@@ -73,9 +73,6 @@ None known.
 
 ## Open questions
 
-- The sphere part is read in the code: the Cleric, Druid and Ranger buttons of the generation
-  screen open a window of four radio buttons, air, earth, fire and water, with air chosen, and the
-  stored class code holds the choice (FND-PARTY-063, FND-PARTY-066). The discipline part, and what
-  the screen shows for a character with neither, are not read (Q-PARTY-002).
-- Whether the choice of discipline is stored as a bit of the character's `PSIN` byte
-  (FMT-PARTY-003, Q-PARTY-004).
+- Whether a psionicist can turn one of the three disciplines off in the discipline window: the
+  window's handler passes the pressed button to routines whose effect on the other buttons was not
+  read (FND-PARTY-067, Q-PARTY-002).

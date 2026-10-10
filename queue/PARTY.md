@@ -20,11 +20,11 @@ Next ID: Q-PARTY-029
 - Q-PARTY-002. RULE-PARTY-002, RULE-PARTY-003, RULE-PARTY-005, RULE-PARTY-007: What does the
   character generation screen check and offer: which classes it offers each origin where the
   manual's two lists and README table 3 disagree (half-giant ranger or thief, mul druid,
-  thri-kreen druid or thief), which class combinations it allows, how it rolls the six scores and when it applies the origin modifiers, and whether it
-  refuses DONE or greys out choices? Settles it: the code behind SCR-UI-004 and SCR-UI-005, then
+  thri-kreen druid or thief), which class combinations it allows, how it rolls the six scores and when it applies the origin modifiers, whether it
+  refuses DONE or greys out choices, and whether a psionicist can turn a discipline off? Settles it: the code behind SCR-UI-004 and SCR-UI-005, then
   an owner capture of the generation screen for each disputed pair. Tried: FND-PARTY-063 and
   FND-PARTY-066 read the class buttons and the sphere window, which Cleric, Druid and Ranger
-  open. Blocks: slice 2.
+  open, and FND-PARTY-067 the discipline window. Blocks: slice 2.
 - Q-PARTY-003. FMT-PARTY-001, RULE-PARTY-004, RULE-MAGIC-002: What do the record's remaining `unk_`
   fields hold, and are the scores stored before or after origin modifiers? Settles it: the other
   routines that print the character sheet from the record at `DS:1429` (FND-PARTY-055), and the
@@ -40,9 +40,6 @@ Next ID: Q-PARTY-029
   `0x08`, which type-2 chunks fill with handles, lead to? Settles it: the code that reads the
   table at `DS:19C1` and those words, such as the View Character screen's possessions
   (SCR-UI-002). Blocks: slice 2.
-- Q-PARTY-004. FMT-PARTY-003, RULE-PARTY-003: Does each bit of the `PSIN` byte stand for one
-  psionic discipline, and which? Settles it: the code that reads the four-slot `PSIN` table
-  overlay 186 fills (FND-PARTY-012), or the discipline list of SCR-UI-005. Blocks: slice 2.
 - Q-PARTY-005. FMT-PARTY-004, FMT-PARTY-005: What do the `PSST` and `SPST` bytes hold, and what
   does the game do when it reads a 9-byte `SPST` into its 15-byte table entry? Settles it: the
   code that reads the four-slot tables overlay 186 fills (FND-PARTY-012). Blocks: slice 3.

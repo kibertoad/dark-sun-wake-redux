@@ -4,8 +4,8 @@ meta:
   license: MIT
   endian: le
 doc: The one-byte PSIN resource kept beside each CHAR resource.
-doc-ref: FMT-PARTY-003, FND-PARTY-002, FND-PARTY-012
+doc-ref: FMT-PARTY-003, FND-PARTY-002, FND-PARTY-012, FND-PARTY-067
 seq:
-  - id: unk_00
+  - id: disciplines
     type: u1
-    doc: Purpose unknown; a nonzero combination of bits 0 to 2 in the shipped resources.
+    doc: The psionic disciplines, bit 0 psychokinesis, bit 1 psychometabolism, bit 2 telepathy.
