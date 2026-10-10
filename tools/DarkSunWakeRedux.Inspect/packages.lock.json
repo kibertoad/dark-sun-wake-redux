@@ -4,24 +4,24 @@
     "net10.0": {
       "RefurbishedDinosaurs.Media.Fli": {
         "type": "Direct",
-        "requested": "[11.0.0, 11.0.0]",
-        "resolved": "11.0.0",
-        "contentHash": "OS7N+oIHh+39YkgRG9QBla+xw1XYZAirccOwWopT9YXO3b3DU/Q147mCv/rUl0stM9XV0YnlqIeRek/nmoN/WQ=="
+        "requested": "[11.3.0, 11.3.0]",
+        "resolved": "11.3.0",
+        "contentHash": "G8nyvWIjZDqBTdeXSAgjgEd1AINTZ4jodPoWq6QFOazFcJbaACq6oiSeit8idsgfSx64XnTcvezeljMysnzaqw=="
       },
       "RefurbishedDinosaurs.Core": {
         "type": "Transitive",
-        "resolved": "11.0.0",
-        "contentHash": "fmCgsDLIQTD01uIVmd3ugI4vDlhl3/1Onagjeyd+SRzfuHazgvTX1btmxaUTjf8D+DZcyV8D1M+H2mqVhSFZ/Q==",
+        "resolved": "11.3.0",
+        "contentHash": "/cSy5TM0pWDCuDFniamTZs5l4dth/TBUOeNlkgJT/sze/G3YjcpWgpJpRcpgmKE6ULudIRYiBgwJ8idOxo4ZEw==",
         "dependencies": {
           "System.IO.Hashing": "10.0.12"
         }
       },
       "RefurbishedDinosaurs.LegacyFormats": {
         "type": "Transitive",
-        "resolved": "11.0.0",
-        "contentHash": "Ae38YLzjjbASPiKRvAh6FXlCtrv4V37Hw80K7+qoi/dnrwsdfdBSbfmAwsPvUlVRNoSv1yLgVy7PN2Sucs61yQ==",
+        "resolved": "11.3.0",
+        "contentHash": "ZYILKc07u/IGA+PAhPVMiM5E+E45oOwPHEPZQeIGvVi+Iy+8t4/djg5RTVJYD6nUm2t289SiP/ByNHn5SmToPw==",
         "dependencies": {
-          "RefurbishedDinosaurs.Core": "11.0.0"
+          "RefurbishedDinosaurs.Core": "11.3.0"
         }
       },
       "System.IO.Hashing": {
@@ -32,8 +32,8 @@
       "darksunwakeredux.resources": {
         "type": "Project",
         "dependencies": {
-          "RefurbishedDinosaurs.Core": "[11.0.0, 11.0.0]",
-          "RefurbishedDinosaurs.LegacyFormats": "[11.0.0, 11.0.0]"
+          "RefurbishedDinosaurs.Core": "[11.3.0, 11.3.0]",
+          "RefurbishedDinosaurs.LegacyFormats": "[11.3.0, 11.3.0]"
         }
       }
     }
