@@ -164,6 +164,9 @@ An owner-approved history repair remains separate from this maintenance scope.
   loads, all via view draw 31BA:000E -> object load 31E0:0EFF -> 31E0:0B4A when byte 4F49:0C33+3n
   is 2. Added reach_record_loads.py; commented on toolkit #462 (our own report of the 256-target
   cap) with the inventory-extent gap it leaves.
+- FND-PARTY-131: 4F49:0C33 state 2 is set by 184+1648 for a new party member's object slot, so
+  FND-PARTY-130's branch is the party member's object load. Q-PARTY-054 now asks whether a party
+  member's DS:67B7 entry can hold a negative +6 when 182+19F8 redraws the view at a level gain.
 - Upstream duplicate checks for this session's points: the old DS:0DAB finding's wrong address
   was a project error that IDENTIFIERS-8 (protocol #66) already covers, so no issue was filed;
   #96 was filed after searching protocol #46, #66, #95 and toolkit #436, #269, #80; the
