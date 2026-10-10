@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_001.ksy
-evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-004, FND-PARTY-005, FND-PARTY-020]
+evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-004, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-006]
@@ -26,7 +26,17 @@ FMT-PARTY-003, FMT-PARTY-004 and FMT-PARTY-005 resources, and, for a character i
 |---|---|---|---|---|---|---|
 | `0x00` | 1 | `UINT8` | `version` | 1 in every shipped record. | supported | FND-PARTY-004 |
 | `0x01` | 1 | `UINT8` | `tail_count` | Number of FMT-PARTY-002 records after the header, 2 to 29 in the shipped records. | supported | FND-PARTY-004 |
-| `0x02` | 33 | `BYTE[33]` | `unk_02` | Purpose unknown. | supported | FND-PARTY-004 |
+| `0x02` | 8 | `BYTE[8]` | `unk_02` | Purpose unknown. The load does not copy these bytes to the FMT-COMBAT-001 record. | supported | FND-PARTY-004, FND-PARTY-049 |
+| `0x0A` | 2 | `INT16LE` | `hit_points` | The character's current hit points. A load copies it to the FMT-COMBAT-001 record's `hit_points`; 21 to 165 in the shipped records. | supported | FND-PARTY-049, FND-PARTY-050 |
+| `0x0C` | 2 | `BYTE[2]` | `unk_0c` | Purpose unknown. A load copies it to the FMT-COMBAT-001 record's `unk_02`. | supported | FND-PARTY-049 |
+| `0x0E` | 2 | `UINT16LE` | `unk_0e` | Purpose unknown. A load copies it to the FMT-COMBAT-001 record's `details_index` and then replaces that with 9,999; 0 to 3 in the shipped records. | supported | FND-PARTY-049, FND-PARTY-050 |
+| `0x10` | 2 | `UINT16LE` | `combatant_id` | A load copies it to the FMT-COMBAT-001 record's `character_id`. 32,769 to 33,536 in the shipped records, never the record's own number, and the same in two of them. | supported | FND-PARTY-049, FND-PARTY-050 |
+| `0x12` | 8 | `BYTE[8]` | `unk_12` | Purpose unknown. A load copies it to bytes `0x08` to `0x0F` of the FMT-COMBAT-001 record, then replaces the words that came from `0x12`, `0x14` and `0x16` with 9,999. | supported | FND-PARTY-049, FND-PARTY-050 |
+| `0x1A` | 2 | `UINT16LE` | `object_offset` | 300 plus this is the object number placed for the character when it is added to the party or supplied by START GAME (RULE-PARTY-006); 0 to 13 in the shipped records. | supported | FND-PARTY-013, FND-PARTY-048, FND-PARTY-049 |
+| `0x1C` | 2 | `BYTE[2]` | `unk_1c` | Purpose unknown. A load copies it to bytes `0x12` and `0x13` of the FMT-COMBAT-001 record. | supported | FND-PARTY-049 |
+| `0x1E` | 1 | `UINT8` | `combat_mark` | A load copies it to the FMT-COMBAT-001 record's `combat_mark` and makes that 1 when it is 0; 0 or 1 in the shipped records. | supported | FND-PARTY-049, FND-PARTY-050 |
+| `0x1F` | 3 | `BYTE[3]` | `unk_1f` | Purpose unknown. A load copies it to the FMT-COMBAT-001 record's `unk_15`. | supported | FND-PARTY-049 |
+| `0x22` | 1 | `UINT8` | `control_flags` | A load copies it to the FMT-COMBAT-001 record's byte at `0x18`, whose bits 5 and 6 are `computer_control` and `control_locked`; 0 in the shipped records. | supported | FND-PARTY-049, FND-PARTY-050 |
 | `0x23` | 1 | `UINT8` | `strength` | Strength, 12 to 24 in the shipped records. | established | FND-PARTY-003, FND-PARTY-020 |
 | `0x24` | 1 | `UINT8` | `dexterity` | Dexterity. | established | FND-PARTY-003, FND-PARTY-020 |
 | `0x25` | 1 | `UINT8` | `constitution` | Constitution. | established | FND-PARTY-003, FND-PARTY-020 |
@@ -62,8 +72,14 @@ FND-PARTY-005].
 
 ## Open questions
 
-- Where the record keeps the gender, origin, alignment, classes, levels, experience, hit points
-  and psionic strength points the View Character screen shows, and what `unk_02`, `unk_29`,
-  `unk_3B` and the tail records hold (FND-PARTY-018, FND-PARTY-020, Q-PARTY-003).
+- Where the record keeps the gender, origin, alignment, classes, levels, experience, maximum
+  hit points and psionic strength points the View Character screen shows, and what `unk_02`,
+  `unk_0c`, `unk_0e`, `unk_12`, `unk_1c`, `unk_1f`, `unk_29`, `unk_3B` and the tail records hold
+  (FND-PARTY-018, FND-PARTY-020, Q-PARTY-003).
+- Whether `hit_points` holds current rather than maximum hit points: it lands on the combatant
+  record's `hit_points`, which the status panel shows first (FND-PARTY-050, Q-PARTY-003).
+- What `combatant_id` identifies: overlay 184 writes the combatant record's copy of it to a
+  `CACT` resource (FND-PARTY-012), and the shipped values are never the record's own number
+  (FND-PARTY-050, Q-PARTY-003).
 - Whether the scores are stored before or after origin modifiers (Q-PARTY-003).
 - Whether the game accepts a `version` other than 1 (Q-PARTY-003).

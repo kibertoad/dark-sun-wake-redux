@@ -19,7 +19,10 @@ Next ID: Q-PARTY-020
   (FND-PARTY-012, FND-PARTY-013), read against the 49-byte party records at `DS:19C9`. Tried: a
   search of the headers of records 40 and 42 for the label positions of their gender, origin,
   alignment and class (FND-PARTY-018); FND-PARTY-049 shows the load copies a record's bytes
-  `0x0A` to `0x3A` into the party record, so each party record field names a `CHAR` field. Blocks: slice 2.
+  `0x0A` to `0x3A` into the party record, and FND-PARTY-050 places hit points at `0x0A`, the
+  object offset at `0x1A`, the combatant identifier at `0x10` and the control flags at `0x22`;
+  gender, origin, alignment, classes, levels, experience, maximum hit points and psionic
+  strength points are not among the combatant record's known fields. Blocks: slice 2.
 - Q-PARTY-004. FMT-PARTY-003, RULE-PARTY-003: Does each bit of the `PSIN` byte stand for one
   psionic discipline, and which? Settles it: the code that reads the four-slot `PSIN` table
   overlay 186 fills (FND-PARTY-012), or the discipline list of SCR-UI-005. Blocks: slice 2.
