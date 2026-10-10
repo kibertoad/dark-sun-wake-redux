@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-063
+Next ID: Q-PARTY-064
 
 ## Static
 
@@ -50,12 +50,14 @@ Next ID: Q-PARTY-063
   no caller of overlay 179 `+0C7F` passes 104 or 225; FND-PARTY-107 shows that the hit routine's
   call in overlay 179 `+11DC` never runs; FND-PARTY-108 shows the spell path through overlay 193
   `+2290`; FND-PARTY-109 reads the party's cast of a type 4 spell, which can strike a party member
-  while a Shift key is held, and leaves the enemy callers.
-- Q-PARTY-058. BUG-PARTY-006: Can a party member have a Preserver level above 15, from a saved or
-  imported character or a script, or play with the byte at `DS:13F8` set, so that it can cast the
-  spell `DATA` 104 from the cast list (FND-PARTY-111)? Settles it: the writers of the class level
-  bytes outside the level gain and of `DS:13F8` read for the values they store. Blocks: nothing
-  yet.
+  while a Shift key is held, and leaves the enemy callers; FND-PARTY-116 finds four `OBJEX` Preservers at level 18
+  or 20 (`RDFF` 64, 65, 67 and 172), which overlay 177 `+05B7` would give a level 9 count.
+- Q-PARTY-063. BUG-PARTY-006: Can an actor of `OBJEX.GFF` become a party member, so that one of
+  the Preservers at level 18 or 20 (`RDFF` 64, 65, 67 and 172, FND-PARTY-116) can cast the spell
+  `DATA` 104 from the cast list? Settles it: the code that puts a combatant into a party slot
+  other than the `CHAR` load and generation, read for where its records come from. Blocks: nothing
+  yet. Tried: FND-PARTY-116 shows that `DS:13F8` is set only behind the `-k911` debug switch and
+  that the game's own stores and the shipped party list keep levels at 15 or below.
 - Q-PARTY-062. BUG-PARTY-006: Does anything other than a block copy, or a copy FND-PARTY-115's
   searches do not reach, put a value other than 0 in bytes `+0x0E` or `+0x0F` of a party member's
   FMT-COMBAT-001 record? Settles it: the reads of a saved game into the table at `DS:19C9` and the
