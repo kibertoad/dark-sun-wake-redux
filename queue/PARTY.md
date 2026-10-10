@@ -25,9 +25,12 @@ Next ID: Q-PARTY-066
   freed are 0x13F or evicted ones. FND-PARTY-138 reads every release: only the unload `31E0:05BB`
   can free a party slot, the DUAL routine reaches it only through overlay 187 `+1B67`, which
   unloads slots 5 to 0x13F, and overlay 171 `+0D15`, which unloads the current character, is
-  reached from seven mode-2 handlers but not from the message window's overlay 172 `+04C5`; left
-  is which handlers are registered while the DUAL path's message window is up, since the walks
-  leave the calls through `DS:A0F1`, `DS:A0F5` and `DS:A0F9` unresolved.
+  reached from seven mode-2 handlers but not from overlay 172 `+04C5`. FND-PARTY-139 finds the
+  DUAL path's event loops reaching only overlay 172 `+0816`, overlay 209 `+169C` and overlay 190
+  `+0092`, and only `+169C` reaching the unload other than through overlay 187 `+1B67`, by way of
+  the object placement `31E0:0121`, overlay 193 `+13EC` and overlay 206 `+0E1E`; left is the
+  entry overlay 206 `+0E1E` and the other callers of `31E0:05BB` on that route pass, and the
+  conditions under which overlay 209 `+169C` takes it.
   Blocks: slice 2.
 - Q-PARTY-053. RULE-PARTY-013: How do the spell window of overlay 209 `+0218` and the psionic
   power window of overlay 209 `+0A84` behave as screens, so that `gain_one_level` can show them
