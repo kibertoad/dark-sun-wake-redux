@@ -211,6 +211,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   4E71:0251); the before/after-modifier question is answered (after, FND-PARTY-071) and dropped.
   FND-PARTY-143 names 0x1F combatant_kind (combatant +0x15, FND-PARTY-095), 0 in every record.
   field_reads.py --table is textual: its 19c9 hits at +0x12 were details reads of the origin.
+  Filed toolkit #468 (find field accesses by the far pointer the base register came from)
+  after checking #386, #274 and #301.
 - FND-PARTY-144: CHAR 0x29 = facing (combatant +0x1F, 0-7, set from 1BDF:009B, drawn through
   DS:141C onto four views; data segment at file 0x4D000). FND-PARTY-145: CHAR 0x66 =
   base_armor_class (details +0x21, start of 173+2C00, the target value of an attack roll).
