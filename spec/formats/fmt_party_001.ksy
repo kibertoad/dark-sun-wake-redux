@@ -43,7 +43,9 @@ seq:
     type: u2
     doc: 300 plus this is the object number placed for the character.
   - id: unk_1c
-    size: 2
+    type: u1
+  - id: movement_rate
+    type: u1
   - id: combat_mark
     type: u1
   - id: combatant_kind
@@ -129,8 +131,10 @@ seq:
   - id: base_armor_class
     type: s1
     doc: The armor class before items and dexterity.
-  - id: unk_67
-    size: 2
+  - id: base_movement_rate
+    type: u1
+  - id: unk_68
+    type: u1
   - id: class_attack_rate
     type: u1
   - id: attack_rate
