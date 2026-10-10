@@ -56,11 +56,13 @@ Next ID: Q-PARTY-020
   what placed-object count and `DS:0DAB`? Settles it: the load routine overlay 192 `+05ED`,
   overlay 182 `+19F8`, `28C9:2522`, the gate routine called with 0, and whether window 19500 or
   its handler survives those calls (FND-PARTY-045). Blocks: slice 2.
-- Q-PARTY-019. RULE-PARTY-006: When the placed-object count is 0, does `31E0:0EFF` return a
-  table entry rather than -1, so that the placement routine `31E0:0121` that `ADD` calls
-  reaches its increment at `31E0:01E3`? Settles it: the code of `31E0:0EFF` and every input it
-  reads, with the table at `DS:67B7` as program start leaves it (FND-PARTY-046,
-  FND-ACTOR-004). Blocks: slice 2.
+- Q-PARTY-019. RULE-PARTY-006: For the object number `ADD` passes (0x12C plus the word at `+0x10`
+  of the slot's record at `DS:19C9`), do the `OJFF` request `38FF:04AB` and the `RDFF` load
+  `2D40:000A` in `31E0:0EFF` succeed, and is the slot's word at `DS:67BC` other than -1 after
+  them, so that `31E0:0121` reaches its increment? Settles it: those routines read for that
+  object number against `GPLDATA.GFF` or the archive that holds `OJFF` and `RDFF`, and the
+  writers of the slot record. Tried: FND-PARTY-047 shows the helper's first test, on
+  `DS:265B`, passes after start-up. Blocks: slice 2.
 
 ## Emulated call
 
