@@ -4,7 +4,7 @@ title: How a character gains levels in play
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-057, FND-PARTY-058, FND-PARTY-074, FND-PARTY-081, FND-PARTY-083, FND-PARTY-084, FND-PARTY-085, FND-PARTY-086, FND-PARTY-089, FND-PARTY-088, FND-PARTY-090, FND-PARTY-096, FND-PARTY-097, FND-PARTY-098, FND-PARTY-108]
+evidence: [FND-PARTY-057, FND-PARTY-058, FND-PARTY-074, FND-PARTY-081, FND-PARTY-083, FND-PARTY-084, FND-PARTY-085, FND-PARTY-086, FND-PARTY-089, FND-PARTY-088, FND-PARTY-090, FND-PARTY-096, FND-PARTY-097, FND-PARTY-098, FND-PARTY-108, FND-PARTY-123, FND-PARTY-130, FND-PARTY-131, FND-PARTY-132, FND-PARTY-133]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-012, RULE-PARTY-014, RULE-PARTY-015, RULE-RNG-001, FMT-PARTY-001, FMT-PARTY-004, FMT-PARTY-005]
@@ -30,6 +30,13 @@ the key T gives each party member 3,750,000 experience and then runs `gain_level
 `one_each` false, and the key t runs it with `one_each` true (FND-PARTY-081). It runs for each
 of the four party slots in order whose state byte at `4F49:0C33` plus 3 times the slot is 2,
 whose `combat_mark` is at most 2 and whose details record's word at `0x0E` is not 0.
+
+Before the gain, when it runs while a window holds display mode 2, each party member whose
+`combat_mark` is 0 and whose combatant word at `0x06` is not 0 gets `combat_mark` 1; this does not
+change which members gain. The original reaches that from a spell cast in the spell window that
+kills a hostile combatant outside a fight, from the debug keys, and from a script that the
+add-character window starts (FND-PARTY-123, FND-PARTY-133). Nothing else the step runs changes a
+member's records (FND-PARTY-130 to FND-PARTY-132).
 
 ## Parameters
 
@@ -237,11 +244,5 @@ None known.
   code 11 or learns or enhances one or two psionic powers for class code 12, changing FMT-PARTY-005
   and FMT-PARTY-004 (FND-PARTY-104); the procedure leaves them out until those windows have screen
   entries (Q-PARTY-053).
-- Whether the step before the gain changes a member's combat mark: overlay 199 `+0C21` stores none
-  of the member's records itself (FND-CONFIG-161), and of its callees overlay 182 `+19F8` sets a
-  combat mark of 0 to 1 while `DS:0DAB` is 2 (FND-PARTY-123); the routines `+19F8` runs in that
-  mode reach the record writers only by loading a party member's object that is not loaded, which
-  no referenced code brings about (FND-PARTY-130 to FND-PARTY-132). Which mode holds when the gain
-  runs is not settled (Q-PARTY-065).
 - That the messages and draws happen in this order in play: a capture of a party gaining levels
   after a fight would confirm it (Q-PARTY-037).

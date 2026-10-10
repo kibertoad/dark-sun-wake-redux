@@ -23,26 +23,6 @@ Next ID: Q-PARTY-066
   it: screen entries for the two windows from their handlers and fill routines (overlay 209
   `+00C2`, `+03DC`, `+0622`, `+0C84`, `+0E2D` and `+0EF0`), with overlay 211 `+208C`, overlay 177
   `+0A45` for spell 0 and the cases for events 2, 4 and 0x80 read. Blocks: slice 2.
-- Q-PARTY-065. RULE-PARTY-013: What does the word at `DS:0DAB` hold when overlay 210 `+0B44` or
-  `+0B55` runs, from each of its callers (overlay 173 `+07AD` at a fight's end, overlay 188
-  `+16E9` for an experience award, and the debug keys of overlay 190)? Settles it: the stores of
-  `DS:0DAB` that FND-PARTY-123 lists, read for the display state each one enters (overlay 182
-  `+1856` enters 2 from any value other than 0 and 2, and `+19F8` leaves 2 or 3 for 1), the
-  register store at `2B1C:0000`, and the state on each caller's path. Blocks: nothing yet. Tried:
-  FND-PARTY-124 shows the word starts at 0 and that no store puts 3 in it. FND-PARTY-125 shows that the
-  main view's tick runs no fight step while a window overlay 182 `+1856` opened is up, and leaves
-  the map click callers of the fight step `28C9:305F`, overlay 182 `+1167`'s gate and the award
-  paths of overlay 188 `+16E9`; FND-PARTY-126 shows `+1167` acts only from mode 0 and that the
-  message window returns to the mode it found, which leaves scripts run from other windows, such
-  as an item use from the inventory. FND-PARTY-127 shows that entering mode 2 unregisters the main
-  view's key handler `28C9:0CFF` and that the level gain's first step registers it again, and leaves
-  the windows that save and restore the handler and whether `45B9:0034` hands events to it;
-  FND-PARTY-128 shows `45B9:0034` only reads the mouse and that the three windows that read the
-  handler put it back, which leaves the scripts and kills that reach overlay 188 `+16E9` while a
-  window holds mode 2. FND-PARTY-129's reach walk from the 24 openings of mode 2, stopped at
-  overlay 182 `+19F8`, reaches the interpreter and a gain only in mode 4, through `+15D7`, but its
-  negative result is not usable (37 unresolved transfers) and it does not read the code that runs
-  after a window returns to its caller in mode 2.
 - Q-PARTY-045. RULE-PARTY-015: Does any enemy's `kill_experience` divided by the filled party
   slots reach 32,768, so that killing it lowers each member's experience (FND-PARTY-086,
   FND-PARTY-094)? Settles it: the routine that loads an `RDFF` resource of `OBJEX.GFF` into the
