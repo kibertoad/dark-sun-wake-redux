@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_001.ksy
-evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057, FND-PARTY-058, FND-PARTY-059, FND-PARTY-073, FND-PARTY-066]
+evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057, FND-PARTY-058, FND-PARTY-059, FND-PARTY-073, FND-PARTY-066, FND-PARTY-074, FND-PARTY-081, FND-PARTY-082, FND-PARTY-083]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-006]
@@ -57,10 +57,10 @@ offsets hold for every record the game writes and reads back.
 | `0x29` | 2 | `BYTE[2]` | `unk_29` | Purpose unknown. A load copies it to bytes `0x1F` and `0x20` of the FMT-COMBAT-001 record. | supported | FND-PARTY-049 |
 | `0x2B` | 16 | `char[16]` | `name` | The character's name, printable ASCII ending at the first NUL, 6 to 15 characters in the shipped records. Bytes after the NUL may hold leftover text. | established | FND-PARTY-001, FND-PARTY-020 |
 | `0x3B` | 10 | FMT-PARTY-006 header | `details_header` | `chunk_type` 3, `target_chunk` 0, `kind` 3, `field` 15 and `len_data` 66 in every shipped record, so the load copies the next 66 bytes into the character's FMT-COMBAT-002 record and stores its number in the character's `details_index`. | supported | FND-PARTY-051, FND-PARTY-052 |
-| `0x45` | 4 | `UINT32LE` | `experience` | The character's experience points. A load copies it to the FMT-COMBAT-002 record's first dword, which the character sheet prints after `EXP: ` and which overlay 183 compares with the class thresholds of `DATA` 1000 to raise the levels; 30,000 to 2,475,000 in the shipped records. | supported | FND-PARTY-051, FND-PARTY-058 |
+| `0x45` | 4 | `UINT32LE` | `experience` | The character's experience points. A load copies it to the FMT-COMBAT-002 record's first dword, which the character sheet prints after `EXP: ` and which overlay 183 compares with the class thresholds of `DATA` 1000 to raise the levels. In play overlay 210 cuts it to the start of the level four above each class's level before raising the levels, and its level drain sets it to half the sum of two thresholds; 30,000 to 2,475,000 in the shipped records. | supported | FND-PARTY-051, FND-PARTY-058, FND-PARTY-081, FND-PARTY-082 |
 | `0x49` | 4 | `BYTE[4]` | `unk_49` | Purpose unknown. A load copies it to the FMT-COMBAT-002 record's dword at `+0x04`; 3,000 in eleven shipped records, and equal to or above `experience` in the others. | supported | FND-PARTY-051, FND-PARTY-058 |
 | `0x4D` | 2 | `INT16LE` | `max_hit_points` | The character's greatest hit points. A load copies it to the FMT-COMBAT-002 record's `max_hit_points`; 21 to 165 in the shipped records. | supported | FND-PARTY-051, FND-PARTY-053 |
-| `0x4F` | 2 | `BYTE[2]` | `unk_4f` | Purpose unknown. A load copies it to the FMT-COMBAT-002 record's `unk_0A`. | supported | FND-PARTY-051 |
+| `0x4F` | 2 | `UINT16LE` | `hit_die_total` | The sum of the hit die rolls of the character's levels. A load copies it to the FMT-COMBAT-002 record's word at `+0x0A`. Generation sets it from a roll per level, each new level in play adds a roll, and the greatest hit points are set from it times the levels held over the greatest levels reached (`greatest_levels`), divided by the number of classes, plus the constitution bonus. | supported | FND-PARTY-051, FND-PARTY-074, FND-PARTY-081 |
 | `0x51` | 2 | `UINT16LE` | `max_psionic_points` | The character's greatest psionic strength points. A load copies it to the FMT-COMBAT-002 record's word at `+0x0C`, which the character sheet prints after the current points; 27 to 202 in the shipped records. | supported | FND-PARTY-051, FND-PARTY-059 |
 | `0x53` | 2 | `UINT16LE` | `unk_53` | Purpose unknown. A load copies it to the FMT-COMBAT-002 record's `unk_0E`; equal to `combatant_id` in 14 of the 19 shipped records. | supported | FND-PARTY-051, FND-PARTY-053 |
 | `0x55` | 2 | `BYTE[2]` | `unk_55` | Purpose unknown. A load copies it to bytes `0x10` and `0x11` of the FMT-COMBAT-002 record. | supported | FND-PARTY-051 |
@@ -69,8 +69,10 @@ offsets hold for every record the game writes and reads back.
 | `0x59` | 1 | `UINT8` | `alignment` | The alignment, counted from 1: lawful good, lawful neutral, lawful evil, neutral good, true neutral, neutral evil, chaotic good, chaotic neutral, chaotic evil; printed from the details record's byte at `0x14`. | supported | FND-PARTY-051, FND-PARTY-055, FND-PARTY-056 |
 | `0x5A` | 6 | `BYTE[6]` | `unk_5a` | Purpose unknown. A load copies it to bytes `0x15` to `0x1A` of the FMT-COMBAT-002 record. | supported | FND-PARTY-051 |
 | `0x60` | 3 | `UINT8[3]` | `classes` | Up to three class codes (see the enumeration below), 0 for none, nonzero ones first. The character sheet prints a level for each nonzero one. | supported | FND-PARTY-051, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057 |
-| `0x63` | 3 | `UINT8[3]` | `levels` | The level in each class of `classes`, 0 where the class is 0; printed from the details record's bytes `0x1E` to `0x20`. | supported | FND-PARTY-051, FND-PARTY-055, FND-PARTY-056 |
-| `0x66` | 33 | `BYTE[33]` | `unk_66` | Purpose unknown. A load copies it to bytes `0x21` to `0x41` of the FMT-COMBAT-002 record, so its byte at `0x7C` lands on `footprint`. | supported | FND-PARTY-051 |
+| `0x63` | 3 | `UINT8[3]` | `levels` | The level in each class of `classes`, 0 where the class is 0; printed from the details record's bytes `0x1E` to `0x20`. In play overlay 210 raises a level while the experience reaches the class's next threshold, up to 15, and its level drain lowers it; the class change of overlay 209 sets the new class to level 1. | supported | FND-PARTY-051, FND-PARTY-055, FND-PARTY-056, FND-PARTY-081, FND-PARTY-082, FND-PARTY-083 |
+| `0x66` | 24 | `BYTE[24]` | `unk_66` | Purpose unknown. A load copies it to bytes `0x21` to `0x38` of the FMT-COMBAT-002 record, so its byte at `0x7C` lands on `footprint`. | supported | FND-PARTY-051 |
+| `0x7E` | 3 | `UINT8[3]` | `greatest_levels` | The greatest level the character has held in each class position. A load copies it to bytes `0x39` to `0x3B` of the FMT-COMBAT-002 record. Generation copies `levels` here, a new level in play above the byte raises it, and the level drain leaves it; a roll is added to `hit_die_total` only while the sum of `levels` is not below the sum of these bytes. | supported | FND-PARTY-051, FND-PARTY-074, FND-PARTY-081, FND-PARTY-082 |
+| `0x81` | 6 | `BYTE[6]` | `unk_81` | Purpose unknown. A load copies it to bytes `0x3C` to `0x41` of the FMT-COMBAT-002 record. | supported | FND-PARTY-051 |
 | `0x87` | `33 * (chunk_count - 2)` | FMT-PARTY-006`[chunk_count - 2]` | `chunks` | The other chunks, each of `chunk_type` 2 or 4 with 23 bytes of data in the shipped records. | supported | FND-PARTY-051, FND-PARTY-052 |
 | | 10 | FMT-PARTY-006 header | `end` | `chunk_type` 0xFF and `len_data` 0, the other bytes as at `0x01` to `0x07`. | supported | FND-PARTY-051, FND-PARTY-052 |
 | | | | | Total size `145 + 33 * (chunk_count - 2)` in the shipped records | | |
@@ -118,8 +120,8 @@ ends within its slot [FND-PARTY-001, FND-PARTY-005, FND-PARTY-052].
 
 ## Open questions
 
-- What `unk_04`, `unk_0e`, `unk_12`, `unk_1c`, `unk_1f`, `unk_29`, `unk_49`, `unk_4f`, `unk_53`, `unk_55`,
-  `unk_5a` and `unk_66` hold. The two chunks at `0x00` and `0x3B` are the only ones that
+- What `unk_04`, `unk_0e`, `unk_12`, `unk_1c`, `unk_1f`, `unk_29`, `unk_49`, `unk_53`, `unk_55`,
+  `unk_5a`, `unk_66` and `unk_81` hold. The two chunks at `0x00` and `0x3B` are the only ones that
   reach the combatant and details records, so the screen's values are in them or in the records of
   the later chunks (FND-PARTY-020, FND-PARTY-051, FND-PARTY-057, FND-PARTY-058,
   FND-PARTY-059, Q-PARTY-003).

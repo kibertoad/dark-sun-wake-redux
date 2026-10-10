@@ -1,17 +1,9 @@
 # PARTY
 
-Next ID: Q-PARTY-037
+Next ID: Q-PARTY-043
 
 ## Static
 
-- Q-PARTY-028. FMT-PARTY-001: How does a character's level follow experience in play: which
-  routine raises the level bytes once experience passes a threshold, how many levels it raises at
-  once, and does level 15 end it, as the character sheet's skip of a level-15 position suggests
-  (FND-PARTY-058, FND-PARTY-062), and what does a level add to the hit points, given that overlay
-  210 `+07EB` calls the per-level hit die roll into the details record's word at `0x0A`
-  (FND-PARTY-074)? Settles it: a reading of the overlay 210 routines that read `DATA` 1000, of
-  `+07EB`, and of every store to the level bytes at `+0x1E..+0x20` of a details record.
-  Blocks: slice 2.
 - Q-PARTY-026. FMT-PARTY-001: On the DUAL path, does anything the routine at overlay 209 `+123E`
   calls before `+14FF` store another slot in the word at `4E71:0B44`, so that overlay 184 `+1DCE`
   takes the class bytes of a different character from the one whose records it copies
@@ -22,7 +14,26 @@ Next ID: Q-PARTY-037
   Tried: FND-PARTY-080 reads the other three callers of `+1DCE`, where the slots are the same, and
   a reach run from the DUAL routine's 14 calls reaches three overlay 209 stores to the word, only
   through overlay 172 `+05DB` and overlays 173, 188 and 210; the routes were not read for the state
-  they need. Blocks: slice 2.
+  they need; FND-PARTY-081 shows overlay 210 `+0740` passes overlay 209 `+0000` the slot whose
+  Preserver level rose, so the question is whether that can be another slot on this path.
+  Blocks: slice 2.
+- Q-PARTY-038. RULE-PARTY-013: Which record does the far pointer `DS:142D` point to when overlay
+  210 `+0131` runs in play, and so whose wisdom indexes the wisdom bonus of the greatest psionic
+  points (FND-PARTY-081)? Settles it: every store to `DS:142D`, read for when it runs relative to
+  the level gain and what it stores. Blocks: slice 2.
+- Q-PARTY-039. RULE-PARTY-013: What else does a level change: overlay 210 `+0365`, `+03EC` (whose
+  result goes to the combatant record's byte at `0x16`) and `+0572`, `27E5:000F`, overlay 199
+  `+0C21`, and overlay 209 `+0000` and `+0A02` for a new Preserver or Psionicist level
+  (FND-PARTY-081)? Settles it: a reading of those routines. Blocks: slice 2.
+- Q-PARTY-040. RULE-PARTY-013: Which awards run the level gain: what the routine around overlay
+  173 `+07AD` and the overlay 188 routine that ends at `+16E9` give experience for, and how much
+  (FND-PARTY-081)? Settles it: a reading of those routines and their callers. Blocks: slice 2.
+- Q-PARTY-041. FMT-PARTY-001: When does the level drain of overlay 210 `+0B66` run: what overlay
+  195 `+0BC9` handles, with which slot, and from where (FND-PARTY-082)? Settles it: a reading of
+  overlay 195 around `+0BC9` and of the dispatch that reaches it. Blocks: nothing yet.
+- Q-PARTY-042. FMT-PARTY-001: What does the program do on a divide by 0, which the level drain
+  reaches for a character with one class above level 1 (FND-PARTY-082)? Settles it: the startup
+  code's setting of the interrupt 0 vector and the handler it installs, read to its end. Blocks: nothing yet.
 - Q-PARTY-003. FMT-PARTY-001, RULE-PARTY-004, RULE-MAGIC-002: What do the record's remaining `unk_`
   fields hold, and are the scores stored before or after origin modifiers? Settles it: the other
   routines that print the character sheet from the record at `DS:1429` (FND-PARTY-055), and the
@@ -85,6 +96,12 @@ None.
 
 ## Live session
 
+- Q-PARTY-037. RULE-PARTY-013, BUG-PARTY-003: Does a party gain levels after a fight as
+  RULE-PARTY-013 gives, and does a level-14 psionicist stay at level 14 with 1,400,000
+  experience? Settles it: an owner capture of each member's experience, levels and hit points on
+  the character sheet before and after a fight that gives experience, with the messages shown,
+  for a party that includes a level-14 psionicist (FND-PARTY-081). Tried: the static reading
+  FND-PARTY-081. Blocks: slice 2.
 - Q-PARTY-035. RULE-PARTY-010, RULE-PARTY-011, RULE-PARTY-012: Does the left mouse button step
   the generation screen's buttons forward and the right one back? Settles it: an owner capture of
   a score, the hit points and the alignment after one left press and after one right press on each
@@ -107,7 +124,7 @@ None.
   level 7 shows 60000 where its class's table gives 110000, and what does it show for a Fighter,
   Gladiator or Thief (codes 9, 10 and 17)? Settles it: an owner capture of the View Character
   screen for each supplied character before any play, compared with records 40 to 43 and
-  FND-PARTY-058's table. Tried: the static reading FND-PARTY-058 and FND-PARTY-062. Blocks:
+  FND-PARTY-058's table. Tried: the static reading FND-PARTY-058 and FND-PARTY-083. Blocks:
   slice 2.
 - Q-PARTY-001. RULE-PARTY-006: Does START GAME put characters 40, 41, 42 and 43 into the four
   party slots, and not 53 or 33? Settles it: the shipped-party live session, with captures taken

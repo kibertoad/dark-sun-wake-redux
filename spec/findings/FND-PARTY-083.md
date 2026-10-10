@@ -1,9 +1,9 @@
 ---
-id: FND-PARTY-062
+id: FND-PARTY-083
 title: Overlay 210 turns a class code into a DATA 1000 row through the class bytes of the pair table at 4E4F:009C, which send codes 1 to 17 to the classes 1 to 8 of the name table at DS:1164, and overlay 209 writes codes of that 17-code numbering into the details record when a class changes
-status: superseded
+status: recorded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: [FND-PARTY-083]
+superseded_by: []
 recorded_by: kibertoad
 reproduced_by: []
 method: static
@@ -56,14 +56,15 @@ origin byte at `+0x12` is 1, and at `+0943..+0947` it passes over a class byte o
 | 17 | 0 | 8 |
 
 **Overlay 209 `+17DC`** (trampoline `57B0:003E`, called also from `+1744`) takes a slot and a code.
-For the details record of the slot in the table at `DS:19C5` it moves the class bytes at `+0x1B`
-and `+0x1C` to `+0x1C` and `+0x1D`, the level bytes at `+0x1E` and `+0x1F` one place up, and the
-bytes at `+0x39` and `+0x3A` one place up, from position 2 down (`+17E6..+1860`). It then stores the code at `+0x1B`, 1
-at `+0x39` and at `+0x1E`, and 0 in the dwords at `+0x04` and `+0x00` (`+1862..+18B2`). It stores
-the result of overlay 210 `+002A` at `+0x08`, calls further overlay 210 routines and stores one
-result at `+0x16` of the slot's combatant record in the table at `DS:19C9`. When the code is 12 it
-sets bits 0 to 2 of the byte at `4E71:0A55` plus the slot (`+18F7..+191A`), and it then compares
-the code with 11 (`+191C`).
+For the details record of the slot in the table at `DS:19C5` it moves the class bytes at `+0x1B` and
+`+0x1C` to `+0x1C` and `+0x1D`, the level bytes at `+0x1E` and `+0x1F` one place up, and the bytes
+at `+0x39` and `+0x3A` one place up, from position 2 down (`+17E6..+1860`). It then stores the code
+at `+0x1B`, 1 at `+0x39` and at `+0x1E`, and 0 in the dwords at `+0x04` and `+0x00`
+(`+1862..+18B2`). It stores the result of overlay 210 `+0233` (trampoline `57B9:002A`), the greatest
+hit points of FND-PARTY-081, at `+0x08`, calls further overlay 210 routines and stores one result at
+`+0x16` of the slot's combatant record in the table at `DS:19C9`. When the code is 12 it sets bits 0
+to 2 of the byte at `4E71:0A55` plus the slot (`+18F7..+191A`), and it then compares the code with
+11 (`+191C`).
 
 **The other readers.** Overlay 186 `+0421` (FND-PARTY-058) and overlay 183 `+13B7..+14D0` pass the
 class byte less 1 as the row without this table. `field_stores.py` with `--es` and the
@@ -90,17 +91,20 @@ human changing class (RULE-PARTY-004).
 
 ## Alternatives
 
-FND-PARTY-060 recorded the same readings with the table taken as pairs from `4E4F:009D`. Its byte
-0 column is right, being the bytes overlay 210 reads, but its byte 1 column gave each code the
-byte 0 of the next code's pair (0x40, 0x20, 0x10 and 0x80 for codes 1 to 4, 0x80 for codes 0 and
-12), so its account of those bits was wrong; overlay 184 reads the pairs from `009C` (FND-PARTY-063).
-Its alternative, that generation keeps the 8-name numbering, is settled by FND-PARTY-063:
-generation works in that numbering and turns it into the 17 codes when the character is stored.
+- FND-PARTY-062 recorded the same readings but named the overlay 210 routine whose result the
+  class change stores at `+0x08` as `+002A`, the offset of its trampoline in segment `57B9`; the
+  routine is `+0233`.
+- FND-PARTY-060 recorded the same readings with the table taken as pairs from `4E4F:009D`. Its byte
+  0 column is right, being the bytes overlay 210 reads, but its byte 1 column gave each code the
+  byte 0 of the next code's pair (0x40, 0x20, 0x10 and 0x80 for codes 1 to 4, 0x80 for codes 0 and
+  12), so its account of those bits was wrong; overlay 184 reads the pairs from `009C` (FND-PARTY-063).
+  Its alternative, that generation keeps the 8-name numbering, is settled by FND-PARTY-063:
+  generation works in that numbering and turns it into the 17 codes when the character is stored.
 
 ## How to reproduce
 
 From the commit that adds this finding, with the locked evidence Python and `<dsun>` the installed
 `DSUN.EXE`, run in `tools/research/exec-census/`: `overlay_listing.py <dsun> 210 95880 95C90` and
-`209 9493C 94A80`, `direct_callers.py <dsun> 185+0000 209+17DC`, and
-`field_stores.py <dsun> ../../../coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv --es 1B 1C 1D`. Read the 36
-bytes at file `0x4378C`.
+`209 9493C 94A80`, `direct_callers.py <dsun> 185+0000 209+17DC`, `field_stores.py <dsun>
+../../../coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv --es 1B 1C 1D`, and `trampoline_target.py <dsun>
+57B9:002A`. Read the 36 bytes at file `0x4378C`.

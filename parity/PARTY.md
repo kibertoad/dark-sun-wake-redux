@@ -20,3 +20,4 @@
 | `RULE-PARTY-010` | How the generation screen rolls and bounds ability scores | supported | missing | None | None | supported | No code rolls or bounds scores by class; `PartyCreationRules.Validate` checks the manual's minimums and 9 to 24. |
 | `RULE-PARTY-011` | Which alignments the generation screen allows | supported | missing | None | None | supported | No code limits alignment by class; `CharacterAlignment` has the six good and neutral alignments. |
 | `RULE-PARTY-012` | Hit points of a new character | supported | missing | None | None | supported | No code sets or bounds a new character's hit points. |
+| `RULE-PARTY-013` | How a character gains levels in play | supported | missing | None | None | supported | No code raises levels or recomputes hit points or psionic points after experience is given. |

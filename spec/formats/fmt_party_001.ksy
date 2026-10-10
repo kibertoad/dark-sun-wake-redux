@@ -81,8 +81,9 @@ seq:
   - id: max_hit_points
     type: s2
     doc: The character's greatest hit points, copied to the combatant details record.
-  - id: unk_4f
-    size: 2
+  - id: hit_die_total
+    type: u2
+    doc: The sum of the hit die rolls of the character's levels.
   - id: max_psionic_points
     type: u2
     doc: The character's greatest psionic strength points.
@@ -112,7 +113,14 @@ seq:
     repeat-expr: 3
     doc: The level in each class.
   - id: unk_66
-    size: 33
+    size: 24
+  - id: greatest_levels
+    type: u1
+    repeat: expr
+    repeat-expr: 3
+    doc: The greatest level held in each class position.
+  - id: unk_81
+    size: 6
   - id: chunks
     type: fmt_party_006
     repeat: until

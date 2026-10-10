@@ -102,7 +102,7 @@ combatant records, and then `+07D8` with the slot (`+160D..+1641`). `+1DCE` copi
 to `4E4F:0029` and `4E4F:006B`, sets `DS:42C2` to 0, and for each class byte of the details record
 numbered by `4E71:0B44`, reads the two bytes at `4E4F:009C` plus 2 times the code: the first goes
 to `DS:42C2` while `DS:42C2` is still 0, and the second to the class byte at `4E4F:0029` plus
-`0x1B` plus the position (`+1DD7..+1E63`). The pairs from `4E4F:009C` are those of FND-PARTY-062.
+`0x1B` plus the position (`+1DD7..+1E63`). The pairs from `4E4F:009C` are those of FND-PARTY-083.
 
 `field_stores.py` with `--es` and the displacements `1B`, `1C` and `1D` finds no other byte store
 to a class byte in overlays 183 and 184 than those above and the clearing at overlay 183
