@@ -1,0 +1,130 @@
+{
+ "starts": [
+  "2A00:0B6B",
+  "2B00:0CEF"
+ ],
+ "targets": [
+  "190+05A9",
+  "190+36D2",
+  "202+0287",
+  "211+02B5",
+  "212+061C"
+ ],
+ "controls": [
+  "2A00:0DE3",
+  "2B00:0DD1"
+ ],
+ "leaves": [
+  {
+   "site": "1000:0388",
+   "reason": "FND-PARTY-039, FND-PARTY-043: the exit worker, which runs only as the program ends"
+  }
+ ],
+ "indirectCalls": [
+  {
+   "site": "0x9a3c",
+   "evidence": "FND-EXE-391, FND-EXE-393, FND-EXE-396, FND-EXE-398: the four type producers publish these offsets at DS:3F46 in segment 1425; complete writer coverage is open (Q-EXE-007)",
+   "exhaustive": true,
+   "targets": [
+    "1425:00AF",
+    "1425:02FE",
+    "1425:0437",
+    "1425:0044"
+   ]
+  },
+  {
+   "site": "0xa04a",
+   "evidence": "FND-EXE-391, FND-EXE-393, FND-EXE-396, FND-EXE-398: the four type producers publish these offsets at DS:3F46 in segment 1425; complete writer coverage is open (Q-EXE-007)",
+   "exhaustive": true,
+   "targets": [
+    "1425:00AF",
+    "1425:02FE",
+    "1425:0437",
+    "1425:0044"
+   ]
+  },
+  {
+   "site": "0xb0a8",
+   "evidence": "FND-EXE-391, FND-EXE-393, FND-EXE-396, FND-EXE-398: the four type producers publish these offsets at DS:3F46 in segment 1425; complete writer coverage is open (Q-EXE-007)",
+   "exhaustive": true,
+   "targets": [
+    "1425:00AF",
+    "1425:02FE",
+    "1425:0437",
+    "1425:0044"
+   ]
+  },
+  {
+   "site": "0x9b83",
+   "evidence": "FND-EXE-391, FND-EXE-393, FND-EXE-396, FND-EXE-398: the four type producers publish these offsets at DS:3F42 in segment 1425; complete writer coverage is open (Q-EXE-007)",
+   "exhaustive": true,
+   "targets": [
+    "1425:00DB",
+    "1425:02E1",
+    "1425:041A",
+    "1425:0009"
+   ]
+  },
+  {
+   "site": "0xa09a",
+   "evidence": "FND-EXE-391, FND-EXE-393, FND-EXE-396, FND-EXE-398: the four type producers publish these offsets at DS:3F42 in segment 1425; complete writer coverage is open (Q-EXE-007)",
+   "exhaustive": true,
+   "targets": [
+    "1425:00DB",
+    "1425:02E1",
+    "1425:041A",
+    "1425:0009"
+   ]
+  },
+  {
+   "site": "0xaef1",
+   "evidence": "FND-EXE-391, FND-EXE-393, FND-EXE-396, FND-EXE-398: the four type producers publish these offsets at DS:3F42 in segment 1425; complete writer coverage is open (Q-EXE-007)",
+   "exhaustive": true,
+   "targets": [
+    "1425:00DB",
+    "1425:02E1",
+    "1425:041A",
+    "1425:0009"
+   ]
+  },
+  {
+   "site": "0xc667",
+   "evidence": "FND-CONFIG-135, FND-CONFIG-136: DS:02F6 holds 2D40:37F3 or 0, and the call is skipped when it is 0",
+   "exhaustive": true,
+   "targets": [
+    "2D40:37F3"
+   ]
+  },
+  {
+   "site": "0xc675",
+   "evidence": "FND-CONFIG-136: the opcode byte 0 to 128 indexes the word table at DS:030A",
+   "exhaustive": true,
+   "table": {
+    "start": "0x4D30A",
+    "count": 129,
+    "stride": 2,
+    "evidence": "129 words at DS:030A, file 0x4D30A; the dispatcher refuses bytes above 128"
+   }
+  },
+  {
+   "site": "1BF3:6199",
+   "evidence": "FND-PARTY-075, FND-PARTY-039: the format letter's position among ten, times 2",
+   "exhaustive": true,
+   "table": {
+    "start": "1BF3:61B8",
+    "count": 10,
+    "stride": 2,
+    "evidence": "ten words after the ten letters"
+   }
+  },
+  {
+   "site": "1BF3:61A0",
+   "evidence": "FND-PARTY-075: 1BF3:612C stores 1BF3:59C1 or 1BF3:5E12 at 1BF3:1154 before its calls",
+   "exhaustive": true,
+   "targets": [
+    "1BF3:59C1",
+    "1BF3:5E12"
+   ]
+  }
+ ]
+}

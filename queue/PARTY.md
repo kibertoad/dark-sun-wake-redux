@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-050
+Next ID: Q-PARTY-051
 
 ## Static
 
@@ -17,14 +17,11 @@ Next ID: Q-PARTY-050
   they need; FND-PARTY-081 shows overlay 210 `+0740` passes overlay 209 `+0000` the slot whose
   Preserver level rose, so the question is whether that can be another slot on this path.
   Blocks: slice 2.
-- Q-PARTY-043. RULE-PARTY-013: Can any store to `DS:142D` or `4E71:0B44` that FND-PARTY-084 lists
-  run during a fight, from the code that runs between calls of the fight routine overlay 173
-  `+059A` or through the computed transfers the reach walks leave unresolved, and so move the
-  record whose wisdom the gain after a fight uses (FND-PARTY-084, FND-PARTY-090)? Settles it: the
-  resident loops around `2A00:0DE3` and `2B00:0DD1` read for what they call between fight steps,
-  and the 36 unresolved transfers of FND-PARTY-090 resolved or shown not to reach the stores.
-  Blocks: slice 2. Tried: FND-PARTY-086, FND-PARTY-088 and FND-PARTY-090 find no store outside
-  the gain's own overlay 209 routines from the awards, the end of a fight or the fight routine.
+- Q-PARTY-050. RULE-PARTY-013: Does any object trigger script that can run during a fight hold
+  script opcode `0x24`, which makes the slot in `4C13:0369` the current record through overlay 190
+  `+36D2` (FND-PARTY-097), and under which conditions after `2D40:2130` does `2D40:207E` run the
+  script? Settles it: the script resources each region's objects carry, searched for opcode
+  `0x24` with the script format, and a reading of `2D40:207E` to its end. Blocks: slice 2.
 - Q-PARTY-039. RULE-PARTY-013: What do overlay 199 `+0C21`, which runs before each level gain,
   and overlay 209 `+0000` and the window of `+0A84`, which run for a new Preserver or Psionicist
   level, change (FND-PARTY-081, FND-PARTY-084)? Settles it: a reading of those routines. Tried:
