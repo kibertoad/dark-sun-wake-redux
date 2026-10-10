@@ -40,22 +40,17 @@ Next ID: Q-PARTY-055
   as the CHAR loader does, and the placements of `RDFF` 430 and 541 in the regions. Blocks:
   nothing yet. Tried: FND-PARTY-094 finds `RDFF` 430 (107,000) and 541 (33,000), of kind 7, with
   CHAR chunk headers; the loader is the ACTOR area's Q-ACTOR-003, outside this goal's claim.
-- Q-PARTY-052. FMT-PARTY-001, BUG-PARTY-006: Which attacks call overlay 179 `+0D2F` with the attacker's item, so
-  that a hit with `DATA` 104 or `DATA` 225 drains a level, and what do the three overlay 197 calls
-  before its saving throw test (FND-PARTY-101)? Settles it: a reading of `+0D2F`'s callers
-  (overlay 179 `+0D1A` and `+1299`, overlay 193 `+04DE`) back to the item they pass, and of
-  overlay 197 `575A:0093`, `575A:0098` and `575A:009D`. Blocks: nothing yet. Tried: FND-PARTY-102
-  reads the 16 far callers of `+0C7F`: the overlay 173 swing and the overlay 195 and 204 calls pass
-  -1 and overlay 193 passes `DATA` 100, 79, 221 and 18, none holding 59; left are overlay 193
-  `+13EC` and overlay 204 `+12B4`, which pass their arguments, and the routes through `+11DC` and
-  overlay 193 `+003C`. FND-PARTY-103: overlay 204 `+12B4` gets `DATA` 148, 157, 159 and 178, none
-  holding 59, and overlay 193 `+13EC` the word at `+0` of a record of the table at `51F1:0000`.
-  FND-PARTY-106: nothing writes that table and none of its 112 words is 104 or 225, so no caller
-  of `+0C7F` passes either. FND-PARTY-107: the `+0D2F` call in `+11DC` never runs, and overlay 193
-  `+003C` passes its third argument, fixed (124, 305, 307, 308, 311, none holding 59) or computed
-  at overlay 197 `+1202`, overlay 198 `+00EF` and `+013D`, overlay 193 `+22CF`, overlay 176 `+03BD`
-  and `+048A`, overlay 177 `+04FE` and overlay 204 `+19AF`; those and the three overlay 197 calls
-  are left.
+- Q-PARTY-052. FMT-PARTY-001, BUG-PARTY-006: Which casters can use the spell `DATA` 104 or `DATA`
+  225 on a party member in a fight, so that it drains a level, and what do the three overlay 197
+  calls before the hit routine's saving throw test (FND-PARTY-108)? Settles it: the callers of
+  overlay 193 `+2290` (overlays 174, 189, 208, 211 and 213) and the other computed callers of
+  FND-PARTY-107 read back to the spell numbers they pass and where those come from, overlay 193
+  `+003C` read for when it reaches the hit routine at `+04DE`, and overlay 197 `575A:0093`,
+  `575A:0098` and `575A:009D`. Blocks: nothing yet. Tried: FND-PARTY-102, FND-PARTY-103 and
+  FND-PARTY-106 show that no caller of overlay 179 `+0C7F` passes 104 or 225; FND-PARTY-107 shows
+  that the hit routine's call in overlay 179 `+11DC` never runs and that overlay 193 `+003C` passes
+  its third argument, which FND-PARTY-108 shows is the spell number when overlay 193 `+2290` sends
+  a spell through overlay 177 `+0492`.
 - Q-PARTY-003. FMT-PARTY-001, RULE-PARTY-004, RULE-MAGIC-002: What do the record's remaining `unk_`
   fields hold, and are the scores stored before or after origin modifiers? Settles it: the other
   routines that print the character sheet from the record at `DS:1429` (FND-PARTY-055), and the
@@ -175,8 +170,8 @@ None.
   script instruction, in the SCRIPT area.
 - Q-PARTY-051. FMT-PARTY-001, BUG-PARTY-006: Does any script call function 23 of opcode `0x22` with the effect
   code 59, which runs the level drain on a party slot, and on which slots does overlay 204 `+1A68`
-  apply it (FND-PARTY-101)? Settles it: the `GPL ` resources decoded instruction by instruction
+  apply it (FND-PARTY-108)? Settles it: the `GPL ` resources decoded instruction by instruction
   and searched for opcode `0x22` with function 23 and code 59, and a reading of `+1A68`. Blocks:
-  nothing yet. Tried: FND-PARTY-101 traces the code to the script's argument; a byte search
+  nothing yet. Tried: FND-PARTY-108 traces the code to the script's argument; a byte search
   cannot separate parameters without the instruction layouts. Waiting on: Q-SCRIPT-004, the
   layout of every script instruction, in the SCRIPT area.

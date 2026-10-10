@@ -7,7 +7,7 @@ superseded_by: []
 impact: crash
 intent: unintended
 player_reliance: unknown
-evidence: [FND-PARTY-082, FND-PARTY-105, FND-PARTY-096, FND-PARTY-101]
+evidence: [FND-PARTY-082, FND-PARTY-105, FND-PARTY-096, FND-PARTY-108]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-013, FMT-PARTY-001]
@@ -21,7 +21,7 @@ When a party member is struck by a level drain, the game can return to DOS at on
 ## Trigger conditions
 
 The drain of overlay 210 `+0B66` runs on a party member in slot 0 to 3 that receives the effect
-code 59 (FND-PARTY-096, FND-PARTY-101). It ends the game whenever its second pass raises every
+code 59 (FND-PARTY-096, FND-PARTY-108). It ends the game whenever its second pass raises every
 class of the member back to its old level, so that it rolls no hit die: always for a character
 with one class above level 1, and for a character with several classes when the new experience
 is at least the start of each class's old level (FND-PARTY-082).
@@ -38,9 +38,9 @@ with code 1 (FND-PARTY-105).
 ## Frequency
 
 Every drain of a single-class character above level 1. The sources of effect code 59 are a strike
-by the item of `DATA` 313 on an attack roll of 20, a hit with the item of `DATA` 104 or 225 on a
-target that fails its saving throw, and scripts through function 23 of opcode `0x22`
-(FND-PARTY-096, FND-PARTY-101); which of them can strike the party in play is open.
+by the item of `DATA` 313 on an attack roll of 20, the spells `DATA` 104 and 225 on a target that
+fails its saving throw, and scripts through function 23 of opcode `0x22` (FND-PARTY-096,
+FND-PARTY-108); which of them can strike the party in play is open.
 
 ## Player reliance
 
@@ -56,9 +56,9 @@ None known.
 
 ## Open questions
 
-- Whether any enemy in play carries the item of `DATA` 104, 225 or 313, or any script sends code
-  59 to a party member, so that the crash can happen in a normal game: which attacks pass an item
-  to the hit routine is Q-PARTY-052, and the scripts are Q-PARTY-051.
+- Whether any enemy in play casts the spell `DATA` 104 or 225 at a party member, carries the item
+  of `DATA` 313, or runs a script that sends code 59 to one, so that the crash can happen in a
+  normal game: the casters are Q-PARTY-052, and the scripts are Q-PARTY-051.
 - What a player sees on the screen as the game ends: a capture of a drain on a single-class
-  character would confirm it (No item: no live session can be arranged until the item and an
-  enemy carrying it are known; Q-PARTY-052 comes first).
+  character would confirm it (No item: no live session can be arranged until an enemy that
+  drains is known; Q-PARTY-052 comes first).
