@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-043
+Next ID: Q-PARTY-044
 
 ## Static
 
@@ -17,10 +17,11 @@ Next ID: Q-PARTY-043
   they need; FND-PARTY-081 shows overlay 210 `+0740` passes overlay 209 `+0000` the slot whose
   Preserver level rose, so the question is whether that can be another slot on this path.
   Blocks: slice 2.
-- Q-PARTY-038. RULE-PARTY-013: Which record does the far pointer `DS:142D` point to when overlay
-  210 `+0131` runs in play, and so whose wisdom indexes the wisdom bonus of the greatest psionic
-  points (FND-PARTY-081)? Settles it: every store to `DS:142D`, read for when it runs relative to
-  the level gain and what it stores. Blocks: slice 2.
+- Q-PARTY-043. RULE-PARTY-013: When the level gain runs after a fight, which slot do `4E71:0B44`
+  and the far pointer `DS:142D` hold, and so whose wisdom does the wisdom bonus of the greatest
+  psionic points use for a level that is not a new Psionicist level (FND-PARTY-084)? Settles it:
+  the paths from the end of a fight through overlays 173 and 188 to overlay 210 `+0B44`, read for
+  calls that store either. Blocks: slice 2.
 - Q-PARTY-039. RULE-PARTY-013: What else does a level change: overlay 210 `+0365`, `+03EC` (whose
   result goes to the combatant record's byte at `0x16`) and `+0572`, `27E5:000F`, overlay 199
   `+0C21`, and overlay 209 `+0000` and `+0A02` for a new Preserver or Psionicist level

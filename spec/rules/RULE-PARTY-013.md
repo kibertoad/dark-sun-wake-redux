@@ -4,7 +4,7 @@ title: How a character gains levels in play
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-057, FND-PARTY-058, FND-PARTY-074, FND-PARTY-081, FND-PARTY-083]
+evidence: [FND-PARTY-057, FND-PARTY-058, FND-PARTY-074, FND-PARTY-081, FND-PARTY-083, FND-PARTY-084]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-012, RULE-RNG-001, FMT-PARTY-001]
@@ -37,8 +37,10 @@ FMT-PARTY-001 `classes` that are not 0, in position order; `levels`, the level o
 `greatest_levels`, FMT-PARTY-001 `greatest_levels` for each; `experience`; `hit_die_total`,
 FMT-PARTY-001 `hit_die_total`; `constitution`, `intelligence` and `wisdom`, the character's
 scores, 0 to 25; `screen_wisdom`, the wisdom in the combatant record the far pointer `DS:142D`
-points to when the gain runs, which the generation screen sets to its working record
-(FND-PARTY-076, Q-PARTY-038); `hit_points` and `max_hit_points`; `psionic_points` and
+points to when the psionic points are recomputed: the character whose new Psionicist level came
+last, in this member's gain or an earlier one, and otherwise the slot the game last made current,
+a record another screen was given, or the generation screen's working record (FND-PARTY-076,
+FND-PARTY-084, Q-PARTY-043); `hit_points` and `max_hit_points`; `psionic_points` and
 `max_psionic_points`; `name`, the character's name; `one_each`, true when each class gains one
 level without the experience test.
 
@@ -194,7 +196,9 @@ level totals meet, since the drain leaves `greatest_levels` and `hit_die_total` 
 (FND-PARTY-082). The divisions in `greatest_hit_points` are unsigned and round down; the product
 is taken to 16 bits, which the levels and dice of a character do not exceed. When the greatest hit
 points fall, the current hit points fall by the same amount. The psionic points are never
-lowered.
+lowered. A character whose wisdom is 15 or more takes the wisdom bonus from `screen_wisdom`, so a
+level in another class gains less, or nothing, when the record last made current has a wisdom
+below 15 (FND-PARTY-084).
 
 ## What the sources say
 
@@ -206,9 +210,9 @@ None known.
 
 ## Open questions
 
-- Which record `screen_wisdom` comes from in play: the original reads the wisdom bonus's index
-  from the record at `DS:142D`, which may be the generation screen's last working record rather
-  than the character's (Q-PARTY-038).
+- Which character `screen_wisdom` belongs to after a fight: the original reads the wisdom bonus's
+  index from the record at `DS:142D`, which is the levelling character's only after a new
+  Psionicist level or when that character was made current last (Q-PARTY-043).
 - What else a level changes: the original calls further routines for each level, stores one
   result in the combatant record's byte at `0x16`, and calls overlay 209 routines for a new
   Preserver or Psionicist level, none of which this entry covers (Q-PARTY-039).
