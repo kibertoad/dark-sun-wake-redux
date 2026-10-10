@@ -138,6 +138,12 @@ An owner-approved history repair remains separate from this maintenance scope.
   and adds
   that no direct store puts 3 in DS:0DAB, so only mode 2 matters for Q-PARTY-054. Mode 2 is
   entered by 182+1856 (24 window openers); whether a gain can run while one is open is 065's job.
+- FND-PARTY-125 (Q-PARTY-065 progress): main tick 28C9:2322 returns while DS:0D9C is 0 (182+1856
+  clears it), so its fight step 28C9:1EDB (and 173+07AD's gain) cannot run in mode 2. Left: the
+  other fight step 28C9:305F (map-click callers 28C9:02B1, 0428, 0C7B), 182+1167's gate, and the
+  188+16E9 award paths (script 0x21, kills). Filed protocol #96: IDENTIFIERS-8 says nothing about
+  tool configs (our 22 reach JSONs) citing a superseded finding, or the runs recorded from them.
+  Our pinned Standard predates #66 (IDENTIFIERS-8); a template/upstream re-sync would pick it up.
 - Filed protocol #95: a batch that supersedes an entry the handover cites cannot pass the docs
   check without a handover edit; the workaround is handover commit, batch, handover commit.
 - Template context: template 0b9ab9c, rules 11884c7 and checker 2.9.0 are
