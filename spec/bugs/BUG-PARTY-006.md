@@ -7,7 +7,7 @@ superseded_by: []
 impact: crash
 intent: unintended
 player_reliance: unknown
-evidence: [FND-PARTY-082, FND-PARTY-105, FND-PARTY-096, FND-PARTY-108, FND-PARTY-109, FND-PARTY-110, FND-PARTY-111, FND-PARTY-112, FND-PARTY-113, FND-PARTY-114, FND-PARTY-115, FND-PARTY-116, FND-PARTY-119]
+evidence: [FND-PARTY-082, FND-PARTY-105, FND-PARTY-096, FND-PARTY-108, FND-PARTY-109, FND-PARTY-110, FND-PARTY-111, FND-PARTY-112, FND-PARTY-113, FND-PARTY-114, FND-PARTY-115, FND-PARTY-116, FND-PARTY-119, FND-PARTY-120]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-013, FMT-PARTY-001]
@@ -44,8 +44,11 @@ FND-PARTY-108). Both spells are cast at a single target picked with the map curs
 companion of the caster while a Shift key is held (FND-PARTY-109). A party member with a druid
 class at priest level 13 to 15 has spell 225 in its cast list and level 7 spells to cast, so it
 can drain another party member; spell 104 needs level 9 wizard spells, which a Preserver capped at
-level 15 never gets (FND-PARTY-110, FND-PARTY-111). Which of the sources can strike the party in
-play otherwise is open.
+level 15 never gets (FND-PARTY-110, FND-PARTY-111). The levels stay at 15 or below in the game's
+stores and the shipped party list, no path found lets an `OBJEX` actor with a higher Preserver
+level take a party slot, and the byte `DS:13F8` that lifts the limit is set only behind the
+`-k911` debug switch (FND-PARTY-116, FND-PARTY-119, FND-PARTY-120). Which of the sources can
+strike the party in play otherwise is open.
 
 ## Player reliance
 
@@ -64,11 +67,6 @@ None known.
 - Whether any enemy in play casts the spell `DATA` 104 or 225 at a party member, carries the item
   of `DATA` 313, or runs a script that sends code 59 to one, so that the crash can happen in a
   normal game: the casters are Q-PARTY-052, and the scripts are Q-PARTY-051.
-- Whether a party member can cast the spell `DATA` 104 at a companion, which needs a Preserver
-  level above 15 or the byte at `DS:13F8` set (FND-PARTY-111). The byte is set only behind the
-  `-k911` debug switch, and the game's stores and the shipped party list keep levels at 15 or
-  below; four `OBJEX` actors are Preservers at 18 or 20 (FND-PARTY-116). Whether such an actor can
-  join the party, which no allocation or release found allows (FND-PARTY-119), is Q-PARTY-063.
 - Whether any party member has type bytes that make the calls before the hit routine's saving
   throw stop the spells for it, which they do for the types 2, 3, 7, 11, 13 and 16 (FND-PARTY-112);
   the shipped and transferred characters and the characters generation stores hold 0, and no

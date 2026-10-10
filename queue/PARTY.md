@@ -52,14 +52,6 @@ Next ID: Q-PARTY-064
   `+2290`; FND-PARTY-109 reads the party's cast of a type 4 spell, which can strike a party member
   while a Shift key is held, and leaves the enemy callers; FND-PARTY-116 finds four `OBJEX` Preservers at level 18
   or 20 (`RDFF` 64, 65, 67 and 172), which overlay 177 `+05B7` would give a level 9 count.
-- Q-PARTY-063. BUG-PARTY-006: Can an actor of `OBJEX.GFF` become a party member, so that one of
-  the Preservers at level 18 or 20 (`RDFF` 64, 65, 67 and 172, FND-PARTY-116) can cast the spell
-  `DATA` 104 from the cast list? Settles it: the kind-0 `RDFF` loads of overlays 178, 191 and 201,
-  read for whether the argument or map lookup that gives their object can name a party object,
-  such as one left after a DROP (FND-PARTY-119). Blocks: nothing yet. Tried: FND-PARTY-116 shows
-  that `DS:13F8` is set only behind the `-k911` debug switch and that the game's own stores and
-  the shipped party list keep levels at 15 or below; FND-PARTY-119 shows that the allocators hand
-  out objects from 5 up and that no release, a DROP's among them, puts a party object on a list.
 - Q-PARTY-062. BUG-PARTY-006: Does anything other than a block copy, or a copy FND-PARTY-115's
   searches do not reach, put a value other than 0 in bytes `+0x0E` or `+0x0F` of a party member's
   FMT-COMBAT-001 record? Settles it: the reads of a saved game into the table at `DS:19C9` and the
