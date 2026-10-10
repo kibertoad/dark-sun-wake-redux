@@ -4,7 +4,7 @@ title: What a new character may be
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [SRC-MANUAL-1994, FND-PARTY-063, FND-PARTY-066, FND-PARTY-067, FND-PARTY-068, FND-PARTY-070, FND-PARTY-071, FND-PARTY-072]
+evidence: [SRC-MANUAL-1994, FND-PARTY-073, FND-PARTY-066, FND-PARTY-067, FND-PARTY-068, FND-PARTY-070, FND-PARTY-071, FND-PARTY-072]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-003, RULE-PARTY-005, RULE-PARTY-007, RULE-PARTY-009, RULE-PARTY-010, RULE-PARTY-011, SCR-UI-004]
@@ -102,7 +102,7 @@ and thri-kreen 7; the alignment codes lawful good 0, lawful neutral 1, lawful ev
 3, true neutral 4, neutral evil 5, chaotic good 6, chaotic neutral 7 and chaotic evil 8. They are
 the positions of the executable's labels (FND-PARTY-016, FND-PARTY-017), which is not shown to be
 how the game stores them; the generation screen numbers the classes 1 to 8 in the same order
-(FND-PARTY-063). The screen stores origin, gender and alignment counting from 1 (FND-PARTY-070).
+(FND-PARTY-073). The screen stores origin, gender and alignment counting from 1 (FND-PARTY-070).
 
 DONE checks only the classes, the disciplines and the sphere; the screen keeps the rest within
 these limits as the player chooses (RULE-PARTY-009, RULE-PARTY-010, RULE-PARTY-011), so it never

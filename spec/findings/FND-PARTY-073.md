@@ -1,9 +1,9 @@
 ---
-id: FND-PARTY-063
+id: FND-PARTY-073
 title: Character generation keeps class codes 1 to 8 of the DS:1164 numbering in its working details record at 4E4F:0029, and overlay 184 +1648 turns them into the 17 codes through the table at 4E4F:00C0 when it stores the character
-status: superseded
+status: recorded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: [FND-PARTY-073]
+superseded_by: []
 recorded_by: kibertoad
 reproduced_by: []
 method: static
@@ -33,7 +33,7 @@ locations:
     file: DSUN.EXE
     offset: 0x0004378C..0x000437D4
     kind: file-data
-tool: Python 3.14.7 with Capstone 5.0.9 and xxhash 4.0.1 (tools/research/exec-census/overlay_listing.py, direct_callers.py, field_stores.py)
+tool: Python 3.14.7 with Capstone 5.0.9 and xxhash 4.0.1 (tools/research/exec-census/overlay_listing.py, direct_callers.py, field_stores.py, trampoline_target.py)
 environment: null
 ---
 
@@ -81,7 +81,7 @@ combatant record in the table at `DS:19C9`, the slot being the word at `DS:112E`
 not -1 and its argument otherwise (`+1674..+170D`). Then for each of the three class bytes of
 the record at `DS:1429` it stores the byte at `4E4F:00C0` plus 4 times that byte plus the
 variant into the class byte of the details record numbered by `4E71:0B44` (`+1710..+1750`), and
-calls overlay 210 `+0039` with its argument (`+1753`). The table at `4E4F:00C0` (file `0x437B0`),
+calls overlay 210 `+0365` through trampoline `57B9:0039` with its argument (`+1753`). The table at `4E4F:00C0` (file `0x437B0`),
 four bytes per code from 0:
 
 | Code | Variants 0 to 3 |
@@ -125,12 +125,14 @@ set for each code by the pairs at `4E4F:009C` are the inverse of the table at `4
   set the word to the slot. The other writers of the word (file `0x75CBC`, `0x78934` and
   `0x93170`) were not read, and whether the two can differ is open.
 - Whether the variant bits stand for clerical spheres or anything else is not shown here.
+- FND-PARTY-063 recorded the same readings but named the overlay 210 routine `+1648` calls as
+  `+0039`, which is the offset of its trampoline in segment `57B9`; the routine is `+0365`.
 
 ## How to reproduce
 
 From the commit that adds this finding, with the locked evidence Python and `<dsun>` the installed
 `DSUN.EXE`, run in `tools/research/exec-census/`: `overlay_listing.py <dsun> 183 6B160 6B340`,
 `183 6BA1E 6BC40`, `184 6D860 6D8E0`, `184 6DE37 6DF00`, `184 6DCF0 6DD18`, `184 6E696 6E7E2` and
-`184 6EE5E 6EF40`; `direct_callers.py <dsun> 184+1648 184+1606 184+07D8 184+1DCE 183+0A3E`; and
+`184 6EE5E 6EF40`; `trampoline_target.py <dsun> 57B9:0039`; `direct_callers.py <dsun> 184+1648 184+1606 184+07D8 184+1DCE 183+0A3E`; and
 `field_stores.py <dsun> ../../../coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv --es 1B 1C 1D`. Read the 72
 bytes at file `0x4378C`.

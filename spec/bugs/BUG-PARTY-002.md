@@ -7,7 +7,7 @@ superseded_by: []
 impact: rules
 intent: unclear
 player_reliance: unknown
-evidence: [FND-PARTY-063, FND-PARTY-065]
+evidence: [FND-PARTY-073, FND-PARTY-065]
 conflicting: []
 split_with: []
 related: [FMT-PARTY-001]
@@ -40,7 +40,7 @@ With two classes, which `+0A3E` puts in positions 0 and 1 (mask 6), it skips pos
 position 2, whose class byte is 0, so it reads row -1 of `DATA` 1000 (the 40 bytes before the
 resource) at column 0, and adds 1 to that position's level byte if the word there, times 100, is
 not above the experience (FND-PARTY-065). Storing the character keeps the level byte and turns
-the class byte 0 into 0 (FND-PARTY-063).
+the class byte 0 into 0 (FND-PARTY-073).
 
 ## Frequency
 

@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_001.ksy
-evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057, FND-PARTY-058, FND-PARTY-059, FND-PARTY-063, FND-PARTY-066]
+evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057, FND-PARTY-058, FND-PARTY-059, FND-PARTY-073, FND-PARTY-066]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-006]
@@ -87,22 +87,22 @@ FND-PARTY-003, FND-PARTY-052]. The eight records of the disc's copy are the rows
 
 | Value | Name | Meaning | Status | Evidence |
 |---|---|---|---|---|
-| 1 | `CLASS_CLERIC_AIR` | Cleric of the air sphere, the first choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-063, FND-PARTY-066 |
-| 2 | `CLASS_CLERIC_EARTH` | Cleric of the earth sphere, the second choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-063, FND-PARTY-066 |
-| 3 | `CLASS_CLERIC_FIRE` | Cleric of the fire sphere, the third choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-063, FND-PARTY-066 |
-| 4 | `CLASS_CLERIC_WATER` | Cleric of the water sphere, the fourth choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-063, FND-PARTY-066 |
-| 5 | `CLASS_DRUID_AIR` | Druid of the air sphere, the first choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-063, FND-PARTY-066 |
-| 6 | `CLASS_DRUID_EARTH` | Druid of the earth sphere, the second choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-063, FND-PARTY-066 |
-| 7 | `CLASS_DRUID_FIRE` | Druid of the fire sphere, the third choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-063, FND-PARTY-066 |
-| 8 | `CLASS_DRUID_WATER` | Druid of the water sphere, the fourth choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-063, FND-PARTY-066 |
+| 1 | `CLASS_CLERIC_AIR` | Cleric of the air sphere, the first choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-073, FND-PARTY-066 |
+| 2 | `CLASS_CLERIC_EARTH` | Cleric of the earth sphere, the second choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-073, FND-PARTY-066 |
+| 3 | `CLASS_CLERIC_FIRE` | Cleric of the fire sphere, the third choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-073, FND-PARTY-066 |
+| 4 | `CLASS_CLERIC_WATER` | Cleric of the water sphere, the fourth choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-073, FND-PARTY-066 |
+| 5 | `CLASS_DRUID_AIR` | Druid of the air sphere, the first choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-073, FND-PARTY-066 |
+| 6 | `CLASS_DRUID_EARTH` | Druid of the earth sphere, the second choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-073, FND-PARTY-066 |
+| 7 | `CLASS_DRUID_FIRE` | Druid of the fire sphere, the third choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-073, FND-PARTY-066 |
+| 8 | `CLASS_DRUID_WATER` | Druid of the water sphere, the fourth choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-073, FND-PARTY-066 |
 | 9 | `CLASS_FIGHTER` | Fighter. | supported | FND-PARTY-057 |
 | 10 | `CLASS_GLADIATOR` | Gladiator. | supported | FND-PARTY-057 |
 | 11 | `CLASS_PRESERVER` | Preserver. | supported | FND-PARTY-057 |
 | 12 | `CLASS_PSIONICIST` | Psionicist, named `Psionic` on the class line. | supported | FND-PARTY-057 |
-| 13 | `CLASS_RANGER_AIR` | Ranger of the air sphere, the first choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-063, FND-PARTY-066 |
-| 14 | `CLASS_RANGER_EARTH` | Ranger of the earth sphere, the second choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-063, FND-PARTY-066 |
-| 15 | `CLASS_RANGER_FIRE` | Ranger of the fire sphere, the third choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-063, FND-PARTY-066 |
-| 16 | `CLASS_RANGER_WATER` | Ranger of the water sphere, the fourth choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-063, FND-PARTY-066 |
+| 13 | `CLASS_RANGER_AIR` | Ranger of the air sphere, the first choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-073, FND-PARTY-066 |
+| 14 | `CLASS_RANGER_EARTH` | Ranger of the earth sphere, the second choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-073, FND-PARTY-066 |
+| 15 | `CLASS_RANGER_FIRE` | Ranger of the fire sphere, the third choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-073, FND-PARTY-066 |
+| 16 | `CLASS_RANGER_WATER` | Ranger of the water sphere, the fourth choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-073, FND-PARTY-066 |
 | 17 | `CLASS_THIEF` | Thief. | supported | FND-PARTY-057 |
 
 ## Differences between builds

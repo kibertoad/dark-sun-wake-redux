@@ -105,7 +105,7 @@ the order of the abilities.
 ## Edge cases
 
 The class codes in `prime` and `other_minimum` are the `character_class` codes, one less than the
-screen's numbering (FND-PARTY-063). The prime ability is wisdom for cleric, druid, psionicist and
+screen's numbering (FND-PARTY-073). The prime ability is wisdom for cleric, druid, psionicist and
 ranger, strength for fighter and gladiator, intelligence for preserver and dexterity for thief.
 
 A roll never passes the maximum, since four four-sided dice give at most 16. No set of classes the

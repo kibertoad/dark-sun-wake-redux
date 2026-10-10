@@ -4,7 +4,7 @@ title: Which psionic disciplines and elemental sphere a new character chooses
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [SRC-MANUAL-1994, SRC-README-1.1, FND-PARTY-063, FND-PARTY-066, FND-PARTY-067]
+evidence: [SRC-MANUAL-1994, SRC-README-1.1, FND-PARTY-073, FND-PARTY-066, FND-PARTY-067]
 conflicting: []
 split_with: []
 related: [SCR-UI-004, SCR-UI-005]

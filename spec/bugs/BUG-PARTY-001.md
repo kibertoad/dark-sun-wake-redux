@@ -7,7 +7,7 @@ superseded_by: []
 impact: presentation
 intent: unintended
 player_reliance: unknown
-evidence: [FND-PARTY-058, FND-PARTY-062, FND-PARTY-063]
+evidence: [FND-PARTY-058, FND-PARTY-062, FND-PARTY-073]
 conflicting: []
 split_with: []
 related: [SCR-UI-002, FMT-PARTY-001]
@@ -30,7 +30,7 @@ figure is printed whenever the sheet shows the experience line (overlay 186 `+04
 For each class whose level is not 15, the sheet reads the `DATA` 1000 threshold row numbered by
 the class code less 1, multiplies the word at the level by 100 and prints the least of the
 results, using the first class only for a human (FND-PARTY-058). The class bytes hold the 17-code
-numbering, in the shipped records and in every character generation stores (FND-PARTY-063), and
+numbering, in the shipped records and in every character generation stores (FND-PARTY-073), and
 the routines that apply experience in play turn a code into a row through the class bytes of the
 pairs at `4E4F:009C` first (FND-PARTY-062). The sheet does not, so code 2 (a Cleric code) reads
 the Druid row, code 5 (a Druid code) the Preserver row, and codes 9 to 17 read 320 to 640 bytes

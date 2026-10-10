@@ -4,7 +4,7 @@ title: Which classes the generation screen offers
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-058, FND-PARTY-063, FND-PARTY-065, FND-PARTY-068, FND-PARTY-069, FND-PARTY-070]
+evidence: [FND-PARTY-058, FND-PARTY-073, FND-PARTY-065, FND-PARTY-068, FND-PARTY-069, FND-PARTY-070]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-002, RULE-PARTY-007, SCR-UI-004]
@@ -21,7 +21,7 @@ classes after it move forward.
 ## When it runs
 
 Each time the screen sets a class or changes the origin, before it draws the eight class buttons
-(SCR-UI-004, FND-PARTY-063).
+(SCR-UI-004, FND-PARTY-073).
 
 ## Parameters
 
@@ -68,7 +68,7 @@ to remove it. `remove_class` returns the list after removing a class. None chang
 DONE checks only that there is a class, beside the sphere and disciplines (FND-PARTY-070), so the
 classes a character can be stored with are those these buttons offer.
 
-The screen numbers the classes 1 to 8 (FND-PARTY-063); the procedure uses the `character_class`
+The screen numbers the classes 1 to 8 (FND-PARTY-073); the procedure uses the `character_class`
 codes 0 to 7 in the same order, and `class_combinations` is indexed as FMT-PARTY-007 gives it, by the first
 class's code and then 0 or the second class's code plus 1.
 
