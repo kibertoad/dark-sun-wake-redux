@@ -21,8 +21,12 @@ seq:
     type: u1
   - id: unk_03
     type: u1
-  - id: unk_04
-    size: 4
+  - id: saved_slot
+    type: u2
+    doc: The party slot the character was written from (the first chunk's record_ref).
+  - id: saved_field
+    type: u2
+    doc: The first chunk's field, which the writer sets to the slot.
   - id: len_data
     type: u2
     doc: 49, the size of the data from 0x0A.
@@ -32,13 +36,19 @@ seq:
   - id: psionic_points
     type: u2
     doc: The character's current psionic strength points.
-  - id: unk_0e
+  - id: saved_details_index
     type: u2
+    doc: The details_index when the character was written.
   - id: combatant_id
     type: u2
     doc: Copied to the combatant record's character_id.
-  - id: unk_12
-    size: 8
+  - id: saved_child_refs
+    type: u2
+    repeat: expr
+    repeat-expr: 3
+    doc: The combatant record's words at 0x08, 0x0A and 0x0C when written; 9999 for none.
+  - id: unk_18
+    size: 2
   - id: object_offset
     type: u2
     doc: 300 plus this is the object number placed for the character.
