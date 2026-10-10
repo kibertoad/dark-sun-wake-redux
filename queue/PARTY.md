@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-029
+Next ID: Q-PARTY-030
 
 ## Static
 
@@ -17,14 +17,18 @@ Next ID: Q-PARTY-029
   over the calls it makes, checking which of the 11 stores to the word it reaches and with what
   value. Tried: FND-PARTY-064 reads the other three callers of `+1DCE` and the edit path, where the
   slots are the same; the DUAL path's calls were not followed. Blocks: slice 2.
-- Q-PARTY-002. RULE-PARTY-002, RULE-PARTY-003, RULE-PARTY-005, RULE-PARTY-007: What does the
-  character generation screen check and offer: which classes it offers each origin where the
-  manual's two lists and README table 3 disagree (half-giant ranger or thief, mul druid,
-  thri-kreen druid or thief), which class combinations it allows, how it rolls the six scores and when it applies the origin modifiers, whether it
-  refuses DONE or greys out choices, and whether a psionicist can turn a discipline off? Settles it: the code behind SCR-UI-004 and SCR-UI-005, then
-  an owner capture of the generation screen for each disputed pair. Tried: FND-PARTY-063 and
-  FND-PARTY-066 read the class buttons and the sphere window, which Cleric, Druid and Ranger
-  open, and FND-PARTY-067 the discipline window. Blocks: slice 2.
+- Q-PARTY-002. RULE-PARTY-002, RULE-PARTY-003, RULE-PARTY-005, RULE-PARTY-009: What does the character
+  generation screen check beyond the class buttons: how it rolls the six scores and when it
+  applies the origin modifiers, whether DONE refuses a character for its scores, gender,
+  alignment or class minimums, and whether a psionicist can turn a discipline off? Settles it:
+  the code behind SCR-UI-004 and SCR-UI-005 for DONE, the score buttons and the discipline
+  window's `+0CE3`, `+0D2C` and `+0D95`. Tried: FND-PARTY-063 and FND-PARTY-066 read the class
+  buttons and the sphere window, FND-PARTY-067 the discipline window, and FND-PARTY-068 which
+  classes the buttons offer. Blocks: slice 2.
+- Q-PARTY-029. RULE-PARTY-009: Is any of the eight words at `4E68:0000` written after load?
+  Settles it: a search for stores through a segment register loaded with `4E68` (segment word
+  `0x0368`) to offsets `0x00` to `0x0F`, with a positive control, and of every far pointer formed
+  to that segment (FND-PARTY-068). Blocks: slice 2.
 - Q-PARTY-003. FMT-PARTY-001, RULE-PARTY-004, RULE-MAGIC-002: What do the record's remaining `unk_`
   fields hold, and are the scores stored before or after origin modifiers? Settles it: the other
   routines that print the character sheet from the record at `DS:1429` (FND-PARTY-055), and the

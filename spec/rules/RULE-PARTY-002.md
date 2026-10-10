@@ -7,14 +7,14 @@ superseded_by: []
 evidence: [SRC-MANUAL-1994, SRC-README-1.1]
 conflicting: []
 split_with: []
-related: [RULE-PARTY-007, SCR-UI-004]
+related: [RULE-PARTY-007, RULE-PARTY-009, SCR-UI-004]
 ---
 
 ## Summary
 
 A new character has an origin, a gender, an alignment that is good or neutral, six ability
 scores from 9 to 24, and one to three classes. A human has one class; other origins may combine
-up to three, but never cleric with druid. Each class needs minimum ability scores, and each
+up to three in the combinations the generation screen offers (RULE-PARTY-009). Each class needs minimum ability scores, and each
 origin allows only some classes. Muls are always male and thri-kreen always female.
 
 ## When it runs
@@ -61,20 +61,12 @@ define character_allowed(origin, gender, alignment, classes, scores):
         return false
     if origin == 0 and n != 1:
         return false
-    let has_cleric = false
-    let has_druid = false
     for i in 0..n:
         if not class_allowed(origin, classes[i], scores):
             return false
-        for j in 0..i:
-            if classes[j] == classes[i]:
-                return false
-        if classes[i] == 0:
-            has_cleric = true
-        if classes[i] == 1:
-            has_druid = true
-    if has_cleric and has_druid:
-        return false
+        # classes_offered never offers a class already in its list
+        if (classes_offered(origin, classes[0..i]) >> (7 - classes[i])) & 1 == 0:
+            return false
     return true
 ```
 
@@ -89,8 +81,12 @@ and thief 7; the origin codes human 0, dwarf 1, elf 2, half-elf 3, half-giant 4,
 and thri-kreen 7; the alignment codes lawful good 0, lawful neutral 1, lawful evil 2, neutral good
 3, true neutral 4, neutral evil 5, chaotic good 6, chaotic neutral 7 and chaotic evil 8. They are
 the positions of the executable's labels (FND-PARTY-016, FND-PARTY-017), which is not shown to be
-how the game stores them. Which origins may take a class comes from RULE-PARTY-007, where the
-sources disagree.
+how the game stores them; the generation screen numbers the classes 1 to 8 in the same order
+(FND-PARTY-063). Which classes may go together, and in which order, comes from RULE-PARTY-009's
+`classes_offered`, whose table forbids cleric with druid as the manual does and many other
+combinations besides; `classes` is in the order the screen keeps them. `class_level_limit`
+(RULE-PARTY-007) is nonzero exactly for the classes `classes_offered` gives an origin with no
+class.
 
 Scores are checked after origin modifiers (RULE-PARTY-005) only if the game applies them before
 DONE, which is not known.
@@ -118,10 +114,9 @@ None known.
 
 ## Open questions
 
-- Whether the generation screen enforces these limits by refusing DONE, by greying out choices,
-  or not at all, and whether the minimums apply to scores before or after origin modifiers
+- Whether the generation screen enforces the scores, genders, alignment and class minimums by
+  refusing DONE, by greying out choices, or not at all (it greys out the classes RULE-PARTY-009
+  does not offer, FND-PARTY-068), and whether the minimums apply to scores before or after origin modifiers
   (Q-PARTY-002).
-- Which pairs and triples of classes a non-human may combine beyond the cleric and druid
-  exclusion. The manual gives no list (Q-PARTY-002).
 - How the six scores are rolled and what editing them allows (SRC-MANUAL-1994, page 9;
   Q-PARTY-002).

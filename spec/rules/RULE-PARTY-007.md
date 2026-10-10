@@ -7,7 +7,7 @@ superseded_by: []
 evidence: [SRC-README-1.1, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
-related: []
+related: [RULE-PARTY-009]
 ---
 
 ## Summary
@@ -19,8 +19,9 @@ four levels past the limit.
 
 ## When it runs
 
-`class_level_limit` when the generation screen decides whether an origin may take a class
-(RULE-PARTY-002), and `maximum_level` whenever a character could gain a level.
+`class_level_limit` when DONE checks a new character (RULE-PARTY-002), and `maximum_level`
+whenever a character could gain a level. The generation screen decides which classes it offers
+from its own table (RULE-PARTY-009).
 
 ## Parameters
 
@@ -81,8 +82,13 @@ origin descriptions (pages 17 and 18) allow a half-giant ranger and forbid a hal
 mul druid, a thri-kreen druid and a thri-kreen thief. The class descriptions (pages 19 to 22)
 forbid a half-giant ranger and allow the other four. README table 3 sides with the origin
 descriptions on the half-giant ranger (limit 8), the half-giant thief and the thri-kreen thief,
-and with the class descriptions on the mul druid (12) and the thri-kreen druid (16). No list
-has been read from the executable.
+and with the class descriptions on the mul druid (12) and the thri-kreen druid (16).
+
+The generation screen offers a class with no other class exactly where table 3 gives a limit,
+from a table of its own (RULE-PARTY-009, FND-PARTY-068): a half-giant may be a ranger but not a
+thief, a mul a druid, and a thri-kreen a druid but not a thief. That settles which classes each
+origin may take; the level limits and the prime requisite bonus have not been read from the
+executable.
 
 ## Differences between builds
 
@@ -90,9 +96,5 @@ None known.
 
 ## Open questions
 
-- Which classes the generation screen offers for each origin, where the manual's two lists and
-  the README disagree. The party START GAME supplies holds a thri-kreen fighter and druid
-  (FND-PARTY-020), which fits the README and the class descriptions for that pair, but that
-  character was not made on the generation screen (Q-PARTY-002).
 - Whether the game applies these limits at all, and how it counts the prime requisite of a class
   with more than one (Q-PARTY-008).
