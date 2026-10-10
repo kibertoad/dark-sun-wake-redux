@@ -75,15 +75,15 @@ None known.
   word at `DS:0DAB` start at 0 (FND-PARTY-022, FND-PARTY-029), and no direct call made between
   program start and the gate reaches a routine that changes the count or makes that word nonzero
   (FND-PARTY-031). The pointers most indirect calls on those paths read hold routines from which
-  no route reaches one (FND-PARTY-039, FND-PARTY-040). Still open: the routes through the run of
-  `MAS` 99, where 32 opcodes' handlers and the loader-error routine lead to such routines
-  (FND-PARTY-040, Q-PARTY-015); 9 indirect calls whose targets are unread (FND-PARTY-039, FND-PARTY-040, Q-PARTY-011);
+  no route reaches one (FND-PARTY-039, FND-PARTY-040). The run of `MAS` 99 on those paths executes
+  only opcodes whose handlers reach none (FND-PARTY-040, FND-PARTY-041). Still open: a failed load
+  of `MAS` 99, whose error routine leads to such routines (FND-PARTY-040, Q-PARTY-016); 9 indirect calls whose targets are unread (FND-PARTY-039, FND-PARTY-040, Q-PARTY-011);
   and whether either of the gate routine's two
   video-memory reservations fails (FND-PARTY-030, FND-PARTY-032, FND-PARTY-033). While the
   pointer is an `ICON` neither can fail on space, since the caret and pointer saves then hold at
   most 1,006 paragraphs, the room left, and no direct route before the gate makes it another
-  image (FND-PARTY-035, FND-PARTY-036, FND-PARTY-037); routes through `MAS` 99 and the
-  unresolved indirect calls stay open (Q-PARTY-015, Q-PARTY-011). The owner's captures of a game started with START GAME show the four characters
+  image (FND-PARTY-035, FND-PARTY-036, FND-PARTY-037); routes through a failed `MAS` 99
+  load and the unresolved indirect calls stay open (Q-PARTY-016, Q-PARTY-011). The owner's captures of a game started with START GAME show the four characters
   in this order, but they do not tell 41 from 53 or 43 from 33 (FND-PARTY-020); the
   shipped-party live session would confirm it (Q-PARTY-001).
 - Where `CHARSAVE.GFF` is opened from rests on DOS reporting version 3 or later and placing the

@@ -1,0 +1,57 @@
+{
+ "starts": [
+  "172C:0B2E",
+  "172C:0DCD",
+  "172C:1CF7",
+  "172C:1D7A",
+  "172C:1127"
+ ],
+ "leaves": [
+  {
+   "site": "172C:367B",
+   "reason": "FND-PARTY-041: MAS 99 parameters are well-formed expressions"
+  },
+  {
+   "site": "172C:3278",
+   "reason": "FND-PARTY-041: MAS 99 expressions take no error branch"
+  },
+  {
+   "site": "172C:20B3",
+   "reason": "FND-PARTY-041: each fetch of MAS 99 stays below the 10,000-byte buffer size"
+  }
+ ],
+ "targets": [
+  "0x271E3",
+  "0x27404",
+  "0x709B1",
+  "0x709C5",
+  "0x710A0",
+  "0x710A8",
+  "0x89297",
+  "0x892D0",
+  "2B1B:000A",
+  "182+15D7",
+  "182+1167",
+  "173+3CDA",
+  "192+03AC",
+  "204+0169",
+  "3D72:120B",
+  "2C5F:0CBF",
+  "2C5F:0CF1",
+  "0x1EA07",
+  "0x63C14",
+  "0x75C7D",
+  "0x777F7",
+  "0x76BE1",
+  "0x7714E",
+  "0x90BE1",
+  "0x9106C",
+  "0x910C6",
+  "0x6A3FB",
+  "0x92B67",
+  "0x92B95",
+  "0x747A1",
+  "0x88521"
+ ],
+ "controls": []
+}

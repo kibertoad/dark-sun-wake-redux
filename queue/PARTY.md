@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-016
+Next ID: Q-PARTY-017
 
 ## Static
 
@@ -42,8 +42,8 @@ Next ID: Q-PARTY-016
 - Q-PARTY-011. RULE-PARTY-006: Can any of the 9 indirect calls whose targets FND-PARTY-039 and
   FND-PARTY-040 leave open on the paths from program start through START GAME to the gate at
   overlay 182 offset `0x12DD` (the 8 calls through record fields at `ES:BX` and `ES:SI`, and
-  `call [di+0x6393]` at `0x1767E`, whose `DS` was not traced), other than through the run of
-  `MAS` 99 (Q-PARTY-015), reach a routine that changes the placed-object count at `DS:264E`
+  `call [di+0x6393]` at `0x1767E`, whose `DS` was not traced), other than through a failed load of
+  `MAS` 99 (Q-PARTY-016), reach a routine that changes the placed-object count at `DS:264E`
   (FND-PARTY-022), makes the word at `DS:0DAB` nonzero (FND-PARTY-029), or makes the mouse
   pointer an image other than an `ICON`, through `3D72:120B`, `3D72:12ED` or one of the 14 sites
   of FND-PARTY-036, which could make the gate routine's reservations fail (FND-PARTY-035)?
@@ -59,19 +59,15 @@ Next ID: Q-PARTY-016
   displacement stores of every pointer those 61 calls read, which leave only the record fields
   unenumerated (FND-PARTY-039); and `reach` rounds that add those values as starts once their
   writers are reached, whose only routes to the targets pass the run of `MAS` 99
-  (FND-PARTY-040). Blocks: slice 2.
-- Q-PARTY-015. RULE-PARTY-006: Before the gate at overlay 182 offset `0x12DD`, does the run of
-  `MAS` 99 that overlay 188 `+046C` starts through `172C:000C` (FND-CONFIG-160, FND-PARTY-040)
-  execute an opcode whose handler, with the operands the script gives it, changes the placed-object
-  count at `DS:264E`, makes `DS:0DAB` nonzero or makes the pointer an image other than an `ICON`,
-  and does the script's load fail, so that `172C:0299` calls `5702:00B1`, which leads to
-  `28C9:0CFF` being stored at `DS:A0F1`? Of the 129 opcodes, the handlers of `0x08`, `0x0B`,
-  `0x0D`, `0x1A`, `0x22`, `0x24`, `0x25`, `0x2A`, `0x2B`, `0x2D`, `0x2F`, `0x32`, `0x35` to `0x3C`,
-  `0x42`, `0x43`, `0x44`, `0x48`, `0x4F`, `0x50`, `0x51`, `0x54`, `0x5C`, `0x5E`, `0x62` and `0x80`
-  reach such a routine through resolved calls (FND-PARTY-040). Settles it: the opcodes `MAS` 99
-  executes from offset 0 until its frames unwind or it stops, read from the installed resource
-  (FMT-SCRIPT-001, FND-SCRIPT-001) along the interpreter's control flow, and for each listed opcode
-  it executes, the handler's path for its operands. Split from Q-PARTY-011. Blocks: slice 2.
+  (FND-PARTY-040), whose instructions open none (FND-PARTY-041). Blocks: slice 2.
+- Q-PARTY-016. RULE-PARTY-006: Before the gate at overlay 182 offset `0x12DD`, can the load of
+  `MAS` 99 that `172C:0299` starts for overlay 188 `+046C` fail, so that it calls `5702:00B1`,
+  which leads to overlay 199 `+0C21` storing `28C9:0CFF` at `DS:A0F1` and so to routines that
+  change the placed-object count or `DS:0DAB` (FND-PARTY-040, FND-PARTY-041)? Settles it: the
+  failure branches of the loader `172C:0388` (FND-SCRIPT-019, RULE-SCRIPT-010) read for the
+  state at that call: the cache and buffer left by overlay 169 `+0000`, the open archives, and
+  `MAS` 99 in `GPLDATA.GFF`; and whether `5702:00B1` returns. Split from Q-PARTY-015, which
+  FND-PARTY-041 closed. Blocks: slice 2.
 
 ## Emulated call
 
