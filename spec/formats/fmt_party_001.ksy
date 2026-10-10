@@ -143,8 +143,9 @@ seq:
     doc: The armor class before items and dexterity.
   - id: base_movement_rate
     type: u1
-  - id: unk_68
-    type: u1
+  - id: magic_resistance
+    type: s1
+    doc: Magic resistance in percent.
   - id: class_attack_rate
     type: u1
   - id: attack_rate
