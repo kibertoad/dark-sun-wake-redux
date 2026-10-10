@@ -56,13 +56,14 @@ Next ID: Q-PARTY-020
   what placed-object count and `DS:0DAB`? Settles it: the load routine overlay 192 `+05ED`,
   overlay 182 `+19F8`, `28C9:2522`, the gate routine called with 0, and whether window 19500 or
   its handler survives those calls (FND-PARTY-045). Blocks: slice 2.
-- Q-PARTY-019. RULE-PARTY-006: For the object number `ADD` passes (0x12C plus the word at `+0x10`
-  of the slot's record at `DS:19C9`), do the `OJFF` request `38FF:04AB` and the `RDFF` load
-  `2D40:000A` in `31E0:0EFF` succeed, and is the slot's word at `DS:67BC` other than -1 after
-  them, so that `31E0:0121` reaches its increment? Settles it: those routines read for that
-  object number against `GPLDATA.GFF` or the archive that holds `OJFF` and `RDFF`, and the
-  writers of the slot record. Tried: FND-PARTY-047 shows the helper's first test, on
-  `DS:265B`, passes after start-up. Blocks: slice 2.
+- Q-PARTY-019. RULE-PARTY-006: After `ADD` loads a stored character, is 300 plus the word at
+  `0x10` of the slot's 49-byte record at `DS:19C9` an object number with an `OJFF` resource in
+  `OBJEX.GFF` (300 to 313 or 320 to 326), so that `31E0:0EFF`'s request succeeds and
+  `31E0:0121` reaches its increment? Settles it: the writer of that word in the `CHAR` load
+  `2D40:000A` (the reading Q-PARTY-003 asks for) and the values the stored characters give it.
+  Tried: FND-PARTY-047 (the `DS:265B` test passes) and FND-PARTY-048 (the `RDFF` load is
+  skipped and the slot-record test passes, so only the `OJFF` request can fail).
+  Blocks: slice 2.
 
 ## Emulated call
 

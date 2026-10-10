@@ -215,7 +215,7 @@ An owner-approved history repair remains separate from this maintenance scope.
      +139B/+0D89/+0802, which reach two count stores. FND-PARTY-046 reads ADD on an empty character box: 171+0AA5 loads
      CHAR and calls 31E0:0121 (inc [264E]) at 171+0C25, and Esc returns to the start window
      with nothing clearing the count, so START GAME would skip 40-43. Next PARTY items:
-     Q-PARTY-019 (OJFF/RDFF in 31E0:0EFF for the added character; DS:265B passes per FND-PARTY-047), Q-PARTY-017 (other actions, NEW, unresolved
+     Q-PARTY-019 (OJFF for 300 + party record +0x10 after a CHAR load; FND-PARTY-047/048 clear the other tests; ties to Q-PARTY-003), Q-PARTY-017 (other actions, NEW, unresolved
      transfers); Q-PARTY-018 asks whether
      START GAME is still reachable after a confirmed load. Inventory rows 3EBE:001F, 3EBE:09B6 and
      1000:02AD have boundary anomalies (FND-PARTY-044); upstream: toolkit #412 (reach no-return

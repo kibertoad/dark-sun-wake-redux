@@ -86,8 +86,9 @@ None known.
   first: `ADD` on an empty character box loads a stored character and places it with the
   routine that increments the count, and Esc returns to the start window with no store that
   clears it, so START GAME would then skip the loader and begin with the screen's party
-  (FND-PARTY-046). Start-up sets the byte the placement helper tests first (FND-PARTY-047); that holds
-  unless the helper's resource request or load for the added character fails (Q-PARTY-019). Still open: which other actions on that screen change the count, and whether
+  (FND-PARTY-046). Start-up sets the byte the placement helper tests first (FND-PARTY-047), and of its
+  other tests only the `OJFF` request for the added character can fail (FND-PARTY-048,
+  Q-PARTY-019). Still open: which other actions on that screen change the count, and whether
   a routine behind the unresolved transfers of those runs clears it (FND-PARTY-045,
   FND-PARTY-046, Q-PARTY-017); whether START
   GAME can still be chosen after a confirmed load, and with what count (FND-PARTY-045,
