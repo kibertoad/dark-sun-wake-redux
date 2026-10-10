@@ -176,7 +176,12 @@ seq:
     repeat-expr: 5
     doc: Five saving throws.
   - id: unk_7b
-    size: 3
+    type: u1
+  - id: footprint
+    type: u1
+  - id: spell_list
+    type: u1
+    doc: List from which overlay 177 prepares a caster's spells.
   - id: greatest_levels
     type: u1
     repeat: expr
