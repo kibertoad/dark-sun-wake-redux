@@ -32,7 +32,9 @@ Next ID: Q-PARTY-065
   FND-PARTY-090 reaches 927 routines, through overlay 182 `+19F8` into window and event code as far
   as the `4E71:0B44` store of overlay 209 `+0218`, so a reach run cannot rule stores out; overlay
   182 `+19F8` makes its far calls only when `DS:0DAB` is 2 or 3 (FND-PARTY-029), and the value of
-  `DS:0DAB` when a level gain runs was not read.
+  `DS:0DAB` when a level gain runs was not read; FND-PARTY-123 reads `+0C21` and `+19F8`, whose
+  one store to the records sets a combat mark of 0 to 1 while `DS:0DAB` is 2, which leaves the
+  gain's slot test unchanged, and lists the callees still unread.
 - Q-PARTY-045. RULE-PARTY-015: Does any enemy's `kill_experience` divided by the filled party
   slots reach 32,768, so that killing it lowers each member's experience (FND-PARTY-086,
   FND-PARTY-094)? Settles it: the routine that loads an `RDFF` resource of `OBJEX.GFF` into the
