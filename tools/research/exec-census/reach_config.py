@@ -3,7 +3,11 @@
 Usage: python -I reach_config.py PATH_TO_DSUN.EXE INVENTORY_TSV OUT_JSON QUERY_JSON
 
 QUERY_JSON holds `starts`, `targets` and `controls` (lists of sites) and `leaves` (a list of
-{site, reason}). A site is a file offset 0xHEX, a resident address SEGMENT:OFFSET (load image at
+{site, reason}), and may hold `instructionControls` (a list of sites) and `indirectCalls` (the
+engine's declarations of computed call targets, from scientific-method-engine 18.4.0: each with
+`site`, `evidence`, `exhaustive` and either `targets`, a list of sites, or `table`, whose `start`
+is a site), and `noReturn` (the engine's list of {routine, reason} and {interrupt, reason}
+entries, from 18.0.0, whose routine or interrupt is a site). A site is a file offset 0xHEX, a resident address SEGMENT:OFFSET (load image at
 segment 0x1000) or an overlay routine DESCRIPTOR+OFFSET (hexadecimal offset in that overlay's
 code); each becomes a file offset. Checks the installed DSUN.EXE's size and XXH3-128.
 
@@ -79,6 +83,17 @@ starts = [site(s) for s in query["starts"]]
 targets = [site(s) for s in query["targets"]]
 controls = [site(s) for s in query.get("controls", [])]
 leaves = [{"routine": site(leaf["site"]), "reason": leaf["reason"]} for leaf in query.get("leaves", [])]
+instruction_controls = [site(s) for s in query.get("instructionControls", [])]
+no_return = [{key: (site(value) if key in ("routine", "interrupt") else value) for key, value in entry.items()}
+             for entry in query.get("noReturn", [])]
+calls = []
+for claim in query.get("indirectCalls", []):
+    call = {"site": site(claim["site"]), "evidence": claim["evidence"], "exhaustive": claim["exhaustive"]}
+    if "table" in claim:
+        call["table"] = dict(claim["table"], start=site(claim["table"]["start"]))
+    else:
+        call["targets"] = [site(t) for t in claim["targets"]]
+    calls.append(call)
 
 inventory_starts = [line.split("\t")[0] for line in open(inventory).read().splitlines()[1:]]
 entries = {resident(s) if ":" in s else int(s, 16) for s in inventory_starts}
@@ -198,6 +213,9 @@ for r in regions:
 
 json.dump({"source": source, "xxh3": XXH3, "sourceKind": "mz", "regions": regions, "relocations": relocations,
            "indirectJumps": jumps, "starts": starts, "targets": targets, "leaves": leaves, "controls": controls,
+           **({"instructionControls": instruction_controls} if instruction_controls else {}),
+           **({"indirectCalls": calls} if calls else {}),
+           **({"noReturn": no_return} if no_return else {}),
            "instructionLimit": max(100000, sum(r["end"] - r["start"] for r in regions)), "limit": 10000}, open(out, "w"), separators=(",", ":"))
 print(f"{len(regions)} regions, {len(relocations)} far transfers, {len(jumps)} jump tables, {len(starts)} starts,"
       f" {len(targets)} targets, {len(leaves)} leaves, {len(controls)} controls")
