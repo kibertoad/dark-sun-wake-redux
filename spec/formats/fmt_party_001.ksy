@@ -99,8 +99,8 @@ seq:
   - id: max_psionic_points
     type: u2
     doc: The character's greatest psionic strength points.
-  - id: unk_53
-    type: u2
+  - id: details_key
+    type: s2
   - id: class_flags
     type: u2
     doc: One bit per class counted.

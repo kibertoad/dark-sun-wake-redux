@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_001.ksy
-evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057, FND-PARTY-058, FND-PARTY-059, FND-PARTY-073, FND-PARTY-066, FND-PARTY-074, FND-PARTY-081, FND-PARTY-082, FND-PARTY-083, FND-PARTY-085, FND-PARTY-086, FND-PARTY-091, FND-PARTY-100, FND-PARTY-096, FND-PARTY-099, FND-PARTY-108, FND-PARTY-071, FND-PARTY-070, FND-PARTY-142, FND-PARTY-095, FND-PARTY-143, FND-PARTY-144, FND-PARTY-145, FND-PARTY-146]
+evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057, FND-PARTY-058, FND-PARTY-059, FND-PARTY-073, FND-PARTY-066, FND-PARTY-074, FND-PARTY-081, FND-PARTY-082, FND-PARTY-083, FND-PARTY-085, FND-PARTY-086, FND-PARTY-091, FND-PARTY-100, FND-PARTY-096, FND-PARTY-099, FND-PARTY-108, FND-PARTY-071, FND-PARTY-070, FND-PARTY-142, FND-PARTY-095, FND-PARTY-143, FND-PARTY-144, FND-PARTY-145, FND-PARTY-146, FND-PARTY-147]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-006]
@@ -66,7 +66,7 @@ offsets hold for every record the game writes and reads back.
 | `0x4D` | 2 | `INT16LE` | `max_hit_points` | The character's greatest hit points. A load copies it to the FMT-COMBAT-002 record's `max_hit_points`; 21 to 165 in the shipped records. | supported | FND-PARTY-051, FND-PARTY-053 |
 | `0x4F` | 2 | `UINT16LE` | `hit_die_total` | The sum of the hit die rolls of the character's levels. A load copies it to the FMT-COMBAT-002 record's word at `+0x0A`. Generation sets it from a roll per level, each new level in play adds a roll, and the greatest hit points are set from it times the levels held over the greatest levels reached (`greatest_levels`), divided by the number of classes, plus the constitution bonus. | supported | FND-PARTY-051, FND-PARTY-074, FND-PARTY-081 |
 | `0x51` | 2 | `UINT16LE` | `max_psionic_points` | The character's greatest psionic strength points. A load copies it to the FMT-COMBAT-002 record's word at `+0x0C`, which the character sheet prints after the current points; 27 to 202 in the shipped records. | supported | FND-PARTY-051, FND-PARTY-059 |
-| `0x53` | 2 | `UINT16LE` | `unk_53` | Purpose unknown. A load copies it to the FMT-COMBAT-002 record's `unk_0E`; equal to `combatant_id` in 14 of the 19 shipped records. | supported | FND-PARTY-051, FND-PARTY-053 |
+| `0x53` | 2 | `INT16LE` | `details_key` | The key of the character's details record. A load copies it to the FMT-COMBAT-002 record's `unk_0E`; a party slot whose details record has key 0 holds no character, and creatures loaded beyond the party share a details record whose key equals theirs. Generation sets it to the new `combatant_id`. Equal to `combatant_id` in 14 of the 19 shipped records; -21, -14, -7039, -7036 and -7038 in the other five, whose `combatant_id` is 0x82FD to 0x8300. | supported | FND-PARTY-051, FND-PARTY-053, FND-PARTY-147 |
 | `0x55` | 2 | `UINT16LE` | `class_flags` | One bit per class counted (FND-PARTY-085): 1, 2, 4 and 8 for the four cleric codes, 0x10 for a druid, 0x20 fighter, 0x40 gladiator, 0x80 preserver, 0x100 psionicist, 0x200 ranger, 0x400 thief; a human's former class counts only while it is below the current one. A load copies it to the FMT-COMBAT-002 record's word at `0x10`; storing a character, a class change and each level gained in play set it. | supported | FND-PARTY-051, FND-PARTY-085 |
 | `0x57` | 1 | `UINT8` | `origin` | The character's origin, counted from 1: human, dwarf, elf, half-elf, half-giant, halfling, mul, thri-kreen. The character sheet prints it from the details record's byte at `0x12`. | supported | FND-PARTY-051, FND-PARTY-055, FND-PARTY-056 |
 | `0x58` | 1 | `UINT8` | `gender` | 1 for male, 2 for female; printed from the details record's byte at `0x13`. | supported | FND-PARTY-051, FND-PARTY-055, FND-PARTY-056 |
@@ -138,7 +138,7 @@ ends within its slot [FND-PARTY-001, FND-PARTY-005, FND-PARTY-052].
 
 ## Open questions
 
-- What `unk_04`, `unk_0e`, `unk_12`, `unk_1c`, `unk_21`, `unk_2a`, `unk_53`,
+- What `unk_04`, `unk_0e`, `unk_12`, `unk_1c`, `unk_21`, `unk_2a`,
   `unk_68`, `unk_7b` and `unk_81` hold. The two chunks at `0x00` and `0x3B` are the only ones that
   reach the combatant and details records, so the screen's values are in them or in the records of
   the later chunks (FND-PARTY-020, FND-PARTY-051, FND-PARTY-057, FND-PARTY-058,
