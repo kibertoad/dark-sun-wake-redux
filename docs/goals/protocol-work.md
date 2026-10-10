@@ -211,6 +211,10 @@ An owner-approved history repair remains separate from this maintenance scope.
   4E71:0251); the before/after-modifier question is answered (after, FND-PARTY-071) and dropped.
   FND-PARTY-143 names 0x1F combatant_kind (combatant +0x15, FND-PARTY-095), 0 in every record.
   field_reads.py --table is textual: its 19c9 hits at +0x12 were details reads of the origin.
+- FND-PARTY-144: CHAR 0x29 = facing (combatant +0x1F, 0-7, set from 1BDF:009B, drawn through
+  DS:141C onto four views; data segment at file 0x4D000). FND-PARTY-145: CHAR 0x66 =
+  base_armor_class (details +0x21, start of 173+2C00, the target value of an attack roll).
+  Q-PARTY-003 left: unk_04, 0e, 12, 1c, 21, 2a, 53, 67, 7b, 81.
 - Upstream duplicate checks for this session's points: the old DS:0DAB finding's wrong address
   was a project error that IDENTIFIERS-8 (protocol #66) already covers, so no issue was filed;
   #96 was filed after searching protocol #46, #66, #95 and toolkit #436, #269, #80; the
