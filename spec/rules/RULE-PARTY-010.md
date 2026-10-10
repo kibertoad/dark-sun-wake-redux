@@ -123,7 +123,7 @@ None known.
 
 ## Open questions
 
-- What the hit point routine that follows each roll draws, which decides the order of draws after
-  the scores (Q-PARTY-030).
+- Whether the routines a roll calls after the hit points draw random numbers, which would follow
+  the scores' and the hit dice's draws (Q-PARTY-034).
 - Which input makes `step` 1 and which -1: the screen takes 1 when a word of the event is below 8
   (Q-PARTY-031).

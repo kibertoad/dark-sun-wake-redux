@@ -1,14 +1,16 @@
 # PARTY
 
-Next ID: Q-PARTY-033
+Next ID: Q-PARTY-035
 
 ## Static
 
 - Q-PARTY-028. FMT-PARTY-001: How does a character's level follow experience in play: which
   routine raises the level bytes once experience passes a threshold, how many levels it raises at
   once, and does level 15 end it, as the character sheet's skip of a level-15 position suggests
-  (FND-PARTY-058, FND-PARTY-062)? Settles it: a reading of the overlay 210 routines that read
-  `DATA` 1000 and of every store to the level bytes at `+0x1E..+0x20` of a details record.
+  (FND-PARTY-058, FND-PARTY-062), and what does a level add to the hit points, given that overlay
+  210 `+07EB` calls the per-level hit die roll into the details record's word at `0x0A`
+  (FND-PARTY-074)? Settles it: a reading of the overlay 210 routines that read `DATA` 1000, of
+  `+07EB`, and of every store to the level bytes at `+0x1E..+0x20` of a details record.
   Blocks: slice 2.
 - Q-PARTY-026. FMT-PARTY-001: On the DUAL path, does anything the routine at overlay 209 `+123E`
   calls before `+14FF` store another slot in the word at `4E71:0B44`, so that overlay 184 `+1DCE`
@@ -22,11 +24,15 @@ Next ID: Q-PARTY-033
   to the window's buttons (FND-PARTY-067). Tried: FND-PARTY-063, FND-PARTY-066 and FND-PARTY-067
   read the class buttons and the two windows; FND-PARTY-068, FND-PARTY-070, FND-PARTY-071 and
   FND-PARTY-072 settled the classes, DONE, the scores and the alignment. Blocks: slice 2.
-- Q-PARTY-030. RULE-PARTY-002, RULE-PARTY-010: What hit points can a new character have, and what
-  random draws follow the scores in a roll? Settles it: overlay 184 `+015D`, which the roll routine
-  calls with the roll's flag and the addresses of `DS:42D6` and `DS:42D8`, the rest of overlay 184
-  `+033E` after it, and overlay 183 `+0BE9..+0C41` in `+0A3E`, which holds the word at `+0x08`
-  between those two (FND-PARTY-070, FND-PARTY-071). Blocks: slice 2.
+- Q-PARTY-033. RULE-PARTY-012: Which constitution does the hit die floor read while a character
+  is made? Overlay 210 `+0000` reads the slot details record's byte at `+0x17`, which the finish
+  fills from the combatant scores only at DONE. Settles it: every write to that byte of the
+  generation details record `4E4F:0029` and of the slot's record before the roll, read in
+  execution order (FND-PARTY-070, FND-PARTY-074). Blocks: slice 2.
+- Q-PARTY-034. RULE-PARTY-010, RULE-PARTY-012: Do the calls the roll routine makes after the hit
+  points, overlay 173 `+2C00` (trampoline `5671:007A`) and overlay 183 `+191D`, `+19A0` and
+  `+19E9`, draw random numbers? Settles it: those routines and what they call, read for calls of
+  `1000:0822` (FND-PARTY-071, FND-PARTY-074). Blocks: slice 2.
 - Q-PARTY-031. RULE-PARTY-010: What does the word at offset `0x12` of the 24-byte event a window
   handler receives hold, which overlay 183 `+0000` turns into a step of 1 below 8 and -1 otherwise?
   Settles it: the code that builds that event for a button press, read for that word

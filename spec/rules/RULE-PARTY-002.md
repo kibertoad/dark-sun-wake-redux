@@ -7,7 +7,7 @@ superseded_by: []
 evidence: [SRC-MANUAL-1994, FND-PARTY-073, FND-PARTY-066, FND-PARTY-067, FND-PARTY-068, FND-PARTY-070, FND-PARTY-071, FND-PARTY-072]
 conflicting: []
 split_with: []
-related: [RULE-PARTY-003, RULE-PARTY-005, RULE-PARTY-007, RULE-PARTY-009, RULE-PARTY-010, RULE-PARTY-011, SCR-UI-004]
+related: [RULE-PARTY-003, RULE-PARTY-005, RULE-PARTY-007, RULE-PARTY-009, RULE-PARTY-010, RULE-PARTY-011, RULE-PARTY-012, SCR-UI-004]
 ---
 
 ## Summary
@@ -112,6 +112,9 @@ with druid, all through `classes_offered`. `class_level_limit` (RULE-PARTY-007) 
 for the classes `classes_offered` gives an origin with no class. The scores are bounded after the
 origin modifiers (RULE-PARTY-005), and every bound lies within 9 to 24.
 
+The screen holds the hit points between the bounds RULE-PARTY-012 gives, which DONE does not
+check either.
+
 Holding Ctrl while stepping the alignment lets a character reach DONE with an alignment its
 classes forbid (RULE-PARTY-011), which `character_allowed` does not cover. Rangers and druids
 choose a sphere too, but DONE does not require it for a ranger.
@@ -139,5 +142,4 @@ None known.
 
 ## Open questions
 
-- What the hit points of a new character may be: the screen holds them between two bounds a
-  routine after each roll sets (Q-PARTY-030).
+None.
