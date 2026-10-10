@@ -17,14 +17,15 @@ Next ID: Q-PARTY-049
   they need; FND-PARTY-081 shows overlay 210 `+0740` passes overlay 209 `+0000` the slot whose
   Preserver level rose, so the question is whether that can be another slot on this path.
   Blocks: slice 2.
-- Q-PARTY-043. RULE-PARTY-013: When the level gain runs after a fight, which slot do `4E71:0B44`
-  and the far pointer `DS:142D` hold, and so whose wisdom does the wisdom bonus of the greatest
-  psionic points use for a level that is not a new Psionicist level (FND-PARTY-084)? Settles it:
-  the paths from the end of a fight through overlays 173 and 188 to overlay 210 `+0B44`, read for
-  calls that store either. Blocks: slice 2. Tried: FND-PARTY-086 read overlay 188 `+1604`,
-  overlay 173 `+30C7` and the script handler of instruction 0x21, none of which stores either;
-  FND-PARTY-087 shows that the end of a fight runs overlay 173 `+3E30`, overlays 195, 206 and 182 and
-  `+3CDA` before the gain at `+07AD`, none of which was read for those stores.
+- Q-PARTY-043. RULE-PARTY-013: When the level gain runs after a fight, which record does the far
+  pointer `DS:142D` point to, and so whose wisdom does the wisdom bonus of the greatest psionic
+  points use for a level that is not a new Psionicist level (FND-PARTY-084, FND-PARTY-088)?
+  Settles it: which of the stores to `DS:142D` and `4E71:0B44` FND-PARTY-084 lists run before or
+  during a fight, read from the code that starts a fight and from its loop in overlay 173.
+  Blocks: slice 2. Tried: FND-PARTY-086 read overlay 188 `+1604`, overlay 173 `+30C7` and the
+  script handler of instruction 0x21, and FND-PARTY-088 walked from the calls that end a fight;
+  neither finds a store outside the gain's own overlay 209 routines, but the walk leaves 34
+  computed transfers unresolved and what the pointer holds when a fight ends was not read.
 - Q-PARTY-039. RULE-PARTY-013: What do overlay 199 `+0C21`, which runs before each level gain,
   and overlay 209 `+0000` and the window of `+0A84`, which run for a new Preserver or Psionicist
   level, change (FND-PARTY-081, FND-PARTY-084)? Settles it: a reading of those routines. Tried:
