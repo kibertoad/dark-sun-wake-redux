@@ -24,8 +24,7 @@ Q-EXE-009 on main. Final research entry: FND-EXE-144.
 Combined assetless Test.ps1 -NoRestore passed, including all .NET tests.
 Main's indexes and parity were regenerated. Documentation checks retain their
 reported argument-count skips. No original runtime was started.
-Toolkit issue 353 has the external-archive citation case; template issue 90
-records scheduled-generation fixture assumptions. The owner explicitly asked
+Template issue 90 records scheduled-generation fixture assumptions. The owner explicitly asked
 to wrap up for today and push main after completion. Do not start another item.
 Hooks remain enabled; use an absolute GIT_INDEX_FILE for main commits when the
 staged snapshot runs Git from a temporary directory. Preserve unknown and
@@ -91,12 +90,6 @@ reusable processes; no confirmed task orphan was found during integration.
   stores inside the install directory.
 - refurbished-dinosaurs-template issue 82: inherited owner TEMP/TMP causes
   Java canonical-path access failure under sandbox validation.
-- refurbished-dinosaurs-toolkit issue 322: a reachability command over the
-  call graph, with unresolved sites listed.
-- refurbished-dinosaurs-toolkit issue 323: an inventory check reporting call
-  targets missing from a committed inventory.
-- refurbished-dinosaurs-toolkit issue 319: comment adding a one-sentence
-  Parameters section case.
 
 ## Shared runtime migration
 
