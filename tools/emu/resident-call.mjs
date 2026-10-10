@@ -7,6 +7,7 @@ import { spawnSync } from 'node:child_process';
 import { sourceXxh3 } from '@scientific-method/executable-reader';
 import { readMz } from '@scientific-method/executable-reader/legacy-image';
 import { enginePython } from '../tool-dependencies.mjs';
+import { gameDir } from '../game-dir.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 function integer(n, min, max, name) {
@@ -64,7 +65,7 @@ export function emulate(packet, python = enginePython()) {
 }
 
 export function run(configFile, env = process.env) {
-  if (!env.GAME_DIR) throw new Error('Set GAME_DIR to the licensed installation; no original call was made');
+  if (!env.GAME_DIR) throw new Error('No licensed installation: set DARK_SUN_WAKE_REDUX_GAME_DIR or install the game at the path in tools/project-config.json; no original call was made');
   const game = realpathSync(env.GAME_DIR);
   if (inside(ROOT, game) || game === ROOT) throw new Error('GAME_DIR must be outside the checkout');
   const file = realpathSync(resolve(configFile));
@@ -86,6 +87,6 @@ export function run(configFile, env = process.env) {
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   try {
     if (process.argv.length !== 3) throw new Error('Usage: node tools/emu/resident-call.mjs <GAME_DIR call config>');
-    console.log(JSON.stringify(run(process.argv[2])));
+    console.log(JSON.stringify(run(process.argv[2], { ...process.env, GAME_DIR: gameDir() ?? '' })));
   } catch (error) { console.error(error.message); process.exitCode = 1; }
 }

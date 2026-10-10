@@ -423,9 +423,11 @@ result in the document, and commit any script a result depends on under
   finding over adding a plausible system.
 - **CI never needs proprietary content.** Every packaging check, and every test
   that does not compare against the original, passes on a machine with no copy
-  of the game. Tests that read the original find it through `GAME_DIR`,
-  report themselves skipped when it is absent, and carry the comment
-  `// needs: GAME_DIR`. They run on a maintainer's machine, and the run is
+  of the game. Tests that read the original find it through `tools/game-dir.mjs`
+  (the install path in `tools/project-config.json`, or
+  `DARK_SUN_WAKE_REDUX_GAME_DIR`; the machine-wide `GAME_DIR` belongs to
+  another project here and is ignored), report themselves skipped when it is
+  absent, and carry the comment `// needs: GAME_DIR`. They run on a maintainer's machine, and the run is
   recorded in `VALIDATION.md` (`docs/VALIDATION.md`).
 - **Parse defensively.** Original files are untrusted input: bound every length,
   reject path traversal, and fail with a diagnosable error instead of throwing

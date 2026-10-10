@@ -13,11 +13,14 @@ Unicorn is not included in the game or its packages. To restore it alone:
 ./tools/emu/Restore-Emulator.ps1
 ```
 
-Set `GAME_DIR` to the licensed installation. Keep a call configuration and its
-report beneath that directory, then run:
+The CLI finds the licensed installation with `tools/game-dir.mjs`: the directory
+of `original.analysisExecutable` in `tools/project-config.json`, or
+`DARK_SUN_WAKE_REDUX_GAME_DIR` when set, after checking the executable's length
+and XXH3 against the config. It ignores the machine-wide `GAME_DIR`. Keep a call
+configuration and its report beneath that directory, then run:
 
 ```powershell
-node tools/emu/resident-call.mjs "$env:GAME_DIR/analysis/reporter-audit/call.json"
+node tools/emu/resident-call.mjs "C:/GOG Games/Dark Sun 2/analysis/reporter-audit/call.json"
 ```
 
 The configuration names `build: BLD-GOG-EN-1.1`, `source: DSUN.EXE`, the build's
