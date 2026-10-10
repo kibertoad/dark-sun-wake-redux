@@ -40,15 +40,6 @@ Next ID: Q-PARTY-065
   as the CHAR loader does, and the placements of `RDFF` 430 and 541 in the regions. Blocks:
   nothing yet. Tried: FND-PARTY-094 finds `RDFF` 430 (107,000) and 541 (33,000), of kind 7, with
   CHAR chunk headers; the loader is the ACTOR area's Q-ACTOR-003, outside this goal's claim.
-- Q-PARTY-064. BUG-PARTY-006: Can the computed third argument of overlay 197 `+1202`, overlay 204
-  `+19AF` or overlay 176 `+03BD` and `+048A`, which reaches the hit routine through overlay 193
-  `+003C` (FND-PARTY-107), be the spell `DATA` 104 or 225? Settles it: each argument read back to
-  where it comes from: for overlay 197 `+1202` the object number overlay 197 `+111A` receives from
-  overlay 174 `+04D2` and overlay 179 `+0EC0`, and what the hit routine takes from it; for overlay
-  204 `+19AF` its local word at `bp-2`; for overlay 176 the argument or `DI` it adds to 235.
-  Blocks: nothing yet. Tried: FND-PARTY-121 reads the other callers of the spell dispatcher at
-  overlay 193 `+2290` and the computed arguments of overlay 193 `+22CF`, overlay 177 `+04FE` and
-  overlay 198 `+00EF` and `+013D`, none of which passes 104 or 225 for an enemy.
 - Q-PARTY-062. BUG-PARTY-006: Does anything other than a block copy, or a copy FND-PARTY-115's
   searches do not reach, put a value other than 0 in bytes `+0x0E` or `+0x0F` of a party member's
   FMT-COMBAT-001 record? Settles it: the reads of a saved game into the table at `DS:19C9` and the
@@ -184,8 +175,11 @@ None.
   script instruction, in the SCRIPT area.
 - Q-PARTY-051. FMT-PARTY-001, BUG-PARTY-006: Does any script call function 23 of opcode `0x22` with the effect
   code 59, which runs the level drain on a party slot, and on which slots does overlay 204 `+1A68`
-  apply it (FND-PARTY-108)? Settles it: the `GPL ` resources decoded instruction by instruction
-  and searched for opcode `0x22` with function 23 and code 59, and a reading of `+1A68`. Blocks:
-  nothing yet. Tried: FND-PARTY-108 traces the code to the script's argument; a byte search
-  cannot separate parameters without the instruction layouts. Waiting on: Q-SCRIPT-004, the
+  apply it (FND-PARTY-108), or call function 46 with 9999 as its second argument and a fourth
+  argument whose remainder by 1000 is 104 or 225, which casts that spell (FND-PARTY-122)? Settles
+  it: the `GPL ` resources decoded instruction by instruction and searched for opcode `0x22` with
+  function 23 and code 59 or function 46 with those arguments, and a reading of `+1A68` and of
+  where function 46's cast lands. Blocks: nothing yet. Tried: FND-PARTY-108 and FND-PARTY-122
+  trace the code and the spell to the script's arguments; a byte search cannot separate
+  parameters without the instruction layouts. Waiting on: Q-SCRIPT-004, the
   layout of every script instruction, in the SCRIPT area.
