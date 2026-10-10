@@ -10,10 +10,12 @@ code); each becomes a file offset. Checks the installed DSUN.EXE's size and XXH3
 Regions: one per overlay, its whole code (FMT-EXE-003) at an analysis segment 0x9000 + descriptor
 and IP 0, the IP its code runs at; and one per resident segment-table descriptor of flags 0 or 1
 whose span is not empty, from segment * 16 + start_offset to segment * 16 + end_offset (FND-EXE-571)
-at its own segment and IP start_offset. Only regions that hold an inventory start or a query
-start or leaf are kept. The entries of each region are the inventory starts in it, every query
-start and leaf in it, since `reach` takes only established entries as starts, and, for an
-overlay, the code offset each of its trampolines names (FMT-EXE-004).
+at its own segment and IP start_offset. Every such region is declared, also one that holds no
+entry (scientific-method-engine 15.2.0 and later accept a region with no entries as long as some
+region lists one; a walk reaches its code only through a transfer into it). The entries of each
+region are the inventory starts in it, every query start and leaf in it, since `reach` takes only
+established entries as starts, and, for an overlay, the code offset each of its trampolines names
+(FMT-EXE-004).
 
 Relocations: every far call or jump (9A or EA, offset, segment word) whose segment word has an MZ
 relocation or is in an overlay's fixup list, with the file offset it transfers to: for a resident
@@ -29,7 +31,10 @@ bounded in one of three ways, read from the bytes before it:
 - a double-word value scan: the same with `add bx, 4`, then `add cx, cx` and `add bx, cx` before
   the jump: the n words at CS:values + 2 * n + table.
 Each is declared exhaustive. A site whose bound is not found is left undeclared, so `reach`
-lists it unresolved. Nothing is executed.
+lists it unresolved. The instruction limit is the total size of the declared regions, or 100,000
+when that is larger: since engine 15.2.0 that is the largest limit the engine takes, and every
+instruction a walk can decode starts in a declared region, so a walk never stops at the limit.
+Nothing is executed.
 """
 import json
 import struct
@@ -96,8 +101,7 @@ for i, (seg, end, flags, begin) in enumerate(rows):
     else:
         continue
     region["entries"] = sorted(e for e in entries if region["start"] <= e < region["end"])
-    if region["entries"]:
-        regions.append(region)
+    regions.append(region)
 for at in starts + targets + controls + [leaf["routine"] for leaf in leaves]:
     assert any(r["start"] <= at < r["end"] for r in regions), f"0x{at:X} is outside the regions"
 
@@ -194,6 +198,6 @@ for r in regions:
 
 json.dump({"source": source, "xxh3": XXH3, "sourceKind": "mz", "regions": regions, "relocations": relocations,
            "indirectJumps": jumps, "starts": starts, "targets": targets, "leaves": leaves, "controls": controls,
-           "instructionLimit": 100000, "limit": 10000}, open(out, "w"), separators=(",", ":"))
+           "instructionLimit": max(100000, sum(r["end"] - r["start"] for r in regions)), "limit": 10000}, open(out, "w"), separators=(",", ":"))
 print(f"{len(regions)} regions, {len(relocations)} far transfers, {len(jumps)} jump tables, {len(starts)} starts,"
       f" {len(targets)} targets, {len(leaves)} leaves, {len(controls)} controls")
