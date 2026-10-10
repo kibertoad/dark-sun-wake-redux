@@ -7,7 +7,7 @@ superseded_by: []
 impact: crash
 intent: unintended
 player_reliance: unknown
-evidence: [FND-PARTY-082, FND-PARTY-105, FND-PARTY-096, FND-PARTY-108, FND-PARTY-109, FND-PARTY-110]
+evidence: [FND-PARTY-082, FND-PARTY-105, FND-PARTY-096, FND-PARTY-108, FND-PARTY-109, FND-PARTY-110, FND-PARTY-111]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-013, FMT-PARTY-001]
@@ -41,10 +41,11 @@ Every drain of a single-class character above level 1. The sources of effect cod
 by the item of `DATA` 313 on an attack roll of 20, the spells `DATA` 104 and 225 on a target that
 fails its saving throw, and scripts through function 23 of opcode `0x22` (FND-PARTY-096,
 FND-PARTY-108). Both spells are cast at a single target picked with the map cursor, which takes a
-companion of the caster while a Shift key is held (FND-PARTY-109). The party's cast list holds
-104 for a member who knows it and 225 for a druid of priest level 12 or more (FND-PARTY-110), so
-such a member can drain another; whether one can also have spells of that level to cast, and
-which of the sources can strike the party in play otherwise, is open.
+companion of the caster while a Shift key is held (FND-PARTY-109). A party member with a druid
+class at priest level 13 to 15 has spell 225 in its cast list and level 7 spells to cast, so it
+can drain another party member; spell 104 needs level 9 wizard spells, which a Preserver capped at
+level 15 never gets (FND-PARTY-110, FND-PARTY-111). Which of the sources can strike the party in
+play otherwise is open.
 
 ## Player reliance
 
@@ -63,12 +64,10 @@ None known.
 - Whether any enemy in play casts the spell `DATA` 104 or 225 at a party member, carries the item
   of `DATA` 313, or runs a script that sends code 59 to one, so that the crash can happen in a
   normal game: the casters are Q-PARTY-052, and the scripts are Q-PARTY-051.
-- Whether a party member can cast the spell `DATA` 104 or 225 at a companion, which the target
-  cursor allows while a Shift key is held (FND-PARTY-109) and the cast list allows for a member
-  who knows 104 or a druid who can cast level 7 spells (FND-PARTY-110): it needs a nonzero count
-  of spells to cast at that level (Q-PARTY-057).
+- Whether a party member can cast the spell `DATA` 104 at a companion, which needs a Preserver
+  level above 15 or the byte at `DS:13F8` set (FND-PARTY-111): Q-PARTY-058.
 - Whether the hit routine's calls before its saving throw can stop the drain for a party member
   (Q-PARTY-056).
-- What a player sees on the screen as the game ends: a capture of a drain on a single-class
-  character would confirm it (No item: no live session can be arranged until an enemy that
-  drains is known; Q-PARTY-052 comes first).
+- What a player sees on the screen as the game ends: a capture of a party druid of priest level
+  13 or more casting the spell `DATA` 225 at a single-class companion above level 1 while holding
+  Shift would confirm it (Q-PARTY-059).

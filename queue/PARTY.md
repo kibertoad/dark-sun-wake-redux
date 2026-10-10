@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-058
+Next ID: Q-PARTY-060
 
 ## Static
 
@@ -51,12 +51,11 @@ Next ID: Q-PARTY-058
   call in overlay 179 `+11DC` never runs; FND-PARTY-108 shows the spell path through overlay 193
   `+2290`; FND-PARTY-109 reads the party's cast of a type 4 spell, which can strike a party member
   while a Shift key is held, and leaves the enemy callers.
-- Q-PARTY-057. BUG-PARTY-006: Can a party member have a nonzero count of level 9 wizard spells or
-  level 7 druid spells to cast, with the cast window set to that level, so that it can cast the
-  spell `DATA` 104 or 225 (FND-PARTY-110)? Settles it: the writers of the counts at
-  `DS:4469 + 34 * slot + level` and `DS:4474 + 34 * slot + level` and of the levels at
-  `DS:43E0 + slot` and `DS:43E4 + slot` read for their bounds, and the spell window of
-  FND-PARTY-104 read for whether it offers level 9. Blocks: nothing yet.
+- Q-PARTY-058. BUG-PARTY-006: Can a party member have a Preserver level above 15, from a saved or
+  imported character or a script, or play with the byte at `DS:13F8` set, so that it can cast the
+  spell `DATA` 104 from the cast list (FND-PARTY-111)? Settles it: the writers of the class level
+  bytes outside the level gain and of `DS:13F8` read for the values they store. Blocks: nothing
+  yet.
 - Q-PARTY-056. BUG-PARTY-006: What do overlay 197 `575A:0093`, `575A:0098` and `575A:009D`, which
   the hit routine calls before its saving throw test, decide for a spell of `DATA` 104 or 225 on a
   party member (FND-PARTY-108)? Settles it: the three routines read for every branch that can stop
@@ -126,6 +125,14 @@ None.
 
 ## Live session
 
+- Q-PARTY-059. BUG-PARTY-006: Does the game end with `Math Err` when a party druid of priest level
+  13 to 15 casts the spell `DATA` 225 at a single-class companion above level 1 while a Shift key
+  is held? Settles it: an owner capture, from a save with such a druid that has level 7 spells to
+  cast, of the cast window at level 7, the target cursor on the companion with Shift held, and the
+  screen after the companion fails its saving throw, repeated until one fails (FND-PARTY-109,
+  FND-PARTY-110, FND-PARTY-111). Required parts: Send it input, Capture frames and sound (frames)
+  and Load a patched save, for a save holding such a druid, all of them the owner's. Tried: the static readings FND-PARTY-082, FND-PARTY-105 and FND-PARTY-109 to
+  FND-PARTY-111. Blocks: nothing yet.
 - Q-PARTY-037. RULE-PARTY-013, BUG-PARTY-003: Does a party gain levels after a fight as
   RULE-PARTY-013 gives, and does a level-14 psionicist stay at level 14 with 1,400,000
   experience? Settles it: an owner capture of each member's experience, levels and hit points on
