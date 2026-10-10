@@ -214,7 +214,7 @@ An owner-approved history repair remains separate from this maintenance scope.
      +044A sets it) and that Create Characters (window 11500) sends its events to overlay 190
      +139B/+0D89/+0802, which reach two count stores. FND-PARTY-046 reads ADD on an empty character box: 171+0AA5 loads
      CHAR and calls 31E0:0121 (inc [264E]) at 171+0C25, and Esc returns to the start window
-     with nothing clearing the count, so START GAME would skip 40-43. FND-PARTY-050 maps CHAR 0x0A..0x22 onto the combatant record (hit points 0x0A, object offset 0x1A); FMT-PARTY-001 splits unk_02. Q-PARTY-003 keeps gender/origin/alignment/classes/levels/XP/max HP/PSP. Next PARTY items:
+     with nothing clearing the count, so START GAME would skip 40-43. FND-PARTY-050 maps CHAR 0x0A..0x22 onto the combatant record (hit points 0x0A, object offset 0x1A); FMT-PARTY-001 splits unk_02. FND-PARTY-051..053: a CHAR record is a chain of 10-byte-header chunks ending at type 0xFF (type 1 combatant 49 bytes, type 3 details 66 bytes with max HP at 0x4D, types 2/4 23-byte records at DS:19C1); the old 79-byte header reading is superseded, FMT-PARTY-006 added. Field numbers resolve through OBJEX FNFO 1/2. Q-PARTY-003 keeps gender/origin/alignment/classes/levels/XP/PSP (look in the details record via SCR-UI-002); Q-PARTY-020 (23-byte records), Q-PARTY-021 (writer at 187+018F). Next PARTY items:
      FND-PARTY-047/048/049 close Q-PARTY-019 (DS:265B is set at start-up; the CHAR load copies bytes 0x0A..0x3A into the party record, so ADD's object is 300 + CHAR word 0x1A, 300..313, all with OJFF); Q-PARTY-017 (other actions, NEW, unresolved
      transfers); Q-PARTY-018 asks whether
      START GAME is still reachable after a confirmed load. Inventory rows 3EBE:001F, 3EBE:09B6 and
