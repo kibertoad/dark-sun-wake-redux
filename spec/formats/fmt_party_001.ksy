@@ -107,8 +107,11 @@ seq:
   - id: alignment
     type: u1
     doc: Alignment counted from 1, lawful good to chaotic evil.
-  - id: unk_5a
-    size: 6
+  - id: base_scores
+    type: u1
+    repeat: expr
+    repeat-expr: 6
+    doc: The six ability scores as generated, origin modifiers included.
   - id: classes
     type: u1
     repeat: expr

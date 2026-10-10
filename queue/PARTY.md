@@ -26,7 +26,7 @@ Next ID: Q-PARTY-066
   straight-line pushes and stores of the table segment and one level of calls below them. Blocks:
   nothing yet.
 - Q-PARTY-003. FMT-PARTY-001, RULE-PARTY-004, RULE-MAGIC-002: What do the record's remaining `unk_`
-  fields hold, and are the scores stored before or after origin modifiers? Settles it: the other
+  fields hold? Settles it: the other
   routines that print the character sheet from the record at `DS:1429` (FND-PARTY-055), and the
   generation code that sets the scores. Tried: a search of the first 79 bytes of records 40 and 42
   for the label positions of their gender, origin, alignment and class (FND-PARTY-061);
@@ -34,7 +34,8 @@ Next ID: Q-PARTY-066
   FND-PARTY-057 place hit points, the object offset, the combatant identifier, the control flags,
   greatest hit points, origin, gender, alignment, class codes with their names, and levels, and
   FND-PARTY-058 and FND-PARTY-059 place experience at `0x45` and the current and greatest
-  psionic points at `0x0C` and `0x51`. Blocks: slice 2.
+  psionic points at `0x0C` and `0x51`. FND-PARTY-142 shows `0x5A` holds the base scores, and
+  with FND-PARTY-071 that the scores are stored with the origin modifiers added. Blocks: slice 2.
 - Q-PARTY-020. FMT-PARTY-006: What does a 23-byte record of a type-2 or type-4 chunk hold, and
   what do the character's combatant words at `0x08`, `0x0A` and `0x0C`, and a record's word at
   `0x08`, which type-2 chunks fill with handles, lead to? Settles it: the code that reads the
