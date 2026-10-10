@@ -70,7 +70,7 @@ jobs:
       # finding records the image's base and size, add them to this step as `images:` and cite
       # that finding here. `node tools/upstream.mjs docs` reads this step's inputs, so a local
       # run checks the same.
-      - uses: kibertoad/refurbished-dinosaurs-toolkit/actions/check-documentation@ad551057265542a0ac5ad27b4abb4909305e7728 # zizmor: ignore[stale-action-refs,ref-version-mismatch]
+      - uses: kibertoad/refurbished-dinosaurs-toolkit/actions/check-documentation@1f3ce2845d58dc4d77eaa7c08ac953cd2faba789 # zizmor: ignore[stale-action-refs,ref-version-mismatch]
         with:
           # The narrative docs cite spec IDs, so they must resolve too.
           references: docs
