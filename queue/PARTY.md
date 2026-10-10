@@ -54,13 +54,14 @@ Next ID: Q-PARTY-064
   or 20 (`RDFF` 64, 65, 67 and 172), which overlay 177 `+05B7` would give a level 9 count.
 - Q-PARTY-063. BUG-PARTY-006: Can an actor of `OBJEX.GFF` become a party member, so that one of
   the Preservers at level 18 or 20 (`RDFF` 64, 65, 67 and 172, FND-PARTY-116) can cast the spell
-  `DATA` 104 from the cast list? Settles it: the callers of `31E0:044C` (from `31E0:0AC9`),
-  `31E0:0B4A` (from `31E0:0DE3`) and the routine holding `2D40:31E6`, read for whether they can
-  release a party object 0 to 3 in play, after which an `RDFF` load can take it
-  (FND-PARTY-117). Blocks: nothing yet. Tried: FND-PARTY-116 shows that `DS:13F8` is set only
-  behind the `-k911` debug switch and that the game's own stores and the shipped party list keep
-  levels at 15 or below; FND-PARTY-117 shows that the object lists start at object 4 and that the
-  other `RDFF` loads and releases do not reach objects 0 to 3.
+  `DATA` 104 from the cast list? Settles it: the 30 callers of `31E0:05BB` read for whether they
+  can remove the placed entry of a party member in play and what is placed after it, and the
+  callers of `31E0:0B4A` (from `31E0:0DE3`) and `2D40:2F34` read for the object they pass
+  (FND-PARTY-117, FND-PARTY-118). Blocks: nothing yet. Tried: FND-PARTY-116 shows that
+  `DS:13F8` is set only behind the `-k911` debug switch and that the game's own stores and the
+  shipped party list keep levels at 15 or below; FND-PARTY-117 shows that the object lists start
+  at object 4 and that only a release puts a party object on them; FND-PARTY-118 shows that
+  `31E0:05BB` releases a party member's object with no test against it.
 - Q-PARTY-062. BUG-PARTY-006: Does anything other than a block copy, or a copy FND-PARTY-115's
   searches do not reach, put a value other than 0 in bytes `+0x0E` or `+0x0F` of a party member's
   FMT-COMBAT-001 record? Settles it: the reads of a saved game into the table at `DS:19C9` and the
