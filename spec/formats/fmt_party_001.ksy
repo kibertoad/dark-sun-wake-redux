@@ -69,8 +69,11 @@ seq:
     type: u1
   - id: charisma
     type: u1
-  - id: unk_29
-    size: 2
+  - id: facing
+    type: u1
+    doc: The direction the character faces, 0 to 7.
+  - id: unk_2a
+    type: u1
   - id: name
     type: strz
     encoding: ASCII
