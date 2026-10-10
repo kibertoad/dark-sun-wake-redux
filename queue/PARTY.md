@@ -1,9 +1,15 @@
 # PARTY
 
-Next ID: Q-PARTY-027
+Next ID: Q-PARTY-029
 
 ## Static
 
+- Q-PARTY-028. FMT-PARTY-001: How does a character's level follow experience in play: which
+  routine raises the level bytes once experience passes a threshold, how many levels it raises at
+  once, and does level 15 end it, as the character sheet's skip of a level-15 position suggests
+  (FND-PARTY-058, FND-PARTY-062)? Settles it: a reading of the overlay 210 routines that read
+  `DATA` 1000 and of every store to the level bytes at `+0x1E..+0x20` of a details record.
+  Blocks: slice 2.
 - Q-PARTY-026. FMT-PARTY-001: On the DUAL path, does anything the routine at overlay 209 `+123E`
   calls before `+14FF` store another slot in the word at `4E71:0B44`, so that overlay 184 `+1DCE`
   takes the class bytes of a different character from the one whose records it copies
@@ -28,10 +34,6 @@ Next ID: Q-PARTY-027
   greatest hit points, origin, gender, alignment, class codes with their names, and levels, and
   FND-PARTY-058 and FND-PARTY-059 place experience at `0x45` and the current and greatest
   psionic points at `0x0C` and `0x51`. Blocks: slice 2.
-- Q-PARTY-023. FMT-PARTY-001: How does a character's level follow experience: when does overlay
-  183 `+13B7..+14D0` run, what bounds the level it raises, and what do the class positions it
-  skips (the byte at `-4` of its frame tested bit by bit) and level 15 mean? Settles it: a complete
-  reading of overlay 183 from the routine's entry and of its callers (FND-PARTY-058). Blocks: slice 2.
 - Q-PARTY-020. FMT-PARTY-006: What does a 23-byte record of a type-2 or type-4 chunk hold, and
   what do the character's combatant words at `0x08`, `0x0A` and `0x0C`, and a record's word at
   `0x08`, which type-2 chunks fill with handles, lead to? Settles it: the code that reads the
@@ -87,6 +89,12 @@ None.
 
 ## Live session
 
+- Q-PARTY-027. BUG-PARTY-002: Does a character made with a Druid first and a Preserver second
+  start at level 6 Druid and level 7 Preserver with 40,000 experience, where the Druid's own table
+  gives level 7 from 35,000, and what level does its stored record hold for the unused third class?
+  Settles it: an owner capture of the generation screen's class line and experience after choosing
+  the two classes, and of the View Character screen once the character is stored (FND-PARTY-065).
+  Blocks: slice 2.
 - Q-PARTY-025. BUG-PARTY-001: Does the character sheet print, in brackets after the experience,
   the threshold of the row numbered by the class code less 1, so that a supplied Cleric (code 2) at
   level 7 shows 60000 where its class's table gives 110000, and what does it show for a Fighter,
