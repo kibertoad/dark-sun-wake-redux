@@ -106,14 +106,6 @@ An owner-approved history repair remains separate from this maintenance scope.
   15. OBJEX RDFF 64, 65, 67 (Preserver 20) and 172 (Preserver 18) are the remaining source:
   Q-PARTY-063 asks whether an OBJEX actor can join the party, and Q-PARTY-052 now names them as
   candidate enemy casters of DATA 104. details_chunks.py has --levels.
-- FND-PARTY-117 (Q-PARTY-063 progress): objects 4..0x2F start on the DS:56ED list, 0x30..0x13E on
-  56F1, 0x140..0x207 on 56EF; party objects 0..3 are on none. RDFF loads use object -1 (scratch
-  0x13F, then 2D40:0461, combatants from 56ED) or a kind-0 object. Only 2D40:03C1 can put a party
-  object on a list; its callers that take an arbitrary object are 31E0:044C (called from
-  31E0:0AC9), 31E0:0B4A (from 31E0:0DE3) and the routine at 2D40:31E6. FND-PARTY-118: 31E0:044C is
-  reached from 31E0:05BB (remove placed entry; 29 far callers + 31E0:0DC3) with no party guard, so a
-  removed party member's object returns to 56ED. 2D40:31E6 is in 2D40:2F34 (7 callers). Next: the
-  05BB callers, for whether any removes a party entry in play.
 - Template context: template 0b9ab9c, rules 11884c7 and checker 2.9.0 are
   integrated on main; engine 13.6.0 and reader 2.5.0 exact locks passed restore and the full gate. Assetless Test.ps1 passed on 2026-10-08. The initial synthetic capture timing failure passed in isolation and in the full rerun. On goal/protocol-work, checker 4.0.1 and rules a9884ae replace 2.9.0 and
   11884c7 (2d530bb); the full gate passed with the environment in docs/implementation-plans/LATEST-TEMPLATE-SYNC.md. Write range ends half-open (research-item skill). Generated indexes were refreshed on main. Archive member citations are qualified. Template issue 90
