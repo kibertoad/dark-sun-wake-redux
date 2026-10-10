@@ -18,7 +18,10 @@ Next ID: Q-PARTY-066
   Preserver level rose, so the question is whether that can be another slot on this path.
   FND-PARTY-134 shows every route from overlay 172 `+05DB` to the award passes the view draw's
   object load and calls made only for an object slot of state 2 (a party member's), which leaves
-  which slot `31E0:0EFF` hands on when it loads an unloaded entry.
+  which slot `31E0:0EFF` hands on when it loads an unloaded entry. FND-PARTY-135 and
+  FND-PARTY-136 show it is a slot from the free lists, or one the eviction frees, which skips slots
+  below 0x30, and that the lists hold a party slot only after `2D40:03C1` frees it; left is whether
+  anything on the DUAL path calls `2D40:03C1` for slot 0 to 3.
   Blocks: slice 2.
 - Q-PARTY-053. RULE-PARTY-013: How do the spell window of overlay 209 `+0218` and the psionic
   power window of overlay 209 `+0A84` behave as screens, so that `gain_one_level` can show them
