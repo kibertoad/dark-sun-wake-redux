@@ -4,12 +4,6 @@ Next ID: Q-PARTY-037
 
 ## Static
 
-- Q-PARTY-036. RULE-PARTY-010, RULE-PARTY-011, RULE-PARTY-012: Can a key press the generation
-  screen's portrait, score, hit point or alignment button, and if so what step does it give, given
-  that the event's word at `0x12` then holds two bytes the 10-byte key packet does not carry?
-  Settles it: `409B:0D48` and the table it reads through `DS:A17F`, read for the windows `DS:1431`
-  uses, and the last writer of the event buffer's bytes `0x0A..0x0D` before a key packet is read
-  (FND-PARTY-078). Blocks: slice 2.
 - Q-PARTY-028. FMT-PARTY-001: How does a character's level follow experience in play: which
   routine raises the level bytes once experience passes a threshold, how many levels it raises at
   once, and does level 15 end it, as the character sheet's skip of a level-15 position suggests

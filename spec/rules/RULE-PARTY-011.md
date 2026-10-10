@@ -4,7 +4,7 @@ title: Which alignments the generation screen allows
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-065, FND-PARTY-069, FND-PARTY-070, FND-PARTY-071, FND-PARTY-072, FND-PARTY-078]
+evidence: [FND-PARTY-065, FND-PARTY-069, FND-PARTY-070, FND-PARTY-071, FND-PARTY-072, FND-PARTY-078, FND-PARTY-079]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-002, SCR-UI-004]
@@ -27,7 +27,7 @@ alignments the classes forbid, unless Ctrl is held. A character with no class is
 
 `classes`, the list of the character's `character_class` codes (RULE-PARTY-002), in the order the
 screen keeps them. `alignment`, the character's `alignment` code, 0 to 8. `step`, 1 when the player presses the button with the left mouse button and -1 with the right
-or middle one (FND-PARTY-078).
+or middle one (FND-PARTY-078); no key presses these buttons (FND-PARTY-079).
 `ctrl_held`, true when the keyboard's Ctrl flag is set as the step is made.
 
 ## Inputs
@@ -96,5 +96,3 @@ None known.
 - That the left mouse button gives `step` 1 and the right or middle one -1, which rests on the
   mouse driver's meaning of the event bits: a capture after a left and a right press would confirm
   it (Q-PARTY-035).
-- What `step` a press made through a key gives: the event then carries two bytes left from
-  earlier input (Q-PARTY-036).

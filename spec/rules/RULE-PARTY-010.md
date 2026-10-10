@@ -4,7 +4,7 @@ title: How the generation screen rolls and bounds ability scores
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-065, FND-PARTY-070, FND-PARTY-071, FND-PARTY-075, FND-PARTY-078]
+evidence: [FND-PARTY-065, FND-PARTY-070, FND-PARTY-071, FND-PARTY-075, FND-PARTY-078, FND-PARTY-079]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-002, RULE-PARTY-005, RULE-RNG-001, SCR-UI-004]
@@ -31,7 +31,7 @@ or removes a class; `step_score` when the player presses a score's button with a
 codes (RULE-PARTY-002), in the order the screen keeps them. `ability`, a score's position in the
 order strength, dexterity, constitution, intelligence, wisdom, charisma, 0 to 5. `scores`, the six
 scores in that order. `step`, 1 when the player presses the button with the left mouse button and -1 with the right
-or middle one (FND-PARTY-078).
+or middle one (FND-PARTY-078); no key presses these buttons (FND-PARTY-079).
 
 ## Inputs
 
@@ -128,5 +128,3 @@ None known.
 - That the left mouse button gives `step` 1 and the right or middle one -1, which rests on the
   mouse driver's meaning of the event bits: a capture after a left and a right press would confirm
   it (Q-PARTY-035).
-- What `step` a press made through a key gives: the event then carries two bytes left from
-  earlier input (Q-PARTY-036).
