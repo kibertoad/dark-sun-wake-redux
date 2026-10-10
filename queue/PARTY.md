@@ -48,7 +48,10 @@ Next ID: Q-PARTY-066
   the windows that save and restore the handler and whether `45B9:0034` hands events to it;
   FND-PARTY-128 shows `45B9:0034` only reads the mouse and that the three windows that read the
   handler put it back, which leaves the scripts and kills that reach overlay 188 `+16E9` while a
-  window holds mode 2.
+  window holds mode 2. FND-PARTY-129's reach walk from the 24 openings of mode 2, stopped at
+  overlay 182 `+19F8`, reaches the interpreter and a gain only in mode 4, through `+15D7`, but its
+  negative result is not usable (37 unresolved transfers) and it does not read the code that runs
+  after a window returns to its caller in mode 2.
 - Q-PARTY-045. RULE-PARTY-015: Does any enemy's `kill_experience` divided by the filled party
   slots reach 32,768, so that killing it lowers each member's experience (FND-PARTY-086,
   FND-PARTY-094)? Settles it: the routine that loads an `RDFF` resource of `OBJEX.GFF` into the

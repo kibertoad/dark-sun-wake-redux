@@ -1,0 +1,54 @@
+{
+ "starts": [
+  "0x5947A",
+  "0x59A84",
+  "0x59D37",
+  "0x5FC9C",
+  "0x6344B",
+  "0x68339",
+  "0x6D931",
+  "0x70D3F",
+  "0x7BA79",
+  "0x7D554",
+  "0x87E8C",
+  "0x88104",
+  "0x8822F",
+  "0x8984A",
+  "0x89BE3",
+  "0x89E65",
+  "0x8A250",
+  "0x8A752",
+  "0x8B248",
+  "0x8C0BE",
+  "0x93426",
+  "0x93C80",
+  "0x96159",
+  "0x98847"
+ ],
+ "targets": [
+  "172C:000C",
+  "0x5B0CD",
+  "0x74589",
+  "0x79784",
+  "0x7978C"
+ ],
+ "controls": [
+  "0x59BFB"
+ ],
+ "leaves": [
+  {
+   "site": "1000:0388",
+   "reason": "FND-PARTY-039, FND-PARTY-043: the exit worker, which runs only as the program ends"
+  },
+  {
+   "site": "182+19F8",
+   "reason": "FND-PARTY-123: leaves display mode 2 for 1; this query asks what runs before a window leaves mode 2"
+  }
+ ],
+ "noReturn": [
+  {
+   "routine": "182+19F8",
+   "reason": "FND-PARTY-123: leaves display mode 2 for 1; this query asks what runs before a window leaves mode 2"
+  }
+ ]
+}
