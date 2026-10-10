@@ -31,7 +31,10 @@ Next ID: Q-PARTY-066
   Q-PARTY-065 when it shows `DS:0DAB` is never 2 or 3 there, which would make the question moot.
   Tried: a reach run from `+0C21` reaches 927 routines, so a reach run cannot rule stores out;
   FND-PARTY-123 reads `+0C21` and `+19F8`, whose one store to the records sets a combat mark of 0
-  to 1 while `DS:0DAB` is 2, which leaves the gain's slot test unchanged.
+  to 1 while `DS:0DAB` is 2, which leaves the gain's slot test unchanged. FND-PARTY-130 walks each
+  callee: only `2C5F:0139` reaches routines that load a record pointer, all through the view draw
+  `31BA:000E` loading an object whose byte at `4F49:0C33` is 2 (`31E0:0B4A`), which leaves when
+  such an object can be unloaded at a level gain.
 - Q-PARTY-065. RULE-PARTY-013: What does the word at `DS:0DAB` hold when overlay 210 `+0B44` or
   `+0B55` runs, from each of its callers (overlay 173 `+07AD` at a fight's end, overlay 188
   `+16E9` for an experience award, and the debug keys of overlay 190)? Settles it: the stores of
