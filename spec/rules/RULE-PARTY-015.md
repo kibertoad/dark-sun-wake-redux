@@ -4,7 +4,7 @@ title: How experience is given to party members
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-081, FND-PARTY-086, FND-PARTY-089, FND-SCRIPT-005]
+evidence: [FND-PARTY-081, FND-PARTY-086, FND-PARTY-089, FND-PARTY-095, FND-SCRIPT-005]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-013, FMT-PARTY-001]
@@ -108,5 +108,3 @@ None known.
   a CHAR record holds `kill_experience`, which would do so with three filled slots or fewer, but
   that `RDFF` resources load as CHAR records do rests on matching chunk headers (FND-PARTY-094,
   Q-PARTY-045).
-- That `kind` 7 to 11 are the enemies and 0, 4, 5 and 6 the party and its allies rests on the
-  two masks (Q-PARTY-046).

@@ -45,9 +45,6 @@ Next ID: Q-PARTY-049
   as the CHAR loader does, and the placements of `RDFF` 430 and 541 in the regions. Blocks:
   nothing yet. Tried: FND-PARTY-094 finds `RDFF` 430 (107,000) and 541 (33,000), of kind 7, with
   CHAR chunk headers; the loader is the ACTOR area's Q-ACTOR-003, outside this goal's claim.
-- Q-PARTY-046. RULE-PARTY-015: Are the combatant `kind` values 7 to 11 the enemies and 0, 4, 5 and 6
-  the party and its allies (FND-PARTY-086)? Settles it: the code that stores the combatant byte at
-  `0x15` for party members and for loaded enemies. Blocks: nothing yet.
 - Q-PARTY-041. FMT-PARTY-001: When does the level drain of overlay 210 `+0B66` run: what overlay
   195 `+0BC9` handles, with which slot, and from where (FND-PARTY-082)? Settles it: a reading of
   overlay 195 around `+0BC9` and of the dispatch that reaches it. Blocks: nothing yet.
