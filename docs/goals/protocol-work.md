@@ -144,6 +144,11 @@ An owner-approved history repair remains separate from this maintenance scope.
   188+16E9 award paths (script 0x21, kills). Filed protocol #96: IDENTIFIERS-8 says nothing about
   tool configs (our 22 reach JSONs) citing a superseded finding, or the runs recorded from them.
   Our pinned Standard predates #66 (IDENTIFIERS-8); a template/upstream re-sync would pick it up.
+- FND-PARTY-126: 182+1167 acts only while DS:0DAB is 0; the message window 172+05DB enters mode 2
+  and leaves it through 182+19F8 before returning. FND-PARTY-127: 182+1856 unregisters key handler
+  28C9:0CFF (190+11A1 with null); only 182+1167, +15D7, +19F8 and 199+0BC1 register it, and
+  199+0BC1 runs first in every gain. Left for Q-PARTY-065: windows that save/restore the handler
+  via 190+11C1 (23 far callers), 45B9:0034 event dispatch, and scripts run from mode 2 windows.
 - Filed protocol #95: a batch that supersedes an entry the handover cites cannot pass the docs
   check without a handover edit; the workaround is handover commit, batch, handover commit.
 - Template context: template 0b9ab9c, rules 11884c7 and checker 2.9.0 are
