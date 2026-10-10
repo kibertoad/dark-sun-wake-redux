@@ -43,7 +43,9 @@ Next ID: Q-PARTY-066
   the map click callers of the fight step `28C9:305F`, overlay 182 `+1167`'s gate and the award
   paths of overlay 188 `+16E9`; FND-PARTY-126 shows `+1167` acts only from mode 0 and that the
   message window returns to the mode it found, which leaves scripts run from other windows, such
-  as an item use from the inventory.
+  as an item use from the inventory. FND-PARTY-127 shows that entering mode 2 unregisters the main
+  view's key handler `28C9:0CFF` and that the level gain's first step registers it again, and leaves
+  the windows that save and restore the handler and whether `45B9:0034` hands events to it.
 - Q-PARTY-045. RULE-PARTY-015: Does any enemy's `kill_experience` divided by the filled party
   slots reach 32,768, so that killing it lowers each member's experience (FND-PARTY-086,
   FND-PARTY-094)? Settles it: the routine that loads an `RDFF` resource of `OBJEX.GFF` into the
