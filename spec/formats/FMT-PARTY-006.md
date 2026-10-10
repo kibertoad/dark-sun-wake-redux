@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_006.ksy
-evidence: [FND-PARTY-051, FND-PARTY-052]
+evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054]
 conflicting: []
 split_with: []
 related: []
@@ -20,7 +20,8 @@ related: []
 One link of the chain an FMT-PARTY-001 character record is made of: a 10-byte header and the
 data its `len_data` gives. The load reads chunks one after the other until one whose `chunk_type`
 is 0xFF, numbering them from 0 in that order, and handles each by its `chunk_type`
-[FND-PARTY-051].
+[FND-PARTY-051]. The game writes the chunks depth first from the character, giving each the
+index of its parent chunk, its record number and the field it was reached through [FND-PARTY-054].
 
 | Offset | Size | Type | Name | Meaning | Status | Evidence |
 |---|---|---|---|---|---|---|
@@ -64,5 +65,3 @@ ends on a `chunk_type` of 0xFF whose header is the last 10 bytes of the resource
 
 - What the 23-byte records of chunk types 2 and 4 hold, and so what the character's words at
   `0x08`, `0x0A` and `0x0C` lead to (Q-PARTY-020).
-- What the code that writes a `CHAR` resource puts in `target_chunk`, `record_ref` and `field`,
-  and in what order it writes the chunks (Q-PARTY-021).

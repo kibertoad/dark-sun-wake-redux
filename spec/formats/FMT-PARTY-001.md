@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_001.ksy
-evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053]
+evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-006]
@@ -26,7 +26,9 @@ The load reads the resource as a chain of FMT-PARTY-006 chunks ending at a chunk
 `chunk_type` is 0xFF [FND-PARTY-051]. Every shipped record starts with a type-1 chunk at `0x00`
 and a type-3 chunk at `0x3B`, and their headers hold the same values in all of them, so the
 table gives the bytes of those two chunks at fixed offsets; the rest of the chain follows from
-`0x87` [FND-PARTY-052].
+`0x87` [FND-PARTY-052]. The game writes a record with the character's chunk first and its details
+chunk second, and a record without the details chunk fails to load [FND-PARTY-054], so these
+offsets hold for every record the game writes and reads back.
 
 | Offset | Size | Type | Name | Meaning | Status | Evidence |
 |---|---|---|---|---|---|---|
@@ -97,5 +99,3 @@ ends within its slot [FND-PARTY-001, FND-PARTY-005, FND-PARTY-052].
   `CACT` resource (FND-PARTY-012), and the shipped values are never the record's own number
   (FND-PARTY-050, Q-PARTY-003).
 - Whether the scores are stored before or after origin modifiers (Q-PARTY-003).
-- Whether the game writes the chunks in another order than the shipped records hold them, which
-  would move the fields this table gives at fixed offsets (Q-PARTY-021).

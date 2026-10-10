@@ -29,10 +29,6 @@ Next ID: Q-PARTY-022
   `0x08`, which type-2 chunks fill with handles, lead to? Settles it: the code that reads the
   table at `DS:19C1` and those words, such as the View Character screen's possessions
   (SCR-UI-002). Blocks: slice 2.
-- Q-PARTY-021. FMT-PARTY-006, FMT-PARTY-001: What does the code that writes a `CHAR` resource put
-  in each chunk's header, and in what order does it write the chunks? Settles it: a reading of
-  overlay 187 `+018F`, which builds a buffer of 10-byte headers and data ending in a 0xFF header
-  and passes it to `37FC:00E8` (FND-PARTY-051), and of its callers. Blocks: slice 2.
 - Q-PARTY-004. FMT-PARTY-003, RULE-PARTY-003: Does each bit of the `PSIN` byte stand for one
   psionic discipline, and which? Settles it: the code that reads the four-slot `PSIN` table
   overlay 186 fills (FND-PARTY-012), or the discipline list of SCR-UI-005. Blocks: slice 2.
