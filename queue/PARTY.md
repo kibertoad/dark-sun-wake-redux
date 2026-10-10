@@ -1,9 +1,14 @@
 # PARTY
 
-Next ID: Q-PARTY-026
+Next ID: Q-PARTY-027
 
 ## Static
 
+- Q-PARTY-026. FMT-PARTY-001: When overlay 190 edits a stored character through overlay 184
+  `+1606`, does the word at `4E71:0B44` already hold the edited slot when `+1DCE` reads the class
+  bytes of the record it numbers, or can the edit take another character's classes
+  (FND-PARTY-063)? Settles it: a reading of the other writers of the word (file `0x75CBC`,
+  `0x78934` and `0x93170`) and of overlay 190 up to `+1004`. Blocks: slice 2.
 - Q-PARTY-002. RULE-PARTY-002, RULE-PARTY-003, RULE-PARTY-005, RULE-PARTY-007: What does the
   character generation screen check and offer: which classes it offers each origin where the
   manual's two lists and README table 3 disagree (half-giant ranger or thief, mul druid,
@@ -21,11 +26,6 @@ Next ID: Q-PARTY-026
   greatest hit points, origin, gender, alignment, class codes with their names, and levels, and
   FND-PARTY-058 and FND-PARTY-059 place experience at `0x45` and the current and greatest
   psionic points at `0x0C` and `0x51`. Blocks: slice 2.
-- Q-PARTY-024. BUG-PARTY-001, FMT-PARTY-001: Which class numbering does a character made in
-  generation keep: overlay 183 names classes through `DS:1164` and indexes `DATA` 1000 by the code
-  less 1, while play and the shipped records use the 17 codes of `DS:1487` (FND-PARTY-057,
-  FND-PARTY-060)? Settles it: the callers of overlay 183 `+0A3E` and the values they pass, and the
-  code that stores the finished character's details record. Blocks: slice 2.
 - Q-PARTY-023. FMT-PARTY-001: How does a character's level follow experience: when does overlay
   183 `+13B7..+14D0` run, what bounds the level it raises, and what do the class positions it
   skips (the byte at `-4` of its frame tested bit by bit) and level 15 mean? Settles it: a complete
@@ -90,7 +90,7 @@ None.
   level 7 shows 60000 where its class's table gives 110000, and what does it show for a Fighter,
   Gladiator or Thief (codes 9, 10 and 17)? Settles it: an owner capture of the View Character
   screen for each supplied character before any play, compared with records 40 to 43 and
-  FND-PARTY-058's table. Tried: the static reading FND-PARTY-058 and FND-PARTY-060. Blocks:
+  FND-PARTY-058's table. Tried: the static reading FND-PARTY-058 and FND-PARTY-062. Blocks:
   slice 2.
 - Q-PARTY-001. RULE-PARTY-006: Does START GAME put characters 40, 41, 42 and 43 into the four
   party slots, and not 53 or 33? Settles it: the shipped-party live session, with captures taken

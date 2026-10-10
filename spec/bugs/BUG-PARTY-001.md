@@ -7,7 +7,7 @@ superseded_by: []
 impact: presentation
 intent: unintended
 player_reliance: unknown
-evidence: [FND-PARTY-058, FND-PARTY-060]
+evidence: [FND-PARTY-058, FND-PARTY-062, FND-PARTY-063]
 conflicting: []
 split_with: []
 related: [SCR-UI-002, FMT-PARTY-001]
@@ -30,8 +30,9 @@ figure is printed whenever the sheet shows the experience line (overlay 186 `+04
 For each class whose level is not 15, the sheet reads the `DATA` 1000 threshold row numbered by
 the class code less 1, multiplies the word at the level by 100 and prints the least of the
 results, using the first class only for a human (FND-PARTY-058). The class bytes hold the 17-code
-numbering, and the routines that apply experience in play turn a code into a row through the
-table at `4E4F:009D` first (FND-PARTY-060). The sheet does not, so code 2 (a Cleric code) reads
+numbering, in the shipped records and in every character generation stores (FND-PARTY-063), and
+the routines that apply experience in play turn a code into a row through the class bytes of the
+pairs at `4E4F:009C` first (FND-PARTY-062). The sheet does not, so code 2 (a Cleric code) reads
 the Druid row, code 5 (a Druid code) the Preserver row, and codes 9 to 17 read 320 to 640 bytes
 into a resource of 320 bytes, whatever memory follows it.
 
@@ -57,5 +58,3 @@ None known.
 - What the sheet shows for a character with a code from 9 to 17, which depends on the memory after
   the loaded resource, and whether the figure is seen as described: a capture of the experience
   line for a supplied character would confirm it (Q-PARTY-025).
-- Whether characters made in generation keep the 8-name numbering, for which the sheet's figure
-  would be right (Q-PARTY-024).
