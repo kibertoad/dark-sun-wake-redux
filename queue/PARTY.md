@@ -28,9 +28,11 @@ Next ID: Q-PARTY-066
   reached from seven mode-2 handlers but not from overlay 172 `+04C5`. FND-PARTY-139 finds the
   DUAL path's event loops reaching only overlay 172 `+0816`, overlay 209 `+169C` and overlay 190
   `+0092`, and only `+169C` reaching the unload other than through overlay 187 `+1B67`, by way of
-  the object placement `31E0:0121`, overlay 193 `+13EC` and overlay 206 `+0E1E`; left is the
-  entry overlay 206 `+0E1E` and the other callers of `31E0:05BB` on that route pass, and the
-  conditions under which overlay 209 `+169C` takes it.
+  the object placement `31E0:0121`, overlay 193 `+13EC` and overlay 206 `+0E1E`. FND-PARTY-140
+  shows overlay 206 `+0E1E` unloads no slot below 4 and finds the other unloaders on those routes:
+  overlay 179 `+1373`, overlay 193 `+003C`, `371D:050F` and overlay 206 `+0000`; left is which
+  slot each unloads there, and the conditions on the route from overlay 209 `+169C` through
+  overlay 184 `+2107` and overlay 191 `+05DB` to `31E0:0121`.
   Blocks: slice 2.
 - Q-PARTY-053. RULE-PARTY-013: How do the spell window of overlay 209 `+0218` and the psionic
   power window of overlay 209 `+0A84` behave as screens, so that `gain_one_level` can show them
