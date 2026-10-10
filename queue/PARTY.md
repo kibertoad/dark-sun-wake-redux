@@ -17,11 +17,6 @@ Next ID: Q-PARTY-051
   they need; FND-PARTY-081 shows overlay 210 `+0740` passes overlay 209 `+0000` the slot whose
   Preserver level rose, so the question is whether that can be another slot on this path.
   Blocks: slice 2.
-- Q-PARTY-050. RULE-PARTY-013: Does any object trigger script that can run during a fight hold
-  script opcode `0x24`, which makes the slot in `4C13:0369` the current record through overlay 190
-  `+36D2` (FND-PARTY-097), and under which conditions after `2D40:2130` does `2D40:207E` run the
-  script? Settles it: the script resources each region's objects carry, searched for opcode
-  `0x24` with the script format, and a reading of `2D40:207E` to its end. Blocks: slice 2.
 - Q-PARTY-039. RULE-PARTY-013: What do overlay 199 `+0C21`, which runs before each level gain,
   and overlay 209 `+0000` and the window of `+0A84`, which run for a new Preserver or Psionicist
   level, change (FND-PARTY-081, FND-PARTY-084)? Settles it: a reading of those routines. Tried:
@@ -157,4 +152,11 @@ None.
 
 ## Blocked
 
-None.
+- Q-PARTY-050. RULE-PARTY-013: Does any trigger record's second entry point that can run during a
+  fight hold script opcode `0x24`, which makes the slot in `4C13:0369` the current record through
+  overlay 190 `+36D2` (FND-PARTY-097, FND-PARTY-098)? Settles it: the `GPL ` resources and offsets
+  the trigger records name, decoded instruction by instruction and searched for opcode `0x24`.
+  Blocks: slice 2. Tried: FND-PARTY-098 reads the conditions under which `2D40:207E` runs the
+  entry point; a byte search for `0x24` would also match parameter bytes, so it cannot settle
+  the question without the instruction layouts. Waiting on: Q-SCRIPT-004, the layout of every
+  script instruction, in the SCRIPT area.

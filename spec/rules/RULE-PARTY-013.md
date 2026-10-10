@@ -4,7 +4,7 @@ title: How a character gains levels in play
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-057, FND-PARTY-058, FND-PARTY-074, FND-PARTY-081, FND-PARTY-083, FND-PARTY-084, FND-PARTY-085, FND-PARTY-086, FND-PARTY-089, FND-PARTY-088, FND-PARTY-090, FND-PARTY-096, FND-PARTY-097]
+evidence: [FND-PARTY-057, FND-PARTY-058, FND-PARTY-074, FND-PARTY-081, FND-PARTY-083, FND-PARTY-084, FND-PARTY-085, FND-PARTY-086, FND-PARTY-089, FND-PARTY-088, FND-PARTY-090, FND-PARTY-096, FND-PARTY-097, FND-PARTY-098]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-012, RULE-PARTY-014, RULE-PARTY-015, RULE-RNG-001, FMT-PARTY-001]
@@ -226,7 +226,8 @@ None known.
   Psionicist level or when that character was made current last; the end of a fight was not found
   to change it, and the fight routine changes it only inside the gain (FND-PARTY-088,
   FND-PARTY-090); during a fight an object's trigger script that runs opcode `0x24` makes the
-  slot in `4C13:0369` current (FND-PARTY-097), and whether any script that can run in a fight
+  slot in `4C13:0369` current when that slot meets the trigger's distance test (FND-PARTY-097,
+  FND-PARTY-098), and whether any script that can run in a fight
   holds that opcode was not read (Q-PARTY-050).
 - What else a level changes: for a new Preserver or Psionicist level the original calls overlay
   209 routines, and before the gain it calls overlay 199 `+0C21`, none of which this entry covers
