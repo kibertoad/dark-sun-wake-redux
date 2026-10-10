@@ -12,14 +12,15 @@ Next ID: Q-PARTY-022
   refuses DONE or greys out choices? Settles it: the code behind SCR-UI-004 and SCR-UI-005, then
   an owner capture of the generation screen for each disputed pair. Blocks: slice 2.
 - Q-PARTY-003. FMT-PARTY-001, RULE-PARTY-004, RULE-MAGIC-002: Where does a character record keep
-  experience and psionic strength points, which class does each code in `classes` stand for, what
-  do the record's remaining `unk_` fields hold, and are the scores stored before or after origin
-  modifiers? Settles it: the routine behind trampoline `571F:0089` that names a class code, and the
-  other overlay 183 and 184 routines that print the character sheet from the record at `DS:1429`
-  (FND-PARTY-055). Tried: a search of the headers of records 40 and 42 for the label positions of
-  their gender, origin, alignment and class (FND-PARTY-018); FND-PARTY-049, FND-PARTY-051,
-  FND-PARTY-055 and FND-PARTY-056 place hit points, the object offset, the combatant identifier,
-  the control flags, greatest hit points, origin, gender, alignment, classes and levels; the
+  experience and psionic strength points, what distinguishes the four class codes each of Cleric,
+  Druid and Ranger have beyond their colour, what do the record's remaining `unk_` fields hold, and
+  are the scores stored before or after origin modifiers? Settles it: the other routines that print
+  the character sheet from the record at `DS:1429` (FND-PARTY-055), among them overlay 186's use of
+  the `EXP: ` label at `DS:137D`, and the code that sets a class code during generation. Tried: a
+  search of the headers of records 40 and 42 for the label positions of their gender, origin,
+  alignment and class (FND-PARTY-018); FND-PARTY-049, FND-PARTY-051 and FND-PARTY-055 to
+  FND-PARTY-057 place hit points, the object offset, the combatant identifier, the control flags,
+  greatest hit points, origin, gender, alignment, class codes with their names, and levels; the
   experience and psionic points are not among the fields read so far. Blocks: slice 2.
 - Q-PARTY-020. FMT-PARTY-006: What does a 23-byte record of a type-2 or type-4 chunk hold, and
   what do the character's combatant words at `0x08`, `0x0A` and `0x0C`, and a record's word at
