@@ -40,7 +40,7 @@ Next ID: Q-PARTY-055
   as the CHAR loader does, and the placements of `RDFF` 430 and 541 in the regions. Blocks:
   nothing yet. Tried: FND-PARTY-094 finds `RDFF` 430 (107,000) and 541 (33,000), of kind 7, with
   CHAR chunk headers; the loader is the ACTOR area's Q-ACTOR-003, outside this goal's claim.
-- Q-PARTY-052. FMT-PARTY-001: Which attacks call overlay 179 `+0D2F` with the attacker's item, so
+- Q-PARTY-052. FMT-PARTY-001, BUG-PARTY-006: Which attacks call overlay 179 `+0D2F` with the attacker's item, so
   that a hit with `DATA` 104 or `DATA` 225 drains a level, and what do the three overlay 197 calls
   before its saving throw test (FND-PARTY-101)? Settles it: a reading of `+0D2F`'s callers
   (overlay 179 `+0D1A` and `+1299`, overlay 193 `+04DE`) back to the item they pass, and of
@@ -52,9 +52,6 @@ Next ID: Q-PARTY-055
   holding 59, and overlay 193 `+13EC` the word at `+0` of a record of the table at `51F1:0000`,
   whose writers (overlay 208 `+03BA` and others through far pointers in locals) are left, with
   the two other routes.
-- Q-PARTY-042. FMT-PARTY-001: What does the program do on a divide by 0, which the level drain
-  reaches for a character with one class above level 1 (FND-PARTY-082)? Settles it: the startup
-  code's setting of the interrupt 0 vector and the handler it installs, read to its end. Blocks: nothing yet.
 - Q-PARTY-003. FMT-PARTY-001, RULE-PARTY-004, RULE-MAGIC-002: What do the record's remaining `unk_`
   fields hold, and are the scores stored before or after origin modifiers? Settles it: the other
   routines that print the character sheet from the record at `DS:1429` (FND-PARTY-055), and the
@@ -172,7 +169,7 @@ None.
   entry point; a byte search for `0x24` would also match parameter bytes, so it cannot settle
   the question without the instruction layouts. Waiting on: Q-SCRIPT-004, the layout of every
   script instruction, in the SCRIPT area.
-- Q-PARTY-051. FMT-PARTY-001: Does any script call function 23 of opcode `0x22` with the effect
+- Q-PARTY-051. FMT-PARTY-001, BUG-PARTY-006: Does any script call function 23 of opcode `0x22` with the effect
   code 59, which runs the level drain on a party slot, and on which slots does overlay 204 `+1A68`
   apply it (FND-PARTY-101)? Settles it: the `GPL ` resources decoded instruction by instruction
   and searched for opcode `0x22` with function 23 and code 59, and a reading of `+1A68`. Blocks:

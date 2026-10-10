@@ -206,7 +206,8 @@ level totals meet, since the drain leaves `greatest_levels` and `hit_die_total` 
 (FND-PARTY-082). The drain runs on a party member that receives the effect code 59, which a
 strike by the item of `DATA` number 313 sends on an attack roll of 20 (FND-PARTY-096), a hit in a
 fight with an item whose `DATA` byte `+0x19` is 59 sends when the target fails its saving throw,
-and a script can send through function 23 of opcode `0x22` (FND-PARTY-101). The divisions in `greatest_hit_points` are unsigned and round down; the product
+and a script can send through function 23 of opcode `0x22` (FND-PARTY-101). When the drain gives
+every class its level back it divides by 0, and the game ends with `Math Err` (BUG-PARTY-006). The divisions in `greatest_hit_points` are unsigned and round down; the product
 is taken to 16 bits, which the levels and dice of a character do not exceed. When the greatest hit
 points fall, the current hit points fall by the same amount. The psionic points are never
 lowered. A character whose wisdom is 15 or more takes the wisdom bonus from `screen_wisdom`, so a

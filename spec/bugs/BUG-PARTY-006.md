@@ -1,0 +1,64 @@
+---
+id: BUG-PARTY-006
+title: The level drain ends the game with Math Err for a character whose classes all get their level back
+status: supported
+builds: [BLD-GOG-EN-1.1]
+superseded_by: []
+impact: crash
+intent: unintended
+player_reliance: unknown
+evidence: [FND-PARTY-082, FND-PARTY-105, FND-PARTY-096, FND-PARTY-101]
+conflicting: []
+split_with: []
+related: [RULE-PARTY-013, FMT-PARTY-001]
+---
+
+## Symptom
+
+When a party member is struck by a level drain, the game can return to DOS at once, printing
+`Math Err`. Nothing since the last save is kept.
+
+## Trigger conditions
+
+The drain of overlay 210 `+0B66` runs on a party member in slot 0 to 3 that receives the effect
+code 59 (FND-PARTY-096, FND-PARTY-101). It ends the game whenever its second pass raises every
+class of the member back to its old level, so that it rolls no hit die: always for a character
+with one class above level 1, and for a character with several classes when the new experience
+is at least the start of each class's old level (FND-PARTY-082).
+
+## Mechanism
+
+The drain sets the experience from the class thresholds, lowers each level by 1, and then raises
+each level whose start the experience reaches, counting a hit die roll for each level it leaves
+lowered. It then divides the total of those rolls by their count with a signed 16-bit `idiv`
+(FND-PARTY-082). With no roll the count is 0 and the processor raises a divide error. The game's
+handler for that error, installed at start-up, restores the screen, prints `Math Err` and exits
+with code 1 (FND-PARTY-105).
+
+## Frequency
+
+Every drain of a single-class character above level 1. The sources of effect code 59 are a strike
+by the item of `DATA` 313 on an attack roll of 20, a hit with the item of `DATA` 104 or 225 on a
+target that fails its saving throw, and scripts through function 23 of opcode `0x22`
+(FND-PARTY-096, FND-PARTY-101); which of them can strike the party in play is open.
+
+## Player reliance
+
+None known.
+
+## Fixes elsewhere
+
+None known.
+
+## Differences between builds
+
+None known.
+
+## Open questions
+
+- Whether any enemy in play carries the item of `DATA` 104, 225 or 313, or any script sends code
+  59 to a party member, so that the crash can happen in a normal game: which attacks pass an item
+  to the hit routine is Q-PARTY-052, and the scripts are Q-PARTY-051.
+- What a player sees on the screen as the game ends: a capture of a drain on a single-class
+  character would confirm it (No item: no live session can be arranged until the item and an
+  enemy carrying it are known; Q-PARTY-052 comes first).
