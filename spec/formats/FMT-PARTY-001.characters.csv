@@ -1,4 +1,4 @@
-character,version,tail_count,strength,dexterity,constitution,intelligence,wisdom,charisma,name
+character,type,chunk_count,strength,dexterity,constitution,intelligence,wisdom,charisma,name
 29,1,7,17,21,17,17,17,16,Caron the Unsur
 30,1,29,20,21,19,20,20,17,Anathea
 31,1,21,19,18,19,18,17,18,Cermak

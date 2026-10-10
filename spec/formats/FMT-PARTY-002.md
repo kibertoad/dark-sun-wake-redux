@@ -1,9 +1,9 @@
 ---
 id: FMT-PARTY-002
 title: Character record tail entry
-status: supported
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FMT-PARTY-006]
 files: ["CHARSAVE.GFF", "CD:CHARSAVE.GFF"]
 byte_order: little
 size: 33

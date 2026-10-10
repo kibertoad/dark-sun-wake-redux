@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_001.ksy
-evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-004, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050]
+evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-006]
@@ -18,20 +18,29 @@ related: [RULE-PARTY-006]
 ## Layout
 
 The layout of a `CHAR` resource of the character archive, one per character, under the
-character's number [FND-PARTY-004, FND-PARTY-005]. The same number holds the character's
+character's number [FND-PARTY-005, FND-PARTY-052]. The same number holds the character's
 FMT-PARTY-003, FMT-PARTY-004 and FMT-PARTY-005 resources, and, for a character in the store, its
 `CACT` resource [FND-PARTY-012].
 
+The load reads the resource as a chain of FMT-PARTY-006 chunks ending at a chunk whose
+`chunk_type` is 0xFF [FND-PARTY-051]. Every shipped record starts with a type-1 chunk at `0x00`
+and a type-3 chunk at `0x3B`, and their headers hold the same values in all of them, so the
+table gives the bytes of those two chunks at fixed offsets; the rest of the chain follows from
+`0x87` [FND-PARTY-052].
+
 | Offset | Size | Type | Name | Meaning | Status | Evidence |
 |---|---|---|---|---|---|---|
-| `0x00` | 1 | `UINT8` | `version` | 1 in every shipped record. | supported | FND-PARTY-004 |
-| `0x01` | 1 | `UINT8` | `tail_count` | Number of FMT-PARTY-002 records after the header, 2 to 29 in the shipped records. | supported | FND-PARTY-004 |
-| `0x02` | 8 | `BYTE[8]` | `unk_02` | Purpose unknown. The load does not copy these bytes to the FMT-COMBAT-001 record. | supported | FND-PARTY-004, FND-PARTY-049 |
-| `0x0A` | 2 | `INT16LE` | `hit_points` | The character's current hit points. A load copies it to the FMT-COMBAT-001 record's `hit_points`; 21 to 165 in the shipped records. | supported | FND-PARTY-049, FND-PARTY-050 |
+| `0x00` | 1 | `UINT8` | `type` | The first chunk's `chunk_type`, 1 in every shipped record: its data is the character's FMT-COMBAT-001 record. | supported | FND-PARTY-051, FND-PARTY-052 |
+| `0x01` | 1 | `UINT8` | `chunk_count` | The number of chunks before the end header, 2 to 29 in the shipped records. The load does not read it. | supported | FND-PARTY-051, FND-PARTY-052 |
+| `0x02` | 1 | `UINT8` | `kind` | 2 in every shipped record. | supported | FND-PARTY-051, FND-PARTY-052 |
+| `0x03` | 1 | `UINT8` | `unk_03` | 0 in every shipped record. | supported | FND-PARTY-052 |
+| `0x04` | 4 | `BYTE[4]` | `unk_04` | Purpose unknown; the load does not read these bytes of a type-1 chunk. Two equal words of 0 to 3 in the shipped records. | supported | FND-PARTY-051, FND-PARTY-052 |
+| `0x08` | 2 | `UINT16LE` | `len_data` | 49, the size of the data from `0x0A`. | supported | FND-PARTY-051, FND-PARTY-052 |
+| `0x0A` | 2 | `INT16LE` | `hit_points` | The character's current hit points. A load copies it to the FMT-COMBAT-001 record's `hit_points`; 21 to 165 in the shipped records, never above `max_hit_points`. | supported | FND-PARTY-049, FND-PARTY-050, FND-PARTY-053 |
 | `0x0C` | 2 | `BYTE[2]` | `unk_0c` | Purpose unknown. A load copies it to the FMT-COMBAT-001 record's `unk_02`. | supported | FND-PARTY-049 |
-| `0x0E` | 2 | `UINT16LE` | `unk_0e` | Purpose unknown. A load copies it to the FMT-COMBAT-001 record's `details_index` and then replaces that with 9,999; 0 to 3 in the shipped records. | supported | FND-PARTY-049, FND-PARTY-050 |
+| `0x0E` | 2 | `UINT16LE` | `unk_0e` | Purpose unknown. A load copies it to the FMT-COMBAT-001 record's `details_index`, replaces that with 9,999, and then with the number of the details record the chunk at `0x3B` fills; 0 to 3 in the shipped records. | supported | FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052 |
 | `0x10` | 2 | `UINT16LE` | `combatant_id` | A load copies it to the FMT-COMBAT-001 record's `character_id`. 32,769 to 33,536 in the shipped records, never the record's own number, and the same in two of them. | supported | FND-PARTY-049, FND-PARTY-050 |
-| `0x12` | 8 | `BYTE[8]` | `unk_12` | Purpose unknown. A load copies it to bytes `0x08` to `0x0F` of the FMT-COMBAT-001 record, then replaces the words that came from `0x12`, `0x14` and `0x16` with 9,999. | supported | FND-PARTY-049, FND-PARTY-050 |
+| `0x12` | 8 | `BYTE[8]` | `unk_12` | Purpose unknown. A load copies it to bytes `0x08` to `0x0F` of the FMT-COMBAT-001 record, then replaces the words that came from `0x12`, `0x14` and `0x16` with 9,999, and the type-2 chunks whose `field` is 16, 17 or 4 store their records' handles there. | supported | FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052 |
 | `0x1A` | 2 | `UINT16LE` | `object_offset` | 300 plus this is the object number placed for the character when it is added to the party or supplied by START GAME (RULE-PARTY-006); 0 to 13 in the shipped records. | supported | FND-PARTY-013, FND-PARTY-048, FND-PARTY-049 |
 | `0x1C` | 2 | `BYTE[2]` | `unk_1c` | Purpose unknown. A load copies it to bytes `0x12` and `0x13` of the FMT-COMBAT-001 record. | supported | FND-PARTY-049 |
 | `0x1E` | 1 | `UINT8` | `combat_mark` | A load copies it to the FMT-COMBAT-001 record's `combat_mark` and makes that 1 when it is 0; 0 or 1 in the shipped records. | supported | FND-PARTY-049, FND-PARTY-050 |
@@ -43,17 +52,23 @@ FMT-PARTY-003, FMT-PARTY-004 and FMT-PARTY-005 resources, and, for a character i
 | `0x26` | 1 | `UINT8` | `intelligence` | Intelligence. | established | FND-PARTY-003, FND-PARTY-020 |
 | `0x27` | 1 | `UINT8` | `wisdom` | Wisdom. | established | FND-PARTY-003, FND-PARTY-020 |
 | `0x28` | 1 | `UINT8` | `charisma` | Charisma. | established | FND-PARTY-003, FND-PARTY-020 |
-| `0x29` | 2 | `BYTE[2]` | `unk_29` | Purpose unknown. | supported | FND-PARTY-004 |
+| `0x29` | 2 | `BYTE[2]` | `unk_29` | Purpose unknown. A load copies it to bytes `0x1F` and `0x20` of the FMT-COMBAT-001 record. | supported | FND-PARTY-049 |
 | `0x2B` | 16 | `char[16]` | `name` | The character's name, printable ASCII ending at the first NUL, 6 to 15 characters in the shipped records. Bytes after the NUL may hold leftover text. | established | FND-PARTY-001, FND-PARTY-020 |
-| `0x3B` | 20 | `BYTE[20]` | `unk_3B` | Purpose unknown. | supported | FND-PARTY-004 |
-| `0x4F` | `tail_count * 33` | `FMT-PARTY-002[tail_count]` | `tail` | Records of unknown purpose. | supported | FND-PARTY-004 |
-| | | | | Total size `79 + tail_count * 33` | | |
+| `0x3B` | 10 | FMT-PARTY-006 header | `details_header` | `chunk_type` 3, `target_chunk` 0, `kind` 3, `field` 15 and `len_data` 66 in every shipped record, so the load copies the next 66 bytes into the character's FMT-COMBAT-002 record and stores its number in the character's `details_index`. | supported | FND-PARTY-051, FND-PARTY-052 |
+| `0x45` | 8 | `BYTE[8]` | `unk_45` | Purpose unknown. A load copies it to the FMT-COMBAT-002 record's `unk_00`. | supported | FND-PARTY-051 |
+| `0x4D` | 2 | `INT16LE` | `max_hit_points` | The character's greatest hit points. A load copies it to the FMT-COMBAT-002 record's `max_hit_points`; 21 to 165 in the shipped records. | supported | FND-PARTY-051, FND-PARTY-053 |
+| `0x4F` | 4 | `BYTE[4]` | `unk_4f` | Purpose unknown. A load copies it to the FMT-COMBAT-002 record's `unk_0A`. | supported | FND-PARTY-051 |
+| `0x53` | 2 | `UINT16LE` | `unk_53` | Purpose unknown. A load copies it to the FMT-COMBAT-002 record's `unk_0E`; equal to `combatant_id` in 14 of the 19 shipped records. | supported | FND-PARTY-051, FND-PARTY-053 |
+| `0x55` | 50 | `BYTE[50]` | `unk_55` | Purpose unknown. A load copies it to bytes `0x10` to `0x41` of the FMT-COMBAT-002 record, so its byte at `0x7C` lands on `footprint`. | supported | FND-PARTY-051 |
+| `0x87` | `33 * (chunk_count - 2)` | FMT-PARTY-006`[chunk_count - 2]` | `chunks` | The other chunks, each of `chunk_type` 2 or 4 with 23 bytes of data in the shipped records. | supported | FND-PARTY-051, FND-PARTY-052 |
+| | 10 | FMT-PARTY-006 header | `end` | `chunk_type` 0xFF and `len_data` 0, the other bytes as at `0x01` to `0x07`. | supported | FND-PARTY-051, FND-PARTY-052 |
+| | | | | Total size `145 + 33 * (chunk_count - 2)` in the shipped records | | |
 
 The value file `FMT-PARTY-001.characters.csv` gives, for each of the 19 `CHAR` resources of the
-installed `CHARSAVE.GFF`, the columns `character` (the resource number), `version`,
-`tail_count`, the six ability scores and `name` (the text before the NUL) [FND-PARTY-001,
-FND-PARTY-003, FND-PARTY-004]. The eight records of the disc's copy are the rows 40 to 43 and 50
-to 53. The opaque blocks `unk_02`, `unk_29`, `unk_3B` and the tail are left out.
+installed `CHARSAVE.GFF`, the columns `character` (the resource number), `type`,
+`chunk_count`, the six ability scores and `name` (the text before the NUL) [FND-PARTY-001,
+FND-PARTY-003, FND-PARTY-052]. The eight records of the disc's copy are the rows 40 to 43 and
+50 to 53. The other fields and the chunks from `0x87` are left out.
 
 ## Enumerations and flags
 
@@ -66,20 +81,21 @@ None known.
 ## Coverage
 
 All 19 `CHAR` resources of the installed `CHARSAVE.GFF` and the 8 of the disc's copy, which are
-the same bytes as the installed resources of the same numbers: every one has `version` 1 and the
-size the layout gives, and ends its name within the slot [FND-PARTY-001, FND-PARTY-004,
-FND-PARTY-005].
+the same bytes as the installed resources of the same numbers: in every one the chain of chunks
+ends on the last 10 bytes, the first two chunks have the headers the table gives, and the name
+ends within its slot [FND-PARTY-001, FND-PARTY-005, FND-PARTY-052].
 
 ## Open questions
 
-- Where the record keeps the gender, origin, alignment, classes, levels, experience, maximum
-  hit points and psionic strength points the View Character screen shows, and what `unk_02`,
-  `unk_0c`, `unk_0e`, `unk_12`, `unk_1c`, `unk_1f`, `unk_29`, `unk_3B` and the tail records hold
-  (FND-PARTY-018, FND-PARTY-020, Q-PARTY-003).
-- Whether `hit_points` holds current rather than maximum hit points: it lands on the combatant
-  record's `hit_points`, which the status panel shows first (FND-PARTY-050, Q-PARTY-003).
+- Where the record keeps the gender, origin, alignment, classes, levels, experience and
+  psionic strength points the View Character screen shows, and what `unk_04`, `unk_0c`,
+  `unk_0e`, `unk_12`, `unk_1c`, `unk_1f`, `unk_29`, `unk_45`, `unk_4f`, `unk_53` and `unk_55`
+  hold. The two chunks at `0x00` and `0x3B` are the only ones that reach the combatant and
+  details records, so the screen's values are in them or in the records of the later chunks
+  (FND-PARTY-018, FND-PARTY-020, FND-PARTY-051, Q-PARTY-003).
 - What `combatant_id` identifies: overlay 184 writes the combatant record's copy of it to a
   `CACT` resource (FND-PARTY-012), and the shipped values are never the record's own number
   (FND-PARTY-050, Q-PARTY-003).
 - Whether the scores are stored before or after origin modifiers (Q-PARTY-003).
-- Whether the game accepts a `version` other than 1 (Q-PARTY-003).
+- Whether the game writes the chunks in another order than the shipped records hold them, which
+  would move the fields this table gives at fixed offsets (Q-PARTY-021).

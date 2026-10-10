@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-004
 title: A CHAR record is a 79-byte header whose byte 1 counts the 33-byte records after it
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-052]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

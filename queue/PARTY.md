@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-020
+Next ID: Q-PARTY-022
 
 ## Static
 
@@ -11,18 +11,28 @@ Next ID: Q-PARTY-020
   list, how it rolls the six scores and when it applies the origin modifiers, and whether it
   refuses DONE or greys out choices? Settles it: the code behind SCR-UI-004 and SCR-UI-005, then
   an owner capture of the generation screen for each disputed pair. Blocks: slice 2.
-- Q-PARTY-003. FMT-PARTY-001, FMT-PARTY-002, RULE-PARTY-004, RULE-MAGIC-002: Where does a character record keep
-  gender, origin, alignment, classes, levels, experience, hit points and psionic strength points,
-  what do `unk_02`, `unk_29`, `unk_3B` and the tail entries hold, are the scores stored before or
-  after origin modifiers, and does the game accept a `version` other than 1? Settles it: the far
-  routine that overlays 171 and 182 call with `CHAR` and 7 to load a record into a party slot
-  (FND-PARTY-012, FND-PARTY-013), read against the 49-byte party records at `DS:19C9`. Tried: a
-  search of the headers of records 40 and 42 for the label positions of their gender, origin,
-  alignment and class (FND-PARTY-018); FND-PARTY-049 shows the load copies a record's bytes
-  `0x0A` to `0x3A` into the party record, and FND-PARTY-050 places hit points at `0x0A`, the
-  object offset at `0x1A`, the combatant identifier at `0x10` and the control flags at `0x22`;
-  gender, origin, alignment, classes, levels, experience, maximum hit points and psionic
-  strength points are not among the combatant record's known fields. Blocks: slice 2.
+- Q-PARTY-003. FMT-PARTY-001, RULE-PARTY-004, RULE-MAGIC-002: Where does a character record keep
+  gender, origin, alignment, classes, levels, experience and psionic strength points, what do
+  `unk_04`, `unk_0c`, `unk_0e`, `unk_12`, `unk_1c`, `unk_1f`, `unk_29`, `unk_45`, `unk_4f`,
+  `unk_53` and `unk_55` hold, and are the scores stored before or after origin modifiers?
+  Settles it: the code of the View Character screen (SCR-UI-002) that reads those values from
+  the combatant record at `DS:19C9` and the details record at `DS:19C5`, which the record's
+  first two chunks fill (FND-PARTY-051). Tried: a search of the headers of records 40 and 42 for
+  the label positions of their gender, origin, alignment and class (FND-PARTY-018);
+  FND-PARTY-049 and FND-PARTY-051 show the load copies bytes `0x0A` to `0x3A` into the
+  combatant record and `0x45` to `0x86` into the details record, and FND-PARTY-050 and
+  FND-PARTY-053 place current hit points at `0x0A`, greatest hit points at `0x4D`, the object
+  offset at `0x1A`, the combatant identifier at `0x10` and the control flags at `0x22`; the other
+  values are not among the two records' known fields. Blocks: slice 2.
+- Q-PARTY-020. FMT-PARTY-006: What does a 23-byte record of a type-2 or type-4 chunk hold, and
+  what do the character's combatant words at `0x08`, `0x0A` and `0x0C`, and a record's word at
+  `0x08`, which type-2 chunks fill with handles, lead to? Settles it: the code that reads the
+  table at `DS:19C1` and those words, such as the View Character screen's possessions
+  (SCR-UI-002). Blocks: slice 2.
+- Q-PARTY-021. FMT-PARTY-006, FMT-PARTY-001: What does the code that writes a `CHAR` resource put
+  in each chunk's header, and in what order does it write the chunks? Settles it: a reading of
+  overlay 187 `+018F`, which builds a buffer of 10-byte headers and data ending in a 0xFF header
+  and passes it to `37FC:00E8` (FND-PARTY-051), and of its callers. Blocks: slice 2.
 - Q-PARTY-004. FMT-PARTY-003, RULE-PARTY-003: Does each bit of the `PSIN` byte stand for one
   psionic discipline, and which? Settles it: the code that reads the four-slot `PSIN` table
   overlay 186 fills (FND-PARTY-012), or the discipline list of SCR-UI-005. Blocks: slice 2.
