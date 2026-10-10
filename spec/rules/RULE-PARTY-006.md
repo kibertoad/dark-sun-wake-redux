@@ -76,14 +76,16 @@ None known.
   program start and the gate reaches a routine that changes the count or makes that word nonzero
   (FND-PARTY-031). The pointers most indirect calls on those paths read hold routines from which
   no route reaches one (FND-PARTY-039, FND-PARTY-040). The run of `MAS` 99 on those paths executes
-  only opcodes whose handlers reach none (FND-PARTY-040, FND-PARTY-041). Still open: a failed load
-  of `MAS` 99, whose error routine leads to such routines (FND-PARTY-040, Q-PARTY-016); 9 indirect calls whose targets are unread (FND-PARTY-039, FND-PARTY-040, Q-PARTY-011);
+  only opcodes whose handlers reach none (FND-PARTY-040, FND-PARTY-041). `GPLDATA.GFF` is open
+  when `MAS` 99 loads and nothing before closes it, so the load, whose error routine leads to
+  such routines (FND-PARTY-040), fails only on a file call's result (FND-PARTY-042). Still open:
+  9 indirect calls whose targets are unread (FND-PARTY-039, FND-PARTY-040, Q-PARTY-011);
   and whether either of the gate routine's two
   video-memory reservations fails (FND-PARTY-030, FND-PARTY-032, FND-PARTY-033). While the
   pointer is an `ICON` neither can fail on space, since the caret and pointer saves then hold at
   most 1,006 paragraphs, the room left, and no direct route before the gate makes it another
-  image (FND-PARTY-035, FND-PARTY-036, FND-PARTY-037); routes through a failed `MAS` 99
-  load and the unresolved indirect calls stay open (Q-PARTY-016, Q-PARTY-011). The owner's captures of a game started with START GAME show the four characters
+  image (FND-PARTY-035, FND-PARTY-036, FND-PARTY-037); routes through the unresolved
+  indirect calls stay open (Q-PARTY-011). The owner's captures of a game started with START GAME show the four characters
   in this order, but they do not tell 41 from 53 or 43 from 33 (FND-PARTY-020); the
   shipped-party live session would confirm it (Q-PARTY-001).
 - Where `CHARSAVE.GFF` is opened from rests on DOS reporting version 3 or later and placing the
@@ -91,6 +93,10 @@ None known.
   earlier version `argv[0]` is empty and the name is opened in the current directory
   (FND-PARTY-034, FND-PARTY-038). (No item: what the DOS of GOG's DOSBox reports and writes
   there shows only in a run, and no run is possible.)
+- Whether the load of `MAS` 99 before the gate succeeds rests on the file positioning, read and
+  record-write calls on `GPLDATA.GFF` returning what the installed file gives (FND-PARTY-042). A
+  run reaching START GAME's party on an intact installation would show it (No item: the outcome
+  rests on the operating system, and no run is possible).
 - Whether the program ends after a failed `CHARSAVE.GFF` open depends on the operating system
   carrying out the run time's terminate request (FND-CONFIG-062, FND-PARTY-034); a run without
   the file would show it (No item: agents cannot run the game, and no owner session asks for a

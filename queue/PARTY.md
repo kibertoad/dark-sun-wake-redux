@@ -42,9 +42,9 @@ Next ID: Q-PARTY-017
 - Q-PARTY-011. RULE-PARTY-006: Can any of the 9 indirect calls whose targets FND-PARTY-039 and
   FND-PARTY-040 leave open on the paths from program start through START GAME to the gate at
   overlay 182 offset `0x12DD` (the 8 calls through record fields at `ES:BX` and `ES:SI`, and
-  `call [di+0x6393]` at `0x1767E`, whose `DS` was not traced), other than through a failed load of
-  `MAS` 99 (Q-PARTY-016), reach a routine that changes the placed-object count at `DS:264E`
-  (FND-PARTY-022), makes the word at `DS:0DAB` nonzero (FND-PARTY-029), or makes the mouse
+  `call [di+0x6393]` at `0x1767E`, whose `DS` was not traced), other than through a failed file
+  call while `MAS` 99 loads (FND-PARTY-042), reach a routine that changes the placed-object count
+  at `DS:264E` (FND-PARTY-022), makes the word at `DS:0DAB` nonzero (FND-PARTY-029), or makes the mouse
   pointer an image other than an `ICON`, through `3D72:120B`, `3D72:12ED` or one of the 14 sites
   of FND-PARTY-036, which could make the gate routine's reservations fail (FND-PARTY-035)?
   Settles it: the producers of each record field and pointer those calls read, shown to hold no
@@ -59,15 +59,8 @@ Next ID: Q-PARTY-017
   displacement stores of every pointer those 61 calls read, which leave only the record fields
   unenumerated (FND-PARTY-039); and `reach` rounds that add those values as starts once their
   writers are reached, whose only routes to the targets pass the run of `MAS` 99
-  (FND-PARTY-040), whose instructions open none (FND-PARTY-041). Blocks: slice 2.
-- Q-PARTY-016. RULE-PARTY-006: Before the gate at overlay 182 offset `0x12DD`, can the load of
-  `MAS` 99 that `172C:0299` starts for overlay 188 `+046C` fail, so that it calls `5702:00B1`,
-  which leads to overlay 199 `+0C21` storing `28C9:0CFF` at `DS:A0F1` and so to routines that
-  change the placed-object count or `DS:0DAB` (FND-PARTY-040, FND-PARTY-041)? Settles it: the
-  failure branches of the loader `172C:0388` (FND-SCRIPT-019, RULE-SCRIPT-010) read for the
-  state at that call: the cache and buffer left by overlay 169 `+0000`, the open archives, and
-  `MAS` 99 in `GPLDATA.GFF`; and whether `5702:00B1` returns. Split from Q-PARTY-015, which
-  FND-PARTY-041 closed. Blocks: slice 2.
+  (FND-PARTY-040), whose instructions open none (FND-PARTY-041) and whose load fails only on a
+  file call's result (FND-PARTY-042). Blocks: slice 2.
 
 ## Emulated call
 

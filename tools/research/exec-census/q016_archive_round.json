@@ -1,0 +1,52 @@
+{
+ "starts": [
+  "182+0000",
+  "3150:000E",
+  "180+0867",
+  "1000:406D",
+  "2D40:3DC2",
+  "4544:0000",
+  "1BF3:2A4A",
+  "1BF3:2973",
+  "1BF3:271B",
+  "180+0026",
+  "4842:06CF",
+  "188+0CD7",
+  "180+0848",
+  "1000:0FB5",
+  "1000:345B",
+  "1000:3726",
+  "1000:129F",
+  "2660:052D",
+  "2660:05CA",
+  "2660:0250",
+  "2660:0447",
+  "180+0000",
+  "49D2:0017"
+ ],
+ "leaves": [
+  {
+   "site": "1000:0388",
+   "reason": "FND-SAVE-012, FND-PARTY-032: the exit worker that 1000:03DF and the other exit entries call; it ends the program, so nothing after it runs on this path"
+  }
+ ],
+ "targets": [
+  "0x2D180",
+  "0x2D1AE",
+  "0x2DA5C",
+  "0x2DA6E",
+  "0x2E21E",
+  "0x2E227",
+  "0x2E22F",
+  "0x2E244",
+  "0x2E53E",
+  "0x2E547",
+  "0x2E564",
+  "0x2E5E4",
+  "0x2E5E8",
+  "0x2E46B"
+ ],
+ "controls": [
+  "0x6888D"
+ ]
+}
