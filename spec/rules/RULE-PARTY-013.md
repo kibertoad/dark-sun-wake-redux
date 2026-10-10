@@ -4,7 +4,7 @@ title: How a character gains levels in play
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-057, FND-PARTY-058, FND-PARTY-074, FND-PARTY-081, FND-PARTY-083, FND-PARTY-084, FND-PARTY-085, FND-PARTY-086, FND-PARTY-089, FND-PARTY-088]
+evidence: [FND-PARTY-057, FND-PARTY-058, FND-PARTY-074, FND-PARTY-081, FND-PARTY-083, FND-PARTY-084, FND-PARTY-085, FND-PARTY-086, FND-PARTY-089, FND-PARTY-088, FND-PARTY-090]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-012, RULE-PARTY-014, RULE-PARTY-015, RULE-RNG-001, FMT-PARTY-001]
@@ -41,7 +41,7 @@ scores, 0 to 25; `screen_wisdom`, the wisdom in the combatant record the far poi
 points to when the psionic points are recomputed: the character whose new Psionicist level came
 last, in this member's gain or an earlier one, and otherwise the slot the game last made current,
 a record another screen was given, or the generation screen's working record (FND-PARTY-076,
-FND-PARTY-084, FND-PARTY-088, Q-PARTY-043); `hit_points` and `max_hit_points`; `psionic_points` and
+FND-PARTY-084, FND-PARTY-088, FND-PARTY-090, Q-PARTY-043); `hit_points` and `max_hit_points`; `psionic_points` and
 `max_psionic_points`; `class_flags`, `class_attack_rate`, `attack_rate`, `unk_6c`, `thac0` and
 `saving_throws`, the FMT-PARTY-001 fields RULE-PARTY-014 sets; `name`, the character's name; `one_each`, true when each class gains one
 level without the experience test.
@@ -223,7 +223,9 @@ None known.
 - Which character `screen_wisdom` belongs to after a fight: the original reads the wisdom bonus's
   index from the record at `DS:142D`, which is the levelling character's only after a new
   Psionicist level or when that character was made current last; the end of a fight was not found
-  to change it (FND-PARTY-088), and what it holds then was not read (Q-PARTY-043).
+  to change it, and the fight routine changes it only inside the gain (FND-PARTY-088,
+  FND-PARTY-090); whether the code that runs between its calls during a fight moves it was not
+  read (Q-PARTY-043).
 - What else a level changes: for a new Preserver or Psionicist level the original calls overlay
   209 routines, and before the gain it calls overlay 199 `+0C21`, none of which this entry covers
   (Q-PARTY-039).

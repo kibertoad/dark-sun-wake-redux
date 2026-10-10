@@ -17,15 +17,14 @@ Next ID: Q-PARTY-049
   they need; FND-PARTY-081 shows overlay 210 `+0740` passes overlay 209 `+0000` the slot whose
   Preserver level rose, so the question is whether that can be another slot on this path.
   Blocks: slice 2.
-- Q-PARTY-043. RULE-PARTY-013: When the level gain runs after a fight, which record does the far
-  pointer `DS:142D` point to, and so whose wisdom does the wisdom bonus of the greatest psionic
-  points use for a level that is not a new Psionicist level (FND-PARTY-084, FND-PARTY-088)?
-  Settles it: which of the stores to `DS:142D` and `4E71:0B44` FND-PARTY-084 lists run before or
-  during a fight, read from the code that starts a fight and from its loop in overlay 173.
-  Blocks: slice 2. Tried: FND-PARTY-086 read overlay 188 `+1604`, overlay 173 `+30C7` and the
-  script handler of instruction 0x21, and FND-PARTY-088 walked from the calls that end a fight;
-  neither finds a store outside the gain's own overlay 209 routines, but the walk leaves 34
-  computed transfers unresolved and what the pointer holds when a fight ends was not read.
+- Q-PARTY-043. RULE-PARTY-013: Can any store to `DS:142D` or `4E71:0B44` that FND-PARTY-084 lists
+  run during a fight, from the code that runs between calls of the fight routine overlay 173
+  `+059A` or through the computed transfers the reach walks leave unresolved, and so move the
+  record whose wisdom the gain after a fight uses (FND-PARTY-084, FND-PARTY-090)? Settles it: the
+  resident loops around `2A00:0DE3` and `2B00:0DD1` read for what they call between fight steps,
+  and the 36 unresolved transfers of FND-PARTY-090 resolved or shown not to reach the stores.
+  Blocks: slice 2. Tried: FND-PARTY-086, FND-PARTY-088 and FND-PARTY-090 find no store outside
+  the gain's own overlay 209 routines from the awards, the end of a fight or the fight routine.
 - Q-PARTY-039. RULE-PARTY-013: What do overlay 199 `+0C21`, which runs before each level gain,
   and overlay 209 `+0000` and the window of `+0A84`, which run for a new Preserver or Psionicist
   level, change (FND-PARTY-081, FND-PARTY-084)? Settles it: a reading of those routines. Tried:
