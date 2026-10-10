@@ -203,8 +203,14 @@ An owner-approved history repair remains separate from this maintenance scope.
      archive-list writer is reached (q016_archive_round.json), so the load fails only on a file
      call's result. FND-PARTY-043 resolved call [di+0x6393] (DS = 1BF3, four text-layout
      routines) and the text record's +0x0C call at 0x16E3E (record DS:A03D, field cleared by
-     39D1:0009 and never set). Next PARTY item: Q-PARTY-011's 7 ES:BX record-field calls; the
-     pre-39D1:0009 run (q011_text_window_reach.json) also leaves 0x7B8A (DS:3916) and 0x4041B
-     (manager DS:0086) unread and the DS:3F42 values not added as starts. The owner asked about
+     39D1:0009 and never set). FND-PARTY-044 closed Q-PARTY-011
+     (field_stores.py finds record-field stores with a base register; q011_gate_dispatch_*,
+     q011_setter_sites_reach, q011_window_handlers_*, q011_start_handler_reach and
+     q011_main_window_handler_reach.json): APFM +0x5A/+0x5E/+0x70 stay 0, window +0xF9/+0xFD
+     stay 0 on the START GAME path, and no handler is dispatched between the gate routine's
+     +11D5 and the gate. Next PARTY item: Q-PARTY-017, the start window's 0x4B65 (overlay 212
+     +061C) and 0x4B66 (overlay 192 +0000) branches taken before START GAME; run 5 hit the
+     instruction limit, so split it per handler. Inventory rows 3EBE:001F, 3EBE:09B6 and
+     1000:02AD have boundary anomalies (FND-PARTY-044). The owner asked about
      live probes (reconqueror-style); no policy change was made, so Probe stays none.
   5. Follow Q-EXE-007's game-edition consumers under FMT-EXE-006: FND-EXE-397 native target/register/record contracts, callers/writers and buffer aliases; FND-EXE-398 native file-request contracts, type-four callers/writers and storage admission; FND-EXE-399 type-one shared-segment and slot-input writers/callers: use FND-EXE-401 and the local controlled package to extend literal searches to other evidenced resident regions, then computed accesses and segment provenance; native contracts and buffer admission remain; FND-EXE-396 native quantity/register contracts; FND-EXE-556 complete cache callback/state writers and native contracts, FND-EXE-395 native request semantics/preservation, scratch/descriptor writers and argument producers; FND-EXE-394 native query/record/register contracts and storage writers, FND-EXE-392 preliminary native contracts and FND-EXE-391 other slot producers/published targets, FND-EXE-559 gate/target writers and native admission, FND-EXE-403/404/405 entry DS/SI, the first helper's native contract, pointer source termination/extents and local-frame aliases; FND-EXE-408/409/411/412/413/414/415/416/417/418/419/431/432/433 broader creation/release/quantity/query callers, delta/quantity admission, repeated selection and snapshot/output pointer aliases/extents, DS:00CE/00D2 and count/record-zero/link/encoded-word producers, destination freshness and stable structure, slot target/argument and identity/head/age/dirty writers, input admission and complete callers, computed/cross-region link-field writers and callback/input/storage admission, using local link-query.json/link-report.json; FND-EXE-406/407 complete link/table writers, callback preservation, DS/input/storage provenance and inventory ownership reconciliation; FND-EXE-558 complete registration callers/state writers and predecessor/error contracts, FND-EXE-555 other general targets, FND-EXE-531 storage admission, native contracts and remaining startup dependencies.
