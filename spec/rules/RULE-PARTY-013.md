@@ -42,7 +42,7 @@ points to when the psionic points are recomputed: the character whose new Psioni
 last, in this member's gain or an earlier one, and otherwise the slot the game last made current,
 a record another screen was given, or the generation screen's working record (FND-PARTY-076,
 FND-PARTY-084, FND-PARTY-088, FND-PARTY-090, Q-PARTY-043); `hit_points` and `max_hit_points`; `psionic_points` and
-`max_psionic_points`; `class_flags`, `class_attack_rate`, `attack_rate`, `unk_6c`, `thac0` and
+`max_psionic_points`; `class_flags`, `class_attack_rate`, `attack_rate`, `natural_attack_rates`, `thac0` and
 `saving_throws`, the FMT-PARTY-001 fields RULE-PARTY-014 sets; `name`, the character's name; `one_each`, true when each class gains one
 level without the experience test.
 
@@ -156,7 +156,7 @@ define gain_one_level(member, i):
     member.class_attack_rate = class_attack_rate(member.origin, member.codes, member.levels)
     member.attack_rate = attack_rate(member.origin, member.codes, member.levels)
     if member.origin == 7:
-        member.unk_6c = 2
+        member.natural_attack_rates[1] = 2
     member.thac0 = thac0(member.origin, member.codes, member.levels)
     for s in 0..5:
         member.saving_throws[s] = saving_throw(member.origin, member.codes, member.levels, member.constitution, s)

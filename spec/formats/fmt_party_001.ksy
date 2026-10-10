@@ -125,12 +125,26 @@ seq:
     type: u1
   - id: attack_rate
     type: u1
-  - id: unk_6b
+  - id: natural_attack_rates
     type: u1
-  - id: unk_6c
+    repeat: expr
+    repeat-expr: 2
+    doc: The rates of natural attacks 1 and 2.
+  - id: natural_damage_dice
     type: u1
-  - id: unk_6d
-    size: 9
+    repeat: expr
+    repeat-expr: 3
+    doc: The number of damage dice of natural attacks 0 to 2.
+  - id: natural_damage_sides
+    type: u1
+    repeat: expr
+    repeat-expr: 3
+    doc: The sides of the damage dice of natural attacks 0 to 2.
+  - id: natural_damage_bonuses
+    type: s1
+    repeat: expr
+    repeat-expr: 3
+    doc: The damage added to the dice of natural attacks 0 to 2.
   - id: saving_throws
     type: u1
     repeat: expr

@@ -57,4 +57,5 @@ None known.
 - Whether the cap is a slip: the match of all 20 third numbers with the last values favours one,
   but the code cannot show intent and no source discusses the saves (No item: the code cannot
   show intent).
-- Which code reads the five saves, and so whether they act as saving throws in play (Q-PARTY-044).
+- Which code reads the five saves, and so whether they act as saving throws in play: the searches
+  of FND-PARTY-092 found no reader, so the bug may have no effect in play (Q-PARTY-044).

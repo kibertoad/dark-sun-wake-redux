@@ -53,4 +53,5 @@ None known.
 - Whether the test is a slip for the save number: the group number 4, which cannot occur, favours
   one, but the code cannot show intent and no source discusses the saves (No item: the code cannot
   show intent).
-- Which code reads the five saves, and so whether they act as saving throws in play (Q-PARTY-044).
+- Which code reads the five saves, and so whether they act as saving throws in play: the searches
+  of FND-PARTY-092 found no reader, so the bug may have no effect in play (Q-PARTY-044).
