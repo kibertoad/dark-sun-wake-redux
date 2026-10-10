@@ -230,6 +230,11 @@ An owner-approved history repair remains separate from this maintenance scope.
   objects 430 and 541 are placed only in RGN0FF.GFF (Limbo, ETAB 255 indexes 909 and 923). What
   moves them out of Limbo is script code, outside the claim. RULE-PARTY-015's open question
   updated. Q-PARTY-053 (spell/power windows as screens) not started.
+- Lead for unk_2a: overlay 204 +0203 pushes 0x0660:0x00BB (the setter trampoline 5787:00BB) as a
+  value before a near call to its dispatcher at +019C, so the setter is passed as a callback.
+  Filed toolkit #474 (list where a routine's far address is used as a value) after checking
+  #274, #457, #322 and #466. direct_callers.py and field_stores.py are this repo's own scripts,
+  so their gaps were not filed upstream. Toolkit #450 was already closed by the maintainer.
 - Upstream duplicate checks for this session's points: the old DS:0DAB finding's wrong address
   was a project error that IDENTIFIERS-8 (protocol #66) already covers, so no issue was filed;
   #96 was filed after searching protocol #46, #66, #95 and toolkit #436, #269, #80; the
