@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_001.ksy
-evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054]
+evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054, FND-PARTY-055, FND-PARTY-056]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-006]
@@ -61,7 +61,14 @@ offsets hold for every record the game writes and reads back.
 | `0x4D` | 2 | `INT16LE` | `max_hit_points` | The character's greatest hit points. A load copies it to the FMT-COMBAT-002 record's `max_hit_points`; 21 to 165 in the shipped records. | supported | FND-PARTY-051, FND-PARTY-053 |
 | `0x4F` | 4 | `BYTE[4]` | `unk_4f` | Purpose unknown. A load copies it to the FMT-COMBAT-002 record's `unk_0A`. | supported | FND-PARTY-051 |
 | `0x53` | 2 | `UINT16LE` | `unk_53` | Purpose unknown. A load copies it to the FMT-COMBAT-002 record's `unk_0E`; equal to `combatant_id` in 14 of the 19 shipped records. | supported | FND-PARTY-051, FND-PARTY-053 |
-| `0x55` | 50 | `BYTE[50]` | `unk_55` | Purpose unknown. A load copies it to bytes `0x10` to `0x41` of the FMT-COMBAT-002 record, so its byte at `0x7C` lands on `footprint`. | supported | FND-PARTY-051 |
+| `0x55` | 2 | `BYTE[2]` | `unk_55` | Purpose unknown. A load copies it to bytes `0x10` and `0x11` of the FMT-COMBAT-002 record. | supported | FND-PARTY-051 |
+| `0x57` | 1 | `UINT8` | `origin` | The character's origin, counted from 1: human, dwarf, elf, half-elf, half-giant, halfling, mul, thri-kreen. The character sheet prints it from the details record's byte at `0x12`. | supported | FND-PARTY-051, FND-PARTY-055, FND-PARTY-056 |
+| `0x58` | 1 | `UINT8` | `gender` | 1 for male, 2 for female; printed from the details record's byte at `0x13`. | supported | FND-PARTY-051, FND-PARTY-055, FND-PARTY-056 |
+| `0x59` | 1 | `UINT8` | `alignment` | The alignment, counted from 1: lawful good, lawful neutral, lawful evil, neutral good, true neutral, neutral evil, chaotic good, chaotic neutral, chaotic evil; printed from the details record's byte at `0x14`. | supported | FND-PARTY-051, FND-PARTY-055, FND-PARTY-056 |
+| `0x5A` | 6 | `BYTE[6]` | `unk_5a` | Purpose unknown. A load copies it to bytes `0x15` to `0x1A` of the FMT-COMBAT-002 record. | supported | FND-PARTY-051 |
+| `0x60` | 3 | `UINT8[3]` | `classes` | Up to three class codes, 0 for none, nonzero ones first; 1 to 17 in the shipped records. The character sheet prints a level for each nonzero one. | supported | FND-PARTY-051, FND-PARTY-055, FND-PARTY-056 |
+| `0x63` | 3 | `UINT8[3]` | `levels` | The level in each class of `classes`, 0 where the class is 0; printed from the details record's bytes `0x1E` to `0x20`. | supported | FND-PARTY-051, FND-PARTY-055, FND-PARTY-056 |
+| `0x66` | 33 | `BYTE[33]` | `unk_66` | Purpose unknown. A load copies it to bytes `0x21` to `0x41` of the FMT-COMBAT-002 record, so its byte at `0x7C` lands on `footprint`. | supported | FND-PARTY-051 |
 | `0x87` | `33 * (chunk_count - 2)` | FMT-PARTY-006`[chunk_count - 2]` | `chunks` | The other chunks, each of `chunk_type` 2 or 4 with 23 bytes of data in the shipped records. | supported | FND-PARTY-051, FND-PARTY-052 |
 | | 10 | FMT-PARTY-006 header | `end` | `chunk_type` 0xFF and `len_data` 0, the other bytes as at `0x01` to `0x07`. | supported | FND-PARTY-051, FND-PARTY-052 |
 | | | | | Total size `145 + 33 * (chunk_count - 2)` in the shipped records | | |
@@ -89,12 +96,12 @@ ends within its slot [FND-PARTY-001, FND-PARTY-005, FND-PARTY-052].
 
 ## Open questions
 
-- Where the record keeps the gender, origin, alignment, classes, levels, experience and
-  psionic strength points the View Character screen shows, and what `unk_04`, `unk_0c`,
-  `unk_0e`, `unk_12`, `unk_1c`, `unk_1f`, `unk_29`, `unk_45`, `unk_4f`, `unk_53` and `unk_55`
-  hold. The two chunks at `0x00` and `0x3B` are the only ones that reach the combatant and
+- Where the record keeps the experience and psionic strength points the View Character screen
+  shows, which class each code in `classes` stands for, and what `unk_04`, `unk_0c`, `unk_0e`,
+  `unk_12`, `unk_1c`, `unk_1f`, `unk_29`, `unk_45`, `unk_4f`, `unk_53`, `unk_55`, `unk_5a` and
+  `unk_66` hold. The two chunks at `0x00` and `0x3B` are the only ones that reach the combatant and
   details records, so the screen's values are in them or in the records of the later chunks
-  (FND-PARTY-018, FND-PARTY-020, FND-PARTY-051, Q-PARTY-003).
+  (FND-PARTY-018, FND-PARTY-020, FND-PARTY-051, FND-PARTY-056, Q-PARTY-003).
 - What `combatant_id` identifies: overlay 184 writes the combatant record's copy of it to a
   `CACT` resource (FND-PARTY-012), and the shipped values are never the record's own number
   (FND-PARTY-050, Q-PARTY-003).

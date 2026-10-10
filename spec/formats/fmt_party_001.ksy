@@ -9,7 +9,7 @@ doc: |
   A CHAR resource of the character archive, one per character: a chain of chunks
   (fmt_party_006) ending at one whose type is 0xFF. Every shipped record starts with a
   type-1 chunk at 0x00 and a type-3 chunk at 0x3B, given here field by field.
-doc-ref: FMT-PARTY-001, FND-PARTY-001, FND-PARTY-003, FND-PARTY-020, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053
+doc-ref: FMT-PARTY-001, FND-PARTY-001, FND-PARTY-003, FND-PARTY-020, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-055, FND-PARTY-056
 seq:
   - id: type
     type: u1
@@ -82,7 +82,30 @@ seq:
   - id: unk_53
     type: u2
   - id: unk_55
-    size: 50
+    size: 2
+  - id: origin
+    type: u1
+    doc: Origin counted from 1 (human, dwarf, elf, half-elf, half-giant, halfling, mul, thri-kreen).
+  - id: gender
+    type: u1
+    doc: 1 male, 2 female.
+  - id: alignment
+    type: u1
+    doc: Alignment counted from 1, lawful good to chaotic evil.
+  - id: unk_5a
+    size: 6
+  - id: classes
+    type: u1
+    repeat: expr
+    repeat-expr: 3
+    doc: Up to three class codes, 0 for none.
+  - id: levels
+    type: u1
+    repeat: expr
+    repeat-expr: 3
+    doc: The level in each class.
+  - id: unk_66
+    size: 33
   - id: chunks
     type: fmt_party_006
     repeat: until

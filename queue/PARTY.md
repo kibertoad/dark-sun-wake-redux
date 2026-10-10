@@ -12,18 +12,15 @@ Next ID: Q-PARTY-022
   refuses DONE or greys out choices? Settles it: the code behind SCR-UI-004 and SCR-UI-005, then
   an owner capture of the generation screen for each disputed pair. Blocks: slice 2.
 - Q-PARTY-003. FMT-PARTY-001, RULE-PARTY-004, RULE-MAGIC-002: Where does a character record keep
-  gender, origin, alignment, classes, levels, experience and psionic strength points, what do
-  `unk_04`, `unk_0c`, `unk_0e`, `unk_12`, `unk_1c`, `unk_1f`, `unk_29`, `unk_45`, `unk_4f`,
-  `unk_53` and `unk_55` hold, and are the scores stored before or after origin modifiers?
-  Settles it: the code of the View Character screen (SCR-UI-002) that reads those values from
-  the combatant record at `DS:19C9` and the details record at `DS:19C5`, which the record's
-  first two chunks fill (FND-PARTY-051). Tried: a search of the headers of records 40 and 42 for
-  the label positions of their gender, origin, alignment and class (FND-PARTY-018);
-  FND-PARTY-049 and FND-PARTY-051 show the load copies bytes `0x0A` to `0x3A` into the
-  combatant record and `0x45` to `0x86` into the details record, and FND-PARTY-050 and
-  FND-PARTY-053 place current hit points at `0x0A`, greatest hit points at `0x4D`, the object
-  offset at `0x1A`, the combatant identifier at `0x10` and the control flags at `0x22`; the other
-  values are not among the two records' known fields. Blocks: slice 2.
+  experience and psionic strength points, which class does each code in `classes` stand for, what
+  do the record's remaining `unk_` fields hold, and are the scores stored before or after origin
+  modifiers? Settles it: the routine behind trampoline `571F:0089` that names a class code, and the
+  other overlay 183 and 184 routines that print the character sheet from the record at `DS:1429`
+  (FND-PARTY-055). Tried: a search of the headers of records 40 and 42 for the label positions of
+  their gender, origin, alignment and class (FND-PARTY-018); FND-PARTY-049, FND-PARTY-051,
+  FND-PARTY-055 and FND-PARTY-056 place hit points, the object offset, the combatant identifier,
+  the control flags, greatest hit points, origin, gender, alignment, classes and levels; the
+  experience and psionic points are not among the fields read so far. Blocks: slice 2.
 - Q-PARTY-020. FMT-PARTY-006: What does a 23-byte record of a type-2 or type-4 chunk hold, and
   what do the character's combatant words at `0x08`, `0x0A` and `0x0C`, and a record's word at
   `0x08`, which type-2 chunks fill with handles, lead to? Settles it: the code that reads the
