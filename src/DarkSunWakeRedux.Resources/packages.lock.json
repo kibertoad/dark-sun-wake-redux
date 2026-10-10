@@ -4,20 +4,20 @@
     "net10.0": {
       "RefurbishedDinosaurs.Core": {
         "type": "Direct",
-        "requested": "[11.3.0, 11.3.0]",
-        "resolved": "11.3.0",
-        "contentHash": "/cSy5TM0pWDCuDFniamTZs5l4dth/TBUOeNlkgJT/sze/G3YjcpWgpJpRcpgmKE6ULudIRYiBgwJ8idOxo4ZEw==",
+        "requested": "[12.0.0, 12.0.0]",
+        "resolved": "12.0.0",
+        "contentHash": "XCUGsNxjYZRRzAZ5yWPKw5iSQYpjT5u0497VOdswd9Wkj2IMDAyY7zm1fUmz1gE/n+e8iRTYf69UvdrSm2L/Ig==",
         "dependencies": {
           "System.IO.Hashing": "10.0.12"
         }
       },
       "RefurbishedDinosaurs.LegacyFormats": {
         "type": "Direct",
-        "requested": "[11.3.0, 11.3.0]",
-        "resolved": "11.3.0",
-        "contentHash": "ZYILKc07u/IGA+PAhPVMiM5E+E45oOwPHEPZQeIGvVi+Iy+8t4/djg5RTVJYD6nUm2t289SiP/ByNHn5SmToPw==",
+        "requested": "[12.0.0, 12.0.0]",
+        "resolved": "12.0.0",
+        "contentHash": "J0RMBeTHDV3DnaJuRSZYQmbXQK7uLixSBlICHLRyZZhUn+VoSVNWfWjnAQH/s2bTg/t/ExujL/qHrj1EY900/A==",
         "dependencies": {
-          "RefurbishedDinosaurs.Core": "11.3.0"
+          "RefurbishedDinosaurs.Core": "12.0.0"
         }
       },
       "System.IO.Hashing": {
