@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-061
+Next ID: Q-PARTY-062
 
 ## Static
 
@@ -56,11 +56,12 @@ Next ID: Q-PARTY-061
   spell `DATA` 104 from the cast list (FND-PARTY-111)? Settles it: the writers of the class level
   bytes outside the level gain and of `DS:13F8` read for the values they store. Blocks: nothing
   yet.
-- Q-PARTY-060. BUG-PARTY-006: Which values do party members hold in bytes `+0x0E` and `+0x0F` of
-  their FMT-COMBAT-001 records, and does any party member have the type 2, 3, 7, 11, 13 or 16
-  that makes overlay 197 `+111A` stop the spells `DATA` 104 and 225 (FND-PARTY-112)? Settles it:
-  the writers of the two bytes for slots 0 to 3 (the load from CHAR bytes `0x18` and `0x19`, the
-  character generation and any script) read for the values they store. Blocks: nothing yet.
+- Q-PARTY-061. BUG-PARTY-006: Does a new or imported character, or any block copy into the
+  combatant records, give a party member a value other than 0 in bytes `+0x0E` or `+0x0F` of its
+  FMT-COMBAT-001 record (FND-PARTY-113)? Settles it: the character generation's and the import's
+  writes of `CHAR` bytes `0x18` and `0x19`, the string moves and `1000:0452` calls whose
+  destination is a combatant record, and the callers of the seven resident routines FND-PARTY-113
+  names, read for what they store there. Blocks: nothing yet.
 - Q-PARTY-003. FMT-PARTY-001, RULE-PARTY-004, RULE-MAGIC-002: What do the record's remaining `unk_`
   fields hold, and are the scores stored before or after origin modifiers? Settles it: the other
   routines that print the character sheet from the record at `DS:1429` (FND-PARTY-055), and the
