@@ -6,7 +6,9 @@ Checks the installed DSUN.EXE's size and XXH3-128. Finds the overlay of segment-
 DESCRIPTOR (FMT-EXE-002/FMT-EXE-003), and disassembles file offsets START..END (hexadecimal, inside
 its code) as 16-bit x86 from START. For each instruction whose segment word is in the overlay's
 fixup list (FMT-EXE-005), it prints the descriptor the word names (word / 8) and the segment that
-gives (descriptor segment + 0x1000). Prints the strings at the near offsets pushed or moved as
+gives (descriptor segment + 0x1000); for a far call into an overlay's FMT-EXE-004 trampoline it
+also prints the overlay offset the trampoline enters, so a routine is never named by its
+trampoline offset. Prints the strings at the near offsets pushed or moved as
 immediates when they fall in the data segment 57E0 and hold printable text. Nothing is written or
 executed.
 """
@@ -39,6 +41,15 @@ for ins in md.disasm(body[start:end], start):
         if ins.address + k - code in fixups:
             word = struct.unpack_from("<H", body, ins.address + k)[0]
             note = f"  ; segment word {word:#06x}: descriptor {word >> 3}, segment {rows[word >> 3][0] + 0x1000:04X}"
+            target = rows[word >> 3]
+            if ins.bytes[0] == 0x9A and k == 3 and target[2] == 3:
+                base = header + target[0] * 16
+                offset = struct.unpack_from("<H", ins.bytes, 1)[0]
+                index, rest = divmod(offset - 0x20, 5)
+                trampolines = struct.unpack_from("<H", body, base + 12)[0]
+                if rest == 0 and 0 <= index < trampolines and body[base + offset] == 0xCD:
+                    entry = struct.unpack_from("<H", body, base + offset + 2)[0]
+                    note += f", trampoline {index} enters +{entry:04X}"
     if ins.mnemonic in ("push", "mov") and ins.op_str.split(", ")[-1].startswith("0x"):
         value = int(ins.op_str.split(", ")[-1], 16)
         text = body[header + (DS - 0x1000) * 16 + value:][:40].split(b"\0")[0]
