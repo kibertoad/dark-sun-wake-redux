@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-017
+Next ID: Q-PARTY-018
 
 ## Static
 
@@ -39,31 +39,19 @@ Next ID: Q-PARTY-017
   slot? Settles it: the handler the keys 1 to 4 reach in overlay 190, which posts an event for
   the character boxes `0x2C24` to `0x2C27` (FND-COMBAT-025), and the writers of `leader`. Tried:
   the leader buttons, which store the slot at `4C13:0369` (FND-COMBAT-023). Blocks: slice 3.
-- Q-PARTY-011. RULE-PARTY-006: Can any of the 7 indirect calls whose targets FND-PARTY-039 and
-  FND-PARTY-040 leave open on the paths from program start through START GAME to the gate at
-  overlay 182 offset `0x12DD` (the calls through fields of the record at `ES:BX` at `0x2F712`,
-  `0x301E7`, `0x30397`, `0x32A4A`, `0x32EB0`, `0x332E7` and `0x334F7`), other than through a failed file
-  call while `MAS` 99 loads (FND-PARTY-042), reach a routine that changes the placed-object count
-  at `DS:264E` (FND-PARTY-022), makes the word at `DS:0DAB` nonzero (FND-PARTY-029), or makes the mouse
-  pointer an image other than an `ICON`, through `3D72:120B`, `3D72:12ED` or one of the 14 sites
-  of FND-PARTY-036, which could make the gate routine's reservations fail (FND-PARTY-035)?
-  Settles it: the producers of each record field and pointer those calls read, shown to hold no
-  such routine before the gate, or the first one that does. Tried: the count's start value and
-  direct stores, the far references to the overlay writers and three routines on the path
-  (FND-PARTY-022); the start values and writers of `DS:0DAB` and `DS:0D9C` (FND-PARTY-029); a
-  recursive-descent graph of every direct call and bounded jump table from program start, the
-  start window loop, the Start Game branch and the gate routine, which reaches none of those
-  routines and leaves 60 calls (FND-PARTY-031); the exit table read by `1038:0008`
-  (FND-PARTY-032); the engine's `reach` from the same starts, which leaves the same 60 calls and
-  one Ctrl-Break call and reaches none of the pointer sites (FND-PARTY-037); the start values and
-  displacement stores of every pointer those 61 calls read, which leave only the record fields
-  unenumerated (FND-PARTY-039); and `reach` rounds that add those values as starts once their
-  writers are reached, whose only routes to the targets pass the run of `MAS` 99
-  (FND-PARTY-040), whose instructions open none (FND-PARTY-041) and whose load fails only on a
-  file call's result (FND-PARTY-042); the call through `[di+0x6393]` and the text record's
-  `+0x0C` call, which reach none and are skipped once `39D1:0009` sets the record; a run before
-  that point leaves 35 calls unresolved, among them `0x7B8A` and `0x4041B`, outside
-  FND-PARTY-039's table (FND-PARTY-043). Blocks: slice 2.
+- Q-PARTY-017. RULE-PARTY-006: When the player takes the start window's button `0x4B65`
+  (overlay 212 `+061C`, window `0x2CEC`) or `0x4B66` (overlay 192 `+0000`, window `0x4844`)
+  before START GAME, and the start loop continues, can that branch or its window's handlers
+  (overlay 212 `+0967`, `+0000`, `+0A57`, overlay 190 `+0092` and `+361C`; overlay 192 `+0785`
+  and `+022B`) change the placed-object count at `DS:264E` (FND-PARTY-022), make the word at
+  `DS:0DAB` nonzero (FND-PARTY-029), make the mouse pointer an image other than an `ICON`
+  (FND-PARTY-036), or leave a window callback or `DS:A0F1` value that the gate routine's
+  reservations (FND-PARTY-035) or its run up to the gate at overlay 182 `0x12DD` calls? Settles
+  it: the code of those branches and handlers, read for which events reach the routes
+  FND-PARTY-044's run 5 finds to the count's stores, `2C5F:0CBF`, `2C5F:0CF1`, overlay 182
+  `+15D7` and the gate routine, and for whether each returns to the start loop with that state
+  changed. Tried: the seven record-field calls on paths where START GAME is the first choice,
+  which open no route (FND-PARTY-044). Blocks: slice 2.
 
 ## Emulated call
 
@@ -80,7 +68,7 @@ None.
   before any play so that experience and hit points can be compared with records 41 and 53, and
   43 and 33. Tried: the static reading FND-PARTY-013 finds a routine that loads characters 40
   to 43, FND-PARTY-021 traces START GAME to it through a gate on the placed-object count
-  (Q-PARTY-011), and the earlier captures FND-PARTY-020, taken after
+  (Q-PARTY-017), and the earlier captures FND-PARTY-020, taken after
   play, match 40, 41 or 53, 42, and 33 or 43. Blocks: slice 2.
 
 ## Source

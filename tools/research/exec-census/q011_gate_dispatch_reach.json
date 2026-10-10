@@ -1,0 +1,41 @@
+{
+ "starts": [
+  "182+016B",
+  "190+11A1",
+  "182+01EF",
+  "39D1:0448",
+  "362C:0000",
+  "1BF3:27A8",
+  "182+0840",
+  "200+0386",
+  "3D72:0B84"
+ ],
+ "leaves": [
+  {
+   "site": "182+1856",
+   "reason": "FND-PARTY-029: returns before any call while DS:0DAB is 0"
+  },
+  {
+   "site": "182+19F8",
+   "reason": "FND-PARTY-029: returns before any call while DS:0DAB is 0"
+  }
+ ],
+ "targets": [
+  "39D1:0752",
+  "0x2F696",
+  "0x2F6DC",
+  "0x2F712",
+  "0x2F74B",
+  "0x2F7A9",
+  "0x2FA65",
+  "0x301E7",
+  "0x30397",
+  "0x32A4A",
+  "0x32EB0",
+  "0x332E7",
+  "0x334F7"
+ ],
+ "controls": [
+  "0x334DF"
+ ]
+}

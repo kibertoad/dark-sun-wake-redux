@@ -78,15 +78,18 @@ None known.
   no route reaches one (FND-PARTY-039, FND-PARTY-040). The run of `MAS` 99 on those paths executes
   only opcodes whose handlers reach none (FND-PARTY-040, FND-PARTY-041). `GPLDATA.GFF` is open
   when `MAS` 99 loads and nothing before closes it, so the load, whose error routine leads to
-  such routines (FND-PARTY-040), fails only on a file call's result (FND-PARTY-042). Still open:
-  7 indirect calls through record fields whose targets are unread (FND-PARTY-039,
-  FND-PARTY-040, FND-PARTY-043, Q-PARTY-011);
+  such routines (FND-PARTY-040), fails only on a file call's result (FND-PARTY-042). The 7 calls
+  through window and `APFM` record fields hold, on paths where START GAME is the first
+  start-window choice, no routine that opens a route (FND-PARTY-044), and the two calls
+  FND-PARTY-043 reads reach none. Still open:
+  whether taking the start window's `0x4B65` or `0x4B66` button first, whose windows' handlers do
+  reach such routines, changes the count before START GAME (FND-PARTY-044, Q-PARTY-017);
   and whether either of the gate routine's two
   video-memory reservations fails (FND-PARTY-030, FND-PARTY-032, FND-PARTY-033). While the
   pointer is an `ICON` neither can fail on space, since the caret and pointer saves then hold at
   most 1,006 paragraphs, the room left, and no direct route before the gate makes it another
-  image (FND-PARTY-035, FND-PARTY-036, FND-PARTY-037); routes through the unresolved
-  indirect calls stay open (Q-PARTY-011). The owner's captures of a game started with START GAME show the four characters
+  image (FND-PARTY-035, FND-PARTY-036, FND-PARTY-037); routes through those
+  branches stay open (Q-PARTY-017). The owner's captures of a game started with START GAME show the four characters
   in this order, but they do not tell 41 from 53 or 43 from 33 (FND-PARTY-020); the
   shipped-party live session would confirm it (Q-PARTY-001).
 - Where `CHARSAVE.GFF` is opened from rests on DOS reporting version 3 or later and placing the
