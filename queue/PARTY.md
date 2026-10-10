@@ -11,18 +11,16 @@ Next ID: Q-PARTY-024
   list, how it rolls the six scores and when it applies the origin modifiers, and whether it
   refuses DONE or greys out choices? Settles it: the code behind SCR-UI-004 and SCR-UI-005, then
   an owner capture of the generation screen for each disputed pair. Blocks: slice 2.
-- Q-PARTY-003. FMT-PARTY-001, RULE-PARTY-004, RULE-MAGIC-002: Where does a character record keep
-  psionic strength points, what distinguishes the four class codes each of Cleric,
-  Druid and Ranger have beyond their colour, what do the record's remaining `unk_` fields hold, and
-  are the scores stored before or after origin modifiers? Settles it: the other routines that print
-  the character sheet from the record at `DS:1429` (FND-PARTY-055), among them overlay 186's use of
-  the code that sets a class code during generation. Tried: a
-  search of the headers of records 40 and 42 for the label positions of their gender, origin,
+- Q-PARTY-003. FMT-PARTY-001, RULE-PARTY-004, RULE-MAGIC-002: What distinguishes the four class
+  codes each of Cleric, Druid and Ranger have beyond their colour, what do the record's remaining
+  `unk_` fields hold, and are the scores stored before or after origin modifiers? Settles it: the
+  other routines that print the character sheet from the record at `DS:1429` (FND-PARTY-055), and
+  the code that sets a class code during generation. Tried: a search of the headers of records 40 and 42 for the label positions of their gender, origin,
   alignment and class (FND-PARTY-018); FND-PARTY-049, FND-PARTY-051 and FND-PARTY-055 to
   FND-PARTY-057 place hit points, the object offset, the combatant identifier, the control flags,
   greatest hit points, origin, gender, alignment, class codes with their names, and levels, and
-  FND-PARTY-058 places experience at `0x45`; the psionic points are not among the fields read so
-  far. Blocks: slice 2.
+  FND-PARTY-058 and FND-PARTY-059 place experience at `0x45` and the current and greatest
+  psionic points at `0x0C` and `0x51`. Blocks: slice 2.
 - Q-PARTY-022. FMT-PARTY-001: Are the class bytes at `+0x1B` to `+0x1D` of the details record,
   when overlay 186 `+0421` and overlay 183 `+13B7` index `DATA` 1000 by them less 1, the 17-code
   values a `CHAR` record stores or values converted to the 8-name numbering of `DS:1164`? The

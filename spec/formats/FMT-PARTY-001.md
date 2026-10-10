@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_001.ksy
-evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057, FND-PARTY-058]
+evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057, FND-PARTY-058, FND-PARTY-059]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-006]
@@ -39,7 +39,7 @@ offsets hold for every record the game writes and reads back.
 | `0x04` | 4 | `BYTE[4]` | `unk_04` | Purpose unknown; the load does not read these bytes of a type-1 chunk. Two equal words of 0 to 3 in the shipped records. | supported | FND-PARTY-051, FND-PARTY-052 |
 | `0x08` | 2 | `UINT16LE` | `len_data` | 49, the size of the data from `0x0A`. | supported | FND-PARTY-051, FND-PARTY-052 |
 | `0x0A` | 2 | `INT16LE` | `hit_points` | The character's current hit points. A load copies it to the FMT-COMBAT-001 record's `hit_points`; 21 to 165 in the shipped records, never above `max_hit_points`. | supported | FND-PARTY-049, FND-PARTY-050, FND-PARTY-053 |
-| `0x0C` | 2 | `BYTE[2]` | `unk_0c` | Purpose unknown. A load copies it to the FMT-COMBAT-001 record's `unk_02`. | supported | FND-PARTY-049 |
+| `0x0C` | 2 | `UINT16LE` | `psionic_points` | The character's current psionic strength points. A load copies it to the FMT-COMBAT-001 record's `unk_02`, which the character sheet prints after `PSI:`; 11 to 162 in the shipped records, never above `max_psionic_points`. | supported | FND-PARTY-049, FND-PARTY-059 |
 | `0x0E` | 2 | `UINT16LE` | `unk_0e` | Purpose unknown. A load copies it to the FMT-COMBAT-001 record's `details_index`, replaces that with 9,999, and then with the number of the details record the chunk at `0x3B` fills; 0 to 3 in the shipped records. | supported | FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052 |
 | `0x10` | 2 | `UINT16LE` | `combatant_id` | A load copies it to the FMT-COMBAT-001 record's `character_id`. 32,769 to 33,536 in the shipped records, never the record's own number, and the same in two of them. | supported | FND-PARTY-049, FND-PARTY-050 |
 | `0x12` | 8 | `BYTE[8]` | `unk_12` | Purpose unknown. A load copies it to bytes `0x08` to `0x0F` of the FMT-COMBAT-001 record, then replaces the words that came from `0x12`, `0x14` and `0x16` with 9,999, and the type-2 chunks whose `field` is 16, 17 or 4 store their records' handles there. | supported | FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052 |
@@ -60,7 +60,8 @@ offsets hold for every record the game writes and reads back.
 | `0x45` | 4 | `UINT32LE` | `experience` | The character's experience points. A load copies it to the FMT-COMBAT-002 record's first dword, which the character sheet prints after `EXP: ` and which overlay 183 compares with the class thresholds of `DATA` 1000 to raise the levels; 30,000 to 2,475,000 in the shipped records. | supported | FND-PARTY-051, FND-PARTY-058 |
 | `0x49` | 4 | `BYTE[4]` | `unk_49` | Purpose unknown. A load copies it to the FMT-COMBAT-002 record's dword at `+0x04`; 3,000 in eleven shipped records, and equal to or above `experience` in the others. | supported | FND-PARTY-051, FND-PARTY-058 |
 | `0x4D` | 2 | `INT16LE` | `max_hit_points` | The character's greatest hit points. A load copies it to the FMT-COMBAT-002 record's `max_hit_points`; 21 to 165 in the shipped records. | supported | FND-PARTY-051, FND-PARTY-053 |
-| `0x4F` | 4 | `BYTE[4]` | `unk_4f` | Purpose unknown. A load copies it to the FMT-COMBAT-002 record's `unk_0A`. | supported | FND-PARTY-051 |
+| `0x4F` | 2 | `BYTE[2]` | `unk_4f` | Purpose unknown. A load copies it to the FMT-COMBAT-002 record's `unk_0A`. | supported | FND-PARTY-051 |
+| `0x51` | 2 | `UINT16LE` | `max_psionic_points` | The character's greatest psionic strength points. A load copies it to the FMT-COMBAT-002 record's word at `+0x0C`, which the character sheet prints after the current points; 27 to 202 in the shipped records. | supported | FND-PARTY-051, FND-PARTY-059 |
 | `0x53` | 2 | `UINT16LE` | `unk_53` | Purpose unknown. A load copies it to the FMT-COMBAT-002 record's `unk_0E`; equal to `combatant_id` in 14 of the 19 shipped records. | supported | FND-PARTY-051, FND-PARTY-053 |
 | `0x55` | 2 | `BYTE[2]` | `unk_55` | Purpose unknown. A load copies it to bytes `0x10` and `0x11` of the FMT-COMBAT-002 record. | supported | FND-PARTY-051 |
 | `0x57` | 1 | `UINT8` | `origin` | The character's origin, counted from 1: human, dwarf, elf, half-elf, half-giant, halfling, mul, thri-kreen. The character sheet prints it from the details record's byte at `0x12`. | supported | FND-PARTY-051, FND-PARTY-055, FND-PARTY-056 |
@@ -117,11 +118,12 @@ ends within its slot [FND-PARTY-001, FND-PARTY-005, FND-PARTY-052].
 
 ## Open questions
 
-- Where the record keeps the psionic strength points the View Character screen shows, what distinguishes the four codes of Cleric, Druid and Ranger beyond their colour, and what
-  `unk_04`, `unk_0c`, `unk_0e`, `unk_12`, `unk_1c`, `unk_1f`, `unk_29`, `unk_49`, `unk_4f`, `unk_53`,
-  `unk_55`, `unk_5a` and `unk_66` hold. The two chunks at `0x00` and `0x3B` are the only ones that
+- What distinguishes the four codes of Cleric, Druid and Ranger beyond their colour, and what
+  `unk_04`, `unk_0e`, `unk_12`, `unk_1c`, `unk_1f`, `unk_29`, `unk_49`, `unk_4f`, `unk_53`, `unk_55`,
+  `unk_5a` and `unk_66` hold. The two chunks at `0x00` and `0x3B` are the only ones that
   reach the combatant and details records, so the screen's values are in them or in the records of
-  the later chunks (FND-PARTY-018, FND-PARTY-020, FND-PARTY-051, FND-PARTY-057, FND-PARTY-058, Q-PARTY-003).
+  the later chunks (FND-PARTY-018, FND-PARTY-020, FND-PARTY-051, FND-PARTY-057, FND-PARTY-058,
+  FND-PARTY-059, Q-PARTY-003).
 - What `combatant_id` identifies: overlay 184 writes the combatant record's copy of it to a
   `CACT` resource (FND-PARTY-012), and the shipped values are never the record's own number
   (FND-PARTY-050, Q-PARTY-003).

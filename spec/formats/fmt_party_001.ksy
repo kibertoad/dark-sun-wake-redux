@@ -9,7 +9,7 @@ doc: |
   A CHAR resource of the character archive, one per character: a chain of chunks
   (fmt_party_006) ending at one whose type is 0xFF. Every shipped record starts with a
   type-1 chunk at 0x00 and a type-3 chunk at 0x3B, given here field by field.
-doc-ref: FMT-PARTY-001, FND-PARTY-001, FND-PARTY-003, FND-PARTY-020, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-055, FND-PARTY-056, FND-PARTY-058
+doc-ref: FMT-PARTY-001, FND-PARTY-001, FND-PARTY-003, FND-PARTY-020, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-055, FND-PARTY-056, FND-PARTY-058, FND-PARTY-059
 seq:
   - id: type
     type: u1
@@ -29,8 +29,9 @@ seq:
   - id: hit_points
     type: s2
     doc: The character's current hit points, copied to the combatant record.
-  - id: unk_0c
-    size: 2
+  - id: psionic_points
+    type: u2
+    doc: The character's current psionic strength points.
   - id: unk_0e
     type: u2
   - id: combatant_id
@@ -81,7 +82,10 @@ seq:
     type: s2
     doc: The character's greatest hit points, copied to the combatant details record.
   - id: unk_4f
-    size: 4
+    size: 2
+  - id: max_psionic_points
+    type: u2
+    doc: The character's greatest psionic strength points.
   - id: unk_53
     type: u2
   - id: unk_55
