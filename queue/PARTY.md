@@ -34,7 +34,9 @@ Next ID: Q-PARTY-066
   to 1 while `DS:0DAB` is 2, which leaves the gain's slot test unchanged. FND-PARTY-130 walks each
   callee: only `2C5F:0139` reaches routines that load a record pointer, all through the view draw
   `31BA:000E` loading an object whose byte at `4F49:0C33` is 2 (`31E0:0B4A`), which leaves when
-  such an object can be unloaded at a level gain.
+  such an object can be unloaded at a level gain. FND-PARTY-131 shows state 2 marks a party
+  member's object slot (overlay 184 `+1648`), so what is left is whether a party member's entry
+  in the table at `DS:67B7` can hold a negative word at `+6` when `+19F8` redraws the view.
 - Q-PARTY-065. RULE-PARTY-013: What does the word at `DS:0DAB` hold when overlay 210 `+0B44` or
   `+0B55` runs, from each of its callers (overlay 173 `+07AD` at a fight's end, overlay 188
   `+16E9` for an experience award, and the debug keys of overlay 190)? Settles it: the stores of
