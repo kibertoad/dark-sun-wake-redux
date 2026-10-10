@@ -81,8 +81,9 @@ seq:
   - id: experience
     type: u4
     doc: The character's experience points, copied to the combatant details record.
-  - id: unk_49
-    size: 4
+  - id: kill_experience
+    type: u4
+    doc: The experience a kill of this character as an enemy gives, raised to the experience by each award.
   - id: max_hit_points
     type: s2
     doc: The character's greatest hit points, copied to the combatant details record.

@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-045
+Next ID: Q-PARTY-048
 
 ## Static
 
@@ -21,7 +21,9 @@ Next ID: Q-PARTY-045
   and the far pointer `DS:142D` hold, and so whose wisdom does the wisdom bonus of the greatest
   psionic points use for a level that is not a new Psionicist level (FND-PARTY-084)? Settles it:
   the paths from the end of a fight through overlays 173 and 188 to overlay 210 `+0B44`, read for
-  calls that store either. Blocks: slice 2.
+  calls that store either. Blocks: slice 2. Tried: FND-PARTY-086 read overlay 188 `+1604`,
+  overlay 173 `+30C7` and the script handler of instruction 0x21, none of which stores either;
+  the end of a fight that the overlay 173 call at `+07AD` belongs to was not read (Q-PARTY-047).
 - Q-PARTY-039. RULE-PARTY-013: What do overlay 199 `+0C21`, which runs before each level gain,
   and overlay 209 `+0000` and the window of `+0A84`, which run for a new Preserver or Psionicist
   level, change (FND-PARTY-081, FND-PARTY-084)? Settles it: a reading of those routines. Tried:
@@ -31,9 +33,17 @@ Next ID: Q-PARTY-045
   THAC0, attacks and saving throws (FND-PARTY-085)? Settles it: `field_stores.py`-style searches for
   reads with those displacements through the tables at `DS:19C5` and `DS:19C9`, each hit read for
   its use. Blocks: slice 2.
-- Q-PARTY-040. RULE-PARTY-013: Which awards run the level gain: what the routine around overlay
-  173 `+07AD` and the overlay 188 routine that ends at `+16E9` give experience for, and how much
-  (FND-PARTY-081)? Settles it: a reading of those routines and their callers. Blocks: slice 2.
+- Q-PARTY-045. RULE-PARTY-015: Does any enemy's `kill_experience` divided by the filled party
+  slots reach 32,768, so that killing it lowers each member's experience (FND-PARTY-086)? Settles
+  it: the details dword at `0x04` of every enemy a fight can load, read from the files that fill
+  enemy details records. Blocks: nothing yet.
+- Q-PARTY-046. RULE-PARTY-015: Are the combatant `kind` values 7 to 11 the enemies and 0, 4, 5 and 6
+  the party and its allies (FND-PARTY-086)? Settles it: the code that stores the combatant byte at
+  `0x15` for party members and for loaded enemies. Blocks: nothing yet.
+- Q-PARTY-047. RULE-PARTY-013, RULE-PARTY-015: What sets and clears the word at `4C10:0019` that
+  defers the level gain after an award, and the byte at `DS:13FB` that the overlay 173 call at
+  `+07AD` tests, and is that call the gain after a fight (FND-PARTY-086)? Settles it: the stores to
+  both, found with `store_values.py`, each read with its caller. Blocks: slice 2.
 - Q-PARTY-041. FMT-PARTY-001: When does the level drain of overlay 210 `+0B66` run: what overlay
   195 `+0BC9` handles, with which slot, and from where (FND-PARTY-082)? Settles it: a reading of
   overlay 195 around `+0BC9` and of the dispatch that reaches it. Blocks: nothing yet.

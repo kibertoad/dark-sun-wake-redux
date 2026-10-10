@@ -22,3 +22,4 @@
 | `RULE-PARTY-012` | Hit points of a new character | supported | missing | None | None | supported | No code sets or bounds a new character's hit points. |
 | `RULE-PARTY-013` | How a character gains levels in play | supported | missing | None | None | supported | No code raises levels or recomputes hit points or psionic points after experience is given. |
 | `RULE-PARTY-014` | Class flags, attack rate, THAC0 and saving throws from a character's classes and levels | supported | missing | None | None | supported | No code sets class flags, attack rates, THAC0 or saving throws from classes and levels. |
+| `RULE-PARTY-015` | How experience is given to party members | supported | missing | None | None | supported | No code gives experience from scripts or kills. |

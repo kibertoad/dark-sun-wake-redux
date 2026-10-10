@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_001.ksy
-evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057, FND-PARTY-058, FND-PARTY-059, FND-PARTY-073, FND-PARTY-066, FND-PARTY-074, FND-PARTY-081, FND-PARTY-082, FND-PARTY-083, FND-PARTY-085]
+evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057, FND-PARTY-058, FND-PARTY-059, FND-PARTY-073, FND-PARTY-066, FND-PARTY-074, FND-PARTY-081, FND-PARTY-082, FND-PARTY-083, FND-PARTY-085, FND-PARTY-086]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-006]
@@ -60,7 +60,7 @@ offsets hold for every record the game writes and reads back.
 | `0x2B` | 16 | `char[16]` | `name` | The character's name, printable ASCII ending at the first NUL, 6 to 15 characters in the shipped records. Bytes after the NUL may hold leftover text. | established | FND-PARTY-001, FND-PARTY-020 |
 | `0x3B` | 10 | FMT-PARTY-006 header | `details_header` | `chunk_type` 3, `target_chunk` 0, `kind` 3, `field` 15 and `len_data` 66 in every shipped record, so the load copies the next 66 bytes into the character's FMT-COMBAT-002 record and stores its number in the character's `details_index`. | supported | FND-PARTY-051, FND-PARTY-052 |
 | `0x45` | 4 | `UINT32LE` | `experience` | The character's experience points. A load copies it to the FMT-COMBAT-002 record's first dword, which the character sheet prints after `EXP: ` and which overlay 183 compares with the class thresholds of `DATA` 1000 to raise the levels. In play overlay 210 cuts it to the start of the level four above each class's level before raising the levels, and its level drain sets it to half the sum of two thresholds; 30,000 to 2,475,000 in the shipped records. | supported | FND-PARTY-051, FND-PARTY-058, FND-PARTY-081, FND-PARTY-082 |
-| `0x49` | 4 | `BYTE[4]` | `unk_49` | Purpose unknown. A load copies it to the FMT-COMBAT-002 record's dword at `+0x04`; 3,000 in eleven shipped records, and equal to or above `experience` in the others. | supported | FND-PARTY-051, FND-PARTY-058 |
+| `0x49` | 4 | `UINT32LE` | `kill_experience` | The experience a kill of this character as an enemy gives, divided among the filled party slots. A load copies it to the FMT-COMBAT-002 record's dword at `+0x04`, and each experience award in play raises it to the new `experience` when it is below; 3,000 in eleven shipped records, and equal to or above `experience` in the others. | supported | FND-PARTY-051, FND-PARTY-058, FND-PARTY-086 |
 | `0x4D` | 2 | `INT16LE` | `max_hit_points` | The character's greatest hit points. A load copies it to the FMT-COMBAT-002 record's `max_hit_points`; 21 to 165 in the shipped records. | supported | FND-PARTY-051, FND-PARTY-053 |
 | `0x4F` | 2 | `UINT16LE` | `hit_die_total` | The sum of the hit die rolls of the character's levels. A load copies it to the FMT-COMBAT-002 record's word at `+0x0A`. Generation sets it from a roll per level, each new level in play adds a roll, and the greatest hit points are set from it times the levels held over the greatest levels reached (`greatest_levels`), divided by the number of classes, plus the constitution bonus. | supported | FND-PARTY-051, FND-PARTY-074, FND-PARTY-081 |
 | `0x51` | 2 | `UINT16LE` | `max_psionic_points` | The character's greatest psionic strength points. A load copies it to the FMT-COMBAT-002 record's word at `+0x0C`, which the character sheet prints after the current points; 27 to 202 in the shipped records. | supported | FND-PARTY-051, FND-PARTY-059 |
@@ -129,7 +129,7 @@ ends within its slot [FND-PARTY-001, FND-PARTY-005, FND-PARTY-052].
 
 ## Open questions
 
-- What `unk_04`, `unk_0e`, `unk_12`, `unk_1c`, `unk_1f`, `unk_21`, `unk_29`, `unk_49`, `unk_53`,
+- What `unk_04`, `unk_0e`, `unk_12`, `unk_1c`, `unk_1f`, `unk_21`, `unk_29`, `unk_53`,
   `unk_5a`, `unk_66`, `unk_6b`, `unk_6c`, `unk_6d`, `unk_7b` and `unk_81` hold. The two chunks at `0x00` and `0x3B` are the only ones that
   reach the combatant and details records, so the screen's values are in them or in the records of
   the later chunks (FND-PARTY-020, FND-PARTY-051, FND-PARTY-057, FND-PARTY-058,

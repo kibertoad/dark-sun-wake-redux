@@ -4,10 +4,10 @@ title: How a character gains levels in play
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-057, FND-PARTY-058, FND-PARTY-074, FND-PARTY-081, FND-PARTY-083, FND-PARTY-084, FND-PARTY-085]
+evidence: [FND-PARTY-057, FND-PARTY-058, FND-PARTY-074, FND-PARTY-081, FND-PARTY-083, FND-PARTY-084, FND-PARTY-085, FND-PARTY-086]
 conflicting: []
 split_with: []
-related: [RULE-PARTY-012, RULE-PARTY-014, RULE-RNG-001, FMT-PARTY-001]
+related: [RULE-PARTY-012, RULE-PARTY-014, RULE-PARTY-015, RULE-RNG-001, FMT-PARTY-001]
 ---
 
 ## Summary
@@ -22,9 +22,9 @@ is higher.
 
 ## When it runs
 
-`gain_levels` with `one_each` false after experience is given, through overlay 173 when the byte
-at `DS:13FB` is 0 and at the end of an overlay 188 routine that stores a character's experience,
-when the word at `4C10:0019` is 0 (FND-PARTY-081). With the debug flag set by the string `911`,
+`gain_levels` with `one_each` false after each experience award of RULE-PARTY-015 unless the gain
+is deferred, and through overlay 173 when the byte at `DS:13FB` is 0 (FND-PARTY-081,
+FND-PARTY-086). With the debug flag set by the string `911`,
 the key T gives each party member 3,750,000 experience and then runs `gain_levels` with
 `one_each` false, and the key t runs it with `one_each` true (FND-PARTY-081). It runs for each
 of the four party slots in order whose state byte at `4F49:0C33` plus 3 times the slot is 2,
@@ -225,7 +225,7 @@ None known.
 - What else a level changes: for a new Preserver or Psionicist level the original calls overlay
   209 routines, and before the gain it calls overlay 199 `+0C21`, none of which this entry covers
   (Q-PARTY-039).
-- Which awards run the gain: the overlay 173 and overlay 188 callers were not read for what they
-  give experience for (Q-PARTY-040).
+- When overlay 173 runs the gain: what sets the word at `4C10:0019` that defers the gain after an
+  award, and the byte at `DS:13FB` (Q-PARTY-047).
 - That the messages and draws happen in this order in play: a capture of a party gaining levels
   after a fight would confirm it (Q-PARTY-037).
