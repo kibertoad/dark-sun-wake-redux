@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-049
+Next ID: Q-PARTY-050
 
 ## Static
 
@@ -45,9 +45,12 @@ Next ID: Q-PARTY-049
   as the CHAR loader does, and the placements of `RDFF` 430 and 541 in the regions. Blocks:
   nothing yet. Tried: FND-PARTY-094 finds `RDFF` 430 (107,000) and 541 (33,000), of kind 7, with
   CHAR chunk headers; the loader is the ACTOR area's Q-ACTOR-003, outside this goal's claim.
-- Q-PARTY-041. FMT-PARTY-001: When does the level drain of overlay 210 `+0B66` run: what overlay
-  195 `+0BC9` handles, with which slot, and from where (FND-PARTY-082)? Settles it: a reading of
-  overlay 195 around `+0BC9` and of the dispatch that reaches it. Blocks: nothing yet.
+- Q-PARTY-049. FMT-PARTY-001: Which other senders give a party member the effect code 59 that
+  runs the level drain: do the calls of overlay 193 `+166F` that push a computed code (overlay 179
+  `+24BB`, overlay 193 `+1861`, overlay 204 at `0x8DE37`, overlay 195 at `0x81B3E` and `0x82972`)
+  ever pass 59, and which attacks reach overlay 179 `+0D2F` with the attacker's weapon
+  (FND-PARTY-096)? Settles it: a reading of each of those callers back to the code it pushes, and
+  of the callers of `+0D2F` and `+1373`. Blocks: nothing yet.
 - Q-PARTY-042. FMT-PARTY-001: What does the program do on a divide by 0, which the level drain
   reaches for a character with one class above level 1 (FND-PARTY-082)? Settles it: the startup
   code's setting of the interrupt 0 vector and the handler it installs, read to its end. Blocks: nothing yet.

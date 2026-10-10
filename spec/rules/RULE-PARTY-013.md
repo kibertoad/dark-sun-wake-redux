@@ -4,7 +4,7 @@ title: How a character gains levels in play
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-057, FND-PARTY-058, FND-PARTY-074, FND-PARTY-081, FND-PARTY-083, FND-PARTY-084, FND-PARTY-085, FND-PARTY-086, FND-PARTY-089, FND-PARTY-088, FND-PARTY-090]
+evidence: [FND-PARTY-057, FND-PARTY-058, FND-PARTY-074, FND-PARTY-081, FND-PARTY-083, FND-PARTY-084, FND-PARTY-085, FND-PARTY-086, FND-PARTY-089, FND-PARTY-088, FND-PARTY-090, FND-PARTY-096]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-012, RULE-PARTY-014, RULE-PARTY-015, RULE-RNG-001, FMT-PARTY-001]
@@ -203,7 +203,8 @@ experience, so the cut for one class lowers what the later classes are tested ag
 
 A level regained after the level drain of overlay 210 `+0B66` rolls another hit die when the
 level totals meet, since the drain leaves `greatest_levels` and `hit_die_total` as they were
-(FND-PARTY-082). The divisions in `greatest_hit_points` are unsigned and round down; the product
+(FND-PARTY-082). The drain runs on a party member that receives the effect code 59, which a
+strike by the item of `DATA` number 313 sends on an attack roll of 20 (FND-PARTY-096). The divisions in `greatest_hit_points` are unsigned and round down; the product
 is taken to 16 bits, which the levels and dice of a character do not exceed. When the greatest hit
 points fall, the current hit points fall by the same amount. The psionic points are never
 lowered. A character whose wisdom is 15 or more takes the wisdom bonus from `screen_wisdom`, so a
