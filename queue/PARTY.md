@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-019
+Next ID: Q-PARTY-020
 
 ## Static
 
@@ -40,23 +40,27 @@ Next ID: Q-PARTY-019
   the character boxes `0x2C24` to `0x2C27` (FND-COMBAT-025), and the writers of `leader`. Tried:
   the leader buttons, which store the slot at `4C13:0369` (FND-COMBAT-023). Blocks: slice 3.
 - Q-PARTY-017. RULE-PARTY-006: When the player opens Create Characters (start window button
-  `0x4B65`, overlay 212 `+061C`, window `0x2CEC`) before START GAME and the start loop
-  continues, which actions on that screen take the routes from overlay 190 `+139B`, `+0D89` and
-  `+0802` (called by the handler overlay 212 `+0967`), or from the window's other handlers
-  (overlay 212 `+0000` and `+0A57`, overlay 190 `+0092` and `+361C`), to the count's stores
-  `0x271E3` and `0x27404` (FND-PARTY-022), the `DS:13FB` setter overlay 173 `+3CDA`
-  (FND-PARTY-031) and the pointer-image sites `2C5F:0CBF`, `2C5F:0CF1`, `0x777F7`, `0x9106C`
-  and `0x910C6` (FND-PARTY-036), and does the start loop reach START GAME with the count,
-  `DS:0DAB`, the pointer image or a window callback changed? Settles it: the code of those
-  overlay 190 routines, read for which events and party states reach each route, and the
-  screen's exit back to the start window. Tried: the routes from the handler's three overlay
-  190 calls, found but not read for the events that take them (FND-PARTY-045 run 4).
-  Blocks: slice 2.
+  `0x4B65`, overlay 212 `+061C`, window `0x2CEC`) before START GAME, which actions on that
+  screen other than `ADD` on an empty box change the placed-object count, `DS:0DAB`, the
+  pointer image or a window callback before the start loop reaches START GAME, and does any
+  routine reached only through the unresolved transfers of FND-PARTY-046's two runs (48 from
+  the ADD window, 66 from the screen's handler) store 0 to the count or make `DS:0DAB`
+  nonzero? Settles it: the code of `NEW` (overlay 184 `+07D8`, and whether it reaches
+  `+1029`'s placement call at `+12E5`), of overlay 190 `+139B` and `+0802` read for the events
+  that reach the `DS:13FB` setter overlay 173 `+3CDA` and the pointer-image sites, and each
+  unresolved transfer of the two runs resolved or shown unreachable. Tried: FND-PARTY-045 run 4
+  found the routes; FND-PARTY-046 reads `ADD`, which increments the count and leaves no store
+  that clears it on the way back to the start window. Blocks: slice 2.
 - Q-PARTY-018. RULE-PARTY-006: After a confirmed load from the start window's Load Saved Game
   window (overlay 192 `+0785`, confirm branch `+0B21`), can START GAME still be chosen, and with
   what placed-object count and `DS:0DAB`? Settles it: the load routine overlay 192 `+05ED`,
   overlay 182 `+19F8`, `28C9:2522`, the gate routine called with 0, and whether window 19500 or
   its handler survives those calls (FND-PARTY-045). Blocks: slice 2.
+- Q-PARTY-019. RULE-PARTY-006: When the placed-object count is 0, does `31E0:0EFF` return a
+  table entry rather than -1, so that the placement routine `31E0:0121` that `ADD` calls
+  reaches its increment at `31E0:01E3`? Settles it: the code of `31E0:0EFF` and every input it
+  reads, with the table at `DS:67B7` as program start leaves it (FND-PARTY-046,
+  FND-ACTOR-004). Blocks: slice 2.
 
 ## Emulated call
 

@@ -212,11 +212,11 @@ An owner-approved history repair remains separate from this maintenance scope.
      +11D5 and the gate. FND-PARTY-045 (q017_*.json, one start per handler) shows Load Saved
      Game opens no route unless a load is confirmed (DS:0690 guards 192+03AC; only overlay 204
      +044A sets it) and that Create Characters (window 11500) sends its events to overlay 190
-     +139B/+0D89/+0802, which reach two count stores. Next PARTY item: Q-PARTY-017. Unrecorded lead: the character box's ADD
-     (190+0D89, choice 2) opens WIND 0x4845 via 171+0126; its OK with a selection calls
-     171+0AA5, which loads CHAR into 4E71:0B44 and calls 31E0:0121 (inc [264E] at 31E0:01E3)
-     at 171+0C25, and Esc back to the start window (190+1953, 194+037B) resets nothing; NEW
-     (184+07D8) is unresolved; Q-PARTY-018 asks whether
+     +139B/+0D89/+0802, which reach two count stores. FND-PARTY-046 reads ADD on an empty character box: 171+0AA5 loads
+     CHAR and calls 31E0:0121 (inc [264E]) at 171+0C25, and Esc returns to the start window
+     with nothing clearing the count, so START GAME would skip 40-43. Next PARTY items:
+     Q-PARTY-019 (31E0:0EFF on an empty table), Q-PARTY-017 (other actions, NEW, unresolved
+     transfers); Q-PARTY-018 asks whether
      START GAME is still reachable after a confirmed load. Inventory rows 3EBE:001F, 3EBE:09B6 and
      1000:02AD have boundary anomalies (FND-PARTY-044); upstream: toolkit #412 (reach no-return
      declarations) and #413 (inventory row starts inside instructions). The owner asked about

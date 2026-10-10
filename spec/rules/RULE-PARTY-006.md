@@ -82,9 +82,14 @@ None known.
   through window and `APFM` record fields hold, on paths where START GAME is the first
   start-window choice, no routine that opens a route (FND-PARTY-044), and the two calls
   FND-PARTY-043 reads reach none. Opening Load Saved Game first and leaving it without loading
-  opens no route either (FND-PARTY-045). Still open: whether opening Create Characters first,
-  whose screen sends its events to routines from which routes reach two of the count's stores,
-  changes the count before START GAME (FND-PARTY-044, FND-PARTY-045, Q-PARTY-017); whether START
+  opens no route either (FND-PARTY-045). Against it, when the player opens Create Characters
+  first: `ADD` on an empty character box loads a stored character and places it with the
+  routine that increments the count, and Esc returns to the start window with no store that
+  clears it, so START GAME would then skip the loader and begin with the screen's party
+  (FND-PARTY-046). That holds unless the placement routine finds no free entry
+  (Q-PARTY-019). Still open: which other actions on that screen change the count, and whether
+  a routine behind the unresolved transfers of those runs clears it (FND-PARTY-045,
+  FND-PARTY-046, Q-PARTY-017); whether START
   GAME can still be chosen after a confirmed load, and with what count (FND-PARTY-045,
   Q-PARTY-018); and whether either of the gate routine's two
   video-memory reservations fails (FND-PARTY-030, FND-PARTY-032, FND-PARTY-033). While the
