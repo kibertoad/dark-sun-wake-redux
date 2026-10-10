@@ -35,7 +35,9 @@ Next ID: Q-PARTY-049
   overlays, or a reading of the resident hits at those displacements to the records they read,
   with the spell and trap code checked for a saving throw roll. Blocks: slice 2. Tried:
   FND-PARTY-091 and FND-PARTY-092 search ES reads after `19c5` and `1429` and pointer offsets,
-  finding the THAC0 and attack-rate readers and no reader of the five bytes.
+  finding the THAC0 and attack-rate readers and no reader of the five bytes; FND-PARTY-093 shows
+  the other ES reads at those displacements use other pointers and no read without ES follows
+  the details pointers. Only a computed address or a copy is left.
 - Q-PARTY-045. RULE-PARTY-015: Does any enemy's `kill_experience` divided by the filled party
   slots reach 32,768, so that killing it lowers each member's experience (FND-PARTY-086)? Settles
   it: the details dword at `0x04` of every enemy a fight can load, read from the files that fill
