@@ -229,7 +229,16 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Q-PARTY-045 narrowed (FND-PARTY-153): 2D40:000A never tests its tag, so RDFF loads as CHAR does;
   objects 430 and 541 are placed only in RGN0FF.GFF (Limbo, ETAB 255 indexes 909 and 923). What
   moves them out of Limbo is script code, outside the claim. RULE-PARTY-015's open question
-  updated. Q-PARTY-053 (spell/power windows as screens) not started.
+  updated.
+- Q-PARTY-053 settled (FND-PARTY-154, commit 028610f2): 3D72:0009 sends control codes 8 (any
+  event, old control), 4/2 (pointer leaves/enters), 0x40/0x100 (left/right down) and 0x20/0x80
+  (left/right up) by the driver's event bits; 182+01EF ORs the callback mask into the resource's.
+  WIND 17500 (at 65,41) and 17501 (at 80,43) of RESOURCE.GFF hold 21 APFM frames 11213-11233,
+  masks 0x1E6/0xE6. Enter highlights and names, leave restores the line, 0x20 learns, 0x80 opens
+  the description (213+16EE with DATA number + 1) and nulls every frame callback. 177+0A45 takes
+  spells below 115 for class codes 11 and 18 only. SCR-PARTY-001/002 added; RULE-PARTY-013's
+  gain_one_level shows them (new parameters combat_mark, unknown_spells). Q-PARTY-066 asks for
+  the drawing routines, the description window and 186+00B8 with 100.
 - Lead for unk_2a: overlay 204 +0203 pushes 0x0660:0x00BB (the setter trampoline 5787:00BB) as a
   value before a near call to its dispatcher at +019C, so the setter is passed as a callback.
   Filed toolkit #474 (list where a routine's far address is used as a value) after checking
