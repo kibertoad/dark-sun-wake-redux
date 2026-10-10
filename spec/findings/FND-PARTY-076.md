@@ -64,7 +64,7 @@ write `4E4F:0000..0005`, the words at `4E4F:0037` and `4E4F:0071`, and the class
 - `+1648` copies the working details and combatant records to the slot numbered by `DS:112E`
   when that is not -1, and otherwise to the slot given as its argument (`+1674..+170D`).
 - `+1DCE` copies the details and combatant records given as its arguments to `4E4F:0029` and
-  `4E4F:006B` (`+1DD7..+1DFC`). Its four callers are listed in FND-PARTY-064: `+1606`, the edit
+  `4E4F:006B` (`+1DD7..+1DFC`). Its four callers are listed in FND-PARTY-080: `+1606`, the edit
   path of overlay 190; overlay 209 `+14FF`, the DUAL path; overlay 212 `+0403`; and `+0334`, the
   end of `+015D`, which passes the slot `+1648` has just filled from the working records
   (FND-PARTY-074).

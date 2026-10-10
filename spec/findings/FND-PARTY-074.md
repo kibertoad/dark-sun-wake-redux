@@ -59,7 +59,7 @@ byte at `+0x12` is 5 it doubles both bounds (`+026D..+0296`). When the count is 
 bound to itself divided by the count (signed) plus the result of overlay 210 `+0301` (trampoline
 `57B9:0034`) for the slot, and stores the slot's word at `+0x08` through the far pointer; otherwise
 it stores 0 in both bounds and through the pointer (`+0298..+02FF`). It ends by calling `+1DCE`,
-which copies the slot's records back to the generation records (FND-PARTY-064), and returns
+which copies the slot's records back to the generation records (FND-PARTY-080), and returns
 (`+0304..+0337`).
 
 The eight bytes at `4E4F:011E` (file `0x4380E`), for generation codes 1 to 8: 8, 8, 10, 10, 4, 6,

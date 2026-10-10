@@ -15,10 +15,14 @@ Next ID: Q-PARTY-037
 - Q-PARTY-026. FMT-PARTY-001: On the DUAL path, does anything the routine at overlay 209 `+123E`
   calls before `+14FF` store another slot in the word at `4E71:0B44`, so that overlay 184 `+1DCE`
   takes the class bytes of a different character from the one whose records it copies
-  (FND-PARTY-063, FND-PARTY-064)? Settles it: a reach query from overlay 209 `+123E` to `+14FF`
-  over the calls it makes, checking which of the 11 stores to the word it reaches and with what
-  value. Tried: FND-PARTY-064 reads the other three callers of `+1DCE` and the edit path, where the
-  slots are the same; the DUAL path's calls were not followed. Blocks: slice 2.
+  (FND-PARTY-073, FND-PARTY-080)? Settles it: the routes from overlay 172 `+05DB` to overlay 188
+  `+1604` read for the state they need while overlay 190 offers `DUAL` (`DS:0DAB` among it), and
+  the argument overlay 210 `+0740` passes to overlay 209 `+0000`, `+0218` and `+0A84`, read for
+  whether it can differ from the DUAL slot and whether the word is set back before `+14FF`.
+  Tried: FND-PARTY-080 reads the other three callers of `+1DCE`, where the slots are the same, and
+  a reach run from the DUAL routine's 14 calls reaches three overlay 209 stores to the word, only
+  through overlay 172 `+05DB` and overlays 173, 188 and 210; the routes were not read for the state
+  they need. Blocks: slice 2.
 - Q-PARTY-003. FMT-PARTY-001, RULE-PARTY-004, RULE-MAGIC-002: What do the record's remaining `unk_`
   fields hold, and are the scores stored before or after origin modifiers? Settles it: the other
   routines that print the character sheet from the record at `DS:1429` (FND-PARTY-055), and the

@@ -1,0 +1,10 @@
+{
+ "starts": ["209+19A7", "172+05DB", "28C9:2ABD", "190+11C1", "190+11A1", "182+1FDB", "182+016B",
+  "183+191D", "186+00D4", "183+189B", "401B:0172", "183+1827", "183+1881", "212+0A36"],
+ "targets": ["0x58342", "0x6D874", "0x75CBB", "0x78933", "0x7BA2D", "0x8A743", "0x93386", "0x93BF2",
+  "0x9316F", "0x9614A", "0x98828"],
+ "controls": ["0x6C929"],
+ "leaves": [
+  {"site": "1000:0388", "reason": "FND-PARTY-039, FND-PARTY-043: the exit worker, which runs only as the program ends"}
+ ]
+}

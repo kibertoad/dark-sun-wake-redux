@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-064
 title: Three of the four callers of overlay 184 +1DCE pass the records of the slot in the word at 4E71:0B44, the slot +1DCE takes the class bytes from, and the fourth, the DUAL path of overlay 209 +123E, passes the slot that word held when the routine began
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-080]
 recorded_by: kibertoad
 reproduced_by: []
 method: static
