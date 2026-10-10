@@ -7,7 +7,7 @@ superseded_by: []
 impact: rules
 intent: unclear
 player_reliance: unknown
-evidence: [FND-PARTY-085]
+evidence: [FND-PARTY-085, FND-PARTY-099]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-014]
@@ -24,7 +24,9 @@ class can reach, a warrior's five saves stop at 11, 11, 11, 13 and 11 from level
 
 Any character whose level in a class group is high enough for the save's fall to reach the third
 number of its entry. The saves are set when a character is stored from the generation screen,
-when a human changes class and at each level gained in play (FND-PARTY-085).
+when a human changes class and at each level gained in play (FND-PARTY-085). The capped save
+matters when the character is the target of an effect that allows a saving throw, which compares a
+d20 roll with it (FND-PARTY-099).
 
 ## Mechanism
 
@@ -57,5 +59,3 @@ None known.
 - Whether the cap is a slip: the match of all 20 third numbers with the last values favours one,
   but the code cannot show intent and no source discusses the saves (No item: the code cannot
   show intent).
-- Which code reads the five saves, and so whether they act as saving throws in play: the searches
-  of FND-PARTY-092 and FND-PARTY-093 found no reader, so the bug may have no effect in play (Q-PARTY-044).

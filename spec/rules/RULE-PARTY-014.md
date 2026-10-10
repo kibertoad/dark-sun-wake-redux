@@ -4,7 +4,7 @@ title: Class flags, attack rate, THAC0 and saving throws from a character's clas
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-074, FND-PARTY-081, FND-PARTY-083, FND-PARTY-085, FND-PARTY-091, FND-PARTY-092]
+evidence: [FND-PARTY-074, FND-PARTY-081, FND-PARTY-083, FND-PARTY-085, FND-PARTY-091, FND-PARTY-100, FND-PARTY-099]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-013, RULE-COMBAT-002]
@@ -105,7 +105,9 @@ define saving_throw(origin, codes, levels, constitution, s):
 The original stores `class_flags` in the details record's word at `0x10`, `class_attack_rate` and
 `attack_rate` in its bytes at `0x24` and `0x25`, `saving_throw` for saves 0 to 4 in its bytes at
 `0x31` to `0x35`, and `thac0` in the combatant record's byte at `0x16`; for a thri-kreen it also
-stores 2 in the details record's byte at `0x27`. No draws.
+stores 2 in the details record's byte at `0x27`. No draws. A saving throw against an effect
+whose `DATA` record names save number `k` from 1 to 5 compares a d20 roll with save `k - 1`
+(FND-PARTY-099).
 
 ## Edge cases
 
@@ -126,7 +128,5 @@ None known.
 
 ## Open questions
 
-- Whether anything reads the five bytes at `0x31`: no reader was found, so whether they act as
-  saving throws rests on the shape of the formula alone. The combatant byte at `0x16` is read as
-  the attacker's THAC0, and the bytes at `0x24` to `0x27` as attack rates (FND-PARTY-091,
-  FND-PARTY-092, Q-PARTY-044).
+
+None.

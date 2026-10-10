@@ -17,7 +17,7 @@ environment: null
 
 ## Observation
 
-File offsets are those of the installed `DSUN.EXE`. FND-PARTY-092 lists 54 reads through ES of the
+File offsets are those of the installed `DSUN.EXE`. FND-PARTY-100 lists 54 reads through ES of the
 displacements `0x31` to `0x35` in the whole file, of which overlay 210 `+0698`, at file
 `0x955F8`, is the only one in overlay code. Of the resident ones, the instructions before each
 load ES and BX from these far pointers: `DS:9D9F` for the six dword reads and updates from

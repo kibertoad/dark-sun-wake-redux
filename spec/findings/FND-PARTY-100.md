@@ -1,9 +1,9 @@
 ---
-id: FND-PARTY-092
-title: The details bytes at 0x25, 0x28, 0x2B and 0x2E plus an attack number give a natural attack's rate, damage dice, dice sides and damage bonus, the byte at 0x24 is read for an armed attack's rate, and no code but their setter reads the five bytes at 0x31
-status: superseded
+id: FND-PARTY-100
+title: The details bytes at 0x25, 0x28, 0x2B and 0x2E plus an attack number give a natural attack's rate, damage dice, dice sides and damage bonus, the byte at 0x24 is read for an armed attack's rate, and no read at a fixed displacement through DS:19C5 or DS:1429 takes the five bytes at 0x31
+status: recorded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: [FND-PARTY-100]
+superseded_by: []
 recorded_by: kibertoad
 reproduced_by: []
 method: static
@@ -71,14 +71,15 @@ many dice of that many sides and adds the bonus. In FMT-PARTY-001 these are the 
 weapon's own byte at `+7` applies. So overlay 210's 8 for a thri-kreen at `0x25` and 2 at `0x27`
 are the rates of its first and third natural attacks.
 
-No code read through `DS:19C5` or `DS:1429` takes the five bytes at `0x31` as anything: the five
-saving throws that the formulas of FND-PARTY-085 suggest are set and copied but not found used.
+No read at a fixed displacement through `DS:19C5` or `DS:1429` takes the five bytes at `0x31`;
+the saving throw roll reads them at a computed displacement (FND-PARTY-099).
 
 ## Alternatives
 
-- A reader of the five bytes at `0x31` through a register-based address formed another way, a
-  copy of the record, or code outside the inventory: the searches would not list it, and the
-  resident hits at those displacements were not each followed to the record they read.
+- Replaces FND-PARTY-092, which recorded these observations but concluded that no code but the
+  setter reads the five bytes at `0x31`. The searches cover only fixed displacements; overlay 179
+  `+2A46` reads them as the byte at `0x30` plus a save number added to the record's address
+  (FND-PARTY-099).
 - What the rate counts, and how the doubling and the later argument choose it, was not read; that
   its values 2 to 5 and the thri-kreen's 8 count half attacks per round rests on the AD&D rules
   the game follows, circumstantial.
@@ -86,7 +87,7 @@ saving throws that the formulas of FND-PARTY-085 suggest are set and copied but 
 
 ## How to reproduce
 
-From the commit that adds this finding, with the locked evidence Python and `<dsun>` the installed
+From the commit that added FND-PARTY-092, with the locked evidence Python and `<dsun>` the installed
 `DSUN.EXE`, run in `tools/research/exec-census/`: `field_reads.py <dsun>
 ../../../coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv --es --table 19c5 24 25 27 31 32 33 34 35`, the
 same with `--table 1429`, and the same without `--table` for `31 32 33 34 35`;

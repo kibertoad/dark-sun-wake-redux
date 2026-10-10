@@ -7,7 +7,7 @@ superseded_by: []
 impact: rules
 intent: unclear
 player_reliance: unknown
-evidence: [FND-PARTY-085]
+evidence: [FND-PARTY-085, FND-PARTY-099]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-014]
@@ -23,7 +23,8 @@ psionicist or thief gets no constitution bonus on any save.
 
 A dwarf or halfling whose saves are set: when it is stored from the generation screen, when it
 gains a level in play, or at a class change (FND-PARTY-085). The bonus changes a save only where
-the warrior group gives the best value for it.
+the warrior group gives the best value for it, and it matters when the character is the target of
+an effect that allows a saving throw, which compares a d20 roll with the save (FND-PARTY-099).
 
 ## Mechanism
 
@@ -53,5 +54,3 @@ None known.
 - Whether the test is a slip for the save number: the group number 4, which cannot occur, favours
   one, but the code cannot show intent and no source discusses the saves (No item: the code cannot
   show intent).
-- Which code reads the five saves, and so whether they act as saving throws in play: the searches
-  of FND-PARTY-092 and FND-PARTY-093 found no reader, so the bug may have no effect in play (Q-PARTY-044).
