@@ -7,7 +7,7 @@ superseded_by: []
 impact: crash
 intent: unintended
 player_reliance: unknown
-evidence: [FND-PARTY-082, FND-PARTY-105, FND-PARTY-096, FND-PARTY-108, FND-PARTY-109, FND-PARTY-110, FND-PARTY-111, FND-PARTY-112, FND-PARTY-113, FND-PARTY-114, FND-PARTY-115, FND-PARTY-116, FND-PARTY-119, FND-PARTY-120]
+evidence: [FND-PARTY-082, FND-PARTY-105, FND-PARTY-096, FND-PARTY-108, FND-PARTY-109, FND-PARTY-110, FND-PARTY-111, FND-PARTY-112, FND-PARTY-113, FND-PARTY-114, FND-PARTY-115, FND-PARTY-116, FND-PARTY-119, FND-PARTY-120, FND-PARTY-121]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-013, FMT-PARTY-001]
@@ -47,8 +47,11 @@ can drain another party member; spell 104 needs level 9 wizard spells, which a P
 level 15 never gets (FND-PARTY-110, FND-PARTY-111). The levels stay at 15 or below in the game's
 stores and the shipped party list, no path found lets an `OBJEX` actor with a higher Preserver
 level take a party slot, and the byte `DS:13F8` that lifts the limit is set only behind the
-`-k911` debug switch (FND-PARTY-116, FND-PARTY-119, FND-PARTY-120). Which of the sources can
-strike the party in play otherwise is open.
+`-k911` debug switch (FND-PARTY-116, FND-PARTY-119, FND-PARTY-120). No enemy casts either
+spell: the enemy spell choice keeps a spell only when its weight byte gives a score above 0, and
+that byte is 0 for both; the enemies' other path and the item powers pass other numbers; and only
+`RDFF` 3 has spell 104 in its list (FND-PARTY-121). Whether the item of `DATA` 313 or a script can
+strike the party in play is open.
 
 ## Player reliance
 
@@ -64,9 +67,10 @@ None known.
 
 ## Open questions
 
-- Whether any enemy in play casts the spell `DATA` 104 or 225 at a party member, carries the item
-  of `DATA` 313, or runs a script that sends code 59 to one, so that the crash can happen in a
-  normal game: the casters are Q-PARTY-052, and the scripts are Q-PARTY-051.
+- Whether any enemy in play carries the item of `DATA` 313 or runs a script that sends code 59 to
+  a party member, or whether one of the computed arguments of the hit routine can be 104 or 225,
+  so that the crash can happen in a normal game: the scripts are Q-PARTY-051, and the computed
+  arguments Q-PARTY-064.
 - Whether any party member has type bytes that make the calls before the hit routine's saving
   throw stop the spells for it, which they do for the types 2, 3, 7, 11, 13 and 16 (FND-PARTY-112);
   the shipped and transferred characters and the characters generation stores hold 0, and no

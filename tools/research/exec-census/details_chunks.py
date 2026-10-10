@@ -1,6 +1,6 @@
 """Lists the type-3 details chunks in an installed GFF archive, with the dword at 0x04 of each.
 
-Usage: python -I details_chunks.py PATH_TO_GFF [MIN | --levels]
+Usage: python -I details_chunks.py PATH_TO_GFF [MIN | --levels | --byte OFFSET]
 
 Reads the archive's directory (FMT-GFF-001 to FMT-GFF-007) into a list of resources with tag,
 number, offset and size, then finds every 10-byte chunk header of the form FMT-PARTY-006 gives a
@@ -12,6 +12,7 @@ matches inside other data is printed too; check that it lies in a chunk chain. W
 prints instead the class codes at 0x1B to 0x1D and the levels at 0x1E to 0x20 of each chunk's data,
 and, when the 10 bytes 59 bytes before the header are a type-1 chunk header with len_data 49
 (chunk_type 1, kind 2, len_data 0x31), the NUL-terminated name at 0x21 of that chunk's data.
+With --byte OFFSET (hex), it prints the same, with the data byte at OFFSET after the levels.
 Nothing is written or executed.
 """
 import re
@@ -20,7 +21,8 @@ import sys
 from pathlib import Path
 
 body = Path(sys.argv[1]).read_bytes()
-levels = sys.argv[2:] == ["--levels"]
+byte_at = int(sys.argv[3], 16) if sys.argv[2:3] == ["--byte"] else None
+levels = sys.argv[2:] == ["--levels"] or byte_at is not None
 minimum = int(sys.argv[2]) if len(sys.argv) > 2 and not levels else None
 assert body[:4] == b"GFFI"
 at = struct.unpack_from("<I", body, 0x0C)[0]
@@ -60,7 +62,8 @@ for holder, offset, value in hits:
             name = body[offset - 49 + 0x21:offset - 49 + 0x30].split(bytes(1))[0].decode("latin-1")
         where = f"{holder[0]} {holder[1]}" if holder else "outside any resource"
         print(f"{where} (file 0x{offset:08X}): classes {list(body[data + 0x1B:data + 0x1E])}"
-              f" levels {list(body[data + 0x1E:data + 0x21])} {name}")
+              f" levels {list(body[data + 0x1E:data + 0x21])}"
+              + (f" byte 0x{byte_at:02X} {body[data + byte_at]}" if byte_at is not None else "") + f" {name}")
         continue
     if minimum is not None and value < minimum:
         continue

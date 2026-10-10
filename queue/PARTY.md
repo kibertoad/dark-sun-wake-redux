@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-064
+Next ID: Q-PARTY-065
 
 ## Static
 
@@ -40,18 +40,15 @@ Next ID: Q-PARTY-064
   as the CHAR loader does, and the placements of `RDFF` 430 and 541 in the regions. Blocks:
   nothing yet. Tried: FND-PARTY-094 finds `RDFF` 430 (107,000) and 541 (33,000), of kind 7, with
   CHAR chunk headers; the loader is the ACTOR area's Q-ACTOR-003, outside this goal's claim.
-- Q-PARTY-052. FMT-PARTY-001, BUG-PARTY-006: Which enemy casters can use the spell `DATA` 104 or
-  `DATA` 225 on a party member in a fight, so that it drains a level? Settles it: the callers of
-  overlay 193 `+2290` other than overlay 211 and overlay 208 `+1761` (overlay 172 `+0DE7`, overlay
-  173 `+29AC`, overlay 174 `+0099`, `+07A8` and `+0900`, overlay 189 `+331A` and overlay 213
-  `+0A4F`, and overlay 189 `+076A`, which casts the spell overlay 211 stores at `DS:43F5`) and the
-  other computed callers of FND-PARTY-107, read back to the spell numbers they pass and where those
-  come from. Blocks: nothing yet. Tried: FND-PARTY-102, FND-PARTY-103 and FND-PARTY-106 show that
-  no caller of overlay 179 `+0C7F` passes 104 or 225; FND-PARTY-107 shows that the hit routine's
-  call in overlay 179 `+11DC` never runs; FND-PARTY-108 shows the spell path through overlay 193
-  `+2290`; FND-PARTY-109 reads the party's cast of a type 4 spell, which can strike a party member
-  while a Shift key is held, and leaves the enemy callers; FND-PARTY-116 finds four `OBJEX` Preservers at level 18
-  or 20 (`RDFF` 64, 65, 67 and 172), which overlay 177 `+05B7` would give a level 9 count.
+- Q-PARTY-064. BUG-PARTY-006: Can the computed third argument of overlay 197 `+1202`, overlay 204
+  `+19AF` or overlay 176 `+03BD` and `+048A`, which reaches the hit routine through overlay 193
+  `+003C` (FND-PARTY-107), be the spell `DATA` 104 or 225? Settles it: each argument read back to
+  where it comes from: for overlay 197 `+1202` the object number overlay 197 `+111A` receives from
+  overlay 174 `+04D2` and overlay 179 `+0EC0`, and what the hit routine takes from it; for overlay
+  204 `+19AF` its local word at `bp-2`; for overlay 176 the argument or `DI` it adds to 235.
+  Blocks: nothing yet. Tried: FND-PARTY-121 reads the other callers of the spell dispatcher at
+  overlay 193 `+2290` and the computed arguments of overlay 193 `+22CF`, overlay 177 `+04FE` and
+  overlay 198 `+00EF` and `+013D`, none of which passes 104 or 225 for an enemy.
 - Q-PARTY-062. BUG-PARTY-006: Does anything other than a block copy, or a copy FND-PARTY-115's
   searches do not reach, put a value other than 0 in bytes `+0x0E` or `+0x0F` of a party member's
   FMT-COMBAT-001 record? Settles it: the reads of a saved game into the table at `DS:19C9` and the
