@@ -36,7 +36,10 @@ Next ID: Q-PARTY-053
   reads the 16 far callers of `+0C7F`: the overlay 173 swing and the overlay 195 and 204 calls pass
   -1 and overlay 193 passes `DATA` 100, 79, 221 and 18, none holding 59; left are overlay 193
   `+13EC` and overlay 204 `+12B4`, which pass their arguments, and the routes through `+11DC` and
-  overlay 193 `+003C`.
+  overlay 193 `+003C`. FND-PARTY-103: overlay 204 `+12B4` gets `DATA` 148, 157, 159 and 178, none
+  holding 59, and overlay 193 `+13EC` the word at `+0` of a record of the table at `51F1:0000`,
+  whose writers (overlay 208 `+03BA` and others through far pointers in locals) are left, with
+  the two other routes.
 - Q-PARTY-042. FMT-PARTY-001: What does the program do on a divide by 0, which the level drain
   reaches for a character with one class above level 1 (FND-PARTY-082)? Settles it: the startup
   code's setting of the interrupt 0 vector and the handler it installs, read to its end. Blocks: nothing yet.
