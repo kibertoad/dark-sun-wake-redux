@@ -125,6 +125,12 @@ An owner-approved history repair remains separate from this maintenance scope.
   or 0 (from 174+04D2); 176+03BD gives back the dispatcher's d (235..268) and 176+048A 235+0..0x21;
   204+19AF casts script arg mod 1000 for opcode 0x22 function 46 (case 204+025E) with arg 2 = 9999.
   Q-PARTY-051 now covers function 46 too; still waiting on Q-SCRIPT-004.
+- FND-PARTY-123 (Q-PARTY-054 progress): 199+0C21 frees 52A1:0000/4/8, calls 182+19F8, 3D72:0D83,
+  2C5F:0182, 187+2B91 (2 out of a fight, 3 in one) and loops on 45B9:0034. 182+19F8 sets combat
+  mark +0x14 from 0 to 1 for party slots while DS:0DAB is 2 (gain still takes marks <= 2); for 2
+  or 3 it runs 28C9:250A, 2C5F:0139 and the key-handler setup, then sets DS:0DAB to 1. DS:0DAB
+  stores: 182 file 0x69C6E/0x69FA9/0x6A352 (1), 0x69E1F (0), 0x69E5C (4), 0x6A233 (2), resident
+  2B1C:0000 (register). FND-COMBAT-011's "only write stores 4" is out of date (COMBAT area).
 - Filed protocol #95: a batch that supersedes an entry the handover cites cannot pass the docs
   check without a handover edit; the workaround is handover commit, batch, handover commit.
 - Template context: template 0b9ab9c, rules 11884c7 and checker 2.9.0 are
