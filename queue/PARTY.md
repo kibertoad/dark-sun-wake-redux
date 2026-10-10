@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-055
+Next ID: Q-PARTY-057
 
 ## Static
 
@@ -40,17 +40,26 @@ Next ID: Q-PARTY-055
   as the CHAR loader does, and the placements of `RDFF` 430 and 541 in the regions. Blocks:
   nothing yet. Tried: FND-PARTY-094 finds `RDFF` 430 (107,000) and 541 (33,000), of kind 7, with
   CHAR chunk headers; the loader is the ACTOR area's Q-ACTOR-003, outside this goal's claim.
-- Q-PARTY-052. FMT-PARTY-001, BUG-PARTY-006: Which casters can use the spell `DATA` 104 or `DATA`
-  225 on a party member in a fight, so that it drains a level, and what do the three overlay 197
-  calls before the hit routine's saving throw test (FND-PARTY-108)? Settles it: the callers of
-  overlay 193 `+2290` (overlays 174, 189, 208, 211 and 213) and the other computed callers of
-  FND-PARTY-107 read back to the spell numbers they pass and where those come from, overlay 193
-  `+003C` read for when it reaches the hit routine at `+04DE`, and overlay 197 `575A:0093`,
-  `575A:0098` and `575A:009D`. Blocks: nothing yet. Tried: FND-PARTY-102, FND-PARTY-103 and
-  FND-PARTY-106 show that no caller of overlay 179 `+0C7F` passes 104 or 225; FND-PARTY-107 shows
-  that the hit routine's call in overlay 179 `+11DC` never runs and that overlay 193 `+003C` passes
-  its third argument, which FND-PARTY-108 shows is the spell number when overlay 193 `+2290` sends
-  a spell through overlay 177 `+0492`.
+- Q-PARTY-052. FMT-PARTY-001, BUG-PARTY-006: Which enemy casters can use the spell `DATA` 104 or
+  `DATA` 225 on a party member in a fight, so that it drains a level? Settles it: the callers of
+  overlay 193 `+2290` other than overlay 211 and overlay 208 `+1761` (overlay 172 `+0DE7`, overlay
+  173 `+29AC`, overlay 174 `+0099`, `+07A8` and `+0900`, overlay 189 `+331A` and overlay 213
+  `+0A4F`, and overlay 189 `+076A`, which casts the spell overlay 211 stores at `DS:43F5`) and the
+  other computed callers of FND-PARTY-107, read back to the spell numbers they pass and where those
+  come from. Blocks: nothing yet. Tried: FND-PARTY-102, FND-PARTY-103 and FND-PARTY-106 show that
+  no caller of overlay 179 `+0C7F` passes 104 or 225; FND-PARTY-107 shows that the hit routine's
+  call in overlay 179 `+11DC` never runs; FND-PARTY-108 shows the spell path through overlay 193
+  `+2290`; FND-PARTY-109 reads the party's cast of a type 4 spell, which can strike a party member
+  while a Shift key is held, and leaves the enemy callers.
+- Q-PARTY-055. BUG-PARTY-006: Can a party member's spell list at `DS:9C20`, which overlay 211
+  `+10F4` casts from, hold `DATA` 104 or `DATA` 225? Settles it: the writers of `DS:9C20` and
+  `DS:9D79` read for the spells they take, and the source of each (the `SPST` resource and the
+  memorized spells), with FND-PARTY-104's spell ranges, which hold 104 and not 225. Blocks:
+  nothing yet.
+- Q-PARTY-056. BUG-PARTY-006: What do overlay 197 `575A:0093`, `575A:0098` and `575A:009D`, which
+  the hit routine calls before its saving throw test, decide for a spell of `DATA` 104 or 225 on a
+  party member (FND-PARTY-108)? Settles it: the three routines read for every branch that can stop
+  the drain. Blocks: nothing yet.
 - Q-PARTY-003. FMT-PARTY-001, RULE-PARTY-004, RULE-MAGIC-002: What do the record's remaining `unk_`
   fields hold, and are the scores stored before or after origin modifiers? Settles it: the other
   routines that print the character sheet from the record at `DS:1429` (FND-PARTY-055), and the
