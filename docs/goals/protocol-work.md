@@ -217,6 +217,19 @@ An owner-approved history repair remains separate from this maintenance scope.
   DS:141C onto four views; data segment at file 0x4D000). FND-PARTY-145: CHAR 0x66 =
   base_armor_class (details +0x21, start of 173+2C00, the target value of an attack roll).
   Q-PARTY-003 left: unk_04, 0e, 12, 1c, 21, 2a, 53, 67, 7b, 81.
+- Q-PARTY-003, FND-PARTY-146..152: 0x1D/0x67 movement_rate/base_movement_rate (12, thri-kreen 15;
+  197+1E7B rebuilds; fight points = 10 per unit, step 10/14 from DS:0551, 'Move : %d');
+  0x53 details_key (details +0x0E, 0 = free record/INACTIVE CHARACTER, 2D40:2C87 reuses by key,
+  generation sets the new combatant id; OBJEX keys -7111..-7007); 0x04/0x06/0x0E saved slot,
+  0x12..0x16 saved child words (9999 = no chunk); 0x81/0x83 attack_sound/damage_sound
+  (2C5F:0A22); 0x68 magic_resistance (197+16B5, 179+2BD7 rolls 1d100); 0x7C footprint, 0x7D
+  spell_list (177+0059, 13 lists at 529C:0014). FND-PARTY-152: no reader of combatant +0x12 or
+  +0x17 through DS:19C9; +0x20 is field 33 of 204's field getter/setter (trampolines 5787:00C0/
+  00BB, no far caller found). Left: unk_18, 1c, 21, 2a, 7b, 85.
+- Q-PARTY-045 narrowed (FND-PARTY-153): 2D40:000A never tests its tag, so RDFF loads as CHAR does;
+  objects 430 and 541 are placed only in RGN0FF.GFF (Limbo, ETAB 255 indexes 909 and 923). What
+  moves them out of Limbo is script code, outside the claim. RULE-PARTY-015's open question
+  updated. Q-PARTY-053 (spell/power windows as screens) not started.
 - Upstream duplicate checks for this session's points: the old DS:0DAB finding's wrong address
   was a project error that IDENTIFIERS-8 (protocol #66) already covers, so no issue was filed;
   #96 was filed after searching protocol #46, #66, #95 and toolkit #436, #269, #80; the
