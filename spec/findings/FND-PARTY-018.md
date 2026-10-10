@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-018
 title: No CHAR header byte or word of records 40 and 42 holds the label positions of their gender, origin, alignment or class
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-061]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

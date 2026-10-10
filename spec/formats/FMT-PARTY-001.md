@@ -122,7 +122,7 @@ ends within its slot [FND-PARTY-001, FND-PARTY-005, FND-PARTY-052].
   `unk_04`, `unk_0e`, `unk_12`, `unk_1c`, `unk_1f`, `unk_29`, `unk_49`, `unk_4f`, `unk_53`, `unk_55`,
   `unk_5a` and `unk_66` hold. The two chunks at `0x00` and `0x3B` are the only ones that
   reach the combatant and details records, so the screen's values are in them or in the records of
-  the later chunks (FND-PARTY-018, FND-PARTY-020, FND-PARTY-051, FND-PARTY-057, FND-PARTY-058,
+  the later chunks (FND-PARTY-020, FND-PARTY-051, FND-PARTY-057, FND-PARTY-058,
   FND-PARTY-059, Q-PARTY-003).
 - What `combatant_id` identifies: overlay 184 writes the combatant record's copy of it to a
   `CACT` resource (FND-PARTY-012), and the shipped values are never the record's own number

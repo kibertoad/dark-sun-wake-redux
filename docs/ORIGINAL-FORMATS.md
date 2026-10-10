@@ -139,10 +139,11 @@ uninterpreted controls. The Game Menu catalog retains all 30 ordered referenced
 Unknown source fields, button tails, palette assumptions, and unmeasured shell
 placement semantics are not carried.
 
-FND-PARTY-018 rejects the narrow direct byte and aligned little-endian word
-ordinal mapping from the FND-PARTY-016/017 label-table order across the two
-capture-confirmed records #40 and #42. It does not locate a field; all
-uninterpreted fixed-header and tail bytes therefore remain outside DSCH.
+FND-PARTY-061 rejects the narrow direct byte and aligned little-endian word
+ordinal mapping from the FND-PARTY-016/017 label-table order across the first
+79 bytes of the two capture-confirmed records #40 and #42. FND-PARTY-056 later
+locates origin, gender, alignment and classes counted from 1 at `0x57..0x63`.
+DSCH carries none of those fields, and no other uninterpreted bytes enter it.
 
 ## Derived DSCH character-metadata catalog
 
