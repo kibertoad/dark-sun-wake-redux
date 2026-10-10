@@ -228,7 +228,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   https://github.com/kibertoad/refurbished-dinosaurs-template/issues/93 (inventory-check rejects the ranges column) and
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/111#issuecomment-6089321886 (single import of DSUN.EXE cannot replace the join).
 - Next, after rechecking shared goal claims:
-  1. Inventory reconciliation is complete under docs/EVIDENCE-TOOLS.md: FND-CONFIG-213..217, FND-INPUT-010/011, FND-PARTY-029..033, FND-SAVE-012, FND-TIME-006/007 and FND-VIDEO-008..010. Preserve range-aware inventories and the recorded Windows-line-ending exporter provenance when using migrate-inventory.mjs from the shared checkout.
+  1. Inventory reconciliation is complete under docs/EVIDENCE-TOOLS.md: FND-CONFIG-213..217, FND-INPUT-010/011, FND-PARTY-030..033, FND-SAVE-012, FND-TIME-006/007 and FND-VIDEO-008..010. Preserve range-aware inventories and the recorded Windows-line-ending exporter provenance when using migrate-inventory.mjs from the shared checkout.
   2. standard-coverage accepts every in-scope inventory. Use uncited installed DSUN.EXE functions to choose item 3's reading; citation coverage is separate from complete-reading availability.
      Installed DSUN.EXE is the sole game-code target; prior disc comparisons remain historical under docs/SOURCE-EDITIONS.md.
   3. Done: the overlay manager in segment 4AE5 (FND-EXE-560 to
