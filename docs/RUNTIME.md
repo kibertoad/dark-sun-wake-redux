@@ -6,16 +6,19 @@ What can be done with the original game running, and who can do it. The
 file says what is true now: replace an answer when a tool, emulator, machine or
 owner rule changes it. Findings from runs go in `spec/`, never here.
 
-Static analysis is the main source of evidence. In this repository coding
-agents never launch, control, capture or stop DOSBox (`AGENTS.md`, "Native
-runtime visual validation"), so every run of the original is a live session
-the owner plays and captures alone, and the agent reads the captures
-afterwards. No agent run takes place, and the machine's run lock
+Static analysis is the main source of evidence. The owner's rule
+(`AGENTS.md`, "Runs of the original") lets a coding agent run the original
+only through the toolkit's `dinorefurb-dosbox-session` package, in a DOSBox-X
+process the package starts, with host sound muted: the mixer's master volume
+at 0 (`mixer master 0:0`) and MIDI output `none`, the emulated sound devices
+left configured, `keep_host_sound` never passed and `nosound` never set.
+Agents never operate GOG's DOSBox 0.74-2; runs of it are live sessions the
+owner plays and captures alone. The package takes the machine's run lock
 (`C:\ProgramData\refurbished-dinosaurs\run.lock`, or the path in
-`REFURBISHED_DINOSAURS_RUN_LOCK`) is never taken from this repository. If the
-owner lifts that rule, an agent run takes the lock as the protocol's
+`REFURBISHED_DINOSAURS_RUN_LOCK`) as the protocol's
 [Running the original](../vendor/upstream/work-protocol.md#running-the-original) (lines 331-365)
-says.
+says. No session-package run has been made yet, so the capabilities below that
+need one are still `none`.
 
 ## BLD-GOG-EN-1.1
 
@@ -32,19 +35,19 @@ wait for supported layout/parameter bindings; FBOV code stays out of reach.
 
 | Capability | Who | Tried | What would change it |
 |---|---|---|---|
-| Start it and bring it to a given state without a person | none | Not tried: the owner's rule in `AGENTS.md` bars agents from launching DOSBox. The toolkit's `dinorefurb-dosbox-session` (0.1.0 from toolkit #414, now 0.2.0) owns a DOSBox-X process for this: it takes and releases the machine's run lock, mounts drives, mutes host audio and records each session, and needs a pinned checkout of the DOSBox-X agent client. It is not installed here. | The owner lifting that rule; the session package is then the route, after a check that the game runs under DOSBox-X as it does under GOG's DOSBox 0.74-2. |
+| Start it and bring it to a given state without a person | none | Not tried. The owner's rule allows it through `dinorefurb-dosbox-session` 0.2.0 (toolkit #414, #419), which owns a DOSBox-X process: it takes and releases the machine's run lock, mounts drives, mutes host audio and records each session, and needs a pinned checkout of the DOSBox-X agent client. Neither is installed here yet. | Installing the package and the pinned DOSBox-X build, then a run showing the game reaches a given state under DOSBox-X as it does under GOG's DOSBox 0.74-2. |
 | Send it input | person | The owner plays each live session by its script (`docs/live-sessions/`). | The same rule. |
-| Read memory, set breakpoints, dump structures while it runs | none | Not tried. GOG's DOSBox 0.74-2 is a release build without the debugger, and agents may not attach to DOSBox. `dinorefurb-dosbox-session` 0.2.0 gives a debugger client of its own DOSBox-X process and, from toolkit #419, guarded writes to stopped guest memory: each write names a field in a caller-supplied contract, checks the field's current SHA-256, reads it back, and fails the run on any refusal. An event log is planned (toolkit #409). | The owner allowing an agent to run or attach to DOSBox-X, with that package as the route. |
+| Read memory, set breakpoints, dump structures while it runs | none | Not tried. GOG's DOSBox 0.74-2 is a release build without the debugger, and agents never attach to it. `dinorefurb-dosbox-session` 0.2.0 gives a debugger client of its own DOSBox-X process and, from toolkit #419, guarded writes to stopped guest memory: each write names a field in a caller-supplied contract, checks the field's current SHA-256, reads it back, and fails the run on any refusal. An event log is planned (toolkit #409). | A session-package run that reads a known field and stops at a breakpoint. |
 | Load a patched save | person | Not tried. The owner can place a save in the installation's save slots and load it from the game's menu. | A live session that asks for it. |
 | Capture frames and sound | person, frames only | Frames: the owner's Ctrl+F5 screenshots, 320x200 in the game's palette, cited by the dynamic findings of the COMBAT, PARTY and UI areas. Sound: not tried; DOSBox 0.74-2 records sound with Ctrl+F6. | A live session that asks for a sound recording. |
 | Play back a recording the original made | none | The game has no recording feature the spec knows of, and DOSBox 0.74-2 does not replay input. | A finding that the game records and replays input. |
 | Call a single function in the emulator harness (no run lock) | agent, resident far roots within the current no-argument contract | Unicorn 2.1.4 loads the hash-verified GOG resident MZ and applies its relocations. FND-CONFIG-193 initializer controls return with source-written roots/free flags, unchanged loaded high bytes and restored registers. | Supported named parameter/layout bindings extend input cases. Overlay code, native hardware and timing remain outside this harness. |
 
 
-Probe: none. Native process attachment and memory instrumentation are barred
-by the owner-only DOSBox policy. Recorded runs are not available; the protocol's
-[Recorded runs](../vendor/upstream/work-protocol.md#recorded-runs) (lines 341-353) guidance
-does not override those limits. Each emulated-call setup must document port
+Probe: none. No probe exists yet. The owner's rule allows one only inside a
+session-package DOSBox-X process with host sound muted; it is recorded here once
+a run shows it working, and then follows the protocol's
+[Recorded runs](../vendor/upstream/work-protocol.md#recorded-runs) (lines 341-353). Each emulated-call setup must document port
 models, video memory substituted with RAM and the limits of each comparison,
 within the current resident-call contract below.
 

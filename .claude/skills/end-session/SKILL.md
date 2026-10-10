@@ -11,13 +11,14 @@ Open a linked section only when a step leaves a question it answers, read
 only the lines the link gives, and never a section already read this session.
 
 Follow the local post-commit process audit; reusable MSBuild nodes are not
-orphans and agents never touch DOSBox or take the original-game run lock.
+orphans, and agents touch DOSBox only through the session package.
 
 1. **Processes**: stop every process this session started (Ghidra and Java,
    test hosts, servers), and leave anything whose owner is uncertain.
-   Reusable MSBuild nodes are not orphans. Never touch DOSBox: the owner runs
-   it. Follow the post-commit orphan-process audit in `AGENTS.md`, including
-   its log. Sessions here never take the run lock (`docs/RUNTIME.md`).
+   Reusable MSBuild nodes are not orphans. Close every session-package run this
+   session started, which stops its DOSBox-X process and releases the run
+   lock; never touch the owner's DOSBox. Follow the post-commit orphan-process
+   audit in `AGENTS.md`, including its log.
 2. **Goal**: if the goal's condition holds, or the goal is dropped, the
    handover commit in step 4 deletes its file in `docs/goals/`, says which in
    its message, and moves anything in its Handover still worth handing on (a

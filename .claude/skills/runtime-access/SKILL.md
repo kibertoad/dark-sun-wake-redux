@@ -8,10 +8,10 @@ description: Find out and record in docs/RUNTIME.md what can be done with the or
 The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#runtime-access) (lines 42-62).
 Open a linked section only when a step leaves a question it answers, read
 only the lines the link gives, and never a section already read this session.
-Static reading is the main source of evidence. Agents never launch, control,
-capture or stop DOSBox here (`AGENTS.md`, "Native runtime visual validation").
-This check tries nothing against the running game: answers come from the
-owner's rule, owner live sessions and the emulator harness.
+Static reading is the main source of evidence. Agents run the original only
+through `dinorefurb-dosbox-session` with host sound muted (`AGENTS.md`, "Runs
+of the original"), and never operate GOG's DOSBox. Answers come from attempts
+in session-package runs, owner live sessions and the emulator harness.
 
 1. **Collect what changed**: a change to the owner's DOSBox rule in
    `AGENTS.md`, a live session that showed what the owner can do (load a save,
@@ -41,10 +41,10 @@ owner's rule, owner live sessions and the emulator harness.
    each `none` or `person` says what would change it. For the harness, record
    the Unicorn version, the builds it loads and the stubs it has. Replace
    answers that are no longer true; do not append. Record Probe as `none`
-   while the owner-only native-access policy bars process instrumentation.
+   until a session-package run has shown the probe works.
 4. **Move queue items** between `Emulated call` and `Live session` where an
-   answer changed, in the same commit. If the owner ever allows agent runs,
-   they take the machine's run lock as the protocol's
+   answer changed, in the same commit. Agent runs, through the session package,
+   take the machine's run lock as the protocol's
    [Running the original](../../../vendor/upstream/work-protocol.md#running-the-original) (lines 331-365)
    says, and items move to `Agent run`.
    Each queued run names the capability parts it needs in Settles it. An

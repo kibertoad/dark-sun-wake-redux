@@ -61,19 +61,20 @@ only the lines the link gives, and never a section already read this session.
    analyzer ownership. Resolve PE imported callees by their import-table
    slots, and pointer-table targets from the build's bytes, not inferred
    names, call order or nearby globals.
-   Agents never run the game or take its run lock here. Items needing a run go
-   under `Live session`; `live-session` requests the owner's observation.
-   Follow the local capture rules in `AGENTS.md` and
+   Agents run the game only through `dinorefurb-dosbox-session` with host
+   sound muted (`AGENTS.md`, "Runs of the original"). Items needing a run go
+   under `Agent run` once `docs/RUNTIME.md` answers `agent` for every part
+   they need, and under `Live session` otherwise; `live-session` requests the
+   owner's observation. Follow the local capture rules in `AGENTS.md` and
    `docs/live-sessions/README.md`.
    The protocol's [Recorded runs](../../../vendor/upstream/work-protocol.md#recorded-runs) (lines 341-353)
    records draws as `{ rule, bound, result }`, stops for an uncited draw, and
    diagnoses divergence through memory evidence and a static finding rather
-   than fitting the rebuild to the recording. Here Probe is `none`: agents
-   cannot attach, record memory, seed, or instrument DOSBox, and owner live
-   sessions remain limited to confirmed captures. These instructions do not
-   grant native access. If the owner changes that policy, record the probe
-   capability first and apply the protocol's supported-field, state-based
-   wait, seed and divergence requirements.
+   than fitting the rebuild to the recording. A probe runs only in a
+   session-package DOSBox-X process; record its capability in
+   `docs/RUNTIME.md` from an actual attempt before relying on it, and apply
+   the protocol's supported-field, state-based wait, seed and divergence
+   requirements. Owner live sessions remain limited to confirmed captures.
    An emulated call is always allowed, including in a repository whose
    `AGENTS.md` keeps agents from running the original: those limits cover
    runs of the game only. For an item under `Emulated call`, follow the protocol's

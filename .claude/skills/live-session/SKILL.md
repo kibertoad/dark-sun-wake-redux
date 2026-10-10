@@ -11,8 +11,10 @@ only the lines the link gives, and never a section already read this session.
 The maintainer's time is the scarcest resource the project has: prepare it so
 nobody needs to ask a question during the session. Never wait idle for one.
 
-Agents never launch, control, capture, attach to or stop DOSBox. The owner
-plays and captures alone under `AGENTS.md` and `docs/live-sessions/README.md`.
+In a live session agents never launch, control, capture, attach to or stop
+DOSBox. The owner plays and captures alone under `AGENTS.md` and
+`docs/live-sessions/README.md`. Runs an agent drives itself go through the
+session package instead (`AGENTS.md`, "Runs of the original").
 
 ## Request
 
@@ -55,10 +57,8 @@ their xxh3, and ask the owner to confirm each semantic label (a named screen,
 actor, turn or action) before relying on it. Geometry and pixel measurements
 may be recorded as provisional before that.
 
-A recorded-run probe is unavailable under the current native-access policy.
-The protocol's draw-recording and memory-copy guidance does not authorize
-attachment here; any future owner-authorized probe must remain read-only in
-a live session and never replace the seed.
+A live session has no probe: the owner's DOSBox process is never attached
+to. Recorded runs are agent runs through the session package.
 
 ## Ingest
 

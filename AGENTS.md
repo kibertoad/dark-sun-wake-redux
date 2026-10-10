@@ -105,9 +105,10 @@ security research to overcome a tooling limitation.
   host information and secrets. Report the preservation result in your own words
   and retain original-derived material only in the approved local stores.
 
-The repository's runtime restrictions still apply: agents do not launch or
-control the original game or DOSBox. An emulated call uses only the declared
-local harness contract; it is not permission to operate an arbitrary binary or
+The repository's runtime restrictions still apply: agents run the original
+only through the session package, with host sound muted, as "Runs of the
+original" below says, and never operate GOG's DOSBox. An emulated call uses
+only the declared local harness contract; it is not permission to operate an arbitrary binary or
 interact with external systems. If a proposed operation would cross these
 boundaries, choose a preservation-scoped method and record the unresolved
 question under the existing protocol.
@@ -273,10 +274,22 @@ that page differ, the page wins.
   `docs/RUNTIME.md` says about runs of the game and whatever this file adds
   to keep agents from running the original: such limits cover runs of the
   game only, and emulated calls need no decision from the owner.
-- Coding agents never run the original here, never take its run lock, and
-  never launch, control, capture or stop DOSBox. Every original-game run is an
-  owner live session requested in `docs/live-sessions/`. The queue's `Agent run`
-  section stays empty.
+- Runs of the original: a coding agent runs the game only through the
+  toolkit's `dinorefurb-dosbox-session` package, in a DOSBox-X process the
+  package starts, and only with the package's default host audio: the
+  DOSBox-X mixer's master volume at 0 (`mixer master 0:0`) and MIDI output
+  `none`, with the emulated sound devices left configured so the game runs as
+  it does with sound. Never pass `keep_host_sound`, never set `nosound` (the
+  package refuses it, since it broke the debugger's readiness), and never
+  raise the mixer volume during a run. The package takes and releases the
+  machine's run lock; a run that cannot take it does not wait, and the session
+  is closed when the run ends. Agents never launch, attach to, send input to,
+  capture or stop GOG's DOSBox 0.74-2 or any DOSBox process they did not
+  start. Each run follows the protocol's Running the original and Recorded
+  runs. `docs/RUNTIME.md` records each capability part from an actual attempt,
+  and an item moves to the queue's `Agent run` section only once every part
+  it needs is `agent` there. Owner live sessions keep the rules in "Native
+  runtime visual validation".
 - Evidence from runs comes mostly from people. Runs an agent drives are the
   most fragile evidence there is, so they are scripted, start from a fixed
   state and are kept to questions nothing else answers.
@@ -796,8 +809,10 @@ synthetic tests for those measurements, and keep the capture itself outside
 Git. Do not claim pixel parity until the native
 widget treatment is observed.
 
-Coding agents must never launch, control, capture, or stop DOSBox on their own.
-When an evidence question requires an original-game observation, give the
+Apart from session-package runs under "Runs of the original" above, coding
+agents must never launch, control, capture, or stop DOSBox on their own, and
+they never take screenshots of the original. When an evidence question requires
+a screenshot of the original, give the
 repository owner an exact, bounded live session request in
 `docs/live-sessions/` and wait for
 the owner to confirm that the requested material has been produced with
@@ -842,7 +857,7 @@ repository instructions before pushing.
 After every commit, inspect running processes for orphaned work launched while
 building, testing, validating, rendering, or analyzing this repository. Check at
 least PowerShell (`powershell` and `pwsh`), Ghidra/Java, .NET (`dotnet` and
-`testhost`), DOSBox when used for controlled original-game observation, and any
+`testhost`), DOSBox-X processes a session-package run started, and any
 other process family started during the completed batch.
 
 A process belongs to this work only when its command line, parent process,
