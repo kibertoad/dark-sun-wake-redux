@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-044
+Next ID: Q-PARTY-045
 
 ## Static
 
@@ -22,10 +22,15 @@ Next ID: Q-PARTY-044
   psionic points use for a level that is not a new Psionicist level (FND-PARTY-084)? Settles it:
   the paths from the end of a fight through overlays 173 and 188 to overlay 210 `+0B44`, read for
   calls that store either. Blocks: slice 2.
-- Q-PARTY-039. RULE-PARTY-013: What else does a level change: overlay 210 `+0365`, `+03EC` (whose
-  result goes to the combatant record's byte at `0x16`) and `+0572`, `27E5:000F`, overlay 199
-  `+0C21`, and overlay 209 `+0000` and `+0A02` for a new Preserver or Psionicist level
-  (FND-PARTY-081)? Settles it: a reading of those routines. Blocks: slice 2.
+- Q-PARTY-039. RULE-PARTY-013: What do overlay 199 `+0C21`, which runs before each level gain,
+  and overlay 209 `+0000` and the window of `+0A84`, which run for a new Preserver or Psionicist
+  level, change (FND-PARTY-081, FND-PARTY-084)? Settles it: a reading of those routines. Tried:
+  FND-PARTY-085 reads the other four routines a level calls. Blocks: slice 2.
+- Q-PARTY-044. RULE-PARTY-014, BUG-PARTY-004, BUG-PARTY-005: Which code reads the combatant byte at
+  `0x16` and the details bytes at `0x24`, `0x25`, `0x27` and `0x31..0x35`, and does it use them as
+  THAC0, attacks and saving throws (FND-PARTY-085)? Settles it: `field_stores.py`-style searches for
+  reads with those displacements through the tables at `DS:19C5` and `DS:19C9`, each hit read for
+  its use. Blocks: slice 2.
 - Q-PARTY-040. RULE-PARTY-013: Which awards run the level gain: what the routine around overlay
   173 `+07AD` and the overlay 188 routine that ends at `+16E9` give experience for, and how much
   (FND-PARTY-081)? Settles it: a reading of those routines and their callers. Blocks: slice 2.

@@ -47,7 +47,12 @@ seq:
   - id: combat_mark
     type: u1
   - id: unk_1f
-    size: 3
+    type: u1
+  - id: thac0
+    type: u1
+    doc: 20 less the best class group's level term.
+  - id: unk_21
+    type: u1
   - id: control_flags
     type: u1
     doc: Copied to the combatant record's byte at 0x18 (computer_control, control_locked).
@@ -89,8 +94,9 @@ seq:
     doc: The character's greatest psionic strength points.
   - id: unk_53
     type: u2
-  - id: unk_55
-    size: 2
+  - id: class_flags
+    type: u2
+    doc: One bit per class counted.
   - id: origin
     type: u1
     doc: Origin counted from 1 (human, dwarf, elf, half-elf, half-giant, halfling, mul, thri-kreen).
@@ -113,7 +119,24 @@ seq:
     repeat-expr: 3
     doc: The level in each class.
   - id: unk_66
-    size: 24
+    size: 3
+  - id: class_attack_rate
+    type: u1
+  - id: attack_rate
+    type: u1
+  - id: unk_6b
+    type: u1
+  - id: unk_6c
+    type: u1
+  - id: unk_6d
+    size: 9
+  - id: saving_throws
+    type: u1
+    repeat: expr
+    repeat-expr: 5
+    doc: Five saving throws.
+  - id: unk_7b
+    size: 3
   - id: greatest_levels
     type: u1
     repeat: expr

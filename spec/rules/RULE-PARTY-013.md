@@ -4,10 +4,10 @@ title: How a character gains levels in play
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-057, FND-PARTY-058, FND-PARTY-074, FND-PARTY-081, FND-PARTY-083, FND-PARTY-084]
+evidence: [FND-PARTY-057, FND-PARTY-058, FND-PARTY-074, FND-PARTY-081, FND-PARTY-083, FND-PARTY-084, FND-PARTY-085]
 conflicting: []
 split_with: []
-related: [RULE-PARTY-012, RULE-RNG-001, FMT-PARTY-001]
+related: [RULE-PARTY-012, RULE-PARTY-014, RULE-RNG-001, FMT-PARTY-001]
 ---
 
 ## Summary
@@ -41,7 +41,8 @@ points to when the psionic points are recomputed: the character whose new Psioni
 last, in this member's gain or an earlier one, and otherwise the slot the game last made current,
 a record another screen was given, or the generation screen's working record (FND-PARTY-076,
 FND-PARTY-084, Q-PARTY-043); `hit_points` and `max_hit_points`; `psionic_points` and
-`max_psionic_points`; `name`, the character's name; `one_each`, true when each class gains one
+`max_psionic_points`; `class_flags`, `class_attack_rate`, `attack_rate`, `unk_6c`, `thac0` and
+`saving_throws`, the FMT-PARTY-001 fields RULE-PARTY-014 sets; `name`, the character's name; `one_each`, true when each class gains one
 level without the experience test.
 
 ## Inputs
@@ -150,6 +151,14 @@ define gain_one_level(member, i):
     member.hit_die_total = member.hit_die_total + level_hit_die(member.origin, member.codes, member.levels, member.greatest_levels, i, member.constitution)
     if member.greatest_levels[i] < member.levels[i]:
         member.greatest_levels[i] = member.levels[i]
+    member.class_flags = class_flags(member.origin, member.codes, member.levels)
+    member.class_attack_rate = class_attack_rate(member.origin, member.codes, member.levels)
+    member.attack_rate = attack_rate(member.origin, member.codes, member.levels)
+    if member.origin == 7:
+        member.unk_6c = 2
+    member.thac0 = thac0(member.origin, member.codes, member.levels)
+    for s in 0..5:
+        member.saving_throws[s] = saving_throw(member.origin, member.codes, member.levels, member.constitution, s)
     member.max_hit_points = greatest_hit_points(member.origin, member.codes, member.levels, member.greatest_levels, member.hit_die_total, member.constitution)
     member.hit_points = member.max_hit_points - distance
     # visible: the level and hit points
@@ -179,7 +188,7 @@ define gain_levels(member, one_each):
 ## Outputs
 
 The member's `experience`, `levels`, `greatest_levels`, `hit_die_total`, `max_hit_points`,
-`hit_points`, `max_psionic_points` and `psionic_points`. One `LevelGainShown` per level gained, and
+`hit_points`, `max_psionic_points`, `psionic_points` and the values of RULE-PARTY-014. One `LevelGainShown` per level gained, and
 one draw through `roll_sum` for each level whose hit die is rolled, in the order the levels are
 gained.
 
@@ -213,9 +222,9 @@ None known.
 - Which character `screen_wisdom` belongs to after a fight: the original reads the wisdom bonus's
   index from the record at `DS:142D`, which is the levelling character's only after a new
   Psionicist level or when that character was made current last (Q-PARTY-043).
-- What else a level changes: the original calls further routines for each level, stores one
-  result in the combatant record's byte at `0x16`, and calls overlay 209 routines for a new
-  Preserver or Psionicist level, none of which this entry covers (Q-PARTY-039).
+- What else a level changes: for a new Preserver or Psionicist level the original calls overlay
+  209 routines, and before the gain it calls overlay 199 `+0C21`, none of which this entry covers
+  (Q-PARTY-039).
 - Which awards run the gain: the overlay 173 and overlay 188 callers were not read for what they
   give experience for (Q-PARTY-040).
 - That the messages and draws happen in this order in play: a capture of a party gaining levels
