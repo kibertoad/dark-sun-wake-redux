@@ -7,7 +7,7 @@ superseded_by: []
 impact: crash
 intent: unintended
 player_reliance: unknown
-evidence: [FND-PARTY-082, FND-PARTY-105, FND-PARTY-096, FND-PARTY-108, FND-PARTY-109, FND-PARTY-110, FND-PARTY-111]
+evidence: [FND-PARTY-082, FND-PARTY-105, FND-PARTY-096, FND-PARTY-108, FND-PARTY-109, FND-PARTY-110, FND-PARTY-111, FND-PARTY-112]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-013, FMT-PARTY-001]
@@ -66,8 +66,9 @@ None known.
   normal game: the casters are Q-PARTY-052, and the scripts are Q-PARTY-051.
 - Whether a party member can cast the spell `DATA` 104 at a companion, which needs a Preserver
   level above 15 or the byte at `DS:13F8` set (FND-PARTY-111): Q-PARTY-058.
-- Whether the hit routine's calls before its saving throw can stop the drain for a party member
-  (Q-PARTY-056).
+- Whether a party member's type bytes make the calls before the hit routine's saving throw stop
+  the spells for it, which they do for the types 2, 3, 7, 11, 13 and 16 and for targets with
+  certain protections (FND-PARTY-112): Q-PARTY-060.
 - What a player sees on the screen as the game ends: a capture of a party druid of priest level
   13 or more casting the spell `DATA` 225 at a single-class companion above level 1 while holding
   Shift would confirm it (Q-PARTY-059).
