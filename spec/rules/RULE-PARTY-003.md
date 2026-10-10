@@ -73,8 +73,9 @@ None known.
 
 ## Open questions
 
-- Whether the generation screen offers the sphere list to druids and rangers, and what it shows
-  for a character with neither. In the supplied party the druid's class and level are drawn in
-  red and the cleric's in a darker yellow (FND-PARTY-020, Q-PARTY-002).
+- The sphere part is read in the code: the Cleric, Druid and Ranger buttons of the generation
+  screen open a window of four radio buttons, air, earth, fire and water, with air chosen, and the
+  stored class code holds the choice (FND-PARTY-063, FND-PARTY-066). The discipline part, and what
+  the screen shows for a character with neither, are not read (Q-PARTY-002).
 - Whether the choice of discipline is stored as a bit of the character's `PSIN` byte
   (FMT-PARTY-003, Q-PARTY-004).

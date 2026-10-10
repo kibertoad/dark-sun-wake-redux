@@ -20,16 +20,17 @@ Next ID: Q-PARTY-029
 - Q-PARTY-002. RULE-PARTY-002, RULE-PARTY-003, RULE-PARTY-005, RULE-PARTY-007: What does the
   character generation screen check and offer: which classes it offers each origin where the
   manual's two lists and README table 3 disagree (half-giant ranger or thief, mul druid,
-  thri-kreen druid or thief), which class combinations it allows, which classes get the sphere
-  list, how it rolls the six scores and when it applies the origin modifiers, and whether it
+  thri-kreen druid or thief), which class combinations it allows, how it rolls the six scores and when it applies the origin modifiers, and whether it
   refuses DONE or greys out choices? Settles it: the code behind SCR-UI-004 and SCR-UI-005, then
-  an owner capture of the generation screen for each disputed pair. Blocks: slice 2.
-- Q-PARTY-003. FMT-PARTY-001, RULE-PARTY-004, RULE-MAGIC-002: What distinguishes the four class
-  codes each of Cleric, Druid and Ranger have beyond their colour, what do the record's remaining
-  `unk_` fields hold, and are the scores stored before or after origin modifiers? Settles it: the
-  other routines that print the character sheet from the record at `DS:1429` (FND-PARTY-055), and
-  the code that sets a class code during generation. Tried: a search of the headers of records 40 and 42 for the label positions of their gender, origin,
-  alignment and class (FND-PARTY-018); FND-PARTY-049, FND-PARTY-051 and FND-PARTY-055 to
+  an owner capture of the generation screen for each disputed pair. Tried: FND-PARTY-063 and
+  FND-PARTY-066 read the class buttons and the sphere window, which Cleric, Druid and Ranger
+  open. Blocks: slice 2.
+- Q-PARTY-003. FMT-PARTY-001, RULE-PARTY-004, RULE-MAGIC-002: What do the record's remaining `unk_`
+  fields hold, and are the scores stored before or after origin modifiers? Settles it: the other
+  routines that print the character sheet from the record at `DS:1429` (FND-PARTY-055), and the
+  generation code that sets the scores. Tried: a search of the first 79 bytes of records 40 and 42
+  for the label positions of their gender, origin, alignment and class (FND-PARTY-061);
+  FND-PARTY-063 and FND-PARTY-066 show the four codes of Cleric, Druid and Ranger are the spheres; FND-PARTY-049, FND-PARTY-051 and FND-PARTY-055 to
   FND-PARTY-057 place hit points, the object offset, the combatant identifier, the control flags,
   greatest hit points, origin, gender, alignment, class codes with their names, and levels, and
   FND-PARTY-058 and FND-PARTY-059 place experience at `0x45` and the current and greatest

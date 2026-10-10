@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_001.ksy
-evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057, FND-PARTY-058, FND-PARTY-059]
+evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057, FND-PARTY-058, FND-PARTY-059, FND-PARTY-063, FND-PARTY-066]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-006]
@@ -87,22 +87,22 @@ FND-PARTY-003, FND-PARTY-052]. The eight records of the disc's copy are the rows
 
 | Value | Name | Meaning | Status | Evidence |
 |---|---|---|---|---|
-| 1 | `CLASS_CLERIC_1` | Cleric; the first of its four codes, which get different colours on the class line. | supported | FND-PARTY-057 |
-| 2 | `CLASS_CLERIC_2` | Cleric; the second of its four codes, which get different colours on the class line. | supported | FND-PARTY-057 |
-| 3 | `CLASS_CLERIC_3` | Cleric; the third of its four codes, which get different colours on the class line. | supported | FND-PARTY-057 |
-| 4 | `CLASS_CLERIC_4` | Cleric; the fourth of its four codes, which get different colours on the class line. | supported | FND-PARTY-057 |
-| 5 | `CLASS_DRUID_1` | Druid; the first of its four codes, which get different colours on the class line. | supported | FND-PARTY-057 |
-| 6 | `CLASS_DRUID_2` | Druid; the second of its four codes, which get different colours on the class line. | supported | FND-PARTY-057 |
-| 7 | `CLASS_DRUID_3` | Druid; the third of its four codes, which get different colours on the class line. | supported | FND-PARTY-057 |
-| 8 | `CLASS_DRUID_4` | Druid; the fourth of its four codes, which get different colours on the class line. | supported | FND-PARTY-057 |
+| 1 | `CLASS_CLERIC_AIR` | Cleric of the air sphere, the first choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-063, FND-PARTY-066 |
+| 2 | `CLASS_CLERIC_EARTH` | Cleric of the earth sphere, the second choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-063, FND-PARTY-066 |
+| 3 | `CLASS_CLERIC_FIRE` | Cleric of the fire sphere, the third choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-063, FND-PARTY-066 |
+| 4 | `CLASS_CLERIC_WATER` | Cleric of the water sphere, the fourth choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-063, FND-PARTY-066 |
+| 5 | `CLASS_DRUID_AIR` | Druid of the air sphere, the first choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-063, FND-PARTY-066 |
+| 6 | `CLASS_DRUID_EARTH` | Druid of the earth sphere, the second choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-063, FND-PARTY-066 |
+| 7 | `CLASS_DRUID_FIRE` | Druid of the fire sphere, the third choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-063, FND-PARTY-066 |
+| 8 | `CLASS_DRUID_WATER` | Druid of the water sphere, the fourth choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-063, FND-PARTY-066 |
 | 9 | `CLASS_FIGHTER` | Fighter. | supported | FND-PARTY-057 |
 | 10 | `CLASS_GLADIATOR` | Gladiator. | supported | FND-PARTY-057 |
 | 11 | `CLASS_PRESERVER` | Preserver. | supported | FND-PARTY-057 |
 | 12 | `CLASS_PSIONICIST` | Psionicist, named `Psionic` on the class line. | supported | FND-PARTY-057 |
-| 13 | `CLASS_RANGER_1` | Ranger; the first of its four codes, which get different colours on the class line. | supported | FND-PARTY-057 |
-| 14 | `CLASS_RANGER_2` | Ranger; the second of its four codes, which get different colours on the class line. | supported | FND-PARTY-057 |
-| 15 | `CLASS_RANGER_3` | Ranger; the third of its four codes, which get different colours on the class line. | supported | FND-PARTY-057 |
-| 16 | `CLASS_RANGER_4` | Ranger; the fourth of its four codes, which get different colours on the class line. | supported | FND-PARTY-057 |
+| 13 | `CLASS_RANGER_AIR` | Ranger of the air sphere, the first choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-063, FND-PARTY-066 |
+| 14 | `CLASS_RANGER_EARTH` | Ranger of the earth sphere, the second choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-063, FND-PARTY-066 |
+| 15 | `CLASS_RANGER_FIRE` | Ranger of the fire sphere, the third choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-063, FND-PARTY-066 |
+| 16 | `CLASS_RANGER_WATER` | Ranger of the water sphere, the fourth choice in the generation screen's sphere window. | supported | FND-PARTY-057, FND-PARTY-063, FND-PARTY-066 |
 | 17 | `CLASS_THIEF` | Thief. | supported | FND-PARTY-057 |
 
 ## Differences between builds
@@ -118,8 +118,7 @@ ends within its slot [FND-PARTY-001, FND-PARTY-005, FND-PARTY-052].
 
 ## Open questions
 
-- What distinguishes the four codes of Cleric, Druid and Ranger beyond their colour, and what
-  `unk_04`, `unk_0e`, `unk_12`, `unk_1c`, `unk_1f`, `unk_29`, `unk_49`, `unk_4f`, `unk_53`, `unk_55`,
+- What `unk_04`, `unk_0e`, `unk_12`, `unk_1c`, `unk_1f`, `unk_29`, `unk_49`, `unk_4f`, `unk_53`, `unk_55`,
   `unk_5a` and `unk_66` hold. The two chunks at `0x00` and `0x3B` are the only ones that
   reach the combatant and details records, so the screen's values are in them or in the records of
   the later chunks (FND-PARTY-020, FND-PARTY-051, FND-PARTY-057, FND-PARTY-058,
