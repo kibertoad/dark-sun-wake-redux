@@ -1,0 +1,40 @@
+{
+ "starts": [
+  "2D40:3B30",
+  "183+189B",
+  "184+06CD",
+  "183+191D",
+  "184+1748",
+  "173+2C00",
+  "183+19A0",
+  "183+19E9",
+  "1BF3:59C1",
+  "1BF3:5E12",
+  "1BF3:624E",
+  "1BF3:6227",
+  "1BF3:626E",
+  "1BF3:628E",
+  "1BF3:61CC",
+  "1BF3:61DB",
+  "1BF3:61F8",
+  "1BF3:6207",
+  "1BF3:6216",
+  "1BF3:62C2",
+  "1BF3:659B",
+  "1BF3:65BE",
+  "1BF3:65DA",
+  "1BF3:6600"
+ ],
+ "targets": [
+  "1000:0822"
+ ],
+ "controls": [
+  "0x6C929"
+ ],
+ "leaves": [
+  {
+   "site": "1000:0388",
+   "reason": "FND-PARTY-039, FND-PARTY-043: the exit worker, which runs only as the program ends"
+  }
+ ]
+}

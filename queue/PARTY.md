@@ -29,10 +29,6 @@ Next ID: Q-PARTY-035
   fills from the combatant scores only at DONE. Settles it: every write to that byte of the
   generation details record `4E4F:0029` and of the slot's record before the roll, read in
   execution order (FND-PARTY-070, FND-PARTY-074). Blocks: slice 2.
-- Q-PARTY-034. RULE-PARTY-010, RULE-PARTY-012: Do the calls the roll routine makes after the hit
-  points, overlay 173 `+2C00` (trampoline `5671:007A`) and overlay 183 `+191D`, `+19A0` and
-  `+19E9`, draw random numbers? Settles it: those routines and what they call, read for calls of
-  `1000:0822` (FND-PARTY-071, FND-PARTY-074). Blocks: slice 2.
 - Q-PARTY-031. RULE-PARTY-010: What does the word at offset `0x12` of the 24-byte event a window
   handler receives hold, which overlay 183 `+0000` turns into a step of 1 below 8 and -1 otherwise?
   Settles it: the code that builds that event for a button press, read for that word

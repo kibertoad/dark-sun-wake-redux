@@ -4,7 +4,7 @@ title: Hit points of a new character
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-065, FND-PARTY-070, FND-PARTY-071, FND-PARTY-073, FND-PARTY-074]
+evidence: [FND-PARTY-065, FND-PARTY-070, FND-PARTY-071, FND-PARTY-073, FND-PARTY-074, FND-PARTY-075]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-002, RULE-PARTY-010, RULE-RNG-001, SCR-UI-004]
@@ -128,7 +128,8 @@ define rolled_hit_points(origin, classes, levels, floor_constitution):
 `hit_point_low` and `hit_point_high` return the bounds; `clamp_hit_points` and `step_hit_points`
 return the new greatest hit points, which become the current hit points too. `rolled_hit_points`
 returns the total the screen keeps in the word at `0x0A` of the details record, making one draw
-per level through `roll_sum`, class by class. None changes other state.
+per level through `roll_sum`, class by class; a roll makes no draw after these (FND-PARTY-075).
+None changes other state.
 
 ## Edge cases
 

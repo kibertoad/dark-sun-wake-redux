@@ -4,7 +4,7 @@ title: How the generation screen rolls and bounds ability scores
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-065, FND-PARTY-070, FND-PARTY-071]
+evidence: [FND-PARTY-065, FND-PARTY-070, FND-PARTY-071, FND-PARTY-075]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-002, RULE-PARTY-005, RULE-RNG-001, SCR-UI-004]
@@ -100,7 +100,8 @@ define step_score(origin, classes, scores, ability, step):
 `score_minimum` and `score_maximum` return the bounds. `roll_scores`, `clamp_scores` and
 `step_score` return the new six scores, which the screen stores in the character's combatant
 record. None changes other state; `roll_scores` makes 16 draws per score through `roll_sum`, in
-the order of the abilities.
+the order of the abilities. A roll then draws the hit dice (RULE-PARTY-012) and nothing more
+before it returns (FND-PARTY-075).
 
 ## Edge cases
 
@@ -123,7 +124,5 @@ None known.
 
 ## Open questions
 
-- Whether the routines a roll calls after the hit points draw random numbers, which would follow
-  the scores' and the hit dice's draws (Q-PARTY-034).
 - Which input makes `step` 1 and which -1: the screen takes 1 when a word of the event is below 8
   (Q-PARTY-031).
