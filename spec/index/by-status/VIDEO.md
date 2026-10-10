@@ -16,6 +16,16 @@ Entries by status.
 | [RULE-VIDEO-003](../../rules/RULE-VIDEO-003.md) | When an FLI cannot play, the cinematic's still pictures are shown for up to 8 seconds each |
 | [RULE-VIDEO-004](../../rules/RULE-VIDEO-004.md) | While an FLI plays, a timer slot with a period of 1,000 microseconds counts milliseconds |
 
+## superseded
+
+3 entries.
+
+| ID | Title |
+|---|---|
+| [FND-VIDEO-002](../../findings/FND-VIDEO-002.md) | Overlay 196 plays an FLI file to the screen, one frame record every given number of 1 ms ticks, and stops after the header's frame count |
+| [FND-VIDEO-003](../../findings/FND-VIDEO-003.md) | The game sets BIOS mode 0x13 and unchains it for play, uses plain mode 0x13 for cinematics and mode 3 on exit, while the INT 10h wrapper at 1000:1136 serves text services |
+| [FND-VIDEO-005](../../findings/FND-VIDEO-005.md) | The cinematic routine runs at startup with cinematic 1 unless a test switch picks another, and from script opcode 0x22 with request 6 |
+
 ## recorded
 
 7 entries.
@@ -23,12 +33,12 @@ Entries by status.
 | ID | Title |
 |---|---|
 | [FND-VIDEO-001](../../findings/FND-VIDEO-001.md) | The five numbered FLI files are 320x200 8-bit animations whose frame records cover each file and number one more than the header's frame count |
-| [FND-VIDEO-002](../../findings/FND-VIDEO-002.md) | Overlay 196 plays an FLI file to the screen, one frame record every given number of 1 ms ticks, and stops after the header's frame count |
-| [FND-VIDEO-003](../../findings/FND-VIDEO-003.md) | The game sets BIOS mode 0x13 and unchains it for play, uses plain mode 0x13 for cinematics and mode 3 on exit, while the INT 10h wrapper at 1000:1136 serves text services |
 | [FND-VIDEO-004](../../findings/FND-VIDEO-004.md) | The cinematic routine of overlay 187 copies n.FLI from the disc's CINE directory when it is not installed and plays it with song n + 35 |
-| [FND-VIDEO-005](../../findings/FND-VIDEO-005.md) | The cinematic routine runs at startup with cinematic 1 unless a test switch picks another, and from script opcode 0x22 with request 6 |
 | [FND-VIDEO-006](../../findings/FND-VIDEO-006.md) | The cinematic fallback shows two or three BMP resources per cinematic for up to 8 seconds each, and more for cinematic 5 |
 | [FND-VIDEO-007](../../findings/FND-VIDEO-007.md) | Entering regions 0x3E, 0x42, 0x43 and 0x44 copies cinematics 2, 4, 5 and 3 from the disc to the installation ahead of their use |
+| [FND-VIDEO-008](../../findings/FND-VIDEO-008.md) | Overlay 196 plays an FLI file to the screen, one frame record every given number of 1 ms ticks, and stops after the header's frame count |
+| [FND-VIDEO-009](../../findings/FND-VIDEO-009.md) | The game sets BIOS mode 0x13 and unchains it for play, uses plain mode 0x13 for cinematics and mode 3 on exit, while the INT 10h wrapper at 1000:1136 serves text services |
+| [FND-VIDEO-010](../../findings/FND-VIDEO-010.md) | The cinematic routine runs at startup with cinematic 1 unless a test switch picks another, and from script opcode 0x22 with request 6 |
 
 ## Open questions
 

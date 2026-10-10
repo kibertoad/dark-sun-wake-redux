@@ -44,16 +44,21 @@ Entries by status.
 
 ## superseded
 
-17 entries.
+22 entries.
 
 | ID | Title |
 |---|---|
+| [FND-CONFIG-004](../../findings/FND-CONFIG-004.md) | SOUND_DS.EXE reads sound.ini and writes the 59 bytes of sound.cfg, run by SOUND.BAT |
 | [FND-CONFIG-015](../../findings/FND-CONFIG-015.md) | Overlay 171 writes difficulty 3 only after a record-field threshold test |
 | [FND-CONFIG-016](../../findings/FND-CONFIG-016.md) | Literal PREF tags occur in save-load code and one resident data site |
+| [FND-CONFIG-022](../../findings/FND-CONFIG-022.md) | Sound setup populates the nine-byte SOUND.CFG tail from a record and a constant |
 | [FND-CONFIG-047](../../findings/FND-CONFIG-047.md) | Overlay 195 routes guarded combat feedback through the shared message entry |
 | [FND-CONFIG-057](../../findings/FND-CONFIG-057.md) | Overlay 189 sends four guarded inventory and item-interaction messages |
 | [FND-CONFIG-071](../../findings/FND-CONFIG-071.md) | Startup calls the guarded save-capacity message helper after resource initialization |
 | [FND-CONFIG-078](../../findings/FND-CONFIG-078.md) | The stored-character list opens with a message-capable window callback |
+| [FND-CONFIG-081](../../findings/FND-CONFIG-081.md) | The resident pointer path returns a matched button number as an event-two identifier |
+| [FND-CONFIG-082](../../findings/FND-CONFIG-082.md) | The keyboard packet supplies the event-six word to the global fallback |
+| [FND-CONFIG-090](../../findings/FND-CONFIG-090.md) | The item-feedback callback limits mouse event bits before its shared message path |
 | [FND-CONFIG-091](../../findings/FND-CONFIG-091.md) | Two guarded overlay 178 calls feed overlay 175's no-effect and money-message branches |
 | [FND-CONFIG-105](../../findings/FND-CONFIG-105.md) | Overlay 174 supplies three zero-byte-gate routes to the feedback selector |
 | [FND-CONFIG-107](../../findings/FND-CONFIG-107.md) | Overlay 211 supplies two zero-gate selector calls with stored and selection-table codes |
@@ -75,7 +80,6 @@ Entries by status.
 | [FND-CONFIG-001](../../findings/FND-CONFIG-001.md) | The installed CHARSAVE.GFF holds one 9-byte PREF resource, number 100 |
 | [FND-CONFIG-002](../../findings/FND-CONFIG-002.md) | The PREF tag bytes occur once in the resident image of DSUN.EXE, inside a label, and three times in overlay 192 |
 | [FND-CONFIG-003](../../findings/FND-CONFIG-003.md) | SOUND.CFG is 59 bytes: two equal 10-byte blocks, a word, two 14-byte driver names and nine more bytes |
-| [FND-CONFIG-004](../../findings/FND-CONFIG-004.md) | SOUND_DS.EXE reads sound.ini and writes the 59 bytes of sound.cfg, run by SOUND.BAT |
 | [FND-CONFIG-005](../../findings/FND-CONFIG-005.md) | DSUN.EXE reads sound.cfg through its sound library and warns when it cannot |
 | [FND-CONFIG-006](../../findings/FND-CONFIG-006.md) | SOUND_DS.EXE does not hold .adv in either case |
 | [FND-CONFIG-007](../../findings/FND-CONFIG-007.md) | SOUND.INI is a list of sound cards written as bracketed tags with values |
@@ -91,7 +95,6 @@ Entries by status.
 | [FND-CONFIG-019](../../findings/FND-CONFIG-019.md) | The sound-library file entry loads SOUND.CFG whole without field parsing |
 | [FND-CONFIG-020](../../findings/FND-CONFIG-020.md) | Sound initialization reads four SOUND.CFG fields and rewrites one conditionally |
 | [FND-CONFIG-021](../../findings/FND-CONFIG-021.md) | Sound initialization passes the first configuration block and tests more flags |
-| [FND-CONFIG-022](../../findings/FND-CONFIG-022.md) | Sound setup populates the nine-byte SOUND.CFG tail from a record and a constant |
 | [FND-CONFIG-023](../../findings/FND-CONFIG-023.md) | SOUND.CFG tail words select ADV resource requests and conditional paths |
 | [FND-CONFIG-024](../../findings/FND-CONFIG-024.md) | ADV selector pairs each resource number with one settings block |
 | [FND-CONFIG-025](../../findings/FND-CONFIG-025.md) | The resident PREF bytes are part of a Preferences label |
@@ -146,8 +149,6 @@ Entries by status.
 | [FND-CONFIG-077](../../findings/FND-CONFIG-077.md) | Overlay 204 rest messages have handler and script-request caller routes |
 | [FND-CONFIG-079](../../findings/FND-CONFIG-079.md) | The resident event dispatcher calls a loaded window's callback at offset 0xF5 |
 | [FND-CONFIG-080](../../findings/FND-CONFIG-080.md) | Two event-record discriminators reach the stored-character list message branch |
-| [FND-CONFIG-081](../../findings/FND-CONFIG-081.md) | The resident pointer path returns a matched button number as an event-two identifier |
-| [FND-CONFIG-082](../../findings/FND-CONFIG-082.md) | The keyboard packet supplies the event-six word to the global fallback |
 | [FND-CONFIG-083](../../findings/FND-CONFIG-083.md) | The stored-character list callback is also installed as the global event fallback |
 | [FND-CONFIG-084](../../findings/FND-CONFIG-084.md) | A shared-message path restores its prior global callback after temporary registration |
 | [FND-CONFIG-085](../../findings/FND-CONFIG-085.md) | Overlay 182 installs the resident key callback and clears it on separate paths |
@@ -155,7 +156,6 @@ Entries by status.
 | [FND-CONFIG-087](../../findings/FND-CONFIG-087.md) | The class-choice message branch skips callback registration and the registered handler can restore its predecessor |
 | [FND-CONFIG-088](../../findings/FND-CONFIG-088.md) | An overlay 213 window callback reaches the shared message entry through one guarded control event |
 | [FND-CONFIG-089](../../findings/FND-CONFIG-089.md) | A button in one overlay 213 window can supply the guarded message event identifier |
-| [FND-CONFIG-090](../../findings/FND-CONFIG-090.md) | The item-feedback callback limits mouse event bits before its shared message path |
 | [FND-CONFIG-092](../../findings/FND-CONFIG-092.md) | Overlay 175 registers a separate frame handler whose value-32 branch enters item feedback |
 | [FND-CONFIG-093](../../findings/FND-CONFIG-093.md) | The shipped 13501 window supplies all six item-feedback frames with value 32 enabled |
 | [FND-CONFIG-094](../../findings/FND-CONFIG-094.md) | The resident pointer APFM branch maps input bit 4 to the item-feedback handler's value 32 |
@@ -267,6 +267,11 @@ Entries by status.
 | [FND-CONFIG-210](../../findings/FND-CONFIG-210.md) | The runtime allocation wrapper clears a wrapped product in bounded chunks after a nonnull heap return |
 | [FND-CONFIG-211](../../findings/FND-CONFIG-211.md) | Heap acquisition writes paragraph headers through exact removal, tail splitting and memory-request paths |
 | [FND-CONFIG-212](../../findings/FND-CONFIG-212.md) | Heap request arithmetic separates a signed high-word gate from wrapped far-address normalization |
+| [FND-CONFIG-213](../../findings/FND-CONFIG-213.md) | SOUND_DS.EXE reads sound.ini and writes the 59 bytes of sound.cfg, run by SOUND.BAT |
+| [FND-CONFIG-214](../../findings/FND-CONFIG-214.md) | Sound setup populates the nine-byte SOUND.CFG tail from a record and a constant |
+| [FND-CONFIG-215](../../findings/FND-CONFIG-215.md) | The resident pointer path returns a matched button number as an event-two identifier |
+| [FND-CONFIG-216](../../findings/FND-CONFIG-216.md) | The keyboard packet supplies the event-six word to the global fallback |
+| [FND-CONFIG-217](../../findings/FND-CONFIG-217.md) | The item-feedback callback limits mouse event bits before its shared message path |
 
 ## Open questions
 

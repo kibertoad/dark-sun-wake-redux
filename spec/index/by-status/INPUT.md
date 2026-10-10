@@ -21,6 +21,15 @@ Entries by status.
 |---|---|
 | [RULE-INPUT-002](../../rules/RULE-INPUT-002.md) | Which image the pointer shows for each mode, and its hotspot |
 
+## superseded
+
+2 entries.
+
+| ID | Title |
+|---|---|
+| [FND-INPUT-004](../../findings/FND-INPUT-004.md) | Eleven INT 33h wrappers in segment 45B9 pass mouse services through to their callers |
+| [FND-INPUT-006](../../findings/FND-INPUT-006.md) | The BIOS shift-flag routine 44B6:0011 has eleven far callers |
+
 ## recorded
 
 9 entries.
@@ -30,12 +39,12 @@ Entries by status.
 | [FND-INPUT-001](../../findings/FND-INPUT-001.md) | ICON 19101 to 19110 are ten one-frame pointer images |
 | [FND-INPUT-002](../../findings/FND-INPUT-002.md) | Six captures show the Walk, ranged-attack and Look pointers and their invalid versions |
 | [FND-INPUT-003](../../findings/FND-INPUT-003.md) | One routine holds the numbers of ICON 19101 to 19108, and an overlay routine calls it under a byte guard |
-| [FND-INPUT-004](../../findings/FND-INPUT-004.md) | Eleven INT 33h wrappers in segment 45B9 pass mouse services through to their callers |
 | [FND-INPUT-005](../../findings/FND-INPUT-005.md) | The keyboard interrupt hook and the mouse event handler both send packets to 4464:0230 |
-| [FND-INPUT-006](../../findings/FND-INPUT-006.md) | The BIOS shift-flag routine 44B6:0011 has eleven far callers |
 | [FND-INPUT-007](../../findings/FND-INPUT-007.md) | No resident instruction reads port 60h or sets DX to 60h or 64h before port I/O |
 | [FND-INPUT-008](../../findings/FND-INPUT-008.md) | No decoded function of the overlay-mapped image compares all the manual combat keys |
 | [FND-INPUT-009](../../findings/FND-INPUT-009.md) | The one dispatch-shaped caller above the mapped keyboard routine requests GPLI 1 |
+| [FND-INPUT-010](../../findings/FND-INPUT-010.md) | Eleven INT 33h wrappers in segment 45B9 pass mouse services through to their callers |
+| [FND-INPUT-011](../../findings/FND-INPUT-011.md) | The BIOS shift-flag routine 44B6:0011 has eleven far callers |
 
 ## Open questions
 

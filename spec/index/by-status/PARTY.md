@@ -31,9 +31,21 @@ Entries by status.
 | [FMT-PARTY-005](../../formats/FMT-PARTY-005.md) | Character SPST record |
 | [RULE-PARTY-006](../../rules/RULE-PARTY-006.md) | START GAME supplies characters 40 to 43 as the party |
 
+## superseded
+
+5 entries.
+
+| ID | Title |
+|---|---|
+| [FND-PARTY-024](../../findings/FND-PARTY-024.md) | The view-mode word at DS:0DAB and the word at DS:0D9C start at 0, and the routines that can make them nonzero first |
+| [FND-PARTY-025](../../findings/FND-PARTY-025.md) | The two calls before the party-loader gate reserve off-screen video memory, and fail only when the reservation table or the pool is full |
+| [FND-PARTY-026](../../findings/FND-PARTY-026.md) | No direct call made between program start and the party-loader gate reaches a writer of the placed-object count or of the gate's mode words |
+| [FND-PARTY-027](../../findings/FND-PARTY-027.md) | Startup holds a full-screen reservation of the video-memory pool, which leaves 1,067 paragraphs for later reservations |
+| [FND-PARTY-028](../../findings/FND-PARTY-028.md) | Of the other reservations before the party-loader gate, the scroll routine releases all it takes, and two routines each keep one entry |
+
 ## recorded
 
-28 entries.
+38 entries.
 
 | ID | Title |
 |---|---|
@@ -60,11 +72,21 @@ Entries by status.
 | [FND-PARTY-021](../../findings/FND-PARTY-021.md) | START GAME reaches the overlay 182 party loader through two overlay 182 routines, gated on an empty placed-object table |
 | [FND-PARTY-022](../../findings/FND-PARTY-022.md) | The placed-object count starts at 0, and eight direct stores in five routines change it |
 | [FND-PARTY-023](../../findings/FND-PARTY-023.md) | The resource-to-slot loader 2D40:000A returns 0xFFFF when either resource lookup it makes fails |
-| [FND-PARTY-024](../../findings/FND-PARTY-024.md) | The view-mode word at DS:0DAB and the word at DS:0D9C start at 0, and the routines that can make them nonzero first |
-| [FND-PARTY-025](../../findings/FND-PARTY-025.md) | The two calls before the party-loader gate reserve off-screen video memory, and fail only when the reservation table or the pool is full |
-| [FND-PARTY-026](../../findings/FND-PARTY-026.md) | No direct call made between program start and the party-loader gate reaches a writer of the placed-object count or of the gate's mode words |
-| [FND-PARTY-027](../../findings/FND-PARTY-027.md) | Startup holds a full-screen reservation of the video-memory pool, which leaves 1,067 paragraphs for later reservations |
-| [FND-PARTY-028](../../findings/FND-PARTY-028.md) | Of the other reservations before the party-loader gate, the scroll routine releases all it takes, and two routines each keep one entry |
+| [FND-PARTY-029](../../findings/FND-PARTY-029.md) | The view-mode word at DS:0DAB and the word at DS:0D9C start at 0, and the routines that can make them nonzero first |
+| [FND-PARTY-030](../../findings/FND-PARTY-030.md) | The two calls before the party-loader gate reserve off-screen video memory, and fail only when the reservation table or the pool is full |
+| [FND-PARTY-031](../../findings/FND-PARTY-031.md) | No direct call made between program start and the party-loader gate reaches a writer of the placed-object count or of the gate's mode words |
+| [FND-PARTY-032](../../findings/FND-PARTY-032.md) | Startup holds a full-screen reservation of the video-memory pool, which leaves 1,067 paragraphs for later reservations |
+| [FND-PARTY-033](../../findings/FND-PARTY-033.md) | Of the other reservations before the party-loader gate, the scroll routine releases all it takes, and two routines each keep one entry |
+| [FND-PARTY-034](../../findings/FND-PARTY-034.md) | The party loader opens CHARSAVE.GFF from the program's own directory before each character load, and a failed open prints a message and ends the program |
+| [FND-PARTY-035](../../findings/FND-PARTY-035.md) | The caret routine releases its earlier entries before making new ones, and the pointer save takes at most 2 paragraphs unless a routine swaps in another pointer image |
+| [FND-PARTY-036](../../findings/FND-PARTY-036.md) | Every ICON frame needs at most 6 paragraphs for the pointer save, and the pointer becomes a larger image only through 14 direct call sites |
+| [FND-PARTY-037](../../findings/FND-PARTY-037.md) | No direct route from program start to the party-loader gate reaches a call that makes the pointer an image other than an ICON |
+| [FND-PARTY-038](../../findings/FND-PARTY-038.md) | The C run time copies the program path after the environment as argv[0] on DOS 3 or later, and passes an empty string on earlier versions |
+| [FND-PARTY-039](../../findings/FND-PARTY-039.md) | Most pointers behind the indirect calls before the party-loader gate hold fixed routine lists, two are never set, and the record fields stay unread |
+| [FND-PARTY-040](../../findings/FND-PARTY-040.md) | Before the party-loader gate, routes to the count, DS:0DAB and pointer writers open only through the script interpreter's opcodes or its loader-error routine |
+| [FND-PARTY-041](../../findings/FND-PARTY-041.md) | MAS 99 runs straight through string and number assignments and opcodes 0x6D and 0x70 to its stop, and none of their handlers reaches the count, DS:0DAB or pointer writers |
+| [FND-PARTY-042](../../findings/FND-PARTY-042.md) | GPLDATA.GFF is registered before the MAS 99 call and nothing on the way unregisters it, so the load can fail only on a file call's result |
+| [FND-PARTY-043](../../findings/FND-PARTY-043.md) | The call through [di+0x6393] picks one of four text-layout routines, and the call through the text record's +0x0C field is skipped once the record is set |
 
 ## Open questions
 
