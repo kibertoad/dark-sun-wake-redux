@@ -1,0 +1,37 @@
+{
+ "starts": [
+  "209+123E"
+ ],
+ "targets": [
+  "31E0:05BB",
+  "0x27556",
+  "0x27CA2",
+  "0x27F48",
+  "0x60AE6",
+  "0x6F01D",
+  "0x6F123",
+  "0x713F3",
+  "0x74163",
+  "0x7750A",
+  "0x257E6"
+ ],
+ "controls": [
+  "0x59BFB"
+ ],
+ "leaves": [
+  {
+   "site": "1000:0388",
+   "reason": "FND-PARTY-039, FND-PARTY-043: the exit worker, which runs only as the program ends"
+  },
+  {
+   "site": "31E0:0D09",
+   "reason": "FND-PARTY-135: the eviction loop, which handles slots of 0x30 and above"
+  }
+ ],
+ "noReturn": [
+  {
+   "routine": "31E0:0D09",
+   "reason": "FND-PARTY-135: the eviction loop, which handles slots of 0x30 and above"
+  }
+ ]
+}

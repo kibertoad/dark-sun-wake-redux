@@ -22,8 +22,12 @@ Next ID: Q-PARTY-066
   FND-PARTY-136 show it is a slot from the free lists, or one the eviction frees, which skips slots
   below 0x30, and that the lists hold a party slot only after `2D40:03C1` frees it. FND-PARTY-137
   finds the DUAL path reaching `2D40:03C1` only below the view draw's object load, where the slots
-  freed are 0x13F or evicted ones; left are the slots that overlay 188 `+12C3` and `2D40:31E6`
-  free on those routes.
+  freed are 0x13F or evicted ones. FND-PARTY-138 reads every release: only the unload `31E0:05BB`
+  can free a party slot, the DUAL routine reaches it only through overlay 187 `+1B67`, which
+  unloads slots 5 to 0x13F, and overlay 171 `+0D15`, which unloads the current character, is
+  reached from seven mode-2 handlers but not from the message window's overlay 172 `+04C5`; left
+  is which handlers are registered while the DUAL path's message window is up, since the walks
+  leave the calls through `DS:A0F1`, `DS:A0F5` and `DS:A0F9` unresolved.
   Blocks: slice 2.
 - Q-PARTY-053. RULE-PARTY-013: How do the spell window of overlay 209 `+0218` and the psionic
   power window of overlay 209 `+0A84` behave as screens, so that `gain_one_level` can show them
