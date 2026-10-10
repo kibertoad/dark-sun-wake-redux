@@ -187,6 +187,13 @@ An owner-approved history repair remains separate from this maintenance scope.
   below the view draw's 31E0:0EFF (slots 0x13F or evicted >= 0x30), not the overlay 175/184/187/189
   releases. Q-PARTY-026 left: slots freed by 188+12C3 and 2D40:31E6 on those routes. Commented on
   protocol #95 (two more supersessions needing the three-commit workaround).
+- FND-PARTY-138 (q026_dual_unload_reach.json, q026_mode2_handlers_release_reach.json, eviction
+  31E0:0D09 cut): every release frees a slot >= 4 except 31E0:0556, which frees the slot of the
+  entry 31E0:05BB unloads. The DUAL walk reaches 05BB only via 187+1B67 (slots 5..0x13F). 171+0D15
+  unloads the slot in 4E71:0B44 and is reached from seven mode-2 handlers via 190+0D89, not from
+  172+04C5. Q-PARTY-026 left: which handlers are registered while the DUAL message window is up.
+  Filed toolkit #466 (reach: which starts reach each target), after checking #322, #412, #413,
+  #457, #462 and #465.
 - Upstream duplicate checks for this session's points: the old DS:0DAB finding's wrong address
   was a project error that IDENTIFIERS-8 (protocol #66) already covers, so no issue was filed;
   #96 was filed after searching protocol #46, #66, #95 and toolkit #436, #269, #80; the
