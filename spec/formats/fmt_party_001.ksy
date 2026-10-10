@@ -46,8 +46,9 @@ seq:
     size: 2
   - id: combat_mark
     type: u1
-  - id: unk_1f
+  - id: combatant_kind
     type: u1
+    doc: The combatant's kind, which sets its side; 0 is the party's own kind.
   - id: thac0
     type: u1
     doc: 20 less the best class group's level term.

@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_001.ksy
-evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057, FND-PARTY-058, FND-PARTY-059, FND-PARTY-073, FND-PARTY-066, FND-PARTY-074, FND-PARTY-081, FND-PARTY-082, FND-PARTY-083, FND-PARTY-085, FND-PARTY-086, FND-PARTY-091, FND-PARTY-100, FND-PARTY-096, FND-PARTY-099, FND-PARTY-108, FND-PARTY-071, FND-PARTY-070, FND-PARTY-142]
+evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057, FND-PARTY-058, FND-PARTY-059, FND-PARTY-073, FND-PARTY-066, FND-PARTY-074, FND-PARTY-081, FND-PARTY-082, FND-PARTY-083, FND-PARTY-085, FND-PARTY-086, FND-PARTY-091, FND-PARTY-100, FND-PARTY-096, FND-PARTY-099, FND-PARTY-108, FND-PARTY-071, FND-PARTY-070, FND-PARTY-142, FND-PARTY-095, FND-PARTY-143]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-006]
@@ -46,7 +46,7 @@ offsets hold for every record the game writes and reads back.
 | `0x1A` | 2 | `UINT16LE` | `object_offset` | 300 plus this is the object number placed for the character when it is added to the party or supplied by START GAME (RULE-PARTY-006); 0 to 13 in the shipped records. | supported | FND-PARTY-013, FND-PARTY-048, FND-PARTY-049 |
 | `0x1C` | 2 | `BYTE[2]` | `unk_1c` | Purpose unknown. A load copies it to bytes `0x12` and `0x13` of the FMT-COMBAT-001 record. | supported | FND-PARTY-049 |
 | `0x1E` | 1 | `UINT8` | `combat_mark` | A load copies it to the FMT-COMBAT-001 record's `combat_mark` and makes that 1 when it is 0; 0 or 1 in the shipped records. | supported | FND-PARTY-049, FND-PARTY-050 |
-| `0x1F` | 1 | `UINT8` | `unk_1f` | Purpose unknown. A load copies it to byte `0x15` of the FMT-COMBAT-001 record. | supported | FND-PARTY-049 |
+| `0x1F` | 1 | `UINT8` | `combatant_kind` | The combatant's kind, which sets its side (FND-PARTY-095). A load copies it to byte `0x15` of the FMT-COMBAT-001 record; 0, the party's own kind, in the shipped records. | supported | FND-PARTY-049, FND-PARTY-095, FND-PARTY-143 |
 | `0x20` | 1 | `UINT8` | `thac0` | 20 less the best, over the class groups, of the group's greatest level less 1 times the group's rate (8 priest, 12 warrior, 4 wizard, 6 rogue) over 12. A load copies it to byte `0x16` of the FMT-COMBAT-001 record; storing a character, a class change and each level gained in play set it. The attack routine of overlay 173 takes it as the attacker's THAC0: an attack hits on a roll of 1 to 20 that is 20, or not 1 and at least the THAC0 less bonuses less a value for the target. | supported | FND-PARTY-049, FND-PARTY-085, FND-PARTY-091 |
 | `0x21` | 1 | `UINT8` | `unk_21` | Purpose unknown. A load copies it to byte `0x17` of the FMT-COMBAT-001 record. | supported | FND-PARTY-049 |
 | `0x22` | 1 | `UINT8` | `control_flags` | A load copies it to the FMT-COMBAT-001 record's byte at `0x18`, whose bits 5 and 6 are `computer_control` and `control_locked`; 0 in the shipped records. | supported | FND-PARTY-049, FND-PARTY-050 |
@@ -134,7 +134,7 @@ ends within its slot [FND-PARTY-001, FND-PARTY-005, FND-PARTY-052].
 
 ## Open questions
 
-- What `unk_04`, `unk_0e`, `unk_12`, `unk_1c`, `unk_1f`, `unk_21`, `unk_29`, `unk_53`,
+- What `unk_04`, `unk_0e`, `unk_12`, `unk_1c`, `unk_21`, `unk_29`, `unk_53`,
   `unk_66`, `unk_7b` and `unk_81` hold. The two chunks at `0x00` and `0x3B` are the only ones that
   reach the combatant and details records, so the screen's values are in them or in the records of
   the later chunks (FND-PARTY-020, FND-PARTY-051, FND-PARTY-057, FND-PARTY-058,
