@@ -4,11 +4,13 @@ Next ID: Q-PARTY-027
 
 ## Static
 
-- Q-PARTY-026. FMT-PARTY-001: When overlay 190 edits a stored character through overlay 184
-  `+1606`, does the word at `4E71:0B44` already hold the edited slot when `+1DCE` reads the class
-  bytes of the record it numbers, or can the edit take another character's classes
-  (FND-PARTY-063)? Settles it: a reading of the other writers of the word (file `0x75CBC`,
-  `0x78934` and `0x93170`) and of overlay 190 up to `+1004`. Blocks: slice 2.
+- Q-PARTY-026. FMT-PARTY-001: On the DUAL path, does anything the routine at overlay 209 `+123E`
+  calls before `+14FF` store another slot in the word at `4E71:0B44`, so that overlay 184 `+1DCE`
+  takes the class bytes of a different character from the one whose records it copies
+  (FND-PARTY-063, FND-PARTY-064)? Settles it: a reach query from overlay 209 `+123E` to `+14FF`
+  over the calls it makes, checking which of the 11 stores to the word it reaches and with what
+  value. Tried: FND-PARTY-064 reads the other three callers of `+1DCE` and the edit path, where the
+  slots are the same; the DUAL path's calls were not followed. Blocks: slice 2.
 - Q-PARTY-002. RULE-PARTY-002, RULE-PARTY-003, RULE-PARTY-005, RULE-PARTY-007: What does the
   character generation screen check and offer: which classes it offers each origin where the
   manual's two lists and README table 3 disagree (half-giant ranger or thief, mul druid,
