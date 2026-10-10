@@ -77,10 +77,11 @@ An owner-approved history repair remains separate from this maintenance scope.
   session/protocol-host-queue-20261009 holds the integrated planning batch moving Q-EXE-006/009/012/013 to Blocked and updating Q-EXE-011's scope restriction.
 - Isolated validation: EVIDENCE_PYTHON=artifacts/evidence-python-exe548/Scripts/python.exe matches the current hash-locked engine and test-only Unicorn; its full gate passed after the shared environment/lock integration mismatch.
 - Environment: use the checkout's portable PowerShell
-  (artifacts/pwsh7/runtime/pwsh.exe) and locked evidence-python interpreter. Clear GAME_DIR and NoDefaultCurrentDirectoryInExePath. TEMP/TMP must belong to the account actually executing the process. Under CodexSandboxOffline, explicitly set TEMP/TMP to C:/Users/CodexSandboxOffline/AppData/Local/Temp; the inherited kiber temp directory fails Java real-path resolution even when Node can
+  (artifacts/pwsh7/runtime/pwsh.exe) and locked evidence-python interpreter. Clear NoDefaultCurrentDirectoryInExePath. GAME_DIR may stay set: licensed tests and the resident-call CLI find the game with tools/game-dir.mjs (config path or DARK_SUN_WAKE_REDUX_GAME_DIR), and Test.ps1 passed that way on 2026-10-10; engine100/101/73/91 research scripts still read GAME_DIR. TEMP/TMP must belong to the account actually executing the process. Under CodexSandboxOffline, explicitly set TEMP/TMP to C:/Users/CodexSandboxOffline/AppData/Local/Temp; the inherited kiber temp directory fails Java real-path resolution even when Node can
   create files there. The sandbox command runner fails before process creation; approved escalated commands work, and node_repl child_process is a fallback for read-only checks. Git writes require the escalated runner. Scope Git trust to this checkout with -c safe.directory or inherited GIT_CONFIG_COUNT/KEY/VALUE for child Git calls; do not change global trust. For hooks export the checkout's
   artifacts/hook-tmp as TMPDIR inside Git Bash. Keep hooks enabled. Reuse the saved Ghidra program with -noanalysis. Use the installed Temurin 25.0.4.1 runtime at C:/Program Files/Eclipse Adoptium/jdk-25.0.4.101-hotspot; docs/GHIDRA.md now names that verified path. For combined script directories, follow the corrected literal quoting in docs/GHIDRA.md; both directories
   were verified through the Windows launcher. Original-program execution remains prohibited.
+- Tool locks on goal/protocol-work: reader 2.8.0, checker 4.1.1 (upstream revision ad55105), engine 15.3.0. Toolkit #414's dinorefurb-dosbox-session 0.1.0 is recorded in docs/RUNTIME.md only; agents may use it only after the owner lifts the AGENTS.md DOSBox rule.
 - Template context: template 0b9ab9c, rules 11884c7 and checker 2.9.0 are
   integrated on main; engine 13.6.0 and reader 2.5.0 exact locks passed restore and the full gate. Assetless Test.ps1 passed on 2026-10-08. The initial synthetic capture timing failure passed in isolation and in the full rerun. On goal/protocol-work, checker 4.0.1 and rules a9884ae replace 2.9.0 and
   11884c7 (2d530bb); the full gate passed with the environment in docs/implementation-plans/LATEST-TEMPLATE-SYNC.md. Write range ends half-open (research-item skill). Generated indexes were refreshed on main. Archive member citations are qualified; toolkit issue 353 has the new archive case. Template issue 90
@@ -188,7 +189,7 @@ An owner-approved history repair remains separate from this maintenance scope.
      Installed DSUN.EXE is the sole game-code target; prior disc comparisons remain historical under docs/SOURCE-EDITIONS.md.
   3. Done: the overlay manager in segment 4AE5 (FND-EXE-560 to
      FND-EXE-569) closed Q-EXE-001. FND-EXE-570 records the disc edition; FND-EXE-571 covers segment spans.
-     Q-EXE-024 (Source) asks only what flags 0, 1 and 4 mean. Toolkit #323 tracks inventory-check, #401 the instruction limit, and #402 span offsets; answer them when the toolkit replies. Next bounded
+     Q-EXE-024 (Source) asks only what flags 0, 1 and 4 mean. Toolkit #401 (instruction limit, engine 15.2.0), #323 (inventory-check inside-instruction targets, 15.3.0) and #369 (reader 2.8.0 bodies report, which replaced tools/evidence/overlay-bodies.mjs) are answered with validation on 2026-10-10; #402 (span offsets) waits on the toolkit. Next bounded
      game-code reading: pick from standard-coverage's uncited DSUN.EXE
      functions. For field-offset searches use the engine's
      operand-candidates first. IDs from FND-EXE-560 up are this session's;
@@ -211,8 +212,11 @@ An owner-approved history repair remains separate from this maintenance scope.
      +11D5 and the gate. FND-PARTY-045 (q017_*.json, one start per handler) shows Load Saved
      Game opens no route unless a load is confirmed (DS:0690 guards 192+03AC; only overlay 204
      +044A sets it) and that Create Characters (window 11500) sends its events to overlay 190
-     +139B/+0D89/+0802, which reach two count stores. Next PARTY item: Q-PARTY-017, which of
-     those overlay 190 routes the character screen's actions take; Q-PARTY-018 asks whether
+     +139B/+0D89/+0802, which reach two count stores. Next PARTY item: Q-PARTY-017. Unrecorded lead: the character box's ADD
+     (190+0D89, choice 2) opens WIND 0x4845 via 171+0126; its OK with a selection calls
+     171+0AA5, which loads CHAR into 4E71:0B44 and calls 31E0:0121 (inc [264E] at 31E0:01E3)
+     at 171+0C25, and Esc back to the start window (190+1953, 194+037B) resets nothing; NEW
+     (184+07D8) is unresolved; Q-PARTY-018 asks whether
      START GAME is still reachable after a confirmed load. Inventory rows 3EBE:001F, 3EBE:09B6 and
      1000:02AD have boundary anomalies (FND-PARTY-044); upstream: toolkit #412 (reach no-return
      declarations) and #413 (inventory row starts inside instructions). The owner asked about
