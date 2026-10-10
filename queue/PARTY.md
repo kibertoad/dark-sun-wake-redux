@@ -39,10 +39,10 @@ Next ID: Q-PARTY-017
   slot? Settles it: the handler the keys 1 to 4 reach in overlay 190, which posts an event for
   the character boxes `0x2C24` to `0x2C27` (FND-COMBAT-025), and the writers of `leader`. Tried:
   the leader buttons, which store the slot at `4C13:0369` (FND-COMBAT-023). Blocks: slice 3.
-- Q-PARTY-011. RULE-PARTY-006: Can any of the 9 indirect calls whose targets FND-PARTY-039 and
+- Q-PARTY-011. RULE-PARTY-006: Can any of the 7 indirect calls whose targets FND-PARTY-039 and
   FND-PARTY-040 leave open on the paths from program start through START GAME to the gate at
-  overlay 182 offset `0x12DD` (the 8 calls through record fields at `ES:BX` and `ES:SI`, and
-  `call [di+0x6393]` at `0x1767E`, whose `DS` was not traced), other than through a failed file
+  overlay 182 offset `0x12DD` (the calls through fields of the record at `ES:BX` at `0x2F712`,
+  `0x301E7`, `0x30397`, `0x32A4A`, `0x32EB0`, `0x332E7` and `0x334F7`), other than through a failed file
   call while `MAS` 99 loads (FND-PARTY-042), reach a routine that changes the placed-object count
   at `DS:264E` (FND-PARTY-022), makes the word at `DS:0DAB` nonzero (FND-PARTY-029), or makes the mouse
   pointer an image other than an `ICON`, through `3D72:120B`, `3D72:12ED` or one of the 14 sites
@@ -60,7 +60,10 @@ Next ID: Q-PARTY-017
   unenumerated (FND-PARTY-039); and `reach` rounds that add those values as starts once their
   writers are reached, whose only routes to the targets pass the run of `MAS` 99
   (FND-PARTY-040), whose instructions open none (FND-PARTY-041) and whose load fails only on a
-  file call's result (FND-PARTY-042). Blocks: slice 2.
+  file call's result (FND-PARTY-042); the call through `[di+0x6393]` and the text record's
+  `+0x0C` call, which reach none and are skipped once `39D1:0009` sets the record; a run before
+  that point leaves 35 calls unresolved, among them `0x7B8A` and `0x4041B`, outside
+  FND-PARTY-039's table (FND-PARTY-043). Blocks: slice 2.
 
 ## Emulated call
 

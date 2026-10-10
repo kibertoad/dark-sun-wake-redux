@@ -79,7 +79,8 @@ None known.
   only opcodes whose handlers reach none (FND-PARTY-040, FND-PARTY-041). `GPLDATA.GFF` is open
   when `MAS` 99 loads and nothing before closes it, so the load, whose error routine leads to
   such routines (FND-PARTY-040), fails only on a file call's result (FND-PARTY-042). Still open:
-  9 indirect calls whose targets are unread (FND-PARTY-039, FND-PARTY-040, Q-PARTY-011);
+  7 indirect calls through record fields whose targets are unread (FND-PARTY-039,
+  FND-PARTY-040, FND-PARTY-043, Q-PARTY-011);
   and whether either of the gate routine's two
   video-memory reservations fails (FND-PARTY-030, FND-PARTY-032, FND-PARTY-033). While the
   pointer is an `ICON` neither can fail on space, since the caret and pointer saves then hold at

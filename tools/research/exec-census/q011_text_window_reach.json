@@ -1,0 +1,84 @@
+{
+ "starts": [
+  "1000:1D38",
+  "1000:2C77",
+  "1000:2E86",
+  "1000:3787",
+  "1000:09B0",
+  "180+0867",
+  "1000:030B",
+  "1000:0361",
+  "44DE:0605",
+  "180+06B9",
+  "180+0B5C",
+  "180+08A3",
+  "180+0AC2",
+  "1000:406D",
+  "1000:381E",
+  "167B:003F",
+  "167B:0138",
+  "4AE5:08EB",
+  "4AE5:0AB5",
+  "38FF:000E",
+  "37ED:00B8",
+  "182+0000",
+  "3150:000E",
+  "2D40:3DC2",
+  "4544:0000",
+  "1BF3:2A4A",
+  "1BF3:2973",
+  "1BF3:271B",
+  "180+0026",
+  "4842:06CF",
+  "188+0CD7",
+  "188+046C",
+  "188+0000",
+  "180+0111",
+  "200+02BE",
+  "25AF:000F",
+  "4AE5:0D27",
+  "1000:0886",
+  "1000:11C1",
+  "1000:12D9",
+  "1000:2877",
+  "1000:29AA",
+  "1000:3B56",
+  "172C:0B2E",
+  "172C:0DCD",
+  "172C:1CF7",
+  "172C:1D7A",
+  "172C:1127",
+  "2D40:37F3",
+  "180+0848",
+  "1000:0FB5",
+  "1000:345B",
+  "1000:3726",
+  "1000:129F",
+  "2660:052D",
+  "2660:05CA",
+  "2660:0250",
+  "2660:0447",
+  "180+0000",
+  "49D2:0017"
+ ],
+ "leaves": [
+  {
+   "site": "1000:0388",
+   "reason": "FND-SAVE-012, FND-PARTY-032: the exit worker that 1000:03DF and the other exit entries call; it ends the program, so nothing after it runs on this path"
+  },
+  {
+   "site": "188+1901",
+   "reason": "FND-PARTY-041, FND-PARTY-042: the script error routine 5702:00B1, which MAS 99 reaches only if a file call on GPLDATA.GFF fails"
+  },
+  {
+   "site": "199+0C21",
+   "reason": "FND-PARTY-041: the hook 2D40:37F3 calls it only while the byte at DS:143D is nonzero, which no route before the gate makes it"
+  }
+ ],
+ "targets": [
+  "0x16E3E"
+ ],
+ "controls": [
+  "0x6888D"
+ ]
+}
