@@ -4,7 +4,7 @@ title: How experience is given to party members
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-081, FND-PARTY-086, FND-PARTY-087, FND-SCRIPT-005]
+evidence: [FND-PARTY-081, FND-PARTY-086, FND-PARTY-089, FND-SCRIPT-005]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-013, FMT-PARTY-001]
@@ -30,7 +30,7 @@ when damage leaves a combatant out of the fight, with its `combat_mark` above 2 
 `combat_mark` and `kind`, the combatant record's bytes at `0x14` and `0x15`; `counted`, the number
 of its classes counted (FND-PARTY-081); `experience` and `kill_experience`, the FMT-PARTY-001
 fields. `amount`, a signed 16-bit award. `gain_deferred`, true while the word at `4C10:0019` in
-BLD-GOG-EN-1.1 is not 0, which it is while a fight goes on (FND-PARTY-087). For `script_experience`, `character` and `value`, `script_parameters` 0
+BLD-GOG-EN-1.1 is not 0, which it is while a fight goes on (FND-PARTY-089). For `script_experience`, `character` and `value`, `script_parameters` 0
 and 1. For `share_kill`, `dead_kind` and `dead_kill_experience`, the killed combatant's `kind` and
 the `kill_experience` of its details record, and `filled`, the number of party slots whose state
 byte is not 0.
@@ -105,8 +105,5 @@ None known.
 
 - Whether any enemy's `kill_experience` divided by the filled slots reaches 32,768, so that a
   kill lowers the party's experience: the details records of enemies were not read (Q-PARTY-045).
-- That the word at `4C10:0019` marks a fight going on, and that nothing else sets it: the search
-  for its stores finds only those whose segment register is loaded just before, and the test it
-  follows, overlay 173 `+3304`, was not read in full (Q-PARTY-048).
 - That `kind` 7 to 11 are the enemies and 0, 4, 5 and 6 the party and its allies rests on the
   two masks (Q-PARTY-046).

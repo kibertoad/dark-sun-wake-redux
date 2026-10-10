@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-087
 title: The word at 4C10:0019 that defers the level gain is set to 1 while overlay 173 +3304 reports a fight going on, and when the fight loop ends the party gains levels if any member was still standing
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-089]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

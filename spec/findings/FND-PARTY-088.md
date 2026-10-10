@@ -20,7 +20,7 @@ environment: null
 Overlay offsets are written `descriptor +offset`; file offsets are those of the installed
 `DSUN.EXE`. Before the level gain at overlay 173 `+07AD`, the end of a fight calls overlay 173
 `+3E30`, overlay 195 through `574E:0052`, overlay 206 through `5799:0039` and overlay 173 `+3CDA`
-(`+078D..+07A4`, FND-PARTY-087). `trampoline_target.py` gives `574E:0052` as overlay 195 `+14D5`
+(`+078D..+07A4`, FND-PARTY-089). `trampoline_target.py` gives `574E:0052` as overlay 195 `+14D5`
 and `5799:0039` as overlay 206 `+0B49`.
 
 `store_values.py <dsun> B44`, keeping the stores whose printed instructions load the selector

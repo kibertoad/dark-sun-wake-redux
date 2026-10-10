@@ -42,11 +42,6 @@ Next ID: Q-PARTY-049
 - Q-PARTY-046. RULE-PARTY-015: Are the combatant `kind` values 7 to 11 the enemies and 0, 4, 5 and 6
   the party and its allies (FND-PARTY-086)? Settles it: the code that stores the combatant byte at
   `0x15` for party members and for loaded enemies. Blocks: nothing yet.
-- Q-PARTY-048. RULE-PARTY-013, RULE-PARTY-015: Does overlay 173 `+3304` return a value that is not 0
-  exactly while a fight goes on, and is the word at `4C10:0019` written anywhere besides the six
-  stores FND-PARTY-087 lists (FND-PARTY-087)? Settles it: `+3304` read to its end with its callers
-  at `+1081`, `+10B2` and `+22AB`, and a search for writes to `4C10:0019` through segment registers
-  loaded earlier and through block writes over segment `4C10`. Blocks: slice 2.
 - Q-PARTY-041. FMT-PARTY-001: When does the level drain of overlay 210 `+0B66` run: what overlay
   195 `+0BC9` handles, with which slot, and from where (FND-PARTY-082)? Settles it: a reading of
   overlay 195 around `+0BC9` and of the dispatch that reaches it. Blocks: nothing yet.
