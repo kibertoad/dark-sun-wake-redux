@@ -157,6 +157,13 @@ An owner-approved history repair remains separate from this maintenance scope.
   Negative not usable (37 unresolved); code after a window returns to its caller in mode 2 is
   unread. The cut uses leaf + noReturn on +19F8; filed toolkit #465 for a query-scoped stop
   (searched: #412 noReturn, #413, #457, #462, #404, #322; none covers it).
+- Q-PARTY-065: 20 of the 24 mode-2 openers return to their caller still in mode 2 (a separate
+  close routine calls 182+19F8), so mode-2 code is the main loop dispatching registered handlers
+  (DS:A0F1/A0F5/A0F9, set by 39D1:0418/0430/0448); not yet a finding.
+- FND-PARTY-130 (Q-PARTY-054): of 182+19F8's mode-2 callees only 2C5F:0139 reaches record-pointer
+  loads, all via view draw 31BA:000E -> object load 31E0:0EFF -> 31E0:0B4A when byte 4F49:0C33+3n
+  is 2. Added reach_record_loads.py; commented on toolkit #462 (our own report of the 256-target
+  cap) with the inventory-extent gap it leaves.
 - Upstream duplicate checks for this session's points: the old DS:0DAB finding's wrong address
   was a project error that IDENTIFIERS-8 (protocol #66) already covers, so no issue was filed;
   #96 was filed after searching protocol #46, #66, #95 and toolkit #436, #269, #80; the
