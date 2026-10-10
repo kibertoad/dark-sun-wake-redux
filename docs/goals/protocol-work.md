@@ -131,6 +131,13 @@ An owner-approved history repair remains separate from this maintenance scope.
   or 3 it runs 28C9:250A, 2C5F:0139 and the key-handler setup, then sets DS:0DAB to 1. DS:0DAB
   stores: 182 file 0x69C6E/0x69FA9/0x6A352 (1), 0x69E1F (0), 0x69E5C (4), 0x6A233 (2), resident
   2B1C:0000 (register). FND-COMBAT-011's "only write stores 4" is out of date (COMBAT area).
+- Q-PARTY-054 split (commented on protocol #91 with this and the 052/064 split as data points):
+  Q-PARTY-065 asks DS:0DAB's value when 210+0B44/+0B55 run; Q-PARTY-054 keeps the mode 2/3
+  callees of 182+19F8. FND-PARTY-124 replaces the old DS:0DAB finding (both setter calls lie
+  in 204+12B4, which sets 5 around a 179 call and restores; the old one named a routine at +12F4)
+  and adds
+  that no direct store puts 3 in DS:0DAB, so only mode 2 matters for Q-PARTY-054. Mode 2 is
+  entered by 182+1856 (24 window openers); whether a gain can run while one is open is 065's job.
 - Filed protocol #95: a batch that supersedes an entry the handover cites cannot pass the docs
   check without a handover edit; the workaround is handover commit, batch, handover commit.
 - Template context: template 0b9ab9c, rules 11884c7 and checker 2.9.0 are
