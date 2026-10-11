@@ -87,4 +87,4 @@ for the space: `queue/COMBAT/static.md`, `queue/COMBAT/live-session.md`. Each
 opens with `# COMBAT: Static`. A section file that would still pass is split
 by the kind of the first entry each item names: `queue/COMBAT/static/RULE.md`.
 
-Run `node tools/Check-ResearchTracking.mjs` to validate area queues, stable IDs and active Open questions references. The canonical gate runs it; structural success does not prove research complete.
+Run `node tools/Check-ResearchTracking.mjs` to validate area queues, stable IDs and active Open questions references. It warns, without failing, about a `Static` item with more than three `Tried:` notes: one inherited from a split and two attempts is the most the protocol's rule for repeated attempts leaves, unless the later attempts each took part of `Settles it:` out, which the check cannot see. The canonical gate runs it; structural success does not prove research complete.

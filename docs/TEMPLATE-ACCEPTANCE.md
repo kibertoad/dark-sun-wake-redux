@@ -347,3 +347,12 @@ vendored standard and protocol move to `d8ebc1f` with a refreshed lock. The
 shared libraries (RefurbishedDinosaurs 12.0.0, reader 4.0.0, engine 18.4.0) were
 already at the template's versions and stay pinned. `node tools/Invoke-NodeChecks.mjs`
 passes. No original is run.
+
+## Template acacace adoption, 2026-10-11
+
+Template PR #109 (merge `acacace`) is merged into `tools/Check-ResearchTracking.mjs`,
+its test, the `research-item`, `implement-rows` and `start-session` skills,
+`AGENTS.md`, `queue/README.md` and the template changelog, by hand where the
+local wording differs. The check now warns about a Static item with more than
+three `Tried:` notes; no item here has that many. `node tools/Invoke-NodeChecks.mjs`
+passes. No original is run.
