@@ -21,24 +21,12 @@ Next ID: Q-EXE-027
   FND-EXE-380, FND-EXE-391 to FND-EXE-433 and FND-EXE-471 to FND-EXE-489
   trace the utility's suffix consumers one callee further each time;
   FND-EXE-490 to FND-EXE-498 and FND-EXE-501 census the utility and its
-  drivers (none selects AH=4B), now retaken as Q-EXE-025 and Q-EXE-026;
+  drivers (none selects AH=4B), retaken as Q-EXE-025, which FND-EXE-572
+  closed (no reached site selects AH=4B), and Q-EXE-026;
   FND-EXE-499 to FND-EXE-559 trace the game editions' consumers the same
   way with no launch claim. More than two of these attempts ended in the
   same place, a consumer one step further on. Split from Q-EXE-004.
   Blocks: complete game/setup caller coverage.
-- Q-EXE-025. FMT-EXE-006: Does any instruction start that the sound
-  utility's code reaches from an established entry select DOS program
-  execution? Settles it: FND-EXE-490's census of SOUND_DS.EXE taken again
-  from established entries (the MZ entry point, the far-call targets the
-  relocated code names, the startup and exit records, the handlers the code
-  installs or passes as pointers, and jump tables read to their checked
-  bounds), naming those entries and the kinds it did not have, with
-  FND-EXE-370's AH=43 and AH=3D sites as the control for interrupt
-  instructions and FND-EXE-353's selector 0021 call to 1000:20DF as the
-  control for the stack-built interrupt. Tried: FND-EXE-490 took each
-  interrupt 21 site's AH writer from the most common decode of the 48
-  start offsets before it, which the standard now counts as candidate
-  selection, and names no entries and no controls. Blocks: Q-EXE-007.
 - Q-EXE-026. FMT-EXE-006: Which kinds of entry did FND-EXE-496's decode of
   the 19 disc drivers not have, and what control shows its interrupt sites
   are found? Settles it: a finding that names the kinds of entry the

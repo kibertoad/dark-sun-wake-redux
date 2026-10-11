@@ -81,6 +81,15 @@ for at in range(dgroup + RECORDS[0], dgroup + RECORDS[1], 6):
     site = header + (0 if kind == 0 else seg) * 16 + ip
     starts.append(site)
     start_notes.append({"site": site, "evidence": f"startup record at DGROUP:{at - dgroup:04X}, type {kind}"})
+# Handlers the code installs, and a routine pointer it stores: the interrupt 0 handler that the AH=25
+# request at 0000:01BC installs from CS:0174, the interrupt 8 handler 0C08:040E and the pointer
+# 0C08:051B kept at CS:0048, both stored by 0C08:0540..0562 (direct vector-table writes at
+# 0000:0020/0022, the only ones an instruction decoded at any byte offset names).
+for site, note in ((header + 0x0174, "interrupt 0 handler installed at 0000:01BC"),
+                   (header + 0xC08 * 16 + 0x040E, "interrupt 8 handler stored at 0C08:0559..0562"),
+                   (header + 0xC08 * 16 + 0x051B, "routine pointer stored in CS:0048 at 0C08:0540..054C")):
+    starts.append(site)
+    start_notes.append({"site": site, "evidence": note})
 for row in extra:
     site = int(row["site"], 16)
     starts.append(site)
@@ -137,9 +146,40 @@ for r in regions:
                               "evidence": "bounded jmp cs:[bx+table] in a declared code region"})
         at = body.find(b"\x2e\xff", at + 1, r["end"])
 
+# Computed transfers whose operands only these instructions write. The scan decoded an instruction
+# at every byte offset of the code regions and kept those that name the operand's address as a
+# displacement; a write through a pointer is outside it.
+scan = "no instruction decoded at any byte offset of the code names it as a displacement except"
+for site, word in ((0x3698, 0xDF14), (0x369C, 0xDF16), (0x36A0, 0xDF18), (0x36A4, 0xDF1A)):
+    assert body[site:site + 4] == bytes.fromhex("ff26") + struct.pack("<H", word)
+    jumps.append({"site": site, "exhaustive": True, "evidence": f"{scan} this jump, so DS:{word:04X} keeps its load-image word",
+                  "table": {"start": dgroup + word, "count": 1, "stride": 2,
+                            "evidence": f"the word at DS:{word:04X} in the load image"}})
+hook = header + 0x02FF  # a lone retf, the load-image value of all three hooks (relocated far pointers)
+assert body[hook] == 0xCB
+calls = [{"site": 0x1729, "exhaustive": True, "targets": [hook, header + 0x3CCD],
+          "evidence": f"DS:DB9C holds 0000:02FF at load; {scan} the stores of 0000:3CCD at 0000:38AC..38B7"},
+         {"site": 0x1741, "exhaustive": True, "targets": [hook, header + 0x3C90],
+          "evidence": f"DS:DBA0 holds 0000:02FF at load; {scan} the stores of 0000:3C90 at 0000:2AD6..2AE1"},
+         {"site": 0x1745, "exhaustive": True, "targets": [hook],
+          "evidence": f"DS:DBA4 holds 0000:02FF at load; {scan} this call"}]
+# Routines that call an argument. A near call in segment 0 can only come from segment 0, whose every
+# byte offset was searched for E8 calls to each routine; no relocated far call names one.
+putters = [header + 0x1530, header + 0x351D, header + 0x390E]
+calls.append({"site": 0x236C, "exhaustive": True, "targets": putters,
+              "evidence": "0000:0F55 runs in the frame of the formatter 0000:0F25, whose only callers (0000:1679, "
+                          "3353, 396B, 398C) push 1530, 351D, 390E and 390E as [bp+0xE]; the formatter never writes it"})
+scanner = {4: header + 0x3991, 6: header + 0x39B9}
+for site, slot in ((0x1B7A, 4), (0x1BA4, 4), (0x1BB7, 6), (0x1BCD, 6), (0x1E25, 4), (0x1ECE, 4), (0x1F0C, 6),
+                   (0x1F4D, 6), (0x1F6B, 4), (0x206C, 4), (0x20A3, 4), (0x20D6, 4), (0x20F9, 6), (0x2122, 4),
+                   (0x2160, 4), (0x2190, 4), (0x21A6, 6)):
+    calls.append({"site": site, "exhaustive": True, "targets": [scanner[slot]],
+                  "evidence": f"[bp+{slot}] of 0000:072E, whose only callers (0000:39DF, 3A03) push 3991 and 39B9 as "
+                              "[bp+4] and [bp+6], or of 0000:0C4D, whose only caller 072E passes its own; neither writes them"})
+
 json.dump({"source": source, "xxh3": XXH3, "sourceKind": "mz", "regions": regions, "relocations": relocations,
            "indirectJumps": jumps, "starts": starts, "targets": targets, "controls": controls,
-           "instructionControls": instruction_controls, "decodedRanges": True,
+           "instructionControls": instruction_controls, "indirectCalls": calls, "decodedRanges": True,
            "instructionLimit": max(100000, sum(r["end"] - r["start"] for r in regions)), "limit": 10000},
           open(out, "w"), separators=(",", ":"))
 print(f"{len(regions)} regions, {len(relocations)} far transfers, {len(jumps)} jump tables, {len(targets)} targets")
