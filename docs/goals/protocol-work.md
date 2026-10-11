@@ -268,6 +268,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   209+17DC class change, 190+06D1) tests an origin limit or a score, and README table 3 is not in
   DSUN.EXE or the GFFs; RULE-PARTY-007 is supported with maximum_level 15 for any allowed class.
   The inventory row for 209+17DC leaves out its loop (+17ED..+185C), so field_stores lists +1831 as outside.
+  Filed toolkit #477 (report holes in a row's body ranges that its instructions fall or branch
+  into; 29 such holes in DSUN.EXE.tsv, 27 in no row) after checking #413/#358/#369.
 - Lead for unk_2a: overlay 204 +0203 pushes 0x0660:0x00BB (the setter trampoline 5787:00BB) as a
   value before a near call to its dispatcher at +019C, so the setter is passed as a callback.
   Filed toolkit #474 (list where a routine's far address is used as a value) after checking
