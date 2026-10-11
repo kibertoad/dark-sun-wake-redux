@@ -237,8 +237,10 @@ cite, and the uncited functions; `--list`, `--json` and `--require-complete`
 are its other modes. A byte that two rows list counts once, and the shared
 bytes are reported apart. An inventory with a row it cannot read gets no
 figures: it is printed as not measured, and `--json` lists it under
-`unmeasured`. Run it when the figures are needed and read them from its
-output; they are printed on demand and never committed.
+`unmeasured`. Its per-function lists are printed on demand and never
+committed. `node tools/progress-report.mjs` takes its per-file totals, with
+the protocol's other progress measures, into `docs/PROGRESS.md`, which is
+committed so each snapshot shows the change since the one before.
 
 Once inventories exist, the documentation check also fails a range in an entry
 whose end is the last byte of an inventoried function, since ranges are

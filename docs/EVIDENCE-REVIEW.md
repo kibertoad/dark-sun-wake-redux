@@ -281,6 +281,6 @@ start, its half-open ranges. Export raw analyzer coordinates locally, map
 them through declared views, reject ambiguous ownership and use portable paths.
 Coverage totals describe the measured inventory, including exclusions; they are
 not a percentage of understood behavior. `npm exec -- standard-coverage` computes
-them from the inventories and the spec's locations when they are wanted, and
-they are not committed. Original bytes, generated analyzer names
+them from the inventories and the spec's locations; `docs/PROGRESS.md`
+records the totals per snapshot (`node tools/progress-report.mjs`). Original bytes, generated analyzer names
 and analysis reports stay outside Git.
