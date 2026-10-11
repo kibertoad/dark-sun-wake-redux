@@ -293,6 +293,11 @@ An owner-approved history repair remains separate from this maintenance scope.
   former class (psionic points 176+06A2, power level 174/176/208, thief skills 204+0887, best
   cleric/druid/preserver at rest 204+0D28, cleric code 3 hit escape 197+1270). Q-PARTY-069 asks
   whether the menus offer powers and thief skills to such a human.
+- FND-PARTY-166/167: a saved spell skips its DATA +0x19 effect (179+0D2F +0EE8..+0F3E); CHAOS has
+  no case in 179+1373's tables (cs:28C1, cs:2831). Save score tables DS:0866/0880/089A move the
+  modifier by at most 6. The +026F term is 2 x the count byte at 4E71:0255 of effect 59 (drain);
+  LEVEL/ENERGY DRAIN give count 0, or 15 while DS:6174 is set. Q-PARTY-068 left with item 313 and
+  script function 23 durations.
 - 2026-10-11: template cd30407 synced (09bce1e6), issues 92/93/96/112 answered (ac29c8d1),
   engine 19.1.0 and reader 4.1.0 (f13bc644), pushed to main at the owner's request. Issue 90
   answered after the EXE census check (7ec66adf, Q-EXE-025/026). Issue 94 answered on checker 4.3.0
