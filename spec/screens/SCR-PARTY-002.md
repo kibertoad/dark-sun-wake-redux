@@ -35,11 +35,12 @@ Frame `APFM/11213 + 5r + c` is at (112 + 19c, 53 + 20r, 18, 18) for `r` from 0 t
 
 | Region | Rectangle | Enabled when | Effect | Evidence |
 |---|---|---|---|---|
-| Pointer onto a power's frame | the frame | The description window is not open | Highlights the frame and shows `LEARN` or `ENHANCE TO LEVEL %d` with the power's name. | FND-PARTY-154 |
-| Pointer off a power's frame | the frame | As above | Removes the highlight and shows `PICK A PSIONIC POWER,` with the character's name. | FND-PARTY-154 |
-| Left button released on a power's frame | the frame | As above | Learns the power at rank 1 or raises its rank by 1 (RULE-PARTY-013), takes one pick, and closes the window when no picks are left. | FND-PARTY-104, FND-PARTY-154 |
-| Right button released on a power's frame | the frame | As above | Closes an open description, opens the power's description, and stops all frames from answering the pointer until it closes. | FND-PARTY-154, FND-PARTY-155 |
-| Description, left or right button released | (86, 56, 145, 87) | The description window is open | Closes the description and redraws the window, whose frames answer the pointer again. | FND-PARTY-155 |
+| A power's frame, pointer enter | the frame | The description window is not open | Highlights the frame and shows `LEARN` or `ENHANCE TO LEVEL %d` with the power's name. | FND-PARTY-154 |
+| A power's frame, pointer leave | the frame | As above | Removes the highlight and shows `PICK A PSIONIC POWER,` with the character's name. | FND-PARTY-154 |
+| A power's frame, left release | the frame | As above | Learns the power at rank 1 or raises its rank by 1 (RULE-PARTY-013), takes one pick, and closes the window when no picks are left. | FND-PARTY-104, FND-PARTY-154 |
+| A power's frame, right release | the frame | As above | Closes an open description, opens the power's description, and stops all frames from answering the pointer until it closes. | FND-PARTY-154, FND-PARTY-155 |
+| Description window, left release | (86, 56, 145, 87) | The description window is open | Closes the description and redraws the window, whose frames answer the pointer again. | FND-PARTY-155 |
+| Description window, right release | (86, 56, 145, 87) | The description window is open | Closes the description and redraws the window, whose frames answer the pointer again. | FND-PARTY-155 |
 | Group button | (92, 135, 48, 12) | Not known | Shows the next group of the three and refills the frames with its powers. | FND-PARTY-104, FND-PARTY-154 |
 | Exit button | (182, 135, 42, 12) | Not known | Asks `YOU HAVE MORE` with `EXIT` and `CANCEL`; `EXIT` closes the window and the picks left are lost. | FND-PARTY-104, FND-PARTY-154 |
 

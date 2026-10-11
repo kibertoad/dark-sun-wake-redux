@@ -34,11 +34,12 @@ Frame `APFM/11213 + 5r + c` is at (112 + 19c, 65 + 20r, 18, 18) for `r` from 0 t
 
 | Region | Rectangle | Enabled when | Effect | Evidence |
 |---|---|---|---|---|
-| Pointer onto a spell's frame | the frame | The description window is not open | Highlights the frame and shows `LEARN` with the spell's name. | FND-PARTY-154 |
-| Pointer off a spell's frame | the frame | As above | Removes the highlight and shows `CHOOSE A SPELL,` with the character's name. | FND-PARTY-154 |
-| Left button released on a spell's frame | the frame | As above | Learns the spell (RULE-PARTY-013), shows its name with `IS LEARNED!`, waits 100 vertical retraces and closes the window. | FND-PARTY-104, FND-PARTY-154 |
-| Right button released on a spell's frame | the frame | As above | Closes an open description, opens the spell's description, and stops all frames from answering the pointer until it closes. | FND-PARTY-154, FND-PARTY-155 |
-| Description, left or right button released | (86, 56, 145, 87) | The description window is open | Closes the description and redraws the window, whose frames answer the pointer again. | FND-PARTY-155 |
+| A spell's frame, pointer enter | the frame | The description window is not open | Highlights the frame and shows `LEARN` with the spell's name. | FND-PARTY-154 |
+| A spell's frame, pointer leave | the frame | As above | Removes the highlight and shows `CHOOSE A SPELL,` with the character's name. | FND-PARTY-154 |
+| A spell's frame, left release | the frame | As above | Learns the spell (RULE-PARTY-013), shows its name with `IS LEARNED!`, waits 100 vertical retraces and closes the window. | FND-PARTY-104, FND-PARTY-154 |
+| A spell's frame, right release | the frame | As above | Closes an open description, opens the spell's description, and stops all frames from answering the pointer until it closes. | FND-PARTY-154, FND-PARTY-155 |
+| Description window, left release | (86, 56, 145, 87) | The description window is open | Closes the description and redraws the window, whose frames answer the pointer again. | FND-PARTY-155 |
+| Description window, right release | (86, 56, 145, 87) | The description window is open | Closes the description and redraws the window, whose frames answer the pointer again. | FND-PARTY-155 |
 | Level button | (88, 143, 46, 10) | The highest level offered is above 1 | Adds 1 to the level shown, going back to 1 after the highest, and refills the frames with that level's unknown spells. | FND-PARTY-104, FND-PARTY-154 |
 | Exit button | (186, 143, 46, 10) | Always | Asks `YOU HAVEN'T CHOSEN` with `EXIT` and `CANCEL`; `EXIT` closes the window with no spell learned. | FND-PARTY-104, FND-PARTY-154 |
 
