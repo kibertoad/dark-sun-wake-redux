@@ -270,6 +270,11 @@ An owner-approved history repair remains separate from this maintenance scope.
   The inventory row for 209+17DC leaves out its loop (+17ED..+185C), so field_stores lists +1831 as outside.
   Filed toolkit #477 (report holes in a row's body ranges that its instructions fall or branch
   into; 29 such holes in DSUN.EXE.tsv, 27 in no row) after checking #413/#358/#369.
+- FND-PARTY-161: the DUAL window (209+123E, test +19A7, handler +169C) offers a class to a human
+  of level >= 2 with < 3 classes, prime 15 current / 17 new, no class of the same group
+  (55BE:0024 masks), ranger good, druid true neutral. RULE-PARTY-004 supported (manual: level 3).
+  Q-PARTY-007 moved to Blocked waiting on a UI claim for SCR-UI-015; Q-PARTY-067 asks about
+  former class abilities.
 - Lead for unk_2a: overlay 204 +0203 pushes 0x0660:0x00BB (the setter trampoline 5787:00BB) as a
   value before a near call to its dispatcher at +019C, so the setter is passed as a callback.
   Filed toolkit #474 (list where a routine's far address is used as a value) after checking
