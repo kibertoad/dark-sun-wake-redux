@@ -28,8 +28,8 @@ Overlay offsets are written `descriptor +offset`; file offsets are those of the 
 the records are 0x42 bytes at the far pointer `DS:19C5` (FND-PARTY-055).
 
 **The writers.** `field_stores.py <dsun> <inventory> --es 1e 1f 20` lists 20 stores through ES at
-those displacements. Those that form the address from `DS:19C5` and 0x42, or from the generation
-working record at `DS:1429` (FND-PARTY-063), are:
+those displacements in inventoried routines and 10 outside them. Those that form the address from
+`DS:19C5` and 0x42, or from the generation working record at `DS:1429` (FND-PARTY-063), are:
 
 - overlay 183 `+136A` to `+14BB`, in the generation's level setting `+1323`, which stores 0, then
   6 or 7, then adds 1 while the experience reaches the next `DATA` 1000 threshold (FND-PARTY-065);
@@ -37,15 +37,17 @@ working record at `DS:1429` (FND-PARTY-063), are:
   while the level is below 15 (FND-PARTY-081);
 - overlay 210 `+0C86` and `+0D46`, the level drain and its re-raise (FND-PARTY-096,
   FND-PARTY-105);
+- overlay 209 `+1831` and `+1890`, the class change;
 - overlay 190 `+06D1`, which stores 0.
 
 The other stores use other tables: the combatant records at `DS:19C9` (resident `28C9:18AC` and
-overlays 173 and 177) and dwords at `+0x20` in resident `37FC`. The search misses stores whose
-`ES` comes from an earlier `les`, and the listing of overlay 209 shows two more: `+17DC` copies,
-for `k` from 2 down to 1, the class byte, level byte and byte `+0x38` of position `k - 1` to
-position `k`, then stores its class argument at `+0x1B`, 1 at `+0x39` and `+0x1E`, and 0 in the
-dwords at `+0x04` and `+0x00` (`+17DC..+18B6`): a new class at position 0 with level 1, the
-earlier classes moved up one position.
+overlays 173, 177 and 204 `+26A2` and `+26D5`) and words and dwords at `+0x20` in resident
+`37FC`, `3822` to `38C6` and `48B0`. The two in overlay 209 are in `+17DC`, whose inventory row
+leaves out its loop at `+17ED..+185C`, so `+1831` is listed as outside. `+17DC` copies, for `k`
+from 2 down to 1, the class byte, level byte and byte `+0x38` of position `k - 1` to position
+`k`, then stores its class argument at `+0x1B`, 1 at `+0x39` and `+0x1E`, and 0 in the dwords at
+`+0x04` and `+0x00` (`+17DC..+18B6`): a new class at position 0 with level 1, the earlier classes
+moved up one position.
 
 Of these routines, FND-PARTY-065 and FND-PARTY-081 read every test in `+1323` and `+08BC`: the
 class bytes, the experience, the `DATA` 1000 thresholds and the bound 15. `+17DC..+18B6` tests
@@ -53,8 +55,8 @@ only its loop counter. None reads the origin byte at `+0x12` except to limit a h
 (FND-PARTY-081), and none reads a score.
 
 **The table.** README table 3 (SRC-README-1.1), as RULE-PARTY-007's list gives it, has eight rows
-of eight limits, one per class and one per origin. A search of `DSUN.EXE` and of every installed
-`.GFF` archive for each row and each column with more than two distinct values, eight bytes in
+of eight limits, one per class and one per origin. A search of `DSUN.EXE` and of the 26 `.GFF`
+archives in the game folder for each row and each column with more than two distinct values, eight bytes in
 order, with the table's "no limit" written as 255, 0, 99, 20 or 15, finds none of the 70 patterns.
 
 ## Interpretation
@@ -78,5 +80,5 @@ From the commit that adds this finding, with the locked evidence Python, `<dsun>
 `tools/research/exec-census/`, run `field_stores.py <dsun> <inventory> --es 1e 1f 20` and
 `overlay_listing.py <dsun> 209 9493C 94A00`. Take RULE-PARTY-007's 64 limits as eight rows of
 eight, form each row and each column with more than two distinct values as 8 bytes with 255
-replaced by 255, 0, 99, 20 and 15 in turn, and search `DSUN.EXE` and each installed `*.GFF` file
-for each.
+replaced by 255, 0, 99, 20 and 15 in turn, and search `DSUN.EXE` and each `*.GFF` file in the game
+folder for each.
