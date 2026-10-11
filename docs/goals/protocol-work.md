@@ -264,6 +264,10 @@ An owner-approved history repair remains separate from this maintenance scope.
   Left in Q-PARTY-003: unk_1c, 21, 7b, 86.
 - FND-PARTY-159: no shipped DATA record with a save allowed names save 6 or 7 (k is 0,1,3,4,5), so
   179+2A46 never reads details 0x36 (unk_7b) or 0x37.
+- FND-PARTY-160 settles Q-PARTY-008: no level writer (183+1323, 210+0740/+08BC, 210 drain,
+  209+17DC class change, 190+06D1) tests an origin limit or a score, and README table 3 is not in
+  DSUN.EXE or the GFFs; RULE-PARTY-007 is supported with maximum_level 15 for any allowed class.
+  field_stores.py --es misses stores whose ES comes from an earlier les (209+1831/+1890).
 - Lead for unk_2a: overlay 204 +0203 pushes 0x0660:0x00BB (the setter trampoline 5787:00BB) as a
   value before a near call to its dispatcher at +019C, so the setter is passed as a callback.
   Filed toolkit #474 (list where a routine's far address is used as a value) after checking
