@@ -303,8 +303,13 @@ An owner-approved history repair remains separate from this maintenance scope.
   engine 19.1.0 and reader 4.1.0 (f13bc644), pushed to main at the owner's request. Issue 90
   answered after the EXE census check (7ec66adf, Q-EXE-025/026). Issue 94 answered on checker 4.3.0
   (8175cd20); 95 answered by the one-commit supersession 2562f9ec; 91 answered after
-  Q-EXE-007's split and condensation (69a594a7). Nothing of ours waits upstream except template
-  PR #109 for #104.
+  Q-EXE-007's split and condensation (69a594a7). Template PR #109 adopted (0990c85d) and #104
+  answered. docs/PROGRESS.md added (6e6ae760): rerun `node tools/progress-report.mjs` and commit
+  it to record a snapshot. Filed toolkit #486 (a plain checker run rewrites main-only generated
+  files). Q-EXE-025 in progress: tools/research/exec-census/sound_ds_reach_config.py (uncommitted)
+  builds the reach config; regions start at the module offset inside each far-call frame (0861:0008
+  is where 07FB's module ends). The run has no gaps and reaches 42 of 69 int 21 sites; the
+  remaining work is the computed calls (startup-record walkers, DS:DB9C hooks, [bp+4] callbacks).
 - Lead for unk_2a: overlay 204 +0203 pushes 0x0660:0x00BB (the setter trampoline 5787:00BB) as a
   value before a near call to its dispatcher at +019C, so the setter is passed as a callback.
   Filed toolkit #474 (list where a routine's far address is used as a value) after checking
