@@ -53,10 +53,6 @@ Next ID: Q-PARTY-070
 - Q-PARTY-006. RULE-PARTY-001: What does the game do when the player tries to begin with an
   empty party, and does a party of fewer than four play differently? Settles it: the code of the
   View Character screen's exit that begins play (SCR-UI-002). Blocks: slice 2.
-- Q-PARTY-069. BUG-PARTY-009: Can a dual-classed human choose a psionic power or use a thief
-  skill while that class is held back? Settles it: the menus and lists that offer powers and
-  thief skills to a party member, read for a test of the class level or of `27E5:00C1`
-  (FND-PARTY-165). Blocks: slice 5.
 - Q-PARTY-009. RULE-PARTY-008, RULE-COMBAT-001: What does a key from 1 to 4 do, in particular when its slot is
   empty, and is the word the party loader compares each slot with (FND-PARTY-013) the leader's
   slot? Settles it: the handler the keys 1 to 4 reach in overlay 190, which posts an event for

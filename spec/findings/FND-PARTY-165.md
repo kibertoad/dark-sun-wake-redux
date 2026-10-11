@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-165
 title: Overlay 176 +076C, which counts a human's held-back former class, gives the psionicist level for psionic points and power use, the thief level for the thief skills, the best cleric, druid and preserver levels when the party rests, and a cleric code 3 level that ends a hit
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-169]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

@@ -90,7 +90,7 @@ passes, the game shows `NO OTHER CLASSES AVAILABLE` instead of the window. A hum
 class level equals the former level still cannot use the former class's abilities
 (FND-PARTY-162). Some uses ignore this: a former druid's bonus of 2 to saving throws against fire
 and lightning applies at once (BUG-PARTY-007), and a former class's level still counts for the
-psionic points and a power's level, the thief skills, the best cleric, druid and preserver when
+level of the powers it learned, the thief skills, the best cleric, druid and preserver when
 the party rests, a former code 3 cleric's escape from some hits, and the warrior test against
 `CHAOS` (BUG-PARTY-009).
 

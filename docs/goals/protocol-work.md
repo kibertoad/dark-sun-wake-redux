@@ -289,10 +289,11 @@ An owner-approved history repair remains separate from this maintenance scope.
   and compares unsigned (jb at +2BCC), so -100 or +100 passes the save. SCARE (21) and CLOUD KILL
   (57) have bit 0 of +0x1F clear, so +2A46 returns 0 before the modifier. Q-PARTY-068 asks what
   CHAOS does with the result and what 27E5:02F2/0324/030B add.
-- FND-PARTY-165 / BUG-PARTY-009 close Q-PARTY-067: every other 176+076C caller counts a held-back
-  former class (psionic points 176+06A2, power level 174/176/208, thief skills 204+0887, best
-  cleric/druid/preserver at rest 204+0D28, cleric code 3 hit escape 197+1270). Q-PARTY-069 asks
-  whether the menus offer powers and thief skills to such a human.
+- FND-PARTY-169 / BUG-PARTY-009 close Q-PARTY-067 and Q-PARTY-069:
+  every other 176+076C caller counts a held-back former class (power level 174/176/208, thief
+  skills 204+0887 via 204+0A0B/+080B, best cleric/druid/preserver at rest 204+0D28, cleric code 3
+  hit escape 197+1270). The power list (211+1DBC, 176+0000) tests only PSST rank; points in play
+  come from 210+0131 (held back); 176+06A2 has no caller.
 - FND-PARTY-166/167: a saved spell skips its DATA +0x19 effect (179+0D2F +0EE8..+0F3E); CHAOS has
   no case in 179+1373's tables (cs:28C1, cs:2831). Save score tables DS:0866/0880/089A move the
   modifier by at most 6. The +026F term is 2 x the count byte at 4E71:0255 of effect 59 (drain);
