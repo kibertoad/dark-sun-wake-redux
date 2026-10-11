@@ -254,7 +254,11 @@ An owner-approved history repair remains separate from this maintenance scope.
   (fill at window +0xF9, control callback at +0x62, stub selector 0x0688) as test cases.
 - FND-PARTY-156: 204+0169 (opcode 0x22) function 48 calls the getter +2327 and function 49 passes
   the setter trampoline 5787:00BB to +1A68 (one slot, party for 0x7FFE, or 2D40:0D94's group), so
-  unk_2a (combatant +0x20, field 33) waits on Q-SCRIPT-004. Left: unk_18, 1c, 21, 7b, 85.
+  unk_2a (combatant +0x20, field 33) waits on Q-SCRIPT-004.
+- FND-PARTY-157: CHAR 0x18 special_attack (198+0149 maps kind 1-20 and mode 0-4 to MONS DATA
+  270-319 or 27; 198+0000 queues it through 179+12B1; 197+111A immunity to its own) and 0x19
+  immunity_type (DS:2588 words; 179+0D2F stops at 0xFFFF, type 16). DATA names are at +0x20
+  (177+09A4). Left in Q-PARTY-003: unk_1c, 21, 7b, 85.
 - Lead for unk_2a: overlay 204 +0203 pushes 0x0660:0x00BB (the setter trampoline 5787:00BB) as a
   value before a near call to its dispatcher at +019C, so the setter is passed as a callback.
   Filed toolkit #474 (list where a routine's far address is used as a value) after checking
