@@ -36,7 +36,8 @@ Next ID: Q-PARTY-067
   `0x0E` hold the slot the character was written from and `0x12` to `0x16` the child words at that time; FND-PARTY-149 shows `0x81` and `0x83` are sound numbers, and FND-PARTY-150 that `0x68` is the magic resistance; FND-PARTY-151 places the footprint at `0x7C` and a spell list at `0x7D`. FND-PARTY-152 finds no reader through the combatant table of
   `0x1C` or `0x21`, and `0x2A` only as field 33 of overlay 204's field getter and setter, which FND-PARTY-156 shows are
   functions 48 and 49 of script opcode `0x22`, so what `0x2A` means waits on Q-SCRIPT-004; FND-PARTY-157 names `0x18` the special attack kind
-  and `0x19` the immunity type, and FND-PARTY-158 names `0x85` the psionic power list. Blocks:
+  and `0x19` the immunity type, and FND-PARTY-158 names `0x85` the psionic power list; FND-PARTY-159 shows the saving throw never
+  reads `0x7B`. Blocks:
   slice 2.
 - Q-PARTY-020. FMT-PARTY-006: What does a 23-byte record of a type-2 or type-4 chunk hold, and
   what do the character's combatant words at `0x08`, `0x0A` and `0x0C`, and a record's word at
