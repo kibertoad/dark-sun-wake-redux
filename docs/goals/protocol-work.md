@@ -258,7 +258,10 @@ An owner-approved history repair remains separate from this maintenance scope.
 - FND-PARTY-157: CHAR 0x18 special_attack (198+0149 maps kind 1-20 and mode 0-4 to MONS DATA
   270-319 or 27; 198+0000 queues it through 179+12B1; 197+111A immunity to its own) and 0x19
   immunity_type (DS:2588 words; 179+0D2F stops at 0xFFFF, type 16). DATA names are at +0x20
-  (177+09A4). Left in Q-PARTY-003: unk_1c, 21, 7b, 85.
+  (177+09A4).
+- FND-PARTY-158: CHAR 0x85 psionic_list (details +0x40, lists 1-8 at 5284:0003, 198+02B2 tests a
+  random pick for range and points, 174+0604 picks the same way); 0x86 is unk_86, no reader.
+  Left in Q-PARTY-003: unk_1c, 21, 7b, 86.
 - Lead for unk_2a: overlay 204 +0203 pushes 0x0660:0x00BB (the setter trampoline 5787:00BB) as a
   value before a near call to its dispatcher at +019C, so the setter is passed as a callback.
   Filed toolkit #474 (list where a routine's far address is used as a value) after checking
