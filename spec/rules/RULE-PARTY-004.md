@@ -4,7 +4,7 @@ title: A human can change class twice, from second level
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-161, FND-PARTY-081, FND-PARTY-160, SRC-MANUAL-1994]
+evidence: [FND-PARTY-161, FND-PARTY-162, FND-PARTY-081, FND-PARTY-085, FND-PARTY-160, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [SCR-UI-002, SCR-UI-015, RULE-PARTY-010]
@@ -16,15 +16,16 @@ Only a human can become dual-classed: at second level or higher in the current c
 or more in the current class's prime ability and 17 or more in the new class's, the human takes
 up a new class at first level and stops advancing in the old one. The new class must come from a
 class group the character has never held, a ranger must be good and a druid true neutral. A human
-can do this twice, for three classes in all. The manual adds that the old class's abilities come
-back once the new class's level is higher than the old one's.
+can do this twice, for three classes in all. The old class's abilities come back once the new
+class's level is higher than the old one's.
 
 ## When it runs
 
-`can_change_class` runs for each class when the player picks DUAL for a character on the View
-Character screen (SCR-UI-002), and the DUAL window offers the classes for which it is true
-(SCR-UI-015). `former_class_usable` runs whenever the game decides whether a dual-classed human
-may use a former class's abilities (SRC-MANUAL-1994, pages 9 and 19).
+The View Character screen (SCR-UI-002) shows DUAL for a human whose current class is level 2 or
+more (FND-PARTY-162). `can_change_class` runs for each class when the player picks it, and the
+DUAL window offers the classes for which it is true (SCR-UI-015). `former_class_usable` runs
+whenever the game counts a dual-classed human's former class: its class flags, its spells and
+the level the game uses for its abilities (FND-PARTY-085, FND-PARTY-162).
 
 ## Parameters
 
@@ -85,7 +86,9 @@ Every class is in its own group, so neither the current class nor a former one i
 and a cleric can never add druid or the reverse; a fighter, gladiator or ranger can add none of
 the other two. The other minimum scores of RULE-PARTY-010 are not tested: a human with 17
 strength and 15 wisdom as a cleric can become a fighter whatever its other scores. When no class
-passes, the game shows `NO OTHER CLASSES AVAILABLE` instead of the window.
+passes, the game shows `NO OTHER CLASSES AVAILABLE` instead of the window. A human whose new
+class level equals the former level still cannot use the former class's abilities
+(FND-PARTY-162).
 
 ## What the sources say
 
@@ -102,7 +105,7 @@ None known.
 
 ## Open questions
 
-- Whether the game holds back a former class's abilities until the current class's level exceeds
-  it (Q-PARTY-067).
+- Whether every use of a class's level holds back a former class, since one level query has no
+  such test (Q-PARTY-067).
 - How a dual-classed character's levels, experience and former classes are stored
   (FMT-PARTY-001, Q-PARTY-003).
