@@ -88,8 +88,11 @@ the other two. The other minimum scores of RULE-PARTY-010 are not tested: a huma
 strength and 15 wisdom as a cleric can become a fighter whatever its other scores. When no class
 passes, the game shows `NO OTHER CLASSES AVAILABLE` instead of the window. A human whose new
 class level equals the former level still cannot use the former class's abilities
-(FND-PARTY-162). One use ignores this: a former druid's bonus of 2 to saving throws against fire
-and lightning applies at once (BUG-PARTY-007).
+(FND-PARTY-162). Some uses ignore this: a former druid's bonus of 2 to saving throws against fire
+and lightning applies at once (BUG-PARTY-007), and a former class's level still counts for the
+psionic points and a power's level, the thief skills, the best cleric, druid and preserver when
+the party rests, a former code 3 cleric's escape from some hits, and the warrior test against
+`CHAOS` (BUG-PARTY-009).
 
 ## What the sources say
 
@@ -106,7 +109,5 @@ None known.
 
 ## Open questions
 
-- Whether every use of a class's level holds back a former class, since one level query has no
-  such test (Q-PARTY-067).
 - How a dual-classed character's levels, experience and former classes are stored
   (FMT-PARTY-001, Q-PARTY-003).

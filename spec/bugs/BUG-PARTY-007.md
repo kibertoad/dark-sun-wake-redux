@@ -54,5 +54,4 @@ None known.
 
 ## Open questions
 
-- Whether other uses of overlay 176 `+076C` let a held-back former class act in the same way
-  (Q-PARTY-067).
+None.
