@@ -336,8 +336,10 @@ reading of callers, external commands or interpreter behavior is claimed.
   no entries or controls. FND-EXE-572 takes the utility's census again
   from established entries, with both controls holding: none of the 44
   sites it reaches selects AH=4B, and the other 25 lie in library routines
-  nothing in the image references. FND-EXE-496 names no control and no
-  kinds of entry it lacked (Q-EXE-026).
+  nothing in the image references. FND-EXE-573 finds that the drivers
+  install vectors only for handlers FND-EXE-496 already decodes from,
+  build no transfer on the stack and write no code, with every CD byte
+  accounted for as the control.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;
   startup, actual DS, aliases and later writers must admit their runtime use.
 - How does the shipped wrapper resolve the two bare helper commands and

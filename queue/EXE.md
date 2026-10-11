@@ -22,21 +22,12 @@ Next ID: Q-EXE-027
   trace the utility's suffix consumers one callee further each time;
   FND-EXE-490 to FND-EXE-498 and FND-EXE-501 census the utility and its
   drivers (none selects AH=4B), retaken as Q-EXE-025, which FND-EXE-572
-  closed (no reached site selects AH=4B), and Q-EXE-026;
+  closed (no reached site selects AH=4B), and Q-EXE-026, which
+  FND-EXE-573 closed (no kind of entry missing from the drivers' decode);
   FND-EXE-499 to FND-EXE-559 trace the game editions' consumers the same
   way with no launch claim. More than two of these attempts ended in the
   same place, a consumer one step further on. Split from Q-EXE-004.
   Blocks: complete game/setup caller coverage.
-- Q-EXE-026. FMT-EXE-006: Which kinds of entry did FND-EXE-496's decode of
-  the 19 disc drivers not have, and what control shows its interrupt sites
-  are found? Settles it: a finding that names the kinds of entry the
-  drivers' decode did not start from (vectors the drivers install, by
-  interrupt 21 AH=25 or by a store to the vector table, transfers built on
-  the stack, code written at run time) and whether any driver has one, and
-  a control for its interrupt instructions located by other evidence.
-  Tried: FND-EXE-496 decodes from each function table, the far-pointer
-  handlers and SBAWE32.ADV's bounded tables, and lists its sites; it names
-  no control and no missing kinds of entry. Blocks: Q-EXE-007.
 
 
 ## Emulated call
