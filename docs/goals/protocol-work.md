@@ -310,7 +310,10 @@ An owner-approved history repair remains separate from this maintenance scope.
   entries reaches 44 of 69 int 21 sites, none AH=4B; the other 25 lie in unreferenced library
   routines. Filed toolkit #488 (declare computed transfers that cannot run or leave the image).
   Pushed to main at the owner's request up to 4ae7afaa; the remote branch goal/protocol-work
-  was pushed then too. Next: Q-EXE-026 (driver census kinds and control).
+  was pushed then too. Q-EXE-026 closed by FND-EXE-573 (5c4d879b): the drivers' vector installs
+  pass only handlers FND-EXE-496 already decodes from; no stack-built transfers or code writes;
+  the CD byte search is the control. Next: Q-EXE-007, the game editions' census, which can reuse
+  sound_ds_reach_config.py's approach on DSUN.EXE through reach_config.py.
 - Lead for unk_2a: overlay 204 +0203 pushes 0x0660:0x00BB (the setter trampoline 5787:00BB) as a
   value before a near call to its dispatcher at +019C, so the setter is passed as a callback.
   Filed toolkit #474 (list where a routine's far address is used as a value) after checking
