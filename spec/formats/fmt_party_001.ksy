@@ -197,8 +197,11 @@ seq:
   - id: damage_sound
     type: u2
     doc: Sound the damage routine plays for the character; 0 for none.
-  - id: unk_85
-    size: 2
+  - id: psionic_list
+    type: u1
+    doc: A non-party combatant's psionic power list, 2 to 8, among the lists at 5284:0003; 0 or 1 for none.
+  - id: unk_86
+    type: u1
   - id: chunks
     type: fmt_party_006
     repeat: until
