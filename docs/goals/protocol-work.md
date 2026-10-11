@@ -275,6 +275,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   (55BE:0024 masks), ranger good, druid true neutral. RULE-PARTY-004 supported (manual: level 3).
   Q-PARTY-007 moved to Blocked waiting on a UI claim for SCR-UI-015; Q-PARTY-067 asks about
   former class abilities.
+  Filed protocol #116 (an answered item still cited by an entry outside the claim cannot close;
+  the tracking check wants the queue's own area first) after checking #92.
 - Lead for unk_2a: overlay 204 +0203 pushes 0x0660:0x00BB (the setter trampoline 5787:00BB) as a
   value before a near call to its dispatcher at +019C, so the setter is passed as a callback.
   Filed toolkit #474 (list where a routine's far address is used as a value) after checking
