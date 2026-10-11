@@ -47,8 +47,12 @@ seq:
     repeat: expr
     repeat-expr: 3
     doc: The combatant record's words at 0x08, 0x0A and 0x0C when written; 9999 for none.
-  - id: unk_18
-    size: 2
+  - id: special_attack
+    type: u1
+    doc: A monster's special attack kind, 0 for none, mapped to a MONS DATA record by overlay 198 +0149.
+  - id: immunity_type
+    type: u1
+    doc: Index into the 18 immunity words at DS:2588.
   - id: object_offset
     type: u2
     doc: 300 plus this is the object number placed for the character.
