@@ -16,7 +16,7 @@ Agents never operate GOG's DOSBox 0.74-2; runs of it are live sessions the
 owner plays and captures alone. The package takes the machine's run lock
 (`C:\ProgramData\refurbished-dinosaurs\run.lock`, or the path in
 `REFURBISHED_DINOSAURS_RUN_LOCK`) as the protocol's
-[Running the original](../vendor/upstream/work-protocol.md#running-the-original) (lines 331-365)
+[Running the original](../vendor/upstream/work-protocol.md#running-the-original) (lines 391-425)
 says. No session-package run has been made yet, so the capabilities below that
 need one are still `none`.
 
@@ -47,7 +47,7 @@ wait for supported layout/parameter bindings; FBOV code stays out of reach.
 Probe: none. No probe exists yet. The owner's rule allows one only inside a
 session-package DOSBox-X process with host sound muted; it is recorded here once
 a run shows it working, and then follows the protocol's
-[Recorded runs](../vendor/upstream/work-protocol.md#recorded-runs) (lines 341-353). Each emulated-call setup must document port
+[Recorded runs](../vendor/upstream/work-protocol.md#recorded-runs) (lines 401-413). Each emulated-call setup must document port
 models, video memory substituted with RAM and the limits of each comparison,
 within the current resident-call contract below.
 

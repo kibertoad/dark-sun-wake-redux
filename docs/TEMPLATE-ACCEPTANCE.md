@@ -337,3 +337,13 @@ migration and acceptance qualifications are in TOOLKIT-RESPONSE-ACCEPTANCE.md.
 Gap 35 closes; issue 145's composition exit passes; Gap 40 and issue 143 remain
 open for their separate whole-query contracts. Prepared protocol 3, checker,
 .NET packages, configured template and vendored rules stay unchanged.
+
+## Template cd30407 adoption, 2026-10-11
+
+The template's changes from its last adopted commit to `cd30407` are merged into
+the skills, `AGENTS.md`, `queue/README.md` and `docs/`, keeping the local
+`vendor/upstream/` paths and game-specific text where the two differ. The
+vendored standard and protocol move to `d8ebc1f` with a refreshed lock. The
+shared libraries (RefurbishedDinosaurs 12.0.0, reader 4.0.0, engine 18.4.0) were
+already at the template's versions and stay pinned. `node tools/Invoke-NodeChecks.mjs`
+passes. No original is run.

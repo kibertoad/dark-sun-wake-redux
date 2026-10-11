@@ -2,10 +2,10 @@
 
 One file per long-running goal while it runs, named after it:
 `docs/goals/combat-static.md`. The
-[work protocol](../../vendor/upstream/work-protocol.md#coding-agents-and-long-running-goals) (lines 482-533)
-says how to write the condition. The files here are the list of goals running
-(or, where sessions cannot push to the main branch, the `goal/` branches; see
-below).
+[work protocol](../../vendor/upstream/work-protocol.md#coding-agents-and-long-running-goals) (lines 542-640)
+says how to write the condition. The files here are the list of goals running,
+together with the `goal/` branches where some or all sessions cannot push to
+the main branch (see below).
 
 The batch whose work meets the goal's condition leaves the file in place, and a
 later commit deletes it, moving what is still worth handing on to
@@ -31,7 +31,7 @@ batch ended with a status block; or stop after 40 turns.
 
 ## Scope
 
-Areas: COMBAT. Batches: research only. Queue sections: Static.
+Side: research. Areas: COMBAT. Queue sections: Static.
 
 ## Must not touch
 
@@ -50,12 +50,24 @@ None known.
 - Next: Q-COMBAT-015, Q-COMBAT-017.
 ```
 
-`Scope` names the areas the goal claims. A goal takes up a queue item only if
-every entry it names is in one of those areas, and adds an area to its scope
-only while no other authoritative goal claim owns it. Where sessions can
-push to main, the file and each scope change reach main before the first
-batch that relies on them; where work lands through pull requests, the
-claim's separate pull request is merged first.
+`Scope` names the goal's side of the clean room, research or implementation,
+and the areas it claims. A goal takes up a queue item only if every entry it
+names is in one of those areas, and adds an area to its scope only while no
+other authoritative goal claim owns it. Another goal's claim counts only when
+that goal is on the same side or its file names no side, so a research goal and
+an implementation goal whose files name their sides may claim the same area.
+Where sessions can push to main, the file and each scope change reach main
+before the first batch that relies on them; where work lands through pull
+requests, the claim's separate pull request is merged first.
+
+`Dead ends` records tools and approaches that failed across the
+whole goal, in a line or two each, so a resumed session does not repeat them;
+what a research attempt tried on a question goes under its queue item's
+`Tried:`. `Handover` holds what `docs/HANDOVER.md` holds, for this goal only,
+and is rewritten at the end of every session under the goal. Progress is not
+written here: the queue and the commits show it.
+
+### Where no session can push
 
 Where sessions cannot push to main, including an owner's no-push instruction,
 only one goal runs in the shared clone. At session start, and again before
@@ -77,14 +89,7 @@ only its own goal file's handover. Under no goal, merge a goal-deletion commit
 found on main before rewriting `docs/HANDOVER.md`, keeping its additions unless
 the session dealt with them.
 
-`Dead ends` records tools and approaches that failed across the
-whole goal, in a line or two each, so a resumed session does not repeat them;
-what a research attempt tried on a question goes under its queue item's
-`Tried:`. `Handover` holds what `docs/HANDOVER.md` holds, for this goal only,
-and is rewritten at the end of every session under the goal. Progress is not
-written here: the queue and the commits show it.
-
-## Standing goals and run marker
+## Standing goals
 
 An open-ended owner goal keeps its full condition across sessions. The handover
 is a checkpoint; a finished batch, long conversation or pending check does not
@@ -94,6 +99,35 @@ remaining work and commits the handover; it preserves any existing no-push rule.
 Goal completion and blocked status require the active thread's evidence audits.
 The local no-push claim rules above remain authoritative; this does not authorize
 a second goal in this clone or a push to main.
+
+A standing goal's file names its side, research or implementation. Its
+condition is the state the Audit stage ends in, not a turn count: for research,
+every queue item is closed or is one the owner has accepted as out of reach;
+for implementation, every parity row is `validated` or `deviated`, or has a
+note other than a `Spec gap:` note saying why it can be neither. Work that is
+only blocked for now does not meet it. A goal with a bounded scope also stops
+when it reaches the number of turns its condition gives. Where no session can
+push to main, the two standing goals take turns: one that stops with work left
+deletes its goal file and moves its handover to `docs/HANDOVER.md`, and its
+side's next turn starts a new goal with the same condition.
+
+### Where only some sessions can push
+
+Where the owner authorizes a push to main in some tasks and forbids it in
+others, a goal keeps the form the session that started it could use: its file
+is on main when that task authorized the push, and on a `goal/` branch
+otherwise. A goal file on main claims its areas for every session unless the
+shared clone has a `goal/` branch of the same name, whose tip then decides.
+Before starting a goal or adding an area, fetch and read `docs/goals/` at the
+remote's tip (`git ls-tree --name-only origin/main:docs/goals/`) and run the
+`goal/*` listing; check both again once the claim commit has landed, and
+withdraw on a clash (delete the branch, or land a commit on main that deletes
+the goal file, or only the added area). A goal resumed under a different
+authorization keeps its form; a goal on main resumed without push
+authorization takes only items in areas already claimed, and its batches and
+handover stay on its working branch until they reach main.
+
+### Run marker
 
 In Claude Code, start-session runs node tools/goal-run.mjs start <name> in the
 claimed worktree. Its marker lives in that worktree's Git directory. The Stop

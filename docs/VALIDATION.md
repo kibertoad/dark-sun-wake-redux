@@ -236,17 +236,24 @@ The `Documentation standard` job in `.github/workflows/ci.yml` runs the
 [refurbished-dinosaurs-toolkit](https://github.com/kibertoad/refurbished-dinosaurs-toolkit),
 pinned to a full commit SHA, on every pull request. It checks `spec/`, `parity/`
 and `deviations/` against the standard's list of
-[checks](../vendor/upstream/documentation-standard.md#checks) (lines 1097-1153), compiles each
+[checks](../vendor/upstream/documentation-standard.md#checks) (lines 1157-1214), compiles each
 `.ksy` file with the Kaitai Struct compiler, checks that every spec and
 deviation ID cited in `src/`, `tests/`, `tools/` and `docs/` exists and is not
 superseded, fails a spec file that names a path under `src/` or `tests/` (the
 action's `rebuild` input) or the file name of a source file there, fails a
 pull request that edits, adds or removes a file in `spec/index/` or
 `PARITY.md` (see below), and fails a `validated`
-row whose marked tests are not in `VALIDATION.md` as they are now (see
+row whose marked tests no run file in `validation/` records as they are now (see
 [Tests against the original](#tests-against-the-original)). It fetches
 the full history so it can fail a pull request that deletes a spec ID, area or
-deviation that exists on `main`. The toolkit's
+deviation that exists where it forked from `main`, and one that adds an ID the
+tip of `main` already holds with other content, so the branch renumbers before
+it merges. A change that squashes superseded entries into their replacements,
+as the standard's [IDENTIFIERS-7](../vendor/upstream/documentation-standard.md#identifiers-7) (lines 148-154) allows before anyone
+outside the repository relies on the IDs, lists them in the action's
+`squashed` input (`FND-PARTY-160=FND-PARTY-161`, `+` between several replacements,
+`,` between items); a local run passes the same list as
+`node tools/upstream.mjs docs --squashed <list>`. The toolkit's
 [setup guide](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/blob/main/docs/documentation-standard-check.md)
 lists its inputs.
 
@@ -261,8 +268,13 @@ plain `0xâ€¦` value is one only inside an image the job gives with the actio
 segment:offset addresses; CI retains no image input. Take
 the base and size from the finding that records them. A range larger than
 `max-range` (64 KiB by default), such as a whole section, records only its two
-ends, nothing inside it. When a comment or a use fails, cite the finding that
-records the address, or write one. A test that needs addresses of its own, such
+ends, nothing inside it. When a comment or a use in `src/` fails, the comment
+cites the rule, format, screen or bug the code implements, which passes where
+that entry or a finding or experiment in its `evidence` records the address;
+it never cites a finding to pass the check, even where the message suggests
+one. Where no such entry records it, the address comes out, and code that
+needs it is a spec gap (`.claude/skills/implement-rows/SKILL.md`). Elsewhere,
+cite the finding that records the address, or write one. A test that needs addresses of its own, such
 as a synthetic executable, places them where no executable of the period loads
 (the template's use `0x7F000000`) and builds any neutral name at run time, so
 nothing in it reads as an address of the original. The commit-msg hook in
@@ -351,7 +363,11 @@ and CI. Without `node` the hook prints a warning and lets the commit through.
 ## Tests against the original
 
 A parity row's Tests column lists only tests that compare the rebuild with
-evidence from the original. Those that need the original's files find them
+evidence from the original. Decoder tests on synthetic files, the tests over
+synthetic state that an implementation batch writes for each branch of an
+entry, tests that compare the rebuild with an earlier version of itself, and
+the tests in a deviation's Tests item are still required but are left out of
+that column; a row with only those has Tests `None`. Those that need the original's files find them
 under the directory named by the `GAME_DIR` environment variable, which holds
 one directory per build, named by its build ID, with the files laid out as the
 build manifest's paths give them (`GAME_DIR/BLD-GOG-EN-1.1/DSUN.EXE`, and
@@ -363,22 +379,40 @@ manifest before it reads it, and skips when the file is absent.
 A test file that reads the original through `GAME_DIR` carries the comment
 `// needs: GAME_DIR`, and only such a file does; the documentation check fails a
 listed test file that mentions `GAME_DIR` without it. No test does so yet.
+Every other listed test file names by ID an experiment that the row's entry
+lists in its `evidence`, or that a bug whose `related` field names the entry
+lists, and replays that experiment's fixture or compares with the distribution
+measured in it. It needs nothing from the original and runs in CI like any
+other test. The check fails a listed test file that neither carries the comment
+nor names such an experiment.
 
 CI never has a copy of the original, so the marked tests skip there. They run on
 the maintainer's machine with `GAME_DIR` set to the owned copy. After a run of
 `./tools/Test.ps1` in which every test in every marked test file of a
-`validated` row passed and none was skipped, record the run and commit the
-`VALIDATION.md` it writes at the repository root:
+`validated` row passed and none was skipped, record the run and commit what it
+writes in `validation/`:
 
 ```sh
 node tools/upstream.mjs docs --references docs --record-validation BLD-GOG-EN-1.1
-git add VALIDATION.md
+git add validation/
 ```
 
-`VALIDATION.md` holds the commit, the date, the builds, and the hash of each
-marked test file of a `validated` row. The check fails a `validated` row whose
-marked test file is missing from it or has changed since it was recorded, so a
-change to such a test needs a new local run before it merges.
+Each run gets a file of its own, named after the day and the first 12 hex
+digits of the commit it tested, such as `validation/2026-09-26-3f9c2d4e8a1b.md`.
+It holds the commit, the date, the builds, and the hash of each marked test
+file of a `validated` row, and nobody edits it afterwards. Recording a run also
+deletes every run file none of whose rows matches a marked test file of a
+`validated` row as it is now. A run file can come to match nothing without a
+new run, such as after a merge of two branches that between them changed every
+file it matched; delete it by hand. Two branches that record runs add two
+files, so they do not conflict.
+
+The check, in CI as well, fails a `validated` row whose marked test file no run
+file records with the hash it has now, a run file that matches nothing or whose
+name does not give its date and commit, any other file in `validation/`, and a
+`VALIDATION.md` at the root, which older versions of the check wrote; move such
+a record into a run file. A change to a marked test therefore needs a new local
+run before it merges.
 
 
 ## Bounded reporter case verification

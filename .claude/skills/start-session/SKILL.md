@@ -5,8 +5,8 @@ description: Resume restoration work at the start of a session. Use before any r
 
 # Start a session
 
-The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#sessions) (lines 321-329).
-Goal discovery follows [Coding agents and long-running goals](../../../vendor/upstream/work-protocol.md#coding-agents-and-long-running-goals) (lines 482-533).
+The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#sessions) (lines 379-389).
+Goal discovery follows [Coding agents and long-running goals](../../../vendor/upstream/work-protocol.md#coding-agents-and-long-running-goals) (lines 542-640).
 Open a linked section only when a step leaves a question it answers, read
 only the lines the link gives, and never a section already read this session.
 This skill is the procedure; where they differ, the protocol wins.
@@ -23,14 +23,17 @@ This skill is the procedure; where they differ, the protocol wins.
    second goal, even for different areas. A copy on main claims nothing.
    A separate clone or cloud container cannot discover these local claims,
    even after fetching; it starts no goal without the owner's statement that
-   none is running. Where claims can reach main, check the goal files there.
-   Under a goal read its whole file and Handover section. With no goal read
-   `docs/HANDOVER.md`. For a new goal follow `plan-work` and
-   `docs/goals/README.md`: publish its claim first where authorized, or make
-   its first commit on `goal/<name>` create the file in the shared clone and
-   repeat the branch listing afterwards. If another goal is present, delete
-   the just-created goal branch and start no goal. Goal-claim commits are
-   separate from batches and carry no trailers.
+   none is running. Where claims can reach main, check the goal files there:
+   no other goal on the same side (or whose file names no side) may claim the
+   same areas. Where only some sessions may push, follow "Where only some
+   sessions can push" in `docs/goals/README.md` before starting a goal or
+   adding an area. Under a goal read its whole file and Handover section.
+   With no goal read `docs/HANDOVER.md`. For a new goal follow `plan-work` and
+   `docs/goals/README.md`, naming its side: publish its claim first where
+   authorized, or make its first commit on `goal/<name>` create the file in
+   the shared clone and repeat the branch listing afterwards. If another goal
+   is present, delete the just-created goal branch and start no goal.
+   Goal-claim commits are separate from batches and carry no trailers.
    An implementation session reads no research goal files.
 3. Compare the handover with reality: `git status`, `git log --oneline -10`,
    the current branch, and any `wip/` branch the handover names. Anything
@@ -65,12 +68,19 @@ This skill is the procedure; where they differ, the protocol wins.
      items come first, then `Emulated call`, then runs of the game. A `Live session` item needs its own
      static attempt under `Tried:`, unless it asks for the run that confirms
      a static reading.
-   - Implementation: first remove any code in `src/` that cites a finding or
-     an experiment (`FND-`, `EXP-`), with the tests that exercise it: its
-     entry was superseded because the mechanic does not exist. Then rows
-     whose Notes start with `Defect (R-...)`, adding a test that fails without
-     the fix (extracting branch logic in `Game` into `Core` first) and removing
-     the note. Then parity rows of the current slice
+   - Implementation: first settle each citation of a finding or an
+     experiment (`FND-`, `EXP-`) in `src/`, `PLACEHOLDER:` comments included,
+     as `implement-rows` says: a superseded one first moves to its
+     `superseded_by`; where the code implements a rule, format, screen or bug
+     that is not superseded (or a deviation that has not been dropped, through
+     its Departs from), the code stays and the citation moves to each of those
+     entries that lists it in `evidence`, or is deleted where none does, and
+     each row a citation newly moved to takes Code `partial` with a note
+     naming the finding or experiment; code that no such entry or deviation
+     describes is removed with the tests that exercise it. Then rows whose
+     Notes start with `Defect (R-...)` or `Defect (FND-...)`, adding a test
+     that fails without the fix (extracting branch logic in `Game` into `Core`
+     first) and removing the note. Then parity rows of the current slice
      from the goal or the plan, whose spec status is at least `supported`. Do
      not open `queue/` or `docs/reports/`.
 7. Say in two or three lines what you picked and why, then hand over to

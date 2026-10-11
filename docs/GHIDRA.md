@@ -11,7 +11,7 @@ interpreting addresses, retaining the stable-path fingerprint policy below.
 Another version of the executable is another build, with its own
 `spec/builds/` entry, and a finding lists it only when it was checked there
 too, with a location in each build. Addresses are written in the
-[notation](../vendor/upstream/documentation-standard.md#notation) (lines 381-420) for the
+[notation](../vendor/upstream/documentation-standard.md#notation) (lines 387-428) for the
 executable's format: the full virtual address at the header's image base for
 PE, and `segment:offset` for MZ, COM, and NE, with the load segment the
 standard fixes for each.
@@ -273,6 +273,9 @@ The shared join accepts resident segmented coordinates or already canonical
 file offsets, then enforces explicit view ownership. Exports use the
 collision-resistant `@CD/` encoding. Never replace an inventory or mapping
 merely because a new tool is available.
+Ghidra gives a function's or a block's maximum address as its last byte, while
+the standard writes every range half-open, so a body whose last byte is
+`0x0045E7CD` is cited as `..0x0045E7CE`.
 
 
 ## Large memory maps and JVM diagnostics
