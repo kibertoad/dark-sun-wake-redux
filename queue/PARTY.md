@@ -53,13 +53,14 @@ Next ID: Q-PARTY-068
 - Q-PARTY-006. RULE-PARTY-001: What does the game do when the player tries to begin with an
   empty party, and does a party of fewer than four play differently? Settles it: the code of the
   View Character screen's exit that begins play (SCR-UI-002). Blocks: slice 2.
-- Q-PARTY-067. RULE-PARTY-004: Does any use of overlay 176 `+076C`, which returns a class's level
+- Q-PARTY-067. RULE-PARTY-004, BUG-PARTY-007: Does any other use of overlay 176 `+076C`, which returns a class's level
   without the human test, let a dual-classed human use a former class whose level is not below
   the current class's? Settles it: the calls of `+076C` in overlays 174, 197, 204 and 208 and the
   calls of `27E5:00C1` in the load image and overlays 173 and 197, read to show what each level is
   for and whether the class can be a held-back former class there (FND-PARTY-162). Tried:
   FND-PARTY-162 shows the class flags, `27E5:00C1` and overlay 177's spell routines hold such a
-  class back. Blocks: slice 5.
+  class back; FND-PARTY-163 reads overlay 197 `+04F6..+05C3`, the druid saving throw bonus
+  (BUG-PARTY-007). Blocks: slice 5.
 - Q-PARTY-009. RULE-PARTY-008, RULE-COMBAT-001: What does a key from 1 to 4 do, in particular when its slot is
   empty, and is the word the party loader compares each slot with (FND-PARTY-013) the leader's
   slot? Settles it: the handler the keys 1 to 4 reach in overlay 190, which posts an event for

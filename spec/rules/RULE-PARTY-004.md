@@ -88,7 +88,8 @@ the other two. The other minimum scores of RULE-PARTY-010 are not tested: a huma
 strength and 15 wisdom as a cleric can become a fighter whatever its other scores. When no class
 passes, the game shows `NO OTHER CLASSES AVAILABLE` instead of the window. A human whose new
 class level equals the former level still cannot use the former class's abilities
-(FND-PARTY-162).
+(FND-PARTY-162). One use ignores this: a former druid's bonus of 2 to saving throws against fire
+and lightning applies at once (BUG-PARTY-007).
 
 ## What the sources say
 
