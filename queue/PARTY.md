@@ -56,9 +56,6 @@ Next ID: Q-PARTY-067
 - Q-PARTY-007. RULE-PARTY-004, SCR-UI-015: Which classes does the DUAL list offer: must the new class meet
   its minimum scores, and may the current or a former class be picked? Settles it: the code
   behind the DUAL choice of SCR-UI-002. Blocks: slice 5.
-- Q-PARTY-008. RULE-PARTY-007: Does the game apply the level limits of README table 3 and its
-  prime requisite bonus, and how does it count the prime requisite of a class with more than
-  one? Settles it: the code that raises a character's level. Blocks: slice 5.
 - Q-PARTY-009. RULE-PARTY-008, RULE-COMBAT-001: What does a key from 1 to 4 do, in particular when its slot is
   empty, and is the word the party loader compares each slot with (FND-PARTY-013) the leader's
   slot? Settles it: the handler the keys 1 to 4 reach in overlay 190, which posts an event for

@@ -1,10 +1,10 @@
 ---
 id: RULE-PARTY-007
 title: Which classes each origin may take, and to which level
-status: sourced
+status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [SRC-README-1.1, SRC-MANUAL-1994]
+evidence: [FND-PARTY-160, FND-PARTY-081, FND-PARTY-065, FND-PARTY-068, SRC-README-1.1, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-009]
@@ -12,10 +12,9 @@ related: [RULE-PARTY-009]
 
 ## Summary
 
-Each origin may take only some classes, and a non-human can rise only to a set level in most of
-them. Humans may take every class with no limit, and every origin may be a psionicist with no
-limit. No character rises above level 15. A non-human with a high prime requisite may go one to
-four levels past the limit.
+Each origin may take only some classes; humans and psionicists may take every one. Every
+character rises to level 15 in each class it holds. The game applies none of the README's
+per-origin level limits and none of its prime requisite bonus.
 
 ## When it runs
 
@@ -26,7 +25,7 @@ from its own table (RULE-PARTY-009).
 ## Parameters
 
 `origin`, the character's `origin` code, and `character_class`, a `character_class` code
-(RULE-PARTY-002). `prime`, the character's score in the class's prime requisite.
+(RULE-PARTY-002).
 
 ## Inputs
 
@@ -41,33 +40,25 @@ define class_level_limit(origin, character_class):
     let limit: UINT8[64] = [255, 12, 15, 16, 12, 12, 10, 12, 255, 0, 0, 14, 0, 12, 12, 16, 255, 16, 14, 255, 16, 12, 255, 16, 255, 255, 10, 255, 14, 12, 255, 15, 255, 0, 15, 12, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 255, 255, 0, 16, 14, 8, 16, 0, 12, 255, 12, 12, 12, 0, 16, 12, 0]
     return limit[character_class * 8 + origin]
 
-define maximum_level(origin, character_class, prime):
-    let base = class_level_limit(origin, character_class)
-    if base == 0:
+define maximum_level(origin, character_class):
+    # The game raises a level only below 15 and tests neither the origin nor a score
+    # (FND-PARTY-160).
+    if class_level_limit(origin, character_class) == 0:
         return 0
-    let bonus = 0
-    if prime >= 19:
-        bonus = 4
-    else if prime >= 18:
-        bonus = 3
-    else if prime >= 16:
-        bonus = 2
-    else if prime >= 14:
-        bonus = 1
-    return min(15, base + bonus)
+    return 15
 ```
 
 ## Outputs
 
-`class_level_limit` returns the limit from the table: 0 when the origin cannot take the class,
-255 for no limit. `maximum_level` returns the highest level the character can reach in the
-class, 0 to 15. Neither changes state.
+`class_level_limit` returns the limit from README table 3: 0 when the origin cannot take the
+class, 255 for no limit, otherwise a level the game does not use. `maximum_level` returns 0 when
+the origin cannot take the class and 15 otherwise. Neither changes state.
 
 ## Edge cases
 
-The table stops at a prime requisite of 19, which gives 4 extra levels; the procedure gives 4 to
-every higher score. A human's limits are all 255, so the extra levels never matter to a human,
-and the level 15 cap applies to every character.
+The class change of overlay 209 `+17DC` gives a new class level 1 and moves the earlier classes
+up one position, with no limit test (FND-PARTY-160); which classes it may give is Q-PARTY-007's
+question.
 
 ## What the sources say
 
@@ -87,8 +78,15 @@ and with the class descriptions on the mul druid (12) and the thri-kreen druid (
 The generation screen offers a class with no other class exactly where table 3 gives a limit,
 from a table of its own (RULE-PARTY-009, FND-PARTY-068): a half-giant may be a ranger but not a
 thief, a mul a druid, and a thri-kreen a druid but not a thief. That settles which classes each
-origin may take; the level limits and the prime requisite bonus have not been read from the
-executable.
+origin may take.
+
+The game does not apply table 3's level limits or table 8's bonus. Every routine that sets a
+level byte either sets a starting level (FND-PARTY-065), a new class's level 1, or a drain, or
+adds one level while the level is below 15 (FND-PARTY-081); none reads a score, and the origin
+byte only limits a human to its current class. Table 3's rows and columns appear neither in
+`DSUN.EXE` nor in the archives (FND-PARTY-160). A non-human therefore rises to 15 in every class,
+and the README's question of how to count a class with more than one prime requisite does not
+arise.
 
 ## Differences between builds
 
@@ -96,5 +94,4 @@ None known.
 
 ## Open questions
 
-- Whether the game applies these limits at all, and how it counts the prime requisite of a class
-  with more than one (Q-PARTY-008).
+None.
