@@ -281,6 +281,9 @@ An owner-approved history repair remains separate from this maintenance scope.
   +07AF/+0B00 spells) only while its level is below the current one's; 176+076C (callers 174,
   197 x~140, 204, 208) has no human test, Q-PARTY-067 narrowed to those. 190+0F19/+1139 show
   DUAL for a human of level >= 2 and call 209+123E.
+- FND-PARTY-163 / BUG-PARTY-007: 197+0206 (save modifier, called from 179+2B9E) adds 2 vs DATA
+  +0x1A & 0x82 (fire 0x02, lightning 0x80) for a druid level from 176+076C, so a human keeps a
+  held-back former druid's bonus. Q-PARTY-067 left with the other 176+076C callers.
 - Lead for unk_2a: overlay 204 +0203 pushes 0x0660:0x00BB (the setter trampoline 5787:00BB) as a
   value before a near call to its dispatcher at +019C, so the setter is passed as a callback.
   Filed toolkit #474 (list where a routine's far address is used as a value) after checking
