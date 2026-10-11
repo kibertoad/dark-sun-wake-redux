@@ -302,8 +302,9 @@ An owner-approved history repair remains separate from this maintenance scope.
 - 2026-10-11: template cd30407 synced (09bce1e6), issues 92/93/96/112 answered (ac29c8d1),
   engine 19.1.0 and reader 4.1.0 (f13bc644), pushed to main at the owner's request. Issue 90
   answered after the EXE census check (7ec66adf, Q-EXE-025/026). Issue 94 answered on checker 4.3.0
-  (8175cd20). Waiting: 95 on a superseding batch that hits the handover; 91 on an item with two
-  same-place attempts.
+  (8175cd20); 95 answered by the one-commit supersession 2562f9ec; 91 answered after
+  Q-EXE-007's split and condensation (69a594a7). Nothing of ours waits upstream except template
+  PR #109 for #104.
 - Lead for unk_2a: overlay 204 +0203 pushes 0x0660:0x00BB (the setter trampoline 5787:00BB) as a
   value before a near call to its dispatcher at +019C, so the setter is passed as a callback.
   Filed toolkit #474 (list where a routine's far address is used as a value) after checking
