@@ -53,12 +53,13 @@ Next ID: Q-PARTY-070
 - Q-PARTY-006. RULE-PARTY-001: What does the game do when the player tries to begin with an
   empty party, and does a party of fewer than four play differently? Settles it: the code of the
   View Character screen's exit that begins play (SCR-UI-002). Blocks: slice 2.
-- Q-PARTY-068. BUG-PARTY-008: How large can the byte at `4E71:0255 + 10 * e` of a target's effect
-  of type 0x3B get, given that overlay 197 `+026F..+0286` subtracts twice it from the save
-  modifier and a value of about 60 or more would wrap a `CHAOS` save back to failing? Settles it:
-  the writers of that byte and what adds an effect of type 0x3B (FND-PARTY-166). Tried:
-  FND-PARTY-166 shows a failed save adds `CHAOS`'s effect 21 and a successful one skips it, and
-  bounds the score table terms. Blocks: slice 5.
+- Q-PARTY-068. BUG-PARTY-008: Can the effect 59 that the item of `DATA` 313 or a script's
+  function 23 adds get a count of about 60 or more in its byte at `4E71:0255 + 10 * e`, which
+  overlay 197 `+026F..+0286` subtracts twice from the save modifier, enough to wrap a `CHAOS` save
+  back to failing? Settles it: the durations those two sources pass to overlay 193 `+166F`
+  (FND-PARTY-108, FND-PARTY-167). Tried: FND-PARTY-166 shows a failed save adds `CHAOS`'s effect
+  21 and a successful one skips it, and bounds the score table terms; FND-PARTY-167 shows the
+  spells `LEVEL DRAIN` and `ENERGY DRAIN` leave the count at 15 or less. Blocks: slice 5.
 - Q-PARTY-069. BUG-PARTY-009: Can a dual-classed human choose a psionic power or use a thief
   skill while that class is held back? Settles it: the menus and lists that offer powers and
   thief skills to a party member, read for a test of the class level or of `27E5:00C1`

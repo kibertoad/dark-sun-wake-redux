@@ -7,7 +7,7 @@ superseded_by: []
 impact: rules
 intent: unclear
 player_reliance: unknown
-evidence: [FND-PARTY-164, FND-PARTY-166, FND-PARTY-099, FND-PARTY-162]
+evidence: [FND-PARTY-164, FND-PARTY-166, FND-PARTY-167, FND-PARTY-099, FND-PARTY-162]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-014]
