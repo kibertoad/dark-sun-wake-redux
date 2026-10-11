@@ -7,7 +7,7 @@ superseded_by: []
 impact: rules
 intent: unclear
 player_reliance: unknown
-evidence: [FND-PARTY-164, FND-PARTY-166, FND-PARTY-167, FND-PARTY-099, FND-PARTY-162]
+evidence: [FND-PARTY-164, FND-PARTY-166, FND-PARTY-167, FND-PARTY-168, FND-PARTY-099, FND-PARTY-162]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-014]
@@ -30,7 +30,9 @@ or 4 to 38, and fails only when the sum is below the save as an unsigned byte (F
 FND-PARTY-164). For `CHAOS`, `+0206` subtracts 100 from the modifier when the target has no
 warrior level. The other terms move the sum by at most 39 upward (FND-PARTY-166), so the byte
 lies between about 0x8D and 0xD6, above every save, and the save succeeds. The hit routine adds
-`CHAOS`'s effect, type 21, only on a failed save (FND-PARTY-166).
+`CHAOS`'s effect, type 21, only on a failed save (FND-PARTY-166). The one term that lowers the
+modifier by more than a few points, twice the count of a level drain on the target, takes off
+at most 30, since every source gives that count 15 or less (FND-PARTY-167, FND-PARTY-168).
 
 The subtraction reads as meant to deny the save to non-warriors, which would give the opposite
 result; nothing read for this entry says so, hence `intent: unclear`. The warrior levels come
@@ -54,5 +56,4 @@ None known.
 
 ## Open questions
 
-- Whether a target's effect of type 0x3B can lower the modifier enough to wrap the sum back
-  below a save (Q-PARTY-068).
+None.
