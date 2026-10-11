@@ -247,6 +247,11 @@ An owner-approved history repair remains separate from this maintenance scope.
   retrace starts (1BF3:2A74 polls 3DA bit 3); 213+16EE opens WIND 15503 at (86,56) with the icon
   and SPIN m (RESOURCE.GFF SPIN 1..269 = DATA+1); closing it runs 3A8E:060D, which calls the fill
   stored at window +0xF9 by 3A8E:0D0C, so the frames work again. BUTN/11319 is always closed.
+- Duplicate check for the local-script gaps: toolkit searches for trampoline, overlay stub, field
+  stores, record size and stride found #468 (accesses by table pointer with record size, which
+  covers field_stores.py) and #474 (address used as a value, which covers direct_callers.py
+  missing trampoline pushes). Commented on #474 with the window callback registrations
+  (fill at window +0xF9, control callback at +0x62, stub selector 0x0688) as test cases.
 - Lead for unk_2a: overlay 204 +0203 pushes 0x0660:0x00BB (the setter trampoline 5787:00BB) as a
   value before a near call to its dispatcher at +019C, so the setter is passed as a callback.
   Filed toolkit #474 (list where a routine's far address is used as a value) after checking
