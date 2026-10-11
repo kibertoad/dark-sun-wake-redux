@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-067
+Next ID: Q-PARTY-068
 
 ## Static
 
@@ -53,9 +53,12 @@ Next ID: Q-PARTY-067
 - Q-PARTY-006. RULE-PARTY-001: What does the game do when the player tries to begin with an
   empty party, and does a party of fewer than four play differently? Settles it: the code of the
   View Character screen's exit that begins play (SCR-UI-002). Blocks: slice 2.
-- Q-PARTY-007. RULE-PARTY-004, SCR-UI-015: Which classes does the DUAL list offer: must the new class meet
-  its minimum scores, and may the current or a former class be picked? Settles it: the code
-  behind the DUAL choice of SCR-UI-002. Blocks: slice 5.
+- Q-PARTY-067. RULE-PARTY-004: Does the game hold back a dual-classed human's former class
+  abilities until the current class's level is higher than the former one's, as the manual says?
+  Settles it: the readers of the former class bytes at `+0x1C` and `+0x1D` and the levels at
+  `+0x1F` and `+0x20` of the details record, such as the cast list's class tests (FND-PARTY-110)
+  and the attack and saving throw bytes each level recomputes (FND-PARTY-085). Tried: FND-PARTY-081
+  shows only the current class gains levels. Blocks: slice 5.
 - Q-PARTY-009. RULE-PARTY-008, RULE-COMBAT-001: What does a key from 1 to 4 do, in particular when its slot is
   empty, and is the word the party loader compares each slot with (FND-PARTY-013) the leader's
   slot? Settles it: the handler the keys 1 to 4 reach in overlay 190, which posts an event for
@@ -143,6 +146,11 @@ None.
 
 ## Blocked
 
+- Q-PARTY-007. RULE-PARTY-004, SCR-UI-015: Which classes does the DUAL window offer, and which of its buttons
+  are closed? Settles it: SCR-UI-015 taking the test of RULE-PARTY-004 and the window of
+  FND-PARTY-161. Blocks: slice 5. Tried: FND-PARTY-161 reads the window, its test and its
+  handler, and RULE-PARTY-004 gives the test. Waiting on: a goal that claims the UI area, which
+  owns SCR-UI-015.
 - Q-PARTY-050. RULE-PARTY-013: Does any trigger record's second entry point that can run during a
   fight hold script opcode `0x24`, which makes the slot in `4C13:0369` the current record through
   overlay 190 `+36D2` (FND-PARTY-097, FND-PARTY-098)? Settles it: the `GPL ` resources and offsets
