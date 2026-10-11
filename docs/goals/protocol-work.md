@@ -277,6 +277,10 @@ An owner-approved history repair remains separate from this maintenance scope.
   former class abilities.
   Filed protocol #116 (an answered item still cited by an entry outside the claim cannot close;
   the tracking check wants the queue's own area first) after checking #92.
+- FND-PARTY-162: a human's former class counts (27E5:000F flags, 27E5:00C1 level, 177 +05B7/
+  +07AF/+0B00 spells) only while its level is below the current one's; 176+076C (callers 174,
+  197 x~140, 204, 208) has no human test, Q-PARTY-067 narrowed to those. 190+0F19/+1139 show
+  DUAL for a human of level >= 2 and call 209+123E.
 - Lead for unk_2a: overlay 204 +0203 pushes 0x0660:0x00BB (the setter trampoline 5787:00BB) as a
   value before a near call to its dispatcher at +019C, so the setter is passed as a callback.
   Filed toolkit #474 (list where a routine's far address is used as a value) after checking
