@@ -288,12 +288,15 @@ An owner-approved history repair remains separate from this maintenance scope.
   no fighter, gladiator or ranger level from 176+076C; 179+2A46 adds the modifier in byte width
   and compares unsigned (jb at +2BCC), so -100 or +100 passes the save. SCARE (21) and CLOUD KILL
   (57) have bit 0 of +0x1F clear, so +2A46 returns 0 before the modifier. Q-PARTY-068 asks what
-  CHAOS does with the result and what 27E5:02F2/0324/030B add. Remaining 176+076C callers:
-  197+1270, 174+0793, 204 (+08B0, +0D6C..+0F37), 208 (+0611, +0B54).
+  CHAOS does with the result and what 27E5:02F2/0324/030B add.
+- FND-PARTY-165 / BUG-PARTY-009 close Q-PARTY-067: every other 176+076C caller counts a held-back
+  former class (psionic points 176+06A2, power level 174/176/208, thief skills 204+0887, best
+  cleric/druid/preserver at rest 204+0D28, cleric code 3 hit escape 197+1270). Q-PARTY-069 asks
+  whether the menus offer powers and thief skills to such a human.
 - 2026-10-11: template cd30407 synced (09bce1e6), issues 92/93/96/112 answered (ac29c8d1),
   engine 19.1.0 and reader 4.1.0 (f13bc644), pushed to main at the owner's request. Issue 90
-  answered after the EXE census check (7ec66adf, Q-EXE-025/026). Waiting: 94 on toolkit #343's
-  checker release; 95 on a superseding batch that hits the handover; 91 on an item with two
+  answered after the EXE census check (7ec66adf, Q-EXE-025/026). Issue 94 answered on checker 4.3.0
+  (8175cd20). Waiting: 95 on a superseding batch that hits the handover; 91 on an item with two
   same-place attempts.
 - Lead for unk_2a: overlay 204 +0203 pushes 0x0660:0x00BB (the setter trampoline 5787:00BB) as a
   value before a near call to its dispatcher at +019C, so the setter is passed as a callback.
