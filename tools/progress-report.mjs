@@ -144,7 +144,8 @@ for (const kind of Object.keys(entries).sort()) {
 }
 lines.push('', `Complete reading: ${completeReading ? `${completeReading} entries list findings in \`complete_reading\`; the function count they cover is not computed here` : 'no entry lists findings in `complete_reading`, so no function counts as completely read'}.`);
 
-lines.push('', '### Citation coverage', '', 'From `npm exec -- standard-coverage`: functions and body bytes of each inventory that an entry\'s `locations` cite.', '');
+lines.push('', '### Citation coverage', '', 'From `npm exec -- standard-coverage`: functions and body bytes of each inventory that an entry\'s `locations` cite.',
+  'A path under `@CD/` is the copy on the disc image; the build runs the installed copies (see the build entry in `spec/builds/`).', '');
 row('Inventory', 'Functions cited', 'Share', 'Change', 'Bytes cited', 'Share', 'Change', 'Out of scope');
 row('---', '---:', '---:', '---:', '---:', '---:', '---:', '---:');
 for (const inv of coverage.inventories) {
