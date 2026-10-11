@@ -6,53 +6,87 @@ Entries by status.
 
 ## sourced
 
-7 entries.
+2 entries.
 
 | ID | Title |
 |---|---|
 | [RULE-PARTY-001](../../rules/RULE-PARTY-001.md) | A party has one to four characters |
-| [RULE-PARTY-002](../../rules/RULE-PARTY-002.md) | What a new character may be |
-| [RULE-PARTY-003](../../rules/RULE-PARTY-003.md) | Which psionic disciplines and elemental sphere a new character chooses |
-| [RULE-PARTY-004](../../rules/RULE-PARTY-004.md) | A human can change class twice, from third level |
-| [RULE-PARTY-005](../../rules/RULE-PARTY-005.md) | Origin ability modifiers |
-| [RULE-PARTY-007](../../rules/RULE-PARTY-007.md) | Which classes each origin may take, and to which level |
 | [RULE-PARTY-008](../../rules/RULE-PARTY-008.md) | The keys 1 to 4 choose the party leader |
 
 ## supported
 
-6 entries.
+30 entries.
 
 | ID | Title |
 |---|---|
+| [BUG-PARTY-001](../../bugs/BUG-PARTY-001.md) | The character sheet's next-level experience figure comes from the wrong class's table, or from past the table, for most class codes |
+| [BUG-PARTY-002](../../bugs/BUG-PARTY-002.md) | A character made with two classes never gets the extra starting level in its first class, and its empty third class can get level 1 |
+| [BUG-PARTY-003](../../bugs/BUG-PARTY-003.md) | A psionicist at level 14 never reaches level 15 in play, and every award cuts its experience back to 1,400,000 |
+| [BUG-PARTY-004](../../bugs/BUG-PARTY-004.md) | Saving throws stop improving after a few levels, because the last value of each save is used as the most it can fall |
+| [BUG-PARTY-005](../../bugs/BUG-PARTY-005.md) | A dwarf or halfling gets its constitution bonus on all five saves of a warrior class and on none of its other classes' saves |
+| [BUG-PARTY-006](../../bugs/BUG-PARTY-006.md) | The level drain ends the game with Math Err for a character whose classes all get their level back |
+| [BUG-PARTY-007](../../bugs/BUG-PARTY-007.md) | A dual-classed human keeps a former druid class's saving throw bonus against fire and lightning while the former class is held back |
+| [BUG-PARTY-008](../../bugs/BUG-PARTY-008.md) | A target with no fighter, gladiator or ranger level saves against CHAOS on every roll but a 1, because the 100 the modifier subtracts wraps in the saving throw's byte arithmetic |
+| [BUG-PARTY-009](../../bugs/BUG-PARTY-009.md) | A dual-classed human keeps a held-back former class's power level, thief skills, resting actions, hit escape and CHAOS warrior test |
 | [FMT-PARTY-001](../../formats/FMT-PARTY-001.md) | Character record |
-| [FMT-PARTY-002](../../formats/FMT-PARTY-002.md) | Character record tail entry |
 | [FMT-PARTY-003](../../formats/FMT-PARTY-003.md) | Character psionic byte |
 | [FMT-PARTY-004](../../formats/FMT-PARTY-004.md) | Character PSST record |
 | [FMT-PARTY-005](../../formats/FMT-PARTY-005.md) | Character SPST record |
+| [FMT-PARTY-006](../../formats/FMT-PARTY-006.md) | Character record chunk |
+| [FMT-PARTY-007](../../formats/FMT-PARTY-007.md) | Class combination table (DATA 1001) |
+| [RULE-PARTY-002](../../rules/RULE-PARTY-002.md) | What a new character may be |
+| [RULE-PARTY-003](../../rules/RULE-PARTY-003.md) | Which psionic disciplines and elemental sphere a new character chooses |
+| [RULE-PARTY-004](../../rules/RULE-PARTY-004.md) | A human can change class twice, from second level |
+| [RULE-PARTY-005](../../rules/RULE-PARTY-005.md) | Origin ability modifiers |
 | [RULE-PARTY-006](../../rules/RULE-PARTY-006.md) | START GAME supplies characters 40 to 43 as the party |
+| [RULE-PARTY-007](../../rules/RULE-PARTY-007.md) | Which classes each origin may take, and to which level |
+| [RULE-PARTY-009](../../rules/RULE-PARTY-009.md) | Which classes the generation screen offers |
+| [RULE-PARTY-010](../../rules/RULE-PARTY-010.md) | How the generation screen rolls and bounds ability scores |
+| [RULE-PARTY-011](../../rules/RULE-PARTY-011.md) | Which alignments the generation screen allows |
+| [RULE-PARTY-012](../../rules/RULE-PARTY-012.md) | Hit points of a new character |
+| [RULE-PARTY-013](../../rules/RULE-PARTY-013.md) | How a character gains levels in play |
+| [RULE-PARTY-014](../../rules/RULE-PARTY-014.md) | Class flags, attack rate, THAC0 and saving throws from a character's classes and levels |
+| [RULE-PARTY-015](../../rules/RULE-PARTY-015.md) | How experience is given to party members |
+| [SCR-PARTY-001](../../screens/SCR-PARTY-001.md) | Learn a spell |
+| [SCR-PARTY-002](../../screens/SCR-PARTY-002.md) | Learn or enhance a psionic power |
 
 ## superseded
 
-5 entries.
+21 entries.
 
 | ID | Title |
 |---|---|
+| [FMT-PARTY-002](../../formats/FMT-PARTY-002.md) | Character record tail entry |
+| [FND-PARTY-004](../../findings/FND-PARTY-004.md) | A CHAR record is a 79-byte header whose byte 1 counts the 33-byte records after it |
+| [FND-PARTY-018](../../findings/FND-PARTY-018.md) | No CHAR header byte or word of records 40 and 42 holds the label positions of their gender, origin, alignment or class |
 | [FND-PARTY-024](../../findings/FND-PARTY-024.md) | The view-mode word at DS:0DAB and the word at DS:0D9C start at 0, and the routines that can make them nonzero first |
 | [FND-PARTY-025](../../findings/FND-PARTY-025.md) | The two calls before the party-loader gate reserve off-screen video memory, and fail only when the reservation table or the pool is full |
 | [FND-PARTY-026](../../findings/FND-PARTY-026.md) | No direct call made between program start and the party-loader gate reaches a writer of the placed-object count or of the gate's mode words |
 | [FND-PARTY-027](../../findings/FND-PARTY-027.md) | Startup holds a full-screen reservation of the video-memory pool, which leaves 1,067 paragraphs for later reservations |
 | [FND-PARTY-028](../../findings/FND-PARTY-028.md) | Of the other reservations before the party-loader gate, the scroll routine releases all it takes, and two routines each keep one entry |
+| [FND-PARTY-029](../../findings/FND-PARTY-029.md) | The view-mode word at DS:0DAB and the word at DS:0D9C start at 0, and the routines that can make them nonzero first |
+| [FND-PARTY-060](../../findings/FND-PARTY-060.md) | Overlay 210 turns a class code into a DATA 1000 row through the byte table at 4E4F:009D, which sends codes 1 to 17 to the classes 1 to 8 of the name table at DS:1164, and overlay 209 writes codes of that 17-code numbering into the details record when a class changes |
+| [FND-PARTY-062](../../findings/FND-PARTY-062.md) | Overlay 210 turns a class code into a DATA 1000 row through the class bytes of the pair table at 4E4F:009C, which send codes 1 to 17 to the classes 1 to 8 of the name table at DS:1164, and overlay 209 writes codes of that 17-code numbering into the details record when a class changes |
+| [FND-PARTY-063](../../findings/FND-PARTY-063.md) | Character generation keeps class codes 1 to 8 of the DS:1164 numbering in its working details record at 4E4F:0029, and overlay 184 +1648 turns them into the 17 codes through the table at 4E4F:00C0 when it stores the character |
+| [FND-PARTY-064](../../findings/FND-PARTY-064.md) | Three of the four callers of overlay 184 +1DCE pass the records of the slot in the word at 4E71:0B44, the slot +1DCE takes the class bytes from, and the fourth, the DUAL path of overlay 209 +123E, passes the slot that word held when the routine began |
+| [FND-PARTY-067](../../findings/FND-PARTY-067.md) | The generation screen's discipline window sets DS:42C0 bits 0x80, 0x40 and 0x20 for buttons 2038 to 2040, whose icons read P.KINESIS, P.METAB and TELEPATHY, and overlay 184 +1876 stores them as bits 0, 1 and 2 of the slot's PSIN byte at 4E71:0A55 |
+| [FND-PARTY-087](../../findings/FND-PARTY-087.md) | The word at 4C10:0019 that defers the level gain is set to 1 while overlay 173 +3304 reports a fight going on, and when the fight loop ends the party gains levels if any member was still standing |
+| [FND-PARTY-092](../../findings/FND-PARTY-092.md) | The details bytes at 0x25, 0x28, 0x2B and 0x2E plus an attack number give a natural attack's rate, damage dice, dice sides and damage bonus, the byte at 0x24 is read for an armed attack's rate, and no code but their setter reads the five bytes at 0x31 |
+| [FND-PARTY-101](../../findings/FND-PARTY-101.md) | Besides item 313 on a roll of 20, effect code 59 reaches overlay 193 +166F as the byte at +0x19 of a hitting item's DATA record, which is 59 in DATA 104 and DATA 225, and as a script's argument to function 23 of script opcode 0x22; every other caller passes a fixed code other than 59 |
+| [FND-PARTY-117](../../findings/FND-PARTY-117.md) | An RDFF actor is loaded into an object the loader takes from free lists that start at object 4, so it can occupy a party object 0 to 3 only after 2D40:03C1 releases that object |
+| [FND-PARTY-118](../../findings/FND-PARTY-118.md) | Removing a placed entry through 31E0:05BB releases its object through 31E0:044C with no test that keeps the party objects 0 to 3 off the free list |
+| [FND-PARTY-132](../../findings/FND-PARTY-132.md) | The one routine found that marks a loaded object table entry unloaded, overlay 187 +071D, has no call or pointer reference in DSUN.EXE, and script opcode 0x22 function 9 renumbers only entries that are already unloaded |
+| [FND-PARTY-165](../../findings/FND-PARTY-165.md) | Overlay 176 +076C, which counts a human's held-back former class, gives the psionicist level for psionic points and power use, the thief level for the thief skills, the best cleric, druid and preserver levels when the party rests, and a cleric code 3 level that ends a hit |
 
 ## recorded
 
-38 entries.
+149 entries.
 
 | ID | Title |
 |---|---|
 | [FND-PARTY-001](../../findings/FND-PARTY-001.md) | Every CHAR record holds a printable NUL-terminated name in a 16-byte slot at 0x2B |
 | [FND-PARTY-002](../../findings/FND-PARTY-002.md) | Each CHAR record has a one-byte PSIN resource of the same number, holding 1, 2, 4, 5, 6 or 7 |
 | [FND-PARTY-003](../../findings/FND-PARTY-003.md) | Bytes 0x23 to 0x28 of every CHAR record hold six values from 12 to 24 |
-| [FND-PARTY-004](../../findings/FND-PARTY-004.md) | A CHAR record is a 79-byte header whose byte 1 counts the 33-byte records after it |
 | [FND-PARTY-005](../../findings/FND-PARTY-005.md) | The disc's CHARSAVE.GFF holds characters 40 to 43 and 50 to 53; the installed copy adds 29 to 39 |
 | [FND-PARTY-006](../../findings/FND-PARTY-006.md) | Each CHAR record has a 34-byte PSST and a 9- or 15-byte SPST resource of the same number |
 | [FND-PARTY-007](../../findings/FND-PARTY-007.md) | DSUN.EXE holds no run of four consecutive character numbers other than inside its hex-digit strings |
@@ -66,13 +100,11 @@ Entries by status.
 | [FND-PARTY-015](../../findings/FND-PARTY-015.md) | DSUN.EXE does not hold the names of the shipped characters |
 | [FND-PARTY-016](../../findings/FND-PARTY-016.md) | DSUN.EXE holds the eight class labels in one run at 5000:908C, with no direct reference |
 | [FND-PARTY-017](../../findings/FND-PARTY-017.md) | DSUN.EXE holds the gender, origin, ability and alignment labels in runs around the class labels |
-| [FND-PARTY-018](../../findings/FND-PARTY-018.md) | No CHAR header byte or word of records 40 and 42 holds the label positions of their gender, origin, alignment or class |
 | [FND-PARTY-019](../../findings/FND-PARTY-019.md) | No PLYL resource in RESOURCE.GFF holds a character number as a byte or 16-bit word |
 | [FND-PARTY-020](../../findings/FND-PARTY-020.md) | The four View Character captures show a party whose names and scores match CHAR records 40, 41 or 53, 42, and 33 or 43 |
 | [FND-PARTY-021](../../findings/FND-PARTY-021.md) | START GAME reaches the overlay 182 party loader through two overlay 182 routines, gated on an empty placed-object table |
 | [FND-PARTY-022](../../findings/FND-PARTY-022.md) | The placed-object count starts at 0, and eight direct stores in five routines change it |
 | [FND-PARTY-023](../../findings/FND-PARTY-023.md) | The resource-to-slot loader 2D40:000A returns 0xFFFF when either resource lookup it makes fails |
-| [FND-PARTY-029](../../findings/FND-PARTY-029.md) | The view-mode word at DS:0DAB and the word at DS:0D9C start at 0, and the routines that can make them nonzero first |
 | [FND-PARTY-030](../../findings/FND-PARTY-030.md) | The two calls before the party-loader gate reserve off-screen video memory, and fail only when the reservation table or the pool is full |
 | [FND-PARTY-031](../../findings/FND-PARTY-031.md) | No direct call made between program start and the party-loader gate reaches a writer of the placed-object count or of the gate's mode words |
 | [FND-PARTY-032](../../findings/FND-PARTY-032.md) | Startup holds a full-screen reservation of the video-memory pool, which leaves 1,067 paragraphs for later reservations |
@@ -87,6 +119,120 @@ Entries by status.
 | [FND-PARTY-041](../../findings/FND-PARTY-041.md) | MAS 99 runs straight through string and number assignments and opcodes 0x6D and 0x70 to its stop, and none of their handlers reaches the count, DS:0DAB or pointer writers |
 | [FND-PARTY-042](../../findings/FND-PARTY-042.md) | GPLDATA.GFF is registered before the MAS 99 call and nothing on the way unregisters it, so the load can fail only on a file call's result |
 | [FND-PARTY-043](../../findings/FND-PARTY-043.md) | The call through [di+0x6393] picks one of four text-layout routines, and the call through the text record's +0x0C field is skipped once the record is set |
+| [FND-PARTY-044](../../findings/FND-PARTY-044.md) | Before the party-loader gate, the window and APFM callback fields hold no routine that reaches the count, DS:0DAB or pointer writers unless another start-window button runs first |
+| [FND-PARTY-045](../../findings/FND-PARTY-045.md) | The Load Saved Game window reaches no count, DS:0DAB or pointer writer unless a game is loaded, and the Create Characters window passes its events to overlay 190 routines that do |
+| [FND-PARTY-046](../../findings/FND-PARTY-046.md) | ADD on the Create Characters screen loads a stored character and calls the placement routine, which increments the placed-object count, and Esc returns to the start window without a store that clears it |
+| [FND-PARTY-047](../../findings/FND-PARTY-047.md) | The placement helper 31E0:0EFF returns -1 at once while DS:265B is 0, and start-up sets that byte through overlay 180 +0141 and overlay 200 +02BE before the start window |
+| [FND-PARTY-048](../../findings/FND-PARTY-048.md) | For ADD's placement, 31E0:0EFF skips the RDFF load and passes its slot-record test, leaving the OJFF request for 300 plus the party record's word at 0x10 as its only failure |
+| [FND-PARTY-049](../../findings/FND-PARTY-049.md) | The CHAR load copies bytes 0x0A to 0x3A of a kind-2 record into the slot's party record, so ADD's object number is 300 plus the CHAR word at 0x1A, 300 to 313 for every stored character |
+| [FND-PARTY-050](../../findings/FND-PARTY-050.md) | In the 19 stored CHAR records, the words and bytes the load copies to the combatant record's known fields hold hit points from 21 to 165, identifiers from 32,769 to 33,536, image offsets from 0 to 13 and marks of 0 or 1 |
+| [FND-PARTY-051](../../findings/FND-PARTY-051.md) | The CHAR load reads a resource as a chain of chunks, each a 10-byte header and the number of bytes its word at 8 gives, until a chunk whose first byte is 0xFF, and handles each chunk by its first byte |
+| [FND-PARTY-052](../../findings/FND-PARTY-052.md) | Every stored CHAR record is a 49-byte type-1 chunk, a 66-byte type-3 chunk, 0 to 27 chunks of 23 bytes of types 2 and 4, and a 10-byte header with byte 0 at 0xFF, and FNFO 1 maps the fields their headers name to combatant words 4, 8, 10 and 12 |
+| [FND-PARTY-053](../../findings/FND-PARTY-053.md) | In the 19 stored CHAR records, the word the type-3 chunk puts at the details record's max_hit_points holds 21 to 165, equal to the hit points at 0x0A in 16 records and above them in three |
+| [FND-PARTY-054](../../findings/FND-PARTY-054.md) | The CHAR writer emits the character's chunk first, then walks its fields depth first in the order 15, 16, 17, 4 for a character and 5, 2, 4 for a 23-byte record, so a record the game writes has its details chunk second whenever the character has one |
+| [FND-PARTY-055](../../findings/FND-PARTY-055.md) | The character sheet prints origin, gender and alignment from bytes 0x12, 0x13 and 0x14 of the combatant details record as 1-based indexes into the name tables at DS:113C, and the levels from bytes 0x1E to 0x20 for each nonzero class byte at 0x1B to 0x1D |
+| [FND-PARTY-056](../../findings/FND-PARTY-056.md) | In the 19 stored CHAR records, bytes 0x57, 0x58 and 0x59 hold origins 1 to 8, genders 1 and 2 and alignments 1 to 8, which name the four captured characters' origin, gender and alignment, and bytes 0x60 to 0x62 hold class codes from 1 to 17 |
+| [FND-PARTY-057](../../findings/FND-PARTY-057.md) | Overlay 190 names a class code through a caller's table of far pointers counted from 1, and overlay 212 passes the table at DS:1487, which names codes 1 to 4 Cleric, 5 to 8 Druid, 9 Fighter, 10 Gladiator, 11 Preserver, 12 Psionic, 13 to 16 Ranger and 17 Thief |
+| [FND-PARTY-058](../../findings/FND-PARTY-058.md) | The character sheet prints the details record's dword at 0x00 after the label EXP and, in brackets, the least next-level figure it reads for each class from DATA resource 1000, an 8-row table of words in hundreds indexed by the class byte less 1 and the level |
+| [FND-PARTY-059](../../findings/FND-PARTY-059.md) | The character sheet prints the combatant record's word at 0x02 over the details record's word at 0x0C as unsigned numbers after the label PSI, as it prints hit points from 0x00 over 0x08, and overlay 184 can copy the details word to the combatant word |
+| [FND-PARTY-061](../../findings/FND-PARTY-061.md) | No byte or aligned word in the first 79 bytes of CHAR records 40 and 42 holds the label positions of their gender, origin, alignment or class counted from 0 |
+| [FND-PARTY-065](../../findings/FND-PARTY-065.md) | When a class is chosen in generation, overlay 183 +1323 sets each class to level 7 for one class or 6 for more, raises experience to the greatest threshold, and then for two classes tests the class positions in reverse order, so the first class is never raised and the empty third one is tested against DATA 1000 row -1 |
+| [FND-PARTY-066](../../findings/FND-PARTY-066.md) | The generation screen's sphere window sets DS:42C2 to 0x80, 0x40, 0x20 or 0x10 for its buttons 2042 to 2045, whose icons read AIR, EARTH, FIRE and WATER, and the Cleric, Druid and Ranger buttons open it with 0x80 |
+| [FND-PARTY-068](../../findings/FND-PARTY-068.md) | The generation screen enables the class buttons from an 8-word origin table at 4E68:0000 for the first class and from DATA 1001, by origin, first class and second class, for the second and third, and enables none after three |
+| [FND-PARTY-069](../../findings/FND-PARTY-069.md) | Segment 4E68 is a 140-byte data segment that only overlays 183 and 184 name, and none of their 54 references writes its first 16 bytes, the origin class table; the only writes go to two 10-word arrays at 0x64 and 0x78 |
+| [FND-PARTY-070](../../findings/FND-PARTY-070.md) | The generation window's handler enables DONE only when the character has a class and a discipline, a sphere if it is a cleric or druid, and all three disciplines if it is a psionicist, and its portrait button sets the origin and gender from one of 14 portraits and remakes the character as a rolled fighter |
+| [FND-PARTY-071](../../findings/FND-PARTY-071.md) | The generation screen rolls each ability score as 4 plus the origin modifier plus the best of four rolls of 4d4, holds it between a class minimum (17 for the class's prime ability, a per-class figure for the others) and 20 plus the origin modifier, and steps it with wrapping inside those bounds |
+| [FND-PARTY-072](../../findings/FND-PARTY-072.md) | The generation screen steps alignment through codes 1 to 9 with a wrap from 1 down to 8, and moves on past any alignment a per-class table at 4E68:001C forbids unless Ctrl is held; the table allows no evil alignment, only true neutral to a druid, only good to a ranger and no lawful good to a thief |
+| [FND-PARTY-073](../../findings/FND-PARTY-073.md) | Character generation keeps class codes 1 to 8 of the DS:1164 numbering in its working details record at 4E4F:0029, and overlay 184 +1648 turns them into the 17 codes through the table at 4E4F:00C0 when it stores the character |
+| [FND-PARTY-074](../../findings/FND-PARTY-074.md) | The generation screen keeps a new character's greatest hit points between a low bound of one per level and a high bound of the class's hit die per level, each averaged over the classes, doubled for a half-giant and raised by a constitution bonus, and it rolls each level's die into the details record's word at 0x0A |
+| [FND-PARTY-075](../../findings/FND-PARTY-075.md) | The calls the generation screen's roll routine makes after the hit points reach no call of the random number generator |
+| [FND-PARTY-076](../../findings/FND-PARTY-076.md) | The generation screen's working details record keeps its constitution byte from the last character finished or copied in, starting from 10, so the hit die floor reads that value instead of the score being set |
+| [FND-PARTY-077](../../findings/FND-PARTY-077.md) | The generation screen's discipline window sets DS:42C0 bits 0x80, 0x40 and 0x20 for buttons 2038 to 2040, lets a psionicist turn any of them off and on and anyone else hold one at a time, and overlay 184 +1876 stores them as bits 0, 1 and 2 of the slot's PSIN byte |
+| [FND-PARTY-078](../../findings/FND-PARTY-078.md) | The word at offset 0x12 of a window event is the mouse driver's event bits from the mouse packet, so the generation screen's step buttons go forward for the left button and back for the right or middle one |
+| [FND-PARTY-079](../../findings/FND-PARTY-079.md) | No key presses a button of the generation window, since no button record ever gets a hotkey byte and the window has no menu or accelerator child, so its step buttons take presses only from the mouse |
+| [FND-PARTY-080](../../findings/FND-PARTY-080.md) | Three of the four callers of overlay 184 +1DCE pass the records of the slot in the word at 4E71:0B44, and on the fourth, the DUAL path of overlay 209 +123E, the calls before +1DCE reach a store to that word only through overlay 172 +05DB and overlays 173, 188 and 210 |
+| [FND-PARTY-081](../../findings/FND-PARTY-081.md) | In play overlay 210 +08BC raises each class position's level while the experience reaches the DATA 1000 word at the level, up to 15, after cutting the experience to the word three places on, and each level adds a hit die roll and recomputes the greatest hit points and psionic points |
+| [FND-PARTY-082](../../findings/FND-PARTY-082.md) | Overlay 210 +0B66 lowers each class level by one, sets the experience to half the sum of DATA 1000 words at the old level and the one below, and then raises again every level that experience reaches, taking a hit die roll off the greatest hit points for each class it leaves lowered; with the generation screen, the class change and the level gain it is the only code that stores a details record's level bytes |
+| [FND-PARTY-083](../../findings/FND-PARTY-083.md) | Overlay 210 turns a class code into a DATA 1000 row through the class bytes of the pair table at 4E4F:009C, which send codes 1 to 17 to the classes 1 to 8 of the name table at DS:1164, and overlay 209 writes codes of that 17-code numbering into the details record when a class changes |
+| [FND-PARTY-084](../../findings/FND-PARTY-084.md) | The far pointer DS:142D holds the combatant record of the slot last stored in 4E71:0B44 by overlays 190 and 209, a record given to overlays 202, 211 or 212, or the generation screen's working record, and the level gain sets it only through a new Psionicist level |
+| [FND-PARTY-085](../../findings/FND-PARTY-085.md) | When a character is stored, changes class or gains a level, four routines set the details record's class flags at 0x10, attack rates at 0x24 and 0x25, five saving throws at 0x31 and a combatant byte at 0x16 of 20 less the best of (level - 1) times a class group's rate over 12 |
+| [FND-PARTY-086](../../findings/FND-PARTY-086.md) | Experience is given through one overlay 188 routine, by the script instruction 0x21 to one party member or all, and by the damage routine for each enemy killed, which shares the dead combatant's details dword at 0x04 among the party |
+| [FND-PARTY-088](../../findings/FND-PARTY-088.md) | From the calls that end a fight, a reach walk finds the stores to 4E71:0B44 and DS:142D only inside the level gain's overlay 209 routines, with 34 computed transfers unresolved |
+| [FND-PARTY-089](../../findings/FND-PARTY-089.md) | The word at 4C10:0019 holds the fight state, 0 outside a fight and 1 to 4 within one, and the fight routine overlay 173 +059A, whose result its callers store there, ends a fight by running the level gain when a party member still stands and returning 0 |
+| [FND-PARTY-090](../../findings/FND-PARTY-090.md) | From the fight routine overlay 173 +059A, a reach walk finds the stores to 4E71:0B44 and DS:142D only inside the level gain's overlay 209 routines, every route passing through overlay 210 +0B44, with 36 computed transfers unresolved |
+| [FND-PARTY-091](../../findings/FND-PARTY-091.md) | The attack routine overlay 173 +1CC1 reads the combatant byte at 0x16 as the attacker's base, lowers it by bonuses and passes it to +2560, which hits on a roll of 20, or on a roll other than 1 that is at least that value less a target value |
+| [FND-PARTY-093](../../findings/FND-PARTY-093.md) | Every read through ES of the displacements 0x31 to 0x35 outside overlay 210's save setter goes through a pointer other than the details table, and no read without ES follows the details pointers |
+| [FND-PARTY-094](../../findings/FND-PARTY-094.md) | 353 RDFF resources of OBJEX.GFF start with the chunk headers of a CHAR record, and two of them with the combatant kind 7 hold 107,000 and 33,000 where a details record holds kill_experience |
+| [FND-PARTY-095](../../findings/FND-PARTY-095.md) | The routine 28C9:2E0E that changes a combatant's kind treats the kinds as three sides, 0x71, 0x184 and 0x608, each with a set of kinds hostile to it, 0xF80, 0xC58 and 0x964, so the award and kill masks are the party's side and the kinds hostile to it |
+| [FND-PARTY-096](../../findings/FND-PARTY-096.md) | Overlay 195 runs the level drain of overlay 210 +0B66 for the effect code 59 on a party slot, and overlay 179 sends code 59 to the slot struck by an item of DATA number 313 when the attack roll is 20 |
+| [FND-PARTY-097](../../findings/FND-PARTY-097.md) | The fight routine runs object trigger scripts, and script opcode 0x24 reaches overlay 190 +36D2, which stores the word at 4C13:0369 in 4E71:0B44 and makes that slot's records current at DS:1429 and DS:142D |
+| [FND-PARTY-098](../../findings/FND-PARTY-098.md) | 2D40:207E runs the second entry point of trigger record s when its word at +6 is 1 and the slot in 4C13:0369 is within the radius in the low 7 bits of +0x10 with 1B0B:00A4 returning 0, or the word is 2 and that slot is beyond the radius with 1B0B:00A4 returning nonzero |
+| [FND-PARTY-099](../../findings/FND-PARTY-099.md) | Overlay 179 +2A46 rolls a saving throw, reading the target's details byte at 0x30 plus the save number in bits 5 to 7 of byte +0x1F of the effect's DATA record, and succeeds on a natural 20 or when the roll plus modifiers reaches that byte |
+| [FND-PARTY-100](../../findings/FND-PARTY-100.md) | The details bytes at 0x25, 0x28, 0x2B and 0x2E plus an attack number give a natural attack's rate, damage dice, dice sides and damage bonus, the byte at 0x24 is read for an armed attack's rate, and no read at a fixed displacement through DS:19C5 or DS:1429 takes the five bytes at 0x31 |
+| [FND-PARTY-102](../../findings/FND-PARTY-102.md) | Overlay 179 +0C7F passes its item number to the hit routine +0D2F, and its far callers pass -1 from the overlay 173 swing and from overlays 195 and 204 and the DATA numbers 100, 79, 221 and 18 from overlay 193, leaving overlay 193 +145E and overlay 204 +130E with computed numbers |
+| [FND-PARTY-103](../../findings/FND-PARTY-103.md) | Overlay 204 +12B4's callers pass the DATA numbers 148, 157, 159 and 178 to the hit routine, and overlay 193 +13EC passes the word at +0 of an 18-byte record of the table at 51F1:0000, which overlay 193 +12A8 indexes by its second argument |
+| [FND-PARTY-104](../../findings/FND-PARTY-104.md) | A new Preserver level opens a window that sets one bit of the character's SPST entry, the spell it learns, and a new Psionicist level opens one that learns or enhances one or two psionic powers, whose ranks are bits 1 to 7 of the character's PSST bytes |
+| [FND-PARTY-105](../../findings/FND-PARTY-105.md) | A divide error runs the C run time's signal catcher, which calls the game's floating-point signal handler; that handler restores the screen, prints Math Err and ends the program with exit code 1 |
+| [FND-PARTY-106](../../findings/FND-PARTY-106.md) | The table at 51F1:0000 that overlay 193 +12A8 passes to the hit routine is 112 records of 18 bytes loaded from the executable and never written, and none of their DATA numbers is 104 or 225 |
+| [FND-PARTY-107](../../findings/FND-PARTY-107.md) | The hit routine's call in overlay 179 +11DC's queue branch is never taken, and overlay 193 +003C passes its third argument as the item, which overlay 179 +12B1's queue and overlay 193 +0000 fill with fixed DATA numbers other than 104 and 225 or with computed ones |
+| [FND-PARTY-108](../../findings/FND-PARTY-108.md) | Besides item 313 on a roll of 20, effect code 59 reaches overlay 193 +166F as the byte at +0x19 of the DATA record the hit routine is given, which is 59 for the spells DATA 104 and DATA 225, and as a script's argument to function 23 of script opcode 0x22; every other caller passes a fixed code other than 59 |
+| [FND-PARTY-109](../../findings/FND-PARTY-109.md) | A spell of target type 4 cast from overlay 211's list goes through overlay 208's target cursor, which takes a combatant of a side the caster's side is hostile to, or of any side while a Shift key is held, and overlay 193 +003C passes a single chosen target to the hit routine with no side test |
+| [FND-PARTY-110](../../findings/FND-PARTY-110.md) | The party's cast list holds a spell below 115 when the slot's SPST bit for it is set, and a spell from 115 to 234 when one of the slot's classes has the spell's sphere bit and the spell's level is within the slot's priest spell level; DATA 104 is a level 9 wizard spell and DATA 225 a level 7 druid spell |
+| [FND-PARTY-111](../../findings/FND-PARTY-111.md) | Overlay 182 +0B52 sets a party member's spells to cast per level from overlay 177 +05B7, and the cast window steps only to levels up to overlay 211 +208C, so level 9 wizard spells need class level 17 and 18 and level 7 priest spells class level 13 and 12 |
+| [FND-PARTY-112](../../findings/FND-PARTY-112.md) | For the spells DATA 104 and 225, the three overlay 197 calls before the hit routine's saving throw end the hit only for a target with certain effect flags or effects, a failed resistance test, or a creature type, record byte or details byte that the tables or tests name |
+| [FND-PARTY-113](../../findings/FND-PARTY-113.md) | The 19 CHAR records of CHARSAVE.GFF hold 0 in bytes 0x18 and 0x19, which a load copies to bytes +0x0E and +0x0F of a party member's combatant record, and the two stores found to those bytes through DS:19C9 leave 0 in place or have no caller |
+| [FND-PARTY-114](../../findings/FND-PARTY-114.md) | CHARTRAN.EXE stores 0 in bytes +0x0E and +0x0F of each of its four combatant records before it writes a transferred character's CHAR resource, and no other code in it indexes those records |
+| [FND-PARTY-115](../../findings/FND-PARTY-115.md) | Of the block copies in DSUN.EXE, only the CHAR load and character generation's store copy whole combatant records into the table at DS:19C9, and generation's working record holds 0 in bytes +0x0E and +0x0F unless a record copied into it held another value |
+| [FND-PARTY-116](../../findings/FND-PARTY-116.md) | Only the -k911 debug switch opens the two paths that set DS:13F8, the game's own stores keep class levels at 15 or below, and the OBJEX actors Nortemus, Fori, Zydeko and Matthias hold Preserver levels of 18 and 20 |
+| [FND-PARTY-119](../../findings/FND-PARTY-119.md) | The object allocators hand out objects from 5 up and no release puts an object below 5 on a free list, so neither an RDFF load through them nor the DROP of a party member gives a party object to an OBJEX actor |
+| [FND-PARTY-120](../../findings/FND-PARTY-120.md) | After a DROP the party object keeps no placed entry and kind 0, and the RDFF loads that take a kind-0 object get theirs from placed entries or from kind-2 objects, so none of them reaches it |
+| [FND-PARTY-121](../../findings/FND-PARTY-121.md) | The enemy spell choice of overlay 174 scores each spell by a weight byte that is 0 for DATA 104 and 225, its other path and the item powers pass other numbers, and only RDFF 3 has 104 in its spell list |
+| [FND-PARTY-122](../../findings/FND-PARTY-122.md) | Of the hit routine's computed item arguments, overlay 197 +1202 repeats the current hit's number, overlay 176 passes 235 to 268, and overlay 204 +19AF passes a script argument modulo 1000 for function 46 of opcode 0x22 |
+| [FND-PARTY-123](../../findings/FND-PARTY-123.md) | Before a level gain, overlay 182 +19F8 sets the combat mark of each party member whose mark is 0 to 1 while DS:0DAB is 2, and for 2 or 3 runs the main view's routines and sets DS:0DAB to 1 |
+| [FND-PARTY-124](../../findings/FND-PARTY-124.md) | The view-mode word at DS:0DAB and the word at DS:0D9C start at 0, the routines that can make them nonzero first, and no direct store puts 3 in DS:0DAB |
+| [FND-PARTY-125](../../findings/FND-PARTY-125.md) | The main view's tick 28C9:2322 does nothing while DS:0D9C is 0, which overlay 182 +1856 stores on entering display mode 2, so its fight step does not run while a window opened that way is up |
+| [FND-PARTY-126](../../findings/FND-PARTY-126.md) | Overlay 182 +1167 changes DS:0D9C and DS:0DAB only while DS:0DAB is 0, and the message window of overlay 172 +05DB leaves display mode 2 again before it returns when it entered it |
+| [FND-PARTY-127](../../findings/FND-PARTY-127.md) | Entering display mode 2 unregisters the main view's key handler 28C9:0CFF, which only overlay 182 +1167, +15D7 and +19F8 and overlay 199 +0BC1 register |
+| [FND-PARTY-128](../../findings/FND-PARTY-128.md) | The three windows that read the registered key handler through overlay 190 +11C1 register their own and put the saved one back, and 45B9:0034 reads the mouse buttons through INT 33h function 3 |
+| [FND-PARTY-129](../../findings/FND-PARTY-129.md) | A reach walk from the 24 openings of display mode 2, stopped where a window leaves it through overlay 182 +19F8, reaches the script interpreter and the experience award's level gain only through overlay 182 +15D7 while DS:0DAB is 4 |
+| [FND-PARTY-130](../../findings/FND-PARTY-130.md) | Of overlay 182 +19F8's mode 2 callees, only 2C5F:0139 reaches routines that load a party record pointer, through the view draw 31BA:000E loading an object whose byte at 4F49:0C33 is 2 |
+| [FND-PARTY-131](../../findings/FND-PARTY-131.md) | Overlay 184 +1648 stores 2 in the object slot state byte at 4F49:0C33 for the slot of a character it adds to the party, the state that sends 31E0:0B4A to overlay 193 +1DB0 and 371D:0002 |
+| [FND-PARTY-133](../../findings/FND-PARTY-133.md) | Handlers that windows register in display mode 2 reach the experience award's level gain through a spell cast in overlay 211's window, the debug keys through overlay 175's and 211's, and the script interpreter through overlay 171's character placement |
+| [FND-PARTY-134](../../findings/FND-PARTY-134.md) | Every route a reach walk reads from the message window overlay 172 +05DB to the experience award overlay 188 +1604 passes the view draw's object load and a call of overlay 193 +1DB0 or 371D:0002 made only for an object slot whose state byte is 2 |
+| [FND-PARTY-135](../../findings/FND-PARTY-135.md) | The routines that mark a loaded object table entry unloaded are overlay 187 +071D, which has no call or pointer reference, and the eviction loop 31E0:0D09, which skips entries whose slot is below 0x30; script opcode 0x22 function 9 renumbers only unloaded entries |
+| [FND-PARTY-136](../../findings/FND-PARTY-136.md) | The start-up code of overlay 188 puts object slots 4 to 0x2F on the free list at DS:56ED and frees 0x30 to 0x13E, never the party slots 0 to 3, and 2D40:03C1 is what returns a slot below 0x30 to that list |
+| [FND-PARTY-137](../../findings/FND-PARTY-137.md) | A reach walk from the DUAL routine overlay 209 +123E reaches the object slot release 2D40:03C1 only through the view draw's object load, and not at the party-management releases of overlays 175, 184, 187 and 189 |
+| [FND-PARTY-138](../../findings/FND-PARTY-138.md) | Of the object slot releases, only the unload 31E0:05BB frees a party member's slot, and the DUAL routine reaches it only through overlay 187 +1B67, which unloads slots 5 to 0x13F; overlay 171 +0D15, which unloads the current character, is reached from seven mode-2 handlers but not from the message window's |
+| [FND-PARTY-139](../../findings/FND-PARTY-139.md) | On the DUAL path the event loops hand events to the message window's handler overlay 172 +0816, the DUAL window's overlay 209 +169C and the handler slot DS:A0F5, which holds only null or overlay 190 +0092; of these only overlay 209 +169C reaches the unload 31E0:05BB other than through overlay 187 +1B67, by way of the object placement 31E0:0121 |
+| [FND-PARTY-140](../../findings/FND-PARTY-140.md) | Overlay 206 +0E1E returns before its unload calls for a slot below 4, and the DUAL window's handler overlay 209 +169C also reaches the unload 31E0:05BB through overlay 179 +1373, overlay 193 +003C, 371D:050F and overlay 206 +0000 |
+| [FND-PARTY-141](../../findings/FND-PARTY-141.md) | The four unloaders left on the DUAL window's routes free only a slot of 4 or above or the slot of an object they placed themselves, which comes from the free lists, so no routine the DUAL path reaches frees a party member's slot |
+| [FND-PARTY-142](../../findings/FND-PARTY-142.md) | The six bytes at 0x5A of a CHAR record are the character's base ability scores, which overlay 197 +1E7B adjusts to set the current scores at 0x23 |
+| [FND-PARTY-143](../../findings/FND-PARTY-143.md) | Byte 0x1F of a CHAR record is the combatant kind, 0 (the party's own kind) in every shipped record |
+| [FND-PARTY-144](../../findings/FND-PARTY-144.md) | Byte 0x29 of a CHAR record is the combatant's facing, a direction from 0 to 7 that the drawing code maps onto four sprite views |
+| [FND-PARTY-145](../../findings/FND-PARTY-145.md) | Byte 0x66 of a CHAR record is the character's base armor class, from which overlay 173 +2C00 computes the value an attack roll is compared against |
+| [FND-PARTY-146](../../findings/FND-PARTY-146.md) | Bytes 0x1D and 0x67 of a CHAR record are the character's current and base movement rate, 12 or 15 for a thri-kreen, which a fight turns into ten movement points per unit |
+| [FND-PARTY-147](../../findings/FND-PARTY-147.md) | The word at 0x53 of a CHAR record is the key of the character's details record, which is 0 for a free record and which generation sets to the new combatant identifier |
+| [FND-PARTY-148](../../findings/FND-PARTY-148.md) | The words at 0x04, 0x06 and 0x0E of a CHAR record hold the party slot the character was written from, and the words at 0x12 to 0x16 are 9,999 exactly where the record has no chunk for that field |
+| [FND-PARTY-149](../../findings/FND-PARTY-149.md) | The words at 0x81 and 0x83 of a CHAR record are sound numbers that overlays 179 and 206 play for the combatant in an attack and in the damage routine |
+| [FND-PARTY-150](../../findings/FND-PARTY-150.md) | Byte 0x68 of a CHAR record is the character's magic resistance, a percentage that overlay 179 +2BD7 rolls 1d100 against |
+| [FND-PARTY-151](../../findings/FND-PARTY-151.md) | Byte 0x7D of a CHAR record selects one of 13 spell lists from which overlay 177 +0059 fills a caster's prepared spells, byte 0x7C is the footprint and byte 0x7B has no reader found |
+| [FND-PARTY-152](../../findings/FND-PARTY-152.md) | Combatant bytes 0x12 and 0x17 have no reader through DS:19C9 besides the load and the generation finish, and byte 0x20 is field 33 of overlay 204's combatant field getter and setter |
+| [FND-PARTY-153](../../findings/FND-PARTY-153.md) | RDFF resources load through the same chunk walk as CHAR records, and the objects 430 and 541 whose kill experience would overflow a share are placed only in the region Limbo |
+| [FND-PARTY-154](../../findings/FND-PARTY-154.md) | The spell and psionic power windows of a new level lay out 21 frames from their WIND resources, highlight a frame and name its spell or power while the pointer is on it, learn on a left-button release and open a description on a right-button release |
+| [FND-PARTY-155](../../findings/FND-PARTY-155.md) | The spell and psionic power windows write two centred text lines, highlight a frame by drawing another frame of ICON 15104, pause 100 retraces after a spell is learned, and open a description window whose closing refills the frames |
+| [FND-PARTY-156](../../findings/FND-PARTY-156.md) | Overlay 204's combatant field getter and setter, which read and write combatant byte 0x20 as field 33, are functions 48 and 49 of script opcode 0x22 |
+| [FND-PARTY-157](../../findings/FND-PARTY-157.md) | Combatant byte 0x0E selects a monster special attack among the MONS DATA records, which overlay 198 sends through the hit routine on a hit, and byte 0x0F indexes the immunity words at DS:2588 |
+| [FND-PARTY-158](../../findings/FND-PARTY-158.md) | Details byte 0x40 selects one of eight psionic power lists from which overlays 174 and 198 pick a non-party combatant's power at random |
+| [FND-PARTY-159](../../findings/FND-PARTY-159.md) | No shipped DATA record that allows a saving throw names save 6 or 7, so the saving throw never reads details bytes 0x36 and 0x37 |
+| [FND-PARTY-160](../../findings/FND-PARTY-160.md) | No routine that sets a character's level tests the origin's level limit or a prime requisite, and README table 3's limits are not in the executable or the archives |
+| [FND-PARTY-161](../../findings/FND-PARTY-161.md) | The DUAL window offers a class only to a human of level 2 or more with fewer than three classes, a current-class prime requisite of 15, a new-class prime requisite of 17, no class of the same group, and a good alignment for a ranger or true neutral for a druid |
+| [FND-PARTY-162](../../findings/FND-PARTY-162.md) | The class flags, the class level query 27E5:00C1 and the spell list routines of overlay 177 ignore a human's former class until the current class's level is higher, while overlay 176 +076C, which overlays 174, 197, 204 and 208 call, has no such test; overlay 190 offers DUAL to a human of level 2 or more |
+| [FND-PARTY-163](../../findings/FND-PARTY-163.md) | The saving throw modifier overlay 197 +0206 adds 2 against fire and lightning effects for a target with a druid level from overlay 176 +076C, which counts a human's held-back former druid class |
+| [FND-PARTY-164](../../findings/FND-PARTY-164.md) | The saving throw modifier overlay 197 +0206 subtracts 100 against CHAOS for a target with no fighter, gladiator or ranger level from overlay 176 +076C, and the saving throw's byte sum and unsigned comparison make a modifier near -100 pass the save |
+| [FND-PARTY-166](../../findings/FND-PARTY-166.md) | The hit routine adds a spell's effect from DATA byte +0x19 only when the saving throw fails, CHAOS names effect 21 and has no case of its own, and the score table terms of the save modifier lie between -6 and 7 |
+| [FND-PARTY-167](../../findings/FND-PARTY-167.md) | The byte at +0x255 of an active effect counts down an effect given a negative duration, and the spells LEVEL DRAIN and ENERGY DRAIN give their effect 59 a count of 0, or 15 while DS:6174 is set |
+| [FND-PARTY-168](../../findings/FND-PARTY-168.md) | A script's function 23 adds its effect with the duration -9999, and overlay 195 +147C returns 1, so an effect's count at +0x255 falls by 1 a use and never passes below 0 |
+| [FND-PARTY-169](../../findings/FND-PARTY-169.md) | Overlay 176 +076C, which counts a human's held-back former class, gives the level of a psionic power, the thief level for the thief skills, the best cleric, druid and preserver levels when the party rests, and a cleric code 3 level that ends a hit; the power list tests only the power's rank and the psionic points in play hold the class back |
 
 ## Open questions
 
@@ -94,16 +240,23 @@ Entries whose Open questions section says more than None known.
 
 | ID | Title | Status |
 |---|---|---|
+| [BUG-PARTY-001](../../bugs/BUG-PARTY-001.md) | The character sheet's next-level experience figure comes from the wrong class's table, or from past the table, for most class codes | supported |
+| [BUG-PARTY-002](../../bugs/BUG-PARTY-002.md) | A character made with two classes never gets the extra starting level in its first class, and its empty third class can get level 1 | supported |
+| [BUG-PARTY-003](../../bugs/BUG-PARTY-003.md) | A psionicist at level 14 never reaches level 15 in play, and every award cuts its experience back to 1,400,000 | supported |
+| [BUG-PARTY-004](../../bugs/BUG-PARTY-004.md) | Saving throws stop improving after a few levels, because the last value of each save is used as the most it can fall | supported |
+| [BUG-PARTY-005](../../bugs/BUG-PARTY-005.md) | A dwarf or halfling gets its constitution bonus on all five saves of a warrior class and on none of its other classes' saves | supported |
+| [BUG-PARTY-006](../../bugs/BUG-PARTY-006.md) | The level drain ends the game with Math Err for a character whose classes all get their level back | supported |
 | [FMT-PARTY-001](../../formats/FMT-PARTY-001.md) | Character record | supported |
-| [FMT-PARTY-002](../../formats/FMT-PARTY-002.md) | Character record tail entry | supported |
-| [FMT-PARTY-003](../../formats/FMT-PARTY-003.md) | Character psionic byte | supported |
+| [FMT-PARTY-002](../../formats/FMT-PARTY-002.md) | Character record tail entry | superseded |
 | [FMT-PARTY-004](../../formats/FMT-PARTY-004.md) | Character PSST record | supported |
 | [FMT-PARTY-005](../../formats/FMT-PARTY-005.md) | Character SPST record | supported |
+| [FMT-PARTY-006](../../formats/FMT-PARTY-006.md) | Character record chunk | supported |
 | [RULE-PARTY-001](../../rules/RULE-PARTY-001.md) | A party has one to four characters | sourced |
-| [RULE-PARTY-002](../../rules/RULE-PARTY-002.md) | What a new character may be | sourced |
-| [RULE-PARTY-003](../../rules/RULE-PARTY-003.md) | Which psionic disciplines and elemental sphere a new character chooses | sourced |
-| [RULE-PARTY-004](../../rules/RULE-PARTY-004.md) | A human can change class twice, from third level | sourced |
-| [RULE-PARTY-005](../../rules/RULE-PARTY-005.md) | Origin ability modifiers | sourced |
+| [RULE-PARTY-004](../../rules/RULE-PARTY-004.md) | A human can change class twice, from second level | supported |
 | [RULE-PARTY-006](../../rules/RULE-PARTY-006.md) | START GAME supplies characters 40 to 43 as the party | supported |
-| [RULE-PARTY-007](../../rules/RULE-PARTY-007.md) | Which classes each origin may take, and to which level | sourced |
 | [RULE-PARTY-008](../../rules/RULE-PARTY-008.md) | The keys 1 to 4 choose the party leader | sourced |
+| [RULE-PARTY-010](../../rules/RULE-PARTY-010.md) | How the generation screen rolls and bounds ability scores | supported |
+| [RULE-PARTY-011](../../rules/RULE-PARTY-011.md) | Which alignments the generation screen allows | supported |
+| [RULE-PARTY-012](../../rules/RULE-PARTY-012.md) | Hit points of a new character | supported |
+| [RULE-PARTY-013](../../rules/RULE-PARTY-013.md) | How a character gains levels in play | supported |
+| [RULE-PARTY-015](../../rules/RULE-PARTY-015.md) | How experience is given to party members | supported |

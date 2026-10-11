@@ -39,7 +39,7 @@ Entries by status.
 
 ## recorded
 
-430 entries.
+432 entries.
 
 | ID | Title |
 |---|---|
@@ -473,6 +473,8 @@ Entries by status.
 | [FND-EXE-569](../../findings/FND-EXE-569.md) | Only the overlay manager's startup looks for the FBOV pack header, in both DSUN.EXE editions |
 | [FND-EXE-570](../../findings/FND-EXE-570.md) | The disc's DSUN.EXE is version 1.0 and the installed one version 1.1, and PATCH.RTP records the disc's sizes as the old and the installed sizes as the new for seven differing files |
 | [FND-EXE-571](../../findings/FND-EXE-571.md) | Each FBOV segment descriptor's unk_06 and unk_02 are the start and end offsets of its segment's bytes, and the spans tile DSUN.EXE's load image |
+| [FND-EXE-572](../../findings/FND-EXE-572.md) | From its established entries the sound utility reaches 44 of its 69 interrupt 21 sites, none selecting AH=4B, and the other 25 lie in routines nothing in the image references |
+| [FND-EXE-573](../../findings/FND-EXE-573.md) | The disc drivers install vectors only for the handlers FND-EXE-496 decodes from, build no transfer on the stack and write no code, and every CD byte in them is a decoded interrupt, inside a decoded instruction or in table data |
 
 ## Open questions
 
