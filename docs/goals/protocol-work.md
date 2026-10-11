@@ -314,6 +314,17 @@ An owner-approved history repair remains separate from this maintenance scope.
   pass only handlers FND-EXE-496 already decodes from; no stack-built transfers or code writes;
   the CD byte search is the control. Next: Q-EXE-007, the game editions' census, which can reuse
   sound_ds_reach_config.py's approach on DSUN.EXE through reach_config.py.
+- Q-EXE-007 leads for installed DSUN.EXE (unrecorded, read 2026-10-11): reach_config.py's regions
+  hold 100 `CD 21` and 4 `CD 2F` pairs, all resident, none in overlays, no `CD 2E`. Borland 1991
+  startup as in SOUND_DS.EXE: DGROUP 57E0; startup records DS:3994..39BE name 4AE5:0D27,
+  1000:0886, 11C1, 12D9, 2877, 29AA, 3B56; exit record DS:39BE names 4AE5:0193; main is the far
+  call at 1000:0158. Handlers: interrupt 0 at 1000:01A7 (AH=25 at 1000:01EF); the timer module in
+  segment 4842 (file base 0x3D620) sets interrupt 8 to CS:040C and stores CS:0519 at CS:0046,
+  like SOUND_DS's 1C08 module; 4AE5:1103..1126 hooks interrupt 19h with 55E3:003F, a `jmp far
+  cs:[2F]` to the saved vector, and 4AE5 calls an XMS entry through [43]. The set-vector routine
+  1000:04A3 has seven near callers passing (vector, handler) 23/0338, 24/1D66 twice, 23/[A4DA],
+  0/2AF9, 5/2A07, 6/2A88; the routines at 44DE:045D (file 0x3A44D) and file 0x40190 are not yet
+  read. Scratch helper: a caller lister over reach_config.py's relocations (scratchpad dcallers.py).
 - Lead for unk_2a: overlay 204 +0203 pushes 0x0660:0x00BB (the setter trampoline 5787:00BB) as a
   value before a near call to its dispatcher at +019C, so the setter is passed as a callback.
   Filed toolkit #474 (list where a routine's far address is used as a value) after checking
