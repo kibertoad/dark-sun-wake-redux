@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-068
+Next ID: Q-PARTY-069
 
 ## Static
 
@@ -60,7 +60,14 @@ Next ID: Q-PARTY-068
   for and whether the class can be a held-back former class there (FND-PARTY-162). Tried:
   FND-PARTY-162 shows the class flags, `27E5:00C1` and overlay 177's spell routines hold such a
   class back; FND-PARTY-163 reads overlay 197 `+04F6..+05C3`, the druid saving throw bonus
-  (BUG-PARTY-007). Blocks: slice 5.
+  (BUG-PARTY-007); FND-PARTY-164 reads `+0689..+0E87`, where `CHAOS` takes 100 off the modifier
+  for a target with no fighter, gladiator or ranger level (BUG-PARTY-008) and the `SCARE` case
+  never runs for the shipped record. Blocks: slice 5.
+- Q-PARTY-068. BUG-PARTY-008: Does a saving throw that succeeds spare its target from `CHAOS`,
+  and can the general terms of overlay 197 `+0206` bring a modifier with 100 taken off back into
+  the range where the save byte comparison fails? Settles it: the code of `CHAOS` that calls
+  overlay 179 `+2A46` and acts on its result, and the results of `27E5:02F2`, `27E5:0324` and
+  `27E5:030B` (FND-PARTY-164). Blocks: slice 5.
 - Q-PARTY-009. RULE-PARTY-008, RULE-COMBAT-001: What does a key from 1 to 4 do, in particular when its slot is
   empty, and is the word the party loader compares each slot with (FND-PARTY-013) the leader's
   slot? Settles it: the handler the keys 1 to 4 reach in overlay 190, which posts an event for
