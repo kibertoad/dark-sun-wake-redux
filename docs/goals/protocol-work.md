@@ -262,6 +262,8 @@ An owner-approved history repair remains separate from this maintenance scope.
 - FND-PARTY-158: CHAR 0x85 psionic_list (details +0x40, lists 1-8 at 5284:0003, 198+02B2 tests a
   random pick for range and points, 174+0604 picks the same way); 0x86 is unk_86, no reader.
   Left in Q-PARTY-003: unk_1c, 21, 7b, 86.
+- FND-PARTY-159: no shipped DATA record with a save allowed names save 6 or 7 (k is 0,1,3,4,5), so
+  179+2A46 never reads details 0x36 (unk_7b) or 0x37.
 - Lead for unk_2a: overlay 204 +0203 pushes 0x0660:0x00BB (the setter trampoline 5787:00BB) as a
   value before a near call to its dispatcher at +019C, so the setter is passed as a callback.
   Filed toolkit #474 (list where a routine's far address is used as a value) after checking
