@@ -332,6 +332,10 @@ reading of callers, external commands or interpreter behavior is claimed.
   program execution and transfer out only to callbacks it never registers
   or to resident programs outside the build, and FND-EXE-498 and
   FND-EXE-501 find that SBAWE32.ADV, in its use, reaches only code entries.
+  FND-EXE-490 chose its sites by agreement among nearby decodes and names
+  no entries or controls, so the utility's census is taken again from
+  established entries (Q-EXE-025); FND-EXE-496 names no control and no
+  kinds of entry it lacked (Q-EXE-026).
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;
   startup, actual DS, aliases and later writers must admit their runtime use.
 - How does the shipped wrapper resolve the two bare helper commands and

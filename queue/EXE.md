@@ -1,12 +1,19 @@
 # EXE
 
-Next ID: Q-EXE-025
+Next ID: Q-EXE-027
 
 ## Static
 
 - Q-EXE-007. FMT-EXE-006: Do the shipped game or sound-setup executables
-  launch any batch helpers? Settles it: direct executable launch references
-  traced through selectors and arguments, including computed command names.
+  launch any batch helpers? Settles it: for both game editions'
+  executables, overlays included, a census of the program-execution
+  mechanism as the standard's Findings section describes it: every
+  interrupt 21 site with its AX value and every interrupt 2E site, the
+  callers of any routine that builds an interrupt on the stack with the
+  value each passes, sites reached from established entries that the
+  finding names with the kinds of entry it did not have, a control for each
+  kind of site, and each transfer out of the censused code. Only undecided
+  sites and outside transfers are traced further, each as its own item.
   Tried: complete helper contents (FND-EXE-008) and distribution-wrapper
   reading (FND-EXE-010); neither locates an executable caller. Split from
   Q-EXE-004. Blocks: complete game/setup caller coverage.
@@ -372,6 +379,34 @@ Next ID: Q-EXE-025
   programs outside the build. FND-EXE-498 and FND-EXE-501 find that
   SBAWE32.ADV, in the utility's use, sends control only to code entries.
   The game editions' sound.bat consumers remain unread here.
+  Tried: FND-EXE-499 to FND-EXE-559 follow the game editions' diagnostic
+  and cleanup consumers one callee further each time, with no launch
+  claim; the work protocol now asks for the census above before such
+  tracing. The sound utility's census is redone as Q-EXE-025 and the
+  drivers' as Q-EXE-026.
+- Q-EXE-025. FMT-EXE-006: Does any instruction start that the sound
+  utility's code reaches from an established entry select DOS program
+  execution? Settles it: FND-EXE-490's census of SOUND_DS.EXE taken again
+  from established entries (the MZ entry point, the far-call targets the
+  relocated code names, the startup and exit records, the handlers the code
+  installs or passes as pointers, and jump tables read to their checked
+  bounds), naming those entries and the kinds it did not have, with
+  FND-EXE-370's AH=43 and AH=3D sites as the control for interrupt
+  instructions and FND-EXE-353's selector 0021 call to 1000:20DF as the
+  control for the stack-built interrupt. Tried: FND-EXE-490 took each
+  interrupt 21 site's AH writer from the most common decode of the 48
+  start offsets before it, which the standard now counts as candidate
+  selection, and names no entries and no controls. Blocks: Q-EXE-007.
+- Q-EXE-026. FMT-EXE-006: Which kinds of entry did FND-EXE-496's decode of
+  the 19 disc drivers not have, and what control shows its interrupt sites
+  are found? Settles it: a finding that names the kinds of entry the
+  drivers' decode did not start from (vectors the drivers install, by
+  interrupt 21 AH=25 or by a store to the vector table, transfers built on
+  the stack, code written at run time) and whether any driver has one, and
+  a control for its interrupt instructions located by other evidence.
+  Tried: FND-EXE-496 decodes from each function table, the far-pointer
+  handlers and SBAWE32.ADV's bounded tables, and lists its sites; it names
+  no control and no missing kinds of entry. Blocks: Q-EXE-007.
 
 
 ## Emulated call
