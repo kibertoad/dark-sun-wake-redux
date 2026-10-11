@@ -9,7 +9,7 @@ percentage of completion comes only from the parity matrix.
 
 ## Snapshot of 2026-10-11
 
-Measured at commit `dc563209b023`.
+Measured at commit `c38bdf2c0c1b`.
 
 ### Parity
 
@@ -36,7 +36,7 @@ Measured at commit `dc563209b023`.
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | BUG | 0 | 0 | 0 | 9 | 0 | 0 | 9 |  |
 | FMT | 6 | 0 | 0 | 58 | 0 | 1 | 65 |  |
-| FND | 0 | 0 | 981 | 0 | 0 | 65 | 1046 |  |
+| FND | 0 | 0 | 982 | 0 | 0 | 65 | 1047 |  |
 | RULE | 4 | 20 | 0 | 52 | 1 | 1 | 78 |  |
 | SCR | 0 | 10 | 0 | 17 | 0 | 0 | 27 |  |
 
@@ -81,7 +81,7 @@ Data files of each build's manifest that a `supported` or `established` format e
 
 | Items | Count | Change |
 | --- | ---: | ---: |
-| Queue: Static | 87 |  |
+| Queue: Static | 86 |  |
 | Queue: Emulated call | 1 |  |
 | Queue: Agent run | 0 |  |
 | Queue: Live session | 16 |  |
@@ -93,6 +93,6 @@ Data files of each build's manifest that a `supported` or `established` format e
 
 | Date | Commit | Parity complete | Partial | Missing | Established entries | Supported entries | Findings | Installed `DSUN.EXE` functions cited | Queue items | Open reports |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 2026-10-11 | `dc563209b023` | 25 | 50 | 93 | 0 | 136 | 1046 | 1924 of 2338 | 114 | 0 |
+| 2026-10-11 | `c38bdf2c0c1b` | 25 | 50 | 93 | 0 | 136 | 1047 | 1924 of 2338 | 113 | 0 |
 
-<!-- snapshot {"date":"2026-10-11","commit":"dc563209b023","parity":{"status":{"unknown":10,"sourced":26,"supported":106,"established":0,"disputed":1,"implemented":25,"deviated":0,"validated":0},"code":{"missing":93,"partial":50,"complete":25}},"entries":{"BUG":{"supported":9},"FND":{"recorded":981,"superseded":65},"FMT":{"supported":58,"unknown":6,"superseded":1},"RULE":{"supported":52,"unknown":4,"sourced":20,"disputed":1,"superseded":1},"SCR":{"supported":17,"sourced":10}},"completeReading":0,"coverage":[{"path":"coverage/BLD-GOG-EN-1.1/@CD/DSUN.EXE.tsv","cited":781,"citedBytes":123468},{"path":"coverage/BLD-GOG-EN-1.1/CHARTRAN.EXE.tsv","cited":11,"citedBytes":5243},{"path":"coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv","cited":1924,"citedBytes":322704},{"path":"coverage/BLD-GOG-EN-1.1/PATCH.EXE.tsv","cited":0,"citedBytes":0},{"path":"coverage/BLD-GOG-EN-1.1/SOUND_DS.EXE.tsv","cited":353,"citedBytes":52327},{"path":"coverage/BLD-GOG-EN-1.1/SVIEW.EXE.tsv","cited":151,"citedBytes":15252}],"mapping":{"coverage/BLD-GOG-EN-1.1/@CD/DSUN.EXE.tsv":{"regions":595353,"bodies":400880,"instructionsOutside":10902,"dataOutside":13646,"undefinedOutside":169925},"coverage/BLD-GOG-EN-1.1/CHARTRAN.EXE.tsv":{"regions":67840,"bodies":33350,"instructionsOutside":1,"dataOutside":2305,"undefinedOutside":32184},"coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv":{"regions":595128,"bodies":404058,"instructionsOutside":11210,"dataOutside":13765,"undefinedOutside":166095},"coverage/BLD-GOG-EN-1.1/PATCH.EXE.tsv":{"regions":4474,"bodies":3172,"instructionsOutside":0,"dataOutside":21,"undefinedOutside":1281},"coverage/BLD-GOG-EN-1.1/SOUND_DS.EXE.tsv":{"regions":119264,"bodies":52327,"instructionsOutside":17,"dataOutside":7855,"undefinedOutside":59065},"coverage/BLD-GOG-EN-1.1/SVIEW.EXE.tsv":{"regions":81424,"bodies":15252,"instructionsOutside":0,"dataOutside":853,"undefinedOutside":65319}},"dataFiles":{"BLD-GOG-EN-1.1":{"files":478,"supported":383}},"queue":{"Static":87,"Emulated call":1,"Agent run":0,"Live session":16,"Source":2,"Blocked":8},"reports":0} -->
+<!-- snapshot {"date":"2026-10-11","commit":"c38bdf2c0c1b","parity":{"status":{"unknown":10,"sourced":26,"supported":106,"established":0,"disputed":1,"implemented":25,"deviated":0,"validated":0},"code":{"missing":93,"partial":50,"complete":25}},"entries":{"BUG":{"supported":9},"FND":{"recorded":982,"superseded":65},"FMT":{"supported":58,"unknown":6,"superseded":1},"RULE":{"supported":52,"unknown":4,"sourced":20,"disputed":1,"superseded":1},"SCR":{"supported":17,"sourced":10}},"completeReading":0,"coverage":[{"path":"coverage/BLD-GOG-EN-1.1/@CD/DSUN.EXE.tsv","cited":781,"citedBytes":123468},{"path":"coverage/BLD-GOG-EN-1.1/CHARTRAN.EXE.tsv","cited":11,"citedBytes":5243},{"path":"coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv","cited":1924,"citedBytes":322704},{"path":"coverage/BLD-GOG-EN-1.1/PATCH.EXE.tsv","cited":0,"citedBytes":0},{"path":"coverage/BLD-GOG-EN-1.1/SOUND_DS.EXE.tsv","cited":353,"citedBytes":52327},{"path":"coverage/BLD-GOG-EN-1.1/SVIEW.EXE.tsv","cited":151,"citedBytes":15252}],"mapping":{"coverage/BLD-GOG-EN-1.1/@CD/DSUN.EXE.tsv":{"regions":595353,"bodies":400880,"instructionsOutside":10902,"dataOutside":13646,"undefinedOutside":169925},"coverage/BLD-GOG-EN-1.1/CHARTRAN.EXE.tsv":{"regions":67840,"bodies":33350,"instructionsOutside":1,"dataOutside":2305,"undefinedOutside":32184},"coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv":{"regions":595128,"bodies":404058,"instructionsOutside":11210,"dataOutside":13765,"undefinedOutside":166095},"coverage/BLD-GOG-EN-1.1/PATCH.EXE.tsv":{"regions":4474,"bodies":3172,"instructionsOutside":0,"dataOutside":21,"undefinedOutside":1281},"coverage/BLD-GOG-EN-1.1/SOUND_DS.EXE.tsv":{"regions":119264,"bodies":52327,"instructionsOutside":17,"dataOutside":7855,"undefinedOutside":59065},"coverage/BLD-GOG-EN-1.1/SVIEW.EXE.tsv":{"regions":81424,"bodies":15252,"instructionsOutside":0,"dataOutside":853,"undefinedOutside":65319}},"dataFiles":{"BLD-GOG-EN-1.1":{"files":478,"supported":383}},"queue":{"Static":86,"Emulated call":1,"Agent run":0,"Live session":16,"Source":2,"Blocked":8},"reports":0} -->

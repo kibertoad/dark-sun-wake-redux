@@ -306,10 +306,11 @@ An owner-approved history repair remains separate from this maintenance scope.
   Q-EXE-007's split and condensation (69a594a7). Template PR #109 adopted (0990c85d) and #104
   answered. docs/PROGRESS.md added (6e6ae760): rerun `node tools/progress-report.mjs` and commit
   it to record a snapshot. Filed toolkit #486 (a plain checker run rewrites main-only generated
-  files). Q-EXE-025 in progress: tools/research/exec-census/sound_ds_reach_config.py (uncommitted)
-  builds the reach config; regions start at the module offset inside each far-call frame (0861:0008
-  is where 07FB's module ends). The run has no gaps and reaches 42 of 69 int 21 sites; the
-  remaining work is the computed calls (startup-record walkers, DS:DB9C hooks, [bp+4] callbacks).
+  files). Q-EXE-025 closed by FND-EXE-572 (c38bdf2c): the reach census from established
+  entries reaches 44 of 69 int 21 sites, none AH=4B; the other 25 lie in unreferenced library
+  routines. Filed toolkit #488 (declare computed transfers that cannot run or leave the image).
+  Pushed to main at the owner's request up to 4ae7afaa; the remote branch goal/protocol-work
+  was pushed then too. Next: Q-EXE-026 (driver census kinds and control).
 - Lead for unk_2a: overlay 204 +0203 pushes 0x0660:0x00BB (the setter trampoline 5787:00BB) as a
   value before a near call to its dispatcher at +019C, so the setter is passed as a callback.
   Filed toolkit #474 (list where a routine's far address is used as a value) after checking
