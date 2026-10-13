@@ -8,17 +8,30 @@ owner rule changes it. Findings from runs go in `spec/`, never here.
 
 Static analysis is the main source of evidence. The owner's rule
 (`AGENTS.md`, "Runs of the original") lets a coding agent run the original
-only through the toolkit's `dinorefurb-dosbox-session` package, in a DOSBox-X
-process the package starts, with host sound muted: the mixer's master volume
-at 0 (`mixer master 0:0`) and MIDI output `none`, the emulated sound devices
-left configured, `keep_host_sound` never passed and `nosound` never set.
-Agents never operate GOG's DOSBox 0.74-2; runs of it are live sessions the
-owner plays and captures alone. The package takes the machine's run lock
-(`C:\ProgramData\refurbished-dinosaurs\run.lock`, or the path in
-`REFURBISHED_DINOSAURS_RUN_LOCK`) as the protocol's
+only through the toolkit's `dinorefurb-dosbox-session` package, in an
+emulator process the package starts: rust-dos v1.7.1 through `RustDosSession`,
+or DOSBox-X through `DosboxSession` as a recorded fallback for work a known
+rust-dos incompatibility blocks. Host sound stays muted (rust-dos on SDL's
+dummy audio driver; DOSBox-X with `mixer master 0:0` and MIDI output `none`),
+the emulated sound devices stay configured, `keep_host_sound` is never passed
+and `nosound` never set. Agents never operate GOG's DOSBox 0.74-2; runs of it
+are live sessions the owner plays and captures alone. The package takes the
+machine's run lock (`C:\ProgramData\refurbished-dinosaurs\run.lock`, or the
+path in `REFURBISHED_DINOSAURS_RUN_LOCK`) as the protocol's
 [Running the original](../vendor/upstream/work-protocol.md#running-the-original) (lines 391-425)
-says. No session-package run has been made yet, so the capabilities below that
-need one are still `none`.
+says.
+
+Setup: `./tools/Restore-ToolDependencies.ps1` installs
+`dinorefurb-dosbox-session` 0.8.0 into `artifacts/evidence-python`, and
+`./tools/Install-RustDos.ps1` installs the pinned rust-dos v1.7.1 Windows
+build into `artifacts/rust-dos/`, refusing an archive or executable whose
+SHA-256 differs from the package's pins. On 2026-10-13 the toolkit's
+`native/verify_rustdos.py` at `dinorefurb-dosbox-session@0.8.0` passed with
+that build here, in a normal and a deterministic run: a synthetic `.COM`
+stopped at its entry and at a breakpoint, registers read back, a stale write
+was refused (409, `precondition: state`), a guarded write verified, and the
+program exited with code 0. That run used no game file, so the game
+capabilities below that need a run of the original are still `none`.
 
 ## BLD-GOG-EN-1.1
 
@@ -35,9 +48,9 @@ wait for supported layout/parameter bindings; FBOV code stays out of reach.
 
 | Capability | Who | Tried | What would change it |
 |---|---|---|---|
-| Start it and bring it to a given state without a person | none | Not tried. The owner's rule allows it through `dinorefurb-dosbox-session` 0.3.0 (toolkit #414, #419, #409), which owns a DOSBox-X process: it takes and releases the machine's run lock, mounts drives, mutes host audio and records each session, and needs a pinned checkout of the DOSBox-X agent client. Neither is installed here yet. | Installing the package and the pinned DOSBox-X build, then a run showing the game reaches a given state under DOSBox-X as it does under GOG's DOSBox 0.74-2. |
+| Start it and bring it to a given state without a person | none | Not tried with the game. `dinorefurb-dosbox-session` 0.8.0 and rust-dos v1.7.1 are installed and passed the synthetic native check above: the package takes and releases the run lock, prepares an empty C:, mounts media read-only, mutes host audio, starts the target stopped at its entry and records each session. Deterministic runs fix the start time and speed and deliver input at emulated times. | A rust-dos run showing the game reaches a given state as it does under GOG's DOSBox 0.74-2. |
 | Send it input | person | The owner plays each live session by its script (`docs/live-sessions/`). | The same rule. |
-| Read memory, set breakpoints, dump structures while it runs | none | Not tried. GOG's DOSBox 0.74-2 is a release build without the debugger, and agents never attach to it. `dinorefurb-dosbox-session` 0.3.0 gives a debugger client of its own DOSBox-X process and, from toolkit #419, guarded writes to stopped guest memory: each write names a field in a caller-supplied contract, checks the field's current SHA-256, reads it back, and fails the run on any refusal. From 0.3.0 (toolkit #409) a session can keep an event log, `events.jsonl` in the run directory, with event kinds and an outcome contract the restoration supplies. | A session-package run that reads a known field and stops at a breakpoint. |
+| Read memory, set breakpoints, dump structures while it runs | none | Not tried with the game. GOG's DOSBox 0.74-2 is a release build without the debugger, and agents never attach to it. A `RustDosSession` reaches rust-dos's HTTP debug server: registers, memory, breakpoints and operation observation, plus guarded writes to stopped guest memory, where each write names a field in a caller-supplied contract, checks the field's current SHA-256, reads it back, and fails the run on any refusal. The synthetic check above exercised breakpoints, register reads and a guarded write. A session can keep an event log, `events.jsonl` in the run directory, with event kinds and an outcome contract the restoration supplies. Gated breakpoints exist for DOSBox-X sessions only; neither backend has save states. | A session-package run that reads a known field and stops at a breakpoint. |
 | Load a patched save | person | Not tried. The owner can place a save in the installation's save slots and load it from the game's menu. | A live session that asks for it. |
 | Capture frames and sound | person, frames only | Frames: the owner's Ctrl+F5 screenshots, 320x200 in the game's palette, cited by the dynamic findings of the COMBAT, PARTY and UI areas. Sound: not tried; DOSBox 0.74-2 records sound with Ctrl+F6. | A live session that asks for a sound recording. |
 | Play back a recording the original made | none | The game has no recording feature the spec knows of, and DOSBox 0.74-2 does not replay input. | A finding that the game records and replays input. |

@@ -16,7 +16,7 @@ orphans, and agents touch DOSBox only through the session package.
 1. **Processes**: stop every process this session started (Ghidra and Java,
    test hosts, servers), and leave anything whose owner is uncertain.
    Reusable MSBuild nodes are not orphans. Close every session-package run this
-   session started, which stops its DOSBox-X process and releases the run
+   session started, which stops its rust-dos or DOSBox-X process and releases the run
    lock; never touch the owner's DOSBox. Follow the post-commit orphan-process
    audit in `AGENTS.md`, including its log.
 2. **Goal**: if the goal's condition holds, or the goal is dropped, the

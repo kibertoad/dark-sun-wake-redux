@@ -19,10 +19,10 @@ when adopting a new release. Shared implementation and tests live upstream;
 local tests cover package routing, exact versions and actionable errors.
 
 `package-lock.json` pins npm archives. `tools/evidence/requirements.txt` pins
-engine, Capstone, pypcode and xxhash wheel hashes. `./tools/Restore-ToolDependencies.ps1 -NoRestore`
+engine, `dinorefurb-dosbox-session`, Capstone, pypcode and xxhash wheel hashes. `./tools/Restore-ToolDependencies.ps1 -NoRestore`
 checks existing installations without installing or using a network fallback.
 The engine pins its own decoders (Capstone 5.0.9 and pypcode 4.0.1 for engine
-19.2.0), which pip installs with it. The reader runs `pointers`, `table`,
+19.3.0), which pip installs with it. The reader runs `pointers`, `table`,
 `bodies`, `imports` and `unpack` in Node and needs no engine for them.
 
 Engine 0.4.0 adds caller-local x86-call-order, width-preserving result flow

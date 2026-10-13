@@ -1,6 +1,8 @@
 # Published wheels only; normal restore enforces every hash.
-scientific-method-engine==19.2.0 \
-    --hash=sha256:1269a164c7a682e08891460c26914b3aa4357bdd9527a6f3131bb0ea062825a1
+scientific-method-engine==19.3.0 \
+    --hash=sha256:b96ead2c8f51de447ffa6b9526787be49024397e95c0d7caf8992cd2d7f5319c
+dinorefurb-dosbox-session==0.8.0 \
+    --hash=sha256:ad6aaaed96f11e962befde959a08259e22b773256329cefb4328c2717b5a2634
 capstone==5.0.9 \
     --hash=sha256:0cc3b1ec319ab0530efc6b181491b77dd3373c81b6dbcf2f05a80e3d8dd61d5e \
     --hash=sha256:1f5871b57e987d5bf23b531fbe868211b74ad750fa9b830a3d3cdc4956bc0ae3 \

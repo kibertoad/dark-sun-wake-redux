@@ -9,7 +9,8 @@ The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#r
 Open a linked section only when a step leaves a question it answers, read
 only the lines the link gives, and never a section already read this session.
 Static reading is the main source of evidence. Agents run the original only
-through `dinorefurb-dosbox-session` with host sound muted (`AGENTS.md`, "Runs
+through `dinorefurb-dosbox-session` (rust-dos first, DOSBox-X as the recorded
+fallback) with host sound muted (`AGENTS.md`, "Runs
 of the original"), and never operate GOG's DOSBox. Answers come from attempts
 in session-package runs, owner live sessions and the emulator harness.
 

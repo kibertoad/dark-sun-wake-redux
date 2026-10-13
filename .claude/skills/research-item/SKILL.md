@@ -77,7 +77,8 @@ only the lines the link gives, and never a section already read this session.
    analyzer ownership. Resolve PE imported callees by their import-table
    slots, and pointer-table targets from the build's bytes, not inferred
    names, call order or nearby globals.
-   Agents run the game only through `dinorefurb-dosbox-session` with host
+   Agents run the game only through `dinorefurb-dosbox-session` (rust-dos
+   first, DOSBox-X as the recorded fallback) with host
    sound muted (`AGENTS.md`, "Runs of the original"). Items needing a run go
    under `Agent run` once `docs/RUNTIME.md` answers `agent` for every part
    they need, and under `Live session` otherwise; `live-session` requests the
@@ -87,7 +88,8 @@ only the lines the link gives, and never a section already read this session.
    records draws as `{ rule, bound, result }`, stops for an uncited draw, and
    diagnoses divergence through memory evidence and a static finding rather
    than fitting the rebuild to the recording. A probe runs only in a
-   session-package DOSBox-X process; record its capability in
+   emulator process the session package started (rust-dos, or DOSBox-X as
+   the recorded fallback); record its capability in
    `docs/RUNTIME.md` from an actual attempt before relying on it, and apply
    the protocol's supported-field, state-based wait, seed and divergence
    requirements. Owner live sessions remain limited to confirmed captures.

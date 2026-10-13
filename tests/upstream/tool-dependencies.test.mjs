@@ -49,7 +49,7 @@ test("pypcode is required and its installed version must match the exact runtime
   const dir=scratch(t); mkdirSync(join(dir,"tools/evidence"),{recursive:true});
   const path=join(dir,"tools/evidence/requirements.txt"), lock=readFileSync(join(root,"tools/evidence/requirements.txt"),"utf8");
   writeFileSync(path,lock.replace(/^pypcode==.*$/m,""));
-  assert.throws(() => verifyEngine(dir,{...process.env,EVIDENCE_PYTHON:enginePython()}), /exactly pin engine, Capstone, pypcode and xxhash/);
+  assert.throws(() => verifyEngine(dir,{...process.env,EVIDENCE_PYTHON:enginePython()}), /exactly pin engine, session, Capstone, pypcode and xxhash/);
   writeFileSync(path,lock.replace(/pypcode==\d+\.\d+\.\d+/,"pypcode==99.0.0"));
   assert.throws(() => verifyEngine(dir,{...process.env,EVIDENCE_PYTHON:enginePython()}), /pypcode.*expected 99.0.0/);
 });
