@@ -9,7 +9,7 @@ byte_order: little
 size: 34
 text: false
 definition: fmt_party_004.ksy
-evidence: [FND-PARTY-006, FND-PARTY-011, FND-PARTY-012, FND-PARTY-104, FND-PARTY-210]
+evidence: [FND-PARTY-006, FND-PARTY-011, FND-PARTY-012, FND-PARTY-104, FND-PARTY-210, FND-PARTY-211]
 conflicting: []
 split_with: []
 related: []
@@ -23,7 +23,7 @@ write it as a 34-byte entry of a four-slot table [FND-PARTY-011, FND-PARTY-012].
 
 | Offset | Size | Type | Name | Meaning | Status | Evidence |
 |---|---|---|---|---|---|---|
-| `0x00` | 34 | `BYTE[34]` | `power_ranks` | One byte for each psionic power 0 to 33: bits 1 to 7 the power's rank, 0 while it is unknown, 1 when learned and 1 more for each enhancement up to 30; bit 0 is set while the power, used successfully, stays in effect, and ending the power clears it. Power 0 is never offered. Bytes of 0, 2, 3, 4 or 6 in the shipped resources, mostly 0 and 2. | supported | FND-PARTY-006, FND-PARTY-011, FND-PARTY-012, FND-PARTY-104, FND-PARTY-210 |
+| `0x00` | 34 | `BYTE[34]` | `power_ranks` | One byte for each psionic power 0 to 33: bits 1 to 7 the power's rank, 0 while it is unknown, 1 when learned and 1 more for each enhancement up to 30; bit 0 is set while the power, used successfully, stays in effect, and ending the power clears it; every power in effect ends at the end of a fight and of a rest. Power 0 is never offered. Bytes of 0, 2, 3, 4 or 6 in the shipped resources, mostly 0 and 2. | supported | FND-PARTY-006, FND-PARTY-011, FND-PARTY-012, FND-PARTY-104, FND-PARTY-210, FND-PARTY-211 |
 | `0x22` | | | | Total size 34 | | |
 
 ## Enumerations and flags
@@ -41,6 +41,6 @@ is 34 bytes [FND-PARTY-006].
 
 ## Open questions
 
-- When the routines that end every power in effect run (overlay 173 `+3E30`, `30B0:00C1`,
-  overlay 202 `+0C82`), and what the byte at `51F1:07E2 + 3 * power` that keeps a power from being
-  marked holds (FND-PARTY-210, Q-PARTY-005).
+- When the other routines that clear bit 0 run (`30B0:00C1` through `2D40:197A`, and overlay 202
+  `+0C82`), and what the byte at `51F1:07E2 + 3 * power` that keeps a power from being marked
+  holds (FND-PARTY-210, FND-PARTY-211, Q-PARTY-005).

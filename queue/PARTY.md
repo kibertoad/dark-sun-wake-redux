@@ -103,17 +103,18 @@ Next ID: Q-PARTY-081
   FND-PARTY-181 and FND-PARTY-182 give word `0x00` as the negated object number and byte `0x12`
   as the placed entry's low bits; FND-PARTY-196 lists the shipped values of every field and shows
   9999 ending each chain at `0x04`, but names no field from code. Blocks: slice 2.
-- Q-PARTY-005. FMT-PARTY-004, FMT-PARTY-005: When do the routines that end every psionic power
-  in effect run, what does the byte at `51F1:07E2 + 3 * power` hold, and does anything write a
-  slot's 15-byte `SPST` entry at `4D62:039C` without naming that address? Settles it: the callers
-  of overlay 173 `+3E30`, `30B0:00C1` and overlay 202 `+0C82` followed to their events, the readers
-  of the power table at `51F1:07E1`, and a search for block copies and reads into segment `4D62`
-  (segment word `0x0320`) at computed offsets. Tried:
+- Q-PARTY-005. FMT-PARTY-004, FMT-PARTY-005: When do `30B0:00C1` and overlay 202 `+0C82` clear
+  bit 0 of `PSST` bytes, what does the byte at `51F1:07E2 + 3 * power` hold, and does anything
+  write a slot's 15-byte `SPST` entry at `4D62:039C` without naming that address? Settles it:
+  `2D40:197A` and its caller `2AAD:0000`, the callers of the routine holding overlay 202 `+0C82`,
+  the readers of the power table at `51F1:07E1`, and a search for block copies and reads into
+  segment `4D62` (segment word `0x0320`) at computed offsets. Tried:
   FND-PARTY-104 reads the level-gain windows, which show `SPST` as the known spells and bits 1 to
   7 of `PSST` as power ranks, and keep bit 0; FND-PARTY-203 shows the load writes only the
   resource's own length and that no shipped character with a 9-byte `SPST` can be loaded;
   FND-PARTY-209 lists every instruction naming `0x039C` and finds no clear of a whole entry;
-  FND-PARTY-210 shows bit 0 of a `PSST` byte marks a power in effect.
+  FND-PARTY-210 shows bit 0 of a `PSST` byte marks a power in effect, and FND-PARTY-211 that
+  every power in effect ends at the end of a fight and of a rest.
   Blocks: slice 3.
 - Q-PARTY-017. RULE-PARTY-006: When the player opens Create Characters (start window button
   `0x4B65`, overlay 212 `+061C`, window `0x2CEC`) before START GAME, which actions on that
