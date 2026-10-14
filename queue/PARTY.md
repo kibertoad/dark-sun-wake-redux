@@ -196,7 +196,23 @@ None.
 
 ## Agent run
 
-None.
+- Q-PARTY-081. RULE-PARTY-001: On the defeat cleanup path, does the DS-relative
+  deletion map at `2D40:27B7` and `2D40:248D` address the SS-local allocation of
+  `2D40:2452`, and where is that segment relationship established? Settles it:
+  a state-driven run reading DS/SS at this deletion call, including the caller
+  frame and map offset, with complete preservation coverage between startup's
+  segment producer, initialization-record targets and the observed cleanup
+  call. The game-main equality observation is now FND-PARTY-219; it does not
+  prove the later call. Required parts: Start it and bring it to a given state,
+  Send it input, Read memory and set breakpoints, Guarded writes to supported
+  combatant hit_points, and Record RNG draws, through the session package
+  (docs/RUNTIME.md's earlier input/write/draw attempts and verified fixed
+  startup stop). Tried: FND-PARTY-213 and FND-PARTY-214 identify the near map;
+  FND-PARTY-215 reads the startup SS replacement; FND-PARTY-219 observes DS/SS
+  equality at main without draws. Next run needs a complete private game drive
+  and state-driven gameplay/deletion stops; the startup-only drive cannot be
+  continued to gameplay. Blocks: Q-PARTY-078's complete cleanup reading, not
+  its remaining independent static input/callee work.
 
 ## Live session
 
@@ -219,24 +235,6 @@ None.
 None.
 
 ## Blocked
-
-- Q-PARTY-081. RULE-PARTY-001: On the defeat cleanup path, does the DS-relative
-  deletion map at `2D40:27B7` and `2D40:248D` address the SS-local allocation of
-  `2D40:2452`, and where is that segment relationship established? Settles it:
-  a state-driven run reading DS/SS at game main and at this deletion call,
-  including the caller frame and map offset, with complete static preservation
-  coverage between startup's segment producer, initialization-record targets
-  and the observed cleanup call; service-dependent register effects must be
-  observed rather than assumed. Required parts: Start it and bring it to a given
-  state, Read memory and set breakpoints, and Record RNG draws, through the
-  session package. Tried: FND-PARTY-213 and FND-PARTY-214 identify the near map
-  pointer; FND-PARTY-215 reads the startup SS replacement and initializer
-  dispatch. The fixed startup probe was refused before emulator launch on
-  2026-10-15 (docs/RUNTIME.md). Waiting on: normal machine run coordination
-  resolving the existing unrecognized run lock, then a verified state-driven
-  startup/deletion probe. Do not substitute another lock path. Blocks:
-  Q-PARTY-078's complete static cleanup reading, not its independent several-member
-  observation or remaining static input/callee work.
 
 - Q-PARTY-007. RULE-PARTY-004, SCR-UI-015: Which classes does the DUAL window offer, and which of its buttons
   are closed? Settles it: SCR-UI-015 taking the test of RULE-PARTY-004 and the window of

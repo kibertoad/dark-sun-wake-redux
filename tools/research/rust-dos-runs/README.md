@@ -129,6 +129,9 @@ Use the locked evidence Python from the repository root:
 artifacts/evidence-python/Scripts/python.exe -I tools/research/rust-dos-runs/startup_segments.py <new-run-name>
 ```
 
-Live execution is not yet verified: the 2026-10-15 attempt was refused by the
-existing machine run lock before emulator launch (docs/RUNTIME.md). Do not
-substitute another lock path or modify that lock to make the probe run.
+Live startup execution is verified by FND-PARTY-219: after the earlier
+2026-10-15 lock refusal, the normal lock was available and a fresh run stopped
+at main with DS equal to SS and no RNG draw. The probe does not prepare a
+complete gameplay drive or prove later segment preservation. Every run still
+uses normal machine coordination; never substitute a lock path or modify an
+unrecognized lock to make a probe run.

@@ -27,23 +27,21 @@ Setup: `./tools/Restore-ToolDependencies.ps1` installs
 build into `artifacts/rust-dos/`, refusing an archive or executable whose
 SHA-256 differs from the package's pins.
 
-Current machine availability (2026-10-15): new session-package runs are
-unavailable. The fixed startup-segment probe
-`tools/research/rust-dos-runs/startup_segments.py initial-main-20261015`
-was refused at `RunLock.acquire`, before emulator launch: the default run
-lock exists but is not a `dinorefurb-dosbox-session.run-lock/1` record.
-The package cannot determine its owner/process state. It was left untouched;
-no alternate lock path was used. New runs can resume once the existing lock
-is resolved through the owner's normal run coordination. The capability
-table below retains the earlier successful attempts, not evidence that a
-new session can currently acquire the lock. Static analysis and emulated
-calls remain available.
+Current machine availability (2026-10-15): the fixed startup-segment probe
+successfully acquired the default machine lock, launched its own pinned
+rust-dos, stopped at game-main entry, read registers and RNG state, and
+closed the session (FND-PARTY-219). The earlier attempt was refused by an
+unrecognized lock; later read-only inspection reported no lock. No lock was
+modified and no alternate path used. A later run must still take the normal
+lock and refuse if another session holds it.
 
-The new startup probe waits for the documented main entry using an address
-stop, reads DS/SS and the RNG state, and refuses to continue if the RNG entry
-is reached first. It makes no writes, inputs or captures and records no draw.
-Its live behavior remains unverified because the lock refused its first
-attempt; it does not replace the earlier successful probe's capability evidence.
+`tools/research/rust-dos-runs/startup_segments.py` waits for the documented
+main entry by address, rather than fixed emulated time, and guards the known
+RNG entry. It makes no writes, inputs or image captures. It copies only
+DSUN.EXE onto C: and therefore must not be continued to gameplay. Its
+successful startup stop verifies this fixed probe, not a state-driven route
+to a gameplay screen or deletion call. The earlier table's menu/input/frame
+attempts retain their separate provenance.
 
 How an agent run starts the game (2026-10-14, `tools/research/rust-dos-runs/`):
 a deterministic run at 15000 instructions a millisecond, C: a copy of the
@@ -74,7 +72,7 @@ wait for supported layout/parameter bindings; FBOV code stays out of reach.
 |---|---|---|---|
 | Start it and bring it to a given state without a person | agent | 2026-10-14: the run above reaches the start window (SCR-UI-001), fully drawn by 180 s of emulated time after the start, with Esc pressed every 10 s through the intro, and the screens after it by mouse clicks; checkpoints (`save_state` with `check_files`) taken at the start window, after an `ADD` and after a `DROP`, started later runs that reached the same screens. | A game screen or state the run cannot reach. |
 | Send it input | agent (keyboard, mouse) | 2026-10-14: keys (Esc), left, right and middle mouse clicks (the game's mouse handler gets the driver's bits for each, FND-PARTY-204), and a key held across a click through a `batch` of key down, click and key up (left Ctrl, FND-PARTY-206), given in the mouse driver's coordinates (`"coords": "virtual"`, the game's 320 x 200); a click in screenshot coordinates lands off target because the game sets the driver's range. In a deterministic run input is taken while paused and delivered once the run resumes. The owner still plays each live session by its script (`docs/live-sessions/`). | A device the game reads that the session cannot drive. |
-| Read memory, set breakpoints, dump structures while it runs | agent | 2026-10-14: a guarded write of one named field at a stop (`write` steps of run_plan.py) set a combatant's `hit_points` to 0 before START GAME (FND-PARTY-212); memory reads at a stop gave the party kind bytes, a 66-byte character box record and the leader word, which held 0 at the start window as FND-PARTY-171 reads it from the load image; a breakpoint at the generator `1000:0822` (here `05BA:0822`) stopped there and the stack gave the return address. GOG's DOSBox 0.74-2 has no debugger and agents never attach to it. Guarded writes, the event log and gated breakpoints are as the package describes; no write to the game's memory has been made yet. | A field whose read or write the server refuses. |
+| Read memory, set breakpoints, dump structures while it runs | agent | 2026-10-14: a guarded write of one named field at a stop (`write` steps of run_plan.py) set a combatant's `hit_points` to 0 before START GAME (FND-PARTY-212); memory reads at a stop gave the party kind bytes, a 66-byte character box record and the leader word, which held 0 at the start window as FND-PARTY-171 reads it from the load image; a breakpoint at the generator `1000:0822` (here `05BA:0822`) stopped there and the stack gave the return address. GOG's DOSBox 0.74-2 has no debugger and agents never attach to it. Guarded writes, the event log and gated breakpoints are as the package describes. | A field whose read or write the server refuses. |
 | Load a patched save | person | Not tried. The owner can place a save in the installation's save slots and load it from the game's menu. | A live session that asks for it. |
 | Capture frames and sound | agent, frames only; person, frames only | Agent: `screenshot()` gives a 640 x 400 PNG of the 320 x 200 screen (2026-10-14), muted host sound, no sound capture tried. Person: the owner's Ctrl+F5 screenshots, 320x200 in the game's palette, cited by the dynamic findings of the COMBAT, PARTY and UI areas; DOSBox 0.74-2 records sound with Ctrl+F6, not tried. | A sound capture from a session-package run. |
 | Play back a recording the original made | none | The game has no recording feature the spec knows of, and DOSBox 0.74-2 does not replay input. | A finding that the game records and replays input. |
