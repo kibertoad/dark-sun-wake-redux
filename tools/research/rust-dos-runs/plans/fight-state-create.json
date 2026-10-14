@@ -1,0 +1,4 @@
+{"start": "artifacts/runs/2026-10-14-cc7:added", "steps": [
+ {"read": [["41CA:0019", 2], ["4D9A:0DAB", 2]]},
+ {"keys": ["c"], "until_ms": 222000, "read": [["41CA:0019", 2], ["4D9A:0DAB", 2]]}
+]}

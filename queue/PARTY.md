@@ -35,11 +35,14 @@ Next ID: Q-PARTY-081
   the stores to combatant byte `+0x14`, finds `+22C4` the only one through `DS:19C9` writing a
   mark above 2, and a reach from the title screen's windows to it through this route;
   FND-PARTY-198 opens the USE window on Create Characters with the key `c`. Blocks: nothing yet.
-- Q-PARTY-079. RULE-PARTY-001: Can `set_leader` (overlay 182 `+1D3E`), reached from View
-  Character's `+0802` before START GAME, run the attack routine overlay 173 `+1CC1` through
-  `2D40:10AE`, and does that reach `+22C4` or `+3CDA` there? Settles it: the conditions at
-  overlay 182 `+1E48`, in `2D40:10AE` before `2D40:13D9`, and in `+1CC1` before `+2290`. Tried:
-  FND-PARTY-197's reach finds the route. Blocks: nothing yet.
+- Q-PARTY-079. RULE-PARTY-001: Does anything before START GAME set the fight state at
+  `4C10:0019` to a value other than 0, so that `set_leader`'s call of `2D40:10AE` can reach the
+  attack routine overlay 173 `+1CC1`? Settles it: for each nonzero store FND-PARTY-089 lists
+  (`2E00:0837`, overlay 173 `+22B7` and `+409D`, overlay 188 `+04CF`, overlay 193 `+0533`, and the
+  stores of overlay 173 `+059A`'s result at `2A00:0DF0` and `2B00:0DDE`), whether it can run from
+  the title screen's windows. Tried: FND-PARTY-197's reach finds the route through `set_leader`;
+  FND-PARTY-199 shows the attack call in `2D40:10AE` runs only when the fight state is not 0, and
+  reads 0 on Create Characters. Blocks: nothing yet.
 - Q-PARTY-080. RULE-PARTY-001: Does any other write give a filled slot's combatant record a
   `combat_mark` of 3 or more, or hit points below 1, before START GAME? Settles it: the pointer
   sources of overlay 172 `+01AE`, 179 `+2515`, `+25AD` and `+2668`, 200 `+04DD`, resident

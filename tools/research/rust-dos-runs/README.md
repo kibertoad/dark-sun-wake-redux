@@ -79,6 +79,9 @@ in play from `talk` after opening View Character, and `cast-key-create.json`
 presses `c` on Create Characters from `added`; each breaks on `3EBE:071F` and
 overlay 211's trampolines.
 
+FND-PARTY-199's run is `fight-state-create.json`: reads of the fight state on
+Create Characters before and after `c`.
+
 FND-PARTY-195's run is `leader-page-flip.json`: key 4 from the same checkpoint,
 with breakpoints inside `4328:0B4C` past its gates and reads of the display
 page words.
