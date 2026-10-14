@@ -1,0 +1,5 @@
+{"start": "artifacts/runs/2026-10-14-cc7:added", "steps": [
+ {"shot": "k0", "read": [["4D9A:0DAB", 2], ["4D9A:1431", 4], ["4B83:0000", 4]]},
+ {"keys": ["c"], "until_ms": 222000, "shot": "k1",
+  "breaks": ["4D7B:003E", "4D7B:005C", "3478:071F"], "read": [["4D9A:0DAB", 2], ["4D9A:1431", 4], ["4B83:0000", 4]]}
+]}

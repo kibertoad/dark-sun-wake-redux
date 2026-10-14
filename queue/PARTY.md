@@ -27,14 +27,14 @@ Next ID: Q-PARTY-081
   Blocks: nothing yet.
 - Q-PARTY-073. RULE-PARTY-001: Can View Character, opened from Create Characters before START
   GAME, pass an event to overlay 211 `+081B` that runs the damage routine overlay 173 `+22C4` on a
-  party member, giving it `combat_mark` 3, 7 or 8? Settles it: the condition at overlay 190
-  `+1649` (the far pointer at `55C9:0000` equal to `DS:1431`), what opens that window on this
-  screen, and the conditions along overlay 211 `+0901`, overlay 193 `+2290`, `+0000`, `+003C` and
-  `+04DE` and overlay 179 `+0D2F` to the call at `+0D9C`. Tried: FND-PARTY-183, FND-PARTY-184,
+  party member, giving it `combat_mark` 3, 7 or 8? Settles it: the conditions along overlay 211
+  `+0901`, overlay 193 `+2290`, `+0000`, `+003C` and `+04DE` and overlay 179 `+0D2F` to the call
+  at `+0D9C`, or a run that casts each of a stored character's damaging spells at a party member
+  from the USE window on Create Characters. Tried: FND-PARTY-183, FND-PARTY-184,
   FND-PARTY-192 and FND-PARTY-193 show ADD and NEW give mark 1; FND-PARTY-197 takes a census of
   the stores to combatant byte `+0x14`, finds `+22C4` the only one through `DS:19C9` writing a
-  mark above 2, and a reach from the title screen's windows to it through this route. Blocks:
-  nothing yet.
+  mark above 2, and a reach from the title screen's windows to it through this route;
+  FND-PARTY-198 opens the USE window on Create Characters with the key `c`. Blocks: nothing yet.
 - Q-PARTY-079. RULE-PARTY-001: Can `set_leader` (overlay 182 `+1D3E`), reached from View
   Character's `+0802` before START GAME, run the attack routine overlay 173 `+1CC1` through
   `2D40:10AE`, and does that reach `+22C4` or `+3CDA` there? Settles it: the conditions at

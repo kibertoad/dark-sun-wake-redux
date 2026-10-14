@@ -91,8 +91,9 @@ None known.
   leader (FND-PARTY-192). Left: whether any route before START GAME gives a filled slot a mark of
   3 or more or hit points below 1. The damage routine overlay 173 `+22C4` is the only store
   through the combatant table pointer that writes such a mark, and a static walk reaches it from
-  the title screen's windows (FND-PARTY-197); whether View Character's overlay 211 window or
-  `set_leader` can run it there, and the other writes, are open (Q-PARTY-073, Q-PARTY-079,
+  the title screen's windows (FND-PARTY-197). The key `c` opens View Character's overlay 211 USE
+  window on Create Characters (FND-PARTY-198); whether casting from it or `set_leader` can run the
+  damage routine there, and the other writes, are open (Q-PARTY-073, Q-PARTY-079,
   Q-PARTY-080).
 - Whether a created party of three or four begins play the same way; the experiments added one
   and two stored characters and FND-PARTY-192 made one with NEW (No item: the same mechanism as

@@ -73,6 +73,12 @@ saves the checkpoint `play` 90,000 ms after START GAME (run directory
 `artifacts/runs/2026-10-14-twoplay2`); `leader-keys.json`
 presses 4, 1, 2, 3 and 4 from it with a watchpoint on `leader`.
 
+FND-PARTY-198's runs: `cast-button-create.json` clicks the cast button at
+`(99, 171)` on Create Characters from `added`, `cast-button-play.json` clicks it
+in play from `talk` after opening View Character, and `cast-key-create.json`
+presses `c` on Create Characters from `added`; each breaks on `3EBE:071F` and
+overlay 211's trampolines.
+
 FND-PARTY-195's run is `leader-page-flip.json`: key 4 from the same checkpoint,
 with breakpoints inside `4328:0B4C` past its gates and reads of the display
 page words.
