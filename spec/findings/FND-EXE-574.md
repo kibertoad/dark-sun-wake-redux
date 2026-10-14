@@ -1,9 +1,9 @@
 ---
 id: FND-EXE-574
 title: No interrupt 21 request in the installed DSUN.EXE selects AH=4B and the file holds no interrupt 2E; of its 100 interrupt 21 sites the walk from its established entries reaches 80, and its two stack-built interrupt routines are called only for interrupts 2F and 21 with AX values other than 4Bxx
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-EXE-578]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

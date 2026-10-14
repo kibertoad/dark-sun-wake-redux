@@ -340,13 +340,13 @@ reading of callers, external commands or interpreter behavior is claimed.
   install vectors only for handlers FND-EXE-496 already decodes from,
   build no transfer on the stack and write no code, with every CD byte
   accounted for as the control.
-  FND-EXE-574 censuses the installed DSUN.EXE the same way: no interrupt
+  FND-EXE-578 censuses the installed DSUN.EXE the same way: no interrupt
   21 request in the file selects AH=4B, its stack-built interrupts are
   called only for CD-ROM extension and version services, and it holds no
   interrupt 2E. FND-EXE-575 finds that it never reads the interrupt 21
   vector and calls only the saved handlers of 5, 8, 9 and 19, which lie
   outside the file, and FND-EXE-576 locates a control for each kind of
-  site. FND-EXE-577 finds the runtime library's Ctrl-Break, exit and
+  site. FND-EXE-579 finds the runtime library's Ctrl-Break, exit and
   critical-error calls going to handlers inside the file, through which
   the walk reaches two more requests, neither AH=4B. Which of its other
   unresolved computed transfers can reach code outside the file remains

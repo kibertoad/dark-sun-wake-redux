@@ -1,9 +1,9 @@
 ---
 id: FND-EXE-577
 title: Six of the runtime library's computed calls in DSUN.EXE go to handlers inside the file, and declaring them reaches two more interrupt 21 sites, neither selecting AH=4B
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-EXE-579]
 recorded_by: kibertoad
 reproduced_by: []
 method: static
