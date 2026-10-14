@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_005.ksy
-evidence: [FND-PARTY-006, FND-PARTY-011, FND-PARTY-012, FND-PARTY-104, FND-PARTY-203]
+evidence: [FND-PARTY-006, FND-PARTY-011, FND-PARTY-012, FND-PARTY-104, FND-PARTY-203, FND-PARTY-209]
 conflicting: []
 split_with: []
 related: []
@@ -45,5 +45,6 @@ bytes and 3 (characters 30, 31 and 33) are 9 bytes [FND-PARTY-006].
 ## Open questions
 
 - What a 9-byte resource leaves in bytes 9 to 14 of its 15-byte entry: the read writes only the
-  first 9 bytes, and no shipped character with one can be loaded (FND-PARTY-203), so it depends on
-  the earlier writes to the entry, which were not read (Q-PARTY-005).
+  first 9 bytes, and no shipped character with one can be loaded (FND-PARTY-203); no instruction
+  that names the table clears a whole entry, so they keep the slot's earlier bits
+  (FND-PARTY-209). Left: transfers that reach the table without naming it (Q-PARTY-005).
