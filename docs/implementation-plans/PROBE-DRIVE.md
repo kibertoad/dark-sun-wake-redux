@@ -37,3 +37,25 @@ under GAME_DIR/captures/. No inputs or memory writes. Wait for the breakpoint,
 with bounded wall-clock observation windows and a diagnostic pause on exhaustion;
 elapsed time never establishes a game state. Exit: actual attempt and bounded
 finding, with explicit remaining gameplay and draw gaps, then canonical gate.
+
+## Startup seed observation and reusable checkpoint
+
+Research extension for Q-RNG-003 and Q-PARTY-081. Outcome: identify the actual
+startup seed caller, argument and resulting state on the unchanged private
+drive; save a checked local checkpoint at the established opener call site.
+Evidence: FND-RNG-009's startup caller at overlay 180 +065E and return +0663,
+seed setter 1000:0811, FMT-EXE-004's loaded trampoline, and FND-UI-039's
+opener stop. This adds no game behavior or complete clock-conversion claim.
+
+Acceptance: before continuing the seed setter, validate its six-byte far-return
+and argument frame, the loaded startup trampoline's target +0141/segment,
+and the preceding far-call instruction's target against the relocated setter.
+Reject another caller, short frame, wrapping stack read or changed trampoline.
+Read DS/SS, argument and seed before/after this declared call; require the
+result to equal the argument with its high word zero. Retain guards on both
+the known generator and any further seed call; no draw is admitted.
+Save state only after the opener stop passes and seed remains unchanged.
+Reports and checkpoint files stay under GAME_DIR/captures/ and out of Git.
+Synthetic caller checks exercise wrong segment, offset, opcode and frame;
+native run verifies the observed path and checked checkpoint creation.
+Exit: bounded finding, queue obligations updated, full gate, separate handover.

@@ -154,3 +154,13 @@ not establish a drawn window. Reports stay under the licensed installation's
 `captures/rust-dos-startup-window/`. Wall-clock observation exhaustion pauses
 the owned session diagnostically; it never counts as arrival. Synthetic
 continuation/pause checks are in check_startup_window.py.
+
+The extended probe first stops at seed_random and admits only the startup
+overlay-180 caller from FND-RNG-009, verified against its loaded trampoline
+and far-call target. It reads the argument and checks the setter result before
+the opener continuation. A second seed call or known RNG draw stops the run.
+At the verified opener it saves the strict, file-checked state `opener`.
+FND-RNG-010 records the actual seed call and checked save; a fresh native
+restore of this checkpoint still needs its own attempt. The historical first
+extended report mislabeled its checkpoint boolean as a path; current reports
+use `checked` and `directory`, backed by the package journal's path and hashes.

@@ -48,6 +48,12 @@ start-window opener call by address without input. It verifies this later
 fixed stop and its stack-argument read. The opener was not executed; a
 drawn window and subsequent state-driven gameplay route remain unverified.
 
+The seed-and-opener extension (FND-RNG-010) additionally verified the fixed
+seed caller/argument reads and return stop, then saved a strict, file-checked
+opener checkpoint. read_saved_state verified its journal and files afterward.
+Native restore of this new checkpoint remains unattempted; its saved-folder
+verification does not establish that capability for the new state.
+
 How an agent run starts the game (2026-10-14, `tools/research/rust-dos-runs/`):
 a deterministic run at 15000 instructions a millisecond, C: a copy of the
 installed game's files, D: the CD image `game.ins` mounted read-only, and the

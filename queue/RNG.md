@@ -31,7 +31,11 @@ Next ID: Q-RNG-004
   calls. Tried: FND-RNG-009 proves both direct call sequences use only AX from
   the helper, whose optional output pointer is zero, and separates the complete
   conversion/reachability obligations from Q-RNG-001. FND-UI-039 observes a
-  later state change without identifying its writer. Blocks: reproducible
+  later state change without identifying its writer. Tried: FND-RNG-010
+  observes the admitted startup caller, its argument and setter result, then
+  saves and file-verifies the opener checkpoint with no known generator draw.
+  Complete conversion, earlier near-buffer identity and other reseeding paths
+  remain; native checkpoint restore has not been attempted. Blocks: reproducible
   startup seeding and Q-PARTY-081's later recorded gameplay run.
 
 ## Emulated call
