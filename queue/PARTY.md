@@ -28,17 +28,19 @@ Next ID: Q-PARTY-081
 - Q-PARTY-073. RULE-PARTY-001: Can View Character, opened from Create Characters before START
   GAME, pass an event to overlay 211 `+081B` that runs the damage routine overlay 173 `+22C4` on a
   party member, giving it `combat_mark` 3, 7 or 8, or start a fight through overlay 193 `+0533`?
-  Settles it: the conditions along overlay 211 `+0901`, overlay 193 `+2290`, `+0000`, `+003C` and
-  `+04DE` and overlay 179 `+0D2F` to the call at `+0D9C`, and to overlay 193 `+0533`, or a run that
-  casts each of a stored character's damaging spells at a party member from the USE window on
-  Create Characters. Tried: FND-PARTY-183, FND-PARTY-184,
+  Settles it: the conditions along overlay 211 `+0901`, overlay 193 `+2290`, `+0000` and `+003C`
+  to its target loop, how that loop's list is filled on Create Characters (whether it can name a
+  combatant above 4), and overlay 179 `+0D2F` to its call at `+0D9C`; or a run that casts each of
+  a stored character's damaging spells at a party member from the USE window on Create
+  Characters. Tried: FND-PARTY-183, FND-PARTY-184,
   FND-PARTY-192 and FND-PARTY-193 show ADD and NEW give mark 1; FND-PARTY-197 takes a census of
   the stores to combatant byte `+0x14`, finds `+22C4` the only one through `DS:19C9` writing a
   mark above 2, and a reach from the title screen's windows to it through this route;
   FND-PARTY-198 opens the USE window on Create Characters with the key `c`; FND-PARTY-199 and
   FND-PARTY-200 show `set_leader`'s route to the attack routine needs a fight, and that the only
-  store starting one that a walk reaches outside that route is overlay 193 `+0533`, on this one.
-  Blocks: nothing yet.
+  store starting one that a walk reaches outside that route is overlay 193 `+0533`, on this one;
+  FND-PARTY-201 shows `+0533` needs a target numbered above 4, while every target reaches
+  `179 +0D2F`. Blocks: nothing yet.
 - Q-PARTY-080. RULE-PARTY-001: Does any other write give a filled slot's combatant record a
   `combat_mark` of 3 or more, or hit points below 1, before START GAME? Settles it: the pointer
   sources of overlay 172 `+01AE`, 179 `+2515`, `+25AD` and `+2668`, 200 `+04DD`, resident
