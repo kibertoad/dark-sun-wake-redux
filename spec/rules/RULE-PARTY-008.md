@@ -4,7 +4,7 @@ title: The keys 1 to 4 choose the party leader
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [SRC-MANUAL-1994, FND-ACTOR-003, FND-COMBAT-008, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-EXPLORE-001, FND-EXPLORE-002, FND-PARTY-013, FND-PARTY-171, FND-PARTY-176, FND-PARTY-178]
+evidence: [SRC-MANUAL-1994, FND-ACTOR-003, FND-COMBAT-008, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-EXPLORE-001, FND-EXPLORE-002, FND-PARTY-013, FND-PARTY-171, FND-PARTY-176, FND-PARTY-178, FND-PARTY-179]
 conflicting: []
 split_with: []
 related: [SCR-UI-002]
@@ -53,6 +53,9 @@ define set_leader(slot):                                         # overlay 182 +
     if combatants[object_slot_combatants[slot]].combat_mark > 2:
         return
     leader = slot                                                # visible: the leader walks for the party
+    turn_combatant = slot
+    # When party_shown is 0, the new leader is shown at the old leader's place and the old
+    # leader is hidden (FND-PARTY-179).
 ```
 
 ## Outputs
@@ -84,5 +87,6 @@ None known.
   names for its slot where the two differ: the code reads record `slot` (FND-PARTY-176), and the
   runs had them equal (No item: the parties the game builds put combatant `k` in slot `k`,
   FND-PARTY-013, so no party where they differ is known).
-- What `set_leader` does with its second argument, 1 from a key, and which screens pass keys to
-  `28C9:0CFF` (Q-PARTY-074).
+- Which screens pass keys to `28C9:0CFF`, so where the keys work (Q-PARTY-074).
+- What the two calls a key's `set_leader` makes and START GAME's does not, `2C5F:0139` and
+  `28C9:2A81(1)`, change on screen (FND-PARTY-179, Q-PARTY-075).

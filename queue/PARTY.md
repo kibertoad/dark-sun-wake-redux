@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-075
+Next ID: Q-PARTY-076
 
 ## Static
 
@@ -55,10 +55,13 @@ Next ID: Q-PARTY-075
   entry `37FC:04AB` for a resource shorter than the size it is given. Tried: FND-PARTY-104 reads
   the level-gain windows, which show `SPST` as the known spells and bits 1 to 7 of `PSST` as power
   ranks, and keep bit 0. Blocks: slice 3.
-- Q-PARTY-074. RULE-PARTY-008: What does overlay 182 `+1D3E` do with its second argument after it
-  sets `leader` (1 from a key, 0 from START GAME's party restore), and which screens pass keys to
-  `28C9:0CFF`? Settles it: a reading of `+1D3E` from `+1DA5` to its return (`+1E50` tests the
-  flag), and the callers of `28C9:0CFF` through `39D1:083F` (FND-PARTY-178). Blocks: slice 3.
+- Q-PARTY-074. RULE-PARTY-008: Which screens pass keys to `28C9:0CFF`, so where do the keys 1 to
+  4 change the leader? Settles it: the callers of `28C9:0CFF` through `39D1:083F` and `39D1:0742`
+  (FND-PARTY-178) and the screens whose loops reach them. Blocks: slice 3.
+- Q-PARTY-075. RULE-PARTY-008: What do `2C5F:0139()` and `28C9:2A81(1)` change, which
+  `set_leader` calls after a key and not after START GAME's party restore (FND-PARTY-179), and
+  which key 5 also calls (FND-EXPLORE-005)? Settles it: a reading of both routines. Blocks:
+  slice 3.
 - Q-PARTY-017. RULE-PARTY-006: When the player opens Create Characters (start window button
   `0x4B65`, overlay 212 `+061C`, window `0x2CEC`) before START GAME, which actions on that
   screen other than `ADD` on an empty box change the placed-object count, `DS:0DAB`, the
