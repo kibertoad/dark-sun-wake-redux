@@ -53,7 +53,8 @@ def report_chain(s, ob):
     # with the 24 bytes before each return so that overlay code can be found in the file.
     r = ob.stop["registers"]
     bp, ss = int(r["bp"], 16), r["ss"]
-    print("   stack", s.client.read_memory(f"{ss}:{r['sp']}", 16).data.hex(), "bp", r["bp"])
+    print("   stack", s.client.read_memory(f"{ss}:{r['sp']}", 16).data.hex(), "bp", r["bp"],
+          "args", s.client.read_memory(f"{ss}:{(bp + 6) & 0xFFFF:04X}", 12).data.hex())
     for _ in range(8):
         if not bp:
             break

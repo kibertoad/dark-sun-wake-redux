@@ -43,8 +43,9 @@ overlay code can be found in the file. A run that saves no checkpoint deletes
 its copy of C: when it ends.
 
 A step with `breaks`, a list of run addresses, sets those breakpoints while the
-step runs and removes them after it. At each stop it prints the stack and the BP
-chain as a watchpoint stop does.
+step runs and removes them after it. At each stop it prints, as at a watchpoint
+stop, the stack, the 12 bytes at `BP + 6` (the arguments of the routine whose
+frame BP holds) and the BP chain.
 
 `start.json` (run directory `artifacts/runs/2026-10-14-start6`) makes the
 start-window checkpoint `start` from a new start. EXP-PARTY-001's runs start

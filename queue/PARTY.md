@@ -1,9 +1,16 @@
 # PARTY
 
-Next ID: Q-PARTY-076
+Next ID: Q-PARTY-077
 
 ## Static
 
+- Q-PARTY-076. BUG-PARTY-001: Does any route reach the character sheet (overlay 184 `+0462`,
+  overlay 186 `+0421`) with class bytes other than codes 1 to 8 in the record at `4E4F:0029`?
+  Settles it: every caller of overlay 184 `+0462` and, on each route to it, the writes to the
+  class bytes at `4E4F:0044..0047`, whether overlay 184 `+1DCE` runs before the sheet, and the
+  writers of `4E71:0B44` between that call and the sheet (file `0x75CBC`, `0x78934` and `0x93170`
+  are unread, FND-PARTY-073). Tried: FND-PARTY-187 runs the View Character path from the play
+  screen for the four supplied characters and finds codes 1 to 8 there. Blocks: nothing yet.
 - Q-PARTY-073. RULE-PARTY-001: Can a party reach START GAME with no filled slot whose
   `combat_mark` is 1 or 2 and whose hit points are 1 or more, and what does overlay 173 `+3CDA`
   do then? It sets no leader and calls
@@ -126,14 +133,6 @@ None.
   Settles it: an owner capture of the generation screen's class line and experience after choosing
   the two classes, and of the View Character screen once the character is stored (FND-PARTY-065).
   Blocks: slice 2.
-- Q-PARTY-025. BUG-PARTY-001: Does the character sheet print, in brackets after the experience,
-  the threshold of the row numbered by the class code less 1, so that a supplied Cleric (code 2) at
-  level 7 shows 60000 where its class's table gives 110000, and what does it show for a Fighter,
-  Gladiator or Thief (codes 9, 10 and 17)? Settles it: an owner capture of the View Character
-  screen for each supplied character before any play, compared with records 40 to 43 and
-  FND-PARTY-058's table. Tried: the static reading FND-PARTY-058 and FND-PARTY-083. Blocks:
-  slice 2.
-
 ## Source
 
 None.
