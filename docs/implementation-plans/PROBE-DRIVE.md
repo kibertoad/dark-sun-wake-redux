@@ -79,3 +79,22 @@ native attempt verifies load and return separately; synthetic executable control
 reject changed or missing copied sources. Exit: bounded finding,
 runtime capability record, full gate and separate handover; no queue closure
 or presentation/parity promotion based on a call returning.
+
+## Startup clock-buffer identity probe
+
+Research probe for Q-RNG-003. Outcome: measure the admitted startup clock
+helper's near-buffer DS/SS identity and the result passed to the seed setter.
+FND-RNG-009 identifies the zero optional-output argument, source caller at
+overlay 180 +0657/return +065C, local buffers BP-4/BP-8, service return
+sites 1000:0976/0980 and converter return 1000:098E. FND-RNG-010 identifies
+the subsequent seed call. No complete calendar or reseeding claim follows.
+Acceptance: validate the loaded startup trampoline and source/seed callers;
+read only those named frames, buffer offsets and four-byte CX/DX output
+records. Require nonwrapping offsets and matching DS/SS before treating the
+near pointers as the stack locals; verify pushed pointers and their unchanged
+contents through conversion. Stop at the seed entry, compare its argument
+with the converter's low return word and retain the known RNG guard.
+No inputs, writes, patched saves or emulated-time waits. Reports stay under
+GAME_DIR/captures/rust-dos-clock-source/. Synthetic controls reject wrong
+caller and segment identity or impossible frame bounds. Exit: actual bounded
+observation, remaining Q-RNG-003 obligations updated and full gate.

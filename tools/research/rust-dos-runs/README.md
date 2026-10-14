@@ -174,3 +174,12 @@ call to its return. It accepts no input or writes and saves the checked
 return; the new opened state's native restore remains unattempted.
 Reports stay under `GAME_DIR/captures/rust-dos-restore-opener/`.
 `check_restore_opener.py` supplies synthetic stop/instruction admission controls.
+
+`clock_source.py <new-run-name>` observes only the declared startup clock
+caller, service and conversion returns, and subsequent seed input. It
+validates DS/SS and pushed near-buffer offsets, checks their unchanged
+contents and compares the converter's low word with the seed argument.
+It sends no input or writes and guards the known generator. FND-RNG-014
+records the measured path, without claiming complete clock conversion.
+Reports stay under `GAME_DIR/captures/rust-dos-clock-source/`;
+`check_clock_source.py` provides synthetic caller/identity controls.

@@ -57,6 +57,11 @@ It saved and file-verified an opened checkpoint afterward; native restore
 of that second state remains unattempted. No displayed pixels or input
 readiness were established by the call returning.
 
+clock_source.py (FND-RNG-014) verified the declared startup clock caller,
+service/converter return stops and bounded near-buffer/pointer reads on
+this machine. It used no input or writes and stopped before seeding.
+It extends the fixed read/stop capability record, not the gameplay route.
+
 How an agent run starts the game (2026-10-14, `tools/research/rust-dos-runs/`):
 a deterministic run at 15000 instructions a millisecond, C: a copy of the
 installed game's files, D: the CD image `game.ins` mounted read-only, and the

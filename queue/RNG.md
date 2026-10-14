@@ -21,8 +21,8 @@ Next ID: Q-RNG-004
   requiring instruction and rule verification. Blocks: slices 2-7.
 - Q-RNG-003. RULE-RNG-001: What complete input-to-seed contract and admitted
   reseeding paths do the two recovered seed callers use? Settles it: complete
-  reading of 1000:0963 and conversion 1000:386D, their near-buffer DS/SS
-  identity, globals and INT 21 service inputs/effects; callers reaching overlay
+  reading of 1000:0963 and conversion 1000:386D, near-buffer DS/SS
+  identity on other admitted paths, globals and INT 21 service inputs/effects; callers reaching overlay
   180 +065E and overlay 204 +001E; other indirect or aliased seed writes and
   calls. Tried: FND-RNG-009 proves both direct call sequences use only AX from
   the helper, whose optional output pointer is zero, and separates the complete
@@ -33,7 +33,11 @@ Next ID: Q-RNG-004
   Complete conversion, earlier near-buffer identity and other reseeding paths
   remain. FND-UI-040 subsequently verifies native restore of the opener
   checkpoint; the clock conversion and other reseeding obligations remain.
-  Blocks: reproducible
+  Tried: FND-RNG-014 verifies the zero-output startup call's near-buffer
+  identity, pushed offsets and unchanged data through conversion, whose
+  actual return supplies the seed argument's low word. That startup identity
+  obligation is answered; complete conversion, other input/path identities
+  and reseeding coverage remain. Blocks: reproducible
   startup seeding and Q-PARTY-081's later recorded gameplay run.
 
 ## Emulated call
