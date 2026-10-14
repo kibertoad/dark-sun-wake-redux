@@ -1,0 +1,79 @@
+{
+ "starts": [
+  "212+0967",
+  "2660:052D",
+  "2660:05CA",
+  "2660:0250",
+  "2660:0447",
+  "180+0848",
+  "1000:0387",
+  "1000:0FB5",
+  "1000:345B",
+  "1000:3726",
+  "1000:129F",
+  "4AE5:0D27",
+  "1000:0886",
+  "1000:11C1",
+  "1000:12D9",
+  "1000:2877",
+  "1000:29AA",
+  "1000:3B56",
+  "4AE5:0193",
+  "4AE5:1257",
+  "4AE5:1155",
+  "4AE5:0EA2",
+  "1000:02FC",
+  "192+0785"
+ ],
+ "leaves": [
+  {
+   "site": "182+1856",
+   "reason": "FND-PARTY-124: returns before any call while DS:0DAB is 0"
+  },
+  {
+   "site": "182+19F8",
+   "reason": "FND-PARTY-124: returns before any call while DS:0DAB is 0"
+  },
+  {
+   "site": "182+1167",
+   "reason": "FND-PARTY-021, FND-PARTY-031: the gate routine; its calls before the gate at +12DD are starts here or of q011_gate_dispatch_reach.json and q011_gate_dispatch_values.json, and the rest runs at or after the gate"
+  },
+  {
+   "site": "192+05ED",
+   "reason": "loads the saved game of the chosen slot; read separately"
+  },
+  {
+   "site": "192+03FB",
+   "reason": "saves; called only while 50AF:0004 is 0, and 192+0000 sets it to 1"
+  },
+  {
+   "site": "2C5F:0139",
+   "reason": "192+0785 calls it only on the confirm branch after 192+05ED has loaded a game (+0C21..+0C79)"
+  },
+  {
+   "site": "2C5F:018C",
+   "reason": "192+0785 calls it only on the confirm branch after 192+05ED has loaded a game (+0C21..+0C79)"
+  },
+  {
+   "site": "204+284D",
+   "reason": "192+0785 calls it only on the confirm branch after 192+05ED has loaded a game (+0C21..+0C79)"
+  },
+  {
+   "site": "204+1D2E",
+   "reason": "192+0785 calls it only on the confirm branch after 192+05ED has loaded a game (+0C21..+0C79)"
+  }
+ ],
+ "targets": [
+  "2E00:0837",
+  "173+22B7",
+  "173+409D",
+  "188+04CF",
+  "193+0533",
+  "2A00:0DF0",
+  "2B00:0DDE"
+ ],
+ "controls": [],
+ "instructionControls": [
+  "187+04E1"
+ ]
+}

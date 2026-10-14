@@ -27,29 +27,27 @@ Next ID: Q-PARTY-081
   Blocks: nothing yet.
 - Q-PARTY-073. RULE-PARTY-001: Can View Character, opened from Create Characters before START
   GAME, pass an event to overlay 211 `+081B` that runs the damage routine overlay 173 `+22C4` on a
-  party member, giving it `combat_mark` 3, 7 or 8? Settles it: the conditions along overlay 211
-  `+0901`, overlay 193 `+2290`, `+0000`, `+003C` and `+04DE` and overlay 179 `+0D2F` to the call
-  at `+0D9C`, or a run that casts each of a stored character's damaging spells at a party member
-  from the USE window on Create Characters. Tried: FND-PARTY-183, FND-PARTY-184,
+  party member, giving it `combat_mark` 3, 7 or 8, or start a fight through overlay 193 `+0533`?
+  Settles it: the conditions along overlay 211 `+0901`, overlay 193 `+2290`, `+0000`, `+003C` and
+  `+04DE` and overlay 179 `+0D2F` to the call at `+0D9C`, and to overlay 193 `+0533`, or a run that
+  casts each of a stored character's damaging spells at a party member from the USE window on
+  Create Characters. Tried: FND-PARTY-183, FND-PARTY-184,
   FND-PARTY-192 and FND-PARTY-193 show ADD and NEW give mark 1; FND-PARTY-197 takes a census of
   the stores to combatant byte `+0x14`, finds `+22C4` the only one through `DS:19C9` writing a
   mark above 2, and a reach from the title screen's windows to it through this route;
-  FND-PARTY-198 opens the USE window on Create Characters with the key `c`. Blocks: nothing yet.
-- Q-PARTY-079. RULE-PARTY-001: Does anything before START GAME set the fight state at
-  `4C10:0019` to a value other than 0, so that `set_leader`'s call of `2D40:10AE` can reach the
-  attack routine overlay 173 `+1CC1`? Settles it: for each nonzero store FND-PARTY-089 lists
-  (`2E00:0837`, overlay 173 `+22B7` and `+409D`, overlay 188 `+04CF`, overlay 193 `+0533`, and the
-  stores of overlay 173 `+059A`'s result at `2A00:0DF0` and `2B00:0DDE`), whether it can run from
-  the title screen's windows. Tried: FND-PARTY-197's reach finds the route through `set_leader`;
-  FND-PARTY-199 shows the attack call in `2D40:10AE` runs only when the fight state is not 0, and
-  reads 0 on Create Characters. Blocks: nothing yet.
+  FND-PARTY-198 opens the USE window on Create Characters with the key `c`; FND-PARTY-199 and
+  FND-PARTY-200 show `set_leader`'s route to the attack routine needs a fight, and that the only
+  store starting one that a walk reaches outside that route is overlay 193 `+0533`, on this one.
+  Blocks: nothing yet.
 - Q-PARTY-080. RULE-PARTY-001: Does any other write give a filled slot's combatant record a
   `combat_mark` of 3 or more, or hit points below 1, before START GAME? Settles it: the pointer
   sources of overlay 172 `+01AE`, 179 `+2515`, `+25AD` and `+2668`, 200 `+04DD`, resident
   `31E0:2350` and the resident word stores at `+0x14` FND-PARTY-197 lists; writes to `+0x14` not
   of its search's form (DS or SS segment, 16-bit displacement, string stores, block copies); the
   stores to word `+0x00`; and the value overlay 187 `+018F` writes to a type-1 chunk's byte
-  `0x14` (FND-PARTY-054). Tried: FND-PARTY-197 classifies the 42 candidates of its search.
+  `0x14` (FND-PARTY-054); and the routines reached only through registered handlers or the 66
+  unresolved transfers of FND-PARTY-197's walk. Tried: FND-PARTY-197 classifies the 42 candidates
+  of its search.
   Blocks: nothing yet.
 - Q-PARTY-078. RULE-PARTY-001: What does the player see and what happens next when overlay 173
   `+3CDA` finds no member standing? Settles it: whether `39D1:0854` waits for input when the
