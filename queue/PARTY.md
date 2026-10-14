@@ -55,11 +55,16 @@ Next ID: Q-PARTY-081
   Blocks: nothing yet.
 - Q-PARTY-078. RULE-PARTY-001: After overlay 201 `+0410`'s defeat window closes, which routine
   takes the characters out of the party and returns to the start window, and does it empty every
-  slot of a larger party? Settles it: a reading of `2D40:2488` and its callers `31E0:0554` and
-  `31E0:0ACC` back to the start loop, and of the caller of `+3CDA` that START GAME uses. Tried:
+  slot of a larger party? Settles it: complete admitted placement/slot inputs and returning
+  cleanup callees of `31E0:05BB`, `2D40:2410`, `2D40:2452` and `2D40:248D`, including
+  the recursive index map's DS/SS identity, and the caller of `+3CDA` that START GAME uses;
+  or a controlled several-member defeat run. Tried:
   FND-PARTY-194 reads `+0410`; FND-PARTY-212 runs START GAME with the only member at 0 hit points
   and sees the defeat window wait for a click, then `2D40:2539` clear `character_id` and the start
-  window return. Blocks: nothing yet.
+  window return. Tried: FND-PARTY-213 identifies the repeated index-zero unload, count
+  decrement/compaction and chunk-type-2 identifier clearing; the former `2488` is a return
+  site. Remaining input, callee and map-alias obligations prevent a whole-party claim.
+  Blocks: nothing yet.
 - Q-PARTY-045. RULE-PARTY-015: Does any enemy's `kill_experience` divided by the filled party
   slots reach 32,768, so that killing it lowers each member's experience (FND-PARTY-086,
   FND-PARTY-094)? Settles it: what moves objects 430 and 541 out of the region `Limbo`, where
