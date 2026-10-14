@@ -133,13 +133,6 @@ None.
   screen for each supplied character before any play, compared with records 40 to 43 and
   FND-PARTY-058's table. Tried: the static reading FND-PARTY-058 and FND-PARTY-083. Blocks:
   slice 2.
-- Q-PARTY-001. RULE-PARTY-006: Does START GAME put characters 40, 41, 42 and 43 into the four
-  party slots, and not 53 or 33? Settles it: the shipped-party live session, with captures taken
-  before any play so that experience and hit points can be compared with records 41 and 53, and
-  43 and 33. Tried: the static reading FND-PARTY-013 finds a routine that loads characters 40
-  to 43, FND-PARTY-021 traces START GAME to it through a gate on the placed-object count
-  (Q-PARTY-017), and the earlier captures FND-PARTY-020, taken after
-  play, match 40, 41 or 53, 42, and 33 or 43. Blocks: slice 2.
 
 ## Source
 

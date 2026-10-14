@@ -4,7 +4,7 @@ title: START GAME supplies characters 40 to 43 as the party
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-013, FND-PARTY-021, FND-PARTY-020, FND-PARTY-023, FND-PARTY-034, FND-PARTY-038, FND-PARTY-046, FND-PARTY-047, FND-PARTY-048, FND-PARTY-049, SRC-MANUAL-1994]
+evidence: [FND-PARTY-013, FND-PARTY-021, FND-PARTY-020, FND-PARTY-023, FND-PARTY-034, FND-PARTY-038, FND-PARTY-046, FND-PARTY-047, FND-PARTY-048, FND-PARTY-049, FND-PARTY-186, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [FMT-PARTY-001, SCR-UI-001]
@@ -75,7 +75,8 @@ None known.
 ## Open questions
 
 - Whether the gate routine reaches its gate with the placed-object count at 0, so that the
-  loader runs. FND-PARTY-021 shows START GAME reaching the loader only through that gate, after
+  loader runs, on every path to START GAME. On the path where START GAME is the first choice
+  it does: an agent run finds records 40 to 43 in the four slots (FND-PARTY-186). FND-PARTY-021 shows START GAME reaching the loader only through that gate, after
   overlay 187 entries and three early returns. For the reading that it does: the count and the
   word at `DS:0DAB` start at 0 (FND-PARTY-022, FND-PARTY-124), and no direct call made between
   program start and the gate reaches a routine that changes the count or makes that word nonzero
@@ -102,18 +103,17 @@ None known.
   pointer is an `ICON` neither can fail on space, since the caret and pointer saves then hold at
   most 1,006 paragraphs, the room left, and no direct route before the gate makes it another
   image (FND-PARTY-035, FND-PARTY-036, FND-PARTY-037); routes through Create Characters or
-  after a load stay open (Q-PARTY-017, Q-PARTY-018). The owner's captures of a game started with START GAME show the four characters
-  in this order, but they do not tell 41 from 53 or 43 from 33 (FND-PARTY-020); the
-  shipped-party live session would confirm it (Q-PARTY-001).
+  after a load stay open (Q-PARTY-017, Q-PARTY-018).
 - Where `CHARSAVE.GFF` is opened from rests on DOS reporting version 3 or later and placing the
   program's full path after the environment, which the C run time copies as `argv[0]`; with an
   earlier version `argv[0]` is empty and the name is opened in the current directory
-  (FND-PARTY-034, FND-PARTY-038). (No item: what the DOS of GOG's DOSBox reports and writes
-  there shows only in a run, and no run is possible.)
+  (FND-PARTY-034, FND-PARTY-038). Under rust-dos the file was found (FND-PARTY-186). (No item:
+  what the DOS of GOG's DOSBox reports shows only in a run of that DOSBox, which the session
+  package does not run.)
 - Whether the load of `MAS` 99 before the gate succeeds rests on the file positioning, read and
-  record-write calls on `GPLDATA.GFF` returning what the installed file gives (FND-PARTY-042). A
-  run reaching START GAME's party on an intact installation would show it (No item: the outcome
-  rests on the operating system, and no run is possible).
+  record-write calls on `GPLDATA.GFF` returning what the installed file gives (FND-PARTY-042).
+  Under rust-dos START GAME reached the supplied party (FND-PARTY-186). (No item: under GOG's
+  DOSBox the outcome rests on that DOS, which the session package does not run.)
 - Whether the program ends after a failed `CHARSAVE.GFF` open depends on the operating system
   carrying out the run time's terminate request (FND-CONFIG-062, FND-PARTY-034); a run without
   the file would show it (No item: agents cannot run the game, and no owner session asks for a
