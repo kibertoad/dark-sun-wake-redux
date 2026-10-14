@@ -68,7 +68,7 @@ An owner-approved history repair remains separate from this maintenance scope.
 - Last full gate: 2026-10-10, assetless Test.ps1 -NoRestore and explicit
   main-base documentation validation passed for EXE research through FND-EXE-299 and follow-ups FND-EXE-351/352/353/354/355/356/357/358/359/361/362/363/364/365/366/367/368/369/371/372/373/374/375/376/377/378/379/471/472/473/474/475/476/477/478/479/480/481/482/483/484/485/486/487/488/489/499/500/502/503/504/507/508/509/510/511/512/513/514/515/516/517/518/519/526/527/528/529/530/531/546/547/548/549/550/551/555/556/557/558/559/391/392/393/394/395/396/397/398/399/401/402/403/404/405/406/407/408/409/411/412/413/414/415/416/417/418/419/431/432/433, including integrated FND-EXE-360/370/380. The final gate passed after correcting a draft location kind and integrating the referenced pending batch; the prior issue-7 rerun remains recorded. Updated preservation-context and blocked-tool guidance, measured-baseline tooling and independent physical PE transfer and overlay-body classification tooling passed full gates and enabled hooks. Mapper relocation revision 2 also passed the full gate and its independently failing-before/passing-after synthetic regression. Argument-check skips remain; stale local-main recovery passed: https://github.com/kibertoad/refurbished-dinosaurs-template/issues/92; no wrapper fix claimed. Corrected revision-2 fresh projects and repeatable exports are local. Review old mapped-snapshot dependencies before accepting native claims.
 - Unfinished: The type-one target batch is committed and passed the reviewed assetless full gate (715 tests) on 2026-10-10; No spec draft is pending. FND-EXE-401/402/403/404/405/406/407/408/409/411/412/413/414/415/416/417/418/419/431/432/433 are committed and passed the assetless full gate (715 tests) and main-base documentation check on 2026-10-10. Its controlled query package remains local under GAME_DIR/analysis/exe-batches/type-one-field-controls; The two-region helper query is retained as helper-query.json/helper-report.json; continue other mapped resident regions, inspect its computed-transfer sites and establish segment provenance. The unrelated validation
-  documentation edit was committed separately; recheck ownership before mutation. EXE follow-up items remain Q-EXE-007/009/024 and reader prerequisites Q-EXE-011/012/013; use the current queue for owner-scoped historical exclusions. Local static-analysis reports and the saved interpreter Ghidra project remain in GAME_DIR/analysis/exe-batches for continuation. Refreshed comparison: GAME_DIR/analysis/work-baseline/relocation-reconciled; legacy coverage rejection is documented in docs/EVIDENCE-TOOLS.md. Inventories remain pending definition/mapping reconciliation; do not discard anomalous ranges
+  documentation edit was committed separately; recheck ownership before mutation. EXE follow-up items remain Q-EXE-009/024 and reader prerequisites Q-EXE-011/012/013; use the current queue for owner-scoped historical exclusions. Local static-analysis reports and the saved interpreter Ghidra project remain in GAME_DIR/analysis/exe-batches for continuation. Refreshed comparison: GAME_DIR/analysis/work-baseline/relocation-reconciled; legacy coverage rejection is documented in docs/EVIDENCE-TOOLS.md. Inventories remain pending definition/mapping reconciliation; do not discard anomalous ranges
   or publish unverified replacements. Segment report: GAME_DIR/analysis/work-baseline/decoded-segment-output-audit.log; durable reader evidence remains FND-EXE-166, with no complete-reading promotion.
 - Owner priority: complete-reading closure now takes precedence over broad
   new partial readings. Use FMT-EXE-005 and FND-EXE-520 to FND-EXE-524 for game-code closure; DOSBox complete-reading questions remain historical and blocked by scope. Assemble a bounded evidence package, checking complete bodies, independent caller searches, every input/state writer, indirect targets, return consumption and external dependencies against STATUS-4 through STATUS-13. Add complete_reading only
@@ -314,20 +314,17 @@ An owner-approved history repair remains separate from this maintenance scope.
   pass only handlers FND-EXE-496 already decodes from; no stack-built transfers or code writes;
   the CD byte search is the control. Next: Q-EXE-007, the game editions' census, which can reuse
   sound_ds_reach_config.py's approach on DSUN.EXE through reach_config.py.
-- Q-EXE-007, installed DSUN.EXE (2026-10-14, commits fb337fd3..de872cf9 on goal/protocol-work,
-  not pushed): FND-EXE-578 censuses every interrupt 21/2F/2E site from
-  21 starts (installed handlers from every AH=25 site and vector-table store); none selects AH=4B.
-  FND-EXE-575 (no read of vector 21; saved handlers 5/8/9/19 called), FND-EXE-576 (controls),
-  FND-EXE-579 (runtime hooks), FND-EXE-580 (record walkers, output engine,
-  signal dispatch), FND-EXE-581 (XMS entry, AH 00/08-0D), FND-EXE-582 (overlay manager hooks),
-  FND-EXE-583 (DGROUP 346D..3496 pointers), FND-EXE-584 (3F42 record table). Each batch adds
-  exhaustive indirectCalls to a new query in tools/research/exec-census (latest
-  q007_dsun_tables_census.json); local outputs c_*/r_*/k_* in GAME_DIR/analysis/exe-batches/q007.
-  83 of 100 int 21 sites reached, 17 candidates; 59 unresolved, 35 classified. Left: 172C:01A7/01B5,
-  1BF3:5D0E/6199/61A0, 2707:0188/058C (cs: jump tables), 289B:025E/0269 (call bx), 39D1 (six,
-  [A0F1]/[A0F5]/es:[bx+F5]), 3A8E:0707/08B7, 3D72 (six, es:[bx+5A..70], [A119]), 4842:0498
-  (cs:[si+6]). Scratchpad helpers (dis.py, nearcalls.py, addr.py, mk*.py) are not committed;
-  store_values.py --indexed missed the 1425 table's [bx+disp] stores, so search by displacement.
+- Q-EXE-007, Q-EXE-027 and Q-EXE-028 closed (2026-10-14, FND-EXE-575..591, commits fb337fd3..fcaba25d
+  on goal/protocol-work, not pushed). DSUN.EXE: FND-EXE-578 censuses every interrupt 21/2F/2E site,
+  none AH=4B; FND-EXE-589 classifies all 49 transfers the walk leaves (q007_dsun_apfm_census.json).
+  Sound drivers: FND-EXE-590 (ADV 11 and 8, the shipped SOUND.CFG's, equal disc SBP2FM/SBPDIG;
+  callback 4602:0040), FND-EXE-591 (ADV 10 DIGPAK image runs at file offset + 0100 and installs its
+  own int 66 handler; ADV 20 has no far transfer; DSUN's DIGPAK callbacks 4842:105F/107E add
+  nothing). FMT-EXE-006 now states nothing the game runs requests program execution with any sound
+  driver. The EXE Static queue is empty; Q-EXE-009/011/012/013/024 sit in other sections. Tools:
+  resource_adv_census.py, installed_adv_resources.py, reach_config.py with the q007_*.json queries
+  (latest q007_dsun_digpak_census.json); local outputs c_*/r_*/k_* in
+  GAME_DIR/analysis/exe-batches/q007. Next: PARTY Static items (Q-PARTY-003, 053, 045).
 - Lead for unk_2a: overlay 204 +0203 pushes 0x0660:0x00BB (the setter trampoline 5787:00BB) as a
   value before a near call to its dispatcher at +019C, so the setter is passed as a callback.
   Filed toolkit #474 (list where a routine's far address is used as a value) after checking
