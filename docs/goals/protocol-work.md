@@ -87,7 +87,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   create files there. The sandbox command runner fails before process creation; approved escalated commands work, and node_repl child_process is a fallback for read-only checks. Git writes require the escalated runner. Scope Git trust to this checkout with -c safe.directory or inherited GIT_CONFIG_COUNT/KEY/VALUE for child Git calls; do not change global trust. For hooks export the checkout's
   artifacts/hook-tmp as TMPDIR inside Git Bash. Keep hooks enabled. Reuse the saved Ghidra program with -noanalysis. Use the installed Temurin 25.0.4.1 runtime at C:/Program Files/Eclipse Adoptium/jdk-25.0.4.101-hotspot; docs/GHIDRA.md now names that verified path. For combined script directories, follow the corrected literal quoting in docs/GHIDRA.md; both directories
   were verified through the Windows launcher. Original-program execution remains prohibited.
-- Tool locks on goal/protocol-work: reader 4.1.0, checker 5.0.0 (fails FND/EXP citations in src/), engine 19.3.0 (query-scoped reach stops), dinorefurb-dosbox-session 0.9.0 (2026-10-14), RefurbishedDinosaurs .NET 12.0.0. The session package with rust-dos v1.7.2 (`tools/Install-RustDos.ps1`) is the route for agent runs, DOSBox-X only as a recorded fallback (AGENTS.md "Runs of the original", host sound muted); docs/RUNTIME.md records the first runs of the game (2026-10-14). Template issue 96 asks for the same guidance upstream; template issue 81 has the GAME_DIR resolver (tools/game-dir.mjs).
+- Tool locks on goal/protocol-work: reader 4.2.0, checker 6.0.0, engine 19.7.0, dinorefurb-dosbox-session 0.10.0 (2026-10-14, commit 3d745003), RefurbishedDinosaurs .NET 12.0.0. The session package with rust-dos v1.7.2 (`tools/Install-RustDos.ps1`) is the route for agent runs, DOSBox-X only as a recorded fallback (AGENTS.md "Runs of the original", host sound muted); docs/RUNTIME.md records the first runs of the game (2026-10-14). Template issue 96 asks for the same guidance upstream; template issue 81 has the GAME_DIR resolver (tools/game-dir.mjs).
 - 2026-10-10 evening: RefurbishedDinosaurs .NET moved from 11.3.0 to 12.0.0 (2847549d); the
   assetless Test.ps1 -NoRestore gate passed (Node suites, 715 .NET tests) after an isolated rerun of
   two Node tests that failed once under memory pressure (capture-window, goal-run 0xC000012D). Toolkit
@@ -331,35 +331,42 @@ An owner-approved history repair remains separate from this maintenance scope.
   resource_adv_census.py, installed_adv_resources.py, reach_config.py with the q007_*.json queries
   (latest q007_dsun_digpak_census.json); local outputs c_*/r_*/k_* in
   GAME_DIR/analysis/exe-batches/q007.
-- PARTY, 2026-10-14 (FND-PARTY-170..185, EXP-PARTY-001/002, commits 3373c2e7..42e17d67, not
+- PARTY, 2026-10-14 (FND-PARTY-170..188, EXP-PARTY-001/002, commits 3373c2e7..42cc56d3, not
   pushed). Static: FND-PARTY-170..173 (Create Characters exits; ADD keeps leader 0; only the kill
-  share counts the party). Runtime: agent runs work under rust-dos v1.7.2 through
-  dinorefurb-dosbox-session 0.9.0 (pins, docs/RUNTIME.md, commit 2dc3a624); the goal scope takes
-  PARTY's agent-run items (516b17ff) and COMBAT open questions that PARTY items name (5ed6c903).
-  The probe is tools/research/rust-dos-runs/run_plan.py: plans with keys, mouse in virtual
-  coordinates, reads, shots, checkpoints, rng_state seeds, a draw recorder that names each draw
-  by rule and checks it, and watchpoints with a BP-chain report. Its README lists the plans and
-  screen positions. Runs need GAME_DIR set to the GOG install and plenty of disk (a run copies the
-  game to drive-c; runs that save no checkpoint delete it; this disk filled once).
+  share counts the party). Runtime: agent runs use rust-dos v1.7.2 through
+  dinorefurb-dosbox-session 0.10.0 with the installed sound card (Sound Blaster at 220, IRQ 5,
+  DMA 1, no Ultrasound; commit 881e1c86); the goal scope takes PARTY's agent-run items and
+  COMBAT open questions that PARTY items name. The probe is
+  tools/research/rust-dos-runs/run_plan.py: keys, mouse in virtual coordinates, reads, shots,
+  checkpoints, rng_state seeds, a draw recorder, watchpoints (len 1, 2 or 4 only) and per-step
+  `breaks` (run addresses; each stop prints the stack, the 12 bytes at BP+6 and the BP chain).
+  Its README lists the plans and screen positions. Run segment = load-image segment - 0A46;
+  overlays load at varying segments, so break on resident trampolines (overlay 185 +0000 is
+  4CA0:0020) and match the code after the far return with the file. Checkpoints were
+  regenerated with the sound card: artifacts/runs/2026-10-14-start6:start, cc7:added,
+  cc8:dropped, cc9:afterdrop, twoplay2:play, talk2:talk (opening conversation answered,
+  about 280,000 ms). Runs need GAME_DIR and disk space (each copies the game).
   EXP-PARTY-001/002: ADD then DROP empties the box and START GAME then gives the supplied party;
-  a created party of one or two plays in its own boxes; RULE-PARTY-001 supported again
-  (Q-PARTY-006 deleted). FND-PARTY-174/185: the leader at START GAME comes from overlay 173
-  +3CDA (also the fight end, FND-PARTY-089): the lowest filled slot with combat_mark 1-3, when a
-  member marked 1 or 2 has hit points. FND-PARTY-185 replaced a wrong reading that never left
-  the branch (commit 42e17d67). FND-PARTY-183/184: loading a character turns combat_mark 0 into 1. FND-PARTY-176..180: keys 1-4 (28C9:0E0C..)
-  set turn_combatant and, outside combat, the leader through 182+1D3E, which swaps visibility
-  and, for a key, redraws (2C5F:0139, 28C9:2A81 -> 4328:0B4C); the loader compares slots with
-  leader; RULE-PARTY-008 supported. FND-PARTY-181/182: word 0 of a 23-byte DS:19C1 record is a
-  negated object number (overlay 188 +066E places it), in FMT-PARTY-006. Upstream: toolkit #500
-  (reach chains through a constant-ruled-out branch), toolkit #501 (RustDosConfig sound
-  settings), protocol #119 (deterministic emulated-time waits as state waits), comment on
-  template #73 (capture-window test timeout under host load), rust-dos #120 (watchpoint stops
-  carry no address or values), toolkit #509 (list entries already citing a routine). Before
-  reading a routine, grep the spec for every form of its address; FND-PARTY-089 had read
-  +3CDA already. Open next: Q-PARTY-073 (a party
-  with no slot marked 1 or 2 at START GAME), Q-PARTY-075 (4328:0B4C's callees), Q-PARTY-020
-  (rest of the 23-byte record; overlay 188 +04F8), then 062, 003, 005, 017, 018.
-  docs/HANDOVER.md line 78 still names Q-PARTY-006, which is on main and not this goal's file.
+  a created party of one or two plays in its own boxes. FND-PARTY-174/185: the leader at START
+  GAME is the lowest filled slot with combat_mark 1-3 (overlay 173 +3CDA, also the fight end).
+  FND-PARTY-183/184: loading a character turns combat_mark 0 into 1. FND-PARTY-176..180: keys
+  1-4 set turn_combatant and, outside combat, the leader; RULE-PARTY-008 supported.
+  FND-PARTY-181/182: word 0 of a 23-byte DS:19C1 record is a negated object number.
+  FND-PARTY-186: START GAME first loads CHAR 40-43 (Q-PARTY-001 closed). FND-PARTY-187: in play,
+  View Character prints each supplied character's own class thresholds (Cleric 7: 110000),
+  because overlay 184 +1DCE turns the 17 codes back into 1-8 in 4E4F:0029; BUG-PARTY-001 is
+  disputed. FND-PARTY-188: the sheet's three callers; overlay 212's is settled, Q-PARTY-076
+  (generation drawing the sheet while DS:1429 points at a stored record; overlay 190 +0EF8
+  opens generation from play and calls +07D8, which resets it) and Q-PARTY-077 (DUAL path's
+  4E71:0B44) stay open. Upstream this goal: toolkit #500, #501 (closed), #509, #510; toolkit
+  #466, #488, #497 closed after verifying releases (docs/TOOLKIT-RESPONSE-ACCEPTANCE.md);
+  protocol #119; template #73 (two comments: capture-window timeouts under gate load, which
+  still recur and pass alone); rust-dos #120 (watchpoint stops carry no address or values) and
+  #122 (watchpoint lengths). Before reading a routine, grep the spec for every form of its
+  address. Open next: Q-PARTY-076, 077, 073, 075, 020, then 062, 003, 005, 017, 018; Live
+  session items 059, 037, 035, 032, 027 may be tried as agent runs. docs/PROGRESS.md has the
+  2026-10-14 snapshot. docs/HANDOVER.md line 78 still names Q-PARTY-006, which is on main and
+  not this goal's file.
 - Lead for unk_2a: overlay 204 +0203 pushes 0x0660:0x00BB (the setter trampoline 5787:00BB) as a
   value before a near call to its dispatcher at +019C, so the setter is passed as a callback.
   Filed toolkit #474 (list where a routine's far address is used as a value) after checking
