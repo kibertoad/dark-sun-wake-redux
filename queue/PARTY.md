@@ -35,9 +35,13 @@ Next ID: Q-PARTY-079
   FND-PARTY-193 show a NEW character stored with mark 0 and turned into 1 by View Character's Esc
   branch and by the gate routine START GAME calls, and a party of one made with NEW starting play
   with its slot as leader. Blocks: nothing yet.
-- Q-PARTY-078. RULE-PARTY-001: What does overlay 201 `+0410` do when overlay 173 `+3CDA` finds no
-  member standing? Settles it: a reading of `+0410` and of the handler of the window it opens.
-  Tried: none yet. Blocks: nothing yet.
+- Q-PARTY-078. RULE-PARTY-001: What does the player see and what happens next when overlay 173
+  `+3CDA` finds no member standing? Settles it: whether `39D1:0854` waits for input when the
+  window has no handler, what `444C:0092` does with an image pointer, the value of `DS:4458` and
+  the archive its `BMP` request searches, and what the three callers of `+3CDA` (overlay 173
+  `+07A1` and `+2514`, overlay 188 `+14A3`) do after it returns with no leader set. Tried:
+  FND-PARTY-194 reads overlay 201 `+0410`: window 19502, `BMP` number `DS:4458` or 10004, one
+  event, then the window closes. Blocks: nothing yet.
 - Q-PARTY-045. RULE-PARTY-015: Does any enemy's `kill_experience` divided by the filled party
   slots reach 32,768, so that killing it lowers each member's experience (FND-PARTY-086,
   FND-PARTY-094)? Settles it: what moves objects 430 and 541 out of the region `Limbo`, where

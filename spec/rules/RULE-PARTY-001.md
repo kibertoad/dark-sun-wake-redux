@@ -80,7 +80,9 @@ None known.
 ## Open questions
 
 - What START GAME's party restore does when no filled slot with `combat_mark` 1 or 2 has hit
-  points: it then sets no leader and calls overlay 201 `+0410` (FND-PARTY-185), which is not read
+  points: it then sets no leader and calls overlay 201 `+0410` (FND-PARTY-185), which opens window
+  19502 with a picture (`BMP` number `DS:4458`, or 10004), takes one event and closes it
+  (FND-PARTY-194); whether it waits for a click, and what the game does after, are not read
   (Q-PARTY-078).
 - Whether a party can reach START GAME in that state. Added characters arrive marked 1 unless
   their record holds 2 or more (FND-PARTY-183); a character made with NEW is stored with mark 0,
