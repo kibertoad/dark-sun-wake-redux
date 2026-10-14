@@ -51,10 +51,12 @@ Do not weaken host safeguards or extend analysis beyond preservation scope.
 ## Handover
 
 - Stage: Slices; entire-game research goal active and incomplete.
-- Last gate: 2026-10-15, ./tools/Test.ps1 -NoRestore passed for both complete
-  research batches, including 715 .NET tests, Node suites and documentation
-  validation (1309 entries, 168 parity rows, 5 deviations). Argument-count and
-  absent-Kaitai-compiler skips remain; no status promotion or queue closure.
+- Last gate: 2026-10-15, ./tools/Test.ps1 -NoRestore passed for the native
+  startup batch and separate RNG caller batch, including 715 .NET tests,
+  Node suites and documentation validation (1311 entries, 168 parity rows,
+  5 deviations). Argument-count and absent-Kaitai-compiler skips remain;
+  no evidence-status promotion or queue closure. The RNG batch's initial
+  static-environment metadata failure was corrected before its passing rerun.
 - Latest tooling gate: 2026-10-15, ./tools/Test.ps1 -NoRestore passed with
   715 .NET tests and Node/documentation suites. check_probe_drive.py passed
   four synthetic tests; the real symlink fixture was skipped because this
@@ -63,7 +65,10 @@ Do not weaken host safeguards or extend analysis beyond preservation scope.
   the superseded finding. FMT-PARTY-006 and SCR-UI-008 updated. Q-PARTY-085 is separate
   from Q-PARTY-020. Historical citations reviewed in the replacement.
 - Latest dynamic entry: FND-PARTY-219. Q-PARTY-081 is now Agent run; the
-  old lock blocker is no longer current. No gameplay implementation changed.
+  old lock blocker is no longer current. FND-UI-039 is the latest dynamic
+  entry; FND-RNG-009 and RULE-RNG-001 are the latest static batch. Q-RNG-001
+  was narrowed and Q-RNG-003 added. RNG parity remains partial with its
+  required Defect note. No gameplay implementation changed.
 - Runtime: startup_segments.py successfully completed a native rust-dos run
   using the normal lock and muted host sound. The owned session closed and
   released its lock; read-only inspection found no remaining run lock. No
@@ -73,13 +78,21 @@ Do not weaken host safeguards or extend analysis beyond preservation scope.
   and used by fresh run_plan.py runs. Installed validation copied 191 verified
   files to GAME_DIR/captures/probe-drive-validation-20261015 without starting
   the game. Unlisted captures and saves are excluded; CD media remains on D:.
-  State-driven gameplay stops remain needed; run_plan.py remains time-driven.
+  startup_window.py now verifies a later call-site stop without input on the
+  fresh drive; check_startup_window.py passed both synthetic continuation
+  controls. Reports stay in GAME_DIR/captures/rust-dos-startup-window/.
+  No checkpoint was saved. A drawn-window/gameplay route remains needed;
+  run_plan.py remains time-driven.
 - Tooling: dependencies remain in artifacts/evidence-python; always set
   EVIDENCE_PYTHON to that interpreter. Pinned rust-dos v1.7.2 is installed and
   verified. Git trust was checkout-scoped and commit hooks remain enabled.
 - Unfinished: no tracked batch draft. Local source-derived reports remain
   at GAME_DIR/analysis/party-record-heads/: combatant-head-read-candidates.txt,
-  inventory-window-candidates.txt and field-getter-callers.txt. The first query
+  inventory-window-candidates.txt and field-getter-callers.txt. New source-derived
+  reports under GAME_DIR/analysis/startup-seed/ hold setter-and-generator-callers.txt,
+  startup-entry-through-seed.txt and conversion-environment-initializer.txt.
+  FND-RNG-009 documents their bounded query and excludes complete-census claims.
+  The first party query
   used field_reads.py --es --table 19c9 with offsets 8, A, C; its text filter
   is not segment provenance. The window query used immediate_search.py 34BC
   34BD, and the getter census targeted 1AA0:0009. FND-PARTY-217/218 record
@@ -90,13 +103,17 @@ Do not weaken host safeguards or extend analysis beyond preservation scope.
   patched-save/live-session requests remain separate; native startup access
   does not verify a new gameplay state route or patched-save capability.
 - Next:
-  1. Q-PARTY-081: use verified private-drive preparation for a state-driven
+  1. Q-RNG-003: finish the seed source/near-buffer identity and admitted
+     reseeding paths; a fixed seed-entry probe can confirm the startup caller
+     before later gameplay draws. Q-RNG-001 retains rule/caller verification;
+     the generator census output holds unverified additional overlay candidates.
+  2. Q-PARTY-081: use verified private-drive preparation for a state-driven
      gameplay/deletion-call stop, draw recording and frame/map read.
-     FND-PARTY-219 is a prerequisite, not a whole cleanup result. Start-window
+     FND-PARTY-219 and FND-UI-039 are prerequisites, not cleanup results. Start-window
      opener/callback locations are in FND-UI-035; verify bounded call arguments
      before selecting a state stop. Do not reuse timed start.json advancement.
-  2. Q-PARTY-082: finish head-field roles through graph enumeration; use the
+  3. Q-PARTY-082: finish head-field roles through graph enumeration; use the
      corrected FND-PARTY-218 provenance.
-  3. Q-PARTY-085: physical position labels and complete projection contracts.
-  4. Q-PARTY-083: kind-1 field-4/offset-8 references and their consumers.
-  5. Q-PARTY-020 and Q-PARTY-084: remaining attached fields and quantity coverage.
+  4. Q-PARTY-085: physical position labels and complete projection contracts.
+  5. Q-PARTY-083: kind-1 field-4/offset-8 references and their consumers.
+  6. Q-PARTY-020 and Q-PARTY-084: remaining attached fields and quantity coverage.
