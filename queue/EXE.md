@@ -4,84 +4,11 @@ Next ID: Q-EXE-028
 
 ## Static
 
-- Q-EXE-007. FMT-EXE-006: Do the shipped game or sound-setup executables
-  launch any batch helpers? Settles it: for the installed DSUN.EXE (the
-  disc copy is not studied, docs/SOURCE-EDITIONS.md), each of the 49
-  computed transfers FND-EXE-588's walk leaves unresolved, and each return
-  that jumps to an address pushed before it, other than the 50
-  FND-EXE-575 and FND-EXE-578 to FND-EXE-588 already classify (the
-  23 calls to the XMS entry, `4842:0498`, `4842:040A`, `4842:13FB`,
-  `4842:14EA`, the far jumps `2707:0188`, `02FA`, `03D5`, `04D0` and
-  `058C`, `1BF3:5D0E` (FND-PARTY-043), `4AB9:002B`, `4AB9:0052`, `1000:1F10`, `1000:1FBC`, `1000:2A24`, `4842:051A`,
-  `44B6:00B8`, `55CE:018F`, `1000:1D8D`, `1000:252C`, `1000:029D`,
-  `1000:298A`, `3D72:012A`, `09C7`, `0BD7`, `0DA1`, `0DD0`), classified by where its target
-  comes from: an address inside the file, which is declared to the walk
-  and the census rerun over what it then reaches, or code
-  outside the file (handlers taken from the interrupt vector table, the
-  XMS driver's entry, code the program loads from a file), with a control
-  for each kind of origin. Each transfer that can leave the file is named
-  with the code it reaches; only those are traced further, each as its own
-  item.
-  Tried: FND-EXE-578 censuses every interrupt 21, 2F and 2E site of the
-  installed DSUN.EXE, its two stack-built interrupt routines and its one
-  argument-selected request: none selects AH=4B and there is no interrupt
-  2E; the walk from established entries reaches 80 of the 100 interrupt 21
-  sites and leaves 83 transfers unresolved (FND-EXE-574, the same census
-  from 17 starts, missed four installed handlers). FND-EXE-575 finds that the
-  program never reads the interrupt 21 vector and that its calls through
-  saved vectors go to the handlers of 5, 8, 9 and 19 installed before it
-  started (two of the 77: `1000:2A24` and `4842:051A`); FND-EXE-576 gives
-  each kind of site an earlier finding as its control. FND-EXE-579 traces
-  the runtime library's Ctrl-Break, exit and critical-error calls to
-  handlers inside the file; declared to the walk, they reach two more
-  interrupt 21 sites (AH 2D and the argument-selected one), leaving 18
-  candidates and 77 unresolved transfers. FND-EXE-580 traces the startup
-  and exit record walkers, the formatting engine's output routine and the
-  four signal dispatch calls to code inside the file; declared, they reach
-  no further interrupt site and leave 69 unresolved. FND-EXE-581 finds
-  twelve of them calling the XMS driver entry, with function numbers 00
-  and 08 to 0D only. FND-EXE-582 traces the overlay manager's hooks to
-  manager routines and empty returns, leaving 65 unresolved. FND-EXE-583
-  traces eight guarded calls through DGROUP pointers to routines in
-  2660, 49D2 and overlay 180, or to pointers nothing sets, leaving 59.
-  FND-EXE-584 traces the nine calls through the record table at DGROUP
-  3F42 to routines in 1425 and 15F3; they reach one more interrupt 21
-  site (AH 3F, 17 candidates left) and nine more XMS calls. FND-EXE-585
-  traces the timer callbacks and the sound driver dispatch, a far return
-  the walk read as a return, to routines in the file or to driver code
-  loaded from ADV resources (Q-EXE-027); declared, they reach six
-  interrupt 66 sites and two calls into a DIGPAK image, leaving 61.
-  FND-EXE-586 traces the script opcode dispatch, the text formatter, a
-  block copy, an overlay 204 callback and five video far jump tables to
-  routines in the file; declared, they reach no further interrupt site
-  and leave 58, 14 of them unclassified (in segments 39D1, 3A8E and
-  3D72). FND-EXE-587 traces the window hooks and window record callbacks
-  in 39D1 and 3A8E, and three overlay 190 routines' callback arguments,
-  to overlay routines and 28C9:0CFF that callers register as constants;
-  declared, they reach no further interrupt site and leave 50, of which
-  only the six in segment 3D72 are unclassified. FND-EXE-588 traces
-  those: the application frame callback at 3D72:0590 goes to 20
-  registered routines in the file, and the other five calls go through
-  fields and a hook nothing sets, so they never run; declared, the walk
-  reaches no further interrupt site and leaves 49, every one classified,
-  and 4842:040A is still its only return directly after a push.
-  Tried (before the split into this item, Q-EXE-025 and Q-EXE-026): the
-  helper contents and distribution wrapper (FND-EXE-008, FND-EXE-010)
-  locate no caller; FND-EXE-350 finds one sound.bat suffix in each game
-  edition and an autoexec.bat suffix in the sound utility; FND-EXE-353 to
-  FND-EXE-380, FND-EXE-391 to FND-EXE-433 and FND-EXE-471 to FND-EXE-489
-  trace the utility's suffix consumers one callee further each time;
-  FND-EXE-490 to FND-EXE-498 and FND-EXE-501 census the utility and its
-  drivers (none selects AH=4B), retaken as Q-EXE-025, which FND-EXE-572
-  closed (no reached site selects AH=4B), and Q-EXE-026, which
-  FND-EXE-573 closed (no kind of entry missing from the drivers' decode);
-  FND-EXE-499 to FND-EXE-559 trace the game editions' consumers the same
-  way with no launch claim. More than two of these attempts ended in the
-  same place, a consumer one step further on. Split from Q-EXE-004.
-  Blocks: complete game/setup caller coverage.
 - Q-EXE-027. FMT-EXE-006: Does the sound driver code the installed
   DSUN.EXE loads from its ADV resources, or the interrupt 66 handler,
-  request program execution? FND-EXE-585 finds the timer callback at
+  request program execution? FND-EXE-589 finds it, with the XMS driver
+  and the handlers installed before the program, the only code outside
+  the file DSUN.EXE's census reaches. FND-EXE-585 finds the timer callback at
   `4842:0498`, the driver dispatch at `4842:040A`, the calls into a
   DIGPAK image at `4842:13FB` and `4842:14EA`, and six `int 66`
   sites entering that code; the image is the ADV resource numbered by
@@ -94,7 +21,8 @@ Next ID: Q-EXE-028
   function table entries (function 0067 included) or its +0x100 and
   +0x103 entries; and the interrupt 66 handler named, from the code that
   installs it, or listed as installed outside the program.
-  Blocks: Q-EXE-007's answer for the transfers that leave DSUN.EXE.
+  Blocks: FMT-EXE-006's answer to whether the installed game starts a
+  batch helper, which FND-EXE-589 leaves to this code.
 
 
 ## Emulated call
