@@ -89,7 +89,11 @@ None known.
   and leaving View Character with Esc and START GAME's gate routine both turn a 0 into 1
   (FND-PARTY-192, FND-PARTY-193), so a party of one made with NEW begins play with that slot as
   leader (FND-PARTY-192). Left: whether any route before START GAME gives a filled slot a mark of
-  3 or more or hit points below 1 (Q-PARTY-073).
+  3 or more or hit points below 1. The damage routine overlay 173 `+22C4` is the only store
+  through the combatant table pointer that writes such a mark, and a static walk reaches it from
+  the title screen's windows (FND-PARTY-197); whether View Character's overlay 211 window or
+  `set_leader` can run it there, and the other writes, are open (Q-PARTY-073, Q-PARTY-079,
+  Q-PARTY-080).
 - Whether a created party of three or four begins play the same way; the experiments added one
   and two stored characters and FND-PARTY-192 made one with NEW (No item: the same mechanism as
   EXP-PARTY-002, with no reading that predicts a difference).

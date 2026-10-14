@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-079
+Next ID: Q-PARTY-081
 
 ## Static
 
@@ -25,16 +25,29 @@ Next ID: Q-PARTY-079
   sheet call at `+151E` right after it; FND-PARTY-191 runs `DUAL` for a character made just
   before and finds the word naming that character's slot and the Fighter threshold on the sheet.
   Blocks: nothing yet.
-- Q-PARTY-073. RULE-PARTY-001: Can any route before START GAME give a filled slot a
-  `combat_mark` of 3 or more, or hit points below 1, so that overlay 173 `+3CDA` finds no member
-  standing? Settles it: the stores to combatant byte `+0x14` and word `+0x00` reachable from the
-  title screen's windows before START GAME (Create Characters with NEW, ADD, EDIT, DUAL and DROP,
-  generation, Load Saved Game), and the value the game writes to a type-1 chunk's byte `0x14`
-  when it stores a character (overlay 187 `+018F`, FND-PARTY-054). Tried: FND-PARTY-183 and
-  FND-PARTY-184 show ADD loading a stored 0 as 1 and keeping other values; FND-PARTY-192 and
-  FND-PARTY-193 show a NEW character stored with mark 0 and turned into 1 by View Character's Esc
-  branch and by the gate routine START GAME calls, and a party of one made with NEW starting play
-  with its slot as leader. Blocks: nothing yet.
+- Q-PARTY-073. RULE-PARTY-001: Can View Character, opened from Create Characters before START
+  GAME, pass an event to overlay 211 `+081B` that runs the damage routine overlay 173 `+22C4` on a
+  party member, giving it `combat_mark` 3, 7 or 8? Settles it: the condition at overlay 190
+  `+1649` (the far pointer at `55C9:0000` equal to `DS:1431`), what opens that window on this
+  screen, and the conditions along overlay 211 `+0901`, overlay 193 `+2290`, `+0000`, `+003C` and
+  `+04DE` and overlay 179 `+0D2F` to the call at `+0D9C`. Tried: FND-PARTY-183, FND-PARTY-184,
+  FND-PARTY-192 and FND-PARTY-193 show ADD and NEW give mark 1; FND-PARTY-197 takes a census of
+  the stores to combatant byte `+0x14`, finds `+22C4` the only one through `DS:19C9` writing a
+  mark above 2, and a reach from the title screen's windows to it through this route. Blocks:
+  nothing yet.
+- Q-PARTY-079. RULE-PARTY-001: Can `set_leader` (overlay 182 `+1D3E`), reached from View
+  Character's `+0802` before START GAME, run the attack routine overlay 173 `+1CC1` through
+  `2D40:10AE`, and does that reach `+22C4` or `+3CDA` there? Settles it: the conditions at
+  overlay 182 `+1E48`, in `2D40:10AE` before `2D40:13D9`, and in `+1CC1` before `+2290`. Tried:
+  FND-PARTY-197's reach finds the route. Blocks: nothing yet.
+- Q-PARTY-080. RULE-PARTY-001: Does any other write give a filled slot's combatant record a
+  `combat_mark` of 3 or more, or hit points below 1, before START GAME? Settles it: the pointer
+  sources of overlay 172 `+01AE`, 179 `+2515`, `+25AD` and `+2668`, 200 `+04DD`, resident
+  `31E0:2350` and the resident word stores at `+0x14` FND-PARTY-197 lists; writes to `+0x14` not
+  of its search's form (DS or SS segment, 16-bit displacement, string stores, block copies); the
+  stores to word `+0x00`; and the value overlay 187 `+018F` writes to a type-1 chunk's byte
+  `0x14` (FND-PARTY-054). Tried: FND-PARTY-197 classifies the 42 candidates of its search.
+  Blocks: nothing yet.
 - Q-PARTY-078. RULE-PARTY-001: What does the player see and what happens next when overlay 173
   `+3CDA` finds no member standing? Settles it: whether `39D1:0854` waits for input when the
   window has no handler, what `444C:0092` does with an image pointer, the value of `DS:4458` and
