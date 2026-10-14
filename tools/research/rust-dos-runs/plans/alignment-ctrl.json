@@ -1,0 +1,275 @@
+{
+ "start": "artifacts/runs/2026-10-14-start6:start",
+ "steps": [
+  {
+   "mouse": {
+    "action": "click",
+    "x": 160,
+    "y": 93,
+    "coords": "virtual"
+   },
+   "until_ms": 195000,
+   "read": [
+    [
+     "4D9A:A0F1",
+     12
+    ],
+    [
+     "4D9A:1429",
+     4
+    ],
+    [
+     "4409:0029",
+     34
+    ]
+   ]
+  },
+  {
+   "mouse": {
+    "action": "click",
+    "x": 70,
+    "y": 107,
+    "coords": "virtual",
+    "button": "right"
+   },
+   "until_ms": 200000,
+   "read": [
+    [
+     "4D9A:A0F1",
+     12
+    ],
+    [
+     "4D9A:1429",
+     4
+    ],
+    [
+     "4409:0029",
+     34
+    ]
+   ]
+  },
+  {
+   "mouse": {
+    "action": "click",
+    "x": 115,
+    "y": 117,
+    "coords": "virtual"
+   },
+   "until_ms": 206000,
+   "shot": "gen",
+   "read": [
+    [
+     "4409:0029",
+     144
+    ]
+   ]
+  },
+  {
+   "batch": [
+    {
+     "type": "key",
+     "key": "lctrl",
+     "action": "down"
+    },
+    {
+     "type": "wait",
+     "ms": 200
+    },
+    {
+     "type": "mouse",
+     "action": "click",
+     "x": 81,
+     "y": 146,
+     "coords": "virtual"
+    },
+    {
+     "type": "wait",
+     "ms": 300
+    },
+    {
+     "type": "key",
+     "key": "lctrl",
+     "action": "up"
+    }
+   ],
+   "until_ms": 209000,
+   "shot": "ctrl1",
+   "read": [
+    [
+     "4409:0029",
+     144
+    ]
+   ]
+  },
+  {
+   "batch": [
+    {
+     "type": "key",
+     "key": "lctrl",
+     "action": "down"
+    },
+    {
+     "type": "wait",
+     "ms": 200
+    },
+    {
+     "type": "mouse",
+     "action": "click",
+     "x": 81,
+     "y": 146,
+     "coords": "virtual"
+    },
+    {
+     "type": "wait",
+     "ms": 300
+    },
+    {
+     "type": "key",
+     "key": "lctrl",
+     "action": "up"
+    }
+   ],
+   "until_ms": 212000,
+   "shot": "ctrl2",
+   "read": [
+    [
+     "4409:0029",
+     144
+    ]
+   ]
+  },
+  {
+   "batch": [
+    {
+     "type": "key",
+     "key": "lctrl",
+     "action": "down"
+    },
+    {
+     "type": "wait",
+     "ms": 200
+    },
+    {
+     "type": "mouse",
+     "action": "click",
+     "x": 81,
+     "y": 146,
+     "coords": "virtual"
+    },
+    {
+     "type": "wait",
+     "ms": 300
+    },
+    {
+     "type": "key",
+     "key": "lctrl",
+     "action": "up"
+    }
+   ],
+   "until_ms": 215000,
+   "shot": "ctrl3",
+   "read": [
+    [
+     "4409:0029",
+     144
+    ]
+   ]
+  },
+  {
+   "batch": [
+    {
+     "type": "key",
+     "key": "lctrl",
+     "action": "down"
+    },
+    {
+     "type": "wait",
+     "ms": 200
+    },
+    {
+     "type": "mouse",
+     "action": "click",
+     "x": 81,
+     "y": 146,
+     "coords": "virtual"
+    },
+    {
+     "type": "wait",
+     "ms": 300
+    },
+    {
+     "type": "key",
+     "key": "lctrl",
+     "action": "up"
+    }
+   ],
+   "until_ms": 218000,
+   "shot": "ctrl4",
+   "read": [
+    [
+     "4409:0029",
+     144
+    ]
+   ]
+  },
+  {
+   "mouse": {
+    "action": "click",
+    "x": 270,
+    "y": 183,
+    "coords": "virtual"
+   },
+   "until_ms": 224000,
+   "shot": "done",
+   "read": [
+    [
+     "4409:0029",
+     144
+    ]
+   ]
+  },
+  {
+   "mouse": {
+    "action": "click",
+    "x": 70,
+    "y": 107,
+    "coords": "virtual",
+    "button": "right"
+   },
+   "until_ms": 229000,
+   "shot": "menu"
+  },
+  {
+   "mouse": {
+    "action": "click",
+    "x": 115,
+    "y": 117,
+    "coords": "virtual"
+   },
+   "until_ms": 235000,
+   "shot": "edit",
+   "read": [
+    [
+     "4409:0029",
+     144
+    ]
+   ]
+  },
+  {
+   "mouse": {
+    "action": "click",
+    "x": 81,
+    "y": 146,
+    "coords": "virtual"
+   },
+   "until_ms": 238000,
+   "shot": "plain",
+   "read": [
+    [
+     "4409:0029",
+     144
+    ]
+   ]
+  }
+ ]
+}

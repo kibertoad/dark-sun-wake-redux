@@ -198,6 +198,9 @@ with RustDosSession(settings) as s:
             inputs.append(s.send_input("type", {"text": step["type"]}))
         if "mouse" in step:
             inputs.append(s.send_input("mouse", step["mouse"]))
+        if "batch" in step:
+            # Events in order, such as a key held down across a click.
+            inputs.append(s.send_input("batch", step["batch"]))
         # Breakpoints of this step only, so that a busy routine can be caught where it matters.
         breaks = set(step.get("breaks", []))
         for addr in breaks:

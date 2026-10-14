@@ -155,12 +155,6 @@ None.
   the character sheet before and after a fight that gives experience, with the messages shown,
   for a party that includes a level-14 psionicist (FND-PARTY-081). Tried: the static reading
   FND-PARTY-081. Blocks: slice 2.
-- Q-PARTY-032. RULE-PARTY-011: Does pressing the alignment button with Ctrl held skip the
-  classes' check, so that a fighter can be stepped to lawful evil and stored that way? Settles it:
-  an owner capture of the generation screen's alignment after each press with Ctrl held, starting
-  from true neutral, then of the View Character screen after DONE (FND-PARTY-072). Tried: the
-  static reading FND-PARTY-072, which rests on the BIOS meaning of bit 4 of the keyboard flags.
-  Blocks: slice 2.
 - Q-PARTY-027. BUG-PARTY-002: Does a character made with a Druid first and a Preserver second
   start at level 6 Druid and level 7 Preserver with 40,000 experience, where the Druid's own table
   gives level 7 from 35,000, and what level does its stored record hold for the unused third class?

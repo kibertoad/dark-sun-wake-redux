@@ -4,7 +4,7 @@ title: Which alignments the generation screen allows
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-065, FND-PARTY-069, FND-PARTY-070, FND-PARTY-071, FND-PARTY-072, FND-PARTY-079, FND-PARTY-204, FND-PARTY-205]
+evidence: [FND-PARTY-065, FND-PARTY-069, FND-PARTY-070, FND-PARTY-071, FND-PARTY-079, FND-PARTY-204, FND-PARTY-205, FND-PARTY-206, FND-PARTY-207]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-002, SCR-UI-004]
@@ -20,8 +20,9 @@ alignments the classes forbid, unless Ctrl is held. A character with no class is
 ## When it runs
 
 `step_alignment` when the player presses the alignment button, and `check_alignment` with `step`
-1 whenever the screen rolls the scores (RULE-PARTY-010), which includes choosing a class
-(FND-PARTY-071, FND-PARTY-072).
+1 whenever the screen rolls the scores (RULE-PARTY-010), which includes choosing a class and
+opening the screen on a stored character with EDIT (FND-PARTY-063, FND-PARTY-071, FND-PARTY-206,
+FND-PARTY-207).
 
 ## Parameters
 
@@ -73,12 +74,13 @@ details record. Neither changes other state.
 
 Each class is checked in turn against the alignment as it stands after the steps the earlier
 classes caused; once a step returns, the alignment satisfies every class unless Ctrl is held. No
-set of classes the screen offers (RULE-PARTY-009) forbids every alignment (FND-PARTY-072), so the
+set of classes the screen offers (RULE-PARTY-009) forbids every alignment (FND-PARTY-207), so the
 recursion ends. Stepping back from lawful good gives chaotic neutral, skipping chaotic evil.
 
 Holding Ctrl lets the button leave the alignment at one the classes forbid, an evil one among
 them; the next roll moves it forward to an allowed one. DONE does not check the alignment
-(FND-PARTY-070), so a character finished right after such a step keeps it.
+(FND-PARTY-070), so a character finished right after such a step is stored with it, until EDIT
+opens it again (FND-PARTY-206).
 
 ## What the sources say
 
@@ -91,6 +93,4 @@ None known.
 
 ## Open questions
 
-- That holding Ctrl skips the check, which rests on the BIOS meaning of the flag bit: a capture
-  of the screen after pressing the alignment button with Ctrl held, and of the character after
-  DONE, would confirm it (Q-PARTY-032).
+None.

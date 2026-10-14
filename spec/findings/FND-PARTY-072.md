@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-072
 title: The generation screen steps alignment through codes 1 to 9 with a wrap from 1 down to 8, and moves on past any alignment a per-class table at 4E68:001C forbids unless Ctrl is held; the table allows no evil alignment, only true neutral to a druid, only good to a ranger and no lawful good to a thief
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-207]
 recorded_by: kibertoad
 reproduced_by: []
 method: static
