@@ -331,7 +331,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   resource_adv_census.py, installed_adv_resources.py, reach_config.py with the q007_*.json queries
   (latest q007_dsun_digpak_census.json); local outputs c_*/r_*/k_* in
   GAME_DIR/analysis/exe-batches/q007.
-- PARTY, 2026-10-14 (FND-PARTY-170..188, EXP-PARTY-001/002, commits 3373c2e7..42cc56d3, not
+- PARTY, 2026-10-14 (FND-PARTY-170..191, EXP-PARTY-001/002, commits 3373c2e7..441240a6, not
   pushed). Static: FND-PARTY-170..173 (Create Characters exits; ADD keeps leader 0; only the kill
   share counts the party). Runtime: agent runs use rust-dos v1.7.2 through
   dinorefurb-dosbox-session 0.10.0 with the installed sound card (Sound Blaster at 220, IRQ 5,
@@ -355,14 +355,18 @@ An owner-approved history repair remains separate from this maintenance scope.
   FND-PARTY-186: START GAME first loads CHAR 40-43 (Q-PARTY-001 closed). FND-PARTY-187: in play,
   View Character prints each supplied character's own class thresholds (Cleric 7: 110000),
   because overlay 184 +1DCE turns the 17 codes back into 1-8 in 4E4F:0029; BUG-PARTY-001 is
-  disputed. FND-PARTY-188: the sheet's three callers; overlay 212's is settled, Q-PARTY-076
-  (generation drawing the sheet while DS:1429 points at a stored record; overlay 190 +0EF8
-  opens generation from play and calls +07D8, which resets it) and Q-PARTY-077 (DUAL path's
-  4E71:0B44) stay open. Upstream this goal: toolkit #500, #501 (closed), #509, #510; toolkit
+  disputed. FND-PARTY-188: the sheet's three callers. FND-PARTY-189: generation's handler
+  184+0DA7 (registered only by +07D8) reaches the DS:1429 writers only in +1029, after its
+  sheet draw. FND-PARTY-190/191 (plans generation-new, generation-new-in-play,
+  generation-edit, dual): NEW, EDIT and DUAL all print Fighter's own threshold. Q-PARTY-076
+  (reach's 34 unresolved calls) and Q-PARTY-077 (stores to 4E71:0B44 before 209+14FF) stay
+  open; protocol #120 asks when such a dispute counts as settled. Upstream this goal: toolkit #500, #501 (closed), #509, #510; toolkit
   #466, #488, #497 closed after verifying releases (docs/TOOLKIT-RESPONSE-ACCEPTANCE.md);
   protocol #119; template #73 (two comments: capture-window timeouts under gate load, which
   still recur and pass alone); rust-dos #120 (watchpoint stops carry no address or values) and
-  #122 (watchpoint lengths). Before reading a routine, grep the spec for every form of its
+  #122 (watchpoint lengths), #123 (makeimg tests leave 565 MB temp dirs; 53 of them filled drive
+  C on 2026-10-14 and failed the gate; they belong to another session's rust-dos tests, left in
+  place). Before reading a routine, grep the spec for every form of its
   address. Open next: Q-PARTY-076, 077, 073, 075, 020, then 062, 003, 005, 017, 018; Live
   session items 059, 037, 035, 032, 027 may be tried as agent runs. docs/PROGRESS.md has the
   2026-10-14 snapshot. docs/HANDOVER.md line 78 still names Q-PARTY-006, which is on main and
