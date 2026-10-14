@@ -7,7 +7,7 @@ superseded_by: []
 impact: rules
 intent: unclear
 player_reliance: unknown
-evidence: [FND-PARTY-073, FND-PARTY-065]
+evidence: [FND-PARTY-073, FND-PARTY-065, FND-PARTY-208]
 conflicting: []
 split_with: []
 related: [FMT-PARTY-001]
@@ -29,7 +29,9 @@ when the first class's level-7 threshold is not above the second class's level-6
 `DATA` 1000, that holds for a Druid first (level 7 at 35,000) with a Gladiator or Ranger (level 6
 at 36,000) or a Preserver (level 6 at 40,000) second, and for a Thief first (level 7 at 40,000)
 with a Preserver second. Which of these pairs the generation screen allows is not shown
-here (RULE-PARTY-007).
+here (RULE-PARTY-007). A half-elf made with Druid and then Preserver starts at level 6 in both
+with 40,000 experience, and its stored record holds level 1 for the empty third class
+(FND-PARTY-208).
 
 ## Mechanism
 
@@ -65,6 +67,3 @@ None known.
 - Whether the reverse order is a slip or meant to favour the later class: three classes take every
   position in both orders, and the empty position has no row, which favours a slip (No item: the
   code cannot show intent and no source discusses it).
-- What a made character shows: a capture of the generation screen's levels for a Druid with a
-  Preserver second, and of the stored record's level bytes, would confirm the missed level and the
-  third level byte (Q-PARTY-027).

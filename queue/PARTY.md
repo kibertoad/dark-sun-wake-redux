@@ -155,12 +155,6 @@ None.
   the character sheet before and after a fight that gives experience, with the messages shown,
   for a party that includes a level-14 psionicist (FND-PARTY-081). Tried: the static reading
   FND-PARTY-081. Blocks: slice 2.
-- Q-PARTY-027. BUG-PARTY-002: Does a character made with a Druid first and a Preserver second
-  start at level 6 Druid and level 7 Preserver with 40,000 experience, where the Druid's own table
-  gives level 7 from 35,000, and what level does its stored record hold for the unused third class?
-  Settles it: an owner capture of the generation screen's class line and experience after choosing
-  the two classes, and of the View Character screen once the character is stored (FND-PARTY-065).
-  Blocks: slice 2.
 ## Source
 
 None.
