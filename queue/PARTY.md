@@ -30,7 +30,8 @@ Next ID: Q-PARTY-081
   party member, giving it `combat_mark` 3, 7 or 8, or start a fight through overlay 193 `+0533`?
   Settles it: the conditions along overlay 211 `+0901`, overlay 193 `+2290`, `+0000` and `+003C`
   to its target loop, how that loop's list is filled on Create Characters (whether it can name a
-  combatant above 4), and overlay 179 `+0D2F` to its call at `+0D9C`; or a run that casts each of
+  combatant above 4), and overlay 179 `+0D2F` to its near calls of `+2A05` at `+1078` and `+1373`
+  at `+1134`, and those routines to their calls of `+22C4`; or a run that casts each of
   a stored character's damaging spells at a party member from the USE window on Create
   Characters. Tried: FND-PARTY-183, FND-PARTY-184,
   FND-PARTY-192 and FND-PARTY-193 show ADD and NEW give mark 1; FND-PARTY-197 takes a census of
@@ -40,7 +41,8 @@ Next ID: Q-PARTY-081
   FND-PARTY-200 show `set_leader`'s route to the attack routine needs a fight, and that the only
   store starting one that a walk reaches outside that route is overlay 193 `+0533`, on this one;
   FND-PARTY-201 shows `+0533` needs a target numbered above 4, while every target reaches
-  `179 +0D2F`. Blocks: nothing yet.
+  `179 +0D2F`; FND-PARTY-202 shows `+0D2F`'s own damage call is for kind-1 slots only, so a party
+  member is damaged only through `+1373` or `+2A05`. Blocks: nothing yet.
 - Q-PARTY-080. RULE-PARTY-001: Does any other write give a filled slot's combatant record a
   `combat_mark` of 3 or more, or hit points below 1, before START GAME? Settles it: the pointer
   sources of overlay 172 `+01AE`, 179 `+2515`, `+25AD` and `+2668`, 200 `+04DD`, resident
