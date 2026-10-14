@@ -44,11 +44,13 @@ Next ID: Q-PARTY-076
   and `0x19` the immunity type, and FND-PARTY-158 names `0x85` the psionic power list; FND-PARTY-159 shows the saving throw never
   reads `0x7B`. Blocks:
   slice 2.
-- Q-PARTY-020. FMT-PARTY-006: What does a 23-byte record of a type-2 or type-4 chunk hold, and
-  what do the character's combatant words at `0x08`, `0x0A` and `0x0C`, and a record's word at
-  `0x08`, which type-2 chunks fill with handles, lead to? Settles it: the code that reads the
-  table at `DS:19C1` and those words, such as the View Character screen's possessions
-  (SCR-UI-002). Blocks: slice 2.
+- Q-PARTY-020. FMT-PARTY-006: What does the rest of a 23-byte record of a type-2 or type-4 chunk
+  hold, and what do the character's combatant words at `0x08`, `0x0A` and `0x0C`, and a record's
+  word at `0x08`, which type-2 chunks fill with handles, lead to? Settles it: the code that reads
+  the table at `DS:19C1` and those words, such as the View Character screen's possessions
+  (SCR-UI-002), and the routine `+04F8` of overlay 188 that places records' objects. Tried:
+  FND-PARTY-181 and FND-PARTY-182 give word `0x00` as the negated object number and byte `0x12`
+  as the placed entry's low bits. Blocks: slice 2.
 - Q-PARTY-005. FMT-PARTY-004, FMT-PARTY-005: What does bit 0 of a `PSST` byte hold, and what
   does the game do when it reads a 9-byte `SPST` into its 15-byte table entry? Settles it: the
   code that reads and writes the four-slot tables overlay 186 fills (FND-PARTY-012), and the read
