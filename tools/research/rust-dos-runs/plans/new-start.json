@@ -1,0 +1,13 @@
+{"start": "artifacts/runs/2026-10-14-start6:start", "watch": [["7662:007A", 1]], "steps": [
+ {"mouse": {"action": "click", "x": 160, "y": 93, "coords": "virtual"}, "until_ms": 195000},
+ {"mouse": {"action": "click", "x": 70, "y": 107, "coords": "virtual", "button": "right"}, "until_ms": 200000},
+ {"mouse": {"action": "click", "x": 115, "y": 117, "coords": "virtual"}, "until_ms": 206000},
+ {"mouse": {"action": "click", "x": 270, "y": 183, "coords": "virtual"}, "until_ms": 212000, "shot": "made", "read": [["4503:0C33", 12], ["41CD:0369", 2], ["4D9A:0DAB", 2], ["7662:0004", 196], ["761B:0004", 264]]},
+ {"keys": ["esc"], "until_ms": 217000, "shot": "esc1", "read": [["6190:1960", 96]]},
+ {"keys": ["esc"], "until_ms": 223000, "shot": "esc2", "read": [["4503:0C33", 12], ["41CD:0369", 2], ["4D9A:0DAB", 2], ["7662:0004", 196], ["761B:0004", 264]]},
+ {"mouse": {"action": "click", "x": 157, "y": 76, "coords": "virtual"}, "until_ms": 233000, "shot": "play10", "read": [["4503:0C33", 12], ["41CD:0369", 2], ["4D9A:0DAB", 2], ["7662:0004", 196], ["761B:0004", 264]]},
+ {"until_ms": 253000, "shot": "play30", "read": [["4503:0C33", 12], ["41CD:0369", 2], ["4D9A:0DAB", 2], ["7662:0004", 196], ["761B:0004", 264]]},
+ {"until_ms": 275000, "shot": "play52", "read": [["4503:0C33", 12], ["41CD:0369", 2], ["4D9A:0DAB", 2], ["7662:0004", 196], ["761B:0004", 264]]},
+ {"keys": ["esc"], "until_ms": 285000, "shot": "play62", "read": [["4503:0C33", 12], ["41CD:0369", 2], ["4D9A:0DAB", 2], ["7662:0004", 196], ["761B:0004", 264]]},
+ {"until_ms": 300000, "shot": "play77", "read": [["4503:0C33", 12], ["41CD:0369", 2], ["4D9A:0DAB", 2], ["7662:0004", 196], ["761B:0004", 264]]}
+]}

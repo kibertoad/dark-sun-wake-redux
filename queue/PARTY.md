@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-078
+Next ID: Q-PARTY-079
 
 ## Static
 
@@ -25,14 +25,19 @@ Next ID: Q-PARTY-078
   sheet call at `+151E` right after it; FND-PARTY-191 runs `DUAL` for a character made just
   before and finds the word naming that character's slot and the Fighter threshold on the sheet.
   Blocks: nothing yet.
-- Q-PARTY-073. RULE-PARTY-001: Can a party reach START GAME with no filled slot whose
-  `combat_mark` is 1 or 2 and whose hit points are 1 or more, and what does overlay 173 `+3CDA`
-  do then? It sets no leader and calls
-  overlay 201 `+0410` (FND-PARTY-185). Settles it: the `combat_mark` a character made with NEW
-  gets, the value the game writes to a type-1 chunk's byte `0x14` when it stores a character
-  (overlay 187 `+018F`, FND-PARTY-054), and a reading of overlay 201 `+0410`. Tried:
-  FND-PARTY-183 and FND-PARTY-184 show ADD loading a stored 0 as 1 and keeping other values.
-  Blocks: nothing yet.
+- Q-PARTY-073. RULE-PARTY-001: Can any route before START GAME give a filled slot a
+  `combat_mark` of 3 or more, or hit points below 1, so that overlay 173 `+3CDA` finds no member
+  standing? Settles it: the stores to combatant byte `+0x14` and word `+0x00` reachable from the
+  title screen's windows before START GAME (Create Characters with NEW, ADD, EDIT, DUAL and DROP,
+  generation, Load Saved Game), and the value the game writes to a type-1 chunk's byte `0x14`
+  when it stores a character (overlay 187 `+018F`, FND-PARTY-054). Tried: FND-PARTY-183 and
+  FND-PARTY-184 show ADD loading a stored 0 as 1 and keeping other values; FND-PARTY-192 and
+  FND-PARTY-193 show a NEW character stored with mark 0 and turned into 1 by View Character's Esc
+  branch and by the gate routine START GAME calls, and a party of one made with NEW starting play
+  with its slot as leader. Blocks: nothing yet.
+- Q-PARTY-078. RULE-PARTY-001: What does overlay 201 `+0410` do when overlay 173 `+3CDA` finds no
+  member standing? Settles it: a reading of `+0410` and of the handler of the window it opens.
+  Tried: none yet. Blocks: nothing yet.
 - Q-PARTY-045. RULE-PARTY-015: Does any enemy's `kill_experience` divided by the filled party
   slots reach 32,768, so that killing it lowers each member's experience (FND-PARTY-086,
   FND-PARTY-094)? Settles it: what moves objects 430 and 541 out of the region `Limbo`, where

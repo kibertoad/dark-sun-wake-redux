@@ -80,9 +80,14 @@ None known.
 ## Open questions
 
 - What START GAME's party restore does when no filled slot with `combat_mark` 1 or 2 has hit
-  points: it then sets no leader and calls overlay 201 `+0410` (FND-PARTY-185). Added characters arrive marked 1
-  unless their record holds 2 or more (FND-PARTY-183); whether a character made with NEW, or one
-  the game stores with a mark of 3 or more, can reach START GAME is not read (Q-PARTY-073).
-- Whether a created party of three or four, or one made with NEW, begins play the same way; the
-  experiments added one and two stored characters (No item: the same mechanism as EXP-PARTY-002,
-  with no reading that predicts a difference).
+  points: it then sets no leader and calls overlay 201 `+0410` (FND-PARTY-185), which is not read
+  (Q-PARTY-078).
+- Whether a party can reach START GAME in that state. Added characters arrive marked 1 unless
+  their record holds 2 or more (FND-PARTY-183); a character made with NEW is stored with mark 0,
+  and leaving View Character with Esc and START GAME's gate routine both turn a 0 into 1
+  (FND-PARTY-192, FND-PARTY-193), so a party of one made with NEW begins play with that slot as
+  leader (FND-PARTY-192). Left: whether any route before START GAME gives a filled slot a mark of
+  3 or more or hit points below 1 (Q-PARTY-073).
+- Whether a created party of three or four begins play the same way; the experiments added one
+  and two stored characters and FND-PARTY-192 made one with NEW (No item: the same mechanism as
+  EXP-PARTY-002, with no reading that predicts a difference).
