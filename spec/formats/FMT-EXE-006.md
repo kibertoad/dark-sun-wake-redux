@@ -350,7 +350,9 @@ reading of callers, external commands or interpreter behavior is claimed.
   critical-error calls going to handlers inside the file, through which
   the walk reaches two more requests, neither AH=4B. FND-EXE-580 finds
   the startup and exit records, the formatting engine's output routines
-  and the registered signal handlers inside the file as well. Which of its other
+  and the registered signal handlers inside the file as well. FND-EXE-581 finds
+  twelve calls going to the XMS driver's entry, outside the file, with
+  memory functions only. Which of its other
   unresolved computed transfers can reach code outside the file remains
   Q-EXE-007.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;
