@@ -53,9 +53,9 @@ Do not weaken host safeguards or extend analysis beyond preservation scope.
 - Stage: Slices; entire-game research goal active and incomplete.
 - Last gate: 2026-10-15, ./tools/Test.ps1 -NoRestore passed for both completed
   batches, including 715 .NET tests, Node suites and documentation validation
-  (1304 entries, 168 parity rows, 5 deviations). Argument-count skips remain;
+  (1305 entries, 168 parity rows, 5 deviations). Argument-count skips remain;
   Kaitai compilation requires a compiler absent on this host and remains a CI check.
-- Latest research batch: FND-PARTY-214; Q-PARTY-078 remains open. No status
+- Latest research batch: FND-PARTY-215; Q-PARTY-078 remains open and Q-PARTY-081 is separated under Blocked. No status
   promotion or queue closure. Latest tooling: fixed startup_segments.py probe
   and docs/RUNTIME.md update. Probe syntax and invalid-name rejection passed;
   live probe behavior is unverified.
@@ -69,20 +69,19 @@ Do not weaken host safeguards or extend analysis beyond preservation scope.
   Prior capability evidence remains in docs/RUNTIME.md. This checkout has no
   historical artifacts/runs checkpoints. Existing run_plan.py remains time-driven;
   the new fixed probe waits for an address stop but does not reach gameplay.
-- Unfinished: no batch draft. A bounded startup listing at 1000:0000..00E0
-  was read after the tooling attempt and has no new finding yet; reconcile
-  FND-PARTY-038 before recording segment-producer evidence.
+- Unfinished: no batch draft. The prior startup reading is recorded by FND-PARTY-215.
 - Processes: full validation handles ended successfully. Post-commit audits
   found no confirmed repository orphan. No emulator was launched or operated.
 - Coverage: standard-coverage ran successfully against all existing inventories;
   citation coverage is not complete-reading or whole-game completion evidence.
-- Blockers: runtime lock only; no goal-wide blocker. Owner-only live-session
+- Blockers: Q-PARTY-081 requires normal runtime coordination to resolve the existing lock; revalidated read-only on 2026-10-15. No goal-wide blocker. Owner-only live-session
   and patched-save items remain separate. No release or push authorized.
 - Next:
-  1. Q-PARTY-078: startup DS/SS producers and preservation to deletion; remaining
-     map admission and lookup/conversion effects from FND-PARTY-214.
-  2. Q-PARTY-076 and Q-PARTY-077: complete generation/DUAL sheet input provenance.
-  3. Q-PARTY-073 and Q-PARTY-080: pre-start damage and combatant-state writers.
-  4. Q-PARTY-020: split the remaining attached-record fields into bounded questions.
-  5. Once normal runtime coordination is restored, verify startup_segments.py,
-     then build a state-driven several-member defeat probe for Q-PARTY-078.
+  1. Q-PARTY-020: split the remaining attached-record fields into independently
+     answerable questions, then trace the possessions/placement readers.
+  2. Q-PARTY-078: remaining cleanup input/callee obligations; keep Q-PARTY-081's
+     separate segment identity requirement explicit.
+  3. Q-PARTY-076 and Q-PARTY-077: generation/DUAL sheet input provenance.
+  4. Q-PARTY-073 and Q-PARTY-080: pre-start damage and combatant-state writers.
+  5. When normal runtime coordination is restored, Q-PARTY-081: verify the
+     fixed startup probe and build a state-driven deletion-call probe.
