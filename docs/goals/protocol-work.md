@@ -37,6 +37,10 @@ PARTY is added for research batches on its Static queue items, starting with
 Q-PARTY-012, which block slice 2 (claims checked 2026-10-10:
 goal/protocol-work is the only `goal/*` branch, and its other work is in EXE):
 PARTY entries, queue/PARTY.md and parity/PARTY.md.
+PARTY also takes the run items of its queue that a session-package agent run can settle, as
+`docs/RUNTIME.md` allows (the owner allowed agent runs on 2026-10-14; claims checked 2026-10-14:
+goal/protocol-work is the only `goal/*` branch), with their experiments and the probe scripts in
+`tools/research/rust-dos-runs/`.
 Other areas are read-only. Further research
 areas are added only after checking the shared clone's authoritative goal
 claims and other sessions' work.
