@@ -4,20 +4,7 @@ Next ID: Q-EXE-029
 
 ## Static
 
-- Q-EXE-028. FMT-EXE-006: Does the driver code of ADV resources 10 or 20
-  of the installed RESOURCE.GFF, which setup puts in SOUND.CFG when the
-  player picks a SOUND.INI record naming them, or the interrupt 66
-  handler a DIGPAK driver uses, request program execution? FND-EXE-590
-  finds the drivers the shipped SOUND.CFG names (11 and 8) are disc
-  drivers that request none, and that 10 (the only DIGPAK image) and 20
-  equal no disc file. Settles it: for ADV 10, a census of its code from
-  the +0x100 and +0x103 entries DSUN.EXE calls (FND-EXE-585) and from
-  whatever entry installs an interrupt 66 handler, with that handler
-  named or listed as installed outside the program; for ADV 20, the
-  census FND-EXE-496 and FND-EXE-573 take of a Copy driver, from its
-  function table entries.
-  Blocks: FMT-EXE-006's answer for a sound configuration other than the
-  shipped one.
+None.
 
 ## Emulated call
 
