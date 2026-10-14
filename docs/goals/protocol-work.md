@@ -331,8 +331,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   resource_adv_census.py, installed_adv_resources.py, reach_config.py with the q007_*.json queries
   (latest q007_dsun_digpak_census.json); local outputs c_*/r_*/k_* in
   GAME_DIR/analysis/exe-batches/q007.
-- PARTY, 2026-10-14 (FND-PARTY-170..208, EXP-PARTY-001/002, commits 3373c2e7..4ac68cbd, not
-  pushed). Static: FND-PARTY-170..173 (Create Characters exits; ADD keeps leader 0; only the kill
+- PARTY, 2026-10-14 (FND-PARTY-170..212, EXP-PARTY-001/002, commits 3373c2e7..e6a6f0d0, pushed
+  to main on 2026-10-14 at the owner's request). Static: FND-PARTY-170..173 (Create Characters exits; ADD keeps leader 0; only the kill
   share counts the party). Runtime: agent runs use rust-dos v1.7.2 through
   dinorefurb-dosbox-session 0.10.0 with the installed sound card (Sound Blaster at 220, IRQ 5,
   DMA 1, no Ultrasound; commit 881e1c86); the goal scope takes PARTY's agent-run items and
@@ -384,7 +384,13 @@ An owner-approved history repair remains separate from this maintenance scope.
   4`); a half-elf Druid/Preserver starts 6/6 at 40,000 with third level 1 (BUG-PARTY-002).
   run_plan.py now takes `batch` steps (key down, click, key up) and prints AX/BX at breaks. Class
   rows on the generation screen are at x 250, y 5 + 8 * code (codes 1 to 8); six portrait clicks give a male
-  half-elf; STR's button answers at (8, 139). A breakpoint on a routine called every frame exhausts Windows ports
+  half-elf; STR's button answers at (8, 139). FND-PARTY-209: only generation and a DUAL branch
+  clear SPST bits (0-114), so a 9-byte SPST keeps the box's earlier bits 72-119. FND-PARTY-210/211:
+  PSST bit 0 marks a power in effect (set by 176 +0196 on success, cleared by 176 +050E); all end
+  at fight end and on rest (204 +0CBA). FND-PARTY-212 (plan nobody-standing, a guarded `write`
+  step): START GAME with the only member at 0 HP shows YOUR PARTY HAS BEEN DEFEATED until a click,
+  then empties the slot and returns to the start window. Toolkit #512 asks for send_input's event
+  shapes to be documented. A breakpoint on a routine called every frame exhausts Windows ports
   (toolkit #511); break past its gates instead. Upstream this goal: toolkit #500, #501 (closed), #509, #510, #511; toolkit
   #466, #488, #497 closed after verifying releases (docs/TOOLKIT-RESPONSE-ACCEPTANCE.md);
   protocol #119; template #73 (two comments: capture-window timeouts under gate load, which
