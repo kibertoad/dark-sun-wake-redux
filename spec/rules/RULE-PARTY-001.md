@@ -68,6 +68,7 @@ None known.
   (RULE-PARTY-006), so no code found refuses an empty party; the player who adds no character gets
   the supplied party. The reading rests on `DS:0DAB` staying 0 during party creation, which
   FND-PARTY-046's runs do not rule out, and does not cover a party emptied with `DROP` after `ADD`,
-  which leaves the placed-object count nonzero: whether that reaches START GAME with no character
-  in a box is Q-PARTY-006.
+  which leaves the placed-object count nonzero and is allowed for a box other than the leader's
+  slot 0 (FND-PARTY-171): whether that reaches START GAME with no character in a box is
+  Q-PARTY-006.
 - Whether a party of fewer than four plays differently (Q-PARTY-070).

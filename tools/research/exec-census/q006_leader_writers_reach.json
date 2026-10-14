@@ -1,0 +1,63 @@
+{
+ "starts": [
+  "212+0967",
+  "2660:052D",
+  "2660:05CA",
+  "2660:0250",
+  "2660:0447",
+  "180+0848",
+  "1000:0387",
+  "1000:0FB5",
+  "1000:345B",
+  "1000:3726",
+  "1000:129F",
+  "4AE5:0D27",
+  "1000:0886",
+  "1000:11C1",
+  "1000:12D9",
+  "1000:2877",
+  "1000:29AA",
+  "1000:3B56",
+  "4AE5:0193",
+  "4AE5:1257",
+  "4AE5:1155",
+  "4AE5:0EA2",
+  "1000:02FC"
+ ],
+ "leaves": [
+  {
+   "site": "182+1856",
+   "reason": "FND-PARTY-124: returns before any call while DS:0DAB is 0"
+  },
+  {
+   "site": "182+19F8",
+   "reason": "FND-PARTY-124: returns before any call while DS:0DAB is 0"
+  },
+  {
+   "site": "182+1167",
+   "reason": "FND-PARTY-021, FND-PARTY-031: the gate routine; its calls before the gate at +12DD are starts here or of q011_gate_dispatch_reach.json and q011_gate_dispatch_values.json, and the rest runs at or after the gate"
+  }
+ ],
+ "targets": [
+  "0x263b4",
+  "0x73c9a",
+  "0x2002c",
+  "0x21015",
+  "0x5b12c",
+  "0x6a5e4",
+  "0x7470b",
+  "0x58fba",
+  "0x5ce59",
+  "0x5e71a",
+  "0x7436a",
+  "0x76b41",
+  "0x78caf",
+  "0x793da",
+  "0x92f11",
+  "0x99948",
+  "0x99d22",
+  "0x99db7"
+ ],
+ "controls": [],
+ "decodedRanges": true
+}

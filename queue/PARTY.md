@@ -50,14 +50,15 @@ Next ID: Q-PARTY-071
   entry `37FC:04AB` for a resource shorter than the size it is given. Tried: FND-PARTY-104 reads
   the level-gain windows, which show `SPST` as the known spells and bits 1 to 7 of `PSST` as power
   ranks, and keep bit 0. Blocks: slice 3.
-- Q-PARTY-006. RULE-PARTY-001: Can play begin with no character in a party box? `DROP` refuses
-  only the leader's box when no other box holds a character, and the placed-object count is never
-  lowered, so a party that adds a character and drops it while the leader's slot names another,
-  empty box would reach START GAME with the count nonzero and skip the supplied party. Settles it:
-  the writers of the leader's slot `4C13:0369` from the start window to START GAME (its value
-  before any `ADD`, and whether `ADD` or the box records set it), and overlay 171 `+0D15`, which
-  `DROP` calls with 0, read for what it clears. Tried: FND-PARTY-170 reads the screen's two exits,
-  which go back to the start window while `DS:0DAB` is 0, and the `DROP` branch. Blocks: slice 2.
+- Q-PARTY-006. RULE-PARTY-001: Can play begin with no character in a party box? A character
+  added to box 1, 2 or 3 can be dropped while the leader is still slot 0, and the placed-object
+  count it raised is never lowered, so START GAME would skip the supplied party. Settles it:
+  whether `DROP` empties the box, read through overlay 171 `+0D15`'s call of `31E0:05BB` to the
+  store of 0 to the box record's `+0x0E` at `2D40:2513` in the switch at `2D40:248D`, and what the
+  start of play does with the count nonzero and no character in a box. Tried: FND-PARTY-170 reads
+  the screen's two exits, which go back to the start window while `DS:0DAB` is 0, and the `DROP`
+  branch; FND-PARTY-171 shows the leader word is 0 in the load image and that `ADD` leaves it,
+  and reads what `DROP`'s routine stores. Blocks: slice 2.
 - Q-PARTY-070. RULE-PARTY-001: Does a party of fewer than four play differently from a party of
   four? Settles it: the readers of the four slot records at `DS:19C5` (their word at `+0x0E`) and
   `DS:19C9` (their word at `+0x06`) outside the Create Characters screen and the party loader, read
