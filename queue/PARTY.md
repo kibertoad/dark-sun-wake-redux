@@ -6,14 +6,16 @@ Next ID: Q-PARTY-078
 
 - Q-PARTY-076. BUG-PARTY-001: Can a handler other than overlay 184 `+0DA7` run while the
   generation screen is up and point `DS:1429` at a stored details record before the screen draws
-  its sheet? Settles it: what the screens that open generation (overlay 190 `+0EF8`, overlay 184
-  `+1606`) leave at `DS:A0F5` and `DS:A0F9`, which `+07D8` does not replace, whether the main loop
-  calls them during generation, and whether they reach the routines of FND-PARTY-188 that store
-  `DS:1429`; the 34 unresolved calls of FND-PARTY-189's reach; stores to `DS:1429` other than
+  its sheet? Settles it: what overlay 184 `+1606`, the edit path from overlay 190 `+1004`, leaves
+  at `DS:A0F5` and `DS:A0F9` when it calls `+07D8`, and which routine clears the two slots on the
+  `NEW` route (FND-PARTY-190 sees them cleared while the `INACTIVE CHARACTER` window is open);
+  the 34 unresolved calls of FND-PARTY-189's reach; stores to `DS:1429` other than
   direct-address ones. Tried: FND-PARTY-187 runs View Character in play and finds codes 1 to 8;
   FND-PARTY-188 lists the sheet's three callers and the direct-address writers of `DS:1429`;
   FND-PARTY-189 shows generation's own handler reaches those writers only in `+1029`, after its
-  sheet draw and as it closes the screen. Blocks: nothing yet.
+  sheet draw and as it closes the screen; FND-PARTY-190 opens generation by `NEW` from Create
+  Characters and from play and finds no other handler and the Fighter threshold on the sheet.
+  Blocks: nothing yet.
 - Q-PARTY-077. BUG-PARTY-001: On the DUAL path, does the word at `4E71:0B44` name the slot
   overlay 209 `+123E` was called with when it calls overlay 184 `+1DCE` at `+14FF`, so that the
   sheet at `+151E` prints that character's own classes? Settles it: the routes from overlay 172

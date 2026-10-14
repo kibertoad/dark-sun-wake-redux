@@ -1,0 +1,5 @@
+{"start": "artifacts/runs/2026-10-14-start6:start", "steps": [
+ {"mouse": {"action": "click", "x": 160, "y": 93, "coords": "virtual"}, "until_ms": 195000, "read": [["4D9A:A0F1", 12], ["4D9A:1429", 4], ["4409:0029", 34]]},
+ {"mouse": {"action": "click", "x": 70, "y": 107, "coords": "virtual", "button": "right"}, "until_ms": 200000, "read": [["4D9A:A0F1", 12], ["4D9A:1429", 4], ["4409:0029", 34]]},
+ {"mouse": {"action": "click", "x": 115, "y": 117, "coords": "virtual"}, "until_ms": 206000, "shot": "gen", "read": [["4D9A:A0F1", 12], ["4D9A:1429", 4], ["4409:0029", 34]]}
+]}

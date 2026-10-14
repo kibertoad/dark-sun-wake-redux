@@ -8,7 +8,7 @@ impact: presentation
 intent: unintended
 player_reliance: unknown
 evidence: [FND-PARTY-058, FND-PARTY-083, FND-PARTY-073]
-conflicting: [FND-PARTY-187]
+conflicting: [FND-PARTY-187, FND-PARTY-190]
 split_with: []
 related: [SCR-UI-002, FMT-PARTY-001]
 ---
@@ -64,8 +64,10 @@ None known.
   converted from the same slot (FND-PARTY-188, FND-PARTY-080). Two routes stay open. The
   generation screen prints the record at `DS:1429`, which six routines outside generation point at
   a stored details record holding the 17 codes. Generation's own handler reaches them only as it
-  closes the screen, after its last sheet draw (FND-PARTY-189); settled by whether a handler left
-  from the screen before generation can run in between (Q-PARTY-076). The DUAL path prints
+  closes the screen, after its last sheet draw (FND-PARTY-189), and opened by `NEW` from Create
+  Characters or from play it runs no other handler and prints a level 7 Fighter's next threshold
+  as 125000, Fighter's own (FND-PARTY-190); settled by the edit path into generation and the
+  calls the reach left unresolved (Q-PARTY-076). The DUAL path prints
   the record `+1DCE` converted with the codes of the slot in `4E71:0B44`, which may differ from
   the record copied; settled by the stores to that word before overlay 209 `+14FF`
   (Q-PARTY-077).

@@ -80,6 +80,13 @@ watchpoints on the four combatant records' `combat_mark` bytes.
 the opening conversation and saves the checkpoint `talk` (run directory
 `artifacts/runs/2026-10-14-talk2`).
 
+`generation-new.json` (from `start`) and `generation-new-in-play.json` (from
+`talk`) open the generation screen with NEW, from Create Characters and from
+View Character in play. In play, a box is emptied first: right-click a filled
+box, DROP at `(165, 129)`, then YES at `(166, 117)`; the empty box's menu has
+NEW at its first line, `(115, 117)` for the third box and `(166, 117)` for the
+fourth.
+
 The other plans (`exp-add-start.json`, `add.json`, `drop.json`, `after-drop.json`,
 `start-game-after-drop.json`, `start-game-control.json`) are the exploratory
 runs that found the screens' positions, each from the checkpoint the one before
