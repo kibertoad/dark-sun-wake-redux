@@ -1,0 +1,164 @@
+{
+ "start": "artifacts/runs/2026-10-14-start6:start",
+ "steps": [
+  {
+   "mouse": {
+    "action": "click",
+    "x": 160,
+    "y": 93,
+    "coords": "virtual"
+   },
+   "until_ms": 195000,
+   "read": [
+    [
+     "4D9A:A0F1",
+     12
+    ],
+    [
+     "4D9A:1429",
+     4
+    ],
+    [
+     "4409:0029",
+     34
+    ]
+   ]
+  },
+  {
+   "mouse": {
+    "action": "click",
+    "x": 70,
+    "y": 107,
+    "coords": "virtual",
+    "button": "right"
+   },
+   "until_ms": 200000,
+   "read": [
+    [
+     "4D9A:A0F1",
+     12
+    ],
+    [
+     "4D9A:1429",
+     4
+    ],
+    [
+     "4409:0029",
+     34
+    ]
+   ]
+  },
+  {
+   "mouse": {
+    "action": "click",
+    "x": 115,
+    "y": 117,
+    "coords": "virtual"
+   },
+   "until_ms": 206000,
+   "shot": "gen",
+   "read": [
+    [
+     "4409:0029",
+     144
+    ]
+   ]
+  },
+  {
+   "mouse": {
+    "action": "click",
+    "x": 3,
+    "y": 139,
+    "coords": "virtual"
+   },
+   "until_ms": 209000,
+   "shot": "s3-139",
+   "read": [
+    [
+     "4409:0029",
+     144
+    ]
+   ]
+  },
+  {
+   "mouse": {
+    "action": "click",
+    "x": 8,
+    "y": 139,
+    "coords": "virtual"
+   },
+   "until_ms": 212000,
+   "shot": "s8-139",
+   "read": [
+    [
+     "4409:0029",
+     144
+    ]
+   ]
+  },
+  {
+   "mouse": {
+    "action": "click",
+    "x": 4,
+    "y": 141,
+    "coords": "virtual"
+   },
+   "until_ms": 215000,
+   "shot": "s4-141",
+   "read": [
+    [
+     "4409:0029",
+     144
+    ]
+   ]
+  },
+  {
+   "mouse": {
+    "action": "click",
+    "x": 4,
+    "y": 136,
+    "coords": "virtual"
+   },
+   "until_ms": 218000,
+   "shot": "s4-136",
+   "read": [
+    [
+     "4409:0029",
+     144
+    ]
+   ]
+  },
+  {
+   "mouse": {
+    "action": "click",
+    "x": 30,
+    "y": 139,
+    "coords": "virtual"
+   },
+   "until_ms": 221000,
+   "shot": "s30-139",
+   "read": [
+    [
+     "4409:0029",
+     144
+    ]
+   ]
+  },
+  {
+   "mouse": {
+    "action": "click",
+    "x": 45,
+    "y": 139,
+    "coords": "virtual"
+   },
+   "until_ms": 224000,
+   "shot": "s45-139",
+   "read": [
+    [
+     "4409:0029",
+     144
+    ]
+   ]
+  }
+ ]
+}

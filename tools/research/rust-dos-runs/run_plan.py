@@ -227,7 +227,9 @@ with RustDosSession(settings) as s:
                     ob = wait(s, s.continue_(until_ms=step["until_ms"]))
                 elif ob.stop.get("reason") == "breakpoint" and ob.stop["cs_ip"] in breaks:
                     # A breakpoint the step set: report the caller's arguments and chain, go on.
-                    print("  break", ob.stop["cs_ip"], ob.stop.get("emu_ns"), flush=True)
+                    regs = ob.stop["registers"]
+                    print("  break", ob.stop["cs_ip"], ob.stop.get("emu_ns"),
+                          "ax", regs["ax"], "bx", regs["bx"], flush=True)
                     report_chain(s, ob)
                     ob = wait(s, s.continue_(until_ms=step["until_ms"]))
                 else:

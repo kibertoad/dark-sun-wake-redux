@@ -4,7 +4,7 @@ title: Hit points of a new character
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-065, FND-PARTY-070, FND-PARTY-071, FND-PARTY-073, FND-PARTY-074, FND-PARTY-075, FND-PARTY-076, FND-PARTY-078, FND-PARTY-079]
+evidence: [FND-PARTY-065, FND-PARTY-070, FND-PARTY-071, FND-PARTY-073, FND-PARTY-074, FND-PARTY-075, FND-PARTY-076, FND-PARTY-079, FND-PARTY-204, FND-PARTY-205]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-002, RULE-PARTY-010, RULE-RNG-001, SCR-UI-004]
@@ -30,13 +30,13 @@ button; `rolled_hit_points` when a class is chosen or removed and on each roll w
 `origin`, the character's `origin` code. `classes`, the list of the character's `character_class`
 codes in the order the screen keeps them, and `levels`, the level of each, from RULE-PARTY-007's
 starting levels as the screen sets them (FND-PARTY-065). `constitution`, the character's
-constitution score. `floor_constitution`, the constitution the screen's working details
-record held when the screen opened: 10 if no character has been finished or opened for editing
-since the program started, and otherwise the constitution of the character finished or opened
-last, which for a character being edited is its own stored constitution (FND-PARTY-074,
-FND-PARTY-076). `hit_points`, the greatest hit points.
-`step`, 1 when the player presses the button with the left mouse button and -1 with the right
-or middle one (FND-PARTY-078); no key presses these buttons (FND-PARTY-079).
+constitution score. `floor_constitution`, the constitution the screen's working details record held
+when the screen opened: 10 if no character has been finished or opened for editing since the
+program started, and otherwise the constitution of the character finished or opened last, which for
+a character being edited is its own stored constitution (FND-PARTY-074, FND-PARTY-076).
+`hit_points`, the greatest hit points. `step`, 1 when the player presses the button with the left
+mouse button and -1 with the right one; the middle button presses no button (FND-PARTY-204,
+FND-PARTY-205), and no key presses these buttons (FND-PARTY-079).
 
 ## Inputs
 
@@ -160,6 +160,4 @@ None known.
 
 ## Open questions
 
-- That the left mouse button gives `step` 1 and the right or middle one -1, which rests on the
-  mouse driver's meaning of the event bits: a capture after a left and a right press would confirm
-  it (Q-PARTY-035).
+None.

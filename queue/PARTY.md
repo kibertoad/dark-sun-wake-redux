@@ -155,11 +155,6 @@ None.
   the character sheet before and after a fight that gives experience, with the messages shown,
   for a party that includes a level-14 psionicist (FND-PARTY-081). Tried: the static reading
   FND-PARTY-081. Blocks: slice 2.
-- Q-PARTY-035. RULE-PARTY-010, RULE-PARTY-011, RULE-PARTY-012: Does the left mouse button step
-  the generation screen's buttons forward and the right one back? Settles it: an owner capture of
-  a score, the hit points and the alignment after one left press and after one right press on each
-  button (FND-PARTY-078). Tried: the static reading FND-PARTY-078, which rests on the mouse driver's
-  meaning of the event bits. Blocks: slice 2.
 - Q-PARTY-032. RULE-PARTY-011: Does pressing the alignment button with Ctrl held skip the
   classes' check, so that a fighter can be stepped to lawful evil and stored that way? Settles it:
   an owner capture of the generation screen's alignment after each press with Ctrl held, starting

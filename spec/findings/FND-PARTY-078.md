@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-078
 title: The word at offset 0x12 of a window event is the mouse driver's event bits from the mouse packet, so the generation screen's step buttons go forward for the left button and back for the right or middle one
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-205]
 recorded_by: kibertoad
 reproduced_by: []
 method: static
