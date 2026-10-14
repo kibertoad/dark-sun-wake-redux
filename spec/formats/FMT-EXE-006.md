@@ -340,6 +340,11 @@ reading of callers, external commands or interpreter behavior is claimed.
   install vectors only for handlers FND-EXE-496 already decodes from,
   build no transfer on the stack and write no code, with every CD byte
   accounted for as the control.
+  FND-EXE-574 censuses the installed DSUN.EXE the same way: no interrupt
+  21 request in the file selects AH=4B, its stack-built interrupts are
+  called only for CD-ROM extension and version services, and it holds no
+  interrupt 2E. Which of its 77 unresolved computed transfers can reach
+  code outside the file remains Q-EXE-007.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;
   startup, actual DS, aliases and later writers must admit their runtime use.
 - How does the shipped wrapper resolve the two bare helper commands and

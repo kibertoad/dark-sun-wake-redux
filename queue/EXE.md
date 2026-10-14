@@ -5,15 +5,21 @@ Next ID: Q-EXE-027
 ## Static
 
 - Q-EXE-007. FMT-EXE-006: Do the shipped game or sound-setup executables
-  launch any batch helpers? Settles it: for both game editions'
-  executables, overlays included, a census of the program-execution
-  mechanism as the standard's Findings section describes it: every
-  interrupt 21 site with its AX value and every interrupt 2E site, the
-  callers of any routine that builds an interrupt on the stack with the
-  value each passes, sites reached from established entries that the
-  finding names with the kinds of entry it did not have, a control for each
-  kind of site, and each transfer out of the censused code. Only undecided
-  sites and outside transfers are traced further, each as its own item.
+  launch any batch helpers? Settles it: for the installed DSUN.EXE (the
+  disc copy is not studied, docs/SOURCE-EDITIONS.md), each of the 77
+  computed transfers FND-EXE-574's walk leaves unresolved, classified by
+  where its target comes from: an address inside the file, which
+  FND-EXE-574's census of every interrupt site already covers, or code
+  outside the file (handlers taken from the interrupt vector table, the
+  XMS driver's entry, code the program loads from a file), with a control
+  for each kind of origin. Each transfer that can leave the file is named
+  with the code it reaches; only those are traced further, each as its own
+  item.
+  Tried: FND-EXE-574 censuses every interrupt 21, 2F and 2E site of the
+  installed DSUN.EXE, its two stack-built interrupt routines and its one
+  argument-selected request: none selects AH=4B and there is no interrupt
+  2E; the walk from established entries reaches 80 of the 100 interrupt 21
+  sites and leaves 77 transfers unresolved.
   Tried (before the split into this item, Q-EXE-025 and Q-EXE-026): the
   helper contents and distribution wrapper (FND-EXE-008, FND-EXE-010)
   locate no caller; FND-EXE-350 finds one sound.bat suffix in each game
