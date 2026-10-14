@@ -1,16 +1,27 @@
 # PARTY
 
-Next ID: Q-PARTY-077
+Next ID: Q-PARTY-078
 
 ## Static
 
-- Q-PARTY-076. BUG-PARTY-001: Does any route reach the character sheet (overlay 184 `+0462`,
-  overlay 186 `+0421`) with class bytes other than codes 1 to 8 in the record at `4E4F:0029`?
-  Settles it: every caller of overlay 184 `+0462` and, on each route to it, the writes to the
-  class bytes at `4E4F:0044..0047`, whether overlay 184 `+1DCE` runs before the sheet, and the
-  writers of `4E71:0B44` between that call and the sheet (file `0x75CBC`, `0x78934` and `0x93170`
-  are unread, FND-PARTY-073). Tried: FND-PARTY-187 runs the View Character path from the play
-  screen for the four supplied characters and finds codes 1 to 8 there. Blocks: nothing yet.
+- Q-PARTY-076. BUG-PARTY-001: Can the generation screen draw its sheet (overlay 183 `+0A3E` or
+  `+10FF` calling overlay 184 `+033E`) while `DS:1429` points at a stored details record?
+  Settles it: every route into overlay 183 `+0A3E` and `+10FF` (through overlay 184 `+0E6D`,
+  `+0C80`, `+0E62`, `+1067` and overlay 183's own calls), and whether any reaches them without
+  overlay 184 `+07D8` after the last run of the routines that point `DS:1429` at a stored record
+  (overlay 190 `+05A9` and `+36D2`, 202 `+0287`, 209 `+0218` and `+0A84`, 211 `+02B5`,
+  212 `+061C`); stores to `DS:1429` other than direct-address ones. Tried:
+  FND-PARTY-187 runs View Character in play and finds codes 1 to 8; FND-PARTY-188 lists the
+  three callers of the sheet's experience line and the direct-address writers of `DS:1429`, and
+  settles that the overlay 212 route prints a record `+1DCE` converted from the same slot.
+  Blocks: nothing yet.
+- Q-PARTY-077. BUG-PARTY-001: On the DUAL path, does the word at `4E71:0B44` name the slot
+  overlay 209 `+123E` was called with when it calls overlay 184 `+1DCE` at `+14FF`, so that the
+  sheet at `+151E` prints that character's own classes? Settles it: the routes from overlay 172
+  `+05DB` through overlays 173, 188 and 210 to the overlay 209 routines that store `4E71:0B44`,
+  the value of `DS:0DAB` while overlay 190 offers `DUAL`, and what those routines store
+  (FND-PARTY-080). Tried: FND-PARTY-080 reads the calls before `+1DCE` on this path and
+  FND-PARTY-188 finds the sheet call at `+151E` right after it. Blocks: nothing yet.
 - Q-PARTY-073. RULE-PARTY-001: Can a party reach START GAME with no filled slot whose
   `combat_mark` is 1 or 2 and whose hit points are 1 or more, and what does overlay 173 `+3CDA`
   do then? It sets no leader and calls

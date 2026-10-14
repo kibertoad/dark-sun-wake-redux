@@ -60,8 +60,11 @@ None known.
   classes' thresholds (Cleric 7 shows 110000, Gladiator 7 shows 150000), because overlay 184
   `+1DCE` has turned the codes back into 1 to 8 in the record at `4E4F:0029` that the sheet reads
   (FND-PARTY-187, FND-PARTY-073); character generation also keeps codes 1 to 8 there
-  (FND-PARTY-073). For it: `+1DCE` takes the codes from the details record numbered by the word at
-  `4E71:0B44`, not from the record it copies, so a route on which that word names another slot,
-  or one that reaches the sheet without `+1DCE`, would leave other codes there. Settled by the
-  writers of `DS:1429`'s record and of `4E71:0B44` on every route to overlay 184 `+0462`
-  (Q-PARTY-076).
+  (FND-PARTY-073). Of the sheet's three callers, overlay 212's prints a record `+1DCE` has just
+  converted from the same slot (FND-PARTY-188, FND-PARTY-080). Two routes stay open. The
+  generation screen prints the record at `DS:1429`, which six routines outside generation point at
+  a stored details record holding the 17 codes; settled by whether generation can draw the sheet
+  after one of them without overlay 184 `+07D8` resetting it (Q-PARTY-076). The DUAL path prints
+  the record `+1DCE` converted with the codes of the slot in `4E71:0B44`, which may differ from
+  the record copied; settled by the stores to that word before overlay 209 `+14FF`
+  (Q-PARTY-077).
