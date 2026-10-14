@@ -104,11 +104,13 @@ Next ID: Q-PARTY-081
   as the placed entry's low bits; FND-PARTY-196 lists the shipped values of every field and shows
   9999 ending each chain at `0x04`, but names no field from code. Blocks: slice 2.
 - Q-PARTY-005. FMT-PARTY-004, FMT-PARTY-005: What does bit 0 of a `PSST` byte hold, and what
-  does the game do when it reads a 9-byte `SPST` into its 15-byte table entry? Settles it: the
-  code that reads and writes the four-slot tables overlay 186 fills (FND-PARTY-012), and the read
-  entry `37FC:04AB` for a resource shorter than the size it is given. Tried: FND-PARTY-104 reads
-  the level-gain windows, which show `SPST` as the known spells and bits 1 to 7 of `PSST` as power
-  ranks, and keep bit 0. Blocks: slice 3.
+  do bytes 9 to 14 of a slot's 15-byte `SPST` entry hold when the game loads a 9-byte `SPST`?
+  Settles it: the code that reads and writes the four-slot tables overlay 186 fills
+  (FND-PARTY-012), in particular the writes to `4D62:039C + 15 * slot` before a load. Tried:
+  FND-PARTY-104 reads the level-gain windows, which show `SPST` as the known spells and bits 1 to
+  7 of `PSST` as power ranks, and keep bit 0; FND-PARTY-203 shows the load writes only the
+  resource's own length and that no shipped character with a 9-byte `SPST` can be loaded.
+  Blocks: slice 3.
 - Q-PARTY-017. RULE-PARTY-006: When the player opens Create Characters (start window button
   `0x4B65`, overlay 212 `+061C`, window `0x2CEC`) before START GAME, which actions on that
   screen other than `ADD` on an empty box change the placed-object count, `DS:0DAB`, the

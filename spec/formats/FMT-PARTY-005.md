@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_005.ksy
-evidence: [FND-PARTY-006, FND-PARTY-011, FND-PARTY-012, FND-PARTY-104]
+evidence: [FND-PARTY-006, FND-PARTY-011, FND-PARTY-012, FND-PARTY-104, FND-PARTY-203]
 conflicting: []
 split_with: []
 related: []
@@ -44,5 +44,6 @@ bytes and 3 (characters 30, 31 and 33) are 9 bytes [FND-PARTY-006].
 
 ## Open questions
 
-- What the game does when it reads a 9-byte resource into its 15-byte entry (FND-PARTY-012,
-  Q-PARTY-005).
+- What a 9-byte resource leaves in bytes 9 to 14 of its 15-byte entry: the read writes only the
+  first 9 bytes, and no shipped character with one can be loaded (FND-PARTY-203), so it depends on
+  the earlier writes to the entry, which were not read (Q-PARTY-005).
