@@ -6,10 +6,10 @@ Next ID: Q-EXE-028
 
 - Q-EXE-007. FMT-EXE-006: Do the shipped game or sound-setup executables
   launch any batch helpers? Settles it: for the installed DSUN.EXE (the
-  disc copy is not studied, docs/SOURCE-EDITIONS.md), each of the 58
-  computed transfers FND-EXE-586's walk leaves unresolved, and each return
+  disc copy is not studied, docs/SOURCE-EDITIONS.md), each of the 50
+  computed transfers FND-EXE-587's walk leaves unresolved, and each return
   that jumps to an address pushed before it, other than the 45
-  FND-EXE-575 and FND-EXE-578 to FND-EXE-586 already classify (the
+  FND-EXE-575 and FND-EXE-578 to FND-EXE-587 already classify (the
   23 calls to the XMS entry, `4842:0498`, `4842:040A`, `4842:13FB`,
   `4842:14EA`, the far jumps `2707:0188`, `02FA`, `03D5`, `04D0` and
   `058C`, `1BF3:5D0E` (FND-PARTY-043), `4AB9:002B`, `4AB9:0052`, `1000:1F10`, `1000:1FBC`, `1000:2A24`, `4842:051A`,
@@ -55,7 +55,11 @@ Next ID: Q-EXE-028
   block copy, an overlay 204 callback and five video far jump tables to
   routines in the file; declared, they reach no further interrupt site
   and leave 58, 14 of them unclassified (in segments 39D1, 3A8E and
-  3D72).
+  3D72). FND-EXE-587 traces the window hooks and window record callbacks
+  in 39D1 and 3A8E, and three overlay 190 routines' callback arguments,
+  to overlay routines and 28C9:0CFF that callers register as constants;
+  declared, they reach no further interrupt site and leave 50, of which
+  only the six in segment 3D72 are unclassified.
   Tried (before the split into this item, Q-EXE-025 and Q-EXE-026): the
   helper contents and distribution wrapper (FND-EXE-008, FND-EXE-010)
   locate no caller; FND-EXE-350 finds one sound.bat suffix in each game
