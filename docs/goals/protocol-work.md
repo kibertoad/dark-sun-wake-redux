@@ -334,7 +334,8 @@ An owner-approved history repair remains separate from this maintenance scope.
   GAME_DIR/analysis/exe-batches/q006.
 - Pending: the owner allowed agent runs (headless, muted) with the latest session package. Pins
   for dinorefurb-dosbox-session 0.9.0 (hash 56a60b74...d54b) and rust-dos v1.7.2 (ZIP 2ca58dab...,
-  exe 310de9a9...) are a local stash `pin-bump`; the auto-mode classifier blocked installing them,
+  exe 310de9a9...) are uncommitted edits to tools/evidence/requirements.txt and
+  tools/Install-RustDos.ps1; the auto-mode classifier blocked installing them,
   so they wait for the owner's permission. Then record the first run in docs/RUNTIME.md and update
   the versions in AGENTS.md and RUNTIME.md.
 - Lead for unk_2a: overlay 204 +0203 pushes 0x0660:0x00BB (the setter trampoline 5787:00BB) as a
