@@ -46,6 +46,9 @@ Each function returns true or false and changes no state.
 ## Edge cases
 
 An empty party cannot set out, and a party of four offers no empty box for a fifth character.
+A party of fewer than four plays under the same rules, except that a kill's experience is divided
+among the filled slots (RULE-PARTY-015); no other code found counts the filled slots
+(FND-PARTY-173).
 The game keeps four slots for the party's characters and their `PSIN`, `PSST` and `SPST`
 records (FND-PARTY-012), and loads four characters for START GAME (RULE-PARTY-006).
 
@@ -72,4 +75,3 @@ None known.
   slot 0 (FND-PARTY-171); whether `DROP` empties the box depends on the object table at the time
   (FND-PARTY-172), so whether that reaches START GAME with no character in a box is
   Q-PARTY-006.
-- Whether a party of fewer than four plays differently (Q-PARTY-070).
