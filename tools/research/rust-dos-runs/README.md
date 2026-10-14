@@ -73,6 +73,10 @@ saves the checkpoint `play` 90,000 ms after START GAME (run directory
 `artifacts/runs/2026-10-14-twoplay2`); `leader-keys.json`
 presses 4, 1, 2, 3 and 4 from it with a watchpoint on `leader`.
 
+FND-PARTY-195's run is `leader-page-flip.json`: key 4 from the same checkpoint,
+with breakpoints inside `4328:0B4C` past its gates and reads of the display
+page words.
+
 FND-PARTY-184's run is `marks-two.json`: `exp-add-two-start.json` with
 watchpoints on the four combatant records' `combat_mark` bytes.
 

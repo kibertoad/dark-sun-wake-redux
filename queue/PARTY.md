@@ -90,11 +90,6 @@ Next ID: Q-PARTY-079
   entry `37FC:04AB` for a resource shorter than the size it is given. Tried: FND-PARTY-104 reads
   the level-gain windows, which show `SPST` as the known spells and bits 1 to 7 of `PSST` as power
   ranks, and keep bit 0. Blocks: slice 3.
-- Q-PARTY-075. RULE-PARTY-008: What does `4328:0B4C` change when a key's `set_leader` runs it
-  through `28C9:2A81(1)` right after the view redraw (FND-PARTY-180)? Settles it: what
-  `DS:33B6` and `DS:33B8` hold, and readings of `409B:1675`, `3D72:0B84`, `3D72:0942`,
-  `3D72:0DE5`, `3D72:0E10` and `1BF3:5814`. Tried: FND-PARTY-180 reads `28C9:2A81` and
-  `28C9:2AAE`, and FND-PARTY-130 gives `2C5F:0139` as the view redraw. Blocks: slice 3.
 - Q-PARTY-017. RULE-PARTY-006: When the player opens Create Characters (start window button
   `0x4B65`, overlay 212 `+061C`, window `0x2CEC`) before START GAME, which actions on that
   screen other than `ADD` on an empty box change the placed-object count, `DS:0DAB`, the

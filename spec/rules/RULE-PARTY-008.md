@@ -4,7 +4,7 @@ title: The keys 1 to 4 choose the party leader
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [SRC-MANUAL-1994, FND-ACTOR-003, FND-COMBAT-008, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-EXPLORE-001, FND-EXPLORE-002, FND-PARTY-013, FND-PARTY-127, FND-PARTY-171, FND-PARTY-176, FND-PARTY-178, FND-PARTY-179]
+evidence: [SRC-MANUAL-1994, FND-ACTOR-003, FND-COMBAT-008, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-EXPLORE-001, FND-EXPLORE-002, FND-PARTY-013, FND-PARTY-127, FND-PARTY-171, FND-PARTY-176, FND-PARTY-178, FND-PARTY-179, FND-PARTY-180, FND-PARTY-195]
 conflicting: []
 split_with: []
 related: [SCR-UI-002]
@@ -64,7 +64,9 @@ define set_leader(slot):                                         # overlay 182 +
 ## Outputs
 
 No return value. Sets `turn_combatant`, and outside combat `leader`, to the slot of the key when
-the procedure gets that far; changes nothing for another key.
+the procedure gets that far; changes nothing for another key. A key's `set_leader` redraws the view
+(FND-PARTY-130) and shows the redrawn picture at once (FND-PARTY-179, FND-PARTY-180,
+FND-PARTY-195); that display step changes no party state.
 
 ## Edge cases
 
@@ -90,6 +92,3 @@ None known.
   names for its slot where the two differ: the code reads record `slot` (FND-PARTY-176), and the
   runs had them equal (No item: the parties the game builds put combatant `k` in slot `k`,
   FND-PARTY-013, so no party where they differ is known).
-- What a key's `set_leader` changes on screen beyond redrawing the view (`2C5F:0139`,
-  FND-PARTY-130): it then runs `4328:0B4C` at once through `28C9:2A81(1)`, whose callees are not
-  read (FND-PARTY-179, FND-PARTY-180, Q-PARTY-075).
