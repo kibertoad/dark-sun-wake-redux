@@ -2,6 +2,28 @@
 
 Earlier response records: [acceptance archive](TOOLKIT-RESPONSE-ACCEPTANCE-ARCHIVE.md).
 
+## 2026-10-14: checker 6.0.0, reader 4.2.0, engine 19.7.0, session 0.10.0
+
+Adopted in commits 3d745003 and 881e1c86. Checker 6.0.0 reads the regions
+files beside the inventories; they were rewritten in its layout, and the
+local exporter writes it (`docs/EVIDENCE-TOOLS.md`).
+
+Responses confirmed on this repository's cases and closed upstream:
+
+- #466: `reachedFrom` on FND-PARTY-138's 18-handler query names the same
+  seven handlers as the 18 single-start runs, with the control kept.
+- #497: `spans` over the 104 writer-to-interrupt windows of the game census
+  and the 69 of SOUND_DS.EXE. No span has an entry once `1000:03EE` (which
+  ends in `int 21` AH=4Ch) is declared `noReturn`; every source the local
+  scripts flagged is a candidate, except SOUND_DS file `0xF59B`, whose near
+  jump crosses a segment boundary and cannot land in the span.
+- #501: runs give rust-dos the installed card (SB16 at 0x220, IRQ 5, DMA 1,
+  no Ultrasound) and keep `SOUND.CFG` unchanged; EXP-PARTY-001's control run
+  repeats its memory reads and draws exactly.
+- #488 (C1, C2): `outside` declarations for the 12 XMS calls and the vector 8
+  chain take the game census from 83 unresolved transfers to 70. The
+  unreleased item 3 moved to #510.
+
 ## 2026-10-04: compact published bridge removes wrapper transport failure
 
 Reader 2.1.0 / published engine 6.1.1 was tested in the isolated, verified
