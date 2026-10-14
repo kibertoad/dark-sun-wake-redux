@@ -101,5 +101,5 @@ party.
 
 The runs cover box 2 and one stored character, and a drop of the only member. They do not show
 what START GAME does when a party of several created characters is reduced to one, nor what sets
-`leader` to the occupied slot (Q-PARTY-071). The runs used IRQ 7 for the sound card where the GOG
+`leader` to the occupied slot (FND-PARTY-175). The runs used IRQ 7 for the sound card where the GOG
 configuration uses IRQ 5; nothing in them reads the sound card's settings after start-up.

@@ -1,13 +1,14 @@
 # PARTY
 
-Next ID: Q-PARTY-073
+Next ID: Q-PARTY-074
 
 ## Static
 
-- Q-PARTY-071. RULE-PARTY-001, RULE-PARTY-008: What sets `leader` when START GAME begins play with
-  created characters? It was 0 until START GAME, then 2 for one character in box 2
-  (EXP-PARTY-001) and 1 for characters in boxes 1 and 3 (EXP-PARTY-002). Settles it: the stores to `leader` (`4C13:0369`) that START GAME reaches with
-  a placed party, and the box each picks for a party of several characters. Blocks: slice 2.
+- Q-PARTY-073. RULE-PARTY-001: Can a party reach START GAME with no filled slot whose
+  `combat_mark` is 1 or 2, and what does overlay 173 `+3CDA` do then? It sets no leader and calls
+  overlay 201 `+0410` (FND-PARTY-175). Settles it: the writes to byte `+0x14` of a created or
+  added character's combatant record before START GAME, and a reading of overlay 201 `+0410`.
+  Blocks: nothing yet.
 - Q-PARTY-045. RULE-PARTY-015: Does any enemy's `kill_experience` divided by the filled party
   slots reach 32,768, so that killing it lowers each member's experience (FND-PARTY-086,
   FND-PARTY-094)? Settles it: what moves objects 430 and 541 out of the region `Limbo`, where

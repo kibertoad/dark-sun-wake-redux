@@ -4,7 +4,7 @@ title: A party has one to four characters
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [EXP-PARTY-001, EXP-PARTY-002, FND-PARTY-170, SRC-MANUAL-1994]
+evidence: [EXP-PARTY-001, EXP-PARTY-002, FND-PARTY-170, FND-PARTY-174, FND-PARTY-175, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-006, SCR-UI-001, SCR-UI-002, SCR-UI-003, SCR-UI-004]
@@ -54,7 +54,10 @@ Neither changes state.
 A party of four offers no empty box for a fifth character. A party emptied with `DROP` after `ADD`
 counts as empty: START GAME then begins play with the supplied party, as it does when nothing was
 added (EXP-PARTY-001). A party of one or two plays with each character in the box it was added to,
-which need not be box 0 (EXP-PARTY-001, EXP-PARTY-002).
+which need not be box 0 (EXP-PARTY-001, EXP-PARTY-002). `leader` stays 0 on the Create
+Characters screen; once play begins it names the lowest filled box, set by the routine that
+restores the party's combatants, which picks the lowest filled slot whose `combat_mark` was 1, 2
+or 3 (FND-PARTY-174, FND-PARTY-175).
 A party of fewer than four plays under the same rules, except that a kill's experience is divided
 among the filled slots (RULE-PARTY-015); no other code found counts the filled slots
 (FND-PARTY-173).
@@ -74,9 +77,9 @@ None known.
 
 ## Open questions
 
-- What makes `leader` name a filled box once play begins: it was 0 until START GAME, then 2 for a
-  party in box 2 alone (EXP-PARTY-001) and 1 for a party in boxes 1 and 3 (EXP-PARTY-002), which
-  fits the lowest filled box (Q-PARTY-071).
+- What START GAME's party restore does when no filled slot's `combat_mark` is 1 or 2: it then
+  sets no leader and calls overlay 201 `+0410` (FND-PARTY-175), and whether a created character
+  can reach START GAME so marked is not read (Q-PARTY-073).
 - Whether a created party of three or four, or one made with NEW, begins play the same way; the
   experiments added one and two stored characters (No item: the same mechanism as EXP-PARTY-002,
   with no reading that predicts a difference).

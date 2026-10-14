@@ -1,0 +1,75 @@
+---
+id: FND-PARTY-175
+title: Overlay 173 +3CDA sets byte 0x14 of each party combatant marked 1, 2 or 3 to 1, and then makes the lowest party slot so marked the leader, or calls overlay 201 +0410 when no slot was marked 1 or 2
+status: recorded
+builds: [BLD-GOG-EN-1.1]
+superseded_by: []
+recorded_by: kibertoad
+reproduced_by: []
+method: static
+locations:
+  - build: BLD-GOG-EN-1.1
+    file: DSUN.EXE
+    offset: 0x0005E5FA..0x0005E750
+tool: tools/research/exec-census/overlay_listing.py and direct_callers.py (Capstone 5.0.9)
+environment: null
+---
+
+## Observation
+
+Overlay offsets are written `descriptor +offset`; file offsets are those of the installed
+`DSUN.EXE`, where overlay 173's code `+0000` is at `0x5A920`. Segment words in the code are
+resolved through the overlay's fixup list (FMT-EXE-005) as `overlay_listing.py` does: `0x0388`
+names segment `4F49`, which holds `object_slot_kinds` and `object_slot_combatants`
+(FND-PARTY-171), and `0x02E0` names `4C10`. `DS` is the default data segment `57E0`.
+
+`+3CDA` (`0x0005E5FA..0x0005E750`) takes one argument it does not read here. It stores 1 to the
+byte at `DS:13FB` (`+3CE1`), then for `si` from 0 to 3 (`+3CE6`, `+3DB2..+3DB8`):
+
+1. When `object_slot_kinds[si]` is not 2 it goes on to the next slot (`+3CE8..+3CFA`).
+2. It calls overlay 193 `+1C95` with `si` and `0x45`, and, when that returns nonzero, overlay 193
+   `+194F` with the same arguments (`+3CFD..+3D14`).
+3. It stores 0 to the word at `4F49:08A7 + 0x13 * si` and `0xFF` to the byte at
+   `4F49:0374 + 0x1C * si` (`+3D17..+3D32`).
+4. It takes the slot's FMT-COMBAT-001 record, the one `object_slot_combatants[si]` selects in the
+   table at the far pointer `DS:19C9`, 49 bytes each (`+3D38..+3D57`), and reads its byte `+0x14`
+   (`+3D5A..+3D61`).
+   - For 1, 2 or 3 (`+3D63..+3D70`): when the record's word `+0x00` is less than 1 it stores 1
+     there (`+3D72..+3D7B`); when the byte was not 3 it stores 0 to `DS:13FB` (`+3D82..+3D8C`);
+     then it stores 1 to the byte `+0x14` (`+3D91..+3D94`).
+   - Otherwise it sets bits 4 and 6 (`or 0x50`) of byte `+5` of the slot's placed entry, the
+     8-byte entry at the far pointer `DS:67B7` that the word at `DS:67BC + 0x25 * si` indexes
+     (`+3D9B..+3DAD`).
+
+After the loop, when `DS:13FB` is 0 (`+3DBB..+3DC2`), it walks `si` from 0 to 3 again and, at the
+first slot whose `object_slot_kinds` byte is 2 and whose combatant's byte `+0x14` is 1, calls
+overlay 182 `+1D3E` (trampoline `56BD:0020`) with `si` and 0 and leaves the walk
+(`+3DC4..+3E08`). It then calls `1695:02E7` with the word at `DS:426D` and `0xF461` when the
+word at `4C10:0019` is not 0 (`+3E0A..+3E26`). When `DS:13FB` is not 0 it instead calls overlay
+201 `+0410` (`+3E28`). It returns at `+3E2F`.
+
+`direct_callers.py <dsun> 173+3CDA` finds near calls at `+07A1` and `+2514` in overlay 173, and
+overlay 188 `+14A3` through the trampoline `5671:00E3`.
+
+## Interpretation
+
+`+3CDA` restores the party after something that marks combatants: each filled slot whose mark is
+1, 2 or 3 is set to 1 with at least 1 in its word `+0x00`, and the slots with another mark are
+flagged in their placed entries. If at least one slot was marked 1 or 2, the lowest slot now marked
+1, which is the lowest filled slot whose mark was 1 to 3, becomes the leader through
+`+1D3E`, whose guards (FND-PARTY-171) leave a leader that is already that slot unchanged. If every
+filled slot was marked 3 or something else, it calls overlay 201 `+0410` and sets no leader.
+FND-PARTY-174 shows START GAME reaching it through `+07A1` with a created party.
+
+## Alternatives
+
+- What byte `+0x14` and word `+0x00` mean is not read here. RULE-PARTY-015 names `+0x14`
+  `combat_mark`; the reading above does not depend on the names.
+- Overlay 193 `+1C95` and `+194F`, `1695:02E7` and overlay 201 `+0410` were not read, nor the
+  contexts of the callers other than `+07A1`.
+
+## How to reproduce
+
+From the commit that adds this finding, with the locked evidence Python and the installed
+`DSUN.EXE`, run `tools/research/exec-census/overlay_listing.py <dsun> 173 5E5FA 5E750` and
+`tools/research/exec-census/direct_callers.py <dsun> 173+3CDA`.

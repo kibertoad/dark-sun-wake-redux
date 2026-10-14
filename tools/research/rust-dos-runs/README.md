@@ -34,6 +34,12 @@ each result against the value the original computed, and stops the run at a
 draw it cannot name. A plan with `rng_state` writes that seed through a guarded
 write before the first step.
 
+A plan with `watch`, a list of `[address, length]`, sets a watchpoint on each
+range. At each write it prints the static address of the writing instruction
+and the BP chain: each frame's far return, with the 24 bytes before it so that
+overlay code can be found in the file. A run that saves no checkpoint deletes
+its copy of C: when it ends.
+
 `start.json` (run directory `artifacts/runs/2026-10-14-start5`) makes the
 start-window checkpoint `start` from a new start. EXP-PARTY-001's runs start
 from it:
@@ -51,6 +57,9 @@ EXP-PARTY-002's runs start from it too:
 | --- | --- |
 | `exp-add-two-start.json` | ADD to box 1, ADD to box 3, START GAME |
 | `exp-add-two-start-seed.json` | the same with `rng_state` 12345 |
+
+FND-PARTY-174's run is `leader-writes-two.json`: `exp-add-two-start.json` with
+a watchpoint on `leader`.
 
 The other plans (`exp-add-start.json`, `add.json`, `drop.json`, `after-drop.json`,
 `start-game-after-drop.json`, `start-game-control.json`) are the exploratory

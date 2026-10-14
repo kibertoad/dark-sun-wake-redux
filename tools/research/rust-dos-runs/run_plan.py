@@ -165,6 +165,8 @@ with RustDosSession(settings) as s:
         old = s.client.read_memory(RNG_STATE, 4).data
         contract = FieldContract("dark-sun-wake-runs/1", (WritableField("rng_state", RNG_STATE, 4),))
         s.write(contract, "rng_state", struct.pack("<I", plan["rng_state"]), hashlib.sha256(old).hexdigest())
+    for addr, n in plan.get("watch", []):
+        s.client.set_watchpoint(addr, n)
     if plan.get("watch_draws"):
         s.client.set_breakpoint(GENERATOR)
         print("rng_state", struct.unpack("<I", s.client.read_memory(RNG_STATE, 4).data)[0])
@@ -178,10 +180,31 @@ with RustDosSession(settings) as s:
             inputs.append(s.send_input("mouse", step["mouse"]))
         if "until_ms" in step:
             ob = wait(s, s.continue_(until_ms=step["until_ms"]))
-            while ob.stop.get("reason") == "breakpoint" and ob.stop["cs_ip"] == GENERATOR:
-                draw, ob = record_draw(s, ob, step["until_ms"])
-                draws.append(draw)
-                print("  draw", draw, flush=True)
+            while True:
+                if ob.stop.get("reason") == "breakpoint" and ob.stop["cs_ip"] == GENERATOR:
+                    draw, ob = record_draw(s, ob, step["until_ms"])
+                    draws.append(draw)
+                    print("  draw", draw, flush=True)
+                elif ob.stop.get("reason") == "watchpoint":
+                    # A write to a watched field: report where it came from and go on.
+                    r = ob.stop["registers"]
+                    cs, ip = ob.stop["cs_ip"].split(":")
+                    print("  write", {k: ob.stop.get(k) for k in ("watchpoint", "emu_ns")},
+                          "at", static(int(cs, 16), int(ip, 16)), "run", ob.stop["cs_ip"], flush=True)
+                    # The callers, by the BP chain, taking each frame's return as far.
+                    bp, ss = int(r["bp"], 16), r["ss"]
+                    print("   stack", s.client.read_memory(f"{ss}:{r['sp']}", 16).data.hex(), "bp", r["bp"])
+                    for _ in range(8):
+                        if not bp:
+                            break
+                        frame = s.client.read_memory(f"{ss}:{bp:04X}", 6).data
+                        nbp, off, seg = struct.unpack("<HHH", frame)
+                        code = s.client.read_memory(f"{seg:04X}:{(off - 24) & 0xFFFF:04X}", 24).data
+                        print("   frame", f"{bp:04X}", "returns to", static(seg, off), "code", code.hex())
+                        bp = nbp
+                    ob = wait(s, s.continue_(until_ms=step["until_ms"]))
+                else:
+                    break
             print(k, step["until_ms"], ob.stop.get("reason"), ob.stop.get("cs_ip"), flush=True)
         for op in inputs:
             ob = s.observe(op, timeout=5)
@@ -198,3 +221,6 @@ with RustDosSession(settings) as s:
             print("  saved", step["save"], st.checkpoint)
     if plan.get("watch_draws"):
         print("draws", json.dumps(draws))
+if not any("save" in step for step in plan["steps"]):
+    # C: is a copy of the game's files; a run that saved no checkpoint does not need it again.
+    shutil.rmtree(run / "drive-c", ignore_errors=True)
