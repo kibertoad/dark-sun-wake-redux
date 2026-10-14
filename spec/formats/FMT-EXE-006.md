@@ -359,7 +359,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   holding routines in segments 1425 and 15F3 only. FND-EXE-585 finds the timer
   callbacks and the sound driver dispatch going to routines in the file
   or to driver code loaded from ADV resources, which Q-EXE-027 asks
-  about. Which of its other
+  about. FND-EXE-586 finds the script opcode dispatch, the text
+  formatter and the video far jump tables staying in the file. Which of its other
   unresolved computed transfers can reach code outside the file remains
   Q-EXE-007.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;

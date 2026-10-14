@@ -6,12 +6,13 @@ Next ID: Q-EXE-028
 
 - Q-EXE-007. FMT-EXE-006: Do the shipped game or sound-setup executables
   launch any batch helpers? Settles it: for the installed DSUN.EXE (the
-  disc copy is not studied, docs/SOURCE-EDITIONS.md), each of the 61
-  computed transfers FND-EXE-585's walk leaves unresolved, and each return
-  that jumps to an address pushed before it, other than the 39
-  FND-EXE-575 and FND-EXE-578 to FND-EXE-585 already classify (the
+  disc copy is not studied, docs/SOURCE-EDITIONS.md), each of the 58
+  computed transfers FND-EXE-586's walk leaves unresolved, and each return
+  that jumps to an address pushed before it, other than the 45
+  FND-EXE-575 and FND-EXE-578 to FND-EXE-586 already classify (the
   23 calls to the XMS entry, `4842:0498`, `4842:040A`, `4842:13FB`,
-  `4842:14EA`, `4AB9:002B`, `4AB9:0052`, `1000:1F10`, `1000:1FBC`, `1000:2A24`, `4842:051A`,
+  `4842:14EA`, the far jumps `2707:0188`, `02FA`, `03D5`, `04D0` and
+  `058C`, `1BF3:5D0E` (FND-PARTY-043), `4AB9:002B`, `4AB9:0052`, `1000:1F10`, `1000:1FBC`, `1000:2A24`, `4842:051A`,
   `44B6:00B8`, `55CE:018F`, `1000:1D8D`, `1000:252C`, `1000:029D`,
   `1000:298A`), classified by where its target
   comes from: an address inside the file, which is declared to the walk
@@ -50,6 +51,11 @@ Next ID: Q-EXE-028
   the walk read as a return, to routines in the file or to driver code
   loaded from ADV resources (Q-EXE-027); declared, they reach six
   interrupt 66 sites and two calls into a DIGPAK image, leaving 61.
+  FND-EXE-586 traces the script opcode dispatch, the text formatter, a
+  block copy, an overlay 204 callback and five video far jump tables to
+  routines in the file; declared, they reach no further interrupt site
+  and leave 58, 14 of them unclassified (in segments 39D1, 3A8E and
+  3D72).
   Tried (before the split into this item, Q-EXE-025 and Q-EXE-026): the
   helper contents and distribution wrapper (FND-EXE-008, FND-EXE-010)
   locate no caller; FND-EXE-350 finds one sound.bat suffix in each game
