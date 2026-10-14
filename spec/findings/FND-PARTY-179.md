@@ -42,7 +42,7 @@ it goes on at `+1D82`. From there:
    4, 16 and 16 (`+1E63..+1E7A`). It returns at `+1E80`.
 
 Its callers pass 1 from the keys 1 to 4 (`28C9:0EB7`, FND-PARTY-176) and 0 from overlay 173
-`+3DF7` (FND-PARTY-175).
+`+3DF7` (FND-PARTY-185).
 
 ## Interpretation
 

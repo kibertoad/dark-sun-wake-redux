@@ -1,6 +1,6 @@
 ---
-id: FND-PARTY-175
-title: Overlay 173 +3CDA sets byte 0x14 of each party combatant marked 1, 2 or 3 to 1, and then makes the lowest party slot so marked the leader, or calls overlay 201 +0410 when no slot was marked 1 or 2
+id: FND-PARTY-185
+title: Overlay 173 +3CDA marks every party combatant with combat_mark 1 to 3 as 1, raising a fallen one to 1 hit point, then makes the lowest such slot the leader when one of them was standing, and otherwise calls overlay 201 +0410
 status: recorded
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
@@ -34,9 +34,10 @@ byte at `DS:13FB` (`+3CE1`), then for `si` from 0 to 3 (`+3CE6`, `+3DB2..+3DB8`)
 4. It takes the slot's FMT-COMBAT-001 record, the one `object_slot_combatants[si]` selects in the
    table at the far pointer `DS:19C9`, 49 bytes each (`+3D38..+3D57`), and reads its byte `+0x14`
    (`+3D5A..+3D61`).
-   - For 1, 2 or 3 (`+3D63..+3D70`): when the record's word `+0x00` is less than 1 it stores 1
-     there (`+3D72..+3D7B`); when the byte was not 3 it stores 0 to `DS:13FB` (`+3D82..+3D8C`);
-     then it stores 1 to the byte `+0x14` (`+3D91..+3D94`).
+   - For 1, 2 or 3 (`+3D63..+3D70`): when the record's signed word `+0x00` is less than 1 it
+     stores 1 there and goes to `+3D91` (`+3D72..+3D80`); otherwise, when the byte is not 3, it
+     stores 0 to `DS:13FB` (`+3D82..+3D8C`). In both cases it then stores 1 to the byte `+0x14`
+     (`+3D91..+3D94`).
    - Otherwise it sets bits 4 and 6 (`or 0x50`) of byte `+5` of the slot's placed entry, the
      8-byte entry at the far pointer `DS:67B7` that the word at `DS:67BC + 0x25 * si` indexes
      (`+3D9B..+3DAD`).
@@ -53,18 +54,18 @@ overlay 188 `+14A3` through the trampoline `5671:00E3`.
 
 ## Interpretation
 
-`+3CDA` restores the party after something that marks combatants: each filled slot whose mark is
-1, 2 or 3 is set to 1 with at least 1 in its word `+0x00`, and the slots with another mark are
-flagged in their placed entries. If at least one slot was marked 1 or 2, the lowest slot now marked
-1, which is the lowest filled slot whose mark was 1 to 3, becomes the leader through
-`+1D3E`, whose guards (FND-PARTY-171) leave a leader that is already that slot unchanged. If every
-filled slot was marked 3 or something else, it calls overlay 201 `+0410` and sets no leader.
-FND-PARTY-174 shows START GAME reaching it through `+07A1` with a created party.
+The combatant's word `+0x00` is its hit points (FND-PARTY-050). `+3CDA` brings back every filled
+slot marked 1 to 3 with mark 1 and at least 1 hit point, and flags the slots with another mark in
+their placed entries. If one of those slots had hit points and a mark of 1 or 2, it makes the
+lowest slot marked 1 to 3 the leader through `+1D3E`, whose guards (FND-PARTY-171) leave a leader
+that is already that slot unchanged; that slot need not be the one that was standing. Otherwise,
+with no member standing, it calls overlay 201 `+0410` and sets no leader. FND-PARTY-089 reads the
+same routine as the end of a fight and agrees with this; FND-PARTY-174 shows START GAME reaching
+it through `+07A1` with a created party.
 
 ## Alternatives
 
-- What byte `+0x14` and word `+0x00` mean is not read here. RULE-PARTY-015 names `+0x14`
-  `combat_mark`; the reading above does not depend on the names.
+- What `combat_mark` 2 and 3 mean is not read here; the reading above does not depend on it.
 - Overlay 193 `+1C95` and `+194F`, `1695:02E7` and overlay 201 `+0410` were not read, nor the
   contexts of the callers other than `+07A1`.
 

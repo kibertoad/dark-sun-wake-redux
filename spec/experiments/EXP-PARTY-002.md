@@ -69,5 +69,5 @@ The draws are those of EXP-PARTY-001's runs with one added character under the s
 START GAME began play with both added characters, each in the box it was added to, and `leader`
 went from 0 to 1, the lower of the two filled boxes, by the time play began. With EXP-PARTY-001,
 where the only character was in box 2 and `leader` became 2, this fits `leader` naming the lowest
-filled box; two cases do not establish that, and FND-PARTY-175 reads the code that sets it. The runs
+filled box; two cases do not establish that, and FND-PARTY-185 reads the code that sets it. The runs
 do not cover three or four created characters, nor a party built with NEW.

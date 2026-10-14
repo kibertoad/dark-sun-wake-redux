@@ -4,7 +4,7 @@ title: A party has one to four characters
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [EXP-PARTY-001, EXP-PARTY-002, FND-PARTY-170, FND-PARTY-174, FND-PARTY-175, FND-PARTY-183, FND-PARTY-184, SRC-MANUAL-1994]
+evidence: [EXP-PARTY-001, EXP-PARTY-002, FND-PARTY-170, FND-PARTY-174, FND-PARTY-183, FND-PARTY-184, FND-PARTY-185, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-006, SCR-UI-001, SCR-UI-002, SCR-UI-003, SCR-UI-004]
@@ -57,7 +57,7 @@ added (EXP-PARTY-001). A party of one or two plays with each character in the bo
 which need not be box 0 (EXP-PARTY-001, EXP-PARTY-002). `leader` stays 0 on the Create
 Characters screen; once play begins it names the lowest filled box, set by the routine that
 restores the party's combatants, which picks the lowest filled slot whose `combat_mark` was 1, 2
-or 3 (FND-PARTY-174, FND-PARTY-175). An added character arrives with the `combat_mark` its record
+or 3, provided one slot marked 1 or 2 has hit points (FND-PARTY-174, FND-PARTY-185). An added character arrives with the `combat_mark` its record
 holds, 0 becoming 1 (FND-PARTY-183, FND-PARTY-184), and every shipped stored character holds 0
 or 1.
 A party of fewer than four plays under the same rules, except that a kill's experience is divided
@@ -79,8 +79,8 @@ None known.
 
 ## Open questions
 
-- What START GAME's party restore does when no filled slot's `combat_mark` is 1 or 2: it then
-  sets no leader and calls overlay 201 `+0410` (FND-PARTY-175). Added characters arrive marked 1
+- What START GAME's party restore does when no filled slot with `combat_mark` 1 or 2 has hit
+  points: it then sets no leader and calls overlay 201 `+0410` (FND-PARTY-185). Added characters arrive marked 1
   unless their record holds 2 or more (FND-PARTY-183); whether a character made with NEW, or one
   the game stores with a mark of 3 or more, can reach START GAME is not read (Q-PARTY-073).
 - Whether a created party of three or four, or one made with NEW, begins play the same way; the

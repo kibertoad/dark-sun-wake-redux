@@ -54,7 +54,7 @@ The run made the same 8 draws as EXP-PARTY-002's run 1.
 ## Interpretation
 
 When START GAME begins play with created characters in boxes 1 and 3, `leader` is set by overlay
-173 `+3CDA` (FND-PARTY-175), which the main loop reaches through overlay 173 `+07A1`, and by no
+173 `+3CDA` (FND-PARTY-185), which the main loop reaches through overlay 173 `+07A1`, and by no
 other write in the first 90 seconds.
 
 ## Alternatives

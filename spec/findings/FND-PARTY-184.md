@@ -47,7 +47,7 @@ EXP-PARTY-002.
 
 The characters this run adds arrive with `combat_mark` 1 through FND-PARTY-183's store, and nothing
 before START GAME's party restore changes it, so that restore finds both slots marked 1 and sets
-the leader (FND-PARTY-175).
+the leader (FND-PARTY-185).
 
 ## Alternatives
 

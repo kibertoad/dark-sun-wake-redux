@@ -5,8 +5,9 @@ Next ID: Q-PARTY-076
 ## Static
 
 - Q-PARTY-073. RULE-PARTY-001: Can a party reach START GAME with no filled slot whose
-  `combat_mark` is 1 or 2, and what does overlay 173 `+3CDA` do then? It sets no leader and calls
-  overlay 201 `+0410` (FND-PARTY-175). Settles it: the `combat_mark` a character made with NEW
+  `combat_mark` is 1 or 2 and whose hit points are 1 or more, and what does overlay 173 `+3CDA`
+  do then? It sets no leader and calls
+  overlay 201 `+0410` (FND-PARTY-185). Settles it: the `combat_mark` a character made with NEW
   gets, the value the game writes to a type-1 chunk's byte `0x14` when it stores a character
   (overlay 187 `+018F`, FND-PARTY-054), and a reading of overlay 201 `+0410`. Tried:
   FND-PARTY-183 and FND-PARTY-184 show ADD loading a stored 0 as 1 and keeping other values.
