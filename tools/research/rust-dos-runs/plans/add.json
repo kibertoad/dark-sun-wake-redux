@@ -1,4 +1,4 @@
-{"start": "artifacts/runs/2026-10-14-start5:start", "steps": [
+{"start": "artifacts/runs/2026-10-14-start6:start", "steps": [
  {"mouse": {"action": "click", "x": 160, "y": 93, "coords": "virtual"}, "until_ms": 195000},
  {"mouse": {"action": "click", "x": 70, "y": 107, "button": "right", "coords": "virtual"}, "until_ms": 200000},
  {"mouse": {"action": "click", "x": 115, "y": 129, "coords": "virtual"}, "until_ms": 206000},

@@ -30,12 +30,13 @@ SHA-256 differs from the package's pins.
 How an agent run starts the game (2026-10-14, `tools/research/rust-dos-runs/`):
 a deterministic run at 15000 instructions a millisecond, C: a copy of the
 installed game's files, D: the CD image `game.ins` mounted read-only, and the
-target `DSUN.EXE -W0 -L` as `RAVAGER.BAT` gives it. rust-dos's Sound Blaster
-sits at IRQ 7 and the package passes `--no-config`, so no setting moves it,
-while the installed `SOUND.CFG` names IRQ 5: with that file the game stops at
-once with `Mel Fatal Error #: 26` and `DSP Detect Fail` (exit code 0x1A). The
-run's copy of `SOUND.CFG` therefore names IRQ 7 in its two IRQ words (offsets
-2 and 12) and is otherwise the installed file. The program loads with
+target `DSUN.EXE -W0 -L` as `RAVAGER.BAT` gives it. The installed `SOUND.CFG`
+names a card at 0x220, IRQ 5 and DMA 1. With rust-dos's default card at IRQ 7
+the game stops at once with `Mel Fatal Error #: 26` and `DSP Detect Fail` (exit
+code 0x1A), so the run gives rust-dos a Sound Blaster 16 at 0x220, IRQ 5, DMA 1
+and HDMA 5 and no Ultrasound (`RustDosConfig.sound_blaster` and `ultrasound`,
+dinorefurb-dosbox-session 0.10.0), and C: holds the installed `SOUND.CFG`
+unchanged. The program loads with
 its first segment at `05BA` (the repository's load image puts it at `1000`).
 
 ## BLD-GOG-EN-1.1

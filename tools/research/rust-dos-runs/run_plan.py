@@ -6,8 +6,8 @@ plan: {"start": null | "<earlier run dir>:<state>", "steps": [{"keys": [...], "u
 """
 import hashlib, json, os, shutil, struct, sys
 from pathlib import Path
-from dinorefurb_dosbox_session import (FieldContract, Media, RustDosConfig, RustDosSession, RustDosSettings, Target, WritableField,
-                                       RUST_DOS_PINNED_SHA256, read_saved_state)
+from dinorefurb_dosbox_session import (FieldContract, Media, RustDosConfig, RustDosSession, RustDosSettings, SoundBlaster, Target,
+                                       WritableField, RUST_DOS_PINNED_SHA256, read_saved_state)
 
 game = Path(os.environ["GAME_DIR"])  # the installed BLD-GOG-EN-1.1
 run = Path(sys.argv[1])
@@ -24,18 +24,19 @@ def prepare(c: Path) -> None:
             shutil.copytree(p, c / p.name)
         else:
             shutil.copy2(p, c / p.name)
-    cfg = bytearray((c / "SOUND.CFG").read_bytes())
-    # The sound setup's file names IRQ 5 for the music and the digital driver (words at 2 and 12);
-    # the session's rust-dos has its Sound Blaster at IRQ 7 and takes no configuration.
-    assert cfg[2:4] == bytes([5, 0]) and cfg[12:14] == bytes([5, 0]), bytes(cfg[:16]).hex()
-    cfg[2:4] = cfg[12:14] = bytes([7, 0])
-    (c / "SOUND.CFG").write_bytes(bytes(cfg))
+    cfg = (c / "SOUND.CFG").read_bytes()
+    # The sound setup's file names a card at 0x220, IRQ 5 (words at 0 and 2) and DMA 1 (word at 4)
+    # for the music, and the same for the digital driver (words at 10, 12 and 14).
+    assert cfg[:6] == cfg[10:16] == bytes([0x20, 2, 5, 0, 1, 0]), cfg[:16].hex()
 
-config = RustDosConfig(media=(Media("D", game / "game.ins", "iso"),), deterministic=True, cycles="15000")
+
 start = None
 if plan.get("start"):
     d, name = plan["start"].rsplit(":", 1)
     start = read_saved_state(Path(d), name)
+# The card SOUND.CFG names, with no Ultrasound sharing its IRQ.
+config = RustDosConfig(media=(Media("D", game / "game.ins", "iso"),), deterministic=True, cycles="15000",
+                       sound_blaster=SoundBlaster(base=0x220, irq=5, dma=1), ultrasound=None)
 settings = RustDosSettings(
     emulator=Path("artifacts/rust-dos/rust-dos.exe"),
     emulator_sha256=RUST_DOS_PINNED_SHA256,
@@ -46,6 +47,22 @@ settings = RustDosSettings(
     readiness_timeout=60.0,
     start_state=start,
 )
+
+def report_chain(s, ob):
+    # The stack at the stop and the callers by the BP chain, each frame's return taken as far,
+    # with the 24 bytes before each return so that overlay code can be found in the file.
+    r = ob.stop["registers"]
+    bp, ss = int(r["bp"], 16), r["ss"]
+    print("   stack", s.client.read_memory(f"{ss}:{r['sp']}", 16).data.hex(), "bp", r["bp"])
+    for _ in range(8):
+        if not bp:
+            break
+        frame = s.client.read_memory(f"{ss}:{bp:04X}", 6).data
+        nbp, off, seg = struct.unpack("<HHH", frame)
+        code = s.client.read_memory(f"{seg:04X}:{(off - 24) & 0xFFFF:04X}", 24).data
+        print("   frame", f"{bp:04X}", "returns to", static(seg, off), "code", code.hex())
+        bp = nbp
+
 
 def wait(s, op):
     ob = s.observe(op, timeout=600)
@@ -180,6 +197,10 @@ with RustDosSession(settings) as s:
             inputs.append(s.send_input("type", {"text": step["type"]}))
         if "mouse" in step:
             inputs.append(s.send_input("mouse", step["mouse"]))
+        # Breakpoints of this step only, so that a busy routine can be caught where it matters.
+        breaks = set(step.get("breaks", []))
+        for addr in breaks:
+            s.client.set_breakpoint(addr)
         if "until_ms" in step:
             ob = wait(s, s.continue_(until_ms=step["until_ms"]))
             while True:
@@ -198,25 +219,21 @@ with RustDosSession(settings) as s:
                     if not changed:
                         ob = wait(s, s.continue_(until_ms=step["until_ms"]))
                         continue
-                    r = ob.stop["registers"]
                     cs, ip = ob.stop["cs_ip"].split(":")
                     print("  write", changed, ob.stop.get("emu_ns"),
                           "at", static(int(cs, 16), int(ip, 16)), "run", ob.stop["cs_ip"], flush=True)
-                    # The callers, by the BP chain, taking each frame's return as far.
-                    bp, ss = int(r["bp"], 16), r["ss"]
-                    print("   stack", s.client.read_memory(f"{ss}:{r['sp']}", 16).data.hex(), "bp", r["bp"])
-                    for _ in range(8):
-                        if not bp:
-                            break
-                        frame = s.client.read_memory(f"{ss}:{bp:04X}", 6).data
-                        nbp, off, seg = struct.unpack("<HHH", frame)
-                        code = s.client.read_memory(f"{seg:04X}:{(off - 24) & 0xFFFF:04X}", 24).data
-                        print("   frame", f"{bp:04X}", "returns to", static(seg, off), "code", code.hex())
-                        bp = nbp
+                    report_chain(s, ob)
+                    ob = wait(s, s.continue_(until_ms=step["until_ms"]))
+                elif ob.stop.get("reason") == "breakpoint" and ob.stop["cs_ip"] in breaks:
+                    # A breakpoint the step set: report the caller's arguments and chain, go on.
+                    print("  break", ob.stop["cs_ip"], ob.stop.get("emu_ns"), flush=True)
+                    report_chain(s, ob)
                     ob = wait(s, s.continue_(until_ms=step["until_ms"]))
                 else:
                     break
             print(k, step["until_ms"], ob.stop.get("reason"), ob.stop.get("cs_ip"), flush=True)
+        for addr in breaks:
+            s.client.remove_breakpoints(addr)
         for op in inputs:
             ob = s.observe(op, timeout=5)
             if ob.pending:

@@ -1,4 +1,4 @@
-{"start": "artifacts/runs/2026-10-14-cc5:dropped", "steps": [
+{"start": "artifacts/runs/2026-10-14-cc8:dropped", "steps": [
  {"mouse": {"action": "click", "x": 115, "y": 117, "coords": "virtual"}, "until_ms": 231000, "shot": "yes",
   "read": [["4503:0C33", 12], ["41CD:0369", 2], ["761B:0088", 66]], "save": "afterdrop"},
  {"mouse": {"action": "click", "x": 70, "y": 107, "button": "right", "coords": "virtual"}, "until_ms": 236000, "shot": "menu4"},

@@ -1,0 +1,51 @@
+{
+ "start": "artifacts/runs/2026-10-14-start6:start",
+ "steps": [
+  {
+   "shot": "s00-start"
+  },
+  {
+   "mouse": {
+    "action": "click",
+    "x": 157,
+    "y": 76,
+    "coords": "virtual"
+   },
+   "until_ms": 190000,
+   "shot": "s11-play10"
+  },
+  {
+   "until_ms": 210000,
+   "shot": "s12-play30"
+  },
+  {
+   "keys": [
+    "esc"
+   ],
+   "until_ms": 220000,
+   "shot": "s13-esc"
+  },
+  {
+   "keys": [
+    "esc"
+   ],
+   "until_ms": 240000,
+   "shot": "s14-esc"
+  },
+  {
+   "until_ms": 270000,
+   "shot": "s15-play90"
+  },
+  {
+   "mouse": {
+    "action": "click",
+    "x": 100,
+    "y": 175,
+    "coords": "virtual"
+   },
+   "until_ms": 280000,
+   "shot": "q25-choice",
+   "save": "talk"
+  }
+ ]
+}

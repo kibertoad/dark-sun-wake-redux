@@ -1,4 +1,4 @@
-{"start": "artifacts/runs/2026-10-14-cc6:afterdrop", "steps": [
+{"start": "artifacts/runs/2026-10-14-cc9:afterdrop", "steps": [
  {"mouse": {"action": "click", "x": 70, "y": 107, "button": "right", "coords": "virtual"}, "until_ms": 236000},
  {"keys": ["esc"], "until_ms": 240000},
  {"keys": ["esc"], "until_ms": 246000},

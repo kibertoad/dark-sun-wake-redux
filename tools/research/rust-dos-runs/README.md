@@ -11,9 +11,10 @@ artifacts/evidence-python/Scripts/python.exe -I tools/research/rust-dos-runs/run
 
 Every run is deterministic at 15000 instructions a millisecond (`cycles fixed
 15000` in GOG's configuration), with C: a copy of the game's files and D: the
-CD image `game.ins`. The copy of `SOUND.CFG` names IRQ 7 in place of IRQ 5,
-since the session's rust-dos takes no configuration and has its Sound Blaster
-at IRQ 7.
+CD image `game.ins`. rust-dos has the card the installed `SOUND.CFG` names (a
+Sound Blaster 16 at 0x220, IRQ 5, DMA 1) and no Ultrasound. Runs made before
+dinorefurb-dosbox-session 0.10.0 had rust-dos's default card at IRQ 7 and a copy
+of `SOUND.CFG` rewritten to IRQ 7, and their checkpoints are not used.
 
 `run_plan.py` follows a plan: each step queues its keys, typed text or mouse
 event, runs to the emulated time `until_ms`, checks that the input was
@@ -41,7 +42,11 @@ and the BP chain: each frame's far return, with the 24 bytes before it so that
 overlay code can be found in the file. A run that saves no checkpoint deletes
 its copy of C: when it ends.
 
-`start.json` (run directory `artifacts/runs/2026-10-14-start5`) makes the
+A step with `breaks`, a list of run addresses, sets those breakpoints while the
+step runs and removes them after it. At each stop it prints the stack and the BP
+chain as a watchpoint stop does.
+
+`start.json` (run directory `artifacts/runs/2026-10-14-start6`) makes the
 start-window checkpoint `start` from a new start. EXP-PARTY-001's runs start
 from it:
 
@@ -63,16 +68,22 @@ FND-PARTY-174's run is `leader-writes-two.json`: `exp-add-two-start.json` with
 a watchpoint on `leader`.
 
 FND-PARTY-178's runs: `two-play.json` repeats `exp-add-two-start.json` and
-saves the checkpoint `play` 90,000 ms after START GAME; `leader-keys.json`
+saves the checkpoint `play` 90,000 ms after START GAME (run directory
+`artifacts/runs/2026-10-14-twoplay2`); `leader-keys.json`
 presses 4, 1, 2, 3 and 4 from it with a watchpoint on `leader`.
 
 FND-PARTY-184's run is `marks-two.json`: `exp-add-two-start.json` with
 watchpoints on the four combatant records' `combat_mark` bytes.
 
+`start-talk.json` repeats `exp-start-control.json`, picks the first answer of
+the opening conversation and saves the checkpoint `talk` (run directory
+`artifacts/runs/2026-10-14-talk2`).
+
 The other plans (`exp-add-start.json`, `add.json`, `drop.json`, `after-drop.json`,
 `start-game-after-drop.json`, `start-game-control.json`) are the exploratory
 runs that found the screens' positions, each from the checkpoint the one before
-it saved.
+it saved (`add.json` in `2026-10-14-cc7`, `drop.json` in `2026-10-14-cc8`,
+`after-drop.json` in `2026-10-14-cc9`).
 
 `generator_callers.py <run-dir> <earlier-run-dir>:<state> <until_ms> [start]`
 counts the return addresses of the generator's calls until the emulated time

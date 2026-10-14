@@ -1,5 +1,5 @@
 {
- "start": "artifacts/runs/2026-10-14-twoplay:play",
+ "start": "artifacts/runs/2026-10-14-twoplay2:play",
  "watch_draws": true,
  "rules": {
   "2834:000C": "RULE-SOUND-003"
