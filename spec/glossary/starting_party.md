@@ -1,3 +1,3 @@
-# party_can_start
+# starting_party
 
 A function, defined by RULE-PARTY-001.

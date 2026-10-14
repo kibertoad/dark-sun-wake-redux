@@ -1,9 +1,13 @@
 # PARTY
 
-Next ID: Q-PARTY-071
+Next ID: Q-PARTY-073
 
 ## Static
 
+- Q-PARTY-071. RULE-PARTY-001, RULE-PARTY-008: What sets `leader` when START GAME begins play with
+  created characters? In EXP-PARTY-001 it was 0 until START GAME and 2 once play began with one
+  character in box 2. Settles it: the stores to `leader` (`4C13:0369`) that START GAME reaches with
+  a placed party, and the box each picks for a party of several characters. Blocks: slice 2.
 - Q-PARTY-045. RULE-PARTY-015: Does any enemy's `kill_experience` divided by the filled party
   slots reach 32,768, so that killing it lowers each member's experience (FND-PARTY-086,
   FND-PARTY-094)? Settles it: what moves objects 430 and 541 out of the region `Limbo`, where
@@ -81,21 +85,16 @@ None.
 
 ## Agent run
 
-None.
+- Q-PARTY-072. RULE-PARTY-001: Does START GAME begin play with a created party of two to four
+  characters, each in the box it was added to? Settles it: an agent run from the start-window
+  checkpoint of `tools/research/rust-dos-runs/plans/start.json` that adds two stored characters to
+  boxes 1 and 3 and picks START GAME, reading `object_slot_kinds`, `object_slot_combatants` and
+  `leader` once play begins, with the draws recorded (EXP-PARTY-001). Required parts: Start it and
+  bring it to a given state, Send it input, Read memory, set breakpoints, all agent.
+  Blocks: slice 2.
 
 ## Live session
 
-- Q-PARTY-006. RULE-PARTY-001: Can play begin with no character in a party box? A character
-  added to box 1, 2 or 3 can be dropped while the leader is still slot 0, and the placed-object
-  count it raised is never lowered, so START GAME would skip the supplied party. Settles it: a run
-  from the start window that opens Create Characters, adds a stored character to box 2 with `ADD`,
-  drops it with `DROP` and right-clicks box 2 (an empty box offers `NEW`, `ADD` and `CANCEL`),
-  then presses Esc and START GAME and records what the party holds and what the game shows.
-  Tried: FND-PARTY-170 reads the screen's two exits, which go back to the start window while
-  `DS:0DAB` is 0, and the `DROP` branch; FND-PARTY-171 shows the leader word is 0 in the load
-  image and that `ADD` leaves it; FND-PARTY-172 shows the box record is emptied on release only
-  through a kind 3 entry of a list built from the object table at the time, which a static
-  reading does not fix. Blocks: slice 2.
 - Q-PARTY-059. BUG-PARTY-006: Does the game end with `Math Err` when a party druid of priest level
   13 to 15 casts the spell `DATA` 225 at a single-class companion above level 1 while a Shift key
   is held? Settles it: an owner capture, from a save with such a druid that has level 7 spells to

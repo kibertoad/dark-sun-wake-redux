@@ -95,7 +95,7 @@ lower it, and `DROP` refuses only the leader's box when no other box holds a cha
 - A party that has added a character and then dropped every box that is not the leader's, while
   the leader's slot is an empty box, reaches START GAME with the count nonzero and no character in
   a box: whether the leader's slot can name an empty box then, and what overlay 171 `+0D15` does,
-  are not read here (Q-PARTY-006).
+  are not read here; EXP-PARTY-001 ran that case.
 - `NEW` raises the count too (FND-PARTY-046's third alternative, Q-PARTY-017).
 
 ## How to reproduce

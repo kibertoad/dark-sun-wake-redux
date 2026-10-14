@@ -104,7 +104,7 @@ nonzero (FND-PARTY-022).
 - The walks' unresolved transfers could reach another writer; the store scan covers the direct
   forms only, not a store through a base register or a block copy over `4C13:0369`.
 - Whether `DROP` leaves the box empty, through `31E0:05BB`'s removal reaching `2D40:2513`, is not
-  read here (Q-PARTY-006).
+  read here; EXP-PARTY-001 observed it.
 
 ## How to reproduce
 

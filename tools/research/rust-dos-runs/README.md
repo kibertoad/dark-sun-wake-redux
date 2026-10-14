@@ -25,18 +25,31 @@ Memory addresses are those of the run: the program is loaded with its first
 segment at `05BA`, so a segment `S` of the repository's load image (based at
 `1000`) is `S - 0A46` here.
 
-The plans in `plans/` run in this order, each from the run directory the
-previous one names:
+A plan with `watch_draws` stops at each call of the generator `rng`
+(`1000:0822`) and records the draw as `{rule, bound, result}`: script
+instruction `0x52` under RULE-SCRIPT-006, and `random_mod` under the rule the
+plan's `rules` gives for the routine that called it (or that called
+`chance_in_ten`), found in `coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv`. It checks
+each result against the value the original computed, and stops the run at a
+draw it cannot name. A plan with `rng_state` writes that seed through a guarded
+write before the first step.
 
-| Plan | Run directory | From |
-| --- | --- | --- |
-| `start.json` | `artifacts/runs/2026-10-14-start5` | a new start; saves `start` at the start window |
-| `add.json` | `artifacts/runs/2026-10-14-cc4` | `start`; ADD to box 2, saves `added` |
-| `drop.json` | `artifacts/runs/2026-10-14-cc5` | `added`; DROP, saves `dropped` at the confirmation |
-| `after-drop.json` | `artifacts/runs/2026-10-14-cc6` | `dropped`; YES, saves `afterdrop` |
-| `start-game-after-drop.json` | `artifacts/runs/2026-10-14-cc7` | `afterdrop`; Esc, Esc, START GAME |
-| `start-game-control.json` | `artifacts/runs/2026-10-14-ctl1` | `start`; START GAME |
+`start.json` (run directory `artifacts/runs/2026-10-14-start5`) makes the
+start-window checkpoint `start` from a new start. EXP-PARTY-001's runs start
+from it:
+
+| Plan | Run |
+| --- | --- |
+| `exp-add-drop-start.json` | ADD, DROP, START GAME |
+| `exp-start-control.json` | START GAME |
+| `exp-add-start-long.json` | ADD, START GAME |
+| `exp-add-start-long-seed.json` | the same with `rng_state` 12345 |
+
+The other plans (`add.json`, `drop.json`, `after-drop.json`,
+`start-game-after-drop.json`, `start-game-control.json`) are the exploratory
+runs that found the screens' positions, each from the checkpoint the one before
+it saved.
 
 `generator_callers.py <run-dir> <earlier-run-dir>:<state> <until_ms> [start]`
-stops at each call of the generator `1000:0822` until the emulated time given,
-after a click on START GAME with `start`, and counts the return addresses.
+counts the return addresses of the generator's calls until the emulated time
+given, after a click on START GAME with `start`.

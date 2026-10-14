@@ -1,0 +1,780 @@
+{
+ "experiment": "EXP-PARTY-001",
+ "build": "BLD-GOG-EN-1.1",
+ "starting_state": "new-game",
+ "recording_xxh3": null,
+ "clock": "emulated_ms",
+ "seeds": [],
+ "runs": [
+  {
+   "name": "add-drop-start",
+   "rng_state": 44976,
+   "inputs": [
+    {
+     "ms": 180000,
+     "name": "mouse_click",
+     "value": {
+      "x": 160,
+      "y": 93,
+      "button": "left",
+      "screen": "SCR-UI-001",
+      "region": "Create characters"
+     }
+    },
+    {
+     "ms": 195000,
+     "name": "mouse_click",
+     "value": {
+      "x": 70,
+      "y": 107,
+      "button": "right",
+      "screen": "SCR-UI-002",
+      "region": "Character box 2, right button"
+     }
+    },
+    {
+     "ms": 200000,
+     "name": "mouse_click",
+     "value": {
+      "x": 115,
+      "y": 129,
+      "button": "left",
+      "screen": "SCR-UI-002",
+      "region": "second choice of the box menu (ADD on an empty box, DROP on a filled one)"
+     }
+    },
+    {
+     "ms": 206000,
+     "name": "mouse_click",
+     "value": {
+      "x": 252,
+      "y": 47,
+      "button": "left",
+      "screen": "SCR-UI-003",
+      "region": "ADD"
+     }
+    },
+    {
+     "ms": 214000,
+     "name": "mouse_click",
+     "value": {
+      "x": 70,
+      "y": 107,
+      "button": "right",
+      "screen": "SCR-UI-002",
+      "region": "Character box 2, right button"
+     }
+    },
+    {
+     "ms": 219000,
+     "name": "mouse_click",
+     "value": {
+      "x": 115,
+      "y": 129,
+      "button": "left",
+      "screen": "SCR-UI-002",
+      "region": "second choice of the box menu (ADD on an empty box, DROP on a filled one)"
+     }
+    },
+    {
+     "ms": 225000,
+     "name": "mouse_click",
+     "value": {
+      "x": 115,
+      "y": 117,
+      "button": "left",
+      "screen": "SCR-UI-002",
+      "region": "first choice of the drop confirmation (YES)"
+     }
+    },
+    {
+     "ms": 231000,
+     "name": "mouse_click",
+     "value": {
+      "x": 70,
+      "y": 107,
+      "button": "right",
+      "screen": "SCR-UI-002",
+      "region": "Character box 2, right button"
+     }
+    },
+    {
+     "ms": 236000,
+     "name": "key",
+     "value": "esc"
+    },
+    {
+     "ms": 240000,
+     "name": "key",
+     "value": "esc"
+    },
+    {
+     "ms": 246000,
+     "name": "mouse_click",
+     "value": {
+      "x": 157,
+      "y": 76,
+      "button": "left",
+      "screen": "SCR-UI-001",
+      "region": "Start game"
+     }
+    },
+    {
+     "ms": 276000,
+     "name": "key",
+     "value": "esc"
+    },
+    {
+     "ms": 286000,
+     "name": "key",
+     "value": "esc"
+    }
+   ],
+   "draws": [
+    {
+     "rule": "RULE-SCRIPT-006",
+     "bound": 99,
+     "result": 32
+    },
+    {
+     "rule": "RULE-SCRIPT-006",
+     "bound": 1,
+     "result": 0
+    },
+    {
+     "rule": "RULE-SCRIPT-006",
+     "bound": 1,
+     "result": 1
+    },
+    {
+     "rule": "RULE-SOUND-003",
+     "bound": 8,
+     "result": 4
+    },
+    {
+     "rule": "RULE-SCRIPT-006",
+     "bound": 99,
+     "result": 22
+    },
+    {
+     "rule": "RULE-SCRIPT-006",
+     "bound": 2,
+     "result": 0
+    },
+    {
+     "rule": "RULE-SCRIPT-006",
+     "bound": 99,
+     "result": 80
+    },
+    {
+     "rule": "RULE-SCRIPT-006",
+     "bound": 2,
+     "result": 0
+    }
+   ],
+   "end_ms": 336000,
+   "events": [],
+   "end_state": [
+    {
+     "glossary": "object_slot_kinds",
+     "index": 0,
+     "value": 2
+    },
+    {
+     "glossary": "object_slot_combatants",
+     "index": 0,
+     "value": 0
+    },
+    {
+     "glossary": "object_slot_kinds",
+     "index": 1,
+     "value": 2
+    },
+    {
+     "glossary": "object_slot_combatants",
+     "index": 1,
+     "value": 1
+    },
+    {
+     "glossary": "object_slot_kinds",
+     "index": 2,
+     "value": 2
+    },
+    {
+     "glossary": "object_slot_combatants",
+     "index": 2,
+     "value": 2
+    },
+    {
+     "glossary": "object_slot_kinds",
+     "index": 3,
+     "value": 2
+    },
+    {
+     "glossary": "object_slot_combatants",
+     "index": 3,
+     "value": 3
+    },
+    {
+     "glossary": "leader",
+     "value": 0
+    },
+    {
+     "format": "FMT-COMBAT-002",
+     "record": 0,
+     "field": "unk_0E",
+     "value": 32793
+    },
+    {
+     "format": "FMT-COMBAT-002",
+     "record": 1,
+     "field": "unk_0E",
+     "value": 32792
+    },
+    {
+     "format": "FMT-COMBAT-002",
+     "record": 2,
+     "field": "unk_0E",
+     "value": 32791
+    },
+    {
+     "format": "FMT-COMBAT-002",
+     "record": 3,
+     "field": "unk_0E",
+     "value": 32790
+    }
+   ]
+  },
+  {
+   "name": "start-control",
+   "rng_state": 44976,
+   "inputs": [
+    {
+     "ms": 180000,
+     "name": "mouse_click",
+     "value": {
+      "x": 157,
+      "y": 76,
+      "button": "left",
+      "screen": "SCR-UI-001",
+      "region": "Start game"
+     }
+    },
+    {
+     "ms": 210000,
+     "name": "key",
+     "value": "esc"
+    },
+    {
+     "ms": 220000,
+     "name": "key",
+     "value": "esc"
+    }
+   ],
+   "draws": [
+    {
+     "rule": "RULE-SCRIPT-006",
+     "bound": 99,
+     "result": 32
+    },
+    {
+     "rule": "RULE-SCRIPT-006",
+     "bound": 1,
+     "result": 0
+    },
+    {
+     "rule": "RULE-SCRIPT-006",
+     "bound": 1,
+     "result": 1
+    },
+    {
+     "rule": "RULE-SOUND-003",
+     "bound": 8,
+     "result": 4
+    },
+    {
+     "rule": "RULE-SCRIPT-006",
+     "bound": 99,
+     "result": 22
+    },
+    {
+     "rule": "RULE-SCRIPT-006",
+     "bound": 2,
+     "result": 0
+    },
+    {
+     "rule": "RULE-SCRIPT-006",
+     "bound": 99,
+     "result": 80
+    },
+    {
+     "rule": "RULE-SCRIPT-006",
+     "bound": 2,
+     "result": 0
+    }
+   ],
+   "end_ms": 270000,
+   "events": [],
+   "end_state": [
+    {
+     "glossary": "object_slot_kinds",
+     "index": 0,
+     "value": 2
+    },
+    {
+     "glossary": "object_slot_combatants",
+     "index": 0,
+     "value": 0
+    },
+    {
+     "glossary": "object_slot_kinds",
+     "index": 1,
+     "value": 2
+    },
+    {
+     "glossary": "object_slot_combatants",
+     "index": 1,
+     "value": 1
+    },
+    {
+     "glossary": "object_slot_kinds",
+     "index": 2,
+     "value": 2
+    },
+    {
+     "glossary": "object_slot_combatants",
+     "index": 2,
+     "value": 2
+    },
+    {
+     "glossary": "object_slot_kinds",
+     "index": 3,
+     "value": 2
+    },
+    {
+     "glossary": "object_slot_combatants",
+     "index": 3,
+     "value": 3
+    },
+    {
+     "glossary": "leader",
+     "value": 0
+    },
+    {
+     "format": "FMT-COMBAT-002",
+     "record": 0,
+     "field": "unk_0E",
+     "value": 32793
+    },
+    {
+     "format": "FMT-COMBAT-002",
+     "record": 1,
+     "field": "unk_0E",
+     "value": 32792
+    },
+    {
+     "format": "FMT-COMBAT-002",
+     "record": 2,
+     "field": "unk_0E",
+     "value": 32791
+    },
+    {
+     "format": "FMT-COMBAT-002",
+     "record": 3,
+     "field": "unk_0E",
+     "value": 32790
+    }
+   ]
+  },
+  {
+   "name": "add-start",
+   "rng_state": 44976,
+   "inputs": [
+    {
+     "ms": 180000,
+     "name": "mouse_click",
+     "value": {
+      "x": 160,
+      "y": 93,
+      "button": "left",
+      "screen": "SCR-UI-001",
+      "region": "Create characters"
+     }
+    },
+    {
+     "ms": 195000,
+     "name": "mouse_click",
+     "value": {
+      "x": 70,
+      "y": 107,
+      "button": "right",
+      "screen": "SCR-UI-002",
+      "region": "Character box 2, right button"
+     }
+    },
+    {
+     "ms": 200000,
+     "name": "mouse_click",
+     "value": {
+      "x": 115,
+      "y": 129,
+      "button": "left",
+      "screen": "SCR-UI-002",
+      "region": "second choice of the box menu (ADD on an empty box, DROP on a filled one)"
+     }
+    },
+    {
+     "ms": 206000,
+     "name": "mouse_click",
+     "value": {
+      "x": 252,
+      "y": 47,
+      "button": "left",
+      "screen": "SCR-UI-003",
+      "region": "ADD"
+     }
+    },
+    {
+     "ms": 214000,
+     "name": "key",
+     "value": "esc"
+    },
+    {
+     "ms": 219000,
+     "name": "key",
+     "value": "esc"
+    },
+    {
+     "ms": 225000,
+     "name": "mouse_click",
+     "value": {
+      "x": 157,
+      "y": 76,
+      "button": "left",
+      "screen": "SCR-UI-001",
+      "region": "Start game"
+     }
+    },
+    {
+     "ms": 255000,
+     "name": "key",
+     "value": "esc"
+    },
+    {
+     "ms": 265000,
+     "name": "key",
+     "value": "esc"
+    }
+   ],
+   "draws": [
+    {
+     "rule": "RULE-SCRIPT-006",
+     "bound": 99,
+     "result": 32
+    },
+    {
+     "rule": "RULE-SCRIPT-006",
+     "bound": 1,
+     "result": 0
+    },
+    {
+     "rule": "RULE-SCRIPT-006",
+     "bound": 1,
+     "result": 1
+    },
+    {
+     "rule": "RULE-SOUND-003",
+     "bound": 8,
+     "result": 4
+    },
+    {
+     "rule": "RULE-SCRIPT-006",
+     "bound": 4,
+     "result": 1
+    },
+    {
+     "rule": "RULE-SCRIPT-006",
+     "bound": 99,
+     "result": 24
+    },
+    {
+     "rule": "RULE-SCRIPT-006",
+     "bound": 2,
+     "result": 2
+    },
+    {
+     "rule": "RULE-SOUND-003",
+     "bound": 3,
+     "result": 0
+    }
+   ],
+   "end_ms": 315000,
+   "events": [],
+   "end_state": [
+    {
+     "glossary": "object_slot_kinds",
+     "index": 0,
+     "value": 0
+    },
+    {
+     "glossary": "object_slot_combatants",
+     "index": 0,
+     "value": 0
+    },
+    {
+     "glossary": "object_slot_kinds",
+     "index": 1,
+     "value": 0
+    },
+    {
+     "glossary": "object_slot_combatants",
+     "index": 1,
+     "value": 0
+    },
+    {
+     "glossary": "object_slot_kinds",
+     "index": 2,
+     "value": 2
+    },
+    {
+     "glossary": "object_slot_combatants",
+     "index": 2,
+     "value": 2
+    },
+    {
+     "glossary": "object_slot_kinds",
+     "index": 3,
+     "value": 0
+    },
+    {
+     "glossary": "object_slot_combatants",
+     "index": 3,
+     "value": 0
+    },
+    {
+     "glossary": "leader",
+     "value": 2
+    },
+    {
+     "format": "FMT-COMBAT-002",
+     "record": 0,
+     "field": "unk_0E",
+     "value": 0
+    },
+    {
+     "format": "FMT-COMBAT-002",
+     "record": 1,
+     "field": "unk_0E",
+     "value": 0
+    },
+    {
+     "format": "FMT-COMBAT-002",
+     "record": 2,
+     "field": "unk_0E",
+     "value": 32792
+    },
+    {
+     "format": "FMT-COMBAT-002",
+     "record": 3,
+     "field": "unk_0E",
+     "value": 0
+    }
+   ]
+  },
+  {
+   "name": "add-start-seed",
+   "rng_state": 12345,
+   "inputs": [
+    {
+     "ms": 180000,
+     "name": "mouse_click",
+     "value": {
+      "x": 160,
+      "y": 93,
+      "button": "left",
+      "screen": "SCR-UI-001",
+      "region": "Create characters"
+     }
+    },
+    {
+     "ms": 195000,
+     "name": "mouse_click",
+     "value": {
+      "x": 70,
+      "y": 107,
+      "button": "right",
+      "screen": "SCR-UI-002",
+      "region": "Character box 2, right button"
+     }
+    },
+    {
+     "ms": 200000,
+     "name": "mouse_click",
+     "value": {
+      "x": 115,
+      "y": 129,
+      "button": "left",
+      "screen": "SCR-UI-002",
+      "region": "second choice of the box menu (ADD on an empty box, DROP on a filled one)"
+     }
+    },
+    {
+     "ms": 206000,
+     "name": "mouse_click",
+     "value": {
+      "x": 252,
+      "y": 47,
+      "button": "left",
+      "screen": "SCR-UI-003",
+      "region": "ADD"
+     }
+    },
+    {
+     "ms": 214000,
+     "name": "key",
+     "value": "esc"
+    },
+    {
+     "ms": 219000,
+     "name": "key",
+     "value": "esc"
+    },
+    {
+     "ms": 225000,
+     "name": "mouse_click",
+     "value": {
+      "x": 157,
+      "y": 76,
+      "button": "left",
+      "screen": "SCR-UI-001",
+      "region": "Start game"
+     }
+    },
+    {
+     "ms": 255000,
+     "name": "key",
+     "value": "esc"
+    },
+    {
+     "ms": 265000,
+     "name": "key",
+     "value": "esc"
+    }
+   ],
+   "draws": [
+    {
+     "rule": "RULE-SCRIPT-006",
+     "bound": 99,
+     "result": 46
+    },
+    {
+     "rule": "RULE-SCRIPT-006",
+     "bound": 1,
+     "result": 1
+    },
+    {
+     "rule": "RULE-SCRIPT-006",
+     "bound": 1,
+     "result": 0
+    },
+    {
+     "rule": "RULE-SOUND-003",
+     "bound": 8,
+     "result": 1
+    },
+    {
+     "rule": "RULE-SCRIPT-006",
+     "bound": 4,
+     "result": 2
+    },
+    {
+     "rule": "RULE-SCRIPT-006",
+     "bound": 99,
+     "result": 31
+    },
+    {
+     "rule": "RULE-SCRIPT-006",
+     "bound": 2,
+     "result": 2
+    },
+    {
+     "rule": "RULE-SOUND-003",
+     "bound": 3,
+     "result": 2
+    }
+   ],
+   "end_ms": 315000,
+   "events": [],
+   "end_state": [
+    {
+     "glossary": "object_slot_kinds",
+     "index": 0,
+     "value": 0
+    },
+    {
+     "glossary": "object_slot_combatants",
+     "index": 0,
+     "value": 0
+    },
+    {
+     "glossary": "object_slot_kinds",
+     "index": 1,
+     "value": 0
+    },
+    {
+     "glossary": "object_slot_combatants",
+     "index": 1,
+     "value": 0
+    },
+    {
+     "glossary": "object_slot_kinds",
+     "index": 2,
+     "value": 2
+    },
+    {
+     "glossary": "object_slot_combatants",
+     "index": 2,
+     "value": 2
+    },
+    {
+     "glossary": "object_slot_kinds",
+     "index": 3,
+     "value": 0
+    },
+    {
+     "glossary": "object_slot_combatants",
+     "index": 3,
+     "value": 0
+    },
+    {
+     "glossary": "leader",
+     "value": 2
+    },
+    {
+     "format": "FMT-COMBAT-002",
+     "record": 0,
+     "field": "unk_0E",
+     "value": 0
+    },
+    {
+     "format": "FMT-COMBAT-002",
+     "record": 1,
+     "field": "unk_0E",
+     "value": 0
+    },
+    {
+     "format": "FMT-COMBAT-002",
+     "record": 2,
+     "field": "unk_0E",
+     "value": 32792
+    },
+    {
+     "format": "FMT-COMBAT-002",
+     "record": 3,
+     "field": "unk_0E",
+     "value": 0
+    }
+   ]
+  }
+ ]
+}

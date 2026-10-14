@@ -62,11 +62,14 @@ wait for supported layout/parameter bindings; FBOV code stays out of reach.
 | Call a single function in the emulator harness (no run lock) | agent, resident far roots within the current no-argument contract | Unicorn 2.1.4 loads the hash-verified GOG resident MZ and applies its relocations. FND-CONFIG-193 initializer controls return with source-written roots/free flags, unchanged loaded high bytes and restored registers. | Supported named parameter/layout bindings extend input cases. Overlay code, native hardware and timing remain outside this harness. |
 
 
-Probe: none. `tools/research/rust-dos-runs/run_plan.py` drives scripted runs
-but records no draws yet: it waits for emulated times, not for states, and
-`generator_callers.py` only counts the generator's callers (8 draws from the
-start window through START GAME and the first minute of play). A probe is
-recorded here once a session-package run records the draws by rule, and then
+Probe: `tools/research/rust-dos-runs/run_plan.py <run-dir> <plan.json>`, run with
+the evidence Python and `GAME_DIR` set to the installed build (README beside it).
+It follows a plan of inputs from a checkpoint, records each draw of `rng` as
+`{rule, bound, result}` (script instruction `0x52` under RULE-SCRIPT-006,
+`random_mod` under the rule of its calling routine), checks each result against
+the original's, can write a seed into `rng_state`, and reads memory and takes
+screenshots at its stops. It waits for emulated times of a deterministic run,
+not for states the game reaches. EXP-PARTY-001 is its first experiment. It
 follows the protocol's
 [Recorded runs](../vendor/upstream/work-protocol.md#recorded-runs) (lines 401-413). Each emulated-call setup must document port
 models, video memory substituted with RAM and the limits of each comparison,
