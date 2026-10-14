@@ -22,3 +22,18 @@ An installed-source check prepares a fresh local drive without starting the
 game. Outputs remain in GAME_DIR/captures/. Exit: controls and Test.ps1 pass,
 tooling committed, separate goal handover updated. State-driven navigation and
 RNG interpretation remain subsequent work; no queue item closes here.
+
+## State-driven start-window handoff
+
+Research probe supporting Q-PARTY-081. Outcome: determine whether an unchanged
+fresh licensed drive reaches main's call to the start-window opener without
+input, and read its actual argument and DS/SS. Static prerequisites are
+FND-UI-035's opener and the bounded main transfer at 277B:02E2..277B:02E9.
+Stop before the call at 277B:02E4; do not equate this with a drawn window.
+Acceptance: dynamically relocate the stop from program entry, preserve pinned
+session/audio/lock contracts, retain the RNG-entry guard and refuse any draw,
+read only registers, seed and the argument at SS:SP, and record observations
+under GAME_DIR/captures/. No inputs or memory writes. Wait for the breakpoint,
+with bounded wall-clock observation windows and a diagnostic pause on exhaustion;
+elapsed time never establishes a game state. Exit: actual attempt and bounded
+finding, with explicit remaining gameplay and draw gaps, then canonical gate.

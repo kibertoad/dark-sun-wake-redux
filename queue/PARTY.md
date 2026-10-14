@@ -209,9 +209,12 @@ None.
   (docs/RUNTIME.md's earlier input/write/draw attempts and verified fixed
   startup stop). Tried: FND-PARTY-213 and FND-PARTY-214 identify the near map;
   FND-PARTY-215 reads the startup SS replacement; FND-PARTY-219 observes DS/SS
-  equality at main without draws. Next run needs a complete private game drive
-  and state-driven gameplay/deletion stops; the startup-only drive cannot be
-  continued to gameplay. Blocks: Q-PARTY-078's complete cleanup reading, not
+  equality at main without draws. Tried: FND-UI-039 reaches the start-window
+  opener call without input on a verified private drive, reads argument 1 and
+  matching DS/SS, and guards the known RNG entry. The opener has not executed;
+  subsequent state-driven gameplay/deletion stops and complete preservation
+  coverage remain needed. The startup_segments.py executable-only drive cannot
+  be continued to gameplay. Blocks: Q-PARTY-078's complete cleanup reading, not
   its remaining independent static input/callee work.
 
 ## Live session

@@ -43,6 +43,11 @@ successful startup stop verifies this fixed probe, not a state-driven route
 to a gameplay screen or deletion call. The earlier table's menu/input/frame
 attempts retain their separate provenance.
 
+The fresh-drive startup_window.py attempt (FND-UI-039) also reached main's
+start-window opener call by address without input. It verifies this later
+fixed stop and its stack-argument read. The opener was not executed; a
+drawn window and subsequent state-driven gameplay route remain unverified.
+
 How an agent run starts the game (2026-10-14, `tools/research/rust-dos-runs/`):
 a deterministic run at 15000 instructions a millisecond, C: a copy of the
 installed game's files, D: the CD image `game.ins` mounted read-only, and the

@@ -145,3 +145,12 @@ at main with DS equal to SS and no RNG draw. The probe does not prepare a
 complete gameplay drive or prove later segment preservation. Every run still
 uses normal machine coordination; never substitute a lock path or modify an
 unrecognized lock to make a probe run.
+
+`startup_window.py <new-run-name>` uses the verified private-drive helper
+and waits for main's start-window opener call, before the call executes.
+It has the same known-RNG guard and no inputs or writes. FND-UI-039 records
+the successful call-site stop, argument read and DS/SS comparison; it does
+not establish a drawn window. Reports stay under the licensed installation's
+`captures/rust-dos-startup-window/`. Wall-clock observation exhaustion pauses
+the owned session diagnostically; it never counts as arrival. Synthetic
+continuation/pause checks are in check_startup_window.py.
