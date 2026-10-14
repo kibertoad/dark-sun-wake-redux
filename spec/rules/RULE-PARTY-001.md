@@ -4,7 +4,7 @@ title: A party has one to four characters
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [EXP-PARTY-001, EXP-PARTY-002, FND-PARTY-170, FND-PARTY-174, FND-PARTY-183, FND-PARTY-184, FND-PARTY-185, SRC-MANUAL-1994]
+evidence: [EXP-PARTY-001, EXP-PARTY-002, FND-PARTY-170, FND-PARTY-174, FND-PARTY-183, FND-PARTY-184, FND-PARTY-185, SRC-MANUAL-1994, FND-PARTY-212]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-006, SCR-UI-001, SCR-UI-002, SCR-UI-003, SCR-UI-004]
@@ -82,8 +82,9 @@ None known.
 - What START GAME's party restore does when no filled slot with `combat_mark` 1 or 2 has hit
   points: it then sets no leader and calls overlay 201 `+0410` (FND-PARTY-185), which opens window
   19502 with a picture (`BMP` number `DS:4458`, or 10004), takes one event and closes it
-  (FND-PARTY-194); whether it waits for a click, and what the game does after, are not read
-  (Q-PARTY-078).
+  (FND-PARTY-194). A run shows the window says the party has been defeated and stays until a
+  click, after which the game empties the slot and returns to the start window (FND-PARTY-212).
+  Left: which routine empties the slots and what it does with a party of several (Q-PARTY-078).
 - Whether a party can reach START GAME in that state. Added characters arrive marked 1 unless
   their record holds 2 or more (FND-PARTY-183); a character made with NEW is stored with mark 0,
   and leaving View Character with Esc and START GAME's gate routine both turn a 0 into 1

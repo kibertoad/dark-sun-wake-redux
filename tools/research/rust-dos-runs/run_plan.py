@@ -191,6 +191,14 @@ with RustDosSession(settings) as s:
         s.client.set_breakpoint(GENERATOR)
         print("rng_state", struct.unpack("<I", s.client.read_memory(RNG_STATE, 4).data)[0])
     for k, step in enumerate(plan["steps"]):
+        for name, addr, data in step.get("write", []):
+            # A guarded write of one named field (its glossary or layout name), made while paused,
+            # such as a combatant's hit_points set to set up a state the step then observes.
+            new = bytes.fromhex(data)
+            old = s.client.read_memory(addr, len(new)).data
+            contract = FieldContract("dark-sun-wake-runs/1", (WritableField(name, addr, len(new)),))
+            s.write(contract, name, new, hashlib.sha256(old).hexdigest())
+            print("  write", name, addr, old.hex(), "->", data, flush=True)
         # A deterministic machine takes input only while paused and delivers it once resumed, so
         # queue the input, run to the step's time, and only then see each input delivered.
         inputs = [s.send_input("key", {"key": key}) for key in step.get("keys", [])]

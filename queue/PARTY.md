@@ -53,13 +53,13 @@ Next ID: Q-PARTY-081
   unresolved transfers of FND-PARTY-197's walk. Tried: FND-PARTY-197 classifies the 42 candidates
   of its search.
   Blocks: nothing yet.
-- Q-PARTY-078. RULE-PARTY-001: What does the player see and what happens next when overlay 173
-  `+3CDA` finds no member standing? Settles it: whether `39D1:0854` waits for input when the
-  window has no handler, what `444C:0092` does with an image pointer, the value of `DS:4458` and
-  the archive its `BMP` request searches, and what the three callers of `+3CDA` (overlay 173
-  `+07A1` and `+2514`, overlay 188 `+14A3`) do after it returns with no leader set. Tried:
-  FND-PARTY-194 reads overlay 201 `+0410`: window 19502, `BMP` number `DS:4458` or 10004, one
-  event, then the window closes. Blocks: nothing yet.
+- Q-PARTY-078. RULE-PARTY-001: After overlay 201 `+0410`'s defeat window closes, which routine
+  takes the characters out of the party and returns to the start window, and does it empty every
+  slot of a larger party? Settles it: a reading of `2D40:2488` and its callers `31E0:0554` and
+  `31E0:0ACC` back to the start loop, and of the caller of `+3CDA` that START GAME uses. Tried:
+  FND-PARTY-194 reads `+0410`; FND-PARTY-212 runs START GAME with the only member at 0 hit points
+  and sees the defeat window wait for a click, then `2D40:2539` clear `character_id` and the start
+  window return. Blocks: nothing yet.
 - Q-PARTY-045. RULE-PARTY-015: Does any enemy's `kill_experience` divided by the filled party
   slots reach 32,768, so that killing it lowers each member's experience (FND-PARTY-086,
   FND-PARTY-094)? Settles it: what moves objects 430 and 541 out of the region `Limbo`, where
