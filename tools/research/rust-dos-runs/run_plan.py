@@ -12,18 +12,13 @@ from dinorefurb_dosbox_session import (FieldContract, Media, RustDosConfig, Rust
 game = Path(os.environ["GAME_DIR"])  # the installed BLD-GOG-EN-1.1
 run = Path(sys.argv[1])
 plan = json.loads(Path(sys.argv[2]).read_text())
-skip = {"DOSBOX", "analysis", "capture", "game.gog", "game.ins", "cloud_saves", "__support"}
+# -I omits the script directory; admit only this repository-owned helper path.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from probe_drive import prepare_drive
+
 
 def prepare(c: Path) -> None:
-    for p in game.iterdir():
-        if p.name in skip or (p.suffix.lower() in (".pdf", ".lnk", ".txt", ".conf", ".ico", ".dll", ".exe",
-                                                   ".zip", ".hashdb", ".info", ".script", ".dat", ".msg", ".ini")
-                              and p.name.upper() not in ("DSUN.EXE", "SOUND.INI", "DJ.DAT")):
-            continue
-        if p.is_dir():
-            shutil.copytree(p, c / p.name)
-        else:
-            shutil.copy2(p, c / p.name)
+    prepare_drive(game, c)
     cfg = (c / "SOUND.CFG").read_bytes()
     # The sound setup's file names a card at 0x220, IRQ 5 (words at 0 and 2) and DMA 1 (word at 4)
     # for the music, and the same for the digital driver (words at 10, 12 and 14).

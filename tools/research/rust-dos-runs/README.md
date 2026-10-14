@@ -16,6 +16,16 @@ Sound Blaster 16 at 0x220, IRQ 5, DMA 1) and no Ultrasound. Runs made before
 dinorefurb-dosbox-session 0.10.0 had rust-dos's default card at IRQ 7 and a copy
 of `SOUND.CFG` rewritten to IRQ 7, and their checkpoints are not used.
 
+Fresh C: preparation uses `probe_drive.py` and the supported installed-build
+fingerprint manifest. It validates all selected files before copying verified
+bytes into an empty destination. It excludes `game.ins`, `game.gog` and
+storefront `MUSIC/` from C:; D: remains the mounted CD image. Unlisted captures,
+analysis and user saves are never traversed or copied. Changed manifest files
+produce a named error; the helper does not rewrite SOUND.CFG. Synthetic checks:
+`artifacts/evidence-python/Scripts/python.exe -I tools/research/rust-dos-runs/check_probe_drive.py`.
+This preparation change does not make the historical time-driven launcher a
+state-driven gameplay probe.
+
 `run_plan.py` follows a plan: each step queues its keys, typed text or mouse
 event, runs to the emulated time `until_ms`, checks that the input was
 delivered, then reads memory, takes a screenshot or saves a checkpoint. A plan

@@ -995,6 +995,6 @@ explicit. GAME_DIR profiles/reports stay local and skip missing licensed input.
 Exit: bounded installed controls, retained whole-fill gaps, Test.ps1, acceptance
 record and handover; no spec, parity, gameplay or native-runtime changes.
 
-Local no-push goal discovery: [tooling plan](implementation-plans/PROTOCOL-GOAL-DISCOVERY.md).
+Local no-push goal discovery: [plan](implementation-plans/PROTOCOL-GOAL-DISCOVERY.md). Native probe drive preparation: [plan](implementation-plans/PROBE-DRIVE.md).
 Research procedure: [plan](implementation-plans/PROCEDURE-EVIDENCE-REVIEW.md); citation endpoints: [plan](implementation-plans/CITATION-ENDPOINTS.md).
 Latest template synchronization: [tooling plan](implementation-plans/LATEST-TEMPLATE-SYNC.md). Coverage scope: [tooling plan](implementation-plans/COVERAGE-SCOPE.md).
