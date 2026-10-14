@@ -352,7 +352,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   the startup and exit records, the formatting engine's output routines
   and the registered signal handlers inside the file as well. FND-EXE-581 finds
   twelve calls going to the XMS driver's entry, outside the file, with
-  memory functions only. Which of its other
+  memory functions only. FND-EXE-582 finds the overlay manager's hooks
+  going to its own routines or to empty returns. Which of its other
   unresolved computed transfers can reach code outside the file remains
   Q-EXE-007.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;
