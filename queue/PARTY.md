@@ -4,17 +4,16 @@ Next ID: Q-PARTY-078
 
 ## Static
 
-- Q-PARTY-076. BUG-PARTY-001: Can the generation screen draw its sheet (overlay 183 `+0A3E` or
-  `+10FF` calling overlay 184 `+033E`) while `DS:1429` points at a stored details record?
-  Settles it: every route into overlay 183 `+0A3E` and `+10FF` (through overlay 184 `+0E6D`,
-  `+0C80`, `+0E62`, `+1067` and overlay 183's own calls), and whether any reaches them without
-  overlay 184 `+07D8` after the last run of the routines that point `DS:1429` at a stored record
-  (overlay 190 `+05A9` and `+36D2`, 202 `+0287`, 209 `+0218` and `+0A84`, 211 `+02B5`,
-  212 `+061C`); stores to `DS:1429` other than direct-address ones. Tried:
-  FND-PARTY-187 runs View Character in play and finds codes 1 to 8; FND-PARTY-188 lists the
-  three callers of the sheet's experience line and the direct-address writers of `DS:1429`, and
-  settles that the overlay 212 route prints a record `+1DCE` converted from the same slot.
-  Blocks: nothing yet.
+- Q-PARTY-076. BUG-PARTY-001: Can a handler other than overlay 184 `+0DA7` run while the
+  generation screen is up and point `DS:1429` at a stored details record before the screen draws
+  its sheet? Settles it: what the screens that open generation (overlay 190 `+0EF8`, overlay 184
+  `+1606`) leave at `DS:A0F5` and `DS:A0F9`, which `+07D8` does not replace, whether the main loop
+  calls them during generation, and whether they reach the routines of FND-PARTY-188 that store
+  `DS:1429`; the 34 unresolved calls of FND-PARTY-189's reach; stores to `DS:1429` other than
+  direct-address ones. Tried: FND-PARTY-187 runs View Character in play and finds codes 1 to 8;
+  FND-PARTY-188 lists the sheet's three callers and the direct-address writers of `DS:1429`;
+  FND-PARTY-189 shows generation's own handler reaches those writers only in `+1029`, after its
+  sheet draw and as it closes the screen. Blocks: nothing yet.
 - Q-PARTY-077. BUG-PARTY-001: On the DUAL path, does the word at `4E71:0B44` name the slot
   overlay 209 `+123E` was called with when it calls overlay 184 `+1DCE` at `+14FF`, so that the
   sheet at `+151E` prints that character's own classes? Settles it: the routes from overlay 172
