@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-081
+Next ID: Q-PARTY-082
 
 ## Static
 
@@ -56,8 +56,9 @@ Next ID: Q-PARTY-081
 - Q-PARTY-078. RULE-PARTY-001: After overlay 201 `+0410`'s defeat window closes, which routine
   takes the characters out of the party and returns to the start window, and does it empty every
   slot of a larger party? Settles it: complete admitted placement/slot inputs and returning
-  cleanup callees of `31E0:05BB`, `2D40:2410`, `2D40:2452` and `2D40:248D`, including
-  the recursive index map's DS/SS identity, and the caller of `+3CDA` that START GAME uses;
+  cleanup callees of `31E0:05BB`, `2D40:2410`, `2D40:2452` and `2D40:248D`, with
+  the recursive index map's DS/SS identity tracked separately by Q-PARTY-081,
+  and the caller of `+3CDA` that START GAME uses;
   or a controlled several-member defeat run. Tried:
   FND-PARTY-194 reads `+0410`; FND-PARTY-212 runs START GAME with the only member at 0 hit points
   and sees the defeat window wait for a click, then `2D40:2539` clear `character_id` and the start
@@ -68,6 +69,10 @@ Next ID: Q-PARTY-081
   the deletion-map builder's parent-derived object stores and AX-only field-result
   consumption. Remaining map admission, lookup/conversion effects and DS/SS
   identity are distinct from that now-read index-adjustment helper.
+  Tried: FND-PARTY-215 identifies the explicit startup SS replacement and
+  initialization dispatch's lack of DS/SS restoration. The header's initial
+  SS is not the later stack producer; service effects and initializer/later
+  segment preservation are separated into Q-PARTY-081.
   Blocks: nothing yet.
 - Q-PARTY-045. RULE-PARTY-015: Does any enemy's `kill_experience` divided by the filled party
   slots reach 32,768, so that killing it lowers each member's experience (FND-PARTY-086,
@@ -174,6 +179,24 @@ None.
 None.
 
 ## Blocked
+
+- Q-PARTY-081. RULE-PARTY-001: On the defeat cleanup path, does the DS-relative
+  deletion map at `2D40:27B7` and `2D40:248D` address the SS-local allocation of
+  `2D40:2452`, and where is that segment relationship established? Settles it:
+  a state-driven run reading DS/SS at game main and at this deletion call,
+  including the caller frame and map offset, with complete static preservation
+  coverage between startup's segment producer, initialization-record targets
+  and the observed cleanup call; service-dependent register effects must be
+  observed rather than assumed. Required parts: Start it and bring it to a given
+  state, Read memory and set breakpoints, and Record RNG draws, through the
+  session package. Tried: FND-PARTY-213 and FND-PARTY-214 identify the near map
+  pointer; FND-PARTY-215 reads the startup SS replacement and initializer
+  dispatch. The fixed startup probe was refused before emulator launch on
+  2026-10-15 (docs/RUNTIME.md). Waiting on: normal machine run coordination
+  resolving the existing unrecognized run lock, then a verified state-driven
+  startup/deletion probe. Do not substitute another lock path. Blocks:
+  Q-PARTY-078's complete static cleanup reading, not its independent several-member
+  observation or remaining static input/callee work.
 
 - Q-PARTY-007. RULE-PARTY-004, SCR-UI-015: Which classes does the DUAL window offer, and which of its buttons
   are closed? Settles it: SCR-UI-015 taking the test of RULE-PARTY-004 and the window of
