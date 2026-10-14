@@ -4,7 +4,7 @@ title: The game's random number generator and its reductions
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-003, FND-RNG-004, FND-RNG-005, FND-RNG-006, FND-SCRIPT-011]
+evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-003, FND-RNG-004, FND-RNG-005, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009]
 conflicting: []
 split_with: []
 related: []
@@ -22,8 +22,11 @@ sides)` adds `count` rolls of 1 to `sides`, and `chance_in_ten(n)` succeeds with
 
 Wherever a rule draws. The generator's direct static callers are `random_mod`,
 `random_between`, `roll_sum` and the script instruction of RULE-SCRIPT-006 (FND-SCRIPT-011), and
-`chance_in_ten` draws through `random_mod`. When
-`seed_random` runs, and with what value, is not known.
+`chance_in_ten` draws through `random_mod`. Recovered direct seed callers
+occur in startup's overlay-180 routine and overlay 204's separate entry.
+Both call an OS-service-backed helper with no output destination and seed
+from only its low 16-bit return word (FND-RNG-009). The helper's complete
+conversion and admitted reseeding paths remain unknown (Q-RNG-003).
 
 ## Parameters
 
@@ -95,8 +98,9 @@ None known.
 
 ## Open questions
 
-- When the game seeds the generator, and from what. The seed setter has no recovered caller
-  (FND-RNG-002, Q-RNG-001).
+- The complete seed-source conversion, environmental inputs, near-buffer
+  identity and admitted reseeding paths beyond the recovered direct call
+  sequences (FND-RNG-009, Q-RNG-003).
 - Which game rules call the reducers. `random_between` and `roll_sum` have no recovered callers,
   and `random_mod` is called only from `chance_in_ten` and the table selection in FND-RNG-007,
   which is the music selector of RULE-SOUND-003 (FND-SOUND-012, Q-RNG-001).
