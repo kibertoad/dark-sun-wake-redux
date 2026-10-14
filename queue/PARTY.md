@@ -58,10 +58,11 @@ Next ID: Q-PARTY-076
 - Q-PARTY-074. RULE-PARTY-008: Which screens pass keys to `28C9:0CFF`, so where do the keys 1 to
   4 change the leader? Settles it: the callers of `28C9:0CFF` through `39D1:083F` and `39D1:0742`
   (FND-PARTY-178) and the screens whose loops reach them. Blocks: slice 3.
-- Q-PARTY-075. RULE-PARTY-008: What do `2C5F:0139()` and `28C9:2A81(1)` change, which
-  `set_leader` calls after a key and not after START GAME's party restore (FND-PARTY-179), and
-  which key 5 also calls (FND-EXPLORE-005)? Settles it: a reading of both routines. Blocks:
-  slice 3.
+- Q-PARTY-075. RULE-PARTY-008: What does `4328:0B4C` change when a key's `set_leader` runs it
+  through `28C9:2A81(1)` right after the view redraw (FND-PARTY-180)? Settles it: what
+  `DS:33B6` and `DS:33B8` hold, and readings of `409B:1675`, `3D72:0B84`, `3D72:0942`,
+  `3D72:0DE5`, `3D72:0E10` and `1BF3:5814`. Tried: FND-PARTY-180 reads `28C9:2A81` and
+  `28C9:2AAE`, and FND-PARTY-130 gives `2C5F:0139` as the view redraw. Blocks: slice 3.
 - Q-PARTY-017. RULE-PARTY-006: When the player opens Create Characters (start window button
   `0x4B65`, overlay 212 `+061C`, window `0x2CEC`) before START GAME, which actions on that
   screen other than `ADD` on an empty box change the placed-object count, `DS:0DAB`, the

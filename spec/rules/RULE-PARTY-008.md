@@ -88,5 +88,6 @@ None known.
   runs had them equal (No item: the parties the game builds put combatant `k` in slot `k`,
   FND-PARTY-013, so no party where they differ is known).
 - Which screens pass keys to `28C9:0CFF`, so where the keys work (Q-PARTY-074).
-- What the two calls a key's `set_leader` makes and START GAME's does not, `2C5F:0139` and
-  `28C9:2A81(1)`, change on screen (FND-PARTY-179, Q-PARTY-075).
+- What a key's `set_leader` changes on screen beyond redrawing the view (`2C5F:0139`,
+  FND-PARTY-130): it then runs `4328:0B4C` at once through `28C9:2A81(1)`, whose callees are not
+  read (FND-PARTY-179, FND-PARTY-180, Q-PARTY-075).
