@@ -1,11 +1,11 @@
 ---
 id: RULE-PARTY-001
 title: A party has one to four characters
-status: sourced
+status: disputed
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 evidence: [SRC-MANUAL-1994]
-conflicting: []
+conflicting: [FND-PARTY-170]
 split_with: []
 related: [SCR-UI-002, SCR-UI-003, SCR-UI-004]
 ---
@@ -62,6 +62,12 @@ None known.
 
 ## Open questions
 
-- What the game does when the player tries to begin with no characters, and whether a party of
-  fewer than four behaves differently in play. No code for the check has been located
-  (Q-PARTY-006).
+- Disputed: FND-PARTY-170 contradicts When it runs and the first edge case. Leaving the View
+  Character screen of a new party, by its return button or Esc, brings back the start window while
+  `DS:0DAB` is 0 and begins no play, and START GAME with nothing placed loads characters 40 to 43
+  (RULE-PARTY-006), so no code found refuses an empty party; the player who adds no character gets
+  the supplied party. The reading rests on `DS:0DAB` staying 0 during party creation, which
+  FND-PARTY-046's runs do not rule out, and does not cover a party emptied with `DROP` after `ADD`,
+  which leaves the placed-object count nonzero: whether that reaches START GAME with no character
+  in a box is Q-PARTY-006.
+- Whether a party of fewer than four plays differently (Q-PARTY-070).

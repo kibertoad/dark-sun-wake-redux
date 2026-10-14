@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-070
+Next ID: Q-PARTY-071
 
 ## Static
 
@@ -50,9 +50,20 @@ Next ID: Q-PARTY-070
   entry `37FC:04AB` for a resource shorter than the size it is given. Tried: FND-PARTY-104 reads
   the level-gain windows, which show `SPST` as the known spells and bits 1 to 7 of `PSST` as power
   ranks, and keep bit 0. Blocks: slice 3.
-- Q-PARTY-006. RULE-PARTY-001: What does the game do when the player tries to begin with an
-  empty party, and does a party of fewer than four play differently? Settles it: the code of the
-  View Character screen's exit that begins play (SCR-UI-002). Blocks: slice 2.
+- Q-PARTY-006. RULE-PARTY-001: Can play begin with no character in a party box? `DROP` refuses
+  only the leader's box when no other box holds a character, and the placed-object count is never
+  lowered, so a party that adds a character and drops it while the leader's slot names another,
+  empty box would reach START GAME with the count nonzero and skip the supplied party. Settles it:
+  the writers of the leader's slot `4C13:0369` from the start window to START GAME (its value
+  before any `ADD`, and whether `ADD` or the box records set it), and overlay 171 `+0D15`, which
+  `DROP` calls with 0, read for what it clears. Tried: FND-PARTY-170 reads the screen's two exits,
+  which go back to the start window while `DS:0DAB` is 0, and the `DROP` branch. Blocks: slice 2.
+- Q-PARTY-070. RULE-PARTY-001: Does a party of fewer than four play differently from a party of
+  four? Settles it: the readers of the four slot records at `DS:19C5` (their word at `+0x0E`) and
+  `DS:19C9` (their word at `+0x06`) outside the Create Characters screen and the party loader, read
+  for a branch on how many slots are filled. Tried: FND-PARTY-170 shows the creation screen's
+  exits do not test the number of characters; FND-PARTY-086 shows a kill's experience is
+  divided among the filled slots (RULE-PARTY-015). Blocks: slice 2.
 - Q-PARTY-009. RULE-PARTY-008, RULE-COMBAT-001: What does a key from 1 to 4 do, in particular when its slot is
   empty, and is the word the party loader compares each slot with (FND-PARTY-013) the leader's
   slot? Settles it: the handler the keys 1 to 4 reach in overlay 190, which posts an event for
