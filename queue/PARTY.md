@@ -5,8 +5,8 @@ Next ID: Q-PARTY-073
 ## Static
 
 - Q-PARTY-071. RULE-PARTY-001, RULE-PARTY-008: What sets `leader` when START GAME begins play with
-  created characters? In EXP-PARTY-001 it was 0 until START GAME and 2 once play began with one
-  character in box 2. Settles it: the stores to `leader` (`4C13:0369`) that START GAME reaches with
+  created characters? It was 0 until START GAME, then 2 for one character in box 2
+  (EXP-PARTY-001) and 1 for characters in boxes 1 and 3 (EXP-PARTY-002). Settles it: the stores to `leader` (`4C13:0369`) that START GAME reaches with
   a placed party, and the box each picks for a party of several characters. Blocks: slice 2.
 - Q-PARTY-045. RULE-PARTY-015: Does any enemy's `kill_experience` divided by the filled party
   slots reach 32,768, so that killing it lowers each member's experience (FND-PARTY-086,
@@ -85,13 +85,7 @@ None.
 
 ## Agent run
 
-- Q-PARTY-072. RULE-PARTY-001: Does START GAME begin play with a created party of two to four
-  characters, each in the box it was added to? Settles it: an agent run from the start-window
-  checkpoint of `tools/research/rust-dos-runs/plans/start.json` that adds two stored characters to
-  boxes 1 and 3 and picks START GAME, reading `object_slot_kinds`, `object_slot_combatants` and
-  `leader` once play begins, with the draws recorded (EXP-PARTY-001). Required parts: Start it and
-  bring it to a given state, Send it input, Read memory, set breakpoints, all agent.
-  Blocks: slice 2.
+None.
 
 ## Live session
 

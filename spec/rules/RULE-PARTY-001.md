@@ -4,7 +4,7 @@ title: A party has one to four characters
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [EXP-PARTY-001, FND-PARTY-170, SRC-MANUAL-1994]
+evidence: [EXP-PARTY-001, EXP-PARTY-002, FND-PARTY-170, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-006, SCR-UI-001, SCR-UI-002, SCR-UI-003, SCR-UI-004]
@@ -20,7 +20,7 @@ when no box holds a character. The manual recommends four.
 
 `party_has_room` when the player picks NEW or ADD on an empty character box (SRC-MANUAL-1994,
 pages 7 and 10), and `starting_party` when the player picks START GAME on the start window
-(EXP-PARTY-001). Leaving the View Character screen begins no play: it brings back the start window
+(EXP-PARTY-001, EXP-PARTY-002). Leaving the View Character screen begins no play: it brings back the start window
 (FND-PARTY-170).
 
 ## Parameters
@@ -53,8 +53,8 @@ Neither changes state.
 
 A party of four offers no empty box for a fifth character. A party emptied with `DROP` after `ADD`
 counts as empty: START GAME then begins play with the supplied party, as it does when nothing was
-added (EXP-PARTY-001). A party of one plays with that character in the box it was added to, which
-need not be box 0 (EXP-PARTY-001).
+added (EXP-PARTY-001). A party of one or two plays with each character in the box it was added to,
+which need not be box 0 (EXP-PARTY-001, EXP-PARTY-002).
 A party of fewer than four plays under the same rules, except that a kill's experience is divided
 among the filled slots (RULE-PARTY-015); no other code found counts the filled slots
 (FND-PARTY-173).
@@ -74,7 +74,9 @@ None known.
 
 ## Open questions
 
-- What makes `leader` name the box of the only character, 2 in EXP-PARTY-001 where it was 0 until
-  START GAME, and which box it names for a party of several created characters (Q-PARTY-071).
-- Whether START GAME begins play with a created party of two to four as it does with one; the
-  experiment added a single character (Q-PARTY-072).
+- What makes `leader` name a filled box once play begins: it was 0 until START GAME, then 2 for a
+  party in box 2 alone (EXP-PARTY-001) and 1 for a party in boxes 1 and 3 (EXP-PARTY-002), which
+  fits the lowest filled box (Q-PARTY-071).
+- Whether a created party of three or four, or one made with NEW, begins play the same way; the
+  experiments added one and two stored characters (No item: the same mechanism as EXP-PARTY-002,
+  with no reading that predicts a difference).

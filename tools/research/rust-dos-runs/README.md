@@ -45,7 +45,14 @@ from it:
 | `exp-add-start-long.json` | ADD, START GAME |
 | `exp-add-start-long-seed.json` | the same with `rng_state` 12345 |
 
-The other plans (`add.json`, `drop.json`, `after-drop.json`,
+EXP-PARTY-002's runs start from it too:
+
+| Plan | Run |
+| --- | --- |
+| `exp-add-two-start.json` | ADD to box 1, ADD to box 3, START GAME |
+| `exp-add-two-start-seed.json` | the same with `rng_state` 12345 |
+
+The other plans (`exp-add-start.json`, `add.json`, `drop.json`, `after-drop.json`,
 `start-game-after-drop.json`, `start-game-control.json`) are the exploratory
 runs that found the screens' positions, each from the checkpoint the one before
 it saved.
