@@ -51,12 +51,10 @@ Do not weaken host safeguards or extend analysis beyond preservation scope.
 ## Handover
 
 - Stage: Slices; entire-game research goal active and incomplete.
-- Last gate: 2026-10-15, ./tools/Test.ps1 -NoRestore passed for the measured
-  seed/checkpoint batch and native restore/return batch, including 715 .NET
-  tests, Node suites and documentation validation (1313 entries, 168 parity
-  rows, 5 deviations). Argument-count and absent-Kaitai-compiler skips remain;
-  no evidence-status promotion or queue closure. Final restore admission
-  changes received a fresh full gate and a repeated native attempt.
+- Last gate: 2026-10-15, ./tools/Test.ps1 -NoRestore passed for both the
+  reducer-width research and clock-source probe batches, including 715 .NET
+  tests and Node/documentation suites. The clock probe's two synthetic controls
+  and repeated native run passed. Q-RNG-002 closed; Q-RNG-003 remains open.
 - Latest tooling gate: 2026-10-15, ./tools/Test.ps1 -NoRestore passed with
   715 .NET tests and Node/documentation suites. check_probe_drive.py passed
   four synthetic tests; the real symlink fixture was skipped because this
@@ -66,7 +64,7 @@ Do not weaken host safeguards or extend analysis beyond preservation scope.
   from Q-PARTY-020. Historical citations reviewed in the replacement.
 - Latest dynamic entry: FND-PARTY-219. Q-PARTY-081 is now Agent run; the
   old lock blocker is no longer current. FND-RNG-010 and FND-UI-040 are the
-  latest dynamic entries; FND-RNG-009 and RULE-RNG-001 are the latest static batch. Q-RNG-001
+  earlier dynamic entries. FND-RNG-011..013 and RULE-RNG-001 are the latest static batch; FND-RNG-014 is the latest dynamic entry. Q-RNG-001
   was narrowed and Q-RNG-003 added. RNG parity remains partial with its
   required Defect note. No gameplay implementation changed.
 - Runtime: startup_segments.py successfully completed a native rust-dos run
@@ -88,6 +86,10 @@ Do not weaken host safeguards or extend analysis beyond preservation scope.
   restore-and-return-20261015-verified/:opened; it is file-verified but not
   natively restored yet. Displayed pixels, input readiness and the subsequent
   gameplay/deletion route remain unverified. run_plan.py remains time-driven.
+- Clock probe: clock_source.py completed and repeated a fixed startup observation.
+  Its local reports are under GAME_DIR/captures/rust-dos-clock-source/
+  buffer-identity-20261015-verified/. No input or memory writes were used.
+  Conversion semantics and other reseeding paths remain unverified.
 - Tooling: dependencies remain in artifacts/evidence-python; always set
   EVIDENCE_PYTHON to that interpreter. Pinned rust-dos v1.7.2 is installed and
   verified. Git trust was checkout-scoped and commit hooks remain enabled.
@@ -112,8 +114,8 @@ Do not weaken host safeguards or extend analysis beyond preservation scope.
   patched-save/live-session requests remain separate; native startup access
   does not verify a new gameplay state route or patched-save capability.
 - Next:
-  1. Q-RNG-003: finish the clock conversion, earlier near-buffer identity and
-     other admitted reseeding paths; use FND-RNG-010 for the completed native
+  1. Q-RNG-003: finish the clock conversion and other reseeding paths;
+     FND-RNG-014 settles startup buffer identity. Use FND-RNG-010 for the native
      prerequisite. Q-RNG-001 retains rule/caller verification;
      the generator census output holds unverified additional overlay candidates.
   2. Q-PARTY-081: use verified private-drive preparation for a state-driven
