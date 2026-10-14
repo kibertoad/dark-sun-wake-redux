@@ -55,6 +55,10 @@ Do not weaken host safeguards or extend analysis beyond preservation scope.
   research batches, including 715 .NET tests, Node suites and documentation
   validation (1309 entries, 168 parity rows, 5 deviations). Argument-count and
   absent-Kaitai-compiler skips remain; no status promotion or queue closure.
+- Latest tooling gate: 2026-10-15, ./tools/Test.ps1 -NoRestore passed with
+  715 .NET tests and Node/documentation suites. check_probe_drive.py passed
+  four synthetic tests; the real symlink fixture was skipped because this
+  host cannot create it. No game evidence status or queue item changed.
 - Latest static entries: FND-PARTY-217 and FND-PARTY-218; the replacement retains
   the superseded finding. FMT-PARTY-006 and SCR-UI-008 updated. Q-PARTY-085 is separate
   from Q-PARTY-020. Historical citations reviewed in the replacement.
@@ -65,8 +69,11 @@ Do not weaken host safeguards or extend analysis beyond preservation scope.
   released its lock; read-only inspection found no remaining run lock. No
   unrecognized lock was changed and no alternate path used. Use docs/RUNTIME.md
   for capability provenance. The fixed probe copies only DSUN.EXE and must not
-  continue to gameplay; a complete private drive and state-driven gameplay
-  stops are the next tooling need. Existing run_plan.py remains time-driven.
+  continue to gameplay. Manifest-bounded preparation is now in probe_drive.py
+  and used by fresh run_plan.py runs. Installed validation copied 191 verified
+  files to GAME_DIR/captures/probe-drive-validation-20261015 without starting
+  the game. Unlisted captures and saves are excluded; CD media remains on D:.
+  State-driven gameplay stops remain needed; run_plan.py remains time-driven.
 - Tooling: dependencies remain in artifacts/evidence-python; always set
   EVIDENCE_PYTHON to that interpreter. Pinned rust-dos v1.7.2 is installed and
   verified. Git trust was checkout-scoped and commit hooks remain enabled.
@@ -83,9 +90,11 @@ Do not weaken host safeguards or extend analysis beyond preservation scope.
   patched-save/live-session requests remain separate; native startup access
   does not verify a new gameplay state route or patched-save capability.
 - Next:
-  1. Q-PARTY-081: complete private gameplay drive, state-driven deletion-call
-     stop, draw recording and frame/map read. FND-PARTY-219 is a prerequisite,
-     not a whole cleanup result.
+  1. Q-PARTY-081: use verified private-drive preparation for a state-driven
+     gameplay/deletion-call stop, draw recording and frame/map read.
+     FND-PARTY-219 is a prerequisite, not a whole cleanup result. Start-window
+     opener/callback locations are in FND-UI-035; verify bounded call arguments
+     before selecting a state stop. Do not reuse timed start.json advancement.
   2. Q-PARTY-082: finish head-field roles through graph enumeration; use the
      corrected FND-PARTY-218 provenance.
   3. Q-PARTY-085: physical position labels and complete projection contracts.
