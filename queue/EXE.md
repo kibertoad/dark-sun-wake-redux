@@ -6,10 +6,12 @@ Next ID: Q-EXE-027
 
 - Q-EXE-007. FMT-EXE-006: Do the shipped game or sound-setup executables
   launch any batch helpers? Settles it: for the installed DSUN.EXE (the
-  disc copy is not studied, docs/SOURCE-EDITIONS.md), each of the 77
-  computed transfers FND-EXE-579's walk leaves unresolved, other than the
-  four FND-EXE-575 and FND-EXE-579 already classify (`1000:2A24`,
-  `4842:051A`, `1000:1D8D`, `1000:252C`), classified by where its target
+  disc copy is not studied, docs/SOURCE-EDITIONS.md), each of the 69
+  computed transfers FND-EXE-580's walk leaves unresolved, other than the
+  ten FND-EXE-575, FND-EXE-578, FND-EXE-579 and FND-EXE-580 already
+  classify (`1000:1F10`, `1000:1FBC`, `1000:2A24`, `4842:051A`,
+  `44B6:00B8`, `55CE:018F`, `1000:1D8D`, `1000:252C`, `1000:029D`,
+  `1000:298A`), classified by where its target
   comes from: an address inside the file, which is declared to the walk
   and the census rerun over what it then reaches, or code
   outside the file (handlers taken from the interrupt vector table, the
@@ -30,7 +32,10 @@ Next ID: Q-EXE-027
   the runtime library's Ctrl-Break, exit and critical-error calls to
   handlers inside the file; declared to the walk, they reach two more
   interrupt 21 sites (AH 2D and the argument-selected one), leaving 18
-  candidates and 77 unresolved transfers.
+  candidates and 77 unresolved transfers. FND-EXE-580 traces the startup
+  and exit record walkers, the formatting engine's output routine and the
+  four signal dispatch calls to code inside the file; declared, they reach
+  no further interrupt site and leave 69 unresolved.
   Tried (before the split into this item, Q-EXE-025 and Q-EXE-026): the
   helper contents and distribution wrapper (FND-EXE-008, FND-EXE-010)
   locate no caller; FND-EXE-350 finds one sound.bat suffix in each game
