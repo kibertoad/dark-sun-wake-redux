@@ -165,8 +165,10 @@ with RustDosSession(settings) as s:
         old = s.client.read_memory(RNG_STATE, 4).data
         contract = FieldContract("dark-sun-wake-runs/1", (WritableField("rng_state", RNG_STATE, 4),))
         s.write(contract, "rng_state", struct.pack("<I", plan["rng_state"]), hashlib.sha256(old).hexdigest())
+    watched = {}
     for addr, n in plan.get("watch", []):
         s.client.set_watchpoint(addr, n)
+        watched[addr] = (n, s.client.read_memory(addr, n).data)
     if plan.get("watch_draws"):
         s.client.set_breakpoint(GENERATOR)
         print("rng_state", struct.unpack("<I", s.client.read_memory(RNG_STATE, 4).data)[0])
@@ -186,10 +188,19 @@ with RustDosSession(settings) as s:
                     draws.append(draw)
                     print("  draw", draw, flush=True)
                 elif ob.stop.get("reason") == "watchpoint":
-                    # A write to a watched field: report where it came from and go on.
+                    # A write to a watched field: report a change, where it came from, and go on.
+                    changed = {}
+                    for addr, (n, old) in watched.items():
+                        new = s.client.read_memory(addr, n).data
+                        if new != old:
+                            changed[addr] = f"{old.hex()}->{new.hex()}"
+                            watched[addr] = (n, new)
+                    if not changed:
+                        ob = wait(s, s.continue_(until_ms=step["until_ms"]))
+                        continue
                     r = ob.stop["registers"]
                     cs, ip = ob.stop["cs_ip"].split(":")
-                    print("  write", {k: ob.stop.get(k) for k in ("watchpoint", "emu_ns")},
+                    print("  write", changed, ob.stop.get("emu_ns"),
                           "at", static(int(cs, 16), int(ip, 16)), "run", ob.stop["cs_ip"], flush=True)
                     # The callers, by the BP chain, taking each frame's return as far.
                     bp, ss = int(r["bp"], 16), r["ss"]

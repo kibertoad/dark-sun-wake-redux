@@ -35,7 +35,8 @@ draw it cannot name. A plan with `rng_state` writes that seed through a guarded
 write before the first step.
 
 A plan with `watch`, a list of `[address, length]`, sets a watchpoint on each
-range. At each write it prints the static address of the writing instruction
+range. At each write that changes a watched value it prints the old and new
+bytes, the static address of the writing instruction
 and the BP chain: each frame's far return, with the 24 bytes before it so that
 overlay code can be found in the file. A run that saves no checkpoint deletes
 its copy of C: when it ends.
@@ -64,6 +65,9 @@ a watchpoint on `leader`.
 FND-PARTY-178's runs: `two-play.json` repeats `exp-add-two-start.json` and
 saves the checkpoint `play` 90,000 ms after START GAME; `leader-keys.json`
 presses 4, 1, 2, 3 and 4 from it with a watchpoint on `leader`.
+
+FND-PARTY-184's run is `marks-two.json`: `exp-add-two-start.json` with
+watchpoints on the four combatant records' `combat_mark` bytes.
 
 The other plans (`exp-add-start.json`, `add.json`, `drop.json`, `after-drop.json`,
 `start-game-after-drop.json`, `start-game-control.json`) are the exploratory
