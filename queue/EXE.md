@@ -1,15 +1,17 @@
 # EXE
 
-Next ID: Q-EXE-027
+Next ID: Q-EXE-028
 
 ## Static
 
 - Q-EXE-007. FMT-EXE-006: Do the shipped game or sound-setup executables
   launch any batch helpers? Settles it: for the installed DSUN.EXE (the
-  disc copy is not studied, docs/SOURCE-EDITIONS.md), each of the 59
-  computed transfers FND-EXE-584's walk leaves unresolved, other than the
-  35 FND-EXE-575 and FND-EXE-578 to FND-EXE-584 already classify (the
-  23 calls to the XMS entry, `4AB9:002B`, `4AB9:0052`, `1000:1F10`, `1000:1FBC`, `1000:2A24`, `4842:051A`,
+  disc copy is not studied, docs/SOURCE-EDITIONS.md), each of the 61
+  computed transfers FND-EXE-585's walk leaves unresolved, and each return
+  that jumps to an address pushed before it, other than the 39
+  FND-EXE-575 and FND-EXE-578 to FND-EXE-585 already classify (the
+  23 calls to the XMS entry, `4842:0498`, `4842:040A`, `4842:13FB`,
+  `4842:14EA`, `4AB9:002B`, `4AB9:0052`, `1000:1F10`, `1000:1FBC`, `1000:2A24`, `4842:051A`,
   `44B6:00B8`, `55CE:018F`, `1000:1D8D`, `1000:252C`, `1000:029D`,
   `1000:298A`), classified by where its target
   comes from: an address inside the file, which is declared to the walk
@@ -43,7 +45,11 @@ Next ID: Q-EXE-027
   2660, 49D2 and overlay 180, or to pointers nothing sets, leaving 59.
   FND-EXE-584 traces the nine calls through the record table at DGROUP
   3F42 to routines in 1425 and 15F3; they reach one more interrupt 21
-  site (AH 3F, 17 candidates left) and nine more XMS calls.
+  site (AH 3F, 17 candidates left) and nine more XMS calls. FND-EXE-585
+  traces the timer callbacks and the sound driver dispatch, a far return
+  the walk read as a return, to routines in the file or to driver code
+  loaded from ADV resources (Q-EXE-027); declared, they reach six
+  interrupt 66 sites and two calls into a DIGPAK image, leaving 61.
   Tried (before the split into this item, Q-EXE-025 and Q-EXE-026): the
   helper contents and distribution wrapper (FND-EXE-008, FND-EXE-010)
   locate no caller; FND-EXE-350 finds one sound.bat suffix in each game
@@ -58,6 +64,22 @@ Next ID: Q-EXE-027
   way with no launch claim. More than two of these attempts ended in the
   same place, a consumer one step further on. Split from Q-EXE-004.
   Blocks: complete game/setup caller coverage.
+- Q-EXE-027. FMT-EXE-006: Does the sound driver code the installed
+  DSUN.EXE loads from its ADV resources, or the interrupt 66 handler,
+  request program execution? FND-EXE-585 finds the timer callback at
+  `4842:0498`, the driver dispatch at `4842:040A`, the calls into a
+  DIGPAK image at `4842:13FB` and `4842:14EA`, and six `int 66`
+  sites entering that code; the image is the ADV resource numbered by
+  SOUND.CFG's word at +0x38 or +0x36, 11 and 8 in the installed file
+  (FND-CONFIG-023). Settles it: the installed GFF resources of tag ADV
+  with numbers 11 and 8 located and identified by their bytes, with which
+  of the `Copy` and `DIGPAK` signatures each carries; for each, either
+  its bytes matched to a disc driver FND-EXE-492, FND-EXE-496 and
+  FND-EXE-573 already census, or the same census taken of it from its
+  function table entries (function 0067 included) or its +0x100 and
+  +0x103 entries; and the interrupt 66 handler named, from the code that
+  installs it, or listed as installed outside the program.
+  Blocks: Q-EXE-007's answer for the transfers that leave DSUN.EXE.
 
 
 ## Emulated call
