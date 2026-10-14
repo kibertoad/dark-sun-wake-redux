@@ -314,17 +314,20 @@ An owner-approved history repair remains separate from this maintenance scope.
   pass only handlers FND-EXE-496 already decodes from; no stack-built transfers or code writes;
   the CD byte search is the control. Next: Q-EXE-007, the game editions' census, which can reuse
   sound_ds_reach_config.py's approach on DSUN.EXE through reach_config.py.
-- Q-EXE-007 leads for installed DSUN.EXE (unrecorded, read 2026-10-11): reach_config.py's regions
-  hold 100 `CD 21` and 4 `CD 2F` pairs, all resident, none in overlays, no `CD 2E`. Borland 1991
-  startup as in SOUND_DS.EXE: DGROUP 57E0; startup records DS:3994..39BE name 4AE5:0D27,
-  1000:0886, 11C1, 12D9, 2877, 29AA, 3B56; exit record DS:39BE names 4AE5:0193; main is the far
-  call at 1000:0158. Handlers: interrupt 0 at 1000:01A7 (AH=25 at 1000:01EF); the timer module in
-  segment 4842 (file base 0x3D620) sets interrupt 8 to CS:040C and stores CS:0519 at CS:0046,
-  like SOUND_DS's 1C08 module; 4AE5:1103..1126 hooks interrupt 19h with 55E3:003F, a `jmp far
-  cs:[2F]` to the saved vector, and 4AE5 calls an XMS entry through [43]. The set-vector routine
-  1000:04A3 has seven near callers passing (vector, handler) 23/0338, 24/1D66 twice, 23/[A4DA],
-  0/2AF9, 5/2A07, 6/2A88; the routines at 44DE:045D (file 0x3A44D) and file 0x40190 are not yet
-  read. Scratch helper: a caller lister over reach_config.py's relocations (scratchpad dcallers.py).
+- Q-EXE-007, installed DSUN.EXE (2026-10-14, commits fb337fd3..de872cf9 on goal/protocol-work,
+  not pushed): FND-EXE-578 censuses every interrupt 21/2F/2E site from
+  21 starts (installed handlers from every AH=25 site and vector-table store); none selects AH=4B.
+  FND-EXE-575 (no read of vector 21; saved handlers 5/8/9/19 called), FND-EXE-576 (controls),
+  FND-EXE-579 (runtime hooks), FND-EXE-580 (record walkers, output engine,
+  signal dispatch), FND-EXE-581 (XMS entry, AH 00/08-0D), FND-EXE-582 (overlay manager hooks),
+  FND-EXE-583 (DGROUP 346D..3496 pointers), FND-EXE-584 (3F42 record table). Each batch adds
+  exhaustive indirectCalls to a new query in tools/research/exec-census (latest
+  q007_dsun_tables_census.json); local outputs c_*/r_*/k_* in GAME_DIR/analysis/exe-batches/q007.
+  83 of 100 int 21 sites reached, 17 candidates; 59 unresolved, 35 classified. Left: 172C:01A7/01B5,
+  1BF3:5D0E/6199/61A0, 2707:0188/058C (cs: jump tables), 289B:025E/0269 (call bx), 39D1 (six,
+  [A0F1]/[A0F5]/es:[bx+F5]), 3A8E:0707/08B7, 3D72 (six, es:[bx+5A..70], [A119]), 4842:0498
+  (cs:[si+6]). Scratchpad helpers (dis.py, nearcalls.py, addr.py, mk*.py) are not committed;
+  store_values.py --indexed missed the 1425 table's [bx+disp] stores, so search by displacement.
 - Lead for unk_2a: overlay 204 +0203 pushes 0x0660:0x00BB (the setter trampoline 5787:00BB) as a
   value before a near call to its dispatcher at +019C, so the setter is passed as a callback.
   Filed toolkit #474 (list where a routine's far address is used as a value) after checking
