@@ -51,12 +51,12 @@ Do not weaken host safeguards or extend analysis beyond preservation scope.
 ## Handover
 
 - Stage: Slices; entire-game research goal active and incomplete.
-- Last gate: 2026-10-15, ./tools/Test.ps1 -NoRestore passed for the native
-  startup batch and separate RNG caller batch, including 715 .NET tests,
-  Node suites and documentation validation (1311 entries, 168 parity rows,
-  5 deviations). Argument-count and absent-Kaitai-compiler skips remain;
-  no evidence-status promotion or queue closure. The RNG batch's initial
-  static-environment metadata failure was corrected before its passing rerun.
+- Last gate: 2026-10-15, ./tools/Test.ps1 -NoRestore passed for the measured
+  seed/checkpoint batch and native restore/return batch, including 715 .NET
+  tests, Node suites and documentation validation (1313 entries, 168 parity
+  rows, 5 deviations). Argument-count and absent-Kaitai-compiler skips remain;
+  no evidence-status promotion or queue closure. Final restore admission
+  changes received a fresh full gate and a repeated native attempt.
 - Latest tooling gate: 2026-10-15, ./tools/Test.ps1 -NoRestore passed with
   715 .NET tests and Node/documentation suites. check_probe_drive.py passed
   four synthetic tests; the real symlink fixture was skipped because this
@@ -65,8 +65,8 @@ Do not weaken host safeguards or extend analysis beyond preservation scope.
   the superseded finding. FMT-PARTY-006 and SCR-UI-008 updated. Q-PARTY-085 is separate
   from Q-PARTY-020. Historical citations reviewed in the replacement.
 - Latest dynamic entry: FND-PARTY-219. Q-PARTY-081 is now Agent run; the
-  old lock blocker is no longer current. FND-UI-039 is the latest dynamic
-  entry; FND-RNG-009 and RULE-RNG-001 are the latest static batch. Q-RNG-001
+  old lock blocker is no longer current. FND-RNG-010 and FND-UI-040 are the
+  latest dynamic entries; FND-RNG-009 and RULE-RNG-001 are the latest static batch. Q-RNG-001
   was narrowed and Q-RNG-003 added. RNG parity remains partial with its
   required Defect note. No gameplay implementation changed.
 - Runtime: startup_segments.py successfully completed a native rust-dos run
@@ -78,14 +78,23 @@ Do not weaken host safeguards or extend analysis beyond preservation scope.
   and used by fresh run_plan.py runs. Installed validation copied 191 verified
   files to GAME_DIR/captures/probe-drive-validation-20261015 without starting
   the game. Unlisted captures and saves are excluded; CD media remains on D:.
-  startup_window.py now verifies a later call-site stop without input on the
-  fresh drive; check_startup_window.py passed both synthetic continuation
-  controls. Reports stay in GAME_DIR/captures/rust-dos-startup-window/.
-  No checkpoint was saved. A drawn-window/gameplay route remains needed;
-  run_plan.py remains time-driven.
+  startup_window.py now includes the declared seed-caller observation and
+  checked opener save; its four synthetic controls passed. The source state is
+  GAME_DIR/captures/rust-dos-startup-window/seed-and-opener-20261015/:opener.
+  restore_opener.py successfully restored it and saved opened after the
+  declared call returned. Its three synthetic controls and a repeated native
+  run passed with copied DSUN.EXE build-fingerprint admission. The newest
+  opened state is under GAME_DIR/captures/rust-dos-restore-opener/
+  restore-and-return-20261015-verified/:opened; it is file-verified but not
+  natively restored yet. Displayed pixels, input readiness and the subsequent
+  gameplay/deletion route remain unverified. run_plan.py remains time-driven.
 - Tooling: dependencies remain in artifacts/evidence-python; always set
   EVIDENCE_PYTHON to that interpreter. Pinned rust-dos v1.7.2 is installed and
   verified. Git trust was checkout-scoped and commit hooks remain enabled.
+- SavedState.checkpoint is a boolean; SavedState.directory is the path.
+  The first extended startup report mislabeled the boolean as path True;
+  the actual package journal/checkpoint reader remains authoritative, and
+  the committed reporting helper has a synthetic correction control.
 - Unfinished: no tracked batch draft. Local source-derived reports remain
   at GAME_DIR/analysis/party-record-heads/: combatant-head-read-candidates.txt,
   inventory-window-candidates.txt and field-getter-callers.txt. New source-derived
@@ -103,13 +112,15 @@ Do not weaken host safeguards or extend analysis beyond preservation scope.
   patched-save/live-session requests remain separate; native startup access
   does not verify a new gameplay state route or patched-save capability.
 - Next:
-  1. Q-RNG-003: finish the seed source/near-buffer identity and admitted
-     reseeding paths; a fixed seed-entry probe can confirm the startup caller
-     before later gameplay draws. Q-RNG-001 retains rule/caller verification;
+  1. Q-RNG-003: finish the clock conversion, earlier near-buffer identity and
+     other admitted reseeding paths; use FND-RNG-010 for the completed native
+     prerequisite. Q-RNG-001 retains rule/caller verification;
      the generator census output holds unverified additional overlay candidates.
   2. Q-PARTY-081: use verified private-drive preparation for a state-driven
      gameplay/deletion-call stop, draw recording and frame/map read.
-     FND-PARTY-219 and FND-UI-039 are prerequisites, not cleanup results. Start-window
+     FND-PARTY-219 and FND-UI-039..040 are prerequisites, not cleanup results. Use
+     the verified opener restore rather than repeat the intro. Validate any
+     new opened-state restore before relying on it. Start-window
      opener/callback locations are in FND-UI-035; verify bounded call arguments
      before selecting a state stop. Do not reuse timed start.json advancement.
   3. Q-PARTY-082: finish head-field roles through graph enumeration; use the
