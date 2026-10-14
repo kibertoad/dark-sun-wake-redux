@@ -41,6 +41,8 @@ PARTY also takes the run items of its queue that a session-package agent run can
 `docs/RUNTIME.md` allows (the owner allowed agent runs on 2026-10-14; claims checked 2026-10-14:
 goal/protocol-work is the only `goal/*` branch), with their experiments and the probe scripts in
 `tools/research/rust-dos-runs/`.
+COMBAT is added for the open questions of COMBAT entries that a PARTY item names, when that item
+is settled (claims checked 2026-10-14: goal/protocol-work is the only `goal/*` branch).
 Other areas are read-only. Further research
 areas are added only after checking the shared clone's authoritative goal
 claims and other sessions' work.
