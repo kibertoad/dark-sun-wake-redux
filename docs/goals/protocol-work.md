@@ -331,7 +331,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   resource_adv_census.py, installed_adv_resources.py, reach_config.py with the q007_*.json queries
   (latest q007_dsun_digpak_census.json); local outputs c_*/r_*/k_* in
   GAME_DIR/analysis/exe-batches/q007.
-- PARTY, 2026-10-14 (FND-PARTY-170..182, EXP-PARTY-001/002, commits 3373c2e7..9a86fe4f, not
+- PARTY, 2026-10-14 (FND-PARTY-170..185, EXP-PARTY-001/002, commits 3373c2e7..42e17d67, not
   pushed). Static: FND-PARTY-170..173 (Create Characters exits; ADD keeps leader 0; only the kill
   share counts the party). Runtime: agent runs work under rust-dos v1.7.2 through
   dinorefurb-dosbox-session 0.9.0 (pins, docs/RUNTIME.md, commit 2dc3a624); the goal scope takes
@@ -343,15 +343,20 @@ An owner-approved history repair remains separate from this maintenance scope.
   game to drive-c; runs that save no checkpoint delete it; this disk filled once).
   EXP-PARTY-001/002: ADD then DROP empties the box and START GAME then gives the supplied party;
   a created party of one or two plays in its own boxes; RULE-PARTY-001 supported again
-  (Q-PARTY-006 deleted). FND-PARTY-174/175: the leader at START GAME comes from overlay 173
-  +3CDA, the lowest filled slot with combat_mark 1-3. FND-PARTY-176..180: keys 1-4 (28C9:0E0C..)
+  (Q-PARTY-006 deleted). FND-PARTY-174/185: the leader at START GAME comes from overlay 173
+  +3CDA (also the fight end, FND-PARTY-089): the lowest filled slot with combat_mark 1-3, when a
+  member marked 1 or 2 has hit points. FND-PARTY-185 replaced a wrong reading that never left
+  the branch (commit 42e17d67). FND-PARTY-183/184: loading a character turns combat_mark 0 into 1. FND-PARTY-176..180: keys 1-4 (28C9:0E0C..)
   set turn_combatant and, outside combat, the leader through 182+1D3E, which swaps visibility
   and, for a key, redraws (2C5F:0139, 28C9:2A81 -> 4328:0B4C); the loader compares slots with
   leader; RULE-PARTY-008 supported. FND-PARTY-181/182: word 0 of a 23-byte DS:19C1 record is a
   negated object number (overlay 188 +066E places it), in FMT-PARTY-006. Upstream: toolkit #500
   (reach chains through a constant-ruled-out branch), toolkit #501 (RustDosConfig sound
   settings), protocol #119 (deterministic emulated-time waits as state waits), comment on
-  template #73 (capture-window test timeout under host load). Open next: Q-PARTY-073 (a party
+  template #73 (capture-window test timeout under host load), rust-dos #120 (watchpoint stops
+  carry no address or values), toolkit #509 (list entries already citing a routine). Before
+  reading a routine, grep the spec for every form of its address; FND-PARTY-089 had read
+  +3CDA already. Open next: Q-PARTY-073 (a party
   with no slot marked 1 or 2 at START GAME), Q-PARTY-075 (4328:0B4C's callees), Q-PARTY-020
   (rest of the 23-byte record; overlay 188 +04F8), then 062, 003, 005, 017, 018.
   docs/HANDOVER.md line 78 still names Q-PARTY-006, which is on main and not this goal's file.
