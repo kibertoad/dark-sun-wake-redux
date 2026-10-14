@@ -7,9 +7,9 @@ Next ID: Q-EXE-027
 - Q-EXE-007. FMT-EXE-006: Do the shipped game or sound-setup executables
   launch any batch helpers? Settles it: for the installed DSUN.EXE (the
   disc copy is not studied, docs/SOURCE-EDITIONS.md), each of the 59
-  computed transfers FND-EXE-583's walk leaves unresolved, other than the
-  26 FND-EXE-575 and FND-EXE-578 to FND-EXE-583 already classify (the
-  fourteen calls to the XMS entry, `4AB9:002B`, `4AB9:0052`, `1000:1F10`, `1000:1FBC`, `1000:2A24`, `4842:051A`,
+  computed transfers FND-EXE-584's walk leaves unresolved, other than the
+  35 FND-EXE-575 and FND-EXE-578 to FND-EXE-584 already classify (the
+  23 calls to the XMS entry, `4AB9:002B`, `4AB9:0052`, `1000:1F10`, `1000:1FBC`, `1000:2A24`, `4842:051A`,
   `44B6:00B8`, `55CE:018F`, `1000:1D8D`, `1000:252C`, `1000:029D`,
   `1000:298A`), classified by where its target
   comes from: an address inside the file, which is declared to the walk
@@ -41,6 +41,9 @@ Next ID: Q-EXE-027
   manager routines and empty returns, leaving 65 unresolved. FND-EXE-583
   traces eight guarded calls through DGROUP pointers to routines in
   2660, 49D2 and overlay 180, or to pointers nothing sets, leaving 59.
+  FND-EXE-584 traces the nine calls through the record table at DGROUP
+  3F42 to routines in 1425 and 15F3; they reach one more interrupt 21
+  site (AH 3F, 17 candidates left) and nine more XMS calls.
   Tried (before the split into this item, Q-EXE-025 and Q-EXE-026): the
   helper contents and distribution wrapper (FND-EXE-008, FND-EXE-010)
   locate no caller; FND-EXE-350 finds one sound.bat suffix in each game

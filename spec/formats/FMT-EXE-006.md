@@ -355,7 +355,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   memory functions only. FND-EXE-582 finds the overlay manager's hooks
   going to its own routines or to empty returns. FND-EXE-583 finds eight
   guarded calls through DGROUP pointers going to routines in the file or
-  never running. Which of its other
+  never running. FND-EXE-584 finds the record table at DGROUP 3F42
+  holding routines in segments 1425 and 15F3 only. Which of its other
   unresolved computed transfers can reach code outside the file remains
   Q-EXE-007.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;
