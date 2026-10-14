@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-082
+Next ID: Q-PARTY-085
 
 ## Static
 
@@ -109,14 +109,39 @@ Next ID: Q-PARTY-082
   and `0x19` the immunity type, and FND-PARTY-158 names `0x85` the psionic power list; FND-PARTY-159 shows the saving throw never
   reads `0x7B`. Blocks:
   slice 2.
-- Q-PARTY-020. FMT-PARTY-006: What does the rest of a 23-byte record of a type-2 or type-4 chunk
-  hold, and what do the character's combatant words at `0x08`, `0x0A` and `0x0C`, and a record's
-  word at `0x08`, which type-2 chunks fill with handles, lead to? Settles it: the code that reads
-  the table at `DS:19C1` and those words, such as the View Character screen's possessions
-  (SCR-UI-002), and the routine `+04F8` of overlay 188 that places records' objects. Tried:
+- Q-PARTY-020. FMT-PARTY-006: What do the remaining fields of a 23-byte attached
+  record mean, apart from `0x00`, quantity at `0x02`, chain link `0x04`, and
+  placed-entry bits at `0x12`? Its reference at `0x08` is Q-PARTY-083.
+  Settles it: direct readers/writers of the remaining offsets in the table at
+  `DS:19C1`, with descriptor-to-consumer bindings and actual input admission. Tried:
   FND-PARTY-181 and FND-PARTY-182 give word `0x00` as the negated object number and byte `0x12`
   as the placed entry's low bits; FND-PARTY-196 lists the shipped values of every field and shows
-  9999 ending each chain at `0x04`, but names no field from code. Blocks: slice 2.
+  9999 ending each chain at `0x04`. Tried: FND-PARTY-216 identifies quantity at
+  `0x02`; the character heads, nested reference and complete quantity reading
+  are split into Q-PARTY-082, Q-PARTY-083 and Q-PARTY-084. Blocks: slice 2.
+- Q-PARTY-082. FMT-PARTY-006: Which possessions or equipment lists do the
+  combatant words `0x08`, `0x0A` and `0x0C` head, and how does View Character
+  traverse or change each? Settles it: the screen's bindings to object fields
+  16, 17 and 4, list traversal, entry selection and list updates. Tried:
+  FND-PARTY-051 and FND-PARTY-052 map those words to handles attached by CHAR
+  chunks, and FND-PARTY-216 reads quantity placement but not the screen's
+  distinction between the three lists. Blocks: slice 2.
+- Q-PARTY-083. FMT-PARTY-006: What do a 23-byte record's attached handle at
+  `0x08` and the records linked through it represent, and how are they used?
+  Settles it: direct field-4 or offset-8 readers/writers for kind 1, including
+  traversal of their targets and the screen/actions consuming them. Tried:
+  FND-PARTY-052 gives the three type-2 chunks attaching to earlier kind-1
+  chunks; FND-PARTY-196 gives their shipped values; FND-PARTY-216 confirms
+  field 4 maps to offset 8 but establishes no purpose of that reference.
+  Blocks: slice 2.
+- Q-PARTY-084. FMT-PARTY-006: Does the quantity layout reading cover every
+  admitted count producer and consumer, with field/table bindings preserved?
+  Settles it: all kind-1 field-1 and direct offset-2 readers/writers, descriptor
+  and record-table population/stability, and placement's request admission,
+  signed arithmetic, aliases, callee returns and status consumption. Tried:
+  FND-PARTY-216 locates the shipped field-1 descriptor and placement's full
+  versus partial split branches; it leaves those complete-reading obligations
+  unproved. Blocks: complete reading of FMT-PARTY-006, not its remaining fields.
 - Q-PARTY-005. FMT-PARTY-004, FMT-PARTY-005: When do `30B0:00C1` and overlay 202 `+0C82` clear
   bit 0 of `PSST` bytes, what does the byte at `51F1:07E2 + 3 * power` hold, and does anything
   write a slot's 15-byte `SPST` entry at `4D62:039C` without naming that address? Settles it:
