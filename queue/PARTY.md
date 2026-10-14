@@ -4,25 +4,27 @@ Next ID: Q-PARTY-078
 
 ## Static
 
-- Q-PARTY-076. BUG-PARTY-001: Can a handler other than overlay 184 `+0DA7` run while the
+- Q-PARTY-076. BUG-PARTY-001: Can anything other than overlay 184 `+0DA7` run while the
   generation screen is up and point `DS:1429` at a stored details record before the screen draws
-  its sheet? Settles it: what overlay 184 `+1606`, the edit path from overlay 190 `+1004`, leaves
-  at `DS:A0F5` and `DS:A0F9` when it calls `+07D8`, and which routine clears the two slots on the
-  `NEW` route (FND-PARTY-190 sees them cleared while the `INACTIVE CHARACTER` window is open);
-  the 34 unresolved calls of FND-PARTY-189's reach; stores to `DS:1429` other than
-  direct-address ones. Tried: FND-PARTY-187 runs View Character in play and finds codes 1 to 8;
-  FND-PARTY-188 lists the sheet's three callers and the direct-address writers of `DS:1429`;
-  FND-PARTY-189 shows generation's own handler reaches those writers only in `+1029`, after its
-  sheet draw and as it closes the screen; FND-PARTY-190 opens generation by `NEW` from Create
-  Characters and from play and finds no other handler and the Fighter threshold on the sheet.
+  its sheet? Settles it: the 34 unresolved calls of FND-PARTY-189's reach, the main loop's calls
+  through `DS:A0F5` and `DS:A0F9` on routes into generation other than `NEW` and `EDIT` from View
+  Character, and stores to `DS:1429` other than direct-address ones. Tried: FND-PARTY-187 runs
+  View Character in play and finds codes 1 to 8; FND-PARTY-188 lists the sheet's three callers
+  and the direct-address writers of `DS:1429`; FND-PARTY-189 shows generation's own handler
+  reaches those writers only in `+1029`, after its sheet draw and as it closes the screen;
+  FND-PARTY-190 and FND-PARTY-191 open generation by `NEW` (from Create Characters and from
+  play) and by `EDIT` and find no other handler and Fighter's own threshold on the sheet.
   Blocks: nothing yet.
 - Q-PARTY-077. BUG-PARTY-001: On the DUAL path, does the word at `4E71:0B44` name the slot
   overlay 209 `+123E` was called with when it calls overlay 184 `+1DCE` at `+14FF`, so that the
   sheet at `+151E` prints that character's own classes? Settles it: the routes from overlay 172
   `+05DB` through overlays 173, 188 and 210 to the overlay 209 routines that store `4E71:0B44`,
-  the value of `DS:0DAB` while overlay 190 offers `DUAL`, and what those routines store
-  (FND-PARTY-080). Tried: FND-PARTY-080 reads the calls before `+1DCE` on this path and
-  FND-PARTY-188 finds the sheet call at `+151E` right after it. Blocks: nothing yet.
+  given `DS:0DAB` 0 (FND-PARTY-191 reads 0 on the Create Characters route; whether the in-play
+  route can offer `DUAL` with another value), and what those routines store (FND-PARTY-080).
+  Tried: FND-PARTY-080 reads the calls before `+1DCE` on this path and FND-PARTY-188 finds the
+  sheet call at `+151E` right after it; FND-PARTY-191 runs `DUAL` for a character made just
+  before and finds the word naming that character's slot and the Fighter threshold on the sheet.
+  Blocks: nothing yet.
 - Q-PARTY-073. RULE-PARTY-001: Can a party reach START GAME with no filled slot whose
   `combat_mark` is 1 or 2 and whose hit points are 1 or more, and what does overlay 173 `+3CDA`
   do then? It sets no leader and calls

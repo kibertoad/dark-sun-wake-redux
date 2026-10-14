@@ -85,7 +85,9 @@ the opening conversation and saves the checkpoint `talk` (run directory
 View Character in play. In play, a box is emptied first: right-click a filled
 box, DROP at `(165, 129)`, then YES at `(166, 117)`; the empty box's menu has
 NEW at its first line, `(115, 117)` for the third box and `(166, 117)` for the
-fourth.
+fourth. `generation-edit.json` and `dual.json` make a character with DONE at
+`(270, 183)`, right-click its box, and click EDIT at `(115, 117)` or DUAL at
+`(115, 141)`.
 
 The other plans (`exp-add-start.json`, `add.json`, `drop.json`, `after-drop.json`,
 `start-game-after-drop.json`, `start-game-control.json`) are the exploratory
