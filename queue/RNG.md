@@ -19,10 +19,6 @@ Next ID: Q-RNG-004
   seed callers; their complete source/reseeding contract is separated into
   Q-RNG-003. Its generator control query yields further overlay candidates
   requiring instruction and rule verification. Blocks: slices 2-7.
-- Q-RNG-002. RULE-RNG-001: In what widths and signedness do the reducers
-  compute? Settles it: the multiply, divide and store instructions of
-  `random_mod`, `random_between` and `roll_sum`, read for operand width and
-  signed or unsigned forms. Blocks: none.
 - Q-RNG-003. RULE-RNG-001: What complete input-to-seed contract and admitted
   reseeding paths do the two recovered seed callers use? Settles it: complete
   reading of 1000:0963 and conversion 1000:386D, their near-buffer DS/SS

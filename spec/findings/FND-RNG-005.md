@@ -1,9 +1,9 @@
 ---
 id: FND-RNG-005
 title: The repeated-roll helper at 28C9:391D sums one scaled draw per roll
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-RNG-013]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

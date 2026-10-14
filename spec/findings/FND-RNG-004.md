@@ -1,9 +1,9 @@
 ---
 id: FND-RNG-004
 title: The range helper at 2D40:3A03 scales one draw over an inclusive range
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-RNG-012]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

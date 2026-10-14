@@ -70,7 +70,7 @@ def wait(s, op):
 LOAD = 0x0A46
 GENERATOR = "05BA:0822"           # rng, 1000:0822 (FND-RNG-001)
 RNG_STATE = "4D9A:384A"           # rng_state, 57E0:384A
-RANDOM_MOD_RETURN = 0x2834 * 16 + 0x0633   # inside random_mod, 2834:061C (FND-RNG-003)
+RANDOM_MOD_RETURN = 0x2834 * 16 + 0x0633   # inside random_mod, 2834:061C (FND-RNG-011)
 SCRIPT_RAND_RETURN = 0x172C * 16 + 0x1710  # inside instruction 0x52, 172C:170B (FND-SCRIPT-011)
 SCRIPT_RAND_PARAMETER = "0CE6:1719"        # 172C:1719, the parameter n in DX:AX
 

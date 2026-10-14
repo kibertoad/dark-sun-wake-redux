@@ -1,9 +1,9 @@
 ---
 id: FND-RNG-003
 title: The modulo reducer at 2834:061C draws once, and not at all for a divisor of 0
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-RNG-011]
 recorded_by: kibertoad
 reproduced_by: []
 method: static
