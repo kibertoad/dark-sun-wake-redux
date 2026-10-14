@@ -64,6 +64,10 @@ Next ID: Q-PARTY-081
   window return. Tried: FND-PARTY-213 identifies the repeated index-zero unload, count
   decrement/compaction and chunk-type-2 identifier clearing; the former `2488` is a return
   site. Remaining input, callee and map-alias obligations prevent a whole-party claim.
+  Tried: FND-PARTY-214 settles the compactor's near-helper return and identifies
+  the deletion-map builder's parent-derived object stores and AX-only field-result
+  consumption. Remaining map admission, lookup/conversion effects and DS/SS
+  identity are distinct from that now-read index-adjustment helper.
   Blocks: nothing yet.
 - Q-PARTY-045. RULE-PARTY-015: Does any enemy's `kill_experience` divided by the filled party
   slots reach 32,768, so that killing it lowers each member's experience (FND-PARTY-086,
