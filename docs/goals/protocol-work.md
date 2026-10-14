@@ -331,7 +331,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   resource_adv_census.py, installed_adv_resources.py, reach_config.py with the q007_*.json queries
   (latest q007_dsun_digpak_census.json); local outputs c_*/r_*/k_* in
   GAME_DIR/analysis/exe-batches/q007.
-- PARTY, 2026-10-14 (FND-PARTY-170..196, EXP-PARTY-001/002, commits 3373c2e7..2f894d67, not
+- PARTY, 2026-10-14 (FND-PARTY-170..202, EXP-PARTY-001/002, commits 3373c2e7..21d42c2e, not
   pushed). Static: FND-PARTY-170..173 (Create Characters exits; ADD keeps leader 0; only the kill
   share counts the party). Runtime: agent runs use rust-dos v1.7.2 through
   dinorefurb-dosbox-session 0.10.0 with the installed sound card (Sound Blaster at 220, IRQ 5,
@@ -368,7 +368,14 @@ An owner-approved history repair remains separate from this maintenance scope.
   (plan leader-page-flip): a leader key's 4328:0B4C flips the VGA page and copies it, no party
   state (Q-PARTY-075 closed). FND-PARTY-196 (char_item_records.py): shipped values of the 23-byte
   item records; 9999 ends each chain at 0x04. Q-PARTY-020 has had two data/code attempts; split
-  it before trying again. A breakpoint on a routine called every frame exhausts Windows ports
+  it before trying again. FND-PARTY-197..202 (Q-PARTY-073 split into 073 and 080, 079 folded
+  back): only the damage routine 173 +22C4 stores a combat_mark above 2 through DS:19C9
+  (offset14_stores.py census); a reach from the title-screen windows gets there through the USE
+  window, which the key c opens on Create Characters although its button is disabled
+  (plans cast-*.json), and through set_leader, whose attack call needs the fight state
+  4C10:0019 nonzero (0 there). 193 +0533 starts a fight only for a target above 4; 179 +0D2F's
+  own damage call is for kind-1 slots, so Q-PARTY-073 is left with 179 +1373 and +2A05 or a run
+  casting a damaging spell at a party member. A breakpoint on a routine called every frame exhausts Windows ports
   (toolkit #511); break past its gates instead. Upstream this goal: toolkit #500, #501 (closed), #509, #510, #511; toolkit
   #466, #488, #497 closed after verifying releases (docs/TOOLKIT-RESPONSE-ACCEPTANCE.md);
   protocol #119; template #73 (two comments: capture-window timeouts under gate load, which
