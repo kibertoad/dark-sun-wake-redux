@@ -6,15 +6,15 @@ Next ID: Q-EXE-028
 
 - Q-EXE-007. FMT-EXE-006: Do the shipped game or sound-setup executables
   launch any batch helpers? Settles it: for the installed DSUN.EXE (the
-  disc copy is not studied, docs/SOURCE-EDITIONS.md), each of the 50
-  computed transfers FND-EXE-587's walk leaves unresolved, and each return
-  that jumps to an address pushed before it, other than the 45
-  FND-EXE-575 and FND-EXE-578 to FND-EXE-587 already classify (the
+  disc copy is not studied, docs/SOURCE-EDITIONS.md), each of the 49
+  computed transfers FND-EXE-588's walk leaves unresolved, and each return
+  that jumps to an address pushed before it, other than the 50
+  FND-EXE-575 and FND-EXE-578 to FND-EXE-588 already classify (the
   23 calls to the XMS entry, `4842:0498`, `4842:040A`, `4842:13FB`,
   `4842:14EA`, the far jumps `2707:0188`, `02FA`, `03D5`, `04D0` and
   `058C`, `1BF3:5D0E` (FND-PARTY-043), `4AB9:002B`, `4AB9:0052`, `1000:1F10`, `1000:1FBC`, `1000:2A24`, `4842:051A`,
   `44B6:00B8`, `55CE:018F`, `1000:1D8D`, `1000:252C`, `1000:029D`,
-  `1000:298A`), classified by where its target
+  `1000:298A`, `3D72:012A`, `09C7`, `0BD7`, `0DA1`, `0DD0`), classified by where its target
   comes from: an address inside the file, which is declared to the walk
   and the census rerun over what it then reaches, or code
   outside the file (handlers taken from the interrupt vector table, the
@@ -59,7 +59,12 @@ Next ID: Q-EXE-028
   in 39D1 and 3A8E, and three overlay 190 routines' callback arguments,
   to overlay routines and 28C9:0CFF that callers register as constants;
   declared, they reach no further interrupt site and leave 50, of which
-  only the six in segment 3D72 are unclassified.
+  only the six in segment 3D72 are unclassified. FND-EXE-588 traces
+  those: the application frame callback at 3D72:0590 goes to 20
+  registered routines in the file, and the other five calls go through
+  fields and a hook nothing sets, so they never run; declared, the walk
+  reaches no further interrupt site and leaves 49, every one classified,
+  and 4842:040A is still its only return directly after a push.
   Tried (before the split into this item, Q-EXE-025 and Q-EXE-026): the
   helper contents and distribution wrapper (FND-EXE-008, FND-EXE-010)
   locate no caller; FND-EXE-350 finds one sound.bat suffix in each game

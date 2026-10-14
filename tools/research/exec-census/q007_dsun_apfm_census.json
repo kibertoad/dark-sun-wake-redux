@@ -1,0 +1,1187 @@
+{
+ "starts": [
+  "1000:0000",
+  "4AE5:0D27",
+  "1000:0886",
+  "1000:11C1",
+  "1000:12D9",
+  "1000:2877",
+  "1000:29AA",
+  "1000:3B56",
+  "4AE5:0193",
+  "1000:01A7",
+  "1000:0338",
+  "1000:1D66",
+  "1000:2AF9",
+  "1000:2A07",
+  "1000:2A88",
+  "4842:040C",
+  "4842:0519",
+  "1000:2B6A",
+  "44B6:00B5",
+  "4AE5:04F4",
+  "55E3:003F",
+  "4842:13DA",
+  "4842:145A",
+  "4842:1468",
+  "4842:14CD",
+  "4842:169A",
+  "4842:186B",
+  "4842:18B3",
+  "4842:18F7",
+  "4842:1500",
+  "4842:1626",
+  "4842:1685",
+  "4842:1740",
+  "4842:182E",
+  "2707:01AD",
+  "2707:01CB",
+  "2707:01F1",
+  "2707:0208",
+  "2707:0218",
+  "2707:0224",
+  "2707:023A",
+  "2707:026E",
+  "2707:05B1",
+  "2707:05C2",
+  "2707:05EF",
+  "2707:0600",
+  "2707:062C",
+  "2707:063C",
+  "2707:0668",
+  "2707:0678",
+  "2707:0390",
+  "2707:031F",
+  "2707:0334",
+  "2707:033C",
+  "2707:0351",
+  "2707:0366",
+  "2707:036E",
+  "2707:03FA",
+  "2707:040A",
+  "2707:0489",
+  "2707:041D",
+  "2707:0430",
+  "2707:0440",
+  "2707:0453",
+  "2707:04E5",
+  "2707:04FD",
+  "2707:0510",
+  "2707:0528"
+ ],
+ "targets": [
+  "0x520a",
+  "0x52b5",
+  "0x52ef",
+  "0x52f9",
+  "0x5302",
+  "0x530f",
+  "0x5319",
+  "0x53a5",
+  "0x53b4",
+  "0x53c1",
+  "0x53ce",
+  "0x53db",
+  "0x53ef",
+  "0x53fb",
+  "0x5406",
+  "0x5411",
+  "0x541c",
+  "0x54aa",
+  "0x54ec",
+  "0x5677",
+  "0x568a",
+  "0x569c",
+  "0x56af",
+  "0x590e",
+  "0x59cc",
+  "0x5a6e",
+  "0x5a81",
+  "0x64af",
+  "0x64b9",
+  "0x6e46",
+  "0x7202",
+  "0x7b99",
+  "0x8001",
+  "0x8053",
+  "0x810f",
+  "0x90fb",
+  "0xb1fc",
+  "0xb208",
+  "0xb299",
+  "0xb2b3",
+  "0xb2d4",
+  "0xb2ec",
+  "0xb2fd",
+  "0xb332",
+  "0xb404",
+  "0xb40d",
+  "0xb419",
+  "0xb463",
+  "0xb46c",
+  "0xb478",
+  "0xb4ed",
+  "0xb501",
+  "0xb9a1",
+  "0xb9b1",
+  "0x3a005",
+  "0x3a032",
+  "0x3a057",
+  "0x3a0af",
+  "0x3a1c7",
+  "0x3a1e8",
+  "0x3a244",
+  "0x3a265",
+  "0x3a293",
+  "0x3a2bc",
+  "0x3a2e5",
+  "0x3a305",
+  "0x3a319",
+  "0x3a35e",
+  "0x3a3c1",
+  "0x3a3f8",
+  "0x3a401",
+  "0x3a417",
+  "0x3a45b",
+  "0x3a46c",
+  "0x3a47c",
+  "0x3a48e",
+  "0x3a4c2",
+  "0x3a4e5",
+  "0x3a508",
+  "0x3a530",
+  "0x3a59f",
+  "0x3a5c5",
+  "0x3a62d",
+  "0x400a2",
+  "0x400ed",
+  "0x40139",
+  "0x4019e",
+  "0x401b0",
+  "0x401c8",
+  "0x401db",
+  "0x40213",
+  "0x402d8",
+  "0x402e3",
+  "0x40440",
+  "0x4045c",
+  "0x40e0a",
+  "0x40e14",
+  "0x40e21",
+  "0x40e28",
+  "0x40e31",
+  "0x40e39",
+  "0x40f61",
+  "0x40f90",
+  "0x40f99",
+  "0x7110",
+  "0x71bc"
+ ],
+ "leaves": [],
+ "decodedRanges": true,
+ "instructionControls": [
+  "277B:0024",
+  "188+1604"
+ ],
+ "controls": [],
+ "indirectCalls": [
+  {
+   "site": "1000:0346",
+   "exhaustive": true,
+   "targets": [
+    "180+0848"
+   ],
+   "evidence": "DS:A4C6..A4CA is written only by 1000:0361 from its argument, which also installs this interrupt 23 handler; its only caller, overlay 180 +015E, passes overlay 180's trampoline 56B2:002A"
+  },
+  {
+   "site": "1000:03A1",
+   "exhaustive": true,
+   "targets": [
+    "167B:0029",
+    "180+0762"
+   ],
+   "evidence": "the exit table at DS:A446 is written only by 1000:030B from its argument; its only callers pass 167B:0029 (167B:011B) and overlay 180's trampoline 56B2:0025 (overlay 180 +014A)"
+  },
+  {
+   "site": "1000:03B1",
+   "exhaustive": true,
+   "targets": [
+    "1000:0387",
+    "1000:3F14"
+   ],
+   "evidence": "DS:3676..367A holds 1000:0387 at load and is written only at 1000:36DE..36EA, with 1000:3F14"
+  },
+  {
+   "site": "1000:03C9",
+   "exhaustive": true,
+   "targets": [
+    "1000:0387"
+   ],
+   "evidence": "DS:367A..367E holds 1000:0387 at load and no instruction stores to it"
+  },
+  {
+   "site": "1000:03CD",
+   "exhaustive": true,
+   "targets": [
+    "1000:0387"
+   ],
+   "evidence": "DS:367E..3682 holds 1000:0387 at load and no instruction stores to it"
+  },
+  {
+   "site": "1000:1DA6",
+   "exhaustive": true,
+   "targets": [
+    "277B:0005"
+   ],
+   "evidence": "DS:A4D4..A4D8 is written only by 1000:1DBA from its argument, which also installs this interrupt 24 handler; its only caller, 1000:1D38, forwards its argument from its only caller 277B:0275, which passes 277B:0005"
+  },
+  {
+   "site": "1000:0255",
+   "exhaustive": true,
+   "targets": [
+    "4AE5:0D27",
+    "1000:12D9",
+    "1000:3B56"
+   ],
+   "evidence": "far calls of the walker 1000:0220 run the type-1 records of the startup records DS:3994..39BE, which no instruction writes except the walker's own type byte 0xFF; its only caller, 1000:0149, passes those bounds"
+  },
+  {
+   "site": "1000:025C",
+   "exhaustive": true,
+   "targets": [
+    "1000:0886",
+    "1000:11C1",
+    "1000:2877",
+    "1000:29AA"
+   ],
+   "evidence": "near calls of the walker 1000:0220 run the type-0 records of the startup records DS:3994..39BE, which no instruction writes except the walker's own type byte 0xFF"
+  },
+  {
+   "site": "1000:0296",
+   "exhaustive": true,
+   "targets": [
+    "4AE5:0193"
+   ],
+   "evidence": "the walker 1000:0264, called only at 1000:0170 with the bounds DS:39BE..39C4, runs the one exit record, of type 1"
+  },
+  {
+   "site": "1000:0A37",
+   "exhaustive": true,
+   "targets": [
+    "1000:0FB5",
+    "1000:345B",
+    "1000:3726"
+   ],
+   "evidence": "[bp+0Ah] is the output routine argument of the formatting engine 1000:09F4, which never writes it; its five near callers pass 1000:0FB5 (1000:10F9), 1000:345B (1000:32F5, 1000:3DC7) and 1000:3726 (1000:3766, 1000:3782)"
+  },
+  {
+   "site": "1000:2A76",
+   "exhaustive": true,
+   "targets": [
+    "188+17C7"
+   ],
+   "evidence": "the interrupt 5 handler calls the signal 11 slot DS:3931, written only by signal 1000:2C77 from its argument and cleared to 0 by the handlers and raise; only 277B:0267 passes signal 11, with 5702:00F7, overlay 188's trampoline 43"
+  },
+  {
+   "site": "1000:2AE7",
+   "exhaustive": true,
+   "targets": [
+    "2D40:400C"
+   ],
+   "evidence": "the interrupt 6 handler calls the signal 4 slot DS:3929; only 277B:0257 passes signal 4, with 2D40:400C"
+  },
+  {
+   "site": "1000:2B58",
+   "exhaustive": true,
+   "targets": [
+    "188+17AC"
+   ],
+   "evidence": "the interrupt 0 handler calls the signal 8 slot DS:392D; only 277B:0247 passes signal 8, with 5702:00F2, overlay 188's trampoline 42"
+  },
+  {
+   "site": "1000:2BC9",
+   "exhaustive": true,
+   "targets": [
+    "188+17AC"
+   ],
+   "evidence": "the interrupt 4 handler calls the signal 8 slot DS:392D, as 1000:2B58 does"
+  },
+  {
+   "site": "4AE5:01A9",
+   "exhaustive": true,
+   "targets": [
+    "4AE5:1257",
+    "4AE5:0EA2"
+   ],
+   "evidence": "after push cs, a near call through [0084] of the overlay manager's data segment 55CE (DS from CS:0005), which holds 1257 at load and is written only at 4AE5:09B9, with 0EA2 (FND-EXE-563)"
+  },
+  {
+   "site": "4AE5:01AE",
+   "exhaustive": true,
+   "targets": [
+    "4AE5:1257",
+    "4AE5:1155"
+   ],
+   "evidence": "after push cs, a near call through [0082] of the overlay manager's data segment 55CE (DS from CS:0005), which holds 1257 at load and is written only at 4AE5:0BBA, with 1155 (FND-EXE-563)"
+  },
+  {
+   "site": "4AE5:062B",
+   "exhaustive": true,
+   "targets": [
+    "4AE5:1256",
+    "4AE5:0D11"
+   ],
+   "evidence": "near call through [0080] of the overlay manager's data segment 55CE (DS from CS:0005), which holds 1256 at load and is written only at 4AE5:09BF and 4AE5:0BC0, both with 0D11 (FND-EXE-563)"
+  },
+  {
+   "site": "4AE5:03CB",
+   "exhaustive": true,
+   "targets": [
+    "1000:02FC"
+   ],
+   "evidence": "far call through [0086] of the overlay manager's data segment 55CE (DS from CS:0005), which holds 1000:02FC at load and has no direct writer"
+  },
+  {
+   "site": "4AE5:054C",
+   "exhaustive": true,
+   "targets": [
+    "1000:02FC"
+   ],
+   "evidence": "far call through [0086], as at 4AE5:03CB"
+  },
+  {
+   "site": "4AE5:09DB",
+   "exhaustive": true,
+   "targets": [
+    "1000:02FC"
+   ],
+   "evidence": "far call through [0086], as at 4AE5:03CB"
+  },
+  {
+   "site": "4AE5:0BDF",
+   "exhaustive": true,
+   "targets": [
+    "1000:02FC"
+   ],
+   "evidence": "far call through [0086], as at 4AE5:03CB"
+  },
+  {
+   "site": "4AE5:05D1",
+   "exhaustive": true,
+   "targets": [
+    "4AE5:04C6",
+    "4AE5:0A4B",
+    "4AE5:0BFE"
+   ],
+   "evidence": "near call through overlay header +0x18, 0 in every header in the file and written only at 4AE5:02E5 with 04C6 and at 4AE5:0CBE with a cache record's loader word, 0A4B or 0BFE (FND-EXE-520, FND-EXE-563)"
+  },
+  {
+   "site": "4734:0199",
+   "exhaustive": true,
+   "targets": [
+    "2660:052D"
+   ],
+   "evidence": "DGROUP's 3486, 0 at load and skipped by the call when 0, is written only at 2660:01D9..01E5, with the relocated segment 1660 and the offset 052D"
+  },
+  {
+   "site": "4734:05C7",
+   "exhaustive": true,
+   "targets": [
+    "2660:05CA"
+   ],
+   "evidence": "DGROUP's 348A, 0 at load and skipped by the call when 0, is written only at 2660:01E5..01F1, with the relocated segment 1660 and the offset 05CA"
+  },
+  {
+   "site": "4A32:005D",
+   "exhaustive": true,
+   "targets": [
+    "2660:0250"
+   ],
+   "evidence": "DGROUP's 348E, 0 at load and skipped by the call when 0, is written only at 2660:01F1..01FD, with the relocated segment 1660 and the offset 0250"
+  },
+  {
+   "site": "4A32:01CD",
+   "exhaustive": true,
+   "targets": [
+    "2660:0447"
+   ],
+   "evidence": "DGROUP's 3492, 0 at load and skipped by the call when 0, is written only at 2660:01FD..0209, with the relocated segment 1660 and the offset 0447"
+  },
+  {
+   "site": "49DE:0027",
+   "exhaustive": true,
+   "targets": [
+    "180+0000"
+   ],
+   "evidence": "DGROUP's 3475, 0 at load and skipped by the call when 0, is written only by 49DE:00A7 from its argument; its only caller, overlay 180 +007B, passes 56B2:0048, overlay 180's trampoline 8"
+  },
+  {
+   "site": "49DE:0091",
+   "exhaustive": true,
+   "targets": [
+    "49D2:0017"
+   ],
+   "evidence": "DGROUP's 3479, 0 at load and skipped by the call when 0, is written only at 49D2:0009..0015, with the relocated segment 39D2 and the offset 0017"
+  },
+  {
+   "site": "1425:0733",
+   "exhaustive": true,
+   "targets": [
+    "1425:00DB",
+    "1425:0009",
+    "1425:02E1",
+    "1425:041A"
+   ],
+   "evidence": "the record table at DGROUP 3F42 (14-byte records, 0 at load) is written only by the indexed immediate stores of four routines in 1425, which store 1425:00DB, 1425:0009, 1425:02E1, 1425:041A in field +0"
+  },
+  {
+   "site": "1425:0C4A",
+   "exhaustive": true,
+   "targets": [
+    "1425:00DB",
+    "1425:0009",
+    "1425:02E1",
+    "1425:041A"
+   ],
+   "evidence": "the record table at DGROUP 3F42 (14-byte records, 0 at load) is written only by the indexed immediate stores of four routines in 1425, which store 1425:00DB, 1425:0009, 1425:02E1, 1425:041A in field +0"
+  },
+  {
+   "site": "1425:1AA1",
+   "exhaustive": true,
+   "targets": [
+    "1425:00DB",
+    "1425:0009",
+    "1425:02E1",
+    "1425:041A"
+   ],
+   "evidence": "the record table at DGROUP 3F42 (14-byte records, 0 at load) is written only by the indexed immediate stores of four routines in 1425, which store 1425:00DB, 1425:0009, 1425:02E1, 1425:041A in field +0"
+  },
+  {
+   "site": "1425:05EC",
+   "exhaustive": true,
+   "targets": [
+    "1425:00AF",
+    "1425:0044",
+    "1425:02FE",
+    "1425:0437"
+   ],
+   "evidence": "the record table at DGROUP 3F42 (14-byte records, 0 at load) is written only by the indexed immediate stores of four routines in 1425, which store 1425:00AF, 1425:0044, 1425:02FE, 1425:0437 in field +4"
+  },
+  {
+   "site": "1425:0BFA",
+   "exhaustive": true,
+   "targets": [
+    "1425:00AF",
+    "1425:0044",
+    "1425:02FE",
+    "1425:0437"
+   ],
+   "evidence": "the record table at DGROUP 3F42 (14-byte records, 0 at load) is written only by the indexed immediate stores of four routines in 1425, which store 1425:00AF, 1425:0044, 1425:02FE, 1425:0437 in field +4"
+  },
+  {
+   "site": "1425:0DC9",
+   "exhaustive": true,
+   "targets": [
+    "1425:00AF",
+    "1425:0044",
+    "1425:02FE",
+    "1425:0437"
+   ],
+   "evidence": "the record table at DGROUP 3F42 (14-byte records, 0 at load) is written only by the indexed immediate stores of four routines in 1425, which store 1425:00AF, 1425:0044, 1425:02FE, 1425:0437 in field +4"
+  },
+  {
+   "site": "1425:1651",
+   "exhaustive": true,
+   "targets": [
+    "1425:00AF",
+    "1425:0044",
+    "1425:02FE",
+    "1425:0437"
+   ],
+   "evidence": "the record table at DGROUP 3F42 (14-byte records, 0 at load) is written only by the indexed immediate stores of four routines in 1425, which store 1425:00AF, 1425:0044, 1425:02FE, 1425:0437 in field +4"
+  },
+  {
+   "site": "1425:1C58",
+   "exhaustive": true,
+   "targets": [
+    "1425:00AF",
+    "1425:0044",
+    "1425:02FE",
+    "1425:0437"
+   ],
+   "evidence": "the record table at DGROUP 3F42 (14-byte records, 0 at load) is written only by the indexed immediate stores of four routines in 1425, which store 1425:00AF, 1425:0044, 1425:02FE, 1425:0437 in field +4"
+  },
+  {
+   "site": "1425:16AB",
+   "exhaustive": true,
+   "targets": [
+    "15F3:0360",
+    "1425:007F",
+    "1425:031B",
+    "1425:0454"
+   ],
+   "evidence": "the record table at DGROUP 3F42 (14-byte records, 0 at load) is written only by the indexed immediate stores of four routines in 1425, which store 15F3:0360, 1425:007F, 1425:031B, 1425:0454 in field +8"
+  },
+  {
+   "site": "4842:0498",
+   "exhaustive": false,
+   "targets": [
+    "4654:09A9",
+    "196+040B",
+    "31E0:31A7"
+   ],
+   "evidence": "the timer slots' callback words are written only at 4842:07B7/07BC from the far argument of 4842:077F, whose callers pass 4654:09A9 (4734:0806), overlay 196's trampoline 6 (+041E), 31E0:31A7 (overlay 200 +0350), 0000:0000 (4842:1483) and the function 0067 entry of a loaded driver's table (4842:0BBF); not exhaustive because of that driver entry"
+  },
+  {
+   "site": "172C:01A7",
+   "exhaustive": true,
+   "targets": [
+    "2D40:37F3"
+   ],
+   "evidence": "DGROUP's 02F6, 0 at load and skipped by the call when 0, is written only at overlay 188 +0D1A..+0D26 with the fixup word 00C8 (descriptor 25, segment 2D40) and the offset 37F3 (FND-CONFIG-135)"
+  },
+  {
+   "site": "172C:01B5",
+   "exhaustive": true,
+   "targets": [
+    "172C:0A69",
+    "172C:0A99",
+    "172C:0AAD",
+    "172C:0AC1",
+    "172C:0AD6",
+    "172C:0AEA",
+    "172C:0AFE",
+    "172C:0B13",
+    "172C:0B2E",
+    "172C:0B50",
+    "172C:0B57",
+    "172C:0C5F",
+    "172C:0C8B",
+    "172C:0CD1",
+    "172C:0D0B",
+    "172C:0D39",
+    "172C:0D67",
+    "172C:0D93",
+    "172C:0D9C",
+    "172C:0DA0",
+    "172C:0DA9",
+    "172C:0DC9",
+    "172C:0DCD",
+    "172C:0DD4",
+    "172C:0E31",
+    "172C:0E89",
+    "172C:0EB9",
+    "172C:0ED3",
+    "172C:0EE5",
+    "172C:0EE9",
+    "172C:0F75",
+    "172C:0F79",
+    "172C:0F84",
+    "172C:0FC2",
+    "172C:1012",
+    "172C:1016",
+    "172C:101C",
+    "172C:1022",
+    "172C:1030",
+    "172C:1034",
+    "172C:111C",
+    "172C:1127",
+    "172C:112C",
+    "172C:1150",
+    "172C:1162",
+    "172C:11B5",
+    "172C:11D7",
+    "172C:120C",
+    "172C:1241",
+    "172C:124C",
+    "172C:126D",
+    "172C:127F",
+    "172C:12A3",
+    "172C:12BC",
+    "172C:12D2",
+    "172C:12DD",
+    "172C:131B",
+    "172C:1331",
+    "172C:1347",
+    "172C:136B",
+    "172C:139C",
+    "172C:13C5",
+    "172C:13E0",
+    "172C:151C",
+    "172C:1587",
+    "172C:15E2",
+    "172C:1610",
+    "172C:1643",
+    "172C:165D",
+    "172C:1677",
+    "172C:1692",
+    "172C:16AD",
+    "172C:16B9",
+    "172C:16BD",
+    "172C:16E1",
+    "172C:1705",
+    "172C:170B",
+    "172C:1742",
+    "172C:174D",
+    "172C:1758",
+    "172C:1763",
+    "172C:1804",
+    "172C:18A5",
+    "172C:1917",
+    "172C:1989",
+    "172C:1A43",
+    "172C:1B30",
+    "172C:1B42",
+    "172C:1B65",
+    "172C:1B6E",
+    "172C:1B88",
+    "172C:1BC2",
+    "172C:1BFC",
+    "172C:1C36",
+    "172C:1C70",
+    "172C:1C9D",
+    "172C:1CCA",
+    "172C:1CF7",
+    "172C:1D24",
+    "172C:1D51",
+    "172C:1D7A",
+    "172C:1DA7",
+    "172C:1DCF",
+    "172C:1DF7",
+    "172C:1E23",
+    "172C:1E53",
+    "172C:1E7B",
+    "172C:1EA3",
+    "172C:1ECF",
+    "172C:1EFF",
+    "172C:1F1D",
+    "172C:1F3B",
+    "172C:1F49",
+    "172C:1F71",
+    "172C:20A2"
+   ],
+   "evidence": "the 129-word table at DGROUP 030A, indexed by twice an argument byte the routine admits only up to 0x80; no instruction start writes DGROUP 030A..040C by displacement"
+  },
+  {
+   "site": "1BF3:6199",
+   "exhaustive": true,
+   "targets": [
+    "1BF3:624E",
+    "1BF3:6227",
+    "1BF3:626E",
+    "1BF3:628E",
+    "1BF3:61CC",
+    "1BF3:61DB",
+    "1BF3:61F8",
+    "1BF3:6207",
+    "1BF3:6216",
+    "1BF3:62C2"
+   ],
+   "evidence": "the ten words at CS:61B8, indexed by the position repne scasb finds among the ten bytes at CS:61AE (cx 10), skipped when none matches; no instruction start writes CS:61B8..61CC"
+  },
+  {
+   "site": "1BF3:61A0",
+   "exhaustive": true,
+   "targets": [
+    "1BF3:59C1",
+    "1BF3:5E12"
+   ],
+   "evidence": "CS:1154/1156 is written only at 1BF3:615B and 615E, in this routine before the call, with CS and 59C1 (argument 0) or 5E12"
+  },
+  {
+   "site": "289B:025E",
+   "exhaustive": true,
+   "targets": [
+    "289B:02AE",
+    "289B:02BD"
+   ],
+   "evidence": "BX is the local word [bp-2], which the routine writes only at 289B:01E8 (02AE) and 020D (02BD)"
+  },
+  {
+   "site": "289B:0269",
+   "exhaustive": true,
+   "targets": [
+    "289B:02AE",
+    "289B:02BD"
+   ],
+   "evidence": "the same BX as at 289B:025E"
+  },
+  {
+   "site": "1BF3:61D3",
+   "exhaustive": true,
+   "targets": [
+    "1BF3:59C1",
+    "1BF3:5E12"
+   ],
+   "evidence": "CS:1154/1156, 0 at load, is written only at 1BF3:615B and 615E with CS and 59C1 or 5E12; this routine is reached only through the table at CS:61B8 that 1BF3:6199 calls, after those stores"
+  },
+  {
+   "site": "1BF3:61EC",
+   "exhaustive": true,
+   "targets": [
+    "1BF3:59C1",
+    "1BF3:5E12"
+   ],
+   "evidence": "CS:1154/1156, 0 at load, is written only at 1BF3:615B and 615E with CS and 59C1 or 5E12; this routine is reached only through the table at CS:61B8 that 1BF3:6199 calls, after those stores"
+  },
+  {
+   "site": "1BF3:62B6",
+   "exhaustive": true,
+   "targets": [
+    "1BF3:59C1",
+    "1BF3:5E12"
+   ],
+   "evidence": "CS:1154/1156, 0 at load, is written only at 1BF3:615B and 615E with CS and 59C1 or 5E12; this routine is reached only through the table at CS:61B8 that 1BF3:6199 calls, after those stores"
+  },
+  {
+   "site": "1BF3:654E",
+   "exhaustive": true,
+   "targets": [
+    "1BF3:659B",
+    "1BF3:65DA",
+    "1BF3:65BE",
+    "1BF3:6600"
+   ],
+   "evidence": "the four words at CS:6393, indexed by 0, 2, 4 or 6 (FND-PARTY-043)"
+  },
+  {
+   "site": "204+1AAC",
+   "exhaustive": true,
+   "targets": [
+    "201+09D1",
+    "204+18CD"
+   ],
+   "evidence": "overlay 204 +1A68 calls its far argument [bp+0A], which it never writes; its only callers are the near calls at +01A1, passing 0648:0048 (descriptor 201, trampoline 8, target +09D1), and +029C, passing 0660:0093 (descriptor 204, trampoline 23, target +18CD); no far transfer names trampoline 24"
+  },
+  {
+   "site": "204+1AED",
+   "exhaustive": true,
+   "targets": [
+    "201+09D1",
+    "204+18CD"
+   ],
+   "evidence": "overlay 204 +1A68 calls its far argument [bp+0A], which it never writes; its only callers are the near calls at +01A1, passing 0648:0048 (descriptor 201, trampoline 8, target +09D1), and +029C, passing 0660:0093 (descriptor 204, trampoline 23, target +18CD); no far transfer names trampoline 24"
+  },
+  {
+   "site": "204+1B15",
+   "exhaustive": true,
+   "targets": [
+    "201+09D1",
+    "204+18CD"
+   ],
+   "evidence": "overlay 204 +1A68 calls its far argument [bp+0A], which it never writes; its only callers are the near calls at +01A1, passing 0648:0048 (descriptor 201, trampoline 8, target +09D1), and +029C, passing 0660:0093 (descriptor 204, trampoline 23, target +18CD); no far transfer names trampoline 24"
+  },
+  {
+   "site": "204+1B4D",
+   "exhaustive": true,
+   "targets": [
+    "201+09D1",
+    "204+18CD"
+   ],
+   "evidence": "overlay 204 +1A68 calls its far argument [bp+0A], which it never writes; its only callers are the near calls at +01A1, passing 0648:0048 (descriptor 201, trampoline 8, target +09D1), and +029C, passing 0660:0093 (descriptor 204, trampoline 23, target +18CD); no far transfer names trampoline 24"
+  },
+  {
+   "site": "39D1:07CC",
+   "exhaustive": true,
+   "targets": [
+    "184+0DA7",
+    "199+0053",
+    "199+0D75",
+    "199+102C",
+    "171+03C5",
+    "172+04C5",
+    "175+0B61",
+    "181+0000",
+    "189+0559",
+    "192+0785",
+    "194+0000",
+    "201+0000",
+    "202+05CA",
+    "203+00EE",
+    "209+169C",
+    "211+081B",
+    "212+0967",
+    "28C9:0CFF"
+   ],
+   "evidence": "DGROUP A0F1, 0 at load and skipped by the call when 0, is written only by 39D1:0418 from its argument (and cleared at 39D1:02E4); its callers pass these trampolines, null, or overlay 190 +11A1's argument, whose callers pass these, null, or a value read back from 190 +11C1 (DGROUP 61A2, written only by 190 +11A1)"
+  },
+  {
+   "site": "39D1:083B",
+   "exhaustive": true,
+   "targets": [
+    "184+0DA7",
+    "199+0053",
+    "199+0D75",
+    "199+102C",
+    "171+03C5",
+    "172+04C5",
+    "175+0B61",
+    "181+0000",
+    "189+0559",
+    "192+0785",
+    "194+0000",
+    "201+0000",
+    "202+05CA",
+    "203+00EE",
+    "209+169C",
+    "211+081B",
+    "212+0967",
+    "28C9:0CFF"
+   ],
+   "evidence": "DGROUP A0F1, 0 at load and skipped by the call when 0, is written only by 39D1:0418 from its argument (and cleared at 39D1:02E4); its callers pass these trampolines, null, or overlay 190 +11A1's argument, whose callers pass these, null, or a value read back from 190 +11C1 (DGROUP 61A2, written only by 190 +11A1)"
+  },
+  {
+   "site": "39D1:0B55",
+   "exhaustive": true,
+   "targets": [
+    "184+0DA7",
+    "199+0053",
+    "199+0D75",
+    "199+102C",
+    "171+03C5",
+    "172+04C5",
+    "175+0B61",
+    "181+0000",
+    "189+0559",
+    "192+0785",
+    "194+0000",
+    "201+0000",
+    "202+05CA",
+    "203+00EE",
+    "209+169C",
+    "211+081B",
+    "212+0967",
+    "28C9:0CFF"
+   ],
+   "evidence": "DGROUP A0F1, 0 at load and skipped by the call when 0, is written only by 39D1:0418 from its argument (and cleared at 39D1:02E4); its callers pass these trampolines, null, or overlay 190 +11A1's argument, whose callers pass these, null, or a value read back from 190 +11C1 (DGROUP 61A2, written only by 190 +11A1)"
+  },
+  {
+   "site": "39D1:0786",
+   "exhaustive": true,
+   "targets": [
+    "190+0092"
+   ],
+   "evidence": "DGROUP A0F5, 0 at load and skipped when 0, is written only by 39D1:0430, whose callers pass 05F0:0057 or null"
+  },
+  {
+   "site": "39D1:0899",
+   "exhaustive": true,
+   "targets": [
+    "190+0092"
+   ],
+   "evidence": "DGROUP A0F5, 0 at load and skipped when 0, is written only by 39D1:0430, whose callers pass 05F0:0057 or null"
+  },
+  {
+   "site": "39D1:0802",
+   "exhaustive": true,
+   "targets": [
+    "184+0DA7",
+    "199+0053",
+    "199+0D75",
+    "199+102C",
+    "171+03C5",
+    "172+04C5",
+    "175+0B61",
+    "181+0000",
+    "189+0559",
+    "192+0785",
+    "194+0000",
+    "201+0000",
+    "202+05CA",
+    "203+00EE",
+    "209+169C",
+    "211+081B",
+    "212+0967",
+    "28C9:0CFF",
+    "172+0816",
+    "172+0C21",
+    "178+06EA",
+    "183+103D",
+    "183+109D",
+    "209+0622",
+    "209+0E2D",
+    "213+034F"
+   ],
+   "evidence": "record field +F5, skipped when 0, is written only at 3A8E:05CF..05DF (from DGROUP A0F1, or 0) and by the setter 3A8E:0CDC, whose callers pass these trampolines, null, or overlay 182 +016B's argument, whose callers pass these"
+  },
+  {
+   "site": "3A8E:08B7",
+   "exhaustive": true,
+   "targets": [
+    "172+1085",
+    "175+0020",
+    "189+001E",
+    "199+0E51",
+    "199+1601",
+    "202+0000",
+    "203+0605",
+    "209+00C2",
+    "209+0C84",
+    "211+0000",
+    "212+0000",
+    "213+14B9"
+   ],
+   "evidence": "record field +F9, skipped when 0, is written only at 3A8E:05CF..05DF (from DGROUP A0F1, or 0) and by the setter 3A8E:0D0C, whose callers pass these trampolines, null, or overlay 182 +016B's argument, whose callers pass these"
+  },
+  {
+   "site": "3A8E:0707",
+   "exhaustive": true,
+   "targets": [
+    "171+0000",
+    "172+0000",
+    "172+1252",
+    "175+0000",
+    "178+0020",
+    "189+0000",
+    "190+361C",
+    "190+363B",
+    "192+022B",
+    "199+0000",
+    "199+0020",
+    "213+16CE"
+   ],
+   "evidence": "record field +FD, skipped when 0, is written only at 3A8E:05CF..05DF (from DGROUP A0F1, or 0) and by the setter 3A8E:0D3C, whose callers pass these trampolines, null, or overlay 182 +016B's argument, whose callers pass these"
+  },
+  {
+   "site": "190+0AD4",
+   "exhaustive": true,
+   "targets": [
+    "189+042F",
+    "202+0547",
+    "211+073D",
+    "212+08E3"
+   ],
+   "evidence": "overlay 190 +0802 calls its argument [bp+1E], which it never writes; its callers (4) pass relocated trampolines naming these targets, after a 24-byte structure argument"
+  },
+  {
+   "site": "190+0AEE",
+   "exhaustive": true,
+   "targets": [
+    "189+042F",
+    "202+0547",
+    "211+073D",
+    "212+08E3"
+   ],
+   "evidence": "overlay 190 +0802 calls its argument [bp+1E], which it never writes; its callers (4) pass relocated trampolines naming these targets, after a 24-byte structure argument"
+  },
+  {
+   "site": "190+0C69",
+   "exhaustive": true,
+   "targets": [
+    "189+042F",
+    "202+0547",
+    "211+073D",
+    "212+08E3"
+   ],
+   "evidence": "overlay 190 +0802 calls its argument [bp+1E], which it never writes; its callers (4) pass relocated trampolines naming these targets, after a 24-byte structure argument"
+  },
+  {
+   "site": "190+0EB8",
+   "exhaustive": true,
+   "targets": [
+    "189+042F",
+    "202+0547",
+    "211+073D",
+    "212+08E3"
+   ],
+   "evidence": "overlay 190 +0D89 calls its argument [bp+1E], which it never writes; its callers (4) pass relocated trampolines naming these targets, after a 24-byte structure argument"
+  },
+  {
+   "site": "190+0EDC",
+   "exhaustive": true,
+   "targets": [
+    "189+042F",
+    "202+0547",
+    "211+073D",
+    "212+08E3"
+   ],
+   "evidence": "overlay 190 +0D89 calls its argument [bp+1E], which it never writes; its callers (4) pass relocated trampolines naming these targets, after a 24-byte structure argument"
+  },
+  {
+   "site": "190+0F00",
+   "exhaustive": true,
+   "targets": [
+    "189+042F",
+    "202+0547",
+    "211+073D",
+    "212+08E3"
+   ],
+   "evidence": "overlay 190 +0D89 calls its argument [bp+1E], which it never writes; its callers (4) pass relocated trampolines naming these targets, after a 24-byte structure argument"
+  },
+  {
+   "site": "190+0FE8",
+   "exhaustive": true,
+   "targets": [
+    "189+042F",
+    "202+0547",
+    "211+073D",
+    "212+08E3"
+   ],
+   "evidence": "overlay 190 +0D89 calls its argument [bp+1E], which it never writes; its callers (4) pass relocated trampolines naming these targets, after a 24-byte structure argument"
+  },
+  {
+   "site": "190+116B",
+   "exhaustive": true,
+   "targets": [
+    "189+042F",
+    "202+0547",
+    "211+073D",
+    "212+08E3"
+   ],
+   "evidence": "overlay 190 +0D89 calls its argument [bp+1E], which it never writes; its callers (4) pass relocated trampolines naming these targets, after a 24-byte structure argument"
+  },
+  {
+   "site": "190+13F3",
+   "exhaustive": true,
+   "targets": [
+    "175+0C05",
+    "181+0612",
+    "189+042F",
+    "202+0547",
+    "203+0529",
+    "211+073D",
+    "212+08E3"
+   ],
+   "evidence": "overlay 190 +139B calls its argument [bp+1E], which it never writes; its callers (8) pass relocated trampolines naming these targets, after a 24-byte structure argument"
+  },
+  {
+   "site": "190+15AA",
+   "exhaustive": true,
+   "targets": [
+    "175+0C05",
+    "181+0612",
+    "189+042F",
+    "202+0547",
+    "203+0529",
+    "211+073D",
+    "212+08E3"
+   ],
+   "evidence": "overlay 190 +139B calls its argument [bp+1E], which it never writes; its callers (8) pass relocated trampolines naming these targets, after a 24-byte structure argument"
+  },
+  {
+   "site": "190+17FE",
+   "exhaustive": true,
+   "targets": [
+    "175+0C05",
+    "181+0612",
+    "189+042F",
+    "202+0547",
+    "203+0529",
+    "211+073D",
+    "212+08E3"
+   ],
+   "evidence": "overlay 190 +139B calls its argument [bp+1E], which it never writes; its callers (8) pass relocated trampolines naming these targets, after a 24-byte structure argument"
+  },
+  {
+   "site": "190+1831",
+   "exhaustive": true,
+   "targets": [
+    "175+0C05",
+    "181+0612",
+    "189+042F",
+    "202+0547",
+    "203+0529",
+    "211+073D",
+    "212+08E3"
+   ],
+   "evidence": "overlay 190 +139B calls its argument [bp+1E], which it never writes; its callers (8) pass relocated trampolines naming these targets, after a 24-byte structure argument"
+  },
+  {
+   "site": "190+1918",
+   "exhaustive": true,
+   "targets": [
+    "175+0C05",
+    "181+0612",
+    "189+042F",
+    "202+0547",
+    "203+0529",
+    "211+073D",
+    "212+08E3"
+   ],
+   "evidence": "overlay 190 +139B calls its argument [bp+1E], which it never writes; its callers (8) pass relocated trampolines naming these targets, after a 24-byte structure argument"
+  },
+  {
+   "site": "190+1961",
+   "exhaustive": true,
+   "targets": [
+    "175+0C05",
+    "181+0612",
+    "189+042F",
+    "202+0547",
+    "203+0529",
+    "211+073D",
+    "212+08E3"
+   ],
+   "evidence": "overlay 190 +139B calls its argument [bp+1E], which it never writes; its callers (8) pass relocated trampolines naming these targets, after a 24-byte structure argument"
+  },
+  {
+   "site": "190+1A22",
+   "exhaustive": true,
+   "targets": [
+    "175+0C05",
+    "181+0612",
+    "189+042F",
+    "202+0547",
+    "203+0529",
+    "211+073D",
+    "212+08E3"
+   ],
+   "evidence": "overlay 190 +139B calls its argument [bp+1E], which it never writes; its callers (8) pass relocated trampolines naming these targets, after a 24-byte structure argument"
+  },
+  {
+   "site": "190+1A39",
+   "exhaustive": true,
+   "targets": [
+    "175+0C05",
+    "181+0612",
+    "189+042F",
+    "202+0547",
+    "203+0529",
+    "211+073D",
+    "212+08E3"
+   ],
+   "evidence": "overlay 190 +139B calls its argument [bp+1E], which it never writes; its callers (8) pass relocated trampolines naming these targets, after a 24-byte structure argument"
+  },
+  {
+   "site": "190+1CC5",
+   "exhaustive": true,
+   "targets": [
+    "175+0C05",
+    "181+0612",
+    "189+042F",
+    "202+0547",
+    "203+0529",
+    "211+073D",
+    "212+08E3"
+   ],
+   "evidence": "overlay 190 +139B calls its argument [bp+1E], which it never writes; its callers (8) pass relocated trampolines naming these targets, after a 24-byte structure argument"
+  },
+  {
+   "site": "3D72:0590",
+   "exhaustive": true,
+   "targets": [
+    "172+0C21",
+    "175+0231",
+    "175+0B61",
+    "178+06EA",
+    "181+0648",
+    "189+0559",
+    "189+0BB0",
+    "190+0092",
+    "202+0673",
+    "203+0706",
+    "203+09B3",
+    "207+0000",
+    "209+03DC",
+    "209+0EF0",
+    "211+10F4",
+    "211+175E",
+    "212+0A57",
+    "213+034F",
+    "28C9:0061",
+    "28C9:1261"
+   ],
+   "evidence": "field +62 of an APFM record: 0 in every shipped APFM resource (FND-UI-005) and written only by 3F96:02AB from its argument; its callers (28) pass relocated trampolines naming these targets or null, or forward overlay 182 +01EF's argument, whose callers (17) pass these targets, 28C9:0061 or 28C9:1261 (fixup word 00B0), or null"
+  }
+ ]
+}

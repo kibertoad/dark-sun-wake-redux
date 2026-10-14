@@ -361,7 +361,8 @@ reading of callers, external commands or interpreter behavior is claimed.
   or to driver code loaded from ADV resources, which Q-EXE-027 asks
   about. FND-EXE-586 finds the script opcode dispatch, the text
   formatter and the video far jump tables staying in the file. FND-EXE-587 finds the window hooks and
-  window record callbacks going to registered overlay routines. Which of its other
+  window record callbacks going to registered overlay routines. FND-EXE-588 finds the application
+  frame callbacks going to registered routines or never set. Which of its other
   unresolved computed transfers can reach code outside the file remains
   Q-EXE-007.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;

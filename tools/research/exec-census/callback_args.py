@@ -106,18 +106,23 @@ for a in sys.argv[4:]:
             continue
         size = 4 if 0x66 in i.prefix else 2
         for byte in range(pos, pos + size):
-            slot[byte] = i
+            slot[byte] = (i, pos)
         pos += size
     if pos < lo + 4:
         print(setter, where(site), "UNREAD"); continue
-    po, ps = slot[lo], slot[lo + 2]
-    if po is ps:  # one 4-byte push
-        if po.operands[0].type == X86_OP_IMM and po.operands[0].imm == 0:
-            print(setter, where(site), "null"); continue
-        print(setter, where(site), "dword", po.mnemonic, po.op_str); continue
-    if po.operands[0].type == X86_OP_IMM and ps.operands[0].type == X86_OP_IMM:
-        seg, off = ps.operands[0].imm & 0xFFFF, po.operands[0].imm & 0xFFFF
-        print(setter, where(site), "%04X:%04X" % (seg, off), "reloc" if relocated(ps.address + 1) else "NOT RELOCATED",
-              resolve(seg, off))
-    else:
-        print(setter, where(site), "pushes", ps.op_str, "/", po.op_str)
+    # The argument's four bytes, each from the push that wrote it; an immediate push gives its bytes.
+    parts = [slot[lo + k] for k in range(4)]
+    if any(p is None or p[0].operands[0].type != X86_OP_IMM for p in parts):
+        whole = parts[0] is not None and all(p == parts[0] for p in parts) and parts[0][1] == lo
+        print(setter, where(site), "dword" if whole else "pushes",
+              " / ".join(dict.fromkeys(p[0].op_str for p in parts if p is not None)))
+        continue
+    value = bytes(((p[0].operands[0].imm & 0xFFFFFFFF) >> (8 * (lo + k - p[1]))) & 0xFF
+                  for k, p in enumerate(parts))
+    off, seg = struct.unpack("<HH", value)
+    if seg == 0 and off == 0:
+        print(setter, where(site), "null"); continue
+    push = parts[2][0]
+    # A segment word an MZ relocation or an overlay fixup can patch is a 16-bit immediate push of its own.
+    reloc = push.size == 3 and parts[2][1] == lo + 2 and relocated(push.address + 1)
+    print(setter, where(site), "%04X:%04X" % (seg, off), "reloc" if reloc else "NOT RELOCATED", resolve(seg, off))
