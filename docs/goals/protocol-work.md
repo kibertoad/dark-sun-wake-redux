@@ -331,19 +331,30 @@ An owner-approved history repair remains separate from this maintenance scope.
   resource_adv_census.py, installed_adv_resources.py, reach_config.py with the q007_*.json queries
   (latest q007_dsun_digpak_census.json); local outputs c_*/r_*/k_* in
   GAME_DIR/analysis/exe-batches/q007.
-- PARTY, 2026-10-14 (FND-PARTY-170..173, commits 3373c2e7..bf71e10e, not pushed): the Create
-  Characters screen's exits go back to the start window (RULE-PARTY-001 now disputed); ADD leaves
-  the leader at slot 0, so ADD then DROP of box 1-3 is allowed; whether DROP empties the box needs
-  a run, so Q-PARTY-006 is under Live session (an Agent run once docs/RUNTIME.md allows it);
-  Q-PARTY-070 closed: only the kill share counts the party. Filed toolkit #500 (reach chains
-  through a branch the caller's constant argument rules out). Local walks in
-  GAME_DIR/analysis/exe-batches/q006.
-- Pending: the owner allowed agent runs (headless, muted) with the latest session package. Pins
-  for dinorefurb-dosbox-session 0.9.0 (hash 56a60b74...d54b) and rust-dos v1.7.2 (ZIP 2ca58dab...,
-  exe 310de9a9...) are uncommitted edits to tools/evidence/requirements.txt and
-  tools/Install-RustDos.ps1; the auto-mode classifier blocked installing them,
-  so they wait for the owner's permission. Then record the first run in docs/RUNTIME.md and update
-  the versions in AGENTS.md and RUNTIME.md.
+- PARTY, 2026-10-14 (FND-PARTY-170..182, EXP-PARTY-001/002, commits 3373c2e7..9a86fe4f, not
+  pushed). Static: FND-PARTY-170..173 (Create Characters exits; ADD keeps leader 0; only the kill
+  share counts the party). Runtime: agent runs work under rust-dos v1.7.2 through
+  dinorefurb-dosbox-session 0.9.0 (pins, docs/RUNTIME.md, commit 2dc3a624); the goal scope takes
+  PARTY's agent-run items (516b17ff) and COMBAT open questions that PARTY items name (5ed6c903).
+  The probe is tools/research/rust-dos-runs/run_plan.py: plans with keys, mouse in virtual
+  coordinates, reads, shots, checkpoints, rng_state seeds, a draw recorder that names each draw
+  by rule and checks it, and watchpoints with a BP-chain report. Its README lists the plans and
+  screen positions. Runs need GAME_DIR set to the GOG install and plenty of disk (a run copies the
+  game to drive-c; runs that save no checkpoint delete it; this disk filled once).
+  EXP-PARTY-001/002: ADD then DROP empties the box and START GAME then gives the supplied party;
+  a created party of one or two plays in its own boxes; RULE-PARTY-001 supported again
+  (Q-PARTY-006 deleted). FND-PARTY-174/175: the leader at START GAME comes from overlay 173
+  +3CDA, the lowest filled slot with combat_mark 1-3. FND-PARTY-176..180: keys 1-4 (28C9:0E0C..)
+  set turn_combatant and, outside combat, the leader through 182+1D3E, which swaps visibility
+  and, for a key, redraws (2C5F:0139, 28C9:2A81 -> 4328:0B4C); the loader compares slots with
+  leader; RULE-PARTY-008 supported. FND-PARTY-181/182: word 0 of a 23-byte DS:19C1 record is a
+  negated object number (overlay 188 +066E places it), in FMT-PARTY-006. Upstream: toolkit #500
+  (reach chains through a constant-ruled-out branch), toolkit #501 (RustDosConfig sound
+  settings), protocol #119 (deterministic emulated-time waits as state waits), comment on
+  template #73 (capture-window test timeout under host load). Open next: Q-PARTY-073 (a party
+  with no slot marked 1 or 2 at START GAME), Q-PARTY-075 (4328:0B4C's callees), Q-PARTY-020
+  (rest of the 23-byte record; overlay 188 +04F8), then 062, 003, 005, 017, 018.
+  docs/HANDOVER.md line 78 still names Q-PARTY-006, which is on main and not this goal's file.
 - Lead for unk_2a: overlay 204 +0203 pushes 0x0660:0x00BB (the setter trampoline 5787:00BB) as a
   value before a near call to its dispatcher at +019C, so the setter is passed as a callback.
   Filed toolkit #474 (list where a routine's far address is used as a value) after checking
