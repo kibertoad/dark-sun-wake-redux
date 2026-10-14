@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-074
+Next ID: Q-PARTY-075
 
 ## Static
 
@@ -55,11 +55,10 @@ Next ID: Q-PARTY-074
   entry `37FC:04AB` for a resource shorter than the size it is given. Tried: FND-PARTY-104 reads
   the level-gain windows, which show `SPST` as the known spells and bits 1 to 7 of `PSST` as power
   ranks, and keep bit 0. Blocks: slice 3.
-- Q-PARTY-009. RULE-PARTY-008, RULE-COMBAT-001: What does a key from 1 to 4 do, in particular when its slot is
-  empty, and is the word the party loader compares each slot with (FND-PARTY-013) the leader's
-  slot? Settles it: the handler the keys 1 to 4 reach in overlay 190, which posts an event for
-  the character boxes `0x2C24` to `0x2C27` (FND-COMBAT-025), and the writers of `leader`. Tried:
-  the leader buttons, which store the slot at `4C13:0369` (FND-COMBAT-023). Blocks: slice 3.
+- Q-PARTY-074. RULE-PARTY-008: What does overlay 182 `+1D3E` do with its second argument after it
+  sets `leader` (1 from a key, 0 from START GAME's party restore), and which screens pass keys to
+  `28C9:0CFF`? Settles it: a reading of `+1D3E` from `+1DA5` to its return (`+1E50` tests the
+  flag), and the callers of `28C9:0CFF` through `39D1:083F` (FND-PARTY-178). Blocks: slice 3.
 - Q-PARTY-017. RULE-PARTY-006: When the player opens Create Characters (start window button
   `0x4B65`, overlay 212 `+061C`, window `0x2CEC`) before START GAME, which actions on that
   screen other than `ADD` on an empty box change the placed-object count, `DS:0DAB`, the

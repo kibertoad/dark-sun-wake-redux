@@ -63,5 +63,5 @@ None known.
 
 - Where the game keeps the party display setting, where the members who appear are placed, and
   whether the owner's party was collapsed when combat began; the loader of FND-PARTY-013 sets a
-  bit on every party slot but one, which may be how the others are hidden (Q-COMBAT-001).
-- Whether the word the party loader compares each slot with is `leader` (Q-PARTY-009).
+  bit on every party slot but the leader's (FND-PARTY-177), which may be how the others are
+  hidden (Q-COMBAT-001).

@@ -1,10 +1,10 @@
 ---
 id: RULE-PARTY-008
 title: The keys 1 to 4 choose the party leader
-status: sourced
+status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [SRC-MANUAL-1994, FND-COMBAT-023]
+evidence: [SRC-MANUAL-1994, FND-ACTOR-003, FND-COMBAT-008, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-EXPLORE-001, FND-EXPLORE-002, FND-PARTY-013, FND-PARTY-171, FND-PARTY-176, FND-PARTY-178]
 conflicting: []
 split_with: []
 related: [SCR-UI-002]
@@ -18,8 +18,8 @@ box of the View Character screen does the same.
 
 ## When it runs
 
-`leader_for_key` runs when the player presses a key while the map is shown (SRC-MANUAL-1994,
-page 77).
+`leader_for_key` runs for a key the resident key routine `28C9:0CFF` takes (FND-AI-004). The run
+of FND-PARTY-178 reached it with the map shown, outside combat.
 
 ## Parameters
 
@@ -27,24 +27,44 @@ page 77).
 
 ## Inputs
 
-None beyond the parameters.
+- `combatants`, the FMT-COMBAT-001 records, taken by the key's number.
+- `object_slots` (FMT-ACTOR-004), for bit 5 of `unk_00` of the `turn_combatant` slot.
+- `turn_combatant`, `combat_state` and `leader`.
 
 ## Procedure
 
 ```text
 define leader_for_key(key):
-    if key >= 0x31 and key <= 0x34:
-        leader = key - 0x31
+    if key < 0x31 or key > 0x34:
+        return
+    slot = key - 0x31
+    if combatants[slot].character_id == 0:                # no character: nothing
+        return
+    if object_slots[turn_combatant].unk_00 has bit 5 set:
+        return
+    turn_combatant = slot
+    if combat_state != 0:                                        # in combat: no leader change
+        return
+    set_leader(slot)
+
+define set_leader(slot):                                         # overlay 182 +1D3E
+    if slot >= 4 or slot == leader:
+        return
+    if combatants[object_slot_combatants[slot]].combat_mark > 2:
+        return
+    leader = slot                                                # visible: the leader walks for the party
 ```
 
 ## Outputs
 
-No return value. Sets `leader` to the slot of the key, 0 to 3, when the key is 1 to 4, and
-changes nothing for another key.
+No return value. Sets `turn_combatant`, and outside combat `leader`, to the slot of the key when
+the procedure gets that far; changes nothing for another key.
 
 ## Edge cases
 
-The manual does not say what a key does when its slot is empty.
+A key whose slot holds no character changes nothing (FND-PARTY-176, FND-PARTY-178). In combat a
+key changes `turn_combatant` and leaves `leader` alone (FND-PARTY-176). The party loader shows
+the leader's slot and hides the others (FND-PARTY-177).
 
 ## What the sources say
 
@@ -60,8 +80,9 @@ None known.
 
 ## Open questions
 
-- What a key does, in particular for an empty slot. The leader buttons store `leader` and refuse
-  an empty slot (FND-COMBAT-023), but the keys 1 to 4 post an event for the character boxes, which
-  may select the character rather than make it the leader (FND-COMBAT-025). The loading routine
-  of FND-PARTY-013 flags every party slot but the one equal to a word it compares with, which may
-  be `leader` (Q-PARTY-009).
+- Whether a key tests the combatant record of its own number or the one `object_slot_combatants`
+  names for its slot where the two differ: the code reads record `slot` (FND-PARTY-176), and the
+  runs had them equal (No item: the parties the game builds put combatant `k` in slot `k`,
+  FND-PARTY-013, so no party where they differ is known).
+- What `set_leader` does with its second argument, 1 from a key, and which screens pass keys to
+  `28C9:0CFF` (Q-PARTY-074).

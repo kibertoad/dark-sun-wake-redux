@@ -61,6 +61,10 @@ EXP-PARTY-002's runs start from it too:
 FND-PARTY-174's run is `leader-writes-two.json`: `exp-add-two-start.json` with
 a watchpoint on `leader`.
 
+FND-PARTY-178's runs: `two-play.json` repeats `exp-add-two-start.json` and
+saves the checkpoint `play` 90,000 ms after START GAME; `leader-keys.json`
+presses 4, 1, 2, 3 and 4 from it with a watchpoint on `leader`.
+
 The other plans (`exp-add-start.json`, `add.json`, `drop.json`, `after-drop.json`,
 `start-game-after-drop.json`, `start-game-control.json`) are the exploratory
 runs that found the screens' positions, each from the checkpoint the one before
