@@ -35,7 +35,9 @@ Next ID: Q-RNG-004
   observes the admitted startup caller, its argument and setter result, then
   saves and file-verifies the opener checkpoint with no known generator draw.
   Complete conversion, earlier near-buffer identity and other reseeding paths
-  remain; native checkpoint restore has not been attempted. Blocks: reproducible
+  remain. FND-UI-040 subsequently verifies native restore of the opener
+  checkpoint; the clock conversion and other reseeding obligations remain.
+  Blocks: reproducible
   startup seeding and Q-PARTY-081's later recorded gameplay run.
 
 ## Emulated call

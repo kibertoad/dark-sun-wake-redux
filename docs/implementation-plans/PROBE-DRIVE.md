@@ -59,3 +59,23 @@ Reports and checkpoint files stay under GAME_DIR/captures/ and out of Git.
 Synthetic caller checks exercise wrong segment, offset, opcode and frame;
 native run verifies the observed path and checked checkpoint creation.
 Exit: bounded finding, queue obligations updated, full gate, separate handover.
+
+## Native opener-checkpoint restore and return
+
+Research probe for Q-PARTY-081's state route. Outcome: actually restore the
+checked opener checkpoint and run its declared window-opening call to its
+return, avoiding a repeated intro. Evidence: FND-RNG-010's checkpoint,
+FND-UI-039's call site, FND-UI-035's opener and the bounded static return
+at 277B:02E9. It does not establish pixels, input readiness or gameplay.
+Acceptance: checkpoint source/run names are plain names under the fixed
+licensed captures root; package verifies all hashes, hardware/media and saved
+stop. Require the checkpoint's copied DSUN.EXE to match the configured build
+fingerprint, then the restored load stop and declared far-call instruction before
+continuing. Reinstall generator and seed guards after the strict load resets
+the debugger. No input or writes; stop by address, require unchanged RNG state,
+save a checked returned-opener checkpoint only after arrival. Retain reports
+locally. Synthetic controls reject changed call targets or stop offsets;
+native attempt verifies load and return separately; synthetic executable controls
+reject changed or missing copied sources. Exit: bounded finding,
+runtime capability record, full gate and separate handover; no queue closure
+or presentation/parity promotion based on a call returning.

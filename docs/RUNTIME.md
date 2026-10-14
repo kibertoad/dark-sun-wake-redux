@@ -51,8 +51,11 @@ drawn window and subsequent state-driven gameplay route remain unverified.
 The seed-and-opener extension (FND-RNG-010) additionally verified the fixed
 seed caller/argument reads and return stop, then saved a strict, file-checked
 opener checkpoint. read_saved_state verified its journal and files afterward.
-Native restore of this new checkpoint remains unattempted; its saved-folder
-verification does not establish that capability for the new state.
+FND-UI-040 then actually restored this opener checkpoint in a new owned
+session, verified the load stop and ran its declared opener call to return.
+It saved and file-verified an opened checkpoint afterward; native restore
+of that second state remains unattempted. No displayed pixels or input
+readiness were established by the call returning.
 
 How an agent run starts the game (2026-10-14, `tools/research/rust-dos-runs/`):
 a deterministic run at 15000 instructions a millisecond, C: a copy of the

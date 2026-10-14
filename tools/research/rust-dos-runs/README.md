@@ -160,7 +160,17 @@ overlay-180 caller from FND-RNG-009, verified against its loaded trampoline
 and far-call target. It reads the argument and checks the setter result before
 the opener continuation. A second seed call or known RNG draw stops the run.
 At the verified opener it saves the strict, file-checked state `opener`.
-FND-RNG-010 records the actual seed call and checked save; a fresh native
-restore of this checkpoint still needs its own attempt. The historical first
+FND-RNG-010 records the actual seed call and checked save; FND-UI-040 adds
+its successful native restore and opener return. The historical first
 extended report mislabeled its checkpoint boolean as a path; current reports
 use `checked` and `directory`, backed by the package journal's path and hashes.
+
+`restore_opener.py <source-startup-run-name> <new-run-name>` verifies and
+loads the source's checked `opener` state through a new owned session,
+after requiring its copied DSUN.EXE to match the configured installed build,
+reinstalls the known RNG/setter guards and runs only the declared opener
+call to its return. It accepts no input or writes and saves the checked
+`opened` state after arrival. FND-UI-040 verifies this native restore and
+return; the new opened state's native restore remains unattempted.
+Reports stay under `GAME_DIR/captures/rust-dos-restore-opener/`.
+`check_restore_opener.py` supplies synthetic stop/instruction admission controls.

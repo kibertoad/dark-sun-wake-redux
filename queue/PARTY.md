@@ -211,7 +211,10 @@ None.
   FND-PARTY-215 reads the startup SS replacement; FND-PARTY-219 observes DS/SS
   equality at main without draws. Tried: FND-UI-039 reaches the start-window
   opener call without input on a verified private drive, reads argument 1 and
-  matching DS/SS, and guards the known RNG entry. The opener has not executed;
+  matching DS/SS, and guards the known RNG entry. Tried: FND-RNG-010 observes
+  the startup seed call and saves a checked opener state; FND-UI-040 restores
+  that state natively and observes the opener returning with unchanged RNG
+  state, then saves a checked opened state. Pixels, input readiness,
   subsequent state-driven gameplay/deletion stops and complete preservation
   coverage remain needed. The startup_segments.py executable-only drive cannot
   be continued to gameplay. Blocks: Q-PARTY-078's complete cleanup reading, not
