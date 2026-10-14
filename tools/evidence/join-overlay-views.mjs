@@ -59,9 +59,9 @@ export function joinOverlayViews({resident, overlay, headerBytes, imageEnd, over
   }
   if(viewSummed!==Number(p.summed_body_bytes)||bytes(viewAll)!==Number(p.unique_body_bytes))throw Error(`The ${name} view's body totals disagree`);
   summed+=viewSummed;all.push(...viewAll);
-  for(const r of audit){const line=Object.values(r);
-   if(name==='overlay'){const at=fileOf(r.start);if(!overlays.some(o=>o.start===at&&o.end===at+Number(r.size)))throw Error('Overlay region is not a code range');line[0]=hex8(at);}
-   else line[0]=seg(r.start);
+  for(const r of audit){const line=Object.values(r),k=Object.keys(r).indexOf('start');
+   if(name==='overlay'){const at=fileOf(r.start);if(r.kind==='region'&&!overlays.some(o=>o.start===at&&o.end===at+Number(r.size)))throw Error('Overlay region is not a code range');line[k]=hex8(at);}
+   else line[k]=seg(r.start);
    regionsOut.push({at:fileOf(r.start),line:line.join('\t'),columns:Object.keys(r)});}
  }
  if(report.withoutInstruction.length!==expectedWithoutInstruction.resident.length+expectedWithoutInstruction.overlay.length)throw Error('An expected entry without an instruction is not in its view');

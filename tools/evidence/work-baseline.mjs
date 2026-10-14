@@ -13,10 +13,10 @@ function tsv(p){const lines=text(p).trimEnd().split(/\r?\n/),cols=lines.shift().
 export function union(ranges){const sorted=ranges.map(r=>[...r]).sort((a,b)=>a[0]-b[0]),out=[];for(const [s,e]of sorted){if(!Number.isSafeInteger(s)||!Number.isSafeInteger(e)||e<=s)throw Error('Invalid body range');if(out.length&&s<=out.at(-1)[1])out.at(-1)[1]=Math.max(e,out.at(-1)[1]);else out.push([s,e]);}return out;}
 export const bytes=r=>union(r).reduce((n,[s,e])=>n+e-s,0);
 export function validateRegion(r){
- for(const k of Object.keys(r).filter(k=>k!=='start'))if(!/^\d+$/.test(String(r[k]))||!Number.isSafeInteger(Number(r[k])))throw Error('Invalid audit count');
+ if(!['region','outside','entry'].includes(r.kind))throw Error('Invalid audit row kind');
+ for(const k of Object.keys(r).filter(k=>k!=='start'&&k!=='kind'))if(!/^\d+$/.test(String(r[k]))||!Number.isSafeInteger(Number(r[k])))throw Error('Invalid audit count');
  if(Number(r.instructions)+Number(r.data)+Number(r.undefined)!==Number(r.size))throw Error('Invalid region partition');
  for(const k of ['instructions','data','undefined'])if(Number(r[k+'_outside'])>Number(r[k]))throw Error('Outside count exceeds total');
- if(Number(r.body_bytes)>Number(r.size))throw Error('Body count exceeds region');
 }
 export function inventoryDelta(prior,current){return {added:[...current.keys()].filter(k=>!prior.has(k)).length,removedOrMerged:[...prior.keys()].filter(k=>!current.has(k)).length,changedBodySizes:[...current].filter(([k,f])=>prior.has(k)&&prior.get(k)!==f.size).length};}
 export function missingExecutables(buildFiles,measured,excluded){
@@ -58,9 +58,10 @@ function main(directory){
   const numeric=a=>overlay?linear(a)-65536+header:linear(a);
   const funcs=rows.map(r=>{const ranges=r.ranges.split(' ').map(x=>x.split('..'));const body=ranges.map(([a,b])=>[numeric(a),numeric(b)]);if(bytes(body)!==Number(r.size))throw Error(`Body size mismatch ${view.key} ${r.start}`);return{start:canonical(r.start),size:Number(r.size),space:overlay?'offset':'address',physicalBody:body.map(([a,b])=>header&&!overlay?[a-65536+header,b-65536+header]:[a,b]),ranges:ranges.map(([a,b])=>canonical(a)+'..'+canonical(b)).join(' '),body};});
   if(!byFile.has(view.manifest))byFile.set(view.manifest,[]);byFile.get(view.manifest).push(...funcs);
-  const totals={};for(const k of Object.keys(regions[0]).filter(k=>k!=='start'))totals[k]=regions.reduce((n,r)=>n+Number(r[k]),0);
+  const measured=regions.filter(r=>r.kind==='region');
+  const totals={};for(const k of Object.keys(measured[0]).filter(k=>k!=='start'&&k!=='kind'))totals[k]=measured.reduce((n,r)=>n+Number(r[k]),0);
   if(bytes(funcs.flatMap(f=>f.body))!==Number(prov.unique_body_bytes))throw Error(`Union differs ${view.key}`);
-  audits.push({file:view.manifest,view:view.key,functions:funcs.length,sourceXxh3:prov.xxh3,snapshot:prov.snapshot,regions:regions.length,...totals,bodyBytesOutsideRegions:Number(prov.body_bytes_outside_regions),entriesWithoutInstruction:Number(prov.entries_without_instruction)});
+  audits.push({file:view.manifest,view:view.key,functions:funcs.length,sourceXxh3:prov.xxh3,snapshot:prov.snapshot,regions:measured.length,...totals,bodyBytesOutsideRegions:Number(prov.body_bytes_outside_regions),entriesWithoutInstruction:Number(prov.entries_without_instruction)});
  }
  const changes=[];
  for(const[file,funcs]of byFile){

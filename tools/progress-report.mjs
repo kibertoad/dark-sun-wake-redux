@@ -62,8 +62,11 @@ for (const inv of coverage.inventories) {
   const regions = join(root, inv.path.replace(/\.tsv$/, '.regions.tsv'));
   if (!existsSync(regions)) continue;
   const [head, ...rows] = read(regions).trim().split('\n').map(l => l.split('\t'));
-  const sum = name => rows.reduce((n, r) => n + Number(r[head.indexOf(name)]), 0);
-  mapping[inv.path] = { regions: sum('size'), bodies: sum('body_bytes'), instructionsOutside: sum('instructions_outside'),
+  const measured = rows.filter(r => r[head.indexOf('kind')] === 'region');
+  const sum = name => measured.reduce((n, r) => n + Number(r[head.indexOf(name)]), 0);
+  // A region's bytes in bodies are its size less the bytes of each class outside them.
+  const outside = sum('instructions_outside') + sum('data_outside') + sum('undefined_outside');
+  mapping[inv.path] = { regions: sum('size'), bodies: sum('size') - outside, instructionsOutside: sum('instructions_outside'),
     dataOutside: sum('data_outside'), undefinedOutside: sum('undefined_outside') };
 }
 

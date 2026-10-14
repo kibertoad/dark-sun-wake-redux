@@ -31,11 +31,11 @@ test('missing work excludes hosts while preserving unmeasured games and measured
  assert.equal(missingExecutables(builds,new Map(),excluded).filter(x=>x.file==='game.exe').length,1);
 });
 test('region audit rejects incomplete partitions and impossible outside counts',()=>{
- const valid={start:'1000:0000',size:100,body_bytes:60,instructions:70,instructions_outside:10,data:5,data_outside:5,undefined:25,undefined_outside:25};
+ const valid={kind:'region',start:'1000:0000',size:100,instructions:70,instructions_outside:10,data:5,data_outside:5,undefined:25,undefined_outside:25};
  assert.doesNotThrow(()=>validateRegion(valid));
  assert.throws(()=>validateRegion({...valid,undefined:24}),/Invalid region partition/);
  assert.throws(()=>validateRegion({...valid,instructions_outside:71}),/Outside count exceeds total/);
- assert.throws(()=>validateRegion({...valid,body_bytes:101}),/Body count exceeds region/);
+ assert.throws(()=>validateRegion({...valid,kind:'body'}),/Invalid audit row kind/);
  assert.throws(()=>validateRegion({...valid,size:NaN}),/Invalid audit count/);
 });
 test('baseline changes separate discovery, removal and size changes with evidence unchanged',()=>{

@@ -39,12 +39,13 @@ public class ExportResearchBaseline extends GhidraScript {
         if(regions.isEmpty()) throw new IllegalStateException("No measured regions.");
         StringBuilder inventory=new StringBuilder("start\tsize\tranges\n");
         long functions=0, missingInstructions=0, summedBodies=0;
+        List<Address> withoutInstruction=new ArrayList<>();
         FunctionIterator fs=currentProgram.getFunctionManager().getFunctions(true);
         while(fs.hasNext()) {
             monitor.checkCancelled(); Function f=fs.next(); if(f.isExternal() || !regions.contains(f.getEntryPoint())) continue;
             AddressSetView body=f.getBody();
             if(body.isEmpty() || !body.contains(f.getEntryPoint())) throw new IllegalStateException("Invalid function body at "+f.getEntryPoint());
-            if(currentProgram.getListing().getInstructionAt(f.getEntryPoint())==null) missingInstructions++;
+            if(currentProgram.getListing().getInstructionAt(f.getEntryPoint())==null) {missingInstructions++; withoutInstruction.add(f.getEntryPoint());}
             inventory.append(f.getEntryPoint()).append('\t').append(body.getNumAddresses()).append('\t');
             AddressRangeIterator ranges=body.getAddressRanges(); boolean first=true;
             while(ranges.hasNext()) { AddressRange r=ranges.next(); if(!first)inventory.append(' ');first=false;
@@ -55,17 +56,33 @@ public class ExportResearchBaseline extends GhidraScript {
         while(ins.hasNext()) {monitor.checkCancelled(); Instruction i=ins.next(); instructions.add(i.getMinAddress(),i.getMaxAddress());}
         DataIterator ds=currentProgram.getListing().getDefinedData(true);
         while(ds.hasNext()) {monitor.checkCancelled(); Data d=ds.next(); data.add(d.getMinAddress(),d.getMaxAddress());}
-        instructions=instructions.intersect(regions);data=data.intersect(regions);
         if(!instructions.intersect(data).isEmpty())throw new IllegalStateException("Instruction/data classes overlap.");
+        AddressSet allInstructions=new AddressSet(instructions), allData=new AddressSet(data);
+        instructions=instructions.intersect(regions);data=data.intersect(regions);
         AddressSet undefined=regions.subtract(instructions.union(data));
-        StringBuilder audit=new StringBuilder("start\tsize\tbody_bytes\tinstructions\tinstructions_outside\tdata\tdata_outside\tundefined\tundefined_outside\n");
+        // The columns standard-coverage reads (standard-checker 6.0.0): a region row for each measured
+        // region, an outside row for each stretch of a body in no region, and an entry row for each
+        // function start where no instruction starts.
+        StringBuilder audit=new StringBuilder("kind\tstart\tsize\tinstructions\tinstructions_outside\tdata\tdata_outside\tundefined\tundefined_outside\n");
         for(AddressSet r:selected) {
             long size=r.getNumAddresses(),i=count(instructions,r),d=count(data,r),u=count(undefined,r);
             if(i+d+u!=size)throw new IllegalStateException("Partition does not sum to region size.");
-            audit.append(r.getMinAddress()).append('\t').append(size).append('\t').append(count(bodies,r)).append('\t')
+            audit.append("region\t").append(r.getMinAddress()).append('\t').append(size).append('\t')
                 .append(i).append('\t').append(count(instructions.subtract(bodies),r)).append('\t')
                 .append(d).append('\t').append(count(data.subtract(bodies),r)).append('\t')
                 .append(u).append('\t').append(count(undefined.subtract(bodies),r)).append('\n');
+        }
+        AddressRangeIterator beyond=bodies.subtract(regions).getAddressRanges();
+        while(beyond.hasNext()) {
+            AddressSet r=new AddressSet(beyond.next());
+            long size=r.getNumAddresses(),i=count(allInstructions,r),d=count(allData,r);
+            audit.append("outside\t").append(r.getMinAddress()).append('\t').append(size).append('\t')
+                .append(i).append("\t0\t").append(d).append("\t0\t").append(size-i-d).append("\t0\n");
+        }
+        for(Address a:withoutInstruction) {
+            AddressSet r=new AddressSet(a,a);
+            long i=count(allInstructions,r),d=count(allData,r);
+            audit.append("entry\t").append(a).append("\t1\t").append(i).append("\t0\t").append(d).append("\t0\t").append(1-i-d).append("\t0\n");
         }
         String provenance="key\tvalue\nxxh3\t"+args[1]+"\nsource_md5\t"+args[5]+"\nanalysis_tool\tGhidra\nanalysis_version\t"+Application.getApplicationVersion()+
             "\nsnapshot\t"+args[2]+"\nexporter_revision\t"+args[3]+"\nregion_mode\t"+args[4]+

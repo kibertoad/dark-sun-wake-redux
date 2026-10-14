@@ -11,13 +11,18 @@ function rows(s){const lines=s.trimEnd().split(/\r?\n/),columns=lines.shift().sp
  return {columns,rows:lines.map(l=>{const values=l.split('\t');if(values.length!==columns.length)throw Error('Invalid TSV width');return Object.fromEntries(columns.map((c,i)=>[c,values[i]]));})};}
 const canonical=s=>{if(/^[0-9a-f]{4}:[0-9a-f]{4}$/i.test(s))return s.toUpperCase();if(/^(?:0x)?[0-9a-f]{8}$/i.test(s))return '0x'+s.replace(/^0x/,'').toUpperCase();throw Error('Unsupported address notation');};
 const numeric=s=>s.includes(':')?parseInt(s.slice(0,4),16)*16+parseInt(s.slice(5),16):Number(s);
+// The regions file with each start written as the inventory writes it.
+export function canonicalStarts(regions){
+ const [head,...lines]=regions.replace(/^﻿/,'').trimEnd().split(/\r?\n/),k=head.split('\t').indexOf('start');
+ return [head,...lines.map(l=>{const c=l.split('\t');c[k]=canonical(c[k]);return c.join('\t');})].join('\n')+'\n';
+}
 export function unchangedInventory(previous, current, provenance, regions){
  const old=rows(previous),fresh=rows(current),p=Object.fromEntries(rows(provenance).rows.map(r=>[r.key,r.value])),audit=rows(regions).rows;
  if(old.columns.join('\t')!=='start\tsize')throw Error('Annotations require explicit reconciliation');
  if(fresh.columns.join('\t')!=='start\tsize\tranges')throw Error('Expected complete body ranges');
  if(Number(p.body_bytes_outside_regions)!==0||Number(p.entries_without_instruction)!==0)throw Error('Snapshot has unresolved body or entry anomalies');
  audit.forEach(validateRegion);
- const allowed=union(audit.map(r=>[numeric(canonical(r.start)),numeric(canonical(r.start))+Number(r.size)]));
+ const allowed=union(audit.filter(r=>r.kind==='region').map(r=>[numeric(canonical(r.start)),numeric(canonical(r.start))+Number(r.size)]));
  const prior=new Map(old.rows.map(r=>[numeric(canonical(r.start)),Number(r.size)]));
  if(prior.size!==old.rows.length||fresh.rows.length!==prior.size||fresh.rows.length!==Number(p.functions))throw Error('Function census differs');
  const seen=new Set(),all=[];let last=-1,summed=0;
@@ -51,7 +56,8 @@ function main(){
  }
  // Validate every selected file before writing any; exclusive writes never replace an inventory.
  for(const item of staged){const dst=join(resolve(output),item.path);mkdirSync(dirname(dst),{recursive:true});writeFileSync(dst,item.tsv,{flag:'wx'});
-  for(const suffix of ['.provenance.tsv','.regions.tsv'])writeFileSync(dst.slice(0,-4)+suffix,text(item.stem+suffix),{flag:'wx'});
+  writeFileSync(dst.slice(0,-4)+'.provenance.tsv',text(item.stem+'.provenance.tsv'),{flag:'wx'});
+  writeFileSync(dst.slice(0,-4)+'.regions.tsv',canonicalStarts(text(item.stem+'.regions.tsv')),{flag:'wx'});
  }
  console.log(JSON.stringify({staged:staged.map(x=>x.path),limitation:'Unchanged anomaly-free single views only; original inventory remains untouched.'}));
 }

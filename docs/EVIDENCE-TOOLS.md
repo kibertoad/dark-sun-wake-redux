@@ -217,8 +217,16 @@ Coverage describes analyzer-discovered functions, not every function that exists
 The protocol's [Creating and checking an inventory](../vendor/upstream/work-protocol.md#creating-and-checking-an-inventory) (lines 514-522)
 says how to export and check one. The pinned checker reads the protocol's
 `ranges` column, the half-open body ranges of a function whose body is not one
-range from its start, and does not read the `.provenance.tsv` and
-`.regions.tsv` files beside an inventory as inventories. The engine's
+range from its start. From standard-checker 6.0.0 `standard-coverage` also reads
+the `.provenance.tsv` and `.regions.tsv` files beside an inventory: the
+provenance must give the manifest's `xxh3`, and the regions file must have the
+columns `kind`, `start`, `size`, `instructions`, `instructions_outside`, `data`,
+`data_outside`, `undefined` and `undefined_outside`, with a `region` row for
+each measured region, an `outside` row for each stretch of a body in no region
+and an `entry` row for each start where no instruction starts, and its rows
+must agree with the inventory's bodies. `ExportResearchBaseline.java` writes
+that layout, and `migrate-inventory.mjs` and `join-overlay-views.mjs` carry it
+through, writing each start as the inventory writes it. The engine's
 `ExportFunctionInventory.java` Ghidra script (`docs/GHIDRA.md`) writes all
 three straight to the inventory's `coverage/` path from one analysis view, with
 ranges where a body needs them; the protocol commits the provenance and regions
