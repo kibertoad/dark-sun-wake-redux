@@ -1,29 +1,23 @@
 # EXE
 
-Next ID: Q-EXE-028
+Next ID: Q-EXE-029
 
 ## Static
 
-- Q-EXE-027. FMT-EXE-006: Does the sound driver code the installed
-  DSUN.EXE loads from its ADV resources, or the interrupt 66 handler,
-  request program execution? FND-EXE-589 finds it, with the XMS driver
-  and the handlers installed before the program, the only code outside
-  the file DSUN.EXE's census reaches. FND-EXE-585 finds the timer callback at
-  `4842:0498`, the driver dispatch at `4842:040A`, the calls into a
-  DIGPAK image at `4842:13FB` and `4842:14EA`, and six `int 66`
-  sites entering that code; the image is the ADV resource numbered by
-  SOUND.CFG's word at +0x38 or +0x36, 11 and 8 in the installed file
-  (FND-CONFIG-023). Settles it: the installed GFF resources of tag ADV
-  with numbers 11 and 8 located and identified by their bytes, with which
-  of the `Copy` and `DIGPAK` signatures each carries; for each, either
-  its bytes matched to a disc driver FND-EXE-492, FND-EXE-496 and
-  FND-EXE-573 already census, or the same census taken of it from its
-  function table entries (function 0067 included) or its +0x100 and
-  +0x103 entries; and the interrupt 66 handler named, from the code that
-  installs it, or listed as installed outside the program.
-  Blocks: FMT-EXE-006's answer to whether the installed game starts a
-  batch helper, which FND-EXE-589 leaves to this code.
-
+- Q-EXE-028. FMT-EXE-006: Does the driver code of ADV resources 10 or 20
+  of the installed RESOURCE.GFF, which setup puts in SOUND.CFG when the
+  player picks a SOUND.INI record naming them, or the interrupt 66
+  handler a DIGPAK driver uses, request program execution? FND-EXE-590
+  finds the drivers the shipped SOUND.CFG names (11 and 8) are disc
+  drivers that request none, and that 10 (the only DIGPAK image) and 20
+  equal no disc file. Settles it: for ADV 10, a census of its code from
+  the +0x100 and +0x103 entries DSUN.EXE calls (FND-EXE-585) and from
+  whatever entry installs an interrupt 66 handler, with that handler
+  named or listed as installed outside the program; for ADV 20, the
+  census FND-EXE-496 and FND-EXE-573 take of a Copy driver, from its
+  function table entries.
+  Blocks: FMT-EXE-006's answer for a sound configuration other than the
+  shipped one.
 
 ## Emulated call
 

@@ -56,8 +56,8 @@ shipped command text, not an observed execution or shell error outcome.
 The disc's helpers are not studied further. The disc's `SOUND.BAT` is the
 version 1.0 copy that the installation replaces (FND-EXE-570), and the
 other four open DOS startup files in an editor and are named by no
-command of GOG's launch configuration (FND-EXE-010); whether code the game
-loads launches any helper remains Q-EXE-027. Their display encoding, how an interpreter
+command of GOG's launch configuration (FND-EXE-010); whether driver code the
+game can load launches any helper remains Q-EXE-028. Their display encoding, how an interpreter
 handles the disc `SOUND.BAT`'s undefined labels, and which disc helpers the
 disc installer launches are left unread.
 
@@ -88,15 +88,16 @@ reading of callers, external commands or interpreter behavior is claimed.
 
 ## Open questions
 
-- Does the sound driver code the installed game loads from its `ADV ` resources, or the handler of
-  interrupt 66, start a batch helper (Q-EXE-027)? The game's own code does not: no interrupt 21
-  request in `DSUN.EXE` selects AH=4B, it holds no interrupt 2E, and every computed transfer its
-  census walk leaves stays in the file, never runs, or goes to the XMS driver's memory functions, the
-  system's handlers of interrupts 5, 8, 9 and 19, or that sound driver code (FND-EXE-578, FND-EXE-589).
-  The sound utility's own code and its drivers request no program execution either (FND-EXE-572,
-  FND-EXE-573). Reading the installed `ADV ` resources 11 and 8 and the code that installs the
-  interrupt 66 handler settles it. The distribution's launch wrapper names both helpers itself
-  (FND-EXE-010, Q-EXE-009).
+- Does the driver code of ADV resources 10 or 20, which the setup program can select, or the
+  handler of interrupt 66 a `DIGPAK` driver uses, start a batch helper (Q-EXE-028)? With the shipped
+  `SOUND.CFG`, nothing the game runs requests program execution: no interrupt 21 request in
+  `DSUN.EXE` selects AH=4B, it holds no interrupt 2E, every computed transfer its census walk leaves
+  stays in the file, never runs, or goes to the XMS driver's memory functions, the system's handlers
+  of interrupts 5, 8, 9 and 19, or the sound drivers (FND-EXE-578, FND-EXE-589), and those drivers
+  are the disc's `SBP2FM.ADV` and `SBPDIG.ADV`, which request none and call back only into the game
+  (FND-EXE-590). The sound utility's own code and its drivers request no program execution either
+  (FND-EXE-572, FND-EXE-573). ADV 10 and 20 match no disc driver; a census of each settles it. The
+  distribution's launch wrapper names both helpers itself (FND-EXE-010, Q-EXE-009).
 - How does the shipped wrapper resolve the two bare helper commands and
   continue after them (Q-EXE-009)? Resolution to installed batch files is
   consistent with the declared mounts, but command-search order, batch
