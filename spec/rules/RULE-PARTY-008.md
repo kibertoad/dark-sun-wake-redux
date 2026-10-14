@@ -4,7 +4,7 @@ title: The keys 1 to 4 choose the party leader
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [SRC-MANUAL-1994, FND-ACTOR-003, FND-COMBAT-008, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-EXPLORE-001, FND-EXPLORE-002, FND-PARTY-013, FND-PARTY-171, FND-PARTY-176, FND-PARTY-178, FND-PARTY-179]
+evidence: [SRC-MANUAL-1994, FND-ACTOR-003, FND-COMBAT-008, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-EXPLORE-001, FND-EXPLORE-002, FND-PARTY-013, FND-PARTY-127, FND-PARTY-171, FND-PARTY-176, FND-PARTY-178, FND-PARTY-179]
 conflicting: []
 split_with: []
 related: [SCR-UI-002]
@@ -18,8 +18,11 @@ box of the View Character screen does the same.
 
 ## When it runs
 
-`leader_for_key` runs for a key the resident key routine `28C9:0CFF` takes (FND-AI-004). The run
-of FND-PARTY-178 reached it with the map shown, outside combat.
+`leader_for_key` runs for a key the main view's key routine `28C9:0CFF` takes (FND-AI-004), which
+the game registers only from overlay 182 `+1167`, `+15D7` and `+19F8` and overlay 199 `+0BC1`,
+and which entering display mode 2 unregisters (FND-PARTY-127). So the keys work while the main
+view takes keys and not while a window opened in display mode 2 is up. The run of FND-PARTY-178
+reached it with the map shown, outside combat.
 
 ## Parameters
 
@@ -87,7 +90,6 @@ None known.
   names for its slot where the two differ: the code reads record `slot` (FND-PARTY-176), and the
   runs had them equal (No item: the parties the game builds put combatant `k` in slot `k`,
   FND-PARTY-013, so no party where they differ is known).
-- Which screens pass keys to `28C9:0CFF`, so where the keys work (Q-PARTY-074).
 - What a key's `set_leader` changes on screen beyond redrawing the view (`2C5F:0139`,
   FND-PARTY-130): it then runs `4328:0B4C` at once through `28C9:2A81(1)`, whose callees are not
   read (FND-PARTY-179, FND-PARTY-180, Q-PARTY-075).

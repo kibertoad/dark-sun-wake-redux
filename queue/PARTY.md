@@ -55,9 +55,6 @@ Next ID: Q-PARTY-076
   entry `37FC:04AB` for a resource shorter than the size it is given. Tried: FND-PARTY-104 reads
   the level-gain windows, which show `SPST` as the known spells and bits 1 to 7 of `PSST` as power
   ranks, and keep bit 0. Blocks: slice 3.
-- Q-PARTY-074. RULE-PARTY-008: Which screens pass keys to `28C9:0CFF`, so where do the keys 1 to
-  4 change the leader? Settles it: the callers of `28C9:0CFF` through `39D1:083F` and `39D1:0742`
-  (FND-PARTY-178) and the screens whose loops reach them. Blocks: slice 3.
 - Q-PARTY-075. RULE-PARTY-008: What does `4328:0B4C` change when a key's `set_leader` runs it
   through `28C9:2A81(1)` right after the view redraw (FND-PARTY-180)? Settles it: what
   `DS:33B6` and `DS:33B8` hold, and readings of `409B:1675`, `3D72:0B84`, `3D72:0942`,
