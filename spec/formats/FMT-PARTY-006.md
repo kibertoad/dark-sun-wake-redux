@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_006.ksy
-evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182]
+evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196]
 conflicting: []
 split_with: []
 related: []
@@ -32,7 +32,7 @@ index of its parent chunk, its record number and the field it was reached throug
 | `0x04` | 2 | `UINT16LE` | `record_ref` | Types 2, 3 and 4: replaced, in the loaded copy, by the number of the record the data was copied into, which a type-3 chunk then stores in its target's field and a type-4 chunk links in. The load does not read it for type 1. | supported | FND-PARTY-051 |
 | `0x06` | 2 | `UINT16LE` | `field` | Types 2 and 3: the number of the field of the target chunk's object that receives the new record, through the `FNFO` field tables. 15, 16, 17 or 4 in the shipped records' chunks of these types, and 2 in their type-4 chunks, for which the load does not read it. | supported | FND-PARTY-051, FND-PARTY-052 |
 | `0x08` | 2 | `UINT16LE` | `len_data` | Number of data bytes after the header: 49 for type 1, 66 for type 3, 23 for types 2 and 4, and 0 in the end header, in every shipped record. | supported | FND-PARTY-051, FND-PARTY-052 |
-| `0x0A` | `len_data` | `BYTE[len_data]` | `data` | The record the chunk holds (see below). For types 2 and 4, a 23-byte record of the table at `57E0:19C1`: its signed word at `0x00` is an object number, negated, which placing the record's object passes on as the number of the `OJFF` and `RDFF` resources to load, and which is negative and the negation of an `OBJEX.GFF` `RDFF` number in every shipped record; its byte at `0x12` gives bits 0 to 2 of the placed object's entry. | supported | FND-PARTY-051, FND-PARTY-181, FND-PARTY-182 |
+| `0x0A` | `len_data` | `BYTE[len_data]` | `data` | The record the chunk holds (see below). For types 2 and 4, a 23-byte record of the table at `57E0:19C1`: its signed word at `0x00` is an object number, negated, which placing the record's object passes on as the number of the `OJFF` and `RDFF` resources to load, and which is negative and the negation of an `OBJEX.GFF` `RDFF` number in every shipped record; its byte at `0x12` gives bits 0 to 2 of the placed object's entry. In the shipped records its word at `0x04` is 9999 in each record that ends its chain and another value in each record a type-4 chunk follows, its word at `0x08` is 9999 in all but three, and its byte at `0x15` is 0. | supported | FND-PARTY-051, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196 |
 | | | | | Total size `10 + len_data` | | |
 
 ## Enumerations and flags
@@ -65,4 +65,5 @@ ends on a `chunk_type` of 0xFF whose header is the last 10 bytes of the resource
 
 - What the rest of a 23-byte record of chunk types 2 and 4 holds besides its object number at
   `0x00`, the link at `0x04` and the byte at `0x12`, and so what the character's words at `0x08`,
-  `0x0A` and `0x0C` lead to (Q-PARTY-020).
+  `0x0A` and `0x0C` lead to. FND-PARTY-196 gives the shipped values of every field, with 9999
+  ending each chain at `0x04` (Q-PARTY-020).

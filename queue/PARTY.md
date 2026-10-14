@@ -83,7 +83,8 @@ Next ID: Q-PARTY-079
   the table at `DS:19C1` and those words, such as the View Character screen's possessions
   (SCR-UI-002), and the routine `+04F8` of overlay 188 that places records' objects. Tried:
   FND-PARTY-181 and FND-PARTY-182 give word `0x00` as the negated object number and byte `0x12`
-  as the placed entry's low bits. Blocks: slice 2.
+  as the placed entry's low bits; FND-PARTY-196 lists the shipped values of every field and shows
+  9999 ending each chain at `0x04`, but names no field from code. Blocks: slice 2.
 - Q-PARTY-005. FMT-PARTY-004, FMT-PARTY-005: What does bit 0 of a `PSST` byte hold, and what
   does the game do when it reads a 9-byte `SPST` into its 15-byte table entry? Settles it: the
   code that reads and writes the four-slot tables overlay 186 fills (FND-PARTY-012), and the read
