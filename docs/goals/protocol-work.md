@@ -3,7 +3,7 @@
 ## Condition
 
 Continue the owner's objective from docs/HANDOVER.md until the entire game is
- documented under the pinned Standard and Protocol. Use the licensed installation
+documented under the pinned Standard and Protocol. Use the licensed installation
 at C:\GOG Games\Dark Sun 2 and the pinned rust-dos session package for probes.
 Completion requires a game-wide audit of behavior, rules, screens and resources,
 with direct evidence sufficient for each claim, no unanswered in-scope research
@@ -51,31 +51,38 @@ Do not weaken host safeguards or extend analysis beyond preservation scope.
 ## Handover
 
 - Stage: Slices; entire-game research goal active and incomplete.
-- Last gate: 2026-10-15, ./tools/Test.ps1 passed, including 715 .NET tests,
-  Node suites and documentation validation (1303 entries, 168 parity rows,
-  5 deviations). Documentation argument-count skips remain. Kaitai compilation
-  was skipped because this host has no compiler; CI owns that additional check.
-- Latest batch: FND-PARTY-213; Q-PARTY-078 remains open. No spec or parity
-  status promotion. No queue item closed.
+- Last gate: 2026-10-15, ./tools/Test.ps1 -NoRestore passed for both completed
+  batches, including 715 .NET tests, Node suites and documentation validation
+  (1304 entries, 168 parity rows, 5 deviations). Argument-count skips remain;
+  Kaitai compilation requires a compiler absent on this host and remains a CI check.
+- Latest research batch: FND-PARTY-214; Q-PARTY-078 remains open. No status
+  promotion or queue closure. Latest tooling: fixed startup_segments.py probe
+  and docs/RUNTIME.md update. Probe syntax and invalid-name rejection passed;
+  live probe behavior is unverified.
 - Tooling: dependencies restored into artifacts/evidence-python; pinned rust-dos
-  v1.7.2 installed and hash verified. Set EVIDENCE_PYTHON explicitly to the
-  local interpreter. Use checkout-scoped Git safe.directory; hooks enabled.
-- Runtime: no original run was started in this session. Prior runtime capability
-  evidence is in docs/RUNTIME.md. Fresh checkout has no historical artifacts/runs
-  checkpoints. Existing run_plan.py waits on emulated times; a protocol-compliant
-  state-driven probe is needed before using it for new behavior claims.
-- Unfinished: follow-up bounded reads of 289B:007A..0094 and 2D40:27B7..286C
-  have no new finding yet. Existing related entries FND-PARTY-120, 132, 135 and
-  172 must be reconciled before recording a new claim. No uncommitted batch draft.
-- Processes: completed validation handles were terminal; post-commit inspection
-  found no confirmed orphan associated with the repository. No emulator launched.
-- Blockers: no goal-wide blocker. Owner-only patched-save/live-session items
-  remain individually open; continue independent static research.
+  v1.7.2 installed and hash verified. Set EVIDENCE_PYTHON explicitly to that
+  interpreter. Checkout-scoped Git trust and enabled hooks were used.
+- Runtime: the 2026-10-15 startup probe was refused by the default machine run
+  lock before emulator launch. The package cannot recognize its record format.
+  No lock was changed and no alternate lock path used. New runs are unavailable
+  until the owner resolves normal run coordination; static work continues.
+  Prior capability evidence remains in docs/RUNTIME.md. This checkout has no
+  historical artifacts/runs checkpoints. Existing run_plan.py remains time-driven;
+  the new fixed probe waits for an address stop but does not reach gameplay.
+- Unfinished: no batch draft. A bounded startup listing at 1000:0000..00E0
+  was read after the tooling attempt and has no new finding yet; reconcile
+  FND-PARTY-038 before recording segment-producer evidence.
+- Processes: full validation handles ended successfully. Post-commit audits
+  found no confirmed repository orphan. No emulator was launched or operated.
+- Coverage: standard-coverage ran successfully against all existing inventories;
+  citation coverage is not complete-reading or whole-game completion evidence.
+- Blockers: runtime lock only; no goal-wide blocker. Owner-only live-session
+  and patched-save items remain separate. No release or push authorized.
 - Next:
-  1. Q-PARTY-078: complete remaining cleanup input/return and map-alias evidence;
-     preserve FND-PARTY-213's limits and compare FND-PARTY-120/172.
+  1. Q-PARTY-078: startup DS/SS producers and preservation to deletion; remaining
+     map admission and lookup/conversion effects from FND-PARTY-214.
   2. Q-PARTY-076 and Q-PARTY-077: complete generation/DUAL sheet input provenance.
   3. Q-PARTY-073 and Q-PARTY-080: pre-start damage and combatant-state writers.
   4. Q-PARTY-020: split the remaining attached-record fields into bounded questions.
-  5. State-driven rust-dos probe tooling, then Q-PARTY-078's several-member run;
-     record all RNG draws and preserve licensed outputs only in local stores.
+  5. Once normal runtime coordination is restored, verify startup_segments.py,
+     then build a state-driven several-member defeat probe for Q-PARTY-078.
