@@ -324,7 +324,19 @@ An owner-approved history repair remains separate from this maintenance scope.
   driver. The EXE Static queue is empty; Q-EXE-009/011/012/013/024 sit in other sections. Tools:
   resource_adv_census.py, installed_adv_resources.py, reach_config.py with the q007_*.json queries
   (latest q007_dsun_digpak_census.json); local outputs c_*/r_*/k_* in
-  GAME_DIR/analysis/exe-batches/q007. Next: PARTY Static items (Q-PARTY-003, 053, 045).
+  GAME_DIR/analysis/exe-batches/q007.
+- PARTY, 2026-10-14 (FND-PARTY-170..173, commits 3373c2e7..bf71e10e, not pushed): the Create
+  Characters screen's exits go back to the start window (RULE-PARTY-001 now disputed); ADD leaves
+  the leader at slot 0, so ADD then DROP of box 1-3 is allowed; whether DROP empties the box needs
+  a run, so Q-PARTY-006 is under Live session (an Agent run once docs/RUNTIME.md allows it);
+  Q-PARTY-070 closed: only the kill share counts the party. Filed toolkit #500 (reach chains
+  through a branch the caller's constant argument rules out). Local walks in
+  GAME_DIR/analysis/exe-batches/q006.
+- Pending: the owner allowed agent runs (headless, muted) with the latest session package. Pins
+  for dinorefurb-dosbox-session 0.9.0 (hash 56a60b74...d54b) and rust-dos v1.7.2 (ZIP 2ca58dab...,
+  exe 310de9a9...) are a local stash `pin-bump`; the auto-mode classifier blocked installing them,
+  so they wait for the owner's permission. Then record the first run in docs/RUNTIME.md and update
+  the versions in AGENTS.md and RUNTIME.md.
 - Lead for unk_2a: overlay 204 +0203 pushes 0x0660:0x00BB (the setter trampoline 5787:00BB) as a
   value before a near call to its dispatcher at +019C, so the setter is passed as a callback.
   Filed toolkit #474 (list where a routine's far address is used as a value) after checking
