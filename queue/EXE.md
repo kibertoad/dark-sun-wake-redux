@@ -19,7 +19,11 @@ Next ID: Q-EXE-027
   installed DSUN.EXE, its two stack-built interrupt routines and its one
   argument-selected request: none selects AH=4B and there is no interrupt
   2E; the walk from established entries reaches 80 of the 100 interrupt 21
-  sites and leaves 77 transfers unresolved.
+  sites and leaves 77 transfers unresolved. FND-EXE-575 finds that the
+  program never reads the interrupt 21 vector and that its calls through
+  saved vectors go to the handlers of 5, 8, 9 and 19 installed before it
+  started (two of the 77: `1000:2A24` and `4842:051A`); FND-EXE-576 gives
+  each kind of site an earlier finding as its control.
   Tried (before the split into this item, Q-EXE-025 and Q-EXE-026): the
   helper contents and distribution wrapper (FND-EXE-008, FND-EXE-010)
   locate no caller; FND-EXE-350 finds one sound.bat suffix in each game

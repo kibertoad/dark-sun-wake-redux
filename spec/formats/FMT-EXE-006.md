@@ -343,8 +343,11 @@ reading of callers, external commands or interpreter behavior is claimed.
   FND-EXE-574 censuses the installed DSUN.EXE the same way: no interrupt
   21 request in the file selects AH=4B, its stack-built interrupts are
   called only for CD-ROM extension and version services, and it holds no
-  interrupt 2E. Which of its 77 unresolved computed transfers can reach
-  code outside the file remains Q-EXE-007.
+  interrupt 2E. FND-EXE-575 finds that it never reads the interrupt 21
+  vector and calls only the saved handlers of 5, 8, 9 and 19, which lie
+  outside the file, and FND-EXE-576 locates a control for each kind of
+  site. Which of its other unresolved computed transfers can reach code
+  outside the file remains Q-EXE-007.
   FND-EXE-380 identifies shipped limit and first-five-byte initializers;
   startup, actual DS, aliases and later writers must admit their runtime use.
 - How does the shipped wrapper resolve the two bare helper commands and

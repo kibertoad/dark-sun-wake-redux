@@ -10,6 +10,9 @@ load image, an overlay's code, an overlay's fixup list or elsewhere in the pack)
 - "far call" or "far jump": 9A or EA before it and a relocated or fixed-up segment word after it
   equal to the routine's segment (load image) or its descriptor * 8 (overlay code);
 - "relocated pointer": the word after it is relocated or fixed up;
+- either of these with "to another segment (SSSS)" when that segment word, read as the load-time
+  segment (the word plus 0x1000 in the load image, the descriptor's segment plus 0x1000 for a
+  fixup word), does not form the routine's address with the offset;
 - "immediate": an instruction decoded from one of the 6 bytes before the word that ends after it
   and has the word as an immediate operand (mov, push), with the relocated or fixed-up segment
   words within 12 bytes either side;
@@ -58,6 +61,17 @@ def place(at):
     return "header" if at < header else "pack outside overlay code"
 
 
+def segment_named(word_at):
+    """The load-time segment a relocated or fixed-up segment word names: the word plus 0x1000 in the
+    load image, and for a fixup word (descriptor * 8) the descriptor's segment plus 0x1000."""
+    word = struct.unpack_from("<H", body, word_at)[0]
+    if header <= word_at < image_end:
+        return word + 0x1000
+    if word % 8 == 0 and word // 8 < len(rows):
+        return rows[word // 8][0] + 0x1000
+    return None
+
+
 def holder(at):
     for back in range(6, 0, -1):
         for i in md.disasm(body[at - back:at + 8], at - back):
@@ -78,6 +92,9 @@ for item in sys.argv[2:]:
             kind = "relocated pointer"
             if body[at - 1] in (0x9A, 0xEA):
                 kind = "far call" if body[at - 1] == 0x9A else "far jump"
+            named = segment_named(at + 2)
+            if named is None or named * 16 + off != seg * 16 + off:
+                kind += f" to another segment ({named:04X})" if named is not None else " with an unreadable segment"
         i = holder(at)
         text = f"{i.mnemonic} {i.op_str}" if i else "no instruction"
         if kind == "no segment" and i and i.mnemonic in ("mov", "push") and f"{off:#x}" in i.op_str and "[" not in i.op_str.split(",")[-1]:
