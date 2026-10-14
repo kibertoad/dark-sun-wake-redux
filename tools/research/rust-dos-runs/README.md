@@ -111,3 +111,24 @@ it saved (`add.json` in `2026-10-14-cc7`, `drop.json` in `2026-10-14-cc8`,
 `generator_callers.py <run-dir> <earlier-run-dir>:<state> <until_ms> [start]`
 counts the return addresses of the generator's calls until the emulated time
 given, after a click on START GAME with `start`.
+
+## State-stop startup probe
+
+`startup_segments.py <new-run-name>` is a fixed probe of program entry to the
+documented game-main entry (FND-PARTY-031). It verifies installed DSUN.EXE,
+copies only that executable to its private C: drive, uses the pinned muted
+RustDosSession, and waits for the main address rather than an emulated time.
+It records entry/main registers and RNG state under the licensed installation's
+`captures/rust-dos-startup-segments/<new-run-name>/`. An RNG-entry breakpoint
+refuses further execution before a draw; it sends no input or memory write.
+It establishes no later segment-preservation or party-cleanup result.
+
+Use the locked evidence Python from the repository root:
+
+```sh
+artifacts/evidence-python/Scripts/python.exe -I tools/research/rust-dos-runs/startup_segments.py <new-run-name>
+```
+
+Live execution is not yet verified: the 2026-10-15 attempt was refused by the
+existing machine run lock before emulator launch (docs/RUNTIME.md). Do not
+substitute another lock path or modify that lock to make the probe run.

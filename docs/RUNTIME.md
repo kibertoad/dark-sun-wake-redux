@@ -22,10 +22,28 @@ path in `REFURBISHED_DINOSAURS_RUN_LOCK`) as the protocol's
 says.
 
 Setup: `./tools/Restore-ToolDependencies.ps1` installs
-`dinorefurb-dosbox-session` 0.9.0 into `artifacts/evidence-python`, and
+`dinorefurb-dosbox-session` 0.10.0 into `artifacts/evidence-python`, and
 `./tools/Install-RustDos.ps1` installs the pinned rust-dos v1.7.2 Windows
 build into `artifacts/rust-dos/`, refusing an archive or executable whose
 SHA-256 differs from the package's pins.
+
+Current machine availability (2026-10-15): new session-package runs are
+unavailable. The fixed startup-segment probe
+`tools/research/rust-dos-runs/startup_segments.py initial-main-20261015`
+was refused at `RunLock.acquire`, before emulator launch: the default run
+lock exists but is not a `dinorefurb-dosbox-session.run-lock/1` record.
+The package cannot determine its owner/process state. It was left untouched;
+no alternate lock path was used. New runs can resume once the existing lock
+is resolved through the owner's normal run coordination. The capability
+table below retains the earlier successful attempts, not evidence that a
+new session can currently acquire the lock. Static analysis and emulated
+calls remain available.
+
+The new startup probe waits for the documented main entry using an address
+stop, reads DS/SS and the RNG state, and refuses to continue if the RNG entry
+is reached first. It makes no writes, inputs or captures and records no draw.
+Its live behavior remains unverified because the lock refused its first
+attempt; it does not replace the earlier successful probe's capability evidence.
 
 How an agent run starts the game (2026-10-14, `tools/research/rust-dos-runs/`):
 a deterministic run at 15000 instructions a millisecond, C: a copy of the
