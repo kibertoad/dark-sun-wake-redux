@@ -51,37 +51,40 @@ Do not weaken host safeguards or extend analysis beyond preservation scope.
 ## Handover
 
 - Stage: Slices; entire-game research goal active and incomplete.
-- Last gate: 2026-10-15, ./tools/Test.ps1 -NoRestore passed for both completed
-  batches, including 715 .NET tests, Node suites and documentation validation
-  (1305 entries, 168 parity rows, 5 deviations). Argument-count skips remain;
-  Kaitai compilation requires a compiler absent on this host and remains a CI check.
-- Latest research batch: FND-PARTY-215; Q-PARTY-078 remains open and Q-PARTY-081 is separated under Blocked. No status
-  promotion or queue closure. Latest tooling: fixed startup_segments.py probe
-  and docs/RUNTIME.md update. Probe syntax and invalid-name rejection passed;
-  live probe behavior is unverified.
-- Tooling: dependencies restored into artifacts/evidence-python; pinned rust-dos
-  v1.7.2 installed and hash verified. Set EVIDENCE_PYTHON explicitly to that
-  interpreter. Checkout-scoped Git trust and enabled hooks were used.
-- Runtime: the 2026-10-15 startup probe was refused by the default machine run
-  lock before emulator launch. The package cannot recognize its record format.
-  No lock was changed and no alternate lock path used. New runs are unavailable
-  until the owner resolves normal run coordination; static work continues.
-  Prior capability evidence remains in docs/RUNTIME.md. This checkout has no
-  historical artifacts/runs checkpoints. Existing run_plan.py remains time-driven;
-  the new fixed probe waits for an address stop but does not reach gameplay.
-- Unfinished: no batch draft. The prior startup reading is recorded by FND-PARTY-215.
-- Processes: full validation handles ended successfully. Post-commit audits
-  found no confirmed repository orphan. No emulator was launched or operated.
-- Coverage: standard-coverage ran successfully against all existing inventories;
-  citation coverage is not complete-reading or whole-game completion evidence.
-- Blockers: Q-PARTY-081 requires normal runtime coordination to resolve the existing lock; revalidated read-only on 2026-10-15. No goal-wide blocker. Owner-only live-session
-  and patched-save items remain separate. No release or push authorized.
+- Last gate: 2026-10-15, ./tools/Test.ps1 -NoRestore passed, including 715 .NET
+  tests, Node suites and documentation validation (1306 entries, 168 parity
+  rows, 5 deviations). Argument-count and absent-Kaitai-compiler skips remain.
+  An earlier run captured an invalid draft heading and failed; the corrected
+  final files passed the full rerun and enabled commit hooks.
+- Latest research batch: FND-PARTY-216 and FMT-PARTY-006. Q-PARTY-020 remains
+  open with Q-PARTY-082, Q-PARTY-083 and Q-PARTY-084 separated. No status
+  promotion or queue closure. No gameplay implementation changed.
+- Tooling: item_field_descriptors.py reproduced the selected descriptor
+  observations and rejected a synthetic unsupported executable. Dependencies
+  remain in artifacts/evidence-python; always set EVIDENCE_PYTHON to that
+  interpreter. Pinned rust-dos v1.7.2 is installed and hash verified.
+  Git trust was checkout-scoped and hooks remain enabled.
+- Runtime: docs/RUNTIME.md retains the failed 2026-10-15 session-package lock
+  attempt. No emulator was launched this session. Never replace the machine
+  lock path or alter an unrecognized lock to run a probe. Existing run_plan.py
+  remains time-driven; fixed startup_segments.py is documented but unverified.
+- Unfinished: no tracked batch draft. Preliminary Q-PARTY-082 candidate report
+  is local at GAME_DIR/analysis/party-record-heads/combatant-head-read-candidates.txt,
+  from field_reads.py on installed DSUN.EXE and its committed inventory with
+  --es --table 19c9 and offsets 8, A, C. It is unclassified and has no finding;
+  do not treat it as complete reader coverage or repeat it without a new need.
+- Processes: full validation and candidate-query handles ended. Post-commit
+  audit found no confirmed repository orphan. No original runtime was operated.
+- Blockers: Q-PARTY-081 needs the normal runtime coordinator to resolve the
+  existing unrecognized run lock. Static research remains available; this is
+  no goal-wide blocker. Person-only live-session items remain separate.
 - Next:
-  1. Q-PARTY-020: split the remaining attached-record fields into independently
-     answerable questions, then trace the possessions/placement readers.
-  2. Q-PARTY-078: remaining cleanup input/callee obligations; keep Q-PARTY-081's
-     separate segment identity requirement explicit.
-  3. Q-PARTY-076 and Q-PARTY-077: generation/DUAL sheet input provenance.
-  4. Q-PARTY-073 and Q-PARTY-080: pre-start damage and combatant-state writers.
-  5. When normal runtime coordination is restored, Q-PARTY-081: verify the
-     fixed startup probe and build a state-driven deletion-call probe.
+  1. Q-PARTY-082: classify saved candidates and trace possessions/equipment
+     head selection and updates.
+  2. Q-PARTY-083: kind-1 field-4/offset-8 references and their consumers.
+  3. Q-PARTY-020 and Q-PARTY-084: other attached-record fields and complete
+     quantity producer/consumer and field-binding coverage.
+  4. Q-PARTY-078: remaining cleanup inputs/callees; keep Q-PARTY-081's
+     separate segment-identity requirement explicit.
+  5. Q-PARTY-076 and Q-PARTY-077: generation/DUAL sheet input provenance;
+     verify the startup/deletion probe only after normal runtime coordination.
