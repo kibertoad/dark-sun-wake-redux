@@ -6,10 +6,10 @@ param([string] $Destination)
 $ErrorActionPreference = 'Stop'
 $root = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..')).Path
 if (-not $Destination) { $Destination = Join-Path $root 'artifacts/rust-dos' }
-$tag = 'v1.7.1'
+$tag = 'v1.7.2'
 $archiveName = "rust-dos-$tag-windows-x86_64.zip"
-$archiveSha256 = '0fb50292b10aa60c66e4348b68c28f0b23341b746f754c2679c9fe9d5bd38231'
-$executableSha256 = '6baf1aba58c948bb6eb72f12c0009ddc0e07d3d1d9ab97d3f3fd9f1d3c44c7f9'
+$archiveSha256 = '2ca58dabaf1c392485418c180ff2728c5e8a76a970bf150890bab3b978f88da8'
+$executableSha256 = '310de9a912a4874cfceccb2aead71b8da39315aa059dbb5a108f86feb3f73ee4'
 $executable = Join-Path $Destination 'rust-dos.exe'
 
 if ((Test-Path -LiteralPath $executable -PathType Leaf) -and

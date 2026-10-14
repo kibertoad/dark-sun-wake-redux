@@ -1,0 +1,5 @@
+{"start": "artifacts/runs/2026-10-14-start5:start", "steps": [
+ {"mouse": {"action": "click", "x": 157, "y": 76, "coords": "virtual"}, "until_ms": 190000, "shot": "g10", "read": [["4503:0C33", 12], ["41CD:0369", 2], ["4D9A:0DAB", 2]]},
+ {"until_ms": 210000, "shot": "g30", "read": [["4503:0C33", 12], ["41CD:0369", 2], ["4D9A:0DAB", 2]]},
+ {"until_ms": 240000, "shot": "g60", "read": [["4503:0C33", 12], ["41CD:0369", 2], ["4D9A:0DAB", 2]]}
+]}

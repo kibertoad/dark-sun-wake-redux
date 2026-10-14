@@ -9,7 +9,7 @@ owner rule changes it. Findings from runs go in `spec/`, never here.
 Static analysis is the main source of evidence. The owner's rule
 (`AGENTS.md`, "Runs of the original") lets a coding agent run the original
 only through the toolkit's `dinorefurb-dosbox-session` package, in an
-emulator process the package starts: rust-dos v1.7.1 through `RustDosSession`,
+emulator process the package starts: rust-dos v1.7.2 through `RustDosSession`,
 or DOSBox-X through `DosboxSession` as a recorded fallback for work a known
 rust-dos incompatibility blocks. Host sound stays muted (rust-dos on SDL's
 dummy audio driver; DOSBox-X with `mixer master 0:0` and MIDI output `none`),
@@ -22,16 +22,21 @@ path in `REFURBISHED_DINOSAURS_RUN_LOCK`) as the protocol's
 says.
 
 Setup: `./tools/Restore-ToolDependencies.ps1` installs
-`dinorefurb-dosbox-session` 0.8.0 into `artifacts/evidence-python`, and
-`./tools/Install-RustDos.ps1` installs the pinned rust-dos v1.7.1 Windows
+`dinorefurb-dosbox-session` 0.9.0 into `artifacts/evidence-python`, and
+`./tools/Install-RustDos.ps1` installs the pinned rust-dos v1.7.2 Windows
 build into `artifacts/rust-dos/`, refusing an archive or executable whose
-SHA-256 differs from the package's pins. On 2026-10-13 the toolkit's
-`native/verify_rustdos.py` at `dinorefurb-dosbox-session@0.8.0` passed with
-that build here, in a normal and a deterministic run: a synthetic `.COM`
-stopped at its entry and at a breakpoint, registers read back, a stale write
-was refused (409, `precondition: state`), a guarded write verified, and the
-program exited with code 0. That run used no game file, so the game
-capabilities below that need a run of the original are still `none`.
+SHA-256 differs from the package's pins.
+
+How an agent run starts the game (2026-10-14, `tools/research/rust-dos-runs/`):
+a deterministic run at 15000 instructions a millisecond, C: a copy of the
+installed game's files, D: the CD image `game.ins` mounted read-only, and the
+target `DSUN.EXE -W0 -L` as `RAVAGER.BAT` gives it. rust-dos's Sound Blaster
+sits at IRQ 7 and the package passes `--no-config`, so no setting moves it,
+while the installed `SOUND.CFG` names IRQ 5: with that file the game stops at
+once with `Mel Fatal Error #: 26` and `DSP Detect Fail` (exit code 0x1A). The
+run's copy of `SOUND.CFG` therefore names IRQ 7 in its two IRQ words (offsets
+2 and 12) and is otherwise the installed file. The program loads with
+its first segment at `05BA` (the repository's load image puts it at `1000`).
 
 ## BLD-GOG-EN-1.1
 
@@ -48,18 +53,21 @@ wait for supported layout/parameter bindings; FBOV code stays out of reach.
 
 | Capability | Who | Tried | What would change it |
 |---|---|---|---|
-| Start it and bring it to a given state without a person | none | Not tried with the game. `dinorefurb-dosbox-session` 0.8.0 and rust-dos v1.7.1 are installed and passed the synthetic native check above: the package takes and releases the run lock, prepares an empty C:, mounts media read-only, mutes host audio, starts the target stopped at its entry and records each session. Deterministic runs fix the start time and speed and deliver input at emulated times. | A rust-dos run showing the game reaches a given state as it does under GOG's DOSBox 0.74-2. |
-| Send it input | person | The owner plays each live session by its script (`docs/live-sessions/`). | The same rule. |
-| Read memory, set breakpoints, dump structures while it runs | none | Not tried with the game. GOG's DOSBox 0.74-2 is a release build without the debugger, and agents never attach to it. A `RustDosSession` reaches rust-dos's HTTP debug server: registers, memory, breakpoints and operation observation, plus guarded writes to stopped guest memory, where each write names a field in a caller-supplied contract, checks the field's current SHA-256, reads it back, and fails the run on any refusal. The synthetic check above exercised breakpoints, register reads and a guarded write. A session can keep an event log, `events.jsonl` in the run directory, with event kinds and an outcome contract the restoration supplies. Gated breakpoints exist for DOSBox-X sessions only; neither backend has save states. | A session-package run that reads a known field and stops at a breakpoint. |
+| Start it and bring it to a given state without a person | agent | 2026-10-14: the run above reaches the start window (SCR-UI-001), fully drawn by 180 s of emulated time after the start, with Esc pressed every 10 s through the intro, and the screens after it by mouse clicks; checkpoints (`save_state` with `check_files`) taken at the start window, after an `ADD` and after a `DROP`, started later runs that reached the same screens. | A game screen or state the run cannot reach. |
+| Send it input | agent (keyboard, mouse) | 2026-10-14: keys (Esc) and left and right mouse clicks, given in the mouse driver's coordinates (`"coords": "virtual"`, the game's 320 x 200); a click in screenshot coordinates lands off target because the game sets the driver's range. In a deterministic run input is taken while paused and delivered once the run resumes. The owner still plays each live session by its script (`docs/live-sessions/`). | A device the game reads that the session cannot drive. |
+| Read memory, set breakpoints, dump structures while it runs | agent | 2026-10-14: memory reads at a stop gave the party kind bytes, a 66-byte character box record and the leader word, which held 0 at the start window as FND-PARTY-171 reads it from the load image; a breakpoint at the generator `1000:0822` (here `05BA:0822`) stopped there and the stack gave the return address. GOG's DOSBox 0.74-2 has no debugger and agents never attach to it. Guarded writes, the event log and gated breakpoints are as the package describes; no write to the game's memory has been made yet. | A field whose read or write the server refuses. |
 | Load a patched save | person | Not tried. The owner can place a save in the installation's save slots and load it from the game's menu. | A live session that asks for it. |
-| Capture frames and sound | person, frames only | Frames: the owner's Ctrl+F5 screenshots, 320x200 in the game's palette, cited by the dynamic findings of the COMBAT, PARTY and UI areas. Sound: not tried; DOSBox 0.74-2 records sound with Ctrl+F6. | A live session that asks for a sound recording. |
+| Capture frames and sound | agent, frames only; person, frames only | Agent: `screenshot()` gives a 640 x 400 PNG of the 320 x 200 screen (2026-10-14), muted host sound, no sound capture tried. Person: the owner's Ctrl+F5 screenshots, 320x200 in the game's palette, cited by the dynamic findings of the COMBAT, PARTY and UI areas; DOSBox 0.74-2 records sound with Ctrl+F6, not tried. | A sound capture from a session-package run. |
 | Play back a recording the original made | none | The game has no recording feature the spec knows of, and DOSBox 0.74-2 does not replay input. | A finding that the game records and replays input. |
 | Call a single function in the emulator harness (no run lock) | agent, resident far roots within the current no-argument contract | Unicorn 2.1.4 loads the hash-verified GOG resident MZ and applies its relocations. FND-CONFIG-193 initializer controls return with source-written roots/free flags, unchanged loaded high bytes and restored registers. | Supported named parameter/layout bindings extend input cases. Overlay code, native hardware and timing remain outside this harness. |
 
 
-Probe: none. No probe exists yet. The owner's rule allows one only inside a
-session-package DOSBox-X process with host sound muted; it is recorded here once
-a run shows it working, and then follows the protocol's
+Probe: none. `tools/research/rust-dos-runs/run_plan.py` drives scripted runs
+but records no draws yet: it waits for emulated times, not for states, and
+`generator_callers.py` only counts the generator's callers (8 draws from the
+start window through START GAME and the first minute of play). A probe is
+recorded here once a session-package run records the draws by rule, and then
+follows the protocol's
 [Recorded runs](../vendor/upstream/work-protocol.md#recorded-runs) (lines 401-413). Each emulated-call setup must document port
 models, video memory substituted with RAM and the limits of each comparison,
 within the current resident-call contract below.

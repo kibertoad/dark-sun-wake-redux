@@ -1,0 +1,7 @@
+{"start": "artifacts/runs/2026-10-14-cc4:added", "steps": [
+ {"read": [["4503:0C33", 12], ["41CD:0369", 2], ["761B:0004", 264]]},
+ {"mouse": {"action": "click", "x": 70, "y": 107, "button": "right", "coords": "virtual"}, "until_ms": 219000},
+ {"mouse": {"action": "click", "x": 115, "y": 129, "coords": "virtual"}, "until_ms": 225000, "shot": "dropped",
+  "read": [["4503:0C33", 12], ["41CD:0369", 2], ["761B:0004", 264]], "save": "dropped"},
+ {"mouse": {"action": "click", "x": 70, "y": 107, "button": "right", "coords": "virtual"}, "until_ms": 230000, "shot": "menu3"}
+]}
