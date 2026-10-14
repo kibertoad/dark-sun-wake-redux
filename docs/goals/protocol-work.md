@@ -51,40 +51,43 @@ Do not weaken host safeguards or extend analysis beyond preservation scope.
 ## Handover
 
 - Stage: Slices; entire-game research goal active and incomplete.
-- Last gate: 2026-10-15, ./tools/Test.ps1 -NoRestore passed, including 715 .NET
-  tests, Node suites and documentation validation (1306 entries, 168 parity
-  rows, 5 deviations). Argument-count and absent-Kaitai-compiler skips remain.
-  An earlier run captured an invalid draft heading and failed; the corrected
-  final files passed the full rerun and enabled commit hooks.
-- Latest research batch: FND-PARTY-216 and FMT-PARTY-006. Q-PARTY-020 remains
-  open with Q-PARTY-082, Q-PARTY-083 and Q-PARTY-084 separated. No status
-  promotion or queue closure. No gameplay implementation changed.
-- Tooling: item_field_descriptors.py reproduced the selected descriptor
-  observations and rejected a synthetic unsupported executable. Dependencies
-  remain in artifacts/evidence-python; always set EVIDENCE_PYTHON to that
-  interpreter. Pinned rust-dos v1.7.2 is installed and hash verified.
-  Git trust was checkout-scoped and hooks remain enabled.
-- Runtime: docs/RUNTIME.md retains the failed 2026-10-15 session-package lock
-  attempt. No emulator was launched this session. Never replace the machine
-  lock path or alter an unrecognized lock to run a probe. Existing run_plan.py
-  remains time-driven; fixed startup_segments.py is documented but unverified.
-- Unfinished: no tracked batch draft. Preliminary Q-PARTY-082 candidate report
-  is local at GAME_DIR/analysis/party-record-heads/combatant-head-read-candidates.txt,
-  from field_reads.py on installed DSUN.EXE and its committed inventory with
-  --es --table 19c9 and offsets 8, A, C. It is unclassified and has no finding;
-  do not treat it as complete reader coverage or repeat it without a new need.
-- Processes: full validation and candidate-query handles ended. Post-commit
-  audit found no confirmed repository orphan. No original runtime was operated.
-- Blockers: Q-PARTY-081 needs the normal runtime coordinator to resolve the
-  existing unrecognized run lock. Static research remains available; this is
-  no goal-wide blocker. Person-only live-session items remain separate.
+- Last gate: 2026-10-15, ./tools/Test.ps1 -NoRestore passed for both complete
+  research batches, including 715 .NET tests, Node suites and documentation
+  validation (1309 entries, 168 parity rows, 5 deviations). Argument-count and
+  absent-Kaitai-compiler skips remain; no status promotion or queue closure.
+- Latest static entries: FND-PARTY-217 and FND-PARTY-218; the replacement retains
+  the superseded finding. FMT-PARTY-006 and SCR-UI-008 updated. Q-PARTY-085 is separate
+  from Q-PARTY-020. Historical citations reviewed in the replacement.
+- Latest dynamic entry: FND-PARTY-219. Q-PARTY-081 is now Agent run; the
+  old lock blocker is no longer current. No gameplay implementation changed.
+- Runtime: startup_segments.py successfully completed a native rust-dos run
+  using the normal lock and muted host sound. The owned session closed and
+  released its lock; read-only inspection found no remaining run lock. No
+  unrecognized lock was changed and no alternate path used. Use docs/RUNTIME.md
+  for capability provenance. The fixed probe copies only DSUN.EXE and must not
+  continue to gameplay; a complete private drive and state-driven gameplay
+  stops are the next tooling need. Existing run_plan.py remains time-driven.
+- Tooling: dependencies remain in artifacts/evidence-python; always set
+  EVIDENCE_PYTHON to that interpreter. Pinned rust-dos v1.7.2 is installed and
+  verified. Git trust was checkout-scoped and commit hooks remain enabled.
+- Unfinished: no tracked batch draft. Local source-derived reports remain
+  at GAME_DIR/analysis/party-record-heads/: combatant-head-read-candidates.txt,
+  inventory-window-candidates.txt and field-getter-callers.txt. The first query
+  used field_reads.py --es --table 19c9 with offsets 8, A, C; its text filter
+  is not segment provenance. The window query used immediate_search.py 34BC
+  34BD, and the getter census targeted 1AA0:0009. FND-PARTY-217/218 record
+  the bounded readings; do not repeat those queries without a new need.
+- Processes: all native probe, validation and analysis handles ended. Audits
+  found no confirmed repository orphan. No GOG emulator was operated.
+- Blockers: no known goal-wide or machine-lock blocker. Prior person-only
+  patched-save/live-session requests remain separate; native startup access
+  does not verify a new gameplay state route or patched-save capability.
 - Next:
-  1. Q-PARTY-082: classify saved candidates and trace possessions/equipment
-     head selection and updates.
-  2. Q-PARTY-083: kind-1 field-4/offset-8 references and their consumers.
-  3. Q-PARTY-020 and Q-PARTY-084: other attached-record fields and complete
-     quantity producer/consumer and field-binding coverage.
-  4. Q-PARTY-078: remaining cleanup inputs/callees; keep Q-PARTY-081's
-     separate segment-identity requirement explicit.
-  5. Q-PARTY-076 and Q-PARTY-077: generation/DUAL sheet input provenance;
-     verify the startup/deletion probe only after normal runtime coordination.
+  1. Q-PARTY-081: complete private gameplay drive, state-driven deletion-call
+     stop, draw recording and frame/map read. FND-PARTY-219 is a prerequisite,
+     not a whole cleanup result.
+  2. Q-PARTY-082: finish head-field roles through graph enumeration; use the
+     corrected FND-PARTY-218 provenance.
+  3. Q-PARTY-085: physical position labels and complete projection contracts.
+  4. Q-PARTY-083: kind-1 field-4/offset-8 references and their consumers.
+  5. Q-PARTY-020 and Q-PARTY-084: remaining attached fields and quantity coverage.
