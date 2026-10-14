@@ -20,6 +20,9 @@ Next ID: Q-UI-006
   selection. Overlay 194's opener and event-2 callback dispatch the four
   start-window button IDs to distinct branches (FND-UI-035), but their callee
   effects and the remaining screens are unread. Blocks: nothing yet.
+  Tried: FND-PARTY-217 links the inventory's `WIND/13500` request to overlay
+  189's handler and redraw projection, without establishing all event branches
+  or native control states; position geometry is separated into Q-PARTY-085.
 - Q-UI-003. SCR-UI-002, SCR-UI-005, SCR-UI-006, SCR-UI-007, SCR-UI-011, FMT-UI-001, SCR-UI-001, SCR-UI-003: Where does the game
   place each window, given that the resources hold no screen position? Settles it: a reading of
   the code that writes a window's runtime `unk_96` and `unk_98`, or captures of each screen.

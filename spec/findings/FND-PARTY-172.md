@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-172
 title: Releasing a placed object empties a character box record only through the kind 3 case of the switch at 2D40:248D, which runs for the entries 2D40:2196 builds from the object table
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-218]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

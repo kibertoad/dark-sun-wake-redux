@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-AI-003, FND-COMBAT-023, FND-UI-021, FND-UI-030, SRC-MANUAL-1994]
+evidence: [FND-AI-003, FND-COMBAT-023, FND-UI-021, FND-UI-030, SRC-MANUAL-1994, FND-PARTY-217]
 conflicting: []
 split_with: []
 related: [RULE-AI-001, RULE-COMBAT-008, RULE-PARTY-008, RULE-ITEM-001, RULE-ITEM-002, RULE-ITEM-003, RULE-ITEM-004, RULE-UI-001, SCR-UI-002, SCR-UI-006, SCR-UI-009, SCR-UI-010, SCR-UI-018, SCR-UI-019]
@@ -85,6 +85,8 @@ None known.
   (FND-UI-030, Q-UI-002).
 - Where the slots, the data panel, the description box and the money bar are drawn, and what
   the 90 x 125 frame `APFM/13200` at (75, 36) is (FND-UI-030, Q-UI-001, Q-ITEM-002).
-- The effects of the other buttons come from the manual only; code is known only for the leader
-  and computer-control buttons (FND-COMBAT-023, FND-AI-003), and which overlay serves which
-  screen is not known (FND-UI-012, Q-UI-002).
+- The effects of the other buttons remain unestablished; code is known for the leader
+  and computer-control buttons (FND-COMBAT-023, FND-AI-003). The inventory opener
+  requests `WIND/13500` with overlay 189's handler, and its redraw projects item
+  positions from the object graph (FND-PARTY-217); the other event branches and
+  native control states remain Q-UI-002.

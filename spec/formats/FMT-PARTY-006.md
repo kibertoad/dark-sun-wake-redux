@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_006.ksy
-evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216]
+evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217]
 conflicting: []
 split_with: []
 related: []
@@ -42,6 +42,13 @@ amount on the new object and the remainder on the source object. This
 does not restrict the stored word to positive values or specify other
 quantity consumers [FND-PARTY-216].
 
+Byte `0x13` is `inventory_position`, a position code interpreted as a
+signed byte and increased by four to select a logical inventory-map word.
+The main inventory draw loop consumes positions 4 through 29; other
+branches use positions 42 through 47. A byte of `0xFF` maps to position 3,
+outside that main draw loop. Physical slot labels and complete position
+producer/consumer behavior remain unassigned [FND-PARTY-217].
+
 ## Enumerations and flags
 
 ### `chunk_type`
@@ -71,7 +78,8 @@ ends on a `chunk_type` of 0xFF whose header is the last 10 bytes of the resource
 ## Open questions
 
 - What the other fields of a 23-byte record of chunk types 2 and 4 mean, apart from
-  `0x00`, quantity at `0x02`, the chain link at `0x04` and byte `0x12`.
+  `0x00`, quantity at `0x02`, the chain link at `0x04`, byte `0x12`, and
+  inventory position at `0x13`.
   FND-PARTY-196 gives the shipped values (Q-PARTY-020).
 - What the character's words at `0x08`, `0x0A` and `0x0C` distinguish when the
   possessions and equipment screens traverse them (Q-PARTY-082).
@@ -80,3 +88,5 @@ ends on a `chunk_type` of 0xFF whose header is the last 10 bytes of the resource
   (FND-PARTY-052, FND-PARTY-196, Q-PARTY-083).
 - Complete quantity producer/consumer coverage and runtime field/table binding
   stability, beyond the placement use FND-PARTY-216 reads (Q-PARTY-084).
+- Physical position labels, all position writers and the projection's complete
+  graph/parent/mode/capacity contracts (FND-PARTY-217, Q-PARTY-085).

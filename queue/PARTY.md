@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-085
+Next ID: Q-PARTY-086
 
 ## Static
 
@@ -111,7 +111,8 @@ Next ID: Q-PARTY-085
   slice 2.
 - Q-PARTY-020. FMT-PARTY-006: What do the remaining fields of a 23-byte attached
   record mean, apart from `0x00`, quantity at `0x02`, chain link `0x04`, and
-  placed-entry bits at `0x12`? Its reference at `0x08` is Q-PARTY-083.
+  placed-entry bits at `0x12`, and inventory position at `0x13`? Its reference
+  at `0x08` is Q-PARTY-083; complete position behavior is Q-PARTY-085.
   Settles it: direct readers/writers of the remaining offsets in the table at
   `DS:19C1`, with descriptor-to-consumer bindings and actual input admission. Tried:
   FND-PARTY-181 and FND-PARTY-182 give word `0x00` as the negated object number and byte `0x12`
@@ -119,6 +120,8 @@ Next ID: Q-PARTY-085
   9999 ending each chain at `0x04`. Tried: FND-PARTY-216 identifies quantity at
   `0x02`; the character heads, nested reference and complete quantity reading
   are split into Q-PARTY-082, Q-PARTY-083 and Q-PARTY-084. Blocks: slice 2.
+  Tried: FND-PARTY-217 identifies byte `0x13` as the signed position code
+  consumed by the inventory projection; Q-PARTY-085 holds its remaining contract.
 - Q-PARTY-082. FMT-PARTY-006: Which possessions or equipment lists do the
   combatant words `0x08`, `0x0A` and `0x0C` head, and how does View Character
   traverse or change each? Settles it: the screen's bindings to object fields
@@ -126,6 +129,10 @@ Next ID: Q-PARTY-085
   FND-PARTY-051 and FND-PARTY-052 map those words to handles attached by CHAR
   chunks, and FND-PARTY-216 reads quantity placement but not the screen's
   distinction between the three lists. Blocks: slice 2.
+  Tried: FND-PARTY-217 identifies the inventory opener and handler and shows
+  redraw consuming a kind-1 graph projection indexed by position byte `0x13`.
+  The roles of the three incoming heads remain inside the graph enumeration,
+  not proved by the earlier literal-offset candidate query.
 - Q-PARTY-083. FMT-PARTY-006: What do a 23-byte record's attached handle at
   `0x08` and the records linked through it represent, and how are they used?
   Settles it: direct field-4 or offset-8 readers/writers for kind 1, including
@@ -142,6 +149,14 @@ Next ID: Q-PARTY-085
   FND-PARTY-216 locates the shipped field-1 descriptor and placement's full
   versus partial split branches; it leaves those complete-reading obligations
   unproved. Blocks: complete reading of FMT-PARTY-006, not its remaining fields.
+- Q-PARTY-085. FMT-PARTY-006, SCR-UI-008: Which physical inventory slots do the
+  position codes name, and is the position projection complete for all admitted
+  records? Settles it: all position-byte writers, coordinate/icon consumers,
+  graph and current-object producers, map capacity and direction-flag provenance,
+  parent traversal termination, mode flags and 189 `+146B`'s recursive effects.
+  Tried: FND-PARTY-217 reads byte `0x13`'s signed projection and the main draw
+  loop; it leaves those position labels and complete contracts unproved.
+  Blocks: complete inventory positioning, not other attached-record fields.
 - Q-PARTY-005. FMT-PARTY-004, FMT-PARTY-005: When do `30B0:00C1` and overlay 202 `+0C82` clear
   bit 0 of `PSST` bytes, what does the byte at `51F1:07E2 + 3 * power` hold, and does anything
   write a slot's 15-byte `SPST` entry at `4D62:039C` without naming that address? Settles it:
