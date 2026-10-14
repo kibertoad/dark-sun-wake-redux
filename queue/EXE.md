@@ -6,10 +6,12 @@ Next ID: Q-EXE-027
 
 - Q-EXE-007. FMT-EXE-006: Do the shipped game or sound-setup executables
   launch any batch helpers? Settles it: for the installed DSUN.EXE (the
-  disc copy is not studied, docs/SOURCE-EDITIONS.md), each of the 77
-  computed transfers FND-EXE-574's walk leaves unresolved, classified by
-  where its target comes from: an address inside the file, which
-  FND-EXE-574's census of every interrupt site already covers, or code
+  disc copy is not studied, docs/SOURCE-EDITIONS.md), each of the 71
+  computed transfers FND-EXE-577's walk leaves unresolved, other than the
+  four FND-EXE-575 and FND-EXE-577 already classify (`1000:2A24`,
+  `4842:051A`, `1000:1D8D`, `1000:252C`), classified by where its target
+  comes from: an address inside the file, which is declared to the walk
+  and the census rerun over what it then reaches, or code
   outside the file (handlers taken from the interrupt vector table, the
   XMS driver's entry, code the program loads from a file), with a control
   for each kind of origin. Each transfer that can leave the file is named
@@ -23,7 +25,11 @@ Next ID: Q-EXE-027
   program never reads the interrupt 21 vector and that its calls through
   saved vectors go to the handlers of 5, 8, 9 and 19 installed before it
   started (two of the 77: `1000:2A24` and `4842:051A`); FND-EXE-576 gives
-  each kind of site an earlier finding as its control.
+  each kind of site an earlier finding as its control. FND-EXE-577 traces
+  the runtime library's Ctrl-Break, exit and critical-error calls to
+  handlers inside the file; declared to the walk, they reach two more
+  interrupt 21 sites (AH 2D and the argument-selected one), leaving 18
+  candidates and 71 unresolved transfers.
   Tried (before the split into this item, Q-EXE-025 and Q-EXE-026): the
   helper contents and distribution wrapper (FND-EXE-008, FND-EXE-010)
   locate no caller; FND-EXE-350 finds one sound.bat suffix in each game
