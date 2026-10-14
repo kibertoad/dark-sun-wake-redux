@@ -331,7 +331,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   resource_adv_census.py, installed_adv_resources.py, reach_config.py with the q007_*.json queries
   (latest q007_dsun_digpak_census.json); local outputs c_*/r_*/k_* in
   GAME_DIR/analysis/exe-batches/q007.
-- PARTY, 2026-10-14 (FND-PARTY-170..202, EXP-PARTY-001/002, commits 3373c2e7..21d42c2e, not
+- PARTY, 2026-10-14 (FND-PARTY-170..208, EXP-PARTY-001/002, commits 3373c2e7..4ac68cbd, not
   pushed). Static: FND-PARTY-170..173 (Create Characters exits; ADD keeps leader 0; only the kill
   share counts the party). Runtime: agent runs use rust-dos v1.7.2 through
   dinorefurb-dosbox-session 0.10.0 with the installed sound card (Sound Blaster at 220, IRQ 5,
@@ -375,7 +375,16 @@ An owner-approved history repair remains separate from this maintenance scope.
   (plans cast-*.json), and through set_leader, whose attack call needs the fight state
   4C10:0019 nonzero (0 there). 193 +0533 starts a fight only for a target above 4; 179 +0D2F's
   own damage call is for kind-1 slots, so Q-PARTY-073 is left with 179 +1373 and +2A05 or a run
-  casting a damaging spell at a party member. A breakpoint on a routine called every frame exhausts Windows ports
+  casting a damaging spell at a party member. FND-PARTY-203: overlay 186 +0282 reads SPST at the
+  resource's own length, so a 9-byte one fills 9 of 15 bytes; no shipped character with one can
+  be loaded. FND-PARTY-204..208 settle the live items 035, 032 and 027 as agent runs: left steps
+  the generation buttons forward and right back, and middle presses no button (3D72:0009 tests
+  only bits 2/4/8/0x10; FND-PARTY-205 replaces 078); Ctrl held skips the alignment check and EDIT
+  moves the stored alignment forward (FND-PARTY-207 replaces 072, which said bit 4 for `test ax,
+  4`); a half-elf Druid/Preserver starts 6/6 at 40,000 with third level 1 (BUG-PARTY-002).
+  run_plan.py now takes `batch` steps (key down, click, key up) and prints AX/BX at breaks. Class
+  rows on the generation screen are at x 250, y 5 + 8 * code (codes 1 to 8); six portrait clicks give a male
+  half-elf; STR's button answers at (8, 139). A breakpoint on a routine called every frame exhausts Windows ports
   (toolkit #511); break past its gates instead. Upstream this goal: toolkit #500, #501 (closed), #509, #510, #511; toolkit
   #466, #488, #497 closed after verifying releases (docs/TOOLKIT-RESPONSE-ACCEPTANCE.md);
   protocol #119; template #73 (two comments: capture-window timeouts under gate load, which
@@ -384,7 +393,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   C on 2026-10-14 and failed the gate; they belong to another session's rust-dos tests, left in
   place). Before reading a routine, grep the spec for every form of its
   address. Open next: Q-PARTY-076, 077, 073, 078, 020 (split first), then 062, 003, 005, 017, 018; Live
-  session items 059, 037, 035, 032, 027 may be tried as agent runs. docs/PROGRESS.md has the
+  session items 059 and 037 need a fight and may be tried as agent runs. docs/PROGRESS.md has the
   2026-10-14 snapshot. docs/HANDOVER.md line 78 still names Q-PARTY-006, which is on main and
   not this goal's file.
 - Lead for unk_2a: overlay 204 +0203 pushes 0x0660:0x00BB (the setter trampoline 5787:00BB) as a
