@@ -331,7 +331,7 @@ An owner-approved history repair remains separate from this maintenance scope.
   resource_adv_census.py, installed_adv_resources.py, reach_config.py with the q007_*.json queries
   (latest q007_dsun_digpak_census.json); local outputs c_*/r_*/k_* in
   GAME_DIR/analysis/exe-batches/q007.
-- PARTY, 2026-10-14 (FND-PARTY-170..191, EXP-PARTY-001/002, commits 3373c2e7..441240a6, not
+- PARTY, 2026-10-14 (FND-PARTY-170..196, EXP-PARTY-001/002, commits 3373c2e7..2f894d67, not
   pushed). Static: FND-PARTY-170..173 (Create Characters exits; ADD keeps leader 0; only the kill
   share counts the party). Runtime: agent runs use rust-dos v1.7.2 through
   dinorefurb-dosbox-session 0.10.0 with the installed sound card (Sound Blaster at 220, IRQ 5,
@@ -360,14 +360,23 @@ An owner-approved history repair remains separate from this maintenance scope.
   sheet draw. FND-PARTY-190/191 (plans generation-new, generation-new-in-play,
   generation-edit, dual): NEW, EDIT and DUAL all print Fighter's own threshold. Q-PARTY-076
   (reach's 34 unresolved calls) and Q-PARTY-077 (stores to 4E71:0B44 before 209+14FF) stay
-  open; protocol #120 asks when such a dispute counts as settled. Upstream this goal: toolkit #500, #501 (closed), #509, #510; toolkit
+  open; protocol #120 asks when such a dispute counts as settled. FND-PARTY-192/193: a NEW
+  character is stored with combat_mark 0 and View Character's Esc (190 +1998) and START GAME's
+  gate (182 +1167) turn it into 1; Q-PARTY-073 now asks only whether any route gives a mark of
+  3+ or HP below 1. FND-PARTY-194: with nobody standing, 201 +0410 shows window 19502 with BMP
+  DS:4458 or 10004 and closes after one event (Q-PARTY-078 keeps the rest). FND-PARTY-195
+  (plan leader-page-flip): a leader key's 4328:0B4C flips the VGA page and copies it, no party
+  state (Q-PARTY-075 closed). FND-PARTY-196 (char_item_records.py): shipped values of the 23-byte
+  item records; 9999 ends each chain at 0x04. Q-PARTY-020 has had two data/code attempts; split
+  it before trying again. A breakpoint on a routine called every frame exhausts Windows ports
+  (toolkit #511); break past its gates instead. Upstream this goal: toolkit #500, #501 (closed), #509, #510, #511; toolkit
   #466, #488, #497 closed after verifying releases (docs/TOOLKIT-RESPONSE-ACCEPTANCE.md);
   protocol #119; template #73 (two comments: capture-window timeouts under gate load, which
   still recur and pass alone); rust-dos #120 (watchpoint stops carry no address or values) and
   #122 (watchpoint lengths), #123 (makeimg tests leave 565 MB temp dirs; 53 of them filled drive
   C on 2026-10-14 and failed the gate; they belong to another session's rust-dos tests, left in
   place). Before reading a routine, grep the spec for every form of its
-  address. Open next: Q-PARTY-076, 077, 073, 075, 020, then 062, 003, 005, 017, 018; Live
+  address. Open next: Q-PARTY-076, 077, 073, 078, 020 (split first), then 062, 003, 005, 017, 018; Live
   session items 059, 037, 035, 032, 027 may be tried as agent runs. docs/PROGRESS.md has the
   2026-10-14 snapshot. docs/HANDOVER.md line 78 still names Q-PARTY-006, which is on main and
   not this goal's file.
