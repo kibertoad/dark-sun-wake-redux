@@ -1,16 +1,17 @@
 # RNG
 
-Next ID: Q-RNG-007
+Next ID: Q-RNG-008
 
 ## Static
 
 - Q-RNG-001. RULE-RNG-001: Which rules call the generator and its modulo,
-  inclusive-range and repeated-roll helpers, in what order, and can indirect
-  code read or write the state? Settles it: verified callers of the generator
-  and each helper, including relocations, far pointers and indirect state
-  access; map each to a rule and its draw order. The five overlay-176
-  range sites are qualified by FND-RNG-025; the six recovered overlay-179
-  range candidates, other reducers/direct draws and input admission remain.
+  inclusive-range and repeated-roll helpers, and in what order? Settles it:
+  verified callers of the generator and each helper, including relocations,
+  far pointers, indirect calls and segment aliases; map each to a rule and
+  its admitted draw order. State reader/writer coverage is independently
+  Q-RNG-007. The eleven recovered canonical range sites are qualified
+  locally by FND-RNG-025 and FND-RNG-026; their complete caller/input
+  admission, other reducers/direct draws and indirect caller coverage remain.
   The local overlay-188
   test and opcode-59 draw loop are answered by FND-RNG-024; their shipped
   content instances and index/storage/iterator admission remain. Tried: a complete
@@ -38,6 +39,12 @@ Next ID: Q-RNG-007
   final die-byte return, conditional second predicate call and equal-bound
   no-draw case are answered. Other direct candidates, complete rule/callee
   mapping, admitted record/table state and indirect access remain.
+  Tried: FND-RNG-026 qualifies the other six range sites in overlay 179's
+  paired-coordinate samplers and connects their exported wrapper to an
+  overlay-193 caller. All eleven recovered canonical range sites now have
+  local argument/draw-order readings. That candidate-qualification part is
+  answered; profile/input/callee admission and other caller forms remain.
+  Independent state reader/writer and alias coverage splits into Q-RNG-007.
   Blocks: slices 2-7.
 - Q-RNG-003. RULE-RNG-001: What complete input-to-seed contract and admitted
   reseeding paths do the two recovered seed callers use? Settles it: complete
@@ -152,6 +159,19 @@ Next ID: Q-RNG-007
   memory separation, active clock state and release correspondence remain.
   Blocks: complete admitted
   seed-source input domain.
+
+- Q-RNG-007. RULE-RNG-001: Which reached direct, computed, aliased or bulk
+  accesses can read or change rng_state apart from its known generator and
+  setter? Settles it: a reached access-mechanism census with controls for
+  each covered kind, including overlapping/bulk writes and far/segment
+  aliases, and storage/segment identity on the admitted paths. Separate
+  unqualified operand candidates from reached accesses; literal displacement
+  searches cannot settle computed pointers. Tried: FND-RNG-001 and
+  FND-RNG-002 identify direct generator/setter state accesses and retain
+  explicit computed-access exclusions. FND-RNG-009, FND-RNG-021 and
+  FND-RNG-024..026 qualify caller sequences without a complete state-access
+  census. Split from Q-RNG-001 so state coverage can be answered separately
+  from rule/draw mapping. Blocks: complete RNG state and reseeding coverage.
 
 ## Emulated call
 

@@ -141,10 +141,13 @@ None known.
   the earlier statement that `roll_sum` had no recovered caller was stale.
   FND-RNG-025 qualifies five `random_between` sites in overlay 176's
   psionic action and resistance checks, including conditional and equal-bound
-  draw paths. Their full input/callee admission and other callers remain
+  draw paths. FND-RNG-026 qualifies the other six recovered canonical
+  sites in overlay 179's coordinate samplers. Their full input/callee
+  admission and other caller forms remain
   open. Recovered
   `random_mod` uses include `chance_in_ten` and the table selection in
   FND-RNG-007, the music selector of RULE-SOUND-003 (FND-SOUND-012).
   FND-RNG-024 separately qualifies a direct-draw d20 test reached from
   opcode 59; its selected fields and shipped content instances remain open.
-- Whether indirect code reads or writes `rng_state` (FND-RNG-001, Q-RNG-001).
+- Whether computed, aliased or bulk accesses read or write `rng_state`
+  beyond the known generator/setter (FND-RNG-001, Q-RNG-007).
