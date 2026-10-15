@@ -9,7 +9,7 @@ byte_order: little
 size: 31
 text: false
 definition: fmt_combat_003.ksy
-evidence: [FND-COMBAT-022, FND-COMBAT-027]
+evidence: [FND-COMBAT-022, FND-COMBAT-027, FND-COMBAT-029]
 conflicting: []
 split_with: []
 related: [RULE-COMBAT-009]
@@ -24,7 +24,7 @@ record's name and word.
 | Offset | Size | Type | Name | Meaning | Status | Evidence |
 |---|---|---|---|---|---|---|
 | `0x00` | 29 | `char[29]` | `name` | The effect's name, ASCII, ending at the first NUL and padded with NULs. Empty in records 12 and 88. The status panel's third line shows it. | supported | FND-COMBAT-022, FND-COMBAT-027 |
-| `0x1D` | 2 | `UINT16LE` | `unk_1D` | Purpose unknown. 0, or from `0x2B68` to `0x5313`. | supported | FND-COMBAT-027 |
+| `0x1D` | 2 | `UINT16LE` | `icon_resource_id` | ICON resource number, zero-extended for the resource request. Zero excludes the effect from the reviewed icon list. Values are 0, or from `0x2B68` to `0x5313`. | supported | FND-COMBAT-027, FND-COMBAT-029 |
 | `0x1F` | | | | Total size 31 | | |
 
 ## Enumerations and flags
@@ -42,4 +42,6 @@ name is printable ASCII followed only by NULs [FND-COMBAT-027].
 
 ## Open questions
 
-- What `unk_1D` holds (Q-COMBAT-008).
+- Complete ICON request/archive mapping and other field consumers remain
+  Q-COMBAT-010; the local request proves the field's role without proving
+  that every nonzero ID produces a rendered icon.

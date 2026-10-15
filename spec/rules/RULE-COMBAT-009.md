@@ -4,7 +4,7 @@ title: The status panel names the character's first effect, putting the named ef
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-COMBAT-022, FND-COMBAT-027]
+evidence: [FND-COMBAT-022, FND-COMBAT-027, FND-COMBAT-029]
 conflicting: []
 split_with: []
 related: [FMT-COMBAT-003, SCR-COMBAT-001]
@@ -12,8 +12,8 @@ related: [FMT-COMBAT-003, SCR-COMBAT-001]
 
 ## Summary
 
-The third line of the combat status panel names one effect the character is under, such as
-`Blessed` or `Poisoned`, or reads `Okay` when there is none to name.
+The third line of the combat status panel names one category-zero effect
+the character is under, or reads `Okay` when there is none to name.
 
 ## When it runs
 
@@ -26,7 +26,11 @@ The third line of the combat status panel names one effect the character is unde
 
 ## Inputs
 
-What `fn_573B_002A` returns for `c`.
+The prepared effect membership bitmap and category-zero list from
+`fn_573B_0025` and `fn_573B_002A` for `c` (FND-COMBAT-029). Matching rows
+retain their table order and repeated IDs. The prepared bitmap and table
+must have admitted independent storage; their complete producer/lifetime
+contract remains open.
 
 ## Procedure
 
@@ -37,7 +41,7 @@ define effect_key(effect):
     return 1
 
 define shown_effect(c):
-    let effects = fn_573B_002A(c)
+    let effects = fn_573B_002A(c) # category zero, using the preceding prepared bitmap
     let n = min(count(effects), 35)
     if n == 0:
         return 0
@@ -64,8 +68,11 @@ otherwise the `name` of that record of `effect_names`.
 
 The sort moves every effect with key 1 ahead of every effect with key 0 and keeps the order of
 each group, so the result is the first effect with key 1, or when there is none the first effect
-in the list. That can be `Draining Spells` (93), or record 12 or 88, whose names are empty, so the
-line is then blank. Only the first 35 effects are sorted.
+in the list. Records 12 and 88 have empty names, so the line can be blank.
+With the shipped classification bitmap, effect 93 is category one and
+does not enter this caller's list, even though its generic sort key is
+zero. Only the first 35 collected effects are sorted; the collector's
+separate append cap is 113 (FND-COMBAT-029).
 
 ## What the sources say
 
@@ -78,6 +85,12 @@ None known.
 
 ## Open questions
 
-- What list `fn_573B_002A` returns and in what order, and what `fn_573B_0025`, called just
-  before it, prepares (Q-COMBAT-008).
-- A number above 112 would index past the end of `effect_names`, into bytes that are 0 (Q-COMBAT-008).
+- Complete runtime inputs of `fn_573B_0025` and `fn_573B_002A`, including
+  effect-row/count storage, sorted-object admission,
+  membership/category bitmap writers, ID bounds and DS/SS identity remain
+  Q-COMBAT-009. FND-COMBAT-029 answers the local preparation/collection
+  branches, but not all admitted producers or other callers.
+- A collected number above 112 would index beyond `effect_names`; the
+  admitted ID domain remains Q-COMBAT-009.
+- (No item: the delivered resident-only emulated-call harness cannot reach
+  the overlay collector, preparer or priority sorter.)

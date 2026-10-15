@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-009
+Next ID: Q-COMBAT-011
 
 ## Static
 
@@ -32,10 +32,24 @@ Next ID: Q-COMBAT-009
   `fn_5671_0098` with 0 do, and what do `fn_182_19F8`, `fn_3D72_0D83`, `fn_28C9_000A`,
   `fn_2C5F_018C` and the menu `fn_566A_0025` do? Settles it: a reading of overlay 173 from its
   code offsets `0x2FE9` and `0x306B`, and of the other routines. Tried: none. Blocks: slice 4.
-- Q-COMBAT-008. RULE-COMBAT-009, FMT-COMBAT-003: Which effects does `fn_573B_002A` list for a
-  combatant, in what order, what does `573B:0025` prepare, and what is the word after each effect
-  name? Settles it: a reading of overlay 193 from the targets of the stubs `573B:0025` and
-  `573B:002A`. Tried: none. Blocks: nothing yet.
+- Q-COMBAT-009. RULE-COMBAT-009: What admitted effect-row and bitmap state
+  supplies the status selector's category-zero list? Settles it: producers,
+  count/capacity, object sorting and boundary/sentinel identity of the
+  ten-byte row table; admitted ID domain, category/bitmap writers,
+  DS/SS and output separation on the selector's callers. Complete the
+  reading without inferring valid state from the local row loop alone.
+  Tried: FND-COMBAT-029 settles the local preparation, category filtering,
+  duplicate-preserving row order and status caller's sort clamp; it retains
+  explicit producer, boundary-read, signed-ID and alias prerequisites.
+  Follow-up to closed Q-COMBAT-008. Blocks: established status-effect selection.
+- Q-COMBAT-010. FMT-COMBAT-003: Which complete resource/consumer contract
+  admits the effect record's ICON number? Settles it: reached field-consumer
+  coverage, archive/request route and outcomes for the shipped nonzero IDs;
+  distinguish the local no-icon zero branch from failed resource requests
+  and later display. Tried: FND-COMBAT-029 identifies an exported consumer's
+  zero exclusion and zero-extended ICON request, settling the field's local
+  purpose. Complete lookup and other consumers remain. Follow-up to closed
+  Q-COMBAT-008. Blocks: established effect-icon format contract.
 
 ## Emulated call
 
