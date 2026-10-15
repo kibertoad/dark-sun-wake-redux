@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-014
+Next ID: Q-COMBAT-017
 
 ## Static
 
@@ -28,10 +28,42 @@ Next ID: Q-COMBAT-014
   `hit_points` in FMT-COMBAT-001. Tried: the constant -10 (FND-COMBAT-002), the literal `ATTACK`
   (FND-COMBAT-003), the condition names (FND-COMBAT-028), and the coordinate branch of the input
   loop (FND-COMBAT-012 to FND-COMBAT-017). Blocks: slice 4.
-- Q-COMBAT-006. RULE-COMBAT-004, RULE-COMBAT-005: What do `fn_5671_0093` with 1 and 2 and
-  `fn_5671_0098` with 0 do, and what do `fn_182_19F8`, `fn_3D72_0D83`, `fn_28C9_000A`,
-  `fn_2C5F_018C` and the menu `fn_566A_0025` do? Settles it: a reading of overlay 173 from its
-  code offsets `0x2FE9` and `0x306B`, and of the other routines. Tried: none. Blocks: slice 4.
+- Q-COMBAT-006. RULE-COMBAT-004, RULE-COMBAT-005: What admitted state
+  and later consumers give the guard, wait and end-turn stores their
+  gameplay meaning? Settles it: producers, readers and lifetime of the
+  byte at 4E71:0B1A plus mapped index and words at 4C4F:00DC plus four
+  times index and 4C4F:01D8 plus twice index; complete reached command
+  callers, mapping/type/index and segment/storage admission, and the
+  connection to later turn selection. Tried: FND-COMBAT-047 answers
+  both complete local helper bodies, signed wait clamp/decrement,
+  guard-before-resolver store, zero-mask versus OR branches and known
+  menu/keyboard argument routes. These local branches are removed from
+  the settling condition; native gameplay semantics and full state/caller
+  admission remain. FND-COMBAT-048 separately answers the local anchor
+  predicate. Independent adjustment, menu-result and postprocessing
+  obligations move to Q-COMBAT-014/015/016. Blocks: slice 4.
+- Q-COMBAT-014. RULE-COMBAT-005: What does the zero-predicate adjustment
+  through 2C5F:018C do before the menu recomputes its position?
+  Settles it: complete adjustment branches, input/view/slot producers,
+  reached menu caller and output/state effects through the later rereads.
+  Tried: split from Q-COMBAT-006 after FND-COMBAT-048 settles the
+  inclusive wrapped-unsigned anchor predicate and its caller's
+  conditional adjustment and coordinate-reload route; that predicate
+  does not establish successful view adjustment. Blocks: slice 4.
+- Q-COMBAT-015. RULE-COMBAT-005: Which results does the menu at
+  566A:0025 return for selection and cancellation? Settles it: reached
+  menu construction, event/callback and dismissal paths through returned
+  choices and the end-of-move caller's result consumption.
+  Tried: split from Q-COMBAT-006; FND-COMBAT-026 and FND-COMBAT-047
+  establish the caller's exact one/two/three branches, but not the
+  producer's cancellation and selection results. Blocks: slice 4.
+- Q-COMBAT-016. RULE-COMBAT-005: What state does the common
+  postprocessing after the end-of-move menu leave for its next consumer?
+  Settles it: overlay 182 +19F8 and 3D72:0D83, their complete children,
+  admitted inputs and postprocessing order/results on every choice path.
+  Tried: split from Q-COMBAT-006; FND-COMBAT-026 and FND-COMBAT-047
+  establish the common caller sequence after chosen or unhandled
+  results, but not the two callees' effects. Blocks: slice 4.
 - Q-COMBAT-009. RULE-COMBAT-009: What admitted effect-row state
   supplies the status selector's category-zero list? Settles it: producers,
   count/capacity, object sorting and boundary/sentinel identity of the

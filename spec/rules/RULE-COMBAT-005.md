@@ -4,7 +4,7 @@ title: The end-of-move menu offers GUARD, WAIT and END TURN beside the character
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-COMBAT-026, FND-COMBAT-024, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-COMBAT-008, FND-ACTOR-003, FND-PARTY-013]
+evidence: [FND-COMBAT-026, FND-COMBAT-024, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-COMBAT-008, FND-ACTOR-003, FND-PARTY-013, FND-COMBAT-047, FND-COMBAT-048]
 conflicting: []
 split_with: []
 related: [RULE-COMBAT-004, FMT-COMBAT-001, FMT-ACTOR-004]
@@ -93,7 +93,14 @@ None known.
 
 ## Open questions
 
-- What `fn_5671_0093` and `fn_5671_0098` do, and what `fn_182_19F8` and `fn_3D72_0D83` do after
-  the choice (Q-COMBAT-006).
-- What `fn_566A_0025` returns when the player closes the menu without choosing, what
-  `fn_28C9_000A` tests and what `fn_2C5F_018C` does (Q-COMBAT-006).
+- The admitted state, later consumers and gameplay meaning of `fn_5671_0093`
+  and `fn_5671_0098`'s command
+  stores (Q-COMBAT-006). FND-COMBAT-047 answers their local branches,
+  resolver gate and distinct zero-mask/OR routes.
+- What the common postprocessing through `fn_182_19F8` and `fn_3D72_0D83`
+  leaves for later consumers (Q-COMBAT-016).
+- What `fn_566A_0025` returns when the player selects or closes the menu
+  (Q-COMBAT-015).
+- What `fn_2C5F_018C` changes and admits before the later coordinate
+  rereads (Q-COMBAT-014). FND-COMBAT-048 answers the separate local
+  anchor-position test made by `fn_28C9_000A`.

@@ -4,7 +4,7 @@ title: G and W make the party member whose turn it is guard or wait, and Q opens
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-COMBAT-023, FND-COMBAT-024, FND-COMBAT-025, FND-COMBAT-022, FND-COMBAT-008, FND-ACTOR-003, FND-PARTY-013, FND-COMBAT-026, FND-AI-004, SRC-MANUAL-1994]
+evidence: [FND-COMBAT-023, FND-COMBAT-024, FND-COMBAT-025, FND-COMBAT-022, FND-COMBAT-008, FND-ACTOR-003, FND-PARTY-013, FND-COMBAT-026, FND-AI-004, FND-COMBAT-047, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-COMBAT-005, RULE-AI-001, FMT-COMBAT-001, FMT-ACTOR-004]
@@ -83,7 +83,10 @@ None known.
 
 ## Open questions
 
-- What `fn_5671_0093` does with 1 and 2, that is what guarding and waiting change (Q-COMBAT-006).
+- What gameplay meaning `fn_5671_0093`'s guard/wait stores have through admitted state
+  producers, later consumers and complete command callers (Q-COMBAT-006).
+  FND-COMBAT-047 answers the two local action branches and their shared
+  resolver-gated update; it does not establish a turn-scheduling rule.
 - What overlay 174 does with `N` and `P`, which screens pass keys to the resident routine of
   FND-AI-004 before this one, and what the callback of `Q` is (Q-COMBAT-004).
 - What `g_57E0_143C` is (Q-COMBAT-004).
