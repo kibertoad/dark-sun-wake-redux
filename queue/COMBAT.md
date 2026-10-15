@@ -86,6 +86,10 @@ Next ID: Q-COMBAT-014
   reader result by archive-helper cleanup. Its own body supplies no
   effect-row/count validation. The other caller, complete child/writer
   coverage, archive/destination and restored-state admission remain.
+  Tried: FND-COMBAT-044 answers the second local restore caller's
+  selector producer, failure flag, placed-entry loops and later setup
+  argument/result route. Actual selector domains, complete callees and
+  writers, archive/destination backing and valid restored state remain.
 - Q-COMBAT-010. FMT-COMBAT-003: Which complete resource/consumer contract
   admits the effect record's ICON number? Tried: FND-COMBAT-041 answers
   the separate background producer's cache index, source resource and
