@@ -54,3 +54,7 @@ metadata, without establishing native acquisition or display success.
   that every nonzero ID produces a rendered icon. FND-COMBAT-030 settles
   reference presence and frame metadata in the installed archive; active
   archive state, reader-error/pointer divergence and display selection remain.
+  FND-COMBAT-038 supplies the consumer's frame-zero request argument,
+  distinct zero-icon/null-pointer continuations and draw/release ordering.
+  Valid reader outcomes, backend presentation and later cache interaction
+  remain Q-COMBAT-010.

@@ -92,6 +92,12 @@ Next ID: Q-COMBAT-014
   error and caller pointer test; active archive, failure continuation,
   buffer validity and display/frame selection remain.
   Blocks: established effect-icon format contract.
+  Tried: FND-COMBAT-038 answers the effect consumer's local nonzero-
+  pointer continuation, frame-zero argument route, coordinate-output
+  fallback and release ordering. Zero-icon removal and null-request
+  slot retention differ. Those caller branches/frame arguments are
+  settled; archive admission, pointer validity on errors, backend/palette
+  outcomes, release effects and later cache interaction remain.
 - Q-COMBAT-011. RULE-COMBAT-009: What initializes and subsequently writes
   the category bitmap used by the status
   selector? Settles it: qualified writer/initializer coverage, admitted
@@ -128,6 +134,12 @@ Next ID: Q-COMBAT-014
   fifteen-byte clear and membership ORs, and FND-COMBAT-036 records
   actual selector buffer arguments and its one-/two-category paths.
   Those local operations do not prove unchanged contents on every caller.
+  Tried: FND-COMBAT-038 qualifies the second direct collector caller's
+  category-zero/one appends, shared bitmap, late count clamps and copy
+  to the effect cache. Together with FND-COMBAT-036 this answers local
+  arguments/order at all four returned direct collector sites, within
+  that query's transfer model. Admitted aggregate writes, content
+  identity, other transfer kinds and intervening effects remain.
   Blocks: established status-effect selection.
 - Q-COMBAT-012. RULE-COMBAT-009: Do the status selector's actual callers
   admit the bitmap, row table and output as independent valid storage?
@@ -146,6 +158,12 @@ Next ID: Q-COMBAT-014
   limits are settled; full reached callers/ordinal domains, runtime
   segment/stack identity, callee preservation and admitted aggregate
   writes in that second path remain.
+  Tried: FND-COMBAT-038 answers the other direct collector caller's
+  114-byte pre-bitmap span and near buffer arguments, plus its separate
+  resource-pointer, coordinate and cache lifetimes. The four returned
+  direct collector sites now have local frame readings; runtime segment/
+  stack admission, aggregate bounds, complete callers and preservation
+  remain outside that bounded coverage.
   Blocks: established status-effect selection.
 
 ## Emulated call
