@@ -7,12 +7,15 @@
 - Stop reason: the owner requested today's wrap-up, a cohesive batch,
   documentation, commits and a push to main, then stop. Start no further item.
 - Last gate: 2026-10-15, ./tools/Test.ps1 -NoRestore passed, including 715
-  .NET tests and Node/documentation suites: 1325 entries, 168 parity rows,
+  .NET tests and Node/documentation suites: 1349 entries, 168 parity rows,
   five deviations. Existing argument-count and absent-Kaitai-compiler skips
-  remain. Q-PARTY-078, Q-RNG-003 and Q-RNG-004 retain Tried-count warnings;
+  remain. Q-PARTY-078, Q-COMBAT-009/010 and Q-RNG-001/003/004 retain Tried-count warnings;
   each later attempt must take part of Settles it out before another attempt.
-- Latest research references: FND-RNG-011..022, RULE-RNG-001,
-  FND-PARTY-217..219, FMT-PARTY-006, SCR-UI-008 and FND-UI-039..040.
+  The final full rerun passed after an identity-fixture child-process timeout.
+- Latest research references: FND-RNG-011..026, RULE-RNG-001,
+  SRC-RUSTDOS-172, FND-COMBAT-029..046, RULE-COMBAT-009,
+  FMT-COMBAT-003, FND-UI-041, FMT-UI-001, FND-PARTY-217..219,
+  FMT-PARTY-006, SCR-UI-008 and FND-UI-039..040.
   RNG parity remains partial with its existing Defect notes. No gameplay
   implementation changed. Remaining research stays in the area queues.
 - Required asset pack revision remains 36. Revision-35 local packs require
@@ -50,6 +53,9 @@
 - Static reports and bounded queries: GAME_DIR/analysis/startup-seed/;
   reproduce through FND-RNG-018..019 and FND-RNG-021..022. Original-derived
   reports and configurations remain local, never committed.
+- Effect research queries: GAME_DIR/analysis/combat-effects/; reproduce
+  through FND-COMBAT-029..046 and FND-UI-041. This continuation used static
+  inspection only, with no original-game process or emulated call.
 - Manifest-bounded probe_drive.py prepares fresh private C: from verified
   files; CD media remains on D:. run_plan.py is time-driven. Do not repeat
   timed start.json advancement or infer readiness from a call returning.
@@ -82,13 +88,16 @@
 
 ## Next
 
-1. Q-RNG-004 and Q-RNG-005: input/service admission and storage/writer coverage.
-2. Q-RNG-003 and Q-RNG-001: caller admission, aliases and rule/draw mapping.
-3. Q-PARTY-081: native restore and state-driven gameplay/deletion route with
-   draw recording and caller/map reads under docs/RUNTIME.md.
-4. Q-PARTY-082: graph selector initialization and screen bindings, using
-   FND-PARTY-218's corrected provenance.
-5. Q-PARTY-085, Q-PARTY-083, Q-PARTY-020 and Q-PARTY-084: remaining party contracts.
+1. Q-COMBAT-009: effect count/ID/order, caller/writer and restoration admission,
+   using FND-COMBAT-031..035 and FND-COMBAT-043..046.
+2. Q-COMBAT-010 and Q-UI-001/002: archive/window/cache/backend and event
+   admission, using FND-COMBAT-038..042 and FND-UI-041.
+3. Q-COMBAT-011/012/013: category and membership lifetime, selector storage
+   and caller admission, using FND-COMBAT-029/036/037/038.
+4. Q-RNG-001/003/004/005: caller/service admission, aliases, rule/draw mapping
+   and state writers, using FND-RNG-023..026 and RULE-RNG-001.
+5. Q-PARTY-081/082/083/085 and Q-PARTY-020/084: remaining party contracts;
+   retain native draw recording requirements and FND-PARTY-218 provenance.
 
 ## Upstream requests
 
