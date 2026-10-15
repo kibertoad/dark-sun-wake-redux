@@ -108,6 +108,12 @@ None known.
   FND-COMBAT-039 qualifies the icon-cache action's first-match ID/owner
   search and row-key removal argument, retaining native caller and
   shared-state admission under Q-COMBAT-009.
+  FND-COMBAT-043/044 supply both immediate restore callers' local
+  continuation and result/fallback routes. FND-COMBAT-045 verifies
+  resident byte backing for the boundary row under counts 0..192,
+  without establishing sentinel contents or the global count bound.
+  Actual restored-state, writer/caller and lifetime admission remain
+  Q-COMBAT-009.
 - Category bitmap producers, initialization and lifetime
   remain Q-COMBAT-011; FND-COMBAT-029 supplies only their local uses and
   preparation.

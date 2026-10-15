@@ -90,6 +90,11 @@ Next ID: Q-COMBAT-014
   selector producer, failure flag, placed-entry loops and later setup
   argument/result route. Actual selector domains, complete callees and
   writers, archive/destination backing and valid restored state remain.
+  Tried: FND-COMBAT-045 answers nominal resident backing for the
+  complete boundary row at counts 0..192 using descriptor 110. It
+  distinguishes that backing from dedicated sentinel storage and the
+  shipped save-source extent. Global count/index/ID/order/lifetime,
+  aliases and actual restoration admission remain.
 - Q-COMBAT-010. FMT-COMBAT-003: Which complete resource/consumer contract
   admits the effect record's ICON number? Tried: FND-COMBAT-041 answers
   the separate background producer's cache index, source resource and
