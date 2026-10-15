@@ -7,7 +7,7 @@ For each entry, the entries and glossary terms that cite or relate to it, and th
 | ID | Cited by |
 |---|---|
 | [FMT-SAVE-001](../../formats/FMT-SAVE-001.md) | None |
-| [FMT-SAVE-002](../../formats/FMT-SAVE-002.md) | [RULE-SAVE-002](../../rules/RULE-SAVE-002.md) (body) |
+| [FMT-SAVE-002](../../formats/FMT-SAVE-002.md) | [FND-PARTY-194](../../findings/FND-PARTY-194.md) (body), [RULE-SAVE-002](../../rules/RULE-SAVE-002.md) (body) |
 | [FND-SAVE-001](../../findings/FND-SAVE-001.md) | [FMT-SAVE-001](../../formats/FMT-SAVE-001.md) (body, evidence), [FMT-SAVE-002](../../formats/FMT-SAVE-002.md) (body, evidence), [FND-SAVE-002](../../findings/FND-SAVE-002.md) (body) |
 | [FND-SAVE-002](../../findings/FND-SAVE-002.md) | [FMT-SAVE-001](../../formats/FMT-SAVE-001.md) (body, evidence), [FMT-SAVE-002](../../formats/FMT-SAVE-002.md) (body, evidence) |
 | [FND-SAVE-003](../../findings/FND-SAVE-003.md) | None |

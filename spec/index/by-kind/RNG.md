@@ -14,15 +14,29 @@ Entries by kind.
 
 ## findings
 
-8 entries.
+22 entries.
 
 | ID | Title | Status |
 |---|---|---|
 | [FND-RNG-001](../../findings/FND-RNG-001.md) | The random number generator is a 32-bit linear congruential generator at 1000:0822 | recorded |
 | [FND-RNG-002](../../findings/FND-RNG-002.md) | The seed setter at 1000:0811 stores a 16-bit seed and clears the high word | recorded |
-| [FND-RNG-003](../../findings/FND-RNG-003.md) | The modulo reducer at 2834:061C draws once, and not at all for a divisor of 0 | recorded |
-| [FND-RNG-004](../../findings/FND-RNG-004.md) | The range helper at 2D40:3A03 scales one draw over an inclusive range | recorded |
-| [FND-RNG-005](../../findings/FND-RNG-005.md) | The repeated-roll helper at 28C9:391D sums one scaled draw per roll | recorded |
+| [FND-RNG-003](../../findings/FND-RNG-003.md) | The modulo reducer at 2834:061C draws once, and not at all for a divisor of 0 | superseded |
+| [FND-RNG-004](../../findings/FND-RNG-004.md) | The range helper at 2D40:3A03 scales one draw over an inclusive range | superseded |
+| [FND-RNG-005](../../findings/FND-RNG-005.md) | The repeated-roll helper at 28C9:391D sums one scaled draw per roll | superseded |
 | [FND-RNG-006](../../findings/FND-RNG-006.md) | The helper at 2834:0519 succeeds when a draw modulo 10 is at most its argument | recorded |
 | [FND-RNG-007](../../findings/FND-RNG-007.md) | The routine at 2834:000C picks entries of a six-byte table at random | recorded |
 | [FND-RNG-008](../../findings/FND-RNG-008.md) | The random table selection and a panel initializer meet in one overlay routine | recorded |
+| [FND-RNG-009](../../findings/FND-RNG-009.md) | Two overlay callers seed the generator from the low return word of a DOS-service-backed helper | recorded |
+| [FND-RNG-010](../../findings/FND-RNG-010.md) | Fresh startup passes 44976 from overlay 180 to the seed setter and retains it through the opener checkpoint | recorded |
+| [FND-RNG-011](../../findings/FND-RNG-011.md) | The modulo reducer uses a signed word divisor and signed remainder, with a zero-divisor no-draw path | recorded |
+| [FND-RNG-012](../../findings/FND-RNG-012.md) | The inclusive-range reducer wraps its span to a signed word before signed 32-bit scaling | recorded |
+| [FND-RNG-013](../../findings/FND-RNG-013.md) | Repeated rolls use signed 32-bit scaling and a wrapping word accumulator | recorded |
+| [FND-RNG-014](../../findings/FND-RNG-014.md) | The admitted startup clock helper uses its SS-local date and time buffers through matching DS near pointers | recorded |
+| [FND-RNG-015](../../findings/FND-RNG-015.md) | The clock wrapper retains both return words and the converter directly consumes three time bytes | recorded |
+| [FND-RNG-016](../../findings/FND-RNG-016.md) | Clock conversion uses four-year calendar arithmetic and an April-to-October hour adjustment | recorded |
+| [FND-RNG-017](../../findings/FND-RNG-017.md) | The measured startup clock uses the default environment offset and a one-hour daylight adjustment | recorded |
+| [FND-RNG-018](../../findings/FND-RNG-018.md) | Clock environment parsing uses wrapping integer hours and stops at the first daylight-label candidate | recorded |
+| [FND-RNG-019](../../findings/FND-RNG-019.md) | Startup constructs the environment pointer array and separately schedules the timezone initializer | recorded |
+| [FND-RNG-020](../../findings/FND-RNG-020.md) | Native startup confirms the constructed environment array and distinct timezone initialization caller | recorded |
+| [FND-RNG-021](../../findings/FND-RNG-021.md) | Second clock seed caller precedes a conditional random port-offset loop | recorded |
+| [FND-RNG-022](../../findings/FND-RNG-022.md) | Request 27 narrows packed offset-loop arguments to signed bytes | recorded |

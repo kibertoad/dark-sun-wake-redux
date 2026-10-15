@@ -26,7 +26,7 @@ Entries by kind.
 
 ## findings
 
-38 entries.
+40 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -68,6 +68,8 @@ Entries by kind.
 | [FND-UI-036](../../findings/FND-UI-036.md) | WIND 18500 serves Save and Load modes with ten list rows | recorded |
 | [FND-UI-037](../../findings/FND-UI-037.md) | Save and Load window callback selects rows and branches to the matching file operation | recorded |
 | [FND-UI-038](../../findings/FND-UI-038.md) | Save and Load callback navigates ten rows and tests available records in Load mode | recorded |
+| [FND-UI-039](../../findings/FND-UI-039.md) | Fresh rust-dos startup reaches the start-window opener call with argument one and matching data and stack segments | recorded |
+| [FND-UI-040](../../findings/FND-UI-040.md) | A strict native restore of the opener checkpoint runs its declared call to return with unchanged RNG state | recorded |
 
 ## screens
 

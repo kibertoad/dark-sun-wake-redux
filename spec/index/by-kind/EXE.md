@@ -19,7 +19,7 @@ Entries by kind.
 
 ## findings
 
-445 entries.
+463 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -468,3 +468,21 @@ Entries by kind.
 | [FND-EXE-571](../../findings/FND-EXE-571.md) | Each FBOV segment descriptor's unk_06 and unk_02 are the start and end offsets of its segment's bytes, and the spans tile DSUN.EXE's load image | recorded |
 | [FND-EXE-572](../../findings/FND-EXE-572.md) | From its established entries the sound utility reaches 44 of its 69 interrupt 21 sites, none selecting AH=4B, and the other 25 lie in routines nothing in the image references | recorded |
 | [FND-EXE-573](../../findings/FND-EXE-573.md) | The disc drivers install vectors only for the handlers FND-EXE-496 decodes from, build no transfer on the stack and write no code, and every CD byte in them is a decoded interrupt, inside a decoded instruction or in table data | recorded |
+| [FND-EXE-574](../../findings/FND-EXE-574.md) | No interrupt 21 request in the installed DSUN.EXE selects AH=4B and the file holds no interrupt 2E; of its 100 interrupt 21 sites the walk from its established entries reaches 80, and its two stack-built interrupt routines are called only for interrupts 2F and 21 with AX values other than 4Bxx | superseded |
+| [FND-EXE-575](../../findings/FND-EXE-575.md) | The installed DSUN.EXE never reads or calls through the interrupt 21 vector; the vectors it reads are 0, 4, 5, 6, 8, 9, 19, 23, 3F and 67, and it calls the saved handlers of 5, 8, 9 and 19 outside the file | recorded |
+| [FND-EXE-576](../../findings/FND-EXE-576.md) | Earlier findings locate a site of each kind that the DSUN.EXE program-execution census searched for, and the census finds each with the value those findings give | recorded |
+| [FND-EXE-577](../../findings/FND-EXE-577.md) | Six of the runtime library's computed calls in DSUN.EXE go to handlers inside the file, and declaring them reaches two more interrupt 21 sites, neither selecting AH=4B | superseded |
+| [FND-EXE-578](../../findings/FND-EXE-578.md) | No interrupt 21 request in the installed DSUN.EXE selects AH=4B and the file holds no interrupt 2E; of its 100 interrupt 21 sites the walk from its established entries reaches 80, and its two stack-built interrupt routines are called only for interrupts 2F and 21 with AX values other than 4Bxx | recorded |
+| [FND-EXE-579](../../findings/FND-EXE-579.md) | Six of the runtime library's computed calls in DSUN.EXE go to handlers inside the file, and declaring them reaches two more interrupt 21 sites, neither selecting AH=4B | recorded |
+| [FND-EXE-580](../../findings/FND-EXE-580.md) | DSUN.EXE's startup and exit record walkers, its formatted-output engine and its four signal dispatch calls go to code inside the file, and declaring them reaches no further interrupt site | recorded |
+| [FND-EXE-581](../../findings/FND-EXE-581.md) | Twelve of DSUN.EXE's unresolved calls go to the XMS driver entry that interrupt 2F AX=4310 returns, with AH 00, 08, 09, 0A, 0B, 0C or 0D | recorded |
+| [FND-EXE-582](../../findings/FND-EXE-582.md) | The overlay manager's hook calls in DSUN.EXE go to manager routines or to an empty far routine, and declaring them reaches two more XMS calls and no interrupt site | recorded |
+| [FND-EXE-583](../../findings/FND-EXE-583.md) | Eight of DSUN.EXE's guarded calls through DGROUP far pointers go to routines in segment 2660, segment 49D2 or overlay 180, or never run | recorded |
+| [FND-EXE-584](../../findings/FND-EXE-584.md) | DSUN.EXE's nine calls through the record table at DGROUP 3F42 go to routines in segments 1425 and 15F3, which reach one more interrupt 21 site (AH 3F) and nine more XMS calls | recorded |
+| [FND-EXE-585](../../findings/FND-EXE-585.md) | DSUN.EXE's timer callbacks and sound driver function calls go to routines in the file or to driver code loaded from ADV resources, and the driver dispatch's far return is a transfer the walk does not report | recorded |
+| [FND-EXE-586](../../findings/FND-EXE-586.md) | DSUN.EXE's script opcode dispatch, text formatter, block copy, overlay 204 callback and video far jump tables go to routines in the file, and declaring them reaches no further interrupt site | recorded |
+| [FND-EXE-587](../../findings/FND-EXE-587.md) | DSUN.EXE's window hook and window record callbacks, and overlay 190's callback arguments, go to overlay routines and one resident routine that their setters' callers pass as relocated constants | recorded |
+| [FND-EXE-588](../../findings/FND-EXE-588.md) | DSUN.EXE's application frame callbacks in segment 3D72 go to overlay routines and two resident routines, or are never set, and declaring the one that is set reaches no further interrupt site | recorded |
+| [FND-EXE-589](../../findings/FND-EXE-589.md) | Every computed transfer DSUN.EXE's census walk leaves unresolved stays in the file, never runs, or goes to the XMS driver, a handler installed before the program, or sound driver code loaded from ADV resources | recorded |
+| [FND-EXE-590](../../findings/FND-EXE-590.md) | The sound drivers the installed SOUND.CFG selects, ADV resources 11 and 8 of RESOURCE.GFF, are the disc's SBP2FM.ADV and SBPDIG.ADV, whose only transfer out of driver code goes to DSUN.EXE's music callback 4602:0040 | recorded |
+| [FND-EXE-591](../../findings/FND-EXE-591.md) | ADV resources 10 and 20 of the installed RESOURCE.GFF request no program execution; the DIGPAK image in ADV 10 installs its own interrupt 66 handler and calls back only into itself or DSUN.EXE's 4842:105F and 4842:107E | recorded |
