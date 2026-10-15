@@ -68,3 +68,6 @@ metadata, without establishing native acquisition or display success.
   construction and local create/reuse/close pointer operations;
   full shared-window identity and callback/display completion remain
   Q-COMBAT-010.
+  FND-COMBAT-041 supplies the separate background cache-index source
+  and installed frame metadata; cache initialization, transfer success
+  and active resource identity remain Q-COMBAT-010.

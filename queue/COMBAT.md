@@ -82,7 +82,11 @@ Next ID: Q-COMBAT-014
   local input producer is answered; admitted owner/cache/table state,
   intervening callbacks, all other callers and removal effects remain.
 - Q-COMBAT-010. FMT-COMBAT-003: Which complete resource/consumer contract
-  admits the effect record's ICON number? Settles it: reached field-consumer
+  admits the effect record's ICON number? Tried: FND-COMBAT-041 answers
+  the separate background producer's cache index, source resource and
+  installed frame bounds. Cache initialization/offset writers, handle
+  and transfer validity, active archive identity and native presentation
+  remain. Settles it: reached field-consumer
   coverage, admitted active archive/request route and runtime outcomes for
   the shipped nonzero IDs; resource-pointer/error divergence and validity
   before later display, and selected frames;
