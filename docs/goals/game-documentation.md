@@ -31,17 +31,18 @@ explicit request.
 
 - Stage: Slices; entire-game documentation remains incomplete.
 - Last gate: 2026-10-15, ./tools/Test.ps1 -NoRestore passed: 715 .NET tests,
-  Node suites and documentation checks for 1333 entries and 168 parity rows.
+  Node suites and documentation checks for 1337 entries and 168 parity rows.
   Existing argument-count/Kaitai skips and Tried-count warnings remain.
 - Baseline: pinned upstream rules verify offline; local main includes the
   scheduled generated-file baseline. Generated files were not edited.
 - Unfinished: no batch draft. No original-game process was started.
 - Checkpoint: goal remains active; documentation of the entire game is
   incomplete. No owner decision is needed for the next static item.
-- Next: Q-RNG-001 remaining consumer/draw mapping using FND-RNG-025..026;
-  Q-COMBAT-009 remaining writers/initialization using FND-COMBAT-031;
+- Next: Q-COMBAT-009 restore validation/backing and remaining writers using
+  FND-COMBAT-032..035;
+  Q-COMBAT-011 remaining bitmap producers/lifetimes using FND-COMBAT-034..035;
+  Q-COMBAT-012 status-selector caller/storage admission using FND-COMBAT-029;
   Q-COMBAT-010 runtime icon admission using FND-COMBAT-030;
-  Q-RNG-007 state-access census;
-  Q-RNG-006 actual clock-service route/state using SRC-RUSTDOS-172.
+  Q-RNG-001 remaining consumer/draw mapping using FND-RNG-025..026.
 - Runtime prerequisites and local evidence stores: docs/HANDOVER.md and
   docs/RUNTIME.md. Person-only requests remain separate.
