@@ -66,6 +66,10 @@ Next ID: Q-COMBAT-013
   equality; admitted transfer callers remain required. Independently
   answerable bitmap producers and selector storage admission are split
   to Q-COMBAT-011 and Q-COMBAT-012.
+  Tried: FND-COMBAT-034 identifies the explicit SAVE/24 and SAVE/26
+  source pointers and shipped lengths for rows and count. That static
+  save-source identity is answered; runtime length preparation, restore
+  destinations/count admission and boundary backing remain.
 - Q-COMBAT-010. FMT-COMBAT-003: Which complete resource/consumer contract
   admits the effect record's ICON number? Settles it: reached field-consumer
   coverage, admitted active archive/request route and runtime outcomes for
@@ -90,6 +94,11 @@ Next ID: Q-COMBAT-013
   Tried: split from Q-COMBAT-009 after FND-COMBAT-029 identifies the
   shipped classifier and local membership preparation. Local bit tests
   and initial bytes alone do not admit all later bitmap contents.
+  Tried: FND-COMBAT-034 qualifies two exported neighboring-table writers
+  and the SAVE/25 source at offset 000F, outside the fifteen-byte
+  classifier prefix for valid local counts. This answers their relative
+  field/source positions; the other relocation/fixup candidates, count
+  admission, bulk/aliased writers and membership lifetime remain.
   Blocks: established status-effect selection.
 - Q-COMBAT-012. RULE-COMBAT-009: Do the status selector's actual callers
   admit the bitmap, row table and output as independent valid storage?

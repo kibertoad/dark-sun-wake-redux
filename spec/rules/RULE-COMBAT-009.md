@@ -99,9 +99,15 @@ None known.
   FND-COMBAT-033 supplies the saved-row relocation count pair and
   conditional threshold-selection/order; its admitted inputs remain
   Q-COMBAT-009.
+  FND-COMBAT-034 supplies the explicit effect-row/count save-source
+  pointers and shipped byte lengths, with runtime preparation and
+  restoration still open under Q-COMBAT-009.
 - Membership/category bitmap producers, initialization and lifetimes
   remain Q-COMBAT-011; FND-COMBAT-029 supplies only their local uses and
   preparation.
+  FND-COMBAT-034 separates two neighboring-table writers and that
+  table's save source from the classifier prefix under admitted counts;
+  it does not close bitmap writers or restoration.
 - DS/SS identity, caller buffer lifetime and output/bitmap/table
   separation for `fn_573B_0025` and `fn_573B_002A` remain
   Q-COMBAT-012, with the local limits recorded by FND-COMBAT-029.
