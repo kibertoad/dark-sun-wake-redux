@@ -114,6 +114,9 @@ None known.
   without establishing sentinel contents or the global count bound.
   Actual restored-state, writer/caller and lifetime admission remain
   Q-COMBAT-009.
+  FND-COMBAT-046 identifies the shipped DATA-byte exception 127 and
+  its local handler-default continuation; actual stored-row admission
+  and the complete ID invariant remain Q-COMBAT-009.
 - Category bitmap producers, initialization and lifetime
   remain Q-COMBAT-011; FND-COMBAT-029 supplies only their local uses and
   preparation.

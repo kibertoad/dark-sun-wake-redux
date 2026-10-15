@@ -95,6 +95,11 @@ Next ID: Q-COMBAT-014
   distinguishes that backing from dedicated sentinel storage and the
   shipped save-source extent. Global count/index/ID/order/lifetime,
   aliases and actual restoration admission remain.
+  Tried: FND-COMBAT-046 answers the shipped DATA effect-byte domain
+  and the local handler-default route for its sole positive 127.
+  The source domain is not uniformly 0..112; actual admission through
+  the generic caller/wrapper and resulting stored rows remains open,
+  along with complete count/ID/order/writer/restoration coverage.
 - Q-COMBAT-010. FMT-COMBAT-003: Which complete resource/consumer contract
   admits the effect record's ICON number? Tried: FND-COMBAT-041 answers
   the separate background producer's cache index, source resource and
