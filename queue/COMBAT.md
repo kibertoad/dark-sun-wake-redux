@@ -53,6 +53,12 @@ Next ID: Q-COMBAT-011
   Other count writers/callers, callback/removal effects, table initialization
   and native buffer/segment identity remain. Follow-up to closed
   Q-COMBAT-008. Blocks: established status-effect selection.
+  Tried: FND-COMBAT-032 answers the local key/index/code removal branches,
+  two decrement sites and retained-row order. Their downward moves read
+  the entire boundary row, so the backing obligation includes ten bytes
+  at the old count, not just an owner word. Local removal compaction and
+  API distinctions are settled; handler/request effects, admitted callers,
+  other writers and initialization remain.
 - Q-COMBAT-010. FMT-COMBAT-003: Which complete resource/consumer contract
   admits the effect record's ICON number? Settles it: reached field-consumer
   coverage, admitted active archive/request route and runtime outcomes for

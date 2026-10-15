@@ -93,6 +93,9 @@ None known.
   FND-COMBAT-031 supplies the common insertion's conditional prepend order
   within an owner group and field/count writes; other mutation paths and
   the full count/ID invariant remain part of that item.
+  FND-COMBAT-032 supplies local removal compaction/order and its full
+  boundary-row backing requirement; handler effects and admitted removal
+  callers remain Q-COMBAT-009.
 - A collected number above 112 would index beyond `effect_names`; the
   admitted ID domain remains Q-COMBAT-009.
 - (No item: the delivered resident-only emulated-call harness cannot reach
