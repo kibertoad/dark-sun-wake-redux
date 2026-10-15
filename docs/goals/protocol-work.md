@@ -105,8 +105,8 @@ Do not weaken host safeguards or extend analysis beyond preservation scope.
 - Blockers: none goal-wide. Person-only patched-save/live-session requests
   remain separate; the startup probes establish none of those capabilities.
 - Next:
-  1. Q-RNG-004: finish parsed initializer semantics, global/table writers,
-     service/input admission and remaining complete-reading obligations.
+  1. Q-RNG-004 and Q-RNG-005: finish service/input admission, remaining
+     global/table writers, allocator/callback/lifetime and storage identity.
   2. Q-RNG-003 and Q-RNG-001: admitted reseeding routes, aliases and verified
      rule/reducer callers with draw order; additional overlay hits are candidates.
   3. Q-PARTY-081: validate opened-state native restore and a state-driven
