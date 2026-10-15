@@ -1,96 +1,102 @@
 # Handover
 
-Current work outside a goal. Active goals keep their own handovers in
-docs/goals/; queue items and findings stay in their own files.
-
-## Upstream update (2026-10-08)
-
-Commit e7016d7 adopts rules 11884c7, checker 2.8.0, RefurbishedDinosaurs
-11.0.0, executable-reader 2.4.0 and engine 13.3.0; template main is still the
-adopted 0b9ab9c. It corrects 107 DOSBox.exe range ends in place under the
-owner's decision in docs/DECISIONS.md. Assetless Test.ps1 passed with 715
-.NET tests. Pushed to main. Resume Q-EXE-009 on main, writing range ends
-half-open (research-item skill); the protocol-work worktree and its goal
-branch are removed, since one agent works here. Docs no longer cite gitignored `artifacts/` files
-(AGENTS.md forbids it); the research drivers they named are committed in
-tools/research/ and read GAME_DIR, and their reports are under
-GAME_DIR/analysis/reporter-audit/ (moved from UserContent/analysis/).
-
-## Today’s wrap-up (2026-10-08)
-
-Completed protocol research and current template updates are integrated on main.
-The ongoing goal remains documented in docs/goals/protocol-work.md; resume
-Q-EXE-009 on main. Final research entry: FND-EXE-144.
-Combined assetless Test.ps1 -NoRestore passed, including all .NET tests.
-Main's indexes and parity were regenerated. Documentation checks retain their
-reported argument-count skips. No original runtime was started.
-Template issue 90 records scheduled-generation fixture assumptions. The owner explicitly asked
-to wrap up for today and push main after completion. Do not start another item.
-Hooks remain enabled; use an absolute GIT_INDEX_FILE for main commits when the
-staged snapshot runs Git from a temporary directory. Preserve unknown and
-reusable processes; no confirmed task orphan was found during integration.
-
 ## State
 
-- Stage: Slices; slices 2 and 3 remain in progress. Intake, Runtime access and
-  Survey have ended (docs/BOOTSTRAP-CHECKLIST.md).
-- Last gate: 2026-10-08, `./tools/Test.ps1` passed. Run it with PowerShell 7
-  (`artifacts/pwsh7/runtime/pwsh.exe` here; Windows PowerShell 5.1 now refuses
-  it) and with `GAME_DIR` and `NoDefaultCurrentDirectoryInExePath` unset, since
-  both are set machine-wide for other projects. Template issue 81 asks for a
-  per-project fix.
-- Sandbox validation: set process-local TEMP/TMP to the executing account's
-  accessible temporary directory (template issue 82). In this session Git's
-  shell could not create the hook snapshot there: set TMPDIR inside Git Bash
-  to the writable `artifacts/hook-tmp` directory before committing. Keep the
-  hook enabled. Validation and failure logs are listed in docs/VALIDATION.md.
-- Upstream adoption state: docs/TEMPLATE-ACCEPTANCE.md and
-  docs/LATEST-RELEASE-GAP-AUDIT.md.
-- Required asset pack revision is 36. The owner's revision-35 pack under
-  LocalAppData is rejected until play.bat re-extracts it.
-- Native runtime remains owner-only. Agents never run the original or take the
-  run lock.
+- Stage: Slices; slices 2 and 3 remain in progress. The entire-game research
+  goal was cleared, not completed; its claim file is removed in this handover.
+- Stop reason: the owner requested today's wrap-up, a cohesive batch,
+  documentation, commits and a push to main, then stop. Start no further item.
+- Last gate: 2026-10-15, ./tools/Test.ps1 -NoRestore passed, including 715
+  .NET tests and Node/documentation suites: 1325 entries, 168 parity rows,
+  five deviations. Existing argument-count and absent-Kaitai-compiler skips
+  remain. Q-PARTY-078, Q-RNG-003 and Q-RNG-004 retain Tried-count warnings;
+  each later attempt must take part of Settles it out before another attempt.
+- Latest research references: FND-RNG-011..022, RULE-RNG-001,
+  FND-PARTY-217..219, FMT-PARTY-006, SCR-UI-008 and FND-UI-039..040.
+  RNG parity remains partial with its existing Defect notes. No gameplay
+  implementation changed. Remaining research stays in the area queues.
+- Required asset pack revision remains 36. Revision-35 local packs require
+  transactional refresh through play.bat.
+- Runtime admission is per part in docs/RUNTIME.md. Use the pinned muted
+  session package only; owner-only visual capture remains binding.
+  Agents never operate GOG's emulator. All owned native runs closed.
+
+## Local tooling and evidence stores
+
+- Use PowerShell 7. Set EVIDENCE_PYTHON explicitly to this checkout's
+  artifacts/evidence-python/Scripts/python.exe. Its inherited value belongs
+  to another project: the first 2026-10-15 restore updated that environment's
+  engine/session package before subsequent work used the dedicated project
+  environment. Do not modify the inherited environment again.
+- Unset process-local NoDefaultCurrentDirectoryInExePath for validation.
+  Machine-wide GAME_DIR belongs to another project and is ignored by the
+  configured game-directory resolver. Git trust stays checkout-scoped and
+  hooks remain enabled. Keep each tested snapshot unchanged while a gate runs.
+- startup_segments.py, startup_window.py, restore_opener.py and clock_source.py
+  have native provenance through the pinned session package. clock_source.py's
+  nine synthetic controls and repeated final native attempt passed. Its fixed
+  contract does not admit varying TZ or arbitrary clock inputs.
+- Source opener: GAME_DIR/captures/rust-dos-startup-window/
+  seed-and-opener-20261015/:opener; restore_opener.py restored it natively.
+  Newer state: GAME_DIR/captures/rust-dos-restore-opener/
+  restore-and-return-20261015-verified/:opened; file-verified, not natively
+  restored. Pixels and input readiness remain unverified. SavedState.checkpoint
+  is a boolean; SavedState.directory is the path. Use the corrected helper
+  and journal rather than the first extended report's historical path True.
+- Clock reports: GAME_DIR/captures/rust-dos-clock-source/
+  constructor-and-timezone-20261015/ and its -verified repeat, with earlier
+  environment-default-20261015/ retained locally. Contracts: FND-RNG-014,
+  FND-RNG-017 and FND-RNG-019..020.
+- Static reports and bounded queries: GAME_DIR/analysis/startup-seed/;
+  reproduce through FND-RNG-018..019 and FND-RNG-021..022. Original-derived
+  reports and configurations remain local, never committed.
+- Manifest-bounded probe_drive.py prepares fresh private C: from verified
+  files; CD media remains on D:. run_plan.py is time-driven. Do not repeat
+  timed start.json advancement or infer readiness from a call returning.
+- Prior checkpoints before session package 0.10.0 used rewritten sound
+  configuration and are not admissible starting states. Avoid busy per-frame
+  breakpoints that can exhaust Windows ports; select a specific gated stop.
+- Preserve FMT-EXE-005 and FND-EXE-520..524 as runtime review prerequisites.
+  See docs/SHARED-RUNTIME-MIGRATION.md for migration status.
 
 ## Unfinished
 
-- Commit-message repair awaits owner approval: the validation commit fa0d8d1
-  has the shortened title `Record`. A concurrent research commit 4e5d4e8 was
-  accidentally amended as 290a177 with the validation message and lost its
-  original Spec trailer. Its original message remains available through
-  `git show -s --format=%B 4e5d4e8`; the research tree is unchanged. Automatic
-  approval review rejected a message-only rebase because it rewrites shared
-  history. Do not retry without approval or amend the current HEAD.
+- No tracked batch draft remains. Q-PARTY-082 exploratory graph-table queries
+  have no finding yet; local configurations and graph-selector-table-candidates.txt
+  are under GAME_DIR/analysis/party-record-heads/. Validate reached entries
+  and initialization before treating candidates as runtime state.
+- Historical commit-message repair still awaits approval: fa0d8d1 has title
+  Record; research commit 4e5d4e8 was accidentally amended as 290a177 with a
+  validation message and lost its Spec trailer. Its original message remains
+  available through git show -s --format=%B 4e5d4e8; its tree is unchanged.
+  Automatic approval review rejected the message-only rebase because it
+  rewrites shared history. Do not retry without approval or amend HEAD.
 
 ## Blockers
 
-- Live signing, repository signing-environment branch protection and
-  high/mixed-DPI original-window capture remain separate acceptance checks. No
-  release was performed.
-- Q-PARTY-001 (shipped-party live session) waits on the owner accepting
-  docs/live-sessions/shipped-party.md.
+- Person-only patched-save and live-session requests remain separate.
+  Q-PARTY-001 waits on docs/live-sessions/shipped-party.md. Startup probes
+  do not establish gameplay/deletion admission for Q-PARTY-081.
+- Live signing, signing-environment branch protection and high/mixed-DPI
+  original-window capture remain separate acceptance checks. No release made.
 
 ## Next
 
-1. Q-PARTY-013, Q-PARTY-011 (56 indirect calls left), then Q-PARTY-012, for
-   RULE-PARTY-006 (slice 2). Q-PARTY-012 reads the shared resource reader,
-   which config-static's CONFIG findings also cover; coordinate with that goal
-   before adding entries in its areas.
-2. Q-PARTY-002, Q-PARTY-003, Q-PARTY-004 and Q-PARTY-006 (slice 2).
-3. Q-UI-005 and Q-SAVE-001 for SCR-UI-013 and SCR-UI-014; Q-UI-002 for SCR-UI-007.
-4. Q-EXE-002 and Q-EXE-001.
-5. Configure ES_CERTIFICATE_THUMBPRINT and main-only release-signing deployment
-   branches before a signed release.
+1. Q-RNG-004 and Q-RNG-005: input/service admission and storage/writer coverage.
+2. Q-RNG-003 and Q-RNG-001: caller admission, aliases and rule/draw mapping.
+3. Q-PARTY-081: native restore and state-driven gameplay/deletion route with
+   draw recording and caller/map reads under docs/RUNTIME.md.
+4. Q-PARTY-082: graph selector initialization and screen bindings, using
+   FND-PARTY-218's corrected provenance.
+5. Q-PARTY-085, Q-PARTY-083, Q-PARTY-020 and Q-PARTY-084: remaining party contracts.
 
-## Upstream requests from this work
+## Upstream requests
 
-- refurbished-dinosaurs issue 77: a committed build listing record, directory
-  exclusions and the `CD:` path form. Toolkit issue 297 waits on it; this
-  project's reconciliation is `tools/evidence/build-listing.mjs`.
-- refurbished-dinosaurs-template issue 81: machine-wide `GAME_DIR` and local
-  stores inside the install directory.
-- refurbished-dinosaurs-template issue 82: inherited owner TEMP/TMP causes
-  Java canonical-path access failure under sandbox validation.
-
-## Shared runtime migration
-
-See [migration status](SHARED-RUNTIME-MIGRATION.md).
+- refurbished-dinosaurs issue 77 and toolkit issue 297: build listing records,
+  directory exclusions and CD: path form; tools/evidence/build-listing.mjs
+  holds this project's reconciliation.
+- Template issues 81 and 82: machine-wide GAME_DIR/local stores, and inherited
+  TEMP/TMP sandbox access. Use an accessible process-local temporary directory;
+  if Git's hook snapshot cannot create one, use writable artifacts/hook-tmp
+  as Git Bash TMPDIR while retaining the hook.
+- Template issue 90: scheduled-generation fixture assumptions.
