@@ -126,9 +126,10 @@ None known.
 
 ## Open questions
 
-- The complete seed-source conversion, environmental inputs, near-buffer
-  identity and admitted reseeding paths beyond the recovered direct call
-  sequences (FND-RNG-009, Q-RNG-003).
+- The complete seed-source conversion and environmental/service inputs
+  (FND-RNG-009, FND-RNG-014, FND-RNG-015, Q-RNG-004); near-buffer identity
+  and admitted reseeding paths beyond the recovered direct call sequences
+  remain separate (Q-RNG-003).
 - Which game rules call the reducers. `random_between` and `roll_sum` have no recovered callers,
   and `random_mod` is called only from `chance_in_ten` and the table selection in FND-RNG-007,
   which is the music selector of RULE-SOUND-003 (FND-SOUND-012, Q-RNG-001).
