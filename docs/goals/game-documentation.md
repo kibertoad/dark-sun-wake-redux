@@ -31,7 +31,7 @@ explicit request.
 
 - Stage: Slices; entire-game documentation remains incomplete.
 - Last gate: 2026-10-15, ./tools/Test.ps1 -NoRestore passed: 715 .NET tests,
-  Node suites and documentation checks for 1342 entries and 168 parity rows.
+  Node suites and documentation checks for 1345 entries and 168 parity rows.
   Existing argument-count/Kaitai skips and Tried-count warnings remain.
 - Baseline: pinned upstream rules verify offline; local main includes the
   scheduled generated-file baseline. Generated files were not edited.
@@ -40,7 +40,8 @@ explicit request.
   incomplete. No owner decision is needed for the next static item.
 - Next: Q-COMBAT-009 restore validation/backing and remaining writers using
   FND-COMBAT-032..035 and FND-COMBAT-039;
-  Q-COMBAT-010 remaining icon archive/window/backend admission using FND-COMBAT-038..040;
+  Q-COMBAT-010 remaining icon archive/window/cache/backend admission using FND-COMBAT-038..042
+  and FND-UI-041;
   Q-COMBAT-011 remaining category bitmap producers/lifetime using FND-COMBAT-037;
   Q-COMBAT-012 caller/storage admission using FND-COMBAT-036/038;
   Q-COMBAT-013 prepared membership content lifetime using FND-COMBAT-029/036/038.
