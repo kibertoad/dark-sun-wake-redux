@@ -52,13 +52,13 @@ Do not weaken host safeguards or extend analysis beyond preservation scope.
 
 - Stage: Slices; entire-game research goal active and incomplete.
 - Last gate: 2026-10-15, ./tools/Test.ps1 -NoRestore passed on the final
-  clock-environment probe batch, including 715 .NET tests and Node/documentation
-  suites (1320 entries, 168 parity rows, 5 deviations). FND-RNG-015 and
-  FND-RNG-016 batches also passed full gates. Existing argument-count and
-  absent-Kaitai-compiler skips remain. Q-PARTY-078 and Q-RNG-003 Tried warnings
+  constructor/startup-timezone probe batch, including 715 .NET tests and Node/documentation
+  suites (1323 entries, 168 parity rows, 5 deviations). FND-RNG-018 and
+  FND-RNG-019 batches also passed full gates. Existing argument-count and
+  absent-Kaitai-compiler skips remain. Q-PARTY-078, Q-RNG-003 and Q-RNG-004 Tried warnings
   remain; check actual settling progress before another attempt.
-- Latest RNG entries: FND-RNG-011..017 and RULE-RNG-001. Q-RNG-002 is closed;
-  Q-RNG-001, Q-RNG-003 and Q-RNG-004 remain Static. RNG parity is partial
+- Latest RNG entries: FND-RNG-011..020 and RULE-RNG-001. Q-RNG-002 is closed;
+  Q-RNG-001, Q-RNG-003, Q-RNG-004 and Q-RNG-005 remain Static. RNG parity is partial
   with its existing Defect notes. No gameplay implementation changed.
 - Party/UI references: FND-PARTY-217..219, FMT-PARTY-006, SCR-UI-008 and
   FND-UI-039..040. Q-PARTY-081 remains Agent run; startup observations do
@@ -66,9 +66,10 @@ Do not weaken host safeguards or extend analysis beyond preservation scope.
 - Runtime: use docs/RUNTIME.md for per-part admission. startup_segments.py,
   startup_window.py, restore_opener.py and clock_source.py have actual native
   provenance through the pinned session package. All owned native runs closed
-  and no GOG emulator was operated. clock_source.py's four synthetic controls
+  and no GOG emulator was operated. clock_source.py's nine synthetic controls
   and repeated final native attempt passed. Its current contract admits only
-  the fixed zero-lookup startup environment path; it cannot vary TZ or inputs.
+  the fixed constructor/standalone-timezone and zero-lookup clock path; it reads
+  no environment-string contents and cannot vary TZ or inputs.
 - Checkpoints: the source opener is under GAME_DIR/captures/
   rust-dos-startup-window/seed-and-opener-20261015/:opener and was restored
   natively by restore_opener.py. The newest opened state is under
@@ -79,8 +80,9 @@ Do not weaken host safeguards or extend analysis beyond preservation scope.
   The first extended startup report's path True is a historical reporting
   error; use the package journal/reader and corrected helper.
 - Latest clock reports: GAME_DIR/captures/rust-dos-clock-source/
-  environment-default-20261015/ and environment-default-20261015-verified/.
-  Refer to FND-RNG-014 and FND-RNG-017 for reproducible observation contracts.
+  constructor-and-timezone-20261015/ and its -verified repeat. Earlier
+  environment-default-20261015/ reports remain local.
+  Refer to FND-RNG-014, FND-RNG-017 and FND-RNG-019..020 for reproducible contracts.
 - Tooling: manifest-bounded probe_drive.py prepares fresh private C: from
   verified files and excludes unlisted captures/saves; CD media stays on D:.
   run_plan.py remains time-driven. Use artifacts/evidence-python exclusively
@@ -94,7 +96,9 @@ Do not weaken host safeguards or extend analysis beyond preservation scope.
   Existing head, inventory-window and getter reports remain there. Static
   clock reports/configurations remain under GAME_DIR/analysis/startup-seed/,
   including complete-conversion-body.txt and the bounded calendar, initializer
-  and ASCII-class queries. Original-derived reports stay local.
+  and byte-class/startup-record queries, plus clock storage/caller/pointer
+  candidate reports. FND-RNG-018..019 record their bounded readings.
+  Original-derived reports stay local.
 - Processes: native, validation and analysis handles ended; the post-commit
   audit found no confirmed repository orphan. Reusable MSBuild nodes are not
   orphans. No unknown process or lock was changed.
