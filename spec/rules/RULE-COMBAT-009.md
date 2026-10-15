@@ -105,6 +105,9 @@ None known.
   FND-COMBAT-035 identifies the local full-resource restore requests and
   effect-storage-before-count ordering, retaining admitted resources,
   backing and postprocessing under Q-COMBAT-009.
+  FND-COMBAT-039 qualifies the icon-cache action's first-match ID/owner
+  search and row-key removal argument, retaining native caller and
+  shared-state admission under Q-COMBAT-009.
 - Category bitmap producers, initialization and lifetime
   remain Q-COMBAT-011; FND-COMBAT-029 supplies only their local uses and
   preparation.

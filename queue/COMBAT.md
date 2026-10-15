@@ -76,6 +76,11 @@ Next ID: Q-COMBAT-014
   producer is identified; it is not bounded by the writer's length
   array. Actual archive/resource selection, destination extent, restored
   ID/count/order validation, other destinations and postprocessing remain.
+  Tried: FND-COMBAT-039 qualifies the cache action's first matching
+  ID/owner search and actual row-key argument to the removal wrapper,
+  and identifies the window setup's owner-word store. That caller's
+  local input producer is answered; admitted owner/cache/table state,
+  intervening callbacks, all other callers and removal effects remain.
 - Q-COMBAT-010. FMT-COMBAT-003: Which complete resource/consumer contract
   admits the effect record's ICON number? Settles it: reached field-consumer
   coverage, admitted active archive/request route and runtime outcomes for
@@ -98,6 +103,12 @@ Next ID: Q-COMBAT-014
   slot retention differ. Those caller branches/frame arguments are
   settled; archive admission, pointer validity on errors, backend/palette
   outcomes, release effects and later cache interaction remain.
+  Tried: FND-COMBAT-039 answers the local registered frame handler's
+  label/action count gates, cached-ID label source, first-match row-key
+  removal request and separate extra-flag ordinal map. Those post-draw
+  cache branches are settled. Native graph/dispatch and event meaning,
+  synchronized counts/cache/state, reader/backend/release outcomes and
+  complete consumer admission remain.
 - Q-COMBAT-011. RULE-COMBAT-009: What initializes and subsequently writes
   the category bitmap used by the status
   selector? Settles it: qualified writer/initializer coverage, admitted

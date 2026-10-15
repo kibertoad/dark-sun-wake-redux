@@ -58,3 +58,6 @@ metadata, without establishing native acquisition or display success.
   distinct zero-icon/null-pointer continuations and draw/release ordering.
   Valid reader outcomes, backend presentation and later cache interaction
   remain Q-COMBAT-010.
+  FND-COMBAT-039 supplies the later cache label/action branches and
+  their count/ID/key distinction; native graph/event admission and
+  synchronized cache state remain part of that item.
