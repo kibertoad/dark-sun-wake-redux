@@ -34,6 +34,19 @@ def buffer_offsets(registers):
     return bp - 4, bp - 8
 
 
+def environment_words(raw, actual_segment, expected_segment):
+    if actual_segment != expected_segment or len(raw) != 6:
+        raise ValueError("clock environment record identity or width is not admitted")
+    low, high, enabled = struct.unpack("<HHH", raw)
+    return {"offset": (high << 16) | low, "daylight_enabled": enabled}
+
+
+def read_environment(read, actual_segment, expected_segment):
+    if actual_segment != expected_segment:
+        raise ValueError("clock environment segment is not admitted before reading")
+    return environment_words(read(actual_segment, 0x397A, 6), actual_segment, expected_segment)
+
+
 def main():
     if len(sys.argv) != 2 or not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", sys.argv[1]):
         raise SystemExit("usage: clock_source.py <new-run-name>")
@@ -102,6 +115,27 @@ def main():
         if pointer != time_offset or read(registers["ds"], date_offset, 4) != date:
             raise RuntimeError("time writer pointer or preceding date buffer changed")
         time = read(registers["ds"], time_offset, 4)
+        expected_ds = address(0x57E0, 0).split(":")[0]
+        registers = reach(0x3B61, "environment_lookup_return")
+        if registers["ds"] != expected_ds:
+            raise RuntimeError("environment lookup uses another data segment")
+        pointer = struct.unpack("<H", read(registers["ss"], int(registers["sp"], 16), 2))[0]
+        if pointer != 0x3980 or read(registers["ds"], pointer, 3) != b"TZ\0":
+            raise RuntimeError("environment lookup name differs from the declared clock name")
+        report["environment_lookup_result"] = int(registers["ax"], 16)
+        record()
+        if report["environment_lookup_result"] != 0:
+            raise RuntimeError("only the zero-result startup environment path is admitted")
+        registers = reach(0x387D, "environment_initializer_return")
+        report["environment"] = read_environment(read, registers["ds"], expected_ds)
+        record()
+        if report["environment"] != {"offset": 18000, "daylight_enabled": 1}:
+            raise RuntimeError("startup environment globals differ from the declared default path")
+        registers = reach(0x3933, "daylight_return")
+        if registers["ds"] != expected_ds:
+            raise RuntimeError("daylight helper returned with another data segment")
+        report["daylight_result"] = int(registers["ax"], 16)
+        record()
         registers = reach(0x098E, "conversion_return")
         if buffer_offsets(registers) != (date_offset, time_offset):
             raise RuntimeError("clock frame moved during conversion")
@@ -130,7 +164,9 @@ def main():
         report["seed_argument"] = argument
         record()
         print(json.dumps({"buffers": report["buffers"], "conversion_result": value,
-                          "seed_argument": argument, "draws": []}), flush=True)
+                          "seed_argument": argument, "environment": report["environment"],
+                          "environment_lookup_result": report["environment_lookup_result"],
+                          "daylight_result": report["daylight_result"], "draws": []}), flush=True)
 
 
 if __name__ == "__main__":

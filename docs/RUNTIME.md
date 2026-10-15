@@ -61,6 +61,10 @@ clock_source.py (FND-RNG-014) verified the declared startup clock caller,
 service/converter return stops and bounded near-buffer/pointer reads on
 this machine. It used no input or writes and stopped before seeding.
 It extends the fixed read/stop capability record, not the gameplay route.
+The extension in FND-RNG-017 also reached the declared environment lookup,
+initializer and daylight returns and read their fixed name/global records.
+Only the zero-lookup default startup path is admitted; no environment mutation
+or broader gameplay capability follows.
 
 How an agent run starts the game (2026-10-14, `tools/research/rust-dos-runs/`):
 a deterministic run at 15000 instructions a millisecond, C: a copy of the

@@ -98,3 +98,21 @@ No inputs, writes, patched saves or emulated-time waits. Reports stay under
 GAME_DIR/captures/rust-dos-clock-source/. Synthetic controls reject wrong
 caller and segment identity or impossible frame bounds. Exit: actual bounded
 observation, remaining Q-RNG-003 obligations updated and full gate.
+
+## Startup environment and daylight observation
+
+Research extension for Q-RNG-004. Outcome: identify the actual initializer
+branch and daylight adjustment of the unchanged startup clock case.
+FND-RNG-016 supplies the converter globals and daylight return; the bounded
+initializer reading supplies lookup return 1000:3B61 and initializer return
+1000:387D. The shipped lookup name is the three-byte TZ terminator record
+at DS:3980. Acceptance: retain all existing caller, buffer, RNG and session
+guards; require DS to match the relocated declared data segment before
+reading the lookup pointer/name or six-byte offset/enable record at DS:397A.
+Record lookup AX and admit only the zero-result default path. Read the
+offset/enable words after initializer return, then AX at daylight return
+1000:3933. No input, writes, environment mutation or arbitrary reads.
+Synthetic controls reject a wrong data segment or incomplete global record;
+an actual native run identifies the measured path, with outputs local only.
+Exit: bounded finding and capability record, remaining conversion obligations
+updated, full repository gate; no complete reading or rule-status promotion.

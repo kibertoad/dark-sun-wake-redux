@@ -57,6 +57,11 @@ Next ID: Q-RNG-005
   obligations are answered; initializer semantics, global/table writers,
   continued identity and input admission remain. A conditional match does
   not identify the measured startup initializer path.
+  Tried: FND-RNG-017 observes the actual zero-lookup default initializer
+  path, offset/enable words and daylight return in the admitted startup.
+  The measured default-path obligation is answered; parsed environment
+  branches, service/input domain, state/table writers and other path
+  identities remain. No complete conversion or writer census is claimed.
   Blocks: complete reproducible seed-source semantics.
 
 ## Emulated call

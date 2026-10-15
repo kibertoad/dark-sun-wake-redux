@@ -181,5 +181,8 @@ validates DS/SS and pushed near-buffer offsets, checks their unchanged
 contents and compares the converter's low word with the seed argument.
 It sends no input or writes and guards the known generator. FND-RNG-014
 records the measured path, without claiming complete clock conversion.
+The FND-RNG-017 extension also records lookup, initializer and daylight returns.
+It requires the declared data segment/name and admits only a zero lookup
+result with the expected default offset/enable record. No environment is changed.
 Reports stay under `GAME_DIR/captures/rust-dos-clock-source/`;
 `check_clock_source.py` provides synthetic caller/identity controls.
