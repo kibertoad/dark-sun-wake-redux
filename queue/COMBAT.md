@@ -124,6 +124,10 @@ Next ID: Q-COMBAT-014
   icon construction. The create/reuse/close pointer operations and
   distinction between DS:A11D and DS:1431 are answered locally; complete
   writer/lifetime admission, successful callbacks and rendering remain.
+  Tried: FND-COMBAT-042 answers the three local cache-fill groups,
+  conditional current/following-boundary stores and the handle-capacity
+  request route. Complete startup ordering/writers, third-group mapping
+  and transformation, backend and source-state admission remain.
 - Q-COMBAT-011. RULE-COMBAT-009: What initializes and subsequently writes
   the category bitmap used by the status
   selector? Settles it: qualified writer/initializer coverage, admitted

@@ -71,3 +71,6 @@ metadata, without establishing native acquisition or display success.
   FND-COMBAT-041 supplies the separate background cache-index source
   and installed frame metadata; cache initialization, transfer success
   and active resource identity remain Q-COMBAT-010.
+  FND-COMBAT-042 supplies local cache-fill boundary producers and the
+  handle-capacity request; successful initialization, complete writers
+  and backend/source-state admission remain Q-COMBAT-010.
