@@ -1,6 +1,6 @@
 # RNG
 
-Next ID: Q-RNG-005
+Next ID: Q-RNG-006
 
 ## Static
 
@@ -42,10 +42,12 @@ Next ID: Q-RNG-005
   Complete conversion and service/environment obligations move to Q-RNG-004;
   this item retains caller reachability, aliases and seed-write coverage. Blocks: reproducible
   startup seeding and Q-PARTY-081's later recorded gameplay run.
-- Q-RNG-004. RULE-RNG-001: What complete date/time-to-value conversion does
-  the clock source use? Settles it: environment initializer 1000:3B56,
-  continued data-segment/table identity and table writers; globals' initialization and writers, service input domain
-  and INT 21 effects, including admission of every indexed date/time value.
+- Q-RNG-004. RULE-RNG-001: Which date/time and environment inputs reach the
+  reviewed clock conversion, and what input/service contract admits its reads?
+  Settles it: population and bounds of the environment pointer array and
+  strings, admission of indexed date/time values and near buffers on each
+  caller path, and INT 21 service inputs/effects. Clock storage/writer identity
+  is separate in Q-RNG-005.
   Tried: FND-RNG-009 identifies the conversion chain, FND-RNG-014 measures
   one startup input and return, and FND-RNG-015 records direct buffer access
   widths and the separate wrapper contract. These do not settle the
@@ -62,7 +64,25 @@ Next ID: Q-RNG-005
   The measured default-path obligation is answered; parsed environment
   branches, service/input domain, state/table writers and other path
   identities remain. No complete conversion or writer census is claimed.
+  Tried: FND-RNG-018 settles the local initializer's guard, default,
+  integer-offset and first-label branches, including wrap and byte-classifier
+  widths. Those local-body obligations are answered. Input/service admission
+  remains here; global/table writers and storage identity split into Q-RNG-005.
   Blocks: complete reproducible seed-source semantics.
+- Q-RNG-005. RULE-RNG-001: Which paths initialize, read or change the clock
+  conversion's global/table storage, and does each access retain its declared
+  identity? Settles it: reached reader/writer and alias coverage for the
+  environment-array root DS:3920, classification-index window DS:34F5..3675,
+  calendar tables DS:3950..3976, label pointers DS:3976..397A and offset/enable
+  record DS:397A..3980; label-buffer ownership/lifetime, indirect and bulk
+  writes, and continued segment identity on admitted paths. Start with a
+  mechanism/site census and positive controls from the initializer's explicit
+  stores and helper-mediated label writes; candidates alone prove no absence.
+  Tried: FND-RNG-016 reads the calendar bodies and shipped windows,
+  FND-RNG-017 measures the default-path globals and FND-RNG-018 reads the
+  local initializer and helper writes. These establish local sites, not
+  complete storage/writer coverage. Split from Q-RNG-004 to separate that
+  coverage from service/input admission. Blocks: complete seed-source reading.
 
 ## Emulated call
 
