@@ -116,3 +116,27 @@ Synthetic controls reject a wrong data segment or incomplete global record;
 an actual native run identifies the measured path, with outputs local only.
 Exit: bounded finding and capability record, remaining conversion obligations
 updated, full repository gate; no complete reading or rule-status promotion.
+
+## Environment constructor and standalone startup initializer
+
+Research confirmation of FND-RNG-019 for Q-RNG-005. Outcome: observe the
+record-backed constructor's actual caller, requested sizes, returned near
+offsets and terminated pointer-array metadata, then the distinct startup
+timezone call before the existing clock-source observation. No environment
+string contents are collected. Evidence supplies allocator return stops
+1000:29B7/29DA, constructor return 1000:2A06, startup records DS:39B2/39B8,
+size/source words DS:008A..0090 and root/mirror words DS:3920/0088.
+Acceptance: require the declared relocated data/stack segments before reads;
+validate near return 0260 and saved ES against the selected constructor record.
+Check nonzero returned offsets and nonwrapping, independent requested spans
+before reading only pointer words, stopping at their first zero within the
+requested table and at most 1024 words. Reject out-of-payload, nonincreasing
+or unterminated members. Validate the restored dispatcher bounds and root
+mirror at constructor return. The standalone timezone call must return through
+the declared far frame at 0259 and match its relocated initialization record;
+observe its zero lookup result and offset/enable record before continuing to
+the existing source/caller/buffer/seed stops. Keep all RNG/session/audio guards,
+no inputs, writes or environment mutation. Synthetic controls reject wrong
+frames, segments, widths, wrapping/overlapping spans and invalid array members
+before unsupported reads. Exit: actual bounded finding, capability record,
+remaining admission/writer gaps, full gate and separate handover.

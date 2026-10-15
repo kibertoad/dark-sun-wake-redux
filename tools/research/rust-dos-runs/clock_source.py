@@ -47,6 +47,54 @@ def read_environment(read, actual_segment, expected_segment):
     return environment_words(read(actual_segment, 0x397A, 6), actual_segment, expected_segment)
 
 
+def constructor_caller(frame, selected, data_segment):
+    if (len(frame) != 4 or len(selected) != 6
+            or struct.unpack("<HH", frame) != (0x0260, data_segment)
+            or struct.unpack("<BBHH", selected) != (0xFF, 16, 0x29AA, 0)):
+        raise ValueError("constructor caller is not the declared startup record")
+
+
+def timezone_caller(frame, selected, loaded, data_segment):
+    if (len(frame) != 6 or len(selected) != 6
+            or struct.unpack("<HHH", frame) != (0x0259, loaded, data_segment)
+            or struct.unpack("<BBHH", selected) != (0xFF, 30, 0x3B56, loaded)):
+        raise ValueError("timezone caller is not the declared startup record")
+
+
+def constructor_sizes(raw):
+    if len(raw) != 6:
+        raise ValueError("incomplete constructor size record")
+    payload, source, table = struct.unpack("<HHH", raw)
+    if not 2 <= payload <= 32767 or not 8 <= table <= 32768 or table % 8:
+        raise ValueError("constructor sizes differ from the admitted scan bounds")
+    return {"payload_bytes": payload, "source_segment": source, "table_bytes": table}
+
+
+def constructor_array(read, actual_segment, expected_segment, payload, payload_bytes, table, table_bytes):
+    if actual_segment != expected_segment:
+        raise ValueError("constructor segment is not admitted before reading")
+    if (not 2 <= payload_bytes <= 32767 or not 8 <= table_bytes <= 32768 or table_bytes % 8
+            or not 1 <= payload <= 0x10000 - payload_bytes
+            or not 1 <= table <= 0x10000 - table_bytes):
+        raise ValueError("constructor spans are null, wrapping or outside the declared size domain")
+    if payload < table + table_bytes and table < payload + payload_bytes:
+        raise ValueError("constructor payload and table overlap")
+    previous = None
+    for index in range(min(table_bytes // 2, 1024)):
+        raw = read(actual_segment, table + 2 * index, 2)
+        if len(raw) != 2:
+            raise ValueError("incomplete constructor pointer word")
+        pointer = struct.unpack("<H", raw)[0]
+        if pointer == 0:
+            return {"member_count": index, "terminated": True, "members_inside_payload": True}
+        if (not payload <= pointer < payload + payload_bytes
+                or (previous is None and pointer != payload)
+                or (previous is not None and pointer <= previous)):
+            raise ValueError("constructor member is outside its payload or does not progress")
+        previous = pointer
+    raise ValueError("constructor pointer array lacks a terminator within the scoped read bound")
+
+
 def main():
     if len(sys.argv) != 2 or not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", sys.argv[1]):
         raise SystemExit("usage: clock_source.py <new-run-name>")
@@ -93,6 +141,62 @@ def main():
                 raise RuntimeError(f"{stage} not reached; different stop is not admitted")
             return observed.stop["registers"]
         session.client.set_breakpoint(address(0x1000, 0x0822))
+        expected_ds = address(0x57E0, 0).split(":")[0]
+        expected_data = int(expected_ds, 16)
+        def check_constructor(registers, stack_bias):
+            if registers["ds"] != expected_ds or registers["ss"] != expected_ds:
+                raise RuntimeError("constructor data/stack identity differs before reading")
+            frame = read(registers["ss"], int(registers["sp"], 16) + stack_bias, 4)
+            selected = read(registers["ds"], 0x39B2, 6)
+            constructor_caller(frame, selected, expected_data)
+        registers = reach(0x29B7, "environment_payload_allocation_return")
+        check_constructor(registers, 4)
+        sizes = constructor_sizes(read(registers["ds"], 0x008A, 6))
+        payload = int(registers["ax"], 16)
+        if not 1 <= payload <= 0x10000 - sizes["payload_bytes"]:
+            raise RuntimeError("constructor payload allocation is null or wraps")
+        report["constructor"] = {**sizes, "payload_root": payload, "caller_validated": True}
+        record()
+        registers = reach(0x29DA, "environment_table_allocation_return")
+        check_constructor(registers, 4)
+        if (constructor_sizes(read(registers["ds"], 0x008A, 6)) != sizes
+                or int(registers["di"], 16) != payload or registers["es"] != expected_ds):
+            raise RuntimeError("constructor copy sizes, payload or destination identity changed")
+        table = int(registers["ax"], 16)
+        if not 1 <= table <= 0x10000 - sizes["table_bytes"]:
+            raise RuntimeError("constructor table allocation is null or wraps")
+        report["constructor"]["table_root"] = table
+        record()
+        registers = reach(0x2A06, "environment_constructor_return")
+        check_constructor(registers, 0)
+        if (registers["es"] != expected_ds or registers["si"] != "3994" or registers["di"] != "39BE"
+                or constructor_sizes(read(registers["ds"], 0x008A, 6)) != sizes
+                or struct.unpack("<H", read(registers["ds"], 0x3920, 2))[0] != table
+                or struct.unpack("<H", read(registers["ds"], 0x0088, 2))[0] != table):
+            raise RuntimeError("constructor return bounds or root mirror differ")
+        report["constructor"]["array"] = constructor_array(
+            read, registers["ds"], expected_ds, payload, sizes["payload_bytes"], table, sizes["table_bytes"])
+        record()
+        registers = reach(0x3B61, "startup_environment_lookup_return")
+        if registers["ds"] != expected_ds or registers["ss"] != expected_ds:
+            raise RuntimeError("startup environment lookup data/stack identity differs before reading")
+        pointer = struct.unpack("<H", read(registers["ss"], int(registers["sp"], 16), 2))[0]
+        if pointer != 0x3980 or read(registers["ds"], pointer, 3) != b"TZ\0":
+            raise RuntimeError("startup environment lookup name differs")
+        report["startup_environment_lookup_result"] = int(registers["ax"], 16)
+        record()
+        if report["startup_environment_lookup_result"] != 0:
+            raise RuntimeError("only the zero-result startup timezone path is admitted")
+        registers = reach(0x3CD6, "startup_timezone_return")
+        if registers["ds"] != expected_ds or registers["ss"] != expected_ds:
+            raise RuntimeError("startup timezone data/stack identity differs before reading")
+        frame = read(registers["ss"], int(registers["sp"], 16), 6)
+        timezone_caller(frame, read(registers["ds"], 0x39B8, 6), loaded, expected_data)
+        report["startup_timezone_caller_validated"] = True
+        report["startup_environment"] = read_environment(read, registers["ds"], expected_ds)
+        record()
+        if report["startup_environment"] != {"offset": 18000, "daylight_enabled": 1}:
+            raise RuntimeError("standalone startup timezone globals differ from the default path")
         registers = reach(0x0963, "source_entry")
         frame = read(registers["ss"], int(registers["sp"], 16), 6)
         return_offset, return_segment = struct.unpack("<HH", frame[:4])
@@ -115,7 +219,6 @@ def main():
         if pointer != time_offset or read(registers["ds"], date_offset, 4) != date:
             raise RuntimeError("time writer pointer or preceding date buffer changed")
         time = read(registers["ds"], time_offset, 4)
-        expected_ds = address(0x57E0, 0).split(":")[0]
         registers = reach(0x3B61, "environment_lookup_return")
         if registers["ds"] != expected_ds:
             raise RuntimeError("environment lookup uses another data segment")
@@ -166,7 +269,9 @@ def main():
         print(json.dumps({"buffers": report["buffers"], "conversion_result": value,
                           "seed_argument": argument, "environment": report["environment"],
                           "environment_lookup_result": report["environment_lookup_result"],
-                          "daylight_result": report["daylight_result"], "draws": []}), flush=True)
+                          "daylight_result": report["daylight_result"],
+                          "constructor": report["constructor"],
+                          "startup_environment": report["startup_environment"], "draws": []}), flush=True)
 
 
 if __name__ == "__main__":

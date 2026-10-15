@@ -184,5 +184,11 @@ records the measured path, without claiming complete clock conversion.
 The FND-RNG-017 extension also records lookup, initializer and daylight returns.
 It requires the declared data segment/name and admits only a zero lookup
 result with the expected default offset/enable record. No environment is changed.
+FND-RNG-020 adds the earlier constructor and standalone timezone returns,
+checking their distinct near/far initialization frames and records. Only
+counts, returned offsets and bounded pointer-array metadata are read; member
+strings are never dereferenced. Invalid, overlapping or wrapping spans and
+unterminated arrays are refused before proceeding. Nine synthetic controls
+and a repeated native observation verify that fixed extension.
 Reports stay under `GAME_DIR/captures/rust-dos-clock-source/`;
 `check_clock_source.py` provides synthetic caller/identity controls.

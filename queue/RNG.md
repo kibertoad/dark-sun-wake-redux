@@ -87,7 +87,12 @@ Next ID: Q-RNG-006
   construction, startup label-buffer bulk zero and the timezone initializer's
   separate stored caller. Those local producer/caller gaps are answered;
   native constructor metadata, other writers, source/callback/allocator
-  admission and continued storage identity remain. Blocks: complete seed-source reading.
+  admission and continued storage identity remain. Tried: FND-RNG-020
+  verifies the actual near constructor frame, requested spans, root/mirror
+  and terminated member metadata, then the distinct far startup timezone
+  frame/default record. That native prerequisite is answered for this
+  admitted case; other writers, full lifetime/allocator/source admission
+  and other paths remain. Blocks: complete seed-source reading.
 
 ## Emulated call
 

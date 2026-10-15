@@ -65,6 +65,11 @@ The extension in FND-RNG-017 also reached the declared environment lookup,
 initializer and daylight returns and read their fixed name/global records.
 Only the zero-lookup default startup path is admitted; no environment mutation
 or broader gameplay capability follows.
+FND-RNG-020 additionally verifies the constructor's near initialization frame,
+requested-size/root metadata and terminated pointer array, then the separate
+startup timezone far frame. Its repeated final run passed with no input or
+writes; it reads no environment-string contents and admits at most 1024
+pointer words. This extends only the fixed startup observation contract.
 
 How an agent run starts the game (2026-10-14, `tools/research/rust-dos-runs/`):
 a deterministic run at 15000 instructions a millisecond, C: a copy of the

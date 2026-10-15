@@ -128,7 +128,7 @@ None known.
 
 - The complete seed-source conversion and environmental/service inputs
   (FND-RNG-009, FND-RNG-014..018, Q-RNG-004); global/table storage and
-  reader/writer identity remain separate (FND-RNG-019, Q-RNG-005). Near-buffer identity
+  reader/writer identity remain separate (FND-RNG-019..020, Q-RNG-005). Near-buffer identity
   and admitted reseeding paths beyond the recovered direct call sequences
   remain separate (Q-RNG-003).
 - Which game rules call the reducers. `random_between` and `roll_sum` have no recovered callers,
