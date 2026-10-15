@@ -8,7 +8,10 @@ Next ID: Q-RNG-007
   inclusive-range and repeated-roll helpers, in what order, and can indirect
   code read or write the state? Settles it: verified callers of the generator
   and each helper, including relocations, far pointers and indirect state
-  access; map each to a rule and its draw order. The local overlay-188
+  access; map each to a rule and its draw order. The five overlay-176
+  range sites are qualified by FND-RNG-025; the six recovered overlay-179
+  range candidates, other reducers/direct draws and input admission remain.
+  The local overlay-188
   test and opcode-59 draw loop are answered by FND-RNG-024; their shipped
   content instances and index/storage/iterator admission remain. Tried: a complete
   instruction-text scan for the two state displacements and direct far calls
@@ -29,7 +32,13 @@ Next ID: Q-RNG-007
   early-stop order. That local consumer obligation is answered. It also
   reconciles FND-PARTY-099's already recovered effect-save roll_sum use;
   complete caller/rule mapping, shipped instances, indexed storage and
-  iterator admission remain. Blocks: slices 2-7.
+  iterator admission remain. Tried: FND-RNG-025 qualifies all five recovered
+  overlay-176 range sites from exported entries and their local consumers.
+  Their fixed/dynamic endpoints, two contest rolls before comparison,
+  final die-byte return, conditional second predicate call and equal-bound
+  no-draw case are answered. Other direct candidates, complete rule/callee
+  mapping, admitted record/table state and indirect access remain.
+  Blocks: slices 2-7.
 - Q-RNG-003. RULE-RNG-001: What complete input-to-seed contract and admitted
   reseeding paths do the two recovered seed callers use? Settles it: complete
   reading of the admitted caller paths and near-buffer DS/SS

@@ -139,7 +139,10 @@ None known.
 - Complete game-rule and draw-order mapping remains Q-RNG-001.
   FND-PARTY-099 recovers an effect-saving caller of `roll_sum(1, 20)`;
   the earlier statement that `roll_sum` had no recovered caller was stale.
-  `random_between` still has no qualified caller recorded here. Recovered
+  FND-RNG-025 qualifies five `random_between` sites in overlay 176's
+  psionic action and resistance checks, including conditional and equal-bound
+  draw paths. Their full input/callee admission and other callers remain
+  open. Recovered
   `random_mod` uses include `chance_in_ten` and the table selection in
   FND-RNG-007, the music selector of RULE-SOUND-003 (FND-SOUND-012).
   FND-RNG-024 separately qualifies a direct-draw d20 test reached from
