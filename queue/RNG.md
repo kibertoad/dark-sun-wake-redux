@@ -1,6 +1,6 @@
 # RNG
 
-Next ID: Q-RNG-006
+Next ID: Q-RNG-007
 
 ## Static
 
@@ -55,8 +55,9 @@ Next ID: Q-RNG-006
   reviewed clock conversion, and what input/service contract admits its reads?
   Settles it: population and bounds of the environment pointer array and
   strings, admission of indexed date/time values and near buffers on each
-  caller path, and INT 21 service inputs/effects. Clock storage/writer identity
-  is separate in Q-RNG-005.
+  caller path. Local service request preparation and sampling order are
+  answered by FND-RNG-023; external service inputs/effects are separate in
+  Q-RNG-006. Clock storage/writer identity is separate in Q-RNG-005.
   Tried: FND-RNG-009 identifies the conversion chain, FND-RNG-014 measures
   one startup input and return, and FND-RNG-015 records direct buffer access
   widths and the separate wrapper contract. These do not settle the
@@ -77,6 +78,11 @@ Next ID: Q-RNG-006
   integer-offset and first-label branches, including wrap and byte-classifier
   widths. Those local-body obligations are answered. Input/service admission
   remains here; global/table writers and storage identity split into Q-RNG-005.
+  Tried: FND-RNG-023 settles local date-before-time sampling, AH-only request
+  preparation, stored-result widths and absence of a local coherence/error
+  retry. Those local service obligations are answered; external service
+  behavior splits into Q-RNG-006. This item retains environment/string and
+  indexed input/near-buffer admission.
   Blocks: complete reproducible seed-source semantics.
 - Q-RNG-005. RULE-RNG-001: Which paths initialize, read or change the clock
   conversion's global/table storage, and does each access retain its declared
@@ -117,7 +123,18 @@ None.
 
 ## Source
 
-None.
+- Q-RNG-006. RULE-RNG-001: What date/time result domain, register preservation
+  and cross-request coherence does the admitted INT 21 service provide?
+  Settles it: authoritative implementation evidence for AH 2A/2C in the
+  pinned runtime, including selecting inputs, output fields, preservation
+  needed by the game's DS destination and SI pointer, and date/time rollover
+  behavior between requests. Distinguish the pinned emulator's guarantees
+  from claims about every original DOS environment. Tried: FND-RNG-015
+  identifies returned word stores; FND-RNG-023 completely reads local
+  request preparation/order and shows no local retry or validation. These
+  do not establish the external service implementation. Split from
+  Q-RNG-004 to keep external service semantics independently answerable.
+  Blocks: complete admitted seed-source input domain.
 
 ## Blocked
 

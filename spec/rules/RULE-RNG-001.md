@@ -127,7 +127,9 @@ None known.
 ## Open questions
 
 - The complete seed-source conversion and environmental/service inputs
-  (FND-RNG-009, FND-RNG-014..018, Q-RNG-004); global/table storage and
+  (FND-RNG-009, FND-RNG-014..018, Q-RNG-004). FND-RNG-023 settles local
+  date-before-time sampling without a coherence retry; external service
+  domain and rollover guarantees remain Q-RNG-006. Global/table storage and
   reader/writer identity remain separate (FND-RNG-019..020, Q-RNG-005). Near-buffer identity
   and admitted reseeding paths beyond the recovered direct call sequences
   remain separate (Q-RNG-003). The second root's local reseeding and
