@@ -1,9 +1,9 @@
 ---
 id: FND-UI-009
 title: A window's two handler pointers at 0xF9 and 0xFD are read only by the activation routine
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-UI-041]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

@@ -115,6 +115,11 @@ Next ID: Q-COMBAT-014
   That shipped graph-existence/layout obligation is answered; active
   archive/window reuse identity, successful loaded children/callbacks,
   synchronized runtime state and backend/palette outcomes remain.
+  Tried: FND-UI-041 qualifies the setup's three window callback fields,
+  the generic before/after-child handoff and the selected-owner gate to
+  icon construction. The create/reuse/close pointer operations and
+  distinction between DS:A11D and DS:1431 are answered locally; complete
+  writer/lifetime admission, successful callbacks and rendering remain.
 - Q-COMBAT-011. RULE-COMBAT-009: What initializes and subsequently writes
   the category bitmap used by the status
   selector? Settles it: qualified writer/initializer coverage, admitted

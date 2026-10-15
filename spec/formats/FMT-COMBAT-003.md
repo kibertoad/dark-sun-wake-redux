@@ -64,3 +64,7 @@ metadata, without establishing native acquisition or display success.
   FND-COMBAT-040 verifies the installed window/frame reference graph,
   slot metadata and relative geometry; successful acquisition and
   loaded callback/display state remain Q-COMBAT-010.
+  FND-UI-041 supplies the setup/setter/post-child route to icon
+  construction and local create/reuse/close pointer operations;
+  full shared-window identity and callback/display completion remain
+  Q-COMBAT-010.

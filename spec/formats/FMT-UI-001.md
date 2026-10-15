@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_ui_001.ksy
-evidence: [FND-UI-001, FND-UI-002, FND-UI-003, FND-UI-008, FND-UI-009, FND-UI-011, FND-UI-016, FND-UI-018]
+evidence: [FND-UI-001, FND-UI-002, FND-UI-003, FND-UI-008, FND-UI-041, FND-UI-011, FND-UI-016, FND-UI-018]
 conflicting: []
 split_with: []
 related: []
@@ -42,8 +42,8 @@ controls drawn at the window's origin plus the child's `x` and `y` [FND-UI-016, 
 | `0xF2` | 1 | `UINT8` | `unk_F2` | Purpose unknown. 0 in every record. The child dispatcher adds it to the address of each child record. | supported | FND-UI-002, FND-UI-011 |
 | `0xF3` | 2 | `UINT16LE` | `child_count` | Number of child records that follow the fixed part. | supported | FND-UI-002, FND-UI-011 |
 | `0xF5` | 4 | `BYTE[4]` | `unk_F5` | Purpose unknown. 0 in every record. | supported | FND-UI-002 |
-| `0xF9` | 4 | `FARPTR<BYTE>` | `after_children` | 0 in every record. In the loaded record, a handler the activation routine calls after it dispatches the children, or null. | supported | FND-UI-002, FND-UI-009 |
-| `0xFD` | 4 | `FARPTR<BYTE>` | `before_children` | 0 in every record. In the loaded record, a handler the activation routine calls before it dispatches the children, or null. | supported | FND-UI-002, FND-UI-009 |
+| `0xF9` | 4 | `FARPTR<BYTE>` | `after_children` | 0 in every record. In the loaded record, a handler the activation routine calls after it dispatches the children, or null. | supported | FND-UI-002, FND-UI-041 |
+| `0xFD` | 4 | `FARPTR<BYTE>` | `before_children` | 0 in every record. In the loaded record, a handler the activation routine calls before it dispatches the children, or null. | supported | FND-UI-002, FND-UI-041 |
 | `0x101` | 4 | `BYTE[4]` | `unk_101` | Purpose unknown. 0 in every record. | supported | FND-UI-002 |
 | `0x105` | `child_count * 30` | `FMT-UI-002[child_count]` | `children` | The controls the window places, in stored order. | supported | FND-UI-002, FND-UI-008, FND-UI-011, FND-UI-016, FND-UI-018 |
 | | | | | Total size `261 + child_count * 30` | | |

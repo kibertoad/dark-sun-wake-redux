@@ -23,6 +23,11 @@ Next ID: Q-UI-006
   Tried: FND-PARTY-217 links the inventory's `WIND/13500` request to overlay
   189's handler and redraw projection, without establishing all event branches
   or native control states; position geometry is separated into Q-PARTY-085.
+  Tried: FND-UI-041 supersedes FND-UI-009's incorrect direct-caller
+  absence claims, preserving callback field/order evidence and qualifying
+  the effect-window setup's before/after targets and icon-builder gate.
+  These target/handoff obligations are answered; complete screen routes,
+  callback effects, loaded graph admission and native states remain.
 - Q-UI-003. SCR-UI-002, SCR-UI-005, SCR-UI-006, SCR-UI-007, SCR-UI-011, FMT-UI-001, SCR-UI-001, SCR-UI-003: Where does the game
   place each window, given that the resources hold no screen position? Settles it: a reading of
   the code that writes a window's runtime `unk_96` and `unk_98`, or captures of each screen.
