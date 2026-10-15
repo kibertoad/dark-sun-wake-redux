@@ -30,10 +30,17 @@ explicit request.
 ## Handover
 
 - Stage: Slices; entire-game documentation remains incomplete.
-- Baseline: pinned upstream rules verify offline. Documentation comparison
-  requires the current main ref, including its scheduled generated files.
-- Unfinished: no research draft yet.
-- Next: Q-RNG-004 service/input admission, then Q-RNG-005 storage coverage;
-  Q-RNG-003 reseeding admission; Q-PARTY-082 graph selector bindings.
+- Last gate: 2026-10-15, ./tools/Test.ps1 -NoRestore passed: 715 .NET tests,
+  Node suites and documentation checks for 1327 entries and 168 parity rows.
+  Existing argument-count/Kaitai skips and Tried-count warnings remain.
+- Baseline: pinned upstream rules verify offline; local main includes the
+  scheduled generated-file baseline. Generated files were not edited.
+- Unfinished: no batch draft. No original-game process was started.
+- Checkpoint: goal remains active; documentation of the entire game is
+  incomplete. No owner decision is needed for the next static item.
+- Next: Q-RNG-006 connected clock-service admission using SRC-RUSTDOS-172;
+  Q-RNG-004 environment/string and indexed input admission;
+  Q-RNG-005 storage coverage; Q-RNG-003 reseeding admission;
+  Q-PARTY-082 graph selector bindings.
 - Runtime prerequisites and local evidence stores: docs/HANDOVER.md and
   docs/RUNTIME.md. Person-only requests remain separate.
