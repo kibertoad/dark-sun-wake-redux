@@ -112,10 +112,13 @@ Next ID: Q-RNG-007
 - Q-RNG-006. RULE-RNG-001: Does the admitted pinned runtime route the clock
   requests through the reviewed date/time handlers with the required storage
   and register identity? Settles it: source-to-release correspondence,
-  installed INT 21 routing and guest-hook admission, common dispatch/return
-  effects and the time handler's clock stall; preserve DS/SI destinations
-  and read the admitted clock construction, offset writers and date domain.
-  Local result fields and independent reads are described by
+  installed INT 21 routing and guest-hook admission, nonpaged real-mode
+  entry/ordinary return admission, common-memory writes separated from the
+  game's buffers, and active deterministic start/clock-offset state and
+  admitted date domain. Local preservation, common effects, clock construction
+  and stall/update algorithms are answered conditionally in SRC-RUSTDOS-172;
+  actual offset writers and continued storage identity remain. Local result
+  fields and independent reads are described by
   SRC-RUSTDOS-172, rather than assumed generic DOS guarantees.
   Tried: FND-RNG-015 identifies returned word stores; FND-RNG-023 completely
   reads the game's request preparation/order without local validation.
@@ -124,7 +127,13 @@ Next ID: Q-RNG-007
   handler assignments, separate CMOS samples and host-clock/offset access.
   The source acquisition and local handler-body obligations are answered;
   connected runtime admission remains. Moved from Source to Static now
-  that the required source snapshot is available. Blocks: complete admitted
+  that the required source snapshot is available. Tried: SRC-RUSTDOS-172's
+  connected real-mode reading answers default-vector dispatch, local
+  DS/SI/SS/BP preservation, common caller-save/DOS-state writes, service
+  flag return and the deterministic clock boundary/stall algorithm. These
+  source-body obligations are removed from Settles it; actual route,
+  memory separation, active clock state and release correspondence remain.
+  Blocks: complete admitted
   seed-source input domain.
 
 ## Emulated call
