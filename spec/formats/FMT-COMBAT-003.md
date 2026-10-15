@@ -61,3 +61,6 @@ metadata, without establishing native acquisition or display success.
   FND-COMBAT-039 supplies the later cache label/action branches and
   their count/ID/key distinction; native graph/event admission and
   synchronized cache state remain part of that item.
+  FND-COMBAT-040 verifies the installed window/frame reference graph,
+  slot metadata and relative geometry; successful acquisition and
+  loaded callback/display state remain Q-COMBAT-010.

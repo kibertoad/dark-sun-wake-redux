@@ -109,6 +109,12 @@ Next ID: Q-COMBAT-014
   cache branches are settled. Native graph/dispatch and event meaning,
   synchronized counts/cache/state, reader/backend/release outcomes and
   complete consumer admission remain.
+  Tried: FND-COMBAT-040 verifies WIND/11500's explicit 86-child list
+  contains all 35 registered frame identifiers exactly once and checks
+  their APFM resources, dimensions, masks and relative positions.
+  That shipped graph-existence/layout obligation is answered; active
+  archive/window reuse identity, successful loaded children/callbacks,
+  synchronized runtime state and backend/palette outcomes remain.
 - Q-COMBAT-011. RULE-COMBAT-009: What initializes and subsequently writes
   the category bitmap used by the status
   selector? Settles it: qualified writer/initializer coverage, admitted
