@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-011
+Next ID: Q-COMBAT-013
 
 ## Static
 
@@ -35,8 +35,7 @@ Next ID: Q-COMBAT-011
 - Q-COMBAT-009. RULE-COMBAT-009: What admitted effect-row and bitmap state
   supplies the status selector's category-zero list? Settles it: producers,
   count/capacity, object sorting and boundary/sentinel identity of the
-  ten-byte row table; admitted ID domain, category/bitmap writers,
-  DS/SS and output separation on the selector's callers. Complete the
+  ten-byte row table and admitted ID domain. Complete the
   reading without inferring valid state from the local row loop alone.
   FND-COMBAT-031 answers the common insertion's local assignments,
   conditional owner-group placement and count/store ordering; its inputs,
@@ -59,6 +58,14 @@ Next ID: Q-COMBAT-011
   at the old count, not just an owner word. Local removal compaction and
   API distinctions are settled; handler/request effects, admitted callers,
   other writers and initialization remain.
+  Tried: FND-COMBAT-033 answers the local owner-relocation count pair,
+  saved fields and conditional ordering/progress. All encoded count
+  mutation candidates now have local readings or remain overlapping
+  decode candidates; this does not close computed/aliased/bulk writers
+  or restoration. The row loop uses a lower-bound threshold, not owner
+  equality; admitted transfer callers remain required. Independently
+  answerable bitmap producers and selector storage admission are split
+  to Q-COMBAT-011 and Q-COMBAT-012.
 - Q-COMBAT-010. FMT-COMBAT-003: Which complete resource/consumer contract
   admits the effect record's ICON number? Settles it: reached field-consumer
   coverage, admitted active archive/request route and runtime outcomes for
@@ -75,6 +82,25 @@ Next ID: Q-COMBAT-011
   error and caller pointer test; active archive, failure continuation,
   buffer validity and display/frame selection remain.
   Blocks: established effect-icon format contract.
+- Q-COMBAT-011. RULE-COMBAT-009: What initializes and subsequently writes
+  the category bitmap and prepared membership bitmap used by the status
+  selector? Settles it: qualified writer/initializer coverage, admitted
+  ID/bit domains and lifetimes for both bitmaps, including restoration
+  or bulk writes; distinguish static classification from per-owner state.
+  Tried: split from Q-COMBAT-009 after FND-COMBAT-029 identifies the
+  shipped classifier and local membership preparation. Local bit tests
+  and initial bytes alone do not admit all later bitmap contents.
+  Blocks: established status-effect selection.
+- Q-COMBAT-012. RULE-COMBAT-009: Do the status selector's actual callers
+  admit the bitmap, row table and output as independent valid storage?
+  Settles it: reached caller/frame and buffer allocation/lifetime
+  coverage, DS/SS identities and non-overlap for the preparer, collector
+  and status sorter, with their distinct 15-byte clear, 113-byte append
+  and 35-element sort limits. Tried: split from Q-COMBAT-009 after
+  FND-COMBAT-029 supplies the local accesses and FND-COMBAT-031/032/033
+  supply producer copies with separate backing obligations. Those local
+  ranges do not prove caller buffer or segment identity.
+  Blocks: established status-effect selection.
 
 ## Emulated call
 
