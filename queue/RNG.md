@@ -43,15 +43,20 @@ Next ID: Q-RNG-005
   this item retains caller reachability, aliases and seed-write coverage. Blocks: reproducible
   startup seeding and Q-PARTY-081's later recorded gameplay run.
 - Q-RNG-004. RULE-RNG-001: What complete date/time-to-value conversion does
-  the clock source use? Settles it: all branches and operand widths of
-  1000:386D, its month tables, environment initializer 1000:3B56 and daylight
-  helper 1000:3CD7; globals' initialization and writers, service input domain
+  the clock source use? Settles it: environment initializer 1000:3B56,
+  continued data-segment/table identity and table writers; globals' initialization and writers, service input domain
   and INT 21 effects, including admission of every indexed date/time value.
   Tried: FND-RNG-009 identifies the conversion chain, FND-RNG-014 measures
   one startup input and return, and FND-RNG-015 records direct buffer access
   widths and the separate wrapper contract. These do not settle the
   environment branches, tables or full admitted domain. Split from
   Q-RNG-003 so conversion and reseeding reachability can be settled separately.
+  Tried: FND-RNG-016 records the converter's local arithmetic widths,
+  shipped calendar-table windows and daylight helper branches, with a
+  conditional cross-check against the startup return. Those local-body
+  obligations are answered; initializer semantics, global/table writers,
+  continued identity and input admission remain. A conditional match does
+  not identify the measured startup initializer path.
   Blocks: complete reproducible seed-source semantics.
 
 ## Emulated call

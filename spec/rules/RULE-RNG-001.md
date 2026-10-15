@@ -127,7 +127,7 @@ None known.
 ## Open questions
 
 - The complete seed-source conversion and environmental/service inputs
-  (FND-RNG-009, FND-RNG-014, FND-RNG-015, Q-RNG-004); near-buffer identity
+  (FND-RNG-009, FND-RNG-014..016, Q-RNG-004); near-buffer identity
   and admitted reseeding paths beyond the recovered direct call sequences
   remain separate (Q-RNG-003).
 - Which game rules call the reducers. `random_between` and `roll_sum` have no recovered callers,
