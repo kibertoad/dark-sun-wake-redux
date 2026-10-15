@@ -109,6 +109,24 @@ Next ID: Q-RNG-007
   admitted case; other writers, full lifetime/allocator/source admission
   and other paths remain. Blocks: complete seed-source reading.
 
+- Q-RNG-006. RULE-RNG-001: Does the admitted pinned runtime route the clock
+  requests through the reviewed date/time handlers with the required storage
+  and register identity? Settles it: source-to-release correspondence,
+  installed INT 21 routing and guest-hook admission, common dispatch/return
+  effects and the time handler's clock stall; preserve DS/SI destinations
+  and read the admitted clock construction, offset writers and date domain.
+  Local result fields and independent reads are described by
+  SRC-RUSTDOS-172, rather than assumed generic DOS guarantees.
+  Tried: FND-RNG-015 identifies returned word stores; FND-RNG-023 completely
+  reads the game's request preparation/order without local validation.
+  Split from Q-RNG-004 for external-service semantics. Tried:
+  SRC-RUSTDOS-172 locates the exact pinned source tag and reads local
+  handler assignments, separate CMOS samples and host-clock/offset access.
+  The source acquisition and local handler-body obligations are answered;
+  connected runtime admission remains. Moved from Source to Static now
+  that the required source snapshot is available. Blocks: complete admitted
+  seed-source input domain.
+
 ## Emulated call
 
 None.
@@ -123,18 +141,7 @@ None.
 
 ## Source
 
-- Q-RNG-006. RULE-RNG-001: What date/time result domain, register preservation
-  and cross-request coherence does the admitted INT 21 service provide?
-  Settles it: authoritative implementation evidence for AH 2A/2C in the
-  pinned runtime, including selecting inputs, output fields, preservation
-  needed by the game's DS destination and SI pointer, and date/time rollover
-  behavior between requests. Distinguish the pinned emulator's guarantees
-  from claims about every original DOS environment. Tried: FND-RNG-015
-  identifies returned word stores; FND-RNG-023 completely reads local
-  request preparation/order and shows no local retry or validation. These
-  do not establish the external service implementation. Split from
-  Q-RNG-004 to keep external service semantics independently answerable.
-  Blocks: complete admitted seed-source input domain.
+None.
 
 ## Blocked
 
