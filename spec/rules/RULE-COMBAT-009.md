@@ -90,6 +90,9 @@ None known.
   membership/category bitmap writers, ID bounds and DS/SS identity remain
   Q-COMBAT-009. FND-COMBAT-029 answers the local preparation/collection
   branches, but not all admitted producers or other callers.
+  FND-COMBAT-031 supplies the common insertion's conditional prepend order
+  within an owner group and field/count writes; other mutation paths and
+  the full count/ID invariant remain part of that item.
 - A collected number above 112 would index beyond `effect_names`; the
   admitted ID domain remains Q-COMBAT-009.
 - (No item: the delivered resident-only emulated-call harness cannot reach

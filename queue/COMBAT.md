@@ -38,10 +38,21 @@ Next ID: Q-COMBAT-011
   ten-byte row table; admitted ID domain, category/bitmap writers,
   DS/SS and output separation on the selector's callers. Complete the
   reading without inferring valid state from the local row loop alone.
+  FND-COMBAT-031 answers the common insertion's local assignments,
+  conditional owner-group placement and count/store ordering; its inputs,
+  initialization, other mutation sites and continued identity remain.
+  A sentinel owner value is not required by the local count stop, but
+  backing storage for its preceding owner read remains to be admitted.
   Tried: FND-COMBAT-029 settles the local preparation, category filtering,
   duplicate-preserving row order and status caller's sort clamp; it retains
   explicit producer, boundary-read, signed-ID and alias prerequisites.
-  Follow-up to closed Q-COMBAT-008. Blocks: established status-effect selection.
+  Tried: FND-COMBAT-031 qualifies the two exported insertion-related roots,
+  their distinct gates, owner-local key search and upward overlapping move.
+  Those local producer/order obligations are answered; the initial zero
+  word and wrapper's exact-192 test do not prove a global count/ID bound.
+  Other count writers/callers, callback/removal effects, table initialization
+  and native buffer/segment identity remain. Follow-up to closed
+  Q-COMBAT-008. Blocks: established status-effect selection.
 - Q-COMBAT-010. FMT-COMBAT-003: Which complete resource/consumer contract
   admits the effect record's ICON number? Settles it: reached field-consumer
   coverage, admitted active archive/request route and runtime outcomes for
