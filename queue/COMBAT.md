@@ -44,12 +44,20 @@ Next ID: Q-COMBAT-011
   Follow-up to closed Q-COMBAT-008. Blocks: established status-effect selection.
 - Q-COMBAT-010. FMT-COMBAT-003: Which complete resource/consumer contract
   admits the effect record's ICON number? Settles it: reached field-consumer
-  coverage, archive/request route and outcomes for the shipped nonzero IDs;
+  coverage, admitted active archive/request route and runtime outcomes for
+  the shipped nonzero IDs; resource-pointer/error divergence and validity
+  before later display, and selected frames;
   distinguish the local no-icon zero branch from failed resource requests
   and later display. Tried: FND-COMBAT-029 identifies an exported consumer's
   zero exclusion and zero-extended ICON request, settling the field's local
   purpose. Complete lookup and other consumers remain. Follow-up to closed
-  Q-COMBAT-008. Blocks: established effect-icon format contract.
+  Q-COMBAT-008. Tried: FND-COMBAT-030 matches all 107 nonzero references
+  to 97 installed ICON resources, including their frame counts/dimensions
+  and shared IDs. That shipped reference-existence/metadata obligation is
+  answered. Its connected wrapper reading retains the distinct reader
+  error and caller pointer test; active archive, failure continuation,
+  buffer validity and display/frame selection remain.
+  Blocks: established effect-icon format contract.
 
 ## Emulated call
 

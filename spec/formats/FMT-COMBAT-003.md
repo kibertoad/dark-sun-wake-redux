@@ -9,7 +9,7 @@ byte_order: little
 size: 31
 text: false
 definition: fmt_combat_003.ksy
-evidence: [FND-COMBAT-022, FND-COMBAT-027, FND-COMBAT-029]
+evidence: [FND-COMBAT-022, FND-COMBAT-027, FND-COMBAT-029, FND-COMBAT-030]
 conflicting: []
 split_with: []
 related: [RULE-COMBAT-009]
@@ -40,8 +40,17 @@ None known.
 All 113 records of the installed `DSUN.EXE` of BLD-GOG-EN-1.1 were read with this layout; every
 name is printable ASCII followed only by NULs [FND-COMBAT-027].
 
+The 107 nonzero icon references name 97 distinct ICON resources, all present
+in the supported installed RESOURCE.GFF. Their 100 frames are all 16 by 16;
+ICON 16102 has four frames and the other 96 matched resources have one.
+Six records have zero references, and eight nonzero numbers are shared by
+multiple effects [FND-COMBAT-030]. This verifies the file references and
+metadata, without establishing native acquisition or display success.
+
 ## Open questions
 
 - Complete ICON request/archive mapping and other field consumers remain
   Q-COMBAT-010; the local request proves the field's role without proving
-  that every nonzero ID produces a rendered icon.
+  that every nonzero ID produces a rendered icon. FND-COMBAT-030 settles
+  reference presence and frame metadata in the installed archive; active
+  archive state, reader-error/pointer divergence and display selection remain.
