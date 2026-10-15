@@ -116,6 +116,10 @@ None known.
 - DS/SS identity, caller buffer lifetime and output/bitmap/table
   separation for `fn_573B_0025` and `fn_573B_002A` remain
   Q-COMBAT-012, with the local limits recorded by FND-COMBAT-029.
+  FND-COMBAT-036 supplies the selector's exact frame and mixed-segment
+  argument/access provenance. Its flag-one single collection fits the
+  local pre-bitmap span under admitted matching DS/SS; complete native
+  storage admission and the other exported caller path remain open.
 - A collected number above 112 would index beyond `effect_names`; the
   admitted ID domain remains Q-COMBAT-009.
 - (No item: the delivered resident-only emulated-call harness cannot reach

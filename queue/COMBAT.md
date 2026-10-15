@@ -118,6 +118,14 @@ Next ID: Q-COMBAT-013
   FND-COMBAT-029 supplies the local accesses and FND-COMBAT-031/032/033
   supply producer copies with separate backing obligations. Those local
   ranges do not prove caller buffer or segment identity.
+  Tried: FND-COMBAT-036 answers the selector frame's exact 114-byte
+  pre-bitmap span, helper argument/frame provenance, mixed DS/SS uses
+  and clamp timing. The flag-one status wrapper has a conditional
+  single-collection separation argument; the exported flag-zero path
+  appends both categories before clamping. Local frame offsets and
+  limits are settled; full reached callers/ordinal domains, runtime
+  segment/stack identity, callee preservation and admitted aggregate
+  writes in that second path remain.
   Blocks: established status-effect selection.
 
 ## Emulated call
