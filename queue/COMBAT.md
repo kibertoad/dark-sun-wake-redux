@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-013
+Next ID: Q-COMBAT-014
 
 ## Static
 
@@ -93,10 +93,11 @@ Next ID: Q-COMBAT-013
   buffer validity and display/frame selection remain.
   Blocks: established effect-icon format contract.
 - Q-COMBAT-011. RULE-COMBAT-009: What initializes and subsequently writes
-  the category bitmap and prepared membership bitmap used by the status
+  the category bitmap used by the status
   selector? Settles it: qualified writer/initializer coverage, admitted
-  ID/bit domains and lifetimes for both bitmaps, including restoration
-  or bulk writes; distinguish static classification from per-owner state.
+  ID/bit domains and lifetime, including restoration or bulk writes;
+  distinguish classification from the per-owner membership state now
+  tracked in Q-COMBAT-013.
   Tried: split from Q-COMBAT-009 after FND-COMBAT-029 identifies the
   shipped classifier and local membership preparation. Local bit tests
   and initial bytes alone do not admit all later bitmap contents.
@@ -108,6 +109,25 @@ Next ID: Q-COMBAT-013
   FND-COMBAT-035 qualifies SAVE/25's local restore destination and
   request semantics; other resource destinations, aliases and later
   initialization/postprocessing remain outside that reading.
+  Tried: FND-COMBAT-037 accounts for all nineteen returned overlay fixup
+  sites and both resident data relocation sites under the explicit
+  segment-reference query. Neighboring-record destinations are separated
+  conditionally; the descriptor site is metadata. That bounded census
+  classification is answered. Count/index admission, computed/aliased
+  and bulk writes, restoration and callee effects remain. Prepared
+  membership producers/content lifetime split to Q-COMBAT-013.
+  Blocks: established status-effect selection.
+
+- Q-COMBAT-013. RULE-COMBAT-009: What admitted producers and intervening
+  writes determine the prepared per-owner membership bitmap contents at
+  collection? Settles it: complete preparation/consumer caller paths,
+  admitted ID-to-bit writes and content lifetime through collection,
+  including two-category append interactions and any other bitmap
+  writers; physical buffer/segment admission remains Q-COMBAT-012.
+  Tried: split from Q-COMBAT-011 after FND-COMBAT-029 records the local
+  fifteen-byte clear and membership ORs, and FND-COMBAT-036 records
+  actual selector buffer arguments and its one-/two-category paths.
+  Those local operations do not prove unchanged contents on every caller.
   Blocks: established status-effect selection.
 - Q-COMBAT-012. RULE-COMBAT-009: Do the status selector's actual callers
   admit the bitmap, row table and output as independent valid storage?

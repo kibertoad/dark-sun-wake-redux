@@ -105,7 +105,7 @@ None known.
   FND-COMBAT-035 identifies the local full-resource restore requests and
   effect-storage-before-count ordering, retaining admitted resources,
   backing and postprocessing under Q-COMBAT-009.
-- Membership/category bitmap producers, initialization and lifetimes
+- Category bitmap producers, initialization and lifetime
   remain Q-COMBAT-011; FND-COMBAT-029 supplies only their local uses and
   preparation.
   FND-COMBAT-034 separates two neighboring-table writers and that
@@ -113,6 +113,13 @@ None known.
   it does not close bitmap writers or restoration.
   FND-COMBAT-035 supplies that numbered source's local restore request;
   complete bitmap restoration coverage remains Q-COMBAT-011.
+  FND-COMBAT-037 accounts for the explicit relocated segment-reference
+  candidates and separates the neighboring records conditionally;
+  runtime count admission and nonliteral/bulk writer coverage remain.
+- Prepared membership bitmap producers and content lifetime through
+  collection remain Q-COMBAT-013, split from the category-bitmap question.
+  FND-COMBAT-029 and FND-COMBAT-036 supply local preparation/collection
+  operations and selector buffer arguments, not every intervening writer.
 - DS/SS identity, caller buffer lifetime and output/bitmap/table
   separation for `fn_573B_0025` and `fn_573B_002A` remain
   Q-COMBAT-012, with the local limits recorded by FND-COMBAT-029.
