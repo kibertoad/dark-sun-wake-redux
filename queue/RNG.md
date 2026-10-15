@@ -18,7 +18,10 @@ Next ID: Q-RNG-006
   which draws without a helper. Tried: FND-RNG-009 recovers two direct overlay
   seed callers; their complete source/reseeding contract is separated into
   Q-RNG-003. Its generator control query yields further overlay candidates
-  requiring instruction and rule verification. Blocks: slices 2-7.
+  requiring instruction and rule verification. Tried: FND-RNG-021 qualifies
+  overlay 204 +00E1 as a direct draw conditional on retained offset state
+  in the second reseeding root. That local consumer is answered; complete
+  rule mapping, other candidates and indirect state access remain. Blocks: slices 2-7.
 - Q-RNG-003. RULE-RNG-001: What complete input-to-seed contract and admitted
   reseeding paths do the two recovered seed callers use? Settles it: complete
   reading of the admitted caller paths and near-buffer DS/SS
@@ -40,7 +43,13 @@ Next ID: Q-RNG-006
   and reseeding coverage remain. Tried: FND-RNG-015 separates the wrapper's
   full-width return and optional-copy contract from conversion dependencies.
   Complete conversion and service/environment obligations move to Q-RNG-004;
-  this item retains caller reachability, aliases and seed-write coverage. Blocks: reproducible
+  this item retains caller reachability, aliases and seed-write coverage.
+  Tried: FND-RNG-021 reads the second root's unconditional reseeding before
+  a count-controlled port-offset loop. FND-RNG-022 resolves request 27's
+  wrapper and signed-byte argument narrowing, plus three direct caller
+  argument windows. Those local role/width obligations are answered;
+  shipped request instances, full upstream branch admission, DS/SS identity
+  and the other seed-writer/alias census remain. Blocks: reproducible
   startup seeding and Q-PARTY-081's later recorded gameplay run.
 - Q-RNG-004. RULE-RNG-001: Which date/time and environment inputs reach the
   reviewed clock conversion, and what input/service contract admits its reads?

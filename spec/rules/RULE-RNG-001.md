@@ -130,7 +130,9 @@ None known.
   (FND-RNG-009, FND-RNG-014..018, Q-RNG-004); global/table storage and
   reader/writer identity remain separate (FND-RNG-019..020, Q-RNG-005). Near-buffer identity
   and admitted reseeding paths beyond the recovered direct call sequences
-  remain separate (Q-RNG-003).
+  remain separate (Q-RNG-003). The second root's local reseeding and
+  conditional draw loop, and its script wrapper widths, are recorded in
+  FND-RNG-021..022; complete caller admission remains open.
 - Which game rules call the reducers. `random_between` and `roll_sum` have no recovered callers,
   and `random_mod` is called only from `chance_in_ten` and the table selection in FND-RNG-007,
   which is the music selector of RULE-SOUND-003 (FND-SOUND-012, Q-RNG-001).
