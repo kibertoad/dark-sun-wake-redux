@@ -81,6 +81,11 @@ Next ID: Q-COMBAT-014
   and identifies the window setup's owner-word store. That caller's
   local input producer is answered; admitted owner/cache/table state,
   intervening callbacks, all other callers and removal effects remain.
+  Tried: FND-COMBAT-043 answers the immediate restore wrapper's
+  placed-object postprocessing and conditional replacement of the saved
+  reader result by archive-helper cleanup. Its own body supplies no
+  effect-row/count validation. The other caller, complete child/writer
+  coverage, archive/destination and restored-state admission remain.
 - Q-COMBAT-010. FMT-COMBAT-003: Which complete resource/consumer contract
   admits the effect record's ICON number? Tried: FND-COMBAT-041 answers
   the separate background producer's cache index, source resource and
