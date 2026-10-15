@@ -32,7 +32,7 @@ Next ID: Q-COMBAT-013
   `fn_5671_0098` with 0 do, and what do `fn_182_19F8`, `fn_3D72_0D83`, `fn_28C9_000A`,
   `fn_2C5F_018C` and the menu `fn_566A_0025` do? Settles it: a reading of overlay 173 from its
   code offsets `0x2FE9` and `0x306B`, and of the other routines. Tried: none. Blocks: slice 4.
-- Q-COMBAT-009. RULE-COMBAT-009: What admitted effect-row and bitmap state
+- Q-COMBAT-009. RULE-COMBAT-009: What admitted effect-row state
   supplies the status selector's category-zero list? Settles it: producers,
   count/capacity, object sorting and boundary/sentinel identity of the
   ten-byte row table and admitted ID domain. Complete the
@@ -70,6 +70,12 @@ Next ID: Q-COMBAT-013
   source pointers and shipped lengths for rows and count. That static
   save-source identity is answered; runtime length preparation, restore
   destinations/count admission and boundary backing remain.
+  Tried: FND-COMBAT-035 answers the numbered restore loop's actual
+  supplied-pointer/full-resource request route, local source-slot
+  preparation and effect-buffer-before-count ordering. That bulk count
+  producer is identified; it is not bounded by the writer's length
+  array. Actual archive/resource selection, destination extent, restored
+  ID/count/order validation, other destinations and postprocessing remain.
 - Q-COMBAT-010. FMT-COMBAT-003: Which complete resource/consumer contract
   admits the effect record's ICON number? Settles it: reached field-consumer
   coverage, admitted active archive/request route and runtime outcomes for
@@ -99,6 +105,9 @@ Next ID: Q-COMBAT-013
   classifier prefix for valid local counts. This answers their relative
   field/source positions; the other relocation/fixup candidates, count
   admission, bulk/aliased writers and membership lifetime remain.
+  FND-COMBAT-035 qualifies SAVE/25's local restore destination and
+  request semantics; other resource destinations, aliases and later
+  initialization/postprocessing remain outside that reading.
   Blocks: established status-effect selection.
 - Q-COMBAT-012. RULE-COMBAT-009: Do the status selector's actual callers
   admit the bitmap, row table and output as independent valid storage?
