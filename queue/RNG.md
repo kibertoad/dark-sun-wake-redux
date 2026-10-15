@@ -82,7 +82,12 @@ Next ID: Q-RNG-006
   FND-RNG-017 measures the default-path globals and FND-RNG-018 reads the
   local initializer and helper writes. These establish local sites, not
   complete storage/writer coverage. Split from Q-RNG-004 to separate that
-  coverage from service/input admission. Blocks: complete seed-source reading.
+  coverage from service/input admission. Tried: FND-RNG-019 identifies the
+  environment constructor's record-backed entry, its root store/array
+  construction, startup label-buffer bulk zero and the timezone initializer's
+  separate stored caller. Those local producer/caller gaps are answered;
+  native constructor metadata, other writers, source/callback/allocator
+  admission and continued storage identity remain. Blocks: complete seed-source reading.
 
 ## Emulated call
 
