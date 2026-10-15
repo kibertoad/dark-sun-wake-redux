@@ -43,13 +43,22 @@ Next ID: Q-COMBAT-017
   predicate. Independent adjustment, menu-result and postprocessing
   obligations move to Q-COMBAT-014/015/016. Blocks: slice 4.
 - Q-COMBAT-014. RULE-COMBAT-005: What does the zero-predicate adjustment
-  through 2C5F:018C do before the menu recomputes its position?
-  Settles it: complete adjustment branches, input/view/slot producers,
-  reached menu caller and output/state effects through the later rereads.
+  through 2C5F:018C leave for the menu under admitted runtime state?
+  Settles it: complete bound/slot/segment and independent-storage
+  admission, writer/lifetime coverage through adjustment, child effects
+  and preservation through the menu's rereads, and final presentation.
   Tried: split from Q-COMBAT-006 after FND-COMBAT-048 settles the
   inclusive wrapped-unsigned anchor predicate and its caller's
   conditional adjustment and coordinate-reload route; that predicate
-  does not establish successful view adjustment. Blocks: slice 4.
+  does not establish successful view adjustment.
+  Tried: FND-COMBAT-049 answers the wrapper's low-byte mode and anchor
+  arguments, all local aligned/signed/wrapped view calculations, bound
+  test order, later child-call sequence and byte-versus-word flag
+  widths. FND-COMBAT-050 answers request-33 bound packing and request-38
+  coordinates/results, reset constants and the local restore stores.
+  Those local calculation and identified-producer obligations are
+  removed from Settles it; complete admitted inputs/writers, lifetime,
+  child preservation and presentation remain. Blocks: slice 4.
 - Q-COMBAT-015. RULE-COMBAT-005: Which results does the menu at
   566A:0025 return for selection and cancellation? Settles it: reached
   menu construction, event/callback and dismissal paths through returned

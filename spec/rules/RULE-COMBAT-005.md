@@ -4,7 +4,7 @@ title: The end-of-move menu offers GUARD, WAIT and END TURN beside the character
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-COMBAT-026, FND-COMBAT-024, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-COMBAT-008, FND-ACTOR-003, FND-PARTY-013, FND-COMBAT-047, FND-COMBAT-048]
+evidence: [FND-COMBAT-026, FND-COMBAT-024, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-COMBAT-008, FND-ACTOR-003, FND-PARTY-013, FND-COMBAT-047, FND-COMBAT-048, FND-COMBAT-049, FND-COMBAT-050]
 conflicting: []
 split_with: []
 related: [RULE-COMBAT-004, FMT-COMBAT-001, FMT-ACTOR-004]
@@ -101,6 +101,9 @@ None known.
   leaves for later consumers (Q-COMBAT-016).
 - What `fn_566A_0025` returns when the player selects or closes the menu
   (Q-COMBAT-015).
-- What `fn_2C5F_018C` changes and admits before the later coordinate
-  rereads (Q-COMBAT-014). FND-COMBAT-048 answers the separate local
-  anchor-position test made by `fn_28C9_000A`.
+- What admitted state and complete child/preservation contract let
+  `fn_2C5F_018C` supply the menu's later coordinate rereads and final
+  presentation (Q-COMBAT-014). FND-COMBAT-049 answers its local
+  calculation and child sequence; FND-COMBAT-050 identifies distinct
+  bound and coordinate producers. FND-COMBAT-048 answers the separate
+  local anchor-position test made by `fn_28C9_000A`.
