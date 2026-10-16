@@ -49,10 +49,11 @@ Entries by status.
 
 ## superseded
 
-1 entries.
+2 entries.
 
 | ID | Title |
 |---|---|
+| [FND-UI-009](../../findings/FND-UI-009.md) | A window's two handler pointers at 0xF9 and 0xFD are read only by the activation routine |
 | [FND-UI-029](../../findings/FND-UI-029.md) | WIND 16500 places the thirteen Preferences buttons |
 
 ## recorded
@@ -69,7 +70,6 @@ Entries by status.
 | [FND-UI-006](../../findings/FND-UI-006.md) | The frame and child dispatchers test the word at 0x58 of APFM and BUTN records and at 0x96 of EBOX records |
 | [FND-UI-007](../../findings/FND-UI-007.md) | The routine at 3F96:02F8 sets, clears or zeroes the event mask of an APFM record |
 | [FND-UI-008](../../findings/FND-UI-008.md) | The generic window lookup, registration, redraw and activation code does not read 0x3A of a WIND record |
-| [FND-UI-009](../../findings/FND-UI-009.md) | A window's two handler pointers at 0xF9 and 0xFD are read only by the activation routine |
 | [FND-UI-010](../../findings/FND-UI-010.md) | Three EBOX lookup wrappers have no direct callers, and the child dispatcher is reached from one input path |
 | [FND-UI-011](../../findings/FND-UI-011.md) | The child dispatcher at 3D72:0EB8 reads a window's count at 0xF3, flags at 0x9E and offset at 0x96 |
 | [FND-UI-012](../../findings/FND-UI-012.md) | No decoded instruction of the resident image has the number of a start-flow, Look-panel or character-view control as an operand |
@@ -100,6 +100,7 @@ Entries by status.
 | [FND-UI-038](../../findings/FND-UI-038.md) | Save and Load callback navigates ten rows and tests available records in Load mode |
 | [FND-UI-039](../../findings/FND-UI-039.md) | Fresh rust-dos startup reaches the start-window opener call with argument one and matching data and stack segments |
 | [FND-UI-040](../../findings/FND-UI-040.md) | A strict native restore of the opener checkpoint runs its declared call to return with unchanged RNG state |
+| [FND-UI-041](../../findings/FND-UI-041.md) | Window callback setters and refresh have direct overlay callers, including the effect window |
 
 ## Open questions
 

@@ -14,7 +14,7 @@ Entries by kind.
 
 ## sources
 
-12 entries.
+13 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -27,6 +27,7 @@ Entries by kind.
 | [SRC-MS-CRT-ASSERT](../../sources/SRC-MS-CRT-ASSERT.md) | Microsoft CRT assertion failure contract | None |
 | [SRC-OPENDS-5C6CBD7](../../sources/SRC-OPENDS-5C6CBD7.md) | OpenDS, a Dark Sun reverse-engineering project with a GPL disassembler, commit 5c6cbd7 | None |
 | [SRC-README-1.1](../../sources/SRC-README-1.1.md) | README.TXT for version 1.1, shipped with the GOG release | None |
+| [SRC-RUSTDOS-172](../../sources/SRC-RUSTDOS-172.md) | rust-dos v1.7.2 clock service source snapshot | None |
 | [SRC-WIN32-ATOMS](../../sources/SRC-WIN32-ATOMS.md) | Microsoft Win32 local atom API contracts | None |
 | [SRC-WIN32-X86-ABI](../../sources/SRC-WIN32-X86-ABI.md) | Microsoft Win32 x86 flat-mode and calling-convention contract | None |
 | [SRC-YOUTUBE-FLOMVOSHEOM](../../sources/SRC-YOUTUBE-FLOMVOSHEOM.md) | Dark Sun: Wake of the Ravager playthrough, YouTube video FLoMVOSHeOM | None |

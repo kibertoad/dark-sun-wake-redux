@@ -21,7 +21,7 @@ Entries by area.
 | [FND-UI-006](../../findings/FND-UI-006.md) | The frame and child dispatchers test the word at 0x58 of APFM and BUTN records and at 0x96 of EBOX records | recorded |
 | [FND-UI-007](../../findings/FND-UI-007.md) | The routine at 3F96:02F8 sets, clears or zeroes the event mask of an APFM record | recorded |
 | [FND-UI-008](../../findings/FND-UI-008.md) | The generic window lookup, registration, redraw and activation code does not read 0x3A of a WIND record | recorded |
-| [FND-UI-009](../../findings/FND-UI-009.md) | A window's two handler pointers at 0xF9 and 0xFD are read only by the activation routine | recorded |
+| [FND-UI-009](../../findings/FND-UI-009.md) | A window's two handler pointers at 0xF9 and 0xFD are read only by the activation routine | superseded |
 | [FND-UI-010](../../findings/FND-UI-010.md) | Three EBOX lookup wrappers have no direct callers, and the child dispatcher is reached from one input path | recorded |
 | [FND-UI-011](../../findings/FND-UI-011.md) | The child dispatcher at 3D72:0EB8 reads a window's count at 0xF3, flags at 0x9E and offset at 0x96 | recorded |
 | [FND-UI-012](../../findings/FND-UI-012.md) | No decoded instruction of the resident image has the number of a start-flow, Look-panel or character-view control as an operand | recorded |
@@ -53,6 +53,7 @@ Entries by area.
 | [FND-UI-038](../../findings/FND-UI-038.md) | Save and Load callback navigates ten rows and tests available records in Load mode | recorded |
 | [FND-UI-039](../../findings/FND-UI-039.md) | Fresh rust-dos startup reaches the start-window opener call with argument one and matching data and stack segments | recorded |
 | [FND-UI-040](../../findings/FND-UI-040.md) | A strict native restore of the opener checkpoint runs its declared call to return with unchanged RNG state | recorded |
+| [FND-UI-041](../../findings/FND-UI-041.md) | Window callback setters and refresh have direct overlay callers, including the effect window | recorded |
 | [RULE-UI-001](../../rules/RULE-UI-001.md) | Which controls the window code offers an event or the pointer to, by their event masks | supported |
 | [SCR-UI-001](../../screens/SCR-UI-001.md) | Start window | supported |
 | [SCR-UI-002](../../screens/SCR-UI-002.md) | View Character | supported |

@@ -32,7 +32,7 @@ Entries by kind.
 
 ## findings
 
-28 entries.
+50 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -64,6 +64,28 @@ Entries by kind.
 | [FND-COMBAT-026](../../findings/FND-COMBAT-026.md) | The overlay 182 routine behind 56BD:00CA offers GUARD, WAIT and END TURN under the title END name's MOVE, beside the character | recorded |
 | [FND-COMBAT-027](../../findings/FND-COMBAT-027.md) | The executable holds 113 records of 31 bytes at 4C87:0000, an effect name and a word each, which the status panel's third line indexes | recorded |
 | [FND-COMBAT-028](../../findings/FND-COMBAT-028.md) | The data segment holds nine far pointers at 57E0:0663 to the names New, Okay, Stunned, Out Cold, Dying, Animated, Petrified, Dead and Gone | recorded |
+| [FND-COMBAT-029](../../findings/FND-COMBAT-029.md) | Status effect collection filters category zero and effect-name metadata supplies ICON resource numbers | recorded |
+| [FND-COMBAT-030](../../findings/FND-COMBAT-030.md) | Every nonzero effect icon reference matches the installed resource archive | recorded |
+| [FND-COMBAT-031](../../findings/FND-COMBAT-031.md) | Effect insertion shifts rows before their owner group and increments the count before field writes | recorded |
+| [FND-COMBAT-032](../../findings/FND-COMBAT-032.md) | Effect removal compacts through the boundary row and separates key, index and code entry contracts | recorded |
+| [FND-COMBAT-033](../../findings/FND-COMBAT-033.md) | The effect-owner transfer relocates saved rows through a decrement and increment pair | recorded |
+| [FND-COMBAT-034](../../findings/FND-COMBAT-034.md) | Effect rows, the neighboring three-byte table and effect count have separate numbered-save sources | recorded |
+| [FND-COMBAT-035](../../findings/FND-COMBAT-035.md) | Numbered restoration reads effect rows before the count through the complete-resource reader | recorded |
+| [FND-COMBAT-036](../../findings/FND-COMBAT-036.md) | The status selector separates a 114-byte output span from its bitmap and clamps only after collection | recorded |
+| [FND-COMBAT-037](../../findings/FND-COMBAT-037.md) | Relocated references to the category segment identify its classifier, neighboring records and metadata | recorded |
+| [FND-COMBAT-038](../../findings/FND-COMBAT-038.md) | The effect-icon list retains null-request slots and passes frame zero to its draw path | recorded |
+| [FND-COMBAT-039](../../findings/FND-COMBAT-039.md) | Effect-frame actions use cached IDs for labels and a first matching row's key for removal | recorded |
+| [FND-COMBAT-040](../../findings/FND-COMBAT-040.md) | The installed effect window contains all 35 registered application frames with 18-pixel slots | recorded |
+| [FND-COMBAT-041](../../findings/FND-COMBAT-041.md) | The effect-slot background requests cache index eight sourced from BMP/13007 | recorded |
+| [FND-COMBAT-042](../../findings/FND-COMBAT-042.md) | The image cache fill has three offset groups and a separate handle-capacity request | recorded |
+| [FND-COMBAT-043](../../findings/FND-COMBAT-043.md) | The numbered restore caller postprocesses placed objects and can replace its saved reader result with archive cleanup | recorded |
+| [FND-COMBAT-044](../../findings/FND-COMBAT-044.md) | The second restore caller carries a failed numbered read into a later region-setup argument | recorded |
+| [FND-COMBAT-045](../../findings/FND-COMBAT-045.md) | The nominal effect-table boundary lies inside resident storage and begins at the owner-flag base | recorded |
+| [FND-COMBAT-046](../../findings/FND-COMBAT-046.md) | The shipped DATA effect-byte domain includes one code 127 and its reviewed local route does not impose the name-table bound | recorded |
+| [FND-COMBAT-047](../../findings/FND-COMBAT-047.md) | Guard and wait make distinct local stores before a resolver-gated zero-or-mask update | recorded |
+| [FND-COMBAT-048](../../findings/FND-COMBAT-048.md) | The end-of-move position predicate tests an inclusive anchor rectangle with wrapped unsigned differences | recorded |
+| [FND-COMBAT-049](../../findings/FND-COMBAT-049.md) | The menu adjustment aligns and bounds the view before optional display work | recorded |
+| [FND-COMBAT-050](../../findings/FND-COMBAT-050.md) | View-bound inputs have distinct reset, restore and packed script producers | recorded |
 
 ## screens
 

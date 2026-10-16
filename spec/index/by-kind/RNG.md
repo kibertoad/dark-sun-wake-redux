@@ -14,7 +14,7 @@ Entries by kind.
 
 ## findings
 
-22 entries.
+26 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -40,3 +40,7 @@ Entries by kind.
 | [FND-RNG-020](../../findings/FND-RNG-020.md) | Native startup confirms the constructed environment array and distinct timezone initialization caller | recorded |
 | [FND-RNG-021](../../findings/FND-RNG-021.md) | Second clock seed caller precedes a conditional random port-offset loop | recorded |
 | [FND-RNG-022](../../findings/FND-RNG-022.md) | Request 27 narrows packed offset-loop arguments to signed bytes | recorded |
+| [FND-RNG-023](../../findings/FND-RNG-023.md) | Seed clock sampling reads date before time without a coherence retry | recorded |
+| [FND-RNG-024](../../findings/FND-RNG-024.md) | A scripted d20 threshold test draws once per candidate and rejects its highest scaled result | recorded |
+| [FND-RNG-025](../../findings/FND-RNG-025.md) | Psionic action and resistance checks qualify five range-helper sites with conditional draws | recorded |
+| [FND-RNG-026](../../findings/FND-RNG-026.md) | Two coordinate samplers qualify the other six recovered range-helper sites | recorded |
