@@ -132,7 +132,8 @@ Next ID: Q-PARTY-088
   with the intended item? Settles it: all direct/indirect +0C writers,
   admitted record-index/object-number domains and resource/transfer/buffer
   outcomes of descriptor 190 +2F2F, record/map/character selection
-  preservation and later cache consumers, including zero and failed image
+  preservation and later cache consumers beyond the reviewed current-item
+  helper, including zero and failed image
   requests. Image placement and backend rendering remain Q-PARTY-085.
   Tried: split from Q-PARTY-020 after FND-PARTY-224 answers the local nonzero
   reuse, zero resolver, post-child selection reload, word store and unsigned
@@ -142,6 +143,11 @@ Next ID: Q-PARTY-088
   return. Those local resolver calculations/branches are removed from
   Settles it; admitted inputs, actual resource/buffer outcomes and all
   preservation, producers and invalidation remain.
+  Tried: FND-PARTY-227 answers the current-item helper's exact FFFF selection
+  predicate, 19103 no-selection return, zero-triggered resolve/store and
+  pointer-selection consumer connection. Those local consumer/fallback
+  branches are removed from Settles it; complete selection/storage admission,
+  other consumers, producers and invalidation remain.
   Blocks: complete reading of FMT-PARTY-006 and item-picture admission.
 - Q-PARTY-082. FMT-PARTY-006: Which possessions or equipment lists do the
   kind-2 combatant words `0x08`, `0x0A` and `0x0C` head? Settles it:
