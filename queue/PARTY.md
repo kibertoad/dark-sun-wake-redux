@@ -160,6 +160,10 @@ Next ID: Q-PARTY-088
   store, including zero/9999 acceptance and exhausted-scan selection index.
   That local producer is removed from Settles it; all other producers,
   invalidation, aliases and complete graph/slot/transfer admission remain.
+  Tried: FND-PARTY-230 maps the shipped kind-one field-six descriptor to
+  cache offset +0C, type two and initial width two. That descriptor binding
+  is removed from the indirect-writer gap; actual field-six callers,
+  current binding/width stability, all other producers and outcomes remain.
   Blocks: complete reading of FMT-PARTY-006 and item-picture admission.
 - Q-PARTY-082. FMT-PARTY-006: Which possessions or equipment lists do the
   kind-2 combatant words `0x08`, `0x0A` and `0x0C` head? Settles it:

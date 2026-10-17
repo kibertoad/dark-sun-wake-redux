@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_006.ksy
-evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229]
+evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229, FND-PARTY-230]
 conflicting: []
 split_with: []
 related: []
@@ -74,6 +74,11 @@ a placed-entry removal request, rebuilds a graph and copies that saved
 word into its first kind-1 record's cache. Its local store rejects neither
 zero nor 9999. Complete transfer/graph/slot admission, selection preservation
 and later effects remain open [FND-PARTY-229].
+
+Shipped kind-1 field 6 selects this cache word at offset `0x0C`,
+with type 2 and initial copy width 2. The generic setter uses the current
+width table; actual callers, runtime bindings and copy outcomes remain
+open [FND-PARTY-230].
 
 Byte `0x13` is `inventory_position`, a position code interpreted as a
 signed byte and increased by four to select a logical inventory-map word.
