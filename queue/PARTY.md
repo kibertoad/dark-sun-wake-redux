@@ -124,8 +124,9 @@ Next ID: Q-PARTY-087
   consumed by the inventory projection; Q-PARTY-085 holds its remaining contract.
 - Q-PARTY-082. FMT-PARTY-006: Which possessions or equipment lists do the
   kind-2 combatant words `0x08`, `0x0A` and `0x0C` head? Settles it:
-  code-backed distinctions between fields 16, 17 and 4 in the character's
-  screen/actions, including what selects each list and the player-visible
+  code-backed roles of fields 16 and 17 relative to field four, and other
+  character screen/action bindings beyond the reviewed recipient-transfer
+  field-four request, including what selects each list and the player-visible
   meaning, if any, of those distinctions. Generic enumeration order alone
   does not assign inventory or equipment labels. Head mutations are
   Q-PARTY-086; graph/root/storage admission is Q-PARTY-085. Tried:
@@ -142,16 +143,28 @@ Next ID: Q-PARTY-087
   FND-PARTY-217 supplies no new head-role distinction and ends in the same
   place. Split head mutations into Q-PARTY-086 and retain root/storage
   admission in Q-PARTY-085 rather than repeating the enumeration query.
+  Tried: FND-PARTY-221 binds the reviewed character-recipient transfer to
+  target graph entry zero and field four, the shipped kind-2 word at +0C.
+  That route's field-selection question is answered; Settles it retains
+  the other two heads' roles, other screen/actions and complete meaning,
+  not rediscovery of this local target argument.
 - Q-PARTY-086. FMT-PARTY-006: Which character-screen actions change a kind-2
   object's field-16, field-17 or field-4 head, and how do they preserve or
-  replace the attached chains? Settles it: reached action handlers and their
-  head selector/target arguments, list detach/append/replacement effects,
+  replace the attached chains? Settles it: remaining action-handler bindings,
+  admitted current-object/head identity beyond the reviewed recipient request,
+  complete list detach/append/replacement effects,
   failure continuation and the later screen consumer. Keep this separate
   from assigning gameplay labels to the heads (Q-PARTY-082) and graph/root
   storage admission (Q-PARTY-085).
   Tried: split from Q-PARTY-082 after FND-PARTY-054's existing traversal
   reading and FND-PARTY-217's projection do not establish user-action head
   updates; FND-PARTY-052 supplies the serialized field-to-head bindings.
+  Tried: FND-PARTY-221 answers the recipient route's target entry/field
+  arguments, local optional field-four setter and final field-ten request,
+  ignored setter statuses and conditional runtime width. Those local request
+  bindings are removed from Settles it; other actions, admitted current-object
+  preservation, all transfer/splice children, failures and later consumption
+  remain.
   Blocks: slice 2.
 - Q-PARTY-083. FMT-PARTY-006: What do a 23-byte record's attached handle at
   `0x08` and the records linked through it represent, and how are they used?
@@ -171,12 +184,19 @@ Next ID: Q-PARTY-087
   unproved. Blocks: complete reading of FMT-PARTY-006, not its remaining fields.
 - Q-PARTY-085. FMT-PARTY-006, SCR-UI-008: Which physical inventory slots do the
   position codes name, and is the position projection complete for all admitted
-  records? Settles it: all position-byte writers, coordinate/icon consumers,
+  records? Settles it: remaining position-byte writers beyond the reviewed
+  field-ten request, exact coordinate/icon consumers,
   graph and current-object producers, map capacity and direction-flag provenance,
   parent traversal termination, mode flags and 189 `+146B`'s recursive effects.
   Tried: FND-PARTY-217 reads byte `0x13`'s signed projection and the main draw
   loop; it leaves those position labels and complete contracts unproved.
   Blocks: complete inventory positioning, not other attached-record fields.
+  Tried: FND-PARTY-220 answers the local first-free recipient scan for codes
+  14..25 and its backpack-full diagnostic route, corresponding to logical
+  draw indices 18..29. FND-PARTY-221 answers the reviewed transfer's field-ten
+  request at +13 and the runtime-width dependency. Settles it retains exact
+  physical rectangles, other codes/writers and full admitted graph/storage/
+  child contracts, not those local scan/request calculations.
 - Q-PARTY-005. FMT-PARTY-004, FMT-PARTY-005: When do `30B0:00C1` and overlay 202 `+0C82` clear
   bit 0 of `PSST` bytes, what does the byte at `51F1:07E2 + 3 * power` hold, and does anything
   write a slot's 15-byte `SPST` entry at `4D62:039C` without naming that address? Settles it:

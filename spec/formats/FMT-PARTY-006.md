@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_006.ksy
-evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217]
+evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221]
 conflicting: []
 split_with: []
 related: []
@@ -46,8 +46,23 @@ Byte `0x13` is `inventory_position`, a position code interpreted as a
 signed byte and increased by four to select a logical inventory-map word.
 The main inventory draw loop consumes positions 4 through 29; other
 branches use positions 42 through 47. A byte of `0xFF` maps to position 3,
-outside that main draw loop. Physical slot labels and complete position
-producer/consumer behavior remain unassigned [FND-PARTY-217].
+outside that main draw loop [FND-PARTY-217]. The inventory recipient-space
+check marks occupied codes 14 through 25, selects the first unused code
+and reports no space when all twelve are occupied. Its caller associates
+that failure with backpack capacity. These codes project to logical draw
+indices 18 through 29; exact physical rectangles and other position labels
+remain open [FND-PARTY-220].
+
+The reviewed recipient-transfer route supplies target graph entry zero and
+field four, which the shipped kind-2 descriptors bind to the combatant's
+head word at `0x0C`. It later requests field ten with the selected position.
+For kind 1, shipped field ten addresses `0x13` with type zero. The setter
+copies the current runtime width for that type: setup assigns width one,
+whereas the executable's initial width is two. The low-byte position write
+therefore depends on reaching and retaining that setup assignment, admitted
+descriptor/record storage and the called helpers' effects. Neither this
+route nor its success byte establishes a complete native list transfer
+[FND-PARTY-221].
 
 ## Enumerations and flags
 
@@ -84,6 +99,9 @@ ends on a `chunk_type` of 0xFF whose header is the last 10 bytes of the resource
 - What the character's words at `0x08`, `0x0A` and `0x0C` distinguish when the
   possessions and equipment screens select a list (Q-PARTY-082). Generic
   graph order is recorded in FND-PARTY-054; it does not assign those labels.
+  FND-PARTY-221 identifies field four as the reviewed recipient-transfer
+  target request, leaving the other heads' roles and all other action
+  bindings open.
 - Which character-screen actions change the kind-2 field-16, field-17 and
   field-4 heads, including chain preservation, failures and later consumers
   (Q-PARTY-086). Graph/root/storage admission remains Q-PARTY-085.
@@ -92,5 +110,8 @@ ends on a `chunk_type` of 0xFF whose header is the last 10 bytes of the resource
   (FND-PARTY-052, FND-PARTY-196, Q-PARTY-083).
 - Complete quantity producer/consumer coverage and runtime field/table binding
   stability, beyond the placement use FND-PARTY-216 reads (Q-PARTY-084).
-- Physical position labels, all position writers and the projection's complete
-  graph/parent/mode/capacity contracts (FND-PARTY-217, Q-PARTY-085).
+- Exact physical rectangles, remaining position labels, all position writers
+  and the projection's complete graph/parent/mode/capacity contracts
+  (FND-PARTY-217, Q-PARTY-085). FND-PARTY-220 answers the local twelve-code
+  recipient-space scan; FND-PARTY-221 identifies a conditional field-ten
+  position setter and its runtime-width dependency.
