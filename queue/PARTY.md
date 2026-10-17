@@ -185,7 +185,8 @@ Next ID: Q-PARTY-087
 - Q-PARTY-085. FMT-PARTY-006, SCR-UI-008: Which physical inventory slots do the
   position codes name, and is the position projection complete for all admitted
   records? Settles it: remaining position-byte writers beyond the reviewed
-  field-ten request, exact coordinate/icon consumers,
+  field-ten request, remaining source coordinate/icon consumers beyond the
+  twelve backpack origins and all loaded-coordinate mutations,
   graph and current-object producers, map capacity and direction-flag provenance,
   parent traversal termination, mode flags and 189 `+146B`'s recursive effects.
   Tried: FND-PARTY-217 reads byte `0x13`'s signed projection and the main draw
@@ -197,6 +198,10 @@ Next ID: Q-PARTY-087
   request at +13 and the runtime-width dependency. Settles it retains exact
   physical rectangles, other codes/writers and full admitted graph/storage/
   child contracts, not those local scan/request calculations.
+  Tried: FND-PARTY-222 binds backpack codes 14..25 to APFM 11230..11241
+  and their twelve shipped origins, with column-first order. Those source
+  placement/identifier obligations are removed from Settles it; other codes,
+  actual loaded rectangles and all image, child and state admission remain.
 - Q-PARTY-005. FMT-PARTY-004, FMT-PARTY-005: When do `30B0:00C1` and overlay 202 `+0C82` clear
   bit 0 of `PSST` bytes, what does the byte at `51F1:07E2 + 3 * power` hold, and does anything
   write a slot's 15-byte `SPST` entry at `4D62:039C` without naming that address? Settles it:

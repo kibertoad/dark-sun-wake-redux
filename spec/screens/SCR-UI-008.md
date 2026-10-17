@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-AI-003, FND-COMBAT-023, FND-UI-021, FND-UI-030, SRC-MANUAL-1994, FND-PARTY-217]
+evidence: [FND-AI-003, FND-COMBAT-023, FND-UI-021, FND-UI-030, SRC-MANUAL-1994, FND-PARTY-217, FND-PARTY-222]
 conflicting: []
 split_with: []
 related: [RULE-AI-001, RULE-COMBAT-008, RULE-PARTY-008, RULE-ITEM-001, RULE-ITEM-002, RULE-ITEM-003, RULE-ITEM-004, RULE-UI-001, SCR-UI-002, SCR-UI-006, SCR-UI-009, SCR-UI-010, SCR-UI-018, SCR-UI-019]
@@ -17,6 +17,7 @@ related: [RULE-AI-001, RULE-COMBAT-008, RULE-PARTY-008, RULE-ITEM-001, RULE-ITEM
 |---|---|---|---|---|---|
 | Screen picture | `RESOURCE.GFF#BMP/13001`, or an image with the same outlines | None | (0, 0, 320, 200) | While the screen is shown | FND-UI-021 |
 | Controls | the `ICON` of each `BUTN` child of `RESOURCE.GFF#WIND/13500` | None | each child's position, with the window at (0, 0) | While the screen is shown | FND-UI-030 |
+| Backpack placement origins | `APFM/11230` through `/11241` placed by `WIND/13500` | Inventory position codes 14 through 25 | Two columns of six: x=186 and 204; y=18,36,54,72,90,108; numbering runs down the first column, then down the second | Source layout; current loaded rectangles and native rendering remain unvalidated | FND-PARTY-222 |
 
 The manual's picture (SRC-MANUAL-1994, page 11) shows the four character boxes down the left
 edge, the active character's portrait in the centre surrounded by fourteen body slots, twelve
@@ -85,6 +86,10 @@ None known.
   (FND-UI-030, Q-UI-002).
 - Where the slots, the data panel, the description box and the money bar are drawn, and what
   the 90 x 125 frame `APFM/13200` at (75, 36) is (FND-UI-030, Q-UI-001, Q-ITEM-002).
+- Complete loaded placement and image rendering for the twelve backpack
+  origins, other position codes and their frame treatment (Q-PARTY-085).
+  FND-PARTY-222 binds the twelve source origins to the drawing lookup;
+  it does not validate native pixels.
 - The effects of the other buttons remain unestablished; code is known for the leader
   and computer-control buttons (FND-COMBAT-023, FND-AI-003). The inventory opener
   requests `WIND/13500` with overlay 189's handler, and its redraw projects item

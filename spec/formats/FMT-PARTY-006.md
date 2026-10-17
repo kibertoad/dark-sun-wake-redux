@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_006.ksy
-evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221]
+evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222]
 conflicting: []
 split_with: []
 related: []
@@ -50,8 +50,12 @@ outside that main draw loop [FND-PARTY-217]. The inventory recipient-space
 check marks occupied codes 14 through 25, selects the first unused code
 and reports no space when all twelve are occupied. Its caller associates
 that failure with backpack capacity. These codes project to logical draw
-indices 18 through 29; exact physical rectangles and other position labels
-remain open [FND-PARTY-220].
+indices 18 through 29 [FND-PARTY-220]. Their rectangle requests select
+`APFM/11230` through `APFM/11241` in `WIND/13500`. The shipped origins are
+column-first: six at x=186 and six at x=204, each column's y values 18,
+36, 54, 72, 90 and 108. These are source window-relative coordinates;
+loaded control state, full image placement and other position labels remain
+open [FND-PARTY-222].
 
 The reviewed recipient-transfer route supplies target graph entry zero and
 field four, which the shipped kind-2 descriptors bind to the combatant's
@@ -110,8 +114,10 @@ ends on a `chunk_type` of 0xFF whose header is the last 10 bytes of the resource
   (FND-PARTY-052, FND-PARTY-196, Q-PARTY-083).
 - Complete quantity producer/consumer coverage and runtime field/table binding
   stability, beyond the placement use FND-PARTY-216 reads (Q-PARTY-084).
-- Exact physical rectangles, remaining position labels, all position writers
+- Remaining physical rectangles and position labels, all position writers
   and the projection's complete graph/parent/mode/capacity contracts
   (FND-PARTY-217, Q-PARTY-085). FND-PARTY-220 answers the local twelve-code
   recipient-space scan; FND-PARTY-221 identifies a conditional field-ten
-  position setter and its runtime-width dependency.
+  position setter and its runtime-width dependency. FND-PARTY-222 answers
+  the twelve source-layout backpack origins and rectangle-request identifiers,
+  leaving actual loaded placement and presentation admission open.
