@@ -129,7 +129,8 @@ Next ID: Q-PARTY-088
   Q-PARTY-087, separate from the other still-unassigned fields.
 - Q-PARTY-087. FMT-PARTY-006, SCR-UI-008, FMT-ACTOR-001: What complete producer, resolver and invalidation
   contract keeps the attached record's cached BMP number at +0C associated
-  with the intended item? Settles it: all direct/indirect +0C writers,
+  with the intended item? Settles it: remaining direct/indirect +0C writers
+  beyond the reviewed slot-image capture/store path,
   admitted record-index/object-number domains and resource/transfer/buffer
   outcomes of descriptor 190 +2F2F, record/map/character selection
   preservation and later cache consumers beyond the reviewed current-item
@@ -154,6 +155,11 @@ Next ID: Q-PARTY-088
   from Settles it; sentinel producers, other consumers and all admission/
   preservation obligations remain. The shipped source range does not prove
   the runtime branch unreachable.
+  Tried: FND-PARTY-229 answers +01F7's local object-slot image capture,
+  AL-gated continuation, removal/rebuild ordering and first-kind-one cache
+  store, including zero/9999 acceptance and exhausted-scan selection index.
+  That local producer is removed from Settles it; all other producers,
+  invalidation, aliases and complete graph/slot/transfer admission remain.
   Blocks: complete reading of FMT-PARTY-006 and item-picture admission.
 - Q-PARTY-082. FMT-PARTY-006: Which possessions or equipment lists do the
   kind-2 combatant words `0x08`, `0x0A` and `0x0C` head? Settles it:
