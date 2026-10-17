@@ -4,7 +4,7 @@ title: The computer-control button toggles computer control of a party member un
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-AI-002, FND-AI-003, FND-AI-004, FND-COMBAT-008, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-024, SRC-MANUAL-1994]
+evidence: [FND-AI-002, FND-AI-003, FND-AI-004, FND-COMBAT-052, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-024, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-AI-002, RULE-COMBAT-004, FMT-COMBAT-001, SCR-UI-002, SCR-UI-008]

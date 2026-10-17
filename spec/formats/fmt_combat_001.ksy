@@ -5,7 +5,7 @@ meta:
   endian: le
   bit-endian: le
 doc: One 49-byte combatant record of the table the game keeps in memory.
-doc-ref: FMT-COMBAT-001, FND-COMBAT-008, FND-COMBAT-022, FND-COMBAT-023, FND-AI-003, FND-AI-004
+doc-ref: FMT-COMBAT-001, FND-COMBAT-052, FND-COMBAT-022, FND-COMBAT-023, FND-AI-003, FND-AI-004
 seq:
   - id: hit_points
     type: s2

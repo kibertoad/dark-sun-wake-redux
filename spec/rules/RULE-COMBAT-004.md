@@ -4,7 +4,7 @@ title: G and W make the party member whose turn it is guard or wait, and Q opens
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-COMBAT-023, FND-COMBAT-024, FND-COMBAT-025, FND-COMBAT-022, FND-COMBAT-008, FND-ACTOR-003, FND-PARTY-013, FND-COMBAT-026, FND-AI-004, FND-COMBAT-047, SRC-MANUAL-1994]
+evidence: [FND-COMBAT-023, FND-COMBAT-024, FND-COMBAT-025, FND-COMBAT-022, FND-COMBAT-052, FND-ACTOR-003, FND-PARTY-013, FND-COMBAT-026, FND-AI-004, FND-COMBAT-047, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-COMBAT-005, RULE-AI-001, FMT-COMBAT-001, FMT-ACTOR-004]

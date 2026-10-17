@@ -1,9 +1,9 @@
 ---
 id: FND-COMBAT-008
 title: An overlay 182 routine marks the four party records and preloads the status panel images while the word at 57E0:0DAB is 2
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-COMBAT-052]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

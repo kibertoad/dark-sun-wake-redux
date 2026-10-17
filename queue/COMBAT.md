@@ -76,11 +76,21 @@ Next ID: Q-COMBAT-017
   Blocks: slice 4.
 - Q-COMBAT-016. RULE-COMBAT-005: What state does the common
   postprocessing after the end-of-move menu leave for its next consumer?
-  Settles it: overlay 182 +19F8 and 3D72:0D83, their complete children,
-  admitted inputs and postprocessing order/results on every choice path.
+  Settles it: admitted mode/record/slot/pointer inputs and their producers,
+  complete children and callback targets of overlay 182 +19F8 and
+  3D72:0D83, and storage/register preservation and final state through
+  those children on every choice path.
   Tried: split from Q-COMBAT-006; FND-COMBAT-026 and FND-COMBAT-047
   establish the common caller sequence after chosen or unhandled
-  results, but not the two callees' effects. Blocks: slice 4.
+  results, but not the two callees' effects.
+  Tried: FND-COMBAT-052 answers +19F8's local four-record marking,
+  post-child mode rereads, view/input flag and conditional slot stores,
+  resource/result branches and lack of caller result consumption. It
+  replaces FND-COMBAT-008's incomplete singular-caller claim. The existing
+  FND-CONFIG-171/175 readings answer the resident root's conditional
+  callback/result sequence. Those local ordering/result obligations are
+  removed from Settles it; actual inputs, children, targets and preservation
+  remain. Blocks: slice 4.
 - Q-COMBAT-009. RULE-COMBAT-009: What admitted effect-row state
   supplies the status selector's category-zero list? Settles it: producers,
   count/capacity, object sorting and boundary/sentinel identity of the

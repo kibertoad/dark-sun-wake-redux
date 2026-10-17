@@ -4,7 +4,7 @@ title: The end-of-move menu offers GUARD, WAIT and END TURN beside the character
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-COMBAT-026, FND-COMBAT-024, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-COMBAT-008, FND-ACTOR-003, FND-PARTY-013, FND-COMBAT-047, FND-COMBAT-048, FND-COMBAT-049, FND-COMBAT-050, FND-COMBAT-051]
+evidence: [FND-COMBAT-026, FND-COMBAT-024, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-COMBAT-052, FND-ACTOR-003, FND-PARTY-013, FND-COMBAT-047, FND-COMBAT-048, FND-COMBAT-049, FND-COMBAT-050, FND-COMBAT-051, FND-CONFIG-171, FND-CONFIG-175]
 conflicting: []
 split_with: []
 related: [RULE-COMBAT-004, FMT-COMBAT-001, FMT-ACTOR-004]
@@ -96,6 +96,24 @@ if nonzero, otherwise rereads the shared choice word. Thus a native
 selection-to-action claim still needs zero admitted child results and
 choice preservation through cleanup (Q-COMBAT-015).
 
+The common first postprocessor clears two byte flags, then conditionally
+marks the four party records and requests panel images for its initial
+mode-two branch. It rereads the mode after its children return; only a
+current mode of two or three continues into its local view/input restoration.
+That path registers the main view handler, conditionally copies the current
+slot and stores mode one before its optional resource requests. Its final
+mode-five resource branch is reached only through a third-icon request;
+an existing third icon skips it. FND-COMBAT-052 gives the local branches
+and leaves child effects and admitted state open under Q-COMBAT-016.
+
+The following resident postprocessor conditionally calls a freshly read
+callback with zero, runs an intervening gated service, and conditionally
+calls a freshly read callback with one. It can return zero or FFFF under
+the conditions in FND-CONFIG-171 and FND-CONFIG-175. This caller ignores
+that result and returns after the call returns. A callback rejection thus
+does not select another end-of-move action in this caller; complete callback,
+service and storage contracts remain Q-COMBAT-016.
+
 ## Edge cases
 
 `message_end_named_move` holds `%Fs` in place of the name and 11 other characters, so a name of
@@ -119,7 +137,11 @@ None known.
   stores (Q-COMBAT-006). FND-COMBAT-047 answers their local branches,
   resolver gate and distinct zero-mask/OR routes.
 - What the common postprocessing through `fn_182_19F8` and `fn_3D72_0D83`
-  leaves for later consumers (Q-COMBAT-016).
+  leaves for later consumers with admitted inputs, complete children,
+  callback targets and storage/preservation contracts (Q-COMBAT-016).
+  FND-COMBAT-052 answers the first root's local mode rereads, flag/slot
+  stores, resource branches and ignored result; FND-CONFIG-171 and
+  FND-CONFIG-175 supply the existing conditional resident-bracket reading.
 - What initialization, event delivery, control admission and complete child/
   storage-preservation contracts of `fn_566A_0025`, `fn_3A8E_060D` and
   `fn_3A8E_0D9A` make the local choice and final return
