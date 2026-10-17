@@ -28,12 +28,28 @@ an explicit owner request.
   supported escalation mechanism successfully runs scoped repository commands.
 - Child Git commands need the checkout-scoped safe.directory setting.
 - Preserve existing Tried notes; retry only with new evidence or a new reading.
+- Q-PARTY-082's generic selector/stack enumeration is already FND-PARTY-054;
+  do not repeat it as evidence for the heads' gameplay roles.
+- Full gates use an external temporary directory. The export fixture correctly
+  rejects a temporary output inside the checkout. Git hook snapshots can use
+  artifacts/hook-tmp through TMPDIR; keep EVIDENCE_PYTHON checkout-local.
 
 ## Handover
 
 - Stage: Slices; resume the unfinished research in docs/HANDOVER.md.
-- Last gate: pinned rules verify and documentation check passed on 2026-10-18
-  with the existing argument-count, Kaitai and scheduled-generation skips.
-- Unfinished: no research draft yet.
+- Last gate: 2026-10-18, ./tools/Test.ps1 -NoRestore passed: 715 .NET tests,
+  105 Node tests and five option controls; documentation passed with 1357
+  entries, 168 parity rows and five deviations. Existing argument-count and
+  absent-Kaitai skips remain. Tracking warnings remain for Q-PARTY-078/082,
+  Q-COMBAT-009/010 and Q-RNG-001/003/004; later attempts must reduce Settles it.
+- Unfinished: no tracked research draft. Q-PARTY-085 drawing queries have no
+  finding yet; reports are in GAME_DIR/analysis/party-record-heads/drawing-20261018/.
+  Use draw-linear-context.txt from the declared entry rather than restarting
+  decoding at the inventory's internal fragment boundary.
 - Blockers: existing person-only runtime observations in docs/RUNTIME.md.
-- Next: Q-COMBAT-014/015/016, then the remaining prioritized handover items.
+- Next: Q-PARTY-085 coordinate/icon consumers; Q-PARTY-086 remaining action
+  mutations and admission; Q-PARTY-082 remaining head roles; Q-COMBAT-014/015/016
+  remaining children and inputs; then the other prioritized handover items.
+- Checkpoint only: the standing research goal remains active. FND-COMBAT-051/052
+  and FND-PARTY-220/221 are the current research references. No full-game run
+  started; the gate retained its existing declared initializer call.
