@@ -127,15 +127,21 @@ Next ID: Q-PARTY-088
   lazily written by inventory drawing. That field-use question is removed
   from Settles it; its complete producer/resolver/lifetime reading is
   Q-PARTY-087, separate from the other still-unassigned fields.
-- Q-PARTY-087. FMT-PARTY-006, SCR-UI-008: What complete producer, resolver and invalidation
+- Q-PARTY-087. FMT-PARTY-006, SCR-UI-008, FMT-ACTOR-001: What complete producer, resolver and invalidation
   contract keeps the attached record's cached BMP number at +0C associated
   with the intended item? Settles it: all direct/indirect +0C writers,
-  descriptor 190 +2F2F and its inputs/children, record/map/character selection
+  admitted record-index/object-number domains and resource/transfer/buffer
+  outcomes of descriptor 190 +2F2F, record/map/character selection
   preservation and later cache consumers, including zero and failed image
   requests. Image placement and backend rendering remain Q-PARTY-085.
   Tried: split from Q-PARTY-020 after FND-PARTY-224 answers the local nonzero
   reuse, zero resolver, post-child selection reload, word store and unsigned
   BMP request, without establishing the whole cache lifecycle.
+  Tried: FND-PARTY-225 answers +2F2F's local word arithmetic, OJFF request,
+  offered-buffer/image-field correspondence and zero-on-nonzero-status
+  return. Those local resolver calculations/branches are removed from
+  Settles it; admitted inputs, actual resource/buffer outcomes and all
+  preservation, producers and invalidation remain.
   Blocks: complete reading of FMT-PARTY-006 and item-picture admission.
 - Q-PARTY-082. FMT-PARTY-006: Which possessions or equipment lists do the
   kind-2 combatant words `0x08`, `0x0A` and `0x0C` head? Settles it:

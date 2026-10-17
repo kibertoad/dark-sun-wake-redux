@@ -13,8 +13,11 @@ Next ID: Q-ACTOR-006
   do, what do the image numbers `31E0:0EFF` puts in place of `image` show, what do the unknown
   fields and the bits of `unk_00` of the object slot records hold, and how many slots are there?
   Settles it: a reading of the code that uses the 37-byte slot records at `DS:67BB`, fields
-  `0x0`, `0x7`, `0xF` and `0x19`, and of the overlay code of overlays 190, 197 and 213 around the
-  `OJFF` tag bytes. Blocks: nothing yet.
+  `0x0`, `0x7`, `0xF` and `0x19`, and of the remaining overlay code of overlays 197 and 213 around the
+  `OJFF` tag bytes. Tried: FND-PARTY-225 qualifies overlay 190's occurrence
+  and answers its local object-number/image-word resolver; that local
+  reader is removed from Settles it. Its resource/buffer and cache admission
+  remain Q-PARTY-087. Blocks: nothing yet.
 - Q-ACTOR-003. FMT-ACTOR-002: What is the layout of an `RDFF` resource? Settles it: a reading of
   `2D40:000A`, which receives the request, and of the overlay code of overlays 178, 188, 191 and
   201 around the `RDFF` tag bytes. Tried: a search for resident instructions with the

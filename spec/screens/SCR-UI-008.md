@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-AI-003, FND-COMBAT-023, FND-UI-021, FND-UI-030, SRC-MANUAL-1994, FND-PARTY-217, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224]
+evidence: [FND-AI-003, FND-COMBAT-023, FND-UI-021, FND-UI-030, SRC-MANUAL-1994, FND-PARTY-217, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225]
 conflicting: []
 split_with: []
 related: [RULE-AI-001, RULE-COMBAT-008, RULE-PARTY-008, RULE-ITEM-001, RULE-ITEM-002, RULE-ITEM-003, RULE-ITEM-004, RULE-UI-001, SCR-UI-002, SCR-UI-006, SCR-UI-009, SCR-UI-010, SCR-UI-018, SCR-UI-019]
@@ -120,8 +120,10 @@ None known.
   treatment (Q-PARTY-085).
   FND-PARTY-222 binds the twelve source origins to the drawing lookup;
   FND-PARTY-223 maps the other main origins. Neither validates native pixels.
-- Complete bitmap-number resolver, record-selection preservation and cache
-  lifecycle (FND-PARTY-224, Q-PARTY-087).
+- Complete resource/buffer admission for the bitmap-number resolver,
+  record-selection preservation and cache lifecycle (FND-PARTY-224,
+  FND-PARTY-225, Q-PARTY-087). Its local OJFF-number, image-word and
+  zero-on-failure branches are recorded in FND-PARTY-225.
 - The effects of the other buttons remain unestablished; code is known for the leader
   and computer-control buttons (FND-COMBAT-023, FND-AI-003). The inventory opener
   requests `WIND/13500` with overlay 189's handler, and its redraw projects item

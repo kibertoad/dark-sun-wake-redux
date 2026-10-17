@@ -9,7 +9,7 @@ byte_order: little
 size: 16
 text: false
 definition: fmt_actor_001.ksy
-evidence: [FND-ACTOR-001, FND-ACTOR-002, FND-ACTOR-012, FND-ACTOR-003, FND-ACTOR-004, FND-IMAGE-010, SRC-DSUN-MUSIC-79B6927]
+evidence: [FND-ACTOR-001, FND-ACTOR-002, FND-ACTOR-012, FND-ACTOR-003, FND-ACTOR-004, FND-IMAGE-010, SRC-DSUN-MUSIC-79B6927, FND-PARTY-225]
 conflicting: []
 split_with: []
 related: [RULE-ACTOR-001]
@@ -72,4 +72,7 @@ gameplay frame of the opening region matches `x_offset`, `y_offset` and `vertica
   any code reads the `ETAB` copy for drawing; `31E0:0E1B` stores that copy at `0xE` of the slot
   record (FND-ACTOR-003). (Q-ACTOR-002)
 
-- How the overlay code that names the tag reads the record (FND-ACTOR-006). (Q-ACTOR-002)
+- How the remaining overlay code in descriptors 197 and 213 that names the
+  tag reads the record (FND-ACTOR-006, Q-ACTOR-002). FND-PARTY-225 answers
+  descriptor 190's local object-number/image-word resolver, while its
+  resource and buffer admission remain Q-PARTY-087.

@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_006.ksy
-evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224]
+evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225]
 conflicting: []
 split_with: []
 related: []
@@ -49,6 +49,13 @@ and the returned word is stored before the BMP request. A zero resolver
 result is still requested; it is not locally replaced with a placeholder.
 Cache identity across the child, all producers and invalidation, and actual
 image acquisition remain open [FND-PARTY-224].
+
+The resolver requests OJFF using the 16-bit negation of record word
+`0x00`, sign-extended to a doubleword. It offers a sixteen-byte local
+buffer and returns zero for any nonzero returned status word; for zero
+status it returns that original local buffer's image word at `0x0C`,
+as laid out by FMT-ACTOR-001. Actual transfer into that buffer and
+selection preservation remain prerequisites [FND-PARTY-225].
 
 Byte `0x13` is `inventory_position`, a position code interpreted as a
 signed byte and increased by four to select a logical inventory-map word.
