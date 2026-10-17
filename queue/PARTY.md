@@ -170,16 +170,21 @@ Next ID: Q-PARTY-090
 - Q-PARTY-088. FMT-PARTY-006, FMT-ACTOR-001, SCR-UI-008: Which resource
   and buffer conditions admit the bitmap resolver and subsequent BMP request?
   Settles it: descriptor 190 +2F2F's admitted object-number/resource domain,
-  38FF:04AB's selected resource and transfer/size/status outcomes for its
-  offered sixteen-byte local region and separate pointer variable, successful
+  actual selected resource and transfer/size/status outcomes beyond the
+  reviewed full-count and reuse/allocation branches, successful offered-buffer
   image-word initialization, and the inventory acquisition/release paths'
-  actual buffer extent and pointer outcomes. Cache producers/consumers are
+  actual buffer extent, lifetime and pointer outcomes. Cache producers/consumers are
   Q-PARTY-087; record/selection/binding preservation is Q-PARTY-089; pixel and
   backend behavior remain Q-PARTY-085.
   Tried: split from Q-PARTY-087 after FND-PARTY-225 maps the resolver's local
   arithmetic, status gate and original-buffer read, and FND-PARTY-226 maps the
   caller's placement/release requests. Neither establishes these resource and
   buffer conditions. Blocks: admitted item-picture acquisition.
+  Tried: FND-PARTY-231 binds the resolver and BMP caller to the reader's
+  full selected length, existing-buffer versus allocation branches, pointer
+  assignment before later errors and bounded sixteen-byte transfer request.
+  Those local choices are removed from Settles it; actual archive/record
+  selection, admitted extents/aliases, OS results and lifetime remain.
 - Q-PARTY-089. FMT-PARTY-006, SCR-UI-008: Which runtime bindings and
   preservation conditions keep a cache access associated with the selected
   item across its child calls? Settles it: cache-specific record-index/table

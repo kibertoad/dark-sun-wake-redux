@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_006.ksy
-evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229, FND-PARTY-230]
+evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229, FND-PARTY-230, FND-PARTY-231]
 conflicting: []
 split_with: []
 related: []
@@ -56,6 +56,13 @@ buffer and returns zero for any nonzero returned status word; for zero
 status it returns that original local buffer's image word at `0x0C`,
 as laid out by FMT-ACTOR-001. Actual transfer into that buffer and
 selection preservation remain prerequisites [FND-PARTY-225].
+
+The resolver's nonnull offered data pointer selects existing-buffer reuse
+in the full-resource reader. The selected resource length supplies the
+transfer count; the reader receives no independent sixteen-byte capacity.
+A selected unchanged shipped OJFF has that sixteen-byte extent, while
+actual archive selection, aliasing and OS transfer remain open
+[FND-PARTY-231].
 
 The current-item image-number helper also reuses a nonzero cache and
 resolves/stores a zero cache, including a zero result. It returns 19103
