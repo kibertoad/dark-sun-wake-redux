@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-087
+Next ID: Q-PARTY-088
 
 ## Static
 
@@ -110,7 +110,8 @@ Next ID: Q-PARTY-087
   reads `0x7B`. Blocks:
   slice 2.
 - Q-PARTY-020. FMT-PARTY-006: What do the remaining fields of a 23-byte attached
-  record mean, apart from `0x00`, quantity at `0x02`, chain link `0x04`, and
+  record mean, apart from `0x00`, quantity at `0x02`, chain link `0x04`,
+  cached bitmap number at `0x0C`, and
   placed-entry bits at `0x12`, and inventory position at `0x13`? Its reference
   at `0x08` is Q-PARTY-083; complete position behavior is Q-PARTY-085.
   Settles it: direct readers/writers of the remaining offsets in the table at
@@ -122,6 +123,20 @@ Next ID: Q-PARTY-087
   are split into Q-PARTY-082, Q-PARTY-083 and Q-PARTY-084. Blocks: slice 2.
   Tried: FND-PARTY-217 identifies byte `0x13` as the signed position code
   consumed by the inventory projection; Q-PARTY-085 holds its remaining contract.
+  Tried: FND-PARTY-224 identifies word +0C as the BMP-number cache read and
+  lazily written by inventory drawing. That field-use question is removed
+  from Settles it; its complete producer/resolver/lifetime reading is
+  Q-PARTY-087, separate from the other still-unassigned fields.
+- Q-PARTY-087. FMT-PARTY-006, SCR-UI-008: What complete producer, resolver and invalidation
+  contract keeps the attached record's cached BMP number at +0C associated
+  with the intended item? Settles it: all direct/indirect +0C writers,
+  descriptor 190 +2F2F and its inputs/children, record/map/character selection
+  preservation and later cache consumers, including zero and failed image
+  requests. Image placement and backend rendering remain Q-PARTY-085.
+  Tried: split from Q-PARTY-020 after FND-PARTY-224 answers the local nonzero
+  reuse, zero resolver, post-child selection reload, word store and unsigned
+  BMP request, without establishing the whole cache lifecycle.
+  Blocks: complete reading of FMT-PARTY-006 and item-picture admission.
 - Q-PARTY-082. FMT-PARTY-006: Which possessions or equipment lists do the
   kind-2 combatant words `0x08`, `0x0A` and `0x0C` head? Settles it:
   code-backed roles of fields 16 and 17 relative to field four, and other
@@ -186,7 +201,7 @@ Next ID: Q-PARTY-087
   position codes name, and is the position projection complete for all admitted
   records? Settles it: remaining position-byte writers beyond the reviewed
   field-ten request, remaining source coordinate/icon consumers beyond the
-  twelve backpack origins and all loaded-coordinate mutations,
+  26 main origins and all loaded-coordinate mutations,
   graph and current-object producers, map capacity and direction-flag provenance,
   parent traversal termination, mode flags and 189 `+146B`'s recursive effects.
   Tried: FND-PARTY-217 reads byte `0x13`'s signed projection and the main draw
@@ -202,6 +217,11 @@ Next ID: Q-PARTY-087
   and their twelve shipped origins, with column-first order. Those source
   placement/identifier obligations are removed from Settles it; other codes,
   actual loaded rectangles and all image, child and state admission remain.
+  Tried: FND-PARTY-223 supplies the other fourteen main source origins and
+  identifier mapping, removing that remaining main-layout table from Settles
+  it. FND-PARTY-224 identifies the local cached BMP request; its full cache
+  lifecycle is Q-PARTY-087. Other draw paths, actual loaded coordinates,
+  image/backend effects, state admission and all other writers remain.
 - Q-PARTY-005. FMT-PARTY-004, FMT-PARTY-005: When do `30B0:00C1` and overlay 202 `+0C82` clear
   bit 0 of `PSST` bytes, what does the byte at `51F1:07E2 + 3 * power` hold, and does anything
   write a slot's 15-byte `SPST` entry at `4D62:039C` without naming that address? Settles it:

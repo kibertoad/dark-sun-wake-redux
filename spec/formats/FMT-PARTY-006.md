@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_006.ksy
-evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222]
+evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224]
 conflicting: []
 split_with: []
 related: []
@@ -42,6 +42,14 @@ amount on the new object and the remainder on the source object. This
 does not restrict the stored word to positive values or specify other
 quantity consumers [FND-PARTY-216].
 
+Runtime word `0x0C` is `cached_bitmap_number` in the reviewed inventory
+drawing path. A nonzero word is reused as an unsigned BMP resource number.
+Zero invokes a resolver, after which the selected record is reconstructed
+and the returned word is stored before the BMP request. A zero resolver
+result is still requested; it is not locally replaced with a placeholder.
+Cache identity across the child, all producers and invalidation, and actual
+image acquisition remain open [FND-PARTY-224].
+
 Byte `0x13` is `inventory_position`, a position code interpreted as a
 signed byte and increased by four to select a logical inventory-map word.
 The main inventory draw loop consumes positions 4 through 29; other
@@ -56,6 +64,11 @@ column-first: six at x=186 and six at x=204, each column's y values 18,
 36, 54, 72, 90 and 108. These are source window-relative coordinates;
 loaded control state, full image placement and other position labels remain
 open [FND-PARTY-222].
+
+Codes zero through thirteen select logical indices four through seventeen
+and `APFM/11216` through `APFM/11229`. Their source origins are listed in
+SCR-UI-008; this maps their positions without assigning individual equipment
+names [FND-PARTY-223].
 
 The reviewed recipient-transfer route supplies target graph entry zero and
 field four, which the shipped kind-2 descriptors bind to the combatant's
@@ -97,9 +110,12 @@ ends on a `chunk_type` of 0xFF whose header is the last 10 bytes of the resource
 ## Open questions
 
 - What the other fields of a 23-byte record of chunk types 2 and 4 mean, apart from
-  `0x00`, quantity at `0x02`, the chain link at `0x04`, byte `0x12`, and
+  `0x00`, quantity at `0x02`, the chain link at `0x04`, cached bitmap number at
+  `0x0C`, byte `0x12`, and
   inventory position at `0x13`.
   FND-PARTY-196 gives the shipped values (Q-PARTY-020).
+- Complete bitmap-number cache producers, invalidation, resolver inputs and
+  selection preservation (FND-PARTY-224, Q-PARTY-087).
 - What the character's words at `0x08`, `0x0A` and `0x0C` distinguish when the
   possessions and equipment screens select a list (Q-PARTY-082). Generic
   graph order is recorded in FND-PARTY-054; it does not assign those labels.
@@ -119,5 +135,6 @@ ends on a `chunk_type` of 0xFF whose header is the last 10 bytes of the resource
   (FND-PARTY-217, Q-PARTY-085). FND-PARTY-220 answers the local twelve-code
   recipient-space scan; FND-PARTY-221 identifies a conditional field-ten
   position setter and its runtime-width dependency. FND-PARTY-222 answers
-  the twelve source-layout backpack origins and rectangle-request identifiers,
-  leaving actual loaded placement and presentation admission open.
+  the twelve source-layout backpack origins and rectangle-request identifiers;
+  FND-PARTY-223 supplies the other fourteen main origins. Actual loaded
+  placement, other draw paths and presentation admission remain open.
