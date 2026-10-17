@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-086
+Next ID: Q-PARTY-087
 
 ## Static
 
@@ -123,9 +123,12 @@ Next ID: Q-PARTY-086
   Tried: FND-PARTY-217 identifies byte `0x13` as the signed position code
   consumed by the inventory projection; Q-PARTY-085 holds its remaining contract.
 - Q-PARTY-082. FMT-PARTY-006: Which possessions or equipment lists do the
-  combatant words `0x08`, `0x0A` and `0x0C` head, and how does View Character
-  traverse or change each? Settles it: the screen's bindings to object fields
-  16, 17 and 4, list traversal, entry selection and list updates. Tried:
+  kind-2 combatant words `0x08`, `0x0A` and `0x0C` head? Settles it:
+  code-backed distinctions between fields 16, 17 and 4 in the character's
+  screen/actions, including what selects each list and the player-visible
+  meaning, if any, of those distinctions. Generic enumeration order alone
+  does not assign inventory or equipment labels. Head mutations are
+  Q-PARTY-086; graph/root/storage admission is Q-PARTY-085. Tried:
   FND-PARTY-051 and FND-PARTY-052 map those words to handles attached by CHAR
   chunks, and FND-PARTY-216 reads quantity placement but not the screen's
   distinction between the three lists. Blocks: slice 2.
@@ -133,6 +136,23 @@ Next ID: Q-PARTY-086
   redraw consuming a kind-1 graph projection indexed by position byte `0x13`.
   The roles of the three incoming heads remain inside the graph enumeration,
   not proved by the earlier literal-offset candidate query.
+  Tried: the selector-initializer and stack reading is already recorded in
+  FND-PARTY-054, with FND-CONFIG-150's producer qualifications and
+  FND-PARTY-218's corrected field provenance. Reconnecting that reading to
+  FND-PARTY-217 supplies no new head-role distinction and ends in the same
+  place. Split head mutations into Q-PARTY-086 and retain root/storage
+  admission in Q-PARTY-085 rather than repeating the enumeration query.
+- Q-PARTY-086. FMT-PARTY-006: Which character-screen actions change a kind-2
+  object's field-16, field-17 or field-4 head, and how do they preserve or
+  replace the attached chains? Settles it: reached action handlers and their
+  head selector/target arguments, list detach/append/replacement effects,
+  failure continuation and the later screen consumer. Keep this separate
+  from assigning gameplay labels to the heads (Q-PARTY-082) and graph/root
+  storage admission (Q-PARTY-085).
+  Tried: split from Q-PARTY-082 after FND-PARTY-054's existing traversal
+  reading and FND-PARTY-217's projection do not establish user-action head
+  updates; FND-PARTY-052 supplies the serialized field-to-head bindings.
+  Blocks: slice 2.
 - Q-PARTY-083. FMT-PARTY-006: What do a 23-byte record's attached handle at
   `0x08` and the records linked through it represent, and how are they used?
   Settles it: direct field-4 or offset-8 readers/writers for kind 1, including

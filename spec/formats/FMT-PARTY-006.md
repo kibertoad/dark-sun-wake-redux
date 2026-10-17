@@ -82,7 +82,11 @@ ends on a `chunk_type` of 0xFF whose header is the last 10 bytes of the resource
   inventory position at `0x13`.
   FND-PARTY-196 gives the shipped values (Q-PARTY-020).
 - What the character's words at `0x08`, `0x0A` and `0x0C` distinguish when the
-  possessions and equipment screens traverse them (Q-PARTY-082).
+  possessions and equipment screens select a list (Q-PARTY-082). Generic
+  graph order is recorded in FND-PARTY-054; it does not assign those labels.
+- Which character-screen actions change the kind-2 field-16, field-17 and
+  field-4 heads, including chain preservation, failures and later consumers
+  (Q-PARTY-086). Graph/root/storage admission remains Q-PARTY-085.
 - What a 23-byte record's handle at `0x08` refers to and how its referenced
   records are traversed; it is 9999 in all but three shipped records
   (FND-PARTY-052, FND-PARTY-196, Q-PARTY-083).
