@@ -4,7 +4,7 @@ title: The end-of-move menu offers GUARD, WAIT and END TURN beside the character
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-COMBAT-026, FND-COMBAT-024, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-COMBAT-008, FND-ACTOR-003, FND-PARTY-013, FND-COMBAT-047, FND-COMBAT-048, FND-COMBAT-049, FND-COMBAT-050]
+evidence: [FND-COMBAT-026, FND-COMBAT-024, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-COMBAT-008, FND-ACTOR-003, FND-PARTY-013, FND-COMBAT-047, FND-COMBAT-048, FND-COMBAT-049, FND-COMBAT-050, FND-COMBAT-051]
 conflicting: []
 split_with: []
 related: [RULE-COMBAT-004, FMT-COMBAT-001, FMT-ACTOR-004]
@@ -75,6 +75,27 @@ No return value. Shows the menu, then runs the action chosen: `fn_5671_0093` wit
 or 2 for WAIT, `fn_5671_0098` with 0 for END TURN, and nothing for any other result. Then runs
 `fn_182_19F8` and `fn_3D72_0D83` whatever was chosen.
 
+The menu producer records choices separately from its handler's return:
+event type two maps control identifier 2844 to zero, 36B1/36B5 to one,
+36B2/36B6 to two and 36B3/36B7 to three, or stores FFFF for no match.
+That handler returns zero even after storing a choice. Type six tests
+the three labels' nonzero first bytes in order, sign-extending the stored
+byte and ORing 20 hexadecimal before comparing with the zero-extended
+input low byte ORed with 20. A match stores its one-based index; otherwise
+the exact input word 011B stores zero only when the cancellation gate is
+zero, and every other unmatched case stores FFFF. Type six returns FFFF
+for a recorded choice and zero for FFFF. Other event types leave the
+choice unchanged and return zero. These event numbers do not yet establish
+native device delivery.
+
+The producer loops while its shared choice word is FFFF and ignores its
+direct handler call's return. Before the loop it saves the result of
+`fn_3A8E_060D`; only for zero does it replace it with `fn_3A8E_0D9A`'s
+result. After handler restoration and cleanup, it returns that saved result
+if nonzero, otherwise rereads the shared choice word. Thus a native
+selection-to-action claim still needs zero admitted child results and
+choice preservation through cleanup (Q-COMBAT-015).
+
 ## Edge cases
 
 `message_end_named_move` holds `%Fs` in place of the name and 11 other characters, so a name of
@@ -99,8 +120,12 @@ None known.
   resolver gate and distinct zero-mask/OR routes.
 - What the common postprocessing through `fn_182_19F8` and `fn_3D72_0D83`
   leaves for later consumers (Q-COMBAT-016).
-- What `fn_566A_0025` returns when the player selects or closes the menu
-  (Q-COMBAT-015).
+- What initialization, event delivery, control admission and complete child/
+  storage-preservation contracts of `fn_566A_0025`, `fn_3A8E_060D` and
+  `fn_3A8E_0D9A` make the local choice and final return
+  branches apply to native selection or closing (Q-COMBAT-015).
+  FND-COMBAT-051 answers the local handler mappings, ignored handler result,
+  saved child-result precedence and cleanup-before-choice-reload order.
 - What admitted state and complete child/preservation contract let
   `fn_2C5F_018C` supply the menu's later coordinate rereads and final
   presentation (Q-COMBAT-014). FND-COMBAT-049 answers its local

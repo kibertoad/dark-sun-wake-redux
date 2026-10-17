@@ -61,11 +61,19 @@ Next ID: Q-COMBAT-017
   child preservation and presentation remain. Blocks: slice 4.
 - Q-COMBAT-015. RULE-COMBAT-005: Which results does the menu at
   566A:0025 return for selection and cancellation? Settles it: reached
-  menu construction, event/callback and dismissal paths through returned
-  choices and the end-of-move caller's result consumption.
+  construction/control admission, choice initialization and storage identity,
+  native event/callback delivery, admitted child-result domains and
+  choice/register preservation through cleanup, connecting actual selection
+  and cancellation to the already-read caller branches.
   Tried: split from Q-COMBAT-006; FND-COMBAT-026 and FND-COMBAT-047
   establish the caller's exact one/two/three branches, but not the
-  producer's cancellation and selection results. Blocks: slice 4.
+  producer's cancellation and selection results.
+  Tried: FND-COMBAT-051 answers the local type-two seven-key selector,
+  type-six first-byte/011B branches, distinct handler-versus-choice results,
+  first-nonzero child-result precedence and cleanup-before-return order.
+  These local mapping/return obligations are removed from Settles it;
+  initialization, admitted children/storage and native event delivery remain.
+  Blocks: slice 4.
 - Q-COMBAT-016. RULE-COMBAT-005: What state does the common
   postprocessing after the end-of-move menu leave for its next consumer?
   Settles it: overlay 182 +19F8 and 3D72:0D83, their complete children,
