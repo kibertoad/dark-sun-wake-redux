@@ -132,7 +132,9 @@ None known.
   FND-PARTY-223 maps the other main origins. Neither validates native pixels.
 - Complete resource/buffer admission for the bitmap-number resolver,
   record-selection preservation and cache lifecycle (FND-PARTY-224,
-  FND-PARTY-225, Q-PARTY-087). Its local OJFF-number, image-word and
+  FND-PARTY-225): resource/buffer validity is Q-PARTY-088, cache-specific
+  binding/selection preservation is Q-PARTY-089, and remaining producers,
+  invalidation and consumers are Q-PARTY-087. Its local OJFF-number, image-word and
   zero-on-failure branches are recorded in FND-PARTY-225.
 - The effects of the other buttons remain unestablished; code is known for the leader
   and computer-control buttons (FND-COMBAT-023, FND-AI-003). The inventory opener

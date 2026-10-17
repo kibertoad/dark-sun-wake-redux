@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-088
+Next ID: Q-PARTY-090
 
 ## Static
 
@@ -127,15 +127,14 @@ Next ID: Q-PARTY-088
   lazily written by inventory drawing. That field-use question is removed
   from Settles it; its complete producer/resolver/lifetime reading is
   Q-PARTY-087, separate from the other still-unassigned fields.
-- Q-PARTY-087. FMT-PARTY-006, SCR-UI-008, FMT-ACTOR-001: What complete producer, resolver and invalidation
-  contract keeps the attached record's cached BMP number at +0C associated
-  with the intended item? Settles it: remaining direct/indirect +0C writers
-  beyond the reviewed slot-image capture/store path,
-  admitted record-index/object-number domains and resource/transfer/buffer
-  outcomes of descriptor 190 +2F2F, record/map/character selection
-  preservation and later cache consumers beyond the reviewed current-item
-  helper and inventory opener's reviewed refresh tail, including zero and failed image
-  requests. Image placement and backend rendering remain Q-PARTY-085.
+- Q-PARTY-087. FMT-PARTY-006, SCR-UI-008: Which remaining producers,
+  invalidation paths and consumers write or use the attached record's cached
+  BMP number at +0C? Settles it: direct/indirect +0C writer and consumer
+  coverage beyond the reviewed slot-image capture/store, current-item helper
+  and inventory opener refresh, including actual kind-one field-six requests,
+  zero/9999 transitions, copies and computed accesses. Resource/buffer
+  admission is Q-PARTY-088; cache-specific binding/selection preservation is
+  Q-PARTY-089; placement/backend rendering remains Q-PARTY-085.
   Tried: split from Q-PARTY-020 after FND-PARTY-224 answers the local nonzero
   reuse, zero resolver, post-child selection reload, word store and unsigned
   BMP request, without establishing the whole cache lifecycle.
@@ -164,7 +163,36 @@ Next ID: Q-PARTY-088
   cache offset +0C, type two and initial width two. That descriptor binding
   is removed from the indirect-writer gap; actual field-six callers,
   current binding/width stability, all other producers and outcomes remain.
+  Split: resource/buffer validity is Q-PARTY-088 and cache-specific runtime
+  binding/selection preservation is Q-PARTY-089. Neither is answered by this
+  split; this item retains the producer/invalidation/consumer question.
   Blocks: complete reading of FMT-PARTY-006 and item-picture admission.
+- Q-PARTY-088. FMT-PARTY-006, FMT-ACTOR-001, SCR-UI-008: Which resource
+  and buffer conditions admit the bitmap resolver and subsequent BMP request?
+  Settles it: descriptor 190 +2F2F's admitted object-number/resource domain,
+  38FF:04AB's selected resource and transfer/size/status outcomes for its
+  offered sixteen-byte local region and separate pointer variable, successful
+  image-word initialization, and the inventory acquisition/release paths'
+  actual buffer extent and pointer outcomes. Cache producers/consumers are
+  Q-PARTY-087; record/selection/binding preservation is Q-PARTY-089; pixel and
+  backend behavior remain Q-PARTY-085.
+  Tried: split from Q-PARTY-087 after FND-PARTY-225 maps the resolver's local
+  arithmetic, status gate and original-buffer read, and FND-PARTY-226 maps the
+  caller's placement/release requests. Neither establishes these resource and
+  buffer conditions. Blocks: admitted item-picture acquisition.
+- Q-PARTY-089. FMT-PARTY-006, SCR-UI-008: Which runtime bindings and
+  preservation conditions keep a cache access associated with the selected
+  item across its child calls? Settles it: cache-specific record-index/table
+  identity, graph/map/current-character selection before and after the
+  reviewed resolver/transfer/rebuild calls, local DS/SS correspondence, and
+  current kind-one field-six offset/type/width bindings. Generic inventory
+  graph roots/capacity/modes remain Q-PARTY-085; producer/consumer coverage is
+  Q-PARTY-087 and resource/buffer outcomes are Q-PARTY-088.
+  Tried: split from Q-PARTY-087 after FND-PARTY-224/227/228 record post-child
+  selection reloads, FND-PARTY-229 records the local capture/store sequence,
+  and FND-PARTY-230 binds shipped field-six metadata. Reloads and initial data
+  do not prove preservation or runtime table stability. Blocks: complete
+  cache identity and admitted item-picture selection.
 - Q-PARTY-082. FMT-PARTY-006: Which possessions or equipment lists do the
   kind-2 combatant words `0x08`, `0x0A` and `0x0C` head? Settles it:
   code-backed roles of fields 16 and 17 relative to field four, and other

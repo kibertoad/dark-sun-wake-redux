@@ -75,4 +75,4 @@ gameplay frame of the opening region matches `x_offset`, `y_offset` and `vertica
 - How the remaining overlay code in descriptors 197 and 213 that names the
   tag reads the record (FND-ACTOR-006, Q-ACTOR-002). FND-PARTY-225 answers
   descriptor 190's local object-number/image-word resolver, while its
-  resource and buffer admission remain Q-PARTY-087.
+  resource and buffer admission remain Q-PARTY-088.

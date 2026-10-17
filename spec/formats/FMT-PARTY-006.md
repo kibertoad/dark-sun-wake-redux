@@ -144,8 +144,13 @@ ends on a `chunk_type` of 0xFF whose header is the last 10 bytes of the resource
   `0x0C`, byte `0x12`, and
   inventory position at `0x13`.
   FND-PARTY-196 gives the shipped values (Q-PARTY-020).
-- Complete bitmap-number cache producers, invalidation, resolver inputs and
-  selection preservation (FND-PARTY-224, Q-PARTY-087).
+- Complete bitmap-number cache producers, invalidation and remaining consumers
+  (FND-PARTY-224, Q-PARTY-087).
+- Resource/buffer admission for the cache resolver and image acquisition
+  (FND-PARTY-225, Q-PARTY-088).
+- Cache-specific runtime table/field/width bindings and record-selection
+  preservation across child calls (FND-PARTY-227, FND-PARTY-229,
+  FND-PARTY-230, Q-PARTY-089).
 - What the character's words at `0x08`, `0x0A` and `0x0C` distinguish when the
   possessions and equipment screens select a list (Q-PARTY-082). Generic
   graph order is recorded in FND-PARTY-054; it does not assign those labels.
