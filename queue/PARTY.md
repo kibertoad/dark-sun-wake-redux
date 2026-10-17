@@ -133,7 +133,7 @@ Next ID: Q-PARTY-088
   admitted record-index/object-number domains and resource/transfer/buffer
   outcomes of descriptor 190 +2F2F, record/map/character selection
   preservation and later cache consumers beyond the reviewed current-item
-  helper, including zero and failed image
+  helper and inventory opener's reviewed refresh tail, including zero and failed image
   requests. Image placement and backend rendering remain Q-PARTY-085.
   Tried: split from Q-PARTY-020 after FND-PARTY-224 answers the local nonzero
   reuse, zero resolver, post-child selection reload, word store and unsigned
@@ -148,6 +148,12 @@ Next ID: Q-PARTY-088
   pointer-selection consumer connection. Those local consumer/fallback
   branches are removed from Settles it; complete selection/storage admission,
   other consumers, producers and invalidation remain.
+  Tried: FND-PARTY-228 answers the opener's exact 9999 refresh/store and
+  later current-item helper/pointer-kind request, including a conditional
+  second resolution after a zero result. Those local branches are removed
+  from Settles it; sentinel producers, other consumers and all admission/
+  preservation obligations remain. The shipped source range does not prove
+  the runtime branch unreachable.
   Blocks: complete reading of FMT-PARTY-006 and item-picture admission.
 - Q-PARTY-082. FMT-PARTY-006: Which possessions or equipment lists do the
   kind-2 combatant words `0x08`, `0x0A` and `0x0C` head? Settles it:

@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_006.ksy
-evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227]
+evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228]
 conflicting: []
 split_with: []
 related: []
@@ -62,6 +62,12 @@ resolves/stores a zero cache, including a zero result. It returns 19103
 without a record read when its separate selection word is FFFF;
 that fallback does not replace a zero resolver result. Actual selection
 and record identity remain prerequisites [FND-PARTY-227].
+
+The inventory opener separately resolves/stores a cache equal to exactly
+9999 before calling the current-item helper. A zero result may consequently
+trigger a second resolver request there under stable selection state.
+Complete sentinel producers and native branch admission remain open
+[FND-PARTY-228].
 
 Byte `0x13` is `inventory_position`, a position code interpreted as a
 signed byte and increased by four to select a logical inventory-map word.
