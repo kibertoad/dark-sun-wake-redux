@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-AI-003, FND-COMBAT-023, FND-UI-021, FND-UI-030, SRC-MANUAL-1994, FND-PARTY-217, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225]
+evidence: [FND-AI-003, FND-COMBAT-023, FND-UI-021, FND-UI-030, SRC-MANUAL-1994, FND-PARTY-217, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-226]
 conflicting: []
 split_with: []
 related: [RULE-AI-001, RULE-COMBAT-008, RULE-PARTY-008, RULE-ITEM-001, RULE-ITEM-002, RULE-ITEM-003, RULE-ITEM-004, RULE-UI-001, SCR-UI-002, SCR-UI-006, SCR-UI-009, SCR-UI-010, SCR-UI-018, SCR-UI-019]
@@ -19,7 +19,7 @@ related: [RULE-AI-001, RULE-COMBAT-008, RULE-PARTY-008, RULE-ITEM-001, RULE-ITEM
 | Controls | the `ICON` of each `BUTN` child of `RESOURCE.GFF#WIND/13500` | None | each child's position, with the window at (0, 0) | While the screen is shown | FND-UI-030 |
 | Backpack placement origins | `APFM/11230` through `/11241` placed by `WIND/13500` | Inventory position codes 14 through 25 | Two columns of six: x=186 and 204; y=18,36,54,72,90,108; numbering runs down the first column, then down the second | Source layout; current loaded rectangles and native rendering remain unvalidated | FND-PARTY-222 |
 | Other main placement origins | `APFM/11216` through `/11229` placed by `WIND/13500` | Inventory position codes 0 through 13 | Source mapping below | Source layout; individual equipment meanings and native rendering remain open | FND-PARTY-223 |
-| Item pictures | A BMP resource number from the selected attached record's word `0x0C`, resolved when zero | The selected graph record's picture | Its slot's rectangle lookup; complete image placement remains open | A returned nonnull acquisition pointer continues to drawing; acquisition status is not tested | FND-PARTY-224 |
+| Item pictures | A BMP resource number from the selected attached record's word `0x0C`, resolved when zero | The selected graph record's picture | Slot lookup followed by the dimension-dependent request below | A returned nonnull acquisition pointer continues; acquisition status is not tested; temporary-view failure exits before drawing | FND-PARTY-224, FND-PARTY-226 |
 
 The manual's picture (SRC-MANUAL-1994, page 11) shows the four character boxes down the left
 edge, the active character's portrait in the centre surrounded by fourteen body slots, twelve
@@ -52,6 +52,15 @@ current window origin, generic frame treatment and native pixels remain
 unvalidated. The bitmap-number cache retains only a number: the drawing
 path requests the image separately, including a zero result from its
 resolver (FND-PARTY-224).
+
+For the current loaded slot origin (x,y), frame-zero dimensions both
+signed-at-most 16 request drawing on handle 1 at
+(x+1+trunc0(int16(16-width)/2), y+1+trunc0(int16(16-height)/2)).
+Arithmetic wraps at word width; division truncates toward zero.
+If either signed dimension exceeds 16, the caller requests a temporary
+view from (x+1,y+1) to (x+16,y+16), then requests drawing at (x+1,y+1)
+unless that view request returned FFFF. These are caller requests;
+actual clipping and pixels remain unvalidated (FND-PARTY-226).
 
 ## Mouse input
 
@@ -117,7 +126,8 @@ None known.
   the 90 x 125 frame `APFM/13200` at (75, 36) is (FND-UI-030, Q-UI-001, Q-ITEM-002).
 - Complete loaded placement and image rendering for the twelve backpack
   origins, the other fourteen main origins, other draw paths and their frame
-  treatment (Q-PARTY-085).
+  treatment by the backend (Q-PARTY-085). FND-PARTY-226 maps the
+  local dimension-dependent placement requests and cleanup branches.
   FND-PARTY-222 binds the twelve source origins to the drawing lookup;
   FND-PARTY-223 maps the other main origins. Neither validates native pixels.
 - Complete resource/buffer admission for the bitmap-number resolver,

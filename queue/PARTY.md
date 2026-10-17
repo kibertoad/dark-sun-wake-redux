@@ -207,7 +207,8 @@ Next ID: Q-PARTY-088
   position codes name, and is the position projection complete for all admitted
   records? Settles it: remaining position-byte writers beyond the reviewed
   field-ten request, remaining source coordinate/icon consumers beyond the
-  26 main origins and all loaded-coordinate mutations,
+  26 main origins and the reviewed dimension-dependent draw requests,
+  actual loaded-coordinate mutations and backend rendering effects,
   graph and current-object producers, map capacity and direction-flag provenance,
   parent traversal termination, mode flags and 189 `+146B`'s recursive effects.
   Tried: FND-PARTY-217 reads byte `0x13`'s signed projection and the main draw
@@ -228,6 +229,11 @@ Next ID: Q-PARTY-088
   it. FND-PARTY-224 identifies the local cached BMP request; its full cache
   lifecycle is Q-PARTY-087. Other draw paths, actual loaded coordinates,
   image/backend effects, state admission and all other writers remain.
+  Tried: FND-PARTY-226 maps the shared tail's signed dimension gate,
+  centered versus temporary-view request, FFFF exit and conditional release
+  request. Those local placement/cleanup branches are removed from Settles
+  it; loaded coordinates, admitted buffers, child preservation/backend effects
+  and all other state/record/writer obligations remain.
 - Q-PARTY-005. FMT-PARTY-004, FMT-PARTY-005: When do `30B0:00C1` and overlay 202 `+0C82` clear
   bit 0 of `PSST` bytes, what does the byte at `51F1:07E2 + 3 * power` hold, and does anything
   write a slot's 15-byte `SPST` entry at `4D62:039C` without naming that address? Settles it:
