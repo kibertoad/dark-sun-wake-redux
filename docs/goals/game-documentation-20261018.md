@@ -33,6 +33,10 @@ an explicit owner request.
 - Full gates use an external temporary directory. The export fixture correctly
   rejects a temporary output inside the checkout. Git hook snapshots can use
   artifacts/hook-tmp through TMPDIR; keep EVIDENCE_PYTHON checkout-local.
+- Pinned Capstone's 16-bit decoder mislabels unprefixed synthetic 98/99 as
+  cwde/cdq rather than cbw/cwd. Check mode and operand-size prefixes directly;
+  prior-analysis impact is unverified. Reported with a synthetic reproduction:
+  https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/538.
 
 ## Handover
 
