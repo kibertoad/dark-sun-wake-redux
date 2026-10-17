@@ -38,18 +38,20 @@ an explicit owner request.
 
 - Stage: Slices; resume the unfinished research in docs/HANDOVER.md.
 - Last gate: 2026-10-18, ./tools/Test.ps1 -NoRestore passed: 715 .NET tests,
-  105 Node tests and five option controls; documentation passed with 1357
+  105 Node tests and five option controls; documentation passed with 1361
   entries, 168 parity rows and five deviations. Existing argument-count and
-  absent-Kaitai skips remain. Tracking warnings remain for Q-PARTY-078/082,
+  absent-Kaitai skips remain. Tracking warnings remain for Q-PARTY-020/078/082/085,
   Q-COMBAT-009/010 and Q-RNG-001/003/004; later attempts must reduce Settles it.
-- Unfinished: no tracked research draft. Q-PARTY-085 drawing queries have no
-  finding yet; reports are in GAME_DIR/analysis/party-record-heads/drawing-20261018/.
+- Unfinished: no tracked research draft. Q-PARTY-085's image dimension/draw
+  continuation has no finding yet; reports are in
+  GAME_DIR/analysis/party-record-heads/drawing-20261018/.
   Use draw-linear-context.txt from the declared entry rather than restarting
   decoding at the inventory's internal fragment boundary.
 - Blockers: existing person-only runtime observations in docs/RUNTIME.md.
-- Next: Q-PARTY-085 coordinate/icon consumers; Q-PARTY-086 remaining action
-  mutations and admission; Q-PARTY-082 remaining head roles; Q-COMBAT-014/015/016
-  remaining children and inputs; then the other prioritized handover items.
+- Next: Q-PARTY-085 image request/placement and cleanup; Q-PARTY-087 cache
+  producers, buffer/resource admission and preservation; Q-PARTY-086 remaining
+  action mutations; Q-PARTY-082 remaining head roles; Q-COMBAT-014/015/016
+  remaining children and inputs.
 - Checkpoint only: the standing research goal remains active. FND-COMBAT-051/052
-  and FND-PARTY-220/221 are the current research references. No full-game run
+  and FND-PARTY-220..225 are the current research references. No full-game run
   started; the gate retained its existing declared initializer call.
