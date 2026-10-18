@@ -409,10 +409,6 @@ Next ID: Q-CONFIG-011
   not determine parser behavior (FND-CONFIG-007).
   Blocks: completing the named entry readings.
 
-- Q-CONFIG-004. FMT-CONFIG-005: What is the structure and role of `PATCH.RTP`? Settles it: a
-  bounded inspection of the file and references from the installed setup programs. Blocks:
-  Survey format coverage.
-
 ## Emulated call
 
 None.
@@ -451,4 +447,9 @@ None.
 
 ## Blocked
 
-None.
+- Q-CONFIG-004. FMT-CONFIG-005: What is the structure and role of `PATCH.RTP`? Settles it: a
+  reading of the program `PATCH.EXE` keeps compressed after its load image, unpacked by a
+  committed tool. Tried: FND-CONFIG-220 finds that no uncompressed shipped program or batch file
+  names the file and that `PATCH.EXE`'s program is compressed; FND-EXE-570 gives the size
+  pattern. Waiting on: an unpacker for `PATCH.EXE`'s compressed program, which needs a reading of
+  its loader's decompression routine. Blocks: Survey format coverage.

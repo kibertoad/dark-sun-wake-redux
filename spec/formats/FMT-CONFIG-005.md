@@ -17,8 +17,14 @@ related: []
 
 ## Layout
 
-The build manifest lists `PATCH.RTP`; its structure, byte order and whether any shipped program
-reads it are not known. The filename alone does not establish that it is a patch script or payload.
+The build manifest lists `PATCH.RTP`. Its structure and byte order are not known. For seven of
+the files that differ between the disc and the installation, the file holds the name and, 16 and
+50 bytes after it, the disc copy's and the installed copy's sizes as 32-bit little-endian words
+(FND-EXE-570); that is a pattern in the data, not a reading of a program that reads it.
+
+No program the installed game runs and neither of its batch files names `PATCH.RTP`; the only
+candidate reader is `PATCH.EXE`, whose program is kept compressed after a small loader and has
+not been read (FND-CONFIG-220).
 
 ## Enumerations and flags
 
@@ -34,4 +40,5 @@ The installed `PATCH.RTP` file listed by BLD-GOG-EN-1.1.
 
 ## Open questions
 
-- What file structure does `PATCH.RTP` have, and which shipped program, if any, reads it (Q-CONFIG-004)?
+- What file structure does `PATCH.RTP` have, and does the compressed program of `PATCH.EXE`
+  read it (Q-CONFIG-004)?

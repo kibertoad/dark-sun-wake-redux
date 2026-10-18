@@ -56,13 +56,7 @@ script.
     Menu. Capture the reopened page. Compare the on-off and difficulty
     controls with P0; report the upper bar separately because P5 left it at
     a different value.
-11. P10, Q-CONFIG-001. Return to the map. Press `F6` once and reopen
-    Preferences. Capture the animation and voice button states, return to
-    the map, then press `F6` again and reopen Preferences. Capture the states
-    again and report whether they return. Do not
-    interpret which setting changed from the key alone; describe the visible
-    states and actions.
-12. P11, Q-CONFIG-009. Leave the upper Message Delay bar at the position
+11. P11, Q-CONFIG-009. Leave the upper Message Delay bar at the position
     reached in P5. Return to the map, open Save Game, select the first empty
     slot, and enter `DELAY TEST` if the game asks for a description. Do not
     overwrite a save that existed before this session. On a successful
@@ -73,7 +67,7 @@ script.
     on its own. If there is no empty slot, no completion message, or the
     message remains after 15 seconds, capture the reached state once,
     report it, and stop the timing comparison.
-13. P12, Q-CONFIG-009. Reopen Preferences. Click the upper bar's decrease
+12. P12, Q-CONFIG-009. Reopen Preferences. Click the upper bar's decrease
     control until the first click with no further visible change, stopping
     after 12 clicks. Capture the resulting bar and report the click count.
     Return to the map and save into a second empty slot with the same
