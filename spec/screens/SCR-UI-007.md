@@ -68,9 +68,9 @@ None known.
 - Where the window sits, whether the Game Menu's `BMP/10000` is drawn under it, and where the
   volume bars, the difficulty name and the descriptions of FMT-TEXT-004 are drawn (Q-UI-003,
   Q-CONFIG-001).
-- The new-game values, message-delay timing units and upper bound, music-volume behavior,
-  and which frame each button shows in each state (FMT-CONFIG-003, RULE-CONFIG-003,
-  Q-CONFIG-001, Q-CONFIG-002, Q-CONFIG-007).
+- The new-game values, message-delay timing units and upper bound, and which frame each
+  button shows in each state (FMT-CONFIG-003, Q-CONFIG-001, Q-CONFIG-002, Q-CONFIG-007). The
+  music bar has no control on this screen (RULE-CONFIG-003, FND-CONFIG-219).
 - The manual calls the default difficulty "Average", a name the executable's list of difficulties
   does not hold (FMT-TEXT-004, Q-CONFIG-001).
 - What native widget treatment makes `BUTN/16302` at (67, 78) visible; its four

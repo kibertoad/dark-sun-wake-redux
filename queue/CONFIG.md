@@ -36,7 +36,9 @@ Next ID: Q-CONFIG-011
   byte's polarity from the `A` and `F6` handler's messages and shows that no
   key writes either voice byte. These readings
   do not identify new-game values, the writer of the animation lock,
-  any synchronization beyond those paths or another music-level control. Blocks:
+  any synchronization beyond those paths or another music-level control.
+  FND-CONFIG-219 reads all 13 Preferences buttons and finds that none writes
+  the music level. Blocks:
   slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
