@@ -66,6 +66,6 @@ None known.
   (FND-UI-026, Q-UI-002, Q-UI-003).
 - How the switch label of the discipline list is chosen when its mask keeps the pointer search
   from choosing it, and why the fourth discipline label, `P-PORTATION`, has empty first and third
-  frames (FND-UI-026, Q-UI-001).
+  frames (FND-UI-026, Q-UI-001, Q-UI-007).
 - Whether the game draws `BMP/20087`, the image the windows name, as their panel (FND-UI-002,
   Q-UI-001).

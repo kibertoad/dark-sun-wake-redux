@@ -50,5 +50,5 @@ byte for byte the same: each is 116 bytes, and apart from the header only `width
 ## Open questions
 
 - What each bit of `event_mask` means. The shipped values are 0, 32, 38, 70, 110, 160, 224, 230,
-  486 and 494 (FND-UI-005, Q-UI-001).
-- What the game stores in `unk_5A` while it runs (FND-UI-006, Q-UI-001).
+  486 and 494 (FND-UI-005, Q-UI-007).
+- What the game stores in `unk_5A` while it runs (FND-UI-006, Q-UI-007).

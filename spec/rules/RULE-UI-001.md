@@ -72,6 +72,6 @@ None known.
 ## Open questions
 
 - What event each bit stands for. The shipped masks use the values 2, 4, 8, 16, 32, 64, 128 and
-  256 (FND-UI-004, FND-UI-005, Q-UI-001).
+  256 (FND-UI-004, FND-UI-005, Q-UI-007).
 - Which callers pass which `requested` bits to the frame dispatcher, and when the game changes
-  a mask (FND-UI-006, FND-UI-007, Q-UI-001).
+  a mask (FND-UI-006, FND-UI-007, Q-UI-007).

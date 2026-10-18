@@ -71,9 +71,11 @@ captures [FND-UI-016, FND-UI-018].
 
 - What each bit of `event_mask` means beyond the values 4 and 2, which keep the pointer search
   from choosing the button. The shipped values are 2, 4, 80, 84, 144, 160 and 208 (FND-UI-004,
-  FND-UI-006, Q-UI-001).
+  FND-UI-006, Q-UI-007).
 - What `unk_0D` and the remaining `unk_0E` flags do, and the complete caption
   layout, writer, extent/alias and current-font contracts beyond the reviewed
-  copy/metric/string-request paths (FND-UI-043, Q-UI-001).
+  copy/metric/string-request paths. Registration sets bit `0x2000` of the
+  loaded word `0x0C` when the window's word `0xA4` has bit 2 and `unk_0E` bit 1
+  is clear (FND-UI-043, FND-UI-045, Q-UI-008).
 - Why the art of some buttons is a pixel or more larger or smaller than `width` and `height`,
   and which frame of a many-frame `icon` the game draws in which state (FND-UI-004, Q-UI-002).

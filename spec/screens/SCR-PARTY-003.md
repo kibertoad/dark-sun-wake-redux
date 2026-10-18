@@ -91,4 +91,4 @@ None known.
   (Q-UI-002).
 - Actual loaded origin beyond the requested position words (Q-UI-003).
 - How the window picture reference is drawn and how its other control masks
-  affect presentation (Q-UI-001).
+  affect presentation (Q-UI-001, Q-UI-007).

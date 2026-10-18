@@ -1,32 +1,56 @@
 # UI
 
-Next ID: Q-UI-007
+Next ID: Q-UI-009
 
 ## Static
 
-- Q-UI-001. FMT-UI-001, FMT-UI-003, FMT-UI-004, FMT-UI-005, RULE-UI-001, FMT-UI-002, SCR-UI-002, SCR-UI-005, SCR-UI-006, SCR-UI-008, SCR-UI-011, SCR-PARTY-003: What do the unnamed
-  fields and the other mask values of the four control formats do: the window flags beyond 4 and
-  `0x100`, the frames' masks such as 486 and 494, remaining button caption
-  layout/producers beyond its mapped tail-copy/request role, the bytes a window copies from
-  a control, and whether the game draws a window's `image`? Settles it: a reading of the loaders under `39D1` and `3D72` and of the routines that
-  read these offsets; for the picture word, remaining copied/rebased/computed
-  consumers and actual background production beyond the classified literal
-  +C2 memory-operand census. Blocks: nothing yet.
+- Q-UI-001. FMT-UI-001, FMT-UI-002, FMT-UI-004, FMT-UI-005, SCR-UI-002, SCR-UI-005, SCR-UI-006, SCR-UI-008, SCR-UI-011, SCR-PARTY-003: What do the unnamed
+  fields of the window, child, frame and edit box records do: the window flags `0x800` and
+  `0x2000`, the bytes a window copies from a control, the frames' unnamed fields, and does the
+  game draw a window's `image`? Settles it: for the two flags and the picture word, a copied,
+  rebased or computed consumer traced from the loaded window, since the literal-operand
+  censuses find none; for the other fields, a reading of the loaders under `39D1` and `3D72`
+  and of the routines that read these offsets. Blocks: nothing yet.
   Tried: FND-UI-042 classifies all three raw literal +C2 memory-displacement
   candidates as interior decodes, with four reached width/height reads as
   positive controls. That literal-reader avenue is removed from Settles it;
   no unused-field or native background claim follows, and copied/computed
   routes plus the other control fields remain open.
-  Tried: FND-UI-043 maps the button tail to declared-count temporary copies,
-  appended zero, metric-word requests and a positioned string directive using
-  loaded words +60/+62. The tail's basic caption role is removed from Settles
-  it; complete layout flags, writers, admitted local/source storage, DS/SS,
-  font tables and native backend outcomes remain.
   Tried: FND-UI-044 takes a census of every literal 19501 and 19502 and of
   the window-number argument at all 31 calls of the window opener: the
   game-entry routine opens `WIND/19501`, and two overlay 201 routines open
   `WIND/19502`. What the two windows are for is removed from Settles it;
   the screen of the second 19502 opener moves to Q-UI-006.
+  Tried: FND-UI-045 takes a census of every operand with displacement `0x9E`
+  or `0x9F` (and `0x9C`/`0x9D`, and rebasing by `0x9E`/`0x9F`), with the
+  dispatcher's two tests as controls. The low five bits are a state the
+  window routines set, `0x40` and `0x80` are set from the children and admit
+  the key searches, and `0x4000` gates a release on removal: those bits are
+  removed from Settles it. No literal operand reads or writes `0x800` or
+  `0x2000`; their copied or computed consumers remain. The event-mask bits
+  move to Q-UI-007 and the button caption layout to Q-UI-008.
+- Q-UI-007. FMT-UI-003, FMT-UI-004, FMT-UI-005, RULE-UI-001, SCR-UI-005, SCR-PARTY-003: What does each bit of a
+  control's `event_mask` stand for (the frames' shipped values include 486 and 494), which
+  callers pass which requested bits to the frame dispatcher, when does the game change a mask,
+  and what does a frame keep in `unk_5A` while it runs? Settles it: a reading of the frame and
+  child dispatchers' callers and of every writer of the `event_mask` words of loaded `BUTN`,
+  `APFM` and `EBOX` records, beyond the setter FND-UI-007 reads. Blocks: nothing yet.
+  Tried: FND-COMBAT-039 and FND-COMBAT-040 map the effect window's callback
+  branches by event number and its frames' masks `0x1E6` and `0xE6`, and
+  FND-UI-007 reads the mask setter `3F96:02F8`; none assigns an input meaning
+  to a mask bit.
+- Q-UI-008. FMT-UI-003: Which writers and layout flags decide a button's caption position words
+  `+60` and `+62`, and what do `unk_0D` and the remaining `unk_0E` flags do? Settles it: a
+  reading of the button constructor `3EBE:0008`'s nonzero-tail branch that writes `+60` and
+  `+62` with its flag and mask selectors, of the other writers of the button's words `+0C` and
+  `+0E`, and of the font table state its metric helper reads. Blocks: nothing yet.
+  Tried: FND-UI-043 maps the button tail to declared-count temporary copies,
+  appended zero, metric-word requests and a positioned string directive using
+  loaded words +60/+62. The tail's basic caption role is removed from Settles
+  it; complete layout flags, writers, admitted local/source storage, DS/SS,
+  font tables and native backend outcomes remain. FND-UI-045 adds that
+  registration sets bit `0x2000` of the loaded word `+0C` when the window's
+  word `+A4` has bit 2 and bit 1 of the button's word `+0E` is clear.
 - Q-UI-006. FMT-UI-001, SCR-UI-002: Which screen does overlay 201 `+0073` show in `WIND/19502`,
   and what do its handler's two routines do? FND-UI-044 reads its opener call, its two picture
   requests and its handler's event table. Settles it: a reading of its callers overlay 181
