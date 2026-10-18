@@ -1,3 +1,3 @@
 # sound_effects_on
 
-True while the game plays sound effects; the Preferences screen and `F5` turn it on and off. A value the game keeps, of a type and at a place that are (unknown).
+True while the game plays sound effects; the Preferences screen and `F5` turn it on and off. The `UINT8` the game keeps at `57E0:1435` in BLD-GOG-EN-1.1, true when not 0, saved at `PREF/100` offset `0x05` [FND-CONFIG-010, FND-CONFIG-218].

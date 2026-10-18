@@ -32,9 +32,11 @@ Next ID: Q-CONFIG-011
   its later calls resolve to overlay 187 and 182 entries, but their effects
   and later start paths remain unread. FND-CONFIG-029 bounds literal
   music-level request writes to Load Game and the Preferences-entry getter,
-  without excluding indirect control. These readings
-  do not identify new-game values, animation
-  polarity, any synchronization beyond those paths or another music-level control. Blocks:
+  without excluding indirect control. FND-CONFIG-218 gives the animation
+  byte's polarity from the `A` and `F6` handler's messages and shows that no
+  key writes either voice byte. These readings
+  do not identify new-game values, the writer of the animation lock,
+  any synchronization beyond those paths or another music-level control. Blocks:
   slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
@@ -432,12 +434,14 @@ None.
 - Q-CONFIG-001. RULE-CONFIG-001, SCR-UI-007, RULE-CONFIG-002, RULE-CONFIG-003,
   RULE-CONFIG-004, RULE-CONFIG-005, FMT-CONFIG-003: What are the native
   Preferences defaults and control frames, the visible message-delay and effect-volume
-  endpoints, what `F6` toggles, the difficulty and description placement, and the
+  endpoints, the difficulty and description placement, and the
   About page's layout and dismissal? Settles it: the preferences live session.
   Tried: the strings and saved resource (FMT-TEXT-004, FND-CONFIG-001),
   renderer (FND-CONFIG-009, FND-UI-033), hover routine (FND-UI-034) and click
   dispatcher (FND-CONFIG-010) establish labels and button transitions, but
-  cannot establish new-game defaults or native drawn states. Blocks: slice 3.
+  cannot establish new-game defaults or native drawn states. FND-CONFIG-218
+  reads the `F4`, `F5`, `A` and `F6` handlers and takes what `F6` toggles out.
+  Blocks: slice 3.
 
 ## Source
 
