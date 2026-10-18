@@ -55,24 +55,24 @@
   have native provenance through the pinned session package. clock_source.py's
   nine synthetic controls and repeated final native attempt passed. Its fixed
   contract does not admit varying TZ or arbitrary clock inputs.
-- Source opener: GAME_DIR/captures/rust-dos-startup-window/
+- Source opener: GAME_DIR/captures/rust-dos-startup-window/ (absent here on 2026-10-18; regenerate through the findings named)
   seed-and-opener-20261015/:opener; restore_opener.py restored it natively.
-  Newer state: GAME_DIR/captures/rust-dos-restore-opener/
+  Newer state: GAME_DIR/captures/rust-dos-restore-opener/ (absent here on 2026-10-18; regenerate through the findings named)
   restore-and-return-20261015-verified/:opened; file-verified, not natively
   restored. Pixels and input readiness remain unverified. SavedState.checkpoint
   is a boolean; SavedState.directory is the path. Use the corrected helper
   and journal rather than the first extended report's historical path True.
-- Clock reports: GAME_DIR/captures/rust-dos-clock-source/
+- Clock reports: GAME_DIR/captures/rust-dos-clock-source/ (absent here on 2026-10-18; regenerate through the findings named)
   constructor-and-timezone-20261015/ and its -verified repeat, with earlier
   environment-default-20261015/ retained locally. Contracts: FND-RNG-014,
   FND-RNG-017 and FND-RNG-019..020.
-- Static reports and bounded queries: GAME_DIR/analysis/startup-seed/;
+- Static reports and bounded queries: GAME_DIR/analysis/startup-seed/ (absent here on 2026-10-18; regenerate through the findings named);
   reproduce through FND-RNG-018..019 and FND-RNG-021..022. Original-derived
   reports and configurations remain local, never committed.
-- Effect research queries: GAME_DIR/analysis/combat-effects/; reproduce
+- Effect research queries: GAME_DIR/analysis/combat-effects/ (absent here on 2026-10-18; regenerate through the findings named); reproduce
   through FND-COMBAT-029..046 and FND-UI-041. This continuation used static
   inspection only, with no original-game process or emulated call.
-- Command/menu research queries: GAME_DIR/analysis/combat-actions/;
+- Command/menu research queries: GAME_DIR/analysis/combat-actions/ (absent here on 2026-10-18; regenerate through the findings named);
   reproduce the committed work through FND-COMBAT-047..050. New queries
   were static; validation retained its existing declared original-call tests.
 - Manifest-bounded probe_drive.py prepares fresh private C: from verified
@@ -98,13 +98,13 @@
   Resume with FND-PARTY-128 and the established menu entry; raw search
   hits and table values alone do not establish native event admission.
 - Q-UI-001: no tracked draft. Alignment and remaining picture consumers are
-  next; reports remain in GAME_DIR/analysis/ui-window-image-20261018/.
+  next; reports remain in GAME_DIR/analysis/ui-window-image-20261018/ (absent here on 2026-10-18; regenerate through the findings named).
   Reproduce through FND-UI-042/043 and the named committed tools.
 - Q-PARTY-087/088/089 reports remain in
-  GAME_DIR/analysis/party-record-heads/drawing-20261018/; resume through
+  GAME_DIR/analysis/party-record-heads/drawing-20261018/ (absent here on 2026-10-18; regenerate through the findings named); resume through
   FND-PARTY-220..231. Use draw-linear-context.txt from the declared entry,
   rather than decoding at an internal inventory fragment boundary.
-  Class-window reports remain in GAME_DIR/analysis/party-dual-window-20261018/;
+  Class-window reports remain in GAME_DIR/analysis/party-dual-window-20261018/ (absent here on 2026-10-18; regenerate through the findings named);
   resume through FND-PARTY-232 and SCR-PARTY-003.
 - Historical commit-message repair still awaits approval: fa0d8d1 has title
   Record; research commit 4e5d4e8 was accidentally amended as 290a177 with a
@@ -147,7 +147,7 @@
 - refurbished-dinosaurs issue 77 and toolkit issue 297: build listing records,
   directory exclusions and CD: path form; tools/evidence/build-listing.mjs
   holds this project's reconciliation.
-- Template issues 81 and 82: machine-wide GAME_DIR/local stores, and inherited
+- Template issues 81 and 82: machine-wide GAME_DIR/local (absent here on 2026-10-18; regenerate through the findings named) stores, and inherited
   TEMP/TMP sandbox access. Use an accessible process-local temporary directory;
   if Git's hook snapshot cannot create one, use writable artifacts/hook-tmp
   as Git Bash TMPDIR while retaining the hook.

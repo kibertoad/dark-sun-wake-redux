@@ -56,7 +56,10 @@ orphans, and agents touch DOSBox only through the session package.
    Get the branch, commit and remote sync state from Git when needed; do not
    copy them into the handover. Never write what research found or tried.
    Delete what is no longer true instead of adding below it. Stay under 200
-   lines. Commit the handover on its own, with no trailers: it changes
+   lines. Name only local paths (reports, captures, configurations) that
+   exist when the handover is written: check each one, and drop or replace
+   any that is gone, so the next session does not search for it.
+   Commit the handover on its own, with no trailers: it changes
    nothing outside `docs/HANDOVER.md` and `docs/goals/`.
    Confirm the worktree, branch, staged paths and current HEAD belong to
    this session before committing. Use a new commit for the handover.
