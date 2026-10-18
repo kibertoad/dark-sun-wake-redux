@@ -248,7 +248,9 @@ None known.
   FND-PARTY-090); during a fight an object's trigger script that runs opcode `0x24` makes the
   slot in `4C13:0369` current when that slot meets the trigger's distance test (FND-PARTY-097,
   FND-PARTY-098). Of the shipped trigger registrations only `GPL/144`'s for object 161 reaches
-  that opcode, inside a dialog branch (FND-PARTY-240); whether that branch can run during a
-  fight is open (Q-PARTY-104).
+  that opcode, inside a dialog branch (FND-PARTY-240). The fight runs it only while object 161,
+  placed only in region 50, takes part in the fight as a combatant with `combat_mark` 1
+  (FND-PARTY-244); whether that happens with the dialog's conditions met depends on the course of
+  play, and a capture of such a fight would show it (Q-PARTY-104).
 - That the messages and draws happen in this order in play: a capture of a party gaining levels
   after a fight would confirm it (Q-PARTY-037).

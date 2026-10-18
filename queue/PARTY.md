@@ -321,12 +321,6 @@ Next ID: Q-PARTY-106
   what placed-object count and `DS:0DAB`? Settles it: the load routine overlay 192 `+05ED`,
   overlay 182 `+19F8`, `28C9:2522`, the gate routine called with 0, and whether window 19500 or
   its handler survives those calls (FND-PARTY-045). Blocks: slice 2.
-- Q-PARTY-104. RULE-PARTY-013: Can `GPL/144`'s trigger for object 161, registered at `0x0023`
-  with entry offset 281, run its dialog branch to the opcode `0x24` at `0x0F14` during a fight
-  (FND-PARTY-240)? Settles it: what the kind-9 variable 32, `varD[374]`, `varD[331]`, `varE[7]`
-  and the menu row's condition hold in a fight, whether the dialog menu `0x48` and the placement
-  `0x25` at `0x0E98` work while a fight runs, and whether object 161 can be in a fight with the
-  party. Tried: split from Q-PARTY-050, which FND-PARTY-240 closed. Blocks: slice 2.
 - Q-PARTY-105. BUG-PARTY-006: Can a party member's cast or item power give the spell dispatcher
   or the hit routine `DATA` 313, whose strike on an attack roll of 20 sends effect code 59
   (FND-PARTY-096)? Settles it: whether overlay 211 `+10F4` can reach its cast at `+15FA` while the
@@ -380,6 +374,18 @@ None.
 
 ## Live session
 
+- Q-PARTY-104. RULE-PARTY-013: Can `GPL/144`'s trigger for object 161, registered at `0x0023`
+  with entry offset 281, run its dialog branch to the opcode `0x24` at `0x0F14` during a fight
+  (FND-PARTY-240)? Settles it: an owner capture, from a new game in region 50, of a fight in which
+  the object placed at x 168, y 239 of region 50 (object 161) takes part, with a party member
+  within 5 of it, showing whether its conversation menu opens during the fight, and if it does,
+  whether choosing the row whose target is 3510 brings up a character screen (FND-PARTY-244).
+  Required parts: Send it input and Capture frames and sound (frames), the owner's. Tried: split
+  from Q-PARTY-050, which FND-PARTY-240 closed. Tried: FND-PARTY-244 finds the fight runs a
+  trigger only for a slot whose combatant has `combat_mark` 1 and byte `+0x15` other than 1, and
+  object 161 placed only in region 50; whether object 161 fights there and what the kind-9
+  variable 32, `varD[374]`, `varD[331]`, `varE[7]` and the row's condition then hold depend on
+  the course of play. Blocks: slice 2.
 - Q-PARTY-059. BUG-PARTY-006: Does the game end with `Math Err` when a party druid of priest level
   13 to 15 casts the spell `DATA` 225 at a single-class companion above level 1 while a Shift key
   is held? Settles it: an owner capture, from a save with such a druid that has level 7 spells to
