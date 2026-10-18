@@ -108,10 +108,11 @@ None known.
   word changes only through a saved-game load or script opcode 0x5E with a first operand of
   32766, which that route does not hold (FND-UI-051). No placement on that script route, whichever
   way its conditions go, names object 147, and the party's own objects are 300 to 313
-  (FND-COMBAT-055). Whether a script registered by a trigger instruction places object 147, or a
-  callback registered on the way inserts a row, remains open (FND-EXE-592, Q-COMBAT-019,
-  Q-UI-020); which rows survive from
-  an earlier game in the same run remain (Q-COMBAT-024).
+  (FND-COMBAT-055). With global 22, global 82 and global flag 188 as `MAS/99` leaves them, no
+  callback or trigger script runs and no row is written from START GAME's gate routine to
+  `0x05DC` (FND-UI-052); whether a script before the gate changes those three remains open
+  (FND-EXE-592, Q-COMBAT-019, Q-UI-020). Which rows survive from an earlier game in the same run
+  remains open (Q-COMBAT-024).
 - Which routines insert, remove and transfer rows, with which arguments. FND-COMBAT-039 reads one
   removal caller, the effect window's cache action (Q-COMBAT-020).
 - Category bitmap producers, initialization and lifetime

@@ -266,10 +266,9 @@ None.
 ## Blocked
 
 - Q-COMBAT-019. RULE-COMBAT-009: Which effect rows and count does a new game begin with?
-  Settles it: whether any script a trigger instruction registered, or any window handler, window
-  record or frame callback, that Q-UI-020 finds live between START GAME and `MAS/50` reaching
-  `0x05DC` places object 147 or reaches the insertion wrapper overlay 193 +166F, the insertion
-  +16F6 or the index removal +18E3; if none does, the game begins with no rows and a count of 0.
+  Settles it: Q-UI-020's answer. If no script before the gate's call of `MAS/50` changes global
+  22, global 82 or global flag 188, FND-UI-052 finds no row written on the way to `0x05DC`, so the
+  game begins with no rows and a count of 0.
   Tried: split from Q-COMBAT-009. FND-COMBAT-053 finds nothing writing the count or rows before
   the party load and no constant store to the count; FND-COMBAT-054 finds the other removal and
   transfer entries inert at count 0 and every read route to an insertion passing overlay 193
@@ -277,6 +276,7 @@ None.
   whose `ETAB` does not place object 147; FND-COMBAT-055 finds no placement on `MAS/50`'s script
   route naming object 147 and the party's objects 300 to 313; FND-EXE-592 resolves every transfer
   and finds the insertion reached through the script dispatch, the window hook and a frame
-  callback. What is left is which of those are live in that span, which is Q-UI-020's question;
-  what an earlier game leaves is Q-COMBAT-024. Waiting on: Q-UI-020. Blocks: established
+  callback; FND-UI-052 finds none of those live and no row written from the gate routine's +12FF
+  to `0x05DC`, given the values of those three variables after `MAS/99`. What an earlier game
+  leaves is Q-COMBAT-024. Waiting on: Q-UI-020. Blocks: established
   status-effect selection.

@@ -110,8 +110,10 @@ None known.
   768 zero bytes to the DAC, and on a new game the region fade is reached from script opcode
   0x22's functions 1, 26 and 37 rather than from the start window or the gate routine. The
   first script the gate runs is `MAS/50`, whose instruction `0x05DC` is the first request for
-  the fade on its route, with region 50 still loaded (FND-UI-051); whether a script it registers,
-  or a window or frame callback registered on the way, writes the DAC before it is open
+  the fade on its route, with region 50 still loaded (FND-UI-051). With global 22, global 82 and
+  global flag 188 as `MAS/99` leaves them, nothing between the gate routine and that request runs
+  a callback or trigger script, and the DAC is written only black at `MAS/50` `0x0000` and then by
+  that fade (FND-UI-052). Whether a script before the gate changes those three is open
   (FND-UI-048, FND-UI-049, FND-UI-050, FND-EXE-592, Q-UI-019, Q-UI-020).
 - Whether anything changes the DAC while the map is shown, and whether the cycling ranges keep
   rotating then, rests on which window callbacks are registered while it is up (FND-IMAGE-012,
