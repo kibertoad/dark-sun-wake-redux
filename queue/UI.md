@@ -1,6 +1,6 @@
 # UI
 
-Next ID: Q-UI-006
+Next ID: Q-UI-007
 
 ## Static
 
@@ -8,8 +8,7 @@ Next ID: Q-UI-006
   fields and the other mask values of the four control formats do: the window flags beyond 4 and
   `0x100`, the frames' masks such as 486 and 494, remaining button caption
   layout/producers beyond its mapped tail-copy/request role, the bytes a window copies from
-  a control, whether the game draws a window's `image`, and what `WIND/19501` and `WIND/19502`
-  are for? Settles it: a reading of the loaders under `39D1` and `3D72` and of the routines that
+  a control, and whether the game draws a window's `image`? Settles it: a reading of the loaders under `39D1` and `3D72` and of the routines that
   read these offsets; for the picture word, remaining copied/rebased/computed
   consumers and actual background production beyond the classified literal
   +C2 memory-operand census. Blocks: nothing yet.
@@ -23,6 +22,16 @@ Next ID: Q-UI-006
   loaded words +60/+62. The tail's basic caption role is removed from Settles
   it; complete layout flags, writers, admitted local/source storage, DS/SS,
   font tables and native backend outcomes remain.
+  Tried: FND-UI-044 takes a census of every literal 19501 and 19502 and of
+  the window-number argument at all 31 calls of the window opener: the
+  game-entry routine opens `WIND/19501`, and two overlay 201 routines open
+  `WIND/19502`. What the two windows are for is removed from Settles it;
+  the screen of the second 19502 opener moves to Q-UI-006.
+- Q-UI-006. FMT-UI-001, SCR-UI-002: Which screen does overlay 201 `+0073` show in `WIND/19502`,
+  and what do its handler's two routines do? FND-UI-044 reads its opener call, its two picture
+  requests and its handler's event table. Settles it: a reading of its callers overlay 181
+  `+028E` and overlay 190 `+1EBD`, of its party-slot loop from `+01DE` and its exit at `+02EB`,
+  and of the handler's targets `+03C9` and `+0317`. Blocks: nothing yet.
 - Q-UI-002. SCR-UI-001 to SCR-UI-012, FMT-UI-003, FMT-UI-005, SCR-UI-002, SCR-UI-003, SCR-UI-004, SCR-UI-005, SCR-UI-006, SCR-UI-007, SCR-UI-008, SCR-UI-009, SCR-UI-010, SCR-UI-011, SCR-PARTY-003: Which code opens each screen and handles each of its
   controls, and which icon frame shows a pointed-at, pressed or unavailable control? No routine
   names the controls' numbers as constants (FND-UI-012). Settles it: a reading of the handlers

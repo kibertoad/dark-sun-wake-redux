@@ -57,3 +57,6 @@ None known.
 ## Open questions
 
 - Which resources compose the exploration view, where each layer is drawn, and how the pointer and camera state change are not established by the manual (Q-EXPLORE-007).
+  The game-entry routine opens `WIND/19501` with the key routine of the direction keys as its
+  handler and sets callbacks on its two frames (FND-UI-044); whether that window is this view's,
+  and how long it stays open, is part of Q-EXPLORE-007.
