@@ -106,9 +106,11 @@ None known.
   (FND-EXE-592). A new game loads region 50, whose `ETAB` does not place object 147, and no
   literal placement on its first script's route names it (FND-UI-050); after startup the region
   word changes only through a saved-game load or script opcode 0x5E with a first operand of
-  32766, which that route does not hold (FND-UI-051). Whether a
-  script places object 147 some other way, or a callback registered on the way inserts a row,
-  remains open (FND-EXE-592, Q-COMBAT-019, Q-UI-020); which rows survive from
+  32766, which that route does not hold (FND-UI-051). No placement on that script route, whichever
+  way its conditions go, names object 147, and the party's own objects are 300 to 313
+  (FND-COMBAT-055). Whether a script registered by a trigger instruction places object 147, or a
+  callback registered on the way inserts a row, remains open (FND-EXE-592, Q-COMBAT-019,
+  Q-UI-020); which rows survive from
   an earlier game in the same run remain (Q-COMBAT-024).
 - Which routines insert, remove and transfer rows, with which arguments. FND-COMBAT-039 reads one
   removal caller, the effect window's cache action (Q-COMBAT-020).
