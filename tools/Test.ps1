@@ -79,18 +79,38 @@ if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
 & node (Join-Path $root 'tools/upstream.mjs') links
 if ($LASTEXITCODE -ne 0) { throw 'Local upstream section links are invalid.' }
 
-& node --test (Join-Path $root 'tests/evidence/evidence.test.mjs') (Join-Path $root 'tests/evidence/xxh3.test.mjs') (Join-Path $root 'tests/evidence/build-listing.test.mjs') (Join-Path $root 'tests/evidence/emulator.test.mjs') (Join-Path $root 'tests/upstream/tool-dependencies.test.mjs') (Join-Path $root 'tests/upstream/upstream.test.mjs') (Join-Path $root 'tests/upstream/mapped-locations.test.mjs') (Join-Path $root 'tests/upstream/diagnostics.test.mjs') (Join-Path $root 'tests/upstream/memory-blocks.test.mjs') (Join-Path $root 'tests/upstream/superseded-ownership.test.mjs') (Join-Path $root 'tests/upstream/research-tracking.test.mjs') (Join-Path $root 'tests/upstream/goal-run.test.mjs') (Join-Path $root 'tests/upstream/capture-window.test.mjs') (Join-Path $root 'tests/upstream/infrastructure.test.mjs') (Join-Path $root 'tests/upstream/export-boundaries.test.mjs') (Join-Path $root 'tests/upstream/work-baseline.test.mjs') (Join-Path $root 'tests/upstream/validation-selection.test.mjs')
-if ($LASTEXITCODE -ne 0) { throw 'Synthetic evidence or upstream snapshot tests failed.' }
-# Pass the portable PowerShell running this gate to the option controls, then restore the caller's environment.
+# One node --test run, so the files run at the same time; its summary names each failing test.
+$nodeTests = @(
+    'tests/evidence/evidence.test.mjs',
+    'tests/evidence/xxh3.test.mjs',
+    'tests/evidence/build-listing.test.mjs',
+    'tests/evidence/emulator.test.mjs',
+    'tests/upstream/tool-dependencies.test.mjs',
+    'tests/upstream/upstream.test.mjs',
+    'tests/upstream/mapped-locations.test.mjs',
+    'tests/upstream/diagnostics.test.mjs',
+    'tests/upstream/memory-blocks.test.mjs',
+    'tests/upstream/superseded-ownership.test.mjs',
+    'tests/upstream/research-tracking.test.mjs',
+    'tests/upstream/goal-run.test.mjs',
+    'tests/upstream/capture-window.test.mjs',
+    'tests/upstream/infrastructure.test.mjs',
+    'tests/upstream/export-boundaries.test.mjs',
+    'tests/upstream/work-baseline.test.mjs',
+    'tests/upstream/validation-selection.test.mjs',
+    'tests/upstream/offline-validation.test.mjs',
+    'tests/upstream/release-signing.test.mjs'
+) | ForEach-Object { Join-Path $root $_ }
+# Some tests run PowerShell scripts; give them the PowerShell running this gate, then restore the caller's environment.
 $previousPwsh = $env:PWSH
 if (-not $env:PWSH) { $env:PWSH = [Diagnostics.Process]::GetCurrentProcess().MainModule.FileName }
 try {
-    & node --test (Join-Path $root 'tests/upstream/offline-validation.test.mjs') (Join-Path $root 'tests/upstream/release-signing.test.mjs')
+    & node --test @nodeTests
 }
 finally {
     $env:PWSH = $previousPwsh
 }
-if ($LASTEXITCODE -ne 0) { throw 'Offline validation option controls failed.' }
+if ($LASTEXITCODE -ne 0) { throw 'Synthetic evidence, upstream snapshot or option control tests failed.' }
 # Node does not resolve a .bat or .cmd wrapper on PATH, so hand the check the Kaitai compiler's
 # full path when KSC is unset and a Windows wrapper is installed.
 if (-not $env:KSC) {

@@ -134,5 +134,9 @@ claimed worktree. Its marker lives in that worktree's Git directory. The Stop
 hook binds only an identified conversation; another worktree or conversation,
 an absent goal, invalid input or missing session ID passes without consuming its
 allowance. Three held-back stops with unchanged HEAD permit stops until another
-commit. Explicit stop removes the marker; it does not delete the goal claim.
+commit. Before a turn that ends waiting on a batch a subagent runs, or on an
+answer from the owner, node tools/goal-run.mjs wait records HEAD in the
+marker; stops then pass without spending the allowance until the next commit,
+node tools/goal-run.mjs resume or another start. Explicit stop removes the
+marker; it does not delete the goal claim.
 Codex's active thread goal manages its own continuation and status.
