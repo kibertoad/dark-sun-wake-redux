@@ -110,10 +110,12 @@ None known.
   768 zero bytes to the DAC, and on a new game the region fade is reached from script opcode
   0x22's functions 1, 26 and 37 rather than from the start window or the gate routine. The
   first script the gate runs is `MAS/50`, whose instruction `0x05DC` is the first request for
-  the fade on its route; whether a script it registers or an unresolved transfer writes the DAC
-  before it is open (FND-UI-048, FND-UI-049, FND-UI-050, Q-UI-019).
+  the fade on its route, with region 50 still loaded (FND-UI-051); whether a script it registers,
+  or a window or frame callback registered on the way, writes the DAC before it is open
+  (FND-UI-048, FND-UI-049, FND-UI-050, FND-EXE-592, Q-UI-019, Q-UI-020).
 - Whether anything changes the DAC while the map is shown, and whether the cycling ranges keep
-  rotating then, rests on transfers no walk resolves (FND-IMAGE-012, FND-UI-048, Q-UI-012). The
+  rotating then, rests on which window callbacks are registered while it is up (FND-IMAGE-012,
+  FND-UI-048, FND-EXE-592, Q-UI-012). The
   manual describes a blue party marker and red markers for monsters and other characters; the
   code gives kind-2 objects the cycling index 16, whose colours run from yellow to orange or red
   (SRC-MANUAL-1994, FND-IMAGE-012).

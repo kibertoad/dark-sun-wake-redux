@@ -98,13 +98,17 @@ None known.
 - Which rows and count a new game begins with. At program start the count is the load image's
   zero and nothing before START GAME's party load writes the count or a row; no writer sets the
   count to a constant (FND-COMBAT-053). With the count at 0 the removal and transfer entries
-  change nothing, and every route from the gate routine's later calls to an insertion passes the
-  area-effect routine overlay 193 +12A8, which runs only for a slot made from object 147 or one
-  it marked itself; only `RGN03B.GFF#ETAB/59` places object 147, so a first game begun in a
-  region that does not place it begins with no rows (FND-COMBAT-054). A new game loads region
-  50, whose `ETAB` does not place object 147, and no literal placement on its first script's
-  route names it (FND-UI-050). Whether a script places object 147 some other way, or an
-  unresolved transfer changes the region, remains open (Q-COMBAT-019); which rows survive from
+  change nothing, and every route a walk with 41 transfers unresolved read from the gate
+  routine's later calls to an insertion passes the area-effect routine overlay 193 +12A8, which
+  runs only for a slot made from object 147 or one it marked itself; only `RGN03B.GFF#ETAB/59`
+  places object 147 (FND-COMBAT-054). With those transfers resolved, the insertion is also
+  reached through the script dispatch, the window hook and an application frame callback
+  (FND-EXE-592). A new game loads region 50, whose `ETAB` does not place object 147, and no
+  literal placement on its first script's route names it (FND-UI-050); after startup the region
+  word changes only through a saved-game load or script opcode 0x5E with a first operand of
+  32766, which that route does not hold (FND-UI-051). Whether a
+  script places object 147 some other way, or a callback registered on the way inserts a row,
+  remains open (FND-EXE-592, Q-COMBAT-019, Q-UI-020); which rows survive from
   an earlier game in the same run remain (Q-COMBAT-024).
 - Which routines insert, remove and transfer rows, with which arguments. FND-COMBAT-039 reads one
   removal caller, the effect window's cache action (Q-COMBAT-020).

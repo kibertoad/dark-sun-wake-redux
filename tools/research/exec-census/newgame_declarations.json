@@ -1,0 +1,339 @@
+{
+ "indirectCalls": [
+  {
+   "site": "1000:029D",
+   "exhaustive": true,
+   "targets": [],
+   "evidence": "FND-EXE-580: the exit record table DS:39BE..39C4 holds no type-0 record and no instruction stores to DS:3994..39C4, so the near call through es:[bx+2] never runs"
+  },
+  {
+   "site": "1BF3:5D0E",
+   "exhaustive": true,
+   "targets": [],
+   "evidence": "FND-PARTY-043: the call is skipped when the doubleword at +0C of the far pointer at 1BF3:1052 is 0, and the only stores to that field write 0"
+  },
+  {
+   "site": "3D72:012A",
+   "exhaustive": true,
+   "targets": [],
+   "evidence": "FND-EXE-588: field +70 of an application frame stays 0, since the only routine that would set it is never called, and the call is skipped when it is 0"
+  },
+  {
+   "site": "3D72:09C7",
+   "exhaustive": true,
+   "targets": [],
+   "evidence": "FND-EXE-588: the call needs fields +5A and +5E of the record at DGROUP A15B both set, and the only routines that would set them are never called"
+  },
+  {
+   "site": "3D72:0BD7",
+   "exhaustive": true,
+   "targets": [],
+   "evidence": "FND-EXE-588: field +5A of the record at DGROUP A15B stays 0, since the only routine that would set it is never called, and the call is skipped when it is 0"
+  },
+  {
+   "site": "3D72:0DA1",
+   "exhaustive": true,
+   "targets": [],
+   "evidence": "FND-EXE-588: DGROUP A119 is 0 at load and written only with 0 or by 3D72:08E1, which has no caller, and the call is skipped when it is 0"
+  },
+  {
+   "site": "3D72:0DD0",
+   "exhaustive": true,
+   "targets": [],
+   "evidence": "FND-EXE-588: DGROUP A119 is 0 at load and written only with 0 or by 3D72:08E1, which has no caller, and the call is skipped when it is 0"
+  },
+  {
+   "site": "4AB9:002B",
+   "exhaustive": true,
+   "targets": [],
+   "evidence": "FND-EXE-583: DGROUP 3471 is 0 at load, written only by 4AB9:0007 from its argument, and 4AB9:0007 has no caller, and the call is skipped when it is 0"
+  },
+  {
+   "site": "4AB9:0052",
+   "exhaustive": true,
+   "targets": [],
+   "evidence": "FND-EXE-583: DGROUP 346D is 0 at load, written only by 4AB9:0007 from its argument, and 4AB9:0007 has no caller, and the call is skipped when it is 0"
+  },
+  {
+   "site": "1000:1F10",
+   "exhaustive": true,
+   "outside": {
+    "description": "the interrupt instruction 1000:1EB4 writes into its stack buffer (FND-EXE-578)"
+   },
+   "evidence": "FND-EXE-578: the far pointer is the buffer's offset and SS"
+  },
+  {
+   "site": "1000:1FBC",
+   "exhaustive": true,
+   "outside": {
+    "description": "the interrupt instruction 1000:1F50 writes into its stack buffer (FND-EXE-578)"
+   },
+   "evidence": "FND-EXE-578: the far pointer is the buffer's offset and SS"
+  },
+  {
+   "site": "4AE5:0F55",
+   "exhaustive": true,
+   "outside": {
+    "interrupt": "4AE5:0F49"
+   },
+   "evidence": "FND-EXE-581: 55CE:0043..0047 is written only at 4AE5:0F4B and 0F4F from what interrupt 2F AX=4310 returns"
+  },
+  {
+   "site": "4AE5:0F60",
+   "exhaustive": true,
+   "outside": {
+    "interrupt": "4AE5:0F49"
+   },
+   "evidence": "FND-EXE-581: as at 4AE5:0F55"
+  },
+  {
+   "site": "4AE5:0F6D",
+   "exhaustive": true,
+   "outside": {
+    "interrupt": "4AE5:0F49"
+   },
+   "evidence": "FND-EXE-581: as at 4AE5:0F55"
+  },
+  {
+   "site": "4AE5:0F7B",
+   "exhaustive": true,
+   "outside": {
+    "interrupt": "4AE5:0F49"
+   },
+   "evidence": "FND-EXE-581: as at 4AE5:0F55"
+  },
+  {
+   "site": "4AE5:0FA5",
+   "exhaustive": true,
+   "outside": {
+    "interrupt": "4AE5:0F49"
+   },
+   "evidence": "FND-EXE-581: as at 4AE5:0F55"
+  },
+  {
+   "site": "4AE5:0FAF",
+   "exhaustive": true,
+   "outside": {
+    "interrupt": "4AE5:0F49"
+   },
+   "evidence": "FND-EXE-581: as at 4AE5:0F55"
+  },
+  {
+   "site": "4AE5:10CB",
+   "exhaustive": true,
+   "outside": {
+    "interrupt": "4AE5:0F49"
+   },
+   "evidence": "FND-EXE-581: as at 4AE5:0F55"
+  },
+  {
+   "site": "4AE5:10D9",
+   "exhaustive": true,
+   "outside": {
+    "interrupt": "4AE5:0F49"
+   },
+   "evidence": "FND-EXE-581: as at 4AE5:0F55"
+  },
+  {
+   "site": "4AE5:1172",
+   "exhaustive": true,
+   "outside": {
+    "interrupt": "4AE5:0F49"
+   },
+   "evidence": "FND-EXE-582: as at 4AE5:0F55"
+  },
+  {
+   "site": "4AE5:117C",
+   "exhaustive": true,
+   "outside": {
+    "interrupt": "4AE5:0F49"
+   },
+   "evidence": "FND-EXE-582: as at 4AE5:0F55"
+  },
+  {
+   "site": "4AE5:1220",
+   "exhaustive": true,
+   "outside": {
+    "interrupt": "4AE5:0F49"
+   },
+   "evidence": "FND-EXE-581: as at 4AE5:0F55"
+  },
+  {
+   "site": "15F3:05D4",
+   "exhaustive": true,
+   "outside": {
+    "interrupt": "15F3:00D8"
+   },
+   "evidence": "FND-EXE-581: 15F3:00B8..00BC is written only at 15F3:00DA and 00DE from what interrupt 2F AX=4310 returns"
+  },
+  {
+   "site": "15F3:0629",
+   "exhaustive": true,
+   "outside": {
+    "interrupt": "15F3:00D8"
+   },
+   "evidence": "FND-EXE-584: as at 15F3:05D4"
+  },
+  {
+   "site": "15F3:066C",
+   "exhaustive": true,
+   "outside": {
+    "interrupt": "15F3:00D8"
+   },
+   "evidence": "FND-EXE-581: as at 15F3:05D4"
+  },
+  {
+   "site": "15F3:0699",
+   "exhaustive": true,
+   "outside": {
+    "interrupt": "15F3:00D8"
+   },
+   "evidence": "FND-EXE-581: as at 15F3:05D4"
+  },
+  {
+   "site": "15F3:0701",
+   "exhaustive": true,
+   "outside": {
+    "interrupt": "15F3:00D8"
+   },
+   "evidence": "FND-EXE-584: as at 15F3:05D4"
+  },
+  {
+   "site": "15F3:0727",
+   "exhaustive": true,
+   "outside": {
+    "interrupt": "15F3:00D8"
+   },
+   "evidence": "FND-EXE-584: as at 15F3:05D4"
+  },
+  {
+   "site": "15F3:0754",
+   "exhaustive": true,
+   "outside": {
+    "interrupt": "15F3:00D8"
+   },
+   "evidence": "FND-EXE-584: as at 15F3:05D4"
+  },
+  {
+   "site": "15F3:07C2",
+   "exhaustive": true,
+   "outside": {
+    "interrupt": "15F3:00D8"
+   },
+   "evidence": "FND-EXE-584: as at 15F3:05D4"
+  },
+  {
+   "site": "15F3:07D7",
+   "exhaustive": true,
+   "outside": {
+    "interrupt": "15F3:00D8"
+   },
+   "evidence": "FND-EXE-584: as at 15F3:05D4"
+  },
+  {
+   "site": "15F3:07FF",
+   "exhaustive": true,
+   "outside": {
+    "interrupt": "15F3:00D8"
+   },
+   "evidence": "FND-EXE-584: as at 15F3:05D4"
+  },
+  {
+   "site": "15F3:0817",
+   "exhaustive": true,
+   "outside": {
+    "interrupt": "15F3:00D8"
+   },
+   "evidence": "FND-EXE-584: as at 15F3:05D4"
+  },
+  {
+   "site": "15F3:083A",
+   "exhaustive": true,
+   "outside": {
+    "interrupt": "15F3:00D8"
+   },
+   "evidence": "FND-EXE-584: as at 15F3:05D4"
+  }
+ ],
+ "indirectJumps": [
+  {
+   "site": "1000:252C",
+   "exhaustive": true,
+   "evidence": "FND-EXE-579: DS:398C holds 129F at load and no instruction stores to it",
+   "table": {
+    "start": "57E0:398C",
+    "count": 1,
+    "stride": 2,
+    "evidence": "one word, DS:398C"
+   }
+  }
+ ],
+ "starts": [
+  "2707:01AD",
+  "2707:01CB",
+  "2707:01F1",
+  "2707:0208",
+  "2707:0218",
+  "2707:0224",
+  "2707:023A",
+  "2707:026E",
+  "2707:05B1",
+  "2707:05C2",
+  "2707:05EF",
+  "2707:0600",
+  "2707:062C",
+  "2707:063C",
+  "2707:0668",
+  "2707:0678",
+  "2707:0390",
+  "2707:031F",
+  "2707:0334",
+  "2707:033C",
+  "2707:0351",
+  "2707:0366",
+  "2707:036E",
+  "2707:03FA",
+  "2707:040A",
+  "2707:0489",
+  "2707:041D",
+  "2707:0430",
+  "2707:0440",
+  "2707:0453",
+  "2707:04E5",
+  "2707:04FD",
+  "2707:0510",
+  "2707:0528"
+ ],
+ "noReturn": [
+  {
+   "call": "1000:02C1",
+   "reason": "FND-EXE-578: the call at 1000:02C1 does not return; the bytes after it are the run-time error message text"
+  }
+ ],
+ "stops": [
+  {
+   "site": "1000:298A",
+   "reason": "FND-EXE-580: the jump through DS:3916 returns to 1000:0260, after the walker's near call, which the walk already continues at"
+  },
+  {
+   "site": "2707:0188",
+   "reason": "FND-EXE-586: the far jump goes through an 8- or 4-row CS table of relocated pointers into 2707, whose rows are given as starts"
+  },
+  {
+   "site": "2707:02FA",
+   "reason": "FND-EXE-586: the far jump goes through an 8- or 4-row CS table of relocated pointers into 2707, whose rows are given as starts"
+  },
+  {
+   "site": "2707:03D5",
+   "reason": "FND-EXE-586: the far jump goes through an 8- or 4-row CS table of relocated pointers into 2707, whose rows are given as starts"
+  },
+  {
+   "site": "2707:04D0",
+   "reason": "FND-EXE-586: the far jump goes through an 8- or 4-row CS table of relocated pointers into 2707, whose rows are given as starts"
+  },
+  {
+   "site": "2707:058C",
+   "reason": "FND-EXE-586: the far jump goes through an 8- or 4-row CS table of relocated pointers into 2707, whose rows are given as starts"
+  }
+ ]
+}

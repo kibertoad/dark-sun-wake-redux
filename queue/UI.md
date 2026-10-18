@@ -1,6 +1,6 @@
 # UI
 
-Next ID: Q-UI-020
+Next ID: Q-UI-021
 
 ## Static
 
@@ -116,22 +116,25 @@ Next ID: Q-UI-020
   handler and openers; the map is removed from Settles it, apart from its
   mark colours (FND-UI-047, FND-IMAGE-012) and placement (Q-UI-003).
 - Q-UI-012. SCR-UI-022: Does the DAC change while the overhead map is shown, and do the cycling
-  ranges keep rotating then? Settles it: the 41 transfers the walks from the map's routines leave
-  unresolved, resolved or bounded, above all the window-system callbacks through `es:[bx+0F5]`,
-  `+0F9` and `+0FD` and the pointers at `DS:A0F1` and `DS:A0F5`, and whether the map's wait for
-  input reaches the main loop's call of the cycler 3796:047C. What first puts the region palette
-  in the DAC on a new game is Q-UI-019. Tried: FND-IMAGE-012 finds the play palette loaded by
+  ranges keep rotating then? Settles it: which window handler and window record callbacks are
+  registered while the map's window is up (the resolved walk's shortest route to overlay 201
+  +05D5 passes `3A8E:08B7` into overlay 189 +001E and `39D1:0B55` into `28C9:0CFF`), and whether
+  the map's wait for input reaches the main loop's call of the cycler 3796:047C. What first puts
+  the region palette in the DAC on a new game is Q-UI-019. Tried: FND-IMAGE-012 finds the play palette loaded by
   overlay 204 +1D2E and the cycling ranges, and a walk from the map's routines whose only route
   to a DAC write passes the view draw `2C5F:0139` into overlay 201 +05D5. Tried: FND-UI-048 shows
   +05D5 ends every path with the fade to `PAL/current_region`, inside the map routine's first
   call and before it builds its window, and that it writes the DAC through nothing else; whether
-  that route runs no longer decides the map's palette and is removed from Settles it. Blocks:
-  nothing yet.
+  that route runs no longer decides the map's palette and is removed from Settles it. Tried:
+  FND-EXE-592 resolves every transfer the walk from the map's routines left, and with them the
+  walk reaches +05D5 through window record and window hook callbacks; the unresolved transfers are
+  removed from Settles it, and which callbacks are registered while the map is up takes their
+  place. Blocks: nothing yet.
 - Q-UI-019. SCR-UI-022: What first puts the region palette in the DAC when a new game begins?
   Settles it: whether any of the nine scripts `MAS/50` registers with instruction 0x1B runs
-  before `MAS/50` reaches `0x05DC` and asks for overlay 204 +0CBA's fade, and whether any of the
-  transfers the walks from the main routine and the gate routine leave unresolved reaches a DAC
-  writer first. Tried: split from Q-UI-012. FND-IMAGE-012 reads the fade overlay 204 +1D2E and
+  before `MAS/50` reaches `0x05DC` and asks for overlay 204 +0CBA's fade, and whether a window
+  handler, window record or frame callback registered on the new-game route (Q-UI-020) or a
+  script instruction other than `0x22` reaches a DAC writer first. Tried: split from Q-UI-012. FND-IMAGE-012 reads the fade overlay 204 +1D2E and
   its callers, and FND-UI-048 finds that every read route to the fade from the start window's
   callback, the gate routine's later calls and the main loop's overlay 192 +0015 passes +05D5,
   and that overlay 192 +0C62's call of the fade is not reached from them. FND-IMAGE-012 matches
@@ -141,8 +144,24 @@ Next ID: Q-UI-020
   from script opcode 0x22's functions 1, 26 and 37; the block's contents and whether +05D5 runs
   are removed from Settles it. Tried: FND-UI-050 finds that a new game loads region 50 and runs
   `MAS/50` first, and that the first fade request on its route and in the scripts it calls is
-  `MAS/50` `0x05DC`; which script instruction asks first is removed from Settles it. Blocks:
-  nothing yet.
+  `MAS/50` `0x05DC`; which script instruction asks first is removed from Settles it. Tried:
+  FND-EXE-592 resolves every transfer the walks from the main routine, the start window's
+  callback and the gate routine's later calls left, and with them the palette walk reaches the
+  DAC writers through script opcode 0x22, the start window's handler, the exit table's call and
+  overlay 204's callback argument; FND-UI-051 shows the region word stays 50 on the route
+  FND-UI-050 reads. The unresolved transfers are removed from Settles it, and the callbacks
+  registered on the route move to Q-UI-020. Blocks: nothing yet.
+- Q-UI-020. SCR-UI-022, RULE-COMBAT-009: Which window handlers, window record callbacks and
+  application frame callbacks are registered, and which scripts run, between START GAME and
+  `MAS/50` reaching `0x05DC`? Settles it: the calls of the setters `39D1:0418`, `39D1:0430`,
+  overlay 190 +11A1, overlay 182 +016B, `3A8E:0CDC`, `3A8E:0D0C`, `3A8E:0D3C` and `3F96:02AB`,
+  and of the script runners `1695:000B` and `1695:01D1`, read in order along the start window's
+  callback overlay 194 +0000 and the gate routine overlay 182 +1167, with the arguments each
+  passes, and whether any of the nine `0x1B` entries `MAS/50` registers runs in that span.
+  Tried: FND-EXE-592 resolves every computed transfer the walks over that span reach, and its
+  walks reach the region, effect and palette writers through declared callback and opcode
+  targets, so which of them are live decides those questions; FND-UI-051 reads the region word's
+  routes. Blocks: nothing yet.
 
 ## Emulated call
 

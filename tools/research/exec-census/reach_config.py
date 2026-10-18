@@ -6,8 +6,13 @@ QUERY_JSON holds `starts`, `targets` and `controls` (lists of sites) and `leaves
 {site, reason}), and may hold `instructionControls` (a list of sites) and `indirectCalls` (the
 engine's declarations of computed call targets, from scientific-method-engine 18.4.0: each with
 `site`, `evidence`, `exhaustive` and either `targets`, a list of sites, or `table`, whose `start`
-is a site), and `noReturn` (the engine's list of {routine, reason}, {call, reason} and
-{interrupt, reason} entries, from 18.0.0, whose routine, call or interrupt is a site), and `decodedRanges` (true asks the
+is a site, or `outside` alone or beside them, whose `interrupt`, if it has one, is a site),
+`indirectJumps` (the engine's declarations of computed near jumps, each with `site`, `evidence`,
+`exhaustive` and a `table` whose `start` is a site; a site the scan below declares keeps the
+scan's declaration), and `noReturn` (the engine's list of {routine, reason}, {call, reason} and
+{interrupt, reason} entries, from 18.0.0, whose routine, call or interrupt is a site), `stops`
+(the engine's list of {routine, reason} and {site, reason} cuts of the query, whose routine or
+site is a site), and `decodedRanges` (true asks the
 report for the ranges the walk decoded). A site is a file offset 0xHEX, a resident address SEGMENT:OFFSET (load image at
 segment 0x1000) or an overlay routine DESCRIPTOR+OFFSET (hexadecimal offset in that overlay's
 code); each becomes a file offset. Checks the installed DSUN.EXE's size and XXH3-128.
@@ -87,14 +92,23 @@ leaves = [{"routine": site(leaf["site"]), "reason": leaf["reason"]} for leaf in 
 instruction_controls = [site(s) for s in query.get("instructionControls", [])]
 no_return = [{key: (site(value) if key in ("routine", "call", "interrupt") else value) for key, value in entry.items()}
              for entry in query.get("noReturn", [])]
+stops = [{key: (site(value) if key in ("routine", "site") else value) for key, value in entry.items()}
+         for entry in query.get("stops", [])]
 calls = []
 for claim in query.get("indirectCalls", []):
     call = {"site": site(claim["site"]), "evidence": claim["evidence"], "exhaustive": claim["exhaustive"]}
+    if "outside" in claim:
+        outside = dict(claim["outside"])
+        if "interrupt" in outside:
+            outside["interrupt"] = site(outside["interrupt"])
+        call["outside"] = outside
     if "table" in claim:
         call["table"] = dict(claim["table"], start=site(claim["table"]["start"]))
-    else:
+    elif "targets" in claim:
         call["targets"] = [site(t) for t in claim["targets"]]
     calls.append(call)
+declared_jumps = [dict(claim, site=site(claim["site"]), table=dict(claim["table"], start=site(claim["table"]["start"])))
+                  for claim in query.get("indirectJumps", [])]
 
 inventory_starts = [line.split("\t")[0] for line in open(inventory).read().splitlines()[1:]]
 entries = {resident(s) if ":" in s else int(s, 16) for s in inventory_starts}
@@ -211,12 +225,14 @@ for r in regions:
                 jumps.append({"site": at, "exhaustive": True, "table": table,
                               "evidence": "bounded jmp cs:[bx+table] in a declared code region"})
         at = body.find(b"\x2e\xff", at + 1, r["end"])
+jumps += [claim for claim in declared_jumps if claim["site"] not in {j["site"] for j in jumps}]
 
 json.dump({"source": source, "xxh3": XXH3, "sourceKind": "mz", "regions": regions, "relocations": relocations,
            "indirectJumps": jumps, "starts": starts, "targets": targets, "leaves": leaves, "controls": controls,
            **({"instructionControls": instruction_controls} if instruction_controls else {}),
            **({"indirectCalls": calls} if calls else {}),
            **({"noReturn": no_return} if no_return else {}),
+           **({"stops": stops} if stops else {}),
            **({"decodedRanges": True} if query.get("decodedRanges") else {}),
            "instructionLimit": max(100000, sum(r["end"] - r["start"] for r in regions)), "limit": 10000}, open(out, "w"), separators=(",", ":"))
 print(f"{len(regions)} regions, {len(relocations)} far transfers, {len(jumps)} jump tables, {len(starts)} starts,"

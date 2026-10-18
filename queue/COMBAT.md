@@ -120,9 +120,9 @@ Next ID: Q-COMBAT-025
   Settles it: whether a script on the new-game route places object 147 (through a placement
   whose object number comes from a variable, such as `GPL/27` at 491 with global 2, or through a
   script `MAS/50` registers with instruction 0x1B), whether the party's own objects include it,
-  and whether any of the gate routine's calls from +1300 on reaches a store to `DS:140C`, an
-  insertion or the index removal +18E3 through one of the 41 transfers the walks leave
-  unresolved. Tried: split from Q-COMBAT-009. FND-COMBAT-031 notes the
+  and whether a window handler, window record or frame callback registered between START GAME
+  and the gate routine's return (Q-UI-020), or a script instruction, reaches an insertion or the
+  index removal +18E3. Tried: split from Q-COMBAT-009. FND-COMBAT-031 notes the
   count's zero word in the load image; no initializer has been read. Tried: FND-COMBAT-053 finds
   no write of the count or rows from program start to the party load, no constant store to the
   count, the numbered restore unreached on the new-game route, and every route to the effect
@@ -133,8 +133,13 @@ Next ID: Q-COMBAT-025
   which of the gate routine's calls change the rows is removed from Settles it, and what an
   earlier game leaves moves to Q-COMBAT-024. Tried: FND-UI-050 finds that a new game loads
   region 50, whose `ETAB/50` does not place object 147, and that no literal placement on
-  `MAS/50`'s route names it; the region is removed from Settles it. Blocks: established
-  status-effect selection.
+  `MAS/50`'s route names it; the region is removed from Settles it. Tried: FND-EXE-592 resolves
+  every transfer the walks from the gate routine's later calls left; with them the effect walk
+  reaches the insertion through the script dispatch, the window hook and the frame callback, by
+  no routine common to every route, and FND-UI-051 finds the region word changed on that span only
+  by script opcode 0x5E with a first operand of 32766 or a saved-game load. The unresolved
+  transfers and the region stores are removed from Settles it. Blocks: established status-effect
+  selection.
 - Q-COMBAT-024. RULE-COMBAT-009: Which effect rows does a game begun after an earlier one in the
   same run start with? Settles it: whether the defeat cleanup's unload reaches the owner removal
   at 31E0:0AC9 with `DS:265B` nonzero, which owners' rows the earlier game's other exits (the
