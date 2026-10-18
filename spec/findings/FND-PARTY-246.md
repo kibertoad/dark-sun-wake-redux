@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-246
 title: Attached-record word 0x0A numbers the item's 15-byte type entry, word 0x14 its name line, byte 0x16 a signed bonus printed after the name, and an item power's use decrements byte 0x0E
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-248]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

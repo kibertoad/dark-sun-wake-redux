@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_006.ksy
-evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229, FND-PARTY-230, FND-PARTY-231, FND-PARTY-234, FND-PARTY-235, FND-PARTY-236, FND-PARTY-238, FND-PARTY-239, FND-PARTY-245, FND-PARTY-246, FND-PARTY-247]
+evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229, FND-PARTY-230, FND-PARTY-231, FND-PARTY-234, FND-PARTY-235, FND-PARTY-236, FND-PARTY-238, FND-PARTY-239, FND-PARTY-245, FND-PARTY-248, FND-PARTY-247]
 conflicting: []
 split_with: []
 related: []
@@ -54,9 +54,15 @@ Under the shipped kind-1 field descriptors, word `0x0A` (field 5) is `item_type`
 the item's 15-byte entry in the table at the far pointer `DS:19CD`, with 9999 for none; word
 `0x14` (field 11) is `name_number`, a line of `TEXT/1000`, whose high byte `0x15` is 0 in every
 shipped record; and byte `0x16` (field 12) is `bonus`, a signed number the item's name shows as
-`+n` or `-n` and that combat code adds or tests for a negative value. Byte `0x0E` (field 7)
-drops by one each time the item's power is used, and the item is passed on to be used up when
-the word reaches 0 [FND-PARTY-246].
+`+n` or `-n` and that combat code adds or tests for a negative value.
+In the reviewed action-completion path, a nonzero low-byte action argument
+and item kind 3 first restore a word from `0x10`: to `0x0E` when the item
+type is below 9999 and bit 1 of its type record's byte `0x0B` is set,
+otherwise to quantity at `0x02`. After returning, the type-flag branch
+with action argument 2 skips the subsequent decrement; other paths
+decrement byte `0x0E` and pass the item onward when the whole word is zero.
+This copy-before-decrement order does not establish a persistent uses-left
+counter or the meaning of every action argument [FND-PARTY-248].
 
 Runtime word `0x0C` is `cached_bitmap_number` in the reviewed inventory
 drawing path. A nonzero word is reused as an unsigned BMP resource number.
@@ -174,7 +180,7 @@ ends on a `chunk_type` of 0xFF whose header is the last 10 bytes of the resource
 ## Open questions
 
 - What the word at `0x10` (field 8) of a 23-byte record holds, and what the other writers of
-  `0x0E` store there; FND-PARTY-196 gives the shipped values and FND-PARTY-246 the accesses
+  `0x0E` store there; FND-PARTY-196 gives the shipped values and FND-PARTY-248 the accesses
   (Q-PARTY-020).
 - Remaining direct readers and writers of the bitmap-number cache
   (FND-PARTY-224, Q-PARTY-087).

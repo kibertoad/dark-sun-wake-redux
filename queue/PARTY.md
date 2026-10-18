@@ -118,15 +118,19 @@ Next ID: Q-PARTY-106
   field 8, hold, and what do the writers of `0x0E` other than the item-power use store there?
   Settles it: the readers of `0x10` in overlays 173, 182, 189, 190, 197, 204 and 213 and
   `25AF:02D9` and `28C9:26EE`, with what each bit it tests (0, 1, 3 and 7) selects, the stores
-  at overlay 182 `+0DA1`, `+0EF3` and `+0F19`, and the `0x0E` stores at overlay 190 `+36AC` and
+  at overlay 182 `+0DA1`, `+0EF3` and `+0F19`, and the `0x0E` stores at
   overlay 197 `+3792` and `+38B3` with their values. The word at `0x06` is FND-PARTY-245's value,
   the reference at `0x08` FND-PARTY-247's container head. Tried: FND-PARTY-196 lists the shipped values of every
   field; FND-PARTY-181, FND-PARTY-182, FND-PARTY-216, FND-PARTY-217 and FND-PARTY-224 name the
   fields at `0x00`, `0x12`, `0x02`, `0x13` and `0x0C` from their consumers, and FND-PARTY-216
   binds the descriptors of fields 0 to 4 only, so no descriptor or consumer of these offsets has
-  been read. Tried: FND-PARTY-246 binds fields 5 to 12, lists the kind-1 accesses of `0x0A` to
-  `0x16` and names `0x0A`, `0x14` with `0x15`, `0x16`, and the item-power count at `0x0E`, which
-  are removed from Settles it. Blocks: slice 2.
+  been read. Tried: FND-PARTY-248 binds fields 5 to 12, lists the kind-1 accesses of `0x0A` to
+  `0x16` and names `0x0A`, `0x14` with `0x15`, `0x16`, and the local decrement at `0x0E`, which
+  are removed from Settles it. Tried: FND-PARTY-248 answers overlay 190 `+36AC`:
+  `+365A` copies word `0x10` to `0x0E` under the type-flag branch, otherwise
+  to quantity, and action completion calls it before the conditional byte
+  decrement. This store is removed from Settles it; the other writers and
+  semantic interpretation of `0x10` remain. Blocks: slice 2.
 - Q-PARTY-087. FMT-PARTY-006, SCR-UI-008: Which remaining code reads or
   writes the attached record's cached BMP number at +0C directly, outside
   the generic field accessor? Settles it: a census of instruction starts
