@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_006.ksy
-evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229, FND-PARTY-230, FND-PARTY-231, FND-PARTY-234, FND-PARTY-235, FND-PARTY-236, FND-PARTY-238, FND-PARTY-239, FND-PARTY-245, FND-PARTY-248, FND-PARTY-247, FND-PARTY-249]
+evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229, FND-PARTY-230, FND-PARTY-231, FND-PARTY-234, FND-PARTY-235, FND-PARTY-236, FND-PARTY-238, FND-PARTY-239, FND-PARTY-245, FND-PARTY-248, FND-PARTY-247, FND-PARTY-249, FND-PARTY-250]
 conflicting: []
 split_with: []
 related: []
@@ -63,6 +63,18 @@ with action argument 2 skips the subsequent decrement; other paths
 decrement byte `0x0E` and pass the item onward when the whole word is zero.
 This copy-before-decrement order does not establish a persistent uses-left
 counter or the meaning of every action argument [FND-PARTY-248].
+
+For the reviewed placed-object paths whose object number is 2400 through
+2949, word `0x10` is used as door flags. Bit 0 participates in the closed
+state, bit 1 selects a locked-door message and bit 3 selects discovery
+of a secret door before being cleared. The setter's zero override blocks
+an update when old bit 2 or bit 3 is set. It sign-extends the old low
+byte, sets or clears bits 0 and 1 according to its request, and writes
+the full word, also copying that result to a found partner record.
+Consequently the high byte is replaced by zero or 0xFF according to
+old bit 7. The local stores precede unchanged-state return checks.
+These flags and widths apply to this context; caller/storage admission
+and the requested presentation remain qualified [FND-PARTY-250].
 
 Runtime word `0x0C` is `cached_bitmap_number` in the reviewed inventory
 drawing path. A nonzero word is reused as an unsigned BMP resource number.
@@ -195,6 +207,8 @@ for root index zero it instead returns the root object number
   (Q-PARTY-020).
 - Gameplay meaning, admitted inputs and later consumption of the packed
   bytes written by overlay 197 (FND-PARTY-249, Q-PARTY-106).
+- Complete admitted door-action and partner/presentation effects, including
+  the bypassed locals and unresolved bit meanings (FND-PARTY-250, Q-PARTY-107).
 - Remaining direct readers and writers of the bitmap-number cache
   (FND-PARTY-224, Q-PARTY-087).
 - Which record creations and whole-record copies set the cache word, and to

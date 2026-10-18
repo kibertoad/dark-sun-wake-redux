@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-107
+Next ID: Q-PARTY-108
 
 ## Static
 
@@ -116,9 +116,10 @@ Next ID: Q-PARTY-107
   slice 2.
 - Q-PARTY-020. FMT-PARTY-006: What does the word at `0x10` of a 23-byte attached record, kind-1
   field 8, hold?
-  Settles it: the readers of `0x10` in overlays 173, 182, 189, 190, 197, 204 and 213 and
-  `25AF:02D9` and `28C9:26EE`, with what each bit it tests (0, 1, 3 and 7) selects, the stores
-  at overlay 182 `+0DA1`, `+0EF3` and `+0F19`. The word at `0x06` is FND-PARTY-245's value,
+  Settles it: the remaining readers of `0x10` in overlays 173, 182 (`+099A`), 189, 190, 197,
+  204 and 213 and `25AF:02D9` and `28C9:26EE`, with the context-dependent
+  meaning of their values and bit tests beyond FND-PARTY-250's door paths.
+  The word at `0x06` is FND-PARTY-245's value,
   the reference at `0x08` FND-PARTY-247's container head. Tried: FND-PARTY-196 lists the shipped values of every
   field; FND-PARTY-181, FND-PARTY-182, FND-PARTY-216, FND-PARTY-217 and FND-PARTY-224 name the
   fields at `0x00`, `0x12`, `0x02`, `0x13` and `0x0C` from their consumers, and FND-PARTY-216
@@ -133,7 +134,20 @@ Next ID: Q-PARTY-107
   both overlay 197 stores: their shared ancestor-selector-16 and word-313
   gates, low/high byte packing, helper range and conditional roll_sum call.
   Those writer values are removed from Settles it; their caller and
-  consumer meaning is Q-PARTY-106. Blocks: slice 2.
+  consumer meaning is Q-PARTY-106. Tried: FND-PARTY-250 answers the
+  overlay-182 `+0C23` and `+0DE6` flag reads and all three named stores:
+  door-message priorities, blocking masks, sign-extended whole-word update
+  and partner copy. Those local branches and stores are removed from
+  Settles it; complete door action admission is Q-PARTY-107. Blocks: slice 2.
+- Q-PARTY-107. FMT-PARTY-006: Which admitted door actions preserve the
+  source/partner record identity and realize overlay 182's flag and
+  presentation requests? Settles it: the `+0C23` and `+0DE6` caller
+  arguments, DS:0DAB and DS:655C producers, slot/type/record identity across
+  the resource/SCMD/action children, partner kind/index admission, the
+  0x8000 bypass's local initialization, bit-2/bit-7 door meaning and the
+  effects of `+0FC5` and `31E0:271E`. Tried: FND-PARTY-250 settles the
+  classifier, masks, exact store values and local ordering only.
+  Blocks: complete interpretation of FMT-PARTY-006.
 - Q-PARTY-106. FMT-PARTY-006: Which admitted actions and later consumers give
   gameplay meaning to the low/high bytes written at overlay 197 `+3792` and
   `+38B3`? Settles it: their callers' object and second-argument provenance,
