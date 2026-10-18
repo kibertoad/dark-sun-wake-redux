@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-233
 title: No direct generic field-accessor call with an immediate, type-gated, traversal-list or transfer field selects field six
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-238]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

@@ -136,8 +136,8 @@ Next ID: Q-PARTY-104
   accessor's DS:614F row, times 23) and access +0C, including computed
   offsets and partial-record copies, beyond the reviewed inventory drawing,
   current-item helper, opener refresh and 191 +01F7 store, with what each
-  stores or does with the value read. Field-six accessor requests through
-  script operands are Q-PARTY-092; whole-record creation and copies are
+  stores or does with the value read. No generic accessor request selects
+  field six (FND-PARTY-239); whole-record creation and copies are
   Q-PARTY-091; resource/buffer validity is Q-PARTY-088; cache-specific binding/selection
   preservation is Q-PARTY-089; placement/backend rendering is
   Q-PARTY-100.
@@ -321,17 +321,6 @@ Next ID: Q-PARTY-104
   what placed-object count and `DS:0DAB`? Settles it: the load routine overlay 192 `+05ED`,
   overlay 182 `+19F8`, `28C9:2522`, the gate routine called with 0, and whether window 19500 or
   its handler survives those calls (FND-PARTY-045). Blocks: slice 2.
-- Q-PARTY-092. FMT-PARTY-006, SCR-UI-008: Does any shipped script name kind-1 field six,
-  the +0C bitmap-number cache, in a field-path operand? Settles it: the `GPL ` resources
-  decoded instruction by instruction, with the field bytes and counts each instance passes to
-  the interpreter routines 172C:284D (expression byte B1), 172C:2914 (assignment), 172C:13E0
-  and 172C:084E, and the field and kind operands of overlay 204's setter at +18B5, checked
-  against the handle kinds they reach. Tried: FND-PARTY-234 traces those routines' fields to
-  script code bytes (a count of zero takes the setter's field from the high word of the
-  assigned value); FND-PARTY-156 and FND-PARTY-233 trace overlay 204's field to script
-  operands. A byte search cannot tell field bytes from other operands; FND-SCRIPT-024 gives the
-  instruction layouts, with which `script_decode.py` decodes every script. Blocks: complete
-  reading of FMT-PARTY-006.
 - Q-PARTY-050. RULE-PARTY-013: Does any trigger record's second entry point that can run during a
   fight hold script opcode `0x24`, which makes the slot in `4C13:0369` the current record through
   overlay 190 `+36D2` (FND-PARTY-097, FND-PARTY-098)? Settles it: the `GPL ` resources and offsets

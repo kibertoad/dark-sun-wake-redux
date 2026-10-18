@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_006.ksy
-evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229, FND-PARTY-230, FND-PARTY-231, FND-PARTY-235, FND-PARTY-236]
+evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229, FND-PARTY-230, FND-PARTY-231, FND-PARTY-234, FND-PARTY-235, FND-PARTY-236, FND-PARTY-238, FND-PARTY-239]
 conflicting: []
 split_with: []
 related: []
@@ -84,8 +84,11 @@ and later effects remain open [FND-PARTY-229].
 
 Shipped kind-1 field 6 selects this cache word at offset `0x0C`,
 with type 2 and initial copy width 2. The generic setter uses the current
-width table; actual callers, runtime bindings and copy outcomes remain
-open [FND-PARTY-230].
+width table; runtime bindings and copy outcomes remain open [FND-PARTY-230].
+No generic field-accessor request the game makes selects field six: no
+direct call, wrapper, script operand or chunk header names it, so the cache
+word is read and written only through direct accesses [FND-PARTY-234,
+FND-PARTY-235, FND-PARTY-238, FND-PARTY-239].
 
 A numbered save writes the whole kind-1 table, 400 records of 23 bytes with
 each record's `0x0C`, as `SAVE` resource `selector * 61 + 7`, and the numbered
@@ -157,13 +160,6 @@ ends on a `chunk_type` of 0xFF whose header is the last 10 bytes of the resource
   the shipped values (Q-PARTY-093).
 - Remaining direct readers and writers of the bitmap-number cache
   (FND-PARTY-224, Q-PARTY-087).
-- Which generic field-accessor requests select kind-1 field six, the cache
-  word; FND-PARTY-233 excludes every direct call whose field is an
-  immediate, type-gated, descendant-graph or transfer value, and
-  FND-PARTY-234 finds field 89 or a script operand at every field-path
-  wrapper and 172C setter request, and FND-PARTY-235 finds that no chunk
-  header the game writes names field six. Script operands that name a
-  field are Q-PARTY-092.
 - Which record creations and whole-record copies set the cache word, and to
   what, beyond the CHAR load and the numbered restore, which both leave zero
   (FND-PARTY-051, FND-PARTY-236, Q-PARTY-091).
