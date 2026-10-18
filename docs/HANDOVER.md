@@ -129,6 +129,19 @@
 4. Q-PARTY-086: remaining action mutations.
 5. Q-COMBAT-014/015/016: remaining children and inputs, FND-COMBAT-047..052.
 
+## CONFIG and SCRIPT (from the config-static goal)
+
+- The config-static goal (last worked 2026-09-29) was dropped on 2026-10-18;
+  its file is in Git history at b5aaccda:docs/goals/config-static.md. Its
+  Next list follows Q-CONFIG-008 and Q-SCRIPT-003 through FND-CONFIG-160..212
+  and RULE-SCRIPT-010. Its dead ends: do not repeat the bounded incoming
+  inventories (FND-CONFIG-114), the literal slot/metadata writer query
+  (FND-CONFIG-142), the literal selector-base query (FND-CONFIG-148), the
+  literal setup-gate writer query (FND-CONFIG-149), or the MZ, same-segment
+  and FBOV incoming queries (FND-CONFIG-196, FND-CONFIG-198) without new
+  pointer or registration coverage. 28C9:1261 needs new provenance after
+  FND-CONFIG-114.
+
 ## Upstream requests
 
 - refurbished-dinosaurs issue 77 and toolkit issue 297: build listing records,
