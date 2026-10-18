@@ -42,13 +42,13 @@ an explicit owner request.
 
 - Stage: Slices; resume the unfinished research in docs/HANDOVER.md.
 - Last gate: 2026-10-18, ./tools/Test.ps1 -NoRestore passed: 715 .NET tests,
-  105 Node tests and five option controls; documentation passed with 1369
+  105 Node tests and five option controls; documentation passed with 1371
   entries, 169 parity rows and five deviations. Existing argument-count and
   absent-Kaitai skips remain. Tracking warnings remain for Q-UI-002,
   Q-PARTY-020/078/082/085/087,
   Q-COMBAT-009/010 and Q-RNG-001/003/004; later attempts must reduce Settles it.
-- Unfinished: no tracked research draft. Q-UI-001's header operand census
-  has no finding yet; its active bounded process retains output under
+- Unfinished: no tracked research draft. Continue Q-UI-001's alignment and
+  remaining window-picture consumers from FND-UI-042/043. Reports remain in
   GAME_DIR/analysis/ui-window-image-20261018/.
   Class-window reports remain in GAME_DIR/analysis/party-dual-window-20261018/.
   Cache caller/census reports remain in
@@ -61,5 +61,5 @@ an explicit owner request.
   resource/buffer and runtime binding/selection admission; Q-PARTY-086
   remaining action mutations; Q-COMBAT-014/015/016 remaining children and inputs.
 - Checkpoint only: the standing research goal remains active. FND-COMBAT-051/052
-  and FND-PARTY-220..232 and SCR-PARTY-003 are the current research references. No full-game run
+  and FND-PARTY-220..232, FND-UI-042/043 and SCR-PARTY-003 are the current research references. No full-game run
   started; the gate retained its existing declared initializer call.
