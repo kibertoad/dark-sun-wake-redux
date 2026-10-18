@@ -395,9 +395,9 @@ engine 19.9.0, session 0.10.0 and RefurbishedDinosaurs 12.2.0 are already the
 latest releases. `./tools/Test.ps1` passes (108 upstream Node tests, 715 .NET
 tests). No spec status, parity row or pack revision changed.
 
-## Template 9e4e6d2 adoption and goal-run wait, 2026-10-18
+## Template 2801b32 adoption and goal-run wait, 2026-10-18
 
-Template PRs 125 and 126 (`33efaa2` to `9e4e6d2`) are adopted. `tools/Test.ps1`
+Template PRs 125, 126 and 127 (`33efaa2` to `2801b32`) are adopted. `tools/Test.ps1`
 runs its Node test files in one `node --test` call with `PWSH` set to the
 running PowerShell, in place of two calls; it keeps this project's longer file
 list. The capture worker's fixed waits are shortened and the second capture
@@ -406,11 +406,11 @@ Configure-Project through `PWSH`. `tools/Check-ResearchTracking.mjs` prints
 warnings on stdout, so a gate run with redirected output no longer stops at the
 first `Tried:` warning. The changelog hunks are template-only.
 
-`tools/goal-run.mjs` gains `wait` and `resume` ahead of the template: `wait`
-records HEAD in the run marker, and the Stop hook lets stops through without
-spending its allowance while HEAD is unchanged, so a goal session can end a turn
-while a subagent runs a batch or the owner answers. The next commit, `resume`
-or `start` ends the wait. Template PR 127 proposes the same change; the local
-copy keeps its unidentified-session check. `./tools/Test.ps1` passes (117
+`tools/goal-run.mjs` and its tests follow template PR 127 as merged
+(`2801b32`): `wait` records HEAD in the run marker, and the next stop passes
+without spending the allowance if HEAD is unchanged, so a goal session can end a
+turn while a subagent runs a batch or the owner answers. The wait covers that
+one stop and ends earlier at a commit or `start`; there is no `resume`. The
+local copy keeps its unidentified-session check and test. `./tools/Test.ps1` passes (118
 upstream Node tests, 715 .NET tests). No spec status, parity row or pack
 revision changed.

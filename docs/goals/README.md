@@ -135,8 +135,10 @@ hook binds only an identified conversation; another worktree or conversation,
 an absent goal, invalid input or missing session ID passes without consuming its
 allowance. Three held-back stops with unchanged HEAD permit stops until another
 commit. Before a turn that ends waiting on a batch a subagent runs, or on an
-answer from the owner, node tools/goal-run.mjs wait records HEAD in the
-marker; stops then pass without spending the allowance until the next commit,
-node tools/goal-run.mjs resume or another start. Explicit stop removes the
-marker; it does not delete the goal claim.
+answer from the owner, with no other item in scope to take meanwhile, node
+tools/goal-run.mjs wait records HEAD in the marker. If HEAD is still there at
+the next stop, that one stop passes without spending the allowance; the wait
+ends there, or earlier at a commit or another start, and a later turn that
+still has nothing to do runs wait again. Explicit stop removes the marker; it
+does not delete the goal claim.
 Codex's active thread goal manages its own continuation and status.
