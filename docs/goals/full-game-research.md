@@ -34,10 +34,17 @@ Do not repeat a retained search without new evidence, tooling or reading.
 ## Handover
 
 - Stage: Slices. Research continues toward the full Audit condition.
-- Documentation check passed on 2026-10-19 with known prose-parameter skips.
-- No research batch has started under this renewed claim.
-- Next: identify the lowest-slice blocking Static question, check retained
-  evidence and settle a bounded dependency; use docs/RESEARCH-CLOSURE.md
-  to keep complete-reading obligations distinct from citation coverage.
+- Last full gate: 2026-10-19, Test.ps1 -NoRestore passed, including 715
+  .NET tests. Documentation check retains known prose-parameter skips.
+- Completed batches: FND-PARTY-248 and FND-PARTY-249. No unfinished files.
+- Next: Q-PARTY-020's remaining readers and overlay-182 stores, then
+  Q-PARTY-106's admitted callers and consumers; retain Q-PARTY-082 and
+  Q-PARTY-099 as separate dependencies. Use docs/RESEARCH-CLOSURE.md to
+  keep complete-reading obligations distinct from citation coverage.
+- Retained local evidence: GAME_DIR/analysis/party-item-reset-20261019 and
+  GAME_DIR/analysis/party-item-packing-20261019. No game runtime was started.
+- Q-PARTY-020's four-Tried warning is qualified: each of the two latest
+  batches removed named stores from Settles it, and Q-PARTY-106 now holds
+  the separate caller/consumer question. Do not repeat their local readings.
 - Session-local validation must clear NoDefaultCurrentDirectoryInExePath;
   use this checkout's evidence Python and project-specific game-dir resolver.
