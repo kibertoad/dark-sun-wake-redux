@@ -4,7 +4,7 @@ title: Reading instruction parameters, expressions, variables and strings
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-006, FND-SCRIPT-009, FND-SCRIPT-010, FND-SCRIPT-024, FND-PARTY-241]
+evidence: [FND-SCRIPT-006, FND-SCRIPT-009, FND-SCRIPT-010, FND-SCRIPT-024, FND-PARTY-241, FND-SCRIPT-026]
 conflicting: []
 split_with: []
 related: [RULE-SCRIPT-002, FMT-SCRIPT-002]
@@ -327,7 +327,5 @@ None known.
 - What `fn_172C_284D` (`0xB1`) and `fn_172C_2914` (assignments to kinds from `0x10`) read and
   write (Q-SCRIPT-009).
 - Which string `fn_172C_31B7` (the string of kind 1) copies (Q-SCRIPT-011).
-- How many variables of each kind there are, in `global_flags`, `local_flags`,
-  `global_numbers`, `local_numbers`, `global_big_numbers`, `local_big_numbers`, `global_strings`
-  and `local_strings`, and where `global_name_pointers` point (Q-SCRIPT-005).
+- Where the entries of `global_name_pointers` other than `0x20` to `0x24` point (Q-SCRIPT-014).
 - What `fn_5702_00B1` does after reporting an error, and what reads `g_4C0E_0002` (Q-SCRIPT-003).

@@ -1,6 +1,6 @@
 # SCRIPT
 
-Next ID: Q-SCRIPT-014
+Next ID: Q-SCRIPT-016
 
 ## Static
 
@@ -167,12 +167,21 @@ Next ID: Q-SCRIPT-014
   Settles it: `fn_172C_31B7`, the routines `1000:406D`, `1000:3FC1` and `2D40:0B14` it calls,
   the string at `4C10:0000`, and the writers of the slot word at `4C13:0369`. Tried: split from
   Q-SCRIPT-004; FND-SCRIPT-010 reads the call. Blocks: slice 3.
-- Q-SCRIPT-005. RULE-SCRIPT-004, RULE-SCRIPT-005, RULE-SCRIPT-010: How many script variables of
-  each kind are there, where and when does the game clear them, are local
-  variables cleared on a region change, does a saved game hold them, and what
-  do `global_name_pointers` point at? Settles it: the code that sets the far
-  pointers at `4C13:032F` to `4C13:034B` and `4C13:0000` to `4C13:003C` and
-  clears what they point at. Blocks: slices 3-6.
+- Q-SCRIPT-005. RULE-SCRIPT-005: When does the main routine's clear of the
+  global variable blocks at `277B:035D` run, and does loading a saved game the
+  player made replace the global and local variable blocks? Settles it: the
+  condition that leads `277B` to `277B:0330`, and which selector the player's
+  save and load requests pass to overlay 187's save loop (FND-COMBAT-034),
+  which writes entries 29 to 36 only for selector 0. Tried: FND-SCRIPT-026
+  reads the allocation, the set-up clear, the local clear on a script switch,
+  requests 29 and 30, and the save table entries, and takes the counts and
+  the local reset timing out of this item. Blocks: slices 3-6.
+- Q-SCRIPT-014. RULE-SCRIPT-004: What do the entries `0x25` to `0x2E` of
+  `global_name_pointers` hold? Settles it: the writers of the words between
+  `4C13:0357` and `4C13:0369` that entries `0x25` to `0x2C` point at, and the
+  code that stores entries `0x2D` and `0x2E`, which are 0 in the file
+  (FND-PARTY-241). Tried: FND-PARTY-241 reads entries `0x20` to `0x24`.
+  Blocks: slices 3-6.
 - Q-SCRIPT-006. RULE-SCRIPT-007: What do the far routines behind the output
   instructions do: where printed text goes and what its byte parameter
   selects, and how a portrait number becomes a `PORT` resource? Settles it:
@@ -182,6 +191,13 @@ Next ID: Q-SCRIPT-014
 
 ## Emulated call
 
+- Q-SCRIPT-015. RULE-SCRIPT-005: Do overlay 169 `+0000` and `172C:31ED`
+  leave every variable block the rule names zero? Settles it: once the
+  harness in docs/RUNTIME.md can seed arguments and far-pointer fields,
+  fixtures calling `+0000` with 200 and 10000 over non-zero blocks, and
+  `172C:31ED` with the byte `4C0E:0000` at 0 and 1, compared with
+  `clear_globals` and `clear_locals`. Tried: FND-SCRIPT-026 reads both.
+  Blocks: establishing RULE-SCRIPT-005.
 - Q-SCRIPT-013. RULE-SCRIPT-011: Do the in-place arithmetic handlers give the results the rule
   describes? Settles it: once the harness in docs/RUNTIME.md can seed the parameter arrays,
   fixtures calling each handler of FND-SCRIPT-025 with byte, word and double-word targets at

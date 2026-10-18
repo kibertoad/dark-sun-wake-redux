@@ -226,7 +226,10 @@ success still remain open (FND-CONFIG-177). The larger region helper's
 copy. The later same-pointer helper is a full-buffer self-copy, not
 compaction; full geometry and actual inputs remain open (FND-CONFIG-178).
 
-`fn_172C_31ED`'s reset is bounded in FND-SCRIPT-020. Cache-input
+`fn_172C_31ED`'s reset is bounded in FND-SCRIPT-020. The four buffers it
+clears are the local variable blocks with their full allocated sizes, and
+the byte it tests is 1 from the script set-up on (FND-SCRIPT-026,
+RULE-SCRIPT-005). Cache-input
 provenance, valid bounds and error-entry effects retain the dependencies
 in Q-SCRIPT-003; this procedure does not assign their unknown outcomes.
 
@@ -289,8 +292,6 @@ None known.
 - Whether duplicate matching or selected-number slots, including a slot
   of the other selector, can occur at an ordinary invocation
   (Q-SCRIPT-003). Cache writers and replacement paths would settle it.
-- The bounds and semantic identities of the working buffers cleared by
-  `fn_172C_31ED`, and their other reset timing (Q-SCRIPT-005).
 - Resident emulated-call cases for the local early, scan and validation
   branches after the harness exists (Q-SCRIPT-007). They cannot establish
   operating-system I/O outcomes or replace complete input provenance.
