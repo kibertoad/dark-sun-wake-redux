@@ -1,6 +1,6 @@
 # ACTOR
 
-Next ID: Q-ACTOR-006
+Next ID: Q-ACTOR-007
 
 ## Static
 
@@ -22,9 +22,11 @@ Next ID: Q-ACTOR-006
   `2D40:000A`, which receives the request, and of the overlay code of overlays 178, 188, 191 and
   201 around the `RDFF` tag bytes. Tried: a search for resident instructions with the
   displacement 43 or 76 (FND-ACTOR-010). Blocks: nothing yet.
-- Q-ACTOR-004. FMT-ACTOR-003: Which code reads `MONR`, and what is its layout? Settles it: a
-  reading of the code of overlay 204 around the `MONR` tag bytes. Tried: splits at 42 and 81
-  bytes (FND-ACTOR-008, FND-ACTOR-013). Blocks: nothing yet.
+- Q-ACTOR-006. FMT-ACTOR-003: What do the `value` words of `MONR` name, what does `549B:00C0`
+  hold and which code reads or writes it, and does script request 8 run in play? Settles it: a
+  search for accesses to `549B:00C0` with segment word `0x04A0` in the resident image and the
+  overlays, and a trace of what `var7[8]` holds when `GPL/27` reaches `0x01C8`. Tried: FND-ACTOR-014
+  reads the request and the record layout, which leaves these. Blocks: nothing yet.
 
 ## Emulated call
 
