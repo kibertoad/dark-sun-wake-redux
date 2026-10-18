@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-106
+Next ID: Q-PARTY-107
 
 ## Static
 
@@ -115,11 +115,10 @@ Next ID: Q-PARTY-106
   reads `0x7B`. Blocks:
   slice 2.
 - Q-PARTY-020. FMT-PARTY-006: What does the word at `0x10` of a 23-byte attached record, kind-1
-  field 8, hold, and what do the writers of `0x0E` other than the item-power use store there?
+  field 8, hold?
   Settles it: the readers of `0x10` in overlays 173, 182, 189, 190, 197, 204 and 213 and
   `25AF:02D9` and `28C9:26EE`, with what each bit it tests (0, 1, 3 and 7) selects, the stores
-  at overlay 182 `+0DA1`, `+0EF3` and `+0F19`, and the `0x0E` stores at
-  overlay 197 `+3792` and `+38B3` with their values. The word at `0x06` is FND-PARTY-245's value,
+  at overlay 182 `+0DA1`, `+0EF3` and `+0F19`. The word at `0x06` is FND-PARTY-245's value,
   the reference at `0x08` FND-PARTY-247's container head. Tried: FND-PARTY-196 lists the shipped values of every
   field; FND-PARTY-181, FND-PARTY-182, FND-PARTY-216, FND-PARTY-217 and FND-PARTY-224 name the
   fields at `0x00`, `0x12`, `0x02`, `0x13` and `0x0C` from their consumers, and FND-PARTY-216
@@ -130,7 +129,20 @@ Next ID: Q-PARTY-106
   `+365A` copies word `0x10` to `0x0E` under the type-flag branch, otherwise
   to quantity, and action completion calls it before the conditional byte
   decrement. This store is removed from Settles it; the other writers and
-  semantic interpretation of `0x10` remain. Blocks: slice 2.
+  semantic interpretation of `0x10` remain. Tried: FND-PARTY-249 answers
+  both overlay 197 stores: their shared ancestor-selector-16 and word-313
+  gates, low/high byte packing, helper range and conditional roll_sum call.
+  Those writer values are removed from Settles it; their caller and
+  consumer meaning is Q-PARTY-106. Blocks: slice 2.
+- Q-PARTY-106. FMT-PARTY-006: Which admitted actions and later consumers give
+  gameplay meaning to the low/high bytes written at overlay 197 `+3792` and
+  `+38B3`? Settles it: their callers' object and second-argument provenance,
+  threshold-table initialization and stable inputs, the subsequent readers
+  of both bytes and their effects, including zero-low decrement wrap and
+  conditional draw admission. Graph identity is Q-PARTY-099 and head naming
+  Q-PARTY-082. Tried: FND-PARTY-249 settles the local gates, packing and
+  helper/draw sequence, but assigns no gameplay effect. Blocks: complete
+  interpretation of FMT-PARTY-006.
 - Q-PARTY-087. FMT-PARTY-006, SCR-UI-008: Which remaining code reads or
   writes the attached record's cached BMP number at +0C directly, outside
   the generic field accessor? Settles it: a census of instruction starts
