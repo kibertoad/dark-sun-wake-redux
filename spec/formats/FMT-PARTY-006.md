@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_006.ksy
-evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229, FND-PARTY-230, FND-PARTY-231, FND-PARTY-234, FND-PARTY-235, FND-PARTY-236, FND-PARTY-238, FND-PARTY-239, FND-PARTY-245]
+evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229, FND-PARTY-230, FND-PARTY-231, FND-PARTY-234, FND-PARTY-235, FND-PARTY-236, FND-PARTY-238, FND-PARTY-239, FND-PARTY-245, FND-PARTY-246]
 conflicting: []
 split_with: []
 related: []
@@ -49,6 +49,14 @@ set, to the party's money and prints the amount. A store bases what it charges a
 offers on it, and a value of 9999 is an item the shopkeeper will not buy. The item details
 window prints it unless it is 0 or 9999. Script functions 48 and 49 of opcode `0x22` read and
 write it as field 3 of a kind-1 object [FND-PARTY-245].
+
+Under the shipped kind-1 field descriptors, word `0x0A` (field 5) is `item_type`, the number of
+the item's 15-byte entry in the table at the far pointer `DS:19CD`, with 9999 for none; word
+`0x14` (field 11) is `name_number`, a line of `TEXT/1000`, whose high byte `0x15` is 0 in every
+shipped record; and byte `0x16` (field 12) is `bonus`, a signed number the item's name shows as
+`+n` or `-n` and that combat code adds or tests for a negative value. Byte `0x0E` (field 7)
+drops by one each time the item's power is used, and the item is passed on to be used up when
+the word reaches 0 [FND-PARTY-246].
 
 Runtime word `0x0C` is `cached_bitmap_number` in the reviewed inventory
 drawing path. A nonzero word is reused as an unsigned BMP resource number.
@@ -162,8 +170,9 @@ ends on a `chunk_type` of 0xFF whose header is the last 10 bytes of the resource
 
 ## Open questions
 
-- What the words at `0x0A`, `0x0E` and `0x10` and the bytes at `0x14` to `0x16` of a 23-byte
-  record of chunk types 2 and 4 mean. FND-PARTY-196 gives the shipped values (Q-PARTY-020).
+- What the word at `0x10` (field 8) of a 23-byte record holds, and what the other writers of
+  `0x0E` store there; FND-PARTY-196 gives the shipped values and FND-PARTY-246 the accesses
+  (Q-PARTY-020).
 - Remaining direct readers and writers of the bitmap-number cache
   (FND-PARTY-224, Q-PARTY-087).
 - Which record creations and whole-record copies set the cache word, and to

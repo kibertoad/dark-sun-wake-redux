@@ -114,15 +114,19 @@ Next ID: Q-PARTY-106
   and `0x19` the immunity type, and FND-PARTY-158 names `0x85` the psionic power list; FND-PARTY-159 shows the saving throw never
   reads `0x7B`. Blocks:
   slice 2.
-- Q-PARTY-020. FMT-PARTY-006: What do the words at `0x0A`, `0x0E` and `0x10` and the bytes at
-  `0x14`, `0x15` and `0x16` of a 23-byte attached record mean? Settles it: the kind-1 `FNFO`
-  field descriptors that name each of these offsets, and the code that reads or writes each
-  offset, directly in the table at `DS:19C1` or through the field accessor with those field
-  numbers. The word at `0x06` is FND-PARTY-245's value, the reference at `0x08` Q-PARTY-083. Tried:
-  FND-PARTY-196 lists the shipped values of every field; FND-PARTY-181, FND-PARTY-182,
-  FND-PARTY-216, FND-PARTY-217 and FND-PARTY-224 name the fields at `0x00`, `0x12`, `0x02`,
-  `0x13` and `0x0C` from their consumers, and FND-PARTY-216 binds the descriptors of fields 0 to
-  4 only, so no descriptor or consumer of these offsets has been read. Blocks: slice 2.
+- Q-PARTY-020. FMT-PARTY-006: What does the word at `0x10` of a 23-byte attached record, kind-1
+  field 8, hold, and what do the writers of `0x0E` other than the item-power use store there?
+  Settles it: the readers of `0x10` in overlays 173, 182, 189, 190, 197, 204 and 213 and
+  `25AF:02D9` and `28C9:26EE`, with what each bit it tests (0, 1, 3 and 7) selects, the stores
+  at overlay 182 `+0DA1`, `+0EF3` and `+0F19`, and the `0x0E` stores at overlay 190 `+36AC` and
+  overlay 197 `+3792` and `+38B3` with their values. The word at `0x06` is FND-PARTY-245's value,
+  the reference at `0x08` Q-PARTY-083. Tried: FND-PARTY-196 lists the shipped values of every
+  field; FND-PARTY-181, FND-PARTY-182, FND-PARTY-216, FND-PARTY-217 and FND-PARTY-224 name the
+  fields at `0x00`, `0x12`, `0x02`, `0x13` and `0x0C` from their consumers, and FND-PARTY-216
+  binds the descriptors of fields 0 to 4 only, so no descriptor or consumer of these offsets has
+  been read. Tried: FND-PARTY-246 binds fields 5 to 12, lists the kind-1 accesses of `0x0A` to
+  `0x16` and names `0x0A`, `0x14` with `0x15`, `0x16`, and the item-power count at `0x0E`, which
+  are removed from Settles it. Blocks: slice 2.
 - Q-PARTY-087. FMT-PARTY-006, SCR-UI-008: Which remaining code reads or
   writes the attached record's cached BMP number at +0C directly, outside
   the generic field accessor? Settles it: a census of instruction starts
