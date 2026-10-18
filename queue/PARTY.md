@@ -116,8 +116,8 @@ Next ID: Q-PARTY-109
   slice 2.
 - Q-PARTY-020. FMT-PARTY-006: What does the word at `0x10` of a 23-byte attached record, kind-1
   field 8, hold?
-  Settles it: the remaining readers of `0x10` in overlays 173, 189, 190, 197,
-  204 and 213 and `25AF:02D9` and `28C9:26EE`, with the context-dependent
+  Settles it: the remaining readers of `0x10` in overlays 173, 189, 197,
+  204 and 213, with the context-dependent
   meaning of their values and bit tests beyond FND-PARTY-250's door paths.
   The word at `0x06` is FND-PARTY-245's value,
   the reference at `0x08` FND-PARTY-247's container head. Tried: FND-PARTY-196 lists the shipped values of every
@@ -147,7 +147,12 @@ Next ID: Q-PARTY-109
   whole-word nonzero classification test, including the later name-byte
   replacement and the direct caller's result combination. That local
   consumer is removed from Settles it; its admitted downstream meaning
-  is Q-PARTY-108. Blocks: slice 2.
+  is Q-PARTY-108. Tried: FND-PARTY-253 answers `25AF:02D9` and
+  `28C9:26EE`: the closed-bit strip call and discovery-bit mode-two
+  pointer selection. Both resident sites are removed from Settles it.
+  Overlay 190's only two retained census reads are already answered
+  by FND-PARTY-248's reset body and are also removed. No broader
+  computed-access absence is claimed. Blocks: slice 2.
 - Q-PARTY-108. FMT-PARTY-006: Which player-visible decisions consume
   classification bytes returned by `28C9:28E3` and `178 +0C6B`, and
   which admitted name/type/item inputs make the word-0x10 nonzero test
@@ -156,6 +161,10 @@ Next ID: Q-PARTY-109
   name and door replacement branches on those routes. Tried:
   FND-PARTY-252 settles the local classifier and direct caller, including
   a distinct kind-two 0x08 producer, but assigns no downstream UI meaning.
+  Tried: FND-PARTY-253 identifies the mode-two pointer's reached consumer
+  as any-nonzero AL, with zero falling back to a separate word-mask gate;
+  that consumer's local width/test is removed from Settles it. Other
+  consumers and admitted inputs remain.
   Blocks: complete interpretation of FMT-PARTY-006.
 - Q-PARTY-107. FMT-PARTY-006: Which admitted door actions preserve the
   source/partner record identity and realize overlay 182's flag and
