@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_006.ksy
-evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229, FND-PARTY-230, FND-PARTY-231, FND-PARTY-235]
+evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229, FND-PARTY-230, FND-PARTY-231, FND-PARTY-235, FND-PARTY-236]
 conflicting: []
 split_with: []
 related: []
@@ -87,6 +87,11 @@ with type 2 and initial copy width 2. The generic setter uses the current
 width table; actual callers, runtime bindings and copy outcomes remain
 open [FND-PARTY-230].
 
+A numbered save writes the whole kind-1 table, 400 records of 23 bytes with
+each record's `0x0C`, as `SAVE` resource `selector * 61 + 7`, and the numbered
+restore reads that resource back over the table and then sets `0x0C` to zero
+in all 400 records, on its success and failure paths alike [FND-PARTY-236].
+
 Byte `0x13` is `inventory_position`, a position code interpreted as a
 signed byte and increased by four to select a logical inventory-map word.
 The main inventory draw loop consumes positions 4 through 29; other
@@ -161,7 +166,8 @@ ends on a `chunk_type` of 0xFF whose header is the last 10 bytes of the resource
   header the game writes names field six. Script operands that name a
   field are Q-PARTY-092.
 - Which record creations and whole-record copies set the cache word, and to
-  what (FND-PARTY-051, Q-PARTY-091).
+  what, beyond the CHAR load and the numbered restore, which both leave zero
+  (FND-PARTY-051, FND-PARTY-236, Q-PARTY-091).
 - Resource/buffer admission for the cache resolver and image acquisition
   (FND-PARTY-225, Q-PARTY-088).
 - Cache-specific runtime table/field/width bindings and record-selection

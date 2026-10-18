@@ -148,10 +148,9 @@ Next ID: Q-PARTY-093
 - Q-PARTY-091. FMT-PARTY-006, SCR-UI-008: Which code creates or copies a whole 23-byte
   attached record, and what does each leave in +0C? Settles it: every
   kind-1 record allocation (2D40:2D78 through 2D40:0E80), record
-  duplication on quantity splits, the raw SAVE block writes of overlay 187
-  +09D3 and their restore (whether a block covers the 23-byte table), and
-  block copies covering +0C, with the zero and 9999 values each can leave
-  for the drawing resolver and opener refresh.
+  duplication on quantity splits, and block copies covering +0C, with the
+  zero and 9999 values each can leave for the drawing resolver and opener
+  refresh.
   Tried: split from Q-PARTY-087. FND-PARTY-051 records overlay 187 +04F8
   copying 23 bytes and then storing zero at +0C; FND-PARTY-196 gives the
   shipped +0C values; FND-PARTY-228 reads the opener's 9999 refresh
@@ -160,6 +159,10 @@ Next ID: Q-PARTY-093
   record whole, +0C included, and the load's kind-1 copy (FND-PARTY-051)
   replaces that word with zero, so the CHAR chunk copy and CHAR save
   serialization are removed from Settles it.
+  Tried: FND-PARTY-236 reads the numbered save and restore: SAVE block
+  selector * 61 + 7 holds the whole 400-record kind-1 table, and the
+  restore then zeroes +0C in every record, so the SAVE blocks and their
+  restore are removed from Settles it.
   Blocks: complete reading of FMT-PARTY-006 and item-picture admission.
 - Q-PARTY-088. FMT-PARTY-006, FMT-ACTOR-001, SCR-UI-008: Which resource
   and buffer conditions admit the bitmap resolver and subsequent BMP request?
