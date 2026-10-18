@@ -95,7 +95,11 @@ None known.
 - What loading a saved game puts in the rows and count. FND-COMBAT-034, FND-COMBAT-035,
   FND-COMBAT-043 and FND-COMBAT-044 read the save sources and both restore callers' local routes
   (Q-COMBAT-018).
-- What sets the rows and count at startup and when a new game begins (Q-COMBAT-019).
+- Which rows and count a new game begins with. At program start the count is the load image's
+  zero and nothing before START GAME's party load writes the count or a row; no writer sets the
+  count to a constant, so a later game keeps what the earlier one left apart from rows the
+  removal routes take out (FND-COMBAT-053). Which of the gate routine's later calls change the
+  rows on a new game, and which rows survive from an earlier game, remain (Q-COMBAT-019).
 - Which routines insert, remove and transfer rows, with which arguments. FND-COMBAT-039 reads one
   removal caller, the effect window's cache action (Q-COMBAT-020).
 - Category bitmap producers, initialization and lifetime

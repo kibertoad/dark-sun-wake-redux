@@ -116,11 +116,18 @@ Next ID: Q-COMBAT-024
   callers' continuations, neither of which checks the rows) answer the local routes; the archive
   selection and the restored state's validity remain. Blocks: established status-effect
   selection.
-- Q-COMBAT-019. RULE-COMBAT-009: What sets the effect rows and count when the program starts and
-  when a new game begins? Settles it: a reading of every store to the count and the row table on
-  the startup and new-game routes. Tried: split from Q-COMBAT-009. FND-COMBAT-031 notes the
-  count's zero word in the load image; no initializer has been read. Blocks: established
-  status-effect selection.
+- Q-COMBAT-019. RULE-COMBAT-009: Which effect rows and count does a new game begin with?
+  Settles it: which of the calls overlay 182 +1167 makes from +1300 on (the party load +0365,
+  +08C8, +1F1D, 2C5F:018C, 31E0:0121, 2C5F:0139, 1695:000B and 1695:01D1) insert, remove or
+  transfer rows on a new game, with which owners and effects; and, for a game begun after an
+  earlier one in the same run, which rows the earlier game leaves: whether the defeat cleanup's
+  unload reaches the owner removal at 31E0:0AC9 with `DS:265B` nonzero, and what removes the rows
+  of owners that are not party slots. Tried: split from Q-COMBAT-009. FND-COMBAT-031 notes the
+  count's zero word in the load image; no initializer has been read. Tried: FND-COMBAT-053 finds
+  no write of the count or rows from program start to the party load, no constant store to the
+  count, the numbered restore unreached on the new-game route, and every route to the effect
+  writers passing the gate routine's calls from +1300 on; what holds at program start is removed
+  from Settles it. Blocks: established status-effect selection.
 - Q-COMBAT-020. RULE-COMBAT-009: Which routines insert, remove and transfer effect rows, and with
   which owners, keys and codes? Settles it: the admitted callers of the insertion wrapper and the
   exported insertion entry, of the key, index and code removal entries and of the owner transfer,
