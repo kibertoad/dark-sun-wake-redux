@@ -1,9 +1,9 @@
 ---
 id: FND-TEXT-004
 title: The TEXT tag occurs twice in the resident image as unreferenced data and three times in the pack
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-TEXT-007]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

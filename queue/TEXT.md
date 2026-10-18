@@ -9,9 +9,6 @@ Next ID: Q-TEXT-004
   and what spacing does it put between glyphs and lines? Settles it: a reading of the code that
   draws text, found from the resource request for `FONT/100` or from a routine that walks glyph
   widths. Blocks: nothing yet.
-- Q-TEXT-002. FMT-TEXT-003: How does the game load a `TEXT` resource and split its lines, and
-  which screen shows which resource? Settles it: a reading of the overlay code of overlays 186 and
-  188 around the `TEXT` tag bytes. Blocks: nothing yet.
 - Q-TEXT-003. FMT-TEXT-004: What does `unk_010` hold, what does `%C` do in the About lines,
   and which difficulty does a new game start with? Settles it: a bounded reading of the
   remaining text-drawing path and the new-game initialization callers. Tried: the renderer's

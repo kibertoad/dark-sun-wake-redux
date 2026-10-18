@@ -167,9 +167,8 @@ rejecting unsupported semantics:
 - `FND-TEXT-002` finds no recovered function combining `FONT` #100 with the
   tag words, and no recorded reference to the two `FONT` data occurrences. It
   supplies no font-selection, spacing, palette, or screen-layout rule.
-- `FND-TEXT-004` finds two resident `TEXT` data occurrences with no recorded
-  reference, and three more in the code of overlays 186 and 188. It assigns no
-  text resource to a screen.
+- `FND-TEXT-007` finds every literal `TEXT` tag, two in resident code and three
+  in overlays 186 and 188, passed to a resource request.
 - `FND-IMAGE-006` records a 300-entry `BMP `/`CBMP` cache, a wrapper taking
   indices 0 to 320 that eight functions call, and a separate window-image
   request path. The title resource #11011 has no observed connection to either,
