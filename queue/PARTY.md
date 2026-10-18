@@ -374,11 +374,6 @@ None.
 
 ## Blocked
 
-- Q-PARTY-007. RULE-PARTY-004, SCR-UI-015: Which classes does the DUAL window offer, and which of its buttons
-  are closed? Settles it: SCR-UI-015 taking the test of RULE-PARTY-004 and the window of
-  FND-PARTY-161. Blocks: slice 5. Tried: FND-PARTY-161 reads the window, its test and its
-  handler, and RULE-PARTY-004 gives the test. Waiting on: a goal that claims the UI area, which
-  owns SCR-UI-015.
 - Q-PARTY-050. RULE-PARTY-013: Does any trigger record's second entry point that can run during a
   fight hold script opcode `0x24`, which makes the slot in `4C13:0369` the current record through
   overlay 190 `+36D2` (FND-PARTY-097, FND-PARTY-098)? Settles it: the `GPL ` resources and offsets

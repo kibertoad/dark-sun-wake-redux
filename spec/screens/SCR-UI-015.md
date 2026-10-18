@@ -8,7 +8,7 @@ resolution: 320x200
 evidence: [SRC-MANUAL-1994]
 conflicting: []
 split_with: []
-related: [SCR-UI-002, SCR-UI-003, SCR-UI-004]
+related: [SCR-UI-002, SCR-UI-003, SCR-UI-004, SCR-PARTY-003]
 ---
 
 ## Drawn elements
@@ -60,4 +60,6 @@ None known.
 ## Open questions
 
 - Which native control draws the menu, its placement and appearance, and which handlers select its choices (Q-UI-005).
-- The exact eligibility check for Dual belongs to the party rules; the manual's description alone does not establish it (Q-PARTY-007).
+- The context menu's actual Dual-choice admission remains Q-UI-005. The
+  class eligibility test belongs to RULE-PARTY-004 and its separate
+  class-selection window is SCR-PARTY-003 (FND-PARTY-161, FND-PARTY-232).

@@ -4,10 +4,10 @@ title: A human can change class twice, from second level
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-161, FND-PARTY-162, FND-PARTY-081, FND-PARTY-085, FND-PARTY-160, SRC-MANUAL-1994]
+evidence: [FND-PARTY-161, FND-PARTY-162, FND-PARTY-081, FND-PARTY-085, FND-PARTY-160, FND-PARTY-232, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
-related: [SCR-UI-002, SCR-UI-015, RULE-PARTY-010]
+related: [SCR-UI-002, SCR-UI-015, SCR-PARTY-003, RULE-PARTY-010]
 ---
 
 ## Summary
@@ -22,8 +22,10 @@ class's level is higher than the old one's.
 ## When it runs
 
 The View Character screen (SCR-UI-002) shows DUAL for a human whose current class is level 2 or
-more (FND-PARTY-162). `can_change_class` runs for each class when the player picks it, and the
-DUAL window offers the classes for which it is true (SCR-UI-015). `former_class_usable` runs
+more (FND-PARTY-162). `can_change_class` supplies the class eligibility test while
+the class-selection window is prepared (SCR-PARTY-003). Its local button handler
+does not repeat that test before requesting the class change (FND-PARTY-232).
+`former_class_usable` runs
 whenever the game counts a dual-classed human's former class: its class flags, its spells and
 the level the game uses for its abilities (FND-PARTY-085, FND-PARTY-162).
 
