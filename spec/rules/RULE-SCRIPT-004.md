@@ -4,7 +4,7 @@ title: Reading instruction parameters, expressions, variables and strings
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-006, FND-SCRIPT-009, FND-SCRIPT-010, FND-SCRIPT-024]
+evidence: [FND-SCRIPT-006, FND-SCRIPT-009, FND-SCRIPT-010, FND-SCRIPT-024, FND-PARTY-241]
 conflicting: []
 split_with: []
 related: [RULE-SCRIPT-002, FMT-SCRIPT-002]

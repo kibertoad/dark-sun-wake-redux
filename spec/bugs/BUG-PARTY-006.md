@@ -7,7 +7,7 @@ superseded_by: []
 impact: crash
 intent: unintended
 player_reliance: unknown
-evidence: [FND-PARTY-082, FND-PARTY-105, FND-PARTY-096, FND-PARTY-108, FND-PARTY-109, FND-PARTY-110, FND-PARTY-111, FND-PARTY-112, FND-PARTY-113, FND-PARTY-114, FND-PARTY-115, FND-PARTY-116, FND-PARTY-119, FND-PARTY-120, FND-PARTY-121, FND-PARTY-122, FND-PARTY-237]
+evidence: [FND-PARTY-082, FND-PARTY-105, FND-PARTY-096, FND-PARTY-108, FND-PARTY-109, FND-PARTY-110, FND-PARTY-111, FND-PARTY-112, FND-PARTY-113, FND-PARTY-114, FND-PARTY-115, FND-PARTY-116, FND-PARTY-119, FND-PARTY-120, FND-PARTY-121, FND-PARTY-122, FND-PARTY-237, FND-PARTY-241]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-013, FMT-PARTY-001]
@@ -53,9 +53,10 @@ that byte is 0 for both; the enemies' other path and the item powers pass other 
 `RDFF` 3 has spell 104 in its list (FND-PARTY-121). Of the hit routine's other computed spell
 numbers, only function 46 of script opcode `0x22` can give 104 or 225, from a script argument
 (FND-PARTY-122). No shipped call of it passes either with the second argument 9999, apart from
-`GPL/255` `0x0327`, which casts only when global script number 129, which no script writes,
-holds -9999 (FND-PARTY-237). Whether the item of `DATA` 313 or that call can strike the party in
-play is open.
+`GPL/255` `0x0327`, which casts only when global script number 129 holds -9999 (FND-PARTY-237).
+That number starts at 0 and changes only when its whole block is cleared or loaded from a saved
+game, so the call does not cast in a game the program saved itself (FND-PARTY-241). Whether the
+item of `DATA` 313 can strike the party in play is open.
 
 ## Player reliance
 
@@ -73,8 +74,6 @@ None known.
 
 - Whether any enemy in play carries the item of `DATA` 313, so that the crash can happen in a
   normal game (Q-PARTY-103).
-- Whether `GPL/255` `0x0327` can cast spell 104 or 225: global script number 129 must hold
-  -9999 and the kind-9 variable `0x22` a number with that remainder by 1000 (Q-PARTY-102).
 - Whether any party member has type bytes that make the calls before the hit routine's saving
   throw stop the spells for it, which they do for the types 2, 3, 7, 11, 13 and 16 (FND-PARTY-112);
   the shipped and transferred characters and the characters generation stores hold 0, and no

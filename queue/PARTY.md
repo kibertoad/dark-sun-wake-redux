@@ -327,12 +327,6 @@ Next ID: Q-PARTY-105
   and the menu row's condition hold in a fight, whether the dialog menu `0x48` and the placement
   `0x25` at `0x0E98` work while a fight runs, and whether object 161 can be in a fight with the
   party. Tried: split from Q-PARTY-050, which FND-PARTY-240 closed. Blocks: slice 2.
-- Q-PARTY-102. BUG-PARTY-006: Can global script number 129 hold -9999 when `GPL/255` `0x0327`
-  runs, so that function 46 of opcode `0x22` casts the remainder by 1000 of the kind-9 variable
-  `0x22`, and can that remainder be 104 or 225 (FND-PARTY-237)? Settles it: the value global
-  number 129 starts with and any saved game or code outside the scripts that writes it, what
-  `global_name_pointers` entries `0x21` and `0x22` point at, and where overlay 204 `+18CD` lands
-  its cast with -1 as the caster. Blocks: nothing yet.
 - Q-PARTY-103. BUG-PARTY-006: Does any enemy that can fight the party carry the item of `DATA`
   313, whose strike on an attack roll of 20 sends effect code 59 (FND-PARTY-096)? Settles it: a
   census of the item numbers the actors that can join a fight against the party are given, in
