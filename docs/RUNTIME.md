@@ -9,7 +9,7 @@ owner rule changes it. Findings from runs go in `spec/`, never here.
 Static analysis is the main source of evidence. The owner's rule
 (`AGENTS.md`, "Runs of the original") lets a coding agent run the original
 only through the toolkit's `dinorefurb-dosbox-session` package, in an
-emulator process the package starts: rust-dos v1.7.2 through `RustDosSession`,
+emulator process the package starts: rust-dos v1.7.5 through `RustDosSession`,
 or DOSBox-X through `DosboxSession` as a recorded fallback for work a known
 rust-dos incompatibility blocks. Host sound stays muted (rust-dos on SDL's
 dummy audio driver; DOSBox-X with `mixer master 0:0` and MIDI output `none`),
@@ -22,10 +22,16 @@ path in `REFURBISHED_DINOSAURS_RUN_LOCK`) as the protocol's
 says.
 
 Setup: `./tools/Restore-ToolDependencies.ps1` installs
-`dinorefurb-dosbox-session` 0.10.0 into `artifacts/evidence-python`, and
-`./tools/Install-RustDos.ps1` installs the pinned rust-dos v1.7.2 Windows
+`dinorefurb-dosbox-session` 0.11.0 into `artifacts/evidence-python`, and
+`./tools/Install-RustDos.ps1` installs the pinned rust-dos v1.7.5 Windows
 build into `artifacts/rust-dos/`, refusing an archive or executable whose
 SHA-256 differs from the package's pins.
+
+The per-part answers and native runs below were made with rust-dos v1.7.2
+and session 0.10.0. Each part needs a new attempt under v1.7.5 before work
+relies on it. A save state records the emulator's SHA-256, and the session
+refuses to load one another executable saved, so the retained checkpoints
+below cannot be restored under v1.7.5 and have to be saved again.
 
 Current machine availability (2026-10-15): the fixed startup-segment probe
 successfully acquired the default machine lock, launched its own pinned

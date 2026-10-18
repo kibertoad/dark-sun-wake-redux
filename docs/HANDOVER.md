@@ -14,7 +14,7 @@
   of Settles it out before another attempt.
 - Adopted template 1686fe007de6ff75c70654eaeb36ebd530f1130f, protocol ceefc84,
   reader 4.3.0, engine 19.9.0 and RefurbishedDinosaurs 12.2.0. Checker 6.0.0,
-  session 0.10.0 and decoder pins remain current. Ordinary/platform locks updated.
+  session 0.11.0 (rust-dos v1.7.5) and decoder pins are current. Ordinary/platform locks updated.
   See docs/TEMPLATE-ACCEPTANCE.md and the latest-template synchronization plan.
 - Change-aware documentation checks are available during batches; full Test.ps1
   remains required before every batch commit. Runtime/capture restrictions,
@@ -79,7 +79,9 @@
   files; CD media remains on D:. run_plan.py is time-driven. Do not repeat
   timed start.json advancement or infer readiness from a call returning.
 - Prior checkpoints before session package 0.10.0 used rewritten sound
-  configuration and are not admissible starting states. Avoid busy per-frame
+  configuration and are not admissible starting states. Checkpoints saved
+  by rust-dos v1.7.2 are refused under v1.7.5 by emulator hash; each runtime
+  part needs a new v1.7.5 attempt (docs/RUNTIME.md) before a run relies on it. Avoid busy per-frame
   breakpoints that can exhaust Windows ports; select a specific gated stop.
 - Preserve FMT-EXE-005 and FND-EXE-520..524 as runtime review prerequisites.
   See docs/SHARED-RUNTIME-MIGRATION.md for migration status.
