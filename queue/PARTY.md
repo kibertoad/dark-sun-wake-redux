@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-090
+Next ID: Q-PARTY-092
 
 ## Static
 
@@ -127,45 +127,52 @@ Next ID: Q-PARTY-090
   lazily written by inventory drawing. That field-use question is removed
   from Settles it; its complete producer/resolver/lifetime reading is
   Q-PARTY-087, separate from the other still-unassigned fields.
-- Q-PARTY-087. FMT-PARTY-006, SCR-UI-008: Which remaining producers,
-  invalidation paths and consumers write or use the attached record's cached
-  BMP number at +0C? Settles it: direct/indirect +0C writer and consumer
-  coverage beyond the reviewed slot-image capture/store, current-item helper
-  and inventory opener refresh, including actual kind-one field-six requests,
-  zero/9999 transitions, copies and computed accesses. Resource/buffer
-  admission is Q-PARTY-088; cache-specific binding/selection preservation is
-  Q-PARTY-089; placement/backend rendering remains Q-PARTY-085.
-  Tried: split from Q-PARTY-020 after FND-PARTY-224 answers the local nonzero
-  reuse, zero resolver, post-child selection reload, word store and unsigned
-  BMP request, without establishing the whole cache lifecycle.
-  Tried: FND-PARTY-225 answers +2F2F's local word arithmetic, OJFF request,
-  offered-buffer/image-field correspondence and zero-on-nonzero-status
-  return. Those local resolver calculations/branches are removed from
-  Settles it; admitted inputs, actual resource/buffer outcomes and all
-  preservation, producers and invalidation remain.
-  Tried: FND-PARTY-227 answers the current-item helper's exact FFFF selection
-  predicate, 19103 no-selection return, zero-triggered resolve/store and
-  pointer-selection consumer connection. Those local consumer/fallback
-  branches are removed from Settles it; complete selection/storage admission,
-  other consumers, producers and invalidation remain.
-  Tried: FND-PARTY-228 answers the opener's exact 9999 refresh/store and
-  later current-item helper/pointer-kind request, including a conditional
-  second resolution after a zero result. Those local branches are removed
-  from Settles it; sentinel producers, other consumers and all admission/
-  preservation obligations remain. The shipped source range does not prove
-  the runtime branch unreachable.
-  Tried: FND-PARTY-229 answers +01F7's local object-slot image capture,
-  AL-gated continuation, removal/rebuild ordering and first-kind-one cache
-  store, including zero/9999 acceptance and exhausted-scan selection index.
-  That local producer is removed from Settles it; all other producers,
-  invalidation, aliases and complete graph/slot/transfer admission remain.
-  Tried: FND-PARTY-230 maps the shipped kind-one field-six descriptor to
-  cache offset +0C, type two and initial width two. That descriptor binding
-  is removed from the indirect-writer gap; actual field-six callers,
-  current binding/width stability, all other producers and outcomes remain.
-  Split: resource/buffer validity is Q-PARTY-088 and cache-specific runtime
-  binding/selection preservation is Q-PARTY-089. Neither is answered by this
-  split; this item retains the producer/invalidation/consumer question.
+- Q-PARTY-087. FMT-PARTY-006, SCR-UI-008: Which remaining code reads or
+  writes the attached record's cached BMP number at +0C directly, outside
+  the generic field accessor? Settles it: a census of instruction starts
+  that form a kind-1 record address (DS:19C1, its copy DS:6153 or the
+  accessor's DS:614F row, times 23) and access +0C, including computed
+  offsets and partial-record copies, beyond the reviewed inventory drawing,
+  current-item helper, opener refresh and 191 +01F7 store, with what each
+  stores or does with the value read. Field-six accessor requests are
+  Q-PARTY-090; whole-record creation and copies are Q-PARTY-091;
+  resource/buffer validity is Q-PARTY-088; cache-specific binding/selection
+  preservation is Q-PARTY-089; placement/backend rendering remains
+  Q-PARTY-085.
+  Tried: split after six attempts. FND-PARTY-224 (drawing reuse, zero
+  resolver and store), FND-PARTY-227 (current-item helper), FND-PARTY-228
+  (opener 9999 refresh) and FND-PARTY-229 (191 +01F7 slot-image store)
+  each removed one direct site; FND-PARTY-225 answered the resolver's local
+  arithmetic. No census of the remaining direct accesses was taken.
+  Blocks: complete reading of FMT-PARTY-006 and item-picture admission.
+- Q-PARTY-090. FMT-PARTY-006, SCR-UI-008: Which generic field-accessor requests select
+  kind-1 field six, the +0C cache? Settles it: the field and handle kind
+  at the remaining computed-field sites: the CHAR loader's header word at
+  2D40:01F5 for CHAR data the game writes at run time, the field-path
+  wrappers 1AA0:028B, 1AA0:02D2 and 1AA0:03D2 with their callers at file
+  ED4F and EE50, the setter in 172C:295B with its callers at file D8F9,
+  D949, D9BD and EE12, and overlay 204's script setter (field and kind from
+  script operands, Q-SCRIPT-004); plus near indirect calls inside segment
+  1AA0 and the computed-pointer candidate at file 948E.
+  Tried: split from Q-PARTY-087 after FND-PARTY-230 binds shipped kind-1
+  field six to +0C with type two; FND-PARTY-051 and FND-PARTY-216 give
+  the accessors' contract.
+  Tried: FND-PARTY-233 classifies all 28 direct accessor calls and the 21
+  transfer calls: immediate, type-gated, descendant-graph and transfer
+  fields never name six under shipped FNFO 2 and the field lists overlay
+  188 installs. Those sites are removed from Settles it; FND-PARTY-052
+  gives the shipped CHARSAVE.GFF header fields (15, 16, 17, 4).
+  Blocks: complete reading of FMT-PARTY-006.
+- Q-PARTY-091. FMT-PARTY-006, SCR-UI-008: Which code creates or copies a whole 23-byte
+  attached record, and what does each leave in +0C? Settles it: every
+  kind-1 record allocation (2D40:2D78 through 2D40:0E80), the CHAR chunk
+  copy and the values it brings, record duplication on quantity splits,
+  save serialization, and block copies covering +0C, with the zero and
+  9999 values each can leave for the drawing resolver and opener refresh.
+  Tried: split from Q-PARTY-087. FND-PARTY-051 records overlay 187 +04F8
+  copying 23 bytes and then storing zero at +0C; FND-PARTY-196 gives the
+  shipped +0C values; FND-PARTY-228 reads the opener's 9999 refresh
+  without naming a producer of 9999.
   Blocks: complete reading of FMT-PARTY-006 and item-picture admission.
 - Q-PARTY-088. FMT-PARTY-006, FMT-ACTOR-001, SCR-UI-008: Which resource
   and buffer conditions admit the bitmap resolver and subsequent BMP request?

@@ -151,8 +151,13 @@ ends on a `chunk_type` of 0xFF whose header is the last 10 bytes of the resource
   `0x0C`, byte `0x12`, and
   inventory position at `0x13`.
   FND-PARTY-196 gives the shipped values (Q-PARTY-020).
-- Complete bitmap-number cache producers, invalidation and remaining consumers
+- Remaining direct readers and writers of the bitmap-number cache
   (FND-PARTY-224, Q-PARTY-087).
+- Which generic field-accessor requests select kind-1 field six, the cache
+  word; FND-PARTY-233 excludes every direct call whose field is an
+  immediate, type-gated, descendant-graph or transfer value (Q-PARTY-090).
+- Which record creations and whole-record copies set the cache word, and to
+  what (FND-PARTY-051, Q-PARTY-091).
 - Resource/buffer admission for the cache resolver and image acquisition
   (FND-PARTY-225, Q-PARTY-088).
 - Cache-specific runtime table/field/width bindings and record-selection
