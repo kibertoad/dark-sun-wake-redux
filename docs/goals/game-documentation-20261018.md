@@ -42,22 +42,24 @@ an explicit owner request.
 
 - Stage: Slices; resume the unfinished research in docs/HANDOVER.md.
 - Last gate: 2026-10-18, ./tools/Test.ps1 -NoRestore passed: 715 .NET tests,
-  105 Node tests and five option controls; documentation passed with 1367
-  entries, 168 parity rows and five deviations. Existing argument-count and
-  absent-Kaitai skips remain. Tracking warnings remain for Q-PARTY-020/078/082/085/087,
+  105 Node tests and five option controls; documentation passed with 1369
+  entries, 169 parity rows and five deviations. Existing argument-count and
+  absent-Kaitai skips remain. Tracking warnings remain for Q-UI-002,
+  Q-PARTY-020/078/082/085/087,
   Q-COMBAT-009/010 and Q-RNG-001/003/004; later attempts must reduce Settles it.
-- Unfinished: no tracked research draft. Q-PARTY-007's screen/resource
-  binding has no new finding yet; reports are in
-  GAME_DIR/analysis/party-dual-window-20261018/.
+- Unfinished: no tracked research draft. Q-UI-001's header operand census
+  has no finding yet; its active bounded process retains output under
+  GAME_DIR/analysis/ui-window-image-20261018/.
+  Class-window reports remain in GAME_DIR/analysis/party-dual-window-20261018/.
   Cache caller/census reports remain in
   GAME_DIR/analysis/party-record-heads/drawing-20261018/.
   Use draw-linear-context.txt from the declared entry rather than restarting
   decoding at the inventory's internal fragment boundary.
 - Blockers: existing person-only runtime observations in docs/RUNTIME.md.
-- Next: Q-PARTY-007 screen identity and class-button mapping; Q-PARTY-087
+- Next: Q-UI-001 window picture-field consumers; Q-PARTY-087
   remaining direct/indirect cache writers and consumers; Q-PARTY-088/089
   resource/buffer and runtime binding/selection admission; Q-PARTY-086
   remaining action mutations; Q-COMBAT-014/015/016 remaining children and inputs.
 - Checkpoint only: the standing research goal remains active. FND-COMBAT-051/052
-  and FND-PARTY-220..231 are the current research references. No full-game run
+  and FND-PARTY-220..232 and SCR-PARTY-003 are the current research references. No full-game run
   started; the gate retained its existing declared initializer call.
