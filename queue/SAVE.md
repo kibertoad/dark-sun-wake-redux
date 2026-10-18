@@ -32,12 +32,6 @@ Next ID: Q-SAVE-004
   Tried: FND-SAVE-013 takes a census of the operands naming the `GREQ` globals: the four words are
   the subregion edges, the byte the overhead map's page and the tenth byte the defeat picture.
   The `GREQ` parts are removed from Settles it; the scripts' values move to Q-SAVE-003.
-- Q-SAVE-003. FMT-SAVE-002: Which subregions and overhead-map pages do the shipped scripts set
-  through functions 33 and 34 of opcode `0x22`? Settles it: the `GPL ` resources decoded
-  instruction by instruction, with the arguments of every call of those functions. Tried:
-  FND-SAVE-013 reads both functions and their packed arguments; a byte search cannot tell their
-  calls from other operands without the instruction layouts, which FND-SCRIPT-024 now gives.
-  Blocks: nothing yet.
 
 ## Emulated call
 

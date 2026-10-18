@@ -9,7 +9,7 @@ byte_order: little
 size: 9
 text: false
 definition: fmt_save_002.ksy
-evidence: [FND-COMBAT-049, FND-SAVE-001, FND-SAVE-002, FND-SAVE-004, FND-SAVE-005, FND-SAVE-013, FND-UI-046]
+evidence: [FND-COMBAT-049, FND-SAVE-001, FND-SAVE-002, FND-SAVE-004, FND-SAVE-005, FND-SAVE-013, FND-SAVE-014, FND-UI-046]
 conflicting: []
 split_with: []
 related: [RULE-SAVE-002]
@@ -34,7 +34,11 @@ A script sets the four edges through function 33 of opcode `0x22` from two packe
 `x * 1000 + y`, the corner and the size in 16-pixel cells, each edge at most 2,048 across and
 1,568 down, the size of a region; a region change and the debug `Subregions off` key set them to
 the whole region. Function 34 sets `map_page`, and the start of play sets it to 0
-[FND-SAVE-013].
+[FND-SAVE-013]. The shipped scripts set 137 different subregions, listed with their calls in
+FND-SAVE-014's value file, and pass with them a `map_page` that numbers the subregion within
+its region, 0 to 24 where it comes from a literal or a table index. One script passes 255,
+which the overhead map reads as -1, and three pass a global that other scripts also lower as a
+counter [FND-SAVE-014].
 
 The routines keep a tenth byte beside the nine, the byte at `DS:4458`: the picture number the
 defeat window draws, which script functions 19 and 35 set. Saving leaves it out, and loading
@@ -55,5 +59,4 @@ The ten `GREQ` resources of the installed `CHARSAVE.GFF`, every one 9 bytes [FND
 
 ## Open questions
 
-- Which subregions and map pages the shipped scripts set through functions 33 and 34
-  (FND-SAVE-013, Q-SAVE-003).
+None known.
