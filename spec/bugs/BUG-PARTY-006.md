@@ -7,7 +7,7 @@ superseded_by: []
 impact: crash
 intent: unintended
 player_reliance: unknown
-evidence: [FND-PARTY-082, FND-PARTY-105, FND-PARTY-096, FND-PARTY-108, FND-PARTY-109, FND-PARTY-110, FND-PARTY-111, FND-PARTY-112, FND-PARTY-113, FND-PARTY-114, FND-PARTY-115, FND-PARTY-116, FND-PARTY-119, FND-PARTY-120, FND-PARTY-121, FND-PARTY-122, FND-PARTY-237, FND-PARTY-241, FND-PARTY-242]
+evidence: [FND-PARTY-082, FND-PARTY-105, FND-PARTY-096, FND-PARTY-108, FND-PARTY-109, FND-PARTY-110, FND-PARTY-111, FND-PARTY-112, FND-PARTY-113, FND-PARTY-114, FND-PARTY-115, FND-PARTY-116, FND-PARTY-119, FND-PARTY-120, FND-PARTY-121, FND-PARTY-122, FND-PARTY-237, FND-PARTY-241, FND-PARTY-242, FND-PARTY-243]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-013, FMT-PARTY-001]
@@ -58,8 +58,11 @@ That number starts at 0 and changes only when its whole block is cleared or load
 game, so the call does not cast in a game the program saved itself (FND-PARTY-241). No enemy strikes with the item of `DATA` 313:
 the fight's swing passes no item, the enemies' spell, psionic and other choices pass other
 numbers, no shipped script or item power passes 313, and the area rows hold none
-(FND-PARTY-242). A hit with 313 can come only from a number a party member's own cast or item
-power supplies, which is open.
+(FND-PARTY-242). The party's own casts pass numbers from the wizard, priest and psionic cast
+lists, all below 269, or numbers repeated from the last-cast table, which holds only those; and
+its item powers pass no shipped item's number 313 (FND-PARTY-243). The one number left open is
+the one the spell window's cast handler passes when the casting member's spell mode is 0, since
+it then reads no list and leaves the number it had (FND-PARTY-243).
 
 ## Player reliance
 
@@ -75,9 +78,10 @@ None known.
 
 ## Open questions
 
-- Whether a party member's own cast or item power can pass `DATA` 313 to the hit routine, so
-  that the item 313 strike can happen in a normal game; no enemy route passes it (FND-PARTY-242,
-  Q-PARTY-105).
+- Whether the spell window's cast handler can cast while the member's spell mode is 0 and a list
+  count is left above 0, the only party route not shown to pass a number other than `DATA` 313
+  to the hit routine; no enemy route and no other party route passes it (FND-PARTY-242,
+  FND-PARTY-243, Q-PARTY-105).
 - Whether any party member has type bytes that make the calls before the hit routine's saving
   throw stop the spells for it, which they do for the types 2, 3, 7, 11, 13 and 16 (FND-PARTY-112);
   the shipped and transferred characters and the characters generation stores hold 0, and no

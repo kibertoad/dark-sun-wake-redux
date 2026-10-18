@@ -329,11 +329,15 @@ Next ID: Q-PARTY-106
   party. Tried: split from Q-PARTY-050, which FND-PARTY-240 closed. Blocks: slice 2.
 - Q-PARTY-105. BUG-PARTY-006: Can a party member's cast or item power give the spell dispatcher
   or the hit routine `DATA` 313, whose strike on an attack roll of 20 sends effect code 59
-  (FND-PARTY-096)? Settles it: what the cast number at `DS:6273` that overlay 190 `+2503` copies
-  into the table at `DS:445E` can hold, what overlay 211 passes in `SI` at `+166E` and stores in
-  `DS:43F5` at `+16ED`, and what overlay 213 stores there at `+0AE2` and passes at `+0A4F`. Tried:
+  (FND-PARTY-096)? Settles it: whether overlay 211 `+10F4` can reach its cast at `+15FA` while the
+  member's mode byte `DS:43E8` is 0 and `DS:9D79` is above 0 (when `SI` keeps its caller's value),
+  read from where `+1A4F` runs after each store of mode 0 (overlay 190 `+284A`, `+28C5`) and from
+  the controls and window that send `+10F4` its events through trampoline `57C1:0061`. Tried:
   split from Q-PARTY-103, which FND-PARTY-242 closed by finding that no enemy or script route
-  passes 313; FND-PARTY-242 traces the party-side numbers to those stores. Blocks: nothing yet.
+  passes 313; FND-PARTY-242 traces the party-side numbers to those stores. Tried: FND-PARTY-243
+  reads every store of `DS:6273`, the table at `DS:445E`, the list at `DS:9C20` and `DS:43F5`:
+  modes 1 to 3 give list numbers below 269, overlay 172 repeats table entries and overlay 213
+  passes item powers, so only the mode 0 case is left. Blocks: nothing yet.
 
 ## Emulated call
 
