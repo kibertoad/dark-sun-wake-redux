@@ -2,18 +2,24 @@
 
 ## State
 
-- Stage: Slices; slices 2 and 3 remain in progress. The entire-game research
-  goal was cleared, not completed; its claim file is removed in this handover.
-- Stop reason: the owner cleared the goal and requested stopping after the
-  upstream changes and today's handover. Start no further research item.
-- Last gate: 2026-10-18, ./tools/Test.ps1 -NoRestore passed, including 715
-  .NET tests, 105 Node tests and five option controls: 1371 entries, 169 parity rows,
-  five deviations. Existing argument-count and absent-Kaitai-compiler skips
-  remain. Q-UI-002, Q-PARTY-020/078/082/085/087, Q-COMBAT-009/010
-  and Q-RNG-001/003/004 retain Tried-count warnings;
-  each later attempt must take part of Settles it out before another attempt.
-  The final full gate passed. An earlier batch's full rerun passed after
-  an ownership-fixture child-process timeout; its isolated retry also passed.
+- Stage: Slices; slices 2 and 3 remain in progress. No active goal.
+- Stop reason: completed the owner's template/shared-library update and main
+  push request. Start no further research item in this maintenance session.
+- Last gate: 2026-10-18, full ./tools/Invoke-Validation.ps1 passed, including
+  ./tools/Test.ps1: 715 .NET tests, 107 main Node tests and seven option/signing
+  controls. Release build passed with zero warnings/errors; assetless publish
+  and smoke passed. Documentation: 1371 entries, 169 parity rows, five deviations.
+  Existing argument-count, absent-Kaitai-compiler and scheduled-generation skips
+  remain. Existing Tried-count warnings remain; later attempts must take part
+  of Settles it out before another attempt.
+- Adopted template 1686fe007de6ff75c70654eaeb36ebd530f1130f, protocol ceefc84,
+  reader 4.3.0, engine 19.9.0 and RefurbishedDinosaurs 12.2.0. Checker 6.0.0,
+  session 0.10.0 and decoder pins remain current. Ordinary/platform locks updated.
+  See docs/TEMPLATE-ACCEPTANCE.md and the latest-template synchronization plan.
+- Change-aware documentation checks are available during batches; full Test.ps1
+  remains required before every batch commit. Runtime/capture restrictions,
+  required-pack revision and game parity statuses are unchanged. Process audit
+  found no owned orphan to stop.
 - Latest research references: FND-RNG-011..026, RULE-RNG-001,
   SRC-RUSTDOS-172, FND-COMBAT-029..046, RULE-COMBAT-009,
   FMT-COMBAT-003, FND-UI-041, FMT-UI-001, FND-PARTY-217..219,
@@ -134,12 +140,8 @@
 - Toolkit issue 538: pinned Capstone's synthetic 16-bit 98/99 mnemonic
   labeling; check mode/prefixes directly. Prior-analysis impact is unverified.
   https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/538.
-- Throughput delivery: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/539.
-  Adopt only after upstream review/merge and any package release, as requested:
-  protocol https://github.com/kibertoad/refurbished-dinosaurs/pull/123,
-  toolkit https://github.com/kibertoad/refurbished-dinosaurs-toolkit/pull/540,
-  template https://github.com/kibertoad/refurbished-dinosaurs-template/pull/119,
-  skill https://github.com/kibertoad/toad-skills/pull/1.
-  Local gates and installed skill remain unchanged. Upstream checkouts are
-  retained under ignored artifacts/upstream-efficiency/; each PR records its
-  synthetic checks. Do not copy their source into this restoration.
+- Throughput delivery: toolkit issue 539 and reviewed PR 540, protocol PR 123
+  and template PR 119 are adopted through the versions above. Their local
+  validation selection, research batching and index reuse guidance is current.
+  Skill PR https://github.com/kibertoad/toad-skills/pull/1 is outside this
+  repository update; no user-level installed skill was changed.
