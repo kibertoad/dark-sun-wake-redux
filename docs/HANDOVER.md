@@ -4,12 +4,13 @@
 
 - Stage: Slices; slices 2 and 3 remain in progress. The entire-game research
   goal was cleared, not completed; its claim file is removed in this handover.
-- Stop reason: the owner requested today's wrap-up, a cohesive batch,
-  documentation, commits and a push to main, then stop. Start no further item.
-- Last gate: 2026-10-16, ./tools/Test.ps1 -NoRestore passed, including 715
-  .NET tests and Node/documentation suites: 1353 entries, 168 parity rows,
+- Stop reason: the owner cleared the goal and requested stopping after the
+  upstream changes and today's handover. Start no further research item.
+- Last gate: 2026-10-18, ./tools/Test.ps1 -NoRestore passed, including 715
+  .NET tests, 105 Node tests and five option controls: 1371 entries, 169 parity rows,
   five deviations. Existing argument-count and absent-Kaitai-compiler skips
-  remain. Q-PARTY-078, Q-COMBAT-009/010 and Q-RNG-001/003/004 retain Tried-count warnings;
+  remain. Q-UI-002, Q-PARTY-020/078/082/085/087, Q-COMBAT-009/010
+  and Q-RNG-001/003/004 retain Tried-count warnings;
   each later attempt must take part of Settles it out before another attempt.
   The final full gate passed. An earlier batch's full rerun passed after
   an ownership-fixture child-process timeout; its isolated retry also passed.
@@ -17,6 +18,8 @@
   SRC-RUSTDOS-172, FND-COMBAT-029..046, RULE-COMBAT-009,
   FMT-COMBAT-003, FND-UI-041, FMT-UI-001, FND-PARTY-217..219,
   FMT-PARTY-006, SCR-UI-008, FND-UI-039..040 and FND-COMBAT-047..050.
+  Current continuation references: FND-COMBAT-051/052, FND-PARTY-220..232,
+  SCR-PARTY-003, FND-UI-042/043 and FMT-UI-003.
   RNG parity remains partial with its existing Defect notes. No gameplay
   implementation changed. Remaining research stays in the area queues.
 - Required asset pack revision remains 36. Revision-35 local packs require
@@ -33,6 +36,8 @@
   engine/session package before subsequent work used the dedicated project
   environment. Do not modify the inherited environment again.
 - Unset process-local NoDefaultCurrentDirectoryInExePath for validation.
+  TEMP/TMP for the full gate must be outside the checkout. Hook snapshots
+  can use artifacts/hook-tmp.
   Machine-wide GAME_DIR belongs to another project and is ignored by the
   configured game-directory resolver. Git trust stays checkout-scoped and
   hooks remain enabled. Keep each tested snapshot unchanged while a gate runs.
@@ -84,6 +89,15 @@
   menu-choice-candidates.txt remain in GAME_DIR/analysis/combat-actions/.
   Resume with FND-PARTY-128 and the established menu entry; raw search
   hits and table values alone do not establish native event admission.
+- Q-UI-001: no tracked draft. Alignment and remaining picture consumers are
+  next; reports remain in GAME_DIR/analysis/ui-window-image-20261018/.
+  Reproduce through FND-UI-042/043 and the named committed tools.
+- Q-PARTY-087/088/089 reports remain in
+  GAME_DIR/analysis/party-record-heads/drawing-20261018/; resume through
+  FND-PARTY-220..231. Use draw-linear-context.txt from the declared entry,
+  rather than decoding at an internal inventory fragment boundary.
+  Class-window reports remain in GAME_DIR/analysis/party-dual-window-20261018/;
+  resume through FND-PARTY-232 and SCR-PARTY-003.
 - Historical commit-message repair still awaits approval: fa0d8d1 has title
   Record; research commit 4e5d4e8 was accidentally amended as 290a177 with a
   validation message and lost its Spec trailer. Its original message remains
@@ -101,17 +115,11 @@
 
 ## Next
 
-1. Q-COMBAT-014/015/016: remaining command-menu contracts, using
-   FND-COMBAT-047..050 and FND-PARTY-128.
-2. Q-COMBAT-009: effect count/ID/order, caller/writer and restoration admission,
-   using FND-COMBAT-031..035 and FND-COMBAT-043..046.
-3. Q-COMBAT-010/011/012/013 and Q-UI-001/002: remaining status selection,
-   archive/window/cache/backend and event
-   admission, using FND-COMBAT-038..042 and FND-UI-041.
-4. Q-RNG-001/003/004/005: caller/service admission, aliases, rule/draw mapping
-   and state writers, using FND-RNG-023..026 and RULE-RNG-001.
-5. Q-PARTY-081/082/083/085 and Q-PARTY-020/084: remaining party contracts;
-   retain native draw recording requirements and FND-PARTY-218 provenance.
+1. Q-UI-001: remaining control layout and picture consumers, FND-UI-042/043.
+2. Q-PARTY-087: remaining cache writers/consumers, FND-PARTY-220..231.
+3. Q-PARTY-088/089: resource/buffer and runtime binding/selection admission.
+4. Q-PARTY-086: remaining action mutations.
+5. Q-COMBAT-014/015/016: remaining children and inputs, FND-COMBAT-047..052.
 
 ## Upstream requests
 
@@ -123,3 +131,15 @@
   if Git's hook snapshot cannot create one, use writable artifacts/hook-tmp
   as Git Bash TMPDIR while retaining the hook.
 - Template issue 90: scheduled-generation fixture assumptions.
+- Toolkit issue 538: pinned Capstone's synthetic 16-bit 98/99 mnemonic
+  labeling; check mode/prefixes directly. Prior-analysis impact is unverified.
+  https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/538.
+- Throughput delivery: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/539.
+  Adopt only after upstream review/merge and any package release, as requested:
+  protocol https://github.com/kibertoad/refurbished-dinosaurs/pull/123,
+  toolkit https://github.com/kibertoad/refurbished-dinosaurs-toolkit/pull/540,
+  template https://github.com/kibertoad/refurbished-dinosaurs-template/pull/119,
+  skill https://github.com/kibertoad/toad-skills/pull/1.
+  Local gates and installed skill remain unchanged. Upstream checkouts are
+  retained under ignored artifacts/upstream-efficiency/; each PR records its
+  synthetic checks. Do not copy their source into this restoration.
