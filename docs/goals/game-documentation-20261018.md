@@ -56,6 +56,13 @@ an explicit owner request.
   Use draw-linear-context.txt from the declared entry rather than restarting
   decoding at the inventory's internal fragment boundary.
 - Blockers: existing person-only runtime observations in docs/RUNTIME.md.
+- Upstream follow-up: owner requested adoption after review and merge of
+  protocol PR https://github.com/kibertoad/refurbished-dinosaurs/pull/123,
+  toolkit PR https://github.com/kibertoad/refurbished-dinosaurs-toolkit/pull/540,
+  template PR https://github.com/kibertoad/refurbished-dinosaurs-template/pull/119
+  and skill PR https://github.com/kibertoad/toad-skills/pull/1.
+  Track delivery in toolkit issue 539; shipped tooling also needs its release.
+  Current local validation instructions and installed skill remain in force.
 - Next: Q-UI-001 window picture-field consumers; Q-PARTY-087
   remaining direct/indirect cache writers and consumers; Q-PARTY-088/089
   resource/buffer and runtime binding/selection admission; Q-PARTY-086
