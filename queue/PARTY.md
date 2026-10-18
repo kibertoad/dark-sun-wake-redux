@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-092
+Next ID: Q-PARTY-093
 
 ## Static
 
@@ -146,14 +146,10 @@ Next ID: Q-PARTY-092
   arithmetic. No census of the remaining direct accesses was taken.
   Blocks: complete reading of FMT-PARTY-006 and item-picture admission.
 - Q-PARTY-090. FMT-PARTY-006, SCR-UI-008: Which generic field-accessor requests select
-  kind-1 field six, the +0C cache? Settles it: the field and handle kind
-  at the remaining computed-field sites: the CHAR loader's header word at
-  2D40:01F5 for CHAR data the game writes at run time, the field-path
-  wrappers 1AA0:028B, 1AA0:02D2 and 1AA0:03D2 with their callers at file
-  ED4F and EE50, the setter in 172C:295B with its callers at file D8F9,
-  D949, D9BD and EE12, and overlay 204's script setter (field and kind from
-  script operands, Q-SCRIPT-004); plus near indirect calls inside segment
-  1AA0 and the computed-pointer candidate at file 948E.
+  kind-1 field six, the +0C cache? Settles it: the field the CHAR loader's
+  header word at 2D40:01F5 names for CHAR data the game writes at run time,
+  read from the code that writes chunk-header word +06 of a saved CHAR
+  resource. Script-operand requests are Q-PARTY-092.
   Tried: split from Q-PARTY-087 after FND-PARTY-230 binds shipped kind-1
   field six to +0C with type two; FND-PARTY-051 and FND-PARTY-216 give
   the accessors' contract.
@@ -162,6 +158,12 @@ Next ID: Q-PARTY-092
   fields never name six under shipped FNFO 2 and the field lists overlay
   188 installs. Those sites are removed from Settles it; FND-PARTY-052
   gives the shipped CHARSAVE.GFF header fields (15, 16, 17, 4).
+  Tried: FND-PARTY-234 reads the field-path wrappers 1AA0:028B, 02D2,
+  0321 and 03D2, the setter 172C:295B and all their direct callers:
+  overlay 189 +2EFD requests field 89, and every other field is a script
+  operand byte (moved to Q-PARTY-092). Segment 1AA0 has no indirect
+  transfer and the file 948E candidate lies inside another instruction;
+  both are removed from Settles it.
   Blocks: complete reading of FMT-PARTY-006.
 - Q-PARTY-091. FMT-PARTY-006, SCR-UI-008: Which code creates or copies a whole 23-byte
   attached record, and what does each leave in +0C? Settles it: every
@@ -381,6 +383,17 @@ None.
 
 ## Blocked
 
+- Q-PARTY-092. FMT-PARTY-006, SCR-UI-008: Does any shipped script name kind-1 field six,
+  the +0C bitmap-number cache, in a field-path operand? Settles it: the `GPL ` resources
+  decoded instruction by instruction, with the field bytes and counts each instance passes to
+  the interpreter routines 172C:284D (expression byte B1), 172C:2914 (assignment), 172C:13E0
+  and 172C:084E, and the field and kind operands of overlay 204's setter at +18B5, checked
+  against the handle kinds they reach. Tried: FND-PARTY-234 traces those routines' fields to
+  script code bytes (a count of zero takes the setter's field from the high word of the
+  assigned value); FND-PARTY-156 and FND-PARTY-233 trace overlay 204's field to script
+  operands. A byte search cannot tell field bytes from other operands without the instruction
+  layouts. Waiting on: Q-SCRIPT-004, the layout of every script instruction, in the SCRIPT
+  area. Blocks: complete reading of FMT-PARTY-006.
 - Q-PARTY-050. RULE-PARTY-013: Does any trigger record's second entry point that can run during a
   fight hold script opcode `0x24`, which makes the slot in `4C13:0369` the current record through
   overlay 190 `+36D2` (FND-PARTY-097, FND-PARTY-098)? Settles it: the `GPL ` resources and offsets

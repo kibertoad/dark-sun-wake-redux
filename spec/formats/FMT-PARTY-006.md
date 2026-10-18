@@ -155,7 +155,11 @@ ends on a `chunk_type` of 0xFF whose header is the last 10 bytes of the resource
   (FND-PARTY-224, Q-PARTY-087).
 - Which generic field-accessor requests select kind-1 field six, the cache
   word; FND-PARTY-233 excludes every direct call whose field is an
-  immediate, type-gated, descendant-graph or transfer value (Q-PARTY-090).
+  immediate, type-gated, descendant-graph or transfer value, and
+  FND-PARTY-234 finds field 89 or a script operand at every field-path
+  wrapper and 172C setter request. The CHAR loader's header word for CHAR
+  data written at run time is Q-PARTY-090; script operands that name a
+  field are Q-PARTY-092.
 - Which record creations and whole-record copies set the cache word, and to
   what (FND-PARTY-051, Q-PARTY-091).
 - Resource/buffer admission for the cache resolver and image acquisition

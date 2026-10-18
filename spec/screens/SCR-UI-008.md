@@ -135,7 +135,8 @@ None known.
   FND-PARTY-225): resource/buffer validity is Q-PARTY-088, cache-specific
   binding/selection preservation is Q-PARTY-089, remaining direct cache
   accesses are Q-PARTY-087, field-six accessor requests are Q-PARTY-090
-  (FND-PARTY-233) and record creation/copy values are Q-PARTY-091. Its local OJFF-number, image-word and
+  and, through script operands, Q-PARTY-092 (FND-PARTY-233,
+  FND-PARTY-234) and record creation/copy values are Q-PARTY-091. Its local OJFF-number, image-word and
   zero-on-failure branches are recorded in FND-PARTY-225.
 - The effects of the other buttons remain unestablished; code is known for the leader
   and computer-control buttons (FND-COMBAT-023, FND-AI-003). The inventory opener
