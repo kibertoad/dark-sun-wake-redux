@@ -1,113 +1,71 @@
 # RNG
 
-Next ID: Q-RNG-008
+Next ID: Q-RNG-013
 
 ## Static
 
-- Q-RNG-001. RULE-RNG-001: Which rules call the generator and its modulo,
-  inclusive-range and repeated-roll helpers, and in what order? Settles it:
-  verified callers of the generator and each helper, including relocations,
-  far pointers, indirect calls and segment aliases; map each to a rule and
-  its admitted draw order. State reader/writer coverage is independently
-  Q-RNG-007. The eleven recovered canonical range sites are qualified
-  locally by FND-RNG-025 and FND-RNG-026; their complete caller/input
-  admission, other reducers/direct draws and indirect caller coverage remain.
-  The local overlay-188
-  test and opcode-59 draw loop are answered by FND-RNG-024; their shipped
-  content instances and index/storage/iterator admission remain. Tried: a complete
-  instruction-text scan for the two state displacements and direct far calls
-  to the setter (FND-RNG-001, FND-RNG-002), and the one direct consumer chain
-  of the modulo helper (FND-RNG-007, FND-RNG-008), which identify no seed
-  source, and whose consumer is the music selector of RULE-SOUND-003
-  (FND-SOUND-012); a far-call search found a fourth direct
-  caller of the generator, the script instruction `0x52` (FND-SCRIPT-011),
-  which draws without a helper. Tried: FND-RNG-009 recovers two direct overlay
-  seed callers; their complete source/reseeding contract is separated into
-  Q-RNG-003. Its generator control query yields further overlay candidates
-  requiring instruction and rule verification. Tried: FND-RNG-021 qualifies
-  overlay 204 +00E1 as a direct draw conditional on retained offset state
-  in the second reseeding root. That local consumer is answered; complete
-  rule mapping, other candidates and indirect state access remain. Tried:
-  FND-RNG-024 qualifies overlay 188 +0817 from its exported entry and
-  opcode-59 caller, settling its one-draw strict d20 test and per-candidate
-  early-stop order. That local consumer obligation is answered. It also
-  reconciles FND-PARTY-099's already recovered effect-save roll_sum use;
-  complete caller/rule mapping, shipped instances, indexed storage and
-  iterator admission remain. Tried: FND-RNG-025 qualifies all five recovered
-  overlay-176 range sites from exported entries and their local consumers.
-  Their fixed/dynamic endpoints, two contest rolls before comparison,
-  final die-byte return, conditional second predicate call and equal-bound
-  no-draw case are answered. Other direct candidates, complete rule/callee
-  mapping, admitted record/table state and indirect access remain.
-  Tried: FND-RNG-026 qualifies the other six range sites in overlay 179's
-  paired-coordinate samplers and connects their exported wrapper to an
-  overlay-193 caller. All eleven recovered canonical range sites now have
-  local argument/draw-order readings. That candidate-qualification part is
-  answered; profile/input/callee admission and other caller forms remain.
-  Independent state reader/writer and alias coverage splits into Q-RNG-007.
-  Blocks: slices 2-7.
-- Q-RNG-003. RULE-RNG-001: What complete input-to-seed contract and admitted
-  reseeding paths do the two recovered seed callers use? Settles it: complete
-  reading of the admitted caller paths and near-buffer DS/SS
-  identity on other admitted paths; callers reaching overlay
-  180 +065E and overlay 204 +001E; other indirect or aliased seed writes and
-  calls. Tried: FND-RNG-009 proves both direct call sequences use only AX from
-  the helper, whose optional output pointer is zero, and separates the complete
-  conversion/reachability obligations from Q-RNG-001. FND-UI-039 observes a
-  later state change without identifying its writer. Tried: FND-RNG-010
-  observes the admitted startup caller, its argument and setter result, then
-  saves and file-verifies the opener checkpoint with no known generator draw.
-  Complete conversion, earlier near-buffer identity and other reseeding paths
-  remain. FND-UI-040 subsequently verifies native restore of the opener
-  checkpoint; the clock conversion and other reseeding obligations remain.
-  Tried: FND-RNG-014 verifies the zero-output startup call's near-buffer
-  identity, pushed offsets and unchanged data through conversion, whose
-  actual return supplies the seed argument's low word. That startup identity
-  obligation is answered; complete conversion, other input/path identities
-  and reseeding coverage remain. Tried: FND-RNG-015 separates the wrapper's
-  full-width return and optional-copy contract from conversion dependencies.
-  Complete conversion and service/environment obligations move to Q-RNG-004;
-  this item retains caller reachability, aliases and seed-write coverage.
-  Tried: FND-RNG-021 reads the second root's unconditional reseeding before
-  a count-controlled port-offset loop. FND-RNG-022 resolves request 27's
-  wrapper and signed-byte argument narrowing, plus three direct caller
-  argument windows. Those local role/width obligations are answered;
-  shipped request instances, full upstream branch admission, DS/SS identity
-  and the other seed-writer/alias census remain. Blocks: reproducible
-  startup seeding and Q-PARTY-081's later recorded gameplay run.
-- Q-RNG-004. RULE-RNG-001: Which date/time and environment inputs reach the
-  reviewed clock conversion, and what input/service contract admits its reads?
-  Settles it: population and bounds of the environment pointer array and
-  strings, admission of indexed date/time values and near buffers on each
-  caller path. Local service request preparation and sampling order are
-  answered by FND-RNG-023; external service inputs/effects are separate in
-  Q-RNG-006. Clock storage/writer identity is separate in Q-RNG-005.
-  Tried: FND-RNG-009 identifies the conversion chain, FND-RNG-014 measures
-  one startup input and return, and FND-RNG-015 records direct buffer access
-  widths and the separate wrapper contract. These do not settle the
-  environment branches, tables or full admitted domain. Split from
-  Q-RNG-003 so conversion and reseeding reachability can be settled separately.
-  Tried: FND-RNG-016 records the converter's local arithmetic widths,
-  shipped calendar-table windows and daylight helper branches, with a
-  conditional cross-check against the startup return. Those local-body
-  obligations are answered; initializer semantics, global/table writers,
-  continued identity and input admission remain. A conditional match does
-  not identify the measured startup initializer path.
-  Tried: FND-RNG-017 observes the actual zero-lookup default initializer
-  path, offset/enable words and daylight return in the admitted startup.
-  The measured default-path obligation is answered; parsed environment
-  branches, service/input domain, state/table writers and other path
-  identities remain. No complete conversion or writer census is claimed.
-  Tried: FND-RNG-018 settles the local initializer's guard, default,
-  integer-offset and first-label branches, including wrap and byte-classifier
-  widths. Those local-body obligations are answered. Input/service admission
-  remains here; global/table writers and storage identity split into Q-RNG-005.
-  Tried: FND-RNG-023 settles local date-before-time sampling, AH-only request
-  preparation, stored-result widths and absence of a local coherence/error
-  retry. Those local service obligations are answered; external service
-  behavior splits into Q-RNG-006. This item retains environment/string and
-  indexed input/near-buffer admission.
-  Blocks: complete reproducible seed-source semantics.
+- Q-RNG-001. RULE-RNG-001: Which direct call sites of the generator and of its modulo,
+  inclusive-range and repeated-roll helpers exist beyond those already read, and which rule does
+  each serve, in what draw order? Settles it: a census of the near and far calls of the
+  generator and of each helper across the load image and every overlay, with a positive control
+  for each kind of call, each hit checked to be an instruction start an established entry
+  reaches, and each mapped to a rule; this includes how each caller uses the `roll_sum` total and
+  the rule of overlay 204 +00E1's draw. Tried: FND-RNG-001, FND-RNG-002, FND-RNG-007, FND-RNG-008,
+  FND-SCRIPT-011 and FND-SOUND-012 identify the resident callers (the helpers, the music
+  selector, the table selection and script instruction `0x52`); FND-RNG-009's control query
+  lists further overlay candidates not yet checked, and FND-RNG-021 reads overlay 204 +00E1 as a
+  draw conditional on retained offset state. The sites in Q-RNG-009 and Q-RNG-010 are read
+  locally; the other candidates remain. Blocks: slices 2-7.
+- Q-RNG-008. RULE-RNG-001: Can the generator, a helper or the seed setter be reached through a
+  stored far pointer, a computed call or a segment alias? Settles it: the words of the file equal
+  to each routine's offset with a relocated or fixed-up segment, the computed call sites whose
+  targets can include those routines, and the segment aliases on the admitted paths. Tried: split
+  from Q-RNG-001 and Q-RNG-003. FND-RNG-001, FND-RNG-002 and FND-RNG-009 search direct calls only
+  and list computed transfers as excluded. Blocks: slices 2-7.
+- Q-RNG-009. RULE-RNG-001: Which rules do the eleven `random_between` sites of overlays 176 and
+  179 serve, and with which inputs? Settles it: the callers of overlay 176's psionic action and
+  resistance checks and of overlay 179's paired-coordinate samplers (through the overlay 193
+  caller), the record and table fields that supply each site's endpoints, and the rule each
+  belongs to. Tried: split from Q-RNG-001. FND-RNG-025 reads overlay 176's five sites (fixed and
+  dynamic endpoints, two contest rolls before the comparison, the conditional second predicate
+  call, no draw when the bounds are equal) and FND-RNG-026 overlay 179's six; their inputs and
+  rule mapping remain. Blocks: slices 2-7.
+- Q-RNG-010. RULE-RNG-001: Which shipped scripts run overlay 188's d20 test through opcode 59, and
+  over which indexed storage? Settles it: the script instances that use opcode 59, the fields its
+  candidates' scaled results come from and the bounds of its candidate iterator. Tried: split
+  from Q-RNG-001. FND-RNG-024 reads the test's one draw per candidate and its early stop, and
+  FND-PARTY-099 the effect-saving `roll_sum(1, 20)` caller it reconciles; the shipped instances
+  and storage remain. Blocks: slices 2-7.
+- Q-RNG-003. RULE-RNG-001: When does the game reseed: which paths reach the two seed callers,
+  overlay 180 +065E and overlay 204 +001E, and with what near buffers? Settles it: the callers
+  that reach each seed caller and their branches, and on each such path the DS/SS identity of
+  the near date and time buffers the clock helper fills. Tried: FND-RNG-009 (both call sequences
+  seed from the helper's low return word), FND-RNG-010 (fresh startup seeds 44976 from overlay
+  180), FND-RNG-014 (the startup path's buffer identity), FND-RNG-015 (the wrapper's return) and
+  FND-RNG-021 (the second root reseeds before its offset loop) answer the startup path and the
+  second root's local role; the other paths remain. Blocks: reproducible startup seeding and
+  Q-PARTY-081's later recorded gameplay run.
+- Q-RNG-011. RULE-RNG-001: Which shipped scripts issue request 27, the route into the second
+  reseeding root, and with which packed arguments? Settles it: the script instances that issue
+  request 27, the arguments each passes and the branches between the request and overlay 204
+  +001E. Tried: split from Q-RNG-003. FND-RNG-022 reads the request's wrapper, its narrowing of
+  the packed arguments to signed bytes and three direct callers' argument windows; the shipped
+  instances remain. Blocks: reproducible reseeding.
+- Q-RNG-004. RULE-RNG-001: Which environment strings reach the clock conversion's initializer,
+  and with what bounds? Settles it: the population and bounds of the environment pointer array
+  and its strings on the admitted paths, and the initializer's branches for parsed offsets and
+  daylight labels beyond the default. Tried: FND-RNG-016 (calendar arithmetic and the daylight
+  helper), FND-RNG-017 (the measured startup takes the default path) and FND-RNG-018 (the
+  initializer's guard, default, integer offset and first-label branches) answer the local bodies
+  and the default path; which strings arrive remains. Blocks: complete reproducible seed-source
+  semantics.
+- Q-RNG-012. RULE-RNG-001: Which date and time values does each caller of the clock conversion
+  pass, and in which near buffers? Settles it: on each admitted caller path, the indexed date and
+  time fields the conversion reads, their ranges, and the buffers' segment identity. Tried: split
+  from Q-RNG-004. FND-RNG-009 identifies the conversion chain, FND-RNG-014 measures one startup
+  input and return, FND-RNG-015 records the buffer access widths and FND-RNG-023 the date-before-
+  time sampling without a retry; the other callers' inputs remain. Blocks: complete reproducible
+  seed-source semantics.
 - Q-RNG-005. RULE-RNG-001: Which paths initialize, read or change the clock
   conversion's global/table storage, and does each access retain its declared
   identity? Settles it: reached reader/writer and alias coverage for the

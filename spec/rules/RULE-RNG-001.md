@@ -126,8 +126,9 @@ None known.
 
 ## Open questions
 
-- The complete seed-source conversion and environmental/service inputs
-  (FND-RNG-009, FND-RNG-014..018, Q-RNG-004). FND-RNG-023 settles local
+- The environment strings that reach the clock conversion's initializer (FND-RNG-016..018,
+  Q-RNG-004), and the date and time values each caller passes (FND-RNG-009, FND-RNG-014..015,
+  Q-RNG-012). FND-RNG-023 settles local
   date-before-time sampling without a coherence retry; external service
   domain and rollover guarantees remain Q-RNG-006, with conditional pinned
   handler-source leads in SRC-RUSTDOS-172. Global/table storage and
@@ -135,19 +136,18 @@ None known.
   and admitted reseeding paths beyond the recovered direct call sequences
   remain separate (Q-RNG-003). The second root's local reseeding and
   conditional draw loop, and its script wrapper widths, are recorded in
-  FND-RNG-021..022; complete caller admission remains open.
-- Complete game-rule and draw-order mapping remains Q-RNG-001.
-  FND-PARTY-099 recovers an effect-saving caller of `roll_sum(1, 20)`;
-  the earlier statement that `roll_sum` had no recovered caller was stale.
-  FND-RNG-025 qualifies five `random_between` sites in overlay 176's
-  psionic action and resistance checks, including conditional and equal-bound
-  draw paths. FND-RNG-026 qualifies the other six recovered canonical
-  sites in overlay 179's coordinate samplers. Their full input/callee
-  admission and other caller forms remain
-  open. Recovered
-  `random_mod` uses include `chance_in_ten` and the table selection in
-  FND-RNG-007, the music selector of RULE-SOUND-003 (FND-SOUND-012).
-  FND-RNG-024 separately qualifies a direct-draw d20 test reached from
-  opcode 59; its selected fields and shipped content instances remain open.
+  FND-RNG-021..022; which shipped scripts issue the request remains Q-RNG-011.
+- The direct call sites of the generator and helpers beyond those read, and the rule and draw
+  order of each (Q-RNG-001). Recovered `random_mod` uses include `chance_in_ten`, the table
+  selection in FND-RNG-007 and the music selector of RULE-SOUND-003 (FND-SOUND-012).
+  FND-PARTY-099 recovers an effect-saving caller of `roll_sum(1, 20)`; the earlier statement
+  that `roll_sum` had no recovered caller was stale.
+- Calls of the generator, a helper or the seed setter through a stored far pointer, a computed
+  call or a segment alias (FND-RNG-001, FND-RNG-002, Q-RNG-008).
+- The inputs and rules of the eleven `random_between` sites: FND-RNG-025 reads five in overlay
+  176's psionic action and resistance checks, including conditional and equal-bound draw paths,
+  and FND-RNG-026 six in overlay 179's coordinate samplers (Q-RNG-009).
+- The shipped scripts and indexed storage of the d20 test reached from opcode 59 (FND-RNG-024,
+  Q-RNG-010).
 - Whether computed, aliased or bulk accesses read or write `rng_state`
   beyond the known generator/setter (FND-RNG-001, Q-RNG-007).
