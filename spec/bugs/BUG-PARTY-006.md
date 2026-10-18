@@ -7,7 +7,7 @@ superseded_by: []
 impact: crash
 intent: unintended
 player_reliance: unknown
-evidence: [FND-PARTY-082, FND-PARTY-105, FND-PARTY-096, FND-PARTY-108, FND-PARTY-109, FND-PARTY-110, FND-PARTY-111, FND-PARTY-112, FND-PARTY-113, FND-PARTY-114, FND-PARTY-115, FND-PARTY-116, FND-PARTY-119, FND-PARTY-120, FND-PARTY-121, FND-PARTY-122]
+evidence: [FND-PARTY-082, FND-PARTY-105, FND-PARTY-096, FND-PARTY-108, FND-PARTY-109, FND-PARTY-110, FND-PARTY-111, FND-PARTY-112, FND-PARTY-113, FND-PARTY-114, FND-PARTY-115, FND-PARTY-116, FND-PARTY-119, FND-PARTY-120, FND-PARTY-121, FND-PARTY-122, FND-PARTY-237]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-013, FMT-PARTY-001]
@@ -40,7 +40,7 @@ with code 1 (FND-PARTY-105).
 Every drain of a single-class character above level 1. The sources of effect code 59 are a strike
 by the item of `DATA` 313 on an attack roll of 20, the spells `DATA` 104 and 225 on a target that
 fails its saving throw, and scripts through function 23 of opcode `0x22` (FND-PARTY-096,
-FND-PARTY-108). Both spells are cast at a single target picked with the map cursor, which takes a
+FND-PARTY-108), which no shipped script calls with code 59 (FND-PARTY-237). Both spells are cast at a single target picked with the map cursor, which takes a
 companion of the caster while a Shift key is held (FND-PARTY-109). A party member with a druid
 class at priest level 13 to 15 has spell 225 in its cast list and level 7 spells to cast, so it
 can drain another party member; spell 104 needs level 9 wizard spells, which a Preserver capped at
@@ -52,7 +52,10 @@ spell: the enemy spell choice keeps a spell only when its weight byte gives a sc
 that byte is 0 for both; the enemies' other path and the item powers pass other numbers; and only
 `RDFF` 3 has spell 104 in its list (FND-PARTY-121). Of the hit routine's other computed spell
 numbers, only function 46 of script opcode `0x22` can give 104 or 225, from a script argument
-(FND-PARTY-122). Whether the item of `DATA` 313 or a script can strike the party in play is open.
+(FND-PARTY-122). No shipped call of it passes either with the second argument 9999, apart from
+`GPL/255` `0x0327`, which casts only when global script number 129, which no script writes,
+holds -9999 (FND-PARTY-237). Whether the item of `DATA` 313 or that call can strike the party in
+play is open.
 
 ## Player reliance
 
@@ -68,9 +71,10 @@ None known.
 
 ## Open questions
 
-- Whether any enemy in play carries the item of `DATA` 313, or any script sends code 59 to a party
-  member or casts spell 104 or 225 through function 46 of opcode `0x22`, so that the crash can
-  happen in a normal game: the scripts are Q-PARTY-051.
+- Whether any enemy in play carries the item of `DATA` 313, so that the crash can happen in a
+  normal game (Q-PARTY-103).
+- Whether `GPL/255` `0x0327` can cast spell 104 or 225: global script number 129 must hold
+  -9999 and the kind-9 variable `0x22` a number with that remainder by 1000 (Q-PARTY-102).
 - Whether any party member has type bytes that make the calls before the hit routine's saving
   throw stop the spells for it, which they do for the types 2, 3, 7, 11, 13 and 16 (FND-PARTY-112);
   the shipped and transferred characters and the characters generation stores hold 0, and no

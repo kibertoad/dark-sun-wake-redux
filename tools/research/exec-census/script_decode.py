@@ -3,6 +3,8 @@
 Usage:
   python -I script_decode.py GPLDATA.GFF OBJEX.GFF TAG NUMBER     list one resource
   python -I script_decode.py GPLDATA.GFF OBJEX.GFF --sweep        check every resource
+  python -I script_decode.py GPLDATA.GFF OBJEX.GFF --all          list every resource, each line
+                                                                  prefixed with TAG/NUMBER
 
 Finds each resource through the archive's directory (FMT-GFF-001 to FMT-GFF-007), appends the
 stop byte 0x31 the loader adds (FND-SCRIPT-019), and decodes it from offset 0 as one instruction
@@ -344,6 +346,16 @@ if sys.argv[3] == "--sweep":
     print(f"literal script calls checked {len(calls)}, not on an instruction start {len(bad_calls)}")
     for line in failed + bad_targets + bad_calls:
         print(line)
+elif sys.argv[3] == "--all":
+    for tag in (b"GPL ", b"MAS "):
+        for number in numbers(tables, tag):
+            lines = []
+            _, error = decode(resource(gpl, tables, tag, number) + b"1", lines)
+            name = f"{tag.decode().strip()}/{number}"
+            for line in lines:
+                print(name, line)
+            if error:
+                print(name, "ERROR", error)
 else:
     tag, number = sys.argv[3].encode().ljust(4), int(sys.argv[4])
     code = resource(gpl, tables, tag, number) + b"\x31"

@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-102
+Next ID: Q-PARTY-104
 
 ## Static
 
@@ -339,15 +339,16 @@ Next ID: Q-PARTY-102
   Blocks: slice 2. Tried: FND-PARTY-098 reads the conditions under which `2D40:207E` runs the
   entry point; a byte search for `0x24` would also match parameter bytes, so it cannot settle
   the question without the instruction layouts, which FND-SCRIPT-024 now gives.
-- Q-PARTY-051. FMT-PARTY-001, BUG-PARTY-006: Does any script call function 23 of opcode `0x22` with the effect
-  code 59, which runs the level drain on a party slot, and on which slots does overlay 204 `+1A68`
-  apply it (FND-PARTY-108), or call function 46 with 9999 as its second argument and a fourth
-  argument whose remainder by 1000 is 104 or 225, which casts that spell (FND-PARTY-122)? Settles
-  it: the `GPL ` resources decoded instruction by instruction and searched for opcode `0x22` with
-  function 23 and code 59 or function 46 with those arguments, and a reading of `+1A68` and of
-  where function 46's cast lands. Blocks: nothing yet. Tried: FND-PARTY-108 and FND-PARTY-122
-  trace the code and the spell to the script's arguments; a byte search cannot separate
-  parameters without the instruction layouts, which FND-SCRIPT-024 now gives.
+- Q-PARTY-102. BUG-PARTY-006: Can global script number 129 hold -9999 when `GPL/255` `0x0327`
+  runs, so that function 46 of opcode `0x22` casts the remainder by 1000 of the kind-9 variable
+  `0x22`, and can that remainder be 104 or 225 (FND-PARTY-237)? Settles it: the value global
+  number 129 starts with and any saved game or code outside the scripts that writes it, what
+  `global_name_pointers` entries `0x21` and `0x22` point at, and where overlay 204 `+18CD` lands
+  its cast with -1 as the caster. Blocks: nothing yet.
+- Q-PARTY-103. BUG-PARTY-006: Does any enemy that can fight the party carry the item of `DATA`
+  313, whose strike on an attack roll of 20 sends effect code 59 (FND-PARTY-096)? Settles it: a
+  census of the item numbers the actors that can join a fight against the party are given, in
+  the records the game loads them from. Blocks: nothing yet.
 
 ## Emulated call
 
