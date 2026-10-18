@@ -79,6 +79,3 @@ None known.
 - The effects of the other buttons come from the manual only; code is known only for the leader
   and computer-control buttons (FND-COMBAT-023, FND-AI-003), and which overlay serves which
   screen is not known (FND-UI-012, Q-UI-002).
-- `WIND/19501` and `WIND/19502` are not this screen's windows: the game-entry routine opens the
-  first, and two overlay 201 routines open the second, one for the defeat message (FND-UI-044,
-  FND-PARTY-194). Which screen the other 19502 opener shows is open (Q-UI-006).

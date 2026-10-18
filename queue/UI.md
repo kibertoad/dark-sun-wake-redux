@@ -1,6 +1,6 @@
 # UI
 
-Next ID: Q-UI-009
+Next ID: Q-UI-011
 
 ## Static
 
@@ -51,11 +51,6 @@ Next ID: Q-UI-009
   font tables and native backend outcomes remain. FND-UI-045 adds that
   registration sets bit `0x2000` of the loaded word `+0C` when the window's
   word `+A4` has bit 2 and bit 1 of the button's word `+0E` is clear.
-- Q-UI-006. FMT-UI-001, SCR-UI-002: Which screen does overlay 201 `+0073` show in `WIND/19502`,
-  and what do its handler's two routines do? FND-UI-044 reads its opener call, its two picture
-  requests and its handler's event table. Settles it: a reading of its callers overlay 181
-  `+028E` and overlay 190 `+1EBD`, of its party-slot loop from `+01DE` and its exit at `+02EB`,
-  and of the handler's targets `+03C9` and `+0317`. Blocks: nothing yet.
 - Q-UI-002. SCR-UI-001 to SCR-UI-012, FMT-UI-003, FMT-UI-005, SCR-UI-002, SCR-UI-003, SCR-UI-004, SCR-UI-005, SCR-UI-006, SCR-UI-007, SCR-UI-008, SCR-UI-009, SCR-UI-010, SCR-UI-011, SCR-PARTY-003: Which code opens each screen and handles each of its
   controls, and which icon frame shows a pointed-at, pressed or unavailable control? No routine
   names the controls' numbers as constants (FND-UI-012). Settles it: a reading of the handlers
@@ -79,7 +74,7 @@ Next ID: Q-UI-009
   close-pointer branches. Those local mappings are answered; remaining
   setup/cleanup children, admitted loaded state and native frame/input
   behavior are not established by the source geometry.
-- Q-UI-003. SCR-UI-002, SCR-UI-005, SCR-UI-006, SCR-UI-007, SCR-UI-011, FMT-UI-001, SCR-UI-001, SCR-UI-003, SCR-PARTY-003: Where does the game
+- Q-UI-003. SCR-UI-002, SCR-UI-005, SCR-UI-006, SCR-UI-007, SCR-UI-011, FMT-UI-001, SCR-UI-001, SCR-UI-003, SCR-PARTY-003, SCR-UI-022: Where does the game
   place each window, given that the resources hold no screen position? Settles it: a reading of
   the code that writes a window's runtime `unk_96` and `unk_98`, or captures of each screen.
   Blocks: nothing yet.
@@ -92,6 +87,17 @@ Next ID: Q-UI-009
   mode image changes. FND-UI-037 identifies its event-2 row, action and EXIT
   branches. FND-SAVE-007 identifies the row description source. Native
   chrome, placement and further handlers remain open.
+  Tried: FND-UI-046 identifies the overhead map's window, pictures, marks,
+  handler and openers; the map is removed from Settles it, apart from its
+  mark drawing (Q-UI-009) and placement (Q-UI-003).
+- Q-UI-009. SCR-UI-022: What does an overhead-map mark look like? Settles it: a reading of
+  `1BF3:2AF4`, which the map calls with 1, a point and the mark value 1, 11, 16 or 100, and of
+  overlay 182 `+059C`, which the map calls with 19101 and 1 after the marks, with the palette
+  entries the mark values select. Blocks: nothing yet.
+- Q-UI-010. SCR-UI-022: Which code sets the byte at `57E0:4459` that picks the overhead map's
+  picture within a region, and to which values? Settles it: a census of stores to `57E0:4459`
+  (FND-PARTY-021 clears it, FND-SAVE-004 saves it) with the value each stores. Blocks: nothing
+  yet.
 
 ## Emulated call
 

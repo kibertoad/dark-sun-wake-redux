@@ -81,7 +81,8 @@ None known.
 - A key routine in overlay 190 compares BIOS key words with a table that holds `1` to `4`, `Tab`,
   `Esc`, `=`, `?`, `A`, `G`, `H`, `M`, `Q`, `S`, `T`, `W`, Space, `Alt+X` and `F1` to `F6`, and
   sends other letters, among them `C`, `E`, `I`, `O`, `P`, `U` and `V`, to a second table
-  (FND-COMBAT-025). Only its combat keys have been read; what it does with the others, and
-  whether it is the routine this rule describes, is open (Q-INPUT-002).
+  (FND-COMBAT-025). Only its combat keys and `O`, which opens the overhead map (FND-UI-046),
+  have been read; what it does with the others, and whether it is the routine this rule
+  describes, is open (Q-INPUT-002).
 - Whether the keys work on the character option screens themselves, and whether case or shift
   matters (Q-INPUT-001).

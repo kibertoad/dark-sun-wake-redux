@@ -10,12 +10,12 @@ Next ID: Q-COMBAT-017
   only above 4? Settles it: a reading of `2D40:3E64` and of the code that fills the tables at
   the far pointers `57E0:19C9` and `57E0:19C5`. Tried: the panel routine and the party buttons
   (FND-COMBAT-022, FND-COMBAT-023). Blocks: slice 4.
-- Q-COMBAT-003. RULE-COMBAT-008: Which values do `combat_state` and the word at `57E0:0DAB` take,
+- Q-COMBAT-003. RULE-COMBAT-008, SCR-UI-022: Which values do `combat_state` and the word at `57E0:0DAB` take,
   and which code sets each? Settles it: the seven direct stores to `combat_state` of
   FND-COMBAT-023, read in their routines, and the writers of `57E0:0DAB`. Tried: an immediate
   store search (FND-COMBAT-023) and Ghidra's references to `57E0:0DAB` (FND-COMBAT-011). Blocks:
   slice 4.
-- Q-COMBAT-004. RULE-COMBAT-004: What does the routine behind the stub `5682:004D` of overlay
+- Q-COMBAT-004. RULE-COMBAT-004, SCR-UI-022: What does the routine behind the stub `5682:004D` of overlay
   174 do with the `N` and `P` keys? What callback does the key routine pass to `Q`, and what is
   `g_57E0_143C`? Settles it: a reading of overlay 174 from its code offset `0x0924`, and the
   callers of the key routines at overlay 190 offset `0x139B` and `28C9:0CFF`. Tried: a search for
