@@ -42,4 +42,5 @@ the same layout.
 
 ## Open questions
 
-- Which palette each image is drawn with (FMT-IMAGE-001, Q-IMAGE-003).
+- Which palette each image is drawn with; FND-IMAGE-012 names the palettes the game writes to the
+  DAC and when (FMT-IMAGE-001, Q-IMAGE-003).

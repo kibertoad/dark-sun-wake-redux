@@ -11,8 +11,12 @@ Next ID: Q-IMAGE-004
   `PLNR` frames read? Settles it: a reading of the three routines. Blocks: nothing yet.
 - Q-IMAGE-003. FMT-IMAGE-001, FMT-IMAGE-003: Which palette does the game draw each image with, what sets `CBMP`
   and `ICON` apart from `BMP `, and does the game read an image's `size` field? Settles it: a
-  reading of the palette loads and of the image cache at `31E0:3568`, and of the code that
-  requests `PORT` in overlay 199. Blocks: nothing yet.
+  reading of the image cache at `31E0:3568`, of the code that requests `PORT` in overlay 199, and
+  of which palette each overlay 187 picture routine pairs with its pictures. Blocks: nothing yet.
+  Tried: FND-IMAGE-012 reads every routine that writes the whole DAC and their callers: play uses
+  `PAL/current_region`, the start window `PAL/1000`, and overlay 187's picture routines
+  `PAL/1002`, `PAL/11164` and the numbers in the table at `DS:1687`. The palette loads are
+  removed from Settles it; which palette is current when each image is drawn remains.
 
 ## Emulated call
 

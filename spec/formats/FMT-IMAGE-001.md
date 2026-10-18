@@ -55,5 +55,7 @@ their 12,500 frames: every field agrees with the layout, and every frame decodes
   `OBJEX.GFF` hold none (FND-IMAGE-004). The title picture `RESOURCE.GFF#BMP/11011` looks right
   with the palette of the same number, `PAL/11011` (FND-IMAGE-007), and its number has no direct
   operand in the resident code (FND-IMAGE-008). The `PORT` tag occurs only in overlay code
-  (FND-IMAGE-009) (Q-IMAGE-003).
+  (FND-IMAGE-009). The routines that write the whole palette load `PAL/current_region` during
+  play, `PAL/1000` for the start window and `PAL/1002`, `PAL/11164` and a table's numbers in
+  overlay 187's picture routines (FND-IMAGE-012) (Q-IMAGE-003).
 - Whether the game reads `size`, or takes a resource's size from the GFF directory (Q-IMAGE-003).
