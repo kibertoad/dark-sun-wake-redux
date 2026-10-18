@@ -75,7 +75,7 @@ CX, the column, through its first argument and DX, the row, through its second. 
 is not 0, the row is not 0, the column is below 318 and the row below 199 (`28C9:23A8..+23C0`),
 it stores 0 in the byte `DS:0DA8` and goes on. Otherwise, when that byte is 0 and `28C9:2522`
 returns 1 (it returns the word `DS:0DAB`, FND-PARTY-046), it calls `3D72:0D83` if
-`g_57E0_1440` is 5 and then `28C9:050F` with the column and the row. When `combat_state` is not 0
+the word `DS:1440` is 5 and then `28C9:050F` with the column and the row. When `combat_state` is not 0
 and `turn_combatant` is 4 or more, the pointer is not read.
 
 **The range.** The mouse setup at `39D1:0009` stores 0 as the low end of both ranges, calls the

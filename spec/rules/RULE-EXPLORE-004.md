@@ -4,7 +4,7 @@ title: The keypad direction keys step the chosen character one cell, or in comba
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-EXPLORE-001, FND-EXPLORE-002, FND-EXPLORE-003, FND-EXPLORE-004, FND-EXPLORE-005, FND-AI-004, FND-ACTOR-003, FND-ACTOR-005, FND-COMBAT-052, FND-COMBAT-013, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-PARTY-013, SRC-MANUAL-1994]
+evidence: [FND-EXPLORE-001, FND-EXPLORE-002, FND-EXPLORE-003, FND-EXPLORE-004, FND-EXPLORE-005, FND-AI-004, FND-ACTOR-003, FND-ACTOR-005, FND-COMBAT-052, FND-COMBAT-013, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-PARTY-013, FND-INPUT-013, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-EXPLORE-003, RULE-COMBAT-006]
@@ -29,7 +29,7 @@ the target cell.
 
 ## Inputs
 
-`turn_combatant`, `combat_state`, `g_57E0_1440`, `object_slots`, `object_slot_kinds` and the
+`turn_combatant`, `combat_state`, `pointer_mode`, `object_slots`, `object_slot_kinds` and the
 cells RULE-EXPLORE-003 reads.
 
 ## Procedure
@@ -72,7 +72,7 @@ define try_step(c: UINT16, tx: INT16, ty: INT16) -> UINT8:
 define direction_key(d: UINT8):
     let step_x: INT8[8] = [0, 1, 1, 1, 0, -1, -1, -1]
     let step_y: INT8[8] = [-1, -1, 0, 1, 1, 1, 0, -1]
-    if g_57E0_1440 != 1:
+    if pointer_mode != 1:
         fn_28C9_2535(1)
     let c = turn_combatant
     let tx = INT16(object_slots[c].position_x >> 4) + step_x[d]
@@ -109,7 +109,7 @@ None known.
 - What `fn_2D40_10AE` does with the walk target after lifting the character's footprint, and what
   `fn_28C9_305F`, `fn_28C9_2535` and `fn_2C5F_0182` do, read here as starting the move, the attack,
   the Walk pointer and a redraw (FND-EXPLORE-003, FND-EXPLORE-004, Q-EXPLORE-003).
-- What `g_4F49_08A7`, `g_4E71_0000` and `g_57E0_1440` stand for (FND-EXPLORE-004, FND-COMBAT-013,
+- What `g_4F49_08A7` and `g_4E71_0000` stand for (FND-EXPLORE-004, FND-COMBAT-013,
   Q-EXPLORE-003).
 - Whether the grey arrow keys of an enhanced keyboard reach these handlers (FND-EXPLORE-004,
   Q-EXPLORE-003).

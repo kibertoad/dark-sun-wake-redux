@@ -4,13 +4,13 @@ Next ID: Q-EXPLORE-008
 
 ## Static
 
-- Q-EXPLORE-001. RULE-EXPLORE-001: How often does the main loop run a pass, which sets how fast
-  edge scrolling moves, what stores a value other than 0 in `g_57E0_0DA8`, what does
+- Q-EXPLORE-001. RULE-EXPLORE-001, RULE-INPUT-001: How often does the main loop run a pass, which
+  sets how fast edge scrolling moves, what stores a value other than 0 in `g_57E0_0DA8`, what does
   `g_57E0_0DAB` hold, does the mouse setup run after the video mode's word is stored, and does
   `fn_3D72_0D83` change the view words? Settles it: a reading of what paces the loop of
-  `277D:0004`, a search for stores to `DS:0DA8` and `DS:0DAB`, the order of `39D1:0009` against the
-  mode setter's call with 0x0113, and a reading of `3D72:0D83`. Tried: FND-EXPLORE-006 reads the
-  band, direction, step size, bounds, Center on Leader and `H`, which leaves these. Blocks:
+  `277D:0004`, a search for stores to `DS:0DA8` and `DS:0DAB`, the order of `39D1:0009` against
+  the mode setter's call with 0x0113, and a reading of `3D72:0D83`. Tried: FND-EXPLORE-006 reads
+  the band, direction, step size, bounds, Center on Leader and `H`, which leaves these. Blocks:
   slice 3.
 - Q-EXPLORE-002. RULE-EXPLORE-003, FMT-COMBAT-002: Which slots are of kind 2, what values does the
   details byte `footprint` take, what does `25AF:02FA` decide from a cell's bits 0 to 2, and what

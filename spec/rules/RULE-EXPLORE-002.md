@@ -4,7 +4,7 @@ title: Key 5 shows the whole party on the map and key 6, outside combat, shows o
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-EXPLORE-001, FND-EXPLORE-002, FND-EXPLORE-003, FND-EXPLORE-004, FND-EXPLORE-005, FND-AI-004, FND-ACTOR-003, FND-ACTOR-005, FND-COMBAT-013, FND-COMBAT-022, FND-COMBAT-023, FND-PARTY-013, FND-SOUND-010, SRC-MANUAL-1994]
+evidence: [FND-EXPLORE-001, FND-EXPLORE-002, FND-EXPLORE-003, FND-EXPLORE-004, FND-EXPLORE-005, FND-AI-004, FND-ACTOR-003, FND-ACTOR-005, FND-COMBAT-013, FND-COMBAT-022, FND-COMBAT-023, FND-PARTY-013, FND-SOUND-010, FND-INPUT-013, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-EXPLORE-003, RULE-COMBAT-001]
@@ -29,7 +29,7 @@ FND-EXPLORE-005).
 
 ## Inputs
 
-`party_shown`, `leader`, `combat_state`, `g_57E0_1440`, `object_slots` and `object_entries`.
+`party_shown`, `leader`, `combat_state`, `pointer_mode`, `object_slots` and `object_entries`.
 
 ## Procedure
 
@@ -47,7 +47,7 @@ define show_whole_party(redraw: UINT8):
         if is_hideable_member(i):
             fn_28C9_2C9E(i, object_slots[leader])
     if redraw != 0:
-        fn_2C5F_0271(g_57E0_1440 == 1)
+        fn_2C5F_0271(pointer_mode == 1)
         fn_2C5F_0139()
         fn_28C9_2A81(1)
 
@@ -94,8 +94,6 @@ None known.
 
 - What `fn_28C9_2C9E` does beyond clearing the member's bit 7, and so where the members appear; and
   what `fn_2C5F_0271`, `fn_2C5F_0139` and `fn_28C9_2A81` redraw (FND-EXPLORE-005, Q-EXPLORE-004).
-- What `g_57E0_1440` stands for; the key routine's arrow keys set it to 1 (FND-COMBAT-013,
-  Q-EXPLORE-004).
 - What bit 3 of an entry's `flags` stands for, which is 0 in every shipped entity record, and
   which stores to `party_shown` belong to Collapse Party and to loading a game (FND-EXPLORE-005,
   Q-EXPLORE-004).

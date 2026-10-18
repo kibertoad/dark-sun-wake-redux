@@ -25,7 +25,8 @@ where it cannot be cast shows a ninth image.
 
 ## Parameters
 
-`mode`, the pointer mode as RULE-INPUT-001 numbers it. `ranged`, whether an attack at the pointer
+`mode`, the pointer mode: 0 for Walk, 1 for Attack and 2 for Look, which the mode word of
+RULE-INPUT-001 holds as 1, 4 and 2. `ranged`, whether an attack at the pointer
 would be a ranged attack. `can_act`, whether the action of the mode is possible at the pointer.
 
 ## Inputs
