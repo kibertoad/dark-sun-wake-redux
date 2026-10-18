@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_006.ksy
-evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229, FND-PARTY-230, FND-PARTY-231, FND-PARTY-234, FND-PARTY-235, FND-PARTY-236, FND-PARTY-238, FND-PARTY-239, FND-PARTY-245, FND-PARTY-248, FND-PARTY-247, FND-PARTY-249, FND-PARTY-250, FND-PARTY-251]
+evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229, FND-PARTY-230, FND-PARTY-231, FND-PARTY-234, FND-PARTY-235, FND-PARTY-236, FND-PARTY-238, FND-PARTY-239, FND-PARTY-245, FND-PARTY-248, FND-PARTY-247, FND-PARTY-249, FND-PARTY-250, FND-PARTY-251, FND-PARTY-252]
 conflicting: []
 split_with: []
 related: []
@@ -93,6 +93,16 @@ and the returned word is stored before the BMP request. A zero resolver
 result is still requested; it is not locally replaced with a placeholder.
 Cache identity across the child, all producers and invalidation, and actual
 image acquisition remain open [FND-PARTY-224].
+
+The placed-slot classifier also copies the slot's image word into a
+zero cache when the type entry's byte `0x04` bit 5 is clear; it retains
+a nonzero cache and does not reject a zero copied image word. Its item
+property helper treats word `0x10` only as a whole-word nonzero test
+contributing classification byte 0x08. A later valid-name test replaces
+that helper result with 0x80, and a later caller door branch can replace
+the combined byte with 0x10. These local classifications do not assign
+a universal meaning to word `0x10` or establish a visible UI outcome
+[FND-PARTY-252].
 
 The resolver requests OJFF using the 16-bit negation of record word
 `0x00`, sign-extended to a doubleword. It offers a sixteen-byte local
@@ -217,6 +227,8 @@ for root index zero it instead returns the root object number
   (Q-PARTY-020).
 - Gameplay meaning, admitted inputs and later consumption of the packed
   bytes written by overlay 197 (FND-PARTY-249, Q-PARTY-106).
+- Admitted consumers and player-visible meaning of the property
+  classification and its replacement branches (FND-PARTY-252, Q-PARTY-108).
 - Complete admitted door-action and partner/presentation effects, including
   the bypassed locals and unresolved bit meanings (FND-PARTY-250, Q-PARTY-107).
 - Remaining direct readers and writers of the bitmap-number cache

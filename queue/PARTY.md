@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-108
+Next ID: Q-PARTY-109
 
 ## Static
 
@@ -116,7 +116,7 @@ Next ID: Q-PARTY-108
   slice 2.
 - Q-PARTY-020. FMT-PARTY-006: What does the word at `0x10` of a 23-byte attached record, kind-1
   field 8, hold?
-  Settles it: the remaining readers of `0x10` in overlays 173, 178, 189, 190, 197,
+  Settles it: the remaining readers of `0x10` in overlays 173, 189, 190, 197,
   204 and 213 and `25AF:02D9` and `28C9:26EE`, with the context-dependent
   meaning of their values and bit tests beyond FND-PARTY-250's door paths.
   The word at `0x06` is FND-PARTY-245's value,
@@ -143,7 +143,20 @@ Next ID: Q-PARTY-108
   select a presentation column and a locally normalized bit-0 grid request.
   Overlay 182 is removed from Settles it. The retained FND-PARTY-248 census
   also lists overlay 178 `+0CAC`, now explicitly included among remaining
-  readers. Blocks: slice 2.
+  readers. Tried: FND-PARTY-252 answers overlay 178 `+0CAC` as a
+  whole-word nonzero classification test, including the later name-byte
+  replacement and the direct caller's result combination. That local
+  consumer is removed from Settles it; its admitted downstream meaning
+  is Q-PARTY-108. Blocks: slice 2.
+- Q-PARTY-108. FMT-PARTY-006: Which player-visible decisions consume
+  classification bytes returned by `28C9:28E3` and `178 +0C6B`, and
+  which admitted name/type/item inputs make the word-0x10 nonzero test
+  survive later replacements? Settles it: reached consumers and their
+  tested widths/bits, original input producers and capacities, and the
+  name and door replacement branches on those routes. Tried:
+  FND-PARTY-252 settles the local classifier and direct caller, including
+  a distinct kind-two 0x08 producer, but assigns no downstream UI meaning.
+  Blocks: complete interpretation of FMT-PARTY-006.
 - Q-PARTY-107. FMT-PARTY-006: Which admitted door actions preserve the
   source/partner record identity and realize overlay 182's flag and
   presentation requests? Settles it: the `+0C23` and `+0DE6` caller
@@ -174,7 +187,8 @@ Next ID: Q-PARTY-108
   that form a kind-1 record address (DS:19C1, its copy DS:6153 or the
   accessor's DS:614F row, times 23) and access +0C, including computed
   offsets and partial-record copies, beyond the reviewed inventory drawing,
-  current-item helper, opener refresh and 191 +01F7 store, with what each
+  current-item helper, opener refresh, 191 +01F7 store and placed-slot
+  classifier's `28C9:29BF` store, with what each
   stores or does with the value read. No generic accessor request selects
   field six (FND-PARTY-239); whole-record creation and copies are
   Q-PARTY-091; resource/buffer validity is Q-PARTY-088; cache-specific binding/selection
@@ -186,6 +200,10 @@ Next ID: Q-PARTY-108
   each removed one direct site; FND-PARTY-225 answered the resolver's local
   arithmetic. No census of the remaining direct accesses was taken.
   Blocks: complete reading of FMT-PARTY-006 and item-picture admission.
+  Tried: FND-PARTY-252 adds `28C9:29BF`'s direct cache producer: with
+  type byte +4 bit 5 clear, a zero cache receives the placed slot's
+  image word. That site is answered locally; the remaining census and
+  admitted identity/resource conditions stay open.
 - Q-PARTY-091. FMT-PARTY-006, SCR-UI-008: Which code creates or copies a whole 23-byte
   attached record, and what does each leave in +0C? Settles it: every
   kind-1 record allocation (2D40:2D78 through 2D40:0E80), record
