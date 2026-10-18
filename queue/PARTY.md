@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-093
+Next ID: Q-PARTY-102
 
 ## Static
 
@@ -53,27 +53,32 @@ Next ID: Q-PARTY-093
   unresolved transfers of FND-PARTY-197's walk. Tried: FND-PARTY-197 classifies the 42 candidates
   of its search.
   Blocks: nothing yet.
-- Q-PARTY-078. RULE-PARTY-001: After overlay 201 `+0410`'s defeat window closes, which routine
-  takes the characters out of the party and returns to the start window, and does it empty every
-  slot of a larger party? Settles it: complete admitted placement/slot inputs and returning
-  cleanup callees of `31E0:05BB`, `2D40:2410`, `2D40:2452` and `2D40:248D`, with
-  the recursive index map's DS/SS identity tracked separately by Q-PARTY-081,
-  and the caller of `+3CDA` that START GAME uses;
-  or a controlled several-member defeat run. Tried:
-  FND-PARTY-194 reads `+0410`; FND-PARTY-212 runs START GAME with the only member at 0 hit points
-  and sees the defeat window wait for a click, then `2D40:2539` clear `character_id` and the start
-  window return. Tried: FND-PARTY-213 identifies the repeated index-zero unload, count
-  decrement/compaction and chunk-type-2 identifier clearing; the former `2488` is a return
-  site. Remaining input, callee and map-alias obligations prevent a whole-party claim.
-  Tried: FND-PARTY-214 settles the compactor's near-helper return and identifies
-  the deletion-map builder's parent-derived object stores and AX-only field-result
-  consumption. Remaining map admission, lookup/conversion effects and DS/SS
-  identity are distinct from that now-read index-adjustment helper.
-  Tried: FND-PARTY-215 identifies the explicit startup SS replacement and
-  initialization dispatch's lack of DS/SS restoration. The header's initial
-  SS is not the later stack producer; service effects and initializer/later
-  segment preservation are separated into Q-PARTY-081.
-  Blocks: nothing yet.
+- Q-PARTY-078. RULE-PARTY-001: After the defeat window closes, does the cleanup loop at
+  `277B:0330` empty every slot of a party of several, deleting each member's chunks? Settles it:
+  for each placed party object, whether the unload `31E0:05BB` with index 0 reaches the chunk
+  deletion `2D40:2410` (the gate on `DS:265B`, the slot it passes, and the slot's kind byte and
+  9999 test), and what the deletion dispatch `2D40:248D` does for each chunk type a character's
+  graph holds, so that every member's `character_id` is cleared before the count reaches zero.
+  The deletion map's construction is Q-PARTY-094, its DS/SS identity Q-PARTY-081, and the route
+  into the loop Q-PARTY-095. Tried: FND-PARTY-194 reads the defeat window, FND-PARTY-212 runs it
+  with one member and sees that member's `character_id` cleared, and FND-PARTY-213 reads the loop
+  (unload of entry zero while the count is above zero, decrement and compaction before the chunk
+  deletion) and the type-2 and type-3 deletion branches; the gates for a member other than the
+  first and the other chunk types remain. Blocks: nothing yet.
+- Q-PARTY-094. RULE-PARTY-001: What does the deletion map built at `2D40:27B7` hold when defeat
+  cleanup deletes a member's chunks, and what do its field lookups change? Settles it: the
+  current-object, parent-index and count inputs the builder reads, the bound of its 160-byte map
+  against the chunk count, and the field accessor and conversion callees it calls, with their
+  failure results, which it does not test. Tried: split from Q-PARTY-078. FND-PARTY-214 reads the
+  builder's stores of parent-derived objects for type-2 steps, its use of AX alone from the field
+  result, and the compactor's near helper; the inputs and callees remain. Blocks: nothing yet.
+- Q-PARTY-095. RULE-PARTY-001: How does START GAME's call of overlay 173 `+3CDA` with no member
+  standing lead to the cleanup loop at `277B:0330`? Settles it: the caller of `+3CDA` on the
+  START GAME route, what it does after `+3CDA` returns with `DS:13FB` at 1 and no leader, and the
+  path from there to `277B:0330` and back to the start window. Tried: split from Q-PARTY-078.
+  FND-PARTY-194 reads `+0410` returning to `+3CDA` and leaves its callers unread; FND-PARTY-212
+  sees the start window return after the defeat window; FND-PARTY-213 finds the loop runs while
+  `DS:13FB` is nonzero. Blocks: nothing yet.
 - Q-PARTY-045. RULE-PARTY-015: Does any enemy's `kill_experience` divided by the filled party
   slots reach 32,768, so that killing it lowers each member's experience (FND-PARTY-086,
   FND-PARTY-094)? Settles it: what moves objects 430 and 541 out of the region `Limbo`, where
@@ -109,24 +114,21 @@ Next ID: Q-PARTY-093
   and `0x19` the immunity type, and FND-PARTY-158 names `0x85` the psionic power list; FND-PARTY-159 shows the saving throw never
   reads `0x7B`. Blocks:
   slice 2.
-- Q-PARTY-020. FMT-PARTY-006: What do the remaining fields of a 23-byte attached
-  record mean, apart from `0x00`, quantity at `0x02`, chain link `0x04`,
-  cached bitmap number at `0x0C`, and
-  placed-entry bits at `0x12`, and inventory position at `0x13`? Its reference
-  at `0x08` is Q-PARTY-083; complete position behavior is Q-PARTY-085.
-  Settles it: direct readers/writers of the remaining offsets in the table at
-  `DS:19C1`, with descriptor-to-consumer bindings and actual input admission. Tried:
-  FND-PARTY-181 and FND-PARTY-182 give word `0x00` as the negated object number and byte `0x12`
-  as the placed entry's low bits; FND-PARTY-196 lists the shipped values of every field and shows
-  9999 ending each chain at `0x04`. Tried: FND-PARTY-216 identifies quantity at
-  `0x02`; the character heads, nested reference and complete quantity reading
-  are split into Q-PARTY-082, Q-PARTY-083 and Q-PARTY-084. Blocks: slice 2.
-  Tried: FND-PARTY-217 identifies byte `0x13` as the signed position code
-  consumed by the inventory projection; Q-PARTY-085 holds its remaining contract.
-  Tried: FND-PARTY-224 identifies word +0C as the BMP-number cache read and
-  lazily written by inventory drawing. That field-use question is removed
-  from Settles it; its complete producer/resolver/lifetime reading is
-  Q-PARTY-087, separate from the other still-unassigned fields.
+- Q-PARTY-020. FMT-PARTY-006: What do the words at `0x0A`, `0x0E` and `0x10` and the bytes at
+  `0x14`, `0x15` and `0x16` of a 23-byte attached record mean? Settles it: the kind-1 `FNFO`
+  field descriptors that name each of these offsets, and the code that reads or writes each
+  offset, directly in the table at `DS:19C1` or through the field accessor with those field
+  numbers. The word at `0x06` is Q-PARTY-093, the reference at `0x08` Q-PARTY-083. Tried:
+  FND-PARTY-196 lists the shipped values of every field; FND-PARTY-181, FND-PARTY-182,
+  FND-PARTY-216, FND-PARTY-217 and FND-PARTY-224 name the fields at `0x00`, `0x12`, `0x02`,
+  `0x13` and `0x0C` from their consumers, and FND-PARTY-216 binds the descriptors of fields 0 to
+  4 only, so no descriptor or consumer of these offsets has been read. Blocks: slice 2.
+- Q-PARTY-093. FMT-PARTY-006: What does the signed word at `0x06` of a 23-byte attached record,
+  kind-1 field 3, hold? Settles it: the code that reads or writes field 3 through the field
+  accessor or offset `0x06` directly in the table at `DS:19C1`, with what each does with the
+  value. Tried: split from Q-PARTY-020. FND-PARTY-216 binds field 3 to offset `0x06` with type 3,
+  a signed word, and FND-PARTY-196 gives its shipped values (30000 and 9999 the most common, from
+  -30536 to 30000); no reader has been found. Blocks: slice 2.
 - Q-PARTY-087. FMT-PARTY-006, SCR-UI-008: Which remaining code reads or
   writes the attached record's cached BMP number at +0C directly, outside
   the generic field accessor? Settles it: a census of instruction starts
@@ -137,8 +139,8 @@ Next ID: Q-PARTY-093
   stores or does with the value read. Field-six accessor requests through
   script operands are Q-PARTY-092; whole-record creation and copies are
   Q-PARTY-091; resource/buffer validity is Q-PARTY-088; cache-specific binding/selection
-  preservation is Q-PARTY-089; placement/backend rendering remains
-  Q-PARTY-085.
+  preservation is Q-PARTY-089; placement/backend rendering is
+  Q-PARTY-100.
   Tried: split after six attempts. FND-PARTY-224 (drawing reuse, zero
   resolver and store), FND-PARTY-227 (current-item helper), FND-PARTY-228
   (opener 9999 refresh) and FND-PARTY-229 (191 +01F7 slot-image store)
@@ -172,7 +174,7 @@ Next ID: Q-PARTY-093
   image-word initialization, and the inventory acquisition/release paths'
   actual buffer extent, lifetime and pointer outcomes. Cache producers/consumers are
   Q-PARTY-087; record/selection/binding preservation is Q-PARTY-089; pixel and
-  backend behavior remain Q-PARTY-085.
+  backend behavior are Q-PARTY-100.
   Tried: split from Q-PARTY-087 after FND-PARTY-225 maps the resolver's local
   arithmetic, status gate and original-buffer read, and FND-PARTY-226 maps the
   caller's placement/release requests. Neither establishes these resource and
@@ -188,47 +190,40 @@ Next ID: Q-PARTY-093
   identity, graph/map/current-character selection before and after the
   reviewed resolver/transfer/rebuild calls, local DS/SS correspondence, and
   current kind-one field-six offset/type/width bindings. Generic inventory
-  graph roots/capacity/modes remain Q-PARTY-085; producer/consumer coverage is
+  graph roots/capacity/modes are Q-PARTY-099; producer/consumer coverage is
   Q-PARTY-087 and resource/buffer outcomes are Q-PARTY-088.
   Tried: split from Q-PARTY-087 after FND-PARTY-224/227/228 record post-child
   selection reloads, FND-PARTY-229 records the local capture/store sequence,
   and FND-PARTY-230 binds shipped field-six metadata. Reloads and initial data
   do not prove preservation or runtime table stability. Blocks: complete
   cache identity and admitted item-picture selection.
-- Q-PARTY-082. FMT-PARTY-006: Which possessions or equipment lists do the
-  kind-2 combatant words `0x08`, `0x0A` and `0x0C` head? Settles it:
-  code-backed roles of fields 16 and 17 relative to field four, and other
-  character screen/action bindings beyond the reviewed recipient-transfer
-  field-four request, including what selects each list and the player-visible
-  meaning, if any, of those distinctions. Generic enumeration order alone
-  does not assign inventory or equipment labels. Head mutations are
-  Q-PARTY-086; graph/root/storage admission is Q-PARTY-085. Tried:
-  FND-PARTY-051 and FND-PARTY-052 map those words to handles attached by CHAR
-  chunks, and FND-PARTY-216 reads quantity placement but not the screen's
-  distinction between the three lists. Blocks: slice 2.
-  Tried: FND-PARTY-217 identifies the inventory opener and handler and shows
-  redraw consuming a kind-1 graph projection indexed by position byte `0x13`.
-  The roles of the three incoming heads remain inside the graph enumeration,
-  not proved by the earlier literal-offset candidate query.
-  Tried: the selector-initializer and stack reading is already recorded in
-  FND-PARTY-054, with FND-CONFIG-150's producer qualifications and
-  FND-PARTY-218's corrected field provenance. Reconnecting that reading to
-  FND-PARTY-217 supplies no new head-role distinction and ends in the same
-  place. Split head mutations into Q-PARTY-086 and retain root/storage
-  admission in Q-PARTY-085 rather than repeating the enumeration query.
-  Tried: FND-PARTY-221 binds the reviewed character-recipient transfer to
-  target graph entry zero and field four, the shipped kind-2 word at +0C.
-  That route's field-selection question is answered; Settles it retains
-  the other two heads' roles, other screen/actions and complete meaning,
-  not rediscovery of this local target argument.
+- Q-PARTY-082. FMT-PARTY-006: Which possessions or equipment lists do the kind-2 combatant words
+  `0x08` and `0x0A`, fields 16 and 17, head? Settles it: code that reads field 16 or field 17 by
+  number, or offset `0x08` or `0x0A` through the combatant table, apart from the generic graph
+  walk, with what selects each list and what the player sees of it. Generic enumeration order
+  does not assign inventory or equipment labels. Field 4 is Q-PARTY-097, head mutations
+  Q-PARTY-086, graph and root storage Q-PARTY-099. Tried: FND-PARTY-051 and FND-PARTY-052 map
+  the three words to handles attached by CHAR chunks, FND-PARTY-054 and FND-PARTY-218 give the
+  walk order 15, 16, 17, 4 and its field provenance, and FND-PARTY-217 shows the inventory redraw
+  reads the merged graph by position byte rather than any head; no reader tells fields 16 and 17
+  apart. Blocks: slice 2.
+- Q-PARTY-097. FMT-PARTY-006: Which screens and actions, other than the recipient transfer, read
+  or select the kind-2 field-4 head at `0x0C`, and which list does the player see it as?
+  Settles it: the callers that request field 4 of a kind-2 object through the field accessor or
+  read offset `0x0C` through the combatant table, beyond the recipient-transfer route, with the
+  screen or action each serves. Tried: split from Q-PARTY-082. FND-PARTY-221 binds the
+  character-recipient transfer to target graph entry zero and field four, so a received item
+  joins that list; FND-PARTY-196 counts 10 of the 42 shipped type-2 chunks attaching through
+  field 4.
+  Blocks: slice 2.
 - Q-PARTY-086. FMT-PARTY-006: Which character-screen actions change a kind-2
   object's field-16, field-17 or field-4 head, and how do they preserve or
   replace the attached chains? Settles it: remaining action-handler bindings,
   admitted current-object/head identity beyond the reviewed recipient request,
   complete list detach/append/replacement effects,
   failure continuation and the later screen consumer. Keep this separate
-  from assigning gameplay labels to the heads (Q-PARTY-082) and graph/root
-  storage admission (Q-PARTY-085).
+  from assigning gameplay labels to the heads (Q-PARTY-082, Q-PARTY-097) and
+  graph/root storage admission (Q-PARTY-099).
   Tried: split from Q-PARTY-082 after FND-PARTY-054's existing traversal
   reading and FND-PARTY-217's projection do not establish user-action head
   updates; FND-PARTY-052 supplies the serialized field-to-head bindings.
@@ -255,37 +250,45 @@ Next ID: Q-PARTY-093
   FND-PARTY-216 locates the shipped field-1 descriptor and placement's full
   versus partial split branches; it leaves those complete-reading obligations
   unproved. Blocks: complete reading of FMT-PARTY-006, not its remaining fields.
-- Q-PARTY-085. FMT-PARTY-006, SCR-UI-008: Which physical inventory slots do the
-  position codes name, and is the position projection complete for all admitted
-  records? Settles it: remaining position-byte writers beyond the reviewed
-  field-ten request, remaining source coordinate/icon consumers beyond the
-  26 main origins and the reviewed dimension-dependent draw requests,
-  actual loaded-coordinate mutations and backend rendering effects,
-  graph and current-object producers, map capacity and direction-flag provenance,
-  parent traversal termination, mode flags and 189 `+146B`'s recursive effects.
-  Tried: FND-PARTY-217 reads byte `0x13`'s signed projection and the main draw
-  loop; it leaves those position labels and complete contracts unproved.
-  Blocks: complete inventory positioning, not other attached-record fields.
-  Tried: FND-PARTY-220 answers the local first-free recipient scan for codes
-  14..25 and its backpack-full diagnostic route, corresponding to logical
-  draw indices 18..29. FND-PARTY-221 answers the reviewed transfer's field-ten
-  request at +13 and the runtime-width dependency. Settles it retains exact
-  physical rectangles, other codes/writers and full admitted graph/storage/
-  child contracts, not those local scan/request calculations.
-  Tried: FND-PARTY-222 binds backpack codes 14..25 to APFM 11230..11241
-  and their twelve shipped origins, with column-first order. Those source
-  placement/identifier obligations are removed from Settles it; other codes,
-  actual loaded rectangles and all image, child and state admission remain.
-  Tried: FND-PARTY-223 supplies the other fourteen main source origins and
-  identifier mapping, removing that remaining main-layout table from Settles
-  it. FND-PARTY-224 identifies the local cached BMP request; its full cache
-  lifecycle is Q-PARTY-087. Other draw paths, actual loaded coordinates,
-  image/backend effects, state admission and all other writers remain.
-  Tried: FND-PARTY-226 maps the shared tail's signed dimension gate,
-  centered versus temporary-view request, FFFF exit and conditional release
-  request. Those local placement/cleanup branches are removed from Settles
-  it; loaded coordinates, admitted buffers, child preservation/backend effects
-  and all other state/record/writer obligations remain.
+- Q-PARTY-085. FMT-PARTY-006, SCR-UI-008: Where on the inventory screen does an item with each
+  position code appear, beyond the source origins of codes 0 to 25? Settles it: what the
+  inventory does with positions 42 to 47 (codes 38 to 43) and 1 to 3 (codes -3 to -1, `0xFF`
+  among them), which the main draw loop skips, and whether anything moves the `APFM/11216` to `APFM/11241`
+  rectangles between loading `WIND/13500` and drawing. Writers of the byte are Q-PARTY-098, the
+  graph the projection reads Q-PARTY-099, and the draw paths Q-PARTY-100. Tried: FND-PARTY-217
+  reads the signed projection, the main draw loop over positions 4 to 29 and the other branches'
+  positions 42 to 47; FND-PARTY-222 and FND-PARTY-223 bind codes 0 to 25 to their `APFM`
+  identifiers and source origins. Blocks: complete inventory positioning, not other
+  attached-record fields.
+- Q-PARTY-098. FMT-PARTY-006, SCR-UI-008: Which code writes an attached record's position byte
+  at `0x13`, and with which codes? Settles it: every request for kind-1 field 10 through the field
+  setter and every direct store to offset `0x13` in the table at `DS:19C1`, beyond the
+  recipient transfer's field-ten request, with the code each writes. Tried: split from
+  Q-PARTY-085. FND-PARTY-220 reads the recipient-space check that picks the first free code from
+  14 to 25, and FND-PARTY-221 the recipient transfer's field-ten request and its dependence on
+  the runtime width of type 0. Blocks: complete inventory positioning.
+- Q-PARTY-099. FMT-PARTY-006, SCR-UI-008: Which object graph does the inventory projection read,
+  and does it place every attached record of the character? Settles it: the producers of the
+  graph and of the current object the projection is given, the capacity of its map, where the
+  direction flag the fills depend on is cleared, whether the parent traversal ends, what the
+  mode bytes `DS:6187` and `DS:6188` select, and what overlay 189 `+146B` does when it recurses.
+  Tried: split from Q-PARTY-085. FND-PARTY-217 reads the projection's fills and branches and
+  leaves those inputs and `+146B`'s effects unread. Blocks: complete inventory positioning.
+- Q-PARTY-100. FMT-PARTY-006, SCR-UI-008: What do the inventory's item draw requests put on the screen? Settles
+  it: the inventory's draw paths other than the main loop, and the window-system and backend
+  routines the shared tail's centred and temporary-view requests and its release reach, with
+  the buffers they write and the clipping they apply. Image acquisition is Q-PARTY-088. Tried:
+  split from Q-PARTY-085. FND-PARTY-224 reads the main loop's cached `BMP` request and
+  FND-PARTY-226 the shared tail's signed dimension test, its centred or temporary-view request,
+  the `0xFFFF` exit and the release; the routines those requests reach remain. Blocks: complete
+  inventory positioning.
+- Q-PARTY-101. SCR-PARTY-003: What do the class window's setup, event dispatch, close and
+  restoration calls do beyond the local mapping of its buttons? Settles it: the children the
+  `WIND/17502` setup calls before its event loop, the routine that delivers events to its
+  callback, and the close and restoration calls after the loop, with the window state each
+  leaves. Tried: split from Q-UI-002. FND-PARTY-232 reads the window request, the callback, the
+  eight source button IDs with their eligibility flags, and the local event loop and close
+  pointer branches; the children they call remain. Blocks: nothing yet.
 - Q-PARTY-005. FMT-PARTY-004, FMT-PARTY-005: When do `30B0:00C1` and overlay 202 `+0C82` clear
   bit 0 of `PSST` bytes, what does the byte at `51F1:07E2 + 3 * power` hold, and does anything
   write a slot's 15-byte `SPST` entry at `4D62:039C` without naming that address? Settles it:
@@ -348,6 +351,15 @@ None.
   coverage remain needed. The startup_segments.py executable-only drive cannot
   be continued to gameplay. Blocks: Q-PARTY-078's complete cleanup reading, not
   its remaining independent static input/callee work.
+- Q-PARTY-096. RULE-PARTY-001: With a party of three or four, all at 0 hit points before START
+  GAME, which slots are empty after the defeat window closes? Settles it: a state-driven run from
+  the start window with several stored characters added, guarded writes setting each member's
+  `hit_points` to 0, START GAME, a click on the defeat window, and reads of every slot's kind byte
+  and `character_id` once the start window returns. Required parts: Start it and bring it to a
+  given state, Send it input, Read memory and set breakpoints, and Guarded writes to supported
+  combatant `hit_points`, through the session package. Tried: split from Q-PARTY-078.
+  FND-PARTY-212 makes the same run with one member; FND-PARTY-213's static reading of the loop
+  does not settle the gates for later members. Blocks: nothing yet.
 
 ## Live session
 

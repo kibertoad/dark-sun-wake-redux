@@ -75,7 +75,7 @@ None known.
   does not hold (FMT-TEXT-004, Q-CONFIG-001).
 - What native widget treatment makes `BUTN/16302` at (67, 78) visible; its four
   extracted icon frames each have one uniform colour (FND-UI-033, FND-UI-034,
-  Q-CONFIG-001, Q-UI-002).
+  Q-CONFIG-001, Q-UI-013).
 - The overlay 203 dispatcher handles the Preferences buttons. Its input-event
   gating, later drawing paths and the native widget frames still need a complete
-  reading (FND-UI-034, FND-CONFIG-010, Q-UI-002).
+  reading (FND-UI-034, FND-CONFIG-010, Q-UI-016).

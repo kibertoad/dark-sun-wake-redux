@@ -1,6 +1,6 @@
 # UI
 
-Next ID: Q-UI-013
+Next ID: Q-UI-019
 
 ## Static
 
@@ -51,29 +51,54 @@ Next ID: Q-UI-013
   font tables and native backend outcomes remain. FND-UI-045 adds that
   registration sets bit `0x2000` of the loaded word `+0C` when the window's
   word `+A4` has bit 2 and bit 1 of the button's word `+0E` is clear.
-- Q-UI-002. SCR-UI-001 to SCR-UI-012, FMT-UI-003, FMT-UI-005, SCR-UI-002, SCR-UI-003, SCR-UI-004, SCR-UI-005, SCR-UI-006, SCR-UI-007, SCR-UI-008, SCR-UI-009, SCR-UI-010, SCR-UI-011, SCR-PARTY-003: Which code opens each screen and handles each of its
-  controls, and which icon frame shows a pointed-at, pressed or unavailable control? No routine
-  names the controls' numbers as constants (FND-UI-012). Settles it: a reading of the handlers
-  that a window's `after_children` and `before_children` pointers and a frame's handler at
-  `0x62` point to, starting from `3D72:0515` and `3D72:0EB8`, and of overlay code.
-  Tried: overlay 203's Preferences hover and click routines identify its button
-  actions (FND-UI-034, FND-CONFIG-010), but do not establish native frame
-  selection. Overlay 194's opener and event-2 callback dispatch the four
-  start-window button IDs to distinct branches (FND-UI-035), but their callee
-  effects and the remaining screens are unread. Blocks: nothing yet.
-  Tried: FND-PARTY-217 links the inventory's `WIND/13500` request to overlay
-  189's handler and redraw projection, without establishing all event branches
-  or native control states; position geometry is separated into Q-PARTY-085.
-  Tried: FND-UI-041 supersedes FND-UI-009's incorrect direct-caller
-  absence claims, preserving callback field/order evidence and qualifying
-  the effect-window setup's before/after targets and icon-builder gate.
-  These target/handoff obligations are answered; complete screen routes,
-  callback effects, loaded graph admission and native states remain.
-  Tried: FND-PARTY-232 maps the class-selection window's WIND/17502
-  request, callback, source button IDs, closure flags and local event-loop/
-  close-pointer branches. Those local mappings are answered; remaining
-  setup/cleanup children, admitted loaded state and native frame/input
-  behavior are not established by the source geometry.
+- Q-UI-002. SCR-UI-002, SCR-UI-003, SCR-UI-004, SCR-UI-005, SCR-UI-009, SCR-UI-010, SCR-UI-011, SCR-UI-012: Which code opens View Character, the stored-character list,
+  character generation with its discipline and sphere lists, the cast and current-effects
+  screens, the Look panel and the conversation windows, and handles each of their controls?
+  Settles it: for each of these screens, the routine that requests its window and the routine
+  its window's `after_children` or `before_children` pointer or a frame's handler at `0x62`
+  names, with the branch each control number takes. Tried: FND-UI-012 finds no decoded
+  instruction of the resident image with these controls' numbers as operands, and FND-UI-041
+  reads the callback setters and the generic before and after handoff that such handlers are
+  installed through; no handler of these screens has been read. Blocks: nothing yet.
+- Q-UI-013. FMT-UI-003, SCR-UI-001, SCR-UI-004, SCR-UI-006, SCR-UI-007, SCR-UI-008, SCR-UI-012: Which frame of a button's `icon`
+  does the game draw when the button is pointed at, pressed or unavailable, and what makes
+  `BUTN/16302`, whose four frames are each one colour, visible? Settles it: a reading of the
+  window system's button draw routine and the state it chooses a frame by, from the frame
+  dispatcher's draw requests. Tried: split from Q-UI-002. FND-UI-004 gives the record's icon
+  and frame counts, FND-UI-024 finds three start-window icons with a 1 x 1 third frame, and
+  FND-UI-034 reads the Preferences hover and click routines, which choose no frame; the draw
+  routine has not been read. Blocks: nothing yet.
+- Q-UI-014. FMT-UI-005: Which font does an edit box draw its text in, and where in the box?
+  Settles it: a reading of the routine that draws an `EBOX` control's text, with the font it
+  selects and the offsets it adds to the box's position. Tried: split from Q-UI-002.
+  FND-UI-005 gives the record's fields; no reading of its draw routine has been made. Blocks:
+  nothing yet.
+- Q-UI-015. SCR-UI-001: Where does each start-window button lead? Settles it: the overlay 194
+  setup helper's effect for arguments 0 and 1, and the routine each of the four branches
+  reaches after it: overlay 187 and 182 for Start Game, overlay 212 for Create Characters,
+  overlay 192 for Load Saved Game, and the common path that clears `DS:1462` for Exit to DOS,
+  followed to the next window opened or to the program's exit. What the Create Characters and
+  Load Saved Game paths change in the party is Q-PARTY-017 and Q-PARTY-018. Tried: split from
+  Q-UI-002. FND-UI-035 reads the opener and the event-2 callback dispatching buttons 19300 to
+  19303 to four branches; their callees remain. Blocks: nothing yet.
+- Q-UI-016. SCR-UI-007: Which input events reach the Preferences dispatcher in overlay 203, and
+  what does the screen redraw after a button changes a setting? Settles it: the event value the
+  dispatcher compares against its 13 button numbers and the routine that delivers it, and the
+  draw calls each branch makes after its state change. Tried: split from Q-UI-002. FND-UI-034
+  reads the hover routine's labels and FND-CONFIG-010 the dispatcher's state change per button;
+  the event gating and the redraws remain. Blocks: nothing yet.
+- Q-UI-017. SCR-UI-008: What do the inventory window's controls do? Settles it: the event
+  branches of overlay 189's handler `+0559` for each control of `WIND/13500`, among them the two
+  42 x 12 buttons at the right and the buttons at (235, 159) and (277, 159). Tried: split from
+  Q-UI-002. FND-UI-030 lists the window's controls, and FND-PARTY-217 links the inventory
+  opener's request for `WIND/13500` to `+0559` and reads the redraw's position projection; the
+  handler's other branches remain. Blocks: nothing yet.
+- Q-UI-018. SCR-UI-006: What does each Game Menu button do? Settles it: the targets of overlay
+  181's fourteen-entry button table other than the overhead map's `+0289`, followed to the
+  window or state change each makes, and whether the menu prints a description line for the
+  pointed-at button. Tried: split from Q-UI-002. FND-UI-046 reads the handler's table of
+  fourteen button numbers and targets and the overhead-map branch; FND-UI-028 lists the
+  window's buttons. Blocks: nothing yet.
 - Q-UI-003. SCR-UI-002, SCR-UI-005, SCR-UI-006, SCR-UI-007, SCR-UI-011, FMT-UI-001, SCR-UI-001, SCR-UI-003, SCR-PARTY-003, SCR-UI-022: Where does the game
   place each window, given that the resources hold no screen position? Settles it: a reading of
   the code that writes a window's runtime `unk_96` and `unk_98`, or captures of each screen.

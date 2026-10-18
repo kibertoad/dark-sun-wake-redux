@@ -84,9 +84,12 @@ None known.
   19502 with a picture (`BMP` number `DS:4458`, or 10004), takes one event and closes it
   (FND-PARTY-194). A run shows the window says the party has been defeated and stays until a
   click, after which the game empties the slot and returns to the start window (FND-PARTY-212).
-  Left: which routine empties the slots and what it does with a party of several
-  (Q-PARTY-078); the deletion map's DS/SS storage identity is tracked separately
-  by Q-PARTY-081, with startup-producer evidence in FND-PARTY-215.
+  A loop that unloads placement entry zero while the placed-object count is above zero, and
+  deletes each unloaded slot's chunks, clears that `character_id` (FND-PARTY-213). Left: whether
+  it empties every slot of a party of several (Q-PARTY-078, and the run Q-PARTY-096), what the
+  deletion map it builds holds (FND-PARTY-214, Q-PARTY-094), how START GAME's call of
+  `+3CDA` leads to the loop (Q-PARTY-095), and the deletion map's DS/SS storage identity
+  (Q-PARTY-081, with startup-producer evidence in FND-PARTY-215).
 - Whether a party can reach START GAME in that state. Added characters arrive marked 1 unless
   their record holds 2 or more (FND-PARTY-183); a character made with NEW is stored with mark 0,
   and leaving View Character with Esc and START GAME's gate routine both turn a 0 into 1

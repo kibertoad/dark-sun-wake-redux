@@ -64,10 +64,10 @@ None known.
 - Where the game draws the frame and the crest, and in which order, is taken from a recorded
   playthrough of an unknown release; no record or code gives it (FND-UI-024, Q-UI-003).
 - Which frame of each icon the game shows when a button is pointed at, pressed or unavailable,
-  given that three icons have a 1 x 1 third frame (FND-UI-024, Q-UI-002).
+  given that three icons have a 1 x 1 third frame (FND-UI-024, Q-UI-013).
 - The overlay callback dispatches all four button IDs, but the downstream
   load, create, start and exit effects have not been read to completion
-  (FND-UI-035, Q-UI-002). FND-UI-012's negative search covered the
+  (FND-UI-035, Q-UI-015). FND-UI-012's negative search covered the
   resident image only.
 - Whether the title picture and palette shown before this window change when it opens
   (Q-UI-004).

@@ -88,7 +88,7 @@ None known.
 
 - Remaining setup, event-dispatch, close and restoration children, loaded
   control admission, actual class-window paint and native frame/input states
-  (Q-UI-002).
+  (Q-PARTY-101).
 - Actual loaded origin beyond the requested position words (Q-UI-003).
 - How the window picture reference is drawn and how its other control masks
   affect presentation (Q-UI-001, Q-UI-007).

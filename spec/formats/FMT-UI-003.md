@@ -78,4 +78,4 @@ captures [FND-UI-016, FND-UI-018].
   loaded word `0x0C` when the window's word `0xA4` has bit 2 and `unk_0E` bit 1
   is clear (FND-UI-043, FND-UI-045, Q-UI-008).
 - Why the art of some buttons is a pixel or more larger or smaller than `width` and `height`,
-  and which frame of a many-frame `icon` the game draws in which state (FND-UI-004, Q-UI-002).
+  and which frame of a many-frame `icon` the game draws in which state (FND-UI-004, Q-UI-013).

@@ -66,8 +66,8 @@ None known.
 
 - What the scroll buttons and the upper window's button do, and why the capture shows the scroll
   buttons without their icons (FND-UI-016, Q-UI-002).
-- Which frame shows a pointed-at or chosen row, and how a notice is dismissed (FND-UI-032,
-  Q-UI-002, Q-UI-004).
+- Which frame shows a pointed-at or chosen row (FND-UI-032, Q-UI-013, Q-UI-004), and how a
+  notice is dismissed (Q-UI-002, Q-UI-004).
 - When `WIND/12502` and `WIND/12503` are used (FND-UI-032, Q-UI-002).
 - The scripts print the speech (RULE-SCRIPT-007) and offer the responses through the menu
   instruction (RULE-TALK-001), which shows its title as a row above the responses; where the

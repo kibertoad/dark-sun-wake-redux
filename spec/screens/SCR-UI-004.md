@@ -67,6 +67,6 @@ None known.
 - What picture the screen draws under its controls, and whether the name box draws
   `BMP/19004`, its image. No capture of this screen has been compared (FND-UI-026, Q-UI-004).
 - The effects come from the manual and the controls' places in its picture; no code names these
-  controls by their numbers (FND-UI-012, Q-UI-002). Which icon frame shows which state, what the
+  controls by their numbers (FND-UI-012, Q-UI-002). Which icon frame shows which state (Q-UI-013), what the
   two unlabelled areas are, and where the list of SCR-UI-005 is placed are not known.
 - Where the exit button returns to (Q-UI-002).

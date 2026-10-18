@@ -69,10 +69,10 @@ None known.
 ## Open questions
 
 - Where the game places the window on the screen (Q-UI-003).
-- Which icon frame shows a pointed-at, pressed or unavailable button, and whether the menu shows a
-  description line (FND-UI-028, Q-UI-002).
+- Which icon frame shows a pointed-at, pressed or unavailable button (FND-UI-028, Q-UI-013), and
+  whether the menu shows a description line (Q-UI-018).
 - The menu's handler looks each button number up in a table of fourteen
   (FND-UI-046); only the overhead map's branch is read, and the other
-  effects come from the manual (Q-UI-002).
+  effects come from the manual (Q-UI-018).
 - What the frames `APFM/10201` (mask 110) and `APFM/11270` do, and why each button has a frame of
   the same rectangle (FND-UI-028, Q-UI-001).

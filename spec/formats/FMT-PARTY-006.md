@@ -151,11 +151,10 @@ ends on a `chunk_type` of 0xFF whose header is the last 10 bytes of the resource
 
 ## Open questions
 
-- What the other fields of a 23-byte record of chunk types 2 and 4 mean, apart from
-  `0x00`, quantity at `0x02`, the chain link at `0x04`, cached bitmap number at
-  `0x0C`, byte `0x12`, and
-  inventory position at `0x13`.
-  FND-PARTY-196 gives the shipped values (Q-PARTY-020).
+- What the words at `0x0A`, `0x0E` and `0x10` and the bytes at `0x14` to `0x16` of a 23-byte
+  record of chunk types 2 and 4 mean. FND-PARTY-196 gives the shipped values (Q-PARTY-020).
+- What the signed word at `0x06`, kind-1 field 3 (FND-PARTY-216), holds; FND-PARTY-196 gives
+  the shipped values (Q-PARTY-093).
 - Remaining direct readers and writers of the bitmap-number cache
   (FND-PARTY-224, Q-PARTY-087).
 - Which generic field-accessor requests select kind-1 field six, the cache
@@ -173,25 +172,25 @@ ends on a `chunk_type` of 0xFF whose header is the last 10 bytes of the resource
 - Cache-specific runtime table/field/width bindings and record-selection
   preservation across child calls (FND-PARTY-227, FND-PARTY-229,
   FND-PARTY-230, Q-PARTY-089).
-- What the character's words at `0x08`, `0x0A` and `0x0C` distinguish when the
-  possessions and equipment screens select a list (Q-PARTY-082). Generic
-  graph order is recorded in FND-PARTY-054; it does not assign those labels.
-  FND-PARTY-221 identifies field four as the reviewed recipient-transfer
-  target request, leaving the other heads' roles and all other action
-  bindings open.
+- Which lists the character's words at `0x08` and `0x0A`, fields 16 and 17, head
+  (Q-PARTY-082). Generic graph order is recorded in FND-PARTY-054; it does not assign those
+  labels.
+- Which screens and actions other than the recipient transfer read or select the field-4 head
+  at `0x0C`; FND-PARTY-221 identifies field four as that transfer's target (Q-PARTY-097).
 - Which character-screen actions change the kind-2 field-16, field-17 and
   field-4 heads, including chain preservation, failures and later consumers
-  (Q-PARTY-086). Graph/root/storage admission remains Q-PARTY-085.
+  (Q-PARTY-086). Graph/root/storage admission is Q-PARTY-099.
 - What a 23-byte record's handle at `0x08` refers to and how its referenced
   records are traversed; it is 9999 in all but three shipped records
   (FND-PARTY-052, FND-PARTY-196, Q-PARTY-083).
 - Complete quantity producer/consumer coverage and runtime field/table binding
   stability, beyond the placement use FND-PARTY-216 reads (Q-PARTY-084).
-- Remaining physical rectangles and position labels, all position writers
-  and the projection's complete graph/parent/mode/capacity contracts
-  (FND-PARTY-217, Q-PARTY-085). FND-PARTY-220 answers the local twelve-code
-  recipient-space scan; FND-PARTY-221 identifies a conditional field-ten
-  position setter and its runtime-width dependency. FND-PARTY-222 answers
-  the twelve source-layout backpack origins and rectangle-request identifiers;
-  FND-PARTY-223 supplies the other fourteen main origins. Actual loaded
-  placement, other draw paths and presentation admission remain open.
+- Where an item with a position outside the main draw loop's 4 to 29 appears, and whether
+  anything moves the loaded rectangles of codes 0 to 25, whose source origins FND-PARTY-222 and
+  FND-PARTY-223 give (FND-PARTY-217, Q-PARTY-085).
+- Which code writes the position byte, beyond the recipient-space scan (FND-PARTY-220) and the
+  recipient transfer's conditional field-ten request (FND-PARTY-221) (Q-PARTY-098).
+- Which graph and current object the projection reads, and its map capacity, direction flag,
+  parent traversal, mode bytes and recursive `+146B` calls (FND-PARTY-217, Q-PARTY-099).
+- What the inventory's item draw requests put on the screen, beyond the local placement
+  branches FND-PARTY-226 reads (Q-PARTY-100).

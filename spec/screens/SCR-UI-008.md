@@ -121,15 +121,14 @@ None known.
   `BMP/13001` under `PAL/1000` (FND-UI-021, Q-UI-004).
 - Which of the two 42 x 12 buttons at the right is which, and what the buttons at (235, 159) and
   (277, 159) are; the manual's store screen names a sell button and a button for more items
-  (FND-UI-030, Q-UI-002).
+  (FND-UI-030, Q-UI-017).
 - Where the slots, the data panel, the description box and the money bar are drawn, and what
   the 90 x 125 frame `APFM/13200` at (75, 36) is (FND-UI-030, Q-UI-001, Q-ITEM-002).
-- Complete loaded placement and image rendering for the twelve backpack
-  origins, the other fourteen main origins, other draw paths and their frame
-  treatment by the backend (Q-PARTY-085). FND-PARTY-226 maps the
-  local dimension-dependent placement requests and cleanup branches.
-  FND-PARTY-222 binds the twelve source origins to the drawing lookup;
-  FND-PARTY-223 maps the other main origins. Neither validates native pixels.
+- Whether anything moves the loaded rectangles of the twelve backpack origins and the other
+  fourteen main origins, whose source origins FND-PARTY-222 and FND-PARTY-223 give, and where
+  items with other positions appear (Q-PARTY-085).
+- What the item draw paths and their backend requests put on the screen; FND-PARTY-226 maps
+  the local dimension-dependent placement requests and cleanup branches (Q-PARTY-100).
 - Complete resource/buffer admission for the bitmap-number resolver,
   record-selection preservation and cache lifecycle (FND-PARTY-224,
   FND-PARTY-225): resource/buffer validity is Q-PARTY-088, cache-specific
@@ -141,5 +140,5 @@ None known.
 - The effects of the other buttons remain unestablished; code is known for the leader
   and computer-control buttons (FND-COMBAT-023, FND-AI-003). The inventory opener
   requests `WIND/13500` with overlay 189's handler, and its redraw projects item
-  positions from the object graph (FND-PARTY-217); the other event branches and
-  native control states remain Q-UI-002.
+  positions from the object graph (FND-PARTY-217); the other event branches are Q-UI-017, and
+  which frame shows each control state is Q-UI-013.

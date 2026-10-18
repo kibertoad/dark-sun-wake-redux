@@ -77,4 +77,4 @@ file [FND-UI-001, FND-UI-005]. The placement of `image` was compared with two di
   not 0 only in `RESOURCE.GFF#EBOX/12400`, where they are 229 and 199, and in
   `RESOURCE.GFF#EBOX/12402`, where they equal its width and height (FND-UI-005, Q-UI-001).
 - What each bit of `event_mask` means (FND-UI-006, Q-UI-007).
-- Which font the box draws its text in, and where in the box (Q-UI-002).
+- Which font the box draws its text in, and where in the box (Q-UI-014).
