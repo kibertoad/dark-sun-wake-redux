@@ -2,11 +2,26 @@
 
 ## Condition
 
-Every item under Static in the queue files of the areas below is closed or
-moved to another section with what was tried recorded under `Tried:`, the
-documentation check and `./tools/Test.ps1` pass on the last commit, and each
-batch ended with a status block. The owner set this goal on 2026-10-18 as
-"execute protocol until full game is researched and mapped".
+Every parity row's Spec status is `supported`, `established` or `validated`,
+or its row's Notes names an item outside Static that holds the rest; no item
+under Static in `queue/` names a slice in its `Blocks:` line; the
+documentation check and `./tools/Test.ps1` pass on the last commit; and each
+batch ended with a status block. Stop earlier only for a reason
+`docs/goals/README.md` lists. The owner set this goal on 2026-10-18 ("execute
+protocol until full game is researched and mapped") and narrowed it the same
+day to what slices 2 to 7 need.
+
+Progress (both print nothing when the condition's two parts hold):
+
+```sh
+awk -F'|' 'NF>8 && $2 ~ /`/ {s=$4; gsub(/ /,"",s); if (s!="supported" && s!="established" && s!="validated") print FILENAME, $2, s}' parity/*.md
+awk '/^## /{s=$2} /^- Q-/{inq=(s=="Static"); id=$2} inq && /Blocks: *slices? *[0-9]/{print FILENAME, id}' queue/*.md
+```
+
+Take items in this order: items blocking the lowest-numbered open slice, then
+items that raise a parity row below `supported`, then other slice-blocking
+items. An item that cannot close statically moves to the section of the
+evidence that would settle it rather than splitting again.
 
 ## Scope
 
