@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-017
+Next ID: Q-COMBAT-024
 
 ## Static
 
@@ -91,121 +91,69 @@ Next ID: Q-COMBAT-017
   callback/result sequence. Those local ordering/result obligations are
   removed from Settles it; actual inputs, children, targets and preservation
   remain. Blocks: slice 4.
-- Q-COMBAT-009. RULE-COMBAT-009: What admitted effect-row state
-  supplies the status selector's category-zero list? Settles it: producers,
-  count/capacity, object sorting and boundary/sentinel identity of the
-  ten-byte row table and admitted ID domain. Complete the
-  reading without inferring valid state from the local row loop alone.
-  FND-COMBAT-031 answers the common insertion's local assignments,
-  conditional owner-group placement and count/store ordering; its inputs,
-  initialization, other mutation sites and continued identity remain.
-  A sentinel owner value is not required by the local count stop, but
-  backing storage for its preceding owner read remains to be admitted.
-  Tried: FND-COMBAT-029 settles the local preparation, category filtering,
-  duplicate-preserving row order and status caller's sort clamp; it retains
-  explicit producer, boundary-read, signed-ID and alias prerequisites.
-  Tried: FND-COMBAT-031 qualifies the two exported insertion-related roots,
-  their distinct gates, owner-local key search and upward overlapping move.
-  Those local producer/order obligations are answered; the initial zero
-  word and wrapper's exact-192 test do not prove a global count/ID bound.
-  Other count writers/callers, callback/removal effects, table initialization
-  and native buffer/segment identity remain. Follow-up to closed
-  Q-COMBAT-008. Blocks: established status-effect selection.
-  Tried: FND-COMBAT-032 answers the local key/index/code removal branches,
-  two decrement sites and retained-row order. Their downward moves read
-  the entire boundary row, so the backing obligation includes ten bytes
-  at the old count, not just an owner word. Local removal compaction and
-  API distinctions are settled; handler/request effects, admitted callers,
-  other writers and initialization remain.
-  Tried: FND-COMBAT-033 answers the local owner-relocation count pair,
-  saved fields and conditional ordering/progress. All encoded count
-  mutation candidates now have local readings or remain overlapping
-  decode candidates; this does not close computed/aliased/bulk writers
-  or restoration. The row loop uses a lower-bound threshold, not owner
-  equality; admitted transfer callers remain required. Independently
-  answerable bitmap producers and selector storage admission are split
-  to Q-COMBAT-011 and Q-COMBAT-012.
-  Tried: FND-COMBAT-034 identifies the explicit SAVE/24 and SAVE/26
-  source pointers and shipped lengths for rows and count. That static
-  save-source identity is answered; runtime length preparation, restore
-  destinations/count admission and boundary backing remain.
-  Tried: FND-COMBAT-035 answers the numbered restore loop's actual
-  supplied-pointer/full-resource request route, local source-slot
-  preparation and effect-buffer-before-count ordering. That bulk count
-  producer is identified; it is not bounded by the writer's length
-  array. Actual archive/resource selection, destination extent, restored
-  ID/count/order validation, other destinations and postprocessing remain.
-  Tried: FND-COMBAT-039 qualifies the cache action's first matching
-  ID/owner search and actual row-key argument to the removal wrapper,
-  and identifies the window setup's owner-word store. That caller's
-  local input producer is answered; admitted owner/cache/table state,
-  intervening callbacks, all other callers and removal effects remain.
-  Tried: FND-COMBAT-043 answers the immediate restore wrapper's
-  placed-object postprocessing and conditional replacement of the saved
-  reader result by archive-helper cleanup. Its own body supplies no
-  effect-row/count validation. The other caller, complete child/writer
-  coverage, archive/destination and restored-state admission remain.
-  Tried: FND-COMBAT-044 answers the second local restore caller's
-  selector producer, failure flag, placed-entry loops and later setup
-  argument/result route. Actual selector domains, complete callees and
-  writers, archive/destination backing and valid restored state remain.
-  Tried: FND-COMBAT-045 answers nominal resident backing for the
-  complete boundary row at counts 0..192 using descriptor 110. It
-  distinguishes that backing from dedicated sentinel storage and the
-  shipped save-source extent. Global count/index/ID/order/lifetime,
-  aliases and actual restoration admission remain.
-  Tried: FND-COMBAT-046 answers the shipped DATA effect-byte domain
-  and the local handler-default route for its sole positive 127.
-  The source domain is not uniformly 0..112; actual admission through
-  the generic caller/wrapper and resulting stored rows remains open,
-  along with complete count/ID/order/writer/restoration coverage.
-- Q-COMBAT-010. FMT-COMBAT-003: Which complete resource/consumer contract
-  admits the effect record's ICON number? Tried: FND-COMBAT-041 answers
-  the separate background producer's cache index, source resource and
-  installed frame bounds. Cache initialization/offset writers, handle
-  and transfer validity, active archive identity and native presentation
-  remain. Settles it: reached field-consumer
-  coverage, admitted active archive/request route and runtime outcomes for
-  the shipped nonzero IDs; resource-pointer/error divergence and validity
-  before later display, and selected frames;
-  distinguish the local no-icon zero branch from failed resource requests
-  and later display. Tried: FND-COMBAT-029 identifies an exported consumer's
-  zero exclusion and zero-extended ICON request, settling the field's local
-  purpose. Complete lookup and other consumers remain. Follow-up to closed
-  Q-COMBAT-008. Tried: FND-COMBAT-030 matches all 107 nonzero references
-  to 97 installed ICON resources, including their frame counts/dimensions
-  and shared IDs. That shipped reference-existence/metadata obligation is
-  answered. Its connected wrapper reading retains the distinct reader
-  error and caller pointer test; active archive, failure continuation,
-  buffer validity and display/frame selection remain.
-  Blocks: established effect-icon format contract.
-  Tried: FND-COMBAT-038 answers the effect consumer's local nonzero-
-  pointer continuation, frame-zero argument route, coordinate-output
-  fallback and release ordering. Zero-icon removal and null-request
-  slot retention differ. Those caller branches/frame arguments are
-  settled; archive admission, pointer validity on errors, backend/palette
-  outcomes, release effects and later cache interaction remain.
-  Tried: FND-COMBAT-039 answers the local registered frame handler's
-  label/action count gates, cached-ID label source, first-match row-key
-  removal request and separate extra-flag ordinal map. Those post-draw
-  cache branches are settled. Native graph/dispatch and event meaning,
-  synchronized counts/cache/state, reader/backend/release outcomes and
-  complete consumer admission remain.
-  Tried: FND-COMBAT-040 verifies WIND/11500's explicit 86-child list
-  contains all 35 registered frame identifiers exactly once and checks
-  their APFM resources, dimensions, masks and relative positions.
-  That shipped graph-existence/layout obligation is answered; active
-  archive/window reuse identity, successful loaded children/callbacks,
-  synchronized runtime state and backend/palette outcomes remain.
-  Tried: FND-UI-041 qualifies the setup's three window callback fields,
-  the generic before/after-child handoff and the selected-owner gate to
-  icon construction. The create/reuse/close pointer operations and
-  distinction between DS:A11D and DS:1431 are answered locally; complete
-  writer/lifetime admission, successful callbacks and rendering remain.
-  Tried: FND-COMBAT-042 answers the three local cache-fill groups,
-  conditional current/following-boundary stores and the handle-capacity
-  request route. Complete startup ordering/writers, third-group mapping
-  and transformation, backend and source-state admission remain.
+- Q-COMBAT-009. RULE-COMBAT-009: Which effect IDs can the effect rows hold when the status
+  selector collects category zero, and can a stored ID exceed 112, the last index of
+  `effect_names`? Settles it: for every admitted insertion caller, the effect byte it passes and
+  where that byte comes from (shipped `DATA` effect bytes, the handler default for code 127), and
+  whether any route stores an ID above 112. Tried: FND-COMBAT-029 reads the collector's category
+  filter and row order, FND-COMBAT-031 the common insertion's field writes, and FND-COMBAT-046
+  the shipped `DATA` effect-byte domain, its one code 127 and that code's handler-default route;
+  which IDs the admitted callers store remains. Blocks: established status-effect selection.
+- Q-COMBAT-017. RULE-COMBAT-009: Can the effect-row count leave 0 to 192? Settles it: the bound
+  each count writer keeps: the checked insertion wrapper's exact-192 test against the exported
+  insertion entry that skips it, the removal decrements, the owner transfer's decrement and
+  increment pair, and the numbered restore that writes the count whole. Tried: split from
+  Q-COMBAT-009. FND-COMBAT-031 (the wrapper's test and the unchecked entry), FND-COMBAT-032 (the
+  removal decrements), FND-COMBAT-033 (the transfer pair) and FND-COMBAT-045 (resident backing of
+  the boundary row for counts 0 to 192) read each writer locally; no bound over all of them
+  follows. Blocks: established status-effect selection.
+- Q-COMBAT-018. RULE-COMBAT-009: What does loading a saved game put in the effect rows and their
+  count? Settles it: which archive and numbered resources the restore reads for `SAVE/24` and
+  `SAVE/26` on each of its two callers, the destination extent against the shipped lengths, and
+  any check or postprocessing of the restored count, IDs and order. Tried: split from
+  Q-COMBAT-009. FND-COMBAT-034 (the save sources and shipped lengths), FND-COMBAT-035 (the
+  complete-resource reads, rows before count), FND-COMBAT-043 and FND-COMBAT-044 (both restore
+  callers' continuations, neither of which checks the rows) answer the local routes; the archive
+  selection and the restored state's validity remain. Blocks: established status-effect
+  selection.
+- Q-COMBAT-019. RULE-COMBAT-009: What sets the effect rows and count when the program starts and
+  when a new game begins? Settles it: a reading of every store to the count and the row table on
+  the startup and new-game routes. Tried: split from Q-COMBAT-009. FND-COMBAT-031 notes the
+  count's zero word in the load image; no initializer has been read. Blocks: established
+  status-effect selection.
+- Q-COMBAT-020. RULE-COMBAT-009: Which routines insert, remove and transfer effect rows, and with
+  which owners, keys and codes? Settles it: the admitted callers of the insertion wrapper and the
+  exported insertion entry, of the key, index and code removal entries and of the owner transfer,
+  with the arguments each passes and the handler or request effects those operations trigger.
+  Tried: split from Q-COMBAT-009. FND-COMBAT-031, FND-COMBAT-032 and FND-COMBAT-033 read the
+  three operations locally, and FND-COMBAT-039 one removal caller, the effect window's cache
+  action, which passes the first matching row's key; the other callers remain. Blocks:
+  established status-effect selection.
+- Q-COMBAT-010. FMT-COMBAT-003: Does each effect's nonzero ICON number reach the `ICON` resource
+  the effect window draws? Settles it: the archive that is open when the effect window requests
+  the icon, the request's result on success and on a reader error, and which frame the draw path
+  takes, for the shipped nonzero numbers, telling the zero-icon branch apart from a failed
+  request. Tried: FND-COMBAT-029 (the consumer's zero test and zero-extended request),
+  FND-COMBAT-030 (all 107 nonzero references match 97 installed `ICON` resources) and
+  FND-COMBAT-038 (frame 0, null-request slots kept, draw and release order) answer the local
+  route; the open archive and the error outcomes remain. Blocks: established effect-icon format
+  contract.
+- Q-COMBAT-021. FMT-COMBAT-003: What initializes the image cache the effect window draws its slot
+  background and icons through? Settles it: the startup order of the cache fill and the
+  handle-capacity request, every writer of the cache offsets and handles, and the mapping of the
+  third offset group. Tried: split from Q-COMBAT-010. FND-COMBAT-041 (cache index 8 from
+  `BMP/13007` for the slot background) and FND-COMBAT-042 (three offset groups and a separate
+  handle-capacity request) read the local fills; their order at startup, the other writers and
+  whether the transfers succeed remain. Blocks: established effect-icon format contract.
+- Q-COMBAT-022. FMT-COMBAT-003: Which loaded window, children and callbacks does the effect window
+  run with, and what does each frame event do? Settles it: a reading of the effect window's
+  create, reuse and close paths through to the loaded `WIND/11500` graph, of the callbacks the
+  window system calls for its 35 frames, and of the event numbers that reach the frame handler.
+  Tried: split from Q-COMBAT-010. FND-COMBAT-039 (the frame handler's label, action and removal
+  branches), FND-COMBAT-040 (`WIND/11500`'s 86 children with all 35 frames) and FND-UI-041 (the
+  callback fields, the before and after handoff and the icon gate) answer the local and shipped
+  parts; the loaded state and which events arrive remain. Blocks: established effect-icon format
+  contract.
 - Q-COMBAT-011. RULE-COMBAT-009: What initializes and subsequently writes
   the category bitmap used by the status
   selector? Settles it: qualified writer/initializer coverage, admitted
@@ -298,6 +246,14 @@ None.
   else? Settles it: from equivalent saves, the same hostile's hit points looked at on each
   setting, with the setting changed before and after the creature appears. Tried: none; no code
   reads `difficulty` (RULE-CONFIG-002). Blocks: slice 4.
+
+- Q-COMBAT-023. FMT-COMBAT-003: What does the effect window show for an effect whose record has a
+  nonzero ICON number, and for one whose number is zero? Settles it: a live session with DOSBox
+  screenshots of the effect window for a character with at least one effect of each kind, and of
+  the same window after one of them ends. Tried: split from Q-COMBAT-010. FND-COMBAT-038 and
+  FND-COMBAT-040 give the draw route and the slot geometry; what the window shows depends on the
+  effects a character has in play, which no static reading supplies. Blocks: established
+  effect-icon format contract.
 
 ## Source
 

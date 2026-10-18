@@ -85,38 +85,19 @@ None known.
 
 ## Open questions
 
-- Complete runtime inputs of `fn_573B_0025` and `fn_573B_002A`, including
-  effect-row/count storage, sorted-object admission,
-  ID bounds and admitted removal/transfer callers remain
-  Q-COMBAT-009. FND-COMBAT-029 answers the local preparation/collection
-  branches, but not all admitted producers or other callers.
-  FND-COMBAT-031 supplies the common insertion's conditional prepend order
-  within an owner group and field/count writes; other mutation paths and
-  the full count/ID invariant remain part of that item.
-  FND-COMBAT-032 supplies local removal compaction/order and its full
-  boundary-row backing requirement; handler effects and admitted removal
-  callers remain Q-COMBAT-009.
-  FND-COMBAT-033 supplies the saved-row relocation count pair and
-  conditional threshold-selection/order; its admitted inputs remain
-  Q-COMBAT-009.
-  FND-COMBAT-034 supplies the explicit effect-row/count save-source
-  pointers and shipped byte lengths, with runtime preparation and
-  restoration still open under Q-COMBAT-009.
-  FND-COMBAT-035 identifies the local full-resource restore requests and
-  effect-storage-before-count ordering, retaining admitted resources,
-  backing and postprocessing under Q-COMBAT-009.
-  FND-COMBAT-039 qualifies the icon-cache action's first-match ID/owner
-  search and row-key removal argument, retaining native caller and
-  shared-state admission under Q-COMBAT-009.
-  FND-COMBAT-043/044 supply both immediate restore callers' local
-  continuation and result/fallback routes. FND-COMBAT-045 verifies
-  resident byte backing for the boundary row under counts 0..192,
-  without establishing sentinel contents or the global count bound.
-  Actual restored-state, writer/caller and lifetime admission remain
-  Q-COMBAT-009.
-  FND-COMBAT-046 identifies the shipped DATA-byte exception 127 and
-  its local handler-default continuation; actual stored-row admission
-  and the complete ID invariant remain Q-COMBAT-009.
+- Which effect IDs the rows hold when `fn_573B_0025` and `fn_573B_002A` collect them, and whether
+  a stored ID can exceed 112 and index beyond `effect_names`. FND-COMBAT-029 reads the collection,
+  FND-COMBAT-031 the insertion's field writes and FND-COMBAT-046 the shipped `DATA` effect bytes
+  with their one code 127 (Q-COMBAT-009).
+- The bound of the effect-row count over all its writers. FND-COMBAT-031, FND-COMBAT-032 and
+  FND-COMBAT-033 read the insertion, removal and transfer writers locally, and FND-COMBAT-045
+  shows resident backing for the boundary row at counts 0 to 192 (Q-COMBAT-017).
+- What loading a saved game puts in the rows and count. FND-COMBAT-034, FND-COMBAT-035,
+  FND-COMBAT-043 and FND-COMBAT-044 read the save sources and both restore callers' local routes
+  (Q-COMBAT-018).
+- What sets the rows and count at startup and when a new game begins (Q-COMBAT-019).
+- Which routines insert, remove and transfer rows, with which arguments. FND-COMBAT-039 reads one
+  removal caller, the effect window's cache action (Q-COMBAT-020).
 - Category bitmap producers, initialization and lifetime
   remain Q-COMBAT-011; FND-COMBAT-029 supplies only their local uses and
   preparation.
@@ -143,7 +124,5 @@ None known.
   storage admission and the other exported caller path remain open.
   FND-COMBAT-038 adds the icon consumer's corresponding local frame
   and pointer/cache lifetimes; it does not establish all caller storage.
-- A collected number above 112 would index beyond `effect_names`; the
-  admitted ID domain remains Q-COMBAT-009.
 - (No item: the delivered resident-only emulated-call harness cannot reach
   the overlay collector, preparer or priority sorter.)

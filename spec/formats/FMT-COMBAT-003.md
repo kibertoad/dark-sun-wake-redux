@@ -49,28 +49,13 @@ metadata, without establishing native acquisition or display success.
 
 ## Open questions
 
-- Complete ICON request/archive mapping and other field consumers remain
-  Q-COMBAT-010; the local request proves the field's role without proving
-  that every nonzero ID produces a rendered icon. FND-COMBAT-030 settles
-  reference presence and frame metadata in the installed archive; active
-  archive state, reader-error/pointer divergence and display selection remain.
-  FND-COMBAT-038 supplies the consumer's frame-zero request argument,
-  distinct zero-icon/null-pointer continuations and draw/release ordering.
-  Valid reader outcomes, backend presentation and later cache interaction
-  remain Q-COMBAT-010.
-  FND-COMBAT-039 supplies the later cache label/action branches and
-  their count/ID/key distinction; native graph/event admission and
-  synchronized cache state remain part of that item.
-  FND-COMBAT-040 verifies the installed window/frame reference graph,
-  slot metadata and relative geometry; successful acquisition and
-  loaded callback/display state remain Q-COMBAT-010.
-  FND-UI-041 supplies the setup/setter/post-child route to icon
-  construction and local create/reuse/close pointer operations;
-  full shared-window identity and callback/display completion remain
-  Q-COMBAT-010.
-  FND-COMBAT-041 supplies the separate background cache-index source
-  and installed frame metadata; cache initialization, transfer success
-  and active resource identity remain Q-COMBAT-010.
-  FND-COMBAT-042 supplies local cache-fill boundary producers and the
-  handle-capacity request; successful initialization, complete writers
-  and backend/source-state admission remain Q-COMBAT-010.
+- Whether every nonzero ICON number produces the icon the effect window draws. FND-COMBAT-029
+  reads the request, FND-COMBAT-030 matches every nonzero reference to an installed resource with
+  its frame metadata, and FND-COMBAT-038 reads the frame-zero draw route and its null-request
+  branch; the open archive and the reader-error outcomes remain (Q-COMBAT-010).
+- What initializes the image cache the effect window draws through. FND-COMBAT-041 and
+  FND-COMBAT-042 read the slot background's cache index and the cache fills (Q-COMBAT-021).
+- Which loaded window and callbacks the effect window runs with, and what each frame event does.
+  FND-COMBAT-039, FND-COMBAT-040 and FND-UI-041 read the frame handler, the shipped window graph
+  and the callback setup (Q-COMBAT-022).
+- What the effect window shows for effects with and without an icon (Q-COMBAT-023).
