@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_ui_001.ksy
-evidence: [FND-UI-001, FND-UI-002, FND-UI-003, FND-UI-008, FND-UI-041, FND-UI-011, FND-UI-016, FND-UI-018]
+evidence: [FND-UI-001, FND-UI-002, FND-UI-003, FND-UI-008, FND-UI-041, FND-UI-042, FND-UI-011, FND-UI-016, FND-UI-018]
 conflicting: []
 split_with: []
 related: []
@@ -74,5 +74,11 @@ names a resource that exists [FND-UI-001, FND-UI-002]. The placement of the cont
   (FND-UI-003, FND-UI-011, Q-UI-001).
 - Whether the game draws `image` as the window's background, and where. Its sizes match the
   windows, but no code that reads it is known (FND-UI-002, Q-UI-001).
+  FND-UI-042 finds no qualified literal +C2 memory operand after
+  classifying the three raw candidates, with neighboring dimension reads
+  as controls. An unused source field and a copied/rebased/computed
+  consumer both remain possible: the literal absence supports the former
+  only circumstantially and does not exclude the latter. A concrete
+  producer-to-consumer trace, including copies and callbacks, is needed.
 - What sets `unk_96` and `unk_98` of a loaded window, which place it on the screen. The Look panel
   is drawn at (67, 44), where the file holds 0 and 0 (FND-UI-011, FND-UI-018, Q-UI-003).
