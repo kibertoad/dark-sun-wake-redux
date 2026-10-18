@@ -1,6 +1,6 @@
 # UI
 
-Next ID: Q-UI-011
+Next ID: Q-UI-012
 
 ## Static
 
@@ -89,11 +89,11 @@ Next ID: Q-UI-011
   chrome, placement and further handlers remain open.
   Tried: FND-UI-046 identifies the overhead map's window, pictures, marks,
   handler and openers; the map is removed from Settles it, apart from its
-  mark drawing (Q-UI-009) and placement (Q-UI-003).
-- Q-UI-009. SCR-UI-022: What does an overhead-map mark look like? Settles it: a reading of
-  `1BF3:2AF4`, which the map calls with 1, a point and the mark value 1, 11, 16 or 100, and of
-  overlay 182 `+059C`, which the map calls with 19101 and 1 after the marks, with the palette
-  entries the mark values select. Blocks: nothing yet.
+  mark colours (FND-UI-047, Q-UI-011) and placement (Q-UI-003).
+- Q-UI-011. SCR-UI-022: Which colours do the overhead-map marks show? Each mark is one pixel in
+  palette index 1, 11, 16 or 100 (FND-UI-047). Settles it: a reading of the code that loads the
+  VGA DAC during play (which `PAL` resource, from which routine, and whether opening the map
+  changes it), giving the red, green and blue of those four entries. Blocks: nothing yet.
 
 ## Emulated call
 
