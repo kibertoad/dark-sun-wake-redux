@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-105
+Next ID: Q-PARTY-106
 
 ## Static
 
@@ -327,10 +327,13 @@ Next ID: Q-PARTY-105
   and the menu row's condition hold in a fight, whether the dialog menu `0x48` and the placement
   `0x25` at `0x0E98` work while a fight runs, and whether object 161 can be in a fight with the
   party. Tried: split from Q-PARTY-050, which FND-PARTY-240 closed. Blocks: slice 2.
-- Q-PARTY-103. BUG-PARTY-006: Does any enemy that can fight the party carry the item of `DATA`
-  313, whose strike on an attack roll of 20 sends effect code 59 (FND-PARTY-096)? Settles it: a
-  census of the item numbers the actors that can join a fight against the party are given, in
-  the records the game loads them from. Blocks: nothing yet.
+- Q-PARTY-105. BUG-PARTY-006: Can a party member's cast or item power give the spell dispatcher
+  or the hit routine `DATA` 313, whose strike on an attack roll of 20 sends effect code 59
+  (FND-PARTY-096)? Settles it: what the cast number at `DS:6273` that overlay 190 `+2503` copies
+  into the table at `DS:445E` can hold, what overlay 211 passes in `SI` at `+166E` and stores in
+  `DS:43F5` at `+16ED`, and what overlay 213 stores there at `+0AE2` and passes at `+0A4F`. Tried:
+  split from Q-PARTY-103, which FND-PARTY-242 closed by finding that no enemy or script route
+  passes 313; FND-PARTY-242 traces the party-side numbers to those stores. Blocks: nothing yet.
 
 ## Emulated call
 
