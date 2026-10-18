@@ -57,11 +57,16 @@ export function verifySnapshot(root = ROOT) {
 }
 // The installed checker, after tool-dependencies.mjs has checked the npm lock and installation. It
 // must be the version the lock pins, so a stale node_modules cannot check against other rules than CI.
-export function checkerEntry(lock, script = checkerScript) {
-  const entry = script();
-  const manifest = JSON.parse(read(resolve(dirname(entry), "..", "package.json"), 65536));
+// `name` picks another of the package's executables, such as standard-coverage.
+export function checkerEntry(lock, script = checkerScript, name = "standard-checker") {
+  const entry = (script ?? checkerScript)();
+  const packageDir = resolve(dirname(entry), "..");
+  const manifest = JSON.parse(read(resolve(packageDir, "package.json"), 65536));
   if (manifest.name !== CHECKER || manifest.version !== lock.checker.version) throw new Error(`Installed ${CHECKER} is ${manifest.version}, not the pinned ${lock.checker.version}; run ./tools/Restore-ToolDependencies.ps1`);
-  return entry;
+  if (name === "standard-checker") return entry;
+  const bin = manifest.bin?.[name];
+  if (typeof bin !== "string") throw new Error(`Installed ${CHECKER} declares no ${name} executable`);
+  return resolve(packageDir, bin);
 }
 // The checker inputs the CI step gives under with:, as the arguments the action passes for them, so a
 // local run checks what CI checks. Only flat "key: value" lines are read; anything else fails.

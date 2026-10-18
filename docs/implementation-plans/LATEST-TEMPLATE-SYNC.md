@@ -293,3 +293,18 @@ Exact locks, section links, full Test.ps1, Release build and assetless smoke pas
 Risk: newer dependencies may expose compatibility failures; fix demonstrated
 failures without promoting evidence. Exit: reviewed tooling and separate
 handover commits pushed to main. No owner decisions are missing.
+
+## Template 7d5dc93 and engine 19.10.0 (2026-10-19)
+
+Owner-requested tooling update and push to main. Adopt the template delta since
+2801b32: text-size policy in the gate and staged snapshot, research-closure
+reporting, validation receipts and record splitting, the subagent cap and
+delegated-batch rules. Keep npm, the local checker resolution and full Test.ps1
+before each batch commit. Exclude closed records that already exceed the line
+limit instead of splitting them; give AGENTS.md its own cap pending the owner's
+decision. Upgrade engine 19.9.0 to 19.10.0; other shared libraries and rules
+are current.
+
+Acceptance: the new closure, text-policy and receipt tests pass with this
+repository's hook and report sizes, exact locks verify and full Test.ps1
+passes. Exit: tooling commit and the separate handover commit pushed to main.

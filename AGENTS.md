@@ -389,7 +389,8 @@ that page differ, the page wins.
   it `disputed`, and a wrong claim is superseded, never deleted. The
   protocol's "The life of a claim" section has the details.
 - `docs/HANDOVER.md` is the current state of work outside any goal, at most
-  200 lines, rewritten at the end of every session that works under no goal,
+  200 lines and 800 words, rewritten at the end of every session that works
+  under no goal,
   added to by the commit that deletes a goal file, and otherwise changed only
   where a research batch moves a citation of an entry it supersedes. It names
   items and entries by ID without saying what research found.
@@ -420,6 +421,11 @@ that page differ, the page wins.
   overlay and PE32 forms and refuses LE and LX files (`docs/EVIDENCE-TOOLS.md`). `npm exec -- standard-coverage` prints how much of
   each file the spec's locations cite; run it when the figures are needed,
   and commit none of its output.
+  [RESEARCH-CLOSURE](docs/RESEARCH-CLOSURE.md) gives the metadata-only ownership
+  map and finite caller, state-producer, indirect-transfer and evidence
+  checklist procedure. Its assessment uses the pinned complete-reading
+  report and keeps unassigned/shared functions and missing inventories visible;
+  checklist completion never promotes evidence status or parity.
 
 The procedures are skills in `.claude/skills/`: `runtime-access`,
 `plan-work`, `start-session`, `research-item`, `implement-rows`,
@@ -680,6 +686,31 @@ counts as a test.
 ## Durable narrative documentation
 
 Keep changing inventory totals out of narrative documentation: test-case, file, line and imported-asset counts belong in generated reports or validation logs. Keep numbers that define behavior, constrain validation, support evidence or justify a decision. A dated measurement belongs in prose only when that context needs it. Refer to the generating command instead of maintaining a copied total.
+
+The adopted text scopes, exclusions and line/word limits are in
+`tools/repository-policy.json`. The working gate and staged snapshot use
+`tools/Check-TextPolicy.mjs` for the same policy, including final result-record
+edits. Follow [VALIDATION-RECORDS](docs/VALIDATION-RECORDS.md) to split long logs
+into linked complete records and keep handovers operational. Preserve the
+repository's limits when adopting; the template's handover budget is 200 lines
+and 800 whitespace-separated words.
+
+## Context and process hygiene
+
+Run at most three subagents at a time, each on a different spec area, and start
+each one in a call of its own once the one before it has created its worktree.
+A subagent's batch reads hundreds of thousands of tokens, so more of them do not
+fit more research into a session's usage allowance: they spend it sooner, and
+when the limit arrives every batch stops half done. Sessions on the same
+allowance share the three: when `docs/goals/` shows another goal running, such
+as the other standing goal, count its subagents too. Two agents in one area edit
+the same queue and parity files and take the same next IDs. Where two must share
+an area, give each its own ID range and, before either starts, raise the area's
+`Next ID:` line past both ranges. A batch that supersedes an entry cited from
+another area also moves those citations into that area's files, so merge it
+after the batch of the agent working there. Before merging a batch that supersedes or
+squashes a finding, have a separate read-only agent re-read the addresses the
+correction rests on; that agent counts toward the three.
 
 ## Architecture boundaries
 
@@ -969,9 +1000,11 @@ committed, staged, unstaged, untracked and both sides of renamed paths. It retai
 policy, configuration, infrastructure, documentation/citation, Kaitai and queue
 checks. Mixed or unknown changes require `-TestFilter`; explicit test requests
 run the normal gate. This project still requires full `./tools/Test.ps1` before
-every batch commit. Reuse results only when command, tool versions, configuration,
-licensed builds and the whole tree match exactly. Keep staged-tree hooks enabled.
-See [VALIDATION](docs/VALIDATION.md).
+every batch commit. Reuse a check result only on an exact match of command,
+tools, configuration, environment, original inputs and configured file inputs.
+Without a reviewed narrower declaration, retain whole-tree inputs. See
+`docs/VALIDATION-INPUTS.md` for local receipts and final records. Keep
+staged-tree hooks enabled. See [VALIDATION](docs/VALIDATION.md).
 
 Follow [ANALYSIS-OUTPUTS](docs/ANALYSIS-OUTPUTS.md) for reviewed headless output
 retention. [WINDOWS-PROBES](docs/WINDOWS-PROBES.md) is reference guidance only;

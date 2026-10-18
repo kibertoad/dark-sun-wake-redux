@@ -50,5 +50,33 @@
     "^hs_err_pid.*\\.log$",
     "^replay_pid.*\\.log$",
     "\\.hprof$"
+  ],
+  "textSizeRules": [
+    {
+      "name": "human-maintained documentation",
+      "roots": ["spec", "parity", "deviations", "queue", "docs"],
+      "files": ["PARITY.md", "README.md"],
+      "extensions": [".md"],
+      "excludedRoots": ["docs/upstream"],
+      "excludedFiles": [
+        "docs/REPORTER-CASE-AUDIT.md",
+        "docs/TOOLKIT-RESPONSE-ACCEPTANCE.md",
+        "docs/TRANSFER-CALLER-PRODUCER-AUDIT.md"
+      ],
+      "maxLines": 1000
+    },
+    {
+      "name": "agent instructions",
+      "files": ["AGENTS.md"],
+      "extensions": [".md"],
+      "maxLines": 1050
+    },
+    {
+      "name": "operational handover",
+      "files": ["docs/HANDOVER.md"],
+      "extensions": [".md"],
+      "maxLines": 200,
+      "maxWords": 800
+    }
   ]
 }

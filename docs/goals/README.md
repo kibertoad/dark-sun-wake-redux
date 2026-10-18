@@ -139,9 +139,21 @@ answer from the owner, with no other item in scope to take meanwhile, node
 tools/goal-run.mjs wait records HEAD in the marker. If HEAD is still there at
 the next stop, that one stop passes without spending the allowance; the wait
 ends there, or earlier at a commit or another start, and a later turn that
-still has nothing to do runs wait again. A subagent given batches takes
-several in a row, up to five, committing and pushing each as it ends: every
-new subagent first reads AGENTS.md and the research-item skill, which costs
-about as much as a small batch. Explicit stop removes the marker; it
+still has nothing to do runs wait again. Explicit stop removes the marker; it
 does not delete the goal claim.
 Codex's active thread goal manages its own continuation and status.
+
+### Delegated batches
+
+An agent that hands batches to a subagent gives it several in a row, up to
+five, and says so in the subagent's task, since the subagent reads the
+`research-item` skill and not this file. Every new subagent first reads
+`AGENTS.md` and that skill, which costs about as much as a small batch. The
+limits in `AGENTS.md` (Context and process hygiene) still apply: the subagent
+counts toward the three for its whole run, and all its batches stay in the
+one spec area it was given. The subagent commits each batch as it ends and
+pushes it only where this goal's form and `AGENTS.md` allow the session to
+push. It stops after a batch that supersedes or squashes a finding, or that
+moves citations into another area's files, and leaves that batch unpushed, so
+the delegating agent can have it re-read, or merge it after the batch of the
+agent working in that area. The task says all of this too.

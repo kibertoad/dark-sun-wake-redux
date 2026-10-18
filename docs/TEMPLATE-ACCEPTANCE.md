@@ -414,3 +414,35 @@ one stop and ends earlier at a commit or `start`; there is no `resume`. The
 local copy keeps its unidentified-session check and test. `./tools/Test.ps1` passes (118
 upstream Node tests, 715 .NET tests). No spec status, parity row or pack
 revision changed.
+
+## Template 7d5dc93 and engine 19.10.0 adoption, 2026-10-19
+
+The template delta `2801b32` to `7d5dc93` is adopted. `tools/Check-TextPolicy.mjs`
+enforces the scopes and limits in `tools/repository-policy.json` in the gate and
+the staged snapshot; `tools/Invoke-NodeChecks.mjs` runs it first. The handover
+limit is 200 lines and 800 words. Three closed audit and acceptance records
+(`docs/REPORTER-CASE-AUDIT.md`, `docs/TOOLKIT-RESPONSE-ACCEPTANCE.md`,
+`docs/TRANSFER-CALLER-PRODUCER-AUDIT.md`) are listed in `excludedFiles` because
+they are complete records already longer than 1000 lines. AGENTS.md has its own
+1050-line rule until the owner decides whether to split it.
+`tools/Report-ResearchClosure.mjs`, `docs/RESEARCH-CLOSURE.md`,
+`tools/Run-ValidationCheck.mjs`, `validation-inputs.json` (empty checks object),
+`docs/VALIDATION-INPUTS.md` and `docs/VALIDATION-RECORDS.md` are new.
+`tools/Test.ps1` runs its Node tests through the receipt helper and adds the
+closure, text-policy and receipt tests.
+
+Local adaptations: `checkerEntry` keeps resolving through
+`tools/tool-dependencies.mjs` and gains the template's executable-name
+argument. The closure CLI tests raise `maxBuffer` to 64 MiB, since this
+repository's report is about 2 MB. The staged-snapshot text-policy test gives
+its fixture a `node_modules` directory and an interpreter path, which this
+project's pre-commit hook requires. Skill, goals README and AGENTS.md hunks are
+merged into the local wording: the subagent cap and delegated-batch rules are
+added, and full `./tools/Test.ps1` stays the batch-commit gate. pnpm hunks stay
+inapplicable to this npm project.
+
+The rules stay at `ceefc84`, one commit ahead of the template's `d8ebc1f`.
+Engine 19.9.0 moves to 19.10.0 (same dependency pins; wheel hash from PyPI).
+Reader 4.3.0, checker 6.0.1, session 0.11.0 and RefurbishedDinosaurs 12.2.0 are
+already the latest releases. `./tools/Test.ps1` passes (145 upstream Node tests, 715 .NET tests). No spec
+status, parity row or pack revision changed.

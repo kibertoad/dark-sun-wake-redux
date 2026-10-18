@@ -92,6 +92,8 @@ $nodeTests = @(
     'tests/upstream/memory-blocks.test.mjs',
     'tests/upstream/superseded-ownership.test.mjs',
     'tests/upstream/research-tracking.test.mjs',
+    'tests/upstream/research-closure.test.mjs',
+    'tests/upstream/text-policy.test.mjs',
     'tests/upstream/goal-run.test.mjs',
     'tests/upstream/capture-window.test.mjs',
     'tests/upstream/infrastructure.test.mjs',
@@ -99,13 +101,14 @@ $nodeTests = @(
     'tests/upstream/work-baseline.test.mjs',
     'tests/upstream/validation-selection.test.mjs',
     'tests/upstream/offline-validation.test.mjs',
-    'tests/upstream/release-signing.test.mjs'
+    'tests/upstream/release-signing.test.mjs',
+    'tests/upstream/validation-receipts.test.mjs'
 ) | ForEach-Object { Join-Path $root $_ }
 # Some tests run PowerShell scripts; give them the PowerShell running this gate, then restore the caller's environment.
 $previousPwsh = $env:PWSH
 if (-not $env:PWSH) { $env:PWSH = [Diagnostics.Process]::GetCurrentProcess().MainModule.FileName }
 try {
-    & node --test @nodeTests
+    & node (Join-Path $PSScriptRoot 'Run-ValidationCheck.mjs') node-tests -- node --test @nodeTests
 }
 finally {
     $env:PWSH = $previousPwsh

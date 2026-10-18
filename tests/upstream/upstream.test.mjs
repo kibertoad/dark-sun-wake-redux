@@ -47,6 +47,7 @@ test("a checker version other than the action's is rejected", t => {
   assert.throws(() => verifySnapshot(dir), /exactly/);
   assert.throws(() => checkerEntry({ ...lock, checker: { ...lock.checker, version: "0.0.1" } }), /not the pinned 0\.0\.1/);
   assert.match(checkerEntry(lock), /standard-checker/);
+  assert.match(checkerEntry(lock, undefined, "standard-coverage"), /coverage\.js$/);
 });
 test("local runs take the checker inputs the CI step gives", () => {
   const step = `      - uses: kibertoad/refurbished-dinosaurs-toolkit/actions/check-documentation@${"a".repeat(40)}\n`;
@@ -209,8 +210,8 @@ test("link check reports misplaced, missing or stale ranges and rewrites them", 
 });
 
 test("the gate and the pre-commit hook run one list of node checks", () => {
-  assert.deepEqual(checks().map(([, script]) => script), ["tools/upstream.mjs", "tools/Check-ResearchTracking.mjs", "tools/tool-dependencies.mjs"]);
-  assert.deepEqual(checks(true)[0][2], ["docs", "--check", "--no-ksy"]);
+  assert.deepEqual(checks().map(([, script]) => script), ["tools/Check-TextPolicy.mjs", "tools/upstream.mjs", "tools/Check-ResearchTracking.mjs", "tools/tool-dependencies.mjs"]);
+  assert.deepEqual(checks(true)[1][2], ["docs", "--check", "--no-ksy"]);
   assert.throws(() => runNodeChecks(["--check"]), /Usage/);
   // Invoke-Validation.ps1 runs Test.ps1, which runs the shared node checks.
   assert.match(readFileSync(resolve(root, "tools/Test.ps1"), "utf8"), /tools\/Invoke-NodeChecks\.mjs'\)/);

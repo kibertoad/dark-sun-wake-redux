@@ -977,14 +977,21 @@ without claiming shared-package delivery.
 For a documentation-only batch in progress, record the base before editing and
 run `./tools/Invoke-Validation.ps1 -ChangedSince <base-commit>`. Selection includes
 all committed/uncommitted paths and both rename sides. Only spec Markdown/Kaitai,
-Markdown under docs/queue/parity/deviations and validation YAML qualify. Empty,
+Markdown under docs/queue/parity/deviations, the exact generated root
+`PARITY.md` and validation YAML qualify, so regenerating `PARITY.md` keeps a
+batch on this route. Empty,
 unknown or mixed changes require `-TestFilter`; explicit test/count requests use
 the normal gate. Invalid bases fail. Documentation selection runs dependency
 verification, repository policy, configuration, infrastructure, section links,
 documentation/citations (including Kaitai) and queue checks, skipping .NET work.
 The mandatory full Test.ps1 before each batch commit remains unchanged.
 
-Reuse a check only when command, tool versions, configuration, licensed builds
-and the entire tree match. No narrower input sets are declared. A working-tree
-result applies to staged files only when all compared files match; hooks remain
-enabled. Synthetic selector and PowerShell routing controls cover this behavior.
+Reuse a check only when its command, tool identities, configuration,
+environment, original inputs and declared file inputs match.
+`validation-inputs.json` declares narrower inputs; its empty checks object means
+checks run fresh. The tooling tests in `Test.ps1` run through the local receipt
+helper described in [Validation inputs and final records](VALIDATION-INPUTS.md).
+Final documentation and staged-tree checks always run freshly; hooks remain
+enabled. Result logs and handovers follow [VALIDATION-RECORDS](VALIDATION-RECORDS.md);
+`tools/Check-TextPolicy.mjs` applies `tools/repository-policy.json` in the gate
+and the staged snapshot. Synthetic selector and PowerShell routing controls cover this behavior.
