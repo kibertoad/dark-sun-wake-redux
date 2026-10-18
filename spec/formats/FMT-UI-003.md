@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_ui_003.ksy
-evidence: [FND-UI-001, FND-UI-004, FND-UI-006, FND-UI-016, FND-UI-018]
+evidence: [FND-UI-001, FND-UI-004, FND-UI-006, FND-UI-016, FND-UI-018, FND-UI-043]
 conflicting: []
 split_with: []
 related: [RULE-UI-001]
@@ -36,12 +36,21 @@ window [FND-UI-016, FND-UI-018].
 | `0x2C` | 44 | `BYTE[44]` | `unk_2C` | Purpose unknown. 0 in every record. | supported | FND-UI-004 |
 | `0x58` | 2 | `UINT16LE` | `event_mask` | Event bits. A button with the value 4 or 2 set is passed over when the game looks for the control under the pointer (RULE-UI-001). 0 in 106 records. | supported | FND-UI-004, FND-UI-006 |
 | `0x5A` | 4 | `UINT32LE` | `number_copy` | The resource's number again. | supported | FND-UI-004 |
-| `0x5E` | 6 | `BYTE[6]` | `unk_5E` | Purpose unknown. 0 in every record. | supported | FND-UI-004 |
+| `0x5E` | 6 | `BYTE[6]` | `unk_5E` | 0 in every source record. In the loaded record, words at `0x60` and `0x62` hold the caption-position request supplied to the text helper; other meaning here remains open. | supported | FND-UI-004, FND-UI-043 |
 | `0x64` | 4 | `UINT32LE` | `icon` | Number of the `ICON` resource of the same file drawn for the button, or 0 for none. | supported | FND-UI-004, FND-UI-016, FND-UI-018 |
 | `0x68` | 5 | `BYTE[5]` | `unk_68` | Purpose unknown. 0 in every record. | supported | FND-UI-004 |
-| `0x6D` | 1 | `UINT8` | `tail_length` | Number of bytes after the fixed part. | supported | FND-UI-004 |
-| `0x6E` | `tail_length` | `BYTE[tail_length]` | `tail` | Purpose unknown. Printable ASCII followed by zeros, or zeros only, in the shipped records. | supported | FND-UI-004 |
+| `0x6D` | 1 | `UINT8` | `tail_length` | Number of caption bytes after the fixed part. The constructor and painter copy that declared count and append zero separately. | supported | FND-UI-004, FND-UI-043 |
+| `0x6E` | `tail_length` | `BYTE[tail_length]` | `tail` | Caption input to metric and positioned string requests. Printable ASCII followed by zeros, or zeros only, in the shipped records. | supported | FND-UI-004, FND-UI-043 |
 | | | | | Total size `110 + tail_length` | | |
+
+The constructor and painter each form their own temporary zero-terminated
+copy of a nonzero-length caption. The painter rereads the current loaded
+tail and offers it through the text helper's string directive at the stored
+caption-position words. An embedded zero terminates measurement/string
+traversal before the declared count. Actual loaded/local extents, DS/SS
+correspondence, current font tables and native glyph output remain conditions;
+the constructor's total frame reservation is not a caption-capacity contract
+[FND-UI-043].
 
 ## Enumerations and flags
 
@@ -63,8 +72,8 @@ captures [FND-UI-016, FND-UI-018].
 - What each bit of `event_mask` means beyond the values 4 and 2, which keep the pointer search
   from choosing the button. The shipped values are 2, 4, 80, 84, 144, 160 and 208 (FND-UI-004,
   FND-UI-006, Q-UI-001).
-- What `unk_0D`, `unk_0E` and `tail` do. Eleven tails hold a short upper-case word such as
-  `DROP`, `SPLIT` or `EXIT`, or a run of `X`, which may be a caption or a placeholder for one
-  (FND-UI-004, Q-UI-001).
+- What `unk_0D` and the remaining `unk_0E` flags do, and the complete caption
+  layout, writer, extent/alias and current-font contracts beyond the reviewed
+  copy/metric/string-request paths (FND-UI-043, Q-UI-001).
 - Why the art of some buttons is a pixel or more larger or smaller than `width` and `height`,
   and which frame of a many-frame `icon` the game draws in which state (FND-UI-004, Q-UI-002).

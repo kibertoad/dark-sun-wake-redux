@@ -6,7 +6,8 @@ Next ID: Q-UI-006
 
 - Q-UI-001. FMT-UI-001, FMT-UI-003, FMT-UI-004, FMT-UI-005, RULE-UI-001, FMT-UI-002, SCR-UI-002, SCR-UI-005, SCR-UI-006, SCR-UI-008, SCR-UI-011, SCR-PARTY-003: What do the unnamed
   fields and the other mask values of the four control formats do: the window flags beyond 4 and
-  `0x100`, the frames' masks such as 486 and 494, a button's tail, the bytes a window copies from
+  `0x100`, the frames' masks such as 486 and 494, remaining button caption
+  layout/producers beyond its mapped tail-copy/request role, the bytes a window copies from
   a control, whether the game draws a window's `image`, and what `WIND/19501` and `WIND/19502`
   are for? Settles it: a reading of the loaders under `39D1` and `3D72` and of the routines that
   read these offsets; for the picture word, remaining copied/rebased/computed
@@ -17,6 +18,11 @@ Next ID: Q-UI-006
   positive controls. That literal-reader avenue is removed from Settles it;
   no unused-field or native background claim follows, and copied/computed
   routes plus the other control fields remain open.
+  Tried: FND-UI-043 maps the button tail to declared-count temporary copies,
+  appended zero, metric-word requests and a positioned string directive using
+  loaded words +60/+62. The tail's basic caption role is removed from Settles
+  it; complete layout flags, writers, admitted local/source storage, DS/SS,
+  font tables and native backend outcomes remain.
 - Q-UI-002. SCR-UI-001 to SCR-UI-012, FMT-UI-003, FMT-UI-005, SCR-UI-002, SCR-UI-003, SCR-UI-004, SCR-UI-005, SCR-UI-006, SCR-UI-007, SCR-UI-008, SCR-UI-009, SCR-UI-010, SCR-UI-011, SCR-PARTY-003: Which code opens each screen and handles each of its
   controls, and which icon frame shows a pointed-at, pressed or unavailable control? No routine
   names the controls' numbers as constants (FND-UI-012). Settles it: a reading of the handlers

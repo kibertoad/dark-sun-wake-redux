@@ -4,7 +4,7 @@ meta:
   license: MIT
   endian: le
 doc: A BUTN resource of RESOURCE.GFF, one button.
-doc-ref: FMT-UI-003, FND-UI-004, FND-UI-006
+doc-ref: FMT-UI-003, FND-UI-004, FND-UI-006, FND-UI-043
 seq:
   - id: tag
     type: str
@@ -43,5 +43,7 @@ seq:
     size: 5
   - id: tail_length
     type: u1
+    doc: Declared caption byte count; runtime consumers copy these bytes and append zero separately.
   - id: tail
     size: tail_length
+    doc: Caption input to metric and positioned string requests; embedded zero ends those traversals early.
