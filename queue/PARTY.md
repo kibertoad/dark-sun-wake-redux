@@ -118,17 +118,11 @@ Next ID: Q-PARTY-106
   `0x14`, `0x15` and `0x16` of a 23-byte attached record mean? Settles it: the kind-1 `FNFO`
   field descriptors that name each of these offsets, and the code that reads or writes each
   offset, directly in the table at `DS:19C1` or through the field accessor with those field
-  numbers. The word at `0x06` is Q-PARTY-093, the reference at `0x08` Q-PARTY-083. Tried:
+  numbers. The word at `0x06` is FND-PARTY-245's value, the reference at `0x08` Q-PARTY-083. Tried:
   FND-PARTY-196 lists the shipped values of every field; FND-PARTY-181, FND-PARTY-182,
   FND-PARTY-216, FND-PARTY-217 and FND-PARTY-224 name the fields at `0x00`, `0x12`, `0x02`,
   `0x13` and `0x0C` from their consumers, and FND-PARTY-216 binds the descriptors of fields 0 to
   4 only, so no descriptor or consumer of these offsets has been read. Blocks: slice 2.
-- Q-PARTY-093. FMT-PARTY-006: What does the signed word at `0x06` of a 23-byte attached record,
-  kind-1 field 3, hold? Settles it: the code that reads or writes field 3 through the field
-  accessor or offset `0x06` directly in the table at `DS:19C1`, with what each does with the
-  value. Tried: split from Q-PARTY-020. FND-PARTY-216 binds field 3 to offset `0x06` with type 3,
-  a signed word, and FND-PARTY-196 gives its shipped values (30000 and 9999 the most common, from
-  -30536 to 30000); no reader has been found. Blocks: slice 2.
 - Q-PARTY-087. FMT-PARTY-006, SCR-UI-008: Which remaining code reads or
   writes the attached record's cached BMP number at +0C directly, outside
   the generic field accessor? Settles it: a census of instruction starts
