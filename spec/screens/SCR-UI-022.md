@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-IMAGE-012, FND-SAVE-013, FND-UI-044, FND-UI-046, FND-UI-047, SRC-MANUAL-1994]
+evidence: [FND-IMAGE-012, FND-SAVE-013, FND-UI-044, FND-UI-046, FND-UI-047, FND-UI-048, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [SCR-UI-006, SCR-EXPLORE-001]
@@ -44,8 +44,9 @@ During play the palette is the current region's `RGN*.GFF#PAL/current_region`, a
 start of play five ranges of it rotate by one entry on the first main-loop pass after each
 eighth run of the timer callback: indexes 1 to 5, 6 to 10, 11 to 15, 16 to 23 and 24 to 31,
 each colour moving one index up and the last wrapping to the first [FND-IMAGE-012]. Opening the
-map runs no palette load of its own; whether a route through the view draw it runs can change
-the palette is open (Q-UI-012). The marks therefore show:
+map runs no palette load of its own. The one DAC writer its first call, the view draw, can reach
+is a picture sequence of overlay 201 that ends with the fade to `PAL/current_region` before the
+map builds its window [FND-UI-048]. The marks therefore show:
 
 - 100, kind-1 objects: (63, 51, 0) in every region.
 - 1, the leader in slots 0 to 3: one colour per step, cycling through (0, 1, 63), (0, 1, 63),
@@ -105,10 +106,12 @@ None known.
 ## Open questions
 
 - Where the game places `WIND/19502` (Q-UI-003).
-- Whether every route into play leaves the region palette in the DAC, and whether the view draw
-  that opening the map runs can reach the picture sequence of overlay 201 that fades the palette
-  (FND-IMAGE-012, Q-UI-012). The manual describes a blue party marker and red markers for
-  monsters and other characters; the code gives kind-2 objects the cycling index 16, whose colours
-  run from yellow to orange or red (SRC-MANUAL-1994, FND-IMAGE-012).
+- What first puts the region palette in the DAC on a new game: every read route from START GAME
+  to the region fade passes overlay 201's picture sequence (FND-UI-048, Q-UI-019).
+- Whether anything changes the DAC while the map is shown, and whether the cycling ranges keep
+  rotating then, rests on transfers no walk resolves (FND-IMAGE-012, FND-UI-048, Q-UI-012). The
+  manual describes a blue party marker and red markers for monsters and other characters; the
+  code gives kind-2 objects the cycling index 16, whose colours run from yellow to orange or red
+  (SRC-MANUAL-1994, FND-IMAGE-012).
 - What the word at `57E0:0DAB` and the byte at `57E0:143C` stand for, which decide whether `O`
   opens the map and which objects get marks (Q-COMBAT-003, Q-COMBAT-004).
