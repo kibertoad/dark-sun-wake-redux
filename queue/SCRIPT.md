@@ -145,22 +145,13 @@ Next ID: Q-SCRIPT-013
   `0x1F`, `0x20`, `0x21`, `0x24`, `0x25`, `0x2A` to `0x2D`, `0x2F`, `0x30`, `0x32`, `0x34` to
   `0x3D`, `0x41` to `0x47`, `0x49`, `0x58` to `0x5C`, `0x5E`, `0x62` and `0x80`)? Settles it:
   each of those handlers and the far routine it calls, read one family of handlers at a time.
-  Tried: split into Q-SCRIPT-008 (operand layouts), Q-SCRIPT-009 (field paths), Q-SCRIPT-010
-  (opcode `0x22`'s functions), Q-SCRIPT-011 (kind-1 strings) and Q-SCRIPT-012 (variable
-  arithmetic); the trigger instructions `0x66` and `0x69` to `0x70` belong to Q-SCRIPT-002.
+  Tried: split into Q-SCRIPT-009 (field paths), Q-SCRIPT-010 (opcode `0x22`'s functions),
+  Q-SCRIPT-011 (kind-1 strings), Q-SCRIPT-012 (variable arithmetic) and the operand layouts,
+  which FND-SCRIPT-024 reads; the trigger instructions `0x66` and `0x69` to `0x70` belong to
+  Q-SCRIPT-002.
   FND-SCRIPT-005 lists the handlers and FND-SCRIPT-012 reads the output ones. Blocks: slices
   3-6.
-- Q-SCRIPT-008. FMT-SCRIPT-001, FMT-SCRIPT-002, RULE-SCRIPT-002, RULE-SCRIPT-004: Which bytes
-  does each instruction's handler read as its operands, so that a script can be decoded
-  instruction by instruction, and how are strings of kind 2 and of any other kind stored?
-  Settles it: every
-  handler of the table at `57E0:030A` and the routines they call, as far as each reads script
-  code (`fn_172C_299C`, `fn_172C_084E`, `fn_172C_13E0`, `fn_172C_325F`), a census of the
-  routines that read the code buffer, and a decode of every shipped script with those layouts.
-  Tried: split from Q-SCRIPT-004; FND-SCRIPT-009, FND-SCRIPT-010 and FND-PARTY-041 give the
-  layouts of the control-flow instructions, and FND-PARTY-234 reads the field-path parser.
-  Blocks: Q-PARTY-050, Q-PARTY-051, Q-PARTY-092, Q-SAVE-003.
-- Q-SCRIPT-009. RULE-SCRIPT-004: What do the field-path instructions read and write: `0x33`
+- Q-SCRIPT-009. RULE-SCRIPT-002, RULE-SCRIPT-004: What do the field-path instructions read and write: `0x33`
   (`fn_172C_084E`), `0x40` (`fn_172C_13E0`), expression byte `0xB1` (`fn_172C_284D`) and the
   assignment to variable codes from `0x10` (`fn_172C_2914`)? Settles it: those routines, the
   handle lookup `2D40:0AB6` and the six fixed handles `fn_172C_299C` takes from `4C13:035F` to

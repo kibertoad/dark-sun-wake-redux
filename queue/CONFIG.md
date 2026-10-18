@@ -50,7 +50,7 @@ Next ID: Q-CONFIG-011
   indirect or block writers remain unread.
   Blocks: completing the named entry readings.
 
-- Q-CONFIG-008. RULE-CONFIG-005: Which caller paths enter overlay 172's
+- Q-CONFIG-008. RULE-CONFIG-005, RULE-SCRIPT-002: Which caller paths enter overlay 172's
   shared message routine? Settles it: complete incoming-path readings for
   the shared sinks and possible resident or computed-pointer calls,
   including the conditions and text pointers that reach the routine.

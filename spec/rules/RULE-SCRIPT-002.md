@@ -4,10 +4,10 @@ title: Running a script, reading its code and calling other scripts
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-001, FND-SCRIPT-005, FND-SCRIPT-006, FND-SCRIPT-007, FND-SCRIPT-019, FND-SCRIPT-009, FND-SCRIPT-013, FND-SCRIPT-020, FND-CONFIG-160, FND-SCRIPT-023, FND-CONFIG-161]
+evidence: [FND-SCRIPT-001, FND-SCRIPT-005, FND-SCRIPT-006, FND-SCRIPT-007, FND-SCRIPT-019, FND-SCRIPT-009, FND-SCRIPT-013, FND-SCRIPT-020, FND-CONFIG-160, FND-SCRIPT-023, FND-CONFIG-161, FND-SCRIPT-024, FND-CONFIG-150, FND-CONFIG-153]
 conflicting: []
 split_with: []
-related: [RULE-SCRIPT-010, RULE-SCRIPT-003, RULE-SCRIPT-006, RULE-SCRIPT-007, RULE-SCRIPT-008, RULE-SCRIPT-009, RULE-TALK-001, FMT-SCRIPT-001]
+related: [RULE-SCRIPT-010, RULE-SCRIPT-004, RULE-SCRIPT-003, RULE-SCRIPT-006, RULE-SCRIPT-007, RULE-SCRIPT-008, RULE-SCRIPT-009, RULE-TALK-001, FMT-SCRIPT-001]
 ---
 
 ## Summary
@@ -33,7 +33,8 @@ offset in the current script, and `peek_byte(ahead)` a count of bytes past the c
 
 `g_4C0E_000B`, `script_stopped`, `script_frame_depth`, `script_frame_offsets`, `script_depth`,
 `script_stack_numbers`, `script_stack_selectors`, `script_code_start`, `script_buffer`,
-`script_buffer_size`, `script_if_depth`, `script_compare_depth`, `g_57E0_02F6`.
+`script_buffer_size`, `script_if_depth`, `script_compare_depth`, `g_57E0_02F6`,
+`object_field_types`.
 
 ## Procedure
 
@@ -148,8 +149,78 @@ define execute_instruction(op: UINT8):
         call RULE-SCRIPT-009(op)
     else if op == 0x48:
         call RULE-TALK-001()
-    # every other opcode from 0x00 to 0x80 runs the handler FND-SCRIPT-005 lists for it,
-    # which this spec does not describe yet
+    else:
+        read_operands(op)
+        # the handler FND-SCRIPT-005 lists for op then does its work, which this spec
+        # does not describe yet
+
+define read_field_path():
+    let first = fetch_word()
+    let keys: UINT16[6] = [0x25, 0x26, 0x27, 0x28, 0x2B, 0x2C]
+    if first >= 0x8000:
+        let known = false
+        for each k in keys:
+            if first & 0x7FFF == k:
+                known = true
+        if not known:
+            return
+    let count = fetch_byte()
+    for i in 0..count:
+        fetch_byte()
+
+define read_operands(op: UINT8):
+    # the operands the handler of op reads, in order, before or while it does its work
+    let one: UINT8[25] = [0x02, 0x03, 0x04, 0x05, 0x07, 0x08, 0x09, 0x0C, 0x0F, 0x1D, 0x1E, 0x1F, 0x24, 0x30, 0x34, 0x36, 0x3B, 0x3D, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x62]
+    let two: UINT8[25] = [0x01, 0x0A, 0x0B, 0x11, 0x1A, 0x20, 0x21, 0x2D, 0x32, 0x37, 0x3A, 0x49, 0x5A, 0x5B, 0x76, 0x77, 0x78, 0x79, 0x7A, 0x7B, 0x7C, 0x7D, 0x7E, 0x7F, 0x80]
+    let three: UINT8[10] = [0x10, 0x2F, 0x3C, 0x58, 0x59, 0x66, 0x6C, 0x6D, 0x6E, 0x6F]
+    let four: UINT8[6] = [0x1B, 0x1C, 0x22, 0x39, 0x5C, 0x70]
+    if op == 0x2C:
+        read_string()
+        return
+    if op == 0x40:
+        if peek_byte(0) == 0x80 and peek_byte(1) == 0x00:
+            return
+        read_field_path()
+        read_number()
+        return
+    if op == 0x33:
+        read_number()
+        fetch_byte()
+        fetch_byte()
+        let more = true
+        while more:
+            if peek_byte(0) == 0x53:
+                fetch_byte()
+            let field = fetch_byte()
+            let operator = fetch_byte()
+            if operator >= 4 and operator <= 6:
+                let kind = object_field_types[field]
+                if kind <= 5 or kind == 9:
+                    read_number()
+            more = peek_byte(0) == 0x53
+        return
+    let count = 0
+    for each o in one:
+        if op == o:
+            count = 1
+    for each o in two:
+        if op == o:
+            count = 2
+    for each o in three:
+        if op == o:
+            count = 3
+    for each o in four:
+        if op == o:
+            count = 4
+    if op == 0x5E or op == 0x69:
+        count = 5
+    if op == 0x25:
+        count = 6
+    if op == 0x6A or op == 0x6B:
+        count = 7
+    # 0x00, 0x0D, 0x2A, 0x2B, 0x35, 0x38 and 0x47 read nothing
+    for i in 0..count:
+        read_number()
 ```
 
 ## Outputs
@@ -166,7 +237,9 @@ script return from the first script of the run, which stops instead of popping, 
 depth falls below 0. A local return from the first frame of the run leaves the depth 0, and the
 loop goes on reading at the offset frame 0 held before the run; the next local return reports an
 error and ends the loop. Words in the code are stored
-high byte first. The 51st nested frame wraps the depth to 0 after reporting the error, and a pop
+high byte first. `0x40` reads no operand when its next two bytes are `0x80 0x00`, and `0x33`
+reads an expression after an operator from 4 to 6 only when the field's type byte is 0 to 5 or
+9. The 51st nested frame wraps the depth to 0 after reporting the error, and a pop
 below 0 reports it after the depth has become -1. Nothing limits `script_depth`: from 28 on,
 `script_stack_numbers` overlaps `script_frame_offsets`. The offset check compares an offset
 inside one script with the size of the whole buffer. A callee script replaces the caller in the
@@ -187,6 +260,8 @@ None known.
 - What `fn_172C_31ED` and `fn_5702_00B1` do, whether `fn_5702_00B1` returns, and what the far
   routine at `g_57E0_02F6` is when one is set (Q-SCRIPT-003).
 - What `g_4C0E_000B`, `g_4C13_032B` and `g_4C13_0325` mean (Q-SCRIPT-003).
-- The operand layouts of the instructions whose handlers this spec does not yet describe
-  (Q-SCRIPT-008), and what those handlers do: the variable arithmetic (Q-SCRIPT-012), opcode
-  `0x22`'s functions (Q-SCRIPT-010) and the handlers that call far routines (Q-SCRIPT-004).
+- What the handlers do after `read_operands`: the variable arithmetic (Q-SCRIPT-012), opcode
+  `0x22`'s functions (Q-SCRIPT-010), the field-path instructions `0x33` and `0x40`
+  (Q-SCRIPT-009) and the handlers that call far routines (Q-SCRIPT-004).
+- Whether `object_field_types` holds `FNFO/2` when `0x33` runs, which decides whether it reads
+  an expression after operators 4 to 6 (Q-CONFIG-008).

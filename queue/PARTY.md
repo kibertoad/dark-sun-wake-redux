@@ -110,7 +110,7 @@ Next ID: Q-PARTY-102
   armor class; FND-PARTY-146 shows `0x1D` and `0x67` are the current and base movement rate, FND-PARTY-147 that `0x53` is the details record's key, and FND-PARTY-148 that `0x04`, `0x06` and
   `0x0E` hold the slot the character was written from and `0x12` to `0x16` the child words at that time; FND-PARTY-149 shows `0x81` and `0x83` are sound numbers, and FND-PARTY-150 that `0x68` is the magic resistance; FND-PARTY-151 places the footprint at `0x7C` and a spell list at `0x7D`. FND-PARTY-152 finds no reader through the combatant table of
   `0x1C` or `0x21`, and `0x2A` only as field 33 of overlay 204's field getter and setter, which FND-PARTY-156 shows are
-  functions 48 and 49 of script opcode `0x22`, so what `0x2A` means waits on the decoded calls (Q-SCRIPT-008); FND-PARTY-157 names `0x18` the special attack kind
+  functions 48 and 49 of script opcode `0x22`, so what `0x2A` means waits on the decoded calls, whose layouts FND-SCRIPT-024 gives; FND-PARTY-157 names `0x18` the special attack kind
   and `0x19` the immunity type, and FND-PARTY-158 names `0x85` the psionic power list; FND-PARTY-159 shows the saving throw never
   reads `0x7B`. Blocks:
   slice 2.
@@ -321,6 +321,33 @@ Next ID: Q-PARTY-102
   what placed-object count and `DS:0DAB`? Settles it: the load routine overlay 192 `+05ED`,
   overlay 182 `+19F8`, `28C9:2522`, the gate routine called with 0, and whether window 19500 or
   its handler survives those calls (FND-PARTY-045). Blocks: slice 2.
+- Q-PARTY-092. FMT-PARTY-006, SCR-UI-008: Does any shipped script name kind-1 field six,
+  the +0C bitmap-number cache, in a field-path operand? Settles it: the `GPL ` resources
+  decoded instruction by instruction, with the field bytes and counts each instance passes to
+  the interpreter routines 172C:284D (expression byte B1), 172C:2914 (assignment), 172C:13E0
+  and 172C:084E, and the field and kind operands of overlay 204's setter at +18B5, checked
+  against the handle kinds they reach. Tried: FND-PARTY-234 traces those routines' fields to
+  script code bytes (a count of zero takes the setter's field from the high word of the
+  assigned value); FND-PARTY-156 and FND-PARTY-233 trace overlay 204's field to script
+  operands. A byte search cannot tell field bytes from other operands; FND-SCRIPT-024 gives the
+  instruction layouts, with which `script_decode.py` decodes every script. Blocks: complete
+  reading of FMT-PARTY-006.
+- Q-PARTY-050. RULE-PARTY-013: Does any trigger record's second entry point that can run during a
+  fight hold script opcode `0x24`, which makes the slot in `4C13:0369` the current record through
+  overlay 190 `+36D2` (FND-PARTY-097, FND-PARTY-098)? Settles it: the `GPL ` resources and offsets
+  the trigger records name, decoded instruction by instruction and searched for opcode `0x24`.
+  Blocks: slice 2. Tried: FND-PARTY-098 reads the conditions under which `2D40:207E` runs the
+  entry point; a byte search for `0x24` would also match parameter bytes, so it cannot settle
+  the question without the instruction layouts, which FND-SCRIPT-024 now gives.
+- Q-PARTY-051. FMT-PARTY-001, BUG-PARTY-006: Does any script call function 23 of opcode `0x22` with the effect
+  code 59, which runs the level drain on a party slot, and on which slots does overlay 204 `+1A68`
+  apply it (FND-PARTY-108), or call function 46 with 9999 as its second argument and a fourth
+  argument whose remainder by 1000 is 104 or 225, which casts that spell (FND-PARTY-122)? Settles
+  it: the `GPL ` resources decoded instruction by instruction and searched for opcode `0x22` with
+  function 23 and code 59 or function 46 with those arguments, and a reading of `+1A68` and of
+  where function 46's cast lands. Blocks: nothing yet. Tried: FND-PARTY-108 and FND-PARTY-122
+  trace the code and the spell to the script's arguments; a byte search cannot separate
+  parameters without the instruction layouts, which FND-SCRIPT-024 now gives.
 
 ## Emulated call
 
@@ -383,32 +410,4 @@ None.
 
 ## Blocked
 
-- Q-PARTY-092. FMT-PARTY-006, SCR-UI-008: Does any shipped script name kind-1 field six,
-  the +0C bitmap-number cache, in a field-path operand? Settles it: the `GPL ` resources
-  decoded instruction by instruction, with the field bytes and counts each instance passes to
-  the interpreter routines 172C:284D (expression byte B1), 172C:2914 (assignment), 172C:13E0
-  and 172C:084E, and the field and kind operands of overlay 204's setter at +18B5, checked
-  against the handle kinds they reach. Tried: FND-PARTY-234 traces those routines' fields to
-  script code bytes (a count of zero takes the setter's field from the high word of the
-  assigned value); FND-PARTY-156 and FND-PARTY-233 trace overlay 204's field to script
-  operands. A byte search cannot tell field bytes from other operands without the instruction
-  layouts. Waiting on: Q-SCRIPT-008, the operand layout of every script instruction, in the
-  SCRIPT area. Blocks: complete reading of FMT-PARTY-006.
-- Q-PARTY-050. RULE-PARTY-013: Does any trigger record's second entry point that can run during a
-  fight hold script opcode `0x24`, which makes the slot in `4C13:0369` the current record through
-  overlay 190 `+36D2` (FND-PARTY-097, FND-PARTY-098)? Settles it: the `GPL ` resources and offsets
-  the trigger records name, decoded instruction by instruction and searched for opcode `0x24`.
-  Blocks: slice 2. Tried: FND-PARTY-098 reads the conditions under which `2D40:207E` runs the
-  entry point; a byte search for `0x24` would also match parameter bytes, so it cannot settle
-  the question without the instruction layouts. Waiting on: Q-SCRIPT-008, the operand layout of
-  every script instruction, in the SCRIPT area.
-- Q-PARTY-051. FMT-PARTY-001, BUG-PARTY-006: Does any script call function 23 of opcode `0x22` with the effect
-  code 59, which runs the level drain on a party slot, and on which slots does overlay 204 `+1A68`
-  apply it (FND-PARTY-108), or call function 46 with 9999 as its second argument and a fourth
-  argument whose remainder by 1000 is 104 or 225, which casts that spell (FND-PARTY-122)? Settles
-  it: the `GPL ` resources decoded instruction by instruction and searched for opcode `0x22` with
-  function 23 and code 59 or function 46 with those arguments, and a reading of `+1A68` and of
-  where function 46's cast lands. Blocks: nothing yet. Tried: FND-PARTY-108 and FND-PARTY-122
-  trace the code and the spell to the script's arguments; a byte search cannot separate
-  parameters without the instruction layouts. Waiting on: Q-SCRIPT-008, the
-  operand layout of every script instruction, in the SCRIPT area.
+None.
