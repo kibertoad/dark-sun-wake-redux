@@ -97,9 +97,13 @@ None known.
   (Q-COMBAT-018).
 - Which rows and count a new game begins with. At program start the count is the load image's
   zero and nothing before START GAME's party load writes the count or a row; no writer sets the
-  count to a constant, so a later game keeps what the earlier one left apart from rows the
-  removal routes take out (FND-COMBAT-053). Which of the gate routine's later calls change the
-  rows on a new game, and which rows survive from an earlier game, remain (Q-COMBAT-019).
+  count to a constant (FND-COMBAT-053). With the count at 0 the removal and transfer entries
+  change nothing, and every route from the gate routine's later calls to an insertion passes the
+  area-effect routine overlay 193 +12A8, which runs only for a slot made from object 147 or one
+  it marked itself; only `RGN03B.GFF#ETAB/59` places object 147, so a first game begun in a
+  region that does not place it begins with no rows (FND-COMBAT-054). Which region a new game
+  loads and whether anything else places object 147 remain (Q-COMBAT-019); which rows survive
+  from an earlier game in the same run remain (Q-COMBAT-024).
 - Which routines insert, remove and transfer rows, with which arguments. FND-COMBAT-039 reads one
   removal caller, the effect window's cache action (Q-COMBAT-020).
 - Category bitmap producers, initialization and lifetime
