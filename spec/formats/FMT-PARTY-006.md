@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_006.ksy
-evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229, FND-PARTY-230, FND-PARTY-231, FND-PARTY-234, FND-PARTY-235, FND-PARTY-236, FND-PARTY-238, FND-PARTY-239, FND-PARTY-245, FND-PARTY-248, FND-PARTY-247, FND-PARTY-249, FND-PARTY-250]
+evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229, FND-PARTY-230, FND-PARTY-231, FND-PARTY-234, FND-PARTY-235, FND-PARTY-236, FND-PARTY-238, FND-PARTY-239, FND-PARTY-245, FND-PARTY-248, FND-PARTY-247, FND-PARTY-249, FND-PARTY-250, FND-PARTY-251]
 conflicting: []
 split_with: []
 related: []
@@ -75,6 +75,16 @@ Consequently the high byte is replaced by zero or 0xFF according to
 old bit 7. The local stores precede unchanged-state return checks.
 These flags and widths apply to this context; caller/storage admission
 and the requested presentation remain qualified [FND-PARTY-250].
+
+The door initializer selects presentation column one when low bit 0 or
+bit 1 is set, otherwise column two. It sets bit 0 only in its local copy
+when bit 1 is set. The shared grid helper uses that bit 0 to set or clear
+GMAP mask 0xC0. For item word `0x0E` below ten it requests that value
+plus one cells across; for a value at least ten it requests that value
+minus nine cells down. Zero and ten each request one cell. Each resident
+writer separately checks the nonnull grid pointer and 128-by-98 coordinate
+bounds. Storage/input and presentation admission remain qualified
+[FND-PARTY-251].
 
 Runtime word `0x0C` is `cached_bitmap_number` in the reviewed inventory
 drawing path. A nonzero word is reused as an unsigned BMP resource number.

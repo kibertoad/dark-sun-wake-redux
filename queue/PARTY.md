@@ -116,7 +116,7 @@ Next ID: Q-PARTY-108
   slice 2.
 - Q-PARTY-020. FMT-PARTY-006: What does the word at `0x10` of a 23-byte attached record, kind-1
   field 8, hold?
-  Settles it: the remaining readers of `0x10` in overlays 173, 182 (`+099A`), 189, 190, 197,
+  Settles it: the remaining readers of `0x10` in overlays 173, 178, 189, 190, 197,
   204 and 213 and `25AF:02D9` and `28C9:26EE`, with the context-dependent
   meaning of their values and bit tests beyond FND-PARTY-250's door paths.
   The word at `0x06` is FND-PARTY-245's value,
@@ -138,15 +138,26 @@ Next ID: Q-PARTY-108
   overlay-182 `+0C23` and `+0DE6` flag reads and all three named stores:
   door-message priorities, blocking masks, sign-extended whole-word update
   and partner copy. Those local branches and stores are removed from
-  Settles it; complete door action admission is Q-PARTY-107. Blocks: slice 2.
+  Settles it; complete door action admission is Q-PARTY-107. Tried:
+  FND-PARTY-251 answers the last overlay-182 read `+099A`: bits 0 and 1
+  select a presentation column and a locally normalized bit-0 grid request.
+  Overlay 182 is removed from Settles it. The retained FND-PARTY-248 census
+  also lists overlay 178 `+0CAC`, now explicitly included among remaining
+  readers. Blocks: slice 2.
 - Q-PARTY-107. FMT-PARTY-006: Which admitted door actions preserve the
   source/partner record identity and realize overlay 182's flag and
   presentation requests? Settles it: the `+0C23` and `+0DE6` caller
   arguments, DS:0DAB and DS:655C producers, slot/type/record identity across
   the resource/SCMD/action children, partner kind/index admission, the
   0x8000 bypass's local initialization, bit-2/bit-7 door meaning and the
-  effects of `+0FC5` and `31E0:271E`. Tried: FND-PARTY-250 settles the
+  admitted strip dimensions/coordinates and GMAP identity, and the
+  effects of `31E0:271E`, initialization's resource requests and `+0BAC`.
+  Tried: FND-PARTY-250 settles the
   classifier, masks, exact store values and local ordering only.
+  Tried: FND-PARTY-251 answers `+0FC5`'s complete local strip geometry and
+  bounded GMAP set/clear writers, and initialization's local flag consumer;
+  those local effects are removed from Settles it. Native inputs, resource
+  and presentation effects remain.
   Blocks: complete interpretation of FMT-PARTY-006.
 - Q-PARTY-106. FMT-PARTY-006: Which admitted actions and later consumers give
   gameplay meaning to the low/high bytes written at overlay 197 `+3792` and
