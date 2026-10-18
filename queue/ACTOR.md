@@ -18,10 +18,13 @@ Next ID: Q-ACTOR-007
   and answers its local object-number/image-word resolver; that local
   reader is removed from Settles it. Its resource/buffer and cache admission
   remain Q-PARTY-087. Blocks: nothing yet.
-- Q-ACTOR-003. FMT-ACTOR-002: What is the layout of an `RDFF` resource? Settles it: a reading of
-  `2D40:000A`, which receives the request, and of the overlay code of overlays 178, 188, 191 and
-  201 around the `RDFF` tag bytes. Tried: a search for resident instructions with the
-  displacement 43 or 76 (FND-ACTOR-010). Blocks: nothing yet.
+- Q-ACTOR-003. FMT-ACTOR-002: What does the table of 23-byte records at the far pointer
+  `57E0:19D1` hold, which a kind-5 chunk's data is copied into, what are the 15 bytes of a type-3
+  kind-4 chunk, which the load skips, and what are the fields of the 23-byte kind-5 records?
+  Settles it: a search for code that reads through `57E0:19D1`, and of readers of the kind-4
+  record number. Tried: a search for resident instructions with the displacement 43 or 76
+  (FND-ACTOR-010); FND-ACTOR-015 reads the chunk chain and the kinds, which leaves these.
+  Blocks: nothing yet.
 - Q-ACTOR-006. FMT-ACTOR-003: What do the `value` words of `MONR` name, what does `549B:00C0`
   hold and which code reads or writes it, and does script request 8 run in play? Settles it: a
   search for accesses to `549B:00C0` with segment word `0x04A0` in the resident image and the
