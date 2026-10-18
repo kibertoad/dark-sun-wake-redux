@@ -120,7 +120,7 @@ Next ID: Q-PARTY-106
   `25AF:02D9` and `28C9:26EE`, with what each bit it tests (0, 1, 3 and 7) selects, the stores
   at overlay 182 `+0DA1`, `+0EF3` and `+0F19`, and the `0x0E` stores at overlay 190 `+36AC` and
   overlay 197 `+3792` and `+38B3` with their values. The word at `0x06` is FND-PARTY-245's value,
-  the reference at `0x08` Q-PARTY-083. Tried: FND-PARTY-196 lists the shipped values of every
+  the reference at `0x08` FND-PARTY-247's container head. Tried: FND-PARTY-196 lists the shipped values of every
   field; FND-PARTY-181, FND-PARTY-182, FND-PARTY-216, FND-PARTY-217 and FND-PARTY-224 name the
   fields at `0x00`, `0x12`, `0x02`, `0x13` and `0x0C` from their consumers, and FND-PARTY-216
   binds the descriptors of fields 0 to 4 only, so no descriptor or consumer of these offsets has
@@ -232,14 +232,15 @@ Next ID: Q-PARTY-106
   preservation, all transfer/splice children, failures and later consumption
   remain.
   Blocks: slice 2.
-- Q-PARTY-083. FMT-PARTY-006: What do a 23-byte record's attached handle at
-  `0x08` and the records linked through it represent, and how are they used?
-  Settles it: direct field-4 or offset-8 readers/writers for kind 1, including
-  traversal of their targets and the screen/actions consuming them. Tried:
-  FND-PARTY-052 gives the three type-2 chunks attaching to earlier kind-1
-  chunks; FND-PARTY-196 gives their shipped values; FND-PARTY-216 confirms
-  field 4 maps to offset 8 but establishes no purpose of that reference.
-  Blocks: slice 2.
+- Q-PARTY-083. FMT-PARTY-006: Which action opens a container item, shows the items its word
+  `0x08` heads, or moves an item into or out of it? Settles it: the callers of the graph-entry
+  setter paths (`2D40:288C` and its neighbours) and of the field accessors whose field number is
+  a run-time value (among them overlay 188 `+0764` and `+079D`) that can name field 4 of a kind-1
+  record, with the screen or action each serves, and the inventory redraw's 42 to 47 branch,
+  which `CHAR/30`'s chest contents take. Tried: FND-PARTY-052 and FND-PARTY-196 give the three shipped chest records;
+  FND-PARTY-247 shows the word heads a Chest's contents, finds no direct access to it and no
+  literal field-4 accessor call, and reads the redraw keeping contents out of map positions 1 to
+  29. Blocks: slice 2.
 - Q-PARTY-084. FMT-PARTY-006: Does the quantity layout reading cover every
   admitted count producer and consumer, with field/table bindings preserved?
   Settles it: all kind-1 field-1 and direct offset-2 readers/writers, descriptor

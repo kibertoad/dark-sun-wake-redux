@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_006.ksy
-evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229, FND-PARTY-230, FND-PARTY-231, FND-PARTY-234, FND-PARTY-235, FND-PARTY-236, FND-PARTY-238, FND-PARTY-239, FND-PARTY-245, FND-PARTY-246]
+evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229, FND-PARTY-230, FND-PARTY-231, FND-PARTY-234, FND-PARTY-235, FND-PARTY-236, FND-PARTY-238, FND-PARTY-239, FND-PARTY-245, FND-PARTY-246, FND-PARTY-247]
 conflicting: []
 split_with: []
 related: []
@@ -157,7 +157,10 @@ route nor its success byte establishes a complete native list transfer
 The fields the shipped records name are, by the `FNFO` 1 resource of `OBJEX.GFF`: field 15 of a
 kind-2 object is FMT-COMBAT-001's `details_index` at `0x04`; fields 16, 17 and 4 of a kind-2 object
 are its words at `0x08`, `0x0A` and `0x0C`; field 4 of a kind-1 record is its word at `0x08`
-[FND-PARTY-052].
+[FND-PARTY-052]. That word heads the chain of items stored inside the item, 9999 when it holds
+none; in the shipped records only the items named `Chest` (item type 19, name 102) hold any. The
+game reaches the contents only through its object-graph walk, and the inventory redraw keeps them
+out of the character's map positions 1 to 29 by setting their position byte to -1 [FND-PARTY-247].
 
 ## Differences between builds
 
@@ -191,9 +194,8 @@ ends on a `chunk_type` of 0xFF whose header is the last 10 bytes of the resource
 - Which character-screen actions change the kind-2 field-16, field-17 and
   field-4 heads, including chain preservation, failures and later consumers
   (Q-PARTY-086). Graph/root/storage admission is Q-PARTY-099.
-- What a 23-byte record's handle at `0x08` refers to and how its referenced
-  records are traversed; it is 9999 in all but three shipped records
-  (FND-PARTY-052, FND-PARTY-196, Q-PARTY-083).
+- Which action opens a container item, shows its contents or moves items into or out of it
+  (FND-PARTY-247, Q-PARTY-083).
 - Complete quantity producer/consumer coverage and runtime field/table binding
   stability, beyond the placement use FND-PARTY-216 reads (Q-PARTY-084).
 - Where an item with a position outside the main draw loop's 4 to 29 appears, and whether
