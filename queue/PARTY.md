@@ -134,9 +134,9 @@ Next ID: Q-PARTY-093
   accessor's DS:614F row, times 23) and access +0C, including computed
   offsets and partial-record copies, beyond the reviewed inventory drawing,
   current-item helper, opener refresh and 191 +01F7 store, with what each
-  stores or does with the value read. Field-six accessor requests are
-  Q-PARTY-090; whole-record creation and copies are Q-PARTY-091;
-  resource/buffer validity is Q-PARTY-088; cache-specific binding/selection
+  stores or does with the value read. Field-six accessor requests through
+  script operands are Q-PARTY-092; whole-record creation and copies are
+  Q-PARTY-091; resource/buffer validity is Q-PARTY-088; cache-specific binding/selection
   preservation is Q-PARTY-089; placement/backend rendering remains
   Q-PARTY-085.
   Tried: split after six attempts. FND-PARTY-224 (drawing reuse, zero
@@ -145,36 +145,21 @@ Next ID: Q-PARTY-093
   each removed one direct site; FND-PARTY-225 answered the resolver's local
   arithmetic. No census of the remaining direct accesses was taken.
   Blocks: complete reading of FMT-PARTY-006 and item-picture admission.
-- Q-PARTY-090. FMT-PARTY-006, SCR-UI-008: Which generic field-accessor requests select
-  kind-1 field six, the +0C cache? Settles it: the field the CHAR loader's
-  header word at 2D40:01F5 names for CHAR data the game writes at run time,
-  read from the code that writes chunk-header word +06 of a saved CHAR
-  resource. Script-operand requests are Q-PARTY-092.
-  Tried: split from Q-PARTY-087 after FND-PARTY-230 binds shipped kind-1
-  field six to +0C with type two; FND-PARTY-051 and FND-PARTY-216 give
-  the accessors' contract.
-  Tried: FND-PARTY-233 classifies all 28 direct accessor calls and the 21
-  transfer calls: immediate, type-gated, descendant-graph and transfer
-  fields never name six under shipped FNFO 2 and the field lists overlay
-  188 installs. Those sites are removed from Settles it; FND-PARTY-052
-  gives the shipped CHARSAVE.GFF header fields (15, 16, 17, 4).
-  Tried: FND-PARTY-234 reads the field-path wrappers 1AA0:028B, 02D2,
-  0321 and 03D2, the setter 172C:295B and all their direct callers:
-  overlay 189 +2EFD requests field 89, and every other field is a script
-  operand byte (moved to Q-PARTY-092). Segment 1AA0 has no indirect
-  transfer and the file 948E candidate lies inside another instruction;
-  both are removed from Settles it.
-  Blocks: complete reading of FMT-PARTY-006.
 - Q-PARTY-091. FMT-PARTY-006, SCR-UI-008: Which code creates or copies a whole 23-byte
   attached record, and what does each leave in +0C? Settles it: every
-  kind-1 record allocation (2D40:2D78 through 2D40:0E80), the CHAR chunk
-  copy and the values it brings, record duplication on quantity splits,
-  save serialization, and block copies covering +0C, with the zero and
-  9999 values each can leave for the drawing resolver and opener refresh.
+  kind-1 record allocation (2D40:2D78 through 2D40:0E80), record
+  duplication on quantity splits, the raw SAVE block writes of overlay 187
+  +09D3 and their restore (whether a block covers the 23-byte table), and
+  block copies covering +0C, with the zero and 9999 values each can leave
+  for the drawing resolver and opener refresh.
   Tried: split from Q-PARTY-087. FND-PARTY-051 records overlay 187 +04F8
   copying 23 bytes and then storing zero at +0C; FND-PARTY-196 gives the
   shipped +0C values; FND-PARTY-228 reads the opener's 9999 refresh
   without naming a producer of 9999.
+  Tried: FND-PARTY-235 reads the CHAR chain writer: it saves each 23-byte
+  record whole, +0C included, and the load's kind-1 copy (FND-PARTY-051)
+  replaces that word with zero, so the CHAR chunk copy and CHAR save
+  serialization are removed from Settles it.
   Blocks: complete reading of FMT-PARTY-006 and item-picture admission.
 - Q-PARTY-088. FMT-PARTY-006, FMT-ACTOR-001, SCR-UI-008: Which resource
   and buffer conditions admit the bitmap resolver and subsequent BMP request?
