@@ -38,9 +38,17 @@ Entries by status.
 | [RULE-COMBAT-009](../../rules/RULE-COMBAT-009.md) | The status panel names the character's first effect, putting the named effects before the others |
 | [SCR-COMBAT-001](../../screens/SCR-COMBAT-001.md) | Combat status panel |
 
+## superseded
+
+1 entries.
+
+| ID | Title |
+|---|---|
+| [FND-COMBAT-008](../../findings/FND-COMBAT-008.md) | An overlay 182 routine marks the four party records and preloads the status panel images while the word at 57E0:0DAB is 2 |
+
 ## recorded
 
-50 entries.
+51 entries.
 
 | ID | Title |
 |---|---|
@@ -51,7 +59,6 @@ Entries by status.
 | [FND-COMBAT-005](../../findings/FND-COMBAT-005.md) | DSUN.EXE holds no string Moves; the status panel's caption is the format Move : %d |
 | [FND-COMBAT-006](../../findings/FND-COMBAT-006.md) | The status panel image holds no text, and no GFF file holds the panel's words |
 | [FND-COMBAT-007](../../findings/FND-COMBAT-007.md) | The routine that calls the status panel routine has eight callers in five segments |
-| [FND-COMBAT-008](../../findings/FND-COMBAT-008.md) | An overlay 182 routine marks the four party records and preloads the status panel images while the word at 57E0:0DAB is 2 |
 | [FND-COMBAT-009](../../findings/FND-COMBAT-009.md) | The call after the panel preload passes 0x92E0, which is no resource number, and its callee is a shared patch routine |
 | [FND-COMBAT-010](../../findings/FND-COMBAT-010.md) | The overlay 183 dispatcher that reaches the combat-start routine has no direct caller |
 | [FND-COMBAT-011](../../findings/FND-COMBAT-011.md) | The word at 57E0:0DAB is compared with seven values and written directly only with 4 |
@@ -94,6 +101,8 @@ Entries by status.
 | [FND-COMBAT-048](../../findings/FND-COMBAT-048.md) | The end-of-move position predicate tests an inclusive anchor rectangle with wrapped unsigned differences |
 | [FND-COMBAT-049](../../findings/FND-COMBAT-049.md) | The menu adjustment aligns and bounds the view before optional display work |
 | [FND-COMBAT-050](../../findings/FND-COMBAT-050.md) | View-bound inputs have distinct reset, restore and packed script producers |
+| [FND-COMBAT-051](../../findings/FND-COMBAT-051.md) | The end-of-move menu records event choices separately from its final return override |
+| [FND-COMBAT-052](../../findings/FND-COMBAT-052.md) | Post-menu restoration rereads mode and conditionally rebuilds input and resource state |
 
 ## Open questions
 

@@ -26,7 +26,7 @@ Entries by kind.
 
 ## findings
 
-41 entries.
+43 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -71,6 +71,8 @@ Entries by kind.
 | [FND-UI-039](../../findings/FND-UI-039.md) | Fresh rust-dos startup reaches the start-window opener call with argument one and matching data and stack segments | recorded |
 | [FND-UI-040](../../findings/FND-UI-040.md) | A strict native restore of the opener checkpoint runs its declared call to return with unchanged RNG state | recorded |
 | [FND-UI-041](../../findings/FND-UI-041.md) | Window callback setters and refresh have direct overlay callers, including the effect window | recorded |
+| [FND-UI-042](../../findings/FND-UI-042.md) | The literal window-picture displacement census yields only interior-decode candidates | recorded |
+| [FND-UI-043](../../findings/FND-UI-043.md) | The button tail supplies zero-terminated caption bytes to measurement and positioned text requests | recorded |
 
 ## screens
 

@@ -18,7 +18,7 @@ Entries by area.
 | [FND-COMBAT-005](../../findings/FND-COMBAT-005.md) | DSUN.EXE holds no string Moves; the status panel's caption is the format Move : %d | recorded |
 | [FND-COMBAT-006](../../findings/FND-COMBAT-006.md) | The status panel image holds no text, and no GFF file holds the panel's words | recorded |
 | [FND-COMBAT-007](../../findings/FND-COMBAT-007.md) | The routine that calls the status panel routine has eight callers in five segments | recorded |
-| [FND-COMBAT-008](../../findings/FND-COMBAT-008.md) | An overlay 182 routine marks the four party records and preloads the status panel images while the word at 57E0:0DAB is 2 | recorded |
+| [FND-COMBAT-008](../../findings/FND-COMBAT-008.md) | An overlay 182 routine marks the four party records and preloads the status panel images while the word at 57E0:0DAB is 2 | superseded |
 | [FND-COMBAT-009](../../findings/FND-COMBAT-009.md) | The call after the panel preload passes 0x92E0, which is no resource number, and its callee is a shared patch routine | recorded |
 | [FND-COMBAT-010](../../findings/FND-COMBAT-010.md) | The overlay 183 dispatcher that reaches the combat-start routine has no direct caller | recorded |
 | [FND-COMBAT-011](../../findings/FND-COMBAT-011.md) | The word at 57E0:0DAB is compared with seven values and written directly only with 4 | recorded |
@@ -61,6 +61,8 @@ Entries by area.
 | [FND-COMBAT-048](../../findings/FND-COMBAT-048.md) | The end-of-move position predicate tests an inclusive anchor rectangle with wrapped unsigned differences | recorded |
 | [FND-COMBAT-049](../../findings/FND-COMBAT-049.md) | The menu adjustment aligns and bounds the view before optional display work | recorded |
 | [FND-COMBAT-050](../../findings/FND-COMBAT-050.md) | View-bound inputs have distinct reset, restore and packed script producers | recorded |
+| [FND-COMBAT-051](../../findings/FND-COMBAT-051.md) | The end-of-move menu records event choices separately from its final return override | recorded |
+| [FND-COMBAT-052](../../findings/FND-COMBAT-052.md) | Post-menu restoration rereads mode and conditionally rebuilds input and resource state | recorded |
 | [RULE-COMBAT-001](../../rules/RULE-COMBAT-001.md) | All four party members are drawn during combat, and only the leader again after it when the party is collapsed | sourced |
 | [RULE-COMBAT-002](../../rules/RULE-COMBAT-002.md) | An attack hits when a roll of 1 to 20 is at least the attacker's THAC0 less the target's Armor Class | sourced |
 | [RULE-COMBAT-003](../../rules/RULE-COMBAT-003.md) | Damage lowers hit points; at 0 a character is unconscious and at -10 dead | sourced |

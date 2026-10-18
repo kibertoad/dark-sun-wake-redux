@@ -6,7 +6,7 @@ Entries by status.
 
 ## supported
 
-31 entries.
+32 entries.
 
 | ID | Title |
 |---|---|
@@ -41,6 +41,7 @@ Entries by status.
 | [RULE-PARTY-015](../../rules/RULE-PARTY-015.md) | How experience is given to party members |
 | [SCR-PARTY-001](../../screens/SCR-PARTY-001.md) | Learn a spell |
 | [SCR-PARTY-002](../../screens/SCR-PARTY-002.md) | Learn or enhance a psionic power |
+| [SCR-PARTY-003](../../screens/SCR-PARTY-003.md) | Choose a new class |
 
 ## disputed
 
@@ -83,7 +84,7 @@ Entries by status.
 
 ## recorded
 
-197 entries.
+210 entries.
 
 | ID | Title |
 |---|---|
@@ -284,6 +285,19 @@ Entries by status.
 | [FND-PARTY-217](../../findings/FND-PARTY-217.md) | Inventory opens WIND 13500 with overlay 189 callbacks and projects attached records by signed position byte 13 |
 | [FND-PARTY-218](../../findings/FND-PARTY-218.md) | Object-graph word 6 carries the root object or a descendant field selector, and deletion dispatch uses the entry kind |
 | [FND-PARTY-219](../../findings/FND-PARTY-219.md) | Rust-dos reaches game-main entry with DS equal to SS and no RNG draw after the initial MZ stack is replaced |
+| [FND-PARTY-220](../../findings/FND-PARTY-220.md) | The inventory recipient-space check selects the first unused position from 14 through 25 |
+| [FND-PARTY-221](../../findings/FND-PARTY-221.md) | The recipient-transfer route targets field four and conditionally writes position through field ten |
+| [FND-PARTY-222](../../findings/FND-PARTY-222.md) | Backpack position codes select twelve inventory frame origins in two columns of six |
+| [FND-PARTY-223](../../findings/FND-PARTY-223.md) | The fourteen other main inventory codes select frame origins around the portrait |
+| [FND-PARTY-224](../../findings/FND-PARTY-224.md) | Inventory drawing reuses attached-record word 0C as a cached BMP resource number |
+| [FND-PARTY-225](../../findings/FND-PARTY-225.md) | The inventory bitmap resolver requests the negated object's OJFF image and returns zero on a failed request |
+| [FND-PARTY-226](../../findings/FND-PARTY-226.md) | Inventory image requests use signed dimensions to choose centered placement or a temporary view |
+| [FND-PARTY-227](../../findings/FND-PARTY-227.md) | The current-item image helper returns 19103 without a selection and otherwise resolves only a zero cache |
+| [FND-PARTY-228](../../findings/FND-PARTY-228.md) | The inventory opener refreshes cached image 9999 before requesting the current-item pointer |
+| [FND-PARTY-229](../../findings/FND-PARTY-229.md) | An item-selection path copies an object-slot image word into a rebuilt graph's first kind-1 record |
+| [FND-PARTY-230](../../findings/FND-PARTY-230.md) | Shipped kind-1 field six selects the attached-record image cache with type two and initial width two |
+| [FND-PARTY-231](../../findings/FND-PARTY-231.md) | The inventory resolver offers existing storage while the image request offers a null destination to the full-resource reader |
+| [FND-PARTY-232](../../findings/FND-PARTY-232.md) | DUAL class selection requests WIND 17502 and maps its eight buttons to the eligibility flags |
 
 ## Open questions
 
@@ -308,3 +322,4 @@ Entries whose Open questions section says more than None known.
 | [RULE-PARTY-008](../../rules/RULE-PARTY-008.md) | The keys 1 to 4 choose the party leader | supported |
 | [RULE-PARTY-013](../../rules/RULE-PARTY-013.md) | How a character gains levels in play | supported |
 | [RULE-PARTY-015](../../rules/RULE-PARTY-015.md) | How experience is given to party members | supported |
+| [SCR-PARTY-003](../../screens/SCR-PARTY-003.md) | Choose a new class | supported |
