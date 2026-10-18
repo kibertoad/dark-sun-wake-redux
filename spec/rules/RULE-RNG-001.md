@@ -4,7 +4,7 @@ title: The game's random number generator and its reductions
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009]
+evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027]
 conflicting: []
 split_with: []
 related: []
@@ -32,6 +32,11 @@ from only its low 16-bit return word (FND-RNG-009). The helper's complete
 conversion and admitted reseeding paths remain unknown (Q-RNG-003).
 Additional overlay caller candidates still require verification and rule
 mapping (Q-RNG-001); the resident list is not a complete caller census.
+
+Overlay 204's entry runs, and reseeds, each time a script issues request 27 of instruction
+`0x22`; 44 shipped instructions do, in 21 `GPL` resources (FND-RNG-027). No shipped script uses
+instruction `0x59`, so FND-RNG-024's d20 threshold test does not draw in the shipped game
+(FND-RNG-027).
 
 ## Parameters
 
@@ -136,7 +141,7 @@ None known.
   and admitted reseeding paths beyond the recovered direct call sequences
   remain separate (Q-RNG-003). The second root's local reseeding and
   conditional draw loop, and its script wrapper widths, are recorded in
-  FND-RNG-021..022; which shipped scripts issue the request remains Q-RNG-011.
+  FND-RNG-021..022, and the shipped scripts that issue it in FND-RNG-027.
 - The direct call sites of the generator and helpers beyond those read, and the rule and draw
   order of each (Q-RNG-001). Recovered `random_mod` uses include `chance_in_ten`, the table
   selection in FND-RNG-007 and the music selector of RULE-SOUND-003 (FND-SOUND-012).
@@ -147,7 +152,5 @@ None known.
 - The inputs and rules of the eleven `random_between` sites: FND-RNG-025 reads five in overlay
   176's psionic action and resistance checks, including conditional and equal-bound draw paths,
   and FND-RNG-026 six in overlay 179's coordinate samplers (Q-RNG-009).
-- The shipped scripts and indexed storage of the d20 test reached from opcode 59 (FND-RNG-024,
-  Q-RNG-010).
 - Whether computed, aliased or bulk accesses read or write `rng_state`
   beyond the known generator/setter (FND-RNG-001, Q-RNG-007).

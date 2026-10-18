@@ -14,7 +14,7 @@ Next ID: Q-RNG-013
   FND-SCRIPT-011 and FND-SOUND-012 identify the resident callers (the helpers, the music
   selector, the table selection and script instruction `0x52`); FND-RNG-009's control query
   lists further overlay candidates not yet checked, and FND-RNG-021 reads overlay 204 +00E1 as a
-  draw conditional on retained offset state. The sites in Q-RNG-009 and Q-RNG-010 are read
+  draw conditional on retained offset state. The sites in Q-RNG-009 and FND-RNG-024 are read
   locally; the other candidates remain. Blocks: slices 2-7.
 - Q-RNG-008. RULE-RNG-001: Can the generator, a helper or the seed setter be reached through a
   stored far pointer, a computed call or a segment alias? Settles it: the words of the file equal
@@ -30,12 +30,6 @@ Next ID: Q-RNG-013
   dynamic endpoints, two contest rolls before the comparison, the conditional second predicate
   call, no draw when the bounds are equal) and FND-RNG-026 overlay 179's six; their inputs and
   rule mapping remain. Blocks: slices 2-7.
-- Q-RNG-010. RULE-RNG-001: Which shipped scripts run overlay 188's d20 test through opcode 59, and
-  over which indexed storage? Settles it: the script instances that use opcode 59, the fields its
-  candidates' scaled results come from and the bounds of its candidate iterator. Tried: split
-  from Q-RNG-001. FND-RNG-024 reads the test's one draw per candidate and its early stop, and
-  FND-PARTY-099 the effect-saving `roll_sum(1, 20)` caller it reconciles; the shipped instances
-  and storage remain. Blocks: slices 2-7.
 - Q-RNG-003. RULE-RNG-001: When does the game reseed: which paths reach the two seed callers,
   overlay 180 +065E and overlay 204 +001E, and with what near buffers? Settles it: the callers
   that reach each seed caller and their branches, and on each such path the DS/SS identity of
@@ -45,12 +39,6 @@ Next ID: Q-RNG-013
   FND-RNG-021 (the second root reseeds before its offset loop) answer the startup path and the
   second root's local role; the other paths remain. Blocks: reproducible startup seeding and
   Q-PARTY-081's later recorded gameplay run.
-- Q-RNG-011. RULE-RNG-001: Which shipped scripts issue request 27, the route into the second
-  reseeding root, and with which packed arguments? Settles it: the script instances that issue
-  request 27, the arguments each passes and the branches between the request and overlay 204
-  +001E. Tried: split from Q-RNG-003. FND-RNG-022 reads the request's wrapper, its narrowing of
-  the packed arguments to signed bytes and three direct callers' argument windows; the shipped
-  instances remain. Blocks: reproducible reseeding.
 - Q-RNG-004. RULE-RNG-001: Which environment strings reach the clock conversion's initializer,
   and with what bounds? Settles it: the population and bounds of the environment pointer array
   and its strings on the admitted paths, and the initializer's branches for parsed offsets and
