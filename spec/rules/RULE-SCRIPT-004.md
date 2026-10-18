@@ -324,9 +324,10 @@ None known.
 
 ## Open questions
 
-- What `fn_172C_284D` (`0xB1`), `fn_172C_31B7` (the string of kind 1), `fn_172C_325F` (the
-  translation of kind 2 strings) and `fn_172C_2914` (assignments to kinds from `0x10`) do
-  (Q-SCRIPT-004).
+- What `fn_172C_284D` (`0xB1`) and `fn_172C_2914` (assignments to kinds from `0x10`) read and
+  write (Q-SCRIPT-009).
+- Which string `fn_172C_31B7` (the string of kind 1) copies (Q-SCRIPT-011).
+- What `fn_172C_325F` (the translation of kind 2 strings) does (Q-SCRIPT-008).
 - How many variables of each kind there are, in `global_flags`, `local_flags`,
   `global_numbers`, `local_numbers`, `global_big_numbers`, `local_big_numbers`, `global_strings`
   and `local_strings`, and where `global_name_pointers` point (Q-SCRIPT-005).

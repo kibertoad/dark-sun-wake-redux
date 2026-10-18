@@ -131,4 +131,4 @@ None known.
 
 - What the keys and `unk_08` stand for, and when the game tests each list and runs the trigger's
   script (Q-SCRIPT-002).
-- The other trigger instructions, `0x66`, `0x69` to `0x6F` and `0x70` (Q-SCRIPT-004).
+- The other trigger instructions, `0x66`, `0x69` to `0x6F` and `0x70` (Q-SCRIPT-002).

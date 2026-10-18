@@ -55,5 +55,5 @@ None.
   through functions 33 and 34 of opcode `0x22`? Settles it: the `GPL ` resources decoded
   instruction by instruction, with the arguments of every call of those functions. Tried:
   FND-SAVE-013 reads both functions and their packed arguments; a byte search cannot tell their
-  calls from other operands without the instruction layouts. Waiting on: Q-SCRIPT-004, the layout
-  of every script instruction, in the SCRIPT area. Blocks: nothing yet.
+  calls from other operands without the instruction layouts. Waiting on: Q-SCRIPT-008, the operand
+  layout of every script instruction, in the SCRIPT area. Blocks: nothing yet.

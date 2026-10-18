@@ -45,4 +45,4 @@ and last bytes [FND-SCRIPT-001]. Whether every byte decodes as instructions was 
 
 ## Open questions
 
-- The layout of the instructions whose handlers the spec does not describe yet (Q-SCRIPT-004).
+- The operand layout of the instructions whose handlers the spec does not describe yet (Q-SCRIPT-008).

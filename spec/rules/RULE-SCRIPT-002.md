@@ -187,4 +187,6 @@ None known.
 - What `fn_172C_31ED` and `fn_5702_00B1` do, whether `fn_5702_00B1` returns, and what the far
   routine at `g_57E0_02F6` is when one is set (Q-SCRIPT-003).
 - What `g_4C0E_000B`, `g_4C13_032B` and `g_4C13_0325` mean (Q-SCRIPT-003).
-- The instructions whose handlers this spec does not yet describe (Q-SCRIPT-004).
+- The operand layouts of the instructions whose handlers this spec does not yet describe
+  (Q-SCRIPT-008), and what those handlers do: the variable arithmetic (Q-SCRIPT-012), opcode
+  `0x22`'s functions (Q-SCRIPT-010) and the handlers that call far routines (Q-SCRIPT-004).

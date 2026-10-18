@@ -1,6 +1,6 @@
 # SCRIPT
 
-Next ID: Q-SCRIPT-008
+Next ID: Q-SCRIPT-013
 
 ## Static
 
@@ -16,7 +16,7 @@ Next ID: Q-SCRIPT-008
   when does the game test each list and run its scripts? Settles it: the code
   that writes the words at `4C0D:0001` to `4C0D:0009`, the callers of the four
   walkers in segment `1695` and of `2D40:0EF1`, and the handlers of the other
-  trigger instructions. Tried: `CSEQ` resource 1000, an XMIDI file
+  trigger instructions `0x66` and `0x69` to `0x70`. Tried: `CSEQ` resource 1000, an XMIDI file
   (FND-SOUND-015), the separate 19-byte list and the `SCMD` loader
   (FND-SCRIPT-016, FND-SCRIPT-018), none of which fills the 13-byte records; the trigger instructions fill them (FND-SCRIPT-015).
   Blocks: slices 3-6.
@@ -139,12 +139,47 @@ Next ID: Q-SCRIPT-008
   cache/capacity inputs, valid pointers,
   aliases, complete input provenance and actual archive I/O remain open.
   Blocks: slices 3-6.
-- Q-SCRIPT-004. RULE-SCRIPT-002, RULE-SCRIPT-004, RULE-SCRIPT-008,
-  FMT-SCRIPT-001, FMT-SCRIPT-002: What do the instructions do whose handlers
-  the spec does not describe yet, what do `fn_172C_284D`, `fn_172C_2914`,
-  `fn_172C_31B7` and `fn_172C_325F` do, and how are strings of kind 2 stored?
-  Settles it: the handlers FND-SCRIPT-005 lists, read one instruction family at
-  a time, and those four routines. Blocks: slices 3-6.
+- Q-SCRIPT-004. RULE-SCRIPT-002: What do the instructions do whose handlers pass their
+  parameters to far routines in segments `2D40`, `5702`, `5787` and `1000`, and whose
+  effects the spec does not describe yet (`0x00`, `0x08` to `0x0D`, `0x0F`, `0x10`, `0x1A` to
+  `0x1F`, `0x20`, `0x21`, `0x24`, `0x25`, `0x2A` to `0x2D`, `0x2F`, `0x30`, `0x32`, `0x34` to
+  `0x3D`, `0x41` to `0x47`, `0x49`, `0x58` to `0x5C`, `0x5E`, `0x62` and `0x80`)? Settles it:
+  each of those handlers and the far routine it calls, read one family of handlers at a time.
+  Tried: split into Q-SCRIPT-008 (operand layouts), Q-SCRIPT-009 (field paths), Q-SCRIPT-010
+  (opcode `0x22`'s functions), Q-SCRIPT-011 (kind-1 strings) and Q-SCRIPT-012 (variable
+  arithmetic); the trigger instructions `0x66` and `0x69` to `0x70` belong to Q-SCRIPT-002.
+  FND-SCRIPT-005 lists the handlers and FND-SCRIPT-012 reads the output ones. Blocks: slices
+  3-6.
+- Q-SCRIPT-008. FMT-SCRIPT-001, FMT-SCRIPT-002, RULE-SCRIPT-002, RULE-SCRIPT-004: Which bytes
+  does each instruction's handler read as its operands, so that a script can be decoded
+  instruction by instruction, and how are strings of kind 2 and of any other kind stored?
+  Settles it: every
+  handler of the table at `57E0:030A` and the routines they call, as far as each reads script
+  code (`fn_172C_299C`, `fn_172C_084E`, `fn_172C_13E0`, `fn_172C_325F`), a census of the
+  routines that read the code buffer, and a decode of every shipped script with those layouts.
+  Tried: split from Q-SCRIPT-004; FND-SCRIPT-009, FND-SCRIPT-010 and FND-PARTY-041 give the
+  layouts of the control-flow instructions, and FND-PARTY-234 reads the field-path parser.
+  Blocks: Q-PARTY-050, Q-PARTY-051, Q-PARTY-092, Q-SAVE-003.
+- Q-SCRIPT-009. RULE-SCRIPT-004: What do the field-path instructions read and write: `0x33`
+  (`fn_172C_084E`), `0x40` (`fn_172C_13E0`), expression byte `0xB1` (`fn_172C_284D`) and the
+  assignment to variable codes from `0x10` (`fn_172C_2914`)? Settles it: those routines, the
+  handle lookup `2D40:0AB6` and the six fixed handles `fn_172C_299C` takes from `4C13:035F` to
+  `4C13:0369`, and what the field getter and setter of segment `1AA0` return and store for each
+  field type. Tried: split from Q-SCRIPT-004; FND-PARTY-234 traces their fields to script
+  bytes and reads `fn_172C_295B`. Blocks: slices 3-6.
+- Q-SCRIPT-010. RULE-SCRIPT-002: What does each of the 53 functions of opcode `0x22`, the
+  switch at overlay 204 `+0169`, do with its three arguments? Settles it: the cases of that
+  switch, read one function at a time. Tried: split from Q-SCRIPT-004; FND-PARTY-108,
+  FND-PARTY-122, FND-PARTY-156, FND-SAVE-013 and FND-UI-049 read functions 1, 23, 26, 33, 34,
+  37, 46, 48 and 49. Blocks: slices 3-6.
+- Q-SCRIPT-011. FMT-SCRIPT-002, RULE-SCRIPT-004: Which string does a string of kind 1 copy?
+  Settles it: `fn_172C_31B7`, the routines `1000:406D`, `1000:3FC1` and `2D40:0B14` it calls,
+  the string at `4C10:0000`, and the writers of the slot word at `4C13:0369`. Tried: split from
+  Q-SCRIPT-004; FND-SCRIPT-010 reads the call. Blocks: slice 3.
+- Q-SCRIPT-012. RULE-SCRIPT-002: What do the instructions `0x01` to `0x07`, `0x11` and `0x76`
+  to `0x7F` do to the variable their first parameter names? Settles it: those handlers, the
+  width each reads and writes at the parameter's address, and the operations they apply.
+  Tried: split from Q-SCRIPT-004; FND-SCRIPT-009 reads `0x06`. Blocks: slices 3-6.
 - Q-SCRIPT-005. RULE-SCRIPT-004, RULE-SCRIPT-005, RULE-SCRIPT-010: How many script variables of
   each kind are there, where and when does the game clear them, are local
   variables cleared on a region change, does a saved game hold them, and what
