@@ -10,7 +10,7 @@ Next ID: Q-COMBAT-025
   only above 4? Settles it: a reading of `2D40:3E64` and of the code that fills the tables at
   the far pointers `57E0:19C9` and `57E0:19C5`. Tried: the panel routine and the party buttons
   (FND-COMBAT-022, FND-COMBAT-023). Blocks: slice 4.
-- Q-COMBAT-003. RULE-COMBAT-008, SCR-UI-022: Which values do `combat_state` and the word at `57E0:0DAB` take,
+- Q-COMBAT-003. RULE-COMBAT-008, SCR-UI-022, RULE-INPUT-003: Which values do `combat_state` and the word at `57E0:0DAB` take,
   and which code sets each? Settles it: the seven direct stores to `combat_state` of
   FND-COMBAT-023, read in their routines, and the writers of `57E0:0DAB`. Tried: an immediate
   store search (FND-COMBAT-023) and Ghidra's references to `57E0:0DAB` (FND-COMBAT-011). Blocks:
