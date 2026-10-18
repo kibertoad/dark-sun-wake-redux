@@ -5,7 +5,7 @@ Python environment is `artifacts/evidence-python`; `EVIDENCE_PYTHON` selects an
 explicit interpreter. Node 22+ and Python 3.12+ are required.
 
 The shared input contract, supported instruction model, limits and examples are
-maintained in the [engine guide](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/blob/6ab530df7851354c98e833a2beb76dbe0f71e421/docs/bounded-evidence-reporters.md).
+maintained in the [engine guide](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/blob/56b055213504233f6bc17ca42fe86c245c958cff/docs/bounded-evidence-reporters.md).
 Use this repository's `node tools/evidence/report.mjs x86-<command> <config>`
 wrapper. Keep configurations and reports under `GAME_DIR`, outside Git.
 
@@ -22,7 +22,7 @@ local tests cover package routing, exact versions and actionable errors.
 engine, `dinorefurb-dosbox-session`, Capstone, pypcode and xxhash wheel hashes. `./tools/Restore-ToolDependencies.ps1 -NoRestore`
 checks existing installations without installing or using a network fallback.
 The engine pins its own decoders (Capstone 5.0.9 and pypcode 4.0.1 for engine
-19.3.0), which pip installs with it. The reader runs `pointers`, `table`,
+19.9.0), which pip installs with it. The reader runs `pointers`, `table`,
 `bodies`, `imports` and `unpack` in Node and needs no engine for them.
 
 Engine 0.4.0 adds caller-local x86-call-order, width-preserving result flow

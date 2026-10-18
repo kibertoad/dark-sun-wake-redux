@@ -18,7 +18,7 @@ and `nosound` never set. Agents never operate GOG's DOSBox 0.74-2; runs of it
 are live sessions the owner plays and captures alone. The package takes the
 machine's run lock (`C:\ProgramData\refurbished-dinosaurs\run.lock`, or the
 path in `REFURBISHED_DINOSAURS_RUN_LOCK`) as the protocol's
-[Running the original](../vendor/upstream/work-protocol.md#running-the-original) (lines 391-425)
+[Running the original](../vendor/upstream/work-protocol.md#running-the-original) (lines 399-433)
 says.
 
 Setup: `./tools/Restore-ToolDependencies.ps1` installs
@@ -116,7 +116,7 @@ the original's, can write a seed into `rng_state`, and reads memory and takes
 screenshots at its stops. It waits for emulated times of a deterministic run,
 not for states the game reaches. EXP-PARTY-001 is its first experiment. It
 follows the protocol's
-[Recorded runs](../vendor/upstream/work-protocol.md#recorded-runs) (lines 401-413). Each emulated-call setup must document port
+[Recorded runs](../vendor/upstream/work-protocol.md#recorded-runs) (lines 409-421). Each emulated-call setup must document port
 models, video memory substituted with RAM and the limits of each comparison,
 within the current resident-call contract below.
 
@@ -136,3 +136,5 @@ observations and branch-direction coverage are bounded and recorded locally.
 The initializer controls seed no original memory field. No game claim/parity
 status or startup-to-transfer/caller admission changes merely from these tests.
 See tools/emu/README.md and docs/VALIDATION.md.
+
+Output retention follows [ANALYSIS-OUTPUTS](ANALYSIS-OUTPUTS.md). [WINDOWS-PROBES](WINDOWS-PROBES.md) is a reference for Windows guest projects and changes none of this DOS restoration's recorded capabilities or capture restrictions.

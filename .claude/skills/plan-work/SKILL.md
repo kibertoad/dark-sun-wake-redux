@@ -6,8 +6,8 @@ description: Plan restoration work - record the project's stage, write or revise
 # Plan work
 
 The rules are in the work protocol's [Stages](../../../vendor/upstream/work-protocol.md#stages) (lines 32-82),
-[The queue](../../../vendor/upstream/work-protocol.md#the-queue) (lines 84-163) and
-[Coding agents and long-running goals](../../../vendor/upstream/work-protocol.md#coding-agents-and-long-running-goals) (lines 542-640).
+[The queue](../../../vendor/upstream/work-protocol.md#the-queue) (lines 84-165) and
+[Coding agents and long-running goals](../../../vendor/upstream/work-protocol.md#coding-agents-and-long-running-goals) (lines 550-648).
 Open a linked section only when a step leaves a question it answers, read
 only the lines the link gives, and never a section already read this session.
 Planning changes `docs/IMPLEMENTATION-PLAN.md`, `queue/` and `docs/goals/`,
@@ -63,7 +63,7 @@ never code or spec entries apart from new `unknown` entries.
    entry cites gets a queue item against the nearest entry or a new
    `unknown` one. Its figures are printed when wanted and never committed;
    the plan names the command and copies none of the shares it printed. The protocol's
-   [Measuring progress](../../../vendor/upstream/work-protocol.md#measuring-progress) (lines 483-536)
+   [Measuring progress](../../../vendor/upstream/work-protocol.md#measuring-progress) (lines 491-544)
    says how to set an early baseline and report coverage by area.
 3. Move items that block the current slice to the top of their section.
 

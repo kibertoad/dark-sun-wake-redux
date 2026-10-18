@@ -5,8 +5,8 @@ description: Close a work session on this restoration - stop processes the sessi
 
 # End a session
 
-The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#sessions) (lines 379-389).
-Goal completion follows [Coding agents and long-running goals](../../../vendor/upstream/work-protocol.md#coding-agents-and-long-running-goals) (lines 542-640).
+The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#sessions) (lines 387-397).
+Goal completion follows [Coding agents and long-running goals](../../../vendor/upstream/work-protocol.md#coding-agents-and-long-running-goals) (lines 550-648).
 Open a linked section only when a step leaves a question it answers, read
 only the lines the link gives, and never a section already read this session.
 
@@ -94,3 +94,5 @@ wrap-up alone does not revoke them. When an actual stop reason applies in Claude
 Code, run node tools/goal-run.mjs stop and record that reason. Follow the active
 thread's completion and blocked audits for Codex; a hook timeout is no proof of
 completion or of a blocker.
+
+After committed analysis records, follow [ANALYSIS-OUTPUTS](../../../docs/ANALYSIS-OUTPUTS.md) for reviewed output only; retain canonical inputs, unresolved evidence and current checkpoints.

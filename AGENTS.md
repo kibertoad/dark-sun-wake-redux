@@ -147,7 +147,7 @@ script or reviewer can check. Guesses belong in `queue/` or an entry's Open
 questions, not in an API.
 
 The owner decides only what the work protocol's
-[What needs the owner](vendor/upstream/work-protocol.md#what-needs-the-owner) (lines 538-540)
+[What needs the owner](vendor/upstream/work-protocol.md#what-needs-the-owner) (lines 546-548)
 lists: eligibility and supported editions, scope and non-goals, any deviation
 whose Default is `on` or `mandatory`, features outside the parity matrix,
 releases, and live sessions. Those decisions go in `docs/DECISIONS.md`, and a
@@ -751,9 +751,9 @@ reads; a failure whose leftover state changes the next call; and the source a
 request reads kept apart from the request and its destination. These tests
 compare the rebuild with the spec or with itself, so none of them validates a
 parity row or is listed in its Tests column; see the protocol's
-[Implementation batches](vendor/upstream/work-protocol.md#implementation-batches) (lines 206-224),
-[Checkpoints and replay](vendor/upstream/work-protocol.md#checkpoints-and-replay) (lines 308-316)
-and [Continuation cases](vendor/upstream/work-protocol.md#continuation-cases) (lines 318-350).
+[Implementation batches](vendor/upstream/work-protocol.md#implementation-batches) (lines 214-232),
+[Checkpoints and replay](vendor/upstream/work-protocol.md#checkpoints-and-replay) (lines 316-324)
+and [Continuation cases](vendor/upstream/work-protocol.md#continuation-cases) (lines 326-358).
 
 The protocol adds test cases for four more shapes of rule, which also
 compare the rebuild with the spec and validate no row. A caller that combines
@@ -775,10 +775,10 @@ tested with a test-supplied allocator and release routine that record calls,
 return null, fill blocks with a pattern, read or change the container when
 called, and change a count the copy loads again after the check. Each caller
 of one target is tested with the statuses its own comparison tells apart. See the protocol's
-[Calls that combine results](vendor/upstream/work-protocol.md#calls-that-combine-results) (lines 226-242),
-[Rules behind an adapter](vendor/upstream/work-protocol.md#rules-behind-an-adapter) (lines 244-260),
-[Arithmetic at the original's widths](vendor/upstream/work-protocol.md#arithmetic-at-the-originals-widths) (lines 262-282)
-and [Allocation, containers and cleanup](vendor/upstream/work-protocol.md#allocation-containers-and-cleanup) (lines 290-306).
+[Calls that combine results](vendor/upstream/work-protocol.md#calls-that-combine-results) (lines 234-250),
+[Rules behind an adapter](vendor/upstream/work-protocol.md#rules-behind-an-adapter) (lines 252-268),
+[Arithmetic at the original's widths](vendor/upstream/work-protocol.md#arithmetic-at-the-originals-widths) (lines 270-290)
+and [Allocation, containers and cleanup](vendor/upstream/work-protocol.md#allocation-containers-and-cleanup) (lines 298-314).
 
 Each rule ships with fast-gate tests over synthetic state. The rule itself is
 usually a static class over the serializable state type, called by `Game`.
@@ -960,3 +960,19 @@ Apply the claim-relevant procedure in [EVIDENCE-REVIEW](docs/EVIDENCE-REVIEW.md)
 before asserting a complete reading. How the local copy of the standard is
 verified and, when the owner asks, refreshed is in
 [UPSTREAM-RULES](docs/UPSTREAM-RULES.md). These procedures keep Standard v1.
+
+## Change-aware checks during a batch
+
+During a documentation-only batch, record its base commit and run
+`./tools/Invoke-Validation.ps1 -ChangedSince <base-commit>`. Selection includes
+committed, staged, unstaged, untracked and both sides of renamed paths. It retains
+policy, configuration, infrastructure, documentation/citation, Kaitai and queue
+checks. Mixed or unknown changes require `-TestFilter`; explicit test requests
+run the normal gate. This project still requires full `./tools/Test.ps1` before
+every batch commit. Reuse results only when command, tool versions, configuration,
+licensed builds and the whole tree match exactly. Keep staged-tree hooks enabled.
+See [VALIDATION](docs/VALIDATION.md).
+
+Follow [ANALYSIS-OUTPUTS](docs/ANALYSIS-OUTPUTS.md) for reviewed headless output
+retention. [WINDOWS-PROBES](docs/WINDOWS-PROBES.md) is reference guidance only;
+this project's existing runtime and native capture restrictions remain binding.

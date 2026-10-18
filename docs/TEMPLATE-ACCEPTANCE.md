@@ -356,3 +356,22 @@ its test, the `research-item`, `implement-rows` and `start-session` skills,
 local wording differs. The check now warns about a Static item with more than
 three `Tried:` notes; no item here has that many. `node tools/Invoke-NodeChecks.mjs`
 passes. No original is run.
+
+## Template 1686fe0 adoption, 2026-10-18
+
+Reviewed the complete delta since acacace0, including PRs 116 and 119 and the
+latest reporter release. Adopted research batching/index reuse, selector and
+synthetic controls, headless retention and Windows reference procedures.
+Configured adaptations keep vendor/upstream paths, npm/hash-locked Python,
+full Test.ps1 before commits, and the existing DOS session and native capture
+contract. Windows guest examples establish no new capability. Generic template
+handover/plan content is replaced by this project's maintenance plan; its older
+checker pin is superseded by the retained 6.0.0 release. pnpm workspace changes
+are inapplicable to this npm project. All changed template capabilities have a
+disposition here; game evidence, pack revision and parity statuses are unchanged.
+
+Reader 4.3.0, engine 19.9.0 and RefurbishedDinosaurs 12.2.0 are pinned with
+registry integrity/hashes and ordinary/platform locks. Other shared packages
+remain at their latest stable releases. Merged protocol ceefc84 is refreshed
+without changing Standard v1 or checker 6.0.0. New selector and routing controls
+pass; full configured validation is required before the adoption commit.

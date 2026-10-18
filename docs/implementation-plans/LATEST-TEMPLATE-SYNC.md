@@ -269,3 +269,27 @@ resolves both to the intended synthetic targets. Demonstrate the test fails
 before the fix, then pass full assetless Test.ps1. Regenerated licensed images
 and fresh snapshots remain local; old snapshots/coverage remain provisional.
 Exit: tested tooling commit, upstream report and separate goal handover; no push.
+
+## Template 1686fe0 and latest shared libraries (2026-10-18)
+
+Owner-authorized tooling update and push to main. Adopt the complete template
+delta since acacace0: research batching/index reuse, change-aware validation,
+headless output retention and Windows probe reference procedures. Preserve
+configured identity, licensed stores, native capture restrictions and mandatory
+full Test.ps1 before each batch commit. Windows guest guidance grants no runtime
+capability for this DOS game. Keep npm and dedicated hash-locked Python restores
+instead of switching this configured project to template pnpm scaffolding.
+
+Upgrade reader 4.2.0 to 4.3.0, engine 19.7.0 to 19.9.0 and shared .NET
+packages 12.0.0 to 12.2.0, updating all ordinary and packaging locks. Checker
+6.0.0, session 0.10.0 and decoder pins remain latest. Refresh the merged protocol
+at ceefc84 while retaining the checker release pin. No game rules or pack changes.
+
+Acceptance: selector synthetic Git fixtures and PowerShell routing controls
+prove documentation-only checks retain policy/configuration/infrastructure,
+Kaitai/citation and queue checks, invalid bases fail and explicit tests select
+the normal gate. Unknown/mixed paths require a test filter for selection.
+Exact locks, section links, full Test.ps1, Release build and assetless smoke pass.
+Risk: newer dependencies may expose compatibility failures; fix demonstrated
+failures without promoting evidence. Exit: reviewed tooling and separate
+handover commits pushed to main. No owner decisions are missing.

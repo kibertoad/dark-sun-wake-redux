@@ -214,7 +214,7 @@ or nonportable manifest paths rather than silently renaming them. Commit only th
 permitted inventory columns; keep view reports/configs local. Document the
 selected views and exclusions in the build/Ghidra guide in project-authored words.
 Coverage describes analyzer-discovered functions, not every function that exists.
-The protocol's [Creating and checking an inventory](../vendor/upstream/work-protocol.md#creating-and-checking-an-inventory) (lines 514-522)
+The protocol's [Creating and checking an inventory](../vendor/upstream/work-protocol.md#creating-and-checking-an-inventory) (lines 522-530)
 says how to export and check one. The pinned checker reads the protocol's
 `ranges` column, the half-open body ranges of a function whose body is not one
 range from its start. From standard-checker 6.0.0 `standard-coverage` also reads

@@ -397,3 +397,5 @@ It executes no instruction. The Java test admits only the named synthetic
 fixture and expected bytes; never run it on a licensed program. Completion
 markers and classifications are checked because headless exit success can
 hide a script exception. This optional installed-Ghidra test needs no GAME_DIR.
+
+Bound each headless run in a dedicated output directory with provenance and an active marker. After committing its independently worded records and regeneration procedure, follow [ANALYSIS-OUTPUTS](ANALYSIS-OUTPUTS.md). Preserve canonical projects, inputs and unresolved reports.

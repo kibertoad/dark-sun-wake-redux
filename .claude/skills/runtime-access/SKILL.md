@@ -46,10 +46,12 @@ in session-package runs, owner live sessions and the emulator harness.
 4. **Move queue items** between `Emulated call` and `Live session` where an
    answer changed, in the same commit. Agent runs, through the session package,
    take the machine's run lock as the protocol's
-   [Running the original](../../../vendor/upstream/work-protocol.md#running-the-original) (lines 391-425)
+   [Running the original](../../../vendor/upstream/work-protocol.md#running-the-original) (lines 399-433)
    says, and items move to `Agent run`.
    Each queued run names the capability parts it needs in Settles it. An
    unavailable part blocks that run; any required person-only part makes it
    an owner live session. Only an owner policy change can admit an Agent run.
 5. **Commit**, then print the status block from `research-item` with
    `Batch: runtime access`.
+
+Windows guest projects may consult [WINDOWS-PROBES](../../../docs/WINDOWS-PROBES.md); this DOS project retains its existing session contract and per-part capability admission.

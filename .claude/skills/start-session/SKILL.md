@@ -5,8 +5,8 @@ description: Resume restoration work at the start of a session. Use before any r
 
 # Start a session
 
-The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#sessions) (lines 379-389).
-Goal discovery follows [Coding agents and long-running goals](../../../vendor/upstream/work-protocol.md#coding-agents-and-long-running-goals) (lines 542-640).
+The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#sessions) (lines 387-397).
+Goal discovery follows [Coding agents and long-running goals](../../../vendor/upstream/work-protocol.md#coding-agents-and-long-running-goals) (lines 550-648).
 Open a linked section only when a step leaves a question it answers, read
 only the lines the link gives, and never a section already read this session.
 This skill is the procedure; where they differ, the protocol wins.
@@ -92,3 +92,5 @@ When this session runs in Claude Code under an authoritative goal claim, run
 node tools/goal-run.mjs start <name> in its own worktree after discovering the
 claim. The Stop hook uses that worktree's Git-local marker, never a tracked file.
 Codex goal lifecycle is controlled by its active thread goal, not this Claude hook.
+
+   Between two items that the order above ranks equally, prefer the one whose answer closes a question or removes a named dependency from several entries. A reading is never extended only to cite more functions.

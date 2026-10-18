@@ -5,7 +5,7 @@ description: Settle one research question about the original game as one batch -
 
 # Research batch
 
-The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#research-batches) (lines 187-204),
+The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#research-batches) (lines 191-212),
 and the sections of the methodology and the documentation standard the steps
 below link to. This skill is the procedure.
 Open a linked section only when a step leaves a question it answers, read
@@ -84,7 +84,7 @@ only the lines the link gives, and never a section already read this session.
    they need, and under `Live session` otherwise; `live-session` requests the
    owner's observation. Follow the local capture rules in `AGENTS.md` and
    `docs/live-sessions/README.md`.
-   The protocol's [Recorded runs](../../../vendor/upstream/work-protocol.md#recorded-runs) (lines 401-413)
+   The protocol's [Recorded runs](../../../vendor/upstream/work-protocol.md#recorded-runs) (lines 409-421)
    records draws as `{ rule, bound, result }`, stops for an uncited draw, and
    diagnoses divergence through memory evidence and a static finding rather
    than fitting the rebuild to the recording. A probe runs only in a
@@ -96,7 +96,7 @@ only the lines the link gives, and never a section already read this session.
    An emulated call is always allowed, including in a repository whose
    `AGENTS.md` keeps agents from running the original: those limits cover
    runs of the game only. For an item under `Emulated call`, follow the protocol's
-   [Emulated calls](../../../vendor/upstream/work-protocol.md#emulated-calls) (lines 427-463).
+   [Emulated calls](../../../vendor/upstream/work-protocol.md#emulated-calls) (lines 435-471).
    It needs no run lock. Check the current harness contract in `docs/RUNTIME.md`
    and `tools/emu/README.md`; the delivered resident harness admits no-argument
    far roots, while raw memory/argument seeding waits for supported named
@@ -320,3 +320,6 @@ needs. Use only parts whose answers in docs/RUNTIME.md admit that work; an
 unavailable or unverified required part blocks the item. Person-only parts
 require an owner live session. Per-part answers do not override the prohibition
 on agent DOSBox operation, attachment, captures or run-lock acquisition here.
+
+   Plan the batch around one reviewable answer to the items it takes up, including the directly related callers, helpers and fields that answer needs; a function boundary does not require a commit. Before following another helper, name the part of the item's `Settles it` that reading the helper can answer. A helper needed for that answer belongs in the reading, and an unrelated branch becomes a separate question in a separate batch. If a dependency stays unresolved, record the bounded result and put the remaining question in a queue item rather than keeping a growing batch open. Never extend a reading only to cite more functions.
+   Repeated caller and operand searches reuse a local index or retained report when its inputs are unchanged: the source fingerprint, the loaded address mappings, the decoder and exporter versions that built it, the established entries and ranges searched, the limits, and the positive controls and exclusions. Rebuild it when any of those change. An index of candidates keeps its undecoded ranges, unresolved transfers and failed or missing controls. A cache hit never makes a candidate an established instruction or a negative search a proof, and a missed positive control rejects a negative result from the index as it does one from a fresh search. Indexes made from the original stay in `GAME_DIR`. Findings name the committed procedure that regenerates the index and state the result in their own words.
