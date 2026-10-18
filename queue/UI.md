@@ -115,6 +115,9 @@ Next ID: Q-UI-021
   Tried: FND-UI-046 identifies the overhead map's window, pictures, marks,
   handler and openers; the map is removed from Settles it, apart from its
   mark colours (FND-UI-047, FND-IMAGE-012) and placement (Q-UI-003).
+  Tried: FND-UI-053 reads the Game Menu's exit and load-or-save choices and
+  the F3 choice; for SCR-UI-020 and SCR-UI-021 only the drawing of overlay
+  172 `+018F` from its corner remains.
 - Q-UI-012. SCR-UI-022: Does the DAC change while the overhead map is shown, and do the cycling
   ranges keep rotating then? Settles it: which window handler and window record callbacks are
   registered while the map's window is up (the resolved walk's shortest route to overlay 201

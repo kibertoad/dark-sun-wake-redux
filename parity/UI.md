@@ -27,7 +27,7 @@
 | `SCR-UI-017` | Quick Cast panel | sourced | missing | None | None | sourced | The rebuild has no recent-spell panel. |
 | `SCR-UI-018` | Item summary | sourced | missing | None | None | sourced | The rebuild has no item or spell summary box. |
 | `SCR-UI-019` | Store panel | sourced | missing | None | None | sourced | The rebuild has no store panel. |
-| `SCR-UI-020` | Exit to DOS choice | sourced | missing | None | None | sourced | The Game Menu currently exits directly without the manual's save, quit and cancel choice. |
-| `SCR-UI-021` | Load or Save choice | sourced | missing | None | None | sourced | The Game Menu's load or save control currently does nothing. |
+| `SCR-UI-020` | Exit to DOS choice | supported | missing | None | None | supported | The Game Menu currently exits directly without the manual's save, quit and cancel choice. |
+| `SCR-UI-021` | Load or Save choice | supported | missing | None | None | supported | The Game Menu's load or save control currently does nothing. |
 | `SCR-UI-022` | Overhead map | supported | missing | None | None | supported | The Game Menu's overhead-map control currently does nothing. |
 | `SCR-UI-023` | About information | sourced | missing | None | None | sourced | The Preferences screen does not show About information. |
