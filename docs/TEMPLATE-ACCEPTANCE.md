@@ -375,3 +375,22 @@ registry integrity/hashes and ordinary/platform locks. Other shared packages
 remain at their latest stable releases. Merged protocol ceefc84 is refreshed
 without changing Standard v1 or checker 6.0.0. New selector and routing controls
 pass; full configured validation is required before the adoption commit.
+
+## Template 33efaa2 and checker 6.0.1 adoption, 2026-10-18
+
+Template PRs 123 and 124 (`1686fe0` to `33efaa2`) are adopted. The pre-commit
+hook keeps the staged tree in `.git/precommit-snapshot` with its own index and
+updates it with `read-tree --reset -u` and `clean -x`, rebuilding a snapshot
+whose index or lock is damaged. The local hook keeps its failure when the
+checkout has no `node_modules` and its `EVIDENCE_PYTHON` lookup; the template's
+snapshot test sets `EVIDENCE_PYTHON` because its fixture has no
+`tools/tool-dependencies.mjs`. AGENTS.md and VALIDATION.md describe the kept
+snapshot. pnpm lock and workspace changes are inapplicable to this npm project.
+
+The checker moves from 6.0.0 to 6.0.1 through `node tools/upstream.mjs refresh`
+at toolkit `78f0229`, the commit tagged for 6.0.1; the CI action pin, the lock,
+`package.json` and `package-lock.json` agree. 6.0.1 reads each file once per run
+and has no rule change or migration step. Rules stay at `ceefc84`; reader 4.3.0,
+engine 19.9.0, session 0.10.0 and RefurbishedDinosaurs 12.2.0 are already the
+latest releases. `./tools/Test.ps1` passes (108 upstream Node tests, 715 .NET
+tests). No spec status, parity row or pack revision changed.
