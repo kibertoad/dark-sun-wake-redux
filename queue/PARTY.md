@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-104
+Next ID: Q-PARTY-105
 
 ## Static
 
@@ -321,13 +321,12 @@ Next ID: Q-PARTY-104
   what placed-object count and `DS:0DAB`? Settles it: the load routine overlay 192 `+05ED`,
   overlay 182 `+19F8`, `28C9:2522`, the gate routine called with 0, and whether window 19500 or
   its handler survives those calls (FND-PARTY-045). Blocks: slice 2.
-- Q-PARTY-050. RULE-PARTY-013: Does any trigger record's second entry point that can run during a
-  fight hold script opcode `0x24`, which makes the slot in `4C13:0369` the current record through
-  overlay 190 `+36D2` (FND-PARTY-097, FND-PARTY-098)? Settles it: the `GPL ` resources and offsets
-  the trigger records name, decoded instruction by instruction and searched for opcode `0x24`.
-  Blocks: slice 2. Tried: FND-PARTY-098 reads the conditions under which `2D40:207E` runs the
-  entry point; a byte search for `0x24` would also match parameter bytes, so it cannot settle
-  the question without the instruction layouts, which FND-SCRIPT-024 now gives.
+- Q-PARTY-104. RULE-PARTY-013: Can `GPL/144`'s trigger for object 161, registered at `0x0023`
+  with entry offset 281, run its dialog branch to the opcode `0x24` at `0x0F14` during a fight
+  (FND-PARTY-240)? Settles it: what the kind-9 variable 32, `varD[374]`, `varD[331]`, `varE[7]`
+  and the menu row's condition hold in a fight, whether the dialog menu `0x48` and the placement
+  `0x25` at `0x0E98` work while a fight runs, and whether object 161 can be in a fight with the
+  party. Tried: split from Q-PARTY-050, which FND-PARTY-240 closed. Blocks: slice 2.
 - Q-PARTY-102. BUG-PARTY-006: Can global script number 129 hold -9999 when `GPL/255` `0x0327`
   runs, so that function 46 of opcode `0x22` casts the remainder by 1000 of the kind-9 variable
   `0x22`, and can that remainder be 104 or 225 (FND-PARTY-237)? Settles it: the value global
