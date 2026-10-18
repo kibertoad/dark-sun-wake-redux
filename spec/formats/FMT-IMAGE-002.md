@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_image_002.ksy
-evidence: [FND-IMAGE-001, FND-IMAGE-002, FND-IMAGE-003, FND-IMAGE-010, SRC-DSUN-MUSIC-79B6927]
+evidence: [FND-IMAGE-001, FND-IMAGE-002, FND-IMAGE-003, FND-IMAGE-010, FND-IMAGE-011, SRC-DSUN-MUSIC-79B6927]
 conflicting: []
 split_with: []
 related: [RULE-IMAGE-001, RULE-IMAGE-002]
@@ -55,10 +55,13 @@ from up to three bytes after the last command in 149 `PLNR` frames [FND-IMAGE-00
 FND-IMAGE-003]. Frames of all three encodings give the pixels the game draws in the first
 gameplay frame of the opening region [FND-IMAGE-010].
 
+The game draws frames on a 320x200 canvas shown with the CRT timing of BIOS mode `0x13`, which
+it never changes: 200 rows, each scanned twice. Where those 400 lines fill a 4:3 picture, a pixel
+is 1.2 times as tall as it is wide [FND-IMAGE-011].
+
 ## Open questions
 
 - What the up to three bytes after the last command of 149 `PLNR` frames are (FND-IMAGE-003,
   Q-IMAGE-002).
 - Whether the game checks the `0xFF` before `PLAN` or `PLNR`, or only the four letters
   (FND-IMAGE-005, Q-IMAGE-002).
-- At what pixel aspect the game shows its frames on a real display (Q-IMAGE-001).

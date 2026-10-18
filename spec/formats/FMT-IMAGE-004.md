@@ -46,4 +46,6 @@ gameplay frame of the opening region wherever a tile or object frame supplies th
 ## Open questions
 
 - The widening to eight bits is how the emulator's screenshot shows the colours. What a real
-  VGA card and display show is part of how the game is presented (Q-IMAGE-001).
+  VGA card and display show from a 6-bit DAC value is a property of the hardware, which no reading
+  of the game decides, since the game keeps BIOS mode `0x13` timing (FND-IMAGE-011) (No item: only
+  a capture of a real VGA display would show it, and agents take no native captures).

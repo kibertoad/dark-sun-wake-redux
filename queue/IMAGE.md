@@ -4,9 +4,6 @@ Next ID: Q-IMAGE-004
 
 ## Static
 
-- Q-IMAGE-001. FMT-IMAGE-002, FMT-IMAGE-004: What pixel aspect does the original present its 320x200 canvas
-  at? Settles it: the video mode the game sets and whether it changes the CRT timing. Blocks:
-  slice 7.
 - Q-IMAGE-002. RULE-IMAGE-001, RULE-IMAGE-002, FMT-IMAGE-002: How do the lower routines that
   `2D40:3BEC` calls decode each encoding: does the game check the `0xFF` before the tag, what
   does bit 0 of a run's flags do, what does a `PLAN` frame with a bit count of 0 draw, what does
