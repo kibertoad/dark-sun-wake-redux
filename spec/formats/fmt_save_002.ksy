@@ -4,15 +4,15 @@ meta:
   license: MIT
   endian: le
 doc: The 9-byte GREQ resource written for each saved game.
-doc-ref: FMT-SAVE-002, FND-SAVE-001, FND-SAVE-004, FND-SAVE-005
+doc-ref: FMT-SAVE-002, FND-SAVE-001, FND-SAVE-004, FND-SAVE-005, FND-SAVE-013
 seq:
-  - id: unk_00
+  - id: subregion_left
     type: u2
-  - id: unk_02
+  - id: subregion_top
     type: u2
-  - id: unk_04
+  - id: subregion_right
     type: u2
-  - id: unk_06
+  - id: subregion_bottom
     type: u2
-  - id: unk_08
+  - id: map_page
     type: u1

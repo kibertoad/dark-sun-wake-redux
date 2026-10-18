@@ -94,10 +94,6 @@ Next ID: Q-UI-011
   `1BF3:2AF4`, which the map calls with 1, a point and the mark value 1, 11, 16 or 100, and of
   overlay 182 `+059C`, which the map calls with 19101 and 1 after the marks, with the palette
   entries the mark values select. Blocks: nothing yet.
-- Q-UI-010. SCR-UI-022: Which code sets the byte at `57E0:4459` that picks the overhead map's
-  picture within a region, and to which values? Settles it: a census of stores to `57E0:4459`
-  (FND-PARTY-021 clears it, FND-SAVE-004 saves it) with the value each stores. Blocks: nothing
-  yet.
 
 ## Emulated call
 

@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-UI-044, FND-UI-046, SRC-MANUAL-1994]
+evidence: [FND-SAVE-013, FND-UI-044, FND-UI-046, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [SCR-UI-006, SCR-EXPLORE-001]
@@ -28,6 +28,9 @@ unsigned, and 0 when `b` is 0; its low word is used. Slots are the 320 entries o
 table; a slot of kind 0, 3, 4 or above 5 while `57E0:143C` is not 0 keeps the mark value of the
 slot before it. An object's position is the pair of words at `57E0:67C5` and `57E0:67C7` plus 37
 times its slot [FND-UI-046].
+
+`map_page` is set to 0 when play starts, by script function 34 of opcode `0x22` and by loading a
+saved game, which also restores the region bounds (FMT-SAVE-002) [FND-SAVE-013].
 
 ## Mouse input
 
@@ -73,6 +76,5 @@ None known.
   value, and what the call with 19101 and 1 after the marks adds. The manual describes a blue
   party marker and red markers for monsters and other characters (FND-UI-046, SRC-MANUAL-1994,
   Q-UI-009).
-- Which code sets `map_page` at `57E0:4459`, and to what (FND-UI-046, Q-UI-010).
 - What the word at `57E0:0DAB` and the byte at `57E0:143C` stand for, which decide whether `O`
   opens the map and which objects get marks (Q-COMBAT-003, Q-COMBAT-004).

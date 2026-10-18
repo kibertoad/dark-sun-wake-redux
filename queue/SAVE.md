@@ -1,6 +1,6 @@
 # SAVE
 
-Next ID: Q-SAVE-003
+Next ID: Q-SAVE-004
 
 ## Static
 
@@ -25,11 +25,13 @@ Next ID: Q-SAVE-003
   the DOS terminate call; indirect cleanup and the key callback remain
   open. Blocks:
   slice 5.
-- Q-SAVE-002. FMT-SAVE-001, FMT-SAVE-002: What do the four words and the byte of a `GREQ` resource
-  hold, what is the tenth byte the routines keep beside them, and where does a character's `CACT`
-  identifier come from? Settles it: the code that reads and writes the globals FND-SAVE-004 lists,
-  and the code that gives a new character its identifier. Tried: comparing every 16-bit window of
-  both families with the `CHAR` resource numbers, which finds none (FND-SAVE-002). Blocks: slice 5.
+- Q-SAVE-002. FMT-SAVE-001: Where does a character's `CACT` identifier come from, and what does
+  its top bit mean? Settles it: the code that gives a new character its identifier. Tried:
+  comparing every 16-bit window of both families with the `CHAR` resource numbers, which finds
+  none (FND-SAVE-002). Blocks: slice 5.
+  Tried: FND-SAVE-013 takes a census of the operands naming the `GREQ` globals: the four words are
+  the subregion edges, the byte the overhead map's page and the tenth byte the defeat picture.
+  The `GREQ` parts are removed from Settles it; the scripts' values move to Q-SAVE-003.
 
 ## Emulated call
 
@@ -49,4 +51,9 @@ None.
 
 ## Blocked
 
-None.
+- Q-SAVE-003. FMT-SAVE-002: Which subregions and overhead-map pages do the shipped scripts set
+  through functions 33 and 34 of opcode `0x22`? Settles it: the `GPL ` resources decoded
+  instruction by instruction, with the arguments of every call of those functions. Tried:
+  FND-SAVE-013 reads both functions and their packed arguments; a byte search cannot tell their
+  calls from other operands without the instruction layouts. Waiting on: Q-SCRIPT-004, the layout
+  of every script instruction, in the SCRIPT area. Blocks: nothing yet.
