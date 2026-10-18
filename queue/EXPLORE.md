@@ -4,11 +4,13 @@ Next ID: Q-EXPLORE-008
 
 ## Static
 
-- Q-EXPLORE-001. RULE-EXPLORE-001: How wide is the band at the edge of the view that scrolls the
-  map, how far does one step move the view and how often, and where do Center on Leader and the key
-  `H` put the leader? Settles it: the code that compares the pointer's position with the view's
-  edges and writes the view origin, which Q-REGION-005 also looks for, the Game Menu's Center on
-  Leader handler, and the `H` handler at offset `0x1718` of overlay 190 (FND-COMBAT-025). Blocks:
+- Q-EXPLORE-001. RULE-EXPLORE-001: How often does the main loop run a pass, which sets how fast
+  edge scrolling moves, what stores a value other than 0 in `g_57E0_0DA8`, what does
+  `g_57E0_0DAB` hold, does the mouse setup run after the video mode's word is stored, and does
+  `fn_3D72_0D83` change the view words? Settles it: a reading of what paces the loop of
+  `277D:0004`, a search for stores to `DS:0DA8` and `DS:0DAB`, the order of `39D1:0009` against the
+  mode setter's call with 0x0113, and a reading of `3D72:0D83`. Tried: FND-EXPLORE-006 reads the
+  band, direction, step size, bounds, Center on Leader and `H`, which leaves these. Blocks:
   slice 3.
 - Q-EXPLORE-002. RULE-EXPLORE-003, FMT-COMBAT-002: Which slots are of kind 2, what values does the
   details byte `footprint` take, what does `25AF:02FA` decide from a cell's bits 0 to 2, and what
