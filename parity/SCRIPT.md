@@ -16,3 +16,4 @@
 | `RULE-SCRIPT-008` | The script instructions that register attack and move-tile triggers | supported | missing | None | None | supported | The rebuild keeps no script triggers. |
 | `RULE-SCRIPT-009` | The script trace instructions | supported | missing | None | None | supported | No instruction is executed, and `FirstTyrDialogueProjection.ReadMenu` does not accept trace instructions between menu entries. |
 | `RULE-SCRIPT-010` | Script-cache lookup and resource transfer | supported | missing | None | None | supported | The rebuild reads the two packed scripts from its asset pack when the dialogue preview opens and has no script cache. |
+| `RULE-SCRIPT-011` | The script instructions that change a variable in place | supported | missing | None | None | supported | No script instruction is executed. |

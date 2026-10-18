@@ -1,6 +1,6 @@
 # SCRIPT
 
-Next ID: Q-SCRIPT-013
+Next ID: Q-SCRIPT-014
 
 ## Static
 
@@ -146,8 +146,8 @@ Next ID: Q-SCRIPT-013
   `0x3D`, `0x41` to `0x47`, `0x49`, `0x58` to `0x5C`, `0x5E`, `0x62` and `0x80`)? Settles it:
   each of those handlers and the far routine it calls, read one family of handlers at a time.
   Tried: split into Q-SCRIPT-009 (field paths), Q-SCRIPT-010 (opcode `0x22`'s functions),
-  Q-SCRIPT-011 (kind-1 strings), Q-SCRIPT-012 (variable arithmetic) and the operand layouts,
-  which FND-SCRIPT-024 reads; the trigger instructions `0x66` and `0x69` to `0x70` belong to
+  Q-SCRIPT-011 (kind-1 strings), the variable arithmetic, which FND-SCRIPT-025 reads, and the
+  operand layouts, which FND-SCRIPT-024 reads; the trigger instructions `0x66` and `0x69` to `0x70` belong to
   Q-SCRIPT-002.
   FND-SCRIPT-005 lists the handlers and FND-SCRIPT-012 reads the output ones. Blocks: slices
   3-6.
@@ -167,10 +167,6 @@ Next ID: Q-SCRIPT-013
   Settles it: `fn_172C_31B7`, the routines `1000:406D`, `1000:3FC1` and `2D40:0B14` it calls,
   the string at `4C10:0000`, and the writers of the slot word at `4C13:0369`. Tried: split from
   Q-SCRIPT-004; FND-SCRIPT-010 reads the call. Blocks: slice 3.
-- Q-SCRIPT-012. RULE-SCRIPT-002: What do the instructions `0x01` to `0x07`, `0x11` and `0x76`
-  to `0x7F` do to the variable their first parameter names? Settles it: those handlers, the
-  width each reads and writes at the parameter's address, and the operations they apply.
-  Tried: split from Q-SCRIPT-004; FND-SCRIPT-009 reads `0x06`. Blocks: slices 3-6.
 - Q-SCRIPT-005. RULE-SCRIPT-004, RULE-SCRIPT-005, RULE-SCRIPT-010: How many script variables of
   each kind are there, where and when does the game clear them, are local
   variables cleared on a region change, does a saved game hold them, and what
@@ -186,6 +182,13 @@ Next ID: Q-SCRIPT-013
 
 ## Emulated call
 
+- Q-SCRIPT-013. RULE-SCRIPT-011: Do the in-place arithmetic handlers give the results the rule
+  describes? Settles it: once the harness in docs/RUNTIME.md can seed the parameter arrays,
+  fixtures calling each handler of FND-SCRIPT-025 with byte, word and double-word targets at
+  wrap edges, zero-extended byte and word products and quotients with negative and positive
+  divisors, double-word division by -1 and multiplication overflow, and seeded random cases,
+  compared with the rule's procedure. Tried: FND-SCRIPT-025 reads the handlers. Blocks:
+  establishing RULE-SCRIPT-011.
 - Q-SCRIPT-007. RULE-SCRIPT-010: Do resident loader and interrupt-free helper
   cases agree with the documented branches and local state effects?
   Settles it: after the harness in docs/RUNTIME.md exists, fixtures using

@@ -7,7 +7,7 @@ superseded_by: []
 evidence: [FND-SCRIPT-001, FND-SCRIPT-005, FND-SCRIPT-006, FND-SCRIPT-007, FND-SCRIPT-019, FND-SCRIPT-009, FND-SCRIPT-013, FND-SCRIPT-020, FND-CONFIG-160, FND-SCRIPT-023, FND-CONFIG-161, FND-SCRIPT-024, FND-CONFIG-150, FND-CONFIG-153]
 conflicting: []
 split_with: []
-related: [RULE-SCRIPT-010, RULE-SCRIPT-004, RULE-SCRIPT-003, RULE-SCRIPT-006, RULE-SCRIPT-007, RULE-SCRIPT-008, RULE-SCRIPT-009, RULE-TALK-001, FMT-SCRIPT-001]
+related: [RULE-SCRIPT-010, RULE-SCRIPT-004, RULE-SCRIPT-011, RULE-SCRIPT-003, RULE-SCRIPT-006, RULE-SCRIPT-007, RULE-SCRIPT-008, RULE-SCRIPT-009, RULE-TALK-001, FMT-SCRIPT-001]
 ---
 
 ## Summary
@@ -149,6 +149,8 @@ define execute_instruction(op: UINT8):
         call RULE-SCRIPT-009(op)
     else if op == 0x48:
         call RULE-TALK-001()
+    else if (op >= 0x01 and op <= 0x05) or op == 0x07 or op == 0x11 or (op >= 0x76 and op <= 0x7F):
+        call RULE-SCRIPT-011(op)
     else:
         read_operands(op)
         # the handler FND-SCRIPT-005 lists for op then does its work, which this spec
@@ -170,8 +172,8 @@ define read_field_path():
 
 define read_operands(op: UINT8):
     # the operands the handler of op reads, in order, before or while it does its work
-    let one: UINT8[25] = [0x02, 0x03, 0x04, 0x05, 0x07, 0x08, 0x09, 0x0C, 0x0F, 0x1D, 0x1E, 0x1F, 0x24, 0x30, 0x34, 0x36, 0x3B, 0x3D, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x62]
-    let two: UINT8[25] = [0x01, 0x0A, 0x0B, 0x11, 0x1A, 0x20, 0x21, 0x2D, 0x32, 0x37, 0x3A, 0x49, 0x5A, 0x5B, 0x76, 0x77, 0x78, 0x79, 0x7A, 0x7B, 0x7C, 0x7D, 0x7E, 0x7F, 0x80]
+    let one: UINT8[20] = [0x08, 0x09, 0x0C, 0x0F, 0x1D, 0x1E, 0x1F, 0x24, 0x30, 0x34, 0x36, 0x3B, 0x3D, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x62]
+    let two: UINT8[13] = [0x0A, 0x0B, 0x1A, 0x20, 0x21, 0x2D, 0x32, 0x37, 0x3A, 0x49, 0x5A, 0x5B, 0x80]
     let three: UINT8[10] = [0x10, 0x2F, 0x3C, 0x58, 0x59, 0x66, 0x6C, 0x6D, 0x6E, 0x6F]
     let four: UINT8[6] = [0x1B, 0x1C, 0x22, 0x39, 0x5C, 0x70]
     if op == 0x2C:
@@ -260,8 +262,7 @@ None known.
 - What `fn_172C_31ED` and `fn_5702_00B1` do, whether `fn_5702_00B1` returns, and what the far
   routine at `g_57E0_02F6` is when one is set (Q-SCRIPT-003).
 - What `g_4C0E_000B`, `g_4C13_032B` and `g_4C13_0325` mean (Q-SCRIPT-003).
-- What the handlers do after `read_operands`: the variable arithmetic (Q-SCRIPT-012), opcode
-  `0x22`'s functions (Q-SCRIPT-010), the field-path instructions `0x33` and `0x40`
+- What the handlers do after `read_operands`: opcode `0x22`'s functions (Q-SCRIPT-010), the field-path instructions `0x33` and `0x40`
   (Q-SCRIPT-009) and the handlers that call far routines (Q-SCRIPT-004).
 - Whether `object_field_types` holds `FNFO/2` when `0x33` runs, which decides whether it reads
   an expression after operators 4 to 6 (Q-CONFIG-008).
