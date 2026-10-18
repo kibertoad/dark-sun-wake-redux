@@ -128,13 +128,19 @@ Next ID: Q-UI-020
   that route runs no longer decides the map's palette and is removed from Settles it. Blocks:
   nothing yet.
 - Q-UI-019. SCR-UI-022: What first puts the region palette in the DAC when a new game begins?
-  Settles it: the contents of the 768-byte block 444C:0008 returns for 256 and 3, which the gate
-  routine overlay 182 +1167 writes to the DAC at +13E3, and whether overlay 201 +05D5 runs on the
-  new-game route. Tried: split from Q-UI-012. FND-IMAGE-012 reads the fade overlay 204 +1D2E and
-  its callers, and FND-UI-048 finds that every read route to the fade from the start window's
-  callback, the gate routine's later calls and the main loop's overlay 192 +0015 passes +05D5,
-  and that overlay 192 +0C62's call of the fade is not reached from them. FND-IMAGE-012 matches
-  FND-IMAGE-010's capture of the opening region with `PAL/50`. Blocks: nothing yet.
+  Settles it: the first script instruction on the new-game route that calls opcode 0x22 with
+  function 37 and a fourth argument of 1, function 26, or function 1 on overlay 204 +0CBA's route
+  to its fade, read from the scripts a new game runs, and whether any of the 63 transfers the
+  walk from the main routine leaves unresolved reaches a DAC writer first. Tried: split from
+  Q-UI-012. FND-IMAGE-012 reads the fade overlay 204 +1D2E and its callers, and FND-UI-048 finds
+  that every read route to the fade from the start window's callback, the gate routine's later
+  calls and the main loop's overlay 192 +0015 passes +05D5, and that overlay 192 +0C62's call of
+  the fade is not reached from them. FND-IMAGE-012 matches FND-IMAGE-010's capture of the opening
+  region with `PAL/50`. Tried: FND-UI-049 finds the block written at overlay 182 +13E3 all zeros,
+  so START GAME leaves the DAC black, finds the routes through +05D5 passing the effect removals
+  or the area-effect routine, and finds +1D2E reached from script opcode 0x22's functions 1, 26
+  and 37; the block's contents and whether +05D5 runs are removed from Settles it. Blocks:
+  nothing yet.
 
 ## Emulated call
 

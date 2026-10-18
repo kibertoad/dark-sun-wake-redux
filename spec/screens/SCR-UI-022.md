@@ -106,8 +106,10 @@ None known.
 ## Open questions
 
 - Where the game places `WIND/19502` (Q-UI-003).
-- What first puts the region palette in the DAC on a new game: every read route from START GAME
-  to the region fade passes overlay 201's picture sequence (FND-UI-048, Q-UI-019).
+- What first puts the region palette in the DAC on a new game. START GAME's gate routine writes
+  768 zero bytes to the DAC, and on a new game the region fade is reached from script opcode
+  0x22's functions 1, 26 and 37 rather than from the start window or the gate routine; which
+  script instruction asks for it first is not read (FND-UI-048, FND-UI-049, Q-UI-019).
 - Whether anything changes the DAC while the map is shown, and whether the cycling ranges keep
   rotating then, rests on transfers no walk resolves (FND-IMAGE-012, FND-UI-048, Q-UI-012). The
   manual describes a blue party marker and red markers for monsters and other characters; the
