@@ -31,9 +31,6 @@ Next ID: Q-SOUND-009
   of `4A32:0011`. Tried: searches of `DSUN.EXE` for the tags and for far calls to the playlist
   routines, which find none (FND-SOUND-014, FND-SOUND-015). Blocks: none.
 
-- Q-SOUND-006. FMT-SOUND-003: What structure does the installed and disc `STDPATCH.AD` have, and
-  where is either copy read? Settles it: bounded file inspection and the setup or sound-library
-  reader. Blocks: Survey format coverage.
 - Q-SOUND-007. FMT-SOUND-004: What structure do the disc's nineteen `.ADV` files share, and which
   ones do the setup program or game load? Settles it: bounded file inspection and loader
   references. Blocks: Survey format coverage.
