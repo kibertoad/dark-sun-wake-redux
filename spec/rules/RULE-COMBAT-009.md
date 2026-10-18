@@ -101,9 +101,11 @@ None known.
   change nothing, and every route from the gate routine's later calls to an insertion passes the
   area-effect routine overlay 193 +12A8, which runs only for a slot made from object 147 or one
   it marked itself; only `RGN03B.GFF#ETAB/59` places object 147, so a first game begun in a
-  region that does not place it begins with no rows (FND-COMBAT-054). Which region a new game
-  loads and whether anything else places object 147 remain (Q-COMBAT-019); which rows survive
-  from an earlier game in the same run remain (Q-COMBAT-024).
+  region that does not place it begins with no rows (FND-COMBAT-054). A new game loads region
+  50, whose `ETAB` does not place object 147, and no literal placement on its first script's
+  route names it (FND-UI-050). Whether a script places object 147 some other way, or an
+  unresolved transfer changes the region, remains open (Q-COMBAT-019); which rows survive from
+  an earlier game in the same run remain (Q-COMBAT-024).
 - Which routines insert, remove and transfer rows, with which arguments. FND-COMBAT-039 reads one
   removal caller, the effect window's cache action (Q-COMBAT-020).
 - Category bitmap producers, initialization and lifetime

@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-IMAGE-012, FND-SAVE-013, FND-UI-044, FND-UI-046, FND-UI-047, FND-UI-048, SRC-MANUAL-1994]
+evidence: [FND-IMAGE-012, FND-SAVE-013, FND-UI-044, FND-UI-046, FND-UI-047, FND-UI-048, FND-UI-050, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [SCR-UI-006, SCR-EXPLORE-001]
@@ -108,8 +108,10 @@ None known.
 - Where the game places `WIND/19502` (Q-UI-003).
 - What first puts the region palette in the DAC on a new game. START GAME's gate routine writes
   768 zero bytes to the DAC, and on a new game the region fade is reached from script opcode
-  0x22's functions 1, 26 and 37 rather than from the start window or the gate routine; which
-  script instruction asks for it first is not read (FND-UI-048, FND-UI-049, Q-UI-019).
+  0x22's functions 1, 26 and 37 rather than from the start window or the gate routine. The
+  first script the gate runs is `MAS/50`, whose instruction `0x05DC` is the first request for
+  the fade on its route; whether a script it registers or an unresolved transfer writes the DAC
+  before it is open (FND-UI-048, FND-UI-049, FND-UI-050, Q-UI-019).
 - Whether anything changes the DAC while the map is shown, and whether the cycling ranges keep
   rotating then, rests on transfers no walk resolves (FND-IMAGE-012, FND-UI-048, Q-UI-012). The
   manual describes a blue party marker and red markers for monsters and other characters; the
