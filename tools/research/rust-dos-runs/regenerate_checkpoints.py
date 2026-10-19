@@ -71,6 +71,7 @@ def snapshot(client, delta):
         control = {"tag": child[:4].decode("ascii", errors="replace"),
                    "number": struct.unpack_from("<I", child, 8)[0]}
     return {"window": window, "slot_kinds": list(kinds), "rng_state": seed,
+            "leader": struct.unpack("<H", checked_read(client, 0x4C13 + delta, 0x0369, 2))[0],
             "box_presence": [struct.unpack("<H", checked_read(client, bseg,
                 boff + 0x42 * slot + 0x0E, 2))[0] for slot in range(4)] if bseg or boff else None,
             "selected_control": control,
@@ -89,19 +90,20 @@ def main():
     if len(sys.argv) not in (3, 4) or any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]):
         raise SystemExit("usage: regenerate_checkpoints.py <new-run-name> <stage> [opened-source-run]")
     stage = sys.argv[2]
-    if stage not in ("start", "create", "popup", "mouse-callback", "left-popup", "pointer-selection", "button-release", "party", "talk-entry", "play-entry", "talk", "play", "conversation-ready", "talk-resume"):
+    if stage not in ("start", "create", "popup", "mouse-callback", "left-popup", "pointer-selection", "button-release", "party", "talk-entry", "play-entry", "talk", "play", "conversation-ready", "talk-resume", "play-resume"):
         raise SystemExit("unsupported capability stage")
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
                 Path(config["original"]["analysisExecutable"]["path"]).parent)).resolve()
     source_name = sys.argv[3] if len(sys.argv) == 4 else "v175-regenerate-opened-20261019"
-    resuming = stage in ("conversation-ready", "talk-resume")
+    resuming = stage in ("conversation-ready", "talk-resume", "play-resume")
     source = game / ("captures/rust-dos-regenerated" if resuming else "captures/rust-dos-restore-opener") / source_name
-    state = read_saved_state(source, "conversation-entry" if resuming else "opened")
+    state_name = "play" if stage == "play-resume" else "conversation-entry" if resuming else "opened"
+    state = read_saved_state(source, state_name)
     verify_checkpoint_executable(state, config["original"]["analysisExecutable"])
     admit_state(state)
     source_meta = json.loads((source / "regeneration.json").read_text(encoding="utf-8")) if resuming else None
-    mapping_stop = source_meta["restored_stop"] if resuming else state.stop
+    mapping_stop = source_meta.get("load_mapping_stop", source_meta["restored_stop"]) if resuming else state.stop
     delta = mapping(mapping_stop)
     rng = Recorder(delta)
     run = game / "captures/rust-dos-regenerated" / sys.argv[1]
@@ -204,7 +206,7 @@ def main():
             if result.pending or result.state != "done":
                 raise RuntimeError("input delivery not confirmed")
         def keypress(key):
-            if key != "esc":
+            if key not in ("esc", "2"):
                 raise ValueError("unsupported checkpoint key")
             op = s.send_input("key", {"key": key, "hold_ms": 100})
             for _ in range(10):
@@ -225,7 +227,7 @@ def main():
         if not resuming:
             reach(19500)
             save("start")
-        if stage not in ("start", "talk-entry", "talk", "conversation-ready", "talk-resume"):
+        if stage not in ("start", "talk-entry", "talk", "conversation-ready", "talk-resume", "play-resume"):
             click(160, 93)
             reach(11500)
             save("create")
@@ -302,7 +304,20 @@ def main():
                 previous = current
             else:
                 raise RuntimeError("conversation window readiness budget exhausted")
-        if resuming:
+        if stage == "play-resume":
+            current = observe()
+            if not ready(current, 19501) or current["mode"] != 1 or current["slot_kinds"] != [0, 2, 0, 2]:
+                raise RuntimeError("source is not the declared two-character map state")
+            keypress("2")
+            for _ in range(64):
+                advance(until=rng.address(0x39D1, 0x097D))
+                current = observe()
+                if ready(current, 19501) and current["mode"] == 1 and current["leader"] == 1:
+                    save("play-ready")
+                    break
+            else:
+                raise RuntimeError("two-character leader selection gate exhausted")
+        if resuming and stage != "play-resume":
             dispatcher = rng.address(0x39D1, 0x097D)
             def conversation_window(number):
                 for _ in range(64):

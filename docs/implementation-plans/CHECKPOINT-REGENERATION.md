@@ -30,6 +30,11 @@ Split pointer movement and button operations, checking delivery separately.
 The menu driver is bounded; conversation-entry discovery and Esc on the
 stable main window are capability attempts, not gameplay parity evidence.
 The RNG recorder admits only RULE-SOUND-003 and RULE-SCRIPT-006 callers.
+The Play restore additionally checks leader 1 with occupied slots 1 and 3,
+as the retained checkpoint of FND-PARTY-178 specifies.
+If the first map stop still has leader zero, the same finding supplies the
+bounded key-2 route to select occupied slot 1. Confirm delivery and read
+leader 1 at the native input loop before saving the final Play state.
 
 Acceptance: every regenerated state records the pinned emulator and actual
 sound hardware; input is delivered before saving; each state restores in a

@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 import re
 import sys
+import struct
 from dataclasses import replace
 
 from dinorefurb_dosbox_session import (
@@ -28,7 +29,7 @@ def compare(expected, actual, png):
 def main():
     if len(sys.argv) < 4 or any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]):
         raise SystemExit("usage: verify_checkpoints.py <source-run> <new-run-prefix> <state> [...]")
-    if any(x not in ("start", "added", "dropped", "afterdrop", "talk", "play", "create") for x in sys.argv[3:]):
+    if any(x not in ("start", "added", "dropped", "afterdrop", "talk", "play", "play-ready", "create") for x in sys.argv[3:]):
         raise ValueError("unsupported checkpoint name")
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
@@ -77,6 +78,12 @@ def main():
                 png = s.client.screenshot()
                 (run / "restored.png").write_bytes(png)
                 compare(expected[0], result["state"], png)
+                if name in ("play", "play-ready"):
+                    leader_address = f"{0x4C13 + delta:04X}:0369"
+                    leader = struct.unpack("<H", s.client.read_memory(leader_address, 2).data)[0]
+                    result["leader"] = leader
+                    if leader != 1 or result["state"]["slot_kinds"] != [0, 2, 0, 2]:
+                        raise ValueError("two-character Play state differs from FND-PARTY-178")
                 saved = s.save_state("roundtrip", check_files=True)
                 s.load_state(saved)
                 compare(expected[0], snapshot(s.client, delta), s.client.screenshot())
