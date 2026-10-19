@@ -27,12 +27,37 @@ Setup: `./tools/Restore-ToolDependencies.ps1` installs
 build into `artifacts/rust-dos/`, refusing an archive or executable whose
 SHA-256 differs from the package's pins.
 
-The per-part answers and native runs below were made with rust-dos v1.7.2
-and session 0.10.0. Each part needs a new attempt under v1.7.5 before work
-relies on it. A save state records the emulator's SHA-256, and the session
-refuses to load one another executable saved, so the retained checkpoints
-below cannot be restored under v1.7.5 and have to be saved again.
+The historical per-part attempts below retain their rust-dos v1.7.2 and
+session-version provenance. Current v1.7.5 attempts are listed separately;
+an untested part is not admitted by a historical success. A save state
+records the emulator SHA-256, and the approved session package refuses a
+different digest before starting restore. Native cross-release format
+compatibility has not been tested: the package guard alone does not prove
+the old state format incompatible. Historical checkpoints are preserved.
 
+On 2026-10-19 the pinned v1.7.5/session 0.11.0 probes regenerated opener,
+opened and all six retained gameplay routes (FND-UI-054). Start,
+Added, Drop confirmation, After Drop, Talk and Play each passed a new-process
+strict restore with file checks and matching instruction/time, named fields
+and frame, a same-process save/load roundtrip and a deliberate sound-IRQ
+mismatch refusal before launch. Play's final state is named play-ready;
+it has occupied slots 1 and 3 and leader 1. Captures and state sidecars
+are under GAME_DIR/captures/rust-dos-regenerated/, with exact successful
+names and commands in FND-UI-054. The historical gameplay states actually
+remain in ignored artifacts/runs/, as their findings name.
+
+Current admitted parts: agent launch/state setup for those six states;
+left/right mouse, memory reads, breakpoints and frame capture. Movement
+and click are separate completed operations, and window/party predicates
+gate actions. The conversation gate also reaches its native event builder,
+because a registered current window can precede its visible panel.
+Esc returned the two-character setup to Start and key 2 selected leader 1,
+both with confirmed delivery.
+Other keys, middle button, held modifiers, guarded writes, sound capture,
+patched native saves and original recording playback retain their separate
+historical provenance and need their own current attempt before reliance.
+
+The following fixed-probe summaries retain their historical v1.7.2 scope.
 Current machine availability (2026-10-15): the fixed startup-segment probe
 successfully acquired the default machine lock, launched its own pinned
 rust-dos, stopped at game-main entry, read registers and RNG state, and
@@ -104,16 +129,22 @@ wait for supported layout/parameter bindings; FBOV code stays out of reach.
 
 | Capability | Who | Tried | What would change it |
 |---|---|---|---|
-| Start it and bring it to a given state without a person | agent | 2026-10-14: the run above reaches the start window (SCR-UI-001), fully drawn by 180 s of emulated time after the start, with Esc pressed every 10 s through the intro, and the screens after it by mouse clicks; checkpoints (`save_state` with `check_files`) taken at the start window, after an `ADD` and after a `DROP`, started later runs that reached the same screens. | A game screen or state the run cannot reach. |
-| Send it input | agent (keyboard, mouse) | 2026-10-14: keys (Esc), left, right and middle mouse clicks (the game's mouse handler gets the driver's bits for each, FND-PARTY-204), and a key held across a click through a `batch` of key down, click and key up (left Ctrl, FND-PARTY-206), given in the mouse driver's coordinates (`"coords": "virtual"`, the game's 320 x 200); a click in screenshot coordinates lands off target because the game sets the driver's range. In a deterministic run input is taken while paused and delivered once the run resumes. The owner still plays each live session by its script (`docs/live-sessions/`). | A device the game reads that the session cannot drive. |
-| Read memory, set breakpoints, dump structures while it runs | agent | 2026-10-14: a guarded write of one named field at a stop (`write` steps of run_plan.py) set a combatant's `hit_points` to 0 before START GAME (FND-PARTY-212); memory reads at a stop gave the party kind bytes, a 66-byte character box record and the leader word, which held 0 at the start window as FND-PARTY-171 reads it from the load image; a breakpoint at the generator `1000:0822` (here `05BA:0822`) stopped there and the stack gave the return address. GOG's DOSBox 0.74-2 has no debugger and agents never attach to it. Guarded writes, the event log and gated breakpoints are as the package describes. | A field whose read or write the server refuses. |
+| Start it and bring it to a given state without a person | agent, tested states only | 2026-10-19, pinned v1.7.5/session 0.11.0: fresh Start, Added, Drop confirmation, After Drop, Talk and two-character Play; all independently restored (FND-UI-054). | A required state outside the verified routes. |
+| Send mouse input | agent, left/right only | 2026-10-19: separate completed motion and click operations reached character and conversation controls (FND-UI-054), using virtual 320 x 200 coordinates. Middle button and held modifiers have only v1.7.2 provenance (FND-PARTY-204, FND-PARTY-206) and are not currently admitted. | A current attempt for each additional gesture. |
+| Send keyboard input | agent, Esc and 2 only | 2026-10-19: Esc returned from Create Characters to Start; 2 selected occupied slot 1 as leader in Play (FND-UI-054). Other keys and held modifiers retain historical provenance only. | A current attempt for another required key or modifier. |
+| Read memory and set breakpoints | agent, named fields and declared stops | 2026-10-19: current window/handler, party kinds/box records, seed, callback arguments and strict restore fields were read; generator, setter and native input stops were reached (FND-UI-054). | A field or stop outside the tested contract. |
+| Write supported memory fields | none, current pin untested | Earlier guarded hit-point writes are recorded by FND-PARTY-212 under v1.7.2. The fresh probes make no writes. | A current guarded-write capability attempt. |
 | Load a patched save | person | Not tried. The owner can place a save in the installation's save slots and load it from the game's menu. | A live session that asks for it. |
-| Capture frames and sound | agent, frames only; person, frames only | Agent: `screenshot()` gives a 640 x 400 PNG of the 320 x 200 screen (2026-10-14), muted host sound, no sound capture tried. Person: the owner's Ctrl+F5 screenshots, 320x200 in the game's palette, cited by the dynamic findings of the COMBAT, PARTY and UI areas; DOSBox 0.74-2 records sound with Ctrl+F6, not tried. | A sound capture from a session-package run. |
+| Capture frames and sound | agent, frames only; person, frames only | 2026-10-19: `screenshot()` produced 640 x 400 PNGs and independent strict restores reproduced the checked frames (FND-UI-054). Host audio stayed muted; sound capture is untested. Owner screenshots retain their own DOSBox provenance. | A sound capture from a session-package run. |
 | Play back a recording the original made | none | The game has no recording feature the spec knows of, and DOSBox 0.74-2 does not replay input. | A finding that the game records and replays input. |
 | Call a single function in the emulator harness (no run lock) | agent, resident far roots within the current no-argument contract | Unicorn 2.1.4 loads the hash-verified GOG resident MZ and applies its relocations. FND-CONFIG-193 initializer controls return with source-written roots/free flags, unchanged loaded high bytes and restored registers. | Supported named parameter/layout bindings extend input cases. Overlay code, native hardware and timing remain outside this harness. |
 
 
-Probe: `tools/research/rust-dos-runs/run_plan.py <run-dir> <plan.json>`, run with
+Current state-gated probe: regenerate_checkpoints.py and verify_checkpoints.py,
+with exact commands and capture paths in FND-UI-054. The latter compares
+native restore fields and frames; this is not rebuild parity validation.
+
+Historical probe: `tools/research/rust-dos-runs/run_plan.py <run-dir> <plan.json>`, run with
 the evidence Python and `GAME_DIR` set to the installed build (README beside it).
 It follows a plan of inputs from a checkpoint, records each draw of `rng` as
 `{rule, bound, result}` (script instruction `0x52` under RULE-SCRIPT-006,
