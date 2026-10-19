@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_006.ksy
-evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229, FND-PARTY-230, FND-PARTY-231, FND-PARTY-234, FND-PARTY-235, FND-PARTY-236, FND-PARTY-238, FND-PARTY-239, FND-PARTY-245, FND-PARTY-248, FND-PARTY-247, FND-PARTY-249, FND-PARTY-250, FND-PARTY-251, FND-PARTY-252, FND-PARTY-253]
+evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229, FND-PARTY-230, FND-PARTY-231, FND-PARTY-234, FND-PARTY-235, FND-PARTY-236, FND-PARTY-238, FND-PARTY-239, FND-PARTY-245, FND-PARTY-248, FND-PARTY-247, FND-PARTY-249, FND-PARTY-250, FND-PARTY-251, FND-PARTY-252, FND-PARTY-253, FND-PARTY-254, FND-PARTY-255]
 conflicting: []
 split_with: []
 related: []
@@ -63,6 +63,24 @@ with action argument 2 skips the subsequent decrement; other paths
 decrement byte `0x0E` and pass the item onward when the whole word is zero.
 This copy-before-decrement order does not establish a persistent uses-left
 counter or the meaning of every action argument [FND-PARTY-248].
+
+Two overlay-189 consumers instead treat nonzero word `0x10` as an
+effect selector plus one. One decrements it before its status, DATA
+and signed-threshold gates, resets the item before dispatch and brackets
+the dispatch with DS:6174 set to one then zero. The second calls the
+ability rebuild only for original words 320 through 327; its later
+effect call is locally unreachable because an unsigned FFFF comparison
+always returns first. Caller and child-effect admission remain open
+[FND-PARTY-254].
+
+The reviewed overlay-204 creation path instead splits word `0x10`
+into bits 0..2 for one child argument, bits 3..4 for a target request
+and bits 5..6 for a four-way local-table selection. Bit 7 controls a
+conditional guard after earlier status requests. Native script arguments,
+table/buffer identity and the actual child effects remain qualified.
+The reached guard includes a 93-byte fragment omitted from the current
+function inventory, which remains an explicit denominator gap
+[FND-PARTY-255].
 
 For the reviewed placed-object paths whose object number is 2400 through
 2949, word `0x10` is used as door flags. Bit 0 participates in the closed
@@ -237,6 +255,10 @@ for root index zero it instead returns the root object number
   bytes written by overlay 197 (FND-PARTY-249, Q-PARTY-106).
 - Admitted consumers and player-visible meaning of the property
   classification and its replacement branches (FND-PARTY-252, Q-PARTY-108).
+- Admitted item-action dispatch and child effects of the overlay-189
+  selector consumers (FND-PARTY-254, Q-PARTY-109).
+- Admitted script inputs and child effects of the packed-field consumer
+  (FND-PARTY-255, Q-PARTY-110), with its inventory gap retained separately.
 - Complete admitted door-action and partner/presentation effects, including
   the bypassed locals and unresolved bit meanings (FND-PARTY-250, Q-PARTY-107).
 - Remaining direct readers and writers of the bitmap-number cache

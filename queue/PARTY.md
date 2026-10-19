@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-109
+Next ID: Q-PARTY-111
 
 ## Static
 
@@ -116,8 +116,8 @@ Next ID: Q-PARTY-109
   slice 2.
 - Q-PARTY-020. FMT-PARTY-006: What does the word at `0x10` of a 23-byte attached record, kind-1
   field 8, hold?
-  Settles it: the remaining readers of `0x10` in overlays 173, 189, 197,
-  204 and 213, with the context-dependent
+  Settles it: the remaining readers of `0x10` in overlays 173, 197
+  and 213, with the context-dependent
   meaning of their values and bit tests beyond FND-PARTY-250's door paths.
   The word at `0x06` is FND-PARTY-245's value,
   the reference at `0x08` FND-PARTY-247's container head. Tried: FND-PARTY-196 lists the shipped values of every
@@ -152,7 +152,31 @@ Next ID: Q-PARTY-109
   pointer selection. Both resident sites are removed from Settles it.
   Overlay 190's only two retained census reads are already answered
   by FND-PARTY-248's reset body and are also removed. No broader
-  computed-access absence is claimed. Blocks: slice 2.
+  computed-access absence is claimed. Tried: FND-PARTY-254 answers
+  both overlay-189 consumers as one-based effect dispatch, including
+  the signed first threshold and the second helper's always-taken
+  unsigned FFFF return. Overlay 189 is removed from Settles it;
+  admitted caller/child effects are Q-PARTY-109. Tried: FND-PARTY-255
+  answers overlay 204's three packed selectors and bit-7 guard,
+  including the reached 93-byte inventory hole. Those local fields
+  are removed from Settles it; admitted script/child meanings are
+  Q-PARTY-110. Blocks: slice 2.
+- Q-PARTY-110. FMT-PARTY-006: Which admitted script-created objects and
+  child effects give gameplay meaning to overlay 204 `+1322`'s packed
+  word-0x10 fields? Settles it: caller argument domains, record and
+  DS/SS local-table identity, target-buffer population/capacity, guard
+  child meanings, the per-target requests and replacement-slot cleanup.
+  Tried: FND-PARTY-255 settles the local fields, guard and request order,
+  while retaining the explicit inventory gap. Blocks: complete
+  interpretation of FMT-PARTY-006.
+- Q-PARTY-109. FMT-PARTY-006: Which admitted item actions reach overlay
+  189 `+326A` and `+332B`, and what effects do their child requests
+  produce? Settles it: caller owner/index/value domains and record
+  preservation, the status gate and DATA-pointer results, reset/dispatch
+  effects and DS:6174 producers/consumers, including high source-word
+  admission. Tried: FND-PARTY-254 settles the complete local gates,
+  call arguments/order and unreachable post-FFFF call without assigning
+  a native effect outcome. Blocks: complete interpretation of FMT-PARTY-006.
 - Q-PARTY-108. FMT-PARTY-006: Which player-visible decisions consume
   classification bytes returned by `28C9:28E3` and `178 +0C6B`, and
   which admitted name/type/item inputs make the word-0x10 nonzero test
