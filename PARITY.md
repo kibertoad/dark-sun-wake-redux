@@ -6,20 +6,20 @@ How much of the spec in `spec/` the rebuild does. The rows are in `parity/`, one
 
 | Status | Rows |
 |---|---|
-| unknown | 10 |
-| sourced | 25 |
-| supported | 109 |
+| unknown | 7 |
+| sourced | 19 |
+| supported | 124 |
 | established | 0 |
-| disputed | 1 |
-| implemented | 24 |
+| disputed | 0 |
+| implemented | 20 |
 | deviated | 0 |
 | validated | 0 |
 
 | Code | Rows |
 |---|---|
-| missing | 94 |
-| partial | 51 |
-| complete | 24 |
+| missing | 95 |
+| partial | 55 |
+| complete | 20 |
 
 ## Areas
 
@@ -34,7 +34,7 @@ How much of the spec in `spec/` the rebuild does. The rows are in `parity/`, one
 | [REGION](parity/REGION.md) | 7 |
 | [ACTOR](parity/ACTOR.md) | 5 |
 | [EXPLORE](parity/EXPLORE.md) | 6 |
-| [SCRIPT](parity/SCRIPT.md) | 14 |
+| [SCRIPT](parity/SCRIPT.md) | 15 |
 | [TALK](parity/TALK.md) | 1 |
 | [PARTY](parity/PARTY.md) | 24 |
 | [MAGIC](parity/MAGIC.md) | 4 |

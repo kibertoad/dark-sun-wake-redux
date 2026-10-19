@@ -24,7 +24,7 @@ Entries by kind.
 
 ## findings
 
-12 entries.
+14 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -40,3 +40,5 @@ Entries by kind.
 | [FND-SAVE-010](../../findings/FND-SAVE-010.md) | Overlay 190 sends F1 and F2 to Save and Load and F3 to an exit choice | recorded |
 | [FND-SAVE-011](../../findings/FND-SAVE-011.md) | Clearing DS 1462 makes the resident main loop return | superseded |
 | [FND-SAVE-012](../../findings/FND-SAVE-012.md) | Clearing DS 1462 makes the resident main loop return | recorded |
+| [FND-SAVE-013](../../findings/FND-SAVE-013.md) | Script functions 33, 34 and 35 of opcode 0x22 set the subregion bounds, the map page and the defeat picture byte that a GREQ resource saves, and only the start of play and a load also set them | recorded |
+| [FND-SAVE-014](../../findings/FND-SAVE-014.md) | The shipped scripts set 137 different subregions through function 33 of opcode 0x22, and map pages 0 to 9, 255 or the value of the global that chose the subregion through function 34 | recorded |

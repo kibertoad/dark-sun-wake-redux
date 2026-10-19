@@ -41,7 +41,7 @@ Entries by status.
 
 ## recorded
 
-448 entries.
+449 entries.
 
 | ID | Title |
 |---|---|
@@ -493,6 +493,7 @@ Entries by status.
 | [FND-EXE-589](../../findings/FND-EXE-589.md) | Every computed transfer DSUN.EXE's census walk leaves unresolved stays in the file, never runs, or goes to the XMS driver, a handler installed before the program, or sound driver code loaded from ADV resources |
 | [FND-EXE-590](../../findings/FND-EXE-590.md) | The sound drivers the installed SOUND.CFG selects, ADV resources 11 and 8 of RESOURCE.GFF, are the disc's SBP2FM.ADV and SBPDIG.ADV, whose only transfer out of driver code goes to DSUN.EXE's music callback 4602:0040 |
 | [FND-EXE-591](../../findings/FND-EXE-591.md) | ADV resources 10 and 20 of the installed RESOURCE.GFF request no program execution; the DIGPAK image in ADV 10 installs its own interrupt 66 handler and calls back only into itself or DSUN.EXE's 4842:105F and 4842:107E |
+| [FND-EXE-592](../../findings/FND-EXE-592.md) | With the census's declarations and the classified rest declared, the walks from program start, the start window's callback and the gate routine's later calls leave no transfer unresolved, and they reach the region, effect and palette writers through script opcodes, window and frame callbacks and the exit table |
 
 ## Open questions
 

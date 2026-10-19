@@ -6,29 +6,29 @@ Entries by status.
 
 ## unknown
 
-3 entries.
+2 entries.
 
 | ID | Title |
 |---|---|
-| [FMT-SOUND-003](../../formats/FMT-SOUND-003.md) | STDPATCH.AD files |
 | [FMT-SOUND-004](../../formats/FMT-SOUND-004.md) | ADV files on the disc |
 | [FMT-SOUND-005](../../formats/FMT-SOUND-005.md) | GOG disc-audio Ogg tracks |
 
 ## supported
 
-5 entries.
+6 entries.
 
 | ID | Title |
 |---|---|
 | [FMT-SOUND-001](../../formats/FMT-SOUND-001.md) | Voice file with one block of 8-bit samples |
 | [FMT-SOUND-002](../../formats/FMT-SOUND-002.md) | Music table DJ.DAT |
+| [FMT-SOUND-003](../../formats/FMT-SOUND-003.md) | STDPATCH.AD files |
 | [RULE-SOUND-001](../../rules/RULE-SOUND-001.md) | A sound effect plays the BVOC resource of its number, or the installed SOUND file when there is no such resource |
 | [RULE-SOUND-002](../../rules/RULE-SOUND-002.md) | A spoken line plays INTR files from the disc below 50 and SPCH files from the installation or the disc from 50 up |
 | [RULE-SOUND-003](../../rules/RULE-SOUND-003.md) | Music is chosen from DJ.DAT by region at startup and by party health in combat, and plays as a disc audio track |
 
 ## recorded
 
-15 entries.
+16 entries.
 
 | ID | Title |
 |---|---|
@@ -47,6 +47,7 @@ Entries by status.
 | [FND-SOUND-013](../../findings/FND-SOUND-013.md) | The music routine plays song n as audio track n + 1 of the disc when SOUND.CFG asks for disc music |
 | [FND-SOUND-014](../../findings/FND-SOUND-014.md) | The six PLYL resources are lists of byte pairs ending in 0 or 100, the shape an uncalled playlist routine reads |
 | [FND-SOUND-015](../../findings/FND-SOUND-015.md) | CSEQ resource 1000 is an Extended MIDI file with one sequence that sets a tempo, loops and plays no note |
+| [FND-SOUND-016](../../findings/FND-SOUND-016.md) | The installed STDPATCH.AD is a directory of 233 six-byte timbre entries ending in two 0xFF bytes and 233 fourteen-byte timbres, and the sound library opens it at setup and reads one timbre by bank and patch number on request |
 
 ## Open questions
 
@@ -56,7 +57,7 @@ Entries whose Open questions section says more than None known.
 |---|---|---|
 | [FMT-SOUND-001](../../formats/FMT-SOUND-001.md) | Voice file with one block of 8-bit samples | supported |
 | [FMT-SOUND-002](../../formats/FMT-SOUND-002.md) | Music table DJ.DAT | supported |
-| [FMT-SOUND-003](../../formats/FMT-SOUND-003.md) | STDPATCH.AD files | unknown |
+| [FMT-SOUND-003](../../formats/FMT-SOUND-003.md) | STDPATCH.AD files | supported |
 | [FMT-SOUND-004](../../formats/FMT-SOUND-004.md) | ADV files on the disc | unknown |
 | [FMT-SOUND-005](../../formats/FMT-SOUND-005.md) | GOG disc-audio Ogg tracks | unknown |
 | [RULE-SOUND-001](../../rules/RULE-SOUND-001.md) | A sound effect plays the BVOC resource of its number, or the installed SOUND file when there is no such resource | supported |

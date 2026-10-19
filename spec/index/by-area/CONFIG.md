@@ -230,8 +230,11 @@ Entries by area.
 | [FND-CONFIG-215](../../findings/FND-CONFIG-215.md) | The resident pointer path returns a matched button number as an event-two identifier | recorded |
 | [FND-CONFIG-216](../../findings/FND-CONFIG-216.md) | The keyboard packet supplies the event-six word to the global fallback | recorded |
 | [FND-CONFIG-217](../../findings/FND-CONFIG-217.md) | The item-feedback callback limits mouse event bits before its shared message path | recorded |
-| [RULE-CONFIG-001](../../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | sourced |
+| [FND-CONFIG-218](../../findings/FND-CONFIG-218.md) | F4 and F5 change the music and sound-effects bytes as the Preferences buttons do, A and F6 both toggle the animation byte unless it is locked, and no key changes the voice bytes | recorded |
+| [FND-CONFIG-219](../../findings/FND-CONFIG-219.md) | None of the 13 Preferences buttons writes the music level, which the screen only reads from the sound library on entry and draws as a bar | recorded |
+| [FND-CONFIG-220](../../findings/FND-CONFIG-220.md) | No uncompressed shipped program or batch file names PATCH.RTP, and PATCH.EXE keeps its program compressed after a 4,474-byte loader | recorded |
+| [RULE-CONFIG-001](../../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | supported |
 | [RULE-CONFIG-002](../../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
-| [RULE-CONFIG-003](../../rules/RULE-CONFIG-003.md) | Setting the music and sound effects volumes | disputed |
+| [RULE-CONFIG-003](../../rules/RULE-CONFIG-003.md) | The Preferences screen shows the music volume and has no control that changes it | supported |
 | [RULE-CONFIG-004](../../rules/RULE-CONFIG-004.md) | The Preferences sound-effects volume adjustment | supported |
 | [RULE-CONFIG-005](../../rules/RULE-CONFIG-005.md) | The Preferences message-delay adjustment | supported |

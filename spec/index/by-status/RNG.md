@@ -24,7 +24,7 @@ Entries by status.
 
 ## recorded
 
-23 entries.
+24 entries.
 
 | ID | Title |
 |---|---|
@@ -51,6 +51,7 @@ Entries by status.
 | [FND-RNG-024](../../findings/FND-RNG-024.md) | A scripted d20 threshold test draws once per candidate and rejects its highest scaled result |
 | [FND-RNG-025](../../findings/FND-RNG-025.md) | Psionic action and resistance checks qualify five range-helper sites with conditional draws |
 | [FND-RNG-026](../../findings/FND-RNG-026.md) | Two coordinate samplers qualify the other six recovered range-helper sites |
+| [FND-RNG-027](../../findings/FND-RNG-027.md) | No shipped script uses instruction 0x59, the d20 threshold test, and 44 shipped script instructions issue request 27, which reseeds the generator |
 
 ## Open questions
 

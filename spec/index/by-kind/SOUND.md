@@ -12,7 +12,7 @@ Entries by kind.
 |---|---|---|
 | [FMT-SOUND-001](../../formats/FMT-SOUND-001.md) | Voice file with one block of 8-bit samples | supported |
 | [FMT-SOUND-002](../../formats/FMT-SOUND-002.md) | Music table DJ.DAT | supported |
-| [FMT-SOUND-003](../../formats/FMT-SOUND-003.md) | STDPATCH.AD files | unknown |
+| [FMT-SOUND-003](../../formats/FMT-SOUND-003.md) | STDPATCH.AD files | supported |
 | [FMT-SOUND-004](../../formats/FMT-SOUND-004.md) | ADV files on the disc | unknown |
 | [FMT-SOUND-005](../../formats/FMT-SOUND-005.md) | GOG disc-audio Ogg tracks | unknown |
 
@@ -28,7 +28,7 @@ Entries by kind.
 
 ## findings
 
-15 entries.
+16 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -47,3 +47,4 @@ Entries by kind.
 | [FND-SOUND-013](../../findings/FND-SOUND-013.md) | The music routine plays song n as audio track n + 1 of the disc when SOUND.CFG asks for disc music | recorded |
 | [FND-SOUND-014](../../findings/FND-SOUND-014.md) | The six PLYL resources are lists of byte pairs ending in 0 or 100, the shape an uncalled playlist routine reads | recorded |
 | [FND-SOUND-015](../../findings/FND-SOUND-015.md) | CSEQ resource 1000 is an Extended MIDI file with one sequence that sets a tempo, loops and plays no note | recorded |
+| [FND-SOUND-016](../../findings/FND-SOUND-016.md) | The installed STDPATCH.AD is a directory of 233 six-byte timbre entries ending in two 0xFF bytes and 233 fourteen-byte timbres, and the sound library opens it at setup and reads one timbre by bank and patch number on request | recorded |

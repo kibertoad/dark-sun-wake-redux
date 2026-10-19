@@ -4,28 +4,21 @@
 
 Entries by status.
 
-## unknown
-
-2 entries.
-
-| ID | Title |
-|---|---|
-| [FMT-ACTOR-002](../../formats/FMT-ACTOR-002.md) | Object data resource |
-| [FMT-ACTOR-003](../../formats/FMT-ACTOR-003.md) | MONR resource |
-
 ## supported
 
-3 entries.
+5 entries.
 
 | ID | Title |
 |---|---|
 | [FMT-ACTOR-001](../../formats/FMT-ACTOR-001.md) | Object definition |
+| [FMT-ACTOR-002](../../formats/FMT-ACTOR-002.md) | Object data resource |
+| [FMT-ACTOR-003](../../formats/FMT-ACTOR-003.md) | MONR resource |
 | [FMT-ACTOR-004](../../formats/FMT-ACTOR-004.md) | Object slot record |
 | [RULE-ACTOR-001](../../rules/RULE-ACTOR-001.md) | Drawing a region's placed objects |
 
 ## recorded
 
-13 entries.
+15 entries.
 
 | ID | Title |
 |---|---|
@@ -42,6 +35,8 @@ Entries by status.
 | [FND-ACTOR-011](../../findings/FND-ACTOR-011.md) | The RDFF request routines use the 37-byte slot records and not the 13-byte records of segment 1695 |
 | [FND-ACTOR-012](../../findings/FND-ACTOR-012.md) | The opening region names 287 objects whose images hold 477 frames |
 | [FND-ACTOR-013](../../findings/FND-ACTOR-013.md) | Split at 81 bytes, no column of the MONR resource is constant |
+| [FND-ACTOR-014](../../findings/FND-ACTOR-014.md) | Script request 8 reads MONR resource 1 as 42-byte records of a key and ten pairs of words, and picks a pair by the party's levels or divides by a pair's second word |
+| [FND-ACTOR-015](../../findings/FND-ACTOR-015.md) | Every RDFF resource of OBJEX.GFF is a chain of the CHAR load's chunks, which the object load walks with the same routine, and one has bytes after its end header |
 
 ## Open questions
 
@@ -50,7 +45,7 @@ Entries whose Open questions section says more than None known.
 | ID | Title | Status |
 |---|---|---|
 | [FMT-ACTOR-001](../../formats/FMT-ACTOR-001.md) | Object definition | supported |
-| [FMT-ACTOR-002](../../formats/FMT-ACTOR-002.md) | Object data resource | unknown |
-| [FMT-ACTOR-003](../../formats/FMT-ACTOR-003.md) | MONR resource | unknown |
+| [FMT-ACTOR-002](../../formats/FMT-ACTOR-002.md) | Object data resource | supported |
+| [FMT-ACTOR-003](../../formats/FMT-ACTOR-003.md) | MONR resource | supported |
 | [FMT-ACTOR-004](../../formats/FMT-ACTOR-004.md) | Object slot record | supported |
 | [RULE-ACTOR-001](../../rules/RULE-ACTOR-001.md) | Drawing a region's placed objects | supported |
