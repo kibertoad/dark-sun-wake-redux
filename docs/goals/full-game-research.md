@@ -36,9 +36,9 @@ Do not repeat a retained search without new evidence, tooling or reading.
 - Stage: Slices. Research continues toward the full Audit condition.
 - Last full gate: 2026-10-19, Test.ps1 -NoRestore passed, including 715
   .NET tests. Documentation check retains known prose-parameter skips.
-- Completed batches: FND-PARTY-248 through FND-PARTY-253. No unfinished files.
-- Next: Q-PARTY-020's remaining readers in overlays 173, 189, 197, 204
-  and 213, then Q-PARTY-108's classification consumers, Q-PARTY-107's
+- Completed batches: FND-PARTY-248 through FND-PARTY-255. No unfinished files.
+- Next: Q-PARTY-020's remaining readers in overlays 173, 197 and 213,
+  then Q-PARTY-108's classification consumers, Q-PARTY-107's
   admitted door callers and Q-PARTY-106's callers/consumers; retain Q-PARTY-082 and
   Q-PARTY-099 as separate dependencies. Use docs/RESEARCH-CLOSURE.md to
   keep complete-reading obligations distinct from citation coverage.
@@ -48,10 +48,17 @@ Do not repeat a retained search without new evidence, tooling or reading.
   GAME_DIR/analysis/party-door-grid-20261019; latest reports are in
   GAME_DIR/analysis/party-property-classifier-20261019 and
   GAME_DIR/analysis/party-resident-door-consumers-20261019.
+  FND-PARTY-254/255 reports are in
+  GAME_DIR/analysis/party-item-selectors-20261019.
   No game runtime was started.
-- Q-PARTY-020's eight-Tried warning is qualified: each latest batch removed
+- Q-PARTY-020's ten-Tried warning is qualified: each latest batch removed
   named stores or consumer paths from Settles it. Q-PARTY-106,
-  Q-PARTY-107 and Q-PARTY-108 hold separate admission questions. Do not repeat the
+  Q-PARTY-107 through Q-PARTY-110 hold separate admission questions. Do not repeat the
   completed local readings; the next reading must remove another obligation.
+- Tooling follow-up: reconcile FND-PARTY-255's 93-byte inventory fragment
+  before relying on complete-reading ownership for that function. Keep the
+  authoritative inventory unchanged until the provenance-preserving tooling
+  batch is planned and validated. Shared report and new case:
+  https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/477#issuecomment-6256765999.
 - Session-local validation must clear NoDefaultCurrentDirectoryInExePath;
   use this checkout's evidence Python and project-specific game-dir resolver.
