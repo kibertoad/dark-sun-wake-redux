@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_006.ksy
-evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229, FND-PARTY-230, FND-PARTY-231, FND-PARTY-234, FND-PARTY-235, FND-PARTY-236, FND-PARTY-238, FND-PARTY-239, FND-PARTY-245, FND-PARTY-248, FND-PARTY-247, FND-PARTY-249, FND-PARTY-250, FND-PARTY-251, FND-PARTY-252, FND-PARTY-253, FND-PARTY-254, FND-PARTY-255]
+evidence: [FND-PARTY-051, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229, FND-PARTY-230, FND-PARTY-231, FND-PARTY-234, FND-PARTY-235, FND-PARTY-236, FND-PARTY-238, FND-PARTY-239, FND-PARTY-245, FND-PARTY-248, FND-PARTY-247, FND-PARTY-249, FND-PARTY-250, FND-PARTY-251, FND-PARTY-252, FND-PARTY-253, FND-PARTY-254, FND-PARTY-255, FND-PARTY-256]
 conflicting: []
 split_with: []
 related: []
@@ -81,6 +81,16 @@ table/buffer identity and the actual child effects remain qualified.
 The reached guard includes a 93-byte fragment omitted from the current
 function inventory, which remains an explicit denominator gap
 [FND-PARTY-255].
+
+In the reviewed ability rebuild, word `0x10` values 320 through 325
+select strength, dexterity, constitution, intelligence, wisdom and charisma;
+326 makes no local adjustment and 327 adjusts movement. For an ability,
+unsigned word `0x0E` below 16 adds to its additive candidate, 16 through
+31 raises its alternate candidate to at least that value and enables
+candidate selection, and at least 32 subtracts the word minus 31 from
+the additive candidate. These are 16-bit intermediate operations. Final
+selection writes a low byte before capping the stored byte at 25.
+Input, graph and storage admission remain qualified [FND-PARTY-256].
 
 For the reviewed placed-object paths whose object number is 2400 through
 2949, word `0x10` is used as door flags. Bit 0 participates in the closed
@@ -259,6 +269,8 @@ for root index zero it instead returns the root object number
   selector consumers (FND-PARTY-254, Q-PARTY-109).
 - Admitted script inputs and child effects of the packed-field consumer
   (FND-PARTY-255, Q-PARTY-110), with its inventory gap retained separately.
+- Complete admitted item ability/movement rebuild and its effect-list
+  inputs and intermediate arithmetic (FND-PARTY-256, Q-PARTY-111).
 - Complete admitted door-action and partner/presentation effects, including
   the bypassed locals and unresolved bit meanings (FND-PARTY-250, Q-PARTY-107).
 - Remaining direct readers and writers of the bitmap-number cache

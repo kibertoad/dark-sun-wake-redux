@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-142
 title: The six bytes at 0x5A of a CHAR record are the character's base ability scores, which overlay 197 +1E7B adjusts to set the current scores at 0x23
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-256]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

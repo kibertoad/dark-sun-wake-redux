@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_001.ksy
-evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057, FND-PARTY-058, FND-PARTY-059, FND-PARTY-073, FND-PARTY-066, FND-PARTY-074, FND-PARTY-081, FND-PARTY-082, FND-PARTY-083, FND-PARTY-085, FND-PARTY-086, FND-PARTY-091, FND-PARTY-100, FND-PARTY-096, FND-PARTY-099, FND-PARTY-108, FND-PARTY-071, FND-PARTY-070, FND-PARTY-142, FND-PARTY-095, FND-PARTY-143, FND-PARTY-144, FND-PARTY-145, FND-PARTY-146, FND-PARTY-147, FND-PARTY-148, FND-PARTY-112, FND-PARTY-113, FND-PARTY-149, FND-PARTY-150, FND-PARTY-151, FND-PARTY-152, FND-PARTY-156, FND-PARTY-157, FND-PARTY-158, FND-PARTY-159]
+evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057, FND-PARTY-058, FND-PARTY-059, FND-PARTY-073, FND-PARTY-066, FND-PARTY-074, FND-PARTY-081, FND-PARTY-082, FND-PARTY-083, FND-PARTY-085, FND-PARTY-086, FND-PARTY-091, FND-PARTY-100, FND-PARTY-096, FND-PARTY-099, FND-PARTY-108, FND-PARTY-071, FND-PARTY-070, FND-PARTY-256, FND-PARTY-095, FND-PARTY-143, FND-PARTY-144, FND-PARTY-145, FND-PARTY-146, FND-PARTY-147, FND-PARTY-148, FND-PARTY-112, FND-PARTY-113, FND-PARTY-149, FND-PARTY-150, FND-PARTY-151, FND-PARTY-152, FND-PARTY-156, FND-PARTY-157, FND-PARTY-158, FND-PARTY-159]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-006]
@@ -54,12 +54,12 @@ offsets hold for every record the game writes and reads back.
 | `0x20` | 1 | `UINT8` | `thac0` | 20 less the best, over the class groups, of the group's greatest level less 1 times the group's rate (8 priest, 12 warrior, 4 wizard, 6 rogue) over 12. A load copies it to byte `0x16` of the FMT-COMBAT-001 record; storing a character, a class change and each level gained in play set it. The attack routine of overlay 173 takes it as the attacker's THAC0: an attack hits on a roll of 1 to 20 that is 20, or not 1 and at least the THAC0 less bonuses less a value for the target. | supported | FND-PARTY-049, FND-PARTY-085, FND-PARTY-091 |
 | `0x21` | 1 | `UINT8` | `unk_21` | Purpose unknown. A load copies it to byte `0x17` of the FMT-COMBAT-001 record, which no read found uses; 7 in the shipped records. | supported | FND-PARTY-049, FND-PARTY-152 |
 | `0x22` | 1 | `UINT8` | `control_flags` | A load copies it to the FMT-COMBAT-001 record's byte at `0x18`, whose bits 5 and 6 are `computer_control` and `control_locked`; 0 in the shipped records. | supported | FND-PARTY-049, FND-PARTY-050 |
-| `0x23` | 1 | `UINT8` | `strength` | Strength, 12 to 24 in the shipped records. | established | FND-PARTY-003, FND-PARTY-020, FND-PARTY-071, FND-PARTY-142 |
-| `0x24` | 1 | `UINT8` | `dexterity` | Dexterity. | established | FND-PARTY-003, FND-PARTY-020, FND-PARTY-071, FND-PARTY-142 |
-| `0x25` | 1 | `UINT8` | `constitution` | Constitution. | established | FND-PARTY-003, FND-PARTY-020, FND-PARTY-071, FND-PARTY-142 |
-| `0x26` | 1 | `UINT8` | `intelligence` | Intelligence. | established | FND-PARTY-003, FND-PARTY-020, FND-PARTY-071, FND-PARTY-142 |
-| `0x27` | 1 | `UINT8` | `wisdom` | Wisdom. | established | FND-PARTY-003, FND-PARTY-020, FND-PARTY-071, FND-PARTY-142 |
-| `0x28` | 1 | `UINT8` | `charisma` | Charisma. | established | FND-PARTY-003, FND-PARTY-020, FND-PARTY-071, FND-PARTY-142 |
+| `0x23` | 1 | `UINT8` | `strength` | Strength, 12 to 24 in the shipped records. | established | FND-PARTY-003, FND-PARTY-020, FND-PARTY-071, FND-PARTY-256 |
+| `0x24` | 1 | `UINT8` | `dexterity` | Dexterity. | established | FND-PARTY-003, FND-PARTY-020, FND-PARTY-071, FND-PARTY-256 |
+| `0x25` | 1 | `UINT8` | `constitution` | Constitution. | established | FND-PARTY-003, FND-PARTY-020, FND-PARTY-071, FND-PARTY-256 |
+| `0x26` | 1 | `UINT8` | `intelligence` | Intelligence. | established | FND-PARTY-003, FND-PARTY-020, FND-PARTY-071, FND-PARTY-256 |
+| `0x27` | 1 | `UINT8` | `wisdom` | Wisdom. | established | FND-PARTY-003, FND-PARTY-020, FND-PARTY-071, FND-PARTY-256 |
+| `0x28` | 1 | `UINT8` | `charisma` | Charisma. | established | FND-PARTY-003, FND-PARTY-020, FND-PARTY-071, FND-PARTY-256 |
 | `0x29` | 1 | `UINT8` | `facing` | The direction the character faces, 0 to 7. A load copies it to byte `0x1F` of the FMT-COMBAT-001 record; drawing maps the eight directions onto four sprite views. 0 to 6 in the shipped records. | supported | FND-PARTY-049, FND-PARTY-144 |
 | `0x2A` | 1 | `UINT8` | `unk_2a` | Purpose unknown. A load copies it to byte `0x20` of the FMT-COMBAT-001 record, which overlay 204's combatant field getter and setter read and write as field 33; those are functions 48 and 49 of script opcode `0x22`, and nothing else found reads or writes it; 0 in the shipped records. | supported | FND-PARTY-049, FND-PARTY-144, FND-PARTY-152, FND-PARTY-156 |
 | `0x2B` | 16 | `char[16]` | `name` | The character's name, printable ASCII ending at the first NUL, 6 to 15 characters in the shipped records. Bytes after the NUL may hold leftover text. | established | FND-PARTY-001, FND-PARTY-020 |
@@ -74,7 +74,7 @@ offsets hold for every record the game writes and reads back.
 | `0x57` | 1 | `UINT8` | `origin` | The character's origin, counted from 1: human, dwarf, elf, half-elf, half-giant, halfling, mul, thri-kreen. The character sheet prints it from the details record's byte at `0x12`. | supported | FND-PARTY-051, FND-PARTY-055, FND-PARTY-056 |
 | `0x58` | 1 | `UINT8` | `gender` | 1 for male, 2 for female; printed from the details record's byte at `0x13`. | supported | FND-PARTY-051, FND-PARTY-055, FND-PARTY-056 |
 | `0x59` | 1 | `UINT8` | `alignment` | The alignment, counted from 1: lawful good, lawful neutral, lawful evil, neutral good, true neutral, neutral evil, chaotic good, chaotic neutral, chaotic evil; printed from the details record's byte at `0x14`. | supported | FND-PARTY-051, FND-PARTY-055, FND-PARTY-056 |
-| `0x5A` | 6 | `UINT8[6]` | `base_scores` | The six ability scores as generated, origin modifiers included, in the order of `0x23` to `0x28`. A load copies them to bytes `0x15` to `0x1A` of the FMT-COMBAT-002 record, from which overlay 197 `+1E7B` sets the current scores; equal to `0x23` to `0x28` in 18 of the 19 shipped records, and one below the strength in resource 50. | supported | FND-PARTY-051, FND-PARTY-070, FND-PARTY-142 |
+| `0x5A` | 6 | `UINT8[6]` | `base_scores` | The six ability scores as generated, origin modifiers included, in the order of `0x23` to `0x28`. A load copies them to bytes `0x15` to `0x1A` of the FMT-COMBAT-002 record, from which overlay 197 `+1E7B` sets the current scores; equal to `0x23` to `0x28` in 18 of the 19 shipped records, and one below the strength in resource 50. | supported | FND-PARTY-051, FND-PARTY-070, FND-PARTY-256 |
 | `0x60` | 3 | `UINT8[3]` | `classes` | Up to three class codes (see the enumeration below), 0 for none, nonzero ones first. The character sheet prints a level for each nonzero one. | supported | FND-PARTY-051, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057 |
 | `0x63` | 3 | `UINT8[3]` | `levels` | The level in each class of `classes`, 0 where the class is 0; printed from the details record's bytes `0x1E` to `0x20`. In play overlay 210 raises a level while the experience reaches the class's next threshold, up to 15, and its level drain lowers it when a party member receives the effect code 59, which a strike by the item of `DATA` number 313 on an attack roll of 20 sends, as do the spells `DATA` 104 and 225, whose byte `+0x19` is 59, used in a fight on a target that fails its saving throw, and a script through function 23 of opcode `0x22`; the class change of overlay 209 sets the new class to level 1. | supported | FND-PARTY-051, FND-PARTY-055, FND-PARTY-056, FND-PARTY-081, FND-PARTY-082, FND-PARTY-083, FND-PARTY-096, FND-PARTY-108 |
 | `0x66` | 1 | `INT8` | `base_armor_class` | The character's armor class before items and dexterity. A load copies it to byte `0x21` of the FMT-COMBAT-002 record, from which overlay 173 `+2C00` computes the armor class an attack is rolled against; 10 or, for five of the six thri-kreen, 5 in the shipped records, with 0 and 7 once each. | supported | FND-PARTY-051, FND-PARTY-145 |
@@ -101,7 +101,7 @@ offsets hold for every record the game writes and reads back.
 
 The scores at `0x23` to `0x28` are the current ones: generation stores them with the origin
 modifiers added, and in play overlay 197 `+1E7B` sets them from `base_scores` and the entries at
-`4E71:0251` it applies [FND-PARTY-071, FND-PARTY-142].
+`4E71:0251` it applies [FND-PARTY-071, FND-PARTY-256].
 
 The value file `FMT-PARTY-001.characters.csv` gives, for each of the 19 `CHAR` resources of the
 installed `CHARSAVE.GFF`, the columns `character` (the resource number), `type`,

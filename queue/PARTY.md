@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-111
+Next ID: Q-PARTY-112
 
 ## Static
 
@@ -104,7 +104,7 @@ Next ID: Q-PARTY-111
   FND-PARTY-057 place hit points, the object offset, the combatant identifier, the control flags,
   greatest hit points, origin, gender, alignment, class codes with their names, and levels, and
   FND-PARTY-058 and FND-PARTY-059 place experience at `0x45` and the current and greatest
-  psionic points at `0x0C` and `0x51`. FND-PARTY-142 shows `0x5A` holds the base scores, and
+  psionic points at `0x0C` and `0x51`. FND-PARTY-256 shows `0x5A` holds the base scores, and
   with FND-PARTY-071 that the scores are stored with the origin modifiers added. FND-PARTY-143 shows `0x1F` is the
   combatant kind, FND-PARTY-144 that `0x29` is the facing and FND-PARTY-145 that `0x66` is the base
   armor class; FND-PARTY-146 shows `0x1D` and `0x67` are the current and base movement rate, FND-PARTY-147 that `0x53` is the details record's key, and FND-PARTY-148 that `0x04`, `0x06` and
@@ -116,7 +116,7 @@ Next ID: Q-PARTY-111
   slice 2.
 - Q-PARTY-020. FMT-PARTY-006: What does the word at `0x10` of a 23-byte attached record, kind-1
   field 8, hold?
-  Settles it: the remaining readers of `0x10` in overlays 173, 197
+  Settles it: the remaining readers of `0x10` in overlays 173
   and 213, with the context-dependent
   meaning of their values and bit tests beyond FND-PARTY-250's door paths.
   The word at `0x06` is FND-PARTY-245's value,
@@ -160,7 +160,21 @@ Next ID: Q-PARTY-111
   answers overlay 204's three packed selectors and bit-7 guard,
   including the reached 93-byte inventory hole. Those local fields
   are removed from Settles it; admitted script/child meanings are
-  Q-PARTY-110. Blocks: slice 2.
+  Q-PARTY-110. Tried: FND-PARTY-256 answers the remaining overlay-197
+  selector read as six ability cases, one no-op and a movement case,
+  including word arithmetic and final byte-before-clamp ordering.
+  Overlay 197 is removed from Settles it; admitted inputs and complete
+  rebuild effects are Q-PARTY-111. Blocks: slice 2.
+- Q-PARTY-111. FMT-PARTY-006, FMT-PARTY-001: Which admitted inputs and
+  child effects establish the item ability/movement rebuild's complete
+  contract in overlay 197 `+1E7B`? Settles it: resolver/index admission,
+  effect-list/table construction and all effect cases, graph/record and
+  DS/SS storage identity, item payload/value domains and arithmetic-edge
+  reachability, flag sources and preservation across children. Graph and
+  field-16 naming remain Q-PARTY-099 and Q-PARTY-082. Tried:
+  FND-PARTY-256 corrects the earlier 24 bound and settles local item
+  cases and serialization order; complete admission remains open.
+  Blocks: complete interpretation of FMT-PARTY-006 and FMT-PARTY-001.
 - Q-PARTY-110. FMT-PARTY-006: Which admitted script-created objects and
   child effects give gameplay meaning to overlay 204 `+1322`'s packed
   word-0x10 fields? Settles it: caller argument domains, record and
