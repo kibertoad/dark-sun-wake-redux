@@ -1,9 +1,9 @@
 ---
 id: FND-INPUT-009
 title: The one dispatch-shaped caller above the mapped keyboard routine requests GPLI 1
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-INPUT-015]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

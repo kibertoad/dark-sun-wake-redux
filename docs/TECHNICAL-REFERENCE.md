@@ -178,13 +178,13 @@ rejecting unsupported semantics:
   exit, and that the `INT 10h` wrapper at `1000:1136` serves the C runtime's
   text output. The routines that draw into the planes were not read.
 - The mouse and keyboard reach the game through the wrappers and hooks of
-  `FND-INPUT-005`, `FND-INPUT-010` and `FND-INPUT-011`, which queue key words and mouse events as
+  `FND-INPUT-005`, `FND-INPUT-010` and `FND-INPUT-014`, which queue key words and mouse events as
   packets. They do not identify axes, a global transform, control hit testing,
   gestures, or a key-to-action map, so the measured canvas, the DSUI contracts
   and `RULE-INPUT-001` to `RULE-INPUT-003` remain authoritative.
-  `FND-INPUT-007` to `FND-INPUT-009` exclude direct keyboard-port reads, a
-  unified combat-key switch, and the one overlay route above the keyboard
-  routine as a key dispatcher. A key routine in overlay 190 compares BIOS key
+  `FND-INPUT-007` and `FND-INPUT-008` exclude direct keyboard-port reads and
+  a unified combat-key switch, and `FND-INPUT-015` finds that the routine once
+  read as a dispatcher above the keyboard routine remaps `GPLI` selectors. A key routine in overlay 190 compares BIOS key
   words with a table of 33 and handles the combat keys `G`, `W` and `Q`
   (`FND-COMBAT-025`); its other keys are not read.
 - `FND-IMAGE-009` finds no `PORT` tag in the resident image; its one
