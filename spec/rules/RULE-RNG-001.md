@@ -4,7 +4,7 @@ title: The game's random number generator and its reductions
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029]
+evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-030]
 conflicting: []
 split_with: []
 related: []
@@ -35,7 +35,9 @@ The direct-call census (FND-RNG-028) finds 29 direct calls of the generator, 60 
 `random_between` are called only from overlays, and `random_mod` and `chance_in_ten` only from
 the music selector and `chance_in_ten`. Recorded findings describe 52 of those sites, and
 FND-RNG-029 five more: the generation screen's opening picture and RULE-PARTY-016's spell picks.
-The other 10 generator sites (Q-RNG-001) and 50 `roll_sum` sites (Q-RNG-013) still need
+FND-RNG-030 reads overlay 206's six: two draws per pixel of a removed combatant's dissolve and a
+`roll_sum` draw choosing a combatant's cry, whose triggers and rule entries remain Q-RNG-014.
+The other 8 generator sites (Q-RNG-001) and 46 `roll_sum` sites (Q-RNG-013) still need
 qualification and rule mapping, and calls not made directly remain Q-RNG-008.
 
 Overlay 204's entry runs, and reseeds, each time a script issues request 27 of instruction
@@ -147,8 +149,9 @@ None known.
   remain separate (Q-RNG-003). The second root's local reseeding and
   conditional draw loop, and its script wrapper widths, are recorded in
   FND-RNG-021..022, and the shipped scripts that issue it in FND-RNG-027.
-- The rule and draw order of the 10 direct generator sites (Q-RNG-001) and the 50 `roll_sum`
-  sites (Q-RNG-013) that FND-RNG-028 and FND-RNG-029 leave undescribed. Recovered `random_mod`
+- The rule and draw order of the 8 direct generator sites (Q-RNG-001) and the 46 `roll_sum`
+  sites (Q-RNG-013) that FND-RNG-028..030 leave undescribed, and the events that reach overlay
+  206's dissolve and cry draws (FND-RNG-030, Q-RNG-014). Recovered `random_mod`
   uses include `chance_in_ten`, the table selection in FND-RNG-007 and the music selector of
   RULE-SOUND-003 (FND-SOUND-012).
   FND-PARTY-099 recovers an effect-saving caller of `roll_sum(1, 20)`; the earlier statement

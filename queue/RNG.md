@@ -1,14 +1,14 @@
 # RNG
 
-Next ID: Q-RNG-014
+Next ID: Q-RNG-015
 
 ## Static
 
-- Q-RNG-001. RULE-RNG-001, RULE-PARTY-016: Which rule does each of the 10 direct generator
-  sites that FND-RNG-028 lists as not described and FND-RNG-029 does not read serve, in what
+- Q-RNG-001. RULE-RNG-001, RULE-PARTY-016: Which rule does each of the 8 direct generator
+  sites that FND-RNG-028 lists as not described and FND-RNG-029..030 do not read serve, in what
   draw order?
   Settles it: for overlay 173 `+0E99`, `+0EDB`, `+1BE2`, `+31DF`, `+3208`, `+3B21` and `+3B3D`,
-  overlay 197 `+1082` and overlay 206 `+1360` and `+1382`, a decode from an established entry
+  and overlay 197 `+1082`, a decode from an established entry
   showing each is an instruction, the reduction applied to the draw, the conditions that reach it
   and the rule it belongs to; the rule of overlay 204 +00E1's draw; and whether the calls DONE
   makes before RULE-PARTY-016's picks draw. Tried: FND-RNG-001, FND-RNG-002, FND-RNG-007, FND-RNG-008, FND-SCRIPT-011 and
@@ -16,17 +16,26 @@ Next ID: Q-RNG-014
   FND-RNG-028 takes the direct-call census for the generator and the four reducers with a
   control for each kind of site and maps 52 of 117 sites to the findings that describe them;
   the `roll_sum` sites moved to Q-RNG-013. FND-RNG-029 qualifies overlay 184's five sites: the
-  generation screen's opening picture draw and RULE-PARTY-016's four spell picks. Blocks: slices
-  2-7.
-- Q-RNG-013. RULE-RNG-001: Which rule does each of the 50 `roll_sum` sites that FND-RNG-028
-  lists as not described serve, with which count and sides, and how does each caller read the
-  returned total? Settles it: for each site in overlays 179, 191, 193, 195, 197, 198, 204, 206
-  and 211 that FND-RNG-028 lists, a decode from an established entry showing it is an
+  generation screen's opening picture draw and RULE-PARTY-016's four spell picks; FND-RNG-030
+  qualifies overlay 206's two, a removed combatant's dissolve (moved to Q-RNG-014). Blocks:
+  slices 2-7.
+- Q-RNG-013. RULE-RNG-001: Which rule does each of the 46 `roll_sum` sites that FND-RNG-028
+  lists as not described and FND-RNG-030 does not read serve, with which count and sides, and how does each caller read the
+  returned total? Settles it: for each site in overlays 179, 191, 193, 195, 197, 198, 204 and
+  211 that FND-RNG-028 lists, a decode from an established entry showing it is an
   instruction, its two arguments' sources, the width and signedness at which the caller tests
   or stores the total, and the rule it belongs to. Tried: split from Q-RNG-001. FND-RNG-005 and
   FND-RNG-013 read the helper; FND-RNG-028 lists the sites, and FND-PARTY-071, FND-PARTY-074,
   FND-PARTY-082, FND-PARTY-099, FND-PARTY-150, FND-PARTY-168, FND-PARTY-249 and FND-TEXT-008
-  describe the ten others. Blocks: slices 2-7.
+  describe the ten others. FND-RNG-030 qualifies overlay 206's four, the cry choice (moved to
+  Q-RNG-014). Blocks: slices 2-7.
+- Q-RNG-014. RULE-RNG-001: Which game events reach overlay 206's cry choice and its dissolve of a
+  removed combatant, and which rules describe them? Settles it: the callers of overlay 206
+  `+0B81` (the cry with flag 0) and `+0E1E` (the cry with flag 1 and the dissolve) with the
+  conditions that reach each call, whether `+0E1E`'s calls before the dissolve draw, and the
+  rule or screen entries that take FND-RNG-030's procedures. Tried: split from Q-RNG-001 and
+  Q-RNG-013. FND-RNG-030 reads `+1257` and `+151E` and the two calls in `+0E1E`, and FND-PARTY-140
+  reads `+0E1E`'s branch for party slots. Blocks: slices 2-7.
 - Q-RNG-008. RULE-RNG-001: Can the generator, a helper or the seed setter be reached through a
   stored far pointer, a computed call or a segment alias? Settles it: the words of the file equal
   to each routine's offset with a relocated or fixed-up segment, the computed call sites whose
