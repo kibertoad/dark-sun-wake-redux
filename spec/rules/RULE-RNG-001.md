@@ -4,7 +4,7 @@ title: The game's random number generator and its reductions
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-032, FND-RNG-044, FND-RNG-035, FND-RNG-039, FND-RNG-040, FND-RNG-041, FND-RNG-043, FND-RNG-045, FND-RNG-046, FND-RNG-047, FND-RNG-048, FND-RNG-049, FND-RNG-050, FND-RNG-052, FND-RNG-053, FND-RNG-054, FND-RNG-055, FND-RNG-056, FND-RNG-057, FND-RNG-058]
+evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-032, FND-RNG-044, FND-RNG-035, FND-RNG-039, FND-RNG-040, FND-RNG-041, FND-RNG-043, FND-RNG-045, FND-RNG-046, FND-RNG-047, FND-RNG-048, FND-RNG-049, FND-RNG-050, FND-RNG-052, FND-RNG-053, FND-RNG-054, FND-RNG-055, FND-RNG-056, FND-RNG-057, FND-RNG-058, FND-RNG-059]
 conflicting: []
 split_with: []
 related: [RULE-VIDEO-005, RULE-MAGIC-005, RULE-MAGIC-006, RULE-AI-003, RULE-COMBAT-012, RULE-COMBAT-013, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009, RULE-MAGIC-007, RULE-MAGIC-008, RULE-MAGIC-009, RULE-MAGIC-010, RULE-MAGIC-011, RULE-MAGIC-012, RULE-MAGIC-013, RULE-MAGIC-014, RULE-MAGIC-015, RULE-MAGIC-016, RULE-MAGIC-017, RULE-MAGIC-018, RULE-MAGIC-019, RULE-MAGIC-020, RULE-MAGIC-021, RULE-MAGIC-022, RULE-SCRIPT-012, RULE-COMBAT-017, RULE-MAGIC-023]
@@ -203,5 +203,7 @@ None known.
   that `roll_sum` had no recovered caller was stale.
 - What the readers of a cast's sampled area points do with them and with the amount, and what
   shapes the area (FND-RNG-052, Q-MAGIC-017).
-- Whether computed, aliased or bulk accesses read or write `rng_state`
-  beyond the known generator/setter (FND-RNG-001, Q-RNG-007).
+- Whether computed, aliased or bulk writes change `rng_state`. On a walk from every established
+  entry only the generator and the setter name it, and the handle flag words below it reach it
+  only for handles 67 and 68, which two file routines do not bound (FND-RNG-001, FND-RNG-059,
+  Q-RNG-007). It holds 1 at load (FND-RNG-059).

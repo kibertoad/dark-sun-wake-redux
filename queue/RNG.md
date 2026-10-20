@@ -106,18 +106,23 @@ Next ID: Q-RNG-024
   Blocks: complete admitted
   seed-source input domain.
 
-- Q-RNG-007. RULE-RNG-001: Which reached direct, computed, aliased or bulk
-  accesses can read or change rng_state apart from its known generator and
-  setter? Settles it: a reached access-mechanism census with controls for
-  each covered kind, including overlapping/bulk writes and far/segment
-  aliases, and storage/segment identity on the admitted paths. Separate
-  unqualified operand candidates from reached accesses; literal displacement
-  searches cannot settle computed pointers. Tried: FND-RNG-001 and
+- Q-RNG-007. RULE-RNG-001: Can a reached computed, aliased or bulk write
+  change rng_state apart from its generator and setter? Settles it: the
+  handles the callers of `1000:07B0` and `1000:3EDA` (FND-RNG-059) can pass,
+  shown below 67 or listed; the destinations of writes through the stream
+  record pointers, heap and far pointers, string stores and copy helpers on
+  FND-RNG-058's walk, other segment and offset pairs for `DS:384A..384E`,
+  and the code behind the walk's nine unresolved transfers, each shown to
+  miss rng_state or listed with what it writes. Tried: FND-RNG-001 and
   FND-RNG-002 identify direct generator/setter state accesses and retain
   explicit computed-access exclusions. FND-RNG-009, FND-RNG-021 and
   FND-RNG-024..026 qualify caller sequences without a complete state-access
   census. Split from Q-RNG-001 so state coverage can be answered separately
-  from rule/draw mapping. Blocks: complete RNG state and reseeding coverage.
+  from rule/draw mapping. Tried: FND-RNG-059's census of the walk finds only
+  the setter and generator naming rng_state and no literal pointer into it,
+  and one indexed array below it, the handle flags, reaching it for handles
+  67 and 68; the direct and literal part is answered. Blocks: complete RNG
+  state and reseeding coverage.
 - Q-RNG-021. RULE-RNG-001, RULE-MAGIC-016, RULE-MAGIC-017, RULE-MAGIC-018, RULE-MAGIC-019,
   RULE-MAGIC-020, RULE-MAGIC-021, RULE-MAGIC-022: What do the 22 `DATA` numbers of overlay 179
   `+1373`'s rolled cases, the details and combatant bytes the cases read, the effect codes they
