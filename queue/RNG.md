@@ -1,24 +1,23 @@
 # RNG
 
-Next ID: Q-RNG-015
+Next ID: Q-RNG-016
 
 ## Static
 
-- Q-RNG-001. RULE-RNG-001, RULE-PARTY-016: Which rule does each of the 8 direct generator
-  sites that FND-RNG-028 lists as not described and FND-RNG-029..030 do not read serve, in what
-  draw order?
-  Settles it: for overlay 173 `+0E99`, `+0EDB`, `+1BE2`, `+31DF`, `+3208`, `+3B21` and `+3B3D`,
-  and overlay 197 `+1082`, a decode from an established entry
-  showing each is an instruction, the reduction applied to the draw, the conditions that reach it
+- Q-RNG-001. RULE-RNG-001, RULE-PARTY-016: Which rule does overlay 197 `+1082`, the last direct
+  generator site that FND-RNG-028 lists as not described and FND-RNG-029..031 do not read, serve,
+  in what draw order? Settles it: a decode of overlay 197 `+1082` from an established entry
+  showing it is an instruction, the reduction applied to the draw, the conditions that reach it
   and the rule it belongs to; the rule of overlay 204 +00E1's draw; and whether the calls DONE
-  makes before RULE-PARTY-016's picks draw. Tried: FND-RNG-001, FND-RNG-002, FND-RNG-007, FND-RNG-008, FND-SCRIPT-011 and
-  FND-SOUND-012 identify the resident callers; FND-RNG-021, FND-RNG-024..026 read further sites.
-  FND-RNG-028 takes the direct-call census for the generator and the four reducers with a
-  control for each kind of site and maps 52 of 117 sites to the findings that describe them;
-  the `roll_sum` sites moved to Q-RNG-013. FND-RNG-029 qualifies overlay 184's five sites: the
-  generation screen's opening picture draw and RULE-PARTY-016's four spell picks; FND-RNG-030
-  qualifies overlay 206's two, a removed combatant's dissolve (moved to Q-RNG-014). Blocks:
-  slices 2-7.
+  makes before RULE-PARTY-016's picks draw. Tried: FND-RNG-001, FND-RNG-002, FND-RNG-007,
+  FND-RNG-008, FND-SCRIPT-011 and FND-SOUND-012 identify the resident callers; FND-RNG-021,
+  FND-RNG-024..026 read further sites. FND-RNG-028 takes the direct-call census for the generator
+  and the four reducers with a control for each kind of site and maps 52 of 117 sites to the
+  findings that describe them; the `roll_sum` sites moved to Q-RNG-013. FND-RNG-029 qualifies
+  overlay 184's five sites: the generation screen's opening picture draw and RULE-PARTY-016's
+  four spell picks; FND-RNG-030 qualifies overlay 206's two, a removed combatant's dissolve
+  (moved to Q-RNG-014); FND-RNG-031 qualifies overlay 173's seven (rule entries moved to
+  Q-RNG-015). Blocks: slices 2-7.
 - Q-RNG-013. RULE-RNG-001: Which rule does each of the 46 `roll_sum` sites that FND-RNG-028
   lists as not described and FND-RNG-030 does not read serve, with which count and sides, and how does each caller read the
   returned total? Settles it: for each site in overlays 179, 191, 193, 195, 197, 198, 204 and
@@ -36,6 +35,15 @@ Next ID: Q-RNG-015
   rule or screen entries that take FND-RNG-030's procedures. Tried: split from Q-RNG-001 and
   Q-RNG-013. FND-RNG-030 reads `+1257` and `+151E` and the two calls in `+0E1E`, and FND-PARTY-140
   reads `+0E1E`'s branch for party slots. Blocks: slices 2-7.
+- Q-RNG-015. RULE-RNG-001: Which rules describe overlay 173's four draw routines, and what do the
+  values they read hold? Settles it: for FND-RNG-031's fight set-up words, target pick, removal
+  drop and item-break test, the meaning of the words at `4C4F:00DC + 4 * c` and the byte at
+  `4C4F:0006`, the bodies of `27E5:02D9` and overlay 197 `+254B` (and whether they draw), the
+  lists overlay 173 `+0000` and `+0159` build, the item and type record bytes the break test
+  reads, and the rule or screen entries that take each procedure. Tried: split from Q-RNG-001.
+  FND-RNG-031 reads the four routines and their direct callers; FND-PARTY-091, FND-PARTY-097,
+  FND-PARTY-099 and FND-PARTY-244 read the swing, the fight routine, the saving throw and the
+  trigger conditions. Blocks: slices 2-7.
 - Q-RNG-008. RULE-RNG-001: Can the generator, a helper or the seed setter be reached through a
   stored far pointer, a computed call or a segment alias? Settles it: the words of the file equal
   to each routine's offset with a relocated or fixed-up segment, the computed call sites whose
