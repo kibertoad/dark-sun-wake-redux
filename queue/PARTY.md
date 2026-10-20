@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-112
+Next ID: Q-PARTY-114
 
 ## Static
 
@@ -116,55 +116,30 @@ Next ID: Q-PARTY-112
   slice 2.
 - Q-PARTY-020. FMT-PARTY-006: What does the word at `0x10` of a 23-byte attached record, kind-1
   field 8, hold?
-  Settles it: the remaining readers of `0x10` in overlays 173
-  and 213, with the context-dependent
-  meaning of their values and bit tests beyond FND-PARTY-250's door paths.
-  The word at `0x06` is FND-PARTY-245's value,
-  the reference at `0x08` FND-PARTY-247's container head. Tried: FND-PARTY-196 lists the shipped values of every
-  field; FND-PARTY-181, FND-PARTY-182, FND-PARTY-216, FND-PARTY-217 and FND-PARTY-224 name the
-  fields at `0x00`, `0x12`, `0x02`, `0x13` and `0x0C` from their consumers, and FND-PARTY-216
-  binds the descriptors of fields 0 to 4 only, so no descriptor or consumer of these offsets has
-  been read. Tried: FND-PARTY-248 binds fields 5 to 12, lists the kind-1 accesses of `0x0A` to
-  `0x16` and names `0x0A`, `0x14` with `0x15`, `0x16`, and the local decrement at `0x0E`, which
-  are removed from Settles it. Tried: FND-PARTY-248 answers overlay 190 `+36AC`:
-  `+365A` copies word `0x10` to `0x0E` under the type-flag branch, otherwise
-  to quantity, and action completion calls it before the conditional byte
-  decrement. This store is removed from Settles it; the other writers and
-  semantic interpretation of `0x10` remain. Tried: FND-PARTY-249 answers
-  both overlay 197 stores: their shared ancestor-selector-16 and word-313
-  gates, low/high byte packing, helper range and conditional roll_sum call.
-  Those writer values are removed from Settles it; their caller and
-  consumer meaning is Q-PARTY-106. Tried: FND-PARTY-250 answers the
-  overlay-182 `+0C23` and `+0DE6` flag reads and all three named stores:
-  door-message priorities, blocking masks, sign-extended whole-word update
-  and partner copy. Those local branches and stores are removed from
-  Settles it; complete door action admission is Q-PARTY-107. Tried:
-  FND-PARTY-251 answers the last overlay-182 read `+099A`: bits 0 and 1
-  select a presentation column and a locally normalized bit-0 grid request.
-  Overlay 182 is removed from Settles it. The retained FND-PARTY-248 census
-  also lists overlay 178 `+0CAC`, now explicitly included among remaining
-  readers. Tried: FND-PARTY-252 answers overlay 178 `+0CAC` as a
-  whole-word nonzero classification test, including the later name-byte
-  replacement and the direct caller's result combination. That local
-  consumer is removed from Settles it; its admitted downstream meaning
-  is Q-PARTY-108. Tried: FND-PARTY-253 answers `25AF:02D9` and
-  `28C9:26EE`: the closed-bit strip call and discovery-bit mode-two
-  pointer selection. Both resident sites are removed from Settles it.
-  Overlay 190's only two retained census reads are already answered
-  by FND-PARTY-248's reset body and are also removed. No broader
-  computed-access absence is claimed. Tried: FND-PARTY-254 answers
-  both overlay-189 consumers as one-based effect dispatch, including
-  the signed first threshold and the second helper's always-taken
-  unsigned FFFF return. Overlay 189 is removed from Settles it;
-  admitted caller/child effects are Q-PARTY-109. Tried: FND-PARTY-255
-  answers overlay 204's three packed selectors and bit-7 guard,
-  including the reached 93-byte inventory hole. Those local fields
-  are removed from Settles it; admitted script/child meanings are
-  Q-PARTY-110. Tried: FND-PARTY-256 answers the remaining overlay-197
-  selector read as six ability cases, one no-op and a movement case,
-  including word arithmetic and final byte-before-clamp ordering.
-  Overlay 197 is removed from Settles it; admitted inputs and complete
-  rebuild effects are Q-PARTY-111. Blocks: slice 2.
+  Settles it: the answers of Q-PARTY-112 and Q-PARTY-113 put together with the local readings
+  already recorded into one description of field 8 in FMT-PARTY-006, by item type where its
+  meaning depends on the type, with any type-dependent meaning still open in its Open questions.
+  Split on 2026-10-21 into this item and the overlay 173 and overlay 213 readers, after eleven
+  attempts that each removed sites from Settles it.
+  Tried: FND-PARTY-196 gives the shipped values; FND-PARTY-216 and FND-PARTY-248 bind the field
+  descriptors; FND-PARTY-245 reads the initializer's 0; FND-PARTY-248 lists the 38 accesses at
+  `0x10` and reads overlay 190 `+365A`; FND-PARTY-249 reads the overlay 197 stores; FND-PARTY-250
+  and FND-PARTY-251 every overlay 182 site; FND-PARTY-252 overlay 178 `+0CAC`; FND-PARTY-253
+  `25AF:02D9` and `28C9:26EE`; FND-PARTY-254 overlay 189; FND-PARTY-255 overlay 204; and
+  FND-PARTY-256 the remaining overlay 197 read. Their downstream meanings are Q-PARTY-106 to
+  Q-PARTY-111. Blocks: slice 2.
+- Q-PARTY-112. FMT-PARTY-006: What do overlay 173's reads of word `0x10` at `+0511`, `+28ED`,
+  `+2924`, `+2B45` and `+3AF5` test or pass on? Settles it: a reading of each site's routine
+  from the read through every branch the value decides and every callee or store it reaches,
+  with the routine's callers where they decide which record is read. Tried: FND-PARTY-248's
+  census lists the five reads and the store at `+3EBF`, whose 0 FND-PARTY-245 reads; neither
+  reads the five. Blocks: Q-PARTY-020.
+- Q-PARTY-113. FMT-PARTY-006: What do overlay 213's reads of word `0x10` at `+010A`, `+019C`,
+  `+0287`, `+04EA`, `+0529`, `+0754`, `+0766` and `+154C` test or pass on? Settles it: a reading of
+  each site's routine from the read through every branch the value decides and every callee or
+  store it reaches, with the routine's callers where they decide which record is read. Tried:
+  FND-PARTY-248's census lists the eight reads and reads only overlay 213's name formatting at
+  `+0F8F..+1005`, which tests byte `0x16`. Blocks: Q-PARTY-020.
 - Q-PARTY-111. FMT-PARTY-006, FMT-PARTY-001: Which admitted inputs and
   child effects establish the item ability/movement rebuild's complete
   contract in overlay 197 `+1E7B`? Settles it: resolver/index admission,
