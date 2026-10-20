@@ -114,14 +114,6 @@ Next ID: Q-RNG-022
   FND-RNG-024..026 qualify caller sequences without a complete state-access
   census. Split from Q-RNG-001 so state coverage can be answered separately
   from rule/draw mapping. Blocks: complete RNG state and reseeding coverage.
-- Q-RNG-017. RULE-RNG-001: Which rule entries take the dice of overlay 179 `+1373`'s effect
-  switch? Settles it: rule entries, new or revised, for the healing, damage, duration, dispel,
-  death, raising and reincarnation cases of FND-RNG-044 with their dice and conditions. Tried:
-  split from Q-RNG-013 and, for the parts below, into Q-RNG-019, Q-RNG-020 and Q-RNG-021.
-  FND-RNG-044 replaces FND-RNG-034 with the default target of `+1373`'s table jump corrected to
-  `+2752`, and reads the nineteen sites and the cases that reach them; FND-PARTY-096,
-  FND-PARTY-099 and FND-PARTY-112 read `+1373`'s table, the saving throw and the gates before it.
-  Blocks: slices 2-7.
 - Q-RNG-019. RULE-RNG-001: Which rule entry takes overlay 204 `+214E`'s copy of the saving throw
   roll, and which callers reach `+214E`? Settles it: a rule entry for `+214E` with the callers
   and conditions that reach it. Tried: split from Q-RNG-017. FND-RNG-035 reads `+214E` and its
@@ -132,12 +124,18 @@ Next ID: Q-RNG-022
   reads, with the record fields they read. Tried: split from Q-RNG-017. FND-RNG-039 replaces
   FND-RNG-036 and reads `+000E`, `+00D1` and `+152F`; RULE-COMBAT-012 and RULE-COMBAT-013 take
   its d10 table and d100 test. Blocks: slices 2-7.
-- Q-RNG-021. RULE-RNG-001: What do the 22 `DATA` numbers of overlay 179 `+1373`'s rolled cases,
-  the hit routine's byte arguments `a` and `g`, and the callees that take the totals stand for?
-  Settles it: the names or uses of the 22 `DATA` numbers; the writers of `+0D2F`'s byte arguments
-  at `bp+0x1C` and `bp+0x1E`; and readings of overlay 197 `+2D05`, `+2E40` and `+2EC0`, overlay
-  177 `+0CB3` and overlay 193 `+1A2D`. Tried: split from Q-RNG-017. FND-RNG-044 names the
-  arguments and callees and records their uses of the totals. Blocks: slices 2-7.
+- Q-RNG-021. RULE-RNG-001, RULE-MAGIC-016, RULE-MAGIC-017, RULE-MAGIC-018, RULE-MAGIC-019,
+  RULE-MAGIC-020, RULE-MAGIC-021, RULE-MAGIC-022: What do the 22 `DATA` numbers of overlay 179
+  `+1373`'s rolled cases, the hit routine's byte arguments `a` and `g`, the details and combatant
+  bytes the cases read, the effect codes they apply, and the callees that take the totals stand
+  for? Settles it: the names or uses of the 22 `DATA` numbers; the writers of `+0D2F`'s byte
+  arguments at `bp+0x1C` and `bp+0x1E`; readings of overlay 197 `+2D05`, `+2E40` and `+2EC0`,
+  overlay 177 `+0CB3`, overlay 193 `+1A2D`, `+166F` and `+194F`, overlay 173 `+08EE` and the
+  other callees FND-RNG-047 names, `fn_2D40_3E64` and `fn_31E0_0121`; and what reads byte `+5`
+  of the entries at `57E0:67B7`. Tried: split from Q-RNG-017. FND-RNG-044 names the arguments and
+  callees and records their uses of the totals. FND-RNG-047 reads every path of the rolled cases
+  and RULE-MAGIC-016 to RULE-MAGIC-022 take them, leaving these names as open questions.
+  Blocks: slices 2-7.
 
 ## Emulated call
 
