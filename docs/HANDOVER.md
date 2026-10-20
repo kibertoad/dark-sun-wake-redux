@@ -2,7 +2,8 @@
 
 ## State
 
-- Stage: Slices; slices 2 and 3 remain in progress. No active goal.
+- Stage: Slices; slices 2 and 3 remain in progress. Active goal:
+  docs/goals/full-game-research.md (research side, on main).
 - Stop reason: owner cleared the full-game-research goal and requested wrap-up
   on 2026-10-19. Its research Audit condition remains unfinished. The owner
   explicitly requested the finished work be pushed to main. Start no new item
