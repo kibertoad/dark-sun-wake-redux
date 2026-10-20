@@ -23,6 +23,7 @@
 | `RULE-PARTY-013` | How a character gains levels in play | supported | missing | None | None | supported | No code raises levels or recomputes hit points or psionic points after experience is given. |
 | `RULE-PARTY-014` | Class flags, attack rate, THAC0 and saving throws from a character's classes and levels | supported | missing | None | None | supported | No code sets class flags, attack rates, THAC0 or saving throws from classes and levels. |
 | `RULE-PARTY-015` | How experience is given to party members | supported | missing | None | None | supported | No code gives experience from scripts or kills. |
+| `RULE-PARTY-016` | The spells a Preserver is given when the generation screen stores it | supported | missing | None | None | supported | No code gives a stored Preserver its first spells. |
 | `SCR-PARTY-001` | Learn a spell | supported | missing | None | None | supported | No code shows the window. |
 | `SCR-PARTY-002` | Learn or enhance a psionic power | supported | missing | None | None | supported | No code shows the window. |
 | `SCR-PARTY-003` | Choose a new class | supported | missing | None | None | supported | No code shows WIND/17502 or its class-choice controls. Source layout and local eligibility/closure requests are FND-PARTY-232; native painting and input remain unvalidated. |

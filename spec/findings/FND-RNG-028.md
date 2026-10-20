@@ -65,7 +65,7 @@ Overlay sites are written `descriptor +offset in the overlay's code`.
 | generator | `172C:170B` handler, load-image file `0x0000DBCB` | FND-SCRIPT-011 |
 | generator | inside `random_mod`, `roll_sum` and `random_between` | FND-RNG-003, FND-RNG-005, FND-RNG-004 |
 | generator | 173 `+2737` | FND-PARTY-091 (`+2560`'s roll of 1 to 20) |
-| generator | 173 `+2A6B` | FND-PARTY-092 (`+2A5D`'s repeated scaled draws) |
+| generator | 173 `+2A6B` | FND-PARTY-100, which replaces FND-PARTY-092 (`+2A5D`'s repeated scaled draws) |
 | generator | 174 `+0136` | FND-PARTY-121 (`+012F`'s spell weight) |
 | generator | 174 `+0684` | FND-PARTY-242 (`+0634..+06B6`'s list pick) |
 | generator | 183 `+1148` | FND-PARTY-071 (the reroll button's icon) |

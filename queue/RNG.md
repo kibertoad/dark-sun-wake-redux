@@ -4,17 +4,20 @@ Next ID: Q-RNG-014
 
 ## Static
 
-- Q-RNG-001. RULE-RNG-001: Which rule does each of the 15 direct generator sites that
-  FND-RNG-028 lists as not described serve, in what draw order? Settles it: for overlay 173
-  `+0E99`, `+0EDB`, `+1BE2`, `+31DF`, `+3208`, `+3B21` and `+3B3D`, overlay 184 `+0AEA`, `+1AE5`,
-  `+1B51`, `+1BCD` and `+1C39`, overlay 197 `+1082` and overlay 206 `+1360` and `+1382`, a decode
-  from an established entry showing each is an instruction, the reduction applied to the draw,
-  the conditions that reach it and the rule it belongs to; and the rule of overlay 204 +00E1's
-  draw. Tried: FND-RNG-001, FND-RNG-002, FND-RNG-007, FND-RNG-008, FND-SCRIPT-011 and
+- Q-RNG-001. RULE-RNG-001, RULE-PARTY-016: Which rule does each of the 10 direct generator
+  sites that FND-RNG-028 lists as not described and FND-RNG-029 does not read serve, in what
+  draw order?
+  Settles it: for overlay 173 `+0E99`, `+0EDB`, `+1BE2`, `+31DF`, `+3208`, `+3B21` and `+3B3D`,
+  overlay 197 `+1082` and overlay 206 `+1360` and `+1382`, a decode from an established entry
+  showing each is an instruction, the reduction applied to the draw, the conditions that reach it
+  and the rule it belongs to; the rule of overlay 204 +00E1's draw; and whether the calls DONE
+  makes before RULE-PARTY-016's picks draw. Tried: FND-RNG-001, FND-RNG-002, FND-RNG-007, FND-RNG-008, FND-SCRIPT-011 and
   FND-SOUND-012 identify the resident callers; FND-RNG-021, FND-RNG-024..026 read further sites.
   FND-RNG-028 takes the direct-call census for the generator and the four reducers with a
   control for each kind of site and maps 52 of 117 sites to the findings that describe them;
-  the `roll_sum` sites moved to Q-RNG-013. Blocks: slices 2-7.
+  the `roll_sum` sites moved to Q-RNG-013. FND-RNG-029 qualifies overlay 184's five sites: the
+  generation screen's opening picture draw and RULE-PARTY-016's four spell picks. Blocks: slices
+  2-7.
 - Q-RNG-013. RULE-RNG-001: Which rule does each of the 50 `roll_sum` sites that FND-RNG-028
   lists as not described serve, with which count and sides, and how does each caller read the
   returned total? Settles it: for each site in overlays 179, 191, 193, 195, 197, 198, 204, 206
