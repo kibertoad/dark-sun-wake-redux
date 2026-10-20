@@ -4,7 +4,7 @@ title: DATA 60 and 165 deal 10,000 damage to a target of details byte 0x12 14 wh
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-044, FND-RNG-047, FND-PARTY-096, FND-PARTY-086, FND-COMBAT-022, FND-COMBAT-052, FND-EXPLORE-001, FND-EXPLORE-002, FND-COMBAT-023]
+evidence: [FND-RNG-044, FND-RNG-047, FND-PARTY-096, FND-PARTY-086, FND-COMBAT-022, FND-COMBAT-052, FND-EXPLORE-001, FND-EXPLORE-002, FND-COMBAT-023, FND-RNG-051]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001]
@@ -25,7 +25,8 @@ When the hit routine overlay 179 `+0D2F` calls `+1373` with `DATA` 60 or 165 (FN
 
 - `t: INT16`: the target's object slot.
 - `flags: UINT8[]`: the hit's flags byte.
-- `a: UINT8`: the hit routine's byte argument at its `bp+0x1C`.
+- `a: UINT8`: the hit routine's byte argument at its `bp+0x1C`, whose value at each caller
+  FND-RNG-051 lists.
 
 ## Inputs
 
@@ -70,5 +71,7 @@ None known.
 
 ## Open questions
 
-- What `a`, details bytes `+0x12` 14 and `+0x1E` stand for, what `fn_5671_005C` does with 10,000,
+- What details bytes `+0x12` 14 and `+0x1E` stand for, what `fn_5671_005C` does with 10,000,
   and which spells 60 and 165 are (FND-RNG-044, FND-RNG-047, Q-RNG-021).
+- What the values of `a` and `g` that callers pass on from their own arguments and locals are, and
+  what the actor's byte `+0x15` and `a` stand for (FND-RNG-051, Q-MAGIC-016).

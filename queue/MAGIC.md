@@ -1,6 +1,6 @@
 # MAGIC
 
-Next ID: Q-MAGIC-016
+Next ID: Q-MAGIC-017
 
 ## Static
 
@@ -88,6 +88,16 @@ Next ID: Q-MAGIC-016
   `4E71:0253 + 10 * e` that store 58 or 0x43 and the `DATA` records behind them, the writers of
   `g_4C4F_00B2`, and a reading of `27E5:0154` past FND-PARTY-081's. Tried: FND-RNG-046 reads the scan and the test that
   read them. Blocks: slice 5.
+- Q-MAGIC-016. RULE-MAGIC-016, RULE-MAGIC-017, RULE-MAGIC-019, RULE-MAGIC-020: What values reach the
+  hit routine's bytes `a` and `g` where its callers pass on their own arguments or locals, and
+  what do the actor's byte `+0x15` and `a` stand for? Settles it: the writers of overlay 193
+  `+2290`'s byte argument at `bp+0xC`, overlay 197 `+111A`'s at `bp+0x14`, overlay 198 `+0000`'s
+  at `bp+0xE`, overlay 204 `+18CD`'s local at `bp-6` and `+0CBA`'s at `bp-6` and `bp-8`, the
+  results of overlay 176 `+076C`, overlay 177 `+07AF` and overlay 193 `+1A2D`, the details record
+  overlay 173 `+2560` reads byte `+0x1E` of, and the writers of the object slot byte at
+  `DS:67D0 + 37 * k`. Tried: split from Q-RNG-021. FND-RNG-051 reads the direct callers and the
+  cast queue, and finds the constants 1, 6, 11 and 0 at the calls that pass them. Blocks: slices
+  2-7.
 
 ## Emulated call
 

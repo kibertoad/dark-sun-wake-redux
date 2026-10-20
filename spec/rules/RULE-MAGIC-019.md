@@ -4,7 +4,7 @@ title: DATA 26 and 150 remove each removable effect of the target on a d100 at m
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-044, FND-RNG-047, FND-PARTY-096, FND-COMBAT-022, FND-COMBAT-052, FND-EXPLORE-001, FND-EXPLORE-002, FND-COMBAT-023]
+evidence: [FND-RNG-044, FND-RNG-047, FND-PARTY-096, FND-COMBAT-022, FND-COMBAT-052, FND-EXPLORE-001, FND-EXPLORE-002, FND-COMBAT-023, FND-RNG-051]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001]
@@ -29,7 +29,8 @@ When the hit routine overlay 179 `+0D2F` calls `+1373` with `DATA` 26 or 150 (FN
 - `n: UINT16`: the `DATA` number.
 - `bits: UINT8[]`: the far pointer `+1373` takes at its `bp+0xA`, the target's effect bits.
 - `flags: UINT8[]`: the hit's flags byte.
-- `a: UINT8`: the hit routine's byte argument at its `bp+0x1C`.
+- `a: UINT8`: the hit routine's byte argument at its `bp+0x1C`, whose value at each caller
+  FND-RNG-051 lists.
 
 ## Inputs
 
@@ -78,8 +79,10 @@ None known.
 
 ## Open questions
 
-- What `fn_573B_0052` returns for an effect, read here as its level, what `a`, effect 0x41 and
+- What `fn_573B_0052` returns for an effect, read here as its level, what effect 0x41 and
   the ten kept codes are, what the bit set holds, and which spells 26 and 150 are (FND-RNG-044,
   FND-RNG-047, Q-RNG-021).
+- What the values of `a` and `g` that callers pass on from their own arguments and locals are, and
+  what the actor's byte `+0x15` and `a` stand for (FND-RNG-051, Q-MAGIC-016).
 - What `EffectApplied` and `EffectRemoved` do in overlay 193 with their arguments (FND-RNG-047,
   Q-RNG-021).

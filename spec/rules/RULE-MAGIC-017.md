@@ -4,7 +4,7 @@ title: DATA 227, 295 and 298 deal 8d6 to a target of details byte 0x12 9, 2d4 or
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-044, FND-RNG-047, FND-PARTY-096, FND-PARTY-086, FND-COMBAT-022, FND-COMBAT-052, FND-EXPLORE-001, FND-EXPLORE-002, FND-RNG-041, FND-EXPLORE-005, FND-ACTOR-003, FND-PARTY-013, FND-COMBAT-023]
+evidence: [FND-RNG-044, FND-RNG-047, FND-PARTY-096, FND-PARTY-086, FND-COMBAT-022, FND-COMBAT-052, FND-EXPLORE-001, FND-EXPLORE-002, FND-RNG-041, FND-EXPLORE-005, FND-ACTOR-003, FND-PARTY-013, FND-COMBAT-023, FND-RNG-051]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001]
@@ -32,7 +32,8 @@ When the hit routine overlay 179 `+0D2F` calls `+1373` with one of these `DATA` 
 - `n: UINT16`: the `DATA` number.
 - `s: UINT8`: the saving throw byte, 1 for a success.
 - `flags: UINT8[]`: the hit's flags byte.
-- `a: UINT8`: the hit routine's byte argument at its `bp+0x1C`.
+- `a: UINT8`: the hit routine's byte argument at its `bp+0x1C`, whose value at each caller
+  FND-RNG-051 lists.
 - `u: INT16`: the hit routine's duration word.
 
 ## Inputs
@@ -113,6 +114,8 @@ None known.
 ## Open questions
 
 - What `fn_575A_004D`, `fn_575A_0048`, `fn_5699_005C`, `fn_5671_00F2` and `fn_28C9_2C9E` do with
-  their arguments, what `fn_28C9_2C9E` reads from the object slot, what `a`, effects 0x0A and 0x5C and byte `+0x12` 9
+  their arguments, what `fn_28C9_2C9E` reads from the object slot, what effects 0x0A and 0x5C and byte `+0x12` 9
   stand for, and which spells the `DATA` numbers are (FND-RNG-044, FND-RNG-047, Q-RNG-021).
+- What the values of `a` and `g` that callers pass on from their own arguments and locals are, and
+  what the actor's byte `+0x15` and `a` stand for (FND-RNG-051, Q-MAGIC-016).
 - What `EffectApplied` does in overlay 193 with its arguments (FND-RNG-047, Q-RNG-021).

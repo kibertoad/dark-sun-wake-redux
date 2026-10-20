@@ -128,16 +128,17 @@ Next ID: Q-RNG-023
   from rule/draw mapping. Blocks: complete RNG state and reseeding coverage.
 - Q-RNG-021. RULE-RNG-001, RULE-MAGIC-016, RULE-MAGIC-017, RULE-MAGIC-018, RULE-MAGIC-019,
   RULE-MAGIC-020, RULE-MAGIC-021, RULE-MAGIC-022: What do the 22 `DATA` numbers of overlay 179
-  `+1373`'s rolled cases, the hit routine's byte arguments `a` and `g`, the details and combatant
-  bytes the cases read, the effect codes they apply, and the callees that take the totals stand
-  for? Settles it: the names or uses of the 22 `DATA` numbers; the writers of `+0D2F`'s byte
-  arguments at `bp+0x1C` and `bp+0x1E`; readings of overlay 197 `+2D05`, `+2E40` and `+2EC0`,
-  overlay 177 `+0CB3`, overlay 193 `+1A2D`, `+166F` and `+194F`, overlay 173 `+08EE` and the
-  other callees FND-RNG-047 names, `fn_2D40_3E64` and `fn_31E0_0121`; and what reads byte `+5`
-  of the entries at `57E0:67B7`. Tried: split from Q-RNG-017. FND-RNG-044 names the arguments and
-  callees and records their uses of the totals. FND-RNG-047 reads every path of the rolled cases
-  and RULE-MAGIC-016 to RULE-MAGIC-022 take them, leaving these names as open questions.
-  Blocks: slices 2-7.
+  `+1373`'s rolled cases, the details and combatant bytes the cases read, the effect codes they
+  apply, and the callees that take the totals stand for? Settles it: the names or uses of the 22
+  `DATA` numbers; readings of overlay 197 `+2D05`, `+2E40` and `+2EC0`, overlay 177 `+0CB3`,
+  overlay 193 `+1A2D`, `+166F` and `+194F`, overlay 173 `+08EE` and the other callees FND-RNG-047
+  names, `fn_2D40_3E64` and `fn_31E0_0121`; and what reads byte `+5` of the entries at
+  `57E0:67B7`. Tried: split from Q-RNG-017. FND-RNG-044 names the arguments and callees and
+  records their uses of the totals. FND-RNG-047 reads every path of the rolled cases and
+  RULE-MAGIC-016 to RULE-MAGIC-022 take them, leaving these names as open questions. Tried:
+  FND-RNG-051 reads what every direct caller of the hit routine and every queued cast passes as
+  its byte arguments `a` and `g`; the values passed on from callers' own arguments moved to
+  Q-MAGIC-016. Blocks: slices 2-7.
 
 ## Emulated call
 
