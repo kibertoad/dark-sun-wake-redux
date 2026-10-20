@@ -4,10 +4,10 @@ title: The game's random number generator and its reductions
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-032, FND-RNG-044, FND-RNG-035, FND-RNG-039, FND-RNG-040, FND-RNG-041, FND-RNG-043, FND-RNG-045, FND-RNG-046, FND-RNG-047, FND-RNG-048]
+evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-032, FND-RNG-044, FND-RNG-035, FND-RNG-039, FND-RNG-040, FND-RNG-041, FND-RNG-043, FND-RNG-045, FND-RNG-046, FND-RNG-047, FND-RNG-048, FND-RNG-049]
 conflicting: []
 split_with: []
-related: [RULE-VIDEO-005, RULE-MAGIC-005, RULE-MAGIC-006, RULE-AI-003, RULE-COMBAT-012, RULE-COMBAT-013, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009, RULE-MAGIC-007, RULE-MAGIC-008, RULE-MAGIC-009, RULE-MAGIC-010, RULE-MAGIC-011, RULE-MAGIC-012, RULE-MAGIC-013, RULE-MAGIC-014, RULE-MAGIC-015, RULE-MAGIC-016, RULE-MAGIC-017, RULE-MAGIC-018, RULE-MAGIC-019, RULE-MAGIC-020, RULE-MAGIC-021, RULE-MAGIC-022, RULE-SCRIPT-012]
+related: [RULE-VIDEO-005, RULE-MAGIC-005, RULE-MAGIC-006, RULE-AI-003, RULE-COMBAT-012, RULE-COMBAT-013, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009, RULE-MAGIC-007, RULE-MAGIC-008, RULE-MAGIC-009, RULE-MAGIC-010, RULE-MAGIC-011, RULE-MAGIC-012, RULE-MAGIC-013, RULE-MAGIC-014, RULE-MAGIC-015, RULE-MAGIC-016, RULE-MAGIC-017, RULE-MAGIC-018, RULE-MAGIC-019, RULE-MAGIC-020, RULE-MAGIC-021, RULE-MAGIC-022, RULE-SCRIPT-012, RULE-COMBAT-017]
 ---
 
 ## Summary
@@ -56,7 +56,7 @@ table, a side roll, a d100 test and the dice of per-round effect damage. RULE-MA
 dice formula, RULE-MAGIC-006 the d20 test of `DATA` 306 and RULE-AI-003 the spell-use test,
 RULE-COMBAT-012 the d10 table, RULE-COMBAT-013 the d100 test and RULE-ITEM-007, RULE-ITEM-008
 and RULE-ITEM-009 the three item tests; RULE-SCRIPT-012 takes the saving throw copy, which FND-RNG-048 finds reached
-only from function 41 of script opcode `0x22`, and the per-round effect damage remains Q-RNG-020. FND-RNG-040 reads overlay 197's ten `roll_sum` sites: a
+only from function 41 of script opcode `0x22`, and RULE-COMBAT-017 the per-round effect damage, from FND-RNG-049's reading of every step. FND-RNG-040 reads overlay 197's ten `roll_sum` sites: a
 d6, a d100, a 2d6 and a d20 in the hit routine's gates, which RULE-MAGIC-007 to RULE-MAGIC-010
 take, a d100 under the preserver level in a check routine, which RULE-MAGIC-011 takes, d4 and d12
 picks of a summoned creature, which RULE-MAGIC-012 takes, and the 4d20 pool of `DATA` 71, which
@@ -174,7 +174,7 @@ None known.
   remain separate (Q-RNG-003). The second root's local reseeding and
   conditional draw loop, and its script wrapper widths, are recorded in
   FND-RNG-021..022, and the shipped scripts that issue it in FND-RNG-027.
-- The rule entries for the routines FND-RNG-039 reads (Q-RNG-020), the events that reach overlay 206's
+- The events that reach overlay 206's
   dissolve and cry draws (FND-RNG-043, Q-RNG-014). Recovered `random_mod`
   uses include `chance_in_ten`, the table selection in FND-RNG-007 and the music selector of
   RULE-SOUND-003 (FND-SOUND-012).

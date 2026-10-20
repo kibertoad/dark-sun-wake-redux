@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-033
+Next ID: Q-COMBAT-034
 
 ## Static
 
@@ -268,6 +268,14 @@ Next ID: Q-COMBAT-033
   and `+30C7` stand for? Settles it: a rule entry for `+22C4` from FND-RNG-043's reading, with
   readings of `+306B`, `+30C7` and the readers of `combat_mark` 3, 7 and 8. Tried: FND-RNG-043
   reads `+22C4`'s branches while tracing the removal list. Blocks: slice 4.
+- Q-COMBAT-033. RULE-COMBAT-017: What do the effects and callees of overlay 195 `+00D1`'s
+  per-round steps stand for? Settles it: the effect codes 0x1E, 0x64, 0x10, 0x32, 0x45, 0x18,
+  0x65, 1, 0x13, 0x6E and 0x6F named, with the block bits that mark them; readings of overlay 193
+  `+0DC7`, `+166F`, `+194F`, `+1A2D` and `+1AA4`, overlay 173 `+2C00` and `+24C7`, overlay 197
+  `+30ED` with 0x122 and 0x12D, `3143:00A8`, and the words overlay 179 `+0C7F` takes after the
+  code; the fields at `4E71:024F`, `4E71:0251`, `4E71:0255` and `4E71:0256` of an effect entry;
+  and the readers of `DS:444B`. Tried: FND-RNG-049 reads every step of `+00D1` and
+  RULE-COMBAT-017 takes it. Blocks: slice 4.
 
 ## Emulated call
 
