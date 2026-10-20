@@ -12,7 +12,9 @@ Next ID: Q-RNG-019
   or screen entry that takes FND-RNG-030's dissolve. Tried: split from Q-RNG-001 and Q-RNG-013.
   FND-RNG-030 reads `+1257` and `+151E` and the two calls in `+0E1E`, and FND-PARTY-140 reads
   `+0E1E`'s branch for party slots. RULE-SOUND-004 takes FND-RNG-030's cry choice; the events
-  and the dissolve remain. Blocks: slices 2-7.
+  and the dissolve remain. FND-RNG-030 places the call of `31E0:05BB` after the dissolve; the
+  listing has it at `+1023`, before the dissolve's call at `+103E`, so a replacement of FND-RNG-030
+  is part of this item. Blocks: slices 2-7.
 - Q-RNG-015. RULE-RNG-001, RULE-COMBAT-011: Which rules describe overlay 173's fight set-up words,
   target pick and removal drop, and what do the values its four draw routines read hold? Settles
   it: for FND-RNG-031's fight set-up words, target pick and removal drop, the meaning of the words
@@ -23,7 +25,10 @@ Next ID: Q-RNG-019
   FND-RNG-031 reads the four routines and their direct callers; FND-PARTY-091, FND-PARTY-097,
   FND-PARTY-099 and FND-PARTY-244 read the swing, the fight routine, the saving throw and the
   trigger conditions. RULE-COMBAT-011 takes the item-break test; the other three routines and the
-  record meanings remain. Blocks: slices 2-7.
+  record meanings remain. FND-RNG-031 has the target pick store the first word of local entry `p`;
+  the store at `+1C89..+1C9A` reads word `+2` of the four-byte entry, which overlay 173 `+02AA`
+  fills with the slot after the sort key in word `+0`, so a replacement of FND-RNG-031 is part of
+  this item. Blocks: slices 2-7.
 - Q-RNG-008. RULE-RNG-001: Can the generator, a helper or the seed setter be reached through a
   stored far pointer, a computed call or a segment alias? Settles it: the words of the file equal
   to each routine's offset with a relocated or fixed-up segment, the computed call sites whose
@@ -143,20 +148,11 @@ Next ID: Q-RNG-019
   and `+152F`, which FND-RNG-039 replaces with the record `+152F` reads corrected. Tried: RULE-MAGIC-005, RULE-MAGIC-006 and RULE-AI-003 take FND-RNG-035's `DATA`
   dice formula, `DATA` 306's d20 test and the spell-use test, with FND-RNG-038 for the byte the
   last one reads. Tried: RULE-COMBAT-012 and RULE-COMBAT-013 take overlay 195's d10 table and
-  d100 test (FND-RNG-039). Tried: RULE-ITEM-007, RULE-ITEM-008 and RULE-ITEM-009 take overlay
+  d100 test (FND-RNG-039). FND-RNG-034 sends a `DATA` number not in the table to `+2A32`; the jump
+  at `+1409` goes to file `0x66A32`, overlay offset `+2752`, so a replacement of FND-RNG-034 is part
+  of this item. Tried: RULE-ITEM-007, RULE-ITEM-008 and RULE-ITEM-009 take overlay
   191's three item tests, with FND-ITEM-010 for the cases that run them; Q-ITEM-004 holds what
   they act on. Blocks: slices 2-7.
-- Q-RNG-018. RULE-RNG-001: Which rule entries take overlay 197's ten `roll_sum` draws that
-  FND-RNG-037 reads, and what do the values they test stand for? Settles it: rule entries, new or
-  revised, for the d6 of `+111A` for a target with record byte `+0x0E` 13, the d100 block of
-  `+1760` and the 2d6 total it queues after a saving throw, the d20 test of `+314E`, case 4 of
-  `+1A94` with its d100 under the level in class code 11, the creature picks of `+3315` for its 18
-  `DATA` numbers and the 4d20 pool of `+399F` for `DATA` 71; what the block bits these read,
-  record byte `+0x0E` 13, details byte `+0x12` 8, 9 and 14 and class code 11 stand for; what
-  overlay 179 `+1304` and the cast queue do with the 2d6 total; and what overlay 172 and overlay
-  211 do with `+1A94`'s result. Tried: split from Q-RNG-013. FND-RNG-037 reads the ten sites, their
-  routines and direct callers; FND-PARTY-107, FND-PARTY-112 and FND-PARTY-122 read the cast queue
-  and the gates around the hit routine. Blocks: slices 2-7.
 
 ## Emulated call
 

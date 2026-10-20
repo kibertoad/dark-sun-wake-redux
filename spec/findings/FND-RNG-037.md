@@ -1,9 +1,9 @@
 ---
 id: FND-RNG-037
 title: Overlay 197's ten unread roll_sum calls are five tests in the hit routine's gates and a check routine, four picks of a summoned creature and a 4d20 pool for DATA 71
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-RNG-040]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

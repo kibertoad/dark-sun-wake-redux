@@ -1,6 +1,6 @@
 # MAGIC
 
-Next ID: Q-MAGIC-008
+Next ID: Q-MAGIC-012
 
 ## Static
 
@@ -39,6 +39,32 @@ Next ID: Q-MAGIC-008
   does `2D40:06E1` do with the caster when `DATA` 306's test fails? Settles it: the writers of
   the two details bytes for party members and for creatures, and a reading of `2D40:06E1`.
   Tried: FND-RNG-035 reads the test and its one caller. Blocks: slices 2-7.
+- Q-MAGIC-008. RULE-MAGIC-007, RULE-MAGIC-008, RULE-MAGIC-009, RULE-MAGIC-010: What do the hit
+  routine's gate tests in overlay 197 stand for: combatant record byte `+0x0E` 13, details byte
+  `+0x12` 8 and 9, the effect block bits they test, bit 0x100 of `+1760`'s mask, the hit routine's
+  byte at `bp+0x14`, overlay 208 `+0885`'s value, `2D40:35EF`, codes 0x2E and 0x4F of overlay 193
+  `+1AA4`, and `DATA` 307; and is overlay 197 `+314E` reached other than from `+0E8F`? Settles it:
+  readings of the writers of those record bytes and block bits, of overlay 208 `+0885`, `2D40:35EF`
+  and overlay 193 `+1AA4`, of the hit routine's callers' byte argument, and a computed-call search
+  for `+314E`'s trampoline `575A:00C0`. Tried: FND-RNG-040 reads the gates and FND-PARTY-112 the
+  tests before them. Blocks: slices 4-5.
+- Q-MAGIC-009. RULE-MAGIC-009: What does overlay 179 `+1304` do with the 2d6 total and its other
+  seven arguments, and what does `DATA` 308 do when the cast queue runs it? Settles it: a reading of
+  `+1304` from entry to return and of overlay 193 `+003C` for a queued record of `DATA` 308.
+  Tried: FND-RNG-040 reads the call and FND-PARTY-107 the queue. Blocks: slices 4-5.
+- Q-MAGIC-010. RULE-MAGIC-011: What do overlay 172 `+0A73`, `+0D44` and `+1140` and overlay 211
+  `+159B` and `+1C46` do with `class_11_check`'s result, which slots do they pass, and what do word
+  `+0x0E` of a details record, `g_4C4F_00B2` and the block bits it tests stand for? Settles it:
+  readings of the five callers around their calls and of the writers of those fields. Tried:
+  FND-RNG-040 reads the check and lists its callers. Blocks: slices 4-5.
+- Q-MAGIC-011. RULE-MAGIC-012, RULE-MAGIC-013: Which spells are the eighteen summoning `DATA`
+  records and `DATA` 71, which creatures are the numbers 400 to 569, what do `g_4F49_0C3F` and
+  `g_4C13_0369` hold, what do overlay 188 `+0AA8`, `31E0:0121`, `2D40:085B`, `2D40:06E1` and overlay
+  197 `+32A1` do with the summoning's arguments, and which slots does overlay 208 `+0000` list for
+  `DATA` 71? Settles it: the names of the `DATA` records and creature resources in `RESOURCE.GFF`,
+  readings of those routines, and of the writers of the two globals. Tried: FND-RNG-040 reads the
+  summoning and the pool. Blocks: slices 4-5.
+
 ## Emulated call
 
 None.

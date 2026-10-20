@@ -4,10 +4,10 @@ title: The game's random number generator and its reductions
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-030, FND-RNG-031, FND-RNG-032, FND-RNG-034, FND-RNG-035, FND-RNG-039, FND-RNG-037]
+evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-030, FND-RNG-031, FND-RNG-032, FND-RNG-034, FND-RNG-035, FND-RNG-039, FND-RNG-040]
 conflicting: []
 split_with: []
-related: [RULE-VIDEO-005, RULE-MAGIC-005, RULE-MAGIC-006, RULE-AI-003, RULE-COMBAT-012, RULE-COMBAT-013, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009]
+related: [RULE-VIDEO-005, RULE-MAGIC-005, RULE-MAGIC-006, RULE-AI-003, RULE-COMBAT-012, RULE-COMBAT-013, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009, RULE-MAGIC-007, RULE-MAGIC-008, RULE-MAGIC-009, RULE-MAGIC-010, RULE-MAGIC-011, RULE-MAGIC-012, RULE-MAGIC-013]
 ---
 
 ## Summary
@@ -51,9 +51,11 @@ the saving throw roll and a d20 turning test, and FND-RNG-039 overlay 195's ten:
 table, a side roll, a d100 test and the dice of per-round effect damage. RULE-MAGIC-005 takes the
 dice formula, RULE-MAGIC-006 the d20 test of `DATA` 306 and RULE-AI-003 the spell-use test,
 RULE-COMBAT-012 the d10 table, RULE-COMBAT-013 the d100 test and RULE-ITEM-007, RULE-ITEM-008
-and RULE-ITEM-009 the three item tests; the other rule entries remain Q-RNG-017. FND-RNG-037 reads overlay 197's ten `roll_sum` sites: a d6, a d100, a 2d6 and a
-d20 in the hit routine's gates, a d100 under a class level in a check routine, d4 and d12 picks of a
-summoned creature and the 4d20 pool of `DATA` 71, whose rule entries remain Q-RNG-018. That reads
+and RULE-ITEM-009 the three item tests; the other rule entries remain Q-RNG-017. FND-RNG-040 reads overlay 197's ten `roll_sum` sites: a
+d6, a d100, a 2d6 and a d20 in the hit routine's gates, which RULE-MAGIC-007 to RULE-MAGIC-010
+take, a d100 under the preserver level in a check routine, which RULE-MAGIC-011 takes, d4 and d12
+picks of a summoned creature, which RULE-MAGIC-012 takes, and the 4d20 pool of `DATA` 71, which
+RULE-MAGIC-013 takes. That reads
 every site of the direct-call census; calls not made directly remain Q-RNG-008.
 
 Overlay 204's entry, RULE-VIDEO-005's display offset loop, runs, and reseeds, each time a script
@@ -77,7 +79,7 @@ truncated quotient times b, so the remainder has the dividend's sign.
 Word casts retain low 16 bits;
 INT16 interprets that word as signed, and UINT16 as its unsigned bit value.
 The roll total is a returned word; each caller's width and signedness are
-recorded with its site (FND-RNG-030, FND-RNG-034, FND-RNG-035, FND-RNG-037, FND-RNG-039), rather than an unbounded default integer.
+recorded with its site (FND-RNG-030, FND-RNG-034, FND-RNG-035, FND-RNG-039, FND-RNG-040), rather than an unbounded default integer.
 
 ```text
 # draw() is the generator: it sets
@@ -165,7 +167,7 @@ None known.
   remain separate (Q-RNG-003). The second root's local reseeding and
   conditional draw loop, and its script wrapper widths, are recorded in
   FND-RNG-021..022, and the shipped scripts that issue it in FND-RNG-027.
-- The rule entries for the routines FND-RNG-034, FND-RNG-035 and FND-RNG-039 read (Q-RNG-017) and for overlay 197's ten `roll_sum` draws (FND-RNG-037, Q-RNG-018), the events that reach overlay 206's
+- The rule entries for the routines FND-RNG-034, FND-RNG-035 and FND-RNG-039 read (Q-RNG-017), the events that reach overlay 206's
   dissolve and cry draws and the dissolve's rule entry (FND-RNG-030, Q-RNG-014), and the rules of
   overlay 173's fight set-up, target pick and removal drop draws (FND-RNG-031, Q-RNG-015). Recovered `random_mod`
   uses include `chance_in_ten`, the table selection in FND-RNG-007 and the music selector of
