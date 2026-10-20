@@ -1,6 +1,6 @@
 # MAGIC
 
-Next ID: Q-MAGIC-017
+Next ID: Q-MAGIC-018
 
 ## Static
 
@@ -98,6 +98,14 @@ Next ID: Q-MAGIC-017
   `DS:67D0 + 37 * k`. Tried: split from Q-RNG-021. FND-RNG-051 reads the direct callers and the
   cast queue, and finds the constants 1, 6, 11 and 0 at the calls that pass them. Blocks: slices
   2-7.
+- Q-MAGIC-017. RULE-MAGIC-023, RULE-RNG-001: What do a cast's sampled area points and amount
+  become, and what shapes the area? Settles it: overlay 193 `+20DA` and `+07F1` read from their
+  entries with the arguments overlay 193 `+0617` passes, including whether and when they reach the
+  draws their walks find through overlay 193 `+12A8`, and the returns of overlay 208 `+0933` and
+  `+03BA` and the helpers overlay 179 `+08B5`, `+09CE`, `+0959`, `+07BD` and `2D40:382F`.
+  Tried: split from Q-RNG-009. FND-RNG-052 reads `+0617`, overlay 179's wrapper and both
+  samplers, the amount's dice and the 112 effect rows, and finds the helpers draw nothing.
+  Blocks: slices 5-7.
 
 ## Emulated call
 

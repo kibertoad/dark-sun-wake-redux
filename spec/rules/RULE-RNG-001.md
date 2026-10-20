@@ -4,10 +4,10 @@ title: The game's random number generator and its reductions
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-032, FND-RNG-044, FND-RNG-035, FND-RNG-039, FND-RNG-040, FND-RNG-041, FND-RNG-043, FND-RNG-045, FND-RNG-046, FND-RNG-047, FND-RNG-048, FND-RNG-049, FND-RNG-050]
+evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-032, FND-RNG-044, FND-RNG-035, FND-RNG-039, FND-RNG-040, FND-RNG-041, FND-RNG-043, FND-RNG-045, FND-RNG-046, FND-RNG-047, FND-RNG-048, FND-RNG-049, FND-RNG-050, FND-RNG-052]
 conflicting: []
 split_with: []
-related: [RULE-VIDEO-005, RULE-MAGIC-005, RULE-MAGIC-006, RULE-AI-003, RULE-COMBAT-012, RULE-COMBAT-013, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009, RULE-MAGIC-007, RULE-MAGIC-008, RULE-MAGIC-009, RULE-MAGIC-010, RULE-MAGIC-011, RULE-MAGIC-012, RULE-MAGIC-013, RULE-MAGIC-014, RULE-MAGIC-015, RULE-MAGIC-016, RULE-MAGIC-017, RULE-MAGIC-018, RULE-MAGIC-019, RULE-MAGIC-020, RULE-MAGIC-021, RULE-MAGIC-022, RULE-SCRIPT-012, RULE-COMBAT-017]
+related: [RULE-VIDEO-005, RULE-MAGIC-005, RULE-MAGIC-006, RULE-AI-003, RULE-COMBAT-012, RULE-COMBAT-013, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009, RULE-MAGIC-007, RULE-MAGIC-008, RULE-MAGIC-009, RULE-MAGIC-010, RULE-MAGIC-011, RULE-MAGIC-012, RULE-MAGIC-013, RULE-MAGIC-014, RULE-MAGIC-015, RULE-MAGIC-016, RULE-MAGIC-017, RULE-MAGIC-018, RULE-MAGIC-019, RULE-MAGIC-020, RULE-MAGIC-021, RULE-MAGIC-022, RULE-SCRIPT-012, RULE-COMBAT-017, RULE-MAGIC-023]
 ---
 
 ## Summary
@@ -37,7 +37,9 @@ the music selector and `chance_in_ten`. Recorded findings describe 52 of those s
 FND-RNG-029 five more: the generation screen's opening picture and RULE-PARTY-016's spell picks.
 Overlay 176's five `random_between` sites (FND-RNG-025) are the psionic power check, which
 RULE-MAGIC-014 takes, and the psionic defence of a target, which RULE-MAGIC-015 takes
-(FND-RNG-046).
+(FND-RNG-046). Overlay 179's six (FND-RNG-026) sample a cast's area points for overlay 193
+`+0617`, by the mode of the cast `DATA` record's effect row, which RULE-MAGIC-023 takes with the
+row's amount dice (FND-RNG-052).
 FND-RNG-043 reads overlay 206's six: two draws per pixel of a removed combatant's dissolve and a
 `roll_sum` draw choosing a combatant's cry, which RULE-SOUND-004 and RULE-VIDEO-006 take; the events
 that reach them beyond overlay 179 `+2A05` and overlay 173's removal list remain Q-RNG-014.
@@ -186,7 +188,7 @@ None known.
   RULE-SOUND-003 (FND-SOUND-012).
   FND-PARTY-099 recovers an effect-saving caller of `roll_sum(1, 20)`; the earlier statement
   that `roll_sum` had no recovered caller was stale.
-- The inputs and rule of overlay 179's six `random_between` sites, in the coordinate samplers
-  FND-RNG-026 reads (Q-RNG-009).
+- What the readers of a cast's sampled area points do with them and with the amount, and what
+  shapes the area (FND-RNG-052, Q-MAGIC-017).
 - Whether computed, aliased or bulk accesses read or write `rng_state`
   beyond the known generator/setter (FND-RNG-001, Q-RNG-007).
