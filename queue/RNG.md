@@ -16,22 +16,26 @@ Next ID: Q-RNG-018
   switch (rule entries moved to Q-RNG-017). FND-RNG-035 qualifies the seven of overlays 191, 193,
   198, 204 and 211, and FND-RNG-036 the ten of overlay 195 (rule entries moved to Q-RNG-017).
   Blocks: slices 2-7.
-- Q-RNG-014. RULE-RNG-001: Which game events reach overlay 206's cry choice and its dissolve of a
-  removed combatant, and which rules describe them? Settles it: the callers of overlay 206
-  `+0B81` (the cry with flag 0) and `+0E1E` (the cry with flag 1 and the dissolve) with the
-  conditions that reach each call, whether `+0E1E`'s calls before the dissolve draw, and the
-  rule or screen entries that take FND-RNG-030's procedures. Tried: split from Q-RNG-001 and
-  Q-RNG-013. FND-RNG-030 reads `+1257` and `+151E` and the two calls in `+0E1E`, and FND-PARTY-140
-  reads `+0E1E`'s branch for party slots. Blocks: slices 2-7.
-- Q-RNG-015. RULE-RNG-001: Which rules describe overlay 173's four draw routines, and what do the
-  values they read hold? Settles it: for FND-RNG-031's fight set-up words, target pick, removal
-  drop and item-break test, the meaning of the words at `4C4F:00DC + 4 * c` and the byte at
-  `4C4F:0006`, the bodies of `27E5:02D9` and overlay 197 `+254B` (and whether they draw), the
-  lists overlay 173 `+0000` and `+0159` build, the item and type record bytes the break test
-  reads, and the rule or screen entries that take each procedure. Tried: split from Q-RNG-001.
+- Q-RNG-014. RULE-RNG-001, RULE-SOUND-004: Which game events reach overlay 206's cry choice and
+  its dissolve of a removed combatant, and which rule or screen entry takes the dissolve? Settles
+  it: the callers of overlay 206 `+0B81` (the cry with flag 0) and `+0E1E` (the cry with flag 1
+  and the dissolve) with the conditions that reach each call, whether `+0E1E`'s calls before the
+  dissolve draw, any computed or bulk writer of the voice tables at `DS:290A..291E`, and the rule
+  or screen entry that takes FND-RNG-030's dissolve. Tried: split from Q-RNG-001 and Q-RNG-013.
+  FND-RNG-030 reads `+1257` and `+151E` and the two calls in `+0E1E`, and FND-PARTY-140 reads
+  `+0E1E`'s branch for party slots. RULE-SOUND-004 takes FND-RNG-030's cry choice; the events
+  and the dissolve remain. Blocks: slices 2-7.
+- Q-RNG-015. RULE-RNG-001, RULE-COMBAT-011: Which rules describe overlay 173's fight set-up words,
+  target pick and removal drop, and what do the values its four draw routines read hold? Settles
+  it: for FND-RNG-031's fight set-up words, target pick and removal drop, the meaning of the words
+  at `4C4F:00DC + 4 * c` and the byte at `4C4F:0006`, the bodies of `27E5:02D9` and overlay 197
+  `+254B` (and whether they draw), the lists overlay 173 `+0000` and `+0159` build, and the rule
+  or screen entries that take each procedure; and for the item-break test of RULE-COMBAT-011, the
+  meaning of the item and type record bytes it reads and what overlay 173 `+3E6B` does. Tried: split from Q-RNG-001.
   FND-RNG-031 reads the four routines and their direct callers; FND-PARTY-091, FND-PARTY-097,
   FND-PARTY-099 and FND-PARTY-244 read the swing, the fight routine, the saving throw and the
-  trigger conditions. Blocks: slices 2-7.
+  trigger conditions. RULE-COMBAT-011 takes the item-break test; the other three routines and the
+  record meanings remain. Blocks: slices 2-7.
 - Q-RNG-008. RULE-RNG-001: Can the generator, a helper or the seed setter be reached through a
   stored far pointer, a computed call or a segment alias? Settles it: the words of the file equal
   to each routine's offset with a relocated or fixed-up segment, the computed call sites whose

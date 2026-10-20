@@ -36,10 +36,12 @@ The direct-call census (FND-RNG-028) finds 29 direct calls of the generator, 60 
 the music selector and `chance_in_ten`. Recorded findings describe 52 of those sites, and
 FND-RNG-029 five more: the generation screen's opening picture and RULE-PARTY-016's spell picks.
 FND-RNG-030 reads overlay 206's six: two draws per pixel of a removed combatant's dissolve and a
-`roll_sum` draw choosing a combatant's cry, whose triggers and rule entries remain Q-RNG-014.
+`roll_sum` draw choosing a combatant's cry, which RULE-SOUND-004 takes; the triggers and the
+dissolve's rule entry remain Q-RNG-014.
 FND-RNG-031 reads overlay 173's seven: two fight set-up words per combatant, a retried target
 pick, a removed combatant's drop placement and an item-break test after every damaging armed
-swing, whose rule entries remain Q-RNG-015. FND-RNG-032 reads the last, overlay 197 `+1082`: a
+swing, which RULE-COMBAT-011 takes; the other three routines' rule entries remain Q-RNG-015.
+FND-RNG-032 reads the last, overlay 197 `+1082`: a
 d20 to-hit roll that five `DATA` numbers cast by a combatant numbered 48 or more must pass before
 the hit routine applies them, which RULE-COMBAT-010 takes. FND-RNG-034 reads overlay 179's
 nineteen `roll_sum` sites, the dice of the hit routine's per-`DATA` effects, whose rule entries
@@ -161,8 +163,8 @@ None known.
   conditional draw loop, and its script wrapper widths, are recorded in
   FND-RNG-021..022, and the shipped scripts that issue it in FND-RNG-027.
 - The rule entry for overlay 204 +00E1's draw (FND-RNG-021, Q-RNG-016), the rule and draw order of overlay 197's 10 `roll_sum` sites (Q-RNG-013) that FND-RNG-028..036 leave undescribed, the rule entries for the routines FND-RNG-034..036 read (Q-RNG-017), the events that reach overlay 206's
-  dissolve and cry draws (FND-RNG-030, Q-RNG-014), and the rules of overlay 173's draws
-  (FND-RNG-031, Q-RNG-015). Recovered `random_mod`
+  dissolve and cry draws and the dissolve's rule entry (FND-RNG-030, Q-RNG-014), and the rules of
+  overlay 173's fight set-up, target pick and removal drop draws (FND-RNG-031, Q-RNG-015). Recovered `random_mod`
   uses include `chance_in_ten`, the table selection in FND-RNG-007 and the music selector of
   RULE-SOUND-003 (FND-SOUND-012).
   FND-PARTY-099 recovers an effect-saving caller of `roll_sum(1, 20)`; the earlier statement

@@ -10,3 +10,4 @@
 | `RULE-SOUND-001` | A sound effect plays the BVOC resource of its number, or the installed SOUND file when there is no such resource | supported | missing | None | None | supported | The rebuild plays no sound. |
 | `RULE-SOUND-002` | A spoken line plays INTR files from the disc below 50 and SPCH files from the installation or the disc from 50 up | supported | missing | None | None | supported | The rebuild plays no speech. |
 | `RULE-SOUND-003` | Music is chosen from DJ.DAT by region at startup and by party health in combat, and plays as a disc audio track | supported | missing | None | None | supported | The rebuild plays no music. The source manifest lists the Ogg files as game data. |
+| `RULE-SOUND-004` | A combatant's cry is its own sound, a fixed sound or a random one of its gender's voice sounds | supported | missing | None | None | supported | No code picks a combatant's cry. |
