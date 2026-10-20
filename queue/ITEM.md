@@ -1,6 +1,6 @@
 # ITEM
 
-Next ID: Q-ITEM-004
+Next ID: Q-ITEM-005
 
 ## Static
 
@@ -16,6 +16,13 @@ Next ID: Q-ITEM-004
   and whether the game enforces the class weapon lists and by which item field? Settles it: the
   code of overlay 189 around the placement messages and of overlay 191 around the pick-up messages
   (FND-ITEM-009), read with the item records it indexes. Blocks: slice 5.
+- Q-ITEM-004. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What do overlay 191's item tests act
+  on: which entry overlay 173 `+2E1B` picks with -2 and 1, what `2D40:2452` and overlay 173 `+2B88`
+  do to the item, what bytes `+0x12`, `+0x13` and `+0x16` and word `+0x10` of an item record hold,
+  and what the hit routine does with bit 0x02 of its flags byte? Settles it: readings of `+2E1B`,
+  `+2B88` and `2D40:2452` from entry to return, of the writers of those item record fields, and of
+  the hit routine's readers of the flags byte. Tried: FND-RNG-035 reads the three tests and
+  FND-ITEM-010 their callers in the effect switch. Blocks: slices 4-5.
 
 ## Emulated call
 
