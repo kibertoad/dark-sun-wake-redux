@@ -1,21 +1,29 @@
 # RNG
 
-Next ID: Q-RNG-013
+Next ID: Q-RNG-014
 
 ## Static
 
-- Q-RNG-001. RULE-RNG-001: Which direct call sites of the generator and of its modulo,
-  inclusive-range and repeated-roll helpers exist beyond those already read, and which rule does
-  each serve, in what draw order? Settles it: a census of the near and far calls of the
-  generator and of each helper across the load image and every overlay, with a positive control
-  for each kind of call, each hit checked to be an instruction start an established entry
-  reaches, and each mapped to a rule; this includes how each caller uses the `roll_sum` total and
-  the rule of overlay 204 +00E1's draw. Tried: FND-RNG-001, FND-RNG-002, FND-RNG-007, FND-RNG-008,
-  FND-SCRIPT-011 and FND-SOUND-012 identify the resident callers (the helpers, the music
-  selector, the table selection and script instruction `0x52`); FND-RNG-009's control query
-  lists further overlay candidates not yet checked, and FND-RNG-021 reads overlay 204 +00E1 as a
-  draw conditional on retained offset state. The sites in Q-RNG-009 and FND-RNG-024 are read
-  locally; the other candidates remain. Blocks: slices 2-7.
+- Q-RNG-001. RULE-RNG-001: Which rule does each of the 15 direct generator sites that
+  FND-RNG-028 lists as not described serve, in what draw order? Settles it: for overlay 173
+  `+0E99`, `+0EDB`, `+1BE2`, `+31DF`, `+3208`, `+3B21` and `+3B3D`, overlay 184 `+0AEA`, `+1AE5`,
+  `+1B51`, `+1BCD` and `+1C39`, overlay 197 `+1082` and overlay 206 `+1360` and `+1382`, a decode
+  from an established entry showing each is an instruction, the reduction applied to the draw,
+  the conditions that reach it and the rule it belongs to; and the rule of overlay 204 +00E1's
+  draw. Tried: FND-RNG-001, FND-RNG-002, FND-RNG-007, FND-RNG-008, FND-SCRIPT-011 and
+  FND-SOUND-012 identify the resident callers; FND-RNG-021, FND-RNG-024..026 read further sites.
+  FND-RNG-028 takes the direct-call census for the generator and the four reducers with a
+  control for each kind of site and maps 52 of 117 sites to the findings that describe them;
+  the `roll_sum` sites moved to Q-RNG-013. Blocks: slices 2-7.
+- Q-RNG-013. RULE-RNG-001: Which rule does each of the 50 `roll_sum` sites that FND-RNG-028
+  lists as not described serve, with which count and sides, and how does each caller read the
+  returned total? Settles it: for each site in overlays 179, 191, 193, 195, 197, 198, 204, 206
+  and 211 that FND-RNG-028 lists, a decode from an established entry showing it is an
+  instruction, its two arguments' sources, the width and signedness at which the caller tests
+  or stores the total, and the rule it belongs to. Tried: split from Q-RNG-001. FND-RNG-005 and
+  FND-RNG-013 read the helper; FND-RNG-028 lists the sites, and FND-PARTY-071, FND-PARTY-074,
+  FND-PARTY-082, FND-PARTY-099, FND-PARTY-150, FND-PARTY-168, FND-PARTY-249 and FND-TEXT-008
+  describe the ten others. Blocks: slices 2-7.
 - Q-RNG-008. RULE-RNG-001: Can the generator, a helper or the seed setter be reached through a
   stored far pointer, a computed call or a segment alias? Settles it: the words of the file equal
   to each routine's offset with a relocated or fixed-up segment, the computed call sites whose

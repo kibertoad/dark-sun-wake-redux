@@ -4,7 +4,7 @@ title: The game's random number generator and its reductions
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027]
+evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028]
 conflicting: []
 split_with: []
 related: []
@@ -30,8 +30,12 @@ occur in startup's overlay-180 routine and overlay 204's separate entry.
 Both call an OS-service-backed helper with no output destination and seed
 from only its low 16-bit return word (FND-RNG-009). The helper's complete
 conversion and admitted reseeding paths remain unknown (Q-RNG-003).
-Additional overlay caller candidates still require verification and rule
-mapping (Q-RNG-001); the resident list is not a complete caller census.
+The direct-call census (FND-RNG-028) finds 29 direct calls of the generator, 60 of `roll_sum`,
+11 of `random_between`, 11 of `random_mod` and 4 of `chance_in_ten`; `roll_sum` and
+`random_between` are called only from overlays, and `random_mod` and `chance_in_ten` only from
+the music selector and `chance_in_ten`. Recorded findings describe 52 of those sites. The other
+15 generator sites (Q-RNG-001) and 50 `roll_sum` sites (Q-RNG-013) still need qualification and
+rule mapping, and calls not made directly remain Q-RNG-008.
 
 Overlay 204's entry runs, and reseeds, each time a script issues request 27 of instruction
 `0x22`; 44 shipped instructions do, in 21 `GPL` resources (FND-RNG-027). No shipped script uses
@@ -54,7 +58,7 @@ truncated quotient times b, so the remainder has the dividend's sign.
 Word casts retain low 16 bits;
 INT16 interprets that word as signed, and UINT16 as its unsigned bit value.
 The roll total is a returned word; its interpretation by callers remains
-part of Q-RNG-001, rather than an unbounded default integer.
+part of Q-RNG-013, rather than an unbounded default integer.
 
 ```text
 # draw() is the generator: it sets
@@ -142,8 +146,8 @@ None known.
   remain separate (Q-RNG-003). The second root's local reseeding and
   conditional draw loop, and its script wrapper widths, are recorded in
   FND-RNG-021..022, and the shipped scripts that issue it in FND-RNG-027.
-- The direct call sites of the generator and helpers beyond those read, and the rule and draw
-  order of each (Q-RNG-001). Recovered `random_mod` uses include `chance_in_ten`, the table
+- The rule and draw order of the 15 direct generator sites (Q-RNG-001) and the 50 `roll_sum`
+  sites (Q-RNG-013) that FND-RNG-028's census lists as not yet described. Recovered `random_mod` uses include `chance_in_ten`, the table
   selection in FND-RNG-007 and the music selector of RULE-SOUND-003 (FND-SOUND-012).
   FND-PARTY-099 recovers an effect-saving caller of `roll_sum(1, 20)`; the earlier statement
   that `roll_sum` had no recovered caller was stale.
