@@ -15,20 +15,6 @@ Next ID: Q-RNG-019
   and the dissolve remain. FND-RNG-030 places the call of `31E0:05BB` after the dissolve; the
   listing has it at `+1023`, before the dissolve's call at `+103E`, so a replacement of FND-RNG-030
   is part of this item. Blocks: slices 2-7.
-- Q-RNG-015. RULE-RNG-001, RULE-COMBAT-011: Which rules describe overlay 173's fight set-up words,
-  target pick and removal drop, and what do the values its four draw routines read hold? Settles
-  it: for FND-RNG-031's fight set-up words, target pick and removal drop, the meaning of the words
-  at `4C4F:00DC + 4 * c` and the byte at `4C4F:0006`, the bodies of `27E5:02D9` and overlay 197
-  `+254B` (and whether they draw), the lists overlay 173 `+0000` and `+0159` build, and the rule
-  or screen entries that take each procedure; and for the item-break test of RULE-COMBAT-011, the
-  meaning of the item and type record bytes it reads and what overlay 173 `+3E6B` does. Tried: split from Q-RNG-001.
-  FND-RNG-031 reads the four routines and their direct callers; FND-PARTY-091, FND-PARTY-097,
-  FND-PARTY-099 and FND-PARTY-244 read the swing, the fight routine, the saving throw and the
-  trigger conditions. RULE-COMBAT-011 takes the item-break test; the other three routines and the
-  record meanings remain. FND-RNG-031 has the target pick store the first word of local entry `p`;
-  the store at `+1C89..+1C9A` reads word `+2` of the four-byte entry, which overlay 173 `+02AA`
-  fills with the slot after the sort key in word `+0`, so a replacement of FND-RNG-031 is part of
-  this item. Blocks: slices 2-7.
 - Q-RNG-008. RULE-RNG-001: Can the generator, a helper or the seed setter be reached through a
   stored far pointer, a computed call or a segment alias? Settles it: the words of the file equal
   to each routine's offset with a relocated or fixed-up segment, the computed call sites whose

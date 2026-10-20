@@ -4,7 +4,7 @@ title: Eighteen DATA records summon a fixed creature or one picked by a d4 or d1
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-040, FND-PARTY-107, FND-COMBAT-023, FND-COMBAT-052, FND-COMBAT-022, FND-PARTY-133, FND-RNG-031, FND-RNG-035]
+evidence: [FND-RNG-040, FND-PARTY-107, FND-COMBAT-023, FND-COMBAT-052, FND-COMBAT-022, FND-PARTY-133, FND-RNG-041, FND-RNG-035]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001]

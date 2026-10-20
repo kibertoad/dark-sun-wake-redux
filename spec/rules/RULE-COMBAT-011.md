@@ -4,7 +4,7 @@ title: After a swing with an item does damage, an eligible item breaks on one dr
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-031, FND-PARTY-091]
+evidence: [FND-RNG-041, FND-PARTY-091]
 conflicting: []
 split_with: []
 related: [RULE-COMBAT-002, RULE-RNG-001]
@@ -21,7 +21,7 @@ Every test makes one draw, and an eligible item makes a second on the first draw
 ## When it runs
 
 `item_breaks` runs once after the attack routine's swing returns a value above 0, when the
-attacker's entry holds an item (its number 0 or more), with that item and its type (FND-RNG-031,
+attacker's entry holds an item (its number 0 or more), with that item and its type (FND-RNG-041,
 FND-PARTY-091).
 
 ## Parameters
@@ -52,7 +52,7 @@ define item_breaks(type_flags, item_bonus, item_word):
 ## Outputs
 
 True when the item breaks. The game then shows a message naming the item and calls overlay 173
-`+3E6B` with it (FND-RNG-031).
+`+3E6B` with it (FND-RNG-041).
 
 ## Edge cases
 
@@ -71,4 +71,4 @@ None known.
 ## Open questions
 
 - What the type flags byte, the low four bits of it, the item's byte `+0x16` and word `+0x10`
-  stand for, and what overlay 173 `+3E6B` does to the broken item (Q-RNG-015).
+  stand for, and what overlay 173 `+3E6B` does to the broken item (Q-COMBAT-031).

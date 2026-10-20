@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-028
+Next ID: Q-COMBAT-032
 
 ## Static
 
@@ -242,6 +242,27 @@ Next ID: Q-COMBAT-028
   three steps of overlay 195 `+00D1` that call `byte_19_check` do with 0 and 1? Settles it: a
   reading of the writers of byte `+0x19` and of the three steps past each call. Tried: FND-RNG-039
   reads `+152F` and names the three steps. Blocks: slice 4.
+- Q-COMBAT-028. RULE-COMBAT-014: Which groups do the masks 0x71, 0x184 and 0x608 name, what do
+  script request 25's values 7 and 11 and the byte at `DS:054E` do, and does a combatant that has
+  acted get -1 as its order word? Settles it: the writers of combatant byte `+0x15` and of
+  `DS:054E`, and a reading of overlay 173 `+1098` from `+1155` on with its caller. Tried: split
+  from Q-RNG-015. FND-RNG-042 reads the two terms, the writers of the side byte, the shipped
+  scripts' request 25 values and `+1098`'s comparison. Blocks: slice 4.
+- Q-COMBAT-029. RULE-COMBAT-015: What do `1B0B:00A4`, `2D40:35EF` and `3143:00A8` compute, what
+  does an effect 33 entry's word `+0x24F` hold, and what do overlay 173's four callers of
+  `+1ACD` use the pick for? Settles it: readings of the three routines, of the writers of the
+  effect entry word, and of `+1354`, `+1684`, `+1822` and `+1A55` with the local limit of
+  `+1684`. Tried: split from Q-RNG-015. FND-RNG-041 reads `+1ACD`, its list builders and its
+  callers' arguments. Blocks: slice 4.
+- Q-COMBAT-030. RULE-COMBAT-016: What is object 2200, what do item byte `+0x12`, held-object kind
+  1 and byte `+5` of the `57E0:67B7` entry hold, and what do `31E0:0121`'s other arguments,
+  `2D40:288C` and `31E0:05BB` do? Settles it: readings of the three routines and of the readers
+  of byte `+5`. Tried: split from Q-RNG-015. FND-RNG-041 reads overlay 173 `+3136`. Blocks:
+  slice 4.
+- Q-COMBAT-031. RULE-COMBAT-011: What do the item type's byte `+4`, its low four bits, and the item
+  record's byte `+0x16` and word `+0x10` stand for, and what does overlay 173 `+3E6B` do to the
+  broken item? Settles it: readings of `+3E6B` and of the writers of those record fields. Tried:
+  split from Q-RNG-015. FND-RNG-041 reads the break test. Blocks: slice 4.
 
 ## Emulated call
 

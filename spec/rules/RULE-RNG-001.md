@@ -4,7 +4,7 @@ title: The game's random number generator and its reductions
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-030, FND-RNG-031, FND-RNG-032, FND-RNG-034, FND-RNG-035, FND-RNG-039, FND-RNG-040]
+evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-030, FND-RNG-032, FND-RNG-034, FND-RNG-035, FND-RNG-039, FND-RNG-040, FND-RNG-041]
 conflicting: []
 split_with: []
 related: [RULE-VIDEO-005, RULE-MAGIC-005, RULE-MAGIC-006, RULE-AI-003, RULE-COMBAT-012, RULE-COMBAT-013, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009, RULE-MAGIC-007, RULE-MAGIC-008, RULE-MAGIC-009, RULE-MAGIC-010, RULE-MAGIC-011, RULE-MAGIC-012, RULE-MAGIC-013]
@@ -38,9 +38,10 @@ FND-RNG-029 five more: the generation screen's opening picture and RULE-PARTY-01
 FND-RNG-030 reads overlay 206's six: two draws per pixel of a removed combatant's dissolve and a
 `roll_sum` draw choosing a combatant's cry, which RULE-SOUND-004 takes; the triggers and the
 dissolve's rule entry remain Q-RNG-014.
-FND-RNG-031 reads overlay 173's seven: two fight set-up words per combatant, a retried target
-pick, a removed combatant's drop placement and an item-break test after every damaging armed
-swing, which RULE-COMBAT-011 takes; the other three routines' rule entries remain Q-RNG-015.
+FND-RNG-041 reads overlay 173's seven: two fight set-up words per combatant, a retried pick
+from a distance-sorted list of slots, a removed combatant's drop placement and an item-break test
+after every damaging armed swing, which RULE-COMBAT-014, RULE-COMBAT-015, RULE-COMBAT-016 and
+RULE-COMBAT-011 take.
 FND-RNG-032 reads the last, overlay 197 `+1082`: a
 d20 to-hit roll that five `DATA` numbers cast by a combatant numbered 48 or more must pass before
 the hit routine applies them, which RULE-COMBAT-010 takes. FND-RNG-034 reads overlay 179's
@@ -168,8 +169,7 @@ None known.
   conditional draw loop, and its script wrapper widths, are recorded in
   FND-RNG-021..022, and the shipped scripts that issue it in FND-RNG-027.
 - The rule entries for the routines FND-RNG-034, FND-RNG-035 and FND-RNG-039 read (Q-RNG-017), the events that reach overlay 206's
-  dissolve and cry draws and the dissolve's rule entry (FND-RNG-030, Q-RNG-014), and the rules of
-  overlay 173's fight set-up, target pick and removal drop draws (FND-RNG-031, Q-RNG-015). Recovered `random_mod`
+  dissolve and cry draws and the dissolve's rule entry (FND-RNG-030, Q-RNG-014). Recovered `random_mod`
   uses include `chance_in_ten`, the table selection in FND-RNG-007 and the music selector of
   RULE-SOUND-003 (FND-SOUND-012).
   FND-PARTY-099 recovers an effect-saving caller of `roll_sum(1, 20)`; the earlier statement

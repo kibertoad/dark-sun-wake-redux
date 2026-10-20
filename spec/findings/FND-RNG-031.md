@@ -1,9 +1,9 @@
 ---
 id: FND-RNG-031
 title: Overlay 173's seven unread generator calls are two fight set-up words per combatant, a retried random target pick, a removed combatant's drop placement and an item-break test after every damaging armed swing
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-RNG-041]
 recorded_by: kibertoad
 reproduced_by: []
 method: static
