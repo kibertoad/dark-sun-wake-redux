@@ -40,11 +40,14 @@ Next ID: Q-RNG-024
   special attack 13 pass 293 with the byte set; the near-buffer part moved to Q-RNG-023. Blocks:
   reproducible seeding and Q-PARTY-081's later recorded gameplay run.
 - Q-RNG-023. RULE-RNG-001: Does `DS` equal `SS` at the entry of overlay 193 `+003C`, overlay 201
-  `+05D5` and overlay 204 `+1F06` on the paths after startup? Settles it: for each of the 255
-  routines FND-RNG-053 finds writing `DS`, a reading that it restores `DS` before it returns or
-  calls out, or loads the data segment, or the paths on which it does not. Tried: split from
+  `+05D5` and overlay 204 `+1F06` on the paths after startup? Settles it: for each of the 166
+  calls and 92 `INT`s FND-RNG-056 lists as made with `DS` `other`, a reach query (with a control
+  call per start) showing it does not lead to the three entries, or the `DS` it holds; and
+  readings of the eight changer routines it leaves unread and of `1000:1F50`. Tried: split from
   Q-RNG-003. FND-RNG-053 finds `SS` written only at startup and in a balanced swap, and no write of
-  `DS` in the seed routines or their callers. Blocks: reproducible seeding.
+  `DS` in the seed routines or their callers. Tried: FND-RNG-056's path walk of all 255 `DS`
+  writers finds 24 resident routines that can return with `DS` changed and none in overlays, and
+  `DS` equal to `SS` at the call of the main routine. Blocks: reproducible seeding.
 - Q-RNG-012. RULE-RNG-001, RULE-VIDEO-005: Which date and time values does each caller of the clock conversion
   pass, and in which near buffers? Settles it: on each admitted caller path, the indexed date and
   time fields the conversion reads, their ranges, and the buffers' segment identity. Tried: split
