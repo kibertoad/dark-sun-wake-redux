@@ -22,5 +22,7 @@ Entries by area.
 | [FND-IMAGE-008](../../findings/FND-IMAGE-008.md) | No resident function uses the number 11011 as an operand, with or without the BMP tag words | recorded |
 | [FND-IMAGE-009](../../findings/FND-IMAGE-009.md) | The PORT tag does not occur in the resident load image of DSUN.EXE | recorded |
 | [FND-IMAGE-010](../../findings/FND-IMAGE-010.md) | The first gameplay frame of the opening region matches frames decoded from all three encodings | recorded |
+| [FND-IMAGE-011](../../findings/FND-IMAGE-011.md) | No port write in the inventoried code changes the CRT timing of BIOS mode 0x13, so the game shows its 320x200 canvas with that mode's timing | recorded |
+| [FND-IMAGE-012](../../findings/FND-IMAGE-012.md) | During play the DAC holds the region's palette PAL/current_region, and five cycling ranges rotate indexes 1 to 31, so the overhead-map marks 1, 11 and 16 cycle while mark 100 stays one colour | recorded |
 | [RULE-IMAGE-001](../../rules/RULE-IMAGE-001.md) | Decoding an image frame, and the row encoding | supported |
 | [RULE-IMAGE-002](../../rules/RULE-IMAGE-002.md) | Decoding a planar image frame | supported |

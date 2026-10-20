@@ -10,13 +10,13 @@ Entries by kind.
 
 | ID | Title | Status |
 |---|---|---|
-| [RULE-INPUT-001](../../rules/RULE-INPUT-001.md) | The right mouse button steps the pointer through the Walk, Attack and Look modes | sourced |
+| [RULE-INPUT-001](../../rules/RULE-INPUT-001.md) | The right mouse button steps the pointer through the Walk, Attack and Look modes | supported |
 | [RULE-INPUT-002](../../rules/RULE-INPUT-002.md) | Which image the pointer shows for each mode, and its hotspot | supported |
-| [RULE-INPUT-003](../../rules/RULE-INPUT-003.md) | The keys that open the character option screens and the Game Menu | sourced |
+| [RULE-INPUT-003](../../rules/RULE-INPUT-003.md) | The keys that open the character option screens and the Game Menu | supported |
 
 ## findings
 
-11 entries.
+13 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -31,3 +31,5 @@ Entries by kind.
 | [FND-INPUT-009](../../findings/FND-INPUT-009.md) | The one dispatch-shaped caller above the mapped keyboard routine requests GPLI 1 | recorded |
 | [FND-INPUT-010](../../findings/FND-INPUT-010.md) | Eleven INT 33h wrappers in segment 45B9 pass mouse services through to their callers | recorded |
 | [FND-INPUT-011](../../findings/FND-INPUT-011.md) | The BIOS shift-flag routine 44B6:0011 has eleven far callers | recorded |
+| [FND-INPUT-012](../../findings/FND-INPUT-012.md) | Overlay 190's key routine opens the Game Menu on Tab, and on C, U, E, I and V in either case the spell, effect, inventory and character windows, unless a non-party combatant has the turn | recorded |
+| [FND-INPUT-013](../../findings/FND-INPUT-013.md) | Pressing the right button over the map frame steps the word at 57E0:1440 from 1 to 4 to 2 and back to 1, through 3 when 57E0:1A34 is not 0xFFFF, once per press | recorded |

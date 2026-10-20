@@ -32,7 +32,7 @@ Entries by kind.
 
 ## findings
 
-52 entries.
+55 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -88,6 +88,9 @@ Entries by kind.
 | [FND-COMBAT-050](../../findings/FND-COMBAT-050.md) | View-bound inputs have distinct reset, restore and packed script producers | recorded |
 | [FND-COMBAT-051](../../findings/FND-COMBAT-051.md) | The end-of-move menu records event choices separately from its final return override | recorded |
 | [FND-COMBAT-052](../../findings/FND-COMBAT-052.md) | Post-menu restoration rereads mode and conditionally rebuilds input and resource state | recorded |
+| [FND-COMBAT-053](../../findings/FND-COMBAT-053.md) | Nothing from program start to START GAME's party load writes the effect count or rows, no writer sets the count to a constant, and the new-game routes to the effect writers start at the gate routine's later calls | recorded |
+| [FND-COMBAT-054](../../findings/FND-COMBAT-054.md) | With the effect count at zero the removal and transfer entries change nothing, and every route from the gate routine's later calls to an effect insertion passes the area-effect routine overlay 193 +12A8, which runs only for an object slot whose byte 0xF is not 0 | recorded |
+| [FND-COMBAT-055](../../findings/FND-COMBAT-055.md) | No placement on MAS/50's script route names object 147, its variable placements name 675 and 110 to 113, and START GAME's party objects are 300 to 313 | recorded |
 
 ## screens
 

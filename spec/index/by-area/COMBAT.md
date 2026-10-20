@@ -63,6 +63,9 @@ Entries by area.
 | [FND-COMBAT-050](../../findings/FND-COMBAT-050.md) | View-bound inputs have distinct reset, restore and packed script producers | recorded |
 | [FND-COMBAT-051](../../findings/FND-COMBAT-051.md) | The end-of-move menu records event choices separately from its final return override | recorded |
 | [FND-COMBAT-052](../../findings/FND-COMBAT-052.md) | Post-menu restoration rereads mode and conditionally rebuilds input and resource state | recorded |
+| [FND-COMBAT-053](../../findings/FND-COMBAT-053.md) | Nothing from program start to START GAME's party load writes the effect count or rows, no writer sets the count to a constant, and the new-game routes to the effect writers start at the gate routine's later calls | recorded |
+| [FND-COMBAT-054](../../findings/FND-COMBAT-054.md) | With the effect count at zero the removal and transfer entries change nothing, and every route from the gate routine's later calls to an effect insertion passes the area-effect routine overlay 193 +12A8, which runs only for an object slot whose byte 0xF is not 0 | recorded |
+| [FND-COMBAT-055](../../findings/FND-COMBAT-055.md) | No placement on MAS/50's script route names object 147, its variable placements name 675 and 110 to 113, and START GAME's party objects are 300 to 313 | recorded |
 | [RULE-COMBAT-001](../../rules/RULE-COMBAT-001.md) | All four party members are drawn during combat, and only the leader again after it when the party is collapsed | sourced |
 | [RULE-COMBAT-002](../../rules/RULE-COMBAT-002.md) | An attack hits when a roll of 1 to 20 is at least the attacker's THAC0 less the target's Armor Class | sourced |
 | [RULE-COMBAT-003](../../rules/RULE-COMBAT-003.md) | Damage lowers hit points; at 0 a character is unconscious and at -10 dead | sourced |

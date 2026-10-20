@@ -15,18 +15,27 @@ Entries by status.
 | [FMT-TEXT-003](../../formats/FMT-TEXT-003.md) | Text resource of CR LF lines |
 | [FMT-TEXT-004](../../formats/FMT-TEXT-004.md) | Preferences text block in DSUN.EXE |
 
+## superseded
+
+1 entries.
+
+| ID | Title |
+|---|---|
+| [FND-TEXT-004](../../findings/FND-TEXT-004.md) | The TEXT tag occurs twice in the resident image as unreferenced data and three times in the pack |
+
 ## recorded
 
-6 entries.
+7 entries.
 
 | ID | Title |
 |---|---|
 | [FND-TEXT-001](../../findings/FND-TEXT-001.md) | The one FONT resource holds 256 glyphs of height 9 behind a map and an offset table |
 | [FND-TEXT-002](../../findings/FND-TEXT-002.md) | The FONT tag occurs twice in DSUN.EXE as data with no recorded reference |
 | [FND-TEXT-003](../../findings/FND-TEXT-003.md) | Every TEXT resource is printable ASCII in lines that each end with CR LF |
-| [FND-TEXT-004](../../findings/FND-TEXT-004.md) | The TEXT tag occurs twice in the resident image as unreferenced data and three times in the pack |
 | [FND-TEXT-005](../../findings/FND-TEXT-005.md) | DSUN.EXE holds the Preferences difficulty labels, descriptions and About lines as one data block |
 | [FND-TEXT-006](../../findings/FND-TEXT-006.md) | Ghidra finds no direct reference to the Preferences tables or their strings |
+| [FND-TEXT-007](../../findings/FND-TEXT-007.md) | Each of the five TEXT tag occurrences in DSUN.EXE is the tag operand of a resource request, two in resident code and three in overlays 186 and 188 |
+| [FND-TEXT-008](../../findings/FND-TEXT-008.md) | TEXT resources give a new character's default name, the item-name table and the version line, each read in its own way |
 
 ## Open questions
 
@@ -36,5 +45,4 @@ Entries whose Open questions section says more than None known.
 |---|---|---|
 | [FMT-TEXT-001](../../formats/FMT-TEXT-001.md) | Bitmap font resource | supported |
 | [FMT-TEXT-002](../../formats/FMT-TEXT-002.md) | Bitmap font glyph | supported |
-| [FMT-TEXT-003](../../formats/FMT-TEXT-003.md) | Text resource of CR LF lines | supported |
 | [FMT-TEXT-004](../../formats/FMT-TEXT-004.md) | Preferences text block in DSUN.EXE | supported |

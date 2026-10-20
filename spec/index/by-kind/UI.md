@@ -26,7 +26,7 @@ Entries by kind.
 
 ## findings
 
-43 entries.
+54 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -73,6 +73,17 @@ Entries by kind.
 | [FND-UI-041](../../findings/FND-UI-041.md) | Window callback setters and refresh have direct overlay callers, including the effect window | recorded |
 | [FND-UI-042](../../findings/FND-UI-042.md) | The literal window-picture displacement census yields only interior-decode candidates | recorded |
 | [FND-UI-043](../../findings/FND-UI-043.md) | The button tail supplies zero-terminated caption bytes to measurement and positioned text requests | recorded |
+| [FND-UI-044](../../findings/FND-UI-044.md) | Every literal window number 19501 and 19502 is an opener argument; the game-entry routine opens WIND 19501 and two overlay 201 routines open WIND 19502 | recorded |
+| [FND-UI-045](../../findings/FND-UI-045.md) | The window routines keep a five-bit state in the low bits of the flags word, registration sets bits 0x40 and 0x80 from the children, and no literal operand reads bits 0x800 or 0x2000 | recorded |
+| [FND-UI-046](../../findings/FND-UI-046.md) | Overlay 201 +0073 is the overhead map, opened by Game Menu button 10305 and the O key, which draws the region's map picture with object marks and centres the view on a clicked point | recorded |
+| [FND-UI-047](../../findings/FND-UI-047.md) | An overhead-map mark is one pixel in the colour index of its mark value, written to graphics slot 1, after which the map shows that page and sets the pointer to ICON 19101 | recorded |
+| [FND-UI-048](../../findings/FND-UI-048.md) | Overlay 201 +05D5, the one DAC writer the overhead map's walk reaches, ends every path with the region-palette fade, and the new-game route reaches that fade only through +05D5 | recorded |
+| [FND-UI-049](../../findings/FND-UI-049.md) | The gate routine's 768-byte palette block is all zeros, so START GAME leaves the DAC black, and the region fade is reached on a new game from script opcode 0x22's functions 1, 26 and 37, not from the start window or the gate routine | recorded |
+| [FND-UI-050](../../findings/FND-UI-050.md) | A new game loads region 50 and runs MAS/50 first, whose instruction 0x05DC is the first fade-in request a script on the new-game route makes | recorded |
+| [FND-UI-051](../../findings/FND-UI-051.md) | The region word changes after startup only through a saved-game load from window 0x4844's handler or through script opcode 0x5E with a first operand of 32766, and no script on MAS/99's or MAS/50's route before 0x05DC holds that instruction | recorded |
+| [FND-UI-052](../../findings/FND-UI-052.md) | On a first new game the span from the gate routine's +12FF to MAS/50 0x05DC runs no window or frame callback and no trigger script, writes no effect row, and writes the DAC only at MAS/50 0x0000 (black) and 0x05DC (the region fade) | recorded |
+| [FND-UI-053](../../findings/FND-UI-053.md) | The Game Menu's Exit to DOS and Load or Save buttons open three-item choices at (92, 71) whose first and second items lead to Save Game, quitting, Load Game and Save Game | recorded |
+| [FND-UI-054](../../findings/FND-UI-054.md) | Pinned rust-dos 1.7.5 regenerates and independently restores all six retained gameplay checkpoint routes | recorded |
 
 ## screens
 
@@ -99,7 +110,7 @@ Entries by kind.
 | [SCR-UI-017](../../screens/SCR-UI-017.md) | Quick Cast panel | sourced |
 | [SCR-UI-018](../../screens/SCR-UI-018.md) | Item summary | sourced |
 | [SCR-UI-019](../../screens/SCR-UI-019.md) | Store panel | sourced |
-| [SCR-UI-020](../../screens/SCR-UI-020.md) | Exit to DOS choice | sourced |
-| [SCR-UI-021](../../screens/SCR-UI-021.md) | Load or Save choice | sourced |
-| [SCR-UI-022](../../screens/SCR-UI-022.md) | Overhead map | sourced |
+| [SCR-UI-020](../../screens/SCR-UI-020.md) | Exit to DOS choice | supported |
+| [SCR-UI-021](../../screens/SCR-UI-021.md) | Load or Save choice | supported |
+| [SCR-UI-022](../../screens/SCR-UI-022.md) | Overhead map | supported |
 | [SCR-UI-023](../../screens/SCR-UI-023.md) | About information | sourced |

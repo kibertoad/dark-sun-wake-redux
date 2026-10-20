@@ -18,7 +18,7 @@ Entries by kind.
 
 ## rules
 
-10 entries.
+11 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -26,16 +26,17 @@ Entries by kind.
 | [RULE-SCRIPT-002](../../rules/RULE-SCRIPT-002.md) | Running a script, reading its code and calling other scripts | supported |
 | [RULE-SCRIPT-003](../../rules/RULE-SCRIPT-003.md) | The script instructions for jumps, calls, returns, if, while, compare, the accumulator and assignment | supported |
 | [RULE-SCRIPT-004](../../rules/RULE-SCRIPT-004.md) | Reading instruction parameters, expressions, variables and strings | supported |
-| [RULE-SCRIPT-005](../../rules/RULE-SCRIPT-005.md) | Script variables start at 0 | sourced |
+| [RULE-SCRIPT-005](../../rules/RULE-SCRIPT-005.md) | Script variables start at 0 | supported |
 | [RULE-SCRIPT-006](../../rules/RULE-SCRIPT-006.md) | The script instruction that draws a random number | supported |
 | [RULE-SCRIPT-007](../../rules/RULE-SCRIPT-007.md) | The script instructions that print text and numbers, show a portrait and play sound and music | supported |
 | [RULE-SCRIPT-008](../../rules/RULE-SCRIPT-008.md) | The script instructions that register attack and move-tile triggers | supported |
 | [RULE-SCRIPT-009](../../rules/RULE-SCRIPT-009.md) | The script trace instructions | supported |
 | [RULE-SCRIPT-010](../../rules/RULE-SCRIPT-010.md) | Script-cache lookup and resource transfer | supported |
+| [RULE-SCRIPT-011](../../rules/RULE-SCRIPT-011.md) | The script instructions that change a variable in place | supported |
 
 ## findings
 
-23 entries.
+26 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -62,3 +63,6 @@ Entries by kind.
 | [FND-SCRIPT-021](../../findings/FND-SCRIPT-021.md) | Cache replacement selects the first largest signed age and invalidates four fields | recorded |
 | [FND-SCRIPT-022](../../findings/FND-SCRIPT-022.md) | Script-buffer room search mixes comparison widths and restarts after collisions or eviction | recorded |
 | [FND-SCRIPT-023](../../findings/FND-SCRIPT-023.md) | The interpreter error entry calls a shared helper before an optional message and stop assignment | recorded |
+| [FND-SCRIPT-024](../../findings/FND-SCRIPT-024.md) | Every script instruction's handler reads a fixed operand layout, apart from 0x33, 0x40 and 0x48, and 349 of the 350 shipped scripts decode with these layouts to their last byte | recorded |
+| [FND-SCRIPT-025](../../findings/FND-SCRIPT-025.md) | Script instructions 0x01 to 0x05, 0x07, 0x11 and 0x76 to 0x7F change the byte, word or double word at their first parameter's address in place | recorded |
+| [FND-SCRIPT-026](../../findings/FND-SCRIPT-026.md) | Overlay 169 allocates and clears the eight script variable blocks before MAS/99 runs, and the interpreter clears the four local blocks again whenever another script becomes current | recorded |

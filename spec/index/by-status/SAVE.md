@@ -25,7 +25,7 @@ Entries by status.
 
 ## recorded
 
-11 entries.
+13 entries.
 
 | ID | Title |
 |---|---|
@@ -40,6 +40,8 @@ Entries by status.
 | [FND-SAVE-009](../../findings/FND-SAVE-009.md) | The later PREF and GREQ save writes select the CHARSAVE.GFF archive |
 | [FND-SAVE-010](../../findings/FND-SAVE-010.md) | Overlay 190 sends F1 and F2 to Save and Load and F3 to an exit choice |
 | [FND-SAVE-012](../../findings/FND-SAVE-012.md) | Clearing DS 1462 makes the resident main loop return |
+| [FND-SAVE-013](../../findings/FND-SAVE-013.md) | Script functions 33, 34 and 35 of opcode 0x22 set the subregion bounds, the map page and the defeat picture byte that a GREQ resource saves, and only the start of play and a load also set them |
+| [FND-SAVE-014](../../findings/FND-SAVE-014.md) | The shipped scripts set 137 different subregions through function 33 of opcode 0x22, and map pages 0 to 9, 255 or the value of the global that chose the subregion through function 34 |
 
 ## Open questions
 
@@ -48,6 +50,5 @@ Entries whose Open questions section says more than None known.
 | ID | Title | Status |
 |---|---|---|
 | [FMT-SAVE-001](../../formats/FMT-SAVE-001.md) | Stored character identifier in a CACT resource | supported |
-| [FMT-SAVE-002](../../formats/FMT-SAVE-002.md) | Saved game state in a GREQ resource | supported |
 | [RULE-SAVE-001](../../rules/RULE-SAVE-001.md) | The F1 and F2 screens and F3 exit choice | supported |
 | [RULE-SAVE-002](../../rules/RULE-SAVE-002.md) | The number and file name of a saved game | supported |

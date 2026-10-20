@@ -10,7 +10,7 @@ Entries by kind.
 
 | ID | Title | Status |
 |---|---|---|
-| [RULE-EXPLORE-001](../../rules/RULE-EXPLORE-001.md) | Holding the pointer at an edge of the map view scrolls the view toward that edge until the pointer leaves it or the map ends | sourced |
+| [RULE-EXPLORE-001](../../rules/RULE-EXPLORE-001.md) | Holding the pointer at an edge of the map view scrolls the view toward that edge until the pointer leaves it or the map ends | supported |
 | [RULE-EXPLORE-002](../../rules/RULE-EXPLORE-002.md) | Key 5 shows the whole party on the map and key 6, outside combat, shows only the leader | supported |
 | [RULE-EXPLORE-003](../../rules/RULE-EXPLORE-003.md) | Objects occupy the map cells of their footprint by setting the cells' blocked and occupied bits, which a cell test for movement reads | supported |
 | [RULE-EXPLORE-004](../../rules/RULE-EXPLORE-004.md) | The keypad direction keys step the chosen character one cell, or in combat attack the object whose area holds the blocked cell | supported |
@@ -18,7 +18,7 @@ Entries by kind.
 
 ## findings
 
-5 entries.
+6 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -27,6 +27,7 @@ Entries by kind.
 | [FND-EXPLORE-003](../../findings/FND-EXPLORE-003.md) | The movement and occupancy code takes a slot's cell from its position words shifted right by 4, which puts the opening leader on cell (74,93) | recorded |
 | [FND-EXPLORE-004](../../findings/FND-EXPLORE-004.md) | The keypad direction keys step the chosen character one cell in eight directions, or in combat act on the object whose area holds a blocked cell | recorded |
 | [FND-EXPLORE-005](../../findings/FND-EXPLORE-005.md) | Key 5 sets the byte at 57E0:13FA and brings back the party members key 6 hid, and key 6, outside combat, hides every member but the leader and clears it | recorded |
+| [FND-EXPLORE-006](../../findings/FND-EXPLORE-006.md) | Each main-loop pass scrolls the view one step of 16 pixels toward the pointer's side of the screen centre while the pointer is on the screen's outer rows or columns, and Center on Leader and H centre the view on a slot | recorded |
 
 ## screens
 

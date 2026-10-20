@@ -15,6 +15,8 @@ Entries by area.
 | [FND-TEXT-001](../../findings/FND-TEXT-001.md) | The one FONT resource holds 256 glyphs of height 9 behind a map and an offset table | recorded |
 | [FND-TEXT-002](../../findings/FND-TEXT-002.md) | The FONT tag occurs twice in DSUN.EXE as data with no recorded reference | recorded |
 | [FND-TEXT-003](../../findings/FND-TEXT-003.md) | Every TEXT resource is printable ASCII in lines that each end with CR LF | recorded |
-| [FND-TEXT-004](../../findings/FND-TEXT-004.md) | The TEXT tag occurs twice in the resident image as unreferenced data and three times in the pack | recorded |
+| [FND-TEXT-004](../../findings/FND-TEXT-004.md) | The TEXT tag occurs twice in the resident image as unreferenced data and three times in the pack | superseded |
 | [FND-TEXT-005](../../findings/FND-TEXT-005.md) | DSUN.EXE holds the Preferences difficulty labels, descriptions and About lines as one data block | recorded |
 | [FND-TEXT-006](../../findings/FND-TEXT-006.md) | Ghidra finds no direct reference to the Preferences tables or their strings | recorded |
+| [FND-TEXT-007](../../findings/FND-TEXT-007.md) | Each of the five TEXT tag occurrences in DSUN.EXE is the tag operand of a resource request, two in resident code and three in overlays 186 and 188 | recorded |
+| [FND-TEXT-008](../../findings/FND-TEXT-008.md) | TEXT resources give a new character's default name, the item-name table and the version line, each read in its own way | recorded |
