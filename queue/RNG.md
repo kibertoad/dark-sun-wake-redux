@@ -1,21 +1,9 @@
 # RNG
 
-Next ID: Q-RNG-018
+Next ID: Q-RNG-019
 
 ## Static
 
-- Q-RNG-013. RULE-RNG-001: Which rule does each of the 10 `roll_sum` sites of overlay 197 that
-  FND-RNG-028 lists as not described serve, with which count and sides, and how does each caller
-  read the returned total? Settles it: for each of those sites, a decode from an established entry showing it is an
-  instruction, its two arguments' sources, the width and signedness at which the caller tests
-  or stores the total, and the rule it belongs to. Tried: split from Q-RNG-001. FND-RNG-005 and
-  FND-RNG-013 read the helper; FND-RNG-028 lists the sites, and FND-PARTY-071, FND-PARTY-074,
-  FND-PARTY-082, FND-PARTY-099, FND-PARTY-150, FND-PARTY-168, FND-PARTY-249 and FND-TEXT-008
-  describe the ten others. FND-RNG-030 qualifies overlay 206's four, the cry choice (moved to
-  Q-RNG-014). FND-RNG-034 qualifies overlay 179's nineteen, the dice of the hit routine's effect
-  switch (rule entries moved to Q-RNG-017). FND-RNG-035 qualifies the seven of overlays 191, 193,
-  198, 204 and 211, and FND-RNG-036 the ten of overlay 195 (rule entries moved to Q-RNG-017).
-  Blocks: slices 2-7.
 - Q-RNG-014. RULE-RNG-001, RULE-SOUND-004: Which game events reach overlay 206's cry choice and
   its dissolve of a removed combatant, and which rule or screen entry takes the dissolve? Settles
   it: the callers of overlay 206 `+0B81` (the cry with flag 0) and `+0E1E` (the cry with flag 1
@@ -160,6 +148,17 @@ Next ID: Q-RNG-018
   saving throw and the gates before it; FND-RNG-035 reads the seven routines of overlays 191,
   193, 198, 204 and 211 and their direct callers, and FND-RNG-036 overlay 195 `+000E`, `+00D1`
   and `+152F`. Blocks: slices 2-7.
+- Q-RNG-018. RULE-RNG-001: Which rule entries take overlay 197's ten `roll_sum` draws that
+  FND-RNG-037 reads, and what do the values they test stand for? Settles it: rule entries, new or
+  revised, for the d6 of `+111A` for a target with record byte `+0x0E` 13, the d100 block of
+  `+1760` and the 2d6 total it queues after a saving throw, the d20 test of `+314E`, case 4 of
+  `+1A94` with its d100 under the level in class code 11, the creature picks of `+3315` for its 18
+  `DATA` numbers and the 4d20 pool of `+399F` for `DATA` 71; what the block bits these read,
+  record byte `+0x0E` 13, details byte `+0x12` 8, 9 and 14 and class code 11 stand for; what
+  overlay 179 `+1304` and the cast queue do with the 2d6 total; and what overlay 172 and overlay
+  211 do with `+1A94`'s result. Tried: split from Q-RNG-013. FND-RNG-037 reads the ten sites, their
+  routines and direct callers; FND-PARTY-107, FND-PARTY-112 and FND-PARTY-122 read the cast queue
+  and the gates around the hit routine. Blocks: slices 2-7.
 
 ## Emulated call
 

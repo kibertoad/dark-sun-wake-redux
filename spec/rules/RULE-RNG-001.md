@@ -4,7 +4,7 @@ title: The game's random number generator and its reductions
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-030, FND-RNG-031, FND-RNG-032, FND-RNG-034, FND-RNG-035, FND-RNG-036]
+evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-030, FND-RNG-031, FND-RNG-032, FND-RNG-034, FND-RNG-035, FND-RNG-036, FND-RNG-037]
 conflicting: []
 split_with: []
 related: []
@@ -49,9 +49,10 @@ remain Q-RNG-017. FND-RNG-035 reads seven more, in overlays 191, 193, 198, 204 a
 d20 item tests, a `DATA` record's dice formula by level, a one-in-four spell-use test, a copy of
 the saving throw roll and a d20 turning test, and FND-RNG-036 overlay 195's ten: a d10 confusion
 table, a side roll, a d100 test and the dice of per-round effect damage; their rule entries also
-remain Q-RNG-017. Overlay 197's 10 `roll_sum` sites (Q-RNG-013) still need qualification and rule
-mapping, and calls not made directly remain
-Q-RNG-008.
+remain Q-RNG-017. FND-RNG-037 reads overlay 197's ten `roll_sum` sites: a d6, a d100, a 2d6 and a
+d20 in the hit routine's gates, a d100 under a class level in a check routine, d4 and d12 picks of a
+summoned creature and the 4d20 pool of `DATA` 71, whose rule entries remain Q-RNG-018. That reads
+every site of the direct-call census; calls not made directly remain Q-RNG-008.
 
 Overlay 204's entry runs, and reseeds, each time a script issues request 27 of instruction
 `0x22`; 44 shipped instructions do, in 21 `GPL` resources (FND-RNG-027). No shipped script uses
@@ -73,8 +74,8 @@ Integer division below truncates toward zero; a % b is a minus that
 truncated quotient times b, so the remainder has the dividend's sign.
 Word casts retain low 16 bits;
 INT16 interprets that word as signed, and UINT16 as its unsigned bit value.
-The roll total is a returned word; its interpretation by callers remains
-part of Q-RNG-013, rather than an unbounded default integer.
+The roll total is a returned word; each caller's width and signedness are
+recorded with its site (FND-RNG-030, FND-RNG-034..037), rather than an unbounded default integer.
 
 ```text
 # draw() is the generator: it sets
@@ -162,7 +163,7 @@ None known.
   remain separate (Q-RNG-003). The second root's local reseeding and
   conditional draw loop, and its script wrapper widths, are recorded in
   FND-RNG-021..022, and the shipped scripts that issue it in FND-RNG-027.
-- The rule entry for overlay 204 +00E1's draw (FND-RNG-021, Q-RNG-016), the rule and draw order of overlay 197's 10 `roll_sum` sites (Q-RNG-013) that FND-RNG-028..036 leave undescribed, the rule entries for the routines FND-RNG-034..036 read (Q-RNG-017), the events that reach overlay 206's
+- The rule entry for overlay 204 +00E1's draw (FND-RNG-021, Q-RNG-016), the rule entries for the routines FND-RNG-034..036 read (Q-RNG-017) and for overlay 197's ten `roll_sum` draws (FND-RNG-037, Q-RNG-018), the events that reach overlay 206's
   dissolve and cry draws and the dissolve's rule entry (FND-RNG-030, Q-RNG-014), and the rules of
   overlay 173's fight set-up, target pick and removal drop draws (FND-RNG-031, Q-RNG-015). Recovered `random_mod`
   uses include `chance_in_ten`, the table selection in FND-RNG-007 and the music selector of
