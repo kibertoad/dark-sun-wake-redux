@@ -4,7 +4,7 @@ title: The game's random number generator and its reductions
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-032, FND-RNG-044, FND-RNG-035, FND-RNG-039, FND-RNG-040, FND-RNG-041, FND-RNG-043, FND-RNG-045, FND-RNG-046, FND-RNG-047, FND-RNG-048, FND-RNG-049, FND-RNG-050, FND-RNG-052, FND-RNG-053, FND-RNG-054]
+evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-032, FND-RNG-044, FND-RNG-035, FND-RNG-039, FND-RNG-040, FND-RNG-041, FND-RNG-043, FND-RNG-045, FND-RNG-046, FND-RNG-047, FND-RNG-048, FND-RNG-049, FND-RNG-050, FND-RNG-052, FND-RNG-053, FND-RNG-054, FND-RNG-055]
 conflicting: []
 split_with: []
 related: [RULE-VIDEO-005, RULE-MAGIC-005, RULE-MAGIC-006, RULE-AI-003, RULE-COMBAT-012, RULE-COMBAT-013, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009, RULE-MAGIC-007, RULE-MAGIC-008, RULE-MAGIC-009, RULE-MAGIC-010, RULE-MAGIC-011, RULE-MAGIC-012, RULE-MAGIC-013, RULE-MAGIC-014, RULE-MAGIC-015, RULE-MAGIC-016, RULE-MAGIC-017, RULE-MAGIC-018, RULE-MAGIC-019, RULE-MAGIC-020, RULE-MAGIC-021, RULE-MAGIC-022, RULE-SCRIPT-012, RULE-COMBAT-017, RULE-MAGIC-023]
@@ -78,7 +78,10 @@ of their calls.
 Overlay 204's entry, RULE-VIDEO-005's display offset loop, runs, and reseeds, each time a script
 issues request 27 of instruction `0x22`; 44 shipped instructions do, in 21 `GPL` resources (FND-RNG-027).
 It also runs from overlay 201's removal effect (FND-RNG-050) and for a cast of `DATA` 293 whose
-cast routine byte `bp+0x1A` is not 0, as every queued cast's is (FND-RNG-053). No shipped script uses
+cast routine byte `bp+0x1A` is not 0, as every queued cast's is (FND-RNG-053). In the shipped
+data that cast is the special attack of a combatant whose special attack byte is 6, made once
+before the byte is cleared, or the same cast sent back, one time in six, by a target whose byte
+is 13 (FND-RNG-055). No shipped script uses
 instruction `0x59`, so FND-RNG-024's d20 threshold test does not draw in the shipped game
 (FND-RNG-027).
 
@@ -181,10 +184,10 @@ None known.
   domain and rollover guarantees remain Q-RNG-006, with conditional pinned
   handler-source leads in SRC-RUSTDOS-172. Global/table storage and
   reader/writer identity remain separate (FND-RNG-019..020, Q-RNG-005). Near-buffer identity
-  and admitted reseeding paths beyond the recovered direct call sequences
-  remain separate (Q-RNG-003): `SS` changes only at startup and in a balanced swap and no
+  remains separate (Q-RNG-023): `SS` changes only at startup and in a balanced swap and no
   routine on the seed paths writes `DS`, but `DS` at the entry of the callers after startup was
-  not read (FND-RNG-053). The second root's local reseeding and
+  not read (FND-RNG-053). Which combatants have special attack 6 or 13, and whether the party's
+  target cursor can pass `DATA` 293, remain open (FND-RNG-055, Q-RNG-003). The second root's local reseeding and
   conditional draw loop, and its script wrapper widths, are recorded in
   FND-RNG-021..022, and the shipped scripts that issue it in FND-RNG-027.
 - The events that reach overlay 206's
