@@ -42,14 +42,6 @@ Next ID: Q-RNG-023
   routine's call conditional on `DATA` 293 and its byte `bp+0x1A`, `SS` written only at startup
   and in a balanced swap, and no `DS` write in the seed routines or their callers. Blocks: reproducible startup seeding and
   Q-PARTY-081's later recorded gameplay run.
-- Q-RNG-004. RULE-RNG-001: Which environment strings reach the clock conversion's initializer,
-  and with what bounds? Settles it: the population and bounds of the environment pointer array
-  and its strings on the admitted paths, and the initializer's branches for parsed offsets and
-  daylight labels beyond the default. Tried: FND-RNG-016 (calendar arithmetic and the daylight
-  helper), FND-RNG-017 (the measured startup takes the default path) and FND-RNG-018 (the
-  initializer's guard, default, integer offset and first-label branches) answer the local bodies
-  and the default path; which strings arrive remains. Blocks: complete reproducible seed-source
-  semantics.
 - Q-RNG-012. RULE-RNG-001, RULE-VIDEO-005: Which date and time values does each caller of the clock conversion
   pass, and in which near buffers? Settles it: on each admitted caller path, the indexed date and
   time fields the conversion reads, their ranges, and the buffers' segment identity. Tried: split
