@@ -114,11 +114,6 @@ Next ID: Q-RNG-022
   FND-RNG-024..026 qualify caller sequences without a complete state-access
   census. Split from Q-RNG-001 so state coverage can be answered separately
   from rule/draw mapping. Blocks: complete RNG state and reseeding coverage.
-- Q-RNG-019. RULE-RNG-001: Which rule entry takes overlay 204 `+214E`'s copy of the saving throw
-  roll, and which callers reach `+214E`? Settles it: a rule entry for `+214E` with the callers
-  and conditions that reach it. Tried: split from Q-RNG-017. FND-RNG-035 reads `+214E` and its
-  direct callers; RULE-MAGIC-005, RULE-MAGIC-006, RULE-AI-003 and RULE-ITEM-007 to RULE-ITEM-009
-  take FND-RNG-035's other routines. Blocks: slices 2-7.
 - Q-RNG-020. RULE-RNG-001: Which rule entry takes overlay 195's per-round effect damage dice?
   Settles it: a rule entry for the per-round damage steps of overlay 195 `+00D1` that FND-RNG-039
   reads, with the record fields they read. Tried: split from Q-RNG-017. FND-RNG-039 replaces

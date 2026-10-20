@@ -158,11 +158,12 @@ Next ID: Q-SCRIPT-016
   `4C13:0369`, and what the field getter and setter of segment `1AA0` return and store for each
   field type. Tried: split from Q-SCRIPT-004; FND-PARTY-234 traces their fields to script
   bytes and reads `fn_172C_295B`. Blocks: slices 3-6.
-- Q-SCRIPT-010. RULE-SCRIPT-002: What does each of the 53 functions of opcode `0x22`, the
+- Q-SCRIPT-010. RULE-SCRIPT-002, RULE-SCRIPT-012: What does each of the 53 functions of opcode `0x22`, the
   switch at overlay 204 `+0169`, do with its three arguments? Settles it: the cases of that
   switch, read one function at a time. Tried: split from Q-SCRIPT-004; FND-PARTY-108,
   FND-PARTY-122, FND-PARTY-156, FND-SAVE-013 and FND-UI-049 read functions 1, 23, 26, 33, 34,
-  37, 46, 48 and 49. Blocks: slices 3-6.
+  37, 46, 48 and 49. FND-RNG-048 reads function 41 and the slot walk `+1A68`, which
+  RULE-SCRIPT-012 takes, leaving `2D40:0D94`'s group search open. Blocks: slices 3-6.
 - Q-SCRIPT-011. FMT-SCRIPT-002, RULE-SCRIPT-004: Which string does a string of kind 1 copy?
   Settles it: `fn_172C_31B7`, the routines `1000:406D`, `1000:3FC1` and `2D40:0B14` it calls,
   the string at `4C10:0000`, and the writers of the slot word at `4C13:0369`. Tried: split from

@@ -17,3 +17,4 @@
 | `RULE-SCRIPT-009` | The script trace instructions | supported | missing | None | None | supported | No instruction is executed, and `FirstTyrDialogueProjection.ReadMenu` does not accept trace instructions between menu entries. |
 | `RULE-SCRIPT-010` | Script-cache lookup and resource transfer | supported | missing | None | None | supported | The rebuild reads the two packed scripts from its asset pack when the dialogue preview opens and has no script cache. |
 | `RULE-SCRIPT-011` | The script instructions that change a variable in place | supported | missing | None | None | supported | No script instruction is executed. |
+| `RULE-SCRIPT-012` | Function 41 of script opcode 0x22 rolls a saving throw for each slot its target names and returns how many saved | supported | missing | None | None | supported | No script instruction is executed. |
