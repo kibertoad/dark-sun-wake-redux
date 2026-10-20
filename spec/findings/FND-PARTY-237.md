@@ -16,7 +16,7 @@ locations:
     offset: 0x0008D863..0x0008D90D
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
-    address: 172C:1331..172C:1346
+    address: 172C:1331..172C:1347
   - build: BLD-GOG-EN-1.1
     file: GPLDATA.GFF
     offset: 0x001110F4..0x00111114
@@ -108,7 +108,7 @@ Use the installed `DSUN.EXE` (634,416 bytes, XXH3-128 `e296af55ba2ecde7e77f555c9
 (6,816,516 bytes, `e08d3cac153c547f6804ca27b155915d`) with the locked evidence Python. In
 `tools/research/exec-census/`, run `overlay_listing.py <dsun> 204 8DE17 8DE40`, `204 8C01E
 8C050`, `204 8C23E 8C250` and `204 8D828 8D93A`, and `resident_listing.py` for
-`172C:1331..172C:1346`. Run `script_decode.py GPLDATA.GFF OBJEX.GFF --all` and search its
+`172C:1331..172C:1347`. Run `script_decode.py GPLDATA.GFF OBJEX.GFF --all` and search its
 output for `: 22 23,`, `: 22 46,`, `22 var`, `var7[8]`, `var7[129]` and the writes of
 `var5[0]`, following the `0x13` and `0x14` targets by hand. The listing is retained as
 `all-scripts.txt` under `GAME_DIR/analysis/script-instructions-20261018/`. No original function

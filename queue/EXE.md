@@ -4,30 +4,17 @@ Next ID: Q-EXE-032
 
 ## Static
 
-- Q-EXE-029. FND-EXE-593: Which rows must the installed DSUN.EXE inventory gain for the 284
-  routines of FND-RNG-058's walk that start in no row, and for the 27,443 walked instructions
-  outside every range (FND-RNG-061), among them 76 `DS` writes in 32 routines? Settles it: an
-  inventory restaged through the join procedure in `docs/EVIDENCE-TOOLS.md` from Ghidra views
-  with functions created at those starts (or each start that stays out given with a finding for
-  why), accepted by `standard-coverage`, and a finding that reruns `inventory_boundaries.py
-  --walk` on it with every walk routine starting a row or explained, and the walk's instructions
-  counted again against its ranges. Blocks: ownership and coverage of the overlay manager,
+- Q-EXE-029. FND-EXE-595: Which rows or body ranges must the installed DSUN.EXE inventory gain
+  for the 19,117 instructions of FND-RNG-058's walk that lie outside every range (4,862 in 85
+  resident routines, 14,255 in 111 overlay routines), all in routines that start a row? Settles
+  it: the transfers that reach those instructions named for each routine, given to the Ghidra
+  views as committed procedure inputs (such as the computed-transfer tables the walk's query
+  declares), and an inventory restaged through the join procedure in `docs/EVIDENCE-TOOLS.md`
+  with `walk_inventory_coverage.py` reporting no instruction outside its ranges, or each one left
+  with a finding for why. Tried: FND-EXE-595 restaged the inventory with a row at every walk
+  routine but the 15 one-byte `iret` targets of FND-EXE-594 and counted the walk again; the
+  count fell from 27,443 to 19,117. Blocks: ownership and coverage of the overlay manager,
   segment `172C` and the timer handler `4842:040C` in the closure assessment.
-- Q-EXE-030. FND-EXE-593: Does the inventory row `1BF3:3C90` hold its instruction at `1BF3:40DC`
-  and the bytes to its `retf` at `1BF3:423E`, with no row at `1BF3:40DD`? Settles it: an
-  inventory restaged through the join procedure from a Ghidra view in which the function at
-  `1BF3:40DD` is removed and `1BF3:3C90` is disassembled through `1BF3:423F`, accepted by
-  `standard-coverage`, with the citations it changes checked by `ReportCitationBoundaries.java`;
-  or a computed transfer that targets `1BF3:40DD`, which would make FND-EXE-593's reading wrong.
-  Blocks: the census readings that list `1BF3:40DD` as a routine (FND-RNG-056).
-- Q-EXE-031. FMT-EXE-004: Which inventory rows must the 854 trampolines of the installed DSUN.EXE
-  have, given that 149 rows decode the bytes after `INT 3Fh` as code or join a trampoline to
-  resident code (FND-EXE-593)? Settles it: an inventory restaged through the join procedure from
-  views in which each trampoline's `INT 3Fh` does not fall through to its next byte (a flow
-  override or a body clip to the trampoline's five bytes), so that `inventory_boundaries.py`
-  reports no short, long or inside trampoline row; resident code such as `3F96:0386..3F96:03C2`
-  goes back to its own row. Blocks: censuses over the inventory that decode trampoline bytes
-  (FND-RNG-053, FND-RNG-056).
 
 ## Emulated call
 

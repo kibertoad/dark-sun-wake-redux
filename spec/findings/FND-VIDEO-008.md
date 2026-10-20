@@ -10,7 +10,7 @@ method: static
 locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
-    address: 5755:0020..5755:004C
+    address: 5755:0020..5755:004D
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 4842:077F..4842:09D3

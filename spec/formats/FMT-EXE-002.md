@@ -55,7 +55,8 @@ number of each `flags` value and the same overlay indexes [FND-EXE-002].
 ## Open questions
 
 - What values 0, 1 and 4 of `flags` distinguish. The program does not read them [FND-EXE-567].
-  The flags-1 segments hold 1,283 of the 1,485 resident function starts and 79 of 81 end with a
+  The flags-1 segments hold 1,283 of the 1,485 resident function starts of the inventory
+  FND-EXE-571 read, and 79 of 81 end with a
   return, and the flags-0 segments hold 3 and end mostly with `00` or `FF` bytes, which suggests
   code and data; the flags-4 descriptors hold no bytes and lie inside the data segment
   [FND-EXE-571]. Only the linker's description of the table can say (Q-EXE-024).

@@ -22,7 +22,7 @@ locations:
     address: 172C:2EA1..172C:3026
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
-    address: 172C:3106..172C:3196
+    address: 172C:3106..172C:3197
 tool: Capstone 5.0.7 16-bit disassembly with Python 3.14.7, MZ relocations applied for a load image at segment 0x1000
 environment: null
 ---

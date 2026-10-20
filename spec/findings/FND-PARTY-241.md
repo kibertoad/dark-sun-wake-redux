@@ -101,7 +101,7 @@ In `tools/research/exec-census/`, with the locked evidence Python and `<dsun>` t
 `direct_callers.py <dsun> 169+059B 169+0552 169+0000 169+0174 187+0D1A`;
 `immediate_search.py <dsun> 347 349`, `15f6 158e 158a` and `1b 1d 19 1f 21`;
 `resident_listing.py <dsun> 277B:0340..277B:03A0 172C:1FA0..172C:1FD0 172C:2270..172C:22C0
-172C:24A1..172C:2510 172C:12D2..172C:12DC 2D40:06E6..2D40:0740 1000:3FA2..1000:3FC1`;
+172C:24A1..172C:2510 172C:12D2..172C:12DD 2D40:06E6..2D40:0740 1000:3FA2..1000:3FC1`;
 `overlay_listing.py <dsun> 187 70B40 70BE0`, `187 70740 70800` and `187 708C0 70960`; and read
 the 15 doublewords at file `0x41330` and the sizes at file `0x44580`. Search the
 `script_decode.py GPLDATA.GFF OBJEX.GFF --all` listing for `var7[` and `-> var9[`. The listings

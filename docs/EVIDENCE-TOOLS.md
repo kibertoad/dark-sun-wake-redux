@@ -50,16 +50,26 @@ resident view, copy the resident snapshot (the plain MZ import, auto-analyzed)
 to a new project. Write the overlay plan with `python -I
 tools/ghidra/fbov_overlay_plan.py <shipped> <mapped image> <mapping JSON>
 <plan.json>`, and go on only when it prints `mismatches 0`: every overlay's
-fixed-up code then equals the mapped image's. Run `tools/ghidra/AddFbovOverlayBlocks.java <plan.json>`
-on the copy without `-readOnly`. It adds each overlay as a file-backed overlay
+fixed-up code then equals the mapped image's. On the copy, without `-readOnly`, run
+`tools/ghidra/SetFbovTrampolineBodies.java <plan.json>`, then
+`tools/ghidra/AddFbovOverlayBlocks.java <plan.json>`, then
+`SetFbovTrampolineBodies.java` again, which must report no changed header. The
+first gives each trampoline a function of its five bytes, its `INT 3Fh` with no
+fall-through (FND-EXE-593), and removes the functions that decoded past it.
+The second adds each overlay as a file-backed overlay
 block at its mapped segment, writes the fixups, creates functions at the
 trampoline targets and reanalyzes only those blocks, so resident functions that
-only overlay code calls get their starts. Export it with
+only overlay code calls get their starts. Then run `tools/ghidra/ApplyDeclaredEntries.java
+tools/ghidra/dsun-declared-entries.json resident`, which removes the declared
+false starts, decodes their bytes again from the routine that owns them and
+creates functions at the declared entries (FND-EXE-594, FND-EXE-595). Change
+that file, never the inventory, to add or drop a start. Export it with
 `ExportResearchBaseline.java`, passing the plain import's resident regions
 (the rows of its regions file as start..exclusive-end), which leaves the
 overlay blocks out. For the overlay view, copy the
 relocation-corrected overlay snapshot (revision 2 mapper) to a new project,
-run `tools/ghidra/ClipBodiesToEntryRegion.java` on the copy without
+run `ApplyDeclaredEntries.java <entries> overlay <mapping JSON>` on it, then
+`tools/ghidra/ClipBodiesToEntryRegion.java` on the copy without
 `-readOnly`, passing the overlays' mapped code ranges from
 `ReportFbovOverlayMap.ps1`. It removes from each function body the
 addresses outside the code range that holds its entry, which FND-EXE-520
@@ -83,10 +93,12 @@ and regions files under the `@CD` path convention. Like
 `migrate-inventory.mjs`, it hashes tool sources as checked out, so run it
 from a checkout with Windows line endings.
 
-The committed `coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv` and
-`coverage/BLD-GOG-EN-1.1/@CD/DSUN.EXE.tsv` were staged by this join from the
-`INST-` and `CD-` single-import resident views of 2026-10-10 and the
-`overlay-owned` snapshots of 2026-10-09, and `standard-coverage` accepts both.
+The committed `coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv` was staged by this join,
+with the trampoline and declared-entry steps, from the views of 2026-10-21
+(FND-EXE-595). `coverage/BLD-GOG-EN-1.1/@CD/DSUN.EXE.tsv` comes from the `CD-`
+single-import resident view of 2026-10-10 and the `overlay-owned` snapshot of
+2026-10-09, without those steps; it is a diff reference only. `standard-coverage`
+accepts both.
 Their provenance files name both snapshots and the exporter, clip and join
 revisions. The installed inventory expects `2707:048E` (resident) and
 `6F0E:1A7C` (overlay, file offset `0x00065D5C`) to have no decoded

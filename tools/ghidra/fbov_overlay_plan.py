@@ -7,7 +7,8 @@ For each overlay it applies the fixup list to the shipped code (each fixup word 
 index times 8 and becomes that descriptor's segment plus 0x1000) and checks the result against
 the mapped image's bytes after MZ relocation, printing any overlay that differs. The plan names
 each overlay's file offset, length, mapped start, fixup words and trampoline targets (FMT-EXE-003,
-FMT-EXE-004). Addresses and counts only; nothing is executed.
+FMT-EXE-004), and the segment of its resident header with its trampoline count, which
+SetFbovTrampolineBodies.java reads. Addresses and counts only; nothing is executed.
 """
 import json
 import struct
@@ -51,7 +52,8 @@ for o in mapping["Overlays"]:
     hdr = header + segs[o["Descriptor"]] * 16
     targets = sorted({struct.unpack_from("<H", body, hdr + 0x20 + 5 * t + 2)[0] for t in range(o["TrampolineCount"])})
     plan.append({"descriptor": o["Descriptor"], "fileOffset": code_at, "length": size,
-                 "start": o["MappedCodeStart"], "writes": writes, "targets": targets})
+                 "start": o["MappedCodeStart"], "writes": writes, "targets": targets,
+                 "header": o["HeaderSegment"], "trampolines": o["TrampolineCount"]})
 json.dump(plan, open(sys.argv[4], "x"), indent=0)
 print("overlays", len(plan), "mismatches", mismatches, "writes", sum(len(p["writes"]) for p in plan),
       "targets", sum(len(p["targets"]) for p in plan))

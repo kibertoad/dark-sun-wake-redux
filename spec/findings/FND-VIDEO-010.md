@@ -13,7 +13,7 @@ locations:
     address: 277B:0024..277B:02CE
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
-    address: 172C:0F84..172C:0FC1
+    address: 172C:0F84..172C:0FC2
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 5787:0066..5787:006B

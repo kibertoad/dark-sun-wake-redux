@@ -163,8 +163,10 @@ The Survey inventory of `BLD-GOG-EN-1.1`'s `DSUN.EXE` joins two views: a
 single import of the shipped file with its overlays added as file-backed
 overlay blocks, for resident functions, and the relocation-corrected mapped
 import for overlay functions. The single import sees calls from overlay code,
-so its resident rows include functions only overlay code calls, among them
-trampolines in the overlay headers. Its overlay rows differ from the mapped
+so its resident rows include functions only overlay code calls. Every
+trampoline in the overlay headers is a row of its five bytes, and the starts in
+`tools/ghidra/dsun-declared-entries.json` are added or removed in both views
+before export. Its overlay rows differ from the mapped
 view's, which the inventory keeps (toolkit issue 111). The procedure
 is the DSUN reconciliation path in [EVIDENCE-TOOLS](EVIDENCE-TOOLS.md).
 Resident starts are `segment:offset` with the load image at segment `0x1000`;
@@ -185,9 +187,9 @@ The disc's distinct `CD:DSUN.EXE` also has an inventory, at
 the `@CD/` directory because Windows cannot use a colon in a filename. Extract
 the file from track 1 of `game.gog` into a local-only path, verify its 634,704
 bytes and XXH3-128 `318cd5ec0559901add3780097162a919`, then run the same
-imports and join with `manifest` set to `CD:DSUN.EXE`. Ghidra 12.1.3 gave 1,480
-resident and 860 overlay rows, for 2,340; the installed file gave 1,485 and
-853, for 2,338. The plain import alone gave 1,282 and 1,284 resident rows.
+imports and join with `manifest` set to `CD:DSUN.EXE`. The disc inventory was
+staged before the trampoline and declared-entry steps, which only the installed
+inventory has (FND-EXE-595); the disc copy is a diff reference only.
 
 The `SOUND_DS.EXE.tsv`, `SVIEW.EXE.tsv` and `PATCH.EXE.tsv` files under
 `coverage/BLD-GOG-EN-1.1/` come from direct MZ imports of the installed
