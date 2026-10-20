@@ -4,7 +4,7 @@ title: A removed combatant of slot 4 or above that holds objects of kind 1 drops
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-041, FND-RNG-040, FND-PARTY-013, FND-ACTOR-005, FND-CONFIG-143, FND-RNG-035, FND-PARTY-051, FND-PARTY-133, FND-ACTOR-003, FND-EXPLORE-001, FND-EXPLORE-002]
+evidence: [FND-RNG-041, FND-RNG-043, FND-PARTY-140, FND-RNG-040, FND-PARTY-013, FND-ACTOR-005, FND-CONFIG-143, FND-RNG-035, FND-PARTY-051, FND-PARTY-133, FND-ACTOR-003, FND-EXPLORE-001, FND-EXPLORE-002]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-MAGIC-012]

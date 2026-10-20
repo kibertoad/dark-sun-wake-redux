@@ -4,17 +4,17 @@ Next ID: Q-RNG-019
 
 ## Static
 
-- Q-RNG-014. RULE-RNG-001, RULE-SOUND-004: Which game events reach overlay 206's cry choice and
-  its dissolve of a removed combatant, and which rule or screen entry takes the dissolve? Settles
-  it: the callers of overlay 206 `+0B81` (the cry with flag 0) and `+0E1E` (the cry with flag 1
-  and the dissolve) with the conditions that reach each call, whether `+0E1E`'s calls before the
-  dissolve draw, any computed or bulk writer of the voice tables at `DS:290A..291E`, and the rule
-  or screen entry that takes FND-RNG-030's dissolve. Tried: split from Q-RNG-001 and Q-RNG-013.
-  FND-RNG-030 reads `+1257` and `+151E` and the two calls in `+0E1E`, and FND-PARTY-140 reads
-  `+0E1E`'s branch for party slots. RULE-SOUND-004 takes FND-RNG-030's cry choice; the events
-  and the dissolve remain. FND-RNG-030 places the call of `31E0:05BB` after the dissolve; the
-  listing has it at `+1023`, before the dissolve's call at `+103E`, so a replacement of FND-RNG-030
-  is part of this item. Blocks: slices 2-7.
+- Q-RNG-014. RULE-RNG-001, RULE-SOUND-004, RULE-VIDEO-006: Which game events reach overlay 206's
+  cry choice and its dissolve of a removed combatant? Settles it: the conditions under which the
+  callers FND-RNG-043 lists reach overlay 179 `+2A05` (the flag 0 cry, when the word at `DS:0DAB`
+  is 1), overlay 173 `+22C4` (the damage that queues a slot) and overlay 173 `+24C7` (which empties
+  the removal list into `+0E1E`); whether `+0E1E`'s calls other than `+151E` and overlay 173
+  `+3136` draw; and any computed or bulk writer of the voice tables at `DS:290A..291E`. Tried:
+  split from Q-RNG-001 and Q-RNG-013. FND-RNG-030 reads `+1257` and `+151E` and the two calls in
+  `+0E1E`, and FND-PARTY-140 reads `+0E1E`'s branch for party slots. RULE-SOUND-004 takes the cry
+  choice. Tried: FND-RNG-043 replaces FND-RNG-030 with the unload placed before the dissolve, and
+  reads the one caller of each of `+0B81` and `+0E1E`, the removal list and `+22C4`'s branches
+  that fill it; RULE-VIDEO-006 takes the dissolve. Blocks: slices 2-7.
 - Q-RNG-008. RULE-RNG-001: Can the generator, a helper or the seed setter be reached through a
   stored far pointer, a computed call or a segment alias? Settles it: the words of the file equal
   to each routine's offset with a relocated or fixed-up segment, the computed call sites whose

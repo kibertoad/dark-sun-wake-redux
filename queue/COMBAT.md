@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-032
+Next ID: Q-COMBAT-033
 
 ## Static
 
@@ -263,6 +263,11 @@ Next ID: Q-COMBAT-032
   record's byte `+0x16` and word `+0x10` stand for, and what does overlay 173 `+3E6B` do to the
   broken item? Settles it: readings of `+3E6B` and of the writers of those record fields. Tried:
   split from Q-RNG-015. FND-RNG-041 reads the break test. Blocks: slice 4.
+- Q-COMBAT-032. FMT-COMBAT-001, RULE-COMBAT-003: Which rule entry takes overlay 173 `+22C4`'s
+  damage step, and what do the `combat_mark` values 3, 7 and 8 it sets and its calls of `+306B`
+  and `+30C7` stand for? Settles it: a rule entry for `+22C4` from FND-RNG-043's reading, with
+  readings of `+306B`, `+30C7` and the readers of `combat_mark` 3, 7 and 8. Tried: FND-RNG-043
+  reads `+22C4`'s branches while tracing the removal list. Blocks: slice 4.
 
 ## Emulated call
 

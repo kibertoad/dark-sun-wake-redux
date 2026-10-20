@@ -1,9 +1,9 @@
 ---
 id: FND-RNG-030
 title: Overlay 206 draws twice per pixel of a random-order dissolve of a removed combatant's picture, and once with roll_sum to choose a combatant's cry
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-RNG-043]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

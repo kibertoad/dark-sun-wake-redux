@@ -4,7 +4,7 @@ title: A combatant's cry is its own sound, a fixed sound or a random one of its 
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-030, FND-SOUND-007]
+evidence: [FND-RNG-043, FND-SOUND-007]
 conflicting: []
 split_with: []
 related: [RULE-SOUND-001, RULE-RNG-001]
@@ -20,7 +20,7 @@ cry, the one overlay 206 `+0E1E` gives (kind 1) and the one `+0B81` gives (kind 
 ## When it runs
 
 `cry_sound` runs at overlay 206 `+0C2C` with kind 0 and at `+0E77`, in `+0E1E`, with kind 1; the
-number goes to the sound-effect player (FND-RNG-030, FND-SOUND-007), which plays it as
+number goes to the sound-effect player (FND-RNG-043, FND-SOUND-007), which plays it as
 RULE-SOUND-001 gives. In `+0E1E` it runs when the slot's state byte is 2 and the absolute value of
 the word at `DS:67D6 + 37 * slot` is not 430.
 

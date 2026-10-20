@@ -4,7 +4,7 @@ title: The game's random number generator and its reductions
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-030, FND-RNG-032, FND-RNG-034, FND-RNG-035, FND-RNG-039, FND-RNG-040, FND-RNG-041]
+evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-032, FND-RNG-034, FND-RNG-035, FND-RNG-039, FND-RNG-040, FND-RNG-041, FND-RNG-043]
 conflicting: []
 split_with: []
 related: [RULE-VIDEO-005, RULE-MAGIC-005, RULE-MAGIC-006, RULE-AI-003, RULE-COMBAT-012, RULE-COMBAT-013, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009, RULE-MAGIC-007, RULE-MAGIC-008, RULE-MAGIC-009, RULE-MAGIC-010, RULE-MAGIC-011, RULE-MAGIC-012, RULE-MAGIC-013]
@@ -35,9 +35,9 @@ The direct-call census (FND-RNG-028) finds 29 direct calls of the generator, 60 
 `random_between` are called only from overlays, and `random_mod` and `chance_in_ten` only from
 the music selector and `chance_in_ten`. Recorded findings describe 52 of those sites, and
 FND-RNG-029 five more: the generation screen's opening picture and RULE-PARTY-016's spell picks.
-FND-RNG-030 reads overlay 206's six: two draws per pixel of a removed combatant's dissolve and a
-`roll_sum` draw choosing a combatant's cry, which RULE-SOUND-004 takes; the triggers and the
-dissolve's rule entry remain Q-RNG-014.
+FND-RNG-043 reads overlay 206's six: two draws per pixel of a removed combatant's dissolve and a
+`roll_sum` draw choosing a combatant's cry, which RULE-SOUND-004 and RULE-VIDEO-006 take; the events
+that reach them beyond overlay 179 `+2A05` and overlay 173's removal list remain Q-RNG-014.
 FND-RNG-041 reads overlay 173's seven: two fight set-up words per combatant, a retried pick
 from a distance-sorted list of slots, a removed combatant's drop placement and an item-break test
 after every damaging armed swing, which RULE-COMBAT-014, RULE-COMBAT-015, RULE-COMBAT-016 and
@@ -80,7 +80,7 @@ truncated quotient times b, so the remainder has the dividend's sign.
 Word casts retain low 16 bits;
 INT16 interprets that word as signed, and UINT16 as its unsigned bit value.
 The roll total is a returned word; each caller's width and signedness are
-recorded with its site (FND-RNG-030, FND-RNG-034, FND-RNG-035, FND-RNG-039, FND-RNG-040), rather than an unbounded default integer.
+recorded with its site (FND-RNG-043, FND-RNG-034, FND-RNG-035, FND-RNG-039, FND-RNG-040), rather than an unbounded default integer.
 
 ```text
 # draw() is the generator: it sets
@@ -169,7 +169,7 @@ None known.
   conditional draw loop, and its script wrapper widths, are recorded in
   FND-RNG-021..022, and the shipped scripts that issue it in FND-RNG-027.
 - The rule entries for the routines FND-RNG-034, FND-RNG-035 and FND-RNG-039 read (Q-RNG-017), the events that reach overlay 206's
-  dissolve and cry draws and the dissolve's rule entry (FND-RNG-030, Q-RNG-014). Recovered `random_mod`
+  dissolve and cry draws (FND-RNG-043, Q-RNG-014). Recovered `random_mod`
   uses include `chance_in_ten`, the table selection in FND-RNG-007 and the music selector of
   RULE-SOUND-003 (FND-SOUND-012).
   FND-PARTY-099 recovers an effect-saving caller of `roll_sum(1, 20)`; the earlier statement
