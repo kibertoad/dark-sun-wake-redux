@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-026
+Next ID: Q-COMBAT-028
 
 ## Static
 
@@ -231,6 +231,17 @@ Next ID: Q-COMBAT-026
   records, a reading of how combatant numbers are given out, and a decode of `+2C00` from its
   entry to its returns. Tried: FND-RNG-032 reads the roll and the gate that runs it, and
   FND-PARTY-091 reads `+2C00` only as the attack routine's fourth argument. Blocks: slice 4.
+- Q-COMBAT-026. RULE-COMBAT-012: What do the results 0, 1, 2 and 7 of `confusion_roll` make the
+  turn routine do, what do bit 0x08 of byte 4, bit 0x80 of byte 0 and bit 0x20 of byte 2 of
+  `effect_block` stand for, which code sets bit 0x100 of a word in `g_4C4F_01D8`, and what do
+  `g_4E71_0AC6` and record byte `+0x15` hold? Settles it: a reading of overlay 173 `+1238` past
+  its store to `DS:420C`, of the writers of the three bits and of bit 0x100, and of the readers
+  of byte `+0x15` and `g_4E71_0AC6`. Tried: FND-RNG-039 reads overlay 195 `+000E` and its caller
+  up to the store. Blocks: slice 4.
+- Q-COMBAT-027. RULE-COMBAT-013: What does record byte `+0x19` hold, and what does each of the
+  three steps of overlay 195 `+00D1` that call `byte_19_check` do with 0 and 1? Settles it: a
+  reading of the writers of byte `+0x19` and of the three steps past each call. Tried: FND-RNG-039
+  reads `+152F` and names the three steps. Blocks: slice 4.
 
 ## Emulated call
 

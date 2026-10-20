@@ -128,21 +128,22 @@ Next ID: Q-RNG-019
   from rule/draw mapping. Blocks: complete RNG state and reseeding coverage.
 - Q-RNG-017. RULE-RNG-001: Which rule entries take the dice of overlay 179 `+1373`'s effect
   switch (FND-RNG-034), the tests and formula FND-RNG-035 reads and the per-round effects of
-  FND-RNG-036, and what do the `DATA`
+  FND-RNG-039, and what do the `DATA`
   numbers, the arguments `a` and `g`, and the callees that take the totals stand for? Settles it:
   rule entries, new or revised, for the healing, damage, duration, dispel, death, raising and
   reincarnation cases with their dice, for overlay 191's item tests and overlay 204 `+214E`'s
-  saving throw, with the callers of `+214E`, and for overlay 195's confusion
-  table, d100 test and per-round effect damage; the names or
+  saving throw, with the callers of `+214E`, and for overlay 195's per-round
+  effect damage; the names or
   uses of the 22 `DATA` numbers; the writers of `+0D2F`'s byte arguments at `bp+0x1C` and
   `bp+0x1E`; and readings of overlay 197 `+2D05`, `+2E40` and `+2EC0`, overlay 177 `+0CB3` and
   overlay 193 `+1A2D`. Tried: split from Q-RNG-013. FND-RNG-034 reads the nineteen sites and the
   cases that reach them; FND-PARTY-096, FND-PARTY-099 and FND-PARTY-112 read `+1373`'s table, the
   saving throw and the gates before it; FND-RNG-035 reads the seven routines of overlays 191,
   193, 198, 204 and 211 and their direct callers, and FND-RNG-036 overlay 195 `+000E`, `+00D1`
-  and `+152F`. Tried: RULE-MAGIC-005, RULE-MAGIC-006 and RULE-AI-003 take FND-RNG-035's `DATA`
+  and `+152F`, which FND-RNG-039 replaces with the record `+152F` reads corrected. Tried: RULE-MAGIC-005, RULE-MAGIC-006 and RULE-AI-003 take FND-RNG-035's `DATA`
   dice formula, `DATA` 306's d20 test and the spell-use test, with FND-RNG-038 for the byte the
-  last one reads. Blocks: slices 2-7.
+  last one reads. Tried: RULE-COMBAT-012 and RULE-COMBAT-013 take overlay 195's d10 table and
+  d100 test (FND-RNG-039). Blocks: slices 2-7.
 - Q-RNG-018. RULE-RNG-001: Which rule entries take overlay 197's ten `roll_sum` draws that
   FND-RNG-037 reads, and what do the values they test stand for? Settles it: rule entries, new or
   revised, for the d6 of `+111A` for a target with record byte `+0x0E` 13, the d100 block of

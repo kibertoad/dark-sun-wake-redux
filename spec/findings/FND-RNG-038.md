@@ -34,7 +34,7 @@ would read 0x03 in its high byte; none of the four does.
 
 ## Alternatives
 
-- What the byte at `50C2:0000` holds and which code writes it were not read. FND-RNG-036 has
+- What the byte at `50C2:0000` holds and which code writes it were not read. FND-RNG-039 has
   overlay 195 `+00D1` test it for 0.
 - What overlay 173 and overlay 197 do after their tests was not read.
 

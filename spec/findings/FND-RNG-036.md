@@ -1,9 +1,9 @@
 ---
 id: FND-RNG-036
 title: Overlay 195's ten unread roll_sum calls are a d10 confusion table, a side roll, a d100 test against a table on combatant byte +0x19, and the dice of seven per-round effect damages
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-RNG-039]
 recorded_by: kibertoad
 reproduced_by: []
 method: static
