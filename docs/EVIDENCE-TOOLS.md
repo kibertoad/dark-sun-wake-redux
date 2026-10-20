@@ -68,7 +68,7 @@ the functions only those wrong targets created (FND-EXE-597). Then run
 `tools/ghidra/ApplyDeclaredEntries.java tools/ghidra/dsun-declared-entries.json
 resident`, which removes the declared false starts, decodes their bytes again
 from the routine that owns them and creates functions at the declared entries
-(FND-EXE-594, FND-EXE-595, FND-EXE-597), and then
+(FND-EXE-594, FND-EXE-595, FND-EXE-597, FND-EXE-599), and then
 `tools/ghidra/ApplyDeclaredFlows.java tools/ghidra/dsun-declared-flows.json
 resident`, which decodes the declared runs of FND-RNG-058's walk, gives the
 declared table jumps their targets and removes the other computed-jump
@@ -112,7 +112,7 @@ from a checkout with Windows line endings.
 
 The committed `coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv` was staged by this join,
 with the trampoline, near-transfer, declared-entry and declared-flow steps, from
-the views of 2026-10-21 (FND-EXE-597). `coverage/BLD-GOG-EN-1.1/@CD/DSUN.EXE.tsv` comes from the `CD-`
+the views of 2026-10-21 (FND-EXE-597, FND-EXE-599). `coverage/BLD-GOG-EN-1.1/@CD/DSUN.EXE.tsv` comes from the `CD-`
 single-import resident view of 2026-10-10 and the `overlay-owned` snapshot of
 2026-10-09, without those steps; it is a diff reference only. `standard-coverage`
 accepts both.

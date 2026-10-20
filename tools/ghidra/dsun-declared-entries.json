@@ -1,11 +1,12 @@
 {
  "build": "BLD-GOG-EN-1.1",
  "file": "DSUN.EXE",
- "about": "Declared function entries ApplyDeclaredEntries.java applies before the DSUN.EXE views are exported. resident and overlay list the starts of FND-RNG-058's walk routines that start no row of the inventory FND-EXE-593 checked (inventory_boundaries.py --walk, kinds none and inside); overlay entries are shipped-file offsets. remove lists starts that are not routine entries, with the function, if any, whose decode holds their bytes and the listing range to decode again from that function; resident starts are segment:offset and apply to the resident view, overlay starts are file offsets and apply to the overlay view. notRows lists walk routines that get no row, with the reason.",
+ "about": "Declared function entries ApplyDeclaredEntries.java applies before the DSUN.EXE views are exported. resident and overlay list the starts of FND-RNG-058's walk routines that start no row of the inventory FND-EXE-593 checked (inventory_boundaries.py --walk, kinds none and inside); overlay also lists the overlay routines that an FMT-EXE-004 trampoline enters and that started no row (FND-EXE-599); overlay entries are shipped-file offsets. remove lists starts that are not routine entries, with the function, if any, whose decode holds their bytes and the listing range to decode again from that function; resident starts are segment:offset and apply to the resident view, overlay starts are file offsets and apply to the overlay view. notRows lists walk routines that get no row, with the reason.",
  "evidence": [
   "FND-EXE-593",
   "FND-RNG-061",
-  "FND-EXE-597"
+  "FND-EXE-597",
+  "FND-EXE-599"
  ],
  "remove": [
   {
@@ -331,9 +332,12 @@
   "55CE:018F"
  ],
  "overlay": [
+  "0x00057C95",
   "0x00058210",
   "0x00059430",
+  "0x0005E4DF",
   "0x0005FBE0",
+  "0x000630B0",
   "0x000671E0",
   "0x00067EB0",
   "0x00068330",
@@ -345,6 +349,7 @@
   "0x00073388",
   "0x000749B0",
   "0x00075560",
+  "0x0007CCFA",
   "0x00081130",
   "0x00082B76",
   "0x00087900",
@@ -356,6 +361,8 @@
   "0x0008AB13",
   "0x0008B240",
   "0x0008BF29",
+  "0x0008C4F1",
+  "0x0008E35D",
   "0x00090180",
   "0x000929DA",
   "0x00093782",

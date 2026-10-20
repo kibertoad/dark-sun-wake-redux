@@ -217,7 +217,7 @@ therefore still come from `join-overlay-views.mjs`. Its `entry` rows name the
 same starts without an instruction as the join expected of the same views:
 `2707:048E` in the installed resident view and `6F0E:1A7C` in its overlay view
 of FND-EXE-595, and `5662:00F7` in the disc's resident view. The installed
-views of FND-EXE-597 have none.
+views of FND-EXE-597 and FND-EXE-599 have none.
 
 ## Bounded script pattern
 
