@@ -1,6 +1,6 @@
 # RNG
 
-Next ID: Q-RNG-024
+Next ID: Q-RNG-025
 
 ## Static
 
@@ -17,16 +17,28 @@ Next ID: Q-RNG-024
   for a combatant whose word `+0x1B` is 430, reseeds and draws through RULE-VIDEO-005's loop; the
   five callees that reach draws only through long routes moved to Q-RNG-022 and the voice tables'
   writers to Q-SOUND-009. Blocks: slices 2-7.
-- Q-RNG-022. RULE-RNG-001: Do `1695:02E7`, overlay 206 `+0A4E`, overlay 197 `+30ED`, the unload
-  `31E0:05BB` and `2C5F:0139` draw or reseed when overlay 206 `+0E1E` calls them, and do the
-  calls of overlay 201 `+05D5` other than its two of overlay 204 `+0000`? Settles it: for each
-  route FND-RNG-050 lists from these callees to the generator, `roll_sum`, `random_between` or the
-  seed setter (through the movement routine `2D40:10AE` and the attack routine overlay 173
-  `+1CC1`, overlay 193 `+0DC7`, `+166F` and `+1DB0`, the script handler `172C:170B`, or `+0E1E`
-  itself), the conditions along it read from the callee's entry, or a walk with those conditions
-  declared that reaches no target. Tried: split from Q-RNG-014. FND-RNG-050's per-callee walks
-  reach the targets from these five starts with two unresolved table jumps in segment `2707`, and
-  find no draw in the other six callees. Blocks: slices 2-7.
+- Q-RNG-022. RULE-RNG-001: Do the unload `31E0:05BB`, `2C5F:0139`, overlay 197 `+30ED` and
+  overlay 206 `+0A4E` draw or reseed when overlay 206 `+0E1E` calls them? Settles it: whether the
+  object the unload and `2C5F:0139` work on from `+0E1E` can be a party member's (state 2) with
+  effect rows; which effect bytes the rows with word 0x120 that `+30ED` removes can carry; what
+  overlay 195 `+1000` draws or reseeds for each effect byte `+1873` passes it; and whether overlay
+  193 `+0DC7` takes its area-effect route `+12A8` when `+0A4E` reaches it through `31E0:2D6E`.
+  Tried: split from Q-RNG-014. FND-RNG-050's per-callee walks reach the targets from these five
+  starts with two unresolved table jumps in segment `2707`, and find no draw in the other six
+  callees. Tried: FND-RNG-060's cut walks find every route of these four through overlay 193
+  `+1DB0` and `+1873` into overlay 195 `+1000`, or for `+0A4E` through `+0DC7`; `1695:02E7` and
+  overlay 201 `+05D5`'s script routes moved to Q-RNG-024. Blocks: slices 2-7.
+- Q-RNG-024. RULE-RNG-001: Does the script run by `1695:02E7` from overlay 206 `+0E1E` (with the
+  slot and 0xF460), or the event script overlay 206 `+0000` runs through `31E0:0121` and
+  `1695:01D1` when overlay 201 `+05D5` calls it, draw or reseed? Settles it: the script resources
+  each call selects, and which of the instructions they can reach have handlers that draw (such as
+  `0x52`) or reseed (request 27 of `0x22`, FND-RNG-027), or a reading that shows those calls run
+  none; and whether overlay 201 `+05D5`'s
+  calls of `31E0:05BB` and overlay 197 `+30ED` draw (with Q-RNG-022). Tried: split from
+  Q-RNG-022. FND-RNG-060 finds every route of `1695:02E7` to a draw through `1695:06FF`,
+  `1695:075D`, `172C:000C` and `172C:00A1`, the script interpreter, and overlay 201 `+05D5`'s other
+  routes through overlay 206 `+0000`, `31E0:05BB`, overlay 197 `+30ED` and `1695:02E7`. Blocks:
+  slices 2-7.
 - Q-RNG-003. RULE-RNG-001, RULE-VIDEO-005: Which combatants cast `DATA` 293 with the cast
   routine's byte `bp+0x1A` set? Settles it: every writer of combatant byte `+0x0E` other than the
   `CHAR` load, overlay 198 `+0549` and overlay 204 `+259D` (such as the build of a monster's

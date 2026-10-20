@@ -4,7 +4,7 @@ title: The game's random number generator and its reductions
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-032, FND-RNG-044, FND-RNG-035, FND-RNG-039, FND-RNG-040, FND-RNG-041, FND-RNG-043, FND-RNG-045, FND-RNG-046, FND-RNG-047, FND-RNG-048, FND-RNG-049, FND-RNG-050, FND-RNG-052, FND-RNG-053, FND-RNG-054, FND-RNG-055, FND-RNG-056, FND-RNG-057, FND-RNG-058, FND-RNG-059]
+evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-032, FND-RNG-044, FND-RNG-035, FND-RNG-039, FND-RNG-040, FND-RNG-041, FND-RNG-043, FND-RNG-045, FND-RNG-046, FND-RNG-047, FND-RNG-048, FND-RNG-049, FND-RNG-050, FND-RNG-052, FND-RNG-053, FND-RNG-054, FND-RNG-055, FND-RNG-056, FND-RNG-057, FND-RNG-058, FND-RNG-059, FND-RNG-060]
 conflicting: []
 split_with: []
 related: [RULE-VIDEO-005, RULE-MAGIC-005, RULE-MAGIC-006, RULE-AI-003, RULE-COMBAT-012, RULE-COMBAT-013, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009, RULE-MAGIC-007, RULE-MAGIC-008, RULE-MAGIC-009, RULE-MAGIC-010, RULE-MAGIC-011, RULE-MAGIC-012, RULE-MAGIC-013, RULE-MAGIC-014, RULE-MAGIC-015, RULE-MAGIC-016, RULE-MAGIC-017, RULE-MAGIC-018, RULE-MAGIC-019, RULE-MAGIC-020, RULE-MAGIC-021, RULE-MAGIC-022, RULE-SCRIPT-012, RULE-COMBAT-017, RULE-MAGIC-023]
@@ -48,7 +48,8 @@ FND-RNG-043 reads overlay 206's six: two draws per pixel of a removed combatant'
 `roll_sum` draw choosing a combatant's cry, which RULE-SOUND-004 and RULE-VIDEO-006 take; the events
 that reach them beyond overlay 179 `+2A05` and overlay 173's removal list remain Q-RNG-014.
 FND-RNG-050 reads the other calls of the removal routine overlay 206 `+0E1E`: six make no draw,
-five reach draws only through routes not yet read (Q-RNG-022), and overlay 201 `+05D5`, run in
+five reach draws only through effect row removals, an area-effect routine or the script
+interpreter (FND-RNG-060), and overlay 201 `+05D5`, run in
 place of the cry for a combatant whose word `+0x1B` is 430, calls RULE-VIDEO-005's offset loop,
 which reseeds from the clock and draws once, while sound 230 plays and at one picture frame.
 FND-RNG-041 reads overlay 173's seven: two fight set-up words per combatant, a retried pick
@@ -195,8 +196,9 @@ None known.
   FND-RNG-021..022, and the shipped scripts that issue it in FND-RNG-027.
 - The events that reach overlay 206's
   dissolve and cry draws (FND-RNG-043, Q-RNG-014), and whether the five callees of the removal
-  routine that reach draws only through long routes draw when it calls them (FND-RNG-050,
-  Q-RNG-022). Recovered `random_mod`
+  routine that reach draws only through long routes draw when it calls them: four only through
+  overlay 195 `+1000` when an effect row is removed, or overlay 193 `+0DC7` (FND-RNG-050,
+  FND-RNG-060, Q-RNG-022), and `1695:02E7` through the scripts it runs (Q-RNG-024). Recovered `random_mod`
   uses include `chance_in_ten`, the table selection in FND-RNG-007 and the music selector of
   RULE-SOUND-003 (FND-SOUND-012).
   FND-PARTY-099 recovers an effect-saving caller of `roll_sum(1, 20)`; the earlier statement
