@@ -63,7 +63,7 @@ def file_offset(text):
 
 all_starts, all_bytes = set(), set()
 for line in open(sys.argv[2], encoding="utf-8").read().splitlines()[1:]:
-    start, size, ranges = line.split("	")
+    start, size, ranges = line.split("\t")
     all_starts.add(file_offset(start))
     for r in ranges.split():
         a, b = (file_offset(x) for x in r.split(".."))
@@ -151,7 +151,7 @@ for target in args:
 if walk:
     counts = {"row": 0, "inside": 0, "none": 0}
     for line in open(walk, encoding="utf-8").read().splitlines()[1:]:
-        start, size, _ = line.split("	")
+        start, size, _ = line.split("\t")
         at = file_offset(start)
         kind = "row" if at in all_starts else "inside" if at in all_bytes else "none"
         counts[kind] += 1

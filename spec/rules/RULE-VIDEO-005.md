@@ -4,7 +4,7 @@ title: Script request 27 reseeds the generator and moves the display offset for 
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-021, FND-RNG-022, FND-RNG-027, FND-TIME-004, FND-PARTY-122, FND-RNG-009, FND-RNG-014, FND-RNG-050, FND-RNG-053, FND-RNG-055, FND-RNG-057]
+evidence: [FND-RNG-021, FND-RNG-022, FND-RNG-027, FND-TIME-004, FND-PARTY-122, FND-RNG-009, FND-RNG-014, FND-RNG-050, FND-RNG-053, FND-RNG-055, FND-RNG-057, FND-RNG-062]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-TIME-001]
@@ -28,7 +28,8 @@ calls `offset_loop` directly with magnitude 4, mode 4 and count 4 in the cast ro
 `DATA` number is 293 and the cast routine's byte argument at `bp+0x1A` is not 0, which the cast
 queue passes as 1 (FND-RNG-053); in the shipped data such a cast is the special attack of a
 combatant whose special attack byte is 6, or its return by a target whose byte is 13
-(FND-RNG-055), and with magnitude 2, mode 4 and count 1 at two places in overlay 201
+(FND-RNG-055), bytes that among the shipped objects only `RDFF` 428 and `RDFF` 430 carry
+(FND-RNG-062), and with magnitude 2, mode 4 and count 1 at two places in overlay 201
 (FND-RNG-022). Both are in overlay 201 `+05D5`, which overlay 206 `+0E1E` runs, in place of the
 cry, for a removed combatant of state byte 2 whose word `+0x1B` has the absolute value 430; it has
 no other caller. With `sound_on` and `digital_sound_on` not 0 and its first picture loaded, it plays
@@ -148,6 +149,7 @@ None known.
   so run the overlay 201 calls (FND-RNG-050, Q-RNG-014).
 - Which date and time the DOS services return to the clock helper, whose conversion of them is
   `clock_word` (FND-RNG-009, FND-RNG-014, FND-RNG-057, Q-RNG-006).
-- Which combatants have special attack 6 or 13, whose special attack casts `DATA` 293 with the
-  cast routine's byte `bp+0x1A` set and so runs the loop from a cast, and whether the party's
-  target cursor can pass 293 (FND-RNG-053, FND-RNG-055, Q-RNG-003).
+- Whether the game creates objects 428 and 430, the only shipped combatants with special attack
+  6 or 13, whose special attack casts `DATA` 293 with the cast routine's byte `bp+0x1A` set and so
+  runs the loop from a cast, and whether the party's target cursor can pass 293 (FND-RNG-053,
+  FND-RNG-055, FND-RNG-062, Q-RNG-003, Q-RNG-025).

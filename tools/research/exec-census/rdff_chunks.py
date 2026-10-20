@@ -1,6 +1,6 @@
 """Splits every RDFF resource of OBJEX.GFF into the chunk chain that 2D40:000A walks.
 
-Usage: python -I rdff_chunks.py OBJEX.GFF
+Usage: python -I rdff_chunks.py OBJEX.GFF [--combatant-byte HEX]
 
 Finds the RDFF table through the archive's directory (FMT-GFF-001 to FMT-GFF-007) and walks each
 resource as FMT-PARTY-006 gives a chunk: a 10-byte header whose byte 0 is the chunk type and
@@ -8,14 +8,19 @@ whose word at 8 is the number of data bytes after it, until a header whose byte 
 Prints the resource count, how many resources end exactly with a 10-byte end header, how many
 do not, the largest chain, a count of chunks by type, kind (byte 2), byte 3, data length and
 field (word 6), a count of chains by their sequence of types and lengths, and for chunks of
-types 2 to 4 how many name in byte 1 an earlier chunk of the same resource. Nothing is written
-or executed.
+types 2 to 4 how many name in byte 1 an earlier chunk of the same resource. With
+--combatant-byte, it also prints, over the data of every type-1 kind-2 chunk (the 49-byte
+combatant record), how many hold each value of the byte at offset HEX, and for each nonzero value
+the resource numbers with the record's name, the text at data offset 0x21 up to its first 0 byte.
+Nothing is written or executed.
 """
 import collections
 import struct
 import sys
 
 body = open(sys.argv[1], "rb").read()
+probe = int(sys.argv[sys.argv.index("--combatant-byte") + 1], 16) if "--combatant-byte" in sys.argv else None
+values = collections.defaultdict(list)
 assert body[:4] == b"GFFI"
 at = struct.unpack_from("<I", body, 0x0C)[0]
 count = struct.unpack_from("<H", body, at + 8)[0]
@@ -48,6 +53,10 @@ for number, offset, size in resources:
             else:
                 forward += 1
         chunks[(ctype, ckind, b3, length, field)] += 1
+        if probe is not None and ctype == 1 and ckind == 2:
+            record = data[q + 10:q + 10 + length]
+            name = record[0x21:].split(b"\x00")[0].decode("latin-1")
+            values[record[probe]].append(f"{number} {name}")
         chain.append((ctype, length))
         q += 10 + length
     if q + 10 == size and data[q] == 0xFF:
@@ -65,3 +74,7 @@ print(f"chunks of types 2 to 4 whose byte 1 names an earlier chunk: {backward}; 
 print("chains by (type, data length) sequence:")
 for key, n in chains.most_common():
     print(f"  {n}: {key}")
+if probe is not None:
+    print(f"combatant byte 0x{probe:02X} over {sum(len(v) for v in values.values())} kind-2 chunks:")
+    for value in sorted(values):
+        print(f"  {value}: {len(values[value])}" + ("" if value == 0 else ": " + "; ".join(values[value])))

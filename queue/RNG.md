@@ -1,6 +1,6 @@
 # RNG
 
-Next ID: Q-RNG-025
+Next ID: Q-RNG-026
 
 ## Static
 
@@ -40,18 +40,24 @@ Next ID: Q-RNG-025
   routes through overlay 206 `+0000`, `31E0:05BB`, overlay 197 `+30ED` and `1695:02E7`. Blocks:
   slices 2-7.
 - Q-RNG-003. RULE-RNG-001, RULE-VIDEO-005: Which combatants cast `DATA` 293 with the cast
-  routine's byte `bp+0x1A` set? Settles it: every writer of combatant byte `+0x0E` other than the
-  `CHAR` load, overlay 198 `+0549` and overlay 204 `+259D` (such as the build of a monster's
-  combatant record), with the values 6 and 13 it can store, and the numbers overlay 208 `+1612`'s
-  callers store at `DS:9BE2`, or a reading that shows none of them is 293. Tried: FND-RNG-009,
-  FND-RNG-010, FND-RNG-014, FND-RNG-015 and FND-RNG-021 answer the startup path and the second
-  root's local role. Tried: FND-RNG-053 finds overlay 180 `+0141` called only from startup and
-  overlay 204 `+0000` only from its four known calls, and the cast routine's call conditional on
-  `DATA` 293 and its byte `bp+0x1A`. Tried: FND-RNG-055 reads every caller's number and byte into
-  the cast routine: only overlay 174 `+084D`'s special attack 6 and overlay 197 `+111A`'s return by
-  special attack 13 pass 293 with the byte set; the near-buffer part was split off, and
-  FND-RNG-061 answers it. Blocks: reproducible seeding and Q-PARTY-081's later recorded gameplay
-  run.
+  routine's byte `bp+0x1A` set? Settles it: the regions, scripts or routines that create objects
+  428 and 430, the only shipped combatants with special attack byte 6 or 13, or a reading that
+  shows none does. Split on 2026-10-21 from the party's target cursor, now Q-RNG-025.
+  Tried: FND-RNG-053 finds the cast routine's reseed conditional on `DATA` 293 and its byte
+  `bp+0x1A`; FND-RNG-055 finds that only overlay 174 `+084D`'s special attack 6 and overlay 197
+  `+111A`'s return by special attack 13 pass 293 with the byte set among the combatants' routes;
+  FND-RNG-062 finds a monster's byte `+0x0E` copied unchanged from its `RDFF` object's combatant
+  chunk, no shipped `SAVE` resource, and 6 only in `RDFF` 428 and 13 only in `RDFF` 430.
+  FND-RNG-009, FND-RNG-010, FND-RNG-014, FND-RNG-015, FND-RNG-021 and FND-RNG-061 answer the
+  startup path, the second root and the near buffer. Blocks: reproducible seeding and
+  Q-PARTY-081's later recorded gameplay run.
+- Q-RNG-025. RULE-RNG-001, RULE-VIDEO-005: Can the party's target cursor cast `DATA` 293 with the
+  cast routine's byte `bp+0x1A` set? Settles it: the numbers overlay 208 `+1612`'s callers store at
+  `DS:9BE2` and the byte they leave at `DS:9BD3`, or a reading that shows none of the numbers is
+  293. Tried: FND-RNG-055 finds overlay 208 `+179F` passing `DS:9BE2` to the spell dispatcher with
+  the byte at `DS:9BD3` as `bp+0x1A`, and the party's spell, psionic and item numbers of
+  FND-PARTY-242 and FND-PARTY-121 below 293 or never 294 in an item; the stores at `DS:9BE2` were
+  not followed. Blocks: reproducible seeding.
 - Q-RNG-005. RULE-RNG-001: Does any reached write change the clock
   conversion's storage through a pointer formed outside it? Settles it: for
   the environment-array root DS:3920, classification-index window
