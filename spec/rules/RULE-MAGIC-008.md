@@ -4,7 +4,7 @@ title: A target with bit 0x40 of its effect block byte 5 blocks a DATA record wh
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-040, FND-PARTY-112, FND-PARTY-107, FND-RNG-034, FND-RNG-039]
+evidence: [FND-RNG-040, FND-PARTY-112, FND-PARTY-107, FND-RNG-044, FND-RNG-039]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001]

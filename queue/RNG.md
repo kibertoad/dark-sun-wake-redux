@@ -1,6 +1,6 @@
 # RNG
 
-Next ID: Q-RNG-019
+Next ID: Q-RNG-022
 
 ## Static
 
@@ -118,27 +118,29 @@ Next ID: Q-RNG-019
   census. Split from Q-RNG-001 so state coverage can be answered separately
   from rule/draw mapping. Blocks: complete RNG state and reseeding coverage.
 - Q-RNG-017. RULE-RNG-001: Which rule entries take the dice of overlay 179 `+1373`'s effect
-  switch (FND-RNG-034), the tests and formula FND-RNG-035 reads and the per-round effects of
-  FND-RNG-039, and what do the `DATA`
-  numbers, the arguments `a` and `g`, and the callees that take the totals stand for? Settles it:
-  rule entries, new or revised, for the healing, damage, duration, dispel, death, raising and
-  reincarnation cases with their dice, for overlay 204 `+214E`'s
-  saving throw, with the callers of `+214E`, and for overlay 195's per-round
-  effect damage; the names or
-  uses of the 22 `DATA` numbers; the writers of `+0D2F`'s byte arguments at `bp+0x1C` and
-  `bp+0x1E`; and readings of overlay 197 `+2D05`, `+2E40` and `+2EC0`, overlay 177 `+0CB3` and
-  overlay 193 `+1A2D`. Tried: split from Q-RNG-013. FND-RNG-034 reads the nineteen sites and the
-  cases that reach them; FND-PARTY-096, FND-PARTY-099 and FND-PARTY-112 read `+1373`'s table, the
-  saving throw and the gates before it; FND-RNG-035 reads the seven routines of overlays 191,
-  193, 198, 204 and 211 and their direct callers, and FND-RNG-036 overlay 195 `+000E`, `+00D1`
-  and `+152F`, which FND-RNG-039 replaces with the record `+152F` reads corrected. Tried: RULE-MAGIC-005, RULE-MAGIC-006 and RULE-AI-003 take FND-RNG-035's `DATA`
-  dice formula, `DATA` 306's d20 test and the spell-use test, with FND-RNG-038 for the byte the
-  last one reads. Tried: RULE-COMBAT-012 and RULE-COMBAT-013 take overlay 195's d10 table and
-  d100 test (FND-RNG-039). FND-RNG-034 sends a `DATA` number not in the table to `+2A32`; the jump
-  at `+1409` goes to file `0x66A32`, overlay offset `+2752`, so a replacement of FND-RNG-034 is part
-  of this item. Tried: RULE-ITEM-007, RULE-ITEM-008 and RULE-ITEM-009 take overlay
-  191's three item tests, with FND-ITEM-010 for the cases that run them; Q-ITEM-004 holds what
-  they act on. Blocks: slices 2-7.
+  switch? Settles it: rule entries, new or revised, for the healing, damage, duration, dispel,
+  death, raising and reincarnation cases of FND-RNG-044 with their dice and conditions. Tried:
+  split from Q-RNG-013 and, for the parts below, into Q-RNG-019, Q-RNG-020 and Q-RNG-021.
+  FND-RNG-044 replaces FND-RNG-034 with the default target of `+1373`'s table jump corrected to
+  `+2752`, and reads the nineteen sites and the cases that reach them; FND-PARTY-096,
+  FND-PARTY-099 and FND-PARTY-112 read `+1373`'s table, the saving throw and the gates before it.
+  Blocks: slices 2-7.
+- Q-RNG-019. RULE-RNG-001: Which rule entry takes overlay 204 `+214E`'s copy of the saving throw
+  roll, and which callers reach `+214E`? Settles it: a rule entry for `+214E` with the callers
+  and conditions that reach it. Tried: split from Q-RNG-017. FND-RNG-035 reads `+214E` and its
+  direct callers; RULE-MAGIC-005, RULE-MAGIC-006, RULE-AI-003 and RULE-ITEM-007 to RULE-ITEM-009
+  take FND-RNG-035's other routines. Blocks: slices 2-7.
+- Q-RNG-020. RULE-RNG-001: Which rule entry takes overlay 195's per-round effect damage dice?
+  Settles it: a rule entry for the per-round damage steps of overlay 195 `+00D1` that FND-RNG-039
+  reads, with the record fields they read. Tried: split from Q-RNG-017. FND-RNG-039 replaces
+  FND-RNG-036 and reads `+000E`, `+00D1` and `+152F`; RULE-COMBAT-012 and RULE-COMBAT-013 take
+  its d10 table and d100 test. Blocks: slices 2-7.
+- Q-RNG-021. RULE-RNG-001: What do the 22 `DATA` numbers of overlay 179 `+1373`'s rolled cases,
+  the hit routine's byte arguments `a` and `g`, and the callees that take the totals stand for?
+  Settles it: the names or uses of the 22 `DATA` numbers; the writers of `+0D2F`'s byte arguments
+  at `bp+0x1C` and `bp+0x1E`; and readings of overlay 197 `+2D05`, `+2E40` and `+2EC0`, overlay
+  177 `+0CB3` and overlay 193 `+1A2D`. Tried: split from Q-RNG-017. FND-RNG-044 names the
+  arguments and callees and records their uses of the totals. Blocks: slices 2-7.
 
 ## Emulated call
 

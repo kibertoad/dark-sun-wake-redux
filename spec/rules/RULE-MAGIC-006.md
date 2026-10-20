@@ -4,7 +4,7 @@ title: DATA 306 destroys a target of details kind 9 on a d20 at least three time
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-035, FND-RNG-034, FND-PARTY-086, FND-COMBAT-022, FND-PARTY-081, FND-EXPLORE-002, FND-COMBAT-023]
+evidence: [FND-RNG-035, FND-RNG-044, FND-PARTY-086, FND-COMBAT-022, FND-PARTY-081, FND-EXPLORE-002, FND-COMBAT-023]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001]
@@ -21,7 +21,7 @@ target makes no roll and nothing happens.
 ## When it runs
 
 The case of `DATA` 306 in the hit routine's effect switch calls it with the target, the caster,
-the hit's flags and the hit routine's byte argument `a` as the level (FND-RNG-034, FND-RNG-035).
+the hit's flags and the hit routine's byte argument `a` as the level (FND-RNG-044, FND-RNG-035).
 
 ## Parameters
 
@@ -69,7 +69,7 @@ define data_306_test(target, caster, flags, level: UINT8):
 ## Outputs
 
 The 1,000 damage, dealt through overlay 179 `+2A05` with `DATA` number -1 and code -1, and bit
-0x01 of the hit's flags (FND-RNG-034), or the call of `2D40:06E1` with the caster.
+0x01 of the hit's flags (FND-RNG-044), or the call of `2D40:06E1` with the caster.
 
 ## Edge cases
 

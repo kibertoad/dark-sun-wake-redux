@@ -4,7 +4,7 @@ title: A target with bit 0x80 of its effect block byte 9 that saves against a ca
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-040, FND-PARTY-112, FND-PARTY-099, FND-PARTY-107, FND-COMBAT-022, FND-EXPLORE-001, FND-EXPLORE-002, FND-PARTY-081, FND-RNG-034, FND-RNG-039, FND-COMBAT-023, FND-COMBAT-052]
+evidence: [FND-RNG-040, FND-PARTY-112, FND-PARTY-099, FND-PARTY-107, FND-COMBAT-022, FND-EXPLORE-001, FND-EXPLORE-002, FND-PARTY-081, FND-RNG-044, FND-RNG-039, FND-COMBAT-023, FND-COMBAT-052]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001]

@@ -4,7 +4,7 @@ title: DATA 71 rolls a 4d20 pool and kills listed combatants below level 9, lowe
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-040, FND-RNG-034, FND-PARTY-086, FND-ACTOR-005, FND-EXPLORE-001, FND-EXPLORE-002, FND-COMBAT-022, FND-COMBAT-052, FND-COMBAT-023]
+evidence: [FND-RNG-040, FND-RNG-044, FND-PARTY-086, FND-ACTOR-005, FND-EXPLORE-001, FND-EXPLORE-002, FND-COMBAT-022, FND-COMBAT-052, FND-COMBAT-023]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001]
@@ -74,7 +74,7 @@ define data_71_pool(count: INT16, entries):
 ## Outputs
 
 `DamageDealt` for each taken slot, through overlay 179 `+2A05` with `DATA` number 71 and code -1
-(FND-RNG-034).
+(FND-RNG-044).
 
 ## Edge cases
 

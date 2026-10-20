@@ -1,9 +1,9 @@
 ---
 id: FND-RNG-034
 title: Overlay 179's nineteen unread roll_sum calls are the dice of nineteen cases for 22 DATA numbers in the hit routine's effect switch, for damage, healing, durations, a dispel chance, a death test, a raising test and a reincarnation
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-RNG-044]
 recorded_by: kibertoad
 reproduced_by: []
 method: static
