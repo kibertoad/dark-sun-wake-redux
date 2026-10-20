@@ -146,9 +146,9 @@ None known.
   depend on the hardware (FND-RNG-021). (No item: no run possible; a capture of the original
   during one of the scripts that issue request 27 would confirm it.)
 - Which game events put a combatant whose word `+0x1B` is 430 on overlay 173's removal list, and
-  so run the overlay 201 calls (FND-RNG-050, Q-RNG-014).
+  so run the overlay 201 calls (FND-RNG-050, FND-RNG-063, Q-RNG-014, Q-RNG-026).
 - Which date and time the DOS services return to the clock helper, whose conversion of them is
-  `clock_word` (FND-RNG-009, FND-RNG-014, FND-RNG-057, Q-RNG-006).
+  `clock_word` (FND-RNG-009, FND-RNG-014, FND-RNG-057, Q-RNG-006, Q-RNG-028).
 - Whether the game creates objects 428 and 430, the only shipped combatants with special attack
   6 or 13, whose special attack casts `DATA` 293 with the cast routine's byte `bp+0x1A` set and so
   runs the loop from a cast, and whether the party's target cursor can pass 293 (FND-RNG-053,

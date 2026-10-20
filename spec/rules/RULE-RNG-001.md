@@ -4,7 +4,7 @@ title: The game's random number generator and its reductions
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-032, FND-RNG-044, FND-RNG-035, FND-RNG-039, FND-RNG-040, FND-RNG-041, FND-RNG-043, FND-RNG-045, FND-RNG-046, FND-RNG-047, FND-RNG-048, FND-RNG-049, FND-RNG-050, FND-RNG-052, FND-RNG-053, FND-RNG-054, FND-RNG-055, FND-RNG-056, FND-RNG-057, FND-RNG-058, FND-RNG-059, FND-RNG-060, FND-RNG-061, FND-RNG-062]
+evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-032, FND-RNG-044, FND-RNG-035, FND-RNG-039, FND-RNG-040, FND-RNG-041, FND-RNG-043, FND-RNG-045, FND-RNG-046, FND-RNG-047, FND-RNG-048, FND-RNG-049, FND-RNG-050, FND-RNG-052, FND-RNG-053, FND-RNG-054, FND-RNG-055, FND-RNG-056, FND-RNG-057, FND-RNG-058, FND-RNG-059, FND-RNG-060, FND-RNG-061, FND-RNG-062, FND-RNG-063]
 conflicting: []
 split_with: []
 related: [RULE-VIDEO-005, RULE-MAGIC-005, RULE-MAGIC-006, RULE-AI-003, RULE-COMBAT-012, RULE-COMBAT-013, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009, RULE-MAGIC-007, RULE-MAGIC-008, RULE-MAGIC-009, RULE-MAGIC-010, RULE-MAGIC-011, RULE-MAGIC-012, RULE-MAGIC-013, RULE-MAGIC-014, RULE-MAGIC-015, RULE-MAGIC-016, RULE-MAGIC-017, RULE-MAGIC-018, RULE-MAGIC-019, RULE-MAGIC-020, RULE-MAGIC-021, RULE-MAGIC-022, RULE-SCRIPT-012, RULE-COMBAT-017, RULE-MAGIC-023]
@@ -49,7 +49,8 @@ RULE-MAGIC-014 takes, and the psionic defence of a target, which RULE-MAGIC-015 
 row's amount dice (FND-RNG-052).
 FND-RNG-043 reads overlay 206's six: two draws per pixel of a removed combatant's dissolve and a
 `roll_sum` draw choosing a combatant's cry, which RULE-SOUND-004 and RULE-VIDEO-006 take; the events
-that reach them beyond overlay 179 `+2A05` and overlay 173's removal list remain Q-RNG-014.
+that reach them remain Q-RNG-014, Q-RNG-026 and Q-RNG-027; overlay 173's removal list is
+emptied after the routines that apply hits or damage (FND-RNG-063).
 FND-RNG-050 reads the other calls of the removal routine overlay 206 `+0E1E`: six make no draw,
 five reach draws only through effect row removals, an area-effect routine or the script
 interpreter (FND-RNG-060), and overlay 201 `+05D5`, run in
@@ -186,7 +187,7 @@ None known.
 - Which date and time the DOS services return to the clock helper, the conversion's only caller,
   which passes them from its own frame (FND-RNG-009, FND-RNG-014..015, FND-RNG-057). FND-RNG-023 settles local
   date-before-time sampling without a coherence retry; external service
-  domain and rollover guarantees remain Q-RNG-006, with conditional pinned
+  domain and rollover guarantees remain Q-RNG-006 and Q-RNG-028, with conditional pinned
   handler-source leads in SRC-RUSTDOS-172. The conversion's tables, label pointers and name are
   only read on a walk from every established entry, its offset record is written only by the
   timezone initializer and its environment root only by the startup constructor (FND-RNG-019..020,
@@ -196,7 +197,7 @@ None known.
   conditional draw loop, and its script wrapper widths, are recorded in
   FND-RNG-021..022, and the shipped scripts that issue it in FND-RNG-027.
 - The events that reach overlay 206's
-  dissolve and cry draws (FND-RNG-043, Q-RNG-014), and whether the five callees of the removal
+  dissolve and cry draws (FND-RNG-043, FND-RNG-063, Q-RNG-014, Q-RNG-026, Q-RNG-027), and whether the five callees of the removal
   routine that reach draws only through long routes draw when it calls them: four only through
   overlay 195 `+1000` when an effect row is removed, or overlay 193 `+0DC7` (FND-RNG-050,
   FND-RNG-060, Q-RNG-022), and `1695:02E7` through the scripts it runs (Q-RNG-024). Recovered `random_mod`

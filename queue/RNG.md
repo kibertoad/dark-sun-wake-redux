@@ -1,22 +1,35 @@
 # RNG
 
-Next ID: Q-RNG-026
+Next ID: Q-RNG-029
 
 ## Static
 
-- Q-RNG-014. RULE-RNG-001, RULE-SOUND-004, RULE-VIDEO-006, RULE-VIDEO-005: Which game events reach overlay 206's
-  cry choice and its dissolve of a removed combatant? Settles it: the conditions under which the
-  callers FND-RNG-043 lists reach overlay 179 `+2A05` (the flag 0 cry, when the word at `DS:0DAB`
-  is 1), overlay 173 `+22C4` (the damage that queues a slot) and overlay 173 `+24C7` (which empties
-  the removal list into `+0E1E`). Tried: split from Q-RNG-001 and Q-RNG-013. FND-RNG-030 reads
-  `+1257` and `+151E` and the two calls in `+0E1E`, and FND-PARTY-140 reads `+0E1E`'s branch for
-  party slots. RULE-SOUND-004 takes the cry choice. Tried: FND-RNG-043 replaces FND-RNG-030 with
-  the unload placed before the dissolve, and reads the one caller of each of `+0B81` and `+0E1E`,
-  the removal list and `+22C4`'s branches that fill it; RULE-VIDEO-006 takes the dissolve. Tried:
-  FND-RNG-050 reads every call in `+0E1E`: six callees make no draw and overlay 201 `+05D5`, run
-  for a combatant whose word `+0x1B` is 430, reseeds and draws through RULE-VIDEO-005's loop; the
-  five callees that reach draws only through long routes moved to Q-RNG-022 and the voice tables'
-  writers to Q-SOUND-009. Blocks: slices 2-7.
+- Q-RNG-014. RULE-RNG-001, RULE-SOUND-004, RULE-VIDEO-006, RULE-VIDEO-005: Which game events
+  empty overlay 173's removal list into overlay 206 `+0E1E`, whose dissolve and flag-1 cry draw?
+  Settles it: the events that call overlay 188 `+1445` and `+14DE`, overlay 204 `+1322`, and the
+  routines that hold overlay 204 `+02A4` and `28C9:0CE3` (with their starts), which FND-RNG-063
+  finds among the nine drains, and when a list left filled by a path that returns before its
+  drain, such as the fight routine's with its byte `bp-1` at 0, is emptied. Split on 2026-10-21
+  into this item, the damage that fills the list (Q-RNG-026) and the flag-0 cry (Q-RNG-027).
+  Tried: FND-RNG-030 and FND-RNG-043 read `+1257`, `+151E` and `+0E1E` and find `+24C7` emptying
+  the list; FND-PARTY-140 reads `+0E1E`'s branch for party slots; FND-RNG-050 reads every call in
+  `+0E1E` (its long routes are Q-RNG-022); FND-RNG-063 reads the nine drains and finds seven after
+  the fight, attack and per-round effect routines, two hit routines and two damage loops of overlay
+  188. RULE-SOUND-004 takes the cry choice and RULE-VIDEO-006 the dissolve. Blocks: slices 2-7.
+- Q-RNG-026. RULE-RNG-001, RULE-VIDEO-005: Which game events reach overlay 173 `+22C4`, the
+  damage that adds a removed combatant to the removal list? Settles it: the conditions under
+  which its twelve callers call it: overlay 179 `+0D9C`, `+1D22`, `+27BF`, `+27D3` and `+2A3A`,
+  overlay 195 `+0295`, `+050E`, `+0825`, `+0845`, `+0885` and `+0A5A`, and overlay 204 `+1277`.
+  Tried: FND-RNG-043 lists the callers and reads `+22C4`'s branches and the list it fills;
+  FND-RNG-063 finds the per-round effect routine and the fight routine's call of overlay 195
+  `+0789` followed by drains. Blocks: slices 2-7.
+- Q-RNG-027. RULE-RNG-001, RULE-SOUND-004: Which game events reach overlay 179 `+2A05` with the
+  word at `DS:0DAB` 1, so that overlay 206 `+0B81` gives the flag-0 cry? Settles it: the
+  conditions under which its thirteen callers call it (overlay 179 `+1078`, `+141D`, `+1470`,
+  `+14D9`, `+1500` and `+21A1`, overlay 188 `+1478` and `+1553`, overlay 193 `+1215`, overlay 197
+  `+1A85`, `+2ED3` and `+3ADE`, overlay 211 `+1EF5`), and the writers of `DS:0DAB`. Tried:
+  FND-RNG-043 reads `+2A05` and lists its callers; FND-RNG-063 reads overlay 188's two as damage
+  loops over the slots `2D40:0D94` returns. Blocks: slices 2-7.
 - Q-RNG-022. RULE-RNG-001: Do the unload `31E0:05BB`, `2C5F:0139`, overlay 197 `+30ED` and
   overlay 206 `+0A4E` draw or reseed when overlay 206 `+0E1E` calls them? Settles it: whether the
   object the unload and `2C5F:0139` work on from `+0E1E` can be a party member's (state 2) with
@@ -89,33 +102,6 @@ Next ID: Q-RNG-026
   direct reader/writer part is answered, and FND-RNG-061 finds DS equal to
   SS at the helper's callers. Blocks: complete seed-source reading.
 
-- Q-RNG-006. RULE-RNG-001, RULE-VIDEO-005: Does the admitted pinned runtime route the clock
-  requests through the reviewed date/time handlers with the required storage
-  and register identity? Settles it: source-to-release correspondence,
-  installed INT 21 routing and guest-hook admission, nonpaged real-mode
-  entry/ordinary return admission, common-memory writes separated from the
-  game's buffers, and active deterministic start/clock-offset state and
-  admitted date domain. Local preservation, common effects, clock construction
-  and stall/update algorithms are answered conditionally in SRC-RUSTDOS-172;
-  actual offset writers and continued storage identity remain. Local result
-  fields and independent reads are described by
-  SRC-RUSTDOS-172, rather than assumed generic DOS guarantees.
-  Tried: FND-RNG-015 identifies returned word stores; FND-RNG-023 completely
-  reads the game's request preparation/order without local validation.
-  Split from Q-RNG-004 for external-service semantics. Tried:
-  SRC-RUSTDOS-172 locates the exact pinned source tag and reads local
-  handler assignments, separate CMOS samples and host-clock/offset access.
-  The source acquisition and local handler-body obligations are answered;
-  connected runtime admission remains. Moved from Source to Static now
-  that the required source snapshot is available. Tried: SRC-RUSTDOS-172's
-  connected real-mode reading answers default-vector dispatch, local
-  DS/SI/SS/BP preservation, common caller-save/DOS-state writes, service
-  flag return and the deterministic clock boundary/stall algorithm. These
-  source-body obligations are removed from Settles it; actual route,
-  memory separation, active clock state and release correspondence remain.
-  Blocks: complete admitted
-  seed-source input domain.
-
 - Q-RNG-007. RULE-RNG-001: Can a reached computed, aliased or bulk write
   change rng_state apart from its generator and setter? Settles it: the
   handles the callers of `1000:07B0` and `1000:3EDA` (FND-RNG-059) can pass,
@@ -153,7 +139,24 @@ None.
 
 ## Agent run
 
-None.
+- Q-RNG-006. RULE-RNG-001, RULE-VIDEO-005: Does the admitted pinned runtime route the clock
+  requests through the reviewed date/time handlers with the required storage and register
+  identity? Settles it: a session-package run of the pinned rust-dos, stopped at FND-RNG-014's
+  startup clock caller and service-return stops, that reads the `INT 21` vector at each request
+  (no guest hook), the registers and the game's buffers before and after each request (the
+  service writes only its result registers and the buffers get only the caller's stores), and
+  records the session's deterministic start and clock-offset settings. Parts it needs: start it
+  and bring it to a given state (agent, tested states only; startup is one) and read memory and
+  set breakpoints (agent, named fields and declared stops; FND-RNG-014's clock stops were verified
+  under v1.7.2, so the probe needs a current-pin attempt). The release correspondence moved to
+  Q-RNG-028. Moved from Static on 2026-10-21: the static readings left only what a run shows.
+  Tried: FND-RNG-015 identifies returned word stores; FND-RNG-023 completely reads the game's
+  request preparation and order. Tried: SRC-RUSTDOS-172 locates the v1.7.2 source tag and reads
+  local handler assignments, separate CMOS samples and host-clock and offset access. Tried:
+  SRC-RUSTDOS-172's connected real-mode reading answers default-vector dispatch, local
+  DS/SI/SS/BP preservation, common caller-save and DOS-state writes, service flag return and the
+  deterministic clock boundary and stall algorithm. Blocks: complete admitted seed-source input
+  domain.
 
 ## Live session
 
@@ -161,7 +164,12 @@ None.
 
 ## Source
 
-None.
+- Q-RNG-028. RULE-RNG-001, RULE-VIDEO-005: Do the clock services of rust-dos v1.7.5, the
+  release the session package pins, match the v1.7.2 handler bodies SRC-RUSTDOS-172 reads?
+  Settles it: the v1.7.5 tag's source for the `INT 21` date and time handlers and their CMOS and
+  host-clock access compared with SRC-RUSTDOS-172, or the release notes from v1.7.2 to v1.7.5
+  naming the changes there. Tried: SRC-RUSTDOS-172 reads tag v1.7.2 only; split from Q-RNG-006 on
+  2026-10-21. Blocks: Q-RNG-006.
 
 ## Blocked
 

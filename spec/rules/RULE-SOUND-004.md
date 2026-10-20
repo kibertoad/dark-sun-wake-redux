@@ -81,6 +81,6 @@ None known.
 ## Open questions
 
 - Which game events reach overlay 206 `+0B81` and `+0E1E`, and so when each kind of cry is given
-  (Q-RNG-014).
+  (Q-RNG-014, Q-RNG-027).
 - The voice tables have no direct writer in the immediate search; a computed or bulk write was not
   ruled out (Q-SOUND-009).
