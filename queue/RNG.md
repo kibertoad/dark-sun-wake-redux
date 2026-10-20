@@ -48,15 +48,15 @@ Next ID: Q-RNG-024
   `DS` in the seed routines or their callers. Tried: FND-RNG-056's path walk of all 255 `DS`
   writers finds 24 resident routines that can return with `DS` changed and none in overlays, and
   `DS` equal to `SS` at the call of the main routine. Blocks: reproducible seeding.
-- Q-RNG-005. RULE-RNG-001: Which paths initialize, read or change the clock
-  conversion's global/table storage, and does each access retain its declared
-  identity? Settles it: reached reader/writer and alias coverage for the
-  environment-array root DS:3920, classification-index window DS:34F5..3675,
-  calendar tables DS:3950..3976, label pointers DS:3976..397A and offset/enable
-  record DS:397A..3980; label-buffer ownership/lifetime, indirect and bulk
-  writes, and continued segment identity on admitted paths. Start with a
-  mechanism/site census and positive controls from the initializer's explicit
-  stores and helper-mediated label writes; candidates alone prove no absence.
+- Q-RNG-005. RULE-RNG-001: Does any reached write change the clock
+  conversion's storage through a pointer formed outside it? Settles it: for
+  the environment-array root DS:3920, classification-index window
+  DS:34F5..3675, calendar tables DS:3950..3976, label pointers DS:3976..397A,
+  offset/enable record DS:397A..3980, name DS:3980..3983 and label buffers
+  DS:A4E4..A4EC, the destinations of the string stores and copy helpers on
+  FND-RNG-058's walk (among them the append into DS:33F2), other computed or
+  segment-aliased stores, and the code behind that walk's nine unresolved
+  transfers, each shown to miss the windows or listed with what it writes.
   Tried: FND-RNG-016 reads the calendar bodies and shipped windows,
   FND-RNG-017 measures the default-path globals and FND-RNG-018 reads the
   local initializer and helper writes. These establish local sites, not
@@ -71,7 +71,13 @@ Next ID: Q-RNG-024
   and terminated member metadata, then the distinct far startup timezone
   frame/default record. That native prerequisite is answered for this
   admitted case; other writers, full lifetime/allocator/source admission
-  and other paths remain. Blocks: complete seed-source reading.
+  and other paths remain. Tried: FND-RNG-058's census of displacement and
+  literal-pointer operands over a walk from all 21 established entries finds
+  the tables, pointers, name and label buffers never written directly, the
+  record written only by the initializer, the root only by the constructor,
+  and below the classification table only the pack size and exit count; the
+  direct reader/writer part is answered, and the DS at the helper's callers
+  stays with Q-RNG-023. Blocks: complete seed-source reading.
 
 - Q-RNG-006. RULE-RNG-001, RULE-VIDEO-005: Does the admitted pinned runtime route the clock
   requests through the reviewed date/time handlers with the required storage
