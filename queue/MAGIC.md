@@ -1,6 +1,6 @@
 # MAGIC
 
-Next ID: Q-MAGIC-012
+Next ID: Q-MAGIC-016
 
 ## Static
 
@@ -18,13 +18,14 @@ Next ID: Q-MAGIC-012
   treat a spell of several spheres? Settles it:
   the spell definitions the game loads and the code that builds a caster's spell list for the Use
   screen. Blocks: slice 5.
-- Q-MAGIC-004. RULE-MAGIC-003: How does the game make a psionic power check, how does it round
-  half an odd initial cost, what does it do when a character has too few PSPs, how many PSPs does
-  a character have at each level, which powers can a character who is not a psionicist use, does
-  the game keep the manual's costs, how does it price the powers the manual gives as Varies, and
-  can a power with a zero maintenance cost be maintained? Settles it: the code that activates a
-  psionic power and the code that sets a character's PSPs.
-  Blocks: slice 5.
+- Q-MAGIC-004. RULE-MAGIC-003: How many PSPs does a character have at each level, which powers
+  can a character who is not a psionicist use, does the game keep the manual's costs, how does it
+  price the powers the manual gives as Varies, and can a power with a zero maintenance cost be
+  maintained? Settles it: the code that sets a character's PSPs, the values of `psionic_powers`
+  against the manual's, and the code that keeps a power running from round to round.
+  Tried: FND-RNG-046 reads the activation: RULE-MAGIC-014 takes the power check, the half cost
+  of a failed check rounded down and the refusal for too few points, which contradict
+  RULE-MAGIC-003's check. Blocks: slice 5.
 - Q-MAGIC-005. RULE-MAGIC-004: What does camping do besides restoring PSPs and spells: does it
   take game time, restore hit points, stop for enemies, and in which order does it cast cure
   spells, and does the game keep memorized spells? Settles it: the code behind the Look pointer on
@@ -64,6 +65,29 @@ Next ID: Q-MAGIC-012
   `DATA` 71? Settles it: the names of the `DATA` records and creature resources in `RESOURCE.GFF`,
   readings of those routines, and of the writers of the two globals. Tried: FND-RNG-040 reads the
   summoning and the pool. Blocks: slices 4-5.
+- Q-MAGIC-012. RULE-MAGIC-014, RULE-MAGIC-015: Which values does `psionic_powers` hold for each
+  power, where do they come from, and which score does each `score_code` name? Settles it: the
+  writers of `51F1:07E0..51F1:0846` or the resource they load it from, and the readers of
+  `fn_27E5_04A0`'s numbers. Tried: FND-RNG-046 reads the check and defence that use the table.
+  Blocks: slice 5.
+- Q-MAGIC-013. RULE-MAGIC-014: Which callers of the `DATA` dispatcher overlay 193 `+2290` pass a
+  number from 235 to 268, with which word arguments and byte pointer, does any reach `use_power`'s
+  path that applies an earlier check's result, and what does `fn_573B_007F` do with a psionic
+  number? Settles it: the eleven far callers of `+2290` read for the psionic numbers they pass,
+  and overlay 193 `+0000` read for numbers 235 to 268. Tried: FND-RNG-046 lists the callers.
+  Blocks: slice 5.
+- Q-MAGIC-014. RULE-MAGIC-015: Which `DATA` records reach overlay 197 `+1C52` with the type word
+  0x400, and what do the defence's bytes, `+0x1D` of the combatant record and `+0x1E` of the
+  details record that `fn_2D40_3E64` maps the target to, hold? Settles it: the hit routine's
+  computation of the type word it passes at `+1289`, the records whose type gives 0x400, and the
+  writers of the two bytes. Tried: FND-RNG-046 reads the call for 0x400 and FND-PARTY-112
+  the rest of `+1C52`. Blocks: slice 5.
+- Q-MAGIC-015. RULE-MAGIC-014: What blocks or contests a psionic use: which effects are the codes
+  58 and 0x43 of `effect_entries` and what puts them on a slot, what `g_4C4F_00B2` stands for, and
+  which level `fn_27E5_0154` gives powers 20 and 21? Settles it: the writers of the code byte
+  `4E71:0253 + 10 * e` that store 58 or 0x43 and the `DATA` records behind them, the writers of
+  `g_4C4F_00B2`, and a reading of `27E5:0154` past FND-PARTY-081's. Tried: FND-RNG-046 reads the scan and the test that
+  read them. Blocks: slice 5.
 
 ## Emulated call
 

@@ -1,13 +1,13 @@
 ---
 id: RULE-MAGIC-003
 title: Activating and maintaining a psionic power
-status: sourced
+status: disputed
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 evidence: [SRC-MANUAL-1994]
-conflicting: []
+conflicting: [FND-RNG-046]
 split_with: []
-related: []
+related: [RULE-MAGIC-014]
 ---
 
 ## Summary
@@ -95,8 +95,12 @@ None known.
 
 ## Open questions
 
-- How the game makes the power check, how it rounds half an odd initial cost, and what it does
-  when the character has fewer PSPs than the cost (Q-MAGIC-004).
+- The game's own power check and cost contradict `power_check_percent`: FND-RNG-046 reads a d20
+  that succeeds at or below the power score plus the power's rank less 1, always on a 1 and never
+  on a 20, a cost that differs from the table's for powers 15, 20 and 21, half the table cost,
+  rounded down, for a failed check, and a refusal with no check for too few PSPs (RULE-MAGIC-014).
+  This entry is to be superseded by entries for what the game does once its remaining parts are
+  read (Q-MAGIC-004).
 - How many PSPs a character has at each level, and which powers a character who is not a
   psionicist can use (Q-MAGIC-004).
 - Whether the game keeps the manual's costs, how it prices the powers the manual gives as Varies,

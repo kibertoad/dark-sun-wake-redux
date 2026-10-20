@@ -4,7 +4,7 @@
 |---|---|---|---|---|---|---|---|
 | `RULE-MAGIC-001` | How many spells of each level a caster can cast before resting | sourced | missing | None | None | sourced | No code counts spells. `ExplorationSession` opens the Cast Spells / Use PSI view with no spells in it. |
 | `RULE-MAGIC-002` | Which spheres of cleric spells a priest may cast | sourced | missing | None | None | sourced | No code holds spells or their spheres. A created character carries a `ClericalSphere` (RULE-PARTY-003). |
-| `RULE-MAGIC-003` | Activating and maintaining a psionic power | sourced | missing | None | None | sourced | No code holds psionic powers or PSPs. |
+| `RULE-MAGIC-003` | Activating and maintaining a psionic power | disputed | missing | None | None | disputed | Disputed (FND-RNG-046): the game's power check adds the rank less 1 and always succeeds on 1 and fails on 20 (RULE-MAGIC-014). No code holds psionic powers or PSPs. |
 | `RULE-MAGIC-004` | Camping restores spells and psionic strength points | sourced | missing | None | None | sourced | No code camps or rests. |
 | `RULE-MAGIC-005` | A DATA record's dice are a count growing with the level, of sides the record gives, plus a bonus per level step | supported | missing | None | None | supported | No code rolls a `DATA` record's dice. |
 | `RULE-MAGIC-006` | DATA 306 destroys a target of details kind 9 on a d20 at least three times its adjusted level byte less the adjusted caster level, plus 10 | supported | missing | None | None | supported | No code applies `DATA` 306. |
@@ -15,3 +15,5 @@
 | `RULE-MAGIC-011` | Check 4 of overlay 197 +1A94 passes a slot at once, or on a d100 below its preserver level when bit 0x40 of its effect block byte 7 is set | supported | missing | None | None | supported | No code applies `DATA` records or runs the hit routine's gates. |
 | `RULE-MAGIC-012` | Eighteen DATA records summon a fixed creature or one picked by a d4 or d12, placed near the target point as combatant 4 | supported | missing | None | None | supported | No code applies `DATA` records or runs the hit routine's gates. |
 | `RULE-MAGIC-013` | DATA 71 rolls a 4d20 pool and kills listed combatants below level 9, lowest band first, each costing 1, 2, 10 or 20 of the pool | supported | missing | None | None | supported | No code applies `DATA` records or runs the hit routine's gates. |
+| `RULE-MAGIC-014` | Using a psionic power takes its cost in points and a d20 power check below the power score plus the rank, which an effect of code 58 can contest | supported | missing | None | None | supported | No code holds psionic powers or PSPs. |
+| `RULE-MAGIC-015` | A target ignores an effect of type word 0x400 when two rolls of 1 to its psionic defence score each beat the last power check's die | supported | missing | None | None | supported | No code applies `DATA` records or runs the hit routine's gates. |

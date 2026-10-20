@@ -15,14 +15,17 @@ Next ID: Q-RNG-022
   choice. Tried: FND-RNG-043 replaces FND-RNG-030 with the unload placed before the dissolve, and
   reads the one caller of each of `+0B81` and `+0E1E`, the removal list and `+22C4`'s branches
   that fill it; RULE-VIDEO-006 takes the dissolve. Blocks: slices 2-7.
-- Q-RNG-009. RULE-RNG-001: Which rules do the eleven `random_between` sites of overlays 176 and
-  179 serve, and with which inputs? Settles it: the callers of overlay 176's psionic action and
-  resistance checks and of overlay 179's paired-coordinate samplers (through the overlay 193
-  caller), the record and table fields that supply each site's endpoints, and the rule each
-  belongs to. Tried: split from Q-RNG-001. FND-RNG-025 reads overlay 176's five sites (fixed and
-  dynamic endpoints, two contest rolls before the comparison, the conditional second predicate
-  call, no draw when the bounds are equal) and FND-RNG-026 overlay 179's six; their inputs and
-  rule mapping remain. Blocks: slices 2-7.
+- Q-RNG-009. RULE-RNG-001: Which rule do the six `random_between` sites of overlay 179's
+  paired-coordinate samplers serve, and with which inputs? Settles it: overlay 193 `+0617`'s
+  callers (the near call at `+03B5` and trampoline `573B:008E`), the source record and the 18-byte
+  profile fields that supply each sampler's endpoints, what reads the paired words, and a rule
+  entry for the samplers. Tried: split from Q-RNG-001. FND-RNG-025 reads overlay 176's five sites
+  (fixed and dynamic endpoints, two contest rolls before the comparison, the conditional second
+  predicate call, no draw when the bounds are equal) and FND-RNG-026 overlay 179's six; their
+  inputs and rule mapping remain. Tried: FND-RNG-046 reads the callers and inputs of overlay 176's
+  five, which RULE-MAGIC-014 and RULE-MAGIC-015 take; `direct_callers.py` finds overlay 179 `+0000`
+  called only from overlay 193 `+0709`, `+0181` only from `+00C5` and `+00F4`, and `+025D` only
+  from `+014D`. Blocks: slices 2-7.
 - Q-RNG-003. RULE-RNG-001: When does the game reseed: which paths reach the two seed callers,
   overlay 180 +065E and overlay 204 +001E, and with what near buffers? Settles it: the callers
   that reach each seed caller and their branches, and on each such path the DS/SS identity of
