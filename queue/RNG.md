@@ -4,20 +4,22 @@ Next ID: Q-RNG-016
 
 ## Static
 
-- Q-RNG-001. RULE-RNG-001, RULE-PARTY-016: Which rule does overlay 197 `+1082`, the last direct
-  generator site that FND-RNG-028 lists as not described and FND-RNG-029..031 do not read, serve,
-  in what draw order? Settles it: a decode of overlay 197 `+1082` from an established entry
-  showing it is an instruction, the reduction applied to the draw, the conditions that reach it
-  and the rule it belongs to; the rule of overlay 204 +00E1's draw; and whether the calls DONE
-  makes before RULE-PARTY-016's picks draw. Tried: FND-RNG-001, FND-RNG-002, FND-RNG-007,
-  FND-RNG-008, FND-SCRIPT-011 and FND-SOUND-012 identify the resident callers; FND-RNG-021,
-  FND-RNG-024..026 read further sites. FND-RNG-028 takes the direct-call census for the generator
-  and the four reducers with a control for each kind of site and maps 52 of 117 sites to the
-  findings that describe them; the `roll_sum` sites moved to Q-RNG-013. FND-RNG-029 qualifies
-  overlay 184's five sites: the generation screen's opening picture draw and RULE-PARTY-016's
-  four spell picks; FND-RNG-030 qualifies overlay 206's two, a removed combatant's dissolve
-  (moved to Q-RNG-014); FND-RNG-031 qualifies overlay 173's seven (rule entries moved to
-  Q-RNG-015). Blocks: slices 2-7.
+- Q-RNG-001. RULE-RNG-001, RULE-PARTY-016: Which rule entry takes overlay 197 `+1082`'s to-hit
+  roll (FND-RNG-032), which rule does overlay 204 +00E1's draw serve, and do the calls DONE makes
+  before RULE-PARTY-016's picks draw? Settles it: a rule entry, or an existing one revised, that
+  takes FND-RNG-032's roll with the `DATA` numbers it applies to named; the rule of overlay 204
+  +00E1's draw; and a decode of overlay 183 `+0871` and overlay 184 `+1648` and `+1876` showing
+  whether they draw. Tried: FND-RNG-001, FND-RNG-002, FND-RNG-007, FND-RNG-008, FND-SCRIPT-011
+  and FND-SOUND-012 identify the resident callers; FND-RNG-021, FND-RNG-024..026 read further
+  sites. FND-RNG-028 takes the direct-call census for the generator and the four reducers with a
+  control for each kind of site and maps 52 of 117 sites to the findings that describe them; the
+  `roll_sum` sites moved to Q-RNG-013. FND-RNG-029 qualifies overlay 184's five sites: the
+  generation screen's opening picture draw and RULE-PARTY-016's four spell picks; FND-RNG-030
+  qualifies overlay 206's two, a removed combatant's dissolve (moved to Q-RNG-014); FND-RNG-031
+  qualifies overlay 173's seven (rule entries moved to Q-RNG-015). FND-RNG-032 qualifies overlay
+  197 `+1082`, the last direct generator site, as a d20 to-hit roll in the hit routine's first
+  gate for five `DATA` numbers and a caster numbered 48 or more; every direct generator site is
+  now qualified. Blocks: slices 2-7.
 - Q-RNG-013. RULE-RNG-001: Which rule does each of the 46 `roll_sum` sites that FND-RNG-028
   lists as not described and FND-RNG-030 does not read serve, with which count and sides, and how does each caller read the
   returned total? Settles it: for each site in overlays 179, 191, 193, 195, 197, 198, 204 and

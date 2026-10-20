@@ -4,7 +4,7 @@ title: The game's random number generator and its reductions
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-030, FND-RNG-031]
+evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-030, FND-RNG-031, FND-RNG-032]
 conflicting: []
 split_with: []
 related: []
@@ -39,9 +39,11 @@ FND-RNG-030 reads overlay 206's six: two draws per pixel of a removed combatant'
 `roll_sum` draw choosing a combatant's cry, whose triggers and rule entries remain Q-RNG-014.
 FND-RNG-031 reads overlay 173's seven: two fight set-up words per combatant, a retried target
 pick, a removed combatant's drop placement and an item-break test after every damaging armed
-swing, whose rule entries remain Q-RNG-015. The last generator site (Q-RNG-001) and 46
-`roll_sum` sites (Q-RNG-013) still need qualification and rule mapping, and calls not made
-directly remain Q-RNG-008.
+swing, whose rule entries remain Q-RNG-015. FND-RNG-032 reads the last, overlay 197 `+1082`: a
+d20 to-hit roll that five `DATA` numbers cast by a combatant numbered 48 or more must pass before
+the hit routine applies them, whose rule entry remains Q-RNG-001. The 46 `roll_sum` sites
+(Q-RNG-013) still need qualification and rule mapping, and calls not made directly remain
+Q-RNG-008.
 
 Overlay 204's entry runs, and reseeds, each time a script issues request 27 of instruction
 `0x22`; 44 shipped instructions do, in 21 `GPL` resources (FND-RNG-027). No shipped script uses
@@ -152,8 +154,8 @@ None known.
   remain separate (Q-RNG-003). The second root's local reseeding and
   conditional draw loop, and its script wrapper widths, are recorded in
   FND-RNG-021..022, and the shipped scripts that issue it in FND-RNG-027.
-- The rule and draw order of the last direct generator site (Q-RNG-001) and the 46 `roll_sum`
-  sites (Q-RNG-013) that FND-RNG-028..031 leave undescribed, the events that reach overlay 206's
+- The rule entry for overlay 197 `+1082`'s to-hit roll (FND-RNG-032, Q-RNG-001), the rule and
+  draw order of the 46 `roll_sum` sites (Q-RNG-013) that FND-RNG-028..031 leave undescribed, the events that reach overlay 206's
   dissolve and cry draws (FND-RNG-030, Q-RNG-014), and the rules of overlay 173's draws
   (FND-RNG-031, Q-RNG-015). Recovered `random_mod`
   uses include `chance_in_ten`, the table selection in FND-RNG-007 and the music selector of
