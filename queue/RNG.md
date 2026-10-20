@@ -55,7 +55,7 @@ Next ID: Q-RNG-019
   initializer's guard, default, integer offset and first-label branches) answer the local bodies
   and the default path; which strings arrive remains. Blocks: complete reproducible seed-source
   semantics.
-- Q-RNG-012. RULE-RNG-001: Which date and time values does each caller of the clock conversion
+- Q-RNG-012. RULE-RNG-001, RULE-VIDEO-005: Which date and time values does each caller of the clock conversion
   pass, and in which near buffers? Settles it: on each admitted caller path, the indexed date and
   time fields the conversion reads, their ranges, and the buffers' segment identity. Tried: split
   from Q-RNG-004. FND-RNG-009 identifies the conversion chain, FND-RNG-014 measures one startup
@@ -126,12 +126,6 @@ Next ID: Q-RNG-019
   FND-RNG-024..026 qualify caller sequences without a complete state-access
   census. Split from Q-RNG-001 so state coverage can be answered separately
   from rule/draw mapping. Blocks: complete RNG state and reseeding coverage.
-- Q-RNG-016. RULE-RNG-001: Which rule entry takes the draw at overlay 204 +00E1, in the display
-  offset loop script request 27 runs after it reseeds? Settles it: a rule or screen entry for the
-  loop, its four modes and mode 4's draw of one of eight vectors, with the script requests that
-  run it, or an existing entry revised to take it. Tried: split from Q-RNG-001. FND-RNG-021 reads
-  the loop and its draw, FND-RNG-022 the script wrapper's argument widths and FND-RNG-027 the 44
-  shipped instructions that issue request 27. Blocks: slices 2-7.
 - Q-RNG-017. RULE-RNG-001: Which rule entries take the dice of overlay 179 `+1373`'s effect
   switch (FND-RNG-034), the tests and formula FND-RNG-035 reads and the per-round effects of
   FND-RNG-036, and what do the `DATA`

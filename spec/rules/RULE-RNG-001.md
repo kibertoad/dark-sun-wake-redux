@@ -7,7 +7,7 @@ superseded_by: []
 evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-030, FND-RNG-031, FND-RNG-032, FND-RNG-034, FND-RNG-035, FND-RNG-036, FND-RNG-037]
 conflicting: []
 split_with: []
-related: []
+related: [RULE-VIDEO-005]
 ---
 
 ## Summary
@@ -54,8 +54,8 @@ d20 in the hit routine's gates, a d100 under a class level in a check routine, d
 summoned creature and the 4d20 pool of `DATA` 71, whose rule entries remain Q-RNG-018. That reads
 every site of the direct-call census; calls not made directly remain Q-RNG-008.
 
-Overlay 204's entry runs, and reseeds, each time a script issues request 27 of instruction
-`0x22`; 44 shipped instructions do, in 21 `GPL` resources (FND-RNG-027). No shipped script uses
+Overlay 204's entry, RULE-VIDEO-005's display offset loop, runs, and reseeds, each time a script
+issues request 27 of instruction `0x22`; 44 shipped instructions do, in 21 `GPL` resources (FND-RNG-027). No shipped script uses
 instruction `0x59`, so FND-RNG-024's d20 threshold test does not draw in the shipped game
 (FND-RNG-027).
 
@@ -163,7 +163,7 @@ None known.
   remain separate (Q-RNG-003). The second root's local reseeding and
   conditional draw loop, and its script wrapper widths, are recorded in
   FND-RNG-021..022, and the shipped scripts that issue it in FND-RNG-027.
-- The rule entry for overlay 204 +00E1's draw (FND-RNG-021, Q-RNG-016), the rule entries for the routines FND-RNG-034..036 read (Q-RNG-017) and for overlay 197's ten `roll_sum` draws (FND-RNG-037, Q-RNG-018), the events that reach overlay 206's
+- The rule entries for the routines FND-RNG-034..036 read (Q-RNG-017) and for overlay 197's ten `roll_sum` draws (FND-RNG-037, Q-RNG-018), the events that reach overlay 206's
   dissolve and cry draws and the dissolve's rule entry (FND-RNG-030, Q-RNG-014), and the rules of
   overlay 173's fight set-up, target pick and removal drop draws (FND-RNG-031, Q-RNG-015). Recovered `random_mod`
   uses include `chance_in_ten`, the table selection in FND-RNG-007 and the music selector of

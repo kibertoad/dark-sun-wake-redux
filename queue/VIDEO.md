@@ -1,6 +1,6 @@
 # VIDEO
 
-Next ID: Q-VIDEO-003
+Next ID: Q-VIDEO-004
 
 ## Static
 
@@ -20,6 +20,11 @@ Next ID: Q-VIDEO-003
   `4E28:0005` and `DS:6298`, and what `DS:14E5` is for. Tried: the cinematic routine, its two
   callers and the region copier (FND-VIDEO-004, FND-VIDEO-010, FND-VIDEO-007), which show how a
   cinematic plays but not which scripts ask for one. Blocks: slice 7.
+- Q-VIDEO-003. RULE-VIDEO-005: When does the game call the display offset loop directly from
+  overlay 201? Settles it: the conditions and callers that reach overlay 201 `+075F` and `+0810`,
+  with the result test that can repeat the first call, read from their routines' entries.
+  Tried: FND-RNG-022 qualifies the two calls and their arguments (magnitude 2, mode 4, count 1)
+  without the upstream branches. Blocks: slices 2-7.
 
 ## Emulated call
 
