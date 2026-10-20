@@ -4,7 +4,7 @@ title: Script request 27 reseeds the generator and moves the display offset for 
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-021, FND-RNG-022, FND-RNG-027, FND-TIME-004, FND-PARTY-122, FND-RNG-009, FND-RNG-014]
+evidence: [FND-RNG-021, FND-RNG-022, FND-RNG-027, FND-TIME-004, FND-PARTY-122, FND-RNG-009, FND-RNG-014, FND-RNG-050]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-TIME-001]
@@ -26,7 +26,12 @@ step. Mode 4 is the only mode that draws, once for each step that starts with bo
 shipped `GPL` resources issue it, 42 of them with literal arguments (FND-RNG-027). The game also
 calls `offset_loop` directly with magnitude 4, mode 4 and count 4 in the cast routine when the
 `DATA` number is 293, and with magnitude 2, mode 4 and count 1 at two places in overlay 201
-(FND-RNG-022).
+(FND-RNG-022). Both are in overlay 201 `+05D5`, which overlay 206 `+0E1E` runs, in place of the
+cry, for a removed combatant of state byte 2 whose word `+0x1B` has the absolute value 430; it has
+no other caller. With `sound_on` and `digital_sound_on` not 0 and its first picture loaded, it plays
+sound 230 and calls `offset_loop` each time `fn_4611_0051` reports the sample still playing,
+testing before each call; with `sound_on` not 0 it plays sound 8 and calls `offset_loop` once at
+frame 7 of its second picture, when that picture loads and has 8 frames or more (FND-RNG-050).
 
 ## Parameters
 
@@ -136,5 +141,6 @@ None known.
   registers after polling a status bit, so the visible movement and how long each step lasts
   depend on the hardware (FND-RNG-021). (No item: no run possible; a capture of the original
   during one of the scripts that issue request 27 would confirm it.)
-- Which conditions reach the direct calls in overlay 201 (FND-RNG-022, Q-VIDEO-003).
+- Which game events put a combatant whose word `+0x1B` is 430 on overlay 173's removal list, and
+  so run the overlay 201 calls (FND-RNG-050, Q-RNG-014).
 - How `clock_word` is formed from the date and time (FND-RNG-009, FND-RNG-014, Q-RNG-012).

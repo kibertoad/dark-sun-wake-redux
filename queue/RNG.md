@@ -1,20 +1,32 @@
 # RNG
 
-Next ID: Q-RNG-022
+Next ID: Q-RNG-023
 
 ## Static
 
-- Q-RNG-014. RULE-RNG-001, RULE-SOUND-004, RULE-VIDEO-006: Which game events reach overlay 206's
+- Q-RNG-014. RULE-RNG-001, RULE-SOUND-004, RULE-VIDEO-006, RULE-VIDEO-005: Which game events reach overlay 206's
   cry choice and its dissolve of a removed combatant? Settles it: the conditions under which the
   callers FND-RNG-043 lists reach overlay 179 `+2A05` (the flag 0 cry, when the word at `DS:0DAB`
   is 1), overlay 173 `+22C4` (the damage that queues a slot) and overlay 173 `+24C7` (which empties
-  the removal list into `+0E1E`); whether `+0E1E`'s calls other than `+151E` and overlay 173
-  `+3136` draw; and any computed or bulk writer of the voice tables at `DS:290A..291E`. Tried:
-  split from Q-RNG-001 and Q-RNG-013. FND-RNG-030 reads `+1257` and `+151E` and the two calls in
-  `+0E1E`, and FND-PARTY-140 reads `+0E1E`'s branch for party slots. RULE-SOUND-004 takes the cry
-  choice. Tried: FND-RNG-043 replaces FND-RNG-030 with the unload placed before the dissolve, and
-  reads the one caller of each of `+0B81` and `+0E1E`, the removal list and `+22C4`'s branches
-  that fill it; RULE-VIDEO-006 takes the dissolve. Blocks: slices 2-7.
+  the removal list into `+0E1E`). Tried: split from Q-RNG-001 and Q-RNG-013. FND-RNG-030 reads
+  `+1257` and `+151E` and the two calls in `+0E1E`, and FND-PARTY-140 reads `+0E1E`'s branch for
+  party slots. RULE-SOUND-004 takes the cry choice. Tried: FND-RNG-043 replaces FND-RNG-030 with
+  the unload placed before the dissolve, and reads the one caller of each of `+0B81` and `+0E1E`,
+  the removal list and `+22C4`'s branches that fill it; RULE-VIDEO-006 takes the dissolve. Tried:
+  FND-RNG-050 reads every call in `+0E1E`: six callees make no draw and overlay 201 `+05D5`, run
+  for a combatant whose word `+0x1B` is 430, reseeds and draws through RULE-VIDEO-005's loop; the
+  five callees that reach draws only through long routes moved to Q-RNG-022 and the voice tables'
+  writers to Q-SOUND-009. Blocks: slices 2-7.
+- Q-RNG-022. RULE-RNG-001: Do `1695:02E7`, overlay 206 `+0A4E`, overlay 197 `+30ED`, the unload
+  `31E0:05BB` and `2C5F:0139` draw or reseed when overlay 206 `+0E1E` calls them, and do the
+  calls of overlay 201 `+05D5` other than its two of overlay 204 `+0000`? Settles it: for each
+  route FND-RNG-050 lists from these callees to the generator, `roll_sum`, `random_between` or the
+  seed setter (through the movement routine `2D40:10AE` and the attack routine overlay 173
+  `+1CC1`, overlay 193 `+0DC7`, `+166F` and `+1DB0`, the script handler `172C:170B`, or `+0E1E`
+  itself), the conditions along it read from the callee's entry, or a walk with those conditions
+  declared that reaches no target. Tried: split from Q-RNG-014. FND-RNG-050's per-callee walks
+  reach the targets from these five starts with two unresolved table jumps in segment `2707`, and
+  find no draw in the other six callees. Blocks: slices 2-7.
 - Q-RNG-009. RULE-RNG-001: Which rule do the six `random_between` sites of overlay 179's
   paired-coordinate samplers serve, and with which inputs? Settles it: overlay 193 `+0617`'s
   callers (the near call at `+03B5` and trampoline `573B:008E`), the source record and the 18-byte
