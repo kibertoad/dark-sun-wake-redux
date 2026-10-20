@@ -4,10 +4,9 @@ Next ID: Q-RNG-018
 
 ## Static
 
-- Q-RNG-013. RULE-RNG-001: Which rule does each of the 20 `roll_sum` sites that FND-RNG-028
-  lists as not described and FND-RNG-030, FND-RNG-034 and FND-RNG-035 do not read serve, with
-  which count and sides, and how does each caller read the returned total? Settles it: for each
-  site in overlays 195 and 197 that FND-RNG-028 lists, a decode from an established entry showing it is an
+- Q-RNG-013. RULE-RNG-001: Which rule does each of the 10 `roll_sum` sites of overlay 197 that
+  FND-RNG-028 lists as not described serve, with which count and sides, and how does each caller
+  read the returned total? Settles it: for each of those sites, a decode from an established entry showing it is an
   instruction, its two arguments' sources, the width and signedness at which the caller tests
   or stores the total, and the rule it belongs to. Tried: split from Q-RNG-001. FND-RNG-005 and
   FND-RNG-013 read the helper; FND-RNG-028 lists the sites, and FND-PARTY-071, FND-PARTY-074,
@@ -15,7 +14,8 @@ Next ID: Q-RNG-018
   describe the ten others. FND-RNG-030 qualifies overlay 206's four, the cry choice (moved to
   Q-RNG-014). FND-RNG-034 qualifies overlay 179's nineteen, the dice of the hit routine's effect
   switch (rule entries moved to Q-RNG-017). FND-RNG-035 qualifies the seven of overlays 191, 193,
-  198, 204 and 211 (rule entries moved to Q-RNG-017). Blocks: slices 2-7.
+  198, 204 and 211, and FND-RNG-036 the ten of overlay 195 (rule entries moved to Q-RNG-017).
+  Blocks: slices 2-7.
 - Q-RNG-014. RULE-RNG-001: Which game events reach overlay 206's cry choice and its dissolve of a
   removed combatant, and which rules describe them? Settles it: the callers of overlay 206
   `+0B81` (the cry with flag 0) and `+0E1E` (the cry with flag 1 and the dissolve) with the
@@ -141,18 +141,21 @@ Next ID: Q-RNG-018
   the loop and its draw, FND-RNG-022 the script wrapper's argument widths and FND-RNG-027 the 44
   shipped instructions that issue request 27. Blocks: slices 2-7.
 - Q-RNG-017. RULE-RNG-001: Which rule entries take the dice of overlay 179 `+1373`'s effect
-  switch (FND-RNG-034) and the tests and formula FND-RNG-035 reads, and what do the `DATA`
+  switch (FND-RNG-034), the tests and formula FND-RNG-035 reads and the per-round effects of
+  FND-RNG-036, and what do the `DATA`
   numbers, the arguments `a` and `g`, and the callees that take the totals stand for? Settles it:
   rule entries, new or revised, for the healing, damage, duration, dispel, death, raising and
   reincarnation cases with their dice, for overlay 191's item tests, overlay 193 `+1F88`'s `DATA`
   dice formula, overlay 198 `+041D`'s spell-use test, overlay 204 `+214E`'s saving throw and
-  overlay 211 `+1E40`'s turning test, with the callers of `+214E`; the names or
+  overlay 211 `+1E40`'s turning test, with the callers of `+214E`, and for overlay 195's confusion
+  table, d100 test and per-round effect damage; the names or
   uses of the 22 `DATA` numbers; the writers of `+0D2F`'s byte arguments at `bp+0x1C` and
   `bp+0x1E`; and readings of overlay 197 `+2D05`, `+2E40` and `+2EC0`, overlay 177 `+0CB3` and
   overlay 193 `+1A2D`. Tried: split from Q-RNG-013. FND-RNG-034 reads the nineteen sites and the
   cases that reach them; FND-PARTY-096, FND-PARTY-099 and FND-PARTY-112 read `+1373`'s table, the
   saving throw and the gates before it; FND-RNG-035 reads the seven routines of overlays 191,
-  193, 198, 204 and 211 and their direct callers. Blocks: slices 2-7.
+  193, 198, 204 and 211 and their direct callers, and FND-RNG-036 overlay 195 `+000E`, `+00D1`
+  and `+152F`. Blocks: slices 2-7.
 
 ## Emulated call
 

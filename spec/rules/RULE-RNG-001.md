@@ -4,7 +4,7 @@ title: The game's random number generator and its reductions
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-030, FND-RNG-031, FND-RNG-032, FND-RNG-034, FND-RNG-035]
+evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-030, FND-RNG-031, FND-RNG-032, FND-RNG-034, FND-RNG-035, FND-RNG-036]
 conflicting: []
 split_with: []
 related: []
@@ -45,8 +45,10 @@ the hit routine applies them, which RULE-COMBAT-010 takes. FND-RNG-034 reads ove
 nineteen `roll_sum` sites, the dice of the hit routine's per-`DATA` effects, whose rule entries
 remain Q-RNG-017. FND-RNG-035 reads seven more, in overlays 191, 193, 198, 204 and 211: three
 d20 item tests, a `DATA` record's dice formula by level, a one-in-four spell-use test, a copy of
-the saving throw roll and a d20 turning test, whose rule entries also remain Q-RNG-017. The other
-20 `roll_sum` sites (Q-RNG-013) still need qualification and rule mapping, and calls not made directly remain
+the saving throw roll and a d20 turning test, and FND-RNG-036 overlay 195's ten: a d10 confusion
+table, a side roll, a d100 test and the dice of per-round effect damage; their rule entries also
+remain Q-RNG-017. Overlay 197's 10 `roll_sum` sites (Q-RNG-013) still need qualification and rule
+mapping, and calls not made directly remain
 Q-RNG-008.
 
 Overlay 204's entry runs, and reseeds, each time a script issues request 27 of instruction
@@ -158,7 +160,7 @@ None known.
   remain separate (Q-RNG-003). The second root's local reseeding and
   conditional draw loop, and its script wrapper widths, are recorded in
   FND-RNG-021..022, and the shipped scripts that issue it in FND-RNG-027.
-- The rule entry for overlay 204 +00E1's draw (FND-RNG-021, Q-RNG-016), the rule and draw order of the 20 `roll_sum` sites (Q-RNG-013) that FND-RNG-028..035 leave undescribed, the rule entries for overlay 179's effect dice and FND-RNG-035's routines (FND-RNG-034, FND-RNG-035, Q-RNG-017), the events that reach overlay 206's
+- The rule entry for overlay 204 +00E1's draw (FND-RNG-021, Q-RNG-016), the rule and draw order of overlay 197's 10 `roll_sum` sites (Q-RNG-013) that FND-RNG-028..036 leave undescribed, the rule entries for the routines FND-RNG-034..036 read (Q-RNG-017), the events that reach overlay 206's
   dissolve and cry draws (FND-RNG-030, Q-RNG-014), and the rules of overlay 173's draws
   (FND-RNG-031, Q-RNG-015). Recovered `random_mod`
   uses include `chance_in_ten`, the table selection in FND-RNG-007 and the music selector of
