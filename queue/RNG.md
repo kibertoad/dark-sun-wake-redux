@@ -15,12 +15,6 @@ Next ID: Q-RNG-022
   choice. Tried: FND-RNG-043 replaces FND-RNG-030 with the unload placed before the dissolve, and
   reads the one caller of each of `+0B81` and `+0E1E`, the removal list and `+22C4`'s branches
   that fill it; RULE-VIDEO-006 takes the dissolve. Blocks: slices 2-7.
-- Q-RNG-008. RULE-RNG-001: Can the generator, a helper or the seed setter be reached through a
-  stored far pointer, a computed call or a segment alias? Settles it: the words of the file equal
-  to each routine's offset with a relocated or fixed-up segment, the computed call sites whose
-  targets can include those routines, and the segment aliases on the admitted paths. Tried: split
-  from Q-RNG-001 and Q-RNG-003. FND-RNG-001, FND-RNG-002 and FND-RNG-009 search direct calls only
-  and list computed transfers as excluded. Blocks: slices 2-7.
 - Q-RNG-009. RULE-RNG-001: Which rules do the eleven `random_between` sites of overlays 176 and
   179 serve, and with which inputs? Settles it: the callers of overlay 176's psionic action and
   resistance checks and of overlay 179's paired-coordinate samplers (through the overlay 193

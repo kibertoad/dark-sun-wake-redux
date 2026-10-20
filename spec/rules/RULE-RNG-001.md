@@ -4,7 +4,7 @@ title: The game's random number generator and its reductions
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-032, FND-RNG-044, FND-RNG-035, FND-RNG-039, FND-RNG-040, FND-RNG-041, FND-RNG-043]
+evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-032, FND-RNG-044, FND-RNG-035, FND-RNG-039, FND-RNG-040, FND-RNG-041, FND-RNG-043, FND-RNG-045]
 conflicting: []
 split_with: []
 related: [RULE-VIDEO-005, RULE-MAGIC-005, RULE-MAGIC-006, RULE-AI-003, RULE-COMBAT-012, RULE-COMBAT-013, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009, RULE-MAGIC-007, RULE-MAGIC-008, RULE-MAGIC-009, RULE-MAGIC-010, RULE-MAGIC-011, RULE-MAGIC-012, RULE-MAGIC-013]
@@ -57,7 +57,9 @@ d6, a d100, a 2d6 and a d20 in the hit routine's gates, which RULE-MAGIC-007 to 
 take, a d100 under the preserver level in a check routine, which RULE-MAGIC-011 takes, d4 and d12
 picks of a summoned creature, which RULE-MAGIC-012 takes, and the 4d20 pool of `DATA` 71, which
 RULE-MAGIC-013 takes. That reads
-every site of the direct-call census; calls not made directly remain Q-RNG-008.
+every site of the direct-call census. No stored far pointer, segment alias or declared computed
+transfer names the generator, the seed setter or a reducer (FND-RNG-045), so those sites are all
+of their calls.
 
 Overlay 204's entry, RULE-VIDEO-005's display offset loop, runs, and reseeds, each time a script
 issues request 27 of instruction `0x22`; 44 shipped instructions do, in 21 `GPL` resources (FND-RNG-027). No shipped script uses
@@ -174,8 +176,6 @@ None known.
   RULE-SOUND-003 (FND-SOUND-012).
   FND-PARTY-099 recovers an effect-saving caller of `roll_sum(1, 20)`; the earlier statement
   that `roll_sum` had no recovered caller was stale.
-- Calls of the generator, a helper or the seed setter through a stored far pointer, a computed
-  call or a segment alias (FND-RNG-001, FND-RNG-002, Q-RNG-008).
 - The inputs and rules of the eleven `random_between` sites: FND-RNG-025 reads five in overlay
   176's psionic action and resistance checks, including conditional and equal-bound draw paths,
   and FND-RNG-026 six in overlay 179's coordinate samplers (Q-RNG-009).
