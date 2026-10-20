@@ -4,7 +4,7 @@ title: Script request 27 reseeds the generator and moves the display offset for 
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-021, FND-RNG-022, FND-RNG-027, FND-TIME-004, FND-PARTY-122, FND-RNG-009, FND-RNG-014, FND-RNG-050, FND-RNG-053, FND-RNG-055]
+evidence: [FND-RNG-021, FND-RNG-022, FND-RNG-027, FND-TIME-004, FND-PARTY-122, FND-RNG-009, FND-RNG-014, FND-RNG-050, FND-RNG-053, FND-RNG-055, FND-RNG-057]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-TIME-001]
@@ -146,7 +146,8 @@ None known.
   during one of the scripts that issue request 27 would confirm it.)
 - Which game events put a combatant whose word `+0x1B` is 430 on overlay 173's removal list, and
   so run the overlay 201 calls (FND-RNG-050, Q-RNG-014).
-- How `clock_word` is formed from the date and time (FND-RNG-009, FND-RNG-014, Q-RNG-012).
+- Which date and time the DOS services return to the clock helper, whose conversion of them is
+  `clock_word` (FND-RNG-009, FND-RNG-014, FND-RNG-057, Q-RNG-006).
 - Which combatants have special attack 6 or 13, whose special attack casts `DATA` 293 with the
   cast routine's byte `bp+0x1A` set and so runs the loop from a cast, and whether the party's
   target cursor can pass 293 (FND-RNG-053, FND-RNG-055, Q-RNG-003).

@@ -48,13 +48,6 @@ Next ID: Q-RNG-024
   `DS` in the seed routines or their callers. Tried: FND-RNG-056's path walk of all 255 `DS`
   writers finds 24 resident routines that can return with `DS` changed and none in overlays, and
   `DS` equal to `SS` at the call of the main routine. Blocks: reproducible seeding.
-- Q-RNG-012. RULE-RNG-001, RULE-VIDEO-005: Which date and time values does each caller of the clock conversion
-  pass, and in which near buffers? Settles it: on each admitted caller path, the indexed date and
-  time fields the conversion reads, their ranges, and the buffers' segment identity. Tried: split
-  from Q-RNG-004. FND-RNG-009 identifies the conversion chain, FND-RNG-014 measures one startup
-  input and return, FND-RNG-015 records the buffer access widths and FND-RNG-023 the date-before-
-  time sampling without a retry; the other callers' inputs remain. Blocks: complete reproducible
-  seed-source semantics.
 - Q-RNG-005. RULE-RNG-001: Which paths initialize, read or change the clock
   conversion's global/table storage, and does each access retain its declared
   identity? Settles it: reached reader/writer and alias coverage for the
@@ -80,7 +73,7 @@ Next ID: Q-RNG-024
   admitted case; other writers, full lifetime/allocator/source admission
   and other paths remain. Blocks: complete seed-source reading.
 
-- Q-RNG-006. RULE-RNG-001: Does the admitted pinned runtime route the clock
+- Q-RNG-006. RULE-RNG-001, RULE-VIDEO-005: Does the admitted pinned runtime route the clock
   requests through the reviewed date/time handlers with the required storage
   and register identity? Settles it: source-to-release correspondence,
   installed INT 21 routing and guest-hook admission, nonpaged real-mode
