@@ -4,17 +4,7 @@ Next ID: Q-EXE-032
 
 ## Static
 
-- Q-EXE-029. FND-EXE-595: Which rows or body ranges must the installed DSUN.EXE inventory gain
-  for the 19,117 instructions of FND-RNG-058's walk that lie outside every range (4,862 in 85
-  resident routines, 14,255 in 111 overlay routines), all in routines that start a row? Settles
-  it: the transfers that reach those instructions named for each routine, given to the Ghidra
-  views as committed procedure inputs (such as the computed-transfer tables the walk's query
-  declares), and an inventory restaged through the join procedure in `docs/EVIDENCE-TOOLS.md`
-  with `walk_inventory_coverage.py` reporting no instruction outside its ranges, or each one left
-  with a finding for why. Tried: FND-EXE-595 restaged the inventory with a row at every walk
-  routine but the 15 one-byte `iret` targets of FND-EXE-594 and counted the walk again; the
-  count fell from 27,443 to 19,117. Blocks: ownership and coverage of the overlay manager,
-  segment `172C` and the timer handler `4842:040C` in the closure assessment.
+None.
 
 ## Emulated call
 

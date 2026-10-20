@@ -1,10 +1,11 @@
 {
  "build": "BLD-GOG-EN-1.1",
  "file": "DSUN.EXE",
- "about": "Declared function entries ApplyDeclaredEntries.java applies before the DSUN.EXE views are exported. resident and overlay list the starts of FND-RNG-058's walk routines that start no row of the inventory FND-EXE-593 checked (inventory_boundaries.py --walk, kinds none and inside); overlay entries are shipped-file offsets. remove lists starts that are not routine entries, with the function, if any, whose decode holds their bytes and the listing range to decode again from that function. notRows lists walk routines that get no row, with the reason.",
+ "about": "Declared function entries ApplyDeclaredEntries.java applies before the DSUN.EXE views are exported. resident and overlay list the starts of FND-RNG-058's walk routines that start no row of the inventory FND-EXE-593 checked (inventory_boundaries.py --walk, kinds none and inside); overlay entries are shipped-file offsets. remove lists starts that are not routine entries, with the function, if any, whose decode holds their bytes and the listing range to decode again from that function; resident starts are segment:offset and apply to the resident view, overlay starts are file offsets and apply to the overlay view. notRows lists walk routines that get no row, with the reason.",
  "evidence": [
   "FND-EXE-593",
-  "FND-RNG-061"
+  "FND-RNG-061",
+  "FND-EXE-597"
  ],
  "remove": [
   {
@@ -27,6 +28,69 @@
     "1BF3:5334"
    ],
    "clear": "1BF3:5334..1BF3:5814"
+  },
+  {
+   "starts": [
+    "172C:0350"
+   ],
+   "owner": "172C:031F",
+   "clear": "172C:034E..172C:0388"
+  },
+  {
+   "starts": [
+    "172C:1866"
+   ],
+   "owner": "172C:1804",
+   "clear": "172C:1862..172C:18A5"
+  },
+  {
+   "starts": [
+    "2D40:0ED1"
+   ],
+   "owner": "2D40:0EB4",
+   "clear": "2D40:0ECE..2D40:0EF1"
+  },
+  {
+   "starts": [
+    "3EBE:001F"
+   ],
+   "owner": "3EBE:0008",
+   "clear": "3EBE:001C..3EBE:0427"
+  },
+  {
+   "starts": [
+    "0x00066186"
+   ],
+   "owner": "0x00065653",
+   "clear": "0x00066184..0x0006618F"
+  },
+  {
+   "starts": [
+    "0x0006C6D8"
+   ],
+   "owner": "0x0006C611",
+   "clear": "0x0006C6D6..0x0006C753"
+  },
+  {
+   "starts": [
+    "0x0008D508"
+   ],
+   "owner": "0x0008D4E9",
+   "clear": "0x0008D507..0x0008D571"
+  },
+  {
+   "starts": [
+    "0x00092A03"
+   ],
+   "owner": "0x000929DA",
+   "clear": "0x00092A02..0x00092A73"
+  },
+  {
+   "starts": [
+    "0x00094804"
+   ],
+   "owner": "0x000947FC",
+   "clear": "0x00094802..0x000948B0"
   }
  ],
  "resident": [

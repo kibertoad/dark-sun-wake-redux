@@ -1,0 +1,3822 @@
+{
+ "build": "BLD-GOG-EN-1.1",
+ "file": "DSUN.EXE",
+ "about": "Declared flows ApplyDeclaredFlows.java applies to both DSUN.EXE views after the declared entries. jumps are the table jumps FND-RNG-058's walk resolves, with the bound the walk reads before each and the distinct targets of the table's rows; decode lists the runs of walk instructions outside every range of the inventory FND-EXE-595 staged, with the walk routine that decoded each; returns lists functions the views mark as not returning that return, and fallThroughs instructions whose next instruction runs after them, each with the reason. walk_declared_flows.py writes jumps and decode; returns and fallThroughs are written by hand. Resident addresses are segment:offset with the load image at segment 0x1000, overlay addresses shipped-file offsets.",
+ "evidence": [
+  "FND-RNG-058",
+  "FND-EXE-595",
+  "FND-EXE-597"
+ ],
+ "returns": [
+  {
+   "function": "1000:3F5A",
+   "reason": "its one path runs to the retf at 1000:3F7D; the jae at 1000:3F6F only skips the movsb"
+  }
+ ],
+ "fallThroughs": [
+  {
+   "at": "4842:04DA",
+   "reason": "the int3 at 4842:04DA returns to the jmp at 4842:04DB, which loops back to the sti at 4842:04D9"
+  }
+ ],
+ "jumps": [
+  {
+   "site": "1000:0ABC",
+   "table": {
+    "start": "1000:0E77",
+    "count": 24,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x17 and jbe before the jump",
+   "targets": [
+    "1000:0AC4",
+    "1000:0ACF",
+    "1000:0ADA",
+    "1000:0AEA",
+    "1000:0AF0",
+    "1000:0AF8",
+    "1000:0B0F",
+    "1000:0B3D",
+    "1000:0B4A",
+    "1000:0B88",
+    "1000:0B8F",
+    "1000:0B94",
+    "1000:0B9B",
+    "1000:0B9F",
+    "1000:0BA3",
+    "1000:0BBD",
+    "1000:0C1C",
+    "1000:0C6C",
+    "1000:0C8C",
+    "1000:0CC9",
+    "1000:0E0B",
+    "1000:0E47"
+   ]
+  },
+  {
+   "site": "1000:0FF4",
+   "table": {
+    "start": "1000:10DA",
+    "count": 7,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x6 and ja before the jump",
+   "targets": [
+    "1000:0FF9",
+    "1000:1002",
+    "1000:1011",
+    "1000:101B",
+    "1000:1020"
+   ]
+  },
+  {
+   "site": "1425:0513",
+   "table": {
+    "start": "1425:0589",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x3 and ja before the jump",
+   "targets": [
+    "1425:0518",
+    "1425:0532",
+    "1425:0547",
+    "1425:0563"
+   ]
+  },
+  {
+   "site": "1425:1431",
+   "table": {
+    "start": "1425:167A",
+    "count": 5,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x4 and ja before the jump",
+   "targets": [
+    "1425:1436",
+    "1425:1439"
+   ]
+  },
+  {
+   "site": "172C:0127",
+   "table": {
+    "start": "172C:0166",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "value scan of 4 words at CS:0x15e, targets after them",
+   "targets": [
+    "172C:012B",
+    "172C:0130",
+    "172C:0135",
+    "172C:013A"
+   ]
+  },
+  {
+   "site": "172C:08CF",
+   "table": {
+    "start": "172C:0A55",
+    "count": 10,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x9 and ja before the jump",
+   "targets": [
+    "172C:08D4",
+    "172C:08D6",
+    "172C:08E1"
+   ]
+  },
+  {
+   "site": "172C:09C3",
+   "table": {
+    "start": "172C:0A47",
+    "count": 7,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x6 and ja before the jump",
+   "targets": [
+    "172C:09C8",
+    "172C:09DC",
+    "172C:09E8",
+    "172C:09F2"
+   ]
+  },
+  {
+   "site": "172C:0B98",
+   "table": {
+    "start": "172C:0C30",
+    "count": 2,
+    "stride": 2
+   },
+   "bound": "value scan of 2 double words at CS:0xc28, targets after them",
+   "targets": [
+    "172C:0BB6",
+    "172C:0C24"
+   ]
+  },
+  {
+   "site": "172C:0F23",
+   "table": {
+    "start": "172C:0F71",
+    "count": 2,
+    "stride": 2
+   },
+   "bound": "value scan of 2 double words at CS:0xf69, targets after them",
+   "targets": [
+    "172C:0F3C",
+    "172C:0F65"
+   ]
+  },
+  {
+   "site": "172C:107D",
+   "table": {
+    "start": "172C:1118",
+    "count": 2,
+    "stride": 2
+   },
+   "bound": "value scan of 2 double words at CS:0x1110, targets after them",
+   "targets": [
+    "172C:10AD",
+    "172C:110C"
+   ]
+  },
+  {
+   "site": "172C:1FB0",
+   "table": {
+    "start": "172C:209A",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x3 and jbe before the jump",
+   "targets": [
+    "172C:1FB5",
+    "172C:1FD3",
+    "172C:1FF6",
+    "172C:205F"
+   ]
+  },
+  {
+   "site": "172C:2175",
+   "table": {
+    "start": "172C:248E",
+    "count": 9,
+    "stride": 2
+   },
+   "bound": "value scan of 9 double words at CS:0x246a, targets after them",
+   "targets": [
+    "172C:2179",
+    "172C:21FB",
+    "172C:227D",
+    "172C:22C5",
+    "172C:230D",
+    "172C:2356",
+    "172C:239F",
+    "172C:242A",
+    "172C:2441"
+   ]
+  },
+  {
+   "site": "172C:24B7",
+   "table": {
+    "start": "172C:25BC",
+    "count": 13,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0xc and jbe before the jump",
+   "targets": [
+    "172C:24BC",
+    "172C:24D8",
+    "172C:24F4",
+    "172C:250D",
+    "172C:2526",
+    "172C:256B",
+    "172C:25B9"
+   ]
+  },
+  {
+   "site": "172C:29F8",
+   "table": {
+    "start": "172C:2A83",
+    "count": 6,
+    "stride": 2
+   },
+   "bound": "value scan of 6 double words at CS:0x2a6b, targets after them",
+   "targets": [
+    "172C:29FC",
+    "172C:2A07",
+    "172C:2A12",
+    "172C:2A1D",
+    "172C:2A28",
+    "172C:2A33"
+   ]
+  },
+  {
+   "site": "172C:3327",
+   "table": {
+    "start": "172C:35A3",
+    "count": 99,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x62 and jbe before the jump",
+   "targets": [
+    "172C:332C",
+    "172C:332E",
+    "172C:3351",
+    "172C:336C",
+    "172C:338C",
+    "172C:3396",
+    "172C:339B",
+    "172C:33A8",
+    "172C:33B2",
+    "172C:33CD",
+    "172C:33E2",
+    "172C:3400",
+    "172C:3416"
+   ]
+  },
+  {
+   "site": "172C:3451",
+   "table": {
+    "start": "172C:3585",
+    "count": 15,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0xe and jbe before the jump",
+   "targets": [
+    "172C:3456",
+    "172C:3461",
+    "172C:346C",
+    "172C:3478",
+    "172C:3485",
+    "172C:349A",
+    "172C:34AC",
+    "172C:34BA",
+    "172C:34C8",
+    "172C:34D6",
+    "172C:34E4",
+    "172C:34F2",
+    "172C:3506",
+    "172C:350C",
+    "172C:3516"
+   ]
+  },
+  {
+   "site": "25AF:0458",
+   "table": {
+    "start": "25AF:04BA",
+    "count": 11,
+    "stride": 2
+   },
+   "bound": "value scan of 11 words at CS:0x4a4, targets after them",
+   "targets": [
+    "25AF:045C",
+    "25AF:045F",
+    "25AF:0462"
+   ]
+  },
+  {
+   "site": "25AF:0509",
+   "table": {
+    "start": "25AF:0560",
+    "count": 11,
+    "stride": 2
+   },
+   "bound": "value scan of 11 words at CS:0x54a, targets after them",
+   "targets": [
+    "25AF:050D",
+    "25AF:0510",
+    "25AF:0513"
+   ]
+  },
+  {
+   "site": "277B:0069",
+   "table": {
+    "start": "277B:05A1",
+    "count": 26,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x19 and jbe before the jump",
+   "targets": [
+    "277B:006E",
+    "277B:0076",
+    "277B:007E",
+    "277B:00BD",
+    "277B:00CB",
+    "277B:00E3",
+    "277B:00EB",
+    "277B:010F",
+    "277B:0114",
+    "277B:0126",
+    "277B:012E",
+    "277B:0140",
+    "277B:0160",
+    "277B:0168",
+    "277B:0188",
+    "277B:019A",
+    "277B:01AC",
+    "277B:01D8",
+    "277B:01FA",
+    "277B:021C",
+    "277B:0236"
+   ]
+  },
+  {
+   "site": "27E5:040E",
+   "table": {
+    "start": "27E5:0423",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x3 and ja before the jump",
+   "targets": [
+    "27E5:0413",
+    "27E5:0418",
+    "27E5:041D"
+   ]
+  },
+  {
+   "site": "27E5:0488",
+   "table": {
+    "start": "27E5:0498",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x3 and ja before the jump",
+   "targets": [
+    "27E5:048D",
+    "27E5:0492"
+   ]
+  },
+  {
+   "site": "28C9:008D",
+   "table": {
+    "start": "28C9:01C1",
+    "count": 5,
+    "stride": 2
+   },
+   "bound": "value scan of 5 words at CS:0x1b7, targets after them",
+   "targets": [
+    "28C9:0091",
+    "28C9:00B9",
+    "28C9:00D1",
+    "28C9:00DE",
+    "28C9:01B3"
+   ]
+  },
+  {
+   "site": "28C9:061E",
+   "table": {
+    "start": "28C9:0CF5",
+    "count": 5,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x4 and jbe before the jump",
+   "targets": [
+    "28C9:0623",
+    "28C9:06F4",
+    "28C9:0B90",
+    "28C9:0C81"
+   ]
+  },
+  {
+   "site": "28C9:0C9D",
+   "table": {
+    "start": "28C9:0CEB",
+    "count": 5,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x4 and ja before the jump",
+   "targets": [
+    "28C9:0CA2",
+    "28C9:0CA8",
+    "28C9:0CAE",
+    "28C9:0CB4",
+    "28C9:0CBA"
+   ]
+  },
+  {
+   "site": "28C9:0D71",
+   "table": {
+    "start": "28C9:1231",
+    "count": 24,
+    "stride": 2
+   },
+   "bound": "value scan of 24 words at CS:0x1201, targets after them",
+   "targets": [
+    "28C9:0D75",
+    "28C9:0E0C",
+    "28C9:0E33",
+    "28C9:0E5A",
+    "28C9:0E81",
+    "28C9:0EC5",
+    "28C9:0ECF",
+    "28C9:0ED9",
+    "28C9:0EFF",
+    "28C9:0FDB",
+    "28C9:0FE3",
+    "28C9:1001",
+    "28C9:1006",
+    "28C9:102B",
+    "28C9:10B6",
+    "28C9:10BA",
+    "28C9:10BF",
+    "28C9:10C4",
+    "28C9:10C9",
+    "28C9:10CE",
+    "28C9:10D3",
+    "28C9:10D8",
+    "28C9:1131"
+   ]
+  },
+  {
+   "site": "28C9:128E",
+   "table": {
+    "start": "28C9:1522",
+    "count": 5,
+    "stride": 2
+   },
+   "bound": "value scan of 5 words at CS:0x1518, targets after them",
+   "targets": [
+    "28C9:1295",
+    "28C9:130A",
+    "28C9:14C1",
+    "28C9:1501",
+    "28C9:1508"
+   ]
+  },
+  {
+   "site": "28C9:19E0",
+   "table": {
+    "start": "28C9:1E1B",
+    "count": 19,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x12 and jbe before the jump",
+   "targets": [
+    "28C9:19E5",
+    "28C9:1D81"
+   ]
+  },
+  {
+   "site": "2C5F:0CA2",
+   "table": {
+    "start": "2C5F:0D26",
+    "count": 5,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x4 and ja before the jump",
+   "targets": [
+    "2C5F:0CA7",
+    "2C5F:0CCE",
+    "2C5F:0CDC",
+    "2C5F:0CE1",
+    "2C5F:0D05"
+   ]
+  },
+  {
+   "site": "2D40:00E9",
+   "table": {
+    "start": "2D40:03B9",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x3 and jbe before the jump",
+   "targets": [
+    "2D40:00EE",
+    "2D40:012F",
+    "2D40:018C",
+    "2D40:0200"
+   ]
+  },
+  {
+   "site": "2D40:14B5",
+   "table": {
+    "start": "2D40:1906",
+    "count": 19,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x12 and jbe before the jump",
+   "targets": [
+    "2D40:14BA",
+    "2D40:155D",
+    "2D40:1580",
+    "2D40:1583"
+   ]
+  },
+  {
+   "site": "2D40:1B61",
+   "table": {
+    "start": "2D40:1FDB",
+    "count": 19,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x12 and jbe before the jump",
+   "targets": [
+    "2D40:1B66",
+    "2D40:1BC8",
+    "2D40:1D07"
+   ]
+  },
+  {
+   "site": "2D40:1BE2",
+   "table": {
+    "start": "2D40:1FB5",
+    "count": 19,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x12 and jbe before the jump",
+   "targets": [
+    "2D40:1BE7",
+    "2D40:1C01",
+    "2D40:1C6F",
+    "2D40:1C72",
+    "2D40:1C88",
+    "2D40:1CAA",
+    "2D40:1D07"
+   ]
+  },
+  {
+   "site": "2D40:24B1",
+   "table": {
+    "start": "2D40:27AD",
+    "count": 5,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x4 and jbe before the jump",
+   "targets": [
+    "2D40:24B6",
+    "2D40:251B",
+    "2D40:253B",
+    "2D40:2551",
+    "2D40:27A9"
+   ]
+  },
+  {
+   "site": "2D40:2CA7",
+   "table": {
+    "start": "2D40:2E0A",
+    "count": 5,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x4 and jbe before the jump",
+   "targets": [
+    "2D40:2CAC",
+    "2D40:2D1C",
+    "2D40:2D78",
+    "2D40:2DB2",
+    "2D40:2DDB"
+   ]
+  },
+  {
+   "site": "3150:01D9",
+   "table": {
+    "start": "3150:0691",
+    "count": 14,
+    "stride": 2
+   },
+   "bound": "value scan of 14 words at CS:0x675, targets after them",
+   "targets": [
+    "3150:01DD",
+    "3150:01E4",
+    "3150:01EB",
+    "3150:01FF",
+    "3150:025A",
+    "3150:0332",
+    "3150:03ED",
+    "3150:03FD",
+    "3150:0402",
+    "3150:04DC",
+    "3150:04F5",
+    "3150:0594"
+   ]
+  },
+  {
+   "site": "371D:0091",
+   "table": {
+    "start": "371D:01EF",
+    "count": 5,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x4 and jbe before the jump",
+   "targets": [
+    "371D:0096",
+    "371D:00A8",
+    "371D:00BA",
+    "371D:00EB",
+    "371D:011C"
+   ]
+  },
+  {
+   "site": "371D:0467",
+   "table": {
+    "start": "371D:04A9",
+    "count": 5,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x4 and ja before the jump",
+   "targets": [
+    "371D:046C",
+    "371D:0482",
+    "371D:048D",
+    "371D:0498",
+    "371D:04A4"
+   ]
+  },
+  {
+   "site": "39D1:0076",
+   "table": {
+    "start": "39D1:031E",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "value scan of 4 words at CS:0x316, targets after them",
+   "targets": [
+    "39D1:007A",
+    "39D1:0096"
+   ]
+  },
+  {
+   "site": "39D1:03C1",
+   "table": {
+    "start": "39D1:0404",
+    "count": 10,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x9 and ja before the jump",
+   "targets": [
+    "39D1:03C6",
+    "39D1:03CC",
+    "39D1:03D2",
+    "39D1:03D8",
+    "39D1:03DE",
+    "39D1:03E4",
+    "39D1:03EA",
+    "39D1:03F0",
+    "39D1:03F6",
+    "39D1:03FC"
+   ]
+  },
+  {
+   "site": "3A8E:043C",
+   "table": {
+    "start": "3A8E:0603",
+    "count": 5,
+    "stride": 2
+   },
+   "bound": "value scan of 5 double words at CS:0x5ef, targets after them",
+   "targets": [
+    "3A8E:0440",
+    "3A8E:04B3",
+    "3A8E:0514",
+    "3A8E:0537",
+    "3A8E:0543"
+   ]
+  },
+  {
+   "site": "3A8E:085A",
+   "table": {
+    "start": "3A8E:08F3",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "value scan of 4 double words at CS:0x8e3, targets after them",
+   "targets": [
+    "3A8E:085E",
+    "3A8E:086C",
+    "3A8E:087F",
+    "3A8E:088D"
+   ]
+  },
+  {
+   "site": "3A8E:0B0E",
+   "table": {
+    "start": "3A8E:0C23",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "value scan of 4 double words at CS:0xc13, targets after them",
+   "targets": [
+    "3A8E:0B12",
+    "3A8E:0B28",
+    "3A8E:0B5C",
+    "3A8E:0B78"
+   ]
+  },
+  {
+   "site": "3A8E:0E71",
+   "table": {
+    "start": "3A8E:0F7B",
+    "count": 2,
+    "stride": 2
+   },
+   "bound": "value scan of 2 double words at CS:0xf73, targets after them",
+   "targets": [
+    "3A8E:0E78",
+    "3A8E:0E91"
+   ]
+  },
+  {
+   "site": "3A8E:0FEE",
+   "table": {
+    "start": "3A8E:1044",
+    "count": 2,
+    "stride": 2
+   },
+   "bound": "value scan of 2 double words at CS:0x103c, targets after them",
+   "targets": [
+    "3A8E:0FF4",
+    "3A8E:100C"
+   ]
+  },
+  {
+   "site": "3D72:02FE",
+   "table": {
+    "start": "3D72:0511",
+    "count": 2,
+    "stride": 2
+   },
+   "bound": "value scan of 2 double words at CS:0x509, targets after them",
+   "targets": [
+    "3D72:0302",
+    "3D72:031F"
+   ]
+  },
+  {
+   "site": "3D72:03BA",
+   "table": {
+    "start": "3D72:0501",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "value scan of 4 double words at CS:0x4f1, targets after them",
+   "targets": [
+    "3D72:03C1",
+    "3D72:03D8",
+    "3D72:0404",
+    "3D72:0476"
+   ]
+  },
+  {
+   "site": "3D72:05E1",
+   "table": {
+    "start": "3D72:0631",
+    "count": 2,
+    "stride": 2
+   },
+   "bound": "value scan of 2 double words at CS:0x629, targets after them",
+   "targets": [
+    "3D72:05E5",
+    "3D72:0616"
+   ]
+  },
+  {
+   "site": "3D72:1196",
+   "table": {
+    "start": "3D72:1204",
+    "count": 3,
+    "stride": 2
+   },
+   "bound": "value scan of 3 double words at CS:0x11f8, targets after them",
+   "targets": [
+    "3D72:119A",
+    "3D72:11BA",
+    "3D72:11D1"
+   ]
+  },
+  {
+   "site": "3EBE:077E",
+   "table": {
+    "start": "3EBE:07F3",
+    "count": 6,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x5 and ja before the jump",
+   "targets": [
+    "3EBE:0783",
+    "3EBE:0793",
+    "3EBE:07A3",
+    "3EBE:07AE",
+    "3EBE:07B9",
+    "3EBE:07C3"
+   ]
+  },
+  {
+   "site": "401B:0241",
+   "table": {
+    "start": "401B:03AF",
+    "count": 10,
+    "stride": 2
+   },
+   "bound": "value scan of 10 words at CS:0x39b, targets after them",
+   "targets": [
+    "401B:0245",
+    "401B:0267",
+    "401B:0289",
+    "401B:02AC",
+    "401B:02CF",
+    "401B:02DC",
+    "401B:030B",
+    "401B:0333",
+    "401B:0343",
+    "401B:0363"
+   ]
+  },
+  {
+   "site": "409B:0D7F",
+   "table": {
+    "start": "409B:0FD8",
+    "count": 27,
+    "stride": 2
+   },
+   "bound": "value scan of 27 words at CS:0xfa2, targets after them",
+   "targets": [
+    "409B:0D83",
+    "409B:0DBE",
+    "409B:0DFF",
+    "409B:0E06",
+    "409B:0E1F",
+    "409B:0E21",
+    "409B:0E28",
+    "409B:0E42",
+    "409B:0E7D",
+    "409B:0E89",
+    "409B:0EA5"
+   ]
+  },
+  {
+   "site": "4328:0971",
+   "table": {
+    "start": "4328:0A19",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "value scan of 4 words at CS:0xa11, targets after them",
+   "targets": [
+    "4328:0977",
+    "4328:0983",
+    "4328:09AE",
+    "4328:09D6"
+   ]
+  },
+  {
+   "site": "4420:0028",
+   "table": {
+    "start": "4420:01D8",
+    "count": 16,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0xf and jbe before the jump",
+   "targets": [
+    "4420:002D",
+    "4420:0044",
+    "4420:0065",
+    "4420:0070",
+    "4420:007B",
+    "4420:0086",
+    "4420:0091",
+    "4420:00C1",
+    "4420:00C6",
+    "4420:00CB",
+    "4420:00E3",
+    "4420:00F7",
+    "4420:015E",
+    "4420:01BB",
+    "4420:01D2"
+   ]
+  },
+  {
+   "site": "0x0005860E",
+   "table": {
+    "start": "0x00058B40",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "value scan of 4 words at CS:0x928, targets after them",
+   "targets": [
+    "0x00058615",
+    "0x00058777",
+    "0x00058990",
+    "0x00058A94"
+   ]
+  },
+  {
+   "site": "0x000588A3",
+   "table": {
+    "start": "0x00058B16",
+    "count": 17,
+    "stride": 2
+   },
+   "bound": "value scan of 17 words at CS:0x8e4, targets after them",
+   "targets": [
+    "0x000588A7",
+    "0x000588DD",
+    "0x00058923",
+    "0x00058990",
+    "0x000589E7",
+    "0x00058A94"
+   ]
+  },
+  {
+   "site": "0x000599C0",
+   "table": {
+    "start": "0x000599FD",
+    "count": 7,
+    "stride": 2
+   },
+   "bound": "value scan of 7 words at CS:0x5bf, targets after them",
+   "targets": [
+    "0x000599C4",
+    "0x000599CC",
+    "0x000599D4",
+    "0x000599DC"
+   ]
+  },
+  {
+   "site": "0x0005A09E",
+   "table": {
+    "start": "0x0005A3F5",
+    "count": 5,
+    "stride": 2
+   },
+   "bound": "value scan of 5 words at CS:0xfbb, targets after them",
+   "targets": [
+    "0x0005A0A2",
+    "0x0005A27D",
+    "0x0005A2B5",
+    "0x0005A32B",
+    "0x0005A333"
+   ]
+  },
+  {
+   "site": "0x0005AEF7",
+   "table": {
+    "start": "0x0005B175",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x3 and jbe before the jump",
+   "targets": [
+    "0x0005AEFC",
+    "0x0005AF80",
+    "0x0005AFB0",
+    "0x0005AFE1"
+   ]
+  },
+  {
+   "site": "0x0005B850",
+   "table": {
+    "start": "0x0005B9A8",
+    "count": 8,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x7 and jbe before the jump",
+   "targets": [
+    "0x0005B855",
+    "0x0005B884",
+    "0x0005B89E",
+    "0x0005B8B3",
+    "0x0005B8D7",
+    "0x0005B8FA"
+   ]
+  },
+  {
+   "site": "0x0005E439",
+   "table": {
+    "start": "0x0005E4D7",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x3 and ja before the jump",
+   "targets": [
+    "0x0005E43E"
+   ]
+  },
+  {
+   "site": "0x0005FE6B",
+   "table": {
+    "start": "0x00060330",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "value scan of 4 words at CS:0x748, targets after them",
+   "targets": [
+    "0x0005FE6F",
+    "0x0005FFFC",
+    "0x00060155",
+    "0x0006020A"
+   ]
+  },
+  {
+   "site": "0x0006074F",
+   "table": {
+    "start": "0x000607D9",
+    "count": 6,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x5 and ja before the jump",
+   "targets": [
+    "0x00060754",
+    "0x00060771",
+    "0x0006079E",
+    "0x000607C6",
+    "0x000607CF"
+   ]
+  },
+  {
+   "site": "0x00061EFF",
+   "table": {
+    "start": "0x00062024",
+    "count": 10,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x9 and jbe before the jump",
+   "targets": [
+    "0x00061F04",
+    "0x00061F89"
+   ]
+  },
+  {
+   "site": "0x00062B8A",
+   "table": {
+    "start": "0x00062BDA",
+    "count": 19,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x12 and ja before the jump",
+   "targets": [
+    "0x00062B8F",
+    "0x00062B92",
+    "0x00062B9A",
+    "0x00062B9D",
+    "0x00062BA5",
+    "0x00062BA8",
+    "0x00062BB0",
+    "0x00062BB3",
+    "0x00062BBB",
+    "0x00062BBF"
+   ]
+  },
+  {
+   "site": "0x000637DB",
+   "table": {
+    "start": "0x00063D0F",
+    "count": 6,
+    "stride": 2
+   },
+   "bound": "value scan of 6 words at CS:0xc53, targets after them",
+   "targets": [
+    "0x000637DF",
+    "0x000637E4",
+    "0x000637F7",
+    "0x00063837"
+   ]
+  },
+  {
+   "site": "0x00063A6E",
+   "table": {
+    "start": "0x00063CF3",
+    "count": 8,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x7 and jbe before the jump",
+   "targets": [
+    "0x00063A73",
+    "0x00063BB8",
+    "0x00063C2B",
+    "0x00063C4E",
+    "0x00063CDF"
+   ]
+  },
+  {
+   "site": "0x000656EC",
+   "table": {
+    "start": "0x00066C43",
+    "count": 81,
+    "stride": 2
+   },
+   "bound": "value scan of 81 words at CS:0x28c1, targets after them",
+   "targets": [
+    "0x000656F1",
+    "0x0006570C",
+    "0x0006578E",
+    "0x00065790",
+    "0x0006579E",
+    "0x000657C3",
+    "0x0006580F",
+    "0x0006581D",
+    "0x00065826",
+    "0x0006586C",
+    "0x000658B8",
+    "0x00065938",
+    "0x000659D4",
+    "0x00065A22",
+    "0x00065A51",
+    "0x00065AE7",
+    "0x00065B13",
+    "0x00065B69",
+    "0x00065B7F",
+    "0x00065BCC",
+    "0x00065D02",
+    "0x00065DDA",
+    "0x00065E2C",
+    "0x00065E30",
+    "0x00065E52",
+    "0x00065ECE",
+    "0x00065ED2",
+    "0x00065F07",
+    "0x00065F20",
+    "0x00065F24",
+    "0x00065FC5",
+    "0x0006600D",
+    "0x00066115",
+    "0x00066179",
+    "0x0006618F",
+    "0x000661A0",
+    "0x000661F4",
+    "0x000661FF",
+    "0x0006623B",
+    "0x0006626B",
+    "0x00066272",
+    "0x00066311",
+    "0x00066332",
+    "0x00066340",
+    "0x0006634B",
+    "0x00066449",
+    "0x0006648A",
+    "0x00066493",
+    "0x000664A5",
+    "0x000664C5",
+    "0x000664CA",
+    "0x0006652B",
+    "0x00066574",
+    "0x00066599",
+    "0x000665D5",
+    "0x0006660A",
+    "0x00066643",
+    "0x00066662",
+    "0x000666B7",
+    "0x00066702",
+    "0x000667AD",
+    "0x0006689C",
+    "0x000669DB",
+    "0x000669FA",
+    "0x00066A14",
+    "0x00066A21"
+   ]
+  },
+  {
+   "site": "0x00065C4E",
+   "table": {
+    "start": "0x00066B95",
+    "count": 6,
+    "stride": 2
+   },
+   "bound": "value scan of 6 words at CS:0x28a9, targets after them",
+   "targets": [
+    "0x00065C52",
+    "0x00065C65",
+    "0x00065C78"
+   ]
+  },
+  {
+   "site": "0x000660BA",
+   "table": {
+    "start": "0x00066B75",
+    "count": 10,
+    "stride": 2
+   },
+   "bound": "value scan of 10 words at CS:0x2881, targets after them",
+   "targets": [
+    "0x00066106"
+   ]
+  },
+  {
+   "site": "0x00066156",
+   "table": {
+    "start": "0x00066B4B",
+    "count": 11,
+    "stride": 2
+   },
+   "bound": "value scan of 11 words at CS:0x2855, targets after them",
+   "targets": [
+    "0x0006615A"
+   ]
+  },
+  {
+   "site": "0x00066722",
+   "table": {
+    "start": "0x00066B2D",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "value scan of 4 words at CS:0x2845, targets after them",
+   "targets": [
+    "0x00066726",
+    "0x00066730",
+    "0x0006673A",
+    "0x00066744"
+   ]
+  },
+  {
+   "site": "0x00066A56",
+   "table": {
+    "start": "0x00066B1B",
+    "count": 5,
+    "stride": 2
+   },
+   "bound": "value scan of 5 words at CS:0x2831, targets after them",
+   "targets": [
+    "0x00066A5A",
+    "0x00066A80",
+    "0x00066A84",
+    "0x00066AAF",
+    "0x00066AC3"
+   ]
+  },
+  {
+   "site": "0x000678CF",
+   "table": {
+    "start": "0x000678F8",
+    "count": 5,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x4 and ja before the jump",
+   "targets": [
+    "0x000678D4",
+    "0x000678DC",
+    "0x000678E2",
+    "0x000678E8",
+    "0x000678EE"
+   ]
+  },
+  {
+   "site": "0x00067F3F",
+   "table": {
+    "start": "0x00068314",
+    "count": 14,
+    "stride": 2
+   },
+   "bound": "value scan of 14 words at CS:0x448, targets after them",
+   "targets": [
+    "0x00067F43",
+    "0x00067F89",
+    "0x00068049",
+    "0x0006810E",
+    "0x00068139",
+    "0x00068146",
+    "0x0006814A",
+    "0x0006814E",
+    "0x00068170",
+    "0x000681B2",
+    "0x000681CF",
+    "0x0006822E",
+    "0x00068290",
+    "0x000682A9"
+   ]
+  },
+  {
+   "site": "0x00068C00",
+   "table": {
+    "start": "0x00068DB1",
+    "count": 7,
+    "stride": 2
+   },
+   "bound": "value scan of 7 words at CS:0x553, targets after them",
+   "targets": [
+    "0x00068C04",
+    "0x00068C18",
+    "0x00068C22",
+    "0x00068C2C",
+    "0x00068C3E"
+   ]
+  },
+  {
+   "site": "0x0006A00E",
+   "table": {
+    "start": "0x0006A09C",
+    "count": 5,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x4 and ja before the jump",
+   "targets": [
+    "0x0006A013",
+    "0x0006A02E",
+    "0x0006A044",
+    "0x0006A054",
+    "0x0006A06B"
+   ]
+  },
+  {
+   "site": "0x0006A83B",
+   "table": {
+    "start": "0x0006ABB1",
+    "count": 7,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x6 and jbe before the jump",
+   "targets": [
+    "0x0006A840",
+    "0x0006A84E",
+    "0x0006A8DD",
+    "0x0006A96C",
+    "0x0006A9FB",
+    "0x0006AA8A",
+    "0x0006AB19"
+   ]
+  },
+  {
+   "site": "0x0006B598",
+   "table": {
+    "start": "0x0006B7A1",
+    "count": 6,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x5 and jbe before the jump",
+   "targets": [
+    "0x0006B59D",
+    "0x0006B600",
+    "0x0006B67F",
+    "0x0006B69E"
+   ]
+  },
+  {
+   "site": "0x0006BAC6",
+   "table": {
+    "start": "0x0006BC71",
+    "count": 8,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x7 and jbe before the jump",
+   "targets": [
+    "0x0006BACB",
+    "0x0006BAEB",
+    "0x0006BB18",
+    "0x0006BB2B",
+    "0x0006BB3E",
+    "0x0006BB8B",
+    "0x0006BB8D",
+    "0x0006BB8F"
+   ]
+  },
+  {
+   "site": "0x0006C044",
+   "table": {
+    "start": "0x0006C071",
+    "count": 6,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x5 and ja before the jump",
+   "targets": [
+    "0x0006C049",
+    "0x0006C058",
+    "0x0006C05C",
+    "0x0006C060",
+    "0x0006C064",
+    "0x0006C068"
+   ]
+  },
+  {
+   "site": "0x0006C0A4",
+   "table": {
+    "start": "0x0006C0CD",
+    "count": 9,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x8 and ja before the jump",
+   "targets": [
+    "0x0006C0A9",
+    "0x0006C0B8",
+    "0x0006C0BC",
+    "0x0006C0C0",
+    "0x0006C0C4"
+   ]
+  },
+  {
+   "site": "0x0006C644",
+   "table": {
+    "start": "0x0006C753",
+    "count": 8,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x7 and jbe before the jump",
+   "targets": [
+    "0x0006C649",
+    "0x0006C655",
+    "0x0006C67F",
+    "0x0006C6D2",
+    "0x0006C750"
+   ]
+  },
+  {
+   "site": "0x0006DE9B",
+   "table": {
+    "start": "0x0006DFF7",
+    "count": 22,
+    "stride": 2
+   },
+   "bound": "value scan of 22 words at CS:0xf3b, targets after them",
+   "targets": [
+    "0x0006DE9F",
+    "0x0006DEB4",
+    "0x0006DEBC",
+    "0x0006DEC4",
+    "0x0006DECC",
+    "0x0006DED4",
+    "0x0006DEDC",
+    "0x0006DEE4",
+    "0x0006DEEC",
+    "0x0006DEFD",
+    "0x0006DF05",
+    "0x0006DF53",
+    "0x0006DF67",
+    "0x0006DF7B",
+    "0x0006DF92"
+   ]
+  },
+  {
+   "site": "0x0006DFAB",
+   "table": {
+    "start": "0x0006DFB9",
+    "count": 9,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x8 and ja before the jump",
+   "targets": [
+    "0x0006DFB0"
+   ]
+  },
+  {
+   "site": "0x0006EB96",
+   "table": {
+    "start": "0x0006ED75",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x3 and ja before the jump",
+   "targets": [
+    "0x0006EB9B",
+    "0x0006EBAD",
+    "0x0006EBBF",
+    "0x0006EBD1"
+   ]
+  },
+  {
+   "site": "0x0006EC02",
+   "table": {
+    "start": "0x0006ED6D",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x3 and ja before the jump",
+   "targets": [
+    "0x0006EC07",
+    "0x0006EC19",
+    "0x0006EC2B",
+    "0x0006EC3D"
+   ]
+  },
+  {
+   "site": "0x0006EC7E",
+   "table": {
+    "start": "0x0006ED65",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x3 and ja before the jump",
+   "targets": [
+    "0x0006EC83",
+    "0x0006EC95",
+    "0x0006ECA7",
+    "0x0006ECB9"
+   ]
+  },
+  {
+   "site": "0x0006ECEA",
+   "table": {
+    "start": "0x0006ED5D",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x3 and ja before the jump",
+   "targets": [
+    "0x0006ECEF",
+    "0x0006ED01",
+    "0x0006ED13",
+    "0x0006ED25"
+   ]
+  },
+  {
+   "site": "0x00070289",
+   "table": {
+    "start": "0x0007042B",
+    "count": 5,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x4 and jbe before the jump",
+   "targets": [
+    "0x0007028E",
+    "0x00070328",
+    "0x0007037C",
+    "0x000703E0",
+    "0x000703FE"
+   ]
+  },
+  {
+   "site": "0x00074F2F",
+   "table": {
+    "start": "0x00075554",
+    "count": 6,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x5 and jbe before the jump",
+   "targets": [
+    "0x00074F34",
+    "0x00074FDA",
+    "0x00075099",
+    "0x000754F4",
+    "0x000754FE"
+   ]
+  },
+  {
+   "site": "0x00074F9D",
+   "table": {
+    "start": "0x00075540",
+    "count": 10,
+    "stride": 2
+   },
+   "bound": "value scan of 10 words at CS:0xb7c, targets after them",
+   "targets": [
+    "0x00074FA1"
+   ]
+  },
+  {
+   "site": "0x000750CE",
+   "table": {
+    "start": "0x0007551A",
+    "count": 9,
+    "stride": 2
+   },
+   "bound": "value scan of 9 words at CS:0xb58, targets after them",
+   "targets": [
+    "0x000750D5",
+    "0x00075318",
+    "0x000753D1",
+    "0x00075441",
+    "0x0007545E",
+    "0x000754F4"
+   ]
+  },
+  {
+   "site": "0x000755AB",
+   "table": {
+    "start": "0x00075CA5",
+    "count": 5,
+    "stride": 2
+   },
+   "bound": "value scan of 5 words at CS:0x12eb, targets after them",
+   "targets": [
+    "0x000755AF",
+    "0x000757C8",
+    "0x00075979",
+    "0x00075981",
+    "0x00075A62"
+   ]
+  },
+  {
+   "site": "0x00078B64",
+   "table": {
+    "start": "0x000790AB",
+    "count": 15,
+    "stride": 2
+   },
+   "bound": "value scan of 15 words at CS:0xd4d, targets after them",
+   "targets": [
+    "0x00078B68",
+    "0x00078C2B",
+    "0x00078D1A",
+    "0x00078DD5",
+    "0x00078E2E",
+    "0x00078E97"
+   ]
+  },
+  {
+   "site": "0x00078FDC",
+   "table": {
+    "start": "0x00079085",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "value scan of 4 words at CS:0xd3d, targets after them",
+   "targets": [
+    "0x00078FE0",
+    "0x0007900C",
+    "0x00079023",
+    "0x0007904F"
+   ]
+  },
+  {
+   "site": "0x00079702",
+   "table": {
+    "start": "0x0007A2C6",
+    "count": 33,
+    "stride": 2
+   },
+   "bound": "value scan of 33 words at CS:0x1f44, targets after them",
+   "targets": [
+    "0x00079706",
+    "0x00079722",
+    "0x00079794",
+    "0x000797B0",
+    "0x000798A2",
+    "0x000798E3",
+    "0x000798F5",
+    "0x00079A07",
+    "0x00079A58",
+    "0x00079AA3",
+    "0x00079AFD",
+    "0x00079B47",
+    "0x00079B7C",
+    "0x00079BA8",
+    "0x00079BD4",
+    "0x00079C34",
+    "0x00079C3E",
+    "0x00079C93"
+   ]
+  },
+  {
+   "site": "0x00079938",
+   "table": {
+    "start": "0x0007A27C",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "value scan of 4 words at CS:0x1f34, targets after them",
+   "targets": [
+    "0x0007993C",
+    "0x00079943",
+    "0x0007994A",
+    "0x00079951"
+   ]
+  },
+  {
+   "site": "0x00079DBD",
+   "table": {
+    "start": "0x0007A24C",
+    "count": 20,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x13 and jbe before the jump",
+   "targets": [
+    "0x00079DC2",
+    "0x00079DCE",
+    "0x0007A209"
+   ]
+  },
+  {
+   "site": "0x00079FB5",
+   "table": {
+    "start": "0x0007A240",
+    "count": 6,
+    "stride": 2
+   },
+   "bound": "value scan of 6 words at CS:0x1ef4, targets after them",
+   "targets": [
+    "0x00079FB9",
+    "0x00079FC3",
+    "0x00079FCD",
+    "0x00079FD7",
+    "0x00079FE1"
+   ]
+  },
+  {
+   "site": "0x0007A01F",
+   "table": {
+    "start": "0x0007A20C",
+    "count": 20,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x13 and jbe before the jump",
+   "targets": [
+    "0x0007A024",
+    "0x0007A0A0",
+    "0x0007A0CD",
+    "0x0007A148",
+    "0x0007A1C6",
+    "0x0007A204",
+    "0x0007A209"
+   ]
+  },
+  {
+   "site": "0x0007A5B9",
+   "table": {
+    "start": "0x0007A6AE",
+    "count": 109,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x6c and jbe before the jump",
+   "targets": [
+    "0x0007A5BE",
+    "0x0007A5C2",
+    "0x0007A5C4",
+    "0x0007A5C6",
+    "0x0007A5C8",
+    "0x0007A5CA",
+    "0x0007A5CC",
+    "0x0007A5CE",
+    "0x0007A5D0",
+    "0x0007A5D2",
+    "0x0007A5D4",
+    "0x0007A5D6",
+    "0x0007A5D8",
+    "0x0007A5DA",
+    "0x0007A5DC",
+    "0x0007A5DE",
+    "0x0007A5E0",
+    "0x0007A5E2",
+    "0x0007A5E4",
+    "0x0007A5E6",
+    "0x0007A5E8",
+    "0x0007A5EA",
+    "0x0007A5EC",
+    "0x0007A5EE",
+    "0x0007A5F0",
+    "0x0007A5F2",
+    "0x0007A5F4",
+    "0x0007A5F6",
+    "0x0007A5F8",
+    "0x0007A5FA",
+    "0x0007A5FC",
+    "0x0007A5FE",
+    "0x0007A600",
+    "0x0007A602",
+    "0x0007A604",
+    "0x0007A606",
+    "0x0007A608",
+    "0x0007A60A",
+    "0x0007A60C",
+    "0x0007A60E",
+    "0x0007A610",
+    "0x0007A612",
+    "0x0007A614",
+    "0x0007A616",
+    "0x0007A618",
+    "0x0007A61A",
+    "0x0007A61C",
+    "0x0007A61E",
+    "0x0007A620",
+    "0x0007A622",
+    "0x0007A624",
+    "0x0007A626",
+    "0x0007A628",
+    "0x0007A62A",
+    "0x0007A62C",
+    "0x0007A62E",
+    "0x0007A630",
+    "0x0007A632",
+    "0x0007A634",
+    "0x0007A636",
+    "0x0007A638",
+    "0x0007A63A",
+    "0x0007A63C",
+    "0x0007A63E",
+    "0x0007A641",
+    "0x0007A644",
+    "0x0007A647",
+    "0x0007A64A",
+    "0x0007A64D",
+    "0x0007A650",
+    "0x0007A653",
+    "0x0007A656",
+    "0x0007A659",
+    "0x0007A65C",
+    "0x0007A65F",
+    "0x0007A662",
+    "0x0007A665",
+    "0x0007A668",
+    "0x0007A66B",
+    "0x0007A66E",
+    "0x0007A671",
+    "0x0007A674",
+    "0x0007A677",
+    "0x0007A67A",
+    "0x0007A67D",
+    "0x0007A680",
+    "0x0007A683",
+    "0x0007A686",
+    "0x0007A689",
+    "0x0007A68C",
+    "0x0007A68F",
+    "0x0007A692",
+    "0x0007A695",
+    "0x0007A698",
+    "0x0007A69B",
+    "0x0007A69E",
+    "0x0007A6A1",
+    "0x0007A6A4",
+    "0x0007A6A7",
+    "0x0007A6AA"
+   ]
+  },
+  {
+   "site": "0x0007B468",
+   "table": {
+    "start": "0x0007B489",
+    "count": 16,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0xf and ja before the jump",
+   "targets": [
+    "0x0007B46D",
+    "0x0007B472",
+    "0x0007B477",
+    "0x0007B47C",
+    "0x0007B481"
+   ]
+  },
+  {
+   "site": "0x0007DABF",
+   "table": {
+    "start": "0x0007E050",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "value scan of 4 words at CS:0xd48, targets after them",
+   "targets": [
+    "0x0007DAC6",
+    "0x0007DBE2",
+    "0x0007DE21",
+    "0x0007DF7C"
+   ]
+  },
+  {
+   "site": "0x0007DD54",
+   "table": {
+    "start": "0x0007E02E",
+    "count": 13,
+    "stride": 2
+   },
+   "bound": "value scan of 13 words at CS:0xd14, targets after them",
+   "targets": [
+    "0x0007DD58",
+    "0x0007DE21",
+    "0x0007DF7C"
+   ]
+  },
+  {
+   "site": "0x00081165",
+   "table": {
+    "start": "0x00081485",
+    "count": 19,
+    "stride": 2
+   },
+   "bound": "value scan of 19 words at CS:0x32f, targets after them",
+   "targets": [
+    "0x00081169",
+    "0x0008117A",
+    "0x0008118A",
+    "0x00081195",
+    "0x000811A6",
+    "0x000811B7",
+    "0x000811C2",
+    "0x000811CD",
+    "0x000811E5",
+    "0x000811F0",
+    "0x000811F9",
+    "0x00081204",
+    "0x00081214",
+    "0x0008121F",
+    "0x0008126E",
+    "0x00081324",
+    "0x00081391",
+    "0x000813EE"
+   ]
+  },
+  {
+   "site": "0x00081269",
+   "table": {
+    "start": "0x00081457",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x3 and jbe before the jump",
+   "targets": [
+    "0x0008126E",
+    "0x00081324",
+    "0x00081391",
+    "0x000813EE"
+   ]
+  },
+  {
+   "site": "0x000822A4",
+   "table": {
+    "start": "0x0008274A",
+    "count": 19,
+    "stride": 2
+   },
+   "bound": "value scan of 19 words at CS:0xfb4, targets after them",
+   "targets": [
+    "0x000822A8",
+    "0x000822E8",
+    "0x00082321",
+    "0x00082330",
+    "0x00082342",
+    "0x00082392",
+    "0x000823AC",
+    "0x000823BA",
+    "0x000823C8",
+    "0x000823F8",
+    "0x00082416",
+    "0x00082423",
+    "0x00082469",
+    "0x000824CE",
+    "0x000825FD",
+    "0x00082635",
+    "0x0008265E"
+   ]
+  },
+  {
+   "site": "0x000827D9",
+   "table": {
+    "start": "0x00082B50",
+    "count": 19,
+    "stride": 2
+   },
+   "bound": "value scan of 19 words at CS:0x13ba, targets after them",
+   "targets": [
+    "0x000827DD",
+    "0x00082878",
+    "0x00082883",
+    "0x00082899",
+    "0x000828DE",
+    "0x00082913",
+    "0x00082919",
+    "0x0008291F",
+    "0x00082924",
+    "0x0008297D",
+    "0x000829AB",
+    "0x000829B4",
+    "0x000829BD",
+    "0x000829C6",
+    "0x000829CF",
+    "0x000829D8",
+    "0x000829E1",
+    "0x000829F5"
+   ]
+  },
+  {
+   "site": "0x00082FA7",
+   "table": {
+    "start": "0x00083086",
+    "count": 6,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x5 and jbe before the jump",
+   "targets": [
+    "0x00082FAC",
+    "0x00082FD4",
+    "0x00082FEA",
+    "0x00083002",
+    "0x00083019",
+    "0x00083030"
+   ]
+  },
+  {
+   "site": "0x00084478",
+   "table": {
+    "start": "0x0008450E",
+    "count": 6,
+    "stride": 2
+   },
+   "bound": "value scan of 6 words at CS:0x1102, targets after them",
+   "targets": [
+    "0x0008447C",
+    "0x000844D4"
+   ]
+  },
+  {
+   "site": "0x00084EC7",
+   "table": {
+    "start": "0x00085044",
+    "count": 7,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x6 and jbe before the jump",
+   "targets": [
+    "0x00084ECC",
+    "0x00084ECE",
+    "0x00084ED6",
+    "0x00084EE7",
+    "0x00084F78",
+    "0x0008502C"
+   ]
+  },
+  {
+   "site": "0x0008536A",
+   "table": {
+    "start": "0x00085798",
+    "count": 9,
+    "stride": 2
+   },
+   "bound": "value scan of 9 words at CS:0x2386, targets after them",
+   "targets": [
+    "0x0008536E",
+    "0x000853E0",
+    "0x000853F6",
+    "0x000853FD",
+    "0x00085437"
+   ]
+  },
+  {
+   "site": "0x000854CA",
+   "table": {
+    "start": "0x00085776",
+    "count": 8,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x7 and jbe before the jump",
+   "targets": [
+    "0x000854CF",
+    "0x000855D5",
+    "0x000856A5"
+   ]
+  },
+  {
+   "site": "0x00086758",
+   "table": {
+    "start": "0x00086986",
+    "count": 15,
+    "stride": 2
+   },
+   "bound": "value scan of 15 words at CS:0x3568, targets after them",
+   "targets": [
+    "0x0008675C",
+    "0x00086762",
+    "0x000867AF",
+    "0x00086816",
+    "0x0008681B",
+    "0x00086820",
+    "0x0008683F",
+    "0x00086861",
+    "0x00086866",
+    "0x0008686B",
+    "0x00086870",
+    "0x00086875",
+    "0x0008687A",
+    "0x0008687F",
+    "0x00086884"
+   ]
+  },
+  {
+   "site": "0x0008677D",
+   "table": {
+    "start": "0x00086950",
+    "count": 12,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0xb and jbe before the jump",
+   "targets": [
+    "0x00086782",
+    "0x00086788",
+    "0x0008678E",
+    "0x00086794",
+    "0x0008679A",
+    "0x000867A0",
+    "0x000867A6"
+   ]
+  },
+  {
+   "site": "0x000867CA",
+   "table": {
+    "start": "0x00086938",
+    "count": 12,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0xb and jbe before the jump",
+   "targets": [
+    "0x000867CF",
+    "0x000867D5",
+    "0x000867DB",
+    "0x000867E1",
+    "0x000867E7",
+    "0x000867ED",
+    "0x000867F3",
+    "0x000867F9",
+    "0x000867FF",
+    "0x00086805",
+    "0x0008680A",
+    "0x0008680F"
+   ]
+  },
+  {
+   "site": "0x00086838",
+   "table": {
+    "start": "0x00086930",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x3 and ja before the jump",
+   "targets": [
+    "0x00086861",
+    "0x00086866",
+    "0x0008686B",
+    "0x00086870"
+   ]
+  },
+  {
+   "site": "0x00086857",
+   "table": {
+    "start": "0x00086928",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x3 and ja before the jump",
+   "targets": [
+    "0x00086875",
+    "0x0008687A",
+    "0x0008687F",
+    "0x00086884"
+   ]
+  },
+  {
+   "site": "0x00087473",
+   "table": {
+    "start": "0x0008759A",
+    "count": 20,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x13 and ja before the jump",
+   "targets": [
+    "0x00087478",
+    "0x0008747D",
+    "0x00087482",
+    "0x00087487",
+    "0x0008748C",
+    "0x00087491",
+    "0x00087496",
+    "0x0008749B",
+    "0x000874A0",
+    "0x000874A5",
+    "0x000874AA",
+    "0x000874AF",
+    "0x000874B2"
+   ]
+  },
+  {
+   "site": "0x000874C1",
+   "table": {
+    "start": "0x00087576",
+    "count": 18,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x11 and ja before the jump",
+   "targets": [
+    "0x000874C6",
+    "0x000874CB",
+    "0x000874D0",
+    "0x000874D3"
+   ]
+  },
+  {
+   "site": "0x000874E2",
+   "table": {
+    "start": "0x00087552",
+    "count": 18,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x11 and ja before the jump",
+   "targets": [
+    "0x000874E7",
+    "0x000874F5",
+    "0x00087501",
+    "0x00087504"
+   ]
+  },
+  {
+   "site": "0x00087515",
+   "table": {
+    "start": "0x0008753C",
+    "count": 11,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0xa and ja before the jump",
+   "targets": [
+    "0x0008751A",
+    "0x0008751F",
+    "0x00087524",
+    "0x00087527"
+   ]
+  },
+  {
+   "site": "0x00087785",
+   "table": {
+    "start": "0x00087831",
+    "count": 20,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x13 and jbe before the jump",
+   "targets": [
+    "0x0008778A",
+    "0x000877B6",
+    "0x000877DD",
+    "0x000877EA",
+    "0x000877F5",
+    "0x000877F7",
+    "0x000877FD",
+    "0x0008782A"
+   ]
+  },
+  {
+   "site": "0x00087881",
+   "table": {
+    "start": "0x000878AA",
+    "count": 17,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x10 and ja before the jump",
+   "targets": [
+    "0x00087886",
+    "0x00087898",
+    "0x000878A8"
+   ]
+  },
+  {
+   "site": "0x000879C8",
+   "table": {
+    "start": "0x00087B8E",
+    "count": 9,
+    "stride": 2
+   },
+   "bound": "value scan of 9 words at CS:0x27c, targets after them",
+   "targets": [
+    "0x000879CC",
+    "0x000879E5",
+    "0x000879E8",
+    "0x000879EE",
+    "0x000879F0",
+    "0x000879F5",
+    "0x00087A07"
+   ]
+  },
+  {
+   "site": "0x00087A62",
+   "table": {
+    "start": "0x00087B74",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "value scan of 4 words at CS:0x26c, targets after them",
+   "targets": [
+    "0x00087A66",
+    "0x00087A89",
+    "0x00087A9D"
+   ]
+  },
+  {
+   "site": "0x00087BD8",
+   "table": {
+    "start": "0x000884B7",
+    "count": 5,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x4 and jbe before the jump",
+   "targets": [
+    "0x00087BDD",
+    "0x00087C79",
+    "0x00087C84",
+    "0x00088218"
+   ]
+  },
+  {
+   "site": "0x00088972",
+   "table": {
+    "start": "0x00088D38",
+    "count": 13,
+    "stride": 2
+   },
+   "bound": "value scan of 13 words at CS:0x141e, targets after them",
+   "targets": [
+    "0x00088979",
+    "0x0008897C",
+    "0x0008898C",
+    "0x0008898F",
+    "0x0008899F",
+    "0x000889B6",
+    "0x000889CD",
+    "0x000889D0",
+    "0x000889D3",
+    "0x000889D6",
+    "0x000889D9"
+   ]
+  },
+  {
+   "site": "0x00088A27",
+   "table": {
+    "start": "0x00088CF4",
+    "count": 21,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x14 and jbe before the jump",
+   "targets": [
+    "0x00088A2C",
+    "0x00088AE8",
+    "0x00088BC2",
+    "0x00088C30",
+    "0x00088CBA",
+    "0x00088CBD",
+    "0x00088CC0",
+    "0x00088CC3",
+    "0x00088CC6",
+    "0x00088CDF"
+   ]
+  },
+  {
+   "site": "0x000897CE",
+   "table": {
+    "start": "0x00089827",
+    "count": 6,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x5 and ja before the jump",
+   "targets": [
+    "0x000897D3",
+    "0x000897EE",
+    "0x0008980F",
+    "0x00089818"
+   ]
+  },
+  {
+   "site": "0x00089DD7",
+   "table": {
+    "start": "0x0008A181",
+    "count": 8,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x7 and ja before the jump",
+   "targets": [
+    "0x00089DDC",
+    "0x00089DEE",
+    "0x00089E00",
+    "0x00089E12"
+   ]
+  },
+  {
+   "site": "0x0008AAB4",
+   "table": {
+    "start": "0x0008AB05",
+    "count": 7,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x6 and ja before the jump",
+   "targets": [
+    "0x0008AAB9",
+    "0x0008AAD3",
+    "0x0008AAED"
+   ]
+  },
+  {
+   "site": "0x0008B38E",
+   "table": {
+    "start": "0x0008B74F",
+    "count": 13,
+    "stride": 2
+   },
+   "bound": "value scan of 13 words at CS:0x4f5, targets after them",
+   "targets": [
+    "0x0008B392",
+    "0x0008B3A4",
+    "0x0008B3B6",
+    "0x0008B3CE",
+    "0x0008B3F9",
+    "0x0008B40C",
+    "0x0008B4C0",
+    "0x0008B4DE",
+    "0x0008B59F",
+    "0x0008B610",
+    "0x0008B615",
+    "0x0008B6CA",
+    "0x0008B6D1"
+   ]
+  },
+  {
+   "site": "0x0008BE08",
+   "table": {
+    "start": "0x0008BF21",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x3 and jbe before the jump",
+   "targets": [
+    "0x0008BE0D",
+    "0x0008BE32",
+    "0x0008BE5A",
+    "0x0008BE97"
+   ]
+  },
+  {
+   "site": "0x0008BF49",
+   "table": {
+    "start": "0x0008C487",
+    "count": 53,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x34 and jbe before the jump",
+   "targets": [
+    "0x0008BF4E",
+    "0x0008BF6C",
+    "0x0008BF9A",
+    "0x0008BFBB",
+    "0x0008BFCB",
+    "0x0008C01E",
+    "0x0008C071",
+    "0x0008C07F",
+    "0x0008C08C",
+    "0x0008C0A0",
+    "0x0008C0A8",
+    "0x0008C0B9",
+    "0x0008C0D2",
+    "0x0008C0E6",
+    "0x0008C0F9",
+    "0x0008C17C",
+    "0x0008C181",
+    "0x0008C186",
+    "0x0008C18C",
+    "0x0008C192",
+    "0x0008C19A",
+    "0x0008C1A3",
+    "0x0008C1B3",
+    "0x0008C1BD",
+    "0x0008C1E7",
+    "0x0008C1F8",
+    "0x0008C21A",
+    "0x0008C226",
+    "0x0008C22D",
+    "0x0008C23E",
+    "0x0008C24F",
+    "0x0008C260",
+    "0x0008C271",
+    "0x0008C284",
+    "0x0008C294",
+    "0x0008C2A0",
+    "0x0008C2AF",
+    "0x0008C2C2",
+    "0x0008C2DF",
+    "0x0008C2E7",
+    "0x0008C2EF",
+    "0x0008C2FF",
+    "0x0008C30F",
+    "0x0008C322",
+    "0x0008C3E3",
+    "0x0008C3EC",
+    "0x0008C3F5",
+    "0x0008C3FD",
+    "0x0008C417",
+    "0x0008C460",
+    "0x0008C481"
+   ]
+  },
+  {
+   "site": "0x0008E15D",
+   "table": {
+    "start": "0x0008E34B",
+    "count": 9,
+    "stride": 2
+   },
+   "bound": "value scan of 9 double words at CS:0x2567, targets after them",
+   "targets": [
+    "0x0008E161",
+    "0x0008E178",
+    "0x0008E184",
+    "0x0008E197",
+    "0x0008E1AB",
+    "0x0008E1BC",
+    "0x0008E1C7",
+    "0x0008E1D8",
+    "0x0008E1E9"
+   ]
+  },
+  {
+   "site": "0x0008E21E",
+   "table": {
+    "start": "0x0008E321",
+    "count": 3,
+    "stride": 2
+   },
+   "bound": "value scan of 3 double words at CS:0x2555, targets after them",
+   "targets": [
+    "0x0008E222",
+    "0x0008E22E",
+    "0x0008E240"
+   ]
+  },
+  {
+   "site": "0x0008E275",
+   "table": {
+    "start": "0x0008E309",
+    "count": 6,
+    "stride": 2
+   },
+   "bound": "value scan of 6 double words at CS:0x2531, targets after them",
+   "targets": [
+    "0x0008E279",
+    "0x0008E285",
+    "0x0008E299",
+    "0x0008E2AD",
+    "0x0008E2C1",
+    "0x0008E2D5"
+   ]
+  },
+  {
+   "site": "0x0008E3D0",
+   "table": {
+    "start": "0x0008E5FB",
+    "count": 9,
+    "stride": 2
+   },
+   "bound": "value scan of 9 double words at CS:0x2817, targets after them",
+   "targets": [
+    "0x0008E3D4",
+    "0x0008E3E8",
+    "0x0008E3FD",
+    "0x0008E409",
+    "0x0008E41E",
+    "0x0008E433",
+    "0x0008E43F",
+    "0x0008E454",
+    "0x0008E487"
+   ]
+  },
+  {
+   "site": "0x0008E523",
+   "table": {
+    "start": "0x0008E5B9",
+    "count": 6,
+    "stride": 2
+   },
+   "bound": "value scan of 6 double words at CS:0x27e1, targets after them",
+   "targets": [
+    "0x0008E527",
+    "0x0008E533",
+    "0x0008E547",
+    "0x0008E55B",
+    "0x0008E56F",
+    "0x0008E583"
+   ]
+  },
+  {
+   "site": "0x0008EBE8",
+   "table": {
+    "start": "0x0008EC4A",
+    "count": 7,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x6 and ja before the jump",
+   "targets": [
+    "0x0008EBED",
+    "0x0008EBF7",
+    "0x0008EBFF"
+   ]
+  },
+  {
+   "site": "0x0008FAE8",
+   "table": {
+    "start": "0x0008FB9F",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x3 and ja before the jump",
+   "targets": [
+    "0x0008FAED",
+    "0x0008FAFD",
+    "0x0008FB02",
+    "0x0008FB07"
+   ]
+  },
+  {
+   "site": "0x000901D0",
+   "table": {
+    "start": "0x000906CD",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "value scan of 4 words at CS:0x545, targets after them",
+   "targets": [
+    "0x000901D4",
+    "0x000903CA",
+    "0x0009056D",
+    "0x000905ED"
+   ]
+  },
+  {
+   "site": "0x00092522",
+   "table": {
+    "start": "0x00092539",
+    "count": 6,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x5 and ja before the jump",
+   "targets": [
+    "0x00092527",
+    "0x0009252C",
+    "0x00092531",
+    "0x00092533"
+   ]
+  },
+  {
+   "site": "0x00092816",
+   "table": {
+    "start": "0x000929BC",
+    "count": 15,
+    "stride": 2
+   },
+   "bound": "value scan of 15 words at CS:0x110e, targets after them",
+   "targets": [
+    "0x0009281A",
+    "0x0009284E",
+    "0x0009287F",
+    "0x0009290C",
+    "0x0009296A",
+    "0x00092978",
+    "0x00092988"
+   ]
+  },
+  {
+   "site": "0x00092A06",
+   "table": {
+    "start": "0x00092A73",
+    "count": 8,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x7 and ja before the jump",
+   "targets": [
+    "0x00092A0B",
+    "0x00092A2C",
+    "0x00092A55"
+   ]
+  },
+  {
+   "site": "0x00092AE8",
+   "table": {
+    "start": "0x00092E92",
+    "count": 8,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x7 and ja before the jump",
+   "targets": [
+    "0x00092AED",
+    "0x00092AFB",
+    "0x00092AFD",
+    "0x00092B17"
+   ]
+  },
+  {
+   "site": "0x00093567",
+   "table": {
+    "start": "0x0009377A",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "value scan of 4 words at CS:0x612, targets after them",
+   "targets": [
+    "0x0009356B",
+    "0x00093602",
+    "0x0009367C",
+    "0x00093708"
+   ]
+  },
+  {
+   "site": "0x0009407A",
+   "table": {
+    "start": "0x00094396",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "value scan of 4 words at CS:0x122e, targets after them",
+   "targets": [
+    "0x0009407E",
+    "0x000941C9",
+    "0x0009422B",
+    "0x00094329"
+   ]
+  },
+  {
+   "site": "0x000943BD",
+   "table": {
+    "start": "0x000947E2",
+    "count": 13,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0xc and ja before the jump",
+   "targets": [
+    "0x000943C2",
+    "0x000943C3",
+    "0x000943C4",
+    "0x000943C5",
+    "0x000943C6",
+    "0x000943C7",
+    "0x000943C8"
+   ]
+  },
+  {
+   "site": "0x0009483B",
+   "table": {
+    "start": "0x000948C9",
+    "count": 9,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x8 and ja before the jump",
+   "targets": [
+    "0x00094840",
+    "0x00094843",
+    "0x00094851",
+    "0x00094854",
+    "0x00094857",
+    "0x000948AD"
+   ]
+  },
+  {
+   "site": "0x000966AC",
+   "table": {
+    "start": "0x00096EDA",
+    "count": 21,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x14 and jbe before the jump",
+   "targets": [
+    "0x000966B1",
+    "0x0009698D",
+    "0x00096AE5",
+    "0x00096E4C",
+    "0x00096EC1"
+   ]
+  },
+  {
+   "site": "0x000971EC",
+   "table": {
+    "start": "0x00097564",
+    "count": 5,
+    "stride": 2
+   },
+   "bound": "value scan of 5 words at CS:0x174a, targets after them",
+   "targets": [
+    "0x000971F0",
+    "0x0009723C",
+    "0x0009727A",
+    "0x000972C2",
+    "0x000972CA"
+   ]
+  },
+  {
+   "site": "0x00097599",
+   "table": {
+    "start": "0x00097739",
+    "count": 5,
+    "stride": 2
+   },
+   "bound": "value scan of 5 words at CS:0x191f, targets after them",
+   "targets": [
+    "0x0009759D",
+    "0x000975E2",
+    "0x00097623",
+    "0x000976E2",
+    "0x00097726"
+   ]
+  },
+  {
+   "site": "0x00097B0A",
+   "table": {
+    "start": "0x00097BBC",
+    "count": 8,
+    "stride": 2
+   },
+   "bound": "index bounded by cmp bx, 0x7 and ja before the jump",
+   "targets": [
+    "0x00097B0F",
+    "0x00097B17",
+    "0x00097B1F",
+    "0x00097B27",
+    "0x00097B2D"
+   ]
+  },
+  {
+   "site": "0x00098BD0",
+   "table": {
+    "start": "0x00098C2C",
+    "count": 5,
+    "stride": 2
+   },
+   "bound": "value scan of 5 words at CS:0xa22, targets after them",
+   "targets": [
+    "0x00098BD6",
+    "0x00098C0A"
+   ]
+  },
+  {
+   "site": "0x00098C90",
+   "table": {
+    "start": "0x00098D48",
+    "count": 4,
+    "stride": 2
+   },
+   "bound": "value scan of 4 words at CS:0xb40, targets after them",
+   "targets": [
+    "0x00098C94",
+    "0x00098CD1",
+    "0x00098CD7"
+   ]
+  },
+  {
+   "site": "1000:252C",
+   "table": {
+    "start": "57E0:398C",
+    "count": 1,
+    "stride": 2
+   },
+   "bound": "one word, DS:398C",
+   "targets": [
+    "1000:129F"
+   ]
+  }
+ ],
+ "decode": [
+  {
+   "range": "1000:034C..1000:0361",
+   "owner": "1000:0338"
+  },
+  {
+   "range": "1425:0518..1425:0589",
+   "owner": "1425:04FF"
+  },
+  {
+   "range": "1425:1436..1425:1520",
+   "owner": "1425:13FE"
+  },
+  {
+   "range": "172C:012B..172C:015E",
+   "owner": "172C:00FE"
+  },
+  {
+   "range": "172C:034E..172C:0388",
+   "owner": "172C:031F"
+  },
+  {
+   "range": "172C:08D4..172C:0A47",
+   "owner": "172C:084E"
+  },
+  {
+   "range": "172C:0B9F..172C:0C28",
+   "owner": "172C:0B5E"
+  },
+  {
+   "range": "172C:0F29..172C:0F69",
+   "owner": "172C:0EE9"
+  },
+  {
+   "range": "172C:1083..172C:1110",
+   "owner": "172C:1034"
+  },
+  {
+   "range": "172C:1862..172C:18A5",
+   "owner": "172C:1804"
+  },
+  {
+   "range": "172C:194F..172C:1989",
+   "owner": "172C:1917"
+  },
+  {
+   "range": "172C:1FB5..172C:209A",
+   "owner": "172C:1F71"
+  },
+  {
+   "range": "172C:2179..172C:246A",
+   "owner": "172C:210B"
+  },
+  {
+   "range": "172C:24BC..172C:25BC",
+   "owner": "172C:24A0"
+  },
+  {
+   "range": "172C:29FC..172C:2A6B",
+   "owner": "172C:299C"
+  },
+  {
+   "range": "172C:332C..172C:3498",
+   "owner": "172C:3278"
+  },
+  {
+   "range": "172C:349A..172C:34AA",
+   "owner": "172C:3278"
+  },
+  {
+   "range": "172C:34AC..172C:34B8",
+   "owner": "172C:3278"
+  },
+  {
+   "range": "172C:34BA..172C:34C6",
+   "owner": "172C:3278"
+  },
+  {
+   "range": "172C:34C8..172C:34D4",
+   "owner": "172C:3278"
+  },
+  {
+   "range": "172C:34D6..172C:34E2",
+   "owner": "172C:3278"
+  },
+  {
+   "range": "172C:34E4..172C:34F0",
+   "owner": "172C:3278"
+  },
+  {
+   "range": "172C:34F2..172C:3585",
+   "owner": "172C:3278"
+  },
+  {
+   "range": "1BF3:4403..1BF3:4723",
+   "owner": "1BF3:43AE"
+  },
+  {
+   "range": "1BF3:4C8F..1BF3:4FEB",
+   "owner": "1BF3:4C09"
+  },
+  {
+   "range": "1BF3:6571..1BF3:659B",
+   "owner": "1BF3:639B"
+  },
+  {
+   "range": "1BF3:66DD..1BF3:6706",
+   "owner": "1BF3:6600"
+  },
+  {
+   "range": "25AF:045C..25AF:04A4",
+   "owner": "25AF:042A"
+  },
+  {
+   "range": "25AF:050D..25AF:054A",
+   "owner": "25AF:04D0"
+  },
+  {
+   "range": "277B:006E..277B:05A1",
+   "owner": "277B:0024"
+  },
+  {
+   "range": "27E5:0413..27E5:0423",
+   "owner": "27E5:03B1"
+  },
+  {
+   "range": "27E5:048D..27E5:0498",
+   "owner": "27E5:042B"
+  },
+  {
+   "range": "27E5:04BF..27E5:04F1",
+   "owner": "27E5:04A0"
+  },
+  {
+   "range": "2834:044A..2834:0508",
+   "owner": "2834:043B"
+  },
+  {
+   "range": "28C9:0091..28C9:01B7",
+   "owner": "28C9:0061"
+  },
+  {
+   "range": "28C9:0623..28C9:0A50",
+   "owner": "28C9:05CF"
+  },
+  {
+   "range": "28C9:0A53..28C9:0A5A",
+   "owner": "28C9:05CF"
+  },
+  {
+   "range": "28C9:0A5D..28C9:0B8A",
+   "owner": "28C9:05CF"
+  },
+  {
+   "range": "28C9:0B90..28C9:0CEB",
+   "owner": "28C9:05CF"
+  },
+  {
+   "range": "28C9:0D75..28C9:1201",
+   "owner": "28C9:0CFF"
+  },
+  {
+   "range": "28C9:1295..28C9:1518",
+   "owner": "28C9:1261"
+  },
+  {
+   "range": "28C9:19E5..28C9:1E1B",
+   "owner": "28C9:19A1"
+  },
+  {
+   "range": "28C9:2D80..28C9:2E0E",
+   "owner": "28C9:2C9E"
+  },
+  {
+   "range": "2C5F:0CA7..2C5F:0CDA",
+   "owner": "2C5F:0C8D"
+  },
+  {
+   "range": "2C5F:0CDC..2C5F:0D26",
+   "owner": "2C5F:0C8D"
+  },
+  {
+   "range": "2D40:00EE..2D40:03B9",
+   "owner": "2D40:000A"
+  },
+  {
+   "range": "2D40:0ECE..2D40:0EF1",
+   "owner": "2D40:0EB4"
+  },
+  {
+   "range": "2D40:14BA..2D40:1906",
+   "owner": "2D40:10AE"
+  },
+  {
+   "range": "2D40:1B66..2D40:1BFE",
+   "owner": "2D40:197A"
+  },
+  {
+   "range": "2D40:1C01..2D40:1C6C",
+   "owner": "2D40:197A"
+  },
+  {
+   "range": "2D40:1C6F..2D40:1C86",
+   "owner": "2D40:197A"
+  },
+  {
+   "range": "2D40:1C88..2D40:1CA8",
+   "owner": "2D40:197A"
+  },
+  {
+   "range": "2D40:1CAA..2D40:1FB5",
+   "owner": "2D40:197A"
+  },
+  {
+   "range": "2D40:24B6..2D40:27AD",
+   "owner": "2D40:248D"
+  },
+  {
+   "range": "2D40:2BB0..2D40:2C87",
+   "owner": "2D40:2B6A"
+  },
+  {
+   "range": "2D40:2CAC..2D40:2E0A",
+   "owner": "2D40:2C87"
+  },
+  {
+   "range": "2D40:2EB2..2D40:2EC2",
+   "owner": "2D40:2E14"
+  },
+  {
+   "range": "2D40:2F05..2D40:2F34",
+   "owner": "2D40:2EC2"
+  },
+  {
+   "range": "2D40:30A7..2D40:31F6",
+   "owner": "2D40:2F34"
+  },
+  {
+   "range": "3150:01DD..3150:05CB",
+   "owner": "3150:000E"
+  },
+  {
+   "range": "3150:05E7..3150:0675",
+   "owner": "3150:000E"
+  },
+  {
+   "range": "371D:0096..371D:00E9",
+   "owner": "371D:0002"
+  },
+  {
+   "range": "371D:00EB..371D:01EF",
+   "owner": "371D:0002"
+  },
+  {
+   "range": "371D:046C..371D:04A9",
+   "owner": "371D:044D"
+  },
+  {
+   "range": "37FC:0145..37FC:05C5",
+   "owner": "37FC:00E8"
+  },
+  {
+   "range": "37FC:0A8F..37FC:0A9F",
+   "owner": "37FC:09C1"
+  },
+  {
+   "range": "39D1:007A..39D1:0316",
+   "owner": "39D1:0009"
+  },
+  {
+   "range": "39D1:03C6..39D1:0404",
+   "owner": "39D1:03A6"
+  },
+  {
+   "range": "3A8E:0440..3A8E:05EF",
+   "owner": "3A8E:02B3"
+  },
+  {
+   "range": "3A8E:085E..3A8E:08E3",
+   "owner": "3A8E:060D"
+  },
+  {
+   "range": "3A8E:0B12..3A8E:0C13",
+   "owner": "3A8E:0A26"
+  },
+  {
+   "range": "3A8E:0E78..3A8E:0F16",
+   "owner": "3A8E:0D9A"
+  },
+  {
+   "range": "3A8E:0F18..3A8E:0F30",
+   "owner": "3A8E:0D9A"
+  },
+  {
+   "range": "3A8E:0F32..3A8E:0F73",
+   "owner": "3A8E:0D9A"
+  },
+  {
+   "range": "3A8E:0FF4..3A8E:103C",
+   "owner": "3A8E:0F7F"
+  },
+  {
+   "range": "3BA6:0A21..3BA6:0A80",
+   "owner": "3BA6:0A14"
+  },
+  {
+   "range": "3D72:0302..3D72:03BE",
+   "owner": "3D72:0009"
+  },
+  {
+   "range": "3D72:03D8..3D72:04F1",
+   "owner": "3D72:0009"
+  },
+  {
+   "range": "3D72:05E5..3D72:0629",
+   "owner": "3D72:059E"
+  },
+  {
+   "range": "3D72:119A..3D72:11F8",
+   "owner": "3D72:1157"
+  },
+  {
+   "range": "3EBE:001C..3EBE:042B",
+   "owner": "3EBE:0008"
+  },
+  {
+   "range": "3EBE:0783..3EBE:07F3",
+   "owner": "3EBE:071F"
+  },
+  {
+   "range": "3EBE:09B1..3EBE:0A7B",
+   "owner": "3EBE:0991"
+  },
+  {
+   "range": "401B:0245..401B:039B",
+   "owner": "401B:0172"
+  },
+  {
+   "range": "409B:08C5..409B:0AB6",
+   "owner": "409B:0853"
+  },
+  {
+   "range": "409B:0D83..409B:0FA2",
+   "owner": "409B:0D48"
+  },
+  {
+   "range": "4328:0977..4328:0A11",
+   "owner": "4328:0859"
+  },
+  {
+   "range": "4420:002D..4420:01D8",
+   "owner": "4420:0008"
+  },
+  {
+   "range": "4420:020B..4420:0282",
+   "owner": "4420:01F8"
+  },
+  {
+   "range": "4464:0048..4464:0083",
+   "owner": "4464:0024"
+  },
+  {
+   "range": "45E1:00B3..45E1:021F",
+   "owner": "45E1:0097"
+  },
+  {
+   "range": "4842:04DB..4842:04DD",
+   "owner": "4842:040C"
+  },
+  {
+   "range": "0x00058615..0x00058AF4",
+   "owner": "0x000585D5"
+  },
+  {
+   "range": "0x00058DB3..0x00058F25",
+   "owner": "0x00058CB5"
+  },
+  {
+   "range": "0x000599C4..0x000599EF",
+   "owner": "0x000598F5"
+  },
+  {
+   "range": "0x0005A0A2..0x0005A3EB",
+   "owner": "0x0005A051"
+  },
+  {
+   "range": "0x0005AEFC..0x0005B175",
+   "owner": "0x0005AEBA"
+  },
+  {
+   "range": "0x0005B855..0x0005B882",
+   "owner": "0x0005B585"
+  },
+  {
+   "range": "0x0005B884..0x0005B9A8",
+   "owner": "0x0005B585"
+  },
+  {
+   "range": "0x0005E43E..0x0005E4D7",
+   "owner": "0x0005E3BF"
+  },
+  {
+   "range": "0x0005FE6F..0x00060207",
+   "owner": "0x0005FE11"
+  },
+  {
+   "range": "0x0006020A..0x00060328",
+   "owner": "0x0005FE11"
+  },
+  {
+   "range": "0x00060754..0x000607D9",
+   "owner": "0x00060741"
+  },
+  {
+   "range": "0x00061F04..0x00062024",
+   "owner": "0x00061E94"
+  },
+  {
+   "range": "0x00062B8F..0x00062BDA",
+   "owner": "0x00062B45"
+  },
+  {
+   "range": "0x000637DF..0x00063CF3",
+   "owner": "0x0006379A"
+  },
+  {
+   "range": "0x000656F1..0x000660BE",
+   "owner": "0x00065653"
+  },
+  {
+   "range": "0x000660C0..0x00066571",
+   "owner": "0x00065653"
+  },
+  {
+   "range": "0x00066574..0x00066B11",
+   "owner": "0x00065653"
+  },
+  {
+   "range": "0x000678D4..0x000678F8",
+   "owner": "0x00067899"
+  },
+  {
+   "range": "0x00067F43..0x00068046",
+   "owner": "0x00067EB0"
+  },
+  {
+   "range": "0x00068049..0x000682F8",
+   "owner": "0x00067EB0"
+  },
+  {
+   "range": "0x00068C04..0x00068DA3",
+   "owner": "0x00068BB5"
+  },
+  {
+   "range": "0x0006A013..0x0006A052",
+   "owner": "0x00069FD3"
+  },
+  {
+   "range": "0x0006A054..0x0006A09C",
+   "owner": "0x00069FD3"
+  },
+  {
+   "range": "0x0006A840..0x0006ABB1",
+   "owner": "0x0006A82B"
+  },
+  {
+   "range": "0x0006B59D..0x0006B7A1",
+   "owner": "0x0006B581"
+  },
+  {
+   "range": "0x0006B9C4..0x0006B9EE",
+   "owner": "0x0006B989"
+  },
+  {
+   "range": "0x0006BACB..0x0006BC71",
+   "owner": "0x0006BA1E"
+  },
+  {
+   "range": "0x0006C049..0x0006C071",
+   "owner": "0x0006C01D"
+  },
+  {
+   "range": "0x0006C0A9..0x0006C0CD",
+   "owner": "0x0006C07D"
+  },
+  {
+   "range": "0x0006C649..0x0006C753",
+   "owner": "0x0006C611"
+  },
+  {
+   "range": "0x0006CE28..0x0006CE93",
+   "owner": "0x0006CDFB"
+  },
+  {
+   "range": "0x0006DBFE..0x0006DE37",
+   "owner": "0x0006D868"
+  },
+  {
+   "range": "0x0006DE9F..0x0006DFB9",
+   "owner": "0x0006DE37"
+  },
+  {
+   "range": "0x0006E729..0x0006E906",
+   "owner": "0x0006E6D8"
+  },
+  {
+   "range": "0x0006EB9B..0x0006ED5D",
+   "owner": "0x0006EA10"
+  },
+  {
+   "range": "0x0006EE78..0x0006EF49",
+   "owner": "0x0006EE5E"
+  },
+  {
+   "range": "0x00070156..0x0007017E",
+   "owner": "0x00070133"
+  },
+  {
+   "range": "0x0007028E..0x0007042B",
+   "owner": "0x000701CA"
+  },
+  {
+   "range": "0x0007337E..0x00073388",
+   "owner": "0x00073378"
+  },
+  {
+   "range": "0x000741A7..0x000741C1",
+   "owner": "0x0007418A"
+  },
+  {
+   "range": "0x000741DE..0x00074205",
+   "owner": "0x000741C1"
+  },
+  {
+   "range": "0x00074222..0x00074237",
+   "owner": "0x00074205"
+  },
+  {
+   "range": "0x00074269..0x0007426F",
+   "owner": "0x00074237"
+  },
+  {
+   "range": "0x000746A8..0x000746C0",
+   "owner": "0x00074682"
+  },
+  {
+   "range": "0x000746F2..0x00074716",
+   "owner": "0x000746C0"
+  },
+  {
+   "range": "0x00074F34..0x00075096",
+   "owner": "0x00074F09"
+  },
+  {
+   "range": "0x00075099..0x000750D2",
+   "owner": "0x00074F09"
+  },
+  {
+   "range": "0x000750D5..0x00075315",
+   "owner": "0x00074F09"
+  },
+  {
+   "range": "0x00075318..0x00075508",
+   "owner": "0x00074F09"
+  },
+  {
+   "range": "0x000755AF..0x00075A5F",
+   "owner": "0x00075560"
+  },
+  {
+   "range": "0x00075A62..0x00075C9B",
+   "owner": "0x00075560"
+  },
+  {
+   "range": "0x00078B68..0x0007907D",
+   "owner": "0x00078B42"
+  },
+  {
+   "range": "0x00079706..0x00079B44",
+   "owner": "0x000796DB"
+  },
+  {
+   "range": "0x00079B47..0x00079E64",
+   "owner": "0x000796DB"
+  },
+  {
+   "range": "0x00079E67..0x00079EE8",
+   "owner": "0x000796DB"
+  },
+  {
+   "range": "0x00079EEB..0x00079F68",
+   "owner": "0x000796DB"
+  },
+  {
+   "range": "0x00079F6A..0x0007A20C",
+   "owner": "0x000796DB"
+  },
+  {
+   "range": "0x0007A5BE..0x0007A6AE",
+   "owner": "0x0007A5A7"
+  },
+  {
+   "range": "0x0007B46D..0x0007B489",
+   "owner": "0x0007B45A"
+  },
+  {
+   "range": "0x0007C3B7..0x0007C3E7",
+   "owner": "0x0007C25B"
+  },
+  {
+   "range": "0x0007C5FE..0x0007C7CB",
+   "owner": "0x0007C3E7"
+  },
+  {
+   "range": "0x0007CF1A..0x0007CF50",
+   "owner": "0x0007CEC0"
+  },
+  {
+   "range": "0x0007D07F..0x0007D0F5",
+   "owner": "0x0007D02A"
+  },
+  {
+   "range": "0x0007D52C..0x0007D54B",
+   "owner": "0x0007D52B"
+  },
+  {
+   "range": "0x0007DAC6..0x0007DD35",
+   "owner": "0x0007DA85"
+  },
+  {
+   "range": "0x0007DD54..0x0007E014",
+   "owner": "0x0007DA85"
+  },
+  {
+   "range": "0x00081169..0x00081187",
+   "owner": "0x00081130"
+  },
+  {
+   "range": "0x0008118A..0x00081193",
+   "owner": "0x00081130"
+  },
+  {
+   "range": "0x00081195..0x000811C0",
+   "owner": "0x00081130"
+  },
+  {
+   "range": "0x000811C2..0x000811CB",
+   "owner": "0x00081130"
+  },
+  {
+   "range": "0x000811CD..0x000811EE",
+   "owner": "0x00081130"
+  },
+  {
+   "range": "0x000811F0..0x00081202",
+   "owner": "0x00081130"
+  },
+  {
+   "range": "0x00081204..0x0008121D",
+   "owner": "0x00081130"
+  },
+  {
+   "range": "0x0008121F..0x00081457",
+   "owner": "0x00081130"
+  },
+  {
+   "range": "0x000822A8..0x000824CB",
+   "owner": "0x00082269"
+  },
+  {
+   "range": "0x000824CE..0x00082724",
+   "owner": "0x00082269"
+  },
+  {
+   "range": "0x000827DD..0x00082B2A",
+   "owner": "0x00082770"
+  },
+  {
+   "range": "0x00082FAC..0x00083086",
+   "owner": "0x00082F70"
+  },
+  {
+   "range": "0x0008447C..0x00084502",
+   "owner": "0x0008428F"
+  },
+  {
+   "range": "0x00084ECC..0x00085044",
+   "owner": "0x00084E94"
+  },
+  {
+   "range": "0x0008536E..0x00085776",
+   "owner": "0x0008527B"
+  },
+  {
+   "range": "0x000862B8..0x000862C0",
+   "owner": "0x00086240"
+  },
+  {
+   "range": "0x0008675C..0x000867AC",
+   "owner": "0x00086715"
+  },
+  {
+   "range": "0x000867AF..0x00086814",
+   "owner": "0x00086715"
+  },
+  {
+   "range": "0x00086816..0x0008683D",
+   "owner": "0x00086715"
+  },
+  {
+   "range": "0x0008683F..0x00086928",
+   "owner": "0x00086715"
+  },
+  {
+   "range": "0x00087478..0x000874F3",
+   "owner": "0x00087459"
+  },
+  {
+   "range": "0x000874F5..0x0008753C",
+   "owner": "0x00087459"
+  },
+  {
+   "range": "0x0008778A..0x000877DB",
+   "owner": "0x0008772D"
+  },
+  {
+   "range": "0x000877DD..0x000877E8",
+   "owner": "0x0008772D"
+  },
+  {
+   "range": "0x000877EA..0x00087824",
+   "owner": "0x0008772D"
+  },
+  {
+   "range": "0x00087886..0x000878AA",
+   "owner": "0x00087859"
+  },
+  {
+   "range": "0x000879CC..0x00087B6C",
+   "owner": "0x00087953"
+  },
+  {
+   "range": "0x00087BDD..0x000884B7",
+   "owner": "0x00087BA0"
+  },
+  {
+   "range": "0x00088979..0x00088CF4",
+   "owner": "0x0008892C"
+  },
+  {
+   "range": "0x00088F04..0x00088F11",
+   "owner": "0x00088F01"
+  },
+  {
+   "range": "0x000897D3..0x00089827",
+   "owner": "0x000897C0"
+  },
+  {
+   "range": "0x00089887..0x00089AD7",
+   "owner": "0x00089833"
+  },
+  {
+   "range": "0x00089DDC..0x0008A181",
+   "owner": "0x00089D95"
+  },
+  {
+   "range": "0x0008A951..0x0008A9E7",
+   "owner": "0x0008A727"
+  },
+  {
+   "range": "0x0008AAB9..0x0008AB05",
+   "owner": "0x0008AA6A"
+  },
+  {
+   "range": "0x0008B392..0x0008B735",
+   "owner": "0x0008B32E"
+  },
+  {
+   "range": "0x0008BC07..0x0008BCC8",
+   "owner": "0x0008BBF3"
+  },
+  {
+   "range": "0x0008BE0D..0x0008BF21",
+   "owner": "0x0008BDC0"
+  },
+  {
+   "range": "0x0008BF4E..0x0008C487",
+   "owner": "0x0008BF29"
+  },
+  {
+   "range": "0x0008C600..0x0008C647",
+   "owner": "0x0008C5CB"
+  },
+  {
+   "range": "0x0008CFEA..0x0008D074",
+   "owner": "0x0008CA7A"
+  },
+  {
+   "range": "0x0008D201..0x0008D307",
+   "owner": "0x0008D0E2"
+  },
+  {
+   "range": "0x0008D507..0x0008D571",
+   "owner": "0x0008D4E9"
+  },
+  {
+   "range": "0x0008D5E9..0x0008D63C",
+   "owner": "0x0008D571"
+  },
+  {
+   "range": "0x0008D88A..0x0008D93A",
+   "owner": "0x0008D828"
+  },
+  {
+   "range": "0x0008DA23..0x0008DAEE",
+   "owner": "0x0008D95F"
+  },
+  {
+   "range": "0x0008DD20..0x0008DD77",
+   "owner": "0x0008DD05"
+  },
+  {
+   "range": "0x0008DD92..0x0008DDE9",
+   "owner": "0x0008DD77"
+  },
+  {
+   "range": "0x0008E161..0x0008E2F1",
+   "owner": "0x0008E0E7"
+  },
+  {
+   "range": "0x0008EBED..0x0008EC4A",
+   "owner": "0x0008EB90"
+  },
+  {
+   "range": "0x0008FAED..0x0008FB9F",
+   "owner": "0x0008FA71"
+  },
+  {
+   "range": "0x000901D4..0x000906C5",
+   "owner": "0x00090180"
+  },
+  {
+   "range": "0x00090FFF..0x000910F9",
+   "owner": "0x00090EF4"
+  },
+  {
+   "range": "0x00091681..0x000916CB",
+   "owner": "0x000915B8"
+  },
+  {
+   "range": "0x00092527..0x00092539",
+   "owner": "0x0009241C"
+  },
+  {
+   "range": "0x0009281A..0x0009299E",
+   "owner": "0x00092797"
+  },
+  {
+   "range": "0x00092A02..0x00092A73",
+   "owner": "0x000929DA"
+  },
+  {
+   "range": "0x00092AED..0x00092E92",
+   "owner": "0x00092A83"
+  },
+  {
+   "range": "0x0009356B..0x00093772",
+   "owner": "0x0009353C"
+  },
+  {
+   "range": "0x00093DFB..0x00093F84",
+   "owner": "0x00093DE4"
+  },
+  {
+   "range": "0x0009407E..0x00094228",
+   "owner": "0x00094050"
+  },
+  {
+   "range": "0x0009422B..0x0009438E",
+   "owner": "0x00094050"
+  },
+  {
+   "range": "0x000943C2..0x000947E2",
+   "owner": "0x0009439E"
+  },
+  {
+   "range": "0x00094802..0x00094895",
+   "owner": "0x000947FC"
+  },
+  {
+   "range": "0x00094897..0x000948C9",
+   "owner": "0x000947FC"
+  },
+  {
+   "range": "0x0009497C..0x00094B07",
+   "owner": "0x0009493C"
+  },
+  {
+   "range": "0x000950CB..0x00095193",
+   "owner": "0x00095091"
+  },
+  {
+   "range": "0x000966B1..0x00096AE2",
+   "owner": "0x0009662B"
+  },
+  {
+   "range": "0x00096AE5..0x00096EDA",
+   "owner": "0x0009662B"
+  },
+  {
+   "range": "0x00096FAB..0x0009755A",
+   "owner": "0x00096F04"
+  },
+  {
+   "range": "0x0009759D..0x0009772F",
+   "owner": "0x0009756E"
+  },
+  {
+   "range": "0x000978BD..0x00097ACD",
+   "owner": "0x0009785F"
+  },
+  {
+   "range": "0x00097B0F..0x00097BBC",
+   "owner": "0x00097ACD"
+  },
+  {
+   "range": "0x00098BD6..0x00098C22",
+   "owner": "0x00098B67"
+  },
+  {
+   "range": "0x00098C94..0x00098D40",
+   "owner": "0x00098C57"
+  },
+  {
+   "range": "0x000995DF..0x00099831",
+   "owner": "0x000995AF"
+  },
+  {
+   "range": "0x0009A297..0x0009A514",
+   "owner": "0x00099E5B"
+  }
+ ]
+}

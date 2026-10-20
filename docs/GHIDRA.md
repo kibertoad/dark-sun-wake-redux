@@ -214,9 +214,10 @@ it exports each view on its own: the overlay view is the mapped image, so its
 rows are mapped-image `segment:offset` addresses with the mapped file's hash,
 and it neither clips overlay bodies nor joins the views. The DSUN inventories
 therefore still come from `join-overlay-views.mjs`. Its `entry` rows name the
-same starts without an instruction as the join's expectations: `2707:048E` in
-the installed resident view, `6F0E:1A7C` in its overlay view and `5662:00F7`
-in the disc's resident view.
+same starts without an instruction as the join expected of the same views:
+`2707:048E` in the installed resident view and `6F0E:1A7C` in its overlay view
+of FND-EXE-595, and `5662:00F7` in the disc's resident view. The installed
+views of FND-EXE-597 have none.
 
 ## Bounded script pattern
 

@@ -59,16 +59,33 @@ fall-through (FND-EXE-593), and removes the functions that decoded past it.
 The second adds each overlay as a file-backed overlay
 block at its mapped segment, writes the fixups, creates functions at the
 trampoline targets and reanalyzes only those blocks, so resident functions that
-only overlay code calls get their starts. Then run `tools/ghidra/ApplyDeclaredEntries.java
-tools/ghidra/dsun-declared-entries.json resident`, which removes the declared
-false starts, decodes their bytes again from the routine that owns them and
-creates functions at the declared entries (FND-EXE-594, FND-EXE-595). Change
-that file, never the inventory, to add or drop a start. Export it with
+only overlay code calls get their starts. Then run
+`tools/ghidra/CorrectNearTransfers.java apply 55E8:0000 229`, which gives
+each near relative call and jump the target CS:((IP + displacement) & FFFF)
+in place of the one Ghidra 12.1.3 wraps at the instruction's linear 64K page,
+drops computed-jump references that leave the jump's CS window, and removes
+the functions only those wrong targets created (FND-EXE-597). Then run
+`tools/ghidra/ApplyDeclaredEntries.java tools/ghidra/dsun-declared-entries.json
+resident`, which removes the declared false starts, decodes their bytes again
+from the routine that owns them and creates functions at the declared entries
+(FND-EXE-594, FND-EXE-595, FND-EXE-597), and then
+`tools/ghidra/ApplyDeclaredFlows.java tools/ghidra/dsun-declared-flows.json
+resident`, which decodes the declared runs of FND-RNG-058's walk, gives the
+declared table jumps their targets and removes the other computed-jump
+targets, and repairs the declared returns and fall-throughs (FND-EXE-597).
+`python -I tools/research/exec-census/walk_declared_flows.py` writes the
+flows file's `jumps` and `decode` lists from the walk report; `returns` and
+`fallThroughs` are written by hand. Change those files, never the inventory,
+to add or drop a start or a flow. Export it with
 `ExportResearchBaseline.java`, passing the plain import's resident regions
 (the rows of its regions file as start..exclusive-end), which leaves the
 overlay blocks out. For the overlay view, copy the
 relocation-corrected overlay snapshot (revision 2 mapper) to a new project,
-run `ApplyDeclaredEntries.java <entries> overlay <mapping JSON>` on it, then
+run `CorrectNearTransfers.java apply 55E8:0000 229 <mapping JSON> <shipped
+DSUN.EXE>` (the mapping and the shipped file name the trampoline targets,
+which it keeps as entries), `ApplyDeclaredEntries.java <entries> overlay
+<mapping JSON>` and `ApplyDeclaredFlows.java <flows> overlay <mapping JSON>`
+on it, then
 `tools/ghidra/ClipBodiesToEntryRegion.java` on the copy without
 `-readOnly`, passing the overlays' mapped code ranges from
 `ReportFbovOverlayMap.ps1`. It removes from each function body the
@@ -94,16 +111,15 @@ and regions files under the `@CD` path convention. Like
 from a checkout with Windows line endings.
 
 The committed `coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv` was staged by this join,
-with the trampoline and declared-entry steps, from the views of 2026-10-21
-(FND-EXE-595). `coverage/BLD-GOG-EN-1.1/@CD/DSUN.EXE.tsv` comes from the `CD-`
+with the trampoline, near-transfer, declared-entry and declared-flow steps, from
+the views of 2026-10-21 (FND-EXE-597). `coverage/BLD-GOG-EN-1.1/@CD/DSUN.EXE.tsv` comes from the `CD-`
 single-import resident view of 2026-10-10 and the `overlay-owned` snapshot of
 2026-10-09, without those steps; it is a diff reference only. `standard-coverage`
 accepts both.
 Their provenance files name both snapshots and the exporter, clip and join
-revisions. The installed inventory expects `2707:048E` (resident) and
-`6F0E:1A7C` (overlay, file offset `0x00065D5C`) to have no decoded
+revisions. The installed inventory expects every start to have a decoded
 instruction; the disc inventory expects `5662:00F7`, a trampoline start in an
-overlay header that overlay code calls.
+overlay header that overlay code calls, to have none.
 `report.mjs inventory-check` predates the `ranges` column and rejects these
 files, so check them with `standard-coverage`.
 
