@@ -27,14 +27,20 @@ Next ID: Q-RNG-023
   declared that reaches no target. Tried: split from Q-RNG-014. FND-RNG-050's per-callee walks
   reach the targets from these five starts with two unresolved table jumps in segment `2707`, and
   find no draw in the other six callees. Blocks: slices 2-7.
-- Q-RNG-003. RULE-RNG-001: When does the game reseed: which paths reach the two seed callers,
-  overlay 180 +065E and overlay 204 +001E, and with what near buffers? Settles it: the callers
-  that reach each seed caller and their branches, and on each such path the DS/SS identity of
-  the near date and time buffers the clock helper fills. Tried: FND-RNG-009 (both call sequences
+- Q-RNG-003. RULE-RNG-001, RULE-VIDEO-005: Which casts reseed the generator, and do the clock
+  helper's stores reach its frame on the paths after startup? Settles it: the spells or actions
+  that cast `DATA` 293 through overlay 193 `+003C` with its byte argument at `bp+0x1A` not 0
+  (through overlay 193 `+0000`'s callers overlay 176 `+03BD`, overlay 177 `+04FE`, overlay 193
+  `+22CF` and overlay 204 `+19AF`, and the cast queue), and `DS` at the entry of overlay 193
+  `+003C`, overlay 201 `+05D5` and overlay 204 `+1F06` on the paths that reach them, or a check
+  that every routine writing `DS` restores it. Tried: FND-RNG-009 (both call sequences
   seed from the helper's low return word), FND-RNG-010 (fresh startup seeds 44976 from overlay
   180), FND-RNG-014 (the startup path's buffer identity), FND-RNG-015 (the wrapper's return) and
   FND-RNG-021 (the second root reseeds before its offset loop) answer the startup path and the
-  second root's local role; the other paths remain. Blocks: reproducible startup seeding and
+  second root's local role; the other paths remain. Tried: FND-RNG-053 finds overlay 180 `+0141`
+  called only from startup and overlay 204 `+0000` only from its four known calls, the cast
+  routine's call conditional on `DATA` 293 and its byte `bp+0x1A`, `SS` written only at startup
+  and in a balanced swap, and no `DS` write in the seed routines or their callers. Blocks: reproducible startup seeding and
   Q-PARTY-081's later recorded gameplay run.
 - Q-RNG-004. RULE-RNG-001: Which environment strings reach the clock conversion's initializer,
   and with what bounds? Settles it: the population and bounds of the environment pointer array
