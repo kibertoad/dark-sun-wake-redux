@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-025
+Next ID: Q-COMBAT-026
 
 ## Static
 
@@ -225,6 +225,12 @@ Next ID: Q-COMBAT-025
   stack admission, aggregate bounds, complete callers and preservation
   remain outside that bounded coverage.
   Blocks: established status-effect selection.
+- Q-COMBAT-025. RULE-COMBAT-010: Which spells, powers or items are `DATA` 18, 53, 121, 169 and
+  277, which combatants are numbered 48 or more, and does overlay 173 `+2C00` give the target's
+  Armor Class for the target, the caster and 0? Settles it: the names or uses of the five `DATA`
+  records, a reading of how combatant numbers are given out, and a decode of `+2C00` from its
+  entry to its returns. Tried: FND-RNG-032 reads the roll and the gate that runs it, and
+  FND-PARTY-091 reads `+2C00` only as the attack routine's fourth argument. Blocks: slice 4.
 
 ## Emulated call
 

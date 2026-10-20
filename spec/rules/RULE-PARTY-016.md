@@ -4,7 +4,7 @@ title: The spells a Preserver is given when the generation screen stores it
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-029, FND-PARTY-073, FND-PARTY-070, FND-PARTY-104]
+evidence: [FND-RNG-029, FND-RNG-033, FND-PARTY-073, FND-PARTY-070, FND-PARTY-104]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-002, RULE-RNG-001, SCR-UI-004]
@@ -22,6 +22,8 @@ at level 7.
 
 Once each time DONE finishes the generation screen, after the screen's other storing steps
 (FND-PARTY-070, FND-RNG-029). An edit that leaves the preserver level as it was changes nothing.
+For a character with a first class, DONE's storing steps before this one make no draw, so its
+picks are the first draws DONE makes (FND-RNG-033).
 
 ## Parameters
 
@@ -96,5 +98,3 @@ None known.
 
 - Which spells the numbers name and what spell levels the game gives them; FND-RNG-029 reads only
   the bit numbers (No item: naming only; the numbers are what the rule uses).
-- Whether other steps of DONE, run before this one, draw from the generator, which decides the
-  draws' place in the sequence (Q-RNG-001).

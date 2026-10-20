@@ -14,4 +14,5 @@
 | `RULE-COMBAT-007` | What the difficulty setting changes in combat | unknown | missing | None | None | unknown | The Preferences screen changes the difficulty, and nothing reads it. |
 | `RULE-COMBAT-008` | Saving, resting, adding a character and changing the leader are refused during combat | supported | missing | None | None | supported | The rebuild has no combat state, so nothing is refused. |
 | `RULE-COMBAT-009` | The status panel names the character's first effect, putting the named effects before the others | supported | missing | None | None | supported | The rebuild has no effects and no status panel text. |
+| `RULE-COMBAT-010` | Five DATA numbers used by a combatant numbered 48 or more take effect only on a to-hit roll against its THAC0 less the target's Armor Class | supported | missing | None | None | supported | No code applies `DATA` records or rolls before a hit. |
 | `SCR-COMBAT-001` | Combat status panel | supported | partial | None | None | supported | The extractor writes `BMP/19003` as `images/combat/status-panel.dsix`, and `OriginalContent.CombatStatusPanelLayer` places it at (215, 4). Nothing draws it or its four lines. |
