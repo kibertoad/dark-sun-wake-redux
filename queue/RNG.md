@@ -49,17 +49,9 @@ Next ID: Q-RNG-025
   overlay 204 `+0000` only from its four known calls, and the cast routine's call conditional on
   `DATA` 293 and its byte `bp+0x1A`. Tried: FND-RNG-055 reads every caller's number and byte into
   the cast routine: only overlay 174 `+084D`'s special attack 6 and overlay 197 `+111A`'s return by
-  special attack 13 pass 293 with the byte set; the near-buffer part moved to Q-RNG-023. Blocks:
-  reproducible seeding and Q-PARTY-081's later recorded gameplay run.
-- Q-RNG-023. RULE-RNG-001: Does `DS` equal `SS` at the entry of overlay 193 `+003C`, overlay 201
-  `+05D5` and overlay 204 `+1F06` on the paths after startup? Settles it: for each of the 166
-  calls and 92 `INT`s FND-RNG-056 lists as made with `DS` `other`, a reach query (with a control
-  call per start) showing it does not lead to the three entries, or the `DS` it holds; and
-  readings of the eight changer routines it leaves unread and of `1000:1F50`. Tried: split from
-  Q-RNG-003. FND-RNG-053 finds `SS` written only at startup and in a balanced swap, and no write of
-  `DS` in the seed routines or their callers. Tried: FND-RNG-056's path walk of all 255 `DS`
-  writers finds 24 resident routines that can return with `DS` changed and none in overlays, and
-  `DS` equal to `SS` at the call of the main routine. Blocks: reproducible seeding.
+  special attack 13 pass 293 with the byte set; the near-buffer part was split off, and
+  FND-RNG-061 answers it. Blocks: reproducible seeding and Q-PARTY-081's later recorded gameplay
+  run.
 - Q-RNG-005. RULE-RNG-001: Does any reached write change the clock
   conversion's storage through a pointer formed outside it? Settles it: for
   the environment-array root DS:3920, classification-index window
@@ -88,8 +80,8 @@ Next ID: Q-RNG-025
   the tables, pointers, name and label buffers never written directly, the
   record written only by the initializer, the root only by the constructor,
   and below the classification table only the pack size and exit count; the
-  direct reader/writer part is answered, and the DS at the helper's callers
-  stays with Q-RNG-023. Blocks: complete seed-source reading.
+  direct reader/writer part is answered, and FND-RNG-061 finds DS equal to
+  SS at the helper's callers. Blocks: complete seed-source reading.
 
 - Q-RNG-006. RULE-RNG-001, RULE-VIDEO-005: Does the admitted pinned runtime route the clock
   requests through the reviewed date/time handlers with the required storage
